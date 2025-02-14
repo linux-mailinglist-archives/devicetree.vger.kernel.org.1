@@ -1,297 +1,164 @@
-Return-Path: <devicetree+bounces-146753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0F7BA3608E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 15:35:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6C71A360F8
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 16:07:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CF703B1D1F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 14:32:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C9A3160871
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 15:07:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF14267F53;
-	Fri, 14 Feb 2025 14:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB19265CC4;
+	Fri, 14 Feb 2025 15:07:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="luLhh6gC"
+	dkim=pass (2048-bit key) header.d=uni-heidelberg.de header.i=@uni-heidelberg.de header.b="i7q54Z6K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay.uni-heidelberg.de (relay.uni-heidelberg.de [129.206.100.212])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC80267F45;
-	Fri, 14 Feb 2025 14:31:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98DB525A63D;
+	Fri, 14 Feb 2025 15:07:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.206.100.212
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739543465; cv=none; b=ggUrmGegIB3kBRF9ob3LCfvhN2MCo+jzS47VoloK2HVa7b+5wYHDTUXHQbmBZe8axAQeuV3Qj1kYzOG4/WIO9+bTLvHvAjz5rQY+dKhRltTnf/91E8A1UQNvfYVe075eEjX/c7XeIANnnYEThOnFgHJq3LSxZSIyzwxO+Xo4o+M=
+	t=1739545627; cv=none; b=uslgGnNWLsFjHmlUocmXUkIk4asFPw75yIVmlAzPV3UJ9lWFmRKM8UrAf8CQ5F9IbRnYER2OE35cVz5NtDWdt0+Am6nukL4KLQGf8/fzkh0gnB+mIt8a9mqc1hGDyYEmW6GXlwoTUMrmCkXCOQSZqUJFg8SSJ5LYYD0alHmd9OE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739543465; c=relaxed/simple;
-	bh=vvdMzw8bbPqoK9nrfiGpyfrLmTCkg8tuW8G+NgndUa8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uBk+TKeHiAwquHBQQaR+MOmZR6fqJhk31V7rRm7JMONBzbjKYyax76rjYa1oFW0G13U4fl+7Do5Dxa87iSjva/PcN+CVpJfnLO425qOvcUNFuRQEc2piHJHRqkmS53F3ytexXKb2FZ/lwbYKrlEqTXvTLb3jvysoGXUp7p4CbNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=luLhh6gC; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-21f2339dcfdso32997655ad.1;
-        Fri, 14 Feb 2025 06:31:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739543463; x=1740148263; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+x1KwZxNSrdIMQmJdRQQHZgni7JuWBTiuRq1uomt/9I=;
-        b=luLhh6gCiRsM3gVAXzCRgdoKB7Y2xa7y2ocxJkMzUGtLjQTaJU71uI93GUQfdqhfGS
-         auQgc7uXlwRyoJXFeGoZAAhWqAqOiPLi7SmcuWOr8LZ8Ih/J2Qe+aeRKc+wLJLWKiSgR
-         8FbR1dfz4nY0oR8rLsOXofv0qjwmpo643ZJcy9NA5i/Mk2iag93Sfs+49dohZSDi9vae
-         eYx+i2OdB9tpheIAOgfvRY8smrOrubiFQsDJzPbWR+S89wOFTUCb6xCNSUEYjcpXQa1p
-         VWgFcW+OdhQibv+6SexqlTlxtyyM2V3jkUstKDcSummCSGOFEOA4tzLjE8fUB6wCfzxP
-         Q3BA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739543463; x=1740148263;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+x1KwZxNSrdIMQmJdRQQHZgni7JuWBTiuRq1uomt/9I=;
-        b=JhwzdfR0ZdoxL/XTmy/vGp9v1mBurIZAO0XiJAKStSpeYMVzoaCNlVLRGmeVhvj4Nf
-         RKatbRxCfSRtGHunVub4yWoE9CiAJq2wE3h9sEHoB5IFghjJOR+uSb0kkGWZBr/UNecB
-         lkxtRi6HqZW3Jsc3+wgY0PzgX+Moxm79+Wzdvz6WZfmVF+hs/ghM3fXEr4HgdFQyw1Ao
-         jQwWWdaJq4EQ0wxMfgN2j1dKEqv4jn1qdLIpXHR9Dm1WrCrY2sAqP/IbOW9XwpsK9fAQ
-         QFE70+FbECoVbSfCavjbb77Ie9duRGZkC6ABVT9s+U6j4wRZVKGT3fDXxPg8zhZ98e3Y
-         /+pQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVsQpoC5UjfbwMmur3EQavgNuqBqVYrtlz4L1teLMBEU9OwRE29nIuhBF1w1WX8+4yhtSZj7a0iMI6/Ila1@vger.kernel.org, AJvYcCVxG39uFrXV9gxIFzHFsvivgsfqCFrZcZNdu1HA0KjcVJU6n2LPG318hQr8VVR04Puqg9rhi9X65ibUTjFhTTk/9Q==@vger.kernel.org, AJvYcCXIIM4p16U86oIUkEb6lRYsZ4dqPq0nhjbJy9Y5X0fFmnhfxqotbb4DR6ORwbY/LoDjRnRpoz+aAflN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNnbcZq9tu+JtMES9rrYfsV/sQpgQ+rqHcGQiGCfRTFWaTsu+H
-	urCDhd1oO8OsynxnbRvdfucLYxVRjkJsn57DbpmhDnGSfyCDtl/r
-X-Gm-Gg: ASbGncsgLMxw+HzUo3aoGkCrMVi//I71dG9oJ8c5l78RxnZO3JXGE1Kuw65EKTOK8Xm
-	RXugTi4Tt4whDgDl+Ptv3wKf7BrbpPgmkDqWvamgUSLfu6LwgqYvCjVlnSFuxJj4v8kMnKBTG2o
-	Vm8hfjulvb/oNDDFZhm8SMhDpjCU1xCK+MwuUygdVpUT5Z3atqXNaR7B6w+ZXNZroRrn40fBMd+
-	N4oj3VLMtGJwyWVbMxliRo9VmRIFIsNcZUfmJqxa/GYa84asM3TgLtyVPjf3LLJjUym34OU2jki
-	ItILY5StwgB5p4yd1A==
-X-Google-Smtp-Source: AGHT+IHEd6g8rP3PTcEbBpzib/KLNqeBwuG6Z4mi0XCVCkr3oKIt0ITp/BFhBdGufa+NvOOdmbN/zA==
-X-Received: by 2002:a17:903:2f81:b0:21f:40de:ae4e with SMTP id d9443c01a7336-220d36ea10amr117696205ad.9.1739543463400;
-        Fri, 14 Feb 2025 06:31:03 -0800 (PST)
-Received: from [127.0.1.1] ([59.188.211.160])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-220d545c8d1sm29490315ad.113.2025.02.14.06.31.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Feb 2025 06:31:02 -0800 (PST)
-From: Nick Chan <towinchenmi@gmail.com>
-Date: Fri, 14 Feb 2025 22:28:37 +0800
-Subject: [PATCH v4 11/11] drivers/perf: apple_m1: Add Apple A11 Support
+	s=arc-20240116; t=1739545627; c=relaxed/simple;
+	bh=9nkcpXZNvkPRt/uuH/9BO1mdsXmqDK8fyg9SPqOXcyE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BCvoctMkn35yey0xwqc9j6FNVTUF8v1DJlJCY9M1tbOwLEB1c1ITRcpZqFSGsL3bDmarwf2G380stPuT6PabZ3ilcDT9VSYOWGIS28ksCsvtKpBKzY5cbVup+MvUyX3DxgXxG91rNTUJrx+mICRIsvsdofHsDw7i9Jw9GdVagBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=uni-heidelberg.de; spf=none smtp.mailfrom=lemon.iwr.uni-heidelberg.de; dkim=pass (2048-bit key) header.d=uni-heidelberg.de header.i=@uni-heidelberg.de header.b=i7q54Z6K; arc=none smtp.client-ip=129.206.100.212
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=uni-heidelberg.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=lemon.iwr.uni-heidelberg.de
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=uni-heidelberg.de; i=@uni-heidelberg.de; q=dns/txt;
+  s=s1; t=1739545626; x=1771081626;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9nkcpXZNvkPRt/uuH/9BO1mdsXmqDK8fyg9SPqOXcyE=;
+  b=i7q54Z6KxPQ59fIFsiMJnAkx2448d2hnPBBplHkQ5pevhOBoiPsxOXl9
+   Pz2LhkQ8C6RpfXf4JdYgYa55RxtmWSyliIUOLSU8m8SMeQkKo/rdSz+pC
+   v6UjhMELURcpIQ+GYAdN2ew3TrTBIfgWmcY58AAWGAN3kfBUr2EufP2Tr
+   vpH0Tap1tELXGW2TTcx6u06OL9HlVyUpH9bZMdE/DOULDRcObezhTBPh4
+   30jrcIyNnAjrxXWRUB3kx7fzXDPypa9ltk1r/C7EWjGx/Y+E9pivesIrD
+   DuTcmHfNbEwUFjupjIlRXF6PHzlX8FEVLN2leyIO9A6DzZ/u+2+YcOUlA
+   Q==;
+X-CSE-ConnectionGUID: qf2ZENTEQwuWng8L42772g==
+X-CSE-MsgGUID: 6y0cHPHCQeq7UrFSk0mm9w==
+X-IPAS-Result: =?us-ascii?q?A2AOAwDYWq9n/1BqzoFaHAEBAQEBAQcBARIBAQQEAQFAg?=
+ =?us-ascii?q?VODJgGGU5FwA6AhAQEBAQEBAQEBCUQEAQGFB4sMKDgTAQIEAQEBAQMCAwEBA?=
+ =?us-ascii?q?QEBAQEBDgEBBgEBAQEBBwWBIYYIhlsBBSNWEAsYAgImAgIUSIV6sAqBMoEB3?=
+ =?us-ascii?q?kuBNCOBGi6ITwGFa4JIhH6BFYMqPoQaAQo7gz46gi8EgnmBJINApSRSe3gsA?=
+ =?us-ascii?q?VUTFwsHBYEpSAOBESOBIwU0Cjc6gg1pSToCDQI1Z4E3fIIrgiCCOIRDhE2FW?=
+ =?us-ascii?q?IISgWMDAxYQgyF4HIUUZx1AAwttPTcUG6UJgUMXAi2BLgWXBrAEB55bCYcBB?=
+ =?us-ascii?q?BYzl1GTAZh9qS6BfoF+Mz6DN1EZD9t2gTMCBwsBAQMJj3YBgXwBAQ?=
+IronPort-Data: A9a23:mbMxi6lOUYCeJTlfMRljlM3o5gzHIURdPkR7XQ2eYbSJt1+Wr1Gzt
+ xJODTzVOPiNZzf3f9t/OY6yoUoB68fXyIUwQQU//ilmEFtH+JHPbTi7Bh6tYHnCcJGroGGLT
+ Sk6QoOdRCzhZiaE/n9BCpC48D8kk/vOHuGgYAL9EngZbRd+Tys8gg5Ulec8g4p56fC0GArlV
+ ena+6UzA3f7nWcvWo4ow/jb8k435q2u4G5wUmEWPJingnePzxH5M7pCfcldH1OgKqFIE+izQ
+ fr0zb3R1gs1KD90V7tJOp6iGqE7aua60Tqm0xK6aID66vR2nRHe545gXBYqhee7vB3S9zx54
+ I0lWZVd0m7FNIWU8AgWe0Ew/y2TocSq9ZefSUVTv/B/wGXffSHe7tNSIXgpILIe9bZTXTsRq
+ qYXfWVlghCr34pawZq/R+xrgIIiM9OtIYUe/3FtzD3UCfwrW5+FT6iiCd1whW1hwJoWQ7CHP
+ 5RfOWIHgBfoOnWjPn8XDJsjkf2AgnT6dDseqU2P47cx4i3TwQ193bznPcDaPNCHLSlQthzE/
+ DOboTulW3n2MvTB2GKO0kqMrdbChHzGQqwpF+W986911Qj7Kms7UkRNBAbg/5FVkHWWRN9ZM
+ GQf4Ssj668o+ySDU8bgdxyzrXiDoQ9aXtc4O+Q85BuAjLLO8ReGD3INZjdbbZots8pebSYt3
+ F+hnN7zAzFr9rqPRhq19a2GrnC+JQAWIHUEaCtCShEKi/Hop4c0lFHDUv5gHbSzg9mzHiv/q
+ xiIoTI4irdVls0R3q+29njIhjutot7CSQtdzh7eW3+o6itiZImhY4Wu5R7c9/koBIKYSESR+
+ XEeno2d4foIAJWlkC2WXP5LHben/f+JPTTQx1l1EPEJ8zWr5m7mZp1W8DBWIEZyLt1CfT7vf
+ V+VtQ5PjLdfMWWrZqJreY+8I9olwLKmFtn/UP3QKN1UbfBZcA6B4TErZkOK2W3puFYjnLt5O
+ pqBd8uoS3EABsxaICGeQ+oY1rltxz8kg37VRNX7whWr3L6UaWSaD7sIWLeTUgwnxLqK+jf41
+ epyDtSX9BNQAMmiOHaIq4FGeDjmMkMH6YDKR91/L7HYc1c9RD96UJfsLaUdl5tNs4k9qwspw
+ p1echYGoLYHrSebQThmk1g6AF4vNL4mxZ7BAQQiPEyzx18oapu14aEUevMfJOZ8pbA8lKIlF
+ KJeJK1s58ijrByaolzxirGg9+RfmOiD2GpiwgL8O2FkJc4Iq/LhpY+5LmMDCxXi/gLt7JBv/
+ ub+vu8qaYcFRhpvFt3XdPui0xuxsHkRleZ4UlHHSuS/i22ymLWH6kXZ0JcKHi37AUman2vFj
+ VbIXUZwSCuki9ZdzeQlTJus9++Be9aS1GIHd4UHxd5a7RXnw1c=
+IronPort-HdrOrdr: A9a23:BCeVo6tmX+OSuWUaDJ1ZS+iM7skCpIMji2hC6mlwRA09TyXGra
+ 2TdaUgvyMc1gx7ZJhAo6HnBEDkex/hHPFOkO0s1NuZLWvbUQiTXeJfBOnZskTd8kTFn4Yzu8
+ ddmsBFeaXN5DNB/KHHCWeDYrMdKe28gduVbKrlvgRQZDAvT5slwxZyCw6dHEEzbA5aBaAhHJ
+ 7ZwsZcvTKvdVkec8z+XxA+Lp3+juyOsKijTQ8NBhYh5gXLpTS06ITiGxzd+hsFSTtAzZor7G
+ CAuQ3k4aeIte2913bnph3uxqUTvOGk5spIBcSKhMRQAjLwijywbIAkYLGGtCBdmpDQ1L5/+u
+ Osnz4Qe+BIr1/BdGC8phXgnyP61iw11nPkwViExVP+vM3QXlsBeoF8rLMcViGcx1srvdl63q
+ 4O9XmerYBrARTJmzm4z8TUVittilG/rRMZ4KQuZkRkIMYjgYJq3MUiFQJuYeE99RvBmfca+T
+ xVfYnhDPU/SyLkU5mWhBgi/DWWZAVOIv63eDl+hiWr6UktoJlY9Tpo+CVNpAZxyHt6cegx29
+ j5
+X-Talos-CUID: 9a23:y7yfGm+pvKjk8U0wVKiVv1caQPIIVEHw9WjNHEm3WUI1EuLKE1DFrQ==
+X-Talos-MUID: =?us-ascii?q?9a23=3AYlcmgg7YdI4OIAOfdVbdWPa4xow28vylKHgtuqw?=
+ =?us-ascii?q?Lopa5LwJLOG+YiWWoF9o=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+Received: from lemon.iwr.uni-heidelberg.de ([129.206.106.80])
+  by relay.uni-heidelberg.de with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Feb 2025 16:05:46 +0100
+Received: from hlauer by lemon.iwr.uni-heidelberg.de with local (Exim 4.92)
+	(envelope-from <hlauer@lemon.iwr.uni-heidelberg.de>)
+	id 1tixGB-0002Z2-Iz; Fri, 14 Feb 2025 16:05:43 +0100
+Date: Fri, 14 Feb 2025 16:05:43 +0100
+From: Hermann.Lauer@uni-heidelberg.de
+To: Chen-Yu Tsai <wens@csie.org>
+Cc: Icenowy Zheng <uwu@icenowy.me>, Andre Przywara <andre.przywara@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: Re: Re: [PATCH v2] ARM: dts: sun8i-r40: remove unused GPIO
+ regulator
+Message-ID: <20250214150543.GA9779@lemon.iwr.uni-heidelberg.de>
+References: <20241213195433.GA1568@lemon.iwr.uni-heidelberg.de>
+ <20241214011612.4fd9e4bf@minigeek.lan>
+ <e61c927a4dfe909f4ede4a07dffd9dcd762875be.camel@icenowy.me>
+ <20241220172134.GA9899@lemon.iwr.uni-heidelberg.de>
+ <CAGb2v64ovacuS+G+k3zBvQR+rW2_TSYh4p5frj7fLxz81K9Kmg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250214-apple-cpmu-v4-11-ffca0e45147e@gmail.com>
-References: <20250214-apple-cpmu-v4-0-ffca0e45147e@gmail.com>
-In-Reply-To: <20250214-apple-cpmu-v4-0-ffca0e45147e@gmail.com>
-To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Catalin Marinas <catalin.marinas@arm.com>
-Cc: Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org, 
- linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, 
- asahi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Nick Chan <towinchenmi@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7988; i=towinchenmi@gmail.com;
- h=from:subject:message-id; bh=vvdMzw8bbPqoK9nrfiGpyfrLmTCkg8tuW8G+NgndUa8=;
- b=owEBbQKS/ZANAwAIAQHKCLemxQgkAcsmYgBnr1OBOzmp7pWtB1lpiFZND5Ndbu/T1g/ic/Bft
- qX0WwtkiuuJAjMEAAEIAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCZ69TgQAKCRABygi3psUI
- JBBKD/9yFe75eK7f5/j3i4+TcAJIGyyJ4DFJC1sEoNntPqQc0achTFOrYvOBV/IRd3e+VX0jxkH
- wNoxXgT68wzXzV872iUFuHCVuKJNpy8zV5Tta1ig1GaqB5USx9egspLv7svPJ1i9fRnZvPkBzNh
- 6P0rm+lQk0/F4C2zDXCUea37WyrGtDajyMjPaFEILOsdZ88QEmH49sNIgRpKS5qch4yTwdZ1uAz
- ffePcFyz+CNmZ4eR7hAWEf/5ZvSkP+iVftf7vpuCMus/yNTaya9ULZdarccwqOPEeZkEfT9GRTT
- jyO2E6nr2n72kgucJL6AY0V2DIV/DHBzHt8bhD7AscXdhyRtcj5obwR6TxUlBqbPqGHB6bq/5jT
- Um4JDPaQAJMTLNGdmzfpNvIw+jkStpFHBM29c4bTmB37NS4YDVPVGhttQ1xriXHsSTyO83C4wcY
- jCRphxeMmT6C5FHKQ1aOQNIuv+pfXRfPWFGPun4z2yE114SsWvcZbGmFHRoFa2fsvyIjQWHf5/P
- hrfYCXL5JkVz0vGDeNunpXa3sxgAQxGdUMV3Tt36W+3j8c6tXfE47qEnKxlCBAGYahFLg+7UjQg
- OBJyHl8jKGwx4F78+fMgFZ0jAONi+nQF+3Id2G7ed0S47RjKYEl6lG3U+5mSAYyV/eHXWCuLBjS
- iqGovy2dSHL77Eg==
-X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
- fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAGb2v64ovacuS+G+k3zBvQR+rW2_TSYh4p5frj7fLxz81K9Kmg@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-Add support for the CPU PMU found attached to the performance and
-efficiency cores of the Apple A11 SoCs. This PMU can deliver its
-interrupt via IRQ or FIQ. Use FIQ as that is faster.
+On Mon, Dec 23, 2024 at 01:18:18AM +0800, Chen-Yu Tsai wrote:
+> > > > CC:ing Icenowy, who added the regulator originally, with commit
+> > > > 0ca12c1ee43c ("ARM: sun8i: r40: add 5V regulator for Banana Pi M2
+> > > > Ultra").
+> > ...
+> > > > Icenowy: can you clarify what "newer" version this was referring to
+> > > > in
+> > > > that commit message? That commit in itself doesn't seem to do
+> > > > anything,
+> > > > as the regulator isn't referenced, and it's not always-on. It's only
+> > > > later when the USB nodes were added that it got used?
+> > > > So was PH23 really necessary?
+...
+> > diagnosed that futher now: PH23 is indeed powering the USB-Ports. Whats
+> > happens ist that I powered the board through the micro USB port which turned
+> > out to be limited to 900mA in axp221s. So the setting of reg 0x30 is
+> > the real culprit: Setting the two lowest bits in this register allows
+> > unlimited power over micro usb.
+...
+> > > I am not sure, the schematics I have here (which says V1.0) have PH23
+> > > as NC... Well, the M2 Berry schematics have PH23 as 5V EN, maybe I
+> > > messed up M2U and M2B when developing?
+> >
+> > While V1.0 didn't need the PH23 setup due to nc, V1.1 needs it. Maybe V1.1
+> > was already on the horizon...
+> 
+> It seems this patch isn't needed then?
 
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
----
- drivers/perf/apple_m1_cpu_pmu.c | 137 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 137 insertions(+)
+It's plain wrong: The culprit is the power issue as discussed above. Strange
+is the increase of power needed on V1.1, as V1.0 is working with the limit
+in place.
 
-diff --git a/drivers/perf/apple_m1_cpu_pmu.c b/drivers/perf/apple_m1_cpu_pmu.c
-index e66ec1426f5d9d48ef52abd539acff7648958785..612ec0dfacaa9c3fc43a3c122d836193494967ad 100644
---- a/drivers/perf/apple_m1_cpu_pmu.c
-+++ b/drivers/perf/apple_m1_cpu_pmu.c
-@@ -500,6 +500,113 @@ static const u16 a10_pmu_event_affinity[A10_PMU_PERFCTR_LAST + 1] = {
- 	[A10_PMU_PERFCTR_UNKNOWN_fd]				= ONLY_2_4_6,
- };
- 
-+enum a11_pmu_events {
-+	A11_PMU_PERFCTR_RETIRE_UOP				= 0x1,
-+	A11_PMU_PERFCTR_CORE_ACTIVE_CYCLE			= 0x2,
-+	A11_PMU_PERFCTR_L2_TLB_MISS_INSTRUCTION			= 0xa,
-+	A11_PMU_PERFCTR_L2_TLB_MISS_DATA			= 0xb,
-+	A11_PMU_PERFCTR_SCHEDULE_UOP				= 0x52,
-+	A11_PMU_PERFCTR_MAP_REWIND				= 0x75,
-+	A11_PMU_PERFCTR_MAP_STALL				= 0x76,
-+	A11_PMU_PERFCTR_MAP_INT_UOP				= 0x7c,
-+	A11_PMU_PERFCTR_MAP_LDST_UOP				= 0x7d,
-+	A11_PMU_PERFCTR_MAP_SIMD_UOP				= 0x7e,
-+	A11_PMU_PERFCTR_FLUSH_RESTART_OTHER_NONSPEC		= 0x84,
-+	A11_PMU_PERFCTR_INST_A32				= 0x8a,
-+	A11_PMU_PERFCTR_INST_T32				= 0x8b,
-+	A11_PMU_PERFCTR_INST_ALL				= 0x8c,
-+	A11_PMU_PERFCTR_INST_BRANCH				= 0x8d,
-+	A11_PMU_PERFCTR_INST_BRANCH_CALL			= 0x8e,
-+	A11_PMU_PERFCTR_INST_BRANCH_RET				= 0x8f,
-+	A11_PMU_PERFCTR_INST_BRANCH_TAKEN			= 0x90,
-+	A11_PMU_PERFCTR_INST_BRANCH_INDIR			= 0x93,
-+	A11_PMU_PERFCTR_INST_BRANCH_COND			= 0x94,
-+	A11_PMU_PERFCTR_INST_INT_LD				= 0x95,
-+	A11_PMU_PERFCTR_INST_INT_ST				= 0x96,
-+	A11_PMU_PERFCTR_INST_INT_ALU				= 0x97,
-+	A11_PMU_PERFCTR_INST_SIMD_LD				= 0x98,
-+	A11_PMU_PERFCTR_INST_SIMD_ST				= 0x99,
-+	A11_PMU_PERFCTR_INST_SIMD_ALU				= 0x9a,
-+	A11_PMU_PERFCTR_INST_LDST				= 0x9b,
-+	A11_PMU_PERFCTR_INST_BARRIER				= 0x9c,
-+	A11_PMU_PERFCTR_UNKNOWN_9f				= 0x9f,
-+	A11_PMU_PERFCTR_L1D_TLB_ACCESS				= 0xa0,
-+	A11_PMU_PERFCTR_L1D_TLB_MISS				= 0xa1,
-+	A11_PMU_PERFCTR_L1D_CACHE_MISS_ST			= 0xa2,
-+	A11_PMU_PERFCTR_L1D_CACHE_MISS_LD			= 0xa3,
-+	A11_PMU_PERFCTR_LD_UNIT_UOP				= 0xa6,
-+	A11_PMU_PERFCTR_ST_UNIT_UOP				= 0xa7,
-+	A11_PMU_PERFCTR_L1D_CACHE_WRITEBACK			= 0xa8,
-+	A11_PMU_PERFCTR_LDST_X64_UOP				= 0xb1,
-+	A11_PMU_PERFCTR_ATOMIC_OR_EXCLUSIVE_SUCC		= 0xb3,
-+	A11_PMU_PERFCTR_ATOMIC_OR_EXCLUSIVE_FAIL		= 0xb4,
-+	A11_PMU_PERFCTR_L1D_CACHE_MISS_LD_NONSPEC		= 0xbf,
-+	A11_PMU_PERFCTR_L1D_CACHE_MISS_ST_NONSPEC		= 0xc0,
-+	A11_PMU_PERFCTR_L1D_TLB_MISS_NONSPEC			= 0xc1,
-+	A11_PMU_PERFCTR_ST_MEMORY_ORDER_VIOLATION_NONSPEC	= 0xc4,
-+	A11_PMU_PERFCTR_BRANCH_COND_MISPRED_NONSPEC		= 0xc5,
-+	A11_PMU_PERFCTR_BRANCH_INDIR_MISPRED_NONSPEC		= 0xc6,
-+	A11_PMU_PERFCTR_BRANCH_RET_INDIR_MISPRED_NONSPEC	= 0xc8,
-+	A11_PMU_PERFCTR_BRANCH_CALL_INDIR_MISPRED_NONSPEC	= 0xca,
-+	A11_PMU_PERFCTR_BRANCH_MISPRED_NONSPEC			= 0xcb,
-+	A11_PMU_PERFCTR_FED_IC_MISS_DEMAND			= 0xd3,
-+	A11_PMU_PERFCTR_L1I_TLB_MISS_DEMAND			= 0xd4,
-+	A11_PMU_PERFCTR_MAP_DISPATCH_BUBBLE			= 0xd6,
-+	A11_PMU_PERFCTR_L1I_CACHE_MISS_DEMAND			= 0xdb,
-+	A11_PMU_PERFCTR_FETCH_RESTART				= 0xde,
-+	A11_PMU_PERFCTR_ST_NT_UOP				= 0xe5,
-+	A11_PMU_PERFCTR_LD_NT_UOP				= 0xe6,
-+	A11_PMU_PERFCTR_UNKNOWN_f5				= 0xf5,
-+	A11_PMU_PERFCTR_UNKNOWN_f6				= 0xf6,
-+	A11_PMU_PERFCTR_UNKNOWN_f7				= 0xf7,
-+	A11_PMU_PERFCTR_UNKNOWN_f8				= 0xf8,
-+	A11_PMU_PERFCTR_UNKNOWN_fd				= 0xfd,
-+	A11_PMU_PERFCTR_LAST					= M1_PMU_CFG_EVENT,
-+
-+	/*
-+	 * From this point onwards, these are not actual HW events,
-+	 * but attributes that get stored in hw->config_base.
-+	 */
-+	A11_PMU_CFG_COUNT_USER					= BIT(8),
-+	A11_PMU_CFG_COUNT_KERNEL				= BIT(9),
-+};
-+
-+static const u16 a11_pmu_event_affinity[A11_PMU_PERFCTR_LAST + 1] = {
-+	[0 ... A11_PMU_PERFCTR_LAST]				= ANY_BUT_0_1,
-+	[A11_PMU_PERFCTR_RETIRE_UOP]				= BIT(7),
-+	[A11_PMU_PERFCTR_CORE_ACTIVE_CYCLE]			= ANY_BUT_0_1 | BIT(0),
-+	[A11_PMU_PERFCTR_INST_ALL]				= BIT(7) | BIT(1),
-+	[A11_PMU_PERFCTR_INST_BRANCH]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_BRANCH_CALL]			= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_BRANCH_RET]			= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_BRANCH_TAKEN]			= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_BRANCH_INDIR]			= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_BRANCH_COND]			= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_INT_LD]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_INT_ST]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_INT_ALU]				= BIT(7),
-+	[A11_PMU_PERFCTR_INST_SIMD_LD]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_SIMD_ST]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_SIMD_ALU]				= BIT(7),
-+	[A11_PMU_PERFCTR_INST_LDST]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_INST_BARRIER]				= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_UNKNOWN_9f]				= BIT(7),
-+	[A11_PMU_PERFCTR_L1D_CACHE_MISS_LD_NONSPEC]		= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_L1D_CACHE_MISS_ST_NONSPEC]		= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_L1D_TLB_MISS_NONSPEC]			= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_ST_MEMORY_ORDER_VIOLATION_NONSPEC]	= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_BRANCH_COND_MISPRED_NONSPEC]		= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_BRANCH_INDIR_MISPRED_NONSPEC]		= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_BRANCH_RET_INDIR_MISPRED_NONSPEC]	= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_BRANCH_CALL_INDIR_MISPRED_NONSPEC]	= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_BRANCH_MISPRED_NONSPEC]		= ONLY_5_6_7,
-+	[A11_PMU_PERFCTR_UNKNOWN_f5]				= ONLY_2_4_6,
-+	[A11_PMU_PERFCTR_UNKNOWN_f6]				= ONLY_2_4_6,
-+	[A11_PMU_PERFCTR_UNKNOWN_f7]				= ONLY_2_4_6,
-+	[A11_PMU_PERFCTR_UNKNOWN_f8]				= ONLY_2_TO_7,
-+	[A11_PMU_PERFCTR_UNKNOWN_fd]				= ONLY_2_4_6,
-+};
-+
- enum m1_pmu_events {
- 	M1_PMU_PERFCTR_RETIRE_UOP				= 0x1,
- 	M1_PMU_PERFCTR_CORE_ACTIVE_CYCLE			= 0x2,
-@@ -993,6 +1100,12 @@ static int a10_pmu_get_event_idx(struct pmu_hw_events *cpuc,
- 	return apple_pmu_get_event_idx(cpuc, event, a10_pmu_event_affinity);
- }
- 
-+static int a11_pmu_get_event_idx(struct pmu_hw_events *cpuc,
-+				 struct perf_event *event)
-+{
-+	return apple_pmu_get_event_idx(cpuc, event, a11_pmu_event_affinity);
-+}
-+
- static int m1_pmu_get_event_idx(struct pmu_hw_events *cpuc,
- 				struct perf_event *event)
- {
-@@ -1175,6 +1288,28 @@ static int a10_pmu_fusion_init(struct arm_pmu *cpu_pmu)
- 	return apple_pmu_init(cpu_pmu, M1_PMU_NR_COUNTERS);
- }
- 
-+static int a11_pmu_monsoon_init(struct arm_pmu *cpu_pmu)
-+{
-+	cpu_pmu->name = "apple_monsoon_pmu";
-+	cpu_pmu->get_event_idx	  = a11_pmu_get_event_idx;
-+	cpu_pmu->map_event	  = m1_pmu_map_event;
-+	cpu_pmu->reset		  = m1_pmu_reset;
-+	cpu_pmu->start		  = m1_pmu_start;
-+	cpu_pmu->attr_groups[ARMPMU_ATTR_GROUP_EVENTS] = &m1_pmu_events_attr_group;
-+	return apple_pmu_init(cpu_pmu, M1_PMU_NR_COUNTERS);
-+}
-+
-+static int a11_pmu_mistral_init(struct arm_pmu *cpu_pmu)
-+{
-+	cpu_pmu->name = "apple_mistral_pmu";
-+	cpu_pmu->get_event_idx	  = a11_pmu_get_event_idx;
-+	cpu_pmu->map_event	  = m1_pmu_map_event;
-+	cpu_pmu->reset		  = m1_pmu_reset;
-+	cpu_pmu->start		  = m1_pmu_start;
-+	cpu_pmu->attr_groups[ARMPMU_ATTR_GROUP_EVENTS] = &m1_pmu_events_attr_group;
-+	return apple_pmu_init(cpu_pmu, M1_PMU_NR_COUNTERS);
-+}
-+
- static int m1_pmu_ice_init(struct arm_pmu *cpu_pmu)
- {
- 	cpu_pmu->name = "apple_icestorm_pmu";
-@@ -1225,6 +1360,8 @@ static const struct of_device_id m1_pmu_of_device_ids[] = {
- 	{ .compatible = "apple,icestorm-pmu",	.data = m1_pmu_ice_init, },
- 	{ .compatible = "apple,firestorm-pmu",	.data = m1_pmu_fire_init, },
- 	{ .compatible = "apple,fusion-pmu",	.data = a10_pmu_fusion_init, },
-+	{ .compatible = "apple,monsoon-pmu",	.data = a11_pmu_monsoon_init, },
-+	{ .compatible = "apple,mistral-pmu",	.data = a11_pmu_mistral_init, },
- 	{ .compatible = "apple,twister-pmu",	.data = a9_pmu_twister_init, },
- 	{ .compatible = "apple,typhoon-pmu",	.data = a8_pmu_typhoon_init, },
- 	{ .compatible = "apple,cyclone-pmu",	.data = a7_pmu_cyclone_init, },
+As there are issues with the stability of the mmc driver even when disabling
+mmc2 and mmc3, maybe something yet to be found changed in the mmc wirering
+on V1.1 bords which increases power consumption compared to V1.0 with the
+actual driver.
 
--- 
-2.48.1
-
+Sorry for the late reply - my time to look at this is scarse.
+Thanks (especially to Andre for his help) and greetings
+ Hermann
 
