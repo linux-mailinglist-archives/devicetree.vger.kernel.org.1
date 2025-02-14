@@ -1,79 +1,48 @@
-Return-Path: <devicetree+bounces-146583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF36CA357AA
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:10:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A7EEA357C5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:21:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3FB81675D7
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:10:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6692E3AC14B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:20:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1382205E0E;
-	Fri, 14 Feb 2025 07:10:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0E84206F1D;
+	Fri, 14 Feb 2025 07:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O0N96O70"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yl07UI8r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E328C2054F0
-	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 07:10:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AA19185B48;
+	Fri, 14 Feb 2025 07:21:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739517028; cv=none; b=GLVXxv4Na2E1vM/8qavCUzOSqJXfNskJnSxhj2H/fM5YolHgEqnlRHIBcMqFnGr2wu/1+RYKZWp0ekg4JoiGtx/L9cvddCdj1UfNUDwF/pxUY+vAVTf8Lq4a4RQM+YwcPh8eJpG74BSbsm1VhL70HBmKbbawE8C49Q2pyXQdGNE=
+	t=1739517662; cv=none; b=uYeSZNIepnFuyvqH7Wq5+gqxRKmK8PS8U9nu0zeIapsiFcVeTThq7n3nKL6kh4GQ/c6vYGd5KNmOywzjC+zBo4lwR+LTgnDKBD1nvG5+O4JFN7fFPaMYeze4SHrhBkZM20VcwBOe6PsrwPzKnon93z88BDPO85CHExK/AWMX/vE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739517028; c=relaxed/simple;
-	bh=MFTdgdlExpqx8TY76AlrGCz5tN5VnT5stMEnutUk1/E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=XNWKBP6yJM87phcoW4r/JRfc++8FeVzgkD9YQE8PclSJ7kUQC7bKD6H4eE6F6ahFmEWIWz7eYRwfRMgbYth8takpwNy3iSIa7cTHw7SnzPGf6bbr8LHORsTCM11/Ydu1WA0QcljwZyiK6Hxy1PJZXxvtgARrzuEVL1IgdaDaH6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O0N96O70; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-aba868c6e88so11651666b.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 23:10:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739517025; x=1740121825; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=D3KRD6Y81KP0hnKo/0jrjQjgKZ+r4kg7mu+pEFOiLI4=;
-        b=O0N96O70xOcPoqujVsaCZ3lujDp61gTywZBB4UWVXCCSwbJbgcG7Q1u9vaPG0rkueA
-         0uFDGGo7nMy/Wk64VzGtzeVAc276BMXvGjUWcGScBfBdp9OCqSb77L7kAwlzzEWyuDm/
-         yeKCrhzy+acC/rqcfsIT8zqYz//Y9dTNcfWJytgrARVFJQ/l0yhWBdal0s1cgyzTawud
-         141cpus2f/j1KzKVfoQt8pmvwxje2ep4wrYGQlf4xe3gfeWt6BkJI5YGaHB0IvLHEbXM
-         1VzRRrRZDcJTQR6DaHr3DE6CLTxNL4GWdWSAK6I967XSHbvyEeCcJ/OGyRNVU3o0Zwc5
-         8QkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739517025; x=1740121825;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D3KRD6Y81KP0hnKo/0jrjQjgKZ+r4kg7mu+pEFOiLI4=;
-        b=QCWyCv7NXse4IZZNAY0RMRbZyBjlMxXKK1mpXuG4QUHnbux/i2QzY+uFX5URVyH98U
-         XZwqmM3YU2wEB/ljAR3yVy9WTTRKcVjSD5+tc1/rMnd+zGGa67ISni64uXxMM3ckiQbB
-         A5/5Ta8woxnG9VI06N7NOrReGY7IKbGxSjaROcQm3PwMo3pqc+LOqFf+q2mQwAsgO0/I
-         kj3N3QYhtuVLt2i7ZgRqNQXYTvvn3EXD9oD2kptlWweXOLD//E1Jx7kZb3aN1pe6jhp1
-         6ZV8aJM0SmYq8sswqT/6GTdqaLPQe6SroA5MD1VvgNvHtDOAo24I0n0/TKjo4yGxGoUC
-         vxYg==
-X-Forwarded-Encrypted: i=1; AJvYcCXSkGsOoF7DkIH6qeSvfqpWS4Co+JhQNWzvz3d5vjEOl1tz8UU06Ma1T8OW6ooPjvcfnBUZbgm5sJZf@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZpI7jqy6k9cWxb3OSFx4H5zeITDbx1l7SNaftF/GQ9hvYmvBT
-	lubgLWCCSvi7v8KGal+aNEq1d9xu38kcpHJ43JJH/YrbkZKTV4BE51dNIjKFPvQ=
-X-Gm-Gg: ASbGnctNKbRlW8wBCfaNlepiCDtzKjXjJL8MjZ5NCGyHvIIY4cG/1UDKag9tfVZwXJj
-	JCRtmYZkK+1+niflP1qjol4CjcoiiZhyhZjrWOr99NTSFBMP0Gf9dcAHbNNVPo+QMEWNjOu3vtS
-	oU4/aeIBJCco20YDnwv+g41honxqVhjZn+fzePCWCT7IiIJbQ70eqZAXEVrtvf5w2tIFHq5eHkT
-	G0TImN+pnKp8vs4vUyRfNdYr02opyup5eYCr4jUdFrphkg98oP8jzBuxn0dWJzoW/WBPRQNhUpd
-	2NQFq6nOLPr7Njh2YcXFN7sW
-X-Google-Smtp-Source: AGHT+IGi8WLS5WHEderG6CbIqrMmNonKomIvShKsRt+y2awNKUvUu9Cp4ZCauxABS0cVTnSGyBw2GQ==
-X-Received: by 2002:a17:906:7316:b0:ab7:effd:a395 with SMTP id a640c23a62f3a-ab7f389fdf1mr929358566b.52.1739517025159;
-        Thu, 13 Feb 2025 23:10:25 -0800 (PST)
-Received: from [192.168.0.14] ([79.115.63.124])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba533bdc41sm279199866b.162.2025.02.13.23.10.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Feb 2025 23:10:24 -0800 (PST)
-Message-ID: <12a67e21-220c-40d6-a6e0-64ba23cf6ecf@linaro.org>
-Date: Fri, 14 Feb 2025 07:10:23 +0000
+	s=arc-20240116; t=1739517662; c=relaxed/simple;
+	bh=WhwhWFassfKgQBbi2dG7qdh9/+mxzvg++tUUcPh4d3Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N76D4r4oi2nIlzMd2XpVzkb0VpiPk46xoP0unw1z2ndO7zknyX0e6jfJqL+PvpiBlYRGHjhvSwNLg8As4Q0xCJUNe+/nXs3fcvkDinRotrvb/qUNfx9YAmwaaCkIXWEVDgpF/tljIdGimYfZBhz+DS7bbhXlOmvVTYiuxBMCQ5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yl07UI8r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96E5CC4CEE8;
+	Fri, 14 Feb 2025 07:20:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739517662;
+	bh=WhwhWFassfKgQBbi2dG7qdh9/+mxzvg++tUUcPh4d3Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Yl07UI8rhKSCGMyWR7Ep/ndO0yXTn9JuuXrkR4RkyJD0EYwyf/oBkSxFHtL38oRHk
+	 9CvJ5WJoC1wsr4vZiWjhohCQmJ2qS8gVeac/hmLjhbdHBGPGpmLUwVNrZVG9gXEiQS
+	 uLlwHtzlGMIMNVA8ApbrIxbebawMEc/DmmyBfGXADVrvYQ0beKiTtXlCK7scE857Lb
+	 WkO/2CcDUJ2xwoP2VR269Zr/3CU3xtsXreNNMYmsLAtSoGhhi2n1h2qTL6DLI+EXQ8
+	 8L7N/uM/6NlNecqJuJ2uY6rgOBP1BEIHItrMDGshXmYbUqnOeBidl29loqTleyPw3W
+	 7OBxcjmTvJ/lg==
+Message-ID: <b09aeab3-5dc0-4f0f-bf52-d61865c2bbda@kernel.org>
+Date: Fri, 14 Feb 2025 08:20:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,40 +50,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] spi: s3c64xx: prioritize fifo-depth from DT over
- port_config
-To: Denzeel Oliva <wachiturroxd150@gmail.com>, andi.shyti@kernel.org,
- broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, alim.akhtar@samsung.com, linux-spi@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20250214043343.263-1-wachiturroxd150@gmail.com>
- <20250214043343.263-3-wachiturroxd150@gmail.com>
+Subject: Re: [PATCH v2 02/15] dt-bindings: mfd: syscon: add
+ microchip,sama7d65-sfrbu
+To: Conor Dooley <conor@kernel.org>
+Cc: Ryan.Wanner@microchip.com, lee@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, claudiu.beznea@tuxon.dev,
+ sre@kernel.org, nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+ p.zabel@pengutronix.de, linux@armlinux.org.uk, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+References: <cover.1739221064.git.Ryan.Wanner@microchip.com>
+ <4cac19e32295c708d72b9fc6ba342b5c961fb6c3.1739221064.git.Ryan.Wanner@microchip.com>
+ <20250211-therapeutic-futuristic-parakeet-204cae@krzk-bin>
+ <20250213-shrouded-carnage-65e11cff5bb4@spud>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20250214043343.263-3-wachiturroxd150@gmail.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250213-shrouded-carnage-65e11cff5bb4@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-
-
-On 2/14/25 4:33 AM, Denzeel Oliva wrote:
-> Rearrange s3c64xx_spi_probe() to ensure that the 'fifo-depth' property
-> from the device tree (DT) is always prioritized over the fallback
-> values in port_config.
+On 13/02/2025 21:30, Conor Dooley wrote:
+>>> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+>>> index 51d896c88dafa..727292ffe092e 100644
+>>> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+>>> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+>>> @@ -91,6 +91,7 @@ select:
+>>>            - microchip,mpfs-sysreg-scb
+>>>            - microchip,sam9x60-sfr
+>>>            - microchip,sama7d65-ddr3phy
+>>> +          - microchip,sama7d65-sfrbu
+>>
+>> You got comment on #1 of your v1, so if you make exactly the same
+>> mistake in other patches then fix it there as well.
+>>
+>> Apply v1 Rob's comments to all your patches.
 > 
-> Previously, if port_config had a fifo_depth value, it would override
-> the DT property. This prevented DT from correctly setting the depth
-> per node.
+> Actually, this patch v1 did put it in both lists, but here it got
+> dropped from the second list:
+> https://lore.kernel.org/all/20250130233431.GB1868322-robh@kernel.org/
 
-sigh. You had a fifo_depth of 0 in the driver at v1, this proves you
-didn't test your patches, otherwise you would get a divide by zero.
 
-You can't do that, you risk to get your contributions ignored:
-https://lore.kernel.org/linux-samsung-soc/fbd06330-ccf3-485b-800f-83f624a7c90e@kernel.org/
+That's even weirder...
 
-Please provide prove of testing in v4.
-
-Anyway, you shouldn't prioritize dt over compatible driver data, see my
-replies in your v2.
+Best regards,
+Krzysztof
 
