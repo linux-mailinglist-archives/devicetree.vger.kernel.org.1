@@ -1,258 +1,204 @@
-Return-Path: <devicetree+bounces-146693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B326A35DB5
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:36:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07BCAA35DCB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:42:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED30C188E325
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:36:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 433AC16BA30
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:42:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 231A4263F3B;
-	Fri, 14 Feb 2025 12:35:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 109132641C8;
+	Fri, 14 Feb 2025 12:42:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="D5Xod9Nn"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="K/LZvksN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from out-176.mta1.migadu.com (out-176.mta1.migadu.com [95.215.58.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7042153FA
-	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 12:35:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57ACC263F25
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 12:42:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739536554; cv=none; b=cMqN10AhPiWVUtZ6yIs/B9I6AcWQNVNPxiaDPwITYw0ZcFl0aJtAUEM2pVOdAvVOD+0jFHrY9Idoy52tVkPWJIEI5erCmLWZZgGZ81kNaZUKb9ejpX1rfx9l12wswXJ8Cwbc9uQeR/jpLZdWfMxBnZqQ3x+ZIXvGcCVBdVl4WQE=
+	t=1739536931; cv=none; b=ng61cKkXilq/FH0iuOMPoWgODM5qNGjsmqwUQnRsu47EuIyzPekUdRG+1NJ1uX/IOuqv1+9FoUo8l0YJS3dP8tF8J5mZM17EMSGcTprs0QYLglGa3uLBYcecVzr2P7+PArSxBXxTS/mceXJXqLfMsRD6K3h5SswoZkDrfUpIPEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739536554; c=relaxed/simple;
-	bh=DhdTMX1B/VBmrfjg4gCD28dH1z0ZeJtuCVVqdYJtLzw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JWqZfd5OhDjYeNjY1749mjAC71j+Lz0Xve8vibamNAJZOFv5cbOWyiAro8vlItiOUwI5yY5EbPwD2Mp1/YM7nIrAdG/45mT5NN/FcVZgdiSzWz/bgSSdRk2E00EAMHhmbmaCdLh7hMpmuNW3m23uKCUU/TRfl7ObLo205xwgbWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=D5Xod9Nn; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id ACEC2240103
-	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 13:35:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1739536549; bh=DhdTMX1B/VBmrfjg4gCD28dH1z0ZeJtuCVVqdYJtLzw=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:Content-Transfer-Encoding:From;
-	b=D5Xod9Nnl1WE6g1L7y5neIscsjHlzP9MY5Mw6Agu8uZD51CniEAu5nc1a/M7uOuay
-	 FnPzKuG+5DhX1AR2By4JLt2+6SePYX9dxTPP26BbYZz5yslylfLJ5HeYXeZKigJTD8
-	 wXckP4BTVk0rpmFwPrtSM3F5JmFkYBbJwcZ9ILZoY9XREALy+R8PMLWVfRJJIqegGR
-	 ip0tDQNNZvhC+Ac7P9yckRRncsRnZpwesWfImxAkK3WxgCwLbe+EOgHyElpxRWrYjw
-	 JI/8foXkGFM8JegiqDKfVrOw0juWrGF0P67jAcRLWyShcX0FBJqPObf2fUnzLcM0WW
-	 OMX71QAVAqbKw==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4YvWjq1cxCz9rxG;
-	Fri, 14 Feb 2025 13:35:41 +0100 (CET)
-Date: Fri, 14 Feb 2025 12:35:41 +0000
-From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-To: Frank Li <Frank.li@nxp.com>
-Cc: j.ne@posteo.net, devicetree@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	Krzysztof Kozlowski <krzk@kernel.org>, imx@lists.linux.dev,
-	Scott Wood <oss@buserror.net>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
-	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v2 05/12] dt-bindings: dma: Convert fsl,elo*-dma to YAML
-Message-ID: <Z684nUnDX4Sb98rQ@probook>
-References: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
- <20250207-ppcyaml-v2-5-8137b0c42526@posteo.net>
- <Z6pV4eauZj75+911@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1739536931; c=relaxed/simple;
+	bh=Lgm54ypC3Xw13cFe84CkEda526EsxKI+I0wTtJzS2kM=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Lf141zQNsd/SA5/mmvBGrKwCo0ubiluMzqsgjk5w1cyOKBQkJxfst7nuCv5BbtX5hOja7FVhAgQ08CTHbotwlOmwxdXBiYg8wRw7ZYarpfGenw/+mHSGuj5zmbGBO/6gNnvlQOPAROO5jZEXukGUqBNXluaMS7B/t4+Rm1RrJH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=K/LZvksN; arc=none smtp.client-ip=95.215.58.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <062b78a3-7e83-4202-a753-4e7bd43e8bc2@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1739536924;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TmoaaQDA6QHoK5d//GwIdE1FQgIBFCuZsGqbpAtEteg=;
+	b=K/LZvksNFFiUrhXDWrfGZ6wnfWWXw1lTTN6Ee4nsCPd47TEooPFEB3jleQYXkJe3DkUEH+
+	hIJBUBj1e2ldbdCtsVKKPiX6JM4590naTHtJOwl/SBtSczRghhj7ZnuZNQQFmoM6aQK5Uk
+	XY2kEp7H56jZXDsvyiBJNp6y3CZylY4=
+Date: Fri, 14 Feb 2025 18:11:11 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+Subject: Re: [PATCH v5 2/3] dt-bindings: display: ti: Add schema for AM625
+ OLDI Transmitter
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
+ David Airlie <airlied@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Simona Vetter <simona@ffwll.ch>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+ Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+ Jayesh Choudhary <j-choudhary@ti.com>,
+ Francesco Dolcini <francesco@dolcini.it>,
+ DRI Development List <dri-devel@lists.freedesktop.org>,
+ Devicetree List <devicetree@vger.kernel.org>,
+ Linux Kernel List <linux-kernel@vger.kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>
+References: <20250209160925.380348-1-aradhya.bhatia@linux.dev>
+ <20250209160925.380348-3-aradhya.bhatia@linux.dev>
+ <16db8f3d-04a2-408a-964f-4cf9478229b4@ideasonboard.com>
+ <8c6e790e-f1b6-46ab-9acf-bdea8076405b@linux.dev>
+ <cd62bf21-adad-4422-8fac-ebd20e8b39a5@ideasonboard.com>
+Content-Language: en-US
+In-Reply-To: <cd62bf21-adad-4422-8fac-ebd20e8b39a5@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z6pV4eauZj75+911@lizhi-Precision-Tower-5810>
+X-Migadu-Flow: FLOW_OUT
 
-On Mon, Feb 10, 2025 at 02:39:13PM -0500, Frank Li wrote:
-> On Fri, Feb 07, 2025 at 10:30:22PM +0100, J. Neuschäfer via B4 Relay wrote:
-> > From: "J. Neuschäfer" <j.ne@posteo.net>
-> >
-> > The devicetree bindings for Freescale DMA engines have so far existed as
-> > a text file. This patch converts them to YAML, and specifies all the
-> > compatible strings currently in use in arch/powerpc/boot/dts.
-> >
-> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> > ---
-> >
-> > V2:
-> > - remove unnecessary multiline markers
-> > - fix additionalProperties to always be false
-> > - add description/maxItems to interrupts
-> > - add missing #address-cells/#size-cells properties
-> > - convert "Note on DMA channel compatible properties" to YAML by listing
-> >   fsl,ssi-dma-channel as a valid compatible value
-> > - fix property ordering in examples: compatible and reg come first
-> > - add missing newlines in examples
-> > - trim subject line (remove "bindings")
-> > ---
-> >  .../devicetree/bindings/dma/fsl,elo-dma.yaml       | 140 ++++++++++++++
-> >  .../devicetree/bindings/dma/fsl,elo3-dma.yaml      | 123 +++++++++++++
-> >  .../devicetree/bindings/dma/fsl,eloplus-dma.yaml   | 134 ++++++++++++++
-> >  .../devicetree/bindings/powerpc/fsl/dma.txt        | 204 ---------------------
-> >  4 files changed, 397 insertions(+), 204 deletions(-)
-[...]
-> > +  reg:
-> > +    maxItems: 1
-> > +    description:
-> > +      DMA General Status Register, i.e. DGSR which contains status for
-> > +      all the 4 DMA channels.
+Hi Tomi,
+
+
+On 13/02/25 18:50, Tomi Valkeinen wrote:
+> Hi,
 > 
-> needn't maxItems
-> items:
->   - description: DMA ...
-
-Good point, I'll do that.
-
+> On 13/02/2025 14:33, Aradhya Bhatia wrote:
 > 
-> > +
-> > +  cell-index:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Controller index. 0 for controller @ 0x8100.
-> > +
-> > +  ranges: true
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +    description: Controller interrupt.
+>>>> +  ti,companion-oldi:
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>> +    description:
+>>>> +      phandle to companion OLDI transmitter. This property is
+>>>> mandatory for the
+>>>> +      primarty OLDI TX if the OLDI TXes are expected to work either
+>>>> in dual-lvds
+>>>> +      mode or in clone mode. This property should point to the
+>>>> secondary OLDI
+>>>> +      TX.
+>>>> +
+>>>> +  ti,secondary-oldi:
+>>>> +    type: boolean
+>>>> +    description:
+>>>> +      Boolean property to mark the OLDI transmitter as the secondary
+>>>> one, when the
+>>>> +      OLDI hardware is expected to run as a companion HW, in cases of
+>>>> dual-lvds
+>>>> +      mode or clone mode. The primary OLDI hardware is responsible
+>>>> for all the
+>>>> +      hardware configuration.
+>>>
+>>> I think these work, but I'm wondering if we would ever need to check
+>>> something from the main oldi from the secondary oldi. In that case
+>>> "crossed phandles" would be better, i.e. something like:
+>>>
+>>> (in the first oldi:)
+>>> ti,slave-oldi = <phandle-to-second-oldi>
+>>>
+>>> (in the second oldi:)
+>>> ti,master-oldi = <phandle-to-first-oldi>
+>>
+>> When I had first designed the code and the devicetree for OLDI, it was
+>> done so with the belief that we wouldn't reqiure a bridge instance for
+>> the secondary OLDI, at all.
+>>
+>> While that idea holds true for dual-lvds configuration, it doesn't so
+>> for the clone mode configuration. For clone mode, as you pointed out, we
+>> will require a 2nd bridge instance to configure any of the bridges and
+>> panels that come after the 2nd OLDI.
+>>
+>>
+>>>
+>>> Then again, if we ever need that, even with these bindings the driver
+>>> could find the first oldi, but needs to go via the dss's node.
+>>
+>> While it is possible to do it this way, it might not be the cleanest
+>> one. And _if_ there is a ever a DSS in future with more than 2 OLDI
+>> TXes, say 4, then the decipher logic may get too complicated.
+>>
+>> While I cannot think of any case where the secondary OLDI bridge DT
+>> might need to access the primary OLDI bridge at the moment, I wonder if
+>> we should play it safer and have this option anyway.
+>>
+>> Maybe something like this?
+>>
+>> (primary OLDI)
+>> ti,primary-oldi;
+>> ti,companion-oldi = <phandle-to-secondary-oldi>;
+>>
+>> (secondary OLDI)
+>> ti,secondary-oldi;
+>> ti,companion-oldi = <phandle-to-primary-oldi>;
 > 
-> Needn't description because no any additional informaiton.
+> How is this different than my proposal, except a bit more verbose?
 
-True.
-
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-[...]
-> > +additionalProperties: false
-> 
-> Need ref to dma-common.yaml?
-
-Sounds good, but I'm not sure what to do about the #dma-cells property,
-which is required by dma-common.yaml.
-
-There aren't many examples of DMA channels being explicitly declared in
-device trees. One example that I could find is the the xilinx_dma.txt
-binding:
-
-
-	axi_vdma_0: axivdma@40030000 {
-		compatible = "xlnx,axi-vdma-1.00.a";
-		#dma_cells = <1>;
-		reg = < 0x40030000 0x10000 >;
-		dma-ranges = <0x00000000 0x00000000 0x40000000>;
-		xlnx,num-fstores = <0x8>;
-		xlnx,flush-fsync = <0x1>;
-		xlnx,addrwidth = <0x20>;
-		clocks = <&clk 0>, <&clk 1>, <&clk 2>, <&clk 3>, <&clk 4>;
-		clock-names = "s_axi_lite_aclk", "m_axi_mm2s_aclk", "m_axi_s2mm_aclk",
-			      "m_axis_mm2s_aclk", "s_axis_s2mm_aclk";
-		dma-channel@40030000 {
-			compatible = "xlnx,axi-vdma-mm2s-channel";
-			interrupts = < 0 54 4 >;
-			xlnx,datawidth = <0x40>;
-		};
-		dma-channel@40030030 {
-			compatible = "xlnx,axi-vdma-s2mm-channel";
-			interrupts = < 0 53 4 >;
-			xlnx,datawidth = <0x40>;
-		};
-	};
-
-	...
-
-	vdmatest_0: vdmatest@0 {
-		compatible ="xlnx,axi-vdma-test-1.00.a";
-		dmas = <&axi_vdma_0 0
-			&axi_vdma_0 1>;
-		dma-names = "vdma0", "vdma1";
-	};
-
-It has #dma_cells (I'm sure #dma-cells was intended) on the controller.
-
-
-Another example is in arch/powerpc/boot/dts/fsl/p1022si-post.dtsi:
-
-	dma@c300 {
-		dma00: dma-channel@0 {
-			compatible = "fsl,ssi-dma-channel";
-		};
-		dma01: dma-channel@80 {
-			compatible = "fsl,ssi-dma-channel";
-		};
-	};
-
-	...
-
-	ssi@15000 {
-		compatible = "fsl,mpc8610-ssi";
-		cell-index = <0>;
-		reg = <0x15000 0x100>;
-		interrupts = <75 2 0 0>;
-		fsl,playback-dma = <&dma00>;
-		fsl,capture-dma = <&dma01>;
-		fsl,fifo-depth = <15>;
-	};
-
-
-There, the DMA channels are used directly and without additional
-information (i.e. #dma-cells = <0>, althought it isn't specified).
-
-
-> > +        dma-channel@0 {
-> > +            compatible = "fsl,mpc8349-dma-channel", "fsl,elo-dma-channel";
-> > +            reg = <0 0x80>;
-> > +            cell-index = <0>;
-> > +            interrupt-parent = <&ipic>;
-> > +            interrupts = <71 8>;
-> 
-> '8',  use predefine MACRO for irq type.
-
-Good catch, will do
+That's all the difference there is. Just an alternative to what you
+suggested.
 
 > 
-> Frank
+> If you're thinking about a 4-OLDI hardware, how would this work there?
 
-Thanks for your review!
-J. Neuschäfer
+I didn't mean that my alternative would be more helpful. I meant that
+passing phandles would be a simpler way for 4-OLDI hardware in general.
+
+We'd have to sift through a max of 4 OLDI nodes to find the right
+primary OLDI for a given secondary OLDI - if we try to find it via the
+dss and oldi-transmitter parent DT nodes. Passing phandles directly
+would save on all that logic.
+
+
+> (but I want to say that even if it's good to plan for the future, we
+> shouldn't plan too much based on imaginary hardware =).
+> 
+
+That's, of course, true too! =)
+It's been tricky enough dealing with the hardware combinations as they
+are today!
+
+I will add one more reason though, which made me get along with the idea
+of passing phandles. And then I will defer to you to make the call,
+since I don't have the strongest of feelings either way.
+
+
+Passing phandles would allow for _that_ condition to get dropped; making
+the bindings slightly more flexible to accommodate for any future
+surprises (especially around the clone mode lvds configuration).
+
+(That condition being where the bindings either allow a companion-oldi
+phandle OR allow the secondary-oldi boolean (but not both)).
+
+I could drop that condition without any other changes too, making the
+companion-oldi property optional for secondary-oldi - but this feels
+incomplete.
+
+Hence, the addition of the primary-oldi boolean. The companion-oldi
+phandle property will be conditionally required when any one of the
+boolean properties is present.
+
+
+-- 
+Regards
+Aradhya
+
 
