@@ -1,207 +1,179 @@
-Return-Path: <devicetree+bounces-146695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71892A35DDD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:49:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F01BA35DFB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:57:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2221162DCC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:49:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC67C188FD7C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2710B1EA91;
-	Fri, 14 Feb 2025 12:49:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="VzKZrRie"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C5D263F4D;
+	Fri, 14 Feb 2025 12:56:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2058.outbound.protection.outlook.com [40.107.22.58])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F327217555;
-	Fri, 14 Feb 2025 12:49:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.58
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739537389; cv=fail; b=ijoprKNjg9i3dKnGysk9SBjaIJVr47ydkiHE+KerjIDvY9CrTEhVDzj43fFQPmAedGwezQOMXHFqrQS7HV9qeJWf1aCmdsM2PiT8LvR61j4/TPFOKIxOnzlHqZkJPzkF5+HjwvQicSXpA9dyb6FluDkpGWQuAEoTiLVWj6t/SMs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739537389; c=relaxed/simple;
-	bh=blfg8H0vQDEIiKZG114KkRTO8ohZwcp2UxFBIlsowf4=;
-	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=QSKGtgxNSi74N4abSAj/vNdi5BzUs0Lx15CG+UIlzWTi9gYZ2ixU0k3WrTUGorQmgRJviSl68+i5zRNcezejD3W3S6lqqmsg15Hl35eHe8vJtqwcDRzpz4DN4ayuwh8qMeof8Fxo3eUA2dH2k3Kymc0UTplyCqcG7j8YidWgumg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=VzKZrRie; arc=fail smtp.client-ip=40.107.22.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W4UxWy+3k9CaRJoIXC0To7sQrhuqgVK6vNliw/zEbmwR7+csN9mrdCRfi6XxdWF8kpHv/eErdJ4p0gxEBvmrkNef/CWoV0BiFtOhHmKcPF3KzrcnwYCzftcBawY2SdtZL0xRDXsgYOFhIFsgfpnik/UT6QeIZKe/27EbV9bw99TGMmNahEtX+EHkS/urmlIi1JkxBCePq8vHw9/+bGjiht+MIqOWOi3dXag5o0Ai0Ckcrr/nOI9dxSKAM7fuYS5PViFHezvD9e3oMi50mGaB82hDey7KdmR7C6KZmHaB9N/Zqx8CeiS3W0Ws/8vSvzuioPfL1M7TyS0BDUgBYMk/1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=E1TxbHc0UIEtofbHZQ2s1Kpqiwu9cm/FuTDAL9nsoQ8=;
- b=eKuMvBs2fEtgTINREJXUifHfIk1NX84syk6s1Gl6vO9g6cvsEl38B0+MOuXdJl7qk4lPJdqWsZ3Sq6rEkXYnljEBc78dIohlBtqr6SDSSQTxBd5NJaAbdZWyBWmwGlvM8010vBrnRGfkLdO9umx5GqVmel7Zu5Dkfb8gDQPeKxDsUEdDfdD/whERlS4MKTbXwzvHNX+VOgpWvoSGH2ZVQd+mjxPe5s47arQ+pknpYW2Htd9XOjBMwnnTkIv+6YEIrAntP/c8y4LDs99hgjZ/vtQul7UdaJ2Nxhtwwi1KugL4hZSUq2T6BeIv/jsIS0277/wenFPJqUvjOx5pWMMD1w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E1TxbHc0UIEtofbHZQ2s1Kpqiwu9cm/FuTDAL9nsoQ8=;
- b=VzKZrRieLZn/O+lXNZK+8SyGSvPqEhcV4ot8/+xNnj0nx02t6TqVsS09GcbruP5CZ6iFqoXmRGynJx2l7+ltLcKzyg3/X6OamRQiAH+TUrgbX75NB7O3+0a9EDznkdTAkyurmJDg+LFpSChJ5EN/8xNJhIlUm8CaMvVnoKSbzZwznTwujR01vzDxXoZPPSJElGE974zSfsAwithvl3KL+JmrxhFV1Mmi8cq+a+AfirV6C+kQBlDsA00/iiKiJuwWeZlzpc8XQd7m43ktqJxRXp6Eqv/9JKl6IEYE7p8fPLUIt7ghmOyzkVeZPmHWMHZ5ndPceuT6tWGZ2f9SeNGnpg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8774.eurprd04.prod.outlook.com (2603:10a6:10:2e1::21)
- by GVXPR04MB10325.eurprd04.prod.outlook.com (2603:10a6:150:1e6::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.18; Fri, 14 Feb
- 2025 12:49:43 +0000
-Received: from DU2PR04MB8774.eurprd04.prod.outlook.com
- ([fe80::88b8:8584:24dc:e2a1]) by DU2PR04MB8774.eurprd04.prod.outlook.com
- ([fe80::88b8:8584:24dc:e2a1%7]) with mapi id 15.20.8445.011; Fri, 14 Feb 2025
- 12:49:42 +0000
-Message-ID: <56ad5caa-3f31-70a8-0c27-2a6d22ff1306@nxp.com>
-Date: Fri, 14 Feb 2025 14:49:39 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 0/2] ASoC: imx-card: support playback or capture only
-To: Shengjiu Wang <shengjiu.wang@nxp.com>, shengjiu.wang@gmail.com,
- Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
- lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- linux-sound@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org
-References: <20250214070533.2808496-1-shengjiu.wang@nxp.com>
-Content-Language: en-US
-From: Iuliana Prodan <iuliana.prodan@nxp.com>
-In-Reply-To: <20250214070533.2808496-1-shengjiu.wang@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM0PR07CA0009.eurprd07.prod.outlook.com
- (2603:10a6:208:ac::22) To DU2PR04MB8774.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::21)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D221230985;
+	Fri, 14 Feb 2025 12:56:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739537767; cv=none; b=WVcia1PyBK0WGPggSzHK8pHeVvWN4kX0FYmH1iiQLuFpyZfIMweum7TSdX6vJ7q9oQVVLRwID2SQNePioT6s+BZXIx6fVQc0a1WtxTC7R8TIjH828xi++abuxW7nfAGYC3OahPExvMsTEVujHGx2JjlMDpu5es7zVen3pfGZrdo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739537767; c=relaxed/simple;
+	bh=4T7OLcqGW/wYv42Er8iU0CmHpl1TG9/5qKHcWsLu3wA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XDR2a2W4RFXBobIlCvnnFe7qGbJMWr0meKeKwVZaWM7ufuWHg0094IPX4FqkSEcZ4ADVkaLi03IU9GldAbDedYkhWzKUHIfFEGrdY8+IehNZ7JOwqQYtfYk0Z6L92+6M7rJaITtwi+Ij+UQn9HbfsOIF1JHo4Js3InUInRuhHSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C64D6113E;
+	Fri, 14 Feb 2025 04:56:23 -0800 (PST)
+Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 971273F58B;
+	Fri, 14 Feb 2025 04:56:01 -0800 (PST)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 00/15] clk: sunxi-ng: add A523 clock support
+Date: Fri, 14 Feb 2025 12:53:44 +0000
+Message-ID: <20250214125359.5204-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.46.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8774:EE_|GVXPR04MB10325:EE_
-X-MS-Office365-Filtering-Correlation-Id: f9991c2b-d758-4057-8ac8-08dd4cf60d5a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|376014|366016|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?QzhZOWhrKzZyVHlycWR4M1hYK0dFUUFwZU9JbzRCaVFWVkVZSk9zNnZDVjdC?=
- =?utf-8?B?U1JkWGE3WVFLNXZHUkRIMERocXU1VFVUN05tYlNaS3YyWm9qMEQ3MmZFdUxM?=
- =?utf-8?B?L2RReWRKQWw5bFVBZFcxOWRSd3VOcW1qWXV5YlVGL3R6c0VqUzN0WGZWU2Nu?=
- =?utf-8?B?cmVScFJLUCt6aEx6SUMzeW5MSkttZmZ5REM5SFlDNHNMai9KVTlnNyt0S2RN?=
- =?utf-8?B?RlVjRG5RcjNvK1M1YnpjNlpnQ0g2bGJmd0ZTVXM5aWZOUUVjVFhrRnlPVkds?=
- =?utf-8?B?cS9GZVBHQmc5ZHE0N0FUTjZMalN5aWJPbXlvaEVKZXY4MTd6RzROL0N4UnNK?=
- =?utf-8?B?QjhScjcvNmZHMnh4SlkxMUc3dTFWdW9udDJiTVZxeW5uM0VPbDFsYmJEM1Y4?=
- =?utf-8?B?aitoMFU3YnVjQ3NacU1jd1NpalZhUi8yRFdvYy9MYWl6S0lYelRJcUJaL3Y3?=
- =?utf-8?B?MWFSUW5Qei9zY2dkOGFpOWxQZTFud0dVa3BSZi93ZVhySkdDdnRzdnZndXJE?=
- =?utf-8?B?MHFzQnBoOWxaQWExRk1kazhBM001Ujl4bXNGUEIxOGxzR3pualNQMWRLU1gx?=
- =?utf-8?B?eVZhTXNHcml2TnZrYlczQXN6TFp1TFFIOUY5YTRYamNuM1ZDK25lcisvOWNQ?=
- =?utf-8?B?LzFqSlpoZ1JOdVlibDY4anJuVmd5VzlzdGV2ekRWNnozUEozdUpzUzMwMDlS?=
- =?utf-8?B?K3h0TjZCcTREVk9KbGFqR1c0eXlYei9zdVN5a2orbFNHUitldE1yWFljOFQw?=
- =?utf-8?B?RytuaGplQncwdmtBamwwbnpmbGhoVFFZRmdsVVRQblZ0SzVVR2FCNFRMNVpZ?=
- =?utf-8?B?WXo0WDRNNWxhRk55cmJGc2s2MllHYmJ2WFRZNXRTdzlwd2RSTEM3eVRVdlZY?=
- =?utf-8?B?RHZuNWlsQjQrYTRVOFd1bjJwekJqalJlM3dOVDQxdmphN0E5ZUhtRk90czNR?=
- =?utf-8?B?VlA5VHdtUnlWSkx3ZERteWo2UEhRSGRoUk1CbXBBbHg2YjVETHgxNDV5aXdh?=
- =?utf-8?B?ZDJVUGFlM2pjSWt2ZXNnN0VTQUNQRk5uL1ZTbnErTzRkSWYzeTg3NWFJc0pu?=
- =?utf-8?B?a2xXTFBkYmthVHA5WVFEM3U2aWY0K05FallkcGFjdmNqVkE0QTRJaTR0Zm94?=
- =?utf-8?B?OXlHL292UVlsa0FHTnVoVmszS1FTUXpCZjQ1SmFla1RoRitlVGxJRDg1Nkph?=
- =?utf-8?B?Skl1eUYrbVBheEUyZWx4RmxZaWN3aGdpdHg3eDgxRW5BazVCU1Nta0VHSmZL?=
- =?utf-8?B?ZjJ5NzJSWEZlWUlDYTFJOFVxR3lWM2lqMjlteEt5QW9PVmxKTU1YODVOODhZ?=
- =?utf-8?B?R3IzNGl5TG5FSDBYbklHckZUcEgydzJGV0ozTUJqN2Q0UjZ0eHcxdE53RzFF?=
- =?utf-8?B?WUpKMFBKUDE5aXBLUU1kVEJUN3FIS0phdHBmT2p3d2JtelVjUHF6WWt1bE5Y?=
- =?utf-8?B?cHloZldEeVJqcEdMb1Z1VmVIUUpGTVZZZUhLMVJVTUVOQUNDZm80TTNYN09Z?=
- =?utf-8?B?SDV4cGRYaCtmb3JtMllBUlB1MkpRQlVDQmNQWmt4dU45KzhQQ3dQWVl0RmFs?=
- =?utf-8?B?VUw0YTZnbDlMOTZOVTZzTjdobWNqUXpSZjBualZLVWZzWS8zaHpZbVBXTVpI?=
- =?utf-8?B?L1NZZWJCREd1NmhuOC9ZTTZnSWVVV2lGUUVtZjMreGpyZFNBKzhuclc4YWN3?=
- =?utf-8?B?TTZCUmRxWHpOOHZPWUI3Tm1TSGppTzJraDdCY29NaXlYYU8vSDhabWFyM3gv?=
- =?utf-8?B?MEFjK3FyY1Qwc0lhM1ExVlh1eEVScHBMM3BEZ1hGYmJuL1lUMlVxb1JpMmZW?=
- =?utf-8?B?Q0dwUHdZWkpPWmJ6ZDV1OXB1cC9GS2FsNDFEOG1OeVNEdndhZHluS1VzVTIy?=
- =?utf-8?B?ait3K0FRVENQQXYzRWc4YlRKVEpWUVp0RkoyMlErQ3hwU0xUMWRVVnNiL3hW?=
- =?utf-8?Q?dcVKW0+5LU0=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8774.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UWpLOEFzVVhsSlFnbWh5aEVvQUNmTG9GL2QrL05nclJQWkVYOTNaY1N1amhs?=
- =?utf-8?B?aUE1bWJWYmtJNHN5ZUhOeGtMZjZWeDlWK1NBcEJaODQ1K2doclg1dGpZT1JZ?=
- =?utf-8?B?WHJDdFAyZUxiMHNveXA0eVAvdkVOS1IyT2drSm1takJwTVpuaW1xQjRjN2p2?=
- =?utf-8?B?TlhGUkVTTFBmcHBzK1JITG5PbDhBM2haYWs1MmJJMFZRTGNvbUxwQ2xnaUZE?=
- =?utf-8?B?TlBwMzVVN1ZHNHcva21tdGJteTFYR0hidnZLUlZkSFVmNEVSQlRaQTRETUpP?=
- =?utf-8?B?WlJlTWZMenN3L0tveHFXVzlxR00zWlhPaFJLTXhZK0NYZmpSanhaLzJnTnZI?=
- =?utf-8?B?bGpqSjVOK1kvLzR1YVNnS3VUL2xJendVVWd0ZFgzT0NVaDJ6TVlTQUhiRjhY?=
- =?utf-8?B?VkE2YTJZdG5BSWZGcmg2aldIUlppREJldzVVZ25RNXBSNUZMcWxhV0tNSTky?=
- =?utf-8?B?OVlsZnZZYXd6eTVORUF0cXVBQkNURGdRS2M1V3pJZHk5djNCaHJycmtSbWEr?=
- =?utf-8?B?RVN1cWkxK21FcWhSUTV2SXZNNUFOdSt2VTRQWEdmaUlkQVpIK1NZUkFWSTVO?=
- =?utf-8?B?UVkxNnQ4Z29FRDREL21kWElBaE0yelhHN1FUQlhDaGtyNzI3ZjN2QitFRUc3?=
- =?utf-8?B?Sloxa1NINm5lTnNIdENYL1Bjd3FrQ2Fmc1hydkFJWFVtSWFva0F1aTNFSW1o?=
- =?utf-8?B?YXIwSnM3N21ZZytuRE54K1NRNldDOEpaNnc1d0d1M2Rwb1FpTWxhS2R0T0xj?=
- =?utf-8?B?dmpuSTlrNUUxNnZuRzhCR0ZmZVFKL1BDR2pvYXAvdWM0VXRGR3ZCUlovbTRl?=
- =?utf-8?B?L1Zjb3o5eE5ZRmg2YlNLTGpRRVZZUFBQeWk3VFVjMTUrbGR3dTFOTzFWSGhw?=
- =?utf-8?B?ZHM5L01ralQ1OWlEKzBqdlJKYUJtSGxENlI5S1R0aHB6bTFMUEhIc3dmb0s5?=
- =?utf-8?B?S05FelRTOHlmOUVJVWpIVzg3cjl0amNCaEVDSWpZZnNyNzJaSnhubm12Ykw2?=
- =?utf-8?B?UHRBbVJqSVVDa2ZaUGZyTUZCYm5DY0R2amFlZklXTnJqU2FRN1VwSFVTZDJU?=
- =?utf-8?B?RDBmWmxTaVFLS1YvSGdjZ0dYV0ZIemRDYkdzanB2UjJIMHI0eTk3R3hVSnlX?=
- =?utf-8?B?QnVqblE2THROSUJHdDl6T2YvTGJTK29BbTRqOGhwY2dkK09SUXJYbEFiM2NR?=
- =?utf-8?B?VUU4Y21HMXpWdDZHaEdNeWpFZHBlSDhyR3FxUFZsZnJlOVZvR1J4WVZ2LzV6?=
- =?utf-8?B?aWwzeWFlU3psMUZHWnBjcjdDVW5zZmwrLzdmZDdNR0gvbmlITWxUb3FOSzhj?=
- =?utf-8?B?TVN6ZytUcUI5MVlpSW9WNGJTODBvbWNBclhpU0tHaytPRVk1dzJyQW1JTVVY?=
- =?utf-8?B?aEwyeEZCaHJyTXVsbWRIU1NyRXBBSEUrWEVPT3lXbGlYaHhubEQvMFVibkdw?=
- =?utf-8?B?UnlqTnJzWHBNWDVkUCtYMk1qVTB1T2pUUHZ6UVFiV0hjaHZUMGJLMGQ1RERv?=
- =?utf-8?B?RFZsaW1CY0VjM0lXejR6Q3huM0V6SGFUcEoxV2o1dFVwNUxmTHlXVC9wUXdB?=
- =?utf-8?B?RUN4NlJVcnR1Ym85UkorZ3ZKVnJYTU1xbUYyUllDQ2E3RDA1dTBnZ2Z1eTNz?=
- =?utf-8?B?RWdTTjRTOU44bmhwaXpTUkFVYi8zZ3lNTU5kZ1dzaHVndDZZS0RXUC9lbFg5?=
- =?utf-8?B?NHRWVTBKOGtqc29oUGtOZnpqQVFYcUR5VVpRdk13L0dOQ0MwZFJ6WDNlUUhl?=
- =?utf-8?B?RlRpaFdJMXdMemxMeElHaXpETHZBYStIUXZ5RUh3OVk0UEJNMk83REVNT3Q2?=
- =?utf-8?B?QkxXQmNqRURPUC9VRStGVDZjRFdUQW4veEVpUnB1T1V1eDZxaDRwT0c0dXNa?=
- =?utf-8?B?OStyVFlkWU4zVW9yTE85YWNGbTh2TFpTRnpCbkhGZktCb2NVWG9DaUJOSnlv?=
- =?utf-8?B?OGxEeCtWZ3hzSmg1TXlidjBtL21DR1JBZEZyR0l0NlJKcDREZ1IvTG5NeFBM?=
- =?utf-8?B?WWh1R3FSbWcyVnUzUlROeUxUdUVoM3RXWTlOVkM4aHltODR6NHowNEEwQkhQ?=
- =?utf-8?B?UW1XamhpNkdqN1BZUjQwVTVvdkt3SGlWYVlURVE2em8xOWRJVjJweFR6TGFa?=
- =?utf-8?B?L2hCZFo0dmwvVjlYSlAwWnlYM2Y1NG95RGtGWklFTVZSZWp0NzZSeHNwZ2JG?=
- =?utf-8?B?ZXc9PQ==?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f9991c2b-d758-4057-8ac8-08dd4cf60d5a
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8774.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2025 12:49:42.8123
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: enhRn9hXkAcVz8JqbhGsEZqZxadlI/lZn6HF4xYkeQCARFo/VurWjFtGi+74baIh04AQD9u9q/RXTRggtojmZg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10325
+Content-Transfer-Encoding: 8bit
 
-On 2/14/2025 9:05 AM, Shengjiu Wang wrote:
-> Be similar to audio graph card, support playback or capture only for
-> imx-audio-card.
->
-> imx-card can't directly refer to audio-graph-port.yaml, because it is
-> not based on 'ports'. Add playback-only and capture-only property
-> directly
->
-> changes in v2:
-> - wrap at 75 chars for commit messages
->
-> Shengjiu Wang (2):
->    ASoC: dt-bindings: imx-card: Add playback-only and capture-only
->      property
->    ASoC: imx-card: Add playback_only or capture_only support
->
->   .../devicetree/bindings/sound/imx-audio-card.yaml         | 8 ++++++++
->   sound/soc/fsl/imx-card.c                                  | 5 +++++
->   2 files changed, 13 insertions(+)
+Hi,
 
-For the series:
+this is the second drop of the series introducing basic clock support for
+the Allwinner A523 family of SoCs, comprising A523, A527, T527, H728. [1]
+Since the posting of v1, a T527 user manual surfaced, so we could add
+an extra clock, and confirm and clarify on some existing (guessed) ones.
+This also contains some fixes to some clock definitions, which were
+found either during testing or while checking for new clocks.
+One big change in this series is the split of the main CCU driver into 9
+patches, purely to help review. For a more detailed changelog, see below.
 
-Reviewed-by: Iuliana Prodan <iuliana.prodan@nxp.com>
+*************
+Please note that the clock numbers changed compared to v1, so DTs from
+that era cannot be used anymore with this driver: you have to update
+the DTB. Just copying the binding header and recompiling the DTB should do
+the trick, since the symbols stayed mostly the same, at least as far they
+are used in the basic DTs we use today.
+*************
 
-Thanks,
-Iulia
+The SoCs contain *four* CCU components, aside from the usual main clock
+device and the PRCM clock (in the always-on-domain), there is an MCU
+clock and a DSP clock. This series just adds support for the first two,
+the other two don't seem to be required for the basic functionality.
+
+The clock tree of each SoC has always been individual, even though the
+main clock *types* mostly remain the same. This time we see two slight
+variations: There is an MP clock without the P (shift) part, and there
+is one with two dividers instead of one divider and one shift field.
+The first three patches add support for these new clock types.
+
+Patch 04/15 add the DT binding description for the main CCU, along with
+all the clock numbers already defined in the binding headers.
+Since the main CCU is massive, and contains a lot of detail, I decided
+to split this driver up into 9 patches, simply to help review. I tried
+to group them somewhat logically, although this is rather arbitrary, and
+just to make each individual patch smaller. I am happy to squash them
+all back into one patch once they have been reviewed, for the final
+merge. The PRCM CCU is comparably small, so I kept this in one patch.
+
+Interestingly the Allwinner BSP has switched to using the existing sunxi
+CCU framework for modelling the clocks (they had their own way before), so
+we could theoretically use their code. However when I started working on
+this more than a year ago, their files had a GPL-3.0-only license header,
+which, according to my research, makes them incompatible for mainline
+inclusion. I thus started from "scratch" (adjusting the D1 driver, really).
+Meanwhile they seem to have changed the license, and a quick comparison
+turned up some differences, some of which seem to be bugs on their, some
+on my side, probably. I hope having such a "reference" helps the mainline
+code quality, as people can help the review by comparing code.
+
+Given the level of detail required in CCU drivers, I am certain there are
+many bugs in there, also many things that can be improved. But after
+starring and editing this for weeks, I feel like it's time for the
+community to have a look, so please help with the review, and also test.
+
+Based on v6.14-rc1.
+
+Cheers,
+Andre
+
+[1] https://linux-sunxi.org/A523#Family_of_sun55iw3
+
+Changelog v1 .. v2:
+- rebase onto v6.14-rc1
+- split main CCU definition patch into 9 smaller patches
+- rename RST_BUS_VO1_TCONLCD0 to RST_BUS_TCON_LCD2
+- insert CLK_PLL_VIDEO3_xx clocks
+- add clock for 2nd EMAC
+- add R_SPI name (though clock definiton is still missing)
+- fix ISP clock definition
+- remove BSP comments from clocks now documented in the T527 manual
+- add Conor's binding ACKs (with thanks!)
+
+Andre Przywara (15):
+  clk: sunxi-ng: mp: Add SUNXI_CCU_P_DATA_WITH_MUX_GATE wrapper
+  clk: sunxi-ng: mp: introduce dual-divider clock
+  clk: sunxi-ng: mp: provide wrapper for setting feature flags
+  dt-bindings: clk: sunxi-ng: add compatible for the A523 CCU
+  clk: sunxi-ng: Add support for the A523/T527 CCU PLLs
+  clk: sunxi-ng: a523: Add support for bus clocks
+  clk: sunxi-ng: a523: add video mod clocks
+  clk: sunxi-ng: a523: add system mod clocks
+  clk: sunxi-ng: a523: add interface mod clocks
+  clk: sunxi-ng: a523: add USB mod clocks
+  clk: sunxi-ng: a523: remaining mod clocks
+  clk: sunxi-ng: a523: add bus clock gates
+  clk: sunxi-ng: a523: add reset lines
+  dt-bindings: clk: sunxi-ng: add compatible for the A523 PRCM-CCU
+  clk: sunxi-ng: add support for the A523/T527 PRCM CCU
+
+ .../clock/allwinner,sun4i-a10-ccu.yaml        |   76 +-
+ drivers/clk/sunxi-ng/Kconfig                  |   10 +
+ drivers/clk/sunxi-ng/Makefile                 |    4 +
+ drivers/clk/sunxi-ng/ccu-sun55i-a523-r.c      |  245 +++
+ drivers/clk/sunxi-ng/ccu-sun55i-a523-r.h      |   14 +
+ drivers/clk/sunxi-ng/ccu-sun55i-a523.c        | 1641 +++++++++++++++++
+ drivers/clk/sunxi-ng/ccu-sun55i-a523.h        |   14 +
+ drivers/clk/sunxi-ng/ccu_common.h             |    1 +
+ drivers/clk/sunxi-ng/ccu_mp.c                 |   51 +-
+ drivers/clk/sunxi-ng/ccu_mp.h                 |   39 +-
+ include/dt-bindings/clock/sun55i-a523-ccu.h   |  190 ++
+ include/dt-bindings/clock/sun55i-a523-r-ccu.h |   37 +
+ include/dt-bindings/reset/sun55i-a523-ccu.h   |   87 +
+ include/dt-bindings/reset/sun55i-a523-r-ccu.h |   25 +
+ 14 files changed, 2394 insertions(+), 40 deletions(-)
+ create mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523-r.c
+ create mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523-r.h
+ create mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523.c
+ create mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523.h
+ create mode 100644 include/dt-bindings/clock/sun55i-a523-ccu.h
+ create mode 100644 include/dt-bindings/clock/sun55i-a523-r-ccu.h
+ create mode 100644 include/dt-bindings/reset/sun55i-a523-ccu.h
+ create mode 100644 include/dt-bindings/reset/sun55i-a523-r-ccu.h
+
+-- 
+2.46.3
+
 
