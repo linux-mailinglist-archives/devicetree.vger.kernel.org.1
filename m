@@ -1,325 +1,258 @@
-Return-Path: <devicetree+bounces-146692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03E82A35D92
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:24:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B326A35DB5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:36:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF13A7A3FE2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:23:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED30C188E325
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F3CA265625;
-	Fri, 14 Feb 2025 12:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 231A4263F3B;
+	Fri, 14 Feb 2025 12:35:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Lf164Ph0"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="D5Xod9Nn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2155A2641E1
-	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 12:23:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7042153FA
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 12:35:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739535804; cv=none; b=fktvWECDSl1AlDskP6aBrp+tSdV5TOhMVO0fD8O3GAonjdhqSE4S0w9Cap9jRt0YyeV9ogSHM6vu9791769VLgEGLzcIbN0+EDLryD5nKdixEI3ZaiDvaYuE0LSjsFfq6pf1o6JW1lbiUPUmtHqX3SXlFJhyP6Hlgg4IynDSDr4=
+	t=1739536554; cv=none; b=cMqN10AhPiWVUtZ6yIs/B9I6AcWQNVNPxiaDPwITYw0ZcFl0aJtAUEM2pVOdAvVOD+0jFHrY9Idoy52tVkPWJIEI5erCmLWZZgGZ81kNaZUKb9ejpX1rfx9l12wswXJ8Cwbc9uQeR/jpLZdWfMxBnZqQ3x+ZIXvGcCVBdVl4WQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739535804; c=relaxed/simple;
-	bh=hLiMZnuu+3C1+GXOKrJYlOPcy9O1KcJ4GWq7/HNkeVo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dveHGxuRnw+wX7wUKpnSGbSyvE6dmeTnA+YV47hjQ6vdsi62KlXDdea8AjTenyaiTc61TPj7lQdBElZPNY3tuBmlDMMM2rNYsakuiTq+SjdIOSZQr1vpnWD88tKOW4gqM4HGp647hhgKZIE80YIkeJ2hvTQnYLiCW/6qEyEG20s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Lf164Ph0; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4395578be70so20731475e9.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 04:23:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739535799; x=1740140599; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8wsvYUn1m2oa3GrMllWdEUhN26YtAgD7V53pe75Koy0=;
-        b=Lf164Ph0151nUn4EIIEZMqIa9wnJ2VZ6dxPr8nc7fe4LqYQjnL1/GyUlZ1Xb5greAF
-         rWA9MXOLkIokLJVHB3gvDdSZNK2FHoxZNJv+e1P8UwAJuZDfHr9O/uLIlguxnHWKJ2f5
-         NM6WYEkCOx5escV5s9ihTfA2+qvdiNhNrDKjsgn+kQkWOJuzP3MkYciqxomy4Ph1lv5+
-         BTy1GqI5TBVcBF4raytOXaWvgIYsiOHKOhzNZmRHgKS20giC+FvP2Td1Thlu52pDuAfX
-         I9D4AoHBEANOlCNYQg6r8Aq5T3XoTEQkVmVMNRgIeqZiBkJ86sNtPv2L4o+PQIgRswXZ
-         kXjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739535799; x=1740140599;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8wsvYUn1m2oa3GrMllWdEUhN26YtAgD7V53pe75Koy0=;
-        b=N77fniZRPNwojnMFEJ0C1ymk5KWbQc2L7dhR9I0hwUSWPaYct+wLaPkNAvUXCcEGJy
-         SiS4IqKCWjAK76/N7FKmBjg/EvC47+W88H9+/mKBJJMS9DoPI60I0pmVrsrf7YAsHilw
-         S5xJ/NWXw5wPX+gtFUM9qB1l4MNQ9K9uRDC2Pr8THRhszBkw9tXOCSi73yReLnIEvtrj
-         HO9jGSAoloHLXFlm5oCqYMk9mdr1GDwoLi4mj8AroWtBUGy3xW8/63Wf+SkNPX26i7rW
-         r/EGPlc29rB5KW0TJ0ERjWlQbl/bkEZQo2Ox6tZh1FpjmftJY/sf+wgtIEWLN2UOkphf
-         5Lsw==
-X-Forwarded-Encrypted: i=1; AJvYcCWlL4jbPnNdD5o9FMo5OFamBIn2D9HSy+/7fDQU2TtAa3szzbJ8gJ0hdUow+pKR2RjyRmLxrYUKN7/h@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpA0JNM2IlWhA3TP9N+nI9pEt89bgLCYnDr4rioCc1z/ZyrCzd
-	05ycsEEIl92pvhjpzEGkza3nE0e0uiM6Q4DOtpeyOI4M9lWPgjxphQjMvw82prw=
-X-Gm-Gg: ASbGncsqP3fDwEl1t8OHQvsrUf9/xPKPMaZQ8rbhlhnTWqTrIQtVdg6FMhkTs4QheN0
-	E9ncXT+aDXcPak0mjgOHuXnLSpThWFXZ18B2MhYhvNXz75ZsumOhEWRnbZB0fR70rcfRbYHKTXy
-	cXVQwr4cFLeprY7VLW6ZcyCPrjEn1+V9r0W07+ie2BM0jtP+eMBBsM7GBMzUHNCBFchVtw8lM7z
-	Yg1FvRQURmHwA3cniBLYxhArGUrX+Sx+0bG/juvN2nTiZtzsG5d9czZmo4zwUFBE9SvaU8z58gr
-	Lxt8knibjlo7z0/YsjY7o9Na2Hn+Jwj5TONaFpUkiwhiWeWruh7vAq+/1MLQYT09Ug+DCg/N
-X-Google-Smtp-Source: AGHT+IEDQWC5tiIRz+2R7TgH92zpBtRkZ3QohO4W65JuSWaGXT5oTXw9QVJsqMSAksmdsVyR8mmEPw==
-X-Received: by 2002:adf:f28d:0:b0:38d:d8b2:cf0a with SMTP id ffacd0b85a97d-38dea288854mr10774854f8f.31.1739535799285;
-        Fri, 14 Feb 2025 04:23:19 -0800 (PST)
-Received: from [127.0.0.1] (amontpellier-556-1-148-206.w109-210.abo.wanadoo.fr. [109.210.4.206])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f259f7b68sm4424654f8f.85.2025.02.14.04.23.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Feb 2025 04:23:18 -0800 (PST)
-From: Esteban Blanc <eblanc@baylibre.com>
-Date: Fri, 14 Feb 2025 13:22:36 +0100
-Subject: [PATCH v4 6/6] docs: iio: ad4030: add documentation
+	s=arc-20240116; t=1739536554; c=relaxed/simple;
+	bh=DhdTMX1B/VBmrfjg4gCD28dH1z0ZeJtuCVVqdYJtLzw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JWqZfd5OhDjYeNjY1749mjAC71j+Lz0Xve8vibamNAJZOFv5cbOWyiAro8vlItiOUwI5yY5EbPwD2Mp1/YM7nIrAdG/45mT5NN/FcVZgdiSzWz/bgSSdRk2E00EAMHhmbmaCdLh7hMpmuNW3m23uKCUU/TRfl7ObLo205xwgbWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=D5Xod9Nn; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id ACEC2240103
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 13:35:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1739536549; bh=DhdTMX1B/VBmrfjg4gCD28dH1z0ZeJtuCVVqdYJtLzw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=D5Xod9Nnl1WE6g1L7y5neIscsjHlzP9MY5Mw6Agu8uZD51CniEAu5nc1a/M7uOuay
+	 FnPzKuG+5DhX1AR2By4JLt2+6SePYX9dxTPP26BbYZz5yslylfLJ5HeYXeZKigJTD8
+	 wXckP4BTVk0rpmFwPrtSM3F5JmFkYBbJwcZ9ILZoY9XREALy+R8PMLWVfRJJIqegGR
+	 ip0tDQNNZvhC+Ac7P9yckRRncsRnZpwesWfImxAkK3WxgCwLbe+EOgHyElpxRWrYjw
+	 JI/8foXkGFM8JegiqDKfVrOw0juWrGF0P67jAcRLWyShcX0FBJqPObf2fUnzLcM0WW
+	 OMX71QAVAqbKw==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4YvWjq1cxCz9rxG;
+	Fri, 14 Feb 2025 13:35:41 +0100 (CET)
+Date: Fri, 14 Feb 2025 12:35:41 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Frank Li <Frank.li@nxp.com>
+Cc: j.ne@posteo.net, devicetree@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	Krzysztof Kozlowski <krzk@kernel.org>, imx@lists.linux.dev,
+	Scott Wood <oss@buserror.net>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
+	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-mtd@lists.infradead.org
+Subject: Re: [PATCH v2 05/12] dt-bindings: dma: Convert fsl,elo*-dma to YAML
+Message-ID: <Z684nUnDX4Sb98rQ@probook>
+References: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
+ <20250207-ppcyaml-v2-5-8137b0c42526@posteo.net>
+ <Z6pV4eauZj75+911@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250214-eblanc-ad4630_v1-v4-6-135dd66cab6a@baylibre.com>
-References: <20250214-eblanc-ad4630_v1-v4-0-135dd66cab6a@baylibre.com>
-In-Reply-To: <20250214-eblanc-ad4630_v1-v4-0-135dd66cab6a@baylibre.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Cc: Michael Hennerich <michael.hennerich@analog.com>, 
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
- Esteban Blanc <eblanc@baylibre.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Z6pV4eauZj75+911@lizhi-Precision-Tower-5810>
 
-This adds a new page to document how to use the ad4030 ADC driver
+On Mon, Feb 10, 2025 at 02:39:13PM -0500, Frank Li wrote:
+> On Fri, Feb 07, 2025 at 10:30:22PM +0100, J. Neuschäfer via B4 Relay wrote:
+> > From: "J. Neuschäfer" <j.ne@posteo.net>
+> >
+> > The devicetree bindings for Freescale DMA engines have so far existed as
+> > a text file. This patch converts them to YAML, and specifies all the
+> > compatible strings currently in use in arch/powerpc/boot/dts.
+> >
+> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> > ---
+> >
+> > V2:
+> > - remove unnecessary multiline markers
+> > - fix additionalProperties to always be false
+> > - add description/maxItems to interrupts
+> > - add missing #address-cells/#size-cells properties
+> > - convert "Note on DMA channel compatible properties" to YAML by listing
+> >   fsl,ssi-dma-channel as a valid compatible value
+> > - fix property ordering in examples: compatible and reg come first
+> > - add missing newlines in examples
+> > - trim subject line (remove "bindings")
+> > ---
+> >  .../devicetree/bindings/dma/fsl,elo-dma.yaml       | 140 ++++++++++++++
+> >  .../devicetree/bindings/dma/fsl,elo3-dma.yaml      | 123 +++++++++++++
+> >  .../devicetree/bindings/dma/fsl,eloplus-dma.yaml   | 134 ++++++++++++++
+> >  .../devicetree/bindings/powerpc/fsl/dma.txt        | 204 ---------------------
+> >  4 files changed, 397 insertions(+), 204 deletions(-)
+[...]
+> > +  reg:
+> > +    maxItems: 1
+> > +    description:
+> > +      DMA General Status Register, i.e. DGSR which contains status for
+> > +      all the 4 DMA channels.
+> 
+> needn't maxItems
+> items:
+>   - description: DMA ...
 
-Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
----
- Documentation/iio/ad4030.rst | 181 +++++++++++++++++++++++++++++++++++++++++++
- Documentation/iio/index.rst  |   1 +
- MAINTAINERS                  |   1 +
- 3 files changed, 183 insertions(+)
+Good point, I'll do that.
 
-diff --git a/Documentation/iio/ad4030.rst b/Documentation/iio/ad4030.rst
-new file mode 100644
-index 0000000000000000000000000000000000000000..41ce5ca5c710c46a0995d1b127fa1c10fca4c1eb
---- /dev/null
-+++ b/Documentation/iio/ad4030.rst
-@@ -0,0 +1,181 @@
-+.. SPDX-License-Identifier: GPL-2.0-only
-+
-+=============
-+AD4030 driver
-+=============
-+
-+ADC driver for Analog Devices Inc. AD4030 and similar devices. The module name
-+is ``ad4030``.
-+
-+
-+Supported devices
-+=================
-+
-+The following chips are supported by this driver:
-+
-+* `AD4030-24 <https://www.analog.com/AD4030-24>`_
-+* `AD4032-24 <https://www.analog.com/AD4032-24>`_
-+* `AD4630-16 <https://www.analog.com/AD4630-16>`_
-+* `AD4630-24 <https://www.analog.com/AD4630-24>`_
-+* `AD4632-16 <https://www.analog.com/AD4632-16>`_
-+* `AD4632-24 <https://www.analog.com/AD4632-24>`_
-+
-+IIO channels
-+============
-+
-+Each "hardware" channel as described in the datasheet is split in 2 IIO
-+channels:
-+
-+- One channel for the differential data
-+- One channel for the common byte.
-+
-+The possible IIO channels depending on the numbers of "hardware" channel are:
-+
-++------------------------------------+------------------------------------+
-+| 1 channel ADC                      | 2 channels ADC                     |
-++====================================+====================================+
-+| - voltage0-voltage1 (differential) | - voltage0-voltage1 (differential) |
-+| - voltage2 (common-mode)           | - voltage2-voltage3 (differential) |
-+|                                    | - voltage4 (common-mode)           |
-+|                                    | - voltage5 (common-mode)           |
-++------------------------------------+------------------------------------+
-+
-+Labels
-+------
-+
-+For ease of use, the IIO channels provide a label. For a differential channel,
-+the label is ``differentialN`` where ``N`` is the "hardware" channel id. For a
-+common-mode channel, the label is ``common-modeN`` where ``N`` is the
-+"hardware" channel id.
-+
-+The possible labels are:
-+
-++-----------------+-----------------+
-+| 1 channel ADC   | 2 channels ADC  |
-++=================+=================+
-+| - differential0 | - differential0 |
-+| - common-mode0  | - differential1 |
-+|                 | - common-mode0  |
-+|                 | - common-mode1  |
-++-----------------+-----------------+
-+
-+Supported features
-+==================
-+
-+SPI wiring modes
-+----------------
-+
-+The driver currently supports the following SPI wiring configurations:
-+
-+One lane mode
-+^^^^^^^^^^^^^
-+
-+In this mode, each channel has its own SDO line to send the conversion results.
-+At the moment this mode can only be used on AD4030 which has one channel so only
-+one SDO line is used.
-+
-+.. code-block::
-+
-+    +-------------+         +-------------+
-+    |     ADC     |         |     HOST    |
-+    |             |         |             |
-+    |         CNV |<--------| CNV         |
-+    |          CS |<--------| CS          |
-+    |         SDI |<--------| SDO         |
-+    |        SDO0 |-------->| SDI         |
-+    |        SCLK |<--------| SCLK        |
-+    +-------------+         +-------------+
-+
-+Interleaved mode
-+^^^^^^^^^^^^^^^^
-+
-+In this mode, both channels conversion results are bit interleaved one SDO line.
-+As such the wiring is the same as `One lane mode`_.
-+
-+SPI Clock mode
-+--------------
-+
-+Only the SPI clocking mode is supported.
-+
-+Output modes
-+------------
-+
-+There are more exposed IIO channels than channels as describe in the devices
-+datasheet. This is due to the `Differential data + common-mode`_ encoding
-+2 types of information in one conversion result. As such a "device" channel
-+provides 2 IIO channels, one for the differential data and one for the common
-+byte.
-+
-+Differential data
-+^^^^^^^^^^^^^^^^^
-+
-+This mode is selected when:
-+
-+- Only differential channels are enabled in a buffered read
-+- Oversampling attribute is set to 1
-+
-+Differential data + common-mode
-+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+
-+This mode is selected when:
-+
-+- Differential and common-mode channels are enabled in a buffered read
-+- Oversampling attribute is set to 1
-+
-+For the 24-bits chips, this mode is also available with 16-bits differential
-+data but is not selectable yet.
-+
-+Averaged differential data
-+^^^^^^^^^^^^^^^^^^^^^^^^^^
-+
-+This mode is selected when:
-+
-+- Only differential channels are selected enabled in a buffered read
-+- Oversampling attribute is greater than 1
-+
-+Digital Gain and Offset
-+-----------------------
-+
-+Each differential data channel has a 16-bits unsigned configurable hardware
-+gain applied to it. By default it's equal to 1. Note that applying gain can
-+cause numerical saturation.
-+
-+Each differential data channel has a signed configurable hardware offset.
-+For the ADCs ending in ``-24``, the gain is encoded on 24-bits.
-+Likewise, the ADCs ending in ``-16`` have a gain encoded on 16-bits. Note that
-+applying an offset can cause numerical saturation.
-+
-+The final differential data returned by the ADC is computed by first applying
-+the gain, then the offset.
-+
-+The gain is controlled by the ``calibscale`` IIO attribute while the offset is
-+controlled by the ``calibbias`` attribute.
-+
-+Reference voltage
-+-----------------
-+
-+The chip supports an external reference voltage via the ``REF`` input or an
-+internal buffered reference voltage via the ``REFIN`` input. The driver looks
-+at the device tree to determine which is being used. If ``ref-supply`` is
-+present, then the external reference voltage is used and the internal buffer is
-+disabled. If ``refin-supply`` is present, then the internal buffered reference
-+voltage is used.
-+
-+Reset
-+-----
-+
-+Both hardware and software reset are supported. The driver looks first at the
-+device tree to see if the ``reset-gpio`` is populated.
-+If not present, the driver will fallback to a software reset by wiring to the
-+device's registers.
-+
-+Unimplemented features
-+----------------------
-+
-+- ``BUSY`` indication
-+- Additional wiring modes
-+- Additional clock modes
-+- Differential data 16-bits + common-mode for 24-bits chips
-+- Overrange events
-+- Test patterns
-+
-diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
-index 5710f5b9e9582befb6dfa9d72c4fae8cae8ddeb7..2d334be2b7f29a82916a03d808bc0cb38e5a2252 100644
---- a/Documentation/iio/index.rst
-+++ b/Documentation/iio/index.rst
-@@ -19,6 +19,7 @@ Industrial I/O Kernel Drivers
-    :maxdepth: 1
- 
-    ad4000
-+   ad4030
-    ad4695
-    ad7380
-    ad7606
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bfb739c2f5f4ef9182c9789c797e63a93ab08080..364cfc6e8cc6f99b32319e5344c66b2b578bc5d5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1314,6 +1314,7 @@ L:	linux-iio@vger.kernel.org
- S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-+F:	Documentation/iio/ad4030.rst
- F:	drivers/iio/adc/ad4030.c
- 
- ANALOG DEVICES INC AD4130 DRIVER
+> 
+> > +
+> > +  cell-index:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Controller index. 0 for controller @ 0x8100.
+> > +
+> > +  ranges: true
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +    description: Controller interrupt.
+> 
+> Needn't description because no any additional informaiton.
 
--- 
-2.47.2
+True.
 
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+[...]
+> > +additionalProperties: false
+> 
+> Need ref to dma-common.yaml?
+
+Sounds good, but I'm not sure what to do about the #dma-cells property,
+which is required by dma-common.yaml.
+
+There aren't many examples of DMA channels being explicitly declared in
+device trees. One example that I could find is the the xilinx_dma.txt
+binding:
+
+
+	axi_vdma_0: axivdma@40030000 {
+		compatible = "xlnx,axi-vdma-1.00.a";
+		#dma_cells = <1>;
+		reg = < 0x40030000 0x10000 >;
+		dma-ranges = <0x00000000 0x00000000 0x40000000>;
+		xlnx,num-fstores = <0x8>;
+		xlnx,flush-fsync = <0x1>;
+		xlnx,addrwidth = <0x20>;
+		clocks = <&clk 0>, <&clk 1>, <&clk 2>, <&clk 3>, <&clk 4>;
+		clock-names = "s_axi_lite_aclk", "m_axi_mm2s_aclk", "m_axi_s2mm_aclk",
+			      "m_axis_mm2s_aclk", "s_axis_s2mm_aclk";
+		dma-channel@40030000 {
+			compatible = "xlnx,axi-vdma-mm2s-channel";
+			interrupts = < 0 54 4 >;
+			xlnx,datawidth = <0x40>;
+		};
+		dma-channel@40030030 {
+			compatible = "xlnx,axi-vdma-s2mm-channel";
+			interrupts = < 0 53 4 >;
+			xlnx,datawidth = <0x40>;
+		};
+	};
+
+	...
+
+	vdmatest_0: vdmatest@0 {
+		compatible ="xlnx,axi-vdma-test-1.00.a";
+		dmas = <&axi_vdma_0 0
+			&axi_vdma_0 1>;
+		dma-names = "vdma0", "vdma1";
+	};
+
+It has #dma_cells (I'm sure #dma-cells was intended) on the controller.
+
+
+Another example is in arch/powerpc/boot/dts/fsl/p1022si-post.dtsi:
+
+	dma@c300 {
+		dma00: dma-channel@0 {
+			compatible = "fsl,ssi-dma-channel";
+		};
+		dma01: dma-channel@80 {
+			compatible = "fsl,ssi-dma-channel";
+		};
+	};
+
+	...
+
+	ssi@15000 {
+		compatible = "fsl,mpc8610-ssi";
+		cell-index = <0>;
+		reg = <0x15000 0x100>;
+		interrupts = <75 2 0 0>;
+		fsl,playback-dma = <&dma00>;
+		fsl,capture-dma = <&dma01>;
+		fsl,fifo-depth = <15>;
+	};
+
+
+There, the DMA channels are used directly and without additional
+information (i.e. #dma-cells = <0>, althought it isn't specified).
+
+
+> > +        dma-channel@0 {
+> > +            compatible = "fsl,mpc8349-dma-channel", "fsl,elo-dma-channel";
+> > +            reg = <0 0x80>;
+> > +            cell-index = <0>;
+> > +            interrupt-parent = <&ipic>;
+> > +            interrupts = <71 8>;
+> 
+> '8',  use predefine MACRO for irq type.
+
+Good catch, will do
+
+> 
+> Frank
+
+Thanks for your review!
+J. Neuschäfer
 
