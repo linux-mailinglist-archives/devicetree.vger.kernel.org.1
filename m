@@ -1,63 +1,59 @@
-Return-Path: <devicetree+bounces-146609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7679A358F2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 09:33:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB325A358F7
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 09:33:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD3083ADBD4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:32:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 526753AD6AE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:33:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1552215770;
-	Fri, 14 Feb 2025 08:32:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89F022259B;
+	Fri, 14 Feb 2025 08:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SfSACwOF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gTgsJJGr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 974C31F8908;
-	Fri, 14 Feb 2025 08:32:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA5E620ADFB;
+	Fri, 14 Feb 2025 08:33:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739521938; cv=none; b=KnU+JhUPSKnzjRh5M/XJ25BqQ1MctjM48utfkiCvRNpkAiXMpx5B4tcck1TevhMvYYNpb4G/gQh2vXQlcgPELYhOVoFvTf+SXWeHLAnvaBqAC7MSs/y07E7jV+jO4YPO2W4KjQiOeWdUV6iyznnB9rZpl5T2COChIRNFWI7YwJo=
+	t=1739521997; cv=none; b=AHucKoo9MmOy2K3ey2k14odhxKBZ7ylYidPu9143FChHJ2S2HduZCoG/EKXO9gUdB3bhfac9dYbhFvWVKOVEpu0hQdWgWqin1k4uBDwa0MuwFAUJQDSxggDYt4D0s6DRncN+wOXZc9qgMEoN6mt2xwqmHpoGJNGnQnILSWL0q1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739521938; c=relaxed/simple;
-	bh=tN0i1b2Ryo0EmqvdxJO9z1k6BEAOIIN5zWxqbfV8Kcs=;
+	s=arc-20240116; t=1739521997; c=relaxed/simple;
+	bh=7HIkH/KEQQIflBpWCsurCpwPb9iVOK6yYecA0UCy8eM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aRgLqIbj+tgiF7H0Ml0w7Tk5cPWm3RctJAVgL+a5hbn/+pjJGq4inz1JtOp9ZTSP/o2m6ocGbiunKSz9sOc36xq62WUiIGxkGNQ/l3oo0M2v4KvZLKxzyDcQ7Wmhw7Xx+cDguVIqMuuiu0aHrn7L2hRz4h7/XbW9QY2uOfjMVx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SfSACwOF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FBABC4CEE2;
-	Fri, 14 Feb 2025 08:32:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y0vlgLNI67hgyVg/aI1CfpRvnz5bNuYjRzCTWgTL+K/VTF48ifGZ/C99DbkYWO+WlU/mq3f0QbxssiVA7y9Saz7W6q9C5XF7TppcZ32aAIeerzPOxPtP0yUTqyDqY2VasL8inw5/U9CtasJbHhGLoM55+s3+MT9uME45ohdPhR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gTgsJJGr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A3F7C4CED1;
+	Fri, 14 Feb 2025 08:33:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739521935;
-	bh=tN0i1b2Ryo0EmqvdxJO9z1k6BEAOIIN5zWxqbfV8Kcs=;
+	s=k20201202; t=1739521995;
+	bh=7HIkH/KEQQIflBpWCsurCpwPb9iVOK6yYecA0UCy8eM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SfSACwOFvN5KyJiGTJqktnaWcX+SReQU4KYs6iAqH4s+/mrv+SSAVc1pK1U7lNkti
-	 gWukz6DpiK91mpEqJ75i9hS2rm6AnQ/RK4ktEz9MlGk8uO7JgX5G9NjtJa9/gV2yPp
-	 YK95AGwC0zTSpwC0woI2ZVPHjWqoMGhPrKaABi108etXJ43b71cLsZzDpe0Bp4WbKw
-	 58XIztO7Z3y1+lnF2yoYdszq2HMaxd1zPPvlYO0iKDcgEamFah14e+1CT+S8mWnOVo
-	 3StLEcFoeUgDPDt5pOmJRl1m7DMK4Ndspc72aN8efgaqqRgaxusNPv/fruSjqXv/27
-	 vMJH8H2MTcboA==
-Date: Fri, 14 Feb 2025 09:32:11 +0100
+	b=gTgsJJGr/cKHok2Q+pWAy0B5vKQIIaGC5Vaj1z4Gq4N/BiLgGQsGbrOCyPstKyeQN
+	 cuVBojvP9p9aSBDOotLBaGHChIxmMzHLz22cpm8g3Rb+GmEs70N3n52dMIQnBlnQSI
+	 VuwygdG4BGQudiyFDuNtGnuahvt1gk9QhZOM3H09dJmQbWHjYodZVepnPQT6ovAtiA
+	 Amcg7SUtmc8xqnGAlh49asP8xqwuToW+rkysjMwf/t67yT27O0u1N8e8COjhOQuNQa
+	 M9zic8a3uojE6KtHEYUEQh8mjSVYNXhnn+6wdm8H1WYb5XRCjd98kArJDX0p2DmJk9
+	 kzoU6Di2IwIWA==
+Date: Fri, 14 Feb 2025 09:33:11 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Dragan Simic <dsimic@manjaro.org>, 
-	Jonas Karlman <jonas@kwiboo.se>, Chris Morgan <macromorgan@hotmail.com>, 
-	Kever Yang <kever.yang@rock-chips.com>, Tim Lunn <tim@feathertop.org>, FUKAUMI Naoki <naoki@radxa.com>, 
-	Michael Riesch <michael.riesch@wolfvision.net>, Weizhao Ouyang <weizhao.ouyang@arm.com>, 
-	Elon Zhang <zhangzj@rock-chips.com>, Alexey Charkov <alchark@gmail.com>, 
-	Stephen Chen <stephen@radxa.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: rockchip: Add Radxa ROCK 4D
- board
-Message-ID: <20250214-sophisticated-toad-of-cleaning-e9c359@krzk-bin>
-References: <20250213145921.133412-1-detlev.casanova@collabora.com>
- <20250213145921.133412-2-detlev.casanova@collabora.com>
+To: =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Pavel Machek <pavel@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: leds: qcom-lpg: Document PM8937 PWM
+ compatible
+Message-ID: <20250214-muscular-arcane-chachalaca-fdfacb@krzk-bin>
+References: <20250213-pm8937-pwm-v2-0-49ea59801a33@mainlining.org>
+ <20250213-pm8937-pwm-v2-1-49ea59801a33@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,17 +62,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250213145921.133412-2-detlev.casanova@collabora.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250213-pm8937-pwm-v2-1-49ea59801a33@mainlining.org>
 
-On Thu, Feb 13, 2025 at 09:57:15AM -0500, Detlev Casanova wrote:
-> The board is based on the Rockchip rk3576 SoC.
-> 
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+On Thu, Feb 13, 2025 at 08:54:47PM +0100, Barnab=C3=A1s Cz=C3=A9m=C3=A1n wr=
+ote:
+> The PM8937 PWM modules are compatible with the PM8916 PWM modules,
+> document the PM8937 PWM compatible as fallback for the PM8916 PWM.
+>=20
+> Signed-off-by: Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining=
+=2Eorg>
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
