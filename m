@@ -1,298 +1,114 @@
-Return-Path: <devicetree+bounces-146566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 480BBA35715
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:29:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AC49A3571B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:31:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACD1A3A57F3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 06:29:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0F4A16E3FE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 06:31:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D4CD1FFC42;
-	Fri, 14 Feb 2025 06:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8869200BA8;
+	Fri, 14 Feb 2025 06:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cbLt3n8L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GTq+bIyv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A270022071;
-	Fri, 14 Feb 2025 06:29:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D82201487DC
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 06:31:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739514579; cv=none; b=YGLdPhQ9RnojD3dJb5lCCGWKY57/VrBAG2yLNXIrsPw6mmJfuIVuoYD9Oyt0Ugd0jDJdHXVbMm79X1K7ma2gGAEsk5ytNTfx4NlDfhU52fCrtKlE0Xfd28EyUogoQbDK+cx7QOmuGe178bT98X84C45CekO0nX8hWO1vYmJWJGo=
+	t=1739514683; cv=none; b=g+3TTn1I2B3DY1cm5UY6cpQVdaAX314d7u3rZvENWzh0gDWhMWm27PQjYjyeygHhbHZ5+CfTU+tciPe0cK55sfdJO7nZK6cv4V1+oxfFTdsaOJpIaGJafZNpEnBtcQi1Qj0nsSZuns84lSI5Et60yhw4ZBa3b0KcYgeSQ63B62c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739514579; c=relaxed/simple;
-	bh=UsEB+A/XPaEDIkHx8pGbAsIhq7XByBu36IKvE9bh6Jg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KhEPX2Ga2m17NTls98MRiKBKGIlHto9WU9u8QnGvIYkP36wkch0A19xSxh0i/SJjUy24ngRthgod+3qT8eksk6yWGJxEzzE39LvGeO9RHiP9aO0NKGs1j0jTmKpZa2HjzUZJnTYG/IAcn7JXELa51WkAySZhmzTYMqKP/RwiCW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cbLt3n8L; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4395817a7f2so10961405e9.1;
-        Thu, 13 Feb 2025 22:29:37 -0800 (PST)
+	s=arc-20240116; t=1739514683; c=relaxed/simple;
+	bh=bd3Ix1OlxqfISy3/YXIyFe4/qznReagdpNKuiCq9fzM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=jXLB2Kf8tdzKc+no2dZmbcDQDHNVYN3vlkqN238flJwBAO5aVJi6FFSh7baVQxrqQNe62jlwMwiRsboawTrgzcZl/0qSfhqeK+x9cUIcbMe/KwEKjf4L0dVHYTFbvG6NVldzDvK1KKoBqQrM00IQVbmURtd3kBDdP5/gXPI/QWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GTq+bIyv; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ab7cc0c1a37so312976966b.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 22:31:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739514576; x=1740119376; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q0DNrIkpi+rgWunP8esx8b13URNUv1qzTHQGLBvyHZQ=;
-        b=cbLt3n8LXAuQmxb0dfusApdrR+FZt1tFpuAGD9114XlSylgVjdqCc7v8QRSLJFrfqm
-         XK45aezwr9N8LmHX6fcKYObWy89N/etNeXimItZFi0X0rvN481ez3B8eaMfKGrymZ4Z3
-         tbi1b0oxvHcMTWnU5tGS00kQkpQl9hxNiLHWpuaR+Zki/KORsezze8fX1YXon+Q1pd3R
-         OqoUC9xF0E6JaZTkEsmBjAFfMdrSY8qWET2YE/1sH+rg3DKvQb1T90kUaHhKCyl01LX6
-         2ctj8JUqcBFikzDcbRvEOF01W+N+SToGP3ed1aAlgDXCOpg3uXCzBG5+91yQrLwFDdnY
-         S08w==
+        d=linaro.org; s=google; t=1739514680; x=1740119480; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=RS4NhYdSKIq0ZCVoddU4UM3ba+/5N5wTfgewbJrHpVM=;
+        b=GTq+bIyvVaCw26jlpZ9dhBnWI1Scr3lEuVZhWSEHpar+mQi4qnTNxJiM18DPvM44V5
+         vLaw7lAvoZ5HT3MgnNDZ+q8apl0N2jj1zU22I8OME9DaKcylJ6ZnlQj+wFErF/xYxlf0
+         hdEKG9Q5ZagUhG2331Ixj6hSuLvKgOUuLP4GFD6J7846BqgHTFxwIyALqhU2rBb6dQw1
+         1YHCAthQuli0sOuix8qqKsIbotyIr9QvNu5Ubrl6/0NtYxoTi6FaRsslYgaKK1BAf7ww
+         B7xcpEItFgdl8g3zGMsYD09bL3PBGyl2OpQaVJevPjB0hKqs19dtkStQyxAIOs6c81ji
+         OyqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739514576; x=1740119376;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q0DNrIkpi+rgWunP8esx8b13URNUv1qzTHQGLBvyHZQ=;
-        b=c6zivmkr5k4CcD+hGZH8zmxPC//yKii4Dzp7ywZPCOQid/FcEwgP6IhQnqhf3Lw6f/
-         fZSG5yDqn/pDhOsojoYj+NutcfWSrY+9UdBpT2E20AghgS4Zi42s+OIR++OBIGZEMn/a
-         w8zd0nM5IrHRjYZ9b2r3uvW8jcG3ljV6Pi3HdQHt7QGlEux0/3PArbKcxKwrey/wAbV8
-         zoIr8zYOPYtzwOeADrEuvxOVDY80jvLKpw4Q74s73qYXLqYaduKa8k0Rb6XeKz8rJoB2
-         NM7fu32ONeSK234l8OV3fY+T131sZICvotV1IrnBmf831ZNHT3Aef8LupFZ6AA+uhp/n
-         JUJg==
-X-Forwarded-Encrypted: i=1; AJvYcCUF/FUDV/FoiRZO6KeRzJ5L+f4m3PRE6kiAyLAsxpZel3WsGH+Orl7i3kfmwq1hufnMPKUJ7+MzfNYptNdW@vger.kernel.org, AJvYcCUVj0Ft0Lb16PBX5MEq0L+kyPgtmyiThW10A2s/FLsJuMnEw/xJiZB7ZfZLqWK9TvViwJkO3vv0tLlW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/LARIyxEy2+W8LAQIpUKAUHNstkns5T5L91GKoMIBIRsiykyq
-	TB5h9FokE4c7b96BbIihfIJ9E19OqvnLCxhgiEc2uQCs3bpBqcJ7LoEbnvOHIdpeiODonuXYcjd
-	0cHB4d4WZZKtNz9mwfj4WmCGLLP0=
-X-Gm-Gg: ASbGncuO5T3X53vjijtjqtuSHnV+/AP1ARvhlXUSWElMxHzbHYevXpK2tnGuFSbhHpc
-	uAWQtScSsNmHgCScpt3zS7as709zgoW6RcM7zTp1khmOYHfmUnd1Oly/d4F7zspLVngKH4Cnh6Q
-	==
-X-Google-Smtp-Source: AGHT+IGY5xLuVN8j9KsxRf6bcc1+me7BVeaaH17aSLDBupkE+g+TY2Q6JdeoAWh5pe090nZSLG814Kwqa2FtZu049v4=
-X-Received: by 2002:a05:600c:870a:b0:439:42c6:f11f with SMTP id
- 5b1f17b1804b1-43960169268mr80052915e9.4.1739514575486; Thu, 13 Feb 2025
- 22:29:35 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739514680; x=1740119480;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RS4NhYdSKIq0ZCVoddU4UM3ba+/5N5wTfgewbJrHpVM=;
+        b=V6jywsr0eWDHQX07JYVTohhzAlng4sfTZ+Kz6xhf2CGN9/1JhYXnfwKOPPcPCuoNxO
+         RIqjWhtU/KSBnDMAcBoqVYoIZkR9BNZeMaEsv/UctEddjwjnTF3+0FiQ66wrPpvOFaQl
+         Utqw4t86oiDFpOX52E7CoYCwBNE465ajNrccoK+8kehXfsp1ptObmxw0aYIux77kWYfz
+         8oPVha1Q72Hv3rVGODgSHMUpZSPKAYkiVBmT71hzVYqgZSgEWwwadNuJktbAJZusJnob
+         nG9nkboQSNIolywBSzmdUz3MHjvqp3z/WnJCtT0iOSY5q6y7gFCEbTVWCJY7s0/x0G48
+         +CkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVLmHm3NqF61xNDTob+L4Bo6WPezly/sONKfg4bq/kW1sJ7704zpzCCjsD2Y/D8Jh5DI5cdst6OMdOs@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXSqm5VlCVO8ZVfEZKgx6xl2hEqa42+KDrltrx83s37gF1w6Ot
+	NBA8HEFAl4YS5QL1QyiHeg9S4u52h3NF+WO439aiZeUfCjZn2FJwCGsbdviiczE=
+X-Gm-Gg: ASbGncvl2yihrpMGxkydad7kOWz16hCIjIweafDCupSjep8HLdFQ6bTSHImsVo2Bsip
+	+mQG5F8gQNtIf0wf6SOs0O1otqUXueAxi8fYB7hYeszf9syIkhhLTQGXgDMGYaZPrzM1NUXUnDS
+	G5dPBxSH/tie+eMbVRsIuCsntLb/3hvpGCGicrFZPU0YZgbNzPeJN+i8lZrjaPa51ljhyjkTXmM
+	+quB9X+SC/ZozveVF48wrBvXkwaF2fVkX6YlktZb6TNiHVKQcAI407o4Kqyc9WpIPJsKY3dNU01
+	1u10knO3Bpy+iKkS0F0WY9eA
+X-Google-Smtp-Source: AGHT+IEN/RRE5hxQ5xNZNtT7rJsPTV3GPjWwm8qrFkScK0MAqhU1b09AXyINMIOW8g0Zg6OABiY4tw==
+X-Received: by 2002:a17:907:3da8:b0:aa6:79fa:b47d with SMTP id a640c23a62f3a-ab7f336d454mr924285066b.1.1739514680163;
+        Thu, 13 Feb 2025 22:31:20 -0800 (PST)
+Received: from [192.168.0.14] ([79.115.63.124])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece288e38sm2350948a12.79.2025.02.13.22.31.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Feb 2025 22:31:18 -0800 (PST)
+Message-ID: <49ce4bf7-fec2-4d1a-aff0-e342b31c4f57@linaro.org>
+Date: Fri, 14 Feb 2025 06:31:16 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250213135605.157650-1-clamor95@gmail.com> <20250213135605.157650-2-clamor95@gmail.com>
- <20250213-pumice-overcrowd-6c22b0d5d66c@spud>
-In-Reply-To: <20250213-pumice-overcrowd-6c22b0d5d66c@spud>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Fri, 14 Feb 2025 08:29:22 +0200
-X-Gm-Features: AWEUYZn67J7NbLVEkrwrIx99cgEMyRnxO5YdBiYvqEdfxjG1cBd7qt5e9I3cnEU
-Message-ID: <CAPVz0n1CpoAFvwwvoTOFQu4mgg57jCwS5W4GXCiUZ3eLEAdwZA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: display: bridge: Document Solomon SSD2825
-To: Conor Dooley <conor@kernel.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] spi: s3c64xx: add support exynos990-spi to new
+ port config data
+To: Denzeel Oliva <wachiturroxd150@gmail.com>, andi.shyti@kernel.org,
+ broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, alim.akhtar@samsung.com, linux-spi@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20250213204044.660-1-wachiturroxd150@gmail.com>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20250213204044.660-1-wachiturroxd150@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-=D1=87=D1=82, 13 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 22:34 Cono=
-r Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Thu, Feb 13, 2025 at 03:56:04PM +0200, Svyatoslav Ryhel wrote:
-> > Add bindings for Solomon SSD2825 MIPI master bridge chip that connects =
-an
-> > application processor with traditional parallel LCD interface and an LC=
-D
-> > driver with MIPI slave interface. The SSD2825 supports both parallel RG=
-B
-> > interface and serial SPI interface.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../display/bridge/solomon,ssd2825.yaml       | 140 ++++++++++++++++++
-> >  1 file changed, 140 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/so=
-lomon,ssd2825.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/solomon,s=
-sd2825.yaml b/Documentation/devicetree/bindings/display/bridge/solomon,ssd2=
-825.yaml
-> > new file mode 100644
-> > index 000000000000..cd7ff971495c
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/bridge/solomon,ssd2825.=
-yaml
-> > @@ -0,0 +1,140 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/bridge/solomon,ssd2825.yaml=
-#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Solomon SSD2825 RGB to MIPI-DSI bridge
-> > +
-> > +maintainers:
-> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: solomon,ssd2825
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  reset-gpios: true
-> > +
-> > +  dvdd-supply:
-> > +    description: Regulator for 1.2V digital power supply.
-> > +
-> > +  avdd-supply:
-> > +    description: Regulator for 1.2V analog power supply.
-> > +
-> > +  vddio-supply:
-> > +    description: Regulator for 1.8V IO power supply.
-> > +
-> > +  spi-max-frequency:
-> > +    maximum: 1000000
-> > +
-> > +  spi-cpha: true
-> > +  spi-cpol: true
->
-> Should these be required? Supplies should really be required too, since
-> the device probably cannot function without them?
->
 
-No, since spi-* define mode in which device works. If both are present
-it is mode 3, if none it is mode 0.
 
-About supplies, device cannot work without power supply obviously, but
-often exact supplies are not known and I would like to not enforce
-someone to add random regulators just because they are mandatory.
+On 2/13/25 8:40 PM, Denzeel Oliva wrote:
+> - Added a default "fifo_depth = 64" to prevent crashes when "fifo-depth"
+>   is missing in the device tree (avoids divide-by-zero issues).
 
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    const: tx_clk
->
-> Drop the _clk, since this cannot be anything else! clock-names isn't
-> really useful when you have just one, so I'd be inclined to say remove
-> it entirely...
->
+no, you shouldn't use fifo_depth as a fallback, it's misleading.
+fifo_depth shall be used only if all your SPI instances use the same
+FIFO size. If that's not the case, as in yours, you specify the FIFO
+depth via DT.
 
-TX_CLK is the name which datasheet refers to hence I have included
-clock name solely to have clear link between datasheet clock
-references and clock used here.
+You need to determine whether your IP works with 0 sized FIFOs and if
+not, make the the DT fifo-depth mandatory and check that its value is > 0.
 
-> > +  solomon,hs-zero-delay-ns:
-> > +    description:
-> > +      HS zero delay period
-> > +    default: 133
-> > +
-> > +  solomon,hs-prep-delay-ns:
-> > +    description:
-> > +      HS prep delay period
-> > +    default: 40
->
-> Do these two have limits? Use maximum/minimum to set them if so.
-> Cheers,
-> Conor.
->
-
-Datasheet does not specify limits actually, only defaults. I will try
-to calculate boundaries.
-
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > +        unevaluatedProperties: false
-> > +        description:
-> > +          Video port for RGB input
-> > +
-> > +        properties:
-> > +          endpoint:
-> > +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> > +            unevaluatedProperties: false
-> > +
-> > +            properties:
-> > +              bus-width:
-> > +                enum: [ 16, 18, 24 ]
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description:
-> > +          Video port for DSI output (panel or connector)
-> > +
-> > +    required:
-> > +      - port@0
-> > +      - port@1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - ports
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    spi {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        dsi@2 {
-> > +            compatible =3D "solomon,ssd2825";
-> > +            reg =3D <2>;
-> > +
-> > +            spi-max-frequency =3D <1000000>;
-> > +
-> > +            spi-cpha;
-> > +            spi-cpol;
-> > +
-> > +            reset-gpios =3D <&gpio 114 GPIO_ACTIVE_LOW>;
-> > +
-> > +            dvdd-supply =3D <&vdd_1v2>;
-> > +            avdd-supply =3D <&vdd_1v2>;
-> > +            vddio-supply =3D <&vdd_1v8_io>;
-> > +
-> > +            solomon,hs-zero-delay-ns =3D <300>;
-> > +            solomon,hs-prep-delay-ns =3D <65>;
-> > +
-> > +            clocks =3D <&ssd2825_tx_clk>;
-> > +            clock-names =3D "tx_clk";
-> > +
-> > +            ports {
-> > +                #address-cells =3D <1>;
-> > +                #size-cells =3D <0>;
-> > +
-> > +                port@0 {
-> > +                    reg =3D <0>;
-> > +
-> > +                    bridge_input: endpoint {
-> > +                        remote-endpoint =3D <&dpi_output>;
-> > +                        bus-width =3D <24>;
-> > +                    };
-> > +                };
-> > +
-> > +                port@1 {
-> > +                    reg =3D <1>;
-> > +
-> > +                    bridge_output: endpoint {
-> > +                        remote-endpoint =3D <&panel_input>;
-> > +                    };
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > --
-> > 2.43.0
-> >
+If the IP works with 0 sized FIFOs, you need to update the driver to
+allow that and let the fifo-depth property optional in DT.
 
