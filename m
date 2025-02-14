@@ -1,108 +1,144 @@
-Return-Path: <devicetree+bounces-146568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D9C4A35729
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:34:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6F6EA3573A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:39:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B6FE16D7A5
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 06:33:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80D0716E3EF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 06:39:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554C1201027;
-	Fri, 14 Feb 2025 06:33:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CA45201271;
+	Fri, 14 Feb 2025 06:39:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dDgazr/x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YpQ3el9J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCB9E1FFC72;
-	Fri, 14 Feb 2025 06:33:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524C218D65C
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 06:39:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739514835; cv=none; b=HPfwDFxeCnKJgW0rILfMNkxT3mjjcnP6gk1VoOg3/aow3sEJB42kERDQTvjYNiTdXdzeLQGH+vK2afu/qXm6nKXhHadqq44MPhI8re474NR8gt4zbJ3S67iVDmKbS4LVumvrDu5JRasC7o32z8ZAvQWKYihb8DSj7IcTIBOjLZc=
+	t=1739515150; cv=none; b=HxLJGr4gowAU76GXcFQiELklKzpsuqqtWgfiHvd6iCssmqfbB6RdZyc/0WKdIpRqC1DhD6lAD6VMQH55DiKLjDkfbTtlKUb/hE/J4fcvQTTdUnMzmaPHD5QZnvaRrKo/6V63nUHqkkH0BVXECJNyERsXzuw+ThDjg2rzmNSz+14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739514835; c=relaxed/simple;
-	bh=3YylV6a5qke/A59cwLco3GMGBxueUouJ9ac0mNKgY7k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CohSr68cZd3KIRFhHeHILrJ9jXF4rC6W3yxZbujK7gjh7kd0+xMPVJi7MkmmIbN32v9DB4D6/mSdgMAoyjGRX8/9wE8uJ+M7D1w5fwQZtAkL3guvsb/2Eo8Kl/wr5/Jeda0wgIZGE/nUHww2yVsUdskqK7dj1PWcnZrP7/B9Kds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dDgazr/x; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7c0848d475cso34069685a.2;
-        Thu, 13 Feb 2025 22:33:53 -0800 (PST)
+	s=arc-20240116; t=1739515150; c=relaxed/simple;
+	bh=wM4tKt7wnAjL5plOI4BRiyB+09XoZe0tKNq0DJSi+xg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UErYUsN5vojO/CBs0McrIgUg7bocwlADDczzoy3DFV4m25JJpbBNpWy966mVBtAYzvve7jEP+M6a9RSqlazsIDjlmLepFVBZmM6AntsJXoIPOXkI+SPKPGBGL3U4o1DHS/9RU1srYNwhuZNUrv9AQ1ndHPqGfE/Q4K7+nPXNIHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YpQ3el9J; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-aaeec07b705so280105766b.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 22:39:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739514832; x=1740119632; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=3YylV6a5qke/A59cwLco3GMGBxueUouJ9ac0mNKgY7k=;
-        b=dDgazr/xH3SB6czOXpyVffW3oURGABWAU4ls+D29ISnweizCJx1/CoAi6x3sylxckq
-         yTobocN3wcf+rTQ61UQViKPOMyuuoe+SXNfRbwQP/SuKNxMJcNjaitgC/qvezTRxxJqK
-         Vs0QM11qlbcFQ+3aBNHU4G/pB9EH2OW6pUSVbTZoTNQfONCIHkMICXC/gQkX9zzBO+IM
-         lxyu8SCBff0hwAiL6OpX5Oho3Pz+3uTx3BwgJ4YFUSD8h6iSWL+CoTSROBffCSp/AdaQ
-         Ae589gdlN+l2ZnIqgkNnTetwAqnWZmflMo2Sg0JVoU40qd10AqNQApE8AJjk86YeOGV2
-         2n0Q==
+        d=linaro.org; s=google; t=1739515147; x=1740119947; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n0sU8UuAz6zX29kmBzzz54CB+mIZrBU5m5rlPw1QPe4=;
+        b=YpQ3el9JyDtytDF1ggQ59bMI/wJQEtgyGxBm3ugSRebGJwOkMKScLcV/ZPTLNdfGKZ
+         X4HhcHT3UXlhmo6XJUAiAz5tu5Jvnc754r781IrG7fQEHRkNJ+pf833Awa7TCZetbO1n
+         WnWKWI6Q/OMDO+toSnncco1gCpHsfSwbAtCZra3BGDF/yS9c1gCPxmdON0fQ7aBIXjFZ
+         eS6u4h8pTNHBp4qKoNWRrEsClILIytW9miaBkEyyhaRdcxBYZVl/RFSf06Ras5CYs8QR
+         b4I1rOP7WvCA8uoI3dqm1j6LZUMI7mG86gwsoukeXcrqQcRTeL18ijBiwO6057QgcH85
+         TzTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739514832; x=1740119632;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3YylV6a5qke/A59cwLco3GMGBxueUouJ9ac0mNKgY7k=;
-        b=J/tPSf2SqpQn+RlGkv2VnS8hc/Jx7GZMbp8nsrpXLn2zfDFAG8kmVB/GWTCf6VxpQf
-         6WTHolNeEAMhgSRaB0XSBywvbfeTTOIOopkvQo0/XavjyB+ocVr+FSziZQ4sHztZngoN
-         CBzOT2HWjtsqPNFAJRBvaOigU/a2sHL9nbJSWFdir/UTTfrCHevPnFyXQnFG2VYfztdJ
-         Cd2DGxrrLwhXs8CgY6SBJgnlcRG8YwtFB3xgody0nuj1NMu50Eu/YmKpq1zTbF2Kg1in
-         YFTjcYzLKGw7Swp1miuaZsgrnDZi+RUdWiVjURNZHLtDJswCS3H4QjqwPg5Z2SfcriHy
-         K8QQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU/iTkYHzG2Tee3WMOhSBn89jzalKnzY2DlYTtkpl3yUQFDqaf6WtjPHc084Mezufv+eJWLMFiKmbmWlK/81w==@vger.kernel.org, AJvYcCUg8tL4zsRUA7OSkggQj1zjGKiC+0KCjFNXknxr4Hgi8iSGqg0GFPYjr9KOFYRU6qGC3ej8J0iM15TOYXZB@vger.kernel.org, AJvYcCXPmChGiUIVWNXdSHnsXQH3AkVmdW+gcd098vgEKmrZKpyG56enTBGKTMIOWaWOU6coXta2mhXlNtL+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyB4Q8jSkwUXPj4e0ee0Mxcgl3BZ+hfP2STQwl5DmjYSQkCT3fj
-	WqCyj60zuo4a9leNSxjs2CUhk6PFeBSVhadOIwi1rlbV7wS0i2F49ync2N9XxHnevGVQVuFokfE
-	lWlLFaQMzBUHwiNskbTMm/z/YSVs=
-X-Gm-Gg: ASbGncvuO4889HOaTSRBfXS3LEhzrIfzRRUU+bMjIm5uERZTFXaDxlqxNvIA8ymPjD+
-	9GczTj1WgDAqRbSy0hpFtw7uoJ5uCI7zd5KKR4+Q55bBgb9SoneII4BP7vAL3dLlPx3ShkWBckX
-	pTTAu6Cr4c0ghjTt24DM0wXx9YsSuK0A==
-X-Google-Smtp-Source: AGHT+IGyVXZtFFDe8q4nyybwQyqyryUw5IPXa64vnFzvytCZMtXTGbRuiT7JwooJr/+vv7fe33kyUdisx2JLKGcnroc=
-X-Received: by 2002:a05:620a:4154:b0:7c0:6c5b:d6f8 with SMTP id
- af79cd13be357-7c07a14ecd7mr863405585a.30.1739514832447; Thu, 13 Feb 2025
- 22:33:52 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739515147; x=1740119947;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n0sU8UuAz6zX29kmBzzz54CB+mIZrBU5m5rlPw1QPe4=;
+        b=bveNJRlHmLZ3Tc0SXqLlYuPUUIpMvR6BiadXs7DTPwHwf1n31WrCMlaDvDDGZkSH0w
+         X0dA01F2I7/lYtYOcyJIPEYiRaHelSvWeec+5aP2w8B2zWz8FEkRl/MCDD/iJD8nCuOQ
+         hycI0yxPzFLn04dLSMVgJ2ariQn53e6fnaW+hIhHIcRPm3wY+4KKmIR6spFPCmD/i2dS
+         0awFa6uXn2LPsjEub5QLHwVU2dYK6n5kYuBmhFOIoN0+1ENAStW9vTxlRyf9aEvxgLm4
+         WPEc5ZD2XjgdkPhMg7Wt1GJcA86qASZPOdkTRuOgtN4oG6UwarsnCpo3LsZ/7eHEFlju
+         IE0w==
+X-Forwarded-Encrypted: i=1; AJvYcCXEFSxhQxaOiu3i7dk0FrogDSDzM6g1TjHNE5waBnbZC8d7PRVkl0YSpRntc7mrdypCTukHEqjbFvmx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzj94gZBXDAVO1EvdBQ/Lah8bsbdIqTCV+0WM4Qs7x0fegGm9O1
+	4IEuD4OYc8cEiEoZOSrikYZVKafvlTxFOTRmDVya8h2KqwM+Ox/4A8Krc+zCvnE=
+X-Gm-Gg: ASbGncsYWeJURak4EoeFFhdpY7rSepzGm3N/eHd0jnAwrfnpcZBP/+8B58rhknqh+B7
+	aEIrOp+mt6jiKOEpAYvYCue0vEO769bVyWNia85NPuv3II0JqigPyaNkXRBQf4HNEvFZq1g+k6e
+	gzIy4nKRkliTqk9EXN1AoWB14fX0/gjaoXXD8c3zgwW/822CN/Hh5OqCU3AFOFDrs0/M6UCVIYX
+	J+I3rsEwC2knmaXmc7Oi9a8iS1zr06vyizZxrnVxFdtMsZmIQmbn5jw7I89SH0F2dAVR16VSYCv
+	2ZysQHCxh/V9j2CFkEM0cr6e
+X-Google-Smtp-Source: AGHT+IF1d6cYVnJi5xW59uL3+6NvNiwx8uIujRV1yuXHWDc54Fra2mr4R1Bhi8JKR7ZMNqzyULR9og==
+X-Received: by 2002:a17:907:d26:b0:ab7:da56:af95 with SMTP id a640c23a62f3a-ab7f336e7b4mr907392566b.2.1739515146641;
+        Thu, 13 Feb 2025 22:39:06 -0800 (PST)
+Received: from [192.168.0.14] ([79.115.63.124])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba53231f36sm276066166b.33.2025.02.13.22.39.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Feb 2025 22:39:06 -0800 (PST)
+Message-ID: <cf0a5ab5-265f-4429-8c11-8b669f00bc70@linaro.org>
+Date: Fri, 14 Feb 2025 06:39:04 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250209-expressatt-bam-v2-1-e6c01c5d8292@gmail.com>
- <e0ef29dd-afe4-4ad7-95db-d21326744c92@oss.qualcomm.com> <CABhZbsXo69FL-xUfg3a20RybO_uRmsOKyMJ2w3qnpk+8pYyUqw@mail.gmail.com>
- <e2b31450-c428-43c3-b25c-3ec130171011@oss.qualcomm.com> <CABhZbsVUY5n3bL-vbzO-xdDH6amC7FYmZHuRTh3Cb3OiQSa-3Q@mail.gmail.com>
- <v5eipkz7daurxueft66f5kxzm7fnjamtzivzoldztxjy2f7vbv@2ju4jvcrpefc>
-In-Reply-To: <v5eipkz7daurxueft66f5kxzm7fnjamtzivzoldztxjy2f7vbv@2ju4jvcrpefc>
-From: Rudraksha Gupta <guptarud@gmail.com>
-Date: Thu, 13 Feb 2025 22:33:15 -0800
-X-Gm-Features: AWEUYZmtpnj-SIsHTZyHh0UJeT3TrUN--0DgW9XOgFOXYfPWLU8iJ946RgxJ85o
-Message-ID: <CABhZbsUo309c5OePr25tD+W_vp3HcAXMt2fc=yjij9wHx0wQnw@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: qcom: msm8960: Add BAM
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Sam Day <me@samcday.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] spi: s3c64xx: add support exynos990-spi to new
+ port config data
+To: Sam Protsenko <semen.protsenko@linaro.org>,
+ Denzeel Oliva <wachiturroxd150@gmail.com>
+Cc: andi.shyti@kernel.org, broonie@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
+ linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250213204044.660-1-wachiturroxd150@gmail.com>
+ <20250213204044.660-3-wachiturroxd150@gmail.com>
+ <CAPLW+4nJVf0raJ-O3u6uUteBi--N5xGwvzXp7cHqbkdMJ8gCSQ@mail.gmail.com>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <CAPLW+4nJVf0raJ-O3u6uUteBi--N5xGwvzXp7cHqbkdMJ8gCSQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-> Konrad asked you to increase the size of the BAM devices. You've
-> increased it for both BAM and SDCC controllers. Please revert the size
-> of the arm,pl18x devices (sdcc1, sdcc3) to 0x2000.
+Hi, Sam,
 
-Oh, I see now, thanks! Seems like I took Konrad's words literally. Sent in v3 :)
+On 2/14/25 12:08 AM, Sam Protsenko wrote:
+> On Thu, Feb 13, 2025 at 2:41 PM Denzeel Oliva <wachiturroxd150@gmail.com> wrote:
+>>
+>> Exynos990 uses the same version of USI SPI (v2.1) as the GS101.
+>> Removed fifo_lvl_mask and rx_lvl_offset, and changed to the new data
+>> configuration port.
+>>
+>> The difference from other new port configuration data is that fifo_depth
+>> is only specified in fifo-depth in DT.
+>>
+> 
+> In the code below I can see this bit:
+> 
+>     /* If not specified in DT, defaults to 64 */
+>     .fifo_depth     = 64,
+> 
+> Is that intentional or is it some leftover that was meant to be
+> removed before the submission? From s3c64xx_spi_probe() it looks like
+> the "fifo-depth" DT property is ignored if .fifo_depth is set in the
+> port_config:
 
->
-> >
-> > >
-> > > Konrad
->
-> --
-> With best wishes
-> Dmitry
+fifo-depth in port config is intended for IPs where all their instances
+use the same FIFO depth. fifo-depth from DT is ignored because the
+compatible knows better than what developers may in DT in this case, it
+is intentional.
+
+> 
+>     if (sdd->port_conf->fifo_depth)
+>         sdd->fifo_depth = sdd->port_conf->fifo_depth;
+>     else if (of_property_read_u32(pdev->dev.of_node, "fifo-depth",
+> &sdd->fifo_depth))
+>         sdd->fifo_depth = FIFO_DEPTH(sdd);
+> 
+> Btw, wouldn't it be reasonable to flip this probe() code the other way
+
+No, please. IPs that have instances with different FIFO depths shall
+rely only on DT to specify their FIFO depths.
+
+Cheers,
+ta
 
