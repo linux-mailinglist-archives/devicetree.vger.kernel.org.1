@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-146855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CCF9A3685B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 23:38:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04941A36864
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 23:39:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42F8116B092
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 22:38:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F15323B1BE2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 22:38:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E17811FCCF4;
-	Fri, 14 Feb 2025 22:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 213001FDA79;
+	Fri, 14 Feb 2025 22:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rnjyTvzn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W/wdHpEm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0EEF1FCCEE;
-	Fri, 14 Feb 2025 22:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E26831FDA62;
+	Fri, 14 Feb 2025 22:38:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739572710; cv=none; b=c+lLLKC7s1hiEmY1+2SgxnhTtyBX5/JSKDHLRTNUWY52JSd36MDlGEPHEYT1ME9KXxKM3oI+Vj0MdwHwoSj8Fpvx2aBIvIJx/A8PbIeTBHwSWD5enV69oHF7QsQ3CFxtgeoVgXUUgYRGiRNtFhQ1LUxSzIsyQcjbrQ6aXnjboJA=
+	t=1739572713; cv=none; b=NF5+jWzZprlqxHU8CWt60/215JyOv9dcAhDhi7vbpXmo8q0XNT4MYMOk9BQq+VYhMMnoIHgqAo7WjNL9LgNU/73LdXDYeY3b4Q4POp0ilVUmToC1ond8DKwV9D8IJIlFVXKnkHrz+cfUh/Fhv+ElxWZKT2yMbd7CAVYNIm3u4zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739572710; c=relaxed/simple;
-	bh=SpCdwRQBfYCDk/4gmU1owxLsAqchcJhOtmEpHoN0j2E=;
+	s=arc-20240116; t=1739572713; c=relaxed/simple;
+	bh=PHjW0RMguI28CAUU14mM2YyB64lw4CLpFFVRYJYdQoI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UXci1ABboHzErLeQ3RRwUfYXY0oXIvA74+SAAw2fzhetZImuINdjW2LduRfrIgolbHG3aZtgDMQZ2ATFHhmMLU8h66QSBLaRLVjWBSLBnMLMX2rOOmwNYp6JUWW7x6qZlscrcDWME6WMuQaGoRXpsyQ+3lsgKqVJ75osifEegSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rnjyTvzn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 380B6C4CEE2;
-	Fri, 14 Feb 2025 22:38:29 +0000 (UTC)
+	 MIME-Version:Content-Type; b=AAB/of+1jH/vxYoKEVQd4WJkvxYwgxXvlTy4r6cxgi77DlZJeB9xB6qXJ7iQ4IeBoKxAfF97/kWI/u81Jk/SR2BpjHuDccKifacIBksL/t0ZZafJ9EtoX1W66d4BpR0WmgBCMOAZJ6D5rMErks8oS+C/zHC8h55F70tifUBBl4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W/wdHpEm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C2D8C4CEE2;
+	Fri, 14 Feb 2025 22:38:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739572710;
-	bh=SpCdwRQBfYCDk/4gmU1owxLsAqchcJhOtmEpHoN0j2E=;
+	s=k20201202; t=1739572712;
+	bh=PHjW0RMguI28CAUU14mM2YyB64lw4CLpFFVRYJYdQoI=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=rnjyTvzn6a6eP2xBzzsTZGWs+n7OBtwxsc5xf1J81kmSvokjLnj+UjkZF350TZ2MG
-	 q0KUH+aRJbfyejTGonKMXSvPxGIY0ZLf3ZyOKb7mdwk9RpMdEtCjoOrnKjgZhW9Nnr
-	 SFVysVArkt17LCDUtGgx01hOdKQrHQ7m/blcWo+MvEwOuEoxtCWCeNTW9+eBm0TBmO
-	 5Rs4BKJ2inQR4FckdyYJpHVakwS8aUKCdmKU7ks7hE/kZfd2Mg16o6LJNEv5iPc+ii
-	 KCo9qE/VZ/LYVSwH/VqJjUBSwH66KLnY/7xBzp2hdm7j8U9Ak90T2khA6D5wIvWz6a
-	 yZ/mQIvUqyX4A==
+	b=W/wdHpEmRZpvFzWRvM7zbOLZJN/7/RGnasZ0i3t18BjSABcrCqk4Od7vp9YO7RC5n
+	 iD7iG5/GCagNkTi1uBqE3hL/r981v6FG7aVAHMP2UsJmM4Vl0xVTPmb0lWBrJkC9+Q
+	 DOU8IQ9gYvuoy9ILk3Q7QRHTB4PkKQ6aV2P53cyaug41HcS3Q0zY+jCsgoq16Oppvb
+	 /ZF/yHbzabxR7zQkl2K0mVkNllYrwq/MBmOxMYS2gfurxUDELKQ+FLXzso9bGRnpZj
+	 GJ0HWU7rQfhwcH7hw572t388ikJJIzILuBwFLhCJzFlziui3xpq95W5vtwbjXvlPig
+	 ykAvUPnmAi1wQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Barnab=C3=A1s=20Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
+To: linux-arm-msm@vger.kernel.org,
+	Karl Chan <exxxxkc@getgoogleoff.me>
+Cc: konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	linus.walleij@linaro.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Daniil Titov <daniilt971@gmail.com>
-Subject: Re: (subset) [PATCH 0/2] Add rpm clocks for SDM429
-Date: Fri, 14 Feb 2025 16:38:12 -0600
-Message-ID: <173957268923.110887.4300504764987368924.b4-ty@kernel.org>
+	linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: (subset) [PATCH v6 0/5] Initial Support for Linksys EA9350 V3 (linksys-jamaica)
+Date: Fri, 14 Feb 2025 16:38:14 -0600
+Message-ID: <173957268928.110887.13654522511111181644.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250212-sdm429-rpm-v1-0-0a24ac19a478@mainlining.org>
-References: <20250212-sdm429-rpm-v1-0-0a24ac19a478@mainlining.org>
+In-Reply-To: <20241007163414.32458-1-exxxxkc@getgoogleoff.me>
+References: <20241007163414.32458-1-exxxxkc@getgoogleoff.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,15 +71,21 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 12 Feb 2025 18:04:08 +0100, Barnabás Czémán wrote:
-> This patch series add rpm clocks for SDM429 SoC.
+On Tue, 08 Oct 2024 00:34:09 +0800, Karl Chan wrote:
+> Add device tree source for Linksys EA9350 V3 which is a WiFi router based on the IPQ5018 SoC.
 > 
+> As of now , only the UART,USB,USB LED,buttons is working.The front PWM LED require the IPQ PWM driver.Therefore the PWM LED isn't configed in the tree.
 > 
+> Also The original firmware from Linksys can only boot ARM32 kernels.
+> 
+> As of now There seems to be no way to boot ARM64 kernels on those device.
+> 
+> [...]
 
 Applied, thanks!
 
-[2/2] clk: qcom: smd-rpm: Add clocks for SDM429
-      commit: fd77406f30d06d1d5243e6f56e9ada27a057f00c
+[3/5] clk: qcom: ipq5018: allow it to be bulid on arm32
+      commit: 5d02941c83997b58e8fc15390290c7c6975acaff
 
 Best regards,
 -- 
