@@ -1,212 +1,214 @@
-Return-Path: <devicetree+bounces-146587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDF14A357F0
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:34:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4541BA357F3
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:35:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8A253A83F4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:31:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50D223A875D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:34:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD9EC204C2D;
-	Fri, 14 Feb 2025 07:31:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FF3C207DED;
+	Fri, 14 Feb 2025 07:34:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YjOlCJp4"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Ln6N8mWX";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="aG5yRY79"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5B315573F;
-	Fri, 14 Feb 2025 07:31:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1292F15573F;
+	Fri, 14 Feb 2025 07:34:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739518311; cv=none; b=PF58HZDVEh7JPCyCE2Mfs3GoFdj/aQdmjCf1sGWs+SZRv77gIrm1WwksxxnlvfiD9Pa0GJA1GwtHuuz+lXAM5ORObvXfTX/qSV6e23rY8lWudfYUH/ARSh8gmcD0+mMAUn/h5pW0QQIYINnNkfPYJ8Ye6iewUGTcFWi35mJLBTA=
+	t=1739518459; cv=none; b=eb78UkxBexoxNzsDHRjQDDEX6EoJ4Sj4Vnsqt3cnuYObpvonhg0e1pol1KwY9ME8gsGFLvROcAFkjOM/P9oCDFEkkD21P60kreaNs36GoPOtlmvPy34/DRBPS5xnxEqo5tDXYG/koGUmJZVHrSnviSjfeMIjYZL1JM7P+uyyzFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739518311; c=relaxed/simple;
-	bh=EsbfD+8oMBZkVT1buE8QyRwtFHnJ7VZicSc4qxAQLDQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VGFPkqxNY6rhZQh2z1mvoNGDRRRE7SZpbeT/PgtbTJFDkPiJYRi4a3gV31w4THdioUCMXWykOPU2VNhMsaGvYRRHkx5PLrqfO2nzz/VwKO9y1rwG3bMRAxjag5Z2WAbJMs6lxA6UK5VKaPyU/4nUiHMoGz2G0vl9IgKh9boVl6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YjOlCJp4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D125C4CED1;
-	Fri, 14 Feb 2025 07:31:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739518311;
-	bh=EsbfD+8oMBZkVT1buE8QyRwtFHnJ7VZicSc4qxAQLDQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YjOlCJp45+yDX9k1uwXIa1NHpftUNJtyfYG0hmKABYAbro0g5pIf5VsHJGD2XKbNH
-	 Zh2TdyV+4jUhT0YHXMPDGRLs21J4cSbafY9uSKecbSq865Kea/aK+cg5E27coCG8pV
-	 CugXfYtw7xLQn8waXZoIA7tRs0yPxoQXyQ1f2N+gF3bEP3n0w3ojxk04uMx/UBoChm
-	 TDqHUnyg1C6oxt6BzfZ9sz6eOlRmVB+gEKTecAS1mo9CY7ZYP86OrCRMQyu29Ybarl
-	 HVI43Pntwv+/XrDliP3PgcmDpy6rfI6N+7CN9WC5Rf7JAoV5xU3RnO9Jp6vweyFznd
-	 MYPv8XNJ+OJwQ==
-Message-ID: <7d50f55d-d0cd-4741-ab55-2f54dc45d6ab@kernel.org>
-Date: Fri, 14 Feb 2025 08:31:42 +0100
+	s=arc-20240116; t=1739518459; c=relaxed/simple;
+	bh=t0RRQcNs3xk62uBWPaYuG8GD/ubv1IKgcm17hsshzSg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YRU//gZ/IoE77chSbVk9Eo2xL6Yjm4BOMiZVRqb0kmSSJyB978TZ3QvlmPfXkR9VMMTm/IOBpghO/xAV4eWECHodX6sTR2mV7ZQt91odwYN0q2Ac1Q+rgZGeSEqQcFwoK1o1U2s0mbLelWZvPK8ivSm/Z3w2ebNwePRRrb05EbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Ln6N8mWX; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=aG5yRY79 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1739518455; x=1771054455;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=dqBLyZA03PfD+/Z73Ovi+UOnmR4xxrTEqCfGNVFEHgs=;
+  b=Ln6N8mWXf0Vnb17I5UXidtLM9oUR10TYzodGjypHt6vZcexjXk21POpj
+   o/W2k/b9p8uLDIwu0a0lzaPVg82YgGIgxhJobudLcS7MR/9mbG69RfkoN
+   46zw3Cwhf3qtEZijtZ6uvrkq1Br7KMMT9JM/fRuXnQkpYDbIXFqXXYGji
+   t/p8AmCbGLzqS0Uk/bQ1Lv4icJeNJm2EubFAc1FenyMjkuwU7wEmXxCzE
+   2LkXnkGFcdgj1O7LxFXE2HulSSftPjUmar+jkm2ZvOA2ylFCczE0DozlY
+   8CEagejahEbNm8LXBeWtH0WlGuODE3TGqR1hWZRZj/Myxvr9qr9hsv+wC
+   w==;
+X-CSE-ConnectionGUID: VmwVF+vFQgS7wY/KlJlFVA==
+X-CSE-MsgGUID: xLlWDxviTo2lQMr3EMGI2A==
+X-IronPort-AV: E=Sophos;i="6.13,285,1732575600"; 
+   d="scan'208";a="41845952"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 14 Feb 2025 08:33:56 +0100
+X-CheckPoint: {67AEF1E4-9-EBA888C4-C1AC8B84}
+X-MAIL-CPID: F48EE102AD0F0138F0FF3E9174C0B0BC_0
+X-Control-Analysis: str=0001.0A002123.67AEF1EF.0012,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 29BAF16B879;
+	Fri, 14 Feb 2025 08:33:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1739518431;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dqBLyZA03PfD+/Z73Ovi+UOnmR4xxrTEqCfGNVFEHgs=;
+	b=aG5yRY79cPuYPJezU0ratTDxHgDNxG6xLeVjTezdVN4mXg+a1VWNKBHCmpQVPnnXzukx9g
+	h95qwjPurFMmuABsaPOB0ekrdQZi7ge4C9QPNlj77A6VSxhipTQ8ZSMrwkUIxfe488zYEL
+	lFetBKr+oePS25yaltr7HdZQfLSmB8G1/yCSPpaW06/66uRmOcWwV5bVn2sJfieKvgAhDu
+	bNRocf8g/8ty/TGeWHB71nJPPF8Eq77DMiZ8AzOqPzKcJJ5MaP7021TWoiYMJBTshs2G9H
+	Fa5yhCRV+TH6lLAouv4RcyzTuQW2kylAn/dKUt9cdunmCF3UJISZWe5rxvktZQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>, =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Marek Vasut <marex@denx.de>, Herve Codina <herve.codina@bootlin.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Louis Chauvet <louis.chauvet@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Herve Codina <herve.codina@bootlin.com>
+Subject: Re: [PATCH v6 0/4] Add support for errors recovery in the TI SN65DSI83 bridge driver
+Date: Fri, 14 Feb 2025 08:33:46 +0100
+Message-ID: <2023388.usQuhbGJ8B@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250210132620.42263-1-herve.codina@bootlin.com>
+References: <20250210132620.42263-1-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: net: Add FSD EQoS device tree
- bindings
-To: Swathi K S <swathi.ks@samsung.com>
-Cc: krzk+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- conor+dt@kernel.org, richardcochran@gmail.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250213044624.37334-1-swathi.ks@samsung.com>
- <CGME20250213044955epcas5p110d1e582c8ee02579ead73f9686819ff@epcas5p1.samsung.com>
- <20250213044624.37334-2-swathi.ks@samsung.com>
- <20250213-adorable-arboreal-degu-6bdcb8@krzk-bin>
- <009a01db7e07$132feb60$398fc220$@samsung.com>
- <27b0f5c5-ae51-4192-8847-20e471c55be7@kernel.org>
- <00ad01db7e9c$76c288a0$644799e0$@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <00ad01db7e9c$76c288a0$644799e0$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 14/02/2025 05:53, Swathi K S wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: 13 February 2025 17:31
->> To: Swathi K S <swathi.ks@samsung.com>
->> Cc: krzk+dt@kernel.org; andrew+netdev@lunn.ch; davem@davemloft.net;
->> edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
->> robh@kernel.org; conor+dt@kernel.org; richardcochran@gmail.com;
->> mcoquelin.stm32@gmail.com; alexandre.torgue@foss.st.com;
->> rmk+kernel@armlinux.org.uk; netdev@vger.kernel.org;
->> devicetree@vger.kernel.org; linux-stm32@st-md-mailman.stormreply.com;
->> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
->> Subject: Re: [PATCH v6 1/2] dt-bindings: net: Add FSD EQoS device tree
->> bindings
->>
->> On 13/02/2025 12:04, Swathi K S wrote:
->>>
->>>
->>>> -----Original Message-----
->>>> From: Krzysztof Kozlowski <krzk@kernel.org>
->>>> Sent: 13 February 2025 13:24
->>>> To: Swathi K S <swathi.ks@samsung.com>
->>>> Cc: krzk+dt@kernel.org; andrew+netdev@lunn.ch;
->> davem@davemloft.net;
->>>> edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
->>>> robh@kernel.org; conor+dt@kernel.org; richardcochran@gmail.com;
->>>> mcoquelin.stm32@gmail.com; alexandre.torgue@foss.st.com;
->>>> rmk+kernel@armlinux.org.uk; netdev@vger.kernel.org;
->>>> devicetree@vger.kernel.org; linux-stm32@st-md-
->> mailman.stormreply.com;
->>>> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
->>>> Subject: Re: [PATCH v6 1/2] dt-bindings: net: Add FSD EQoS device
->>>> tree bindings
->>>>
->>>> On Thu, Feb 13, 2025 at 10:16:23AM +0530, Swathi K S wrote:
->>>>> +  clock-names:
->>>>> +    minItems: 5
->>>>> +    maxItems: 10
->>>>> +    contains:
->>>>> +      enum:
->>>>> +        - ptp_ref
->>>>> +        - master_bus
->>>>> +        - slave_bus
->>>>> +        - tx
->>>>> +        - rx
->>>>> +        - master2_bus
->>>>> +        - slave2_bus
->>>>> +        - eqos_rxclk_mux
->>>>> +        - eqos_phyrxclk
->>>>> +        - dout_peric_rgmii_clk
->>>>
->>>> This does not match the previous entry. It should be strictly ordered
->>>> with
->>>> minItems: 5.
->>>
->>> Hi Krzysztof,
->>> Thanks for reviewing.
->>> In FSD SoC, we have 2 instances of ethernet in two blocks.
->>> One instance needs 5 clocks and the other needs 10 clocks.
->>
->> I understand and I do not think this is contradictory to what I asked.
->> If it is, then why/how?
->>
->>>
->>> I tried to understand this by looking at some other dt-binding files
->>> as given below, but looks like they follow similar approach
->>> Documentation/devicetree/bindings/net/stm32-dwmac.yaml
->>> Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
->>>
->>> Could you please guide me on how to implement this?
->>> Also, please help me understand what is meant by 'strictly ordered'
->>
->> Every other 99% of bindings. Just like your clocks property.
-> 
-> Hi Krzysztof,
-> Thanks for your feedback.
-> I want to make sure I fully understand your comment. 
-> I can see we have added clocks and clock names in the same order.
+Hi,
 
-No, you did not. You can see syntax is very different - one uses items,
-other uses contains-enum. And now test it, change the order in DTS and
-see if you see any warning.
+Am Montag, 10. Februar 2025, 14:26:15 CET schrieb Herve Codina:
+> Hi,
+>=20
+> Usually the TI SN65DSI83 recovers from error by itself but during ESD
+> tests, we have some cases where the TI SN65DSI83 didn't recover.
+>=20
+> In order to handle those cases, this series adds support for a recovery
+> mechanism.
+>=20
+> Compare to the previous iteration, this v6 series fixes a NULL
+> pointer dereference.
+>=20
+> Best regards,
+> Herv=E9 Codina
 
-> Could you please help in detail what specifically needs to be modified regarding the ordering and minItems/maxItems usage?
-You did not try hard enough.
+=46WIW
+Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com> #tqma8mqml-mba=
+8mx
 
-Open other bindings and look how they list clocks. For example any
-Samsung clock controller bindings. Or any qcom bindings.
+> Changes v5 -> v6
+>   v5: https://lore.kernel.org/lkml/20250203161607.223731-1-herve.codina@b=
+ootlin.com/
+>=20
+>   - Patch 1:
+>     No change
+>=20
+>   - Patch 2
+>     Add 'Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>'
+>     Add 'Reviewed-by: Maxime Ripard <mripard@kernel.org>'
+>=20
+>   - Patch 3
+>     Add 'Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>'
+>     Add 'Reviewed-by: Maxime Ripard <mripard@kernel.org>'
+>=20
+>   - Patch 4
+>     Add 'Reviewed-by: Maxime Ripard <mripard@kernel.org>'
+>     Fix a NULL pointer dereference reported by Alexander Stein in v5.
+>     Mode the dev_warn() signaling the pipe reset closer to the pipe
+>     reset operation itfelf.
+>=20
+> Changes v4 -> v5
+>   v4: https://lore.kernel.org/lkml/20250203145824.155869-1-herve.codina@b=
+ootlin.com/
+>=20
+>   Exact same changes as the v4. The v4 series doesn't apply on top of
+>   v6.14-rc1 and should be simply ignore.
+>   This v5 series is the v4 fixed to apply on top of v6.14-rc1.
+>=20
+> Changes v3 -> v4
+>   v3: https://lore.kernel.org/lkml/20250108101907.410456-1-herve.codina@b=
+ootlin.com/
+>=20
+>   - Patch 1:
+>     No changes
+>=20
+>   - Patch 2 and 3 (patch 2 in v3):
+>     Rename the helper to drm_atomic_helper_reset_crtc()
+>     Split the patch available in v3 in two patches.
+>=20
+>   - Patch 4 (patch 3 in v3):
+>     Take into account commit d2b8c6d549570 ("drm/bridge: ti-sn65dsi83:
+>     Add ti,lvds-vod-swing optional properties"), available in v6.14-rc1.
+>     Disable irq when a fault is detected and re-enable it after the pipe
+>     reset.
+>     Remove state duplication and use bridge.encoder->crtc directly
+>=20
+> Changes v2 -> v3
+>   v2: https://lore.kernel.org/lkml/20241217143216.658461-1-herve.codina@b=
+ootlin.com/
+>=20
+>   - Patch 1:
+>     No changes
+>=20
+>   - Patch 2 (new in v3)
+>     Move reset_pipe() from VC4 HDMI driver to a new atomic helper
+>=20
+>   - Patch 3
+>     Use the new drm_atomic_helper_reset_pipe()
+>=20
+>   Patch removed in v3
+>     - Patch 2 in v2
+>       No more needed
+>=20
+> Changes v1 -> v2
+>   v1: https://lore.kernel.org/lkml/20241024095539.1637280-1-herve.codina@=
+bootlin.com/
+>=20
+>   - Patch 1:
+>     Add 'Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonb=
+oard.com>'
+>     Add 'Acked-by: Conor Dooley <conor.dooley@microchip.com>'
+>=20
+>   - Patch 2 (new patch in v2)
+>     Introduce drm_atomic_helper_disable_connector()
+>=20
+>   - Patch 3 (patch 2 in v1)
+>     Reset the output path instead of the full pipeline.
+>     Update and add more information related to the bridge in commit log.
+>=20
+> Herve Codina (4):
+>   dt-bindings: display: bridge: sn65dsi83: Add interrupt
+>   drm/atomic-helper: Introduce drm_atomic_helper_reset_crtc()
+>   drm/vc4: hdmi: Use drm_atomic_helper_reset_crtc()
+>   drm: bridge: ti-sn65dsi83: Add error recovery mechanism
+>=20
+>  .../bindings/display/bridge/ti,sn65dsi83.yaml |   3 +
+>  drivers/gpu/drm/bridge/ti-sn65dsi83.c         | 142 ++++++++++++++++++
+>  drivers/gpu/drm/drm_atomic_helper.c           |  41 +++++
+>  drivers/gpu/drm/vc4/vc4_hdmi.c                |  30 +---
+>  include/drm/drm_atomic_helper.h               |   2 +
+>  5 files changed, 189 insertions(+), 29 deletions(-)
+>=20
+>=20
 
-Best regards,
-Krzysztof
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
