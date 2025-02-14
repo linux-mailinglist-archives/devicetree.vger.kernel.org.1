@@ -1,126 +1,166 @@
-Return-Path: <devicetree+bounces-146658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D66E7A35BAC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 11:42:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2CDFA35BCE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 11:50:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8001E18925CD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 10:42:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9905188D19F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 10:50:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A751245B0B;
-	Fri, 14 Feb 2025 10:42:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE952566C9;
+	Fri, 14 Feb 2025 10:50:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TXivNl3Z"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k5yfLQPE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DC8D20DD66
-	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 10:42:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263DC22F388
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 10:50:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739529754; cv=none; b=nr59scZLkzatVAYBptrpztPkckBUVIJ/zv7/3DqkBiiXDWkmFnUPhXi3/fnN+OC1ZqabwXa8SPBkW4TuA6ybr/MGzhtiv4dHXWVnPf/PwBhJ5FlKZXDNnL6AwDTfq6+m7lmQXPofzVHEcfjhi7PsIcTqfqCfenwhJ+I2F+U7XbI=
+	t=1739530220; cv=none; b=g5yZk9BFFTqRQw6t2Efc8vIUt88NDoa+zkY5DlcULTvQr516v//fOCXZgWE3UfxvcSp5uX7/mkUT/MZFiD69Absf2kA/kZ/bo05iQwHsKw1tzJfxnCApEd5GM5GhTrpd1nl8ThhCD5PXsHWqdkIaayMemIFVPXzW9FFxN7SFj4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739529754; c=relaxed/simple;
-	bh=tEjiLlitcfTlxaKKdC7p1guCdclzcB1m0BYgVz3Tv1s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LNHYDk2/UO5soooahk0puLEvZLFNau/NQAm9P1Q/IYL8H38A/m+i6N27ZKxwUVySqoNAznBrq42tBHCxbEPNz3CtQcIJW3oXTFXgOcrVv1WLpcwYZ4ZWJAgA8fOPoc2ZlCa80bJmPzi2u0z6qpI02eZazOu8QD6YTYizTeHSv0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TXivNl3Z; arc=none smtp.client-ip=209.85.208.169
+	s=arc-20240116; t=1739530220; c=relaxed/simple;
+	bh=/75PY1aI7qFuYlb565XinKju4lg565aNTGJV7xKI7DU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=DF4rL0f4oYw+VCCG8sizScnPuFv4FOHLgfUEPr3SiFR6G3i8MIChsFXg+ctugv7NqSlEf3ZWYR0AK+CkfYXEJbiqkOcdVLUbc3i1LwBcLsGPPBlBkCDRdrInWDqHBMoinCrhXCMTPWPTSXwiPEAq7oVID8ma1xN+l1gDXxIMAFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k5yfLQPE; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-308f141518cso20845981fa.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 02:42:32 -0800 (PST)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-38dccc838deso184190f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 02:50:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739529751; x=1740134551; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/rsHdHlVKc4H1RNRkS2GcE7MFwwvlGF/5DbmNBJwMEw=;
-        b=TXivNl3ZYSIYSIWUC+Zb5TsInt1RZYaqXBppHm+ePzLawqEaoJXyLJUmbuIyNwJLYq
-         rBCCg1Vfoq92hMAFIo4eAivsCmQyJAz88Y9ncabNfJCtVRR0j7fIMmEyy+uXQ8e8F2G/
-         Xx8mc6yeJQl3E3oaRS4+7iX6ga+bU+Jp/rctbHIbIO9GDO7SYeqqPhLPGPo9z+Tq/V6D
-         njeix9aHfciCryJMf8xkjfQkHlg6ailj3smcegohOBUN6WzS5fhmUHrE5b/Z69E7AtG6
-         mLGZQ2ehdI0+L4RULTsEr5GlUBC2FJQAqO3y5PZYmzGRa2l9g/GmDf/kkxlkVhYwWY7l
-         8MlA==
+        d=linaro.org; s=google; t=1739530217; x=1740135017; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6sYxYNeRuSFgtKr3MlQuuwdiHzGcDfeGaI3wbL87Ybo=;
+        b=k5yfLQPEd4bOGTjZkkrXDx+6JXDsTsDfYL0oKFYIskSAmKbhlvGmgGODh/ytgucHtq
+         ZHWDT3VpE3YGGF2U8HURpN4cdoHsZFxbIKL7DDPwT6fO73X9wezxkxLh3MV9MnlnUlO3
+         QbMCZLYp14L5Pp0t8S+GL5NkwR9+LKGaFEHM6PzZiYJioQo8ILKmef7PExckbXVISpVc
+         KwLfNCT7n4ybaadL+e4gE8y8hSWa+0pEgok4V48frPOG3VlU/6O1FPJ0mA/UoDK0Q63Y
+         jN1FiBWMxyAvAf0jbReqLfJMCT71mEPCbqcLclR7RCDRa1ckJJLiWvRHvgvO66R12UsH
+         Xzcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739529751; x=1740134551;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/rsHdHlVKc4H1RNRkS2GcE7MFwwvlGF/5DbmNBJwMEw=;
-        b=Dk84brFX3JVkRbvJUdIt8/NZsKai7nGbYIuIxVUySMdIhUsY9WLIx1YTT8klV0Bj91
-         35uJiEWRvZb4OKH6kjAjkwg+3+xn4OKgg6kN4KCswSxWEEGEvVNnUJt5MXNWf64cVE9v
-         PNbDw4qZDQoxTe745inhdVIByxYeJ6aua3IzSOr+HP9avBPZ5RzIzhZ3nDTQk8Pt6tGf
-         3ePyBQLl/dNe2V/prsuzpE3ZiMWSqOE7TT/XLbN1ijAE3+cKokxvNUEzA38qbXDUxhtB
-         dqD20SD3gIXQXPavXJl6UCtD+FCxeurUiFkxCx6bljTIxWJjLU/+TkAaVHFwcHN1N9AE
-         8AKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU0rrXEIVPmVhi5q9KkJO6sY73E0YIPqFWxCeI39YeGzeaevvRXtLBOc1oIE1ruk54+9GhAWZ89cF7I@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqjwrYl6qG2hy49Ynb3HEDguHhybgungZUDHemYbi2hZgoUB8B
-	5PgOXq0jW9iLBmk5UJ0AYlhFIWKq2ZLehSOY14sPB5sfp5lhumjYiZN/LVg04wuj2ifIh5OTQpX
-	lPZ4PMFo24JqEYZwsVk60mBFz44xxjfa+uWzuSQ==
-X-Gm-Gg: ASbGncuRWFM4MaYR8qT6IVVJtGI5anbnkA/pLMC2AC9pSgytMSwYhwia84Fz5KRhjSo
-	YXFn1t1DwOh6MxiNtq2+FeGcwYRyckWQC48i7yjergXHRCLVvYb0SPrxd/USX+N4hHhHx7CYR
-X-Google-Smtp-Source: AGHT+IGxJXXFLFt+pkffLdd9X2ho/U3c0PDBC0XUCpGyhZttHatbdi3t7azKj/PfBfek14+COG31anjGO/aEPcuLRUE=
-X-Received: by 2002:a05:651c:e03:b0:309:1b26:aecd with SMTP id
- 38308e7fff4ca-3091b26b4b3mr6773451fa.10.1739529751231; Fri, 14 Feb 2025
- 02:42:31 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739530217; x=1740135017;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6sYxYNeRuSFgtKr3MlQuuwdiHzGcDfeGaI3wbL87Ybo=;
+        b=VtqcHsRq+1jWtjm6vLQRNKKpl+1BW3gzHAiWTvAeyIRQBS9IVP6hnEW3pB2peauFFi
+         +WVKko0e5I06VAGrvOdxrvI0Z2cf/w1OI/GD1IC/eR0hc88dtDBfOF6V4Yuqur9vMMj7
+         ozJBOpePdyU4w7IlMkcn7PBqSsZ3Z2Mm/gLuhKE5nlpAUfqyaxp+FkSThFKzQ77aD5ii
+         8qwkReEeiOF/BT+QmpFsSpYPgrnqTBy0PkHAa0rLk+vIJHrLKKyOPW49DY0k12RkPVah
+         g3S6BGhFspUMhaGT3bLEv99ROAA8BZmwgEl9ufihIGq4TP0XDNbVfdqP1tzQVngSdwKl
+         dgqw==
+X-Forwarded-Encrypted: i=1; AJvYcCWzOwRhGFKgUi++asSh7NFNTcCQ2Dl6bw4tvTQhix8l/P2mOJ1UavglBCgFpLleoE/LSv0Diy6LVMNl@vger.kernel.org
+X-Gm-Message-State: AOJu0YwA6V0l9SGT409s8yGfb3ZkX1zYK/MCA3oHdHVqd453VBt1rwGw
+	oG4HrJPc9VxgFqDx0LvyS8GrMznpYVWMuV5vq6RMrbxbBDNsMAk4rUeY9ji7nbI=
+X-Gm-Gg: ASbGncvUPn9+MbodaJCALzW4gqnn7qzFOZ7V5z/KT7e8mMdZQpPl2a1WOYK+/vInqEb
+	MiywXutqG66QssRKmjzM35Pds1JDkg/2rnp8u2ZSjdMN/Wc9JoQFf3l/MyB5p7LVnfGhcqRKmm4
+	a7JaBBujHdLV+p6gkh1lNS5CsKisFV0aOBSoLnbZwbl0gfQDwLCLEkg25oYyC3MlWj7G9b9LyRV
+	EXSEgVIWWNqzpWhVoaWQECttY1ASWq/vnSRyq7XEdcOof6S9IhXNWybtd0VRdXdj7tIOmPpk4Uq
+	JCmuJsmA6hWIWAIN0phrUfgROA7J43XvCSI=
+X-Google-Smtp-Source: AGHT+IEJqKSq5MLrsi8jITgtcen2XEnQ0VB0ofHnyXwtJ5/QaahdvMLVSI05YHIVjGabQtamovKmQw==
+X-Received: by 2002:a5d:648d:0:b0:38d:cab2:91dd with SMTP id ffacd0b85a97d-38f2c77299fmr1182952f8f.6.1739530217416;
+        Fri, 14 Feb 2025 02:50:17 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.144])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f259f85c2sm4413493f8f.91.2025.02.14.02.50.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Feb 2025 02:50:16 -0800 (PST)
+Message-ID: <b4d07c0a-5b09-4a89-84b0-e8508ae12ba5@linaro.org>
+Date: Fri, 14 Feb 2025 11:50:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250213-for_upstream-v2-0-ec4eff3b3cd5@analog.com>
- <20250213-for_upstream-v2-1-ec4eff3b3cd5@analog.com> <0c43ce67-4d9b-40b9-a23f-380d51912e84@kernel.org>
-In-Reply-To: <0c43ce67-4d9b-40b9-a23f-380d51912e84@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 14 Feb 2025 11:42:19 +0100
-X-Gm-Features: AWEUYZn0VSwBLgOQWkZsD0PWbeVe8GHIvf8R7_nC9H1K6_4iZD1uXX1m62q-tew
-Message-ID: <CACRpkda6ENy1yCQQdsxBnp+RvqgvgG73xHNt07Pd32YfzRQ75Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add adg1414
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Kim Seer Paller <kimseer.paller@analog.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: display/msm/dsi-phy: Add header with
+ exposed clock IDs
+To: Rob Clark <robdclark@gmail.com>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20250127132105.107138-1-krzysztof.kozlowski@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20250127132105.107138-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 13, 2025 at 7:16=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
-> On 13/02/2025 14:15, Kim Seer Paller wrote:
-> > +maintainers:
-> > +  - Kim Seer Paller <kimseer.paller@analog.com>
-> > +
-> > +description:
-> > +  The ADG1414 is a 9.5 =CE=A9 RON =C2=B115 V/+12 V/=C2=B15 V iCMOS ser=
-ially-controlled
-> > +  octal SPST switches.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - adi,adg14140-gpio
->
->
-> Is ADG1414 anything else than GPIO? Where are the rest of the bindings th=
-en?
+On 27/01/2025 14:21, Krzysztof Kozlowski wrote:
+> DSI phys, from earliest (28 nm) up to newest (3 nm) generation, provide
+> two clocks.  The respective clock ID is used by drivers and DTS, so it
+> should be documented as explicit ABI.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Patch for Display tree, although with Ack from clock.
 
-I read the spec and it is actually an SPI-controlled switch.
 
-(As in "power switch", not "network switch".)
+Any more comments from DRM side? Can it be merged?
 
-It's a bit interesting since we have no "switch" subsystem, but there
-is "mux".
-
-The question is whether this should be considered some kind of
-"gpio" (due to the nature of switches being off/on) in order to not
-complicate our world too much or if we need to create a whole
-new device class for switches.
-
-Yours,
-Linus Walleij
+Best regards,
+Krzysztof
 
