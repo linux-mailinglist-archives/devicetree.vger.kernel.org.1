@@ -1,83 +1,151 @@
-Return-Path: <devicetree+bounces-146773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7DCDA3622B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 16:47:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48710A36237
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 16:50:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A92218961E5
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 15:46:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D19607A3568
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 15:49:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C36267385;
-	Fri, 14 Feb 2025 15:45:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10E102673A6;
+	Fri, 14 Feb 2025 15:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PQnbNgfP"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Dav+8sus"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87159266F19;
-	Fri, 14 Feb 2025 15:45:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 058A13234;
+	Fri, 14 Feb 2025 15:50:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739547953; cv=none; b=Y5bpzB+MI1rQ4bgMaprNHHVulUboLasNNZsZ6rFAIEr9VTCM3vWuTiEcI7CYom9wC8AfBiIGBVGZEF/TCIKvPmL6i/3+hBPLYwEUV8xb6TVQuWkVwe8k4ZmM6ODP0oAQ9tYsRlIwILVeBR+UQk76WSzQSkrYcLrMdYLxU7tF5rE=
+	t=1739548204; cv=none; b=kAIYbN/WHpDzWfATju8VgVPpIsdjYOocXyot8ohkBEg19oNUBnIpa8HJnbdyHUmdudfM3x7+SN/2AFJCnjDBzgbAHsWvQU4Auqzk+/ae2PEJQPvp5xfn8VHeep0fm27pR6oQbpzbU7F0jZITAdrbpYjcQnNSMImSc42Y8O5gAlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739547953; c=relaxed/simple;
-	bh=9JgdACbhkpAouEWMMO/S2geqxFPM40RbgjRRU/HIkmc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hdeX7SooZVWHz8PQN8iVAewPHkXdRzFzRtGXpgS83kb8rgxSJ2Xx0UNnPAo4pZqpCQmTd3bUSijFU0qXPoA+5CDRFwVzwks6vGH40JXp1+Ikgdnwkye66RC/mvCVdCBhA0xSt+R7kXW72b0OuBZE81saRAbzhgPyrhzUliQ1yeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PQnbNgfP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71A55C4CED1;
-	Fri, 14 Feb 2025 15:45:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739547953;
-	bh=9JgdACbhkpAouEWMMO/S2geqxFPM40RbgjRRU/HIkmc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PQnbNgfPvxfzFLltrMfaOcr1qGRnTclWmD9PTEJ61L3bixWGfushyl5Ok1kVuCnOU
-	 U0PmLntEhS5DlThl7JNh1WjoGK/aMG613SnKl7saNXAUSLNNLjS8EnJHzWdRLcwMSH
-	 P1zKRq/BpESwaBAo6zdPk2QamXe/vRQ6T2o9sC0CqF2TJr+5Y3fvdqrS2UUE+7Cyqv
-	 oaVmkB49bTxmINM6ih83v38QZLN199uZiUEc0sVVl/36B08FIsUCeNgxIVenXMcDoA
-	 lzH+cAc8l9zNwRtJCPrYe8S5hhDMfohOcY1/eWbUgwoPF02bpl+A42DmnEl7MAntnV
-	 GmvK8pup29Fwg==
-Date: Fri, 14 Feb 2025 21:15:39 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	michal.simek@amd.com, bharat.kumar.gogada@amd.com,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: xilinx-cpm: Add compatible
- string for CPM5NC Versal Net host
-Message-ID: <20250214154539.jqbjkms32ew5zpd2@thinkpad>
-References: <20250212055059.346452-1-thippeswamy.havalige@amd.com>
- <20250212055059.346452-2-thippeswamy.havalige@amd.com>
+	s=arc-20240116; t=1739548204; c=relaxed/simple;
+	bh=TG0xmfKkdGCLTdkpVoqtkePlbBY6zdq8gtzJjlZj16E=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=rd9t5Cf3tNS60/VOSq+cvrcfRLPYSj3nPBsTrNZJYB2H85QPxXmUS2VHIAwBX1aChkjcl7ccJgHtM3c+YW1L8GbcRHzbSWFy1RSQx5GEnBSjhNF4Fook1c7p05M4fex+y5mPvFENUTuYOFgDlxEvY3GeYRXFmlVPRMZJP6I+Aq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Dav+8sus; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id CEABD44305;
+	Fri, 14 Feb 2025 15:49:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1739548199;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=69qA403PSDbxwZhDUp8oR/q0a9JjXlx2hGab0Dld0Z8=;
+	b=Dav+8susmRMhLBPQAqVqjwAoocdEZoWUXe+To5AeWBg+gwwGdYRhrseBwpmlk20vfaY9sc
+	t8hG01G4ynHzDSR25lZyHxbhfPZ1GvUG7HKijkD7lAM2k84ON2/oxE3NEDWPc89fUGBOyK
+	uM2W9sPHU0WTdipxhr/1V5pxdk4gLGOjrw8BdhNdAUw1vBkNqKvtVbOCIVE/qqjzPiV8zL
+	lbb8e1px1ZpnyoUsNdnZf5Nynzy8aRXIlvWo+sCtmH3p+uUsWP40qHfWfrGKV0h5f668Gb
+	3ACFErufX8KA7DDmn22NG7JwWzsx2cdhGMzItc0ceyIvOm5LGgEZninGVqv5qQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250212055059.346452-2-thippeswamy.havalige@amd.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 14 Feb 2025 16:49:57 +0100
+Message-Id: <D7SADDQZUERA.PT8QLVZ9ZN1N@bootlin.com>
+Subject: Re: [PATCH v4 06/10] regmap: irq: Add support for chips without
+ separate IRQ status
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
+ <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20250214-mdb-max7360-support-v4-0-8a35c6dbb966@bootlin.com>
+ <20250214-mdb-max7360-support-v4-6-8a35c6dbb966@bootlin.com>
+ <Z69eue2dV37vw61v@smile.fi.intel.com>
+In-Reply-To: <Z69eue2dV37vw61v@smile.fi.intel.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehtddthecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggfgtgffkffuvefhvffofhgjsehtqhertdertdejnecuhfhrohhmpedfofgrthhhihgvuhcuffhusghoihhsqdeurhhirghnugdfuceomhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepkefhkeeifeethfejteevfeduheduvddvuedvvddugfffhfevkefftefhuefftddunecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejiedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvddvpdhrtghpthhtoheprghnughrihihrdhshhgvvhgthhgvnhhkohesihhnthgvlhdrtghomhdprhgtphhtthhopehlvggvsehkvghrnhgvlhdro
+ hhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrghmvghlrdgsohhuhhgrrhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhgpdhrtghpthhtohepsghrghhlsegsghguvghvrdhplh
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On Wed, Feb 12, 2025 at 11:20:58AM +0530, Thippeswamy Havalige wrote:
-> The Xilinx Versal Net series has Coherency and PCIe Gen5 Module
-> Next-Generation compact (CPM5NC) block which supports Root Port
-> controller functionality at Gen5 speed.
-> 
-> Error interrupts are handled CPM5NC specific interrupt line and
-> INTx interrupt is not support.
+On Fri Feb 14, 2025 at 4:18 PM CET, Andy Shevchenko wrote:
+> On Fri, Feb 14, 2025 at 12:49:56PM +0100, Mathieu Dubois-Briand wrote:
+> > Some GPIO chips allow to rise an IRQ on GPIO level changes but do not
+> > provide an IRQ status for each separate line: only the current gpio
+> > level can be retrieved.
+> >=20
+> > Add support for these chips, emulating IRQ status by comparing GPIO
+> > levels with the levels during the previous interrupt.
+>
+> Thanks, this will help to convert more drivers to regmap
+> (e.g., gpio-pca953x that seems use similar approach).
+>
+> ...
+>
+> > +static irqreturn_t regmap_irq_thread(int irq, void *d)
+> > +{
+> > +	struct regmap_irq_chip_data *data =3D d;
+> > +	const struct regmap_irq_chip *chip =3D data->chip;
+> > +	struct regmap *map =3D data->map;
+> > +	int ret, i;
+>
+> 	unsigned int i;
+> ?
 
-supported?
+I agree, but signed int index variables are used in all functions of
+this file. What would be the best approach here? Only fix it on code
+parts I modified? On the whole file?
 
-- Mani
+>
+> > +	bool handled =3D false;
+> > +	u32 reg;
+> > +
+> > +	if (chip->handle_pre_irq)
+> > +		chip->handle_pre_irq(chip->irq_drv_data);
+> > +
+> > +	if (chip->runtime_pm) {
+> > +		ret =3D pm_runtime_get_sync(map->dev);
+> > +		if (ret < 0) {
+>
+> > +			dev_err(map->dev, "IRQ thread failed to resume: %d\n",
+> > +				ret);
+>
+> Can be one line.
+>
 
--- 
-மணிவண்ணன் சதாசிவம்
+Yes. Kind of the same question here: should I fix only the code close to
+the parts I modified or the whole file?
+
+> ...
+>
+> > +		for (i =3D 0; i < d->chip->num_regs; i++)
+> > +			d->prev_status_buf[i] =3D d->status_buf[i];
+>
+> Hmm... Wouldn't memcpy() suffice?
+> But okay, this seems to be not a hot path and the intention is clear.
+
+Yes... I don't know why I didn't use memcpy. I will fix it.
+
+
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
