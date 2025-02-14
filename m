@@ -1,284 +1,300 @@
-Return-Path: <devicetree+bounces-146833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D38FA365D2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 19:40:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F7A6A36632
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 20:32:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A34413B15EB
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 18:40:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57905189712A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 19:31:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B628718D649;
-	Fri, 14 Feb 2025 18:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5254B1C84DE;
+	Fri, 14 Feb 2025 19:30:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b="Iz7wwUlU"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="A2MuRTuu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DC0C23A9;
-	Fri, 14 Feb 2025 18:40:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.148.174
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739558450; cv=fail; b=X/bv45PVdCSgFMyCnvSZty1ubJnZMaU2HrBRkkh2dcPz3y9lai/71cinK7w14fxPOLBFblE8kBcbkp9TzQ83GCEyNUEDQnSHi+srkZ4Y0R9QorlId/EOEwd0IM3PZLMSpoM5e0gP6cU7hgyIrqL4Bx0RXlKppxOz98Kn746C8A4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739558450; c=relaxed/simple;
-	bh=MOvhm4StzVK58ViQQUtdUFfAArEaZ7dLAEzoxnalIVQ=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 MIME-Version:Content-Type; b=ZwJx6KW28ggFZOpJdJIQpNLSz5E3X3qx/m8NIPX0RzH/4t6viH2iaFH2WO6dSywwrgWcljhyE37TeCmor6NZJPK+tde8I4CTSzrjph+XZgRftOrpcCjdZQxpMecnKdd9WTVIVutnkF8gPHzH1PuVCGkffbWVW7rdtQPzfrzKSTE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=fail (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b=Iz7wwUlU reason="signature verification failed"; arc=fail smtp.client-ip=67.231.148.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-	by mx0a-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51E9LA3Z001966;
-	Fri, 14 Feb 2025 10:40:21 -0800
-Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2177.outbound.protection.outlook.com [104.47.57.177])
-	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 44t01f17yn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 14 Feb 2025 10:40:20 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SXHQUK3EbuUoOt4iWGRK814IUm8toYWNuim84GkaNqShTBLOMVGgWd2P9+sy1Jv+eLDcFy49rAyxHOjMAVxdb7tXg3NXu5DG+X1y/QWmknaK3Kf1jsvrwasPeSTqGVfvUAydmDHR5VxU0ugrUfXRYysmX7qmSJ7iNeTqizPK2bmqgCmctlaJUOFcSyvLDDGFan60uilPvklcwA6tPb2uYCEfrCppKhTwwTZWcQt+6uv+0j4I4QxGjdjpumJV0S7WaLj8uIzkgRqXHuJTfuzzMpdPbVLfp/O5YhMluCp8biGNvJjWI0MOvHH9bvHKQ8h9c/GJPAiFKwUJEHH5mIpI9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ik4CIX7oVs6obAPu/4XIHrKPIItHMrjBGC8fkM9RsME=;
- b=SpxUJJepBmRuuQHG64JWQuEJ4V/efgiqFAwjODO1vqW4GLISXDznMaasSZ4Ir0iaVe+rhiy9ac+nMOPEAH0EUnL5V528GVnRbOJm8up8IQYjJ4mH0p3BuRLzckyYJO2be0IXCcV5lXPEZ8nQ5mj5AkzMeMimWykndKYqQF3bmx8JKLfnrPRRqaqn5GGx/xG6HgF1rpAkvgO3NIBO41k8XdW1e7aLDS3+xID/kFWQlrnBwpnpMwnTPgR1mWMd8y7+MOQGRBtm26pPUFb+gcXxJBzX4WQ8V5OM3RCXz322H3M0WEripXcNHFjxfL3aNgHdXkT/+6tX4Lxre/nSQmP9kA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
- dkim=pass header.d=marvell.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ik4CIX7oVs6obAPu/4XIHrKPIItHMrjBGC8fkM9RsME=;
- b=Iz7wwUlU5cUUB/TTYbMbdWfbs7WzfSJVkSa5uGelkdWrM846a1ROOcJWwRiYlmBWJue9wuz64tcjXpcR/D86g6tgssKE/QAYkaPbG7lMZ2CWs10+FYivmpTMtod7Q0HrY7+/vAtg3rlOFA+tSAyLGkYwhBHSS5yvKrbqtL7suKY=
-Received: from BY3PR18MB4673.namprd18.prod.outlook.com (2603:10b6:a03:3c4::20)
- by CH3PR18MB5908.namprd18.prod.outlook.com (2603:10b6:610:1e1::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.18; Fri, 14 Feb
- 2025 18:40:16 +0000
-Received: from BY3PR18MB4673.namprd18.prod.outlook.com
- ([fe80::fbd6:a3a:9635:98b5]) by BY3PR18MB4673.namprd18.prod.outlook.com
- ([fe80::fbd6:a3a:9635:98b5%4]) with mapi id 15.20.8445.015; Fri, 14 Feb 2025
- 18:40:16 +0000
-From: Wilson Ding <dingwei@marvell.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-CC: "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com"
-	<gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com"
-	<sebastian.hesselbarth@gmail.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "conor+dt@kernel.org"
-	<conor+dt@kernel.org>,
-        Sanghoon Lee <salee@marvell.com>,
-        Geethasowjanya Akula
-	<gakula@marvell.com>
-Subject: RE: [EXTERNAL] Re: [PATCH 1/4] [PATCH 1/4] reset: simple: Add syscon
- device compatible
-Thread-Topic: [EXTERNAL] Re: [PATCH 1/4] [PATCH 1/4] reset: simple: Add syscon
- device compatible
-Thread-Index: AQHbfwPEpItv2FmWXku+E0ei6VxOR7NHF2qAgAAJhhA=
-Date: Fri, 14 Feb 2025 18:40:16 +0000
-Message-ID:
- <BY3PR18MB46737EC23144183C5C272406A7FE2@BY3PR18MB4673.namprd18.prod.outlook.com>
-References: <20250214065833.530276-1-dingwei@marvell.com>
-	 <20250214065833.530276-3-dingwei@marvell.com>
-	 <6dd9ed2750abe1f5174805673411ccb919ee5461.camel@pengutronix.de>
-	 <BY3PR18MB4673C5C5CA684C64B2C218AAA7FE2@BY3PR18MB4673.namprd18.prod.outlook.com>
- <8a9518fdfda805f52b96e93649c9ee39274f5844.camel@pengutronix.de>
-In-Reply-To: <8a9518fdfda805f52b96e93649c9ee39274f5844.camel@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BY3PR18MB4673:EE_|CH3PR18MB5908:EE_
-x-ms-office365-filtering-correlation-id: c27c5543-9c59-4c8e-ebde-08dd4d27066c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|10070799003|7416014|1800799024|376014|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?VE5SZDFUVGpMY0VQSEJ0U2xkMW9LcjJoUllkT3pHc2JYVUU1V215dGROUytw?=
- =?utf-8?B?QkNTWmJxcjdFMXRGNm56bDNMV0lrb3Q5Y3I1VzM1dkh3NFQ1bjFTbG1keDI0?=
- =?utf-8?B?S2kvbjJXcEZuZ1lEVGp4YjlwTFhtODNLYkppbEdWenQ3OHQ2OEhlNWptZnJP?=
- =?utf-8?B?NWdpY0syTmRqdGYwb3FBbWVqTzBodmROQ3hxb1UyWi9zRllPcGI1OWdBRWZn?=
- =?utf-8?B?ajg3bGk4T0VRdU9YN1Z4UU9RN2JJZWlaOFdlaXRSL2FOKzBqOWNHWVpMRnlt?=
- =?utf-8?B?SE5SWVRZYitrbUR2YTdjZ0d1Smw3SkdrQThTTXRGa1NJRnZkdWdiZW5IMzJj?=
- =?utf-8?B?eXE2SlgyeFZrUUN3TEIwSjZWNjhDVHZWbVdjTWNOVDN5Y1ZHQmExd3U1MkZh?=
- =?utf-8?B?SU9hVyszNEpaUmJEUjB0Y1hvWGZ5T1B2R3JjbUx6ZVgwcldkUGc4Q1VnOTZC?=
- =?utf-8?B?U2MyTVRjWm5MRmtzaTR5a0lpY0Z6TVRqdTNPVnZKRXRoL0dHTm96cndhUjl2?=
- =?utf-8?B?QUlZUmttZUxJOWV4RlRoa0NCNXl1MXhuSWxSZ1JYWm5WSlpkNGE5dDF2UXhZ?=
- =?utf-8?B?bGhiTVdNS2t5SStvOVdBK2R1UE44U0lvbE11bk1BMmZNNW51UVl5TzZ4OFlt?=
- =?utf-8?B?a05TMGo3c05VZnc3U0EvYjRqYmlTdnBRTjBMSy9mYlJ1dGpsTzd5azEwWlZR?=
- =?utf-8?B?ZTlTRlBBT3VYL25RY1I1NWlCRWtSalRrWHF5ajNuT2VBRExlTnVOV1JlSE41?=
- =?utf-8?B?UFdzdEpnTjA2Zk1iUDFveHNndUZOY1VXNm4vbnZiRm1xS2JWQWYzV250amJR?=
- =?utf-8?B?ME5KQmxXTTY5WG5jR1MxTkdsYVI2ZEV2dEFzeTI5aENVUU1hSHBidWx5elgz?=
- =?utf-8?B?SWE2WTVjMnZ2a3VPUHVxcXBROFZoYmJIaFpuUjEzNE1IQU9yRVR4NVZzbWxE?=
- =?utf-8?B?eTZDL2h0MDRybTlpY3BOUzJTRDhtYkFRZGZSYmpSbW55aVNBeWRNeUhRRGtB?=
- =?utf-8?B?eU1YVE1vait3OEl0QWMxUWpPZGF3REJsemgxWEtQSUdmdm8ycXRiOFIvRndh?=
- =?utf-8?B?NWQ1WnZlbXFvQVdwVmdKaUhGeThoZmpySnFkRmk3SmNkUWpSSFJlUmJGbWtB?=
- =?utf-8?B?VGtKMk9IVVBWb1AxZ1VXME9SejNSSGhVU041QXlCUUJWRHhQTUk4UVRkTmRl?=
- =?utf-8?B?R3NmdU4vOWxGdFRFdmdNeHFib2hVVnc0eGR5TnNlQ0hpMWJCQzRldzFhbTRs?=
- =?utf-8?B?RG4zbkN4RGtOYm9zMS9xdjh5Q2dNbHI4U01ZZmpzai9iTG45TUViU0pSRTl2?=
- =?utf-8?B?U0RRUGNtTmRHVEY0UzR6VFBFYW5tc2dsUGVTQ2xQYm9vYS91TlcrSXdCNWFy?=
- =?utf-8?B?Vm45VTVhdWl4cmtuWnJ4MTVTQm1jd3hWQkJyeFZ2OEpIV0NsOVovUTZRekIw?=
- =?utf-8?B?MzNTMzgzSFlTNUFMakJ5VVJ1M3p4Q0VlVDRhQ3h4bTVKVmZiK291ZWZKVHI3?=
- =?utf-8?B?RlZuQlcvVXRONWNvN28zS2xvcHphcmVYQk1za08waFJOQXVkdjBlUGRhbGhx?=
- =?utf-8?B?Q1F2dVNuTWZaSDBSK2dya05UeWdhQUUvcGRaWG9LOVJJbHF5RGQzdkFqMVgw?=
- =?utf-8?B?b2dFdGhvdkRxQlZ3c3NaWjZzL0MvUWF5a210b21kVWpMaXcrWHBSRVE1dWRt?=
- =?utf-8?B?QkFCd2FrYkdUMWUwelk4czdidzRJMXZsRUd4K0g1TUg5ekorMCtJUEtpTmRL?=
- =?utf-8?B?RUQxMlBITXhHZGUrQ1JtNXQ2bXBibWY0ZHB4dEhjS1Ezdkc3WE9JTFJibTR2?=
- =?utf-8?B?YmNqQ2VJbElpVDQ3RURGWndidVg4SWN0Vmg0c2dldlMyWGk0QlAvUytSTWlK?=
- =?utf-8?B?alIvY2NTOGZGSTFrdys1ZXpoNzhrYi9BV1RxY0hHSzFWd1E9PQ==?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY3PR18MB4673.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(10070799003)(7416014)(1800799024)(376014)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?bHN2WmtJcDlsdXIvMXpDbjhiTUxtY0FLVkNES2dyYWl5TkNVRUh1RUJtaE5i?=
- =?utf-8?B?STVFQy9TeEMxUEx5eDBDZXhSU0hJeHJ4WkFMaHRpUEpHZjRuOVZRdjRTbG40?=
- =?utf-8?B?MEhtamkzcDNaYnB6ZmFhc2E0N21kZEtmL3B1RjZBYUMrTUxqek9tak4zNEIw?=
- =?utf-8?B?SE9yQTVzTU5yeTZacUplR2hzNGE3dEZUQlM1d3lyendjcWpPY1VmUXdCSFJU?=
- =?utf-8?B?MHFGclhMSkdvYVM4Z2o2Ym1BRFhQYVJ0bmhnWFpvMk1hU2hhNEVScFVSZ2tX?=
- =?utf-8?B?QzRKczlaUW9GMlBXV3R2QnFUTDlpdWtWQjNRKzBHTE15c2xZSVZlRGJrVGJI?=
- =?utf-8?B?SWpDVEhadWxGbWNoNVMyVkNsWWdNUkRIaGJPUlpMUTkwVXIxQ0xwWUVOd2JP?=
- =?utf-8?B?TDhoRmp6YjVXcE4vSksvMndNMEFKejJRek15a0RjVCs4NGd1cUZrU1YvZUVB?=
- =?utf-8?B?UnhhRDh0SDZ2MjZ5RGZoSmdFcTB4K29Ldll4TFB5M21lUWNmYTlSMjJMeUR0?=
- =?utf-8?B?bCt5NTQwUUJkTTc3dlFJdFhnYzh1UFR6cEljYUxTdnZZcEVqdDIwT3F2K0hj?=
- =?utf-8?B?d1BjUENybUpWcDhyZVp4SjIyakhsdEQ1LzJTNWlnV3FCL0hQdXpvU05NRGZk?=
- =?utf-8?B?eE5zZUJjSmhSUHVtNWpHYnFYUm02L2xVWlNHdWJvMzFZYzRuTU1xd0tONXlw?=
- =?utf-8?B?a2pmMnFUZDIyek43TWk5a0VzQ3JCVFdDWjBod0JjcEVzaEV4NkMrT2JLU25D?=
- =?utf-8?B?WW9ScjlzMk53QkJkSzdvOStjVmtTSnRlL2tXRk9QNmlFazFoZkJEZVZYZGRZ?=
- =?utf-8?B?WkdkQ21oYmsvUlZTRWxpVzRMaTdpcVFpS0hwVkZZWFQxS1RLRUF4WWR0d0tY?=
- =?utf-8?B?ZjVSREZsN2dQRmZxVkdyQ3BSamYyeXYrM1BRa1pwNTZuMjB5N08rZGx5anVy?=
- =?utf-8?B?OGhhL2lBOHhvaWJYSURhMlNjczBVU1B5Vmg1djF1Ly9qOXZiUWpyWTRDWFhQ?=
- =?utf-8?B?WjU3akZCNFF0bDBBc28zbGxGVE1QdlQ3WUZ1ZUlJaGxZNnhEb001cERZbVMy?=
- =?utf-8?B?MnBRTW9BcDBmcUZhVWVJbFUrTUlBVDNRemVUM21KbFc4ODNOaTZyUlhBaFZs?=
- =?utf-8?B?S1JuMy82QXYzUE1VYW9SdVBPU1hPK05WYzZQaHE2N21ZNmJ6dWJNUCtad0dr?=
- =?utf-8?B?RDBncysveFp4UmprZCtyRVF6aEVGb2xSQ082RGxPalZZck11SVR2UmFweFJx?=
- =?utf-8?B?K0YyYnpzbzU0dDlRL2tBT2NUbVZIeHRnQ3pIR3NoTzBlS3RMYTlrQk1YNUtq?=
- =?utf-8?B?SWRiVlJCYmNCWUdHemt5TGI0VXV6YTAxV1NFQjFyb0NlUk1EOVlLRkJOQVBN?=
- =?utf-8?B?dVltc0N5SHdMQXBwdEYxa0d4dVQwOXBQS1l4MkdFM0VlZU9WRmZyVmw3Q05S?=
- =?utf-8?B?RGhPbXpUa0JqQ0J2d2tOK3hVUDNMdm94L3YvczFTd3VUQU5iSzk5eDJkbGR2?=
- =?utf-8?B?aVU2RlpQL21TaXhSc0Z5YmJvQjJaelhuR0ZQOTc2d3BSTzV3ZDh5QXFhYTVz?=
- =?utf-8?B?cWZuNWhPTUlCd2FTL1kvWXVqOExCT0l4N0w2YVR2TllvWUN3eVlrQytEbW1E?=
- =?utf-8?B?NFVNTHl4RUNIWnd0TVprQzJReWxLWG5oTkxyMm5VVVF1UUxHeUlJbGZyVkVa?=
- =?utf-8?B?RzhueFJjV01pbkJKR0xyWUgydU5rUmpqendENUJYQms2VUJSVEJ1UHFIcTJO?=
- =?utf-8?B?STl5R09LUkVFcnQ3RERmeU9zS1QwUHVKMk1TcWovNWRGbGdGaWJnekNTT0pM?=
- =?utf-8?B?dk4zdDNUYUprTXJVeWJVRkJyeXYzODkwY0ZiZytNeG11MWpDWHZpbGRQRDI4?=
- =?utf-8?B?Y1lYMy9iMU5QWExZRFdPeWtRcTl4S25VNW9LWElOb3YzeVpmK3VyZmxqRDMv?=
- =?utf-8?B?T1YwSzVkQytVUWVPY0xPL0NVWGNzcDNoVW94Z1NibXZlYWZobnI2OE82bDdP?=
- =?utf-8?B?RUthZ3Y1TW9rcHA2ZTVFVlpFOGdXNWtHbTVPR25KcGl0NjZhdzF0N2pucjk5?=
- =?utf-8?B?cXNBWjgvWGxjek1rYlc0ajlvUHU3WXplcjZndldxMTRhOFRVWkFQemhjNUt6?=
- =?utf-8?B?T1JjR1pRamtlOEQ1YkdQc2lDRGhsdUlBQjVxRHlDazBrTFFJbnhUaHhaRy9W?=
- =?utf-8?Q?l+5YbD7cPTrog8yLAuZgn4Dfb5vdblOfCdNzD7QQL9YJ?=
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C95C1C84AD
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 19:30:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739561436; cv=none; b=MJqP3t+bDTBvKwwaFgA9OQtYHfne/TCz9aQZPrQaz5zkZTrW5T7BuW74aTjHTIA1QImuPGzKZPvbYrcdLfNw02vubjJhB8Ln11z+XBZZndSOCF8R1fdGsjCimnPAZh72CpwbT1L9Yybn0j+Wuxf9giudnGsKKTJZ4ZAL0Sfwfdo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739561436; c=relaxed/simple;
+	bh=tll7QiChnR4Z0P6dJPFYh+IOg4XrPfzt7I/PhYn9m/g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=ZMx6qSNBFE/RvQwaangpNQVDNktJl3nCkPCDS2tGd61oygT3nk9fIb0KOISxYLk0Hdi9mHIU0ErpWCiuggvE5jsw9BgDm3Y5nII12IbFxjLpDCOl5DBw7IrJSOTf/txPsoceNW64Oj+i88kVpfghnDAHCWL47BXW38vQrKT00VM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=A2MuRTuu; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250214193025euoutp013917fe6f956ba73ce6047b01772bffa1~kKeZ2n86J1055710557euoutp01U
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 19:30:25 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250214193025euoutp013917fe6f956ba73ce6047b01772bffa1~kKeZ2n86J1055710557euoutp01U
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1739561425;
+	bh=AQddq/dEL5k/xrRBPmEqe0CS+ih6MIApenU4d2OGycI=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=A2MuRTuu4ahRzTDk2HUlvMjCoBzKMD5HOQvu3EGRlgFiAZ2asAaeVwmLWzHQgec73
+	 E+ugzYjYYL8r2VdxEwl6Ro024dhdVHpEzsez7b3LOsnPAXQFmd2DZeeUeGBrIHEdOH
+	 8/f+aP+TbqmhNxdAP5gFfBRXtWko1lNBBtz9pKdU=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20250214193024eucas1p251af6a3ef901ef48f2d639fbfe9f6883~kKeYoxOjE1279312793eucas1p2B;
+	Fri, 14 Feb 2025 19:30:24 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+	eusmges1new.samsung.com (EUCPMTA) with SMTP id AA.13.20821.0D99FA76; Fri, 14
+	Feb 2025 19:30:24 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250214193023eucas1p26cdb1079f9847b3bfc9c897718206c97~kKeXUpHXX1280412804eucas1p2B;
+	Fri, 14 Feb 2025 19:30:23 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250214193023eusmtrp1af21e5b448ee7388ba69db3fcf7dbcba~kKeXTzM_O1138611386eusmtrp1E;
+	Fri, 14 Feb 2025 19:30:23 +0000 (GMT)
+X-AuditID: cbfec7f2-b09c370000005155-2d-67af99d05b42
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id 4D.08.19654.EC99FA76; Fri, 14
+	Feb 2025 19:30:22 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250214193020eusmtip1fb59377c383c77449d4cb499844b3263~kKeVQ3ahA0079000790eusmtip1A;
+	Fri, 14 Feb 2025 19:30:20 +0000 (GMT)
+Message-ID: <3c0b77e6-357d-453e-8b63-4757c3231bde@samsung.com>
+Date: Fri, 14 Feb 2025 20:30:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: marvell.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY3PR18MB4673.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c27c5543-9c59-4c8e-ebde-08dd4d27066c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Feb 2025 18:40:16.2878
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: l4jHj5hvVyZxHxSobGj4pMfR8ORfMe4ujX3VOUUfu52xAmbgPwXnowyEnz3s7IUfCCEzszq05VkAahD2Yu1UEw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR18MB5908
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 6/7] phy: exynos5-usbdrd: subscribe to orientation
+ notifier if required
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, Vinod Koul
+	<vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, Alim
+	Akhtar <alim.akhtar@samsung.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus
+	<tudor.ambarus@linaro.org>, Sam Protsenko <semen.protsenko@linaro.org>, Will
+	McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>,
+	kernel-team@android.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Content-Language: en-US
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <20241206-gs101-phy-lanes-orientation-phy-v4-6-f5961268b149@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrEKsWRmVeSWpSXmKPExsWy7djP87oXZq5PN+g/J23xYN42Nostrzaz
+	WKzZe47JYv6Rc6wWO7aLWBxt/c9s8XLWPTaLTY+vsVpc3jWHzWLCqm8sFjPO72Oy2DDjH4vF
+	/z072C3aG06xWRx+085q8bwPKPHpVpzFzjsnmC1WffrP6CDssW33NlaPBZtKPTat6mTzuHNt
+	D5vH5iX1Hn1bVjF6fN4kF8AexWWTkpqTWZZapG+XwJXx+sF/1oILuhXPls1lbGBcrtLFyMkh
+	IWAisflLE3sXIxeHkMAKRolfP1uYIJwvjBInPx9igXA+M0pMOH2ODabl1eKbjBCJ5YwSczre
+	QVV9ZJTo+DCTHaSKV8BOYv+pX6wgNouAqsTCVdvZIOKCEidnPmEBsUUF5CXu35oBVi8skCDR
+	df0V2CARgYtMErvfnAdbwSzQyyyx4cUpZpAqZgFxiVtP5jOB2GwChhJdb7vApnIKhEh0T77E
+	AlEjL9G8dTYzSLOEwG5OiQO3lgI1cAA5LhKd30shfhCWeHV8CzuELSNxenIPC0R9O6PEgt/3
+	mSCcCYwSDc9vMUJUWUvcOfeLDWQQs4CmxPpd+hBhR4lFmxqZIebzSdx4KwhxA5/EpG3TocK8
+	Eh1tQhDVahKzjq+DW3vwwiXmCYxKs5DCZRaSL2ch+WYWwt4FjCyrGMVTS4tz01OLDfNSy/WK
+	E3OLS/PS9ZLzczcxApPh6X/HP+1gnPvqo94hRiYOxkOMEhzMSiK8EtPWpAvxpiRWVqUW5ccX
+	leakFh9ilOZgURLnXbS/NV1IID2xJDU7NbUgtQgmy8TBKdXANKOwxr9Ys/6+61++7YG9jT+9
+	K11LDgWn1W4+fjXYsq6yvfk5u/LzRRpORQ1/XoX5l0/80OZ4693sORPit3160XBuWkvwQo4/
+	TOIFkofDVl+40WYdmXTuuZKTapUje3oK97Xdu9ysD/A5CP58+kbo863of2q2vO+nRYn9k/Or
+	9DlSlKOxcGKuysUPIX+cPGpSSy8K3n92tel2QfPRf6m7FTbuLbbS/sR8yGmN2A3OPzJTzFa9
+	O/BAOfzSEc2bcp5H3i3lmlWuM2FBdfLiH1c3pHPUzeX9cfeP0UqztHorWX5OiQtqJvH5WjIr
+	D5R0J8gsPCxou731qO/2Dk9PVofm+spHapLZbgt/ml2fpPpUiaU4I9FQi7moOBEAVDlLM/UD
+	AAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrCIsWRmVeSWpSXmKPExsVy+t/xu7rnZ65PNzhgavFg3jY2iy2vNrNY
+	rNl7jsli/pFzrBY7totYHG39z2zxctY9NotNj6+xWlzeNYfNYsKqbywWM87vY7LYMOMfi8X/
+	PTvYLdobTrFZHH7TzmrxvA8o8elWnMXOOyeYLVZ9+s/oIOyxbfc2Vo8Fm0o9Nq3qZPO4c20P
+	m8fmJfUefVtWMXp83iQXwB6lZ1OUX1qSqpCRX1xiqxRtaGGkZ2hpoWdkYqlnaGwea2VkqqRv
+	Z5OSmpNZllqkb5egl/H6wX/Wggu6Fc+WzWVsYFyu0sXIySEhYCLxavFNxi5GLg4hgaWMEpM2
+	rGeBSMhInJzWwAphC0v8udbFBlH0nlFi3ddOsASvgJ3E/lO/wGwWAVWJhau2s0HEBSVOznwC
+	NkhUQF7i/q0Z7CC2sECCRNf1Vywgg0QELjNJLO/bxQriMAv0M0scPdTJDLHiI6PEpskNTCAt
+	zALiEreezAez2QQMJbredoGt4BQIkeiefIkFosZMomtrFyOELS/RvHU28wRGoVlILpmFZNQs
+	JC2zkLQsYGRZxSiSWlqcm55bbKRXnJhbXJqXrpecn7uJERj924793LKDceWrj3qHGJk4GA8x
+	SnAwK4nwSkxbky7Em5JYWZValB9fVJqTWnyI0RQYHBOZpUST84HpJ68k3tDMwNTQxMzSwNTS
+	zFhJnJftyvk0IYH0xJLU7NTUgtQimD4mDk6pBibOg4ynikIDExhallkKThWcMK360qMIh2+C
+	9Q9jNn9qOLDgmbpbjVz4rN1nr+/x26gjy83dX3XLgenip7tf5U33tDzRLrfnnpcd4WvkfiFv
+	fnIwY9HDc0tUJfpE1YRtXitpHg7/9bJOosPlIP+Mk85BV/PdWKb3J90QfPPPSbpt/5ELHBLe
+	LNVcDErpZ1YsuRdx5IGcRCifQ6iGpM9i/yLbT2JTS3Ya72pbfKLy0cJJlx3tUzp3Scal+bE2
+	GvyJuHT/U6SS+solt3QCVfZvz3s39aJ52SRexq4tags9pT/I305+w7Vzjdk6xiPH7C+utIot
+	Zvzg39x8hf/Qw63fFcouTL6mbNPAHLAt7Ni5MCWW4oxEQy3mouJEACpowR2HAwAA
+X-CMS-MailID: 20250214193023eucas1p26cdb1079f9847b3bfc9c897718206c97
+X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-ORIG-GUID: 5DOHQFiSmjbq4JwXJQeofhCpBBC9di3K
-X-Proofpoint-GUID: 5DOHQFiSmjbq4JwXJQeofhCpBBC9di3K
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-14_08,2025-02-13_01,2024-11-22_01
+X-RootMTR: 20241206163109eucas1p12aea3a9a6c404cd7c678009ea11aa5b3
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20241206163109eucas1p12aea3a9a6c404cd7c678009ea11aa5b3
+References: <20241206-gs101-phy-lanes-orientation-phy-v4-0-f5961268b149@linaro.org>
+	<CGME20241206163109eucas1p12aea3a9a6c404cd7c678009ea11aa5b3@eucas1p1.samsung.com>
+	<20241206-gs101-phy-lanes-orientation-phy-v4-6-f5961268b149@linaro.org>
 
+On 06.12.2024 17:31, André Draszik wrote:
+> gs101's SS phy needs to be configured differently based on the
+> connector orientation, as the SS link can only be established if the
+> mux is configured correctly.
+>
+> The code to handle programming of the mux is in place already, this commit
+> now adds the missing pieces to subscribe to the Type-C orientation
+> switch event.
+>
+> Note that for this all to work we rely on the USB controller
+> re-initialising us. It should invoke our .exit() upon cable unplug, and
+> during cable plug we'll receive the orientation event after which we
+> expect our .init() to be called.
+>
+> Above reinitialisation happens if the DWC3 controller can enter runtime
+> suspend automatically. For the DWC3 driver, this is an opt-in:
+>      echo auto > /sys/devices/.../11110000.usb/power/control
+> Once done, things work as long as the UDC is not bound as otherwise it
+> stays busy because it doesn't cancel / stop outstanding TRBs. For now
+> we have to manually unbind the UDC in that case:
+>       echo "" > sys/kernel/config/usb_gadget/.../UDC
+>
+> Note that if the orientation-switch property is missing from the DT,
+> the code will behave as before this commit (meaning for gs101 it will
+> work in SS mode in one orientation only). Other platforms are not
+> affected either way.
+>
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+>
+> ---
+> v3:
+> * drop init to -1 of phy_drd->orientation (Vinod)
+> * avoid #ifdef and switch to normal conditional IS_ENABLED() for
+>    CONFIG_TYPEC
+>
+> v2:
+> * move #include typec_mux.h from parent patch into this one (Peter)
+> ---
+>   drivers/phy/samsung/Kconfig              |  1 +
+>   drivers/phy/samsung/phy-exynos5-usbdrd.c | 56 ++++++++++++++++++++++++++++++++
+>   2 files changed, 57 insertions(+)
+>
+> diff --git a/drivers/phy/samsung/Kconfig b/drivers/phy/samsung/Kconfig
+> index f10afa3d7ff5..fc7bd1088576 100644
+> --- a/drivers/phy/samsung/Kconfig
+> +++ b/drivers/phy/samsung/Kconfig
+> @@ -80,6 +80,7 @@ config PHY_EXYNOS5_USBDRD
+>   	tristate "Exynos5 SoC series USB DRD PHY driver"
+>   	depends on (ARCH_EXYNOS && OF) || COMPILE_TEST
+>   	depends on HAS_IOMEM
+> +	depends on TYPEC || (TYPEC=n && COMPILE_TEST)
+>   	depends on USB_DWC3_EXYNOS
+>   	select GENERIC_PHY
+>   	select MFD_SYSCON
 
+I've just noticed that the above disables Exynos DRD PHY driver in the 
+default exynos_defconfig for arm 32bit. Enabling CONFIG_TYPEC is 
+exynos_defconfig probably is the easiest way to fix this. I will send a 
+patch then.
 
-> -----Original Message-----
-> From: Philipp Zabel <p.zabel@pengutronix.de>
-> Sent: Friday, February 14, 2025 10:03 AM
-> To: Wilson Ding <dingwei@marvell.com>; linux-kernel@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
-> Cc: andrew@lunn.ch; gregory.clement@bootlin.com;
-> sebastian.hesselbarth@gmail.com; robh@kernel.org; krzk+dt@kernel.org;
-> conor+dt@kernel.org; Sanghoon Lee <salee@marvell.com>; Geethasowjanya
-> Akula <gakula@marvell.com>
-> Subject: [EXTERNAL] Re: [PATCH 1/4] [PATCH 1/4] reset: simple: Add syscon
-> device compatible
->=20
-> On Fr, 2025-02-14 at 17:=E2=80=8A13 +0000, Wilson Ding wrote: > > > -----=
-Original
-> Message----- > > From: Philipp Zabel <p.=E2=80=8Azabel@=E2=80=8Apengutron=
-ix.=E2=80=8Ade> > > Sent:
-> Friday, February 14, 2025 3:=E2=80=8A54 AM > > To: Wilson Ding
-> <dingwei@=E2=80=8Amarvell.=E2=80=8Acom>;=20
-> On Fr, 2025-02-14 at 17:13 +0000, Wilson Ding wrote:
-> >
-> > > -----Original Message-----
-> > > From: Philipp Zabel <p.zabel@pengutronix.de>
-> > > Sent: Friday, February 14, 2025 3:54 AM
-> > > To: Wilson Ding <dingwei@marvell.com>; linux-kernel@vger.kernel.org;
-> > > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
-> > > Cc: andrew@lunn.ch; gregory.clement@bootlin.com;
-> > > sebastian.hesselbarth@gmail.com; robh@kernel.org;
-> > > krzk+dt@kernel.org;
-> > > conor+dt@kernel.org; Sanghoon Lee <salee@marvell.com>;
-> > > conor+Geethasowjanya
-> > > Akula <gakula@marvell.com>
-> > > Subject: [EXTERNAL] Re: [PATCH 1/4] [PATCH 1/4] reset: simple: Add
-> > > syscon device compatible
-> > >
-> > > On Do, 2025-02-13 at 22:58 -0800, Wilson Ding wrote:
-> > > > Introduce the new ops for updating reset line and getting status.
-> > > > Thus, the reset controller can be accessed through either direct
-> > > > I/O or regmap interfaces.
-> > >
-> > > Please don't add a new layer of function pointer indirection, just
-> > > add a new struct reset_control_ops for the regmap variant.
-> > >
-> >
-> > If just adding a new struct reset_control_ops for the regmap variant,
-> > almost all the functions will be duplicated for regmap variant.
-> > Besides reset_simple_regmap_assert/deassert(), we also need to have
-> > the regmap version of reset_simple_update().
->=20
-> Yes. You could also duplicate/fold update() into assert/deassert().
-> It is trivial enough and the compiler will do that anyway.
->=20
-> > Since reset_simple_reset() invokes
-> > reset_simple_regmap_assert/deassert(), it also needs to be duplicated.
->=20
-> That one could go through the data->rcdev.ops->assert/deassert function
-> pointers and be reused. But I wonder if that one function is worth the ad=
-ded
-> complexity.
->=20
-> > In this case, there will be too many redundant codes in this file. I
-> > doubt if it is worth to use the reset simple code. Maybe it's better
-> > to fork a new file for the syscon device, such as 'reset-simple-syscon.=
-c'. What
-> do you say?
->=20
-> That sounds sensible to me.
->=20
+> diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> index 61e0de4b3d4b..8fc15847cfd8 100644
+> --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> @@ -24,6 +24,7 @@
+>   #include <linux/regulator/consumer.h>
+>   #include <linux/soc/samsung/exynos-regs-pmu.h>
+>   #include <linux/usb/typec.h>
+> +#include <linux/usb/typec_mux.h>
+>   
+>   /* Exynos USB PHY registers */
+>   #define EXYNOS5_FSEL_9MHZ6		0x0
+> @@ -394,6 +395,7 @@ struct exynos5_usbdrd_phy_drvdata {
+>    * @extrefclk: frequency select settings when using 'separate
+>    *	       reference clocks' for SS and HS operations
+>    * @regulators: regulators for phy
+> + * @sw: TypeC orientation switch handle
+>    * @orientation: TypeC connector orientation - normal or flipped
+>    */
+>   struct exynos5_usbdrd_phy {
+> @@ -415,6 +417,7 @@ struct exynos5_usbdrd_phy {
+>   	u32 extrefclk;
+>   	struct regulator_bulk_data *regulators;
+>   
+> +	struct typec_switch_dev *sw;
+>   	enum typec_orientation orientation;
+>   };
+>   
+> @@ -1397,6 +1400,55 @@ static int exynos5_usbdrd_phy_clk_handle(struct exynos5_usbdrd_phy *phy_drd)
+>   	return 0;
+>   }
+>   
+> +static int exynos5_usbdrd_orien_sw_set(struct typec_switch_dev *sw,
+> +				       enum typec_orientation orientation)
+> +{
+> +	struct exynos5_usbdrd_phy *phy_drd = typec_switch_get_drvdata(sw);
+> +
+> +	scoped_guard(mutex, &phy_drd->phy_mutex)
+> +		phy_drd->orientation = orientation;
+> +
+> +	return 0;
+> +}
+> +
+> +static void exynos5_usbdrd_orien_switch_unregister(void *data)
+> +{
+> +	struct exynos5_usbdrd_phy *phy_drd = data;
+> +
+> +	typec_switch_unregister(phy_drd->sw);
+> +}
+> +
+> +static int exynos5_usbdrd_setup_notifiers(struct exynos5_usbdrd_phy *phy_drd)
+> +{
+> +	int ret;
+> +
+> +	if (!IS_ENABLED(CONFIG_TYPEC))
+> +		return 0;
+> +
+> +	if (device_property_present(phy_drd->dev, "orientation-switch")) {
+> +		struct typec_switch_desc sw_desc = { };
+> +
+> +		sw_desc.drvdata = phy_drd;
+> +		sw_desc.fwnode = dev_fwnode(phy_drd->dev);
+> +		sw_desc.set = exynos5_usbdrd_orien_sw_set;
+> +
+> +		phy_drd->sw = typec_switch_register(phy_drd->dev, &sw_desc);
+> +		if (IS_ERR(phy_drd->sw))
+> +			return dev_err_probe(phy_drd->dev,
+> +					     PTR_ERR(phy_drd->sw),
+> +					     "Failed to register TypeC orientation switch\n");
+> +
+> +		ret = devm_add_action_or_reset(phy_drd->dev,
+> +					       exynos5_usbdrd_orien_switch_unregister,
+> +					       phy_drd);
+> +		if (ret)
+> +			return dev_err_probe(phy_drd->dev, ret,
+> +					     "Failed to register TypeC orientation devm action\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   static const struct exynos5_usbdrd_phy_config phy_cfg_exynos5[] = {
+>   	{
+>   		.id		= EXYNOS5_DRDPHY_UTMI,
+> @@ -1786,6 +1838,10 @@ static int exynos5_usbdrd_phy_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		return dev_err_probe(dev, ret, "failed to get regulators\n");
+>   
+> +	ret = exynos5_usbdrd_setup_notifiers(phy_drd);
+> +	if (ret)
+> +		return ret;
+> +
+>   	dev_vdbg(dev, "Creating usbdrd_phy phy\n");
+>   
+>   	for (i = 0; i < EXYNOS5_DRDPHYS_NUM; i++) {
+>
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
-Well. I will go with the approach of a new driver, which avoids all the
-unnecessary complexity and redundance. Thank!
-
-> regards
-> Philipp
 
