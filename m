@@ -1,159 +1,138 @@
-Return-Path: <devicetree+bounces-146537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CA73A355B1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 05:22:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2A6A355C7
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 05:34:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0A7018903BE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 04:22:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFAEC18904E1
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 04:34:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E75AD15854F;
-	Fri, 14 Feb 2025 04:22:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46431151988;
+	Fri, 14 Feb 2025 04:33:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mVB+xSbE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YfIf35En"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A6F1519AD;
-	Fri, 14 Feb 2025 04:22:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6312753E8;
+	Fri, 14 Feb 2025 04:33:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739506937; cv=none; b=hPpgqp40dtimp+gaduKP7sz8NBMVyHYkUC1YzIjcGq6xqDNdE+qkmbalg9Zt4h/P0DKl4LyngdqXRCmba3nTcZ5XUM0vcRXvjM81MA367ck6lnW/OeqBMQzqu+/Bgw5R6gj5pHWfpn6Z4QsJXn1JQxpbbesC1apUMeVD5xf1KYI=
+	t=1739507639; cv=none; b=Z/qQvKP3nIa4Xy0YnJwA7zdZa31mvvS9XDQkwNgTfQ2uzf8HrIqSLRowKDRipdTBdOSnAxLOhcfozQYUY+DHFNM3MEIG1CsN0KAN/BMGQQRsOHTCGR55/J6xIcEQQlGAcnxxV6iDFAvFq+pR4cmfE8TC/cvbdoIOrBuJ0ZG89zY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739506937; c=relaxed/simple;
-	bh=E6U7r9+XPf5C9PFEIXPbnBypfFSXsnpSwDiuegOJVuw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sywS5Q+6oWlYqA5z2884qFDKXxHfjGWYLYCE/KB1rRh6uYhszkrBGeJ7K8z2r/V9UhpC9kvU9hLcn7IbVMAPbvi5YHQE8Ulyw2z8K9KPO9R4IhwwA/DeOVDMxUrIrskos2q9M5YJP++xz2hApxN9fb/PiaUxUSv/RvgL2ekJUE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mVB+xSbE; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739506936; x=1771042936;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=E6U7r9+XPf5C9PFEIXPbnBypfFSXsnpSwDiuegOJVuw=;
-  b=mVB+xSbERg4bxXHmHGjHQXhKEZO/cWaonRP1K3CUKmR1hE3dpCQdtKAU
-   XErkD7TdMoSblL4i/Nv7DcPTOc8R1Qe/ChQODUNdSXar9dCYOESlsldpj
-   i8NiVV7Ty8N40PkK1aue+LFTNkhPa9GtsI1XnJ/w+FljAnKTTlaAun1rb
-   ydH2tJImeOLtwHbyMWojHFM40mC8MyGY/uJG/1cJegzd98IK6YTYlQuAD
-   Q1mdLBuYOidLXlsfxZKy9ui9UYfqtkyvldGH2Lm6Nr+jnaTnw3lx+gPFh
-   c9TIcBxhAeMSC/rfa+zK7UH0lUOxf5uO+U9I7qi+3tmSnYu1DEEFCHYY6
-   Q==;
-X-CSE-ConnectionGUID: 4FuqktkBQUmLJtOOKOG82w==
-X-CSE-MsgGUID: UwMKeMoKQvexycwSBj3eTQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40393031"
-X-IronPort-AV: E=Sophos;i="6.13,284,1732608000"; 
-   d="scan'208";a="40393031"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2025 20:22:15 -0800
-X-CSE-ConnectionGUID: t+79vm8PSYKAAhX+bpJ3NQ==
-X-CSE-MsgGUID: gq8QhoN5RA+HIfSRQvNY+Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="144281882"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 13 Feb 2025 20:22:12 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tinDO-00193T-1j;
-	Fri, 14 Feb 2025 04:22:10 +0000
-Date: Fri, 14 Feb 2025 12:21:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>,
-	linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
-	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, vikash.bansal@nxp.com,
-	priyanka.jain@nxp.com, shashank.rebbapragada@nxp.com,
-	Frank.Li@nxp.com, Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-Subject: Re: [PATCH 2/2] drivers: i3c: Add driver for NXP P3H2x4x i3c-hub
- device
-Message-ID: <202502141155.osJiWAHL-lkp@intel.com>
-References: <20250212132227.1348374-2-aman.kumarpandey@nxp.com>
+	s=arc-20240116; t=1739507639; c=relaxed/simple;
+	bh=USnMmjcoarjWB0C7UysmUD9xHH+ezCjgWDciylajuVc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Ssq8R+3wjJwOQIvYPTSDvYjL4Dd3hTrEg/kvQqRnp5kyszAmidYFV3QrpZbE7iRpWm3v4JptyyppLwpYR9ZmqflHY2LfEvYGIvdVT2t2iI9wMPOS+dZ1U0cmyFqgii5gfJ0df+qGYT1pivk5gMq7xAftF9HzSnz7CQFo024Kj7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YfIf35En; arc=none smtp.client-ip=209.85.222.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-86718541914so1474868241.1;
+        Thu, 13 Feb 2025 20:33:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739507636; x=1740112436; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=siVlNf7+kZiCwEjKhe9SG338WyTZGu1DUBJ8nqaHKqg=;
+        b=YfIf35En7fdHS1exXYmyTmCSSfx+6l5FPgR52iKrw3qEBze76Jjbk8n2qm0IKH26dt
+         K41gVQlOD6CxWQZSkf7HLsM5aXVKv8Nrvga5UR2sFf6kptsRBCnsImck8NomyMJJBX/4
+         k/0lTI4Yq6piv0Y9+TdqrpadNpsBOVsNPlnoqlF/6vcjuRvDSpSZHplAn1Fqn1x9w/Q1
+         k52ZrjZQpYZ5f5FIbQ9Mf/jXT/ngeccsL8MhBHWovedQby4FlBXXhBT9I3GkIeafG8Nx
+         jg/D3JY7uxkAhvGnb1NZu615dzlbqawiiLi/U0w3LLvJqaF+TLeLCnuMk5fzZzHYy+LZ
+         7JrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739507636; x=1740112436;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=siVlNf7+kZiCwEjKhe9SG338WyTZGu1DUBJ8nqaHKqg=;
+        b=WgZzV4bVMPLw4D4reO5sfAB6s95Zh3+6J/qZFDxaZ4dwQGACAcL1kVfTaSYVNi77CW
+         2EzVp1s4pL4hTOQsCZ2RJoM8w4k20iOiVnPtv1cD3sBj4I1+4GzdN4g4WhENUGzEGOAv
+         3oExk1rSXOp08DKDlj7y33trcvxJL62kdrXz9F5cRRVsb7Qa8cWUNSiKcnui4iyqhe28
+         ZGNIeNOsF0B/siNM+lfWLz77oK7qf0QFsYsR+1KiyH4nrq4PNDP+FnX6gFNjibo4iGqE
+         i/RDOpuLRasZIrQRDMtOf9vanyhaYbPzMLkPBAKxNhVM6tIJ94x72xvMKBzF6R9cZ/sg
+         h1cA==
+X-Forwarded-Encrypted: i=1; AJvYcCVF9b04+lVdjafwUC1VwObWr1VttB7q+/2OTZQF5Nv1/Siku1RgTTf2CAIgppS1UlCZlvM0kFbVmCNP@vger.kernel.org, AJvYcCVkfGlG6ewtR+U5MO4kIU1KaJfMp0bWVpoDTCD0mxNdWsSdsZ2hRjfpSRUhCqa0zt2rPShG4MvJ8MwvwUPv@vger.kernel.org, AJvYcCWWrtOpcJ8GQXcpI1M7W58aYxh3BxfnYC6reoMEeivdEJP3UV5F/NUnJ9N1dkxUp1tFSRNihkHoCC4W@vger.kernel.org, AJvYcCWwk/yYzJ33vSTDOXADMD7CQ6h2YRr377VD5vMeVJ655pVIwam+9OqPIJbtZ+hTLAznmR3XQXxST8+e1lbDMawgSMc=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3PbMX5MvhuSmT8XSGTbI2Mq73EI3F87ow4oZCgexSJmDr/0ZG
+	Nyj/CsYUGKHqbBzRWDVhsXoxEpy+aul4OZsnykXoNv5JsmKrJ5Z0
+X-Gm-Gg: ASbGncu9tTajSZKz5pvDQmGYkg6nTc3dq+p771IrQpOGwLwFsrM06Z48NgGSXb16ukR
+	5VkbrbzH5/zYAlgg6w9fZcdF8aEnJLBP+ZTujo6IKB/ZVnjEcfE5jsnd2uZ/VMmc8w9Rc2gqAv6
+	heudanqBImZjlQ00nn8qa2VSTAyZnD9RNU9ljuomapFGrHmxm8/ornxB/EHyHq5R1HMnnhUTX6k
+	mHchqxMfgqtEiBhvYqGu370JwKftQteOM3USnY2SF4RQA1LR02vf/fC4zHyxOpNaXhj/EhRcGn6
+	rlT0WRzINSMgF7PoXUwt7JMzaVeQtSuf7vpxGDXV4WBSWKfobN3JZrtUD2uPnLgKeIGirERjddh
+	63g==
+X-Google-Smtp-Source: AGHT+IF7RYcNLcFYj2hbuk8eDkpTmpno/O0WPJ6Z+8th4nlcCQC4glGWXBaW+GS0fZag6OAbmKZLlw==
+X-Received: by 2002:a05:6102:3f11:b0:4bb:c5ad:af1a with SMTP id ada2fe7eead31-4bc04fba69dmr3988014137.7.1739507636407;
+        Thu, 13 Feb 2025 20:33:56 -0800 (PST)
+Received: from localhost.localdomain ([38.44.237.182])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-868e857f2desm422800241.10.2025.02.13.20.33.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Feb 2025 20:33:55 -0800 (PST)
+From: Denzeel Oliva <wachiturroxd150@gmail.com>
+To: andi.shyti@kernel.org,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	alim.akhtar@samsung.com,
+	linux-spi@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Denzeel Oliva <wachiturroxd150@gmail.com>
+Subject: [PATCH v3 0/3] spi: s3c64xx: add support exynos990-spi to new port config data
+Date: Fri, 14 Feb 2025 04:33:40 +0000
+Message-Id: <20250214043343.263-1-wachiturroxd150@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250212132227.1348374-2-aman.kumarpandey@nxp.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Aman,
+Exynos990 uses the same version of USI SPI (v2.1) as the GS101.
+Removed fifo_lvl_mask and rx_lvl_offset, and changed to the new data
+configuration port.
 
-kernel test robot noticed the following build warnings:
+The difference from other new port configuration data is that fifo_depth
+is only specified in fifo-depth in DT.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.14-rc2 next-20250213]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Exynos 990 data for SPI:
+- The depth of the FIFO is not the same size on all nodes.
+  A depth of 64 bytes is used on most nodes,
+  while a depth of 256 bytes is used on 3 specific nodes (SPI 8/9/10).
+- The Exynos 990 only allows access to 32-bit registers.
+  If access is attempted with a different size, an error interrupt
+  is generated. Therefore, it is necessary to perform write accesses to
+  registers in 32-bit blocks.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Aman-Kumar-Pandey/drivers-i3c-Add-driver-for-NXP-P3H2x4x-i3c-hub-device/20250212-213659
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250212132227.1348374-2-aman.kumarpandey%40nxp.com
-patch subject: [PATCH 2/2] drivers: i3c: Add driver for NXP P3H2x4x i3c-hub device
-config: i386-randconfig-r111-20250214 (https://download.01.org/0day-ci/archive/20250214/202502141155.osJiWAHL-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250214/202502141155.osJiWAHL-lkp@intel.com/reproduce)
+Changes in v2:
+- Added a default "fifo_depth = 64" to prevent crashes when "fifo-depth"
+  is missing in the device tree (avoids divide-by-zero issues).
+- No other functional changes.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502141155.osJiWAHL-lkp@intel.com/
+Changes in v3:
+- Reordered fifo_depth handling in s3c64xx_spi_probe() so that the DT
+  property takes precedence over the default value in port_config.
+  This allows node-specific FIFO depths to be applied correctly while
+  preserving a fallback.
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/i3c/p3h2x4x/p3h2x4x_i3c_hub_common.c:9:22: sparse: sparse: symbol 'p3h2x4x_ibireq' was not declared. Should it be static?
->> drivers/i3c/p3h2x4x/p3h2x4x_i3c_hub_common.c:15:22: sparse: sparse: symbol 'p3h2x4x_regmap_config' was not declared. Should it be static?
->> drivers/i3c/p3h2x4x/p3h2x4x_i3c_hub_common.c:37:26: sparse: sparse: Using plain integer as NULL pointer
-   drivers/i3c/p3h2x4x/p3h2x4x_i3c_hub_common.c: note: in included file (through include/linux/module.h, drivers/i3c/p3h2x4x/p3h2x4x_i3c_hub.h):
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
+Denzeel Oliva (3):
+  spi: dt-bindings: samsung: add samsung,exynos990-spi compatible
+  spi: s3c64xx: prioritize fifo-depth from DT over port_config
+  spi: s3c64xx: add support exynos990-spi to new port config data
 
-vim +/p3h2x4x_ibireq +9 drivers/i3c/p3h2x4x/p3h2x4x_i3c_hub_common.c
-
-     8	
-   > 9	struct i3c_ibi_setup p3h2x4x_ibireq = {
-    10			.handler = p3h2x4x_ibi_handler,
-    11			.max_payload_len = P3H2x4x_MAX_PAYLOAD_LEN,
-    12			.num_slots = P3H2x4x_NUM_SLOTS,
-    13	};
-    14	
-  > 15	struct regmap_config p3h2x4x_regmap_config = {
-    16			.reg_bits = P3H2x4x_REG_BITS,
-    17			.val_bits = P3H2x4x_VAL_BITS,
-    18		};
-    19	
-    20	/* p3h2x4x ids (i3c) */
-    21	static const struct i3c_device_id p3h2x4x_i3c_ids[] = {
-    22		I3C_CLASS(I3C_DCR_HUB, NULL),
-    23		{ /* sentinel */ },
-    24	};
-    25	MODULE_DEVICE_TABLE(i3c, p3h2x4x_i3c_ids);
-    26	
-    27	/* p3h2x4x ids (i2c) */
-    28	static const struct i2c_device_id p3h2x4x_i2c_id_table[] = {
-    29		{ "nxp-i3c-hub", P3H2x4x_HUB_ID },
-    30		{ /* sentinel */ },
-    31	};
-    32	MODULE_DEVICE_TABLE(i2c, p3h2x4x_i2c_id_table);
-    33	
-    34	static const struct of_device_id  p3h2x4x_i2c_of_match[] = {
-    35		{
-    36			.compatible = "nxp,p3h2x4x",
-  > 37			.data =  P3H2x4x_HUB_ID,
-    38		},
-    39		{ /* sentinel */ },
-    40	};
-    41	MODULE_DEVICE_TABLE(of, p3h2x4x_i2c_of_match);
-    42	
+ .../devicetree/bindings/spi/samsung,spi.yaml  |  1 +
+ drivers/spi/spi-s3c64xx.c                     | 29 +++++++++++++++----
+ 2 files changed, 25 insertions(+), 5 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.48.1
+
 
