@@ -1,120 +1,133 @@
-Return-Path: <devicetree+bounces-146814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA21FA364B5
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 18:37:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78FF4A3652B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 19:03:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E87E3A9FED
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 17:36:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D85C23A8996
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 18:03:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35CA22686A6;
-	Fri, 14 Feb 2025 17:37:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="xnODtEQP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1010245030;
+	Fri, 14 Feb 2025 18:03:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 256A6267729
-	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 17:36:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ADD318A95E
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 18:03:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739554621; cv=none; b=RvSvXma1QEJ9mTIXULvgzUUK6P/mz5yjIeGnYQKJQAHDlrw5xpAGZa48BgSD6wTSCFOPqSEa6ASRxlOpGc64+K0dzFpeW6uFQoIbTQULUAlYw42XEAhLX4lz5xprVMe3Ax7T8x3TswxLAn70em51XL7Pvef+77G1fHfe1UKhays=
+	t=1739556205; cv=none; b=oM2lBqGPyr69aatq3AY0bYgxq6t2Rr0UtP1Ul9xBEM9xY6upAJ3+gnMZNYEWTx0Xwq1zlnNu7vT+CRbIK20mowUGBn+w/GFTyHCXECmLGT01S1AAjsamNe2ekxmnEY+ldqMYtnXMFym83H8XV0ST23GzUld7vR+fHqC0ObFCf5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739554621; c=relaxed/simple;
-	bh=OFAPAVOqVuoi9a1p+QX8ZWSN2oGBayyv39emGYuW7Sk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=vBiHFp3PHMOHTZuLQLlK+sdXODypkT1iY1Nn+hHa7YPHDipsUI9MzoCFe0jewKH72R0RVqht/1bfGCdrwspmqnehHLIf4N+6ZVU8Rrc9u4ZNM62PXkEbr1ffBRIbWaZsKcm0bGL8qqx6hpwdSAxfiuAfGJazoDcS8/7yUcfM0ss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=xnODtEQP; arc=none smtp.client-ip=34.202.193.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
-Authentication-Results: purelymail.com; auth=pass
-DKIM-Signature: a=rsa-sha256; b=xnODtEQPIh/VEXOsU16HCVaa9NNEu1CsH4Jd3yTVsHaqS+hIB2UOU8xwUUTTaRLh18Hy/WeY+RyuGFSnI0RHV5GUPnFGL6daf6b4sWhF0jj0CEj6D8uEIJr+wllqG48MVilsxa/glMI9jLVKSCh3Cz7+bnCQSB3SAua59e61b2E0qAeo75pRO6d1Qq8rnD22VE0wkbYf/BGZxTCKlmLyV2TbP/YIyYFbPrBVAm+bgVgH8n8kn9ZcshBQ8hFBwrWYZgGYQJcjypjV4O458HIEko73UUmWc6OeyEZtYGmQYrejnfmdotHdwowqfS1gdElBuMVqsp+d+1McLRLIXBu8Jg==; s=purelymail3; d=purelymail.com; v=1; bh=OFAPAVOqVuoi9a1p+QX8ZWSN2oGBayyv39emGYuW7Sk=; h=Feedback-ID:Received:From:Date:Subject:To;
-Feedback-ID: 68247:10037:null:purelymail
-X-Pm-Original-To: devicetree@vger.kernel.org
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 893203092;
-          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Fri, 14 Feb 2025 17:36:56 +0000 (UTC)
-From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
-Date: Fri, 14 Feb 2025 18:36:49 +0100
-Subject: [PATCH] dt-bindings: usb: samsung,exynos-dwc3 Add exynos990
+	s=arc-20240116; t=1739556205; c=relaxed/simple;
+	bh=k8MEGxuiLlmPuqpoYOTE5EbOg9Iz3g5ldM672B1/FXg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=XrLzcrTyr6gMXm5h0ONucGFmb5yJLfnoGxoxA2gc4SkQxBIPNGN/ZadlaY7egq0l/0FRjnFUh/j9saj5XXyn3jFnVqUigxzDeVeWDThqV74rq/NctwqXLyiOoHd1O64oKEAbWFi4D3pIJmOT4WYyQBaQISoH6C83oSAGY3GU24M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tj025-0000CI-3a; Fri, 14 Feb 2025 19:03:21 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tj021-000xHw-2A;
+	Fri, 14 Feb 2025 19:03:17 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tj021-000BqJ-1u;
+	Fri, 14 Feb 2025 19:03:17 +0100
+Message-ID: <8a9518fdfda805f52b96e93649c9ee39274f5844.camel@pengutronix.de>
+Subject: Re: [PATCH 1/4] [PATCH 1/4] reset: simple: Add syscon device
  compatible
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Wilson Ding <dingwei@marvell.com>, "linux-kernel@vger.kernel.org"
+	 <linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	 <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	 <linux-arm-kernel@lists.infradead.org>
+Cc: "andrew@lunn.ch" <andrew@lunn.ch>, "gregory.clement@bootlin.com"
+ <gregory.clement@bootlin.com>, "sebastian.hesselbarth@gmail.com"
+ <sebastian.hesselbarth@gmail.com>, "robh@kernel.org" <robh@kernel.org>, 
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+ <conor+dt@kernel.org>, Sanghoon Lee <salee@marvell.com>, Geethasowjanya
+ Akula <gakula@marvell.com>
+Date: Fri, 14 Feb 2025 19:03:17 +0100
+In-Reply-To: <BY3PR18MB4673C5C5CA684C64B2C218AAA7FE2@BY3PR18MB4673.namprd18.prod.outlook.com>
+References: <20250214065833.530276-1-dingwei@marvell.com>
+	 <20250214065833.530276-3-dingwei@marvell.com>
+	 <6dd9ed2750abe1f5174805673411ccb919ee5461.camel@pengutronix.de>
+	 <BY3PR18MB4673C5C5CA684C64B2C218AAA7FE2@BY3PR18MB4673.namprd18.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250214-exynos990-bindings-usb3-v1-1-3e5d2721c98c@mentallysanemainliners.org>
-X-B4-Tracking: v=1; b=H4sIADB/r2cC/x3MPQ6DMAxA4asgz7WUH1pIr4IYSONQLwbFAoEQd
- 2/U8Rveu0CpMCm8mwsK7ay8SIV9NPD5TjITcqoGZ9zTONsiHacsGoLByJJYZsVNo8dX7k3ubGi
- t76DWa6HMx/88jPf9A7LqK+RpAAAA
-X-Change-ID: 20250214-exynos990-bindings-usb3-6f80f7194137
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-usb@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Igor Belwon <igor.belwon@mentallysanemainliners.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739554614; l=1615;
- i=igor.belwon@mentallysanemainliners.org; s=20241206;
- h=from:subject:message-id; bh=OFAPAVOqVuoi9a1p+QX8ZWSN2oGBayyv39emGYuW7Sk=;
- b=uTaLuSG+epbVxDmg8aBZu28KGGGb2BkzA1eUtYOg78i++a0yLgSiKU1KhRpWn5Xx7FQI4+tZY
- D9YY22xxBWcBIOPqsdbbsJRS79i5ifu17aOBbWCNqJbd7wfh3IhOykU
-X-Developer-Key: i=igor.belwon@mentallysanemainliners.org; a=ed25519;
- pk=qKAuSTWKTaGQM0vwBxV0p6hPKMN4vh0CwZ+bozrG5lY=
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add a compatible for the exynos990-dwusb3 node. It's compatible with the
-exynos850 variant when using the highspeed mode.
+On Fr, 2025-02-14 at 17:13 +0000, Wilson Ding wrote:
+>=20
+> > -----Original Message-----
+> > From: Philipp Zabel <p.zabel@pengutronix.de>
+> > Sent: Friday, February 14, 2025 3:54 AM
+> > To: Wilson Ding <dingwei@marvell.com>; linux-kernel@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+> > Cc: andrew@lunn.ch; gregory.clement@bootlin.com;
+> > sebastian.hesselbarth@gmail.com; robh@kernel.org; krzk+dt@kernel.org;
+> > conor+dt@kernel.org; Sanghoon Lee <salee@marvell.com>; Geethasowjanya
+> > Akula <gakula@marvell.com>
+> > Subject: [EXTERNAL] Re: [PATCH 1/4] [PATCH 1/4] reset: simple: Add sysc=
+on
+> > device compatible
+> >=20
+> > On Do, 2025-02-13 at 22:58 -0800, Wilson Ding wrote:
+> > > Introduce the new ops for updating reset line and getting status.
+> > > Thus, the reset controller can be accessed through either direct I/O
+> > > or regmap interfaces.
+> >=20
+> > Please don't add a new layer of function pointer indirection, just add =
+a new
+> > struct reset_control_ops for the regmap variant.
+> >=20
+>=20
+> If just adding a new struct reset_control_ops for the regmap variant, alm=
+ost
+> all the functions will be duplicated for regmap variant.=20
+> Besides reset_simple_regmap_assert/deassert(), we also need to have the
+> regmap version of reset_simple_update().
 
-Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
----
-The Exynos990 SoC embeds a DWC3 USB3 DRD controller.
+Yes. You could also duplicate/fold update() into assert/deassert().
+It is trivial enough and the compiler will do that anyway.
 
-The controller's design is compatible with the Exynos850 design
-for high-speed mode.
+> Since reset_simple_reset() invokes
+> reset_simple_regmap_assert/deassert(), it also needs to be
+> duplicated.
 
-This patchset adds in the new exynos990-dwusb3 compatible.
----
- Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+That one could go through the data->rcdev.ops->assert/deassert function
+pointers and be reused. But I wonder if that one function is worth the
+added complexity.
 
-diff --git a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
-index 2b3430cebe99106f3b6201ab31d4d9e3fcc55627..136b14eecfe951dbc20377bffba1039fb1429f16 100644
---- a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
-@@ -17,6 +17,7 @@ properties:
-       - samsung,exynos5433-dwusb3
-       - samsung,exynos7-dwusb3
-       - samsung,exynos850-dwusb3
-+      - samsung,exynos990-dwusb3
- 
-   '#address-cells':
-     const: 1
-@@ -124,7 +125,9 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: samsung,exynos850-dwusb3
-+            enum:
-+              - samsung,exynos850-dwusb3
-+              - samsung,exynos990-dwusb3
-     then:
-       properties:
-         clocks:
+> In this case, there will be too many redundant codes in this file. I doub=
+t if
+> it is worth to use the reset simple code. Maybe it's better to fork a new=
+ file
+> for the syscon device, such as 'reset-simple-syscon.c'. What do you say?
 
----
-base-commit: 5cbcf2652f4cd84eac21f5e88fe2a0baecc601fb
-change-id: 20250214-exynos990-bindings-usb3-6f80f7194137
+That sounds sensible to me.
 
-Best regards,
--- 
-Igor Belwon <igor.belwon@mentallysanemainliners.org>
-
+regards
+Philipp
 
