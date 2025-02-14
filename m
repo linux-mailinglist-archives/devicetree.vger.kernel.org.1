@@ -1,141 +1,135 @@
-Return-Path: <devicetree+bounces-146862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F243A368AE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 23:46:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD46AA368F5
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 00:18:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9F5D168B58
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 22:46:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DB321895A86
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 23:18:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC281FC7E8;
-	Fri, 14 Feb 2025 22:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 388081FC7F2;
+	Fri, 14 Feb 2025 23:18:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ty/nb6T+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NNZcNG01"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D4A1519B5;
-	Fri, 14 Feb 2025 22:46:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C659136347;
+	Fri, 14 Feb 2025 23:18:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739573210; cv=none; b=WsoyIFFADfKmRbuaIibssYWiBGfy0ms+AyrHnW9Hnn5Apia/xY7P8AoGz2cKZ3Pr12Eusz0/fz8w11htl8Kl9PEGW5SN+LBR8qITE7gJpo7I9Dg8JUqsY6n9SjElYTw7O0SldYbgDuBVvC9pDGHckTE1Gb3Dpo8qB6b7mys7Fs8=
+	t=1739575103; cv=none; b=ocAMB2r0gfypgxMCDju1lCIU/McFpQLOSgKmGGRAO9x6KmLVX3KGNFrBVZqLBo/aX352Ifi3aGopw3jeqDXDSfGyiFJScIM+U250IUgUFUJAf+SJKjdLU2WnBVzu0kEtAvuHhShVtXU1rKwbrc7jjhPIC4082/T+HQmjWI0R5hc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739573210; c=relaxed/simple;
-	bh=vjcT0Vyex3C2dC9HqHDwhlorjag/egfPVMpz7+hJdc4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZAu04NK75DbIWfqt28pEPZP7Dhz1GVO6/BMiGTHiH7AMMyIlPVn7njv96raKAhnGMV3y5wlfCXPEXfvyN+Vbc9F5U6UzTqlee0Rwc0nAVmr5+OrLJvkr+JFjtRS4zV3efSQh9Q8Mpt/LhKn1HS78y4wEdVqE6jTb/db3Kastbiw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ty/nb6T+; arc=none smtp.client-ip=209.85.219.48
+	s=arc-20240116; t=1739575103; c=relaxed/simple;
+	bh=iKdwg7caL+Z5MhsUZ93wp99hJvluEHifUiLblOZmBMU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=R2+2o548FANbS+8n+9qd0c/nAWpV4ZyYE+eA1S42u5t4ao+Iki4aBpU7NhJ+7yVBiRk/KnLvwAhQSJrtjwwRSXmnVujAFtzgrB+H1KYe7V8PW9p4Np+bCosIQzRn+oD3LIGT93ezIHKnF+c1KstKn3iuOyrEdOJEdK10A/3+UUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NNZcNG01; arc=none smtp.client-ip=209.85.219.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-6dcdf23b4edso22759146d6.0;
-        Fri, 14 Feb 2025 14:46:48 -0800 (PST)
+Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-6e66b82547cso1066036d6.0;
+        Fri, 14 Feb 2025 15:18:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739573208; x=1740178008; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=QzS8d5DDLmgZezqT2Ij0pTgVW3KTLdNDnJ7HtnIABGs=;
-        b=Ty/nb6T+RKfp37W5YIGwEosREjp+C9ERCEF7njjffyV5iJAAO5yaRXI7+Ebd/V9ImT
-         +PxE4mAQV5ho8KokYjStonxbaxV9F6iY3DfdcAUMvL81OuGKFVk+OkWI0GEvxUfa1P6l
-         3o87NvTvGyE14535OP1UfRkQ/U8z38LIKqmTuuvz2wJQl+hRHCeWil/NQ+tySyoxZcyQ
-         lcM8eeGXhcE+Au+XxB5a72IZOGk1eRhLBL3yOvp1gY5vQNrgiPAavcfgIslOEnof3p6y
-         vDVKszwMxF7TT2e8TPgJpQ3gJSY+oSXd6mpztRydumZpgAlGhgESYL8NgWvsfPY7xuGl
-         Uu7g==
+        d=gmail.com; s=20230601; t=1739575100; x=1740179900; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xMEwzQYn4zO616CMfe0CcyNuWl1q/UQBw4c2wx2/Dpk=;
+        b=NNZcNG01KRbiLOx5ck35srf+32kU3XKptPX415vdyFh9y5m7L0uz6jCeVA2T1GqaV2
+         A7shdEdI8WlVf4qVV5R7lYahd5kaPcgM/Kg13Gl5PeFIiHfSwmqS4ZzT+tlInA6hqf0r
+         E/lfY81VYG5vFv2E/Mc53yLabBSo1vWi6NnSMwRnMaL2FBZPtevzZDJgCW+ILgtDj8CA
+         tbwtZS8WBfyANhUVE237WGpuaPu1TmpTs4P+As1kc06p+pg9i0J5knmXpevWAylHBRQ+
+         NCsMRIDlRGX6YkA/amiDq+RPc3l03rJdd/QToHaXKtSaFQHSA21HClIXP4ScZzcd3u2o
+         1lyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739573208; x=1740178008;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QzS8d5DDLmgZezqT2Ij0pTgVW3KTLdNDnJ7HtnIABGs=;
-        b=CSfPZ28tGnme87j3nH9DUNa2+w6l6g537g8fqdlxEugp0wy4cfyXjEutS/h1hDjS+3
-         s588SwsUQoYtr7GngMMCWn8U+PuiPCFuaQhulB24HqDx6qgfy3t26UFNA/qszYzGUKDd
-         veuRb5wFCZZ7VgGDM6hiGf1Aa8F2CzX4EvgC/EB3niJdmYKf5bvKMnSdQGByuzgIZaZH
-         dCgs7cIhuaeOPtb/YUv8w0+Sahu2oCGzsO1/UtXYlPzCKNj94w9wIpKb7Ra4EoPBTf2J
-         LZyvLQbBD517afMJfU7yDLQWz5Cdm55SDzCIr7JeREPiu5GA2qRRgkl2N0BrKH9fL6J+
-         PAJA==
-X-Forwarded-Encrypted: i=1; AJvYcCUlAjdwmITLYB6E8/lZ1fsTIrkZvO/5G3aWAOb9Ly4u5gtyAoiYhI7jMjKvXkV400Ya9y24DxvPTg0tjKka@vger.kernel.org, AJvYcCUzb73dd7ttDuKKStjAmzl8rsbLQZzO1Zb5Ck+Zp6GO3w9z0jDCOKYIZQTs2xN97deyU8gV4eRXbWkU@vger.kernel.org, AJvYcCWz43Up6zk0QS8lkKK0BOYQatEXQX+RWguMweO5OkgidDT9CNFJ4hG1e39q+jP862dfQoqSSIFCMUbw@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQduBxqIMQysDFCwgQzsQQ2qyY0RafetTtLkmwI2Q73aPM33GO
-	o0Esp4hggqaiBhgKdCAnzIx+xqBF7Ixrz1vnXCRJa13Tnw8HHwET
-X-Gm-Gg: ASbGncufpZ7oBh6nGLzVHWLOjyGtX0Yjho36aGLoKyCX03phd7eI/8TO9Yz9MPouwVH
-	5kVMt5PrUIaOcOdL/SBgl1HDS8hc3UhVZ8PudMi74OmCQGc7mrg0G3DEsCpdHgIAj0KzHxM+6HY
-	XCYl0UxBEOdBqluPpA/9NBY/OxOSY++HE+6JBxoIrREufLwGDybed186JrFFybnPZ/C0E3evJ+I
-	apleR6uQDsHHp9gUJFin2etxdElFItzJOJEmDnxq70bMnGl8NtTb7f2PTXGmYR7oHs=
-X-Google-Smtp-Source: AGHT+IHrfxO8rmBQBLUcjsYSsdpJHDyVL3wH/IflhNcUGb5EOUcTe+mYC/NamiViqeorO+aQjcRI5A==
-X-Received: by 2002:a05:6214:300e:b0:6e6:6bd8:3a82 with SMTP id 6a1803df08f44-6e66cd10d91mr13805796d6.42.1739573207607;
-        Fri, 14 Feb 2025 14:46:47 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6e65d785c1fsm25862706d6.35.2025.02.14.14.46.46
+        d=1e100.net; s=20230601; t=1739575100; x=1740179900;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xMEwzQYn4zO616CMfe0CcyNuWl1q/UQBw4c2wx2/Dpk=;
+        b=X7eLkeOaFp878fWXh60aQLwcZxMmVpAdTojspW9RoTN4QnGhQ+yzSfJgK3CzhDETQV
+         0kP7FzJBlynVmK5UOjdMvfhKbCfBvQ6COgnOdrl2QzmW8YQ1BnGfAFPrmEMraZZ96hZl
+         jb6wTU3hv5EsCh5FUf+7DVoQLU4gtkiaAphoqWn9Q2WkqFVlbQrM8jvBTF5a+rdmWE07
+         xj3QlCC4zYBain0WjS85dvQ/IUNJ326EOiyMLHVsMCShmez5QxduLHVhjlwadK7Teh/G
+         QZYPT8xb5pxev2dO25SnbkhangoK3qMGxJquwpYSNniGzBDbw+63zXtvZL2Yaf78AwOF
+         76tg==
+X-Forwarded-Encrypted: i=1; AJvYcCUxqy9h9IzcuugOXQV6JENxlW7O4cbpm3gWfONd/gUTECm4vC7aBnF9yNqxWPaFfUpG8RsNo84s81Rx1XA=@vger.kernel.org, AJvYcCVupnzJOQAO5ilWXByycRlI6ednd1oKXSRhMQhE1DDIxzD7V0zGnQCUsH32AwLtrt4t10Q5zs74Cnzh3S0=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeamnI+f+z2kw+sm2gjn1HVDvbY3rWxFJszDLcaka7TGtxs6ox
+	I/76g0zwW5LMLiqPKvOPA4j2D1xpljTnYhI74095QuZRQ0tymFkB
+X-Gm-Gg: ASbGncvtaTFLIZgYCg+BAcplBMBV2EEX7/8Qgw3OoM4iYYMh4wtuheAw38hHpIBIvQX
+	Vhmnh0Twr6fP5SqJgQX2+We7dyuTagSOJ4irtkjGwBh7lsDv7jYiTN9dVZB5i2AsUutxKGxZyUQ
+	2PWr0BMQdnJe9//NC8DPyYO2QaFSzPme6W3ylGkiztQjdIFg4CG5vIMQXuquCMDaK6ZKZtVN9vv
+	ce2RSd8+RFU9F2jLWCdVB3CHKTEPL0wPFgLfGOz4QeFTKtZiZIgaDiecXD4q4laJ4T8xQrJlrsm
+	V5C61X54+JimyOQEeR/y0xxdM5gmdgwVYa0Tsy3QfLUP4aORksuR5l8R
+X-Google-Smtp-Source: AGHT+IGqGDUKzGVDrn1hiBwRzg72mEtRCGzOpfcx7Tvn4SR6uuQjF8AXDua9Gm6UHAAjchJKgT/vdA==
+X-Received: by 2002:a05:620a:4113:b0:7c0:7818:8557 with SMTP id af79cd13be357-7c08aa823e3mr74609685a.10.1739575100368;
+        Fri, 14 Feb 2025 15:18:20 -0800 (PST)
+Received: from matt-Z87X-UD4H.mynetworksettings.com ([2600:1002:a012:94a2:4db7:5f35:9da:d13a])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c07c861221sm257829785a.85.2025.02.14.15.18.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Feb 2025 14:46:46 -0800 (PST)
-Date: Sat, 15 Feb 2025 06:46:38 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-rtc@vger.kernel.org
-Cc: Jingbao Qiu <qiujingbao.dlmu@gmail.com>, alexandre.belloni@bootlin.com, 
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	unicorn_wang@outlook.com, inochiama@outlook.com, paul.walmsley@sifive.com, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, dlan@gentoo.org, 
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v11 1/3] dt-bindings: rtc: sophgo: add RTC support for
- Sophgo CV1800 series SoC
-Message-ID: <s3fsc6cp2a7qx5qgo6akneh7l3a5aknzmtzpsq7lvdaleqaupa@6sqgfn4q7olq>
-References: <20250213215655.2311793-1-alexander.sverdlin@gmail.com>
- <20250213215655.2311793-2-alexander.sverdlin@gmail.com>
- <t6z6rikut2him5m57b6xubbguw3llczp4i6d5frcpuhlqihf2d@booethzadxsq>
- <964a016b944b459a9a914abac539350769323259.camel@gmail.com>
+        Fri, 14 Feb 2025 15:18:19 -0800 (PST)
+From: Matthew Majewski <mattwmajewski@gmail.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	"Dr. David Alan Gilbert" <linux@treblig.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	"Uwe Kleine-Konig" <u.kleine-koenig@baylibre.com>,
+	Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Matthew Majewski <mattwmajewski@gmail.com>
+Subject: [PATCH v2 0/2] media: m2m-deinterlace: add device-tree support
+Date: Fri, 14 Feb 2025 18:17:57 -0500
+Message-Id: <20250214231759.119481-1-mattwmajewski@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <964a016b944b459a9a914abac539350769323259.camel@gmail.com>
 
-On Fri, Feb 14, 2025 at 12:09:37PM +0100, Alexander Sverdlin wrote:
-> Hi Inochi,
-> 
-> On Fri, 2025-02-14 at 17:40 +0800, Inochi Amaoto wrote:
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +
-> > > +    rtc@5025000 {
-> > > +        compatible = "sophgo,cv1800-rtc";
-> > > +        reg = <0x5025000 0x2000>;
-> > > +        interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
-> > > +        clocks = <&osc>;
-> > > +    };
-> > > -- 
-> > 
-> > Just for curiosity, Do you leave a way to implement the
-> > 8051 subsys, since its registers are in rtc. (You can
-> > check the chapter "8051 subsystem" of the SG2002, which
-> > can be found at https://github.com/sophgo/sophgo-doc).
-> 
-> well, I suppose, you know the answer, according to how this has been modelled
-> within this series, all the functionality could only be added on top of RTC
-> driver. 
+Hello all, this patch series adds device-tree support for the generic
+m2m-deinterlace driver.
 
-I don't think it is a good idea to add everything in the RTC driver.
-I prefer to separate them to sub devices if possible, so we can
-make full use of all the framework provided.
+A specific dma controller channel can now be provided to the driver
+via the dt, but the driver still supports the original dma query if an
+of_node is not present. This should preserve backwards compatibility
+with platform drivers that directly instantiate the device.
 
-> Do you think it's time to re-design it as compatible = "syscon", "simple-mfd"
-> with children nodes for RTC and reboot?
-> 
+Probing the m2m-deinterlace device via device-tree was tested on the
+BeagleBone Black with an m2m-appropriate edma channel.
 
-Yes, but you should submit the 8051 and reboot device early, and
-change your binding with the right compatible. It is not allowd to
-change compatible after the binding is determined.
+Changes From v1 [1]:
+ - [PATCH 1/2] media: dt-bindings: Add dt bindings for m2m-deinterlace
+   - clarify device description and commit message for dt bindings
+   - correct format error reported by yamllint for dt bindings
+ - [PATCH 2/2] media: m2m-deinterlace: add device-tree support
+   - no changes
 
-Regards,
-Inochi
+[1] https://lore.kernel.org/linux-media/20250212170901.3881838-1-mattwmajewski@gmail.com/
+
+Best,
+
+Matthew Majewski
+
+Matthew Majewski (2):
+  media: dt-bindings: Add dt bindings for m2m-deinterlace device
+  media: m2m-deinterlace: add device-tree support
+
+ .../bindings/media/m2m-deinterlace.yaml       | 44 +++++++++++++++++++
+ drivers/media/platform/m2m-deinterlace.c      | 25 ++++++++---
+ 2 files changed, 63 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/m2m-deinterlace.yaml
+
+-- 
+2.25.1
+
 
