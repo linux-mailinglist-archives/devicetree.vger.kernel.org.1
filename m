@@ -1,365 +1,192 @@
-Return-Path: <devicetree+bounces-146481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E24DA35256
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 00:49:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4836A3526C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 01:08:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E380C16C94A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2025 23:49:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0A353AB87C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 00:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC2F2204085;
-	Thu, 13 Feb 2025 23:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3522A1FC3;
+	Fri, 14 Feb 2025 00:08:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wur5WtgZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99C091C862D;
-	Thu, 13 Feb 2025 23:49:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1112C17E
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 00:08:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739490569; cv=none; b=f1AWVgZgOlmmBKVZWnH+kWozGQK/FfltpjCtf+y35X7z68gfhAavH2sELQyfOshWJQdSTsmsrFoBopVKrxzopbKsJQ8XumQ1ZZfQRuZAiiPM20w795RKbQxS59xFRKrgYKA89deQrZ1iEZ9flvqpDZ/Mj7UEDrTBuiVHvVaz7jw=
+	t=1739491717; cv=none; b=DkTiepiPjHCm34aZaKXbePMQvYJd/NzofpNu/jFBfAZokSTWno+ll5YjeBDY8IUpzlwYCttec8/NLW/WC46ymUx8lKNcwT6v5TcS2CF8LFkRj79vJ3dedm5OUhXDCoRW3d+HFUkNaLOGhgsWvvJ9BztnB3lY/K1MW4KbWSBmH3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739490569; c=relaxed/simple;
-	bh=TVeRFk7ycU7njHNOdemkZv8QQ8OV7NulJ/zMmlRj5JY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=nevEi+iWfWnYAMvTdIwQmXT5XUbpbpPumNymI2Vdu8zE7kbSyQGD3yFe5/OpuF40WX+vrYLRkp4eFvfOdT1w/5823i1xkQ10murufRh+P3/RRwVeTX8WOIXgyuUgcN6V76uCHMmkoX3zaJh26NUX5qc0//W+fsI8z63mOdz2rZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 544D926BE;
-	Thu, 13 Feb 2025 15:49:47 -0800 (PST)
-Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 893243F5A1;
-	Thu, 13 Feb 2025 15:49:23 -0800 (PST)
-From: Robin Murphy <robin.murphy@arm.com>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Stuart Yoder <stuyoder@gmail.com>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>,
-	Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>
-Cc: linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Charan Teja Kalla <quic_charante@quicinc.com>
-Subject: [PATCH 2/2] iommu: Get DT/ACPI parsing into the proper probe path
-Date: Thu, 13 Feb 2025 23:49:00 +0000
-Message-Id: <c2f0ae276fd5a18e1653bae8bb0c51670e35b283.1739486121.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
-In-Reply-To: <cover.1739486121.git.robin.murphy@arm.com>
-References: <cover.1739486121.git.robin.murphy@arm.com>
+	s=arc-20240116; t=1739491717; c=relaxed/simple;
+	bh=MAAfvqX3cGJML+KahVnzZbIOXXPipZMxo9WY2NDQPoo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=r9Aj62+mMrvO3CmxxR86BQ+opD6MOkCB9mBXxZx9WEQmWwLG76Q8YsSdSTh0xH3bzNOs8n9TmoSzYQ+GNDr8oHk1zez0+gykVcwzy84AnBCErdgxgsKwp6aMHB7KuAhBdSO5OEiC0vhJPHeK7iLAsA2fDJOWgebc6ARRCq8fwqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wur5WtgZ; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e53ef7462b6so1276474276.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 16:08:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739491713; x=1740096513; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C3lBKZGOyoKxfPqCyoT1cGjFSA+s77EMfO8EHu92tNE=;
+        b=wur5WtgZ8n/2ziOvz97HqK0CTEWvBIIi1D5l5oTBvtPkXsUPnmqlnzJyAf2/yk5H3u
+         +Y4BA6eQ5JQ4WqfV/OlYtC7Tj3zp2iFOKCRfn05y+dnLZ8U8gdhofWQHQdoeJjlwvw54
+         ZX1FkqMflPASQ92pHA3y7qBmRS7Um6mTPHYj/s0i/illL6RxMym01HT9oNLKXc6LxY/r
+         3iAPZP/YZZYuvq1zm1YqZPqgTqXGC3D3vce8fdww76zW5LCUOrPGdmIWSFuX2az4WG0B
+         VHP9seZlfneS8oLnEFvYV6nenYooZzy/alMFQKLZ02XShzTU8C6HIytF0uNEsA6TEA/f
+         4WxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739491713; x=1740096513;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=C3lBKZGOyoKxfPqCyoT1cGjFSA+s77EMfO8EHu92tNE=;
+        b=GpijqkanGSL+dhfL5nYRNjwJ/lVeNRmMTOqXKn/jVsrdaYNgRQWueU3jmwiCtZ0mTW
+         JXqrJXM7swrBzxj/+xXc+QpjkZ5wHul6dkFpSU/lYyWJoRweGYNklmgK0NfI5YuxyBWC
+         g0C+/0PoZi3QGgX5V2/gPEQw/BPEQIMiYlHedgjL1X7kFKiYqgfaLYWTSXuP71sW50Rg
+         19KCJgbxHFh/azuukShovNBhGwEWp1f62ykKPNSUp9V8gtx2xDvh+kgYag2vFr03FQYQ
+         BRj6+HibJJSoM22QRGbi3zqKsoVT3jSF0MWiFUaSmKFN2TKAbVJ9W+ukAMoTUSbXrUBG
+         25yg==
+X-Forwarded-Encrypted: i=1; AJvYcCUj3RMXSm9DVaI5IVrrQQPbbDn3zwJ+76gbONDfBMG7ALR5nyIety5u7gFDv/PKnAjTST0Td8OofARG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJnYOaxY9sClYt80rHVwtcfG8TamtrmfqrBX+4i7dD73Lrx0h4
+	gJIZi7czPTQtH2sR2nCPR6Xwjq3BMuk2DSi5eZtpC2GGsfm5g/7e1ptwuReJ5gKflQN0jH0XtWR
+	mcXQUbrr6Zn9ATFSlqAHlI9EDwgJowlvaOnhHZg==
+X-Gm-Gg: ASbGncu2/FzQW67l8MSBf94qQ0FCcc+0jdEv2ZTx6div9HqY7vY8pA5gLhT8VrugIOS
+	OWiiDKJJQPQh4/brMLNNbw6EE81XsXrg3FUqwzFYRP1DZir35ODyIsnwJfza/FgDhDzRg6UoFGK
+	HXyJPTnNDGbpGw6t3g410Q4/SPT3Su+bQ=
+X-Google-Smtp-Source: AGHT+IHHB9aqmzlCmvvbOZ0op+LIbE1hTTkoDV6gv5oj2H7T56oz2T4r9lSa8//BdTV0olXsdNEbfdpHv6M7nkxz/Fw=
+X-Received: by 2002:a05:6902:844:b0:e5d:b88a:5537 with SMTP id
+ 3f1490d57ef6-e5db88a57afmr2934415276.47.1739491713003; Thu, 13 Feb 2025
+ 16:08:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250213204044.660-1-wachiturroxd150@gmail.com> <20250213204044.660-3-wachiturroxd150@gmail.com>
+In-Reply-To: <20250213204044.660-3-wachiturroxd150@gmail.com>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Thu, 13 Feb 2025 18:08:21 -0600
+X-Gm-Features: AWEUYZkHiLNGtqh6JY6R15-hw34etZLDV9fUZUEOBeHdZwrkxJs0njIeYoVmXyc
+Message-ID: <CAPLW+4nJVf0raJ-O3u6uUteBi--N5xGwvzXp7cHqbkdMJ8gCSQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] spi: s3c64xx: add support exynos990-spi to new
+ port config data
+To: Denzeel Oliva <wachiturroxd150@gmail.com>
+Cc: andi.shyti@kernel.org, broonie@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com, 
+	linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-In hindsight, there were some crucial subtleties overlooked when moving
-{of,acpi}_dma_configure() to driver probe time to allow waiting for
-IOMMU drivers with -EPROBE_DEFER, and these have become an
-ever-increasing source of problems. The IOMMU API has some fundamental
-assumptions that iommu_probe_device() is called for every device added
-to the system, in the order in which they are added. Calling it in a
-random order or not at all dependent on driver binding leads to
-malformed groups, a potential lack of isolation for devices with no
-driver, and all manner of unexpected concurrency and race conditions.
-We've attempted to mitigate the latter with point-fix bodges like
-iommu_probe_device_lock, but it's a losing battle and the time has come
-to bite the bullet and address the true source of the problem instead.
+On Thu, Feb 13, 2025 at 2:41=E2=80=AFPM Denzeel Oliva <wachiturroxd150@gmai=
+l.com> wrote:
+>
+> Exynos990 uses the same version of USI SPI (v2.1) as the GS101.
+> Removed fifo_lvl_mask and rx_lvl_offset, and changed to the new data
+> configuration port.
+>
+> The difference from other new port configuration data is that fifo_depth
+> is only specified in fifo-depth in DT.
+>
 
-The crux of the matter is that the firmware parsing actually serves two
-distinct purposes; one is identifying the IOMMU instance associated with
-a device so we can check its availability, the second is actually
-telling that instance about the relevant firmware-provided data for the
-device. However the latter also depends on the former, and at the time
-there was no good place to defer and retry that separately from the
-availability check we also wanted for client driver probe.
+In the code below I can see this bit:
 
-Nowadays, though, we have a proper notion of multiple IOMMU instances in
-the core API itself, and each one gets a chance to probe its own devices
-upon registration, so we can finally make that work as intended for
-DT/IORT/VIOT platforms too. All we need is for iommu_probe_device() to
-be able to run the iommu_fwspec machinery currently buried deep in the
-wrong end of {of,acpi}_dma_configure(). Luckily it turns out to be
-surprisingly straightforward to bootstrap this transformation by pretty
-much just calling the same path twice. At client driver probe time,
-dev->driver is obviously set; conversely at device_add(), or a
-subsequent bus_iommu_probe(), any device waiting for an IOMMU really
-should *not* have a driver already, so we can use that as a condition to
-disambiguate the two cases, and avoid recursing back into the IOMMU core
-at the wrong times.
+    /* If not specified in DT, defaults to 64 */
+    .fifo_depth     =3D 64,
 
-Obviously this isn't the nicest thing, but for now it gives us a
-functional baseline to then unpick the layers in between without many
-more awkward cross-subsystem patches. There are some minor side-effects
-like dma_range_map potentially being created earlier, and some debug
-prints being repeated, but these aren't significantly detrimental. Let's
-make things work first, then deal with making them nice.
+Is that intentional or is it some leftover that was meant to be
+removed before the submission? From s3c64xx_spi_probe() it looks like
+the "fifo-depth" DT property is ignored if .fifo_depth is set in the
+port_config:
 
-With the basic flow finally in the right order again, the next step is
-probably turning the bus->dma_configure paths inside-out, since all we
-really need from bus code is its notion of which device and input ID(s)
-to parse the common firmware properties with...
+    if (sdd->port_conf->fifo_depth)
+        sdd->fifo_depth =3D sdd->port_conf->fifo_depth;
+    else if (of_property_read_u32(pdev->dev.of_node, "fifo-depth",
+&sdd->fifo_depth))
+        sdd->fifo_depth =3D FIFO_DEPTH(sdd);
 
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
- drivers/acpi/arm64/dma.c        |  5 ++++
- drivers/acpi/scan.c             | 10 +++-----
- drivers/amba/bus.c              |  2 +-
- drivers/base/platform.c         |  2 +-
- drivers/bus/fsl-mc/fsl-mc-bus.c |  2 +-
- drivers/cdx/cdx.c               |  2 +-
- drivers/iommu/iommu.c           | 43 ++++++++++++++++++++++++---------
- drivers/iommu/of_iommu.c        | 10 +++++++-
- drivers/of/device.c             |  7 +++++-
- drivers/pci/pci-driver.c        |  2 +-
- 10 files changed, 60 insertions(+), 25 deletions(-)
+Btw, wouldn't it be reasonable to flip this probe() code the other way
+around? So that the fact that the DT property is available is
+prioritized, not its port_config counterpart. That would make it
+possible to provide a sensible default in the port_config structure
+and at the same time be able to override it by specifying the DT
+property for nodes where it's needed. Just a thought, not strictly
+related to this patch.
 
-diff --git a/drivers/acpi/arm64/dma.c b/drivers/acpi/arm64/dma.c
-index 52b2abf88689..f30f138352b7 100644
---- a/drivers/acpi/arm64/dma.c
-+++ b/drivers/acpi/arm64/dma.c
-@@ -26,6 +26,11 @@ void acpi_arch_dma_setup(struct device *dev)
- 	else
- 		end = (1ULL << 32) - 1;
- 
-+	if (dev->dma_range_map) {
-+		dev_dbg(dev, "dma_range_map already set\n");
-+		return;
-+	}
-+
- 	ret = acpi_dma_get_range(dev, &map);
- 	if (!ret && map) {
- 		end = dma_range_map_max(map);
-diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-index 9f4efa8f75a6..42b8f1833c3c 100644
---- a/drivers/acpi/scan.c
-+++ b/drivers/acpi/scan.c
-@@ -1619,6 +1619,9 @@ static int acpi_iommu_configure_id(struct device *dev, const u32 *id_in)
- {
- 	int err;
- 
-+	if (device_iommu_mapped(dev))
-+		return 0;
-+
- 	/* Serialise to make dev->iommu stable under our potential fwspec */
- 	mutex_lock(&iommu_probe_device_lock);
- 	/* If we already translated the fwspec there is nothing left to do */
-@@ -1632,13 +1635,6 @@ static int acpi_iommu_configure_id(struct device *dev, const u32 *id_in)
- 		err = viot_iommu_configure(dev);
- 	mutex_unlock(&iommu_probe_device_lock);
- 
--	/*
--	 * If we have reason to believe the IOMMU driver missed the initial
--	 * iommu_probe_device() call for dev, replay it to get things in order.
--	 */
--	if (!err && dev->bus)
--		err = iommu_probe_device(dev);
--
- 	return err;
- }
- 
-diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
-index 8ef259b4d037..abbb37d4d228 100644
---- a/drivers/amba/bus.c
-+++ b/drivers/amba/bus.c
-@@ -364,7 +364,7 @@ static int amba_dma_configure(struct device *dev)
- 		ret = acpi_dma_configure(dev, attr);
- 	}
- 
--	if (!ret && !drv->driver_managed_dma) {
-+	if (dev->driver && !ret && !drv->driver_managed_dma) {
- 		ret = iommu_device_use_default_domain(dev);
- 		if (ret)
- 			arch_teardown_dma_ops(dev);
-diff --git a/drivers/base/platform.c b/drivers/base/platform.c
-index 6f2a33722c52..4c7570d637f9 100644
---- a/drivers/base/platform.c
-+++ b/drivers/base/platform.c
-@@ -1451,7 +1451,7 @@ static int platform_dma_configure(struct device *dev)
- 		attr = acpi_get_dma_attr(to_acpi_device_node(fwnode));
- 		ret = acpi_dma_configure(dev, attr);
- 	}
--	if (ret || drv->driver_managed_dma)
-+	if (!dev->driver || ret || drv->driver_managed_dma)
- 		return ret;
- 
- 	ret = iommu_device_use_default_domain(dev);
-diff --git a/drivers/bus/fsl-mc/fsl-mc-bus.c b/drivers/bus/fsl-mc/fsl-mc-bus.c
-index d1f3d327ddd1..fb58833b222a 100644
---- a/drivers/bus/fsl-mc/fsl-mc-bus.c
-+++ b/drivers/bus/fsl-mc/fsl-mc-bus.c
-@@ -153,7 +153,7 @@ static int fsl_mc_dma_configure(struct device *dev)
- 	else
- 		ret = acpi_dma_configure_id(dev, DEV_DMA_COHERENT, &input_id);
- 
--	if (!ret && !mc_drv->driver_managed_dma) {
-+	if (dev->driver && !ret && !mc_drv->driver_managed_dma) {
- 		ret = iommu_device_use_default_domain(dev);
- 		if (ret)
- 			arch_teardown_dma_ops(dev);
-diff --git a/drivers/cdx/cdx.c b/drivers/cdx/cdx.c
-index c573ed2ee71a..d5761b96a412 100644
---- a/drivers/cdx/cdx.c
-+++ b/drivers/cdx/cdx.c
-@@ -360,7 +360,7 @@ static int cdx_dma_configure(struct device *dev)
- 		return ret;
- 	}
- 
--	if (!ret && !cdx_drv->driver_managed_dma) {
-+	if (dev->driver && !ret && !cdx_drv->driver_managed_dma) {
- 		ret = iommu_device_use_default_domain(dev);
- 		if (ret)
- 			arch_teardown_dma_ops(dev);
-diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
-index 2486f6d6ef68..89f634d46aad 100644
---- a/drivers/iommu/iommu.c
-+++ b/drivers/iommu/iommu.c
-@@ -519,17 +519,6 @@ static int __iommu_probe_device(struct device *dev, struct list_head *group_list
- 	struct group_device *gdev;
- 	int ret;
- 
--	/*
--	 * For FDT-based systems and ACPI IORT/VIOT, drivers register IOMMU
--	 * instances with non-NULL fwnodes, and client devices should have been
--	 * identified with a fwspec by this point. Otherwise, we can currently
--	 * assume that only one of Intel, AMD, s390, PAMU or legacy SMMUv2 can
--	 * be present, and that any of their registered instances has suitable
--	 * ops for probing, and thus cheekily co-opt the same mechanism.
--	 */
--	ops = iommu_fwspec_ops(dev_iommu_fwspec_get(dev));
--	if (!ops)
--		return -ENODEV;
- 	/*
- 	 * Serialise to avoid races between IOMMU drivers registering in
- 	 * parallel and/or the "replay" calls from ACPI/OF code via client
-@@ -539,9 +528,41 @@ static int __iommu_probe_device(struct device *dev, struct list_head *group_list
- 	 */
- 	lockdep_assert_held(&iommu_probe_device_lock);
- 
-+	/*
-+	 * For FDT-based systems and ACPI IORT/VIOT, the common firmware parsing
-+	 * is buried in the bus dma_configure path. Properly unpicking that is
-+	 * still a fairly big job, so for now just invoke the whole thing. Our
-+	 * bus_iommu_probe() walk may see devices with drivers already bound,
-+	 * but that must mean they're already configured - either probed by
-+	 * another IOMMU, or there was no IOMMU for iommu_fwspec_init() to wait
-+	 * for - so either way we can safely skip this and avoid worrying about
-+	 * those recursing back here thinking they need a replay call.
-+	 */
-+	if (!dev->driver && dev->bus->dma_configure) {
-+		mutex_unlock(&iommu_probe_device_lock);
-+		dev->bus->dma_configure(dev);
-+		mutex_lock(&iommu_probe_device_lock);
-+	}
-+
-+	/*
-+	 * At this point, either valid devices now have a fwspec, or we can
-+	 * assume that only one of Intel, AMD, s390, PAMU or legacy SMMUv2 can
-+	 * be present, and that any of their registered instances has suitable
-+	 * ops for probing, and thus cheekily co-opt the same mechanism.
-+	 */
-+	ops = iommu_fwspec_ops(dev_iommu_fwspec_get(dev));
-+	if (!ops)
-+		return -ENODEV;
-+
- 	/* Device is probed already if in a group */
- 	if (dev->iommu_group)
- 		return 0;
-+	/*
-+	 * And if we do now see any replay calls, they would indicate someone
-+	 * misusing the dma_configure path outside bus code.
-+	 */
-+	if (dev_iommu_fwspec_get(dev) && dev->driver)
-+		dev_WARN(dev, "late IOMMU probe at driver bind, something fishy here!\n");
- 
- 	ret = iommu_init_device(dev, ops);
- 	if (ret)
-diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-index 97987cd78da9..c9aaf5783b77 100644
---- a/drivers/iommu/of_iommu.c
-+++ b/drivers/iommu/of_iommu.c
-@@ -121,6 +121,9 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
- 	if (!master_np)
- 		return -ENODEV;
- 
-+	if (device_iommu_mapped(dev))
-+		return 0;
-+
- 	/* Serialise to make dev->iommu stable under our potential fwspec */
- 	mutex_lock(&iommu_probe_device_lock);
- 	if (dev_iommu_fwspec_get(dev)) {
-@@ -151,7 +154,12 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
- 		iommu_fwspec_free(dev);
- 	mutex_unlock(&iommu_probe_device_lock);
- 
--	if (!err && dev->bus)
-+	/*
-+	 * If we have reason to believe the IOMMU driver missed the initial
-+	 * iommu_probe_device() call for dev, try to fix it up. This should
-+	 * no longer happen unless of_dma_configure() is being misused.
-+	 */
-+	if (!err && dev->driver)
- 		err = iommu_probe_device(dev);
- 
- 	if (err && err != -EPROBE_DEFER)
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index edf3be197265..5053e5d532cc 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -99,6 +99,11 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 	bool coherent, set_map = false;
- 	int ret;
- 
-+	if (dev->dma_range_map) {
-+		dev_dbg(dev, "dma_range_map already set\n");
-+		goto skip_map;
-+	}
-+
- 	if (np == dev->of_node)
- 		bus_np = __of_get_dma_parent(np);
- 	else
-@@ -119,7 +124,7 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 		end = dma_range_map_max(map);
- 		set_map = true;
- 	}
--
-+skip_map:
- 	/*
- 	 * If @dev is expected to be DMA-capable then the bus code that created
- 	 * it should have initialised its dma_mask pointer by this point. For
-diff --git a/drivers/pci/pci-driver.c b/drivers/pci/pci-driver.c
-index f57ea36d125d..143b2f2081ea 100644
---- a/drivers/pci/pci-driver.c
-+++ b/drivers/pci/pci-driver.c
-@@ -1653,7 +1653,7 @@ static int pci_dma_configure(struct device *dev)
- 
- 	pci_put_host_bridge_device(bridge);
- 
--	if (!ret && !driver->driver_managed_dma) {
-+	if (dev->driver && !ret && !driver->driver_managed_dma) {
- 		ret = iommu_device_use_default_domain(dev);
- 		if (ret)
- 			arch_teardown_dma_ops(dev);
--- 
-2.39.2.101.g768bb238c484.dirty
+> Exynos 990 data for SPI:
+> - The depth of the FIFO is not the same size on all nodes.
+>   A depth of 64 bytes is used on most nodes,
+>   while a depth of 256 bytes is used on 3 specific nodes (SPI 8/9/10).
+> - The Exynos 990 only allows access to 32-bit registers.
+>   If access is attempted with a different size, an error interrupt
+>   is generated. Therefore, it is necessary to perform write accesses to
+>   registers in 32-bit blocks.
+> - To prevent potential issues when fifo-depth is not explicitly set in
+>   DT, a default value of 64 is assigned to ensure stable operation.
+>
+> Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
+> ---
+>  drivers/spi/spi-s3c64xx.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
+> index 389275dbc..5f55763f9 100644
+> --- a/drivers/spi/spi-s3c64xx.c
+> +++ b/drivers/spi/spi-s3c64xx.c
+> @@ -1586,6 +1586,20 @@ static const struct s3c64xx_spi_port_config exynos=
+850_spi_port_config =3D {
+>         .quirks         =3D S3C64XX_SPI_QUIRK_CS_AUTO,
+>  };
+>
+> +static const struct s3c64xx_spi_port_config exynos990_spi_port_config =
+=3D {
+> +       /* If not specified in DT, defaults to 64 */
+> +       .fifo_depth     =3D 64,
 
+Talking about this line here.
+
+> +       .rx_fifomask    =3D S3C64XX_SPI_ST_RX_FIFO_RDY_V2,
+> +       .tx_fifomask    =3D S3C64XX_SPI_ST_TX_FIFO_RDY_V2,
+> +       .tx_st_done     =3D 25,
+> +       .clk_div        =3D 4,
+> +       .high_speed     =3D true,
+> +       .clk_from_cmu   =3D true,
+> +       .has_loopback   =3D true,
+> +       .use_32bit_io   =3D true,
+> +       .quirks         =3D S3C64XX_SPI_QUIRK_CS_AUTO,
+> +};
+> +
+>  static const struct s3c64xx_spi_port_config exynosautov9_spi_port_config=
+ =3D {
+>         /* fifo_lvl_mask is deprecated. Use {rx, tx}_fifomask instead. */
+>         .fifo_lvl_mask  =3D { 0x1ff, 0x1ff, 0x7f, 0x7f, 0x7f, 0x7f, 0x1ff=
+, 0x7f,
+> @@ -1664,6 +1678,9 @@ static const struct of_device_id s3c64xx_spi_dt_mat=
+ch[] =3D {
+>         { .compatible =3D "samsung,exynos850-spi",
+>                         .data =3D &exynos850_spi_port_config,
+>         },
+> +       { .compatible =3D "samsung,exynos990-spi",
+> +                       .data =3D &exynos990_spi_port_config,
+> +       },
+>         { .compatible =3D "samsung,exynosautov9-spi",
+>                         .data =3D &exynosautov9_spi_port_config,
+>         },
+> --
+> 2.48.1
+>
+>
 
