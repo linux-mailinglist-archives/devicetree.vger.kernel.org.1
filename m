@@ -1,168 +1,145 @@
-Return-Path: <devicetree+bounces-146852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0FA8A36839
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 23:24:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3F94A36855
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 23:37:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 327D83AE8BC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 22:24:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 967A1189361F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 22:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD8D31FC0EB;
-	Fri, 14 Feb 2025 22:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E720C1FC7CE;
+	Fri, 14 Feb 2025 22:37:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="J+H356ae"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hWbPBGNw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5E8F1953A9;
-	Fri, 14 Feb 2025 22:24:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D75C41DE2B4;
+	Fri, 14 Feb 2025 22:37:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739571868; cv=none; b=FSOXaCIpdETserHivQNhHBuTos0AGh7RS6isiV7GzAmFu2B+Sge7etIXE6e/EsnjGS6pfqDpm5TvAz8cNcHPPRkO1BQ38qZ1iNiRquazx4X4O3ID9iQwPcwvIi85yzxKTnEYvFJwlM2MOuLm9COXmU5lQro7ftjBLBF7vDJxdhQ=
+	t=1739572640; cv=none; b=jf5KmH62rz06yd5v3IC4OpqQpuceO1RObqYDAvvk6gOtby57O/hjHWlwRW2fqQH+EaieIr7sRlZ6aBQ0Zz6Stir8q6+0HZH2XaSm12Hx/tRjbzg4Mff3YKCWOB7TFJtfvAOmoz9Tgfy/K3Htp/mBfO3xG5+hEbPqQyV4XS4hbQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739571868; c=relaxed/simple;
-	bh=zpdzKUjM4S1PhHKJiJ53RHN7PR5ccynfGVewTCW9IMA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qSQFBFoHbnYS07qAG2atrJXuzf7ofpLR58l4vrSh6Fsgr9uWuo/JWllUP9Ncm67udOFLYmAhvgdv15IJVMmtxomWWqFeFJvmJ7SbjJPRw2MKQwyig+IVex7FPkM+AL+pkBpEsOkF/zQ0TwbubMgN35E/5//RdzEXMTSqvxJT+0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=J+H356ae; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=k2vnMCPQOojSTe6uMJg0l2Vez2CaiS93NKFlwUuMrgA=; b=J+H356ae4zUnjMOSGBw1B3YZL7
-	/T2/TQgh82Y03mrVH7Xlc4/P5f+G6nyffpsQd00bKp+zPTdNie2VrURG+797OKSxdjvDum5eiC+bs
-	qHMk3BxdEHul+ZH7et+bTP4Y+o5gcsLi4SbnU0vuUSF8E7sEBNoQQzIRom+monEH+SLBayf15MBme
-	2oMBHqCtLJkrptfSyladSdfbK3AvTfIvTdXdoi5VcHinbIQInl+jGlF+jW/0BesYnZSp4+lrQVfkJ
-	IEAHmyvio8ATJxeWo2hzwsGIkT5/AgfdQ1OTp+p/BKxLIAeibHgUhXlnrzFD3LZY8cLnX8IzN/aDf
-	oAE+TReg==;
-Received: from i53875bc0.versanet.de ([83.135.91.192] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tj46c-0003Go-2m; Fri, 14 Feb 2025 23:24:18 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>
-Cc: hjc@rock-chips.com, krzk+dt@kernel.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- derek.foreman@collabora.com, detlev.casanova@collabora.com,
- daniel@fooishbar.org, robh@kernel.org, sebastian.reichel@collabora.com,
- Andy Yan <andy.yan@rock-chips.com>
-Subject:
- Re: [PATCH v14 04/13] drm/rockchip: vop2: Merge vop2_cluster/esmart_init
- function
-Date: Fri, 14 Feb 2025 23:24:17 +0100
-Message-ID: <8686639.gsGJI6kyIV@diego>
-In-Reply-To: <20250212093530.52961-5-andyshrk@163.com>
-References:
- <20250212093530.52961-1-andyshrk@163.com>
- <20250212093530.52961-5-andyshrk@163.com>
+	s=arc-20240116; t=1739572640; c=relaxed/simple;
+	bh=r/NYCYjMogkoPU8rkXkhPxSGNwsywVNs1fQ8IZdA0n4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Vx3uZIgq5f8qh+l7vC9k0TH/PhfN8eVLQhweE1mU0Uars5QFhYm92rOsCIUsZesdgUl5d4sK/dDTyHXGkqaiOk86e+9xHqgTzbQrAuPvO+WiZjJc2Vn+WXk/XPiDDk9AoqvY77qLPkrn+z7GYJ85samrfIljmC3H/dHWP8/td3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hWbPBGNw; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51EMb3Nc1043280
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Fri, 14 Feb 2025 16:37:04 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1739572624;
+	bh=PSnKZ9pgEEZ6nNIIZ9dM7rFmu3IDFEefyD7U0e7a6so=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=hWbPBGNwNNtgiRAJOFdPM4u/GvQuf1BrvUi2N42/b7mUgj0g9ooN1VSt2mPP8O5P0
+	 sjbSOkhSp3d/M34ei97ktwEYN9lzC7bFLfFByLT/ZS7g+63VzJpgyVdha3tOfgLT0Y
+	 sV76BPCsP8lE+fF9E+uJ/eQmpGzKqV5qX7Z32z60=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51EMb3Zd083376;
+	Fri, 14 Feb 2025 16:37:03 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 14
+ Feb 2025 16:37:03 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 14 Feb 2025 16:37:03 -0600
+Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51EMb3Ow035234;
+	Fri, 14 Feb 2025 16:37:03 -0600
+Message-ID: <b3e96184-e20c-4935-b86c-73c95b00b9fc@ti.com>
+Date: Fri, 14 Feb 2025 16:37:03 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Add alias for RTC
+To: Dhruva Gole <d-gole@ti.com>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <msp@baylibre.com>,
+        <khilman@baylibre.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20250212210604.745175-1-k-willis@ti.com>
+ <20250214062141.gdmkepuuyqb22xuh@lcpd911>
+Content-Language: en-US
+From: Kendall Willis <k-willis@ti.com>
+In-Reply-To: <20250214062141.gdmkepuuyqb22xuh@lcpd911>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Am Mittwoch, 12. Februar 2025, 10:34:59 MEZ schrieb Andy Yan:
-> From: Andy Yan <andy.yan@rock-chips.com>
+On 2/14/25 00:21, Dhruva Gole wrote:
+> On Feb 12, 2025 at 15:06:04 -0600, Kendall Willis wrote:
+>> From: Vibhore Vardhan <vibhore@ti.com>
+>>
+>> Adds alias for SoC RTC so that it gets assigned rtc0. PMIC node is
+>> assisgned rtc1 so that PMIC RTC gets probed as rtc1. This makes it
 > 
-> Now these two function share the same logic, the can
-> be merged as one.
+> Nit: Fix the spelling of assigned please.
 > 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> ---
+>> consistent for testing rtcwake with other AM62 devices where rtc0
+>> is SoC RTC.
+>>
+>> Signed-off-by: Vibhore Vardhan <vibhore@ti.com>
+>> [k-willis@ti.com: Reworded commit message]
+>> Signed-off-by: Kendall Willis <k-willis@ti.com>
+>> ---
+>> Tested with rtcwake on AM62A.
 > 
-> (no changes since v1)
+> Any test logs you can provide would be great!
 > 
->  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 42 +++++---------------
->  1 file changed, 11 insertions(+), 31 deletions(-)
+>>
+>> Original patch for AM62A existed in the TI Vendor tree with Vibhore's
+>> authorship:
+>> https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/?h=ti-linux-6.6.y&id=f745d9063212d1088dcfb068ecb4b16648b96487
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>> index a6f0d87a50d8..51ea961f166e 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>> @@ -22,6 +22,8 @@ aliases {
+>>   		serial3 = &main_uart1;
+>>   		mmc0 = &sdhci0;
+>>   		mmc1 = &sdhci1;
+>> +		rtc0 = &wkup_rtc0;
+>> +		rtc1 = &tps659312;
+>>   	};
+>>   
+>>   	chosen {
+>>
+>> base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
 > 
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> index a0d961cb5d21..844df4001159 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> @@ -2424,18 +2424,18 @@ static int vop2_find_rgb_encoder(struct vop2 *vop2)
->  	return -ENOENT;
->  }
->  
-> -static int vop2_cluster_init(struct vop2_win *win)
-> +static int vop2_regmap_init(struct vop2_win *win, const struct reg_field *regs,
-> +			    int nr_regs)
->  {
->  	struct vop2 *vop2 = win->vop2;
->  	int i;
->  
-> -	for (i = 0; i < vop2->data->nr_cluster_regs; i++) {
-> +	for (i = 0; i < nr_regs; i++) {
->  		const struct reg_field field = {
-> -			.reg = (vop2->data->cluster_reg[i].reg != 0xffffffff) ?
-> -				vop2->data->cluster_reg[i].reg + win->offset :
-> -				vop2->data->cluster_reg[i].reg,
-> -			.lsb = vop2->data->cluster_reg[i].lsb,
-> -			.msb = vop2->data->cluster_reg[i].msb
-> +			.reg = (regs[i].reg != 0xffffffff) ?
-> +				regs[i].reg + win->offset : regs[i].reg,
-> +			.lsb = regs[i].lsb,
-> +			.msb = regs[i].msb
->  		};
->  
->  		win->reg[i] = devm_regmap_field_alloc(vop2->dev, vop2->map, field);
-> @@ -2446,28 +2446,6 @@ static int vop2_cluster_init(struct vop2_win *win)
->  	return 0;
->  };
->  
-> -static int vop2_esmart_init(struct vop2_win *win)
-> -{
-> -	struct vop2 *vop2 = win->vop2;
-> -	int i;
-> -
-> -	for (i = 0; i < vop2->data->nr_smart_regs; i++) {
-> -		const struct reg_field field = {
-> -			.reg = (vop2->data->smart_reg[i].reg != 0xffffffff) ?
-> -				vop2->data->smart_reg[i].reg + win->offset :
-> -				vop2->data->smart_reg[i].reg,
-> -			.lsb = vop2->data->smart_reg[i].lsb,
-> -			.msb = vop2->data->smart_reg[i].msb
-> -		};
-> -
-> -		win->reg[i] = devm_regmap_field_alloc(vop2->dev, vop2->map, field);
-> -		if (IS_ERR(win->reg[i]))
-> -			return PTR_ERR(win->reg[i]);
-> -	}
-> -
-> -	return 0;
-> -}
-> -
->  static int vop2_win_init(struct vop2 *vop2)
->  {
->  	const struct vop2_data *vop2_data = vop2->data;
-> @@ -2484,9 +2462,11 @@ static int vop2_win_init(struct vop2 *vop2)
->  		win->win_id = i;
->  		win->vop2 = vop2;
->  		if (vop2_cluster_window(win))
-> -			ret = vop2_cluster_init(win);
-> +			ret = vop2_regmap_init(win, vop2->data->cluster_reg,
-> +					       vop2->data->nr_cluster_regs);
->  		else
-> -			ret = vop2_esmart_init(win);
-> +			ret = vop2_regmap_init(win, vop2->data->smart_reg,
-> +					       vop2->data->nr_cluster_regs);
+> It's nice that you've mentioned this, but it seems to be from Feb2.
+> Can you please base it on latest linux-next when you send in future?
+> This will avoid any merge conflicts in advance.
+> 
+> For this though, you may get away with it because nobody else may have
+> touched this file so far...
+> 
+> If you do send a v2, feel free to pick:
+> Reviewed-by: Dhruva Gole <d-gole@ti.com>
+> 
 
-						^^ nr_smart_regs
-I think
+Hi Dhruva,
 
+Thanks for the feedback and the review. I will be adding the changes 
+mentioned by you in v2 :)
 
-
-
+Best,
+Kendall Willis
 
