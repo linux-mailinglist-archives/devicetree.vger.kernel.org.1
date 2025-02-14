@@ -1,273 +1,233 @@
-Return-Path: <devicetree+bounces-146714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A104FA35E62
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 14:08:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E6E1A35E71
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 14:11:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BF6A16C349
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:02:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCCA23B05F9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:08:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A91FE263F29;
-	Fri, 14 Feb 2025 13:01:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mX5qT61C"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C84A263F46;
+	Fri, 14 Feb 2025 13:08:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83454245B12;
-	Fri, 14 Feb 2025 13:01:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 149F623A992;
+	Fri, 14 Feb 2025 13:08:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739538086; cv=none; b=ZA1aUVHRujBhjQB45qo0+5YndBRBFIVINRj5m/vWUPy/ypZqfeBGorjokizLaXH6Sj0I0dtL25tr2fV0tx0DyZX/j++EpQA6aUExqsI0KGkslGvRPBfrhQAkxneHS9YM0NgP3Q2T09o/pCsAt5mGqD+ly3Wc7neW7KFgYOQ3/84=
+	t=1739538539; cv=none; b=oziEBgBV1cGyxHZRky4cfj31Yxce7mP6+TK7mMlmGfkarw8t+HppZtKcgVirw2hTXhgi1vDzZC/p9AzTUi7u1f/mPSf5sWzPE/2CY2QBFo/nIEXWRKJ78lpqCRS/vbBRxopCIy2bAcj9LeO+qRf9gbKFFbX40Ac2ra/uKCLmuQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739538086; c=relaxed/simple;
-	bh=CokrQEwBiLyH9A80AM1ZFmBFshWnQ/DU92SQBwJVhLU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dR1GEHLZgE/Dw94JcYzbCRxZaKBXlYO3A7TmsxqGd8tNk+Xo7g0f29G5Mdorl9P7eZwehk4ZPk6l50JRWAqPXDKiOlIT4hPRM1uYvCeXx8Pd+ht/pZPDzchzlPnE6ycT6I9VYTePSFAIByWiPGXf6HLQJZj75XAq7pYTyoeewls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mX5qT61C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65631C4CED1;
-	Fri, 14 Feb 2025 13:01:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739538086;
-	bh=CokrQEwBiLyH9A80AM1ZFmBFshWnQ/DU92SQBwJVhLU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mX5qT61CNRSrOp3i/zbF+YNed1T1XTI0j9chBnYhw9s5HFTRzRy9+KV1Cb449fg9C
-	 7fIkeYKV3zw2BxhKj0RZPEOu8/Y5L/11VC+MgIQZOcyRkkI6e2bBeQkat+Xcxv0xJY
-	 KaY/QE1y5GIMjlr+Ff6+qXu8wd3uZ59FxNzueJnUb1aJ73TrVQxD3ubTTlG/GRNn8s
-	 Gv5Tt9p1OsknUdj6Tdkx+Tn2bPBNt1/7CksCD3MQov5HtpRMyBZ928taLFGbdxWMm3
-	 5sMdXF0j45/NocHXBD7O6OVRyfAGDiCs8VoBMCIRsgAoQpaCeyh4cSakwlgLQ0RU/2
-	 4CcW/LNNqkckg==
-Message-ID: <539ccdb4-65c6-4aad-afb1-66554b45e5b7@kernel.org>
-Date: Fri, 14 Feb 2025 07:01:24 -0600
+	s=arc-20240116; t=1739538539; c=relaxed/simple;
+	bh=DdXgOfaajmPxNUJs0g3YB5p0a0TafhxkMlOBYUWYlL4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kTxumxmXc91KjsmkNWJjko28ERRMT/UjFweWCCRudnzCJ7Wx8H0eJ49GR3WWlceOJQZFB8A3EdO04qIgIxWnNnryAwkiZXafGG0rwYoK5LSnDHPBudp72tHFzWtrcSRqxqMzJh3ybVEWCYx/55gMWqtKrhhZkPrC4c65dRY5Um0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [180.172.76.141])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id E83C23433F1;
+	Fri, 14 Feb 2025 13:08:56 +0000 (UTC)
+Date: Fri, 14 Feb 2025 13:08:49 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Olof Johansson <olof@lixom.net>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Jesse Taube <mr.bossman075@gmail.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: gpio: spacemit: add support for K1
+ SoC
+Message-ID: <20250214130849-GYA21864@gentoo>
+References: <Z5FPJLzAEVXGWJnE@chonkvm.lixom.net>
+ <20250123113042-GYA38135@gentoo>
+ <Z5LOdh-4UxRtteOy@chonkvm.lixom.net>
+ <20250127181726.GA538260-robh@kernel.org>
+ <20250128031712-GYB47737@gentoo>
+ <CACRpkdYbSOHD9UH5=+qjztxS3Cq_rxaoOT9tFtD8ZWm9zQGnPw@mail.gmail.com>
+ <CACRpkdZa887vx4Lmxk1U_8w5n7AxMnyzGexeYzhsxNGT-DTYcQ@mail.gmail.com>
+ <20250206133156-GYA5687@gentoo>
+ <CACRpkdZYYZ5tUR4gJXuCrix0k56rPPB2TUGP3KpwqMgjs_Vd5w@mail.gmail.com>
+ <20250214115410-GYA21743@gentoo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: socfpga: remove syscon compatible string for
- sysmgr node
-To: "Rabara, Niravkumar L" <niravkumar.l.rabara@intel.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc: lkp <lkp@intel.com>
-References: <20250117154244.4079614-1-niravkumar.l.rabara@intel.com>
- <45276881-11de-47c9-aa9c-488df537a596@kernel.org>
- <d78ae428-6139-426b-bde9-e3ce5a4008ac@kernel.org>
- <BL3PR11MB65325F279FEA579D19EFCF7AA2FD2@BL3PR11MB6532.namprd11.prod.outlook.com>
- <32563a12-eba0-44b4-ad53-e69c6a4962cb@kernel.org>
- <BL3PR11MB6532F03C63BABEC1DCE50964A2FD2@BL3PR11MB6532.namprd11.prod.outlook.com>
- <9b4e50cd-abab-4f3c-8450-d721bac5db17@kernel.org>
- <BL3PR11MB6532473C345BF326F55A4CF9A2FD2@BL3PR11MB6532.namprd11.prod.outlook.com>
- <9fea34ee-3dbc-4166-ba7a-a5f4d1551e3d@kernel.org>
- <BL3PR11MB65324DBA3C0BF7BF0FA419EBA2FD2@BL3PR11MB6532.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <BL3PR11MB65324DBA3C0BF7BF0FA419EBA2FD2@BL3PR11MB6532.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250214115410-GYA21743@gentoo>
 
-On 2/11/25 07:48, Rabara, Niravkumar L wrote:
-> Hi Dinh,
-> 
->> -----Original Message-----
->> From: Dinh Nguyen <dinguyen@kernel.org>
->> Sent: Tuesday, 11 February, 2025 8:57 PM
->> To: Rabara, Niravkumar L <niravkumar.l.rabara@intel.com>; Rob Herring
->> <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
->> <conor+dt@kernel.org>; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org
->> Cc: lkp <lkp@intel.com>
->> Subject: Re: [PATCH] ARM: dts: socfpga: remove syscon compatible string for
->> sysmgr node
->>
->> On 2/11/25 06:37, Rabara, Niravkumar L wrote:
->>> Hi Dinh,
->>>
->>>> -----Original Message-----
->>>> From: Dinh Nguyen <dinguyen@kernel.org>
->>>> Sent: Tuesday, 11 February, 2025 8:25 PM
->>>> To: Rabara, Niravkumar L <niravkumar.l.rabara@intel.com>; Rob Herring
->>>> <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor
->>>> Dooley <conor+dt@kernel.org>; devicetree@vger.kernel.org; linux-
->>>> kernel@vger.kernel.org
->>>> Cc: lkp <lkp@intel.com>
->>>> Subject: Re: [PATCH] ARM: dts: socfpga: remove syscon compatible
->>>> string for sysmgr node
->>>>
->>>> On 2/11/25 06:18, Rabara, Niravkumar L wrote:
->>>>> Hi Dinh,
->>>>>
->>>>>> -----Original Message-----
->>>>>> From: Dinh Nguyen <dinguyen@kernel.org>
->>>>>> Sent: Tuesday, 11 February, 2025 12:15 PM
->>>>>> To: Rabara, Niravkumar L <niravkumar.l.rabara@intel.com>; Rob
->>>>>> Herring <robh@kernel.org>; Krzysztof Kozlowski
->>>>>> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
->>>>>> devicetree@vger.kernel.org; linux- kernel@vger.kernel.org
->>>>>> Cc: lkp <lkp@intel.com>
->>>>>> Subject: Re: [PATCH] ARM: dts: socfpga: remove syscon compatible
->>>>>> string for sysmgr node
->>>>>>
->>>>>>> Yes, I have tested this using NFS boot, however I didn't observe
->>>>>>> any issue with SD/MMC driver.
->>>>>>>
->>>>>>> => fdt print /soc/mmc@ff808000
->>>>>>> mmc@ff808000 {
->>>>>>> 	#address-cells = <0x00000001>;
->>>>>>> 	#size-cells = <0x00000000>;
->>>>>>> 	compatible = "altr,socfpga-dw-mshc";
->>>>>>> 	reg = <0xff808000 0x00001000>;
->>>>>>> 	interrupts = <0x00000000 0x00000062 0x00000004>;
->>>>>>> 	fifo-depth = <0x00000400>;
->>>>>>> 	clocks = <0x0000001a 0x00000024>;
->>>>>>> 	clock-names = "biu", "ciu";
->>>>>>> 	resets = <0x00000006 0x00000027>;
->>>>>>> 	altr,sysmgr-syscon = <0x0000001c 0x00000028 0x00000004>;
->>>>>>> 	status = "okay";
->>>>>>> 	cap-sd-highspeed;
->>>>>>> 	cap-mmc-highspeed;
->>>>>>> 	broken-cd;
->>>>>>> 	bus-width = <0x00000004>;
->>>>>>> 	clk-phase-sd-hs = <0x00000000 0x00000087>;
->>>>>>> 	phandle = <0x00000029>;
->>>>>>> };
->>>>>>> => fdt print /soc/sysmgr@ffd06000
->>>>>>> sysmgr@ffd06000 {
->>>>>>> 	compatible = "altr,sys-mgr";
->>>>>>> 	reg = <0xffd06000 0x00000300>;
->>>>>>> 	cpu1-start-addr = <0xffd06230>;
->>>>>>> 	phandle = <0x0000001c>;
->>>>>>> };
->>>>>>>
->>>>>>> [    1.095784] mmc_host mmc0: Bus speed (slot 0) = 50000000Hz (slot
->> req
->>>>>> 50000000Hz, actual 50000000HZ div = 0)
->>>>>>> [    1.105692] mmc0: new high speed SDHC card at address 0001
->>>>>>> [    1.108238] at24 0-0051: supply vcc not found, using dummy regulator
->>>>>>> [    1.111817] mmcblk0: mmc0:0001 SD32G 29.1 GiB
->>>>>>> [    1.118872] at24 0-0051: 4096 byte 24c32 EEPROM, writable, 32
->>>>>> bytes/write
->>>>>>> [    1.129186]  mmcblk0: p1 p2 p3
->>>>>>>
->>>>>>> .
->>>>>>>
->>>>>>> root@arria10:~# ls /dev/mmcblk0*
->>>>>>> /dev/mmcblk0    /dev/mmcblk0p1  /dev/mmcblk0p2  /dev/mmcblk0p3
->>>>>>> root@arria10:~# mount /dev/mmcblk0p1 /tmp/ root@arria10:~# ls
->> /tmp/
->>>>>>> extlinux                         socfpga_arria10_socdk_sdmmc.dtb  zImage
->>>>>>> fit_spl_fpga.itb                 u-boot.img
->>>>>>>
->>>>>>>
->>>>>>
->>>>>> You didn't really test anything. There's a register in the System
->>>>>> Manager that has set the SD/MMC clk-phase in U-Boot. So you won't
->>>>>> see the failure unless you explicitly change the value in that
->>>>>> register and then boot Linux, then you will see the failure. If you
->>>>>> look at drivers/mmc/host/dw_mmc-pltfm.c and look at the function
->>>>>> dw_mci_socfpga_priv_init(), you can see that work in action. If you
->>>>>> remove
->>>> the syscon property, then that portion of the driver will fail.
->>>>>> Also the ethernet driver is using the system manager's to set the
->>>>>> correct PHY mode through syscon. I think you need to test this
->>>>>> patch more
->>>> thoroughly.
->>>>>>
->>>>>> DInh
->>>>>
->>>>> Altera System Manager driver (drivers/mfd/altera-sysmgr.c) is
->>>>> enabled in "socfpga_defconfig" - i.e. CONFIG_MFD_ALTERA_SYSMGR=y
->>>>>
->>>>> So, SoCFPGA always using drivers/mfd/altera-sysmgr.c for System
->>>>> Manager register access, not the generic "syscon" drivers/mfd/syscon.c.
->>>>> That's why we do not need "syscon" compatible for fall back mechanism.
->>>>>
->>>>> 	sysmgr: sysmgr@ffd08000 {
->>>>> -		compatible = "altr,sys-mgr", "syscon";
->>>>> +		compatible = "altr,sys-mgr";
->>>>>     		reg = <0xffd08000 0x4000>;
->>>>>     	};
->>>>> 	mmc: mmc@ff808000 {
->>>>> 		…
->>>>> 		altr,sysmgr-syscon = <&sysmgr 0x28 4>;
->>>>> 		clk-phase-sd-hs = <0>, <135>;
->>>>> 		…
->>>>> 	};
->>>>> 	gmac0: ethernet@ff800000 {
->>>>> 		…
->>>>> 		altr,sysmgr-syscon = <&sysmgr 0x44 0>;
->>>>> 		…
->>>>> 	};
->>>>>
->>>>>
->>>>> Even the sdmmc driver you mentioned is using "drivers/mfd/altera-sysmgr.c"
->>>>> not the generic "syscon" drivers/mfd/syscon.c. Same thing for
->>>>> ethernet driver as well.
->>>>>
->>>>> dw_mci_socfpga_priv_init()  {
->>>>> 	...
->>>>> 	rc = of_property_read_variable_u32_array(np, "clk-phase-sd-hs",
->>>> &clk_phase[0], 2, 0);
->>>>> 	if (rc < 0)
->>>>> 		return 0;
->>>>>
->>>>> 	sys_mgr_base_addr = altr_sysmgr_regmap_lookup_by_phandle(np,
->>>> "altr,sysmgr-syscon");
->>>>> 	if (IS_ERR(sys_mgr_base_addr)) {
->>>>> 		dev_warn(host->dev, "clk-phase-sd-hs was specified, but failed
->>>> to find altr,sys-mgr regmap!\n");
->>>>> 		return 0;
->>>>> 	}
->>>>>
->>>>> 	of_property_read_u32_index(np, "altr,sysmgr-syscon", 1, &reg_offset);
->>>>> 	of_property_read_u32_index(np, "altr,sysmgr-syscon", 2, &reg_shift);
->>>>> 	...
->>>>> }
->>>>>
->>>>> Please let me know if my understanding is incorrect.
->>>>>
->>>>
->>>> But the altera-sysmgr driver is using syscon as the interface:
->>>>
->>>> config MFD_ALTERA_SYSMGR
->>>>            bool "Altera SOCFPGA System Manager"
->>>>            depends on ARCH_INTEL_SOCFPGA && OF
->>>>            select MFD_SYSCON
->>>>
->>>> Can you look at your bootlog and see if you see this message
->>>> ""clk-phase-sd-hs was specified, but failed to find altr,sys-mgr regmap!"?
->>>>
->>>
->>> No, I do not see this error/warning in boot log.
->>> " clk-phase-sd-hs was specified, but failed to find altr,sys-mgr regmap!"
->>>
->>> Also I did test by manually changing the clock phase register value in
->>> u-boot, and then boot Linux without "syscon" compatible, and I do not
->>> see any error or warning and sdmmc and ethernet drivers are working fine.
->>>
->>> => md.l 0xffd06028 1
->>> ffd06028: 00000003                             ....
->>> => mw.l 0xffd06028 0x0
->>>
->>
->> Can you try an image that removes MFD_SYSCON from the
->> MFD_ALTERA_SYSMGR?
-> 
-> Tried image without MFD_SYSCON in MFD_ALTERA_SYSMGR - Kconfig,
-> it still works without any error/warning.
-> 
+Hi Linus:
 
-Then something has changed and I'd like for you to investigate what 
-changed. This whole driver is using syscon, and now it appears that it's 
-not? It doesn't make sense to me. Please investigate more.
+On 11:54 Fri 14 Feb     , Yixun Lan wrote:
+> Hi Linus:
+> 
+> On 14:07 Thu 13 Feb     , Linus Walleij wrote:
+> > On Thu, Feb 6, 2025 at 2:32 PM Yixun Lan <dlan@gentoo.org> wrote:
+> > 
+> > > > > foo-gpios <&gpio 2 7 GPIO_ACTIVE_LOW>;
+> > >
+> > > if we model the dts as above, then "&gpio" will register itself as one sole "struct gpio_chip",
+> > >  which mean one gpio chip combine three banks..
+> > 
+> > Not really: the fact that there is just one gpio node in the device
+> > tree does not
+> > mean that it needs to correspond to one single gpio_chip instance inside the
+> > Linux kernel.
+> > 
+> > It's just what the current existing bindings and the code in the GPIO subsystem
+> > assumes. It does not have to assume that: we can change it.
+> > 
+> > I'm sorry if this is not entirely intuitive :(
+> > 
+> > One node can very well spawn three gpio_chip instances, but it requires
+> > some core changes. But I think it's the most elegant.
+> > 
+> > > if taking "one gpio chip support multi banks" direction, then it will be reverted back as patch V1,
+> > > then, even the three gpio-cells model is unnecessary needed, as we can map gpio number
+> > >  to the <bank, offset> array in the underlying gpio driver
+> > >
+> > > the v4 patch is very similar to drivers/gpio/gpio-dwapb.c
+> > >
+> > > If had to choose the direction between v1 and v4, I personally would favor the latter,
+> > >  as from hw perspective, each gpio bank is quite indepedent - has its own io/irq registers,
+> > >  merely has interleaved io memory space, one shared IRQ line.. also the patch v4 leverage
+> > >  lots underlying generic gpio APIs, result in much simplified/clean code base..
+> > 
+> > So what I would suggest is a combination of the two.
+> > 
+> > One gpio node in the device tree, like the DT maintainers want it.
+> > 
+> > Three struct gpio_chip instances inside the driver, all three spawn from
+> > that single gpio device, and from that single platform_device.
+> > 
+> > What we are suggesting is a three-cell phandle in the device tree:
+> > 
+> > foo-gpios = <&gpio 0 7 GPIO_ACTIVE_HIGH>;
+> > bar-gpios = <&gpio 2 31 GPIO_ACTIVE_HIGH>;
+> > 
+> > Notice the new first cell which is 0 or 2.
+> > 
+> > The first one is what was previously called gpio 7.
+> > The second one is what was 2*32+31 = gpio 95.
+> > 
+> > So internally in the driver it is easy to use the first cell (0 or 2) to map to
+> > the right struct gpio_chip if you have it in your driver something like this:
+> > 
+> > struct spacemit_gpio {
+> >     struct gpio_chip gcs[3];
+> > ...
+> > };
+> > 
+> > struct spacemit_gpio *sg;
+> > struct gpio_chip *gc;
+> > int ret;
+> > 
+> > for (i = 0; i++; i < 3) {
+> >      ret = devm_gpiochip_add_data(dev, &sg->gcs[i], sg);
+> >      if (ret)
+> >         return ret;
+> >      gc = sg->gcs[i];
+> >      .... do stuff with this instance ....
+> > }
+> > 
+> > Callbacks etc should work as before.
+> > 
+> > Then these phandles needs to be properly translated, which is done with the
+> > struct gpio_chip .of_xlate() callback. (If you look inside gpiolib-of.c
+> > you will see that chip->of_xlate() is called to map the phandle cells
+> > to a certain GPIO line).
+> > 
+> > In most cases, drivers do not assign the chip->of_xlate callback
+> > (one exception is gpio-pxa.c) and then it is default-assigned to
+> > of_gpio_simple_xlate() which you can find in gpiolib-of.c as well.
+> > 
+> > You need to copy this callback to your driver and augment it
+> > properly.
+> > 
+> > The xlate callback is used to locate the struct gpio_chip and
+> > struct gpio_device as well, by just calling the xlate callback, so if
+> > you code up the right xlate callback, everything should just
+> > work by itself.
+> > 
+> > this is a guess on what it would look like (just dry coding,
+> > but hopefully the idea works!):
+> > 
+> > static int spacemit_gpio_xlate(struct gpio_chip *gc,
+> >                                 const struct of_phandle_args *gpiospec,
+> >                                 u32 *flags)
+> > {
+> >         struct spacemit_gpio *sg = gpiochip_get_data(gc);
+> >         int i;
+> > 
+> >         if (gc->of_gpio_n_cells != 3)
+> >                 return -EINVAL;
+> > 
+> >         if (gpiospec->args_count < gc->of_gpio_n_cells)
+> >                 return -EINVAL;
+> > 
+> >         /* We support maximum 3 gpio_chip instances */
+> >         i = gpiospec->args[0];
+> >         if (i >= 3)
+> >                 return -EINVAL;
+> > 
+> >         /* OK is this the right gpio_chip out of the three ? */
+> >         if (gc != sg->gcs[i])
+> >                 return -EINVAL;
+> > 
+> >         /* Are we in range for this GPIO chip */
+> >         if (gpiospec->args[1] >= gc->ngpio)
+> >                 return -EINVAL;
+> > 
+> >         if (flags)
+> >                 *flags = gpiospec->args[2];
+> > 
+> >         /* Return the hw index */
+> >         return gpiospec->args[1];
+> > }
+> > 
+> thanks for this very detail prototype! it works mostly, with one problem:
+> 
+> how to map gpio correctly to the pin from pinctrl subsystem?
+> 
+> for example, I specify gpio-ranges in dts, then 
+>                 gpio0: gpio@d4019000 {
+>                         compatible = "spacemit,k1-gpio";
+>                         reg = <0x0 0xd4019000 0x0 0x100>;
+> 			...
+>                         gpio-ranges = <&pinctrl 0 0 96>;
+>                 };
+> 
+> 		foo-gpios = <&gpio0 2 28 GPIO_ACTIVE_LOW>;
+> 
+> It should get GPIO_92 ( 92 = 2 * 32 + 28), but turns out GPIO_28
+> 
+> Probably there is something I missed...
+to make the gpio part work, we need additional custom gpio-ranges parser,
+which should similar to of_gpiochip_add_pin_range() in gpiolib-of.c
+(at least gpio core need to adjust to call custom this function)
 
-Dinh
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
