@@ -1,185 +1,190 @@
-Return-Path: <devicetree+bounces-146712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06F11A35E2A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 14:01:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94101A35E5C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 14:07:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4325F3B2816
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:59:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C97061898B2A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1702D26137C;
-	Fri, 14 Feb 2025 12:58:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00BBC267B08;
+	Fri, 14 Feb 2025 12:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PVgUCeCE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NUxc5uE7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D891263C77;
-	Fri, 14 Feb 2025 12:57:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27E68267AF9;
+	Fri, 14 Feb 2025 12:58:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739537880; cv=none; b=J5fwKjaeHV3Qnzz1X4UvboVjhW2bdTAdH/83E9VTOOm9S9C8BS8nPvpm1vKx2bvZeFjvmJnafFkSv9aIFEZ3hNQNR/4rKMfELubC6pmaD9jDWz8AohnuDiWu2ETUHUhmisUBKtPj8IvdJAQkdHI1l1ydNJ4Yy26YofaAeijuPIs=
+	t=1739537901; cv=none; b=UsUa/QOdHWU2mtV6kB+pfuqH5UrE/1UQnPY+Id1NFA2MahZnsKedK60edwe0uYF3szL0zWymmhaSnN9/HdeTESnKMLYknOD9J+ybUaFqH5DGQCfa7Ap9lnot92N3pj8H7fNQ1K2XsLV5N7b9AuszCJmtdxKl95jAt2hGYAIHaiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739537880; c=relaxed/simple;
-	bh=alONTJ5izPBs5NVNtGqcxXXw/F3dPnAoYUIDkZtfNoY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=BqztOKEDT5pqFX+41gKyLw8QifQRplG0M+WdCj38dD5HeUnwaUpJwnnEYmsHZfkdJ4O1spJNgVzJrUewzv1tyyKnTMTNf9maNXXM4qfwdh839w13YE9JKOrpgJAH+hoM2lEUiJjawp40eMu3HWRDbnf+1X71ITgl9Lf6asPLy9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PVgUCeCE; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51E7i2wV015968;
-	Fri, 14 Feb 2025 12:57:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Eeic6vXkmMzY8YnqF8B8+d/0s0ePlY9ZRC/bULfVz9M=; b=PVgUCeCE9F2rRhXX
-	GzjSWiCH6P5O+kLbZtt+AEZ00puhiZnlYoo/pAAzuLWkhBph/rjI4DZd31iJmfi+
-	w8+AAy73Zwm+JekXLLMZIvS6Ece5ErQBvOEiS3OtI8glWeY7G+9ldBueMK0Cgu8u
-	TbUH8HTI5gRptoBqobtu0Tl0aCekLv5NbM6DNccHsjO2N53bm4O7uEDQYBkZj1jR
-	rtsOVsh7C9fJ6ZGGqC559iqh2qMu4nciP3boqhzPVDa7Olvt5Nm6hIeQ9cN8WusZ
-	uS6VK7KmdOLPDBV/uMM9CUtT6PG2PoEptRYrFYV8arfJO4DbPSyQ5594X99aCh4C
-	wkBp+g==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44sde8btc2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 14 Feb 2025 12:57:26 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51ECvPfS025861
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 14 Feb 2025 12:57:25 GMT
-Received: from [10.219.56.14] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 14 Feb
- 2025 04:57:18 -0800
-Message-ID: <2a090f80-e145-410d-8d02-efdaf324c8c9@quicinc.com>
-Date: Fri, 14 Feb 2025 18:27:14 +0530
+	s=arc-20240116; t=1739537901; c=relaxed/simple;
+	bh=BuLd2PA0W0J6uEHCs9V5fiFHnH0MkuZzFNhpiM3IoKI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=eX0CIEPk0/UWem0CpkQtvX94PESDyqOlEX7On5zjUOCH+YIdNpZCeWG4W/E4WVAXAIm2GtIMwwKRdgA2rUYh7aLIwu49K7Rn9RMAW8jJBZ8wPvfgEXgR4x2GplEOwvCWBPZoPnZuq71Q4zG//uIvV19Hr1El7epA/rcpkX7by38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NUxc5uE7; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-aaf0f1adef8so404670566b.3;
+        Fri, 14 Feb 2025 04:58:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739537898; x=1740142698; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=lP1hpU69owb/Nx1wGtyX3wACbVKop7EcqQ2GnZSjLNQ=;
+        b=NUxc5uE7AFsOEF2QoxG32JZFTZS+Wr0OV4EQQFx53rPK5sTmtpsDKb3ieqnfLJCVfc
+         y1lR5W91Kx+I2w0z6NdtL9pZohP9ae8pK6ehnxlhDSYeLesoXfEC74MuiXb0a/IsAJ46
+         1h0bu3hL6+q7DbkbvNJdzobZ41psFgKUV8I/jeKlNpYEWzGEXQ9kFQrLceLAyEHxlaK/
+         oz8LKG8VmH81XpqkdcdqCM2Ek15GU9DDldeO/X3IL3qrA8uxWFn5a9GoHyUheYKYwVmc
+         M4ZsR0G75ZWZgouaL8X7Pc3/vSNQDFmQ69uCBOo/U7Z4ckJTEX70hfyRzBSxaa90zUFR
+         7PsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739537898; x=1740142698;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lP1hpU69owb/Nx1wGtyX3wACbVKop7EcqQ2GnZSjLNQ=;
+        b=uDrn76w3O6Cc2RCZc/hiidu5lqgiR5zLP32DG75fj1prKzGrZMldj3Fm30ZQcp6yY6
+         1u8xVSCvAI3CnB73TXIR8CCUfCqyziyk6PJpNaWoN3J2KzPmZZmKH5BP1SgFIG00Z25r
+         e8hm5hNqfjmY1qCMjv8EPbC9v7XPpD5MRe70kGP6PEWpryvlvawTzaV9OrYjET0sNFpB
+         985netwc7dkS4ebBAPv4JAFdSIvsipHJVCF8Lo/5YMp6ft7cc9ev+hPIEMMQ0iFwnCZX
+         n3D8kwFuoCTDa4wgrLLV2P9daQiT7QQpdKanwXz7hA4luKlgN4czJqVO7DPRYIvhjjab
+         oXTw==
+X-Forwarded-Encrypted: i=1; AJvYcCU0yPCCP6R0UOXpj5xw/LxhguXNs8/ezhJ98veUTh6tj0UCg2UYFjl9JyxB8HMpHnRxvSQL1ZlnDMUd@vger.kernel.org, AJvYcCVyVYlUFNb7ow1RvBdyqdwsHw8fe6HJ4o8GfL9hCYreaeB341T6xNk17TxhGvdtIKoAKo6oBUSMAaiG++gX@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvoUzphEyqpTVQk9EBL/pS7pswJHxk83IMoBXdzmiBwNQ6niFm
+	MWRdzo4qkLpBa6xecD4J+DlHhwO+RbOe1d54rtTUU+xuuJslUUPz
+X-Gm-Gg: ASbGncv1NC+ZKbMd6gRMosA5y41YaMeZ2bd47DlkEsFyxDWQVbfCp5E2phq6oPURF4L
+	K2vWR1eSAPMiAf1veph67sTUTE3TtWfqqRh3RM4qbMq3bPiWitrrEEaYrXzKJaPorMC2tUBTaLT
+	a9BV7/S33texTScsk6+7k6asAZAdWg/lca43xaXuiNX9Ckbgq0RrAjMkY2W/cx7E7IgePTSYO8r
+	SfRDvwZNm5bNRu8x9TxzwL+pH9MqISAW9kFkQMvh3nQFUBwidi3eI42oRX4JTPh2jD6inzwFRo/
+	LdcvD2AtQCfpVkcwgHc+bxuIQAkIfUSq
+X-Google-Smtp-Source: AGHT+IEM/giBHrNhE2apCFsLoOA7KVfIIVDAQlkLpgsqoRf+RI8nGhggXvQqe8I3LLSH6j7dYy8K3A==
+X-Received: by 2002:a17:907:2ce5:b0:ab6:6018:df18 with SMTP id a640c23a62f3a-ab7f3325261mr1184848066b.6.1739537897901;
+        Fri, 14 Feb 2025 04:58:17 -0800 (PST)
+Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba53376aadsm335251866b.88.2025.02.14.04.58.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Feb 2025 04:58:17 -0800 (PST)
+Message-ID: <f6b036acada7686e1bfd814bd62782890bf35a50.camel@gmail.com>
+Subject: Re: [PATCH v2] riscv: dts: sophgo: add watchdog dt node for CV1800
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: AnnanLiu <annan.liu.xdu@outlook.com>, chao.wei@sophgo.com, 
+	unicorn_wang@outlook.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, 	conor+dt@kernel.org, Inochi Amaoto
+ <inochiama@gmail.com>
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Date: Fri, 14 Feb 2025 13:58:15 +0100
+In-Reply-To: <DM6PR20MB2316366FC9ADCBC7B6E9C289AB7A2@DM6PR20MB2316.namprd20.prod.outlook.com>
+References: 
+	<DM6PR20MB2316366FC9ADCBC7B6E9C289AB7A2@DM6PR20MB2316.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] iommu: Handle race with default domain setup
-To: Robin Murphy <robin.murphy@arm.com>,
-        Lorenzo Pieralisi
-	<lpieralisi@kernel.org>,
-        Hanjun Guo <guohanjun@huawei.com>,
-        Sudeep Holla
-	<sudeep.holla@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown
-	<lenb@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Danilo Krummrich <dakr@kernel.org>, Stuart
- Yoder <stuyoder@gmail.com>,
-        Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-        Nipun
- Gupta <nipun.gupta@amd.com>,
-        Nikhil Agarwal <nikhil.agarwal@amd.com>,
-        Joerg
- Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-        Bjorn Helgaas
-	<bhelgaas@google.com>
-CC: <linux-acpi@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>,
-        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>
-References: <cover.1739486121.git.robin.murphy@arm.com>
- <87bd187fa98a025c9665747fbfe757a8bf249c18.1739486121.git.robin.murphy@arm.com>
-Content-Language: en-US
-From: Charan Teja Kalla <quic_charante@quicinc.com>
-In-Reply-To: <87bd187fa98a025c9665747fbfe757a8bf249c18.1739486121.git.robin.murphy@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8MPMEM59TFtEpOVHpTq1BK9dVBJIHPE2
-X-Proofpoint-ORIG-GUID: 8MPMEM59TFtEpOVHpTq1BK9dVBJIHPE2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-14_05,2025-02-13_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
- adultscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0
- clxscore=1011 mlxscore=0 mlxlogscore=999 spamscore=0 impostorscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502140095
 
-Thanks a lot for posting these patches, Robin.
+Hi Annan, Inochi,
 
-On 2/14/2025 5:18 AM, Robin Murphy wrote:
->  drivers/iommu/iommu.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
-> index 870c3cdbd0f6..2486f6d6ef68 100644
-> --- a/drivers/iommu/iommu.c
-> +++ b/drivers/iommu/iommu.c
-> @@ -3097,6 +3097,11 @@ int iommu_device_use_default_domain(struct device *dev)
->  		return 0;
->  
->  	mutex_lock(&group->mutex);
-> +	/* We may race against bus_iommu_probe() finalising groups here */
-> +	if (!group->default_domain) {
-> +		ret = -EPROBE_DEFER;
-> +		goto unlock_out;
-> +	}
+On Thu, 2024-01-25 at 17:46 +0800, AnnanLiu wrote:
+> Add the watchdog device tree node to cv1800 SoC.
+>=20
+> Signed-off-by: AnnanLiu <annan.liu.xdu@outlook.com>
+> ---
+> This patch depends on the clk driver and reset driver.
+> Clk driver link:
+> https://lore.kernel.org/all/IA1PR20MB49539CDAD9A268CBF6CA184BBB9FA@IA1PR2=
+0MB4953.namprd20.prod.outlook.com/
+> Reset driver link:
+> https://lore.kernel.org/all/20231113005503.2423-1-jszhang@kernel.org/
+>=20
+> Changes since v1:
+> - Change the name of the watchdog from watchdog0 to watchdog.
+> - Change the status of watchdog.
+> v1 link:
+> https://lore.kernel.org/all/DM6PR20MB23160B8499CC2BFDAE6FCACDAB9EA@DM6PR2=
+0MB2316.namprd20.prod.outlook.com/
+>=20
+>=20
+> =C2=A0arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts |=C2=A0 4 ++++
+> =C2=A0arch/riscv/boot/dts/sophgo/cv1800b.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 16 ++++++++++++++++
+> =C2=A02 files changed, 20 insertions(+)
+>=20
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts b/arch/risc=
+v/boot/dts/sophgo/cv1800b-milkv-duo.dts
+> index 3af9e34b3bc7..75469161bfff 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+> +++ b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+> @@ -36,3 +36,7 @@ &osc {
+> =C2=A0&uart0 {
+> =C2=A0	status =3D "okay";
+> =C2=A0};
+> +
+> +&watchdog {
+> +	status =3D "okay";
+> +};
 
-We just hit the issue again even after picking up this patch, though
-very hard to reproduce, on 6.6 LTS.
+It would be necessary in all SoCs unless... [1]
 
-After code inspection, it seems the issue is that - default domain is
-setup in the bus_iommu_probe() before hitting of this replay.
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dt=
+s/sophgo/cv1800b.dtsi
+> index aec6401a467b..03ca32cd37b6 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> @@ -1,6 +1,7 @@
+> =C2=A0// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> =C2=A0/*
+> =C2=A0 * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> + * Copyright (C) 2024 Annan Liu <annan.liu.xdu@outlook.com>
+> =C2=A0 */
+> =C2=A0
+> =C2=A0#include <dt-bindings/interrupt-controller/irq.h>
+> @@ -103,6 +104,21 @@ uart4: serial@41c0000 {
+> =C2=A0			status =3D "disabled";
+> =C2=A0		};
+> =C2=A0
+> +		watchdog: watchdog@3010000{
+> +			compatible =3D "snps,dw-wdt";
+> +			reg =3D <0x3010000 0x100>;
+> +			interrupts =3D <58 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks =3D <&pclk>;
 
-A:async client probe in platform_dma_configure(), B:bus_iommu_probe() :-
+&osc ?
 
-1) A: sets up iommu_fwspec under iommu_probe_device_lock.
+> +			resets =3D <&rst RST_WDT>;
+> +			status =3D "disabled";
 
-2) B: Sets the dev->iommu_group under iommu_probe_device_lock. Domain
-setup is deferred.
+[1] ... the status here is dropped. What is the reason for disabling it in =
+the first place?
 
-3) A: Returns with out allocating the default domain, as
-dev->iommu_group is set, whose checks are also made under the same
-'iommu_probe_device_lock'. __This miss setting of the valid dev->dma_ops__.
+> +		};
+> +
+> +		pclk: pclk {
+> +			#clock-cells =3D <0>;
+> +			compatible =3D "fixed-clock";
+> +			clock-frequency =3D <25000000>;
+> +		};
+> +
+> =C2=A0		plic: interrupt-controller@70000000 {
+> =C2=A0			compatible =3D "sophgo,cv1800b-plic", "thead,c900-plic";
+> =C2=A0			reg =3D <0x70000000 0x4000000>;
 
-4) B: Sets up the group->default_domain under group->mutex.
+Why didn't it go into cv18xx.dtsi?
 
-5) A: iommu_device_use_default_domain(): Relies on this
-group->default_domain, under the same mutex, to decide if need to go for
-replay, which is skipped. This is skipping the setting up of valid
-dma_ops and that's an issue.
+--=20
+Alexander Sverdlin.
 
-But I don't think that the same issue exists on 6.13 because of your
-patch, b67483b3c44e ("iommu/dma: Centralise iommu_setup_dma_ops()").
-bus_iommu_probe():
-     list_for_each_entry_safe(group, next, &group_list, entry) {
-		mutex_lock(&group->mutex);
-		for_each_group_device(group, gdev)
-			iommu_setup_dma_ops(gdev->dev);
-		mutex_unlock(&group->mutex);
-     }
-
-This makes the step4 above force to use the valid dma_iommu api, thus I
-see no issue when there is no probe deferral.
-
-So, I think we are good with this patch on 6.13.
-
-Now coming back to 6.6 LTS, any ideas you have here, please?
-
->  	if (group->owner_cnt) {
->  		if (group->domain != group->default_domain || group->owner ||
->  		    !xa_empty(&group->pasid_array)) {
-
-
-Thanks,
-Charan
 
