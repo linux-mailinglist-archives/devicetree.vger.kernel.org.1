@@ -1,255 +1,230 @@
-Return-Path: <devicetree+bounces-146544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2CA2A35606
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 06:09:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CF5DA356F4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:18:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54E187A1EAE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 05:08:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E2E33A1290
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 06:17:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 395EA16CD33;
-	Fri, 14 Feb 2025 05:08:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE6861FF7DE;
+	Fri, 14 Feb 2025 06:17:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="yDWlhNId"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GEqqZRoh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2067.outbound.protection.outlook.com [40.107.20.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A85281519AA;
-	Fri, 14 Feb 2025 05:08:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.67
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739509736; cv=fail; b=hTPUV2ti8fdLhZf2RU2yNZRqEm/KxTZVNEVTnPSbWGcPM1n2pUu3gZClNTAM/H8iYYK3bq5JuhfCe92xBmmGNDszNekqo7sll4bAw9wGbnbZedf6W5gEB4ff9nNm2o2IjmtwA8gX3xz0gJ9WmumytTIOj4KyMmSSYCjEiEyS+Eg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739509736; c=relaxed/simple;
-	bh=GlJ/eBcNo+kCc+vuaMLkOiOOSkSx5sluDkzCu98qPWo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=FjfT3MgmSNpfBN7LCp4J8cUWsLzqrp1Duop253itASYnngOQEcPsaYO4k3feD/T2G10OoHYooZO8eSNYkYni/kaSzLNCgLPfmG2voupQEn7kSLV9L14lIPmTo5Fsv/r/+LVsMgzay5absuAkMdjXJMoVz52aDQSayqRCmZpAjQA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=yDWlhNId; arc=fail smtp.client-ip=40.107.20.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lKpWROHccFErqye9c7Y15ANTiGSYxRuJvVreLPZL4KkR32u1M4N/VQJdi7Ne3IxFlN3Cg6nZErx0dhVnQI8oMaeF2iD3F9IppYD6bb+cn/4Jzsa7hsSGc+TPdGKRH3dkSKJGImWq2x/b0C6sYNZtBZsqsQqqbZJza7kR1ZmSB66Pv/hD+yV0qNqICrInP6sVCh/zii9QlA/sNaijUAcp2u1UBANmHw3a+ke2t6FoNnmtiM5KofgPtSYCeN5PpmUSlz+UGssfPCJRbADeeS17GB+hRokvePLmYJ1KYja4o5L8PMQorO4OFSIZql0mlxX5wYwgs5c26VCm5GbCUbvzIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P5pSaPO52CqZO97GOXa/mqSB84NFaKMq9B6+LChsflA=;
- b=DXqxbiGqgMHcikdH65ufv7pwrC+MaqNBTchL9/oz/6GbcKoroktQwyIhWdS6shvIfFWLpEUcUhfct+xO0OI8CPV0ISZsx+eIttdDwih9CYwiXiSnWbpZ0BnDFvXIWWUf9LEvKHEfaOUkrh8iMk8h7qYMP+tO2XGgqJhdimv+YJUbhd5MIZH45YO0b/4lPz82rhuX7SBZ6E8+CbcDUmMv/hhQo9yVbqacuYGDZGb5ZpCT73YRjpYbyE/OEEBJKeSGLQmHktNrEnQE6JWUQmNGADPSzxovBoTHzP+lTJlkJNpV/CynYoGMrYip5SEdHnRygqeU0So3qGksvskDItJc3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P5pSaPO52CqZO97GOXa/mqSB84NFaKMq9B6+LChsflA=;
- b=yDWlhNIdzL9M8l25z2lkUqtjciDyHjgKYZ26lG8gWsGOTGmXaYxY9HykQ22lNSQZNuLzuIoKsCiFtnwoKuSnK0vvSLXl4KFAW4TWSbtwg6dRWYLJYvfbMPiSvMEJvmZ4QZ6cDWaTSpC/iiG5A/szV9wT5v4JEc+poeaHX1Zb55jCO4yUv+AeUfat0ByUOCvMojFRvgxBSKMQPwsUl0xpFcIK7eL6byu516vX+aptdwQOP60O49OGyg8eVnCCBTbhj21Cl9s54YkIAWEkLibrHKx3TpoWtnU1y+8Lr+Vz5DZsJy2xOllCH01rg0t1dQ8GBx6pegslwrsQ2k9CRwI0SA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by GVXPR04MB10474.eurprd04.prod.outlook.com (2603:10a6:150:1da::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.16; Fri, 14 Feb
- 2025 05:08:48 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%3]) with mapi id 15.20.8445.008; Fri, 14 Feb 2025
- 05:08:48 +0000
-Date: Fri, 14 Feb 2025 14:15:41 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [devicetree-org/dt-schema] schemas: introduce
- assigned-clock-sscs (PR #154)
-Message-ID: <20250214061541.GA23652@localhost.localdomain>
-References: <devicetree-org/dt-schema/pull/154@github.com>
- <d385e871-f33f-4133-8347-3f108f8a6736@kernel.org>
- <CAMuHMdWLWDTi1jeSOGKDAmvhGZzxAVTM-NjBJzW__1jfECHFQg@mail.gmail.com>
- <20250213134247.GB1208@localhost.localdomain>
- <CAMuHMdX78GBk3Fm-USGgGyCo+Fy028qccLrDuE1Vrkw=OAz1Vw@mail.gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdX78GBk3Fm-USGgGyCo+Fy028qccLrDuE1Vrkw=OAz1Vw@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-ClientProxiedBy: SI2PR04CA0010.apcprd04.prod.outlook.com
- (2603:1096:4:197::11) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 328791802AB;
+	Fri, 14 Feb 2025 06:17:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739513860; cv=none; b=T7yDo3fM/ia2lydtoOI7QChhdcXBF4eaYs00bCskrjM0HjvZE2jZPg3krLMjzxrLKtXz6kW959RTnqVsychhTOiv7W+c1nLSybG6uESs00XK8dDEcVSw7KghHo1Zdt2Scs96AiDPTvx2eB9CrhAG/HRt9NS1fCTuG+9sheefq1U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739513860; c=relaxed/simple;
+	bh=w25nGQtVxpWFNfJEW6tc8GMGWH8yPyXxGTlraUkS5FM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J5hSFCxEcB3FwkPzeK0F6/lIzm+YzAxsVQ6lfBCx2+/TcSRX0+/bHh8WjAsi8RqG70UCDp+wEwAzCihI3RvaKUUxGwKehydALy1u6RVaki4QbFo+pEpuZtsJ6qT/Ch6MisXZBhoa3nLtC/y6MaGbDxpiU1V5+HBQ4m3sEiWwCZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GEqqZRoh; arc=none smtp.client-ip=209.85.221.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-51f405fce23so524825e0c.0;
+        Thu, 13 Feb 2025 22:17:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739513858; x=1740118658; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4sIcvxrX099LtAxbJT25rmi+yeCJ3k33A3mIelkkExA=;
+        b=GEqqZRohimFNTPQ4qW5Jqedur6g0DIoYs4pbZBMKb5Bt64ZTt/skcQxVoy2vOqwgqP
+         NVCD+Ky9EcyaaAovid9E3u+oyoaSYv2g5znReSjg+29f0tDA0/odAZ7iFoLQ6FErEtFk
+         9HqnoCQXLJQBNytduKY737VL2oIQmOkVrWV41cnrmv0YPQLWwK+Moh1e7lOlk2I3SajK
+         3B21FcMxEC0ylsHMLzdVgdppF4T8W/dWIzYkNsYbf0P8I7P7Smx3FUFzcyxgOEV27zeg
+         b+zdkOlLu9mKxyFn1CSXz9yVPVZupq59YCdtme0PgLZY5FzZQ207MCkjdbd+872VuLvO
+         4p/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739513858; x=1740118658;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4sIcvxrX099LtAxbJT25rmi+yeCJ3k33A3mIelkkExA=;
+        b=MhuDQeIHSJFEb7DualpK+c4WvhZ1WEreXT3rNPfAACtQ8PSuvsc3v3knAeB4jdrrtB
+         7Q7sp64+DgmmdthDfkoYg2/qeL/YBc8N4zUMNzBBrdqqf50z+jziluTYZhqvJcOsSioG
+         sj9ecjgZ4bks2fDQ9d0TspZE4e6TFOvXHTkrvI6kVNnmJOR6120CS7/VSq7yAxkmsM5h
+         YrRwc+Ws0dKH5/vq+ms7QSepqwT1XCG5vbioN0brkmK3BCbxqd1ZCBd5AYbUqqXjji3h
+         B4o15g67BDUjHB3uYeGFsjI+cJ9QnMTRczkG82LyGeumfOd0IFHjrquWxzHx9Ir8h4ZE
+         Bnhg==
+X-Forwarded-Encrypted: i=1; AJvYcCU8rF17IMXQIA0JSaHJsgjETImdpfgSbZQw0vaVVwTODTW9K4XGII+ayWan43QtqM+gDLLTyPjyeZLE@vger.kernel.org, AJvYcCUjPxiYKiOhLTsKsFZyt08RYnUr+gCAWZIVFo8yiWpKLEI6X1MXwgbBWMf4cJsJOt3g0Jv9atKFwSjlkcxN@vger.kernel.org, AJvYcCWT+P2SDe0EXmbIHF4rh7xrGxrYVBYN0TebZW2UtSr17wlXmFudbwZ+yiuUw0ziIw2Cbi+5xRVPRjYagw+F@vger.kernel.org, AJvYcCXdNkdAWAONq4VEwAm3KpYQFnPHGj8mUXku+TNsend168Uy4KlfbktCzSNW2ks00NKgHOpYwcRP7iSS6wcGCPeiHB8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwZ9H0TrngndxZO5yUyS+WegOLV9vGf6qyhT6efrBWQ1z13wJl
+	qQbPHFGgVaGhgm/ekgk04UPcGbNjnewaHVui6to5Q0pbNlHxyRn1
+X-Gm-Gg: ASbGncsp9gDUv4THdttGYA1pGHqRTx1MV5v8/QFzZGRnIsz3m9j4JErP/01BnkLziTa
+	kiTOnNUJ8FikraLkdtMan8Rm7A30zlm8bhY9GYM9ZmN0oa9hvpERLO5tZhfLVWt5s6y7zl5Zy06
+	WT0TZlTP7gCMTFgVrNDQ/HK/7VWaIhrBoX1xFYhYmz6J04IjujIZjGuGvKob2w0MvQ6aBH8FZ1f
+	E7tL1Ki+D/b4ByHuSwuknm0XbqVJKXNda4G+VhYSti40WyAup4Moc9HGyUwv/k3J36saYwvb0Gt
+	+roFycllziLxtmkQoAgBFxJ/8n61O8cMGwkiVWfp0lT+aiTmodVQU3igPWNptQ==
+X-Google-Smtp-Source: AGHT+IHRLYoJKdwZm1YCd9aBf7aEL7V8Zsi2JM2MJI5ygyPB2inPNLw5h4kckPoKN1ULpGO4ZArePw==
+X-Received: by 2002:a05:6122:8c0c:b0:51f:405e:866e with SMTP id 71dfb90a1353d-52077dbf86dmr3546146e0c.1.1739513857884;
+        Thu, 13 Feb 2025 22:17:37 -0800 (PST)
+Received: from droid-r8s ([38.44.237.182])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5207ab4fc73sm487086e0c.36.2025.02.13.22.17.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Feb 2025 22:17:37 -0800 (PST)
+Date: Fri, 14 Feb 2025 06:17:30 +0000
+From: Denzeel Oliva <wachiturroxd150@gmail.com>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: alim.akhtar@samsung.com, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+	jirislaby@kernel.org, krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org,
+	robh@kernel.org, semen.protsenko@linaro.org,
+	wachiturroxd150@gmail.com
+Subject: Re: [PATCH v1 3/3] arm64: dts: exynos990: define all PERIC USI nodes
+Message-ID: <Z67f+lDxISVubiJJ@droid-r8s>
+References: <20250212234034.284-1-wachiturroxd150@gmail.com>
+ <20250212234034.284-4-wachiturroxd150@gmail.com>
+ <40370a0e-775b-42e3-bb6c-8cacaa0482cf@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|GVXPR04MB10474:EE_
-X-MS-Office365-Filtering-Correlation-Id: fa6af48e-6e3a-4448-430a-08dd4cb5a9f9
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|366016|376014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?yhVSHxKLBQu5fduDRsgjNRgYGEtcxgGA6GaKR3Z93+kHsEWr1OcKvC/c9MTP?=
- =?us-ascii?Q?bwQ4wN4jy9fC3W92Leksy2SIYCyMAOnhyCUv0NHYgPLQAdoZs5TdVlkwyiJh?=
- =?us-ascii?Q?z8YQ88z5N83le/QpM7V4J6clzS/2+mm8mnkrvPexG4nL76M/Z8f4IV8PCxPZ?=
- =?us-ascii?Q?RAJALAzEfZqa7hgscTaD+TyqWo50r/oO7ypAx716GhnsqRmMJXpTafWOkcQw?=
- =?us-ascii?Q?UE8izPO/EdnK4CxjYqo1Ss11FFYDn5pP3Ohlp5pftdoupoU28wCdd0Ua8kOz?=
- =?us-ascii?Q?jHUTBazjAzkLCpc/aNJHdjfRK7v9rnR8QpdpNWUSCXjyjxrOfeWPiZtIgv6J?=
- =?us-ascii?Q?f+dhsP3tydlQBsJKJhI9WMihqatkzeOjx/QV8QSKK9FQROxkfdoTTa3aVKBc?=
- =?us-ascii?Q?MAEoUpRc/rnjp9vQRD6TW1kH3IsyxwINzTWFfSaRKs+cbIDCAcN3QfdUOU/6?=
- =?us-ascii?Q?wC/rAzEEtw8QfpcwAWJzHiU113mM0491sGjenLeCekAP7phAJGf37n5KcFkg?=
- =?us-ascii?Q?cRRnI2ieZ4qRuWA5Pq/WXw9vRGMVfV5cktZDZT2LGZMF9zOkjNSI7dpjh6Gw?=
- =?us-ascii?Q?Q1/hzXynXnMWjX3tgA3cy90Cn9ehpJOdd4+yt3xeV4MFhj0t1gKcC6FfEiPT?=
- =?us-ascii?Q?jmG0hEQuB7HTpFvbhwVOZcsIaxhVcuH1erdXCKQ5KyGDWNAuHDStacQVYtsv?=
- =?us-ascii?Q?2AD2Gl+gwupyPv3mKVD5e/kFkmVlw9LQBlZhlDdlx3lzhnpdgMsuO0BWyoZw?=
- =?us-ascii?Q?NoaYYAhW9RZ9K2by2aZPNa7iLaEtWBEC8+a7zDPua6Fb4FLDJXTQBtoTjPnO?=
- =?us-ascii?Q?yx3pmEHU4D5rIbuvFISjH9Vkp6D0FPF75b6QC4vOsj8Tff9+mhGeiN55QVSc?=
- =?us-ascii?Q?I3F4snhxw4+ohK4ca/0y4TGp7bgKIkUQNUIc6XzOPEhBjVgXSVN0Uo4TNrid?=
- =?us-ascii?Q?LUQoeCnJvOxYMXl05BWzLKrrhaJAi7uSLX9lxtl2o25UcKkouT3dT6kF1gx5?=
- =?us-ascii?Q?nIiYADWlqzPIM4Rv6p6udLOkAod59GcSYQJ6RW8q/C04Zv8RU8ZqLiWovxX+?=
- =?us-ascii?Q?HPIYHXc/HD2NkvuYMCQ+oHaRgJfsZwP4/d83Bs6v4rLrx8XEZIZQlnxKbziD?=
- =?us-ascii?Q?KTsIj+B2dpUFojvqQ10P3fDY06k2SsrWIGSkhUxv/1xq1gPa8CaHWgV2GS4V?=
- =?us-ascii?Q?kMqayqP8svk35xhjabJwp7vk5z8utiE3AvNEu1hxUbENJ9Xa498Wo8vDRoFH?=
- =?us-ascii?Q?x1btkWPP2gm5/50GyPZ92vO7xmhxhv780Y3o6qzxyegkC0w77EWGGUe7pDcD?=
- =?us-ascii?Q?+9naHagj61zhhMp3tpxX0Xvns/Xd+BZYRsdLTohHLyos9a8Gx7T0q+qlTVW1?=
- =?us-ascii?Q?E5M8p2ZK56ieoX/zUKdeSZAnRRO6JXSv8MlLQ1UHpd/u85/5SQUp2rS3TCiE?=
- =?us-ascii?Q?TUfXo5W/cMZ2Q9H7At+Hi/WGRBM8+50E?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?jyHmT/Wv9cfNKlq+LdgrvSMNEsJYv6oGioOjm8HiuSa6XFD3llyLagpSB/Cy?=
- =?us-ascii?Q?yT/LBrsXbM/wuWD2lqpljE3VYktY8graUXS16Q+1KMlB87Ub9QCD3RvVitMl?=
- =?us-ascii?Q?DXaPchT8SrWKPPVWt+7T7vPycgb3YfXFEpdHg6u/J9loQVKX+MEK+8lvSZNL?=
- =?us-ascii?Q?RyDrSL3V2srLmf+l6B6dwPykYFP49fLr7ZkgLwANZ1qOnAaWE6+7M23qA+l+?=
- =?us-ascii?Q?KRTPKwMoD4w3ev+kEt8TPDWNz0iuFT5EOM9+KnfwJT6+vEm1K6CoRdjpiDEz?=
- =?us-ascii?Q?Pb8H/CGoOm+ASNbSZitN1Z5uHyR1bVBB/i87UoHa9Z+xXTV/J6PGI2CuJyv/?=
- =?us-ascii?Q?mv8w5GbZCaJAu35Zh9GKwWMSwNOfNP+oIqszwkZyaqAF5RTJYzxKveWCD8cJ?=
- =?us-ascii?Q?7JUpwwVzk7DHBFLlXsgIkO7FIRIB2GRPGBCqb5rOW+eHYu49smI8vI+fAGcN?=
- =?us-ascii?Q?K+aa8A3yhKE44AUjYxbSE9d29Qf7hrtuCkpcEgCfouaYMS/6M+2BakdiNoym?=
- =?us-ascii?Q?VsDzwgEsa4xpqUprUrCnWaZkoMVDipKFEq4/Ek8c1iddM2XPHt5YhxihyD+Z?=
- =?us-ascii?Q?xLKlgybC8c5L2+SYdnYtl2d5iDXXXV7CV4wSbwPIAUmwohYWLW0OPKuMCx1n?=
- =?us-ascii?Q?k8UE5eq5f9T8P6KtpR9xW3d51z8WwfiE0zYnGw7aZJCXXOJoKwqVdulN/1SA?=
- =?us-ascii?Q?F9oahC/xW2gyc8ooDqhUmAMLdojgLvkHcdFEEIJKMPZ4OpYulrH8V4AWfK7g?=
- =?us-ascii?Q?CYMFdqVxANWkKm0gaSmBoeHHa1VsddOiUZ2ZNXipJWQZh5Tjh/Cw1mzqR/vy?=
- =?us-ascii?Q?/0IM6KfHxc3WtnONz21jJShJYJRt/00JZ8Gt6svUKsUBeFyiibiGcS6cjc1+?=
- =?us-ascii?Q?veFCALGk9KRUJKeaZyGGnlEjPd6s+MfaV9c4r/54ksJfaH/aSDeKKsHdzdum?=
- =?us-ascii?Q?W6OU0XFbO4SLUSV3euiMZWPZsjC8/QsBwCxuAosQ3RZv3UhZh4gcbaM41WP6?=
- =?us-ascii?Q?vLos8nnPbUcUdsLHiMxVKdlKxNTxzEH2wXUp21S7Unvef2RmW2xvYLLnGppI?=
- =?us-ascii?Q?Uyc+5sn9szod82Jvo37Zts7B5MpWNGAD+8gDNo8JdU/mCm5MvqEufgcz7rbf?=
- =?us-ascii?Q?bsoFbYcQfrytOX4Z6SWWU2SDh2IQMi2ofX1Bhw1o0c52s85nzBxZ5wj+4Adr?=
- =?us-ascii?Q?iin6XBKaROkI4TW/JKuPnrCc2PQOBjI2HGRZneWNvTOsS3Cy5N7vpwyiDR8r?=
- =?us-ascii?Q?h+o6DpvIIQ16RdOYqLLASkGAS6RnRvf9c5u4bEh5z8jUWVDjB/WuUWSd3Mhz?=
- =?us-ascii?Q?zkYRYvnilhaNHT+/LUZc21jbEK2l+3TKx5GbE4d5sV9yqNiniqSuAfjyf84F?=
- =?us-ascii?Q?VUrmEg6q+X3ypWJREQXvzP9x8mq8DdU0hhrpPqS5W6u2ZpGiiQmxG/8CFbEK?=
- =?us-ascii?Q?Qh1SevCzUMw96U6oKrM8fyS/K+UM1Ka1Tt7+ITxYTbotD3glwrzM3hiCGv+Z?=
- =?us-ascii?Q?O1Oh6GFOzFkEIbCjOUDR7wuJ7AejcV20ClOuzoW9PTN2/v7xn6ie2Fo1kqF7?=
- =?us-ascii?Q?Ev2Znuph1NtcOSRhxUuXcUW7EWViWLFGL/2Ynm97?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa6af48e-6e3a-4448-430a-08dd4cb5a9f9
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2025 05:08:48.3491
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: R2wNlVPU5CyccIp5+gOTgSPQsJ9gnyBGLSeCKV3h7HlUfZlI/3MKt+eFMpRsMkq5bwzqGQre6V8wxSBRNUdQng==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10474
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <40370a0e-775b-42e3-bb6c-8cacaa0482cf@linaro.org>
 
-On Thu, Feb 13, 2025 at 02:29:41PM +0100, Geert Uytterhoeven wrote:
->Hi Peng,
->
->On Thu, 13 Feb 2025 at 13:35, Peng Fan <peng.fan@oss.nxp.com> wrote:
->> On Thu, Feb 13, 2025 at 11:16:31AM +0100, Geert Uytterhoeven wrote:
->> >On Fri, 24 Jan 2025 at 15:42, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> >> Just FYI, below is a foward of pull request for dtschema for bindings
->> >> adding spread spectrum to clocks. As Clock framework maintainers this
->> >> might be relevant to you.
->> >>
->> >> -------- Forwarded Message --------
->> >> Subject: [devicetree-org/dt-schema] schemas: introduce
->> >> assigned-clock-sscs (PR #154)
->> >> Date: Fri, 24 Jan 2025 04:31:30 -0800
->> >> From: Peng Fan <notifications@github.com>
->> >> Reply-To: devicetree-org/dt-schema
->> >> <reply+ACPRLI5YLXX27TFZX2P7NVOFT5USFEVBNHHKO4ZXHM@reply.github.com>
->> >> To: devicetree-org/dt-schema <dt-schema@noreply.github.com>
->> >> CC: Subscribed <subscribed@noreply.github.com>
->> >>
->> >> To support spread spectrum clock, introduce assigned-clock-sscs, it is
->> >> an uint32-matrix with format multiple elements of below
->> >> &lt;modfreq spreadpercentage modmethod&gt;, &lt;...&gt;
->> >> You can view, comment on, or merge this pull request online at:
->> >>
->> >>   https://github.com/devicetree-org/dt-schema/pull/154
->> >>
->> >> -- Commit Summary --
->> >>
->> >>   * schemas: introduce assigned-clock-sscs
->> >
->> >>   assigned-clock-sscs:
->> >>     $ref: /schemas/types.yaml#/definitions/uint32-matrix
->> >>     items:
->> >>       items:
->> >>         - description: The modulation frequency
->> >>         - description: The modulation depth in permyriad
->> >>         - description: The modulation method, down(2), up(1), center(0)
->> >
->> >Is there a way to explicitly disable it, if it was enabled by the
->> >firmware? See also my comment in "Re: [PATCH v2 1/4] clk: Introduce
->>
->> The binding here is just to describe the parameter to configure
->> spread spectrum of a clk.
->>
->> To disable spread spectrum, the clk_hw_set_spread_spectrum could be
->> used with enable as false or as you suggested using CLK_SSC_NONE_SPREAD?
->
->But the bindings don't have an enable flag...
+On Thu, Feb 13, 2025 at 07:38:35AM +0000, Tudor Ambarus wrote:
+> > +		usi_uart: usi@105400c0 {
+> > +			compatible = "samsung,exynos990-usi", "samsung,exynos850-usi";
+> > +			reg = <0x105400c0 0x20>;
+> > +			samsung,sysreg = <&sysreg_peric0 0x1000>;
+> > +			samsung,mode = <USI_V2_UART>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <1>;
+> > +			ranges;
+> > +			clocks = <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_PCLK_4>,
+> > +				 <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_IPCLK_4>;
+> > +			clock-names = "pclk", "ipclk";
+> > +			status = "disabled";
+> > +
+> > +			serial_0: serial@10540000 {
+> > +				compatible = "samsung,exynos990-uart",
+> > +					     "samsung,exynos8895-uart";
+> > +				reg = <0x10540000 0xc0>;
+> > +				interrupts = <GIC_SPI 391 IRQ_TYPE_LEVEL_HIGH>;
+> > +				pinctrl-names = "default";
+> > +				pinctrl-0 = <&uart0_bus>;
+> > +				clocks = <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_PCLK_4>,
+> > +					 <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_IPCLK_4>;
+> > +				clock-names = "uart", "clk_uart_baud0";
+> > +				samsung,uart-fifosize = <256>;
+> > +				status = "disabled";
+> 
+> node properties shall be specified in a specific order. Follow similar
+> nodes that are already accepted, gs101 is one.
 
-The modulation method maybe updated to
-down(3), up(2), center(1), no modulation(0).
+Not all Exynos SoCs will follow the same order
 
-Then no need a separate entry for enable.
+> <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_IPCLK_4>;
 
-Thanks,
-Peng.
+Is
 
->
->> >clk_hw_set_spread_spectrum".
->> >
->> >>           minimum: 0
->> >>           maximum: 2
->> >
->> >What's the meaning of these limits?
->>
->> Modulation has three methods:
->> Down-spread modulation
->> Up-spread modulation
->> Center-spread modulation.
->>
->> I use 2 for down, 1 for up, 0 for center here. So the limits:
->> min: 0, max: 2.
->
->Silly me, they apply to the last description...
->
->Gr{oetje,eeting}s,
->
->                        Geert
->
->-- 
->Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
->In personal conversations with technical people, I call myself a hacker. But
->when I'm talking to journalists I just say "programmer" or something like that.
->                                -- Linus Torvalds
->
+GATE(CLK_GOUT_PERIC0_TOP0_IPCLK_4, "gout_peric0_top0_ipclk_4",
+     "dout_peric0_uart_dbg",
+     CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_4,
+     21, 0, 0), [Mainline CLK]
+
+You can find it in the cmucal-node.c driver downstream of the kernel. [0]
+
+> > +			};
+> > +		};
+> > +
+> > +		usi0: usi@105500c0 {
+> 
+> cut
+> 
+> > +
+> > +			hsi2c_0: i2c@10550000 {
+> 
+> cut
+> 
+> > +
+> > +			spi_0: spi@10550000 {
+> 
+> cut
+> 
+> > +			serial_2: serial@10550000 {
+> 
+> why not serial_0 since you're in USI0.
+
+Because it is simply displayed in the exynos9830-usi.dtsi [1]
+
+> > +		};
+> > +
+> > +		usi_i2c_0: usi@105600c0 {
+> > +			compatible = "samsung,exynos990-usi", "samsung,exynos850-usi";
+> > +			reg = <0x105600c0 0x20>;
+> > +			samsung,sysreg = <&sysreg_peric0 0x1008>;
+> > +			samsung,mode = <USI_V2_I2C>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <1>;
+> > +			ranges;
+> > +			clocks = <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_PCLK_6>,
+> > +				 <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_IPCLK_6>;
+> > +			clock-names = "pclk", "ipclk";
+> > +			status = "disabled";
+> > +
+> > +			hsi2c_1: i2c@10560000 {
+> > +				compatible = "samsung,exynos990-hsi2c",
+> > +					     "samsung,exynosautov9-hsi2c";
+> > +				reg = <0x10560000 0xc0>;
+> > +				interrupts = <GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>;
+> > +				pinctrl-names = "default";
+> > +				pinctrl-0 = <&hsi2c1_bus>;
+> > +				clocks = <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_IPCLK_6>,
+> > +					 <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_PCLK_6>;
+> > +				clock-names = "hsi2c", "hsi2c_pclk";
+> > +				#address-cells = <1>;
+> > +				#size-cells = <0>;
+> > +				status = "disabled";
+> > +			};
+> 
+> shouldn't you define serial and SPI too?
+
+As shown in the node it only uses i2c which
+corresponds to the exynos9830-usi.dts. [2]
+
+> > +		};
+> > +
+> 
+> cut
+> 
+> > +			spi_8: spi@108e0000 {
+> > +				compatible = "samsung,exynos990-spi";
+> > +				reg = <0x108e0000 0x30>;
+> > +				interrupts = <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>;
+> > +				pinctrl-names = "default";
+> > +				pinctrl-0 = <&spi8_bus>;
+> > +				clocks = <&cmu_peric1 CLK_GOUT_PERIC1_TOP0_PCLK_14>,
+> > +					 <&cmu_peric1 CLK_GOUT_PERIC1_TOP0_IPCLK_14>;
+> > +				clock-names = "spi", "spi_busclk0";
+> > +				#address-cells = <1>;
+> > +				#size-cells = <0>;
+> > +				fifo-depth = <256>;
+> 
+> that's a first. Does downstream define any SPI node with 256 bytes
+> FIFOs? Would you please point me to the downstream sources?
+
+Here :) [3]
+
+> Cheers,
+> ta
+
+[0] https://github.com/ExtremeXT/android_kernel_samsung_exynos990/blob/69515fbb7a4395898c05a8624f76a12afbac11c5/drivers/soc/samsung/cal-if/exynos9830/cmucal-node.c#L2719
+[1] https://github.com/pascua28/android_kernel_samsung_s20fe/blob/3be539e9cd22b89ba3cc8282945a0c46ff27341d/arch/arm64/boot/dts/exynos/exynos9830-usi.dtsi#L1954
+[2] https://github.com/pascua28/android_kernel_samsung_s20fe/blob/3be539e9cd22b89ba3cc8282945a0c46ff27341d/arch/arm64/boot/dts/exynos/exynos9830-usi.dtsi#L170
+[3] https://github.com/pascua28/android_kernel_samsung_s20fe/blob/3be539e9cd22b89ba3cc8282945a0c46ff27341d/arch/arm64/boot/dts/exynos/exynos9830-usi.dtsi#L1638
 
