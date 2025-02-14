@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-146618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5E46A3593D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 09:46:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB42DA3594B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 09:48:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3FAF16D3AE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:45:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 531A5188DEC4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:48:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED75227BA3;
-	Fri, 14 Feb 2025 08:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C58E189B9D;
+	Fri, 14 Feb 2025 08:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ertDIWL3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t1VNyCwi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7143207E13;
-	Fri, 14 Feb 2025 08:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33309275401;
+	Fri, 14 Feb 2025 08:48:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739522756; cv=none; b=fhOLt49CbQuyDUIf0DpZ9GHc7c84wFpm2wTHm/I0v+kCMblKT5SP/u328hsdS9x+3rN+2ff+Y5pX0NAwvyUlqnGLYe6RyRhFti31bHB4b6/HjoPOev+mxu156hqWE1xShT6NucEDcXWG09bI6Ht+qCWr8cECs7MB4PcEvBcMSXI=
+	t=1739522888; cv=none; b=oi9mRoBkEYVrA52hAV4DyQPywnotQYykAsz9Sttvr6L1wsnp788u6bYHO3v+5d82de5OAr/QyVw64aOEoBrCgX3uaJplh+ewgL9QoIsSCxIkJ5zX+UMH4acoudMuGi9n98cD7J1F10p/BS1ccagZ1d6f/HI6zG5RFx2YTLRzqac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739522756; c=relaxed/simple;
-	bh=fjB8HqmqVH8rp5Jz5lXC7wUNsIKwFQMVWWlI1UO4+4w=;
+	s=arc-20240116; t=1739522888; c=relaxed/simple;
+	bh=G2g+YE94HijZmiKvrLiQZ/MFM5yojKDRXo2gEydfZGc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OFMPId243ffEgfin4F6Z+Dqt64rrhzL5SWvRv7irS7pqNhJRJ3qh73QnESjhfR8Me9/iH0upEHHpdtErBTUeS8udVWalTPDZawjv4WilSbqzCrQ4G8IvH0PoIlw8I7kbVmuAlBaB+2xvdLlbnyWgI0ZpNQD5GeZP7b+bpI7h2B8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ertDIWL3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FE00C4CED1;
-	Fri, 14 Feb 2025 08:45:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XvIKRwxjpt9ekwuA3GhCGVrhsLlge1uED9Z4bqPpqhcelLUiu40D5l4tZOlW8QeKhydRpRvv0byaOfbuRGtz1CRx6AuCs4NWZfGjmLpBQ2MQP0JRZnoOXnZ7y0qfKXGgCqUv944BP+m1emPCFq+Aa4WN91djf15CWl2lCEB8HY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t1VNyCwi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05F0FC4CED1;
+	Fri, 14 Feb 2025 08:48:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739522756;
-	bh=fjB8HqmqVH8rp5Jz5lXC7wUNsIKwFQMVWWlI1UO4+4w=;
+	s=k20201202; t=1739522887;
+	bh=G2g+YE94HijZmiKvrLiQZ/MFM5yojKDRXo2gEydfZGc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ertDIWL3KPj20gHOsk85e8SE4PyO6D68ljhLxDCK2scAfJ437BBe5bLIOTjmfh0/8
-	 GbB5P3cMu3Fnj3USxCWsvTLsgem8rNzpUYGaxuXf2+dONmQlvbiBggwBfKXQe5rXke
-	 M4ckpk+oBXkmqKB2mYf52rzrgKExzDq8t5IVt/nucSCSFZhDwgmn6PVkWVchbzG75e
-	 eYBjPUv1FOQ98ah5s6cYIFeY58Ybnw7ftBbroHclC2kN6RKPrnA0TD0RGneA6QCvDX
-	 a0StWKYfCtUyfp+UpTiaG6YJHSuE58TB/+6aUgYzPl0vxVvCrqEesddeD0iAPEv4JR
-	 fxWtBD4/aujEA==
-Date: Fri, 14 Feb 2025 09:45:52 +0100
+	b=t1VNyCwiviaCgE+fu8UovoX6ra2HOhZt4n+5DCe67vOG344OeSHfO2fRIxS61iKuj
+	 vBk4kYQanZHi6f6uwhQd20ZiDhe1H4wAkbGOy8Mun+GMdLY4kqa4YkfSc6T6/rgLF0
+	 GDuQFffLnIL+TWaGVhJpuZMAIZHOoXrE5Ut3oicG5NqirjzJgChXvFtvkrApfWKhAp
+	 01deLpc1rkV+d5rYxxhBFub5jV4R9L30pG1iYxc+P+CLmAHXRoWRFezwBX/GRrDpuh
+	 +6UMIrXecJDSI9DIGkYpu/0tXtICXld/GYkFSPO4c4H4/2kmd0eAQe6IVDYR+rUpID
+	 zs3CVoi7NLrww==
+Date: Fri, 14 Feb 2025 09:48:04 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Wilson Ding <dingwei@marvell.com>
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, andrew@lunn.ch, gregory.clement@bootlin.com, 
 	sebastian.hesselbarth@gmail.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
 	p.zabel@pengutronix.de, salee@marvell.com, gakula@marvell.com
-Subject: Re: [PATCH 3/4] [PATCH 3/4] dt-bindings: cp110: Document the reset
- controller
-Message-ID: <20250214-pony-from-small-town-b48816@krzk-bin>
+Subject: Re: [PATCH 1/4] [PATCH 1/4] reset: simple: Add syscon device
+ compatible
+Message-ID: <20250214-arcane-raspberry-hornet-f22d93@krzk-bin>
 References: <20250214065833.530276-1-dingwei@marvell.com>
- <20250214065833.530276-5-dingwei@marvell.com>
+ <20250214065833.530276-3-dingwei@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,36 +61,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250214065833.530276-5-dingwei@marvell.com>
+In-Reply-To: <20250214065833.530276-3-dingwei@marvell.com>
 
-On Thu, Feb 13, 2025 at 10:58:32PM -0800, Wilson Ding wrote:
-> Add new compatible to be used for CP110's reset controller, and document
-> the supported reset lines.
-> 
-> Signed-off-by: Wilson Ding <dingwei@marvell.com>
-> ---
-
-Subject: only one prefix
-
->  .../arm/marvell/cp110-system-controller.txt   | 32 +++++++++++++++++++
->  1 file changed, 32 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt b/Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt
-> index 9d5d70c98058..a5cc1360969c 100644
-> --- a/Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt
-> +++ b/Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt
-> @@ -190,6 +190,38 @@ CP110_LABEL(syscon0): system-controller@440000 {
+On Thu, Feb 13, 2025 at 10:58:30PM -0800, Wilson Ding wrote:
+>  #define SOCFPGA_NR_BANKS	8
+> @@ -171,26 +221,51 @@ static int reset_simple_probe(struct platform_device *pdev)
+>  	if (!data)
+>  		return -ENOMEM;
 >  
->  };
+> -	membase = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+> -	if (IS_ERR(membase))
+> -		return PTR_ERR(membase);
+> +	if (devdata && devdata->syscon_dev) {
+> +		data->regmap = syscon_node_to_regmap(pdev->dev.parent->of_node);
+> +		if (IS_ERR(data->regmap))
+> +			return PTR_ERR(data->regmap);
 >  
-> +Reset:
-> +------
-> +
-> +The Device Tree node representing this System Controller 0 provides a
-> +number of reset lines:
-> +
+> -	spin_lock_init(&data->lock);
+> -	data->membase = membase;
+> -	data->rcdev.owner = THIS_MODULE;
+> -	data->rcdev.nr_resets = resource_size(res) * BITS_PER_BYTE;
+> -	data->rcdev.ops = &reset_simple_ops;
+> -	data->rcdev.of_node = dev->of_node;
+> +		if (device_property_read_u32(&pdev->dev, "offset",
 
-No new bindings in TXT. Only DT schema.
+Where is this binding documented? This is patch #1, so something anywy
+is wrong here (see submitting patches for bindings).
+
+> +					     &data->reg_offset))
+> +			data->reg_offset = devdata->reg_offset;
+>  
+> -	if (devdata) {
+> -		reg_offset = devdata->reg_offset;
+> -		if (devdata->nr_resets)
+> -			data->rcdev.nr_resets = devdata->nr_resets;
+> +		if (devdata->nr_resets == 0) {
+> +			dev_err(dev, "no reset line\n");
+> +			return -EINVAL;
+> +		}
 
 Best regards,
 Krzysztof
