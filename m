@@ -1,88 +1,132 @@
-Return-Path: <devicetree+bounces-146595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F5E6A35864
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 09:04:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A0C4A3586D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 09:05:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0B573A6F14
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:03:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DD76161E7F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:05:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 352AB21E0A2;
-	Fri, 14 Feb 2025 08:03:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB5FD221D86;
+	Fri, 14 Feb 2025 08:05:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rNQyXiew"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="x8of1uYH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D96E21D596;
-	Fri, 14 Feb 2025 08:03:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9974221700;
+	Fri, 14 Feb 2025 08:05:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739520237; cv=none; b=YmJh8a2dSXfcnoZuhAEvfzXgxq6Am4btKKbJxQpnYllJrmHdqvgxLxrAKQXq1hF49z/2DQbV2Iez7rxsOCBm4SA6swAfQMAYZZxL29LnBHsU6e30x59qO6Lz0+dwuL1fnFZMc1xcYWNg0V46AyV5/uVy9HMEPqLmKT6p9Lbdh4I=
+	t=1739520338; cv=none; b=iCAQjY2co1PmTzMHivuER24GS9x/+3b4iZ9iRwyke1RtFYzQSuFruT6WclteAJW5qO6OE1GNZKOrCLTaoFAwJ1HOJg8EoQBkJ8qwxAJIvP9J5d+C36Jo+V6t8wNQacGlySVxoPceRGgcNxIQZeMzDGrzXaCcH2QjCpDwThVBBDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739520237; c=relaxed/simple;
-	bh=ZJTleOr+aCVydGuBXvDe9vmxgmg7Hou12+O0aC141WM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XQ9J6QWdoecvuuvyJUnccTt6oF1H9G9i5HNZIe6jOhD4QB6L2oT1I8kL9btSo7hm+HQnfTBLLdyMDaC8pKNdIkzj3vtBhY+6FPojDROuOrgSDA7ivYcFwvjISSdC3DYF9LYtPhoICiR2ZB0ZI//dEzIHyS2EKs1vCwvXVUQwoQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rNQyXiew; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA967C4CED1;
-	Fri, 14 Feb 2025 08:03:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739520236;
-	bh=ZJTleOr+aCVydGuBXvDe9vmxgmg7Hou12+O0aC141WM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rNQyXiewYUFgMh/V+W+aYjDpnFSpGmByYccCQTdDs+utzhny0WTB/CV7Pzdtk6unF
-	 nIZ0LXNKlBANxtHtRqoN/q8ugYylWxYSafBFsUVmBpkTH94wGaT1JQqaZgbT+l9KDo
-	 z0kzoy37mljipUA+YCzLw1g7xedqbQIcv4I7rQqsIeztYoss6AhLGzabOMvyYAeNdX
-	 n5Vv4k4vXto83RiJc6QeEI8esqSmTLfSN7ncfglGEkHynuy6Xi5aZHy7icTc0oCJHf
-	 +ZCpiRW6GuWfeSokxvBGKZbOttm7c0ISkKTwJcaObnz2KeSVknBe3wxh7sz+8td7SS
-	 bO7KKW97He9/g==
-Date: Fri, 14 Feb 2025 09:03:52 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Felix Fietkau <nbd@nbd.name>, 
-	Sean Wang <sean.wang@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "Chester A. Unal" <chester.a.unal@arinc9.com>, 
-	Daniel Golle <daniel@makrotopia.org>, DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, upstream@airoha.com
-Subject: Re: [PATCH net-next v4 11/16] dt-bindings: net: airoha: Add the NPU
- node for EN7581 SoC
-Message-ID: <20250214-futuristic-goat-of-enthusiasm-bba020@krzk-bin>
-References: <20250213-airoha-en7581-flowtable-offload-v4-0-b69ca16d74db@kernel.org>
- <20250213-airoha-en7581-flowtable-offload-v4-11-b69ca16d74db@kernel.org>
+	s=arc-20240116; t=1739520338; c=relaxed/simple;
+	bh=G9gkqx1h6EoYI9yTILB7n/U5mzUoHnvZQaFcNodFcK8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m3HxBBOU1hvjHkZQq1D/MPGaziYxRQZnqXAq7WcGzBr3ZUI1tgQbuf1Dk4S/uE3RbTTQaRPbpvGm/R0nmhkm9WY6DSnnOb5U8uk/K5QhLzynxhP15Xz+6ndcbAGhOWZvE1LQv7UVr7whBOQlxdmRMAD0pZD/fMNFq4+IPT6yedY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=x8of1uYH; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51E85PWT096861
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 14 Feb 2025 02:05:25 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1739520325;
+	bh=XnbZ8VsXODkmtfXWh1DBqFmOEWEsXMo+zmBXg0OmqXs=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=x8of1uYHIIXhMySQrFtiWf6aGMA1bCXQ3CkgVJzOeDXooLdP4R698ExB+edfSTXgl
+	 wGH2ItytTZxfZMDI6aaSqxF4WVKql9BXnYwgumrff3tjjgiiO+jd7L8lx0H2gACVNC
+	 CnxGvO1sxsxEAzoN0YePpEQCyWA8dhyow5YnAYck=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51E85ObG013406
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 14 Feb 2025 02:05:25 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 14
+ Feb 2025 02:05:24 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 14 Feb 2025 02:05:24 -0600
+Received: from localhost (lcpd911.dhcp.ti.com [172.24.227.226])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51E85NMZ117734;
+	Fri, 14 Feb 2025 02:05:24 -0600
+Date: Fri, 14 Feb 2025 13:35:23 +0530
+From: Dhruva Gole <d-gole@ti.com>
+To: Kendall Willis <k-willis@ti.com>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <tony@atomide.com>,
+        <msp@baylibre.com>, <khilman@baylibre.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62p-j722s-common-wakeup: Configure
+ ti-sysc for wkup_uart0
+Message-ID: <20250214080523.efqvheeso5xoai6p@lcpd911>
+References: <20250212215248.746838-1-k-willis@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250213-airoha-en7581-flowtable-offload-v4-11-b69ca16d74db@kernel.org>
+In-Reply-To: <20250212215248.746838-1-k-willis@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Feb 13, 2025 at 04:34:30PM +0100, Lorenzo Bianconi wrote:
-> This patch adds the NPU document binding for EN7581 SoC.
-> The Airoha Network Processor Unit (NPU) provides a configuration interface
-> to implement wired and wireless hardware flow offloading programming Packet
-> Processor Engine (PPE) flow table.
+On Feb 12, 2025 at 15:52:48 -0600, Kendall Willis wrote:
+> From: Vibhore Vardhan <vibhore@ti.com>
 > 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> Similar to the TI K3-AM62x Soc commit ce27f7f9e328c8582a169f97f1466976561f1
+> ("arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc for wkup_uart0")
+> The devices in the wkup domain are capable of waking up the system from
+> suspend. We can configure the wkup domain devices in a generic way using
+> the ti-sysc interconnect target module driver like we have done with the
+> earlier TI SoCs.
+> 
+> As ti-sysc manages the SYSCONFIG related registers independent of the
+> child hardware device, the wake-up configuration is also set even if
+> wkup_uart0 is reserved by sysfw.
+> 
+> The wkup_uart0 device has interconnect target module register mapping like
+> dra7 wkup uart. There is a 1 MB interconnect target range with one uart IP
+> block in the target module. The power domain and clock affects the whole
+> interconnect target module.
+> 
+> Note we change the functional clock name to follow the ti-sysc binding
+> and use "fck" instead of "fclk".
+> 
+> Also note that we need to disable the target module reset as noted by
+> Markus. Otherwise the sysfw using wkup_uart0 can get confused on some
+> devices leading to boot time issues such as mbox timeouts.
+> 
+> Signed-off-by: Vibhore Vardhan <vibhore@ti.com>
+> Signed-off-by: Kendall Willis <k-willis@ti.com>
 > ---
->  .../devicetree/bindings/net/airoha,en7581-npu.yaml | 72 ++++++++++++++++++++++
->  1 file changed, 72 insertions(+)
+> Tested by suspend/resume with WKUP UART wakeup source on AM62P.
+> 
+> Similar patch was sent for AM62x by Tony,
+> https://lore.kernel.org/all/20231219072503.12427-1-tony@atomide.com/
+> 
+> Similar patch was sent for AM62a by Dhruva,
+> https://lore.kernel.org/all/20241231-am62a-dt-ti-sysc-wkup-v1-1-a9b0d18a2649@ti.com/
+> 
+> Original patch for AM62p existed in the TI Vendor tree with Vibhore's
+> authorship:
+> https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/?h=ti-linux-6.6.y&id=efab3fb636673837886599a49cddf1e862c8aeb6
+> ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Dhruva Gole <d-gole@ti.com>
 
+
+-- 
 Best regards,
-Krzysztof
-
+Dhruva Gole
+Texas Instruments Incorporated
 
