@@ -1,233 +1,127 @@
-Return-Path: <devicetree+bounces-146715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6E1A35E71
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 14:11:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 015A4A35E7D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 14:13:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCCA23B05F9
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:08:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D0A23A95A0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:10:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C84A263F46;
-	Fri, 14 Feb 2025 13:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B40CF263F5C;
+	Fri, 14 Feb 2025 13:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GMat5fW/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 149F623A992;
-	Fri, 14 Feb 2025 13:08:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB8A977102;
+	Fri, 14 Feb 2025 13:10:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739538539; cv=none; b=oziEBgBV1cGyxHZRky4cfj31Yxce7mP6+TK7mMlmGfkarw8t+HppZtKcgVirw2hTXhgi1vDzZC/p9AzTUi7u1f/mPSf5sWzPE/2CY2QBFo/nIEXWRKJ78lpqCRS/vbBRxopCIy2bAcj9LeO+qRf9gbKFFbX40Ac2ra/uKCLmuQQ=
+	t=1739538633; cv=none; b=qjdFBt00U0Iz+hG+tRHxKJX9/FU7pKB3R6mZiCPE7rNWJro3h/GoDNX7h4pFm+LHKrxPnccUYbo5LuVtkCtLc9AHP4uzGoN9AZ8CBFN3sbzEEXN3xV3Buk04SALS9VuKNsj+4FsLWesTa/OymT1tYZ8fGl/aHfQtVUPKUA7CK6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739538539; c=relaxed/simple;
-	bh=DdXgOfaajmPxNUJs0g3YB5p0a0TafhxkMlOBYUWYlL4=;
+	s=arc-20240116; t=1739538633; c=relaxed/simple;
+	bh=QlPRonjpsELaN3mstlXIcrb2TexcIyZ9zBtEQDdwNBE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kTxumxmXc91KjsmkNWJjko28ERRMT/UjFweWCCRudnzCJ7Wx8H0eJ49GR3WWlceOJQZFB8A3EdO04qIgIxWnNnryAwkiZXafGG0rwYoK5LSnDHPBudp72tHFzWtrcSRqxqMzJh3ybVEWCYx/55gMWqtKrhhZkPrC4c65dRY5Um0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [180.172.76.141])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id E83C23433F1;
-	Fri, 14 Feb 2025 13:08:56 +0000 (UTC)
-Date: Fri, 14 Feb 2025 13:08:49 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Olof Johansson <olof@lixom.net>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Jesse Taube <mr.bossman075@gmail.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: gpio: spacemit: add support for K1
- SoC
-Message-ID: <20250214130849-GYA21864@gentoo>
-References: <Z5FPJLzAEVXGWJnE@chonkvm.lixom.net>
- <20250123113042-GYA38135@gentoo>
- <Z5LOdh-4UxRtteOy@chonkvm.lixom.net>
- <20250127181726.GA538260-robh@kernel.org>
- <20250128031712-GYB47737@gentoo>
- <CACRpkdYbSOHD9UH5=+qjztxS3Cq_rxaoOT9tFtD8ZWm9zQGnPw@mail.gmail.com>
- <CACRpkdZa887vx4Lmxk1U_8w5n7AxMnyzGexeYzhsxNGT-DTYcQ@mail.gmail.com>
- <20250206133156-GYA5687@gentoo>
- <CACRpkdZYYZ5tUR4gJXuCrix0k56rPPB2TUGP3KpwqMgjs_Vd5w@mail.gmail.com>
- <20250214115410-GYA21743@gentoo>
+	 Content-Type:Content-Disposition:In-Reply-To; b=nAZvLwpniMXr2LTWgqoGcuBsazK4g8P5U/SWcO6GsacCvEb1UdmwofHnUo8ZE97f8OQZBpA1d9WbBZJZ7I/tfS5fTlQGNb4LGJXL4U2PWknKm8fbuuVqmsb/7KOVrxHgjxRzVMZKEBLkXHSWaFvpb2Ot4VJXgV1AULwXV7NdKHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GMat5fW/; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=WVC5KPxHIUTpQJAWz4Yd0Tr3K7nMkABHyOzsn0Ycnho=; b=GMat5fW/wTe2S9Xc13bsmUgHVp
+	BSKW20FGbgUDU2G628ymjJcueeL0WXBX702Wr9IeQ67colXklE/H+g5+B3a8DtXQ8qLrhA1kKa8+I
+	l4YYAWTKEKK3W9u0MPt6QyRtnhoSlP2hh5zW85j+tOTIHUJWo29swQCGqLzhfRxLwLi0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tivSH-00E4Ry-UD; Fri, 14 Feb 2025 14:10:05 +0100
+Date: Fri, 14 Feb 2025 14:10:05 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Swathi K S <swathi.ks@samsung.com>
+Cc: krzk+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	rmk+kernel@armlinux.org.uk, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	'Pankaj Dubey' <pankaj.dubey@samsung.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: net: Add FSD EQoS device tree
+ bindings
+Message-ID: <ffb13051-ab93-4729-8b98-20e278552673@lunn.ch>
+References: <20250213044624.37334-1-swathi.ks@samsung.com>
+ <CGME20250213044955epcas5p110d1e582c8ee02579ead73f9686819ff@epcas5p1.samsung.com>
+ <20250213044624.37334-2-swathi.ks@samsung.com>
+ <85e0dec0-5b40-427a-9417-cae0ed2aa484@lunn.ch>
+ <00b001db7e9f$ca7cfbd0$5f76f370$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250214115410-GYA21743@gentoo>
+In-Reply-To: <00b001db7e9f$ca7cfbd0$5f76f370$@samsung.com>
 
-Hi Linus:
+On Fri, Feb 14, 2025 at 10:47:39AM +0530, Swathi K S wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Andrew Lunn <andrew@lunn.ch>
+> > Sent: 14 February 2025 05:50
+> > To: Swathi K S <swathi.ks@samsung.com>
+> > Cc: krzk+dt@kernel.org; andrew+netdev@lunn.ch; davem@davemloft.net;
+> > edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
+> > robh@kernel.org; conor+dt@kernel.org; richardcochran@gmail.com;
+> > mcoquelin.stm32@gmail.com; alexandre.torgue@foss.st.com;
+> > rmk+kernel@armlinux.org.uk; netdev@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-stm32@st-md-mailman.stormreply.com;
+> > linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
+> > Subject: Re: [PATCH v6 1/2] dt-bindings: net: Add FSD EQoS device tree
+> > bindings
+> > 
+> > > +  phy-mode:
+> > > +    enum:
+> > > +      - rgmii-id
+> > 
+> > phy-mode is normally a board property, in the .dts file, since the board
+> might
+> > decide to have extra long clock lines and so want 'rgmii'.
+> > 
+> > The only reason i can think of putting rgmii-id here is if the MAC only
+> > supports 'rgmii-id', it is impossible to make it not add delays.
+> > If that is true, a comment would be good.
+> 
+> 
+> Hi Andrew,
+> Thanks for reviewing.
+> I think we already discussed this part some time back here [1]
+> [1] :
+> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20230814112539.7
+> 0453-2-sriranjani.p@samsung.com/#25879995
+> Please do let me know if there is any other concern on this.
 
-On 11:54 Fri 14 Feb     , Yixun Lan wrote:
-> Hi Linus:
-> 
-> On 14:07 Thu 13 Feb     , Linus Walleij wrote:
-> > On Thu, Feb 6, 2025 at 2:32 PM Yixun Lan <dlan@gentoo.org> wrote:
-> > 
-> > > > > foo-gpios <&gpio 2 7 GPIO_ACTIVE_LOW>;
-> > >
-> > > if we model the dts as above, then "&gpio" will register itself as one sole "struct gpio_chip",
-> > >  which mean one gpio chip combine three banks..
-> > 
-> > Not really: the fact that there is just one gpio node in the device
-> > tree does not
-> > mean that it needs to correspond to one single gpio_chip instance inside the
-> > Linux kernel.
-> > 
-> > It's just what the current existing bindings and the code in the GPIO subsystem
-> > assumes. It does not have to assume that: we can change it.
-> > 
-> > I'm sorry if this is not entirely intuitive :(
-> > 
-> > One node can very well spawn three gpio_chip instances, but it requires
-> > some core changes. But I think it's the most elegant.
-> > 
-> > > if taking "one gpio chip support multi banks" direction, then it will be reverted back as patch V1,
-> > > then, even the three gpio-cells model is unnecessary needed, as we can map gpio number
-> > >  to the <bank, offset> array in the underlying gpio driver
-> > >
-> > > the v4 patch is very similar to drivers/gpio/gpio-dwapb.c
-> > >
-> > > If had to choose the direction between v1 and v4, I personally would favor the latter,
-> > >  as from hw perspective, each gpio bank is quite indepedent - has its own io/irq registers,
-> > >  merely has interleaved io memory space, one shared IRQ line.. also the patch v4 leverage
-> > >  lots underlying generic gpio APIs, result in much simplified/clean code base..
-> > 
-> > So what I would suggest is a combination of the two.
-> > 
-> > One gpio node in the device tree, like the DT maintainers want it.
-> > 
-> > Three struct gpio_chip instances inside the driver, all three spawn from
-> > that single gpio device, and from that single platform_device.
-> > 
-> > What we are suggesting is a three-cell phandle in the device tree:
-> > 
-> > foo-gpios = <&gpio 0 7 GPIO_ACTIVE_HIGH>;
-> > bar-gpios = <&gpio 2 31 GPIO_ACTIVE_HIGH>;
-> > 
-> > Notice the new first cell which is 0 or 2.
-> > 
-> > The first one is what was previously called gpio 7.
-> > The second one is what was 2*32+31 = gpio 95.
-> > 
-> > So internally in the driver it is easy to use the first cell (0 or 2) to map to
-> > the right struct gpio_chip if you have it in your driver something like this:
-> > 
-> > struct spacemit_gpio {
-> >     struct gpio_chip gcs[3];
-> > ...
-> > };
-> > 
-> > struct spacemit_gpio *sg;
-> > struct gpio_chip *gc;
-> > int ret;
-> > 
-> > for (i = 0; i++; i < 3) {
-> >      ret = devm_gpiochip_add_data(dev, &sg->gcs[i], sg);
-> >      if (ret)
-> >         return ret;
-> >      gc = sg->gcs[i];
-> >      .... do stuff with this instance ....
-> > }
-> > 
-> > Callbacks etc should work as before.
-> > 
-> > Then these phandles needs to be properly translated, which is done with the
-> > struct gpio_chip .of_xlate() callback. (If you look inside gpiolib-of.c
-> > you will see that chip->of_xlate() is called to map the phandle cells
-> > to a certain GPIO line).
-> > 
-> > In most cases, drivers do not assign the chip->of_xlate callback
-> > (one exception is gpio-pxa.c) and then it is default-assigned to
-> > of_gpio_simple_xlate() which you can find in gpiolib-of.c as well.
-> > 
-> > You need to copy this callback to your driver and augment it
-> > properly.
-> > 
-> > The xlate callback is used to locate the struct gpio_chip and
-> > struct gpio_device as well, by just calling the xlate callback, so if
-> > you code up the right xlate callback, everything should just
-> > work by itself.
-> > 
-> > this is a guess on what it would look like (just dry coding,
-> > but hopefully the idea works!):
-> > 
-> > static int spacemit_gpio_xlate(struct gpio_chip *gc,
-> >                                 const struct of_phandle_args *gpiospec,
-> >                                 u32 *flags)
-> > {
-> >         struct spacemit_gpio *sg = gpiochip_get_data(gc);
-> >         int i;
-> > 
-> >         if (gc->of_gpio_n_cells != 3)
-> >                 return -EINVAL;
-> > 
-> >         if (gpiospec->args_count < gc->of_gpio_n_cells)
-> >                 return -EINVAL;
-> > 
-> >         /* We support maximum 3 gpio_chip instances */
-> >         i = gpiospec->args[0];
-> >         if (i >= 3)
-> >                 return -EINVAL;
-> > 
-> >         /* OK is this the right gpio_chip out of the three ? */
-> >         if (gc != sg->gcs[i])
-> >                 return -EINVAL;
-> > 
-> >         /* Are we in range for this GPIO chip */
-> >         if (gpiospec->args[1] >= gc->ngpio)
-> >                 return -EINVAL;
-> > 
-> >         if (flags)
-> >                 *flags = gpiospec->args[2];
-> > 
-> >         /* Return the hw index */
-> >         return gpiospec->args[1];
-> > }
-> > 
-> thanks for this very detail prototype! it works mostly, with one problem:
-> 
-> how to map gpio correctly to the pin from pinctrl subsystem?
-> 
-> for example, I specify gpio-ranges in dts, then 
->                 gpio0: gpio@d4019000 {
->                         compatible = "spacemit,k1-gpio";
->                         reg = <0x0 0xd4019000 0x0 0x100>;
-> 			...
->                         gpio-ranges = <&pinctrl 0 0 96>;
->                 };
-> 
-> 		foo-gpios = <&gpio0 2 28 GPIO_ACTIVE_LOW>;
-> 
-> It should get GPIO_92 ( 92 = 2 * 32 + 28), but turns out GPIO_28
-> 
-> Probably there is something I missed...
-to make the gpio part work, we need additional custom gpio-ranges parser,
-which should similar to of_gpiochip_add_pin_range() in gpiolib-of.c
-(at least gpio core need to adjust to call custom this function)
+We partially discussed this in this thread.
 
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+As i said, what value you need here depends on the board design. The
+PCB could provide the 2ns delay, in which case, 'rgmii' would be the
+correct value to have in the board .dts file. Hence the binding should
+not restrict the value of phy-mode to just rgmii-id. All 4 rmgii
+values should be accepted.
+
+The only reason you would force only rgmii-id is if the MAC/PHY pair
+cannot do anything else. If that really is true, i would expect a
+comment in the binding, and the MAC driver to return -EINVAL for
+anything but rgmii-id.
+
+	Andrew
 
