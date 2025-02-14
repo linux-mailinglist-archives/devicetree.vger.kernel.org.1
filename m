@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-146584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A7EEA357C5
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:21:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3CACA357CE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:23:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6692E3AC14B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:20:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51EFA3AE0D6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:22:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0E84206F1D;
-	Fri, 14 Feb 2025 07:21:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C60207DE9;
+	Fri, 14 Feb 2025 07:22:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yl07UI8r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oMZBHWRm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AA19185B48;
-	Fri, 14 Feb 2025 07:21:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC6213A3EC;
+	Fri, 14 Feb 2025 07:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739517662; cv=none; b=uYeSZNIepnFuyvqH7Wq5+gqxRKmK8PS8U9nu0zeIapsiFcVeTThq7n3nKL6kh4GQ/c6vYGd5KNmOywzjC+zBo4lwR+LTgnDKBD1nvG5+O4JFN7fFPaMYeze4SHrhBkZM20VcwBOe6PsrwPzKnon93z88BDPO85CHExK/AWMX/vE=
+	t=1739517776; cv=none; b=uSDxM4859l0Srehnv37ERVljTCDwqJturffKgABkc20/kJftAmwneonc3ZrMpG9PUjsxpO22YofMVpbbaX0X6aT7B15jhMoGIH5w+CyX1hq3Csp007l9/TIcQAkckpFY9X84ZshyV1/qvsrSkhC46vDBGrnrSDqT2r6yS1wEBYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739517662; c=relaxed/simple;
-	bh=WhwhWFassfKgQBbi2dG7qdh9/+mxzvg++tUUcPh4d3Q=;
+	s=arc-20240116; t=1739517776; c=relaxed/simple;
+	bh=TLztAe3TlNEZnP+QxiO3uqTpnscQ+NEb7saKg9tJInE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N76D4r4oi2nIlzMd2XpVzkb0VpiPk46xoP0unw1z2ndO7zknyX0e6jfJqL+PvpiBlYRGHjhvSwNLg8As4Q0xCJUNe+/nXs3fcvkDinRotrvb/qUNfx9YAmwaaCkIXWEVDgpF/tljIdGimYfZBhz+DS7bbhXlOmvVTYiuxBMCQ5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yl07UI8r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96E5CC4CEE8;
-	Fri, 14 Feb 2025 07:20:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=nsigOEW2ltTgKYXdt9mO4OPYkQT/N4v5LkIEpQQfQK5ZwaoVqc1pB5g+vzFm9BLh2UodjCZGnUMz1TklXNfXD7JUwBScJlbeBb3dh2HFz3fmeIxcGo5kW2Hc1HyJK0Qy4xMdbqtMieacb5JeDkHWKRJ0CefbfvyIBw7zyJKYKi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oMZBHWRm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 093A9C4CED1;
+	Fri, 14 Feb 2025 07:22:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739517662;
-	bh=WhwhWFassfKgQBbi2dG7qdh9/+mxzvg++tUUcPh4d3Q=;
+	s=k20201202; t=1739517775;
+	bh=TLztAe3TlNEZnP+QxiO3uqTpnscQ+NEb7saKg9tJInE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Yl07UI8rhKSCGMyWR7Ep/ndO0yXTn9JuuXrkR4RkyJD0EYwyf/oBkSxFHtL38oRHk
-	 9CvJ5WJoC1wsr4vZiWjhohCQmJ2qS8gVeac/hmLjhbdHBGPGpmLUwVNrZVG9gXEiQS
-	 uLlwHtzlGMIMNVA8ApbrIxbebawMEc/DmmyBfGXADVrvYQ0beKiTtXlCK7scE857Lb
-	 WkO/2CcDUJ2xwoP2VR269Zr/3CU3xtsXreNNMYmsLAtSoGhhi2n1h2qTL6DLI+EXQ8
-	 8L7N/uM/6NlNecqJuJ2uY6rgOBP1BEIHItrMDGshXmYbUqnOeBidl29loqTleyPw3W
-	 7OBxcjmTvJ/lg==
-Message-ID: <b09aeab3-5dc0-4f0f-bf52-d61865c2bbda@kernel.org>
-Date: Fri, 14 Feb 2025 08:20:55 +0100
+	b=oMZBHWRmGzzbjW6a8CWhK4OKWY6zBYlOdCI4iIO94roJYiHKj+zBLFmdClamqetQs
+	 O7zJpPD5D9v0A8uzMWrIxza/IfrSFSBkVyyRDsqF0ZFAy9a3LBd53iUmk9WenHTKuc
+	 FI9vxiajWDTI+AoTKxQpQpt6ly7UKzCQIFcmXqKFyHXpI0zJ98Mlr9kdAb4rVej86O
+	 xLSyBwrHQVi9IoIbeEQRKfC/jzsYXq6G/JyerjS0ZAAEWCAc13EAj0P7I6X8wAwREc
+	 IxuQOMYzrutASQg/gtbrfGJKlIPDlR9+kD58oL3zcCjgflmIhN/Mo0Hv8IPUQqucni
+	 o0NUv79+l4nJw==
+Message-ID: <0c80af2c-d8bb-43bb-ae5f-0ab63a0df2bd@kernel.org>
+Date: Fri, 14 Feb 2025 08:22:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/15] dt-bindings: mfd: syscon: add
- microchip,sama7d65-sfrbu
-To: Conor Dooley <conor@kernel.org>
-Cc: Ryan.Wanner@microchip.com, lee@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, claudiu.beznea@tuxon.dev,
- sre@kernel.org, nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
- p.zabel@pengutronix.de, linux@armlinux.org.uk, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
-References: <cover.1739221064.git.Ryan.Wanner@microchip.com>
- <4cac19e32295c708d72b9fc6ba342b5c961fb6c3.1739221064.git.Ryan.Wanner@microchip.com>
- <20250211-therapeutic-futuristic-parakeet-204cae@krzk-bin>
- <20250213-shrouded-carnage-65e11cff5bb4@spud>
+Subject: Re: [PATCH v4 3/3] arm64: dts: exynosautov920: add ufs phy for
+ ExynosAutov920 SoC
+To: Sowon Na <sowon.na@samsung.com>, robh@kernel.org, conor+dt@kernel.org,
+ vkoul@kernel.org, alim.akhtar@samsung.com, kishon@kernel.org
+Cc: krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+References: <20241226031142.1764652-1-sowon.na@samsung.com>
+ <CGME20241226031145epcas2p25dc5ea4da8d8cd9170ed2f04c6334d1b@epcas2p2.samsung.com>
+ <20241226031142.1764652-4-sowon.na@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,32 +104,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250213-shrouded-carnage-65e11cff5bb4@spud>
+In-Reply-To: <20241226031142.1764652-4-sowon.na@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/02/2025 21:30, Conor Dooley wrote:
->>> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
->>> index 51d896c88dafa..727292ffe092e 100644
->>> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
->>> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
->>> @@ -91,6 +91,7 @@ select:
->>>            - microchip,mpfs-sysreg-scb
->>>            - microchip,sam9x60-sfr
->>>            - microchip,sama7d65-ddr3phy
->>> +          - microchip,sama7d65-sfrbu
->>
->> You got comment on #1 of your v1, so if you make exactly the same
->> mistake in other patches then fix it there as well.
->>
->> Apply v1 Rob's comments to all your patches.
+On 26/12/2024 04:11, Sowon Na wrote:
+> Add UFS Phy for ExynosAutov920
 > 
-> Actually, this patch v1 did put it in both lists, but here it got
-> dropped from the second list:
-> https://lore.kernel.org/all/20250130233431.GB1868322-robh@kernel.org/
+> Like ExynosAutov9, this also uses fixed-rate clock nodes until clock driver
+> has been supported. The clock nodes are initialized on bootloader stage
+> thus we don't need to control them so far.
+> 
+> Signed-off-by: Sowon Na <sowon.na@samsung.com>
+> Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+> ---
+>  arch/arm64/boot/dts/exynos/exynosautov920.dtsi | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> index eb446cdc4ab6..c761e0a1c2c4 100644
+> --- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> @@ -444,6 +444,17 @@ pinctrl_aud: pinctrl@1a460000 {
+>  			compatible = "samsung,exynosautov920-pinctrl";
+>  			reg = <0x1a460000 0x10000>;
+>  		};
+> +
+> +		ufs_0_phy: phy@16e04000 {
 
-
-That's even weirder...
+Incorrectly placed - not ordered. Don't add new stuff to the end of
+lists, files, etc. Entire file is sorted by unit address.
 
 Best regards,
 Krzysztof
