@@ -1,68 +1,58 @@
-Return-Path: <devicetree+bounces-146842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18D9CA3679A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 22:35:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 798EBA367B8
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 22:45:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00CEE18922C3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 21:35:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 367C916D65E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 21:45:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB6891C862E;
-	Fri, 14 Feb 2025 21:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E7FD1DB153;
+	Fri, 14 Feb 2025 21:45:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DHP7nNRg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="raqnuDzq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E719193404;
-	Fri, 14 Feb 2025 21:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F0218A6D4;
+	Fri, 14 Feb 2025 21:45:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739568907; cv=none; b=XFSTmfEh5SO6afiOrRaVnFiZ10MLnnfyGvjngjsvt/Qmre7uKeLQsmn1wJGiV0QVpp5ep1S092eO/sd2Ic4Xrx6Uoy74xUsfJVcMCYexlwrJLiNLK4n47WZOFED9UqJ/0+eZanf1IBzn+3E8yuAiANZNioamDxL1xWgG/APUtss=
+	t=1739569530; cv=none; b=VPSVVAosuoqpr9z8mOeMlWKXCbY5jWThE3B7yT3JfWWvab5KZyuhTWVEMfVwK4im1tHpK2gIDirppdeD4CIVHJkphKlNByNQAHsGuuuw9AKnhMpUKvLIThJSR/+6G1HNGXA7aMhHiGifBTCa29WkLp/XUZD2iHpmLuJGkiQaY1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739568907; c=relaxed/simple;
-	bh=SjtjrT420mYUlb0fxYSKm7OFC++eW35bsr/vWZzU78s=;
+	s=arc-20240116; t=1739569530; c=relaxed/simple;
+	bh=Tgu8c487qpSf1JKB3abGCdZ+fVqXR6+ogPiAKyoojU8=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=N5ntl5uXTsYvOGsBlASAfk5jtj/jxNuyuIKtvFkzEwT6QTH3C/Z0i1fhnOtmCLRTLVWegiksyzh0hONk9wkjvAhdCpqmTpBhsLDJ5SWQYkN4MKbBUJvfOAFgKZhJlIlS3qkhXapxyz7NNRqtvTmQDo6JaEMzDm5ThMcSnV2kDT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DHP7nNRg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6A6BC4CED1;
-	Fri, 14 Feb 2025 21:35:06 +0000 (UTC)
+	 MIME-Version:Content-Type; b=uD6iuzKit9x4Yh0iOnNZG+d7rrfw/yhTdl84rCGe8o1UlQilgmHaDzs0FEewbe5nsgOtE9+djGxTsDNwVGmySNpgBRYYAIN//xnGazUCQVv6iW/khYhMTOJFWaFnR9MEvw/PmyV7k+zY8b4lv2UZoARnusbijUPG4pRixAgN9vY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=raqnuDzq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB95BC4CED1;
+	Fri, 14 Feb 2025 21:45:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739568907;
-	bh=SjtjrT420mYUlb0fxYSKm7OFC++eW35bsr/vWZzU78s=;
+	s=k20201202; t=1739569529;
+	bh=Tgu8c487qpSf1JKB3abGCdZ+fVqXR6+ogPiAKyoojU8=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=DHP7nNRg/KFypnHBYoKCAJLXHKI2hR9YhY3Eb37iONUHFZB/fLQsjnPESclPsY/nD
-	 N/esdW85cVJ1E0SEKs+rsK+fkn8J95H9LxfJfcx3M/4mmL1463DFfnRW51QdmPjsT1
-	 3KbZxOGMjnZPdwUI8GLC+5TzJLtKO1A2pAOQjui3RBym2Zl3WzJjhGI5hapB5/EP5H
-	 ZI6fV+n/dYNs0Iexv2P8FXQYKcLmYIRHUfliVaJkW+AQDKNT+iROQkKQpwmAG+62S2
-	 XO5dbIi2D582s7cvgJlpKTCdp6LVDMiVd3/OgoLYu36HZc93ykppIEOA+EsD4QqnyZ
-	 GuZbreVuLpLxw==
-Date: Fri, 14 Feb 2025 13:35:06 -0800
+	b=raqnuDzqxhWY4N/YiQgksHu9BEcFLn37zQFHJeewh64NdxF52Mb7djkMP9MlRznlW
+	 oACDX2dhWr8bXHSVrBmz45pht+4+juGqmRR4WA47+nxP00HnIB6dEdgQofIFFPEwP6
+	 85Q8AlTwfUKq3XhU9mccBVB/LqjmPqBVPR5l5ukrNMO4aeAf+XY/wQGl1OkuCCic3W
+	 4ckRrzOvTu+XF2Ju5czVu7ADB6u/o3pj3hG6WN+od4YQBHWv4j7WPZ1VYSqvRu/A//
+	 4vKtB9/qQidYyLRcxmmZoyjCC0MQqiepiByPYZh9t8yUmsWvnNJ3jCoEnXA0oEOw4u
+	 pCi/dfvnkGPCQ==
+Date: Fri, 14 Feb 2025 13:45:28 -0800
 From: Jakub Kicinski <kuba@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Felix Fietkau <nbd@nbd.name>, Sean Wang
- <sean.wang@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "Chester A. Unal" <chester.a.unal@arinc9.com>,
- Daniel Golle <daniel@makrotopia.org>, DENG Qingfang <dqfext@gmail.com>,
- Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- upstream@airoha.com, Mateusz Polchlopek <mateusz.polchlopek@intel.com>
-Subject: Re: [PATCH net-next v4 01/16] net: airoha: Fix TSO support for
- header cloned skbs
-Message-ID: <20250214133506.1e4a619b@kernel.org>
-In-Reply-To: <20250213-airoha-en7581-flowtable-offload-v4-1-b69ca16d74db@kernel.org>
-References: <20250213-airoha-en7581-flowtable-offload-v4-0-b69ca16d74db@kernel.org>
-	<20250213-airoha-en7581-flowtable-offload-v4-1-b69ca16d74db@kernel.org>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, lee@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ pabeni@redhat.com, tsbogend@alpha.franken.de, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-mips@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 0/5] dt-bindings: net: realtek,rtl9301-switch
+Message-ID: <20250214134528.4630b6b2@kernel.org>
+In-Reply-To: <20250209234751.460404-1-chris.packham@alliedtelesis.co.nz>
+References: <20250209234751.460404-1-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,14 +62,11 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Thu, 13 Feb 2025 16:34:20 +0100 Lorenzo Bianconi wrote:
-> For GSO packets, skb_cow_head() will reallocate the skb for TSO header
-> cloned skbs in airoha_dev_xmit(). For this reason, sinfo pointer can be
-> no more valid. Fix the issue relying on skb_shinfo() macro directly in
-> airoha_dev_xmit().
-> This is not a user visible issue since we can't currently enable TSO for
-> DSA user ports since we are missing to initialize net_device
-> vlan_features field.
+On Mon, 10 Feb 2025 12:47:46 +1300 Chris Packham wrote:
+>   dt-bindings: net: Move realtek,rtl9301-switch to net
+>   dt-bindings: net: Add switch ports and interrupts to RTL9300
+>   dt-bindings: net: Add Realtek MDIO controller
 
-Im gonna apply this already so you're <= 15 for v5
+AFAIU we're waiting for a review from DT maintainers on this one,
+is this series on your radar?
 
