@@ -1,60 +1,57 @@
-Return-Path: <devicetree+bounces-146600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BBB3A35893
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 09:13:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58D0EA3589B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 09:15:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B62237A0FDC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:12:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CB0B3AB654
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:15:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBD08221D90;
-	Fri, 14 Feb 2025 08:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9CEC221DAC;
+	Fri, 14 Feb 2025 08:15:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbhEhqDY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jgl41hSb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C30C0221550;
-	Fri, 14 Feb 2025 08:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0D42080CE;
+	Fri, 14 Feb 2025 08:15:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739520784; cv=none; b=qw47UhzpdHjnWXIY26kGa29kl544YjOVIuqCSOd7im0N9LfNzdxzS5DwmXOgFiOumb5ol4DI4mVKkA+UGrgx/DolHoIHvRv/fEa8mMVUNJ92Rrb3CYvkozO38tFTvZ5K7uGBMmSuh1QPVv3Da489Ojv6HmW7lU5Uph1bebmrGv4=
+	t=1739520951; cv=none; b=UWEMg7bIQI3wbXw6PESl3h1VTBk5vpzx3b+J1ixW8Kkv5ndMwmtcoHKCAQ/PiVLMFA/BaoAWS/bQwlY9zadxu3U+PPIpMiHnJDOEnw3jf6DsHYFOE9xinxiCjteXu3u2Qpty+Xf2KRcRxYhemFn+uqdI0Rw4RgMvXhLnVdN/JJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739520784; c=relaxed/simple;
-	bh=Ja8vLEEdp2iURJ4Q1c/Tui7Jki+HDJyr8wVl3EMQiII=;
+	s=arc-20240116; t=1739520951; c=relaxed/simple;
+	bh=UnABjtE3CSMdX2YgAQYGBOrN7rt2X9ajJE0yjI2rMWY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aUA1h/ARsngUIQDFPwb4lbd91oJK9+SE3VpBz6pvx47HO64uihTb+3seafMITwC2NOAE3xTgA+UO4m3jHTvn0m8NSBFCDGfI2CKm4+p6LQifFJpbO0zLoaPPHYYSf2t1uFG37fUT9dhmeK4vbSPxvEL3zKuovpFoYpkY6/4Nn9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SbhEhqDY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B698C4CED1;
-	Fri, 14 Feb 2025 08:13:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qfJR/8KaH5Rirz3Aql6gQfztxmOP02w4ikM5HXnS5oObjmIgsOroKCTHFQjs8/TLb8+g0l+Is+YW2Bi+l26BnjZ87iEUO36VF2iUBKQjCnU/ngjPFgDLMkIGCDGPKfeaVtSl9CX1HVbw9sXfQXTIUU3dA4x+p/uh3A+lyePxqlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jgl41hSb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97063C4CEDD;
+	Fri, 14 Feb 2025 08:15:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739520784;
-	bh=Ja8vLEEdp2iURJ4Q1c/Tui7Jki+HDJyr8wVl3EMQiII=;
+	s=k20201202; t=1739520951;
+	bh=UnABjtE3CSMdX2YgAQYGBOrN7rt2X9ajJE0yjI2rMWY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SbhEhqDYJmwhyU/9lkdItHHzpBhtgcENB5PpXiR5cWIeGnjdaLCKtfziXDuKR7Kqa
-	 yc1pSq9d8Lyy3nrf8CBmTTTHLI7ldhwZ3RTjco9iCeQthXAVclAHogT7TXyGp69yCQ
-	 HI2x4XHcKuzAt418PltMChS16Qu0NnZ2asG8vYwxY5SEsqEk0sN45ggWONGrWenKE8
-	 1xm46qZJtfLuoJ2drrPDbxrv1yRnRzpPp6t+/5CSsNQEVg7/lEIWNxsU9h488ywcBr
-	 rEB+Ety64oxCxi2JBDLTTt4I/xlbLgdFLOY9vu8kJX4XRbz0L7usQrAYlrts/GC9pp
-	 lwXTlOEnQKvZQ==
-Date: Fri, 14 Feb 2025 09:13:01 +0100
+	b=Jgl41hSbmW3bX2nyjNTDUHE2Nuy+gEvjgCqli7YGQatzYm+N5wNBoFRgm5mnDSvwX
+	 kftq3IjU876TBa+KrXlhd1taNKyfezBL03lAW6fZutrZRiqZsqVDGbK+bIUHCtp0v4
+	 hWop/HepDQMtAM5C6Q2RKucWXXl/Sy2IJVIQ0xwMgP6TWM6gEjXMauvRDsmsPBEY7o
+	 jgEEUjT5LTiPc3Gu9o/Bn4FJUUKn6eGaN7FdTxIksr4dSLOeFwxNMboFHMN76b3rdd
+	 wpM4hkhUtnPRVMcas1QcaFaxaPPYkayg+SO/XRnQT3Skb28r8YUwIJRYQnsBBbk+7B
+	 s94x8gjHpkNJA==
+Date: Fri, 14 Feb 2025 09:15:47 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Vincenzo Frascino <vincenzo.frascino@arm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Russell King <linux@armlinux.org.uk>, Will Deacon <will@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH v5 4/8] perf: arm_pmuv3: Add support for ARM Rainier PMU
-Message-ID: <20250214-vivacious-savvy-bee-fcdbd9@krzk-bin>
-References: <20250213180309.485528-1-vincenzo.frascino@arm.com>
- <20250213180309.485528-5-vincenzo.frascino@arm.com>
+To: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, festevam@gmail.com, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, m.felsch@pengutronix.de, 
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH next v3 1/3] dt-bindings: usb: microchip,usb2514: add
+ support for vdda
+Message-ID: <20250214-literate-bullmastiff-of-advance-d8ecd5@krzk-bin>
+References: <20250213094338.1611389-1-catalin.popescu@leica-geosystems.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,24 +60,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250213180309.485528-5-vincenzo.frascino@arm.com>
+In-Reply-To: <20250213094338.1611389-1-catalin.popescu@leica-geosystems.com>
 
-On Thu, Feb 13, 2025 at 06:03:05PM +0000, Vincenzo Frascino wrote:
-> Add support for the ARM Rainier CPU core PMU.
+On Thu, Feb 13, 2025 at 10:43:36AM +0100, Catalin Popescu wrote:
+> Microchip hub USB2514 has one 3V3 digital power supply and one 3V3
+> analog power supply. Add support for analog power supply vdda.
 > 
-> Note: Coherently, add dt bindings for the same PMU.
-> 
-> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
+> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
 > ---
->  Documentation/devicetree/bindings/arm/pmu.yaml | 1 +
+> v3:
+> - replace "if then else" by "if not then"
+> 
+> v2:
+> - merge "if" with "allOf" and move the whole after patternProperties
+>   section
+> ---
+>  .../bindings/usb/microchip,usb2514.yaml       | 19 ++++++++++++++++---
+>  1 file changed, 16 insertions(+), 3 deletions(-)
 
-Bindings are separate patches.
-
-Please run scripts/checkpatch.pl and fix reported warnings. After that,
-run also 'scripts/checkpatch.pl --strict' and (probably) fix more
-warnings. Some warnings can be ignored, especially from --strict run,
-but the code here looks like it needs a fix. Feel free to get in touch
-if the warning is not clear.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
