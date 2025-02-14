@@ -1,122 +1,125 @@
-Return-Path: <devicetree+bounces-146657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FF09A35BA5
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 11:39:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D66E7A35BAC
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 11:42:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 164A618922A2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 10:39:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8001E18925CD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 10:42:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9A52245026;
-	Fri, 14 Feb 2025 10:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A751245B0B;
+	Fri, 14 Feb 2025 10:42:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jUWNhab7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TXivNl3Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFC0820DD66
-	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 10:39:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DC8D20DD66
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 10:42:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739529549; cv=none; b=A5Auo4+xFt4hkLkDaS3Zo0lsEaTnnJKPdBaBd5X8aAanG3zEOQrl6c7EJsEyO70VDRacF/gKO6TKELkR3MYKvLZ9l7bEPW+N1KRdM0S2WXg4tt0dwMy5ZIFtCR5ZbH9gNteRqHQvgnp7lFPvcE24AH7vZI7SrmI2huDlqEV9kFM=
+	t=1739529754; cv=none; b=nr59scZLkzatVAYBptrpztPkckBUVIJ/zv7/3DqkBiiXDWkmFnUPhXi3/fnN+OC1ZqabwXa8SPBkW4TuA6ybr/MGzhtiv4dHXWVnPf/PwBhJ5FlKZXDNnL6AwDTfq6+m7lmQXPofzVHEcfjhi7PsIcTqfqCfenwhJ+I2F+U7XbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739529549; c=relaxed/simple;
-	bh=9WieDtozVEP30o1rMgmkET2eyeUrqqLkfHQ4w0SM3zE=;
+	s=arc-20240116; t=1739529754; c=relaxed/simple;
+	bh=tEjiLlitcfTlxaKKdC7p1guCdclzcB1m0BYgVz3Tv1s=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DBDsrvnUwyjIpJEBYQrYtETMPZ+onIK88WHWGci/XZph2RZQlHLDYby9Yqt4lPts+B6oT8imDOQ6AhzfGB24CAhZktt7ur0EyFRHImYVsShKPbMvtpqh72VmN+dAjh4+dhraRP9Ch/ly+J3WLnNNlD9kGaGEIUMT4uDoWtxFesU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jUWNhab7; arc=none smtp.client-ip=209.85.208.181
+	 To:Cc:Content-Type; b=LNHYDk2/UO5soooahk0puLEvZLFNau/NQAm9P1Q/IYL8H38A/m+i6N27ZKxwUVySqoNAznBrq42tBHCxbEPNz3CtQcIJW3oXTFXgOcrVv1WLpcwYZ4ZWJAgA8fOPoc2ZlCa80bJmPzi2u0z6qpI02eZazOu8QD6YTYizTeHSv0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TXivNl3Z; arc=none smtp.client-ip=209.85.208.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30918c29da2so11335521fa.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 02:39:07 -0800 (PST)
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-308f141518cso20845981fa.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 02:42:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739529546; x=1740134346; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1739529751; x=1740134551; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+RvZPpwQCYzg+8o1DHR3C6tWw2mYjAqdjhIanmYv+iE=;
-        b=jUWNhab7+RtuPZckjgGxMEyoAAFzLiugTgbrU3FaFrAJeWBZh7nNexwB3v51pj8mDy
-         xFOQ9eJf2kW8CvfMzfRdJpMGnz8w0GrO8i7J2YK9NlEUMd6lU/rVtlRtffJqXIDolqbV
-         SgeQrk7cwZxW0l46kt8BofS9S7W2ZV/+LWT+tz9X4R1Cx6wTDnGJ9mJ3xbit84knxDh/
-         iWYd2/5e5mWbR1wPKJ024iSxLZEDK3vY6p21nCsZNwS4CXH8jONxxdJSct72dIxo4Fzm
-         mMzvy434cFHudvkYNxCdFxkeorPXOcrWn1cU25gSHOaDCUSKYWqIQcG4hL9aZAoTJHoY
-         lOBA==
+        bh=/rsHdHlVKc4H1RNRkS2GcE7MFwwvlGF/5DbmNBJwMEw=;
+        b=TXivNl3ZYSIYSIWUC+Zb5TsInt1RZYaqXBppHm+ePzLawqEaoJXyLJUmbuIyNwJLYq
+         rBCCg1Vfoq92hMAFIo4eAivsCmQyJAz88Y9ncabNfJCtVRR0j7fIMmEyy+uXQ8e8F2G/
+         Xx8mc6yeJQl3E3oaRS4+7iX6ga+bU+Jp/rctbHIbIO9GDO7SYeqqPhLPGPo9z+Tq/V6D
+         njeix9aHfciCryJMf8xkjfQkHlg6ailj3smcegohOBUN6WzS5fhmUHrE5b/Z69E7AtG6
+         mLGZQ2ehdI0+L4RULTsEr5GlUBC2FJQAqO3y5PZYmzGRa2l9g/GmDf/kkxlkVhYwWY7l
+         8MlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739529546; x=1740134346;
+        d=1e100.net; s=20230601; t=1739529751; x=1740134551;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+RvZPpwQCYzg+8o1DHR3C6tWw2mYjAqdjhIanmYv+iE=;
-        b=FJlZaohCUexBPD5SBnV+HsgoOxxEEQBxSyNfGrEIadDYVJegVx7JA37lwOuO0fXJMN
-         Dk0V5+WQ9BgWFSF83cOj2wHRBw+OH5IAL9FbkoFaEpxMuRJWXKOXANn9wbEnoozvL3Ty
-         6i8fxqnddzK2bHT8uohIN0SL64XLzi6XUcWJX0Vm6cDDMOVU/IsR2Hm36MBDFZk4L2MU
-         bkU8IEEHUDPqGJRIaFby5ltbYXAqE+42sjdnW+SrRd9GBg784a2HmYHgcySF/zyIF6W5
-         wwl2hd449dMdIGAfbrrdfHWD+5HXZg44Bu22tu7RiVww3sdp1BkR8kxuJu9j2NuLFRdL
-         a+Cg==
-X-Gm-Message-State: AOJu0YytIr3GI3wiamsgRDSTTHwNshMHrFZDT9NwWw/P8XiZoSbv/gjy
-	ya4quHu/Ro+OI2MUlFcT3VmVvSpLe5yAAZO0WSd/aDH6VxA5ZkgfryPb6h9fzSKlHrTlTad49qV
-	gKCFf+KiqukdQKpOnhScw3z9DDUjrzn8Kh7e1tg==
-X-Gm-Gg: ASbGncuy5EziWmW7FFldIweT0bWRp0RJaW1YJLG2dbyCW3pokjFJyKHh2JEVtt0wAwl
-	NRrkMYYrL5N/SswuMhoZ5oNgr6x/F5bDVFz++URsdP+De03M5wfUCKtnm7rHCImq8JUKSYk+1
-X-Google-Smtp-Source: AGHT+IFcOuS4cumt2YODgYWKRsMLvcBHN8sxE4vos/EFY24hOieVy9WXAkHUqW6GJ2CI2TkzytddIGBb5y9f4GGOEpk=
-X-Received: by 2002:a2e:9a0b:0:b0:307:2b3e:a4a9 with SMTP id
- 38308e7fff4ca-3090dd33349mr28348041fa.20.1739529546052; Fri, 14 Feb 2025
- 02:39:06 -0800 (PST)
+        bh=/rsHdHlVKc4H1RNRkS2GcE7MFwwvlGF/5DbmNBJwMEw=;
+        b=Dk84brFX3JVkRbvJUdIt8/NZsKai7nGbYIuIxVUySMdIhUsY9WLIx1YTT8klV0Bj91
+         35uJiEWRvZb4OKH6kjAjkwg+3+xn4OKgg6kN4KCswSxWEEGEvVNnUJt5MXNWf64cVE9v
+         PNbDw4qZDQoxTe745inhdVIByxYeJ6aua3IzSOr+HP9avBPZ5RzIzhZ3nDTQk8Pt6tGf
+         3ePyBQLl/dNe2V/prsuzpE3ZiMWSqOE7TT/XLbN1ijAE3+cKokxvNUEzA38qbXDUxhtB
+         dqD20SD3gIXQXPavXJl6UCtD+FCxeurUiFkxCx6bljTIxWJjLU/+TkAaVHFwcHN1N9AE
+         8AKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0rrXEIVPmVhi5q9KkJO6sY73E0YIPqFWxCeI39YeGzeaevvRXtLBOc1oIE1ruk54+9GhAWZ89cF7I@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqjwrYl6qG2hy49Ynb3HEDguHhybgungZUDHemYbi2hZgoUB8B
+	5PgOXq0jW9iLBmk5UJ0AYlhFIWKq2ZLehSOY14sPB5sfp5lhumjYiZN/LVg04wuj2ifIh5OTQpX
+	lPZ4PMFo24JqEYZwsVk60mBFz44xxjfa+uWzuSQ==
+X-Gm-Gg: ASbGncuRWFM4MaYR8qT6IVVJtGI5anbnkA/pLMC2AC9pSgytMSwYhwia84Fz5KRhjSo
+	YXFn1t1DwOh6MxiNtq2+FeGcwYRyckWQC48i7yjergXHRCLVvYb0SPrxd/USX+N4hHhHx7CYR
+X-Google-Smtp-Source: AGHT+IGxJXXFLFt+pkffLdd9X2ho/U3c0PDBC0XUCpGyhZttHatbdi3t7azKj/PfBfek14+COG31anjGO/aEPcuLRUE=
+X-Received: by 2002:a05:651c:e03:b0:309:1b26:aecd with SMTP id
+ 38308e7fff4ca-3091b26b4b3mr6773451fa.10.1739529751231; Fri, 14 Feb 2025
+ 02:42:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250213180309.485528-1-vincenzo.frascino@arm.com> <20250213180309.485528-2-vincenzo.frascino@arm.com>
-In-Reply-To: <20250213180309.485528-2-vincenzo.frascino@arm.com>
+References: <20250213-for_upstream-v2-0-ec4eff3b3cd5@analog.com>
+ <20250213-for_upstream-v2-1-ec4eff3b3cd5@analog.com> <0c43ce67-4d9b-40b9-a23f-380d51912e84@kernel.org>
+In-Reply-To: <0c43ce67-4d9b-40b9-a23f-380d51912e84@kernel.org>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 14 Feb 2025 11:38:54 +0100
-X-Gm-Features: AWEUYZkcoUajk8OY7YlPuAw6yk_Mx24LP1X0bHTPQEW1VEF0lTSP39l_2JHco3U
-Message-ID: <CACRpkda-J_NHC7Te=Shk0A-35qWms3xeM2MggdGM0ze3Gt0KMw@mail.gmail.com>
-Subject: Re: [PATCH v5 1/8] dt-bindings: arm: Add Morello compatibility
-To: Vincenzo Frascino <vincenzo.frascino@arm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Russell King <linux@armlinux.org.uk>, 
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Date: Fri, 14 Feb 2025 11:42:19 +0100
+X-Gm-Features: AWEUYZn0VSwBLgOQWkZsD0PWbeVe8GHIvf8R7_nC9H1K6_4iZD1uXX1m62q-tew
+Message-ID: <CACRpkda6ENy1yCQQdsxBnp+RvqgvgG73xHNt07Pd32YfzRQ75Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add adg1414
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Kim Seer Paller <kimseer.paller@analog.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Vincenzo,
-
-thanks for your patch!
-
-On Thu, Feb 13, 2025 at 7:03=E2=80=AFPM Vincenzo Frascino
-<vincenzo.frascino@arm.com> wrote:
-
-> Add compatibility to Arm Morello System Development Platform.
+On Thu, Feb 13, 2025 at 7:16=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+> On 13/02/2025 14:15, Kim Seer Paller wrote:
+> > +maintainers:
+> > +  - Kim Seer Paller <kimseer.paller@analog.com>
+> > +
+> > +description:
+> > +  The ADG1414 is a 9.5 =CE=A9 RON =C2=B115 V/+12 V/=C2=B15 V iCMOS ser=
+ially-controlled
+> > +  octal SPST switches.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - adi,adg14140-gpio
 >
-> Note: Morello is at the same time the name of an Architecture [1], an SoC
-> [2] and a Board [2].
-> To distinguish in between Architecture/SoC and Board we refer to the firs=
-t
-> as arm,morello and to the second as arm,morello-sdp.
 >
-> [1] https://developer.arm.com/Architectures/Morello
-> [2] https://www.morello-project.org/
->
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
-> ---
->  Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml | 4 ++++
+> Is ADG1414 anything else than GPIO? Where are the rest of the bindings th=
+en?
 
-I was thinking, that since the .dtsi and .dts files are not reusing
-any of the Juno .dtsi (correct me if I'm wrong!) this should not
-be in vexpress-juno.yaml, instead perhaps you should create a new
-morello.yaml file?
+I read the spec and it is actually an SPI-controlled switch.
+
+(As in "power switch", not "network switch".)
+
+It's a bit interesting since we have no "switch" subsystem, but there
+is "mux".
+
+The question is whether this should be considered some kind of
+"gpio" (due to the nature of switches being off/on) in order to not
+complicate our world too much or if we need to create a whole
+new device class for switches.
 
 Yours,
 Linus Walleij
