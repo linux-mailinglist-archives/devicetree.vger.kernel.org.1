@@ -1,132 +1,132 @@
-Return-Path: <devicetree+bounces-146831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FF7AA365B3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 19:26:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 884F4A365C4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 19:33:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C66501894A1F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 18:26:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42944189440B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 18:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 839A22690E2;
-	Fri, 14 Feb 2025 18:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 087711714CF;
+	Fri, 14 Feb 2025 18:33:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FnJ6qMU3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j/Dge0QB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89B1214D28C;
-	Fri, 14 Feb 2025 18:25:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45AA82753FB;
+	Fri, 14 Feb 2025 18:33:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739557561; cv=none; b=OzWQeoz52MsHEKvS5N4uvqnJdDBp6QJU8nEQvetE8Aq9siA6i4QLOHyCL0cViHVV8SU3Jw73mDLozlbDGrGIwZTtWyW904uZTWSHx0QMl8nY8QqIfU5ouf4uIG1ntVmiExo4Q8fRQ4eznFpzyOm1IIEtvglv/MCKVwgzDHM+ul4=
+	t=1739557983; cv=none; b=jlPYrjAHT5IxDHPCLHy0T9yA3uyAIxjZZognqFuKEmTUfPTNYm0DBqhkeNYsjFFZ2WlmgHDOrwIodj4tWQZZ7tI5mlu3qSIrt60c4hqSfxr4PPw3u0xw2U6GTMxdFH6I3MoKEy2b/2OfHgp3P5WGf9TZXSATvLlSEisdKyo3bHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739557561; c=relaxed/simple;
-	bh=+x+hwGbeiiewIBUcuyA6IeK0Cv+3CNmAHDuMbjvIz6Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=SwUZR3gCXuN4rUZ6g7R59Aog+Yx4D9op71Vgp4/1KpBED30BdwYnxieHP1/J/7jy/E3F+ELVgqxKcRy2z+o5NMvAcGTLWgS0Wh/QqBQ44UpCrA/Lb98t9zLVeVkB06ylPBpJdWOVh9kaqmlP1+ObeoTQ90NFNnaVtWuSF9mhZ5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=FnJ6qMU3; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739557557;
-	bh=+x+hwGbeiiewIBUcuyA6IeK0Cv+3CNmAHDuMbjvIz6Y=;
-	h=From:Date:Subject:To:Cc:From;
-	b=FnJ6qMU3StLaOoSe1JuVVdejdtt0RqIDPk1bTxBFNPP0dyUhngVKn9kqDNFKYlq2E
-	 c1EEOmz7gTi9JWcSicMlwqgr7TGQMbQc2rDHUqj7zCYrhqLnN9o3LbZBB6gqV4mtdU
-	 Zbm8NhvE0J7qGytFx+wCCli69zHhYmb+BfNhuO49HY0IBUCVXFcqclyXBYi6y9Nys8
-	 GUJ/apo2REPQlP8MhiONgLcvqvV853LqLw1mqxUtGd7Ctg8ESzkLvX+i0SnE/p7HVS
-	 mBDby8L0H1MDAj0JfXf4h5UapUUsLXug3j6Y+YW2T7dBxmShfluNJxI3W71lC3/NxE
-	 FZlJogFvF3SWA==
-Received: from [192.168.0.47] (unknown [IPv6:2804:14c:1a9:53ee::1003])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id F08E417E0FC1;
-	Fri, 14 Feb 2025 19:25:54 +0100 (CET)
-From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Date: Fri, 14 Feb 2025 15:25:48 -0300
-Subject: [PATCH] arm64: dts: mediatek: mt8390-genio-common: Add DMIC codec
- for delay
+	s=arc-20240116; t=1739557983; c=relaxed/simple;
+	bh=pnFOH8zhYm3oS0wgYnqRw3S7bqSx5fgMtfVpnVGf+QM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OLtgCOcPhcx7wlu7hfptVX/XvHAfbrhcjyXPE27zlmiOuqm54+Sxxs/3H2kXcaG2aEzX2AhtRtunRQpZrXQ55/hquhlGzkToStOhCW6PxNsPkCvTjyhhGi2fONutdcQFHzaZy/MDz+F8xHWE5Nxt+t821KLRTEyMwIFWGLQi6Gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j/Dge0QB; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5de6e26d4e4so4488628a12.1;
+        Fri, 14 Feb 2025 10:33:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739557980; x=1740162780; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tbdDOQ0AnP4Rf55zqYAzOFqcv0dQXTgldFGn2OhR1Xk=;
+        b=j/Dge0QB82hca/rtRFqWjIimYamcmIxbmUt8x5oSbMbFZpuwaaama8NRCgzBLuWVJM
+         bs+Y2f4Hl8IQY0E7R2+lpWo2/ehPFoZLU91CDqI0JF3IloOIafguF7i/GXDG9PW/ttIm
+         +Z1C3jwCkUB38Amgvwlg2PsA/ZoJmrK5HjC/YSBuPG9voKPeMLI32Rf1NdkaEqabqJBL
+         Rsu8vxwJrcSlz2NOTXA9uRH1bPFZoiPIqGPN3H+A9amrU0naaVxm4NiyYzF2eKqqiBH1
+         3R5uJb0zQtd9to63N4wOoLrINPdsNwyG7A6TCnhoqOk1+KaCxa8e48C/uuYDAwPxY1oT
+         Ejhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739557980; x=1740162780;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tbdDOQ0AnP4Rf55zqYAzOFqcv0dQXTgldFGn2OhR1Xk=;
+        b=PMaW+FFf25klGR0bJM9vwVT3kFB6bsclF0PtChoYMFirJna69FDgfHaaRpT4w3+MQJ
+         DRX97GSrWdVHC+SaOxqNN6emn5oOB6fJS5GNeITpvfFAYncLxWfu31jsSTfq5zPluZBl
+         LIyNOVkcaNyLVOVfRq4tmCvRFluyw4d7Hxnqsm4IhFPmX3LPMFIRrxHU8nbX455qeRuG
+         MJqM1XLZZqWPN5dolxtMwOFnT7ZBp885v2fTbJXPrfBKEPjjrZVHLgoevDwLVmL4+yxY
+         kOBVxL8Pgg+tvsJs9+zfogTvZfIqxCLPqtEu0YOlpTKNn8x8Lb7JS489Y3yV1gRK8/YD
+         GAkw==
+X-Forwarded-Encrypted: i=1; AJvYcCUWEJel9nTWj05nv5AjuBiCLZehH9WRYrCYpA2m/jhwWNKaaQcVOhLSAnMqr/T1pLYiqveZ7AfP0gJq@vger.kernel.org, AJvYcCX639OKzj5IYA0aMUw5JJRJEpeMCYQkTALUSDbFp0cXxMw1PqE8vZKeYXVf+BhsPSAF5bzYLhSWHW5wUUhR@vger.kernel.org, AJvYcCXErrZZTk9/riqS5Dt2/0EP+xJwyIe1ASkQNLAVDdjd0LfnTriJhpIsgtq5f/g2fGtBjSskZy4cAks1dw==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhduO8znAO+eOkx4tPDyQZ++9UBx0/IeGjzDGepFChZosQia72
+	j6UqY24BZ48sL9H5rfTpCxj/vq+Nq/Z0wewcJmuntMmkLawBzRNI
+X-Gm-Gg: ASbGnctf3ewv9aW2mT19I2JUYSS8NY/GtK06/P6e1zI4WLC4/dQsgCasFTjOr4fNeKf
+	F605VC/OEDJn5kQ2onwYuuKsq2rbNuh0SvTrDVfa75fMJ3Pdj1S8NBF5SjVznLgtwNy8fj5YnQN
+	fBmcBYD4KJZOblmiJVWf9GKksTj5mR66Gk0r1BbUs8DaGcfs1RltWTeciAK4dUnYZ4F6581o0l7
+	n6Wd+FBeESd5kZH9D65nEsYHbhTlH0bj6a+mg71juNEtNltsW+qQ++FAZxd4wz9A9h6wSInWPiQ
+	YvnF6YM7xlFyanH5Si1yhmxHbxFIePw2AxACentw0+Dv2vW/EJlrKUopOBrQ8IjLqg==
+X-Google-Smtp-Source: AGHT+IGAmqQcNVs3j79OGPjj0iiEgipG+7uUlLGnwdrB/uxsXc/DrOZaoQIra7ijKjdssLi9bJXvJQ==
+X-Received: by 2002:a17:907:2da0:b0:ab2:ea29:b6 with SMTP id a640c23a62f3a-abb70d67772mr18427366b.35.1739557980167;
+        Fri, 14 Feb 2025 10:33:00 -0800 (PST)
+Received: from [192.168.50.244] (83.8.115.239.ipv4.supernova.orange.pl. [83.8.115.239])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece2880fasm3248852a12.78.2025.02.14.10.32.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Feb 2025 10:32:59 -0800 (PST)
+Message-ID: <7a055e68-e72a-407b-bcf0-5f2ac43929f7@gmail.com>
+Date: Fri, 14 Feb 2025 19:32:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/7] pinctrl: bcm281xx: Fix incorrect regmap max_registers
+ value
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Christian Daudt
+ <bcm@fixthebug.org>, Sherman Yin <syin@broadcom.com>,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Stanislav Jakubek <stano.jakubek@gmail.com>,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20250207-bcm21664-pinctrl-v1-0-e7cfac9b2d3b@gmail.com>
+ <20250207-bcm21664-pinctrl-v1-2-e7cfac9b2d3b@gmail.com>
+ <CACRpkdbwVdEa_xgR=wRfkPN2_tpYGnbdpQkTtvgDMRSKPT-GEQ@mail.gmail.com>
+From: Artur Weber <aweber.kernel@gmail.com>
+Content-Language: en-US
+In-Reply-To: <CACRpkdbwVdEa_xgR=wRfkPN2_tpYGnbdpQkTtvgDMRSKPT-GEQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250214-genio700-amic-wakeup-delay-200ms-v1-1-0094837c62b7@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAKuKr2cC/x3NSwqDQBBF0a1IjVNQdvxAthIyKPXFFGor3ZhEx
- L3bODyTe3eKCIZIj2yngK9Fm31Cfsuo/ajvwdYlkxNXissL7uFtrkVYJ2v5pwPWhTuMurETmSI
- 3dVMpyuoOCKXMEvC2/7V4vo7jBBfc4ldyAAAA
-X-Change-ID: 20250214-genio700-amic-wakeup-delay-200ms-b7b6ae563ee0
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, Zoran Zhan <zoran.zhan@mediatek.com>, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-X-Mailer: b4 0.14.2
 
-The UL_SRC_BE DAI is connected to the MT6359 PMIC which can switch
-between a headset microphone and a built-in analog microphone. Both
-microphones' signals require around 200ms to settle after being enabled.
-Add a dmic-codec DAI to the UL_SRC_BE dai link with the corresponding
-wakeup-delay-ms to let the signal stabilize and prevent a "pop" sound.
+On 14.02.2025 10:03, Linus Walleij wrote:
+> On Fri, Feb 7, 2025 at 9:02 PM Artur Weber <aweber.kernel@gmail.com> wrote:
+> 
+>> The max_registers value does not take into consideration the stride;
+>> currently, it's set to the number of the last pin, but this does not
+>> accurately represent the final register.
+>>
+>> Fix this by multiplying the current value by 4.
+>>
+>> Fixes: 54b1aa5a5b16 ("ARM: pinctrl: Add Broadcom Capri pinctrl driver")
+>> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> 
+> This looks like it could be causing regressions so I pulled this patch out
+> and applied it for fixes.
 
-Co-developed-by: Zoran Zhan <zoran.zhan@mediatek.com>
-Signed-off-by: Zoran Zhan <zoran.zhan@mediatek.com>
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Thanks. I assume this means this patch can be dropped from the next version
+of this patchset now? If so, which branch contains the patch so that I can
+rebase the next version of this patchset on it? I've checked the "fixes",
+"devel" and "for-next" branches of linux-pinctrl.git[1] but did not see it
+in any of them.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-index a37cf102a6e928440cc88e7e8fe0225fc28ec962..6c934d70c1eadbc7af3f97af1961e629ab62ab3d 100644
---- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-@@ -218,6 +218,13 @@ usb_p2_vbus: regulator-9 {
- 		regulator-max-microvolt = <5000000>;
- 		enable-active-high;
- 	};
-+
-+	amic_codec: amic-codec {
-+		compatible = "dmic-codec";
-+		#sound-dai-cells = <0>;
-+		num-channels = <2>;
-+		wakeup-delay-ms = <200>;
-+	};
- };
- 
- &adsp {
-@@ -970,6 +977,14 @@ codec {
- 			sound-dai = <&pmic 0>;
- 		};
- 	};
-+
-+	dai-link-1 {
-+		link-name = "UL_SRC_BE";
-+
-+		codec {
-+			sound-dai = <&pmic 0>, <&amic_codec>;
-+		};
-+	};
- };
- 
- &spi2 {
+Best regards
+Artur
 
----
-base-commit: 0ae0fa3bf0b44c8611d114a9f69985bf451010c3
-change-id: 20250214-genio700-amic-wakeup-delay-200ms-b7b6ae563ee0
-
-Best regards,
--- 
-Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=fixes
 
