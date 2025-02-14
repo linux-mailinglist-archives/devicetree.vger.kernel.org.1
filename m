@@ -1,183 +1,197 @@
-Return-Path: <devicetree+bounces-146571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D286A35762
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:49:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D35CDA3576A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:50:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D1AC188FE13
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 06:50:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F03416A432
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 06:50:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74BEB202F97;
-	Fri, 14 Feb 2025 06:49:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3D4F20459C;
+	Fri, 14 Feb 2025 06:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vs7K4ElC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kWG7NGIc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7925A1519A9
-	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 06:49:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37AEC18A6D5
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 06:50:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739515788; cv=none; b=M3vsh7prVS+sBn4w82ni2/XEfzv7ncg1MCBwtb7UlbeMjh+fjugXHzkAIQX8NgEFmR3zZed8YnKk64A6vBaVV7LAx9nVQ5LqBUmCa10soUSL3aNdxpYyDcv6lyfwwLpbZEi2+TK8UOgnUK/G2Irg2tXVW+i7XlVgZQ3nfffIb6s=
+	t=1739515823; cv=none; b=XDu+R6rxzp92tY4vHNO11m8dfn1Ov99gDtIExIg3du2cPRFnoNiB0IQ9if8TSUgbhixNUCZloclK1cr/gZgIzSk+u4YtzyrxDK50UiJAJ7CTNriZrMyPKWn94C+oGNPTMDwmaze66PTzK0bJN0kQo4UVxOlSyfRwxuHBsSVmp9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739515788; c=relaxed/simple;
-	bh=Xs5or6MPmdNngz9M/73X/9SEiBgnuHt1Tu1I11/i0G0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b4TtqrT/Xaz5UPyQD6y5teQmRT1DweRj9NCG9K80EdUBDl1fXgBYifmFQOSVRgeuAo4Ex8WZS6HM2nCpUq2bJfeVEYFhPpyT6ujdeSoWreG68G4IemZ+NCo+jcCZCsPueDYBMrOrB3MdiMiNX6MHK9z0Z+oRxFvZkUmkhDaDRd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vs7K4ElC; arc=none smtp.client-ip=209.85.208.45
+	s=arc-20240116; t=1739515823; c=relaxed/simple;
+	bh=82IhPvdg6sgV4AQAagdaD2oscL5iIeWGWtD6mhOA0m0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ljwjUvNqo1+9GqP3Wy5dm5vsZTsozKDvWtxoJFfOsfkMNUVKIonF8K0Bo1sl0S7xDlVO8OQgLA1MYjzKTBgKtqwkqtbgxiFl422/b3CaXfM7nAAt6GKBSyQXvwDNFHKhWbWnsq1UbarjBRcEtgX93ztOqi2eJ5juQ8kbixoL2Dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kWG7NGIc; arc=none smtp.client-ip=209.85.216.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5dee07e51aaso704529a12.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 22:49:46 -0800 (PST)
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2fc0d44a876so2518754a91.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 22:50:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739515785; x=1740120585; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gawkt9In8aJG8h+rAcH7YnbMFtyCA6IgsBVkBeTJrC8=;
-        b=vs7K4ElCka9yq4vnbriN9nknHdak8yUnNbebAZITCT30Ha8yFOwL660MHmTzLvfSz/
-         lhJlnqR8T/JCjhao58BmeT0iqFFYiOiwTtKJg7dUBTDhDGb/3w7ClCXG9IKVVaU6Nhul
-         ntL5vlcBW6tuXFLSnRVuFqxfhUs5JqUEr2QF1f+yQedh7jL3wUVmIJZmsGx4kUegVEM2
-         srVs+ncOSsaaMRY4vOTRS5T7tfIgi86bLa6cY607BSwgwA7O1PfeYkXgNyT6Bd6ajTb+
-         V5V9lua9e3Cip9k+yUo1tD9VdO0Zymb8i6ZXlveTbT/vrxfDNvR3U7Ace9o3cZ1bD/iv
-         GWag==
+        d=linaro.org; s=google; t=1739515820; x=1740120620; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=u/bwpmhibqCSWXsfxMuekBQiCAQCaSoqpsC6Q1WLM/g=;
+        b=kWG7NGIcPob5Ad6qh0RT+apdx+8oxTs+DrubaZT5gSIMdMnnhB+Gsq54f6k94DCqFl
+         boehNSDMt0A3U+uHjXPQyzjfp9ezcexPRa1EcsEzldIqxRZzJWRCxS8Tr3h6ZCkvAh8H
+         F9477cEpDDJC7lPzveHCCjv7BJZCOTKDnKOOnLpztxy1xbnIU3rNF/Gz1fuwDaJjM7/3
+         NoZDr1sISYtgw+NexjScPyTgm7CO7V4pScr3hnQkbSUsgb7CpOWjlDY/BsUHtixYnK2c
+         wPZ+iluTs0Xxy1wJQdcoQbcjik+Eb02xLMQkcAwKK56/I+xm3gF9faaVzSa21cfPhSbh
+         Gq9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739515785; x=1740120585;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1739515820; x=1740120620;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gawkt9In8aJG8h+rAcH7YnbMFtyCA6IgsBVkBeTJrC8=;
-        b=iePq8nAwCMqUn8Do3WPYfuqHh3EUycu5arUir7gEmHEIph/A8qiJzWQsgvOIHylmqS
-         oEgls4lzqv4DMfQrxuDrOkNd4biLwLHjj84jAe77HzV4ARiYc2H+Q7YNPN9UJo6yCzpT
-         yxfw3YhYbD1fE2eiViMlt2XXLm0U8/lVaFE6Ef20OS3lCuxZ2OG2HUdbpfU1qEliHVbE
-         r/6YVclIlqa7WbYeIeCB6HK7nQMncnC2Kk01DVd4SFsHmJzDEoudlB3z+84HnmSvAjfk
-         RlU5RphWuqwMPg8pcXQf2Ia8Ol29Hw7Lc3BydIaVEiBXVJVAmmY/2HgsqIcHMd4gCt0R
-         BNUA==
-X-Forwarded-Encrypted: i=1; AJvYcCWy1bGwqNfHPW20BwIdGmtTAAp5ctcaJjjgU+2h1M2OHfwspNd+8CzQFIqFiy0zGlr87ZMxyWKy6lyP@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZbgzXqfxaKCWJB5yNkOs477rCv1s9XXVuxqMpgvFCcJ7psmRX
-	eMD3q9T0FchhN+EDhAEpGI8lwej9o2kZ0TQ0BjXS3NntvnbJe+xxMssgoBCRdk8=
-X-Gm-Gg: ASbGncvHnygoe7snCigGvRQ5KeFkJeQmNLisfkt46d9wD4ZG2B3LueXs2skSW7S3m2J
-	VKZz7HUtB24FB/ZPBOz202zxSskQ1BOv+GjXrvjaKVsPq9yaaodam3uuniNwX0TITYbx1Y4eZgE
-	+TdDUpbEvbSK9dALDKJ8SomIka4ruwd9dfui/v0DB5tecOQmEvpk74vITS9d9Hs1aqIco4uLVpT
-	SfimjxFUZhIhKP1YfUorYLO5ZzsY8nai3oHm+IwJWapnAotZJYvkfC6X5hMY9rTH/y3hZT11syn
-	FFIdM2V1wPOuciN8k4kHuB/k
-X-Google-Smtp-Source: AGHT+IFxiW3VpQW8qQ1jo57FdhoTZVGZoXp1u38iJkHijnUvtqdcxoOB5BNSokQAT/jC+GtZYlbZyQ==
-X-Received: by 2002:a05:6402:274d:b0:5de:5263:ae79 with SMTP id 4fb4d7f45d1cf-5deb08813d5mr8694445a12.12.1739515784670;
-        Thu, 13 Feb 2025 22:49:44 -0800 (PST)
-Received: from [192.168.0.14] ([79.115.63.124])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece287cebsm2386431a12.74.2025.02.13.22.49.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Feb 2025 22:49:43 -0800 (PST)
-Message-ID: <2ed6c5d8-b559-4ffc-b08e-412bab1f7917@linaro.org>
-Date: Fri, 14 Feb 2025 06:49:41 +0000
+        bh=u/bwpmhibqCSWXsfxMuekBQiCAQCaSoqpsC6Q1WLM/g=;
+        b=GvZMwLmOZtEal9mueucB+STUkqBroVP5aBDfAUHfc1cfd1LGm4ngj57RQ0RviJ5YjR
+         SG/4ZE3dPeNowSbHf9VcP+DgyyV+zEo6eFD/yFrfjuqupAYQpAngvHE4jqSdERSaSRpo
+         rKmVrvnPvW59Weft7RxPaI2d0yt4yn7mLiVmoAwN/kQ5GltWkAjgVnyQ2TobOirp43+f
+         52+aYLtDf8dvFpbQyB+14whaRuVWKbn01Y6oUFpOvI6dVSqyGEdrm8DfsuXyejTxZNjB
+         zuTVrBn0rp39N7r1dKAVincqK5RC7cR92IpLi/oeLDmlvtHhTHYX6ma3gsdE4ASsCqkZ
+         vNYA==
+X-Forwarded-Encrypted: i=1; AJvYcCW6MIGVnTO5LpUZEuhgsXzpAdSVmmx2dKoGzaW8e19f1vYCyY6h/lMXx5gXvoIDpz+QkwKi4QDSHlId@vger.kernel.org
+X-Gm-Message-State: AOJu0YwabT8fsuYbUAfnkrNdRCRUxx2QV7V9CjsaFJ0cvxQQewupWuR5
+	wIVDWLujkeYkSwjjNe6e/rDJ72YhNEDcltN6w50vUgPTWT3xPzjsUl6bIjfQgQ==
+X-Gm-Gg: ASbGnct1VxFiSJH7uJZ1JzHuOwIdQZ3kWwDmcHcO/98cWm2uNQSZFUw1bpA9mTjK7mr
+	CKWnuT1Er6rYZmDXEhCS0OoKS5/k9iAd3Exa1tnCbaMqZyveNoOWV+VdkORL0xe/ITvtc7MUcYS
+	VGbP4MRyo6soK5cpjkooIhro2/UzXt/VcoSE886gv5o0TNzwG7yN9FN9Ry5ZHd6VTmusYtmpqNj
+	2+1I7jf/mt7U2u2J38IAMBK6qXP3lyHij4uBrR1Aa1wPTtEtwThlhxBMwh3joflf6bR8hleBU/M
+	ovx0EM7jpp+u+uy99FyzmSCDGBH1mgE=
+X-Google-Smtp-Source: AGHT+IFX6zS1A/v/lAX87GhqlIvEXShQyFVA3goXMvKLoqOPdD6mgLwijiX503q7RrCZ5DU1xqruYQ==
+X-Received: by 2002:a17:90b:4d08:b0:2fa:ba3:5455 with SMTP id 98e67ed59e1d1-2fc0ddd3602mr8941895a91.7.1739515820426;
+        Thu, 13 Feb 2025 22:50:20 -0800 (PST)
+Received: from thinkpad ([2409:40f4:304f:ad8a:8cb7:72db:3a5e:1287])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fc13ac2984sm2376439a91.20.2025.02.13.22.50.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Feb 2025 22:50:19 -0800 (PST)
+Date: Fri, 14 Feb 2025 12:20:09 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Nitin Rawat <quic_nitirawa@quicinc.com>,
+	Melody Olvera <quic_molvera@quicinc.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+	Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+	Manish Pandey <quic_mapa@quicinc.com>
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: sm8750: Add UFS nodes for SM8750
+ SoC
+Message-ID: <20250214065009.w4rmrbbejnywh6nt@thinkpad>
+References: <20250113-sm8750_ufs_master-v1-0-b3774120eb8c@quicinc.com>
+ <20250113-sm8750_ufs_master-v1-4-b3774120eb8c@quicinc.com>
+ <vifyx2lcaq3lhani5ovmxxqsknhkx24ggbu7sxnulrxv4gxzsk@bvmk3znm2ivl>
+ <be8a4f65-3b36-4740-a4f7-312126cfd547@quicinc.com>
+ <ferdaevlfrpf2ewzcct7mqyxltvmt6aaar4fujxfehrmizm3qw@aaroprnpwlxq>
+ <354f8710-a5ec-47b5-bcfa-bff75ac3ca71@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] arm64: dts: exynos990: define all PERIC USI nodes
-To: Denzeel Oliva <wachiturroxd150@gmail.com>
-Cc: alim.akhtar@samsung.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org,
- robh@kernel.org, semen.protsenko@linaro.org
-References: <20250212234034.284-1-wachiturroxd150@gmail.com>
- <20250212234034.284-4-wachiturroxd150@gmail.com>
- <40370a0e-775b-42e3-bb6c-8cacaa0482cf@linaro.org>
- <Z67f+lDxISVubiJJ@droid-r8s>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <Z67f+lDxISVubiJJ@droid-r8s>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <354f8710-a5ec-47b5-bcfa-bff75ac3ca71@oss.qualcomm.com>
 
-
-
-On 2/14/25 6:17 AM, Denzeel Oliva wrote:
-> On Thu, Feb 13, 2025 at 07:38:35AM +0000, Tudor Ambarus wrote:
-
->> node properties shall be specified in a specific order. Follow similar
->> nodes that are already accepted, gs101 is one.
+On Mon, Feb 10, 2025 at 08:20:27PM +0100, Konrad Dybcio wrote:
+> On 8.02.2025 11:06 PM, Dmitry Baryshkov wrote:
+> > On Sun, Feb 09, 2025 at 12:47:56AM +0530, Nitin Rawat wrote:
+> >>
+> >>
+> >> On 1/14/2025 4:22 PM, Dmitry Baryshkov wrote:
+> >>> On Mon, Jan 13, 2025 at 01:46:27PM -0800, Melody Olvera wrote:
+> >>>> From: Nitin Rawat <quic_nitirawa@quicinc.com>
+> >>>>
+> >>>> Add UFS host controller and PHY nodes for SM8750 SoC.
+> >>>>
+> >>>> Co-developed-by: Manish Pandey <quic_mapa@quicinc.com>
+> >>>> Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
+> >>>> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> >>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> >>>> ---
 > 
-> Not all Exynos SoCs will follow the same order
-
-you an fix them then. Please follow
-https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
-
+> [...]
 > 
->> <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_IPCLK_4>;
+> >>> Use OPP table instead
+> >>
+> >> Currently, OPP is not enabled in the device tree for any previous targets. I
+> > 
+> > Excuse me? ufs_opp_table is present on SM8250, SM8550 and SDM845 (and
+> > QCS615). So this is not correct
+> > 
+> >> plan to enable OPP in a separate patch at a later stage. This is because
+> >> there is an ongoing patch in the upstream that aims to enable multiple-level
+> >> clock scaling using OPP, which may introduce changes to the device tree
+> >> entries. To avoid extra efforts, I intend to enable OPP once that patch is
+> >> merged.
+> > 
+> > Whatever changes are introduced, old DT must still continue to work.
+> > There is no reason to use legacy freq-table-hz if you can use OPP table.
+> > 
+> >> Please let me know if you have any concerns.
 > 
-> Is
+> Go ahead with the OPP table. freq-table-hz is ancient and doesn't describe
+> e.g. the required RPMh levels for core clock frequencies.
 > 
-> GATE(CLK_GOUT_PERIC0_TOP0_IPCLK_4, "gout_peric0_top0_ipclk_4",
->      "dout_peric0_uart_dbg",
->      CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_4,
->      21, 0, 0), [Mainline CLK]
-
-I don't get this reasoning, sorry.
+> You should then drop required-opps from the UFS node.
 > 
-> You can find it in the cmucal-node.c driver downstream of the kernel. [0]
+> >>>> +
+> >>>> +			resets = <&gcc GCC_UFS_PHY_BCR>;
+> >>>> +			reset-names = "rst";
+> >>>> +
+> >>>> +
+> >>>> +			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
+> >>>> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> >>>> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> >>>> +					 &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
+> >>>
+> >>> Shouldn't cpu-ufs be ACTIVE_ONLY?
+> >>
+> >> As per ufs driver implementation, Icc voting from ufs driver is removed as
+> >> part of low power mode (suspend or clock gating) and voted again in
+> >> resume/ungating path. Hence TAG_ALWAYS will have no power concern.
+> >> All previous targets have the same configuration.
+> > 
+> > arch/arm64/boot/dts/qcom/qcs615.dtsi:                                    &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
+> > 
+> > It might be a mistake for that target though. Your explanation sounds
+> > fine to me.
 > 
->>> +			};
->>> +		};
->>> +
->>> +		usi0: usi@105500c0 {
-
-cut
-
->>> +			serial_2: serial@10550000 {
->>
->> why not serial_0 since you're in USI0.
+> Let's use QCOM_ICC_TAG_ACTIVE_ONLY for the CPU path to clear up confusion.
 > 
-> Because it is simply displayed in the exynos9830-usi.dtsi [1]
-
-I don't think it matters what downstream specifies for labels. Use what
-common sense says.
-
+> Toggling it from the driver makes sense for UFS-idling-while-CPUs-are-online
+> cases and accidentally also does what RPMh does internally in the other case.
 > 
->>> +		};
->>> +
->>> +		usi_i2c_0: usi@105600c0 {
->>> +			compatible = "samsung,exynos990-usi", "samsung,exynos850-usi";
->>> +			reg = <0x105600c0 0x20>;
->>> +			samsung,sysreg = <&sysreg_peric0 0x1008>;
->>> +			samsung,mode = <USI_V2_I2C>;
->>> +			#address-cells = <1>;
->>> +			#size-cells = <1>;
->>> +			ranges;
->>> +			clocks = <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_PCLK_6>,
->>> +				 <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_IPCLK_6>;
->>> +			clock-names = "pclk", "ipclk";
->>> +			status = "disabled";
->>> +
->>> +			hsi2c_1: i2c@10560000 {
->>> +				compatible = "samsung,exynos990-hsi2c",
->>> +					     "samsung,exynosautov9-hsi2c";
->>> +				reg = <0x10560000 0xc0>;
->>> +				interrupts = <GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>;
->>> +				pinctrl-names = "default";
->>> +				pinctrl-0 = <&hsi2c1_bus>;
->>> +				clocks = <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_IPCLK_6>,
->>> +					 <&cmu_peric0 CLK_GOUT_PERIC0_TOP0_PCLK_6>;
->>> +				clock-names = "hsi2c", "hsi2c_pclk";
->>> +				#address-cells = <1>;
->>> +				#size-cells = <0>;
->>> +				status = "disabled";
->>> +			};
->>
->> shouldn't you define serial and SPI too?
-> 
-> As shown in the node it only uses i2c which
-> corresponds to the exynos9830-usi.dts. [2]
 
-If you can't specify all the protocol modes for all the USI nodes, then
-make it clear in the commit message.
+Shouldn't it be applied to config path of all peripherals then? If
+QCOM_ICC_TAG_ACTIVE_ONLY translates to 'resource getting voted only if the CPUSS
+is active', then the same constraint should apply to all peripherals, isn't it?
 
+I'm not sure who is accessing the config path other than the CPUs.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
