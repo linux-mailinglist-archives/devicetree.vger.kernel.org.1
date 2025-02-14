@@ -1,178 +1,168 @@
-Return-Path: <devicetree+bounces-146763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DA8AA3615B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 16:19:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BEACA36165
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 16:20:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6666F16EAD5
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 15:18:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02D731715DC
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 15:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 206ED2673BD;
-	Fri, 14 Feb 2025 15:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAE95266B64;
+	Fri, 14 Feb 2025 15:18:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="dCDFsbzQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eftJfU1C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C5662627ED
-	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 15:17:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FC5D266B4D;
+	Fri, 14 Feb 2025 15:18:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739546262; cv=none; b=KwudhIC9R6ndvwCUb04Clujq4JRRMn4bjCIJ1s77jiA7j1jgScQj7bpfsS3ALfVQ6ZVK8HdvBwG71HCD8y5Bj3EMiDA2fnuOZ12wEQnI7S5x/yWOwHrpyfJ2LCTBaS0cxvGyLpRvSN+cUduS32cV8d3T4jcCAYuYEn7xR+vibrQ=
+	t=1739546308; cv=none; b=a0knkq46tv03i2gGRsHYqiaE2PQzrwjNxAqyy/Yy+PMn4fgu75M+yGpZfS+bLA9O7/OlznxDVI+poS70gojmDfx2iedGsEHh5xzEsyk2awqj94aD13E4HwGQS1CsSKFn18pKRT3Hgd5KxdJwv7vufw4DYntVj80+iouxHcR+0ms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739546262; c=relaxed/simple;
-	bh=JW1oohGJWsBc3d6n5iD7RAtqQIWyKDAHKpAXb1hkGTs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=N9MtcKRN7cq9N8hgPf/KUwraKYYJvU2eUJarPc7xmNhzO0q5SkSOrmQ8jSkkdddFl88GJW3utKAD+dxgg7/wUmbKuBMcoSnI64cYLIGgXncKLLGwsnxqCx0qoJQOXq7MmzP7amJFehC2G20dTUT/JpEbCXnzFe4eW9L+R0HH7kA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=dCDFsbzQ; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1739546259;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0SshwRt8Gl3GApBo9RGajwM4sy4zKiOT3YLnoVCQViY=;
-	b=dCDFsbzQsMaiaANgdCrZ9vth1e4YxdGiCLlcs3575EHsmKTlq09R+KCI4PHShiTIf66blW
-	EWJkSGSUQIKLBv48YN3ZJ/fftHN4RKAFz0xUYW1F5XcfsJMi/0nMJqxwcRfHlG3coh6rbf
-	vI5fDdX+9pczuA4fi//Qv0KBsYpZtHg=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-588-uF1exI47Nli0NLn-AlMPcA-1; Fri, 14 Feb 2025 10:17:38 -0500
-X-MC-Unique: uF1exI47Nli0NLn-AlMPcA-1
-X-Mimecast-MFC-AGG-ID: uF1exI47Nli0NLn-AlMPcA_1739546257
-Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-43933bdcce0so17421495e9.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 07:17:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739546257; x=1740151057;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0SshwRt8Gl3GApBo9RGajwM4sy4zKiOT3YLnoVCQViY=;
-        b=NWwqLeOUWNaBhggYBSX7hip0r9SpdGay7OM6AXAyqu7pNyVwe2f/TSsWgo4r9Mkm7H
-         UIUEvdZpR/itJpVlGYyfE8riyg7qFllinU0988RWZua9PBtvAjAtkarDyyL1sVsDM58S
-         Gd2tsMr6N1BMs2fXPePHQcDaM0vynD6hYzGDIeG4VlAMrlmu22Dym5X0Yl+5JYjvURq4
-         j+/jN7X2O5lXWEcsnHeyEt5z9urC81wT+xpHb4ck5oI1eXSGQXOCFOvf174aC10rM/Xq
-         FZBXK+qqLWBjhOLIBf86WO9V9mE45pR8aDmMRudCuO2Bu5wKA6NJxk18MJRaEu+XolQH
-         A38g==
-X-Forwarded-Encrypted: i=1; AJvYcCW1MBG1cfDjDo35EVN/SohrGs/eHXVlPeGDiL2KZi7OWTcQV3v+HFnQrwflvDe9XYUnfPl/P72ZGKn/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmN7Q39k6qjBWAsJKbZcZ6T9jjxYHclTESla2WaYwa73bsChlW
-	RMbYbgyQ2SpUQDWbT9/p3lm4edNSrIqIbQ2cjxr6E8LsA4YEZkOAC5T76QX/jVdrZiDhsyBdqqR
-	0NEi9q1FUS2i7RJGLNAPmTXbZh8A1SKwFPGA9k7LiBtducNDDTPb0ILQUmzg=
-X-Gm-Gg: ASbGncsp9yn3uCVL0C/lM+rasQGVDgt4VPIYdzwZK+Aun1ujgwEb/9QYH8uwwzXwnyv
-	697hSYdtM1gHnEAhyX0Vq+8sJFuXc+6UBTXG4+aZmPicB0WhJxt3pMu8+qYdMAGqvt81Wxk6YDZ
-	+TPNXDbOTm6h1Ok71nIRIVBsVOgwIsW38bfC8YizOJjO+iTJgQ1CtOvLjJo0C/uxMU0qeRQqqZu
-	vG7q05mcZR0fYVmetKWPvx9Z7uk471Sjh8SnGKRwq70dYz3K76My4vjP+yIZ/6QMBQYEQKmPvmc
-	ANUwAvupHOS1sUeAXINjx0uftqAppA==
-X-Received: by 2002:a05:600c:3542:b0:439:6e12:fdb4 with SMTP id 5b1f17b1804b1-4396e13034cmr4325e9.14.1739546256891;
-        Fri, 14 Feb 2025 07:17:36 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IF3/3JFKYy9eGyD7IGPX1BVb9PSRrb5ZVdMvOU2CUr5TK3oN3GiUFe6oGPOq5SoYQYtuJNygg==
-X-Received: by 2002:a05:600c:3542:b0:439:6e12:fdb4 with SMTP id 5b1f17b1804b1-4396e13034cmr3705e9.14.1739546256365;
-        Fri, 14 Feb 2025 07:17:36 -0800 (PST)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f259d5ef9sm4841762f8f.76.2025.02.14.07.17.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Feb 2025 07:17:35 -0800 (PST)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: linux-kernel@vger.kernel.org
-Cc: javier@dowhile0.org,
-	rjones@redhat.com,
-	abologna@redhat.com,
-	spacemit@lists.linux.dev,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=arc-20240116; t=1739546308; c=relaxed/simple;
+	bh=Ccy4yBddiH1ImFNY9Pm+Nr1mImwwalRXFCXZ00/riwg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H3iBTCEU+JBmD24aaCWv7Us03n5QC3Wmttvrnu7oHbEyTKubIF610/QcJXptXcFRNyA9TIHhFHD10kDAu3Go4SLbEK9bx7fa6640Pis8cMrFmYMnn1bBVpvUMj/tnkpW8QsU4htwVwmixO1cwaNVI8J7sIcccFR5Wao3J+Oy0MQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eftJfU1C; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739546308; x=1771082308;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Ccy4yBddiH1ImFNY9Pm+Nr1mImwwalRXFCXZ00/riwg=;
+  b=eftJfU1CIxY8uPbX6x7NhsIFqunEcl6hNEdssPGBkuzhA3bkHnYTqvvn
+   erMrvZe78odwlNFz7G1WjmpqO+X/deGRSLVbRNRvA4pbpU0IeulXln1mz
+   tYLtt4c1rDFTU9ehTxOUNFppAW78adOwPY5q7DghctUmY9kAQ/8PSU1t+
+   uT2eYu+nqgvWoUe1jWxkQ9sEC60YhfzA6T5gW1Oo2WhUIyIdwK4GFQUxs
+   oujue67UNyv4jnm2PJAEEdoPd2btwGjADsDVC9ss8bcueGgmRA9+FMev5
+   4+tJyFkiHjt81ZiB+CYl33lM3Sr2ruT7HRCosuiUe3K7TSNNGuXh7KQpU
+   Q==;
+X-CSE-ConnectionGUID: vPXqW9CPSue6iAuCMCSGMw==
+X-CSE-MsgGUID: RSpD4nYjTiKgqmGet3/zog==
+X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="40005253"
+X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; 
+   d="scan'208";a="40005253"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2025 07:18:27 -0800
+X-CSE-ConnectionGUID: 12OXvvsISZ6LDtN9Vlx7Jw==
+X-CSE-MsgGUID: dG/E/93STyKP7B6gt/kBaA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="113970982"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2025 07:18:21 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1tixSL-0000000BWmd-40hj;
+	Fri, 14 Feb 2025 17:18:17 +0200
+Date: Fri, 14 Feb 2025 17:18:17 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Rob Herring <robh@kernel.org>,
-	Yixun Lan <dlan@gentoo.org>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH 2/2] riscv: dts: spacemit: Add Milk-V Jupiter board device tree
-Date: Fri, 14 Feb 2025 16:16:38 +0100
-Message-ID: <20250214151700.666544-3-javierm@redhat.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250214151700.666544-1-javierm@redhat.com>
-References: <20250214151700.666544-1-javierm@redhat.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 06/10] regmap: irq: Add support for chips without
+ separate IRQ status
+Message-ID: <Z69eue2dV37vw61v@smile.fi.intel.com>
+References: <20250214-mdb-max7360-support-v4-0-8a35c6dbb966@bootlin.com>
+ <20250214-mdb-max7360-support-v4-6-8a35c6dbb966@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250214-mdb-max7360-support-v4-6-8a35c6dbb966@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Add initial support for the Milk-V Jupiter board [1], which is a Mini ITX
-computer based on the SpacemiT K1/M1 Octa-Core X60 64-bit RISC-V SoC [2].
+On Fri, Feb 14, 2025 at 12:49:56PM +0100, Mathieu Dubois-Briand wrote:
+> Some GPIO chips allow to rise an IRQ on GPIO level changes but do not
+> provide an IRQ status for each separate line: only the current gpio
+> level can be retrieved.
+> 
+> Add support for these chips, emulating IRQ status by comparing GPIO
+> levels with the levels during the previous interrupt.
 
-There are two variant for this board, one using the K1 chip and another
-using the M1 chip. The main difference is that the M1 can run at a higher
-frequency than the K1, thanks to its packaging.
+Thanks, this will help to convert more drivers to regmap
+(e.g., gpio-pca953x that seems use similar approach).
 
-For now, only a DTS for the K1 variant is added since there isn't support
-yet for the X60 cores operating performance and thermal trip points.
+...
 
-The support is minimal, but at least allows to boot into a serial console.
+> +static irqreturn_t regmap_irq_thread(int irq, void *d)
+> +{
+> +	struct regmap_irq_chip_data *data = d;
+> +	const struct regmap_irq_chip *chip = data->chip;
+> +	struct regmap *map = data->map;
+> +	int ret, i;
 
-Link: https://milkv.io/jupiter [1]
-Link: https://www.spacemit.com/en/key-stone-k1 [2]
-Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
----
+	unsigned int i;
+?
 
- arch/riscv/boot/dts/spacemit/Makefile         |  1 +
- .../boot/dts/spacemit/k1-milkv-jupiter.dts    | 27 +++++++++++++++++++
- 2 files changed, 28 insertions(+)
- create mode 100644 arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
+> +	bool handled = false;
+> +	u32 reg;
+> +
+> +	if (chip->handle_pre_irq)
+> +		chip->handle_pre_irq(chip->irq_drv_data);
+> +
+> +	if (chip->runtime_pm) {
+> +		ret = pm_runtime_get_sync(map->dev);
+> +		if (ret < 0) {
 
-diff --git a/arch/riscv/boot/dts/spacemit/Makefile b/arch/riscv/boot/dts/spacemit/Makefile
-index ac617319a574..92e13ce1c16d 100644
---- a/arch/riscv/boot/dts/spacemit/Makefile
-+++ b/arch/riscv/boot/dts/spacemit/Makefile
-@@ -1,2 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-bananapi-f3.dtb
-+dtb-$(CONFIG_ARCH_SPACEMIT) += k1-milkv-jupiter.dtb
-diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-new file mode 100644
-index 000000000000..448319214104
---- /dev/null
-+++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-@@ -0,0 +1,27 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
-+ * Copyright (C) 2025 Javier Martinez Canillas <javierm@redhat.com>
-+ */
-+
-+#include "k1.dtsi"
-+#include "k1-pinctrl.dtsi"
-+
-+/ {
-+	model = "Milk-V Jupiter (K1)";
-+	compatible = "milkv,jupiter", "spacemit,k1";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_2_cfg>;
-+	status = "okay";
-+};
+> +			dev_err(map->dev, "IRQ thread failed to resume: %d\n",
+> +				ret);
+
+Can be one line.
+
+> +			goto exit;
+> +		}
+> +	}
+> +
+> +	ret = read_irq_data(data);
+> +	if (ret < 0)
+> +		goto exit;
+> +
+> +	if (chip->status_is_level) {
+> +		for (i = 0; i < data->chip->num_regs; i++) {
+> +			unsigned int val = data->status_buf[i];
+> +
+> +			data->status_buf[i] ^= data->prev_status_buf[i];
+> +			data->prev_status_buf[i] = val;
+> +		}
+> +	}
+
+...
+
+> +		for (i = 0; i < d->chip->num_regs; i++)
+> +			d->prev_status_buf[i] = d->status_buf[i];
+
+Hmm... Wouldn't memcpy() suffice?
+But okay, this seems to be not a hot path and the intention is clear.
+
 -- 
-2.48.1
+With Best Regards,
+Andy Shevchenko
+
 
 
