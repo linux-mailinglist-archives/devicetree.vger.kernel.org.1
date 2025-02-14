@@ -1,151 +1,162 @@
-Return-Path: <devicetree+bounces-146774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48710A36237
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 16:50:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 914FFA3626C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 16:57:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D19607A3568
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 15:49:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4208E3A24C6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 15:55:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10E102673A6;
-	Fri, 14 Feb 2025 15:50:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15E5267387;
+	Fri, 14 Feb 2025 15:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Dav+8sus"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F8ujkg42"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 058A13234;
-	Fri, 14 Feb 2025 15:50:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AF15267382;
+	Fri, 14 Feb 2025 15:55:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739548204; cv=none; b=kAIYbN/WHpDzWfATju8VgVPpIsdjYOocXyot8ohkBEg19oNUBnIpa8HJnbdyHUmdudfM3x7+SN/2AFJCnjDBzgbAHsWvQU4Auqzk+/ae2PEJQPvp5xfn8VHeep0fm27pR6oQbpzbU7F0jZITAdrbpYjcQnNSMImSc42Y8O5gAlM=
+	t=1739548546; cv=none; b=ttceddPJ3RhcQuh9ZbvDZ3ScXtuaecMO44ah5+MMv6hvRSa2PzpqydnoAkzUSAY3pN0qIArzN5AafudzSRYjHjndKsPVGktT5KXJ9UdUOE62tBSe3PJRoWlq+OB7Yc1KmuynpUlXaDMFYcwVNBQ8WRQXSlJziTMbDgtP+yF74GU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739548204; c=relaxed/simple;
-	bh=TG0xmfKkdGCLTdkpVoqtkePlbBY6zdq8gtzJjlZj16E=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=rd9t5Cf3tNS60/VOSq+cvrcfRLPYSj3nPBsTrNZJYB2H85QPxXmUS2VHIAwBX1aChkjcl7ccJgHtM3c+YW1L8GbcRHzbSWFy1RSQx5GEnBSjhNF4Fook1c7p05M4fex+y5mPvFENUTuYOFgDlxEvY3GeYRXFmlVPRMZJP6I+Aq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Dav+8sus; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CEABD44305;
-	Fri, 14 Feb 2025 15:49:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739548199;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=69qA403PSDbxwZhDUp8oR/q0a9JjXlx2hGab0Dld0Z8=;
-	b=Dav+8susmRMhLBPQAqVqjwAoocdEZoWUXe+To5AeWBg+gwwGdYRhrseBwpmlk20vfaY9sc
-	t8hG01G4ynHzDSR25lZyHxbhfPZ1GvUG7HKijkD7lAM2k84ON2/oxE3NEDWPc89fUGBOyK
-	uM2W9sPHU0WTdipxhr/1V5pxdk4gLGOjrw8BdhNdAUw1vBkNqKvtVbOCIVE/qqjzPiV8zL
-	lbb8e1px1ZpnyoUsNdnZf5Nynzy8aRXIlvWo+sCtmH3p+uUsWP40qHfWfrGKV0h5f668Gb
-	3ACFErufX8KA7DDmn22NG7JwWzsx2cdhGMzItc0ceyIvOm5LGgEZninGVqv5qQ==
+	s=arc-20240116; t=1739548546; c=relaxed/simple;
+	bh=LlVze+kxKmlHWCECDwA3PL6Dfqv4CqLXlK6+rWbnHB0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NyuVnQh3dPcyTdOsOJXU0O6uaLU0a9TiVf473nRy9G25oyQOZo239HBo9kvj6GjE2MDK2U/QYaQ8nuTTM+y72kYqT7YhoZ1B/xQf6ovGibsZ+6CTvqdQTnfgp40ommjzMMWHMRwhgzrJarx1lNNSqOStwSuqTU7ivkhFf/HQv+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F8ujkg42; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A871C4CED1;
+	Fri, 14 Feb 2025 15:55:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739548544;
+	bh=LlVze+kxKmlHWCECDwA3PL6Dfqv4CqLXlK6+rWbnHB0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=F8ujkg42rDbkAuU1sBoQ9Kv/wIKbO72nJ+oygvzvZikFgEi/v+auOXdb5vplXB6we
+	 DfG03k4mP1snl1V3IS7/duCej8wYsO76C+Cyn07LZ7xtscWwvGH6UcQqize8a70T8Y
+	 /2hlqeaMErss4ZfBAvfDz6CpN7W3ErLoUC4QicO09gI/voz4sNbA8CYWdVes+VFtcj
+	 9Vt2vs+A2KDFYFLQZOR0HCtmF7x3IuZ14uRuvwm52OG7vMYp/SOX4tRb8O2wsyMenj
+	 xyalrkKRDDUR9LhcROWDpQgerA4838/qjKD8kNFEJb62UGyq9A2lWTRpy6bsBNh1gV
+	 jFiMa/mjBoBNQ==
+Date: Fri, 14 Feb 2025 21:25:36 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	michal.simek@amd.com, bharat.kumar.gogada@amd.com
+Subject: Re: [PATCH v2 2/2] PCI: xilinx-cpm: Add support for Versal Net
+ CPM5NC Root Port controller
+Message-ID: <20250214155536.ap7mjvutnuledkki@thinkpad>
+References: <20250212055059.346452-1-thippeswamy.havalige@amd.com>
+ <20250212055059.346452-3-thippeswamy.havalige@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 14 Feb 2025 16:49:57 +0100
-Message-Id: <D7SADDQZUERA.PT8QLVZ9ZN1N@bootlin.com>
-Subject: Re: [PATCH v4 06/10] regmap: irq: Add support for chips without
- separate IRQ status
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
- <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20250214-mdb-max7360-support-v4-0-8a35c6dbb966@bootlin.com>
- <20250214-mdb-max7360-support-v4-6-8a35c6dbb966@bootlin.com>
- <Z69eue2dV37vw61v@smile.fi.intel.com>
-In-Reply-To: <Z69eue2dV37vw61v@smile.fi.intel.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehtddthecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggfgtgffkffuvefhvffofhgjsehtqhertdertdejnecuhfhrohhmpedfofgrthhhihgvuhcuffhusghoihhsqdeurhhirghnugdfuceomhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepkefhkeeifeethfejteevfeduheduvddvuedvvddugfffhfevkefftefhuefftddunecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejiedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvddvpdhrtghpthhtoheprghnughrihihrdhshhgvvhgthhgvnhhkohesihhnthgvlhdrtghomhdprhgtphhtthhopehlvggvsehkvghrnhgvlhdro
- hhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrghmvghlrdgsohhuhhgrrhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhgpdhrtghpthhtohepsghrghhlsegsghguvghvrdhplh
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250212055059.346452-3-thippeswamy.havalige@amd.com>
 
-On Fri Feb 14, 2025 at 4:18 PM CET, Andy Shevchenko wrote:
-> On Fri, Feb 14, 2025 at 12:49:56PM +0100, Mathieu Dubois-Briand wrote:
-> > Some GPIO chips allow to rise an IRQ on GPIO level changes but do not
-> > provide an IRQ status for each separate line: only the current gpio
-> > level can be retrieved.
-> >=20
-> > Add support for these chips, emulating IRQ status by comparing GPIO
-> > levels with the levels during the previous interrupt.
->
-> Thanks, this will help to convert more drivers to regmap
-> (e.g., gpio-pca953x that seems use similar approach).
->
-> ...
->
-> > +static irqreturn_t regmap_irq_thread(int irq, void *d)
-> > +{
-> > +	struct regmap_irq_chip_data *data =3D d;
-> > +	const struct regmap_irq_chip *chip =3D data->chip;
-> > +	struct regmap *map =3D data->map;
-> > +	int ret, i;
->
-> 	unsigned int i;
-> ?
+On Wed, Feb 12, 2025 at 11:20:59AM +0530, Thippeswamy Havalige wrote:
+> The Versal Net ACAP (Adaptive Compute Acceleration Platform) devices
+> incorporate the Coherency and PCIe Gen5 Module, specifically the
+> Next-Generation Compact Module (CPM5NC).
+> 
+> The integrated CPM5NC block, along with the built-in bridge, can function
+> as a PCIe Root Port & supports the PCIe Gen5 protocol with data transfer
+> rates of up to 32 GT/s, capable of supporting up to a x16 lane-width
+> configuration.
+> 
+> Bridge errors are managed using a specific interrupt line designed for
+> CPM5N. Intx interrupt support is not available.
+> 
+> Currently in this patch Bridge errors support is not added.
 
-I agree, but signed int index variables are used in all functions of
-this file. What would be the best approach here? Only fix it on code
-parts I modified? On the whole file?
+s/patch/commit,
 
->
-> > +	bool handled =3D false;
-> > +	u32 reg;
-> > +
-> > +	if (chip->handle_pre_irq)
-> > +		chip->handle_pre_irq(chip->irq_drv_data);
-> > +
-> > +	if (chip->runtime_pm) {
-> > +		ret =3D pm_runtime_get_sync(map->dev);
-> > +		if (ret < 0) {
->
-> > +			dev_err(map->dev, "IRQ thread failed to resume: %d\n",
-> > +				ret);
->
-> Can be one line.
->
+> 
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> ---
+> Changes in v2:
+> - Update commit message.
+> ---
+>  drivers/pci/controller/pcie-xilinx-cpm.c | 85 ++++++++++++++----------
+>  1 file changed, 51 insertions(+), 34 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-xilinx-cpm.c b/drivers/pci/controller/pcie-xilinx-cpm.c
+> index 81e8bfae53d0..c26ba662efd7 100644
+> --- a/drivers/pci/controller/pcie-xilinx-cpm.c
+> +++ b/drivers/pci/controller/pcie-xilinx-cpm.c
+> @@ -84,6 +84,7 @@ enum xilinx_cpm_version {
+>  	CPM,
+>  	CPM5,
+>  	CPM5_HOST1,
+> +	CPM5NC_HOST,
+>  };
+>  
+>  /**
+> @@ -483,31 +484,33 @@ static void xilinx_cpm_pcie_init_port(struct xilinx_cpm_pcie *port)
+>  	else
+>  		dev_info(port->dev, "PCIe Link is DOWN\n");
+>  
+> -	/* Disable all interrupts */
+> -	pcie_write(port, ~XILINX_CPM_PCIE_IDR_ALL_MASK,
+> -		   XILINX_CPM_PCIE_REG_IMR);
+> -
+> -	/* Clear pending interrupts */
+> -	pcie_write(port, pcie_read(port, XILINX_CPM_PCIE_REG_IDR) &
+> -		   XILINX_CPM_PCIE_IMR_ALL_MASK,
+> -		   XILINX_CPM_PCIE_REG_IDR);
+> -
+> -	/*
+> -	 * XILINX_CPM_PCIE_MISC_IR_ENABLE register is mapped to
+> -	 * CPM SLCR block.
+> -	 */
+> -	writel(variant->ir_misc_value,
+> -	       port->cpm_base + XILINX_CPM_PCIE_MISC_IR_ENABLE);
+> +	if (variant->version != CPM5NC_HOST) {
 
-Yes. Kind of the same question here: should I fix only the code close to
-the parts I modified or the whole file?
+How about,
 
-> ...
->
-> > +		for (i =3D 0; i < d->chip->num_regs; i++)
-> > +			d->prev_status_buf[i] =3D d->status_buf[i];
->
-> Hmm... Wouldn't memcpy() suffice?
-> But okay, this seems to be not a hot path and the intention is clear.
+	if (variant->version != CPM5NC_HOST)
+		return;
 
-Yes... I don't know why I didn't use memcpy. I will fix it.
+Btw, what is the reason to skip these register settings for this controller?
+Especially the 'Bridge enable bit'.
 
+> +		/* Disable all interrupts */
+> +		pcie_write(port, ~XILINX_CPM_PCIE_IDR_ALL_MASK,
+> +			   XILINX_CPM_PCIE_REG_IMR);
+> +
+> +		/* Clear pending interrupts */
+> +		pcie_write(port, pcie_read(port, XILINX_CPM_PCIE_REG_IDR) &
+> +			   XILINX_CPM_PCIE_IMR_ALL_MASK,
+> +			   XILINX_CPM_PCIE_REG_IDR);
+> +
+> +		/*
+> +		 * XILINX_CPM_PCIE_MISC_IR_ENABLE register is mapped to
+> +		 * CPM SLCR block.
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Please make use of 80 column width.
 
+> +		 */
+> +		writel(variant->ir_misc_value,
+> +		       port->cpm_base + XILINX_CPM_PCIE_MISC_IR_ENABLE);
+> +
+> +		if (variant->ir_enable) {
+
+nit: you don't need braces here.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
