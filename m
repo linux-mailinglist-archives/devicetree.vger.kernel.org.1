@@ -1,215 +1,275 @@
-Return-Path: <devicetree+bounces-146625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 387D1A35966
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 09:53:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3615FA35974
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 09:55:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A10516E671
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:53:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 765431892526
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 08:54:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86AC9227BBF;
-	Fri, 14 Feb 2025 08:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53256227EB5;
+	Fri, 14 Feb 2025 08:54:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ol7xMxVC"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="IAgOutDX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70385221D9B
-	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 08:53:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA593227BAA;
+	Fri, 14 Feb 2025 08:54:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739523206; cv=none; b=bfKVPKSdz5jnC6hLRDY4cBXsdPnEBRPxo5jqSCEnyyBlSvJA6BJbg4QyMnyN1+RhzKun+38YcoxPqKqfwyTRUDYERhwrqQNSfDu0JOUfaOaIaK/1MlDNhJhH2tuNutAuaJH04nStDlblV8qG3/8HlBjFvYb3FtmqMsPk/kCtSl4=
+	t=1739523275; cv=none; b=erH7kI1mjzvR7NCaDcHjDaN/nVRfpy6S2FvcbOprPddG2eBebbUYdc7qYGtntVotMzOH73nUZJJ+8lOWyTPtPAQ1crCIgcjfjxCOotUy9XJyV5stU/dFPomZ0K8Sc26BshsXr4Ym5b2oO1dzGRiDFDbbo1EZktsexYXJstmf/7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739523206; c=relaxed/simple;
-	bh=oxSLdh0CAtNN9mbiAlU8ndwTUsmha2ZOppGLISI9ek4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hI8M+ZnaSGtK2QVwGa4St4BxIsQX4bc26KVrDLWEqEfHceM4m0kobnJVT/U1AAdvnoiKrHCzNlaT+ozUyRFWGFYkdT+CHQop8fe7CU0ItTFNc7neI/6IXtDsOq8GjRtBm4CEr5sIIToKPNZLZVPFnh/ajQbVPh8NYjh5pREXqZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ol7xMxVC; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-21f62cc4088so32693955ad.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 00:53:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739523203; x=1740128003; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=AYHkDvFZNVkfObVYojFKLXtrACdRdRJzIR6CHM3ZvzU=;
-        b=Ol7xMxVCh88aEhgfoiDYhjqNxsucquL3TipwzXjr8YnHTtmOuk5w7EBupCESHf8Hzi
-         tbYU162MVc8bdvUcWTzuEh3mcI/Uv/lOlFah1YWNsS8azW7ZbNXAF/7Dfc1A0iTXcjog
-         Xt/zalKHfZ2a8TKXLjIpQDVf/ju1nxmOspeKzv2HXX6RMnbHkbtAg3L6gTC4EYFz7dU6
-         LcTFxg1+dBGWvV7Dph6WHpCxLiMJSVRLZZZVvdeisQALxUf+92RECEKMTxxNmirmPbWf
-         sXwFm73oXlZ/YAa3l2mSbQJboGRYks0TmRlR64w2lXq4courpQH160llJSu+khlsp752
-         qdoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739523203; x=1740128003;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AYHkDvFZNVkfObVYojFKLXtrACdRdRJzIR6CHM3ZvzU=;
-        b=dTwRQo4SPbJ/Ufg2r5+51oABExFn8/Uo2whMyqwke1kkoTYx3LvFbonMK01161Q3u4
-         BgfT84OD7J5zF/xJuM7/eUluXSXM7fOiugZSjB5eWhij5Qm/Pqehb28eX4jQ65TXV2+u
-         2k9OigePJKNd8/+wsZy1a/z/9qMNo1l2qjYRy2CfrPQfujuf580nhP76vjU9BBozTopY
-         1T+vjhQWf6mHM3ILEt2OoV1hfq2kluNN1J5z2SB7f88HHjRjC2x4J4nuLlk3FTZ7r1Mr
-         ZBNnAXXl6wM8XUHhW59cBsqSR6He78jElAjLOi+jwNSXxlMVZdataNaqKuExX4LaB/9E
-         TyJw==
-X-Forwarded-Encrypted: i=1; AJvYcCWj10hvZR3JIVf1VWUu8GI/GxyhsGx18rmTmmZVHXFKv7V031HqZZ1kidXbnBo4C3HlyAq4GAy+App5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkQQ3016iC8Z4g7Z8w5lSnzFG9x7nhHdxsUNh+FbngpIB2SSjf
-	ZPCRnI2Z+wbrxTqqaS8ji16Xg2f4m181SxA2Pe2Cb6V71ZeidlWeE1Ds3IlLqA==
-X-Gm-Gg: ASbGncvCrRimvKpP+IFI7LkMiJrs4jXZ/lN3piwiTpPLN/w3HmHiDoTgy1k1KQktt5Y
-	iTiN+Rvo1WKrPQSovyW6maZzQBE6mYqlLZ1gn4RyogfOqLsGS5qYU7wd0uNiIiZp8PCh1ZuX39D
-	FoD7GWDtrt13IzCcCIBtc6gb5FgzzWicnrfRLELGUp42W3hnQARwV0/aeSo1kTQH+2hqjURRuhR
-	4CIg4escD6spXxtl//6EsRAxHx3Lp6QgomEj6ZxoA0MPy0eVtOJlJKVC4nxmuvB6H+FrSOKPWXc
-	PQNKtkls5U9VW1CdVPLCO/ARXat0Q8Y=
-X-Google-Smtp-Source: AGHT+IEp9nHrk4n//TzcHWHZFgsOhlQQ2Xlq67D0I3zF/1xWdNgg2JYRrRN4bc6mqpBquWG6UVXYBw==
-X-Received: by 2002:a17:902:d485:b0:215:522d:72d6 with SMTP id d9443c01a7336-220d213ee2emr115416505ad.38.1739523202739;
-        Fri, 14 Feb 2025 00:53:22 -0800 (PST)
-Received: from thinkpad ([2409:40f4:304f:ad8a:a164:8397:3a17:bb49])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d5348e68sm24798765ad.28.2025.02.14.00.53.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Feb 2025 00:53:22 -0800 (PST)
+	s=arc-20240116; t=1739523275; c=relaxed/simple;
+	bh=IQ0gfvJlGq/EWoCU475l10nubAs9wvs3rFP/Bmcwx+k=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=jWq+F/GH42IOVQgZts0XShh/zeQiFkaM/F7lD9jSC4mxPIkRvqeVHL40A/fUj1J2EwCkmlJlc0QxN0WAQ+lJP7DTB/8w0mT6Wkpo4nxPAZpD/B4sWGFiRluqxsy7AH1NhBaXzrZzD1+n5YA+IYd1es01R45Hv1EGnRKOIO+F68Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=IAgOutDX; arc=none smtp.client-ip=162.240.238.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=TxlRvYVV9khSZoxHTmi6Xm+xr2AQ+F0Z9nuDl3ZM9+Y=; b=IAgOutDXlTV7f8paqVi7ze48Uf
+	QaqjVPTOg+IsBteCrfmS7OXmowYm8gbJEndF8REIZ1kMQ8JWhaxJ5j6YvlYRHQUC8sC6qsL/GTRDN
+	VzDswVN+GAHvJC10L37032/IGF14NXlf10HCqBU44WPZC6vRmTL30205soeSfRZ+l00muCx3PoXbc
+	xysV/NXfghDWiYDjsLU2Iv3cu5/p1UDVzkD2HUkTATgX4184L8ouJ+H5VogMg0PKg2XSenZ4taXfk
+	z6NEG1CfwTTibQ3ptd6LqJ43zI+E0mTwkstVhTJM3XaTXW3DqXWVfHgltwFmHwJBSvD8sARewkcVR
+	rBnMuqjw==;
+Received: from [122.175.9.182] (port=45524 helo=cypher.couthit.local)
+	by server.wki.vra.mybluehostin.me with esmtpa (Exim 4.96.2)
+	(envelope-from <parvathi@couthit.com>)
+	id 1tirSv-00050J-0x;
+	Fri, 14 Feb 2025 14:24:29 +0530
+From: parvathi <parvathi@couthit.com>
+To: danishanwar@ti.com,
+	rogerq@kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	nm@ti.com,
+	ssantosh@kernel.org,
+	richardcochran@gmail.com,
+	parvathi@couthit.com,
+	basharath@couthit.com,
+	schnelle@linux.ibm.com,
+	diogo.ivo@siemens.com,
+	m-karicheri2@ti.com,
+	horms@kernel.org,
+	jacob.e.keller@intel.com,
+	m-malladi@ti.com,
+	javier.carrasco.cruz@gmail.com,
+	afd@ti.com,
+	s-anna@ti.com
+Cc: linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	pratheesh@ti.com,
+	prajith@ti.com,
+	vigneshr@ti.com,
+	praneeth@ti.com,
+	srk@ti.com,
+	rogerq@ti.com,
+	krishna@couthit.com,
+	pmohan@couthit.com,
+	mohan@couthit.com
+Subject: [PATCH net-next v3 10/10] soc: ti: PRUSS OCP configuration
 Date: Fri, 14 Feb 2025 14:23:15 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	quic_mrana@quicinc.com, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v6 2/4] PCI: of: Add API to retrieve equalization presets
- from device tree
-Message-ID: <20250214085315.bp6hpcsxu2ndegb2@thinkpad>
-References: <20250210-preset_v6-v6-0-cbd837d0028d@oss.qualcomm.com>
- <20250210-preset_v6-v6-2-cbd837d0028d@oss.qualcomm.com>
+Message-Id: <20250214085315.1077108-11-parvathi@couthit.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250214054702.1073139-1-parvathi@couthit.com>
+References: <20250214054702.1073139-1-parvathi@couthit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250210-preset_v6-v6-2-cbd837d0028d@oss.qualcomm.com>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: parvathi@couthit.com
+X-Authenticated-Sender: server.wki.vra.mybluehostin.me: parvathi@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On Mon, Feb 10, 2025 at 01:00:01PM +0530, Krishna Chaitanya Chundru wrote:
-> PCIe equalization presets are predefined settings used to optimize
-> signal integrity by compensating for signal loss and distortion in
-> high-speed data transmission.
-> 
-> As per PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4 for data rates
-> of 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s, there is a way to
-> configure lane equalization presets for each lane to enhance the PCIe
-> link reliability. Each preset value represents a different combination
-> of pre-shoot and de-emphasis values. For each data rate, different
-> registers are defined: for 8.0 GT/s, registers are defined in section
-> 7.7.3.4; for 16.0 GT/s, in section 7.7.5.9, etc. The 8.0 GT/s rate has
-> an extra receiver preset hint, requiring 16 bits per lane, while the
-> remaining data rates use 8 bits per lane.
-> 
-> Based on the number of lanes and the supported data rate, this function
-> reads the device tree property and stores in the presets structure.
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  drivers/pci/of.c  | 43 +++++++++++++++++++++++++++++++++++++++++++
->  drivers/pci/pci.h | 27 ++++++++++++++++++++++++++-
->  2 files changed, 69 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index 7a806f5c0d20..705d5529fa95 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -851,3 +851,46 @@ u32 of_pci_get_slot_power_limit(struct device_node *node,
->  	return slot_power_limit_mw;
->  }
->  EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
-> +
-> +/**
-> + * of_pci_get_equalization_presets - Parses the "eq-presets-ngts" property.
+From: Roger Quadros <rogerq@ti.com>
 
-nit: eq-presets-Ngts
+Updates OCP master port configuration to enable memory access outside
+of the PRU-ICSS subsystem.
 
-> + *
-> + * @dev: Device containing the properties.
-> + * @presets: Pointer to store the parsed data.
-> + * @num_lanes: Maximum number of lanes supported.
-> + *
-> + * If the property is present read and store the data in the preset structure
-> + * assign default value 0xff to indicate property is not present.
+This set of changes configures PRUSS_SYSCFG.STANDBY_INIT bit either
+to enable or disable the OCP master ports (applicable only on SoCs
+using OCP interconnect like the OMAP family).
 
-'else assign...'
+Signed-off-by: Roger Quadros <rogerq@ti.com>
+Signed-off-by: Andrew F. Davis <afd@ti.com>
+Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
+Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
+---
+ drivers/soc/ti/pruss.c       | 77 +++++++++++++++++++++++++++++++++++-
+ include/linux/pruss_driver.h |  6 +++
+ 2 files changed, 82 insertions(+), 1 deletion(-)
 
-> + *
-> + * Return: 0 if the property is not available or successfully parsed; errno otherwise.
-> + */
-> +int of_pci_get_equalization_presets(struct device *dev,
-> +				    struct pci_eq_presets *presets,
-> +				    int num_lanes)
-> +{
-> +	char name[20];
-> +	int ret;
-> +
-> +	presets->eq_presets_8gts[0] = PCI_EQ_RESV;
-> +	ret = of_property_read_u16_array(dev->of_node, "eq-presets-8gts",
-> +					 presets->eq_presets_8gts, num_lanes);
-> +	if (ret && ret != -EINVAL) {
-> +		dev_err(dev, "Error reading eq-presets-8gts %d\n", ret);
-
-nit: add ': ' before '%d' to make it clear that the printed value is an errno.
-
-> +		return ret;
-> +	}
-> +
-> +	for (int i = 0; i < EQ_PRESET_TYPE_MAX; i++) {
-> +		presets->eq_presets_Ngts[i][0] = PCI_EQ_RESV;
-> +		snprintf(name, sizeof(name), "eq-presets-%dgts", 8 << (i + 1));
-> +		ret = of_property_read_u8_array(dev->of_node, name,
-> +						presets->eq_presets_Ngts[i],
-> +						num_lanes);
-> +		if (ret && ret != -EINVAL) {
-> +			dev_err(dev, "Error reading %s %d\n", name, ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(of_pci_get_equalization_presets);
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index 01e51db8d285..e87c2ffd1e85 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -9,6 +9,8 @@ struct pcie_tlp_log;
->  /* Number of possible devfns: 0.0 to 1f.7 inclusive */
->  #define MAX_NR_DEVFNS 256
->  
-> +#define MAX_NR_LANES 16
-> +
->  #define PCI_FIND_CAP_TTL	48
->  
->  #define PCI_VSEC_ID_INTEL_TBT	0x1234	/* Thunderbolt */
-> @@ -808,6 +810,20 @@ static inline u64 pci_rebar_size_to_bytes(int size)
->  
->  struct device_node;
->  
-> +#define	PCI_EQ_RESV	0xff
-
-Just a single space is enough after 'define'
-
-- Mani
-
+diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
+index d7634bf5413a..a0e233da052c 100644
+--- a/drivers/soc/ti/pruss.c
++++ b/drivers/soc/ti/pruss.c
+@@ -25,14 +25,19 @@
+ #include <linux/slab.h>
+ #include "pruss.h"
+ 
++#define SYSCFG_STANDBY_INIT	BIT(4)
++#define SYSCFG_SUB_MWAIT_READY	BIT(5)
++
+ /**
+  * struct pruss_private_data - PRUSS driver private data
+  * @has_no_sharedram: flag to indicate the absence of PRUSS Shared Data RAM
+  * @has_core_mux_clock: flag to indicate the presence of PRUSS core clock
++ * @has_ocp_syscfg: flag to indicate if OCP SYSCFG is present
+  */
+ struct pruss_private_data {
+ 	bool has_no_sharedram;
+ 	bool has_core_mux_clock;
++	bool has_ocp_syscfg;
+ };
+ 
+ /**
+@@ -286,6 +291,72 @@ int pruss_cfg_xfr_enable(struct pruss *pruss, enum pru_type pru_type,
+ }
+ EXPORT_SYMBOL_GPL(pruss_cfg_xfr_enable);
+ 
++/**
++ * pruss_cfg_ocp_master_ports() - configure PRUSS OCP master ports
++ * @pruss: the pruss instance handle
++ * @enable: set to true for enabling or false for disabling the OCP master ports
++ *
++ * This function programs the PRUSS_SYSCFG.STANDBY_INIT bit either to enable or
++ * disable the OCP master ports (applicable only on SoCs using OCP interconnect
++ * like the OMAP family). Clearing the bit achieves dual functionalities - one
++ * is to deassert the MStandby signal to the device PRCM, and the other is to
++ * enable OCP master ports to allow accesses outside of the PRU-ICSS. The
++ * function has to wait for the PRCM to acknowledge through the monitoring of
++ * the PRUSS_SYSCFG.SUB_MWAIT bit when enabling master ports. Setting the bit
++ * disables the master access, and also signals the PRCM that the PRUSS is ready
++ * for Standby.
++ *
++ * Return: 0 on success, or an error code otherwise. ETIMEDOUT is returned
++ * when the ready-state fails.
++ */
++int pruss_cfg_ocp_master_ports(struct pruss *pruss, bool enable)
++{
++	const struct pruss_private_data *data;
++	u32 syscfg_val, i;
++	int ret;
++
++	if (IS_ERR_OR_NULL(pruss))
++		return -EINVAL;
++
++	data = of_device_get_match_data(pruss->dev);
++
++	/* nothing to do on non OMAP-SoCs */
++	if (!data || !data->has_ocp_syscfg)
++		return 0;
++
++       /* assert the MStandby signal during disable path */
++	if (!enable)
++		return pruss_cfg_update(pruss, PRUSS_CFG_SYSCFG,
++					SYSCFG_STANDBY_INIT,
++					SYSCFG_STANDBY_INIT);
++
++	/* enable the OCP master ports and disable MStandby */
++	ret = pruss_cfg_update(pruss, PRUSS_CFG_SYSCFG, SYSCFG_STANDBY_INIT, 0);
++	if (ret)
++		return ret;
++
++	/* wait till we are ready for transactions - delay is arbitrary */
++	for (i = 0; i < 10; i++) {
++		ret = pruss_cfg_read(pruss, PRUSS_CFG_SYSCFG, &syscfg_val);
++		if (ret)
++			goto disable;
++
++		if (!(syscfg_val & SYSCFG_SUB_MWAIT_READY))
++			return 0;
++
++		udelay(5);
++	}
++
++	dev_err(pruss->dev, "timeout waiting for SUB_MWAIT_READY\n");
++	ret = -ETIMEDOUT;
++
++disable:
++	pruss_cfg_update(pruss, PRUSS_CFG_SYSCFG, SYSCFG_STANDBY_INIT,
++			 SYSCFG_STANDBY_INIT);
++	return ret;
++}
++EXPORT_SYMBOL_GPL(pruss_cfg_ocp_master_ports);
++
+ static void pruss_of_free_clk_provider(void *data)
+ {
+ 	struct device_node *clk_mux_np = data;
+@@ -570,6 +641,10 @@ static const struct pruss_private_data am437x_pruss0_data = {
+ 	.has_no_sharedram = true,
+ };
+ 
++static const struct pruss_private_data am57xx_data = {
++	.has_ocp_syscfg = true,
++};
++
+ static const struct pruss_private_data am65x_j721e_pruss_data = {
+ 	.has_core_mux_clock = true,
+ };
+@@ -578,7 +653,7 @@ static const struct of_device_id pruss_of_match[] = {
+ 	{ .compatible = "ti,am3356-pruss" },
+ 	{ .compatible = "ti,am4376-pruss0", .data = &am437x_pruss0_data, },
+ 	{ .compatible = "ti,am4376-pruss1", .data = &am437x_pruss1_data, },
+-	{ .compatible = "ti,am5728-pruss" },
++	{ .compatible = "ti,am5728-pruss", .data = &am57xx_data, },
+ 	{ .compatible = "ti,k2g-pruss" },
+ 	{ .compatible = "ti,am654-icssg", .data = &am65x_j721e_pruss_data, },
+ 	{ .compatible = "ti,j721e-icssg", .data = &am65x_j721e_pruss_data, },
+diff --git a/include/linux/pruss_driver.h b/include/linux/pruss_driver.h
+index 2e18fef1a2e1..15b3c9c58539 100644
+--- a/include/linux/pruss_driver.h
++++ b/include/linux/pruss_driver.h
+@@ -118,6 +118,7 @@ int pruss_cfg_gpimode(struct pruss *pruss, enum pruss_pru_id pru_id,
+ int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable);
+ int pruss_cfg_xfr_enable(struct pruss *pruss, enum pru_type pru_type,
+ 			 bool enable);
++int pruss_cfg_ocp_master_ports(struct pruss *pruss, bool enable);
+ 
+ #else
+ 
+@@ -172,6 +173,11 @@ static inline int pruss_cfg_xfr_enable(struct pruss *pruss,
+ 	return -EOPNOTSUPP;
+ }
+ 
++static int pruss_cfg_ocp_master_ports(struct pruss *pruss, bool enable)
++{
++	return -EOPNOTSUPP;
++}
++
+ #endif /* CONFIG_TI_PRUSS */
+ 
+ #endif	/* _PRUSS_DRIVER_H_ */
 -- 
-மணிவண்ணன் சதாசிவம்
+2.34.1
+
 
