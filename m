@@ -1,282 +1,112 @@
-Return-Path: <devicetree+bounces-146756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13FE0A36118
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 16:11:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E8D0A36132
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 16:15:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7791718951C9
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 15:11:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A7AC7A59D4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 15:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2AD8266591;
-	Fri, 14 Feb 2025 15:10:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42203266B72;
+	Fri, 14 Feb 2025 15:15:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Eq4KpSyL"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JJHA0bKo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5728E26659A;
-	Fri, 14 Feb 2025 15:10:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92DAF4D8C8;
+	Fri, 14 Feb 2025 15:15:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739545825; cv=none; b=EPiEs52aQLJQwBPETT+lmLb92TlH5Mgiy2mwXw8LCvTZFjyecofaZBNxIui+IkdrWRJZUu/SNL5ZgfqS2UUhs4xks+F3iIsPoOckMtTKRLglyXM0/Ffr67CAueze5LoNo1VtUbP4ZyhcauCO7U9P+HKNDVHxnPoS9vtG/iIqJEA=
+	t=1739546112; cv=none; b=Qpv430EByG9SDltxEKkhURiBls+7GD7E016kUDlpVMa43noU895cPHXwZBsXwjsj70cpvAZCfo2CPNFLD487yl6xZ+J1bX+pRPgnA6z6R13oqKJnug8/hvSkTk71h5FuXzDXNp0ndJe4YPMFhtlUbnXQqtgCdxS1kWzE/Mbos9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739545825; c=relaxed/simple;
-	bh=D+uHq0k343FqJFRy9KVkDXZiYD6MshK/nRMVZIrXXp0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z8QQtBAd2uZpaR3wuVq7Mp7CSQBpkUyY5iWt+WX9AFak3tnICskAHFlAfPGexhebtse0AxJMVqj54RyP1aR8a1J1A6mJ6weZbd29DBe9DEJpHRA+/pSWpl/opH4FcU7Vv0hI4F7Qm8eyIkGWArk/gyoXDGBv9aSWzdrCxwv6iWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Eq4KpSyL; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739545824; x=1771081824;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=D+uHq0k343FqJFRy9KVkDXZiYD6MshK/nRMVZIrXXp0=;
-  b=Eq4KpSyLTmr6CDKFavQHb0blNVwY316Z8T1WMBKnNUg5Ty2jn8La6/k1
-   LCoJe4mS/gyX+g+KkzD7cZFLw1FoG3vrS+iEn3auHmFQluxaEnM7ayzEv
-   X+OHHAY5Y91p1skPpP5PI2OVpsWZRer8QARorgmjZKx03nzvgZjGCZ7Re
-   TyPy/+VXPaM9P23M8ZQ/MhrofpAYu/yhWWimchziUTVdW7nE/NZVnVpbi
-   ugZ6NPpapoBEGrS5LsBLAOfKY8hCUIWspoKosO5PCEutWy2bfi7X5JmPq
-   V9gsw8Isx73vaZtCXJYprL954AlRz6AIYV9I/SFWPdNFblVgGC/AIFJ7g
-   A==;
-X-CSE-ConnectionGUID: 9BgsUX/dRXOoaCI7slF53Q==
-X-CSE-MsgGUID: KsHhVcguSSWuGoDzCp5rOQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="50510459"
-X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; 
-   d="scan'208";a="50510459"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2025 07:10:23 -0800
-X-CSE-ConnectionGUID: 2wKz+ewVQo66/w6hC1ftIw==
-X-CSE-MsgGUID: K+awIMD6TmCr9xRtkbSDsA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="118410858"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2025 07:10:16 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1tixKW-0000000BWep-3HVY;
-	Fri, 14 Feb 2025 17:10:12 +0200
-Date: Fri, 14 Feb 2025 17:10:12 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: mathieu.dubois-briand@bootlin.com
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 03/10] pwm: max7360: Add MAX7360 PWM support
-Message-ID: <Z69c1BQHmlbmwUYf@smile.fi.intel.com>
-References: <20250214-mdb-max7360-support-v4-0-8a35c6dbb966@bootlin.com>
- <20250214-mdb-max7360-support-v4-3-8a35c6dbb966@bootlin.com>
+	s=arc-20240116; t=1739546112; c=relaxed/simple;
+	bh=1cUFcziT3zrnD+e35Cx7WF4WHOMgoKt3qtHlcGUUGnQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ssHh46KLy8GXYV80mxkA27BIcP0jiz36pgd0Ae450kz/7Db31DQ1ErOQaaPVfv/Lkc4ip9FDB9K1OXP5d+dARm5S7hZuKibOBisLXB51uieOvvBTdj4zA5y4yn2LJ72qsKEWfKWsVdMnGnXhV+Obsao8b94XAhgLSxeOD6Wf9Dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JJHA0bKo; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1739546101;
+	bh=1cUFcziT3zrnD+e35Cx7WF4WHOMgoKt3qtHlcGUUGnQ=;
+	h=From:Subject:Date:To:Cc:From;
+	b=JJHA0bKog9zGlUr7gL/WMoMeolufzIwP8ZGvn3AUoqgFT8um3Kdoa9j8QFsDRjMv+
+	 OZOdXFEVUXsb1m9dadA+4DPzH9VsDVweFx3105N9PZLNL2VXChq+5UW0KrF2hpGQYD
+	 Beql8elsN8f72k8rCxqPg9EMfJd/tc0o6MakV94fFXXw+3GS+bpwb/stOvUOoxE/Ky
+	 VuMJIj+Amfbog5LIixjVRWOBV8FVn8so4LHO9pavtbDpACjFqxX4KHuqjxXOFdniGD
+	 Dxne1f81sthen5pOSWhKOoBpahrI7K5u+xOd63jc7A9DTwCs5c1ZnMIlpVjE5ZNgKg
+	 T7guYNRz4tWFw==
+Received: from [192.168.0.47] (unknown [IPv6:2804:14c:1a9:53ee::1003])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B46C317E0ECF;
+	Fri, 14 Feb 2025 16:14:57 +0100 (CET)
+From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Subject: [PATCH 0/3] Allow retrieving accessory detection reference on
+ MT8188
+Date: Fri, 14 Feb 2025 12:14:28 -0300
+Message-Id: <20250214-mt8188-accdet-v1-0-6bbd5483855b@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250214-mdb-max7360-support-v4-3-8a35c6dbb966@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIANRdr2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDI0MT3dwSC0MLC93E5OSU1BJdk5TUxKQkC1NTY5MUJaCegqLUtMwKsHn
+ RsbW1ANH1iY9fAAAA
+X-Change-ID: 20250214-mt8188-accdet-4deabb85534d
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Trevor Wu <trevor.wu@mediatek.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>
+Cc: kernel@collabora.com, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>, 
+ Zoran Zhan <zoran.zhan@mediatek.com>
+X-Mailer: b4 0.14.2
 
-On Fri, Feb 14, 2025 at 12:49:53PM +0100, mathieu.dubois-briand@bootlin.com wrote:
-> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> 
-> Add driver for Maxim Integrated MAX7360 PWM controller, supporting up to
-> 8 independent PWM outputs.
+This series enables the MT8188-MT6359 sound driver to retrieve the
+MT6359 ACCDET sound component from a mediatek,accdet DT property, which
+allows detecting jack insertion/removal.
 
-...
+Patch 1 describes the new property in the binding. Patch 2 implements
+the sound component retrieval in the common MTK soundcard driver. Patch
+3 updates the MT8188-MT6359 sound driver to register the audio jack and
+initialize the ACCDET driver for detection, if the property is present.
 
-+ bits.h
+Tested on the Genio 700 EVK board.
 
-+ dev_printk.h
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+---
+Nícolas F. R. A. Prado (3):
+      ASoC: dt-bindings: mediatek,mt8188-mt6359: Add mediatek,accdet
+      ASoC: mediatek: common: Handle mediatek,accdet property
+      ASoC: mediatek: mt8188-mt6359: Add headset jack detect support
 
-> +#include <linux/err.h>
+ .../bindings/sound/mediatek,mt8188-mt6359.yaml     |  6 +++
+ sound/soc/mediatek/common/mtk-soc-card.h           |  1 +
+ sound/soc/mediatek/common/mtk-soundcard-driver.c   | 15 +++++++-
+ sound/soc/mediatek/mt8188/mt8188-mt6359.c          | 43 ++++++++++++++++++++++
+ 4 files changed, 64 insertions(+), 1 deletion(-)
+---
+base-commit: 7a6b5c348058d075ce0b20710f027a055d33a71d
+change-id: 20250214-mt8188-accdet-4deabb85534d
 
-
-> +#include <linux/math.h>
-
-Other way around, id est you need math64.h (see below).
-
-> +#include <linux/mfd/max7360.h>
-
-+ minmax.h
-
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-
-> +#include <linux/of.h>
-
-Is this used? Cargo cult?
-
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/regmap.h>
-
-+ types.h
-
-...
-
-> +#define MAX7360_PWM_PERIOD_NS			2000000 /* 500 Hz */
-
-Comment is superfluous, if you need HZ units, define the respective one.
-Also you can use something like (2 * NSEC_PER_MSEC) which will immediately
-gives a hint of how long this is and reduces potential 0:s miscalculations.
-This will need time.h
-
-...
-
-> +#define MAX7360_PWM_CTRL_ENABLE(n)		BIT(n)
-> +#define MAX7360_PWM_PORT(n)			BIT(n)
-
-Personally I find these macros overkill. The value of them much shorter and
-equally readable.
-
-...
-
-> +struct max7360_pwm {
-
-> +	struct device *parent;
-
-Is it not the same as you can derive from regmap?
-
-> +	struct regmap *regmap;
-
-Btw, have you checked the code generation if you place regmap the first in the
-structure? It might affect it.
-
-> +};
-
-...
-
-> +	/*
-> +	 * Ignore user provided values for period_length_ns and duty_offset_ns:
-> +	 * we only support fixed period of MAX7360_PWM_PERIOD_NS and offset of
-
-> +	 * 0.
-
-Easy to read with 0 be on previous line.
-
-> +	 */
-
-> +
-
-No need for this blank line.
-
-> +	duty_steps = mul_u64_u64_div_u64(wf->duty_length_ns, MAX7360_PWM_MAX_RES,
-> +					 MAX7360_PWM_PERIOD_NS);
-
-This comes from math64.h
-
-> +
-> +	wfhw->duty_steps = min(MAX7360_PWM_MAX_RES, duty_steps);
-
-...
-
-> +static int max7360_pwm_write_waveform(struct pwm_chip *chip,
-> +				      struct pwm_device *pwm,
-> +				      const void *_wfhw)
-> +{
-> +	const struct max7360_pwm_waveform *wfhw = _wfhw;
-> +	struct max7360_pwm *max7360_pwm;
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	max7360_pwm = max7360_pwm_from_chip(chip);
-> +
-> +	val = (wfhw->duty_steps == 0) ? 0 : MAX7360_PWM_CTRL_ENABLE(pwm->hwpwm);
-> +	ret = regmap_write_bits(max7360_pwm->regmap, MAX7360_REG_GPIOCTRL,
-> +				MAX7360_PWM_CTRL_ENABLE(pwm->hwpwm), val);
-
-> +
-> +	if (!ret && wfhw->duty_steps != 0) {
-> +		ret = regmap_write(max7360_pwm->regmap, MAX7360_REG_PWM(pwm->hwpwm),
-> +				   wfhw->duty_steps);
-> +	}
-> +
-> +	return ret;
-
-Please, improve readability by rewriting like this:
-
-	ret = regmap_write_bits(max7360_pwm->regmap, MAX7360_REG_GPIOCTRL,
-				MAX7360_PWM_CTRL_ENABLE(pwm->hwpwm), val);
-	if (ret)
-		return ret;
-
-	if (wfhw->duty_steps)
-		return regmap_write(max7360_pwm->regmap, MAX7360_REG_PWM(pwm->hwpwm),
-				    wfhw->duty_steps);
-
-	return 0;
-
-> +}
-
-...
-
-> +static int max7360_pwm_probe(struct platform_device *pdev)
-> +{
-
-With
-
-	struct device *dev = &pdev->dev;
-
-all below will look shorter and nicer.
-
-> +	struct max7360_pwm *max7360_pwm;
-> +	struct pwm_chip *chip;
-> +	int ret;
-> +
-> +	if (!pdev->dev.parent)
-> +		return dev_err_probe(&pdev->dev, -ENODEV, "no parent device\n");
-> +
-> +	chip = devm_pwmchip_alloc(pdev->dev.parent, MAX7360_NUM_PWMS,
-> +				  sizeof(*max7360_pwm));
-> +	if (IS_ERR(chip))
-> +		return PTR_ERR(chip);
-> +	chip->ops = &max7360_pwm_ops;
-> +
-> +	max7360_pwm = max7360_pwm_from_chip(chip);
-> +	max7360_pwm->parent = pdev->dev.parent;
-> +
-> +	max7360_pwm->regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +	if (!max7360_pwm->regmap)
-> +		return dev_err_probe(&pdev->dev, -ENODEV,
-> +				     "could not get parent regmap\n");
-
-Will become one line (with the above suggestion).
-
-> +	ret = devm_pwmchip_add(&pdev->dev, chip);
-
-> +	if (ret != 0)
-
-Please, be consistent with the style, and moreover this style is unusual.
-
-> +		return dev_err_probe(&pdev->dev, ret,
-> +				     "failed to add PWM chip\n");
-> +
-> +	return 0;
-> +}
-
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
 
