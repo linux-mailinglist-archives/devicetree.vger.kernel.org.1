@@ -1,120 +1,101 @@
-Return-Path: <devicetree+bounces-146502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03573A3539B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 02:19:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53133A353AD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 02:26:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69ACA3A06DD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 01:19:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE0483A1BD9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 01:26:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB0FA2AF14;
-	Fri, 14 Feb 2025 01:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D452C42A9E;
+	Fri, 14 Feb 2025 01:26:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XiSQLD90"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mxKqnOdy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9802E1E502;
-	Fri, 14 Feb 2025 01:19:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50FD13BBC9;
+	Fri, 14 Feb 2025 01:26:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739495990; cv=none; b=iZ80SGXW7/XLzglsN2pntSyLt79VVYbQR/ZGccf5ENrcdg/Gx48IkeRSelZA7tAQ0npR7gZ/I9A+UliauutuJW988aIMoiYBJkHDTAgFtXmE5VpuvM51qBSrjIGW/dmA6HgmjPyLEP+/DdLCcUNwFlzp+zcxckgxx+8YyDY4ScQ=
+	t=1739496397; cv=none; b=CR0kqteyU2ke8CseFBk/qf6jqiV4eVmq+hUcAXSLUp1GWUBMmHtYUbfPk2ZffB98Auwjm7E+h0s/lYq1ONfAzNqAHHK1ryx4KH9QohjYHBgpELvrYM2VxTkD3I6GEQAPi9Q+7BggQE5X/TDv/QFuQFGF4/JYvri0T+stIxeSNUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739495990; c=relaxed/simple;
-	bh=sfaPPZ9gP5kgndwhB/ECTbbp0IEu/QeHTgJVNdmuwy0=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=HrvzebVQyobWBI9CpPxD6XJA7tTQEpgXwa7j7uf5n56YVZKusq8lromVXrMztNbVGvezmYKdFKb730SMeQviLc/tnVhpIFQ7wrQBtMghW1393kYyKxMegfyQoxMGu+/jELVB3GYTIMaJNHxNFH+esjmcoAH1PleeyN1wS65Q39Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XiSQLD90; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBC4EC4CED1;
-	Fri, 14 Feb 2025 01:19:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739495990;
-	bh=sfaPPZ9gP5kgndwhB/ECTbbp0IEu/QeHTgJVNdmuwy0=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=XiSQLD906pcu2WDC2EPROMCXXWeS6auijB21WC1/0APPV98P5nxNnepP2GpHUYEqM
-	 nLtVUv3yqX9KjfSqpqyPfGJcmj4/pvaUMw4yj6uO4rS7pdtXBc2Uau8q14OTtrshAa
-	 12MV0IwP/2ZdGYhbdIpHSiIIeQuv24gd2B8FKNklG97FBHf84pIvHRBhvFN6BLH6Ap
-	 fsdeaHGb7rDR1qhVMoOwHbqH7IAZ84OtOlqUKaDlC8hDCJuV/64GnZvKhrGtFyPCUO
-	 p88qN0HJ69LTcXjyAw9xvVP6lbdTLQGR5ZsHlo1N8bcuoKiuNkBrEBlZsl0x6SFD0E
-	 UxlOKeUATTtHQ==
-Date: Thu, 13 Feb 2025 19:19:48 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1739496397; c=relaxed/simple;
+	bh=G8hTgtv6xtDpJIkrBRZ4qjU+rHdUlOoYA5e5Wg78bgQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gpP6MLPsYQIwPTGSAvZ9w63K5hkm4UzBFCKpiAvnt5xgvHlQHoNgL51P+tux0S6Mz6xuRbDwxdbnUau02FOWYxShq7r1PP8gpvRFmQsI3RD+pUe/lShRWlGNZVJz2gmX7m0RkOrsmkWUCbiqoHbPTe5ThA+kET/Emnj1Qv4A56s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mxKqnOdy; arc=none smtp.client-ip=209.85.222.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-7c07441f14cso139222785a.0;
+        Thu, 13 Feb 2025 17:26:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739496395; x=1740101195; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=G8hTgtv6xtDpJIkrBRZ4qjU+rHdUlOoYA5e5Wg78bgQ=;
+        b=mxKqnOdygdA+2R/t3a+ewxlwkTZLodJBtjrKQo5OjLQP7FlUEVbcJj6X95p0IUFE5z
+         j7wS3+2rNc59LIJv1/XFQuXLXpJtfcip4fE1sbo5Jx9EvQGdiDq/FyY517AQ8V9nqimC
+         Kvy5UoQ1CEF8xcbWyhmmPJ3sPFD0Tau4rK7LI5EO9XTn9MBg9n0DS9Q/jRK9xW63PmdG
+         x9H+odMji2ipzziVRW3F5NoKxVXZ0Mw4JJlBPtMHG1wKrsdFeQTeq3PenJn4PGmYbovU
+         0MK45xg8beMefV15Ot7kHTmw8YCohPRlw9RiWgv7CzSvZhm6qBRLOYygW+4mDyJR5Omp
+         Pocw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739496395; x=1740101195;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G8hTgtv6xtDpJIkrBRZ4qjU+rHdUlOoYA5e5Wg78bgQ=;
+        b=b9dBvhgFWt/WtAIb5mOyoAiCpVa/gRFs+lCYYjS4XDYhKuq1AOifaBMA1rfVjOJVBy
+         dvlS1VqbZRzNNRR1a0B8CAqqgvQgLC4TLifMylQ1owEvdfFJ8XSk5ze5SFfRitl6yeEX
+         YiCAdTePzypo6kJZDIU9StMMdb+dEgKX0uDsThlWZpDNgTtcAIW5t9hbmiyJ5kazncFn
+         I2tbbSPVzFIoUaxGbYIlXEBn9xeVGcW+O4KzfewmFoCWeeu85JqYbytfRKTLzqkm3H9Q
+         b2xawty5VQqZVDTGlFus6imPMFUB46qY6sI7zRwJatlm+6K1F+32OZw8o+J2CG9of3oc
+         2c3w==
+X-Forwarded-Encrypted: i=1; AJvYcCU9PjILJQFelCtzzBdVXMgcftgiaAlI6rQjswff29HkwdFH6FJtcGGiZzFpVjOGZ2GcqWsPvNgBXFcsU4NszQ==@vger.kernel.org, AJvYcCUqhpCRBEG+wpWLTyaM2yRLAhuQHn7zeIc2MuLbKWjsM8kKMNw1RRmoUhH0gACSpPNlHFYhhO1EBn6zoB5L@vger.kernel.org, AJvYcCVZgOJypde8KsC5l27LKNNuNV3sICfuhpX6XYOWFn29Hn2UTfXLC42gHEgRv/AdUjKE3Je0t97oK/BV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFM7HqrzCGIX5yuQVF5MoPsmtjXtURW6oRYOc209GwRCMQPZOf
+	g346rSz0r6xmoWW2Ee+Bs+G5U5lMtkjhbIMBsjxxhWRMPogTV/YwYA20qVP8AjYankQLVo/NBe2
+	vMvJaCLW1CoXVtd6LJeCVqMT6O6k=
+X-Gm-Gg: ASbGncuwiGayFk41/yXa3zF3+S8dRd6dg9LrhScLKdaiBldSxjx0AtYblfsg8K9Kfy8
+	zcf2XU8wg0cExb6YqxJv4kmrpbe8Ysq3IivkxeJx5yx76NPggdJmmyVCjpVeblfvRvAh+7Y2xYA
+	C5JVHhWVSAKH+tbBN45lPpO6lkJ/SFJQ==
+X-Google-Smtp-Source: AGHT+IEBVKcOBVhM8OlM6KvmDZ2LHJ4t7YKg+z62/NHldWlFPcMoO6e/4QFFOml970Glnp/tgfdZiTPGYt4nfcVJwuU=
+X-Received: by 2002:a05:620a:390d:b0:7b8:5520:1888 with SMTP id
+ af79cd13be357-7c07a201f4dmr850156285a.57.1739496395134; Thu, 13 Feb 2025
+ 17:26:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
- Chen-Yu Tsai <wens@csie.org>, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Samuel Holland <samuel@sholland.org>
-To: Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <20250214003734.14944-7-andre.przywara@arm.com>
-References: <20250214003734.14944-1-andre.przywara@arm.com>
- <20250214003734.14944-7-andre.przywara@arm.com>
-Message-Id: <173949598874.895319.6861900349653451498.robh@kernel.org>
-Subject: Re: [PATCH v2 6/8] dt-bindings: pinctrl: add compatible for
- Allwinner A523/T527
+References: <20250209-expressatt-bam-v2-1-e6c01c5d8292@gmail.com>
+ <e0ef29dd-afe4-4ad7-95db-d21326744c92@oss.qualcomm.com> <CABhZbsXo69FL-xUfg3a20RybO_uRmsOKyMJ2w3qnpk+8pYyUqw@mail.gmail.com>
+ <e2b31450-c428-43c3-b25c-3ec130171011@oss.qualcomm.com>
+In-Reply-To: <e2b31450-c428-43c3-b25c-3ec130171011@oss.qualcomm.com>
+From: Rudraksha Gupta <guptarud@gmail.com>
+Date: Thu, 13 Feb 2025 17:25:58 -0800
+X-Gm-Features: AWEUYZlDekcFh2N9hGoaQ0GH2wo-ndBEZF4n-0ZfGdmF0-s_s9ADbmWRBST7cW8
+Message-ID: <CABhZbsVUY5n3bL-vbzO-xdDH6amC7FYmZHuRTh3Cb3OiQSa-3Q@mail.gmail.com>
+Subject: Re: [PATCH v2] ARM: dts: qcom: msm8960: Add BAM
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Sam Day <me@samcday.com>
+Content-Type: text/plain; charset="UTF-8"
 
+> Did you keep your changes that shortened the sd controllers address space?
 
-On Fri, 14 Feb 2025 00:37:32 +0000, Andre Przywara wrote:
-> The A523 contains a pin controller similar to previous SoCs, although
-> using 10 GPIO banks (PortB-PortK), all of them being IRQ capable.
-> With this SoC we introduce a new style of binding, where the pinmux values
-> for each pin group are stored in the new "allwinner,pinmux" property in
-> the DT node, instead of requiring every driver to store a mapping between
-> the function names and the required pinmux.
-> 
-> Add a new binding file, since all the different variants of the old
-> binding are making the file a bit unwieldy to handle already, and the new
-> property would make the situation worse.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  .../allwinner,sun55i-a523-pinctrl.yaml        | 177 ++++++++++++++++++
->  1 file changed, 177 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.yaml
-> 
+No, I changed sdcc3, sdcc3bam, sdcc1, sdcc1bam from 0x2000 to 0x4000
+(2nd param of reg) as you requested, however, I got a splat.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Please let me know if I did anything wrong. Thanks.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.example.dts:24:18: fatal error: dt-bindings/clock/sun55i-a523-r-ccu.h: No such file or directory
-   24 |         #include <dt-bindings/clock/sun55i-a523-r-ccu.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1511: dt_binding_check] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250214003734.14944-7-andre.przywara@arm.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+>
+> Konrad
 
