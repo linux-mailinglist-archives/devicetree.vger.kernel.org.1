@@ -1,204 +1,201 @@
-Return-Path: <devicetree+bounces-146666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FC14A35C4B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:16:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5CBAA35C7F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:27:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDCCE3A3912
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 11:16:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B706E7A5747
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 11:25:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60958261566;
-	Fri, 14 Feb 2025 11:16:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0074B262805;
+	Fri, 14 Feb 2025 11:26:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OI2otWP4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MoKtpO4r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C72325A657
-	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 11:16:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06F54261372
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 11:26:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739531797; cv=none; b=EGai7iMklnhWdZ5aKUbeRVFTiBm5GvLdnOjRKQKereD4gvvbrcujTxRU7lhyoKBs7d24Inx3beU7sk/jV06bKYSlM18+fbbfty4ZPOrLrC6NgsVm4erd6rTscX2K4J8Z+yEpw7lV8QN+WzKtDioS6ujaFtye94JkdRmNhhlhKeA=
+	t=1739532394; cv=none; b=Bo/W5OlZvOWmkHZwkSTODf7piNEo/qYCg9UhXX8SUtknkTKoAPk/1NLvd3KfncxZdmvJ9lzkRuGtqOtrll8ZSlpxrtQLsCUWT3+zpPF7rTKv2LeTs0sfm3KcxsJq0vCQmgC2SPLKdad15j6ObPly0iGbDHt93/DgQmqDWEM9UAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739531797; c=relaxed/simple;
-	bh=Nv+6Ycy+r/YLOTrYHkPYwU3kd5MfJvihnaHXExKMBQs=;
+	s=arc-20240116; t=1739532394; c=relaxed/simple;
+	bh=ioKZ2MvhUw4Q0y9IwBXxm/cxgOWwwIiAjPD8x7s0DKg=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ty8G69hN4osNcoG0pQ4sFRhkYA6fC83OCx1qPvr5vCA3tRy+KUvqXc2DCkcIErksg0YSm1Ajru3Uw41V9WpYpDPO7+isAESDrh4zenplj12VHOEg57pLJI3FL21KfKR5d0OkjZUF3aaZkWjc5iJKEsm0AJRlVg/cd9rQvTZpW2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OI2otWP4; arc=none smtp.client-ip=209.85.219.180
+	 To:Cc:Content-Type; b=GvGSMuld36PrPt0ld/FCSK5iE8w9rtGb++gfI5IyM1fJ9Bc/QUnwHGqlIZVeW/SN6dxWoAPG0DzQt+ap/qRBPt067LlkFD5uwXnYDZHYyOMLC4HOyOh12s348QL9ciOv4FcsAZlrB4rIwugTv689GWMWWViDt7c9jcgjwA9060E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MoKtpO4r; arc=none smtp.client-ip=209.85.128.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e4930eca0d4so1451875276.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 03:16:34 -0800 (PST)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6efe4e3d698so17457747b3.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 03:26:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739531794; x=1740136594; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1739532392; x=1740137192; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9jM48aKf/sbl9H/oOIzSS3d/8y4m7nkDsYlbYDKZEDc=;
-        b=OI2otWP44QmJsoWW6RJiWch/jCTDIewr6cfpbcKwj/F7m36rqzqlUgKidAe42S+0S4
-         Z7sl3GyDZudsFFofQHZvvXpLyBBeIxAlhSPSmFD2b9fQ8MrDh8lYn64YjwcrstwGrPph
-         UcOOQIc6sq3RMSX77WwLDimMAqZosz21ge6REELimIcopeiS/RZF2FNLUhbWcGDpUgbu
-         0PACkJqPTYGriSinpNaJtPZooZGLlY1F1SA2cVH4oMNuYPeCktrvhZSCMCgYqCRidG9r
-         WD/sauw0CRoqsGpFsTrR1EpxCRtFdzkud54FGFRQCIJlNQzwkGVPWnAEZz9jH/S/AUCV
-         PVQw==
+        bh=V0lFTwfZZcUWkq9fJmOvcld23qYjy5biwQLrQr9JB8A=;
+        b=MoKtpO4rNvIBgN6jGqtGzj7n/zSy2m2444NFRZFxYQKpXDx/xxfRVNIaVHLFLKmB+6
+         eEQ+U9k1Ol5/DcpidBPpSOAn8Thq9MKB+xgTEDNB+xOBLz3ovGjf9p+JA4IkE8XWhfhT
+         Am9cR7N6YafEzsE7bdSdDgiWrPQZZJFMvgdvkek0SrNT8PXXf7KMsuPUJvjjjwn8yoc7
+         WlL/6dfFiH406HOucQcd2MVPHLesXW8N3sKtkOUn4ZKec8FbK89qANOX4uXedYNEuLR3
+         wGvdG8E9082DML2TCmjvskFemH3XxEp1wH1Ya8A10O592Ui/0T++tWl+LlHKn8EACZLs
+         OMag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739531794; x=1740136594;
+        d=1e100.net; s=20230601; t=1739532392; x=1740137192;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9jM48aKf/sbl9H/oOIzSS3d/8y4m7nkDsYlbYDKZEDc=;
-        b=q3jP/VSw+Rvx4UECs4Qchvt6EpLsiNCeeGMq7JA3Tf+JnMwzaFmkpa64jJG6VVmcjS
-         50Unm1XpFqJDoiSlyYWwIjoatRPfAOs3JTd4kYhWduywsdz78fLEkju5fP+g4aFkLKCm
-         mW0WN792Re168KSphZ1XqVkNY1xs5NyelwlGIX2zroQkVngAmwKU41wtMVPaAR8B6C3o
-         NS2sinAls6QKV0IBIF0IBaW94k5L2zpdvAS0arKtTlhk8QtQ4bFhv9hFZkbOO2mnwSFV
-         4wd8VgdoPYZvyujI7tFzPwOAqA4H75tsBpd86gmq6pq9UveT0Jpfn/QEuV3KDb/jhGev
-         IQrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXBq3XSPbrzNJ2D+woe+e9qFbJSVn/KV4CAkj++C+kRdwiXN9a7s1yQ9+oGRbU03wxob5/WhhlZlV6u@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoySN8pX9U5efDXoO9JZcE4ungNQAOrZW7AZXVLk0VxZn/h3AM
-	S1WFv5VY34fpfLaTrjwz1d1FyMkbBxHo+sqyEGLqtta2dFuvlS/Q2SwjrPgnc1yGEY08ViPsKZS
-	8Fw3Cms9CzoiPxEulXUBulLGN+9Jv4L2zAN+LrQ==
-X-Gm-Gg: ASbGncvHXn9QON1C+i4+wP4iRjF19FoAD3DR0nfnfDN9tq71aiX384E3JFUHR2YeTPg
-	51GCKSWxczZngihsYr/84XX4WYSMrtHVCzQtLMTjQTVHkheIVCcGkZu9Zd12c7KMYUu6crvusgA
+        bh=V0lFTwfZZcUWkq9fJmOvcld23qYjy5biwQLrQr9JB8A=;
+        b=W7egbFVbufqRRTkrG53wq4mOXWHM8osiB89vaHnkY6hZgspAMCvIgs1nHWeqkVXyh0
+         brBgF6CyAea2Ou+FWUrxehkxlryz8H8vS3PhpUicHKO5AkapI1qo15GDYSXjx0E3IjJy
+         wwCgVBAsBjne5pZ2r/g/L2Ok8noNQ9gu6VIStzEIlr9oglW7DZL5PIWViwkGKJZtHrCK
+         SU1p9CKHyqHj0lzHriHmd8G4rBGhUT8mZ3UTBZd7Hv82AvfRHuMxL0sR0laUkQ7SC67B
+         iBi0TKAhHfnotDxgtr5tY0TUvy5iSzyoi9zm6sWnQ7wuTKrznjW+kvggXb79rroB3RU5
+         Cg5g==
+X-Forwarded-Encrypted: i=1; AJvYcCU/lnDW0L72HkVwfda7hbAcBWqAoidZL6JeMalUibGyarkS6YaXSpMnA9opsKyWvMlBrzI6Fv8zTu7y@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiLjbUhlWGHsX7NtS2v9TLB61rLREJYlG6gFQ1Edo1exJFDWId
+	pNMywCqExadZnbd0ofE3vR/f94SOnTz7XUrB3af+NSL2YUTU27AhPRIfkKqNtJA1VlS9oCZ7+xg
+	jFuEdTNQUbbiBuREaXegvaaKD3sibmZgnW4h84g==
+X-Gm-Gg: ASbGncsJIRD2uyK0JDaBsu2WNjWPa9WeBd9QnOId2mQqpdmYg3ykM3SrB7AMTHdjyvJ
+	vTCNnAfi4v+FbJTzCWBXX06dWTfKNDREU9AWNEYcwsq+dyQgj83tEnM4t6/01wZRnTS+3SAu9Mg
 	==
-X-Google-Smtp-Source: AGHT+IE6woj8oPDle191tVLCdn9IrSTd52LbGDiCC/HBR/zbujT5GVfsySFK4K0WQQyEViMhqMK63WlGFClc8+pjkbk=
-X-Received: by 2002:a05:6902:841:b0:e5b:323b:a1a4 with SMTP id
- 3f1490d57ef6-e5d9f180dc6mr10461212276.41.1739531793901; Fri, 14 Feb 2025
- 03:16:33 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHgAlZM0IOqZW2VzEw1FYIV10AUY+XwYeC5PGfb6gr8KMhdCaMYxrQJlkGON4FNOU8B5yXkDtD2hxcjbR8IEvM=
+X-Received: by 2002:a05:6902:2b11:b0:e5b:18ff:8cf4 with SMTP id
+ 3f1490d57ef6-e5d9f0c85afmr10803625276.5.1739532391918; Fri, 14 Feb 2025
+ 03:26:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20250128194832eucas1p15db9ed3575703812ecc0374ffc5b2861@eucas1p1.samsung.com>
- <20250128194816.2185326-1-m.wilczynski@samsung.com> <20250128194816.2185326-7-m.wilczynski@samsung.com>
-In-Reply-To: <20250128194816.2185326-7-m.wilczynski@samsung.com>
+References: <20250205125225.1152849-1-szemzo.andras@gmail.com>
+In-Reply-To: <20250205125225.1152849-1-szemzo.andras@gmail.com>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 14 Feb 2025 12:15:58 +0100
-X-Gm-Features: AWEUYZmWRXn0bzCrMyNA_HXGOtxuTTirzpyDWms-8p0mq8f1JPxvJIR_18CPMCg
-Message-ID: <CAPDyKFrcs5Hc-X6qExEA992MoQcakCuKRjw7cek3KpYZihsLFw@mail.gmail.com>
-Subject: Re: [PATCH v4 06/18] pmdomain: thead: Add power-domain driver for TH1520
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org, 
-	wefu@redhat.com, jassisinghbrar@gmail.com, paul.walmsley@sifive.com, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, frank.binns@imgtec.com, 
-	matt.coster@imgtec.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, jszhang@kernel.org, 
-	p.zabel@pengutronix.de, m.szyprowski@samsung.com, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org, 
-	linux-pm@vger.kernel.org
+Date: Fri, 14 Feb 2025 12:25:55 +0100
+X-Gm-Features: AWEUYZkzFAbsbuTJhoDDXcEDwXJNLijMk4rdL9iJXNhVee2PTovAo1vxRBOIWOQ
+Message-ID: <CAPDyKFq72fqa9xOOw3m2z2ceTj18JFn42PaqxA4Ks+o9dd3FXg@mail.gmail.com>
+Subject: Re: [PATCH v2 00/10] Support for Allwinner V853 SoC
+To: Andras Szemzo <szemzo.andras@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 28 Jan 2025 at 20:48, Michal Wilczynski
-<m.wilczynski@samsung.com> wrote:
+On Wed, 5 Feb 2025 at 13:52, Andras Szemzo <szemzo.andras@gmail.com> wrote:
 >
-> The T-Head TH1520 SoC contains multiple power islands that can be
-> programmatically turned on and off using the AON (Always-On) protocol
-> and a hardware mailbox [1]. The relevant mailbox driver has already been
-> merged into the mainline kernel in commit 5d4d263e1c6b ("mailbox:
-> Introduce support for T-head TH1520 Mailbox driver");
+> V85x is a SoC from Allwinner with video encoding targeted for the field of
+> IP Camera. It integrates the single CA7 core, and a T-Head E907 RISC-V mcu.
+> The SoC has the usual Allwinner peripherals and a Vivante NPU.
+> V853 is a BGA package without DRAM, V851s/V851s3 has the same die with
+> co-packaged 64MB/128MB DRAM (in a QFN88 package).
 >
-> Introduce a power-domain driver for the TH1520 SoC, which is using AON
-> firmware protocol to communicate with E902 core through the hardware
-> mailbox. This way it can send power on/off commands to the E902 core.
->
-> The interaction with AUDIO power island e.g trying to turn it OFF proved
-> to crash the firmware running on the E902 core. Introduce the workaround
-> to disable interacting with the power island.
->
-> Link: https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf [1]
->
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
+> This patchset tries to add basical support for the V853 device family.
 
-[...]
+Patch5 and patch6 applied for next via my pmdomain tree, thanks!
 
-> +
-> +static int th1520_pd_probe(struct platform_device *pdev)
-> +{
-> +       struct generic_pm_domain **domains;
-> +       struct genpd_onecell_data *pd_data;
-> +       struct th1520_aon_chan *aon_chan;
-> +       struct device *dev = &pdev->dev;
-> +       int i;
-> +
-> +       aon_chan = dev_get_drvdata(dev->parent);
-> +       if (!aon_chan) {
-> +               dev_err(dev, "Failed to get AON channel from parent\n");
-> +               return -EINVAL;
-> +       }
-
-As pointed out on patch4. Rather than receiving the aon_chang from the
-parent device like this, it seems better to receive it from a call to
-a library function provided by the FW library.
-
-> +
-> +       domains = devm_kcalloc(dev, ARRAY_SIZE(th1520_pd_ranges),
-> +                              sizeof(*domains), GFP_KERNEL);
-> +       if (!domains)
-> +               return -ENOMEM;
-> +
-> +       pd_data = devm_kzalloc(dev, sizeof(*pd_data), GFP_KERNEL);
-> +       if (!pd_data)
-> +               return -ENOMEM;
-> +
-> +       for (i = 0; i < ARRAY_SIZE(th1520_pd_ranges); i++) {
-> +               struct th1520_power_domain *pd;
-> +
-> +               if (th1520_pd_ranges[i].disabled)
-> +                       continue;
-> +
-> +               pd = th1520_add_pm_domain(dev, &th1520_pd_ranges[i]);
-> +               if (IS_ERR(pd))
-> +                       return PTR_ERR(pd);
-> +
-> +               pd->aon_chan = aon_chan;
-> +               domains[i] = &pd->genpd;
-> +               dev_dbg(dev, "added power domain %s\n", pd->genpd.name);
-> +       }
-> +
-> +       pd_data->domains = domains;
-> +       pd_data->num_domains = ARRAY_SIZE(th1520_pd_ranges);
-> +       pd_data->xlate = th1520_pd_xlate;
-> +
-> +       /*
-> +        * Initialize all power domains to off to ensure they start in a
-> +        * low-power state. This allows device drivers to manage power
-> +        * domains by turning them on or off as needed.
-> +        */
-> +       th1520_pd_init_all_off(domains, dev);
-> +
-> +       return of_genpd_add_provider_onecell(dev->parent->of_node, pd_data);
-> +}
-> +
-> +static struct platform_driver th1520_pd_driver = {
-> +       .driver = {
-> +               .name = "th1520-pd",
-> +       },
-> +       .probe = th1520_pd_probe,
-> +};
-> +module_platform_driver(th1520_pd_driver);
-
-There is no ->remove() callback.
-
-Either add one or make this a builtin_platform_driver() with
-"suppress_bind_attrs = true".
-
-> +
-> +MODULE_AUTHOR("Michal Wilczynski <m.wilczynski@samsung.com>");
-> +MODULE_DESCRIPTION("T-HEAD TH1520 SoC power domain controller");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.34.1
->
-
-Besides the minor thing above, this looks good to me!
+Note, patch5 (the DT patch) is also available on the immutable dt
+branch, if soc maintainers need to pull it.
 
 Kind regards
 Uffe
+
+
+
+>
+> Changelog - v2:
+>  - rebased on 6.14-rc1
+>  - add a needed gate with key support to sunxi clk
+>  - rewrite the ccu-r driver
+>  - fix license issues
+>  - remove the pinctrl binding, as it has beed applied
+>  - rework the pinctrl driver, use the new sunxi dt based mux support. This new pinctrl
+>    driver depends on the new sunxi device-tree based mux support patch series [1].
+>  - remove the new usb phy binding, as the v853's usb phy is very close to d1/a64
+>  - add a board dts
+>  - ccu: add module description
+>  - ccu: fix PLL enable bits, and min multipliers
+>  - ccu: change PLL flags to CLK_SET_RATE_GATE
+>  - ccu: use SUNXI_CCU_M_HWS at peripheral PLLs
+>  - ccu: convert the VIDEO and CSI PLLs from nm type to nkmp according to BSP
+>  - ccu: cpu axi clk use pointer
+>  - ccu: fix comments
+>  - ccu: swap i2s1 and i2s0 bus clocks
+>  - ccu: fix indentation
+>  - ccu: fix RST_BUS_SPIF order
+>  - ccu: convert RST_RISCV_CLK_GATING from reset to gate
+>
+> [1]: https://lore.kernel.org/linux-sunxi/20241111005750.13071-1-andre.przywara@arm.com/T/
+>
+> Andras Szemzo (10):
+>   clk: sunxi-ng: allow key feature in ccu reset and gate
+>   pinctrl: sunxi: add driver for Allwinner V853
+>   dt-bindings: clock: sunxi-ng: add compatibles for V853
+>   clk: sunxi-ng: add CCU drivers for V853
+>   dt-bindings: power: add V853 ppu bindings
+>   pmdomain: sunxi: add V853 ppu support
+>   dt-bindings: phy: allwinner: add v853 usb phy
+>   phy: allwinner: add v853 usb phy compatible
+>   ARM: dts: sun8i: add DTSI file for V853
+>   ARM: dts: sun8i: add DTS file for yuzuki-lizard V851s
+>
+>  .../clock/allwinner,sun4i-a10-ccu.yaml        |    3 +
+>  .../phy/allwinner,sun50i-a64-usb-phy.yaml     |    2 +
+>  .../power/allwinner,sun20i-d1-ppu.yaml        |    1 +
+>  arch/arm/boot/dts/allwinner/Makefile          |    1 +
+>  .../boot/dts/allwinner/sun8i-v851s-lizard.dts |  196 +++
+>  arch/arm/boot/dts/allwinner/sun8i-v853.dtsi   |  656 ++++++++++
+>  drivers/clk/sunxi-ng/Kconfig                  |   10 +
+>  drivers/clk/sunxi-ng/Makefile                 |    4 +
+>  drivers/clk/sunxi-ng/ccu-sun8i-v853-r.c       |  120 ++
+>  drivers/clk/sunxi-ng/ccu-sun8i-v853-r.h       |   14 +
+>  drivers/clk/sunxi-ng/ccu-sun8i-v853.c         | 1145 +++++++++++++++++
+>  drivers/clk/sunxi-ng/ccu-sun8i-v853.h         |   14 +
+>  drivers/clk/sunxi-ng/ccu_common.h             |    2 +
+>  drivers/clk/sunxi-ng/ccu_gate.c               |    6 +
+>  drivers/clk/sunxi-ng/ccu_gate.h               |   14 +
+>  drivers/clk/sunxi-ng/ccu_mux.c                |    4 +-
+>  drivers/clk/sunxi-ng/ccu_reset.c              |    7 +
+>  drivers/clk/sunxi-ng/ccu_reset.h              |    2 +-
+>  drivers/phy/allwinner/phy-sun4i-usb.c         |   10 +
+>  drivers/pinctrl/sunxi/Kconfig                 |    5 +
+>  drivers/pinctrl/sunxi/Makefile                |    1 +
+>  drivers/pinctrl/sunxi/pinctrl-sun8i-v853.c    |   53 +
+>  drivers/pmdomain/sunxi/sun20i-ppu.c           |   15 +
+>  .../clock/allwinner,sun8i-v853-ccu.h          |  132 ++
+>  .../clock/allwinner,sun8i-v853-r-ccu.h        |   16 +
+>  .../power/allwinner,sun8i-v853-ppu.h          |   10 +
+>  .../reset/allwinner,sun8i-v853-ccu.h          |   60 +
+>  .../reset/allwinner,sun8i-v853-r-ccu.h        |   14 +
+>  28 files changed, 2513 insertions(+), 4 deletions(-)
+>  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v851s-lizard.dts
+>  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v853.dtsi
+>  create mode 100644 drivers/clk/sunxi-ng/ccu-sun8i-v853-r.c
+>  create mode 100644 drivers/clk/sunxi-ng/ccu-sun8i-v853-r.h
+>  create mode 100644 drivers/clk/sunxi-ng/ccu-sun8i-v853.c
+>  create mode 100644 drivers/clk/sunxi-ng/ccu-sun8i-v853.h
+>  create mode 100644 drivers/pinctrl/sunxi/pinctrl-sun8i-v853.c
+>  create mode 100644 include/dt-bindings/clock/allwinner,sun8i-v853-ccu.h
+>  create mode 100644 include/dt-bindings/clock/allwinner,sun8i-v853-r-ccu.h
+>  create mode 100644 include/dt-bindings/power/allwinner,sun8i-v853-ppu.h
+>  create mode 100644 include/dt-bindings/reset/allwinner,sun8i-v853-ccu.h
+>  create mode 100644 include/dt-bindings/reset/allwinner,sun8i-v853-r-ccu.h
+>
+> --
+> 2.39.5
+>
 
