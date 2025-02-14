@@ -1,166 +1,161 @@
-Return-Path: <devicetree+bounces-146495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53C4CA35323
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 01:42:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28017A35328
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 01:45:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB6BB3A9BB4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 00:41:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC3CF16DC12
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 00:45:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D1D15198D;
-	Fri, 14 Feb 2025 00:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EE1A8C1E;
+	Fri, 14 Feb 2025 00:45:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="RohPuuXf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF291487FA;
-	Fri, 14 Feb 2025 00:40:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFD1A27540A;
+	Fri, 14 Feb 2025 00:45:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739493616; cv=none; b=JqTGngirpOnyVDuQTXAz7SEFjEvG4J7hxeFwTond1zTzB6jimf0DC0IGKNeIdobJsOSQZaoRn03fr0Lil6MluBObWFsXg0jNFAtbDHWyZUa5rWAdTPmGfYOnJBoJJXWHHJ+ZJmZ6cB6cTFFaNwYl0yrjWdmqidPXHY2w4noMl20=
+	t=1739493915; cv=none; b=J4nAYNyU5NVE50qqyErtXoZDLTx+2HjqnYvoNPK1CAFz9AK8XSDbzaGFkba69S6Kil16ycXkxZ1Wk8wfQuVIHsvytRpX/tyaY8Xnhde3ggF7cUyRwugfy57NzmIiANTQuSp9cZZjpD7M7CUxc9F1m+JJkK1iVzw3i1G2J0ySpq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739493616; c=relaxed/simple;
-	bh=9DJX4GeezJm5XmMAY97rH2s9kYvmm6DkOakDepGm7+s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=i1xJefPUoa9SeSo+joji7NHEaM21MjBmDTb73eFQWt3MYXUbjU5DPEFAQJJVS4QQsFg7/bPnbiQTGR6A2NVanjmTwitOwiDasV2HzuvKLClOeyoLWt3QRojb6FjTbMmNH7G0umVcRztZ8ytyqLeoa9L2jpccYZ0XPiwBbXVugw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0C5F6113E;
-	Thu, 13 Feb 2025 16:40:35 -0800 (PST)
-Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DBE353F5A1;
-	Thu, 13 Feb 2025 16:40:12 -0800 (PST)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
+	s=arc-20240116; t=1739493915; c=relaxed/simple;
+	bh=oyjevGJ8IHhrCs9/8i/VZcSgCIOLD3gMW4ZvgQR+Rdc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lUjreOr7TrIBCjfDu+46ujlxLWWjov6zJCjF/+nMc7Pg/8lKIvz069NfMg6n5au2peE2eGklNzbW4xsvLYcwhoPolAmTND3XSrsArawAOJNMf9HIaRgfgyvmSjPJ3ZxX/SCy+x4i2T3QsexFRa/kMoepfim8wfIuHEiDGasPko8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=RohPuuXf; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 186DF6B5;
+	Fri, 14 Feb 2025 01:43:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1739493833;
+	bh=oyjevGJ8IHhrCs9/8i/VZcSgCIOLD3gMW4ZvgQR+Rdc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RohPuuXfeG2HxdHXs7zrM4XWUBksaywkLxtYC5ZADHEBE35VpBIW7ibSdNXlKQc+l
+	 8uPNca8CJaGpvciTcQuICw+dfm9fBBjKj4MrrKdvWyJtvDA7SffsDJ5GqZv61V9q2Z
+	 S6utJ32m4Glwb50IbdJd8nG/yGBK8K0ZXZDA2HPE=
+Date: Fri, 14 Feb 2025 02:45:00 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Tommaso Merciai <tomm.merciai@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org, linux-media@vger.kernel.org,
+	biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 8/8] pinctrl: sunxi: Add support for the secondary A523 GPIO ports
-Date: Fri, 14 Feb 2025 00:37:34 +0000
-Message-ID: <20250214003734.14944-9-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.46.3
-In-Reply-To: <20250214003734.14944-1-andre.przywara@arm.com>
-References: <20250214003734.14944-1-andre.przywara@arm.com>
+Subject: Re: [PATCH 4/8] media: dt-bindings: renesas,rzg2l-cru: Document
+ Renesas RZ/G3E SoC
+Message-ID: <20250214004500.GC8393@pendragon.ideasonboard.com>
+References: <20250210114540.524790-1-tommaso.merciai.xr@bp.renesas.com>
+ <20250210114540.524790-5-tommaso.merciai.xr@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250210114540.524790-5-tommaso.merciai.xr@bp.renesas.com>
 
-As most other Allwinner SoCs before, the A523 chip contains a second
-GPIO controller, managing banks PL and PM.
-Use the newly introduced DT based pinctrl driver to describe just the
-generic pinctrl properties, so advertise the number of pins per bank
-and the interrupt capabilities. The actual function/mux assignment is
-taken from the devicetree.
+Hi Tommaso,
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- drivers/pinctrl/sunxi/Kconfig                 |  5 ++
- drivers/pinctrl/sunxi/Makefile                |  1 +
- drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c | 54 +++++++++++++++++++
- 3 files changed, 60 insertions(+)
- create mode 100644 drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
+Thank you for the patch.
 
-diff --git a/drivers/pinctrl/sunxi/Kconfig b/drivers/pinctrl/sunxi/Kconfig
-index 0cbe466683650..dc62eba96348e 100644
---- a/drivers/pinctrl/sunxi/Kconfig
-+++ b/drivers/pinctrl/sunxi/Kconfig
-@@ -136,4 +136,9 @@ config PINCTRL_SUN55I_A523
- 	default ARM64 && ARCH_SUNXI
- 	select PINCTRL_SUNXI
- 
-+config PINCTRL_SUN55I_A523_R
-+	bool "Support for the Allwinner A523 R-PIO"
-+	default ARM64 && ARCH_SUNXI
-+	select PINCTRL_SUNXI
-+
- endif
-diff --git a/drivers/pinctrl/sunxi/Makefile b/drivers/pinctrl/sunxi/Makefile
-index 4e55508ff7f76..951b3f1e4b4f1 100644
---- a/drivers/pinctrl/sunxi/Makefile
-+++ b/drivers/pinctrl/sunxi/Makefile
-@@ -28,5 +28,6 @@ obj-$(CONFIG_PINCTRL_SUN50I_H6_R)	+= pinctrl-sun50i-h6-r.o
- obj-$(CONFIG_PINCTRL_SUN50I_H616)	+= pinctrl-sun50i-h616.o
- obj-$(CONFIG_PINCTRL_SUN50I_H616_R)	+= pinctrl-sun50i-h616-r.o
- obj-$(CONFIG_PINCTRL_SUN55I_A523)	+= pinctrl-sun55i-a523.o
-+obj-$(CONFIG_PINCTRL_SUN55I_A523_R)	+= pinctrl-sun55i-a523-r.o
- obj-$(CONFIG_PINCTRL_SUN9I_A80)		+= pinctrl-sun9i-a80.o
- obj-$(CONFIG_PINCTRL_SUN9I_A80_R)	+= pinctrl-sun9i-a80-r.o
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-new file mode 100644
-index 0000000000000..69cd2b4ebd7d7
---- /dev/null
-+++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-@@ -0,0 +1,54 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Allwinner A523 SoC r-pinctrl driver.
-+ *
-+ * Copyright (C) 2024 Arm Ltd.
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/pinctrl/pinctrl.h>
-+
-+#include "pinctrl-sunxi.h"
-+
-+static const u8 a523_r_nr_bank_pins[SUNXI_PINCTRL_MAX_BANKS] =
-+/*	  PL  PM */
-+	{ 14,  6 };
-+
-+static const unsigned int a523_r_irq_bank_map[] = { 0, 1 };
-+
-+static const u8 a523_r_irq_bank_muxes[SUNXI_PINCTRL_MAX_BANKS] =
-+/*	  PL  PM */
-+	{ 14, 14 };
-+
-+static struct sunxi_pinctrl_desc a523_r_pinctrl_data = {
-+	.irq_banks = ARRAY_SIZE(a523_r_irq_bank_map),
-+	.irq_bank_map = a523_r_irq_bank_map,
-+	.irq_read_needs_mux = true,
-+	.io_bias_cfg_variant = BIAS_VOLTAGE_PIO_POW_MODE_SEL,
-+	.pin_base = PL_BASE,
-+};
-+
-+static int a523_r_pinctrl_probe(struct platform_device *pdev)
-+{
-+	return sunxi_pinctrl_dt_table_init(pdev, a523_r_nr_bank_pins,
-+					   a523_r_irq_bank_muxes,
-+					   &a523_r_pinctrl_data,
-+					   SUNXI_PINCTRL_NEW_REG_LAYOUT);
-+}
-+
-+static const struct of_device_id a523_r_pinctrl_match[] = {
-+	{ .compatible = "allwinner,sun55i-a523-r-pinctrl", },
-+	{}
-+};
-+
-+static struct platform_driver a523_r_pinctrl_driver = {
-+	.probe	= a523_r_pinctrl_probe,
-+	.driver	= {
-+		.name		= "sun55i-a523-r-pinctrl",
-+		.of_match_table	= a523_r_pinctrl_match,
-+	},
-+};
-+builtin_platform_driver(a523_r_pinctrl_driver);
+On Mon, Feb 10, 2025 at 12:45:36PM +0100, Tommaso Merciai wrote:
+> The CRU block found on the Renesas RZ/G3E ("R9A09G047") SoC has five
+> interrups:
+> 
+>  - image_conv:    image_conv irq
+>  - axi_mst_err:   AXI master error level irq
+>  - vd_addr_wend:  Video data AXI master addr 0 write end irq
+>  - sd_addr_wend:  Statistics data AXI master addr 0 write end irq
+>  - vsd_addr_wend: Video statistics data AXI master addr 0 write end irq
+> 
+> This IP has only one input port 'port@1' similar to the RZ/G2UL CRU.
+> 
+> Document the CRU block found on the Renesas RZ/G3E ("R9A09G047") SoC.
+> 
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> ---
+>  .../bindings/media/renesas,rzg2l-cru.yaml     | 33 ++++++++++++-------
+>  1 file changed, 22 insertions(+), 11 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> index bc1245127025..7e4a7ed56378 100644
+> --- a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> @@ -17,24 +17,34 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    items:
+> -      - enum:
+> -          - renesas,r9a07g043-cru       # RZ/G2UL
+> -          - renesas,r9a07g044-cru       # RZ/G2{L,LC}
+> -          - renesas,r9a07g054-cru       # RZ/V2L
+> -      - const: renesas,rzg2l-cru
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - renesas,r9a07g043-cru       # RZ/G2UL
+> +              - renesas,r9a07g044-cru       # RZ/G2{L,LC}
+> +              - renesas,r9a07g054-cru       # RZ/V2L
+> +          - const: renesas,rzg2l-cru
+> +
+> +      - const: renesas,r9a09g047-cru        # RZ/G3E
+>  
+>    reg:
+>      maxItems: 1
+>  
+>    interrupts:
+> -    maxItems: 3
+> +    maxItems: 5
+>  
+>    interrupt-names:
+> -    items:
+> -      - const: image_conv
+> -      - const: image_conv_err
+> -      - const: axi_mst_err
+> +    oneOf:
+> +      - items:
+> +          - const: image_conv
+> +          - const: image_conv_err
+> +          - const: axi_mst_err
+> +      - items:
+> +          - const: image_conv
+> +          - const: axi_mst_err
+> +          - const: vd_addr_wend
+> +          - const: sd_addr_wend
+> +          - const: vsd_addr_wend
+
+This should move to a conditional block.
+
+>  
+>    clocks:
+>      items:
+> @@ -120,6 +130,7 @@ allOf:
+>            contains:
+>              enum:
+>                - renesas,r9a07g043-cru
+> +              - renesas,r9a09g047-cru
+>      then:
+>        properties:
+>          ports:
+
 -- 
-2.46.3
+Regards,
 
+Laurent Pinchart
 
