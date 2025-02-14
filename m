@@ -1,204 +1,189 @@
-Return-Path: <devicetree+bounces-146684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5885A35D3C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:02:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADBADA35D53
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 13:13:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 569C11684AD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:00:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26C807A3E29
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 12:12:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5613625D548;
-	Fri, 14 Feb 2025 12:00:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D7CF263C69;
+	Fri, 14 Feb 2025 12:13:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BCxOplsl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cxR3U64x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8940C1DD9AC;
-	Fri, 14 Feb 2025 12:00:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0127A2139A8;
+	Fri, 14 Feb 2025 12:13:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739534422; cv=none; b=kSwkXPFDcRXfxWruNmrGtSYqdUKBTQvxKo/VNez9/On7vdWFPde/tJjlaH1JNmb9usgFSYnpUYL5ll7j9sMrzsPt/DdkKboyCuDi8bEI6WAxUD2JvmBU63wP9GHDW8KY8+1plsOZpGMxVppEHzTpbHPieouQHOw5Q3gY+wT9WHg=
+	t=1739535227; cv=none; b=GX/nMm4kdF+fQPpEgqU+y5Ql7zMe0s4oGgMF/KsP7dE5D+o8Ee32gK5iVnB8ZI0AHMxIGzDo0t4lwOp3VxsShrdyV86foexVq0//zqMplhOUBzE1BS5TbcSLqPk6DupXwl83I6ApnZRaSu7FFhNpHwFeK0EViWTMHNdRP258grA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739534422; c=relaxed/simple;
-	bh=ggYQkjTmochz2xeS9LX4BGs7YZbV0H9wrud7PJQNKxE=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=ofAr5pT7mqPvw9WjIfvH8cfexzRuAd54UOxYazENBNf2RSF6OBW39O/Dc+clR3NNXg6Pfiklbr9i8k9/5wZWqdMBZQmCWqKFKHv6s86nXcIX31P7A6+d7ep+iCRR1WE2/uhwYZAVRmrdubqKWR10fOW1t3eJ9LwCpigvyIcJ+JU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BCxOplsl; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5d9837f201aso6042328a12.0;
-        Fri, 14 Feb 2025 04:00:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739534419; x=1740139219; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GI3W9qR1fQieAycCsuIaEjCDuBJjNXKEwknKksP2WWw=;
-        b=BCxOplslPR4o3bQwRhlSaXsSio1/RaYUBQFkrCsCVNvF2NNAa5YZfVRbi8PRBsakvY
-         PXMdO00th9Co7aldDFAcgK6oAohsr1vBONCrILGnXyUegxYK+XWYMMCLv2ABkAWuw6AD
-         iTXFRlVoVGpUNrwqMKFUeXGTC8tRo/VQ7yGeSF7sDvd34ptBQXfCnMkmIKuQVc3UHnIV
-         TChT90AYGWRNoAJhTK/YPdAzTbsdYsIgFJwLKkZHbM3DK4sl6wWFpYjUPp+CSjh4knz/
-         tRUIz8GnPYSIMfXi8+LZoR2mbRGajqjyPOJKiZ9HhHKNJIBqwJe03Atz3qwrLjeCPKCG
-         rIgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739534419; x=1740139219;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GI3W9qR1fQieAycCsuIaEjCDuBJjNXKEwknKksP2WWw=;
-        b=BELzR8O5v3Tzb/RT/xg+1+PjRJUCdn4R9E/HEMF6WOk5u0+BE/9lvhvwvzr28B15L8
-         ECRz4HqbSkyG5S/hjU9Hj7xkiBZk42trsS/UfgvIZ1Ivrt5L9Nag3wZjymlDN7Hy/lZe
-         45oSejc6lrTvbV201bK++gyshazdBzTZLRqBzkGj2Ea5C3lCwss4grDX4AFwzpH5bzJi
-         Jw5L6CYoYNWwSRqHhhHgxD4e1IzBM/6+3lVPC0o6lex2tSOowjyxerKLw7IUCtXqMO4A
-         EZuj0kH85IzyPzicxo5/qH62ufOpXwxdy968OEI1Xk6FgUJB3MYT4OgTbxxNtePZs7EO
-         rzpg==
-X-Forwarded-Encrypted: i=1; AJvYcCUGbVwuVYFZDPiIj4Z1jRrVO1xjOvIVSFnV128LgKKm262SoIvRIq9WrcaVaBYYrK6GiH4+iX/d1j8v9MPL@vger.kernel.org, AJvYcCVPkyFwciE5SKLQTTAogBwcb4/dmo8khUebVRLfeMQxEbzFh8abKv1oZKg+LDl8imDjfnZIvynilOdW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3EhaSak703U91SKNIQC87xRVtRlwS/vpgUBOHz5OY04+YtB8S
-	ZDLSZvEPUs06jYj3A4om9GXhLdZan5qs02/DLGg1xlBPAmnPW/0oa7z11Z6h
-X-Gm-Gg: ASbGncuaSf0ZtBB2VagVGQy+ApRZO9HzI+eO+C+EfBmHX0AwA2Tk+8qFOeShBVODn1O
-	r17cwwUAZaseI5Tn+HRPhAsy5x+Ei1M/RMe3McJWDHtcSpW08asTIR4qKxPpERMnGSoA/rShNEI
-	3KZk/c2du+AxHOAd4lioZTLhpcZSCjqK8ZcutGuBDe7YYyE8J2UzAfS2g9Tu90mvdt2eqrrJQWy
-	/VF47rf/L3ZNyf9Cs/dhZEGkvb2q9IwuZzUaEpNaYDLINf3IxOGntSKkevGhH1XH3+ZUt9suZya
-	kD4+873TvfhqsNG6osenfQwvTJW1bdv8ppbKNA8bRikJZjPBa67UuX5E2dBlT0aXhhzTnE0y
-X-Google-Smtp-Source: AGHT+IEuZ76Lk8B5kT7BpvuBO88bUmgM7KzRYxZvjjTT1LTHSgCtEgbI85Tx+usx0aBQ6F7U8VS0vA==
-X-Received: by 2002:a17:906:fe02:b0:ab7:c11:a980 with SMTP id a640c23a62f3a-aba510aecf0mr643697766b.17.1739534416957;
-        Fri, 14 Feb 2025 04:00:16 -0800 (PST)
-Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1c416asm2819667a12.18.2025.02.14.04.00.14
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 14 Feb 2025 04:00:15 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1739535227; c=relaxed/simple;
+	bh=iBts8iIQtzQel9dZiL97eiLaLFzBf2jp89FOZmsjRrE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ATbrbBaSXbuv6IPcMPmk6Wjw7yLrqQFUuuc9bOf6rfDnuQOy1d4W0PeOFTB2wkxPe1h7soiiQDZ/6RSghRTAmSAGoYMe/JH9EgfKjfvijQGaHJC/SMLfYfW0wn7O22TM3nNIHQ66vzji+9lkj4+IzW5YjYGfHx8UVgQob0mOoNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cxR3U64x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A632DC4CED1;
+	Fri, 14 Feb 2025 12:13:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739535226;
+	bh=iBts8iIQtzQel9dZiL97eiLaLFzBf2jp89FOZmsjRrE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cxR3U64x0UbHv7UIXxJIeRLfMqYvQizaIEArf05g6aIFOfETi5Tr+hBTOo3Ngj/Ix
+	 4SBmwsQBt8+uCGHIiDXfieBYV+wKiVfW45YgidsnbAH8+BIsNJcDJkf5NfLGbHASCE
+	 1vz7YWuLbzYqyYTONU9XuSQjvvYiezcMvAuAvtOxD8lxxWzEBLW/lDAPA8DGyqfDlB
+	 1SzaOkh9vIwdp+NsSmG3+kT3OHJb/0cuffvEtzsF3F1fUqHGFJm3gsH6UZvAEmFzTQ
+	 UXN21RC8JeGZR6/tAFUzJ9kirpiAExQMo0uTeM+CZ9claceVIivDg0FTH6glU8pl/j
+	 tscqRblX7As8Q==
+Date: Fri, 14 Feb 2025 17:43:42 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, quentin.schulz@cherry.de,
+	sebastian.reichel@collabora.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dse@thaumatec.com, Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject: Re: [PATCH v6 2/2] phy: rockchip: Add Samsung MIPI D-/C-PHY driver
+Message-ID: <Z68zdiIl75k2Vv9i@vaman>
+References: <20250213210554.1645755-1-heiko@sntech.de>
+ <20250213210554.1645755-3-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
-Subject: Re: [PATCH v6 00/14] Add eDP support for RK3588
-From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <tg6eyew4qahuxqakmmejne7xx2rkouj6htp55acun4ajz2irz2@vlmvqv3zc5vc>
-Date: Fri, 14 Feb 2025 13:00:03 +0100
-Cc: Damon Ding <damon.ding@rock-chips.com>,
- heiko@sntech.de,
- robh@kernel.org,
- conor+dt@kernel.org,
- algea.cao@rock-chips.com,
- rfoss@kernel.org,
- devicetree@vger.kernel.org,
- linux-phy@lists.infradead.org,
- linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- hjc@rock-chips.com,
- kever.yang@rock-chips.com,
- dmitry.baryshkov@linaro.org,
- vkoul@kernel.org,
- andy.yan@rock-chips.com,
- krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org,
- l.stach@pengutronix.de
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <C81810F2-6E9B-4DCC-85D1-CCB63CBFBFEA@gmail.com>
-References: <20250123100747.1841357-1-damon.ding@rock-chips.com>
- <5044FFCB-B325-40D0-BA82-03AF64EAF029@gmail.com>
- <tg6eyew4qahuxqakmmejne7xx2rkouj6htp55acun4ajz2irz2@vlmvqv3zc5vc>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: Apple Mail (2.3826.400.131.1.6)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250213210554.1645755-3-heiko@sntech.de>
 
+On 13-02-25, 22:05, Heiko Stuebner wrote:
+> From: Heiko Stuebner <heiko.stuebner@cherry.de>
 
+> +#define PLL_CON0		0x0100
+> +#define PLL_EN			BIT(12)
+> +#define S_MASK			GENMASK(10, 8)
+> +#define S(x)			FIELD_PREP(S_MASK, x)
+> +#define P_MASK			GENMASK(5, 0)
+> +#define P(x)			FIELD_PREP(P_MASK, x)
+> +#define PLL_CON1		0x0104
+> +#define PLL_CON2		0x0108
+> +#define M_MASK			GENMASK(9, 0)
+> +#define M(x)			FIELD_PREP(M_MASK, x)
+> +#define PLL_CON3		0x010c
 
-> Wiadomo=C5=9B=C4=87 napisana przez Sebastian Reichel =
-<sebastian.reichel@collabora.com> w dniu 13 lut 2025, o godz. 18:26:
->=20
-> Hello Piotr,
->=20
->=20
-> The RK3588 has two different DP controllers. The one handled in this
-> series should get the eDP port running, which is routed to the
-> "eDP Panel" in the block diagram on page 3 of the Rock 5 ITX =
-schematics.
-> So this series adds support for using "HDMI/eDP TX0" and "HDMI/eDP =
-TX1"
-> in DP mode.
->=20
-> The port routed to HDMI0 via RA620 is the other DP controller, which
-> also exists twice: "TYPEC0/DP0" and "TYPEC1/DP1". This DP controller
-> is not yet supported upstream and there is no pending patchset. As far
-> as I know Rockchip plans to work on preparing upstream support for =
-that
-> soon.
->=20
+lower case, nice.
 
-Oh - this is very valuable info and explains a lot.
-Thx.=20
+...
 
-> Note, that the two DisplayPort controllers are completely different.
-> The HDMI/eDP controller is a design from Analogix and the TypeC/DP
-> controller is a design from Synopsys.
->=20
-> P.S.: Heiko merged support for HDMI1 (RK3588 SoC level) recently. So =
-you
-> should be able to get that running by some DT additions to the Rock 5
-> ITX board DT with the latest linux-next code :)
->=20
+> +#define COMBO_MD0_GNR_CON0	0x0400
+> +#define COMBO_MD0_GNR_CON1	0x0404
+> +#define COMBO_MD0_ANA_CON0	0x0408
+> +#define COMBO_MD0_ANA_CON1      0x040C
 
-And it works perfectly on all my 3588 bards (including audio and my cec =
-addition)
-But only on boards using both hdmi tx0 and tx1 to hdmi0/hdmi1 ports.
+upper one!
 
-on rock5 itx: =20
+> +#define COMBO_MD0_ANA_CON2	0x0410
+> +
+> +#define COMBO_MD0_TIME_CON0	0x0430
+> +#define COMBO_MD0_TIME_CON1	0x0434
+> +#define COMBO_MD0_TIME_CON2	0x0438
+> +#define COMBO_MD0_TIME_CON3	0x043C
 
-With both hdmi tx0 and tx1 enabled in dts it looks like kernel detects =
-hdmi tx0 as connected and tries read edid.=20
-As nothing is connected to J11 (eDP con) - i=E2=80=99m getting i2c ddc =
-timeouts=20
-[   54.188880] dwhdmiqp-rockchip fde80000.hdmi: i2c read timed out
-[   54.292207] dwhdmiqp-rockchip fde80000.hdmi: i2c read timed out
-[   54.395554] dwhdmiqp-rockchip fde80000.hdmi: i2c read timed out
+and few more, lets be lower case everywhere please?
 
+> +	{ 200,  7,   1,  0, 33,  9,  0, 26,  5,  0, 11},
+> +	{ 190,  7,   1,  0, 32,  9,  0, 25,  5,  0, 11},
+> +	{ 180,  6,   1,  0, 32,  8,  0, 25,  5,  0, 10},
+> +	{ 170,  6,   0,  0, 32,  8,  0, 25,  5,  0, 10},
+> +	{ 160,  5,   0,  0, 31,  8,  0, 24,  4,  0,  9},
+> +	{ 150,  5,   0,  0, 31,  8,  0, 24,  5,  0,  9},
+> +	{ 140,  5,   0,  0, 31,  8,  0, 24,  5,  0,  8},
+> +	{ 130,  4,   0,  0, 30,  6,  0, 23,  3,  0,  8},
+> +	{ 120,  4,   0,  0, 30,  6,  0, 23,  3,  0,  7},
+> +	{ 110,  3,   0,  0, 30,  6,  0, 23,  3,  0,  7},
+> +	{ 100,  3,   0,  0, 29,  5,  0, 22,  2,  0,  6},
+> +	{  90,  3,   0,  0, 29,  5,  0, 22,  2,  0,  6},
+> +	{  80,  2,   0,  0, 28,  5,  0, 22,  2,  0,  5},
+> +};
 
-disabling hdmi0 makes kernel talking to hdmi1 but with issues:=20
-[    0.540446] dwhdmiqp-rockchip fdea0000.hdmi: registered DesignWare =
-HDMI QP I2C bus driver
-[    0.541230] rockchip-drm display-subsystem: bound fdea0000.hdmi (ops =
-dw_hdmi_qp_rockchip_ops)
-[    0.542285] [drm] Initialized rockchip 1.0.0 for display-subsystem on =
-minor 0
-[    0.542933] rockchip-drm display-subsystem: [drm] Cannot find any =
-crtc or sizes
-[    0.543605] rockchip-drm display-subsystem: [drm] Cannot find any =
-crtc or sizes
+any word on where this table came from, maybe worth documenting that
+part
 
-and here i=E2=80=99m a bit puzzled as on other 3588 boards (i.e. rock5b) =
-- when i connected monitor to hdmi1 - all works perfectly
-(kernel, OS and app nicely skipping hdmi0 and talking to actually =
-connected hdmi1 port. all works)=20
+> +
+> +static void samsung_mipi_dcphy_bias_block_enable(struct samsung_mipi_dcphy *samsung)
+> +{
+> +	u32 bias_con2 = 0x3223;
 
-on rock5 itx this not works.
+magic value?
 
-my observations so far are:
--on rock5 itx hdmi0 is falsely detected as connected - even when eDP =
-connector (J11) has nothing connected
--on rock5 itx disabling hdmi0 in dts breaks hdmi1=20
--on other 3588 (e.g. rock 5b) disabling hdmi0 in dts NOT breaks hdmi1 =20=
+> +static void samsung_mipi_dphy_lane_disable(struct samsung_mipi_dcphy *samsung)
+> +{
+> +	regmap_update_bits(samsung->regmap, DPHY_MC_GNR_CON0, PHY_ENABLE, 0);
+> +	regmap_update_bits(samsung->regmap, COMBO_MD0_GNR_CON0, PHY_ENABLE, 0);
+> +	regmap_update_bits(samsung->regmap, COMBO_MD1_GNR_CON0, PHY_ENABLE, 0);
+> +	regmap_update_bits(samsung->regmap, COMBO_MD2_GNR_CON0, PHY_ENABLE, 0);
+> +	regmap_update_bits(samsung->regmap, DPHY_MD3_GNR_CON0, PHY_ENABLE, 0);
 
+Is writing to a register (mmio) faster than a switch case for checking
+lane count and disabling specific lanes?
 
-strange=E2=80=A6.
+> +static void samsung_mipi_dcphy_pll_configure(struct samsung_mipi_dcphy *samsung)
+> +{
+> +	regmap_update_bits(samsung->regmap, PLL_CON0, S_MASK | P_MASK,
+> +			   S(samsung->pll.scaler) | P(samsung->pll.prediv));
+> +
+> +	if (samsung->pll.dsm < 0) {
+> +		u16 dsm_tmp;
+> +
+> +		/* Using opposite number subtraction to find complement */
+> +		dsm_tmp = abs(samsung->pll.dsm);
+> +		dsm_tmp = dsm_tmp - 1;
+> +		dsm_tmp ^= 0xffff;
+> +		regmap_write(samsung->regmap, PLL_CON1, dsm_tmp);
+> +	} else {
+> +		regmap_write(samsung->regmap, PLL_CON1, samsung->pll.dsm);
+> +	}
+> +
+> +	regmap_update_bits(samsung->regmap, PLL_CON2,
+> +			   M_MASK, M(samsung->pll.fbdiv));
+> +
+> +	if (samsung->pll.ssc_en) {
+> +		regmap_write(samsung->regmap, PLL_CON3,
+> +			     MRR(samsung->pll.mrr) | MFR(samsung->pll.mfr));
+> +		regmap_update_bits(samsung->regmap, PLL_CON4, SSCG_EN, SSCG_EN);
+> +	}
+> +
+> +	regmap_write(samsung->regmap, PLL_CON5, RESET_N_SEL | PLL_ENABLE_SEL);
+> +	regmap_write(samsung->regmap, PLL_CON7, PLL_LOCK_CNT(0xf000));
+> +	regmap_write(samsung->regmap, PLL_CON8, PLL_STB_CNT(0xf000));
 
-  =20
+I guess you are writing to upper nibble, maybe define that, if we can
 
-> Greetings,
->=20
-> -- Sebastian
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> +static __maybe_unused int samsung_mipi_dcphy_runtime_resume(struct device *dev)
+> +{
+> +	struct samsung_mipi_dcphy *samsung = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(samsung->pclk);
+> +	if (ret) {
+> +		dev_err(samsung->dev, "Failed to enable pclk, %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	clk_prepare_enable(samsung->ref_clk);
+> +	if (ret) {
+> +		dev_err(samsung->dev, "Failed to enable reference clock, %d\n", ret);
 
+No rollback of pclk here?
+
+-- 
+~Vinod
 
