@@ -1,63 +1,79 @@
-Return-Path: <devicetree+bounces-146558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57C7DA356C2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:10:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16807A356D8
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 07:14:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C56EF7A3EB0
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 06:09:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1C031631E9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 06:14:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 544DA1DD873;
-	Fri, 14 Feb 2025 06:10:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076701FC0F3;
+	Fri, 14 Feb 2025 06:14:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hG037B7W"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Na+XqpLG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 979C71DC9BB;
-	Fri, 14 Feb 2025 06:09:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BDC11DDC2A
+	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 06:14:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739513400; cv=none; b=ZHjFAMoR+gvDfttFhTwOr7owBtjlWeqyC07Pq9YcXeMUcAbprgSWpjKrT2f9p3qlLEipoXo3lXRAU1+gI4rQ+0iRGnizJj6GW0GZ1Tl3wXbYvj1e1m0EBoBI30v/UTUQjKHpmfOe+WcmxIFHger5fGqHf3697ttU0qnsun7qLG0=
+	t=1739513658; cv=none; b=tV38QEgHs+dFy4ART9mEnqMciJWeXXIegp0o9EwaE6R/MQXPRIfhGAe40IuHyLs8MuVcDTnXgWO9J6bsAMz6Bx8QeVmkpNW57bKyk+FzY6EtnavFdvTwOx/1LknI1McRWZ/rn67d+pt1N33lbWOOe23p7j8PvwbWdFFaUSN+OzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739513400; c=relaxed/simple;
-	bh=vzOLtDLNbwZ6k28Raz3YXTxcfhefEHbtVJ9RqBaS+fM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=F6uigqT9bmMMmelvv/EwNrrDP3QBgsrW9HyKOwh0TWeMj2mcfl9PQFsYk1B0UVpG/q+MtdfY27DAb0YMfPjr7skJTUGlKjHLH1Ete/9L2VbBuIXTsbt+KS+kDWsxBnOUbndYASgjpfJXV7bJses9po2DL0CrmRLa5UW2Ayc0uKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hG037B7W; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51DJrthP015820;
-	Fri, 14 Feb 2025 06:09:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oxtC73W7s7XwzhQwTpzZ2WHOKktLjMRi2XHEFB1dH3A=; b=hG037B7WsNiC68TZ
-	xsnN7ghjNiyRmbcdLxO105dcwChM7QDADbSA9aprEUdkioxZxcKvcPBrs2dYZ6qQ
-	BUUANhS67OkcJf5g9cZrgqjh/ckIKv0dOL+PDEqJr/qB9koQ0zwEcdO2gn7lS4Ce
-	V79+8wio8KUDmDA+YjLrqcjZ2scNad9stJ4J1AxfkYxcM47eZSwWXBDbtxJiDpme
-	OilREDmfgZyA35POQVRRzrAD5u70ZYMosql6C8U37FIWXDFOp7EPnq6+V77S/wOK
-	Efxw/OA5tw5l7JRIOGa+TlhxAiVzat66QdlelF3Yj0GpKH/rIRF6LSXscNaKDKXW
-	ETLQKg==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44rgpgqa5b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 14 Feb 2025 06:09:33 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51E69XeU003774
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 14 Feb 2025 06:09:33 GMT
-Received: from [10.253.8.223] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Feb
- 2025 22:09:27 -0800
-Message-ID: <b980cc2b-5c4f-4293-ba1a-496253ae8049@quicinc.com>
-Date: Fri, 14 Feb 2025 14:09:25 +0800
+	s=arc-20240116; t=1739513658; c=relaxed/simple;
+	bh=E+zHukzTxoUAqQh1pniz8wv7WSmBiWd4YYjBi2Wtb9c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y61RoRGKBDcZaZYirqYh2FoL7sZncvvFgFUGRC2Zwl5p7CbbzNzZzqJeFbvIyJ3i999EzpfYagY5mmAKbB69fKeOhB+gA8F93VXZbEcvR4XxAU37qEIuEzrcr40BDqJrLdD5jyV6I4zp/qNW8MuEHz6XZoaiTjMUL6mOuHlw9QA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Na+XqpLG; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ab7430e27b2so316748766b.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2025 22:14:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739513655; x=1740118455; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E+zHukzTxoUAqQh1pniz8wv7WSmBiWd4YYjBi2Wtb9c=;
+        b=Na+XqpLGWcI+DhFBWBNj8ihX3QXlbhQ7PWgqxkpSpXNDqQ7cyzcARnDBQ6OeTzqT8q
+         Qo6IAHxgXcX4muL+yCs3x9kmHzqf+PFkIoLYesZOJrZQfYPCSMBlzHDLzFTL2ujvkWxB
+         aMGsBAlWvxUr3PSoQDxXgGrgZCYSPVLWLFM1WTptbZNj2Mu1ELYD8+ZVzoAsrArbHmJe
+         LPLD6Cwyre0y5aTZfmQZOrnC6Xtl575jZgAXw1u2imNWFV/CBOXFnDBP/zSkGFquCI1P
+         jFh0Qw2QPFAEsBd/CWxFKITxtGy4Ga8K7/4EuTjdn0WD3mVOXNvmiSVNhOQDoZVgCu62
+         fDUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739513655; x=1740118455;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E+zHukzTxoUAqQh1pniz8wv7WSmBiWd4YYjBi2Wtb9c=;
+        b=seg4S53vfzWjixXCLeRZMXp6bnXUk+zdm2/EFWuegWVMGid4HPwUDGzrKdqqwFqHMT
+         or4Rdj7tOb/jGRBYHWtonE3+P8vPiFDEi619pSyP6h0sG+GzGzFF3MfMGGrJrPn3kh1P
+         m6r70YHt8HZ/PVo2w1G+SGbIlYodPTgmQZtiWgPBqlTa7sAQU782UUPeohKdGz/ef1jZ
+         pbP/Qc8yvLYu0Q6NWzQbl8nBidl1cOFkf5ZxXnNUBukuuohZN010fxAgoBWqpnPy3JaI
+         bcLGvJj8EotZCl09tpXNp+KdFNFCFr63osiN81ZCnLc8KUVsVJxROwuOueOnzRyXI5v5
+         1ayw==
+X-Forwarded-Encrypted: i=1; AJvYcCVq/S7NP6XlEw8Lxr3XS2Bzh6oJE6egbR1B1UiG47a/w2bYl9nRxFAVT0Fa4Xu6B+d2DKUsG4IyaxB8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzfa+APIqaJOluQoBL7aFrBW8d5r0v+5F9qZehKfDQ3bxIN8F3K
+	Un7jgbKZxCv1zGfIRec4q6zNj23TL3++tX1/mjEhvePKfp4LzQoUiZMjWMq1L8E=
+X-Gm-Gg: ASbGnct2wsZIxJ8UtDsv470lXAIuju6PK5nSs/1ctgFDnVyOzdPYqU9rzvpNd9YzT6R
+	GQRvTaEIW7EnSIurkOa2xsA5k2y/ejEFeIxEYDgJUvWzFmPO/ISDxRUz+Eq3+5I9AQV6L7EFciX
+	E0QFJaGRTJl4yLMg91dOJQUJgqK9ZbutzthbdtvmgkeU7qG9NsxgOMx/Eu08R+hhmGXOXNodEHe
+	V6KrOQBvtGrqt49YwjBcB3ynu/3r65j/DrZNGNvx7A7hEpF6bfnOQ9dqCJqGo9QvCOhI6JxNwnO
+	2374x2j80Vjs6TwNaL+MZvly
+X-Google-Smtp-Source: AGHT+IEmV/spFwDvPJBmBni+qOvQYaJLBVXLCJxYkFEXGyz6aAo+8zl5YqR1HK+HjXkmRorI/a/vqw==
+X-Received: by 2002:a17:907:724c:b0:ab7:d10b:e1de with SMTP id a640c23a62f3a-ab7f339c868mr973175866b.13.1739513655453;
+        Thu, 13 Feb 2025 22:14:15 -0800 (PST)
+Received: from [192.168.0.14] ([79.115.63.124])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba532580c5sm276049766b.56.2025.02.13.22.14.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Feb 2025 22:14:14 -0800 (PST)
+Message-ID: <f4967c68-d79d-4ba5-ad0c-5526e7e1ccec@linaro.org>
+Date: Fri, 14 Feb 2025 06:14:12 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,84 +81,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 03/14] net: ethernet: qualcomm: Add PPE driver
- for IPQ9574 SoC
-To: Jie Gan <jie.gan@oss.qualcomm.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Lei Wei <quic_leiwei@quicinc.com>,
-        "Suruchi
- Agarwal" <quic_suruchia@quicinc.com>,
-        Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Kees Cook
-	<kees@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        "Philipp
- Zabel" <p.zabel@pengutronix.de>
-CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
-        <john@phrozen.org>
-References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
- <20250209-qcom_ipq_ppe-v3-3-453ea18d3271@quicinc.com>
- <58e05149-abc2-4cf4-a6e8-35380823d94a@oss.qualcomm.com>
- <63f1d25c-087a-46dd-9053-60334a0095d5@quicinc.com>
- <1882f5dd-4e46-40b9-977d-dc3570975738@oss.qualcomm.com>
+Subject: Re: [PATCH v1 0/2] spi: s3c64xx: add support for
+ samsung,exynos990-spi
+To: Denzeel Oliva <wachiturroxd150@gmail.com>
+Cc: alim.akhtar@samsung.com, andi.shyti@kernel.org, andre.draszik@linaro.org,
+ broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ linux-spi@vger.kernel.org, peter.griffin@linaro.org, robh@kernel.org
+References: <20250212191241.280-1-wachiturroxd150@gmail.com>
+ <bad7b5b6-c61b-4e93-9415-6476976c8e81@linaro.org>
+ <Z65MYSNuDdCFNlv6@droid-r8s>
 Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <1882f5dd-4e46-40b9-977d-dc3570975738@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ejRAXFTrCBblpUpjQfi9kwfmZIxa6bhv
-X-Proofpoint-GUID: ejRAXFTrCBblpUpjQfi9kwfmZIxa6bhv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-14_02,2025-02-13_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=612
- priorityscore=1501 mlxscore=0 bulkscore=0 lowpriorityscore=0 spamscore=0
- impostorscore=0 phishscore=0 malwarescore=0 suspectscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
- definitions=main-2502140043
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <Z65MYSNuDdCFNlv6@droid-r8s>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
 
-On 2/12/2025 9:58 AM, Jie Gan wrote:
->>>> +static int qcom_ppe_probe(struct platform_device *pdev)
->>>> +{
->>>> +    struct device *dev = &pdev->dev;
->>>> +    struct ppe_device *ppe_dev;
->>>> +    void __iomem *base;
->>>> +    int ret, num_icc;
->>> I think it's better with:
->>>      int num_icc = ARRAY_SIZE(ppe_icc_data);
->>
->> This will impact the “reverse xmas tree” rule for local variable
->> definitions. Also, the num_icc will vary as per the different SoC,
->> so we will need to initialize the num_icc in a separate statement.
->>
->> (Note: This driver will be extended to support different SoC in
->> the future.)
->>
-> Got your point here. So there may have multiple definitions like 
-> ppe_icc_data here, right? But the num_icc here is hardcoded.
-> Maybe it would be better defined within the ppe_icc_data, if possible?
-> Then just directly use ppe_icc_data->num_icc?
-> 
-> Never mind, that's just my thought on the flexibility.
-> 
-> Jie
+On 2/13/25 7:47 PM, Denzeel Oliva wrote:
+> Yes, Exynos990 has SPI nodes with 256-byte FIFOs, and you can see this in
+> the downstream kernel. Here are some relevant references:
 
-Yes, the num_icc will be moved the SoC specific .data area of struct
-of_device_id, when this driver is extended to support multiple SoCs.
+thanks for the references!
 
