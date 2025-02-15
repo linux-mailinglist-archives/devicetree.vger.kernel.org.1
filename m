@@ -1,145 +1,185 @@
-Return-Path: <devicetree+bounces-146949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4851BA36D59
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 11:33:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BED74A36D97
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 12:07:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B64C162C2C
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 10:33:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E5303B1A2A
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 11:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 056E61B4248;
-	Sat, 15 Feb 2025 10:32:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D7A51A239B;
+	Sat, 15 Feb 2025 11:07:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YmYQ/P5K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mFW6meLh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C361A304A;
-	Sat, 15 Feb 2025 10:32:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DDBB1482E1;
+	Sat, 15 Feb 2025 11:07:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739615553; cv=none; b=rS7PFDR5B/WKgq78V0sCrJTaMgI6/KJosUkWkURGZSGqZiN3Py1vHOlkvkfzsT+ir5jnyBMG/sLrZQYKbsDyaYJ9UL7NQ8WgJ2StejkDmqrmj22EoJKrM1P/M+c4Ks82LxVsX9XW3vLkYk0cPQYVMgWQsMPOqHYzSu5P9zHqqWY=
+	t=1739617667; cv=none; b=q0TVXcCmfSyIuuO6AIt5fIG3faXQnHzccw+lVNxVYYSi6JqbhjLVXlsBTl6tso7OMU82UTbpJdLLyZujX6IfgWCL/ZfUHyF30VSpZ2qLb46u6vJrvp0xfjkpQfd2vL2yF85lAJRhD0pURjnWhVJqcH5JKew/yAfCH5tJanhpWPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739615553; c=relaxed/simple;
-	bh=ovU/udmsQruAG4JxrqrP/u7hpQFzVvlamOYHihmO89k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AcKJgamDukPDjRYCxYXh4gXF44SzUC6CGlvR03adhUaEZdvOhzwsMqL8HHky2+EMrGe12cefodeiGCcn0D0GHa/FMqm4mcl96LlPZUqiT2p+FtVQXf/NdzD2gKdR101EHKbV2mIsZeTDdBrXyDI/sinBqji1+HrCoc3tP9/QgFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YmYQ/P5K; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-307325f2436so23285361fa.0;
-        Sat, 15 Feb 2025 02:32:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739615550; x=1740220350; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u6NGjbfzadf2K5Cwn0Cq99wst66ulH2eoNJ3X3i+jmY=;
-        b=YmYQ/P5K85s4t9mw/JGtt3D4s+NHNMPKbwbsbixWWihiw2MyPW7RAIVc68qjkPPjD8
-         6NB8mRh8a76vLXgw//yvOKbx+GSWjmk7l+Rg54EpTz181m731D91ra9T4mEFJeng7twB
-         w1GOe5C6svn4KbmUonyChaWBWmOvhIHANAjmjZyGv+nOIUozQUI1dpnwhhEgoLudLhvF
-         clNScepR0cCtsv2Tn4a/F2cgOc1wejZq+mmmaC6TMVaMZq/jw+v4WSmik91iHJniFCsj
-         tryX4IyF4o2+t1oaHJmz8adADbI4wEvr5ESJATrK7djX9bqN+N0GI+BOvorS2Ag3HDy9
-         Ka5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739615550; x=1740220350;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=u6NGjbfzadf2K5Cwn0Cq99wst66ulH2eoNJ3X3i+jmY=;
-        b=NS47y4BP1fGXFgsVUVg2hmPxtPBT+ZFDrw9+e5p+LSzmNobQ2OFe5S1VmP1OPxHuR9
-         eBnVPKaumaIz0rjk4PmOl6TYjaQzn0bx8hR9huS28qlwlf6YEsEiOrRsb7Eha2Y7w+bA
-         yum3IIJ1gJULAmVQG4c35BKZ08CTK/cSUMnrHEhhFMxs8mU8Q3l1aiy3hYebutv3N2TW
-         wD2kpda52P9ib5FYFlH1vZP9ZxvtYNZ7PTBbVE48liPnpVd9E8B2NzI55fdVoSn925y4
-         yxd5/dOq3/99eQ5txe27Y3EWMPD0cNuDzzkQs1eyMzmf1n6R0Jc2AANLEj6FpW+hYoQV
-         LsNw==
-X-Forwarded-Encrypted: i=1; AJvYcCUvgBqd50evsOPbarTtAjDfzTsasKs5/SUhxiQDvmAJXxtLZDuT8CFbOsKl5ZsSo9YgQg6jVB5J5322@vger.kernel.org, AJvYcCVBLpQ2Jce47dAsZPsdVepqqRSZH43hkz+0QGwpcInLjhb6rXEbvK6G5fEbquFROhtXpMDfQQ6oAEfpZMg=@vger.kernel.org, AJvYcCVtmAw9MHMvGq3ZCtyqLrbnqTP3yhY8e+y8fByJKw/FkduktYMSLRqemUFyML6Uya1wXgntzWLXFak5B7CX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyeuj0RaSMy5O60CFKyPMe0wpWhIMnz79aOTsVs98GdIoGtGIiD
-	c5/bHyNs0lMZ6pkgpBLgbumxH8rbvXE0xQcg1FqMMWqjAtq17Yco
-X-Gm-Gg: ASbGnctp1mk/s3a8lMfNckyoebyRrxMCr0zfz7cakAWIvEK+uqvOBoNjBTuBjBVZXP8
-	2V3duc1tNGJogHnXPGM9m9bY215FfJqxs3j/8zp5+/up88JrztVuqeCa+oTQUZ2TpuUbG3+f8pN
-	H7IUa0Ydg69rdCpwR6wnPYoEkiyxQosH/IxMJ1cIkHvSd7YI9UN+zpKXtxgdCQF4OgmC2sRc8k8
-	g90m0XEF1iHZGDLEPx2QgnWW4aAO2l5sqi+fEtla1Ja6Jh5PPKjZUi8vYgQoQu2lmr3222b1fgd
-	oibodRI=
-X-Google-Smtp-Source: AGHT+IGlZODZxzfWnXWmjNedtkY9w+OfCyI2jzRhZXwmK4f5UUnoDzov55he5Jn1/VTVxV0/aHd0VQ==
-X-Received: by 2002:a2e:885a:0:b0:309:1e75:65b3 with SMTP id 38308e7fff4ca-30927b26f7cmr9044561fa.32.1739615549994;
-        Sat, 15 Feb 2025 02:32:29 -0800 (PST)
-Received: from xeon.. ([188.163.112.51])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-309298dc5eesm2201571fa.95.2025.02.15.02.32.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Feb 2025 02:32:29 -0800 (PST)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Emil Gedenryd <emil.gedenryd@axis.com>,
-	Arthur Becker <arthur.becker@sentec.com>,
-	Mudit Sharma <muditsharma.info@gmail.com>,
-	Per-Daniel Olsson <perdaniel.olsson@axis.com>,
-	Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
-	Ivan Orlov <ivan.orlov0322@gmail.com>,
-	David Heidelberg <david@ixit.cz>
-Cc: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: [PATCH v2 3/3] ARM: tegra: tf101: Add al3000a illuminance sensor node
-Date: Sat, 15 Feb 2025 12:31:59 +0200
-Message-ID: <20250215103159.106343-4-clamor95@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250215103159.106343-1-clamor95@gmail.com>
-References: <20250215103159.106343-1-clamor95@gmail.com>
+	s=arc-20240116; t=1739617667; c=relaxed/simple;
+	bh=aviqrW+4MMM0OACMiFIOXdC21DPQ4amvmUKmI0yVnsc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f9EEPMemyTjnlvLAvO32zq+TEJwFzzM0ehzp5lA79C+rmaHZp51FbWL+KosHwSAq6zDCQwtMgFBW85CAyH0g/SP15QQHMY0WPDzH0Kt7qQAb5Fc2L0QIaWphO+Q+2mzOlZTuEQniD5286s8fl1giWguxNqle+NxDSg0Ki2X2RaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mFW6meLh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C89FAC4CEDF;
+	Sat, 15 Feb 2025 11:07:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739617666;
+	bh=aviqrW+4MMM0OACMiFIOXdC21DPQ4amvmUKmI0yVnsc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mFW6meLh6335BCBVacv3KLcHO3Lnh6ZpSDXy/9IXWDFgzUwZIW1SxqylwEuTLXAfz
+	 3KUwHnvFAv0Qyn3s/p5GVuVygQqlCSSOwxqJQLsnWkCAW/MPD5N7FJs0of2XpXZtTx
+	 9NeCIkkRgIEsUcwJHI4t1jq7rpVGJUSoJ7kVH0LfmQ29+1orsNuvbbmE3K38DlkB9W
+	 S5u5YdiF+hcNUeMMo5nd9FWUSRkkgjzDuN3DqR44cSohZy4aCheFQr129ouxWqWGyJ
+	 xLAUI8BcokmJ1drd4ogMNlJLXZHQThsm7EBDjKwQXbymiosyyIjpdm+C6vaBL2nD0a
+	 d+0iZxdlYB2ug==
+Message-ID: <87e21b2a-b0f5-41c3-ba6e-960da5c1f836@kernel.org>
+Date: Sat, 15 Feb 2025 12:07:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 1/3] dt-binding: clock: ast2700: modify soc0/1 clock
+ define
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250210085004.1898895-1-ryan_chen@aspeedtech.com>
+ <20250210085004.1898895-2-ryan_chen@aspeedtech.com>
+ <20250211-encouraging-free-aardwolf-0fabb1@krzk-bin>
+ <OS8PR06MB7541287BC48C500E50C7C77FF2F92@OS8PR06MB7541.apcprd06.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <OS8PR06MB7541287BC48C500E50C7C77FF2F92@OS8PR06MB7541.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Bind al3000a illuminance sensor found in ASUS TF101
+On 15/02/2025 03:14, Ryan Chen wrote:
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Tuesday, February 11, 2025 4:18 PM
+>> To: Ryan Chen <ryan_chen@aspeedtech.com>
+>> Cc: Michael Turquette <mturquette@baylibre.com>; Stephen Boyd
+>> <sboyd@kernel.org>; Philipp Zabel <p.zabel@pengutronix.de>; Joel Stanley
+>> <joel@jms.id.au>; Andrew Jeffery <andrew@aj.id.au>;
+>> linux-clk@vger.kernel.org; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+>> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
+>> linux-arm-kernel@lists.infradead.org; linux-aspeed@lists.ozlabs.org;
+>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+>> Subject: Re: [PATCH v8 1/3] dt-binding: clock: ast2700: modify soc0/1 clock
+>> define
+>>
+>> On Mon, Feb 10, 2025 at 04:50:02PM +0800, Ryan Chen wrote:
+>>> remove soc0 clock:
+>>
+>> Why? Your commit msg must explain why. What is obvious from the diff, isn't
+>> it?
+> Thank you for your feedback. I will add explanation in next commit patch.
+>>
+>>>  SOC0_CLK_UART_DIV13
+>>>  SOC0_CLK_HPLL_DIV_AHB
+>>>  SOC0_CLK_MPLL_DIV_AHB
+>>> add soc0 clock:
+>>>  SOC0_CLK_AHBMUX
+>>>  SOC0_CLK_MPHYSRC
+>>>  SOC0_CLK_U2PHY_REFCLKSRC
+>>> add soc1 clock:
+>>>  SOC1_CLK_I3C
+>>>
+>>> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+>>> ---
+>>>  include/dt-bindings/clock/aspeed,ast2700-scu.h | 7 ++++---
+>>>  1 file changed, 4 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/include/dt-bindings/clock/aspeed,ast2700-scu.h
+>>> b/include/dt-bindings/clock/aspeed,ast2700-scu.h
+>>> index 63021af3caf5..c7389530629d 100644
+>>> --- a/include/dt-bindings/clock/aspeed,ast2700-scu.h
+>>> +++ b/include/dt-bindings/clock/aspeed,ast2700-scu.h
+>>> @@ -13,18 +13,17 @@
+>>>  #define SCU0_CLK_24M		1
+>>>  #define SCU0_CLK_192M		2
+>>>  #define SCU0_CLK_UART		3
+>>> -#define SCU0_CLK_UART_DIV13	3
+>>
+>> NAK, ABI break without any explanation.
+> 
+> The `SCU0_CLK_UART_DIV13` was originally defined as a separate clock identifier, reviewing the AST2700 clock driver implement, I realized it is no longer necessary.
+> The clk-ast2700.c driver I have **integrated the SOC0 UART clock (`soc0_uartclk`) with `ast2700_clk_uart_div_table`**. 
+> The UART clock source will get from ast2700_clk_uart_div_table, that will div from source 24M div13 or div1.
 
-Tested-by: Robert Eckelmann <longnoserob@gmail.com>
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- arch/arm/boot/dts/nvidia/tegra20-asus-tf101.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Wrap your replies correctly.
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra20-asus-tf101.dts b/arch/arm/boot/dts/nvidia/tegra20-asus-tf101.dts
-index e118809dc6d9..67764afeb013 100644
---- a/arch/arm/boot/dts/nvidia/tegra20-asus-tf101.dts
-+++ b/arch/arm/boot/dts/nvidia/tegra20-asus-tf101.dts
-@@ -1085,6 +1085,17 @@ smart-battery@b {
- 				sbs,poll-retry-count = <10>;
- 				power-supplies = <&mains>;
- 			};
-+
-+			/* Dynaimage ambient light sensor */
-+			light-sensor@1c {
-+				compatible = "dynaimage,al3000a";
-+				reg = <0x1c>;
-+
-+				interrupt-parent = <&gpio>;
-+				interrupts = <TEGRA_GPIO(Z, 2) IRQ_TYPE_LEVEL_HIGH>;
-+
-+				vdd-supply = <&vdd_1v8_sys>;
-+			};
- 		};
- 	};
- 
--- 
-2.43.0
+So all this means you exported clocks which are not clocks?
+How are ABI consumers behaving now?
 
+Anyway, any ABI impact must be clearly justified in commit msg.
+
+
+
+Best regards,
+Krzysztof
 
