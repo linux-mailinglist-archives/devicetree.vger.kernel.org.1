@@ -1,135 +1,143 @@
-Return-Path: <devicetree+bounces-146906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4AA9A36AAC
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 02:13:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6269BA36AC0
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 02:17:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D0473AFEE3
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 01:13:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0CC97A438E
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 01:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDF81433AB;
-	Sat, 15 Feb 2025 01:13:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5C6C19BBA;
+	Sat, 15 Feb 2025 01:17:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EMXHNTG/"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="Hxhx1nky";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ON1iSdRX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from fout-a7-smtp.messagingengine.com (fout-a7-smtp.messagingengine.com [103.168.172.150])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A34911187;
-	Sat, 15 Feb 2025 01:13:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8F9410F2;
+	Sat, 15 Feb 2025 01:17:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739582025; cv=none; b=awDEbnjIC8HNmJIcqbrw+F/vkOm+FkPPVOMIf1QBpf5t8ks/WsECGpDzlNFEIlWo0G23qjM9cT2xFE05k5LwP8azyZe496fp1MhS9xTHQsvkP74PAeThht4YkpkIJFwjT+MXZ6r7vY60sgsSzllmcU/DPsbOLoGU1i1nycuGc44=
+	t=1739582264; cv=none; b=dDFbm7tuxdrKSYllGx4RJtuknjA4vY9C3UngY96V6cLWILo5Vz0r10b1m6mvWxy2QEewDwN7YbWZl6us8Mcvhve8XkI5r2BszjCX96CHlTOzFt1iR5NK/IP8GQnAzOmJHybgp7aZjuAj9A4JjXaCSBAA/DjmRHhWIMxvFqG+uto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739582025; c=relaxed/simple;
-	bh=WRCtZXjO6Wvl3SDyjYTihILfLHQlQU18HhuRJvAJYEc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V2AbjQuT6Dk/9C19GSRySJA++4B1ca1F/xhsvIB+7nPiT0R2295AfjIpFafv6EoGMCxFC7+lNbDqOCG3IQRBCzZYqzQ7une9XUnqoFPfsC7RLDoRBeZ9x7bI3JlNCeczqRNCt3jKHIcHeR87DFTwKHu+PaDuLw4rQWjPpzdzIHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EMXHNTG/; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739582023; x=1771118023;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WRCtZXjO6Wvl3SDyjYTihILfLHQlQU18HhuRJvAJYEc=;
-  b=EMXHNTG/YaLeiAZxYmBbGeIGGwEnAMLIFo75Nf/rWQHPubR7fr0bB9kX
-   15dzsf6w/Mbk6EHy0A6QZAnuAsxD8/+hgc9aoV5crWoKoMYsg0KTkoY+h
-   jPlLhMnoBUfFpTwpQs5P/hKAGytadz3gH3Put16HB8ul/DYDxBKNWTF3d
-   yqnLZdHEguxZVvD/TMRPc+/eAdeCh9+MERgPUEV1hmYgcrplv0EI0Sfrs
-   nmy/1ntPWEZObCy6qd0o3jAVFYO37/90SOX+Tbbp/MyCDKYc5las5ceLS
-   /h19XnejKagNuf5YJehCq4FXZk0L7RZOS3LxNNM899Y75yYOUO+XBfHmw
-   A==;
-X-CSE-ConnectionGUID: 58WddrJhR8+lRd3BXW/Shg==
-X-CSE-MsgGUID: rf4lZmH0STiXjkXRcgp0QA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="39575182"
-X-IronPort-AV: E=Sophos;i="6.13,287,1732608000"; 
-   d="scan'208";a="39575182"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2025 17:13:42 -0800
-X-CSE-ConnectionGUID: enkUg1f+SUGU47QDEBs55g==
-X-CSE-MsgGUID: BklhlydLS5ShgQeqQP7G7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,287,1732608000"; 
-   d="scan'208";a="113580628"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 14 Feb 2025 17:13:40 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tj6kU-001ANT-0D;
-	Sat, 15 Feb 2025 01:13:38 +0000
-Date: Sat, 15 Feb 2025 09:12:59 +0800
-From: kernel test robot <lkp@intel.com>
-To: Kim Seer Paller <kimseer.paller@analog.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Kim Seer Paller <kimseer.paller@analog.com>
-Subject: Re: [PATCH v2 2/2] gpio: gpio-adg1414: New driver
-Message-ID: <202502150933.vtaQAJRw-lkp@intel.com>
-References: <20250213-for_upstream-v2-2-ec4eff3b3cd5@analog.com>
+	s=arc-20240116; t=1739582264; c=relaxed/simple;
+	bh=8qyWllZdT2t9DXalQqpIS422XTtFDedbRYcPxGXBnQk=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=geaSeMp+hLYDb6mOVqluxwYOUXdhS+BchGtyUa3z3yg8jUGwNedJ2NTOzmNIqoAms8vZeDqCMzF8AzGIpeeAcFGqlSD7JkInZckPq6nB8YaLuEQA53l52B3Ee9zcW5nCiSG0adVyIhhnjcmRPUgzvckhZBdVxsBem3pd1OssskM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=Hxhx1nky; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ON1iSdRX; arc=none smtp.client-ip=103.168.172.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from phl-compute-13.internal (phl-compute-13.phl.internal [10.202.2.53])
+	by mailfout.phl.internal (Postfix) with ESMTP id DB3D21380105;
+	Fri, 14 Feb 2025 20:17:41 -0500 (EST)
+Received: from phl-imap-07 ([10.202.2.97])
+  by phl-compute-13.internal (MEProxy); Fri, 14 Feb 2025 20:17:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm3;
+	 t=1739582261; x=1739668661; bh=hPBYFiAweKzLygU/co8iY53bvVtiA5up
+	X/HaNd3eSYM=; b=Hxhx1nkyQ5uF4Ow8rzokIProVSGAzqzyB2NygjkCRpoCVBhZ
+	1zVzXpaNJf7Y8ZTxXigS6XFKUUzjC3GfH3xek/2PfeWnL7TDRV5Q6ayGkMs9gtA9
+	wVINimPihowRNxpNm8jRSxPDMpmC430ynzD72FUnIY79Ojtea7oev5d9Qf62cgR9
+	hW/VOW+R+aRnw3xYNx2NM62SpU337D2BHyIoLkiUAVYSWRvH4hqoTOIaaqdHj1Ts
+	k7WPX6ee6sYAaSzCnwMMupQjtuiioY6gSKrQssEdbjNafCz0qf1Tr/pXJsvUEpfX
+	9LMabGfXlLZbZ3lRgpPFaDX8TBa+mex1AyaBjg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1739582261; x=
+	1739668661; bh=hPBYFiAweKzLygU/co8iY53bvVtiA5upX/HaNd3eSYM=; b=O
+	N1iSdRXvdS33leQGOQaUeO0XVj2m2kBDw5uabBTwFOk0CBX3nzgnDiOWswKEkRXY
+	GBzkrLObdjw2LipUuAlOMn92f8sUGL2acPODzuIpboZCtKVfLDXkokgDB/LAoRn2
+	GMXDiUaWdrPlPBWKBvrQA46CFdNxW+AeeawKUNQ94H/GzfQVyG7cSDn8ns9TwQW+
+	l7QfysoX1fBvNeQ0qUlBNJ0OpeYDuJ0iNf59xzfvbn9z2Kv42cxhxpighdw4/tJl
+	EIwqeTjqN7KSqFqr/ACxJySbDIazfilzTREqQtWHELED7ksCcLPbWMCTI+1xQmkW
+	bnkIlJeD8L+95EXKXr9QQ==
+X-ME-Sender: <xms:NOuvZ2m1JWa_dM05Egspp3NUZb-EucncXLW-5xIUpVeFRacklHev6g>
+    <xme:NOuvZ92vzPEfdL9w4jp4iBIbxu7O0f72N6FJjzUF2BlFR0M9laStv5yD7TDPn5TH4
+    EAXfmXZX6RV4VheuA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehuddulecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredt
+    tdenucfhrhhomhepfdfthigrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtoh
+    grshhtrdgtohhmqeenucggtffrrghtthgvrhhnpeejhfeukeejjefguddvffehveevjefh
+    tddutdfhudduvdevfeejfffgvdelfeeugfenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgs
+    pghrtghpthhtohepvddupdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrnhgurh
+    gvrdhprhiihiifrghrrgesrghrmhdrtghomhdprhgtphhtthhopehmthhurhhquhgvthht
+    vgessggrhihlihgsrhgvrdgtohhmpdhrtghpthhtohepfigvnhhssegtshhivgdrohhrgh
+    dprhgtphhtthhopegurghnihgvlhesfhhffihllhdrtghhpdhrtghpthhtoheprghirhhl
+    ihgvugesghhmrghilhdrtghomhdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtg
+    esghhmrghilhdrtghomhdprhgtphhtthhopehmrggtrhhorghlphhhrgekvdesghhmrghi
+    lhdrtghomhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtg
+    hpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:NOuvZ0rHQ5e6sbUBcy5t76b_C0Oh9jpZPxrjuqVep3FaomZk9Sf25Q>
+    <xmx:NOuvZ6nCA3aM90ZVzT1kDiyuXOAwB2Dh-IrQIUGwUepb2rLDvgY9QA>
+    <xmx:NOuvZ018jd52c-TNbNxRaEwu8LWYEJM2NyqATFz_jKlk4Co6Yg7wOQ>
+    <xmx:NOuvZxu3zb1RggKnd4ZY63bH8xdgKWrhQb0bBhkE0prbt8LYZOnO0w>
+    <xmx:NeuvZ-XZ820qASIJ3wVhpgyixDut7xHJznx1iHQ5tg7f7AoKOECLuVEd>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id BF98FBA006F; Fri, 14 Feb 2025 20:17:40 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250213-for_upstream-v2-2-ec4eff3b3cd5@analog.com>
+Date: Sat, 15 Feb 2025 14:17:19 +1300
+From: "Ryan Walklin" <ryan@testtoast.com>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
+Cc: "Maxime Ripard" <mripard@kernel.org>, "Chen-Yu Tsai" <wens@csie.org>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>,
+ "David Airlie" <airlied@gmail.com>, "Daniel Vetter" <daniel@ffwll.ch>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Samuel Holland" <samuel@sholland.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Andre Przywara" <andre.przywara@arm.com>,
+ "Chris Morgan" <macroalpha82@gmail.com>, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Message-Id: <40fdbece-009e-4c7d-85e9-2d2488dfd91e@app.fastmail.com>
+In-Reply-To: 
+ <635hn2vkmoyna7fxzgrzp7q3tlk76aoggssjbt2mpkhpvvo4fx@2pmvvxgvmfpq>
+References: <20240929091107.838023-1-ryan@testtoast.com>
+ <20240929091107.838023-2-ryan@testtoast.com>
+ <635hn2vkmoyna7fxzgrzp7q3tlk76aoggssjbt2mpkhpvvo4fx@2pmvvxgvmfpq>
+Subject: Re: [PATCH v5 01/26] drm: sun4i: de2/de3: Change CSC argument
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-Hi Kim,
+On Sun, 20 Oct 2024, at 3:11 AM, Dmitry Baryshkov wrote:
+> On Sun, Sep 29, 2024 at 10:04:33PM +1300, Ryan Walklin wrote:
 
-kernel test robot noticed the following build warnings:
+Hi Dmitry, thanks for reviewing, and apologies for the delay in replying.
 
-[auto build test WARNING on 4dc1d1bec89864d8076e5ab314f86f46442bfb02]
+>> -enum sun8i_csc_mode {
+>> -	SUN8I_CSC_MODE_OFF,
+>> -	SUN8I_CSC_MODE_YUV2RGB,
+>> -	SUN8I_CSC_MODE_YVU2RGB,
+>> +enum format_type {
+>
+> enum sun8i_format_type, unless there is a strong reason to name it
+> otherwise.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kim-Seer-Paller/dt-bindings-gpio-add-adg1414/20250213-211900
-base:   4dc1d1bec89864d8076e5ab314f86f46442bfb02
-patch link:    https://lore.kernel.org/r/20250213-for_upstream-v2-2-ec4eff3b3cd5%40analog.com
-patch subject: [PATCH v2 2/2] gpio: gpio-adg1414: New driver
-config: alpha-randconfig-r132-20250215 (https://download.01.org/0day-ci/archive/20250215/202502150933.vtaQAJRw-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 14.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20250215/202502150933.vtaQAJRw-lkp@intel.com/reproduce)
+No problem, will make that change.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502150933.vtaQAJRw-lkp@intel.com/
+Regards,
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpio/gpio-adg1414.c:68:31: sparse: sparse: Using plain integer as NULL pointer
-   drivers/gpio/gpio-adg1414.c: note: in included file (through include/linux/smp.h, include/linux/lockdep.h, include/linux/spinlock.h, ...):
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-
-vim +68 drivers/gpio/gpio-adg1414.c
-
-    54	
-    55	static void adg1414_set(struct gpio_chip *chip, unsigned int offset, int value)
-    56	{
-    57		struct adg1414_state *st = gpiochip_get_data(chip);
-    58	
-    59		guard(mutex)(&st->lock);
-    60	
-    61		if (value)
-    62			st->buf |= BIT(offset);
-    63		else
-    64			st->buf &= ~BIT(offset);
-    65	
-    66		st->tx = cpu_to_be32(st->buf << (32 - st->chip.ngpio));
-    67	
-  > 68		adg1414_spi_write(st, 0, st->chip.ngpio / 8);
-    69	}
-    70	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Ryan
 
