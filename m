@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-146950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BED74A36D97
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 12:07:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40007A36DA0
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 12:14:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E5303B1A2A
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 11:07:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97CE4188F686
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 11:14:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D7A51A239B;
-	Sat, 15 Feb 2025 11:07:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF0F11A7253;
+	Sat, 15 Feb 2025 11:14:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mFW6meLh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="isXhq3kt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DDBB1482E1;
-	Sat, 15 Feb 2025 11:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC8EA18F2DF;
+	Sat, 15 Feb 2025 11:14:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739617667; cv=none; b=q0TVXcCmfSyIuuO6AIt5fIG3faXQnHzccw+lVNxVYYSi6JqbhjLVXlsBTl6tso7OMU82UTbpJdLLyZujX6IfgWCL/ZfUHyF30VSpZ2qLb46u6vJrvp0xfjkpQfd2vL2yF85lAJRhD0pURjnWhVJqcH5JKew/yAfCH5tJanhpWPA=
+	t=1739618056; cv=none; b=hj09tei7YJ35Lk1vG8+gbaqYgl7YelszFdjZmQNH5OW/2tTumGADbFHnOHvrfhLz3xQGDEIORXEtairuyKA+tH0DvD8wyzZSf7SQg3yCKgy/M5zq66XvPZFJW3bF0V5D3kPmxZD2m7AGYIqeboQ3j6/fpIk7Hvm2gI+ks673gds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739617667; c=relaxed/simple;
-	bh=aviqrW+4MMM0OACMiFIOXdC21DPQ4amvmUKmI0yVnsc=;
+	s=arc-20240116; t=1739618056; c=relaxed/simple;
+	bh=2MG5CjrZ+8pQDI+3FotFCAtkUVEZsU+0uSwPnGrtv1U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f9EEPMemyTjnlvLAvO32zq+TEJwFzzM0ehzp5lA79C+rmaHZp51FbWL+KosHwSAq6zDCQwtMgFBW85CAyH0g/SP15QQHMY0WPDzH0Kt7qQAb5Fc2L0QIaWphO+Q+2mzOlZTuEQniD5286s8fl1giWguxNqle+NxDSg0Ki2X2RaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mFW6meLh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C89FAC4CEDF;
-	Sat, 15 Feb 2025 11:07:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=c17hXMxINbdsGAkoQ/yQk5JtkbyE6FhVxa/Yj/Bs30oK/VYlH6uMElWbvjxGXe2lh+b65U5b+jXKd6dFo+r6LMHvECzmeS4KW2Wdw02LS+PJ6AVM8wPd0JweckIkBi2Aw2ANNBdEUzrkp7oh8SAbwsP2Udr9ikGVY84MuvtCoZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=isXhq3kt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E927C4CEDF;
+	Sat, 15 Feb 2025 11:14:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739617666;
-	bh=aviqrW+4MMM0OACMiFIOXdC21DPQ4amvmUKmI0yVnsc=;
+	s=k20201202; t=1739618056;
+	bh=2MG5CjrZ+8pQDI+3FotFCAtkUVEZsU+0uSwPnGrtv1U=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mFW6meLh6335BCBVacv3KLcHO3Lnh6ZpSDXy/9IXWDFgzUwZIW1SxqylwEuTLXAfz
-	 3KUwHnvFAv0Qyn3s/p5GVuVygQqlCSSOwxqJQLsnWkCAW/MPD5N7FJs0of2XpXZtTx
-	 9NeCIkkRgIEsUcwJHI4t1jq7rpVGJUSoJ7kVH0LfmQ29+1orsNuvbbmE3K38DlkB9W
-	 S5u5YdiF+hcNUeMMo5nd9FWUSRkkgjzDuN3DqR44cSohZy4aCheFQr129ouxWqWGyJ
-	 xLAUI8BcokmJ1drd4ogMNlJLXZHQThsm7EBDjKwQXbymiosyyIjpdm+C6vaBL2nD0a
-	 d+0iZxdlYB2ug==
-Message-ID: <87e21b2a-b0f5-41c3-ba6e-960da5c1f836@kernel.org>
-Date: Sat, 15 Feb 2025 12:07:39 +0100
+	b=isXhq3ktq4XF7Ur7evEAeexK9bmTJ9BXtTQteA6D7utao/Uqi+shVcotQWzmu0PBQ
+	 3miM4u5GxdFgLlj2NIHnWRB4QY2N9pg2P5AOOt3AsVXsEHxq+d/m769aqlcCJse2/V
+	 IMCK1MD2TYsdAFeJHCEp/uHcon78tQwwBBIXS+vbGuQ+Ko4QUVuBRMc2foaxtK4yzG
+	 jFMaYVIYfav246rsYl64PCj/mWvPkDYqXXHIuvH+zXGbpzeXBvlxU6uVjVltLjPgT2
+	 l8J7oMaZ+qN7bDqIESZKcIIBvDcIRh358UuDEdhqdYAEHxxSUmRkZC2BGKMr07xsGr
+	 ADc1u82knp58Q==
+Message-ID: <8eab6c81-2015-4d5e-a1af-7ebe0208996a@kernel.org>
+Date: Sat, 15 Feb 2025 12:14:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/3] dt-binding: clock: ast2700: modify soc0/1 clock
- define
-To: Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+Subject: Re: [PATCH 07/10] arm64: Kconfig: expand STM32 Armv8 SoC with
+ STM32MP21 SoCs family
+To: Amelie Delaunay <amelie.delaunay@foss.st.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250210085004.1898895-1-ryan_chen@aspeedtech.com>
- <20250210085004.1898895-2-ryan_chen@aspeedtech.com>
- <20250211-encouraging-free-aardwolf-0fabb1@krzk-bin>
- <OS8PR06MB7541287BC48C500E50C7C77FF2F92@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Richard Cochran <richardcochran@gmail.com>, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20250210-b4-stm32mp2_new_dts-v1-0-e8ef1e666c5e@foss.st.com>
+ <20250210-b4-stm32mp2_new_dts-v1-7-e8ef1e666c5e@foss.st.com>
+ <20250213-polite-spiked-dingo-ce0f3a@krzk-bin>
+ <450d2efa-f38b-4f3a-b308-f2fb01fdb8f7@foss.st.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,72 +111,48 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <OS8PR06MB7541287BC48C500E50C7C77FF2F92@OS8PR06MB7541.apcprd06.prod.outlook.com>
+In-Reply-To: <450d2efa-f38b-4f3a-b308-f2fb01fdb8f7@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/02/2025 03:14, Ryan Chen wrote:
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Tuesday, February 11, 2025 4:18 PM
->> To: Ryan Chen <ryan_chen@aspeedtech.com>
->> Cc: Michael Turquette <mturquette@baylibre.com>; Stephen Boyd
->> <sboyd@kernel.org>; Philipp Zabel <p.zabel@pengutronix.de>; Joel Stanley
->> <joel@jms.id.au>; Andrew Jeffery <andrew@aj.id.au>;
->> linux-clk@vger.kernel.org; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
->> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
->> linux-arm-kernel@lists.infradead.org; linux-aspeed@lists.ozlabs.org;
->> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
->> Subject: Re: [PATCH v8 1/3] dt-binding: clock: ast2700: modify soc0/1 clock
->> define
->>
->> On Mon, Feb 10, 2025 at 04:50:02PM +0800, Ryan Chen wrote:
->>> remove soc0 clock:
->>
->> Why? Your commit msg must explain why. What is obvious from the diff, isn't
->> it?
-> Thank you for your feedback. I will add explanation in next commit patch.
->>
->>>  SOC0_CLK_UART_DIV13
->>>  SOC0_CLK_HPLL_DIV_AHB
->>>  SOC0_CLK_MPLL_DIV_AHB
->>> add soc0 clock:
->>>  SOC0_CLK_AHBMUX
->>>  SOC0_CLK_MPHYSRC
->>>  SOC0_CLK_U2PHY_REFCLKSRC
->>> add soc1 clock:
->>>  SOC1_CLK_I3C
+On 14/02/2025 16:06, Amelie Delaunay wrote:
+> On 2/13/25 10:02, Krzysztof Kozlowski wrote:
+>> On Mon, Feb 10, 2025 at 04:21:01PM +0100, Amelie Delaunay wrote:
+>>> Expand config ARCH_STM32 with the new STM32MP21 SoCs family which is
+>>> composed of STM32MP211, STM32MP213 and STM32MP215 SoCs.
 >>>
->>> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+>>> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
 >>> ---
->>>  include/dt-bindings/clock/aspeed,ast2700-scu.h | 7 ++++---
->>>  1 file changed, 4 insertions(+), 3 deletions(-)
+>>>   arch/arm64/Kconfig.platforms | 2 ++
+>>>   1 file changed, 2 insertions(+)
 >>>
->>> diff --git a/include/dt-bindings/clock/aspeed,ast2700-scu.h
->>> b/include/dt-bindings/clock/aspeed,ast2700-scu.h
->>> index 63021af3caf5..c7389530629d 100644
->>> --- a/include/dt-bindings/clock/aspeed,ast2700-scu.h
->>> +++ b/include/dt-bindings/clock/aspeed,ast2700-scu.h
->>> @@ -13,18 +13,17 @@
->>>  #define SCU0_CLK_24M		1
->>>  #define SCU0_CLK_192M		2
->>>  #define SCU0_CLK_UART		3
->>> -#define SCU0_CLK_UART_DIV13	3
+>>> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+>>> index 844a39620cfea8bfc031a545d85e33894ef20994..f788dbc09c9eb6f5801758ccf6b0ffe50a96090e 100644
+>>> --- a/arch/arm64/Kconfig.platforms
+>>> +++ b/arch/arm64/Kconfig.platforms
+>>> @@ -325,6 +325,8 @@ config ARCH_STM32
+>>>   			- STM32MP251, STM32MP253, STM32MP255 and STM32MP257.
+>>>   		- STM32MP23:
+>>>   			- STM32MP231, STM32MP233, STM32MP235.
+>>> +		- STM32MP21:
 >>
->> NAK, ABI break without any explanation.
+>> Squash it with previous patch and keep some sort of order.
+>>
 > 
-> The `SCU0_CLK_UART_DIV13` was originally defined as a separate clock identifier, reviewing the AST2700 clock driver implement, I realized it is no longer necessary.
-> The clk-ast2700.c driver I have **integrated the SOC0 UART clock (`soc0_uartclk`) with `ast2700_clk_uart_div_table`**. 
-> The UART clock source will get from ast2700_clk_uart_div_table, that will div from source 24M div13 or div1.
+> Ok for squashing with patch 3.
+> Do you mean to keep the current chronological order used here or to 
 
-Wrap your replies correctly.
+chronological of what? Adding it? That's the worse of possible orders,
+because it is basically random invitation to conflicts.
 
-So all this means you exported clocks which are not clocks?
-How are ABI consumers behaving now?
+If chronological of market release, that's tricky to any contributor to
+figure out.
 
-Anyway, any ABI impact must be clearly justified in commit msg.
+> change the order because "chronological" is not an appropriate order? In 
+> this case, would the alphanumeric order be fine?
 
-
+Many lists go alphanumerical because it is most obvious and avoids
+conflicts.
 
 Best regards,
 Krzysztof
