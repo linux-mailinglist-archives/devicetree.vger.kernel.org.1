@@ -1,228 +1,189 @@
-Return-Path: <devicetree+bounces-146988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41AA7A36F13
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 16:23:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E73CA36F15
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 16:26:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAA931895065
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 15:23:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B4553B0236
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 15:25:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A331DE8A5;
-	Sat, 15 Feb 2025 15:22:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9819D1DDC37;
+	Sat, 15 Feb 2025 15:26:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qnJ+mmQZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lg4CEu3q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5693D42AA5
-	for <devicetree@vger.kernel.org>; Sat, 15 Feb 2025 15:22:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24EA142AA5;
+	Sat, 15 Feb 2025 15:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739632976; cv=none; b=clpZ5qoV15p3JtRHF4M+7tQTWWq06fRxMWI4jlU4A2pj5aK+bGm/ywz++EcOv9wrwmLlhB6gESGipfXKp8/cy0WjT2Dikqh/wyY9RL7SevtyJnHq9+EZhZUUd1wuAr62f/6OrzpHj0PzgZnxuBxVQGGVBZl6lvxfhRIwVuu1oPo=
+	t=1739633161; cv=none; b=aAcVfrIDTN+FgRj94XOon+MLagbIYoDgmFKk1C80rAXa3Zx3mklD7sQHwYwiKutXlo7h8BBGsNnkxrEdEM23gldHb7AAvyFCKLz4MLIgGIdbnjYIa7JHfcHEVKOvNRBf6AFgXSA2mNSBQ4Hiz2m5D2TKY9bPVgQ78VXRpBMK5sg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739632976; c=relaxed/simple;
-	bh=ot4shzajuE90HxsFFMmVirML9i4Ru8URXgw7E2tV8lQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WJgvrQhoPxnL71kV62Wc69d2vMyzBzX9uRX9YQkgrDkoZNZvXJ+vtLczc0okD/EHOqjuE/dtrkI/BwreFo4UmSkoYBte6layM1cl2R76kRHz5lIDclUpW01dltinXyGRqj6xfFyPaqUzfAHrMCMN5pi9LMdKytey9Xqpd2excR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qnJ+mmQZ; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6efe4324f96so25457117b3.1
-        for <devicetree@vger.kernel.org>; Sat, 15 Feb 2025 07:22:53 -0800 (PST)
+	s=arc-20240116; t=1739633161; c=relaxed/simple;
+	bh=VKiPCA3U8w5R2pN4nCBlxafMtaiXT9qyhy/60Fz0+O0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sn38H6+bZJPalsWPsbtXzUu6lBJKmq3SKJbluteMEl/0AJS43yYLaUuEsBgpW5fVR5IP56BLU3vPKyDzqVNhHLapsHC4Kp9vMe8kIlYDZReBUtLSYwBvBR0Rf6TMb69a33dlvXsVT496jRHN74LDX5ZimykTb6dfrqVtWBLNzHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lg4CEu3q; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-220d27fcdaaso7386945ad.0;
+        Sat, 15 Feb 2025 07:25:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739632972; x=1740237772; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=2ya1HOp4At8o4rZdZ1CZR9DS9vtC+SlJcJNAQgmy2no=;
-        b=qnJ+mmQZ19M8T8zvWmKXkLLyi10q9gXmvuOCrLbITuXvJQdFp6t5sgVXdEvgZ8ktzq
-         B6V3lVv742xn5KyWmmh+I2SMuAwAT6tfyfMcDVLHxvEljRSzLH9Xjh7ENa1GA7ztuzov
-         /fPPSEqNAidmHqU9XoymDhf3yNCwiM7SNmJP6P+kArmY8MobBy6WSWvDi7IBw3FK9YfT
-         QMCTd9H7u7ghg76lk9QKBKXK8Z+LzLvghkTknyTm0OlGKEjKNfdXB+ggFhxteAOXtnLj
-         usGmVPeQfsLy7vhj9TIY+IPUg23mdWDdjn6OLme83WZDc1RrrZriiz9+zvrQgtkqVGP/
-         iLdQ==
+        d=gmail.com; s=20230601; t=1739633159; x=1740237959; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MbZtBYfPPawE8o+lOlR32EHg0wh4Zt+mD8hZTHKftD0=;
+        b=lg4CEu3q6kVhNWFfmYFdXum4AYrrM/xJ2mH+V6Gl8B+n1piZU/Vb7l/FLbTfJEmmHe
+         EVEbazX6PA2gAOiz5/9VLhjWaGoWQ8Vf8aF6RX7Jpndq7KTh7QUeIva+3B7xCyPTrgzv
+         yvMmJM4yjhyQ/zeiErl3DwUK/u3gu5QxmhQWcuLaAWs3z5+n3Yhfd3ibzlvhZpzehxBb
+         rQIuOQ0hmVQwGnWi8dQtLofpwD8FKKpC9a75sVGrJdPwG9f/3MdpZUcfTlVKvMHM+esr
+         KF984frp34u8ramf5vjsG+GltPrhZP8Jx5WrgsqwqiCoyo00ZMYuEB0cO7CcHBrBar3k
+         qUOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739632972; x=1740237772;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1739633159; x=1740237959;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2ya1HOp4At8o4rZdZ1CZR9DS9vtC+SlJcJNAQgmy2no=;
-        b=crxSkdxw6gCSO2Thjj6GK9ZXLyrI+c7SqvGVr+1JSIWPb25ay81mwIuBUOf2M+gSfR
-         CvMuuA1uBuH8l+GyKl27JZFFC20vkHl5Kp/nKmycoJwyhcmuS9A05Gnpi5zv/nmpxWRX
-         vTreQctUKZhADqTF55Z7g44BDDFuQgXtIkM+hmLAQgZvOFrom6GuOugpYtkbjdrXpvEH
-         d13hG/z6mRZIgsknYzp0zAaOQ4ma+HLNWCqxzVJFAJGHgb5O/6qlex2cmrhv1XTh9cuO
-         QAZrpci8PchkNHTMLYJ5QjhbQ7Olka4QElxh7lcLL5YeVWBh46EMwCjNsWwDoQCwwwbA
-         QYhA==
-X-Forwarded-Encrypted: i=1; AJvYcCU4kTm9HyMC1heTD7paUEsWo46QwC4PsIHNtuDDKiYVVb616JCUC14YBXedXg7aa+aXfq8gK38IgLga@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6sJ8wO3NYibY9fdF2gpaSt9TnC8N8jIsemOIc8kKnWV5w5eYl
-	26PJZu2ty3kb5fQ16IbTmKo6BsnMgC5fXbI/bnBSsTLVBw336l0sPWXV/obYW8gzD0mB8Ll/jeK
-	/+JpU3QCIGgUsZnMFN6hHbr3saDmU9m0PsqOnNg==
-X-Gm-Gg: ASbGncs8AgwkyWaLcAHjMZ7lXc+IOLebKdGmgbZ+jAoWeLIGBFz+ADfYlwlD/BqxfiH
-	2/tAnhf1k5fcnEPwgBpIS8rCn2tCcD2VafgdvjM+Rkd4qDzIhiYmpT1C5yMfQKXLMKjkYZ5ZXGw
-	PPkipq94jaQVvW8t0YUPaVkJHzWQ==
-X-Google-Smtp-Source: AGHT+IHCM9nGvMBLMHM0urprzaVEMr1E9JJGwJN2aU4oCsO5lmJSn8L5sb5ABAdmNNdEk78PHDTei2/liPwZS3V/suk=
-X-Received: by 2002:a05:690c:6405:b0:6ef:6f24:d093 with SMTP id
- 00721157ae682-6fb58260edamr32798287b3.6.1739632972228; Sat, 15 Feb 2025
- 07:22:52 -0800 (PST)
+        bh=MbZtBYfPPawE8o+lOlR32EHg0wh4Zt+mD8hZTHKftD0=;
+        b=mgdPkWSas/80N9YTcoooM/kW/o74VZgoiGbTrVqZk63jAc9AYv/kUsGx8rKiBt6dmd
+         Bou8jQJR2u+DA6yyIYMLsAHAnt5CUSunMOsFjAdofM2NLcBcWyu4uVSitDX9WXUhZ4GL
+         X0ZkTZH3B5avCO9iNi6/tNx32MbKJqrwBcv+Hj5Z+f9N/8E2wr+LgSpcf8+3Ub/QTBAV
+         1ZDsvHv7WYQox/KT7roJcq61Oa6lAZMMYjxaesgHTuPu/VWDjcANOdIiHE7PKVnjbIAb
+         Q6D79uCMp8VdSzhtMqDD8ZWZoLq0U3FTek0aLpmANoAeA3zGBTXyCAvAmPY0gFy9jPa9
+         gzLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUCgwDajFK4df3n1mD/DtLFZVMHiL+gi0+0XBdnWVr6iFja1UbyzqywRHNSyMjxqbCwjSWf8zV1DnEe@vger.kernel.org, AJvYcCWSocR+5ISCvb2BgYWN7hvvIP01f9ZPdr+qJTfg4APy/4p0bmEsQp8Clspi7d8hVqy2jKiOIEV+bVV3VKGD@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywbo/ApvZFxeiqthvTbkaCY/3H/w/aFmIE2gJ+D9bHXoOa7t5ix
+	rbuvNmA8i39wiomz0F4UthD8pPbLguL2KP6szTNRzncFOGrfuOPjVrdBIHLc
+X-Gm-Gg: ASbGncvHLhoZGbizKZZtCvvjFAPHiiOHTAp3GqvyuJNyna8Y0WZOa0kt5Dl+T+emvrP
+	Vd5chpcGBNTrDKlYO8toD1/GXZZKiVbm+kzkMZ/eOHkypQmrKjfHcz7wViow5d/O9OitriSjBy+
+	6ssppiYO2rPfQyYfWtDjME9s8uE0Szm5jTdW3jzbq4wTpXvVYXxkDYK1kw67Kdo/OE5kRd+BBbT
+	AvY9TL0RaJaWhLuXr21vRHWcIhHdT/Ln5FlxQm/0U12RcJG0hQKb3dGOhZmxrMpDXVZPL79KFkb
+	de8fn2IWk2MyIdZfudCS
+X-Google-Smtp-Source: AGHT+IEvXhWy6/gs2I2nQXXUem/BKTSxc+vCPMgz6fxtKjGYy29KOuDEBVg/Uyb7DlOuXSsE0vui7Q==
+X-Received: by 2002:a17:902:da8c:b0:220:dae5:34b5 with SMTP id d9443c01a7336-22104042218mr19131705ad.7.1739633159298;
+        Sat, 15 Feb 2025 07:25:59 -0800 (PST)
+Received: from rock-5b.. ([221.220.131.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d558fe3asm44747405ad.234.2025.02.15.07.25.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 15 Feb 2025 07:25:58 -0800 (PST)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: Jianfeng Liu <liujianfeng1994@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Stephen Rothwell <sfr@canb.auug.org.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: add hdmi1 support to ROCK 5 ITX
+Date: Sat, 15 Feb 2025 23:25:45 +0800
+Message-ID: <20250215152550.3975614-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250213-a623-gpu-support-v1-0-993c65c39fd2@quicinc.com>
- <20250213-a623-gpu-support-v1-2-993c65c39fd2@quicinc.com> <ttipuo56z76svx3womcrrqurglvovkqehsx2orgnegjj2z7uxn@d3cov6qmmalm>
- <182b7896-9cfc-4f94-b9d4-759fd85fd997@quicinc.com>
-In-Reply-To: <182b7896-9cfc-4f94-b9d4-759fd85fd997@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 15 Feb 2025 17:22:40 +0200
-X-Gm-Features: AWEUYZkkpka5cr642Meq7bthCAe5gt3dTkRMkIvHVkAt9bN0FOufwH7vzAGO4cA
-Message-ID: <CAA8EJppO6ob+oQTzPkx1D6Fmq7bfyNquEyXwFXhmiiTKtXrOAA@mail.gmail.com>
-Subject: Re: [PATCH 2/5] drm/msm/a6xx: Add support for Adreno 623
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Jie Zhang <quic_jiezh@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Sat, 15 Feb 2025 at 13:49, Akhil P Oommen <quic_akhilpo@quicinc.com> wrote:
->
-> On 2/13/2025 10:24 PM, Dmitry Baryshkov wrote:
-> > On Thu, Feb 13, 2025 at 09:40:07PM +0530, Akhil P Oommen wrote:
-> >> From: Jie Zhang <quic_jiezh@quicinc.com>
-> >>
-> >> Add support for Adreno 623 GPU found in QCS8300 chipsets.
-> >>
-> >> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
-> >> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> >> ---
-> >>  drivers/gpu/drm/msm/adreno/a6xx_catalog.c   | 29 +++++++++++++++++++++++++++++
-> >>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c       |  8 ++++++++
-> >>  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c |  2 +-
-> >>  drivers/gpu/drm/msm/adreno/adreno_gpu.h     |  5 +++++
-> >>  4 files changed, 43 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-> >> index edffb7737a97..ac156c8b5af9 100644
-> >> --- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-> >> +++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-> >> @@ -879,6 +879,35 @@ static const struct adreno_info a6xx_gpus[] = {
-> >>                      { 0, 0 },
-> >>                      { 137, 1 },
-> >>              ),
-> >> +    }, {
-> >> +            .chip_ids = ADRENO_CHIP_IDS(0x06020300),
-> >> +            .family = ADRENO_6XX_GEN3,
-> >> +            .fw = {
-> >> +                    [ADRENO_FW_SQE] = "a650_sqe.fw",
-> >> +                    [ADRENO_FW_GMU] = "a623_gmu.bin",
-> >> +            },
-> >> +            .gmem = SZ_512K,
-> >> +            .inactive_period = DRM_MSM_INACTIVE_PERIOD,
-> >> +            .quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
-> >> +                    ADRENO_QUIRK_HAS_HW_APRIV,
-> >> +            .init = a6xx_gpu_init,
-> >> +            .a6xx = &(const struct a6xx_info) {
-> >> +                    .hwcg = a620_hwcg,
-> >> +                    .protect = &a650_protect,
-> >> +                    .gmu_cgc_mode = 0x00020200,
-> >> +                    .prim_fifo_threshold = 0x00010000,
-> >> +                    .bcms = (const struct a6xx_bcm[]) {
-> >> +                            { .name = "SH0", .buswidth = 16 },
-> >> +                            { .name = "MC0", .buswidth = 4 },
-> >> +                            {
-> >> +                                    .name = "ACV",
-> >> +                                    .fixed = true,
-> >> +                                    .perfmode = BIT(3),
-> >> +                            },
-> >> +                            { /* sentinel */ },
-> >> +                    },
-> >> +            },
-> >> +            .address_space_size = SZ_16G,
-> >>      }, {
-> >>              .chip_ids = ADRENO_CHIP_IDS(
-> >>                      0x06030001,
-> >> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> >> index 0ae29a7c8a4d..1820c167fcee 100644
-> >> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> >> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> >> @@ -616,6 +616,14 @@ static void a6xx_calc_ubwc_config(struct adreno_gpu *gpu)
-> >>              gpu->ubwc_config.uavflagprd_inv = 2;
-> >>      }
-> >>
-> >> +    if (adreno_is_a623(gpu)) {
-> >> +            gpu->ubwc_config.highest_bank_bit = 16;
-> >> +            gpu->ubwc_config.amsbc = 1;
-> >
-> > This bit causes my question: the patch for msm_mdss states that on the
-> > display side both UBWC encoder and decoder are 4.0, which means that the
-> > UBWC_AMSBC bit won't be set in the UBWC_STATIC register.
->
-> Not sure, but my guess is that AMSBC encoding is probably implicitly
-> enabled by MDSS HW when UBWC v4 is configured.
+Enable the HDMI port next to ethernet port.
 
-Ack.
+Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+---
 
->
-> -Akhil
->
-> >
-> >> +            gpu->ubwc_config.rgb565_predicator = 1;
-> >> +            gpu->ubwc_config.uavflagprd_inv = 2;
-> >> +            gpu->ubwc_config.macrotile_mode = 1;
-> >> +    }
-> >> +
-> >>      if (adreno_is_a640_family(gpu))
-> >>              gpu->ubwc_config.amsbc = 1;
-> >>
-> >> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
-> >> index 2c10474ccc95..3222a406d089 100644
-> >> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
-> >> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
-> >> @@ -1227,7 +1227,7 @@ static void a6xx_get_gmu_registers(struct msm_gpu *gpu,
-> >>      _a6xx_get_gmu_registers(gpu, a6xx_state, &a6xx_gmu_reglist[1],
-> >>              &a6xx_state->gmu_registers[1], true);
-> >>
-> >> -    if (adreno_is_a621(adreno_gpu))
-> >> +    if (adreno_is_a621(adreno_gpu) || adreno_is_a623(adreno_gpu))
-> >>              _a6xx_get_gmu_registers(gpu, a6xx_state, &a621_gpucc_reg,
-> >>                      &a6xx_state->gmu_registers[2], false);
-> >>      else
-> >> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> >> index dcf454629ce0..92caba3584da 100644
-> >> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> >> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> >> @@ -442,6 +442,11 @@ static inline int adreno_is_a621(const struct adreno_gpu *gpu)
-> >>      return gpu->info->chip_ids[0] == 0x06020100;
-> >>  }
-> >>
-> >> +static inline int adreno_is_a623(const struct adreno_gpu *gpu)
-> >> +{
-> >> +    return gpu->info->chip_ids[0] == 0x06020300;
-> >> +}
-> >> +
-> >>  static inline int adreno_is_a630(const struct adreno_gpu *gpu)
-> >>  {
-> >>      return adreno_is_revn(gpu, 630);
-> >>
-> >> --
-> >> 2.45.2
-> >>
-> >
->
+ .../boot/dts/rockchip/rk3588-rock-5-itx.dts   | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
 
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+index 6d68f70284e..a4fdced052c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+@@ -11,6 +11,7 @@
+ #include <dt-bindings/leds/common.h>
+ #include <dt-bindings/pinctrl/rockchip.h>
+ #include <dt-bindings/pwm/pwm.h>
++#include <dt-bindings/soc/rockchip,vop2.h>
+ #include "dt-bindings/usb/pd.h"
+ #include "rk3588.dtsi"
+ 
+@@ -89,6 +90,17 @@ fan0: pwm-fan {
+ 		pwms = <&pwm14 0 10000 0>;
+ 	};
+ 
++	hdmi1-con {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi1_con_in: endpoint {
++				remote-endpoint = <&hdmi1_out_con>;
++			};
++		};
++	};
++
+ 	/* M.2 E-KEY */
+ 	sdio_pwrseq: sdio-pwrseq {
+ 		compatible = "mmc-pwrseq-simple";
+@@ -261,6 +273,32 @@ &gpu {
+ 	status = "okay";
+ };
+ 
++&hdmi1 {
++	pinctrl-0 = <&hdmim0_tx1_cec &hdmim0_tx1_hpd
++		     &hdmim1_tx1_scl &hdmim1_tx1_sda>;
++	status = "okay";
++};
++
++&hdmi1_in {
++	hdmi1_in_vp1: endpoint {
++		remote-endpoint = <&vp1_out_hdmi1>;
++	};
++};
++
++&hdmi1_out {
++	hdmi1_out_con: endpoint {
++		remote-endpoint = <&hdmi1_con_in>;
++	};
++};
++
++&hdptxphy_hdmi0 {
++	status = "okay";
++};
++
++&hdptxphy1 {
++	status = "okay";
++};
++
+ &i2c0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c0m2_xfer>;
+@@ -1209,3 +1247,18 @@ &usbdp_phy1 {
+ 	rockchip,dp-lane-mux = <2 3>;
+ 	status = "okay";
+ };
++
++&vop {
++	status = "okay";
++};
++
++&vop_mmu {
++	status = "okay";
++};
++
++&vp1 {
++	vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
++		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
++		remote-endpoint = <&hdmi1_in_vp1>;
++	};
++};
 -- 
-With best wishes
-Dmitry
+2.43.0
+
 
