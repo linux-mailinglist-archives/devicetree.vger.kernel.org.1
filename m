@@ -1,105 +1,131 @@
-Return-Path: <devicetree+bounces-146982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17F27A36E7D
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 14:30:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E135A36E9A
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 14:44:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C6341894722
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 13:29:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A199189113F
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 13:44:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86EC21D79B3;
-	Sat, 15 Feb 2025 13:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E6F81C6FE4;
+	Sat, 15 Feb 2025 13:44:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hb0Pa/AE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hgVFFKEi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 584DF1D5AD3;
-	Sat, 15 Feb 2025 13:29:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FA881A83F8;
+	Sat, 15 Feb 2025 13:44:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739626182; cv=none; b=MZvZkcgs0PEA5nbDrLMuZcnR7ZqiEMse+WoB0yBtVDHjGBxEQWeY2oO3pN740KTIgX2URU7YUSc+0ub9SH9XuBkE0Fv33U6Y/75dtzIazZpeBiyQ5jaeXPc1DGXwkeZaZXxeVOaNxiD8BBVwQXuCvXbs+8vw7UJ52k+N1E05uOc=
+	t=1739627067; cv=none; b=esgEBYAV9ShEz/bIQp9yxQKA+w//PuxCxo+x4217bgKPqg+nkYJ7UQwJ6KsaaMhcktO/tEjtllvB3LOOgNA2+vxd3TZkv+OVGHzfGca4RZPeJEhVt4dnseFzt77W6XqnvogE4B9bp6DjOQbzl6O5SwL+zmqv4XAWHmZ9/mb8MIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739626182; c=relaxed/simple;
-	bh=v07NLwnORgC/H0e++oVg4DTMt03GjGLqNa/Cm3BNWRA=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Dk0ac56FhqkZD+Lad8oFmRuDYoQila2yp1Ga9NXc6ePuuXgtW42BngOlOvaIsB9j9MT0fOLxgI4VXsidpB0FgXtm9P93gc22q0Z+F13EUsT255f9JNC4WainZTtOp4QGubytPJvA4yuO9Yn8ETQfTwpCNVTvAbgDk0fXzFKPQeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hb0Pa/AE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F6B3C4CEE6;
-	Sat, 15 Feb 2025 13:29:40 +0000 (UTC)
+	s=arc-20240116; t=1739627067; c=relaxed/simple;
+	bh=5X9O1V615LQC2ynrpFns9PJxRgb0MBKRB5TEyBxo1GQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cepKPwwmX9WGwaKpEWfwCedSO1CBiiB1xlCbufX1gUYseRuiyOQHJRssmQuCEthNfX3wMwzQ7Lab0TDT4EBUXvOr3nPE5l1rJUz/etSBzm/wO9Ih8Illvg1IXd5T4zSznXabiwkUvZP1facahG4edaP4qqrp0lsxEAzUOXKk4Is=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hgVFFKEi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 554CEC4CEDF;
+	Sat, 15 Feb 2025 13:44:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739626180;
-	bh=v07NLwnORgC/H0e++oVg4DTMt03GjGLqNa/Cm3BNWRA=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Hb0Pa/AE/uEFOEjiqZQqXCQIC6iezuOQhOzemPZ8XUsa5o4VY+JOmYPsL3Sm8DIh0
-	 13vDy57PVgWJ6X+DD+cWu8y518LiatTqdJOWgr/KZKNRM5jCcITxRFGzU2ch5+agCO
-	 SAlNCYI6yJjmpRCS5hE43b3jfFSDbyeYmH0mp5Ps0wmioKjbnhMpBYatTjYXN9vm6F
-	 Sk8hoQ2ZJw9xRD3Gff1tY95k19SjFLW9syR2qKbIfv7bAiCHkhQrXtnqW9wP5yyfAr
-	 ACPenKhj8hhU/XVkkA1RX0UYniYSkGvjfIBMW8WVmj+szM57d3EEVQyLiVzDh7wMIq
-	 9ZAlGsSAoV18A==
-Date: Sat, 15 Feb 2025 07:29:39 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1739627066;
+	bh=5X9O1V615LQC2ynrpFns9PJxRgb0MBKRB5TEyBxo1GQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hgVFFKEipKD3T+y8lktbpqhBIy+FGV9xzgSEls0FI4lb8OiLOfXZCD07W+llDFGIJ
+	 HPE0lSbUc7aE9cjJfTZUUD/5SGRrm0PJDxSVQJHQUiSl8zrn0vNYABs8aIgf3O8ZjM
+	 odUGql7krwRTrt90w79JnL8qV29IUbluqrzLG1YHlUi5s7LRZMx9mACIsn3dZgm1qS
+	 4H8+A51dOb2JLmiFG0TyZ1Q6t6JNtYsVfRS6pY0kr4LVe/Kxk0DYTBkY5lFt2rDVkp
+	 BfY5p1ULMiRJCL14vJhIT+22VDaP17i6AjFfBBlIt2SslMzVrcM4HrHnQcXJ1KtGw1
+	 R9ILkXi3/z4JA==
+Message-ID: <9c468342-b5c4-4bc4-b6cd-9f25d2ce99aa@kernel.org>
+Date: Sat, 15 Feb 2025 14:44:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- linux-phy@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Kishon Vijay Abraham I <kishon@kernel.org>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <20250215122409.162810-3-ivo.ivanov.ivanov1@gmail.com>
-References: <20250215122409.162810-1-ivo.ivanov.ivanov1@gmail.com>
- <20250215122409.162810-3-ivo.ivanov.ivanov1@gmail.com>
-Message-Id: <173962617803.765517.17948286888997426214.robh@kernel.org>
-Subject: Re: [PATCH v1 2/4] dt-bindings: phy: add
- samsung,exynos2200-usbcon-phy schema file
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] gs101 reboot updates (DT)
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250210-gs101-renppt-dts-v2-0-fb33fda6fc4b@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250210-gs101-renppt-dts-v2-0-fb33fda6fc4b@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-
-On Sat, 15 Feb 2025 14:24:07 +0200, Ivaylo Ivanov wrote:
-> The Exynos2200 SoC has a USB phy controller block that controls the
-> usage of USB phys. Add a dt-binding schema for the new driver.
+On 10/02/2025 13:52, André Draszik wrote:
+> Hi,
 > 
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> ---
->  .../phy/samsung,exynos2200-usbcon-phy.yaml    | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.yaml
+> These patches update some of gs101's reboot / power off DT nodes to
+> bring them in line with downstream / bootloader / EL3 monitor
+> expectations.
+> 
+> In particular:
+> * an unnecessary property is removed from the DT
+> * the shutdown SMC call is aligned with downstream now
+> * we now implement the requested boot mode as a notification for the
+>   boot loader 
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Thanks, applied
+(lost b4 tracking so no commit hashes)
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250215122409.162810-3-ivo.ivanov.ivanov1@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+Krzysztof
 
