@@ -1,171 +1,80 @@
-Return-Path: <devicetree+bounces-146903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61815A36A77
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 02:03:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CA3EA36A83
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 02:04:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 156C6170CEC
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 01:01:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC08D7A02C9
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 01:03:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB1461A3176;
-	Sat, 15 Feb 2025 00:56:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 250C915A842;
+	Sat, 15 Feb 2025 01:02:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="YHX+RxPr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oj+dSu/L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 427DE1FDA65;
-	Sat, 15 Feb 2025 00:56:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE320FC0A;
+	Sat, 15 Feb 2025 01:02:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739580966; cv=none; b=sl8JD3DoSfMUadqWMxztN1cH9sy0jUdOhbRidmGLmFireR5ET2KlBVS+pCw3UwlADEqzOyuuwtUWcslmvuzEPxATwTBjaFsITf2ZMI8DhRiPoq2Hgf7B7nrLZMUujYguzNOuwLjpQ0/L2neWSWtMQP1XS3civAkj4d/8o+zn9Mo=
+	t=1739581342; cv=none; b=QkDoqFdO6MRcatnYXNSSV0azN0onR49fzDZVwV8gSIUtC2f91UWoenWHhsEXRBQ96+UZlqtYzTtkpZb0kMsko8sARWQKQ4RzJ6yVvw6+++VeeJnyb4jELLrdJEyVgsAVI29ma58F9UmZMzgwW0peZjSYFR/r/N/rI/aSvR/o0+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739580966; c=relaxed/simple;
-	bh=SamXBzmLvsEp0Jz0d1kldxkjLOu7b/3p5uRtusyt+UA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FtbFLjQT6Hy+F6s72C88B+5QAUKGL5Dros6M9+aw2SksS2J7Z3cCNZByP0uDRHjhmZejq9Xe2PD4OnMkfyZ0ORXrZJStkd3PY9wwEjaotE87XnrDuHHbFmWTTTyQLKubLNzbJuwXwE0ImJt0LsIK7qcSFK6LubH70ENo4CjosRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=YHX+RxPr; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739580959;
-	bh=SamXBzmLvsEp0Jz0d1kldxkjLOu7b/3p5uRtusyt+UA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=YHX+RxPrOuFbD+K59CXEFQAKW0HgHAw+8zomFsb8XCMPAUAIK9LnBBkYXUAGtoZot
-	 Yr2h1HVHvWsManylI0wE8R54lIaqsvDqPHcw2vs5q2C6BjA9mcWMZDMEI7WfPSwrVW
-	 DMCHpLcI+jjq/fMurpyrvcxTsp4n55fXyCVl6MyrGYPweNpty1qeQjUbQEKlNGKfcr
-	 Y+tcnqZb2JHSTgh1M21nkOsTONZ6mpTln9Y42PVtMw/n/tA4FZaf7RcQExzH+9ILnT
-	 3ZxLNvamZHzLkAetsNE+EJAwVrql4HGXdF7lf0OzPagELxU4A4tkAuIX3V4CmPnWx7
-	 wox9izcsH8Ifw==
-Received: from localhost (144.232.221.87.dynamic.jazztel.es [87.221.232.144])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with UTF8SMTPSA id 3229D17E1553;
-	Sat, 15 Feb 2025 01:55:59 +0100 (CET)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Sat, 15 Feb 2025 02:55:40 +0200
-Subject: [PATCH 4/4] arm64: dts: rockchip: Enable HDMI1 on rk3588-evb1
+	s=arc-20240116; t=1739581342; c=relaxed/simple;
+	bh=jD3vIxzSn+E0GmRd+AprFuB8a1MmVN+5PvIZoSzEfLg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZhX7VfNz36x0KlFcDZICFsK0lZIS9JgdL+jwQ4BbVbTbyBK1FHEB9zfWjepOXKQUJ4aRv44NPPq+J22wpjFGiz7DLX/tisy4z24g+c6jgDdqJDm4lWlJEcHsz5zobljnRCxAvlKeDCjfGCZdEyVFyEzCWYL9pi/c0Sl6HKlAxFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oj+dSu/L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B4BAC4CED1;
+	Sat, 15 Feb 2025 01:02:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739581341;
+	bh=jD3vIxzSn+E0GmRd+AprFuB8a1MmVN+5PvIZoSzEfLg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=oj+dSu/LHsTOrcdYE0u2sUF91jmDKv3gaxWBll+AXbZQIueh9QuhVeoEZqnvJ1AuC
+	 t4nc4o4grG2t98aXp5NnXh4GwVKxowATLKe9OF5gF0nXvMtq8kJazoUGn2O9SRoogU
+	 fd5jcNAJRuQoh1BuzqnfpatXzglUMRpWnLCMJewUpS54fhUt4uRK3kKge7NxY6t1LB
+	 7xw44hHdyh9ejbdafHeNbjIq6kLv7Ei5LbZpn6OzX2DnLVir0MZRemRgeWh1mbRETs
+	 KP1tZyDKFsMiDluUZ3TKA4gdDV6ycFLqM+wf6DtePN8xPYzyY/jc+krFTumbf+OxpT
+	 vT/I4U6879chw==
+Date: Fri, 14 Feb 2025 17:02:19 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: parvathi <parvathi@couthit.com>
+Cc: danishanwar@ti.com, rogerq@kernel.org, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, nm@ti.com,
+ ssantosh@kernel.org, richardcochran@gmail.com, basharath@couthit.com,
+ schnelle@linux.ibm.com, diogo.ivo@siemens.com, m-karicheri2@ti.com,
+ horms@kernel.org, jacob.e.keller@intel.com, m-malladi@ti.com,
+ javier.carrasco.cruz@gmail.com, afd@ti.com, s-anna@ti.com,
+ linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, pratheesh@ti.com,
+ prajith@ti.com, vigneshr@ti.com, praneeth@ti.com, srk@ti.com,
+ rogerq@ti.com, krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
+Subject: Re: [PATCH net-next v3 00/10] PRU-ICSSM Ethernet Driver
+Message-ID: <20250214170219.22730c3b@kernel.org>
+In-Reply-To: <20250214054702.1073139-1-parvathi@couthit.com>
+References: <20250214054702.1073139-1-parvathi@couthit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250215-vop2-hdmi1-disp-modes-v1-4-81962a7151d6@collabora.com>
-References: <20250215-vop2-hdmi1-disp-modes-v1-0-81962a7151d6@collabora.com>
-In-Reply-To: <20250215-vop2-hdmi1-disp-modes-v1-0-81962a7151d6@collabora.com>
-To: Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
 
-Add the necessary DT changes to enable the second HDMI output port on
-Rockchip RK3588 EVB1.
+On Fri, 14 Feb 2025 11:16:52 +0530 parvathi wrote:
+> The Programmable Real-Time Unit Industrial Communication Sub-system (PRU-ICSS)
+> is available on the TI SOCs in two flavors: Gigabit ICSS (ICSSG) and the older
+> Megabit ICSS (ICSSM).
 
-While at it, switch the position of &vop_mmu and @vop to maintain the
-alphabetical order.
-
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts | 42 ++++++++++++++++++++++--
- 1 file changed, 40 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-index 3fd0665cde2ca15cd309919ff751b00e0f53a400..27a7895595ee9fa2f5d5f3096cbe334c1d3792cf 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-@@ -132,6 +132,17 @@ hdmi0_con_in: endpoint {
- 		};
- 	};
- 
-+	hdmi1-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi1_con_in: endpoint {
-+				remote-endpoint = <&hdmi1_out_con>;
-+			};
-+		};
-+	};
-+
- 	pcie20_avdd0v85: regulator-pcie20-avdd0v85 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "pcie20_avdd0v85";
-@@ -364,10 +375,30 @@ hdmi0_out_con: endpoint {
- 	};
- };
- 
-+&hdmi1 {
-+	status = "okay";
-+};
-+
-+&hdmi1_in {
-+	hdmi1_in_vp1: endpoint {
-+		remote-endpoint = <&vp1_out_hdmi1>;
-+	};
-+};
-+
-+&hdmi1_out {
-+	hdmi1_out_con: endpoint {
-+		remote-endpoint = <&hdmi1_con_in>;
-+	};
-+};
-+
- &hdptxphy0 {
- 	status = "okay";
- };
- 
-+&hdptxphy1 {
-+	status = "okay";
-+};
-+
- &i2c2 {
- 	status = "okay";
- 
-@@ -1371,11 +1402,11 @@ &usb_host1_xhci {
- 	status = "okay";
- };
- 
--&vop_mmu {
-+&vop {
- 	status = "okay";
- };
- 
--&vop {
-+&vop_mmu {
- 	status = "okay";
- };
- 
-@@ -1385,3 +1416,10 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
- 		remote-endpoint = <&hdmi0_in_vp0>;
- 	};
- };
-+
-+&vp1 {
-+	vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
-+		remote-endpoint = <&hdmi1_in_vp1>;
-+	};
-+};
-
+Every individual patch must build cleanly with W=1.
+Otherwise doing git bisections is a miserable experience.
 -- 
-2.48.1
-
+pw-bot: cr
 
