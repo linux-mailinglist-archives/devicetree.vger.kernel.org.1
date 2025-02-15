@@ -1,135 +1,144 @@
-Return-Path: <devicetree+bounces-146916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9534A36C0F
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 05:54:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A744A36C65
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 08:01:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 462AE3B219B
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 04:54:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 259381896401
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 07:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425A718BC2F;
-	Sat, 15 Feb 2025 04:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE4DC155342;
+	Sat, 15 Feb 2025 07:01:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="DGNF3scO"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FNdIKLTI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E9616D9DF
-	for <devicetree@vger.kernel.org>; Sat, 15 Feb 2025 04:54:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD9B3D2FF;
+	Sat, 15 Feb 2025 07:01:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739595255; cv=none; b=Uk4Egis2Mp3PMRDXGYX0ojePkrj7zTK0Y3uh+QcIye8ToTdPidczAdZlSX2QaLbzA71JtcRPY8LnXwU+bieqLPky8xFVIwDZr40wfqQQz71mqRxaWbk0/zgbTyEDUavSBy89RGkUmMOaocr44pvxzJRnEdjwHCEQnnf7qAApJ1I=
+	t=1739602885; cv=none; b=Bkhzc3VfAAcuPsueqgLbdFApdkxwDRCSkC2RcRW8gKAsNz/9qbDhfHM8b3gjxcEWrgKARApsRxKt1gFdpK2v8sBwLbV/j4kidTuKq1bHdCcKQUmsndGVPSjaOZI23gteTqnghWTs6HQ/xqzxh/H3HwNP9TDxWbW5nZ/bB+QgPk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739595255; c=relaxed/simple;
-	bh=Qd+3HqLIBmzspnj051AjsoWB0jQ1fLQfmy2L2Kb+xZ0=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eRnhYb6LmBDLmP1q4EbTQmlWmCB3tihkNsvOyTuA9f1sx8vSbR9ptMxxnWPRQEYDg6LVFD+CqwJenEp5PJV9OoINt2oEejJqL31KOTvMETOe8Er31pKqHXeIYlcdUot+DKCKWRbW48lAbqtampl7PUMApvUhvG6UIuYYQ+PpaFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=DGNF3scO; arc=none smtp.client-ip=209.85.219.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-6e65be7d86fso26750536d6.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 20:54:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1739595252; x=1740200052; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xk5ud9oKcdPfSa08b0yRfW7p4KmWGP1BqSd4dcIlPyY=;
-        b=DGNF3scOsOiSGIfblQujujVvl9SAKWxkYh7Ey9iSrHzLbZnUoOMxC0vnuMZEgIC3fe
-         vg3KYHfISFjKYGyUreKJcgi5FJwAT7VdsGWRqN1bmFapVunjLy+/t2OpTrH6iNGQRhlQ
-         dJtmKbF0rdxpOnc0qGL1EG5clhwhSm9FPpX3A=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739595252; x=1740200052;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xk5ud9oKcdPfSa08b0yRfW7p4KmWGP1BqSd4dcIlPyY=;
-        b=f6SDKV4qbHKhoJ8ARBFGq++XCUH8AiLIyaIvF2qudTm3pA/498nr/QkddkjA7SfX+z
-         gyCrVioNEmmpVMtTI7ut2RKgPn7ub+veo6prengVw9h6yzCl383+tRQ/bd3eTvmU2xW7
-         syUkPBcgxISQGWfa+2TNr/gUwscgXx9L/zzT4GbSRiC3pBZjwfhEqaMZfrEkfZkACrHC
-         1bZxKzWHVOpFbY/ybXThRKPVHYBbQecNNTbvMBB6Mxoddoi6WOkyqKjMuomG2JCgQIA2
-         j3axy6ISNzxiYDcWV0lYRF4Pa6x+xFSdS9W5624x69AtNP1BaUaMdLzzThJoUc3gPzuM
-         shIw==
-X-Forwarded-Encrypted: i=1; AJvYcCWX/9CSCEOj4GIC134ODsnc5zeGFBFCvJOPstUYOORakIujTUEb07GIEWAU+oAThjuL8alARo0Cvg80@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyGimA9J0VsAnadUXotn6o0L+oDaD2NgLNVcvhLwmznBRrh/FJ
-	4gdkre3ABLHNf+JzatnpJxqBUokaZOrhn3myaHa1Lgc7UmCDjrPKs9wpgUn+pcN3mkxF03mvK2N
-	xqx1OOq1MEMpSLpCb4VMMmqP9kjYoz3/h1T0z
-X-Gm-Gg: ASbGnctR/OdKRBREYZNO2/uKiwxCaE6jFcFPsyWfdY1IrzApZG8Ge5xP155+ZhcIc6i
-	G6ngxxZrmSd/iduqaxmHpou1S/l4Cig8KpUdguuIGIgE9iD55YCMZ5BT6RVsI+L3sNJkeQ78MKI
-	s+5FJZ0cLAodVyTwljxCawcVC3
-X-Google-Smtp-Source: AGHT+IGzK9Xw2SmDlUW8aMokwQq0lVBTGu1ZfRfxjaN3RAOn85fLCKnVOv/nBSKRqAiwjG3tNqoev++XhSLCxsebavE=
-X-Received: by 2002:a05:6214:d09:b0:6e2:49eb:fb7 with SMTP id
- 6a1803df08f44-6e65c8c0796mr145135586d6.3.1739595252358; Fri, 14 Feb 2025
- 20:54:12 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 14 Feb 2025 20:54:11 -0800
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 14 Feb 2025 20:54:11 -0800
+	s=arc-20240116; t=1739602885; c=relaxed/simple;
+	bh=Cj10GefRMuc4vTdEGLMun4lQYXt0WGTz2+ZiQdAckLk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=A4/dbAyFHXwbqMpMmU/loy3mv/Dr6mT8c+FMbEqBaxknPhNommNaqIoLIp6dI/xBsK3qKQ+FFAPEfOiL7aOGGnaPIexKzaqsV+idJlagSWpdYK3lbjGvB9/OZ2XdCxURBw3S8USZS5Xi/CrwIalVo6ORSDNeF4ClJ8hghLne6nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FNdIKLTI; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51F71A4g1100935
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sat, 15 Feb 2025 01:01:10 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1739602870;
+	bh=a49cENLS4LBwW3AZTSCjBneWux6vcWcfKqPjTK1C0V8=;
+	h=From:To:CC:Subject:Date;
+	b=FNdIKLTIZUyHtYOZM27/tKV6M3K1tyWNGHg+CKxiDSPZy6nbLzmHRV+xf5LiP1c0s
+	 rgRUOuU/vqbioSaZBBcHi8StWhjDq80gS04VEe31x/3BXzNzTVZpwB8l8dAeHWxcDw
+	 D41N4XWUDjdLvq9Glxhuv2fztysNRqztakd+7TVs=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51F71AmT028345
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 15 Feb 2025 01:01:10 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 15
+ Feb 2025 01:01:09 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 15 Feb 2025 01:01:09 -0600
+Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (udit-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [10.24.69.6])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51F7169d117699;
+	Sat, 15 Feb 2025 01:01:07 -0600
+From: Udit Kumar <u-kumar1@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        Udit Kumar
+	<u-kumar1@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j721s2-som-p0: Add flash partition details
+Date: Sat, 15 Feb 2025 12:30:59 +0530
+Message-ID: <20250215070059.1593489-1-u-kumar1@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20250213-amigurumi-shrew-of-grandeur-bb1a13@krzk-bin>
-References: <20250210225714.1073618-1-swboyd@chromium.org> <20250210225714.1073618-2-swboyd@chromium.org>
- <20250213-amigurumi-shrew-of-grandeur-bb1a13@krzk-bin>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
-Date: Fri, 14 Feb 2025 20:54:11 -0800
-X-Gm-Features: AWEUYZm38Pxk6_mjiF-w5FYKquBrOAN7Cotkk66MVQ85J6cLXb_xLqE4js1sOZU
-Message-ID: <CAE-0n53Q=HFtZqgTNN2iq-XEaedr2zMJ63=k5+Rn3PsOf69fiQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: usb: Add binding for ChromeOS Pogo
- pin keyboard connector
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	patches@lists.linux.dev, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, devicetree@vger.kernel.org, 
-	chrome-platform@lists.linux.dev, Pin-yen Lin <treapking@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Quoting Krzysztof Kozlowski (2025-02-13 00:11:25)
-> On Mon, Feb 10, 2025 at 02:57:11PM -0800, Stephen Boyd wrote:
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +  port:
-> > +    $ref: /schemas/graph.yaml#/properties/port
-> > +    description: Connection to USB2 port providing USB HS signals
-> > +    required:
-> > +      - endpoint
-> > +
-> > +patternProperties:
-> > +  "^keyboard@[0-9a-f]{1,2}$":
->
-> What does the unit address represent here? Why this isn't just
-> "keyboard"? One connector usually has only one keyboard, right?
+When used as boot device, OSPI flash hosts different  boot
+binaries and rootfs etc.
+So Add partition details for images hosted on OSPI flash.
 
-Yes one connector has one keyboard.
+Signed-off-by: Udit Kumar <u-kumar1@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 41 ++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
->
-> Maybe it is only to fulfill the usb-device schema? The reg is there to
-> represent USB hub or controller port, which is not true here.
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+index b3a0385ed3d8..54fc5c4f8c3f 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+@@ -448,6 +448,47 @@ flash@0 {
+ 		cdns,tchsh-ns = <60>;
+ 		cdns,tslch-ns = <60>;
+ 		cdns,read-delay = <4>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "ospi.tiboot3";
++				reg = <0x0 0x80000>;
++			};
++
++			partition@80000 {
++				label = "ospi.tispl";
++				reg = <0x80000 0x200000>;
++			};
++
++			partition@280000 {
++				label = "ospi.u-boot";
++				reg = <0x280000 0x400000>;
++			};
++
++			partition@680000 {
++				label = "ospi.env";
++				reg = <0x680000 0x40000>;
++			};
++
++			partition@6c0000 {
++				label = "ospi.env.backup";
++				reg = <0x6c0000 0x40000>;
++			};
++
++			partition@800000 {
++				label = "ospi.rootfs";
++				reg = <0x800000 0x37c0000>;
++			};
++
++			partition@3fc0000 {
++				label = "ospi.phypattern";
++				reg = <0x3fc0000 0x40000>;
++			};
++		};
+ 	};
+ };
+ 
+-- 
+2.34.1
 
-Right, this is to fulfill the schema. These pins are connected to a USB
-hub or controller port, so we use that as the unit address.
-
->
-> I don't have any idea how to solve it. I assume you need the keyboard
-> child, right?
-
-Yes we need the keyboard child so that we can make sure the keyboard
-that's expected is plugged in instead of some other one that doesn't
-pair with the device. We treat the detachable keyboard as 'not external'
-or 'expected' when it matches this VID/PID we have listed in DT so that
-we trust it slightly more than a standard USB keyboard that you could
-plug in to a USB connector.
 
