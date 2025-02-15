@@ -1,150 +1,163 @@
-Return-Path: <devicetree+bounces-146913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66F6FA36BC0
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 04:49:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 369CDA36BC3
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 04:50:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E91BC188ED1B
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 03:49:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3985164661
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 03:50:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C79151998;
-	Sat, 15 Feb 2025 03:49:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB3A015696E;
+	Sat, 15 Feb 2025 03:49:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="f2mN4FYA";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="h5kGlGKe"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q+K0yiMY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a5-smtp.messagingengine.com (fhigh-a5-smtp.messagingengine.com [103.168.172.156])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D28FB6BB5B;
-	Sat, 15 Feb 2025 03:49:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.156
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5E5B14A088;
+	Sat, 15 Feb 2025 03:49:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739591345; cv=none; b=EV/9RUsBIEUdq0DYW5wQko8sPG1UU5zoSD6wt4zTXfNG832WgLUnHmSnxcwJx6a6HXhT8y60xr/sYIGyQ9bIR8G9b+mFy92+s6JgVHbpCH7yNo89L3ll81XWyahhuX6eUpKlKG5VNdVQY44nAiLXgMywq7Mr4YTNZa1dexrqkwI=
+	t=1739591399; cv=none; b=CEteJo1ZlgGKSVwlEWishsGcq6zAHng/bGUstsaECi5l9sS6u/qDehMUkipN8nEiTK+jdI7GDoAMYo8UDmPeksDQXL0dGeU/JoNj9v6hzggQUh6qR14ruIQvntnpvg4JOvjuhR1enmKnDHH5YcOvEbhkO9m1YlxN4NMwtpf0euw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739591345; c=relaxed/simple;
-	bh=R1sxzCqvhdem/phYlSbYJoFA5ZHeSTwnLYouy/wFB3g=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=bG5fpwz5i1dQ4vPeDG3JWfoGnxvpfW74khAOdRlS58uBOLNLtwu+2FCHJiGUaCZHcGzNZHnp9LlgqkVngnA4MV/ZAkQnmtSmpPxjfMf8+zlwb7bp13w7tCarK8jjvGqDGbognE1j7Ms2yshYEEGy91+epYIb6bzKZ889Mzca+pA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=f2mN4FYA; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=h5kGlGKe; arc=none smtp.client-ip=103.168.172.156
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-13.internal (phl-compute-13.phl.internal [10.202.2.53])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id C4F5C11401A1;
-	Fri, 14 Feb 2025 22:49:01 -0500 (EST)
-Received: from phl-imap-07 ([10.202.2.97])
-  by phl-compute-13.internal (MEProxy); Fri, 14 Feb 2025 22:49:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm3;
-	 t=1739591341; x=1739677741; bh=myPH6l0fPDFrYP8tIa5SQdEq5I1Vnw5X
-	3g3YUMM3Fvo=; b=f2mN4FYAsZWTmcoXQzLdOm6nhCSQVsklPCaxxA3I0gRl6Llb
-	r7XnsUtluxKlfvd0CvNdhDXW5oqw0eXUTxWXGPRwEAe8/48OmMyUZ5DaRga+/+om
-	T49CWoIlw6YUesuxbcrecerkGSFutscBq4RLnY1K+DaTvzDIhbaEHI6ax33FgLgC
-	zk486z37on20gABwb27Uludiseema+Zywyshlxfjg23XHb1u1FqUPP0o0wbSLfOE
-	PgFdntSbZxXBHsucZTX6a1r2UgZiaumeoVzSaJENkC5DisSWrs2ueAAoxpCG8CvJ
-	9O+DVifnxQo1Up2Tm7ZUi4DsqFT7BLF9FICa+g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1739591341; x=
-	1739677741; bh=myPH6l0fPDFrYP8tIa5SQdEq5I1Vnw5X3g3YUMM3Fvo=; b=h
-	5kGlGKe8nmS4hPtg4pyM/dztqaM1EI/EUXKsufWrss4oipO4lSS9bFUucVo4SNp1
-	+JXOOypne61enHqc5tB5kn88ixbz/gd5CDUao5NaeDAq8x7/E6tuc27d16u48QfS
-	J9Iu9d8r0Dl+brQaLUprh0KktWb+CYPA0S6JztTAyEdR3yRcZ1ez0ZrzBHN3qU95
-	QNhuPw65PjxSjtqcrzSwynVyKoB6pffHN8Nz8U8XLUutkCAHeKFLjQuiswM4xVPu
-	QL42I5S4zEcIODBJ8U5WQRaJkgPEV5TgHhhHgq7bDfN5W26/5to+X4KAtzajydcc
-	WBVM+Q5TSBs0pR5iPkRcQ==
-X-ME-Sender: <xms:qw6wZ3Nc5rAOzMC_OTcN0l0edsxhS-uHEt9Sa7PrG6D6mwUQAtKocA>
-    <xme:qw6wZx_LHoVEOB_G13QugvaiTAkZRDFj1YEa9aHqHFd8i9vQqGs7dbXxGCPuXrDmp
-    0CcVTkoHx1_LLGRgA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehudeglecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredt
-    tdenucfhrhhomhepfdfthigrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtoh
-    grshhtrdgtohhmqeenucggtffrrghtthgvrhhnpeejhfeukeejjefguddvffehveevjefh
-    tddutdfhudduvdevfeejfffgvdelfeeugfenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgs
-    pghrtghpthhtohepvddupdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrnhgurh
-    gvrdhprhiihiifrghrrgesrghrmhdrtghomhdprhgtphhtthhopehmthhurhhquhgvthht
-    vgessggrhihlihgsrhgvrdgtohhmpdhrtghpthhtohepfigvnhhssegtshhivgdrohhrgh
-    dprhgtphhtthhopegurghnihgvlhesfhhffihllhdrtghhpdhrtghpthhtoheprghirhhl
-    ihgvugesghhmrghilhdrtghomhdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtg
-    esghhmrghilhdrtghomhdprhgtphhtthhopehmrggtrhhorghlphhhrgekvdesghhmrghi
-    lhdrtghomhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtg
-    hpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:qw6wZ2SujnKu_6uipJMxuvzHBwznXkOUFi4IQc6DAf04ouMRp0sR3Q>
-    <xmx:qw6wZ7uEgbjmfrGBLm1FIJath51BFS5DtwamInX0oUUVWq--KZOe0Q>
-    <xmx:qw6wZ_dJDa88Ul43SQZRdrfFvtanu8cSuRQkj_uri896EP7RTUWTjw>
-    <xmx:qw6wZ30Et1uGUl--L6okTQMkGs0qI1C2w6hwzu_tR1UxvxTfY84y7A>
-    <xmx:rQ6wZ18oljfrxqA20zSQwEBuF_J-YT7KozvLnYThvbAI55hTEkpjvDsM>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 981AEBA006F; Fri, 14 Feb 2025 22:48:59 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1739591399; c=relaxed/simple;
+	bh=s83hpw53e7PRszxOc+ixp9OsM9uMRKfBu36IBL06Ix8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LU3ofiDbUUeGkxz1dUFcpEESjIwmY2NNTewWjmxNP4kNA95hc9doztXTbROYNSrsqiBOhlBnpQGT/IxQJ+zYxgTJabwt2lTR+pCkrjtGtUV2E+0raToftXKUQfaSEICrJPwQuzodwaKqVxepZ0/6F6vseGH8tivZ82VUhmxW1kg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Q+K0yiMY; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739591398; x=1771127398;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=s83hpw53e7PRszxOc+ixp9OsM9uMRKfBu36IBL06Ix8=;
+  b=Q+K0yiMYkIp0KHUG7zqeWHJ6oZ/rI2fofNxi8WTijHrnWvmOVQvER+QY
+   mYqc76NNFJ8BCz4UGVvL9wAbhmo/iaDeNVH0SpVROKdIc7+exZAbwYfHF
+   F7UtD5vXi//W+zoNEK20KF/79Ea9lWoGhxLHbSaVvOruah0Dudl+j8tDj
+   0GupLfm4tAlp7ZZs4Hi7t0oeFxU44zYgJyioR2R5pQxV6Rcc4qsO4hjZh
+   ZSdwZYtE9LFVY5iiQ3XzRBpCsi/i7TnM6Gj7IFcvfBxui6ZhIBiPqZIZg
+   cRhP9tXHpu4AKSLWQlFL5ohAh1b2GYXH/p8nss9/QQOeug4h1W2rnAkKw
+   A==;
+X-CSE-ConnectionGUID: gu2aPXSwSuO2oQZakitklg==
+X-CSE-MsgGUID: 5NvIbN6uSp+CKpe9uhxeiA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="40381588"
+X-IronPort-AV: E=Sophos;i="6.13,287,1732608000"; 
+   d="scan'208";a="40381588"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2025 19:49:57 -0800
+X-CSE-ConnectionGUID: vY93E0+lRGamjAkQEenMTg==
+X-CSE-MsgGUID: bwhLBPaWR+O8r3RpvRetIg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,287,1732608000"; 
+   d="scan'208";a="113818341"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 14 Feb 2025 19:49:53 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tj9Be-001ATX-1u;
+	Sat, 15 Feb 2025 03:49:50 +0000
+Date: Sat, 15 Feb 2025 11:48:57 +0800
+From: kernel test robot <lkp@intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] drm: bridge: Add support for Solomon SSD2825
+ RGB/DSI bridge
+Message-ID: <202502151123.DwXjsR05-lkp@intel.com>
+References: <20250213135605.157650-3-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sat, 15 Feb 2025 16:48:39 +1300
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
-Cc: "Maxime Ripard" <mripard@kernel.org>, "Chen-Yu Tsai" <wens@csie.org>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Thomas Zimmermann" <tzimmermann@suse.de>,
- "David Airlie" <airlied@gmail.com>, "Daniel Vetter" <daniel@ffwll.ch>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Samuel Holland" <samuel@sholland.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>, "Andre Przywara" <andre.przywara@arm.com>,
- "Chris Morgan" <macroalpha82@gmail.com>, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Message-Id: <6f14b319-fbb8-413d-a88d-edebf624c7fb@app.fastmail.com>
-In-Reply-To: <4c31826f-0ffa-4ada-bcf9-199fcbe6db07@app.fastmail.com>
-References: <20240929091107.838023-1-ryan@testtoast.com>
- <20240929091107.838023-9-ryan@testtoast.com>
- <4cumvwkhmbi7fecjeq6r7elon63u3ytootqcvavjg5vfnargy3@wrjpy6pnphmb>
- <4c31826f-0ffa-4ada-bcf9-199fcbe6db07@app.fastmail.com>
-Subject: Re: [PATCH v5 08/26] drm: sun4i: de3: add YUV support to the DE3 mixer
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250213135605.157650-3-clamor95@gmail.com>
 
-On Sat, 15 Feb 2025, at 2:18 PM, Ryan Walklin wrote:
-> On Sun, 20 Oct 2024, at 3:14 AM, Dmitry Baryshkov wrote:
->> On Sun, Sep 29, 2024 at 10:04:40PM +1300, Ryan Walklin wrote:
->
->>> diff --git a/drivers/gpu/drm/sun4i/sunxi_engine.h b/drivers/gpu/drm/sun4i/sunxi_engine.h
->>> index c48cbc1aceb80..ffafc29b3a0c3 100644
->>> --- a/drivers/gpu/drm/sun4i/sunxi_engine.h
->>> +++ b/drivers/gpu/drm/sun4i/sunxi_engine.h
->
->>> @@ -151,6 +153,9 @@ struct sunxi_engine {
->>>  
->>>  	int id;
->>>  
->>> +	u32				format;
->>> +	enum drm_color_encoding		encoding;
->>
->> Should these be a part of the state instead of being a part of the
->> sunxi_engine?
->
-> Sure, would you suggest in sun8i_mixer_cfg?
+Hi Svyatoslav,
 
-Hmm, on second thought the mixer config is a const struct, presumably because it is defined per engine variant in sun8i_mixer.c. Is there a better place to store state like this? Otherwise the engine may not be the worst choice, as the color format and encoding apply to the entire pipeline, at least in the case of a single display?
+kernel test robot noticed the following build errors:
 
-Regards,
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.14-rc2 next-20250214]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Ryan
+url:    https://github.com/intel-lab-lkp/linux/commits/Svyatoslav-Ryhel/dt-bindings-display-bridge-Document-Solomon-SSD2825/20250213-215821
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250213135605.157650-3-clamor95%40gmail.com
+patch subject: [PATCH v1 2/2] drm: bridge: Add support for Solomon SSD2825 RGB/DSI bridge
+config: x86_64-randconfig-077-20250215 (https://download.01.org/0day-ci/archive/20250215/202502151123.DwXjsR05-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250215/202502151123.DwXjsR05-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502151123.DwXjsR05-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   ld: vmlinux.o: in function `spi_sync_transfer':
+>> include/linux/spi/spi.h:1404: undefined reference to `spi_sync'
+   ld: vmlinux.o: in function `ssd2825_read_raw':
+>> drivers/gpu/drm/bridge/ssd2825.c:241: undefined reference to `spi_sync'
+   ld: vmlinux.o: in function `ssd2825_probe':
+>> drivers/gpu/drm/bridge/ssd2825.c:664: undefined reference to `spi_setup'
+   ld: vmlinux.o: in function `ssd2825_driver_init':
+>> drivers/gpu/drm/bridge/ssd2825.c:737: undefined reference to `__spi_register_driver'
+
+
+vim +1404 include/linux/spi/spi.h
+
+8ae12a0d85987d David Brownell     2006-01-08  1382  
+323117ab60156d Geert Uytterhoeven 2016-09-13  1383  /**
+323117ab60156d Geert Uytterhoeven 2016-09-13  1384   * spi_sync_transfer - synchronous SPI data transfer
+323117ab60156d Geert Uytterhoeven 2016-09-13  1385   * @spi: device with which data will be exchanged
+323117ab60156d Geert Uytterhoeven 2016-09-13  1386   * @xfers: An array of spi_transfers
+323117ab60156d Geert Uytterhoeven 2016-09-13  1387   * @num_xfers: Number of items in the xfer array
+323117ab60156d Geert Uytterhoeven 2016-09-13  1388   * Context: can sleep
+323117ab60156d Geert Uytterhoeven 2016-09-13  1389   *
+323117ab60156d Geert Uytterhoeven 2016-09-13  1390   * Does a synchronous SPI data transfer of the given spi_transfer array.
+323117ab60156d Geert Uytterhoeven 2016-09-13  1391   *
+323117ab60156d Geert Uytterhoeven 2016-09-13  1392   * For more specific semantics see spi_sync().
+323117ab60156d Geert Uytterhoeven 2016-09-13  1393   *
+2ae3de10abfe0b Randy Dunlap       2020-07-15  1394   * Return: zero on success, else a negative error code.
+323117ab60156d Geert Uytterhoeven 2016-09-13  1395   */
+323117ab60156d Geert Uytterhoeven 2016-09-13  1396  static inline int
+323117ab60156d Geert Uytterhoeven 2016-09-13  1397  spi_sync_transfer(struct spi_device *spi, struct spi_transfer *xfers,
+323117ab60156d Geert Uytterhoeven 2016-09-13  1398  	unsigned int num_xfers)
+323117ab60156d Geert Uytterhoeven 2016-09-13  1399  {
+323117ab60156d Geert Uytterhoeven 2016-09-13  1400  	struct spi_message msg;
+323117ab60156d Geert Uytterhoeven 2016-09-13  1401  
+323117ab60156d Geert Uytterhoeven 2016-09-13  1402  	spi_message_init_with_transfers(&msg, xfers, num_xfers);
+323117ab60156d Geert Uytterhoeven 2016-09-13  1403  
+323117ab60156d Geert Uytterhoeven 2016-09-13 @1404  	return spi_sync(spi, &msg);
+323117ab60156d Geert Uytterhoeven 2016-09-13  1405  }
+323117ab60156d Geert Uytterhoeven 2016-09-13  1406  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
