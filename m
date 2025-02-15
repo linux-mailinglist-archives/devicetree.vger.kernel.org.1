@@ -1,138 +1,614 @@
-Return-Path: <devicetree+bounces-147011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BAD2A370C9
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 22:07:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8445DA370D5
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 22:12:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52BF31893D75
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 21:07:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 208481893D58
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 21:12:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C92421FCD09;
-	Sat, 15 Feb 2025 21:06:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E8E1FC109;
+	Sat, 15 Feb 2025 21:12:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="Hwf8dBlP"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="1dJonHFb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17EC21FCCED;
-	Sat, 15 Feb 2025 21:06:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739653594; cv=pass; b=PGI1kgCfOi2cbaAxuiiKMnp8SSjnF9mZqTBASxE2VhFpEf+m1Ko8c/d6T146za3fS174+OpInXSCiGTO6RPa6fqZy+CWlvMZnvgSdqXNAkpuUVSmBoW3zXg8M/lbGS2/r/6qvrcZrHri7gzmoFSyX/8cNdAlQDp4U9zw0ofm+e8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739653594; c=relaxed/simple;
-	bh=9e1rDRhjtWx8RcwMZlExf40SAo2UlhVvfwW0sy8Zjso=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=g9vemif8eJMk6zk50Po4wv6/sUoWO9w7p20InnAh3CRpL4uMYAPLLYuCKx1/F7f5Gp+2sXFL0Kv1r3v13SRzijLWEuHx9vf8YKC0NG3+IIxvN/cgvnsG2Al8RjNIXw+hLEKhSpWNqZfIGtaAvn2fQiD4tsXNXnOVSP1awfu5XkU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=Hwf8dBlP; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1739653543; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=im+++1FCZGXGGcMqwUuTqhD3+gFNHa1gjKpktZj5fIDoitulyCfmGLokCID1OMdJtUbLD5yP+Xl3gBFHIFTCSHY9W78nIDIX0mLCJ0Q3xWadBpwF8IMaTwz92pVkOVp6zA9+5VFLvOiX+E6qhNPabKfR7Hw5UQ8/F6eUaHWdd08=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1739653543; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=iIPCjPu2+AmsIf/cCFUaH7Ayf0dQa1TgmFz1djm75zk=; 
-	b=h6w41c+Kwo54XuFsSrNCmm9mpAQqBqDsQfcnb91bIU66t7nF9dp7s+8lPJkQuD3ATvG/QpN9UnrxBJaKFM/XE9rsCkEL0Ou2a0BpPFdzgycNxAuM+29vTLy1H1ONvPHqisruS9y3VJvEzYzIB/5lOKX62rjh8Xdh5DnHVy5GRXM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
-	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1739653543;
-	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=iIPCjPu2+AmsIf/cCFUaH7Ayf0dQa1TgmFz1djm75zk=;
-	b=Hwf8dBlPahcqIT00T6xoM5QwWA5iic4yw38V3vCe4skgbVehpmeX0mk+shS5Nnme
-	ZRw0umP0oU6/ZK7AtWFc8DZ3XbOXs7hqRgjYnY6tbOeEHKMKDddDzWwnRvTOlWQDcqb
-	BMNCy0s6rdofWpBuXpoBdP4PSAwdQmZZmKKq+fUc=
-Received: by mx.zohomail.com with SMTPS id 1739653540909749.457708852657;
-	Sat, 15 Feb 2025 13:05:40 -0800 (PST)
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: Shreeya Patel <shreeya.patel@collabora.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	jose.abreu@synopsys.com,
-	nelson.costa@synopsys.com,
-	shawn.wen@rock-chips.com,
-	nicolas.dufresne@collabora.com,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: kernel@collabora.com,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Tim Surber <me@timsurber.de>
-Subject: [PATCH v6 6/6] arm64: dts: rockchip: Enable HDMI receiver on rock-5b
-Date: Sun, 16 Feb 2025 00:04:17 +0300
-Message-ID: <20250215210417.60074-7-dmitry.osipenko@collabora.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250215210417.60074-1-dmitry.osipenko@collabora.com>
-References: <20250215210417.60074-1-dmitry.osipenko@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2EF51F3FEB
+	for <devicetree@vger.kernel.org>; Sat, 15 Feb 2025 21:11:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739653921; cv=none; b=aMzOYBndTcPkVU1+QyakJeJ4Nd2QHGaMWr5PIHQQz2seraw9nWTaFyR4sZdbDKjKSoJw7xRDhRbmHpXLBTHZUuJtKkNfRqaScNuvRnsnpMBCmwbodW+CY5H8YfGLAd6suL5xSxa5qivzSZdskS7kijlJ5EbbOXYuPsfjV3xPNbo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739653921; c=relaxed/simple;
+	bh=f+VbCY1gfLHoxf9oxxzk5qyOMQi09g3ceH9zT13fWKQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fEnvOFo/dvII91B3EHtYsl9aW2C2f0USwEXsg5UAbKkp9lbSvywVP2ve7zdlSOm6UWehqTwYQjAjJAkE1o2JR1PujOAkLiEWgzHqZs4oj8xulrQfuf25jaYOdOOVhl18gE1UvHK0CZzygUgY0+R4bYOpttAtxTmsnW4bF5GDl4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=1dJonHFb; arc=none smtp.client-ip=209.85.166.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-85521efa9b5so68100539f.3
+        for <devicetree@vger.kernel.org>; Sat, 15 Feb 2025 13:11:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1739653918; x=1740258718; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ceafEGWj5GkwpOKdDCNpSD8H3/j66ZDHpZYJ3GYP6r0=;
+        b=1dJonHFb3wWH0tEShtNNj0qJkb27sycWk6lWZ4h7dqv+zvhAlULnH2ecPUYqF7MoDq
+         BJhO43KPlwD9JvX6ggxRN5i7GR7Qs/8D+C1sBaSJn2NzTgK/PJURaautBVF+aYQZ8X5d
+         s4AjmzrGiUtHD5jzgusDdXp/AFfI3aa6fNGFlOMVQjz7wmMXwXCROQO3scxWdjHtSPDm
+         FlE/MsJQ1t/l4PGgm19/A0HbUsiSHTGyEiRLX6RJvYg0xGQ6S4+ErIeeBqDy+plhUHUx
+         LPwwPfFUCTBzozyQOqAoemb1NakUMq2YdZ/PkgWyIW+cERa61HXucFXVTq6pYcNUAgtJ
+         FGyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739653918; x=1740258718;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ceafEGWj5GkwpOKdDCNpSD8H3/j66ZDHpZYJ3GYP6r0=;
+        b=f7fvH2Y21fJCiJDLjzRzqepKgA9M+2WmBw2r9ERtm0XgjJLUkSKQbPWsgj8LphoAtO
+         R2x9qggZkSSZLzMBW4P8kzid1Wl304QNWo7t8pAkNA1nvYPxN7sI/5Cb/xXN/mnHwhvc
+         sbfW/AUJKqeThyYnI45AJ+6hLEJYK6VHcI30Re8L96cbW6MgC/ZwAdyGEZqL/i/lg6U+
+         y24JUB3YrHqR4gqhBR9UeJd1tKPHgJBXCMFR8wfugbad0UWvsdpsAcNFF4I6WC9lrR5b
+         YYN7Lcpc741P3uhNUR5QG6vdCYxWtMs4G1sgpX2otzgiGsmxDUEnMDPjuxY/YQT3gqSh
+         0sdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU+AEMMgqiFg9xn7nTF4mGMifCsVgqnBNi3uYpNpk7moMyyiclYVFQ5Ng00RRD+ZPtFn5p/MhBksf6h@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3k9NiDRyyZAAi8ToOw1n4oVr5+JTKavDpPc5Lhb1ILb6hC8e5
+	wH0WviI6lYbqefeyg7lgMNGr54Dn8uNzg7kx4XbhPBdTESHIIVkjG4R+mEGFV+I=
+X-Gm-Gg: ASbGncto28z//+iwqacarSMqViVUBnaA0blnQg60jEee9H1pBDhpJIYwJkGTuWAZtW+
+	Io1ISNfa/rdDUMVjmBFUJUHg7yZ3SP/BU2WjNR+W06WsEdhmCgHni/uE6KXJ7us5hdicrLndZ3r
+	7xD4Fj1EEWA9Q7bTcbVAk+P4VldDtdlE8uGkcX5SbA/5br4Z/1Jp4tOjLfqQWF2umhMR7k4rW5G
+	h3ssnM0ZFTB2tQge6akpBHmGx8/IPwJlvBzg87In105gfJN40hz6PMBz3h4MLL4D8HXO3VkhkgT
+	AC83UOsQDMMi2x9b/82K0VWMokmcPqqGF6o8q7pcAb2htMogflYPKldHjf59QYnLR7HKZg==
+X-Google-Smtp-Source: AGHT+IGuxU5zm7P8MamZT0KtUt6I5ePRawlrPWD3RPOpisukWv1FIdKmvx9A0oq2JmeKzILAfqJUTQ==
+X-Received: by 2002:a05:6602:1653:b0:84a:78ff:1247 with SMTP id ca18e2360f4ac-8557a11ee17mr416344939f.9.1739653917692;
+        Sat, 15 Feb 2025 13:11:57 -0800 (PST)
+Received: from [10.211.55.5] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4ed28314722sm1422109173.135.2025.02.15.13.11.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 15 Feb 2025 13:11:57 -0800 (PST)
+Message-ID: <0133988a-b0d9-4451-b06c-480dd7f559cd@riscstar.com>
+Date: Sat, 15 Feb 2025 15:11:55 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] gpio: spacemit: add support for K1 SoC
+To: Yixun Lan <dlan@gentoo.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>
+Cc: Yangyu Chen <cyy@cyyself.name>, Jisheng Zhang <jszhang@kernel.org>,
+ Jesse Taube <mr.bossman075@gmail.com>, Inochi Amaoto
+ <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>,
+ Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org>
+ <20250121-03-k1-gpio-v4-2-4641c95c0194@gentoo.org>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20250121-03-k1-gpio-v4-2-4641c95c0194@gentoo.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
+On 1/20/25 9:38 PM, Yixun Lan wrote:
+> Implement GPIO functionality which capable of setting pin as
+> input, output. Also, each pin can be used as interrupt which
+> support rising, failing, or both edge type trigger.
+> 
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
 
-The Rock 5B has a Micro HDMI port, which can be used for receiving
-HDMI data. This enables support for it.
+It sounds like the hardware will be modeled in DTS with
+explicit banks, which makes sense.  The hardware looks like:
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
----
- .../arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+     GPIO controller ---> bank0 --> GPIOs 0..31
+                     |
+                     |--> bank1 --> GPIOs 0..31
+                     |
+                     |--> bank2 --> GPIOs 0..31
+                     |
+                     ---> bank3 --> GPIOs 0..31
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index d597112f1d5b..377824e69e20 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -220,6 +220,18 @@ hdmi0_out_con: endpoint {
- 	};
- };
- 
-+&hdmi_receiver_cma {
-+	status = "okay";
-+};
-+
-+&hdmi_receiver {
-+	status = "okay";
-+	hpd-gpios = <&gpio1 RK_PC6 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_hpd>;
-+	pinctrl-names = "default";
-+	memory-region = <&hdmi_receiver_cma>;
-+};
-+
- &hdptxphy_hdmi0 {
- 	status = "okay";
- };
-@@ -377,6 +389,12 @@ &pcie3x4 {
- };
- 
- &pinctrl {
-+	hdmirx {
-+		hdmirx_hpd: hdmirx-5v-detection {
-+			rockchip,pins = <1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	hym8563 {
- 		hym8563_int: hym8563-int {
- 			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
--- 
-2.48.1
+Each bank has its own set of 15 registers, but all are managed
+by the same controller (driver instance).
+
+Anyway, I'm going to comment on just the code...
+
+> ---
+>   drivers/gpio/Kconfig            |   7 +
+>   drivers/gpio/Makefile           |   1 +
+>   drivers/gpio/gpio-spacemit-k1.c | 295 ++++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 303 insertions(+)
+> 
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index 56fee58e281e7cac7f287eb04e4c17a17f75ed04..c153f5439649da020ee42c38e88cb8df31a8e307 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -654,6 +654,13 @@ config GPIO_SNPS_CREG
+>   	  where only several fields in register belong to GPIO lines and
+>   	  each GPIO line owns a field with different length and on/off value.
+>   
+> +config GPIO_SPACEMIT_K1
+> +	bool "SPACEMIT K1 GPIO support"
+> +	depends on ARCH_SPACEMIT || COMPILE_TEST
+> +	select GPIOLIB_IRQCHIP
+> +	help
+> +	  Say yes here to support the SpacemiT's K1 GPIO device.
+> +
+>   config GPIO_SPEAR_SPICS
+>   	bool "ST SPEAr13xx SPI Chip Select as GPIO support"
+>   	depends on PLAT_SPEAR
+> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+> index af3ba4d81b583842893ea69e677fbe2abf31bc7b..6709ce511a0cf10310a94521c85a2d382dcfa696 100644
+> --- a/drivers/gpio/Makefile
+> +++ b/drivers/gpio/Makefile
+> @@ -156,6 +156,7 @@ obj-$(CONFIG_GPIO_SIOX)			+= gpio-siox.o
+>   obj-$(CONFIG_GPIO_SL28CPLD)		+= gpio-sl28cpld.o
+>   obj-$(CONFIG_GPIO_SLOPPY_LOGIC_ANALYZER) += gpio-sloppy-logic-analyzer.o
+>   obj-$(CONFIG_GPIO_SODAVILLE)		+= gpio-sodaville.o
+> +obj-$(CONFIG_GPIO_SPACEMIT_K1)		+= gpio-spacemit-k1.o
+>   obj-$(CONFIG_GPIO_SPEAR_SPICS)		+= gpio-spear-spics.o
+>   obj-$(CONFIG_GPIO_SPRD)			+= gpio-sprd.o
+>   obj-$(CONFIG_GPIO_STMPE)		+= gpio-stmpe.o
+> diff --git a/drivers/gpio/gpio-spacemit-k1.c b/drivers/gpio/gpio-spacemit-k1.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..de0491af494c10f528095efee9b3a140bdcc0b0d
+> --- /dev/null
+> +++ b/drivers/gpio/gpio-spacemit-k1.c
+> @@ -0,0 +1,295 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2023-2025 SpacemiT (Hangzhou) Technology Co. Ltd
+> + * Copyright (c) 2025 Yixun Lan <dlan@gentoo.org>
+> + */
+> +
+> +#include <linux/io.h>
+> +#include <linux/init.h>
+> +#include <linux/irq.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/gpio/driver.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/seq_file.h>
+> +#include <linux/module.h>
+> +
+> +/* register offset */
+
+Please add one-line comments explaining the purpose of these registers.
+I explain my understanding below but you can maybe shorten it and add
+something to the right of each definition.
+
+> +#define GPLR		0x00
+
+Current port (or pin?) level (port value, regardless of in or out) (r)
+
+> +#define GPDR		0x0c
+
+Current port direction (clear/0 = in, set/1 = out) (r)
+This is currently never used.
+
+> +#define GPSR		0x18
+
+Set port value (set output level high for any set bits) (w)
+
+> +#define GPCR		0x24
+
+Clear port value (set output level low for any set bits) (w)
+
+> +#define GRER		0x30
+
+Ports configured for rising edge detect (r)
+This is currently never used.
+
+> +#define GFER		0x3c
+
+Ports configured for falling edge detect (r)
+This is currently never used.
+
+> +#define GEDR		0x48
+
+Edge detect status register (set bits indicate edge detected) (r/w)
+
+> +#define GSDR		0x54
+
+Set port direction (set bits indicate output pins) (w)
+
+> +#define GCDR		0x60
+
+Clear port direction (set bits indicate input pins) (w)
+
+> +#define GSRER		0x6c
+
+Enable rising edge detect (set bits indicate rising edge detect) (w)
+
+> +#define GCRER		0x78
+
+Disable rising edge detect (w)
+
+> +#define GSFER		0x84
+
+Enable falling edge detect (set bits indicate falling edge detect) (w)
+
+> +#define GCFER		0x90
+
+Disable falling edge detect (w)
+
+> +#define GAPMASK		0x9c
+
+I don't know what this is.  You write it with ~0 after you
+clear both rising and falling edge detection on all 32 pins.
+
+> +#define GCPMASK		0xa8
+
+I don't know what this is.  It's currently never used.
+
+> +
+> +#define K1_BANK_GPIO_NUMBER	(32)
+
+No need for parentheses around a simple constant.
+
+> +
+> +#define to_spacemit_gpio_port(x) container_of((x), struct spacemit_gpio_port, gc)
+> +
+> +struct spacemit_gpio;
+> +
+
+I might just not understand what a "port" means in this context
+(I think here it represents a "bank" of 32 GPIOs.)  Based on the
+DT discussion it seems like your structures might change, and
+I'd like to know what you'll call them.
+
+Here are terms I'll use:  There will be a top-level "controller"
+structure which will be able to access four distinct "banks",
+each of which has 32 "ports".
+
+> +struct spacemit_gpio_port {
+> +	struct gpio_chip		gc;
+> +	struct spacemit_gpio		*gpio;
+> +	struct fwnode_handle		*fwnode;
+> +	void __iomem			*base;
+> +	int				irq;
+> +	u32				irq_mask;
+> +	u32				irq_rising_edge;
+> +	u32				irq_falling_edge;
+> +	u32				index;
+> +};
+> +
+> +struct spacemit_gpio {
+> +	struct	device			*dev;
+> +	struct spacemit_gpio_port	*ports;
+> +	u32				nr_ports;
+> +};
+> +
+
+Basically all of the write registers allow you to specify an
+entire mask of bits, where the register write changes the
+state of every port in a bank whose corresponding bit is set.
+That capability is probably worth exposing, even though the
+driver currently doesn't use it.
+
+Meanwhile, most (maybe all) of your functions are only used
+to update the state of a single port in a bank.
+
+I think the argument names should distinguish these two cases.
+I find the argument name "bit" (which now represents a 32-bit
+mask with only one bit set) to be ambiguous.
+
+If exactly one port is affected, maybe its number (0-31) can
+be passed as the argument.  But where multiple ports in a
+bank can be affected by the same operation, pass a "mask".
+
+> +static inline void spacemit_clear_edge_detection(struct spacemit_gpio_port *port, u32 bit)
+> +{
+
+I'd do:
+	if (bit & port->irq_rising_edge)
+		writel(bit, port->base + GSRER);
+
+(And similar below, and in spacemit_set_edge_detection().)
+
+> +	writel(bit, port->base + GCRER);
+> +	writel(bit, port->base + GCFER);
+> +}
+> +
+
+Two comments about the function above and the next one:
+- I think their names should be about masking IRQs, not about
+   edge detection.
+- Each is called only once, and they're trivial enough that I
+   don't think encapsulating them in a function adds any value.
+   Just open-code them where they're used.
+
+> +static inline void spacemit_set_edge_detection(struct spacemit_gpio_port *port, u32 bit)
+> +{
+> +	writel(bit & port->irq_rising_edge,  port->base + GSRER);
+> +	writel(bit & port->irq_falling_edge, port->base + GSFER);
+> +}
+> +
+
+This is used to disable IRQ generation on all ports in a bank.
+I would offer the same two comments about this function as I
+gave above.
+
+> +static inline void spacemit_reset_edge_detection(struct spacemit_gpio_port *port)
+> +{
+> +	writel(0xffffffff, port->base + GCFER);
+> +	writel(0xffffffff, port->base + GCRER);
+> +	writel(0xffffffff, port->base + GAPMASK);
+> +}
+> +
+
+Use names that align with the callback function names.  I.e.,
+this should be spacemit_irq_set_type().
+
+> +static int spacemit_gpio_irq_type(struct irq_data *d, unsigned int type)
+> +{
+> +	struct spacemit_gpio_port *port = irq_data_get_irq_chip_data(d);
+> +	u32 bit = BIT(irqd_to_hwirq(d));
+> +
+> +	if (type & IRQ_TYPE_EDGE_RISING) {
+> +		port->irq_rising_edge |= bit;
+
+Here too, maybe avoid doing the write if the bit was already
+set in the rising edge mask.
+
+> +		writel(bit, port->base + GSRER);
+> +	} else {
+> +		port->irq_rising_edge &= ~bit;
+> +		writel(bit, port->base + GCRER);
+> +	}
+> +
+> +	if (type & IRQ_TYPE_EDGE_FALLING) {
+> +		port->irq_falling_edge |= bit;
+> +		writel(bit, port->base + GSFER);
+> +	} else {
+> +		port->irq_falling_edge &= ~bit;
+> +		writel(bit, port->base + GCFER);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static irqreturn_t spacemit_gpio_irq_handler(int irq, void *dev_id)
+> +{
+> +	struct spacemit_gpio_port *port = dev_id;
+> +	unsigned long pending;
+> +	u32 n, gedr;
+> +
+> +	gedr = readl(port->base + GEDR);
+> +	if (!gedr)
+> +		return IRQ_NONE;
+> +
+> +	writel(gedr, port->base + GEDR);
+
+I'd have the blank line here, instead of above the writel().
+
+> +	gedr = gedr & port->irq_mask;
+
+	pending = gedr & port->irq_mask;
+	if (!pending)
+
+> +
+> +	if (!gedr)
+> +		return IRQ_NONE;
+> +
+> +	pending = gedr;
+> +
+> +	for_each_set_bit(n, &pending, BITS_PER_LONG)
+> +		handle_nested_irq(irq_find_mapping(port->gc.irq.domain, n));
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+
+I don't think "muxed" is necessary in these names.  Just call
+this spacemit_irq_ack().
+
+> +static void spacemit_ack_muxed_gpio(struct irq_data *d)
+> +{
+> +	struct spacemit_gpio_port *port = irq_data_get_irq_chip_data(d);
+> +
+> +	writel(BIT(irqd_to_hwirq(d)), port->base + GEDR);
+> +}
+> +
+
+spacemit_irq_mask()
+
+> +static void spacemit_mask_muxed_gpio(struct irq_data *d)
+> +{
+> +	struct spacemit_gpio_port *port = irq_data_get_irq_chip_data(d);
+> +	u32 bit = BIT(irqd_to_hwirq(d));
+> +
+> +	port->irq_mask &= ~bit;
+> +
+
+As I said earlier, I think you should just open-code the two
+writes done by the next function.
+
+> +	spacemit_clear_edge_detection(port, bit);
+> +}
+> +
+
+spacemit_irq_unmask()
+
+> +static void spacemit_unmask_muxed_gpio(struct irq_data *d)
+> +{
+> +	struct spacemit_gpio_port *port = irq_data_get_irq_chip_data(d);
+> +	u32 bit = BIT(irqd_to_hwirq(d));
+> +
+> +	port->irq_mask |= bit;
+> +
+
+Open-code this call too.
+
+> +	spacemit_set_edge_detection(port, bit);
+> +}
+> +
+> +static void spacemit_irq_print_chip(struct irq_data *data, struct seq_file *p)
+> +{
+> +	struct gpio_chip *gc = irq_data_get_irq_chip_data(data);
+> +	struct spacemit_gpio_port *port = to_spacemit_gpio_port(gc);
+> +
+> +	seq_printf(p, "%s-%d", dev_name(gc->parent), port->index);
+> +}
+> +
+> +static struct irq_chip spacemit_muxed_gpio_chip = {
+> +	.name		= "k1-gpio-irqchip",
+> +	.irq_ack	= spacemit_ack_muxed_gpio,
+> +	.irq_mask	= spacemit_mask_muxed_gpio,
+> +	.irq_unmask	= spacemit_unmask_muxed_gpio,
+> +	.irq_set_type	= spacemit_gpio_irq_type,
+> +	.irq_print_chip	= spacemit_irq_print_chip,
+> +	.flags		= IRQCHIP_IMMUTABLE,
+> +	GPIOCHIP_IRQ_RESOURCE_HELPERS,
+> +};
+> +
+> +static int spacemit_gpio_get_ports(struct device *dev, struct spacemit_gpio *gpio,
+> +				   void __iomem *regs)
+> +{
+> +	struct spacemit_gpio_port *port;
+> +	u32 i = 0, offset;
+> +
+> +	gpio->nr_ports = device_get_child_node_count(dev);
+> +	if (gpio->nr_ports == 0)
+> +		return -ENODEV;
+> +
+> +	gpio->ports = devm_kcalloc(dev, gpio->nr_ports, sizeof(*gpio->ports), GFP_KERNEL);
+> +	if (!gpio->ports)
+> +		return -ENOMEM;
+> +
+> +	device_for_each_child_node_scoped(dev, fwnode)  {
+
+Make sure i never exceeds gpio->nr_ports.
+
+> +		port		= &gpio->ports[i];
+> +		port->fwnode	= fwnode;
+> +		port->index	= i++;
+> +
+> +		if (fwnode_property_read_u32(fwnode, "reg", &offset))
+> +			return -EINVAL;
+> +
+> +		port->base	= regs + offset;
+> +		port->irq	= fwnode_irq_get(fwnode, 0);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int spacemit_gpio_add_port(struct spacemit_gpio *gpio, int index)
+> +{
+> +	struct spacemit_gpio_port *port;
+> +	struct device *dev = gpio->dev;
+> +	struct gpio_irq_chip *girq;
+> +	void __iomem *dat, *set, *clr, *dirin, *dirout;
+> +	int ret;
+> +
+> +	port = &gpio->ports[index];
+> +	port->gpio = gpio;
+> +
+> +	dat	= port->base + GPLR;
+> +	set	= port->base + GPSR;
+> +	clr	= port->base + GPCR;
+> +	dirin	= port->base + GCDR;
+> +	dirout	= port->base + GSDR;
+> +
+> +	/* This registers 32 GPIO lines per port */
+> +	ret = bgpio_init(&port->gc, dev, 4, dat, set, clr, dirout, dirin,
+> +			 BGPIOF_UNREADABLE_REG_SET | BGPIOF_UNREADABLE_REG_DIR);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to init gpio chip for port\n");
+> +
+> +	port->gc.label		= dev_name(dev);
+> +	port->gc.fwnode		= port->fwnode;
+> +	port->gc.request	= gpiochip_generic_request;
+> +	port->gc.free		= gpiochip_generic_free;
+> +	port->gc.ngpio		= K1_BANK_GPIO_NUMBER;
+> +	port->gc.base		= -1;
+> +
+> +	girq			= &port->gc.irq;
+> +	girq->threaded		= true;
+> +	girq->handler		= handle_simple_irq;
+> +
+> +	gpio_irq_chip_set_chip(girq, &spacemit_muxed_gpio_chip);
+> +
+> +	spacemit_reset_edge_detection(port);
+> +
+
+I *think* you should call devm_gpiochip_add_data() *before*
+you register the interrupt handler, because conceivably an
+interrupt could fire the instant it's registered.  Maybe it
+doesn't matter though.
+
+					-Alex
+
+> +	ret = devm_request_threaded_irq(dev, port->irq, NULL,
+> +					spacemit_gpio_irq_handler,
+> +					IRQF_ONESHOT | IRQF_SHARED,
+> +					port->gc.label, port);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to request IRQ\n");
+> +
+> +	return devm_gpiochip_add_data(dev, &port->gc, port);
+> +}
+> +
+> +static int spacemit_gpio_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct spacemit_gpio *gpio;
+> +	struct resource *res;
+> +	void __iomem *regs;
+> +	int i, ret;
+> +
+> +	gpio = devm_kzalloc(dev, sizeof(*gpio), GFP_KERNEL);
+> +	if (!gpio)
+> +		return -ENOMEM;
+> +
+> +	gpio->dev = dev;
+> +
+> +	regs = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+> +	if (IS_ERR(regs))
+> +		return PTR_ERR(regs);
+> +
+> +	ret = spacemit_gpio_get_ports(dev, gpio, regs);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "fail to get gpio ports\n");
+> +
+> +	for (i = 0; i < gpio->nr_ports; i++) {
+> +		ret = spacemit_gpio_add_port(gpio, i);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id spacemit_gpio_dt_ids[] = {
+> +	{ .compatible = "spacemit,k1-gpio" },
+> +	{ /* sentinel */ }
+> +};
+> +
+> +static struct platform_driver spacemit_gpio_driver = {
+> +	.probe		= spacemit_gpio_probe,
+> +	.driver		= {
+> +		.name	= "k1-gpio",
+> +		.of_match_table = spacemit_gpio_dt_ids,
+> +	},
+> +};
+> +module_platform_driver(spacemit_gpio_driver);
+> +
+> +MODULE_AUTHOR("Yixun Lan <dlan@gentoo.org>");
+> +MODULE_DESCRIPTION("GPIO driver for SpacemiT K1 SoC");
+> +MODULE_LICENSE("GPL");
+> 
 
 
