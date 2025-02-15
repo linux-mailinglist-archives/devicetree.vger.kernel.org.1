@@ -1,159 +1,191 @@
-Return-Path: <devicetree+bounces-146867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A49F9A36909
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 00:22:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A089CA36948
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 01:04:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C494188903A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2025 23:22:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05097188EF35
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 00:04:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BA81FCF65;
-	Fri, 14 Feb 2025 23:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C28E4262BE;
+	Sat, 15 Feb 2025 00:03:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OBDZtdyJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bn23Mbon"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB2851FCD16
-	for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 23:22:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13E2B18B03;
+	Sat, 15 Feb 2025 00:03:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739575355; cv=none; b=JVZptivUlrbcKVDsoJ+P3IP6O7UnmqMPfABH83eeXRBNK2kpmKoYvGTfk8ADX3DdYGqm1nxF9XWgQSDSahOkDjA26bVn5wHVUBlPBEzLx7MdsN+wxXhC7cuVnqqi2bugltf6cpStRHcKdsqknq/ldE/2uZjUd1GkGWPoBftO/Xg=
+	t=1739577794; cv=none; b=QMg3j1jtJPuRu7wZByJfjGdMzyTP8ZRvNTLX5rzIx6zjuIOblwnr5TbhE41YwyRzXt8lDpcvg8K3czI0dDy/kiP5RwSbTzsQuK74ok/qOX7Cv3vdpvqnHhR5o/oy0XS/jTM0UnS8HpJarZShycIDWl/B3RykfdBQSFqfO+vq/ok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739575355; c=relaxed/simple;
-	bh=pPXxk7x2My9xLVR9K8CXlSChtd6DwTCfsKgijzf+gsE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ucUsHAgapofZ1jY4z76qYrEegbl75VBuKntdp52+wORqtPl974fSmmGtGyti6nWpjlb3UgrgmRFWIJbNxq/qTgS48vydmG6GodSjN437O24hKk0CDEnmU0+py6WhLGlkyo83BdJv2vBHlA82NonlgNohXsQR/yoOnYysQm75EH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OBDZtdyJ; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-30761be8fa7so26406971fa.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2025 15:22:33 -0800 (PST)
+	s=arc-20240116; t=1739577794; c=relaxed/simple;
+	bh=75ue9XmQyJ8qhP80PF/AOl1KCjY+SUIQzJSjEnRvCuw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MZ0xdxcAT0dVExk0SZp3Jeb+DrleDMIuX36fK3msOl5QhBigIR0W5ZWq0mocx4GgThCg5uMkcwiSGgT5nVWJGufCf22BgViRs630ilxxy5nQpl7uFyCDWHZjVcs/c6qCVCC861SdtmYeVEhtbLe8+1luZ86F+np6dC8GtIi2r2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bn23Mbon; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-220f048c038so21024025ad.2;
+        Fri, 14 Feb 2025 16:03:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739575352; x=1740180152; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pPXxk7x2My9xLVR9K8CXlSChtd6DwTCfsKgijzf+gsE=;
-        b=OBDZtdyJ4d/E+ur1M3Tgx2Qw/mNwPFaYwJ38XVG+zU+YDoK8xrPe94knh2OzVjdgt9
-         zKV8+BuiVeb8mjW+fG2v6Iiwey5cK2PATaFGf1ICCB3XOj8kWWqmJG3/8U5i/Oglrkpj
-         jrOAhsrSxu0vtvWR6qeroXIVLocievGEBe1OwfjkTMPCvUudmZYnxPtrfmS6JuLq+frZ
-         vYhEzB35RaNTJlyBfESrMIWxwRWo1GU31MMCx+3j3HRAUbbhkgFQzYxAO7CF4YhDiK1q
-         5XboGfcCyPrYH5S9ZeQzBBVcYAm+kwi/rMotsmVd/uFAuUIN73Ze+zTIIf+vhouWLUEq
-         R3tg==
+        d=gmail.com; s=20230601; t=1739577792; x=1740182592; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hlljIDmRX1XH1IW3oY9g1rM7wniUPX9ut1iHFiQ3C7I=;
+        b=Bn23MbonObpYsoZ2W/HbxH+Jm+kM4ZwZ4AI0XGwca4ugekWa3nVgS3mwwmGWOxV+F4
+         cnWOo9LqlHEiZQ8rvDzfEyZZY3560f+f8bwjw9xpUQy8gG0UgcVpGirkH4Mkh5xkF/r4
+         VqTRaIFXUkOtMBs+TPWNn6tAoQamdwGJfUuFhUv8iZ9ziJ/FgScOSTUMB9PMMW4WDct5
+         aVPDwlmuvOl2g2bkjyYivXYhcTKW3DMxfStmmiXKQXU26LLL8guKaw5RtGYATEmytJrN
+         g8JD3ruV0dIeQTs/Ok50Iigmf35sD/WCMiW7/TgiL2xokCudaXPdWHpw99DhcGa9DTvu
+         6XYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739575352; x=1740180152;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pPXxk7x2My9xLVR9K8CXlSChtd6DwTCfsKgijzf+gsE=;
-        b=h6Bm3Bp2BEyTmeyuGSYZKsTzeodCwAqbRx0nKgDQR3cZusppnytb2rLH0g3ijcpVaQ
-         g8hy2rWyAGcE7e+fLxQg2q7XiWgMe/CVqieAc9A6nd954wrBQo6GAkjiFpJmX6vOm61R
-         CTI+go7r8HMN3od0Tmcefszb5sb2pShhuR78ZRnT1vMtLrRlc1YCEC0AUSsG92YpdMOl
-         WUQORbs3XkV6tFXikROvK2pf4kKxcVYld6oW/eaKWbR7gLkqxdEktf4Ac9FBU8dUcR5q
-         KyNuLXUqiGVJLJek9rZVRYTsnwJ9d2la2ny6lP/AnUnKDXWsvRhax9F0GONvLt80wP+V
-         BX5g==
-X-Forwarded-Encrypted: i=1; AJvYcCVx8VgyPheS4vc/Szwl50vqOH07sQvKCBrbBh6uvOqL5ED0s9rqwGscSUqo9oP9y3RJq8TduZhrNvBu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSZsiJLZExwpCbc2TzbQxt3FqWN24pl1a0U0+BoaF4s0p5nmX6
-	QD0VyDN3dHqJ9eCOOOl85UmjvSe41x1EuBZi10bHs2nq4++mT3bItSZuCxNKX2ElRkNzhrJyYJu
-	Z9kG/1NT208aZn/N+VYfhB+E3IxbBofIfBL2w1A==
-X-Gm-Gg: ASbGnctcdQvFA7IOm7UoymE/jUmtsSY9GuyDJFbl7y1nOl4xM/WGmQV5KacjKWN4xXi
-	07xDMyw8Z4QKiaTtP1OO7u+oPfWyLVYMsdWkbNd1t0OCDmY5Z94M80+I4Kk4dktOxASW8Z5qj
-X-Google-Smtp-Source: AGHT+IFCZppwGEdjNtyl7ODyKVY01soCR8dNMEESTZbrHvR4pUct3wzFqBQ7B0wq3Q534KzSfMqIBbfBb/GCa/7i7Z0=
-X-Received: by 2002:a2e:9397:0:b0:308:f860:7e8 with SMTP id
- 38308e7fff4ca-30927a63f50mr4179131fa.20.1739575351788; Fri, 14 Feb 2025
- 15:22:31 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739577792; x=1740182592;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hlljIDmRX1XH1IW3oY9g1rM7wniUPX9ut1iHFiQ3C7I=;
+        b=epyjSObyie4bZgJBnIoixUa/3GEXfpYwtrFPr42+kAtMmGMkRkQGZOYxF8HxqIX6GT
+         vngZtQXHa6uyLc9Y97hRUm9LBDAeCJGkM+JOIldY6GCHac8TYNFrPCi3rda59Z9TioyK
+         AAvss2JBkQRt8+T6i+HAmqU6ozj4YKL54A7T1Xc6g0GsYFBYfIJ7GVGETHb4hZi3S46U
+         Fh+3tVyduqOTkw7o9tsAcCfLuc7ccXwo15X8DHqsCAj8wwrnISGCR1RGQP9p/sVztCNw
+         tTHVPeG9y3yP1Q+TlHSnXGlVhVRaguWRyrSc4wlNHaX3UQT4kQCJufbumwzq0rZvFckQ
+         NGrA==
+X-Forwarded-Encrypted: i=1; AJvYcCVHcQyIynHODI4O5qIsfPyzRKpIIU0aVJASDXrzJTtSdLEjv8bHxqRaropgQXJfZYNadO22svLwgFzrMxM=@vger.kernel.org, AJvYcCVugfKqBGStOmJeuoCBT6UYSIzSemNjm3D3dgc7dVf++Tzwu8r1XGDlySeKiECh9egBedN6owqn544RAeJl@vger.kernel.org, AJvYcCXuDlX3E9AyypkeDGcS8sppCX35Jp0r0pLrsoUAHuzQDpCx0jVBQFSSFG4nJushpXCQyAK+4lyGH9/E@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxgn77eT59VaL15w2qYiyKSo5XIsTejtkkCx3hrskI/QGQC4Ykk
+	zDwcdKeSMXGB0qoIW2Rr1fAL7a/V4E7MKXnVXQjdM+Gp4cr9cYu/
+X-Gm-Gg: ASbGncszDIwDi10AhSAIcec/T2ShPA/ro352t+7how5gKnbmBTTZGG+AD+bd117o8Xp
+	XkD433x2Wdkofh73wn6XP2pD3CO64xFagOpWodpPhJUqCuVCGMGjpOK5SXg4wYWhdtAIZ0VwSzA
+	bUvP5pfpKScuT8Z6hIOz1EBeNj+4ouU5VzCfeu9qH3SyV3nrGtXaLW2pBH97mQPthRIt9ZNIelu
+	BOO3Klvj0L2AIP7c22ubnUbXB1FNow5x6QqlTzjJen7RtH6YIKn62NaetGqUi2hSz0PVC1G3+w2
+	rAP7OLY7Hr3Wy1lniyx37X1/m4dGg9xoW/i8cbumFubgqeG6O1s4qVgtedGPRuJdkke+bz0nIZj
+	p+XAx1SDYYA==
+X-Google-Smtp-Source: AGHT+IEup2zgA/YTbycAj6IzspoC2++Jftu7jKLzx1hPV3+F+i7RaOUhB21dbPrRSyLCtfppm6LLiw==
+X-Received: by 2002:a17:902:fc4e:b0:220:ecf7:4b5c with SMTP id d9443c01a7336-22103f16d99mr19774315ad.14.1739577792063;
+        Fri, 14 Feb 2025 16:03:12 -0800 (PST)
+Received: from [192.168.2.3] (2403-580a-80ed-0-4835-5a07-49e7-f115.ip6.aussiebb.net. [2403:580a:80ed:0:4835:5a07:49e7:f115])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220f26ea127sm15071155ad.96.2025.02.14.16.03.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Feb 2025 16:03:11 -0800 (PST)
+From: James Calligeros <jcalligeros99@gmail.com>
+Subject: [PATCH 00/27] ASoC: tas27{64,70}: improve support for Apple codec
+ variants
+Date: Sat, 15 Feb 2025 10:02:33 +1000
+Message-Id: <20250215-apple-codec-changes-v1-0-723569b21b19@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250213-for_upstream-v2-0-ec4eff3b3cd5@analog.com>
- <20250213-for_upstream-v2-2-ec4eff3b3cd5@analog.com> <CACRpkdZR8X17Bn-i2anqjxf0Gk60V175F7Xfwytkhy7_K+LsSA@mail.gmail.com>
- <880631da17a6d8ed4afe5a8c453fd4f7d0e4fca5.camel@gmail.com>
-In-Reply-To: <880631da17a6d8ed4afe5a8c453fd4f7d0e4fca5.camel@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sat, 15 Feb 2025 00:22:20 +0100
-X-Gm-Features: AWEUYZlCgILVTBH640MzYpGgtGlpknzKmD0qMEIE1z0T6Iw6f5ZqTnHVDhruggg
-Message-ID: <CACRpkda+CDRMYKmjw7kewenkteLhPYb040E4B=ZG6pgdy=65pg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] gpio: gpio-adg1414: New driver
-To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>, 
-	Jonathan Cameron <jic23@kernel.org>
-Cc: Kim Seer Paller <kimseer.paller@analog.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-iio <linux-iio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAJnZr2cC/yWMQQqAIBQFryJ/3QcVddFVokXoqz5EiUIE0d2TW
+ g7MzE0VRVCpVzcVnFLl2BuYTlFcp30BS2pMVluvrXE85byB45EQ+TcqBwQfUjSwLlErc8Es13c
+ dxud5AZVWfeBlAAAA
+X-Change-ID: 20250214-apple-codec-changes-6e656dc1e24d
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, 
+ Baojun Xu <baojun.xu@ti.com>, Dan Murphy <dmurphy@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shi Fu <shifu0704@thundersoft.com>
+Cc: Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+ =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
+ Hector Martin <marcan@marcan.st>, linux-sound@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ asahi@lists.linux.dev, James Calligeros <jcalligeros99@gmail.com>, 
+ =?utf-8?q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3173;
+ i=jcalligeros99@gmail.com; h=from:subject:message-id;
+ bh=75ue9XmQyJ8qhP80PF/AOl1KCjY+SUIQzJSjEnRvCuw=;
+ b=owGbwMvMwCV2xczoYuD3ygTG02pJDOnrb268Kpqxx+/WY2FLY4/4DzG3N+7VWbr5oo5UrpSnt
+ YO5IrNzRykLgxgXg6yYIsuGJiGP2UZsN/tFKvfCzGFlAhnCwMUpABPZeZyR4TDH5wyzDGvO3T3e
+ s54v3XRAtLxbx1HiubkI94EDgnn3JjL8ld63WOZ3e2io9OOT6W9nn3zUsiMtesnuKy/PJ3UcfV4
+ TyA0A
+X-Developer-Key: i=jcalligeros99@gmail.com; a=openpgp;
+ fpr=B08212489B3206D98F1479BDD43632D151F77960
 
-Let's check with Jonathan Cameron (IIO maintainer) on this as well.
-He might have ideas.
+Hi all,
 
-For reference, the datasheet:
-https://www.analog.com/media/en/technical-documentation/data-sheets/adg1414=
-.pdf
+This series introduces a number of changes to the drivers for
+the Texas Instruments TAS2764 and TAS2770 amplifiers in order to
+introduce (and improve in the case of TAS2770) support for the
+variants of these amps found in Apple Silicon Macs.
 
-(By the way: add the datasheet to a special Datasheet: tag in the
-commit please!)
+Apple's variant of TAS2764 is known as SN012776, and as always with
+Apple is a subtly incompatible variant with a number of quirks. It
+is not publicly available. The TAS2770 variant is known as TAS5770L,
+and does not require incompatible handling.
 
-On Fri, Feb 14, 2025 at 2:17=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.com=
-> wrote:
-> On Fri, 2025-02-14 at 00:25 +0100, Linus Walleij wrote:
+Much as with the Cirrus codec patches, I do not
+expect that we will get any official acknowledgement that these parts
+exist from TI, however I would be delighted to be proven wrong.
 
-> > Now, the kernel does not have switch subsystem I think,
-> > so this is something like a special case, so we might be
-> > compelled to make an exception, if the users will all be in
->
-> Exactly, since we could not find anything, the best fit seemed like the g=
-pio
-> subsystem. I was the one suggesting it since a new subsystem for a simple=
- device
-> like this looked excessive. If we had more devices that would fit such a =
-class
-> of devices, maybe it would make more sense to start thinking on such a
-> subsystem?
->
-> > say userspace and make use of this switch for factory lines
-> > or similar.
->
-> Kim should know better again (about usecases) but I would also assume thi=
-s is
-> for userspace use.
+This series has been living in the downstream Asahi kernel tree[1]
+for over two years, and has been tested by many thousands of users
+by this point[2].
 
-Actually the GPIO documentation Documentation/driver-api/gpio/using-gpio.rs=
-t
-even talks about this for userspace use cases:
+Regards,
+James
 
-"The userspace ABI is intended for one-off deployments. Examples are protot=
-ypes,
-factory lines, maker community projects, workshop specimen, production tool=
-s,
-industrial automation, PLC-type use cases, door controllers, in short a pie=
-ce
-of specialized equipment that is not produced by the numbers, requiring
-operators to have a deep knowledge of the equipment and knows about the
-software-hardware interface to be set up. They should not have a natural fi=
-t
-to any existing kernel subsystem and not be a good fit for an operating sys=
-tem,
-because of not being reusable or abstract enough, or involving a lot of non
-computer hardware related policy."
+[1] https://github.com/AsahiLinux/linux/tree/asahi-wip
+[2] https://stats.asahilinux.org/
 
-If this is the usecase, like controlling an external switch for such things=
-,
-using the GPIO subsystem might actually be reasonable in my opinion,
-(even if the DT bindings end up in their own category).
+---
+Hector Martin (14):
+      ASoC: tas2764: Enable main IRQs
+      ASoC: tas2764: Power up/down amp on mute ops
+      ASoC: tas2764: Add SDZ regulator
+      ASoC: tas2764: Add reg defaults for TAS2764_INT_CLK_CFG
+      ASoC: tas2764: Mark SW_RESET as volatile
+      ASoC: tas2764: Fix power control mask
+      ASoC: tas2764: Wait for ramp-down after shutdown
+      ASoC: tas2770: Add SDZ regulator
+      ASoC: tas2770: Power cycle amp on ISENSE/VSENSE change
+      ASoC: tas2770: Add zero-fill and pull-down controls
+      ASoC: tas2770: Support setting the PDM TX slot
+      ASoC: tas2770: Fix volume scale
+      ASoC: tas2764: Set the SDOUT polarity correctly
+      ASoC: tas2770: Set the SDOUT polarity correctly
 
-If the switches control stuff related to computer machinery (i.e. integrate=
-d
-into a laptop to switch on/off the fans...) then no. So it depends on how
-and where it will be used.
+James Calligeros (2):
+      ASoC: dt-bindings: tas27xx: add compatible for SN012776
+      ASoC: dt-bindings: tas2770: add compatible for TAS5770L
 
-Yours,
-Linus Walleij
+Martin Povišer (11):
+      ASoC: tas2764: Extend driver to SN012776
+      ASoC: tas2764: Add control concerning overcurrent events
+      ASoC: tas2770: Factor out set_ivsense_slots
+      ASoC: tas2770: Fix and redo I/V sense TDM slot setting logic
+      ASoC: tas2764: Reinit cache on part reset
+      ASoC: tas2764: Configure zeroing of SDOUT slots
+      ASoC: tas2764: Apply Apple quirks
+      ASoC: tas2764: Raise regmap range maximum
+      ASoC: tas2770: Export 'die_temp' to sysfs
+      ASoC: tas2764: Export 'die_temp' to sysfs
+      ASoC: tas2764: Crop SDOUT zero-out mask based on BCLK ratio
+
+ .../bindings/sound/ti,tas2770.yaml       |   1 +
+ .../bindings/sound/ti,tas27xx.yaml       |   1 +
+ sound/soc/codecs/Kconfig                 |   1 +
+ sound/soc/codecs/tas2764-quirks.h        | 188 +++++++++++++++
+ sound/soc/codecs/tas2764.c               | 302 +++++++++++++++++++++----
+ sound/soc/codecs/tas2764.h               |  29 ++-
+ sound/soc/codecs/tas2770.c               | 264 +++++++++++++++++----
+ sound/soc/codecs/tas2770.h               |  20 ++
+ 8 files changed, 711 insertions(+), 95 deletions(-)
+---
+base-commit: cc7708ae5e2aab296203fcec774695fc9d995f48
+change-id: 20250214-apple-codec-changes-6e656dc1e24d
+
+Best regards,
+-- 
+James Calligeros <jcalligeros99@gmail.com>
+
 
