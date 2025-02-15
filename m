@@ -1,61 +1,89 @@
-Return-Path: <devicetree+bounces-146919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E8B8A36C86
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 08:52:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C82FA36C9F
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 09:32:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C472E189605E
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 07:52:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35B2C17173D
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 08:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F223194A66;
-	Sat, 15 Feb 2025 07:52:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2D41198E63;
+	Sat, 15 Feb 2025 08:32:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="O7UlnbKr"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mbqHMkGE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D5718B484;
-	Sat, 15 Feb 2025 07:52:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4CCD18CC1C;
+	Sat, 15 Feb 2025 08:32:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739605937; cv=none; b=A4tpJeqgJLql4vLTaI3nEgPDKfxt1eeil37aF0EM3X1rd9yYpr2aA72OT041TOHLxN4CNAw/3Kzgi+jwCTsa6UOPA5FzSoj0BuK0zmd4Kby3NajEbOPP4t4ZaaLOp03JH9UadtePwhpFYkITXDeZGlpHhPK+s6OUQ2dGdHzODGA=
+	t=1739608343; cv=none; b=QLRO+/w+ndIoYfF6WUcxKX5MtYngBBfNmOBPdvAWCOKdPhzRSRkKC+FzIx+hg/1BZ+C9tLw/6NnFoWXpx4S5wmF8CwRm0yyjPtvHIVgw45DXgAr0vx1r+RKs4l9VmyeVJBE0nqKlCrJltCG3zNinGz/Zw4q1GpoJoQzourQliuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739605937; c=relaxed/simple;
-	bh=iEO4fZVVqTnk+DHtCerwPLANOhBbouzKPWaUP8b/LgI=;
+	s=arc-20240116; t=1739608343; c=relaxed/simple;
+	bh=yfOx8DKj++Lm3z+ojZHZk7o9JJyUNNAgBOSSNe18ydY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RbiqVp9kvnpnLE3o2EeLJjpnONWtPTdTnX0v9gViadnqN6yL6BAmo9xZSJrZXnUDhc/yB8kdHLJhUCQ0vOGR94pxOmGMwxF+KMC88JfdHVJgGZ2nscVY5KZcMG3kkLzRJDNhohP9JLF8XCWQ4udr2MRMAc8/AStbGANC+Za02Z8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=O7UlnbKr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4EF4C4CEDF;
-	Sat, 15 Feb 2025 07:52:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1739605936;
-	bh=iEO4fZVVqTnk+DHtCerwPLANOhBbouzKPWaUP8b/LgI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O7UlnbKrM3z04uhmrFgA8uEAq5rEViUUqd0AYd13/LDeu31ccU+fw4BUo6lqSaurF
-	 VRbdHPy/7IBAiQagjEurhJKemUnOaajIAgoRZf1Bs1fgjnBLlanW4N9+THzs/DONUT
-	 q2kKNkIf1yvRcl8gJNdWYeHE0MZfFLaBZPfVg6So=
-Date: Sat, 15 Feb 2025 08:52:13 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: srinivas.kandagatla@linaro.org, mathias.nyman@intel.com, perex@perex.cz,
-	conor+dt@kernel.org, dmitry.torokhov@gmail.com, corbet@lwn.net,
-	broonie@kernel.org, lgirdwood@gmail.com, tiwai@suse.com,
-	krzk+dt@kernel.org, pierre-louis.bossart@linux.intel.com,
-	Thinh.Nguyen@synopsys.com, robh@kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v34 00/31] Introduce QC USB SND audio offloading support
-Message-ID: <2025021500-clang-suspect-0cb3@gregkh>
-References: <20250121210518.2436771-1-quic_wcheng@quicinc.com>
- <3b9447e2-4be8-479b-a418-5fd45369fb55@quicinc.com>
- <2025021413-favorable-manatee-6859@gregkh>
- <f5dfc875-d5bd-49d7-b998-6d25f59e849a@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=c/ENb3UKkXy590jM/uQK4ft8zLjN0H8Asqt4fT/JJn1sZrNGT/O2NjejjpEp+r30Wr0B5OGTtWDjqCpqTNwLOHbUo8EWsp9RyUs+U8iAHqYEH2d803JfdqFyCqHaHb3IAPiOxl6nnEaiihSFBiWHiroay4q7eOqpWp+U752cnpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mbqHMkGE; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739608342; x=1771144342;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=yfOx8DKj++Lm3z+ojZHZk7o9JJyUNNAgBOSSNe18ydY=;
+  b=mbqHMkGEiBBKygpVZl9T0IMhUrr2qZlJAAzsl1QxKzmUYDR3efM9yKbx
+   flIvPTrZSpxS34xiI82SapQFQbwxDS/4FgGWvaEAB6EbBlFN9qx+U87n/
+   arUhhQ61ZsBZ7sbJCBKUfb2GH3FWXFbhBen2bLe7UZ6YU3h8GwVeeVmsS
+   FnYKHrRQ+5s9EbNQlLuzP7TS5HI10i/9s5wIHOHdQRrJ+MULjJuH8mITq
+   fIJPsu2LZIjaY99LipzEj2+lWdUfMIimbMpcWRhz4112j0GxbPBiJwI5y
+   SBzQzA8MWhsY3fV9HC/Q4uau2ZNp4zdAabKi5b5V37b9P7mDUOnhTUSc2
+   A==;
+X-CSE-ConnectionGUID: FQFDspj/S2a7e452mdTwcA==
+X-CSE-MsgGUID: p53YaVJtS2axldBCfDPlQw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="40499684"
+X-IronPort-AV: E=Sophos;i="6.13,288,1732608000"; 
+   d="scan'208";a="40499684"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2025 00:32:21 -0800
+X-CSE-ConnectionGUID: pMCwmK60RauH2BLX2OxMog==
+X-CSE-MsgGUID: BenTPVhfT9u9wJMP2iag2w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,288,1732608000"; 
+   d="scan'208";a="113524585"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 15 Feb 2025 00:32:17 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tjDax-001AdT-12;
+	Sat, 15 Feb 2025 08:32:15 +0000
+Date: Sat, 15 Feb 2025 16:31:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] drm: bridge: Add support for Solomon SSD2825
+ RGB/DSI bridge
+Message-ID: <202502151636.fgFKMZoI-lkp@intel.com>
+References: <20250213135605.157650-3-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,34 +92,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f5dfc875-d5bd-49d7-b998-6d25f59e849a@quicinc.com>
+In-Reply-To: <20250213135605.157650-3-clamor95@gmail.com>
 
-On Fri, Feb 14, 2025 at 07:07:15PM -0800, Wesley Cheng wrote:
-> Hi Greg,
-> 
-> On 2/14/2025 12:33 AM, Greg KH wrote:
-> > On Tue, Feb 11, 2025 at 12:35:23PM -0800, Wesley Cheng wrote:
-> >> Hi,
-> >>
-> >> On 1/21/2025 1:04 PM, Wesley Cheng wrote:
-> >>> Requesting to see if we can get some Acked-By tags, and merge on usb-next.
-> >>>
-> >>
-> >> Just seeing if we have any further feedback on this series? Thanks.
-> > 
-> > Given the lack of responses, and the huge number of iterations of this,
-> > I've applied it now to my usb-testing branch to give 0-day some better
-> > runs at it.  If it passes that in a few days, I'll move it to my
-> > usb-next branch for inclusion into linux-next and hopefully 6.15-rc1.
-> > 
-> > thanks for sticking with this!
-> > 
-> 
-> I saw that kernel test bot reported some sparse errors.  I had some issue with my config and looks like sparse wasn't actually scanning the files I added.  Will fix that and resubmit another rev that addresses any errors.  Apologies for not catching this beforehand.
+Hi Svyatoslav,
 
-Not a problem, I've dropped them all from my tree now.
+kernel test robot noticed the following build errors:
 
-thanks,
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master drm-misc/drm-misc-next v6.14-rc2 next-20250214]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-greg k-h
+url:    https://github.com/intel-lab-lkp/linux/commits/Svyatoslav-Ryhel/dt-bindings-display-bridge-Document-Solomon-SSD2825/20250213-215821
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250213135605.157650-3-clamor95%40gmail.com
+patch subject: [PATCH v1 2/2] drm: bridge: Add support for Solomon SSD2825 RGB/DSI bridge
+config: openrisc-randconfig-r063-20250215 (https://download.01.org/0day-ci/archive/20250215/202502151636.fgFKMZoI-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250215/202502151636.fgFKMZoI-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502151636.fgFKMZoI-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+WARNING: modpost: missing MODULE_DESCRIPTION() in lib/asn1_decoder.o
+>> ERROR: modpost: "__spi_register_driver" [drivers/gpu/drm/bridge/ssd2825.ko] undefined!
+>> ERROR: modpost: "spi_setup" [drivers/gpu/drm/bridge/ssd2825.ko] undefined!
+>> ERROR: modpost: "spi_sync" [drivers/gpu/drm/bridge/ssd2825.ko] undefined!
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
