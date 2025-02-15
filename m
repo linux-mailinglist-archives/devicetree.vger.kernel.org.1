@@ -1,90 +1,82 @@
-Return-Path: <devicetree+bounces-146989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E73CA36F15
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 16:26:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F30A36F31
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 16:57:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B4553B0236
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 15:25:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF4A93B0673
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 15:57:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9819D1DDC37;
-	Sat, 15 Feb 2025 15:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FEB1DD0D4;
+	Sat, 15 Feb 2025 15:57:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lg4CEu3q"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Sl+ZFgve"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24EA142AA5;
-	Sat, 15 Feb 2025 15:25:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6A3B672;
+	Sat, 15 Feb 2025 15:57:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739633161; cv=none; b=aAcVfrIDTN+FgRj94XOon+MLagbIYoDgmFKk1C80rAXa3Zx3mklD7sQHwYwiKutXlo7h8BBGsNnkxrEdEM23gldHb7AAvyFCKLz4MLIgGIdbnjYIa7JHfcHEVKOvNRBf6AFgXSA2mNSBQ4Hiz2m5D2TKY9bPVgQ78VXRpBMK5sg=
+	t=1739635071; cv=none; b=pIFEdFi1xBXulJ2Xw+ARr//6RWMbLDJQqmLommNffpoXxqLNHR5+pZgkWfUjdXF80LybgJMBHIbZU+O+3n2nl7Cf0TD6y8cBGofjIsTqhZyP9n6NxD3aJC0Lk/uh2F23cH0Gzp9UjRrutqmsJvb7sXbet9fupL7U4XHF5ejNl3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739633161; c=relaxed/simple;
-	bh=VKiPCA3U8w5R2pN4nCBlxafMtaiXT9qyhy/60Fz0+O0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sn38H6+bZJPalsWPsbtXzUu6lBJKmq3SKJbluteMEl/0AJS43yYLaUuEsBgpW5fVR5IP56BLU3vPKyDzqVNhHLapsHC4Kp9vMe8kIlYDZReBUtLSYwBvBR0Rf6TMb69a33dlvXsVT496jRHN74LDX5ZimykTb6dfrqVtWBLNzHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lg4CEu3q; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-220d27fcdaaso7386945ad.0;
-        Sat, 15 Feb 2025 07:25:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739633159; x=1740237959; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MbZtBYfPPawE8o+lOlR32EHg0wh4Zt+mD8hZTHKftD0=;
-        b=lg4CEu3q6kVhNWFfmYFdXum4AYrrM/xJ2mH+V6Gl8B+n1piZU/Vb7l/FLbTfJEmmHe
-         EVEbazX6PA2gAOiz5/9VLhjWaGoWQ8Vf8aF6RX7Jpndq7KTh7QUeIva+3B7xCyPTrgzv
-         yvMmJM4yjhyQ/zeiErl3DwUK/u3gu5QxmhQWcuLaAWs3z5+n3Yhfd3ibzlvhZpzehxBb
-         rQIuOQ0hmVQwGnWi8dQtLofpwD8FKKpC9a75sVGrJdPwG9f/3MdpZUcfTlVKvMHM+esr
-         KF984frp34u8ramf5vjsG+GltPrhZP8Jx5WrgsqwqiCoyo00ZMYuEB0cO7CcHBrBar3k
-         qUOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739633159; x=1740237959;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MbZtBYfPPawE8o+lOlR32EHg0wh4Zt+mD8hZTHKftD0=;
-        b=mgdPkWSas/80N9YTcoooM/kW/o74VZgoiGbTrVqZk63jAc9AYv/kUsGx8rKiBt6dmd
-         Bou8jQJR2u+DA6yyIYMLsAHAnt5CUSunMOsFjAdofM2NLcBcWyu4uVSitDX9WXUhZ4GL
-         X0ZkTZH3B5avCO9iNi6/tNx32MbKJqrwBcv+Hj5Z+f9N/8E2wr+LgSpcf8+3Ub/QTBAV
-         1ZDsvHv7WYQox/KT7roJcq61Oa6lAZMMYjxaesgHTuPu/VWDjcANOdIiHE7PKVnjbIAb
-         Q6D79uCMp8VdSzhtMqDD8ZWZoLq0U3FTek0aLpmANoAeA3zGBTXyCAvAmPY0gFy9jPa9
-         gzLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUCgwDajFK4df3n1mD/DtLFZVMHiL+gi0+0XBdnWVr6iFja1UbyzqywRHNSyMjxqbCwjSWf8zV1DnEe@vger.kernel.org, AJvYcCWSocR+5ISCvb2BgYWN7hvvIP01f9ZPdr+qJTfg4APy/4p0bmEsQp8Clspi7d8hVqy2jKiOIEV+bVV3VKGD@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywbo/ApvZFxeiqthvTbkaCY/3H/w/aFmIE2gJ+D9bHXoOa7t5ix
-	rbuvNmA8i39wiomz0F4UthD8pPbLguL2KP6szTNRzncFOGrfuOPjVrdBIHLc
-X-Gm-Gg: ASbGncvHLhoZGbizKZZtCvvjFAPHiiOHTAp3GqvyuJNyna8Y0WZOa0kt5Dl+T+emvrP
-	Vd5chpcGBNTrDKlYO8toD1/GXZZKiVbm+kzkMZ/eOHkypQmrKjfHcz7wViow5d/O9OitriSjBy+
-	6ssppiYO2rPfQyYfWtDjME9s8uE0Szm5jTdW3jzbq4wTpXvVYXxkDYK1kw67Kdo/OE5kRd+BBbT
-	AvY9TL0RaJaWhLuXr21vRHWcIhHdT/Ln5FlxQm/0U12RcJG0hQKb3dGOhZmxrMpDXVZPL79KFkb
-	de8fn2IWk2MyIdZfudCS
-X-Google-Smtp-Source: AGHT+IEvXhWy6/gs2I2nQXXUem/BKTSxc+vCPMgz6fxtKjGYy29KOuDEBVg/Uyb7DlOuXSsE0vui7Q==
-X-Received: by 2002:a17:902:da8c:b0:220:dae5:34b5 with SMTP id d9443c01a7336-22104042218mr19131705ad.7.1739633159298;
-        Sat, 15 Feb 2025 07:25:59 -0800 (PST)
-Received: from rock-5b.. ([221.220.131.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d558fe3asm44747405ad.234.2025.02.15.07.25.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Feb 2025 07:25:58 -0800 (PST)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: Jianfeng Liu <liujianfeng1994@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Stephen Rothwell <sfr@canb.auug.org.au>,
+	s=arc-20240116; t=1739635071; c=relaxed/simple;
+	bh=4cxnaIRCSk0B4fuAfPyf8j0yr6SHL5W0ftPhLQJviEA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oBL1I5Bxb934tRMOkvPmikF+FXkecEycj6/zzCS3PoLKK4l/qrdeRoYsnX3ws+1ZzYi1ZQzohBzwqAmKD77+YDA+SigGYWBhdgtyJq21iZoP/frzx+8geCOzEGVy+SWLdYKM3pXvYgdPS+ydI1eVAH1OUW2PBjnT0WNJjWwh8x0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Sl+ZFgve; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739635070; x=1771171070;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=4cxnaIRCSk0B4fuAfPyf8j0yr6SHL5W0ftPhLQJviEA=;
+  b=Sl+ZFgvefFggzCDZYC4B2JuxUwqVIZe5wzhNWcDjSz22FQDfs9STlx1f
+   a72ts5sXxrAYEqjdLhCnS/olkD1fg//eNVlolLZ2y1cwK8EcpHZPpb4XR
+   SZ23hUDZyjz+7UtaOCU9pB7ML/Zp50fNYYbkQwQ4drXSeF9bTbeTHJqOD
+   kUvkOheKDwyUHtnaVIDhdnT4sQKyo70x2XU7bwxcY8svK0cmQ0qK8z5bn
+   gAL+GnMwtuKzZ1r67jYcKfDVMENlK55DMPe+fWXjTCo2xC4VL70/osRLv
+   /gKV2esDMB/zb4LwkuZTFATHBZ5CmFqjUk2nlqQkxdvYh3jgT/Vz5fY6u
+   w==;
+X-CSE-ConnectionGUID: pYOMkMHsQgKg/Y0yiA02/Q==
+X-CSE-MsgGUID: 5biMeDMfTV2Ni50lffDAQQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11346"; a="40509933"
+X-IronPort-AV: E=Sophos;i="6.13,289,1732608000"; 
+   d="scan'208";a="40509933"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2025 07:57:49 -0800
+X-CSE-ConnectionGUID: lM3jTKIaRtOzDSJWrdCk6A==
+X-CSE-MsgGUID: V5ucWNWxRk2CMrZhMptEXA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,289,1732608000"; 
+   d="scan'208";a="113701902"
+Received: from test2-linux-lab.an.altera.com ([10.244.157.115])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2025 07:57:47 -0800
+From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+To: lpieralisi@kernel.org,
+	kw@linux.com,
+	manivannan.sadhasivam@linaro.org,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dinguyen@kernel.org,
+	joyce.ooi@intel.com,
+	linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: add hdmi1 support to ROCK 5 ITX
-Date: Sat, 15 Feb 2025 23:25:45 +0800
-Message-ID: <20250215152550.3975614-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Cc: matthew.gerlach@altera.com,
+	peter.colberg@altera.com,
+	Matthew Gerlach <matthew.gerlach@linux.intel.com>
+Subject: [PATCH v7 0/7] Add PCIe Root Port support for Agilex family of chips
+Date: Sat, 15 Feb 2025 09:53:52 -0600
+Message-Id: <20250215155359.321513-1-matthew.gerlach@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,97 +85,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Enable the HDMI port next to ethernet port.
+This patch set adds PCIe Root Port support for the Agilex family of FPGA chips.
+Version 6 refactors duplicate dts snippets into dtsi's for correctness and
+maintainability.
 
-Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
----
+Patch 1:
+  Add new compatible strings for the three variants of the Agilex PCIe controller IP.
 
- .../boot/dts/rockchip/rk3588-rock-5-itx.dts   | 53 +++++++++++++++++++
- 1 file changed, 53 insertions(+)
+Patch 2:
+  Add new board compatible string for Agilex F-series devkit with PCIe Root Port.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-index 6d68f70284e..a4fdced052c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-@@ -11,6 +11,7 @@
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/rockchip.h>
- #include <dt-bindings/pwm/pwm.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
- #include "dt-bindings/usb/pd.h"
- #include "rk3588.dtsi"
- 
-@@ -89,6 +90,17 @@ fan0: pwm-fan {
- 		pwms = <&pwm14 0 10000 0>;
- 	};
- 
-+	hdmi1-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi1_con_in: endpoint {
-+				remote-endpoint = <&hdmi1_out_con>;
-+			};
-+		};
-+	};
-+
- 	/* M.2 E-KEY */
- 	sdio_pwrseq: sdio-pwrseq {
- 		compatible = "mmc-pwrseq-simple";
-@@ -261,6 +273,32 @@ &gpu {
- 	status = "okay";
- };
- 
-+&hdmi1 {
-+	pinctrl-0 = <&hdmim0_tx1_cec &hdmim0_tx1_hpd
-+		     &hdmim1_tx1_scl &hdmim1_tx1_sda>;
-+	status = "okay";
-+};
-+
-+&hdmi1_in {
-+	hdmi1_in_vp1: endpoint {
-+		remote-endpoint = <&vp1_out_hdmi1>;
-+	};
-+};
-+
-+&hdmi1_out {
-+	hdmi1_out_con: endpoint {
-+		remote-endpoint = <&hdmi1_con_in>;
-+	};
-+};
-+
-+&hdptxphy_hdmi0 {
-+	status = "okay";
-+};
-+
-+&hdptxphy1 {
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0m2_xfer>;
-@@ -1209,3 +1247,18 @@ &usbdp_phy1 {
- 	rockchip,dp-lane-mux = <2 3>;
- 	status = "okay";
- };
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vp1 {
-+	vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
-+		remote-endpoint = <&hdmi1_in_vp1>;
-+	};
-+};
+Patch 3:
+  Fix fixed-clock schema warnings in socfpga_agilex.dtsi before adding to it.
+
+Patch 4:
+  Move bus@80000000 dt node to socfpga_agilex.dtsi.
+
+Patch 5:
+  Add base dtsi for PCIe Root Port support of the Agilex family of chips.
+
+Patch 6:
+  Add dts enabling PCIe Root Port support on an Agilex F-series Development Kit.
+
+Patch 7:
+  Update Altera PCIe controller driver to support the Agilex family of chips.
+
+D M, Sharath Kumar (1):
+  PCI: altera: Add Agilex support
+
+Matthew Gerlach (6):
+  dt-bindings: PCI: altera: Add binding for Agilex
+  dt-bindings: intel: document Agilex PCIe Root Port
+  arm64: dts: agilex: Fix fixed-clock schema warnings
+  arm64: dts: agilex: move bus@80000000 to socfpga_agilex.dtsi
+  arm64: dts: agilex: add dtsi for PCIe Root Port
+  arm64: dts: agilex: add dts enabling PCIe Root Port
+
+ .../bindings/arm/intel,socfpga.yaml           |   1 +
+ .../bindings/pci/altr,pcie-root-port.yaml     |  10 +
+ arch/arm64/boot/dts/intel/Makefile            |   1 +
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |  14 +
+ .../socfpga_agilex7f_socdk_pcie_root_port.dts | 147 ++++++++++
+ .../boot/dts/intel/socfpga_agilex_n6000.dts   |  31 +--
+ .../intel/socfpga_agilex_pcie_root_port.dtsi  |  48 ++++
+ .../boot/dts/intel/socfpga_agilex_socdk.dts   |   1 +
+ .../dts/intel/socfpga_agilex_socdk_nand.dts   |   1 +
+ drivers/pci/controller/pcie-altera.c          | 253 +++++++++++++++++-
+ 10 files changed, 479 insertions(+), 28 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+
 -- 
-2.43.0
+2.34.1
 
 
