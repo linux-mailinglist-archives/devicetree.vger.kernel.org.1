@@ -1,197 +1,186 @@
-Return-Path: <devicetree+bounces-146924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABC2CA36CF4
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 10:34:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8554A36CFA
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 10:39:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F2331894649
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 09:35:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89E0217140F
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 09:39:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0957D1922ED;
-	Sat, 15 Feb 2025 09:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2159019CD0E;
+	Sat, 15 Feb 2025 09:39:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CNcOfGt0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D/cYdYzU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2A81373;
-	Sat, 15 Feb 2025 09:34:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 481621373;
+	Sat, 15 Feb 2025 09:39:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739612091; cv=none; b=rZObyLxsReP5oAvAlALcQkS7myEctDexbafKCMCosQO6fOoi3TLNjUbmJuPYpAhbWfLVHcQUjQyMTyZFv98A5ZKPH+WSVuNidkd0buFUWeDxgyb0RqbagjkcDIFiEOna67rSYizUGaMRcCr6ikBp1iHdBSbakyfW0KGxXQRoowo=
+	t=1739612388; cv=none; b=ZujZC4ZbWkFZ9sufzsuBH/zs/BWtGRKpaL7j5rkvA+S6gubdhcG/NabaPg1uitYyYC4RFAr+76pwvvFf+On+fcJPz4WpPObO/C6frTx9tq20tbQPdt1fCZ+pB21keALojm9zjBAPIPqZUUZZwrEvrMSBUN/riUp7CC4Cr5VooBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739612091; c=relaxed/simple;
-	bh=IKAZ62FsF2gjnJ9KpMdbt5Jkq3UapRnpVvowqhjkAOo=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=km7YCXEE5kEeSZHRbZxOdQY85ij4/rFduW3cSEQ+9Lm5KYBwgvXEXTnu83x0IREeATOO/RKbv3H5JW1m24TJ4NPzZvOtYDsMz5hPD9qidkE6M4eoV+x4GTZeX9ypfF3GUDApr/g2UN/IqiPVV2fkobCpatUCfa/c/RW3sokCPz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CNcOfGt0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0F8AC4CEDF;
-	Sat, 15 Feb 2025 09:34:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739612091;
-	bh=IKAZ62FsF2gjnJ9KpMdbt5Jkq3UapRnpVvowqhjkAOo=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=CNcOfGt0rxUkBNBm2E0As9dDWfXXhIRglO86RMgEibzqtVCQchSuQaW1JQl14+hkQ
-	 3/TfLDOsp8kStnE7U2/5xHjjSEHKH8EMMBQ/HDOAF8sxo3TZLSMTR9KH/e/1i2CNn0
-	 5H9sw4vTmRqLpn/+I9ROob9REWWUKgFBboCS872BI4eLzZe7necRoVi9GJWYfw+MSF
-	 mXY65hmU+oz3cY2BGvoxH08iSm6d3k2fe5ilrtUxDFukPyq2e3AZh6rKOqATaBlph2
-	 boHxM2ynaEtNlo8VmyYEVfZqN3y/Eent85/MvhOqZg7mB9Zj8zzf8tJiUA2LGbbhxa
-	 FwsRdfXrmq4Hg==
-Message-ID: <0198b64c-c0d1-465c-a1e7-85b7732d6268@kernel.org>
-Date: Sat, 15 Feb 2025 10:34:43 +0100
+	s=arc-20240116; t=1739612388; c=relaxed/simple;
+	bh=RvFKjUXvMlJHaw4Y9IUcOiSRqQLAk7/bwVL+DP39wkk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MlMqZXkd/6K09MG2h5W2vFQbANTcyJpI5wqXQX2/4b1h6ZFzCu5fkHDM24+EO0PQ8WyHK2LYfZhCH6UwxrIvt81SnI4YctdXzWch9hclMeCdtEKuaWqLxbOwKSxCmWFgGMLOVAZpeyTy6+E3nHspTPHCMrXoGnUJ3pVi/c8L5Os=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D/cYdYzU; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5dedd4782c6so3012672a12.3;
+        Sat, 15 Feb 2025 01:39:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739612384; x=1740217184; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=86egy4ZfrN4CyOgF63gNBhcznnxcuqKUfVdI/qpLUQQ=;
+        b=D/cYdYzU0em78KJwha2Yoq7OQky92ZgaaXn75Cr+GNDb1RkK6jzopvV2gWhjl5i2l3
+         MrBBm7iyL4Lyjk/NriDaXI59EWoSHezex0ZyjgqAZV4RfM9FZoPjiaqneAxmMdsuiUAf
+         WzRnB1t5MTJip2Mplzyxv5w7obGCxaMpwczChMNhP+xJ84wnPxGz61PvgMGrp8fHdQwy
+         n0nJB3EG3ZdQ33Vv2rRNMOFV/ozuET+9eOIZFoaINDS9ihZIE9kTXlE+3J42PTd2++1s
+         QXIKnmv0/jR02Km4eu1VMZ3oKfiMIt/lRc9nYgKMZ/ye16sSgv1ix5fvdqwGj1d1u+7R
+         Dqaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739612384; x=1740217184;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=86egy4ZfrN4CyOgF63gNBhcznnxcuqKUfVdI/qpLUQQ=;
+        b=Oq5zijw+jBytITjMbTHaWChxAuiGhq2iLfv+dR0Lx4XorbiGAbTKpkRNIG5mp3Lfbc
+         RyZXzLdkvRpJH0SUJK28OA3CSCqA2YrygzBnfYUfWcDY2Ud6Y0dh6okhWB7WsVyGtx+i
+         SsqTObqeS7lc7q4Mf7D8PEdxRI+tbazfHb4VykExqhWAWzpcpOLw6kGjpvf/OzYi0HJu
+         nY3k/hdFLWJ9RE+04kKzwajCLTX8eZ4T9o4JuFspseq7A+PJlRwbz0gQAn4jupk0CJRk
+         I5KBfSY75Rz38ii/+wb+hK9WRH0SCVkjftiNoS2syzDkZfSdHKEuwTek2X1qe7vMP0zl
+         uAPw==
+X-Forwarded-Encrypted: i=1; AJvYcCVvx61Q6zOTsEmD7D45drUWFDt45TgENpMqSqWGcqztcEvuWLGnLudYpaFBmgnWhjm4TmdnL1hvX7Fi@vger.kernel.org, AJvYcCX1YYVgWdUC2fx8Nh+xqpVEQ3S5/8AVghy3PhY8tvp3ZK5pwoBKg41EY+nVmdJdEPKAGlMSNOwrvvA0tGUb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6dxBAtDrwGWKfGVawNxWY3f/Ih5lY+WEp7jiVMUn9e7Bg0GxI
+	qdP4EV7JH2cpGOmr3uLlcVu99ir4FtbHXSB9SVWlPX3ABYjc1/E2
+X-Gm-Gg: ASbGncud6SZ4TJNwJGhydolb0/B+iHcGVFffdh2fel4EqpzLtPkKnN9D6r8n9+grZlD
+	+9uXHggRwn7hlsk2IT9y2l3+GZ0GYTxAkfrj5vdJvibJXK+GLmr1UL/aYOjTtpZaaXWjTC4aqY5
+	uXnWUTC3rUZ2QhjiLIwGuMQ21+A6W1mIkxRrykpvDyq7WSYFveiQ0Ww5zKz3IXWmk0kaZJhW6R5
+	3MVSTKQ/+M4Q92unWLw2RnwHvnZq/lDk57NFwbUW0Ohl/ok+Guk2u60GOmFHI+TJZtS20KQ5rHP
+	55LbcLwn4yBWQQp+73gitOIA6qfc++vX4rmnZRZkBlAzCnCdUm96uH7qT28rBQ==
+X-Google-Smtp-Source: AGHT+IENdkHZpBflakq0UhjZWZEzOJw6B5m80Y1ZAs6Zut0H92VjFPqffHpMVosJyAZk5ksaHWsloQ==
+X-Received: by 2002:a17:906:c10f:b0:ab7:97ca:3276 with SMTP id a640c23a62f3a-abb70bad02emr186346866b.25.1739612384203;
+        Sat, 15 Feb 2025 01:39:44 -0800 (PST)
+Received: from hex.my.domain (83.8.115.239.ipv4.supernova.orange.pl. [83.8.115.239])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb7aecd3d5sm69698966b.148.2025.02.15.01.39.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 15 Feb 2025 01:39:43 -0800 (PST)
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH v4 0/9] mfd: bcm590xx: Add support for BCM59054
+Date: Sat, 15 Feb 2025 10:39:35 +0100
+Message-Id: <20250215-bcm59054-v4-0-dbfb2d76a855@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/7] phy: exynos5-usbdrd: subscribe to orientation
- notifier if required
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marek Szyprowski <m.szyprowski@samsung.com>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>,
- kernel-team@android.com, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-References: <20241206-gs101-phy-lanes-orientation-phy-v4-0-f5961268b149@linaro.org>
- <CGME20241206163109eucas1p12aea3a9a6c404cd7c678009ea11aa5b3@eucas1p1.samsung.com>
- <20241206-gs101-phy-lanes-orientation-phy-v4-6-f5961268b149@linaro.org>
- <3c0b77e6-357d-453e-8b63-4757c3231bde@samsung.com>
- <b23342dd-381d-4127-9eee-c8755a0d425d@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <b23342dd-381d-4127-9eee-c8755a0d425d@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANdgsGcC/3XMTQrCMBCG4atI1kZm8tOmrryHuJjGtA3YVhIJS
+ undTQtiEVx+wzzvxKIL3kV23E0suOSjH4c81H7HbEdD67i/5s0ECAUGC17bXlegFSdjoKi0U+g
+ My+/34Br/XFPnS96dj48xvNZywuW6RCSChG8kIQcuNZZNZcCik6e2J3872LFnSySJf1BkqBtSg
+ Eika/qF8gM1oMQNlBnWNVktyKjSlFs4z/MbJ+K+kRIBAAA=
+X-Change-ID: 20240816-bcm59054-a880695e41e8
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Stanislav Jakubek <stano.jakubek@gmail.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ Artur Weber <aweber.kernel@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739612381; l=3425;
+ i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
+ bh=RvFKjUXvMlJHaw4Y9IUcOiSRqQLAk7/bwVL+DP39wkk=;
+ b=88mIlCjjPlj/GIGI1gc1wDt7c3aesuxLI9/WzIx6ZhQQkodOm6fp+3/hlDvA0J0CFno6V9Li+
+ z2v/fs7jNWeCZnG3ayzCjXNdi+iIMiRPn3Mc+koFvwcrIclLwDKqqQs
+X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
+ pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
 
-On 15/02/2025 10:24, Krzysztof Kozlowski wrote:
-> On 14/02/2025 20:30, Marek Szyprowski wrote:
->> On 06.12.2024 17:31, André Draszik wrote:
->>> gs101's SS phy needs to be configured differently based on the
->>> connector orientation, as the SS link can only be established if the
->>> mux is configured correctly.
->>>
->>> The code to handle programming of the mux is in place already, this commit
->>> now adds the missing pieces to subscribe to the Type-C orientation
->>> switch event.
->>>
->>> Note that for this all to work we rely on the USB controller
->>> re-initialising us. It should invoke our .exit() upon cable unplug, and
->>> during cable plug we'll receive the orientation event after which we
->>> expect our .init() to be called.
->>>
->>> Above reinitialisation happens if the DWC3 controller can enter runtime
->>> suspend automatically. For the DWC3 driver, this is an opt-in:
->>>      echo auto > /sys/devices/.../11110000.usb/power/control
->>> Once done, things work as long as the UDC is not bound as otherwise it
->>> stays busy because it doesn't cancel / stop outstanding TRBs. For now
->>> we have to manually unbind the UDC in that case:
->>>       echo "" > sys/kernel/config/usb_gadget/.../UDC
->>>
->>> Note that if the orientation-switch property is missing from the DT,
->>> the code will behave as before this commit (meaning for gs101 it will
->>> work in SS mode in one orientation only). Other platforms are not
->>> affected either way.
->>>
->>> Signed-off-by: André Draszik <andre.draszik@linaro.org>
->>>
->>> ---
->>> v3:
->>> * drop init to -1 of phy_drd->orientation (Vinod)
->>> * avoid #ifdef and switch to normal conditional IS_ENABLED() for
->>>    CONFIG_TYPEC
->>>
->>> v2:
->>> * move #include typec_mux.h from parent patch into this one (Peter)
->>> ---
->>>   drivers/phy/samsung/Kconfig              |  1 +
->>>   drivers/phy/samsung/phy-exynos5-usbdrd.c | 56 ++++++++++++++++++++++++++++++++
->>>   2 files changed, 57 insertions(+)
->>>
->>> diff --git a/drivers/phy/samsung/Kconfig b/drivers/phy/samsung/Kconfig
->>> index f10afa3d7ff5..fc7bd1088576 100644
->>> --- a/drivers/phy/samsung/Kconfig
->>> +++ b/drivers/phy/samsung/Kconfig
->>> @@ -80,6 +80,7 @@ config PHY_EXYNOS5_USBDRD
->>>   	tristate "Exynos5 SoC series USB DRD PHY driver"
->>>   	depends on (ARCH_EXYNOS && OF) || COMPILE_TEST
->>>   	depends on HAS_IOMEM
->>> +	depends on TYPEC || (TYPEC=n && COMPILE_TEST)
->>>   	depends on USB_DWC3_EXYNOS
->>>   	select GENERIC_PHY
->>>   	select MFD_SYSCON
-> 
-> 
-> So that explains why on recent next some of my boards don't boot. I was
-> about to dig over the weekend.
-> 
->>
->> I've just noticed that the above disables Exynos DRD PHY driver in the 
->> default exynos_defconfig for arm 32bit. Enabling CONFIG_TYPEC is 
->> exynos_defconfig probably is the easiest way to fix this. I will send a 
->> patch then.
-> 
-> No, it's just wrong. Nothing here depends on typec and ARMv7 does not
-> have Typec.
-> 
-I'll send a fix for this.
+Add support for the BCM59054 MFD to the bcm590xx driver and fix a
+couple of small bugs in it that also affected the already supported
+BCM59056.
+
+While we're at it - convert the devicetree bindings to YAML format
+and drop the bcm59056 DTS in favor of describing the PMU in users'
+DTS files, as is done for most other MFDs.
+
+The BCM59054 is fairly similar to the BCM59056, with the primary
+difference being the different number and layout of regulators.
+It is primarily used in devices using the BCM21664 and BCM23550
+chipsets.
+
+This patchset has been tested on a Samsung Galaxy Grand Neo
+(baffinlite rev02; DTS not in mainline yet) with a BCM59054 PMIC.
+Testing on a BCM59056 would be appreciated.
+
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+---
+Changes in v4:
+- Fix yamllint warnings in DT bindings
+- Address miscelaneous review comments related to DT bindings
+  - Note that I did not end up moving the regulator refs from
+    allOf compatible matches; I explained my reasoning in [1].
+    [1] https://lore.kernel.org/lkml/ab853605-859d-44c6-8cbd-44391cd677e6@gmail.com/
+- Add PMU ID/revision parsing to MFD driver
+- Fix instances of regulator data not matching vendor kernel for
+  BCM59054
+- Use different voltage table for BCM59054 VSR reg based on PMU
+  revision
+- Link to v3: https://lore.kernel.org/r/20250131-bcm59054-v3-0-bbac52a84787@gmail.com
+
+Changes in v3:
+- Split out regulator DT bindings into separate YAML
+- Use tables of regulator info instead of get_XXX_register, reg_is_XXX
+  functions
+- Drop "regulator: bcm590xx: Add proper handling for PMMODE registers";
+  it adds unnecessary noise to the series and will be submitted separately
+- Link to v2: https://lore.kernel.org/r/20231030-bcm59054-v2-0-5fa4011aa5ba@gmail.com
+
+Changes in v2:
+- Fixed BCM59054 ID being passed to BCM59056 function in the
+  regulator driver
+- Dropped linux-rpi-kernel from the CC list
+- Link to v1: https://lore.kernel.org/r/20231030-bcm59054-v1-0-3517f980c1e3@gmail.com
+
+---
+Artur Weber (9):
+      dt-bindings: mfd: brcm,bcm59056: Convert to YAML
+      dt-bindings: mfd: brcm,bcm59056: Add compatible for BCM59054
+      ARM: dts: Drop DTS for BCM59056 PMU
+      mfd: bcm590xx: Add support for multiple device types + BCM59054 compatible
+      mfd: bcm590xx: Add PMU ID/revision parsing function
+      regulator: bcm590xx: Use dev_err_probe for regulator register error
+      regulator: bcm590xx: Store regulator descriptions in table
+      regulator: bcm590xx: Rename BCM59056-specific data as such
+      regulator: bcm590xx: Add support for BCM59054 regulators
+
+ .../devicetree/bindings/mfd/brcm,bcm59056.txt      |   39 -
+ .../devicetree/bindings/mfd/brcm,bcm590xx.yaml     |   76 ++
+ .../bindings/regulator/brcm,bcm59054.yaml          |   56 +
+ .../bindings/regulator/brcm,bcm59056.yaml          |   51 +
+ arch/arm/boot/dts/broadcom/bcm28155-ap.dts         |   68 +-
+ arch/arm/boot/dts/broadcom/bcm59056.dtsi           |   91 --
+ drivers/mfd/bcm590xx.c                             |   86 +-
+ drivers/regulator/bcm590xx-regulator.c             | 1294 ++++++++++++++++----
+ include/linux/mfd/bcm590xx.h                       |   22 +
+ 9 files changed, 1377 insertions(+), 406 deletions(-)
+---
+base-commit: 0c3836482481200ead7b416ca80c68a29cfdaabd
+change-id: 20240816-bcm59054-a880695e41e8
 
 Best regards,
-Krzysztof
+-- 
+Artur Weber <aweber.kernel@gmail.com>
+
 
