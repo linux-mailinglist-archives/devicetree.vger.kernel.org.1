@@ -1,144 +1,129 @@
-Return-Path: <devicetree+bounces-146936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-146937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51549A36D15
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 10:44:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D444A36D19
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 10:46:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 940E2171CBC
-	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 09:44:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD9B07A2395
+	for <lists+devicetree@lfdr.de>; Sat, 15 Feb 2025 09:46:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58F021A239B;
-	Sat, 15 Feb 2025 09:44:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA26619415E;
+	Sat, 15 Feb 2025 09:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="lvUyxxqz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CFJ5ddGr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9B81922ED;
-	Sat, 15 Feb 2025 09:44:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE98519049B;
+	Sat, 15 Feb 2025 09:46:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739612662; cv=none; b=cc65FQrg6T6Oko4t785cZBDfkPaXmyFNIHvIue3K0v/MAfWtbVkFcWCmGEtnOKMkOtmBJZkUy9tVAKcfZrZCr9OiqXzO3lcS7571AugIZHsXZl8H5pQWpFTfnFtNpk+3W9UUlkAYlo5ZKWWOP0vUY6wRnq9gzC/6soWC/3GX8TY=
+	t=1739612810; cv=none; b=DjqXx3imFZ7VZJAwKYdWcyTLn86RgENsWwHB+6IdiKQsZ+afzKMvMNUkBtthmnyh5T61MQvulHFAgip2s8akvgzg6SmWh3S6nKt+qYTsHw6LxUEvj/47anlwo4cmaGhxrpygyuZSyqPlesOvAO/iXNIY1LrJBmmqk/Rc1vbNtDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739612662; c=relaxed/simple;
-	bh=39W915W90wBjOzdIVOt7oYW/Ka3WhSbVWJjph/J/k2o=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TAwI3/XLZx5IIh83K86MUAUKHBslOfh6r8TySng6hhbtE2bo3sh/r8vg4osuFi2ekRxkMFmlC9/965bNPaAg1NTN8TRXVRNUC+1bD0FsIjA2ORH8WpB+U5BLfVm/UL5WIZ1scqjka84iTs4iqtcoDJawvJql9bUgoZKkICzDeJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=lvUyxxqz; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 6ae1a852eb8111efb8f9918b5fc74e19-20250215
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=1XRwV3v0Pr5UX8e3+ENacWcRYH9cJyzTBU7O5dVKwSQ=;
-	b=lvUyxxqzUNF5OQ2JPAvIfyScN8AnxyZfaImVuHKTe8xQ7xxXV62akasdkmVhkpm2PEVD4SoQDseQsL5FglUfHHde9sKrHSgi3F2121Du8j6x7zG/LFb5nsT9iivcQkPcqWgGkbAQvvW3PomCSe6TfILt520p0M/nA9VWnLWrMYA=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:b910a98f-351b-4813-acaa-9ec8d023c7e2,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:c9f9cb24-96bd-4ac5-8f2e-15aa1ef9defa,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 6ae1a852eb8111efb8f9918b5fc74e19-20250215
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-	(envelope-from <chunfeng.yun@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1907960357; Sat, 15 Feb 2025 17:44:14 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Sat, 15 Feb 2025 17:44:13 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Sat, 15 Feb 2025 17:44:13 +0800
-From: Chunfeng Yun <chunfeng.yun@mediatek.com>
-To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>
-CC: Chunfeng Yun <chunfeng.yun@mediatek.com>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] phy: mediatek: xsphy: add support to set disconnect threshold
-Date: Sat, 15 Feb 2025 17:44:10 +0800
-Message-ID: <20250215094410.547-2-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250215094410.547-1-chunfeng.yun@mediatek.com>
-References: <20250215094410.547-1-chunfeng.yun@mediatek.com>
+	s=arc-20240116; t=1739612810; c=relaxed/simple;
+	bh=JaoDCVqlef7TKkto6nX2vIsKnIPc62DALi/qmnmAW1o=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ImMi9RD8c6aLFNKMYPqtTUZGvDAItS6X0XhpEs2nPCpQP9w6iD7bkwJXQJoVau5hm2Ns9shOjkygyaXpSfnGOLBXvUyypTAtuJ/qPDATSQVa+gOasva0O+YW/dkpngIUey1wyo6exeI8h0Gc2zVPlFlz3ufNy8jrLrE7Iv3vg9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CFJ5ddGr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 18F2BC4CEDF;
+	Sat, 15 Feb 2025 09:46:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739612810;
+	bh=JaoDCVqlef7TKkto6nX2vIsKnIPc62DALi/qmnmAW1o=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=CFJ5ddGra9P0ybP1ZswNAj7bp8nNO4qrNrmggV1Vs20hsu5fNA9UtTGvnSTH2htcb
+	 NIVOgVBJttGUlkPgbdQBguk+tTdcep6BP34ciTQD09F949Vs7X7P3yfNK+VSYUvqks
+	 yATK6zVfUywbxPi99pg1f0jJHwSyYwEjBVhFBe60dAME/nnQTPkMYvGNFYhsJ1VYoB
+	 aQIfLh0FYfQkUDGjJRMuX4kYHyLnFLfq3q4+gn/rw+2KjXiyW29Js0NwhwwYFCvuDA
+	 +Es1wMKQTsYDjkVPq668wsBlQVy6iRMd63SUwqle0Sbbp3dQ8ED9tjnD17sO2kSQGd
+	 LU4GHUajbVKJw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F266BC021A0;
+	Sat, 15 Feb 2025 09:46:49 +0000 (UTC)
+From: Maud Spierings via B4 Relay <devnull+maud_spierings.hotmail.com@kernel.org>
+Date: Sat, 15 Feb 2025 10:46:47 +0100
+Subject: [PATCH] riscv: dts: starfive: fml13v01: increase eMMC bus speed
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250215-fml13v01_emmc_speed-v1-1-e3bd224ae0e8@hotmail.com>
+X-B4-Tracking: v=1; b=H4sIAIZisGcC/x3MTQqAIBBA4avErBMc0/6uEhGVUw1kiUIE0d2Tl
+ t/ivQciBaYIbfZAoIsjn0cC5hnM23isJNgmg5LKSIVGLG7H4pI4kHPzED2RFWVVo5psM2mpIZU
+ +0ML3f+369/0AZumOPWUAAAA=
+X-Change-ID: 20250215-fml13v01_emmc_speed-67812bd9b404
+To: Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Maud Spierings <maud_spierings@hotmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739612809; l=1547;
+ i=maud_spierings@hotmail.com; s=20241110; h=from:subject:message-id;
+ bh=Qt3zVrtNxWWmhv3zol8ojyDROGvggaowhiJ4UV1nnpE=;
+ b=ABsIVsrA7IzSOMBc4BWZIT3O7KPYMp7Yc8IZ6p9dAl9a6kVX4JD1KwgZJwIhwFCZ5hE8xVmRr
+ dSiZK0HOv4SBEbNstLQNVK3+ycPP0TrdD42NBGv3rCQEFrVCIdDw6Ni
+X-Developer-Key: i=maud_spierings@hotmail.com; a=ed25519;
+ pk=CeFKVnZvRfX2QjB1DpdiAe2N+MEjwLEB9Yhx/OAcxRc=
+X-Endpoint-Received: by B4 Relay for maud_spierings@hotmail.com/20241110
+ with auth_id=273
+X-Original-From: Maud Spierings <maud_spierings@hotmail.com>
+Reply-To: maud_spierings@hotmail.com
 
-Add a property to tune usb2 phy's disconnect threshold.
+From: Maud Spierings <maud_spierings@hotmail.com>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+The assigned clock speed of 50 MHz is and max-frequency of 100MHz are
+limitting this interface which is SDIO 5.0 capable. Sadly at 200MHz it
+fails to mount an eMMC drive, 150MHz (really 132 MHz) is the highest it
+was able to get.
+
+This improves the seq read/write performance by 2x~
+
+Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
 ---
-v2: Add Reviewed by Angelo
----
- drivers/phy/mediatek/phy-mtk-xsphy.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+I put this in this specific dts instead of the common one as I cannot
+test if other boards are also able to handle these speeds.
 
-diff --git a/drivers/phy/mediatek/phy-mtk-xsphy.c b/drivers/phy/mediatek/phy-mtk-xsphy.c
-index 7c248f5cfca5..718ed8f17c2d 100644
---- a/drivers/phy/mediatek/phy-mtk-xsphy.c
-+++ b/drivers/phy/mediatek/phy-mtk-xsphy.c
-@@ -59,6 +59,7 @@
- #define XSP_USBPHYACR6		((SSUSB_SIFSLV_U2PHY_COM) + 0x018)
- #define P2A6_RG_BC11_SW_EN	BIT(23)
- #define P2A6_RG_OTG_VBUSCMP_EN	BIT(20)
-+#define PA6_RG_U2_DISCTH	GENMASK(7, 4)
- 
- #define XSP_U2PHYDTM1		((SSUSB_SIFSLV_U2PHY_COM) + 0x06C)
- #define P2D_FORCE_IDDIG		BIT(9)
-@@ -95,6 +96,7 @@ struct xsphy_instance {
- 	int eye_src;
- 	int eye_vrt;
- 	int eye_term;
-+	int discth;
+This patch depends on [1]
+
+[1]: https://lore.kernel.org/all/20250207093618.126636-1-sandie.cao@deepcomputing.io/
+---
+ arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+index 8d9ce8b69a71be78ca57618ae842c9f415648450..1f4bac9f89463a6af844b8f1743bdfa659e612ab 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
++++ b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+@@ -11,6 +11,11 @@ / {
+ 	compatible = "deepcomputing,fml13v01", "starfive,jh7110";
  };
  
- struct mtk_xsphy {
-@@ -244,9 +246,12 @@ static void phy_parse_property(struct mtk_xsphy *xsphy,
- 					 &inst->eye_vrt);
- 		device_property_read_u32(dev, "mediatek,eye-term",
- 					 &inst->eye_term);
--		dev_dbg(dev, "intr:%d, src:%d, vrt:%d, term:%d\n",
-+		device_property_read_u32(dev, "mediatek,discth",
-+					 &inst->discth);
-+		dev_dbg(dev, "intr:%d, src:%d, vrt:%d, term:%d, discth:%d\n",
- 			inst->efuse_intr, inst->eye_src,
--			inst->eye_vrt, inst->eye_term);
-+			inst->eye_vrt, inst->eye_term,
-+			inst->discth);
- 		break;
- 	case PHY_TYPE_USB3:
- 		device_property_read_u32(dev, "mediatek,efuse-intr",
-@@ -285,6 +290,9 @@ static void u2_phy_props_set(struct mtk_xsphy *xsphy,
- 	if (inst->eye_term)
- 		mtk_phy_update_field(pbase + XSP_USBPHYACR1, P2A1_RG_TERM_SEL,
- 				     inst->eye_term);
-+	if (inst->discth)
-+		mtk_phy_update_field(pbase + XSP_USBPHYACR6, PA6_RG_U2_DISCTH,
-+				     inst->discth);
- }
- 
- static void u3_phy_props_set(struct mtk_xsphy *xsphy,
++&mmc0 {
++	max-frequency = <200000000>;
++	assigned-clock-rates = <150000000>;
++};
++
+ &pcie1 {
+ 	perst-gpios = <&sysgpio 21 GPIO_ACTIVE_LOW>;
+ 	phys = <&pciephy1>;
+
+---
+base-commit: 0bc08ec1ff5a32449d2b04704173dbf3ebd6b014
+change-id: 20250215-fml13v01_emmc_speed-67812bd9b404
+
+Best regards,
 -- 
-2.46.0
+Maud Spierings <maud_spierings@hotmail.com>
+
 
 
