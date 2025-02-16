@@ -1,292 +1,194 @@
-Return-Path: <devicetree+bounces-147068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B83A2A372E6
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 09:59:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A4BFA37301
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 10:15:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B14367A3737
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 08:58:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61EE4169010
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 09:15:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E8E117B500;
-	Sun, 16 Feb 2025 08:59:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82FED155A2F;
+	Sun, 16 Feb 2025 09:15:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="NCFaN9bd";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="DItXBZuK"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="v15MyCK5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b6-smtp.messagingengine.com (fhigh-b6-smtp.messagingengine.com [202.12.124.157])
+Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F4716EB4C;
-	Sun, 16 Feb 2025 08:59:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.157
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3A517C208
+	for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 09:15:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739696350; cv=none; b=BgzKkVFelS/8nEUd81lkn4ArUI8Y9gwNoJzydhgBJdB/j8Dn2O8eAeBjujWZUw3vApHFJlzW+EmOm4hF55SERu8jrhOKt+LymAx26orscFOOLvh/ic0BoPPHPt89wg2sNlWNaPwg5bpoBK/M7vb/RexZX4ZY1YZYzGa7qykEEg8=
+	t=1739697309; cv=none; b=Ttg78o+c9ZJRwf5tyi9F717FJjUlNZxNAQf1r7CqxjjyTOTLv7PV3dcPoefj2aADVFfa/6Rf6T3hFkBpH2xfaRlxaqpf05P6XL7Y+qpMvEwQEi4ZGNAq07KzG36Ci47tIDbgx5xuhyRcLgj3X2dzY9Pf8YvK3RTqRI1+2sMwCJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739696350; c=relaxed/simple;
-	bh=Vv7smDg2V6xpUcpZD3rK1rxKQ85e7SHmDlLGEuDNFd4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CIcplerpzZAKV9+AijzV/OFLqNUc5WHQTpFsJMECv4DsybXKPc583i4fY4adOz3K7oNWN11TM8+pgqpXh9KHGr2VomV09TFgmF7ICubNH3xcqxxxd5pDXDmiWoKVnYHX3q514MEMK2qWeoom3YpQLhc75/+s1tdu2LDi3Z3gTS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=NCFaN9bd; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=DItXBZuK; arc=none smtp.client-ip=202.12.124.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-06.internal (phl-compute-06.phl.internal [10.202.2.46])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id B07D825400CE;
-	Sun, 16 Feb 2025 03:59:07 -0500 (EST)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-06.internal (MEProxy); Sun, 16 Feb 2025 03:59:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1739696347; x=
-	1739782747; bh=BAR8VoU78pWZnpFbmMbAmvTHr51g90Cutu+w7Df6Rt8=; b=N
-	CFaN9bdrl3RkKNu1oTzS15oTvayfhX1GQhnSlGZFYVMNFNWDKYXhIrH+NAyYtimo
-	IWRBphLqCX1iFPj0+Hqk18NZCHc7QtkoISNAWlUH0eNYcHRSdVwszVfeMqSGXyC4
-	/iESfac7l2h0OhRLRigXPZATvLlNlWMeDDrUBgWa2Ou0Vh9p3u/T0p/l5K1P23ZJ
-	ofmAWc8zwczWur16+Mpe1iPv7wBhmW//1ljdnfN6TKQjg5K0rxsItXsL9kyQe7gm
-	jXx0zU78ViKNSRkdsGhFVNmT8Ikg1sGliiqztI5V/y3bUwZEz4yMNDhfz218ZVPH
-	NL5WuxUG6jvlXm5rgxPyw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; t=1739696347; x=1739782747; bh=B
-	AR8VoU78pWZnpFbmMbAmvTHr51g90Cutu+w7Df6Rt8=; b=DItXBZuKq6FSF1NTz
-	tF1/sKJlcRRF7tL8QKZo1SnXL1J2+glrZo9HWQSItfKkfg6FR2Q8BDuv4Io7/0Z/
-	XVtpy7Kiy9mbopkolVXH+EVaBnSME2ysalmUsgqB5ervu3gzUc3qFCAd3WSlzNO/
-	3OTAnAUTbvg+ZzS4d8dBxEcPG7p0lS+palcuk/8HyIZLVr0u9zW5HLgZTCJ+zQL+
-	iYshcdzihnvEg8FhvtnV7izJNVo6Ok3YdaY29gy7sJw2iOUMgiE1sZmTIykFwntu
-	SJzexzhOQmcDTDXIG+kLJn8va4FWrNZ6DTQN6vNNoDFCTcmOgyX4X6uJJS1rqgb0
-	GMNOA==
-X-ME-Sender: <xms:26ixZzeHzzelJ_elSeJpkiSYqR61A6AtxSAv6rXlNGtwN8z1Aj76jA>
-    <xme:26ixZ5MYgteNLt6QtmC_w60QoYxuFwfjM_xS9psPS4irrW4Tq2O7lzw33oyoY-i9-
-    l3L1Ytmr4f-X4QgBw>
-X-ME-Received: <xmr:26ixZ8jgXL2rzsGE_qu1722jR3-9n1K0VaJFXj7F9PQDwtd_wP-0Ap4LS0sT-qHmGEBtGwzeSWawp0LSdCwX3W9aEWnyufkp-t1XD8icWfd7>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehhedtgecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddt
-    necuhfhrohhmpefthigrnhcuhggrlhhklhhinhcuoehrhigrnhesthgvshhtthhorghsth
-    drtghomheqnecuggftrfgrthhtvghrnhepffehieffgedtgfffjeetveegfeekleeileek
-    veeuteffteetudffveegieeiheetnecuvehluhhsthgvrhfuihiivgepfeenucfrrghrrg
-    hmpehmrghilhhfrhhomheprhihrghnsehtvghsthhtohgrshhtrdgtohhmpdhnsggprhgt
-    phhtthhopedvhedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepmhhrihhprghrug
-    eskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepfigvnhhssegtshhivgdrohhrghdprhgt
-    phhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrd
-    gtohhmpdhrtghpthhtohepthiiihhmmhgvrhhmrghnnhesshhushgvrdguvgdprhgtphht
-    thhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepuggrnhhivghlse
-    hffhiflhhlrdgthhdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtgesghhmrghi
-    lhdrtghomhdprhgtphhtthhopehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgpdhrtg
-    hpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:26ixZ0_Rwv-ajuG0HvhYDBqBfS-ACNJSwh3v-va5kGS2tAE6UDkHkg>
-    <xmx:26ixZ_vcF6F4stL1wtxYjAVXFm0-ZlgfJnsA9IPUHQ6RhspFU9WhWQ>
-    <xmx:26ixZzE1_emZXnjG4vy7yIeb0teoI5TXf0SEfmDUr_21WOuNGadloA>
-    <xmx:26ixZ2M9YxhCyPGuInLkpICoqeMvuFOAJvElfAXtFBtOvXBJVqrC_Q>
-    <xmx:26ixZ70qCGSPNmLmsL4R00W3P4y5N6K6KBxwfCyJMPy0EMDnuzX7QwIP>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 16 Feb 2025 03:59:00 -0500 (EST)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Maxime Ripard <mripard@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: Andre Przywara <andre.przywara@arm.com>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	Hironori KIKUCHI <kikuchan98@gmail.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Ryan Walklin <ryan@testtoast.com>,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH v6 27/27] drm: sun4i: de33: csc: add Display Engine 3.3 (DE33) support
-Date: Sun, 16 Feb 2025 21:50:58 +1300
-Message-ID: <20250216085432.6373-29-ryan@testtoast.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250216085432.6373-2-ryan@testtoast.com>
-References: <20250216085432.6373-2-ryan@testtoast.com>
+	s=arc-20240116; t=1739697309; c=relaxed/simple;
+	bh=PxYmHzX6Vea9psEbnwUgV8Ka+0cOnKnaPVob6sHO1F8=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=fY6qzNlAfNQu6Nq3S7zwosEmnKtWbxaT582+m2/TM4Qyt50BXpbVU2WemqGdUx0HafztP4kDzNLXrrpSm7ZaMp+pyklQJlDrn95tpuUkXC5N2MF8NL9rofFcpfZwptb5e6lN27PBK5vXBiafs4BcJlIIMp28a6WFld6jL0BFuxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=v15MyCK5; arc=none smtp.client-ip=91.218.175.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1739697294;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=rt5BxxZTV58xNDbNgF1327IOm+eImblrMkl1NBTJjbU=;
+	b=v15MyCK5VSdUac9qEUd85mvpHjw/ERNDvC8jyAnhFW4zew4w21adQpj3/P92SrQYd1kn0y
+	jnOKakNZqFiXmeBcBRE7fS/5f2ziYRGsaYJufmuoGYHaVoJegCLYDNOv5aVFXunU907H2k
+	VdIhzB7Vb4+DF8Jqghfrdfe5QQMAAQttkA/yUHZkhUEoNd2mlrynfR/tIlZR1L2SyKEo7u
+	ftai2xalUGo5519NOkkwyeW5Fs+UMGAYa7woGgZkts2cRZk7d1RLfVzbGymyE/qzpkhIBy
+	xkCS3BIawEmDQuuMVLIGDtcdjHDh/LP54/ZWiOiN39FPk506Bl9PEi9P9ZyVPA==
+Content-Type: multipart/signed;
+ boundary=d97e42a6c6353b7a4f9cd5bcce86d935721f1028ac7c8ebefddaa40ab478;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Sun, 16 Feb 2025 10:14:45 +0100
+Message-Id: <D7TR7VP9UPQA.2U5BL328HNSXU@cknow.org>
+Cc: <linux-arm-kernel@lists.infradead.org>,
+ <linux-samsung-soc@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/4] dt-bindings: phy: add
+ samsung,exynos2200-snps-eusb2-phy schema file
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Ivaylo Ivanov" <ivo.ivanov.ivanov1@gmail.com>, "Vinod Koul"
+ <vkoul@kernel.org>, "Kishon Vijay Abraham I" <kishon@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Alim Akhtar"
+ <alim.akhtar@samsung.com>, "Philipp Zabel" <p.zabel@pengutronix.de>
+References: <20250215122409.162810-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250215122409.162810-2-ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20250215122409.162810-2-ivo.ivanov.ivanov1@gmail.com>
+X-Migadu-Flow: FLOW_OUT
 
-Like earlier DE versions, the DE33 has a CSC (Color Space Correction)
-module. which provides color space conversion between BT2020/BT709, and
-dynamic range conversion between SDR/ST2084/HLG.
+--d97e42a6c6353b7a4f9cd5bcce86d935721f1028ac7c8ebefddaa40ab478
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Add support for the DE33.
+On Sat Feb 15, 2025 at 1:24 PM CET, Ivaylo Ivanov wrote:
+> The Exynos2200 SoC uses Synopsis eUSB2 PHY. Add a dt-binding schema
+> for the new driver.
+>
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> ---
+>  .../samsung,exynos2200-snps-eusb2-phy.yaml    | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/samsung,exynos2=
+200-snps-eusb2-phy.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/phy/samsung,exynos2200-snp=
+s-eusb2-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,exynos2200=
+-snps-eusb2-phy.yaml
+> new file mode 100644
+> index 000000000..d69a10f00
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/samsung,exynos2200-snps-eusb2=
+-phy.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/samsung,exynos2200-snps-eusb2-phy=
+.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung SNPS eUSB2 phy controller
+> +
+> +maintainers:
+> +  - Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> +
+> +description:
+> +  eUSB2 controller supports LS/FS/HS usb connectivity on Exynos chipsets=
+.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - samsung,exynos2200-snps-eusb2-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  clocks:
+> +    items:
+> +      - description: Reference clock
+> +      - description: APB clock
+> +      - description: Control PCLK
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ref
+> +      - const: apb
+> +      - const: ctrl
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description:
+> +      Phandle to USBCON phy
+> +
+> +  vdd-supply:
+> +    description:
+> +      Phandle to 0.88V regulator supply
+> +
+> +  vdda12-supply:
+> +    description:
+> +      Phandle to 1.2V regulator supply
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#phy-cells"
+> +  - clocks
+> +  - clock-names
+> +  - vdd-supply
+> +  - vdda12-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/samsung,exynos2200.h>
+> +
+> +    usb_hsphy: phy@10ab0000 {
+> +        compatible =3D "samsung,exynos2200-snps-eusb2-phy";
+> +        reg =3D <0 0x10ab0000 0 0x10000>;
+> +        clocks =3D <&cmu_hsi0 CLK_MOUT_HSI0_USB32DRD>,
+> +                 <&cmu_hsi0 CLK_MOUT_HSI0_NOC>,
+> +                 <&cmu_hsi0 CLK_DOUT_DIV_CLK_HSI0_EUSB>;
+> +        clock-names =3D "ref", "apb", "ctrl";
+> +        #phy-cells =3D <0>;
+> +        phys =3D <&usbcon_phy>;
+> +    };
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-Tested-by: Philippe Simons <simons.philippe@gmail.com>
-Tested-by: Chris Morgan <macromorgan@hotmail.com>
+Shouldn't the example have at least all the *required* properties?
+Same for patch 2 of this series.
 
---
-Changelog v5..v6:
-- Amend format_type to sun8i_format_type
-- Add Tested-by: tags
----
- drivers/gpu/drm/sun4i/sun8i_csc.c | 98 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/sun4i/sun8i_csc.h |  3 +
- 2 files changed, 101 insertions(+)
+Cheers,
+  Diederik
 
-diff --git a/drivers/gpu/drm/sun4i/sun8i_csc.c b/drivers/gpu/drm/sun4i/sun8i_csc.c
-index 53b00fbf6f332..60accc0773dea 100644
---- a/drivers/gpu/drm/sun4i/sun8i_csc.c
-+++ b/drivers/gpu/drm/sun4i/sun8i_csc.c
-@@ -238,6 +238,14 @@ static const u32 yuv2yuv_de3[2][3][3][12] = {
- 	},
- };
- 
-+static u32 sun8i_csc_base(struct sun8i_mixer *mixer, int layer)
-+{
-+	if (mixer->cfg->de_type == sun8i_mixer_de33)
-+		return sun8i_channel_base(mixer, layer) - 0x800;
-+	else
-+		return ccsc_base[mixer->cfg->ccsc][layer];
-+}
-+
- static void sun8i_csc_setup(struct regmap *map, u32 base,
- 			    enum sun8i_format_type fmt_type,
- 			    enum drm_color_encoding encoding,
-@@ -345,6 +353,92 @@ static void sun8i_de3_ccsc_setup(struct sun8i_mixer *mixer, int layer,
- 			   mask, val);
- }
- 
-+/* extract constant from high word and invert sign if necessary */
-+static u32 sun8i_de33_ccsc_get_constant(u32 value)
-+{
-+	value >>= 16;
-+
-+	if (value & BIT(15))
-+		return 0x400 - (value & 0x3ff);
-+
-+	return value;
-+}
-+
-+static void sun8i_de33_convert_table(const u32 *src, u32 *dst)
-+{
-+	dst[0] = sun8i_de33_ccsc_get_constant(src[3]);
-+	dst[1] = sun8i_de33_ccsc_get_constant(src[7]);
-+	dst[2] = sun8i_de33_ccsc_get_constant(src[11]);
-+	memcpy(&dst[3], src, sizeof(u32) * 12);
-+	dst[6] &= 0xffff;
-+	dst[10] &= 0xffff;
-+	dst[14] &= 0xffff;
-+}
-+
-+static void sun8i_de33_ccsc_setup(struct sun8i_mixer *mixer, int layer,
-+				  enum sun8i_format_type fmt_type,
-+				  enum drm_color_encoding encoding,
-+				  enum drm_color_range range)
-+{
-+	u32 addr, val = 0, base, csc[15];
-+	struct sunxi_engine *engine;
-+	struct regmap *map;
-+	const u32 *table;
-+	int i;
-+	struct sun8i_color_model model;
-+
-+	table = yuv2rgb_de3[range][encoding];
-+	base = sun8i_csc_base(mixer, layer);
-+	model = mixer->color_model;
-+	engine = &mixer->engine;
-+	map = engine->regs;
-+
-+	switch (fmt_type) {
-+	case FORMAT_TYPE_RGB:
-+		if (mixer->color_model.format == MEDIA_BUS_FMT_RGB888_1X24)
-+			break;
-+		val = SUN8I_CSC_CTRL_EN;
-+		sun8i_de33_convert_table(rgb2yuv_de3[mixer->color_model.encoding], csc);
-+		regmap_bulk_write(map, SUN50I_CSC_COEFF(base, 0), csc, 15);
-+		break;
-+	case FORMAT_TYPE_YUV:
-+		table = sun8i_csc_get_de3_yuv_table(encoding, range,
-+						    model.format,
-+						    model.encoding);
-+		if (!table)
-+			break;
-+		val = SUN8I_CSC_CTRL_EN;
-+		sun8i_de33_convert_table(table, csc);
-+		regmap_bulk_write(map, SUN50I_CSC_COEFF(base, 0), csc, 15);
-+		break;
-+	case FORMAT_TYPE_YVU:
-+		table = sun8i_csc_get_de3_yuv_table(encoding, range,
-+						    model.format,
-+						    model.encoding);
-+		if (!table)
-+			table = yuv2yuv_de3[range][encoding][encoding];
-+		val = SUN8I_CSC_CTRL_EN;
-+		sun8i_de33_convert_table(table, csc);
-+		for (i = 0; i < 15; i++) {
-+			addr = SUN50I_CSC_COEFF(base, i);
-+			if (i > 3) {
-+				if (((i - 3) & 3) == 1)
-+					addr = SUN50I_CSC_COEFF(base, i + 1);
-+				else if (((i - 3) & 3) == 2)
-+					addr = SUN50I_CSC_COEFF(base, i - 1);
-+			}
-+			regmap_write(map, addr, csc[i]);
-+		}
-+		break;
-+	default:
-+		val = 0;
-+		DRM_WARN("Wrong CSC mode specified.\n");
-+		return;
-+	}
-+
-+	regmap_write(map, SUN8I_CSC_CTRL(base), val);
-+}
-+
- void sun8i_csc_set_ccsc(struct sun8i_mixer *mixer, int layer,
- 			enum sun8i_format_type fmt_type,
- 			enum drm_color_encoding encoding,
-@@ -356,6 +450,10 @@ void sun8i_csc_set_ccsc(struct sun8i_mixer *mixer, int layer,
- 		sun8i_de3_ccsc_setup(mixer, layer,
- 				     fmt_type, encoding, range);
- 		return;
-+	} else if (mixer->cfg->de_type == sun8i_mixer_de33) {
-+		sun8i_de33_ccsc_setup(mixer, layer, fmt_type,
-+				      encoding, range);
-+		return;
- 	}
- 
- 	if (layer < mixer->cfg->vi_num) {
-diff --git a/drivers/gpu/drm/sun4i/sun8i_csc.h b/drivers/gpu/drm/sun4i/sun8i_csc.h
-index 9b63c92782f56..4a06fc43de2d0 100644
---- a/drivers/gpu/drm/sun4i/sun8i_csc.h
-+++ b/drivers/gpu/drm/sun4i/sun8i_csc.h
-@@ -20,6 +20,9 @@ struct sun8i_mixer;
- #define SUN8I_CSC_CTRL(base)		((base) + 0x0)
- #define SUN8I_CSC_COEFF(base, i)	((base) + 0x10 + 4 * (i))
- 
-+#define SUN50I_CSC_COEFF(base, i)	((base) + 0x04 + 4 * (i))
-+#define SUN50I_CSC_ALPHA(base)		((base) + 0x40)
-+
- #define SUN8I_CSC_CTRL_EN		BIT(0)
- 
- enum sun8i_format_type {
--- 
-2.48.1
 
+--d97e42a6c6353b7a4f9cd5bcce86d935721f1028ac7c8ebefddaa40ab478
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZ7GshwAKCRDXblvOeH7b
+bkU8AQCibICp1eXeMpoYosoeOHqF70rWCWBxmLXFVyJRfJNcqAEAjc2hyFVdJERG
+U1ReV+OtGUBaTo1Ha+wF3AZwDhfJlwE=
+=3NNk
+-----END PGP SIGNATURE-----
+
+--d97e42a6c6353b7a4f9cd5bcce86d935721f1028ac7c8ebefddaa40ab478--
 
