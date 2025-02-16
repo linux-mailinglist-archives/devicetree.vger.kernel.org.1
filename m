@@ -1,195 +1,222 @@
-Return-Path: <devicetree+bounces-147086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99568A373AA
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 10:51:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31603A373AF
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 10:55:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C081F7A2D01
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 09:50:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D20B7A2F3A
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 09:54:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE96C189916;
-	Sun, 16 Feb 2025 09:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B77D189B9C;
+	Sun, 16 Feb 2025 09:55:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="isANc/Px"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cFVxLyce"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C2F290F;
-	Sun, 16 Feb 2025 09:51:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1383A290F;
+	Sun, 16 Feb 2025 09:55:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739699473; cv=none; b=QVab+BfsCmX6Wz/ir0LYf188gzM7ul1c+lrrpszh+Y1Si/XlKuWWhXIINxEsA470XcqbowV4scPhFJ9qUTNAWgIHIVQH2ynzkTzUVdx57lTTNYJnpDQ3M8ae6QHup4BU4cuZJUKurm8rIUPJEWYjju8fEFcQ7OtYfifA4EI3dNw=
+	t=1739699726; cv=none; b=FMQmphnCbX3wlf2WI/lGYZX1HsRe2yqr6FUICHcbMGbfubCw5wrxhalu34TXP39tWvkKMMPzpGZE1cxrgWZwc0fVqkBqXOOcsUXKnwGcxPQlxLAWK0UXMBY4tRGKD5bmiSLBXTyyMqjC7Z4ABUa4cRY29N6RzEL7V33pdFI5Xd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739699473; c=relaxed/simple;
-	bh=yISe520NaURNs4pNJO6Yn+iblvFIFY4wu1aWR8VoVSk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GRfSxY7IIY0YcFoo1Eh1ng5yk0v3jsFM1GvCC9xjLZA8oWMiJtEXJTnciwKxfKYKW3T9ftERy+SUYpZLqheNVSONmNODUji61DkSAjElV/o+eBAer7/RHNgxwRDPagvPg/IBYxWqD4hEZULhenDCy4Jc7m1f+fFZAwjQlenLc+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=isANc/Px; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4396e9ee133so5128435e9.0;
-        Sun, 16 Feb 2025 01:51:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739699470; x=1740304270; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AKkwKTyg9w786XwSKoYuBYLKS23VVWg1TYbTDYTWNCg=;
-        b=isANc/Pxs7mDe2j4V/m4P0bzqGRvUfcp2NFgkudGn9zRUpHOolewz8qOmknoFPuLq1
-         ZwOYFShNRv3a7j+jAR5DU4fgv6CrFPHbIc4F8kURYh54o4Y6llyiuMsMJT6LlwZoHqdj
-         EdLm/RnRZOCHEhBp6KK2PrSgqBhvgms/0OElajT1VcOCvCuG4irofMTjioe8/qthUv+1
-         PIrZBs4/r0HM/pq8k4sxWkH6AH9oXjjoBBJua1VcPjHmOUc2gjPSJP20aqBxdfRm55Qj
-         Sxc9kW+2xl8HQHsAYlFEAqVlaz+nPKtKUUajelyxqVfqlmp2/WFSecxf9R/mXK9Gdr3r
-         Dvtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739699470; x=1740304270;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AKkwKTyg9w786XwSKoYuBYLKS23VVWg1TYbTDYTWNCg=;
-        b=M7xLwg8ffTr2ZutP9L1Xrp0tFZ5onZOmayvXAqRB7254d5gd4Sm24vOftG+senzJNY
-         0eDLIG+RINh38sHu0DK+IHAVYjNBegvP/olldCGgj2yP95U0QZhtExSi6JILFimpvVVQ
-         vcocuYuRw98+oZ0XbcUT1IrGIBzqO5q3YNs1Ip6o4by52dOak1/XiG5cMKXA7zRIk8aU
-         st+iElY2CYSIyFYl1bV42pvEu4ZeNLFY+Wd/STel7nAjgAQ5awp/J9Ky4//3dqw+Weus
-         a5UJ8txo5c8rlwRBL5OS470xg6v3GAqZicG57TAvFIbnr5stIYqU61/58qCtyQqbmPk2
-         W04w==
-X-Forwarded-Encrypted: i=1; AJvYcCXE2i3XPlGgbWdAje3OD23HOEgAhb60OWhQO/k7teV0dup1p0qpn8vbV5fIqw+nSq/dOl7cw9oXTIrr@vger.kernel.org, AJvYcCXe3etdQr28S6E0/rzQdbyQ4bIk8rFrUc7G8LYhXxduhZOjfex5pVBVM2FSepOjFOAmUO6SzAGPj6j14Skm@vger.kernel.org, AJvYcCXukLl+MMvdWnmbH1S0ebgY7p0DYrgceNjhcZSqCG5Z5wdQMCw4Dl+6S1jtIroSVuxiB1TPsiQJUfzCZNuCcMExX6c=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8o7Awi7BPx2PPQnEyiUk6hUCDshtv7PROohxJMPpnTdtlND1+
-	mo6zdUfyXA39dvr0eGO11cBREOmLoYDO0wY51vxoUJ9EebIcOVjh
-X-Gm-Gg: ASbGncsUa0XkxER1KYwo2+niz5fPE1swoPozzRyiDE83b7sCfmuQms9H6DW4ZYyqYzr
-	IIGPdjGpMzhv/K+k3KwDL3V8EYCn6N2JzZ2glJvnOqVMpqq6azgILPHTSH55x+ESHmy+QXoD71Q
-	HjA3IsMWoXNz4phgPIaYZAdZtKIJbzBXaR4y0L12bjVAwa04roy9B7ak/1eIbsOg1UXYZk1G8mK
-	uHNSFUOJALGaHGjzZiVIOoUiJ/DEhA3DlZ9Z5rpz1G4b1HpNxL97QX0cW2FgfdWUzGHRJr7aWdx
-	o6XyzZZUrZfphUt9Kk3yNZQHx4Q1wnDVawaEKq1C4wSYQBEvxtmQUZiYt1TE+gJEMOgVRA==
-X-Google-Smtp-Source: AGHT+IFPiVqkcK4Kd/T3e2U3LKZcUOmyLMjVkbQdDG1jJW67h/Annjc9EhvSTWnD04mKUQYqryGMpA==
-X-Received: by 2002:a05:6000:381:b0:38c:2745:2ddb with SMTP id ffacd0b85a97d-38f339d8912mr4723327f8f.2.1739699470216;
-        Sun, 16 Feb 2025 01:51:10 -0800 (PST)
-Received: from [192.168.1.105] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258eb141sm9080681f8f.41.2025.02.16.01.51.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Feb 2025 01:51:09 -0800 (PST)
-Message-ID: <f3d38b63-dc97-482e-aeac-b59e65f91424@gmail.com>
-Date: Sun, 16 Feb 2025 11:51:08 +0200
+	s=arc-20240116; t=1739699726; c=relaxed/simple;
+	bh=uxeXeJ6bnFjUDM2/tZeOi6I4UpOhwNCOUpFKYkaIesA=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pCsq1Jag1nOQTL7+n6h8SWXoI4dCn6pXuec328ji8b3PVKAgIPy+o/sIWTnFdXEJGsIKq0xQvbHjWEwAC8VCdkCIF+b6+2DHvrQbBMZlCxhc7Z0z7fDFcGd36zCDaEki81yXJ3T+xII6GaXWNb5r4sSa/TTorG36sL5ZM5FSMIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cFVxLyce; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A565C4CEDD;
+	Sun, 16 Feb 2025 09:55:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739699725;
+	bh=uxeXeJ6bnFjUDM2/tZeOi6I4UpOhwNCOUpFKYkaIesA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=cFVxLyceRo6lO/Cu3nvm5w6ePc2RI5vfYAL6WD2CPnRNex1Zpb+xxt/Qt8EuEEwk/
+	 sNY0RXPqF1tDkhjwQd3Tgm78ZpkaUZ+rDDKRczTvoBaJei1wZCN9aG/9sT9xKyB3/K
+	 WPVlAcSI6htO7ka9iuk7+g9CWLvLXyhbOhbEmUXJ4PsaFudRpvEIoAsfY/v4e4zNqN
+	 B/9rhR/e6wc+JAKaEHwZG9kPWMARHnXdlduMUMDp7CJncS2dDTh4ggYO0y20InxGsW
+	 +RmuJKrbpoHgj+82Dbk8OZO1cri6E+8EO5OdRlWo2EQPtP4y0kk0P5ptKdKbmL9vAe
+	 6zpKHXX7iKgfw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1tjbMx-004WpP-4V;
+	Sun, 16 Feb 2025 09:55:23 +0000
+Date: Sun, 16 Feb 2025 09:55:21 +0000
+Message-ID: <87seoe1aeu.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Kever Yang <kever.yang@rock-chips.com>,
+	XiaoDong Huang <derrick.huang@rock-chips.com>,
+	Peter Geis <pgwipeout@gmail.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	kernel@collabora.com
+Subject: Re: [PATCH v1 1/4] irqchip/gic-v3: Add Rockchip 3568002 erratum workaround
+In-Reply-To: <20250215235431.143138-2-dmitry.osipenko@collabora.com>
+References: <20250215235431.143138-1-dmitry.osipenko@collabora.com>
+	<20250215235431.143138-2-dmitry.osipenko@collabora.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/4] phy: samsung: add Exynos2200 SNPS eUSB2 driver
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250215122409.162810-1-ivo.ivanov.ivanov1@gmail.com>
- <20250215122409.162810-4-ivo.ivanov.ivanov1@gmail.com>
- <a10f8a77-9440-477d-b6f6-9d651e3ab49a@kernel.org>
- <537698af-841f-48e7-bd7c-4077d0a240a1@gmail.com>
- <9b58a985-3d63-42bb-9a76-e5b04a4b6012@kernel.org>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <9b58a985-3d63-42bb-9a76-e5b04a4b6012@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: dmitry.osipenko@collabora.com, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, tglx@linutronix.de, devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, kever.yang@rock-chips.com, derrick.huang@rock-chips.com, pgwipeout@gmail.com, robin.murphy@arm.com, kernel@collabora.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On 2/16/25 11:44, Krzysztof Kozlowski wrote:
-> On 16/02/2025 10:41, Ivaylo Ivanov wrote:
->> On 2/16/25 11:26, Krzysztof Kozlowski wrote:
->>> On 15/02/2025 13:24, Ivaylo Ivanov wrote:
->>>> The Exynos2200 SoC uses Synopsis eUSB2 PHY for USB 2.0. Add a new
->>>> driver for it.
->>>>
->>>> eUSB2 on Exynos SoCs is usually paired alongside a USB PHY controller.
->>>> Currently the driver is modelled to take and enable/disable the usb phy
->>>> controller when needed.
->>>>
->>>> The driver is based on information from downstream drivers.
->>>>
->>>> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->>>> ---
->>>>  drivers/phy/samsung/Kconfig                   |  13 +
->>>>  drivers/phy/samsung/Makefile                  |   1 +
->>>>  .../phy/samsung/phy-exynos2200-snps-eusb2.c   | 351 ++++++++++++++++++
->>>>  3 files changed, 365 insertions(+)
->>>>  create mode 100644 drivers/phy/samsung/phy-exynos2200-snps-eusb2.c
->>>>
->>>> diff --git a/drivers/phy/samsung/Kconfig b/drivers/phy/samsung/Kconfig
->>>> index e2330b089..f62285254 100644
->>>> --- a/drivers/phy/samsung/Kconfig
->>>> +++ b/drivers/phy/samsung/Kconfig
->>>> @@ -77,6 +77,19 @@ config PHY_S5PV210_USB2
->>>>  	  particular SoC is compiled in the driver. In case of S5PV210 two phys
->>>>  	  are available - device and host.
->>>>  
->>>> +config PHY_EXYNOS2200_SNPS_EUSB2
->>>> +	tristate "Exynos2200 eUSB 2.0 PHY driver"
->>>> +	depends on (ARCH_EXYNOS && OF) || COMPILE_TEST
->>>> +	depends on HAS_IOMEM
->>>> +	depends on USB_DWC3_EXYNOS
->>> How does it depend? What are you using from DWC3?
->> Can drop, I guess.
->>
->>>> +	select GENERIC_PHY
->>>> +	select MFD_SYSCON
->>> Where do you use it?
->> Remained from USBCON driver.
->>
->>>> +	default y
->>>> +	help
->>>> +	  Enable USBCON PHY support for Exynos2200 SoC.
->>>> +	  This driver provides PHY interface for eUSB 2.0 controller
->>>> +	  present on Exynos5 SoC series.
->>>> +
->>>>  config PHY_EXYNOS5_USBDRD
->>>>  	tristate "Exynos5 SoC series USB DRD PHY driver"
->>>>  	depends on (ARCH_EXYNOS && OF) || COMPILE_TEST
->>>> diff --git a/drivers/phy/samsung/Makefile b/drivers/phy/samsung/Makefile
->>>> index fea1f96d0..90b84c7fc 100644
->>>> --- a/drivers/phy/samsung/Makefile
->>>> +++ b/drivers/phy/samsung/Makefile
->>>> @@ -14,5 +14,6 @@ phy-exynos-usb2-$(CONFIG_PHY_EXYNOS4210_USB2)	+= phy-exynos4210-usb2.o
->>>>  phy-exynos-usb2-$(CONFIG_PHY_EXYNOS4X12_USB2)	+= phy-exynos4x12-usb2.o
->>>>  phy-exynos-usb2-$(CONFIG_PHY_EXYNOS5250_USB2)	+= phy-exynos5250-usb2.o
->>>>  phy-exynos-usb2-$(CONFIG_PHY_S5PV210_USB2)	+= phy-s5pv210-usb2.o
->>>> +obj-$(CONFIG_PHY_EXYNOS2200_SNPS_EUSB2)	+= phy-exynos2200-snps-eusb2.o
->>> Entire driver looks like repeating existing qcom-snps-eusb2.
->> It's the same IP, but implemented differently on a different platform. At
->> the very least, the register layout is different.
+On Sat, 15 Feb 2025 23:54:28 +0000,
+Dmitry Osipenko <dmitry.osipenko@collabora.com> wrote:
+> 
+> Rockchip RK3566/RK3568 GIC600 integration has DDR addressing
+> limited to first 4GB of DRAM. Rockchip assigned Erratum ID #3568002
+> for this issue. Add driver quirk for this Rockchip GIC Erratum.
+
+Thanks for taking the time to submit this. It only took 5 years for
+this erratum to be published...
+
+However, my understanding of this issue is that the integration is
+limited to the first 32bit of physical address space, not the first
+32bit of RAM. If the memory is placed as physical address 0, then they
+represent the same space. But this is still an important distinction.
+
+> 
+> Note, that the 0x0201743b ID is not Rockchip 356x specific and thus
+> there is an extra of_machine_is_compatible() check. Rockchip 3588 uses
+> same ID and it is not affected by this errata.
+
+This ID is that of ARM's GIC600, which is a very common GICv3
+implementation, and is not Rockchip-specific. Please capture this in
+the commit message.
+
+> 
+> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> ---
+>  Documentation/arch/arm64/silicon-errata.rst |  2 ++
+>  arch/arm64/Kconfig                          |  9 ++++++++
+>  drivers/irqchip/irq-gic-v3-its.c            | 23 ++++++++++++++++++++-
+>  3 files changed, 33 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/arch/arm64/silicon-errata.rst b/Documentation/arch/arm64/silicon-errata.rst
+> index f074f6219f5c..f968c13b46a7 100644
+> --- a/Documentation/arch/arm64/silicon-errata.rst
+> +++ b/Documentation/arch/arm64/silicon-errata.rst
+> @@ -284,6 +284,8 @@ stable kernels.
+>  +----------------+-----------------+-----------------+-----------------------------+
+>  | Rockchip       | RK3588          | #3588001        | ROCKCHIP_ERRATUM_3588001    |
+>  +----------------+-----------------+-----------------+-----------------------------+
+> +| Rockchip       | RK3568          | #3568002        | ROCKCHIP_ERRATUM_3568002    |
+> ++----------------+-----------------+-----------------+-----------------------------+
+>  +----------------+-----------------+-----------------+-----------------------------+
+>  | Fujitsu        | A64FX           | E#010001        | FUJITSU_ERRATUM_010001      |
+>  +----------------+-----------------+-----------------+-----------------------------+
+> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+> index c997b27b7da1..0428ad8f324d 100644
+> --- a/arch/arm64/Kconfig
+> +++ b/arch/arm64/Kconfig
+> @@ -1302,6 +1302,15 @@ config NVIDIA_CARMEL_CNP_ERRATUM
+>  
+>  	  If unsure, say Y.
+>  
+> +config ROCKCHIP_ERRATUM_3568002
+> +	bool "Rockchip 3568002: can not support DDR addresses higher than 4G"
+> +	default y
+> +	help
+> +	  The Rockchip RK3566 and RK3568 GIC600 SoC integrations have DDR
+> +	  addressing limited to first 4GB.
+> +
+> +	  If unsure, say Y.
+> +
+
+s/DDR addresses/physical addresses/
+
+>  config ROCKCHIP_ERRATUM_3588001
+>  	bool "Rockchip 3588001: GIC600 can not support shareability attributes"
+>  	default y
+> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
+> index 8c3ec5734f1e..f30ed281882f 100644
+> --- a/drivers/irqchip/irq-gic-v3-its.c
+> +++ b/drivers/irqchip/irq-gic-v3-its.c
+> @@ -205,13 +205,15 @@ static DEFINE_IDA(its_vpeid_ida);
+>  #define gic_data_rdist_rd_base()	(gic_data_rdist()->rd_base)
+>  #define gic_data_rdist_vlpi_base()	(gic_data_rdist_rd_base() + SZ_128K)
+>  
+> +static gfp_t gfp_flags_quirk;
+> +
+>  static struct page *its_alloc_pages_node(int node, gfp_t gfp,
+>  					 unsigned int order)
+>  {
+>  	struct page *page;
+>  	int ret = 0;
+>  
+> -	page = alloc_pages_node(node, gfp, order);
+> +	page = alloc_pages_node(node, gfp | gfp_flags_quirk, order);
 >
-> I checked few registers, looked very the same. Same blocks from synopsys
-> have the common register layouts.
+>  	if (!page)
+>  		return NULL;
+> @@ -4887,6 +4889,17 @@ static bool __maybe_unused its_enable_quirk_hip09_162100801(void *data)
+>  	return true;
+>  }
+>  
+> +static bool __maybe_unused its_enable_rk3568002(void *data)
+> +{
+> +	if (!of_machine_is_compatible("rockchip,rk3566") &&
+> +	    !of_machine_is_compatible("rockchip,rk3568"))
+> +		return false;
+> +
+> +	gfp_flags_quirk |= GFP_DMA32;
+> +
+> +	return true;
+> +}
+> +
+>  static const struct gic_quirk its_quirks[] = {
+>  #ifdef CONFIG_CAVIUM_ERRATUM_22375
+>  	{
+> @@ -4954,6 +4967,14 @@ static const struct gic_quirk its_quirks[] = {
+>  		.property = "dma-noncoherent",
+>  		.init   = its_set_non_coherent,
+>  	},
+> +#ifdef CONFIG_ROCKCHIP_ERRATUM_3568002
+> +	{
+> +		.desc   = "ITS: Rockchip erratum RK3568002",
+> +		.iidr   = 0x0201743b,
+> +		.mask   = 0xffffffff,
+> +		.init   = its_enable_rk3568002,
+> +	},
+> +#endif
+>  	{
+>  	}
+>  };
 
-I see.
+Another thing is that this patch conflates ITS and redistributors. As
+it turns out, we use the same allocator for both, but they are
+distinct architectural concepts, even if GIC600 is a monolithic
+implementation. It is OK for now, but it will have to be revisited if
+we ever move the redistributor management outside of the ITS driver.
 
->
->>>  You need to
->>> integrate the changes, not create duplicated driver.
->> I can do that, but it would be come a bit cluttered, won't it? Depends on
->> if we want to follow the current oem-provided initialization sequence, or
->> try and fully reuse what we have in there.
->
-> I think it duplicates a lot, so it won't be clutter. We have many
-> drivers having common code and per-variant ops.
+With the other comments addressed:
 
-So the approach to take here is to make a common driver?
+Acked-by: Marc Zyngier <maz@kernel.org>
 
-What about the current modelling scheme, as-in taking the phandle to
-the usbcon phy and handling it?
+	M.
 
-Best regards,
-Ivaylo
-
->
-> Best regards,
-> Krzysztof
-
+-- 
+Without deviation from the norm, progress is not possible.
 
