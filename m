@@ -1,140 +1,122 @@
-Return-Path: <devicetree+bounces-147128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5BE4A37509
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 16:29:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 173F3A37519
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 16:34:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 854083A9A22
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 15:26:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 483F33AEE70
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 15:34:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B436E1993BD;
-	Sun, 16 Feb 2025 15:26:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 397D2E567;
+	Sun, 16 Feb 2025 15:34:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="kgAy8grO"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="sfEtQBKP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3A521993A3;
-	Sun, 16 Feb 2025 15:26:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739719614; cv=pass; b=V3wlbgdpOx7CVrzFWAiQvT9gjMRh6Jj5119EC9jSaM5qUGUcqeokDxckF6uD5lsu4q9eo8kpNvNbn+ZrerbhAJzUdAOMD+73vvpS9N7/LsEYENN1P0lwyXIsac0oo4ErSANvByAsg+rxCQn0W2qsUwjHQtl66gBfa9HVq4xyVx4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739719614; c=relaxed/simple;
-	bh=P1GGikOFBhM64e8ThnF+EAlpwy8a7Ben4RjDWz90wQs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=drM3WEfL/QO62eDWvaoRhuvqu2kmQTY3QgPRC6B1aNysIRADtr5dldCpx3G7wvkpv0uXWL6Q2eVH7CG1zVnKJO6UdvQKI1RqMct2AE5xaZU0vriDO5eYQdt/Kdxmgu7Fvuz8Zt2lHfGlZaBx3Lj1V/KSpp9mRBjrIIIZP2iWMhQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=kgAy8grO; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1739719582; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=lUhEfBRVSo79Huwj+wzJXrPk5x+fk3E/WKGITPucvjJqsA9W28bDmDYVIJV5OtFAzZeiVpgvZPaVBL0jA2EZlDpwAJwHH9YYg2PUUYKyNt01rrEr3hbg9a+dPEq0rW0iyLQDZMJ8tkEy0GxUX31+9P0heIbOShMCEwNL8d5xrfw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1739719582; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=nGRt15avi2VNEMTjVMkiOHeiNiOp/BakzHpL53Qa5IE=; 
-	b=U9YsfwGHz31g0HHvFlwd3Ll2mrkoeK5MGiFIJng82FZjicNRTv862tyKmTmh5OhEUNTocN9QrCZIiZh0SGOBfnBzbZx2P/uVVTZnLLccxOmR3hvfnfNaP3x24xhDsBYoGVY/sd+S8hhIHwCCSGhzx+eIOwNA5WZOyeIxZvyUjAo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
-	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1739719582;
-	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=nGRt15avi2VNEMTjVMkiOHeiNiOp/BakzHpL53Qa5IE=;
-	b=kgAy8grO7hkyPy96FKPI4UObo/yrWIeiiaBNuy7Tc950wRdugBlFZpr/ZONvD7Ah
-	ULiiPIxBSZs4lF8cvqP6J3Jlduftn7FOEMoRpzuwUIvxgREIecs7vZbTc28F07I9i8F
-	Nd7mJq4SelsxoZ2nib+Oh6mugQdlM/n37qoawp2M=
-Received: by mx.zohomail.com with SMTPS id 1739719580093298.8599431071333;
-	Sun, 16 Feb 2025 07:26:20 -0800 (PST)
-Message-ID: <68b4a5bb-79df-425a-af66-fa8973866729@collabora.com>
-Date: Sun, 16 Feb 2025 18:26:15 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC5F8200CD;
+	Sun, 16 Feb 2025 15:34:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739720064; cv=none; b=KTiUmEowRucorodgrZ+cZw3fyONQcklK4IU5DCDxFMbJnFk46KVWDkqL4Mq9jDmgGrfELh1YtdDf71nnK+VOlryyC3JwdAMvwEC15E7UqRv00ovqnc6HmT2FefTGSvGV2D0BGDXFUHlHtS7EjmFOyPEqQj/TZRojG/+P+7truNM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739720064; c=relaxed/simple;
+	bh=FJWQsNilroRisQAUTQKW7ddDQyvmTvRoFXGR/hOtyPM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CMYx/S2MpBt3eXkLN6yecEpUtE4LbszxFPDNBxp+cF0Va9aq76EtSMO9n09vmRQ3d+uwf7WEoi3FLB7nim/WNlzerViYVVnSD+Cen+TkOJNuGu84mqmepauC6oOi3qf5qK7xXUt1fiNQTbsnezoeu66W4ZXu5sFDo3ZsHefSL4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=sfEtQBKP; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=X3B5AHta8iT81vmhTEO3/fEUlWSWkvof26s+ONKqoy0=; b=sfEtQBKPCi+F28t1DCWdgzr+rS
+	ZT0m+CgsJ/TAjHBJfAkL6XIWqlm/gAVG5gbA+jSKTjOdO4i+LUPw8dt/+bBPYbwrK+2wI6wbshOA/
+	7ctZhdsbaEuwtMXbdPxMLmdres3KxLyF2I6nJM6A4TDFXXnCUDGTSCIVhFFIlmCdG7y4wfDkhb4aA
+	VJExjfyLn6B5NmvNQz9hctvZyUeAeZZlLH+MU4Q5n5T5fYy0Af+9kKZHwBvzvxbkGp5RwRHvzh6or
+	rxb/WfRFI1i1xanjQxM9Vq0db8NSVOTLPSg0IbP8dpaVtkm6oyWhGbW3OEAEni1qpbRoV7NwtiIOi
+	Xqwl+HNA==;
+Received: from i53875bc0.versanet.de ([83.135.91.192] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tjgeS-0007m6-5F; Sun, 16 Feb 2025 16:33:48 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Aurelien Jarno <aurelien@aurel32.net>,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-crypto@vger.kernel.org,
+	XiaoDong Huang <derrick.huang@rock-chips.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Lin Jinhan <troy.lin@rock-chips.com>
+Subject: Re: (subset) [PATCH v2 0/7] RK3588 Hardware Random Number Generator Driver
+Date: Sun, 16 Feb 2025 16:33:37 +0100
+Message-ID: <173971983108.1865604.1801020506672691939.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250204-rk3588-trng-submission-v2-0-608172b6fd91@collabora.com>
+References: <20250204-rk3588-trng-submission-v2-0-608172b6fd91@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/4] arm64: dts: rockchip: rk356x: Add MSI controller
- node
-To: Marc Zyngier <maz@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Kever Yang <kever.yang@rock-chips.com>,
- XiaoDong Huang <derrick.huang@rock-chips.com>,
- Peter Geis <pgwipeout@gmail.com>, Robin Murphy <robin.murphy@arm.com>,
- kernel@collabora.com
-References: <20250215235431.143138-1-dmitry.osipenko@collabora.com>
- <20250215235431.143138-4-dmitry.osipenko@collabora.com>
- <87r03y1a75.wl-maz@kernel.org>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Content-Language: en-US
-In-Reply-To: <87r03y1a75.wl-maz@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 2/16/25 12:59, Marc Zyngier wrote:
-> On Sat, 15 Feb 2025 23:54:30 +0000,
-> Dmitry Osipenko <dmitry.osipenko@collabora.com> wrote:
->>
->> Rockchip 356x SoC's GIC has two hardware integration issues that
->> affect MSI functionality of the GIC. Previously, both these GIC
->> limitations were worked around by using MBI for MSI instead of ITS
->> because kernel GIC driver didn't have necessary quirks.
->>
->> The first limitation is about RK356x GIC not supporting programmable
->> shareability. Rockchip assigned Errata ID #3568001 for this issue.
->>
->> Second limitation is about GIC AXI master interface addressing only
->> first 4GB of DRAM. Rockchip assigned Errata ID #3568002 for this issue.
->>
->> Now that kernel supports quirks for both of the erratums, add
->> MSI controller node to RK356x device-tree.
->>
->> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 11 +++++++++++
->>  1 file changed, 11 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
->> index 28be38b7182e..423185686600 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
->> @@ -284,7 +284,18 @@ gic: interrupt-controller@fd400000 {
->>  		mbi-alias = <0x0 0xfd410000>;
->>  		mbi-ranges = <296 24>;
->>  		msi-controller;
->> +		ranges;
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->>  		dma-noncoherent;
->> +
->> +		its: msi-controller@fd440000 {
->> +			compatible = "arm,gic-v3-its";
->> +			reg = <0x0 0xfd440000 0 0x20000>;
->> +			dma-noncoherent;
->> +			msi-controller;
->> +			#msi-cells = <1>;
->> +		};
->>  	};
->>  
->>  	usb_host0_ehci: usb@fd800000 {
+
+On Tue, 04 Feb 2025 16:35:45 +0100, Nicolas Frattaroli wrote:
+> This series adds support for the Rockchip RK3588's standalone hardware
+> random number generator to the existing mainline rockchip-rng driver.
 > 
-> You can merge this patch with the previous one. Marking the GIC
-> non-coherent is pointless if no ITS is available, because there is no
-> point in allocating memory for them.
+> The RK3588 has several hardware random number generators, one in each
+> the secure-world and non-secure-world crypto accelerator, and one
+> standalone one in each the secure-world and non-secure-world, so 4
+> hwrngs in total. This series adds support for the standalone hwrng,
+> which is an entirely new IP on this SoC and distinct from the one in the
+> Crypto IP.
+> 
+> [...]
 
-Ack
+Applied, thanks!
 
--- 
+[6/7] arm64: dts: rockchip: Add rng node to RK3588
+      commit: 6ee0b9ad3995ee5fa229035c69013b7dd0d3634b
+
+I've dropped the status=okay - this is the default so not needed
+on always-on blocks
+
+Also dropped the rng phandle, as boards should not need to change
+the rng.
+
+And I've changed the reset-id constant to its "48" numeric equivalent.
+The reset-id change is making its way through the crypto tree
+(needed by the binding-example).
+I've also queued a patch for 6.16 to change that back once the
+header is available to everything after 6.15-rc1.
+
+
 Best regards,
-Dmitry
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
