@@ -1,126 +1,115 @@
-Return-Path: <devicetree+bounces-147163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B30DDA37613
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 17:56:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 742E8A37620
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 18:00:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 875B1188B783
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 16:57:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBA533A98D5
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 16:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC09419C556;
-	Sun, 16 Feb 2025 16:56:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06A3319D083;
+	Sun, 16 Feb 2025 16:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rWWL35/y"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="xkCExdn1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A91CC450FE;
-	Sun, 16 Feb 2025 16:56:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 667C119CC28;
+	Sun, 16 Feb 2025 16:59:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739725010; cv=none; b=JRJc+Qv2oOsbHCKCzXwQ/nSsK4GFW00MIPSz1DEy0DKx2u4kNeLVpyb3IPbv080CcU71wavmGINOd3MKT4pm7HwHRPpGbd7Woybm8YxXWHJR/Tg+45xTP1oG6hZm6GRuhYFhQx7nbzgcTgi6zk2aBMB3Yu9FDirUpWPJG5j/WkI=
+	t=1739725196; cv=none; b=m/4gUoCt7wX0aK6G3V1EbBPgZIEIw6kDMuqO+e5BmcFF5DI/vY0BLjVeXZo0CKupLl6oVd9BVx6b+9DshuflS6S8lNy23U199RMk6bMegrdsskFjNoj6boJHqbVM41qRIm/JVhcP3Bu/fMpsWKP7odv8UTYyxEtFtKTkGJmQB6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739725010; c=relaxed/simple;
-	bh=lyYWlIL5pV+P204PWq9RJs+b2lncRmWinTLyKexeKLQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AThv2TAFwm94dyA0Nxyb0npCSP7YR6+giWKVcTqn6S6cMaDD+wyyhwlkAJFftLNEU+iXqLLuNOE9UD3PMRmYIcywAIInvln9D5NhlhQ6Aw45FD4A8fvNZ9gVFgzJQsZ7PGF4tPPxkhvbZpn+PVEPAOF5B0myAjVMAXB0DO3pbSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rWWL35/y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F1F1C4CEDD;
-	Sun, 16 Feb 2025 16:56:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739725010;
-	bh=lyYWlIL5pV+P204PWq9RJs+b2lncRmWinTLyKexeKLQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=rWWL35/yPTnPOWL0B4OV5ivtP906jfLlk95gZBFEFPD1KEU7LxzPTLRF2cbiw4t/f
-	 g0IZb/wjC1GLREddI86c3DLrjgnQKARWX++ZbObj7wcz9TBg9L5A+ok85ter9WYEna
-	 r1UcfKL2SdvZdEOrekLomhS+jedss3VxXE1r0erQIeqTS2ehhUyrAmozCvOwtdwSI7
-	 o2Z71IZuu7Vb10KpVXo+1ia0k89Dsvl/hLv79p7Npad1GL90eD9o7MQI2iGNDy42j+
-	 5XFugBKU2eD5fABH/Jiz49YaiN6l15LXqmEYRt8D7k+B9jfJiYK7bAgWZQXj88nxOM
-	 W95aP2wUQL9Gg==
-Date: Sun, 16 Feb 2025 16:56:40 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Robert Budai <robert.budai@analog.com>
-Cc: Nuno Sa <nuno.sa@analog.com>, Ramona Gradinariu
- <ramona.gradinariu@analog.com>, Antoniu Miclaus
- <antoniu.miclaus@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v7 6/6] docs: iio: add documentation for adis16550
- driver
-Message-ID: <20250216165640.2e89f617@jic23-huawei>
-In-Reply-To: <20250211175706.276987-7-robert.budai@analog.com>
-References: <20250211175706.276987-1-robert.budai@analog.com>
-	<20250211175706.276987-7-robert.budai@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1739725196; c=relaxed/simple;
+	bh=DhySorGZIc9kQXBR4kFIxyKQSoB8SqkmLxPlhPKbfkU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F2c5RWR2FJNCCWfMm+lMZce1Y5tMyVcDozaEMjf3PMJikOB0HO0snuLyXddsj0ZGAZi7VhoC6MzjEp+/f6bXhKcodHSwRqjc4VnsK4l2YcEViuXWjlQ+W9c5vkdGFO0QsSz9xEiAyiyXBZQHDNnta8tvZPCgpnICd54arLts8u8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=xkCExdn1; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=SGjXFxJmVk/FKeJ46IrEjqRmgY6gQvmYuvqL1kDeGQ4=; b=xkCExdn11EsAZtDgmuPdYucM2j
+	bK3pZs2vK93GF1VCsaJw9PI1Rx6zDnUDYt3fCnsSGGmkrntc4cSBM6QhC8CwBAKoDhfZkXjhqumGV
+	mE26uEYC00UAVkIj4JZSjPkjpP2ho+epU+iwoSH56gh2332eCOTh7rsxa6Xvd0ngofbo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tjhzP-00Ehw8-Nx; Sun, 16 Feb 2025 17:59:31 +0100
+Date: Sun, 16 Feb 2025 17:59:31 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	"Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>,
+	Hariprasad Kelam <hkelam@marvell.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Drew Fustini <dfustini@tenstorrent.com>,
+	Furong Xu <0x1207@gmail.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Lothar Rubusch <l.rubusch@gmail.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	sophgo@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>,
+	Romain Gantois <romain.gantois@bootlin.com>
+Subject: Re: [PATCH net-next v5 2/3] net: stmmac: platform: Add
+ snps,dwmac-5.30a IP compatible string
+Message-ID: <9dcab9aa-6d1e-4804-82ff-fb8dfa434df7@lunn.ch>
+References: <20250216123953.1252523-1-inochiama@gmail.com>
+ <20250216123953.1252523-3-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250216123953.1252523-3-inochiama@gmail.com>
 
-On Tue, 11 Feb 2025 19:57:03 +0200
-Robert Budai <robert.budai@analog.com> wrote:
-
-> Add documentation for adis16550 driver which describes the driver device
-> files and shows how the user may use the ABI for various scenarios
-> (configuration, measurement, etc.).
+On Sun, Feb 16, 2025 at 08:39:50PM +0800, Inochi Amaoto wrote:
+> Add "snps,dwmac-5.30a" compatible string for 5.30a version that can avoid
+> to define some platform data in the glue layer.
 > 
-> Co-developed-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
-> Signed-off-by: Robert Budai <robert.budai@analog.com>
-One minor comment inline.
-> ---
->  Documentation/iio/adis16550.rst | 376 ++++++++++++++++++++++++++++++++
->  Documentation/iio/index.rst     |   1 +
->  2 files changed, 377 insertions(+)
->  create mode 100644 Documentation/iio/adis16550.rst
-> 
-> diff --git a/Documentation/iio/adis16550.rst b/Documentation/iio/adis16550.rst
-> new file mode 100644
-> index 000000000..f929c460a
-> --- /dev/null
-> +++ b/Documentation/iio/adis16550.rst
-> @@ -0,0 +1,376 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +================
-> +ADIS16550 driver
-> +================
-> +
-> +This driver supports Analog Device's IMUs on SPI bus.
-> +
-> +1. Supported devices
-> +====================
-> +
-> +* `ADIS16550 <https://www.analog.com/ADIS16550>`_
-> +
-> +The ADIS16550 is a complete inertial system that includes a triaxis gyroscope
-> +and a triaxis accelerometer. The factory calibration characterizes each sensor for
-> +sensitivity, bias, and alignment. As a result, each sensor has its own dynamic
-> +compensation formulas that provide accurate sensor measurements.
-> +
-> +1. Device attributes
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> Reviewed-by: Romain Gantois <romain.gantois@bootlin.com>
 
-1 Again?
+Ideally, this would be two patches, one adding the
+stmmac_gmac4_compats[] with the existing compatibles, and then a patch
+adding snps,dwmac-5.30a. Logically, these are different, so two
+patches.
 
-> +====================
-...
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-> +
-> +3. Device buffers
-> +=================
+    Andrew
 
-> +4. IIO Interfacing Tools
-> +========================
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
 
