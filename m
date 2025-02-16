@@ -1,302 +1,137 @@
-Return-Path: <devicetree+bounces-147078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4208DA37327
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 10:30:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDAE6A37318
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 10:27:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED90918897BE
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 09:29:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABEBB16A009
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 09:27:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B556F188733;
-	Sun, 16 Feb 2025 09:29:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 642D914E2E6;
+	Sun, 16 Feb 2025 09:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="kBEe2HOD";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="WFaNL9Vf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LA+/+M9P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b6-smtp.messagingengine.com (fhigh-b6-smtp.messagingengine.com [202.12.124.157])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16AA91531E9
-	for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 09:29:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.157
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A26CF17BB35;
+	Sun, 16 Feb 2025 09:27:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739698150; cv=none; b=XPKJlIta8Xp/mpeaCnGMFsqjDyAWiX9GBR/mCvc7NdQHHfeCYdVCR2/GXHwqvg3S6hEoJi3xHSudV26zPTiQRwdomQkYtuVKIUn31a+wNdZzFVzgycG3J4AvSCj/iAKEo9oWAKnQiKWUUqFU1gawQWyD+8Jn3kWPWrEKrIUrUyY=
+	t=1739698040; cv=none; b=Vp+GVUguPjLfaJxD37Jo9IQfjKvqxIlkxgxSmlQ8hY720mNx+obKxstWf8kJLNKkMMjyjJukR1yFc+PCpFdW8eC8G87u1kW7Xi11WLB3iE3ba3szchttTjKsLVhFMDmzjUUlrxeObB9WXyCG0w0bbn7lMIMhZZICMLbRZG0oTb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739698150; c=relaxed/simple;
-	bh=HXF81p9CMb3nFIp+uEoN10boyvs2kTOB2SqJYZl2f8Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YRRLEd1ORAXcDV36SW7po9r9AYfUxFhx0cQnnchxwrSjaJDZonAv5UFN/XUd62QD1xQr2EkhPb30cIgi3Knxz2iadRpxIBP0TDrml84Bdjc49vFD/GtNzuV+w/Yo0owBZJBvXjUwg7h23EUwdJsjGvQ5IhwceDwkrdkZkw+kwJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=kBEe2HOD; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=WFaNL9Vf; arc=none smtp.client-ip=202.12.124.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-02.internal (phl-compute-02.phl.internal [10.202.2.42])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 211FC254011F;
-	Sun, 16 Feb 2025 04:29:08 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-02.internal (MEProxy); Sun, 16 Feb 2025 04:29:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1739698147; x=
-	1739784547; bh=wGi+Z2F5P8dLioomOoP3bKLav3gIQOwLl39ppbCD/4w=; b=k
-	BEe2HODIOmbxz+FeL1qA6kfUuj8kt32W2US81TfUod7cqlgp/qauAm6WCp0fj1X4
-	XNiVhoS72RK08cPAoc0xdIb0H5YUs0PJf3MaVyDO0R4fu7Dx3scmyrlsAcDLUCL9
-	gFSAqiYmBJyxX0IQOQS/c27NsIge97voq14jFJxuElVxpKp9ifDvyV71d26pP+e0
-	QBZ63+VgZpJnHhOvMzciPi+1NoKxY4gLPryfm54bfL/b4/ZP5D9p0nQd5SruFF7d
-	1cXfhydq0UVMqcxnphlekNt1RCV8nbXFwGMrIdrDT5n+cWJJsFqENaHDLgK0a03s
-	eKGYERdAO2/CO7rL1tUCg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; t=1739698147; x=1739784547; bh=w
-	Gi+Z2F5P8dLioomOoP3bKLav3gIQOwLl39ppbCD/4w=; b=WFaNL9Vfx/rJ0yFK0
-	h8pe2RtJX+XSMtyxzndypKQMtwFwuhVZ8H2geRPLDn5GrbvmN6ha/03RmKruxJA1
-	aheGVoviLYvQeAgU6x9xJavcYCxAAGeby7qwy66DoKvh0G8YsJBfJMQxIafK5jp9
-	MwIOpBmeTwGbwSXTOKeXkv65vYzD6yBzCNls4y2d90nLLHRSupIN3Pgej1Gig/8m
-	/rFNr5CmgXMqjt5BSy1FSw/DZwYJ4JKdk6Wi44BvsOReDtwjbWNs+zWTmwbcjeON
-	sEltg9cwUFnEna7rXgTyJvTuV+ZzhYZ7zam7VuylKO8lGg39E0JcIYodYFdgVkQP
-	D/a7w==
-X-ME-Sender: <xms:46-xZwR1tE4hlsx5v10VX_GrE6uECZM57W-zeoc-0WZwioW1HvZPrQ>
-    <xme:46-xZ9yGnUM-tSDhm_OONNw8B2oBfADBFz7ftr8je-rWbmCil9ps29H7TL3mLvGK4
-    xYUctVaLwaR1a_y1A>
-X-ME-Received: <xmr:46-xZ91rbGNz6c3EoMS0oWGoPAANP_h-VTccr67F8LhaDb8LlGKTQPPxQLFk2Wi9BRj_FO1wrRQJlkUY8EHHHr9U-CWJqaPI3F2NsOUnW0vF>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehhedutdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddt
-    necuhfhrohhmpefthigrnhcuhggrlhhklhhinhcuoehrhigrnhesthgvshhtthhorghsth
-    drtghomheqnecuggftrfgrthhtvghrnhepffehieffgedtgfffjeetveegfeekleeileek
-    veeuteffteetudffveegieeiheetnecuvehluhhsthgvrhfuihiivgepvdenucfrrghrrg
-    hmpehmrghilhhfrhhomheprhihrghnsehtvghsthhtohgrshhtrdgtohhmpdhnsggprhgt
-    phhtthhopedugedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheprhhosghhsehkvg
-    hrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdp
-    rhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepfi
-    gvnhhssegtshhivgdrohhrghdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtges
-    ghhmrghilhdrtghomhdprhgtphhtthhopehsrghmuhgvlhesshhhohhllhgrnhgurdhorh
-    hgpdhrtghpthhtoheprghnughrvgdrphhriiihfigrrhgrsegrrhhmrdgtohhmpdhrtghp
-    thhtohepmhgrtghrohgrlhhphhgrkedvsehgmhgrihhlrdgtohhmpdhrtghpthhtohepkh
-    hikhhutghhrghnleeksehgmhgrihhlrdgtohhm
-X-ME-Proxy: <xmx:46-xZ0DnsRiv5UXRzUIjKrI2bRskAbQBcoxzOcX6wMmOCr72VWKbsw>
-    <xmx:46-xZ5i6xkS3pFDvTsm8XHdisfo_lYSfCBa7wqJtkOeljDlVpQZGXQ>
-    <xmx:46-xZwqfSCnNJG43S4EBiZq7SSGVZlMM2ZcFejRxooBAbGMu4dr6-Q>
-    <xmx:46-xZ8hEpI5K3NrlKjO7svUrAIDzDU3Y2uZBSZellWBbUDyl_eK21g>
-    <xmx:46-xZ55O8TN_fjsyEYn5yq2VJwFjfQXFun4TBUo7WMykjLe07YOPw6oM>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 16 Feb 2025 04:29:03 -0500 (EST)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: Andre Przywara <andre.przywara@arm.com>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	Hironori KIKUCHI <kikuchan98@gmail.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Ryan Walklin <ryan@testtoast.com>
-Subject: [PATCH 5/8] arm64: dts: allwinner: h616: Add TCON nodes to H616 DTSI
-Date: Sun, 16 Feb 2025 22:27:12 +1300
-Message-ID: <20250216092827.15444-6-ryan@testtoast.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250216092827.15444-1-ryan@testtoast.com>
-References: <20250216092827.15444-1-ryan@testtoast.com>
+	s=arc-20240116; t=1739698040; c=relaxed/simple;
+	bh=OukKaNU4mSVHReLc77MbcH8UQUtvvch03TNasNa5sDM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k1aLEjam3SVkkQvtnXHxwDi8wqKisOul6V02d1Uj4vQAij7s3ONz46lin5VrWFSW1LktiSWfZLEJws6rMF3QzyO6ESbKI+uBMKfmOmGkJ0H1nRapx+LVasil3mLUvko6v9KPM689tRGaSv6nrxR4IW07uCuynIPS6VzK0CC8T6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LA+/+M9P; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4395a06cf43so20932275e9.2;
+        Sun, 16 Feb 2025 01:27:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739698036; x=1740302836; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=v0gaj4zFmFQRT8VU9mqYTsdQ0LPAUbckcaSOB8q/pi8=;
+        b=LA+/+M9PgovQIf6UUzDKIaSrpEpXQsyTEo3+MiNgprrgk58oWTpOsx43du3/rKRzGj
+         HuZCarAGlZ5ifYgAnRBmmusPJwK3JQ6BoBaDCUiea9MEaCf9s84DY4FE/CIlcM5+WZgZ
+         JcfC3VeTFyUaI2To3PJC3v64jDniJNJLW6aV2vL02wZt2l8CQWQGe5biGErtYDkqAQWy
+         e9AAmMv4r+axhvBu1ZRx3GIdVj6ogBSnL/rf8ZpwRFeBQjdCdSLjKfUQllap4ydOTSe3
+         vl2Xz41h7K//DfTX1tvyhzBNl4vK35RrCyTa0JrBV0VWJsi/YG1smzYngk+8ZRKn7Jwl
+         aJBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739698036; x=1740302836;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v0gaj4zFmFQRT8VU9mqYTsdQ0LPAUbckcaSOB8q/pi8=;
+        b=bbEOhXXH43MbSc47C5hRmkoPQv5YiSb248C8V2i1nfOak0JtIbV0yXnLlARdl/UEPB
+         7a5fhDTbAdQoGBuZ/JJG9ASNFnPsShxj2pJCkcxszu3Y1i6j1eSNVCFGsaMHXn2HUajp
+         LRWsxyyzHtuc34cR83fJg7O8INl6K1FH5znEBQbebAZnaqIsoCWuSBlHIHauYHEaxCD/
+         vbSXZyDHNNXS2Fo1c1tBqDnGsbgXTDd/5JfFKha8ZRx+z05CO0dn/G1d0NvYIdA5bqua
+         ADZ7bBjZ23bYbilLw2MHVPMcCkJjiZikjlfvpzNexQkUnePLkDdZ2rwEM7U7vY7lKPap
+         w9qA==
+X-Forwarded-Encrypted: i=1; AJvYcCU7JibfeYvOgdpFr/KdnQr/5/DGf4y68n5kuCOvLP/XT9Yvk9O9L/U35DySl7ktbLrSNXr8p4v6708G@vger.kernel.org, AJvYcCVwIfEqGwMeisdH30M4OPnHlzeg1RU9p/189gtP1nEN3aYrNJJFxYXLUbVHWRUAnMOJkTfhtxI+k4zrTKpviEW2LdQ=@vger.kernel.org, AJvYcCWqynsday6j/Sri0C3whuielAj7+1h9qkSdBi7lqlffEZPRX57KTXBJyuYPx/jpCQdmamKxcJ+Mcv+Vbsk/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEPT1gF7t09F4MdV7Smf0Uni9X1MB0HOS4iCEdROVJArSkJsRi
+	QppCT7rrUaJMaVs5Ogkh6DXlzux/JMMIArNk31SIs67CWSHI3mC8
+X-Gm-Gg: ASbGnctbMoNLw6Rt+Eyj+yCW0cEIyt8wLVkyRC8i83b6cRnAEdzFewwLxKqJSP8+5Ck
+	vatYDyEzzxSDPxmrZ9ncxWPIldFFzPsIqRD9ESX4SQcae9zybREtoMQerXaIxCIQLtMYxnvI6Oy
+	093+Sz27XTVZme436Mp55mak8ihCRqWJ9Sn1eV86djM+25qvPozGk++DY6Ws01XaZHoOte/XaMO
+	hLIlGWM6luwhsY+ZnZNnfEkxFsDh4lM20UVJfFfctyzRUnd+gMWx0HWyItdmcTyecW9UiYyraSl
+	o0mOZGEiJUL7mfDeWCI6PgYwOfSIVD5j9PFdNmsDM73R+g+jJ2HwonHreZnRElgB4Lzxjg==
+X-Google-Smtp-Source: AGHT+IGChB1ddnC4aM/OIgP03GHT5PFBE/8ehdZ4vVVfa86O0qNjRbrFBXkT8twRRnRfn5eolhea5g==
+X-Received: by 2002:a5d:64cd:0:b0:38f:295e:6331 with SMTP id ffacd0b85a97d-38f33f3d70dmr6112437f8f.19.1739698035732;
+        Sun, 16 Feb 2025 01:27:15 -0800 (PST)
+Received: from [192.168.1.105] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258eb141sm9037282f8f.41.2025.02.16.01.27.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Feb 2025 01:27:15 -0800 (PST)
+Message-ID: <9c23e529-92ac-408f-a7e5-7cb7beda35b6@gmail.com>
+Date: Sun, 16 Feb 2025 11:27:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/4] dt-bindings: phy: add
+ samsung,exynos2200-snps-eusb2-phy schema file
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Diederik de Haas <didi.debian@cknow.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250215122409.162810-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250215122409.162810-2-ivo.ivanov.ivanov1@gmail.com>
+ <D7TR7VP9UPQA.2U5BL328HNSXU@cknow.org>
+ <fc860290-c5e5-4193-a8b7-a53137dd4155@kernel.org>
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <fc860290-c5e5-4193-a8b7-a53137dd4155@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Jernej Skrabec <jernej.skrabec@gmail.com>
+On 2/16/25 11:22, Krzysztof Kozlowski wrote:
+> On 16/02/2025 10:14, Diederik de Haas wrote:
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/clock/samsung,exynos2200.h>
+>>> +
+>>> +    usb_hsphy: phy@10ab0000 {
+>>> +        compatible = "samsung,exynos2200-snps-eusb2-phy";
+>>> +        reg = <0 0x10ab0000 0 0x10000>;
+>>> +        clocks = <&cmu_hsi0 CLK_MOUT_HSI0_USB32DRD>,
+>>> +                 <&cmu_hsi0 CLK_MOUT_HSI0_NOC>,
+>>> +                 <&cmu_hsi0 CLK_DOUT_DIV_CLK_HSI0_EUSB>;
+>>> +        clock-names = "ref", "apb", "ctrl";
+>>> +        #phy-cells = <0>;
+>>> +        phys = <&usbcon_phy>;
+>>> +    };
+>> Shouldn't the example have at least all the *required* properties?
+>> Same for patch 2 of this series.
+>
+> Yeah, this wasn't ever tested.
 
-The Allwinner H616 has a display pipeline similar to other Allwinner
-devices, specifically the A10, but using a newer display engine
-revision (DE33).
+Device trees were tested with dtbs_check W=1 but I overlooked testing bindings
+with dt_bindings_check. Anyways this is rather a small problem, will be fixed
+in a v2.
 
-Not all output pins are exposed on all package variants, for example
-only the H700 and T507 have LCD pins exposed, but all variants support
-HDMI output. However on the die these are connected to a display engine
-via a TCON TOP and one or more timing controllers (TCONs).
+Best regards,
+Ivaylo
 
-HDMI output support is not provided in this series (but will be in a
-subsequent patch) so for now note this within the relevant node to
-prevent a DT compiler error.
-
-Add TCON nodes for the TOP, and the LCD and TV timing controllers. The
-timing controllers are compatible with the existing R40 driver.
-
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
----
- .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 133 ++++++++++++++++++
- 1 file changed, 133 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index ab8b70ce7df89..242bac95840f8 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -7,9 +7,12 @@
- #include <dt-bindings/clock/sun50i-h616-ccu.h>
- #include <dt-bindings/clock/sun50i-h6-r-ccu.h>
- #include <dt-bindings/clock/sun6i-rtc.h>
-+#include <dt-bindings/clock/sun8i-de2.h>
-+#include <dt-bindings/clock/sun8i-tcon-top.h>
- #include <dt-bindings/reset/sun50i-h616-ccu.h>
- #include <dt-bindings/reset/sun50i-h6-r-ccu.h>
- #include <dt-bindings/thermal/thermal.h>
-+#include <dt-bindings/reset/sun8i-de2.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -909,6 +912,136 @@ ohci3: usb@5311400 {
- 			status = "disabled";
- 		};
- 
-+		tcon_top: tcon-top@6510000 {
-+			compatible = "allwinner,sun50i-h6-tcon-top";
-+			reg = <0x06510000 0x1000>;
-+			clocks = <&ccu CLK_BUS_TCON_TOP>,
-+				 <&ccu CLK_TCON_TV0>;
-+			clock-names = "bus", "tcon-tv0";
-+			clock-output-names = "tcon-top-tv0";
-+			#clock-cells = <0>;
-+			resets = <&ccu RST_BUS_TCON_TOP>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				tcon_top_mixer0_in: port@0 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0>;
-+
-+					tcon_top_mixer0_in_mixer0: endpoint@0 {
-+						reg = <0>;
-+						remote-endpoint = <&mixer0_out_tcon_top_mixer0>;
-+					};
-+				};
-+
-+				tcon_top_mixer0_out: port@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <1>;
-+
-+					tcon_top_mixer0_out_tcon_lcd0: endpoint@0 {
-+						reg = <0>;
-+						remote-endpoint = <&tcon_lcd0_in_tcon_top_mixer0>;
-+					};
-+
-+					tcon_top_mixer0_out_tcon_tv0: endpoint@2 {
-+						reg = <2>;
-+						remote-endpoint = <&tcon_tv0_in_tcon_top_mixer0>;
-+					};
-+				};
-+
-+				tcon_top_hdmi_in: port@4 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <4>;
-+
-+					tcon_top_hdmi_in_tcon_tv0: endpoint@0 {
-+						reg = <0>;
-+						remote-endpoint = <&tcon_tv0_out_tcon_top>;
-+					};
-+				};
-+
-+				tcon_top_hdmi_out: port@5 {
-+					reg = <5>;
-+
-+					tcon_top_hdmi_out_hdmi: endpoint {
-+						/* placeholder for HDMI  - remote-endpoint = <&hdmi_in_tcon_top>;*/
-+					};
-+				};
-+			};
-+		};
-+		
-+		tcon_lcd0: lcd-controller@6511000 {
-+			compatible = "allwinner,sun8i-r40-tcon-lcd";
-+			reg = <0x06511000 0x1000>;
-+			interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_TCON_LCD0>, <&ccu CLK_TCON_LCD0>;
-+			clock-names = "ahb", "tcon-ch0";
-+			clock-output-names = "tcon-data-clock";
-+			#clock-cells = <0>;
-+			resets = <&ccu RST_BUS_TCON_LCD0>, <&ccu RST_BUS_TCON_LCD1>;
-+			reset-names = "lcd", "lvds";
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				tcon_lcd0_in: port@0 {
-+					reg = <0>;
-+
-+					tcon_lcd0_in_tcon_top_mixer0: endpoint {
-+						remote-endpoint = <&tcon_top_mixer0_out_tcon_lcd0>;
-+					};
-+				};
-+
-+				tcon_lcd0_out: port@1 {
-+					reg = <1>;
-+				};
-+			};
-+		};
-+		
-+		tcon_tv0: lcd-controller@6515000 {
-+			compatible = "allwinner,sun50i-h6-tcon-tv",
-+				     "allwinner,sun8i-r40-tcon-tv";
-+			reg = <0x06515000 0x1000>;
-+			interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_TCON_TV0>,
-+				 <&tcon_top CLK_TCON_TOP_TV0>;
-+			clock-names = "ahb", "tcon-ch1";
-+			#clock-cells = <0>;
-+			resets = <&ccu RST_BUS_TCON_TV0>;
-+			reset-names = "lcd";
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				tcon_tv0_in: port@0 {
-+					reg = <0>;
-+
-+					tcon_tv0_in_tcon_top_mixer0: endpoint {
-+						remote-endpoint = <&tcon_top_mixer0_out_tcon_tv0>;
-+					};
-+				};
-+
-+				tcon_tv0_out: port@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <1>;
-+
-+					tcon_tv0_out_tcon_top: endpoint@1 {
-+						reg = <1>;
-+						remote-endpoint = <&tcon_top_hdmi_in_tcon_tv0>;
-+					};
-+				};
-+			};
-+		};
-+
- 		rtc: rtc@7000000 {
- 			compatible = "allwinner,sun50i-h616-rtc";
- 			reg = <0x07000000 0x400>;
--- 
-2.48.1
+>
+> Best regards,
+> Krzysztof
 
 
