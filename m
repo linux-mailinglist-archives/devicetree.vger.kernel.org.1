@@ -1,125 +1,187 @@
-Return-Path: <devicetree+bounces-147166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC9DDA37658
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 18:39:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A29EA37665
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 18:51:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4D1018845E7
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 17:39:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B0621882A3A
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 17:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C20E919DF64;
-	Sun, 16 Feb 2025 17:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B9519D083;
+	Sun, 16 Feb 2025 17:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="QbeaP9ao"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="eiQL0gO8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8C519D89B
-	for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 17:39:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A67A405F7
+	for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 17:50:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739727565; cv=none; b=cNnUWrNdNyDXGkmXivcRd05BNCWtwaA9brVMt2kJEYVP+2793+hHnSa390KwkukjhKEAxCk1JEcG1gIZSytJ0OYXXPthZEMl2PrFuPx9CO9kU1JKzuzqDt0GZHP8qJP7rwteEIBW5nJJ0XSmj0Hx1CC+jipMefcbkW6NPGswrBk=
+	t=1739728262; cv=none; b=N0oHrIOd4uRKUzSforJMYoUHzykAx2oNgOzzgRDU8125j+XqcnGHAMTp0SS53J1ZJQibN62PdDvHR/m4jNSmxyNM1qb5394b0pihJA5FW3sOv+7OUCERMtvzHhs3Rwu060tu4rJDGbRbx3IOoy0sxV02XtTgjvJUrtyRYTWK9rI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739727565; c=relaxed/simple;
-	bh=9Ya3nZNb9MMk0kVeCzyrPJWutNb/VgKd2miIFEuE9e4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hSqlzZnBikmBung/jSZylm6VP+ptMnirNgziVohvB6uukmRFIcHY5zXPIgrgBqNjDwBjLffmbFy/uxxwl6w9a+jiMPDvurrdIHj8CWkOWpYjFHFwzv+XFM8B9IcxHtfPZHf7Hv9Gd4Uzvsx8PL4bsU9+HxzQ5ezMfe7FV3p8lmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=QbeaP9ao; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id D3D17240103
-	for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 18:39:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1739727561; bh=9Ya3nZNb9MMk0kVeCzyrPJWutNb/VgKd2miIFEuE9e4=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:Content-Transfer-Encoding:From;
-	b=QbeaP9ao1bB1NVgyLrJfbzjnAXvwnBUNlC2ns/k63M8htbjeEh9Z+K6Se0mO+3ddl
-	 20PL3Z2fKtSJYU5TN5jJG7SSnLUKx5IPuLHQ+hyhyceEyNwv9DjeY0JFDQV2fM+Vus
-	 2hlhWAF0yoGbGEFgQpN5O14X+FWfw9tlT3EQWG0uwSS+W+RBxNzdaBNxz5JlpSknuR
-	 Ue3rFR3FLbLHfURwddVt8tu8smPPYlrLzShw6FpU6/XRnLvtiEoQLZSbRCD9pHUSu0
-	 wrtiqhpKTU5/SgH1x7OkvMln5Kd6BQSyrYnksEe+Vocm2cGd5W8PRcMScxAMqgAvuR
-	 xuSIWsbMFWRng==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4YwtM83X13z6txn;
-	Sun, 16 Feb 2025 18:39:16 +0100 (CET)
-Date: Sun, 16 Feb 2025 17:39:16 +0000
-From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-To: Rob Herring <robh@kernel.org>
-Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
-	devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	Krzysztof Kozlowski <krzk@kernel.org>, imx@lists.linux.dev,
-	Scott Wood <oss@buserror.net>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Naveen N Rao <naveen@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
-	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v2 11/12] dt-bindings: nand: Add fsl,elbc-fcm-nand
-Message-ID: <Z7IixGUskrWxxZIZ@probook>
-References: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
- <20250207-ppcyaml-v2-11-8137b0c42526@posteo.net>
- <20250211000157.GA240011-robh@kernel.org>
+	s=arc-20240116; t=1739728262; c=relaxed/simple;
+	bh=IgAsblt/Bn0Cgpri1WcWHC4k1eJtIrbx9gXE4Accvps=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oXtMwnXwAkNlgGf24bgoFIN/279aiz0nRJJjJDMkbQG6cQHg6fSNsMG1Uke8HiB6UGHGcjOpZO06P3P8N3hga3a4d3ct0ESJnbzyykWwwFDoRq+TvHoQTrNDPjxIKAO+Mv5hPtjaMWCf/BPObCa1DOi9KtoyrX5AGoGpgIIhb+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=eiQL0gO8; arc=none smtp.client-ip=209.85.210.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-726fec215d7so2323121a34.2
+        for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 09:50:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739728258; x=1740333058; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zfTPgMljUImIHXRGUVUfUqpmP1QnG7IbT1p8ys/xcO4=;
+        b=eiQL0gO8OgYjOFGPObb4MZSt24r5A0aic/JCPuEm4SCjQmIpVanVIRC2pkV9woasvB
+         SZVjuwvpDpS0+Pyw9B15ryG/d/dHYiKi0/f35pzCAqjHpo/X1DwWRWUIErRTGXFJ59JF
+         XUGlF5YzWE/Wr71wfjyZhRLcXpNqq0RJG8FSScgzRKz+T50cUEEO+V64FHS87yFVcKRD
+         l8msjaaUvCFS+tqdI7ZFChb+frK/23aABgeWTCnOrDjZ0+LFslff785M3X+yxBQlZ5pX
+         +zr4Zc14ijo+za5TMjIuciNJIdddwHJy3A3Uq20q1rlE+dGUPQW4KYudFu9X4vRMwETr
+         2CCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739728258; x=1740333058;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zfTPgMljUImIHXRGUVUfUqpmP1QnG7IbT1p8ys/xcO4=;
+        b=DfXE8PRaseJaWK3q+53VBJX4qYBa6d7lqin6pqRiVpZMdCAQGBr59oyQrIxZwW0qaj
+         x78FwKecVa/tfWNWhBhpsjdITvMiG4uKJ1V22xy/ERk+ZIvT2R0YUZygbq+tWJCdi/FK
+         l3CuB5vBK6Jr3BHyrhZ/mvkIPj7aMae/7rXc9RLLLiZflRnSYtX5A3tgHcPVqkBUwjUC
+         7AiIjeFPDTe42Wp1WNNUsTcDx9jSVzIxotluLW0fwWaz/FKIr+DGz2pUkoh0uQxQCZ/a
+         JNoxVvzf0eQb+BooyoTcudhLmKAHPqeycbVZxNNPcyQgqLSmwUjGMRVZi0jBijVXDpST
+         d5Lg==
+X-Forwarded-Encrypted: i=1; AJvYcCXHo3+DqnZ1IR6VsTIOz6cDlmfDQdRBmY1XzfnJq+mlD0UHspvoPlBGUn2Lhg7jwOkqqLoIfbi0+Tow@vger.kernel.org
+X-Gm-Message-State: AOJu0YygoMN72ZR/6dofM9YpjppvFZ0qX0B+8SvjViLY929+WtstctMk
+	FxS+Osh//cZroiXZNvLfXrhH3nFaz/hN8Vd4KLjNIzMtZwysmyTY0j/7se1gQ+k=
+X-Gm-Gg: ASbGncsCmwl9rmPB2PbYQhP38m78gTinoiAWFnCNU1QcbsWi66wI5wLMOrwPnHDxq2I
+	P/3p3+H2edkcEMApoJmTadtvQG2GhAaN+SQ/IZG1V/8OvFwbpl/yClnV/jtOGjWZX8I1/RcxURg
+	jj9aYIUSZrJWxnU1UYk/4sKDOFZPk7/BXMloKkgrYzzzjFfSx8Hx1PnOfz54B4F9RKnqtAh8QhA
+	QVeuRhQPw4uJg2unsBi6ryP6iTOWUYF0kXlO8pDDaqPgyauYJKt0sKBjNVKKDqc1tGIf+wGAsZQ
+	Ptd7P9ttfuTfOk2PpSSAv1Mw7Qq688TZeWXYoKTvR1019Nsh19qQ
+X-Google-Smtp-Source: AGHT+IE/jtmfkixzhRL0goeIHC31qapcmAGuVSYnlGvoEQgU/+X3u1i3IhfpFRa28aBeAbng3X5+MA==
+X-Received: by 2002:a05:6830:6f01:b0:727:cf:abbb with SMTP id 46e09a7af769-7271203afefmr4508997a34.9.1739728258254;
+        Sun, 16 Feb 2025 09:50:58 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2b95a6bf587sm3435240fac.31.2025.02.16.09.50.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Feb 2025 09:50:56 -0800 (PST)
+Message-ID: <dbbeb52c-18f4-415a-b2d4-520dd0184dda@baylibre.com>
+Date: Sun, 16 Feb 2025 11:50:55 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250211000157.GA240011-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/5] iio: adc: add helpers for parsing ADC nodes
+To: Jonathan Cameron <jic23@kernel.org>,
+ Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1738761899.git.mazziesaccount@gmail.com>
+ <337895af7418a8e4b20b5a9322344b68082508ae.1738761899.git.mazziesaccount@gmail.com>
+ <20250208164111.28ec9f2d@jic23-huawei>
+ <ed0e43d8-9ab4-4614-9079-8a592ca8b185@gmail.com>
+ <20250211190714.4db240d2@jic23-huawei>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250211190714.4db240d2@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Feb 10, 2025 at 06:01:57PM -0600, Rob Herring wrote:
-> On Fri, Feb 07, 2025 at 10:30:28PM +0100, J. Neuschäfer wrote:
-> > Formalize the binding already supported by the fsl_elbc_nand.c driver
-> > and used in several device trees in arch/powerpc/boot/dts/.
-> > 
-> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> > ---
-> > 
-> > V2:
-> > - split out from fsl,elbc binding patch
-> > - constrain #address-cells and #size-cells
-> > - add a general description
-> > - use unevaluatedProperties=false instead of additionalProperties=false
-> > - fix property order to comply with dts coding style
-> > - include raw-nand-chip.yaml instead of nand-chip.yaml
+On 2/11/25 1:07 PM, Jonathan Cameron wrote:
+> On Tue, 11 Feb 2025 10:52:51 +0200
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 > 
-> Why? Doesn't look like you use anything from it. I think the correct 
-> thing to use here is just mtd.yaml to pick up partitions.
+>> Hi Jonathan,
+>>
+>> Thanks for the review and all the comments!
+>>
+>> Just a note that I am currently spending some quality time with 
+>> rebuilding the floor of my house. Leaking floor drain can cause a bit of 
+>> a work... :rolleyes: So, my time with upstream work is a bit limited - 
+>> although writing an occasional bug or two can help one to keep the 
+>> balance ;)
+>>
+>> Anyways, my replies and new versions may be slower than usual..
+>>
+>> On 08/02/2025 18:41, Jonathan Cameron wrote:
+>>> On Wed, 5 Feb 2025 15:34:51 +0200
+>>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+>>>   
+>>>> There are ADC ICs which may have some of the AIN pins usable for other
+>>>> functions. These ICs may have some of the AIN pins wired so that they
+>>>> should not be used for ADC.
+>>>>
+>>>> (Preferred?) way for marking pins which can be used as ADC inputs is to
+>>>> add corresponding channels@N nodes in the device tree as described in
+>>>> the ADC binding yaml.
+>>>>
+>>>> Add couple of helper functions which can be used to retrieve the channel
+>>>> information from the device node.
+>>>>
+>>>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>>>
+>>>> ---
+>>>> Revision history:
+>>>> RFC v1 => v2:
+>>>>   - New patch
+>>>>
+>>>> I think it might be nice to have helpers for fetching also the other
+>>>> generic (non vendor specific) ADC properties (as listed in the
+>>>> Documentation/devicetree/bindings/iio/adc/adc.yaml) - but as I don't
+>>>> have use for those in BD79124 driver (at least not for now), I don't
+>>>> imnplement them yet. Anyways, this commit creates a place for such
+>>>> helpers.  
+>>>
+>>> There is often a mix of vendor specific and not in channel nodes.
+>>> Hence I'm not sure how widely this will be and it is driver
+>>> specific which of the standard things make sense.  
+>>
+>> I definitely agree. Still, in my experience, no written standard 
+>> standardizes use as well as written helpers ;) More we support parsing 
+>> the generic helpers by the (add subsystem here)-core, more the driver 
+>> writes will use the generic properties (instead of brewing vendor 
+>> specific ones).
+>>
+>>> So before I'd consider a helper like this I'd want to see it alongside
+>>> a bunch of users including some of the complex ones so that we know
+>>> it generalizes well enough.  It doesn't make sense to introduce
+>>> it otherwise - just keep the code in the specific drivers instead.
+>>>
+>>> It's an interesting idea, but not a trivial one :)  
+>>
+>> I agree it's not trivial. But I believe adding helpers one-by-one to 
+>> cover 'normal' use-cases guide the use of the properties. Those who need 
+>> something more exotic can always implement their custom handlers - and 
+>> then a reviewer of such handler can ask "why" ;)
+> I'd be fine with a series taking on the task of converting handling of
+> all the documented properties in adc.yaml
+> 
+> If we do less than that it may never get wide adoption and we end
+> up with a bit of generic looking infrastructure that isn't generic.
+> 
+Having reviewed quite a few patches recently that make use of these
+generic channel properties (and writing one driver myself), I don't
+really see how we could make generic functions for these that would
+be any simpler than calling the fwnode_property functions directly
+other than maybe saving a few arguments. The "normal" operation for
+these properties usually involves poking some registers on the chip
+(could be immediately or deferred) to configure it. So the only thing
+we could generalize is reading the property value, but not doing
+anything with that information.
 
-There is one example of properties from nand-chip.yaml being used
-on an fsl,elbc-fcm-nand node: arch/powerpc/boot/dts/turris1x.dts
-uses nand-ecc-mode and nand-ecc-algo.
 
-
-Thanks,
-J. Neuschäfer
 
