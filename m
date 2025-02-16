@@ -1,162 +1,206 @@
-Return-Path: <devicetree+bounces-147204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36DF1A37747
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 20:53:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC964A37792
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 21:57:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D1F53AEA9D
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 19:53:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7EE207A0812
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 20:56:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B6821A262A;
-	Sun, 16 Feb 2025 19:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 089211A0BFA;
+	Sun, 16 Feb 2025 20:57:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UNRQemKD"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KCPJNAZ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A44C1179A3;
-	Sun, 16 Feb 2025 19:53:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740CEE55B;
+	Sun, 16 Feb 2025 20:57:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739735626; cv=none; b=OXKh6jfMSeIu/vX5fbskJxfdkvsgGWnHFIZ4E0VQnAot0FLVhhF6EwgjhIFgA8f08hzQwLJ2ycx6UGkom8cEIt1yVKuW2v6rR4o1XGTd/sy4K24YeTyiyxpAK4UGkHZ99Qp7JkcmJMpDphqToTUbaWEt9roLLcIBHkRL7/uqSNg=
+	t=1739739433; cv=none; b=jqp+UF0nXBhAxGnabhwTTWWKB96DbvvTds0D360x4ogbetqhj4c9BVRQgCPKgnviYy3mCe9VlxYIc8mewS+NdmlvVf950PLqNUbsU6Gb65cViHI7SBtOjMnIifXADgyvGtJkjkvXCON9B97HRpVCogIQmd0Sii5hpc+aMy4NM80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739735626; c=relaxed/simple;
-	bh=0cUM+2ow/h/nzbuzL8uF2L/aTYu78jPmqJNt+qnVHn0=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=uGCUZMLHOLJR/gCB4ZEEL3scgDVvNfqKBMGkS+12//W7KO3LchetaIfDvAm18XPLU0KKYb4jt/pPxmgmgpFjxLGJGz8Wr+6u40BMO4J+jEe25qRvfvpk32o1YRMDkRYqpnSGer+vxNtBN+0Z7Zs+hc3K0//YLt4USQwmYFbziIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UNRQemKD; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ab744d5e567so691335666b.1;
-        Sun, 16 Feb 2025 11:53:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739735622; x=1740340422; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=af1SOjIZIJuY/yZ1MYRyyrZydDPDM0jQ3H4asZdVI0w=;
-        b=UNRQemKDHvhd5n559HPy0slJ2zTfGEDJbIvCINj3QZoqwzAKehVCGYJrNMetKETQP/
-         dgCBbLQymXjVNjoBaPKVRaxvM+YjM9/PXidwUytvpw822beDY9rvF/QWwYNJ7D4hfeCC
-         NUFB8EOGOUNLCRqel+594ef41zAz3wwR2I+e9OZETM0O47ZppqcC4hMEFPss1PSHgdvm
-         NkbxuFuwAIs9hhpqonwICEUb/URmdQvmbFPYEnRMnfdbnmT7z+9kHUj8SnafU2UiOCQw
-         47z+w5WagW+kBA7HEkVbCe5r9h28L7RbJPEkNU7+DCJBTkCOIvsqST1i3ydM+RcT4Aig
-         oKIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739735622; x=1740340422;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=af1SOjIZIJuY/yZ1MYRyyrZydDPDM0jQ3H4asZdVI0w=;
-        b=hTrwFVZYCLEvjiqBtXhoru6208qsU9S0IWR2rJ1IJSmL3q/G7hEGVaFWFQqa2lHi+d
-         YfeI3x+R2ZmAmvdTjAtm54anFEVaXbEghak8feJHsvagXZISH/o4V8zi9yuJH3m9YSgR
-         yLkB1acH/GUQXOK7ccv8vf393x6WkE2nazOlAXjaclD4En6qQDKATBZWeDqArWZyutte
-         B0D993S1sdF1qgVfU5XLEhymKmHyOsaUSnjkUAyPxwbxO/Y3RIAuS+QY1/DlcbqC0HXM
-         jVodBonRTz+pv+iPRq9rNaUG4GwIwG51NKyJWLWVPr7MuWhMV1wV/s+yM64viXI5Imwi
-         0HTg==
-X-Forwarded-Encrypted: i=1; AJvYcCUHaMM1YmY44AKWgkrjj/RG1ceIvdYHQyhMAlVo90syaUaFs2tLRGSwbjS3oXRlRwPE+8Y2lQ058QS8@vger.kernel.org, AJvYcCXT0h/SXoTunz/lM2zCGB7KkWXfnr2ud+S2BMUeuG/UFI5EAVjnvlkJUl7Rz34fDa7rQOEzf+mvMyil1Zx1@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKxiNKgugsaAshC6vQ45thBqRvpmMZrBYV+BzhNv9rnyTwL628
-	Kao2spNt5xjktVDowNAmTlTWoHoPdZ+W7Av6bZcl7Gg+Ydxi23cf
-X-Gm-Gg: ASbGnct9e9Gg62mN238c1m1iJvuRXQMMOsfOvcsAibL5CmgHBP24lc/UBF6OyXaxK3a
-	+fd3PZAA1NPOemttn5FTBlQMhZMETjb1JInX6fM1yACIzVeVaoX8oNwJfGgbDyUOUQx6KrNkuQA
-	/Dgwr/tV7yzRy0WljnKVhBh2QnCdkqKPU4kTl4ZkBdY0zgUd0dNDyE2uJ6m89fhJ1NCkztpbO4i
-	gmZ2mnAW3BoDc0cKxmLlcT7CBQg+C9az7Eq0Fb3RSR/8y/nft93tSqxDJaSea1MXRDxDNxytewf
-	gLhdTLcyKVNt3h8NkqE4Ga/4ullqTfL8RGI19tATuFaNTeCJcHL4D1TcR+7/pYNcHC84HLpv
-X-Google-Smtp-Source: AGHT+IF2PPpA5m0LdNbLmv+C2VzL4+ag8aQtphiRxdf9NymmWeqgUCheAUnp1GoDDrvzrYazgYP+ng==
-X-Received: by 2002:a17:907:2d88:b0:ab7:b896:b80c with SMTP id a640c23a62f3a-aba50fa0b94mr1264192566b.9.1739735621628;
-        Sun, 16 Feb 2025 11:53:41 -0800 (PST)
-Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb904a4ae5sm165308766b.29.2025.02.16.11.53.39
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 16 Feb 2025 11:53:41 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1739739433; c=relaxed/simple;
+	bh=qpmYDbI5414LoAXsg1Wso6jHCQCn0aAfZK4f38DxgKQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mvSeq4grtSfYFqiLpURFqSmTeNRN104g2/uOJKKPa0MxfI0RG1Ial5qwVatK2jl8lPBq6ItV1JNIGYgXBkM3emkqxa6B9Nk0JhCvZV+HUe3FW8jbriQV7dC+GdR0XHouRG4gum1trwLkEhH0iULZdkCoXS0wsMUHeSfp0CB9lVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KCPJNAZ1; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739739433; x=1771275433;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=qpmYDbI5414LoAXsg1Wso6jHCQCn0aAfZK4f38DxgKQ=;
+  b=KCPJNAZ1Oxg/h5wOzCYLFaiL77MKd4pPsn0YAtV5xwVnrKkamHRDtK/w
+   MWLQ9oIPIoKUDRDJl30VbNWK488BLcg0uW8rqLIYn8sljRR4afQNTZSR5
+   nHfGXc0+m/+NioP5nXxnOh/FhCkoeAz/7s1xR+vERAieD/BSrdEAKXldH
+   vVrtA323nkSU9YZzpB2O3nPPxyB7Ucj294ilbeQJErMzULhI9ZWCStnNm
+   jaZrhKq8bK8+vdjY1pjk+Zpej2xp4ehFanlYuq4wKW34OmoTNMD8vbRER
+   a8VqW6jpeTmJlU/o9uRTRmngXFoy7kYTmMqXFiQH7kCL5OQxgUnYuPhEt
+   g==;
+X-CSE-ConnectionGUID: 4yngzIveQEWeAs6P7xZxjQ==
+X-CSE-MsgGUID: GjVKyzd8SXy1RyqfBKFasA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11347"; a="44181715"
+X-IronPort-AV: E=Sophos;i="6.13,291,1732608000"; 
+   d="scan'208";a="44181715"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2025 12:57:12 -0800
+X-CSE-ConnectionGUID: HOa9lWoOSHerZgpKhD32FA==
+X-CSE-MsgGUID: X7QjEGsGQnSqteClj9z9KQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,291,1732608000"; 
+   d="scan'208";a="114576033"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2025 12:57:07 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tjlhH-0000000CDJt-46jj;
+	Sun, 16 Feb 2025 22:57:03 +0200
+Date: Sun, 16 Feb 2025 22:57:03 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Emil Gedenryd <emil.gedenryd@axis.com>,
+	Arthur Becker <arthur.becker@sentec.com>,
+	Mudit Sharma <muditsharma.info@gmail.com>,
+	Per-Daniel Olsson <perdaniel.olsson@axis.com>,
+	Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+	Ivan Orlov <ivan.orlov0322@gmail.com>,
+	David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] iio: light: Add support for AL3000a illuminance
+ sensor
+Message-ID: <Z7JRH8ITxA2KOozH@smile.fi.intel.com>
+References: <20250216162721.124834-1-clamor95@gmail.com>
+ <20250216162721.124834-3-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
-Subject: Re: [PATCH] arm64: dts: rockchip: add hdmi1 support to ROCK 5 ITX
-From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20250216134918.1357069-1-liujianfeng1994@gmail.com>
-Date: Sun, 16 Feb 2025 20:53:27 +0100
-Cc: conor+dt@kernel.org,
- devicetree@vger.kernel.org,
- heiko@sntech.de,
- krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- robh@kernel.org,
- sfr@canb.auug.org.au
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <2FE649E5-61FE-4299-81D1-F838298A04A5@gmail.com>
-References: <566E6F11-765C-4415-8805-55DFD3C2BD4D@gmail.com>
- <20250216134918.1357069-1-liujianfeng1994@gmail.com>
-To: Jianfeng Liu <liujianfeng1994@gmail.com>
-X-Mailer: Apple Mail (2.3826.400.131.1.6)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250216162721.124834-3-clamor95@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+On Sun, Feb 16, 2025 at 06:27:20PM +0200, Svyatoslav Ryhel wrote:
+> AL3000a is a simple I2C-based ambient light sensor, which is
+> closely related to AL3010 and AL3320a, but has significantly
+> different way of processing data generated by the sensor.
+
+...
+
+> +static int al3000a_set_pwr_on(struct al3000a_data *data)
+> +{
+> +	struct device *dev = regmap_get_device(data->regmap);
+> +	int ret;
+> +
+> +	ret = regulator_enable(data->vdd_supply);
+> +	if (ret) {
+> +		dev_err(dev, "failed to enable vdd power supply\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = regmap_write(data->regmap, AL3000A_REG_SYSTEM, AL3000A_CONFIG_ENABLE);
+> +	if (ret) {
+> +		dev_err(dev, "failed to write system register\n");
+
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+
+	return ret;
+
+> +}
+
+...
+
+> +static void al3000a_set_pwr_off(void *_data)
+> +{
+> +	struct al3000a_data *data = _data;
+> +	struct device *dev = regmap_get_device(data->regmap);
+> +	int ret;
+> +
+> +	ret = regmap_write(data->regmap, AL3000A_REG_SYSTEM, AL3000A_CONFIG_DISABLE);
+> +	if (ret) {
+> +		dev_err(dev, "failed to write system register\n");
+> +		return;
+> +	}
+> +
+> +	ret = regulator_disable(data->vdd_supply);
+> +	if (ret) {
+> +		dev_err(dev, "failed to disable vdd power supply\n");
+
+> +		return;
+
+This is not needed, but I understand the intention. To me, nevertheless, seems
+better to return an error to upper layer.
+
+> +	}
+> +}
+> +
+> +static int al3000a_init(struct al3000a_data *data)
+> +{
+> +	int ret;
+> +
+> +	ret = al3000a_set_pwr_on(data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(data->regmap, AL3000A_REG_SYSTEM, AL3000A_CONFIG_RESET);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(data->regmap, AL3000A_REG_SYSTEM, AL3000A_CONFIG_ENABLE);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+
+	return regmap_write(...);
+
+> +}
+
+...
+
+> +static const struct i2c_device_id al3000a_id[] = {
+> +	{"al3000a", },
+
+Remove redundant inner comma. And make style consistent with OF, i.e. surround
+string with spaces.
+
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(i2c, al3010_id);
+
+Copy'n'paste error, obviously. Please, test every version before sending.
+
+> +
+> +static const struct of_device_id al3000a_of_match[] = {
+> +	{ .compatible = "dynaimage,al3000a" },
+> +	{ /* sentinel */ }
+> +};
 
 
-
-> Wiadomo=C5=9B=C4=87 napisana przez Jianfeng Liu =
-<liujianfeng1994@gmail.com> w dniu 16 lut 2025, o godz. 14:49:
->=20
-> Hi Piotr,
->=20
-> On Sun, 16 Feb 2025 13:37:05 +0100, Piotr wrote:
->> Is there anywhere repo with this patch applied to test it on rock5 =
-itx hw?
->=20
-> This patch is applied to 6.13 and I was testing with armbian:
-> https://github.com/armbian/build/pull/7829.
-
-Well - i build 6.12.3 with current armbian patches:
-
-=
-https://github.com/armbian/build/tree/main/patch/kernel/archive/rockchip64=
--6.13 (all rk3588-*.patch)
-
- + https://github.com/armbian/build/pull/7829
-
-and i=E2=80=99m still getting:
-
-root@myth-frontend-56b0f018b5e0:~ # dmesg | grep drm
-[    0.529361] rockchip-drm display-subsystem: bound fdd90000.vop (ops =
-vop2_component_ops)
-[    0.531139] rockchip-drm display-subsystem: bound fdea0000.hdmi (ops =
-dw_hdmi_qp_rockchip_ops)
-[    0.532197] [drm] Initialized rockchip 1.0.0 for display-subsystem on =
-minor 0
-[    0.532846] rockchip-drm display-subsystem: [drm] Cannot find any =
-crtc or sizes
-[    0.533538] rockchip-drm display-subsystem: [drm] Cannot find any =
-crtc or sizes
-[   10.157564] panthor fb000000.gpu: [drm] clock rate =3D 198000000
-[   10.160033] panthor fb000000.gpu: [drm] mali-g610 id 0xa867 major 0x0 =
-minor 0x0 status 0x5
-[   10.160755] panthor fb000000.gpu: [drm] Features: L2:0x7120306 =
-Tiler:0x809 Mem:0x301 MMU:0x2830 AS:0xff
-[   10.161569] panthor fb000000.gpu: [drm] shader_present=3D0x50005 =
-l2_present=3D0x1 tiler_present=3D0x1
-[   10.219825] panthor fb000000.gpu: [drm] Firmware protected mode entry =
-not be supported, ignoring
-[   10.221411] panthor fb000000.gpu: [drm] Firmware git sha: =
-814b47b551159067b67a37c4e9adda458ad9d852
-[   10.222315] panthor fb000000.gpu: [drm] CSF FW using interface =
-v1.1.0, Features 0x0 Instrumentation features 0x71
-[   10.223733] [drm] Initialized panthor 1.2.0 for fb000000.gpu on minor =
-1
-
-Initially i was thinking my board is defective but=E2=80=A6..hdmi1 works =
-nicely with Roobi OS flashed by radxa in eMMC so i=E2=80=99m really =
-puzzled with this=E2=80=A6
-
-Is it possible to provide me url with kernel package you are using (wich =
-works ok for you)?
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
