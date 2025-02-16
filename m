@@ -1,320 +1,217 @@
-Return-Path: <devicetree+bounces-147097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E19DAA3741F
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 13:32:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86E6AA37426
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 13:37:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74862188D41C
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 12:32:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B094B3AEB86
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 12:37:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29F5B18C91F;
-	Sun, 16 Feb 2025 12:32:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AACD218F2EA;
+	Sun, 16 Feb 2025 12:37:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XPafPQNU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QWv2zOKY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422F89450;
-	Sun, 16 Feb 2025 12:32:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5B2E18C91F;
+	Sun, 16 Feb 2025 12:37:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739709131; cv=none; b=ML8bzjUHpgLfjOoCVrIRfraL5dym5iZ4yN99o5bCypw9e2deszxXnZScuUqzvPU7pkm3+hTFLw9VXSZGvNc09VZXtNYObspD13+xaH7zWa04E4U5nOxlJtkcj4R5rGfYp2aJU0Tmyy/0V6Oq8GUGyX6Qj1Jx/DEV1zRVYoIxljQ=
+	t=1739709442; cv=none; b=oiTHlEL3ksvi7qGY5AEAnaBLuMeO7jSDj77cyro2pYYDny5n4oHTGzVCaV2rtG93I/lwd9CFKKnhdL45gFmI6CsRw+7DWAyeWDpD/gApZ7izeXGcbBb7Dw1Si4mzYn+zdGyJxUbE2HlAX5yQYPAledzjVKUbwYIZM8fB7nyyaKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739709131; c=relaxed/simple;
-	bh=BWfZJmwKHkGRJvK3yJiVpCNBiYui01PINhOsku8NgP8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=D7RdmPounz0Jngyoe+MgvFbPcXkw0tbfkA1Psy0/bUGrr1CHGIsoHGtsAK5IyD7xGUPqw3FlpNogd9ol54vCzyBhRgf2mFxrtk54Q2Z43kt3Lzp+bpye50ayyRcQUzOXFs7vuYsgyCwTYpkhWYgajkZeEsB7iRb79tw8vTaJbtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XPafPQNU; arc=none smtp.client-ip=209.85.160.179
+	s=arc-20240116; t=1739709442; c=relaxed/simple;
+	bh=HIGEJB0qUycZsdckTlxaaoA0bk1Jt2vpqEozX5IOtYQ=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=AzM6gI4pr/sFrLDCCbAggpM27U2gj1oYB4Cy6IREY2n9VZ9Uld/o0VCwEDeX4fMcX1fpzIJk585+1wpVQtaRuAVcF3nYJTwr4rd+RudRWC+VMivUxvT0HaP3SoE1tl/ws9BYUpbHS6MK5PHbyKrP/SpGGChGi2viRChOg0Cwv28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QWv2zOKY; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-471dc990e18so11275771cf.0;
-        Sun, 16 Feb 2025 04:32:08 -0800 (PST)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-aaecf50578eso695785066b.2;
+        Sun, 16 Feb 2025 04:37:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739709128; x=1740313928; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1739709439; x=1740314239; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1pmRU4oV8Lwr70PJWkHKSc+JQWjhbwJ0zctlvUTldiE=;
-        b=XPafPQNUOG+hB6BDxVNRRlL/cGIRgfp847dzxwa0WzlLb5ZI7Y+csQJF4wGTC+s3Nu
-         D8hkTyRZOrUA96QNKD0feIv25zwnk4/jR2hII3FrH+GPS/wdJ9LzX92i/xqB7KpEuWfD
-         3W7dKDIEgRZ0QV/Q64tmmqBAZek0yakN8PRGkg6+YpxB+whQ5gvCoO85JorXCIzI+Sco
-         clANxBRgOhKfvFXSk/xTAVlmAvR7OIXFe/MkD3FC5XU/urYCShPd/3yBd7BR0miqJ5Pb
-         FKvaK2KtnbwU5rWxLEvMoQaBHkSgb4ajmE5PnwIG5SgxfhNnh+uyFGkjXsA/j0qqQk2y
-         ErcA==
+        bh=9JuodrbTqt2kISAe95cYUvufIOl8Fb0pi3tva7a0oDw=;
+        b=QWv2zOKYj5lcPQGBr3lClx2aBXsNJI7rUke9/j2utxjF8V5NwEgz1Fnx92JIkkLMuZ
+         cSObtQfp/CEJPl9UG0dVsVrJ99M5RHkwFHUzSApwsPZ1+1H5dwT7ZrlkT0JeDXcy3O8p
+         2uZOS5+LI9D10Liw8hImOEvGf9y7BTSOymylS2KcV+2cxVAGyj3EzcD08r39cYC7wsMc
+         +60i6Fnh5GTqBQNBX3YLF2agLSYmZ8edH37HSWS6QspBsbZ659T/ABTpqHJbnPQmYi8R
+         0XUxqivzv8186wgkn1EHpATRjYndMmLzRFe9GcAz1s9H3cBnwDRMPsjEgevLC4oChv5F
+         3YHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739709128; x=1740313928;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1739709439; x=1740314239;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1pmRU4oV8Lwr70PJWkHKSc+JQWjhbwJ0zctlvUTldiE=;
-        b=Hx6doaiqSsuTXFtGsgCVNNCPCBFx0h1s7PdF8g9GqReM+b/ff0U6iztppAzSFzpMAy
-         80uOMQpnWfQPvuGy1yCcDreFvDEvvWD4xtHqBmYN15SbEJEuXvkjFpsM/RbHMdLskOqV
-         jesC/pdRNzSYYY8RaijHL0/oIjhqtN4aFMW4drY7b06/KWaSKsqfrVNcHZ6fjaOiRGV6
-         tgAn15/zM5qM5kRsbpki3R7vfHXohv+UxvzZcjCEr27oNXQWrnngI/KdyGzkBt38Kmjf
-         676OGd2Kn1Ql/fm/aGk0UivvljmLVwdpCn2m9OQw8coLhIGSf8CSIsGCJ+Qq3O3IXnaP
-         sInQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV6cTCSqdEvyxL3eKe2jRx3m/RqZ16fCJjXRdNuMKZJRHCVgErVCX3CYUrRjvMWoMjRZbk3/Z1EFwja@vger.kernel.org, AJvYcCXbplmTyXrjYwPK8JXpQ5cceabzZmN5Maq9cdpSjQkaqC7LRuHAeQTxOhvUogGw9rJkFZjqa+Yr0p6WKV/T@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+bsMPSoRQBRMpKZngftjDMNDwMyszQNuVb4Vo3j9DK551uHPi
-	UF6sDgpDF7F989Hi5Bj2QyhoN7nHG+uH3t/ezttR2OyDWcwMq6apNBpywYJAPQH29VzYqAPi2CJ
-	XMU+ukFhbvY6X1jjCa70l2NuT+UQ=
-X-Gm-Gg: ASbGncvUb+1on03G4bNRtyovKpTo+KvwsZkkaMq/W66sdUddxPeQUgGw4UfeQBj5rG+
-	JfaNKNFAKyw53tvTLQ4u58X98RNb7gZLGVKK6+WgKAPM8krYJlPC5Ok/WiGTN+4wDvjxYYY4c2+
-	w=
-X-Google-Smtp-Source: AGHT+IHWuSE1Y3gFhYEtN+DZ/0JnI2ICnduM/7vMvfprywwSYgWgj2BhMei/y/cbzJAVNP5zlk73gFgjgP1Mp2EmMmg=
-X-Received: by 2002:ac8:7e8d:0:b0:471:d132:f91b with SMTP id
- d75a77b69052e-471dbccbaa2mr79514361cf.3.1739709127957; Sun, 16 Feb 2025
- 04:32:07 -0800 (PST)
+        bh=9JuodrbTqt2kISAe95cYUvufIOl8Fb0pi3tva7a0oDw=;
+        b=vWAyTlXr9qx15jox3CE6Z8Odg37ZxYhNhsRGh6lsw/UQxXtAxC20GAIbxKgJph1j1Y
+         Xk6eUYLV5FVE8/tiB6lPngJNKsf4Cedr7mJ0B7IKPh2xc7JkGFsuMV78AyJZt9KqYlCc
+         uhn6sLEHN08mom79JWy8CN0NM18z7Q7EX+GTkwdw5CSAfb8nSJlWz/oMmJClK9MKeNWb
+         NokmrcsVhFv780PK11oP6/3gOCV0IddTACgXMhx41B6u93ryVQ2ztkNKWWWRM4EeuiHV
+         I0jYbK2KcBmwUPH/ZCWFuc6To/Q64BWT1+sDG+aqjyW79OhUfkhIHNZgZsTUrUamoWkS
+         kxjA==
+X-Forwarded-Encrypted: i=1; AJvYcCUMpdtEMVGfG9WNagZ9lo26hUH/3aQlpEBG71jKjsypEtEvc2jNI0E0mxzFECInZZahNvxsgwW5pazd@vger.kernel.org, AJvYcCUai3LiubEP83UKN0hqFJFYJhfgJCiT5NwgW/95Et3+V2/1HVFnHWkNtmUwVNYrgFTZEnjQ0zFA5vSL0I31@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0WC6IUsF+tV04w0SmqbVtczw3n6cDw+Tg+JlQD1gfFWdIRzFJ
+	MlzS6k6onQf0slua0wm9xZyPbFEoqsxzTVCCNK50EQ63ZKC+XzQ5
+X-Gm-Gg: ASbGncuNFXWS7FAG42k4//9DtopJGd1ilrBUVzgO3UiR/rjBisjb39D5YdFByT7pNa9
+	ONqO47OMI8aMZTjOsKssDOhw24KTi2QMibJExvdoDdzHeSJtng6h/bRA6kiBS59mcPBqJPjVZyq
+	YxiibSO4Te0RhRWH68Ys9mh8OgF0IjPnqFTOzOjNaG7Ya7ZzjX02H8SSW+EpcygX/TIiGpGOjyU
+	fn6EIy3Tj3EVH8q/t8r4S3tOA27mC/6RC7sY0MCUxebam/o/GCwc3p6vRLxG/HLyDtbjf24wgdf
+	YwxC+hscvwsg/c8KtTNkSgbT1dfcoYs6RZujM5ofyCgDf7XWBRSaeJsIVfHXbI6plS/3VS2t
+X-Google-Smtp-Source: AGHT+IF7Li7Lm7POp1hY1DOd+YXcUFGnt79PSyFeoLFF1fqoqNga9gqKiKlCsi70OcwAnvjg618OOA==
+X-Received: by 2002:a17:907:7244:b0:ab7:d6c:5781 with SMTP id a640c23a62f3a-abb70b35452mr579701566b.24.1739709438780;
+        Sun, 16 Feb 2025 04:37:18 -0800 (PST)
+Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb67732cd5sm343423666b.183.2025.02.16.04.37.16
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 16 Feb 2025 04:37:17 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240617-rk-dts-additions-v5-0-c1f5f3267f1e@gmail.com>
- <d8ce8db2-1717-40f8-b53e-24cc71a758c9@cherry.de> <CABjd4Yw-r-ogfwcrph4K1wbkybS25gk6LFg8wpqLG27uWdybNA@mail.gmail.com>
- <2914631.KiezcSG77Q@diego>
-In-Reply-To: <2914631.KiezcSG77Q@diego>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Sun, 16 Feb 2025 15:32:01 +0300
-X-Gm-Features: AWEUYZnpDb3wjAorVn4kGg8idUTWI0ik5GUkTOikdcLRJ5KAatVLRX81_8fVTX4
-Message-ID: <CABjd4YxF4N1tAgGUZk-oKkMUO+Q9rWHZsas9gMQdJ+TF4A1=NA@mail.gmail.com>
-Subject: Re: [PATCH v5 7/8] arm64: dts: rockchip: Add OPP data for CPU cores
- on RK3588j
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: Quentin Schulz <quentin.schulz@cherry.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Dragan Simic <dsimic@manjaro.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu Tsai <wens@kernel.org>, 
-	Diederik de Haas <didi.debian@cknow.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Kever Yang <kever.yang@rock-chips.com>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
+Subject: Re: [PATCH] arm64: dts: rockchip: add hdmi1 support to ROCK 5 ITX
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <20250215152550.3975614-1-liujianfeng1994@gmail.com>
+Date: Sun, 16 Feb 2025 13:37:05 +0100
+Cc: linux-rockchip@lists.infradead.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Stephen Rothwell <sfr@canb.auug.org.au>,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
 Content-Transfer-Encoding: quoted-printable
+Message-Id: <566E6F11-765C-4415-8805-55DFD3C2BD4D@gmail.com>
+References: <20250215152550.3975614-1-liujianfeng1994@gmail.com>
+To: Jianfeng Liu <liujianfeng1994@gmail.com>
+X-Mailer: Apple Mail (2.3826.400.131.1.6)
 
-Hi Heiko,
 
-On Sat, Feb 15, 2025 at 11:30=E2=80=AFPM Heiko St=C3=BCbner <heiko@sntech.d=
-e> wrote:
->
-> Am Samstag, 15. Februar 2025, 19:59:44 MEZ schrieb Alexey Charkov:
-> > On Tue, Feb 11, 2025 at 7:32=E2=80=AFPM Quentin Schulz <quentin.schulz@=
-cherry.de> wrote:
-> > > On 6/17/24 8:28 PM, Alexey Charkov wrote:
-> > > > RK3588j is the 'industrial' variant of RK3588, and it uses a differ=
-ent
-> > > > set of OPPs both in terms of allowed frequencies and in terms of
-> > > > applicable voltages at each frequency setpoint.
-> > > >
-> > > > Add the OPPs that apply to RK3588j (and apparently RK3588m too) to
-> > > > enable dynamic CPU frequency scaling.
-> > > >
-> > > > OPP values are derived from Rockchip downstream sources [1] by taki=
-ng
-> > > > only those OPPs which have the highest frequency for a given voltag=
-e
-> > > > level and dropping the rest (if they are included, the kernel compl=
-ains
-> > > > at boot time about them being inefficient)
-> > > >
-> > > > [1] https://github.com/rockchip-linux/kernel/blob/604cec4004abe5a96=
-c734f2fab7b74809d2d742f/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> > > >
-> > >
-> > > Funny stuff actually. Rockchip have their own downstream cpufreq driv=
-er
-> > > which autodetects at runtime the SoC variant and filter out OPPs base=
-d
-> > > on that info. And this patch is based on those values and filters.
-> > >
-> > > However, they also decided that maybe this isn't the best way to do i=
-t
-> > > and they decided to have an rk3588j.dtsi where they remove some of th=
-ose
-> > > OPPs instead of just updating the mask/filter in their base dtsi
-> > > (rk3588s.dtsi downstream). See
-> > > https://github.com/rockchip-linux/kernel/blob/604cec4004abe5a96c734f2=
-fab7b74809d2d742f/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
-> >
-> > Funny stuff indeed! Judging by the comments in the file you
-> > referenced, those higher OPP values constitute an 'overdrive' mode,
-> > and apparently the chip shouldn't stay in those for prolonged periods
-> > of time. However, I couldn't locate any dts file inside Rockchip
-> > sources that would include this rk3588j.dtsi - so not sure if we
-> > should follow what it says too zealously.
-> >
-> > > So...
-> > >
-> > > > Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> > > > ---
-> > > >   arch/arm64/boot/dts/rockchip/rk3588j.dtsi | 108 +++++++++++++++++=
-+++++++++++++
-> > > >   1 file changed, 108 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/rockchip/rk3588j.dtsi b/arch/arm64=
-/boot/dts/rockchip/rk3588j.dtsi
-> > > > index 0bbeee399a63..b7e69553857b 100644
-> > > > --- a/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
-> > > > +++ b/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
-> > > > @@ -5,3 +5,111 @@
-> > > >    */
-> > > >
-> > > >   #include "rk3588-extra.dtsi"
-> > > > +
-> > > > +/ {
-> > > > +     cluster0_opp_table: opp-table-cluster0 {
-> > > > +             compatible =3D "operating-points-v2";
-> > > > +             opp-shared;
-> > > > +
-> > > > +             opp-1416000000 {
-> > > > +                     opp-hz =3D /bits/ 64 <1416000000>;
-> > > > +                     opp-microvolt =3D <750000 750000 950000>;
-> > > > +                     clock-latency-ns =3D <40000>;
-> > > > +                     opp-suspend;
-> > > > +             };
-> > > > +             opp-1608000000 {
-> > > > +                     opp-hz =3D /bits/ 64 <1608000000>;
-> > > > +                     opp-microvolt =3D <887500 887500 950000>;
-> > > > +                     clock-latency-ns =3D <40000>;
-> > > > +             };
-> > > > +             opp-1704000000 {
-> > > > +                     opp-hz =3D /bits/ 64 <1704000000>;
-> > > > +                     opp-microvolt =3D <937500 937500 950000>;
-> > > > +                     clock-latency-ns =3D <40000>;
-> > > > +             };
-> > >
-> > > None of those are valid according to Rockchip, we should have
-> >
-> > Well, valid but more taxing on the hardware apparently.
-> >
-> > >                 opp-1296000000 {
-> > >                         opp-hz =3D /bits/ 64 <1296000000>;
-> > >                         opp-microvolt =3D <750000 750000 950000>;
-> > >                         clock-latency-ns =3D <40000>;
-> > >                         opp-suspend;
-> > >                 };
-> > >
-> > > instead?
-> >
-> > I dropped this one because it uses a lower frequency but same voltage
-> > as the 1.416 GHz one, thus being 'inefficient' as the thermal
-> > subsystem says in the logs. It can be added back if we decide to
-> > remove opp-1416000000.
-> >
-> > > and...
-> > >
-> > > > +     };
-> > > > +
-> > > > +     cluster1_opp_table: opp-table-cluster1 {
-> > > > +             compatible =3D "operating-points-v2";
-> > > > +             opp-shared;
-> > > > +
-> > > > +             opp-1416000000 {
-> > > > +                     opp-hz =3D /bits/ 64 <1416000000>;
-> > > > +                     opp-microvolt =3D <750000 750000 950000>;
-> > > > +                     clock-latency-ns =3D <40000>;
-> > > > +             };
-> > > > +             opp-1608000000 {
-> > > > +                     opp-hz =3D /bits/ 64 <1608000000>;
-> > > > +                     opp-microvolt =3D <787500 787500 950000>;
-> > > > +                     clock-latency-ns =3D <40000>;
-> > > > +             };
-> > > > +             opp-1800000000 {
-> > > > +                     opp-hz =3D /bits/ 64 <1800000000>;
-> > > > +                     opp-microvolt =3D <875000 875000 950000>;
-> > > > +                     clock-latency-ns =3D <40000>;
-> > > > +             };
-> > > > +             opp-2016000000 {
-> > > > +                     opp-hz =3D /bits/ 64 <2016000000>;
-> > > > +                     opp-microvolt =3D <950000 950000 950000>;
-> > > > +                     clock-latency-ns =3D <40000>;
-> > > > +             };
-> > >
-> > > opp-1800000000 and opp-2016000000 should be removed.
-> > >
-> > > and...
-> > >
-> > > > +     };
-> > > > +
-> > > > +     cluster2_opp_table: opp-table-cluster2 {
-> > > > +             compatible =3D "operating-points-v2";
-> > > > +             opp-shared;
-> > > > +
-> > > > +             opp-1416000000 {
-> > > > +                     opp-hz =3D /bits/ 64 <1416000000>;
-> > > > +                     opp-microvolt =3D <750000 750000 950000>;
-> > > > +                     clock-latency-ns =3D <40000>;
-> > > > +             };
-> > > > +             opp-1608000000 {
-> > > > +                     opp-hz =3D /bits/ 64 <1608000000>;
-> > > > +                     opp-microvolt =3D <787500 787500 950000>;
-> > > > +                     clock-latency-ns =3D <40000>;
-> > > > +             };
-> > > > +             opp-1800000000 {
-> > > > +                     opp-hz =3D /bits/ 64 <1800000000>;
-> > > > +                     opp-microvolt =3D <875000 875000 950000>;
-> > > > +                     clock-latency-ns =3D <40000>;
-> > > > +             };
-> > > > +             opp-2016000000 {
-> > > > +                     opp-hz =3D /bits/ 64 <2016000000>;
-> > > > +                     opp-microvolt =3D <950000 950000 950000>;
-> > > > +                     clock-latency-ns =3D <40000>;
-> > > > +             };
-> > >
-> > > opp-1800000000 and opp-2016000000 should be removed as well.
-> > >
-> > > Did I misunderstand what Rockchip did here? Adding Kever in Cc at lea=
-st
-> > > for awareness on Rockchip side :)
-> > >
-> > > I guess another option could be to mark those above as
-> > >
-> > > turbo-mode;
-> > >
-> > > though no clue what this would entail. From a glance at cpufreq, it
-> > > seems that for Rockchip since we use the default cpufreq-dt, it would
-> > > mark those as unusable, so essentially a no-op, so better remove them
-> > > entirely?
-> >
-> > I believe the opp core just marks 'turbo-mode' opps as
-> > CPUFREQ_BOOST_FREQ, and cpufreq-dt only passes that flag along to the
-> > cpufreq core. But then to actually use those boost frequencies I would
-> > guess the governor needs to somehow know the power/thermal constraints
-> > of the chip?.. Don't know where that is defined.
->
-> personally I don't believe in "boost" frequencies - except when they are
-> declared officially.
->
-> Rockchip for the longest time maintains that running the chip outside
-> the declared power/rate envelope can reduce its overall lifetime.
->
-> So for Rockchip in mainline a "it runs stable for me" has never been a
-> suitable reasoning ;-) .
 
-My key concern here was perhaps that we are looking at a file inside
-the Rockchip source tree which looks relevant by the name of it, but
-doesn't actually get included anywhere for any of the boards. This may
-or may not constitute an endorsement by Rockchip of any OPPs listed
-there :-D
+> Wiadomo=C5=9B=C4=87 napisana przez Jianfeng Liu =
+<liujianfeng1994@gmail.com> w dniu 15 lut 2025, o godz. 16:25:
+>=20
+> Enable the HDMI port next to ethernet port.
+>=20
+> Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+> ---
+>=20
+> .../boot/dts/rockchip/rk3588-rock-5-itx.dts   | 53 +++++++++++++++++++
+> 1 file changed, 53 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts =
+b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+> index 6d68f70284e..a4fdced052c 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+> @@ -11,6 +11,7 @@
+> #include <dt-bindings/leds/common.h>
+> #include <dt-bindings/pinctrl/rockchip.h>
+> #include <dt-bindings/pwm/pwm.h>
+> +#include <dt-bindings/soc/rockchip,vop2.h>
+> #include "dt-bindings/usb/pd.h"
+> #include "rk3588.dtsi"
+>=20
+> @@ -89,6 +90,17 @@ fan0: pwm-fan {
+> pwms =3D <&pwm14 0 10000 0>;
+> };
+>=20
+> + hdmi1-con {
+> + compatible =3D "hdmi-connector";
+> + type =3D "a";
+> +
+> + port {
+> + hdmi1_con_in: endpoint {
+> + remote-endpoint =3D <&hdmi1_out_con>;
+> + };
+> + };
+> + };
+> +
+> /* M.2 E-KEY */
+> sdio_pwrseq: sdio-pwrseq {
+> compatible =3D "mmc-pwrseq-simple";
+> @@ -261,6 +273,32 @@ &gpu {
+> status =3D "okay";
+> };
+>=20
+> +&hdmi1 {
+> + pinctrl-0 =3D <&hdmim0_tx1_cec &hdmim0_tx1_hpd
+> +     &hdmim1_tx1_scl &hdmim1_tx1_sda>;
+> + status =3D "okay";
+> +};
+> +
+> +&hdmi1_in {
+> + hdmi1_in_vp1: endpoint {
+> + remote-endpoint =3D <&vp1_out_hdmi1>;
+> + };
+> +};
+> +
+> +&hdmi1_out {
+> + hdmi1_out_con: endpoint {
+> + remote-endpoint =3D <&hdmi1_con_in>;
+> + };
+> +};
+> +
+> +&hdptxphy_hdmi0 {
+> + status =3D "okay";
+> +};
+> +
+> +&hdptxphy1 {
+> + status =3D "okay";
+> +};
+> +
+> &i2c0 {
+> pinctrl-names =3D "default";
+> pinctrl-0 =3D <&i2c0m2_xfer>;
+> @@ -1209,3 +1247,18 @@ &usbdp_phy1 {
+> rockchip,dp-lane-mux =3D <2 3>;
+> status =3D "okay";
+> };
+> +
+> +&vop {
+> + status =3D "okay";
+> +};
+> +
+> +&vop_mmu {
+> + status =3D "okay";
+> +};
+> +
+> +&vp1 {
+> + vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
+> + reg =3D <ROCKCHIP_VOP2_EP_HDMI1>;
+> + remote-endpoint =3D <&hdmi1_in_vp1>;
+> + };
+> +};
+> --=20
+> 2.43.0
+>=20
+>=20
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
-I haven't seen a TRM for the J variant, nor do I have a board with
-RK3588J to run tests, so it would be great if Kever could chime in
-with how these OPPs are different from the others (or not).
+Jianfeng,
 
-> So while the situation might be strange for the rk3588j, I really only wa=
-nt
-> correct frequencies here please - not any pseudo "turbo freqs".
->
-> I don't care that much what people do on their own device{s/trees}, but
-> the devicetrees we supply centrally (and to u-boot, etc) should only
-> contain frequencies vetted by the manufacturer.
+Is there anywhere repo with this patch applied to test it on rock5 itx =
+hw?
 
-Fair enough. Let's just try and get another data point on whether
-these frequencies are vetted or not.
+(asking as I can=E2=80=99t get it working; even with hdmi1 only vop =
+clocks like here: =
+https://gist.github.com/warpme/49feadbe1f53ea31fca76f41d5bb3ee4)
 
-Best regards,
-Alexey
+
 
