@@ -1,128 +1,163 @@
-Return-Path: <devicetree+bounces-147136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3EC1A3754D
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 16:59:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B9A6A37555
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 17:00:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19AE7188BFB3
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 15:59:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF6C116ECF2
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 16:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DCA51946A2;
-	Sun, 16 Feb 2025 15:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6DFB199EAD;
+	Sun, 16 Feb 2025 16:00:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mSnb5Wcv"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="pTgJM2RV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40943C8E0;
-	Sun, 16 Feb 2025 15:59:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C9252AE7C
+	for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 16:00:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739721554; cv=none; b=JjaTfYzqsDo3z5UOcJFd4gbWEok18dm7FsAkwiRYlJrq6mxxAtByH8Kll0OGc+s3PMcw7583yk4KLLhrg+2v8q3Bx23WhRoet3q7d5qnhlDYkRFAlBulGMMl0HU7FM0HO9DDI1oF1j5OgEiBUs1ZNYB8sVQoL21JsKT0LJnG7bM=
+	t=1739721609; cv=none; b=iS5C6YyXLnhlz4phUbdQw/pX/tQ+OxpBaZUcjstTHa/T7T4jzTSvj3SARJhoFBqZn11q2VmrmdUqFiPb7EQmaitx/RqFsquQKiwlCk7LdXuPl4b6VN7nfEXx4ZXjN6JxJ8Vc+yYt8ep5Mn6z4AnK834isjZXBsWGoihuikvmS8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739721554; c=relaxed/simple;
-	bh=tzRwEphCXCXbvUeFh2tqFV1w5C5R3tQ/tBfNFSyYgcw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GakBtoQFcozF25GLAjoORjxSDiEw+CVvRRDMK0ZahT9Bbmh1v7Rzz5xwfPJAL95ShyYBV8bDUUs0CWRu/CxnDt3Sfr9L+mE71xX87Af9/PLnzpCu2hUbpKTO32KRQfj1GrTm1kKaxSHier1i1TdB9ubRsOQkScEXgEw+GpvXmpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mSnb5Wcv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE9FBC4CEE4;
-	Sun, 16 Feb 2025 15:59:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739721553;
-	bh=tzRwEphCXCXbvUeFh2tqFV1w5C5R3tQ/tBfNFSyYgcw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=mSnb5WcvZxZab5ZaPIiE/x6oN0qbhUASUGtNRDzkEq0pMRwrXGdaOZLPX+Vc0jBJJ
-	 +dsVUh6rKKTzfBXx0VyGGD0azL/mKQGDsYxbu+IJOvWpoET/roHaNkSMR0cd4dXEDD
-	 ON6ku54RXIbiPCsiy8KbtOYAXjOavm0eR22mL/es9nntKF7kxIVGOOP80sY8kGhQ5O
-	 MIhBxqq5Osc1FLvk++MQTFg2+dX+kbbvvUL2eFawE6xumF9rfKZ5qhYuYzE1LRQyif
-	 DhEI8XfGPy452GbaUBVBnvCISqmLCeIjDYDAzZLZheTos3I0nX+xvdEM/PR0QVFQRr
-	 rGPQKG3U4jrgw==
-Date: Sun, 16 Feb 2025 15:59:03 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <lars@metafoo.de>,
- <Michael.Hennerich@analog.com>, <marcelo.schmitt@analog.com>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <jonath4nns@gmail.com>, <marcelo.schmitt1@gmail.com>,
- <dlechner@baylibre.com>
-Subject: Re: [PATCH RESEND v3 02/17] iio: adc: ad7768-1: set MOSI idle state
- to prevent accidental reset
-Message-ID: <20250216155903.0ebd32de@jic23-huawei>
-In-Reply-To: <c2a2b0f3d54829079763a5511359a1fa80516cfb.1739368121.git.Jonathan.Santos@analog.com>
-References: <cover.1739368121.git.Jonathan.Santos@analog.com>
-	<c2a2b0f3d54829079763a5511359a1fa80516cfb.1739368121.git.Jonathan.Santos@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1739721609; c=relaxed/simple;
+	bh=EF26j1suwLuBzziUeMgwWp0X8x4RpIgeD8Jxuuo4ULs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M0MY9H8RT8oq8Egg3Qq2aK+WU/RNpZ+NT6KzQOR2892NESriFPH8uaugwZrJcaQpO8rwPcGGlB3URuzgxN6ZNkeNt1DjXUCBUVEuK6p7jXIY7mQzIGMoJxB8o3Y6Tw/ZlVNE3X7WADvb+j/truVVRSqEcflSk4QwZ7iU8mO94Qg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=pTgJM2RV; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 3485F24002D
+	for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 17:00:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1739721604; bh=EF26j1suwLuBzziUeMgwWp0X8x4RpIgeD8Jxuuo4ULs=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=pTgJM2RVrLprfYbMXybmlG4KLOjVo9E5qpqmA+ccmW85RElh5VpLIRz1jG+WN+S/n
+	 /1a+/Z7pYIDe5dnKfrSx017pXnXOnaK0Z4oSx9JPbq5XY211pMBp1oBmcel4YGxq52
+	 F3RFdjVJ+IRnPS7aXKXN0RW4qOCHxnRfvy1KzqoSH8ARmyd2EiaZD4HdzFGgnbeGt1
+	 EF0887xrzs+xoKfuvZWrJfWF4lUIF/f4kWYDcBTen21LugjWTYJ/6EFcuL+Jof8s8x
+	 Rz6Ymj2KIeS3xT0Ke1YT8gFrFa0zSQbesigmbblCfD+ohW23aPetTyHEH8BbIFFnzO
+	 aesaOV6qAm6Dw==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4Ywr8V6Vlfz9rxW;
+	Sun, 16 Feb 2025 16:59:54 +0100 (CET)
+Date: Sun, 16 Feb 2025 15:59:54 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Rob Herring <robh@kernel.org>
+Cc: Crystal Wood <oss@buserror.net>, j.ne@posteo.net,
+	devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	Krzysztof Kozlowski <krzk@kernel.org>, imx@lists.linux.dev,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
+	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-mtd@lists.infradead.org, Li Yang <leoyang.li@nxp.com>,
+	John Ogness <john.ogness@linutronix.de>
+Subject: Re: [PATCH v2 09/12] dt-bindings: memory-controllers: Convert
+ fsl,elbc to YAML
+Message-ID: <Z7ILej_AJYot_wKP@probook>
+References: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
+ <20250207-ppcyaml-v2-9-8137b0c42526@posteo.net>
+ <Z6kQpuQf5m-bXTyt@buserror.net>
+ <20250210215324.GA1040564-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250210215324.GA1040564-robh@kernel.org>
 
-On Wed, 12 Feb 2025 15:16:07 -0300
-Jonathan Santos <Jonathan.Santos@analog.com> wrote:
-
-> Datasheet recommends Setting the MOSI idle state to high in order to
-> prevent accidental reset of the device when SCLK is free running.
-> This happens when the controller clocks out a 1 followed by 63 zeros
-> while the CS is held low.
+On Mon, Feb 10, 2025 at 03:53:24PM -0600, Rob Herring wrote:
+> On Sun, Feb 09, 2025 at 02:31:34PM -0600, Crystal Wood wrote:
+> > On Fri, Feb 07, 2025 at 10:30:26PM +0100, J. Neuschäfer via B4 Relay wrote:
+> > > From: "J. Neuschäfer" <j.ne@posteo.net>
+> > > 
+> > > Convert the Freescale localbus controller bindings from text form to
+> > > YAML. The updated list of compatible strings reflects current usage
+> > > in arch/powerpc/boot/dts/, except that many existing device trees
+> > > erroneously specify "simple-bus" in addition to fsl,*elbc.
+> > > 
+> > > Changes compared to the txt version:
+> > >  - removed the board-control (fsl,mpc8272ads-bcsr) node because it only
+> > >    appears in this example and nowhere else
+> > >  - added a new example with NAND flash
+> > >  - updated list of compatible strings
+> > > 
+> > > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> > > ---
+> > > 
+> > > V2:
+> > > - fix order of properties in examples, according to dts coding style
+> > > - move to Documentation/devicetree/bindings/memory-controllers
+> > > - clarify the commit message a tiny bit
+> > > - remove unnecessary multiline markers (|)
+> > > - define address format in patternProperties
+> > > - trim subject line (remove "binding")
+> > > - remove use of "simple-bus", because it's technically incorrect
+> > 
+> > While I admit I haven't been following recent developments in this area,
+> > as someone who was involved when "simple-bus" was created (and was on the
+> > ePAPR committee that standardized it) I'm surprised to hear simple-bus
+> > being called "erroneous" or "technically incorrect" here.
 > 
-> Check if SPI controller supports SPI_MOSI_IDLE_HIGH flag and set it.
+> Erroneous because the binding did not say "simple-bus" was used. Not 
+> uncommon with the old .txt bindings.
 > 
-> Fixes: a5f8c7da3dbe ("iio: adc: Add AD7768-1 ADC basic support")
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-Just a quick note that I'm not picking these first two up on their
-own (yet) as I don't want to create an upstream dependency issue that
-might delay the main set.  If anyone would prefer these being rushed
-in and potential delay to the new stuff in here, then let me know.
-
-Jonathan
-
-> ---
-> v3 Changes:
-> * Patch moved closer to the start of the patch set.
+> Generally, if a bus has control registers or resources like clocks, then 
+> we tend not to call them 'simple-bus'. And '"specific-bus", 
+> "simple-bus"' gives some problems around what driver if any do you 
+> bind to. 
+[...]
+> > You'd probably need something like commit 3e25f800afb82bd9e5f8 ("memory:
+> > fsl_ifc: populate child devices without relying on simple-bus") and the 
+> > subsequent fix in dd8adc713b1656 ("memory: fsl_ifc: populate child
+> > nodes of buses and mfd devices")...
+> > 
+> > I'm curious what the reasoning was for removing simple-bus from IFC.  It
+> > seems that the schema verification also played a role in that:
+> > https://www.spinics.net/lists/devicetree/msg220418.html
 > 
-> v2 Changes:
-> * Only setup SPI_MOSI_IDLE_HIGH flag if the controller supports it, otherwise the driver
->   continues the same. I realized that using bits_per_word does not avoid the problem that
->   MOSI idle state is trying to solve. If the controller drives the MOSI low between bytes
->   during a transfer, nothing happens.
-> ---
->  drivers/iio/adc/ad7768-1.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
-> index c3cf04311c40..2e2d50ccb744 100644
-> --- a/drivers/iio/adc/ad7768-1.c
-> +++ b/drivers/iio/adc/ad7768-1.c
-> @@ -574,6 +574,21 @@ static int ad7768_probe(struct spi_device *spi)
->  		return -ENOMEM;
->  
->  	st = iio_priv(indio_dev);
-> +	/*
-> +	 * Datasheet recommends SDI line to be kept high when data is not being
-> +	 * clocked out of the controller and the spi clock is free running,
-> +	 * to prevent accidental reset.
-> +	 * Since many controllers do not support the SPI_MOSI_IDLE_HIGH flag
-> +	 * yet, only request the MOSI idle state to enable if the controller
-> +	 * supports it.
-> +	 */
-> +	if (spi->controller->mode_bits & SPI_MOSI_IDLE_HIGH) {
-> +		spi->mode |= SPI_MOSI_IDLE_HIGH;
-> +		ret = spi_setup(spi);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
->  	st->spi = spi;
->  
->  	st->vref = devm_regulator_get(&spi->dev, "vref");
+> If a kernel change is needed to support changed .dts files, then we 
+> shouldn't be doing that here (being mature platforms). That would mean 
+> new DTB will not work with existing kernels.
 
+Alright, I'll keep simple-bus in the eLBC binding for historical
+compatibility.
+
+
+Thank you both for your discussion.
+
+
+J. Neuschäfer
 
