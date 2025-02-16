@@ -1,292 +1,155 @@
-Return-Path: <devicetree+bounces-147200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CB62A376EF
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 19:41:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9AEBA37700
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 19:50:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F20E3188B7B1
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 18:41:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A93E3165DD7
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 18:50:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A88DA1A0BDB;
-	Sun, 16 Feb 2025 18:41:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8406F1A0BF1;
+	Sun, 16 Feb 2025 18:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="KrTVil1P";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="MR2e+PAs"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="GaVK6LCa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04D0C1A08A3;
-	Sun, 16 Feb 2025 18:41:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.147
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8902018A6AB
+	for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 18:50:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739731276; cv=none; b=Sw4Jm+Tx8K6GTxjMBNDoScwZ2ogTpYYybEJZS2IIDJjVNoEDcVcoTNL9JeCmo7ukmKoNmcvP/SaRY9lzQI4PxNmF3dBLly/i+8A0osmGb6Ta8X7uSRystuKBGVQV5wjbLrDv5JtYbMWd1gw61ESuuWZsTTClm5GXQV61NzWRSLc=
+	t=1739731804; cv=none; b=BFGKYsihYvVoqSjAHK9RGac1tMZi3odN689tugCig38/GmslHfGYOl3N0gczCoT8M8jJQ0G68CEwJ2ItT5eUMmce7wzNVLfua/JvDeMXAPX5A2MQLAPTjiB/rBRI0D5h5EPJi6CFE/Qw3vWnADNnE9yZHZmPr7wUZDDuLMoN/4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739731276; c=relaxed/simple;
-	bh=FgdOGHYO0gvjEX4F+2Pv1ZOHkT3jwclpoYLe5Lr7Gio=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TMa+jxhUUcNYjcvehxAbYGIEQl9wV9tTM32o8XLNBJ2YsrlSanRjTf7PiKKwvySBBUYbvj/+dHC9TYiXjPxDiEjclN/18scyaUQE7itTyKdFs3ax/DDC27wa38NmUAKzdTeJ2jRyXA315PUQCxHLPckBWlCwdFrl8orVik+fD0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=KrTVil1P; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=MR2e+PAs; arc=none smtp.client-ip=202.12.124.147
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
-	by mailfout.stl.internal (Postfix) with ESMTP id 66EA61140114;
-	Sun, 16 Feb 2025 13:41:13 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-04.internal (MEProxy); Sun, 16 Feb 2025 13:41:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1739731273; x=
-	1739817673; bh=yn06nNMTN3kxcpZkZJtZKmYTN2rUWD3mBgjPfdEVi54=; b=K
-	rTVil1P8qkkoDMJY6hJSN7BPViuIMzoPyWQTydIpHUANaNPX1UzbXIdV+GZpymOi
-	DrcQ5nO9KKkqfntjmcHq2TNxrdRlcYWuFUocSl7ztcHny1M6OetrKbFbl/VgBqOr
-	YKZhnrqptYCAmJhP2gv5gOiWfFzj0MTKn/Y6FSn91ow4MtqUIOpsi5pP4FjnJtCR
-	PTBdGi7HxcikZ8HgP4eZY4ESGjsatJUJPB8DVjf1Jwp3+y6kUEluMLDs2BNjKRnF
-	YmNFyBDu9eXMgp6MyQbG2HBk9TmN0KNYs+kaCpRqIDUeukf4TEXvQEldcb3IRz3h
-	gXWSVAfzqvrdWL+0L4PwA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; t=1739731273; x=1739817673; bh=y
-	n06nNMTN3kxcpZkZJtZKmYTN2rUWD3mBgjPfdEVi54=; b=MR2e+PAs5SYel3vaQ
-	fBcQNiEpZIhNVdDFIj7EXkledti4o6MG1Vq/doWT/lwGXrnIExyevNfEMLS06NOk
-	uGWiNwd5By/B3x1f2363tYmJZ8LthJOgEsfXnN/sc+xrQY6vEtDMz9ZtekgWUIWC
-	rwBheGs3jxu7FmxZiUKp4y+CC6lIDMKZ9BibP/YAle4C8DjBeVH7dD1N7S/sz6II
-	1Axi+8JYelF3vMLq/HgRS5USMhE34qfFUEH31mhQ5iOYethY7R+DKoob5stuQmJ9
-	bk8CIVUCJSgSBr77CfRmrKainxReC365Z6X+Mh61HnyepeuswCH1/UFtajiIyPjn
-	PoV4Q==
-X-ME-Sender: <xms:STGyZzEi4Eo9MocwZJRxVDveCrCTXarcfKd_mbqHD2R6MTrORDGXmg>
-    <xme:STGyZwWxSIs_iBPuBao3J70VojZxBrIfYp89S8ZzX3bKzCEC7kAK386_nbg343jKB
-    d4Hi3sP61dFvvAVsw>
-X-ME-Received: <xmr:STGyZ1I1-hrOHj7gxoqzbWQfNdr34IpRznrj9CS78PwXmkwGtwbAMmDS0mzimHAz1Qh7GX31YOjiWODfbCWaWdE-a3cZuWT7YXD_d9snAlW6>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehiedvudcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddt
-    necuhfhrohhmpefthigrnhcuhggrlhhklhhinhcuoehrhigrnhesthgvshhtthhorghsth
-    drtghomheqnecuggftrfgrthhtvghrnhepffehieffgedtgfffjeetveegfeekleeileek
-    veeuteffteetudffveegieeiheetnecuvehluhhsthgvrhfuihiivgepjeenucfrrghrrg
-    hmpehmrghilhhfrhhomheprhihrghnsehtvghsthhtohgrshhtrdgtohhmpdhnsggprhgt
-    phhtthhopedvhedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepmhhrihhprghrug
-    eskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepfigvnhhssegtshhivgdrohhrghdprhgt
-    phhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrd
-    gtohhmpdhrtghpthhtohepthiiihhmmhgvrhhmrghnnhesshhushgvrdguvgdprhgtphht
-    thhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepuggrnhhivghlse
-    hffhiflhhlrdgthhdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtgesghhmrghi
-    lhdrtghomhdprhgtphhtthhopehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgpdhrtg
-    hpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:STGyZxHM69Aet00ps82H0t8Y3QXokFhvvbKS8gnJDi8Yq8Cw8VyMtA>
-    <xmx:STGyZ5XtrOfXDD5M7j6yCIX15YWPhVNQzAetgsI0Y939kfBAPCqA6Q>
-    <xmx:STGyZ8OiV77nOaBf5SCN5JDBLiTbsxN-62Z9CO6te7dCIwTlt47zrA>
-    <xmx:STGyZ40Q7V_ZzYUCh-V-X_CzMBT4w0VeAU8d1NFO4pQdndxcq3ZsyQ>
-    <xmx:STGyZ8q_E1dHZNz2CrOB1te7v5jYcnMxnZLHozQw1odHOq2lD6FTFAiE>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 16 Feb 2025 13:41:05 -0500 (EST)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Maxime Ripard <mripard@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
+	s=arc-20240116; t=1739731804; c=relaxed/simple;
+	bh=0sMOYFr8lutzqCd8xDlGm4XShbFef/qPFvt/RMTnqFo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OkmhNTS0Flvbsrt+X94XjqZ/35302A+9g6XGM13f3PrUPLonB3D892+9vyGhbESS3wGvrydIsMYknWIvxQmr7DndeHnZl3EHK7AIS0JvnaLKl5t9weXcdmnrqRzO0t/cVaCJDK1AIGvAKocaIxcvzHGAj5QlQa0C3FW0WUA+UpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=GaVK6LCa; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 8C968240104
+	for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 19:50:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1739731800; bh=0sMOYFr8lutzqCd8xDlGm4XShbFef/qPFvt/RMTnqFo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=GaVK6LCauNE8RtiinMqme2XXU/YUdrG1T1mHORTrShsihCOz0tSqNq5hjZvclrVer
+	 mDNcrf2Rc2e8WezCQrrD1jJNUZlLifWz9TXVqGID+chD6GRttte4tn+388WFi1hFjq
+	 kUfSXphmGHrGTW+apf1kM9dxuBE+SW6TCK/iZ9/dZNgdI6NpYJoUQWNiF6xpE00WNw
+	 uuSmS4AyOCuH0viiH6RsQEI4zlhF+2dzfk2Bo0HGRinh02kmGacxAwbFPmlw65Qf9R
+	 MCosauHdUuK1Z8rnUmZZ0h50ILdN3TJ8yREJ/7RHOR0wmvdjRfHPzCMJVTGfeCBiKH
+	 wfSVKOnZVEhdg==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4Ywvwl1vCqz6tw7;
+	Sun, 16 Feb 2025 19:49:59 +0100 (CET)
+Date: Sun, 16 Feb 2025 18:49:59 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: Andre Przywara <andre.przywara@arm.com>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	Hironori KIKUCHI <kikuchan98@gmail.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Ryan Walklin <ryan@testtoast.com>,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH v7 27/27] drm: sun4i: de33: csc: add Display Engine 3.3 (DE33) support
-Date: Mon, 17 Feb 2025 07:36:27 +1300
-Message-ID: <20250216183710.8443-28-ryan@testtoast.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250216183710.8443-3-ryan@testtoast.com>
-References: <20250216183710.8443-3-ryan@testtoast.com>
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: leds: Allow differently named multicolor
+ leds
+Message-ID: <Z7IzV15IVizOQxu4@probook>
+References: <20250209-multi-led-v1-1-5aebccbd2db7@posteo.net>
+ <20250211144300.GW1868108@google.com>
+ <Z6ucAFNauWkhfYZr@probook>
+ <de7fb605-527e-4c62-9b5d-947a1636c54b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <de7fb605-527e-4c62-9b5d-947a1636c54b@kernel.org>
 
-Like earlier DE versions, the DE33 has a CSC (Color Space Correction)
-module. which provides color space conversion between BT2020/BT709, and
-dynamic range conversion between SDR/ST2084/HLG.
+On Tue, Feb 11, 2025 at 08:10:28PM +0100, Krzysztof Kozlowski wrote:
+> On 11/02/2025 19:50, J. Neuschäfer wrote:
+> > On Tue, Feb 11, 2025 at 02:43:00PM +0000, Lee Jones wrote:
+> >> On Sun, 09 Feb 2025, J. Neuschäfer via B4 Relay wrote:
+> >>
+> >>> From: "J. Neuschäfer" <j.ne@posteo.net>
+> >>>
+> >>> In some cases, a board may have multiple multi-leds, which can't be
+> >>> distinguished by unit address. In such cases it should be possible to
+> >>> name them differently, for example multi-led-a and multi-led-b.
+> >>> This patch adds another node name pattern to leds-class-multicolor.yaml
+> >>> to allow such names.
+> >>
+> >> Which H/W needs this?  Is it upstream?  Where is the doc / usage?
+> > 
+> > I encountered this situation while upstreaming the LANCOM NWAPP2 board,
+> > which has multiple LED-group-based multicolor LEDs:
+> > 
+> >   https://lore.kernel.org/lkml/20250102-mpc83xx-v1-16-86f78ba2a7af@posteo.net/
+> 
+> Which LEDs are these?
 
-Add support for the DE33.
+These and a few more:
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-Tested-by: Philippe Simons <simons.philippe@gmail.com>
-Tested-by: Chris Morgan <macromorgan@hotmail.com>
+	led-power {
+		label = "multicolor:power";
+		compatible = "leds-group-multicolor";
+		color = <LED_COLOR_ID_MULTI>;
+		function = LED_FUNCTION_POWER;
+		leds = <&led_power_red>, <&led_power_green>;
+	};
 
---
-Changelog v5..v6:
-- Amend format_type to sun8i_format_type
-- Add Tested-by: tags
----
- drivers/gpu/drm/sun4i/sun8i_csc.c | 98 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/sun4i/sun8i_csc.h |  3 +
- 2 files changed, 101 insertions(+)
+	led-wlan-link {
+		label = "multicolor:wlan-link";
+		compatible = "leds-group-multicolor";
+		color = <LED_COLOR_ID_MULTI>;
+		function = LED_FUNCTION_WLAN;
+		leds = <&led_wlan_link_red>, <&led_wlan_link_green>;
+	};
 
-diff --git a/drivers/gpu/drm/sun4i/sun8i_csc.c b/drivers/gpu/drm/sun4i/sun8i_csc.c
-index 66c9ee29842cd..2274a82223164 100644
---- a/drivers/gpu/drm/sun4i/sun8i_csc.c
-+++ b/drivers/gpu/drm/sun4i/sun8i_csc.c
-@@ -238,6 +238,14 @@ static const u32 yuv2yuv_de3[2][3][3][12] = {
- 	},
- };
- 
-+static u32 sun8i_csc_base(struct sun8i_mixer *mixer, int layer)
-+{
-+	if (mixer->cfg->de_type == sun8i_mixer_de33)
-+		return sun8i_channel_base(mixer, layer) - 0x800;
-+	else
-+		return ccsc_base[mixer->cfg->ccsc][layer];
-+}
-+
- static void sun8i_csc_setup(struct regmap *map, u32 base,
- 			    enum sun8i_format_type fmt_type,
- 			    enum drm_color_encoding encoding,
-@@ -360,6 +368,92 @@ static void sun8i_de3_ccsc_setup(struct sun8i_mixer *mixer, int layer,
- 			   mask, val);
- }
- 
-+/* extract constant from high word and invert sign if necessary */
-+static u32 sun8i_de33_ccsc_get_constant(u32 value)
-+{
-+	value >>= 16;
-+
-+	if (value & BIT(15))
-+		return 0x400 - (value & 0x3ff);
-+
-+	return value;
-+}
-+
-+static void sun8i_de33_convert_table(const u32 *src, u32 *dst)
-+{
-+	dst[0] = sun8i_de33_ccsc_get_constant(src[3]);
-+	dst[1] = sun8i_de33_ccsc_get_constant(src[7]);
-+	dst[2] = sun8i_de33_ccsc_get_constant(src[11]);
-+	memcpy(&dst[3], src, sizeof(u32) * 12);
-+	dst[6] &= 0xffff;
-+	dst[10] &= 0xffff;
-+	dst[14] &= 0xffff;
-+}
-+
-+static void sun8i_de33_ccsc_setup(struct sun8i_mixer *mixer, int layer,
-+				  enum sun8i_format_type fmt_type,
-+				  enum drm_color_encoding encoding,
-+				  enum drm_color_range range)
-+{
-+	u32 addr, val = 0, base, csc[15];
-+	struct sunxi_engine *engine;
-+	struct regmap *map;
-+	const u32 *table;
-+	int i;
-+	struct sun8i_color_model model;
-+
-+	table = yuv2rgb_de3[range][encoding];
-+	base = sun8i_csc_base(mixer, layer);
-+	model = mixer->color_model;
-+	engine = &mixer->engine;
-+	map = engine->regs;
-+
-+	switch (fmt_type) {
-+	case FORMAT_TYPE_RGB:
-+		if (mixer->color_model.format == MEDIA_BUS_FMT_RGB888_1X24)
-+			break;
-+		val = SUN8I_CSC_CTRL_EN;
-+		sun8i_de33_convert_table(rgb2yuv_de3[mixer->color_model.encoding], csc);
-+		regmap_bulk_write(map, SUN50I_CSC_COEFF(base, 0), csc, 15);
-+		break;
-+	case FORMAT_TYPE_YUV:
-+		table = sun8i_csc_get_de3_yuv_table(encoding, range,
-+						    model.format,
-+						    model.encoding);
-+		if (!table)
-+			break;
-+		val = SUN8I_CSC_CTRL_EN;
-+		sun8i_de33_convert_table(table, csc);
-+		regmap_bulk_write(map, SUN50I_CSC_COEFF(base, 0), csc, 15);
-+		break;
-+	case FORMAT_TYPE_YVU:
-+		table = sun8i_csc_get_de3_yuv_table(encoding, range,
-+						    model.format,
-+						    model.encoding);
-+		if (!table)
-+			table = yuv2yuv_de3[range][encoding][encoding];
-+		val = SUN8I_CSC_CTRL_EN;
-+		sun8i_de33_convert_table(table, csc);
-+		for (i = 0; i < 15; i++) {
-+			addr = SUN50I_CSC_COEFF(base, i);
-+			if (i > 3) {
-+				if (((i - 3) & 3) == 1)
-+					addr = SUN50I_CSC_COEFF(base, i + 1);
-+				else if (((i - 3) & 3) == 2)
-+					addr = SUN50I_CSC_COEFF(base, i - 1);
-+			}
-+			regmap_write(map, addr, csc[i]);
-+		}
-+		break;
-+	default:
-+		val = 0;
-+		DRM_WARN("Wrong CSC mode specified.\n");
-+		return;
-+	}
-+
-+	regmap_write(map, SUN8I_CSC_CTRL(base), val);
-+}
-+
- void sun8i_csc_set_ccsc(struct sun8i_mixer *mixer, int layer,
- 			enum sun8i_format_type fmt_type,
- 			enum drm_color_encoding encoding,
-@@ -371,6 +465,10 @@ void sun8i_csc_set_ccsc(struct sun8i_mixer *mixer, int layer,
- 		sun8i_de3_ccsc_setup(mixer, layer,
- 				     fmt_type, encoding, range);
- 		return;
-+	} else if (mixer->cfg->de_type == sun8i_mixer_de33) {
-+		sun8i_de33_ccsc_setup(mixer, layer, fmt_type,
-+				      encoding, range);
-+		return;
- 	}
- 
- 	if (layer < mixer->cfg->vi_num) {
-diff --git a/drivers/gpu/drm/sun4i/sun8i_csc.h b/drivers/gpu/drm/sun4i/sun8i_csc.h
-index 9b63c92782f56..4a06fc43de2d0 100644
---- a/drivers/gpu/drm/sun4i/sun8i_csc.h
-+++ b/drivers/gpu/drm/sun4i/sun8i_csc.h
-@@ -20,6 +20,9 @@ struct sun8i_mixer;
- #define SUN8I_CSC_CTRL(base)		((base) + 0x0)
- #define SUN8I_CSC_COEFF(base, i)	((base) + 0x10 + 4 * (i))
- 
-+#define SUN50I_CSC_COEFF(base, i)	((base) + 0x04 + 4 * (i))
-+#define SUN50I_CSC_ALPHA(base)		((base) + 0x40)
-+
- #define SUN8I_CSC_CTRL_EN		BIT(0)
- 
- enum sun8i_format_type {
--- 
-2.48.1
+According to the leds-class-multicolor.yaml binding, they should be
+named "multi-led", optionally with a unit address. Unit addresses don't
+make a lot of sense, as these nodes don't have (or need) a reg property.
+They can't, however, have the same name, which brings me to the idea of
+this patch: To allow different names that start with "multi-led-".
 
+> I don't see multi-led there node name at all.
+
+This was my mistake while writing the NWAPP2 devicetree.
+
+> 
+> This patch must come with user. It's fine to send the user separately,
+> but please provide lore link to exact user.
+> 
+> Otherwise what certainty we have that this change is needed in the first
+> place?
+
+For ease of review, I'll include this patch in v2 of the NWAPP2 series,
+and extend the commit message.
+
+> 
+> > 
+> > Since they are based on leds-group-multicolor, they don't have a unit
+> > address, but there is more than one on the same level (as direct
+> > sub-nodes of the DT root node).
+> 
+> Which binding is this?
+
+Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+  specifies compatible = "leds-group-multicolor", and includes:
+
+Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+  defines node name pattern of "^multi-led(@[0-9a-f])?$"
+
+
+Best regards,
+J. Neuschäfer
 
