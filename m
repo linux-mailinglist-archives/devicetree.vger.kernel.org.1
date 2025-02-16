@@ -1,283 +1,177 @@
-Return-Path: <devicetree+bounces-147140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FBBEA37574
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 17:11:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53CA9A37589
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 17:14:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F42E1884714
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 16:11:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25EA53B04EA
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 16:12:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B0B1993B1;
-	Sun, 16 Feb 2025 16:11:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E865819ABD8;
+	Sun, 16 Feb 2025 16:12:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m+FO5G5J"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Trl6gmGW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 771EC9450;
-	Sun, 16 Feb 2025 16:11:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C1619AA63;
+	Sun, 16 Feb 2025 16:12:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739722275; cv=none; b=VUWSwxmgVu1BkmKjXnuZIsiNvjNovS609hht1H8BE4YruGs7Aqr7g2UHB2YIW3DKpZWD6pBVPYmdsIgEPPUX2xHT3dLlkx/c9fYbZwglr3hL05+cH4e1J+5XHW9bHzEV39ByJRplyh0Fv9yBkVnKwzgbqLqcsPPzzL4NC5jTccM=
+	t=1739722371; cv=none; b=bWlxfS9Cpr3weENl7jtc0qEMsmBR/j2hHZ7CPCuwYYCbjzUXGQ+fPAczQntzITS1KyWUWuw1c+DWSlDQZO1NOPVzPN0mnCRJ8nv7dP0kPG25Wj4r7ul8tC1ePDw2quZ1oXThoXIk8PIjcwwZBtdFALhojJHtqsSKjcW95LYhPKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739722275; c=relaxed/simple;
-	bh=XAWrhCGN45tpx8caT486P0l1EH8KLKqSD6UCAFLSjD0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jKPYO1mFKg/9x8itpbg/xLZTZQcns7GQBgWegbrov3KgNDS0MEY+Jmj7h4BcoNzoGGzLcscXeSo+u8kfIrjR7jvJ9QFgO3DrzTWyKzYVjgq+drr8G0bEvvLV0CpN3rXcHy/1hIBV1VlwDFV8yoKz6Mxl/X7/BvQ8jfFesVNIIkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m+FO5G5J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4230BC4CEDD;
-	Sun, 16 Feb 2025 16:11:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739722274;
-	bh=XAWrhCGN45tpx8caT486P0l1EH8KLKqSD6UCAFLSjD0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=m+FO5G5Jy8Z63jYTLIS2u16jOeAiFAQWfW3POycL3MvrWLEIFChboyu7Yy8Qtb3z4
-	 IuASHVAzileRUt/5gX9NSqmT/3ZEIsarK4s/StP9sLQsH8JWODjZsdUAahn9wM4syc
-	 9x/6Zz1ijPnMu6/5bCu3clFbM/lW4v3Rk3u7z2IyhmUNGJzWSJ6tyVwsJJoqy/fCog
-	 yi4iIpgFP3XkzjwNiPEEUzo9gSKe6G2MODxu+XncLuAqnWqiaNAJRKuINvXwTVK6Sk
-	 EedHznWUWjlJlf+BoKH7YwdgqHQQVwO5Mwx0DLmXi36L+C8+1f3DcnUrzZWt3SflNF
-	 sJYIOr59G0iGQ==
-Date: Sun, 16 Feb 2025 16:11:03 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <lars@metafoo.de>,
- <Michael.Hennerich@analog.com>, <marcelo.schmitt@analog.com>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <jonath4nns@gmail.com>, <marcelo.schmitt1@gmail.com>,
- <dlechner@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>
-Subject: Re: [PATCH RESEND v3 11/17] iio: adc: ad7768-1: add regulator to
- control VCM output
-Message-ID: <20250216161103.13e03d6d@jic23-huawei>
-In-Reply-To: <3552833157f252f3b6813f0042059e858c90d53a.1739368121.git.Jonathan.Santos@analog.com>
-References: <cover.1739368121.git.Jonathan.Santos@analog.com>
-	<3552833157f252f3b6813f0042059e858c90d53a.1739368121.git.Jonathan.Santos@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1739722371; c=relaxed/simple;
+	bh=VndJDVg9YatuDmR2dyI0nsfazQ0pkBkZR0RUf3FJdaw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dlIVOdu+4xSt/dsWk/T6nq/EyyvGA7wlqg8kNujwBdhE9kr7Bm26W0SuSATYdsoeFqQV/DC1oCYVBEPyP+5gB4soR5izgiZgWQwZ73y9Oe5feFpRWM+s/uOZ+M5Hi9cI1iKwXuZNEM3MSKFDTghf2oWWfTqyGNKa6B36ZVRHFVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Trl6gmGW; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-abb86beea8cso134735966b.1;
+        Sun, 16 Feb 2025 08:12:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739722368; x=1740327168; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MhE6mCrV00cPqZ/38oymcaf0gt9DnlaLDtrpyaQqJ74=;
+        b=Trl6gmGWKrfJ5AxFnBRdUXMxz9RwqSaFuGBlpIzpxwi0ome/tKTVqwdIhBGcc7DGnf
+         OoN+kIMU59T57ljYugqlna6irpvaS4Izs9lUejpc8a7AFU1Bye2b7iVYxYX+am9wUTdf
+         BtqTI01LAz5LtTipFBZYWfFoxclyfj0sRZx/V5eZfk2oT9nL0VCHIPBh7pWVnLMztrUc
+         YTOvdHPydzmodx8XIqiZURPekYMui0GU8QS3e6xZThtzHCx1xI5WQfMXlIMuk71Qkiw0
+         35JH1xPdir3Wpefe1AMbc3SXw1NgT0PNiqtDQk4s+HUWm1yKaYh/BHbNsi+Sy4DkyX09
+         Vbzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739722368; x=1740327168;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MhE6mCrV00cPqZ/38oymcaf0gt9DnlaLDtrpyaQqJ74=;
+        b=NN5I3/2j1iU5NzcBd0GTRvKo+OgSW6nt8UaFz54W2e+1BYpWXhV5Xof0kJ83+xGr9t
+         NGMjc3Xuu60o/o4lgP3ZuaKOYQpKc2Xl6uS3IjDSN+T6Tj0MTqG85jXPRtwQb5e48k3X
+         UF8Um1XzZLNtRIjsSYzn3Quf5TD4kQGjTm4ig6ssNxErz8SvWpubgnv6PP9E1ocYqr1e
+         x/2IyO7jiPqv2xI5BfWrT7VX8tMVEhDExNWvccNDNptMG3qCdpkzU/NxXE5U0wHHgpLO
+         0kIlv7DJkF++mL1CzrmJasapjxJcyLugOH48B4jfbKKwMrmsqeRcDAvRud2NcrrNKIsk
+         qWmA==
+X-Forwarded-Encrypted: i=1; AJvYcCUcCb5Ii9xpQwmE7yK+KLMk40ayPwgJ/W31zJ3JJ1d1Ej2ojBAZ0Ju/i632uh/xSIXzZLcTvyh6FjjyFnG3@vger.kernel.org, AJvYcCVboNT/lmQIdqPD9oFM7zMSl+A483leZM6sqb28J+BTCApDl6xDWR+6Q74YmD5hmULN1fkUdK64r+jo@vger.kernel.org, AJvYcCXg4gJGYHMr7Ti3ZYPcd8vdpUh+/ZvnOOJoBmna++dxx5Yl6mzVcJ4L1UpXO3fmIjK/AgCHTJgKPx/A@vger.kernel.org
+X-Gm-Message-State: AOJu0YxW2whXFTftGwsnjFh32Z6kw3oOn41Gb2XdVpFvhEItpCdkyKvB
+	DXgjhzAieNrJ9C4pe4U0z9RnkU/fik99ns5NKU+q3B4SNbygSZJm
+X-Gm-Gg: ASbGnctUkte+xoLf8YvdIxf5YyVX9EQzDkdxeCrWz4aQZrDggCsmz0YMNVqXEw1mFAI
+	LwxxGPWK9heyMtIcH0eTPv++U8iLbnZ2P9NuNB3D7VpILI8I/QYZQc3Mb+/Y9bpoNX4dSJR2LA4
+	L3YgvGaxULiC0g5GXX23PIvP3cavcrcgfDNGmAURqGx1wzq1EDBGGK4CeIugWXmCgDmF25KqKl0
+	uOcnJKeDiNa+ZMuTaJkVeB5JrkrOTTwgZrcnR+fWSZcolUReeVGyNuNLwZh4oNgfY9Mm4oXLEDk
+	zxRPORStD7GFyvbG0xZYvruCYVlvYwWZd+8jW6qWUeJ0q581Zzgk8tp8mPmOPQ==
+X-Google-Smtp-Source: AGHT+IFZcBKZLuTrREEZYbZmMiKOpoUUKwOcKCZKvMuw8VSt9sORJfi0sa4jUlG53lfdZrAamixDZA==
+X-Received: by 2002:a17:907:86a1:b0:ab6:d7c5:124 with SMTP id a640c23a62f3a-abb710e1244mr665211766b.43.1739722368028;
+        Sun, 16 Feb 2025 08:12:48 -0800 (PST)
+Received: from hex.my.domain (83.8.115.239.ipv4.supernova.orange.pl. [83.8.115.239])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb8eea4d65sm148463466b.161.2025.02.16.08.12.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Feb 2025 08:12:47 -0800 (PST)
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: [RFC PATCH 0/5] clk: bcm: kona: Add bus clock support and
+ prerequisite clocks
+Date: Sun, 16 Feb 2025 17:12:35 +0100
+Message-Id: <20250216-kona-bus-clock-v1-0-e8779d77a6f2@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHMOsmcC/x3MQQqAIBBA0avErBuwoQi7SrQwm2ooNJQiEO+et
+ HyL/xNEDsIRhipB4EeieFfQ1BXY3biNUZZiIEWdoobw8M7gfEe0p7cHtqR75tWwbhWU6Aq8yvs
+ PxynnDyBk+yhgAAAA
+X-Change-ID: 20250212-kona-bus-clock-4297eefae940
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Alex Elder <elder@kernel.org>, 
+ Stanislav Jakubek <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ Artur Weber <aweber.kernel@gmail.com>, Alex Elder <elder@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739722366; l=2902;
+ i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
+ bh=VndJDVg9YatuDmR2dyI0nsfazQ0pkBkZR0RUf3FJdaw=;
+ b=Aj+S95AdzH6PYfIDtw4X6UiHnfAMsJDxghiz26jTAILo8QEHe249qhRGIVa2VNP+NOEnLJVSk
+ 3z1CWVQtdVvDlCVsO9KrPJsafXQpZqtw2t9wNK8KgD1Aa9CR1AopV2R
+X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
+ pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
 
-On Wed, 12 Feb 2025 15:17:54 -0300
-Jonathan Santos <Jonathan.Santos@analog.com> wrote:
+This patchset does the following:
 
-> The VCM output voltage can be used as a common-mode voltage within the
-> amplifier preconditioning circuits external to the AD7768-1.
-> 
-> This change allows the user to configure VCM output using the regulator
-> framework.
-> 
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+- Introduce support for bus clocks. These are fairly similar to
+  peripheral clocks, but only implement policy, gate and hyst.
 
-Whilst this is a pretty simple regulator driver, I would still +CC
-the maintainers for regulators in same way you would for
-a standalone regulator driver.
+- Introduce support for prerequisite clocks; this way we can
+  make peripheral clocks automatically enable their corresponding
+  bus clocks.
 
-+CC Liam and Mark
+- Add matching bus clocks for BCM21664 peripheral clocks and update
+  device tree bindings to match.
 
+The prerequisite clock portion of this patchset is adapted from an
+older attempt to add bus clocks[1], submitted by Alex Elder. I've
+retained his authorship on that commit.
 
-> ---
-> v3 Changes:
-> * Register VCM output via the regulator framework for improved flexibility
->   and external integration.
-> 
-> v2 Changes:
-> * VCM output support is now defined by a devicetree property, instead of 
->   and IIO attribute.
-> ---
->  drivers/iio/adc/ad7768-1.c | 138 +++++++++++++++++++++++++++++++++++++
->  1 file changed, 138 insertions(+)
-> 
-> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
-> index 378245bce199..a359cd8fceca 100644
-> --- a/drivers/iio/adc/ad7768-1.c
-> +++ b/drivers/iio/adc/ad7768-1.c
-> @@ -12,8 +12,10 @@
->  #include <linux/gpio/consumer.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
-> +#include <linux/of.h>
->  #include <linux/regmap.h>
->  #include <linux/regulator/consumer.h>
-> +#include <linux/regulator/driver.h>
->  #include <linux/sysfs.h>
->  #include <linux/spi/spi.h>
->  
-> @@ -80,9 +82,15 @@
->  #define AD7768_CONV_MODE_MSK		GENMASK(2, 0)
->  #define AD7768_CONV_MODE(x)		FIELD_PREP(AD7768_CONV_MODE_MSK, x)
->  
-> +/* AD7768_REG_ANALOG2 */
-> +#define AD7768_REG_ANALOG2_VCM_MSK	GENMASK(2, 0)
-> +#define AD7768_REG_ANALOG2_VCM(x)	FIELD_PREP(AD7768_REG_ANALOG2_VCM_MSK, x)
-> +
->  #define AD7768_RD_FLAG_MSK(x)		(BIT(6) | ((x) & 0x3F))
->  #define AD7768_WR_FLAG_MSK(x)		((x) & 0x3F)
->  
-> +#define AD7768_VCM_OFF			0x08
-> +
->  enum ad7768_conv_mode {
->  	AD7768_CONTINUOUS,
->  	AD7768_ONE_SHOT,
-> @@ -160,6 +168,7 @@ struct ad7768_state {
->  	struct regmap *regmap;
->  	struct regmap *regmap24;
->  	struct regulator *vref;
-> +	struct regulator_dev *vcm_rdev;
->  	struct clk *mclk;
->  	unsigned int mclk_freq;
->  	unsigned int samp_freq;
-> @@ -643,6 +652,130 @@ static int ad7768_triggered_buffer_alloc(struct iio_dev *indio_dev)
->  					       &ad7768_buffer_ops);
->  }
->  
-> +static int ad7768_vcm_enable(struct regulator_dev *rdev)
-> +{
-> +	struct ad7768_state *st = rdev_get_drvdata(rdev);
-> +	int ret, val;
-> +
-> +	if (!st)
-> +		return -EINVAL;
-> +
-> +	ret = regmap_read(st->regmap, AD7768_REG_ANALOG2, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* if regulator is off, turn it on */
-> +	if (FIELD_GET(AD7768_REG_ANALOG2_VCM_MSK, val) == AD7768_VCM_OFF)
-> +		return regmap_update_bits(st->regmap, AD7768_REG_ANALOG2,
-> +					  AD7768_REG_ANALOG2_VCM_MSK, 0x00);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad7768_vcm_disable(struct regulator_dev *rdev)
-> +{
-> +	struct ad7768_state *st = rdev_get_drvdata(rdev);
-> +
-> +	if (!st)
-> +		return -EINVAL;
-> +
-> +	return regmap_update_bits(st->regmap, AD7768_REG_ANALOG2,
-> +				  AD7768_REG_ANALOG2_VCM_MSK, AD7768_VCM_OFF);
-> +}
-> +
-> +static int ad7768_vcm_is_enabled(struct regulator_dev *rdev)
-> +{
-> +	struct ad7768_state *st = rdev_get_drvdata(rdev);
-> +	int ret, val;
-> +
-> +	if (!st)
-> +		return -EINVAL;
-> +
-> +	ret = regmap_read(st->regmap, AD7768_REG_ANALOG2, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (FIELD_GET(AD7768_REG_ANALOG2_VCM_MSK, val) == AD7768_VCM_OFF)
-> +		return 0;
-> +
-> +	return 1;
-> +}
-> +
-> +static int ad7768_set_voltage_sel(struct regulator_dev *rdev,
-> +				  unsigned int selector)
-> +{
-> +	unsigned int regval = AD7768_REG_ANALOG2_VCM(selector + 1);
-> +	struct ad7768_state *st = rdev_get_drvdata(rdev);
-> +
-> +	if (!st)
-> +		return -EINVAL;
-> +
-> +	return regmap_update_bits(st->regmap, AD7768_REG_ANALOG2,
-> +				  AD7768_REG_ANALOG2_VCM_MSK, regval);
-> +}
-> +
-> +static int ad7768_get_voltage_sel(struct regulator_dev *rdev)
-> +{
-> +	struct ad7768_state *st = rdev_get_drvdata(rdev);
-> +	int ret, val;
-> +
-> +	if (!st)
-> +		return -EINVAL;
-> +
-> +	ret = regmap_read(st->regmap, AD7768_REG_ANALOG2, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = FIELD_GET(AD7768_REG_ANALOG2_VCM_MSK, val) - 1;
-> +	val = clamp(val, 0, 8);
-> +
-> +	return val;
-> +}
-> +
-> +static const struct regulator_ops vcm_regulator_ops = {
-> +	.enable = ad7768_vcm_enable,
-> +	.disable = ad7768_vcm_disable,
-> +	.is_enabled = ad7768_vcm_is_enabled,
-> +	.list_voltage = regulator_list_voltage_table,
-> +	.set_voltage_sel = ad7768_set_voltage_sel,
-> +	.get_voltage_sel = ad7768_get_voltage_sel,
-> +};
-> +
-> +static const unsigned int vcm_voltage_table[] = {
-> +	2500000,
-> +	2050000,
-> +	1650000,
-> +	1900000,
-> +	1100000,
-> +	900000,
-> +};
-> +
-> +static const struct regulator_desc vcm_desc = {
-> +	.name = "vcm_output",
-> +	.of_match = of_match_ptr("vcm_output"),
-> +	.regulators_node = of_match_ptr("regulators"),
-> +	.n_voltages = ARRAY_SIZE(vcm_voltage_table),
-> +	.volt_table = vcm_voltage_table,
-> +	.ops = &vcm_regulator_ops,
-> +	.type = REGULATOR_VOLTAGE,
-> +	.owner = THIS_MODULE,
-> +};
-> +
-> +static int ad7768_register_regulators(struct device *dev, struct ad7768_state *st)
-> +{
-> +	struct regulator_config config = {
-> +		.dev = dev,
-> +		.driver_data = st,
-> +	};
-> +
-> +	st->vcm_rdev = devm_regulator_register(dev, &vcm_desc, &config);
-> +	if (IS_ERR(st->vcm_rdev))
-> +		return dev_err_probe(dev, PTR_ERR(st->vcm_rdev),
-> +				     "failed to register VCM regulator\n");
-> +
-> +	return 0;
-> +}
-> +
->  static int ad7768_probe(struct spi_device *spi)
->  {
->  	struct ad7768_state *st;
-> @@ -707,6 +840,11 @@ static int ad7768_probe(struct spi_device *spi)
->  	indio_dev->info = &ad7768_info;
->  	indio_dev->modes = INDIO_DIRECT_MODE;
->  
-> +	/* Register VCM output regulator */
-> +	ret = ad7768_register_regulators(&spi->dev, st);
-> +	if (ret)
-> +		return ret;
-> +
->  	ret = ad7768_setup(st);
->  	if (ret < 0) {
->  		dev_err(&spi->dev, "AD7768 setup failed\n");
+Notably, Alex's patchset moved clock initialization to the prepare
+function. This seems to be incorrect; the prepare function gets called
+before the enable function, but not before "set rate"/"set parent"
+functions; thus, while clocks enabled fine, any configuration done
+before they were first enabled was broken. I ignored that part of
+the patchset and only kept the prerequisite clocks.
+
+I would appreciate feedback on the prerequisite clock patch, hence
+why this patchset is marked as RFC.
+
+I wasn't able to find any other driver that does something like this,
+so I'm not sure if it's correct (especially since I had to switch from
+non-locking __clk_prepare and __clk_enable to the regular locking
+versions, as the non-locking versions are no longer public - they
+appear to have been replaced by clk_core counterparts, but those
+functions are not exported anywhere AFAICT).
+
+An alternative way to do this dependency would be to wrap every
+component with a relevant bus clock in a "simple-pm-bus" node
+with the bus clock in DT, but this seems rather unwieldy.
+
+[1] https://lore.kernel.org/lkml/1402926007-4436-1-git-send-email-elder@linaro.org/
+
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+---
+Alex Elder (1):
+      clk: bcm281xx: implement prerequisite clocks
+
+Artur Weber (4):
+      dt-bindings: clock: brcm,kona-ccu: Add BCM21664 bus clocks
+      clk: bcm: kona: Add support for bus clocks
+      clk: bcm21664: Add matching bus clocks for peripheral clocks
+      ARM: dts: bcm2166x-common: Add matching bus clocks for peripheral clocks
+
+ .../devicetree/bindings/clock/brcm,kona-ccu.yaml   |  18 ++-
+ arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi    |  28 +++--
+ drivers/clk/bcm/clk-bcm21664.c                     | 107 ++++++++++++++++--
+ drivers/clk/bcm/clk-kona-setup.c                   | 116 +++++++++++++++++++
+ drivers/clk/bcm/clk-kona.c                         | 124 ++++++++++++++++++++-
+ drivers/clk/bcm/clk-kona.h                         |  30 ++++-
+ include/dt-bindings/clock/bcm21664.h               |  19 +++-
+ 7 files changed, 411 insertions(+), 31 deletions(-)
+---
+base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
+change-id: 20250212-kona-bus-clock-4297eefae940
+
+Best regards,
+-- 
+Artur Weber <aweber.kernel@gmail.com>
 
 
