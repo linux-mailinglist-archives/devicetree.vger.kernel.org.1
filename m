@@ -1,137 +1,197 @@
-Return-Path: <devicetree+bounces-147072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDAE6A37318
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 10:27:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ED7EA37328
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 10:30:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABEBB16A009
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 09:27:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CF5E189206A
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 09:29:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 642D914E2E6;
-	Sun, 16 Feb 2025 09:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC3461891A8;
+	Sun, 16 Feb 2025 09:29:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LA+/+M9P"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="qg9zjZuo";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="0+yeca89"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-b6-smtp.messagingengine.com (fhigh-b6-smtp.messagingengine.com [202.12.124.157])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A26CF17BB35;
-	Sun, 16 Feb 2025 09:27:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3057C188591
+	for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 09:29:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739698040; cv=none; b=Vp+GVUguPjLfaJxD37Jo9IQfjKvqxIlkxgxSmlQ8hY720mNx+obKxstWf8kJLNKkMMjyjJukR1yFc+PCpFdW8eC8G87u1kW7Xi11WLB3iE3ba3szchttTjKsLVhFMDmzjUUlrxeObB9WXyCG0w0bbn7lMIMhZZICMLbRZG0oTb0=
+	t=1739698155; cv=none; b=UAtIvxQm6lK5+Y97guWLjKnPpO3hGGMSi8vneBOBglAS9XA2Zdb2v4mFc2BFR8RWTkH0wangTBVgZQ5t47n3GNnNU43RDla0zZXOmrV163BtXp+XPIWlCj8FFpkgDRqyk19K1zA+nFvwtlcj3xx8redlRblzAWtZ75Eofgv/NDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739698040; c=relaxed/simple;
-	bh=OukKaNU4mSVHReLc77MbcH8UQUtvvch03TNasNa5sDM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k1aLEjam3SVkkQvtnXHxwDi8wqKisOul6V02d1Uj4vQAij7s3ONz46lin5VrWFSW1LktiSWfZLEJws6rMF3QzyO6ESbKI+uBMKfmOmGkJ0H1nRapx+LVasil3mLUvko6v9KPM689tRGaSv6nrxR4IW07uCuynIPS6VzK0CC8T6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LA+/+M9P; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4395a06cf43so20932275e9.2;
-        Sun, 16 Feb 2025 01:27:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739698036; x=1740302836; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=v0gaj4zFmFQRT8VU9mqYTsdQ0LPAUbckcaSOB8q/pi8=;
-        b=LA+/+M9PgovQIf6UUzDKIaSrpEpXQsyTEo3+MiNgprrgk58oWTpOsx43du3/rKRzGj
-         HuZCarAGlZ5ifYgAnRBmmusPJwK3JQ6BoBaDCUiea9MEaCf9s84DY4FE/CIlcM5+WZgZ
-         JcfC3VeTFyUaI2To3PJC3v64jDniJNJLW6aV2vL02wZt2l8CQWQGe5biGErtYDkqAQWy
-         e9AAmMv4r+axhvBu1ZRx3GIdVj6ogBSnL/rf8ZpwRFeBQjdCdSLjKfUQllap4ydOTSe3
-         vl2Xz41h7K//DfTX1tvyhzBNl4vK35RrCyTa0JrBV0VWJsi/YG1smzYngk+8ZRKn7Jwl
-         aJBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739698036; x=1740302836;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v0gaj4zFmFQRT8VU9mqYTsdQ0LPAUbckcaSOB8q/pi8=;
-        b=bbEOhXXH43MbSc47C5hRmkoPQv5YiSb248C8V2i1nfOak0JtIbV0yXnLlARdl/UEPB
-         7a5fhDTbAdQoGBuZ/JJG9ASNFnPsShxj2pJCkcxszu3Y1i6j1eSNVCFGsaMHXn2HUajp
-         LRWsxyyzHtuc34cR83fJg7O8INl6K1FH5znEBQbebAZnaqIsoCWuSBlHIHauYHEaxCD/
-         vbSXZyDHNNXS2Fo1c1tBqDnGsbgXTDd/5JfFKha8ZRx+z05CO0dn/G1d0NvYIdA5bqua
-         ADZ7bBjZ23bYbilLw2MHVPMcCkJjiZikjlfvpzNexQkUnePLkDdZ2rwEM7U7vY7lKPap
-         w9qA==
-X-Forwarded-Encrypted: i=1; AJvYcCU7JibfeYvOgdpFr/KdnQr/5/DGf4y68n5kuCOvLP/XT9Yvk9O9L/U35DySl7ktbLrSNXr8p4v6708G@vger.kernel.org, AJvYcCVwIfEqGwMeisdH30M4OPnHlzeg1RU9p/189gtP1nEN3aYrNJJFxYXLUbVHWRUAnMOJkTfhtxI+k4zrTKpviEW2LdQ=@vger.kernel.org, AJvYcCWqynsday6j/Sri0C3whuielAj7+1h9qkSdBi7lqlffEZPRX57KTXBJyuYPx/jpCQdmamKxcJ+Mcv+Vbsk/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEPT1gF7t09F4MdV7Smf0Uni9X1MB0HOS4iCEdROVJArSkJsRi
-	QppCT7rrUaJMaVs5Ogkh6DXlzux/JMMIArNk31SIs67CWSHI3mC8
-X-Gm-Gg: ASbGnctbMoNLw6Rt+Eyj+yCW0cEIyt8wLVkyRC8i83b6cRnAEdzFewwLxKqJSP8+5Ck
-	vatYDyEzzxSDPxmrZ9ncxWPIldFFzPsIqRD9ESX4SQcae9zybREtoMQerXaIxCIQLtMYxnvI6Oy
-	093+Sz27XTVZme436Mp55mak8ihCRqWJ9Sn1eV86djM+25qvPozGk++DY6Ws01XaZHoOte/XaMO
-	hLIlGWM6luwhsY+ZnZNnfEkxFsDh4lM20UVJfFfctyzRUnd+gMWx0HWyItdmcTyecW9UiYyraSl
-	o0mOZGEiJUL7mfDeWCI6PgYwOfSIVD5j9PFdNmsDM73R+g+jJ2HwonHreZnRElgB4Lzxjg==
-X-Google-Smtp-Source: AGHT+IGChB1ddnC4aM/OIgP03GHT5PFBE/8ehdZ4vVVfa86O0qNjRbrFBXkT8twRRnRfn5eolhea5g==
-X-Received: by 2002:a5d:64cd:0:b0:38f:295e:6331 with SMTP id ffacd0b85a97d-38f33f3d70dmr6112437f8f.19.1739698035732;
-        Sun, 16 Feb 2025 01:27:15 -0800 (PST)
-Received: from [192.168.1.105] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258eb141sm9037282f8f.41.2025.02.16.01.27.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Feb 2025 01:27:15 -0800 (PST)
-Message-ID: <9c23e529-92ac-408f-a7e5-7cb7beda35b6@gmail.com>
-Date: Sun, 16 Feb 2025 11:27:13 +0200
+	s=arc-20240116; t=1739698155; c=relaxed/simple;
+	bh=+ZhrQslHetzF8ZouXn67pHCp4i5ZD3l9Wx77n17lgR8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=JYRdqhPzHUeYnqGP/WLQ88sfBLCc3qpj9XUqJyS7mjhvlcszLxr+b7Xi5KsPx6+fCTJva/MCxX2lXg7hKcnPbtr13twB5pkpzEUPRGJnYIhdgTNVpXDAZzOUwvLmbwvQqSCwIlXuxA0az3E7DyWTK0eD8Rny7i2EXPc++e9ZpAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=qg9zjZuo; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=0+yeca89; arc=none smtp.client-ip=202.12.124.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 44B2C2540112;
+	Sun, 16 Feb 2025 04:29:13 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-04.internal (MEProxy); Sun, 16 Feb 2025 04:29:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm3; t=1739698153; x=
+	1739784553; bh=WyP6xZadxIiPxhHK5VEbhsiz7PBbk/d5bR4lsljXq8U=; b=q
+	g9zjZuon0q2bsWE5XgnnblRp2D2IoDuD3pUASdCKkb8xFK+pOQBWAjcMappj1CFm
+	5iL9jZcQ8rJJ82cXM4oVdx/LoRp0B8Gbjn05oH2hQP7jT9WeFlhUo2sDf+UN1VKX
+	ml2LZfdCW1SpB+RRqV7ivNSRoQLYdyLv/1DjDulTUUYTmWVbIXN+B3TMqjq3Otfx
+	pVBcVLr4lCCDz5GB0vYzPnDEYwfIYvA5xTGr9DRP4AtnSaT7H5TygD4EY5Sz5QH7
+	pfnlEdBl3fVT5NlMjqOUkLzdR2x8VK2FvlvJezzWgBmhJRNncMBP2tWUCXr1SbYV
+	0egf6j+bacUgr2snRddQw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm3; t=1739698153; x=1739784553; bh=W
+	yP6xZadxIiPxhHK5VEbhsiz7PBbk/d5bR4lsljXq8U=; b=0+yeca89eOgpD0+HR
+	KHyBW51IF9OOjFuyjbIFFVaAZ3ONhIY2QOJ2eWaELkvtEaQVnV8BliMEOJwlRm8R
+	cbXI7V7O9EkwamouFysCyPFN7jx3ViLTB9667p7qXQDWuNPSUXd9Fp4epNzjl6kJ
+	ZgbBOh8nswsRdQeCOgnssv3QflOUTnagTSSESDbrOiDBO9k+y0vHOraypzXMozNt
+	kf1vDQkfp0oCw26kguziXUbJ4WyRDW2D7UqzUe/dm/L1rZU7HB7cpZvyoThqzkpO
+	SpZyjUdUEl50k1xBxSL+GvknPVifqlnoWONQc2YD/8SBmtsYU43w2wKEHvaa0WoJ
+	9cOZw==
+X-ME-Sender: <xms:6K-xZwDfxQGAV0j4GNMAvmQASEP26_8CfrbzLe4FiD0DPZLDtVOl6Q>
+    <xme:6K-xZygPkGMv5jBfdifjqCNNBMajwXOB2zJUQvcDR8yJlcA-6OrPfp9K8E4nKlMUj
+    PI4NRvPjq1bHxWCHQ>
+X-ME-Received: <xmr:6K-xZzm8NHItBgZYu6QLW0r5nkbjCY9065ESlyPDqUuq4SkUuW3I5D7yNM59bUYLiT13cV0nVWD6R4SPgSUUtfh80fH9zZvLV22lpWlWrlqo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehheduudcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddt
+    necuhfhrohhmpefthigrnhcuhggrlhhklhhinhcuoehrhigrnhesthgvshhtthhorghsth
+    drtghomheqnecuggftrfgrthhtvghrnhepffehieffgedtgfffjeetveegfeekleeileek
+    veeuteffteetudffveegieeiheetnecuvehluhhsthgvrhfuihiivgepudenucfrrghrrg
+    hmpehmrghilhhfrhhomheprhihrghnsehtvghsthhtohgrshhtrdgtohhmpdhnsggprhgt
+    phhtthhopedugedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheprhhosghhsehkvg
+    hrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdp
+    rhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepfi
+    gvnhhssegtshhivgdrohhrghdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtges
+    ghhmrghilhdrtghomhdprhgtphhtthhopehsrghmuhgvlhesshhhohhllhgrnhgurdhorh
+    hgpdhrtghpthhtoheprghnughrvgdrphhriiihfigrrhgrsegrrhhmrdgtohhmpdhrtghp
+    thhtohepmhgrtghrohgrlhhphhgrkedvsehgmhgrihhlrdgtohhmpdhrtghpthhtohepkh
+    hikhhutghhrghnleeksehgmhgrihhlrdgtohhm
+X-ME-Proxy: <xmx:6a-xZ2zG_jjfc1P5M2wwqTfZUyEeH6anp27XRqnBH7037fdAeRC7Kw>
+    <xmx:6a-xZ1RIk_p9JwvNzc2nE7g0sABJCdCHd9VoQ9JopudnN_HlYkoADw>
+    <xmx:6a-xZxbgBwo_0lRe5FNpR2yzCdPJh40U0JUBXY2z29-RcMDEaZe2nw>
+    <xmx:6a-xZ-S-k3Mys1xCtV0RAQbG2amABo0RmZAmJdtd-siK5JLZyGdnEA>
+    <xmx:6a-xZxrThefBKyMtkLV-8CM_ut926Us41zO_LJUWHGo5zfIdr8dHvsNS>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 16 Feb 2025 04:29:08 -0500 (EST)
+From: Ryan Walklin <ryan@testtoast.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: Andre Przywara <andre.przywara@arm.com>,
+	Chris Morgan <macroalpha82@gmail.com>,
+	Hironori KIKUCHI <kikuchan98@gmail.com>,
+	Philippe Simons <simons.philippe@gmail.com>,
+	linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Ryan Walklin <ryan@testtoast.com>
+Subject: [PATCH 6/8] arm64: dts: allwinner: h616: add LCD, LVDS and PWM pins
+Date: Sun, 16 Feb 2025 22:27:13 +1300
+Message-ID: <20250216092827.15444-7-ryan@testtoast.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250216092827.15444-1-ryan@testtoast.com>
+References: <20250216092827.15444-1-ryan@testtoast.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/4] dt-bindings: phy: add
- samsung,exynos2200-snps-eusb2-phy schema file
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Diederik de Haas <didi.debian@cknow.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250215122409.162810-1-ivo.ivanov.ivanov1@gmail.com>
- <20250215122409.162810-2-ivo.ivanov.ivanov1@gmail.com>
- <D7TR7VP9UPQA.2U5BL328HNSXU@cknow.org>
- <fc860290-c5e5-4193-a8b7-a53137dd4155@kernel.org>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <fc860290-c5e5-4193-a8b7-a53137dd4155@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2/16/25 11:22, Krzysztof Kozlowski wrote:
-> On 16/02/2025 10:14, Diederik de Haas wrote:
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/clock/samsung,exynos2200.h>
->>> +
->>> +    usb_hsphy: phy@10ab0000 {
->>> +        compatible = "samsung,exynos2200-snps-eusb2-phy";
->>> +        reg = <0 0x10ab0000 0 0x10000>;
->>> +        clocks = <&cmu_hsi0 CLK_MOUT_HSI0_USB32DRD>,
->>> +                 <&cmu_hsi0 CLK_MOUT_HSI0_NOC>,
->>> +                 <&cmu_hsi0 CLK_DOUT_DIV_CLK_HSI0_EUSB>;
->>> +        clock-names = "ref", "apb", "ctrl";
->>> +        #phy-cells = <0>;
->>> +        phys = <&usbcon_phy>;
->>> +    };
->> Shouldn't the example have at least all the *required* properties?
->> Same for patch 2 of this series.
->
-> Yeah, this wasn't ever tested.
+From: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Device trees were tested with dtbs_check W=1 but I overlooked testing bindings
-with dt_bindings_check. Anyways this is rather a small problem, will be fixed
-in a v2.
+The Allwinner H616 (and its H618, H700 and T507 package variants with
+the same die) have 28 video output pins for RGB/SPI and LVDS display.
+These are in GPIO Bank D and are multiplexed.
 
-Best regards,
-Ivaylo
+In RGB mode, pins PD0-PD23 are for 24-bit RGB pixel output, pins
+PD24-PD27 are for clock, DE, HSYNC and VSYNC, and PD28 is a PWM
+backlight control.
 
->
-> Best regards,
-> Krzysztof
+In LVDS mode, pins PD0-PD9 are for LVDS0 and LVDS1, and can be
+configured by the H616 display engine for either one high-resolution
+(dual link) or two low resolution displays.
+
+Add device tree nodes for the LCD, LVDS0, LVDS1 and PWM pins.
+
+Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+[ryan@testtoast.com: add RGB, LVDS1 and PWM pin assignments]
+Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+---
+ .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 32 +++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+index 242bac95840f8..806ad87705abc 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+@@ -322,6 +322,32 @@ ir_rx_pin: ir-rx-pin {
+ 				function = "ir_rx";
+ 			};
+ 
++			/omit-if-no-ref/
++			lcd0_rgb888_pins: lcd0-rgb888-pins {
++				pins = "PD0", "PD1", "PD2", "PD3",
++				       "PD4", "PD5", "PD6", "PD7",
++				       "PD8", "PD9", "PD10", "PD11",
++				       "PD12", "PD13", "PD14", "PD15",
++				       "PD16", "PD17", "PD18", "PD19",
++				       "PD20", "PD21", "PD22", "PD23",
++				       "PD24", "PD25", "PD26", "PD27";
++				function = "lcd0";
++			};
++
++			/omit-if-no-ref/
++			lvds0_pins: lvds0-pins {
++				pins = "PD0", "PD1", "PD2", "PD3", "PD4",
++				       "PD5", "PD6", "PD7", "PD8", "PD9";
++				function = "lvds0";
++			};
++
++			/omit-if-no-ref/
++			lvds1_pins: lvds1-pins {
++				pins = "PD10", "PD11", "PD12", "PD13", "PD14",
++				       "PD15", "PD16", "PD17", "PD18", "PD19";
++				function = "lvds1";
++			};
++
+ 			mmc0_pins: mmc0-pins {
+ 				pins = "PF0", "PF1", "PF2", "PF3",
+ 				       "PF4", "PF5";
+@@ -348,6 +374,12 @@ mmc2_pins: mmc2-pins {
+ 				bias-pull-up;
+ 			};
+ 
++			/omit-if-no-ref/
++			pwm0_pin: pwm0-pin {
++				pins = "PD28";
++				function = "pwm0";
++			};
++
+ 			/omit-if-no-ref/
+ 			spi0_pins: spi0-pins {
+ 				pins = "PC0", "PC2", "PC4";
+-- 
+2.48.1
 
 
