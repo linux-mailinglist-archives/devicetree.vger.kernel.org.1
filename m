@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-147135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 253D9A37540
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 16:54:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3EC1A3754D
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 16:59:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E134A16D5C6
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 15:54:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19AE7188BFB3
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 15:59:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79F107EF09;
-	Sun, 16 Feb 2025 15:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DCA51946A2;
+	Sun, 16 Feb 2025 15:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MtnGPs2x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mSnb5Wcv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49E4DC8E0;
-	Sun, 16 Feb 2025 15:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40943C8E0;
+	Sun, 16 Feb 2025 15:59:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739721287; cv=none; b=ZoCG+ykq6dGFfU3OQgqXF2u3d7x3Ji62ohyEHoLy/y2A9qAyjry4UJb6rbiMvw45phnJvZztcwVwAA2uwXnqMJJw/KILVIw/x/1uxtTIFaqkE9Jv5y/L2WivtLoT+KZvMw6YC5EL8KhmYbBZuzwKbz+3O/wDcjGDPu9guxQRdoA=
+	t=1739721554; cv=none; b=JjaTfYzqsDo3z5UOcJFd4gbWEok18dm7FsAkwiRYlJrq6mxxAtByH8Kll0OGc+s3PMcw7583yk4KLLhrg+2v8q3Bx23WhRoet3q7d5qnhlDYkRFAlBulGMMl0HU7FM0HO9DDI1oF1j5OgEiBUs1ZNYB8sVQoL21JsKT0LJnG7bM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739721287; c=relaxed/simple;
-	bh=YI4M66rMnlM4jffL09OWWos9o9IdSGPmEKyE2XKLKsA=;
+	s=arc-20240116; t=1739721554; c=relaxed/simple;
+	bh=tzRwEphCXCXbvUeFh2tqFV1w5C5R3tQ/tBfNFSyYgcw=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WM/U7He6BrloEMakmkdcXyc03spGMFO/yAvFHHDyPx5ULnOHyUlvGUY1XEOGf9i62j/S8N/gggssW2diH8MZS22cHuzhH+tKa86/t5ie+2m3kF1X4MwHQlhHWkhRWzGugRRrugvCT5PRWlow3ehNb6XprejnpnVguRxoHkUFK/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MtnGPs2x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3ECE8C4CEDD;
-	Sun, 16 Feb 2025 15:54:41 +0000 (UTC)
+	 MIME-Version:Content-Type; b=GakBtoQFcozF25GLAjoORjxSDiEw+CVvRRDMK0ZahT9Bbmh1v7Rzz5xwfPJAL95ShyYBV8bDUUs0CWRu/CxnDt3Sfr9L+mE71xX87Af9/PLnzpCu2hUbpKTO32KRQfj1GrTm1kKaxSHier1i1TdB9ubRsOQkScEXgEw+GpvXmpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mSnb5Wcv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE9FBC4CEE4;
+	Sun, 16 Feb 2025 15:59:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739721286;
-	bh=YI4M66rMnlM4jffL09OWWos9o9IdSGPmEKyE2XKLKsA=;
+	s=k20201202; t=1739721553;
+	bh=tzRwEphCXCXbvUeFh2tqFV1w5C5R3tQ/tBfNFSyYgcw=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MtnGPs2xt1uIXwO2ZPAKiZB2/p//rlS5qM8wtOEE9fstN9muWiJTXYPT8wr82uQbx
-	 TL75TSbl9Ua7GxV1FJErdVPksDvOsXq+Lb0TvbNM8C+L0mPtI5m1PlKsSVK06Ip6X6
-	 vZ9yYRcpLID0jvp2E4QZJzqMPCOMs7e4lo8X63pfjUW1r2oevwJTNi0fg7Gj+AiV26
-	 9CAMjzeYrjfMeF7+JN05IcT7QfB3f8g2wH5cb09foAdWknnE0AvtC5Lz/pK3oiDVC/
-	 /XSty42uT44xjwa9Qls3wYwhaz2Ar2d+ysbcH7kQOcuyy85r3O78TPh1Cz4WN5MlPe
-	 vtYs/SFAqBANg==
-Date: Sun, 16 Feb 2025 15:54:36 +0000
+	b=mSnb5WcvZxZab5ZaPIiE/x6oN0qbhUASUGtNRDzkEq0pMRwrXGdaOZLPX+Vc0jBJJ
+	 +dsVUh6rKKTzfBXx0VyGGD0azL/mKQGDsYxbu+IJOvWpoET/roHaNkSMR0cd4dXEDD
+	 ON6ku54RXIbiPCsiy8KbtOYAXjOavm0eR22mL/es9nntKF7kxIVGOOP80sY8kGhQ5O
+	 MIhBxqq5Osc1FLvk++MQTFg2+dX+kbbvvUL2eFawE6xumF9rfKZ5qhYuYzE1LRQyif
+	 DhEI8XfGPy452GbaUBVBnvCISqmLCeIjDYDAzZLZheTos3I0nX+xvdEM/PR0QVFQRr
+	 rGPQKG3U4jrgw==
+Date: Sun, 16 Feb 2025 15:59:03 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Tobias Sperling via B4 Relay
- <devnull+tobias.sperling.softing.com@kernel.org>
-Cc: tobias.sperling@softing.com, Lars-Peter Clausen <lars@metafoo.de>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark
- Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 0/2] Support for TI ADS7128 and ADS7138 ADCs
-Message-ID: <20250216155436.239a4b35@jic23-huawei>
-In-Reply-To: <20250213-adc_ml-v4-0-66b68f8fdb8c@softing.com>
-References: <20250213-adc_ml-v4-0-66b68f8fdb8c@softing.com>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <lars@metafoo.de>,
+ <Michael.Hennerich@analog.com>, <marcelo.schmitt@analog.com>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <jonath4nns@gmail.com>, <marcelo.schmitt1@gmail.com>,
+ <dlechner@baylibre.com>
+Subject: Re: [PATCH RESEND v3 02/17] iio: adc: ad7768-1: set MOSI idle state
+ to prevent accidental reset
+Message-ID: <20250216155903.0ebd32de@jic23-huawei>
+In-Reply-To: <c2a2b0f3d54829079763a5511359a1fa80516cfb.1739368121.git.Jonathan.Santos@analog.com>
+References: <cover.1739368121.git.Jonathan.Santos@analog.com>
+	<c2a2b0f3d54829079763a5511359a1fa80516cfb.1739368121.git.Jonathan.Santos@analog.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,32 +66,63 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Thu, 13 Feb 2025 16:58:56 +0100
-Tobias Sperling via B4 Relay <devnull+tobias.sperling.softing.com@kernel.org> wrote:
+On Wed, 12 Feb 2025 15:16:07 -0300
+Jonathan Santos <Jonathan.Santos@analog.com> wrote:
 
-> This patch series adds support for Texas Instruments ADS7128 and
-> ADS7138, which are 12-bit, 8 channel analog-to-digital converters (ADCs)
-> with build-in digital window comparator (DWC), using the I2C interface.
+> Datasheet recommends Setting the MOSI idle state to high in order to
+> prevent accidental reset of the device when SCLK is free running.
+> This happens when the controller clocks out a 1 followed by 63 zeros
+> while the CS is held low.
 > 
-> The driver exposes the interfaces to read the raw values, as well as the
-> minimum and maximum value for each channel. In addition several settings
-> can be configured, like the DWC, sampling frequency or an averaging
-> filter/oversampling. Interrupts triggered by the DWC, if configured, are
-> then exposed as IIO events.
+> Check if SPI controller supports SPI_MOSI_IDLE_HIGH flag and set it.
 > 
-> ADS7128 differs in the addition of further hardware features, like a
-> root-mean-square (RMS) and a zero-crossing-detect (ZCD) module, which
-> are not yet supported by the driver.
-> 
-> Regarding the I2C interface the chips using opcodes to define the way
-> how the registeres are accessed, like single or multiple register(s)
-> read/write or setting/clearing only bits.
-LGTM. Applied to the togreg branch of iio.git and pushed out initially
-as testing for 0-day to take a look at it.
-
-I did notice whilst applying that the Kconfig ordering for these TI parts
-has gotten scrambled. So at some point we should clean that up and
-bring them back into alphanumeric order!
+> Fixes: a5f8c7da3dbe ("iio: adc: Add AD7768-1 ADC basic support")
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+Just a quick note that I'm not picking these first two up on their
+own (yet) as I don't want to create an upstream dependency issue that
+might delay the main set.  If anyone would prefer these being rushed
+in and potential delay to the new stuff in here, then let me know.
 
 Jonathan
+
+> ---
+> v3 Changes:
+> * Patch moved closer to the start of the patch set.
+> 
+> v2 Changes:
+> * Only setup SPI_MOSI_IDLE_HIGH flag if the controller supports it, otherwise the driver
+>   continues the same. I realized that using bits_per_word does not avoid the problem that
+>   MOSI idle state is trying to solve. If the controller drives the MOSI low between bytes
+>   during a transfer, nothing happens.
+> ---
+>  drivers/iio/adc/ad7768-1.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
+> index c3cf04311c40..2e2d50ccb744 100644
+> --- a/drivers/iio/adc/ad7768-1.c
+> +++ b/drivers/iio/adc/ad7768-1.c
+> @@ -574,6 +574,21 @@ static int ad7768_probe(struct spi_device *spi)
+>  		return -ENOMEM;
+>  
+>  	st = iio_priv(indio_dev);
+> +	/*
+> +	 * Datasheet recommends SDI line to be kept high when data is not being
+> +	 * clocked out of the controller and the spi clock is free running,
+> +	 * to prevent accidental reset.
+> +	 * Since many controllers do not support the SPI_MOSI_IDLE_HIGH flag
+> +	 * yet, only request the MOSI idle state to enable if the controller
+> +	 * supports it.
+> +	 */
+> +	if (spi->controller->mode_bits & SPI_MOSI_IDLE_HIGH) {
+> +		spi->mode |= SPI_MOSI_IDLE_HIGH;
+> +		ret = spi_setup(spi);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+>  	st->spi = spi;
+>  
+>  	st->vref = devm_regulator_get(&spi->dev, "vref");
+
 
