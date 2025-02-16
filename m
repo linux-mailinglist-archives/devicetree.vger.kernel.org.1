@@ -1,147 +1,122 @@
-Return-Path: <devicetree+bounces-147110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC527A37488
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 14:19:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F4D4A37491
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 14:49:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25B053ADE18
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 13:19:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1212F18850E8
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2025 13:49:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B467191F98;
-	Sun, 16 Feb 2025 13:19:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22A5F18DF89;
+	Sun, 16 Feb 2025 13:49:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uuobK6Us"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KPGdiJHV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D24211624C3;
-	Sun, 16 Feb 2025 13:19:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2CD69450;
+	Sun, 16 Feb 2025 13:49:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739711982; cv=none; b=GvG6BLbiMcnFHkgJOHDXb41EoPaJFJCRcgtoZDFQAVKBdtqRlGZ/AK1yfTUaE/NS1Y5F6Py9v5YuB2hnAFDqH8j/Ch0jz0i5WUlTdUp57mCT7SK13uDVDF8AhTxgpHBUN/i1dzeSKQAegOrLqtALqWhf5prmec8XQqraO3f+vY0=
+	t=1739713768; cv=none; b=u4YH80ZjDPYCnCPyZQF3tnxTRyIDMLoenm7SeePup3LwZOsc6fWwc4dEvk0jQuOQFPyRMOGVE+jz2p4sqJMzevAphVBIAyN66uTb6sgYYlhXWBdfAFfweZPfWXmAlophCqQS2D8sRm3odiqb66CioYQtrXXnMy1wtVCYzkAxqes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739711982; c=relaxed/simple;
-	bh=v6Nt2Y+8iHq87fjnFJRgzXvuOS9r0e0EJDUvhWvayQs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eZXSWLhMKt6e4nri1VcoHPUkxHA6WeRJUU4D0hTFJ43nrYWOJ9bfnvb6amAMIN5Xx7svQUoE5RFuV2CtTUjUp8jODnOnm2JT6RMYZ9iFs9QbB1quRPXRLWJKF51P9yHnZ6MLqmXWVhmWH4dB2sSdxx0Nwzs9zz6v7E1JBgdXlAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uuobK6Us; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A7D6C4CEDD;
-	Sun, 16 Feb 2025 13:19:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739711982;
-	bh=v6Nt2Y+8iHq87fjnFJRgzXvuOS9r0e0EJDUvhWvayQs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uuobK6Usa9e7F/KxFzT3aKd13/ZOq5opq2Ha6mFnDf9aJVR3D3WoAtfXt12CdRczF
-	 c1B/8NS/HdQa6ZBxmnlhs3xfqUnuatoAnpJX9mp4FFyEOI7ecWg//I79V9iSxUg/o8
-	 NCxh8cfUTtZkoHNhe0bpJoPgDSP+fszjVKCmNUq4RdmFP400rMEl60AdD7v7sb92M9
-	 9qRWMGz7qvsZm68R0Dp56mOfXhPi2unSKmu24GdFdLnG9hYfRInDduSnjmaLXYs68t
-	 l7+wbdcpzfiuIAZDdLKMIE/+CNuDFpv+cYNN7k3v+qtgNUNOV9L9lecHFyiazDgrxv
-	 C+5W3O77SNCpg==
-Message-ID: <065ea296-480c-4ac4-bb4a-0fc2915b59f1@kernel.org>
-Date: Sun, 16 Feb 2025 14:19:35 +0100
+	s=arc-20240116; t=1739713768; c=relaxed/simple;
+	bh=S7e8sMABN2b7K5nBtyYMhJN891hqdkLBfQA9iEPb1kM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=smw0bSJshnbEEG+qcR8ExxzhvM+4cDg0IHVY0rQuW8uQCSZDF1h4YwxcvYk+ygt3wK5Cuyq8I3dzcF6etCmzgDrDwRAWJELEW2sRPev8ehI0Vewdq8slqN2a0N0toLmZzia0kC4kKXM8ND/r0prqQLHGM9RgWKfWQOveOMmpH4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KPGdiJHV; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-21f8f3bd828so6676655ad.2;
+        Sun, 16 Feb 2025 05:49:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739713766; x=1740318566; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S7e8sMABN2b7K5nBtyYMhJN891hqdkLBfQA9iEPb1kM=;
+        b=KPGdiJHVpWJABUpkRChxrP0vTjxsPVDJ8IVmnRnMaCRoiZCfYy6JU2M7axOo6UL38j
+         Zua+rvexD1+eISWiwqjz33lbRUyaLlgt90s2r2YtnTWvNb2F4tlk9dZ+pdQEuF0BBswZ
+         liGtfUttj8XGwNMmL4LvEtTrXdgcIJ9tAAUn08cII9HySvHa/F6NtbMRlYSgO9zyqgL+
+         2cvNQi5lGYLcYH7quONK5ESR5fhCAbHn6TXvHuSs9RqNOyf3K9hnec5gO/RDydUz3Emq
+         EG3O5LfaGNcFQ2QaVBqW4duiTzzGP8itcQqlzMIueT+mafIK90KoM48nDLx6/CQfiN8P
+         Ewvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739713766; x=1740318566;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=S7e8sMABN2b7K5nBtyYMhJN891hqdkLBfQA9iEPb1kM=;
+        b=F5MuNgSHAUT8I6FsswaKwcYnmsB+773tKRkCD702Z69P3YdUOvG8YxDe5OYb6SyH3S
+         45BFf92/SYSdTTRZGYHy0WdRJRWUNVd9wqs2xA15TqnOufKS0crBiMlNpM+gjFLiVfhL
+         plaZ7K1Uj8Em23G4o+9d0OyY3vKR6/7nClsnl4R4ySDA0/W+4j3NQAzcnvL1hmnpe+On
+         bsS5qf0qpsu9C1U/KC8Ef7/4C6JR1WJkYmMBG8y4aw98o0mR9MPwAzvNFGgVDV/22ovQ
+         6B5S3i3zCRBHgxygODHWNo1NYohsLt6dy9qS8ZGsrMDtvcalee5WRCMUQQUo9SC4fKd4
+         /O/A==
+X-Forwarded-Encrypted: i=1; AJvYcCV77VKsmJyNNwYF5dnG4pGsNN+Yy6OdbTAp2HCYpjB5wxSm8tueM0RwIqJ/gH2sSeOBInORI+5QLPU2CgAv@vger.kernel.org, AJvYcCXnoI01mhozx4Vg6jlOT0WicbFig7pv4jQKLGvEPrbhJ6muX9Z9gpQdo5pUm07AcWJavOYG6S8+f+d6@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyDOfQuOT+F+VKNsHLwPzyMZ1Jiax8WsH0Bs0tLhivmw7GIzFl
+	T4RSBmKCl04yPIfa+t6MaKBidIDO2t73RNFDL7MFu53Ehgk60ztB
+X-Gm-Gg: ASbGncuos9YWGTuVcP2OO5kB2Z6rTLDXxd68UNMm6LZcCdsf7EPdWZPAS01wGKz7xPD
+	32Zri9EBNz4IAYdEwfo5T3OHIwjV71gvOvihCyNpcuhG9W7YIpVOe5Cwz4b5pFl8dRGs1GBQ8vK
+	GIf9J7p5m9vpUbN1s0P2bdtjXz6/NKJaCEUGQ139dmuZPofyijPADUBBOCKGDYtIMssMYh16tzp
+	c/yLvARVyRidqCwokS8G77WB3QpUnxCHfTSs0c1M+8X2TdY4iY0keIM5gOdaOGdFd6RUq2eeAmZ
+	tJUBBv4YPF6fNZvlNSkv
+X-Google-Smtp-Source: AGHT+IFXugIHaSfIg+wP+gViyrZOahiwtYnx7ACfVX1OGYP3jnCr/KLLZZXjEFpO+K+dZuGLwR5xtg==
+X-Received: by 2002:a17:902:c94f:b0:220:fce5:977c with SMTP id d9443c01a7336-2210402b42amr36437495ad.8.1739713765745;
+        Sun, 16 Feb 2025 05:49:25 -0800 (PST)
+Received: from rock-5b.. ([221.220.131.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d5349056sm56776745ad.22.2025.02.16.05.49.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Feb 2025 05:49:25 -0800 (PST)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: piotr.oniszczuk@gmail.com
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	liujianfeng1994@gmail.com,
+	robh@kernel.org,
+	sfr@canb.auug.org.au
+Subject: Re: [PATCH] arm64: dts: rockchip: add hdmi1 support to ROCK 5 ITX
+Date: Sun, 16 Feb 2025 21:49:17 +0800
+Message-ID: <20250216134918.1357069-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <566E6F11-765C-4415-8805-55DFD3C2BD4D@gmail.com>
+References: <566E6F11-765C-4415-8805-55DFD3C2BD4D@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/4] phy: samsung: add Exynos2200 SNPS eUSB2 driver
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250215122409.162810-1-ivo.ivanov.ivanov1@gmail.com>
- <20250215122409.162810-4-ivo.ivanov.ivanov1@gmail.com>
- <a10f8a77-9440-477d-b6f6-9d651e3ab49a@kernel.org>
- <537698af-841f-48e7-bd7c-4077d0a240a1@gmail.com>
- <9b58a985-3d63-42bb-9a76-e5b04a4b6012@kernel.org>
- <f3d38b63-dc97-482e-aeac-b59e65f91424@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <f3d38b63-dc97-482e-aeac-b59e65f91424@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 16/02/2025 10:51, Ivaylo Ivanov wrote:
->>
->>>>  You need to
->>>> integrate the changes, not create duplicated driver.
->>> I can do that, but it would be come a bit cluttered, won't it? Depends on
->>> if we want to follow the current oem-provided initialization sequence, or
->>> try and fully reuse what we have in there.
->>
->> I think it duplicates a lot, so it won't be clutter. We have many
->> drivers having common code and per-variant ops.
-> 
-> So the approach to take here is to make a common driver?
+Hi Piotr,
 
-For example: one common module and two modules per each soc, because I
-assume some per-soc stuff might be needed. But maybe even these two
-modules are not necessary and everything could be in one driver.
+On Sun, 16 Feb 2025 13:37:05 +0100, Piotr wrote:
+>Is there anywhere repo with this patch applied to test it on rock5 itx hw?
 
+This patch is applied to 6.13 and I was testing with armbian:
+https://github.com/armbian/build/pull/7829.
 
-> 
-> What about the current modelling scheme, as-in taking the phandle to
-> the usbcon phy and handling it?
+>(asking as I can’t get it working; even with hdmi1 only vop clocks like here: https://gist.github.com/warpme/49feadbe1f53ea31fca76f41d5bb3ee4)
 
-What about it? Did you look at the bindings of qcom snps eusb2? Are you
-saying you do not have here repeater? If so, then this phy phandle might
-not be correct.
+vop has a dependency of hdptxphy0, so only hdptxphy1 won't work.
+If you are testing with 6.13 or 6.14, you have to add hdptxphy_hdmi0, and
+if you are testing with linux-next, you should add hdptxphy0.
 
-
+And I recommend testing with this series since it adds more display mode
+support to hdmi1:
+https://patchwork.kernel.org/project/linux-rockchip/list/?series=934232
 
 Best regards,
-Krzysztof
+Jianfeng
 
