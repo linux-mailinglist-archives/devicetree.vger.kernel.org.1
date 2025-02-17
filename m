@@ -1,126 +1,104 @@
-Return-Path: <devicetree+bounces-147426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E06CEA38411
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:11:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53EB2A383F4
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:08:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2624B3B8E5D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:04:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEAD4163887
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:08:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6C321B91D;
-	Mon, 17 Feb 2025 13:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8350921C17D;
+	Mon, 17 Feb 2025 13:08:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eQ3TKYm7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E314193084;
-	Mon, 17 Feb 2025 13:04:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5773521B1B4;
+	Mon, 17 Feb 2025 13:08:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739797470; cv=none; b=MqcR5g1g1Tjckgb9gnODt2PZZT+9h02t0gXJlrxvaIpYj9ybRs6/h4E2BrBCisjWPuZrdvewhGWeaomPdzyGfj/GmnZpKBeUkU01hdcNMYRB2ndsE7j62ZkGXQ00h2o5AjmvjoweJXLfhuDPTC19aQ3h+KJy8pfxnAmOmof9snI=
+	t=1739797692; cv=none; b=NEohMgEb4/J4x+dO4QjU4BLAI3CUj99IOXmfFs+AIos0xo8DjGisytU+URUALjTIRwKCCqHa+ugjY7Bp4WjsrgpdbiGSjHZt1HaAGadKQNVfFvnyzHA/aixYCFePtswGZ/XtQI+oHuqo/PdznS3ckqe1Owd3tP+KBZBDlpnp+U8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739797470; c=relaxed/simple;
-	bh=ImoCxT3ef00TVwjopMq1kk3VvBm4+wZMZKfvJPiBm/c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=shumlsmwYXt4rN3zb5KJ+8reBfkU+ku+QMSrWa4F23+8SnEBJ5Uf/Obbtq7VQvTfy+k824ubuo+pCyMAjKYOPS4B9pMWr+RZUP8NW+cwY8oBrGVgs1kx2HzQnTlR1oLAJDrP47XQyGIPOe3X/FgmW557ywERiyWS9lpEFb5qy9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-54524740032so3475293e87.3;
-        Mon, 17 Feb 2025 05:04:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739797466; x=1740402266;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IbNZMRDRB5avwVQTUJWOUANTwDCO7FRFfT8F93z4Rus=;
-        b=gY9rPXGAsWPXccytr4bx6dGNTMHkMZA0BVTvxEwI7vGCZpLAeK9ircczbJxSHSs7kg
-         i/Hn0bxDOeW5x5loXUjgFnSciRkwRk3x7n15SbE7mzX4TopX4tkF7wczJ7kO2HQTlCd6
-         xIkBsN/c73iEPgv/o2qYNgcxNjWTn/Y6QWMuRJAyJoIc6gEfXm4GRY5c/VttmN2qhrLg
-         FtcbeWpVRrcobCSWnaWeUv9MrpI5A4wY+kqAZachJMAOpVvflDZAoU8zZFzQ40ThSVpR
-         MGeDwxlTFXf43i9YjzsBIDjs6zAxpiSjVlwBNjvaND8AjMTkB3MlPGBJ8kHj/NLu+6a3
-         2boA==
-X-Forwarded-Encrypted: i=1; AJvYcCUXtLqQAniZF5S6DeCCjG0PsTo3tqG6bOBvnaa9KuY6B4pre5G3X85rjn+/nRJS0kA/ofkCrdixgXw2ILb7@vger.kernel.org, AJvYcCWQnJ7HkzoI6qt/khKa2KEOgBrCrjlJwuOgifhZoV8DNen0IbWiOU8B7dc44GlpCrJoe5qRcKIbsERb1Ai6n0s9UUA=@vger.kernel.org, AJvYcCXuFhGEnwQ1ClbcWh2ZdgYFp2nd83xG8uGDsiL1Md8AbdUIs2Yb8ZbSFuRsrOQMbRypJv7xNW6Cmy5y@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqFn/UPIGfAOMno51AVvVGiNhlzMpPdWAemABCUkpKNpuFIa3e
-	K2c+rwabaTbkOLI9rgpBKK2151R1GmelO8mL5JZKqeZ7CpTDt+iUlIafgFrqaHI=
-X-Gm-Gg: ASbGncure8QfVQ8Z8yGqL2/VqjLInUQsnHaVNhUvGDmSYfjjONcqrXHetgp9SbT7n1b
-	A+Wv8PmJUvQWjDsAKbYVg4KNllIVqq1vL8T1fmVqw0cGzvi3fcP86rZ0WH39sG5ulSwc8SJdPx/
-	bzI125xMUwCAx5dVGD3KJQNM/xmt6glneZg+CYSWbzlJ5nEDNewZbSPuR9N1ZjQQAq348UUkpgD
-	GgHKKxPHUNcLyeu/ERrFtpNT2QbrtCNFK4MDT3QvL6PG0A3RDrrfc3TFFxLgfTDsvkYxnh1IYbY
-	h6L9gqsou+iG0CbglqISgEO/EEajqGmWSarf7ETBaj+rb4fTLsohJ3yyGA==
-X-Google-Smtp-Source: AGHT+IHATyA60twHSITAhUuVK8CkYi74RJzn0DdWzKDtBVl1l/9sN8bB8xazutJhF0wi/KT1fePgXA==
-X-Received: by 2002:a05:6512:1194:b0:545:2f94:78d4 with SMTP id 2adb3069b0e04-5452fe2e4b9mr2395141e87.11.1739797465514;
-        Mon, 17 Feb 2025 05:04:25 -0800 (PST)
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com. [209.85.208.177])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5452f03b72bsm1060882e87.121.2025.02.17.05.04.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Feb 2025 05:04:24 -0800 (PST)
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-30761be8fa8so46585001fa.2;
-        Mon, 17 Feb 2025 05:04:24 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUS9vBvTPUDrt5tHEpkTyB4sC3nGGLAR/G70ihTam/Xldo9G38mHdTYKapYMQRW5pEuXZnEpEJxktOw@vger.kernel.org, AJvYcCV2Sf0LyFf9000b+xbI/OwHUcYNDSiK0IoMnqkqdvLk5fN+B0MwKpNnO2GVd5y1qdut0LKtzxy3ZMC4wVBh@vger.kernel.org, AJvYcCXGtiome/SvNnmGEf1I+V9sYRnu/RH+edbRoj5xueW40U9oqlhfUpN+vbqhVSmRDIO+O6Lp6bFmIA1duQUKAinvjSY=@vger.kernel.org
-X-Received: by 2002:a05:6000:1f87:b0:38d:dea5:4e9a with SMTP id
- ffacd0b85a97d-38f33f34bf3mr9560327f8f.26.1739797446415; Mon, 17 Feb 2025
- 05:04:06 -0800 (PST)
+	s=arc-20240116; t=1739797692; c=relaxed/simple;
+	bh=50LXAdQ5iCgOH6wLijxYspU9uZxYNQjnh5u8g8wSwJI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iRNZbUJuhRvNxiAsLx62R4gscRgcnrnbs0s9VjYjTKohL7QAYM0Asyt9GqGFpH4jQHZ1e5eCpQUy+zVRGQFb6tq3+j2a03iCFHeiaf7LxhL3sqIHEtDBrI/DTTNtE2TM+592D0IPMNeEXBQlkGOIpxok7vy3cbS0gXZRnMfLUEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eQ3TKYm7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CAF83C4CED1;
+	Mon, 17 Feb 2025 13:08:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739797691;
+	bh=50LXAdQ5iCgOH6wLijxYspU9uZxYNQjnh5u8g8wSwJI=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=eQ3TKYm7WXmT8oeqSyW5qhlP3NjUJ3YAL7CytsOWGuNrWC/gmuz2Rp8lh9MOehT51
+	 d1DuoiPT8Y0JfV871+wq2okIbFmUOlVT1ig6pMSzYcSg1rNWNFUkCPudv7lYJda0mz
+	 R6TF5SZN8mCu6lCZ7z5HUgdikAlA7NRTF0n1RVcrHC8Pn/MwYfiqw/fReYqvmWdKmM
+	 nfn+4t384mKOLx1ulJBsMcTAVp9YaE40H71fIqKHjTEZCrc8Z2SaeARx5dfz6y8WCF
+	 BABa9ssBzToxnEsiKw58qs4Jo12fZfPJV5hJ+qaakZ4oZ5K5+y3y6fLnz5eTEG5pjf
+	 w11ETvsc0Uc9Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE261C021AA;
+	Mon, 17 Feb 2025 13:08:11 +0000 (UTC)
+From: =?utf-8?q?T=C3=B3th_J=C3=A1nos_via_B4_Relay?= <devnull+gomba007.gmail.com@kernel.org>
+Subject: [PATCH 0/2] Add support for the PCF8574T I/O expander.
+Date: Mon, 17 Feb 2025 14:07:50 +0100
+Message-Id: <20250217-gpio-pcf8574t-v1-0-137e140df5fc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217105354.551788-1-thierry.bultel.yh@bp.renesas.com> <20250217105354.551788-2-thierry.bultel.yh@bp.renesas.com>
-In-Reply-To: <20250217105354.551788-2-thierry.bultel.yh@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 17 Feb 2025 14:03:50 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVuyTL1gQdiz64W_-f406GmCgaN3xgNmwTeUUik2dzqtA@mail.gmail.com>
-X-Gm-Features: AWEUYZlDYrZsUQS75eHtuBg9kEGfhPOV_cbgGE7g0T55rkPu5tl72irPaSLGDgU
-Message-ID: <CAMuHMdVuyTL1gQdiz64W_-f406GmCgaN3xgNmwTeUUik2dzqtA@mail.gmail.com>
-Subject: Re: [PATCH v2 01/13] dt-bindings: soc: Add Renesas RZ/T2H (R9A09G077) SoC
-To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: thierry.bultel@linatsea.fr, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAKY0s2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDI0Nz3fSCzHzdguQ0C1NzkxJdU0vzJEtDSzMzY8tEJaCegqLUtMwKsHn
+ RsbW1ADoLLbFfAAAA
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc: linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ =?utf-8?q?T=C3=B3th_J=C3=A1nos?= <gomba007@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739797690; l=688;
+ i=gomba007@gmail.com; s=20230706; h=from:subject:message-id;
+ bh=50LXAdQ5iCgOH6wLijxYspU9uZxYNQjnh5u8g8wSwJI=;
+ b=GNuwei57M4SHpZgsMdxN2IXvdgxcY6iaK+hI0/kedLn39n/2hueWxNDkFXyWwWyrnnapYX93K
+ HqHANwueWJjDuVZE5Wo86nA7FxxTWSxyKS6ilvcibW3pj9BtMSYrTBB
+X-Developer-Key: i=gomba007@gmail.com; a=ed25519;
+ pk=iY9MjPCbud82ULS2PQJIq3QwjKyP/Sg730I6T2M8Y5U=
+X-Endpoint-Received: by B4 Relay for gomba007@gmail.com/20230706 with
+ auth_id=60
+X-Original-From: =?utf-8?q?T=C3=B3th_J=C3=A1nos?= <gomba007@gmail.com>
+Reply-To: gomba007@gmail.com
 
-On Mon, 17 Feb 2025 at 11:54, Thierry Bultel
-<thierry.bultel.yh@bp.renesas.com> wrote:
-> Add RZ/T2H (R9A09G077), its variants, and the rt2h-evk evaluation board in
-> documentation.
->
-> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+This patch series adds the driver support and the documentation for the
+PCF8574T I2C I/O expander.
 
-> --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> @@ -535,6 +535,16 @@ properties:
->                - renesas,r9a09g057h44 # RZ/V2HP with Mali-G31 + Mali-C55 support
->            - const: renesas,r9a09g057
->
-> +      - description: RZ/T2H (R9A09G077)
-> +        items:
-> +          - enum:
-> +              - renesas,r9a9g077m44-rzt2h-evk # RZ/T2H Evaluation Board
+Signed-off-by: Tóth János <gomba007@gmail.com>
+---
+Tóth János (2):
+      drivers: gpio: Add support for PCF8574T.
+      dt-bindings: gpio: Add support for PCF8574T.
 
-renesas,rzt2h-evk
+ Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml | 1 +
+ drivers/gpio/Kconfig                                    | 2 +-
+ drivers/gpio/gpio-pcf857x.c                             | 2 ++
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+---
+base-commit: 0ad2507d5d93f39619fc42372c347d6006b64319
+change-id: 20250217-gpio-pcf8574t-597b9196639a
 
-> +          - enum:
-> +              - renesas,r9a09g077 # RZ/T2H with Quad Cortex-A55 + Dual Cortex-R52
-> +              - renesas,r9a09g077m04 # RZ/T2H with Single Cortex-A55 + Dual Cortex-R52 - no security
-> +              - renesas,r9a09g077m24 # RZ/T2H with Dual Cortex-A55 + Dual Cortex-R52 - no security
-> +              - renesas,r9a09g077m44 # RZ/T2H with Quad Cortex-A55 + Dual Cortex-R52 - no security
-> +
->  additionalProperties: true
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Tóth János <gomba007@gmail.com>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
