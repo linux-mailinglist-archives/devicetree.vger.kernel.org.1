@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-147559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 310C2A389DB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 17:44:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49B0DA389BE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 17:42:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B2A03ACD09
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 16:42:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E50EF1887E9F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 16:42:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60362225A4D;
-	Mon, 17 Feb 2025 16:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E76A8226172;
+	Mon, 17 Feb 2025 16:41:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YAQXYcuz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yEUVKJGv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33EB9225786
-	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 16:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BCFA225A3E
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 16:41:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739810511; cv=none; b=h7WUph8/PSwbW0wszGYQhGLhRFt6rPlHyb8138cfJh7JQaLIBCO5qvz6/lLOrcKVkQErFz81yV1N4cQ1CgZ/qLzQiHxU6iiDcjXSCcne8q73nRZfXdAEw8MjRtpzi+nHxlCJHc2PwQAissbX9yiE47/CgQY2jNzJrFEOnJGc3go=
+	t=1739810512; cv=none; b=QPH/2L1Pspm1vjy2n+Aa4cicXy3ScG7G0cELGnrGSar0MkxwyK+4NPvqFI6Gq+OOFY24DwppUdwpUVrrZoKLUzi0qMhAtVLyqKIk929e7XIaX9dWTyDUenlsc5vtn9ljvF+jDJz7caQwf40ozF1IJuPLLQJUIvIAnZI8jP+YSxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739810511; c=relaxed/simple;
-	bh=wf+CuC28ypTqu4EQD5hdI+GDr7Fn9S7Y7CIcU8MS5oE=;
+	s=arc-20240116; t=1739810512; c=relaxed/simple;
+	bh=C784ypOiHBSE0JJrZYQTBZVh6GbEkSrx2ih7B4SSF4M=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=J64Z2R3EHJnzgbtYfaX1FxC60qKf+hpuFjaMB7mxVfKqaA4niU2ZVUJwtJvpeRxJSkEbeJoYylvX+T0qMIAT/mT7oczkqN0CVObQuWwQjxleog9UEO/KNIaxNS8IFc1pAWrq5N5k7L6cIIodEqOWd4xBx12Wdn1ewElI6AcnSl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YAQXYcuz; arc=none smtp.client-ip=209.85.208.42
+	 In-Reply-To:To:Cc; b=eA6532alh/tJ+TbetcGA5PkK+z6zRbla9IABKtEj75osooLDVXgt1n+fHh59dMelO0CJL3ouw63WEVIoPzhiVAfwlsLmEe5RE46UcpseMMoZjgXeTSX8kFba34xio3XHg98sVUMeXNtMTUaZ+jw3qZoy3lehyv12R1wQEMpWhQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yEUVKJGv; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5dbe706f94fso670945a12.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 08:41:48 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5dbf65c0c4fso829571a12.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 08:41:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739810507; x=1740415307; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1739810509; x=1740415309; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=N+5aoDlUUPJ10rJqXrmf7ktYiK86nyUI9p9lZazil40=;
-        b=YAQXYcuzK3d3zcIy4adFGxBrL986+c9Q7UIL6hV7Y3x3PnbCAK+juh5ApHK8zXawct
-         wm+CtKToK6Zw/xemDsDiwH1R2oi7netAaWM6vyhwT94zID3PuukUIqsgy5LChhGc7IUe
-         7Xi05+7uoBVkrtGlvk/UM2Zc3oxM2QTDkOHAyMfhMoHf0FmR0sB+QJ9KSFqDWKsXpi1r
-         vWrqDkYDdCjhvjJS5rLGFKHYhwBItmG6k97T1eE8YStP43w6eNkoXmKykoul+81iIdWL
-         HeCIXUT5+qUWcrbpoImxvmK6Vs33WwdwlQErhWash0wKxypbLlquHecVGtx2byOB4zC4
-         /6sw==
+        bh=/vtiOtAPErstCZKPiDf9uSSv9XQsaanNrESzaPKJnL4=;
+        b=yEUVKJGvSgGJ2kb+fIXh44pdaHsxy+voLHvKQ4+mLZLpowDVbxPz4M4SrlmDsBSPn4
+         7OduNm/LONQTtI/Di6KpDOrvbbYA1cqEiMt0JJiBuE4x8EbVNEjLjOsaDvs9UsJMQ/fh
+         2OnsQEA3pEA1kgZPynQ9p2m2/CUVhEHOA7mrnMIyBR/PeytRyqJyw6l6Nf1bjtdK0nGH
+         teHNKmlkdEkj1bEdYbkmgpCIiFkTrzTic3KLw5cqKgWaf1HM49ZSL73BsjFn6JHlBVxc
+         R4bDDiQmCjeZEQR3j48qotOGHZdUcoKZUEevUR/Tl8KF6zz+o6o43t8tgidp6OIk3Sj9
+         biIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739810507; x=1740415307;
+        d=1e100.net; s=20230601; t=1739810509; x=1740415309;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=N+5aoDlUUPJ10rJqXrmf7ktYiK86nyUI9p9lZazil40=;
-        b=MJH8VukGt8PNY/S4fLC7y5lkdvVkaAaQPcJFBg+u1pCk0nQlevkKwjKND/+yj4OFax
-         KI9lk/cm/QTmnVSIeCR48+vFCvI/HhvE+o2HADVjGZKtY59P+GYCPktuZlH2f83BLqlU
-         +Da/00+36yzG/apvqqlySop3JW4EeT1eHVUh4HSzgJekLA4i5LxmWw96KcyIxT8ejq51
-         sP1A6nXigAjuTkHGCpKXevkbmwkRn3WOFeGYaHvJvRBcf3FkHrjX0n8nbLykX6TXM9p8
-         OpjuxKM8i79pB0qo2VO1nUyqt7IWudYvdpx2uxFhKyrQTo3usZ8xGKZtyawZVA9WNC31
-         Q8tQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVQhq0pzjSgb81n+TgMNkXvEdP1+rO67Zu/xruAre/L5SxpetobPjxN1d8FWqDQM91DKo3HYEXN9Aaj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSDzhU+5Lm/pRGTjOErc2jCaJ91mylqEuQK5IREuWnls9xgQD3
-	BE/6tfFw/xSq4aT+KxXhlYS6mvQ1+G3FLQlCOzezPlPdkrRvu2bz4pjLCQY+T08=
-X-Gm-Gg: ASbGncupm/76jrWtpWnbo4tgegiticMnXi/uBC1wZbjhWIG/86QExBShPX5tmGB2YlR
-	vYVqqN7EUrauVWL8myoiykeRUuqiigsskWWKaS9eFSakVCqGk2XlT/+elPIzLKxrjZqKEPuy3vG
-	mJpkxs0Kk/31ZnfBpdiCHXfug0/HPmyBU8VW7l1Tb2PjSOjpADI4kArInsOq0/98XxDc+N4FhLQ
-	pDCx3fRW0K8ydXs9vj1UT/tPfWeUbc90vsy4co7Wk9GzJRz59bW4iiWqHOOsEnTucggp40qOiyj
-	G7FG1ffNZdvo3OI80VWv7qU7vlVt3O8=
-X-Google-Smtp-Source: AGHT+IHRBktJ2CMWFcJl7zTzhiegmw14O+ej0MwM1UHqZCG86dEftz5Cx0FG4ED7AqXi7Fd5goBe5g==
-X-Received: by 2002:a05:6402:5254:b0:5de:b604:355e with SMTP id 4fb4d7f45d1cf-5e0361b8ac9mr3287589a12.8.1739810507589;
-        Mon, 17 Feb 2025 08:41:47 -0800 (PST)
+        bh=/vtiOtAPErstCZKPiDf9uSSv9XQsaanNrESzaPKJnL4=;
+        b=WpC12o5ZXq159hgLqw5Jd3h/KdedQFvRneIIDFEUbsjilyIFZsY4vlcvhv/h75FaHX
+         ethC9/oX/NX4AD37bYWzwWF7WlRJLPfh3zDA/Jy4+UuLMRFWUZ9vTsozrhSlxlQm/jAp
+         pqdlvzwm7pagn+Q0hLkg3IJbU+dLTCALNuUMIZa6P42K8/rbrWm9aEcK7v1IQEXnNzZ/
+         ByyExiK8uHHtjLWD0/eFkk9ymqXBIFDivOAapLWEx9SK/jEoFZ4bask8VS/N4a6fLl7H
+         eYmH4CnvoL1X2vHlt/hZcP8t4pKU0nsf6pxESdfpWlXeYUY9S8H0Bo1YZzdbd6a++2g8
+         0EEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXc09N5kpa1hjMtQeIgZphvfhJOUL4N2I/uLVV7LJ5LrQKbEcOpPAJ+wDcKZqCG8V5/NjE207JWWHBS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqE5qfAdgQ7wn9AXPDBClET3wxRkMOk/Pp6/FvVajoS5rcsh9s
+	GBb+oPrEfYSDKeB5EeYdmcxcVAPes7eNXi7qcGN32EeBsuzy2Ea3BFih+M8aSQ0=
+X-Gm-Gg: ASbGncv3ujsImGez5S2rcgJ/ONSAlt94KutA7U6+gX+BwY1DwSoSVVWSJnq3xUDKJHv
+	sx8qdZUIvI0NIycIUToGVujz8qKDD1Cl2l5LaMDOv++bMpQ4qZj+NpvUgn5OVgXOBXk9cup5Bpb
+	a88mWmLJXZpn9l7rpEqffQZWMkk/nzEhhBIlKfN483kkZCf7M1fOJ1nMY0itXhZ1BdBPPGSl003
+	1g2vhzu2ifhXa7YsbxMzwTaYmGmY7SUKmrHmQN1e7zL77Z8lzxBZBycaCroZrwkkO7HdT3GMNxT
+	9WAVZjiJz4mkz5gU7tkDAuz2ixce5D0=
+X-Google-Smtp-Source: AGHT+IEc2oXDKXrP/maz1R4hPJqgetc2dZKJeGvYBMYH+EpbVdo+sZPF2ut5mzR1sZ6VdIx0Xdn7lA==
+X-Received: by 2002:a17:907:1c1d:b0:ab7:6056:7a7f with SMTP id a640c23a62f3a-abb70dc5587mr338725966b.9.1739810509412;
+        Mon, 17 Feb 2025 08:41:49 -0800 (PST)
 Received: from [127.0.1.1] ([178.197.206.225])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abbac781b78sm82647966b.60.2025.02.17.08.41.45
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abbac781b78sm82647966b.60.2025.02.17.08.41.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Feb 2025 08:41:47 -0800 (PST)
+        Mon, 17 Feb 2025 08:41:48 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Mon, 17 Feb 2025 17:41:23 +0100
-Subject: [PATCH v2 02/16] dt-bindings: display/msm: dsi-controller-main:
- Add missing minItems
+Date: Mon, 17 Feb 2025 17:41:24 +0100
+Subject: [PATCH v2 03/16] dt-bindings: display/msm: dsi-phy-7nm: Add SM8750
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250217-b4-sm8750-display-v2-2-d201dcdda6a4@linaro.org>
+Message-Id: <20250217-b4-sm8750-display-v2-3-d201dcdda6a4@linaro.org>
 References: <20250217-b4-sm8750-display-v2-0-d201dcdda6a4@linaro.org>
 In-Reply-To: <20250217-b4-sm8750-display-v2-0-d201dcdda6a4@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, 
@@ -105,86 +104,44 @@ Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
  Srini Kandagatla <srinivas.kandagatla@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1881;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=871;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=wf+CuC28ypTqu4EQD5hdI+GDr7Fn9S7Y7CIcU8MS5oE=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBns2a4hP1oKS+5fk1zOVCpOHjK18I1sB8j5kDHF
- 64DS60m7cOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ7NmuAAKCRDBN2bmhouD
- 16czD/47KDXygwBuqAB7VjF3Nql/EcBgYmDNCQH4Vs9GqJpR/YCiOStKlTsIY6A1WCHPP2arpML
- ojcquVoxXC8dRFfPRP/YjI7pLQBU4oKV9C9P/cfdWSS7uKCjKp0hlfhnlJ1rYVc9ekvDTgu0egr
- FqMKaiUncDx00ORd4/IYAAJIrtfJYsmEd7MlC079iIJDd5JxwTiRvoo/5p6AJOWRQho+aIkPje9
- BVzoCrWGm+ZcqMErfsYTVSJpgjHY/Vf1sDl17MFejYyEXPo1VcQyNNblxsrZ2NwghOgXsItXXIC
- ltZuyEsoG3n+eisguigZElJqHvSBU/+btT+qDZOlP609DaYmw0wjDPl7hG80perADV0fhnocOJX
- /LI8FnN42wi3zxxhX55/ZkhX9eCzKB977V+pbOMiJeBxZBBPKXkEKdL15BIK9UzL9oT0KFDtN3u
- QcptUq2QZANSehzBqMJEQhDCW/4J642FUT6UZKYT6eOB4LVvXnSTFvK72KVohvYqkoOXARq2FMd
- GFHIqugLpTSp3EmuaUgA30u1gI80jpK+9X95fL37bTZLkp/ptIAPRcVp7ml20DYHmm9KL69wpJa
- L7wVyFHHsyKMNuwOSpDizRAw2AqmLewg9LLQhC1QfejxGtnEBYkKeGzytxIeUKAphRlyJXSC9kW
- JCeb2pfpCCbcZtg==
+ bh=C784ypOiHBSE0JJrZYQTBZVh6GbEkSrx2ih7B4SSF4M=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBns2a5e0NkCZRyuFjhGGd9OB9EDr80fjzsYau9k
+ F/FzmPPdEqJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ7NmuQAKCRDBN2bmhouD
+ 134MD/wIjInrEc6QCV4vQq3wwjSnYQQEXn0cbn03E2GJmhUJwd+u6++MPxxlMWJvWnEvr20clpP
+ K9f3WSJf27U0uNd+eOMDFde4gbUV6lBemRnJjQOVjk4rPwCebZ6B6QZ6ZoN1KIns+OX1T07WcD/
+ Fr2A9Qds8uq2+7pd8zbC7b4vd6/6X4/YFUKc5eN6KhOp/PF8Jc6akNSyuyK+Rar3Jo2FiwEso/r
+ nHn0LW9ACmKdef+YqrXwcWY1EzvqxF4lEiLkm6rXsSCpsO+b/j7fZsIcibw0ttfaovuVVC/qJa3
+ EnWD3KwNnOyw7SqrdQ1oZIa7zCAwDM3zFDrTCxDhOEqZ1CAXMP6taiU3QGDFvD9bGkqHR5SFSG3
+ rfBKeN3trcQe+NQs4FHnc8+BrkGJR9Spnx72NMMrPljxOM8pxIzzvznxZFwaLqguApYoIsyHqZA
+ 3MsAyDL4grfJgOe71hOSMTurCeRtTmV0k8q3N2OUvqf4WNZCSObAM36b6mKoF1goxDUP4oaRCnq
+ Ms0vu7DLarYiN/jXeW63Ca4IkCzOGn4bsuX3+QOEZeM4K93LhFC5z5vzxvzaMz6/jZ8thof1mjn
+ KGNxxw1UZh8iF+NUe5FCgEBT+ltuBxvP8azDuescMcwtnwWGEKMdUFnWTpGGYnNG/9HZYqIopi5
+ V8wXPwbQcGqz5VA==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Specific constrain in if:then: blocks for variable lists, like clocks
-and clock-names, should have a fixed upper and lower size.  Older
-dtschema implied minItems, but that's not true since 2024 and missing
-minItems means that lower bound is not set.
+Add DSI PHY v7.0 for Qualcomm SM8750 SoC which is quite different from
+previous (SM8650) generation.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/display/msm/dsi-controller-main.yaml        | 6 ++++++
- 1 file changed, 6 insertions(+)
+ Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-index e496e5430918d54b2f07f1d5b64de85d29256951..2aab33cd0017cd4a0c915b7297bb3952e62561fa 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-@@ -231,6 +231,7 @@ allOf:
-     then:
-       properties:
-         clocks:
-+          minItems: 7
-           maxItems: 7
-         clock-names:
-           items:
-@@ -253,6 +254,7 @@ allOf:
-     then:
-       properties:
-         clocks:
-+          minItems: 6
-           maxItems: 6
-         clock-names:
-           items:
-@@ -273,6 +275,7 @@ allOf:
-     then:
-       properties:
-         clocks:
-+          minItems: 7
-           maxItems: 7
-         clock-names:
-           items:
-@@ -293,6 +296,7 @@ allOf:
-     then:
-       properties:
-         clocks:
-+          minItems: 7
-           maxItems: 7
-         clock-names:
-           items:
-@@ -328,6 +332,7 @@ allOf:
-     then:
-       properties:
-         clocks:
-+          minItems: 6
-           maxItems: 6
-         clock-names:
-           items:
-@@ -347,6 +352,7 @@ allOf:
-     then:
-       properties:
-         clocks:
-+          minItems: 9
-           maxItems: 9
-         clock-names:
-           items:
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+index 321470435e654f1d569fc54f6a810e3f70fb168c..4ac262d3feb1293c65633f3b804b4f34c518400c 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+@@ -23,6 +23,7 @@ properties:
+       - qcom,sm8450-dsi-phy-5nm
+       - qcom,sm8550-dsi-phy-4nm
+       - qcom,sm8650-dsi-phy-4nm
++      - qcom,sm8750-dsi-phy-3nm
+ 
+   reg:
+     items:
 
 -- 
 2.43.0
