@@ -1,111 +1,105 @@
-Return-Path: <devicetree+bounces-147438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0720A38493
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:27:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04C18A384B0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:30:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FB3A16B4E8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:26:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B48516413C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:30:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6D8C21C9F4;
-	Mon, 17 Feb 2025 13:26:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C0F4EAFA;
+	Mon, 17 Feb 2025 13:30:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="xWEIyvI3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z4LHnJ1c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F16111A08DB;
-	Mon, 17 Feb 2025 13:26:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDED6216E35;
+	Mon, 17 Feb 2025 13:30:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739798767; cv=none; b=j8CCo9P1XwcZSofd5jM+QG7aqBRf4JDTsmz2eaKimmqAJmTsflBwFt02UcW3EdOE32h77/z8jBaALh2LJ9mq8+g0nOB6O0gKby6422q50bxgJ8bXxYuLt+KIhv/Mxn+Br+85nj5qakPDg8EQdPw2k+5R/Bt375UE4pKTw9Y6FtA=
+	t=1739799027; cv=none; b=g493jJ2ecLRu6zN3xsbiuIjIo7T7IZMYtdAiI5jWfzD5jC/qnDOv86dC9Bp/b8QrZvz62H/vAHsJID4ida0vApMafYCMuiuE8e0b3oLrxYmYQlKytRzad0Zlb0cCOxF3yQ7v9pWxnObezsmKXgFxp0Lm7R+bPpa3JMmOd33g3DM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739798767; c=relaxed/simple;
-	bh=43oxnBqxJyinpR9ySGaCso2MsjRwthDIeadlFWGfSYU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rOD5MBBzRhITSAKo0v9a9W4aLRVbNQ9ikO3/c2CfCxWwyhpP7fXALO1dnramkcTvNnxkU5OlAmZ2hsJyL3Tqfm+cbfrJLzv1FDxTguUPtDsJLi4KCoucm7Tt/eEEBCxxYuhLof+Jn5FtcPwJhqwUtW+e/Uh1GQBuYIDVEkDZ1Dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=xWEIyvI3; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=n1lANnOPXNFw9+jCC+O+JmddS9eVCLKsMBkqQM9HxPs=; b=xWEIyvI3phTtqKVI7bTSQRyPcu
-	/NMHD76dJCeNa5jgn+xig73XONXqClF5J/EwDZ9+FeTkRFnqyVLjq5hXwd667RWD1lGbicbnXF5p0
-	ezpB0RAZGdCmgDma+ZKtx/xe8O7FOiHoSp77+dmaBtjv2fLJPg7fyXSWb8gxIAw+PEfk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tk17t-00Eycl-Uk; Mon, 17 Feb 2025 14:25:33 +0100
-Date: Mon, 17 Feb 2025 14:25:33 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	"Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>,
-	Hariprasad Kelam <hkelam@marvell.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Drew Fustini <dfustini@tenstorrent.com>,
-	Furong Xu <0x1207@gmail.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Lothar Rubusch <l.rubusch@gmail.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	sophgo@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next v5 3/3] net: stmmac: Add glue layer for Sophgo
- SG2044 SoC
-Message-ID: <24eecc48-9061-4575-9e3b-6ef35226407a@lunn.ch>
-References: <20250216123953.1252523-1-inochiama@gmail.com>
- <20250216123953.1252523-4-inochiama@gmail.com>
- <Z7IIht2Q-iXEFw7x@shell.armlinux.org.uk>
- <5e481b95-3cf8-4f71-a76b-939d96e1c4f3@lunn.ch>
- <js3z3ra7fyg4qwxbly24xqpnvsv76jyikbhk7aturqigewllbx@gvus6ub46vow>
+	s=arc-20240116; t=1739799027; c=relaxed/simple;
+	bh=77G+qwzoFLoNAsQ3YZKaFAwVbGfr3rRsvhGhU7TMI/g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WLCuFj47I2ebglJhIBnDFezYl8I4M1KlSEpf7IMiy4HjW7Ph8sizkvCxNFZBN3jDfaqNzGzQ0r8IXGFA5xnSFTk+laJgktgwEF1IHZwh3pPK6Hw3zIwhx5/w8rp9Yv4wd7na57iBmDufFakEKVLCT0D8JdDpUTdMODrzkPK12oA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z4LHnJ1c; arc=none smtp.client-ip=209.85.219.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e5dcc411189so789506276.0;
+        Mon, 17 Feb 2025 05:30:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739799024; x=1740403824; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=77G+qwzoFLoNAsQ3YZKaFAwVbGfr3rRsvhGhU7TMI/g=;
+        b=Z4LHnJ1cC3JOhEYpgCV2iBJQ+xIdZkdmK4uQWmtKzqCRk11oiYFBxqypKKaO8ocXDN
+         ub0wZ3dpH9NmNFKtNGTOb/ADVI8MTpHL8KIALpMWygVZPEF5Z8wWB/Z2bGH10LH8D2LZ
+         mkD5mPAFB3ovjS3vdH8FKzUovJApNd9GxQbG08Fg73mGRjxA7qaE1R7pIOxzfaByFYaM
+         8YNedZNpCCZ0yaY3wp1B0u0cYKuYr8iwU3j12Tlur83a1TvoktO5og0q5ORUPhrBtgOj
+         GmvPEA0oth00q0DXVP8ykL+9PgQKUjyWPTkvUUxsGPU/vVYkQIy/hCiGHhoTI3G7JiqC
+         LFqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739799024; x=1740403824;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=77G+qwzoFLoNAsQ3YZKaFAwVbGfr3rRsvhGhU7TMI/g=;
+        b=H7xbK58Tl0DQtQ2pDa6UriTdX87vHdebZQCJneB8WLejUApvCo1eimG9r+jr/PgonJ
+         EElmjHtj/Zton0AJGWAMz7AZf4AXZGEfxc/EUrqI1hpqaCc7S0zmWWSpaW88rHfwK7Dw
+         XtL9TWcZ/Ar/yhV9/SvHdRSIxDVEo7Qo9te5YoM+uHF9MfL0X1pdeuI4YjYlTOGW+Y/6
+         +SjDNwUg5+olJgfGcv2PaRCTnZXnMwTarpoz7GGC6WLzhirRZ/ehEa0NPfFxZIEa7Msv
+         eEFrtZ07tQJa5Pzn+iOIJnES05cc/usD0pLwUpYEyv2vKVufKdRQbhpispDdxKUkEpS0
+         N5Hw==
+X-Forwarded-Encrypted: i=1; AJvYcCWc+/4PGFw8ajDz65xjfyPfm0BVi8fGY1mZgkdzIJkcYk0eg2XgEp+W7Zf6c9DpttfWG+2ITG5JREO0@vger.kernel.org, AJvYcCXwwRY6G9TiEaojx/I049j38HaJeJAkFuLeeW3wpBhpNfKKgsV/IDei3dsbvcUVRYumVm3pMYdFhOhHAEkC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8XPoRRhH91Yf9BKCA+zOS/cBhH0/rf8glf83LdcfqBslCRCvh
+	lherTqAzASn0+9wr42aYbjP9kMco1twPPR5cHeU+6hcgIjblIRJ/m58tZj+5csuI4OvdOic10Pc
+	inF+vy+qEF0NMuZSJ6m9q5bf7/O4=
+X-Gm-Gg: ASbGncscJBUWvfELZbCBMh6jF4VyldLjabk7om7DubcQGLY8ZIzhzFvSN1tr50OqLIh
+	FzKOuWr90rpoh6BEFINjNbHR0DWLhJXkAwjai9Pe3HoEE7Iu6b3FVN8lpHi5ziwmcsLh5+cKqmQ
+	==
+X-Google-Smtp-Source: AGHT+IEB+MJzs+GIv2z74KvmTn3I75FACBN5SxbyoNwzXh0aK5QoppHOlpFhtMuTvychYCVQsoczFA/mnvfT2jm3ops=
+X-Received: by 2002:a05:6902:3387:b0:e5d:bf09:452c with SMTP id
+ 3f1490d57ef6-e5dc932727fmr6866952276.49.1739799024419; Mon, 17 Feb 2025
+ 05:30:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <js3z3ra7fyg4qwxbly24xqpnvsv76jyikbhk7aturqigewllbx@gvus6ub46vow>
+References: <20250217-adpdrm-v7-0-ca2e44b3c7d8@gmail.com> <20250217-adpdrm-v7-2-ca2e44b3c7d8@gmail.com>
+ <40e59cf1-86da-4c1d-aafd-f409d8179167@suse.de>
+In-Reply-To: <40e59cf1-86da-4c1d-aafd-f409d8179167@suse.de>
+From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Date: Mon, 17 Feb 2025 14:30:13 +0100
+X-Gm-Features: AWEUYZmCQ2KktIIoXJ32NnC-FVTPM5zygmYh9xHWyp5QfVtkMZOiANCC-UiM5nc
+Message-ID: <CAMT+MTS016CLK7cawdF2kKv2tpGH-N4p3rqGLBPLkPv4A=j67g@mail.gmail.com>
+Subject: Re: [PATCH v7 2/5] drm: adp: Add Apple Display Pipe driver
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	asahi@lists.linux.dev, Janne Grunau <j@jannau.net>, linux-arm-kernel@lists.infradead.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Alyssa Ross <hi@alyssa.is>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Neal Gompa <neal@gompa.dev>
+Content-Type: text/plain; charset="UTF-8"
 
-> I am not sure all whether devices has this clock, but it appears in
-> the databook. So I think it is possible to move this in the core so
-> any platform with these clock can reuse it.
+On Mon, 17 Feb 2025 at 14:22, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> Unless the described problem really happens
+> in practice, I'd drop this workaround. There's no point in working
+> around legacy userspace in modern drivers.
 
-Great
-
-The next problem will be, has everybody called it the same thing in
-DT. Since there has been a lot of cut/paste, maybe they have, by
-accident.
-
-Thanks
-	Andrew
+This workaround was put in place after we noticed x11 either preventing
+the userspace daemon from working, or breaking itself. So, yes,
+it does happen in practice.
 
