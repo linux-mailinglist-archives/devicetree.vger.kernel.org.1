@@ -1,132 +1,136 @@
-Return-Path: <devicetree+bounces-147390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E373A38303
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:30:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77CC6A38333
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:41:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33E85170E64
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 12:30:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6309B7A19A8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 12:40:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3858B21ADC2;
-	Mon, 17 Feb 2025 12:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05A7D21B182;
+	Mon, 17 Feb 2025 12:41:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sh6F76jQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BA6C21ADA4;
-	Mon, 17 Feb 2025 12:30:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4C06218842;
+	Mon, 17 Feb 2025 12:41:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739795406; cv=none; b=AWilwrOSGYj/0aTsko/XrwAVV4hB/N181dv7pRpIn+PmP1UbKjUumzcTjDilQn1b32HKfG7Ua3N8XkFHhdtAlVgVi51O/J69wf+ppEkqMy5VrZuIYC8148xz391Ni7SDcmJTATT+q8bFpt05qmjvZYkTfb52sZNLdtE1GfJ0F10=
+	t=1739796104; cv=none; b=MdtWt8lVSrLbmMm5LZK4rRPimUAk4BaI5sVPn1NCTOs+NQZmziYIr31C3D/FZb9Z9/aG71fMYyJroHgNCTE+vXno6zX5D9k6qxF+xf/49yy6wM0uRRaoWzo12w9PIVVry0NHUeor48DfX1gXrbVkWe8LMDatchnzbnz1acRU+aQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739795406; c=relaxed/simple;
-	bh=J3SFBAZDXUNNlAhhsULZrSD2zJqCg4VZ25hYd8Ta7G8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=M8IAoyuw5wvTkpZgAzAT4PuCiEhU4LoKzFCFXLt8yzOJXp/bJQ0VaOug6/q/xG2qyzhYhDVWAFxW4byC1av9QYEmzNKWPJIkCe2l/qB551FgKoa8eINga4MO5NJKukgC4bOJ3mH3kKbkU3qEbq4BlMe0JLqZzYHH3dyLBhsCDIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-abb7aecd39fso305505466b.0;
-        Mon, 17 Feb 2025 04:30:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739795402; x=1740400202;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=I1TIWEZalxxCgY45eBOSHh9u1O+DAvz4HdaYIIkamHg=;
-        b=jQaylfzax9r15NJ8ROFIxyrT7hoe8CShkT6eh1i2qnMLXe7cM3QHSDHizd0fgqNx5e
-         /qrep1w2+xpGBS7fdne2yLb/1I/xjTc6yWRE7U8rRANh2JhgPNka+MxqybBNC9lcGCXw
-         OyDhBPulaaie8F4IEG4LGjHcv47Xz1VKEMDWwRUb22BYhsGHS7HRh4EvCw4/DVAa3IHk
-         /HZGCH/ixb1D3c1oYY7SBeuFBeRLQmFoLspiAxcxjnDMVIVJyNsbFscweM7H2qRKhlZT
-         A7ytx7qSdz63FTQaUFhStjFAEykD4Dcz4ls/1IYb6MhsV1qbWiJC1KLLPvB09c+TfNO9
-         QURQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUb87Ex/bNZ9DXzLxm5BD4Ryrli2sbe1QI026GcUy3OkzmdmBzXZi7DrcNHKosS6K6uE6jkun3B21FgZRBbXFMvKig=@vger.kernel.org, AJvYcCV2hFe1VU8ZCwC1zasUObtzi5ENIISLkxdXtW0NQDJnk4DVrI1ocRLRj88k+BsoUjjF6Ojkae5oWvMayQLh@vger.kernel.org, AJvYcCWjWYglyfwvVU10+7J67usVux/sIb+iemG7NOJ0NONRap1zHLmpLVYRrhIqyOXG3k1/mkoGDCSVQIavmAuN@vger.kernel.org, AJvYcCXnq0te/RH2kmpCI6T8PK/GFP34JOH98dmKEkqSuGZeICsA1/lRQ6lC1XAnDWQZMoPlfxPpsAXL+LwL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwD/FvH8QMSP/pd7PM5M8fhd4cjEHPYnwq3nIHeLbNaooX94bq/
-	022nKt6zkWUw4Fs9WV2efIb2zEprPSmRMHlDZZkAsK4rZpsq44IsngrPxWuCIFg=
-X-Gm-Gg: ASbGnct5qat9p2xedn6xZmU1nIu+78nfsf+by1bEwLJfm9hdfk5POk897PQmxGrzEGA
-	Z7PFCxLFRLZzl14+qL3AqJ0eKkQvOIJHklfgxqFNJh5yP4a/sQDx2CocII6K35zdRhxzX229LdV
-	+nBBOnCfVmBTP3iUyt9teBdArD4zZgWydi1NDHXaA8dubEC65bYra+MSoGAp8W3fuNwSAEA7s85
-	l5bnvU85jSPoUpAeE2jzWbQtjIGaiVLJqzWeaVEs0Gnj+dfGUpirnKFA/Vyh7qzz0VOt0R2Xt7m
-	EFS5ERLZJuvKptIe+6Wpuc6WzvlHAacH2vgHIaZCXC2muz/Zjh8kYQ==
-X-Google-Smtp-Source: AGHT+IFyU5wJtXXUs4IqnPMunIdCvLam5pfngNR55xHL/oCfHQ5msYgeLsv1nO/TBmFAHxED+IvCzg==
-X-Received: by 2002:a17:907:7706:b0:ab7:b9b5:6104 with SMTP id a640c23a62f3a-abb706ffef2mr756802466b.5.1739795401768;
-        Mon, 17 Feb 2025 04:30:01 -0800 (PST)
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com. [209.85.218.51])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba53398364sm876166466b.128.2025.02.17.04.30.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Feb 2025 04:30:01 -0800 (PST)
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ab771575040so1048512166b.1;
-        Mon, 17 Feb 2025 04:30:01 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU1fxaxIpxea+rNPLIr8I9nkxEiMMJZ6Zv/fGwvrPzSmGJdmwhuhWG1+6zRntBKCgeSDgvahYW06fVvMrCt@vger.kernel.org, AJvYcCUGMFVr8EHfljmLPz+1ILvPR5ku+SMJCYTBUpF76eo27L6lI4PrdFqAIuSrv1/bMCcaug0ubJoskeyVmrAq@vger.kernel.org, AJvYcCUL3wdtm/QS3gsOnootuDb1uTIEstChA7gvU73fIOwobcTO/B4rBVxXVEUpiyDgMmj7Ybp+pgWXpjXr@vger.kernel.org, AJvYcCVwDBOZHPDj816E0Cmp4QFcoo2L3maJ0qL5fZnv2VQ0p0Ax7J30IVKyVlsFKIRbQ7lWh5Byc7LV6V835I5PoidMViE=@vger.kernel.org
-X-Received: by 2002:a17:907:3d9e:b0:abb:5b02:9e7 with SMTP id
- a640c23a62f3a-abb708f2d26mr963945066b.12.1739795401012; Mon, 17 Feb 2025
- 04:30:01 -0800 (PST)
+	s=arc-20240116; t=1739796104; c=relaxed/simple;
+	bh=PTSy1ip0l95HNNQQE+rcttEDB0KFrDuEV+630qcL2IM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HllivKs3RILMTCPI7X5Yusz0cgoahYHBVjsN2KaOlMOgbeBGA06TboQbel35i22A4Q1PGeSO5Z+kquyW/bwvC9QgYmEligKxYK4Ge+IwL0hwfVmtsUq8ifbK3d6BBi24ymWqpT7n9lKbCjmAHtieENHODidw3F2YFpc5GyfWM3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sh6F76jQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 339C3C4CED1;
+	Mon, 17 Feb 2025 12:41:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739796104;
+	bh=PTSy1ip0l95HNNQQE+rcttEDB0KFrDuEV+630qcL2IM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Sh6F76jQz7E1gO+yNlIQ6DDxuf9whY05qkY8fjCPWO99FgrecMh6KarVSka6B12wH
+	 +GwAWRa5NycHMmHv6b5spvRBGtT8lZKi9udOaoIfOyUDILIjAx4DaOdVWGtAYpGK8R
+	 BUOZmT2Ho0P3cvvTS3gYuS016ENmSmYg4cGDS9gwrK7XcryJGRTZFSYbd9c161BTS8
+	 h2ZUkAIkjIR9E7tjMGL5lOhqDkgELJ9zu5w5ry8VqsZ6CCHVPJ0KEs+uIvPsH8I6Nt
+	 DY6uxXbE3cUgn9QGv0J88tzpti6r/z7KH+LRgRNt1m2yA56kI+qCuN72bdFDcAlCK0
+	 PinA5vLFGvihQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 26E95C021A9;
+	Mon, 17 Feb 2025 12:41:44 +0000 (UTC)
+From: PavithraUdayakumar-adi via B4 Relay <devnull+pavithra.u.analog.com@kernel.org>
+Subject: [PATCH RESEND v5 0/2] Add support for MAX31331 RTC
+Date: Mon, 17 Feb 2025 18:17:15 +0530
+Message-Id: <20250217-add_support_max31331_fix_8-v1-0-16ebcfc02336@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217105354.551788-1-thierry.bultel.yh@bp.renesas.com>
- <20250217105354.551788-4-thierry.bultel.yh@bp.renesas.com> <CAMuHMdWfTsocOwuqDQZOBN7-wGMrrSc=cfJau+U1tx3Pwe+VHA@mail.gmail.com>
-In-Reply-To: <CAMuHMdWfTsocOwuqDQZOBN7-wGMrrSc=cfJau+U1tx3Pwe+VHA@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 17 Feb 2025 13:29:47 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUs3uv-yhJxVTot7t3BjXcMDm=sWu-MTRv=-D5PrqX_zg@mail.gmail.com>
-X-Gm-Features: AWEUYZk8HXdwA6QdcVV6UVVVAVy0o-P-gKkZGawCKYB8YbY4M9JB3uv5mL3juaM
-Message-ID: <CAMuHMdUs3uv-yhJxVTot7t3BjXcMDm=sWu-MTRv=-D5PrqX_zg@mail.gmail.com>
-Subject: Re: [PATCH v2 03/13] dt-bindings: serial: Add compatible for Renesas
- RZ/T2H SoC in sci
-To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: thierry.bultel@linatsea.fr, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANMvs2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDI0Nz3cSUlPji0oKC/KKS+NzECmNDY2PD+LTMingL3UTLxDQTc4MU0+R
+ EYyWgAQVFqUAJsOHRSkGuwa5+LgplpkqxtbUAZvihj3cAAAA=
+X-Change-ID: 20250217-add_support_max31331_fix_8-a9af470d5ca3
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>, 
+ Guenter Roeck <linux@roeck-us.net>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
+ PavithraUdayakumar-adi <pavithra.u@analog.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739796453; l=1888;
+ i=pavithra.u@analog.com; s=20241220; h=from:subject:message-id;
+ bh=PTSy1ip0l95HNNQQE+rcttEDB0KFrDuEV+630qcL2IM=;
+ b=GEPLWHzuMBYTO6EresIlfpo7HAopxkDf6L5smseqo1eSfTDrJKoO9S/ltULxyNfxkr6IJzyks
+ x2FXYLOP0zYDemNc9ckp+qoqoj65TD4aTngiFvOU/ZoI1tVIusTxSaY
+X-Developer-Key: i=pavithra.u@analog.com; a=ed25519;
+ pk=RIhZrdpg71GEnmwm1eNn95TYUMDJOKVsFd37Fv8xf1U=
+X-Endpoint-Received: by B4 Relay for pavithra.u@analog.com/20241220 with
+ auth_id=303
+X-Original-From: PavithraUdayakumar-adi <pavithra.u@analog.com>
+Reply-To: pavithra.u@analog.com
 
-Hi Thierry,
+This patch series introduces support for the Maxim MAX31331 RTC.
+It includes:
 
-On Mon, 17 Feb 2025 at 13:20, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Mon, 17 Feb 2025 at 11:54, Thierry Bultel
-> <thierry.bultel.yh@bp.renesas.com> wrote:
-> > Document RZ/T2H (a.k.a r9a09g077) in SCI binding.
-> >
-> > Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/Documentation/devicetree/bindings/serial/renesas,sci.yaml
-> > +++ b/Documentation/devicetree/bindings/serial/renesas,sci.yaml
-> > @@ -20,6 +20,7 @@ properties:
-> >                - renesas,r9a07g043-sci     # RZ/G2UL and RZ/Five
-> >                - renesas,r9a07g044-sci     # RZ/G2{L,LC}
-> >                - renesas,r9a07g054-sci     # RZ/V2L
-> > +              - renesas,r9a09g077-sci     # RZ/T2H
->
-> As the RZ/T2H SCI does not work with a generic SCI driver, it cannot
-> use renesas,sci as a fallback, but needs its own section.
->
-> >            - const: renesas,sci            # generic SCI compatible UART
+1. Device Tree bindings documentation for MAX31331.
+2. The driver implementation for the MAX31331 RTC.
 
-As the RZ/T2H SCI does support RTS/CTS, the line
+---
+Resend v5:
+- [PATCH RESEND v5 2/2]: Added id as a member of struct chip_desc in v4 [Nuno Sa], the patch requires a review. 
+- Rebase v6.14-rc3                                    
+- Link to v5: https://lore.kernel.org/r/20250131-add_support_max31331_fix_7-v1-0-d29d5de3d562@analog.com
 
-  uart-has-rtscts: false
+Changes in v5:
+- Removed the commit description stating max31331 and max31335 are compatible.
+- Rebase v6.13
+- Link to v4: https://lore.kernel.org/all/20250119-add_support_max31331_fix_5-v1-0-73f7be59f022@analog.com/
+---
+Changes in v4:
+- Reverted the I2C address change for MAX31335 RTC (0x69) and removed it from the property register;
+  will include it in a separate fix.
+- Added id as a member of struct chip_desc [Nuno Sa]
+- Rebase on v6.13-rc7
+- Link to v3: https://lore.kernel.org/all/20250109-add_support_max31331_fix_3-v1-0-a74fac29bf49@analog.com/
+---
+Changes in v3:
+- Added missing spaces in driver code
+- Removed binding for checking address
+- Rebase on v6.13-rc6
+- Link to v2: https://lore.kernel.org/all/20250103-add_support_max31331_fix-v1-0-8ff3c7a81734@analog.com/
+---
 
-needs to become conditional.
+Signed-off-by: PavithraUdayakumar-adi <pavithra.u@analog.com>
 
-Gr{oetje,eeting}s,
+---
+PavithraUdayakumar-adi (2):
+      dt-bindings: rtc: max31335: Add max31331 support
+      rtc: max31335: Add driver support for max31331
 
-                        Geert
+ .../devicetree/bindings/rtc/adi,max31335.yaml      |   4 +-
+ drivers/rtc/rtc-max31335.c                         | 165 +++++++++++++++------
+ 2 files changed, 125 insertions(+), 44 deletions(-)
+---
+base-commit: 0ad2507d5d93f39619fc42372c347d6006b64319
+change-id: 20250217-add_support_max31331_fix_8-a9af470d5ca3
 
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+PavithraUdayakumar-adi <pavithra.u@analog.com>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
