@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-147638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F1EAA38D97
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 21:43:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77826A38D78
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 21:41:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55E1E3B4E8B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 20:42:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A8A618955E6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 20:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16FE2405E0;
-	Mon, 17 Feb 2025 20:40:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 437B423AE95;
+	Mon, 17 Feb 2025 20:40:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01CBB23FC7D
-	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 20:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7313A23956E
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 20:40:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739824855; cv=none; b=qGKKqpN4rS8zpEzD781ZDb9G3He3fHiEM3/Wr1aR9jQseBPfe5aG2djUvT7JL0yYOnHJrfHazv6JSTNa4kmYQo2uKiIoqXlYRkj9lNZf1FK17Sk5CN+T0upna3VOPoXc2EcvsEF1FhaBoYWviYgDlhgP+GruGH4RUYGSjuz6utQ=
+	t=1739824841; cv=none; b=I4tcdCQbopXjE29nQGGBotHjzaUQrwHOldlnM6wBz2/SjhpYugxYx3vZYLW8osJBNAyA3fjdPnbPK0a76M7uydqhPSRDgGUklvaS1Yay13sv9iYO1pqGWw5Ukvh19uUTnQOnHCFBaPwaVJTHtbDmswmbNeXzTR1ycmvjnX5A9MY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739824855; c=relaxed/simple;
-	bh=+O2FsB2biFPebdsD/mYQegd/ubEfl2Q7jmEet+oj0VI=;
+	s=arc-20240116; t=1739824841; c=relaxed/simple;
+	bh=EF+OIGuQjAmSVRDImJKX1B6EES2YYainDrFd5e7QM38=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=H5GvRiU7vmwa5pbkMHIX8YsC30ahu113pPEBXHdO9h4Tgwk/upW4Gs1OUTNbtBV9N06IKJsGs8GM5KM1fkgajTlL86OVj62VGTddKWOBZz6qH//ek0+hWdodrHrVgxgkxS7z+TZboVm0/o6IaWhFfmaXZiw28WnkkLxrO1AZM1g=
+	 In-Reply-To:To:Cc; b=CpavabtyXw93R7oUv8tVXkAO8pf8rHIxQ5e2/XObBUSV/Yt2geUv5tyrfsyOiBhDTHg5jamOrW3P18u9mRQLuG9iGAPxjfHIhc3Z0AiEhu/nxMW8yTKd+7c9MI9QKm4+wxfQ4v7Op6xuU+3HwvieA4dXVj+XhRW03S6ydB61yaM=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,22 +33,22 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tk7uZ-0007oF-CW; Mon, 17 Feb 2025 21:40:15 +0100
+	id 1tk7uZ-0007oK-CW; Mon, 17 Feb 2025 21:40:15 +0100
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tk7uX-001TFw-2v;
+	id 1tk7uX-001TFx-32;
 	Mon, 17 Feb 2025 21:40:13 +0100
 Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
 	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.96)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tk7uX-000W9t-2Q;
+	id 1tk7uX-000W9t-2R;
 	Mon, 17 Feb 2025 21:40:13 +0100
 From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Date: Mon, 17 Feb 2025 21:39:43 +0100
-Subject: [PATCH v3 03/12] docs: thermal: sync hardware protection doc with
- code
+Date: Mon, 17 Feb 2025 21:39:44 +0100
+Subject: [PATCH v3 04/12] reboot: describe do_kernel_restart's cmd argument
+ in kernel-doc
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250217-hw_protection-reboot-v3-3-e1c09b090c0c@pengutronix.de>
+Message-Id: <20250217-hw_protection-reboot-v3-4-e1c09b090c0c@pengutronix.de>
 References: <20250217-hw_protection-reboot-v3-0-e1c09b090c0c@pengutronix.de>
 In-Reply-To: <20250217-hw_protection-reboot-v3-0-e1c09b090c0c@pengutronix.de>
 To: Andrew Morton <akpm@linux-foundation.org>, 
@@ -81,57 +81,31 @@ X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Originally, the thermal framework's only hardware protection action was
-to trigger a shutdown. This has been changed a little over a year ago to
-also support rebooting as alternative hardware protection action.
+A W=1 build rightfully complains about the function's kernel-doc
+being incomplete.
 
-Update the documentation to reflect this.
+Describe its single parameter to fix this.
 
-Fixes: 62e79e38b257 ("thermal/thermal_of: Allow rebooting after critical temp")
 Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
-Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
 Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 ---
- Documentation/driver-api/thermal/sysfs-api.rst | 25 ++++++++++++++-----------
- 1 file changed, 14 insertions(+), 11 deletions(-)
+ kernel/reboot.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/driver-api/thermal/sysfs-api.rst b/Documentation/driver-api/thermal/sysfs-api.rst
-index c803b89b7248f9f26ac24608b0144db5e9c2ddb4..f73de211bdced452b578fb77fb8707b8e59c9180 100644
---- a/Documentation/driver-api/thermal/sysfs-api.rst
-+++ b/Documentation/driver-api/thermal/sysfs-api.rst
-@@ -413,18 +413,21 @@ This function serves as an arbitrator to set the state of a cooling
- device. It sets the cooling device to the deepest cooling state if
- possible.
- 
--5. thermal_emergency_poweroff
--=============================
-+5. Critical Events
-+==================
- 
--On an event of critical trip temperature crossing the thermal framework
--shuts down the system by calling hw_protection_shutdown(). The
--hw_protection_shutdown() first attempts to perform an orderly shutdown
--but accepts a delay after which it proceeds doing a forced power-off
--or as last resort an emergency_restart.
-+On an event of critical trip temperature crossing, the thermal framework
-+will trigger a hardware protection power-off (shutdown) or reboot,
-+depending on configuration.
-+
-+At first, the kernel will attempt an orderly power-off or reboot, but
-+accepts a delay after which it proceeds to do a forced power-off or
-+reboot, respectively. If this fails, ``emergency_restart()`` is invoked
-+as last resort.
- 
- The delay should be carefully profiled so as to give adequate time for
--orderly poweroff.
-+orderly power-off or reboot.
- 
--If the delay is set to 0 emergency poweroff will not be supported. So a
--carefully profiled non-zero positive value is a must for emergency
--poweroff to be triggered.
-+If the delay is set to 0, the emergency action will not be supported. So a
-+carefully profiled non-zero positive value is a must for the emergency
-+action to be triggered.
+diff --git a/kernel/reboot.c b/kernel/reboot.c
+index f348f1ba9e22675ac1183149ba19f39be12edacd..6185cfe5d4ee910daf057884a7ff8dcf1e80df28 100644
+--- a/kernel/reboot.c
++++ b/kernel/reboot.c
+@@ -229,6 +229,9 @@ EXPORT_SYMBOL(unregister_restart_handler);
+ /**
+  *	do_kernel_restart - Execute kernel restart handler call chain
+  *
++ *	@cmd: pointer to buffer containing command to execute for restart
++ *		or %NULL
++ *
+  *	Calls functions registered with register_restart_handler.
+  *
+  *	Expected to be called from machine_restart as last step of the restart
 
 -- 
 2.39.5
