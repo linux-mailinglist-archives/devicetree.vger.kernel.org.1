@@ -1,80 +1,79 @@
-Return-Path: <devicetree+bounces-147288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BC0FA37E2D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:15:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 372A7A37E30
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:16:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FE87188B1E1
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:14:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F18B188C74E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:15:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0F71DA2E0;
-	Mon, 17 Feb 2025 09:14:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBC761DED7C;
+	Mon, 17 Feb 2025 09:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="mRv5zHDp"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="VgV45f/e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68CE91DAC97
-	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 09:14:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42D2B1DED58
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 09:15:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739783682; cv=none; b=oIPXg/VFhGHvVk8KXVX3EAfRXYWAVTAIO9Gx3xpGS9OMufp9bmAqLE5xSOoWXtucnxVja3WRAk/S+5eDSBdHa7Wsek6ouF+SPvzhkn40e3fkAs/4IFIBVWI28756sv6O3xQcJpcVP2Koim1BY1uunOj5fTK7xsWGCqK9ViY3t2U=
+	t=1739783720; cv=none; b=mcNa3p+96ufHjaJXL4N3X1P/wDC9GEDlrmDMG2GX4XhrHJSnucqKBRqpxQlPd3taO1nOI3OQHDX9RWBMkhc8cuOaAZybCQypWiCBolNuxItumeo1mUlmprTbPjN9lSVK3VbtgPFLlxH9CHGCsQ7IPl9RO7xmNTlghbycsbvqYxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739783682; c=relaxed/simple;
-	bh=oecG8STigdysN1p2/pulBXQfq8riWGZ9SwKugmZupd8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H+5UYmN2kX0WrJ2Zk1gSxX2Pa0TNGw1iK04tUg2ji1diO0lPwI2WETeAD/BIBrjFYZH7e989S+SqdjJ9xXQa1d8UROFQDbY+gWdpkVc2tr6UdnBQZcZfQOAFWsqXH5WPx6NcyjUKhVpy1nkSOjY7Pe1s0AORQqF8UkwspRsJdPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=mRv5zHDp; arc=none smtp.client-ip=209.85.218.53
+	s=arc-20240116; t=1739783720; c=relaxed/simple;
+	bh=f3MTvzcR3GA/z9r5gc8v5gx850whg98+ehNQEjHsoe4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=kHrELBaakgxLZrysBpqaoPTKTg4hvhHWdyk1DzkfWOp06WCTn9v1DYTr6WWO6mIHHzjKyHalYdz2/Nlt5hcdM4intw+ywCH7ImnRjTqrfI3hlnr9JwtxCYCr9zTGB7AkzwLMjNJ70Emm3gyRYeGvIc06eGXfvyBv3+OF7OwzPFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=VgV45f/e; arc=none smtp.client-ip=209.85.208.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ab7c07e8b9bso699083466b.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 01:14:40 -0800 (PST)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e02eba02e8so2809379a12.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 01:15:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1739783679; x=1740388479; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1739783717; x=1740388517; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=phm8jSsieZLAYRvU94lHS+2KE6EOrOJ2bxUAvn5iaZ8=;
-        b=mRv5zHDpE02ThKtn7QFhpE5QRKIjFRI8hLPBS1dbIcDebacdN6L1XYyybs8+AWaGtb
-         A1Diyo77/ntm6YIaysDGrmdSkQzNQX/4bKXJzXVi3kFh+618nxyTvb+2hlQiCyNn1EjR
-         o55qXXSxVcI+kGA6Nul4Kht/y415YijOQmQT7q4JyZ+Ed+v2G9XjyS5YYcUaf6qU/QXI
-         Pd8ITOEC8/PQfdd8wIJvhFq6FthW9/LcVMGZWPfY1nbUPX6cBz1YlRdXaRhUWK6KYIl+
-         Oe2ei3fV1QvlC7Lyunmp/LJuvqiv/UR+poZIRyjVW7nvhglUSgKPXc31THEHb8gShbqU
-         cGOA==
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=B74dWrHkdsECoNtjQdU0Obn3rg7n8WfP2B8f9PshJuY=;
+        b=VgV45f/eXOdtTQKIIp5ME/L2tEjhGqZ+qU/Urjbw3MUC2L/hBJHHWc3d9n6L9C6XB/
+         mG8b51v/4jGBqp5TsrpiVCecZlo16glo4LmuqfMjRNDE1XyCCYRsnAO+4sEEicXoL3G2
+         gttnmqwOkI5tqSCrJiDNHWq3WeSLi1CELxeeu6u6I1TwisBJ5drvyuIDdYbWpg6tl5fA
+         N/bARgIzTuRBjqJTrN83eeFUDLBrP62EHZC7FQ/bkhhwVdEWpU+oMNOuOHPp+UeiOhOB
+         Kw0gSwuMrHpYUQYHDotku1fyiQuoZ61E6tXSleBfdmaYTrzFL3HaO0xzs18PQKA1fLZa
+         zX6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739783679; x=1740388479;
+        d=1e100.net; s=20230601; t=1739783717; x=1740388517;
         h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=phm8jSsieZLAYRvU94lHS+2KE6EOrOJ2bxUAvn5iaZ8=;
-        b=TMN6FwEXF7gnUz09hRkn+rn/FQBVJimbznoLBIB7lvJNJ2nexNxb1zxHR4O840ZK7W
-         aTRJpYTfWBPwsuXSRXPmPE9p4C8ljn8BGGmMsb+9vZ/8FZJAduwXfv2o89b6j5adoWnI
-         vZD9ZpJf1njW7BBrGjjknJUGDvH/aBVGQ1sUL/KVD0gqNI9zXQYNoP6wXQE9Jsbw8uNF
-         gEgDJwnvTSt+vS/v2rs7hmUUZvKm36ytOjc8ZS4csOnWgAPDFNk4FUtToV01hN27F7dJ
-         13yUXvioKZ0ruU1TbD+zWaZAZuF+3/tleKni4+ykaFsJX7psUk7CMyjCjZPOFSQcDi+Y
-         /wTg==
-X-Forwarded-Encrypted: i=1; AJvYcCUoneSuX5HDgX0fMh9oCREmN9bJYK6GLDbc1u176x6O4vGyPOy+0q8eDMa+znbyZEWvGyJ3I/0aAjHr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYPBZSGUFpM46GKqIqCO1NNyHb8BCl/9Lo9O5vc/q+fgKOSi5u
-	WnTWFyOvKc7CQijiJ6y7BaXBrRHTxbmhgXo2TRstV6aHxF6IRFDunXcXq+w0vQb4HBpJ6QlhcTG
-	n
-X-Gm-Gg: ASbGncvUP3o4hTBxjQZmoN+DAKJ4weY3O8SyEDx5bvXG+yWw0+GiBQyJ8cVruy/YhA0
-	ix/4TK1A6DmFBvPfzPSdjtSxNvnxFy/9p7bF64Kyr9stHOftvvuPguLEmAwMzop34RFrhadq9vI
-	odHMUItK3XoiZTRZjLk19he52bP0q7Ea20xBGJZVc6Cxb2ay7J8XdoRpcTaNXmA2/x4Jhx/XEqK
-	xoixOi4TsXSWJYzf1KUIW0pbRuSnb1NDf0emXb33qFIwVZnY5oTYPwppeB0JxUQwuk0wvuffC+D
-	oKBxPBmRXTzutYKywnrRRX8=
-X-Google-Smtp-Source: AGHT+IEpE1aPz/0OBl5FnqhprsbjTn0AOjkVKHoE0FYPvQ0oKK62ZfJEvZI/uI5uJpbb/p9xjwMm6Q==
-X-Received: by 2002:a17:907:9494:b0:aba:5f48:eda4 with SMTP id a640c23a62f3a-abb70b6bf71mr866918566b.25.1739783678693;
-        Mon, 17 Feb 2025 01:14:38 -0800 (PST)
+        bh=B74dWrHkdsECoNtjQdU0Obn3rg7n8WfP2B8f9PshJuY=;
+        b=W29GtYvQmRqg6z16VGSX/j5lgX1zUIW3s3BF77R9TA1eg/GhOvW08noUOYZex6UbDr
+         KjqAsEoTY+RAVOSG51ZiLs9wow+uLMrXWB5ulJoN3GrU6jKJZDaMlpCyeCHlm+lwJhlq
+         CUcEfXiI4Fmovlolq5sF54Ub110iU0Z6Cv1Pw5DnctW2WPAh9EfZtiyqQ4vi/GRx2Mtm
+         0Ug8r3cG4r0F76TcO/V/zen3WbaETC1ni4qHeAiQcVfxNoskoF2mJUyHZiE6oFHgMYmB
+         n0py/MMxIVjJQ/47RT1ycTgNQn/efp6y2wfHhyVGFapv1LH+5VRIejI6NsOd6k2/NRNc
+         mirA==
+X-Forwarded-Encrypted: i=1; AJvYcCX5yfZ3FVHFi0bCXvGBm2MXE0HIinDzrvowci85cwFYSynqXurNlqw3LRAg4C9+OjVAa/XL3CG869ou@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbT+PNx3kGyf6P+io6S16m36wx05MwfiDcYOe8eEqH/Bywujfm
+	/u+LBtKp+LNjoHFic6MgXq0prdqdZVPcrLp1dZJlF2J0EeWt4oH0bu+KJmaiXr4=
+X-Gm-Gg: ASbGncvew2vDQh6wHvhRIx5l0afA9FooI4Si3bjun1EYeA9nNNE6KJDR7maHWZRXnP6
+	Nyx3RrYrHFzvWkhu136qBCv8VY0qC2RyIFXkwu9700TXrGqTFXHSRAAIq2TwxEaRlKp7s7B+pOF
+	vjH6bPOc5czC0+pwpyfDlHI54mxIxEAsI227VnWneL2U47ar2SIbAfybYlpoGoQU4nX/lcqFkO0
+	U3sl047J7Qymwz2MwzVC4UwStoKipOAXW/pxPKmvr2bSexYF6jGNsyaNNvgV5hcFWJUVgm7R2H+
+	Drj+QTItczrRx6UM1PEnt3E=
+X-Google-Smtp-Source: AGHT+IEMrhkZcva4RBS+kkon7q84KVXR16ulAthaujUtAZ/PxslVHVSNe/geC5YVpS+ivaoXq+QuxQ==
+X-Received: by 2002:a05:6402:27d3:b0:5de:c9d0:673b with SMTP id 4fb4d7f45d1cf-5e03600514bmr8825804a12.1.1739783717480;
+        Mon, 17 Feb 2025 01:15:17 -0800 (PST)
 Received: from [192.168.50.4] ([82.78.167.25])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba532322aesm861089166b.17.2025.02.17.01.14.37
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece270b17sm6933732a12.62.2025.02.17.01.15.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Feb 2025 01:14:38 -0800 (PST)
-Message-ID: <7e966eea-e2e7-4fd4-bc6e-67fd49c57ddd@tuxon.dev>
-Date: Mon, 17 Feb 2025 11:14:37 +0200
+        Mon, 17 Feb 2025 01:15:16 -0800 (PST)
+Message-ID: <15ab9baa-4644-4b4b-a6f1-ac71afe8465f@tuxon.dev>
+Date: Mon, 17 Feb 2025 11:15:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,33 +81,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] ARM: dts: at91: calao_usb: fix various naming
- problems
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-arm-kernel@lists.infradead.org
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>, Rob Herring <robh@kernel.org>
-References: <20250131210236.36212-6-wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH 0/2] Add power monitor support on sama7d65-curiosity board
+To: Mihai Sain <mihai.sain@microchip.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250211143302.4102-1-mihai.sain@microchip.com>
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-In-Reply-To: <20250131210236.36212-6-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20250211143302.4102-1-mihai.sain@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi, Wolfram,
 
-> Wolfram Sang (4):
->   ARM: dts: at91: usb_a9263: fix wrong vendor
 
-For this, I'll be waiting a follow up on
-https://lore.kernel.org/all/20250131162713.33524-2-wsa+renesas@sang-engineering.com/
+On 11.02.2025 16:33, Mihai Sain wrote:
+> Mihai Sain (2):
+>   ARM: dts: microchip: sama7d65: Add flexcom 10 node
+>   ARM: dts: microchip: sama7d65_curiosity: Add power monitor support
 
->   ARM: dts: at91: use correct vendor name for Calao boards
->   ARM: dts: at91: calao_usb: fix button nodes
->   ARM: dts: at91: usb_a9g20_lpw: use proper mmc node name
-
-These were applied to at91-dt, thanks!
-
+Applied to at91-dt (with some small adjustments, please check), thanks!
 
