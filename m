@@ -1,136 +1,159 @@
-Return-Path: <devicetree+bounces-147270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82956A37CBA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:05:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02478A37CCB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:08:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FA983AB29D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 08:05:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 591E6188E0EF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 08:08:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FEF01A23B0;
-	Mon, 17 Feb 2025 08:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 498171A3175;
+	Mon, 17 Feb 2025 08:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FRjwPcS9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gdQct6sm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 995051A0BF3;
-	Mon, 17 Feb 2025 08:05:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 045D519CC02;
+	Mon, 17 Feb 2025 08:08:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739779534; cv=none; b=dBgXrfYp9jA1iA16lUYn1RwmNnKcQobxDwoYXniOsOWfXEJDYMXGAWcPyx0R5NcWZFrfV9Q4I/STJmj7aC/WpSonqRqpA4b++i3ZxVnuUwcfMgHgJeHJURKuAAX4NW1lDOs1ZflOc8jNK1aKBUJoduo0EvBk00t5OcexqMnXiOI=
+	t=1739779690; cv=none; b=SUYUIYig7oR1uIPIBGfuAXgFFQciby0S18LfBfLxk4GOH+PUT/P/V269rjrJYkOaFrua7AOezY2XY0K1koEkbUDK7ACQcY24zuKr/zxtG1UUTvXmheU+173vNcafEWQtQfSI92BYExX31q/noltWFwVSbv7zd3anI0hnplGNBY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739779534; c=relaxed/simple;
-	bh=dDkeJ7GH7avcKXBfyV1k8BkyzXTe+QGQ53jKuGm0Crc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gf/B7+yZ0DpK82Eg7mUGSMLEe7cKvE4gfE27oiek2/2/n0wjqv376Nxl/ZCbzWeBt45VpkayeT6elHZcolFehfQtRPMzFhoIOyi+5HDMH7Z/03/G/Yw2YHPGIf1H5y3Hs4nJpqx/+sW4I4jzWelWRSRP0jU+3tClpn8aPM5glnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FRjwPcS9; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5452ed5b5b2so2389431e87.0;
-        Mon, 17 Feb 2025 00:05:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739779531; x=1740384331; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AzEsmazWfkKI94Mb3+KwyFEdwSSXdViX2jkMcHce6as=;
-        b=FRjwPcS9Q3ZOCltQ4ZmPHb0pMw6XVzdyxznNe0x7Y0SRpG9iA9MdHxGvGaDZl/0PhD
-         RG2YuZEY0GpvMQoKiBTa8C3MpwDrNLCl5o6iCj/67jpxoSVhIuAS5xNsKcA1vxT6lfgH
-         +dAZc0WKUoMDUptO8MYGyHXIjAAxLqVrgU3YzbznpFf60ti+gbGoNNFFqqYeQ4igIsrl
-         TbD+OionSLXwh6rq+UdrzhlwWhG7hw6dGQP5gMKNhbrwFh5YRvz8hpu/hW9Z2qKVvRnf
-         PH/WUfDsWDOfijwFfKVrBZtReRSGqucBL8iR0n8hXnZs7zkPXaElN6YiceLrFYj0+TYT
-         zn2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739779531; x=1740384331;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AzEsmazWfkKI94Mb3+KwyFEdwSSXdViX2jkMcHce6as=;
-        b=IjawxwICZtcrR+YCnz1MBme/JpSCh36RYp1jSYURVXtGTH7J4U+rR14NybOIoMjyXu
-         F7uI46ZpHxzU+b9tGNa4u0tJkOr/JcCYRpzYd0s1726yNxq6a7O60NDCvAck8JCeKYeb
-         v6LSvyzvkF8EGaDaPJUbS4KX655oXVDLO7S2dZz4n6xL+AmsdCmkCHe8AnVx2a2+EQA5
-         J2jXhtibz4AsV3mV6EuqvIanBEFzkYiDHe0RxnjcYMOXdoekBwK4xtQtQpfRj7yy5Qyj
-         ffQbHepcwo7bZ3zYL8ILawYdnrGZa7qatgHfmqB7kRE/sFIE+zeyEwG8hi33LetAxXp1
-         2hCg==
-X-Forwarded-Encrypted: i=1; AJvYcCXVf2LW0ttyc7ztoY6I9oAkHRa++xn8VaQCh7V+kZJdHBMQCs+mt0E4z2YN3vtA/nb4Q3ecd/NW@vger.kernel.org, AJvYcCXtSIGmvBg0yfIsVLFPGRladeZm/tzhjNX7uyx8QsGU1v58DUrmauLVuXhZsdwKCsFRnSmSUb042xtM@vger.kernel.org, AJvYcCXwn8LassWcVZusr9dIQo05nFMiWaSvb6Cfi9VLQY+Jjao9tfhkpBVK1FoZ9vJEtpkKcO4swicDEFQCQdCQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyr3MJMzCBS41ozmhutXwgGZmZ2/5SaxOXno46G4NWBtSmO1ZrL
-	gfTzWuZXBLRCDNm81z8PCbrgweGZU9GeVa0zHo23D6wBNbL2KVXmEdEGO2lnTQc=
-X-Gm-Gg: ASbGncv2ofI+uO5QQe0Fk1B0ocAkzcP8OAqbhH8V2a7JH/ehdosOihv2liATfGvHbCp
-	VCjpBnoUA9Q6WEBcQuzHeALnOZhkDDajNdSvPoGsbf1w/z6JvDRkVk04FFlWmx7K14oeiqzxIna
-	yxFctY3ipKfuaH9v3rMzhUo49VRWEpOoRJ3mXgvTdacGo2ZfHtOVDIUe6qTHRtAXdabUBU/EriT
-	PZVgtB64dhhn7W+rh+utg985TdphBMxiOAdCfRaO6MOkN9Av+7PmytqZjHrQJH5kNPKAkmbosbV
-	BtGvOC/JP54lVnvF5vHR3PbO568FZ62G
-X-Google-Smtp-Source: AGHT+IH0gQt6LbSVzt7ANJ79QPtBjmUGIh3dOqM8t0B1cAgFQOMYUuVEsqc+9rOEGXqZm90qlOS2kw==
-X-Received: by 2002:a05:6512:a91:b0:544:12b8:d9bc with SMTP id 2adb3069b0e04-5452fe264f6mr2464728e87.8.1739779530326;
-        Mon, 17 Feb 2025 00:05:30 -0800 (PST)
-Received: from clast-p14s.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5452848ed13sm1173028e87.255.2025.02.17.00.05.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Feb 2025 00:05:29 -0800 (PST)
-From: Claus Stovgaard <claus.stovgaard@gmail.com>
-To: claus.stovgaard@prevas.dk
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: net: dsa: b53: add BCM53101 support
-Date: Mon, 17 Feb 2025 09:05:02 +0100
-Message-ID: <20250217080503.1390282-2-claus.stovgaard@gmail.com>
-X-Mailer: git-send-email 2.45.3
-In-Reply-To: <20250217080503.1390282-1-claus.stovgaard@gmail.com>
-References: <20250217080503.1390282-1-claus.stovgaard@gmail.com>
+	s=arc-20240116; t=1739779690; c=relaxed/simple;
+	bh=8tZy2Iu7sEGvPFLhtx8V7z6Qhr9QGnK/JAwPC0LKJe0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=MUA/SGQ5vfD3is5ZYHRFCSlogIvgQ66IMxAQVZ+iAkYvjLI0Pl0h7KsEkHxZ8ebPYCOaJ/tqPaelYhewShvZMSlrk6xP5sWaJrFmjyDJQlgDiZmLPfd6GPVc73RRnB9Ct+/gRyxkGe7gQhykCxM7UGf4BJd6YkYqlgToaGMTJuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gdQct6sm; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51H87oak1437430
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Mon, 17 Feb 2025 02:07:50 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1739779670;
+	bh=ht4HxGI5YrlOa/0b3MdILMdlQhV+uNgSi3wHLhbLMCE=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=gdQct6smd0wGwtXj3x52Qnl41sHKBJ0OjVIFRTE6Fqoe/nzHVMBrqVuH7I80e5G0F
+	 dJQCmMx/NfAEHTP4MffziIjt+EAiHS+tFsw+ecVacqH+9CPUK/fmWsVUwrE/s7M0ji
+	 aEKv3+zm6f8wP1/7446j8EPpTMly8bLiEO4emixk=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51H87oTP010372;
+	Mon, 17 Feb 2025 02:07:50 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 17
+ Feb 2025 02:07:50 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 17 Feb 2025 02:07:50 -0600
+Received: from [172.24.227.115] (abhilash-hp.dhcp.ti.com [172.24.227.115])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51H87jGm115755;
+	Mon, 17 Feb 2025 02:07:46 -0600
+Message-ID: <e9ccecd2-6148-44fc-a4da-217219da9d3d@ti.com>
+Date: Mon, 17 Feb 2025 13:37:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 3/3] media: ti: j721e-csi2rx: Add support for
+ VIDIOC_LOG_STATUS
+To: Jai Luthra <jai.luthra@linux.dev>
+CC: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <mripard@kernel.org>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <devarsht@ti.com>, <vaishnav.a@ti.com>,
+        <r-donadkar@ti.com>, <u-kumar1@ti.com>
+References: <20250212131244.1397722-1-y-abhilashchandra@ti.com>
+ <20250212131244.1397722-4-y-abhilashchandra@ti.com>
+ <nvyplkcl74rpe7zl2vprfztaivlmwvrsrwyrqw7lbvbeij5ubt@4dehnb7j6ona>
+Content-Language: en-US
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+In-Reply-To: <nvyplkcl74rpe7zl2vprfztaivlmwvrsrwyrqw7lbvbeij5ubt@4dehnb7j6ona>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Claus Stovgaard <claus.stovgaard@prevas.dk>
+Hi Jai,
 
-BCM53101 is a ethernet switch, very similar to the BCM53115.
+Thank you for the review.
 
-Signed-off-by: Claus Stovgaard <claus.stovgaard@prevas.dk>
----
- Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+On 13/02/25 18:56, Jai Luthra wrote:
+> Hi Abhilash,
+> 
+> On Wed, Feb 12, 2025 at 06:42:44PM +0530, Yemike Abhilash Chandra wrote:
+>> The VIDIOC_LOG_STATUS ioctl outputs the current status of a device to the
+>> kernel log. When this ioctl is called on a video device, the current
+>> implementation queries the log status for all connected subdevices in the
+>> media pipeline.
+>>
+> 
+> What is the benefit of doing this for a video node? The user can directly
+> check the status on the cdns-csi2rx subdev for CSI errors.
+> 
+> As far as I understand, the video node corresponds to a particular stream, but
+> the cdns-csi2rx source pad is shared for all video nodes, so it will report
+> the total errors seen for all video nodes in multi-camera scenarios.
+> 
+> This approach will also give you v4l2 control handler status from a few
+> sensors (like OV5640) that implement the ioctl using
+> v4l2_ctrl_subdev_log_status(), which is probably just noise for the case where
+> a user wants to check for stream errors.
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-index 4c78c546343f..d6c957a33b48 100644
---- a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-@@ -16,6 +16,7 @@ properties:
-   compatible:
-     oneOf:
-       - const: brcm,bcm5325
-+      - const: brcm,bcm53101
-       - const: brcm,bcm53115
-       - const: brcm,bcm53125
-       - const: brcm,bcm53128
-@@ -77,6 +78,7 @@ allOf:
-           contains:
-             enum:
-               - brcm,bcm5325
-+              - brcm,bcm53101
-               - brcm,bcm53115
-               - brcm,bcm53125
-               - brcm,bcm53128
--- 
-2.45.3
+I understand that this change does not add any value and may introduce
+unnecessary noise. Given that the user can directly check the status on the
+cdns-csi2rx subdevice for stream errors, I will remove this change in v2.
 
+Thanks and Regards,
+Yemike Abhilash Chandra
+
+> 
+>> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+>> ---
+>>   drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c | 10 ++++++++++
+>>   1 file changed, 10 insertions(+)
+>>
+>> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+>> index 6412a00be8ea..946704458fee 100644
+>> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+>> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+>> @@ -377,6 +377,15 @@ static int ti_csi2rx_enum_framesizes(struct file *file, void *fh,
+>>   	return 0;
+>>   }
+>>   
+>> +static int ti_csi2rx_log_status(struct file *file, void *fh)
+>> +{
+>> +	struct ti_csi2rx_dev *csi = video_drvdata(file);
+>> +
+>> +	v4l2_device_call_all(&csi->v4l2_dev, 0, core, log_status);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static const struct v4l2_ioctl_ops csi_ioctl_ops = {
+>>   	.vidioc_querycap      = ti_csi2rx_querycap,
+>>   	.vidioc_enum_fmt_vid_cap = ti_csi2rx_enum_fmt_vid_cap,
+>> @@ -393,6 +402,7 @@ static const struct v4l2_ioctl_ops csi_ioctl_ops = {
+>>   	.vidioc_expbuf        = vb2_ioctl_expbuf,
+>>   	.vidioc_streamon      = vb2_ioctl_streamon,
+>>   	.vidioc_streamoff     = vb2_ioctl_streamoff,
+>> +	.vidioc_log_status	= ti_csi2rx_log_status,
+>>   };
+>>   
+>>   static const struct v4l2_file_operations csi_fops = {
+>> -- 
+>> 2.34.1
+>>
+> 
+> Thanks,
+> Jai
 
