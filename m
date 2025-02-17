@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-147281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFAC6A37DF9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:11:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65B28A37E0D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:12:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6D443B03D9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:08:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D4173A8A0F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:10:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06D11A83E2;
-	Mon, 17 Feb 2025 09:08:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD84A1A264A;
+	Mon, 17 Feb 2025 09:10:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lnh7OU5s"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="nNA8vOHC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 960FB1A76BB;
-	Mon, 17 Feb 2025 09:08:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C43D383
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 09:10:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739783326; cv=none; b=oTb0RzgL520/GEAAORuCfcgDaYSH7Cypq7EVfjWeY8iS1u3hD90g5w27LA0F52MbMnWzi4X+MxbL50jvBlx4YbWTEPyltzFRPhqrdk6K3jGJpJbDB7cQEXZUNmWR21p3DLtGyUZ0VY2d9udCtYFEtgWvgffRwJ6COcqh124Incw=
+	t=1739783417; cv=none; b=QCUJaTFW9PoriCOAtGHFX0vF8ePu0rFMeXCQuK5bZhJs+656yznYuKkgtxg3huiSciWJ92S5d0/fiAhFyvoQ2Pw8w6IdMOJaoLX1qKJmSxCAZMcUDyYackBPWh340CxNsszzazCLBzgB6l7OtoV16aLQQbItgHGJ240Y2rBFTdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739783326; c=relaxed/simple;
-	bh=Cjo4YfOCxeOKgdBlpU/GNL73pe9zIjmveQSxrbQAOLo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=FQ+1Z+uvdD4HmvSHtSLzlQic3P1zC1PK4bmEHxpEslB2QCdIZ8gcCeX+mBk+Ady4V/Xu7ZC8LZBTLnJN0Bni0Tr90VoS/yKB3r8/tcyslnBxOvDJDtP5oYgiXpWg7WDyQ2C+lVurVAYH3YA5HqctvIIuxAmufxTjauHfy13yFLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lnh7OU5s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23DFEC4CEE2;
-	Mon, 17 Feb 2025 09:08:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739783326;
-	bh=Cjo4YfOCxeOKgdBlpU/GNL73pe9zIjmveQSxrbQAOLo=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Lnh7OU5somCbIqKq8TsEo02YglWkyT/3VVQXX5FdxTToak8Uno6o7qvjYhfGAfQOW
-	 DSL7kcMD5ByIQQJASpUDAsi3kDyS9gKDzMUohY1sI+3y0QvClkAjpQCbZj2UB9t4O+
-	 tFw1O0fZTiOloLauTWLHDNRyjGZToi/CMRmdJPo7UAKE83BbzCqkalQqLO3PqMmfmr
-	 n0SbXihYD2govJmrzEPVAAPLHca6+IZOKuDM/B8CbZAveIwrNLTE6u244Emd42vnvG
-	 BjPeAZGeyiyi+pUBWHemHH9sR/ha2P1uxCVcw3ddMPAAfkvgVl425b87z8tCFfHcPk
-	 wQscuNKy0/9eg==
-Message-ID: <8e5bbd2b-a4e1-417b-88d0-267450c7cf86@kernel.org>
-Date: Mon, 17 Feb 2025 10:08:40 +0100
+	s=arc-20240116; t=1739783417; c=relaxed/simple;
+	bh=SbBlBZzIGQ4oFr/wQCCGvRGycBvG1+Zszb0mRW0nZhM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=O+CY/00Gt6OxPnH+Kqp5TUblsSPxsp6c6gtFMET98Hnq9bsokhfyWnjt4ULEP0N/V0+NN2Yka9TbSI349uhwaSjnyafWxEnVtpxLj6BGg6nyd6gaBArCK6FoYOF80wUezsvLdnIygv7AHm+YGPxHAunzS4bOBoQMcy8a706eiVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=nNA8vOHC; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5e04f2b1685so1411174a12.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 01:10:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1739783413; x=1740388213; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8wgJxscDmc93zijAMt2W3LnwyWz16Wm3n10sGDTSupA=;
+        b=nNA8vOHC3lqWYW1v9n9LRmW/IQp/ySSWpUyBNhNpQ77MlK13Cy/OQMQ3Ui0IP3jdOL
+         e6ULup3EyyomvjotU4hAW/uQt9I5I6JM6lTtu5gaixyGJaJpOFRV9KbHW4oVikGiVL+F
+         7zXWCRYOvmuH74oFAZLo/nAWpub7wZjC8KEKo8faYpEWBRq/D8ueTWzeW1bc38UcLxmW
+         X3gOpnJJH0jr5Dm2AxdpLTSFiqkSvReZg2YjXhjVZm1LnPNYfnbzkdLPCeAcOFOzp0/4
+         Zjh2Ti+ZkuvGAMVHF4s/sVFfI8BlKld2Luk76Q9zX1mnFiFAUTyEVcBa8TX9/sl7K9n1
+         DdJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739783413; x=1740388213;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8wgJxscDmc93zijAMt2W3LnwyWz16Wm3n10sGDTSupA=;
+        b=ECru8yscCq+AKr2xfL6f3f7D1PjLTE+7f0soaU0ggNSvSkPmiV2MhlhOQ7Oygoq/9Z
+         ZydXXdYsEJ1q0duUmNsMEehEk99qa7alX7N2Za2dRkkVoj5TfxB1lALs9+Qvdqg1kRMp
+         uJVN9UbKhKY3b+6XWEa+N5Kqv2BD8SBL0y+1sm+Qn+xtVA/WVf52IcyEd8xhmhqkVL0Z
+         kd8tB/EOgAS/zJ8mn0I0vnkuE4tgDsGlPaqMbaQndXD2hzLMaPo5s/X9DZPZAF35dQ8Y
+         hCC13DTzm3OYtva3U5ny5XBWXF2YuHfxJzqwYWewl9jdmMjh2XXi94NXGetOuK9vfkn/
+         tfiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU3x1OwsvwpKO0k5hkwU6KevdYHHlhpYylnjX0rxBaLZZryNmhp7YLog6ceNYSPIQUaEtclNJQlSfKp@vger.kernel.org
+X-Gm-Message-State: AOJu0YybpE3A7hKTGOvs2pDXyy5Ol779vzD0eL+i9F3d1Fe3s+9qS3lQ
+	doBhy0PkbXuNEI2YKMipL/+dDo7c6VngclwlLBBbLShOeaJnrYL1S+YmgUlU7DBmwfKa9BcXfU6
+	j
+X-Gm-Gg: ASbGnctpbKY4RqNdIhOKOLasHQGAtczDU337vIgxCnU/pWecbwqK0EpTZoeSze4bfQo
+	fcUSzm5ADzpmJZ5jT/Hy6lSPBoUE7eJz6rbznOz57jIGbzoBYhxAXwAr15xg6iAMd8a5K7rSrSj
+	9avFoXnR6nfayqetrLjR3e2ywm6eylKw8DlE/VGjJrc9mHLgCbxzjRInXIyqfKwSa7RXHt2n/hC
+	8hE49psOIUF9FnR4KUHIBnZuXzg3KWV0Aapnqiy+gADusjIfmveaeklg+jVRJeFskHwWA10QP55
+	lr/tGSHB+6XXKKxxCac1xOQ=
+X-Google-Smtp-Source: AGHT+IGp/mriA1nqumOa8lLHSDzS7hm8UUj2lVCgT+kV+ET8dZlcSDmAKyr3/mzJIchHtsHlvM93eg==
+X-Received: by 2002:a05:6402:518e:b0:5df:25e8:26d2 with SMTP id 4fb4d7f45d1cf-5e035ffa1a2mr21900403a12.5.1739783413260;
+        Mon, 17 Feb 2025 01:10:13 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.25])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1d374fsm7279007a12.41.2025.02.17.01.10.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Feb 2025 01:10:12 -0800 (PST)
+Message-ID: <f62d04f6-53fc-4d6e-8365-b919af1b5f26@tuxon.dev>
+Date: Mon, 17 Feb 2025 11:10:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,101 +82,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: socfpga: agilex5: add gpio led and memory
- node
-To: niravkumar.l.rabara@intel.com, Dinh Nguyen <dinguyen@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, nirav.rabara@altera.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250217052702.3470096-1-niravkumar.l.rabara@intel.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 15/16] nvmem: microchip-otpc: Enable necessary clocks
+To: Alexander Dahl <ada@thorsis.com>
+Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Ryan Wanner <ryan.wanner@microchip.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+References: <20250210164506.495747-1-ada@thorsis.com>
+ <20250211065304.5019-1-ada@thorsis.com>
+ <20250211065304.5019-3-ada@thorsis.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250217052702.3470096-1-niravkumar.l.rabara@intel.com>
+In-Reply-To: <20250211065304.5019-3-ada@thorsis.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/02/2025 06:27, niravkumar.l.rabara@intel.com wrote:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+Hi, Alexander,
+
+On 11.02.2025 08:53, Alexander Dahl wrote:
+> Without enabling the main rc clock, initializing the packet list leads
+> to a read timeout on the first packet, at least on sam9x60.
 > 
-> Add GPIO led and memory node for Agilex5 devkit.
+> According to SAM9X60 datasheet (DS60001579G) section "23.4 Product
+> Dependencies" the clock must be enabled for reading and writing.
 > 
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> Tested on sam9x60-curiosity board.
+> 
+> Link: https://lore.kernel.org/linux-clk/ec34efc2-2051-4b8a-b5d8-6e2fd5e08c28@microchip.com/T/#u
+> Signed-off-by: Alexander Dahl <ada@thorsis.com>
 > ---
->  .../boot/dts/intel/socfpga_agilex5_socdk.dts  | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-> index c533e5a3a610..59530eada2ea 100644
-> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-> @@ -15,6 +15,25 @@ aliases {
->  	chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
+> Notes:
+>     v2:
+>     - Rewrite to enable _all_ clocks defined in dts
+> 
+>  drivers/nvmem/microchip-otpc.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/nvmem/microchip-otpc.c b/drivers/nvmem/microchip-otpc.c
+> index d39f2d57e5f5e..2c524c163b7e2 100644
+> --- a/drivers/nvmem/microchip-otpc.c
+> +++ b/drivers/nvmem/microchip-otpc.c
+> @@ -8,6 +8,7 @@
+>   */
+>  
+>  #include <linux/bitfield.h>
+> +#include <linux/clk.h>
+>  #include <linux/iopoll.h>
+>  #include <linux/module.h>
+>  #include <linux/nvmem-provider.h>
+> @@ -241,6 +242,7 @@ static struct nvmem_config mchp_nvmem_config = {
+>  static int mchp_otpc_probe(struct platform_device *pdev)
+>  {
+>  	struct nvmem_device *nvmem;
+> +	struct clk_bulk_data *clks;
+>  	struct mchp_otpc *otpc;
+>  	u32 size;
+>  	int ret;
+> @@ -253,6 +255,11 @@ static int mchp_otpc_probe(struct platform_device *pdev)
+>  	if (IS_ERR(otpc->base))
+>  		return PTR_ERR(otpc->base);
+>  
+> +	ret = devm_clk_bulk_get_all_enabled(&pdev->dev, &clks);
+> +	if (ret < 0)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "Error getting clocks!\n");
 
-Missing blank line
+This fits on a single line.
 
-> +	leds {
-> +		compatible = "gpio-leds";
 > +
-> +		led1 {
+>  	otpc->dev = &pdev->dev;
+>  	ret = mchp_otpc_init_packets_list(otpc, &size);
+>  	if (ret)
 
-led-0
+General remark: please organize your patches as follows:
+- dt-bindings patches
+- driver patches
+- device tree binding patches
 
-> +			label = "hps_led1";
-> +			gpios = <&porta 11 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
+Applying this to your series, will result the following order:
+- dt bindings for clocks
+- driver changes for clocks
+- dt-bindings for nvmeme
+- driver changes for nvmem
+- device tree for clocks
+- device tree for nvmem
+Thank you,
+Claudiu
 
-And that's not necessary
 
-> +	};
-> +
-
-
-Best regards,
-Krzysztof
 
