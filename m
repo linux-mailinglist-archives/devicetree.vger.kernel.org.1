@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-147569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FADFA389E8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 17:46:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87112A389EA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 17:46:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68237164FF8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 16:45:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 669961890401
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 16:45:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02E01228C98;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 285F5228CA0;
 	Mon, 17 Feb 2025 16:42:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G9IgxyNu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M7R4AlvQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230862288D1
-	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 16:42:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFD622288F1
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 16:42:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739810530; cv=none; b=jMsGLGRT4dVrlQEQMTrh0GLne0kFqQcmgpGdUkrFRMj7UIbSsluYg81At5ki9zAQ3iO6MgycbryW+tFqDzTwvUp4/GPUb3jBn7RuKGQ1VJni2ZWGGmB2QpDNkSHEwuBYJ/faLrhMkPMxdJtqEsqOvaBq9i9kszlv94OM6iQjdfo=
+	t=1739810531; cv=none; b=twJHaMhv/hdGSIy9qfaNHi8wSvRsoboJ7DHVv/0CSGUprE7j3UjfrkPEtuVdR8w4M6P447TZEQP4kKMgh/cARRAYhfszHczX2HfIGW60VSxANJCc/h4F81bBvgaKqfa8ofOgxbkUiahGjRTyWp+FlZDwLW43Bvnaq6Cyv1ihNCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739810530; c=relaxed/simple;
-	bh=OK4BlEQKgWf2DPPY2IYuD91snJxEgi2akar8eW0RZEk=;
+	s=arc-20240116; t=1739810531; c=relaxed/simple;
+	bh=DkJ2BVBvEeNNA0cxtQOdcJsL6j5MFl87qRB2heFwXH4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=asSiqDcDdJaOH7tHgvgzbuBnxopfbFBLbbiYs051yRLXFzgjMjJc7UgNXE6pO+wrA2yAc+eMjhZmMYOF+y8ERMv+pD8+MAFh5NcClIqx7+olCNCdLjjj35AmgXqm1xqe3ho0YGT1smgQNxSoOJQ9FhzWTnmoNA6/QHWI4cAhyY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G9IgxyNu; arc=none smtp.client-ip=209.85.218.45
+	 In-Reply-To:To:Cc; b=C5rE6cH0sEHUSKD7gW3W9p1DC6BRFbjWZgJ8W0z7oyz/SKCXRRITfqYYDKP2GqALeiK26kbmbKPNFryZJFz78O5awH2R4j/MRvHgXixH6I9XllE4v/WubpSthmP0gFdnyrnXBrzmiekI79asdyUEevC0baRTrAZbDaSwjPbl77A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M7R4AlvQ; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-ab7d8953b48so82152166b.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 08:42:06 -0800 (PST)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ab7f9f57192so66769966b.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 08:42:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739810525; x=1740415325; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1739810527; x=1740415327; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=k3e6irnfKGT1PeG1ksdgrOZzEx11XJVUyYfrbYP3xxY=;
-        b=G9IgxyNu0tUe2bUhZ8XMAEXb7phbbMXGafmj0uI3WhZZPpvHbT+vQW5OFXprI13TfT
-         QKynp/LXwDcTGOEqQ4Km3z6UlxfMGHFF8/GDrq5VKd1ummrBwYKbrExe2Wi+cALj+P1p
-         PE4+Vn+xVEhq2cBM94/BXiwO0O/3wAz+0wCFE9OmcxIGopTH1ABvxj8Q/1E+K7/NRE/N
-         4RyijXa1qS2AkHOblK7nAQ4UGZQfM+RE4TWYGoMileLC+m8N6PuRHlyJVV5I9319jE5H
-         PsQYZQTi7VCpNGTG/FSg/4/Xb4uCgFMLq3koRnu4e/vExw+Ij3pUnodAEMQx75Ybnhob
-         pQvg==
+        bh=qq9jDOhpy0aHY5CpHEf81pq1NORQVrGmfKnjY03h5OA=;
+        b=M7R4AlvQRjx7EX9FzqnKYjLbIQEas9Edy/Ogru9IqrLcVHkrJN/77svZCC8Zz6sfKU
+         rZxn4BTwQlr4S3Co1E2Zl1ha7LoY/6uhL8F7wFCVFzJAgvD+vxYmVQ5WkXQKPhGobjxf
+         UEdSlZY0yWlh2NKuR146S6ETLxNZHmv/WIbVdeN3xUq+jlIleejwxYLdIUw2MPeXez2S
+         cisveYsLuHRXsw+yeY+9XiMInIuo32L3PBDL4ZohRPppFm6wzdeasyoY9sZ8xvL+ShWI
+         jRq7w9xOIbpLfXGXTkcrFpA0t5DoCvHhGLT56/jUHLs9zdNBJskolUDpfvybif+ieyTp
+         +NRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739810525; x=1740415325;
+        d=1e100.net; s=20230601; t=1739810527; x=1740415327;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=k3e6irnfKGT1PeG1ksdgrOZzEx11XJVUyYfrbYP3xxY=;
-        b=Lo+suOFTNpyPRGNPi2tekAeHEIHgwedVNDniILXO99vpJrpnd1khdGAmGasWvl1nEb
-         so+WoK8e++xLvyzcYSuGhTr7kWPOBMrz3Z2XLw+AiF1iiQPcEbvBQiXeIxFeyaRqJNXu
-         OJpfAX2zriBDqS7csYGCDfYkgTerTW2Bhsqu37Fs8PJT8RttNnwY+tUVYJvAoL6aEpS8
-         Bg8cowvFy/zXs349us2R0zxHL1ASUj7v+nUtAkykzu5RyG0Wg+fmb22zsXIx8++4QBKX
-         NtVsm47US2/x2yFDUT/7K6GosdynCE7YSi89OJFopOeXTPIzqXTrxRf/JlnLkCg+clE0
-         HTVg==
-X-Forwarded-Encrypted: i=1; AJvYcCWPG3q+mKmSfAPQt4vigryvZogmdYyH3BYmBOkPxWzxZRzfUAPW9G7hPrmL7klK19ndFrVCMGECJQCH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxf0s1Kh3+BuBHwZMqkyeuVRE3yK4PKWyMl/WytRM23t7ycta/6
-	oYciOVTm6/M5peBD2iCimqKEHNxuw9028cbniK31rN2/WRP+XE+mZfaP/uVPRKY=
-X-Gm-Gg: ASbGncsGH0ZY3iU2v7eRuvtoUSO5e6Qs+cR1LXryDKnuxayqEl1kevefxDAAyG8UHYE
-	fZGugQnBBELNtLLXSBInPcSKRnvrXhKKA4LQW8T8TZlqEiBo+SDi5aixfCpa1wRZIjqO8tP+QXG
-	kbc5J3qaDXvQ6qq/8B0d/cc2wo1BIkeZghmMNObdoJl/JjHZ0msX7WxZwrkCVZLbxNYN3hiat21
-	NcRy41AjrvxNAU1elwl5+Uv2G+FsjxblyAU9nRefPQmejwFB05dhS9shHaDM0bTLgE3uh7DsOJG
-	/dt1+3OZHeCTvOjGocs88Qz/n0IG+Ds=
-X-Google-Smtp-Source: AGHT+IE8QG9uCPdiBxQ5weYf5osQu09e7Btq0EsTpRlM5hKIOjXAJPRNcdRQDTsg/kmqq37u4dj+XA==
-X-Received: by 2002:a17:906:4794:b0:ab7:6259:870 with SMTP id a640c23a62f3a-abb70d51d82mr372705566b.10.1739810525235;
-        Mon, 17 Feb 2025 08:42:05 -0800 (PST)
+        bh=qq9jDOhpy0aHY5CpHEf81pq1NORQVrGmfKnjY03h5OA=;
+        b=s3zg+bYe2EFPkxC8UVF+47lRKO4vmzcCcq4THgUeWnlqf1eOd2ihHs+/dwIuLyUDQ0
+         i0A2IUcYBHmoo3hiKzjvkSWhpglOQqpqtX26sRyHYwCj7R+56CY6mZ3KHDSY0LjVaJFi
+         quIVRLDYqver0ABFDQylih9ZIYN/920dLdXYowYKFnFF+danGn0ecBHECRqFr8DDhr6A
+         vrF0D5XEKj4dRjRatK1DlXI81ln1s9GDIgzXdvvJCqBSIiN2/l1SnpFQi+njmkUBU7EU
+         aS070DiYWdSZLa83K68jrJ8heWnE3IGusj8bYhvCS0GmiMeWtmlsSrWDNtDGvMdL1+G5
+         tfsg==
+X-Forwarded-Encrypted: i=1; AJvYcCXw/qCI7enqZe1WoCirw3hNtpIk7NdrIyzKWSimr143MezXovsaKZ5uK98cAJYKYxmt9Z11Qe9G3Mad@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfXVb+C9aHMEE0uHBa8iCYk2Olbb7oaE49ktSMSiKxV0p/kz53
+	8wj0Z+kdhwBgnApeMEb51O1kVWHCSbcaoWFvHrVim+IZ3Z5T/WubekgSckA/Wes=
+X-Gm-Gg: ASbGncsXnDor1PiX96O0RU8XrG2p8vQOjX5cW6GctZaA2xr3dD5R3TNbc/liQVIDaWG
+	9MIMIWjX5SZCXc9yTdkELaBMVF5qfmE3fyJdQplqVPVrpXetrYx2vDBdoh1dqqAsDebXVyakjmj
+	v1ECA/HqfTnpSiQUQiaeTC8/aNNc6/V/+9deeAi2jgqUwCsdHUreQz8O223kYrCMAPdKc/1yceZ
+	5J0HCtB3yrXa3423jvJdif5SROu0NuRGJyNs9+1hbVbdDa0xhL5XKoOiChinRZAuxXyoAOucu7y
+	uXehaSSWoMjBcUEzZA2f06XSi3fNOVg=
+X-Google-Smtp-Source: AGHT+IHUbKvk34LNIqLlw3qVx9Dr2B+JaIdhDNM3wwCYi7YmKK/mUCo5o4s4nbHcy8FqMo7cFYRmGw==
+X-Received: by 2002:a17:907:6ea2:b0:ab7:63fa:e35a with SMTP id a640c23a62f3a-abb70934426mr408925566b.2.1739810527229;
+        Mon, 17 Feb 2025 08:42:07 -0800 (PST)
 Received: from [127.0.1.1] ([178.197.206.225])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abbac781b78sm82647966b.60.2025.02.17.08.42.03
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abbac781b78sm82647966b.60.2025.02.17.08.42.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Feb 2025 08:42:04 -0800 (PST)
+        Mon, 17 Feb 2025 08:42:06 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Mon, 17 Feb 2025 17:41:32 +0100
-Subject: [PATCH v2 11/16] drm/msm/dsi/phy: Add support for SM8750
+Date: Mon, 17 Feb 2025 17:41:33 +0100
+Subject: [PATCH v2 12/16] drm/msm/dsi: Add support for SM8750
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250217-b4-sm8750-display-v2-11-d201dcdda6a4@linaro.org>
+Message-Id: <20250217-b4-sm8750-display-v2-12-d201dcdda6a4@linaro.org>
 References: <20250217-b4-sm8750-display-v2-0-d201dcdda6a4@linaro.org>
 In-Reply-To: <20250217-b4-sm8750-display-v2-0-d201dcdda6a4@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, 
@@ -104,258 +104,237 @@ Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
  Srini Kandagatla <srinivas.kandagatla@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10029;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=8333;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=OK4BlEQKgWf2DPPY2IYuD91snJxEgi2akar8eW0RZEk=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBns2bAHlF0ZHyGpixCXD5FCco8BLA4ikVf6HRlp
- T3KCKKabgqJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ7NmwAAKCRDBN2bmhouD
- 12IWEACBnFezKROYNnuYlU1NueFiAXqyvekYCEQMCMa64lC7TpQTXz3zrkIFryWn1FQ5O+XrRBW
- 1CCf8pUkNJl3y3lrzO8rdOpZMAGWH6JDv6EdU50bMFpit5O1vP/UweYLVqrZSYyqWrK1SPuFGkd
- aF7imRzhrm5FTanIblwK8OU2C0FqNgdBRZX1SB6hWaOYDW6PX9EgSWNplcIXihSEYY5Y9CprreM
- EQthH0w+H48zr7qUI2vLPTY2QJD8L9F+OnV6fSR64U0a/N/URboFe1MfxYnX+5bhPWXYTna7BTd
- lvLltvTmRy92fJMSPyR++d1BlaYRCP9qwSGS8mawkEbvHWkXt2Lbm5tLRW8I1t5bkZtpD6zJMtq
- eSfkdl4laofTfGhbGT7vAKkS4rNM3UohtBCnOtV+zlV5Umy7ddkglhazCKyPdWXinmhlxDOyJnK
- BLu/G6fW+GbJ9VDDJW0YCaap6lUQw9sAmAJL18BMto4m6IeQ08q/0Tn4HQyNXohrFZmrhlQueGM
- V5W3QMx6mINzV0AiIW1QAGS2VXX/RUmXdOWOr7q4uzzYMQ8Z1EZ8YODFo0k4TiUyjaHa22ojU97
- rydqZ/YUPDkENdM2gMdF/K8yUS/qe1lQzb9AsNqN3rfkq+94IhWIZlYQi/ZCfazYfEbuwfMXNRY
- IA2Vtf9L9+l/fgQ==
+ bh=DkJ2BVBvEeNNA0cxtQOdcJsL6j5MFl87qRB2heFwXH4=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBns2bBB/3ewDrbJ12hx5zM0rdjjEqOr8S6kyglz
+ asQB5qDrbeJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ7NmwQAKCRDBN2bmhouD
+ 17dvD/93hWvDAJt5m4WLO5T+2/5m9tOBDOCgQ5KoBtqgWmlVsY7Iy6b9qxTOW4t7+sItHF7NcM6
+ 4ucYCkQWfP3ArTa0T06DV6p7mOZ+Tuv78/y+CrsoJ31BrT818Ti5QObdk6w/AyKsbzMq6V+2lnY
+ ZdkHG4pR5fCWeNEu2Wg3vMY5bqf+xAYtmfhRZpnE+jYQCeHS/RhNU8ElP6ouDUWfCQTQkDqPEJp
+ umfVFWZNK1nK/Splxu8Km8Mw6PDNNlHn9ECqu6qvKgPJ3b+IU5renC2yis9J5VIwG3O4O4lzm/m
+ VSDDyFnZc5+1CkYcaeLHowB3uFktwAcnnptiNhP5kxFoATdF/eppemOyxttnwIiSUOjLfssFwSl
+ OjhWOrBvUtABBJ5/Qc3wjJnhUEeDLCo06g6KIqbpxD5vf09pCtYvWQgfddT3kQ62jf4Qf9NV3+u
+ 3yVJx6hKUtVDt3kuE6ikCHn8Cw18Qpvy1dfvgFEUgR2SAiZR/nzU+1wA2Ku+4D3qGstlLneiOxp
+ k7hvlSz9BL+h/FIrqoaMp5Jciy1nmLMPronJTBHtRBMM5qRdBffoy1HYXCiHGdY+OC3NSJpoyDI
+ dNr616VSVFJyJyC66lXUbQQ43+W+sW4ZP9FCou+H9ol2ruGS5PDaMgTctRAtQCkQaVx9DoWtESD
+ d3JW7NMk5KIQQHQ==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Add support for DSI PHY v7.0 on Qualcomm SM8750 SoC which comes with an
-incompatible hardware interface change:
+Add support for DSI on Qualcomm SM8750 SoC with notable difference:
 
-ICODE_ACCUM_STATUS_LOW and ALOG_OBSV_BUS_STATUS_1 registers - their
-offsets were just switched.  Currently these registers are not used in
-the driver, so the easiest is to document both but keep them commented
-out to avoid conflict.
+DSI PHY PLLs, the parents of pixel and byte clocks, cannot be used as
+parents before DSI PHY is configured and the PLLs are prepared with
+initial rate is set.  Therefore assigned-clock-parents are not working
+here and driver is responsible for reparenting clocks with proper
+procedure: see dsi_clk_init_6g_v2_9().
+
+Part of the change is exactly the same as CLK_OPS_PARENT_ENABLE, however
+CLK_OPS_PARENT_ENABLE won't work here because assigned-clock-parents are
+executed way too early - before DSI PHY is configured.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
 
-Changes in v2:
-1.
+SM8750 DSI PHY also needs Dmitry's patch:
+https://patchwork.freedesktop.org/patch/542000/?series=119177&rev=1
+(or some other way of correct early setting of the DSI PHY PLL rate)
 ---
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.c              |  2 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.h              |  1 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c          | 79 ++++++++++++++++++++--
- .../gpu/drm/msm/registers/display/dsi_phy_7nm.xml  | 14 ++++
- 4 files changed, 90 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/msm/dsi/dsi.h      |  2 +
+ drivers/gpu/drm/msm/dsi/dsi_cfg.c  | 25 ++++++++++++
+ drivers/gpu/drm/msm/dsi/dsi_cfg.h  |  1 +
+ drivers/gpu/drm/msm/dsi/dsi_host.c | 80 ++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 108 insertions(+)
 
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-index c0bcc68289633fd7506ce4f1f963655d862e8f08..60571237efc4d332959ac76ff1d6d6245f688469 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-@@ -593,6 +593,8 @@ static const struct of_device_id dsi_phy_dt_match[] = {
- 	  .data = &dsi_phy_4nm_8550_cfgs },
- 	{ .compatible = "qcom,sm8650-dsi-phy-4nm",
- 	  .data = &dsi_phy_4nm_8650_cfgs },
-+	{ .compatible = "qcom,sm8750-dsi-phy-3nm",
-+	  .data = &dsi_phy_3nm_8750_cfgs },
- #endif
- 	{}
+diff --git a/drivers/gpu/drm/msm/dsi/dsi.h b/drivers/gpu/drm/msm/dsi/dsi.h
+index 87496db203d6c7582eadcb74e94eb56a219df292..93c028a122f3a59b1632da76472e0a3e781c6ae8 100644
+--- a/drivers/gpu/drm/msm/dsi/dsi.h
++++ b/drivers/gpu/drm/msm/dsi/dsi.h
+@@ -98,6 +98,7 @@ int msm_dsi_host_init(struct msm_dsi *msm_dsi);
+ int msm_dsi_runtime_suspend(struct device *dev);
+ int msm_dsi_runtime_resume(struct device *dev);
+ int dsi_link_clk_set_rate_6g(struct msm_dsi_host *msm_host);
++int dsi_link_clk_set_rate_6g_v2_9(struct msm_dsi_host *msm_host);
+ int dsi_link_clk_set_rate_v2(struct msm_dsi_host *msm_host);
+ int dsi_link_clk_enable_6g(struct msm_dsi_host *msm_host);
+ int dsi_link_clk_enable_v2(struct msm_dsi_host *msm_host);
+@@ -115,6 +116,7 @@ int dsi_dma_base_get_6g(struct msm_dsi_host *msm_host, uint64_t *iova);
+ int dsi_dma_base_get_v2(struct msm_dsi_host *msm_host, uint64_t *iova);
+ int dsi_clk_init_v2(struct msm_dsi_host *msm_host);
+ int dsi_clk_init_6g_v2(struct msm_dsi_host *msm_host);
++int dsi_clk_init_6g_v2_9(struct msm_dsi_host *msm_host);
+ int dsi_calc_clk_rate_v2(struct msm_dsi_host *msm_host, bool is_bonded_dsi);
+ int dsi_calc_clk_rate_6g(struct msm_dsi_host *msm_host, bool is_bonded_dsi);
+ void msm_dsi_host_snapshot(struct msm_disp_state *disp_state, struct mipi_dsi_host *host);
+diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+index 7754dcec33d06e3d6eb8a9d55e53f24af073adb9..e2a8d6fcc45b6c207a3018ea7c8744fcf34dabd2 100644
+--- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
++++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+@@ -205,6 +205,17 @@ static const struct msm_dsi_config sm8650_dsi_cfg = {
+ 	},
  };
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-index 8985818bb2e0934e9084a420c90e2269c2e1c414..fdb6c648e16f25812a2948053f31186d4c0d4413 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-@@ -60,6 +60,7 @@ extern const struct msm_dsi_phy_cfg dsi_phy_5nm_8350_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_5nm_8450_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_4nm_8550_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_4nm_8650_cfgs;
-+extern const struct msm_dsi_phy_cfg dsi_phy_3nm_8750_cfgs;
  
- struct msm_dsi_dphy_timing {
- 	u32 clk_zero;
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-index 6d287cfb0148bdb0b1c64675dfe7fa69d3faba2d..b626989cb3d505f1c53f212dba130e3d685fe59c 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-@@ -50,6 +50,8 @@
- #define DSI_PHY_7NM_QUIRK_V4_3		BIT(3)
- /* Hardware is V5.2 */
- #define DSI_PHY_7NM_QUIRK_V5_2		BIT(4)
-+/* Hardware is V7.0 */
-+#define DSI_PHY_7NM_QUIRK_V7_0		BIT(5)
- 
- struct dsi_pll_config {
- 	bool enable_ssc;
-@@ -128,9 +130,30 @@ static void dsi_pll_calc_dec_frac(struct dsi_pll_7nm *pll, struct dsi_pll_config
- 	dec_multiple = div_u64(pll_freq * multiplier, divider);
- 	dec = div_u64_rem(dec_multiple, multiplier, &frac);
- 
--	if (pll->phy->cfg->quirks & DSI_PHY_7NM_QUIRK_PRE_V4_1)
-+	if (pll->phy->cfg->quirks & DSI_PHY_7NM_QUIRK_PRE_V4_1) {
- 		config->pll_clock_inverters = 0x28;
--	else if ((pll->phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2)) {
-+	} else if ((pll->phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V7_0)) {
-+		if (pll_freq < 163000000ULL)
-+			config->pll_clock_inverters = 0xa0;
-+		else if (pll_freq < 175000000ULL)
-+			config->pll_clock_inverters = 0x20;
-+		else if (pll_freq < 325000000ULL)
-+			config->pll_clock_inverters = 0xa0;
-+		else if (pll_freq < 350000000ULL)
-+			config->pll_clock_inverters = 0x20;
-+		else if (pll_freq < 650000000ULL)
-+			config->pll_clock_inverters = 0xa0;
-+		else if (pll_freq < 700000000ULL)
-+			config->pll_clock_inverters = 0x20;
-+		else if (pll_freq < 1300000000ULL)
-+			config->pll_clock_inverters = 0xa0;
-+		else if (pll_freq < 2500000000ULL)
-+			config->pll_clock_inverters = 0x20;
-+		else if (pll_freq < 4000000000ULL)
-+			config->pll_clock_inverters = 0x00;
-+		else
-+			config->pll_clock_inverters = 0x40;
-+	} else if ((pll->phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2)) {
- 		if (pll_freq <= 1300000000ULL)
- 			config->pll_clock_inverters = 0xa0;
- 		else if (pll_freq <= 2500000000ULL)
-@@ -249,7 +272,8 @@ static void dsi_pll_config_hzindep_reg(struct dsi_pll_7nm *pll)
- 			vco_config_1 = 0x01;
- 	}
- 
--	if ((pll->phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2)) {
-+	if ((pll->phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2) ||
-+	    (pll->phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V7_0)) {
- 		if (pll->vco_current_rate < 1557000000ULL)
- 			vco_config_1 = 0x08;
- 		else
-@@ -624,6 +648,7 @@ static int dsi_7nm_pll_restore_state(struct msm_dsi_phy *phy)
- static int dsi_7nm_set_usecase(struct msm_dsi_phy *phy)
- {
- 	struct dsi_pll_7nm *pll_7nm = to_pll_7nm(phy->vco_hw);
-+	void __iomem *base = phy->base;
- 	u32 data = 0x0;	/* internal PLL */
- 
- 	DBG("DSI PLL%d", pll_7nm->phy->id);
-@@ -633,6 +658,9 @@ static int dsi_7nm_set_usecase(struct msm_dsi_phy *phy)
- 		break;
- 	case MSM_DSI_PHY_MASTER:
- 		pll_7nm->slave = pll_7nm_list[(pll_7nm->phy->id + 1) % DSI_MAX];
-+		/* v7.0: Enable ATB_EN0 and alternate clock output to external phy */
-+		if (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V7_0)
-+			writel(0x07, base + REG_DSI_7nm_PHY_CMN_CTRL_5);
- 		break;
- 	case MSM_DSI_PHY_SLAVE:
- 		data = 0x1; /* external PLL */
-@@ -914,7 +942,8 @@ static int dsi_7nm_phy_enable(struct msm_dsi_phy *phy,
- 
- 	/* Request for REFGEN READY */
- 	if ((phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V4_3) ||
--	    (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2)) {
-+	    (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2) ||
-+	    (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V7_0)) {
- 		writel(0x1, phy->base + REG_DSI_7nm_PHY_CMN_GLBL_DIGTOP_SPARE10);
- 		udelay(500);
- 	}
-@@ -948,7 +977,20 @@ static int dsi_7nm_phy_enable(struct msm_dsi_phy *phy,
- 		lane_ctrl0 = 0x1f;
- 	}
- 
--	if ((phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2)) {
-+	if ((phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V7_0)) {
-+		if (phy->cphy_mode) {
-+			/* TODO: different for second phy */
-+			vreg_ctrl_0 = 0x57;
-+			vreg_ctrl_1 = 0x41;
-+			glbl_rescode_top_ctrl = 0x3d;
-+			glbl_rescode_bot_ctrl = 0x38;
-+		} else {
-+			vreg_ctrl_0 = 0x56;
-+			vreg_ctrl_1 = 0x19;
-+			glbl_rescode_top_ctrl = less_than_1500_mhz ? 0x3c :  0x03;
-+			glbl_rescode_bot_ctrl = less_than_1500_mhz ? 0x38 :  0x3c;
-+		}
-+	} else if ((phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2)) {
- 		if (phy->cphy_mode) {
- 			vreg_ctrl_0 = 0x45;
- 			vreg_ctrl_1 = 0x41;
-@@ -1010,6 +1052,7 @@ static int dsi_7nm_phy_enable(struct msm_dsi_phy *phy,
- 
- 	/* program CMN_CTRL_4 for minor_ver 2 chipsets*/
- 	if ((phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2) ||
-+	    (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V7_0) ||
- 	    (readl(base + REG_DSI_7nm_PHY_CMN_REVISION_ID0) & (0xf0)) == 0x20)
- 		writel(0x04, base + REG_DSI_7nm_PHY_CMN_CTRL_4);
- 
-@@ -1124,7 +1167,8 @@ static void dsi_7nm_phy_disable(struct msm_dsi_phy *phy)
- 
- 	/* Turn off REFGEN Vote */
- 	if ((phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V4_3) ||
--	    (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2)) {
-+	    (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2) ||
-+	    (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V7_0)) {
- 		writel(0x0, base + REG_DSI_7nm_PHY_CMN_GLBL_DIGTOP_SPARE10);
- 		wmb();
- 		/* Delay to ensure HW removes vote before PHY shut down */
-@@ -1341,3 +1385,26 @@ const struct msm_dsi_phy_cfg dsi_phy_4nm_8650_cfgs = {
- 	.num_dsi_phy = 2,
- 	.quirks = DSI_PHY_7NM_QUIRK_V5_2,
- };
-+
-+const struct msm_dsi_phy_cfg dsi_phy_3nm_8750_cfgs = {
-+	.has_phy_lane = true,
-+	.regulator_data = dsi_phy_7nm_98000uA_regulators,
-+	.num_regulators = ARRAY_SIZE(dsi_phy_7nm_98000uA_regulators),
-+	.ops = {
-+		.enable = dsi_7nm_phy_enable,
-+		.disable = dsi_7nm_phy_disable,
-+		.pll_init = dsi_pll_7nm_init,
-+		.save_pll_state = dsi_7nm_pll_save_state,
-+		.restore_pll_state = dsi_7nm_pll_restore_state,
-+		.set_continuous_clock = dsi_7nm_set_continuous_clock,
++static const struct msm_dsi_config sm8750_dsi_cfg = {
++	.io_offset = DSI_6G_REG_SHIFT,
++	.regulator_data = sm8650_dsi_regulators,
++	.num_regulators = ARRAY_SIZE(sm8650_dsi_regulators),
++	.bus_clk_names = dsi_v2_4_clk_names,
++	.num_bus_clks = ARRAY_SIZE(dsi_v2_4_clk_names),
++	.io_start = {
++		{ 0xae94000, 0xae96000 },
 +	},
-+	.min_pll_rate = 600000000UL,
-+#ifdef CONFIG_64BIT
-+	.max_pll_rate = 5000000000UL,
-+#else
-+	.max_pll_rate = ULONG_MAX,
-+#endif
-+	.io_start = { 0xae95000, 0xae97000 },
-+	.num_dsi_phy = 2,
-+	.quirks = DSI_PHY_7NM_QUIRK_V7_0,
 +};
-diff --git a/drivers/gpu/drm/msm/registers/display/dsi_phy_7nm.xml b/drivers/gpu/drm/msm/registers/display/dsi_phy_7nm.xml
-index d2c8c46bb04159da6e539bfe80a4b5dc9ffdf367..d62411961f5673e0a7a37b90cfc99962de83659e 100644
---- a/drivers/gpu/drm/msm/registers/display/dsi_phy_7nm.xml
-+++ b/drivers/gpu/drm/msm/registers/display/dsi_phy_7nm.xml
-@@ -26,6 +26,7 @@ xsi:schemaLocation="https://gitlab.freedesktop.org/freedreno/ rules-fd.xsd">
- 	<reg32 offset="0x00028" name="CTRL_1"/>
- 	<reg32 offset="0x0002c" name="CTRL_2"/>
- 	<reg32 offset="0x00030" name="CTRL_3"/>
-+	<reg32 offset="0x001b0" name="CTRL_5"/>
- 	<reg32 offset="0x00034" name="LANE_CFG0"/>
- 	<reg32 offset="0x00038" name="LANE_CFG1"/>
- 	<reg32 offset="0x0003c" name="PLL_CNTRL"/>
-@@ -191,11 +192,24 @@ xsi:schemaLocation="https://gitlab.freedesktop.org/freedreno/ rules-fd.xsd">
- 	<reg32 offset="0x01b0" name="COMMON_STATUS_ONE"/>
- 	<reg32 offset="0x01b4" name="COMMON_STATUS_TWO"/>
- 	<reg32 offset="0x01b8" name="BAND_SEL_CAL"/>
-+	<!--
-+	Starting from SM8750, offset moved from 0x01bc to 0x01cc, however
-+	we keep only one register map.  That's not a problem, so far,
-+        because this register is not used.  The register map should be split
-+        once it is going to be used.  Comment out the code to prevent
-+	any misuse due to the change in the offset.
- 	<reg32 offset="0x01bc" name="ICODE_ACCUM_STATUS_LOW"/>
-+	<reg32 offset="0x01cc" name="ICODE_ACCUM_STATUS_LOW"/>
-+	-->
- 	<reg32 offset="0x01c0" name="ICODE_ACCUM_STATUS_HIGH"/>
- 	<reg32 offset="0x01c4" name="FD_OUT_LOW"/>
- 	<reg32 offset="0x01c8" name="FD_OUT_HIGH"/>
-+	<!--
-+	Starting from SM8750, offset moved from 0x01cc to 0x01bc, however
-+	we keep only one register map.  See above comment.
- 	<reg32 offset="0x01cc" name="ALOG_OBSV_BUS_STATUS_1"/>
-+	<reg32 offset="0x01bc" name="ALOG_OBSV_BUS_STATUS_1"/>
-+	-->
- 	<reg32 offset="0x01d0" name="PLL_MISC_CONFIG"/>
- 	<reg32 offset="0x01d4" name="FLL_CONFIG"/>
- 	<reg32 offset="0x01d8" name="FLL_FREQ_ACQ_TIME"/>
++
+ static const struct regulator_bulk_data sc7280_dsi_regulators[] = {
+ 	{ .supply = "vdda", .init_load_uA = 8350 },	/* 1.2 V */
+ 	{ .supply = "refgen" },
+@@ -257,6 +268,18 @@ static const struct msm_dsi_host_cfg_ops msm_dsi_6g_v2_host_ops = {
+ 	.calc_clk_rate = dsi_calc_clk_rate_6g,
+ };
+ 
++static const struct msm_dsi_host_cfg_ops msm_dsi_6g_v2_9_host_ops = {
++	.link_clk_set_rate = dsi_link_clk_set_rate_6g_v2_9,
++	.link_clk_enable = dsi_link_clk_enable_6g,
++	.link_clk_disable = dsi_link_clk_disable_6g,
++	.clk_init_ver = dsi_clk_init_6g_v2_9,
++	.tx_buf_alloc = dsi_tx_buf_alloc_6g,
++	.tx_buf_get = dsi_tx_buf_get_6g,
++	.tx_buf_put = dsi_tx_buf_put_6g,
++	.dma_base_get = dsi_dma_base_get_6g,
++	.calc_clk_rate = dsi_calc_clk_rate_6g,
++};
++
+ static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
+ 	{MSM_DSI_VER_MAJOR_V2, MSM_DSI_V2_VER_MINOR_8064,
+ 		&apq8064_dsi_cfg, &msm_dsi_v2_host_ops},
+@@ -300,6 +323,8 @@ static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
+ 		&sm8550_dsi_cfg, &msm_dsi_6g_v2_host_ops},
+ 	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_8_0,
+ 		&sm8650_dsi_cfg, &msm_dsi_6g_v2_host_ops},
++	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_9_0,
++		&sm8750_dsi_cfg, &msm_dsi_6g_v2_9_host_ops},
+ };
+ 
+ const struct msm_dsi_cfg_handler *msm_dsi_cfg_get(u32 major, u32 minor)
+diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.h b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+index 120cb65164c1ba1deb9acb513e5f073bd560c496..859c279afbb0377d16f8406f3e6b083640aff5a1 100644
+--- a/drivers/gpu/drm/msm/dsi/dsi_cfg.h
++++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+@@ -30,6 +30,7 @@
+ #define MSM_DSI_6G_VER_MINOR_V2_6_0	0x20060000
+ #define MSM_DSI_6G_VER_MINOR_V2_7_0	0x20070000
+ #define MSM_DSI_6G_VER_MINOR_V2_8_0	0x20080000
++#define MSM_DSI_6G_VER_MINOR_V2_9_0	0x20090000
+ 
+ #define MSM_DSI_V2_VER_MINOR_8064	0x0
+ 
+diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
+index 2218d4f0c5130a0b13f428e89aa30ba2921da572..ced28ee61eedc0a82da9f1d0792f17ee2a5538c4 100644
+--- a/drivers/gpu/drm/msm/dsi/dsi_host.c
++++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
+@@ -119,6 +119,15 @@ struct msm_dsi_host {
+ 	struct clk *pixel_clk;
+ 	struct clk *byte_intf_clk;
+ 
++	/*
++	 * Clocks which needs to be properly parented between DISPCC and DSI PHY
++	 * PLL:
++	 */
++	struct clk *byte_src_clk;
++	struct clk *pixel_src_clk;
++	struct clk *dsi_pll_byte_clk;
++	struct clk *dsi_pll_pixel_clk;
++
+ 	unsigned long byte_clk_rate;
+ 	unsigned long byte_intf_clk_rate;
+ 	unsigned long pixel_clk_rate;
+@@ -269,6 +278,38 @@ int dsi_clk_init_6g_v2(struct msm_dsi_host *msm_host)
+ 	return ret;
+ }
+ 
++int dsi_clk_init_6g_v2_9(struct msm_dsi_host *msm_host)
++{
++	struct device *dev = &msm_host->pdev->dev;
++	int ret;
++
++	ret = dsi_clk_init_6g_v2(msm_host);
++	if (ret)
++		return ret;
++
++	msm_host->byte_src_clk = devm_clk_get(dev, "byte_src");
++	if (IS_ERR(msm_host->byte_src_clk))
++		return dev_err_probe(dev, PTR_ERR(msm_host->byte_src_clk),
++				     "can't get byte_src clock\n");
++
++	msm_host->dsi_pll_byte_clk = devm_clk_get(dev, "dsi_pll_byte");
++	if (IS_ERR(msm_host->dsi_pll_byte_clk))
++		return dev_err_probe(dev, PTR_ERR(msm_host->dsi_pll_byte_clk),
++				     "can't get dsi_pll_byte clock\n");
++
++	msm_host->pixel_src_clk = devm_clk_get(dev, "pixel_src");
++	if (IS_ERR(msm_host->pixel_src_clk))
++		return dev_err_probe(dev, PTR_ERR(msm_host->pixel_src_clk),
++				     "can't get pixel_src clock\n");
++
++	msm_host->dsi_pll_pixel_clk = devm_clk_get(dev, "dsi_pll_pixel");
++	if (IS_ERR(msm_host->dsi_pll_pixel_clk))
++		return dev_err_probe(dev, PTR_ERR(msm_host->dsi_pll_pixel_clk),
++				     "can't get dsi_pll_pixel clock\n");
++
++	return 0;
++}
++
+ static int dsi_clk_init(struct msm_dsi_host *msm_host)
+ {
+ 	struct platform_device *pdev = msm_host->pdev;
+@@ -370,6 +411,45 @@ int dsi_link_clk_set_rate_6g(struct msm_dsi_host *msm_host)
+ 	return 0;
+ }
+ 
++int dsi_link_clk_set_rate_6g_v2_9(struct msm_dsi_host *msm_host)
++{
++	struct device *dev = &msm_host->pdev->dev;
++	int ret;
++
++	/*
++	 * DSI PHY PLLs have to be enabled to allow reparenting to them and
++	 * setting the rates of pixel/byte clocks.
++	 */
++	ret = clk_prepare_enable(msm_host->dsi_pll_byte_clk);
++	if (ret) {
++		dev_err(dev, "Failed to enable dsi_pll_byte: %d\n", ret);
++		return ret;
++	}
++
++	ret = clk_prepare_enable(msm_host->dsi_pll_pixel_clk);
++	if (ret) {
++		dev_err(dev, "Failed to enable dsi_pll_byte: %d\n", ret);
++		goto out_disable_byte_clk;
++	}
++
++	ret = clk_set_parent(msm_host->byte_src_clk, msm_host->dsi_pll_byte_clk);
++	if (ret)
++		dev_err(dev, "Failed to parent byte_src -> dsi_pll_byte: %d\n", ret);
++
++	ret = clk_set_parent(msm_host->pixel_src_clk, msm_host->dsi_pll_pixel_clk);
++	if (ret)
++		dev_err(dev, "Failed to parent pixel_src -> dsi_pll_pixel: %d\n", ret);
++
++	ret = dsi_link_clk_set_rate_6g(msm_host);
++
++	clk_disable_unprepare(msm_host->dsi_pll_pixel_clk);
++
++out_disable_byte_clk:
++	clk_disable_unprepare(msm_host->dsi_pll_byte_clk);
++
++	return ret;
++}
++
+ int dsi_link_clk_enable_6g(struct msm_dsi_host *msm_host)
+ {
+ 	int ret;
 
 -- 
 2.43.0
