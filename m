@@ -1,135 +1,80 @@
-Return-Path: <devicetree+bounces-147325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3D10A37F53
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 11:06:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEF1BA37F6E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 11:09:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D06C3A7726
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:05:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 070BE7A4C84
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D639216E08;
-	Mon, 17 Feb 2025 10:05:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47A45218AD2;
+	Mon, 17 Feb 2025 10:07:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="C9XXRLqq"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="hORx4vwo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030F515278E;
-	Mon, 17 Feb 2025 10:05:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2382521764B;
+	Mon, 17 Feb 2025 10:06:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739786724; cv=none; b=OvLKD9wnZ9hqPAyAtjaqS0orqj8DpeYqKY/pjNR9AcA/mpo0wAjliftF6SLRxYtSXV53rdwIZK5hO8cy+d3lUOCuFExVPNqbvfqRLnXYNO4hLcnpSHiW1MJSlWXGYWVSt9g1yKOn6WAq5eqTCBP6RzEJZRpw6nVaRj4p/TBmkCY=
+	t=1739786820; cv=none; b=M4GY88sbHTwq35MuFgBmuYaVzxst/ANp0WKzLrLDsmQKx6xkNPlbIgsZsDuLPnug33YII8Zz32vn6DL8BbEiPccrG75q9PQezd/teC7tGyGYidWl57n25CwtKJkCTzWYMWMZUmfD4Kv1gAzcbSQ2931QR0mhOEx8M6b5H/gaky4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739786724; c=relaxed/simple;
-	bh=MbLGiFPw0BviblpRBDxgF45OB1YB6WtJVJ4j6noJOlg=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PrWp7Mr2AIO4DtOrzToADJif5CUBP0pp0Yc2WPX2l66LyQwRhpeXnUQNu3i/yJ4zawber3TVUd4fiwEhTBsiEDYGyoAqh8UyrlNBK1UJlsd6zTVR1wdMREhFQsfF8nUcspVvML4rtlr74IxXoC+gDD7DoWD79mZf+G1l4xsDgL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=C9XXRLqq; arc=none smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51H60KGZ016956;
-	Mon, 17 Feb 2025 04:05:07 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=PODMain02222019; bh=+AKz3PxkgrQ2fR1liQ
-	UtFRny2oU0WB6PMxdh8i/jLek=; b=C9XXRLqqp2Jwo4Aut2lQW7qSFH31tI7qhr
-	1DNmD7QpmjD6JmW7jAHQyrblVMgftZUvBgDFim0YvMtUxeyxeXQzJ+kkFFASqs8f
-	93PJcJh7a3FYx+zl5Hs20KeTWBJbWl25OzCVSOLk9TE2O+YxlVK3MLQssm+AAWvW
-	7PfeQ3H+HYc4R2EZKwe5zGTwodhJBfUNfszBz3ug3XBWu8q8jc+w5Vgn/kDoIp9c
-	xaZzHmHvzOjPNsyiHAaRDX/R3bDJTgLK7yU+VVDLOpqz10ORynm2yIrsw7tunWLN
-	HpH+ZIWXgnKNFSXIncag7UcWKAbaz0nZW7KcHQ4Bjwb4PO7zyw8Q==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 44ts75uj7c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Feb 2025 04:05:07 -0600 (CST)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Mon, 17 Feb
- 2025 10:05:05 +0000
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
- 15.2.1544.14 via Frontend Transport; Mon, 17 Feb 2025 10:05:05 +0000
-Received: from opensource.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 15098822561;
-	Mon, 17 Feb 2025 10:05:05 +0000 (UTC)
-Date: Mon, 17 Feb 2025 10:05:04 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: Francesco Dolcini <francesco@dolcini.it>
-CC: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        <patches@opensource.cirrus.com>,
-        Ernest Van Hoecke
-	<ernest.vanhoecke@toradex.com>,
-        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Francesco
- Dolcini" <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v1 3/5] ASoC: dt-bindings: wm8904: Add DMIC, GPIO, MIC
- and EQ support
-Message-ID: <Z7MJ0IlOSAd4YdCd@opensource.cirrus.com>
-References: <20250206163152.423199-1-francesco@dolcini.it>
- <20250206163152.423199-4-francesco@dolcini.it>
+	s=arc-20240116; t=1739786820; c=relaxed/simple;
+	bh=DORebK+rJAkcdpfoUg2yLd6mXT11QhnNS8Ys58jtV1Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rqbYA9v5vfb7bK7qwXaEYg34rDF2Gja95Z61qTmTh5dsFS9woup/EUpCQ1O/krR22JZm4IvN+ukziz/7Ui2o23l0c39VhNbxil0fjnA1E1z4ikaeUbFRHdk5ZjB7fhSxJgRYLZPwWzIQv+/B3OeVdL/N/Bg+l4k8mbYytqEKCds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=hORx4vwo; arc=none smtp.client-ip=1.95.21.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=jLolwAPvGVxT6aAEjL3uBdU5olsoXzQXTlC8GliVIF4=;
+	b=hORx4vwoIpdqKgJlUC3/ma9uoQDd0rMVBbSndCHQr2X9D+MakWX6BD+LBIbW8G
+	P4qnO8OdzRgydsARR56PTkD5kxBOVFq5mGG/cgs1UwQSkxXxYmCopfxETjCOX4ye
+	2w4He0t2ffaNutgVbo7wr8qS/S5RsouKfSUv5uOX9mu/M=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgAHTzUQCrNn4KomCQ--.17144S3;
+	Mon, 17 Feb 2025 18:06:10 +0800 (CST)
+Date: Mon, 17 Feb 2025 18:06:08 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Stefan Wahren <wahrenst@gmx.net>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v11 2/3] dt-bindings: arm: Document the btt3 i.MX28 based
+ board
+Message-ID: <Z7MKEBkiBatFl54o@dragon>
+References: <20241107085705.490940-1-lukma@denx.de>
+ <20241107085705.490940-2-lukma@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250206163152.423199-4-francesco@dolcini.it>
-X-Proofpoint-GUID: 4SUv7R2l17ptoWHijpFi3Q4U62P0TeG7
-X-Authority-Analysis: v=2.4 cv=fepXy1QF c=1 sm=1 tr=0 ts=67b309d3 cx=c_pps a=uGhh+3tQvKmCLpEUO+DX4w==:117 a=uGhh+3tQvKmCLpEUO+DX4w==:17 a=kj9zAlcOel0A:10 a=T2h4t0Lz3GQA:10 a=w1d2syhTAAAA:8 a=m8ToADvmAAAA:8 a=kPAxZCdUXx29zqvt4jMA:9 a=CjuIK1q_8ugA:10
- a=YXXWInSmI4Sqt1AkVdoW:22 a=kCrBFHLFDAq2jDEeoMj9:22
-X-Proofpoint-ORIG-GUID: 4SUv7R2l17ptoWHijpFi3Q4U62P0TeG7
-X-Proofpoint-Spam-Reason: safe
+In-Reply-To: <20241107085705.490940-2-lukma@denx.de>
+X-CM-TRANSID:Mc8vCgAHTzUQCrNn4KomCQ--.17144S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU4Xo2UUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiERn2ZWey2VbYUgAAsL
 
-On Thu, Feb 06, 2025 at 05:31:50PM +0100, Francesco Dolcini wrote:
-> From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
+On Thu, Nov 07, 2024 at 09:57:04AM +0100, Lukasz Majewski wrote:
+> The imx287 based btt3 board is very similar to xea in terms of used SOM
+> module.
 > 
-> Add two properties to select the IN1L/DMICDAT1 and IN2R/DMICDAT2
-> functionality:
-> - wlf,in1l-as-dmicdat1
-> - wlf,in1r-as-dmicdat2
-> 
-> Add a property to describe the GPIO configuration registers, that can be
-> used to set the four multifunction pins:
-> - wlf,gpio-cfg
-> 
-> Add a property to describe the mic bias control registers:
-> - wlf,mic-cfg
-> 
-> Add two properties to describe the Dynamic Range Controller (DRC),
-> allowing multiple named configurations where each config sets the 4 DRC
-> registers (R40-R43):
-> - wlf,drc-cfg-regs
-> - wlf,drc-cfg-names
-> 
-> Add three properties to describe the equalizer (ReTune Mobile), allowing
-> multiple named configurations (associated with a samplerate) that set
-> the 24 (R134-R157) EQ registers:
-> - wlf,retune-mobile-cfg-regs
-> - wlf,retune-mobile-cfg-names
-> - wlf,retune-mobile-cfg-rates
-> 
-> Datasheet: https://statics.cirrus.com/pubs/proDatasheet/WM8904_Rev4.1.pdf
-> Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> ---
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+Applied 2/3 and 3/3, thanks!
 
-Thanks,
-Charles
 
