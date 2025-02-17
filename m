@@ -1,166 +1,133 @@
-Return-Path: <devicetree+bounces-147250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7341A37B30
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 07:10:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F10A9A37B35
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 07:13:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D93E6188DB6E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 06:10:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6ACD188D862
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 06:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8449A18A6A6;
-	Mon, 17 Feb 2025 06:10:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA21518FC79;
+	Mon, 17 Feb 2025 06:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QXSCRwtG"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="cSrwkAd9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0200214A4C6;
-	Mon, 17 Feb 2025 06:10:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E8218DB39;
+	Mon, 17 Feb 2025 06:13:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739772630; cv=none; b=i/e2D1oFMu+5fodtNtsqM2kCbRlgG1bgm73HEWs+Ssibjh+Vdvf5P6Car/M50kXKetmyK6MkslklbTt+o9pmY1pIrgewIegyRayLt0T0Pz233b8VvbEk5ADsBMKgiSrGlt4b3C2jHRiafl+5tx0DeOolq/Jt4BsTT8iaEEqGnK8=
+	t=1739772794; cv=none; b=G3EM+TZIG51sUI3JBFFirHbeZ6TX3tr2DshD4ivaW8U0Oe6kFHiSVMMBYr5pqJWiWgYZLY2QQ2bypgRIDgkrnnDLPjCkFUvPTPDyCtcPuvhPN8wMB5FAQDjRvSlxUAR3w3j4gIOe0DrS4Vf2Iv4ECLD+wzEzAuiEcrdiIIRPt+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739772630; c=relaxed/simple;
-	bh=CrIuLPMpgJln1b65h2U3ovn7OZsssqG71Lr6yC+n20s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=NKRKT3z2RNEHzPC3PED0ZXTwVrc/eSiaZRglaBR66Mi/vaYfft86vMLhClaEhQ3ix7VNgF2RIDq0kfUbjSDxgzBmybeAn1fRDRy4WfRsPig9UavFF3mGvcK9X0tqNpaDrR4KZ9ybfgWSsOHyNs01fZXg4QFlEyVznSD8jIAP4zA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QXSCRwtG; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-21c2f1b610dso100505965ad.0;
-        Sun, 16 Feb 2025 22:10:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739772628; x=1740377428; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4pUbnlIaFpXwj2FnC9KQKdRLGokSGMi945pdWEyQAOU=;
-        b=QXSCRwtGNj1LOhGIQJCHjoFQIRb5KvUyT4XKbC5d2uU8RnSJsjaxWiY5A/Ay4qTkqs
-         /CED0WQZ9Gz8XdNnSYp/FbiCi43gj70LqJgmzXftXiVFowRJ4SU6E8wsXRo6oOiyWKNP
-         13NxSxBuSqCIOSmSEtP8NSxNmj+ucwlDC2ZtqoJAtX2E+sJDgqhZE5cTCN76lMXJPusM
-         qEW6vsms4wM/KLmss86v7m48pMiEyOPv92UYS5rt42QrIOmLOsG2fSY6awXpv64t1s9l
-         1OfrtyqZ9h0J4D0oTrQ2JbCzumGsnK9TDRqW5DV0HmiiMGvGAGwPdzk6n6oT8hvHmN49
-         jG2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739772628; x=1740377428;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4pUbnlIaFpXwj2FnC9KQKdRLGokSGMi945pdWEyQAOU=;
-        b=Y7/q+t0sPb4OlDAIFGR6kehzDxtlT9624MbHrb4EXgX5tgbBJXzxBMwi4SgB3XLoff
-         suKJdUxRFTbeln3OLQP6sicO9mfZG0CRZuo0YLt7VopEFPpBXsdycdKe+2SKYuaUu+Dz
-         Vi7Io5saCJyT44lzOd/Q9d1+89DPLPxze/ORui1+72UiDixyF/vMmL/yU7RzHNec/xjZ
-         oaBe9ujKcozTJMHvTN/yn7f9aVHeZTD2l0mTRiZqxoK7lH6Fi3JCePl3jbwhaTHcVtqu
-         7ia46tVJ9XXuS0JjNQTkRHe/3M0r5a8tCixukiEJB2/t7uHf4QpEqxm+y4ErPePaQ0Ic
-         oS/g==
-X-Forwarded-Encrypted: i=1; AJvYcCU5XR8rdjYeH/KNti6yL660N2Gq5nI7OCpEYCHojyNKbaRzVe4oux0jeWDMStQ+p760jogQNmuAQtXuTmcN@vger.kernel.org, AJvYcCU8JkEz+V+6JJC5oeU7jY19fr6s5o/SR28J3zUUHDFs+mhqV0kdt9BHJFOvD5aV9Q8VhelZ+3as8T17@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxwa4seCD3wwbAK1XTcMA7W5ZyEdSf+vcV8Fa/mMP7T71lEU9x3
-	tBwE9NFwAo8F7LSw71pnqZkHc1sW2yrtMR+49oAttsLQ9dCRfjY0
-X-Gm-Gg: ASbGnctEkGabofdSXi1Sy6p668UflvAJHlNZLmLqI0qXibDnsT0WrDb8SB4hRihqvIY
-	0c2JFGGcErjJ2uYeIDC+IZyFUnE0t6IYSli2CI8e9ox2LNAamM2E2yOKkQhrRuY8LuD7hs5JrFt
-	zeZvPo1G9/Bj/Hhjtl+/NoVZRieCSymqcJZ5Mg9fHYbSy3m4B8K1ZwVLitN8L+3CWSCIck5ozPf
-	4MCsbzqk0/j01OwTmppRoTMNh100uCI+kwWzWGa9usiEHZbgv56ydVVRqzSmShR8jxO6pfVhbSz
-	p14U5WOQU9eQLlWnvQ==
-X-Google-Smtp-Source: AGHT+IEP/BxIfU7rsnxdSBvVts0xAblW8C+YTQavZsFPW0gEu8GetnOdrXN3b4iJF+M3Wd3LdxRhGw==
-X-Received: by 2002:a17:903:240b:b0:216:3c36:69a7 with SMTP id d9443c01a7336-221040bdbefmr126914955ad.45.1739772628094;
-        Sun, 16 Feb 2025 22:10:28 -0800 (PST)
-Received: from [127.0.1.1] ([59.188.211.160])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-220d559614dsm64411795ad.256.2025.02.16.22.10.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Feb 2025 22:10:27 -0800 (PST)
-From: Nick Chan <towinchenmi@gmail.com>
-Date: Mon, 17 Feb 2025 14:10:05 +0800
-Subject: [PATCH asahi-soc/dt] arm64: dts: apple: t7000: Add missing CPU
- p-state 7 for J96 and J97
+	s=arc-20240116; t=1739772794; c=relaxed/simple;
+	bh=HHMbgpNeEzDZ7ORYxSAbQ1Gijr8bxwEMUpfHHov6srE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=V0xS62j67VzTuIPvkdWadAvDwJOsquRh6sk594xRQ0GCIExRba7mMKePL9qb2l0MdIgbhYe/BKTElD3anEGMVMI+N0lc7lXr+sLbR7+fd7tXRDk5hqFsFz7HzwbzOCzfZSzyu6/8lnTPp286J3xdrRljm6A8eS3ejmDCrLKrVxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=cSrwkAd9; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 9029C25B74;
+	Mon, 17 Feb 2025 07:13:03 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id IRIx5wKWMOLU; Mon, 17 Feb 2025 07:13:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1739772782; bh=HHMbgpNeEzDZ7ORYxSAbQ1Gijr8bxwEMUpfHHov6srE=;
+	h=From:To:Cc:Subject:Date;
+	b=cSrwkAd9nQ9/f7hytK2sLC/Yq52BOidLYDL4/zjPakiRnY+Ko8IGseGBqzrEWGTmg
+	 /YubN+MdiNjAsYaRpDlTNFxP4MPkMrbAZ8+hGVCxrKh/RS5SX1uB2kihn2WLd9eMB6
+	 wRzYsY+PSPRlkSQngYnlp0QbahuNvqgQdJY4vMx3TzIFVQq6LtQSYq7wR5X5tLZy8N
+	 v7OyD+nf0xfigG1RXhlSXn3w/aeB5nPgC0CuJWOW23IGj3O3D1QAhfo8PHDrLfMk2r
+	 8YrzORKjnAPpk1ukkWaRWzcHueLFzFaoyvGcWTI8QHG4nyzCLrhZlWmOuwzVBHVAWZ
+	 2z03ghVdwzV/A==
+From: Yao Zi <ziyao@disroot.org>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Yao Zi <ziyao@disroot.org>
+Subject: [PATCH v3 0/5] Support clock and reset unit of Rockchip RK3528
+Date: Mon, 17 Feb 2025 06:11:41 +0000
+Message-ID: <20250217061142.38480-5-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250217-mini4-cpufreq-v1-1-8974e90dd806@gmail.com>
-X-B4-Tracking: v=1; b=H4sIALzSsmcC/x3MOw6EMAwA0asg12tBwmdZroIoosQBFxsgBoSEu
- DsR5StmLhCKTAJddkGkg4XnkKA+GdjJhJGQXTLoQteFVl/8c+AK7bL7SCt611j1K6umVi2kZon
- k+Xx/PRgxE6PMNncbDPf9ABnQ8cJtAAAA
-X-Change-ID: 20250217-mini4-cpufreq-fd6c19346518
-To: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Neal Gompa <neal@gompa.dev>, 
- Nick Chan <towinchenmi@gmail.com>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1694; i=towinchenmi@gmail.com;
- h=from:subject:message-id; bh=CrIuLPMpgJln1b65h2U3ovn7OZsssqG71Lr6yC+n20s=;
- b=owEBbQKS/ZANAwAIAQHKCLemxQgkAcsmYgBnstLQi0lqAMVlCeQaVyeJCczo/BDvZTB7TtJJL
- U0OzcAix9GJAjMEAAEIAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCZ7LS0AAKCRABygi3psUI
- JK6LD/wLOjw9QUSMfzkPdvScw4BayFO1s3XlFg9mn7p2X3CgI+q65LpwMpolEcUK+tGk5PI80fU
- 5qzO3YX2nj5octVIGyiZOGlu4WFugsfVqC625tzy4PjSAG7kriuVdkG6dE583nlIRGvECaTyB3U
- UP1je8BCtMVGA05El+/mAdq5n9ZYpmlJz6to+OeWWq+230qovTrKYnreAYjgV2l5zLqQb8lUH+1
- 8ljoCwi54eqgOzY7qvs3xlx34VNIxmxx8SBDOWRbuu4oGEJsxlTP41edIGxL82vgjTnmEFVVMTH
- lBNF5ZDc5DlFle5WaaPbkqEUqSdRS57zv6FB6mexeuWXPVd/Q9eR6/Rf/omxdZCob6lKaIz5agT
- 6cQKeu0amy3Mawww1G8mZtiU659aIZHJH3wtpjpi3Ckl3kaM/nktXeIS+z3z6vuAmIacGQzdWvB
- r+NDps/RepRzW/3SCT41riRHDIVWLsAH6C+IfVun4C6fo09ypMAwxSNKnf+MDITvDke/P4RKhrq
- MVIAnUjLsBHZAF5tlK/j1Emomp0Gw/MZUc1Fed5gaaPfey1MGUfK98C4vz7lN8JvsyQa4njF8sq
- 7a4UaCWlDytYMXrZ0MSzDC+UsicQXbF3V2GGWtBhT8k8ukWFTHWRblZ0ezOW9E4pZdyU8HXAS/l
- 6HsT7FIpygtDj7w==
-X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
- fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
+Content-Transfer-Encoding: 8bit
 
-Add missing CPU p-state 7 @ 1512 MHz for iPad mini 4.
+Similar to previous Rockchip SoCs, reset controller on RK3528 shares
+MMIO region with clock controller, combined as CRU. They're represented
+as a single node in dt.
 
-Fixes: e97323994f4a ("arm64: dts: apple: t7000: Add cpufreq nodes")
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
----
-Note, some sources state that Apple TV HD has 1512 MHz A8 too, but that
-is incorrect, the maximum frequency on Apple TV HD as configured by iBoot
-is 1392 MHz.
----
- arch/arm64/boot/dts/apple/t7000-mini4.dtsi | 4 ++++
- arch/arm64/boot/dts/apple/t7000.dtsi       | 6 ++++++
- 2 files changed, 10 insertions(+)
+For the reset controller, only bindings are included in this series
+because it's hard to test the reset controller without support for some
+peripherals (e.g. pinctrl). I'd like to first make dt and basic
+peripherals available, then submit the driver.
 
-diff --git a/arch/arm64/boot/dts/apple/t7000-mini4.dtsi b/arch/arm64/boot/dts/apple/t7000-mini4.dtsi
-index 6da15d15601bcd553d6d0e3fda93df4685b57ee1..cc235c5a0c438f3f07ce5318a75dd928615b7818 100644
---- a/arch/arm64/boot/dts/apple/t7000-mini4.dtsi
-+++ b/arch/arm64/boot/dts/apple/t7000-mini4.dtsi
-@@ -57,3 +57,7 @@ &framebuffer0 {
- &typhoon_opp06 {
- 	status = "okay";
- };
-+
-+&typhoon_opp07 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/apple/t7000.dtsi b/arch/arm64/boot/dts/apple/t7000.dtsi
-index d4b479ccfe8c9309b8de6c23f1e90000ad287992..32cac8c30e62d657079dbf32aece8af0fd9cef38 100644
---- a/arch/arm64/boot/dts/apple/t7000.dtsi
-+++ b/arch/arm64/boot/dts/apple/t7000.dtsi
-@@ -84,6 +84,12 @@ typhoon_opp06: opp06 {
- 			clock-latency-ns = <42000>;
- 			status = "disabled"; /* Not available on N102 */
- 		};
-+		typhoon_opp07: opp07 {
-+			opp-hz = /bits/ 64 <1512000000>;
-+			opp-level = <7>;
-+			clock-latency-ns = <49000>;
-+			status = "disabled"; /* J96 and J97 only */
-+		};
- 	};
- 
- 	soc {
+This is tested on Radxa E20C board. With some out-of-tree drivers, I've
+successfully brouhgt up UART, pinctrl/gpio and I2C. A clock dump could
+be obtained from [1].
 
----
-base-commit: ca96d759d8d24d90b1726c2cc7c568ff4728bb42
-change-id: 20250217-mini4-cpufreq-fd6c19346518
+[1]: https://gist.github.com/ziyao233/032961d1eebeecb9a41fea2d690e8351
 
-Best regards,
+Changed from v2
+- dt-bindings:
+  - drop redundant assigned-clocks and assigned-clock-rates properties
+  - improve description of input clock gmac0
+- Link to v2: https://lore.kernel.org/all/20250108114605.1960-2-ziyao@disroot.org/
+
+Changed from v1
+- dt-bindings:
+  - relicense binding headers as GPL-2.0-only OR MIT
+  - use gapless integers starting from 0 for binding IDs
+  - make input clocks essential, add corresponding description
+  - rename the input clock that is generated by phy module as "gmac0"
+  - style fixes
+- driver:
+  - format in the common Rockchip driver style
+  - drop initializing code of the reset controller, as it'll not be
+    supported in this series
+- Link to v1: https://lore.kernel.org/linux-rockchip/20241001042401.31903-2-ziyao@disroot.org/
+
+Yao Zi (5):
+  dt-bindings: clock: Document clock and reset unit of RK3528
+  clk: rockchip: Add PLL flag ROCKCHIP_PLL_FIXED_MODE
+  clk: rockchip: Add clock controller driver for RK3528 SoC
+  arm64: dts: rockchip: Add clock generators for RK3528 SoC
+  arm64: dts: rockchip: Add UART clocks for RK3528 SoC
+
+ .../bindings/clock/rockchip,rk3528-cru.yaml   |   64 +
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi      |   68 +-
+ drivers/clk/rockchip/Kconfig                  |    7 +
+ drivers/clk/rockchip/Makefile                 |    1 +
+ drivers/clk/rockchip/clk-pll.c                |   10 +-
+ drivers/clk/rockchip/clk-rk3528.c             | 1114 +++++++++++++++++
+ drivers/clk/rockchip/clk.h                    |   22 +
+ .../dt-bindings/clock/rockchip,rk3528-cru.h   |  453 +++++++
+ .../dt-bindings/reset/rockchip,rk3528-cru.h   |  241 ++++
+ 9 files changed, 1975 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml
+ create mode 100644 drivers/clk/rockchip/clk-rk3528.c
+ create mode 100644 include/dt-bindings/clock/rockchip,rk3528-cru.h
+ create mode 100644 include/dt-bindings/reset/rockchip,rk3528-cru.h
+
 -- 
-Nick Chan <towinchenmi@gmail.com>
+2.48.1
 
 
