@@ -1,422 +1,179 @@
-Return-Path: <devicetree+bounces-147337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70449A38013
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 11:27:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D2B7A38026
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 11:30:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A3291626BB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:24:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 728D5188D512
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:27:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30A39216E14;
-	Mon, 17 Feb 2025 10:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2089216E1C;
+	Mon, 17 Feb 2025 10:27:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ZZd+oiON"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="dXCQZGot"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DECF7213224
-	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 10:24:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 119F3155321;
+	Mon, 17 Feb 2025 10:27:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739787873; cv=none; b=qS0RAnY6bEyQVH5kbV9L4OwO456x8p5DPu4QDBzqZhdIHZZrnpanpwL5nR/hM6IwJQkOYg8R1coUUkfj7a9NLBFRAmeX5MKOx6nYy4VAL5fHoIEOUanIwYvaqvoLeZ6WGLCdo325DdL/0VOQXNDsVywFPbKeFPu5Y+WWsoymrH8=
+	t=1739788055; cv=none; b=E5t+U4J63rVzFNpaVWWLc02qjdoOY1tAlpheG3Sf3F8PqjTLp8FGGI7Jl6ErSWE3RX5JvFXC49hte3dpK1JgzEhsIdkpu28tgGq0e6EFGQrTTZJLr4rtaSAbjurm0bQQXvZfbCLiHK2UXCgbphusS02GXWT3WwDTTnTRaCMSaS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739787873; c=relaxed/simple;
-	bh=Oa/be5s3xggDuaX9fvCMIZruPgSM0aIozNLh1Fs2UjA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L+wV4dJ1YCjrmwVY2eEtpz5B5+gcCAQqWxB8K9RdeeNSuZnNdJzvzkr2d3Ad24ClSgA3+1IP3mZ7BJxv9CtinRUSSf4cy7mpN1UizXrwpFqOufYR9aENmm9vb1T4i0eYMgKcv57n4t3Wz9K8TlSrISaePy5jqZCovWN/kLppqeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ZZd+oiON; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-545fed4642aso1437544e87.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 02:24:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1739787869; x=1740392669; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d1DlyzfZPCWK55pzxX6TJoiWYHgMaXFWIiyI9xAGPgI=;
-        b=ZZd+oiONYVTKkKFeRljDGZh2LIbzVuhJ6z7UwMT0BfmorYqwNRcqRlfX7FRJQzF8PN
-         t4ljcwuyWjqzp6ffPd477pmDdhgmungnKHca7WKxDP0ltz2Xrae3t/q3YLXs6dLsxrsu
-         5AExsZ7yqeQ9MI1YjaGtM9owl+eIjDI0tTZx0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739787869; x=1740392669;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=d1DlyzfZPCWK55pzxX6TJoiWYHgMaXFWIiyI9xAGPgI=;
-        b=UAH7pa/bblDS6aGhX8EIK5JyzziVtuAxnUb7jyoze/o5JOE/eyxuMKi2/pAXqZGZK1
-         7elWrxPZ12k0Yta1NdsvD0uuXoWKrxoz+5tha6YqziGTYoDx5JzBoNQJroYlDIFj0/5I
-         It9pLqBVEqWaOosdBK/kzNWnXb8VKA9cc3fda2gHd1fmHw0gDzZrKkXKXiB53V1ADsny
-         74HiCCnh6p6JnAIeXukiUwKKlOnQyjE2+liq4hc+yqDRVUO5HBcBfWsSlpeWzydutnoU
-         /KFxvKxm2skEPjomdcL9mAta2Hmt+3Vint33tYxAF0fzmZ8SxGpJjNEtSabyMo1Bcpjp
-         DPhA==
-X-Forwarded-Encrypted: i=1; AJvYcCUZpBJfjBsmbe2EYVzKS2tMQ3Femjux/eb6xFiT5MUzDJS5Y2di8x5s5+1MaN71p0IOv0tO+ZJ+E6V0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNQmNX5j59f6NcL0Nao5T7tot/OiGQRb7VQWkOVYRlBhyvJint
-	ign5HWQ+Ks3iEi42K+8ABskcZswqV/3s6PE0ZtQ3RbuV3PTwf9NX1eBs2dW8Sj/MxTkSILZ38OI
-	59zgHMRTf6J0Ep3Ws+BxjfiggzS4lSOM+QSrl
-X-Gm-Gg: ASbGncvQK9uuJTtwUjmB2mza1OuWLLSm/RcVm2xiuZFzpWGfxIrtnuhMSk72D9iLFZA
-	zsrao4HkRJyKI/kbebwBkpqo3T97ZzVU4Gc2GKrp9kztZGzbk4ob4uq9KOoj1VQglU7S9p7l6Jb
-	z2NpvSdQEINNgrQ1iKMJ+BLRvf
-X-Google-Smtp-Source: AGHT+IE3i0Mznvv4AsHVZT8Dj/f1n9k/WLI0IP0WQ84pkRHFqFusZH4zNFJ+0GmwxW5RsHUWiqkpQfCi3IN0/dhZ7xI=
-X-Received: by 2002:a05:6512:1155:b0:545:296e:ac1d with SMTP id
- 2adb3069b0e04-5452fe95f54mr2682853e87.51.1739787868862; Mon, 17 Feb 2025
- 02:24:28 -0800 (PST)
+	s=arc-20240116; t=1739788055; c=relaxed/simple;
+	bh=LAzowDORi3usKijGOODCWDgnUFgIv/2A07scTU4XvEM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=pYZMtLy0ErRpWJh25dnvknOFLOh3Xa4G192J1GLVIDSdcS98w7kntXlXrXbPAmill3x/x2O0HPFMi1dgqyEPx09bNkpN07ea+f4cMC5ZXYYIq7kmHIrm1NzCINLuohrmWImKVH0gZPggDboUdPCsA/BBPfBdKpzOf2LUZNxAZts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=dXCQZGot; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: ca074b0eed1911efaae1fd9735fae912-20250217
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=oTm1fXXyNbEjaSytwTVBGR6jZI+/WfArELCCgciIDnY=;
+	b=dXCQZGot1auTr7crYJkjJ6hCVDw9x2erR2ryM0gffgjZbvG6HBFLhMFmxxTTkEaSJweRvMpzTvI48ynA9+S8f3+r95LjhTGMpqO5juWBVQ7hv64QNBnmBPy/JnxSyotearM9ruD6vx462LYoI7YnUfCIBBuB0iopbPJcY57KZOc=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.46,REQID:92bf289a-c5b0-4bc4-a355-cb7b1ccc92c7,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:60aa074,CLOUDID:f1097afc-7800-43c5-b97b-ddbe32561a5b,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: ca074b0eed1911efaae1fd9735fae912-20250217
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 280833431; Mon, 17 Feb 2025 18:27:29 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Mon, 17 Feb 2025 18:27:27 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.28 via Frontend Transport; Mon, 17 Feb 2025 18:27:27 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>, Will
+ Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	<iommu@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Alexandre Mergnat
+	<amergnat@baylibre.com>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<linux-usb@vger.kernel.org>, <stable@vger.kernel.org>, Chris-qj chen
+	<chris-qj.chen@mediatek.com>
+Subject: [PATCH v6 RESEND] dt-bindings: iommu: mediatek: Fix interrupt count constraint for new SoCs
+Date: Mon, 17 Feb 2025 18:26:52 +0800
+Message-ID: <20250217102652.1858304-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250115063555.32492-1-ot_cathy.xu@mediatek.com>
- <20250115063555.32492-2-ot_cathy.xu@mediatek.com> <nmyxygrya6cpalmirsunvkx32uox3kjxd4l5ggdhjtj7edyizz@yodolm5ktboo>
- <f7ba63c8afcef1d1925d51e35e4b81f0d0e773ff.camel@mediatek.com>
- <d04bc250-2104-4e02-9bf8-5785f4444c8d@kernel.org> <d11076d3eb2f92018fd3e26cae665a47f71ca838.camel@mediatek.com>
- <b212d05d-de3b-41b2-bc48-c6b79ae54a8b@kernel.org> <bec17d1e215a11daa1fdede78c8070c8e1763c72.camel@mediatek.com>
- <e7d49bda-8aaa-4897-8117-ab889fb27be0@collabora.com> <8ca2e369be804697ef71491dfd366cf6afcca9bd.camel@mediatek.com>
- <CAGXv+5EYMM=hn8nKig3iHqD3KhxHVQyteweL-OiSoCV8mD2iew@mail.gmail.com> <81368f21fabb9d6a6ee29bba0542e921b3636016.camel@mediatek.com>
-In-Reply-To: <81368f21fabb9d6a6ee29bba0542e921b3636016.camel@mediatek.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 17 Feb 2025 18:24:17 +0800
-X-Gm-Features: AWEUYZm4KUwGawqhHvCsHclABlWLLfJKFpFZMVEY_E4rBjH-DyVCVrr2frjLpEs
-Message-ID: <CAGXv+5FSj-FY87Zo7EFec87fLHszO7776dZiinYP-iZm+Hry9w@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: mediatek: add support for mt8196
-To: =?UTF-8?B?Q2F0aHkgWHUgKOiuuOWNjuWptyk=?= <ot_cathy.xu@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
-	=?UTF-8?B?TGVpIFh1ZSAo6Jab56OKKQ==?= <Lei.Xue@mediatek.com>, 
-	"krzk@kernel.org" <krzk@kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	=?UTF-8?B?V2VuYmluIE1laSAo5qKF5paH5b2sKQ==?= <Wenbin.Mei@mediatek.com>, 
-	"linus.walleij@linaro.org" <linus.walleij@linaro.org>, 
-	=?UTF-8?B?R3VvZG9uZyBMaXUgKOWImOWbveagiyk=?= <Guodong.Liu@mediatek.com>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"robh@kernel.org" <robh@kernel.org>, "sean.wang@kernel.org" <sean.wang@kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On Mon, Feb 17, 2025 at 5:45=E2=80=AFPM Cathy Xu (=E8=AE=B8=E5=8D=8E=E5=A9=
-=B7) <ot_cathy.xu@mediatek.com> wrote:
->
-> On Tue, 2025-01-21 at 18:03 +0800, Chen-Yu Tsai wrote:
-> > External email : Please do not click links or open attachments until
-> > you have verified the sender or the content.
-> >
-> >
-> > On Tue, Jan 21, 2025 at 5:58=E2=80=AFPM Cathy Xu (=E8=AE=B8=E5=8D=8E=E5=
-=A9=B7) <
-> > ot_cathy.xu@mediatek.com> wrote:
-> > >
-> > > On Mon, 2025-01-20 at 13:42 +0100, AngeloGioacchino Del Regno
-> > > wrote:
-> > > > External email : Please do not click links or open attachments
-> > > > until
-> > > > you have verified the sender or the content.
-> > > >
-> > > >
-> > > > Il 20/01/25 10:17, Cathy Xu (=E8=AE=B8=E5=8D=8E=E5=A9=B7) ha scritt=
-o:
-> > > > > On Thu, 2025-01-16 at 11:20 +0100, Krzysztof Kozlowski wrote:
-> > > > > > External email : Please do not click links or open
-> > > > > > attachments
-> > > > > > until
-> > > > > > you have verified the sender or the content.
-> > > > > >
-> > > > > >
-> > > > > > On 16/01/2025 09:18, Cathy Xu (=E8=AE=B8=E5=8D=8E=E5=A9=B7) wro=
-te:
-> > > > > > > On Thu, 2025-01-16 at 08:28 +0100, Krzysztof Kozlowski
-> > > > > > > wrote:
-> > > > > > > > External email : Please do not click links or open
-> > > > > > > > attachments
-> > > > > > > > until
-> > > > > > > > you have verified the sender or the content.
-> > > > > > > >
-> > > > > > > >
-> > > > > > > > On 16/01/2025 03:20, Cathy Xu (=E8=AE=B8=E5=8D=8E=E5=A9=B7)=
- wrote:
-> > > > > > > > > > > +          bias-pull-down:
-> > > > > > > > > > > +            oneOf:
-> > > > > > > > > > > +              - type: boolean
-> > > > > > > > > > > +              - enum: [100, 101, 102, 103]
-> > > > > > > > > > > +                description: mt8196 pull down
-> > > > > > > > > > > PUPD/R0/R1
-> > > > > > > > > > > type
-> > > > > > > > > > > define value.
-> > > > > > > > > > > +              - enum: [200, 201, 202, 203, 204,
-> > > > > > > > > > > 205,
-> > > > > > > > > > > 206,
-> > > > > > > > > > > 207]
-> > > > > > > > > > > +                description: mt8196 pull down RSEL
-> > > > > > > > > > > type
-> > > > > > > > > > > define
-> > > > > > > > > > > value.
-> > > > > > > > > >
-> > > > > > > > > > Not much improved.
-> > > > > > > > >
-> > > > > > > > >    I have removed the content related to 'resistance
-> > > > > > > > > value', we
-> > > > > > > > > use
-> > > > > > > > > 'RSEL' instead of 'resistance value'.
-> > > >
-> > > > This is wrong.
-> > >
-> > >   Sorry, I think I may not have expressed myself clearly. What I
-> > > meant
-> > > is that the attribute 'mediatek,rsel-resistance-in-si-unit' is not
-> > > supported. In the dts, can write the resistance value, for example:
-> > > bias-pull-up=3D<1000>, but can't use 'mediatek,rsel-resistance-in-si-
-> > > unit
-> > > =3D <xxx>'.
-> >
-> > `mediatek,rsel-resistance-in-si-unit` is supported in
-> > drivers/pinctrl/mediatek/pinctrl-paris.c
-> >
-> > Angelo is requesting that you continue that support and make it
-> > exclusive, i.e. not support the RSEL macro magic numbers, and
-> > _only_ support ohm values, in the device tree.
-> >
-> > ChenYu
->
->   Thank you for your response. Can I understand that in next version, I
-> should remove the RSEL macro magic numbers and add `mediatek,rsel-
-> resistance-in-si-unit`?
+The infra-iommu node in mt8195.dtsi was triggering a CHECK_DTBS error due
+to an excessively long 'interrupts' property. The error message was:
 
-You should remove the RSEL macro magic numbers, and add an option to
-|struct mtk_pin_soc| so that the argument to "bias-pull-up" are always
-treated as values in SI units as if "mediatek,rsel-resistance-in-si-unit"
-was set in the DT.
+  infra-iommu@10315000: interrupts: [[0, 795, 4, 0], [0, 796, 4, 0],
+                     [0, 797, 4, 0], [0, 798, 4, 0], [0, 799, 4, 0]]
+                     is too long
 
-ChenYu
+To address this issue, update the compatbile matching rule for
+'interrupts' property. This change allows flexibility in the number
+of interrupts for new SoCs like MT8195.
+The purpose of these 5 interrupts is also added into description.
 
-> >
-> > > > > > > >
-> > > > > > > > So the value in Ohms was removed? I assume above do not
-> > > > > > > > have
-> > > > > > > > known
-> > > > > > > > value
-> > > > > > > > in Ohms?
-> > > > > > >
-> > > > > > >    Yes, value in Ohns was removed, no code have knowm
-> > > > > > > value.
-> > > > > >
-> > > > > > Does the hardware have known value in Ohms?
-> > > >
-> > > > It does.
-> > > >
-> > > > >
-> > > > >    What do you mean by 'hardware'? When writing to the rsel
-> > > > > register,
-> > > > > the value written is 0-7.
-> > > > >
-> > > >
-> > > > Hardware means "the pin controller of the mt8196 SoC" :-)
-> > > >
-> > > > Anyway.
-> > > >
-> > > > The RSEL registers' function is to select a specific resistance
-> > > > value
-> > > > to
-> > > > pullup/down a pin, or a group of pins.
-> > > >
-> > > > Devicetree bindings require to specify values in known units, so
-> > > > in
-> > > > device tree
-> > > > you *need* to specify the RSEL resistance in Ohms.
-> > > >
-> > > > You cannot specify RSEL register value in device-tree. That's
-> > > > unacceptable.
-> > > >
-> > > > Regards,
-> > > > Angelo
-> > >
-> > >  Yes, I understand what you mean. However, I was referring to
-> > > writing
-> > > the rsel register in the driver, not in dts.
-> > >
-> > > >
-> > > > > >
-> > > > > >
-> > > > > > >
-> > > > > > > >
-> > > > > > > > >
-> > > > > > > > > >
-> > > > > > > > > >
-> > > > > > > > > > > +            description: |
-> > > > > > > > > > > +              For pull down type is normal, it
-> > > > > > > > > > > doesn't
-> > > > > > > > > > > need
-> > > > > > > > > > > add
-> > > > > > > > > > > RSEL & R1R0.
-> > > > > > > > > > > +              For pull down type is PUPD/R0/R1
-> > > > > > > > > > > type,
-> > > > > > > > > > > it
-> > > > > > > > > > > can
-> > > > > > > > > > > add
-> > > > > > > > > > > R1R0 define to
-> > > > > > > > > > > +              set different resistance. It can
-> > > > > > > > > > > support
-> > > > > > > > > > > "MTK_PUPD_SET_R1R0_00" &
-> > > > > > > > > > > +              "MTK_PUPD_SET_R1R0_01" &
-> > > > > > > > > > > "MTK_PUPD_SET_R1R0_10"
-> > > > > > > > > > > &
-> > > > > > > > > > > +              "MTK_PUPD_SET_R1R0_11" define in
-> > > > > > > > > > > mt8196.
-> > > > > > > > > > > +              For pull down type is PD/RSEL, it
-> > > > > > > > > > > can
-> > > > > > > > > > > add
-> > > > > > > > > > > RSEL
-> > > > > > > > > > > define to set
-> > > > > > > > > > > +              different resistance. It can support
-> > > > > > > > > > > +              "MTK_PULL_SET_RSEL_000" &
-> > > > > > > > > > > "MTK_PULL_SET_RSEL_001" &
-> > > > > > > > > > > +              "MTK_PULL_SET_RSEL_010" &
-> > > > > > > > > > > "MTK_PULL_SET_RSEL_011" &
-> > > > > > > > > > > +              "MTK_PULL_SET_RSEL_100" &
-> > > > > > > > > > > "MTK_PULL_SET_RSEL_101" &
-> > > > > > > > > > > +              "MTK_PULL_SET_RSEL_110" &
-> > > > > > > > > > > "MTK_PULL_SET_RSEL_111"
-> > > > > > > > > > > define in
-> > > > > > > > > > > +              mt8196.
-> > > > > > > > > > > diff --git a/include/dt-bindings/pinctrl/mt8196-
-> > > > > > > > > > > pinfunc.h
-> > > > > > > > > > > b/include/dt-bindings/pinctrl/mt8196-pinfunc.h
-> > > > > > > > > > > new file mode 100644
-> > > > > > > > > > > index 000000000000..bf0c8374407c
-> > > > > > > > > > > --- /dev/null
-> > > > > > > > > > > +++ b/include/dt-bindings/pinctrl/mt8196-pinfunc.h
-> > > > > > > > > > > @@ -0,0 +1,1572 @@
-> > > > > > > > > > > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-
-> > > > > > > > > > > Clause
-> > > > > > > > > > > */
-> > > > > > > > > > > +/*
-> > > > > > > > > > > + * Copyright (C) 2025 Mediatek Inc.
-> > > > > > > > > > > + * Author: Guodong Liu <Guodong.Liu@mediatek.com>
-> > > > > > > > > > > + */
-> > > > > > > > > > > +
-> > > > > > > > > > > +#ifndef __MT8196_PINFUNC_H
-> > > > > > > > > > > +#define __MT8196_PINFUNC_H
-> > > > > > > > > > > +
-> > > > > > > > > > > +#include <dt-bindings/pinctrl/mt65xx.h>
-> > > > > > > > > > > +
-> > > > > > > > > > > +#define PINMUX_GPIO0__FUNC_GPIO0 (MTK_PIN_NO(0) |
-> > > > > > > > > > > 0)
-> > > > > > > > > > > +#define PINMUX_GPIO0__FUNC_DMIC1_CLK
-> > > > > > > > > > > (MTK_PIN_NO(0) |
-> > > > > > > > > > > 1)
-> > > > > > > > > > > +#define PINMUX_GPIO0__FUNC_SPI3_A_MO
-> > > > > > > > > > > (MTK_PIN_NO(0) |
-> > > > > > > > > > > 3)
-> > > > > > > > > > > +#define PINMUX_GPIO0__FUNC_FMI2S_B_LRCK
-> > > > > > > > > > > (MTK_PIN_NO(0)
-> > > > > > > > > > > >
-> > > > > > > > > > >
-> > > > > > > > > > > 4)
-> > > > > > > > > > > +#define PINMUX_GPIO0__FUNC_SCP_DMIC1_CLK
-> > > > > > > > > > > (MTK_PIN_NO(0) |
-> > > > > > > > > > > 5)
-> > > > > > > > > > > +#define PINMUX_GPIO0__FUNC_TP_GPIO14_AO
-> > > > > > > > > > > (MTK_PIN_NO(0)
-> > > > > > > > > > > >
-> > > > > > > > > > >
-> > > > > > > > > > > 6)
-> > > > > > > > > >
-> > > > > > > > > > I do not see how you resolved my comment from v1. In
-> > > > > > > > > > v2 I
-> > > > > > > > > > reminded
-> > > > > > > > > > about
-> > > > > > > > > > it, so you responded that yopu will change something,
-> > > > > > > > > > but
-> > > > > > > > > > I
-> > > > > > > > > > do
-> > > > > > > > > > not
-> > > > > > > > > > see
-> > > > > > > > > > any changes.
-> > > > > > > > > >
-> > > > > > > > > > So explain: how did you resolve my comment?
-> > > > > > > > > >
-> > > > > > > > > > These two examples where you claim you will change
-> > > > > > > > > > something,
-> > > > > > > > > > but
-> > > > > > > > > > send
-> > > > > > > > > > the same. I skipped the rest of the patch.
-> > > > > > > > >
-> > > > > > > > >    Thank you for your patient response, here is my
-> > > > > > > > > explanation
-> > > > > > > > > for
-> > > > > > > > > you
-> > > > > > > > > question:
-> > > > > > > > >
-> > > > > > > > >    In v1, I undertand that you meant I didn't sent a
-> > > > > > > > > real
-> > > > > > > > > binding,
-> > > > > > > > > and
-> > > > > > > >
-> > > > > > > >
-> > > > > > > > The comment is under specific lines, so I said these
-> > > > > > > > defines
-> > > > > > > > are
-> > > > > > > > not
-> > > > > > > > a
-> > > > > > > > real binding. You sent them again, but they are still not
-> > > > > > > > bindings,
-> > > > > > > > because they are not used in the driver. Maybe the usage
-> > > > > > > > is
-> > > > > > > > convoluted,
-> > > > > > > > so which part of implementation are these connecting with
-> > > > > > > > DTS?
-> > > > > > > > IOW,
-> > > > > > > > which part of driver relies on the binding?
-> > > > > > >
-> > > > > > >    I got you. This binding define many macros, which will
-> > > > > > > be
-> > > > > > > used
-> > > > > > > for
-> > > > > > > 'pinmux' setting in the DTS. The usage like this:
-> > > > > > >
-> > > > > > >    adsp_uart_pins: adsp-uart-pins {
-> > > > > > >                  pins-tx-rx {
-> > > > > > >                          pinmux =3D
-> > > > > > > <PINMUX_GPIO35__FUNC_O_ADSP_UTXD0>,
-> > > > > > >                                   <PINMUX_GPIO36__FUNC_I1_A
-> > > > > > > DSP_
-> > > > > > > URXD0
-> > > > > > > > ;
-> > > > > > >
-> > > > > > >                  };
-> > > > > > >          };
-> > > > > >
-> > > > > >
-> > > > > > That's DTS, not driver, so not a binding. Drop the header
-> > > > > > from
-> > > > > > bindings.
-> > > > >
-> > > > >    Sorry, I don't quite understand the relationship between
-> > > > > binding
-> > > > > and
-> > > > > driver. Driver will parse this macro to get gpio number and
-> > > > > function.
-> > > > >
->
-> ************* MEDIATEK Confidentiality Notice
->  ********************
-> The information contained in this e-mail message (including any
-> attachments) may be confidential, proprietary, privileged, or otherwise
-> exempt from disclosure under applicable laws. It is intended to be
-> conveyed only to the designated recipient(s). Any use, dissemination,
-> distribution, printing, retaining or copying of this e-mail (including it=
-s
-> attachments) by unintended recipient(s) is strictly prohibited and may
-> be unlawful. If you are not an intended recipient of this e-mail, or beli=
-eve
->
-> that you have received this e-mail in error, please notify the sender
-> immediately (by replying to this e-mail), delete any and all copies of
-> this e-mail (including any attachments) from your system, and do not
-> disclose the content of this e-mail to any other person. Thank you!
+Fixes: bca28426805d ("dt-bindings: iommu: mediatek: Convert IOMMU to DT schema")
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/iommu/mediatek,iommu.yaml        | 28 ++++++++++++++++++-
+ 1 file changed, 27 insertions(+), 1 deletion(-)
+
+Changes for v2:
+ - commit message: re-formatting and add a description of adding 5 interrupts.
+ - add 'description' and 'maxItems: 5' for 'interrupt' property of
+   'mt8195-iommu-infra'
+ - others keeps 'maxItems: 1'
+
+Changes for v3:
+ - Refine the description for 'interrupts' property and fixes the compatible
+   matching rules.
+ - Refine commit message.
+
+Changes for v4:
+  - add missing 'minItems: 5' to 'mediatek,mt8195-iommu-infra'.
+    Thanks the explanation from Conor and Krzysztof. 
+
+Changes for v5:
+  - Repharse the description for interrupts property of MT8195.
+
+Changes for v6:
+  - Remove maxItems for mt8195-iommu-infra.
+  - Add 'Reviewed-by' tag from Rob. Thanks for the review.
+
+diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+index ea6b0f5f24de..eeb39f5acf7e 100644
+--- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
++++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+@@ -96,7 +96,16 @@ properties:
+     maxItems: 1
+ 
+   interrupts:
+-    maxItems: 1
++    description: |
++      Usually, the IOMMU requires only one interrupt.
++
++      The infra IOMMU in MT8195 has five banks: each features one set
++      of APB registers. One for the normal world (set 0), three for the
++      protected world (sets 1-3), and one for the secure world (set 4).
++      and each set has its own interrupt. Therefore, five interrupts
++      are needed.
++    minItems: 1
++    maxItems: 5
+ 
+   clocks:
+     items:
+@@ -210,6 +219,23 @@ allOf:
+       required:
+         - mediatek,larbs
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - mediatek,mt8195-iommu-infra
++
++    then:
++      properties:
++        interrupts:
++          minItems: 5
++
++    else:
++      properties:
++        interrupts:
++          maxItems: 1
++
+ additionalProperties: false
+ 
+ examples:
+-- 
+2.45.2
+
 
