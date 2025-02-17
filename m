@@ -1,59 +1,90 @@
-Return-Path: <devicetree+bounces-147300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55FBA37E83
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:31:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C9E0A37EBE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:37:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60C857A4864
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:30:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67BE47A594A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:32:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E98F215778;
-	Mon, 17 Feb 2025 09:30:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A180217652;
+	Mon, 17 Feb 2025 09:31:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="m/yW/JPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F3F2153D8;
-	Mon, 17 Feb 2025 09:30:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 156D7217647;
+	Mon, 17 Feb 2025 09:31:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739784650; cv=none; b=W+fgzeqXj/N9HleT3eES4GSkobGbbJ2THbW+SH5Z+etAZcCthNdcTG/Kt+11ZXo9GI23hUHSTIS2Dkpwtwy7ldDJsKZVSBmrR4Hj6Z/VFRHCNgE4IbeL8TUsJF52ezujGx458/avTNyNksIy72P7wfL9gGHAXFT7zwB/Cs6oIrg=
+	t=1739784704; cv=none; b=rMmhM38NLQgEq/N+18YGaDH/8vqOp6MXq07D1ZbtdbkbLeSaxUiQOmK7/PoRV+MqRWSjL9EfvAdner8QkOdlj3M9QNEk6Ir+JRIeHidO+cwDV2DY6SQCB7PLv6yn5PzAqnXPJlYM5JfYYm6CJjyo2KSVrBPDcII3NoerZlrDBgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739784650; c=relaxed/simple;
-	bh=aD3vY1slnPKPfhpqd2dAsUosRPb/99diiY0WwJCvQBc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Yf4zI4H9JHb9TU7Z3ckCy39byLd12kCWKhCqdJAVgznuRzrLNv/efqg+D4RsQxB1peYbH0TQHLIG+tHYq7/VoIPCXdk+R/vcRpMZqBkEcckIJaXQygeVgWXsnwzJA3noZ39gJC15LlLSwJrREiKSC5+5D+Z+OcHlJY8uJNUlxqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [223.64.68.156])
-	by gateway (Coremail) with SMTP id _____8CxLGu_AbNn_pZ4AA--.11606S3;
-	Mon, 17 Feb 2025 17:30:39 +0800 (CST)
-Received: from localhost.localdomain (unknown [223.64.68.156])
-	by front1 (Coremail) with SMTP id qMiowMBxLse7AbNnvO4XAA--.26537S3;
-	Mon, 17 Feb 2025 17:30:38 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Juxin Gao <gaojuxin@loongson.cn>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-pwm@vger.kernel.org,
-	Binbin Zhou <zhoubinbin@loongson.cn>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v9 1/2] dt-bindings: pwm: Add Loongson PWM controller
+	s=arc-20240116; t=1739784704; c=relaxed/simple;
+	bh=tYFvJAC+E6lq1I465BOU8f0pSMGntQzDYaPmWQtwSuc=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nXcdG27zuH5QIc8RZC0YbWX3cmCqRx4Qx3AQI6Zccf8nA6HPLr8LldiBamshTVon0+qKiljQjG310Uy0WdVR7c3Nk9NDcmRqqvoK7+oHAz5Hh8hXsWty7MJWUYFNMl011Hgc5X6PpQCvZcCZq5EkadrIW7oH6eemf/5/+us8u6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=m/yW/JPf; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51H02vmu026153;
+	Mon, 17 Feb 2025 09:31:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	FrWpXWtpt+ZULEbiR2Up6sVFlN84+mzhnBc7WKp2O/Q=; b=m/yW/JPf8x3mGRTj
+	v6VXYHcgo/B59IMZ4RIm1kYaFLYVSQaGQkxG4ESFFc5Rpq6gd+A1+TfIcQTj9Mu+
+	lKm/gve0/+/eFmBOAHUhORtphEy5DllVceoGEOMzWVI8T3aipDmmA0hmZQMBsV2p
+	CAbVYs4UoM40HZ27/7SToHW4n7Ew7ifOLKI39Tf0kEdUCWruR8aA4n1f52tKKkYV
+	QmUtKHfFrSV/GM7ZzwoaXjwtVyt+UGA+ENVJUQ/WWl/Swan/+4ETfu/iIH5DzVSh
+	jPUM3Y4ciP/Tq2nqCjwSkgtVmHXGAkrSmAReFhG03TqAxBR2VCAr7m25jTWRP8C6
+	vGyiVA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44ut7sh5tr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Feb 2025 09:31:27 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51H9VQOd024650
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Feb 2025 09:31:26 GMT
+Received: from jiegan-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 17 Feb 2025 01:31:20 -0800
+From: Jie Gan <quic_jiegan@quicinc.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>,
+        "Alexander
+ Shishkin" <alexander.shishkin@linux.intel.com>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao
+	<quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Konrad Dybcio
+	<konrad.dybcio@oss.qualcomm.com>
+Subject: [PATCH v12 7/7] arm64: dts: qcom: sa8775p: Add CTCU and ETR nodes
 Date: Mon, 17 Feb 2025 17:30:24 +0800
-Message-ID: <d6be5236ab4ff5b5fde78004c38d8bced42f2ba2.1739784071.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <cover.1739784071.git.zhoubinbin@loongson.cn>
-References: <cover.1739784071.git.zhoubinbin@loongson.cn>
+Message-ID: <20250217093024.1133096-8-quic_jiegan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250217093024.1133096-1-quic_jiegan@quicinc.com>
+References: <20250217093024.1133096-1-quic_jiegan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,128 +92,209 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowMBxLse7AbNnvO4XAA--.26537S3
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxArW8Aw1fAw4fWr1kWryDArc_yoW5ArWfpF
-	sxC3s2kr10qF17u398Wa48Cr1fZ3s5A3W7KFW7Aw1DKF9xJ3WYqw13KF15Z3y3ur1UXFWU
-	ZF9akr4UKa4UCrcCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r126r13M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v2
-	6F4UJVW0owAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0c
-	Ia020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_
-	WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwI
-	xGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWU
-	JVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4
-	vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IY
-	x2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26c
-	xKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAF
-	wI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jzc_-UUUUU=
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: HJ18KJtG6EEUDCfFcuBVxTDMlPXxl0Qt
+X-Proofpoint-ORIG-GUID: HJ18KJtG6EEUDCfFcuBVxTDMlPXxl0Qt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-17_04,2025-02-13_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
+ clxscore=1015 priorityscore=1501 adultscore=0 spamscore=0 malwarescore=0
+ impostorscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
+ definitions=main-2502170083
 
-Add Loongson PWM controller binding with DT schema format using
-json-schema.
+Add CTCU and ETR nodes in DT to enable related functionalities.
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Huacai Chen <chenhuacai@loongson.cn>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
 ---
- .../bindings/pwm/loongson,ls7a-pwm.yaml       | 66 +++++++++++++++++++
- MAINTAINERS                                   |  6 ++
- 2 files changed, 72 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 153 ++++++++++++++++++++++++++
+ 1 file changed, 153 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml b/Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml
-new file mode 100644
-index 000000000000..46814773e0cc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/loongson,ls7a-pwm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson PWM Controller
-+
-+maintainers:
-+  - Binbin Zhou <zhoubinbin@loongson.cn>
-+
-+description:
-+  The Loongson PWM has one pulse width output signal and one pulse input
-+  signal to be measured.
-+  It can be found on Loongson-2K series cpus and Loongson LS7A bridge chips.
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: loongson,ls7a-pwm
-+      - items:
-+          - enum:
-+              - loongson,ls2k0500-pwm
-+              - loongson,ls2k1000-pwm
-+              - loongson,ls2k2000-pwm
-+          - const: loongson,ls7a-pwm
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  '#pwm-cells':
-+    description:
-+      The first cell must have a value of 0, which specifies the PWM output signal;
-+      The second cell is the period in nanoseconds;
-+      The third cell flag supported by this binding is PWM_POLARITY_INVERTED.
-+    const: 3
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/loongson,ls2k-clk.h>
-+    pwm@1fe22000 {
-+        compatible = "loongson,ls2k1000-pwm", "loongson,ls7a-pwm";
-+        reg = <0x1fe22000 0x10>;
-+        interrupt-parent = <&liointc0>;
-+        interrupts = <24 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&clk LOONGSON2_APB_CLK>;
-+        #pwm-cells = <3>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 896a307fa065..9fcde52aec4b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13616,6 +13616,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
- F:	drivers/i2c/busses/i2c-ls2x.c
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+index 3394ae2d1300..31aa94d2a043 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+@@ -2429,6 +2429,35 @@ crypto: crypto@1dfa000 {
+ 			interconnect-names = "memory";
+ 		};
  
-+LOONGSON PWM DRIVER
-+M:	Binbin Zhou <zhoubinbin@loongson.cn>
-+L:	linux-pwm@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml
++		ctcu@4001000 {
++			compatible = "qcom,sa8775p-ctcu";
++			reg = <0x0 0x04001000 0x0 0x1000>;
 +
- LOONGSON-2 SOC SERIES CLOCK DRIVER
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-clk@vger.kernel.org
++			clocks = <&aoss_qmp>;
++			clock-names = "apb";
++
++			in-ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					ctcu_in0: endpoint {
++						remote-endpoint = <&etr0_out>;
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					ctcu_in1: endpoint {
++						remote-endpoint = <&etr1_out>;
++					};
++				};
++			};
++		};
++
+ 		stm: stm@4002000 {
+ 			compatible = "arm,coresight-stm", "arm,primecell";
+ 			reg = <0x0 0x4002000 0x0 0x1000>,
+@@ -2633,6 +2662,122 @@ qdss_funnel_in1: endpoint {
+ 			};
+ 		};
+ 
++		replicator@4046000 {
++			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
++			reg = <0x0 0x04046000 0x0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			in-ports {
++				port {
++					qdss_rep_in: endpoint {
++						remote-endpoint = <&swao_rep_out0>;
++					};
++				};
++			};
++
++			out-ports {
++				port {
++					qdss_rep_out0: endpoint {
++						remote-endpoint = <&etr_rep_in>;
++					};
++				};
++			};
++		};
++
++		tmc_etr: tmc@4048000 {
++			compatible = "arm,coresight-tmc", "arm,primecell";
++			reg = <0x0 0x04048000 0x0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++			iommus = <&apps_smmu 0x04c0 0x00>;
++
++			arm,scatter-gather;
++
++			in-ports {
++				port {
++					etr0_in: endpoint {
++						remote-endpoint = <&etr_rep_out0>;
++					};
++				};
++			};
++
++			out-ports {
++				port {
++					etr0_out: endpoint {
++						remote-endpoint = <&ctcu_in0>;
++					};
++				};
++			};
++		};
++
++		replicator@404e000 {
++			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
++			reg = <0x0 0x0404e000 0x0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			in-ports {
++				port {
++					etr_rep_in: endpoint {
++						remote-endpoint = <&qdss_rep_out0>;
++					};
++				};
++			};
++
++			out-ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					etr_rep_out0: endpoint {
++						remote-endpoint = <&etr0_in>;
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					etr_rep_out1: endpoint {
++						remote-endpoint = <&etr1_in>;
++					};
++				};
++			};
++		};
++
++		tmc_etr1: tmc@404f000 {
++			compatible = "arm,coresight-tmc", "arm,primecell";
++			reg = <0x0 0x0404f000 0x0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++			iommus = <&apps_smmu 0x04a0 0x40>;
++
++			arm,scatter-gather;
++			arm,buffer-size = <0x400000>;
++
++			in-ports {
++				port {
++					etr1_in: endpoint {
++						remote-endpoint = <&etr_rep_out1>;
++					};
++				};
++			};
++
++			out-ports {
++				port {
++					etr1_out: endpoint {
++						remote-endpoint = <&ctcu_in1>;
++					};
++				};
++			};
++		};
++
+ 		funnel@4b04000 {
+ 			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+ 			reg = <0x0 0x4b04000 0x0 0x1000>;
+@@ -2708,6 +2853,14 @@ out-ports {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 
++				port@0 {
++					reg = <0>;
++
++					swao_rep_out0: endpoint {
++						remote-endpoint = <&qdss_rep_in>;
++					};
++				};
++
+ 				port@1 {
+ 					reg = <1>;
+ 					swao_rep_out1: endpoint {
 -- 
-2.47.1
+2.34.1
 
 
