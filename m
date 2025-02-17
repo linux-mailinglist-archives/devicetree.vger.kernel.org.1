@@ -1,105 +1,98 @@
-Return-Path: <devicetree+bounces-147439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04C18A384B0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:30:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E99CBA384CD
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:38:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B48516413C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:30:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1AD07A323E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C0F4EAFA;
-	Mon, 17 Feb 2025 13:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BB5F21CC6F;
+	Mon, 17 Feb 2025 13:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z4LHnJ1c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DI/U20Sj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDED6216E35;
-	Mon, 17 Feb 2025 13:30:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60FBF21CC63;
+	Mon, 17 Feb 2025 13:38:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739799027; cv=none; b=g493jJ2ecLRu6zN3xsbiuIjIo7T7IZMYtdAiI5jWfzD5jC/qnDOv86dC9Bp/b8QrZvz62H/vAHsJID4ida0vApMafYCMuiuE8e0b3oLrxYmYQlKytRzad0Zlb0cCOxF3yQ7v9pWxnObezsmKXgFxp0Lm7R+bPpa3JMmOd33g3DM=
+	t=1739799507; cv=none; b=dojWh5DcaQqqFQCQqcf8uUIKXNfwrC2VPNxNo6sgHkPSmQaIyWg/E/y0A6FQ/MQcZD8ZdOFylxxNhY0qmhi2Uhg/3K8XMyIutGrTxSmdJSXhVz5lg+g3Mw1Apo3P3MXzk97YtxN4PSaPmo2WOYDEgL7+zq7EsTbMCKAohQ0apg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739799027; c=relaxed/simple;
-	bh=77G+qwzoFLoNAsQ3YZKaFAwVbGfr3rRsvhGhU7TMI/g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WLCuFj47I2ebglJhIBnDFezYl8I4M1KlSEpf7IMiy4HjW7Ph8sizkvCxNFZBN3jDfaqNzGzQ0r8IXGFA5xnSFTk+laJgktgwEF1IHZwh3pPK6Hw3zIwhx5/w8rp9Yv4wd7na57iBmDufFakEKVLCT0D8JdDpUTdMODrzkPK12oA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z4LHnJ1c; arc=none smtp.client-ip=209.85.219.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e5dcc411189so789506276.0;
-        Mon, 17 Feb 2025 05:30:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739799024; x=1740403824; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=77G+qwzoFLoNAsQ3YZKaFAwVbGfr3rRsvhGhU7TMI/g=;
-        b=Z4LHnJ1cC3JOhEYpgCV2iBJQ+xIdZkdmK4uQWmtKzqCRk11oiYFBxqypKKaO8ocXDN
-         ub0wZ3dpH9NmNFKtNGTOb/ADVI8MTpHL8KIALpMWygVZPEF5Z8wWB/Z2bGH10LH8D2LZ
-         mkD5mPAFB3ovjS3vdH8FKzUovJApNd9GxQbG08Fg73mGRjxA7qaE1R7pIOxzfaByFYaM
-         8YNedZNpCCZ0yaY3wp1B0u0cYKuYr8iwU3j12Tlur83a1TvoktO5og0q5ORUPhrBtgOj
-         GmvPEA0oth00q0DXVP8ykL+9PgQKUjyWPTkvUUxsGPU/vVYkQIy/hCiGHhoTI3G7JiqC
-         LFqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739799024; x=1740403824;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=77G+qwzoFLoNAsQ3YZKaFAwVbGfr3rRsvhGhU7TMI/g=;
-        b=H7xbK58Tl0DQtQ2pDa6UriTdX87vHdebZQCJneB8WLejUApvCo1eimG9r+jr/PgonJ
-         EElmjHtj/Zton0AJGWAMz7AZf4AXZGEfxc/EUrqI1hpqaCc7S0zmWWSpaW88rHfwK7Dw
-         XtL9TWcZ/Ar/yhV9/SvHdRSIxDVEo7Qo9te5YoM+uHF9MfL0X1pdeuI4YjYlTOGW+Y/6
-         +SjDNwUg5+olJgfGcv2PaRCTnZXnMwTarpoz7GGC6WLzhirRZ/ehEa0NPfFxZIEa7Msv
-         eEFrtZ07tQJa5Pzn+iOIJnES05cc/usD0pLwUpYEyv2vKVufKdRQbhpispDdxKUkEpS0
-         N5Hw==
-X-Forwarded-Encrypted: i=1; AJvYcCWc+/4PGFw8ajDz65xjfyPfm0BVi8fGY1mZgkdzIJkcYk0eg2XgEp+W7Zf6c9DpttfWG+2ITG5JREO0@vger.kernel.org, AJvYcCXwwRY6G9TiEaojx/I049j38HaJeJAkFuLeeW3wpBhpNfKKgsV/IDei3dsbvcUVRYumVm3pMYdFhOhHAEkC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8XPoRRhH91Yf9BKCA+zOS/cBhH0/rf8glf83LdcfqBslCRCvh
-	lherTqAzASn0+9wr42aYbjP9kMco1twPPR5cHeU+6hcgIjblIRJ/m58tZj+5csuI4OvdOic10Pc
-	inF+vy+qEF0NMuZSJ6m9q5bf7/O4=
-X-Gm-Gg: ASbGncscJBUWvfELZbCBMh6jF4VyldLjabk7om7DubcQGLY8ZIzhzFvSN1tr50OqLIh
-	FzKOuWr90rpoh6BEFINjNbHR0DWLhJXkAwjai9Pe3HoEE7Iu6b3FVN8lpHi5ziwmcsLh5+cKqmQ
-	==
-X-Google-Smtp-Source: AGHT+IEB+MJzs+GIv2z74KvmTn3I75FACBN5SxbyoNwzXh0aK5QoppHOlpFhtMuTvychYCVQsoczFA/mnvfT2jm3ops=
-X-Received: by 2002:a05:6902:3387:b0:e5d:bf09:452c with SMTP id
- 3f1490d57ef6-e5dc932727fmr6866952276.49.1739799024419; Mon, 17 Feb 2025
- 05:30:24 -0800 (PST)
+	s=arc-20240116; t=1739799507; c=relaxed/simple;
+	bh=zMdGWJp3+Q85tNq2jwMB6nkQk9pTkBBt/pztVGDMZpE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=BgsfTuZeD6+dZOti0DDMs+K8bXqCE6m2cpLl+MsM98YYXVXp6E/PCwyaiAiPreD6R0ts7oFrivSQU+oBSh6Y2xGeWq0m9x8ZXuv950BMBHVwyg1NRxAHPyGAi31et3wRGpUOALiAciMHPziJxEgPYTbLPhn2je1y9qbYjlDJXYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DI/U20Sj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 949BDC4CEE2;
+	Mon, 17 Feb 2025 13:38:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739799506;
+	bh=zMdGWJp3+Q85tNq2jwMB6nkQk9pTkBBt/pztVGDMZpE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=DI/U20Sje9MbGSNT81jDaQz8QYb5EPBAVNYSC7U+p3q/fgoqfN2RTWd3LE8XV8Evm
+	 sxerrIWfVqIjm+psgGDxNAuXFu2sIBLX1QI/bAP2of5+5Gwe+A6rm3IcSmbuiXPSc5
+	 KiJo0lgR5kOv9YOlY9sh3coJ8Vsiic2FQ3pANGVNP9sQ55ER58LlJxSpDjdPxpI3Wc
+	 Q/QWJeBecnlMaXPClF1EWPrgqlVKpEUYp3nnBkB92EBdXbtwBW9cev1ceDAjopFp3N
+	 3vu/pWrGul2/qlCbHMvua2HlE0/OnGdI6L7aAENNUA+GBtlQFZLCHqw+5+1lvjIBHy
+	 TvzBDiB7uXM8w==
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: patches@opensource.cirrus.com, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20250207163029.3365-1-laurentiumihalcea111@gmail.com>
+References: <20250207163029.3365-1-laurentiumihalcea111@gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: wlf,wm8960: add 'port' property
+Message-Id: <173979950535.40079.2153617057920573361.b4-ty@kernel.org>
+Date: Mon, 17 Feb 2025 13:38:25 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217-adpdrm-v7-0-ca2e44b3c7d8@gmail.com> <20250217-adpdrm-v7-2-ca2e44b3c7d8@gmail.com>
- <40e59cf1-86da-4c1d-aafd-f409d8179167@suse.de>
-In-Reply-To: <40e59cf1-86da-4c1d-aafd-f409d8179167@suse.de>
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Date: Mon, 17 Feb 2025 14:30:13 +0100
-X-Gm-Features: AWEUYZmCQ2KktIIoXJ32NnC-FVTPM5zygmYh9xHWyp5QfVtkMZOiANCC-UiM5nc
-Message-ID: <CAMT+MTS016CLK7cawdF2kKv2tpGH-N4p3rqGLBPLkPv4A=j67g@mail.gmail.com>
-Subject: Re: [PATCH v7 2/5] drm: adp: Add Apple Display Pipe driver
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	asahi@lists.linux.dev, Janne Grunau <j@jannau.net>, linux-arm-kernel@lists.infradead.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Alyssa Ross <hi@alyssa.is>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Neal Gompa <neal@gompa.dev>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-1b0d6
 
-On Mon, 17 Feb 2025 at 14:22, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> Unless the described problem really happens
-> in practice, I'd drop this workaround. There's no point in working
-> around legacy userspace in modern drivers.
+On Fri, 07 Feb 2025 11:30:29 -0500, Laurentiu Mihalcea wrote:
+> The wm8960 codec may be used with audio graph card and thus may require an
+> additional property: 'port'. Add it.
+> 
+> 
 
-This workaround was put in place after we noticed x11 either preventing
-the userspace daemon from working, or breaking itself. So, yes,
-it does happen in practice.
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: dt-bindings: wlf,wm8960: add 'port' property
+      commit: 5c7e4c4da8586d2ef55a11a9f4df626b8ea9a146
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
