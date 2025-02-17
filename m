@@ -1,219 +1,253 @@
-Return-Path: <devicetree+bounces-147311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98572A37ECD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:38:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44F2EA37EBB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:36:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1C7C7A4FF4
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:32:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EA2B3AFF64
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:34:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85BBE215775;
-	Mon, 17 Feb 2025 09:32:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E74D02153F7;
+	Mon, 17 Feb 2025 09:34:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P+6YlaKA"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gal4Ok6t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6C4215766;
-	Mon, 17 Feb 2025 09:32:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3234D215766;
+	Mon, 17 Feb 2025 09:34:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739784746; cv=none; b=sXsQHKR5m+oFl0WzvrU9IEECysQeARqHtaU8ueHUGg3bCQlTXyJwvJEW3KvGwXtjdmOUO6H8ybcSAVupq0RCiZSBu5vs3XZbiOx3wmrVJfMl72QPqJF6ih1KsViE3n2+wVzvhvgNWfsgX606Q1DbbnRgGvBniJ0MbZBkHg/OgzU=
+	t=1739784860; cv=none; b=lf4nLoFmEwZP39iEqAlZ+tuOZuUsM4kkZvgUkuymhw5mVh3LZfnZtE/EvPnEfyacTmZfeIXKgSx2L0Kkdh+Elcv8zHaUqViVaDomcZlGuwOpRZhjs1pkoAsu5K3GQsDnOyPm7ZIRYDF34Fa6JPCAKrlxTxVhEhzDFgtAnZxjuQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739784746; c=relaxed/simple;
-	bh=HUlJWNcvr8rqj8RDvx4vwOPQLHal/5LBmOUDIQw1ARI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=FdXlJ4iQ7R3WbM3XbtlBCc/9eDkLjgzC4BAMTDQ0bcT3nrailrePmU/pVZv6dyUH0PClmwhE0cra3/odnMKuP9bRhtVlTo2kPmjMrPf56cXmErPiWfP4HCm0fV7u2KKgUr23I+5IDCWh29IJpfAP08crGmmIskCBUDwcSZh/ki0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P+6YlaKA; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-abb7a6ee2deso233735466b.0;
-        Mon, 17 Feb 2025 01:32:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739784743; x=1740389543; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=HUlJWNcvr8rqj8RDvx4vwOPQLHal/5LBmOUDIQw1ARI=;
-        b=P+6YlaKA4m7w9R9WGJCtrxZyZyxD6KQm0Q+RaEvoxzHLblzX/Vi4CfqL5RJJPy1c1w
-         T8qWAsueu8TTUcANT8ZrdaBu2x1xArfjrzkbtItfLLYOykpbrb52viAQlDYl0Ezb4rSH
-         vT7ye8/ljs9bkWAR0JcHigg6nJ2DmNkDf0fPK3STd1C1vGe3n8AMJUOPNL/nCyDRnRnn
-         wY9TClh873x7cnhqsJ/1ZuQyiZwa6RraU7T8HVzldtEEqPEaKIUcJf9wnzVSrM8UGi0s
-         cXh5n6CNTtrBfNfW+vEQthwLHWCvxDGVGmqcJrpDf38zY3OZjsN/cyaYwc71MgD+53bD
-         1IIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739784743; x=1740389543;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HUlJWNcvr8rqj8RDvx4vwOPQLHal/5LBmOUDIQw1ARI=;
-        b=TZGRybqc72qKeq/+iByBBo40A+fuyGXo/D1T3Mylw6DHwmrwxQ3Fpi63pf5Vk/WZ5Q
-         nyuXS+1XIVoC9DD9kO16nIQA+9wMwfvjwYcF2HDZG8/briF82QzUYR4s9SvT/5AzzZ2P
-         9k9NJybQ7NO4N0vcRbylo6TSUom4MBZKPNgCkV6PEkyU16LRhyUNZJ/wQHG36x6DHxfq
-         yoeeXt70SMXQbWOeAfPYUWwYFC07OZlQ28jC25bDsZbzVMgE84HkR24o+6yAYQ7nrC7F
-         vWf2MNe8tzTbKT+IVnDZUY4UEiooKrvBCcbjNqJsQKc8ZyCq0Hz5mqft+B01VR+f++Ke
-         iqww==
-X-Forwarded-Encrypted: i=1; AJvYcCU1fJHsEBIOpUWol1zsX7F6vHRycaBN3H/kd1kZDGEclg71ZhkwFvj2Y0/KF2FoqjnFoRvrainLn3uV1A==@vger.kernel.org, AJvYcCUPCZsKDUhRaL8gTqg9+ktBKWTK+vqYF/+1YPOxwIix6CHj9thgWHm/I0b/50TvH2lTh5F5bmr3ojbf@vger.kernel.org, AJvYcCVBZeXYh9EEBGq6R7ShIiKmEeDrobBcAYqfCEc2fedAQPXxEJXZ3vAIUNHVCm72zLMoJ7a8r4aoY96W@vger.kernel.org, AJvYcCVRSV7tWx8Ek9U19f3sxBWU8yw+vW9/k7wZ1PdXqI5osEUnj0HHyuoJVknDqU02yO7WCo464lROlHhUcJ7Y@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDVUNVxRZPDLmROoZl8e9eTJnNUgaqp+KOIzYWVF5PY4PJujuU
-	knbDx2fEo0+SWW3lCGRUA4AIY+HAEtmQyp5j3+XVbtvLIhqmsTVU6iMQi6FKucA=
-X-Gm-Gg: ASbGnctu12UTKP+zhgyKeCfstw7Et99f58aLuVVLxeJ6VhD4xxF2eVc4rv6EZ12/R+O
-	BLA1+258C9RnDrT9ZgQbTh5r4ebLilznq4DMUhDNJ255kr6OXv2j+tPkr5WA/nA09Rlko+gJ8Lv
-	iHmOwCLX+gH1/7GRYT72Kb8Ztdu7UXFijKRhSRowsA++soibTdvn03CDfJWzaE/9Anp4c5LxMWZ
-	9b3H3LdGHfFrI2uGFnfx8WRAsvIpZuBjwhTzSK7Os8g4gCniJhVbfPaBlQSLq91eGxyw+wT3ZEA
-	ebV2O06VgMZV1I9kpKHhDh5PnScZM9fIgGHzY6Ci3tO+SYRwrbbw6wgsZxQivX8=
-X-Google-Smtp-Source: AGHT+IFeH6Wktt/xfN2WBdLEobo9pLVyAWcoYAOXCOS3EAy5kk4fOKN+rE/Uo0oJPKzo/KUfKXgagQ==
-X-Received: by 2002:a17:906:57cc:b0:abb:9a1e:47cb with SMTP id a640c23a62f3a-abb9a1e4826mr281763866b.55.1739784742437;
-        Mon, 17 Feb 2025 01:32:22 -0800 (PST)
-Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abbae3512a6sm4128766b.179.2025.02.17.01.32.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Feb 2025 01:32:21 -0800 (PST)
-Message-ID: <bf069d43ed76b68c91130233b264089c3f7b2514.camel@gmail.com>
-Subject: Re: [PATCH v2 2/2] gpio: gpio-adg1414: New driver
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: "Paller, Kim Seer" <KimSeer.Paller@analog.com>, Linus Walleij
-	 <linus.walleij@linaro.org>, Jonathan Cameron <jic23@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,  "linux-gpio@vger.kernel.org"	
- <linux-gpio@vger.kernel.org>, "devicetree@vger.kernel.org"	
- <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"	
- <linux-kernel@vger.kernel.org>, linux-iio <linux-iio@vger.kernel.org>,
- Peter Rosin <peda@axentia.se>
-Date: Mon, 17 Feb 2025 09:32:25 +0000
-In-Reply-To: <PH0PR03MB71419BE3FCE2DAE8AB72B79EF9FB2@PH0PR03MB7141.namprd03.prod.outlook.com>
-References: <20250213-for_upstream-v2-0-ec4eff3b3cd5@analog.com>
-	 <20250213-for_upstream-v2-2-ec4eff3b3cd5@analog.com>
-	 <CACRpkdZR8X17Bn-i2anqjxf0Gk60V175F7Xfwytkhy7_K+LsSA@mail.gmail.com>
-	 <880631da17a6d8ed4afe5a8c453fd4f7d0e4fca5.camel@gmail.com>
-	 <CACRpkda+CDRMYKmjw7kewenkteLhPYb040E4B=ZG6pgdy=65pg@mail.gmail.com>
-	 <PH0PR03MB71419BE3FCE2DAE8AB72B79EF9FB2@PH0PR03MB7141.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 
+	s=arc-20240116; t=1739784860; c=relaxed/simple;
+	bh=z5E6crZBHBPraxK5bTlUMvvU1qUMLP0OLcOEC2tcPTA=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U1ZrKjSkK+VNnNg3QvYSPWVFhF4S4ppDuC1QUsg247h3xAA+BbWhsk6UjcJREb+/8U5CC3fJZD1Af5tdV7FPG9vUJd/6+GhgcIJlXRyVy/q5SLNFlZ/o4CLiWsRWakSuETL9x/6MJj4xaTx6BKc3DQ1luALYGKB1Cbp5HGQJ+i4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gal4Ok6t; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51H036n5026269;
+	Mon, 17 Feb 2025 09:34:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=bTT1udo7Ss15SkpoSjaq6CeZ
+	ze/CgDhLufqLoPVSIrs=; b=gal4Ok6t1p99897yCX+WkTmLthf2t5EaO6ERkYWn
+	+1gJTnVnXSRYG2WZwOOfAWSju3811BlJwLmHpE2pcHSBoJpJJE3c3gYqSQ+kJl4W
+	x138mqRAhfXCG45JkVb4jcQSBkc5RK5wNjddaCTpcViE3K2auDdSXCRmuCmGbZ0n
+	V+NGxr+7hlVCjP0ke7G4MtvJZVwakBkZyuouNmfDqgxddmEQ7dPII5uBzK31HSvR
+	TkLEZx0VVll1kDPKfB7ocN2JutgF3tZXMQ20yx1x0W5AQ4+bCcVrggOnFUiPEu3M
+	dNbc9ucJnlB1orxyY7dDsPr69QwZ0i+i79jJxkx8l26UfA==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44ut7ts6ct-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Feb 2025 09:34:06 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51H9Y5IU026510
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Feb 2025 09:34:05 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 17 Feb 2025 01:34:00 -0800
+Date: Mon, 17 Feb 2025 15:03:56 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: Vinod Koul <vkoul@kernel.org>
+CC: <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <kishon@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <p.zabel@pengutronix.de>, <quic_nsekar@quicinc.com>,
+        <dmitry.baryshkov@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>
+Subject: Re: [PATCH v10 2/7] phy: qcom: Introduce PCIe UNIPHY 28LP driver
+Message-ID: <Z7MChDND+iClDNES@hu-varada-blr.qualcomm.com>
+References: <20250206121803.1128216-1-quic_varada@quicinc.com>
+ <20250206121803.1128216-3-quic_varada@quicinc.com>
+ <Z64xQcgHIgAEzKFb@vaman>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <Z64xQcgHIgAEzKFb@vaman>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: qCcKIMzvmHSgb8rj8p9l_jjFJLBf1MfV
+X-Proofpoint-GUID: qCcKIMzvmHSgb8rj8p9l_jjFJLBf1MfV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-17_04,2025-02-13_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ malwarescore=0 impostorscore=0 clxscore=1015 phishscore=0 adultscore=0
+ spamscore=0 mlxlogscore=999 bulkscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
+ definitions=main-2502170083
 
-On Mon, 2025-02-17 at 07:02 +0000, Paller, Kim Seer wrote:
->=20
->=20
-> > -----Original Message-----
-> > From: Linus Walleij <linus.walleij@linaro.org>
-> > Sent: Saturday, February 15, 2025 7:22 AM
-> > To: Nuno S=C3=A1 <noname.nuno@gmail.com>; Jonathan Cameron
-> > <jic23@kernel.org>
-> > Cc: Paller, Kim Seer <KimSeer.Paller@analog.com>; Bartosz Golaszewski
-> > <brgl@bgdev.pl>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
-> > <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; linux-
-> > gpio@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; linux-iio <linux-iio@vger.kernel.org>
-> > Subject: Re: [PATCH v2 2/2] gpio: gpio-adg1414: New driver
-> >=20
-> > [External]
-> >=20
-> > Let's check with Jonathan Cameron (IIO maintainer) on this as well.
-> > He might have ideas.
-> >=20
-> > For reference, the datasheet:
-> > https://www.analog.com/media/en/technical-documentation/data-
-> > sheets/adg1414.pdf
-> >=20
-> > (By the way: add the datasheet to a special Datasheet: tag in the
-> > commit please!)
-> >=20
-> > On Fri, Feb 14, 2025 at 2:17=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail=
-.com> wrote:
-> > > On Fri, 2025-02-14 at 00:25 +0100, Linus Walleij wrote:
-> >=20
-> > > > Now, the kernel does not have switch subsystem I think,
-> > > > so this is something like a special case, so we might be
-> > > > compelled to make an exception, if the users will all be in
-> > >=20
-> > > Exactly, since we could not find anything, the best fit seemed like t=
-he
-> > > gpio
-> > > subsystem. I was the one suggesting it since a new subsystem for a si=
-mple
-> > device
-> > > like this looked excessive. If we had more devices that would fit suc=
-h a
-> > > class
-> > > of devices, maybe it would make more sense to start thinking on such =
-a
-> > > subsystem?
-> > >=20
-> > > > say userspace and make use of this switch for factory lines
-> > > > or similar.
-> > >=20
-> > > Kim should know better again (about usecases) but I would also assume=
- this
-> > is
-> > > for userspace use.
-> >=20
-> > Actually the GPIO documentation Documentation/driver-api/gpio/using-
-> > gpio.rst
-> > even talks about this for userspace use cases:
-> >=20
-> > "The userspace ABI is intended for one-off deployments. Examples are
-> > prototypes,
-> > factory lines, maker community projects, workshop specimen, production
-> > tools,
-> > industrial automation, PLC-type use cases, door controllers, in short a
-> > piece
-> > of specialized equipment that is not produced by the numbers, requiring
-> > operators to have a deep knowledge of the equipment and knows about the
-> > software-hardware interface to be set up. They should not have a natura=
-l fit
-> > to any existing kernel subsystem and not be a good fit for an operating
-> > system,
-> > because of not being reusable or abstract enough, or involving a lot of=
- non
-> > computer hardware related policy."
-> >=20
-> > If this is the usecase, like controlling an external switch for such th=
-ings,
-> > using the GPIO subsystem might actually be reasonable in my opinion,
-> > (even if the DT bindings end up in their own category).
-> >=20
-> > If the switches control stuff related to computer machinery (i.e. integ=
-rated
-> > into a laptop to switch on/off the fans...) then no. So it depends on h=
-ow
-> > and where it will be used.
->=20
-> In my case, this is a userspace use case. The ADG1414 was used to control=
- the
-> ADMFM2000 Microwave Downconverter device. According to the ADMFM2000
-> datasheet, it requires control over 14 digital pins, which can be set hig=
-h or
-> low [1].
-> While these pins could be directly controlled using GPIO, the evaluation =
-board
-> for
-> the ADMFM2000 is designed to use the ADG1414 switch for this purpose [2].
-> ADG1414 is an SPI controlled switch that allows switching of these digita=
-l
-> control lines.
->=20
+On Thu, Feb 13, 2025 at 11:22:01PM +0530, Vinod Koul wrote:
+[ . . .]
 
-AFAICT the mux subsystem does not have any userspace so it would already no=
-t fit
-the above usecase. We could add a simple setter sysfs interface if Peter th=
-inks
-this belongs to the mux subsystem...
+> > +static const struct qcom_uniphy_pcie_data ipq5332_data = {
+> > +	.lane_offset	= 0x800,
+> > +	.phy_type	= PHY_TYPE_PCIE_GEN3,
+> > +	.init_seq	= ipq5332_regs,
+> > +	.init_seq_num	= ARRAY_SIZE(ipq5332_regs),
+> > +	.pipe_clk_rate	= 250000000,
+>
+> can be written as 250 * MEGA
 
-Let's see what Peter has to say about this.
+Ok.
 
-What about misc devices? I mean, if there's no agreement...=20
+[ . . .]
 
-- Nuno S=C3=A1
+> > +/*
+> > + * Register a fixed rate pipe clock.
+> > + *
+> > + * The <s>_pipe_clksrc generated by PHY goes to the GCC that gate
+> > + * controls it. The <s>_pipe_clk coming out of the GCC is requested
+> > + * by the PHY driver for its operations.
+> > + * We register the <s>_pipe_clksrc here. The gcc driver takes care
+> > + * of assigning this <s>_pipe_clksrc as parent to <s>_pipe_clk.
+> > + * Below picture shows this relationship.
+> > + *
+> > + *         +---------------+
+> > + *         |   PHY block   |<<---------------------------------------+
+> > + *         |               |                                         |
+> > + *         |   +-------+   |                   +-----+               |
+> > + *   I/P---^-->|  PLL  |---^--->pipe_clksrc--->| GCC |--->pipe_clk---+
+> > + *    clk  |   +-------+   |                   +-----+
+> > + *         +---------------+
+> > + */
+> > +static inline int phy_pipe_clk_register(struct qcom_uniphy_pcie *phy, int id)
+> > +{
+> > +	const struct qcom_uniphy_pcie_data *data = phy->data;
+> > +	struct clk_hw *hw;
+> > +	char name[64];
+> > +
+> > +	snprintf(name, sizeof(name), "phy%d_pipe_clk_src", id);
+> > +	hw = devm_clk_hw_register_fixed_rate(phy->dev, name, NULL, 0,
+> > +					     data->pipe_clk_rate);
+> > +	if (IS_ERR(hw))
+> > +		return dev_err_probe(phy->dev, PTR_ERR(hw),
+> > +				     "Unable to register %s\n", name);
+> > +
+> > +	return devm_of_clk_add_hw_provider(phy->dev, of_clk_hw_simple_get, hw);
+> > +}
+> > +
+> > +static const struct of_device_id qcom_uniphy_pcie_id_table[] = {
+> > +	{
+> > +		.compatible = "qcom,ipq5332-uniphy-pcie-phy",
+> > +		.data = &ipq5332_data,
+> > +	}, {
+> > +		/* Sentinel */
+> > +	},
+> > +};
+> > +MODULE_DEVICE_TABLE(of, qcom_uniphy_pcie_id_table);
+> > +
+> > +static const struct phy_ops pcie_ops = {
+> > +	.power_on	= qcom_uniphy_pcie_power_on,
+> > +	.power_off	= qcom_uniphy_pcie_power_off,
+> > +	.owner          = THIS_MODULE,
+> > +};
+> > +
+> > +static int qcom_uniphy_pcie_probe(struct platform_device *pdev)
+> > +{
+> > +	struct phy_provider *phy_provider;
+> > +	struct device *dev = &pdev->dev;
+> > +	struct qcom_uniphy_pcie *phy;
+> > +	struct phy *generic_phy;
+> > +	int ret;
+> > +
+> > +	phy = devm_kzalloc(&pdev->dev, sizeof(*phy), GFP_KERNEL);
+> > +	if (!phy)
+> > +		return -ENOMEM;
+> > +
+> > +	platform_set_drvdata(pdev, phy);
+> > +	phy->dev = &pdev->dev;
+> > +
+> > +	phy->data = of_device_get_match_data(dev);
+> > +	if (!phy->data)
+> > +		return -EINVAL;
+> > +
+> > +	ret = of_property_read_u32(dev_of_node(dev), "num-lanes", &phy->lanes);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Couldn't read num-lanes\n");
+> > +
+> > +	ret = qcom_uniphy_pcie_get_resources(pdev, phy);
+> > +	if (ret < 0)
+> > +		return dev_err_probe(&pdev->dev, ret,
+> > +				     "failed to get resources: %d\n", ret);
+> > +
+> > +	generic_phy = devm_phy_create(phy->dev, NULL, &pcie_ops);
+> > +	if (IS_ERR(generic_phy))
+> > +		return PTR_ERR(generic_phy);
+> > +
+> > +	phy_set_drvdata(generic_phy, phy);
+> > +
+> > +	ret = phy_pipe_clk_register(phy, generic_phy->id);
+> > +	if (ret)
+> > +		dev_err(&pdev->dev, "failed to register phy pipe clk\n");
+> > +
+> > +	phy_provider = devm_of_phy_provider_register(phy->dev,
+> > +						     of_phy_simple_xlate);
+> > +	if (IS_ERR(phy_provider))
+> > +		return PTR_ERR(phy_provider);
+>
+> should we not unroll the pipe clk registration here?
 
+Since it is a 'devm_' clk_hw_register_fixed_rate, wouldn't the devm
+framework do the unregister?
+
+	$ git diff
+	diff --git a/drivers/clk/clk-fixed-rate.c b/drivers/clk/clk-fixed-rate.c
+	index 6b4f76b9c4da..3fd1a12cc163 100644
+	--- a/drivers/clk/clk-fixed-rate.c
+	+++ b/drivers/clk/clk-fixed-rate.c
+	@@ -58,6 +58,7 @@ static void
+	devm_clk_hw_register_fixed_rate_release(struct device *dev, void *re
+		 * the hw, resulting in double free. Just unregister the hw and
+		 * let
+		 * devres code kfree() it.
+		 */
+	+	printk("--> %s: %s\n", __func__, __clk_get_name(fix->hw.clk));
+		clk_hw_unregister(&fix->hw);
+	 }
+
+	diff --git a/drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c
+	b/drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c
+	index 311f98181177..9a8d8d9a7c2b 100644
+	--- a/drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c
+	+++ b/drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c
+	@@ -267,6 +268,7 @@ static int qcom_uniphy_pcie_probe(struct
+	platform_device *pdev)
+
+		phy_provider = devm_of_phy_provider_register(phy->dev,
+							     of_phy_simple_xlate);
+	+	phy_provider = ERR_PTR(-EINVAL);
+		if (IS_ERR(phy_provider))
+			return PTR_ERR(phy_provider);
+
+I forced an error here and saw that devm_clk_hw_register_fixed_rate_release
+is getting called, which in turn calls clk_hw_unregister. Is that sufficient?
+Or am i missing something.
+
+Thanks
+Varada
+
+> > +
+> > +	return 0;
+> > +}
+
+[ . . . ]
 
