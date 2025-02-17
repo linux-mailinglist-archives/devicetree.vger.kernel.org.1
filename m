@@ -1,98 +1,118 @@
-Return-Path: <devicetree+bounces-147440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E99CBA384CD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:38:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30DA4A384F9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:44:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1AD07A323E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:37:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59BA07A43A8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:42:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BB5F21CC6F;
-	Mon, 17 Feb 2025 13:38:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B9C21CC75;
+	Mon, 17 Feb 2025 13:43:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DI/U20Sj"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="qbmgE286"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60FBF21CC63;
-	Mon, 17 Feb 2025 13:38:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61B9B13AA5D;
+	Mon, 17 Feb 2025 13:43:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739799507; cv=none; b=dojWh5DcaQqqFQCQqcf8uUIKXNfwrC2VPNxNo6sgHkPSmQaIyWg/E/y0A6FQ/MQcZD8ZdOFylxxNhY0qmhi2Uhg/3K8XMyIutGrTxSmdJSXhVz5lg+g3Mw1Apo3P3MXzk97YtxN4PSaPmo2WOYDEgL7+zq7EsTbMCKAohQ0apg8=
+	t=1739799793; cv=none; b=snFV/Z++mZWkIpXHuBU3sCygButLT3tAUpl39rmHwajQJoWUw1wZ2ng2QB0GncHWOgK23Z6oLLkudp96phrS5STtenveWt2ai7gtDsCc1NFwDIwYyUkM66TrY2pK9NJgvxf5xusY8iIYFMiPKSzYRlZGV5cP9r/kGFHBw3EZ0s8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739799507; c=relaxed/simple;
-	bh=zMdGWJp3+Q85tNq2jwMB6nkQk9pTkBBt/pztVGDMZpE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=BgsfTuZeD6+dZOti0DDMs+K8bXqCE6m2cpLl+MsM98YYXVXp6E/PCwyaiAiPreD6R0ts7oFrivSQU+oBSh6Y2xGeWq0m9x8ZXuv950BMBHVwyg1NRxAHPyGAi31et3wRGpUOALiAciMHPziJxEgPYTbLPhn2je1y9qbYjlDJXYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DI/U20Sj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 949BDC4CEE2;
-	Mon, 17 Feb 2025 13:38:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739799506;
-	bh=zMdGWJp3+Q85tNq2jwMB6nkQk9pTkBBt/pztVGDMZpE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=DI/U20Sje9MbGSNT81jDaQz8QYb5EPBAVNYSC7U+p3q/fgoqfN2RTWd3LE8XV8Evm
-	 sxerrIWfVqIjm+psgGDxNAuXFu2sIBLX1QI/bAP2of5+5Gwe+A6rm3IcSmbuiXPSc5
-	 KiJo0lgR5kOv9YOlY9sh3coJ8Vsiic2FQ3pANGVNP9sQ55ER58LlJxSpDjdPxpI3Wc
-	 Q/QWJeBecnlMaXPClF1EWPrgqlVKpEUYp3nnBkB92EBdXbtwBW9cev1ceDAjopFp3N
-	 3vu/pWrGul2/qlCbHMvua2HlE0/OnGdI6L7aAENNUA+GBtlQFZLCHqw+5+1lvjIBHy
-	 TvzBDiB7uXM8w==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-Cc: patches@opensource.cirrus.com, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20250207163029.3365-1-laurentiumihalcea111@gmail.com>
-References: <20250207163029.3365-1-laurentiumihalcea111@gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: wlf,wm8960: add 'port' property
-Message-Id: <173979950535.40079.2153617057920573361.b4-ty@kernel.org>
-Date: Mon, 17 Feb 2025 13:38:25 +0000
+	s=arc-20240116; t=1739799793; c=relaxed/simple;
+	bh=Zolr9ZlVWPXTFxA8Jbg1jTpPdXRZV0RmUT+tTwWZFDs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sM2dt6AD3i6I3WenrAoQDzhrTVS1RjwAc6SvvItrr48y8762l8dORcwMJiVJ/h65rYEX2adU2JA6yv6vTjf4CGb/yUphXYMHEk277SynhgXaxQYLD5BA8pqDPt7t7sZmKJ4RVVvjl2x82YPAzmOhq3Nklk7ogkPu1+d8wEecFLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=qbmgE286; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=PNmSyDJcR//atUZ0VI/KDC8D5+6hGjhamZjsGf8geS4=; b=qbmgE286BZdak7XL+mky6WmBud
+	gXG1+IgkUstfuDE1scOhlcH7TQ4lak5O6zX8AV48CgzfDqTAZXOlhEWfPGBpN/9nJIuzWokMi6vW8
+	U9S/zGMf35rtCnx4/LC8mKlts+Mn01GO3jRTvH+M6KzfKAExz+SF2ak1Nrfvu43ZDguU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tk1Om-00Eyt6-AD; Mon, 17 Feb 2025 14:43:00 +0100
+Date: Mon, 17 Feb 2025 14:43:00 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>, davem@davemloft.net,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+	Sean Anderson <seanga2@gmail.com>
+Subject: Re: [PATCH net-next v4 05/15] net: phy: Create a phy_port for
+ PHY-driven SFPs
+Message-ID: <5d618829-a9bc-4dd4-8a2e-6ce3a4acd51e@lunn.ch>
+References: <20250213101606.1154014-1-maxime.chevallier@bootlin.com>
+ <20250213101606.1154014-6-maxime.chevallier@bootlin.com>
+ <Z7DjfRwd3dbcEXTY@shell.armlinux.org.uk>
+ <20250217092911.772da5d0@fedora.home>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-1b0d6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250217092911.772da5d0@fedora.home>
 
-On Fri, 07 Feb 2025 11:30:29 -0500, Laurentiu Mihalcea wrote:
-> The wm8960 codec may be used with audio graph card and thus may require an
-> additional property: 'port'. Add it.
+> One way to avoid that would be to extract out of phylink/phylib all the
+> functions for linkmode handling that aren't tied to phylink/phylib
+> directly, but are about managing the capabilities of each interface,
+> linkmode, speed, duplex, etc. For phylink, that would be :
 > 
-> 
+> phylink_merge_link_mode
+> phylink_get_capabilities
+> phylink_cap_from_speed_duplex
+> phylink_limit_mac_speed
+> phylink_caps_to_linkmodes
+> phylink_interface_max_speed
+> phylink_interface_signal_rate
+> phylink_is_empty_linkmode
+> phylink_an_mode_str
+> phylink_set_port_modes
 
-Applied to
+...
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> These would go into linkmode.c/h for example, and we'd have a shared set
+> of helpers that we can use in phylink, phylib and phy_port.
 
-Thanks!
+Please be careful with the scope of these. Heiner is going through
+phylib and trying to reduce the scope of some of the functions we
+exporting in include/linux/phy.h to just being available in
+drivers/net/phy. That will help stop MAC drivers abuse them. We should
+do the same here, limit what can actually use these helpers to stop
+abuse.
 
-[1/1] ASoC: dt-bindings: wlf,wm8960: add 'port' property
-      commit: 5c7e4c4da8586d2ef55a11a9f4df626b8ea9a146
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+	Andrew
 
