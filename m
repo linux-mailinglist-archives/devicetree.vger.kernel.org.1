@@ -1,229 +1,148 @@
-Return-Path: <devicetree+bounces-147592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB409A38B75
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 19:46:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DD8CA38BA2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 19:56:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BAF218938AF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 18:45:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45D8C3B09D8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 18:56:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3DE723643A;
-	Mon, 17 Feb 2025 18:45:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666B4236442;
+	Mon, 17 Feb 2025 18:56:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DUdfwXWD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92FEA235BFF;
-	Mon, 17 Feb 2025 18:45:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C3B233D7B
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 18:56:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739817942; cv=none; b=bo4r0SrOwrJih62KrbRWEEMIUbTPWjp/sGsI6ogz9u594Ud5K1zuswX8GsQQr6aWmq3c9f/3PEYjjHOFcm4GGQghf+SL08/WvRaTzj2d9al+2iWPnJ6AeNP161oG4/j+Oulm4W6rXzk/FFirVQzF/Wlth07XoUsRkWzUrG/XVUs=
+	t=1739818584; cv=none; b=Y8qRtCjIIt9JMoiCQNBqDcQJWlF+dG3lbHbABhzSkC30Y0B2KXth1Mi/Ab1XRJaBu1cYBqiDiFgXr5cHsXlpgwpeDUkveVJqEzve+/X7EE8kk0UtRCKGlx2LlYzg8b5Xsc1ZJn6697PNU1GNYdvKEKvEjlzvh4aNdQN0DV81urg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739817942; c=relaxed/simple;
-	bh=q/sWrNMswAMcrq+jomDIsw5Jj0KBZS9gH4J5t8/hVB0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LYcLSANIWAJUgRb42SyaOlT0Vy3mpNAC7uoQcpFk+/k5sckZjH80dg4TwZ8s44hgfJAh9quP7D5n6qW935Uj2eXWYIsL1TwMxJc552cedorCnpB1ioMpP4J1ekeAfnjaxzdK+JzZ02vfTQzaQJSUyDyKVRzQ5ywyQA6UmiepFZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F2CDC4CED1;
-	Mon, 17 Feb 2025 18:45:38 +0000 (UTC)
-Message-ID: <3e8a6fea-0ee9-4667-b8a9-8f2f02df3c91@xs4all.nl>
-Date: Mon, 17 Feb 2025 19:45:36 +0100
+	s=arc-20240116; t=1739818584; c=relaxed/simple;
+	bh=21GINV+jTT0ljh6iGdE46yNUcUdBiV7LkViktY34c6I=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lkY6Ixqyza39cDUlwJGbe2gQBOyvKTtX11i83w9Znqeiwcc/gkdqFxucRq2QsE7IphGg7WAvxJB1R6ijWF2/k8bp7I3a6lDttAGvh7QHpSmiG7jBpA1P94WYlt2Dw/eZTU+icgjl3NCUxroYybcpxvOfN5/C9+5YIf6SpqdqFu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DUdfwXWD; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-54605bfcc72so2129266e87.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 10:56:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739818580; x=1740423380; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BAW81WUtaGDrpjLpQFuAf8r7igrxWydrW/CS4LG6Lcw=;
+        b=DUdfwXWDXbJ3zRHYRYMQzfEGUnTzfpMardaJCnn6vjoCU8Cs6fEha0dWus6Z+XEJqQ
+         MR7V8it4014lTyV51JazCh7RDTICk30uhF/B54wo6nnCt68e2b3LStm5NDCVZ79VBETW
+         Xjb4ogk0u40EeLXZeoe7BYfFkZi9wU7INzpqg7mS8169yrwt6oT7Tz0Y80rtfy89x1gx
+         IMk1A3Z0zGFan+GKzfdloX27bxwB7VGRi3VTKD9CNnNOeug7AwxeZPoQ9xRmtdbiTx5n
+         lHIoXnUhkAVT4F3pQghdrbNy0+LkVcxRds3C3FC6VCepHg+f1vxRAipp6hHHSb0k9Ek9
+         RwaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739818580; x=1740423380;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BAW81WUtaGDrpjLpQFuAf8r7igrxWydrW/CS4LG6Lcw=;
+        b=Q4jtLYCr7vPc2sSvDXXp/IF5LoBkX2w94io8e3OLPAZCh1YYIGumsETYzE+KepBtyO
+         LgFD6IpFx58wgrEe+X49Qn75xXIsQ+TVxBSGTawaoprDZijtsAHRWJXIfP4BbJF2WGVS
+         9lSbu+589L3vgP4uAYNGkKCtG/7fORu0r7tDJTRlwsnMQRF/f9stc2EqLAP7jTzs+NXu
+         bGsPMMthxLBDDm25a7cydP+BJvNPVl65kZ42Vz4BymhR6Yrp3fQNSe3QT3DfqcmxQp6C
+         DjqPJSNQDD3deegD5DbFbFO+rfiaPVTa+tl9oqTadvfX7+ZU8Ji8yOPXQmY2LhB7AsRg
+         WTqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXC+0T129ciUSyr3pUy+oE/0+sycHA5tTZfWXfyIObAmzaHKXCwCDKk1++geJl8Q0umZblzD6RBoZTQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAbxRp3euUqxcUnwqnrSQmTS5C2QGW7L8l0MR3QgP3eY5Gs/sK
+	NYHufevNGPCQzWtp8l3Z5IY+8qFj0kePQ+gBF1mzTsCSURHZEMTuOonQM6eeVZo=
+X-Gm-Gg: ASbGnct5+6k0idbkvQDpPc1Iy8Ho8MlnHm521L/izYllvT4YGalDOF5gCi439ZK8TPz
+	p2iZzYVGOvuwwNtpVuU1L9wRbr8U47Hi8pS67OVE5XM9LhSMVv1bz1N08bI1NxRb92IimIdMxlc
+	3s/8UEU1XktQ0Bi4UI09HRqrlg4Spdmx604Qm3C8FbSS1fEDpoY10mcUEKAfRA5BQcG9jsyDFuo
+	IAMB2TbDITGRFHBS2k8g5D7P3shwvye/+qzrHg8yGDrfitKBwamDYd3p9T7s/v2mWKBiFykyz8A
+	UrartT7eX89HCQlbHzgjk9F7Pq8T86MAQoSCXJ+2gRPmEBC9p2+uzF1TEp8=
+X-Google-Smtp-Source: AGHT+IG63ghCxYPnwVWx4j5CKiVfpEwlnjS1CxJrziNrE6kVkwoM1IgOqX0WRSrlQIdssIrnOIfZtw==
+X-Received: by 2002:a05:6512:3c86:b0:545:31d8:f384 with SMTP id 2adb3069b0e04-54531d8f982mr2456362e87.10.1739818580218;
+        Mon, 17 Feb 2025 10:56:20 -0800 (PST)
+Received: from [127.0.1.1] (2001-14ba-a0c3-3a00--782.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::782])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5462006b0ecsm559806e87.160.2025.02.17.10.56.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Feb 2025 10:56:18 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH 0/6] PCI: qcom-ep: add support for using the EP on SAR2130P
+ and SM8450
+Date: Mon, 17 Feb 2025 20:56:12 +0200
+Message-Id: <20250217-sar2130p-pci-v1-0-94b20ec70a14@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/6] media: platform: synopsys: Add support for HDMI
- input driver
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Shreeya Patel <shreeya.patel@collabora.com>, Heiko Stuebner
- <heiko@sntech.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, jose.abreu@synopsys.com,
- nelson.costa@synopsys.com, shawn.wen@rock-chips.com,
- nicolas.dufresne@collabora.com,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: kernel@collabora.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, Tim Surber <me@timsurber.de>
-References: <20250215210417.60074-1-dmitry.osipenko@collabora.com>
- <20250215210417.60074-5-dmitry.osipenko@collabora.com>
- <110db742-25a0-4f0c-9620-1af8885d6e1c@xs4all.nl>
- <3d4b1c45-cc00-4714-8582-0848e38c2ec4@collabora.com>
- <23eacfe3-cf94-45d3-a405-43185ef32512@xs4all.nl>
- <398cffa8-5463-47ff-bdeb-3f3167b72312@collabora.com>
- <cd40ca74-fe5b-4942-9da8-1117303dd0c4@collabora.com>
-Content-Language: en-US, nl
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- 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
-In-Reply-To: <cd40ca74-fe5b-4942-9da8-1117303dd0c4@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEyGs2cC/x3MQQqAIBBA0avErBMcrZSuEi1Ep5qNiUIE4t2Tl
+ m/xf4VCmanAOlTI9HDhO3bgOIC/XDxJcOgGJdWEEo0oLivUMonkWVgZHOnZLYYs9CRlOvj9d9v
+ e2gdugY24XgAAAA==
+X-Change-ID: 20241017-sar2130p-pci-80dae35a67e8
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Mrinmay Sarkar <quic_msarkar@quicinc.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1086;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=21GINV+jTT0ljh6iGdE46yNUcUdBiV7LkViktY34c6I=;
+ b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBns4ZP0jFRqK6qM7lWJy6cx2BjsR04fO27y4jOd
+ r9Hus3kApOJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZ7OGTwAKCRAU23LtvoBl
+ uEBcEACuIgxA9prRR/xwlBxoo3AZmYE8/63IIPLOGRh7R7tcaHvJdytVxWaZhqcOlvqZf4okNP5
+ 5Z1UOE6tOd/FU7rJPT+xUOXlcUZTH9EfThdlN/vVRqUIiKWQhmOh6bAc5c+ABLsyQwzRIxtFUMM
+ PuIoC5w/IFZ7Bb+wCEVlV6dOmiItiVKjoFRtDXabZCu10h3KlIQ2wEqCKg/L2aUtd8GjiV6Nrpd
+ rvcayMWA7kQ5dem+kdho1Ya6QYeDJr0nCohNTkQhEPV/9VO+vtel+bE8+o0k1wxaWxn3zNrDjy8
+ 264bEYvFSkmmsltk7hssijQsHpujUpYQXoiGJX82vSiZFLMGepdhYIpCv22cIjKYZ4qEbkNehpx
+ r1fZInrtPsvvulmrxBz5A5S1IutG0rHqQVBU2NHTcCrIOxeEpgRQxC9oGsCT74BPnWwvN4g2wJE
+ CP5PpobZWDBAvLSs2VmTwE0duE1NYFQDgrx0w+J/4rptKjtdWUPBa0H/dxidHb8gloWtwPUuLSR
+ xP48B+MYUuWF6H1UMTAGKEgdYkpVDVGjgoeZNoNcS/FTDTkPYxg1rDt3EiYTJO02M96vSFyAs/y
+ 9zoRm+S5ddy6EH9tpwEaMvM9jHsKP0H7UMLGQW8zRhw/KAZctK6RmHSzyNDLo+pUYjkum5tPIZy
+ QM3Nusena5oU6Uw==
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On 17/02/2025 19:26, Dmitry Osipenko wrote:
-> On 2/17/25 21:21, Dmitry Osipenko wrote:
->> On 2/17/25 18:44, Hans Verkuil wrote:
->>> On 2/17/25 16:36, Dmitry Osipenko wrote:
->>>> On 2/17/25 11:31, Hans Verkuil wrote:
->>>>> On 15/02/2025 22:04, Dmitry Osipenko wrote:
->>>>>> From: Shreeya Patel <shreeya.patel@collabora.com>
->>>>>>
->>>>>> Add initial support for the Synopsys DesignWare HDMI RX
->>>>>> Controller Driver used by Rockchip RK3588. The driver
->>>>>> supports:
->>>>>>  - HDMI 1.4b and 2.0 modes (HDMI 4k@60Hz)
->>>>>>  - RGB888, YUV422, YUV444 and YCC420 pixel formats
->>>>>>  - CEC
->>>>>>  - EDID configuration
->>>>>>
->>>>>> The hardware also has Audio and HDCP capabilities, but these are
->>>>>> not yet supported by the driver.
->>>>>>
->>>>>> Co-developed-by: Dingxian Wen <shawn.wen@rock-chips.com>
->>>>>> Signed-off-by: Dingxian Wen <shawn.wen@rock-chips.com>
->>>>>> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
->>>>>> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
->>>>>> ---
->>>>>>  drivers/media/platform/Kconfig                |    1 +
->>>>>>  drivers/media/platform/Makefile               |    1 +
->>>>>>  drivers/media/platform/synopsys/Kconfig       |    3 +
->>>>>>  drivers/media/platform/synopsys/Makefile      |    2 +
->>>>>>  .../media/platform/synopsys/hdmirx/Kconfig    |   27 +
->>>>>>  .../media/platform/synopsys/hdmirx/Makefile   |    4 +
->>>>>>  .../platform/synopsys/hdmirx/snps_hdmirx.c    | 2715 +++++++++++++++++
->>>>>>  .../platform/synopsys/hdmirx/snps_hdmirx.h    |  394 +++
->>>>>>  .../synopsys/hdmirx/snps_hdmirx_cec.c         |  284 ++
->>>>>>  .../synopsys/hdmirx/snps_hdmirx_cec.h         |   44 +
->>>>>>  10 files changed, 3475 insertions(+)
->>>>>>  create mode 100644 drivers/media/platform/synopsys/Kconfig
->>>>>>  create mode 100644 drivers/media/platform/synopsys/Makefile
->>>>>>  create mode 100644 drivers/media/platform/synopsys/hdmirx/Kconfig
->>>>>>  create mode 100644 drivers/media/platform/synopsys/hdmirx/Makefile
->>>>>>  create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx.c
->>>>>>  create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx.h
->>>>>>  create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx_cec.c
->>>>>>  create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx_cec.h
->>>>>>
->>>>>
->>>>> <snip>
->>>>>
->>>>>> +static ssize_t
->>>>>> +hdmirx_debugfs_if_read(u32 type, void *priv, struct file *filp,
->>>>>> +		       char __user *ubuf, size_t count, loff_t *ppos)
->>>>>> +{
->>>>>> +	struct snps_hdmirx_dev *hdmirx_dev = priv;
->>>>>> +	u8 aviif[3 + 7 * 4];
->>>>>> +	int len;
->>>>>> +
->>>>>> +	if (type != V4L2_DEBUGFS_IF_AVI)
->>>>>> +		return 0;
->>>>>> +
->>>>>> +	hdmirx_read_avi_infoframe(hdmirx_dev, aviif);
->>>>>> +
->>>>>> +	len = simple_read_from_buffer(ubuf, count, ppos,
->>>>>> +				      aviif, ARRAY_SIZE(aviif));
->>>>>> +
->>>>>> +	return len < 0 ? 0 : len;
->>>>>> +}
->>>>>
->>>>> Have you tested this with 'edid-decode -c -I /path/to/avi'? Also test that it is
->>>>> empty if there is no AVI InfoFrame (e.g. when there is no incoming video). I don't see
->>>>> a test for that in the code.
->>>>>
->>>>> I also see no sanity check regarding the length of the InfoFrame, it just outputs
->>>>> the full array, meaning you get padding as well since the AVI InfoFrame is smaller
->>>>> than ARRAY_SIZE(aviif). In fact, edid-decode will fail about that if the -c option
->>>>> is used.
->>>>>
->>>>> See tc358743_debugfs_if_read of how this is typically handled.
->>>>
->>>> I've tested with 'edid-decode -I /path/to/avi', including the empty AVI
->>>> InfoFrame. But without the '-c option'. I'd expect that debugfs should
->>>> provide a full-sized raw InfoFrame data, rather than a parsed version.
->>>> The parsed data isn't much useful for debugging purposes, IMO. I
->>>> intentionally removed the size check that tc358743_debugfs_if_read does
->>>> because it appeared wrong to me. Will re-check with '-c option', thanks!
->>>
->>> The HDMI header contains the actual length that was received. So debugfs should
->>> export the actual payload, not the maximum possible payload.
->>>
->>> It is common for hardware to reserve room in the register map for the maximum
->>> payload, but you only want to export what was actually received.
->>
->> If payload is corrupted, it should be handy to see a full payload.
->> Otherwise you won't be able to debug anything because driver returns
->> zero payload to userspace since it can't parse the header :)
-> 
-> Note those tc358743 and other drivers are parsing the IF header data.
-> I'm pretty sure this is not what InfoFrame debugfs is intended to do,
+Update the incomplete SM8450 support and bring in SAR2130P support for
+the PCIe1 controller to be used in EP mode.
 
-It's exactly what it is intended to do (I know, I wrote it :-) ).
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Dmitry Baryshkov (6):
+      dt-bindings: PCI: qcom-ep: describe optional IOMMU
+      dt-bindings: PCI: qcom-ep: enable DMA for SM8450
+      dt-bindings: PCI: qcom-ep: add SAR2130P compatible
+      PCI: dwc: pcie-qcom-ep: enable EP support for SAR2130P
+      arm64: dts: qcom: sar2130p: add PCIe EP device nodes
+      arm64: dts: qcom: sm8450: add PCIe EP device nodes
 
-The HDMI interface transmits the InfoFrame data with that HDMI header, the
-receiver captures that and stores the InfoFrame data. You have no control
-over that, it is all implemented in hardware since it is transmitted over
-the high-speed video lanes. If the header is corrupt, then the video is
-almost certainly also corrupt.
+ .../devicetree/bindings/pci/qcom,pcie-ep.yaml      | 69 ++++++++++++++++++++--
+ arch/arm64/boot/dts/qcom/sar2130p.dtsi             | 53 +++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 52 ++++++++++++++++
+ drivers/pci/controller/dwc/pcie-qcom-ep.c          |  1 +
+ 4 files changed, 169 insertions(+), 6 deletions(-)
+---
+base-commit: 34598f5b38950c59f15caa5194cfccbf6ec03c99
+change-id: 20241017-sar2130p-pci-80dae35a67e8
 
-The reason for storing the InfoFrame in debugfs is to see what the transmitter
-is sending us in the InfoFrame: does the InfoFrame contents make sense? Is it
-consistent with the EDID?
-
-If for example the transmitter is sending us a video format that isn't supported
-in the EDID, then it is helpful to see what the AVI InfoFrame says.
-
-Regards,
-
-	Hans
-
-> Will revisit it all again in a more details for v7.
-> 
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
