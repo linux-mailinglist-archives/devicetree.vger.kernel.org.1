@@ -1,53 +1,44 @@
-Return-Path: <devicetree+bounces-147392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 641ECA3832E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:41:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EF37A3838D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:58:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24CCB1884BE8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 12:41:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0290117273F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 12:58:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F397F21ADCE;
-	Mon, 17 Feb 2025 12:41:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TFRtTRxt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4302921B8F7;
+	Mon, 17 Feb 2025 12:58:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4B9F13AA5D;
-	Mon, 17 Feb 2025 12:41:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BF152F5B;
+	Mon, 17 Feb 2025 12:58:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739796104; cv=none; b=lOsG7IU+LKQg7PHKTtnNuqfYDO5rObJfqfyHWXT+PYPKFdqtQ+RXuhzkeOU28jKwqnnj4Jk2T2GJugSFWTEmRAFtoC6bW4RZ7QXmzeWezhZ9h8001P0d4+xZE3DFUOu7h9udT5W4HQ8uaK2+0oxIRo5Uqhi2ibSXl6Q6ac8QXYI=
+	t=1739797107; cv=none; b=HGZzMWOBDk4HAt7cDQD/ryLYjfrd+AtSUq2Xw9uaURQnULcBvA7QkXGX3Z/dzRa+folAuftl54Etcm9fZweNJWzDEfWxuc/j9zZMcJZHLp0wkZkL16Em0FisogX9AT9FzY3/yqdOAE8j0LPmhrjVeQCGqsBQXD2S7ULbAf31F1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739796104; c=relaxed/simple;
-	bh=HKotTF9Hfu06Aq3zzigEqgO5A23ICuHhxxdELQosKn4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=b1F9bV0cEI8/LZtfulPFxZIhgGRcDR9QBOw7JCbIf2blfaGhOuCNA0NxDQqoSfYMQU4eOsYDW+8SCpoiutkWKX52DjqcBZvAs8UfcnvT110qx7tGmjLsfLhGAD8PXFJo9h2H/G8eLxDjjYlAUt8xTDg1gVTRaxlmDhoY9+iBB3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TFRtTRxt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 51D72C4CEE2;
-	Mon, 17 Feb 2025 12:41:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739796104;
-	bh=HKotTF9Hfu06Aq3zzigEqgO5A23ICuHhxxdELQosKn4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=TFRtTRxt2osCT+4usW0PZ8lcj8sbjUEFd8mrj93EBhNe/Lc8lNc6APW9gc2a/wwa6
-	 Csgfus/EKK2z7WH0X/DqcPOcTGoUaNwFAgDM5OU0hY1TjthzyNKB0FBH8pW0+Vncs7
-	 ta1+d20T0BUQ5sza7c03I8w96K8lktlSLo/uydrhjqvK0reCFYh467wMI9eIhObYnT
-	 NQjIypiuviCba58EhpX/2pJDI9d4W7NTj2B3Ed8hqGrKdSsktts50SkJ5FJkW2r1+b
-	 lkpCEouKcQwDo3BZrSnMUfBZkoFuAiwUzYZuzHV6FDx+uBcfHMYU3sUeMbQ0+fFybr
-	 tvhIgZ5sTfkGQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 47E17C021AD;
-	Mon, 17 Feb 2025 12:41:44 +0000 (UTC)
-From: PavithraUdayakumar-adi via B4 Relay <devnull+pavithra.u.analog.com@kernel.org>
-Date: Mon, 17 Feb 2025 18:17:17 +0530
-Subject: [PATCH RESEND v5 2/2] rtc: max31335: Add driver support for
- max31331
+	s=arc-20240116; t=1739797107; c=relaxed/simple;
+	bh=q1aOfZVqMDouNDrWuVaUzkfmmvEdkbfTZjyFQLgn1Sw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hEyGlt9LYciEl/MfgV5Nn1pAmze3M8D5HHhHgBh450W3rFGBXfILCZcvusgGIxCutO6e2DL+aB/UGHmZ/Kf4jIC9O2CkmLn2JVNMoszFwm6srj4pkkmlaoDN2r7RGGyMGqqD6TY5xn2mfki8jnQF1SZg8nGv7AX4B4hfdVVGnXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from [127.0.0.1] (unknown [180.172.76.141])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 78B4A343069;
+	Mon, 17 Feb 2025 12:58:18 +0000 (UTC)
+From: Yixun Lan <dlan@gentoo.org>
+Subject: [PATCH v5 0/5] riscv: spacemit: add gpio support for K1 SoC
+Date: Mon, 17 Feb 2025 20:57:43 +0800
+Message-Id: <20250217-03-k1-gpio-v5-0-2863ec3e7b67@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,419 +47,119 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250217-add_support_max31331_fix_8-v1-2-16ebcfc02336@analog.com>
-References: <20250217-add_support_max31331_fix_8-v1-0-16ebcfc02336@analog.com>
-In-Reply-To: <20250217-add_support_max31331_fix_8-v1-0-16ebcfc02336@analog.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>, 
- Guenter Roeck <linux@roeck-us.net>, 
- =?utf-8?q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
- PavithraUdayakumar-adi <pavithra.u@analog.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739796453; l=12419;
- i=pavithra.u@analog.com; s=20241220; h=from:subject:message-id;
- bh=1stnG/N6HE8QaQ6joNd5xgD+z3/Jmq/go1M+BD9Kck8=;
- b=u3odZIorXh0l1SccQrXJDQPBr4ymnlz6Urc82IqL1FdL7QwBYP0YtoYvJ35x6OV2EE0ocxEto
- NnEz9NMEQGXBV/Szn6eTlhjHryS8ZNsBgA80oR8cKnUX0ffBdeyGwfl
-X-Developer-Key: i=pavithra.u@analog.com; a=ed25519;
- pk=RIhZrdpg71GEnmwm1eNn95TYUMDJOKVsFd37Fv8xf1U=
-X-Endpoint-Received: by B4 Relay for pavithra.u@analog.com/20241220 with
- auth_id=303
-X-Original-From: PavithraUdayakumar-adi <pavithra.u@analog.com>
-Reply-To: pavithra.u@analog.com
+X-B4-Tracking: v=1; b=H4sIAEcys2cC/2XPQW6DMBAF0Ksgr+tqZmxsnFXvUXUB9phYVXACF
+ LWKuHsdolZBWf6R3tefq5h4TDyJQ3UVIy9pSnkooX6phD+2Q88yhZIFAWloqJGg5CfK/pyyNNh
+ FR9GBIi8KOI8c0/dW9v5xzyNfvkrnfD+Krp1Y+nw6pflQqWApGFBtbC2V7hqQHVjDHAwy1AqVc
+ hwbces6pmnO48+2c8GtbJvkQD9OWlCCNGCJO2bfMrz1PMw5v+ax33oW+rdI6HaWiqVGax0DEfr
+ wZNWDpXpn1c3arrOd1hgMPVn9Z8ubhDtbPpDaaPSu9oBO7+y6rr9SpKuxpQEAAA==
+X-Change-ID: 20240828-03-k1-gpio-61bf92f9032c
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>
+Cc: Yangyu Chen <cyy@cyyself.name>, Jisheng Zhang <jszhang@kernel.org>, 
+ Jesse Taube <mr.bossman075@gmail.com>, 
+ Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
+ Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ Yixun Lan <dlan@gentoo.org>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3376; i=dlan@gentoo.org;
+ h=from:subject:message-id; bh=q1aOfZVqMDouNDrWuVaUzkfmmvEdkbfTZjyFQLgn1Sw=;
+ b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBnszJW6w/KgwwZgBNmPAPOycUH2Qxkc+3vi3ZaP
+ JSoRcMNBXyJApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCZ7MyVl8UgAAAAAAuAChp
+ c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
+ CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277WEhEACLcAfqpL5B6tHAOl
+ U14SGmtOnMlrgKiBr4fNU2zuSjN604606hKfN8LRHBk+6KMdrix0adaP9K0Ik7f9IrSAf56/Grm
+ gBti9Cz4M2DD020XPJC1KkftX9YGozwz0J7/PHkTCMel2ydfCbauBl7jIH1f7MvscDFwRDchQ3Y
+ W6a+bgC0+tJBUP76FaL5uGaHaRknoSTCJMSluILFRTCnMAKG3R4Z+qFYPxDvEs1BDC+ip+xL8w9
+ 2qsxh6d42BHtFrHxtBrRPNsf2O67d8Bon1P3uk1e7WMltFjExyNOJhYiPYmzRWPxStrPinBmTKu
+ g/6u00SoRYWoAH3jvUmVEVgpk2md8X8qU2mrof611Ou7ctYGtXWTFPc5EAv7YmBPjULYlDkk8Xe
+ 6QyybGmNKX1cahNNn5Z2cqGjvGxHe02j0hLUSGXPgZ+COKuWZ7NfRP+JfzZtbOU6wBEs2Q03ZY1
+ jCSjISoyAqD2e5LsJ/wceOaWvGdGNU4CJJYVqHzZYZNaJwMucL4wAApMBXKSe9E5HfaQWd7w44a
+ Xi4dYmAhnm1ta0/lfqh/l+lZAEhxT+byyPBKd5QXQLrPiKemIx+Ei1bwzVdgzIMOJOKMZ0vOx1E
+ gZSSWY/v7ogbrSAy+aPbbk6l4TYjRO740JhbVhZt1okVQ698A5llZd15h45/mt6nQffg==
+X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 
-From: PavithraUdayakumar-adi <pavithra.u@analog.com>
+The gpio controller of K1 support basic GPIO functions,
+which capable of enabling as input, output. It can also be used
+as GPIO interrupt which able to detect rising edge, falling edge,
+or both. There are four GPIO ports, each consisting of 32 pins and
+has indepedent register sets, while still sharing IRQ line and clocks.
 
-MAX31331 is an ultra-low-power, I2C Real-Time Clock RTC.
+The GPIO controller request the clock source from APBC block,
+In this series, I haven't added the clock support, but plan
+to fix it after clock driver is merged.
 
-Signed-off-by: PavithraUdayakumar-adi <pavithra.u@analog.com>
+Due to first three GPIO ports has interleave register settings, some
+resources (IRQ, clock) are shared by all pins.
+
+The GPIO docs of K1 SoC can be found here, chapter 16.4 GPIO [1]
+
+Note, this patch is rebased to v6.14-rc1.
+
+This patch series has been tested on Bananapi-F3 board,
+with following GPIO cases passed:
+ 1) gpio input
+ 2) gpio output - set to high, low
+ 3) gpio interrupt - rising trigger, falling trigger, both edge trigger
+
+This version should resolve DT related concern in V4, and register each bank as
+indepedent gpio chip in driver, no more sub children gpio DT node needed.
+
+Link: https://developer.spacemit.com/documentation?token=Rn9Kw3iFHirAMgkIpTAcV2Arnkf [1]
+Link: https://lore.kernel.org/all/20240730-k1-01-basic-dt-v5-0-98263aae83be@gentoo.org [2]
+Link: https://lore.kernel.org/all/20241016-02-k1-pinctrl-v5-0-03d395222e4f@gentoo.org/ [3]
+Signed-off-by: Yixun Lan <dlan@gentoo.org>
 ---
- drivers/rtc/rtc-max31335.c | 165 +++++++++++++++++++++++++++++++++------------
- 1 file changed, 122 insertions(+), 43 deletions(-)
+Changes in v5:
+- export add_pin_range() from gpio core, support to add custom version
+- change to 3 gpio cells, model to <bank number>, <bank offset>, <gpio flag>
+- fold children DT nodes into parent
+- Link to v4: https://lore.kernel.org/r/20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org
 
-diff --git a/drivers/rtc/rtc-max31335.c b/drivers/rtc/rtc-max31335.c
-index 3fbcf5f6b92ffd4581e9c4dbc87ec848867522dc..a7bb37aaab9e6e315db70bc6bc0dbaa553fdecfa 100644
---- a/drivers/rtc/rtc-max31335.c
-+++ b/drivers/rtc/rtc-max31335.c
-@@ -184,31 +184,91 @@
- #define MAX31335_RAM_SIZE			32
- #define MAX31335_TIME_SIZE			0x07
- 
-+/* MAX31331 Register Map */
-+#define MAX31331_RTC_CONFIG2			0x04
-+
- #define clk_hw_to_max31335(_hw) container_of(_hw, struct max31335_data, clkout)
- 
-+/* Supported Maxim RTC */
-+enum max_rtc_ids {
-+	ID_MAX31331,
-+	ID_MAX31335,
-+	MAX_RTC_ID_NR
-+};
-+
-+struct chip_desc {
-+	u8 sec_reg;
-+	u8 alarm1_sec_reg;
-+
-+	u8 int_en_reg;
-+	u8 int_status_reg;
-+
-+	u8 ram_reg;
-+	u8 ram_size;
-+
-+	u8 temp_reg;
-+
-+	u8 trickle_reg;
-+
-+	u8 clkout_reg;
-+
-+	enum max_rtc_ids id;
-+};
-+
- struct max31335_data {
- 	struct regmap *regmap;
- 	struct rtc_device *rtc;
- 	struct clk_hw clkout;
-+	struct clk *clkin;
-+	const struct chip_desc *chip;
-+	int irq;
- };
- 
- static const int max31335_clkout_freq[] = { 1, 64, 1024, 32768 };
- 
-+static const struct chip_desc chip[MAX_RTC_ID_NR] = {
-+	[ID_MAX31331] = {
-+		.id = ID_MAX31331,
-+		.int_en_reg = 0x01,
-+		.int_status_reg = 0x00,
-+		.sec_reg = 0x08,
-+		.alarm1_sec_reg = 0x0F,
-+		.ram_reg = 0x20,
-+		.ram_size = 32,
-+		.trickle_reg = 0x1B,
-+		.clkout_reg = 0x04,
-+	},
-+	[ID_MAX31335] = {
-+		.id = ID_MAX31335,
-+		.int_en_reg = 0x01,
-+		.int_status_reg = 0x00,
-+		.sec_reg = 0x0A,
-+		.alarm1_sec_reg = 0x11,
-+		.ram_reg = 0x40,
-+		.ram_size = 32,
-+		.temp_reg = 0x35,
-+		.trickle_reg = 0x1D,
-+		.clkout_reg = 0x06,
-+	},
-+};
-+
- static const u16 max31335_trickle_resistors[] = {3000, 6000, 11000};
- 
- static bool max31335_volatile_reg(struct device *dev, unsigned int reg)
- {
-+	struct max31335_data *max31335 = dev_get_drvdata(dev);
-+	const struct chip_desc *chip = max31335->chip;
-+
- 	/* time keeping registers */
--	if (reg >= MAX31335_SECONDS &&
--	    reg < MAX31335_SECONDS + MAX31335_TIME_SIZE)
-+	if (reg >= chip->sec_reg && reg < chip->sec_reg + MAX31335_TIME_SIZE)
- 		return true;
- 
- 	/* interrupt status register */
--	if (reg == MAX31335_STATUS1)
-+	if (reg == chip->int_status_reg)
- 		return true;
- 
--	/* temperature registers */
--	if (reg == MAX31335_TEMP_DATA_MSB || reg == MAX31335_TEMP_DATA_LSB)
-+	/* temperature registers if valid */
-+	if (chip->temp_reg && (reg == chip->temp_reg || reg == chip->temp_reg + 1))
- 		return true;
- 
- 	return false;
-@@ -227,7 +287,7 @@ static int max31335_read_time(struct device *dev, struct rtc_time *tm)
- 	u8 date[7];
- 	int ret;
- 
--	ret = regmap_bulk_read(max31335->regmap, MAX31335_SECONDS, date,
-+	ret = regmap_bulk_read(max31335->regmap, max31335->chip->sec_reg, date,
- 			       sizeof(date));
- 	if (ret)
- 		return ret;
-@@ -262,7 +322,7 @@ static int max31335_set_time(struct device *dev, struct rtc_time *tm)
- 	if (tm->tm_year >= 200)
- 		date[5] |= FIELD_PREP(MAX31335_MONTH_CENTURY, 1);
- 
--	return regmap_bulk_write(max31335->regmap, MAX31335_SECONDS, date,
-+	return regmap_bulk_write(max31335->regmap, max31335->chip->sec_reg, date,
- 				 sizeof(date));
- }
- 
-@@ -273,7 +333,7 @@ static int max31335_read_alarm(struct device *dev, struct rtc_wkalrm *alrm)
- 	struct rtc_time time;
- 	u8 regs[6];
- 
--	ret = regmap_bulk_read(max31335->regmap, MAX31335_ALM1_SEC, regs,
-+	ret = regmap_bulk_read(max31335->regmap, max31335->chip->alarm1_sec_reg, regs,
- 			       sizeof(regs));
- 	if (ret)
- 		return ret;
-@@ -292,11 +352,11 @@ static int max31335_read_alarm(struct device *dev, struct rtc_wkalrm *alrm)
- 	if (time.tm_year >= 200)
- 		alrm->time.tm_year += 100;
- 
--	ret = regmap_read(max31335->regmap, MAX31335_INT_EN1, &ctrl);
-+	ret = regmap_read(max31335->regmap, max31335->chip->int_en_reg, &ctrl);
- 	if (ret)
- 		return ret;
- 
--	ret = regmap_read(max31335->regmap, MAX31335_STATUS1, &status);
-+	ret = regmap_read(max31335->regmap, max31335->chip->int_status_reg, &status);
- 	if (ret)
- 		return ret;
- 
-@@ -320,18 +380,18 @@ static int max31335_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
- 	regs[4] = bin2bcd(alrm->time.tm_mon + 1);
- 	regs[5] = bin2bcd(alrm->time.tm_year % 100);
- 
--	ret = regmap_bulk_write(max31335->regmap, MAX31335_ALM1_SEC,
-+	ret = regmap_bulk_write(max31335->regmap, max31335->chip->alarm1_sec_reg,
- 				regs, sizeof(regs));
- 	if (ret)
- 		return ret;
- 
- 	reg = FIELD_PREP(MAX31335_INT_EN1_A1IE, alrm->enabled);
--	ret = regmap_update_bits(max31335->regmap, MAX31335_INT_EN1,
-+	ret = regmap_update_bits(max31335->regmap, max31335->chip->int_en_reg,
- 				 MAX31335_INT_EN1_A1IE, reg);
- 	if (ret)
- 		return ret;
- 
--	ret = regmap_update_bits(max31335->regmap, MAX31335_STATUS1,
-+	ret = regmap_update_bits(max31335->regmap, max31335->chip->int_status_reg,
- 				 MAX31335_STATUS1_A1F, 0);
- 
- 	return 0;
-@@ -341,23 +401,33 @@ static int max31335_alarm_irq_enable(struct device *dev, unsigned int enabled)
- {
- 	struct max31335_data *max31335 = dev_get_drvdata(dev);
- 
--	return regmap_update_bits(max31335->regmap, MAX31335_INT_EN1,
-+	return regmap_update_bits(max31335->regmap, max31335->chip->int_en_reg,
- 				  MAX31335_INT_EN1_A1IE, enabled);
- }
- 
- static irqreturn_t max31335_handle_irq(int irq, void *dev_id)
- {
- 	struct max31335_data *max31335 = dev_id;
--	bool status;
--	int ret;
-+	struct mutex *lock = &max31335->rtc->ops_lock;
-+	int ret, status;
- 
--	ret = regmap_update_bits_check(max31335->regmap, MAX31335_STATUS1,
--				       MAX31335_STATUS1_A1F, 0, &status);
-+	mutex_lock(lock);
-+
-+	ret = regmap_read(max31335->regmap, max31335->chip->int_status_reg, &status);
- 	if (ret)
--		return IRQ_HANDLED;
-+		goto exit;
-+
-+	if (FIELD_GET(MAX31335_STATUS1_A1F, status)) {
-+		ret = regmap_update_bits(max31335->regmap, max31335->chip->int_status_reg,
-+					 MAX31335_STATUS1_A1F, 0);
-+		if (ret)
-+			goto exit;
- 
--	if (status)
- 		rtc_update_irq(max31335->rtc, 1, RTC_AF | RTC_IRQF);
-+	}
-+
-+exit:
-+	mutex_unlock(lock);
- 
- 	return IRQ_HANDLED;
- }
-@@ -404,7 +474,7 @@ static int max31335_trickle_charger_setup(struct device *dev,
- 
- 	i = i + trickle_cfg;
- 
--	return regmap_write(max31335->regmap, MAX31335_TRICKLE_REG,
-+	return regmap_write(max31335->regmap, max31335->chip->trickle_reg,
- 			    FIELD_PREP(MAX31335_TRICKLE_REG_TRICKLE, i) |
- 			    FIELD_PREP(MAX31335_TRICKLE_REG_EN_TRICKLE,
- 				       chargeable));
-@@ -418,7 +488,7 @@ static unsigned long max31335_clkout_recalc_rate(struct clk_hw *hw,
- 	unsigned int reg;
- 	int ret;
- 
--	ret = regmap_read(max31335->regmap, MAX31335_RTC_CONFIG2, &reg);
-+	ret = regmap_read(max31335->regmap, max31335->chip->clkout_reg, &reg);
- 	if (ret)
- 		return 0;
- 
-@@ -449,23 +519,23 @@ static int max31335_clkout_set_rate(struct clk_hw *hw, unsigned long rate,
- 			     ARRAY_SIZE(max31335_clkout_freq));
- 	freq_mask = __roundup_pow_of_two(ARRAY_SIZE(max31335_clkout_freq)) - 1;
- 
--	return regmap_update_bits(max31335->regmap, MAX31335_RTC_CONFIG2,
--				  freq_mask, index);
-+	return regmap_update_bits(max31335->regmap, max31335->chip->clkout_reg,
-+				 freq_mask, index);
- }
- 
- static int max31335_clkout_enable(struct clk_hw *hw)
- {
- 	struct max31335_data *max31335 = clk_hw_to_max31335(hw);
- 
--	return regmap_set_bits(max31335->regmap, MAX31335_RTC_CONFIG2,
--			       MAX31335_RTC_CONFIG2_ENCLKO);
-+	return regmap_set_bits(max31335->regmap, max31335->chip->clkout_reg,
-+			      MAX31335_RTC_CONFIG2_ENCLKO);
- }
- 
- static void max31335_clkout_disable(struct clk_hw *hw)
- {
- 	struct max31335_data *max31335 = clk_hw_to_max31335(hw);
- 
--	regmap_clear_bits(max31335->regmap, MAX31335_RTC_CONFIG2,
-+	regmap_clear_bits(max31335->regmap, max31335->chip->clkout_reg,
- 			  MAX31335_RTC_CONFIG2_ENCLKO);
- }
- 
-@@ -475,7 +545,7 @@ static int max31335_clkout_is_enabled(struct clk_hw *hw)
- 	unsigned int reg;
- 	int ret;
- 
--	ret = regmap_read(max31335->regmap, MAX31335_RTC_CONFIG2, &reg);
-+	ret = regmap_read(max31335->regmap, max31335->chip->clkout_reg, &reg);
- 	if (ret)
- 		return ret;
- 
-@@ -500,7 +570,7 @@ static int max31335_nvmem_reg_read(void *priv, unsigned int offset,
- 				   void *val, size_t bytes)
- {
- 	struct max31335_data *max31335 = priv;
--	unsigned int reg = MAX31335_TS0_SEC_1_128 + offset;
-+	unsigned int reg = max31335->chip->ram_reg + offset;
- 
- 	return regmap_bulk_read(max31335->regmap, reg, val, bytes);
- }
-@@ -509,7 +579,7 @@ static int max31335_nvmem_reg_write(void *priv, unsigned int offset,
- 				    void *val, size_t bytes)
- {
- 	struct max31335_data *max31335 = priv;
--	unsigned int reg = MAX31335_TS0_SEC_1_128 + offset;
-+	unsigned int reg = max31335->chip->ram_reg + offset;
- 
- 	return regmap_bulk_write(max31335->regmap, reg, val, bytes);
- }
-@@ -533,7 +603,7 @@ static int max31335_read_temp(struct device *dev, enum hwmon_sensor_types type,
- 	if (type != hwmon_temp || attr != hwmon_temp_input)
- 		return -EOPNOTSUPP;
- 
--	ret = regmap_bulk_read(max31335->regmap, MAX31335_TEMP_DATA_MSB,
-+	ret = regmap_bulk_read(max31335->regmap, max31335->chip->temp_reg,
- 			       reg, 2);
- 	if (ret)
- 		return ret;
-@@ -577,8 +647,8 @@ static int max31335_clkout_register(struct device *dev)
- 	int ret;
- 
- 	if (!device_property_present(dev, "#clock-cells"))
--		return regmap_clear_bits(max31335->regmap, MAX31335_RTC_CONFIG2,
--					 MAX31335_RTC_CONFIG2_ENCLKO);
-+		return regmap_clear_bits(max31335->regmap, max31335->chip->clkout_reg,
-+				  MAX31335_RTC_CONFIG2_ENCLKO);
- 
- 	max31335->clkout.init = &max31335_clk_init;
- 
-@@ -605,6 +675,7 @@ static int max31335_probe(struct i2c_client *client)
- #if IS_REACHABLE(HWMON)
- 	struct device *hwmon;
- #endif
-+	const struct chip_desc *match;
- 	int ret;
- 
- 	max31335 = devm_kzalloc(&client->dev, sizeof(*max31335), GFP_KERNEL);
-@@ -616,7 +687,10 @@ static int max31335_probe(struct i2c_client *client)
- 		return PTR_ERR(max31335->regmap);
- 
- 	i2c_set_clientdata(client, max31335);
--
-+	match = i2c_get_match_data(client);
-+	if (!match)
-+		return -ENODEV;
-+	max31335->chip = match;
- 	max31335->rtc = devm_rtc_allocate_device(&client->dev);
- 	if (IS_ERR(max31335->rtc))
- 		return PTR_ERR(max31335->rtc);
-@@ -639,6 +713,8 @@ static int max31335_probe(struct i2c_client *client)
- 			dev_warn(&client->dev,
- 				 "unable to request IRQ, alarm max31335 disabled\n");
- 			client->irq = 0;
-+		} else {
-+			max31335->irq = client->irq;
- 		}
- 	}
- 
-@@ -652,13 +728,13 @@ static int max31335_probe(struct i2c_client *client)
- 				     "cannot register rtc nvmem\n");
- 
- #if IS_REACHABLE(HWMON)
--	hwmon = devm_hwmon_device_register_with_info(&client->dev, client->name,
--						     max31335,
--						     &max31335_chip_info,
--						     NULL);
--	if (IS_ERR(hwmon))
--		return dev_err_probe(&client->dev, PTR_ERR(hwmon),
--				     "cannot register hwmon device\n");
-+	if (max31335->chip->temp_reg) {
-+		hwmon = devm_hwmon_device_register_with_info(&client->dev, client->name, max31335,
-+							     &max31335_chip_info, NULL);
-+		if (IS_ERR(hwmon))
-+			return dev_err_probe(&client->dev, PTR_ERR(hwmon),
-+					     "cannot register hwmon device\n");
-+	}
- #endif
- 
- 	ret = max31335_trickle_charger_setup(&client->dev, max31335);
-@@ -669,14 +745,16 @@ static int max31335_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id max31335_id[] = {
--	{ "max31335" },
-+	{ "max31331", (kernel_ulong_t)&chip[ID_MAX31331] },
-+	{ "max31335", (kernel_ulong_t)&chip[ID_MAX31335] },
- 	{ }
- };
- 
- MODULE_DEVICE_TABLE(i2c, max31335_id);
- 
- static const struct of_device_id max31335_of_match[] = {
--	{ .compatible = "adi,max31335" },
-+	{ .compatible = "adi,max31331", .data = &chip[ID_MAX31331] },
-+	{ .compatible = "adi,max31335", .data = &chip[ID_MAX31335] },
- 	{ }
- };
- 
-@@ -693,5 +771,6 @@ static struct i2c_driver max31335_driver = {
- module_i2c_driver(max31335_driver);
- 
- MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-+MODULE_AUTHOR("Saket Kumar Purwar <Saket.Kumarpurwar@analog.com>");
- MODULE_DESCRIPTION("MAX31335 RTC driver");
- MODULE_LICENSE("GPL");
+Changes in v4:
+- gpio: re-construct gpio as four independent ports, also leverage gpio mmio API
+- gpio interrupt: convert to generic gpio irqchip
+- Link to v3: https://lore.kernel.org/r/20241225-03-k1-gpio-v3-0-27bb7b441d62@gentoo.org
 
+Changes in v3:
+- dt: drop ranges, interrupt-names property
+- Link to v2: https://lore.kernel.org/r/20241219-03-k1-gpio-v2-0-28444fd221cd@gentoo.org
+
+Changes in v2:
+- address dt-bindings comments, simplify example
+- rebase to 6.13-rc3 
+- Link to v1: https://lore.kernel.org/r/20240904-03-k1-gpio-v1-0-6072ebeecae0@gentoo.org
+
+---
+Yixun Lan (5):
+      gpio: of: support to add custom add pin range function
+      dt-bindings: gpio: spacemit: add support for K1 SoC
+      gpio: spacemit: add support for K1 SoC
+      riscv: dts: spacemit: add gpio support for K1 SoC
+      riscv: dts: spacemit: add gpio LED for system heartbeat
+
+ .../devicetree/bindings/gpio/spacemit,k1-gpio.yaml |  81 +++++
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |  11 +
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi       |   3 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi               |  15 +
+ drivers/gpio/Kconfig                               |   8 +
+ drivers/gpio/Makefile                              |   1 +
+ drivers/gpio/gpio-spacemit-k1.c                    | 376 +++++++++++++++++++++
+ drivers/gpio/gpiolib-of.c                          |   5 +-
+ include/linux/gpio/driver.h                        |   7 +
+ 9 files changed, 506 insertions(+), 1 deletion(-)
+---
+base-commit: 3d72d603afa72082501e9076eed61e0531339ef8
+change-id: 20240828-03-k1-gpio-61bf92f9032c
+
+Best regards,
 -- 
-2.25.1
-
+Yixun Lan
 
 
