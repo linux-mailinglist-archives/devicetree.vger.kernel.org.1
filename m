@@ -1,269 +1,138 @@
-Return-Path: <devicetree+bounces-147585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34766A38AF3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 18:56:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21AD5A38B2B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 19:17:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC4FD16E6E8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 17:56:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 967F83B2217
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 18:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E5F7231C9C;
-	Mon, 17 Feb 2025 17:56:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1E0228CAD;
+	Mon, 17 Feb 2025 18:17:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dBGwhhD9"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="gbWOKyv0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78150D528;
-	Mon, 17 Feb 2025 17:56:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739814968; cv=none; b=PL8yLF/ElczI+RTyusGl5SvNucT9XfzTrEsXBkbNEzqplHGetZv4NroUABJ1lyqXHEbYDS5qp/TkVytq+pkgDZnbqhYS3Xih3x+JSL1JvTeeUjo441zfrfZ9/Y2Ir8lQqohXqHyNHdig2g/Kr7tnYcPIzMANvxJzxJYAwTJLL0E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739814968; c=relaxed/simple;
-	bh=v4d8g6Zss+ZZElac2aEjNvU4+9ul3z2rtSI2buTKt/0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ux52ZR2gMlLsp50fK1VFyXlaSa4YtSoHAOiepaPGxq7LmCfxlGGJT2pyL2neJAFxGBIbYcf5jSTbh1IRlBbMX6T8w86CK4bQVKJ8Iv2QEUOX53dmjDmiPzXU6v36Dt6YCftfT8uUP2BlXFNwByZk6+gSLflZqQ3ak1EngqmZB94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dBGwhhD9; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9DF5A442C2;
-	Mon, 17 Feb 2025 17:56:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739814963;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=W+FExaZ6awrhNUR+O/77ICcKPBMvq+e06oZnkz4XEEQ=;
-	b=dBGwhhD9TPznMPEScqRh19KvL6CEKEuLzlFafe7E1jnKps3zMUCBrrMRYguWZJLHPI44oV
-	ekTkDtdkum0ZeJ6hkcNiQW6qr9z6y0HRLyzv2E2xoHG2N0TUiR3KEr3qiiv523eslP3GZq
-	mbfJKM7PvHWK2qZ50LsuyZFxtPAjPqp70A3C84kBw9Mj0ZPcptakpKA7ulM8xWOQbXG2+g
-	zxqDOf/ixcKxH8kvhJszWrMu1W1LFZi+o7u+zfWNdnkwQL3JKaID9KGRmNehk0XpsNweNv
-	qlZrhiy31AlPoLJw/hDv2uNwsyWJoxEKF80XjMH2xfBJplAxm7aUMO9QpDxYcw==
-Date: Mon, 17 Feb 2025 18:55:59 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Phil Elwell <phil@raspberrypi.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Andrea della Porta
- <andrea.porta@suse.com>, Arnd Bergmann <arnd@arndb.de>,
- "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <bcm-kernel-feedback-list@broadcom.com>, bhelgaas@google.com,
- brgl@bgdev.pl, Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
- <conor+dt@kernel.org>, derek.kiernan@amd.com, devicetree@vger.kernel.org,
- dragan.cvetic@amd.com, Florian Fainelli <florian.fainelli@broadcom.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, krzk+dt@kernel.org,
- kw@linux.com, Linus Walleij <linus.walleij@linaro.org>, linux-arm-kernel
- <linux-arm-kernel@lists.infradead.org>, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, "open
- list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS"
- <linux-pci@vger.kernel.org>, "moderated list:BROADCOM BCM2711/BCM2835 ARM
- ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
- lpieralisi@kernel.org, luca.ceresoli@bootlin.com,
- manivannan.sadhasivam@linaro.org, masahiroy@kernel.org, Michael Turquette
- <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
- saravanak@google.com, Stephen Boyd <sboyd@kernel.org>,
- thomas.petazzoni@bootlin.com, Stefan Wahren <wahrenst@gmx.net>, Will Deacon
- <will@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: Re: [PATCH v6 00/10] Add support for RaspberryPi RP1 PCI device
- using a DT overlay
-Message-ID: <20250217185559.2e56bd75@bootlin.com>
-In-Reply-To: <CAMEGJJ13476pKJb441o5X0Y+rbfromj5-3V-j2KZiOt326OL4A@mail.gmail.com>
-References: <CAMEGJJ3=W8_R0xBvm8r+Q7iExZx8xPBHEWWGAT9ngpGWDSKCaQ@mail.gmail.com>
-	<20250213171435.1c2ce376@bootlin.com>
-	<a3c5103c-829a-4301-ba53-6ef9bd1e74e7@lunn.ch>
-	<CAMEGJJ3-JXhin_Ht76EqUNAwLiNisa9PrCrdUzCgj=msGZfb5A@mail.gmail.com>
-	<821d4c74-09b0-4c1b-b8ef-f8c08d0f6b5b@lunn.ch>
-	<CAMEGJJ0QbzCScfTRA_pw_8A=iMYMAAFs69zFNLwcOxF5Syugpw@mail.gmail.com>
-	<20250213195304.3a2df02c@bootlin.com>
-	<CAMEGJJ0kGCj=tjM6KswbG_+ZFkzMwPY+06BXCU0qSnbBKz0=ug@mail.gmail.com>
-	<20250213220639.373da07b@bootlin.com>
-	<CAMEGJJ2_HVKfsE3P22baadbzxSDAX=yTr=m76YuXa5A2cJsJig@mail.gmail.com>
-	<20250217165306.3f055b94@bootlin.com>
-	<CAMEGJJ13476pKJb441o5X0Y+rbfromj5-3V-j2KZiOt326OL4A@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17320215F5E;
+	Mon, 17 Feb 2025 18:17:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739816233; cv=pass; b=fxKdZSkk6XS0UPbgC3VqAYcaIwMS30U5LkHyVXnFO0xgyPaXcDb12JtnutCjrUR38K4GGEgyfdFF/o3Vw93PikDAIbIvcWx8+c0VK/o1iACsPjjKSfPo7pvBLPhKAcvm3lZ59o2p0lTJbCL1qFXlkyJQOv0UNYkmM3UL4vkV+rw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739816233; c=relaxed/simple;
+	bh=NUqQknZpg2LliGTzyKHfciU1oNwwa+2zKooTZkcKwpo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oiAZ2Yqb3O3QTdl/OI52tOFuIvTdUhwNPC04DWLtEobOzShBtmSMnLNEhdCvsNj7q7c63FpSq6Da6Tcr4A4Kt4mnmamIV+pHoJVS6D81Bnb8oUZ8mgq1UAm5b4PswaLop33PXhCr0NRxt2gORr5dU442RqmSYDitCJceOgD3LSE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=gbWOKyv0; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1739816173; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=ijxtj4U8Q8R7wF2cKrBvAlztwsF7BHKE9ppJN+H5P+dWjGidAuFnAINvHWu1ugpr1KKFjNOgD/BL58cpHHg++bIB3cgTGtd+138I0XmM/pVkAuBePh6asJxzZZMGGMoyhMupfIuxXSd/uLFYhu5zZvFe8thfq19iLR86rB7HSy4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1739816173; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=dW0tidsgp/Ub4s++qsOhA6oRQ1/t0kgWfjgFSGuKGjs=; 
+	b=VWX3H4OTkoH1XaxjU+7vO6RIlxGvOjomnJz7kotKI1KEc0niNqCmLO+6ZU3/FRYcWsEPh1MFGezrCeZCWkkI0kHDH8Ri/Dd39HFKoKhZDdiT9/iFRNqKihl3JLRPEOdW3P4yIC2RNb4XD9pLIy6+810nBWMZQZicB/G9SR0mRQQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
+	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1739816173;
+	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=dW0tidsgp/Ub4s++qsOhA6oRQ1/t0kgWfjgFSGuKGjs=;
+	b=gbWOKyv05QL9Uq1RX9ObrSEFjSLUUYqJL4UkEvlwp9CkWJ0/PcKYAAYsm3/0jTeq
+	QCuyxQNT+HnCsGpH5M8FTziAhyx0CZ9H4Skf6c8CzlGWVneXBUkOCtOgEHE+KW8ITKN
+	vhrnDpCyr+AuRER+kPYRZehu6lb+gDzTSWXIDSmA=
+Received: by mx.zohomail.com with SMTPS id 1739816172379218.1983866353495;
+	Mon, 17 Feb 2025 10:16:12 -0800 (PST)
+Message-ID: <6638b286-2e5e-4861-bb85-2e29556b0b02@collabora.com>
+Date: Mon, 17 Feb 2025 21:16:06 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/6] Add Synopsys DesignWare HDMI RX Controller
+To: Hans Verkuil <hverkuil@xs4all.nl>,
+ Shreeya Patel <shreeya.patel@collabora.com>, Heiko Stuebner
+ <heiko@sntech.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, jose.abreu@synopsys.com,
+ nelson.costa@synopsys.com, shawn.wen@rock-chips.com,
+ nicolas.dufresne@collabora.com,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: kernel@collabora.com, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Tim Surber <me@timsurber.de>
+References: <20250215210417.60074-1-dmitry.osipenko@collabora.com>
+ <0218c59c-ed97-4315-9306-041636462293@xs4all.nl>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Content-Language: en-US
+In-Reply-To: <0218c59c-ed97-4315-9306-041636462293@xs4all.nl>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehledtiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedvhfeljedtfedtjeevffegtddutdeghfettdduhfeuhfdttdffieeuiefgvdfhvdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtudemvgdtrgemvdegieemjeejledtmedviegtgeemvgdvvdemiedtfegumeehkegrnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvgeeimeejjeeltdemvdeitgegmegvvddvmeeitdefugemheekrgdphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefhedprhgtphhtthhopehphhhilhesrhgrshhpsggvrhhrhihpihdrtghomhdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegrnhgurhgvrgdrphhorhhtrgesshhushgvrdgtohhmpdhrtghpthhtoheprghrn
- hgusegrrhhnuggsrdguvgdprhgtphhtthhopegstghmqdhkvghrnhgvlhdqfhgvvggusggrtghkqdhlihhsthessghrohgruggtohhmrdgtohhmpdhrtghpthhtohepsghhvghlghgrrghssehgohhoghhlvgdrtghomhdprhgtphhtthhopegsrhhglhessghguggvvhdrphhlpdhrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtghomh
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-On Mon, 17 Feb 2025 17:03:34 +0000
-Phil Elwell <phil@raspberrypi.com> wrote:
-
-> Hi Hervé,
+On 2/17/25 11:34, Hans Verkuil wrote:
+> Hi Dmitry,
 > 
-> On Mon, 17 Feb 2025 at 15:53, Herve Codina <herve.codina@bootlin.com> wrote:
-> >
-> > Hi Phil,
-> >
-> > On Thu, 13 Feb 2025 21:12:43 +0000
-> > Phil Elwell <phil@raspberrypi.com> wrote:
-> >  
-> > > On Thu, 13 Feb 2025, 21:06 Herve Codina, <herve.codina@bootlin.com> wrote:  
-> > > >
-> > > > Hi Phil,
-> > > >
-> > > > On Thu, 13 Feb 2025 20:15:06 +0000
-> > > > Phil Elwell <phil@raspberrypi.com> wrote:
-> > > >  
-> > > > > Once more, with plain text, which I'd hoped the Android GMail client
-> > > > > would work out for itself.
-> > > > >
-> > > > > On Thu, 13 Feb 2025, 18:53 Herve Codina, <herve.codina@bootlin.com> wrote:  
-> > > > > >
-> > > > > > Hi Phil,
-> > > > > >
-> > > > > > On Thu, 13 Feb 2025 17:57:37 +0000
-> > > > > > Phil Elwell <phil@raspberrypi.com> wrote:
-> > > > > >  
-> > > > > > > On Thu, 13 Feb 2025 at 17:45, Andrew Lunn <andrew@lunn.ch> wrote:  
-> > > > > > > >  
-> > > > > > > > > > Or do you mean a custom board, which has a CPU, RP1 and the button and
-> > > > > > > > > > fan are directly on this custom board? You then want a board DTS which
-> > > > > > > > > > includes all these pieces?  
-> > > > > > > > >
-> > > > > > > > > That depends on whether you count the Raspberry Pi 5 as a custom board.  
-> > > > > > > >
-> > > > > > > > So you mean the Pi 5 board would itself make use of the resources the
-> > > > > > > > RP1 device has? They are not simply connected to headers for plugin
-> > > > > > > > boards, but used by the main board? Hence you want to describe them in
-> > > > > > > > the board .DTS file.  
-> > > > > > >
-> > > > > > > That's correct. But even for plug-in devices, those which are on
-> > > > > > > non-discoverable buses need overlays to declare them, which causes a
-> > > > > > > problem when the overlay application happens before the kernel is
-> > > > > > > started.
-> > > > > > >  
-> > > > > >
-> > > > > > Hum, I see.
-> > > > > >
-> > > > > > We worked on overlay usage on non-discoverable buses wired to a connector
-> > > > > > and we did a talk about issues we are facing on at Plumber [0].
-> > > > > >
-> > > > > > You can also find our big picture in [1] and a last contribution introducing
-> > > > > > export-symbols feature in [2]. export-symbols is also under discussion on
-> > > > > > some other threads.
-> > > > > >
-> > > > > > Also, we proposed the i2c bus extensions feature [3] whose goal is to allow
-> > > > > > an addon board to add devices on an i2c bus provided by a base board and
-> > > > > > wired to an connector the addon board is connected to.
-> > > > > >
-> > > > > > Maybe in your case, you can decouple resources (gpio, pwm) provided by the
-> > > > > > addon board and used by the base board using also nexus node.
-> > > > > >
-> > > > > > We use a nexus node [4] (not presented at the Plumbers talk because the idea
-> > > > > > came during 'out of talk' discussions in Plumbers) in order to allow our
-> > > > > > addon board to use resources provided by the base board.
-> > > > > >
-> > > > > > In your case, if I understood, you are in the other direction but why not
-> > > > > > using also a nexus node to decouple and translate resources in this other
-> > > > > > direction ?
-> > > > > >
-> > > > > > Don't know if this idea can help but feel free to ask for some more
-> > > > > > information if needed.  
-> > > > >
-> > > > > Nexus nodes look interesting - I see them as adding a layer of
-> > > > > abstraction such that, for example, boards can declare which of their
-> > > > > specific resources performs a common function so that clients can
-> > > > > treat them all the same. We do the same thing in a limited way by
-> > > > > using common labels on nodes, but this goes much further.
-> > > > >
-> > > > > In the case of Pi 5 and RP1, I imagine you are proposing that the Pi 5
-> > > > > dtb declares the connector node and the overlay fills in the content
-> > > > > with references to its GPIO controller, PWM controller etc. However, I
-> > > > > think the overlay would also have to be board specific because it's
-> > > > > not possible to patch part of a property from an overlay, so you'd end
-> > > > > up overwriting the GPIO number as well as the controller reference.
-> > > > >
-> > > > > What is needed to make this work is the ability to cope with
-> > > > > unresolved references in the base dtb, to be resolved as each overlay
-> > > > > is applied, with runtime checking that each reference is resolved
-> > > > > before it is used, all of which sounds like a nightmare. Plus, we
-> > > > > really don't want to have to change the way all our camera and display
-> > > > > overlays work on all Raspberry Pis just to accommodate somebody's idea
-> > > > > of how RP1 should be handled.  
-> > > >
-> > > > Just to be clear, my comments were not there to tell you how RP1 should
-> > > > work. I just proposed ideas without trying to force anything and I can
-> > > > fully understand that ideas proposed don't feed your needs.
-> > > >
-> > > > Sorry if my approach was misunderstood.  
-> > >
-> > > I feel I've been misunderstood - I appreciate your ideas.
-> > >
-> > > Perhaps it would help if you could outline how you think we could
-> > > apply your suggestions?
-> > >  
-> >
-> > I was thinking about what your mentioned, i.e. the overlay fill the nexus node.
-> > No sure to understand why the overlay should patch some properties.
-> > Also where are the unresolved references in that case. The base DT refers to
-> > the Nexus node.
-> > The issue will probably be that the translation performed by the nexus node is
-> > not available until the overlay is applied. The consumer will see errors other
-> > than PROBE_DEFER when if probes while the overlay is not applied.  
+> On 15/02/2025 22:04, Dmitry Osipenko wrote:
+>> This series implements support for the Synopsys DesignWare
+>> HDMI RX Controller, being compliant with standard HDMI 1.4b
+>> and HDMI 2.0.
+>>
+>> Features that are currently supported by the HDMI RX driver
+>> have been tested on rock5b board using a HDMI to micro-HDMI cable.
+>> It is recommended to use a good quality cable as there were
+>> multiple issues seen during testing the driver.
+>>
+>> Please note the below information :-
+>> * HDMIRX driver now only works with the opensource TF-A.
+>> * We have tested the working of OBS studio with HDMIRX driver and
+>> there were no issues seen.
+>> * We tested and verified the support for interlaced video.
+>> * We tested capturing of YUV formats.
+>>
+>> To test the HDMI RX Controller driver, following example commands can be used :-
+>>
+>> root@debian-rockchip-rock5b-rk3588:~# v4l2-ctl --verbose -d /dev/video0 \
+>> --set-fmt-video=width=1920,height=1080,pixelformat='BGR3' --stream-mmap=4 \
+>> --stream-skip=3 --stream-count=100 --stream-to=/home/hdmiin4k.raw --stream-poll
 > 
-> The job of the nexus node would be to translate a generic request for
-> a numbered resource to a specific request for an RP1 resource with
-> arbitrary properties. The arbitrary properties could be GPIO offsets,
-> which are board specific, while the node supplying the resource is
-> provided by the overlay. This means that an entry in the table,
-> described by a single property, could have contributions from the base
-> DT and the overlay, which is not possible since overlays overwrite
-> whole properties.
-
-Hum, I am a bit lost.
-Some DT example (base and overlay) could help me to understand.
-
+> This looks a bit odd. This commandline should work just as well:
 > 
-> Perhaps that particular problem could be overcome by creating a
-> single-entry map, using the map-mask feature to pass through all of
-> the GPIO offset and flags to the parent, so that the whole table
-> becomes a proxy for RP1's GPIO controller. Is that what you had in
-> mind?
+> v4l2-ctl --stream-mmap --stream-count=100 --stream-to=/home/hdmiin4k.raw
 > 
-> > Also, the solution will lead to memory leak at runtime. Indeed, the overlay
-> > add properties in an already existing node.
-> > If the overlay is applied by the Kernel itself, this lead to memory leak when
-> > the overlay is removed.
-> > Indeed, an overlay can add/remove node without any issue but it cannot
-> > add/remove properties to/from existing nodes.  
+> v4l2-ctl will call QUERY_DV_TIMINGS, then (if a valid signal is found) S_DV_TIMINGS.
+> That in turn updates the v4l2_format. So there is no need to set the video format,
+> it should happen automatically.
+
+Your cmdline works fine, setting format isn't necessary.
+
+> Also, why skip the first three frames? And why select --stream-poll?
 > 
-> Fortunately for me I'm not arguing _for_ the use of an overlay.
-> 
-> > In the case described here, the nexus node is already present in the DT and the
-> > overlay add/remove properties to/from this existing node.  
-> 
-> I think I can see how that could be made to work for GPIOs. It looks
-> as though the GPIO subsystem is the only one making use of
-> of_parse_phandle_with_args_map. Interrupts seem to have an open-coded
-> equivalent, and iommus. What about I2C and PWM?
+> It could be that these are just left-overs from previous attempts, but it's
+> weird.
 
-Support for PWM has been recently accepted.
-  https://lore.kernel.org/all/ufl4kwrjyp4zid4muvghefevqc6hk3zyvxnsu72fxd4f46fzg6@hufkci2dzjid/
+It's indeed the left-overs, will edit the cover letter in v7.
 
-For i2c, nexus node is not suitable.
+> I also commented on the debugfs InfoFrame code in patch 4/6, that's not
+> correct.
 
-Nexus node works well when resources are indexed (gpio line in a gpio chip
-for instance). For bus controller there is no index.
-I mean we never refer a i2c bus controller using <&i2c-ctrl 12>.
+Thanks for the thorough review! :)
 
-For i2c, I proposed i2c bus extension:
-  https://lore.kernel.org/all/20250205173918.600037-1-herve.codina@bootlin.com/
+Additional note: I'm going to finish upstreaming of the driver because
+Shreeya is currently busy. She will be maintaining driver afterwards.
 
+-- 
 Best regards,
-Hervé
+Dmitry
 
