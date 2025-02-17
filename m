@@ -1,143 +1,94 @@
-Return-Path: <devicetree+bounces-147343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EB43A3807E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 11:45:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C32CCA3810E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 12:01:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E0797A53A9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:44:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9765A188562F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:59:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A274721766F;
-	Mon, 17 Feb 2025 10:45:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="MwV2d8CT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 819C5216E3D;
+	Mon, 17 Feb 2025 10:59:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D96782135AF;
-	Mon, 17 Feb 2025 10:44:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F341212B3E;
+	Mon, 17 Feb 2025 10:59:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739789101; cv=none; b=r2GbFqwpHbZeE7PCynUXAo4YXZMzx0h/UaXiBbwJPwdSc+QYws/6uFylywJIbrwOAVgwTpPKDQBKOJYzX1LOFHt9THT87B1tip1rPy8BNl552GV4jM2ceG0PQAC0dH092SUtrsYnXml+rOOB6MZ15ADb2F5pHihNSnYPPsSqi/I=
+	t=1739789967; cv=none; b=bB88HKUXhzpmRaNdWSOlt7xmRjlKcWkmOW4mAtfeCMWXJTfMOY48aahz1xGqXaKBjUg4hov98Nwh3+U0bMcDbGtjuFdIVJQytYhTsOAePk/I74jEyhGAJ49pdVVxUlAf7TDxUP0KZs+rDDaRm0n7hB8TcgsRkpn6Vy1ck+m00SE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739789101; c=relaxed/simple;
-	bh=onsLhD/OZqjgCpNx3Oc/IawsINkP54EZmAsTG4JNz8w=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ksPF+8E83YJWzJ2lp0Hpd5aYhTgOgHxK09peJJ7cbD+HpExtrEW935CPhzpfLn0piIqik4+vG7stTZOw2FcPsE5aL+Z2HQ0wy54I1n3a/AxDQGQ5ZindBz/Ux4fLdvssj/kJzmQJ/p3xJs9tkV1fxKkLfnBxVoWOGE4eiTz0yBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=MwV2d8CT; arc=none smtp.client-ip=67.231.152.168
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-	by mx0b-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51H4i6n0022196;
-	Mon, 17 Feb 2025 04:44:45 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=PODMain02222019; bh=K4icBczrJUhz4IG1RT
-	JgNxQUMXbKqoFC7lTBBpaTZnU=; b=MwV2d8CT7JHrOHtG044twa9o/yEQ73Vru4
-	hGfmNVNkgRPA6OCEhYbo8b5kdk3FvUaZVuhvXdfe/4c7Rnol7IzBv77eNjvfbUtR
-	/Y9Hx7RWWFIYFpP/qJHZgCNdgyOXMA1ilheU0+fp+oPeI4V9SmL5ScRuugQHrkwP
-	7YUWevg20Gdd1gJVFF3w1q6lSNGg95Z6slE5+iWLWruYnw/bd8+SSIgNwJGE3dky
-	64TQoZyl0ZzBTFJ2oJuq+dUlQCdy3PN9eopOj5eVoHCrUyRDsxXLTJvCEMKmsgJF
-	VEkiXHaBB6jtSuGdd5CvhgeRzEu5j5LyT/7OTJW80EMnC2cQA60g==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 44uwg18m0m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Feb 2025 04:44:45 -0600 (CST)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Mon, 17 Feb
- 2025 10:44:43 +0000
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1544.14 via Frontend Transport; Mon, 17 Feb 2025 10:44:43 +0000
-Received: from opensource.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 6E10C822561;
-	Mon, 17 Feb 2025 10:44:43 +0000 (UTC)
-Date: Mon, 17 Feb 2025 10:44:42 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: Francesco Dolcini <francesco@dolcini.it>
-CC: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        <patches@opensource.cirrus.com>,
-        Ernest Van Hoecke
-	<ernest.vanhoecke@toradex.com>,
-        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Francesco
- Dolcini" <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v1 5/5] ASoC: wm8904: add DMIC support
-Message-ID: <Z7MTGq9zBqWCJ4kt@opensource.cirrus.com>
-References: <20250206163152.423199-1-francesco@dolcini.it>
- <20250206163152.423199-6-francesco@dolcini.it>
+	s=arc-20240116; t=1739789967; c=relaxed/simple;
+	bh=k8bLKfkDeB4mNR9z24Lp92E8kKCRHmDcVKFALmu6mtc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=lNqszHpkLQVodteDhSLl6OyIIFA1MmVY4WHJYAZnijR6Mz7830x31X57kruP/6jnat/cAR0vyRuglFTeVxPbB69XWjwN+xx407yBibpNCSz/sJsXqx/71Jr2g73cHdBlHkNu47FRqUWs78xAg0+TGQG8YyN6RUC0A5dI4EV6pN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: 9p2wZoP9SF6TTqSjzKmZDQ==
+X-CSE-MsgGUID: i+pL8HEEQuWIHJK6zlmaJA==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 17 Feb 2025 19:54:22 +0900
+Received: from superbuilder.administration.lan (unknown [10.226.93.254])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 8BD1A4280557;
+	Mon, 17 Feb 2025 19:54:19 +0900 (JST)
+From: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+To: thierry.bultel@linatsea.fr,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Thierry Bultel <thierry.bultel.yh@bp.renesas.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 01/13] dt-bindings: soc: Add Renesas RZ/T2H (R9A09G077) SoC
+Date: Mon, 17 Feb 2025 11:52:02 +0100
+Message-ID: <20250217105354.551788-2-thierry.bultel.yh@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250217105354.551788-1-thierry.bultel.yh@bp.renesas.com>
+References: <20250217105354.551788-1-thierry.bultel.yh@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250206163152.423199-6-francesco@dolcini.it>
-X-Proofpoint-GUID: oThxAcshgNmhow2UrBHkn92R5j6EUo4M
-X-Proofpoint-ORIG-GUID: oThxAcshgNmhow2UrBHkn92R5j6EUo4M
-X-Authority-Analysis: v=2.4 cv=CYzy5Krl c=1 sm=1 tr=0 ts=67b3131d cx=c_pps a=uGhh+3tQvKmCLpEUO+DX4w==:117 a=uGhh+3tQvKmCLpEUO+DX4w==:17 a=kj9zAlcOel0A:10 a=T2h4t0Lz3GQA:10 a=m8ToADvmAAAA:8 a=JqlO1anYB2KeO3qhde4A:9 a=CjuIK1q_8ugA:10
- a=kCrBFHLFDAq2jDEeoMj9:22
-X-Proofpoint-Spam-Reason: safe
+Content-Transfer-Encoding: 8bit
 
-On Thu, Feb 06, 2025 at 05:31:52PM +0100, Francesco Dolcini wrote:
-> From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
-> +static const struct snd_soc_dapm_route dmic_intercon[] = {
-> +	{ "DMIC Mux", "DMIC1", "IN1L" },
-> +	{ "DMIC Mux", "DMIC2", "IN1R" },
-> +
-> +	{ "ADCL", NULL, "DMIC Mux" },
-> +	{ "ADCR", NULL, "DMIC Mux" },
-> +};
-> +
-> +static const struct snd_soc_dapm_route cin_intercon[] = {
-> +	{ "Left Capture Input", "ADC", "Left Capture PGA" },
-> +	{ "Left Capture Input", "DMIC", "IN1L" },
-> +	{ "Right Capture Input", "ADC", "Right Capture PGA" },
-> +	{ "Right Capture Input", "DMIC", "IN1R" },
+Add RZ/T2H (R9A09G077), its variants, and the rt2h-evk evaluation board in
+documentation.
 
-Am I misunderstanding things or does something not quite look
-right with the routes here? Shouldn't you end up with the these
-three situations:
+Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+---
+ .../devicetree/bindings/soc/renesas/renesas.yaml       | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Analogue:
-	{ "Left Capture Input", "ADC", "Left Capture PGA" },
-	{ "Right Capture Input", "ADC", "Right Capture PGA" },
+diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
+index b7acb65bdecd..c1f5e0fa3c40 100644
+--- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
++++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
+@@ -535,6 +535,16 @@ properties:
+               - renesas,r9a09g057h44 # RZ/V2HP with Mali-G31 + Mali-C55 support
+           - const: renesas,r9a09g057
+ 
++      - description: RZ/T2H (R9A09G077)
++        items:
++          - enum:
++              - renesas,r9a9g077m44-rzt2h-evk # RZ/T2H Evaluation Board
++          - enum:
++              - renesas,r9a09g077 # RZ/T2H with Quad Cortex-A55 + Dual Cortex-R52
++              - renesas,r9a09g077m04 # RZ/T2H with Single Cortex-A55 + Dual Cortex-R52 - no security
++              - renesas,r9a09g077m24 # RZ/T2H with Dual Cortex-A55 + Dual Cortex-R52 - no security
++              - renesas,r9a09g077m44 # RZ/T2H with Quad Cortex-A55 + Dual Cortex-R52 - no security
++
+ additionalProperties: true
+ 
+ ...
+-- 
+2.43.0
 
-Digital in1l_as_dmicdat1:
-	{ "Left Capture Input", "DMIC", "IN1L" },
-	{ "Right Capture Input", "DMIC", "IN1L" },
-
-Digital in1r_as_dmicdat2:
-	{ "Left Capture Input", "DMIC", "IN1R" },
-	{ "Right Capture Input", "DMIC", "IN1R" },
-
-So I think you need to add the DMIC routes conditionally here.
-
-Also is there not some part of the existing analogue routing that
-needs disconnected in the DMIC cases? This only addes routes,
-which feels like the existing analogue path is never
-disconnected?
-
-Thanks,
-Charles
-
-> +
-> +	{ "ADCL", NULL, "Left Capture Input" },
-> +	{ "ADCR", NULL, "Right Capture Input" },
-> +};
 
