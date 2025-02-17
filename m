@@ -1,160 +1,112 @@
-Return-Path: <devicetree+bounces-147292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0169CA37E41
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:17:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B123A37E4E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:20:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB27F188B192
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:17:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 407DB16C0F6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:20:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7C61FE460;
-	Mon, 17 Feb 2025 09:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D0142063C0;
+	Mon, 17 Feb 2025 09:20:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="O8hZx/ym"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 439BF1FDA9D
-	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 09:17:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6AD200BA8;
+	Mon, 17 Feb 2025 09:20:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739783851; cv=none; b=nX4VNugO1dH+DiyIAoDy0LJb2vuKnwUtNmdNSAjKbGLsl8bq0bp+eky5YdxkG7wrL9u+QdvWrA0yUhD2W0n+NdORsS0NMM+Hir3TIhYJ8PzPVprD06PV9iSGEkJ2MuPHt0g6yaEXJFTYL0Uu35naNBXRJbB807ONVrNctSRe56k=
+	t=1739784041; cv=none; b=aYjuovMeIKukyFvpbLzgsjHydJV9vSXCEjnEMcnllzMz5OsKoql03nGGORAb5D6u+g0A7qGPdb27AZgFN3F/T2k1sAiJEgPEB1hTTfVfhSfl14gHm3G+LwzJZ3S+NSKA8Gnbtp2a2fsiLcsnMGZZya19xqXhbV2Q7I2itmDtV/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739783851; c=relaxed/simple;
-	bh=maAJSSeJ1A1VrlOykhbpi2GRW3Z5GwNWyVLw64ajt54=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=atRSyD5ygqOIPkgx6PNY3cwSrN9MNwt5TV8lsD/e2+EAh9o9O7Z46PXMf8YVtYV6Ik7SEKo6uJgwSIxZPloRKOsaBMrccgWZYFfoXrWwtLnQo17DJlX0WzunNuEndd8L6cv/KdrFxHAhSnaUOjf3ZrToEcXngPeAB/3jlqMzQGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tjxFZ-0008U5-7G; Mon, 17 Feb 2025 10:17:13 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tjxFX-001Nlp-37;
-	Mon, 17 Feb 2025 10:17:11 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tjxFX-000479-2q;
-	Mon, 17 Feb 2025 10:17:11 +0100
-Message-ID: <67fe157ce8ca3c3c4e08451da52f7c94f73439b2.camel@pengutronix.de>
-Subject: Re: [PATCH v3 1/8] dt-bindings: spi: Add STM32 OSPI controller
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: patrice.chotard@foss.st.com, Mark Brown <broonie@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>,  Maxime Coquelin
- <mcoquelin.stm32@gmail.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, Catalin
- Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org,  linux-kernel@vger.kernel.org,
- christophe.kerello@foss.st.com
-Date: Mon, 17 Feb 2025 10:17:11 +0100
-In-Reply-To: <20250210131826.220318-2-patrice.chotard@foss.st.com>
-References: <20250210131826.220318-1-patrice.chotard@foss.st.com>
-	 <20250210131826.220318-2-patrice.chotard@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1739784041; c=relaxed/simple;
+	bh=B7AeQ3K/+X7WndovNJX4Lf8aEdNeBasRxace1em9mGI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=K2Y9vxGAEvtNc/Yyt1nweQp4ZIbZVlxu5tcLg4hdsJoKawFtM3JwyGM8cRax6ZrjDYUpFa5cnpVde/tpKcPEeCJ65fjHtHXniNVRQ1/uWHtbvC7VcgxlRBVDztqNv4BPp5sX9NtbFvsKKXCD0CEMUIa23QmcJkI7g2A19TU/hBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=O8hZx/ym; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C149D433F7;
+	Mon, 17 Feb 2025 09:20:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1739784031;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=7GD/trcjVijv8BKevRiWl5MHpKoDGJj6DiZdAEWA58A=;
+	b=O8hZx/ymgHX4GoVoMacfk+ZkAzzQFc8Y7uJbRnSDolWhl89wf2G+d7CH3FJtjOatyk+7Fx
+	USQoWr1Pp3D6Wy1YAUPv/kS2Wx9nw1yGzFzsCJ6uGO7dAKBvzpR6EvasweX3J0REhK9XTa
+	gx1FZiZRpuwAkWDXaq8mReLD894MUa18pTlSlV+v4Ud6MRD5vPDilf4jApT7cDSE3wn4M5
+	ihurz1M7oMaQOOrYllUZCpaiYalw0RAwEdxs9PhcdF/4RygANnjjNz3e0myezG0ZDzysSQ
+	3/g46MUaBaJ5C9WAQtYIN+SOfCCNoBnN6z7XKxVhauG7MbSPVT0ACC5/d0zdXA==
+Date: Mon, 17 Feb 2025 10:20:26 +0100
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>, Eric Dumazet
+ <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Russell King
+ <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org, Christophe
+ Leroy <christophe.leroy@csgroup.eu>, Herve Codina
+ <herve.codina@bootlin.com>, Florian Fainelli <f.fainelli@gmail.com>, Heiner
+ Kallweit <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>,
+ =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>, Marek
+ =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
+ <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
+ <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
+ mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Romain
+ Gantois <romain.gantois@bootlin.com>, Daniel Golle <daniel@makrotopia.org>,
+ Dimitri Fedrau <dimitri.fedrau@liebherr.com>, Sean Anderson
+ <seanga2@gmail.com>
+Subject: Re: [PATCH net-next v4 00/15] Introduce an ethernet port
+ representation
+Message-ID: <20250217102026.780ebf36@fedora.home>
+In-Reply-To: <20250214165345.6cab996f@kernel.org>
+References: <20250213101606.1154014-1-maxime.chevallier@bootlin.com>
+	<20250214165345.6cab996f@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehkedtudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthejredtredtvdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegveeltddvveeuhefhvefhlefhkeevfedtgfeiudefffeiledttdfgfeeuhfeukeenucfkphepvdgrtddumegtsgduleemkegugegtmeelfhdttdemsggtvddumeekkeelleemheegtdgtmegvheelvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekugegtgemlehftddtmegstgdvudemkeekleelmeehgedttgemvgehlegvpdhhvghlohepfhgvughorhgrrdhhohhmvgdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefuddprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtp
+ hhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomh
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
-On Mo, 2025-02-10 at 14:18 +0100, patrice.chotard@foss.st.com wrote:
-> From: Patrice Chotard <patrice.chotard@foss.st.com>
->=20
-> Add device tree bindings for the STM32 OSPI controller.
->=20
-> Main features of the Octo-SPI controller :
->   - support sNOR / sNAND / HyperRAM=E2=84=A2 and HyperFlash=E2=84=A2 devi=
-ces.
->   - Three functional modes: indirect, automatic-status polling,
->     memory-mapped.
->   - Up to 4 Gbytes of external memory can be addressed in indirect
->     mode (per physical port and per CS), and up to 256 Mbytes in
->     memory-mapped mode (combined for both physical ports and per CS).
->   - Single-, dual-, quad-, and octal-SPI communication.
->   - Dual-quad communication.
->   - Single data rate (SDR) and double transfer rate (DTR).
->   - Maximum target frequency is 133 MHz for SDR and 133 MHz for DTR.
->   - Data strobe support.
->   - DMA channel for indirect mode.
->   - Double CS mapping that allows two external flash devices to be
->     addressed with a single OCTOSPI controller mapped on a single
->     OCTOSPI port.
->=20
-> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
-> ---
->  .../bindings/spi/st,stm32mp25-ospi.yaml       | 105 ++++++++++++++++++
->  1 file changed, 105 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/st,stm32mp25-os=
-pi.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/spi/st,stm32mp25-ospi.yaml=
- b/Documentation/devicetree/bindings/spi/st,stm32mp25-ospi.yaml
-> new file mode 100644
-> index 000000000000..5f276f27dc4c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/st,stm32mp25-ospi.yaml
-> @@ -0,0 +1,105 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/st,stm32mp25-ospi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STM32 Octal Serial Peripheral Interface (OSPI)
-> +
-> +maintainers:
-> +  - Patrice Chotard <patrice.chotard@foss.st.com>
-> +
-> +allOf:
-> +  - $ref: spi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: st,stm32mp25-ospi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  memory-region:
-> +    description:
-> +      Memory region to be used for memory-map read access.
-> +      In memory-mapped mode, read access are performed from the memory
-> +      device using the direct mapping.
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    items:
-> +      - description: phandle to OSPI block reset
-> +      - description: phandle to delay block reset
+On Fri, 14 Feb 2025 16:53:45 -0800
+Jakub Kicinski <kuba@kernel.org> wrote:
 
-Are you positive that these will only ever have to be reset together?
-Otherwise I'd add a reset-names property just in case.
+> On Thu, 13 Feb 2025 11:15:48 +0100 Maxime Chevallier wrote:
+> > This is V4 of the series introducing the phy_port infrastructure.  
+> 
+> FWIW it doesn't seem to apply:
+> 
+> Applying: net: ethtool: Introduce ETHTOOL_LINK_MEDIUM_* values
+> Applying: net: ethtool: Export the link_mode_params definitions
+> error: sha1 information is lacking or useless (net/ethtool/common.c).
+> error: could not build fake ancestor
 
-regards
-Philipp
+Hmm strange, I may have messed-up somewhere ? I'll rebase anyways for
+the next iterations, some of the recently merged work with the
+.get_nexy_update_time conflicts with the series as well.
+
+Thanks,
+
+Maxime
+
 
