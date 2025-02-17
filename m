@@ -1,170 +1,120 @@
-Return-Path: <devicetree+bounces-147474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50FADA386F4
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 15:51:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF3AA3871C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 15:59:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F66E3B3998
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:49:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 249783AE95F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:57:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40A0822489A;
-	Mon, 17 Feb 2025 14:49:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB91223700;
+	Mon, 17 Feb 2025 14:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FuKbJGTP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HVurLB09"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11528223324;
-	Mon, 17 Feb 2025 14:49:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6869121CC74;
+	Mon, 17 Feb 2025 14:57:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739803782; cv=none; b=jO+TDoeabCgusOW1QBc3FvVKW6Wq7uEtS1BJUmwbQuGA0iBLdJ09uoSfiL7S78jsPKSzzhkPI72hvMdYUeiBaaKLIcvwPH0ItPntZUuXp29pDj6hNxUP+zVCe02zLHaUfJq25oUy/v43r3fT9Wq+H6JNrshdAj6PLcgYRI7RR0c=
+	t=1739804269; cv=none; b=roI0MJBhQaCXY+Z722ZyIgRvZvTcmz1SKmyrmw17dQihyMmTL6851Z526V/Xn4LAV/SFNoCKT0F3RPvw70RtviHeNVbu3gW0qnD47U1mYBK/9/Ljm4u0foq/JhHGI4oy1gQWsbJk4ob35D4dfBlVB4yagbOtch/9RaNW8vIBhOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739803782; c=relaxed/simple;
-	bh=noBWesDhIHu2UKaR18tw6XBMmfBZeqYD391YNtBjELo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NPxJ3CPMev7TwTi0X2hg75EaLEP4pXpJdPlRczduxu9yY/7Of3khN+34zcK30tvotYBSgkeWv6E5dowT9e2Sh1iGctAk+hwjxoEgCFSZLSy38dgzKtQUf11CKv/7cpELtTwJ7PDu3SDJumcrruE2oYfUM48s8u2qC9HvW1+F0T0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FuKbJGTP; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 64A4A44430;
-	Mon, 17 Feb 2025 14:49:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739803777;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PCSw3bmWjwYwuAQWl8doOYDVdqtoYKvVbYaoog5r6cI=;
-	b=FuKbJGTPideoR9c6VeuSbGxTWhWv12fvminuJ8DDMWnRMjtEVQxnV/c1g4jtSw+pBHf3A6
-	RQBlVhGKexKMWaPV/8ju+UkrJ4fsyEhpPDWgeSW8hNw3tJkQRjPC9cU+sOxOlNvfA/by7C
-	h3P+/mW1/rFJ8UnPvJzgZHg52sj3CdJtWQc0TXqfKYgM0+7f+eZZ+hqZV5jTXhMHl06IU3
-	Ln8wHc7cu4kdYfBxzCeKT2Wd5Puw1/vFTMCGyOSWgqfOOP2CXY5j0yg5IO3/FFnlK0npwb
-	jvf1FZ3mskLOe3QP0WqZIcWoA2+0A9b1MUBCanwxV9yTMgSLsDf+eYpxkyErmA==
-Date: Mon, 17 Feb 2025 15:49:34 +0100
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: davem@davemloft.net, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski
- <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, linux-arm-kernel@lists.infradead.org, Christophe Leroy
- <christophe.leroy@csgroup.eu>, Herve Codina <herve.codina@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Heiner Kallweit
- <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>,
- =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>, Marek
- =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
- <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
- <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
- mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Romain
- Gantois <romain.gantois@bootlin.com>, Daniel Golle <daniel@makrotopia.org>,
- Dimitri Fedrau <dimitri.fedrau@liebherr.com>, Sean Anderson
- <seanga2@gmail.com>
-Subject: Re: [PATCH net-next v4 05/15] net: phy: Create a phy_port for
- PHY-driven SFPs
-Message-ID: <20250217154934.76ec03e5@fedora.home>
-In-Reply-To: <Z7NF6ciz4RHMaGo6@shell.armlinux.org.uk>
-References: <20250213101606.1154014-1-maxime.chevallier@bootlin.com>
-	<20250213101606.1154014-6-maxime.chevallier@bootlin.com>
-	<Z7DjfRwd3dbcEXTY@shell.armlinux.org.uk>
-	<20250217092911.772da5d0@fedora.home>
-	<Z7NF6ciz4RHMaGo6@shell.armlinux.org.uk>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1739804269; c=relaxed/simple;
+	bh=qJqUYoEZSlIY8ZZFK2NOtBT4skKZlYw/05gC7EkpVck=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NmnLD6yFzt9fpGHdqJ5HNhxUAFDjWCqQkQzfIdXqDDzMj8sJp5NAlWRP6DJ/wNKqmlUhV1LtyERwqcbclIFFTKcZB5/Se8FJdjhC1ceKy/YqmeKyPOLA7U7b8lVWA9jjm4F+MZV4RUQHkvJVs85g/CIv0znbPGwFZ8WT/oN3NF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HVurLB09; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4398c8c8b2cso6342365e9.2;
+        Mon, 17 Feb 2025 06:57:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739804266; x=1740409066; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oXoBLoBhkmHAsPATjYXnbeVHXKCoJYAoeA07HXhsnTQ=;
+        b=HVurLB0929XGSSseEYslKDuvayEoex9mIPxKCAt7x69lFb/aU66/8OMKuxk8cbTGk0
+         svz2YRINryxy7CCcCG7f3RXH3joRggG9KzrdvWQn7sTqwGDuhRdRk4grae2ekqgvjlr1
+         zk5xFQC3Z+4Edh9wpoTV7zwZMZYBWxmF0LSjz/tz0iQGXqvjNbm7kYntK8HLxNDVkUjU
+         XvMuweQyOSjr7V259eEoXkV1HIbZC6gpARralAWQiKOGzysOCR82nUdhc7pKjjescqVf
+         xsuBewUOvpxaQhLUxAWAre1nTZNhfhz0ChYKGnWuRNqKGEC9YJH9gXHjNI+TcUQ9tGmX
+         2u8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739804266; x=1740409066;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oXoBLoBhkmHAsPATjYXnbeVHXKCoJYAoeA07HXhsnTQ=;
+        b=oVRG6BZXSCplEcEZHY26ffZTrAhWMCWOjszr2fp2YjYuM+xJRo121NG9U6yCtImTvj
+         vyh9J8Z9tjB+L/YUIKByydTbO6R+9UPTOlzKQujmR4I4qYWFLr01kylq6ishX0LL4WDs
+         GUfF2UB6suBfw7Yp0V2dFLliaetfW72PmmTYm89fCz6LgrrNnjcrGsDcy6EkzgDmwVPY
+         dnTP4DJMw9xBl5NPmRLgNkpLRSROEUgqh8LbebdunkideWo+/s+UwLExJwxDdwpI0VhB
+         fqcU+/XjlvltvOwvtu1eHvlh7VmPfDyRFBexNJqlY7M50jWzzXNAT84hJn5Jg94S0fhq
+         79dQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU4P9EPNsVBe4qQU7aC3/PgfU/0MdWtUUn1IBiXAi0dCs1/b06/5H2PMwxuUrp7EZI5PJKgSKZurvRsWpI=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWAHZhoSEHOBmpoowJwl0miSc84AAWp2g7QpN5+2FhmdobNSxa
+	FE33wpordR4GlYzlti/MFzIjnsVmz64hefr+M/xXzYKNo1GUplnV
+X-Gm-Gg: ASbGncsFaj9Ehoik+Cngit5DfIpQc3/8UNzT6B2dzsFA1kNfHx+n29Wqe0yn9uoOmd5
+	mFda51BxAhUGa7GNRHm2XG8okyeg4A1LZeL4isyVQe9JtyihxVf9fNueRIYR7jv//IAFaRGk6tc
+	aA8jlbM7H7B5Oq3+Wk691UXgmQwLt0XJrV3Aa+yDJEKQ1r0hhlb6aBcJguWBnt4DSChURk4MITM
+	9ejZy5NzLACMBi5I7iI2GbVRo9KAaYjCoxcmol+P7Nl1tVRj9A/P3qi7qyGwRsGDuhgdh5MRnfz
+	LnxJiFd/GKi84/ulBLhCM/TlGKF3VEg=
+X-Google-Smtp-Source: AGHT+IFXCMAdjJ/GydfAREXf0KPq6/DlSCRVX1j0O/vO0UDb9MfjoWtFC0m9aDzP5dEgyS4d1XL08A==
+X-Received: by 2002:a05:600c:19c9:b0:439:5760:39a with SMTP id 5b1f17b1804b1-4396e716e8cmr101394035e9.23.1739804265610;
+        Mon, 17 Feb 2025 06:57:45 -0800 (PST)
+Received: from eichest-laptop.toradex.int ([2a02:168:af72:0:48e7:ac19:aeba:f677])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f25915146sm12645020f8f.56.2025.02.17.06.57.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Feb 2025 06:57:45 -0800 (PST)
+From: Stefan Eichenberger <eichest@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	francesco.dolcini@toradex.com
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] arm64: dts: freescale: imx8mm/imx8mp-verdin-dahlia: add Microphone Jack to sound card
+Date: Mon, 17 Feb 2025 15:56:39 +0100
+Message-ID: <20250217145744.179213-1-eichest@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehkeeikecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthejredtredtvdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegveeltddvveeuhefhvefhlefhkeevfedtgfeiudefffeiledttdfgfeeuhfeukeenucfkphepvdgrtddumegtsgduleemkegugegtmeelfhdttdemsggtvddumeekkeelleemheegtdgtmegvheelvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekugegtgemlehftddtmegstgdvudemkeekleelmeehgedttgemvgehlegvpdhhvghlohepfhgvughorhgrrdhhohhmvgdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefuddprhgtphhtthhopehlihhnuhigsegrrhhmlhhinhhugidrohhrghdruhhkpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdro
- hhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: maxime.chevallier@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-On Mon, 17 Feb 2025 14:21:29 +0000
-"Russell King (Oracle)" <linux@armlinux.org.uk> wrote:
+This patch series adds a Microphone Jack to the simple-audio-card of the
+Verdin iMX8MM and iMX8MP Dahlia carrier board device trees to separate
+the microphone and headphone functions.
 
-> On Mon, Feb 17, 2025 at 09:29:11AM +0100, Maxime Chevallier wrote:
-> > Hello Russell,
-> > 
-> > On Sat, 15 Feb 2025 18:57:01 +0000
-> > "Russell King (Oracle)" <linux@armlinux.org.uk> wrote:
-> >   
-> > > On Thu, Feb 13, 2025 at 11:15:53AM +0100, Maxime Chevallier wrote:  
-> > > > Some PHY devices may be used as media-converters to drive SFP ports (for
-> > > > example, to allow using SFP when the SoC can only output RGMII). This is
-> > > > already supported to some extend by allowing PHY drivers to registers
-> > > > themselves as being SFP upstream.
-> > > > 
-> > > > However, the logic to drive the SFP can actually be split to a per-port
-> > > > control logic, allowing support for multi-port PHYs, or PHYs that can
-> > > > either drive SFPs or Copper.
-> > > > 
-> > > > To that extent, create a phy_port when registering an SFP bus onto a
-> > > > PHY. This port is considered a "serdes" port, in that it can feed data
-> > > > to anther entity on the link. The PHY driver needs to specify the
-> > > > various PHY_INTERFACE_MODE_XXX that this port supports.
-> > > > 
-> > > > Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>    
-> > > 
-> > > With this change, using phy_port requires phylink to also be built in
-> > > an appropriate manner. Currently, phylink depends on phylib. phy_port
-> > > becomes part of phylib. This patch makes phylib depend on phylink,
-> > > thereby creating a circular dependency when modular.
-> > > 
-> > > I think a different approach is needed here.  
-> > 
-> > That's true.
-> > 
-> > One way to avoid that would be to extract out of phylink/phylib all the
-> > functions for linkmode handling that aren't tied to phylink/phylib
-> > directly, but are about managing the capabilities of each interface,
-> > linkmode, speed, duplex, etc. For phylink, that would be :
-> > 
-> > phylink_merge_link_mode
-> > phylink_get_capabilities
-> > phylink_cap_from_speed_duplex
-> > phylink_limit_mac_speed
-> > phylink_caps_to_linkmodes
-> > phylink_interface_max_speed
-> > phylink_interface_signal_rate
-> > phylink_is_empty_linkmode
-> > phylink_an_mode_str
-> > phylink_set_port_modes
-> > 
-> > For now all these are phylink internal and that makes sense, but if we want
-> > phy-driven SFP support, stackable PHYs and so on, we'll need some ways for
-> > the PHY to expose its media-side capabilities, and we'd reuse these.
-> > 
-> > These would go into linkmode.c/h for example, and we'd have a shared set
-> > of helpers that we can use in phylink, phylib and phy_port.
-> > 
-> > Before I go around and rearrange that, are you OK with this approach ?  
-> 
-> I'm not convinced. If you're thinking of that level of re-use, you're
-> probably going to miss out on a lot of logic that's in phylink. Maybe
-> there should be a way to re-use phylink in its entirety between the
-> PHY and SFP.
-> 
-> Some of the above (that deal only with linkmodes) would make sense
-> to move out though.
+This resolves the following boot-time kernel log message, which
+indicated a conflict when the microphone and headphone functions were
+not separated:
+  debugfs: File 'Headphone Jack' in directory 'dapm' already present!
 
-Yeah I'm thinking about moving only stuff that is phylink-independent
-and only deals with linkmodes indeed. I'll spin a quick series to see
-what it looks like then :)
+Stefan Eichenberger (2):
+  arm64: dts: freescale: imx8mp-verdin-dahlia: add Microphone Jack to
+    sound card
+  arm64: dts: freescale: imx8mm-verdin-dahlia: add Microphone Jack to
+    sound card
 
-Thanks,
+ arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi | 6 +++---
+ arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi | 6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-Maxime
+-- 
+2.45.2
 
 
