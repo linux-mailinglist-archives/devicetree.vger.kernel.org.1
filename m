@@ -1,131 +1,126 @@
-Return-Path: <devicetree+bounces-147385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 651A5A382CE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:19:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E1A1A382D8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:21:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78212188A655
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 12:19:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FCDA188BA39
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 12:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE9F5219A78;
-	Mon, 17 Feb 2025 12:19:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gnQfqixc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3892C219EAD;
+	Mon, 17 Feb 2025 12:21:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B9E16C850;
-	Mon, 17 Feb 2025 12:19:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB2A5218AD8;
+	Mon, 17 Feb 2025 12:21:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739794772; cv=none; b=r0/u6Fzxvx+8VvVNPKU54skia9YTvbZC6S7x5OyHvTVjrEWphxzCzKbHb5WkPZ0H7huc6Qhs8sYzxT9Bcbvtzx9mudi4UES53/J1nlOvs165JbTyymf+AQ1G/aIYJgtMRGhIdFMHp/O9GXPrHR6TAws84BPOo6r/O5zZFuVSu38=
+	t=1739794863; cv=none; b=M1B4sJT9rHPUkfsLdF8cHVez2iXYCvuMnP1GmUu9/09wq+uX+8yK/4TkK+PWeevug0synx8w3/2jC/CIrFA4StIDZskZBfwbJUoYXfyW/4ZoQYadMaehTPIDphCAHXuKv279vO0B4MVUpcFeK0+qLp47pcJtvhLqKyYSmIiTczc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739794772; c=relaxed/simple;
-	bh=9kgC/V3qNkmeNamkYMHdidfNovuDvLGnvK/bhGmeUsE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=eaBVt1XJ0ZERkZY21LeuoPcF4VvdtAlWYDX9MO55DksgCkAgFdIWzTXhjXbUxMpS58V0yFAixVKdRzO73S5UiJSjiJShFMYsYb5rP8mIVINJ27ETb3oYgjVPGHiZrwW03LrjQ9GQ87jcZNWaxt5AZk3VoVPx0w5iSezUBPlHh54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gnQfqixc; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 73786443DE;
-	Mon, 17 Feb 2025 12:19:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739794762;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tUryUHsSyNveCM8ra3eNAsj4HLJFnzA9/YVXKHA+TZA=;
-	b=gnQfqixcQkY+shV5lUNMH6t6Zxf8MFytJsH2aF+as31qt7dlRjeQ4KfHt+iaagb/6+Xmx9
-	iIQpzny1DLfxc0eRKDM48JkP9tdsAgpU+YOr8YCLUvVcyh2Sy8tuMnULiQsSUHPQpEMZPy
-	GozCbrh+Pl+w33v0SX5eUSchob5owlIAs3F06UAoyHgfTNFEetF1O/Lrn1YYmQ3O3cQfOL
-	3k0QjMNr6wApZL4fS3pu88DtO+L68GdgKR6W/GHGGvaP2K+p4l6bdLr6/BJBvizmwg9F26
-	6I3dY6mBDPPiuxIZv4/R0IpGnvjSsrot2Wb3nsOIfMTeS83cpqaDsnPwTa4/dw==
+	s=arc-20240116; t=1739794863; c=relaxed/simple;
+	bh=KZKO3yI9rHTm1wsH4aaUOMVGQq6q+xbCd6zldgqXe34=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Az/QfUX1X650vg7qk8MeNQ4g0htgKnMW/FP8Vt6+Qt4KMEwibOCEYRsaIv/ynFd5Udv3HoctMQyht950cwFHR3JchiFpR5XOZXG4dAAC0uihY/bWDDuNJJLaLZ3k74C/+xzvhFabvcTkZT68Mr3qcKQuIHMrrh61o26n3GLjfdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4be625c5365so199239137.2;
+        Mon, 17 Feb 2025 04:21:00 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739794858; x=1740399658;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0YIcLF2hVAfrm06lMTPgsuUIRnN4tcIhuSNEw1atqQM=;
+        b=Azo/UxielhzaI7fnIj557drSOfFrjRIeKksPt39BGi5/FRIoO0YQbGDzitF0pMrYls
+         3HZVsr2q5+pNtiWA8kDn1bYDxIlPgI0lgOgs5HpY1bL32eZZvLJEk0ssS96v2K9i/ZNV
+         lyOuBL/93Qy4AUrT81dl0u0l5fRLRZAVe86lK0JVtRVpfTH/PnhA+zklD+ztP2z1L/6Z
+         oAZeNCVCKn5IlkUQC2eB8jp1YTuuTlPfLX6aRf/EP2tfmsGd36+gmIHTcMsJfiZfub61
+         xFa7Hhh9wzPsO2nrasutFvPD9/9Re7uEfykOdp/IwbHXPPBZD8Yt1SnYbCeJ9AcnZJMr
+         4/yg==
+X-Forwarded-Encrypted: i=1; AJvYcCVCHKprYZslt6f3Sjaj8SrPy4C2Yr+7nadNAmpuUOf/Ffl7wZm7XAGTX47Q+eZsj8g/ajalbt8rMpAV7bImaFM1GxA=@vger.kernel.org, AJvYcCVZGVNq1vof6/x341fKBkKtmCdswB7lvyGT0J08H09RaGdA6iRWD9hvwW3zgV88/9hlL2wNDaWVOG5YxaAA@vger.kernel.org, AJvYcCX06SMtQsJA2Xg4vQ172NUB/AmYxt7W/PzCsP87fbarcN3XZQ4Qa7EH8rzUQPhu22Sh5H14w+2k2wmSa1tG@vger.kernel.org, AJvYcCXX01qQbsmFoJBB7mdJ3yUGBR2mp6U8CfVq8ciF7msSFQO/QbueOXt+uDlniropArNoXoeNadUfHnkM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtdRxsycC0YiQXajDmrDKRkp5r4eqdqMiRwNoxda0zkC0c0w7A
+	0Iq7pK0MGC8Xfbd/ZNxrIteDZjWxmkbxd+sevxlsusXUMSCuniNQbYeH5Ur0
+X-Gm-Gg: ASbGncshjvY19erkWgIrvjZj+yUKlk9akuvtCfg1L01hk4r11VwYAmfdjrvbhir7qMR
+	La/j3kVYnhn6DIt6TYMeCbL8MPqE2+MpCVrXCg6/muBoO+52BdronRd5Sq32Ht/EuqeXK0ddDum
+	nwHH51kLujv9ruenScGN7HoKgRVJy1l87OYNacP9pBS5e8HT7Wy59R4hmJuhrLsAU9V3VYgRSym
+	B9OAQpdvf7dW8wArOsmxL7mVNXfhPznb6nJRt13YtPPQxhqUOxbLFfpH5JTPtC2reODn/JaNxZk
+	LAomtw0e0xBou7ytN4juiHGgvLbUzbjvhjU91LWGagDJ9pC7gqPbGA==
+X-Google-Smtp-Source: AGHT+IEHxjlCL1bMk/G2ffaH8Bu/xA4SjiLnbJjuEkTnqDDsltDerwpMcmkQTin+aK5PrYl8zNEXRw==
+X-Received: by 2002:a05:6102:2910:b0:4bb:d962:62b with SMTP id ada2fe7eead31-4bd3fe38804mr5086865137.24.1739794858460;
+        Mon, 17 Feb 2025 04:20:58 -0800 (PST)
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4be1a9a3822sm903549137.16.2025.02.17.04.20.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Feb 2025 04:20:58 -0800 (PST)
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-4be625c5365so199230137.2;
+        Mon, 17 Feb 2025 04:20:58 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUENZ2t5gWiUHEnIzzILnyfzumOouOfwMnfxH9/zgDms58zZCGNKTm13niQ594K/iNM4kA6gEv5fmP5UtjS@vger.kernel.org, AJvYcCUM5bmlpgI6Iy4gc54pqhyO60mQI+IRA4rlU9oJdJrL868MvBVa9CmpQoDxr3w9VhZe3pbD1bpt99mI@vger.kernel.org, AJvYcCWzSgT4R+XC5j3+lX99v7jTA7BHk5xUcmUtAc1+AvqJfqmwu6zmtU7sY5dfIx4yJkLpUx63gO1FpDNm4D7K@vger.kernel.org, AJvYcCXUcRDOa0Q8X6uyp6hXQvJxi/MkS4Sjn+vckKI6xXJ2plddoA2mgH+0ppYKcMrumG13qGik9aiI7mvPrpD1WAhl69M=@vger.kernel.org
+X-Received: by 2002:a05:6102:f8a:b0:4b6:8d8b:82c6 with SMTP id
+ ada2fe7eead31-4bd3fd51b85mr4616633137.15.1739794857756; Mon, 17 Feb 2025
+ 04:20:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 17 Feb 2025 13:19:19 +0100
-Message-Id: <D7UPRQW1B51Y.1GI2GOM7XBJOA@bootlin.com>
-Subject: Re: [PATCH v4 04/10] gpio: regmap: Allow to provide request and
- free callbacks
-Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Sander Vanheule" <sander@svanheule.net>, "Lee Jones" <lee@kernel.org>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Kamel Bouhara"
- <kamel.bouhara@bootlin.com>, "Linus Walleij" <linus.walleij@linaro.org>,
- "Bartosz Golaszewski" <brgl@bgdev.pl>, "Dmitry Torokhov"
- <dmitry.torokhov@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, "Michael Walle" <mwalle@kernel.org>, "Mark Brown"
- <broonie@kernel.org>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, "Danilo Krummrich"
- <dakr@kernel.org>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20250214-mdb-max7360-support-v4-0-8a35c6dbb966@bootlin.com>
- <20250214-mdb-max7360-support-v4-4-8a35c6dbb966@bootlin.com>
- <e6194c5ed4f305f2150ab89a91a998028ac687c0.camel@svanheule.net>
-In-Reply-To: <e6194c5ed4f305f2150ab89a91a998028ac687c0.camel@svanheule.net>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehkeefkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggfgtgffkffuvefhvffofhgjsehtqhertdertdejnecuhfhrohhmpedfofgrthhhihgvuhcuffhusghoihhsqdeurhhirghnugdfuceomhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepkefhkeeifeethfejteevfeduheduvddvuedvvddugfffhfevkefftefhuefftddunecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejiedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdefpdhrtghpthhtohepshgrnhguvghrsehsvhgrnhhhvghulhgvrdhnvghtpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpt
- hhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+MIME-Version: 1.0
+References: <20250217105354.551788-1-thierry.bultel.yh@bp.renesas.com> <20250217105354.551788-4-thierry.bultel.yh@bp.renesas.com>
+In-Reply-To: <20250217105354.551788-4-thierry.bultel.yh@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 17 Feb 2025 13:20:46 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWfTsocOwuqDQZOBN7-wGMrrSc=cfJau+U1tx3Pwe+VHA@mail.gmail.com>
+X-Gm-Features: AWEUYZnbIELHIwR1gjlghthSUzY-OPr_rQ25OoJOQ1Rz8hvrqJOq0-gfqoF3U4o
+Message-ID: <CAMuHMdWfTsocOwuqDQZOBN7-wGMrrSc=cfJau+U1tx3Pwe+VHA@mail.gmail.com>
+Subject: Re: [PATCH v2 03/13] dt-bindings: serial: Add compatible for Renesas
+ RZ/T2H SoC in sci
+To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+Cc: thierry.bultel@linatsea.fr, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Sun Feb 16, 2025 at 2:17 PM CET, Sander Vanheule wrote:
-> Hi Mathieu,
->
-> On Fri, 2025-02-14 at 12:49 +0100, Mathieu Dubois-Briand wrote:
-> > Allows to populate the gpio_regmap_config structure with request() and
-> > free() callbacks to set on the final gpio_chip structure.
-> >=20
-> > Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com=
->
-> > ---
-> > =C2=A0drivers/gpio/gpio-regmap.c=C2=A0 | 2 ++
-> > =C2=A0include/linux/gpio/regmap.h | 7 +++++++
-> > =C2=A02 files changed, 9 insertions(+)
-> >=20
-> > diff --git a/drivers/gpio/gpio-regmap.c b/drivers/gpio/gpio-regmap.c
-> > index 05f8781b5204..ba72c23bcf97 100644
-> > --- a/drivers/gpio/gpio-regmap.c
-> > +++ b/drivers/gpio/gpio-regmap.c
-> > @@ -261,6 +261,8 @@ struct gpio_regmap *gpio_regmap_register(const stru=
-ct
-> > gpio_regmap_config *config
-> > =C2=A0	chip->names =3D config->names;
-> > =C2=A0	chip->label =3D config->label ?: dev_name(config->parent);
-> > =C2=A0	chip->can_sleep =3D regmap_might_sleep(config->regmap);
-> > +	chip->request =3D config->request;
-> > +	chip->free =3D config->free;
-> > =C2=A0
-> > =C2=A0	chip->request =3D gpiochip_generic_request;
-> > =C2=A0	chip->free =3D gpiochip_generic_free;
->
-> You probably have a bad rebase here, as the chip->{request,free} function=
-s are immediately
-> overwritten by gpiochip_generic_{request,free}. Perhaps those can actuall=
-y be used if you
-> provide a pinctrl driver for the MFD.
->
+Hi Thierry,
 
-Thanks, indeed I missed this rebase issue. It's fixed now.
+On Mon, 17 Feb 2025 at 11:54, Thierry Bultel
+<thierry.bultel.yh@bp.renesas.com> wrote:
+> Document RZ/T2H (a.k.a r9a09g077) in SCI binding.
+>
+> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Thanks for your patch!
 
+> --- a/Documentation/devicetree/bindings/serial/renesas,sci.yaml
+> +++ b/Documentation/devicetree/bindings/serial/renesas,sci.yaml
+> @@ -20,6 +20,7 @@ properties:
+>                - renesas,r9a07g043-sci     # RZ/G2UL and RZ/Five
+>                - renesas,r9a07g044-sci     # RZ/G2{L,LC}
+>                - renesas,r9a07g054-sci     # RZ/V2L
+> +              - renesas,r9a09g077-sci     # RZ/T2H
+
+As the RZ/T2H SCI does not work with a generic SCI driver, it cannot
+use renesas,sci as a fallback, but needs its own section.
+
+>            - const: renesas,sci            # generic SCI compatible UART
+>
+>        - items:
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
