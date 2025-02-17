@@ -1,131 +1,143 @@
-Return-Path: <devicetree+bounces-147329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86243A37FB1
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 11:17:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99016A382A7
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:14:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66465188B0F5
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:12:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C2AC189009B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 12:14:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B8872163B5;
-	Mon, 17 Feb 2025 10:12:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27740219EAB;
+	Mon, 17 Feb 2025 12:14:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="qCELh/cv"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="zosBcGvf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16703215F75;
-	Mon, 17 Feb 2025 10:12:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 933BD2185A8;
+	Mon, 17 Feb 2025 12:14:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739787153; cv=none; b=Vt0NAjJTG1ETA8DD01cCQQufNVnGdTmG6I/+9qL9jrP2uZvf+k9iuhaalIUa7ZqcPXiJn7Bm/+AI2E8nXCVTVzNcoXgnpu+kplaKJ4vCHW+sNf28rG4ugQ1z2AiJrC6xumkLeSiC50fQI7OwzEyO8Ep1fbJyyVcbQzVlh1GYklw=
+	t=1739794446; cv=none; b=kVN9AfpO+CkcIJyMuhsWjNqjrCLUC0LGvVBr9DYuFU6XuBby8X1wUvATYEehDizf8bISA9beiDZI6TcdZuR930VabyV0LY+/FbJD2zdVtvwyiVd3ks918k0z6Va47MQNbLMGA01aruoFrycvB+US0JYvJ6LQiHiveaJL/dPjW1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739787153; c=relaxed/simple;
-	bh=Dz/mc4M7A7lcIj44Btvtc/c5kfNMPa3gssZu8LopwoE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MwDxfZr+l7kmgqPToiBcynv74j4M1ZyAvT7YhPB3i7ihTKNSYmIALOYNCdrBlGNdqvmc27DfxgXU6pBFDSYbO1TW0iiWIPEX6kMnWn0L+fLfBObb8BpyGMzNJ/+W9bCz3DswX/aox7gMvQ3jK2lkAPFc5vk0pD/w5O/Vb/7dUK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=qCELh/cv; arc=none smtp.client-ip=220.197.32.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=FKkPX8SSsZZubXRSv3O7mjjd5d5lK8W3Iit7i4K0x3U=;
-	b=qCELh/cvx9nCT6quI4lzHZYumKBpmnKj2xFQCw9dSGHy9efbOzhPpiAbQHnUqx
-	Xp1/oOA20xiMTDk6COOjQNUMgfDUx+54jnB7YCT4qZWi7VbVfvryrk4m1KOqhmHK
-	1fvAzsweWtsOzRMKtaFZmUO4YUXy8qQWYrpUn1j47Z7lk=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgCXW7BcC7NnpRIUCQ--.16375S3;
-	Mon, 17 Feb 2025 18:11:42 +0800 (CST)
-Date: Mon, 17 Feb 2025 18:11:40 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Andrej Picej <andrej.picej@norik.com>
-Cc: shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
-Subject: Re: [PATCH v2 13/15] arm64: dts: imx8mm-phycore-som: Add overlay for
- rproc
-Message-ID: <Z7MLXJkmcTuq3ZHn@dragon>
-References: <20241202072052.2195283-1-andrej.picej@norik.com>
- <20241202072052.2195283-14-andrej.picej@norik.com>
- <Z3Ie8GO/GtoSkIr3@dragon>
- <221c8216-ce71-4ba2-9981-8612ff33ec2a@norik.com>
+	s=arc-20240116; t=1739794446; c=relaxed/simple;
+	bh=HBsy5RTo5q+NJaeKSFcGgHYgGChfcYKkWDMlY/qvf1w=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=V3QpFP2kSoN8Jvl+Lberye2FnT1WIprQz71a5pC5/nKDfJAz10iNxX15Uo9uR0ooFIGfFFusYFq7aQ7J3zNMiJu15g6KHe2JlAe73NrdZsqaHSpMVLwt5ZVm3lGZBFpdu4T6burLTutRuAFtt9pR6w/nS7LiJXDz/NpcPkzm/yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=zosBcGvf; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51HA0CYV030466;
+	Mon, 17 Feb 2025 07:13:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=xZQbkymXR6jaKSMYeUzs3gXZo8/
+	3BkzsN2CDrGajyBw=; b=zosBcGvf5FoBcBUu3YCuAElvjfZ5VJMe4wE20pkEnVr
+	RLLgn5PqA1ExLeKSJpVgRd3whtfs2DpuwVxJtWfXLvIUUieKl1VNSQj8+WWpCfPC
+	6rzoLcWZG1CGLPMhpGj9FJji0gr4fksoy7OoJ2nbnY1Mi1xEkVmS6Gu4YtKqT6Ox
+	GYmCvD2mlSoxHu3Tapm0nVfBB23CBtAlS46vw4LcL/8gCmWioIuKlHn0YEm4PuOG
+	XUiMdnAFhjmszGmbhlxESLDSpi1YQhTK9mAoALv+lw0TXAfemsrklmoCyTr2Rlmp
+	YtMe8pepVGoaPjfxcYD9Pb5EipGVDi2vpEm2EA2dE4A==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 44v2ysrffx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Feb 2025 07:13:49 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 51HCDmHB010512
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 17 Feb 2025 07:13:48 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 17 Feb 2025 07:13:48 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 17 Feb 2025 07:13:48 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 17 Feb 2025 07:13:48 -0500
+Received: from desktop-robi.ad.analog.com ([10.48.65.85])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 51HCDZMO016764;
+	Mon, 17 Feb 2025 07:13:37 -0500
+From: Robert Budai <robert.budai@analog.com>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Nuno Sa <nuno.sa@analog.com>,
+        "Ramona
+ Gradinariu" <ramona.gradinariu@analog.com>,
+        Antoniu Miclaus
+	<antoniu.miclaus@analog.com>,
+        Robert Budai <robert.budai@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        "Jonathan Corbet" <corbet@lwn.net>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+Subject: [PATCH v8 0/6] Add support for ADIS16550
+Date: Mon, 17 Feb 2025 12:12:13 +0200
+Message-ID: <20250217101221.600898-1-robert.budai@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <221c8216-ce71-4ba2-9981-8612ff33ec2a@norik.com>
-X-CM-TRANSID:M88vCgCXW7BcC7NnpRIUCQ--.16375S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7CryDKw4xZF43ZrWDZry5urg_yoW8uw48pr
-	y7uayUKrs2gF4xCrZIqw4DWryqy3W3XF43u34DZr1vgr4avF9FyF409ryfuryjqF4kZw4F
-	vF4fZFZF9wn8ZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jFdgAUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCwL2ZWey6E2ehQAAsx
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: bl9QxCyc62VrUsqekd_H_lWbcXZtVGjj
+X-Proofpoint-ORIG-GUID: bl9QxCyc62VrUsqekd_H_lWbcXZtVGjj
+X-Authority-Analysis: v=2.4 cv=ELj800ZC c=1 sm=1 tr=0 ts=67b327fd cx=c_pps a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17 a=IkcTkHD0fZMA:10 a=T2h4t0Lz3GQA:10 a=TpNKFGk_wJGFTPuD7poA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-17_05,2025-02-13_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
+ spamscore=0 adultscore=0 impostorscore=0 malwarescore=0 priorityscore=1501
+ lowpriorityscore=1 clxscore=1015 bulkscore=1 phishscore=0 suspectscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2501170000
+ definitions=main-2502170107
 
-On Tue, Dec 31, 2024 at 08:34:32AM +0100, Andrej Picej wrote:
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso b/arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso
-> > > new file mode 100644
-> > > index 000000000000..0c61946f0cf8
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso
-> > > @@ -0,0 +1,55 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Copyright (C) 2024 PHYTEC Messtechnik GmbH
-> > > + * Author: Dominik Haller <d.haller@phytec.de>
-> > > + */
-> > > +
-> > > +/dts-v1/;
-> > > +/plugin/;
-> > > +
-> > > +#include <dt-bindings/clock/imx8mm-clock.h>
-> > > +
-> > > +&{/} {
-> > > +	reserved-memory {
-> > > +		#address-cells = <2>;
-> > > +		#size-cells = <2>;
-> > > +		ranges;
-> > 
-> > I'm getting this:
-> > 
-> > arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso:16.3-10: Warning (ranges_format): /fragment@0/__overlay__/reserved-memory:ranges: empty "ranges" property but its #size-cells (2) differs from /fragment@0/__overlay__ (1)
-> > arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso:13.18-43.4: Warning (avoid_default_addr_size): /fragment@0/__overlay__/reserved-memory: Relying on default #address-cells value
-> > arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso:13.18-43.4: Warning (avoid_default_addr_size): /fragment@0/__overlay__/reserved-memory: Relying on default #size-cells value
-> > 
-> 
-> I see, missed this before, sorry. But I have some problems fixing it.
-> I think the problem is that this is overlay, the same node put in the
-> imx8mm-phycore-som.dtsi doesn't trigger a warning.
-> The only solution that I found is that I specify the default address-cells
-> and size-cells in root node:
-> 
-> 
-> &{/} {
-> 	#address-cells = <2>;
-> 	#size-cells = <2>;
-> 
-> 	reserved-memory {
-> 		#address-cells = <2>;
-> 		#size-cells = <2>;
-> 		ranges;
-> 	...
-> 	};
-> };
-> 
-> The same values are used in imx8mm.dtsi, but the checker fails to find these
-> default values.
-> Not sure if this is the right solution, though. Your input would be helpful,
-> thanks.
+The ADIS16550 is a complete inertial system that includes a triaxis gyroscope
+and a triaxis accelerometer. Each inertial sensor in the ADIS16550 combines
+industry leading MEMS only technology with signal conditioning that optimizes
+dynamic performance. The factory calibration characterizes each sensor for
+sensitivity, bias, and alignment. As a result, each sensor has its own dynamic
+compensation formulas that provide accurate sensor measurements.
 
-Unless DT folks have better suggestion, I'm fine with this.
 
-Shawn
+Robert Budai (6):
+  iio: imu: adis: Add custom ops struct
+  iio: imu: adis: Add reset to custom ops
+  iio: imu: adis: Add DIAG_STAT register
+  dt-bindings: iio: Add adis16550 bindings
+  iio: imu: adis16550: add adis16550 support
+  docs: iio: add documentation for adis16550 driver
+
+ .../bindings/iio/imu/adi,adis16550.yaml       |   74 ++
+ Documentation/iio/adis16550.rst               |  376 ++++++
+ Documentation/iio/index.rst                   |    1 +
+ MAINTAINERS                                   |   10 +
+ drivers/iio/imu/Kconfig                       |   13 +
+ drivers/iio/imu/Makefile                      |    1 +
+ drivers/iio/imu/adis.c                        |   35 +-
+ drivers/iio/imu/adis16550.c                   | 1149 +++++++++++++++++
+ include/linux/iio/imu/adis.h                  |   34 +-
+ 9 files changed, 1680 insertions(+), 13 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
+ create mode 100644 Documentation/iio/adis16550.rst
+ create mode 100644 drivers/iio/imu/adis16550.c
+
+-- 
+2.34.1
 
 
