@@ -1,136 +1,225 @@
-Return-Path: <devicetree+bounces-147540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6BBCA388A3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 17:03:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1065A388AE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 17:06:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8164916728A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 15:58:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7747A176E01
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 16:00:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E63422FF41;
-	Mon, 17 Feb 2025 15:50:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9513522540F;
+	Mon, 17 Feb 2025 15:53:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SzvRfy6Z"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="S757mGQv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68EAC224B1F;
-	Mon, 17 Feb 2025 15:50:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF8B2149E16;
+	Mon, 17 Feb 2025 15:53:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739807425; cv=none; b=dl8/IAR05Cllpx38CWjAm3PfSq0n0wiyvIgrtdqAMrfTWSV0o+1tlBiEA/yLHAjGA2mleOZEhBiW+Ti7nptXUhcCRhT8CkkY2JlUkJ2Vl76KXkA4gc7pQQq7Rrmjrma9lQC1tynFHzUYn8546nhpM+AX+hNuqWjy25paMGy/l0s=
+	t=1739807595; cv=none; b=drDf4hA/Pcmt6NsiVh9YPmnj+EA+di453j0W0/ugzvz7b9b1tQfw/Dfx0WwKbR4t0w7LO3tyZiuvPoLAANMV6d4ND4DpKk6nldxWBaqh7R6CPmuzYWmns1ZRkUiCYonqzpOODH6BURxhKT6BQPt+i/fNNqDFovKNVCEkG0rtpBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739807425; c=relaxed/simple;
-	bh=AQORTGEMJRTeOzgv2ykstrnHNuBXQ26g7MQ0Fgeka9U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eYgFYfMHoZ99C0s0As0rILUrgadcLKb4MpY6em/w+N/1AQTy8qqEAWTFmED/kVXhrYyZtcJv3UZvugrmikY+K79B7sUbnvTsHD2041j9iw6upC56hpFW5Wpg9pHrmwKSMR3XxjwkJgnbjAtvaVw/ON77ct1IeXJEOV/K9emFZs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SzvRfy6Z; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739807421;
-	bh=AQORTGEMJRTeOzgv2ykstrnHNuBXQ26g7MQ0Fgeka9U=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=SzvRfy6ZQONbwRZseCTd/qCY7RuJC4UB+shUIvg0Khs7nJiydSU1+hJry2rGmR5tw
-	 R6D8ddUHGrBllZDZiSpgzoliaVf0HQbZ0GEHAzXEhAxoaIy9ycMovZOI/5Q2oJRTwV
-	 c1wShv8q4z+/7EwNYJBb+2qk4J/cWYONbmv4ss3CZylqoVZfeftOg4Oq1B10nPxKx8
-	 V8HKzXMfgQWIRDWKckRK3frVokC7eLL3coJUsAnWX66AlRT+bZWe19bfRCBKI9EmhH
-	 WigkB6Bj9IrqH2anWw+p9WXO6GIfENJMa2R7yxpYo2IzXmnMDaDu2yXJXecWN+wV5U
-	 k8BKruPfNSHqw==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 588CB17E155A;
-	Mon, 17 Feb 2025 16:50:20 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: chunkuang.hu@kernel.org
-Cc: p.zabel@pengutronix.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	ck.hu@mediatek.com,
-	jitao.shi@mediatek.com,
-	jie.qiu@mediatek.com,
-	junzhi.zhao@mediatek.com,
-	dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com,
-	dmitry.baryshkov@linaro.org,
-	lewis.liao@mediatek.com,
-	ives.chenjh@mediatek.com,
-	tommyyl.chen@mediatek.com,
-	jason-jh.lin@mediatek.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v7 43/43] drm/mediatek/hdmi: Use syscon_regmap_lookup_by_phandle_args
-Date: Mon, 17 Feb 2025 16:48:36 +0100
-Message-ID: <20250217154836.108895-44-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250217154836.108895-1-angelogioacchino.delregno@collabora.com>
-References: <20250217154836.108895-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1739807595; c=relaxed/simple;
+	bh=wMdlwX1zycQ/olpFgvqq2mKqCvRYB6SEdDAMSGU4EHo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=amNLHM/7mRIlzMpTjeLZW8qFHWIe+fzZzncSLzQC7LuUa7k/vusUzSHN584WbSyhVEMr8ITg4ZZ1VLVvPxR6/ohluBsdOa2jilVxJapZhXTL6SwUGaI5skXDweeFyHJpqQlxCKyR2bXDu5Pn3qGKRse6j95vgBF8qmbwqIlguSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=S757mGQv; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id BC6DA4431C;
+	Mon, 17 Feb 2025 15:53:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1739807591;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BUY8RBuJLNPYXLzFRSZTltcWOxb/JvQg0i4KGslCkvs=;
+	b=S757mGQvV6XaSYr+mgBWjh0K/YWYYsvnfs9J/kFPfSNhsPJ+UKZgTntfAgOV5a76Ra4iQA
+	JvQHnjeKsW7dOOkALyAJeE97I18GirxyxL+75bh/DaHkQ+VgZwSYgV/K7UI4IXmWotroF2
+	R8D1Sv6uIma2Sd7bR/UZOYq57MOfecag85vXp/cYfMgR/rcKJu79TllCMfbNRgdS0DFtOh
+	w6zH6dvx5KrkkCnCHJ5v+GeGMJgSOFuqAXr8U1zsBMcJwgWlOP1rmdjyNLVY43k5kWWQkL
+	4C+wainse0oqxUNQ8XDKfOV3L4AvpWoa716e9sYsO8Qjtq3MfXSKtmtX1MFykw==
+Date: Mon, 17 Feb 2025 16:53:06 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Phil Elwell <phil@raspberrypi.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Andrea della Porta
+ <andrea.porta@suse.com>, Arnd Bergmann <arnd@arndb.de>,
+ "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE"
+ <bcm-kernel-feedback-list@broadcom.com>, bhelgaas@google.com,
+ brgl@bgdev.pl, Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
+ <conor+dt@kernel.org>, derek.kiernan@amd.com, devicetree@vger.kernel.org,
+ dragan.cvetic@amd.com, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, krzk+dt@kernel.org,
+ kw@linux.com, Linus Walleij <linus.walleij@linaro.org>, linux-arm-kernel
+ <linux-arm-kernel@lists.infradead.org>, linux-clk@vger.kernel.org,
+ linux-gpio@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, "open
+ list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS"
+ <linux-pci@vger.kernel.org>, "moderated list:BROADCOM BCM2711/BCM2835 ARM
+ ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
+ lpieralisi@kernel.org, luca.ceresoli@bootlin.com,
+ manivannan.sadhasivam@linaro.org, masahiroy@kernel.org, Michael Turquette
+ <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
+ saravanak@google.com, Stephen Boyd <sboyd@kernel.org>,
+ thomas.petazzoni@bootlin.com, Stefan Wahren <wahrenst@gmx.net>, Will Deacon
+ <will@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH v6 00/10] Add support for RaspberryPi RP1 PCI device
+ using a DT overlay
+Message-ID: <20250217165306.3f055b94@bootlin.com>
+In-Reply-To: <CAMEGJJ2_HVKfsE3P22baadbzxSDAX=yTr=m76YuXa5A2cJsJig@mail.gmail.com>
+References: <CAMEGJJ3=W8_R0xBvm8r+Q7iExZx8xPBHEWWGAT9ngpGWDSKCaQ@mail.gmail.com>
+	<20250213171435.1c2ce376@bootlin.com>
+	<a3c5103c-829a-4301-ba53-6ef9bd1e74e7@lunn.ch>
+	<CAMEGJJ3-JXhin_Ht76EqUNAwLiNisa9PrCrdUzCgj=msGZfb5A@mail.gmail.com>
+	<821d4c74-09b0-4c1b-b8ef-f8c08d0f6b5b@lunn.ch>
+	<CAMEGJJ0QbzCScfTRA_pw_8A=iMYMAAFs69zFNLwcOxF5Syugpw@mail.gmail.com>
+	<20250213195304.3a2df02c@bootlin.com>
+	<CAMEGJJ0kGCj=tjM6KswbG_+ZFkzMwPY+06BXCU0qSnbBKz0=ug@mail.gmail.com>
+	<20250213220639.373da07b@bootlin.com>
+	<CAMEGJJ2_HVKfsE3P22baadbzxSDAX=yTr=m76YuXa5A2cJsJig@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehkeekudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeviefffeegiedtleelieeghfejleeuueevkeevteegffehledtkeegudeigffgvdenucfkphepvdgrtddumegvtdgrmedvgeeimeejjeeltdemvdeitgegmegvvddvmeeitdefugemheekrgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemvdegieemjeejledtmedviegtgeemvgdvvdemiedtfegumeehkegrpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfeehpdhrtghpthhtohepphhhihhlsehrrghsphgsvghrrhihphhirdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtoheprghnughrvggrrdhpohhrthgrsehsuhhsvgdrtghomhdprhgtphhtthhopegrrhhnugesrghrnhgusgdruggvpdhrtghpthhtoheps
+ ggtmhdqkhgvrhhnvghlqdhfvggvuggsrggtkhdqlhhishhtsegsrhhorggutghomhdrtghomhdprhgtphhtthhopegshhgvlhhgrggrshesghhoohhglhgvrdgtohhmpdhrtghpthhtohepsghrghhlsegsghguvghvrdhplhdprhgtphhtthhopegtrghtrghlihhnrdhmrghrihhnrghssegrrhhmrdgtohhm
+X-GND-Sasl: herve.codina@bootlin.com
 
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Phil,
 
-Use syscon_regmap_lookup_by_phandle_args() which is a wrapper over
-syscon_regmap_lookup_by_phandle() combined with getting the syscon
-argument.  Except simpler code this annotates within one line that given
-phandle has arguments, so grepping for code would be easier.
+On Thu, 13 Feb 2025 21:12:43 +0000
+Phil Elwell <phil@raspberrypi.com> wrote:
 
-There is also no real benefit in printing errors on missing syscon
-argument, because this is done just too late: runtime check on
-static/build-time data.  Dtschema and Devicetree bindings offer the
-static/build-time check for this already.
+> On Thu, 13 Feb 2025, 21:06 Herve Codina, <herve.codina@bootlin.com> wrote:
+> >
+> > Hi Phil,
+> >
+> > On Thu, 13 Feb 2025 20:15:06 +0000
+> > Phil Elwell <phil@raspberrypi.com> wrote:
+> >  
+> > > Once more, with plain text, which I'd hoped the Android GMail client
+> > > would work out for itself.
+> > >
+> > > On Thu, 13 Feb 2025, 18:53 Herve Codina, <herve.codina@bootlin.com> wrote:  
+> > > >
+> > > > Hi Phil,
+> > > >
+> > > > On Thu, 13 Feb 2025 17:57:37 +0000
+> > > > Phil Elwell <phil@raspberrypi.com> wrote:
+> > > >  
+> > > > > On Thu, 13 Feb 2025 at 17:45, Andrew Lunn <andrew@lunn.ch> wrote:  
+> > > > > >  
+> > > > > > > > Or do you mean a custom board, which has a CPU, RP1 and the button and
+> > > > > > > > fan are directly on this custom board? You then want a board DTS which
+> > > > > > > > includes all these pieces?  
+> > > > > > >
+> > > > > > > That depends on whether you count the Raspberry Pi 5 as a custom board.  
+> > > > > >
+> > > > > > So you mean the Pi 5 board would itself make use of the resources the
+> > > > > > RP1 device has? They are not simply connected to headers for plugin
+> > > > > > boards, but used by the main board? Hence you want to describe them in
+> > > > > > the board .DTS file.  
+> > > > >
+> > > > > That's correct. But even for plug-in devices, those which are on
+> > > > > non-discoverable buses need overlays to declare them, which causes a
+> > > > > problem when the overlay application happens before the kernel is
+> > > > > started.
+> > > > >  
+> > > >
+> > > > Hum, I see.
+> > > >
+> > > > We worked on overlay usage on non-discoverable buses wired to a connector
+> > > > and we did a talk about issues we are facing on at Plumber [0].
+> > > >
+> > > > You can also find our big picture in [1] and a last contribution introducing
+> > > > export-symbols feature in [2]. export-symbols is also under discussion on
+> > > > some other threads.
+> > > >
+> > > > Also, we proposed the i2c bus extensions feature [3] whose goal is to allow
+> > > > an addon board to add devices on an i2c bus provided by a base board and
+> > > > wired to an connector the addon board is connected to.
+> > > >
+> > > > Maybe in your case, you can decouple resources (gpio, pwm) provided by the
+> > > > addon board and used by the base board using also nexus node.
+> > > >
+> > > > We use a nexus node [4] (not presented at the Plumbers talk because the idea
+> > > > came during 'out of talk' discussions in Plumbers) in order to allow our
+> > > > addon board to use resources provided by the base board.
+> > > >
+> > > > In your case, if I understood, you are in the other direction but why not
+> > > > using also a nexus node to decouple and translate resources in this other
+> > > > direction ?
+> > > >
+> > > > Don't know if this idea can help but feel free to ask for some more
+> > > > information if needed.  
+> > >
+> > > Nexus nodes look interesting - I see them as adding a layer of
+> > > abstraction such that, for example, boards can declare which of their
+> > > specific resources performs a common function so that clients can
+> > > treat them all the same. We do the same thing in a limited way by
+> > > using common labels on nodes, but this goes much further.
+> > >
+> > > In the case of Pi 5 and RP1, I imagine you are proposing that the Pi 5
+> > > dtb declares the connector node and the overlay fills in the content
+> > > with references to its GPIO controller, PWM controller etc. However, I
+> > > think the overlay would also have to be board specific because it's
+> > > not possible to patch part of a property from an overlay, so you'd end
+> > > up overwriting the GPIO number as well as the controller reference.
+> > >
+> > > What is needed to make this work is the ability to cope with
+> > > unresolved references in the base dtb, to be resolved as each overlay
+> > > is applied, with runtime checking that each reference is resolved
+> > > before it is used, all of which sounds like a nightmare. Plus, we
+> > > really don't want to have to change the way all our camera and display
+> > > overlays work on all Raspberry Pis just to accommodate somebody's idea
+> > > of how RP1 should be handled.  
+> >
+> > Just to be clear, my comments were not there to tell you how RP1 should
+> > work. I just proposed ideas without trying to force anything and I can
+> > fully understand that ideas proposed don't feed your needs.
+> >
+> > Sorry if my approach was misunderstood.  
+> 
+> I feel I've been misunderstood - I appreciate your ideas.
+> 
+> Perhaps it would help if you could outline how you think we could
+> apply your suggestions?
+> 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-[Angelo: Rebased over HDMIv2/DDCv2 series cleanups]
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+I was thinking about what your mentioned, i.e. the overlay fill the nexus node.
+No sure to understand why the overlay should patch some properties.
+Also where are the unresolved references in that case. The base DT refers to
+the Nexus node.
+The issue will probably be that the translation performed by the nexus node is
+not available until the overlay is applied. The consumer will see errors other
+than PROBE_DEFER when if probes while the overlay is not applied.
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
-index 784bc05c9541..00a638a3caf4 100644
---- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
-+++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
-@@ -269,12 +269,9 @@ static int mtk_hdmi_get_cec_dev(struct mtk_hdmi *hdmi, struct device *dev, struc
- 	 * MMSYS_CONFIG device and the register offset of the HDMI_SYS_CFG
- 	 * registers it contains.
- 	 */
--	hdmi->sys_regmap = syscon_regmap_lookup_by_phandle(np, "mediatek,syscon-hdmi");
-+	hdmi->sys_regmap = syscon_regmap_lookup_by_phandle_args(np, "mediatek,syscon-hdmi",
-+								1, &hdmi->sys_offset);
- 	if (IS_ERR(hdmi->sys_regmap))
--		return PTR_ERR(hdmi->sys_regmap);
--
--	ret = of_property_read_u32_index(np, "mediatek,syscon-hdmi", 1, &hdmi->sys_offset);
--	if (ret)
- 		return dev_err_probe(dev, ret,
- 				     "Failed to get system configuration registers\n");
- 
--- 
-2.48.1
+Also, the solution will lead to memory leak at runtime. Indeed, the overlay
+add properties in an already existing node.
+If the overlay is applied by the Kernel itself, this lead to memory leak when
+the overlay is removed.
+Indeed, an overlay can add/remove node without any issue but it cannot
+add/remove properties to/from existing nodes.
 
+In the case described here, the nexus node is already present in the DT and the
+overlay add/remove properties to/from this existing node.
+
+I haven't got any better idea for the moment in order to have this kind of
+'reverse' Nexus node.
+
+Best regards,
+Hervé
 
