@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-147349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1432A380FE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 12:00:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69392A38156
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 12:08:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9D433B6EE6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:58:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE93D18901CA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 11:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF8B3217646;
-	Mon, 17 Feb 2025 10:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C254A21771D;
+	Mon, 17 Feb 2025 11:02:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XJtVnAVM"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BveExQw5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2BD417E45B;
-	Mon, 17 Feb 2025 10:58:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0AA02165E2;
+	Mon, 17 Feb 2025 11:01:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739789922; cv=none; b=ZrdxaWMAJPMjQXvEFbsv0LLgdRl0/yG/bWANCoJDQTCelsJWIxU5YNzsCvkQ0e0xusEJUCSNj8gaab2ILXmXDnaZeNouwL54f72JGToHLyGb3oeXaiay0W186r/9FhKP/NkwC3yAgIvDIyUnpgxtHStIuGveBb085TpkEB+pucE=
+	t=1739790120; cv=none; b=ov/BJBt+o90XGIgXBWbNW0/dGZtoYyPJ13FpmmP3LQxss9K6zmY3Ex6jt8a/7vfGL0L9Spi4F75py+aYZ5ztb1L3aK39QCEtpMhIYpmIqHFhJEDCkxJwxiK0QRzRnv/Ulyaog/ufh+ZzMpHzzSjU7uyuPEJQ/ltNdSGg6iQk1k0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739789922; c=relaxed/simple;
-	bh=N7hfmUF86vXsr+JQeu9N/rh19zThCoacgVDxXP7xhfU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TM2I1gQlRKv0aswqXgjxLS7WVL+Xq/E3nWMbOLMoyDB1cDTtx/O6GMLPKxxzEZj8urm7n6gilK18NvP3M7YNcCVnaXrGiEGzxCKC98J6gblRjEhm6ego8mHLvxR7CB0ZA+xEecJXea4THbDlctXnrL8mzHburAz+79i1fjaCv0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XJtVnAVM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D7C6C4CEE2;
-	Mon, 17 Feb 2025 10:58:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739789922;
-	bh=N7hfmUF86vXsr+JQeu9N/rh19zThCoacgVDxXP7xhfU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XJtVnAVMucYwcaK5F8WyTWl9je4YEc2GfPZ4UhwVaXVq/jIRtX2ky9P4+iqh4fIMK
-	 53xoZX/VCmD4CPIC2R5HRVCSHytx6ofSjN0sGRtCJTVGud2sJ2Sn2cWQiWoKHpwz2v
-	 jdq6k2RUN+kFqDezJxZvCNGmExVsGkZquUYlYZSr46hpB2d7kpdQ7gl/t4HtvOhL9k
-	 XJwuEowh+rrqoGzc0vwOTtp/TD0de7POM2PK9Dn7NhA3jqotB6YbI9UUidkThoqoF4
-	 eKkf8YRvMsM+VaSueHyxrhU/nshhNUVgAhC2hCPxo3gJgwtlxFPA2uEueTV2yJirWh
-	 HTu4UpAYNwkqg==
-Message-ID: <5af1e3a8-31bb-4b8f-8621-b28adafdf0af@kernel.org>
-Date: Mon, 17 Feb 2025 11:58:35 +0100
+	s=arc-20240116; t=1739790120; c=relaxed/simple;
+	bh=Tu48/rbE2ubClX8pcW9lLN49ds9R7q4WjcD1+R9Wd3U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cB129Yf1iZe97EzMyPDAjo/jAKhGM4iZZ8nI2fF2Dh66TbRrev9NXQc7LUkqpJrPjX0LCpf78SNaZfTmBhRhLm29R082yEhYEBNtutCxRBqHYuEgmijdID3FcTyCX8XikrHCWMo/TTySQOAb6EtApVgeY/9FRCN5TTQt8b/WRcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BveExQw5; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51HB1dqQ645577
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Mon, 17 Feb 2025 05:01:39 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1739790099;
+	bh=BpLhwj82ljP6BWCPze3kv+WGHqGB/Kweoia9J1dReqA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=BveExQw5MYWQ53bkpSQsvFS2hbRkI1cl9dY5MXbI95HsbRRGtjPP1nK/B0Pdb07um
+	 a87ZiVE1c9SiELSdDe0m55SzRf++EcfPubzFNil+ndbIkOys9yWXpFX0W0TsrxKvxp
+	 Elof3S/hqB9mcpwZFD/OD2+ft6ja3zmyxGWnlgX8=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51HB1dhI122938;
+	Mon, 17 Feb 2025 05:01:39 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 17
+ Feb 2025 05:01:38 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 17 Feb 2025 05:01:39 -0600
+Received: from [172.24.22.234] (lt5cd2489kgj.dhcp.ti.com [172.24.22.234])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51HB1Zg9077443;
+	Mon, 17 Feb 2025 05:01:35 -0600
+Message-ID: <d4a4c96a-819b-4332-9a8b-5eab0fc7e78f@ti.com>
+Date: Mon, 17 Feb 2025 16:31:34 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,77 +65,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: leds: Allow differently named multicolor
- leds
-To: j.ne@posteo.net, Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250209-multi-led-v1-1-5aebccbd2db7@posteo.net>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-j742s2-main-common: Correct the
+ GICD size
+To: Keerthy <j-keerthy@ti.com>, <robh+dt@kernel.org>, <nm@ti.com>,
+        <vigneshr@ti.com>, <conor+dt@kernel.org>, <kristo@kernel.org>,
+        <krzk+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
+References: <20250217103814.2657-1-j-keerthy@ti.com>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250209-multi-led-v1-1-5aebccbd2db7@posteo.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250217103814.2657-1-j-keerthy@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 09/02/2025 23:06, J. Neuschäfer via B4 Relay wrote:
-> From: "J. Neuschäfer" <j.ne@posteo.net>
-> 
-> In some cases, a board may have multiple multi-leds, which can't be
-> distinguished by unit address. In such cases it should be possible to
-> name them differently, for example multi-led-a and multi-led-b.
-> This patch adds another node name pattern to leds-class-multicolor.yaml
-> to allow such names.
-> 
-> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+
+On 2/17/2025 4:08 PM, Keerthy wrote:
+> Currently we get the warning:
+>
+> "GICv3: [Firmware Bug]: GICR region 0x0000000001900000 has
+> overlapping address"
+>
+> As per TRM GICD is 64 KB. Fix it by correcting the size of GICD.
+
+Please add fixes tag
+
+Fixes: 9cc161a4509c ("arm64: dts: ti: Refactor J784s4 SoC files to a 
+common file")
+Fixes: 4664ebd8346a ("arm64: dts: ti: Add initial support for J784S4 SoC")
+
+
+>
+> Signed-off-by: Keerthy <j-keerthy@ti.com>
 > ---
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+>   arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> index 83bbf94b58d1..3b72fca158ad 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> @@ -193,7 +193,7 @@
+>   		ranges;
+>   		#interrupt-cells = <3>;
+>   		interrupt-controller;
+> -		reg = <0x00 0x01800000 0x00 0x200000>, /* GICD */
+> +		reg = <0x00 0x01800000 0x00 0x10000>, /* GICD */
+>   		      <0x00 0x01900000 0x00 0x100000>, /* GICR */
+>   		      <0x00 0x6f000000 0x00 0x2000>,   /* GICC */
+>   		      <0x00 0x6f010000 0x00 0x1000>,   /* GICH */
 
