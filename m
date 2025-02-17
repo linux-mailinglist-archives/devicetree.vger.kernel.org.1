@@ -1,40 +1,80 @@
-Return-Path: <devicetree+bounces-147480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 511F6A3872A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 16:01:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0947A38730
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 16:04:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4FD63A77FD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 15:00:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC00918864E1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 15:03:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97F122489A;
-	Mon, 17 Feb 2025 15:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675CD2222B1;
+	Mon, 17 Feb 2025 15:03:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="gHilSf7E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87B2221D58E;
-	Mon, 17 Feb 2025 15:00:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 619902C6A3
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 15:03:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739804455; cv=none; b=tQ2Pev6inBm0q2ZwaV7PUg+iq57RxDcOUfH4x2jww03QoBg4C5VYnPvvaPgpYQoDWvuePFYgiI1S/+pOP/Qbkge9VSGF82DPtLv95aTy0ukWFs1N3ZOIrMMkotGZ3oDHqTRjL/D5aezoOfXXU2DMaFW+bcKJRDkzpZc2boKgLus=
+	t=1739804619; cv=none; b=BseflEFR7r+ezSguufeADidamQ0frP+A6W+yVxT8d1yrhQa2kXepN5UE4kCUmKl8tR3bEz5nfptx6YAZOcSQkoJZ322RHuYKiu7cloq4XFNC7AtrD0ncP/ZhRRehCtYmXQfVaZ/DPovT2KargiSVFt0p7XFnQlR2tUSApSrWLaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739804455; c=relaxed/simple;
-	bh=jMq0rzaJsv+MpOoTrFRgRWYF77w0q1RbPXY+cKmV/mA=;
+	s=arc-20240116; t=1739804619; c=relaxed/simple;
+	bh=2Bnqjdrs4NrL2XwBqyj7ZH51u494tNn1vFc5fmPIAAQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l+KxtSd0WdRlO0MjF2ZIijjOwGIaVakXW21rVBO7je+92SrXqQzW+/DxZPCPk1muzUyaYy4Sweq1KO15FGhflpXsgf3Nby5l4LFCBHvUwD3nQyF3P0PUE470gZJYSDqxqoIhoUA4D4eil4luHemUL/K1Wy8tJpMBoaQJRv42hHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D949C152B;
-	Mon, 17 Feb 2025 07:01:11 -0800 (PST)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5CF9D3F6A8;
-	Mon, 17 Feb 2025 07:00:49 -0800 (PST)
-Message-ID: <4a7823b2-2634-4148-8446-ad01a09b6880@arm.com>
-Date: Mon, 17 Feb 2025 15:00:46 +0000
+	 In-Reply-To:Content-Type; b=VJ20Bt7vqBXrg6c1yxSv36RXQXRr4Wg50cPBzE6RS9YQ8oSwBfdmkNVgo4Vdng49SKa5taZ8BXb+8ufBfuTxhsgcn1O9WqPV6ZHCLFmXMlakZVGG/hrVQxDiRWFDY4Fr+O1cAgCaTHI8UtfpoiaYJJmAQKC7bNmkwOODgmhyMkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=gHilSf7E; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-543e47e93a3so4754581e87.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 07:03:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739804613; x=1740409413; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=//GayiTjk2VgwOuQxZT0tXCo12hznJ8fyvNG07N/o2g=;
+        b=gHilSf7EgOvEMq6RRwtk1A/ZIXFfHIqpwAOOkvvOGcxdTAzUD4iBy4tNEvQ6Ys0Z6t
+         sUKkki0Cdi8T64dXfQQd9lziA12uSpStY0YZye/il68omRudrcr5iLcmvPMTPSY9/JaZ
+         Szyd3xp1fUePA6uotrOYiVSSiCfv5kzZ+Zl0Dx+aYd2hXpceqogjN+68e8JtaQ44Z7/g
+         ewoKJfBgzbuivVMsSua0OOL3dLdWafdXr0VwxAM8zvSwgJhIE6txpZuylZGAW5aoW5i2
+         nY4myRsr6m5wFm/j93EPCBJkL+Xl9rYXsd68QA7wxB0CEbsaL1q/aF3dlkKlU1YQHJku
+         d4fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739804613; x=1740409413;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=//GayiTjk2VgwOuQxZT0tXCo12hznJ8fyvNG07N/o2g=;
+        b=SRtGY5Uy0vCRNgKjlq8xKyB8K52XzICM1YZ5N1oqUNzh/7exrEdJZ4faR2XrMm8LFb
+         qvXkDllPEBInWnNsTTpZyD6jkQHPVnxAATXAc/bKMppS+zR451mJCAx0Pm8Tnb5GbGtU
+         HIo+Tv8+VbFtlPMB2YwjRSIRmIU4DdluG67Td8OAdUReHk0t8AK0llb5Pe9VQdHKC/28
+         +l/5ZevS0++LwNDEGjbzPCT4UgB5K9gPohuA7lHhs+7q9d/d/27b8l4TcRFN9z7zjNK1
+         1d0w2vcL762Pq2Qip+/4qaw9G8qVP8kDoLfNg6SoGN5Vtq+MosFMWRID8daYXdb6Wwxh
+         p1yA==
+X-Forwarded-Encrypted: i=1; AJvYcCVr4qZhB7gAkvTadXsiljqP3S3167g9iRpE1MrpQsKcWT9TEgHtWDHnIUb+4VktuDxesSOWsBfkaoWY@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLAMsE8NfyEp6fiGAASGjmgHlVVrtPjOF62HIoGP9z4BLY/042
+	ju/d6FUZFR6Hg7koAHsaIDduPyXykHEwP+xdgvRpMjf8qFVxkzEbet0UxEphH/MU94K7oX/Rv6K
+	8v3U=
+X-Gm-Gg: ASbGncvfMrGOAY7E040SjD6FY9hZN8bIHnTbFJNNhzLPQ3CdEuKiz/l2ZN6d50aGUdj
+	YZ3PeyD2iY+RXQW8iRdHC7l2GYXHgPRi99jG474BbnW/rW1z+yB9E9jDjMO2IcAeCPSDRU9APln
+	CJjNcgSNebCelt3x8ONfXYVTpaZiyv/abNS8CTaZhT2g/dByC5eefVyA7BMu7mm0bBSSI2zW46H
+	evz5cPSOt6SBwe5R7qq96Ufs/JCAhCskKkkFIjyLfB3uPXR4waIsV0P+PUe78EVlIlJrKNKC09G
+	Ew45mBWTIalyL0bhcbcYscz1q0CnUVbzN1VRcTqaxaOPFLJIBw5pGGXK3C5WJzk=
+X-Google-Smtp-Source: AGHT+IF9JYqSQ6ntE3558qRENvEigRRMYqxdMfCUuklz4yeVdCf7BoSLXDiwqfmV2TzwBrbwiuonQQ==
+X-Received: by 2002:a05:6000:1f87:b0:38f:23f4:2d7a with SMTP id ffacd0b85a97d-38f33f43751mr9709394f8f.40.1739804602180;
+        Mon, 17 Feb 2025 07:03:22 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:5ee:79d0:9c3e:a06c:91d9:c06b? ([2a01:e0a:5ee:79d0:9c3e:a06c:91d9:c06b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258b412esm12273223f8f.1.2025.02.17.07.03.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Feb 2025 07:03:21 -0800 (PST)
+Message-ID: <79477810-00a9-47f1-8282-f8077ea082bb@baylibre.com>
+Date: Mon, 17 Feb 2025 16:03:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,175 +82,187 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iommu: Get DT/ACPI parsing into the proper probe path
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Hanjun Guo <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Russell King <linux@armlinux.org.uk>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>, Stuart Yoder <stuyoder@gmail.com>,
- Laurentiu Tudor <laurentiu.tudor@nxp.com>, Nipun Gupta
- <nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-pci@vger.kernel.org, Charan Teja Kalla <quic_charante@quicinc.com>
-References: <cover.1739486121.git.robin.murphy@arm.com>
- <c2f0ae276fd5a18e1653bae8bb0c51670e35b283.1739486121.git.robin.murphy@arm.com>
- <20250214201435.GF3696814@ziepe.ca>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20250214201435.GF3696814@ziepe.ca>
+Subject: Re: [PATCH v7 2/6] drm/mediatek: dsi: Improves the DSI lane setup
+ robustness
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+Cc: "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "mripard@kernel.org" <mripard@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+ "simona.vetter@ffwll.ch" <simona.vetter@ffwll.ch>,
+ "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "will@kernel.org" <will@kernel.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "simona@ffwll.ch" <simona@ffwll.ch>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>
+References: <20231023-display-support-v7-0-6703f3e26831@baylibre.com>
+ <20231023-display-support-v7-2-6703f3e26831@baylibre.com>
+ <ab3bd050c873bb6cecc00b615b938eabc157cb49.camel@mediatek.com>
+Content-Language: en-US
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <ab3bd050c873bb6cecc00b615b938eabc157cb49.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/02/2025 8:14 pm, Jason Gunthorpe wrote:
-> On Thu, Feb 13, 2025 at 11:49:00PM +0000, Robin Murphy wrote:
-> 
->> much just calling the same path twice. At client driver probe time,
->> dev->driver is obviously set; conversely at device_add(), or a
->> subsequent bus_iommu_probe(), any device waiting for an IOMMU really
-> 
-> Could you put the dev->driver test into iommu_device_use_default_domain()?
-> 
-> It looks like many of the cases are just guarding that call.
-> 
->> should *not* have a driver already, so we can use that as a condition to
->> disambiguate the two cases, and avoid recursing back into the IOMMU core
->> at the wrong times.
-> 
-> Which sounds like this:
-> 
->> +		mutex_unlock(&iommu_probe_device_lock);
->> +		dev->bus->dma_configure(dev);
->> +		mutex_lock(&iommu_probe_device_lock);
->> +	}
-> 
-> Shouldn't call iommu_device_use_default_domain() ?
+Hi CK.
 
-Semantically it shouldn't really be called at this stage, but it won't 
-be anyway since "to_<x>_driver(NULL)->driver_managed_dma" is not false - 
-trouble is it's also not true ;)
+On 17/02/2025 08:56, CK Hu (胡俊光) wrote:
+> On Fri, 2025-01-10 at 14:31 +0100, Alexandre Mergnat wrote:
+>> External email : Please do not click links or open attachments until you have verified the sender or the content.
+>> 
+>> 
+>> Currently, mtk_dsi_lane_ready (which setup the DSI lane) is triggered
+>> before mtk_dsi_poweron. lanes_ready flag toggle to true during
+>> mtk_dsi_lane_ready function, and the DSI module is set up during
+>> mtk_dsi_poweron.
+>> 
+>> Later, during panel driver init, mtk_dsi_lane_ready is triggered but does
+>> nothing because lanes are considered ready. Unfortunately, when the panel
+>> driver try to communicate, the DSI returns a timeout.
+>> 
+>> The solution found here is to put lanes_ready flag to false after the DSI
+>> module setup into mtk_dsi_poweron to init the DSI lanes after the power /
+>> setup of the DSI module.
+> 
+> I'm not clear about what happen.
+> I think this DSI flow has worked for a long time.
+> So only some panel has problem?
 
-> But... I couldn't guess what the problem with calling it is?
-> 
-> In the not-probed case it will see dev->iommu_group is NULL and succeed.
-> 
-> The probed case could be prevented by checking dev->iommu_group sooner
-> in __iommu_probe_device()?
-> 
-> Anyhow, the approach seems OK
-> 
->> diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
->> index 9f4efa8f75a6..42b8f1833c3c 100644
->> --- a/drivers/acpi/scan.c
->> +++ b/drivers/acpi/scan.c
->> @@ -1619,6 +1619,9 @@ static int acpi_iommu_configure_id(struct device *dev, const u32 *id_in)
->>   {
->>   	int err;
->>   
->> +	if (device_iommu_mapped(dev))
->> +		return 0;
-> 
-> This is unlocked and outside a driver context, it should have a
-> comment explaining why races with probe can't happen?
+I don't know if it's related to a specific panel or not.
 
-Sure, for now this is more just an opportunistic thing - since we'll now 
-expect to come through this path twice, if we see a group assigned then 
-we know for sure that someone else already set up the fwspec for that to 
-happen, so there's definitely nothing to do here and we can skip 
-potentially waiting for iommu_probe_device_lock.
+> 
+> And another question.
+> Do you mean mtk_dsi_lane_ready() do some setting to hardware, but lane is not actually ready?
 
->> +	/*
->> +	 * For FDT-based systems and ACPI IORT/VIOT, the common firmware parsing
->> +	 * is buried in the bus dma_configure path. Properly unpicking that is
->> +	 * still a fairly big job, so for now just invoke the whole thing. Our
->> +	 * bus_iommu_probe() walk may see devices with drivers already bound,
->> +	 * but that must mean they're already configured - either probed by
->> +	 * another IOMMU, or there was no IOMMU for iommu_fwspec_init() to wait
->> +	 * for - so either way we can safely skip this and avoid worrying about
->> +	 * those recursing back here thinking they need a replay call.
->> +	 */
->> +	if (!dev->driver && dev->bus->dma_configure) {
->> +		mutex_unlock(&iommu_probe_device_lock);
->> +		dev->bus->dma_configure(dev);
->> +		mutex_lock(&iommu_probe_device_lock);
->> +	}
+The workflow should be:
+... | dsi->lanes_ready = false | Power-on | setup dsi lanes | dsi->lanes_ready = true (to avoid 
+re-do dsi lanes setup) | ...
+
+I observe (print function name called + dsi->lanes_ready value):
+
+[    9.086030] mtk_dsi_probe 0
+[    9.662319] mtk_dsi_host_attach 0
+[    9.662941] mtk_dsi_encoder_init
+[    9.984685] mtk_dsi_poweron 0
+[   10.043755] mtk_dsi_host_transfer 0
+[   10.043769] mtk_dsi_lane_ready 0
+[   10.055837] mtk_dsi_host_transfer 1
+[   10.055853] mtk_dsi_lane_ready 1
+[   10.179788] mtk_dsi_host_transfer 1
+[   10.179803] mtk_dsi_lane_ready 1
+[   10.179880] mtk_dsi_host_transfer 1
+[   10.179885] mtk_dsi_lane_ready 1
+[   10.179920] mtk_dsi_host_transfer 1
+[   10.179923] mtk_dsi_lane_ready 1
+[   10.179986] mtk_dsi_host_transfer 1
+[   10.179993] mtk_dsi_lane_ready 1
+[   10.180134] mtk_dsi_host_transfer 1
+[   10.180143] mtk_dsi_lane_ready 1
+[   10.180175] mtk_dsi_host_transfer 1
+[   10.180178] mtk_dsi_lane_ready 1
+[   10.180223] mtk_dsi_host_transfer 1
+[   10.180226] mtk_dsi_lane_ready 1
+[   10.180245] mtk_dsi_host_transfer 1
+[   10.180248] mtk_dsi_lane_ready 1
+[   10.180278] mtk_dsi_host_transfer 1
+[   10.180280] mtk_dsi_lane_ready 1
+[   10.180312] mtk_dsi_host_transfer 1
+[   10.180314] mtk_dsi_lane_ready 1
+[   10.203774] mtk_dsi_bridge_atomic_pre_enable
+[   10.203787] mtk_dsi_poweron 1
+[   10.203793] mtk_output_dsi_enable
+[   10.203795] mtk_dsi_lane_ready 1
+[   10.471517] mtk_dsi_host_transfer 1
+[   10.486962] mtk_dsi_lane_ready 1
+[   10.487244] mtk_dsi_host_transfer 1
+[   10.503733] mtk_dsi_lane_ready 1
+
+Here the mtk_dsi_lane_ready function:
+
+	static void mtk_dsi_lane_ready(struct mtk_dsi *dsi)
+	{
+		if (!dsi->lanes_ready) {
+			dsi->lanes_ready = true;
+			mtk_dsi_rxtx_control(dsi);
+			usleep_range(30, 100);
+			mtk_dsi_reset_dphy(dsi);
+			mtk_dsi_clk_ulp_mode_leave(dsi);
+			mtk_dsi_lane0_ulp_mode_leave(dsi);
+			mtk_dsi_clk_hs_mode(dsi, 0);
+			usleep_range(1000, 3000);
+			/* The reaction time after pulling up the mipi signal for dsi_rx */
+		}
+	}
+
+
+As you can see, something call "mtk_dsi_bridge_atomic_pre_enable" then mtk_dsi_poweron is called a 
+second time. This issue is probably due to the probe order (race condition).
+After all, IMHO, after a poweron, the registers status should be consider as unknown (or at least HW 
+default value), so, lanes setup has to be done. This solution improve the driver's robustness.
+
+
+> Or mtk_dsi_lane_ready() configure the hardware and lane is is actually ready,
+> but something make it not ready again, what's the thing which break lane ready?
+> 
+> If this is a bug fix, add Fixes tag.
+> 
+> Regards,
+> CK
+> 
+>> 
+>> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+>> ---
+>>  drivers/gpu/drm/mediatek/mtk_dsi.c | 2 ++
+>>  1 file changed, 2 insertions(+)
+>> 
+>> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
+>> index e61b9bc68e9a..dcf0d93881b5 100644
+>> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+>> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+>> @@ -724,6 +724,8 @@ static int mtk_dsi_poweron(struct mtk_dsi *dsi)
+>>         mtk_dsi_config_vdo_timing(dsi);
+>>         mtk_dsi_set_interrupt_enable(dsi);
+>> 
+>> +       dsi->lanes_ready = false;
 >> +
->> +	/*
->> +	 * At this point, either valid devices now have a fwspec, or we can
->> +	 * assume that only one of Intel, AMD, s390, PAMU or legacy SMMUv2 can
->> +	 * be present, and that any of their registered instances has suitable
->> +	 * ops for probing, and thus cheekily co-opt the same mechanism.
->> +	 */
->> +	ops = iommu_fwspec_ops(dev_iommu_fwspec_get(dev));
->> +	if (!ops)
->> +		return -ENODEV;
->> +
->>   	/* Device is probed already if in a group */
->>   	if (dev->iommu_group)
->>   		return 0;
+>>         return 0;
+>>  err_disable_engine_clk:
+>>         clk_disable_unprepare(dsi->engine_clk);
+>> 
+>> --
+>> 2.25.1
+>> 
 > 
-> This is the test I mean, if iommu_group is set then
-> dev->iommu->iommu_dev->ops is supposed to be valid too. It seems like
-> it should be done earlier..
-
-Yeah, looking at it now I'm really not sure why this ended up in this 
-order - I guess I was effectively adding the dma_configure() call to the 
-front of the existing iommu_fwspec_ops() check, and then I moved the 
-lockdep_assert() up to make more sense. But then the ops check probably 
-should have been after the group check to begin with, for much the same 
-reasoning as above. I'll sort that out for v2.
-
->> +	/*
->> +	 * And if we do now see any replay calls, they would indicate someone
->> +	 * misusing the dma_configure path outside bus code.
->> +	 */
->> +	if (dev_iommu_fwspec_get(dev) && dev->driver)
->> +		dev_WARN(dev, "late IOMMU probe at driver bind, something fishy here!\n");
 > 
-> WARN_ON_ONCE or dump_stack() to get the stack trace out?
-
-Indeed, hence dev_WARN() (!= dev_warn())
-
->> @@ -121,6 +121,9 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
->>   	if (!master_np)
->>   		return -ENODEV;
->>   
->> +	if (device_iommu_mapped(dev))
->> +		return 0;
+> ************* MEDIATEK Confidentiality Notice
+>   ********************
+> The information contained in this e-mail message (including any
+> attachments) may be confidential, proprietary, privileged, or otherwise
+> exempt from disclosure under applicable laws. It is intended to be
+> conveyed only to the designated recipient(s). Any use, dissemination,
+> distribution, printing, retaining or copying of this e-mail (including its
+> attachments) by unintended recipient(s) is strictly prohibited and may
+> be unlawful. If you are not an intended recipient of this e-mail, or believe
+>   
+> that you have received this e-mail in error, please notify the sender
+> immediately (by replying to this e-mail), delete any and all copies of
+> this e-mail (including any attachments) from your system, and do not
+> disclose the content of this e-mail to any other person. Thank you!
 > 
-> Same note
 
-Ack.
-
->> @@ -151,7 +154,12 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
->>   		iommu_fwspec_free(dev);
->>   	mutex_unlock(&iommu_probe_device_lock);
->>   
->> -	if (!err && dev->bus)
->> +	/*
->> +	 * If we have reason to believe the IOMMU driver missed the initial
->> +	 * iommu_probe_device() call for dev, try to fix it up. This should
->> +	 * no longer happen unless of_dma_configure() is being misused.
->> +	 */
->> +	if (!err && dev->driver)
->>   		err = iommu_probe_device(dev);
-> 
-> This is being conservative? After some time of nobody complaining
-> it can be removed?
-
-Indeed I feel sufficiently confident about the ACPI path (which at the 
-moment is effectively arm64-only) to remove it from there already, but 
-less so about all the assorted DT platforms. That said, I guess adding a 
-new dependency on dev->driver here might still represent a change of 
-behaviour for the sketchy direct calls of of_dma_configure() outside bus 
-code, since in a lot of those the target device doesn't actually have 
-its own driver either. Maybe I need to think about this a bit more...
-
-Thanks,
-Robin.
+-- 
+Regards,
+Alexandre
 
