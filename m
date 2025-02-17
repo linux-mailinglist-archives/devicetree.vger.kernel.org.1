@@ -1,134 +1,150 @@
-Return-Path: <devicetree+bounces-147279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6843EA37DCA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:05:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFAC6A37DF9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:11:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 575587A0837
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:04:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6D443B03D9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:08:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C0331953A1;
-	Mon, 17 Feb 2025 09:05:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06D11A83E2;
+	Mon, 17 Feb 2025 09:08:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lnh7OU5s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C6819ABAC
-	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 09:05:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 960FB1A76BB;
+	Mon, 17 Feb 2025 09:08:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739783144; cv=none; b=d/TiWkPimVD4NRoUhGN7kbNB5tl7fCGlwC2uOj3ehQ0stii1g5GqkheEb+oX7rN7pnDPkrbJvarHAq0vTQcOqvGIAKQqarjPfMW6FCMoFUhU79NLy7taUhoh8bZOUstbsLrPkr9rs0Q8Z1CpG2oUsE7yKv9GdKMpXnGNmrddX6o=
+	t=1739783326; cv=none; b=oTb0RzgL520/GEAAORuCfcgDaYSH7Cypq7EVfjWeY8iS1u3hD90g5w27LA0F52MbMnWzi4X+MxbL50jvBlx4YbWTEPyltzFRPhqrdk6K3jGJpJbDB7cQEXZUNmWR21p3DLtGyUZ0VY2d9udCtYFEtgWvgffRwJ6COcqh124Incw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739783144; c=relaxed/simple;
-	bh=q4F+6YvDAJP+BZmWnPl5utEZle0sY5L3t/phe5BPwVA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=fwdaeVc/zb2fP6I39c5lQNFEUboPRrLWt39q9LZm72cBgN8EKc5lww7MdGtFHAigTDM55jsFxMJ7NND/tcIK6G0ywWWQnnXZJrOWhln/887R+c6FaLBN5YjSE7bsizx5Xe2dyzAa6/cPJgOVjFF88j7agA5JYYfSeVuovVLzdx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tjx40-0006c0-MJ; Mon, 17 Feb 2025 10:05:16 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tjx3z-001NXE-01;
-	Mon, 17 Feb 2025 10:05:15 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tjx3y-0003Vh-30;
-	Mon, 17 Feb 2025 10:05:14 +0100
-Message-ID: <fd2a9b15865a3e8f34608eb1b09948e5567083e2.camel@pengutronix.de>
-Subject: Re: [PATCH v1 3/4] phy: samsung: add Exynos2200 SNPS eUSB2 driver
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, Vinod Koul
- <vkoul@kernel.org>,  Kishon Vijay Abraham I <kishon@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
-  linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Date: Mon, 17 Feb 2025 10:05:14 +0100
-In-Reply-To: <20250215122409.162810-4-ivo.ivanov.ivanov1@gmail.com>
-References: <20250215122409.162810-1-ivo.ivanov.ivanov1@gmail.com>
-	 <20250215122409.162810-4-ivo.ivanov.ivanov1@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1739783326; c=relaxed/simple;
+	bh=Cjo4YfOCxeOKgdBlpU/GNL73pe9zIjmveQSxrbQAOLo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=FQ+1Z+uvdD4HmvSHtSLzlQic3P1zC1PK4bmEHxpEslB2QCdIZ8gcCeX+mBk+Ady4V/Xu7ZC8LZBTLnJN0Bni0Tr90VoS/yKB3r8/tcyslnBxOvDJDtP5oYgiXpWg7WDyQ2C+lVurVAYH3YA5HqctvIIuxAmufxTjauHfy13yFLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lnh7OU5s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23DFEC4CEE2;
+	Mon, 17 Feb 2025 09:08:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739783326;
+	bh=Cjo4YfOCxeOKgdBlpU/GNL73pe9zIjmveQSxrbQAOLo=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Lnh7OU5somCbIqKq8TsEo02YglWkyT/3VVQXX5FdxTToak8Uno6o7qvjYhfGAfQOW
+	 DSL7kcMD5ByIQQJASpUDAsi3kDyS9gKDzMUohY1sI+3y0QvClkAjpQCbZj2UB9t4O+
+	 tFw1O0fZTiOloLauTWLHDNRyjGZToi/CMRmdJPo7UAKE83BbzCqkalQqLO3PqMmfmr
+	 n0SbXihYD2govJmrzEPVAAPLHca6+IZOKuDM/B8CbZAveIwrNLTE6u244Emd42vnvG
+	 BjPeAZGeyiyi+pUBWHemHH9sR/ha2P1uxCVcw3ddMPAAfkvgVl425b87z8tCFfHcPk
+	 wQscuNKy0/9eg==
+Message-ID: <8e5bbd2b-a4e1-417b-88d0-267450c7cf86@kernel.org>
+Date: Mon, 17 Feb 2025 10:08:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: socfpga: agilex5: add gpio led and memory
+ node
+To: niravkumar.l.rabara@intel.com, Dinh Nguyen <dinguyen@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, nirav.rabara@altera.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250217052702.3470096-1-niravkumar.l.rabara@intel.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250217052702.3470096-1-niravkumar.l.rabara@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sa, 2025-02-15 at 14:24 +0200, Ivaylo Ivanov wrote:
-> The Exynos2200 SoC uses Synopsis eUSB2 PHY for USB 2.0. Add a new
-> driver for it.
->=20
-> eUSB2 on Exynos SoCs is usually paired alongside a USB PHY controller.
-> Currently the driver is modelled to take and enable/disable the usb phy
-> controller when needed.
->=20
-> The driver is based on information from downstream drivers.
->=20
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+On 17/02/2025 06:27, niravkumar.l.rabara@intel.com wrote:
+> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> 
+> Add GPIO led and memory node for Agilex5 devkit.
+> 
+> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > ---
->  drivers/phy/samsung/Kconfig                   |  13 +
->  drivers/phy/samsung/Makefile                  |   1 +
->  .../phy/samsung/phy-exynos2200-snps-eusb2.c   | 351 ++++++++++++++++++
->  3 files changed, 365 insertions(+)
->  create mode 100644 drivers/phy/samsung/phy-exynos2200-snps-eusb2.c
->=20
-[...]
-> diff --git a/drivers/phy/samsung/phy-exynos2200-snps-eusb2.c b/drivers/ph=
-y/samsung/phy-exynos2200-snps-eusb2.c
-> new file mode 100644
-> index 000000000..ee6d96411
-> --- /dev/null
-> +++ b/drivers/phy/samsung/phy-exynos2200-snps-eusb2.c
-> @@ -0,0 +1,351 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2025, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> + */
+>  .../boot/dts/intel/socfpga_agilex5_socdk.dts  | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+> index c533e5a3a610..59530eada2ea 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+> @@ -15,6 +15,25 @@ aliases {
+>  	chosen {
+>  		stdout-path = "serial0:115200n8";
+>  	};
+
+Missing blank line
+
+> +	leds {
+> +		compatible = "gpio-leds";
 > +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/reset.h>
+> +		led1 {
 
-Drop this ...
+led-0
 
-[...]
-> +struct exynos2200_snps_eusb2_phy {
-> +	struct phy *phy;
-> +	void __iomem *base;
+> +			label = "hps_led1";
+> +			gpios = <&porta 11 GPIO_ACTIVE_HIGH>;
+> +		};
 > +
-> +	struct clk *ref_clk;
-> +	struct clk_bulk_data *clks;
-> +	const struct exynos2200_snps_eusb2_phy_drvdata *drv_data;
-> +	struct reset_control *phy_reset;
 
-... and this. It's never used.
+And that's not necessary
+
+> +	};
+> +
 
 
-regards
-Philipp
+Best regards,
+Krzysztof
 
