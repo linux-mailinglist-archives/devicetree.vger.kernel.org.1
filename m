@@ -1,140 +1,146 @@
-Return-Path: <devicetree+bounces-147450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36ACEA385B6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 15:16:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48B91A38640
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 15:27:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FC3F1772DB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:12:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F6A23B9E2D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8558121D009;
-	Mon, 17 Feb 2025 14:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D19225408;
+	Mon, 17 Feb 2025 14:18:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="tpBEUbse"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iQv7pnK/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE03F21CC54;
-	Mon, 17 Feb 2025 14:11:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93477212FA2;
+	Mon, 17 Feb 2025 14:18:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739801488; cv=none; b=noBQYZruzQDdBvt5iSW2ftpqf/mwCT6ajmfzjYDmGNUQVQge35pQzwICR/K5suLDljHIbQfxth+gCVLTNbmdu7aZDPX+K0d48DA4oY+gf4E6rllEGBGvtEdWnMLBU4jEvAJztDt447VNAQQAwm1dHOvyI1z/m/mcQ05jprz8NwY=
+	t=1739801901; cv=none; b=k0qqiPpw1Qq8Rv14pT5Nvr07lbtYLae5thnjFFRHnDwaEHMd3ymH7ZhCWMMbgQdqa3Hc92V3sHIpnRkLYq5OnrRTNRl6meWOFpuwnfquRabc1KLIRiUVA8jZx1O230M6vt7rPmhZWaak2NA+/rz8pBmpsH19dj6rvNMUW8aXXfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739801488; c=relaxed/simple;
-	bh=CgvLbbaqhZJh2aBng8GYA6OHX8pFtBK1DgD9dwP/Izo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OwSJEzafx0SvPK7S9TbhKpIP9gPju6hX5dxeh2pnyb5VLFB1icGxEivJWm9tTv6Y9JK3lR8ggJUliLMLZcReOZkUMvbaI3BdmMPNnzvCxoV501SWLHmIKk8GhXBmJkQ0+PhkyyUUK5ZuYO8HKmDx5tsVsDzIVCSrUB6nFT0iuWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=tpBEUbse; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=+Tyg8b+xD0Br85DGNOgrIPE01EZSzRbYGNzNPsDnqag=; b=tpBEUbseu3svPJZjMXU0nSpYr8
-	GmffVj6GQ869k1Jh3niah2GmA3mLVEENfzotxr/MZcFH2FhCCIZZp9Kxnz9msHHPG5C3vOB6+kUR6
-	6+RgjsyJNUEgL+6lYKHDXyLR6/ewFtS87FmKFoT6ICF87RC/fVEfuEgPooJINzuvQmyjV2AyVv+vJ
-	YbKo0YZXyP0coO8OvabMIii2bRao+9FXH6GvaO7AaWwc839h0w6a9KrOGu1gVklIfC15Ikw1Jj9vX
-	kQjlQzNDVeKcCrSDBXVW9IiUYc+OsOsTXab9schzXS/+HNDTbVhhy9fSvNf09tdiCq2hPlM2Xz3M4
-	CM1EF8aw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:39042)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tk1ps-0006pq-1t;
-	Mon, 17 Feb 2025 14:11:00 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tk1pi-0006HQ-2v;
-	Mon, 17 Feb 2025 14:10:50 +0000
-Date: Mon, 17 Feb 2025 14:10:50 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Inochi Amaoto <inochiama@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	"Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>,
-	Hariprasad Kelam <hkelam@marvell.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Drew Fustini <dfustini@tenstorrent.com>,
-	Furong Xu <0x1207@gmail.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Lothar Rubusch <l.rubusch@gmail.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	sophgo@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next v5 3/3] net: stmmac: Add glue layer for Sophgo
- SG2044 SoC
-Message-ID: <Z7NDakd7zpQ_345D@shell.armlinux.org.uk>
-References: <20250216123953.1252523-1-inochiama@gmail.com>
- <20250216123953.1252523-4-inochiama@gmail.com>
- <Z7IIht2Q-iXEFw7x@shell.armlinux.org.uk>
- <5e481b95-3cf8-4f71-a76b-939d96e1c4f3@lunn.ch>
- <js3z3ra7fyg4qwxbly24xqpnvsv76jyikbhk7aturqigewllbx@gvus6ub46vow>
- <24eecc48-9061-4575-9e3b-6ef35226407a@lunn.ch>
+	s=arc-20240116; t=1739801901; c=relaxed/simple;
+	bh=BysXgtPBiIvEVUwuCbk70Ntt9mEGd5mUR/DZjy2NLtc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Mpao2dySAet5V3F6sDlY1j4zcWng2EWF9f7JVUGrzKgytq3MW6fG4YmSmNoLPD2cMPDnDHUX89F9b0XP6bPLuQFlkRcZn+Enq0BKOXqfcyJ9TbDB1s1HnEW/v80mRt3c4dHHrNMawxxdOZCpZzx+ElXCkmCj4gjMHWzk4xl/eA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iQv7pnK/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF979C4CEE8;
+	Mon, 17 Feb 2025 14:18:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739801901;
+	bh=BysXgtPBiIvEVUwuCbk70Ntt9mEGd5mUR/DZjy2NLtc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=iQv7pnK/8yLiUJ6pfnVb80TY0F7EGz4yRCgoxTi1P7vmZoFPDz6nyelPUBKAhPBbZ
+	 MCAQDnZo67ud76eUMZsCTX0ZMYY6knQ2BX/jTUkJi8SNYOZkceHtpQY2ACE5UKMhXl
+	 IM9DXZmYfqp7Zv64UOC67eNaVwC/TWMgtKLVxiTrpZUHjk8CIO/CGAHbuFZs6SEQKN
+	 F9tspgoIGJVLX+3g08V7xMC34W0u/6ZDoV5cepFJ0DgWPfwO5qhoglDQm4HDj9Td0E
+	 jIrJEaJdaXehQIMVT71FvitvHb6++i+IV6fpfGHg8u3FC9EhYLfms+3A6KF1cxs8lJ
+	 riNoP1vbuV0tw==
+Date: Mon, 17 Feb 2025 14:18:08 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, Jonathan
+ Hunter <jonathanh@nvidia.com>, Javier Carrasco
+ <javier.carrasco.cruz@gmail.com>, Matti Vaittinen
+ <mazziesaccount@gmail.com>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Emil Gedenryd
+ <emil.gedenryd@axis.com>, Arthur Becker <arthur.becker@sentec.com>, Mudit
+ Sharma <muditsharma.info@gmail.com>, Per-Daniel Olsson
+ <perdaniel.olsson@axis.com>, Subhajit Ghosh
+ <subhajit.ghosh@tweaklogic.com>, Ivan Orlov <ivan.orlov0322@gmail.com>,
+ David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: light: al3010: add al3000a
+ support
+Message-ID: <20250217141808.314c2b83@jic23-huawei>
+In-Reply-To: <CAPVz0n1TqscXQvyyD44FWZtRvV6kqAdbD0AYYCmyJOqG_DgOsQ@mail.gmail.com>
+References: <20250215103159.106343-1-clamor95@gmail.com>
+	<20250215103159.106343-2-clamor95@gmail.com>
+	<20250216144201.6238345c@jic23-huawei>
+	<CAPVz0n1TqscXQvyyD44FWZtRvV6kqAdbD0AYYCmyJOqG_DgOsQ@mail.gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <24eecc48-9061-4575-9e3b-6ef35226407a@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 17, 2025 at 02:25:33PM +0100, Andrew Lunn wrote:
-> > I am not sure all whether devices has this clock, but it appears in
-> > the databook. So I think it is possible to move this in the core so
-> > any platform with these clock can reuse it.
-> 
-> Great
-> 
-> The next problem will be, has everybody called it the same thing in
-> DT. Since there has been a lot of cut/paste, maybe they have, by
-> accident.
+On Sun, 16 Feb 2025 16:44:58 +0200
+Svyatoslav Ryhel <clamor95@gmail.com> wrote:
 
-Tegra186: "tx"
-imx: "tx"
-intel: "tx_clk"
-rk: "clk_mac_speed"
-s32: "tx"
-starfive: "tx"
-sti: "sti-ethclk"
+> =D0=BD=D0=B4, 16 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 16:42 Jo=
+nathan Cameron <jic23@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+> >
+> > On Sat, 15 Feb 2025 12:31:57 +0200
+> > Svyatoslav Ryhel <clamor95@gmail.com> wrote:
+> > =20
+> > > AL3000a is an ambient light sensor quite closely related to
+> > > exising AL3010 and can reuse exising schema for AL3010. =20
+> > Hi,
+> >
+> > For a binding like this, also explain how they are different enough that
+> > we can't use a fallback compatible.
+> >
+> > Thanks,
+> >
+> > Jonathan
+> > =20
+>=20
+> Fallback will cause use of inappropriate driver. As I have already
+> told, hardware configuration matches but data processing from sensor
+> does not.
+Absolutely understood.  The point is this patch description should
+state exactly that. Say something like the register maps are incompatible.
 
-so 50% have settled on "tx" and the rest are doing their own thing, and
-that horse has already bolted.
+Jonathan
 
-I have some ideas on sorting this out, and I'm working on some patches
-today.
+>=20
+> > >
+> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > > ---
+> > >  .../devicetree/bindings/iio/light/dynaimage,al3010.yaml     | 6 ++++=
+--
+> > >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/iio/light/dynaimage,al=
+3010.yaml b/Documentation/devicetree/bindings/iio/light/dynaimage,al3010.ya=
+ml
+> > > index a3a979553e32..f1048c30e73e 100644
+> > > --- a/Documentation/devicetree/bindings/iio/light/dynaimage,al3010.ya=
+ml
+> > > +++ b/Documentation/devicetree/bindings/iio/light/dynaimage,al3010.ya=
+ml
+> > > @@ -4,14 +4,16 @@
+> > >  $id: http://devicetree.org/schemas/iio/light/dynaimage,al3010.yaml#
+> > >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> > >
+> > > -title: Dyna-Image AL3010 sensor
+> > > +title: Dyna-Image AL3000a/AL3010 sensor
+> > >
+> > >  maintainers:
+> > >    - David Heidelberg <david@ixit.cz>
+> > >
+> > >  properties:
+> > >    compatible:
+> > > -    const: dynaimage,al3010
+> > > +    enum:
+> > > +      - dynaimage,al3000a
+> > > +      - dynaimage,al3010
+> > >
+> > >    reg:
+> > >      maxItems: 1 =20
+> > =20
+>=20
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
