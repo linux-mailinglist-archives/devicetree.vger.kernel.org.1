@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-147228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 407D4A3795C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 02:02:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E9CEA3796A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 02:09:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0419116D339
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 01:02:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D47B43AC15C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 01:08:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0648C1F;
-	Mon, 17 Feb 2025 01:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FFF7748F;
+	Mon, 17 Feb 2025 01:08:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lt23Kj1u"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="htb9FbjW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5AB638FB0
-	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 01:02:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F19BD2FB
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 01:08:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739754157; cv=none; b=bwmGLkcnFvl+OWqS9FgE7bZWGeFHbuDRAJPIBhFK4lpRAaLSxYakuTfEBPHdPaVZo9CO5kq/EpSvxGj6hYssP2SzxX3XPU2zb4jlGnQ9hMm/H6IwYjfiRdu1rqoYqueHoUTJgVEXq+ACCk36vGVpEYhE9gWfHxJvKhTRyatsWnY=
+	t=1739754505; cv=none; b=b0yltdFIwH3Z+1Nu1PNAVoY0uJgv63UdfU2Fu0XRrFBDZFq432CIC27C+PNljNXlVrGb/M0KlU3IP8Y7YPfjpVKzGFewtusjDeJRAG77rj9IsQARh6bXyJgL2Ivy1dYBPEy5WwbyNFaq+7y2xlHqNwlMMb0O7JFQO5vo8THIo6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739754157; c=relaxed/simple;
-	bh=jjosS3aZUMXEedsYcOAXbzAXrH6Y/r6xI9fycqxAiRM=;
+	s=arc-20240116; t=1739754505; c=relaxed/simple;
+	bh=u3YxH15cjWWJ3E/10audjE1bxiQ6GUHOtodwSzvDMlI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Sxw2Noly8cI0x83mo5Z9EbyWbKxKy8kqmxgNUVg6qA4FfBMcqqufSR0ogGbsYpU7E/X/Bs17wcyhIWAxIho/BXYQ936N6bP5mpOzCJnSdKNU4gBHjJyLUZ4MkDUzwfTh6RIBShk7WOD5h5uFpOXWQoCpmWym/FgJ5ULfvt+ZD3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Lt23Kj1u; arc=none smtp.client-ip=209.85.208.180
+	 Content-Type:Content-Disposition:In-Reply-To; b=luoD4wrivnceys8UfLnj5I3a5CO3rMX8p1sK/EzFlW3IoRa2ooLd5vhUoVUz5esDk27hs2zrDOpYjHu7/8TkkRoBWMMKDWWwo2zxIjcwPdRMrjUjupfE8DZ/jYGVbB+ocmaqd+mx9iIwQQu36BXdgkcCV/a+IvwXEBeAvCEsIUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=htb9FbjW; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-30613802a6bso39174681fa.1
-        for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 17:02:33 -0800 (PST)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5461a485aa2so850812e87.2
+        for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 17:08:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739754152; x=1740358952; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1739754501; x=1740359301; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=RmVoaUC7xmottqYOSTQwsqCPbMXfYjnNRObpBfTCAVg=;
-        b=Lt23Kj1um2DEUVEo6lY7VAHgQxCgzmtmhY6jiD3/7+iaRf/Ws6cHz71BjorvCPLVPT
-         in/O243syxXOU/E+2FoOnk/Q4kaa3QTC7ViWvAxfhDpe1CeVGmYGJyPTAjTOk7dbOp5t
-         upD+eVdR7vyyZ88zfd6AF8QgB/uS56TTEUL+biyr5Pw72dRf7jbJBv4HVhw9bEnCUrfT
-         7DMGaYI7W688AmPyAiZmRgUCKdvHXqz8kiUU5JtsyrV44RjNRDpCW2o/qmaEzgrtEobE
-         EqBtHuuFsYihJYtcH0C/hF4fojACkFzjFu8Zb4McbFG0c4/d3eaId7fjbAgXhZYfNVLL
-         JK/g==
+        bh=3MN2ZxY65wgcbMugjNj5As5w/ekQkDx89GK80XWoyKk=;
+        b=htb9FbjW35wzEr/w8U83A1x2HqyryyRxx8aoaGEWk4Hht0ryFT8zlruv+3YjVSOBcX
+         qrbXxTHH4mPeASkfpXXRLQVyXKGYgmVBAvTkxSxxved7wXL7374hwsabpJ0SFMvo1XBT
+         h+uSGJtkoZbssImJ90c+IVNa3+WeHxcO62Za7QJwpuB5Yxt41XT9C5i9VEiShdwects0
+         O3I6Q7GSS7wbrdhvKznsEDEYLGVELEEciDXTuDruUD7huhfSGLwDgbLJ3aDky5jama8o
+         v/xdieGHtApL7NoqkpVKuCObnd/CZRprlqVrVXRXuKgLYS5phUzrrI9ONjU1AX8amgId
+         XbAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739754152; x=1740358952;
+        d=1e100.net; s=20230601; t=1739754501; x=1740359301;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RmVoaUC7xmottqYOSTQwsqCPbMXfYjnNRObpBfTCAVg=;
-        b=PKBq5+DFAU6f/h1t01NqdSgFFPz5vtiY6uy5O4TMlaAXBA9lljJz9KPwHdW6SDh1f0
-         bEvFTokj8JMCaFWRqfA1qBnxUfpxzLGVK+V87qrJaPk8eZF3TX5p/Bs4ZKG1ypCCU0F3
-         q/QO6OLrkyM8GQnmd0kIMIGlh+elLMly12gmasBH9bvH6mpuV7MUxy6TCrcPODDT6uy6
-         /emjQjV0gRYNzUZ7B0/twe5wq7Jcy+CCfJLE4btGj5NhQnjMKarlEkDTT+hSn64Ttw5D
-         S4O+24aZrMp4O9IafwAIbqDF+mNwQ4jk4iq+z0FmoGrxhHeq2QJl9CSxftBK8VKL5V+w
-         0NdA==
-X-Forwarded-Encrypted: i=1; AJvYcCWanwStEmMJeQIHQF+UVGTJq1v3zpLxJWgqgR1CfyoKidORm76TiNYWc+uUBww9iB18M6HYEyvg8WWk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2Xqe041eTaJDDlv9BQwWZLfRCE4UDpZOwAQPWnRFLe0HigX6g
-	G6X28UE08q4n7iyafV/t2F2QZcZ5XlTRtnYXyA2EMlY76UoscZZ4yc7xcHLwbHM=
-X-Gm-Gg: ASbGncuyRVlzl/v/tSDIx5XaRp1GgqbQeRHYWmUGUXgrLI24oxw+0WG9Yi8BwDfixVd
-	l2XrGOhW8cr00AEbrrINL0r1IKyOuRHTB5sqMowaBWTPoKXtBZdzuoJyzXdFiAfWUXerxAHWNf6
-	JlMnntdvEh5k7lhLIkJYmK4SweSu9qHg+uvLD6iQixZSn6in6WUJyhp2XloMthqC0CNWl4COMHR
-	xOJH95Owc6FlRCt+79s5iXmtW8Dc//U+1VAhtjsGaLDLMRicid7cCpZsDsEOIe0sX+x7axt6uK0
-	N6HV8tmxIAbLwA2GzOFDvFAzKF7nFhzJJKZ2KmijOvv4JnOMzqDg+j3QXsdVCvs4YgRBq34=
-X-Google-Smtp-Source: AGHT+IFPwUrmmmXBHJJnUZE4/VwGf1KAeqSIPxBvFuGYKNJVD/VttkBx++6RhfEVEpAxmgh2tIp5hA==
-X-Received: by 2002:a2e:80d8:0:b0:308:f479:5684 with SMTP id 38308e7fff4ca-30927a59cf0mr22977031fa.17.1739754151764;
-        Sun, 16 Feb 2025 17:02:31 -0800 (PST)
+        bh=3MN2ZxY65wgcbMugjNj5As5w/ekQkDx89GK80XWoyKk=;
+        b=lxZbGBY6qOeClAruRisjCbmRDjRIIEXlkPFh1edEHfkavmbIF3DAswGr0RByQOrS0u
+         6Hfcc59tB0bWycPKKfyFJLYe0PCIVo7Qxjb1F9XaEcVh80xhiYlYJ3AZ2nUbAfOO0Niy
+         Yv/NZjkjO/e5EJxaY6/VPHkaH09tAlo9Gff+cfxP7ESt1WIhI+LentDaYMH1Z99vveWk
+         Bqi3nEAY80TEUf1I4HMU6k9XPWc+WAb3/QUteVchjwNnT0gVceKjGRy8eno1o6SjllSD
+         ht5YKtkMSGBy8PFsV2x00p/9OKfokcinUF5TtxMWATma4nDcLjm0zQ887yPLzyMlUeMY
+         nKfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUnEz5IWS8BryZzRt1BW3x2Bn5V8zqNNU1xQwaNB7sGRsZ3Aj3ftkf2QP9hwCgCG4kCT3HsXQSZmZQI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMQd9OntSjtEdmT8bDFG5RlJ1Upcaqayi9Q0z9AZKBi+4ifyfB
+	nuNDB1eTk2yfE7LQlqoEmobEphlGRvNJx0xRJYyQ5TVgYXfuta/P/qJ8i4kPPlY=
+X-Gm-Gg: ASbGncs7rfirvdsMkTQckEoySHTkVQl6xy4vQD0sc0MjHNXwcOb+1/pynakBIOBIsKq
+	BbPYnlLwNXWGORRi5SD+nIw7QZwHyTR96dat2C9UKc4Ma5++EEzRjFIH3jxVDkdl67oyEfnE7ID
+	pXf9lbkDoaMSWBk3n8iYRt9JcCbghDJ2HSLS0kqS1sScTdMkFbmh9CRT2K/laDDAPm6v6GvOxZO
+	prLbmX/N2AfKSQJLnP4N6nTvROJjgdT2T1r4cpqB/lXlveRmI0qMiQN2V9lJvge49T/BrsDOtty
+	B1mrAtbpKRssGXa0+mvBuYqySoHBmFY0n3nC/r6aRWEGYbb/dECuSdLAi38Kj6alE205nQo=
+X-Google-Smtp-Source: AGHT+IGZ1x+tVaZyUAcDWjHsFFF95dHEbPaN1Bn3GkymkP9Y4varLpg8emLi8GEW1T50We92UzbRYA==
+X-Received: by 2002:a05:6512:3094:b0:545:2f04:31da with SMTP id 2adb3069b0e04-5452fe8fd5dmr2174156e87.46.1739754500571;
+        Sun, 16 Feb 2025 17:08:20 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-309298dc5eesm7625121fa.95.2025.02.16.17.02.29
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5461c03bbdbsm456325e87.214.2025.02.16.17.08.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Feb 2025 17:02:30 -0800 (PST)
-Date: Mon, 17 Feb 2025 03:02:28 +0200
+        Sun, 16 Feb 2025 17:08:19 -0800 (PST)
+Date: Mon, 17 Feb 2025 03:08:16 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
 Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -81,13 +81,12 @@ Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
 	Jeff Johnson <quic_jjohnson@quicinc.com>, Andrew Halaney <ahalaney@redhat.com>, 
 	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V8 2/7] interconnect: core: Add dynamic id allocation
- support
-Message-ID: <6j576swreyqcyu7ryxtyojjmo7clfwb7fibw2aeuvif5vzexpq@du2farsldpti>
+Subject: Re: [PATCH V8 3/7] interconnect: qcom: Add multidev EPSS L3 support
+Message-ID: <ii33reyezniliytyom2u6k33nqcdrf5c444s76uwb2rs2hodno@q6exlaj6pqug>
 References: <20250205182743.915-1-quic_rlaggysh@quicinc.com>
- <20250205182743.915-3-quic_rlaggysh@quicinc.com>
- <bwiuhfgv4jw7tlwjqffgrxvskxbpf4forz46nn5g3vihz3z5od@w25y7hdprykf>
- <f40f6b9d-8f31-4ce6-a912-1aa484863d5e@quicinc.com>
+ <20250205182743.915-4-quic_rlaggysh@quicinc.com>
+ <fclfywuw3p43pcj42gi2w5kutvnto3rcrdng2zl2pzgpvz7dis@cjx2e6v4skfm>
+ <4482b900-2ec0-44c1-9b68-3b403a1df7d8@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,80 +95,212 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f40f6b9d-8f31-4ce6-a912-1aa484863d5e@quicinc.com>
+In-Reply-To: <4482b900-2ec0-44c1-9b68-3b403a1df7d8@quicinc.com>
 
-On Sun, Feb 16, 2025 at 10:08:51PM +0530, Raviteja Laggyshetty wrote:
+On Sun, Feb 16, 2025 at 09:58:41PM +0530, Raviteja Laggyshetty wrote:
 > 
 > 
-> On 2/10/2025 4:20 PM, Dmitry Baryshkov wrote:
-> > On Wed, Feb 05, 2025 at 06:27:38PM +0000, Raviteja Laggyshetty wrote:
-> >> The current interconnect framework relies on static IDs for node
-> >> creation and registration, which limits topologies with multiple
-> >> instances of the same interconnect provider. To address this, update
-> >> the interconnect framework APIs icc_node_create() and icc_link_create()
-> >> APIs to dynamically allocate IDs for interconnect nodes during creation.
-> >> This change removes the dependency on static IDs, allowing multiple
-> >> instances of the same hardware, such as EPSS L3.
+> On 2/10/2025 4:27 PM, Dmitry Baryshkov wrote:
+> > On Wed, Feb 05, 2025 at 06:27:39PM +0000, Raviteja Laggyshetty wrote:
+> >> EPSS on SA8775P has two instances, necessitating the creation of two
+> >> device nodes with different compatibles due to the unique ICC node ID
+> >> and name limitations in the interconnect framework. Add multidevice
+> >> support for the OSM-L3 provider to dynamically obtain unique node IDs
+> >> and register with the framework.
 > >>
 > >> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
 > >> ---
-> >>  drivers/interconnect/core.c | 13 ++++++++++++-
-> >>  1 file changed, 12 insertions(+), 1 deletion(-)
+> >>  drivers/interconnect/qcom/osm-l3.c | 46 +++++++++++++++++-------------
+> >>  1 file changed, 26 insertions(+), 20 deletions(-)
 > >>
-> >> diff --git a/drivers/interconnect/core.c b/drivers/interconnect/core.c
-> >> index 9d5404a07e8a..40700246f1b6 100644
-> >> --- a/drivers/interconnect/core.c
-> >> +++ b/drivers/interconnect/core.c
-> >> @@ -20,6 +20,8 @@
+> >> diff --git a/drivers/interconnect/qcom/osm-l3.c b/drivers/interconnect/qcom/osm-l3.c
+> >> index 6a656ed44d49..da2d82700b5a 100644
+> >> --- a/drivers/interconnect/qcom/osm-l3.c
+> >> +++ b/drivers/interconnect/qcom/osm-l3.c
+> >> @@ -1,6 +1,7 @@
+> >>  // SPDX-License-Identifier: GPL-2.0
+> >>  /*
+> >>   * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
+> >> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+> >>   */
 > >>  
-> >>  #include "internal.h"
+> >>  #include <linux/args.h>
+> >> @@ -33,6 +34,7 @@
+> >>  #define EPSS_REG_PERF_STATE		0x320
 > >>  
-> >> +#define ICC_DYN_ID_START 10000
-> >> +
-> >>  #define CREATE_TRACE_POINTS
-> >>  #include "trace.h"
-> >>  
-> >> @@ -826,7 +828,12 @@ static struct icc_node *icc_node_create_nolock(int id)
-> >>  	if (!node)
-> >>  		return ERR_PTR(-ENOMEM);
-> >>  
-> >> -	id = idr_alloc(&icc_idr, node, id, id + 1, GFP_KERNEL);
-> >> +	/* negative id indicates dynamic id allocation */
-> >> +	if (id < 0)
+> >>  #define OSM_L3_MAX_LINKS		1
+> >> +#define ALLOC_DYN_ID			-1
 > > 
-> > Nit: I think it might be better to add an explicit define for that and
-> > to decline all other negatdive values. Please leave us some room for
-> > future expansion.
+> > This should be defined by ICC framework.
+> 
+> ok, I will move this to framework.
 > > 
-> Do you mean to replace the value of ALLOC_DYN_ID from -1 to some
-> positive value like 100000 and to use it as initial ID for the nodes
-> requiring the dynamic allocation ? This explicit define can be used as
-> check for dynamic allocation and also as argument to idr_alloc min value
-> argument. Is my interpretation of the comment correct ?
+> >>  
+> >>  #define to_osm_l3_provider(_provider) \
+> >>  	container_of(_provider, struct qcom_osm_l3_icc_provider, provider)
+> >> @@ -55,46 +57,40 @@ struct qcom_osm_l3_icc_provider {
+> >>   */
+> >>  struct qcom_osm_l3_node {
+> >>  	const char *name;
+> >> -	u16 links[OSM_L3_MAX_LINKS];
+> >> -	u16 id;
+> >> +	struct qcom_osm_l3_node *links[OSM_L3_MAX_LINKS];
+> >> +	int id;
+> >>  	u16 num_links;
+> >>  	u16 buswidth;
+> >>  };
+> >>  
+> >>  struct qcom_osm_l3_desc {
+> >> -	const struct qcom_osm_l3_node * const *nodes;
+> >> +	struct qcom_osm_l3_node * const *nodes;
+> >>  	size_t num_nodes;
+> >>  	unsigned int lut_row_size;
+> >>  	unsigned int reg_freq_lut;
+> >>  	unsigned int reg_perf_state;
+> >>  };
+> >>  
+> >> -enum {
+> >> -	OSM_L3_MASTER_NODE = 10000,
+> >> -	OSM_L3_SLAVE_NODE,
+> >> -};
+> >> -
+> >> -#define DEFINE_QNODE(_name, _id, _buswidth, ...)			\
+> >> -	static const struct qcom_osm_l3_node _name = {			\
+> >> +#define DEFINE_QNODE(_name, _buswidth, ...)			\
+> >> +	static struct qcom_osm_l3_node _name = {			\
 
-No, it is not. I asked to add an explicit define for -1 in the ICC
-framework and make icc_node_create_nolock() reject all other negative
-values.
+No. Global data _must_ remain const.
+
+> >>  		.name = #_name,						\
+> >> -		.id = _id,						\
+> >>  		.buswidth = _buswidth,					\
+> >>  		.num_links = COUNT_ARGS(__VA_ARGS__),			\
+> >>  		.links = { __VA_ARGS__ },				\
+> >>  	}
+> >>  
+> >> -DEFINE_QNODE(osm_l3_master, OSM_L3_MASTER_NODE, 16, OSM_L3_SLAVE_NODE);
+> >> -DEFINE_QNODE(osm_l3_slave, OSM_L3_SLAVE_NODE, 16);
+> >> +DEFINE_QNODE(osm_l3_slave, 16);
+> >> +DEFINE_QNODE(osm_l3_master, 16, &osm_l3_slave);
+> >>  
+> >> -static const struct qcom_osm_l3_node * const osm_l3_nodes[] = {
+> >> +static struct qcom_osm_l3_node * const osm_l3_nodes[] = {
+> >>  	[MASTER_OSM_L3_APPS] = &osm_l3_master,
+> >>  	[SLAVE_OSM_L3] = &osm_l3_slave,
+> >>  };
+> >>  
+> >> -DEFINE_QNODE(epss_l3_master, OSM_L3_MASTER_NODE, 32, OSM_L3_SLAVE_NODE);
+> >> -DEFINE_QNODE(epss_l3_slave, OSM_L3_SLAVE_NODE, 32);
+> >> +DEFINE_QNODE(epss_l3_slave, 32);
+> >> +DEFINE_QNODE(epss_l3_master, 32, &epss_l3_slave);
+> >>  
+> >> -static const struct qcom_osm_l3_node * const epss_l3_nodes[] = {
+> >> +static struct qcom_osm_l3_node * const epss_l3_nodes[] = {
+> >>  	[MASTER_EPSS_L3_APPS] = &epss_l3_master,
+> >>  	[SLAVE_EPSS_L3_SHARED] = &epss_l3_slave,
+> >>  };
+> >> @@ -164,7 +160,7 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
+> >>  	const struct qcom_osm_l3_desc *desc;
+> >>  	struct icc_onecell_data *data;
+> >>  	struct icc_provider *provider;
+> >> -	const struct qcom_osm_l3_node * const *qnodes;
+> >> +	struct qcom_osm_l3_node * const *qnodes;
+> >>  	struct icc_node *node;
+> >>  	size_t num_nodes;
+> >>  	struct clk *clk;
+> >> @@ -242,6 +238,10 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
+> >>  
+> >>  	icc_provider_init(provider);
+> >>  
+> >> +	/*Initialize IDs to ALLOC_DYN_ID to indicate dynamic id allocation*/
+> >> +	for (i = 0; i < num_nodes; i++)
+> >> +		qnodes[i]->id = ALLOC_DYN_ID;
+> > 
+> > This can be initialized statically.
+> 
+> There are two instances of EPSS L3 and the target specific compatible
+> data is global which requires resetting the IDs for the second instance
+> probe. If we don't the reset the IDs back to ALLOC_DYN_ID, then ICC
+> framework assumes that ID has been already allocated and doesn't create
+> the new ICC nodes for the second instance.
+
+Well, don't use global data for shared purposes. Consider both your
+instances probing at the same time. So, please drop the
+qcom_osm_l3_node.id, pass ALLOC_DYN_ID directly to the
+icc_node_create(), store returned nodes in a local array and pass node
+pointers to icc_link_create().
 
 > 
-> >> +		id = idr_alloc(&icc_idr, node, ICC_DYN_ID_START, 0, GFP_KERNEL);
-> >> +	else
-> >> +		id = idr_alloc(&icc_idr, node, id, id + 1, GFP_KERNEL);
+> > 
 > >> +
-> >>  	if (id < 0) {
-> >>  		WARN(1, "%s: couldn't get idr\n", __func__);
-> >>  		kfree(node);
-> >> @@ -962,6 +969,10 @@ void icc_node_add(struct icc_node *node, struct icc_provider *provider)
-> >>  	node->avg_bw = node->init_avg;
-> >>  	node->peak_bw = node->init_peak;
+> >>  	for (i = 0; i < num_nodes; i++) {
+> >>  		size_t j;
 > >>  
-> >> +	if (node->id >= ICC_DYN_ID_START)
-> >> +		node->name = devm_kasprintf(provider->dev, GFP_KERNEL, "%s@%s",
-> >> +					    node->name, dev_name(provider->dev));
+> >> @@ -250,14 +250,19 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
+> >>  			ret = PTR_ERR(node);
+> >>  			goto err;
+> >>  		}
+> >> +		qnodes[i]->id = node->id;
+> > 
+> > Should not be necessary.
+> This is required, each qnode corresponds to a ICC node in framework and
+> some nodes get created in icc_node_create() API and some in
+> icc_link_create() API, to have a track of node creation qnode->id is
+> used, hence initializing qnode->id with id allocated during icc node
+> creation and avoid creation of duplicate nodes.
+
+Basically, no. You cannot do that. Create nodes first, create links
+afterwards.
+
+> > 
+> >>  
+> >>  		node->name = qnodes[i]->name;
+> >>  		/* Cast away const and add it back in qcom_osm_l3_set() */
+> >>  		node->data = (void *)qnodes[i];
+> >>  		icc_node_add(node, provider);
+> >>  
+> >> -		for (j = 0; j < qnodes[i]->num_links; j++)
+> >> -			icc_link_create(node, qnodes[i]->links[j]);
+> >> +		for (j = 0; j < qnodes[i]->num_links; j++) {
+> >> +			struct qcom_osm_l3_node *link_node = qnodes[i]->links[j];
 > >> +
-> >>  	if (node->avg_bw || node->peak_bw) {
-> >>  		if (provider->pre_aggregate)
-> >>  			provider->pre_aggregate(node);
+> >> +			icc_link_create(node, link_node->id);
+> > 
+> > Please add icc_link_nodes() (or something like that), taking two struct
+> > icc_node instances. Then you can use it here, instead of reading back
+> > the ID. Ideally the 'ID' should become an internal detail which is of no
+> > concern for the ICC drivers.
+> >
+> 
+> Instead of reading back the link node id from the framework, I will call
+> icc_node_create before calling the icc_link_create() API and assign the
+> allocated id to respective qnode in the following way:
+> 
+> struct qcom_osm_l3_node *qn_link_node = qnodes[i]->links[j];
+> struct icc_node *link_node = icc_node_create(qnodes[i]->links[j]->id);
+> qn_link_node->id = link_node->id;
+> icc_link_create(node, link_node->id);
+> 
+> This looks cleaner than reading back the id.
+
+As you might have guessed from the the earlier comments, no. Don't write
+_anything_ to a global data.
+
+> 
+> 
+> >> +			link_node->id = (node->links[node->num_links - 1])->id;
+> >> +		}
+> >>  
+> >>  		data->nodes[i] = node;
+> >>  	}
+> >> @@ -278,6 +283,7 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
+> >>  static const struct of_device_id osm_l3_of_match[] = {
+> >>  	{ .compatible = "qcom,epss-l3", .data = &epss_l3_l3_vote },
+> >>  	{ .compatible = "qcom,osm-l3", .data = &osm_l3 },
+> >> +	{ .compatible = "qcom,sa8775p-epss-l3", .data = &epss_l3_perf_state },
+> >>  	{ .compatible = "qcom,sc7180-osm-l3", .data = &osm_l3 },
+> >>  	{ .compatible = "qcom,sc7280-epss-l3", .data = &epss_l3_perf_state },
+> >>  	{ .compatible = "qcom,sdm845-osm-l3", .data = &osm_l3 },
 > >> -- 
 > >> 2.39.2
 > >>
