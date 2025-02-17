@@ -1,129 +1,184 @@
-Return-Path: <devicetree+bounces-147376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC5DA38293
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:05:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56BB6A382CB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 13:19:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F12CD16B813
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 12:05:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A1F5164D81
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 12:19:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DF132185AB;
-	Mon, 17 Feb 2025 12:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 411291A3A94;
+	Mon, 17 Feb 2025 12:19:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TjJ9LrWQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zj3zJVGL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9F96C2EF;
-	Mon, 17 Feb 2025 12:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196BA18DB37;
+	Mon, 17 Feb 2025 12:19:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739793905; cv=none; b=k+r7sjuvMf3tYT3hRf0iH8vw6BkvqdK+jepDnULYaKR110DoIOtI3AERT/OSRtES4u7MN1CB62FM+5GaJ02I0k1eWe60DoZ3sXcJ/l4n3n3TBupJG4SVkS6ik3+1tVOk6yeXGr/WbN0n1KlveGOWHCllEcP/1zrXS0B+6A4YfYc=
+	t=1739794743; cv=none; b=jYm0vk/D5h79EpR5M50012rHUPSVF8RcG7wReQSo+jHzT3Q1N5GO9fMKNjuGk1KD8dN6jjnNwJL/sHNg63LIG/S8HZBqPc+eln44rvAITYwHj/g6vfWnu7ik9RPKsvkgEwLOGpM9c0dycY8X5wj5yrH5U8G0ZXeN7/3fiIVBmCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739793905; c=relaxed/simple;
-	bh=k0ACiT4+b4nMzJtkhFI0xgwWYBfdQqCLEShY+Lxuh6c=;
-	h=From:To:Subject:Date:Message-Id:MIME-Version; b=k+oT9FwF+tvBnFAXqKVmyUvMIg2OBqKct8K9P+ADz3/al3KJZoUfy03VQ7OuGRd/Q0GBBHio6hrVvhIJ+zpZcL3838HRJM169v1uhSswWOYozsW33zBNVG6+00LEIogAsUYFhYBU0BMtgRYuxy919AjG0bxFxhmzp8SoNgHFiwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TjJ9LrWQ; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739793904; x=1771329904;
-  h=from:to:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=k0ACiT4+b4nMzJtkhFI0xgwWYBfdQqCLEShY+Lxuh6c=;
-  b=TjJ9LrWQ81dnQWfOMJX8v5/5EItGzHoV1/Iil/pWaiTJpBuYkq+Rxbje
-   zp21InU9kCwhHMswWSY7l3wRXlIGbPQSuYO6dpfJeK/wYPJMOrH4mZLos
-   IDx7BFyJuBPy94FVTyzn5joIyTM8j54FLpMH+yG9GX9p395LurooRmBQy
-   TPRSB/627Zt2AgH24ql/62VxaOewqxOLHMI7OVmgAb/Ywb4FhbIr3SNpi
-   cDKhCTUrPCtq9Ogt9GR1dP2Rv+gSmNDYAuo9/DgQD40Qv8x7oqvACjT5g
-   V9ppJWbOCqst+4ZXysqYEnubfZ+4/xm7N3R8YxXF+Ht3noBqGF6k2ZXD2
-   w==;
-X-CSE-ConnectionGUID: CwQOIw6QTdW8e46bsXER3Q==
-X-CSE-MsgGUID: XSDhAZYAQoarMXaBic8fcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="28069742"
-X-IronPort-AV: E=Sophos;i="6.13,292,1732608000"; 
-   d="scan'208";a="28069742"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2025 04:05:03 -0800
-X-CSE-ConnectionGUID: rXemuYMiRBKmrmXT2nDIWg==
-X-CSE-MsgGUID: QqlHyB2zRJmb5N6y15a0Ag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="114589482"
-Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
-  by orviesa007.jf.intel.com with ESMTP; 17 Feb 2025 04:05:00 -0800
-From: niravkumar.l.rabara@intel.com
-To: Dinh Nguyen <dinguyen@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1739794743; c=relaxed/simple;
+	bh=wyEMxJSE4ut2qD9vvgKYF1uHbf5olLm7PCB7mopaezc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jRTNw8sV+SMEejLtrYPLL82eePjXyNoWuz434iFr1/b2sU8JN4Kc3qcxBZU4iCKXEyW1AXf4LPDxv2zmuk1cHSw/nCYwEjwFzv2IFKtCndqL+WY4i9L9n/RMykLG15QPzffuGPTzi3kmS+E/pUTe7ZVTXwsvV6xrApo+7RHCnqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zj3zJVGL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 256D2C4CED1;
+	Mon, 17 Feb 2025 12:19:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739794742;
+	bh=wyEMxJSE4ut2qD9vvgKYF1uHbf5olLm7PCB7mopaezc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Zj3zJVGLaouZLXnzIJXFuNsrKpMsmPoeDnw9lLcRLibpLL+oIqHjoQnx53/NpJMaT
+	 1obkaYTrOUIoO+baSTIgHL3v+87w0VtQxnnPh71a6wpmwuy0OlH/uutPpBt2ASdEXw
+	 Y1a2lkUKXWaHGBHR/ao6nkcEvLaBe4SbvJCu0rwZySIQcJfLNqJO6AtZsIjlcQXqAt
+	 FJ1jA4lLVpjCBWk1vSr7bY0oGqyJx9vu4bR5NYF+SFaWIvvWyyTLhAXMr3Qb/A0wlo
+	 GUzWRedJnc7Q4WYfKXUEGhiklHWnDqROR2KlwtKY5zO7ZIHZUhEBsP01yqAW2DqRha
+	 b95ToCfNsaezA==
+Date: Mon, 17 Feb 2025 13:19:00 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Ryder Lee <ryder.lee@mediatek.com>,
+	Jianjun Wang <jianjun.wang@mediatek.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	niravkumar.l.rabara@intel.com,
-	nirav.rabara@altera.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: socfpga: agilex5: add gpio led and memory node
-Date: Mon, 17 Feb 2025 20:01:24 +0800
-Message-Id: <20250217120124.3502476-1-niravkumar.l.rabara@intel.com>
-X-Mailer: git-send-email 2.25.1
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] PCI: mediatek-gen3: Configure PBUS_CSR registers
+ for EN7581 SoC
+Message-ID: <Z7MpNADDFxPTX1Yy@lore-desk>
+References: <20250202-en7581-pcie-pbus-csr-v2-0-65dcb201c9a9@kernel.org>
+ <20250202-en7581-pcie-pbus-csr-v2-2-65dcb201c9a9@kernel.org>
+ <20250214171106.ul3fwzcwhadhdwhj@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2DDNq2ksAqtJIqnN"
+Content-Disposition: inline
+In-Reply-To: <20250214171106.ul3fwzcwhadhdwhj@thinkpad>
 
-From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-Add GPIO led and memory node for Agilex5 devkit.
+--2DDNq2ksAqtJIqnN
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
----
+> On Sun, Feb 02, 2025 at 08:34:24PM +0100, Lorenzo Bianconi wrote:
+> > Configure PBus base address and address mask to allow the hw
+> > to detect if a given address is on PCIE0, PCIE1 or PCIE2.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  drivers/pci/controller/pcie-mediatek-gen3.c | 30 +++++++++++++++++++++=
++++++++-
+> >  1 file changed, 29 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/=
+controller/pcie-mediatek-gen3.c
+> > index aa24ac9aaecc749b53cfc4faf6399913d20cdbf2..9c2a592cae959de8fbe9ca5=
+c5c2253f8eadf2c76 100644
+> > --- a/drivers/pci/controller/pcie-mediatek-gen3.c
+> > +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
+> > @@ -15,6 +15,7 @@
+> >  #include <linux/irqchip/chained_irq.h>
+> >  #include <linux/irqdomain.h>
+> >  #include <linux/kernel.h>
+> > +#include <linux/mfd/syscon.h>
+> >  #include <linux/module.h>
+> >  #include <linux/msi.h>
+> >  #include <linux/of_device.h>
+> > @@ -24,6 +25,7 @@
+> >  #include <linux/platform_device.h>
+> >  #include <linux/pm_domain.h>
+> >  #include <linux/pm_runtime.h>
+> > +#include <linux/regmap.h>
+> >  #include <linux/reset.h>
+> > =20
+> >  #include "../pci.h"
+> > @@ -127,6 +129,13 @@
+> > =20
+> >  #define PCIE_MTK_RESET_TIME_US		10
+> > =20
+> > +#define PCIE_EN7581_PBUS_ADDR(_n)	(0x00 + ((_n) << 3))
+> > +#define PCIE_EN7581_PBUS_ADDR_MASK(_n)	(0x04 + ((_n) << 3))
+> > +#define PCIE_EN7581_PBUS_BASE_ADDR(_n)	\
+> > +	((_n) =3D=3D 2 ? 0x28000000 :	\
+> > +	 (_n) =3D=3D 1 ? 0x24000000 : 0x20000000)
+> > +#define PCIE_EN7581_PBUS_BASE_ADDR_MASK	GENMASK(31, 26)
+> > +
+> >  /* Time in ms needed to complete PCIe reset on EN7581 SoC */
+> >  #define PCIE_EN7581_RESET_TIME_MS	100
+> > =20
+> > @@ -931,7 +940,8 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie=
+ *pcie)
+> >  static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
+> >  {
+> >  	struct device *dev =3D pcie->dev;
+> > -	int err;
+> > +	struct regmap *map;
+> > +	int err, slot;
+> >  	u32 val;
+> > =20
+> >  	/*
+> > @@ -945,6 +955,24 @@ static int mtk_pcie_en7581_power_up(struct mtk_gen=
+3_pcie *pcie)
+> >  	/* Wait for the time needed to complete the reset lines assert. */
+> >  	msleep(PCIE_EN7581_RESET_TIME_MS);
+> > =20
+> > +	map =3D syscon_regmap_lookup_by_phandle(dev->of_node,
+> > +					      "mediatek,pbus-csr");
+> > +	if (IS_ERR(map))
+> > +		return PTR_ERR(map);
+>=20
+> So this is going to regress the devicetree's that do not define this sysc=
+on
+> region? But I do not see any devicetree using this 'airoha,en7581-pcie'
+> compatible, so not sure if this is going to be an issue. Are the downstre=
+am
+> devicetrees used?
 
-Changes in v2:
-  * Add mising blank line.
-  * Changed the name to led-0 instad of led1. 
-  
- .../boot/dts/intel/socfpga_agilex5_socdk.dts  | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+AFAIK there is no upstream or downstream (e.g. OpenWrt) en7581 dts with PCIe
+support yet so I do not know if this is an issue or not. If so, I guess we
+need to add the proper Fixes tag:
 
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-index c533e5a3a610..e106e48f1e3f 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-@@ -15,6 +15,26 @@ aliases {
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			label = "hps_led0";
-+			gpios = <&porta 11 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* We expect the bootloader to fill in the reg */
-+		reg = <0x0 0x80000000 0x0 0x0>;
-+	};
-+};
-+
-+&gpio0 {
-+	status = "okay";
- };
- 
- &gpio1 {
--- 
-2.25.1
+Fixes: f6ab898356dd ("PCI: mediatek-gen3: Add Airoha EN7581 support")
 
+Regards,
+Lorenzo
+
+>=20
+> - Mani
+>=20
+> --=20
+> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
+=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
+=E0=AF=8D
+
+--2DDNq2ksAqtJIqnN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ7MpNAAKCRA6cBh0uS2t
+rIuEAP9rnTTRV1mWaP3Z7uCsLUu0NlHr8BpEtVsjDGVDIPv7+wEA9eryLOzy0dp5
+zACOFi5/qvhsY75r70+bG8mpUeyRYg8=
+=IvLf
+-----END PGP SIGNATURE-----
+
+--2DDNq2ksAqtJIqnN--
 
