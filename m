@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-147287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D069A37E23
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:13:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BC0FA37E2D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:15:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E1BE1889CA4
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:13:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FE87188B1E1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 436861BC09A;
-	Mon, 17 Feb 2025 09:13:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0F71DA2E0;
+	Mon, 17 Feb 2025 09:14:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O74JGeZO"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="mRv5zHDp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A961B87D3;
-	Mon, 17 Feb 2025 09:13:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68CE91DAC97
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 09:14:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739783601; cv=none; b=r7gyMm+jI3mtmj9VIXbiA6KBa9tPk5llJV5j7vQthgKiRiNPdI2iUDBYdtyV4so6rvBSsRyJ3OrHDAv7CV3zP7lazbElCQQIZWOe3S1Sfyu4eb6YI5uRvWUtmXS+17DUbfVj/1G7l6v9JdUIhSReEw14NGAQDmfQ8+bg/xUDUNA=
+	t=1739783682; cv=none; b=oIPXg/VFhGHvVk8KXVX3EAfRXYWAVTAIO9Gx3xpGS9OMufp9bmAqLE5xSOoWXtucnxVja3WRAk/S+5eDSBdHa7Wsek6ouF+SPvzhkn40e3fkAs/4IFIBVWI28756sv6O3xQcJpcVP2Koim1BY1uunOj5fTK7xsWGCqK9ViY3t2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739783601; c=relaxed/simple;
-	bh=gj+wcTV5dLgIYdejhYejZWrgFnRaWl+0RIEbUdJwHgg=;
+	s=arc-20240116; t=1739783682; c=relaxed/simple;
+	bh=oecG8STigdysN1p2/pulBXQfq8riWGZ9SwKugmZupd8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oEjewiV+qPUS857fhxumMPo32JOtbWzPqCgs3e8P/Veggc/gPlTFgGvrpZYzY9r7fRL/LjloV3o2LpmDTEnv7x0XF3e+t/vfmhmH1RzQ39RJpsuKW+krElRc/k3Oy7jYeVt59RXxJHVitZd5XysjdDcsFBFXs7R6bqEzW7QESGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O74JGeZO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ECC5C4CED1;
-	Mon, 17 Feb 2025 09:13:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739783599;
-	bh=gj+wcTV5dLgIYdejhYejZWrgFnRaWl+0RIEbUdJwHgg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=O74JGeZO7BSpb7b8by3FWsIYsDsbM4A/D9se7icLQSSneWc2GBe1po4FaErnuiWiY
-	 fw2HMvzc3gnu9TCio5viXrLrxuGN4pH5CGmzCcd2WLaoI9MvB9Ze641uiplCVJm+LB
-	 6YUKClG9YoRRjJXAIBkqMp3/BHvtB5aBftDsgLvgDjuPIM3aKlxle33nVFXwJ079km
-	 buEJb4AxE/ss8tXDCF5k8gPPxcLPcNA2AP6YVh3kqqjkwAXRgapZUQmDFChsP8PPR1
-	 lTGuhpJTUd21meIvShbfe1LOPVtwajNUoxQuwaNwwQbWjabicwTxSoQ+3LOUnen8Hr
-	 lUhWgzarAgH2Q==
-Message-ID: <7462bb47-01ff-45d7-9cbc-24b8da7f7a1d@kernel.org>
-Date: Mon, 17 Feb 2025 10:13:13 +0100
+	 In-Reply-To:Content-Type; b=H+5UYmN2kX0WrJ2Zk1gSxX2Pa0TNGw1iK04tUg2ji1diO0lPwI2WETeAD/BIBrjFYZH7e989S+SqdjJ9xXQa1d8UROFQDbY+gWdpkVc2tr6UdnBQZcZfQOAFWsqXH5WPx6NcyjUKhVpy1nkSOjY7Pe1s0AORQqF8UkwspRsJdPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=mRv5zHDp; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ab7c07e8b9bso699083466b.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 01:14:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1739783679; x=1740388479; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=phm8jSsieZLAYRvU94lHS+2KE6EOrOJ2bxUAvn5iaZ8=;
+        b=mRv5zHDpE02ThKtn7QFhpE5QRKIjFRI8hLPBS1dbIcDebacdN6L1XYyybs8+AWaGtb
+         A1Diyo77/ntm6YIaysDGrmdSkQzNQX/4bKXJzXVi3kFh+618nxyTvb+2hlQiCyNn1EjR
+         o55qXXSxVcI+kGA6Nul4Kht/y415YijOQmQT7q4JyZ+Ed+v2G9XjyS5YYcUaf6qU/QXI
+         Pd8ITOEC8/PQfdd8wIJvhFq6FthW9/LcVMGZWPfY1nbUPX6cBz1YlRdXaRhUWK6KYIl+
+         Oe2ei3fV1QvlC7Lyunmp/LJuvqiv/UR+poZIRyjVW7nvhglUSgKPXc31THEHb8gShbqU
+         cGOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739783679; x=1740388479;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=phm8jSsieZLAYRvU94lHS+2KE6EOrOJ2bxUAvn5iaZ8=;
+        b=TMN6FwEXF7gnUz09hRkn+rn/FQBVJimbznoLBIB7lvJNJ2nexNxb1zxHR4O840ZK7W
+         aTRJpYTfWBPwsuXSRXPmPE9p4C8ljn8BGGmMsb+9vZ/8FZJAduwXfv2o89b6j5adoWnI
+         vZD9ZpJf1njW7BBrGjjknJUGDvH/aBVGQ1sUL/KVD0gqNI9zXQYNoP6wXQE9Jsbw8uNF
+         gEgDJwnvTSt+vS/v2rs7hmUUZvKm36ytOjc8ZS4csOnWgAPDFNk4FUtToV01hN27F7dJ
+         13yUXvioKZ0ruU1TbD+zWaZAZuF+3/tleKni4+ykaFsJX7psUk7CMyjCjZPOFSQcDi+Y
+         /wTg==
+X-Forwarded-Encrypted: i=1; AJvYcCUoneSuX5HDgX0fMh9oCREmN9bJYK6GLDbc1u176x6O4vGyPOy+0q8eDMa+znbyZEWvGyJ3I/0aAjHr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYPBZSGUFpM46GKqIqCO1NNyHb8BCl/9Lo9O5vc/q+fgKOSi5u
+	WnTWFyOvKc7CQijiJ6y7BaXBrRHTxbmhgXo2TRstV6aHxF6IRFDunXcXq+w0vQb4HBpJ6QlhcTG
+	n
+X-Gm-Gg: ASbGncvUP3o4hTBxjQZmoN+DAKJ4weY3O8SyEDx5bvXG+yWw0+GiBQyJ8cVruy/YhA0
+	ix/4TK1A6DmFBvPfzPSdjtSxNvnxFy/9p7bF64Kyr9stHOftvvuPguLEmAwMzop34RFrhadq9vI
+	odHMUItK3XoiZTRZjLk19he52bP0q7Ea20xBGJZVc6Cxb2ay7J8XdoRpcTaNXmA2/x4Jhx/XEqK
+	xoixOi4TsXSWJYzf1KUIW0pbRuSnb1NDf0emXb33qFIwVZnY5oTYPwppeB0JxUQwuk0wvuffC+D
+	oKBxPBmRXTzutYKywnrRRX8=
+X-Google-Smtp-Source: AGHT+IEpE1aPz/0OBl5FnqhprsbjTn0AOjkVKHoE0FYPvQ0oKK62ZfJEvZI/uI5uJpbb/p9xjwMm6Q==
+X-Received: by 2002:a17:907:9494:b0:aba:5f48:eda4 with SMTP id a640c23a62f3a-abb70b6bf71mr866918566b.25.1739783678693;
+        Mon, 17 Feb 2025 01:14:38 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.25])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba532322aesm861089166b.17.2025.02.17.01.14.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Feb 2025 01:14:38 -0800 (PST)
+Message-ID: <7e966eea-e2e7-4fd4-bc6e-67fd49c57ddd@tuxon.dev>
+Date: Mon, 17 Feb 2025 11:14:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,86 +82,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings:leds: Add function define for POE
-To: Tony O'Brien <Tony.OBrien@alliedtelesis.co.nz>
-Cc: "pavel@kernel.org" <pavel@kernel.org>, "lee@kernel.org" <lee@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
- Ben Hoelker <Ben.Hoelker@alliedtelesis.co.nz>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-References: <20250213005841.4143929-1-tony.obrien@alliedtelesis.co.nz>
- <20250213005841.4143929-2-tony.obrien@alliedtelesis.co.nz>
- <20250213-successful-pronghorn-of-dignity-83facb@krzk-bin>
- <31bc5340976761dbf3653ed2802a8988e07b18d5.camel@alliedtelesis.co.nz>
+Subject: Re: [PATCH 0/4] ARM: dts: at91: calao_usb: fix various naming
+ problems
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-arm-kernel@lists.infradead.org
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>, Rob Herring <robh@kernel.org>
+References: <20250131210236.36212-6-wsa+renesas@sang-engineering.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <31bc5340976761dbf3653ed2802a8988e07b18d5.camel@alliedtelesis.co.nz>
+In-Reply-To: <20250131210236.36212-6-wsa+renesas@sang-engineering.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/02/2025 22:37, Tony O'Brien wrote:
-> Hi Krzysztof -
-> 
->> Where did these two reviews happen?
-> They were in-house reviews.  Please feel free to remove them from the
-> patch.
-> 
->> Where is any user of this?
-> We are adding Kernel control of PoE LEDs and thought this might be
-> useful to others, maybe those working on netdev, or anyone implementing
-> PoE on their devices.  Also, the Kernel >> Docs >> LEDs page states:
-> "If required color or function is missing, please submit a patch to
-> linux-leds@vger.kernel.org", which is included here.
-You did not answer: where is the user? By "we are adding" you mean
-downstream?
+Hi, Wolfram,
 
-Best regards,
-Krzysztof
+> Wolfram Sang (4):
+>   ARM: dts: at91: usb_a9263: fix wrong vendor
+
+For this, I'll be waiting a follow up on
+https://lore.kernel.org/all/20250131162713.33524-2-wsa+renesas@sang-engineering.com/
+
+>   ARM: dts: at91: use correct vendor name for Calao boards
+>   ARM: dts: at91: calao_usb: fix button nodes
+>   ARM: dts: at91: usb_a9g20_lpw: use proper mmc node name
+
+These were applied to at91-dt, thanks!
+
 
