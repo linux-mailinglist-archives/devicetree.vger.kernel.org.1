@@ -1,147 +1,128 @@
-Return-Path: <devicetree+bounces-147543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 066F6A388D8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 17:09:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03CAAA388D9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 17:09:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D87FC18832B9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 16:04:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42F511626DF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 16:05:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D656D223700;
-	Mon, 17 Feb 2025 16:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4DE9224B08;
+	Mon, 17 Feb 2025 16:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="UzVhoRfo"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ralz/Kvf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA6943E499
-	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 16:04:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A147621ADD3
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 16:05:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739808246; cv=none; b=kMV0H+LUApOkwQqi+AGjsTD52L36EsIQTKGoMuC2sXlrKFphkTGf0tISU5WZgR8OevkNtIWCbx2uQfsQRUdmjcojoAlNv7REZ4KtsBKNVsS80DUYkXUcMx5CX1ZQive46VbEXbucbj+cQgHPRky/brBtrai8kULrIhkLShu/XxI=
+	t=1739808342; cv=none; b=IEsDdwll+T9oJdYBMif0uYgrWEyF41s+7z/6z48O6tbWfMS/QS3sljJveiY8afaz0eRI3bz1+/py5Xkw9FAMhy42OoSTMc7mU/Hc52Ayz79av+5AVJTRljJnp1ewI3TZVO20Z1ZvqqtZx8xhlK1vP9ZOfpJAMhV2oVtbV/MgYB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739808246; c=relaxed/simple;
-	bh=DNjjxq68KrYoqBNv5YADFYItqITL21WFyFOer99ynvM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qfXbO5ZJ508FqhF95IfUubVgPFpEKJW9ikbTy13XCl6Tz/lgjg8NVglWyMczYo0IddMnsJE7/yHpWtcqcUgahyEDl3YEwkOyPdV8TC8B/Fuk987HMptptw4KXi7zdQXnb/n+hmPlFBbOG5IvuiMsElV4An3b2ebFDqQfmTNwz/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=UzVhoRfo; arc=none smtp.client-ip=91.218.175.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Mon, 17 Feb 2025 21:32:52 +0530
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1739808230;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LJk8/SrPdoFLdWOcpo+5G6r5AMsEus7osPwto4bzZjk=;
-	b=UzVhoRfoddKHqqP66smA3oqpO0D17suASPDPjZxQBauD8Qq6oF7lpHmxlwEv8MeBP2rZOT
-	COw9uGcvmvRNy3RHLH8S/oGEl6hQtiyGOvizQeYm8u/Q6JO9IneD9gGPtzeNxcvohRB7dY
-	yIjn9XNSXQnagi0COlfR+ne4d8dnwSo=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Jai Luthra <jai.luthra@linux.dev>
-To: Stefan Eichenberger <eichest@gmail.com>
-Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, francesco.dolcini@toradex.com, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Subject: Re: [PATCH v1] arm64: dts: ti: k3-am62-verdin-dahlia: add Microphone
- Jack to sound card
-Message-ID: <vax3z776aw6aujpyvwc6zkfqgxn34oawxgc3wn6bjkkj7kjhpz@svmc3nasmjei>
-X-PGP-Key: http://jailuthra.in/files/public-key.asc
-References: <20250217144643.178222-1-eichest@gmail.com>
+	s=arc-20240116; t=1739808342; c=relaxed/simple;
+	bh=OiKA4aUo/Tp14RS4IEYPAeGfKurka1AQjhjppkRlX5c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Qr8AQD0CqoP223YwwH7gznkj4XWyDkDAdyroa90A8GYWxIkVVEyWNCVbtdYA5sldzxycUX8o/jM+i5zwcDFJFv9d2jABtxLm0QPbML3FSbbhYbcJsXd20UTiI7bMMD5be24Lo6fDwI0bcjnFsGhehNMYw4KvZ16X1UfrmkcjSAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ralz/Kvf; arc=none smtp.client-ip=209.85.210.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-727008cb0eeso2275166a34.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 08:05:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739808340; x=1740413140; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9fDCxlqqYTROYIopC71Fs2SbX6HlBUj2Qyjp/1jneC0=;
+        b=ralz/KvfmbZGyIffTXjI+aBeiMJVLqa7h7FN3s3bcgdhu98zNNz3Yppmgf848zo8pr
+         DeXWcVIfwdOr0ublAQz2p1gSY97mt3QHNH35Cem2rzXWHU0qQXEJ+rf+PmtTnk02Fb5O
+         bIfKEiDsGLezAyXfvd2SM6EUElYT8/+OZkSgPBYB0BLrgQgr40e7hWeqIw49JHVOb4UP
+         okdmBTD7enLPAzvtyGfvDsLQ2S1CIgxD+yUarpbOI/3kbXDITsNOVCxW7WzErJUxjesY
+         JYX9v+qZoSDd4xfMQPcte9RqlceXKYdE+R8e8G9gFO4sUyjfbH/kanHfdceXcb6Xj7k1
+         NAQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739808340; x=1740413140;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9fDCxlqqYTROYIopC71Fs2SbX6HlBUj2Qyjp/1jneC0=;
+        b=tcAEDP/xiDPMjI4tXZPnoJvCwcPjDgd1+i8bj7DdKNvOZ9zluZJlYHiENCr84AdOKm
+         SX5X4qBAN/dhwv9Dsm1G9OXOVzEyKWniYcA/Z8qTG33h2T4GRZTJ6COR7dzyjp+fcybE
+         uKH9up8bkLbe5qZw5N931agonY3DmvhgofYJOlyCJgkqaa0NifExW6hbC7uEQHvNVn7r
+         16ZYk/zWIg75adBqmoiTjeLtlHEfqKBXDfXiRwQHvssOtXn/YcIrZqu3dm/iSJ+iScaz
+         WB2A9qym6jQp/8rWWwr4lSGSiCjFdJ862AC65EVFFUgDC8Z2nBpeb5nPG4wR413GX75r
+         XqDw==
+X-Forwarded-Encrypted: i=1; AJvYcCWe9F8s/AcdO+UCom/xlmFbywveFlaC0Y8MN+zv0dC0S6Ue4eCE3cujhxFZbP3vL6y1A6UN6VLBDEBB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxL4JQUtD3aluCcoUdHYKIyP4vE162sEZFF0m0too09SDX8ayNk
+	vNZtixiGCT07gPwKhLHWr6nkAgf0gkDEnO18a8jCLB7bMOd8GGcHGVRhTy8Q7YQ=
+X-Gm-Gg: ASbGncvenBuPrbWP6HU2Ca6B9ElJdDfRkKqnCvQmc1wVNsVdp3odT/f2vwL40kS8qbt
+	f1IWCfdEpyK8KgWX//cJdCYbBhMLuWOJNuMS9qs9G8shFb+MhJyscRs23Jc5YGO6FlPmQ2WExKb
+	tE0Bd39hC4VXF2j2vClqXgsBto4hVyZWCmt/JW3VSK0Oh5PdHReqXXD2y8dP09EyGHsYuIB//94
+	nWg8bu4jOUPxvOYCoVeu4FcfP4DnDuxqylOZGFWcFl96bBj05UHiSYZFem/ayftzEKZLY1zmhXf
+	L5gnbdABlELMb0Yf+pDubWDrW6W1bi8QMx//TgwKbcp2BANMmyf6
+X-Google-Smtp-Source: AGHT+IFXxl2WaKxTJ2Vj4lUN/dvY7V3JkxZr75Hi2Fjyuc7TEbZCG+1LhZYOn3WC3wYUrCeDTRol8g==
+X-Received: by 2002:a05:6830:4582:b0:727:25c6:1b69 with SMTP id 46e09a7af769-72725c61cc6mr1643254a34.1.1739808339759;
+        Mon, 17 Feb 2025 08:05:39 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-727256d9cf1sm588687a34.33.2025.02.17.08.05.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Feb 2025 08:05:38 -0800 (PST)
+Message-ID: <d13d37ee-b98a-451e-a847-e07c56430560@baylibre.com>
+Date: Mon, 17 Feb 2025 10:05:38 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="3vpxn6jmqqd3gcsw"
-Content-Disposition: inline
-In-Reply-To: <20250217144643.178222-1-eichest@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/5] iio: adc: add helpers for parsing ADC nodes
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+ Jonathan Cameron <jic23@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1738761899.git.mazziesaccount@gmail.com>
+ <337895af7418a8e4b20b5a9322344b68082508ae.1738761899.git.mazziesaccount@gmail.com>
+ <20250208164111.28ec9f2d@jic23-huawei>
+ <ed0e43d8-9ab4-4614-9079-8a592ca8b185@gmail.com>
+ <20250211190714.4db240d2@jic23-huawei>
+ <dbbeb52c-18f4-415a-b2d4-520dd0184dda@baylibre.com>
+ <26907711-45af-467b-89c1-8895ae3a7ab8@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <26907711-45af-467b-89c1-8895ae3a7ab8@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On 2/17/25 12:29 AM, Matti Vaittinen wrote:
+> Hi David!
+> 
+> Thanks for the input!
+> 
 
---3vpxn6jmqqd3gcsw
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v1] arm64: dts: ti: k3-am62-verdin-dahlia: add Microphone
- Jack to sound card
-MIME-Version: 1.0
+...
 
-Hi Stefan,
+> Absolutely. I had no intention to do anything hardware specific with these helpers. What I'd love to see is IIO-helpers which allowed passing device pointer and a pointer to iio_info - and getting the (known by the helper) device-tree properties parsed and filled in iio_info.
+> 
+> This sure does not help more complex drivers which require some 'not easily parsed' data from the device tree. But for simple drivers like the BD79124 this would allow drivers to omit open-coding the loop locating the channel nodes and getting the channel data.
+> 
+> Maybe a small improvement but one can't deny it still is an improvement, right? :)
+> 
+> Yours,
+>  -- Matti
+> 
 
-Thanks for the patch.
+If there are a decent number of drivers that can make use of it,
+then sure. I'm a bit biased because I've been working on some
+rather complex ADCs lately and not any simple ones. :-)
 
-On Mon, Feb 17, 2025 at 03:46:04PM +0100, Stefan Eichenberger wrote:
-> From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
->=20
-> The simple-audio-card's microphone widget currently connects to the
-> headphone jack. Routing the microphone input to the microphone jack
-> allows for independent operation of the microphone and headphones.
->=20
-> This resolves the following boot-time kernel log message, which
-> indicated a conflict when the microphone and headphone functions were
-> not separated:
->   debugfs: File 'Headphone Jack' in directory 'dapm' already present!
->=20
-> Fixes: f5bf894c865b ("arm64: dts: ti: verdin-am62: dahlia: add sound card=
-")
-> Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
-
-Reviewed-by: Jai Luthra <jai.luthra@linux.dev>
-
-> ---
->  arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi b/arch/arm=
-64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-> index 9202181fbd652..fcc4cb2e9389b 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-> @@ -28,10 +28,10 @@ sound {
->  			"Headphone Jack", "HPOUTR",
->  			"IN2L", "Line In Jack",
->  			"IN2R", "Line In Jack",
-> -			"Headphone Jack", "MICBIAS",
-> -			"IN1L", "Headphone Jack";
-> +			"Microphone Jack", "MICBIAS",
-> +			"IN1L", "Microphone Jack";
->  		simple-audio-card,widgets =3D
-> -			"Microphone", "Headphone Jack",
-> +			"Microphone", "Microphone Jack",
->  			"Headphone", "Headphone Jack",
->  			"Line", "Line In Jack";
-> =20
-> --=20
-> 2.45.2
->=20
-
---3vpxn6jmqqd3gcsw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmezXasACgkQQ96R+SSa
-cUWD5A//ajdJiy6GNGANtya5phW2W6ZCuzpPK+v9N7yhiy1N3Y/5lMhvjaBeP5S0
-CbH41SIXF5HrvDdUwOFnjlUzdHaqTsTmgrEBUFVYduv3B0F7msWjVzA8kgmxFX9T
-lofiKy/vJ6a2gaQZi5KzalmnCkrgP/qHSzPVm7homHtB5injypFSrBWBAMsHgVO7
-F63TS7q7Ct6LugWqQMUMwTByRFNm7lfL41UWsMBVLOQPsaY/F2NMhPudZbvCGLev
-Mn/29ChwcjCe475YfX/zZ+SQ8Lo5BdthIRGZYJerQ5XAhTnulnICJJtkNnRaEGZi
-BuDV6gKvMR1Ia6g2KPGaL5Zg73TLCLVucIg3coBDocbhIWAKw3jIZhel7j+cM0nS
-rZVbYy35HT4qcnW4cmNdNc/v2/jL6y5EtqIsQZ9gup+/banHPitnKYjg0bsD2Iq7
-iy1VLOzgRT3AXAGH5YmfXqe5zfg7WTFBCvwh6slAZXabHgw6UPphR4e14teU2zxi
-6qYoTHmE6F4djj/5IbqLgWraNXp829QM8n+rK6SBCr8yMtnnYfXJblUXrw1kbCXr
-N2roMgEIvGvSTEVd8+W0BDOuS1ExmJJ/vYUhLrGCIZ6bl3Qi4dYIl42WdVefRDT4
-qtzIf5QAiMcqVitGzYmlGf/m+24KaGgPqsTLoGdumkagEgMVKz4=
-=Qg3k
------END PGP SIGNATURE-----
-
---3vpxn6jmqqd3gcsw--
 
