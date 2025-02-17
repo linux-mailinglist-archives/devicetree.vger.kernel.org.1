@@ -1,150 +1,145 @@
-Return-Path: <devicetree+bounces-147467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68042A386D3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 15:45:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3B1AA386D6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 15:46:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 321773A37DA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:45:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDC01188B583
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 14:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A55621B8EC;
-	Mon, 17 Feb 2025 14:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63D4621CA0E;
+	Mon, 17 Feb 2025 14:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="la30pZw+"
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="cf3EBCuy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-o94.zoho.com (sender4-pp-o94.zoho.com [136.143.188.94])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5ABE76035
-	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 14:45:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739803526; cv=none; b=kObQcaAQfSROVe6MCCX+to/AiF3z6pG0fJUQsY2+bwlt2Q4ODQoBckP4m/aBeFkerxm1TYgUkF968ETJS3xtOSGDTwoQHysm86y2UbXPaHGfjbLOMF1G6krJe0hMTM+B2XQzAFScULs/bZCXHeryxi6EZJ4vI30LzuIC7i4ED6g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739803526; c=relaxed/simple;
-	bh=t+oZt7IndNP/8SmQcZ3LSLfv1nslPzZjkOU5ra3yCqY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=etXXPk+6P7tQblJw2jVITbgmhn/Zx58bRnmMO/e8P1+ZCZyPqYOMu87H28HrQK8IJ0TmbpGtxEmrC1EGZpBMBjc8JzK9KY4/97KwvCLHFwfK1/kEHlfuUe/JJnVHtpcahmeeOIzfRhMhfitlK8UDs/Zhb2jw1hIA4fA2zpDKqb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=la30pZw+; arc=none smtp.client-ip=209.85.210.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-72726e4f96cso310333a34.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 06:45:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739803524; x=1740408324; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7fscB/HBXNatMGjhnMNlSyD4Au+O28eL0EqtDOM3ibI=;
-        b=la30pZw+Rn7IruSTR8/L5J6yfiCH0Q0koMXgLCSI7aFpBMeXb4nkhap2OeHfbHPaf+
-         PLAhRcgMRmg9jEVtqckc6rBM6ZZizsg4gWz0DtVd6feHKmb9nnnD7fzwM9iFj4JfJBjy
-         d19MFba3JhzgvmJVPQkxQBynJUFBRTK3lYLuESpYVwFBkVdBFaE1uhI86J2Jong102Ir
-         7o+Pb9V1Os/OQzx+86qFUIyndn4VIyL9VCJ3TOsebfx5isAAt21l72iGAjZtDksuXP6s
-         y4aB1Yeakt8vs32ldeC5NRfOrvvmz57ZnvlDwzRm0Mrpqhb7AWuGrWtJsDUkyYtsPDnY
-         wPfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739803524; x=1740408324;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7fscB/HBXNatMGjhnMNlSyD4Au+O28eL0EqtDOM3ibI=;
-        b=Plg9slxHncwiLxPpN39aNmSQDuIW5qEGbvMTUMhb2AJN8wnHxhBtxp2X+q1HRE/mi7
-         z/iYHzSlYxTKDAq6rUodc3PKIhWLYHRx+DUOzWWjHnh5qvOemQp4AoWH1rTFrQxA1gNt
-         oaHp0Oq/pVK0fm/YvWKVUWIobUnNRmMAnGOnHARs8gIgjIWAmWTJbkC1guDG6McMUT7F
-         uR6bD15neIeqgJgKFs6PERbpVy8sylbhKTomnRXco111SMZdvd64/d71nffPqXloXfcO
-         atiUxOja7ez0GmFbNfM2BVa3XwLdVvrr/iMWOjHADpJn5CG9hh/T51r81vUbdkAS17eQ
-         DpVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX3b89+LOZ+I6HQGqd6LB+A7aBODHDHOhZxB2LbSuajsbVNSOXxKp2Pu0iswJXNi6EXkFSZlgN11G2+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEi6GRtvH4I7O/3KkqrOVLSoRMCqbepUr1BZte1RDEZi0Ed1c+
-	TEHvHt50r8u4XNpBL2u4UKOhiNgwP8uq2LQ5LPJRz2311PGyRJf9nBa09f4xvy7XdXHo4Vp2bFg
-	Yt8EocVAjwqcUyydIW1rYcpYA4n6nR1Hrga+RaA==
-X-Gm-Gg: ASbGncsdqtW8GyFvfJRkeKsBTZSXrfR1OFpNi7L3KquFfxz+aEK96I2/w7tbWABj4Gw
-	Wfio5aRtDCJnqegLEyRQyFwJYFp1A3fkiOWAN8ywe0DK7NyTC3SLTWZFkVjfmg4atxT+Eze4yOP
-	/DBZfSkI4d9+0Gc+2JQTj60RAkLeE=
-X-Google-Smtp-Source: AGHT+IHtBflHavgxIJTJbLL7oxHnaKAsycioNXBMoGSKJQ+huW+8pkoNwja2LoCuRv/MHb6NKGEalXQi3roVOvKFMYE=
-X-Received: by 2002:a05:6808:1305:b0:3f3:db67:ca2e with SMTP id
- 5614622812f47-3f3eb08a400mr6045732b6e.8.1739803523776; Mon, 17 Feb 2025
- 06:45:23 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D812634EC;
+	Mon, 17 Feb 2025 14:46:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.94
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739803585; cv=pass; b=habC7UlQ56Raz39qF9LU3E/FEUJNNnWahown3xHeFgfvLZaTquwVpraeDkzbNjplk4VOsY4zgVKY5rlfWQgzvvoOGNRCwp95EtjIConuqWmfzyXkqebjjEg6h0h7i1LXUIgZPeBuR8POUtZy0ZUU0YwCV9rOnei9V1h8Vomr6Aw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739803585; c=relaxed/simple;
+	bh=YRXNXjMPYXoSE1L+JFJ11zrQXwJWnj4NlsHIVqlz4qg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZIR2jwUZ5wmIPWmrrrfrUp6s305nSn57apYHZ/VIDgOJ8RLin+xZWau1CaWVxxTPawPLSQMIhKvrj/uBtRf6uguN32skLNhnTQuf1kS9KCJ8Vt/ObWQWhpDYAfom/JZhz5gbwCBXZBEEWn7d6VEO6qT3NdSj8wMn/UH2q5r8cC4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=cf3EBCuy; arc=pass smtp.client-ip=136.143.188.94
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1739803559; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=OCdIbFjJUEXY079sDGPYon0B1ZovDRUDia/NuDXFm7et5ed1y1DBawljU7zS/ks8n0xhtkMqbKRtRk2acA9it7mFs3AUacri00RwCyGUedFBrJiTu/CSNdtu4X4/3iyi5MtRzFLL9IgK3BhbpKTjoIlGwq54Bynqx0BBdbL+Q2o=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1739803559; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=0YZKUhV0cXy/loIwnniom6HpRTlUDF9X2j+4OaCPS98=; 
+	b=H+0xO49Zi5Ej66YVoETSlOzGeJyu1riVBqfoufi0hOuSrd/PluZC1+RmEY9/UrMWMoC66SJcBmZLSQeOyjVFhrtVdXImm7DkJL53Gu5y1Wc0fiLTT5JDgj6heMdG889krKUUDSy5pE4rH5hRUDROxgSpdr7Vu1HTz77NSGL78JA=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
+	dmarc=pass header.from=<kingxukai@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1739803559;
+	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Feedback-ID:Reply-To;
+	bh=0YZKUhV0cXy/loIwnniom6HpRTlUDF9X2j+4OaCPS98=;
+	b=cf3EBCuyBQGmXEOxuZp1y88gVhkIjb+Q5riUl8K5eZRvdlPwPCtqR5YzzVgif3il
+	00YKGnTnb7/jPWxKkr4eQg3220lgUn4NkH0SUZIK7r/idjWOf5S2KUYVhazvDPuHZ8F
+	f0a0j/3Au3ZretXP9ZzZPrYM3pBqfMbzPMYDI2BU=
+Received: by mx.zohomail.com with SMTPS id 1739803556824557.5139876721179;
+	Mon, 17 Feb 2025 06:45:56 -0800 (PST)
+From: Xukai Wang <kingxukai@zohomail.com>
+Subject: [PATCH v4 0/3] riscv: canaan: Add support for K230-Canmv clock
+Date: Mon, 17 Feb 2025 22:45:15 +0800
+Message-Id: <20250217-b4-k230-clk-v4-0-5a95a3458691@zohomail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217131046.21006-1-loic.poulain@linaro.org> <AS4PR04MB969252FACA03605C1C0E00E3E7FB2@AS4PR04MB9692.eurprd04.prod.outlook.com>
-In-Reply-To: <AS4PR04MB969252FACA03605C1C0E00E3E7FB2@AS4PR04MB9692.eurprd04.prod.outlook.com>
-From: Loic Poulain <loic.poulain@linaro.org>
-Date: Mon, 17 Feb 2025 15:44:46 +0100
-X-Gm-Features: AWEUYZmtOtsdxNSAzeJNa0db4kc4Ef4CfTUlNZjmK_5GPWhfqJwUmlqkCpdcnfA
-Message-ID: <CAMZdPi8X6tMoLocskyEG8GwdpZ9i8P_R1bT=r1-QF+sb7ofP6A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] bluetooth: btnxpuart: Support for controller wakeup
- gpio config
-To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-Cc: "marcel@holtmann.org" <marcel@holtmann.org>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Amitkumar Karwar <amitkumar.karwar@nxp.com>, 
-	Sherry Sun <sherry.sun@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHtLs2cC/23PzU7EIBQF4FdpWIuBy/+sfA/jAm7BkplOta2NO
+ um7SzuaTJ3uOCTf4XAhQ+xzHMihupA+TnnI3bkE+VARbPz5NdJcl0yAgeTANA2SHkEwiqcjdaC
+ SECnWGoEU8dbHlD/XtueXa+7j+0cpHa+XJPghUuzaNo+HyqQ6gAzBozAYtQMhda1ZsC4p78FZK
+ YMN1pKlq8nD2PVf69BJrGW/m8xm0yRoOQRunOLWRmOevruma30+PZZ3l5WFKcYB7llIySjl0WH
+ CfQZM3DOhAY3jIJWBLVuGT/JmLJdbLgvnyBx6HYS0fofzGw5uy3nhANw7bqJlsd7h8MfLn5ndc
+ li4CYJ5QK/gP5/n+QfOaqr2IAIAAA==
+X-Change-ID: 20241206-b4-k230-clk-925f33fed6c2
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Xukai Wang <kingxukai@zohomail.com>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Conor Dooley <conor@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ Samuel Holland <samuel.holland@sifive.com>, 
+ Troy Mitchell <TroyMitchell988@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+Feedback-ID: rr08011227e5e3374731faf4bacb58367700001b1e03dceb14aa407b7373db18f731adce82ef30ff35181100:zu08011227e087a86ca1e9cb58aa500d1a00006374abe23d88b2ff848c1f1dceb1306d6d72180b995e4ea24f:rf0801122c2d7bf2098d92fce3a23adc5a0000f918bc9682786b4481a56dc271b3d237efbb87ea3326b402cf8767627b70:ZohoMail
+X-ZohoMailClient: External
 
-On Mon, 17 Feb 2025 at 14:53, Neeraj Sanjay Kale
-<neeraj.sanjaykale@nxp.com> wrote:
-> Hi Loic,
->
-> Thank you for your patch. Just a few suggestions below:
->
-> > @@ -616,6 +617,13 @@ static void ps_init(struct hci_dev *hdev)
-> >                 break;
-> >         }
-> >
-> > +       if (!device_property_read_u8(&nxpdev->serdev->dev, "nxp,wakein-pin",
-> > +                                    &psdata->h2c_wakeup_gpio))
-> > +               psdata->h2c_wakeupmode = WAKEUP_METHOD_GPIO;
-> > +       if (!device_property_read_u8(&nxpdev->serdev->dev, "nxp,wakeout-
-> > pin",
-> > +                                    &psdata->c2h_wakeup_gpio))
-> > +               psdata->c2h_wakeupmode = BT_HOST_WAKEUP_METHOD_GPIO;
-> > +
-> >         psdata->cur_psmode = PS_MODE_DISABLE;
-> >         psdata->target_ps_mode = DEFAULT_PS_MODE;
-> >
-> Please move device_property_read for "nxp,wakein-pin" to ps_setup(), after "device-wakeup" is read.
+This patch series adds clock controller support for the Canaan Kendryte
+K230 SoC. The K230 SoC includes an external 24MHz OSC and 4 internal
+PLLs, with the controller managing these sources and their derived clocks.
 
-Ok, but then I'll need to move all the default value handling from
-ps_setup() into ps_init() as well.
+The clock tree and hardware-specific definition can be found in the
+vendor's DTS [1],
+and this series is based on the K230 initial series [2].
 
->
-> I think we should not set h2c_wakeupmode as WAKEUP_METHOD_GPIO based on "nxp,wakein-pin" alone.
->
-> In existing code, we are setting default_h2c_wakeup_mode to WAKEUP_METHOD_GPIO if "device-wakeup" is defined in DT, and psdata->h2c_wakeup_gpio = 0xff. WAKE_IN pin is not read.
-> In this case the FW considers default GPIO as WAKE_IN pin (as per datasheet), which is a valid scenario.
->
-> But this logic will fail if we specify only "nxp,wakein-pin", without "device-wakeup" in DT.
-> Hence, I recommend something as follows in ps_setup():
-> - if (!psdata->h2c_ps_gpio)
-> + if (!psdata->h2c_ps_gpio || device_property_read_u8(&nxpdev->serdev->dev, "nxp,wakein-pin", &psdata->h2c_wakeup_gpio))
->         psdata->h2c_wakeup_gpio = 0xff;
+Link: https://github.com/kendryte/k230_sdk/blob/main/src/little/linux/arch/riscv/boot/dts/kendryte/clock_provider.dtsi [1]
+Link: https://lore.kernel.org/linux-clk/tencent_F76EB8D731C521C18D5D7C4F8229DAA58E08@qq.com/ [2]
 
-Ok, will do, look like we should print an explicit error then, as it
-would be a clear devicetree misconfiguration?
+Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
+Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
+Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
 
-> For "nxp,wakeout-pin", I have yet to submit patch for "host-wakeup-gpios". I can move "nxp,wakeout-pin" later if required.
+---
+Changes in v4:
+- Remove redundant onecell_get callback and add_provider function
+for pll_divs.
+- Modify the base-commit in cover letter.
+- Link to v3: https://lore.kernel.org/r/20250203-b4-k230-clk-v3-0-362c79124572@zohomail.com
 
-It may not be necessary, I've submitted an other PR for handling
-simple dedicated wakeup interrupts at serdev core level instead of
-having to re-implement it in each driver:
-https://www.spinics.net/lists/linux-serial/msg66060.html
+Changes in v3:
+- Reorder the defination and declaration in drivers code.
+- Reorder the properties in dts node.
+- Replace global variable `k230_sysclk` with dynamic memory allocation.
+- Rename the macro K230_NUM_CLKS to K230_CLK_NUM.
+- Use dev_err_probe for error handling.
+- Remove unused includes.
+- Link to v2: https://lore.kernel.org/r/20250108-b4-k230-clk-v2-0-27b30a2ca52d@zohomail.com
 
-With that, all we would need is adding the wakeup interrupt in the devicetree:
-```
-        interrupt-parent = <&gpio4>;
-        interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
-        interrupt-names = "wakeup";
-        wakeup-source;
-```
+Changes in v2:
+- Add items and description.
+- Rename k230-clk.h to canaan,k230-clk.h
+- Link to v1: https://lore.kernel.org/r/20241229-b4-k230-clk-v1-0-221a917e80ed@zohomail.com
 
-Regards,
-Loic
+---
+Xukai Wang (3):
+      dt-bindings: clock: Add bindings for Canaan K230 clock controller
+      clk: canaan: Add clock driver for Canaan K230
+      riscv: dts: canaan: Add clock initial support for K230
+
+ .../devicetree/bindings/clock/canaan,k230-clk.yaml |   43 +
+ arch/riscv/boot/dts/canaan/k230.dtsi               |   32 +
+ drivers/clk/Kconfig                                |    6 +
+ drivers/clk/Makefile                               |    1 +
+ drivers/clk/clk-k230.c                             | 1347 ++++++++++++++++++++
+ include/dt-bindings/clock/canaan,k230-clk.h        |   49 +
+ 6 files changed, 1478 insertions(+)
+---
+base-commit: 7fdb24bbac37ce692346d60b89f5aa29844b8b88
+change-id: 20241206-b4-k230-clk-925f33fed6c2
+
+Best regards,
+-- 
+Xukai Wang <kingxukai@zohomail.com>
+
 
