@@ -1,254 +1,172 @@
-Return-Path: <devicetree+bounces-147652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06699A38E3B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 22:43:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F194A38E58
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 22:56:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B662B16D226
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 21:43:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50E3216F8A3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 21:56:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C88291A3BD8;
-	Mon, 17 Feb 2025 21:43:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C95DC1A256E;
+	Mon, 17 Feb 2025 21:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nJGvcCNc"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ItSMsNHL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0FB71494DF;
-	Mon, 17 Feb 2025 21:43:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7AF7224F0;
+	Mon, 17 Feb 2025 21:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739828626; cv=none; b=hwtNVeyihTfYBcutLy2G7tSbGzYyVmY9jlaL3uUVezopH+84q76qMNraZr4KhrTMprC/ChF41/jBb6qDrHqxYbMDpHeQtqwM27bGMHDbwSlmOfyqFvdGH3ShEjw2i0vXPgZ4gq5Bfy1oNEm+ElOg4Dvepf3MqmiLCsgeM9rZQP4=
+	t=1739829415; cv=none; b=LpeMQdcBwBDa3DsbXhiwqGGOB6r3rkhyySC6zzArSGXzox6qlWHjQEdRrou6U2elvl4gr2Sd7cL8cWorfg+MONDrfCGg226hALnRz3X4jiT1d/EUcElH2fya30jMIIX0yD7J+grJOtLp6tgnKG6DXfXOXFPXq9GcE7dIDYi0PK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739828626; c=relaxed/simple;
-	bh=fV5/lqWGfh3qpEkBAhNmPg/nL6+cObQOKlclxbrkpOU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f0yVvijWrF3ZrRLEcA6FWTs1yweUyQk81YYOQKKgeQeklzttCFRr5zv5qp8+yMkIFicjm5Y5Ve8LT5Rtl8TwIXBdUoMWuzbqlNr2aHINRBTBUSpj5JzTSxEgtQsEaOqveeg/VBkK8S2SOO8ypg6seiupx4cV5sdrFXbLH1851U0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nJGvcCNc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81CFEC4CED1;
-	Mon, 17 Feb 2025 21:43:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739828626;
-	bh=fV5/lqWGfh3qpEkBAhNmPg/nL6+cObQOKlclxbrkpOU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nJGvcCNcA8GLdHDvn3WwlK7TrNUMxGChJ0q66aeKYBrluYRzx1WlJ5LnEHjc35A5F
-	 fMP6AgLITZvBbJ/HrQ7tOkyNwg5weamaB5uTbC9rcOzDC+qwVb7NOp/8deQGwvYgHT
-	 KJyjqcF2+iAM4SLpFNhuvrdNoglMFcplAJo2wUXL2dBoWf1kHNLpsMQ6pHHHvqp38c
-	 /YmZwGKnU3ydlL1R9GGNfMhbuxdE0rp0lSQ1O1Rh90AV7AMtgQaMFAVtIS/YjlzDwG
-	 dD/VFYtxX7ZwTSv98QBsWCqRkU1coSHAZ4WWuE20mSpdmbE3I5LPEA7zXhU8rlgIlG
-	 K2qlgEGf4ztdQ==
-Date: Mon, 17 Feb 2025 22:43:43 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Simon Horman <horms@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1739829415; c=relaxed/simple;
+	bh=4VaQl0NtT63hn4RIkgnKAbuhy0jcZQTdg7q6kxOv9w4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BsTBvjtqq/hapONLV4F+daZbNDt7TZ6gMIFBALoxT+JON8NnTNc/Gwt33Vjq5KTxvC9+MuGb9lEOsSa65zIWeG5g9BEHh6GbwtFD9PDweiQhUf89wenJlml6H5o6WKt6aHokqghRUjeCBPcOby9vdJ5HtdyObvUBXAcJmGLLOfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ItSMsNHL; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1739829411;
+	bh=4VaQl0NtT63hn4RIkgnKAbuhy0jcZQTdg7q6kxOv9w4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ItSMsNHLFu60POXzGfILeItDV8X97590ll35srQbAmVX16kSPDUODZdf6YAxnsN1M
+	 KejkAQ6qv6fiX45IYVEGfQ+9XZP9r2U9WJimqPIeBCFZatdHkmwThy+bAgBvfOabPs
+	 UhoA6D8C6zcWU/x7BJa9B5QulVfrJ2ZIEhPjn/RJKyve4M7+8SFLm66heJQ/+tL/dg
+	 hgZIu110oCwxgZVRc3zHP822L/mW8SEmgVlh/bQMt7LuHIKs/ZPKY+3ow+o4lmLlEf
+	 LWfdqrhgvrupjCMvruyKtLbk1dffm3Gbz1SwI52UlDhj8awzUQqHwAEjRiiWH9yc+c
+	 doe5tyoH0nteg==
+Received: from earth.mtl.collabora.ca (mtl.collabora.ca [66.171.169.34])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: detlev)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1CEAE17E02BE;
+	Mon, 17 Feb 2025 22:56:44 +0100 (CET)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"Chester A. Unal" <chester.a.unal@arinc9.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Alexey Charkov <alchark@gmail.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Niklas Cassel <cassel@kernel.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Johan Jonker <jbx6244@gmail.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Algea Cao <algea.cao@rock-chips.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Sugar Zhang <sugar.zhang@rock-chips.com>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [PATCH net-next v4 16/16] net: airoha: Introduce PPE debugfs
- support
-Message-ID: <Z7Otj0v0PSKy8nSH@lore-desk>
-References: <20250213-airoha-en7581-flowtable-offload-v4-0-b69ca16d74db@kernel.org>
- <20250213-airoha-en7581-flowtable-offload-v4-16-b69ca16d74db@kernel.org>
- <20250217184416.GQ1615191@kernel.org>
+	linux-rockchip@lists.infradead.org,
+	dri-devel@lists.freedesktop.org,
+	kernel@collabora.com
+Subject: [PATCH v7 0/3] Add HDMI audio on the rk3588 SoC
+Date: Mon, 17 Feb 2025 16:47:39 -0500
+Message-ID: <20250217215641.372723-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wuYdrUezw6LFqrzk"
-Content-Disposition: inline
-In-Reply-To: <20250217184416.GQ1615191@kernel.org>
+Content-Transfer-Encoding: 8bit
 
+To support HDMI audio on the rk3588 based devices, the generic HDMI
+Codec framework is used in the dw-hdmi-qp DRM bridge driver.
 
---wuYdrUezw6LFqrzk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The implementation is mainly based on the downstream driver, ported to the
+generic HDMI Codec framework [1] recently merged in the master branch.
+The parameters computation has been kept as is and the data stored in the
+dw_hdmi_qp struct as been cleaned up.
 
-On Feb 17, Simon Horman wrote:
-> On Thu, Feb 13, 2025 at 04:34:35PM +0100, Lorenzo Bianconi wrote:
-> > Similar to PPE support for Mediatek devices, introduce PPE debugfs
-> > in order to dump binded and unbinded flows.
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
->=20
-> ...
->=20
-> > diff --git a/drivers/net/ethernet/airoha/airoha_ppe_debugfs.c b/drivers=
-/net/ethernet/airoha/airoha_ppe_debugfs.c
->=20
-> ...
->=20
-> > +static int airoha_ppe_debugfs_foe_show(struct seq_file *m, void *priva=
-te,
-> > +				       bool bind)
-> > +{
-> > +	static const char *const ppe_type_str[] =3D {
-> > +		[PPE_PKT_TYPE_IPV4_HNAPT] =3D "IPv4 5T",
-> > +		[PPE_PKT_TYPE_IPV4_ROUTE] =3D "IPv4 3T",
-> > +		[PPE_PKT_TYPE_BRIDGE] =3D "L2B",
-> > +		[PPE_PKT_TYPE_IPV4_DSLITE] =3D "DS-LITE",
-> > +		[PPE_PKT_TYPE_IPV6_ROUTE_3T] =3D "IPv6 3T",
-> > +		[PPE_PKT_TYPE_IPV6_ROUTE_5T] =3D "IPv6 5T",
-> > +		[PPE_PKT_TYPE_IPV6_6RD] =3D "6RD",
-> > +	};
-> > +	static const char *const ppe_state_str[] =3D {
-> > +		[AIROHA_FOE_STATE_INVALID] =3D "INV",
-> > +		[AIROHA_FOE_STATE_UNBIND] =3D "UNB",
-> > +		[AIROHA_FOE_STATE_BIND] =3D "BND",
-> > +		[AIROHA_FOE_STATE_FIN] =3D "FIN",
-> > +	};
-> > +	struct airoha_ppe *ppe =3D m->private;
-> > +	int i;
-> > +
-> > +	for (i =3D 0; i < PPE_NUM_ENTRIES; i++) {
-> > +		const char *state_str, *type_str =3D "UNKNOWN";
-> > +		u16 *src_port =3D NULL, *dest_port =3D NULL;
-> > +		struct airoha_foe_mac_info_common *l2;
-> > +		unsigned char h_source[ETH_ALEN] =3D {};
-> > +		unsigned char h_dest[ETH_ALEN];
-> > +		struct airoha_foe_entry *hwe;
-> > +		u32 type, state, ib2, data;
-> > +		void *src_addr, *dest_addr;
-> > +		bool ipv6 =3D false;
-> > +
-> > +		hwe =3D airoha_ppe_foe_get_entry(ppe, i);
-> > +		if (!hwe)
-> > +			continue;
-> > +
-> > +		state =3D FIELD_GET(AIROHA_FOE_IB1_STATE, hwe->ib1);
-> > +		if (!state)
-> > +			continue;
-> > +
-> > +		if (bind && state !=3D AIROHA_FOE_STATE_BIND)
-> > +			continue;
-> > +
-> > +		state_str =3D ppe_state_str[state % ARRAY_SIZE(ppe_state_str)];
-> > +		type =3D FIELD_GET(AIROHA_FOE_IB1_PACKET_TYPE, hwe->ib1);
-> > +		if (type < ARRAY_SIZE(ppe_type_str) && ppe_type_str[type])
-> > +			type_str =3D ppe_type_str[type];
-> > +
-> > +		seq_printf(m, "%05x %s %7s", i, state_str, type_str);
-> > +
-> > +		switch (type) {
-> > +		case PPE_PKT_TYPE_IPV4_HNAPT:
-> > +		case PPE_PKT_TYPE_IPV4_DSLITE:
-> > +			src_port =3D &hwe->ipv4.orig_tuple.src_port;
-> > +			dest_port =3D &hwe->ipv4.orig_tuple.dest_port;
-> > +			fallthrough;
-> > +		case PPE_PKT_TYPE_IPV4_ROUTE:
-> > +			src_addr =3D &hwe->ipv4.orig_tuple.src_ip;
-> > +			dest_addr =3D &hwe->ipv4.orig_tuple.dest_ip;
-> > +			break;
-> > +		case PPE_PKT_TYPE_IPV6_ROUTE_5T:
-> > +			src_port =3D &hwe->ipv6.src_port;
-> > +			dest_port =3D &hwe->ipv6.dest_port;
-> > +			fallthrough;
-> > +		case PPE_PKT_TYPE_IPV6_ROUTE_3T:
-> > +		case PPE_PKT_TYPE_IPV6_6RD:
-> > +			src_addr =3D &hwe->ipv6.src_ip;
-> > +			dest_addr =3D &hwe->ipv6.dest_ip;
-> > +			ipv6 =3D true;
-> > +			break;
-> > +		}
->=20
-> Hi Lorenzo,
+The table for the N values has been edited to reflect N recommended values
+as well as CTS recommended values.
 
-Hi Simon,
+The downstream kernel also implements a machine driver for HDMI audio but
+it is doing exactly what the simple-audio-card driver does, so use that
+instead in the RK3588 SoC device tree.
 
->=20
-> Perhaps it can't happen, but if type is not one of the cases handled
-> by the switch statement above then src_addr and dest_addr will
-> be used while uninitialised by the call to airoha_debugfs_ppe_print_tuple=
-()
-> below.
+This adds HDMI audio support for both HDMI TX ports.
 
-ack, right. I will fix it in v6.
+*** Dependencies ***
 
-Regards,
-Lorenzo
+Based on Linus' master branch, but also needs Cristian's dts patches for HDMI1
+support [2], which depends on Heiko's patchset for
+phy-rockchip-samsung-hdptx [3]. Patches will apply without [3], but HDMI will
+not work (at all).
 
->=20
-> Flagged by Smatch.
->=20
-> > +
-> > +		seq_puts(m, " orig=3D");
-> > +		airoha_debugfs_ppe_print_tuple(m, src_addr, dest_addr,
-> > +					       src_port, dest_port, ipv6);
-> > +
-> > +		switch (type) {
-> > +		case PPE_PKT_TYPE_IPV4_HNAPT:
-> > +		case PPE_PKT_TYPE_IPV4_DSLITE:
-> > +			src_port =3D &hwe->ipv4.new_tuple.src_port;
-> > +			dest_port =3D &hwe->ipv4.new_tuple.dest_port;
-> > +			fallthrough;
-> > +		case PPE_PKT_TYPE_IPV4_ROUTE:
-> > +			src_addr =3D &hwe->ipv4.new_tuple.src_ip;
-> > +			dest_addr =3D &hwe->ipv4.new_tuple.dest_ip;
-> > +			seq_puts(m, " new=3D");
-> > +			airoha_debugfs_ppe_print_tuple(m, src_addr, dest_addr,
-> > +						       src_port, dest_port,
-> > +						       ipv6);
-> > +			break;
-> > +		}
-> > +
-> > +		if (type >=3D PPE_PKT_TYPE_IPV6_ROUTE_3T) {
-> > +			data =3D hwe->ipv6.data;
-> > +			ib2 =3D hwe->ipv6.ib2;
-> > +			l2 =3D &hwe->ipv6.l2;
-> > +		} else {
-> > +			data =3D hwe->ipv4.data;
-> > +			ib2 =3D hwe->ipv4.ib2;
-> > +			l2 =3D &hwe->ipv4.l2.common;
-> > +			*((__be16 *)&h_source[4]) =3D
-> > +				cpu_to_be16(hwe->ipv4.l2.src_mac_lo);
-> > +		}
-> > +
-> > +		*((__be32 *)h_dest) =3D cpu_to_be32(l2->dest_mac_hi);
-> > +		*((__be16 *)&h_dest[4]) =3D cpu_to_be16(l2->dest_mac_lo);
-> > +		*((__be32 *)h_source) =3D cpu_to_be32(l2->src_mac_hi);
-> > +
-> > +		seq_printf(m, " eth=3D%pM->%pM etype=3D%04x data=3D%08x"
-> > +			      " vlan=3D%d,%d ib1=3D%08x ib2=3D%08x\n",
-> > +			   h_source, h_dest, l2->etype, data,
-> > +			   l2->vlan1, l2->vlan2, hwe->ib1, ib2);
-> > +	}
-> > +
-> > +	return 0;
-> > +}
->=20
-> ...
+[1]: https://lore.kernel.org/all/20241224-drm-bridge-hdmi-connector-v10-0-dc89577cd438@linaro.org
+[2]: https://lore.kernel.org/linux-rockchip/20241211-rk3588-hdmi1-v2-0-02cdca22ff68@collabora.com
+[3]: https://lore.kernel.org/lkml/20241206103401.1780416-3-heiko@sntech.de/
 
---wuYdrUezw6LFqrzk
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes since v6:
+ - Fix arguments alignement (checkpatch --strict warnings)
+ - Add hdmi1 audio support too
+ - Move hdmi0_sound node under hdmi0_out_con
 
------BEGIN PGP SIGNATURE-----
+Changes since v5:
+ - Simplify audio math computation for N
+ - Move hdmi0-sound node up with other address-less nodes
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ7OtjwAKCRA6cBh0uS2t
-rOPEAP9+/F0RFgMoQ0v35rX2VDR696DE6FoGDfgFuWkgme4QIwEAvv1IjrUHIdRu
-8U1RB+R6NcBYpY09go8lwjjS2DAvAQE=
-=kYTW
------END PGP SIGNATURE-----
+Changes since v4:
+ - Moved hdmi0_audio node the rk3588-base.dtsi
+ - Enable hdmi0_audio in rk3588-rock-5b.dts
 
---wuYdrUezw6LFqrzk--
+Changes since v3:
+ - Renamed function to start with dw_hdmi_qp
+
+Changes since v2:
+ - Also clear the audio infoframe
+ - Write AUDI_CONTENTS0 to its default value in case it gets overwritten.
+ - Store tmds_char_rate in the dw_hdmi_qp struct in atomic_enable
+ - Clear tmds_char_rate in atomic_disable and only write registers when
+   tmds_char_rate is not 0.
+ - Do not use connector_state duplicates
+
+Changes since v1:
+ - Remove useless audio_mutex (was used downstream for multiple drivers access
+   to audio functions)
+ - Let hdmi_codec build and setup audio infoframes
+ - Only access audio registers when connector is connected
+ - Rebased on master branch
+
+Detlev Casanova (2):
+  arm64: dts: rockchip: Add HDMI audio outputs for rk3588 SoC
+  arm64: dts: rockchip: Enable HDMI audio outputs for Rock 5B
+
+Sugar Zhang (1):
+  drm/bridge: synopsys: Add audio support for dw-hdmi-qp
+
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  17 +
+ .../arm64/boot/dts/rockchip/rk3588-extra.dtsi |  17 +
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |  16 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c  | 489 ++++++++++++++++++
+ 4 files changed, 539 insertions(+)
+
+-- 
+2.48.1
+
 
