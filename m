@@ -1,79 +1,48 @@
-Return-Path: <devicetree+bounces-147286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D476A37E1E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:13:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D069A37E23
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:13:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E9FF188D063
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:12:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E1BE1889CA4
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:13:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1A01AA1E0;
-	Mon, 17 Feb 2025 09:11:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 436861BC09A;
+	Mon, 17 Feb 2025 09:13:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="ZbbQQmyg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O74JGeZO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 602061A83E5
-	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 09:11:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A961B87D3;
+	Mon, 17 Feb 2025 09:13:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739783511; cv=none; b=BNNOGjpLa5cU65RQnIZAPXC4ezf+Mb5Ub0mNNCKiMyewzEo0Nj9f85iyJnvG3fxtADbwzBYAe6DkbsrTyhP045X1WeQMuqKDRiDajSXn0Q2ZeXwbTQaKv2y14F+dYQpPr7kNriURxLhhPxtaDfQZQ6GREsv6vly3/jxuvRlc/s8=
+	t=1739783601; cv=none; b=r7gyMm+jI3mtmj9VIXbiA6KBa9tPk5llJV5j7vQthgKiRiNPdI2iUDBYdtyV4so6rvBSsRyJ3OrHDAv7CV3zP7lazbElCQQIZWOe3S1Sfyu4eb6YI5uRvWUtmXS+17DUbfVj/1G7l6v9JdUIhSReEw14NGAQDmfQ8+bg/xUDUNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739783511; c=relaxed/simple;
-	bh=Yeiz2kj64kEbfNbt5aYOJ/jGd8dP6KZ2dsWH1WXTr3U=;
+	s=arc-20240116; t=1739783601; c=relaxed/simple;
+	bh=gj+wcTV5dLgIYdejhYejZWrgFnRaWl+0RIEbUdJwHgg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DSV8BkGjcI+3vUrgMpL6oLzDGuzgKiGfgH+80oocFX39GNIy1H72QU/02B2e0zPJtw0bxmV6ZoKrZHQWevwTZRYUJab/RwA7NImMYhgk0TYQ/ImDezgpdZaye2Azf2g3bfEWDWCkO7CpTkvlXIzxkndZ8UwqNKBZOrcrlbaTj2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=ZbbQQmyg; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5df07041c24so3582765a12.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 01:11:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1739783508; x=1740388308; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AYoZrFVwEGY8opk8QO/5pLPuklVAIKXU/foFnheb5eQ=;
-        b=ZbbQQmygWQx2e0hy6mI60EeRPBPR5AugsyozbiN1USnGevfCleVm2jA6fTIrGrPj4t
-         7w9CJNsIrFV4wwY/NhPy6FFKIGWyOpTwzhvHioe4wFjmeen5jLiqOQRKL99KFeBauw0G
-         pGvwlU3wM2TzDSiIBNKCh/0ulBAFJO1IgXZedBvARPe5Y2yvPwVpBQpkh5EO8OX9Ca6k
-         Gn/616eWMYZVsN7tITQfo+fZIU+EO6TyD3n1KH03QfMs7UEr7/zHq1IjhRoAIeQnjhAx
-         RxFzJ70RB4hZO4wje8wDOJJfHRGZKEUkZNknIvLxUqzFGI4jrrmv7IA9xDHm497jRuLM
-         gpsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739783508; x=1740388308;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AYoZrFVwEGY8opk8QO/5pLPuklVAIKXU/foFnheb5eQ=;
-        b=eBkiZZFEi6sYAUzM8oFSerLUyTlxTB8pvlxLih59SBPV5faIpPPcdX/sUYJDM97nyg
-         aBZS+LrCN/bSXqvhvFU+5/2lRfqHlzw9fwRs4KsyZeDVYoEmKVApyT1WW7C7YwnGJmWf
-         PGJnRSg37PE+SIAWraUNW1Ter5GWZs849eU+ywKJkHowh352ZbmCPCCZFe5+b+qceMMg
-         Pgtbq/ZI4LHJWFOv/hAlMZk346wCMahbwu/hBszdBxzg6ecs6fvvj90vHLyA0McxYDTk
-         qvRfdheaJktOC+2nwRnW/IdMyfIJW2x0hmo2CIVEaOGoHyyJyst+c4hA+ZcHMMfNUe5F
-         fTvw==
-X-Forwarded-Encrypted: i=1; AJvYcCWoIumRTXSagKZKQ6vRMOQvpBkJqk/qqUrO+rJHtIkzQhQabKDtnni/5mNaRZ7pazcJJQ5q9hheTh2d@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYraBqspX2ZArTnVWVQKyPdZq2VyLt7O0RjGfu0Mt/SRF5zcrK
-	iqK1aTDIKpnueTpqjKM8twBCM23yHKjUAWFxf6dLBok0Q/Za6RW3dSTPmQWou0E=
-X-Gm-Gg: ASbGncuw/35pvwXEgd4AXghEUlcTgm4+yHZoNpexaE9MtSfNdOLUGS3kvBVNVmRzS2J
-	92U4EEqDAzdY8uMQK2jPVL5C/2bEvtCChJDzBwgQkDQfShgzNw4Dr3l3we8Hxvn1JMYkjS+T+9x
-	Eq4/inbZgg+9UWsy53AI2Y2kB9ppLyF4AMRkglv6b5gju4sNtpCkp7LRsiN8XmDZQH+tgxWxr1q
-	pO+FubLQDcUe34j6BjqAzetxb8nb665YpG3hY9H1OzN6NVuVzCvJ5TfRYXso3xze9G5oEriHEjk
-	TOzXAs0uRzLiUZVNsw3q/48=
-X-Google-Smtp-Source: AGHT+IH0ZSgjgJTIia6iqC6h5c4cn2rdeaWssWndx+F3YgQmZCBCBDS670k/uUUFdqaubd4pzdmRhg==
-X-Received: by 2002:a17:907:7842:b0:ab7:cfe7:116f with SMTP id a640c23a62f3a-abb70d96544mr908000266b.46.1739783507597;
-        Mon, 17 Feb 2025 01:11:47 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.25])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb9b81aacdsm162495766b.104.2025.02.17.01.11.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Feb 2025 01:11:47 -0800 (PST)
-Message-ID: <a1dff4af-d771-4424-869f-15d3b6bca013@tuxon.dev>
-Date: Mon, 17 Feb 2025 11:11:44 +0200
+	 In-Reply-To:Content-Type; b=oEjewiV+qPUS857fhxumMPo32JOtbWzPqCgs3e8P/Veggc/gPlTFgGvrpZYzY9r7fRL/LjloV3o2LpmDTEnv7x0XF3e+t/vfmhmH1RzQ39RJpsuKW+krElRc/k3Oy7jYeVt59RXxJHVitZd5XysjdDcsFBFXs7R6bqEzW7QESGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O74JGeZO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ECC5C4CED1;
+	Mon, 17 Feb 2025 09:13:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739783599;
+	bh=gj+wcTV5dLgIYdejhYejZWrgFnRaWl+0RIEbUdJwHgg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=O74JGeZO7BSpb7b8by3FWsIYsDsbM4A/D9se7icLQSSneWc2GBe1po4FaErnuiWiY
+	 fw2HMvzc3gnu9TCio5viXrLrxuGN4pH5CGmzCcd2WLaoI9MvB9Ze641uiplCVJm+LB
+	 6YUKClG9YoRRjJXAIBkqMp3/BHvtB5aBftDsgLvgDjuPIM3aKlxle33nVFXwJ079km
+	 buEJb4AxE/ss8tXDCF5k8gPPxcLPcNA2AP6YVh3kqqjkwAXRgapZUQmDFChsP8PPR1
+	 lTGuhpJTUd21meIvShbfe1LOPVtwajNUoxQuwaNwwQbWjabicwTxSoQ+3LOUnen8Hr
+	 lUhWgzarAgH2Q==
+Message-ID: <7462bb47-01ff-45d7-9cbc-24b8da7f7a1d@kernel.org>
+Date: Mon, 17 Feb 2025 10:13:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,123 +50,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/16] dt-bindings: clock: at91: Split up per SoC
- partially
-To: Alexander Dahl <ada@thorsis.com>
-Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
- Ryan Wanner <ryan.wanner@microchip.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20250210164506.495747-1-ada@thorsis.com>
- <20250210164506.495747-2-ada@thorsis.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Subject: Re: [PATCH] dt-bindings:leds: Add function define for POE
+To: Tony O'Brien <Tony.OBrien@alliedtelesis.co.nz>
+Cc: "pavel@kernel.org" <pavel@kernel.org>, "lee@kernel.org" <lee@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+ Ben Hoelker <Ben.Hoelker@alliedtelesis.co.nz>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+References: <20250213005841.4143929-1-tony.obrien@alliedtelesis.co.nz>
+ <20250213005841.4143929-2-tony.obrien@alliedtelesis.co.nz>
+ <20250213-successful-pronghorn-of-dignity-83facb@krzk-bin>
+ <31bc5340976761dbf3653ed2802a8988e07b18d5.camel@alliedtelesis.co.nz>
 Content-Language: en-US
-In-Reply-To: <20250210164506.495747-2-ada@thorsis.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <31bc5340976761dbf3653ed2802a8988e07b18d5.camel@alliedtelesis.co.nz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi, Alexander,
-
-On 10.02.2025 18:44, Alexander Dahl wrote:
-> Before adding even more new indexes creating more holes in the
-> clk at91 drivers pmc_data->chws arrays, split this up.
+On 16/02/2025 22:37, Tony O'Brien wrote:
+> Hi Krzysztof -
 > 
-> This is a partial split up only for SoCs affected by upcoming changes
-> and by that PMC_MAIN + x hack, others could follow by the same scheme.
+>> Where did these two reviews happen?
+> They were in-house reviews.  Please feel free to remove them from the
+> patch.
 > 
-> Binding splitup was proposed for several reasons:
-> 
-> 1) keep the driver code simple, readable, and efficient
-> 2) avoid accidental array index duplication
-> 3) avoid memory waste by creating more and more unused array members.
-> 
-> Old values are kept to not break dts, and to maintain dt ABI.
-> 
-> Link: https://lore.kernel.org/linux-devicetree/20250207-jailbird-circus-bcc04ee90e05@thorsis.com/T/#u
-> Signed-off-by: Alexander Dahl <ada@thorsis.com>
-> ---
-> 
-> Notes:
->     v2:
->     - new patch, not present in v1
-> 
->  .../dt-bindings/clock/microchip,sam9x60-pmc.h | 19 +++++++++++
->  .../dt-bindings/clock/microchip,sam9x7-pmc.h  | 25 +++++++++++++++
->  .../clock/microchip,sama7d65-pmc.h            | 32 +++++++++++++++++++
->  .../dt-bindings/clock/microchip,sama7g5-pmc.h | 24 ++++++++++++++
->  4 files changed, 100 insertions(+)
->  create mode 100644 include/dt-bindings/clock/microchip,sam9x60-pmc.h
->  create mode 100644 include/dt-bindings/clock/microchip,sam9x7-pmc.h
->  create mode 100644 include/dt-bindings/clock/microchip,sama7d65-pmc.h
->  create mode 100644 include/dt-bindings/clock/microchip,sama7g5-pmc.h
-> 
+>> Where is any user of this?
+> We are adding Kernel control of PoE LEDs and thought this might be
+> useful to others, maybe those working on netdev, or anyone implementing
+> PoE on their devices.  Also, the Kernel >> Docs >> LEDs page states:
+> "If required color or function is missing, please submit a patch to
+> linux-leds@vger.kernel.org", which is included here.
+You did not answer: where is the user? By "we are adding" you mean
+downstream?
 
-[ ...]
-
-> diff --git a/include/dt-bindings/clock/microchip,sama7g5-pmc.h b/include/dt-bindings/clock/microchip,sama7g5-pmc.h
-> new file mode 100644
-> index 0000000000000..ad69ccdf9dc78
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/microchip,sama7g5-pmc.h
-> @@ -0,0 +1,24 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> +/*
-> + * The constants defined in this header are being used in dts and in
-> + * at91 sama7g5 clock driver.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLOCK_MICROCHIP_SAMA7G5_PMC_H
-> +#define _DT_BINDINGS_CLOCK_MICROCHIP_SAMA7G5_PMC_H
-> +
-> +#include <dt-bindings/clock/at91.h>
-> +
-> +/* old from before bindings splitup */
-> +#define SAMA7G5_PMC_MCK0	PMC_MCK		/* 1 */
-> +#define SAMA7G5_PMC_UTMI	PMC_UTMI	/* 2 */
-> +#define SAMA7G5_PMC_MAIN	PMC_MAIN	/* 3 */
-> +#define SAMA7G5_PMC_CPUPLL	PMC_CPUPLL	/* 4 */
-> +#define SAMA7G5_PMC_SYSPLL	PMC_SYSPLL	/* 5 */
-> +
-> +#define SAMA7G5_PMC_AUDIOPMCPLL	PMC_AUDIOPMCPLL	/* 9 */
-> +#define SAMA7G5_PMC_AUDIOIOPLL	PMC_AUDIOIOPLL	/* 10 */
-> +
-> +#define SAMA7G5_PMC_MCK1	PMC_MCK1	/* 13 */
-> +
-> +#endif
-
-I would have expected this to be something like:
-
-#ifndef __DT_BINDINGS_CLOCK_MICROCHIP_SAMA7G5_PMC_H__
-#define __DT_BINDINGS_CLOCK_MICROCHIP_SAMA7G5_PMC_H__
-
-/* Core clocks. */
-#define SAMA7G5_MCK0			1
-#define SAMA7G5_UTMI			2
-#define SAMA7G5_MAIN			3
-#define SAMA7G5_CPUPLL			4
-#define SAMA7G5_SYSPLL			5
-#define SAMA7G5_DDRPLL			6
-#define SAMA7G5_IMGPLL			7
-#define SAMA7G5_BAUDPLL			8
-
-// ...
-
-#define SAMA7G5_MCK1			13
-
-#endif /* __DT_BINDINGS_CLOCK_MICROCHIP_SAMA7G5_PMC_H__ */
-
-Same for the other affected SoCs.
-
-The content of include/dt-bindings/clock/at91.h would be limited eventually
-only to the PMC clock types.
-
-The other "#define PMC_*" defines will eventually go to SoC specific
-bindings. "#define AT91_PMC_*" seems to not belong here anyway and these
-would in the end removed, as well.
-
-Thank you,
-Claudiu
+Best regards,
+Krzysztof
 
