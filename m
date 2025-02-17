@@ -1,146 +1,159 @@
-Return-Path: <devicetree+bounces-147302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA7DCA37E84
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:31:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2074BA37EAA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:35:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69F2C16F110
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:31:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BAF13AB6CF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 09:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 991012153DF;
-	Mon, 17 Feb 2025 09:31:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45206216396;
+	Mon, 17 Feb 2025 09:31:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fK/H46QJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qgo4L2Ww"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79BF921519C;
-	Mon, 17 Feb 2025 09:31:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7639E216393;
+	Mon, 17 Feb 2025 09:31:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739784677; cv=none; b=ulOktqqRNfoXDIsk2NBqhnfPAOBrnjIH1BcyyW7IcRRSX+LFfWtVj4mIwt8WUxL2X3KIftuWNO+Xx3ylICEzuueG2qIkB8tGvj0B2Xi0+yXKCq3y3QAAxjwj4YCUaHShJzR7n21qBtvIVvqsBrk1V1/i0CR2Jjfg3cbppCqXqcw=
+	t=1739784711; cv=none; b=MwK6VIy5yNuJNGacxck3q4wrVGblDUQSCHBnpd8Zyo3Hf3uVj+MRor/JFiCeLV9DgL+arVOTJBDBVe2qCeUqWDsb4KCwDEt3J6ctZQI8ioyfrqtPsaNNymTCZ4oA4PHCi9Dvsmzdc95gaeExTSFjCaUdkz4fw6WeNqW8NQgyAgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739784677; c=relaxed/simple;
-	bh=BF3BWMnRAgV+XVc7QLQRap/ja+b/weSZ+YkZOb083OM=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=FppWIrHncgthL/3PAW17LeknnXOPLzh+HVIqoKzujxJs+Vft7irobBNoGbojA8Mk0psF/vWiF/Jhb9+rbku5knZ9XCmA8FuxdUNGyaerS75h/Kd3IB3AZnnxgK/Hy1utkQobRzd+aZDJJBFJlZglMcETZmy7mFfel2hXRSsJSqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fK/H46QJ; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6D2C04328A;
-	Mon, 17 Feb 2025 09:31:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739784672;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=gzSgtFsogf3LvL+ai4nE5Lt4B+3+Fu9VUwcYPOuEIZQ=;
-	b=fK/H46QJFMLPMcRVkjjcBvXz3suQapWq9E5PCchE4muxik4Ug0FIztPKlE1SGb5DuDwz5a
-	Uoo/64V/Eik/EAM40u63rxPdOzMTUc5FKFGxbkaMwRtBN5QXugz6xEKYFf59C2CPI3qGmh
-	u2dWyZ6LCPd2sA0i6Nm2l6QZWCbNwHDiaPP9GOa9zcetatAYq2HNqRYOpUPYEdK/9SEZcv
-	QBSU/EiTcIELPURB8EgJ9MV8wakky8b0GJorTq/QHU9O5rUi5u4wERdnNw3OTb4gL4kLQh
-	1ripd4J1y7IWjqrj7Anhj4dIEqUdf7WF3Tl1AosWjOQZfn//HL8/QDLv01yDpA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: J. =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>
-Cc: J. =?utf-8?Q?Neusch=C3=A4fer?= via B4 Relay
- <devnull+j.ne.posteo.net@kernel.org>,
-  devicetree@vger.kernel.org,  linuxppc-dev@lists.ozlabs.org,  Krzysztof
- Kozlowski <krzk@kernel.org>,  imx@lists.linux.dev,  Scott Wood
- <oss@buserror.net>,  Madhavan Srinivasan <maddy@linux.ibm.com>,  Michael
- Ellerman <mpe@ellerman.id.au>,  Nicholas Piggin <npiggin@gmail.com>,
-  Christophe Leroy <christophe.leroy@csgroup.eu>,  Naveen N Rao
- <naveen@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Damien Le Moal
- <dlemoal@kernel.org>,  Niklas Cassel <cassel@kernel.org>,  Herbert Xu
- <herbert@gondor.apana.org.au>,  "David S. Miller" <davem@davemloft.net>,
-  Lee Jones <lee@kernel.org>,  Vinod Koul <vkoul@kernel.org>,  Lorenzo
- Pieralisi <lpieralisi@kernel.org>,  Krzysztof =?utf-8?Q?Wilczy=C5=84ski?=
- <kw@linux.com>,
-  Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,  Bjorn Helgaas
- <bhelgaas@google.com>,  J. =?utf-8?Q?Neusch=C3=A4fer?=
- <j.neuschaefer@gmx.net>,  Wim Van
- Sebroeck <wim@linux-watchdog.org>,  Guenter Roeck <linux@roeck-us.net>,
-  Mark Brown <broonie@kernel.org>,  Richard Weinberger <richard@nod.at>,
-  Vignesh Raghavendra <vigneshr@ti.com>,  linux-kernel@vger.kernel.org,
-  linux-ide@vger.kernel.org,  linux-crypto@vger.kernel.org,
-  dmaengine@vger.kernel.org,  linux-pci@vger.kernel.org,
-  linux-watchdog@vger.kernel.org,  linux-spi@vger.kernel.org,
-  linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v2 12/12] dt-bindings: mtd: raw-nand-chip: Relax node
- name pattern
-In-Reply-To: <Z7Iqir-qaZDt6tsx@probook> ("J. =?utf-8?Q?Neusch=C3=A4fer=22'?=
- =?utf-8?Q?s?= message of "Sun, 16
-	Feb 2025 18:12:26 +0000")
-References: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
-	<20250207-ppcyaml-v2-12-8137b0c42526@posteo.net>
-	<87o6zaurv9.fsf@bootlin.com> <Z7Iqir-qaZDt6tsx@probook>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Mon, 17 Feb 2025 10:31:08 +0100
-Message-ID: <87tt8svrxf.fsf@bootlin.com>
+	s=arc-20240116; t=1739784711; c=relaxed/simple;
+	bh=qwwfQspqK1CIaepn5O3N48Xj/62KJzh4txop3uOMjDc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=chTNivSwqLwR5/3x6ZH7tX7xwhMAQ40YfO0l4amueTiViafZ5OtscfJML6KzWX/ev561uTV//4/filAo6gLLB1lssDAYFBr/QlaOD3Fm/kRqtd4BXtJr2OOkxt7gnDN8AA0nt2lAlI6n7wy9Trxyb77009LSjYfNX4sJfMSHags=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qgo4L2Ww; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-aaf900cc7fbso615422566b.3;
+        Mon, 17 Feb 2025 01:31:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739784708; x=1740389508; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=qwwfQspqK1CIaepn5O3N48Xj/62KJzh4txop3uOMjDc=;
+        b=Qgo4L2WwhX7vWcVUGZ1DzQicBwRJuBsoC+tuYs9WiR8y/KBF6byNaAUgx38YNqo3FX
+         dNNVrd+ivRzKttSSN1hsikdg2tGuZH+ZWMhmXZcT/4K4gRUk2RJYZUHxcyMfPxJrMiPy
+         EamgI6VG9CkcK4S4uShN2u1Dn160vBo+kE4mu7oSnPrvGvEm+X3s7A+TtzjbPWT41cm+
+         vYXwkXY71eiX6pxKJkJO2N4EsPjig3pAKVPe9ORWoVftJGB1x5955pSO/Cr2ZYar+Vyp
+         tSJDFvffLQBp0k4+AgIjf3/p6KAMqaT8EkpYFYVsTs4DU/Ygw+0und4dbMzrXb6wtFlv
+         SArQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739784708; x=1740389508;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qwwfQspqK1CIaepn5O3N48Xj/62KJzh4txop3uOMjDc=;
+        b=U4Q6Nlfy2lEKwHf6N1mWoPZzd4Qpz9suWifVoTIiMRvdWh5nuC9s299LyhqWOJJ83d
+         PEh+qf0y0cnUVCdV0cJ4/EjoJ/t1Jpn8q1MA6AdmwrjqepRlNNNl6omwNfrTA+aUXBFt
+         vqV6AgXR6CXprVK2jeAGDt78lYrMn2Mvc+8TBVv3EyrXVi1c5omqInPJ8YNzzdEJNtG9
+         rRaoldBJ8bT332SniBd61lwv5ELhunORcBc55FQj0nwJNj0N0NMne11ZuZw8wjTe+UAF
+         ltI+Z8Hah/2ObD1NuTycFJDB6MQ4lGD1flGIlO586FImEAxvJImrA0RflPvbWPM7Rx4g
+         IBnw==
+X-Forwarded-Encrypted: i=1; AJvYcCUz3+BJOhKwf9gYyE2u9OOHNKx+DiPZyAuje2Ihk+Ms3M1e/T36UttMNFa4HdU3msVQagMceLWpuxqB@vger.kernel.org, AJvYcCVKkQpBeOgIGD8mJApjiEpg1A6jrlRIwYeoq6uoL+PrRnvGOHb4nJAINYD03rzSocjahd0F3l2m2c68@vger.kernel.org, AJvYcCVwzKVHenWfxSeV1xqOAE/F7dQudMUvlj4A79MiUthe47qRlmjkctaNu59Fv8ixUL5z8Fv5koLRBmbO+jYr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxO96En12Dtl7AiffaYNE0V0tFN8nY3rDKCBA0szY+lKafXUNPM
+	Alz8H7g9fC6WrvjnwdR3pt4R+D6opiPCnYe4ZSPDrNBcJ4Q+I19N
+X-Gm-Gg: ASbGnctlQk9jGzvtD+dAKCjv4f6VyxFBVW/65zjFJdT7Ts7n4xTpR2YObmoJwbuAhET
+	YNOr3nKjXc5DpzbbQ9mPbj+axXxUP+uHQBHdntplKswo/AAmOHZ4X2gys2XxYjLX/CYDQjpZvsi
+	TFCnfeojGiTcD2vH6UjQL4I9USSEYZXtUYh6GV3HYBeFO1G6ku4ai7e5MGpXUGgZL1LZABT50U+
+	8PzFnCsvFVZHgAlE1qwOEDCrIjuDUhgLissIuat7b4GQMlOhkaifimMvWfJZxX/iU7QorKLQS2i
+	oHPSW/KY4oZbH1C14zM9zYUhUO88X3RE
+X-Google-Smtp-Source: AGHT+IF19rIOBPRe3FreKmfKhGzofepgR2PC8/BYqtWn5SXsysFWGgg87ztwsvGb53f3Baqru+RpWg==
+X-Received: by 2002:a17:907:3d8e:b0:ab7:4641:a72d with SMTP id a640c23a62f3a-abb70de28admr913177666b.51.1739784707261;
+        Mon, 17 Feb 2025 01:31:47 -0800 (PST)
+Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abba64fbabfsm75995966b.172.2025.02.17.01.31.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Feb 2025 01:31:46 -0800 (PST)
+Message-ID: <3ba76f2162841ab91ef823315e7ce4b5b7526984.camel@gmail.com>
+Subject: Re: [PATCH v11 1/3] dt-bindings: rtc: sophgo: add RTC support for
+ Sophgo CV1800 series SoC
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Chen Wang <unicorn_wang@outlook.com>, Jingbao Qiu
+	 <qiujingbao.dlmu@gmail.com>
+Cc: Inochi Amaoto <inochiama@gmail.com>, alexandre.belloni@bootlin.com, 
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	inochiama@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com, 
+	aou@eecs.berkeley.edu, dlan@gentoo.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ devicetree@vger.kernel.org, 	linux-riscv@lists.infradead.org,
+ linux-rtc@vger.kernel.org
+Date: Mon, 17 Feb 2025 10:31:43 +0100
+In-Reply-To: <MA0PR01MB567164E6BE03750F2200CBDBFEFB2@MA0PR01MB5671.INDPRD01.PROD.OUTLOOK.COM>
+References: <20250213215655.2311793-1-alexander.sverdlin@gmail.com>
+	 <20250213215655.2311793-2-alexander.sverdlin@gmail.com>
+	 <MA0PR01MB567164E6BE03750F2200CBDBFEFB2@MA0PR01MB5671.INDPRD01.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehkedtgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefujghffgffkfggtgfgsehtqhertddtreejnecuhfhrohhmpefoihhquhgvlhcutfgrhihnrghluceomhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnheptdevhffgtdfhhefggeeftdeiffduiedtgffftddutdehteejhfevieelveegveetnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefledprhgtphhtthhopehjrdhnvgesphhoshhtvghordhnvghtpdhrtghpthhtohepuggvvhhnuhhllhdojhdrnhgvrdhpohhsthgvohdrnhgvtheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugihpphgtqdguvghvsehlihhsthhsrdhoi
- ihlrggsshdrohhrghdprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepihhmgieslhhishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopehoshhssegsuhhsvghrrhhorhdrnhgvthdprhgtphhtthhopehmrgguugihsehlihhnuhigrdhisghmrdgtohhm
-X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hello,
+Hi Chen!
 
->> > In some scenarios, such as under the Freescale eLBC bus, there are raw
->> > NAND chips with a unit address that has a comma in it (cs,offset).
->> > Relax the $nodename pattern in raw-nand-chip.yaml to allow such unit
->> > addresses.
->>=20
->> This is super specific to this controller, I'd rather avoid that in the
->> main (shared) files. I believe you can force another node name in the
->> controller's binding instead?
->
-> It's a bit tricky. AFAICS, when I declare a node name pattern in my
-> specific binding in addition to the generic binding, the result is that
-> both of them apply, so I can't relax stricter requirements:
->
-> # raw-nand-chip.yaml
-> properties:
->   $nodename:
->     pattern: "^nand@[a-f0-9]$"
->
-> # fsl,elbc-fcm-nand.yaml
-> properties:
->   $nodename:
->     pattern: "^nand@[a-f0-9](,[0-9a-f]*)?$"
+On Mon, 2025-02-17 at 17:26 +0800, Chen Wang wrote:
+> > Add RTC devicetree binding for Sophgo CV1800 SoC.
+> >=20
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+> > Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> > ---
+> > =C2=A0=C2=A0 .../bindings/rtc/sophgo,cv1800-rtc.yaml=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 | 53 +++++++++++++++++++
+> > =C2=A0=C2=A0 1 file changed, 53 insertions(+)
+> > =C2=A0=C2=A0 create mode 100644 Documentation/devicetree/bindings/rtc/s=
+ophgo,cv1800-rtc.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.ya=
+ml b/Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml
+> > new file mode 100644
+> > index 000000000000..b36b51a69166
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml
+> > @@ -0,0 +1,53 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/rtc/sophgo,cv1800-rtc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Real Time Clock of the Sophgo CV1800 SoC
+> > +
+> > +description:
+> > +=C2=A0 Real Time Clock (RTC) is an independently powered module
+> > +=C2=A0 within the chip, which includes a 32KHz oscillator and a
+> > +=C2=A0 Power On Reset/POR submodule. It can be used for time display
+> > +=C2=A0 and timed alarm generation. In addition, the hardware state
+> > +=C2=A0 machine provides triggering and timing control for chip
+> > +=C2=A0 power on, off, and reset.
+> > +
+> > +maintainers:
+> > +=C2=A0 - Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+>=20
+> I guess Jingbao will not take this role. If he doesn't raise any=20
+> objections, please just change this.
+>=20
+> Jingbao, do you have any comment on this?
 
-Well, I guess this is creating a second possible node name.
+New version will look rather like this:
+https://lore.kernel.org/linux-devicetree/20250216180924.2506416-1-alexander=
+.sverdlin@gmail.com/
 
-> # dtc
-> /.../fsl,elbc-fcm-nand.example.dtb:
-> nand@1,0: $nodename:0: 'nand@1,0' does not match '^nand@[a-f0-9]$'
->         from schema $id:
-> 	http://devicetree.org/schemas/mtd/fsl,elbc-fcm-nand.yaml#
+But I'll be happy to take you suggestion and replace my name in the
+new version with someone more afiliated with Sophgo ;-)
 
-What about fixing the DT instead?
+--=20
+Alexander Sverdlin.
 
-> (I changed the second pattern to nand-fail@... and dtc warned about it
->  mismatching too.)
->
-> Perhaps I'm missing a DT-schema trick to override a value/pattern.
->
-> Alternatively (pending discussion on patch 11/12), I might end up not
-> referencing raw-nand-chip.yaml.
-
-Ok.
-
-Thanks,
-Miqu=C3=A8l
 
