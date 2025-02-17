@@ -1,508 +1,168 @@
-Return-Path: <devicetree+bounces-147261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B67D4A37BF9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 08:19:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65B08A37C1F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 08:27:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 091FE188AB35
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 07:19:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A6EA16AD33
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 07:27:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7D68194AD1;
-	Mon, 17 Feb 2025 07:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D7C118FDAE;
+	Mon, 17 Feb 2025 07:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="TLWOv/Ae"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="4oGf3GLE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2043.outbound.protection.outlook.com [40.107.237.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6141528F3
-	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 07:18:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739776730; cv=none; b=stlCDAwvWMrwOrm/unkn9FgAxMT+d+DcvJmyMcBLvwMPmvcLysDcCsPVWKVJz0tq8NFut5uoi7Dy1nC1KsQneYLPXeW9T/cup8lVwWAShZ5H0bosl2E4T0XpDUct12ORzAHeX0LAJCNLznZExP0uNBrAjC56f6hYzMRw7ae6Pno=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739776730; c=relaxed/simple;
-	bh=ZERFbvlcliKUz//n2IXk+/urawfGylEo3zt0m1W5F/c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ge9I1GH9NuOT3Tg2hW96pl1zI+eqxM4zFvSOFm1gkc2W7rCHMvC60hGevqbWZmhgy3HrpkddV1BsVU2oeDvq0mMOBRd+thZ6N85clxUf3Jt4JzMKrKuSVCUpD3okHx0wt2FsxQqDeKCmsxr3ekGLdnEdHLvGukCqw9w3hpBtWAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=TLWOv/Ae; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5ded69e6134so5790268a12.0
-        for <devicetree@vger.kernel.org>; Sun, 16 Feb 2025 23:18:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1739776726; x=1740381526; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=v25VmnSqYqj8M3Jcj4xEeFG2OqH96nULrB9jJ3rOS7k=;
-        b=TLWOv/AehjzXt3y2K2fhchf0A8JnSIgvOw4OAvQ/PrFjcQ6mzGzYCy1ZO25ecG24mu
-         cQelsHHXLZIDbMREjWsOoCV81qBg5UE34xtAcRANZQUHqyxSW7Ub3P7YsY4m3vWXHmGZ
-         K/dLBCMVFeChtf8CZ5UO088ANceJPkEV/BDmdMi5cO6AhAL1lJBV1AKXKcMFOlQUFLXc
-         jzTEuH1mNCm3Wk3ChYR+gPFlsR1K+0jkh7JCdSRKxDT5tWtvRC3G+dPsFj60TJQn0kdb
-         s61hN1hkBI4GfrujSKsXwKW8y5X8BzdMrXlP9dl9Kjc4zvTh/C39J0NlkEeX4Z6cyCox
-         qZQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739776726; x=1740381526;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v25VmnSqYqj8M3Jcj4xEeFG2OqH96nULrB9jJ3rOS7k=;
-        b=i7NUXvDQxVzezES5cJsALBSlgra6vnroGdmXR87uNVyHvS9MdvWh70akonrS12YG6e
-         bXwUS35+Tbyxow9Q45RxtoKR53VpbAAy6c4OkcAaNog/EkHp5TRdIzGdA+pMtBsbbK4K
-         ssv7fNCobof8nsuRlYVTCT53ke+uVKqSN+T1kPoV/+sj4orkiJtiXCuqA/GGDEUOdqRQ
-         kkmm86zYBYvr1X1GXy7xa/oOmiE2D9GAQi0IBfsixMYisyA7AhHM4ANhZFmG+UfRZBM1
-         R+b6mshO4tJ4merGGsKkL5014l0RrI/JWObrETOXebd+qQFKVMLkh5D2GgwZRf0WSov5
-         8+RA==
-X-Forwarded-Encrypted: i=1; AJvYcCV+X0bRgyG3wbkL7FXBQYi4n5jm2PD3k/27a7rqUEz03i7Mywx/loMqm89ZuljMqN+oncXNwrMe6Faw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9j8LZ9a8i1v+fvBQMxGSqxeVNs/LxgxapgKlen0UkZ6sWAfiu
-	TxZaQNFTyKgETDNV/VTKPYAHjkhDcc1Vr17UfuSByI3FxZoEpxpqXqfPwV4npIo=
-X-Gm-Gg: ASbGnctewHpCTlPKJ77k5+q8k5eRIf8kasDKd7y3YpIxjsLvVqelvtIOAdRIA1uTiS1
-	EyQ7a6gfLHKcn3gbAsYuCUpqUT+/4Nvnss/fKNUYnQYeE18JOlSCcqK7RHY31xfdkEHmb07FaiU
-	IQ4pTUeW2ufx2P4njP+jL3do2SLINce7VUCgHLgSme3NGyNMwWI5H281l1gN4Tg8EqUe3mgKI2f
-	d0AAtD4p/gWAjFuQ8plaiYSVGz9sVy30SraD33SeLo7yi7+wQU86YVr+t44S/zVSCj61k+OhQi6
-	XljMtS2Ydte2EfEYhrCfZpM=
-X-Google-Smtp-Source: AGHT+IF1/c910bLyP5ZGsW8SMD1Us/Tiqwk8Gd/bi0zx7ghNldlF31bI+7fijFr2TMBGRt4mEJHTzg==
-X-Received: by 2002:a05:6402:430b:b0:5db:f423:19c5 with SMTP id 4fb4d7f45d1cf-5e036055c4cmr8283539a12.5.1739776725480;
-        Sun, 16 Feb 2025 23:18:45 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.25])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1d00d9sm6777672a12.32.2025.02.16.23.18.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Feb 2025 23:18:44 -0800 (PST)
-Message-ID: <b3de47a4-614c-4650-a866-5718b2e2b50a@tuxon.dev>
-Date: Mon, 17 Feb 2025 09:18:42 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8948E28F3;
+	Mon, 17 Feb 2025 07:27:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739777249; cv=fail; b=Dk73eMmjd8Ns4ktkqPDXG1Fn1XS9TLrmoYpJQWrkcnHT+wyly/iDwkxV+VbUKJ8yyY9+jQdyep5mqDOlU0g23aMG/6NfiZN0+IwwaQut2MWp1r70AzX1TEGe50TNtnjlzBeYNPgJzZs2pWaw7P3cLvffqOEbqK6gkE9+avGsA3k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739777249; c=relaxed/simple;
+	bh=AlxXzmLfWq+D6zItW1ywrULZhcDSEgTTWmxt8rsSaJY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QqnWQP6mh1oC915UiCj4iFKcmxP2kTV0pKSIfqoSvALbb+Lxt9Hj+RdjrsdyMR5Ay/MHvKWdvC3OHvLvmGtEHJK3oM29ebe0gcfKyHANMpwjMn0+k0T+z7FXGp9tXOTcyVp3UioFZfkWODImPHnmQpFKojP8QWzaEdifka4NcpQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=4oGf3GLE; arc=fail smtp.client-ip=40.107.237.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KzYrCMkqqPiHK2ApN29Ozo5YaDB4xf6ZlZra9hRkZXJmGzx13Q1IrG3x6C7vL5f1v/fmrt8bbP6f5svqqHEKpsJHb2dqe2yH/w5TfEkkIAswmLONyCrMHap6+gucypiBk24yYpMOl+ywYSZ6lGgFv8sRUbFLqVib0XOZJ2Oe4wkIZOIQgvWuviKc4OMwxTLcBM0yn5UxOmzhIrf1EA6H+tHH2CLZ4DsvvPZvsvn2Sm24AuNIXEoJtZpbnkfzg+k0JLGy8fnIYNHC0OxtBnM3OxorVZlWHwIPPlI03J/i5LvX05n0/aPoe7X05S25g7BMGSimMx58TatdXWwh6Wb93w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CBNK3bLh9MsL4VNrH0af+K69VTmOmWtxbO0ff/SGbsk=;
+ b=icfdl0hpyvxkf0pBcm8lczeFal1eKxNfi3d/GS4+tzyDC9Fs77QdvafdCDdGIO/QIn2tCBue87B189z3mu5sczf7Gsc8V+VGv/LHCplzzSQ0REsXIHzYsxWSSI4NeSiQjodHpjGv8lFk68evZFbgWhdcF7otG+JW2eQBQgdwpcHnMygNvzXfjbEBmRpXSJp3EnxkyRlh4RsQ32QgvYngZBWjBwuLRECpBy9fAwFBdJKqE4cKPVa7sGp0FpFT3bCKdcrxrOH2jfiyafrWaHeAAgzK/vTY+a8J3AS/3mT1lYmmsninpZzpWOCYls2NUYFF1Qze0JfJG5OiuOba26JSTQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CBNK3bLh9MsL4VNrH0af+K69VTmOmWtxbO0ff/SGbsk=;
+ b=4oGf3GLEyV0hJ4HJBoMpATodzXA8Wkg5frwRPKjiVhNOXbyFUhymrBjLR2tt4vU5y98PQSTVKQrqxmcOF0rB70X0MkB794ApOAPYyDf4xaguQBE6P6dm9z939ED0MGW9oUTWWNyglvzMQFHfHsg78o56B3pV7SYpeGE9Z/yEZtA=
+Received: from SN4PR0501CA0104.namprd05.prod.outlook.com
+ (2603:10b6:803:42::21) by SN7PR12MB6959.namprd12.prod.outlook.com
+ (2603:10b6:806:261::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.18; Mon, 17 Feb
+ 2025 07:27:23 +0000
+Received: from SA2PEPF00001508.namprd04.prod.outlook.com
+ (2603:10b6:803:42:cafe::2) by SN4PR0501CA0104.outlook.office365.com
+ (2603:10b6:803:42::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.10 via Frontend Transport; Mon,
+ 17 Feb 2025 07:27:23 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SA2PEPF00001508.mail.protection.outlook.com (10.167.242.40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8466.11 via Frontend Transport; Mon, 17 Feb 2025 07:27:23 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 17 Feb
+ 2025 01:27:19 -0600
+Received: from xhdthippesw40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Mon, 17 Feb 2025 01:27:15 -0600
+From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+	<manivannan.sadhasivam@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <michal.simek@amd.com>,
+	<bharat.kumar.gogada@amd.com>, Thippeswamy Havalige
+	<thippeswamy.havalige@amd.com>
+Subject: [PATCH v3 0/2] Add support for Versal Net CPM5N Root Port controller
+Date: Mon, 17 Feb 2025 12:57:11 +0530
+Message-ID: <20250217072713.635643-1-thippeswamy.havalige@amd.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 12/15] ARM: at91: pm: Enable ULP0 for SAMA7D65
-To: Ryan.Wanner@microchip.com, lee@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, sre@kernel.org,
- Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
- p.zabel@pengutronix.de
-Cc: linux@armlinux.org.uk, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
-References: <cover.1739221064.git.Ryan.Wanner@microchip.com>
- <a00b193df9e0cb95d144a249b12f1b13188d1ab7.1739221064.git.Ryan.Wanner@microchip.com>
- <32ad3a1a-c6b6-4db1-8e80-8b5f951055a8@tuxon.dev>
- <5c6910ce-b0e4-47e6-9c9b-f0093d34f4a6@microchip.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <5c6910ce-b0e4-47e6-9c9b-f0093d34f4a6@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: thippeswamy.havalige@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00001508:EE_|SN7PR12MB6959:EE_
+X-MS-Office365-Filtering-Correlation-Id: 54408014-934f-4c63-7edc-08dd4f2485b4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|82310400026|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?4yo2M0hluy3Wfs5dLpP3GgwH8KgznQhcRFxkbCmSNrbRUooOlnN8TPKOJ0OY?=
+ =?us-ascii?Q?jHbDC1LE2HQKDakPxjO5qxVlXLSc+f4n+KXb0WkGwE7s0yoGjIhxKbi2B3EA?=
+ =?us-ascii?Q?YFpmF6E+n07CUl5BOr5ipXzerSKCfPNV4eq5uOvqfTjaDrrMwiWmisLsHLR+?=
+ =?us-ascii?Q?cu/CeXdX1Tf6rVaFFWKa4aRYX2GrVXmlK4BjxfFskCuKSYmIRMUQTXY7hVcP?=
+ =?us-ascii?Q?aKHOSLd826Rmt0Fc9NNryy1pr0hXE8HhM3Y9aWBYpB9V6KvVuAuhuxc+wD1j?=
+ =?us-ascii?Q?KKwbP3UzZ+D5Co0/1lEFQLVRbpqKhi4R9hsihYQApDAzex8C5BRsUptRTbkK?=
+ =?us-ascii?Q?4rixnB0VvylIAsS7nDuBcgBmJzRL/v9rCfVFlsu1cpZyTzAfP9mDfPAr6NWz?=
+ =?us-ascii?Q?GhYZRlykYTX9nBil/oRIetEl/TO4TZoz1vsOHCcz/Pgcj4Jx3LU8UMb8e8xD?=
+ =?us-ascii?Q?f3i41sDHVewH0ynX+dk8DYjl03hYVxzbnpsiorWLev67zGidNkkunrc5KhKa?=
+ =?us-ascii?Q?gcNLuJnUVQND4TgZBG9ek14Yl6IAvihWp01fx99gQLuf39hzSOECb8+vL6GJ?=
+ =?us-ascii?Q?Kt8YpPx+uYG5n+sy+MWAzDUUyDd/fjU142a+4VBWzPCm7k3qVl2Znm5fubkk?=
+ =?us-ascii?Q?L3QiRZzVuhnu8ZlV06qBnXM4fgTaicskJcbVhOLPZDdmEMhCJSjw0MV1qHZH?=
+ =?us-ascii?Q?nMk732dens+08Jot4/zn1GZemI+8+VuxHCPvXVn1pb+/Anh9cwifwA/J+On8?=
+ =?us-ascii?Q?Zkmsxz97ZsrH8nKXtyOZfG5oc5IP/Shf6/+cqTT1FiNRKdDkRvbIcsr5bN3P?=
+ =?us-ascii?Q?CJM1+RmflABC3y9zkb1nIQk68vdNF3F/SR/+4HlvAP38OY5KRJ6i2/8tZm0s?=
+ =?us-ascii?Q?gygfQV+f/ZCEdEqYuQiAub6OqK1j/Docrag5NIVA88A76fJ5ZMx+gmS3ZJTV?=
+ =?us-ascii?Q?yj7eAq8+ka/0d705QJi9BpjgRttG2IOq+LMXb3hpj8LNIcWNSza+F06Qj4AR?=
+ =?us-ascii?Q?vWf36coxwU4mrdrjp0Mh8Km4o6+RzEjCMCoM75b4gElds8zRcg0Py3lifQl4?=
+ =?us-ascii?Q?BFmUB3owuvNOml4X6IAZy0z1j4G3Fq8Rp09yO91gFOqbAjIv6RWNGHFftyna?=
+ =?us-ascii?Q?cm0zD4M7YFlHoNG92Gah+BFAPIf7DbPxj35VJnALE5cilnZancvqRtF2biA1?=
+ =?us-ascii?Q?SEYSF9slOOXKIKyppUV/T2HAma4WaqDWG7mNdADxV0ZYVCZKTWcF0zxrJu+V?=
+ =?us-ascii?Q?MDrY+VyzEbT1n+mdABrB4XOsw5kR0qbFN32I1spnVgHJNJnMQaFTCqFnMmUM?=
+ =?us-ascii?Q?weZbypuZM4YYFHsNEGhrpoxPBuXfDTkK1UgxYwFVk2fuEDqFzylN2Uv0LpTp?=
+ =?us-ascii?Q?vHmcjdXhUG6s7z6K+vbmWyCVe37FX3wOtH5P2H+ZqdrZn2t60Xe2T5Pxur9u?=
+ =?us-ascii?Q?O22uBl6XFvodf38Hio9oJru6xSUrrAJhpVsi9D3DdiXHuYzXuQCODeGw5tFz?=
+ =?us-ascii?Q?WJtNyzEHnVeU594=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(82310400026)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2025 07:27:23.6312
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54408014-934f-4c63-7edc-08dd4f2485b4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SA2PEPF00001508.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6959
 
-Hi, Ryan,
+Add support for Versal Net CPM5NC Root Port controller 0.
 
-On 14.02.2025 20:09, Ryan.Wanner@microchip.com wrote:
-> On 2/13/25 01:20, Claudiu Beznea wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> Hi, Ryan,
->>
->>
->> On 10.02.2025 23:13, Ryan.Wanner@microchip.com wrote:
->>> From: Ryan Wanner <Ryan.Wanner@microchip.com>
->>>
->>> New clocks are saved to enable ULP0 for SAMA7D65 because this SoC has a
->>> total of 10 main clocks that need to be saved for ULP0 mode.
->>
->> Isn't 9 the total number of MCKs that are handled in the last/first phase
->> of suspend/resume?
-> Yes I was including 10 to match the indexing in the mck_count variable.
-> Since bgt instruction was suggested I will correct this to reflect the
-> true behavior of the change.
->>
->> Also, the state of MCKs are saved/restored for ULP0 and ULP1 as well.
->>
->>>
->>> Add mck_count member to at91_pm_data, this will be used to determine
->>> how many mcks need to be saved. In the mck_count member will also make
->>> sure that no unnecessary clock settings are written during
->>> mck_ps_restore.
->>>
->>> Add SHDWC to ULP0 mapping to clear the SHDWC status after exiting low
->>> power modes.
->>
->> Can you explain why this clear need to be done? The commit message should
->> answer to the "what?" and "why?" questions.
->>
->>>
->>> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
->>> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
->>> ---
->>>  arch/arm/mach-at91/pm.c              | 19 +++++-
->>>  arch/arm/mach-at91/pm.h              |  1 +
->>>  arch/arm/mach-at91/pm_data-offsets.c |  2 +
->>>  arch/arm/mach-at91/pm_suspend.S      | 97 ++++++++++++++++++++++++++--
->>>  4 files changed, 110 insertions(+), 9 deletions(-)
->>>
->>> diff --git a/arch/arm/mach-at91/pm.c b/arch/arm/mach-at91/pm.c
->>> index 55cab31ce1ecb..50bada544eede 100644
->>> --- a/arch/arm/mach-at91/pm.c
->>> +++ b/arch/arm/mach-at91/pm.c
->>> @@ -1337,6 +1337,7 @@ struct pmc_info {
->>>       unsigned long uhp_udp_mask;
->>>       unsigned long mckr;
->>>       unsigned long version;
->>> +     unsigned long mck_count;>  };
->>>
->>>  static const struct pmc_info pmc_infos[] __initconst = {
->>> @@ -1344,30 +1345,42 @@ static const struct pmc_info pmc_infos[] __initconst = {
->>>               .uhp_udp_mask = AT91RM9200_PMC_UHP | AT91RM9200_PMC_UDP,
->>>               .mckr = 0x30,
->>>               .version = AT91_PMC_V1,
->>> +             .mck_count = 1,
->>
->> As this member is used only for SAMA7 SoCs I would drop it here and above
->> (where initialized with 1).
->>
->>>       },
->>>
->>>       {
->>>               .uhp_udp_mask = AT91SAM926x_PMC_UHP | AT91SAM926x_PMC_UDP,
->>>               .mckr = 0x30,
->>>               .version = AT91_PMC_V1,
->>> +             .mck_count = 1,
->>>       },
->>>       {
->>>               .uhp_udp_mask = AT91SAM926x_PMC_UHP,
->>>               .mckr = 0x30,
->>>               .version = AT91_PMC_V1,
->>> +             .mck_count = 1,
->>>       },
->>>       {       .uhp_udp_mask = 0,
->>>               .mckr = 0x30,
->>>               .version = AT91_PMC_V1,
->>> +             .mck_count = 1,
->>>       },
->>>       {
->>>               .uhp_udp_mask = AT91SAM926x_PMC_UHP | AT91SAM926x_PMC_UDP,
->>>               .mckr = 0x28,
->>>               .version = AT91_PMC_V2,
->>> +             .mck_count = 1,
->>>       },
->>>       {
->>>               .mckr = 0x28,
->>>               .version = AT91_PMC_V2,
->>> +             .mck_count = 5,
->>
->> I'm not sure mck_count is a good name when used like proposed in this
->> patch. We know that only 4 MCKs need to be handled for SAMA7G5 and 9 for
->> SAMA7D65.
->>
->> Maybe, better change it here to 4 (.mck_count = 4) and to 9 above
->> (.mck_count = 9) and adjust properly the assembly macros (see below)? What
->> do you think?
-> 
-> Yes I think this is better and cleaner to read. Should this mck_count
-> match the pmc_mck_count variable name? Or should this be more
-> descriptive or would mcks be sufficient.
+The Versal-Net ACAP devices include CCIX-PCIe Module (CPM). The integrated
+block for CPM5NC along with the integrated bridge can function as PCIe Root
+Port.
 
-mck_count/mcks should be enough. These will be anyway in the context of
-pmc_info.
+Bridge error in Versal-Net CPM5NC are handled using Versal-Net CPM5N
+specific interrupt line & there is no support for legacy interrupts.
 
->>
->>> +     },
->>> +     {
->>> +             .uhp_udp_mask = AT91SAM926x_PMC_UHP,
->>> +             .mckr = 0x28,
->>> +             .version = AT91_PMC_V2,
->>> +             .mck_count = 10,
->>>       },
->>>
->>>  };
->>> @@ -1386,7 +1399,7 @@ static const struct of_device_id atmel_pmc_ids[] __initconst = {
->>>       { .compatible = "atmel,sama5d2-pmc", .data = &pmc_infos[1] },
->>>       { .compatible = "microchip,sam9x60-pmc", .data = &pmc_infos[4] },
->>>       { .compatible = "microchip,sam9x7-pmc", .data = &pmc_infos[4] },
->>> -     { .compatible = "microchip,sama7d65-pmc", .data = &pmc_infos[4] },
->>> +     { .compatible = "microchip,sama7d65-pmc", .data = &pmc_infos[6] },
->>>       { .compatible = "microchip,sama7g5-pmc", .data = &pmc_infos[5] },
->>>       { /* sentinel */ },
->>>  };
->>> @@ -1457,6 +1470,7 @@ static void __init at91_pm_init(void (*pm_idle)(void))
->>>       soc_pm.data.uhp_udp_mask = pmc->uhp_udp_mask;
->>>       soc_pm.data.pmc_mckr_offset = pmc->mckr;
->>>       soc_pm.data.pmc_version = pmc->version;
->>> +     soc_pm.data.pmc_mck_count = pmc->mck_count;
->>>
->>>       if (pm_idle)
->>>               arm_pm_idle = pm_idle;
->>> @@ -1659,7 +1673,8 @@ void __init sama7_pm_init(void)
->>>               AT91_PM_STANDBY, AT91_PM_ULP0, AT91_PM_ULP1, AT91_PM_BACKUP,
->>>       };
->>>       static const u32 iomaps[] __initconst = {
->>> -             [AT91_PM_ULP0]          = AT91_PM_IOMAP(SFRBU),
->>> +             [AT91_PM_ULP0]          = AT91_PM_IOMAP(SFRBU) |
->>> +                                       AT91_PM_IOMAP(SHDWC),
->>
->> In theory, as the wakeup sources can also resumes the system from standby
->> (WFI), the shdwc should be mapped for standby, too. Unless I'm wrong and
->> the wakeup sources covered by the SHDWC_SR register don't apply to standby
->> (WFI).
-> The device can wake up from an RTT or RTC alarm event on both the
-> standby power mode and the ULP0 power mode, since the RTT/RTC are
-> included in the SHDWC_SR I think it is safe to have this.
-> If I understand what you are asking correctly.
+Thippeswamy Havalige (2):
+  dt-bindings: PCI: xilinx-cpm: Add compatible string for CPM5NC Versal
+    Net host
+  PCI: xilinx-cpm: Add support for Versal Net CPM5NC Root Port
+    controller
 
-I was asking if the SHDWC should also be mapped for standby like:
+ .../bindings/pci/xilinx-versal-cpm.yaml       |  1 +
+ drivers/pci/controller/pcie-xilinx-cpm.c      | 48 ++++++++++++-------
+ 2 files changed, 33 insertions(+), 16 deletions(-)
 
-        static const u32 iomaps[] __initconst = {
-
-                [AT91_PM_STANDBY]       = AT91_PM_IOMAP(SHDWC) |
-
-                [AT91_PM_ULP0]          = AT91_PM_IOMAP(SFRBU) |
-
-                                          AT91_PM_IOMAP(SHDWC),
-
-                [AT91_PM_ULP1]          = AT91_PM_IOMAP(SFRBU) |
-
-                                          AT91_PM_IOMAP(SHDWC) |
-
-                                          AT91_PM_IOMAP(ETHC),
-
-                [AT91_PM_BACKUP]        = AT91_PM_IOMAP(SFRBU) |
-
-                                          AT91_PM_IOMAP(SHDWC),
-
-        };
-
-
-
->>
->>
->>>               [AT91_PM_ULP1]          = AT91_PM_IOMAP(SFRBU) |
->>>                                         AT91_PM_IOMAP(SHDWC) |
->>>                                         AT91_PM_IOMAP(ETHC),
->>> diff --git a/arch/arm/mach-at91/pm.h b/arch/arm/mach-at91/pm.h
->>> index 53bdc9000e447..ccde9c8728c27 100644
->>> --- a/arch/arm/mach-at91/pm.h
->>> +++ b/arch/arm/mach-at91/pm.h
->>> @@ -39,6 +39,7 @@ struct at91_pm_data {
->>>       unsigned int suspend_mode;
->>>       unsigned int pmc_mckr_offset;
->>>       unsigned int pmc_version;
->>> +     unsigned int pmc_mck_count;
->>>  };
->>>  #endif
->>>
->>> diff --git a/arch/arm/mach-at91/pm_data-offsets.c b/arch/arm/mach-at91/pm_data-offsets.c
->>> index 40bd4e8fe40a5..59a4838038381 100644
->>> --- a/arch/arm/mach-at91/pm_data-offsets.c
->>> +++ b/arch/arm/mach-at91/pm_data-offsets.c
->>> @@ -18,6 +18,8 @@ int main(void)
->>>                                                pmc_mckr_offset));
->>>       DEFINE(PM_DATA_PMC_VERSION,     offsetof(struct at91_pm_data,
->>>                                                pmc_version));
->>> +     DEFINE(PM_DATA_PMC_MCK_COUNT,   offsetof(struct at91_pm_data,
->>> +                                              pmc_mck_count));
->>>
->>>       return 0;
->>>  }
->>> diff --git a/arch/arm/mach-at91/pm_suspend.S b/arch/arm/mach-at91/pm_suspend.S
->>> index e5869cca5e791..2bbcbb26adb28 100644
->>> --- a/arch/arm/mach-at91/pm_suspend.S
->>> +++ b/arch/arm/mach-at91/pm_suspend.S
->>> @@ -814,17 +814,19 @@ sr_dis_exit:
->>>  .endm
->>>
->>>  /**
->>> - * at91_mckx_ps_enable:      save MCK1..4 settings and switch it to main clock
->>> + * at91_mckx_ps_enable:      save MCK settings and switch it to main clock
->>>   *
->>> - * Side effects: overwrites tmp1, tmp2
->>> + * Side effects: overwrites tmp1, tmp2, tmp3
->>>   */
->>>  .macro at91_mckx_ps_enable
->>>  #ifdef CONFIG_SOC_SAMA7
->>>       ldr     pmc, .pmc_base
->>> +     ldr     tmp3, .mck_count
->>>
->>> -     /* There are 4 MCKs we need to handle: MCK1..4 */
->>> +     /* Start at MCK1 and go until MCK_count */
->>
->> s/MCK_count/mck_count to align with the mck_count above.
->>
->>>       mov     tmp1, #1
->>> -e_loop:      cmp     tmp1, #5
->>> +e_loop:
->>> +     cmp     tmp1, tmp3
->>>       beq     e_done
->>
->> If providing mck_count = 4 (for SAMA7G5) and mck_count = 9 (for SAMA7D65)
->> you can change this to:
->>
->>         bqt     e_done
->>
->>>
->>>       /* Write MCK ID to retrieve the settings. */
->>> @@ -850,7 +852,37 @@ e_save_mck3:
->>>       b       e_ps
->>>
->>>  e_save_mck4:
->>> +     cmp     tmp1, #4
->>> +     bne     e_save_mck5
->>>       str     tmp2, .saved_mck4
->>> +     b       e_ps
->>> +
->>> +e_save_mck5:
->>> +     cmp     tmp1, #5
->>> +     bne     e_save_mck6
->>> +     str     tmp2, .saved_mck5
->>> +     b       e_ps
->>> +
->>> +e_save_mck6:
->>> +     cmp     tmp1, #6
->>> +     bne     e_save_mck7
->>> +     str     tmp2, .saved_mck6
->>> +     b       e_ps
->>> +
->>> +e_save_mck7:
->>> +     cmp     tmp1, #7
->>> +     bne     e_save_mck8
->>> +     str     tmp2, .saved_mck7
->>> +     b       e_ps
->>> +
->>> +e_save_mck8:
->>> +     cmp     tmp1, #8
->>> +     bne     e_save_mck9
->>> +     str     tmp2, .saved_mck8
->>> +     b       e_ps
->>> +
->>> +e_save_mck9:
->>> +     str     tmp2, .saved_mck9
->>>
->>>  e_ps:
->>>       /* Use CSS=MAINCK and DIV=1. */
->>> @@ -870,17 +902,19 @@ e_done:
->>>  .endm
->>>
->>>  /**
->>> - * at91_mckx_ps_restore: restore MCK1..4 settings
->>> + * at91_mckx_ps_restore: restore MCKx settings
->>
->> s/MCKx/MCK to align with the description from at91_mckx_ps_enable
->>
->>>   *
->>>   * Side effects: overwrites tmp1, tmp2
->>>   */
->>>  .macro at91_mckx_ps_restore
->>>  #ifdef CONFIG_SOC_SAMA7
->>>       ldr     pmc, .pmc_base
->>> +     ldr     tmp2, .mck_count
->>>
->>> -     /* There are 4 MCKs we need to handle: MCK1..4 */
->>> +     /* Start from MCK1 and go up to MCK_count */
->>>       mov     tmp1, #1
->>> -r_loop:      cmp     tmp1, #5
->>> +r_loop:
->>> +     cmp     tmp1, tmp2
->>>       beq     r_done
->>
->> Same here:
->>         bgt     r_done
->>
->> should be enough if providing mck_count = 4 or 9
->>
->>>
->>>  r_save_mck1:
->>> @@ -902,7 +936,37 @@ r_save_mck3:
->>>       b       r_ps
->>>
->>>  r_save_mck4:
->>> +     cmp     tmp1, #4
->>> +     bne     r_save_mck5
->>>       ldr     tmp2, .saved_mck4
->>> +     b       r_ps
->>> +
->>> +r_save_mck5:
->>> +     cmp     tmp1, #5
->>> +     bne     r_save_mck6
->>> +     ldr     tmp2, .saved_mck5
->>> +     b       r_ps
->>> +
->>> +r_save_mck6:
->>> +     cmp     tmp1, #6
->>> +     bne     r_save_mck7
->>> +     ldr     tmp2, .saved_mck6
->>> +     b       r_ps
->>> +
->>> +r_save_mck7:
->>> +     cmp     tmp1, #7
->>> +     bne     r_save_mck8
->>> +     ldr     tmp2, .saved_mck7
->>> +     b       r_ps
->>> +
->>> +r_save_mck8:
->>> +     cmp     tmp1, #8
->>> +     bne     r_save_mck9
->>> +     ldr     tmp2, .saved_mck8
->>> +     b       r_ps
->>> +
->>> +r_save_mck9:
->>> +     ldr     tmp2, .saved_mck9
->>>
->>>  r_ps:
->>>       /* Write MCK ID to retrieve the settings. */
->>> @@ -921,6 +985,7 @@ r_ps:
->>>       wait_mckrdy tmp1
->>>
->>>       add     tmp1, tmp1, #1
->>> +     ldr     tmp2, .mck_count
->>
->> Or you can add tmp4 for this
->>
->>>       b       r_loop
->>>  r_done:
->>>  #endif
->>> @@ -1045,6 +1110,10 @@ ENTRY(at91_pm_suspend_in_sram)
->>>       str     tmp1, .memtype
->>>       ldr     tmp1, [r0, #PM_DATA_MODE]
->>>       str     tmp1, .pm_mode
->>> +#ifdef CONFIG_SOC_SAMA7
->>> +     ldr     tmp1, [r0, #PM_DATA_PMC_MCK_COUNT]
->>> +     str     tmp1, .mck_count
->>> +#endif
->>>
->>>       /*
->>>        * ldrne below are here to preload their address in the TLB as access
->>> @@ -1132,6 +1201,10 @@ ENDPROC(at91_pm_suspend_in_sram)
->>>       .word 0
->>>  .pmc_version:
->>>       .word 0
->>> +#ifdef CONFIG_SOC_SAMA7
->>> +.mck_count:
->>> +     .word 0
->>> +#endif
->>>  .saved_mckr:
->>>       .word 0
->>>  .saved_pllar:
->>> @@ -1155,6 +1228,16 @@ ENDPROC(at91_pm_suspend_in_sram)
->>>       .word 0
->>>  .saved_mck4:
->>>       .word 0
->>> +.saved_mck5:
->>> +     .word 0
->>> +.saved_mck6:
->>> +     .word 0
->>> +.saved_mck7:
->>> +     .word 0
->>> +.saved_mck8:
->>> +     .word 0
->>> +.saved_mck9:
->>> +     .word 0
->>>  #endif
->>>
->>>  ENTRY(at91_pm_suspend_in_sram_sz)
->>
-> 
+-- 
+2.43.0
 
 
