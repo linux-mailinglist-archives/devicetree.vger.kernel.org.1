@@ -1,225 +1,199 @@
-Return-Path: <devicetree+bounces-147541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1065A388AE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 17:06:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6692BA388B8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 17:06:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7747A176E01
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 16:00:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E38A177B36
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 16:01:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9513522540F;
-	Mon, 17 Feb 2025 15:53:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8AD0226552;
+	Mon, 17 Feb 2025 15:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="S757mGQv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HCyuQuVk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF8B2149E16;
-	Mon, 17 Feb 2025 15:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E29CD225765
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 15:54:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739807595; cv=none; b=drDf4hA/Pcmt6NsiVh9YPmnj+EA+di453j0W0/ugzvz7b9b1tQfw/Dfx0WwKbR4t0w7LO3tyZiuvPoLAANMV6d4ND4DpKk6nldxWBaqh7R6CPmuzYWmns1ZRkUiCYonqzpOODH6BURxhKT6BQPt+i/fNNqDFovKNVCEkG0rtpBY=
+	t=1739807666; cv=none; b=c6OVTC852UnPmJyCWhh4OsEXE8p8f92H9dwjKkE0ifi+xmVx0oeURRgBa4uZq289e6o3reK7cFUTNo1t5YmPyRnk6W9sYBfDAbkMfwN8HsoSaT50/s4odH3IUUCfWPH8fPkpMJtM3++KPBZBn+tglvMaov+MwDhZiDeT6uQAcTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739807595; c=relaxed/simple;
-	bh=wMdlwX1zycQ/olpFgvqq2mKqCvRYB6SEdDAMSGU4EHo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=amNLHM/7mRIlzMpTjeLZW8qFHWIe+fzZzncSLzQC7LuUa7k/vusUzSHN584WbSyhVEMr8ITg4ZZ1VLVvPxR6/ohluBsdOa2jilVxJapZhXTL6SwUGaI5skXDweeFyHJpqQlxCKyR2bXDu5Pn3qGKRse6j95vgBF8qmbwqIlguSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=S757mGQv; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BC6DA4431C;
-	Mon, 17 Feb 2025 15:53:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739807591;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BUY8RBuJLNPYXLzFRSZTltcWOxb/JvQg0i4KGslCkvs=;
-	b=S757mGQvV6XaSYr+mgBWjh0K/YWYYsvnfs9J/kFPfSNhsPJ+UKZgTntfAgOV5a76Ra4iQA
-	JvQHnjeKsW7dOOkALyAJeE97I18GirxyxL+75bh/DaHkQ+VgZwSYgV/K7UI4IXmWotroF2
-	R8D1Sv6uIma2Sd7bR/UZOYq57MOfecag85vXp/cYfMgR/rcKJu79TllCMfbNRgdS0DFtOh
-	w6zH6dvx5KrkkCnCHJ5v+GeGMJgSOFuqAXr8U1zsBMcJwgWlOP1rmdjyNLVY43k5kWWQkL
-	4C+wainse0oqxUNQ8XDKfOV3L4AvpWoa716e9sYsO8Qjtq3MfXSKtmtX1MFykw==
-Date: Mon, 17 Feb 2025 16:53:06 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Phil Elwell <phil@raspberrypi.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Andrea della Porta
- <andrea.porta@suse.com>, Arnd Bergmann <arnd@arndb.de>,
- "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <bcm-kernel-feedback-list@broadcom.com>, bhelgaas@google.com,
- brgl@bgdev.pl, Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
- <conor+dt@kernel.org>, derek.kiernan@amd.com, devicetree@vger.kernel.org,
- dragan.cvetic@amd.com, Florian Fainelli <florian.fainelli@broadcom.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, krzk+dt@kernel.org,
- kw@linux.com, Linus Walleij <linus.walleij@linaro.org>, linux-arm-kernel
- <linux-arm-kernel@lists.infradead.org>, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, "open
- list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS"
- <linux-pci@vger.kernel.org>, "moderated list:BROADCOM BCM2711/BCM2835 ARM
- ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
- lpieralisi@kernel.org, luca.ceresoli@bootlin.com,
- manivannan.sadhasivam@linaro.org, masahiroy@kernel.org, Michael Turquette
- <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
- saravanak@google.com, Stephen Boyd <sboyd@kernel.org>,
- thomas.petazzoni@bootlin.com, Stefan Wahren <wahrenst@gmx.net>, Will Deacon
- <will@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: Re: [PATCH v6 00/10] Add support for RaspberryPi RP1 PCI device
- using a DT overlay
-Message-ID: <20250217165306.3f055b94@bootlin.com>
-In-Reply-To: <CAMEGJJ2_HVKfsE3P22baadbzxSDAX=yTr=m76YuXa5A2cJsJig@mail.gmail.com>
-References: <CAMEGJJ3=W8_R0xBvm8r+Q7iExZx8xPBHEWWGAT9ngpGWDSKCaQ@mail.gmail.com>
-	<20250213171435.1c2ce376@bootlin.com>
-	<a3c5103c-829a-4301-ba53-6ef9bd1e74e7@lunn.ch>
-	<CAMEGJJ3-JXhin_Ht76EqUNAwLiNisa9PrCrdUzCgj=msGZfb5A@mail.gmail.com>
-	<821d4c74-09b0-4c1b-b8ef-f8c08d0f6b5b@lunn.ch>
-	<CAMEGJJ0QbzCScfTRA_pw_8A=iMYMAAFs69zFNLwcOxF5Syugpw@mail.gmail.com>
-	<20250213195304.3a2df02c@bootlin.com>
-	<CAMEGJJ0kGCj=tjM6KswbG_+ZFkzMwPY+06BXCU0qSnbBKz0=ug@mail.gmail.com>
-	<20250213220639.373da07b@bootlin.com>
-	<CAMEGJJ2_HVKfsE3P22baadbzxSDAX=yTr=m76YuXa5A2cJsJig@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1739807666; c=relaxed/simple;
+	bh=kjxigSYuh0hp4aUsjGREds7eyTvJ+6nVBk+lcsgpBW8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BnkMZmQDOyl/UoxWSrOPmLvdxzgjtclbAMMqGWJ5D2fSm/ABCrJRcbKgC8mMLe9qcDVYPVwk6gn34DXGRavAmfFMohIrTAnN3j/U/fCBOzFL4JWTjQBfkzkzjKnRqWLTJZtyMBsNDODSbn37bzl1HNHMglO3LVTJ66Z8MKe9oJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HCyuQuVk; arc=none smtp.client-ip=209.85.161.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5fc016cbbe8so3464758eaf.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 07:54:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739807664; x=1740412464; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=t7nkc1E4SuMpfkZBwdic/wH7FuVujFv27IRlyVi8HR0=;
+        b=HCyuQuVk1Hc5CUc9aienAd1RknypvBzVt6GKS+7BSi8Q91vRioGsHtZkBJ7aiiWmLt
+         REgguOGFQcFfcZjf3fzxMP3kFLWOjvUYQ5jIQdG4QU6irtu510KwOyyjs73hIZ7e/nKm
+         5xQttfOoEgaz422X79pg2dqedrm8Yyhn7amfwGM4ITKoz17IyWP/yCAc3VPsUOPL7EAv
+         a6GnLcVEgxLwhRT5zrEih3iRHNF60Pkzd8AJde9tphFeBffQ6+cYybzF7raM/lKChcLs
+         /CqZdg4j7/DnmFGwpkaO1HgsmLJGh5mdikBN4sLJo7wZOcl/MKxCZbhTWMIVGoJnxqSQ
+         7aFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739807664; x=1740412464;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=t7nkc1E4SuMpfkZBwdic/wH7FuVujFv27IRlyVi8HR0=;
+        b=lU6Ly9IR3I7W0JW9Ay44KQ33uPpE4CgUEb6tNHEPIuk1pc1vfZGBn5Alfbw0EdNy4B
+         VvuipwtnrNEMN2wjln/MIryRDyD1CnB+arJASRodFkZQfnQbv1x2uoJZO9TTrqpqPSRT
+         iVCtaU1NtrvuX3FJPB19AroI5hf0sPb5Y5p6N2ILJ1N51k+aq4WicKowK26QPO3ecDni
+         RJVVm4Dx4J4SBeJvvY3fmvg/T4IYPwHs7kRikzyFUzheNSiiNpIxWNtAk/y7kDTF9lSR
+         QpgVGTVAijiXuXv726HMqnepDjQs99U7bGW+wpyl8UVJX5M8Gf+NIChkvODX/vPWmom9
+         VTzw==
+X-Forwarded-Encrypted: i=1; AJvYcCXJGbsiwffowBfxiEoOEPBSLKi4CrNsFpwqSKKjfAM7LNdBjCU7RF58o/KO0JSEkSbKUODGhs490YgL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwiGcH9DmTdM2tMXClrQhHDOVY09rfYjiXY8Hw16Lih6WoKU0w4
+	zJm/rsPU0KI7Wen/Av8XmUO38jrEdEc1nONktdvgo9S5dcWeTSsS7Ay5SW71pKZApStlaEKc9SD
+	XjY/Gp4sXq5D/2Sd7fsHIE5F+0UMw5TEhI17cHQ==
+X-Gm-Gg: ASbGncsNaiJUJHdz3ofMEWjHDQ2v+JOCwL2ZWY99cdhOd3bJpQ7THr/HK9Tu8FTKPS2
+	G7Of3mDUENMqGEr3fXtO4zNC3yKdNSAuD4ERyKhk+10SxEI8n5EoWrLK3DZ+3smq8jvDnAyvlCx
+	qIBroOCRrNib7oRg8SFOSIvh6H9c0=
+X-Google-Smtp-Source: AGHT+IHvTCmFM5tGQaYQOyDWi8grzthxUQH0wcQ1hH71I30bb6g5MgRKk6hVo5Yg3+2ugUoVH1oUuA8UG+yNXvsHXWA=
+X-Received: by 2002:a05:6820:1c98:b0:5fc:b3b0:9f47 with SMTP id
+ 006d021491bc7-5fcc5728c9fmr5324694eaf.8.1739807662857; Mon, 17 Feb 2025
+ 07:54:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdehkeekudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeviefffeegiedtleelieeghfejleeuueevkeevteegffehledtkeegudeigffgvdenucfkphepvdgrtddumegvtdgrmedvgeeimeejjeeltdemvdeitgegmegvvddvmeeitdefugemheekrgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemvdegieemjeejledtmedviegtgeemvgdvvdemiedtfegumeehkegrpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfeehpdhrtghpthhtohepphhhihhlsehrrghsphgsvghrrhihphhirdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtoheprghnughrvggrrdhpohhrthgrsehsuhhsvgdrtghomhdprhgtphhtthhopegrrhhnugesrghrnhgusgdruggvpdhrtghpthhtoheps
- ggtmhdqkhgvrhhnvghlqdhfvggvuggsrggtkhdqlhhishhtsegsrhhorggutghomhdrtghomhdprhgtphhtthhopegshhgvlhhgrggrshesghhoohhglhgvrdgtohhmpdhrtghpthhtohepsghrghhlsegsghguvghvrdhplhdprhgtphhtthhopegtrghtrghlihhnrdhmrghrihhnrghssegrrhhmrdgtohhm
-X-GND-Sasl: herve.codina@bootlin.com
+References: <20250217131046.21006-1-loic.poulain@linaro.org>
+ <AS4PR04MB969252FACA03605C1C0E00E3E7FB2@AS4PR04MB9692.eurprd04.prod.outlook.com>
+ <CAMZdPi8X6tMoLocskyEG8GwdpZ9i8P_R1bT=r1-QF+sb7ofP6A@mail.gmail.com> <AS4PR04MB969270A58305BE9FA8126C88E7FB2@AS4PR04MB9692.eurprd04.prod.outlook.com>
+In-Reply-To: <AS4PR04MB969270A58305BE9FA8126C88E7FB2@AS4PR04MB9692.eurprd04.prod.outlook.com>
+From: Loic Poulain <loic.poulain@linaro.org>
+Date: Mon, 17 Feb 2025 16:53:47 +0100
+X-Gm-Features: AWEUYZkM4Bs9_0VnzFgchtq3Nl5cgNo-z2VcatacKzC_D8C0J3wE63HlSydIQiI
+Message-ID: <CAMZdPi_YrNN2zwbXgb0gXwPeyvphyO7G8j0Hm4oPGnE5uOQw-w@mail.gmail.com>
+Subject: Re: [PATCH 1/2] bluetooth: btnxpuart: Support for controller wakeup
+ gpio config
+To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+Cc: "marcel@holtmann.org" <marcel@holtmann.org>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
+	"linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Amitkumar Karwar <amitkumar.karwar@nxp.com>, 
+	Sherry Sun <sherry.sun@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Phil,
-
-On Thu, 13 Feb 2025 21:12:43 +0000
-Phil Elwell <phil@raspberrypi.com> wrote:
-
-> On Thu, 13 Feb 2025, 21:06 Herve Codina, <herve.codina@bootlin.com> wrote:
-> >
-> > Hi Phil,
-> >
-> > On Thu, 13 Feb 2025 20:15:06 +0000
-> > Phil Elwell <phil@raspberrypi.com> wrote:
-> >  
-> > > Once more, with plain text, which I'd hoped the Android GMail client
-> > > would work out for itself.
+On Mon, 17 Feb 2025 at 16:41, Neeraj Sanjay Kale
+<neeraj.sanjaykale@nxp.com> wrote:
+>
+> Hi Loic,
+>
+> > On Mon, 17 Feb 2025 at 14:53, Neeraj Sanjay Kale
+> > <neeraj.sanjaykale@nxp.com> wrote:
+> > > Hi Loic,
 > > >
-> > > On Thu, 13 Feb 2025, 18:53 Herve Codina, <herve.codina@bootlin.com> wrote:  
-> > > >
-> > > > Hi Phil,
-> > > >
-> > > > On Thu, 13 Feb 2025 17:57:37 +0000
-> > > > Phil Elwell <phil@raspberrypi.com> wrote:
-> > > >  
-> > > > > On Thu, 13 Feb 2025 at 17:45, Andrew Lunn <andrew@lunn.ch> wrote:  
-> > > > > >  
-> > > > > > > > Or do you mean a custom board, which has a CPU, RP1 and the button and
-> > > > > > > > fan are directly on this custom board? You then want a board DTS which
-> > > > > > > > includes all these pieces?  
-> > > > > > >
-> > > > > > > That depends on whether you count the Raspberry Pi 5 as a custom board.  
-> > > > > >
-> > > > > > So you mean the Pi 5 board would itself make use of the resources the
-> > > > > > RP1 device has? They are not simply connected to headers for plugin
-> > > > > > boards, but used by the main board? Hence you want to describe them in
-> > > > > > the board .DTS file.  
-> > > > >
-> > > > > That's correct. But even for plug-in devices, those which are on
-> > > > > non-discoverable buses need overlays to declare them, which causes a
-> > > > > problem when the overlay application happens before the kernel is
-> > > > > started.
-> > > > >  
-> > > >
-> > > > Hum, I see.
-> > > >
-> > > > We worked on overlay usage on non-discoverable buses wired to a connector
-> > > > and we did a talk about issues we are facing on at Plumber [0].
-> > > >
-> > > > You can also find our big picture in [1] and a last contribution introducing
-> > > > export-symbols feature in [2]. export-symbols is also under discussion on
-> > > > some other threads.
-> > > >
-> > > > Also, we proposed the i2c bus extensions feature [3] whose goal is to allow
-> > > > an addon board to add devices on an i2c bus provided by a base board and
-> > > > wired to an connector the addon board is connected to.
-> > > >
-> > > > Maybe in your case, you can decouple resources (gpio, pwm) provided by the
-> > > > addon board and used by the base board using also nexus node.
-> > > >
-> > > > We use a nexus node [4] (not presented at the Plumbers talk because the idea
-> > > > came during 'out of talk' discussions in Plumbers) in order to allow our
-> > > > addon board to use resources provided by the base board.
-> > > >
-> > > > In your case, if I understood, you are in the other direction but why not
-> > > > using also a nexus node to decouple and translate resources in this other
-> > > > direction ?
-> > > >
-> > > > Don't know if this idea can help but feel free to ask for some more
-> > > > information if needed.  
+> > > Thank you for your patch. Just a few suggestions below:
 > > >
-> > > Nexus nodes look interesting - I see them as adding a layer of
-> > > abstraction such that, for example, boards can declare which of their
-> > > specific resources performs a common function so that clients can
-> > > treat them all the same. We do the same thing in a limited way by
-> > > using common labels on nodes, but this goes much further.
-> > >
-> > > In the case of Pi 5 and RP1, I imagine you are proposing that the Pi 5
-> > > dtb declares the connector node and the overlay fills in the content
-> > > with references to its GPIO controller, PWM controller etc. However, I
-> > > think the overlay would also have to be board specific because it's
-> > > not possible to patch part of a property from an overlay, so you'd end
-> > > up overwriting the GPIO number as well as the controller reference.
-> > >
-> > > What is needed to make this work is the ability to cope with
-> > > unresolved references in the base dtb, to be resolved as each overlay
-> > > is applied, with runtime checking that each reference is resolved
-> > > before it is used, all of which sounds like a nightmare. Plus, we
-> > > really don't want to have to change the way all our camera and display
-> > > overlays work on all Raspberry Pis just to accommodate somebody's idea
-> > > of how RP1 should be handled.  
+> > > > @@ -616,6 +617,13 @@ static void ps_init(struct hci_dev *hdev)
+> > > >                 break;
+> > > >         }
+> > > >
+> > > > +       if (!device_property_read_u8(&nxpdev->serdev->dev, "nxp,wakein-
+> > pin",
+> > > > +                                    &psdata->h2c_wakeup_gpio))
+> > > > +               psdata->h2c_wakeupmode = WAKEUP_METHOD_GPIO;
+> > > > +       if (!device_property_read_u8(&nxpdev->serdev->dev,
+> > > > + "nxp,wakeout-
+> > > > pin",
+> > > > +                                    &psdata->c2h_wakeup_gpio))
+> > > > +               psdata->c2h_wakeupmode =
+> > BT_HOST_WAKEUP_METHOD_GPIO;
+> > > > +
+> > > >         psdata->cur_psmode = PS_MODE_DISABLE;
+> > > >         psdata->target_ps_mode = DEFAULT_PS_MODE;
+> > > >
+> > > Please move device_property_read for "nxp,wakein-pin" to ps_setup(), after
+> > "device-wakeup" is read.
 > >
-> > Just to be clear, my comments were not there to tell you how RP1 should
-> > work. I just proposed ideas without trying to force anything and I can
-> > fully understand that ideas proposed don't feed your needs.
+> > Ok, but then I'll need to move all the default value handling from
+> > ps_setup() into ps_init() as well.
+> I don't think that would be needed. Simply using the example code I mentioned below should suffice.
+>
+> To re-iterate, if "device-wakeup-gpios" is defined, we use WAKEUP_METHOD_GPIO, and if "nxp,wakein-pin" is present, use it, else simply use 0xff.
+>
+> But if "device-wakeup-gpios" is absent, use default WAKEUP_METHOD_BREAK.
+>
 > >
-> > Sorry if my approach was misunderstood.  
-> 
-> I feel I've been misunderstood - I appreciate your ideas.
-> 
-> Perhaps it would help if you could outline how you think we could
-> apply your suggestions?
-> 
+> > >
+> > > I think we should not set h2c_wakeupmode as WAKEUP_METHOD_GPIO
+> > based on "nxp,wakein-pin" alone.
+> > >
+> > > In existing code, we are setting default_h2c_wakeup_mode to
+> > WAKEUP_METHOD_GPIO if "device-wakeup" is defined in DT, and psdata-
+> > >h2c_wakeup_gpio = 0xff. WAKE_IN pin is not read.
+> > > In this case the FW considers default GPIO as WAKE_IN pin (as per
+> > datasheet), which is a valid scenario.
+> > >
+> > > But this logic will fail if we specify only "nxp,wakein-pin", without "device-
+> > wakeup" in DT.
+> > > Hence, I recommend something as follows in ps_setup():
+> > > - if (!psdata->h2c_ps_gpio)
+> > > + if (!psdata->h2c_ps_gpio ||
+> > > + device_property_read_u8(&nxpdev->serdev->dev, "nxp,wakein-pin",
+> > > + &psdata->h2c_wakeup_gpio))
+> > >         psdata->h2c_wakeup_gpio = 0xff;
+> >
+> > Ok, will do, look like we should print an explicit error then, as it would be a
+> > clear devicetree misconfiguration?
+> Yes, an error print for "nxp,wakein-pin", without "device-wakeup-gpios" would be helpful. Thanks!
+>
+> >
+> > > For "nxp,wakeout-pin", I have yet to submit patch for "host-wakeup-gpios".
+> > I can move "nxp,wakeout-pin" later if required.
+> >
+> > It may not be necessary, I've submitted an other PR for handling simple
+> > dedicated wakeup interrupts at serdev core level instead of having to re-
+> > implement it in each driver:
+> > https://www.s/
+> > pinics.net%2Flists%2Flinux-
+> > serial%2Fmsg66060.html&data=05%7C02%7Cneeraj.sanjaykale%40nxp.com%
+> > 7C979e9f5f906b438d707e08dd4f61b6e9%7C686ea1d3bc2b4c6fa92cd99c5c30
+> > 1635%7C0%7C0%7C638754003307634680%7CUnknown%7CTWFpbGZsb3d8e
+> > yJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoi
+> > TWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=h%2B9yWxHbWkimN
+> > 7oHOM0ZU9Cgi1OK86NLGKP7Hw%2B6vRs%3D&reserved=0
+> >
+> > With that, all we would need is adding the wakeup interrupt in the devicetree:
+> > ```
+> >         interrupt-parent = <&gpio4>;
+> >         interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
+> >         interrupt-names = "wakeup";
+> >         wakeup-source;
+> > ```
+> Yes, this was my initial approach, which works fine. But I think using "host-wakeup-gpios" would be a cleaner approach.
+> Driver will simply use the gpiod_to_irq() API to get an IRQ handler.
+> ```
+>         compatible = "nxp,88w8987-bt";
+>         host-wakeup-gpios = <&gpio3 24 GPIO_ACTIVE_HIGH>;
+> ```
+> Please do let me know if this method has any drawbacks.
 
-I was thinking about what your mentioned, i.e. the overlay fill the nexus node.
-No sure to understand why the overlay should patch some properties.
-Also where are the unresolved references in that case. The base DT refers to
-the Nexus node.
-The issue will probably be that the translation performed by the nexus node is
-not available until the overlay is applied. The consumer will see errors other
-than PROBE_DEFER when if probes while the overlay is not applied.
+Two points:
+- Why bother with a GPIO if we can directly pass an interrupt (and if
+actually don't care about gpio framework usage)
+- Why re-implementing it in the driver if the dedicated interrupt can
+be handled at the generic layer (serdev bus/core)
+Would be good if we can stick with
+`Documentation/devicetree/bindings/power/wakeup-source.txt`.
 
-Also, the solution will lead to memory leak at runtime. Indeed, the overlay
-add properties in an already existing node.
-If the overlay is applied by the Kernel itself, this lead to memory leak when
-the overlay is removed.
-Indeed, an overlay can add/remove node without any issue but it cannot
-add/remove properties to/from existing nodes.
-
-In the case described here, the nexus node is already present in the DT and the
-overlay add/remove properties to/from this existing node.
-
-I haven't got any better idea for the moment in order to have this kind of
-'reverse' Nexus node.
-
-Best regards,
-Hervé
+Regards,
+Loic
 
