@@ -1,145 +1,114 @@
-Return-Path: <devicetree+bounces-147645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB356A38DFB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 22:31:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABF80A38E18
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 22:34:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC12616CBAD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 21:31:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2197F3B467F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 21:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8980119E968;
-	Mon, 17 Feb 2025 21:31:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F251B0F18;
+	Mon, 17 Feb 2025 21:32:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="J9Gsuz5s"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="YLeO4iF3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25327383;
-	Mon, 17 Feb 2025 21:31:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DE061B0412
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 21:32:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739827863; cv=none; b=jXRtxHFDpbAmPIJjuvZp8tBL5TBf6ZJLoHQvsWetO+Ml3L/qqaknjVl+TQ5RTqqPOgFXQBF22Zcum3pbQrZ9+h7ReXbc+EQ8qhwk0y56p7I3Dvworvjp1Hri7W6Xo+FxRdttET/5hSE/OOUYVQLtw9mWbSepBEcEkSahY/T7NuI=
+	t=1739827968; cv=none; b=AfV4JGBS2G2OwBfYworhGi/4dy2RqfQUwuT0vPPurt1PglAYfx+tKu81MRJF2OLNFhZhsbQ6RkYeUb7XqvW5Mi3toaG9+GyAOY/dQtnQDa0gNKPWc95ru+EGHZKfA5plALSs1dfICoLCvM2RUJDQE2WIC1x9iM3TitVGIWwUo2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739827863; c=relaxed/simple;
-	bh=sYlE2oo10D+zlZSU7JzjkABqbjlenUkrRatqjsLLxuA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SFyYhXzhcBXfVn7prYh4x1sbG9NIEn9i3f10Ur7GezhDqkqoJ6EDjlZkJU7Y09vTPgPiU9QS+ctKnYHS9k8/bgYbbQPyZP6e9MS9E+Ww/WYEzGe7hk3AnJl+fA5aZi5ZeRqWfl1lWgl/k65GMKqs5uAYCylPkitEFyoqoKISjLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=J9Gsuz5s; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=km4O/2HgH8CFmLxzZj0ztyAKVNJrr0OHpoZQa5eynRY=; b=J9Gsuz5sV/BSaYMRSzAmvv17GB
-	GXqAZ9x22QoaVuXylY1bKwRYo9jS6ntWADALzdJKRCGnTvMov2e55KZ+aMofNVtZEBS0NOEChHfzu
-	j5Zv7mz/CGIkHVClpNrpunKVsRp6e8vnTthm5IDQml/qC2oy7qzY9mx1GNtIBmHU4Efk10v6ZeowP
-	70S70zQg1nOw2kdcPtSxWm4zLt4fApluCZvkDOxf2Ydbo3E+IJ7QdEOGLv//dO27Q++LEbOGc7nIA
-	5LllI1aLEc5Ql8Gpkee0kfQDBNeVEs6npmukUoFPxtCvDpf0jut6npLKC0mhO8RGgk8vb8QuxHm9H
-	anKKwjlw==;
-Received: from i53875bc0.versanet.de ([83.135.91.192] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tk8hN-0007VX-JV; Mon, 17 Feb 2025 22:30:41 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Jonas Karlman <jonas@kwiboo.se>,
- Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
- Kever Yang <kever.yang@rock-chips.com>, Dragan Simic <dsimic@manjaro.org>,
- Tim Lunn <tim@feathertop.org>, FUKAUMI Naoki <naoki@radxa.com>,
- Michael Riesch <michael.riesch@wolfvision.net>,
- Stephen Chen <stephen@radxa.com>, Elon Zhang <zhangzj@rock-chips.com>,
- Alexey Charkov <alchark@gmail.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- kernel@collabora.com, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v4 2/2] arm64: dts: rockchip: Add Radxa ROCK 4D device tree
-Date: Mon, 17 Feb 2025 22:30:40 +0100
-Message-ID: <3568510.6YUMPnJmAY@diego>
-In-Reply-To: <1914418.tdWV9SEqCh@earth>
-References:
- <20250217164009.130286-1-detlev.casanova@collabora.com>
- <01b72ad6-67bc-472e-b04d-c9fd42d37d8d@kwiboo.se> <1914418.tdWV9SEqCh@earth>
+	s=arc-20240116; t=1739827968; c=relaxed/simple;
+	bh=WqeFbzv30O7RaX+m3emlybcx2+Iz8b9iq7nsHwVXm3c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mzkTzz+ls0M0OWIfHdbgAQY6QMCgNA+Hf6R/2M7a6rRVZ17yQG02nj1gpVUEDfBcd9xr0IQcV4QP5Zwj8P1sgPkZzamhw/vIzu32JFznEEwVirAq6iHcLFSN91rhAbZm7yviAdBpHQNWtKrJ/3eRUllfvxeLVmgo1Ie9CDOGZR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=YLeO4iF3; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Authentication-Results: purelymail.com; auth=pass
+DKIM-Signature: a=rsa-sha256; b=YLeO4iF3jLlJiCs8yTJaWttLqRAHhXkgkMLxU+TnRgqCp8KUjCs0TQ38YmD2h2Pl7w9OVOHJggMexqr0Pg2JAKuZ3aoa11IvfxIUiitUII4/uSytPZYwcgsMiZuXhTW39g8AcRwcMmDV7TU1xbKRX+oCd4RpJX9B7saVE0p4noXpYBJ50ly3MUAfRXnO0DHmUrDJvWuzTMeRdFfSfTR2MILbV69baiOPgK7gl5Jbuo/Y2T6i8s/tn/kClXbuWO29r5U7gdBgN6VNb9LkHBjtfssQ+6pz3QH4SQsRnfL1JB78gbpbRty8BKznHUYSGT7zWHcv7ce1vmUfe4O1k1c0nQ==; s=purelymail3; d=purelymail.com; v=1; bh=WqeFbzv30O7RaX+m3emlybcx2+Iz8b9iq7nsHwVXm3c=; h=Feedback-ID:Received:From:Subject:Date:To;
+Feedback-ID: 68247:10037:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 42194286;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Mon, 17 Feb 2025 21:32:32 +0000 (UTC)
+From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Subject: [PATCH 0/5] Add watchdog and USB nodes for the Exynos990 SoC
+Date: Mon, 17 Feb 2025 22:32:02 +0100
+Message-Id: <20250217-exynos990-dt-changes-febuary-v1-0-99935218cbf4@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANOqs2cC/yXMQQ5AMBBA0avIrE3SNoS6iligU2ZT0kGIuLuG5
+ Ut+/g1CkUmgyW6IdLDwEhJ0nsE492EiZJcMRplSGV0hnVdYxFqFbsM/EfQ07H280A+jrguqVWE
+ dpMUayfP57dvueV7fewLUbgAAAA==
+X-Change-ID: 20250217-exynos990-dt-changes-febuary-fbc184e8049d
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Igor Belwon <igor.belwon@mentallysanemainliners.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739827951; l=1901;
+ i=igor.belwon@mentallysanemainliners.org; s=20241206;
+ h=from:subject:message-id; bh=WqeFbzv30O7RaX+m3emlybcx2+Iz8b9iq7nsHwVXm3c=;
+ b=TIqcWcN/3cdywHBBFciP9hhZz+iljvZrBnGi/wNrATN9PZu+WWmjTtxO0upwL2m/0g0RdqYq4
+ VCAkZfdA19sApd5ckbAR8naTrWqa+qbj2ITZto9w1hvsHGXwDRZEsPU
+X-Developer-Key: i=igor.belwon@mentallysanemainliners.org; a=ed25519;
+ pk=qKAuSTWKTaGQM0vwBxV0p6hPKMN4vh0CwZ+bozrG5lY=
 
-Am Montag, 17. Februar 2025, 22:07:06 MEZ schrieb Detlev Casanova:
-> On Monday, 17 February 2025 12:08:47 EST Jonas Karlman wrote:
-> > On 2025-02-17 17:34, Detlev Casanova wrote:
-> > > +	pmic@23 {
-> > > +		compatible = "rockchip,rk806";
-> > > +		reg = <0x23>;
-> > > +
-> > > +		gpio-controller;
-> > > +
-> > > +		interrupt-parent = <&gpio0>;
-> > > +		interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
-> > > +
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&pmic_pins
-> > > +			     &rk806_dvs1_null
-> > > +			     &rk806_dvs2_null
-> > > +			     &rk806_dvs3_null>;
-> > > +
-> > > +		system-power-controller;
-> > > +
-> > > +		vcc1-supply = <&vcc_5v0_sys>;
-> > > +		vcc2-supply = <&vcc_5v0_sys>;
-> > > +		vcc3-supply = <&vcc_5v0_sys>;
-> > > +		vcc4-supply = <&vcc_5v0_sys>;
-> > > +		vcc5-supply = <&vcc_5v0_sys>;
-> > > +		vcc6-supply = <&vcc_5v0_sys>;
-> > > +		vcc7-supply = <&vcc_5v0_sys>;
-> > > +		vcc8-supply = <&vcc_5v0_sys>;
-> > > +		vcc9-supply = <&vcc_5v0_sys>;
-> > > +		vcc10-supply = <&vcc_5v0_sys>;
-> > > +		vcc11-supply = <&vcc_2v0_pldo_s3>;
-> > > +		vcc12-supply = <&vcc_5v0_sys>;
-> > > +		vcc13-supply = <&vcc_1v1_nldo_s3>;
-> > > +		vcc14-supply = <&vcc_1v1_nldo_s3>;
-> > > +		vcca-supply = <&vcc_5v0_sys>;
-> > > +
-> > > +		#gpio-cells = <2>;
-> > 
-> > This should probably be sorted next to gpio-controller.
-> 
-> It's not unusual to put # props at the end. but I can move it up if it is 
-> preferred.
+Hi all!
 
-That is actually a multi-colored bikeshed ;-)
+This series adds the nodes to enable the watchdog and USB support for
+the Exynos990 SoC.
 
-When sorting alphabetically, do you
-- just ignore the "#", this would move #gpio-cells to gpio*  but also
-  split up #address-cells and #size-cells
-- count "#" as special character and move them to the bottom, but this
-  would split #gpio-cells from gpio-controller
+The watchdog consists of two clusters (cl0 and cl2). Unsure why Samsung has
+skipped cl1 on this SoC. Both are enabled and working - tested on a
+device from the -x1s family.
 
---- TL;DR
-So far I've not managed to come with a 1-size-fits-all opinion, but for
-#gpio* and #clock* properties, readability gets better when they are
-together with other gpio* / clock* properties .
-----
+The USB controller of this SoC supports full-speed, high-speed and
+super-speed operation modes. Due to my inability to get any of my
+Exynos990 devices to enumerate as super-speed (even under the vendor
+kernels) only the UTMI+ setup is done - as such, only the high-speed
+mode is enabled. Dummy regulators are used in place of PMIC provided
+ones until we implement PMIC.
 
-Also I think you could do away with all the empty lines between properties
-above (pinctrl <-> system-power-controller, etc), but of course keep the
-empty between the subnodes below :-)
+This series depends on the following series:
+- Watchdog commit: https://lore.kernel.org/all/20250217-exynos990-wdt-v2-0-3eb4fbc113f4@mentallysanemainliners.org
+- USB commits:
+	- https://lore.kernel.org/all/20250217-exynos990-bindings-usb3-v2-1-3b3f0809f4fb@mentallysanemainliners.org/
+	- https://lore.kernel.org/all/20250214-exynos990-dwusb-v1-0-d68282c51ba8@mentallysanemainliners.org/
 
+Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+---
+Igor Belwon (5):
+      arm64: dts: exynos990: Enable watchdog timer
+      arm64: dts: exynos990: Add USB nodes
+      arm64: dts: exynos990-x1s-common: Enable USB
+      arm64: dts: exynos990-c1s: Enable USB
+      arm64: dts: exynos990-r8s: Enable USB
 
-Heiko
+ arch/arm64/boot/dts/exynos/exynos990-c1s.dts       | 16 +++++++
+ arch/arm64/boot/dts/exynos/exynos990-r8s.dts       | 16 +++++++
+ .../boot/dts/exynos/exynos990-x1s-common.dtsi      | 16 +++++++
+ arch/arm64/boot/dts/exynos/exynos990.dtsi          | 55 ++++++++++++++++++++++
+ 4 files changed, 103 insertions(+)
+---
+base-commit: 783ef70f458b28640a63dda599ae8628c3c7aa2e
+change-id: 20250217-exynos990-dt-changes-febuary-fbc184e8049d
 
+Best regards,
+-- 
+Igor Belwon <igor.belwon@mentallysanemainliners.org>
 
 
