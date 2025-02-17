@@ -1,179 +1,401 @@
-Return-Path: <devicetree+bounces-147338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D2B7A38026
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 11:30:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D69CA38033
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 11:31:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 728D5188D512
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:27:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F282616843E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 10:28:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2089216E1C;
-	Mon, 17 Feb 2025 10:27:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67CF2217711;
+	Mon, 17 Feb 2025 10:28:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="dXCQZGot"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dvFSH2wB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 119F3155321;
-	Mon, 17 Feb 2025 10:27:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C04217651
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 10:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739788055; cv=none; b=E5t+U4J63rVzFNpaVWWLc02qjdoOY1tAlpheG3Sf3F8PqjTLp8FGGI7Jl6ErSWE3RX5JvFXC49hte3dpK1JgzEhsIdkpu28tgGq0e6EFGQrTTZJLr4rtaSAbjurm0bQQXvZfbCLiHK2UXCgbphusS02GXWT3WwDTTnTRaCMSaS0=
+	t=1739788103; cv=none; b=A7d03R5avzqbIpueRv8/BASFZdnSZaDHjgfhJNTbtt+PkPjJAvymqoEejA8/LZB94cpqufJhOQfCAiQphq4M7RWsweEag5b8oL8fedc29s+2aLe09SAQ8hODoUEGHssUfqB4lX5xIdG4IWAGO2nihLvraMiY2VHTuD6NtZVaPxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739788055; c=relaxed/simple;
-	bh=LAzowDORi3usKijGOODCWDgnUFgIv/2A07scTU4XvEM=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=pYZMtLy0ErRpWJh25dnvknOFLOh3Xa4G192J1GLVIDSdcS98w7kntXlXrXbPAmill3x/x2O0HPFMi1dgqyEPx09bNkpN07ea+f4cMC5ZXYYIq7kmHIrm1NzCINLuohrmWImKVH0gZPggDboUdPCsA/BBPfBdKpzOf2LUZNxAZts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=dXCQZGot; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: ca074b0eed1911efaae1fd9735fae912-20250217
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=oTm1fXXyNbEjaSytwTVBGR6jZI+/WfArELCCgciIDnY=;
-	b=dXCQZGot1auTr7crYJkjJ6hCVDw9x2erR2ryM0gffgjZbvG6HBFLhMFmxxTTkEaSJweRvMpzTvI48ynA9+S8f3+r95LjhTGMpqO5juWBVQ7hv64QNBnmBPy/JnxSyotearM9ruD6vx462LYoI7YnUfCIBBuB0iopbPJcY57KZOc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:92bf289a-c5b0-4bc4-a355-cb7b1ccc92c7,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:f1097afc-7800-43c5-b97b-ddbe32561a5b,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
-	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
-	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: ca074b0eed1911efaae1fd9735fae912-20250217
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 280833431; Mon, 17 Feb 2025 18:27:29 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Mon, 17 Feb 2025 18:27:27 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Mon, 17 Feb 2025 18:27:27 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>, Will
- Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	<iommu@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Alexandre Mergnat
-	<amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<linux-usb@vger.kernel.org>, <stable@vger.kernel.org>, Chris-qj chen
-	<chris-qj.chen@mediatek.com>
-Subject: [PATCH v6 RESEND] dt-bindings: iommu: mediatek: Fix interrupt count constraint for new SoCs
-Date: Mon, 17 Feb 2025 18:26:52 +0800
-Message-ID: <20250217102652.1858304-1-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1739788103; c=relaxed/simple;
+	bh=l/VNLWskysYtXV8CMrR63if9pa5Zk/FbgUL2cKr4nig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RtuyjegrBySlGEEILR2JfNtBnHucv3Nwm83S3lVidx2aTDBYTAjJhGG3quBuyqyJQ2pa2U81QcES6Abn8RPffakn23vhrnKHDIMh/gIgmq7MXP3H8127yPnstqcUeFrysz720TsIuI8bSTTXXY8Ub/kCGoTEjBQ2e4kO2BTn+mE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dvFSH2wB; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ab771575040so1026946866b.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 02:28:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739788098; x=1740392898; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8eyngJ7nkEPHmdDriI8ss9BNKTlQzJe9o6ktClmVBmM=;
+        b=dvFSH2wB6DTom+bwwRFkJQsqygHE8hXB4bXCBSVw7SQusOd8fvLFHeV8ql8oACtFlY
+         +b1OkaLAbatbz11XnImqxF/QgE1GOuolJmV2nsGx0U5mHoT9mZu2NTZmScr1SytbMrl2
+         Eo0NXfj8aJ1zw4PHL5keb/ad43UoWkGp00dDUiI3TEPBVRZNl0DsoN+S4Wg6A09EM/8Y
+         /5VrJ3QQ1kVnTUlARwJ1dzLonA45K9QmClFWt/0YdJqvMUOjdbBU1Y14+wb090rq37QX
+         vjtDGZ+V/vyR3D8hMQ3v6Rn7SgVQHRwTC7tlETii+QlX7wR+cehnj4srOQitEehTT0Br
+         Zl7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739788098; x=1740392898;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8eyngJ7nkEPHmdDriI8ss9BNKTlQzJe9o6ktClmVBmM=;
+        b=FwguKqfAfQ8LbQ55jf8Q/3gqqyc5E180MmNc1rmV+GyZJfLcftz9vIhviQySBTx/Bb
+         a3EdtBx84FG1YxiSdk9vIES72mOiI78qH1l0mcMLYiOH2hlPmsp3N0Dik+d08++HZz7F
+         UYF8QejL79ytog2JaBOUAFhfBTRshlPzgjAECVLpaFBlRJylUulO7pJK2g4v37VlVdZG
+         mMnLjYYW8l0sFFAtlUQiNYIMDKXN30MWPj0A0GJjzpq8QmwVPwTUFXMovm4Ns5f0uBdu
+         ygy+JnqKblzZZ5b4yFxLnSMY95qGt2gD0n6ffUFsjEEQg7HbmgtAXskDdylpX8L2OgtM
+         bf6g==
+X-Forwarded-Encrypted: i=1; AJvYcCUnyoaAAzNwRD1wyyD/YY496mKpiUXboRBdTLNddLGd+u4/rhyR2ujsGLsMnYbQgKAjt84Cq93UTAwA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoP1QXVukTPfT79jzZtf9mNYl8NUV0tTKHTuzmhIVuppzfX9s8
+	3G4cL18wPNgr14num78Anh/AI+cM72Bv4EndI4ln02EbDdqAJqMAwUElMo75Rig=
+X-Gm-Gg: ASbGncuaBZgmW2rufsm3aIHPQ55M/ivPiI+ACHUwGMDDxQ0He/kWXMYBMms2jLnwbWy
+	FfwZH7qMVGUcV/pcD8AInEC/TkqOZ4zQWeBuQsHyAvYTWGPeDQV/xP0G3NxtNGnFDqEJg7uEMGj
+	m+iy4tI4ti/g6RJ7lBQQvT7VpWyk5Fe0SvcN5ilm+8YnDbmhEqbD0K2/v3+QiCy73HFp904u17B
+	uF/NCTNEw0/wPf/2gLj5/V3pbFdbfxXCgFHlA1F2AaayIg1MAW9AqOIKfUiJxm/4sLZGBXXh2Lb
+	1/ODhashw05Wlipwzf+uKjKZ4zlo7/kI3CKxNF4+cC9VsrRzV6yLFSKNtQ==
+X-Google-Smtp-Source: AGHT+IFGDFv3Q/fDJq96jJR3oBpkTYeZFfDo5uJ8GBvW5yBqf9KLhXWrMr5gc489cQ1N+znCBv4z7w==
+X-Received: by 2002:a17:907:60d6:b0:ab6:ed8a:3c14 with SMTP id a640c23a62f3a-abb70c8e70emr869084366b.27.1739788098208;
+        Mon, 17 Feb 2025 02:28:18 -0800 (PST)
+Received: from rayden (h-98-128-140-123.A175.priv.bahnhof.se. [98.128.140.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba533bf307sm871580966b.176.2025.02.17.02.28.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Feb 2025 02:28:17 -0800 (PST)
+Date: Mon, 17 Feb 2025 11:28:15 +0100
+From: Jens Wiklander <jens.wiklander@linaro.org>
+To: Amirreza Zarrabi <quic_azarrabi@quicinc.com>
+Cc: Sumit Garg <sumit.garg@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	linux-arm-msm@vger.kernel.org, op-tee@lists.trustedfirmware.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v2 4/8] tee: add TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF
+Message-ID: <20250217102815.GC2637163@rayden>
+References: <20250202-qcom-tee-using-tee-ss-without-mem-obj-v2-0-297eacd0d34f@quicinc.com>
+ <20250202-qcom-tee-using-tee-ss-without-mem-obj-v2-4-297eacd0d34f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250202-qcom-tee-using-tee-ss-without-mem-obj-v2-4-297eacd0d34f@quicinc.com>
 
-The infra-iommu node in mt8195.dtsi was triggering a CHECK_DTBS error due
-to an excessively long 'interrupts' property. The error message was:
+Hi,
 
-  infra-iommu@10315000: interrupts: [[0, 795, 4, 0], [0, 796, 4, 0],
-                     [0, 797, 4, 0], [0, 798, 4, 0], [0, 799, 4, 0]]
-                     is too long
+On Sun, Feb 02, 2025 at 06:43:32PM -0800, Amirreza Zarrabi wrote:
+> The TEE subsystem allows session-based access to trusted services,
+> requiring a session to be established to receive a service. This
+> is not suitable for an environment that represents services as objects.
+> An object supports various operations that a client can invoke,
+> potentially generating a result or a new object that can be invoked
+> independently of the original object.
+> 
+> Add TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF_INPUT/OUTPUT/INOUT to represent an
+> object. Objects may reside in either TEE or userspace. To invoke an
+> object in TEE, introduce a new ioctl. Use the existing SUPPL_RECV and
+> SUPPL_SEND to invoke an object in userspace.
+> 
+> Signed-off-by: Amirreza Zarrabi <quic_azarrabi@quicinc.com>
+> ---
+>  drivers/tee/tee_core.c   | 85 ++++++++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/tee_core.h |  4 +++
+>  include/linux/tee_drv.h  |  6 ++++
+>  include/uapi/linux/tee.h | 41 +++++++++++++++++++----
+>  4 files changed, 130 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/tee/tee_core.c b/drivers/tee/tee_core.c
+> index 9f4b9a995e16..fe435772688c 100644
+> --- a/drivers/tee/tee_core.c
+> +++ b/drivers/tee/tee_core.c
+> @@ -379,6 +379,7 @@ static int params_from_user(struct tee_context *ctx, struct tee_param *params,
+>  		switch (ip.attr & TEE_IOCTL_PARAM_ATTR_TYPE_MASK) {
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_NONE:
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_OUTPUT:
+> +		case TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF_OUTPUT:
+>  			break;
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INPUT:
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INOUT:
+> @@ -396,6 +397,11 @@ static int params_from_user(struct tee_context *ctx, struct tee_param *params,
+>  				return -EFAULT;
+>  
+>  			break;
+> +		case TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF_INPUT:
+> +		case TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF_INOUT:
+> +			params[n].u.objref.id = ip.a;
+> +			params[n].u.objref.flags = ip.b;
+> +			break;
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_INPUT:
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_OUTPUT:
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_INOUT:
+> @@ -469,6 +475,12 @@ static int params_to_user(struct tee_ioctl_param __user *uparams,
+>  			if (put_user((u64)p->u.ubuf.size, &up->b))
+>  				return -EFAULT;
+>  			break;
+> +		case TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF_OUTPUT:
+> +		case TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF_INOUT:
+> +			if (put_user(p->u.objref.id, &up->a) ||
+> +			    put_user(p->u.objref.flags, &up->b))
+> +				return -EFAULT;
+> +			break;
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_OUTPUT:
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_INOUT:
+>  			if (put_user((u64)p->u.memref.size, &up->b))
+> @@ -621,6 +633,66 @@ static int tee_ioctl_invoke(struct tee_context *ctx,
+>  	return rc;
+>  }
+>  
+> +static int tee_ioctl_object_invoke(struct tee_context *ctx,
+> +				   struct tee_ioctl_buf_data __user *ubuf)
+> +{
+> +	int rc;
+> +	size_t n;
+> +	struct tee_ioctl_buf_data buf;
+> +	struct tee_ioctl_object_invoke_arg __user *uarg;
+> +	struct tee_ioctl_object_invoke_arg arg;
+> +	struct tee_ioctl_param __user *uparams = NULL;
+> +	struct tee_param *params = NULL;
+> +
+> +	if (!ctx->teedev->desc->ops->object_invoke_func)
+> +		return -EINVAL;
+> +
+> +	if (copy_from_user(&buf, ubuf, sizeof(buf)))
+> +		return -EFAULT;
+> +
+> +	if (buf.buf_len > TEE_MAX_ARG_SIZE ||
+> +	    buf.buf_len < sizeof(struct tee_ioctl_object_invoke_arg))
+> +		return -EINVAL;
+> +
+> +	uarg = u64_to_user_ptr(buf.buf_ptr);
+> +	if (copy_from_user(&arg, uarg, sizeof(arg)))
+> +		return -EFAULT;
+> +
+> +	if (sizeof(arg) + TEE_IOCTL_PARAM_SIZE(arg.num_params) != buf.buf_len)
+> +		return -EINVAL;
+> +
+> +	if (arg.num_params) {
+> +		params = kcalloc(arg.num_params, sizeof(struct tee_param),
+> +				 GFP_KERNEL);
+> +		if (!params)
+> +			return -ENOMEM;
+> +		uparams = uarg->params;
+> +		rc = params_from_user(ctx, params, arg.num_params, uparams);
+> +		if (rc)
+> +			goto out;
+> +	}
+> +
+> +	rc = ctx->teedev->desc->ops->object_invoke_func(ctx, &arg, params);
+> +	if (rc)
+> +		goto out;
+> +
+> +	if (put_user(arg.ret, &uarg->ret)) {
+> +		rc = -EFAULT;
+> +		goto out;
+> +	}
+> +	rc = params_to_user(uparams, arg.num_params, params);
+> +out:
+> +	if (params) {
+> +		/* Decrease ref count for all valid shared memory pointers */
+> +		for (n = 0; n < arg.num_params; n++)
+> +			if (tee_param_is_memref(params + n) &&
+> +			    params[n].u.memref.shm)
+> +				tee_shm_put(params[n].u.memref.shm);
+> +		kfree(params);
+> +	}
+> +	return rc;
+> +}
+> +
+>  static int tee_ioctl_cancel(struct tee_context *ctx,
+>  			    struct tee_ioctl_cancel_arg __user *uarg)
+>  {
+> @@ -676,6 +748,12 @@ static int params_to_supp(struct tee_context *ctx,
+>  			ip.b = p->u.ubuf.size;
+>  			ip.c = 0;
+>  			break;
+> +		case TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF_INPUT:
+> +		case TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF_INOUT:
+> +			ip.a = p->u.objref.id;
+> +			ip.b = p->u.objref.flags;
+> +			ip.c = 0;
+> +			break;
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_INPUT:
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_OUTPUT:
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_INOUT:
+> @@ -783,6 +861,11 @@ static int params_from_supp(struct tee_param *params, size_t num_params,
+>  			p->u.ubuf.uaddr = u64_to_user_ptr(ip.a);
+>  			p->u.ubuf.size = ip.b;
+>  			break;
+> +		case TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF_OUTPUT:
+> +		case TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF_INOUT:
+> +			p->u.objref.id = ip.a;
+> +			p->u.objref.flags = ip.b;
+> +			break;
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_OUTPUT:
+>  		case TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_INOUT:
+>  			/*
+> @@ -863,6 +946,8 @@ static long tee_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+>  		return tee_ioctl_open_session(ctx, uarg);
+>  	case TEE_IOC_INVOKE:
+>  		return tee_ioctl_invoke(ctx, uarg);
+> +	case TEE_IOC_OBJECT_INVOKE:
+> +		return tee_ioctl_object_invoke(ctx, uarg);
+>  	case TEE_IOC_CANCEL:
+>  		return tee_ioctl_cancel(ctx, uarg);
+>  	case TEE_IOC_CLOSE_SESSION:
+> diff --git a/include/linux/tee_core.h b/include/linux/tee_core.h
+> index 8a4c9e30b652..ffb04c946c70 100644
+> --- a/include/linux/tee_core.h
+> +++ b/include/linux/tee_core.h
+> @@ -72,6 +72,7 @@ struct tee_device {
+>   * @close_session:	close a session
+>   * @system_session:	declare session as a system session
+>   * @invoke_func:	invoke a trusted function
+> + * @object_invoke_func:	invoke an object
 
-To address this issue, update the compatbile matching rule for
-'interrupts' property. This change allows flexibility in the number
-of interrupts for new SoCs like MT8195.
-The purpose of these 5 interrupts is also added into description.
+invoke a TEE object?
 
-Fixes: bca28426805d ("dt-bindings: iommu: mediatek: Convert IOMMU to DT schema")
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../bindings/iommu/mediatek,iommu.yaml        | 28 ++++++++++++++++++-
- 1 file changed, 27 insertions(+), 1 deletion(-)
+>   * @cancel_req:		request cancel of an ongoing invoke or open
+>   * @supp_recv:		called for supplicant to get a command
+>   * @supp_send:		called for supplicant to send a response
+> @@ -97,6 +98,9 @@ struct tee_driver_ops {
+>  	int (*invoke_func)(struct tee_context *ctx,
+>  			   struct tee_ioctl_invoke_arg *arg,
+>  			   struct tee_param *param);
+> +	int (*object_invoke_func)(struct tee_context *ctx,
+> +				  struct tee_ioctl_object_invoke_arg *arg,
+> +				  struct tee_param *param);
+>  	int (*cancel_req)(struct tee_context *ctx, u32 cancel_id, u32 session);
+>  	int (*supp_recv)(struct tee_context *ctx, u32 *func, u32 *num_params,
+>  			 struct tee_param *param);
+> diff --git a/include/linux/tee_drv.h b/include/linux/tee_drv.h
+> index 130782d4d5f6..16dad7a21910 100644
+> --- a/include/linux/tee_drv.h
+> +++ b/include/linux/tee_drv.h
+> @@ -87,6 +87,11 @@ struct tee_param_ubuf {
+>  	size_t size;
+>  };
+>  
+> +struct tee_param_objref {
+> +	u64 id;
+> +	u64 flags;
+> +};
+> +
+>  struct tee_param_value {
+>  	u64 a;
+>  	u64 b;
+> @@ -97,6 +102,7 @@ struct tee_param {
+>  	u64 attr;
+>  	union {
+>  		struct tee_param_memref memref;
+> +		struct tee_param_objref objref;
+>  		struct tee_param_ubuf ubuf;
+>  		struct tee_param_value value;
+>  	} u;
+> diff --git a/include/uapi/linux/tee.h b/include/uapi/linux/tee.h
+> index 4a1dcfb4290e..0aef647d4a34 100644
+> --- a/include/uapi/linux/tee.h
+> +++ b/include/uapi/linux/tee.h
+> @@ -48,8 +48,10 @@
+>  #define TEE_GEN_CAP_PRIVILEGED	(1 << 1)/* Privileged device (for supplicant) */
+>  #define TEE_GEN_CAP_REG_MEM	(1 << 2)/* Supports registering shared memory */
+>  #define TEE_GEN_CAP_MEMREF_NULL	(1 << 3)/* NULL MemRef support */
+> +#define TEE_GEN_CAP_OBJREF	(1 << 4)/* Supports generic object reference */
+>  
+> -#define TEE_MEMREF_NULL		(__u64)(-1) /* NULL MemRef Buffer */
+> +#define TEE_MEMREF_NULL		((__u64)(-1)) /* NULL MemRef Buffer */
+> +#define TEE_OBJREF_NULL		((__u64)(-1)) /* NULL ObjRef Object */
+>  
+>  /*
+>   * TEE Implementation ID
+> @@ -158,6 +160,13 @@ struct tee_ioctl_buf_data {
+>  #define TEE_IOCTL_PARAM_ATTR_TYPE_UBUF_OUTPUT	9
+>  #define TEE_IOCTL_PARAM_ATTR_TYPE_UBUF_INOUT	10	/* input and output */
+>  
+> +/*
+> + * These defines object reference parameters.
+> + */
+> +#define TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF_INPUT	11
+> +#define TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF_OUTPUT	12
+> +#define TEE_IOCTL_PARAM_ATTR_TYPE_OBJREF_INOUT	13
+> +
+>  /*
+>   * Mask for the type part of the attribute, leaves room for more types
+>   */
+> @@ -195,15 +204,16 @@ struct tee_ioctl_buf_data {
+>   * @attr: attributes
+>   * @a: if a memref, offset into the shared memory object,
+>   *     else if a ubuf, address into the user buffer,
+> - *     else a value parameter
+> - * @b: if a memref or ubuf, size of the buffer, else a value parameter
+> + *     else if an objref, object identifier, else a value parameter
+> + * @b: if a memref or ubuf, size of the buffer,
+> + *     else if objref, a flag for object, else a value parameter
 
-Changes for v2:
- - commit message: re-formatting and add a description of adding 5 interrupts.
- - add 'description' and 'maxItems: 5' for 'interrupt' property of
-   'mt8195-iommu-infra'
- - others keeps 'maxItems: 1'
+flags for the object?
 
-Changes for v3:
- - Refine the description for 'interrupts' property and fixes the compatible
-   matching rules.
- - Refine commit message.
+>   * @c: if a memref, shared memory identifier, else a value parameter
+>   *
+>   * @attr & TEE_PARAM_ATTR_TYPE_MASK indicates if memref, ubuf, or value is
+>   * used in the union. TEE_PARAM_ATTR_TYPE_VALUE_* indicates value,
+> - * TEE_PARAM_ATTR_TYPE_MEMREF_* indicates memref, and TEE_PARAM_ATTR_TYPE_UBUF_*
+> - * indicates ubuf. TEE_PARAM_ATTR_TYPE_NONE indicates that none of the members
+> - * are used.
+> + * TEE_PARAM_ATTR_TYPE_MEMREF_* indicates memref, TEE_PARAM_ATTR_TYPE_UBUF_*
+> + * indicates ubuf, and TEE_PARAM_ATTR_TYPE_OBJREF_* indicates objref.
+> + * TEE_PARAM_ATTR_TYPE_NONE indicates that none of the members are used.
+>   *
+>   * Shared memory is allocated with TEE_IOC_SHM_ALLOC which returns an
+>   * identifier representing the shared memory object. A memref can reference
+> @@ -411,4 +421,23 @@ struct tee_ioctl_shm_register_data {
+>   * munmap(): unmaps previously shared memory
+>   */
+>  
+> +/**
+> + * struct tee_ioctl_invoke_func_arg - Invokes an object in a Trusted Application.
 
-Changes for v4:
-  - add missing 'minItems: 5' to 'mediatek,mt8195-iommu-infra'.
-    Thanks the explanation from Conor and Krzysztof. 
+Please drop the terminating '.'.
 
-Changes for v5:
-  - Repharse the description for interrupts property of MT8195.
+Thanks,
+Jens
 
-Changes for v6:
-  - Remove maxItems for mt8195-iommu-infra.
-  - Add 'Reviewed-by' tag from Rob. Thanks for the review.
-
-diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-index ea6b0f5f24de..eeb39f5acf7e 100644
---- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-@@ -96,7 +96,16 @@ properties:
-     maxItems: 1
- 
-   interrupts:
--    maxItems: 1
-+    description: |
-+      Usually, the IOMMU requires only one interrupt.
-+
-+      The infra IOMMU in MT8195 has five banks: each features one set
-+      of APB registers. One for the normal world (set 0), three for the
-+      protected world (sets 1-3), and one for the secure world (set 4).
-+      and each set has its own interrupt. Therefore, five interrupts
-+      are needed.
-+    minItems: 1
-+    maxItems: 5
- 
-   clocks:
-     items:
-@@ -210,6 +219,23 @@ allOf:
-       required:
-         - mediatek,larbs
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - mediatek,mt8195-iommu-infra
-+
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 5
-+
-+    else:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+
- additionalProperties: false
- 
- examples:
--- 
-2.45.2
-
+> + * @object:	[in] Object id
+> + * @op:		[in] Object operation, specific to the object
+> + * @ret:	[out] return value
+> + * @num_params	[in] number of parameters following this struct
+> + */
+> +struct tee_ioctl_object_invoke_arg {
+> +	__u64 object;
+> +	__u32 op;
+> +	__u32 ret;
+> +	__u32 num_params;
+> +	/* num_params tells the actual number of element in params */
+> +	struct tee_ioctl_param params[];
+> +};
+> +
+> +#define TEE_IOC_OBJECT_INVOKE	_IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 10, \
+> +				     struct tee_ioctl_buf_data)
+> +
+>  #endif /*__TEE_H*/
+> 
+> -- 
+> 2.34.1
+> 
 
