@@ -1,105 +1,82 @@
-Return-Path: <devicetree+bounces-147221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EF40A37911
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 01:00:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D50E2A37920
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 01:10:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1BA82188E71A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 00:01:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01DC53ACE46
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 00:10:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A262179BC;
-	Mon, 17 Feb 2025 00:00:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBDDA8F6B;
+	Mon, 17 Feb 2025 00:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W0g5H7OE"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="FfU3qebS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ACDD2C9D;
-	Mon, 17 Feb 2025 00:00:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 335551C36;
+	Mon, 17 Feb 2025 00:10:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739750449; cv=none; b=aDEEzM9WEanNMeaOpMWRObcBef4+I8GRaOl6fLgvx5P+H7lycxVH6CKcCdTApOavYxnHNnw+54UsM0vSsGzqYKJ7KKQrAUeTUj4g/pSusZlxUIOaSj8/YHbqrn0cdvl6jml1xhzpGLnAqVE8xrT75z9fAiuYyar3XAMV0FY+ICs=
+	t=1739751023; cv=none; b=JGqhTHrDEw8YfCYruZyyzg5KwiHQT/+nSwQFnVJVgKV0Lxsod64UXLYt3lisbQItSd8r+gAWxDvfg1JsW8LnIGr/xXb/CDl2f2oEOqtXyyp3RTmQUc7BKO3p/+2wSZ94HPKwmNTei9yzIHh53+K1k8f52VcHOUplSvNzdBdMgvQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739750449; c=relaxed/simple;
-	bh=eSP9o7bMvgAT9G8orH5Tws3JfI0o1msv/DmweYrihxY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R5BrfUk5K2X+9kbMuOiKTlUDSm4moIV9e7574Usz1CcyBsKG8D0CyCDt2iqHnSFW3pTHxDVqPWv0mT74RpiEyrhr4SHokWhlpRmnFbZDLTJ4FSnYARcE6vgcVuDd4oLpaU9wVehWpHsCR1XUr8UisIGADm4pfZ9YpK0yZVpUEnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W0g5H7OE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F878C4CEDD;
-	Mon, 17 Feb 2025 00:00:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739750448;
-	bh=eSP9o7bMvgAT9G8orH5Tws3JfI0o1msv/DmweYrihxY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W0g5H7OEPR/oyel1NMUUvLTByUpGtzJ8rXpDEbWo7tAWeZoIQbkAQllMe/Gw7Talm
-	 JER7qt2Z8VYjRmXmMl7LQMWATbxldvgb5AnDIQBqpwOB4iRDwnU8TQ4B+mtEYgNmSt
-	 9iJYj34cKo5fRorAc8j+864+lunav36AUV6PHxa1g2aAyQd8uD/IOWCVo4/Y5WTaAK
-	 tbg6qUzNYKnlicuLSQt3oylsY7TlHxlomU6mhuQGhNKPa4qKsf7PWuowlXzgJMtymH
-	 AXj9rpNMeP6z+6A5mzNeM6N/w/HKhNVbnEvvhjItFrcmxqxN0fMdhZmWI1PzieqZW5
-	 GAh6FqCKOYSbA==
-Date: Mon, 17 Feb 2025 00:00:42 +0000
-From: Mark Brown <broonie@kernel.org>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Shenghao Ding <shenghao-ding@ti.com>,
-	Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>,
-	Dan Murphy <dmurphy@ti.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shi Fu <shifu0704@thundersoft.com>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-	Hector Martin <marcan@marcan.st>, linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	asahi@lists.linux.dev
-Subject: Re: [PATCH 25/27] ASoC: tas2770: Fix volume scale
-Message-ID: <e63802aa-16e9-4efd-8ba1-d112848b6e98@sirena.org.uk>
-References: <20250215-apple-codec-changes-v1-0-723569b21b19@gmail.com>
- <20250215-apple-codec-changes-v1-25-723569b21b19@gmail.com>
+	s=arc-20240116; t=1739751023; c=relaxed/simple;
+	bh=hUfcodhA/M2POha2V37GKzU6bKlv4j9t6vOc7/H2LlI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=GpNHHKeTDEPuOmjoQWe2W1J+LJtPYd3fwHbyMABIhmdiV91U+HfCC0QoloE7s5OuPmHA9DT9FvD3NKJRXTDtqTt7TmplocPm0nKuHl5LPc7jcumJIKQdSmuN3tEfciyR06V6DO/qeR3uBCK4piomMDOEWENUvCbYxzFCtRx/tlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=FfU3qebS; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1739751013;
+	bh=JcU/Mrdr18cGs3dTnCLq4um8s+90+rSXo/XjDVljqqs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=FfU3qebSurQNgcxzYBYi8q46USfa5cym7WWDYWfYGlOG+JJkETsZRLR5jcu7jDH+Z
+	 VXszDdoBHfNr9qcdQGZVmwlHuy/EHjbLACc06SRFlOWNrDOvbXuR1Qk1FNrdUkizKL
+	 ef8/noP7BTqMblsLm3qEnKxNkoOvVv0uZNGwyL8pQtig/RUUK7391c8bwuQO4UEHy5
+	 LQWGMzlQiCc2L2WMms7mGCGX5ryTXMKnI0boqITdXMqjv5oBD9PcaS3mjWu64VSvCV
+	 LX6qMGvh/EYLaRvLLV1DKBIk5AfPmvRl9VOWnG2H2ybmHzoZdvg1ZL7yOyXIAz+u8o
+	 2FKb+V+lCD7TA==
+Received: from [127.0.1.1] (ppp118-210-174-88.adl-adc-lon-bras34.tpg.internode.on.net [118.210.174.88])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id C910C72F1E;
+	Mon, 17 Feb 2025 08:10:09 +0800 (AWST)
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Patrick Williams <patrick@stwcx.xyz>, Potin Lai <potin.lai.pt@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Cosmo Chou <cosmo.chou@quantatw.com>, Potin Lai <potin.lai@quantatw.com>
+In-Reply-To: <20250213-bletchley-dts-fix-v1-1-c953315eb894@gmail.com>
+References: <20250213-bletchley-dts-fix-v1-1-c953315eb894@gmail.com>
+Subject: Re: [PATCH] ARM: dts: aspeed: bletchley: remove unused
+ ethernet-phy node
+Message-Id: <173975100971.56771.12087846830640085961.b4-ty@codeconstruct.com.au>
+Date: Mon, 17 Feb 2025 10:40:09 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="YvtZ4gaHZqFG+sI6"
-Content-Disposition: inline
-In-Reply-To: <20250215-apple-codec-changes-v1-25-723569b21b19@gmail.com>
-X-Cookie: This is a good time to punt work.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
+On Thu, 13 Feb 2025 15:12:58 +0800, Potin Lai wrote:
+> Remove the unused `ethernet-phy` node and the `phy-handle` property
+> from the Bletchley device tree. This fixes warnings reported by the
+> kernel DTB checks.
+> 
+> 
 
---YvtZ4gaHZqFG+sI6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks, I've applied this to be picked up through the BMC tree.
 
-On Sat, Feb 15, 2025 at 10:02:58AM +1000, James Calligeros wrote:
-> From: Hector Martin <marcan@marcan.st>
->=20
-> The scale starts at -100dB, not -128dB.
+--
+Andrew Jeffery <andrew@codeconstruct.com.au>
 
-This was one of the patches I pulled out, it's already in CI (I left
-everything for a week in case there were review comments).
-
---YvtZ4gaHZqFG+sI6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmeyfCkACgkQJNaLcl1U
-h9CSrwf9E0w8I+/F3NRQ3YIK1ehAafc+rgjLcq/PZHkZ6iVFMF9AKUD8LKzoeZYF
-HfTXnOCqDN5KkMvBDrJA6+DAeMpgUx4znD0f7YSwMZpZqx8COFj208yQUDoHR1Y1
-9z7p1CMfbkkWSds1RumDwhFqeD4Uz9/I6j1QIwZJmNXXc1RZ+i9lqMphZpcMDrbs
-o/RdQgkeMk06SihjVHdr7itWXHZv754v/54FLzkJe3wS8xEGodBdiKRpOAgItz9P
-KvMUosd+MjRRdG5D5rSAku8LviRyE489e8bJ6D/DesXcPsfx6eI0tHATFXdbvfsk
-vx+5MoNQxZhTtFiM6WysQffKnBqVmQ==
-=sFyb
------END PGP SIGNATURE-----
-
---YvtZ4gaHZqFG+sI6--
 
