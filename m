@@ -1,148 +1,163 @@
-Return-Path: <devicetree+bounces-147547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4181EA38924
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 17:30:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A746A38933
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 17:33:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F12E3AAE09
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 16:30:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3491F1646F0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2025 16:33:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E255322541A;
-	Mon, 17 Feb 2025 16:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B32E8225773;
+	Mon, 17 Feb 2025 16:33:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xqTvzjDc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24852225783;
-	Mon, 17 Feb 2025 16:30:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C930E21D59D
+	for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 16:33:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739809806; cv=none; b=FZGBgPQPUhnGovGu6gkLYaULWkf7K4192BMxoX4rKPFomhP64M4CTqHm7sGd+Ft/gVw8AgALlRDvekc9cN4XjW4Vsc6IDEKyiNlQs3nDD7e/w3ko4vLDt/jp7oKMZ4pf/ig7+novEl2KkRAUWzbyuAsbHkhrh6PMnAZGLCFGjX0=
+	t=1739810008; cv=none; b=F/RWhKLQdvUJshrCikFpyq0i5A6fqQ7sc4y92grjkstBUEKokzFG/BdMEUApOH2Qpp3Tuu0oX1uQtng+0XfqwqUZwt/+skkwFhl9Oeh/aTbh/bbEU+9+EB5VSoWP4hk5FuvIF5xP0N/eCJmUxICUnTWnks3HnhChhsjwf3aeNfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739809806; c=relaxed/simple;
-	bh=1ET7ngNwdP/7uhiBrI0skP0NwZt8InzQ+yuq7r3vEOU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qWgQyjLTtwWGyO/HA8YY0igei7rSBt4KoEOqfaQXUMBC9rEMVXmjy7G0JVOOMSTEEkltxT1sv32lfSNO6cp7nrsN/2d670HhWPUlbQDQWhiSVChtBZ8+ddRggnwJtywhbG9EE5OqBF/NKCF84zz9yurI2kPuwO6mwu4qV5/3KcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6C364152B;
-	Mon, 17 Feb 2025 08:30:23 -0800 (PST)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 766D73F5A1;
-	Mon, 17 Feb 2025 08:29:54 -0800 (PST)
-Message-ID: <f882ec8a-c577-4487-bf46-8c406c60aa67@arm.com>
-Date: Mon, 17 Feb 2025 16:29:36 +0000
+	s=arc-20240116; t=1739810008; c=relaxed/simple;
+	bh=4qpDfRcDD8rpnDxbcaskjP+/WL6+Dtw2w1ZGPGG7i30=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nO6yN5kskJbsjDrEQ6B3P50Z15tXbGYwV2fPmlUc5woXhe6HtblJYLtRRi0Kj9xvq7bDxGnsFy5gUIlv/Z8PR9nfd/K9e8ZLOc+puuMqHfMT+83ZrxSMADjlF5uVgQhC23GiTAhU+dZIGsftxmsyzGFSlggTNP7uIBMs8SguN7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xqTvzjDc; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-30227c56b11so47754231fa.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 08:33:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739810004; x=1740414804; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WLOzMbRbvqHluJB1TavYrDE4kHT0ZcZQYTNvV1k0mqQ=;
+        b=xqTvzjDcWnRTq/algWdr6nRHwoT093xJCu5zAUqylDVeuHLTClU5tEBB8sM8f/yQgB
+         A5Eec5nv76SS5GSPTL3HwziGC0SMrTITwcAAHA4b6aHFToWBjSvWblo++TXlzTuSZxap
+         TRMa3jhfNi6iSTjorcc/9FCFXVkKh8Yhz6DNzreBbNasC3nAQzNDy2KcEjk7akAKiH7d
+         DYYia89CzUGIpK4M8YpkO/CH8zcBKx9E+l/qmGL2o0Lyh7NyYvIk7X/1Ta0CdxjFp4IU
+         YzBKEc9KwA72cthMyypFY6sgmsZRHCxcpR8JHwmzJ7i4IcY7Wjajt/mbsbHT7xhQ9jQi
+         8nSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739810004; x=1740414804;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WLOzMbRbvqHluJB1TavYrDE4kHT0ZcZQYTNvV1k0mqQ=;
+        b=sYOgnRvtD3rsi8X7lVcufpMTtl9LoB6x5FCLn1oBNNTpdXfNEgXIS9gKYZ0ar8/bBI
+         RlFDoFj8Iw6mDENtP3yycbkXBpt3/CINGapEYqYCrz/eYJaC9bOsZlORorzGmc8nGVTV
+         Dc9kcCZSAnh4tqvKxm6eLO2Z4H5hon3bh7ciLZPSrZyNNzSMB7O6cXmUHa7JTfQkji2Z
+         f04/MIsTqqLjB5BNt7R+z0I0VH0TdWh7iZAlcYKu0BHpaq5/RMt09BUnGVLheKEIxjiC
+         6kDX6q5z3qCVwLny1B4yqs4dDHlKgnCZv/mv6DpjtC/V4SY4YkShkqKhRcz0xDqgOLLL
+         HxJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUFd9ybTfTceiLzUZiQ6IMnH16ZywgofS+PJi/ViizJZ314WDOKr8yP57kVEUddHzxcaNYsDvSAsedZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvXh4dWpD8P8UP0GOO4GtPBmLodTvL8KCgggmnqCqEH5eqx+ch
+	/0ZyNsuVJVBUT38Rz8ckyqb4Y6ByOk8WG+eDwXcRSxH2dNJXneTgFICy78f7XKU=
+X-Gm-Gg: ASbGnct7cbd8enKUgASmi0EgORjhTf8SZfKugznTKMB4ACucWq59M7t7ToQTgQaBkSQ
+	E3LcVT/Ci661odFebOCHqw2QnRXA2fleTepTldsxHICga3GvKP5QO0dv5MUyS9ObtFfnUG5iCBW
+	83SacDKqm0cXh6qUICW/Jnri3oLPPHVSofoYaoMHzQV5PGmeCmVMLesPyxguy/6oehOdcwgn9mc
+	/LMAokXbHmITUOgdnG4sues9Ft+9BsoYvaNjNDzXqImHPd/9lbNj/kY5pr0cQfxk7YPni1Qs4sB
+	cMxhinErLIIHz11eS4GW+csWKImUgo0tpeo+Ipj/HxzA7Y8L+5i9lFnAdn8=
+X-Google-Smtp-Source: AGHT+IG+0pmtp48iCr/EbOP92Rs4BjASg3/mObcBvYZ2tPeo7PxhFJQdbU7GaEfnUdcFKdzGgL5Jrw==
+X-Received: by 2002:ac2:4e94:0:b0:545:3031:b4d7 with SMTP id 2adb3069b0e04-5453031b4efmr2234341e87.6.1739810003866;
+        Mon, 17 Feb 2025 08:33:23 -0800 (PST)
+Received: from [127.0.1.1] (2001-14ba-a0c3-3a00--782.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::782])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30a2cef18d1sm5695991fa.76.2025.02.17.08.33.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Feb 2025 08:33:22 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v5 0/5] nvmem: qfprom: add Qualcomm SAR2130P support
+Date: Mon, 17 Feb 2025 18:33:17 +0200
+Message-Id: <20250217-sar2130p-nvmem-v5-0-2f01049d1eea@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] iommu: Handle race with default domain setup
-To: Charan Teja Kalla <quic_charante@quicinc.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Russell King <linux@armlinux.org.uk>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>, Stuart Yoder <stuyoder@gmail.com>,
- Laurentiu Tudor <laurentiu.tudor@nxp.com>, Nipun Gupta
- <nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- Bjorn Helgaas <bhelgaas@google.com>
-Cc: linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-References: <cover.1739486121.git.robin.murphy@arm.com>
- <87bd187fa98a025c9665747fbfe757a8bf249c18.1739486121.git.robin.murphy@arm.com>
- <2a090f80-e145-410d-8d02-efdaf324c8c9@quicinc.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <2a090f80-e145-410d-8d02-efdaf324c8c9@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM1ks2cC/3XMwWoDIRSF4VcJrmvxXnWMXfU9QhbqXBOhmQkaJ
+ CHMu8cZKKRIl+fA9z9ZoZyosK/dk2WqqaR5akN/7Fg4u+lEPI1tMxSoQIDhxWUEKa58qhe6cB3
+ 3ehit9d4b1tA1U0z3LXg4tn1O5Tbnx9avsL7/pipw4EMIEs3euhiG7580uTx/zvnE1lbFN4+9R
+ y64UTIAGvARx87LX68FCNV52byzioQ3I2F0nVfv3nZeNT9IaaSNpCPAH78sywsy5F6hbQEAAA=
+ =
+X-Change-ID: 20241017-sar2130p-nvmem-5f856d99bbb7
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1864;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=4qpDfRcDD8rpnDxbcaskjP+/WL6+Dtw2w1ZGPGG7i30=;
+ b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBns2TQawH2nAp/nSh6nOUrWAqp/WHYv4Ng5MZFZ
+ ccIr2pYTuiJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZ7Nk0AAKCRAU23LtvoBl
+ uB3tEADFABwNctrtW/gV4OgRQiF0KPoexGdrPC4Z+mjcM0/QVKaNgC/BlJ0yYKJoqKrUNrRwno/
+ WFNxCsYlS31SibJ/VxwxVcq3a/wW7YCVn6xmjGb7P820RMuxAbIueGSuvmTn+xORlg7ws2YahQ1
+ Q+/jH7TKa89U/bsX/jeKJl+Oc4sfWc0dApkkHwI0qsqXq7JPGLrlg/WlBhShDMFu36rDRfzVZel
+ 8KFJGMT14IiLVhEMwqsoEd1zjcnaMEeG5rm3ACnFCIi5CNcVYWt7qRS0z3iQFmKXnLZqx5RmX0R
+ Cjym8zB/ei6JqGdzAyHLYi9qlKXdiMtPmL3cIUaxkZv5b/TS8vNq6i4pwWMs67imD0jGAOYOiPn
+ 4Juw+RtBRb88n9SeqUzpofTiqdurzD81ZfvVqfipUNxUHi2yd70hhFTi1ernPMCPwk3CO6YonEn
+ JYlEMpvH702g6D8MSBsb8RQhYy2Bg77dJkpuZ1T1al7ws2TJHb+BqyWMmgRN3nAk9X6TIL8Uzy/
+ c+C+QimwPrSyWQCdhef+pUGRwIXPEaaoDFgEELKWkWnDUvrYe9aeuyWFiny2e4IHZQTinD74KRg
+ cLKY3DRdQ1/RTflC15v5Z3Va4t70RheeRttJfj57dOjCWjA+CD/B60yK73TEfWbNSu5r2kXS1B1
+ ZeqKkRXm+ain5Lw==
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On 14/02/2025 12:57 pm, Charan Teja Kalla wrote:
-> Thanks a lot for posting these patches, Robin.
-> 
-> On 2/14/2025 5:18 AM, Robin Murphy wrote:
->>   drivers/iommu/iommu.c | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
->> index 870c3cdbd0f6..2486f6d6ef68 100644
->> --- a/drivers/iommu/iommu.c
->> +++ b/drivers/iommu/iommu.c
->> @@ -3097,6 +3097,11 @@ int iommu_device_use_default_domain(struct device *dev)
->>   		return 0;
->>   
->>   	mutex_lock(&group->mutex);
->> +	/* We may race against bus_iommu_probe() finalising groups here */
->> +	if (!group->default_domain) {
->> +		ret = -EPROBE_DEFER;
->> +		goto unlock_out;
->> +	}
-> 
-> We just hit the issue again even after picking up this patch, though
-> very hard to reproduce, on 6.6 LTS.
-> 
-> After code inspection, it seems the issue is that - default domain is
-> setup in the bus_iommu_probe() before hitting of this replay.
-> 
-> A:async client probe in platform_dma_configure(), B:bus_iommu_probe() :-
-> 
-> 1) A: sets up iommu_fwspec under iommu_probe_device_lock.
-> 
-> 2) B: Sets the dev->iommu_group under iommu_probe_device_lock. Domain
-> setup is deferred.
-> 
-> 3) A: Returns with out allocating the default domain, as
-> dev->iommu_group is set, whose checks are also made under the same
-> 'iommu_probe_device_lock'. __This miss setting of the valid dev->dma_ops__.
-> 
-> 4) B: Sets up the group->default_domain under group->mutex.
-> 
-> 5) A: iommu_device_use_default_domain(): Relies on this
-> group->default_domain, under the same mutex, to decide if need to go for
-> replay, which is skipped. This is skipping the setting up of valid
-> dma_ops and that's an issue.
-> 
-> But I don't think that the same issue exists on 6.13 because of your
-> patch, b67483b3c44e ("iommu/dma: Centralise iommu_setup_dma_ops()").
-> bus_iommu_probe():
->       list_for_each_entry_safe(group, next, &group_list, entry) {
-> 		mutex_lock(&group->mutex);
-> 		for_each_group_device(group, gdev)
-> 			iommu_setup_dma_ops(gdev->dev);
-> 		mutex_unlock(&group->mutex);
->       }
-> 
-> This makes the step4 above force to use the valid dma_iommu api, thus I
-> see no issue when there is no probe deferral.
-> 
-> So, I think we are good with this patch on 6.13.
-> 
-> Now coming back to 6.6 LTS, any ideas you have here, please?
+Qualcomm SAR2130P is one of the platforms which require 4-byte reads
+when accessing the QFPROM data. Fix several omission in the NVMEM core,
+rework the QFPROM driver to use readl() instead of readb() and finally
+add compatible string for the QFPROM as present on the Qualcomm
+SAR2130P.
 
-Thanks for the analysis once again! I've not looked closely at 6.6 yet, 
-but if we're all happy this looks like the right fix for mainline then 
-I'll start having a look at the backport as soon as I can (so much for 
-hoping it would be simple...)
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Changes in v5:
+- Expanded fixed-cell schema to allow starting bit greater than 7
+  (Srini)
+- Dropped the applied schema patch (Rob)
+- Link to v4: https://lore.kernel.org/r/20250109-sar2130p-nvmem-v4-0-633739fe5f11@linaro.org
 
-Cheers,
-Robin.
+Changes in v4:
+- Fix conition for bits vs bytes overflow (Akhil)
+- Link to v3: https://lore.kernel.org/r/20250104-sar2130p-nvmem-v3-0-a94e0b7de2fa@linaro.org
 
-> 
->>   	if (group->owner_cnt) {
->>   		if (group->domain != group->default_domain || group->owner ||
->>   		    !xa_empty(&group->pasid_array)) {
-> 
-> 
-> Thanks,
-> Charan
+Changes in v3:
+- Reworked the qfprom driver to specify stride and word size (Srinivas)
+- Link to v2: https://lore.kernel.org/r/20241027-sar2130p-nvmem-v2-0-743c1271bf2d@linaro.org
+
+Changes in v2:
+- Picked up required patch from QCLinux.
+- Link to v1: https://lore.kernel.org/r/20241017-sar2130p-nvmem-v1-1-6cc32789afc6@linaro.org
+
+---
+Dmitry Baryshkov (5):
+      dt-bindings: nvmem: fixed-cell: increase bits start value to 31
+      nvmem: core: fix bit offsets of more than one byte
+      nvmem: core: verify cell's raw_len
+      nvmem: core: update raw_len if the bit reading is required
+      nvmem: qfprom: switch to 4-byte aligned reads
+
+ .../bindings/nvmem/layouts/fixed-cell.yaml         |  2 +-
+ drivers/nvmem/core.c                               | 36 +++++++++++++++++-----
+ drivers/nvmem/qfprom.c                             | 26 ++++++++++++----
+ 3 files changed, 49 insertions(+), 15 deletions(-)
+---
+base-commit: 253c82b3a2cec22bf9db65645f934fbe095899a3
+change-id: 20241017-sar2130p-nvmem-5f856d99bbb7
+
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 
