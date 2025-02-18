@@ -1,122 +1,111 @@
-Return-Path: <devicetree+bounces-148125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07E39A3AAEE
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 22:31:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39A2AA3AB39
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 22:41:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED3D83AC967
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 21:31:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3047D17327E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 21:39:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41D6C1D8E10;
-	Tue, 18 Feb 2025 21:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 154731C1F10;
+	Tue, 18 Feb 2025 21:39:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MA/+ZmWI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FdNP8HF7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE591D6193;
-	Tue, 18 Feb 2025 21:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFC2814BF8F;
+	Tue, 18 Feb 2025 21:39:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739914228; cv=none; b=hYcoR0aGsD9hdmQK7FLqefdUs+nrB4Wt1MSrBiNTAS2y6nF1pf608Fyc4P90/BmFDTDVrldVMTGvizE3KtQEum0rHoa6oDjwz0TrSKWOi8QgaHALc2Scox1JH8iTREb9Zs7ImK9PVS+yOxr+2MvmsuL0+36leGyZwM6SqUeKIrw=
+	t=1739914745; cv=none; b=TDEE5fGjXE5FKwLaUK0Z3FwpiKiWgnxegTzQEM9w2iZ4tINwZb4uoOof/kbkfj4Kb2sTP/p76tqzFeebWqvuHwH+sSktrTMr+QdSDwFeShc2NxW2zC2JovxQX4HJE0YX7wXin0UyvaAz3KIHNX482r4M23DU10WPAc/A8GKc7jY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739914228; c=relaxed/simple;
-	bh=Q2f4Q77ZxtAHwIj0TA+cUIks/SfvfVoLP55KGfTHXtY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=F+0mM/NNAZF28FB/bQ/oW/AfVXe93IFH4RNVyB698YIhAE8wtaSr4bFi9Mfl9+G0vuZhNooa5xGXu7fkm5MtwyZf6AT5gpDxyHI017yGoc3UewjWbtgPev7w1rjNpA5Wg2dMg17P9HcNwzv/D5exm8kiA6f8+LTuZp+Yi5F+HD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MA/+ZmWI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 950A5C4CEE6;
-	Tue, 18 Feb 2025 21:30:22 +0000 (UTC)
+	s=arc-20240116; t=1739914745; c=relaxed/simple;
+	bh=y27wX8vWpKgnYWddqTGYwQR4K1r03gutos/Zex7AhL8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E1nUep+EnpkiyGhBNqCM8sB6LGiDJEzAzx0BZy39Vj3dJaoLEub5ElkMm6pvo0wsX+1Ffq08ImWyD9PVHfxSpMospnW7Qumy7YPkQxE9JfD/tewmaJKrEalqK7mp6/m8+cV2xVzptYTu8TQ++VVnp66va/t5H48x8GDeYYlFBa8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FdNP8HF7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CC25C4CEE2;
+	Tue, 18 Feb 2025 21:39:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739914227;
-	bh=Q2f4Q77ZxtAHwIj0TA+cUIks/SfvfVoLP55KGfTHXtY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=MA/+ZmWIs01t2MPpzoXjfx9yIuNBMoLHYTENYpQ4yORDB06ifQsNZNJnX5PX6viCw
-	 ZbbAkYJcBLFrwkFQtBsKKyA9wOeQQ4FHjADS9024d0n4Q1+U9A82ivPIvRK2moyOUk
-	 +OX7mqLcNROUrsyj7vNgnHiWi3gVdZ72dy6Ilwn0OBlj3nUC2ZuZRmxbvhN6sF/Asy
-	 RORGNYOk5OW22lo9Fzs2TiobOydaTFBilco26EHAeeiwezslJ3MGjvPuXDIM16DYTq
-	 PzqsRy7rw6XrroWXPTf5oWxpfbT9Zs6hJPM7dVqlsyGkOt1dWcfwoaLOGdi0Fl7YGw
-	 iY2mBMAqJy+6A==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Shenghao Ding <shenghao-ding@ti.com>, 
- Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>, 
- Dan Murphy <dmurphy@ti.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shi Fu <shifu0704@thundersoft.com>, 
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
- James Calligeros <jcalligeros99@gmail.com>
-Cc: Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
- =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
- Hector Martin <marcan@marcan.st>, linux-sound@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- asahi@lists.linux.dev, linux-hwmon@vger.kernel.org, 
- Neal Gompa <neal@gompa.dev>
-In-Reply-To: <20250218-apple-codec-changes-v2-0-932760fd7e07@gmail.com>
-References: <20250218-apple-codec-changes-v2-0-932760fd7e07@gmail.com>
-Subject: Re: (subset) [PATCH v2 00/29] ASoC: tas27{64,70}: improve support
- for Apple codec variants
-Message-Id: <173991422225.1713371.7641143097837420691.b4-ty@kernel.org>
-Date: Tue, 18 Feb 2025 21:30:22 +0000
+	s=k20201202; t=1739914744;
+	bh=y27wX8vWpKgnYWddqTGYwQR4K1r03gutos/Zex7AhL8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FdNP8HF7uFB3J37nEtpFvf5FG33uwBaNeA1rWL5b42Iqed3vsaB8OcGv0wVf+SRvo
+	 cwDoP52dfO2koaQfiTEtqQXoO2PokOmL2KqGVo+rf/NT6Vochjfc7sgKZlS1dMR/W5
+	 Ankl8KpvENeT6VEEBVjc8SkKbN8lRCURoVXQ9LseWzHI8qW8jFXMMmdxjL5lq/3PYJ
+	 U/6UUdMTkF9OsGiZbbzf6+Pkioz0EFgmVYxlC9fyy3D1sA2ZMSFCfREsY8amAf0SQP
+	 AUJsIjPKlWNBQI9zdBraZacFWdLnghsSHfZG1/hQWdng72wFdKHfm43m5W5GlUUFXP
+	 BkBfd1rICSbew==
+Date: Tue, 18 Feb 2025 15:39:03 -0600
+From: Rob Herring <robh@kernel.org>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>, richard@nod.at,
+	vigneshr@ti.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, git@amd.com, amitrkcian2002@gmail.com
+Subject: Re: [PATCH v12 1/3] dt-bindings: mtd: Describe MTD partitions
+ concatenation
+Message-ID: <20250218213903.GA1203860-robh@kernel.org>
+References: <20250205133730.273985-1-amit.kumar-mahapatra@amd.com>
+ <20250205133730.273985-2-amit.kumar-mahapatra@amd.com>
+ <20250211212928.GA1188800-robh@kernel.org>
+ <87r043r2lq.fsf@bootlin.com>
+ <20250212160659.GA3883406-robh@kernel.org>
+ <874j0zqgps.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-42535
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <874j0zqgps.fsf@bootlin.com>
 
-On Tue, 18 Feb 2025 18:35:34 +1000, James Calligeros wrote:
-> This series introduces a number of changes to the drivers for
-> the Texas Instruments TAS2764 and TAS2770 amplifiers in order to
-> introduce (and improve in the case of TAS2770) support for the
-> variants of these amps found in Apple Silicon Macs.
+On Wed, Feb 12, 2025 at 05:18:39PM +0100, Miquel Raynal wrote:
+> On 12/02/2025 at 10:06:59 -06, Rob Herring <robh@kernel.org> wrote:
 > 
-> Apple's variant of TAS2764 is known as SN012776, and as always with
-> Apple is a subtly incompatible variant with a number of quirks. It
-> is not publicly available. The TAS2770 variant is known as TAS5770L,
-> and does not require incompatible handling.
+> > On Wed, Feb 12, 2025 at 09:25:53AM +0100, Miquel Raynal wrote:
+> >> Hi,
+> >> 
+> >> >> The partitions that gets created are
+> >> >> part0_0
+> >> >> part1_1
+> >> >> part0_1-part1_0-concat
+> >> >
+> >> > 'part-concat' doesn't work if you have multiple sets of partitions you 
+> >> > want to concatenate.
+> >> >
+> >> > I think you need something like 'prev-partition' or 'next-partition' in 
+> >> > the partition nodes to create a linked list of partitions. Hopefully, 
+> >> > you don't need both properties, but you do have to scan everything to 
+> >> > figure out which ones are concatenated or not. For example, no property 
+> >> > can mean not concatenated or last partition if you use 'next-partition'. 
+> >> 
+> >> Out of curiosity, would the chosen node be eligible as a central place
+> >> where to look at?
+> >
+> > Why would you need that?
 > 
-> [...]
+> I'm talking about storing in a central place all the concatenated
+> partitions. Your proposal with "next-partition" works fine if we locate
+> it inside the 'partitions' node, but I feel like the 'part-concat'
+> instead was not fitting very well there. So I was wondering in this case
+> if moving the concatenation of the partitions would be eligible to the
+> chosen node, or if that's reserved to *very* few properties (and should
+> remain like that).
 
-Applied to
+You would have to solve the same problem as this patchset which is how 
+to support N sets of concatenated partitions.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+In general though, we add new things to /chosen very carefully. It's 
+usually "things the bootloader configured/enabled" which I don't think 
+this qualifies as. 
 
-Thanks!
-
-[01/29] ASoC: tas2764: Fix power control mask
-        commit: a3f172359e22b2c11b750d23560481a55bf86af1
-[09/29] ASoC: tas2764: Reinit cache on part reset
-        (no commit info)
-[28/29] ASoC: tas2764: Set the SDOUT polarity correctly
-        commit: f5468beeab1b1adfc63c2717b1f29ef3f49a5fab
-[29/29] ASoC: tas2770: Set the SDOUT polarity correctly
-        (no commit info)
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Rob
 
