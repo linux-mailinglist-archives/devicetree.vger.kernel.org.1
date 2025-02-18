@@ -1,142 +1,453 @@
-Return-Path: <devicetree+bounces-147923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D9E1A39D37
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 14:19:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20415A39D4D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 14:24:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E43D173EB5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 13:11:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DBDD164D57
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 13:18:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377F2246353;
-	Tue, 18 Feb 2025 13:11:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2AB6265CDB;
+	Tue, 18 Feb 2025 13:18:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QwsetgF2"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NEXXYBrl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B2F265CDB;
-	Tue, 18 Feb 2025 13:11:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5E2A14E2E2;
+	Tue, 18 Feb 2025 13:18:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739884303; cv=none; b=I8JRid+D9fyIS/f9/mdYgldWQ0PcyrulzkPYJr+tcuD77tsTbRBRV6pF8popTJ10xiO7IECzXHxGcRiBxz0119vbtIfcxvg+ix8eJZUVXI/sH4PQrCd2AYD4TXEhpYE2mgDmmdJ+A0/Jx2wWTp0W8ymfVcKbeCwB8dPpIybHtLc=
+	t=1739884702; cv=none; b=AZd370b2jb6dJ4qlacQPGoYLlWBeA9/EjeVvV4UmV2qxBzEQPvZZ3+FxDuYwbHcQdciV+9ZAR/d4fxbYIs/z9p2oSDz9UKCNt5pGo5g3stWJeqmS73vvG+EWA5XZWXw3zbgz5JTtkExjRwAW/iLUvuqXhwwGR0rl7NOZEIxLooM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739884303; c=relaxed/simple;
-	bh=8Gxz57Ja5je6U2ZTaisSqkmyjkSmHJX/va3lMls+skk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AarU4TSoSpDxbe1TkP6CmgNaefCG5FEBxUOrik8HFGbDVX3O9smPFbMSu356Kg1CWlvn5+wDexZ7xzIYbYCDguF5S1wNbEZBwXnK9ulhAgF+oPJh6CDksutX7Z3TOVhAa+BjzB7MqGsJwJiiLFxUHLi+/IxEzeBfFLLvBU/ch84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QwsetgF2; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-439946a49e1so4460915e9.0;
-        Tue, 18 Feb 2025 05:11:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739884299; x=1740489099; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8Gxz57Ja5je6U2ZTaisSqkmyjkSmHJX/va3lMls+skk=;
-        b=QwsetgF2BxTXKISDrXJkCinKue0Nd7CVelxCB/WLZwDcaHJc0MKWAiXjyj/6IbVBgK
-         qSX93gMF8Ih3/o1hM60C0stzICMUmNaNvdTaUbOcEPoyPrT/d9rmPZ+I1VBxCQcwuS4P
-         x2zJ3IGmW81hnAqJcWBXo33yHAlIeWPMVIpPtydDv7OIOc8ARnVUMFe9obdrBbWSlu+R
-         Ymm8Z7OCnN2zHwKr0lmnX7rEbqUs9MBPCQBk3qVymNjv+jkyJjrkdyU0/545/j8NiJzX
-         PsLsUWWnAFjpUtVhb4rCCfBwGA2sR3dsUqO6kIZ8OcHM8zBExA5BIKf71qOFM4U2Xvg+
-         AQcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739884299; x=1740489099;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8Gxz57Ja5je6U2ZTaisSqkmyjkSmHJX/va3lMls+skk=;
-        b=JXOK6SpdiKiABbe6eogJ8gHoxUYa7h0a9xg1UCK6CBaIKllCtjLwIBmeTrGgJExqBo
-         fxdZJl7w73FI0d8mrzzSY+i6VZA0AkMatuRs/xvfdY13wU3Yt4o15/JVrFbzvOIYTeLo
-         TPptpFS+zqb0O8xaSkOKXZBEsqi20bX6uRmhS0Ro0HCL8SgYGPfZg4tALOzwNX77bzD4
-         Y7iM2rVKKLUSouOYe4WEzn1PtxqVT/PpUL0heu5PfPykUdnPk5ok0QdOLGPKtRVhGo4b
-         tJ2ApcvW3Pd1S3HHNTa9f/pYO3Ac0G0WItWd7gzBsV9HTZiZZEE8zBLSXMarSiU/RrNO
-         aBrA==
-X-Forwarded-Encrypted: i=1; AJvYcCU+sVD7otSZjL7edJ7vkmWxInOlQkUMUVrpNW0OY95TP1XIsMOBmja+t6doU2kbP/sIQFL9mkLxVnO8xaAj@vger.kernel.org, AJvYcCX4kUFheyS8sn3+Y2vmyQ6k0H5p1cZw6V9CUCTCv7TLzV0pkN2CDRq2aulqyz8l/IC9qP3GNfmV0+Fl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFJvzcLTkk5pODUv9k/JKpELVxUfny75e+SFrw35kFnPegKWe6
-	YawdTTXyJGBgnOZO+icpRc8bDFhvhkPx0ly2tR3Ms8xizTNYEnzPr+0IcZ0i24vg7ilJa6BDLcu
-	Y94cG+OSqLXmcXNBT54HiL8ByN48=
-X-Gm-Gg: ASbGncuSyPWdHz8ldKEr6OP1z8bZKwlapUqjZc0fnhG3zTYCgO2V8n0FKsYhARRa4ns
-	sRu6eb83sIG9jmxUjO4VXOnJ0vsT59ke5mkmkdQT9Yx5Y/GiTJQe1joiK7w8eWQvsgJWJ6csVaA
-	==
-X-Google-Smtp-Source: AGHT+IGTuZJNQwMJ21Zt/iwu+Lwt8FGFWYP/uZLJHHppf6TYhsiA73LzqKrd96Z1UlFBGMruWLJon5RgYuny/0jUXqk=
-X-Received: by 2002:a5d:64e6:0:b0:38d:e15e:17e9 with SMTP id
- ffacd0b85a97d-38f33f5344bmr15197897f8f.35.1739884299381; Tue, 18 Feb 2025
- 05:11:39 -0800 (PST)
+	s=arc-20240116; t=1739884702; c=relaxed/simple;
+	bh=qRk4j53lVB7FEHXKltoWq+UEMmzfmhZUgATQ1zdoUhA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Tk0pfZrXasuz5rIVD47pal0EgSJ4YIbz0m8mAVzfGxJ4xFQnghMEJHOb+i9AyMXxKsChJLTmnA1z4VZL/Gr2mlHRowItefR42zZsG7QNFHU/yBSJAWYoVntxk4b2gWRQh1gPeqtiaH16xlN6smJ7T+Mth1k9Om6gi3biTk/NDso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NEXXYBrl; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1739884698;
+	bh=qRk4j53lVB7FEHXKltoWq+UEMmzfmhZUgATQ1zdoUhA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NEXXYBrlzizv19XYV6v6Mk7Kh6oUFjKcuqHZxeuwMjrxx5KkiHPaKs2Tftp9OS7oe
+	 11M0LwsI7OPyhzIsB2CPUi/VCZrsEjWJ5v9mCDbbyx7ap/s3wIdHcDm6iLgYXeYsDi
+	 RzsY0TX3IF8MJQglqvkoBzMITXMcnzJZdMZUujC3anU70NBUDNM8LitTPubbecl/dN
+	 Xp4372euwvf9D7rpGTjviR4neFS2T80Fu7CDMFsDIQc3A3xyAm6Bg1VBbLr1K0nPnD
+	 zh3gg4nT4ojSX4SFP4xIYoyrkGSt35hxGFm13h32GGypz/+Fd7aL06yUyvE9hW3fbH
+	 YjyxuEHyBBAUg==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id DF03517E0657;
+	Tue, 18 Feb 2025 14:18:17 +0100 (CET)
+Message-ID: <89fb495b-0171-49b3-a34b-022ba04f54df@collabora.com>
+Date: Tue, 18 Feb 2025 14:18:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217140910.108175-1-clamor95@gmail.com> <c19bd9b3-86c4-4f1a-beb9-b6aed32b3ef5@suse.de>
- <CAPVz0n0WG1Q51SONb4fmkzi4q7Q0sZ_aKSLrLnGboNNya6nO+Q@mail.gmail.com> <871pvvqu0i.fsf@minerva.mail-host-address-is-not-set>
-In-Reply-To: <871pvvqu0i.fsf@minerva.mail-host-address-is-not-set>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 18 Feb 2025 15:11:27 +0200
-X-Gm-Features: AWEUYZmfbcsOHj-xZvsCFi1MGPu06qG3yvCK-zcho_dMe2UGKIBGPZimeQMuN30
-Message-ID: <CAPVz0n1MdCccD5gHK0Z-mMHJ4Erf59_pBSU3+Jenmfr92Fky9g@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] drm: bridge: add ssd2825 RGB/DSI bridge support
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/13] ASoC: dt-bindings: Add document for mt6359-accdet
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
+ Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
+ Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: kernel@collabora.com, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-pm@vger.kernel.org
+References: <20250214-mt6359-accdet-dts-v1-0-677a151b9b4c@collabora.com>
+ <20250214-mt6359-accdet-dts-v1-1-677a151b9b4c@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250214-mt6359-accdet-dts-v1-1-677a151b9b4c@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-=D0=B2=D1=82, 18 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 15:09 Javi=
-er Martinez Canillas <javierm@redhat.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> Svyatoslav Ryhel <clamor95@gmail.com> writes:
->
-> > =D0=B2=D1=82, 18 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 14:36 =
-Thomas Zimmermann <tzimmermann@suse.de> =D0=BF=D0=B8=D1=88=D0=B5:
-> >>
-> >> (cc'ing Javier)
-> >>
-> >> Hi
-> >>
-> >> Am 17.02.25 um 15:09 schrieb Svyatoslav Ryhel:
-> >> > Solomon SSD2825 is a RGB to MIPI DSI bridge used in LG Optimus 4D P8=
-80
-> >> > and LG Optimus Vu P895
-> >>
-> >> There's a driver for Solomon 13xx displays in drm/solomon. Did you che=
-ck
-> >> that this new driver isn't just an extension of the existing code?
-> >>
-> >
-> > Definitely no, ssd2825 is a RGB to DSI bridge in a pure form. While
-> > 13xx as you have said are display controllers family.
-> >
->
-> Exactly. Both chips are from the same vendor (Solomon Systech [0]) and my
-> guess is that the SSD prefix means "Solomon Systech Device" or something
-> like that.
->
-> [0]: https://www.solomon-systech.com
->
+Il 14/02/25 18:18, Nícolas F. R. A. Prado ha scritto:
+> Add dt-binding for the MT6359 ACCDET hardware block.
+> 
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> ---
+>   .../bindings/sound/mediatek,mt6359-accdet.yaml     | 293 +++++++++++++++++++++
+>   1 file changed, 293 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt6359-accdet.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt6359-accdet.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..8922003d3b9d039d2a0355add7a90cf42b1a9da6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt6359-accdet.yaml
+> @@ -0,0 +1,293 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/mediatek,mt6359-accdet.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MT6359 Accessory Detection
+> +
+> +maintainers:
+> +  - Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> +
+> +description: |
+> +  The MT6359 Accessory Detection block is part of the MT6359 PMIC and allows
+> +  detecting audio jack insertion and removal, as well as identifying the type of
+> +  events connected to the jack.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt6359-accdet
+> +
+> +  mediatek,mic-vol:
 
-You are correct, vendor is the same, I have not denied that, but the
-this device is not related to product drivers which already exist in
-the Linux Kernel.
+mediatek,micbias1-microvolts = <1700000>;
 
-> --
-> Best regards,
->
-> Javier Martinez Canillas
-> Core Platforms
-> Red Hat
->
+enum: [1700000, 1800000 ... etc ]
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: MIC bias1 output voltage setting
+> +    enum:
+> +      - 0 # 1.7V
+> +      - 1 # 1.8V
+> +      - 2 # 1.9V
+> +      - 3 # 2.0V
+> +      - 4 # 2.1V
+> +      - 5 # 2.5V
+> +      - 6 # 2.6V
+> +      - 7 # 2.7V
+> +      - 8 # 2.8V
+> +      - 9 # 2.85V
+> +
+> +  mediatek,mic-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Mic mode setting
+> +    enum:
+> +      - 1 # ACC
+> +      - 2 # DCC mode. Low cost mode without internal bias
+> +      - 6 # DCC mode. Low cost mode with internal bias
+
+This is already defined in mt6359.yaml....?!
+
+> +
+> +  mediatek,eint-cmpmen-pwm-width:
+
+mediatek,eint-cmpm-pwm-width-ms:
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: EINT CMPMEN PWM width
+
+P.S.: CMPMEN = CoMParator Monitor ENable
+
+description: EINT Comparator Monitor PWM Width
+
+enum: [50, 80, 100, 200, 400, 500, 800, 1000]
+
+> +    enum:
+> +      - 0 # 50ms
+> +      - 1 # 80ms
+> +      - 2 # 100ms
+> +      - 3 # 200ms
+> +      - 4 # 400ms
+> +      - 5 # 500ms
+> +      - 6 # 800ms
+> +      - 7 # 1000ms
+> +
+> +  mediatek,eint-cmpmen-pwm-thresh:
+
+mediatek,eint-cmpm-pwm-threshold-ms:
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: EINT CMPMEN PWM threshold
+
+description: EINT Comparator Monitor PWM Threshold
+
+enum: [1, 2, 3, 4, 5, 8, 10, 20, 30]
+
+> +    enum:
+> +      - 0 # 1ms
+> +      - 1 # 2ms
+> +      - 2 # 4ms
+> +      - 3 # 5ms
+> +      - 4 # 8ms
+> +      - 5 # 10ms
+> +      - 6 # 20ms
+> +      - 7 # 30ms
+> +
+> +  mediatek,pwm-width:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: PWM width
+> +    minimum: 0
+> +    maximum: 65535
+> +
+> +  mediatek,pwm-thresh:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: PWM threshold
+> +    minimum: 0
+> +    maximum: 65535
+
+You can simplify those two with one param "mediatek,pwm-duty-cycle", I think.
+But then, regardless, you still need to express this in decent units...
+
+make a few calculations - but the equation is...
+
+PWM Width      = (32768 / (mediatek,pwm-width + 1)) [hertz]
+PWM Duty Cycle = ((mediatek,pwm-thresh + 1) / (mediatek,pwm-width + 1)) [ns?]
+PWM High Time  = (mediatek,pwm-thresh + 1) / 32768 [seconds]
+
+> +
+> +  mediatek,pwm-rise-delay:
+
+mediatek,pwm-rise-delay-cycle:
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Rise delay for PWM
+
+description: Rising delay of PWM waveform in cycles
+
+> +    minimum: 0
+> +    maximum: 65535
+> +
+> +  mediatek,pwm-fall-delay:
+
+same for the falling one
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Fall delay for PWM
+> +    minimum: 0
+> +    maximum: 65535
+> +
+> +  mediatek,debounce0:
+
+mediatek,adc-debounce-ns = < debounce0 debounce1 debounce2 debounce3 >
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Debounce time for state 0
+> +    minimum: 0
+> +    maximum: 65535
+> +
+> +  mediatek,debounce1:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Debounce time for state 1
+> +    minimum: 0
+> +    maximum: 65535
+> +
+> +  mediatek,debounce3:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Debounce time for state 3
+> +    minimum: 0
+> +    maximum: 65535
+> +
+> +  mediatek,debounce-auxadc:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Debounce time for AUXADC
+> +    minimum: 0
+> +    maximum: 65535
+> +
+
+mediatek,eint-debounce-ns = < same as adc-debounce-ns >
+
+> +  mediatek,eint-debounce0:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Debounce time for EINT state 0
+> +    enum:
+> +      - 0 # 0ms
+> +      - 1 # 0.12ms
+> +      - 2 # 0.25ms
+> +      - 3 # 0.5ms
+> +      - 4 # 0.75ms
+> +      - 5 # 1ms
+> +      - 6 # 2ms
+> +      - 7 # 4ms
+> +      - 8 # 8ms
+> +      - 9 # 16ms
+> +      - 10 # 32ms
+> +      - 11 # 48ms
+> +      - 12 # 64ms
+> +      - 13 # 128ms
+> +      - 14 # 256ms
+> +      - 15 # 512ms
+> +
+> +  mediatek,eint-debounce1:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Debounce time for EINT state 1
+> +    enum:
+> +      - 0 # 0ms
+> +      - 1 # 0.5ms
+> +      - 2 # 0.75ms
+> +      - 3 # 0.9ms
+> +      - 4 # 1.5ms
+> +      - 5 # 1.8ms
+> +      - 6 # 3ms
+> +      - 7 # 3.5ms
+> +      - 8 # 3.8ms
+> +      - 9 # 16ms
+> +      - 10 # 32ms
+> +      - 11 # 48ms
+> +      - 12 # 64ms
+> +      - 13 # 128ms
+> +      - 14 # 256ms
+> +      - 15 # 512ms
+> +
+> +  mediatek,eint-debounce2:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Debounce time for EINT state 2
+> +    enum:
+> +      - 0 # 0ms
+> +      - 1 # 0.5ms
+> +      - 2 # 0.75ms
+> +      - 3 # 0.9ms
+> +      - 4 # 1.5ms
+> +      - 5 # 1.8ms
+> +      - 6 # 3ms
+> +      - 7 # 3.5ms
+> +      - 8 # 3.8ms
+> +      - 9 # 4ms
+> +      - 10 # 4.5ms
+> +      - 11 # 5ms
+> +      - 12 # 7ms
+> +      - 13 # 9ms
+> +      - 14 # 19ms
+> +      - 15 # 25ms
+> +
+> +  mediatek,eint-debounce3:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Debounce time for EINT state 3
+> +    enum:
+> +      - 0 # 0ms
+> +      - 1 # 0.12ms
+> +      - 2 # 0.25ms
+> +      - 3 # 0.5ms
+> +      - 4 # 0.75ms
+> +      - 5 # 1ms
+> +      - 6 # 2ms
+> +      - 7 # 4ms
+> +      - 8 # 8ms
+> +      - 9 # 16ms
+> +      - 10 # 32ms
+> +      - 11 # 48ms
+> +      - 12 # 64ms
+> +      - 13 # 128ms
+> +      - 14 # 256ms
+> +      - 15 # 512ms
+> +
+> +  mediatek,eint-inverter-debounce:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Debounce time for EINT inverter
+> +    enum:
+> +      - 0 # 0ms
+> +      - 1 # 0.12ms
+> +      - 2 # 0.25ms
+> +      - 3 # 0.5ms
+> +      - 4 # 0.75ms
+> +      - 5 # 1ms
+> +      - 6 # 2ms
+> +      - 7 # 4ms
+> +      - 8 # 8ms
+> +      - 9 # 16ms
+> +      - 10 # 32ms
+> +      - 11 # 48ms
+> +      - 12 # 64ms
+> +      - 13 # 128ms
+> +      - 14 # 256ms
+> +      - 15 # 512ms
+> +
+> +  mediatek,eint-detect-mode:
+
+This is fine, I think.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: EINT detection mode
+> +    enum:
+> +      - 0 # Higher detection power
+> +      - 1 # Lower detection power
+> +      - 2 # SW moisture detection mode1
+> +      - 3 # HW moisture detection mode1
+> +      - 4 # HW moisture detection mode2
+> +
+> +  mediatek,eint-num:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: EINT interrupt that should be enabled
+> +    enum:
+> +      - 0 # EINT0
+> +      - 1 # EINT1
+> +      - 2 # EINT0 | EINT1
+> +
+> +  mediatek,eint-use-ext-res:
+> +    type: boolean
+> +    description:
+> +      Whether an external resistor should be used for the HP_EINT signal.
+> +      By default an internal pull-up resistor is used.
+> +
+> +  mediatek,eint-comp-vth:
+
+mediatek,eint-comp-vth-microvolts = ....
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: EINT comparator threshold
+> +    enum:
+> +      - 0 # 2.4V
+> +      - 1 # 2V
+> +      - 2 # 1.6V
+> +      - 3 # 1.2V
+> +      - 4 # 0.8V
+> +
+
+...and that's more or less it....
+
+Cheers,
+Angelo
+
+> +  mediatek,eint-level-pol:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: EINT interrupt polarity
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    accdet: accdet {
+> +        compatible = "mediatek,mt6359-accdet";
+> +        mediatek,mic-vol = <8>;
+> +        mediatek,mic-mode = <2>;
+> +        mediatek,pwm-width = <0x500>;
+> +        mediatek,pwm-thresh = <0x500>;
+> +        mediatek,pwm-fall-delay = <1>;
+> +        mediatek,pwm-rise-delay = <0x1f0>;
+> +        mediatek,debounce0 = <0x800>;
+> +        mediatek,debounce1 = <0x800>;
+> +        mediatek,debounce3 = <0x20>;
+> +        mediatek,debounce-auxadc = <0x44>;
+> +        mediatek,eint-cmpmen-pwm-width = <4>;
+> +        mediatek,eint-cmpmen-pwm-thresh = <1>;
+> +        mediatek,eint-debounce0 = <5>;
+> +        mediatek,eint-debounce1 = <3>;
+> +        mediatek,eint-debounce2 = <3>;
+> +        mediatek,eint-debounce3 = <5>;
+> +        mediatek,eint-inverter-debounce = <0xe>;
+> +        mediatek,eint-detect-mode = <4>;
+> +        mediatek,eint-num = <0>;
+> +        mediatek,eint-comp-vth = <2>;
+> +        mediatek,eint-level-pol = <IRQ_TYPE_LEVEL_LOW>;
+> +    };
+> 
+
 
