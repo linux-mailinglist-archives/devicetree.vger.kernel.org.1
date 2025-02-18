@@ -1,119 +1,85 @@
-Return-Path: <devicetree+bounces-147830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67FF5A39818
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:05:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6969FA39830
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:08:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 467BA7A1AF8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:00:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01B863B455E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:03:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51AF5232787;
-	Tue, 18 Feb 2025 10:01:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1837122FF47;
+	Tue, 18 Feb 2025 10:02:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="NxiIsn1b"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="O7Woy1Y6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 431501B415E;
-	Tue, 18 Feb 2025 10:01:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92AFC230D08
+	for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 10:02:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739872869; cv=none; b=EYbIBySCO1j6MuTSho4ifU978589UbDw1FNyDzRHF+zUumO8KcOZG+R549SBcwMLzqVBwVRjGZRx5e2W5ZSfAYAjk3PO47W7iKFCLafn8x6/fZolY72cGWWKkKYW/7UIi4XKwJNLDdmz2RzfJNOw5kscPruVoAeCSg4wyIzPIis=
+	t=1739872969; cv=none; b=D9VVDbLZriIvGOlvuSr9rdWIHa5f0ChoKcILGWXuWfTh9ZKJWYI6+BMkeo5+81fWwoPgNMUJY+FdYQhr2mcktBOU7aiGtpNfhoPhmF03/mQJNbFsyENLbqrqXb4hrCxATnGEMzku87r+CgeWyd4nFAlvvWUobGXmh+PWzDXp34s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739872869; c=relaxed/simple;
-	bh=l5Ts+b7yVQJqhwAyf007dWGYtYu9ssBgiRKvaW+pf6s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AUWZ3ywYYcr9z3jZ9oGM0uGVfXneZchvOtkhjC4mC7HaDG4sV2mmsDT6b5OfH/AqfR+oXJMsgxMv7o1SXEZXAsYIu2npQDD7z79/51N6PeqQtZYcBB7g457QeaG6V5NG2p5FHcz00gNLETqZRmvBNwOnwUSlPjZPoKH14kLbSsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=NxiIsn1b; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=XqV/29FN8TAKwZ9jAVPZuJgB96iWFCzrBQyx4X5GjRI=; b=NxiIsn1b7FykEg6OCLh5DpDtTw
-	RDjum5Qx4uV2nMLbl4A6rKayYGAtYmRYhAH5mPNiqN74w7AOyScXoApT0M3CIAtB5pfTCduRV84jd
-	8Y9wbfTlYPWDx+tG8n52sNCelLFypuJUEOv8RXNXELnwatmIl5F2DkL7iHY8TDhbx8bWA+EMZkzWV
-	awy1oAO/ET4dDzpyQfTxmlkpCH5DD/0t5BSkPOJVNP06R7088+J5tbrXKad7fHL5iEhgRrswiU0aD
-	P/xjDk3UO+AdXFAGXt0t8pbE8CJWS6djYfLefPC+snPPRg5SpASruOXsCRX6Fcqmmj6HbjXD424EU
-	wvqiQjNA==;
-Received: from i53875bc0.versanet.de ([83.135.91.192] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tkKPS-0003jc-4g; Tue, 18 Feb 2025 11:00:58 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: cristian.ciocaltea@collabora.com, Jianfeng Liu <liujianfeng1994@gmail.com>
-Cc: airlied@gmail.com, andy.yan@rock-chips.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- hjc@rock-chips.com, kernel@collabora.com, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, liujianfeng1994@gmail.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, robh@kernel.org,
- simona@ffwll.ch, tzimmermann@suse.de
-Subject:
- Re: [PATCH 3/4] arm64: dts: rockchip: Add HDMI1 PHY PLL clock source to VOP2
- on RK3588
-Date: Tue, 18 Feb 2025 11:00:57 +0100
-Message-ID: <1919367.CQOukoFCf9@diego>
-In-Reply-To: <20250218095216.1253498-1-liujianfeng1994@gmail.com>
-References:
- <1b3234ce-4526-4735-b9c0-c242e6cc3cf0@collabora.com>
- <20250218095216.1253498-1-liujianfeng1994@gmail.com>
+	s=arc-20240116; t=1739872969; c=relaxed/simple;
+	bh=yGAS9BJDuUiHX5bsVDV2uJP5vXig9Fk2mk29K2nc028=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CWADgXRQmpctD7lSThFPvOuAit4afAxuTwgu3Sjf/1oVlNrlqXqzvtMEv0yLkWy+OWEQ3PgIWKCG4r2U3CYaz4DWEcO7YeS+uNEb3U92H/h2Grwin+I2fHo714UANwHJyQ9p5lwPG38h9h7FTeNKbdygltGTjIoSbBPnrcs8EnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=O7Woy1Y6; arc=none smtp.client-ip=220.197.32.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=zaXVPd8t0VO67w3iZYFtfLXnSe8QC8xmMPBwsH0TuvQ=;
+	b=O7Woy1Y6fI1cNidy2k135tVAb7Fp/6WiaMGPD6RhQWIyc8/2aUF9eKC637+Yxe
+	QujN/GV3PqtH9pZrbXJ68ReIFmVa2hklGpGRthsKVFuSpON9tejdk9PsXlVrVXPy
+	Oyg+Hfrv5TMBKcoAeIAfxwP2P25lB1J9a60aJdmD4FzEw=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgCX3MqnWrRnpNZhCQ--.20227S3;
+	Tue, 18 Feb 2025 18:02:17 +0800 (CST)
+Date: Tue, 18 Feb 2025 18:02:15 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, kernel@pengutronix.de,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v2 1/2] ARM: dts: imx5: Fix the CCM interrupts description
+Message-ID: <Z7Rap8/l2/V5scVU@dragon>
+References: <20250112152745.1079880-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250112152745.1079880-1-festevam@gmail.com>
+X-CM-TRANSID:Ms8vCgCX3MqnWrRnpNZhCQ--.20227S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUcGYpUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRn3ZWe0TrUtvAAAs7
 
-Am Dienstag, 18. Februar 2025, 10:52:16 MEZ schrieb Jianfeng Liu:
-> Hi Cristian,
+On Sun, Jan 12, 2025 at 12:27:44PM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> No matter one or two hdmi ports the rk3588 boards have, most of
-> devicetrees in mainline kernel only have hdmi0 supported. After applying
-> this patch their hdmi0 support is broken.
+> On the i.MX5 chips the peripheral interrupts are represented directly only
+> by their interrupt numbers.
 > 
-> So I recommend moving the vop clk part to board level devicetree.
-> Then support of hdmi0 won't be broken, and board maintainers can add
-> HDMI1 PHY PLL clk when they are adding hdmi1 support. I can add support
-> for orangepi 5 max and armsom w3 for reference by other developers.
+> The CCM nodes are not following this format and cause the following
+> dt-schema warnings:
+> 
+> ccm@73fd4000: interrupts: [[0], [71], [4], [0], [72], [4]] is too long
+> 
+> Fix it by passing only the two interrupt numbers.
+> 
+> Run-time tested in on an imx53-qsb board.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-better, fix the VOP2 driver - both for the existing hdmi0 + this hdmi1
-please.
-
-I.e. the clock is optional, and the error you are seeing comes from the
-
-       vop2->pll_hdmiphy1 = devm_clk_get_optional(vop2->dev, "pll_hdmiphy1");
-       if (IS_ERR(vop2->pll_hdmiphy1)) {
-               drm_err(vop2->drm, "failed to get pll_hdmiphy1\n");
-               return PTR_ERR(vop2->pll_hdmiphy1);
-       }
-
-part. clk_get_optional is supposed to return NULL when clock-retrieval
-causes a ENOENT error. Seemingly going to a clock controller in a disabled
-node returns a different error?
-
-So I guess step1, check what error is actually returned.
-Step2 check if clk_get_optional need to be adapted or alternatively
-catch the error in the vop2 and set the clock to NULL ourself in that case.
-
-
-hdptxphy0 + hdpxphy1 _are_ valid supplies for the vop, so their reference
-should be in the soc-dtsi and the kernel code should just figure things out
-correctly. Wiggling with clocks in each board will cause headaches down
-the road.
-
-
-Heiko
-
+Applied, thanks!
 
 
