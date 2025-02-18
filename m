@@ -1,170 +1,115 @@
-Return-Path: <devicetree+bounces-147850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE285A3999F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:51:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34709A399B3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:54:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32574165355
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:51:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1DE4188AFAF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:54:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5D90239562;
-	Tue, 18 Feb 2025 10:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C4E0238D35;
+	Tue, 18 Feb 2025 10:54:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NGdJ0xWo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB8802376E0;
-	Tue, 18 Feb 2025 10:50:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3476822D7B1;
+	Tue, 18 Feb 2025 10:54:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739875860; cv=none; b=d/tWRJP3CR/pwSO5meG9tYh3qYieHgkD2kOddfHJ52YCmIe6on+9FTwtqmPK/Gkb8utY62eT1nOt/B9w8q/9F2pJ0zfhukXeEuBiq3wBtVTbs7xBnOoozlXu/RDurJhQytmU7qN6LBTKQ5Dbcpng8RoEigcEsKVKDPAcvaZk0fU=
+	t=1739876079; cv=none; b=CAPoGX0nttFuclGDQaeW7Kjqgk1TZcKkd6P0EkQpeJFQuP7KjvQldRp45xz87dSvTLyj1evOMjQUXCjArwtV0PI/unP5Rv48n5v6o86kES+juAot1UDeohDXGzkN0KtCJPd/kct3BG9+yqNCr0OBTUHs/lmEKrAX+eJLAPVocTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739875860; c=relaxed/simple;
-	bh=ZoIQF26rmEJf9RCXZUKPNH9hhsauii+mZjsUmvxT+EY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eDQ6czdeehg8d0xHUbLD/6B3drqFAUYh9ivyMEIWHHDqJnmw+dCtuAcSGCvSYBTP/SXsLA8g1hbJtkJFrf8B3n/Ahzza2HenI0td7xYuQPdIQWs9qqr61agc2zi823m8LTJcI5sDjrTQNeEMINniml3NYEgKwFuj1tH7GfDQcBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: u7PajCclRR6/G0UKZnQh5A==
-X-CSE-MsgGUID: UKTFrJcfTLi7Q0LozL8W4g==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 18 Feb 2025 19:50:58 +0900
-Received: from localhost.localdomain (unknown [10.226.92.208])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 8EFD042A47AC;
-	Tue, 18 Feb 2025 19:50:55 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1739876079; c=relaxed/simple;
+	bh=RdaxUeKvZh5sL0uJ9BtFySXbqU59fk3zLkq47gAsBp0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kGNLHsEKg1XeUDBwxLbFtr8hWw/NF+mQgB4oqcu12Kg/0Jb6u9oMMSGvlPa40KmL1fUoF1hSrN4YCEtdYjjssnVgXK68NMWCXP/RvTuGzNWNmpLBKgNOECczyK4J+JKsPE71Pu5+/kgWx73N6cjnJ1vLAVoBs0HV7XrnZhqHVn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NGdJ0xWo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DED8EC4CEE2;
+	Tue, 18 Feb 2025 10:54:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739876078;
+	bh=RdaxUeKvZh5sL0uJ9BtFySXbqU59fk3zLkq47gAsBp0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NGdJ0xWorHM+qXxP6z1rSeaxtuPdGwDGjNbPbIrWqn2LZYrgAwf7tfZPrZJfTUp2k
+	 HAQMk4W5ei9khWJkMH+utPXmDd1oRqzwdKNh9yBkDxqo1Kwqm7JawToKHk8S3bNLF5
+	 QMihBcdYKQBetKQdUBAtsQ1mDQE0HTxkQv5d2v8ZgI2LSYNRcy31utnMKWhBXPPncG
+	 ypCuFYUO6ZlKV2AfP3Yxt9Fl9YLBOWK9PtChtQ2AxuKkBcc6dZu/LME9uclFbq9nbh
+	 a0BqbTtPB8mlohh/4vGAClo6rDyAh9d1d6UUrjKeY+V9JAqdWuFSvfb13pdTSf+qOJ
+	 NQ9zKlK53hOGw==
+Date: Tue, 18 Feb 2025 16:24:35 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Michal Simek <michal.simek@amd.com>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+	git@xilinx.com, Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Harini Katakam <harini.katakam@amd.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 11/11] arm64: dts: renesas: r9a09g047e57-smarc: Enable CANFD
-Date: Tue, 18 Feb 2025 10:50:01 +0000
-Message-ID: <20250218105007.66358-12-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250218105007.66358-1-biju.das.jz@bp.renesas.com>
-References: <20250218105007.66358-1-biju.das.jz@bp.renesas.com>
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Mark Brown <broonie@kernel.org>,
+	Michael Tretter <m.tretter@pengutronix.de>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Mubin Sayyed <mubin.sayyed@amd.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Niklas Cassel <cassel@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Shyam Pandey <radhey.shyam.pandey@amd.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" <dmaengine@vger.kernel.org>,
+	"moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	"open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+	"open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" <linux-ide@vger.kernel.org>,
+	"open list:XILINX AMS DRIVER" <linux-iio@vger.kernel.org>,
+	"open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
+	"open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+	"open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: xilinx: Deprecate header with firmware
+ constants
+Message-ID: <Z7Rm6/DYM67QbXvT@vaman>
+References: <cover.1738600745.git.michal.simek@amd.com>
+ <2a6f0229522327939e6893565e540b75f854a37b.1738600745.git.michal.simek@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2a6f0229522327939e6893565e540b75f854a37b.1738600745.git.michal.simek@amd.com>
 
-Enable CANFD on the RZ/G3E SMARC EVK platform.
+On 03-02-25, 17:39, Michal Simek wrote:
+> Firmware contants do not fit the purpose of bindings because they are not
+> independent IDs for abstractions. They are more or less just contants which
+> better to wire via header with DT which is using it.
+> That's why add deprecated message to dt binding header and also update
+> existing dt bindings not to use macros from the header  and replace them by
+> it's value. Actually value is not relevant because it is only example.
+> 
+> The similar changes have been done by commit 9d9292576810 ("dt-bindings:
+> pinctrl: samsung: deprecate header with register constants").
+> 
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
+> 
+>  Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml  | 4 +---
+>  .../bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml           | 3 +--
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- .../boot/dts/renesas/r9a09g047e57-smarc.dts   | 45 +++++++++++++++++++
- .../boot/dts/renesas/renesas-smarc2.dtsi      | 15 +++++++
- 2 files changed, 60 insertions(+)
+Acked-by: Vinod Koul <vkoul@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index 5d7983812c70..2a4b7bb3a1a6 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -10,6 +10,8 @@
- /* Switch selection settings */
- #define SW_SD0_DEV_SEL		0
- #define SW_SDIO_M2E		0
-+#define SW_GPIO8_CAN0_STB	0
-+#define SW_GPIO9_CAN1_STB	0
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/pinctrl/renesas,r9a09g047-pinctrl.h>
-@@ -33,7 +35,50 @@ vqmmc_sd1_pvdd: regulator-vqmmc-sd1-pvdd {
- 	};
- };
- 
-+&canfd {
-+	pinctrl-0 = <&canfd_pins>;
-+	pinctrl-names = "default";
-+
-+	channel1 {
-+		status = "okay";
-+	};
-+
-+	channel4 {
-+		status = "okay";
-+	};
-+};
-+
- &pinctrl {
-+#if SW_GPIO8_CAN0_STB
-+	can0-stb-hog {
-+		gpio-hog;
-+		gpios = <RZG3E_GPIO(5, 4) GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "can0_stb";
-+	};
-+#endif
-+
-+#if SW_GPIO9_CAN1_STB
-+	can1-stb-hog {
-+		gpio-hog;
-+		gpios = <RZG3E_GPIO(5, 5) GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "can1_stb";
-+	};
-+#endif
-+
-+	canfd_pins: canfd {
-+		can1_pins: can1 {
-+			pinmux = <RZG3E_PORT_PINMUX(L, 2, 3)>, /* RX */
-+				 <RZG3E_PORT_PINMUX(L, 3, 3)>; /* TX */
-+		};
-+
-+		can4_pins: can4 {
-+			pinmux = <RZG3E_PORT_PINMUX(5, 2, 3)>, /* RX */
-+				 <RZG3E_PORT_PINMUX(5, 3, 3)>; /* TX */
-+		};
-+	};
-+
- 	scif_pins: scif {
- 		pins = "SCIF_TXD", "SCIF_RXD";
- 		renesas,output-impedance = <1>;
-diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-index fd82df8adc1e..a480358c5771 100644
---- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-+++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-@@ -12,6 +12,17 @@
-  * SW_SDIO_M2E:
-  *     0 - SMARC SDIO signal is connected to uSD1
-  *     1 - SMARC SDIO signal is connected to M.2 Key E connector
-+ *
-+ * Please set the switch position SW_GPIO_CAN_PMOD on the carrier board and the
-+ * corresponding macro SW_GPIO8_CAN0_STB/SW_GPIO8_CAN0_STB on the board DTS:
-+ *
-+ * SW_GPIO8_CAN0_STB:
-+ *	0 - Connect to GPIO8 PMOD (default)
-+ *	1 - Connect to CAN0 transceiver STB pin
-+ *
-+ * SW_GPIO9_CAN1_STB:
-+ *	0 - Connect to GPIO9 PMOD (default)
-+ *	1 - Connect to CAN1 transceiver STB pin
-  */
- 
- / {
-@@ -29,6 +40,10 @@ aliases {
- 	};
- };
- 
-+&canfd {
-+	status = "okay";
-+};
-+
- &scif0 {
- 	status = "okay";
- };
 -- 
-2.43.0
-
+~Vinod
 
