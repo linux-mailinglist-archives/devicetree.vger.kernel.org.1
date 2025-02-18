@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-147753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 350F0A39425
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 08:53:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C55FA39427
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 08:53:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2120E3AABA5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 07:49:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 696107A3701
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 07:52:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 788771F1818;
-	Tue, 18 Feb 2025 07:49:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91CFD1FCD15;
+	Tue, 18 Feb 2025 07:53:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JbbFLjOZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YZ7Wq/yb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C1281F17EB;
-	Tue, 18 Feb 2025 07:49:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 636F41FCD16;
+	Tue, 18 Feb 2025 07:53:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739864994; cv=none; b=DRjB4UGfg21Z4/I49as1JvwSZwbECsgaMP9RLBpC8eI226egfvw20DkTjqLbTHNrEH6dafpIZnG5UrI8v+W+riYS0kNmXYXu/almN/mKc0DpEoPuQfH00tM6aEEElZruzqugS3Srk4nTcum/vlV1WAvreX+Z79nzkEwxQYWt0Tw=
+	t=1739865195; cv=none; b=nslsFjv1qVvQdqOyUQjQHWeftKchGYHnyMLaTE4hmHMNhM6YOfwJoUoPl4UA/21tDngTL+0F+ff41qf9zADladeZQBSYCbD7JW4yfn1rREAoZfC4lpy79E4tLB3ENs0rouAGJ5bBnNkJReZsEHB+6ovAT82+QFbg3PwCwChSmTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739864994; c=relaxed/simple;
-	bh=P1q49kmYJ1DKMzMpGC0ebZsxyzkRb/s7NK7yqdrQuZ4=;
+	s=arc-20240116; t=1739865195; c=relaxed/simple;
+	bh=pM3poGEcsbyLMIA6gXTWiUeVXWBqYh4bpJklQX9Pc8g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rK9eyvITqlLRtrkdzvrZAsz+v9JEVKMC/JholDdRM7j6z9MPfKS6rbhxZQ0/gvWaLr+k4xKECmHdTwVUUzigUg8KhPGUQF+KhTEuKv0jk6z+2MsppUKb6lAVgUKgTcyKhgPXexxoXWVmSzwqfZ9n5iZKjKcXX9UcQg9vYuEkFyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JbbFLjOZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48474C4CEE2;
-	Tue, 18 Feb 2025 07:49:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=P7uPKkge5k+7cWNSC9xfAlA5HpfjxoKg1hrEyDPhkANeRP2KjtbLXrL/nMVt3UNpQVEJwWxGlKDUNLG86kFweE3H0fyFfO2wQQFrYsAt86nyV/Yfdw7MGSOzkquKUOUszVYhnwuo637SjSFmVR1/cFOx3Xob/S7FXOdmkwVr8kM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YZ7Wq/yb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54BC0C4CEE2;
+	Tue, 18 Feb 2025 07:53:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739864993;
-	bh=P1q49kmYJ1DKMzMpGC0ebZsxyzkRb/s7NK7yqdrQuZ4=;
+	s=k20201202; t=1739865194;
+	bh=pM3poGEcsbyLMIA6gXTWiUeVXWBqYh4bpJklQX9Pc8g=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JbbFLjOZnqd0xeibVXu8HpU3+TvQXxyiJc3Xt+WTrAeaXik3eUMd3+9z8vnu5QWOC
-	 rX6z1VqokYkcF79FcO9BuexjFU+ZijBw3XY/zZg+tiT3WFJY/l/9NdNzRnE+0eHSJe
-	 /DMkCAhqxx7a8gURormOpb53NGbLOnNIl+9oMf5uQEB/eO7rtBs223ZASOHCVKKcTe
-	 lH88TnwY6/Jh5I49MFcvI6+eMKQeUoKiY2Q8QZsDOWwK/p8um085sXRZ3i6R7kltur
-	 XyXeYGnWNlra7wvH/t9VWx+YRlXr2QUc7otV/D1B0UYSGXXdveor+rw4Le4XcQ9PTT
-	 EFSF8hgWIUssA==
-Message-ID: <a1112ce0-c3d8-4765-8b80-5fb31e2cfcc5@kernel.org>
-Date: Tue, 18 Feb 2025 08:49:46 +0100
+	b=YZ7Wq/ybr9pPJ2jeHjF6bEb2edS8eeRwrNnlez6bivuXfyFh7ZCGN4okR2V57NjA1
+	 Bb80NC0w56VIBOarJvs2XVMJBV2rVHm4CpJC1LUSiBho86KDjfSL1ekqKs5ZBaNwCm
+	 7gHhFfzGZmat9Oog0jvkPGVb4m3iu8RQwUYDrcyCgrJz2C8DwQEOwP6UupejYyTaas
+	 BCXxDwGZPJ8/9Z3H5V9MMs/Lo3NglUnyXWwWwArGzu8VfuaqTaiirqGrtbzncNQhE7
+	 l1tO4jqJgmbK7QQGWyUJ5bCvyk5lrRvr+IZPUToFvltzaczK/LdeKds51ia/IaUGP2
+	 JzPmJ3pgtAfhw==
+Message-ID: <6002ba76-2186-4839-9ad4-01364be33ff3@kernel.org>
+Date: Tue, 18 Feb 2025 08:53:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] net: phy: bcm63xx: add support for BCM63268 GPHY
-To: Kyle Hendry <kylehendrydev@gmail.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, =?UTF-8?Q?Fern=C3=A1ndez_Rojas?=
- <noltari@gmail.com>, Jonas Gorski <jonas.gorski@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20250218013653.229234-1-kylehendrydev@gmail.com>
- <20250218013653.229234-2-kylehendrydev@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: aspeed-g6.dtsi: enable IRQ for
+ watchdogs
+To: Heyi Guo <guoheyi@linux.alibaba.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+References: <20250218031709.103823-1-guoheyi@linux.alibaba.com>
+ <20250218031709.103823-2-guoheyi@linux.alibaba.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -110,73 +105,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250218013653.229234-2-kylehendrydev@gmail.com>
+In-Reply-To: <20250218031709.103823-2-guoheyi@linux.alibaba.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/02/2025 02:36, Kyle Hendry wrote:
-> This patch adds support for the internal gigabit PHY on the
-> BCM63268 SoC. The PHY has a low power mode that has can be
-> enabled/disabled through the GPHY control register. The
-> register is passed in through the device tree, and the
-> relevant bits are set in the suspend and resume functions.
+On 18/02/2025 04:16, Heyi Guo wrote:
+> To finally enable watchdog pretimeout function.
 > 
-> Signed-off-by: Kyle Hendry <kylehendrydev@gmail.com>
-> ---
->  drivers/net/phy/bcm63xx.c | 96 +++++++++++++++++++++++++++++++++++++++
->  1 file changed, 96 insertions(+)
-
-
-Also two more nits:
-
+> Signed-off-by: Heyi Guo <guoheyi@linux.alibaba.com>
 > 
-> diff --git a/drivers/net/phy/bcm63xx.c b/drivers/net/phy/bcm63xx.c
-> index b46a736a3130..613c3da315ac 100644
-> --- a/drivers/net/phy/bcm63xx.c
-> +++ b/drivers/net/phy/bcm63xx.c
-> @@ -3,8 +3,11 @@
->   *	Driver for Broadcom 63xx SOCs integrated PHYs
->   */
->  #include "bcm-phy-lib.h"
-> +#include <linux/mfd/syscon.h>
->  #include <linux/module.h>
->  #include <linux/phy.h>
-> +#include <linux/regmap.h>
-> +
->  
 
+There is never blank line between tags.
 
-No need for new line.
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
 
->  #define MII_BCM63XX_IR		0x1a	/* interrupt register */
->  #define MII_BCM63XX_IR_EN	0x4000	/* global interrupt enable */
-> @@ -13,10 +16,19 @@
->  #define MII_BCM63XX_IR_LINK	0x0200	/* link changed */
->  #define MII_BCM63XX_IR_GMASK	0x0100	/* global interrupt mask */
->  
-> +#define PHY_ID_BCM63268_GPHY	0x03625f50
-> +
-> +#define GPHY_CTRL_IDDQ_BIAS	BIT(0)
-> +#define GPHY_CTRL_LOW_PWR	BIT(3)
-> +
->  MODULE_DESCRIPTION("Broadcom 63xx internal PHY driver");
->  MODULE_AUTHOR("Maxime Bizon <mbizon@freebox.fr>");
->  MODULE_LICENSE("GPL");
->  
-> +struct bcm_gphy_priv {
-> +		struct regmap *gphy_ctrl;
+Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
+commit msg. There is no single need to store automated output of
+get_maintainers.pl in the git log. It can be easily re-created at any
+given time, thus its presence in the git history is redundant and
+obfuscates the log.
 
+If you need it for your own patch management purposes, keep it under the
+--- separator.
 
-Messed indentation.
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Joel Stanley <joel@jms.id.au>
+> Cc: Andrew Jeffery <andrew@codeconstruct.com.au>
 
-> +};
-> +
->  static int bcm63xx_config_intr(struct phy_device *phydev)
->  {
->  	int reg, err;
-> @@ -69,6 +81,80 @@ static int bcm63xx_config_init(struct phy_device *phydev)
->  	return phy_write(phydev, MII_BCM63XX_IR, reg);
->  }
+Missing Sob as last entry.
 
 
 
