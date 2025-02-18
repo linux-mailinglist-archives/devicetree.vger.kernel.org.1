@@ -1,103 +1,67 @@
-Return-Path: <devicetree+bounces-147694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98E7BA3907F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 02:39:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEC3AA390CF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 03:17:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0226189393B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 01:39:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C457E3B31F5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 02:16:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B3F1A8404;
-	Tue, 18 Feb 2025 01:37:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC62929D05;
+	Tue, 18 Feb 2025 02:17:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LdgoGRjP"
+	dkim=pass (2048-bit key) header.d=studer.dev header.i=@studer.dev header.b="pJHRuUoi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-b.studer.dev (mail-b.studer.dev [3.21.136.164])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8DFE1A08B1;
-	Tue, 18 Feb 2025 01:37:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90FD31EEE6;
+	Tue, 18 Feb 2025 02:16:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=3.21.136.164
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739842642; cv=none; b=MiNqN3xv97UF8AMHoxaOANUPOq5+GV63krOONoZFUProvlPzA8vU0sVa20EiIYYbjH5XlFBgpjIfDJg/0q1XukMydm9Qy3TqLU7nhDAKmiWF2LK96RSKHH1rPyjSe14Eon/kFy4CK6hEBmTSFFok1VPmyO9X4Y70G/ryICyzT08=
+	t=1739845021; cv=none; b=DTAf3DiL04yTD1871ahpGyCm6QvzpB1yEfxHmcCPoORTRFL9Jh7A77mn4FATOWICTJMoNinS3v7CvjTVzjidwe761rjP+53pilEDaceczz6ftmL9lMWEY8XMc3qyLxKkCRt2TQNnWQ0/F3osJuOmp68wri+e8epSO4vyJaR2rho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739842642; c=relaxed/simple;
-	bh=wp6fErtgRQAw9QT6alD2YZKiQPW6JyirNIZqxzsplWY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=E8+IBkUxScMAiBrHhLK4uE7Q3pDBY6riurc/13MC/bbWR2VNzSWCvb6MSYfjC/N8aUkO0aOIGgogYB/Ia+T4fxY7yMax6bVRkaefB9R52Q6HYpvLykHmMwak72KUhNEJ7vUVeGWt7QozAiqOfLXk7RttM7C95UNeO35mnYfKgdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LdgoGRjP; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-220f048c038so59327135ad.2;
-        Mon, 17 Feb 2025 17:37:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739842640; x=1740447440; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zKLCDKY+mHeKsXEoXryyFkORSM+PA76Iv+i/R/w7Bcw=;
-        b=LdgoGRjP3Eny6jh9y4gU4GMuzqGpssxrHw64L0X3HPzqSb7+W3L12Z202Q+WvQiitO
-         gB88Kzo7FPb8EgpNeGtQmCPNEJV+e/TeJYyomxrOLbfHT9EXYXENBGKQCYHwmMuraOTO
-         bMXTaNjtDb6IV5Pql/NMLAvUTX9L8rd5jttPEnElgb696ZBnQ3kdGxMDCavKqplg2/Sb
-         hD/kS33mNv9Lkg+BWNa/c/yeKM6+lCPyDfkXu4CWgLcUmCzTPAFYsx6+JT22j7YPfHSH
-         i4w8W/28M7wWIprOn66dMmx84qBiWVZ9+kpM7LMfkvoUisL3TTgRRmHamkVzeB0jtn1P
-         0+aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739842640; x=1740447440;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zKLCDKY+mHeKsXEoXryyFkORSM+PA76Iv+i/R/w7Bcw=;
-        b=vEdSM0HHUJmdmTFNOofZbuZe4KP91C27SRCBw8kHAEpGOUmCx1AvAObMF5j7Y4xZM+
-         xi7kRzh6npeYUeGMqzJ122TLQPiKp+4rCFkjetd8vGzCSnQCeW+vPhWwA8eb3PJgU5kW
-         qELbxwU0hSXUg1f8vM+Ix6L8sGHpslZgks7k/QCtK+WWBb7tG4y1/1UTCLwml4QeB2kc
-         8ocf6TTU4k4ASXENGRfWkSC27E2aPH/GadnR4nHmvKlpatOfQGTb0e6dp6JC8BgBP44H
-         nXaI0+UV9x316djI6nBCOO/vQGOrHytRa7bct2HMZXQaSXfLKzNQ1bFCbSxEce2jWdzQ
-         Di3g==
-X-Forwarded-Encrypted: i=1; AJvYcCUNpRZm6zsmP9EfCNBfTRpjd0N3DZvR/qHjcm66kSriaVszf0TBkOfTVEgA4yRGm9pYLcPXP6niwmgQX862@vger.kernel.org, AJvYcCX+8rkRNNths2/uVZou/PKAOYKNVrL81yKqKtyvaKfquubb43AbAl9ud6fem/wK+bt7ta2CpKe/@vger.kernel.org, AJvYcCX1dcNrsYgwJAWxUeLZtPJEwTjjnq2ii5rt57i1qO9WxffOpVtma9nkG/eka+4FhAhPpJlLW3CbOSyo@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxhE7LFEslACF3U+ZL8ZIvvwND9sXaUu+JMtAe9mLyEMNxwlTO
-	/y05769GWbWwcQe/vpycUXkOxvO3gAG3NL+pkv5iOgFkcCR4byn/
-X-Gm-Gg: ASbGncsOP1hE7z/VL30DlPuzKVllcU9PieaYw4ZeiXT2/CyxBB7GgyukWiwRQuillgB
-	EFaeXBNybQsQ6Zxv8H+7ZNDY5Jpv4vvY3vf/94/s9jm73slMERTCD2pS5PIArF+ESt9sK4wkWZo
-	viBq18wyY8RJVGSSwwPjP9BEjD1yeuu2RxPCSbZxDrFoaYLlVQtKrHPBjgQVPkeAB+mCkFbD8UO
-	VSmJc9jHriHib7b8GgBXoyK9ksLzCnT5IdgC5Nr0M8Zv73zx+POnydrYPbcVSURReQura//pJJW
-	sOc1R75LSM75girXjZodaTnKTz2ZoQzXwg==
-X-Google-Smtp-Source: AGHT+IG6fuy4M3/uT1eijsCyZC0kZPunvOKQvdJWWuzg/1lXp63eqJRL241hIIWx/62ssxvn9TCnsw==
-X-Received: by 2002:a17:902:ebd0:b0:220:be86:a421 with SMTP id d9443c01a7336-221040a9b15mr153229775ad.38.1739842640126;
-        Mon, 17 Feb 2025 17:37:20 -0800 (PST)
-Received: from localhost.localdomain ([64.114.251.173])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d556d4d8sm76910165ad.170.2025.02.17.17.37.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Feb 2025 17:37:19 -0800 (PST)
-From: Kyle Hendry <kylehendrydev@gmail.com>
-To: Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1739845021; c=relaxed/simple;
+	bh=1JXVA2sVlnhfQcgr028+qseD4GYQ502lyjwFC65z7iA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EeeNnH9jseCD8ekaOmCF5TemrME3xyuz6XCVTfq3vn6475A6WEYTi2rKlpRzKm+IJ+yBkApTLpTYfl2/w0aZQi6kw7hWoem6gM7Hslb6TFVb428Qa/O4eALCPx7/0fxdPZGtOLb/V+fzvTrKWRT4hCaiPESypdDq9DkeIO6+r30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=studer.dev; spf=pass smtp.mailfrom=studer.dev; dkim=pass (2048-bit key) header.d=studer.dev header.i=@studer.dev header.b=pJHRuUoi; arc=none smtp.client-ip=3.21.136.164
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=studer.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=studer.dev
+Received: from mail.studer.dev (mail.studer.dev [168.62.161.121])
+	by mail-b.studer.dev (Postfix) with ESMTPSA id 0913840028;
+	Tue, 18 Feb 2025 02:08:58 +0000 (UTC)
+dkim-signature: v=1; a=rsa-sha256; d=studer.dev; s=hmail;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
+	bh=5AA+a4IxbsmGiRmLLlpgl3OVaLWtMwq00DaT2+GNKdU=;
+	b=pJHRuUoirhakSXgBVi1wAqvRu8P4O5UhqKep0hqV2Xm+WPpeDjpMf3G2SiBDyTQhaAaDOfdFtTYMEPzp399MtvTka7gVjb6ZBsbCbBJaMrgKXEXbAGHz0hAhcftTB8Xud/hBqZeqB073X/MIdu4SF8SNzXmNiQ0do5RANUV+/rJkWqsCAuskK5ao+8lcCEQFsUQS3wWnBNUzP5CGZttjyshujt4jXO4/rfTzMVM/tuGw+Sw7BGTlPw0AH2
+	lHGT6PIWkXU98F36Tl8JlhswCK38SkV9nb58J1kGjYtkq8+iQ6II+Dc441In2meOCQfjINh3wYQSJ1yFwKP4iRZMbXmA==
+Received: from alex-framework.mynetworksettings.com (pool-68-239-44-167.bstnma.fios.verizon.net [68.239.44.167])
+	by mail.studer.dev with ESMTPSA
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
+	; Tue, 18 Feb 2025 02:08:55 +0000
+From: Alex Studer <alex@studer.dev>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	=?UTF-8?q?Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>,
-	Jonas Gorski <jonas.gorski@gmail.com>
-Cc: Kyle Hendry <kylehendrydev@gmail.com>,
-	devicetree@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: [PATCH v2 5/5] dt-bindings: mfd: brcm: add gphy controller to BCM63268 sysctl
-Date: Mon, 17 Feb 2025 17:36:44 -0800
-Message-ID: <20250218013653.229234-6-kylehendrydev@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250218013653.229234-1-kylehendrydev@gmail.com>
-References: <20250218013653.229234-1-kylehendrydev@gmail.com>
+	Alex Studer <alex@studer.dev>
+Subject: [PATCH] riscv: dts: allwinner: d1: Add CPU thermal sensor and zone
+Date: Mon, 17 Feb 2025 21:06:29 -0500
+Message-ID: <20250218020629.1476126-1-alex@studer.dev>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,44 +70,98 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add documentation for BCM63268 gphy controller in the
-bcm63268-gpio-sysctl register range.
+The sun20i THS (built in CPU thermal sensor) is supported in code, but
+was never added to the device tree. So, add it to the device tree,
+along with a thermal zone for the CPU.
 
-Signed-off-by: Kyle Hendry <kylehendrydev@gmail.com>
+Signed-off-by: Alex Studer <alex@studer.dev>
 ---
- .../bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml     | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 31 +++++++++++++++++++
+ .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 16 ++++++++++
+ 2 files changed, 47 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml b/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml
-index 9c2a04829da5..99610a5f2912 100644
---- a/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml
-+++ b/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml
-@@ -50,6 +50,15 @@ patternProperties:
-       should follow the bindings specified in
-       Documentation/devicetree/bindings/pinctrl/brcm,bcm63268-pinctrl.yaml.
+diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+index 6367112e6..bdde82aa8 100644
+--- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
++++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+@@ -3,6 +3,8 @@
  
-+  "^gphy_ctrl@[0-9a-f]+$":
-+    # Child node
-+    type: object
-+    $ref: /schemas/mfd/syscon.yaml
-+    description:
-+      Control register for GPHY modes. This child node definition
-+      should follow the bindings specified in
-+      Documentation/devicetree/bindings/mfd/syscon.yaml
+ #define SOC_PERIPHERAL_IRQ(nr)	(nr + 16)
+ 
++#include <dt-bindings/thermal/thermal.h>
 +
- required:
-   - "#address-cells"
-   - compatible
-@@ -191,4 +200,8 @@ examples:
-           pins = "dsl_gpio9";
-         };
-       };
-+      gphy_ctrl: gphy_ctrl@54 {
-+      compatible = "brcm,bcm63268-gphy-ctrl", "syscon";
-+      reg = <0x54 0x4>;
-+      };
-     };
+ #include "sunxi-d1s-t113.dtsi"
+ 
+ / {
+@@ -115,4 +117,33 @@ pmu {
+ 			<0x00000000 0x0000000e 0xffffffff 0xffffffff 0x00010000>,
+ 			<0x00000000 0x0000000f 0xffffffff 0xffffffff 0x00020000>;
+ 	};
++
++	thermal-zones {
++		cpu-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&ths>;
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu_alert>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++
++			trips {
++				cpu_alert: cpu-alert {
++					temperature = <85000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu-crit {
++					temperature = <100000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++	};
+ };
+diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+index e4175adb0..fcfcaf06c 100644
+--- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
++++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+@@ -426,6 +426,10 @@ sid: efuse@3006000 {
+ 			reg = <0x3006000 0x1000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
++
++			ths_calibration: thermal-sensor-calibration@14 {
++				reg = <0x14 0x8>;
++			};
+ 		};
+ 
+ 		crypto: crypto@3040000 {
+@@ -934,5 +938,17 @@ rtc: rtc@7090000 {
+ 			clock-names = "bus", "hosc", "ahb";
+ 			#clock-cells = <1>;
+ 		};
++
++		ths: thermal-sensor@2009400 {
++			compatible = "allwinner,sun20i-d1-ths";
++			reg = <0x2009400 0x100>;
++			interrupts = <SOC_PERIPHERAL_IRQ(58) IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&ccu CLK_BUS_THS>;
++			clock-names = "bus";
++			resets = <&ccu RST_BUS_THS>;
++			nvmem-cells = <&ths_calibration>;
++			nvmem-cell-names = "calibration";
++			#thermal-sensor-cells = <0>;
++		};
+ 	};
+ };
 -- 
-2.43.0
+2.48.1
+
 
 
