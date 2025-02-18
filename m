@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-148073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9C30A3A67C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 19:58:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28932A3A685
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 19:59:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74C6C176E6E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 18:54:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 556D11784E0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 18:55:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE5061F5839;
-	Tue, 18 Feb 2025 18:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F0D1F585F;
+	Tue, 18 Feb 2025 18:55:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="c0zyonA+"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="d93Dyk8W"
 X-Original-To: devicetree@vger.kernel.org
 Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A21A17A314;
-	Tue, 18 Feb 2025 18:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 321021F582E;
+	Tue, 18 Feb 2025 18:55:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739904802; cv=none; b=SONJJ7h3oilC2wZANSvda7akYyTtymwzJfIkRS1GVfx2kSoKpfeQI5tHvDkflhFqwEtWkvoNHThA4E9fG0oPw92QgsX/T7DYIopQuVvaxBeT2eO9jEQ5NgQ/3rGQ1YuTomq78IKImGAQiwd5dNgYE5QxT2n8XQOlcuDz9PamH7I=
+	t=1739904919; cv=none; b=hw15Vo2drH6+keaJPoEEoivYuCfqrAuwockWUXHkFVEPOYgAo/c+wazzAqn7EOwdEBPof38UTnMAJOy+gcQ+8ZRHpvBMfF10uOsQUQYdnzeqlKMJEv5rSETx3sN+ezLNOKcs3c7YOv1oZolqvsnh1+B2Myv8GtzFNeta2I9WfXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739904802; c=relaxed/simple;
-	bh=fZNVQMp38R+fm09V4IiqclMsqo4Do1Cn9eVz2bE9FPY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=E4H0rkezcYwlDLG1PqBZu4PY/gFjFtdY6GySpm0hktPYwYmGqrmdssD4Cp1HjnzvdriC0jUrsXHLVyyhsAW4cqPwqzahsxqBsjwByu2Jzq1PqrG111LOqPgYmzzOFx3j/g+WRKdQyC9TZSUGBSGAR7ZC/hr7aqLl+9jeJqUNh/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=c0zyonA+; arc=none smtp.client-ip=178.21.23.139
+	s=arc-20240116; t=1739904919; c=relaxed/simple;
+	bh=BxR9jFPEiAwMiqt5QfVjfx6zF42bwqi4ug6psMIP9Ls=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bxp/YOnY7vmKDOR/wqgQzQ8ZELvaTCCHA2cuISNtJe+Wy6Y0AczCRAwYpshXqsvt46cfP1W7nZrAvjXyMe/gYywAHrarJg6gsnxy/+J5nSbFjJGZL0RqPMmhA+j5n2BAjIfRtG23B5sEg7KF8/Hu/Jv5ETdJXiGI+ZKpE86rf9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=d93Dyk8W; arc=none smtp.client-ip=178.21.23.139
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
 Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id A130B25C33;
-	Tue, 18 Feb 2025 19:53:19 +0100 (CET)
+	by disroot.org (Postfix) with ESMTP id A11C925F3D;
+	Tue, 18 Feb 2025 19:55:14 +0100 (CET)
 X-Virus-Scanned: SPAM Filter at disroot.org
 Received: from layka.disroot.org ([127.0.0.1])
  by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id AlPi4aWyX7CS; Tue, 18 Feb 2025 19:53:18 +0100 (CET)
+ id d5LHm9JJqCpk; Tue, 18 Feb 2025 19:55:10 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1739904798; bh=fZNVQMp38R+fm09V4IiqclMsqo4Do1Cn9eVz2bE9FPY=;
-	h=From:Date:Subject:To:Cc;
-	b=c0zyonA+yB3OCYTdcvOCuv5UAdnbcBqTxorJD0epQf3S3sYfcq9ecydN7v071YImL
-	 P7tgGs1RLdCXyX04I81rQo3quDoSTBjPG5s9Rc27GGpBu1mLNL15jdb+LK7c760ZSg
-	 iZRiYgIQUIEAIaFsClINCwQPWBAlvPJND6mmB+Ij7ug1pVaSbe2YYPnDLNaAzRXVQk
-	 hOJYEJCwr3AVxC1uvZ01/eKQIgz4SNlZKD4Plvmzc3JcghiRGSmDz4Usp/1YZqvHNk
-	 8hWOp2CYAsa+SXHc8W87wgtkCWbv7m62Wn9gopFkGVYebHtWFufSA1nkjH63d5NMUw
-	 pMft337jdnk8Q==
+	t=1739904910; bh=BxR9jFPEiAwMiqt5QfVjfx6zF42bwqi4ug6psMIP9Ls=;
+	h=From:Subject:Date:To:Cc;
+	b=d93Dyk8Wa+n8vyZdIO1QSVsiuODg9kHdqbXykEq9cs9EgWmlIqp38Mgt2/I7a5kvC
+	 pX6ehS9RyqbhpRjQNiZHBuYIlLazXWRrw7hGIScZOvtIEq6TYIdm18KrDr6DaguPK2
+	 /ekKn0XDLWxqgSJc8TALoz8RVJNFYPeVDSk6g8d0xGYjBb8bLwgYpg3ZgxKYJI4wqg
+	 Xte9vPq2Fkb/wtA61EbkJARftGqzD6PvXMAVhN5C+O7/t0+3MeiK9BqWZBQw7hL+4h
+	 WM0imfqFQeuZKTOjOdftdmeS9Tu8YT5nvA4/bJWycCvXrvLtP3A4m2/SGwyorV/8CB
+	 4ecjGV8PLA9OQ==
 From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Wed, 19 Feb 2025 00:22:43 +0530
-Subject: [PATCH v2] dt-bindings: serial: samsung: add exynos7870-uart
- compatible
+Subject: [PATCH v2 0/2] Introduce DWC3 support for Exynos7870
+Date: Wed, 19 Feb 2025 00:24:41 +0530
+Message-Id: <20250219-exynos7870-usb-v2-0-1de41a89c9d4@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,63 +58,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250219-exynos7870-uart-v2-1-c8c67f3a936c@disroot.org>
-X-B4-Tracking: v=1; b=H4sIAPrWtGcC/2WNQQ6CMBBFr0JmbU0ZawFX3sOwqDDAbKiZ1gZCu
- LuVxJXL95L//gaBhCnArdhAKHFgP2fAUwHd5OaRFPeZATVeNeqLomWdfajqSqu3k6gsDtZ05ND
- UDeTVS2jg5Sg+2swTh+hlPQ5S+bW/lvlrpVJppe2TrHONxdrcew7ifTx7GaHd9/0Do9U+ELAAA
- AA=
-X-Change-ID: 20250203-exynos7870-uart-62f64cea2489
+X-B4-Tracking: v=1; b=H4sIAHHXtGcC/13MQQ6DIBCF4auYWZcGQQJ25T0aF7QOOhtpGEs0x
+ ruXmnTT5f+S9+3AmAgZbtUOCTMxxbmEulTwnPw8oqChNCipjFRSC1y3ObJ1Voo3P0QbtDc4WMT
+ WQDm9EgZaT/Del56Il5i208/1d/1RzT+VayGFt9bo4GqnfdMNxCnG5RrTCP1xHB/ptOaYrgAAA
+ A==
+X-Change-ID: 20250203-exynos7870-usb-9f3a5ed7ee95
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org, 
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-usb@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Kaustabh Chakraborty <kauschluss@disroot.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739904795; l=1559;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739904902; l=905;
  i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
- bh=fZNVQMp38R+fm09V4IiqclMsqo4Do1Cn9eVz2bE9FPY=;
- b=ld7qtC2ic/6MUzTZdmmMUcAIzbav2BOZB0VXv5XN2Rw8PwOmkihbHgCPWQLq+r26RvM4+GnSg
- uhmAQQNXvijCkVlZsKY6ptW0mIDCsy8nMbX6MenIPfHET8AJna17XGh
+ bh=BxR9jFPEiAwMiqt5QfVjfx6zF42bwqi4ug6psMIP9Ls=;
+ b=DD2ZhpEVbRcVE/PLP/ud3pf1ys+uU6rHRIfm3V2I8G99ZjAnCM7Lrmvc4KxOJ7/oFGSipmE/c
+ tkZAAuXzt0XC3LZhemTjcrp0tf1oP7xnZUknXdr4igOhwNjiSUDVb0D
 X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
  pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
-Document the compatible string for Exynos7870's UART driver. The
-devicetree property samsung,uart-fifosize must be mandatory, as the
-driver enquires about the FIFO sizes. This feature makes it compatible
-with Exynos8895's UART.
+This patch series is a part of Exynos7870 upstreaming.
 
 Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
 ---
-This patch series is a part of Exynos7870 upstreaming.
----
 Changes in v2:
-- Modify UART compatible to now fallback Exynos8895 UART.
-- Remove the UART driver patch, no longer needed.
-- Link to v1: https://lore.kernel.org/r/20250204-exynos7870-uart-v1-0-06be6aa96284@disroot.org
+- Change compatible string (s/dwusb2/dwusb3).
+- Rename clocks to "bus_early", "ctrl", and "ref".
+- Set 3.0V regulator as mandatory.
+- Link to v1: https://lore.kernel.org/r/20250204-exynos7870-usb-v1-0-a7753f8183a4@disroot.org
+
 ---
- Documentation/devicetree/bindings/serial/samsung_uart.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+Kaustabh Chakraborty (2):
+      dt-bindings: usb: samsung,exynos-dwc3: add exynos7870 support
+      usb: dwc3: exynos: add support for exynos7870
 
-diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-index 070eba9f19d3e039090c58a82f93d02eed58ab84..83d9986d8e98a2a55615d15383c9c7fc89f5b52f 100644
---- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-@@ -42,6 +42,10 @@ properties:
-               - samsung,exynosautov9-uart
-               - samsung,exynosautov920-uart
-           - const: samsung,exynos850-uart
-+      - items:
-+          - enum:
-+              - samsung,exynos7870-uart
-+          - const: samsung,exynos8895-uart
- 
-   reg:
-     maxItems: 1
-
+ .../bindings/usb/samsung,exynos-dwc3.yaml          | 28 +++++++++++++++++++++-
+ drivers/usb/dwc3/dwc3-exynos.c                     |  9 +++++++
+ 2 files changed, 36 insertions(+), 1 deletion(-)
 ---
 base-commit: e5d3fd687aac5eceb1721fa92b9f49afcf4c3717
-change-id: 20250203-exynos7870-uart-62f64cea2489
+change-id: 20250203-exynos7870-usb-9f3a5ed7ee95
 
 Best regards,
 -- 
