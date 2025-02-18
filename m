@@ -1,159 +1,118 @@
-Return-Path: <devicetree+bounces-147839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4CD1A39927
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:38:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70621A3992B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:39:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4CDF1882FE4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:35:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44FF81897D5C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:35:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867FE269CF9;
-	Tue, 18 Feb 2025 10:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFBA23A56B;
+	Tue, 18 Feb 2025 10:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gOCATJiI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EnHdBj/i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9A9F269AF4;
-	Tue, 18 Feb 2025 10:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 242D9239562
+	for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 10:28:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739874413; cv=none; b=G36DggVvOR8Kg8ZbzttqEeoa11Cb8aiwvDRDPT0XsttR931ImY6KPwbHiPCHesm+BIkbABTKfL/Ms0n05NYkMAQxbNjVuN8hq83i7TIGN7Lz7Z8NpoFhGWd2zEDVavdQKPjXvRddb+57XbUA285We0WLGrDDz4l8ZGU0mK4iHig=
+	t=1739874487; cv=none; b=TLzSMZ4UrmdIfuQ3HUSdzErblmuVDYcP7xGc4jVHfu8HUkMNbL1GZbHoW52jK+3k2DxipgE6M65bdM4T28+u/H9M2RKwZDxD+BOnc2gN9mkBWC1jJr5H1N3F73otljZMFJCypgLVhGb1pawBS1WjH/uoLJ0LFkr4l6EVaUdZLRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739874413; c=relaxed/simple;
-	bh=mxcTS/TKtzanNcSFC5ycNWuMfjyHKMjimPE0zTyL9R0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rUVv5q4M4MrfIIo+qfuZQPBv9b263SFkCXGu+zMHS5lYMeYgZgWR3k5lywxA5Itnkw9dnC4JkwDd0/VRqQiY8b0jYKz3iU+VPxW+R+1C3p9NavJe0IrdOCUAqoQZZnn+7IB0X/XHmfzw+nvDlJJemLoidGqM9V9DtU+BbKSJmOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gOCATJiI; arc=none smtp.client-ip=209.85.221.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-5209ea469e9so2075376e0c.0;
-        Tue, 18 Feb 2025 02:26:51 -0800 (PST)
+	s=arc-20240116; t=1739874487; c=relaxed/simple;
+	bh=xyTzNDPTbBHZ7zKE5XjanII4DyJB/TFklEmgxp8N1mg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LIUbQslqxVc877rMycAXSQh6yTt5V9FFlLZb9cPC09M81L1By2K2gYLBU954pY9H/VVn9r9obIc7OMYo6b2z/BtAD+CU+WN9PtMGGm65GlzrYLZ+bWLADZY5RAuj/XRmoZ4EuSzlgyaxD37Bdoc4yjZdn/0CmJaHeEQaoJmEaUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EnHdBj/i; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-54529e15643so3391966e87.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 02:28:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739874410; x=1740479210; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5fTbNUo/qWCyQ6WC+r9ba4QH65ygmHbCBvKYDPCRYdE=;
-        b=gOCATJiIUNJqG89Ik8wyDceo19p7/ZNvsf3VzzwKHlnCwyPhY/Oni8KZMfWbfDsVol
-         TqaW//jsSrWs6K90YlW3tR1ArAuh9RL+jsdQSz10mEDtCxKY4WMjaw4VwwKXUDW7W4r0
-         Nn/rCp36/Fe+Tb+/1yxiTMwupPbClasNht3gU8D6uCpk1kFORz/cBuJP1v7I4q/z97HI
-         PNTl34zP7nb+mjTBzLYFda9yG7W2MlvpSDqkxG8i/MfoS4fnio2IA5fjn4V9qWreuMaM
-         2AsRTuUjDlwqUyTSDNx+81pyAXyQSKC/313kPJs40wpAmkWXqH8h65k3+a5AnRNf02jb
-         /0ZQ==
+        d=linaro.org; s=google; t=1739874483; x=1740479283; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=huILF73F0Ot4K9MVtWbZWa3483Muf6BB22lZSEHflgM=;
+        b=EnHdBj/iR3l5kkBYl5CORMO7MmtGDmCvYuxUn354NeulWlQG/YhrSx8NB1o9R/oyQE
+         hqim80W7AF3WTB0CoS7jtKDmyNy/6NtXQj90Cs04OmcNtKIBt9/cRWXHPhQbA1AWw3wM
+         xFxv1OG/JhNWelqM5BnhrHd4vCLFNH0/ICFefc4YSmjNo1k3yNcwbh8plj3aPO/ZuZzR
+         buWUSeL/y2hPYdxec6K/aamv7RRemLgk02nAsEzelDfEp46izZ9jE4E64TI/8xoayV6W
+         gBoVypvcuVnqa0ERDcDhoXZnDbyhaBYsX0em/2h/pVziNH79Rt0St4Po+ZPcMmwNJqwK
+         1mMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739874410; x=1740479210;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5fTbNUo/qWCyQ6WC+r9ba4QH65ygmHbCBvKYDPCRYdE=;
-        b=F18j/y7ULltECgOU/9Ci+K+NkJxc/4U10QuYgI3si9WLHqDYy3a8HjFGNaBS/J9Kmq
-         KLHguXjRMj1l+d8pXwq6ePWfh/93D6WKngR7xQgfBXbBky0/Z1NVa4+RI03ZxtZ+oTqu
-         YhafWL/s5QkhCxPzmT0qCCUv9Zcm0+vmwJ9YCGfpFY6h8PPoqiOY36w0H7R6eMDFJ4x/
-         YCkQgBoaBvzCqlhFGnwl1+gYJYSRkkRAFs9UH7cDeD0NQ4n+QKVSVs9m4COEuLRo09Zv
-         /t8YCyXY4PJn3XrBHORBA9Vv69zunMA2Upxb/U/5n2vw0HiSqbJMxEPoIaj7fDsQiICa
-         Si8A==
-X-Forwarded-Encrypted: i=1; AJvYcCU3MV8MeNJziTveaqOn1R4Tp6l7CFjOg6RWM8UfQaTd8uVN7i25H2F9LNpHtC63pDodOgSVFOqigDBKSnTA@vger.kernel.org, AJvYcCV1L9TDXjaAJyTK3CqHMg9v+rZb1Mutme06EaABjT7F9FQ60bHxjTLWcqPGaymhaKdPgTEMF9omUl5FmeOrwxk=@vger.kernel.org, AJvYcCVaX77T/PBSd8PRMCfdxcMt/lj69yrFeNkT33+WfczeFrorIUYeX/97LkHYwqEWI9zTbn10cr8aWNvzBO2o7iT5spo=@vger.kernel.org, AJvYcCWkYoOmnQm1tuFJnGWXS1FemJrsae0YlLrZ/3/q0lpAD49p00BWz/gW+fUdx0K7VqonjI45twykYXAM@vger.kernel.org, AJvYcCXU5weLmp2K6+wDHTndw0hD7M6fnR7MB/tkICcpTSufUuka38ka0jD/GSeSdjh8/StWV3Y+26RzSzX9@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBrCDR0iLSo3Z4HOm9hZPhWBbe616CVB294XNTe64yW3Cy6lzT
-	oyjTX1wy44tebABdmhs4/WU/NcbFW1OYlI4lm2ZTpPv1EX73OqSNRpwl0FXBz5BdIqcCU3QIgVt
-	9smRtyZfVb9ooDh4WIJ0KUd/kRx0=
-X-Gm-Gg: ASbGncsPLhFiHVJ4hHlU9Dk3v5fJai8zgKvs0wjU9HPbWyI0ecpGceIER1katmrsUxh
-	fGolBso2/zH1dzEQ7hSPtAXj0FyhLJGhw3+M0mgrh4TjqxfNySSZrXYASef+Rf9W6XhTjyr1MmD
-	2GYqW2ZU1TN4eqD/Ea6mLTBu/+knNahQ==
-X-Google-Smtp-Source: AGHT+IEiB//Rvg/toRlYTHXOR+8uze5zclaIXpF6byYRu0iJ1Qv+6YSH2lmjvsHIbp5ehoRcoDDnqpS7HCosXSGukek=
-X-Received: by 2002:a05:6122:658b:b0:520:4d63:72da with SMTP id
- 71dfb90a1353d-5209dc87d29mr6025043e0c.6.1739874410535; Tue, 18 Feb 2025
- 02:26:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739874483; x=1740479283;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=huILF73F0Ot4K9MVtWbZWa3483Muf6BB22lZSEHflgM=;
+        b=iKBNlIk8WKiA5RevWT9WAwvQ8wnC8y3gfvu92ARoo6zFW9qCJBmduxw/kuvsEHXVJp
+         ompEaZpAOjDj0hjxUHLI8PZTkAJRdzi5NgchHZzCrBf23Mz6T0PHFY20Aao3aUUo1IzM
+         VjF8luOaoU2cdt5r+CjwnkTQtggPRj+8Gp3WXMLiuz0JJ7so4cKsleFfiv2E6e1CeNVq
+         +v4TiheWsE+qNwJJkjyyImADkNo4TJ8BVdB3ExZEw3CpuOOQFlBUE949/47+cMaG2h2K
+         c7LKXjQN2a858WyYH9Rs2fcDEUtpmyFtRF728WiSWleHdPw9mWM1agvyxWBf7mHR6Gft
+         xUYw==
+X-Gm-Message-State: AOJu0YybpwM+WMWhHAgYiQNFB8rUJQTj2dJ4I7TcQrb5w3XPr3nGDRDE
+	KcBX3Q26sSUCjdDosFZLy1fdXi3U9dMF+kwqCTlfbR9y71+oANFJxR6krYiyvbg=
+X-Gm-Gg: ASbGncvci5BE5bBGs0WsdUsXQJIEOqsAeZQXdJOBQdSKRHwfogK1UFhl0WxTKIR2bdt
+	grgX3xGC1EarAiOKhCFe3SBxkVjrWlXUS7lmVeH1bogIz/SdZ/BVfoDsdFYG9l5QsQEZYE2f/sH
+	DdyIM5Vg8wryRVr2OuJE9dC7QPNfGsf+Fgw0Z91L0iVwVpAL/OyYs6loanhNKcq/Qta96yaPPbt
+	OAS8WN0LURyGZiiaAlcxyM5uyoYY+czmjKPM2UgF3rkGXS/yAcxXLUIo1NaDaj+Stfd76UfSZEp
+	rxdYNNCdCtzHqIpfXUipmP9emQ==
+X-Google-Smtp-Source: AGHT+IF5O+C1dzWuMv9dIm1U8FGTYzD8C1EPVA9Wxtd54xCVPowfwist5JqI8jCMXF0IhBCCEipguQ==
+X-Received: by 2002:a05:6512:ba6:b0:545:f9c:a833 with SMTP id 2adb3069b0e04-5453032765bmr3623164e87.12.1739874483215;
+        Tue, 18 Feb 2025 02:28:03 -0800 (PST)
+Received: from [192.168.1.140] ([85.235.12.238])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5461e202368sm830756e87.61.2025.02.18.02.28.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Feb 2025 02:28:02 -0800 (PST)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH RTF 0/2] gpiolib: of: Handle threecell gpios
+Date: Tue, 18 Feb 2025 11:28:00 +0100
+Message-Id: <20250218-gpio-ranges-fourcell-v1-0-b1f3db6c8036@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250210184910.161780-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250210184910.161780-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 18 Feb 2025 10:26:23 +0000
-X-Gm-Features: AWEUYZl9Hr4rbmCZyrRt1t9_8JazRp98fGvLiEsB-9wshbaMSz8hdT9fU-lDNfI
-Message-ID: <CA+V-a8uOkKzijsS_dmOA1XqHYReR3n7cRGUngh-6wJG7LDRvOA@mail.gmail.com>
-Subject: Re: [PATCH v4 0/9] Add support to configure CPG block for watchdog on
- RZ/V2H(P) and RZ/G3E SoCs
-To: Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	linux-renesas-soc@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALBgtGcC/x2MQQqAMAzAviI9W3ADcfoAHyDexMNwVQvipEMRh
+ n93egwhiRBImAI0WQShiwP7PYHKM5hWuy+E7BKDLnRZaFXhcrBH+UzA2Z8y0bahKY0x1mlVOws
+ pPYRmvv/tAF3fwvg8L38+lsBrAAAA
+X-Change-ID: 20250217-gpio-ranges-fourcell-85888ad219da
+To: Yixun Lan <dlan@gentoo.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.14.2
 
-Hi All,
+This adds some code in the gpiolib OF core to deal with
+several gpio chip instances per OF node.
 
-On Mon, Feb 10, 2025 at 6:49=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
->
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Hi All,
->
-> This patch series adds SYSCON support to configure and retrieve boot
-> status information from the CPG block for the RZ/V2H(P) and RZ/G3E SoCs.
-> Summary of Changes,
->
->     Clock:
->         Add syscon compatible support to the CPG block in bindings and
->         device trees.
->
->     Watchdog:
->         Document the renesas,r9a09g057-syscon-wdt-errorrst property.
->         Update the watchdog driver to fetch and report boot status via
->         Error Reset Registers (CPG_ERROR_RSTm) and configure the
->         CPG_ERRORRST_SEL2 register.
->
->     Device Tree:
->         -Add the syscon property to CPG nodes in R9A09G057 and R9A09G047
->          SoC DTSI.
->         -Add the renesas,syscon-cpg-error-rst property to WDT nodes in
->          R9A09G057 and R9A09G047 SoC DTSI.
->
-> v3->v4
-> - Added support to configure CPG_ERRORRST_SEL2 register
-> - Updated commit messages
->
-> v2->v3
-> - Updated comment section to mention there aren't any ABI breakages with
->   this patch series.
->
-> Cheers,
-> Prabhakar
->
-> Lad Prabhakar (9):
->   dt-bindings: clock: rzv2h-cpg: Add syscon compatible for CPG
->   clk: renesas: Kconfig: Select MFD_SYSCON for RZ/V2H(P) family driver
->   arm64: dts: renesas: r9a09g047: Add `syscon` compatible for CPG node
->   arm64: dts: renesas: r9a09g057: Add `syscon` compatible for CPG node
->   dt-bindings: watchdog: renesas: Document
->     `renesas,syscon-cpg-error-rst` property
->   watchdog: rzv2h_wdt: Add support to retrieve the bootstatus
->     information
->   watchdog: rzv2h_wdt: Configure CPG_ERRORRST_SEL2 register
->   arm64: dts: renesas: r9a09g057: Add `renesas,syscon-cpg-error-rst`
->     property to WDT node
->   arm64: dts: renesas: r9a09g047: Add `renesas,syscon-cpg-error-rst`
->     property to WDT node
->
-Gentle ping.
+The change was prompted by the need of the Spacemit GPIO
+controller.
 
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Linus Walleij (2):
+      gpiolib: of: Use local variables
+      gpiolib: of: Handle threecell GPIO chips
 
-Cheers,
-Prabhakar
+ drivers/gpio/gpiolib-of.c   | 126 ++++++++++++++++++++++++++++++++++++--------
+ include/linux/gpio/driver.h |  24 ++++++++-
+ 2 files changed, 126 insertions(+), 24 deletions(-)
+---
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+change-id: 20250217-gpio-ranges-fourcell-85888ad219da
+
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
+
 
