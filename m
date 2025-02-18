@@ -1,55 +1,66 @@
-Return-Path: <devicetree+bounces-148123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B6F9A3AA88
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 22:12:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0420A3AABF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 22:21:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CB97188A696
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 21:12:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA4AA3ACA7A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 21:21:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD03717A2FF;
-	Tue, 18 Feb 2025 21:12:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E6BE1C6FFD;
+	Tue, 18 Feb 2025 21:21:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dIk1IVgR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rRRl3Oft"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FC2B2862A2;
-	Tue, 18 Feb 2025 21:12:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F21DA1BEF78;
+	Tue, 18 Feb 2025 21:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739913122; cv=none; b=WSA3USMjqgtwUGs1Mn638rwTyuKR8gezZyJ+c9Djw5ibDOCvoxYl0qRJzh7eimJCU+hIILMFe9ivSCT5G4vhEFC2f6q/30hAVyLyeU8+skWwrnwAd2pLLWKYb+VNRQFqMaEJBLCie6I39UeY8Tw6U2XWkyA6AT30TL5VVfyt+8k=
+	t=1739913700; cv=none; b=l39U38WOcO0oMDwQd7bNJiJyQNL35F89zG94IzV/QGXb05rj7Aj0SAbXR3L+eS7EBpPsupr1X/630U804go03Vc3/9Mwb/NyJoNFCqT5pnKdghT+ib7IQUuqrKbCR0YvigD7OgmwbXHNy9e3gzcyWskjwCYYvSvsdenbIxnc2Lo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739913122; c=relaxed/simple;
-	bh=OTxnb6SXacyVo1Q7SBxbvVscuy14TZzGqRxzd1B2ZyQ=;
+	s=arc-20240116; t=1739913700; c=relaxed/simple;
+	bh=B9lSIUKtKaBWlF14BOO6dZrB7G6K1Zk063vl/H8dksY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ujc/sSUMdozaFKjQKygNeR9Ak0n+HPkj+X3IG5BkIZJm+txpqM1M0YouKikTAfAnsdyRBOb3yjCl4hV66W+WSmHS7kok2ITUXzuLYkRy9+jdwBQvsI7oPrXKGuE4mpQKzQEHCv4T+ylQ0OEsJ91IWXbCOl9hAdveyQp7GqUSkUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dIk1IVgR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF5BAC4CEE2;
-	Tue, 18 Feb 2025 21:12:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pgwkSLI5UjhF13xNdq2IENMFpZ9CFemuPPugX6kDEidnchz3tHTxUlf6ulEBOPvUupBIx/6pX4EZ9wfIBcwoVprYFMpYAmrP16NU3nYP25YVzCse1vLw8xpICKQiqXPIM4zVyi9MQNTdyy6ECqQoXg9upSyC1ogdvcR9vweNAxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rRRl3Oft; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E6D0C4CEE2;
+	Tue, 18 Feb 2025 21:21:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739913122;
-	bh=OTxnb6SXacyVo1Q7SBxbvVscuy14TZzGqRxzd1B2ZyQ=;
+	s=k20201202; t=1739913699;
+	bh=B9lSIUKtKaBWlF14BOO6dZrB7G6K1Zk063vl/H8dksY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dIk1IVgR4ivS4+m2fiDyB3CHu0Xy5vOwJUmA1Vwr1pWNGaw8EzgUmcx+jYwiLnY72
-	 gf9IKiefw6/EJulqEe1FUS1uVGyrq2OeA8ogCCUGdDIRDqybeP0Edh9gTjYdh+Cmyt
-	 q7++61gHWKamEvNPd0jgtgTiwQNQ+dsD/GVU9+82/4e+Xajg/V4xbqBAyUemY6dA2q
-	 zGt4SpwF59jdpCUP2yj5yhKkzEfBcqHNqhtTZTO5IrdMUR7IxqqyPJrSsuyX4E2fLo
-	 /gRbMTMlm38mqWB0Kc6/HuMoHTZG08ZovOOVKX8BhtLM3+pFE1GqfSI7LFTsqIeCRO
-	 Bd3KXm8iPXQVQ==
-Date: Tue, 18 Feb 2025 15:12:00 -0600
+	b=rRRl3Oft5D1yNq8A/9GdXQlhT4a0/layZcEr6m168EFyUt483vukkReL1VrsLfdVW
+	 zOO6npRBlyNM4X9gkvxRqfp6wI453gdsRZlmJofmiL8zFsCY0YRhJuey7zQfw9fWFU
+	 xogFI9TFgXaaOcQZYVUhiS3aMAEuqHwyWwWSH0Dzt2B5hsdZV/dN0urTVADAhSk6G0
+	 V9Ut2rkKOCfMDY7wY1cEm2cEiHavDVfRO2cvjELFHVIb0Z+e80RwGR/n6Z2ptYlHVt
+	 r5EzUyJauBdauhOBLVtjpVAvKiMVdxIfXO/TXeUhmiYpot8O+xydOproUw8+D0zbPb
+	 GGcv6XBWrNaOQ==
+Date: Tue, 18 Feb 2025 15:21:38 -0600
 From: Rob Herring <robh@kernel.org>
-To: Siddharth Menon <simeddon@gmail.com>
-Cc: devicetree@vger.kernel.org, andersson@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, baolin.wang@linux.alibaba.com,
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: hwlock: Convert to dtschema
-Message-ID: <20250218211200.GA991534-robh@kernel.org>
-References: <20250218161352.269237-1-simeddon@gmail.com>
+To: patrice.chotard@foss.st.com
+Cc: Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	christophe.kerello@foss.st.com
+Subject: Re: [PATCH v4 0/8] Add STM32MP25 SPI NOR support
+Message-ID: <20250218212138.GA1092771-robh@kernel.org>
+References: <20250218130000.87889-1-patrice.chotard@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,27 +69,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250218161352.269237-1-simeddon@gmail.com>
+In-Reply-To: <20250218130000.87889-1-patrice.chotard@foss.st.com>
 
-On Tue, Feb 18, 2025 at 09:39:35PM +0530, Siddharth Menon wrote:
-> From: BiscuitBobby <simeddon@gmail.com>
+On Tue, Feb 18, 2025 at 01:59:52PM +0100, patrice.chotard@foss.st.com wrote:
+> From: Patrice Chotard <patrice.chotard@foss.st.com>
 > 
-> Convert the generic hwspinlock bindings to DT schema.
-> ---
->  This is my first time converting bindings to dt schema, please let me
->  know if I have overlooked anything.
->  .../devicetree/bindings/hwlock/hwlock.txt     | 59 -----------------
->  .../devicetree/bindings/hwlock/hwlock.yaml    | 65 +++++++++++++++++++
->  2 files changed, 65 insertions(+), 59 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/hwlock/hwlock.txt
->  create mode 100644 Documentation/devicetree/bindings/hwlock/hwlock.yaml
+> This series adds SPI NOR support for STM32MP25 SoCs from STMicroelectronics.
+> 
+> On STM32MP25 SoCs family, an Octo Memory Manager block manages the muxing,
+> the memory area split, the chip select override and the time constraint 
+> between its 2 Octo SPI children.
+> 
+> Due to these depedencies, this series adds support for: 
+>   - Octo Memory Manager driver.
+>   - Octo SPI driver.
+>   - yaml schema for Octo Memory Manager and Octo SPI drivers.
+> 
+> The device tree files adds Octo Memory Manager and its 2 associated Octo 
+> SPI chidren in stm32mp251.dtsi and adds SPI NOR support in stm32mp257f-ev1
+> board.
+> 
+> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> 
+> Changes in v4:
+>   - Add default value requested by Krzysztof for st,omm-req2ack-ns, 
+>     st,omm-cssel-ovr and st,omm-mux properties in st,stm32mp25-omm.yaml
+>   - Remove constraint in free form test for st,omm-mux property.
+>   - Fix drivers/memory/Kconfig by replacing TEST_COMPILE_ by COMPILE_TEST.
+>   - Fix SPDX-License-Identifier for stm32-omm.c.
+>   - Fix Kernel test robot by fixing dev_err() format in stm32-omm.c.
+>   - Add missing pm_runtime_disable() in the error handling path in
+>     stm32-omm.c.
+>   - Replace an int by an unsigned int in stm32-omm.c
+>   - Remove uneeded "," after terminator in stm32-omm.c.
+>   - Update cover letter description to explain dependecies between 
+>     Octo Memory Manager and its 2 Octo SPI children.
+>   - Add Reviewed-by Krzysztof Kozlowski for patch 1 and 3.
 
-The consumer side lives in dtschema already. Please add the provider 
-side there too. Patches to devicetree-spec@vger.kernel.org or GH PR are 
-fine.
-
-For the descriptions, you'll need to relicense the text in hwlock.txt to 
-dual GPL/BSD. You will need TI's permission for that.
-
-Rob
+No, you didn't.
 
