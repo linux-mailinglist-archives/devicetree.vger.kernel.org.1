@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-147810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A642A3964E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:00:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AD94A3963A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 09:58:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B94616895A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 08:57:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CA821888EB2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 08:58:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE5AF22C35E;
-	Tue, 18 Feb 2025 08:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E36F22FF55;
+	Tue, 18 Feb 2025 08:57:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HTLwXxO+"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FERSaw+w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D95014A614;
-	Tue, 18 Feb 2025 08:57:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A37C822FDE2;
+	Tue, 18 Feb 2025 08:57:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739869034; cv=none; b=ZOwVq6pn1llofnaJishSzH8p8fKye32ep1qrpocbssPpeKQYHC5OQKClRbOvWO3CUk7XX9qU1eoCifJe/oq/VHIqh8E0aDSyp/njB8CvZrpxxmEf+MgD31tOUo1oYaq7bYJGBcPBLZSUsw7Cksx7L8ui8SVrYz6IEqwQG6mL0SI=
+	t=1739869041; cv=none; b=oxSw5vEXTWWh92VchL2kLFnHqL2dQi5viX+HeGen0GCu7koz+01lN+DwO+/siRRFNI0TdkEU2OeaUj0rjzGjDFMUraYWBi62dmY/SG0qjExSYxbsBfmTcRJVGtuKQ5avUBUPZjmlIpYgDQiNMiVdHKt6gUmsxkeBlaNF1RO+d9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739869034; c=relaxed/simple;
-	bh=2vE8L5fJp+dtJyWdQbSVt0omOCEQO0xF00KJ3QonoKI=;
+	s=arc-20240116; t=1739869041; c=relaxed/simple;
+	bh=mhaR2Trnlsu8FfYdF9a/LlPy376WKizOyZDhx/r8OTY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qKShPg/mfNy7ZFoCjVh2l/+xuGS2M+f4N/rxZVbuEZzlG0kuYSJQsB22JCxVoZzxSHBgsDuzIqRH09Mx4f/IGMEgGdeB5FJHYENuVVwA9dBXiLvBrUrjIHWLEm0fQ0YYeyBEiMGXK6PTE4wUYdiFpx+7PgkirP6n5rS+8yIEz10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HTLwXxO+; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:Content-Type; b=XVpQxKZHGWlo5juTpeQb+XuGJD76vk8+sgmUefT3BOcDKzVj0wLXCFeRJp9aGKY7+2rBvb3Aooozzt2JoggdQDkqJkJMXwJ723eMQLYsuMs6qBubg9LVQWZhYC+PhySUJK2KdXxEGcREhKIZ+s0x21XhDGggz4w/pMzRf6kpNQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=FERSaw+w; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739869030;
-	bh=2vE8L5fJp+dtJyWdQbSVt0omOCEQO0xF00KJ3QonoKI=;
+	s=mail; t=1739869033;
+	bh=mhaR2Trnlsu8FfYdF9a/LlPy376WKizOyZDhx/r8OTY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HTLwXxO+GyF1AD8FucYG29B1fK/lOd5HKGq+eU7n3INbr/PXWBliw6JzFvF7421MN
-	 hVl6i6IzO7bTIAGbQBFDLUT7fwRd+wMWhA/ik1ULEcoU3kUkh93PXjephjguDhySuM
-	 CmC+GdxgZnokHX8UesfiDF5xgtbjPcm7Dj2nL+pPVXXNToAMwvbGnC/mHMXLUMjw8u
-	 sVlYbD3RVIg1eNGMndq6XgRtwqk6xqPJRO1XiSfd4/M1Msj0oMhtB8QKotY/eBsEOs
-	 cgA1/9SBpKX7ROGTANvw32SiSHRG3t7JX+9w7gTTqKUzm1M2HpOYcQxaYqZlbcmcX9
-	 qN67gFS9gcYog==
+	b=FERSaw+wUWOJgkTZm1leH65FcMticAx2ZDEkReE80eTRzAVt9txumwGUCAKfspNmc
+	 C7NTo7l5jcGXmclVLKA82mcoI9NhdambccpMm6NoxeGrBSWIjXXqnJvodIo8Zlqvdl
+	 kJGFbw6dkqivDA7MHQDyPm+tbw67VX4q/JFzzS4+N34JS6krZhHcoEgcLtASxkGi/G
+	 iN68mETOMiboV58T8sC8CJtWImg/gj+22aU39j2m/hu65ldnzLP2Dlb2c2j84xIcRj
+	 YUxcmNcGkgFA191chGVGDoM8uzYl/kdzIonJjEbp9vKidJMvFwWLJfeBNc2Yahw5y3
+	 qPgbOc9Auxzgw==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E178217E0657;
-	Tue, 18 Feb 2025 09:57:09 +0100 (CET)
-Message-ID: <b26294cf-c751-4507-ae01-4f510cb4834a@collabora.com>
-Date: Tue, 18 Feb 2025 09:57:09 +0100
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 329F417E1562;
+	Tue, 18 Feb 2025 09:57:13 +0100 (CET)
+Message-ID: <7804ef70-efe7-476b-ae5e-bf665bfb4a47@collabora.com>
+Date: Tue, 18 Feb 2025 09:57:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +57,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: usb: mtk-xhci: add support mt8196
+Subject: Re: [PATCH v3 3/4] usb: mtk-xhci: add support remote wakeup of mt8196
 To: Chunfeng Yun <chunfeng.yun@mediatek.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Rob Herring <robh@kernel.org>
@@ -66,22 +66,91 @@ Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
  <matthias.bgg@gmail.com>, Mathias Nyman <mathias.nyman@intel.com>,
  linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+ linux-kernel@vger.kernel.org
 References: <20250215100615.808-1-chunfeng.yun@mediatek.com>
+ <20250215100615.808-3-chunfeng.yun@mediatek.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20250215100615.808-1-chunfeng.yun@mediatek.com>
+In-Reply-To: <20250215100615.808-3-chunfeng.yun@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 Il 15/02/25 11:06, Chunfeng Yun ha scritto:
 > There are three USB controllers on mt8196, each controller's wakeup
-> control is different, add some specific versions for them, and add
-> a new compatilbe for mt8196.
+> control is different, add some specific versions for them.
 > 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Since all of the USB controllers of the MT8196 SoC are behind MTU3, and
+since the wakeup control for all of them will be handled by the MTU3 driver
+and *not* by the xhci-mtk driver....
+
+NACK!
+
+Please drop this commit.
+
+Cheers,
+Angelo
+
+> ---
+> v3: no changes
+> v2: modify marcos name
+> ---
+>   drivers/usb/host/xhci-mtk.c | 26 ++++++++++++++++++++++++++
+>   1 file changed, 26 insertions(+)
+> 
+> diff --git a/drivers/usb/host/xhci-mtk.c b/drivers/usb/host/xhci-mtk.c
+> index 904831344440..3f8e37b25322 100644
+> --- a/drivers/usb/host/xhci-mtk.c
+> +++ b/drivers/usb/host/xhci-mtk.c
+> @@ -113,6 +113,14 @@
+>   #define WC1_IS_P_95		BIT(12)
+>   #define WC1_IS_EN_P0_95		BIT(6)
+>   
+> +/* mt8196 */
+> +#define PERI_WK_CTRL0_8196	0x08
+> +#define WC0_IS_EN_P0_96		BIT(0)
+> +#define WC0_IS_EN_P1_96		BIT(7)
+> +
+> +#define PERI_WK_CTRL1_8196	0x10
+> +#define WC1_IS_EN_P2_96		BIT(0)
+> +
+>   /* mt2712 etc */
+>   #define PERI_SSUSB_SPM_CTRL	0x0
+>   #define SSC_IP_SLEEP_EN	BIT(4)
+> @@ -129,6 +137,9 @@ enum ssusb_uwk_vers {
+>   	SSUSB_UWK_V1_4,		/* mt8195 IP1 */
+>   	SSUSB_UWK_V1_5,		/* mt8195 IP2 */
+>   	SSUSB_UWK_V1_6,		/* mt8195 IP3 */
+> +	SSUSB_UWK_V1_7,		/* mt8196 IP0 */
+> +	SSUSB_UWK_V1_8,		/* mt8196 IP1 */
+> +	SSUSB_UWK_V1_9,		/* mt8196 IP2 */
+>   };
+>   
+>   /*
+> @@ -381,6 +392,21 @@ static void usb_wakeup_ip_sleep_set(struct xhci_hcd_mtk *mtk, bool enable)
+>   		msk = WC0_IS_EN_P3_95 | WC0_IS_C_95(0x7) | WC0_IS_P_95;
+>   		val = enable ? (WC0_IS_EN_P3_95 | WC0_IS_C_95(0x1)) : 0;
+>   		break;
+> +	case SSUSB_UWK_V1_7:
+> +		reg = mtk->uwk_reg_base + PERI_WK_CTRL0_8196;
+> +		msk = WC0_IS_EN_P0_96;
+> +		val = enable ? msk : 0;
+> +		break;
+> +	case SSUSB_UWK_V1_8:
+> +		reg = mtk->uwk_reg_base + PERI_WK_CTRL0_8196;
+> +		msk = WC0_IS_EN_P1_96;
+> +		val = enable ? msk : 0;
+> +		break;
+> +	case SSUSB_UWK_V1_9:
+> +		reg = mtk->uwk_reg_base + PERI_WK_CTRL1_8196;
+> +		msk = WC1_IS_EN_P2_96;
+> +		val = enable ? msk : 0;
+> +		break;
+>   	case SSUSB_UWK_V2:
+>   		reg = mtk->uwk_reg_base + PERI_SSUSB_SPM_CTRL;
+>   		msk = SSC_IP_SLEEP_EN | SSC_SPM_INT_EN;
+
+
 
 
