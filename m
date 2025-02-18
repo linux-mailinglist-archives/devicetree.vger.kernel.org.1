@@ -1,184 +1,135 @@
-Return-Path: <devicetree+bounces-147937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B24DA39E12
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 14:58:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDAA8A39E3D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 15:06:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84203166E9E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 13:54:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08F03167AD3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 14:03:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5582D269AFC;
-	Tue, 18 Feb 2025 13:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBC69266192;
+	Tue, 18 Feb 2025 14:03:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Gt4zRKfE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eGpBOpE4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E291269AE8;
-	Tue, 18 Feb 2025 13:54:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF5512E5B;
+	Tue, 18 Feb 2025 14:03:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739886853; cv=none; b=pG7KvzyozsATYI4ldfMlNMy9C7Y8hg+Wx9Bd31jdSWLL1ZjHPvoK6/xJCn5Kzuifx/hh3AbqWUOv9KGo+9FRryCSn9CxBgkK+8JS5xfw2xgAylPKwIZAi76ncxVIwXWemcwMV7feveKRzzbBJlGLwUrHAYgNClKypwlvYmOGMZo=
+	t=1739887416; cv=none; b=Hn17t7/7uNWAf8CGLGq78vSArUxIkV8AEyPXaXLXqJumM9CJ+lHU9XgdTu0IhlduwvfqSFWOX2cJ41PbZ0DKDopaWuSyaANJUvxw415GsrSJE3+9jl0vn5Nm8PqCeAIetDgqAlsPdStV94wxwaEPpe+ohQe6KjFEb6iCql1Efeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739886853; c=relaxed/simple;
-	bh=Fqt3nyMfiZx66vWK0/vAEosj9z42b2w1+of9RItKiFk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=uiw+DAbd6C4Wt1p9Nqci1ZJACnKQ6OeSQQw5kkXQnUFDWX9iz/yHslpGkkm3/zQDGbq8+yTcmLlzpf6Q3AzWn41lcKowpQaFfW5PJzRNwexY14wTboqP67eywRDxmHaG01ClTOUKUrNefvc7rlEZUPaSxqj3O5JPFABRsge3FgY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Gt4zRKfE; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739886849;
-	bh=Fqt3nyMfiZx66vWK0/vAEosj9z42b2w1+of9RItKiFk=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=Gt4zRKfE1X1rcoXYE4id2Dg/ypksW1/JQid9qdmjfuSwycMX7r5XH7rpMkagRv1OK
-	 qCZSHuJAn/0/BCyNAD4/cKHjiASPrYsmJp0VfDlkolgTLYAsryVXkajWF5NCXcICbJ
-	 LF42Cq+6cKL4tZv7xkiaHROJPncxNPWE3Tp+76K4Wubr0t4tFODvhT6z++KVyOHOdA
-	 iNTb58ytGoT5k8ZLRHf+IMp9VJTX9MY9WwVKAQV6IMvvxKeAiXqOb5B+9QjP5yBdCc
-	 pI+VjXmMjyCdLCZAAqDZXK4K+LhguOWSVMMxxqqu1C0Gz1bLsT5fufWbiMWVfilyPP
-	 jir4L0CiVRoQg==
-Received: from apertis-1.home (2a01cb088CcA73006086F5f072C6A07A.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:8cca:7300:6086:f5f0:72c6:a07a])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C77F517E0657;
-	Tue, 18 Feb 2025 14:54:08 +0100 (CET)
-Message-ID: <094bfb612d8895d2316d01704d37c853f8f86ae6.camel@collabora.com>
-Subject: Re: [PATCH 3/5] dt-bindings: i2c: maxim,max96717: add new properties
-From: Julien Massot <julien.massot@collabora.com>
-To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org
-Date: Tue, 18 Feb 2025 14:54:07 +0100
-In-Reply-To: <20250207112958.2571600-4-laurentiu.palcu@oss.nxp.com>
-References: <20250207112958.2571600-1-laurentiu.palcu@oss.nxp.com>
-	 <20250207112958.2571600-4-laurentiu.palcu@oss.nxp.com>
-Organization: Collabora Ltd.
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	s=arc-20240116; t=1739887416; c=relaxed/simple;
+	bh=7g3Ss5mFEPQ/MC/G4bdVTlWPBOqJj0JwqqcGScdjGVk=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=CvO0iwWmGFUUu0Ya0encESJR9YGcPdEWBIKgumh6F6jE5UKHClehbncOFi+q9GLgPadTHs9XHlDXf5dPnZ3ZNTTo1pdpRhPrdLq1gbflr1PFSuqNlm4w6Eb8NYZoTHeQAqZx7N9rGP571Od6/2Y2iAMwRC+IqOvRfgzc2t8+nSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eGpBOpE4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02FF3C4CEE2;
+	Tue, 18 Feb 2025 14:03:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739887416;
+	bh=7g3Ss5mFEPQ/MC/G4bdVTlWPBOqJj0JwqqcGScdjGVk=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=eGpBOpE4cwSraM7JXq4doESHEtvNYMnDOhYjPZk574Nfq5SK1a++F9XEnMMO8sml6
+	 t54PQi6RY4SvbFoz6k9NdZIDY6zmAzLzdXnOSD1+LLeKx/QryvnaLsXz3lzGC8WoYC
+	 A35Lo2tKwUrk58fKixIAz/Jz2DYtlRQtFBd0fQ9MLUae/r+OTAo6m0AhbZgJMFTJdV
+	 zDbU5T7aVcXods/MN8ApjchCKVqg72w69dKX77S/aRzOsbpXMvp6pO3k2jggxwtK5G
+	 GE3y3kURi7LYfRiL7QDQj16Iy4pD4GrRlDHfbYA7zJAV1pEIWWAsoOU1XZkaG5Hx1X
+	 b8r6Hyk/sxYpA==
+Date: Tue, 18 Feb 2025 08:03:34 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Inochi Amaoto <inochiama@gmail.com>, sophgo@lists.linux.dev, 
+ devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>, 
+ linux-kernel@vger.kernel.org, Chen Wang <unicorn_wang@outlook.com>, 
+ Conor Dooley <conor+dt@kernel.org>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+In-Reply-To: <20250216180924.2506416-1-alexander.sverdlin@gmail.com>
+References: <20250216180924.2506416-1-alexander.sverdlin@gmail.com>
+Message-Id: <173988741497.6115.7372535970415942115.robh@kernel.org>
+Subject: Re: [PATCH RFC] dt-bindings: rtc: sophgo: add RTC support for
+ Sophgo CV1800 series SoC
 
-Hi Laurentiu,
 
-Thanks for your patch
-
-On Fri, 2025-02-07 at 13:29 +0200, Laurentiu Palcu wrote:
-> Add 'maxim,override-mode' property to allow the user to toggle the pin
-> configured chip operation mode and 'maxim,fsync-config' to configure the
-> chip for relaying a frame synchronization signal, received from
-> deserializer, to the attached sensor. The latter is needed for
-> synchronizing the images in multi-sensor setups.
->=20
-> Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+On Sun, 16 Feb 2025 19:09:09 +0100, Alexander Sverdlin wrote:
+> Add RTCSYS devicetree binding for Sophgo CV1800 SoC.
+> 
+> The RTC (Real Time Clock) is an independently powered module in the chip.
+> It contains a 32KHz oscillator and a Power-On-Reset (POR) sub-module, which
+> can be used for time display and scheduled alarm produce. In addition, the
+> hardware state machine provides triggering and timing control for chip
+> power-on, power-off and reset.
+> 
+> Furthermore, the 8051 subsystem is located within RTCSYS and is
+> independently powered. System software can use the 8051 to manage wake
+> conditions and wake the system while the system is asleep, and communicate
+> with external devices through peripheral controllers.
+> 
+> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 > ---
-> =C2=A0.../bindings/media/i2c/maxim,max96717.yaml=C2=A0=C2=A0=C2=A0 | 28 +=
-++++++++++++++++++
-> =C2=A01 file changed, 28 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96717.y=
-aml
-> b/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
-> index d1e8ba6e368ec..fae578d55fd4d 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
-> @@ -42,10 +42,35 @@ properties:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 number must be in range of [0, 10].
-> =C2=A0
-> =C2=A0=C2=A0 gpio-controller: true
-> +=C2=A0 gpio-reserved-ranges: true
-> =C2=A0
-> =C2=A0=C2=A0 '#clock-cells':
-> =C2=A0=C2=A0=C2=A0=C2=A0 const: 0
-> =C2=A0
-> +=C2=A0 maxim,override-mode:
-> +=C2=A0=C2=A0=C2=A0 description: Toggle the operation mode from the pin c=
-onfigured one.
-> +=C2=A0=C2=A0=C2=A0 type: boolean
-I understand that this property is intended to flip the GMSL link mode betw=
-een
-pixel and tunnel mode.
-What about adding a property 'maxim,tunnel-mode' to the GMSL 'port@1'.
-Here the MAX96717 only have one GMSL port but other devices, such as MAX967=
-24 can
-have 2 GMSL link and may have each link in different mode.
+> QUESTION:
+> 
+> I'm unsure about reg properties in the subnodes (child devices) of
+> RTCSYS:
+> - they will not be used anyway by the drivers because they genuinely
+> overlap (the whole point of going MFD) -- therefore the drivers will do
+> syscon_node_to_regmap(pdev->dev.parent->of_node)
+> - as I understood from the history of MFD dt bindings' submissions, regs
+> are encouraged, if can be specified
+> - overlapping regs cause dt_binding_check warnings:
+> Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.example.dts:34.19-39.15: Warning (unique_unit_address_if_enabled): /example-0/rtcsys@5025000/mcu@0: duplicate unit-address (also used in node /example-0/rtcsys@5025000/pmu@0)
+> Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.example.dts:34.19-39.15: Warning (unique_unit_address_if_enabled): /example-0/rtcsys@5025000/mcu@0: duplicate unit-address (also used in node /example-0/rtcsys@5025000/rtc@0)
+> 
+> Shall I remove the MMIO resources from the actual devices or rather ignore the warnings?
+> 
+>  .../bindings/mfd/sophgo,cv1800b-rtcsys.yaml   | 222 ++++++++++++++++++
+>  1 file changed, 222 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.yaml
+> 
 
->=20
-> +
-> +=C2=A0 maxim,fsync-config:
-> +=C2=A0=C2=A0=C2=A0 description:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Frame synchronization (FSYNC) is used to =
-align images sent from multiple
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sources in surround-view applications and=
- is required for concatenation.
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 In FSYNC mode, the deserializer sends a s=
-ync signal to each serializer;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the serializers then send the signal to t=
-he connected sensor.
-> +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/uint32-array
-> +=C2=A0=C2=A0=C2=A0 items:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: FSYNC RX ID, needs to matc=
-h the TX ID configured in the deserializer.
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minimum: 0
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maximum: 31
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default: 0
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Output GPIO pin u=
-sed for sending the FSYNC to the sensor. The pin, however, needs
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 to be excluded fr=
-om the gpiochip using the gpio-reserved-ranges property since
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 it will be used e=
-xclusively for FSYNC generation.
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minimum: 0
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maximum: 10
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default: 0
-> +
+My bot found errors running 'make dt_binding_check' on your patch:
 
-MAX96717 do not have any knowledge of the frame synchronisation, but this d=
-evice can forward some
-GPIO to/from the deserializer.
+yamllint warnings/errors:
 
-GPIO forwarding need some information=20
-- The local GPIO number
-- The forwarding direction Rx, Tx, Bi-directionnal
-- The GPIO ID on the GMSL link (RX_ID/TX_ID)
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.yaml: patternProperties:^mcu@[0-9a-f]+$:properties:sram:maxItems: False schema does not allow 1
+	hint: Scalar properties should not have array keywords
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.example.dts:34.19-39.15: Warning (unique_unit_address_if_enabled): /example-0/rtcsys@5025000/mcu@0: duplicate unit-address (also used in node /example-0/rtcsys@5025000/pmu@0)
+Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.example.dts:34.19-39.15: Warning (unique_unit_address_if_enabled): /example-0/rtcsys@5025000/mcu@0: duplicate unit-address (also used in node /example-0/rtcsys@5025000/rtc@0)
+Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.example.dts:41.19-47.15: Warning (unique_unit_address_if_enabled): /example-0/rtcsys@5025000/pmu@0: duplicate unit-address (also used in node /example-0/rtcsys@5025000/rtc@0)
+Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.example.dts:34.19-39.15: Warning (unique_unit_address_if_enabled): /example-0/rtcsys@5025000/mcu@0: duplicate unit-address (also used in node /example-0/rtcsys@5025000/sram@0)
+Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.example.dts:41.19-47.15: Warning (unique_unit_address_if_enabled): /example-0/rtcsys@5025000/pmu@0: duplicate unit-address (also used in node /example-0/rtcsys@5025000/sram@0)
+Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.example.dts:49.19-55.15: Warning (unique_unit_address_if_enabled): /example-0/rtcsys@5025000/rtc@0: duplicate unit-address (also used in node /example-0/rtcsys@5025000/sram@0)
 
-Can we add a maxim,forward-gpio property reflecting that instead ?
+doc reference errors (make refcheckdocs):
 
-> =C2=A0=C2=A0 reg:
-> =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
-> =C2=A0
-> @@ -113,6 +138,9 @@ examples:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-#gpio-cells =3D <2>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-#clock-cells =3D <0>;
-> =C2=A0
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gpio-=
-reserved-ranges =3D <0 1>;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxim=
-,fsync-config =3D <0 0>;
-> +
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-ports {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <0>;
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250216180924.2506416-1-alexander.sverdlin@gmail.com
 
-Regards,
---=20
-Julien
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
