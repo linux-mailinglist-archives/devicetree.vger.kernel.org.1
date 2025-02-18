@@ -1,150 +1,195 @@
-Return-Path: <devicetree+bounces-148001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54925A3A2C9
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 17:28:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29628A3A2FA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 17:38:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2EB437A5E8F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 16:23:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E24901886761
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 16:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA615280A3D;
-	Tue, 18 Feb 2025 16:19:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0468E24113C;
+	Tue, 18 Feb 2025 16:38:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YR82SRnU"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KKRfTfOd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F82127FE95;
-	Tue, 18 Feb 2025 16:19:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E20EA14A4E7;
+	Tue, 18 Feb 2025 16:38:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739895585; cv=none; b=LcSA5dJxKO7VsU+svyYnSc5Zvk50MgN13b1hcccf3S6ExUrvE4Lz6J4tqyWrAlSwNkguFluXWgiPp2Ctnp7dOXbErv3kBP6f0QjZgwQb5qQuRTckxpr/YJEhfuUoGYpjhfg8uoqlVVBlZP3FF5VsOZ8tqC/wW6ipGz8S5RrFpqU=
+	t=1739896700; cv=none; b=OHbhLbudB0clcEd9nakVxfaoDRePNZ3Lt8B6VinIaQRm/eAJe2rzjaghoozWf8vQ5AbOBKjc/nqGGoal8knjfrSqmrgD6GcKL/k1mgOBSGAl5ZLwZgzvgpGf/Q/E8WUFZkE76KQ5Y7ILFAX56mwqzVb4t2tfrWkmpz+ywQNmCJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739895585; c=relaxed/simple;
-	bh=8b0Kuui03ct1KC0R/IT/A2dDGpfeBVc6h0C2N47PBbg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=t3pUlGRuY+B+ma/32zfZgJU2qDk8qi9Z4ILUcp6/BPUtjppeXnqqNzPQvlAq+B3yaoYV7juLoMR6spPPxyDib1IlFotzh84WzC2+PGCS0YtTPv2If+CQ5a5/8q2JoG0L2vKr0fM/zs7InonHQPnbUsRQ6bniHWMh1TBWpCBnqmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YR82SRnU; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 73A93442E9;
-	Tue, 18 Feb 2025 16:19:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739895581;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dFPYI+NIYNYphWZYflEs8P7BANLERP4UZiFb76vQ59A=;
-	b=YR82SRnUvvgeUKXsbPME1d8rKhgw9FyJgPVa5/Zbc+vNXPp2ZyVru8lCfpOSclY6ML59Vt
-	sR0k/lfNXPZjUmCdrhcn9qLP3CZTiB555vdHNBIEVUk9Od0ns+1/A3t/0rkdotQQ/IE8Hg
-	awiorWwOGIkA0DtWwXqJOi/dKfWDCysRy0VJabgzh0ZLE8PzVEqbgM6W9E/TZP5nGaemOr
-	DN24WJhJ5JapPgZYdXQZaTK+DC0JtvhfRCOeZlnfu9Rq5nSl+QWsvhyD7ckobS4OWiApFz
-	/0M3R4nn7WY55SzMm6aJ7JHo0m0xyAs351knUtpZpDLZ8rmP2gUUkyLQGeIFeg==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Tue, 18 Feb 2025 17:19:16 +0100
-Subject: [PATCH net-next v5 12/12] dt-bindings: net: pse-pd: ti,tps23881:
- Add interrupt description
+	s=arc-20240116; t=1739896700; c=relaxed/simple;
+	bh=qfjbUEQVSAjORcsYvRblhPjvSkUFBE/tBDvnhli6w40=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=r/KXL3ajKSD7dERu8dlgQ5kpAEVv8ixF3wE63TSQCY+JNKDMjj9+nSvz1p2qEnnSVcUVQA6A7ecsRRvS+ciOYdNEipyp9FAl4oMUv1mUoRwuzRSfpWrUAezjw+bSBT8O7XmuqIZIQqueKOlNusolGqNlsBIvm5/qKuNNHK86Klk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KKRfTfOd; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51IGc83e041546
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 18 Feb 2025 10:38:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1739896688;
+	bh=Hw+iVjuNQRNJjxBZXs0mx0TPrXxm7dAC+OqYhvCNa3Y=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=KKRfTfOdk3XpLz8T9SlU1aeyDwv9gU74vFPAS8xIvUJ1XYaso0SHSru/taZ/Xz+4r
+	 mckj3Ap/ROIIvbMdt/u8yQSMwh0rSxtuS4oDKH9aJSMBBTYvo8M9g32V22ljb+T5yd
+	 uS349yQadV1phbiKJYGjE5i6wr7okwOgiLQ+8+VU=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51IGc89D061175
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 18 Feb 2025 10:38:08 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 18
+ Feb 2025 10:38:07 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 18 Feb 2025 10:38:07 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51IGc7kv007827;
+	Tue, 18 Feb 2025 10:38:07 -0600
+Message-ID: <04e77daf-e775-44fa-82bf-8b6ebf73bcef@ti.com>
+Date: Tue, 18 Feb 2025 10:38:07 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 06/10] arm64: dts: ti: k3-am62p5-sk: Enable IPC with
+ remote processors
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Hari Nagalla
+	<hnagalla@ti.com>
+References: <20250210221530.1234009-1-jm@ti.com>
+ <20250210221530.1234009-7-jm@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250210221530.1234009-7-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250218-feature_poe_port_prio-v5-12-3da486e5fd64@bootlin.com>
-References: <20250218-feature_poe_port_prio-v5-0-3da486e5fd64@bootlin.com>
-In-Reply-To: <20250218-feature_poe_port_prio-v5-0-3da486e5fd64@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Jonathan Corbet <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, 
- Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- Simon Horman <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, 
- Dent Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- "Kory Maincent (Dent Project)" <kory.maincent@bootlin.com>
-X-Mailer: b4 0.15-dev-8cb71
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeiudejjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepvefgvdfgkeetgfefgfegkedugffghfdtffeftdeuteehjedtvdelvddvleehtdevnecukfhppedvrgdtudemtggstddumeeftdehfeemrgdvieeimeelvgeivgemleeisgdumegvsgguleemfhdtrgegnecuvehluhhsthgvrhfuihiivgepjeenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdtudemfedtheefmegrvdeiieemlegviegvmeeliegsudemvggsugelmehftdgrgedphhgvlhhopegluddvjedrtddruddrudgnpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdehpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgthhdprhgtphhtthhopeguvghnthhprhhojhgvtghtsehlihhnuhigfhhouhhnuggrthhiohhnrdhorhhgpdhrtghpthhtoheplhhinhhugiesrghrmhhlihhnuhigrdhorhhgrdhuk
- hdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkvghrnhgvlhesphgvnhhguhhtrhhonhhigidruggv
-X-GND-Sasl: kory.maincent@bootlin.com
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+On 2/10/25 4:15 PM, Judith Mendez wrote:
+> From: Devarsh Thakkar <devarsht@ti.com>
+> 
+> For each remote proc, reserve memory for IPC and bind the mailbox
+> assignments. Two memory regions are reserved for each remote processor.
+> The first region of 1MB of memory is used for Vring shared buffers
+> and the second region is used as external memory to the remote processor
+> for the resource table and for tracebuffer allocations.
+> 
+> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+> Changes since v4:
+> - Drop SRAM node for am62px MCU R5fSS0 core0
+> ---
+>   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 50 ++++++++++++++++++++++---
+>   1 file changed, 44 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+> index ad71d2f27f538..9609727d042d3 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+> @@ -48,6 +48,30 @@ reserved-memory {
+>   		#size-cells = <2>;
+>   		ranges;
+>   
+> +		mcu_r5fss0_core0_dma_memory_region: mcu-r5fss-dma-memory-region@9b800000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x00 0x9b800000 0x00 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		mcu_r5fss0_core0_memory_region: mcu-r5fss-memory-region@9b900000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x00 0x9b900000 0x00 0xf00000>;
+> +			no-map;
+> +		};
+> +
+> +		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c800000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x00 0x9c800000 0x00 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		wkup_r5fss0_core0_memory_region: r5f-memory@9c900000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x00 0x9c900000 0x00 0x1e00000>;
 
-Add an interrupt property to the device tree bindings for the TI TPS23881
-PSE controller. The interrupt is primarily used to detect classification
-and disconnection events, which are essential for managing the PSE
-controller in compliance with the PoE standard.
+0x1e00000?
 
-Interrupt support is essential for the proper functioning of the TPS23881
-controller. Without it, after a power-on (PWON), the controller will
-no longer perform detection and classification. This could lead to
-potential hazards, such as connecting a non-PoE device after a PoE device,
-which might result in magic smoke.
+Yes I know you didn't add this and are just coping it from below, but it
+is still an issue. I see the same problem for the next patch, the R5F memory
+size is 0xc00000??
 
-Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
----
+Every remote core gets 15MB (0xf00000), this has been true for all K3, and
+all cores, DSP, R5F, M4, etc.. You even do it correct for the MCU R5F above,
+but the WKUP R5F on AM62P and AM62 are just randomly given 30M and 12MB?
 
-Change in v5:
-- Use standard interrupt flag in the example.
+Andrew
 
-Change in v3:
-- New patch
----
- Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-index d08abcb01211..3a5f960d8489 100644
---- a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-+++ b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-@@ -20,6 +20,9 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  interrupts:
-+    maxItems: 1
-+
-   '#pse-cells':
-     const: 1
- 
-@@ -62,9 +65,12 @@ unevaluatedProperties: false
- required:
-   - compatible
-   - reg
-+  - interrupts
- 
- examples:
-   - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-     i2c {
-       #address-cells = <1>;
-       #size-cells = <0>;
-@@ -72,6 +78,8 @@ examples:
-       ethernet-pse@20 {
-         compatible = "ti,tps23881";
-         reg = <0x20>;
-+        interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-parent = <&gpiog>;
- 
-         channels {
-           #address-cells = <1>;
-
--- 
-2.34.1
-
+> +			no-map;
+> +		};
+> +
+>   		secure_tfa_ddr: tfa@9e780000 {
+>   			reg = <0x00 0x9e780000 0x00 0x80000>;
+>   			no-map;
+> @@ -57,12 +81,6 @@ secure_ddr: optee@9e800000 {
+>   			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
+>   			no-map;
+>   		};
+> -
+> -		wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
+> -			compatible = "shared-dma-pool";
+> -			reg = <0x00 0x9c900000 0x00 0x01e00000>;
+> -			no-map;
+> -		};
+>   	};
+>   
+>   	vmain_pd: regulator-0 {
+> @@ -638,6 +656,26 @@ mbox_mcu_r5_0: mbox-mcu-r5-0 {
+>   	};
+>   };
+>   
+> +&wkup_r5fss0 {
+> +	status = "okay";
+> +};
+> +
+> +&wkup_r5fss0_core0 {
+> +	mboxes = <&mailbox0_cluster0 &mbox_r5_0>;
+> +	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
+> +			<&wkup_r5fss0_core0_memory_region>;
+> +};
+> +
+> +&mcu_r5fss0 {
+> +	status = "okay";
+> +};
+> +
+> +&mcu_r5fss0_core0 {
+> +	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5_0>;
+> +	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
+> +			<&mcu_r5fss0_core0_memory_region>;
+> +};
+> +
+>   &main_uart0 {
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&main_uart0_pins_default>;
 
