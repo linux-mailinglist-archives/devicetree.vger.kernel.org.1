@@ -1,166 +1,185 @@
-Return-Path: <devicetree+bounces-147879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F7B1A39B2D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 12:42:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2039A39B3D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 12:43:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03A4E1893F80
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:42:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9951F3A5AC8
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:43:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28DFF23FC58;
-	Tue, 18 Feb 2025 11:41:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DB7A23F273;
+	Tue, 18 Feb 2025 11:43:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="fLzPseWo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GB+XRPh/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC9323ED6A
-	for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 11:41:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77F3E23CF07
+	for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 11:43:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739878919; cv=none; b=LPGUZiuSPY5cDzj49/ajlZ318zLV85hjgCjQ82qbmAGcj9VyZMLcpujCiLBXJrfSE/ufRvkPzvBhqf51aOaQu/w+yqTqTOlC2+PZA34QIaQn+TZo+9tkCRt2p8mO8aZnlN8VJodGpB8ixG7yQP/aTBLNypjtRVQcoQKKCcr8kUw=
+	t=1739879019; cv=none; b=effAYGl+OUnc4zUmUmU21LO6TAmGnIYdl93D9CLoDFwm3cXGEiqiNuYfEdePKuRLCnH1SFXgYZFEVKrpKswYAzMYXNn/LN2lvl9HAbs9Qv5Tdeti4/BghVLGMIr6j+9QCvvaZOOritkXJfB1YBHMI1vTpSPN3PqNw9lNC3LP/c8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739878919; c=relaxed/simple;
-	bh=qetabGxYbS2Xn9VVfPXOuzSTSZeCSKTs2TYqNLNDv8U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UKFnpBPD6CAd2PYQ03W2wlF4ZgCfB+rgf0m2f03G8hLqqeZU7xX9TrupTkpISTf1WxUaeijNLAb9WEJTudn1qZDDJz2c1n0QebU1+tmuBYqUgt11u8/4BqPgUImC8Yujkh+CD8aMND+Qf56drzbM1pAZEIaQUstf54c3IMS4dN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=fLzPseWo; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e0452f859cso3843050a12.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 03:41:56 -0800 (PST)
+	s=arc-20240116; t=1739879019; c=relaxed/simple;
+	bh=1mN+xNgaFFvNE9UYqlV3tBQki4fbSbB7xoygLiCSzbQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J7uC1zLSbCkN1wZBCPBFGVuXPqwT68YXnI6u4RFrqnPV++tMbmh2PmsYgqBviZxZ3LmY4djIYcp49LKEA6ryexOeMnO0rE0xNduEzu85Z6mbWkxMkhSYeLca6GTvMqYEC/LvfMRRBEmCA8K7BQyI6Z8BVa4eGIf5E5RB9Q2K1Pc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GB+XRPh/; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5452c2805bcso4164458e87.2
+        for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 03:43:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1739878915; x=1740483715; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8aKmlMmkGK0UfyeuqhRhT99w4TL2OYZoP6ekSWwvJ0Q=;
-        b=fLzPseWoH2hHIdsJvFm5EYZJ5fe2BQ2oyyryYNXQlkSZHNxxgBhMrCzgkN0n3FGmc/
-         TCYlHYeRKhydcmYvbb1WAHRpODulIpLojkkwbiw6IWSzqUqUr1J/TXZihfmpMCei/8KG
-         3dnuVsojDWrJYJ24vI/5sI9u7vyI9aSPSpQih0ULu7y1cWWide6ZG73jl012J4VQwMdW
-         PMNzuG2XGRHLAASQFJSNmN/kyLkmKndyhhJlzr7DKJ4XCpNgg+XGdS3nFBPx//EpVcvm
-         rF7cerWXZjrZyvnaBWIoA+De5bTAaZWTuW8CABQytJ5zrrvJP77+XmNk8u52doe+YeZW
-         lhKQ==
+        d=linaro.org; s=google; t=1739879015; x=1740483815; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=TDh3LF7I2VAOvbuYPKV/iG9cnLKgilP672D2NsUsYOM=;
+        b=GB+XRPh/KuwVxzzVET95bIwFd4RYRV4299ywjOQ62fWhQ2s1zEw2PK2sxauNE7PyCq
+         bpE2Ikmlfh7PhWNZGmxbc0YEKnTT3WddQFILl9YsRLM1nT1165fTx4nBXN1E1pgytwLU
+         jBSJqUamdr/mx9Ht9+Tdz5i8uUsPGT9Yfm9FugiIghlX/fHD46P87TnGjeHZyStoaCsO
+         g8EJFU/jTONwe4CAqPycMGjBqKmbtkzgD0B0mAcSQN5trbIy34irUD3NjYv19ygurvQI
+         lQqskxo8v0YRus/BuyB0nkOXUgQ9EsvKv5s9mTR4g16M5g5mRwNJmdd0pkP8AFFjMaL0
+         0MFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739878915; x=1740483715;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8aKmlMmkGK0UfyeuqhRhT99w4TL2OYZoP6ekSWwvJ0Q=;
-        b=InleCgHVzbeH76Qb6wMflwa0ePbkbVstIVzldmeffxhZ5/WptgRFbFM2zhNP5HNzAn
-         b+3ZwkJFAlBEf2D8y4J/Mk79W/q/VQDFkMJHl0kCy67pf7hrkEb5+up8mlgiloggt/YA
-         nN/DUIvqFI2NPlMutDrB7fMn2CUJ2+vsmnq4X74vtn2mgNBDTPlxho5O9B9+lPiFXHjG
-         7BQ511R7i+0RAmPYBVx+Coc/GOX1MEYJ0q5SoEdFdqpWjacyYCHJ5Mi6Mq1VN8Xkt8kZ
-         YnCWY6d5+6VIHUdCgDZ7w+0zkcRc2Jq49HD3oJfqzoKTDwa/xAAhz75TiLQnc3Sdo2vP
-         E3Yw==
-X-Forwarded-Encrypted: i=1; AJvYcCV9P9hNU/tRWQtcb1Hb/IC5wuGsyx4t8D4E3BdkFZOLeTgxeyGWMBZrAI1XkiDUHi6ksmUvSOsN69bB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKyTCxCz5NimKl3HZ8uTxdq4S+HBDI9Ds+1ET2G5EaRkL75PWy
-	xssNpQxbncrx0R2WTNd4P7jkVbYkUZpWqW6UDb+LmJGx7dpH7D+/gxt3WSzJFBzXCE3EuuUtj6o
-	tMa67RBaJcvLk91/fsUFzUQ6ho4ekt0LcglTf3g==
-X-Gm-Gg: ASbGncukFN7gdF5EII2JtFv3AjTlD/GiPyEFJcr2h/L4/bqdeuxCPAoO9cdjfi9s3mq
-	fVKea9aJUD8KLkJgZBNWh79RvzLTYqBHDzXgB9Hhpn2q2JL+FO0sGq3boKQFN579wRSNs7b11
-X-Google-Smtp-Source: AGHT+IEPNee71mSksjXSeSsWHrS2KAR9wIT4sz1ud5v06geo9drLnl7hEt7tvSIgJJ+4DJzXS69UPDMhP8dla+sJ57w=
-X-Received: by 2002:a17:907:c1f:b0:ab7:86af:9e19 with SMTP id
- a640c23a62f3a-abb70db8274mr1197625166b.43.1739878915362; Tue, 18 Feb 2025
- 03:41:55 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739879015; x=1740483815;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TDh3LF7I2VAOvbuYPKV/iG9cnLKgilP672D2NsUsYOM=;
+        b=U81sbU0qw1t5ZdG+PvrmzCVWev2jv8IV2c16XavsMPDjDxXH5fgZ5iIVskc3YgxnZC
+         dRcjUYnPCS0t8bJN1vb+67gSzfH/rODn30ZqJnApwD8WvKZo6ATv8/CFv7vecn+6N9zl
+         vRDeWVj6btHTN5FXrm40mZ0oQ1/TAZvA0owQ3mneCLbbQv0Wf3zEXHOz+kDLBTtOy2hf
+         0Nv6GGXRQeOpDVPpwEloY5KDof5Xmvrfw41yTIK0LFWKl3OY36/WgD3XNHB6Be/SJ+Ni
+         8CMSbzxWXAMtSroEgfyfjc3IyZk1LvG/Pqzu72idqD8OSN2s4G6ToAmORxwoulGi/g9j
+         NpBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWNrsD2Jp/uTvLIc+nv5pU2cGHftUoTkH9adSYud3CjQp1QH3JxrojkJAc8ZFk1Id0AezWR/9QYa44P@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0WUa8TzcZmF7ew4QMYg6vRtj5sw66cver7HYTRyAXul9Inj8d
+	QgQ7JlM0Z1/lVUudqF/for6/oNkHVSoVCmLV/l8CGcqxJnmUa4Prya9IA85RfQU=
+X-Gm-Gg: ASbGncuvOJW8XPPko9LwCcFgIqM/XLBcxK3r0fIVc7YxbbGMIX5Ajd/B11CMjromnmF
+	XsGUn5pxGL26WqI+EViMUVa8ZqgVq4I9I9IUYGy7rK6IlCQbgcm1qxa+RQozbKx01FGgMglDL8R
+	IuMuztkxvS0oOrCCw9pA1NE6pqwOrWEtWJEFYhBlA2So7sTURILewlgINma+pqo1kvmvHRIGTfW
+	uE/BDCj09S/EPnF/Fl9BNyW+y6l5Z0+TvuRwwy4fV612fmmx29/1K9+EXz3tnZwzEM7v7wSjdTm
+	e/8jnAWITZbGHDoK6uI0vFE2TzBJFnW9mJcCrbU2HFNaOQCHvOgQC+t/Z9YY/T3OuUlGyCU=
+X-Google-Smtp-Source: AGHT+IHO9NwIK+TdHNEcDP9zUALpP+YltWjVqof/wrSV+s+68TLTGCq/F5NabaF825FmYPwW4CFqtA==
+X-Received: by 2002:a05:6512:ea5:b0:545:6cf:6f3e with SMTP id 2adb3069b0e04-5452fea6e3fmr4013685e87.49.1739879015479;
+        Tue, 18 Feb 2025 03:43:35 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5461a6efd88sm980973e87.69.2025.02.18.03.43.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Feb 2025 03:43:35 -0800 (PST)
+Date: Tue, 18 Feb 2025 13:43:32 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
+	Imran Shaik <quic_imrashai@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] clk: qcom: lpassaudiocc-sc7280: Add support for
+ LPASS resets for QCM6490
+Message-ID: <jxhkddeu32v5fg6avsa7pnzicreisrlzpws2nixaie2znn3eei@mstncyeqqfgg>
+References: <20250212-lpass_qcm6490_resets-v3-0-0b1cfb35b38e@quicinc.com>
+ <20250212-lpass_qcm6490_resets-v3-2-0b1cfb35b38e@quicinc.com>
+ <exyxni7td5vow2n6jarav5euje6dnbue5f5yxzu6az554dthfe@zn5yd2byvkoj>
+ <ccc87c55-d157-4ffc-8081-1a5900752931@quicinc.com>
+ <CAA8EJpp7e5q36jGmB-TZX5A=XVGKsDtmBF8kJmxoga8NqGZP1A@mail.gmail.com>
+ <c820c697-c3ec-4ae3-9720-fb80cb3a0450@quicinc.com>
+ <CAA8EJpon5+R5s0HXUmoikjtuyEf3sQUqBVYvWrxuh14h2DvjQg@mail.gmail.com>
+ <30e84d27-6047-492a-8602-8822b5d492fe@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAMEGJJ3=W8_R0xBvm8r+Q7iExZx8xPBHEWWGAT9ngpGWDSKCaQ@mail.gmail.com>
- <20250213171435.1c2ce376@bootlin.com> <a3c5103c-829a-4301-ba53-6ef9bd1e74e7@lunn.ch>
- <CAMEGJJ3-JXhin_Ht76EqUNAwLiNisa9PrCrdUzCgj=msGZfb5A@mail.gmail.com>
- <821d4c74-09b0-4c1b-b8ef-f8c08d0f6b5b@lunn.ch> <CAMEGJJ0QbzCScfTRA_pw_8A=iMYMAAFs69zFNLwcOxF5Syugpw@mail.gmail.com>
- <20250213195304.3a2df02c@bootlin.com> <CAMEGJJ0kGCj=tjM6KswbG_+ZFkzMwPY+06BXCU0qSnbBKz0=ug@mail.gmail.com>
- <20250213220639.373da07b@bootlin.com> <CAMEGJJ2_HVKfsE3P22baadbzxSDAX=yTr=m76YuXa5A2cJsJig@mail.gmail.com>
- <20250217165306.3f055b94@bootlin.com> <CAMEGJJ13476pKJb441o5X0Y+rbfromj5-3V-j2KZiOt326OL4A@mail.gmail.com>
- <20250217185559.2e56bd75@bootlin.com>
-In-Reply-To: <20250217185559.2e56bd75@bootlin.com>
-From: Phil Elwell <phil@raspberrypi.com>
-Date: Tue, 18 Feb 2025 11:41:43 +0000
-X-Gm-Features: AWEUYZmepFe2lsLe25Me9NjAHmXEX0-yOAHWU0twEqpljxZQoXOSSXs2uoT9kzs
-Message-ID: <CAMEGJJ2m+Qjk4L5xFJZk+X7XSiop_63BH9gsrykLwz3+VMAQfA@mail.gmail.com>
-Subject: Re: [PATCH v6 00/10] Add support for RaspberryPi RP1 PCI device using
- a DT overlay
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Andrea della Porta <andrea.porta@suse.com>, Arnd Bergmann <arnd@arndb.de>, 
-	"maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" <bcm-kernel-feedback-list@broadcom.com>, bhelgaas@google.com, brgl@bgdev.pl, 
-	Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, derek.kiernan@amd.com, 
-	devicetree@vger.kernel.org, dragan.cvetic@amd.com, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, krzk+dt@kernel.org, kw@linux.com, 
-	Linus Walleij <linus.walleij@linaro.org>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, lpieralisi@kernel.org, 
-	luca.ceresoli@bootlin.com, manivannan.sadhasivam@linaro.org, 
-	masahiroy@kernel.org, Michael Turquette <mturquette@baylibre.com>, 
-	Rob Herring <robh@kernel.org>, saravanak@google.com, Stephen Boyd <sboyd@kernel.org>, 
-	thomas.petazzoni@bootlin.com, Stefan Wahren <wahrenst@gmx.net>, 
-	Will Deacon <will@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <30e84d27-6047-492a-8602-8822b5d492fe@quicinc.com>
 
-On Mon, 17 Feb 2025 at 17:56, Herve Codina <herve.codina@bootlin.com> wrote:
->
-> On Mon, 17 Feb 2025 17:03:34 +0000
-> Phil Elwell <phil@raspberrypi.com> wrote:
->
+On Tue, Feb 18, 2025 at 10:53:05AM +0530, Taniya Das wrote:
+> 
+> 
+> On 2/13/2025 7:58 PM, Dmitry Baryshkov wrote:
+> >>>>>>  static const struct qcom_cc_desc lpass_audio_cc_reset_sc7280_desc = {
+> >>>>>> -    .config = &lpass_audio_cc_sc7280_regmap_config,
+> >>>>>> +    .config = &lpass_audio_cc_sc7280_reset_regmap_config,
+> >>>>>>      .resets = lpass_audio_cc_sc7280_resets,
+> >>>>>>      .num_resets = ARRAY_SIZE(lpass_audio_cc_sc7280_resets),
+> >>>>>>  };
+> >>>>>>
+> >>>>>>  static const struct of_device_id lpass_audio_cc_sc7280_match_table[] = {
+> >>>>>> -    { .compatible = "qcom,sc7280-lpassaudiocc" },
+> >>>>>> +    { .compatible = "qcom,qcm6490-lpassaudiocc", .data = &lpass_audio_cc_reset_sc7280_desc },
+> >>>>>> +    { .compatible = "qcom,sc7280-lpassaudiocc", .data = &lpass_audio_cc_sc7280_desc },
+> >>>>>>      { }
+> >>>>>>  };
+> >>>>>>  MODULE_DEVICE_TABLE(of, lpass_audio_cc_sc7280_match_table);
+> >>>>>> @@ -752,13 +763,17 @@ static int lpass_audio_cc_sc7280_probe(struct platform_device *pdev)
+> >>>>>>      struct regmap *regmap;
+> >>>>>>      int ret;
+> >>>>>>
+> >>>>>> +    desc = device_get_match_data(&pdev->dev);
+> >>>>>> +
+> >>>>>> +    if (desc->num_resets)
+> >>>>>> +            return qcom_cc_probe_by_index(pdev, 1, desc);
+> >>>>> Won't this break SC7280 support by causing an early return?
+> >>>>>
+> >>>> The resets are not defined for SC7280.
+> >>>> static const struct qcom_cc_desc lpass_audio_cc_sc7280_desc = {
+> >>>>         .config = &lpass_audio_cc_sc7280_regmap_config,
+> >>>>         .clks = lpass_audio_cc_sc7280_clocks,
+> >>>>         .num_clks = ARRAY_SIZE(lpass_audio_cc_sc7280_clocks),
+> >>>> };
+> >>>>
+> >>>> The reset get registered for SC7280 after the clocks are registered.
+> >>>> qcom_cc_probe_by_index(pdev, 1,  &lpass_audio_cc_reset_sc7280_desc);
+> >>> Could you please make this condition more obvious and error-prone
+> >>> rather than checking one particular non-obvious property?
+> >>>
+> >> Dmitry, we had earlier tried [1], but seems like we could not align on
+> >> this patchset.
+> >>
+> >> If you are aligned, please let me know I can fall back on the approach.
+> > You have been using of_device_is_compatible(). Krzysztof suggested
+> > using mach data. Both approaches are fine with me (I'm sorry,
+> > Krzysztof, this is a clock driver for a single platform, it doesn't
+> > need to scale).
+> > 
+> > You've settled on the second one. So far so good.
+> 
+> Sure, I will go ahead with the existing approach, but ensure I replace
+> the num_resets check with the of_device_is_compatible(), so it is more
+> readable. Hope this aligns with your thoughts as well.
 
-<snip>
+Ack, thanks.
 
-> > The job of the nexus node would be to translate a generic request for
-> > a numbered resource to a specific request for an RP1 resource with
-> > arbitrary properties. The arbitrary properties could be GPIO offsets,
-> > which are board specific, while the node supplying the resource is
-> > provided by the overlay. This means that an entry in the table,
-> > described by a single property, could have contributions from the base
-> > DT and the overlay, which is not possible since overlays overwrite
-> > whole properties.
->
-> Hum, I am a bit lost.
-> Some DT example (base and overlay) could help me to understand.
+> 
+> > 
+> > But! The problem is in readability. Checking for desc->num_resets is a
+> > _hidden_ or cryptic way of checking whether to register only a first
+> > controller or both.
+> > 
+> > BTW: the commit message also tells nothing about the dropped power
+> > domain and skipped PM code. Is it not required anymore? Is it handled
+> > automatically by the firmware? But I see that audio codecs still use
+> > that power domain.
+> Yes, it will be taken care in the firmware and I will update in the
+> commit text.
 
-I could, but I think it is becoming a distraction.
+Ack, thanks.
 
-<snip>
+> 
+> 
+> Thanks,
+> Taniya.
 
-> > I think I can see how that could be made to work for GPIOs. It looks
-> > as though the GPIO subsystem is the only one making use of
-> > of_parse_phandle_with_args_map. Interrupts seem to have an open-coded
-> > equivalent, and iommus. What about I2C and PWM?
->
-> Support for PWM has been recently accepted.
->   https://lore.kernel.org/all/ufl4kwrjyp4zid4muvghefevqc6hk3zyvxnsu72fxd4f46fzg6@hufkci2dzjid/
->
-> For i2c, nexus node is not suitable.
->
-> Nexus node works well when resources are indexed (gpio line in a gpio chip
-> for instance). For bus controller there is no index.
-> I mean we never refer a i2c bus controller using <&i2c-ctrl 12>.
->
-> For i2c, I proposed i2c bus extension:
->   https://lore.kernel.org/all/20250205173918.600037-1-herve.codina@bootlin.com/
-
-I don't see in principle why an address-cells of 0 should cause a
-problem - it's a degenerate case, but it's still conceptually valid.
-
-However, we seem to be having to invent a lot of new infrastructure -
-some of it already supported by the kernel, some of it not - because
-we have made the mistake of using a discoverable bus for a
-point-to-point link on a PCB. I don't see how this is fundamentally
-different to the USB-attached Ethernet controller on e.g. the Pi 3B.
-Despite the fact that the Ethernet interface is discoverable, it has a
-Device Tree declaration (see
-arch/arm/boot/dts/broadcom/bcm283x-rpi-smsc9514.dtsi) in order that
-the firmware can supply a MAC address. Yes, the RP1 DT declaration is
-significantly larger, but size shouldn't matter for what seems to be
-objections based on tenets.
-
-Phil
+-- 
+With best wishes
+Dmitry
 
