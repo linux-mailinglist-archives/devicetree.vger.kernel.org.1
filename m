@@ -1,77 +1,99 @@
-Return-Path: <devicetree+bounces-147819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA850A3974A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:42:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6091DA397A0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:53:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C8E516E25C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 09:42:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2061162B73
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 09:52:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D995322FF30;
-	Tue, 18 Feb 2025 09:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CB9823024C;
+	Tue, 18 Feb 2025 09:48:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="BSnIe/Ug"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fWLe7lcc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AB5A22FF40;
-	Tue, 18 Feb 2025 09:42:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCEB122E401;
+	Tue, 18 Feb 2025 09:48:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739871734; cv=none; b=LOZ2LcTDgTjLu39xVNBd8rNt3ZJsMW8KqeiTgvv3TZJLq4tMjIi2RDEn08ignLHL4YvMIkAG6+fAoL+AqzEs63cup+2Vv5YdyBRzE6zRpC6o7pUJbztbExGYOQSAKzNqjmnbWNbz9gTzzbjfVYp5VTu4qNUp9wxwZ+c3U5qSIAU=
+	t=1739872097; cv=none; b=VRRqWd9wVy64uR2fGUbjDtyZAuJqYU1x76AMlACWiNWU6tvdd+FIQ89b6DAEzkvs6fsD8Ps2Qdi7idNEob7m3PTrmbX6xUw7IGzeC5+dA9UaIHlvBdtAkNAjXNw1sgzm251iQ/2drFwexidU+qAHenqAxEmp/+UaULckYqbEDX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739871734; c=relaxed/simple;
-	bh=7lgiX0WkJ1p/qX9ivmhvKwBQNKziFEeFXGDQfXJc3x4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KX7MXflDRRFeM1YoqrjXe0YoggirDfusnTlIAblQauKLGKXnLKpZftZLhTDg2Fakh307DMS4IGzfTctkzl1rDFrKSC93DOhfWg1DEvusGWASRVwagGzj2TSqslU2SdTvZao43v0E9TzGYGMZDw9Xduc87VXAdYF7zBSg6JMqJno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=BSnIe/Ug; arc=none smtp.client-ip=220.197.32.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=eLj9MWLdh0oMfWDc+SInSAR4dxVskqRMPSbsgEfwJUI=;
-	b=BSnIe/Ugl+bHYxYpJFgcOGidrVXpe4CZh22unGoKI2XGY7g3OqEpb8T8oVtGQg
-	rTg1uNBLMPaPsqM0qNIbwBFXiH/8AVCpqwLRZquNaiFJi/Dd5rnzmU5D4G28MTaR
-	dsH3yMYOACWxOylHfLWNLgHZGlz1Dt1kmFpoGhYctqGK4=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgBHLe3TVbRnBRI6CQ--.18371S3;
-	Tue, 18 Feb 2025 17:41:41 +0800 (CST)
-Date: Tue, 18 Feb 2025 17:41:39 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Chancel Liu <chancel.liu@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	shengjiu.wang@gmail.com
-Subject: Re: [PATCH 0/6] Complete WM8960 power supplies for i.MX boards
-Message-ID: <Z7RV0wA0WCi64pGs@dragon>
-References: <20250109012718.328692-1-chancel.liu@nxp.com>
+	s=arc-20240116; t=1739872097; c=relaxed/simple;
+	bh=vO7ZECKd12yaABzBTIDMR3LdDUHrdTImm6Lk7iYIRJo=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=muRws3INq6tN3GwXPY9EdkyME2PDACJDK9Qw1YkMctA2FV+rHwL0V28YxwAVQP93DjR2oTBkZiRi0bK7prG9aVKCjQIFC4seqy0iXpIdgdNX00KgkCzbRDMv6nv7GYMc7NcK5f1KwJCiWObF8jvDvVZWwN/fPGJN8vM0Z63W/AE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fWLe7lcc; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739872093; x=1771408093;
+  h=from:to:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=vO7ZECKd12yaABzBTIDMR3LdDUHrdTImm6Lk7iYIRJo=;
+  b=fWLe7lccng9xP0hNgBKK6aDsGHCP7Gi2pp+/4xl3QbxxbOeRzjAGAEE4
+   UOG92e3B8V43gUikDYlsyT6I9MSEjMK6oKH8HwRnu3j/I/jb4csejQtvo
+   DFH8ttZEoYKJ6SvDnXM6L09fRaDzev7p63Uup/p6TLxRpglkHpXFvguKc
+   kR+tLA1QJyzww8QmRgdolfj03O67c2d8kCzoi4ll1IT1mVPFH6WTG/skw
+   CxA56slLgHnevlRvA1rnd5uMxCTbH4739RQYYHOkxPz/53PAouBRNrFQU
+   7Ik3kX6yPzh4hVvhd2n4YCWpttDwcQCelGmAeUhkTskZ+Vk5rzbCaC+c/
+   g==;
+X-CSE-ConnectionGUID: wUO6omtFTU+JcrVRAjiBpg==
+X-CSE-MsgGUID: Vm0cazWuSkydKdUteoyo7Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="57965148"
+X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; 
+   d="scan'208";a="57965148"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2025 01:48:12 -0800
+X-CSE-ConnectionGUID: TfMZJL0MT66Zjbz5D/pyBg==
+X-CSE-MsgGUID: yCHhyG/ISQS5TnMcgVVhYQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="114213730"
+Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
+  by orviesa010.jf.intel.com with ESMTP; 18 Feb 2025 01:48:11 -0800
+From: niravkumar.l.rabara@intel.com
+To: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	niravkumar.l.rabara@intel.com,
+	nirav.rabara@altera.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Add TB daughter board support
+Date: Tue, 18 Feb 2025 17:44:32 +0800
+Message-Id: <20250218094434.3574060-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250109012718.328692-1-chancel.liu@nxp.com>
-X-CM-TRANSID:Mc8vCgBHLe3TVbRnBRI6CQ--.18371S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUaqjgUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAhD3ZWe0L6um2QAAso
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jan 09, 2025 at 10:27:12AM +0900, Chancel Liu wrote:
-> Chancel Liu (6):
->   arm64: dts: imx8mp-evk: Complete WM8960 power supplies
->   arm64: dts: imx8dxl-evk: Complete WM8960 power supplies
->   arm64: dts: imx8qm-mek: Complete WM8960 power supplies
->   arm64: dts: imx8qxp-mek: Complete WM8960 power supplies
->   ARM: dts: imx6ul-14x14-evk: Complete WM8960 power supplies
->   ARM: dts: imx7d-sdb: Complete WM8960 power supplies
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-Applied all, thanks!
+Agilex5 SoCFPGA devkit supports a separate test daughter board(TB).
+Document TB daughter board compatible string and add board file.
+
+Niravkumar L Rabara (2):
+  dt-bindings: intel: document Agilex5 TB daughter board
+  arm64: dts: socfpga: agilex5: add TB daughter board support
+
+ .../bindings/arm/intel,socfpga.yaml           |  1 +
+ arch/arm64/boot/dts/intel/Makefile            |  1 +
+ .../dts/intel/socfpga_agilex5_socdk_tb.dts    | 27 +++++++++++++++++++
+ 3 files changed, 29 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_tb.dts
+
+-- 
+2.25.1
 
 
