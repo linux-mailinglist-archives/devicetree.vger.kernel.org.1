@@ -1,153 +1,140 @@
-Return-Path: <devicetree+bounces-148017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2960AA3A3EB
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 18:18:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17FADA3A3EA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 18:18:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02D4F1897CF9
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 17:15:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD9267A3BBB
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 17:17:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D87B926FA74;
-	Tue, 18 Feb 2025 17:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045D026FA63;
+	Tue, 18 Feb 2025 17:18:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M5hmNgvw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EVNvjlRT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9EB326983F;
-	Tue, 18 Feb 2025 17:15:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3530C26F443
+	for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 17:18:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739898939; cv=none; b=Wu/lGeRCBRZ3Xv5HGmi4aogH/usROZ1rryEqw6nGWbgl1CzlgAZckhecBhGmh5HuSz4qPcD3TwNQdi4vZ4uPnp+dbkpY9GMa9LH0NsEFW/UFqFG2q2Hbt7TNWqlIffC5fmqKcmoLyemt5k4nPYaNtV8mrhlo3k0wLJxXmx24IF8=
+	t=1739899087; cv=none; b=h1fvYgtgELfoFaljWGdbOgHY4FXQ6KF9FD+DJhxJDgI2VFxf+ARUo9aQgINlZq6eZQBc4t+kBruV0WCZn9nlJrdcJ/WAQ878E3g8yIB5rcDo6k7npym8zHHD61okQxp3SeWN7ao82stULDi3z60+t8HSEaFjgvol7ukhcKGjjW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739898939; c=relaxed/simple;
-	bh=0qTjpm35cwQdCGD+yRQpHZsJddTi8Wdn9wST9LDUBG8=;
+	s=arc-20240116; t=1739899087; c=relaxed/simple;
+	bh=+HqbUx3NMhsdQmv5gJG5aY4LXcTPtScM4DxHwm+OZQE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fw3LGoktVVVTmcASF2fhWD7+Z0iFJI6Ak8ajXoOt9JH7q38N0wO85FV5vDtqRWgZEhWp0zslJ7JQLwlubmnQ6I7RDSCIIq19BHeBT0crqZ8GVdxilc0/vkvFzlEC/d923FTxp4DFMx0qymgU6Z5avSNhetC/U82hkWcZfqnm1yk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5hmNgvw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34ECFC4CEE9;
-	Tue, 18 Feb 2025 17:15:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739898939;
-	bh=0qTjpm35cwQdCGD+yRQpHZsJddTi8Wdn9wST9LDUBG8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M5hmNgvwM5n2BWPrY7GtfLSdtttsKpcT3Q/VytUv0rvPgJf50TBc3r923ZdsT2r1r
-	 JwvE1qiJV+V6FSeH8G+TABjjgrd2pyBed0SOl7GEC/R0pqiQUfLp34ms2fd3fz5bBi
-	 WnPeuM8ORACVOzhj9MGTLReszxBSbGCDIwaLVv2UDgRT2ddq22JoCXDWKp/jJ3canC
-	 5NP55NOVA7BJjMn0/S9547FkSjuXvx+z/MKBhaT73fxU4BO0bq4ENOEidQlzGa6P9l
-	 udFumyvJ2HGa7iTW7cSUZE91ifirWn20lzEkFTyPCPv7S6sPkCiUnmPWpj4jQOoPz4
-	 vETUR8ILG/QpQ==
-Date: Tue, 18 Feb 2025 17:15:35 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: dimitri.fedrau@liebherr.com, Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: can: fsl,flexcan: add transceiver
- capabilities
-Message-ID: <20250218-encrypt-ambitious-d9aafe5e86cf@spud>
-References: <20250211-flexcan-add-transceiver-caps-v1-0-c6abb7817b0f@liebherr.com>
- <20250211-flexcan-add-transceiver-caps-v1-1-c6abb7817b0f@liebherr.com>
- <20250211-epidermis-crib-b50da209d954@spud>
- <20250212195204.GA6577@debian>
- <20250213-scariness-enhance-56eda6901f69@spud>
- <20250214050540.GA3602@debian>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uiKA4wcmFjWR6hSWsX+5XRhrFr5gWavk2SFtsGxU+O3ad1nuiEoczqtFkWDCUX09zrAOECW86muUOlH2XOOC7l9uRdzabw26MLBEvs2q6noU7FXY0FziI4hyubsZQ2n4NJXbwFsB+67tqAzuqH4bBZh104Z5AYn34d3QQakhGGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EVNvjlRT; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-30797730cbdso60197761fa.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 09:18:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739899083; x=1740503883; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vFCpXaDjW046OAnqXzChWWxg9c6BmmKNGNdZCuQPouY=;
+        b=EVNvjlRTUjkWqiPgbRWJw+S1FY9HkvT9IlDK2h1m0AJwDk16lysLtGRpnmF6DDGZ/u
+         wA1eVgnaopeOtemJJSeb+neL4Xf+y63zfagZhIEiSEzYDwlXQiabOLHkJ5DQdR+vkglT
+         RATECJW+hfCEci9yB+imfuLfJen7QC6TP2si8Vc86GA0FauTPr6rzMWaTw+hKJFkV+DA
+         8x3PvFxtfec23ZKgOPtaRvQzj7gUXJgaXuFDdecqiowCO4AmkaUjfXPtYb8g+MCCbL4+
+         LEtn6VylQrUhQc8Dg+BwO12JvMA/IiByyvbaNotBh+gTHGqHzgULgOqpRDYfaCqzfbsC
+         YDLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739899083; x=1740503883;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vFCpXaDjW046OAnqXzChWWxg9c6BmmKNGNdZCuQPouY=;
+        b=Z6u7DWpw1tbtin6UY/YVINUiblKc/T3m8L9MmFJObqLsbk9ftaVsgxd1TsG05GHFaP
+         O8hYGraK72d2tCgWew+DGC2gFj9h0xXpw8L17fQHfW/zS5/tTgo3cIyh46T0E+P9uKH7
+         LGYHmhksREqivumvQ4vL/PXMrCet1r466zrh+XIZtmWwoGikdeYxpMv+fUFCQwECgJhL
+         /nou79mEYNMC+jSnIzSbZKyYqO/GxJ0IlJ6xJXxl61YMcqI/qQjyNGh5N+fXdWnm/FuI
+         bGbLzJ2dJgl3U/MGaLxC1f3FgzU7EHwj71JkkLYW7nIo8PVFYj/uvgMUrPTbOVBh7CdV
+         t8Mw==
+X-Forwarded-Encrypted: i=1; AJvYcCVb0141Ss8rA4BbZ0CzJ+RAcFbx36gOq42/PtwOj4JP6f1lkQyVJDdVhXCTUIncrbomMYDEZl5Z6gBH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAODdGuASLGxtMbceIqgMeZ2tmSB55Ga4GsLPRA0kwMtG7TxIF
+	X0V1AeMY2VKIx598JF03Ir7o0hezRnozxDcRnwMFiRnSN3164FUNf8jZh9/+9CY=
+X-Gm-Gg: ASbGncu3Paqz+pU/d7QJwkPdeFdsjTeWR38RzTRIs2pXH8TviElM/tIeEXs6+GMWk/N
+	HU1szokfd8+L7Gg/a0z0Go5H5on6min4rPDpB2kNfc5kT6owsEsW2Zq2G9h+FtuQqdeOo2O1Wds
+	3gjkFBqVF3H0M91GzVIH6wK6Rm92dTCx++p6pHvnHD3zn/JGltc98MEFAZPle94f5C0mV9hdqj0
+	3f7a7BqYNNRQf4iZrzQ98Y9v2UUfS9ITcdSL0XyAWww9fp2+yj3Khj1cDURNxlX5IindPKKEylE
+	55/tUS9fIdGgYblnGcU/PybIkvFJFNwBwO+MVnBDIld1tQBkOJIF+LODp/sCufmygT4Iur8=
+X-Google-Smtp-Source: AGHT+IE6rXImPRtO7WIVZArsGTCop6s7h35hJORLydABfahalgPYT5N99LSGxqzFHXrjk0jBaudiMg==
+X-Received: by 2002:a05:651c:94:b0:309:1c03:d2d3 with SMTP id 38308e7fff4ca-30a45035a02mr559491fa.25.1739899083255;
+        Tue, 18 Feb 2025 09:18:03 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-309311777a8sm12756301fa.25.2025.02.18.09.18.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Feb 2025 09:18:02 -0800 (PST)
+Date: Tue, 18 Feb 2025 19:18:01 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Jagadeesh Kona <quic_jkona@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
+	Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/5] clk: qcom: common: Attach clock power domains
+ conditionally
+Message-ID: <2c5rbbpe5muw53oemyq6vhsmhzpzcpn7on4ujl5v7i7s3fdlob@eh37gy5dpfnp>
+References: <20250218-videocc-pll-multi-pd-voting-v1-0-cfe6289ea29b@quicinc.com>
+ <20250218-videocc-pll-multi-pd-voting-v1-3-cfe6289ea29b@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="6y3jfApe3QALE3gG"
-Content-Disposition: inline
-In-Reply-To: <20250214050540.GA3602@debian>
-
-
---6y3jfApe3QALE3gG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250218-videocc-pll-multi-pd-voting-v1-3-cfe6289ea29b@quicinc.com>
 
-On Fri, Feb 14, 2025 at 06:05:40AM +0100, Dimitri Fedrau wrote:
-> Am Thu, Feb 13, 2025 at 08:07:22PM +0000 schrieb Conor Dooley:
-> > On Wed, Feb 12, 2025 at 08:52:04PM +0100, Dimitri Fedrau wrote:
-> > > Am Tue, Feb 11, 2025 at 04:38:48PM +0000 schrieb Conor Dooley:
-> > > > On Tue, Feb 11, 2025 at 02:12:33PM +0100, Dimitri Fedrau via B4 Rel=
-ay wrote:
-> > > > > From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-> > > > >=20
-> > > > > Currently the flexcan driver does not support adding PHYs. Add the
-> > > > > capability to ensure that the PHY is in operational state when th=
-e link
-> > > > > is set to an "up" state.
-> > > > >=20
-> > > > > Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml | 3 +=
-++
-> > > > >  1 file changed, 3 insertions(+)
-> > > > >=20
-> > > > > diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexca=
-n.yaml b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> > > > > index 97dd1a7c5ed26bb7f1b2f78c326d91e2c299938a..397957569588a6111=
-1a313cf9107e29dacc9e667 100644
-> > > > > --- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> > > > > @@ -70,6 +70,9 @@ properties:
-> > > > >    xceiver-supply:
-> > > > >      description: Regulator that powers the CAN transceiver.
-> > > > > =20
-> > > > > +  phys:
-> > > > > +    maxItems: 1
-> > > >=20
-> > > > Can all devices in this binding support external phy? Are all devic=
-es
-> > > > limited to a single external phy?
-> > > >=20
-> > > As far as I know, these devices are controllers without integrated PH=
-Y.
-> > > So they need a single external PHY. Transceivers can be very simple l=
-ike
-> > > xceiver-supply in the binding, but I want to use "ti,tcan1043" in=20
-> > > drivers/phy/phy-can-transceiver.
-> >=20
-> > I'm not quite following, do all of these devices need to have an
-> > external phy but the property did not exist until now? How did any of
-> > them work, if that's the case?
->=20
-> The property xceiver-supply is used to describe connected transceiver
-> which do only rely on corresponding regulator configuration.
-> For example here:
-> https://elixir.bootlin.com/linux/v6.14-rc2/source/arch/arm/boot/dts/nxp/i=
-mx/imx6qdl-sabreauto.dtsi#L105
->=20
-> But I want to enable support for these:
-> https://elixir.bootlin.com/linux/v6.14-rc2/source/Documentation/devicetre=
-e/bindings/phy/ti,tcan104x-can.yaml
+On Tue, Feb 18, 2025 at 07:56:48PM +0530, Jagadeesh Kona wrote:
+> Attach clock power domains in qcom_cc_really_probe() only
+> if the clock controller has not already attached to them.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Squash this to the previous patch and call the new function. No need to
+duplicate the code.
 
-Thanks for the explanation,
-Conor.
+> 
+> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> ---
+>  drivers/clk/qcom/common.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/clk/qcom/common.c b/drivers/clk/qcom/common.c
+> index ec27f70b24bdec24edd2f6b3df0d766fc1cdcbf0..eb7e2a56d1d135f839fd9bd470ba6231ce775a8c 100644
+> --- a/drivers/clk/qcom/common.c
+> +++ b/drivers/clk/qcom/common.c
+> @@ -300,9 +300,12 @@ int qcom_cc_really_probe(struct device *dev,
+>  	if (!cc)
+>  		return -ENOMEM;
+>  
+> -	ret = devm_pm_domain_attach_list(dev, NULL, &cc->pd_list);
+> -	if (ret < 0 && ret != -EEXIST)
+> -		return ret;
+> +	cc->pd_list = desc->pd_list;
+> +	if (!cc->pd_list) {
+> +		ret = devm_pm_domain_attach_list(dev, NULL, &cc->pd_list);
+> +		if (ret < 0 && ret != -EEXIST)
+> +			return ret;
+> +	}
+>  
+>  	reset = &cc->reset;
+>  	reset->rcdev.of_node = dev->of_node;
+> 
+> -- 
+> 2.34.1
+> 
 
---6y3jfApe3QALE3gG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7TANgAKCRB4tDGHoIJi
-0oTsAP9d/zsK4fAJNoXBrxxAr8OhuNutHT9Ggk86r0oSXItKaQEAsOoe62UImPeR
-zqLyAsg/YXXTNfB+SJXNUJygfkgc5AY=
-=jn6b
------END PGP SIGNATURE-----
-
---6y3jfApe3QALE3gG--
+-- 
+With best wishes
+Dmitry
 
