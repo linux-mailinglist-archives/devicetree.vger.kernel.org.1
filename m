@@ -1,168 +1,159 @@
-Return-Path: <devicetree+bounces-148132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08DEBA3ABB6
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 23:32:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91CB8A3ABDE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 23:41:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC77C3A6D8E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 22:32:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81ED43A885F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 22:40:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B49B81B87EB;
-	Tue, 18 Feb 2025 22:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC55A1D9587;
+	Tue, 18 Feb 2025 22:40:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="nbqb+bYN"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Gw30W8cF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D39F2862A5;
-	Tue, 18 Feb 2025 22:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A7731B6CEC;
+	Tue, 18 Feb 2025 22:40:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739917928; cv=none; b=R65xx/QPrgWdIj1YtQrUr4JGIKxUkOoScT/ahj0k3wcH/V5wmeYr4spzJpFPj1Plr7LHQ5LZsuPRPq9KnTgjazbbAY5OoqluSJtYHCvpmZ/HyCzJjTPfWvoBtq9upwjG1EjIKzYo1VkD+hrU+NV3Kq7hGhH5fvZhR1O+AiqYPO4=
+	t=1739918458; cv=none; b=Vrhe6HsKhDjMJ0YFYWzhIuizEOMKeaIf8X6SocuUjlI5sJT5WW+pmXEbxJ7thNyd7OqNhfsKXXqYFBpj0cQMxXu8az7R6M1JsZ1TEHesfFYApUZIcuarHXPBsua/XMLvk+BoYokJGr1iZUo08NdS1P5N37le2h/jpUWueCc0Jw8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739917928; c=relaxed/simple;
-	bh=MNyQrzrM2hdZD5RtjbM9UexD/z0IBigwTDdl/68TcTw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qJ6On1smVG+oGVh3LPxLmvHp+1orsAewBXnYKstYH27uNbgcg8N50C3Rz7MjnACQ6AM+7xsnzkBs1vPydZHj1PdZfsmcTcM/iq/ihgqH20iWeWKU54Mq0BWwVzWGBnkD84fmBEUWd2qFhAdwFeaf6kl/Gu+kWk2oBiFT7ijuy4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=nbqb+bYN; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [10.137.184.60] (unknown [131.107.160.188])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 4E96820376ED;
-	Tue, 18 Feb 2025 14:32:06 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 4E96820376ED
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1739917926;
-	bh=wkHtF8Q1p9OLsyZ01ZxOlGG224lrcQMUsc6UkXJicro=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nbqb+bYNVQ0gup+rvq/dhImqOWkwYohvkh5vvpwNHfMeSwBVbDosoWWE57JaQtoSf
-	 SCCcRwRTFnVYwSEG2WcM2hfuquEeiOufFJUpLjad8c4/n4jB+k1nw8BbzOsEFrced2
-	 0YoLSIqvXbVccqXXco4HoZ+xIZRWRpOZkJdTff94=
-Message-ID: <19435dae-89b5-4c23-af1e-c8917e29c857@linux.microsoft.com>
-Date: Tue, 18 Feb 2025 14:32:06 -0800
+	s=arc-20240116; t=1739918458; c=relaxed/simple;
+	bh=RO3b7hVEQCx2e2z3TwZF1cWDw0VO09iMKEkxTQpz/0o=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=rlBMiFqPN0WZmzPP8VgKWHfXDGSotMbad0cAKAWPV/G3lWQocF0JKJJFgHG1eGBX+x51Vfxq4hyF9B+kFohG83+J061v+tqpl03svkTFUcnM+YTHY7SMW5UbhH+Fmy9o4J7dmSUKr9xAfitGPmvTqqnMh3zwVAr6XAntXelQQ40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Gw30W8cF; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739918457; x=1771454457;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=RO3b7hVEQCx2e2z3TwZF1cWDw0VO09iMKEkxTQpz/0o=;
+  b=Gw30W8cFLuMgRwHv6ApF7yP/1Wzg6M0Xvm6Rw8kHE6BXtQ37xTxcSCqF
+   ZELO+qb6aOLhmlm/BlQdr+rKcCWpZc+WNgrumUV8l9HU8eb0YL/eiSlrd
+   QNRhPHsJI6CiVR3e4mSbTY5XaYKU9QwR0eUEWZW1NeUVMEB7syGDwhKUH
+   /68hn3yO73OxyLQRujb2+2yFOmvb5yr1rWmiyqGswvt5hL84k9pzgTZKv
+   xoD64W0TPcuQebzp7+gSJeM6+k3rM6/2GOhxrFGFYi5qaOZGXd8v/i7AQ
+   dX0DDOEABVuE5mfLbePj9U0GfonLBLTA5RU0jcqutHzcCZ0KYLCF3jQjJ
+   w==;
+X-CSE-ConnectionGUID: NdAvAfq3Q7OyZQAXmSNMcw==
+X-CSE-MsgGUID: onmd2RybS2qjvEg2k6NOgw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="51257041"
+X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; 
+   d="scan'208";a="51257041"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2025 14:40:56 -0800
+X-CSE-ConnectionGUID: 2KQSNDjWQYOEKoPzPBkyQg==
+X-CSE-MsgGUID: 6DA2bOcGSK6gH0tIqfgGew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="119474723"
+Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
+  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2025 14:40:48 -0800
+Date: Tue, 18 Feb 2025 14:40:47 -0800 (PST)
+From: matthew.gerlach@linux.intel.com
+To: Krzysztof Kozlowski <krzk@kernel.org>
+cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
+    robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, 
+    conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com, 
+    linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org, matthew.gerlach@altera.com, 
+    peter.colberg@altera.com
+Subject: Re: [PATCH v7 6/7] arm64: dts: agilex: add dts enabling PCIe Root
+ Port
+In-Reply-To: <20250216-super-goose-of-realization-b9efaf@krzk-bin>
+Message-ID: <f8fc27eb-6d9a-cd2c-4114-3149e7234ee5@linux.intel.com>
+References: <20250215155359.321513-1-matthew.gerlach@linux.intel.com> <20250215155359.321513-7-matthew.gerlach@linux.intel.com> <20250216-super-goose-of-realization-b9efaf@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH hyperv-next v4 6/6] PCI: hv: Get vPCI MSI IRQ domain from
- DeviceTree
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de,
- catalin.marinas@arm.com, conor+dt@kernel.org, dave.hansen@linux.intel.com,
- decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com,
- krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com, lpieralisi@kernel.org,
- manivannan.sadhasivam@linaro.org, mingo@redhat.com, robh@kernel.org,
- ssengar@linux.microsoft.com, tglx@linutronix.de, wei.liu@kernel.org,
- will@kernel.org, devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org,
- benhill@microsoft.com, bperkins@microsoft.com, sunilmut@microsoft.com
-References: <20250212174203.GA81135@bhelgaas>
-Content-Language: en-US
-From: Roman Kisel <romank@linux.microsoft.com>
-In-Reply-To: <20250212174203.GA81135@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 
 
 
-On 2/12/2025 9:42 AM, Bjorn Helgaas wrote:
-> On Tue, Feb 11, 2025 at 05:43:21PM -0800, Roman Kisel wrote:
+On Sun, 16 Feb 2025, Krzysztof Kozlowski wrote:
 
-[...]
+> On Sat, Feb 15, 2025 at 09:53:58AM -0600, Matthew Gerlach wrote:
+>> Add a device tree enabling PCIe Root Port support on an Agilex F-series
+>> Development Kit which has the P-tile variant of the PCIe IP.
+>>
+>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>> ---
+>> v7:
+>>  - Create and use appropriate board compatibility and use of model.
+>>
+>> v6:
+>>  - Fix SPDX header.
+>>  - Make compatible property first.
+>>  - Fix comment line wrapping.
+>>  - Don't include .dts.
+>>
+>> v3:
+>>  - Remove accepted patches from patch set.
+>> ---
+>>  arch/arm64/boot/dts/intel/Makefile            |   1 +
+>>  .../socfpga_agilex7f_socdk_pcie_root_port.dts | 147 ++++++++++++++++++
+>>  2 files changed, 148 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
+>> index d39cfb723f5b..737e81c3c3f7 100644
+>> --- a/arch/arm64/boot/dts/intel/Makefile
+>> +++ b/arch/arm64/boot/dts/intel/Makefile
+>> @@ -2,6 +2,7 @@
+>>  dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_n6000.dtb \
+>>  				socfpga_agilex_socdk.dtb \
+>>  				socfpga_agilex_socdk_nand.dtb \
+>> +				socfpga_agilex7f_socdk_pcie_root_port.dtb \
+>>  				socfpga_agilex5_socdk.dtb \
+>>  				socfpga_n5x_socdk.dtb
+>>  dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
+>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts b/arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts
+>> new file mode 100644
+>> index 000000000000..19b14f88e32d
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts
+>> @@ -0,0 +1,147 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (C) 2024, Intel Corporation
+>> + */
+>> +#include "socfpga_agilex.dtsi"
+>> +#include "socfpga_agilex_pcie_root_port.dtsi"
+>> +
+>> +/ {
+>> +	model = "SoCFPGA Agilex SoCDK";
+>> +	compatible = "intel,socfpga-agilex7f-socdk-pcie-root-port", "intel,socfpga-agilex";
+>
+> So that's different SoC (Agilex F series)? Why isn't this expressed in
+What was formally known as Agilex is now more precisely referred Agilex 7 
+F series, Agilex 7 I series, or Agilex 7 M series. Yes, this should me 
+reflected in the compatibles.
 
->> +	 * function called later.
-> 
-> The rest of this file fits in 80 columns; please wrap this to match.
-> 
+> compatibles? Is it different or the same board? If different, why
+> "root-port" in board name? Is this how the product is named?
 
-Will fix, thank you for taking the time to review that!
+"root-port" refers to a particular board combined with a specific FPGA 
+image and possibly a daughter card and cables. I am not sure that FPGA 
+image specific DTS or DTSI should be in the kernel tree.
 
->> +	 */
->> +	if (!domain)
->> +		WARN_ONCE(1, "No interrupt-parent found, check the DeviceTree data.\n");
-> 
-> Is there a way to include a hint about what specific part of the
-> devicetree to look at, e.g., the node that lacks a parent?
+>
+> Best regards,
+> Krzysztof
+>
+>
 
-I'll improve this, will mention the bus, thanks!
-
-[...]
-
->> +	 * the messy ifdef below.
-> 
-> Add a blank line if you intend a new paragraph here.  Otherwise, wrap
-> to fill 78 columns or so.
-
-Will fix this, appreciate noticing that!
-
-> 
->> +	 * There is apparently no such default in the OF subsystem, and
->> +	 * `hv_pci_of_irq_domain_parent` finds the parent IRQ domain that
->> +	 * points to the GIC as well.
-> 
-> And here.
-
-Will fix, thanks!
-
->> +	 * None of these two cases reaches for the MSI parent domain.
-> 
-> I don't know what "reaches for the MSI parent domain" means.  Neither
-> "searches for"?
-> 
-
-My bad, sorry about the incomprehensible phrasing! Will fix this, thank
-you!
-
->>   	 */
->> -	hv_msi_gic_irq_domain = acpi_irq_create_hierarchy(0, HV_PCI_MSI_SPI_NR,
->> -							  fn, &hv_pci_domain_ops,
->> -							  chip_data);
->> +#ifdef CONFIG_ACPI
->> +	if (!acpi_disabled)
->> +		hv_msi_gic_irq_domain = acpi_irq_create_hierarchy(0, HV_PCI_MSI_SPI_NR,
->> +			fn, &hv_pci_domain_ops,
->> +			chip_data);
->> +#endif
->> +#if defined(CONFIG_OF)
->> +	if (!hv_msi_gic_irq_domain)
->> +		hv_msi_gic_irq_domain = irq_domain_create_hierarchy(
->> +			hv_pci_of_irq_domain_parent(), 0, HV_PCI_MSI_SPI_NR,
->> +			fn, &hv_pci_domain_ops,
->> +			chip_data);
->> +#endif
-> 
-> I don't know if acpi_irq_create_hierarchy() is helping or hurting
-> here.  It obscures the fact that the only difference is the first
-> argument to irq_domain_create_hierarchy().  If we could open-code or
-> have a helper to figure out that irq_domain "parent" argument for the
-> ACPI case, then we'd only have one call of
-> irq_domain_create_hierarchy() here and it seems like it might be
-> simpler.
-> 
-
-That looks quite dirty, no dispute over that... The root device was
-static/provate for the ACPI case, and I didn't go for changing the ACPI
-subsystem code to improve this patch, thought the only user wouldn't
-justify tinkering with the whole ACPI subsystem. Maybe I also will
-need to see if that can be used from a module/builti-in, locking,
-bogus usage, i.e. all that normally comes with promoting a private
-interface to public.
-
-Let me work out the details and post the change here to see what
-feedback that receives.
-
-Last but certainly not least: owing a great debt of gratitude to you
-(and all other folks) for helping in bringing this to the best shape
-possible!
-
--- 
-Thank you,
-Roman
-
+Thanks for the feedback,
+Matthew Gerlach
 
