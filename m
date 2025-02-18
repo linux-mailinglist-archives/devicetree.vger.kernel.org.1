@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-148072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11422A3A675
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 19:57:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9C30A3A67C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 19:58:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CB8B3B52A2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 18:54:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74C6C176E6E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 18:54:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E3101E51F5;
-	Tue, 18 Feb 2025 18:51:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE5061F5839;
+	Tue, 18 Feb 2025 18:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="UplHpz/l"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="c0zyonA+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE26E1E51EE;
-	Tue, 18 Feb 2025 18:51:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A21A17A314;
+	Tue, 18 Feb 2025 18:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739904695; cv=none; b=jJxrg8Oti3KxaolsP4hlRLzqj6ATp8AfGDLb+/yjRTbU/tVNjXk7R5RW0D3GCg5WnLHa1o1GAo2aJbcrd7+x3ZURlOxQov4+N8Wy2lvZB/WgI38T4grZkWh1t8syWs9F3wI7Jh4MnQsRP1c5Dm/fuGRCO0g9IaBUrHKFASu7DFE=
+	t=1739904802; cv=none; b=SONJJ7h3oilC2wZANSvda7akYyTtymwzJfIkRS1GVfx2kSoKpfeQI5tHvDkflhFqwEtWkvoNHThA4E9fG0oPw92QgsX/T7DYIopQuVvaxBeT2eO9jEQ5NgQ/3rGQ1YuTomq78IKImGAQiwd5dNgYE5QxT2n8XQOlcuDz9PamH7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739904695; c=relaxed/simple;
-	bh=lAxk04RlD+P8Ozzai5gybNotO8RPm2IxU0A+S7knrzg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oK3PM1OClB40Z1KJ1wo+HcgRcy2DxiUF+WjrLLnNBmMx+uIrhe5zyvbSO5U5dmBflRRoH0+kpYuLw/kKtXVb6hDScnGCJdLq7mKrXlcM/ZCJTf+BAR1OP7lMd3eW003xyfFWfVPXQp5jVgj94ebmsULsQF6NH8oAEINVzlrLYkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=UplHpz/l; arc=none smtp.client-ip=178.21.23.139
+	s=arc-20240116; t=1739904802; c=relaxed/simple;
+	bh=fZNVQMp38R+fm09V4IiqclMsqo4Do1Cn9eVz2bE9FPY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=E4H0rkezcYwlDLG1PqBZu4PY/gFjFtdY6GySpm0hktPYwYmGqrmdssD4Cp1HjnzvdriC0jUrsXHLVyyhsAW4cqPwqzahsxqBsjwByu2Jzq1PqrG111LOqPgYmzzOFx3j/g+WRKdQyC9TZSUGBSGAR7ZC/hr7aqLl+9jeJqUNh/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=c0zyonA+; arc=none smtp.client-ip=178.21.23.139
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
 Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 2C17725238;
-	Tue, 18 Feb 2025 19:51:32 +0100 (CET)
+	by disroot.org (Postfix) with ESMTP id A130B25C33;
+	Tue, 18 Feb 2025 19:53:19 +0100 (CET)
 X-Virus-Scanned: SPAM Filter at disroot.org
 Received: from layka.disroot.org ([127.0.0.1])
  by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id Nf0up5s3SQFp; Tue, 18 Feb 2025 19:51:27 +0100 (CET)
+ id AlPi4aWyX7CS; Tue, 18 Feb 2025 19:53:18 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1739904687; bh=lAxk04RlD+P8Ozzai5gybNotO8RPm2IxU0A+S7knrzg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=UplHpz/lNdkdG5iWDlvvSkHfsOV8boPdkiMoa02+tFheflLeVZcdKur+A3BJT8P4x
-	 lz7K3hqiM5t5J9gQ5Mj0kijSLPIJL6CGqbBCsOmc+Md4xv6fkGDYr9QLzJ5f+Oehix
-	 T37umopUao2Je3IIve3keko17YjI26YotemfExmzHX5/sCZ/UQFngB3dik8la5+5p1
-	 vIt2awlFC5RZ+0dH90jCUUFTpqfwSg+bPv/AImCn6oCEiL8h17WPyqTUdCJrR1FX5/
-	 cSI4rV29+m1IOwcXTKA6RpPXF8kgB6iw+m42wE0wCg+ODraxrME4i22nhlGJBr2JGq
-	 ozRo6jfKCYoEw==
+	t=1739904798; bh=fZNVQMp38R+fm09V4IiqclMsqo4Do1Cn9eVz2bE9FPY=;
+	h=From:Date:Subject:To:Cc;
+	b=c0zyonA+yB3OCYTdcvOCuv5UAdnbcBqTxorJD0epQf3S3sYfcq9ecydN7v071YImL
+	 P7tgGs1RLdCXyX04I81rQo3quDoSTBjPG5s9Rc27GGpBu1mLNL15jdb+LK7c760ZSg
+	 iZRiYgIQUIEAIaFsClINCwQPWBAlvPJND6mmB+Ij7ug1pVaSbe2YYPnDLNaAzRXVQk
+	 hOJYEJCwr3AVxC1uvZ01/eKQIgz4SNlZKD4Plvmzc3JcghiRGSmDz4Usp/1YZqvHNk
+	 8hWOp2CYAsa+SXHc8W87wgtkCWbv7m62Wn9gopFkGVYebHtWFufSA1nkjH63d5NMUw
+	 pMft337jdnk8Q==
 From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Wed, 19 Feb 2025 00:20:32 +0530
-Subject: [PATCH v3 5/5] clk: samsung: add exynos7870 CLKOUT support
+Date: Wed, 19 Feb 2025 00:22:43 +0530
+Subject: [PATCH v2] dt-bindings: serial: samsung: add exynos7870-uart
+ compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,52 +58,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250219-exynos7870-pmu-clocks-v3-5-0d1e415e9e3a@disroot.org>
-References: <20250219-exynos7870-pmu-clocks-v3-0-0d1e415e9e3a@disroot.org>
-In-Reply-To: <20250219-exynos7870-pmu-clocks-v3-0-0d1e415e9e3a@disroot.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
+Message-Id: <20250219-exynos7870-uart-v2-1-c8c67f3a936c@disroot.org>
+X-B4-Tracking: v=1; b=H4sIAPrWtGcC/2WNQQ6CMBBFr0JmbU0ZawFX3sOwqDDAbKiZ1gZCu
+ LuVxJXL95L//gaBhCnArdhAKHFgP2fAUwHd5OaRFPeZATVeNeqLomWdfajqSqu3k6gsDtZ05ND
+ UDeTVS2jg5Sg+2swTh+hlPQ5S+bW/lvlrpVJppe2TrHONxdrcew7ifTx7GaHd9/0Do9U+ELAAA
+ AA=
+X-Change-ID: 20250203-exynos7870-uart-62f64cea2489
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org, 
+ linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
  Kaustabh Chakraborty <kauschluss@disroot.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739904648; l=841;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739904795; l=1559;
  i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
- bh=lAxk04RlD+P8Ozzai5gybNotO8RPm2IxU0A+S7knrzg=;
- b=R4UsGuQHOnJi5OrVwA2SQghzy7AexOBZ3mXaQzIBNSBHoCSV/gvsQ1xdHkXcPqYIhPvXHgpYX
- sy1SONeTq0uAcWDivRJCVJD/DmZn75uo024qiNmA9ncVjMfZN1Ot1wD
+ bh=fZNVQMp38R+fm09V4IiqclMsqo4Do1Cn9eVz2bE9FPY=;
+ b=ld7qtC2ic/6MUzTZdmmMUcAIzbav2BOZB0VXv5XN2Rw8PwOmkihbHgCPWQLq+r26RvM4+GnSg
+ uhmAQQNXvijCkVlZsKY6ptW0mIDCsy8nMbX6MenIPfHET8AJna17XGh
 X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
  pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
-Exynos7870's CLKOUT registers are the same as Exynos5's. Add the PMU
-compatible to the existing CLKOUT ID list.
+Document the compatible string for Exynos7870's UART driver. The
+devicetree property samsung,uart-fifosize must be mandatory, as the
+driver enquires about the FIFO sizes. This feature makes it compatible
+with Exynos8895's UART.
 
 Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
 ---
- drivers/clk/samsung/clk-exynos-clkout.c | 3 +++
- 1 file changed, 3 insertions(+)
+This patch series is a part of Exynos7870 upstreaming.
+---
+Changes in v2:
+- Modify UART compatible to now fallback Exynos8895 UART.
+- Remove the UART driver patch, no longer needed.
+- Link to v1: https://lore.kernel.org/r/20250204-exynos7870-uart-v1-0-06be6aa96284@disroot.org
+---
+ Documentation/devicetree/bindings/serial/samsung_uart.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/clk/samsung/clk-exynos-clkout.c b/drivers/clk/samsung/clk-exynos-clkout.c
-index 2ef5748c139b37ca5429b9071ee0e06f44fcf28e..9a31b1c311b45096f1d680b6724571854c08725c 100644
---- a/drivers/clk/samsung/clk-exynos-clkout.c
-+++ b/drivers/clk/samsung/clk-exynos-clkout.c
-@@ -75,6 +75,9 @@ static const struct of_device_id exynos_clkout_ids[] = {
- 	}, {
- 		.compatible = "samsung,exynos5433-pmu",
- 		.data = &exynos_clkout_exynos5,
-+	}, {
-+		.compatible = "samsung,exynos7870-pmu",
-+		.data = &exynos_clkout_exynos5,
- 	}, { }
- };
+diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+index 070eba9f19d3e039090c58a82f93d02eed58ab84..83d9986d8e98a2a55615d15383c9c7fc89f5b52f 100644
+--- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
++++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+@@ -42,6 +42,10 @@ properties:
+               - samsung,exynosautov9-uart
+               - samsung,exynosautov920-uart
+           - const: samsung,exynos850-uart
++      - items:
++          - enum:
++              - samsung,exynos7870-uart
++          - const: samsung,exynos8895-uart
  
+   reg:
+     maxItems: 1
 
+---
+base-commit: e5d3fd687aac5eceb1721fa92b9f49afcf4c3717
+change-id: 20250203-exynos7870-uart-62f64cea2489
+
+Best regards,
 -- 
-2.48.1
+Kaustabh Chakraborty <kauschluss@disroot.org>
 
 
