@@ -1,111 +1,110 @@
-Return-Path: <devicetree+bounces-147956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68B64A3A0D0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 16:11:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 300F0A3A0DF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 16:15:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C81373A41BA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 15:11:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35152167489
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 15:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C0A26B2DC;
-	Tue, 18 Feb 2025 15:11:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8306F26B2C4;
+	Tue, 18 Feb 2025 15:13:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uijAGsxg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666C326B2BF;
-	Tue, 18 Feb 2025 15:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B9F026B2BF;
+	Tue, 18 Feb 2025 15:13:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739891470; cv=none; b=aUpF/Ej7ovZlf6i+QARV2o2QZOqT7etfMmu9Ztt5xdO7E8VqoxNf+dFuySnMKM5t1z9N1YZHn1zn29Ay9nHBknGBx17XMrUdV1ZbW5KpkqXJiO6+fD86CTfYtICS0ku+vGszalaPO5mWK/UlxZfIIuDCSfvuQ+4gCifDkdRPALI=
+	t=1739891603; cv=none; b=PGXHFx79vADoe6xMFnCHFKkz+RUFedVTl3ZKZ12jvuQsa7UlnAcPb6aCR5GYryk3h5N0vzDC1m3XDC9hZM6JdversnVorz8GQZyk/X2VMagZnoTe8/JURMIW0JQVPG03RfYvCOkgBqh1sLQ51H4KJidy26/a8mQSCRMQRoEalf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739891470; c=relaxed/simple;
-	bh=FEnQfhgHSqo3Q7zro/Iiqg4tKjB4Eaf1e6s01EGT+o4=;
+	s=arc-20240116; t=1739891603; c=relaxed/simple;
+	bh=DX3TX+7yJwABho/ydv17BCgSzeruh7GiPooXHU5WanQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L4FN98rmxS+N1tA9FdIbRAx1otB/AbreW/O+fkrNb2qIlLZFqEDiBtAX5e8F744i/1aKzPqdrrIavNYNkdHVLhiE75Thp1ZLed9wfDSF/HW5FKkyFVM2/Rb4CLlmEAsP325bdge1BZapsHnuwoeArU/+2rSpJnjvx7zpR/wTHm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1C2ED13D5;
-	Tue, 18 Feb 2025 07:11:26 -0800 (PST)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CA19D3F6A8;
-	Tue, 18 Feb 2025 07:11:04 -0800 (PST)
-Date: Tue, 18 Feb 2025 15:11:01 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Vincenzo Frascino <vincenzo.frascino@arm.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=QhCacMWZ02NHVM6h9D0V1LfDdiSZnggkNgSWIHbmgF0JFGg8HnrzFo8mRZmKKk+eC41QdByHwD9LXa1qLivNSLlD63M/LbEplQCRPLksHx4CMSBoot4VBpgYeQcY3/wXFB9MkrxLZ5T3WettVKA5TAZVJvRVa3RhDl+8qx3VA0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uijAGsxg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FEB4C4CEE7;
+	Tue, 18 Feb 2025 15:13:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739891602;
+	bh=DX3TX+7yJwABho/ydv17BCgSzeruh7GiPooXHU5WanQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uijAGsxggthweKXyPm/uxvm0uOSini4ZBCRBw7EG19jwesyfixSqWpCn+xEH0Zgx7
+	 rOe1mORnbp5za5HsPstp/jYp+ahEZQJFB6q9Ow/wu4dYUNSqTfypD9/mttXEz40gTU
+	 JXZNPt1aoJMyKJW6eDb7T4/HVromP+HqEE+HoYTZbFmCEPC3kup3p4alAcT/0poAUo
+	 wWLatex/+CpTqhEH4oycuQ5YEhpJ0h55+C5YgwXgEY9ci2PMmM8F9b95jwh9gP39DX
+	 RyPHNVWF9jATpPw6bzMvgYCzyyHmmcwBO0Zxeyl3DunOKkzQiVTcXJnRFFpj/CXFDn
+	 TvUetn4i2iz0Q==
+Date: Tue, 18 Feb 2025 15:13:17 +0000
+From: Mark Brown <broonie@kernel.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>, Shenghao Ding <shenghao-ding@ti.com>,
+	Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>,
+	Dan Murphy <dmurphy@ti.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 1/8] dt-bindings: arm: Add Morello compatibility
-Message-ID: <Z7SjBWme-HhNYwtV@bogus>
-References: <20250213180309.485528-1-vincenzo.frascino@arm.com>
- <20250213180309.485528-2-vincenzo.frascino@arm.com>
- <CACRpkda-J_NHC7Te=Shk0A-35qWms3xeM2MggdGM0ze3Gt0KMw@mail.gmail.com>
+	Shi Fu <shifu0704@thundersoft.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+	Hector Martin <marcan@marcan.st>, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	asahi@lists.linux.dev, linux-hwmon@vger.kernel.org,
+	Neal Gompa <neal@gompa.dev>
+Subject: Re: [PATCH v2 02/29] ASoC: tas2770: Fix volume scale
+Message-ID: <Z7SjjcaJNfFnQ2e4@finisterre.sirena.org.uk>
+References: <20250218-apple-codec-changes-v2-0-932760fd7e07@gmail.com>
+ <20250218-apple-codec-changes-v2-2-932760fd7e07@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2ZYleMwCcuejHCJU"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkda-J_NHC7Te=Shk0A-35qWms3xeM2MggdGM0ze3Gt0KMw@mail.gmail.com>
+In-Reply-To: <20250218-apple-codec-changes-v2-2-932760fd7e07@gmail.com>
+X-Cookie: Editing is a rewording activity.
 
-On Fri, Feb 14, 2025 at 11:38:54AM +0100, Linus Walleij wrote:
-> Hi Vincenzo,
->
-> thanks for your patch!
->
-> On Thu, Feb 13, 2025 at 7:03 PM Vincenzo Frascino
-> <vincenzo.frascino@arm.com> wrote:
->
-> > Add compatibility to Arm Morello System Development Platform.
-> >
-> > Note: Morello is at the same time the name of an Architecture [1], an SoC
-> > [2] and a Board [2].
-> > To distinguish in between Architecture/SoC and Board we refer to the first
-> > as arm,morello and to the second as arm,morello-sdp.
-> >
-> > [1] https://developer.arm.com/Architectures/Morello
-> > [2] https://www.morello-project.org/
-> >
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml | 4 ++++
->
-> I was thinking, that since the .dtsi and .dts files are not reusing
-> any of the Juno .dtsi (correct me if I'm wrong!) this should not
-> be in vexpress-juno.yaml, instead perhaps you should create a new
-> morello.yaml file?
->
 
-It is me who suggested to put it along with other vexpress stuff as I
-wasn't sure how much of vexpress bindings will be reused here when
-Vincenzo started this. I agree it can be a separate binding on its own
-as I don't see much commonality now with the vexpress bindings.
+--2ZYleMwCcuejHCJU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Just a note, though the file is named arm,vexpress-juno.yaml, it also
-carries bindings for all Vexpress based Arm Ltd boards(both 32-bit and
-64-bit ones), but they all use common vexpress bindings in general.
+On Tue, Feb 18, 2025 at 06:35:36PM +1000, James Calligeros wrote:
+> From: Hector Martin <marcan@marcan.st>
+>=20
+> The scale starts at -100dB, not -128dB.
 
-I just thought of highlighting that so that the expectation to reuse
-this file is not to check commonality in juno dtsi files but to check
-the vexpress binding reuse. Hope we are aligned with that.
+As mentioned on your prior posting:
 
---
-Regards,
-Sudeep
+   https://patch.msgid.link/20250208-asoc-tas2770-v1-1-cf50ff1d59a3@kernel.=
+org
+
+--2ZYleMwCcuejHCJU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAme0o40ACgkQJNaLcl1U
+h9CVjwf9Gbd2/n4+ovKr3KT3qVVMZdcuraD+qN1dgJ1bCMcQCSRk+JCVmiysFY6B
+H8gAIoQVrZg5f5fHJ0YkysipvuupoW8yng6Ja/WQThPxtVLkUQ2iXkX/LVsZnqr9
+XdJmvT5j7b89qzBTU2opj8pS/v2Y0KzvHMRhABFlsprr9wy2vHWOS7mttN16VviU
+h7F9UYtdCNIEQVVhm7SjeiMMrQQqpSq1rCCElqpIA2ZzyWMdDR9/jDs38ZGmMLzm
+PMFakD82X/xRK1AuMK8YM/mldl7P+pLpIQgHmkg26j0b0qcIwZSy5pTIoe+p20nr
+8ULOrHg9L29ZtEMdD8jl1XzacCbxBA==
+=XhYq
+-----END PGP SIGNATURE-----
+
+--2ZYleMwCcuejHCJU--
 
