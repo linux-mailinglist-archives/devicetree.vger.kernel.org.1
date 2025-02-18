@@ -1,140 +1,104 @@
-Return-Path: <devicetree+bounces-147763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51175A39572
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 09:33:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF784A39573
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 09:33:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE4F53B278F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 08:26:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE6AD3B3432
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 08:26:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ACA922B59B;
-	Tue, 18 Feb 2025 08:25:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED16B1F416F;
+	Tue, 18 Feb 2025 08:25:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X3r4LZVw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 577F21B6D1C;
-	Tue, 18 Feb 2025 08:25:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE0221A841B;
+	Tue, 18 Feb 2025 08:25:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739867127; cv=none; b=M6ZBw3MSHha5BL6Bly/3kg0zCOKGDfwFQls0HvWT4UmeYp+9kbQFVVLgdEl35kWgE+mAHJ1F1L/UVZo9ERFCCdKpn6aoF4ZisZkXb8KO0R8xackcHnMkVRBcLB04ATyDTAkRM0iYCAJqubSvoS0zkZiRgSR1Z4lYJI4QsZbi/gs=
+	t=1739867150; cv=none; b=IAkuEcpiAFAYhzb2LcNfGL+YCvbTedjcocrxGrZDPIKVk3TDLsX7wdKMtbC+C27qkDTGjTIJaIMSebqXyKH+0oz27bVxHgxAWmHqhlVY8NumCMvQiViVVYPQAp/GE7HVrE2tDuXUg+snsVe4k7GLRfD2EvRfpQo4IvcqN2M3M4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739867127; c=relaxed/simple;
-	bh=eKpFWYk9gLsR1VwUPE2StO3ksoQrbMsGjkHO71WMvoQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AITSth1eOC8NVOdGsnJu3PB1MHROdIx4P8nWktAeiG4W+RBm7N/0iOxFLWHcKNwOcjcqQwZJcsZtJij1ftINF5qph7GrBvc/nFJl5URjm9vhoACmV95NhjpW6OE66YXPWHHXmudqqeARnbe1hjBgNRjSiXoYVSKpDL+GvBB3ltw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-4be75b2bbceso171881137.1;
-        Tue, 18 Feb 2025 00:25:26 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739867124; x=1740471924;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cDPxvkilNbMO9E7etRrlexrHd+7C+mRJTRHcVNpSHmo=;
-        b=sJ0Q3Xox/u95WqxVZRxCuS4BC6PSny10ggGyTCVOhkfbc1X4KmGEsAZLqU1odlYy8m
-         g9ieNPkhmZ/lMBvHp5WXRibVjGeua+9jlaDb0p12tLzS4JKbDLCzzSXT1++E3n1ZwslJ
-         4bu1WTNsUegnJYfKujIBpZ87oDJObloHhfMZgIWi/ELUGqRH+qrI2XNylDGqtxbP0T/g
-         exKSordtriNHswhtuWtUFEe7d366rzCp4nn7e10ME9vLTCcdmOyJDaDGXV6SDyGWJRk4
-         ZpyHBJwv3smiDXIXoGXHWbD84oDu06D+k1OK1BC30ljWU3zvF4ej0NoLNUVJ5eaI+Fkg
-         E59A==
-X-Forwarded-Encrypted: i=1; AJvYcCU5Qt2szS09qiQzieG6iWCsFZ3Rf1vxwJfjPNO97xipEzwiBHB0+vxvU42K3Zo5qUj08g8GfjpcU+ZbyAIPtPlRxTc=@vger.kernel.org, AJvYcCWNXq50Z7rHmWKWz3O/uJ9RB/eXqa3yr7HDpsEqvdaUJ81Bru8z9sCi13dr/L6ZCsrmHtqXti/S64U=@vger.kernel.org, AJvYcCWWDlc8zIYvljfpVrGIQXLeZozEpoZdjpILQfEJnXqWc3w+UoGU2RbUaFcwtcNcwqMyY+IEyagdiOac@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0mQqu78queFB2jV8npYOS/iDogATdPSzAEF+fAym/oVSFs4G3
-	tqbJM3keGQL41jISBlAOePicQ9V8K9+fkpIYznnmC/EWZKesd+Sf1pV+8nIRzto=
-X-Gm-Gg: ASbGnctu2j6XCsVyPrpfFxEHWhgJqx00BQE65mQUsYgDGotN7EW+Dh3dACEiL08/D4Y
-	QAnDOizn8sz/ESwUyxsEBH4IC+CqGiLTWkma/7HTvoZgZYGLE6eLETamUB5YwaRglYwkiuquROz
-	GOG5xdN6avCcrQUp6TiC7bakw1xyxgUSAhcCwnGJOtpsLxI7X1uBAmpU1ON/38M8cwEFEc3kpRv
-	OAKfioUUbAbsErOC3Wg//RHbc4dDIDvGxEvM0TNP2MSjOnosX7xWvIdcVdYSYwpf1q7MLmf9Ge8
-	I00wswNuhNwqW/XVR4rtv4faJ16CtCZ3aEWNZmTRvIwYAy/7qZkl7g==
-X-Google-Smtp-Source: AGHT+IF24tgc8uwn/sK840AKDhGIqFJnaEdfbamqf+EEzCL5YyNsZiYxvqe9r6cOnKJ85VgyvyCngw==
-X-Received: by 2002:a05:6102:c4f:b0:4b2:485b:e151 with SMTP id ada2fe7eead31-4bd3fc9b9fbmr5691529137.10.1739867124544;
-        Tue, 18 Feb 2025 00:25:24 -0800 (PST)
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-868e86bce70sm2242220241.27.2025.02.18.00.25.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Feb 2025 00:25:24 -0800 (PST)
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-4be4de0c038so709494137.0;
-        Tue, 18 Feb 2025 00:25:24 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUNxXRuEibyVgoBByMJxS0ntcvDNt4Ek/tJWeBSznZ2Z3H+7W1MnR9HEg9oWdhGvX+uraZOqRzFThRA@vger.kernel.org, AJvYcCUjQtUg+P6JAy+7zY7BP3sgshwzD8QwWXJrKzBh9VArqXCXAGTa0M463cqESXz7eI+NBO72e7dfouM=@vger.kernel.org, AJvYcCUkgPkooICdn+ufci68XbVk0ShbfewSWB9cn4Sp5cgsAAcILS4zsxt2aJbMJbygB3sGr+/U6xMfvIwt1To+Yt90ZfU=@vger.kernel.org
-X-Received: by 2002:a05:6102:f8a:b0:4b2:adfb:4f91 with SMTP id
- ada2fe7eead31-4bd3fe2a660mr6642224137.21.1739867124064; Tue, 18 Feb 2025
- 00:25:24 -0800 (PST)
+	s=arc-20240116; t=1739867150; c=relaxed/simple;
+	bh=EvID7D86PKXTeqELs9veszakyXMUP1t20zGjfOD7Rt4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u1l1FDXY72pPhwogVPO8gG67DNI4NezrgPDvGteJVIGnw3dJZI/vxPJ7rHP96ux4VCqtmlaJ2i4E0g2iqU8SFhrmLAmXpToGXhEXnNb+OEPCCcvhFJbx7+mWbYuyaV7FgPxzzPCTg0Uut0Eiv2koMiwp4nTKAtNfRaqpJpFBpjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X3r4LZVw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A7A8C4CEE2;
+	Tue, 18 Feb 2025 08:25:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739867150;
+	bh=EvID7D86PKXTeqELs9veszakyXMUP1t20zGjfOD7Rt4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=X3r4LZVwnWLy/POh9hH3tZRQxKLNC1XClRyAHPbp2o1mm4xMHA4MRjgdRBRszn8tX
+	 y7VJKFLeiz+p+r2UUM82Nptn726NNgkG/JuPjxcYYDTQIRneYDE/hKbRtXngp00Fph
+	 g68+Z3QiTUgGQfW6oOOEGwZmsYRwJLkvJ8xXh0IItNPlFBaBjArVl8TDhPv76WXnuD
+	 xxv2EdFS64ShgdI6qiezKwfEqLbBNmWw98LM9ys50zz9t3GqWgDmXWlOIV4jB5WlkT
+	 GASt9J1eAtYDKfm+/6e9gfIP5l47Q3ERmlNZx4TuosVJPnKlT/9byu1o0WovsunJJK
+	 ExYJsVmS1wKEQ==
+Date: Tue, 18 Feb 2025 09:25:46 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: jiebing chen <jiebing.chen@amlogic.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, jian.xu@amlogic.com, 
+	shuai.li@amlogic.com, zhe.wang@amlogic.com
+Subject: Re: [PATCH v2 2/5] dt-bindings: Asoc: axg-audio: Add s4 audio tocodec
+Message-ID: <20250218-opalescent-teal-of-patience-82cecb@krzk-bin>
+References: <20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com>
+ <20250214-audio_drvier-v2-2-37881fa37c9e@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1728377971.git.geert+renesas@glider.be>
-In-Reply-To: <cover.1728377971.git.geert+renesas@glider.be>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 18 Feb 2025 09:25:12 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX6CBXuKn8bk9y=YpYyD6tCE8fSbQJBns=1aO6uG1_irQ@mail.gmail.com>
-X-Gm-Features: AWEUYZkUFoq6t5-uqY2bkFLs-5l0x0T4E_EBgtc_8teNEaiiojRb2XaDjcZj1a8
-Message-ID: <CAMuHMdX6CBXuKn8bk9y=YpYyD6tCE8fSbQJBns=1aO6uG1_irQ@mail.gmail.com>
-Subject: Re: [PATCH/RFC 0/2] arm64: dts: renesas: Re-add voltages to OPP tables
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Lukasz Luba <lukasz.luba@arm.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-pm@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250214-audio_drvier-v2-2-37881fa37c9e@amlogic.com>
 
-On Tue, 8 Oct 2024 at 11:14, Geert Uytterhoeven <geert+renesas@glider.be> wrote:
-> When CONFIG_ENERGY_MODEL=y, an error is printed on RZ/G2E and R-Car E3:
->
->     cpu cpu0: EM: invalid perf. state: -22
->
-> This happens because the Operating Points Parameters tables do not list
-> voltages, as they are all identical.  Previously, it was assumed they
-> were optional, and unused, when none of the CPU nodes is tied to a
-> regulator using the "cpu-supply" property.  This assumption turned out
-> to be incorrect, causing the reported error message.
->
-> This RFC patch series fixes this by adding the missing voltages.
->
-> Note that the Energy Model calculates energy efficiency by dividing the
-> (estimated) CPU power consumption by CPU core clock frequency.  When all
-> voltages have the same value, the former is proportional to clock
-> frequency, and energy efficiency becomes a constant.  Hence all
-> operating points are considered to have the same efficiency, and the
-> Energy Model always picks the one with the highest clock rate (see also
-> [1]).
->
-> Alternatively, the Energy Model could be changed to silently ignore OPP
-> tables with missing frequencies.  IMHO this is not an unusual case.
->
-> Which approach should be taken?
-> Thanks for your comments!
->
-> [1] "PM: EM: Question Potential Issue with EM and OPP Table in cpufreq
->      ondemand Governor"
->     https://lore.kernel.org/all/a2ca883e-122e-43a1-b377-c43956b5b3be@arm.com
->
-> Geert Uytterhoeven (2):
->   arm64: dts: renesas: r8a774c0: Re-add voltages to OPP table
->   arm64: dts: renesas: r8a77990: Re-add voltages to OPP table
->
->  arch/arm64/boot/dts/renesas/r8a774c0.dtsi | 3 +++
->  arch/arm64/boot/dts/renesas/r8a77990.dtsi | 3 +++
->  2 files changed, 6 insertions(+)
+On Fri, Feb 14, 2025 at 10:13:41AM +0800, jiebing chen wrote:
+> add the s4 tocodec compatible
 
-Queuing in renesas-devel for v6.15.
-This can be replaced by an alternative solution later...
+1. Please write full sentences.
+2. We see that from the diff. Say something about hardware instead.
 
-Gr{oetje,eeting}s,
+Please use subject prefixes matching the subsystem. You can get them for
+example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-                        Geert
+> 
+> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
+> ---
+>  Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml b/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
+> index 23f82bb89750898d20c866015bc2e1a4b0554846..ea669f4359bc81b0f45bc2105c832fc2b11d8441 100644
+> --- a/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
+> @@ -26,6 +26,7 @@ properties:
+>        - items:
+>            - enum:
+>                - amlogic,sm1-toacodec
+> +              - amlogic,s4-toacodec
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Keep alphabetical order.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
+
 
