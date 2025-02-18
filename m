@@ -1,146 +1,109 @@
-Return-Path: <devicetree+bounces-147812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B1FA3966F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:06:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF30A396B9
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:16:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D06CF3A7ADA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 08:57:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B552D3BC37F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 09:06:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0021E22F3AB;
-	Tue, 18 Feb 2025 08:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AF4A22C35B;
+	Tue, 18 Feb 2025 09:04:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WTYsTaJL"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WijSGcAC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26B1622F144;
-	Tue, 18 Feb 2025 08:57:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6266D154C12;
+	Tue, 18 Feb 2025 09:04:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739869037; cv=none; b=Z1Hx6H5V4ibTjOCUbWI5+Do8+4d1fKYctNzA00QfWoHUgk5tKLDd5WxDubktrFT4ooSW0TFoTUYbTvfPjQ56WxvBMCh0HfCopd9kzrDbQCEEKmuPM9tj0ZVuRJNZJmB66WJNLcTOMAUSG/zxR9GHPks0eW1XBdgVDj12JjwRnng=
+	t=1739869475; cv=none; b=ZsfOzxwCRmJWKM9m3lGA9y12IHmyeJkypLxTvOb3qbJ0HFjnj7Pk6QFiPp7TtCbA/oqd2+CHtZtCp5FJ4Xa5qwc489joc/YokDDFAvVnYczMjInYn0EvQWz0j5KhsSDqfeWY4dIWRd7fkgABmCbeeuYsHD1/g22XiRKmdiL8Sok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739869037; c=relaxed/simple;
-	bh=SquZsIzoLNV/ScddoBqqYtNvHls6hV/j6HdDoLuHReA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RynYZnrU+zPy8GxAeMtjVME4xmfeRqCxBvBB0QQ5BwyCgStYsnMai0t40c5gHrE7XnjHvA9Lj24c/v0DHmGGfNp0InxYiJiv/1iAFOepVRHLe9U906vby7mqJ8AZGNWn3HBVORD2FdjuxcGfnctdOlFwjAxUx7Mps3z8HzAHyRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WTYsTaJL; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1739869475; c=relaxed/simple;
+	bh=IoSrMv71ID9ekjkacGKInTn1Qnx2Ah1BUMPVIHvGazY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NSuNFyXzkCXurejO1Q9KqDB+t2hzYWSE+yzGBKumIMTBjUij4d4dqnwsZP0DQSh/bzJl/kpLyHoE3YUoBfc81o5V+FHEQU929P9Q4epQjbqpA6m7+bQuW3pPyNL+h3XSmrZAflqeAdYq8Nf4dkyUAvsXFdmILBrv43/atF99CDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WijSGcAC; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1739869032;
-	bh=SquZsIzoLNV/ScddoBqqYtNvHls6hV/j6HdDoLuHReA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WTYsTaJLxwvClHM0Xq6WIHtoyBSL4dL6tezkvyILCOs1tgmLcLlY4r/j9KnkN/GfU
-	 wAZbYFsYZl3SjAqw7eRPmNjPD3WTu581lgBWZPqr65DpRKadXDpYfJffKo27Dw+VbA
-	 /SY/EmUjFZzmIjAr68nXCFld45VGRO9aWZnhEpamVGGuna+O5OVXs7yv+v0grFiAna
-	 yHUOakkZCarmgwOSwrbQLJugGJ9VOLuViJ9iUM2F1sH8IG6Blbxc80wnIS0KqAuEqT
-	 ZBVWtYmIkek5ttyiLDW/06u8OmyAkrifsoCjXRu09bmYoDgFvHNY2X5yVRktYPAnbj
-	 TSb3zfHDyOx9g==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	s=mail; t=1739869471;
+	bh=IoSrMv71ID9ekjkacGKInTn1Qnx2Ah1BUMPVIHvGazY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=WijSGcACUlEnBBBHl8nT/4Mfk4xzfBSRXR9zDgaGaZAuN+hz5zIunMgnkpZxb6KzL
+	 2hsGGvmV9bxvViftYTpmr1oaVMM2GEhSn+0Hd1BuK+Hn6KwmhjjICZMwp9qQbkq/Ez
+	 4IaGG6UYhQcfcuxWOgL+fxElV6KG/pDFZEsVwlrpaTFfFdoliFJWGAdPuSxIPTo+xC
+	 EiNpnrIdrdjKgbUoKTiCaEPuOc9RKl8+LR5mQCvh7gB2mG1zDydpBrdxhCGf100yVv
+	 pp6clctCSE9HALXCRLZ7/H3cjLILN+m3VVgNMoSti06dTFSZ+CD0nRHPITe8/+AIuM
+	 qc2Qkrlwgc1Zw==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B63B517E0E8E;
-	Tue, 18 Feb 2025 09:57:11 +0100 (CET)
-Message-ID: <dac4879c-4354-40bb-91f3-3e7e4eb98c44@collabora.com>
-Date: Tue, 18 Feb 2025 09:57:11 +0100
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 90FDC17E154A;
+	Tue, 18 Feb 2025 10:04:30 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: chunkuang.hu@kernel.org
+Cc: p.zabel@pengutronix.de,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com,
+	pablo.sun@mediatek.com
+Subject: [PATCH] dt-bindings: display: mediatek: dsc: Add MT8188 compatible
+Date: Tue, 18 Feb 2025 10:04:27 +0100
+Message-ID: <20250218090427.20318-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] usb: mtu3: add support remote wakeup of mt8196
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Mathias Nyman <mathias.nyman@intel.com>,
- linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250215100615.808-1-chunfeng.yun@mediatek.com>
- <20250215100615.808-4-chunfeng.yun@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250215100615.808-4-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Il 15/02/25 11:06, Chunfeng Yun ha scritto:
-> There are three USB controllers on mt8196, each controller's wakeup
-> control is different, add some specific versions for them.
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Add compatible for Display Stream Compression (DSC) IP found in
+the display controller of the MT8188 SoC.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+This IP is fully compatible with the one found on MT8195.
 
-> ---
-> v3: add the ommitted third dual-role controller suggested by Angelo
-> v2: add wakeup for dual-role controllers
-> ---
->   drivers/usb/mtu3/mtu3_host.c | 26 ++++++++++++++++++++++++++
->   1 file changed, 26 insertions(+)
-> 
-> diff --git a/drivers/usb/mtu3/mtu3_host.c b/drivers/usb/mtu3/mtu3_host.c
-> index 7c657ea2dabd..8138b3f3096a 100644
-> --- a/drivers/usb/mtu3/mtu3_host.c
-> +++ b/drivers/usb/mtu3/mtu3_host.c
-> @@ -46,6 +46,14 @@
->   #define WC1_IS_P_95		BIT(12)
->   #define WC1_IS_EN_P0_95		BIT(6)
->   
-> +/* mt8196 */
-> +#define PERI_WK_CTRL0_8196	0x08
-> +#define WC0_IS_EN_P0_96		BIT(0)
-> +#define WC0_IS_EN_P1_96		BIT(7)
-> +
-> +#define PERI_WK_CTRL1_8196	0x10
-> +#define WC1_IS_EN_P2_96		BIT(0)
-> +
->   /* mt2712 etc */
->   #define PERI_SSUSB_SPM_CTRL	0x0
->   #define SSC_IP_SLEEP_EN	BIT(4)
-> @@ -59,6 +67,9 @@ enum ssusb_uwk_vers {
->   	SSUSB_UWK_V1_3,		/* mt8195 IP0 */
->   	SSUSB_UWK_V1_5 = 105,	/* mt8195 IP2 */
->   	SSUSB_UWK_V1_6,		/* mt8195 IP3 */
-> +	SSUSB_UWK_V1_7, 	/* mt8196 IP0 */
-> +	SSUSB_UWK_V1_8, 	/* mt8196 IP1 */
-> +	SSUSB_UWK_V1_9, 	/* mt8196 IP2 */
->   };
->   
->   /*
-> @@ -100,6 +111,21 @@ static void ssusb_wakeup_ip_sleep_set(struct ssusb_mtk *ssusb, bool enable)
->   		msk = WC0_IS_EN_P3_95 | WC0_IS_C_95(0x7) | WC0_IS_P_95;
->   		val = enable ? (WC0_IS_EN_P3_95 | WC0_IS_C_95(0x1)) : 0;
->   		break;
-> +	case SSUSB_UWK_V1_7:
-> +		reg = ssusb->uwk_reg_base + PERI_WK_CTRL0_8196;
-> +		msk = WC0_IS_EN_P0_96;
-> +		val = enable ? msk : 0;
-> +		break;
-> +	case SSUSB_UWK_V1_8:
-> +		reg = ssusb->uwk_reg_base + PERI_WK_CTRL0_8196;
-> +		msk = WC0_IS_EN_P1_96;
-> +		val = enable ? msk : 0;
-> +		break;
-> +	case SSUSB_UWK_V1_9:
-> +		reg = ssusb->uwk_reg_base + PERI_WK_CTRL1_8196;
-> +		msk = WC1_IS_EN_P2_96;
-> +		val = enable ? msk : 0;
-> +		break;
->   	case SSUSB_UWK_V2:
->   		reg = ssusb->uwk_reg_base + PERI_SSUSB_SPM_CTRL;
->   		msk = SSC_IP_SLEEP_EN | SSC_SPM_INT_EN;
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+ .../devicetree/bindings/display/mediatek/mediatek,dsc.yaml     | 3 +++
+ 1 file changed, 3 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yaml
+index 846de6c17d93..a5b88eb97e3b 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yaml
+@@ -22,6 +22,9 @@ properties:
+     oneOf:
+       - enum:
+           - mediatek,mt8195-disp-dsc
++      - items:
++          - const: mediatek,mt8188-disp-dsc
++          - const: mediatek,mt8195-disp-dsc
+ 
+   reg:
+     maxItems: 1
+-- 
+2.48.1
 
 
