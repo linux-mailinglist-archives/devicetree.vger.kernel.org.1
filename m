@@ -1,59 +1,53 @@
-Return-Path: <devicetree+bounces-147848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E31DA399A8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:53:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0073FA399AE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:54:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22B1C3AAD97
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:50:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C8093ADFA2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:51:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C29DA238D28;
-	Tue, 18 Feb 2025 10:50:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B51C523AE7E;
+	Tue, 18 Feb 2025 10:50:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7869F23909E;
-	Tue, 18 Feb 2025 10:50:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D83D23A564;
+	Tue, 18 Feb 2025 10:50:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739875836; cv=none; b=TH7OnRgWMYcYQu0zbyhIilQUx4khmSriUO02imgt9UGgMJuHijxqyBbQF23jnUcpO6DWWN90hUb+hLzsb5hCqsgbEjadaqNNRcYt58PtjaQBgCmR89aIuPQxWc9UmdRjTN9mrtdRHp+H5zU4fEdAaznBH4brow6d79+Tr1bVSlw=
+	t=1739875858; cv=none; b=uRnwWTxz2sPXqsXZvkQkRYvVCLLS43SpEF+uMNcEvnbv53NecatGGXJ6z6kgWV39WNeGsoDeubwAPd01SSPPFT8byv2fNx0WTLfz0YAxdrQw4OX3RvJGuw1gNG6VAlKs2uwIk/dSG3c1KCcfe0WqmVJnEKe2wM+7v16iqxRooAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739875836; c=relaxed/simple;
-	bh=JoA9r7k29ebqKTj0QkpETeeYh1HIEph6sh1RZJ65Ssc=;
+	s=arc-20240116; t=1739875858; c=relaxed/simple;
+	bh=s1zP5px4Jctl6FMS3oPzoP9goN7oBicFnfaNAyoBZj4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=W8cAAV3tdFSESN7YtZ9gfh2SIWKJZs6eOJ0uW2XoPDUPbZfOFkrd6Ojru2hfus225rxS7QMaQbopZoVOpqPlAU4jH0F6ZWRul17XBgGHZ9f6CaKJ9U2ZCrLwUzzUZRXFf4naflGg9pJ2lkp4e5AtiqrWzgtg3UxQ3wbIof3RwFI=
+	 MIME-Version; b=o3F67rq1sJAL7m/JouLkUPi8hz9eRkZbMd765EHiCVU1fYlAH1SuUinyxoj8E93DW3kUeOIv3OmcaqT8VQtAx/WG+kyg3d5dlge/dckkDy8G1X+hBdyjmGXEKd3qUr6EVh6OB3UgxFpUs6bk39RvO9gLYIOoIcnqT0oGbb988b0=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: BWdsOtbgTTSTbUo0X2rVEQ==
-X-CSE-MsgGUID: wPDGzNQISI64teND7paCNQ==
+X-CSE-ConnectionGUID: MU5SqQJWS3+EWbkADvf+aw==
+X-CSE-MsgGUID: aVxjImqAQYO7Jc+hFcP7yQ==
 Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 18 Feb 2025 19:50:33 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 18 Feb 2025 19:50:55 +0900
 Received: from localhost.localdomain (unknown [10.226.92.208])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id A8E4042A5EAE;
-	Tue, 18 Feb 2025 19:50:28 +0900 (JST)
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 0E3A842A5EA4;
+	Tue, 18 Feb 2025 19:50:51 +0900 (JST)
 From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>
 Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Simon Horman <horms@kernel.org>,
-	Duy Nguyen <duy.nguyen.rh@renesas.com>,
-	linux-can@vger.kernel.org,
-	devicetree@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
 	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 04/11] dt-bindings: can: renesas,rcar-canfd: Document RZ/G3E support
-Date: Tue, 18 Feb 2025 10:49:54 +0000
-Message-ID: <20250218105007.66358-5-biju.das.jz@bp.renesas.com>
+Subject: [PATCH 10/11] arm64: dts: renesas: r9a09g047: Add CANFD node
+Date: Tue, 18 Feb 2025 10:50:00 +0000
+Message-ID: <20250218105007.66358-11-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250218105007.66358-1-biju.das.jz@bp.renesas.com>
 References: <20250218105007.66358-1-biju.das.jz@bp.renesas.com>
@@ -65,138 +59,86 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Document support for the CAN-FD Interface on the RZ/G3E (R9A09G047) SoC,
-which supports up to six channels.
-
-The CAN-FD module on RZ/G3E is very similar to the one on both R-Car V4H
-and RZ/G2L, but differs in some hardware parameters:
- * No external clock, but instead has ram clock.
- * Support up to 6 channels.
- * 20 interrupts.
+Add CANFD node to RZ/G3E ("R9A09G047") SoC DTSI.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- .../bindings/net/can/renesas,rcar-canfd.yaml  | 67 +++++++++++++++++--
- 1 file changed, 62 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi | 62 ++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-index f87f90f431e5..189d5303ad75 100644
---- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-+++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-@@ -42,6 +42,8 @@ properties:
-               - renesas,r9a07g054-canfd    # RZ/V2L
-           - const: renesas,rzg2l-canfd     # RZ/G2L family
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+index 4bc0b77f721a..7cb8b22af6c3 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+@@ -272,6 +272,68 @@ scif0: serial@11c01400 {
+ 			status = "disabled";
+ 		};
  
-+      - const: renesas,r9a09g047-canfd     # RZ/G3E
++		canfd: can@12440000 {
++			compatible = "renesas,r9a09g047-canfd";
++			reg = <0 0x12440000 0 0x40000>;
++			interrupts = <GIC_SPI 709 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 710 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 697 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 703 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 711 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 698 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 704 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 712 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 699 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 705 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 713 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 700 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 706 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 714 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 701 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 707 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 715 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 702 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 708 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 716 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "g_err", "g_recc",
++					  "ch0_err", "ch0_rec", "ch0_trx",
++					  "ch1_err", "ch1_rec", "ch1_trx",
++					  "ch2_err", "ch2_rec", "ch2_trx",
++					  "ch3_err", "ch3_rec", "ch3_trx",
++					  "ch4_err", "ch4_rec", "ch4_trx",
++					  "ch5_err", "ch5_rec", "ch5_trx";
++			clocks = <&cpg CPG_MOD 156>,
++				 <&cpg CPG_MOD 157>,
++				 <&cpg CPG_MOD 158>;
++			clock-names = "fck", "ram_clk", "can_clk";
++			assigned-clocks = <&cpg CPG_MOD 158>;
++			assigned-clock-rates = <80000000>;
++			resets = <&cpg 161>,
++				 <&cpg 162>;
++			reset-names = "rstp_n", "rstc_n";
++			power-domains = <&cpg>;
++			status = "disabled";
 +
-   reg:
-     maxItems: 1
- 
-@@ -59,6 +61,19 @@ properties:
-           - description: CAN1 error interrupt
-           - description: CAN1 transmit interrupt
-           - description: CAN1 transmit/receive FIFO receive completion interrupt
-+          - description: CAN2 error interrupt
-+          - description: CAN2 transmit interrupt
-+          - description: CAN2 transmit/receive FIFO receive completion interrupt
-+          - description: CAN3 error interrupt
-+          - description: CAN3 transmit interrupt
-+          - description: CAN3 transmit/receive FIFO receive completion interrupt
-+          - description: CAN4 error interrupt
-+          - description: CAN4 transmit interrupt
-+          - description: CAN4 transmit/receive FIFO receive completion interrupt
-+          - description: CAN5 error interrupt
-+          - description: CAN5 transmit interrupt
-+          - description: CAN5 transmit/receive FIFO receive completion interrupt
-+        minItems: 8
- 
-   interrupt-names:
-     oneOf:
-@@ -74,15 +89,33 @@ properties:
-           - const: ch1_err
-           - const: ch1_rec
-           - const: ch1_trx
-+          - const: ch2_err
-+          - const: ch2_rec
-+          - const: ch2_trx
-+          - const: ch3_err
-+          - const: ch3_rec
-+          - const: ch3_trx
-+          - const: ch4_err
-+          - const: ch4_rec
-+          - const: ch4_trx
-+          - const: ch5_err
-+          - const: ch5_rec
-+          - const: ch5_trx
-+        minItems: 8
- 
-   clocks:
-     maxItems: 3
- 
-   clock-names:
--    items:
--      - const: fck
--      - const: canfd
--      - const: can_clk
-+    oneOf:
-+      - items:
-+          - const: fck
-+          - const: canfd
-+          - const: can_clk
-+      - items:
-+          - const: fck
-+          - const: ram_clk
-+          - const: can_clk
- 
-   power-domains:
-     maxItems: 1
-@@ -173,7 +206,9 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: renesas,rzg2l-canfd
-+            enum:
-+              - renesas,r9a09g047-canfd
-+              - renesas,rzg2l-canfd
-     then:
-       properties:
-         resets:
-@@ -187,6 +222,19 @@ allOf:
-       required:
-         - reset-names
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g047-canfd
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 20
++			channel0 {
++				status = "disabled";
++			};
++			channel1 {
++				status = "disabled";
++			};
++			channel2 {
++				status = "disabled";
++			};
++			channel3 {
++				status = "disabled";
++			};
++			channel4 {
++				status = "disabled";
++			};
++			channel5 {
++				status = "disabled";
++			};
++		};
 +
-+        interrupt-names:
-+          maxItems: 20
-+
-   - if:
-       properties:
-         compatible:
-@@ -219,6 +267,15 @@ allOf:
-       patternProperties:
-         "^channel[4-7]$": false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g047-canfd
-+    then:
-+      patternProperties:
-+        "^channel[6-7]$": false
-+
- unevaluatedProperties: false
- 
- examples:
+ 		wdt1: watchdog@14400000 {
+ 			compatible = "renesas,r9a09g047-wdt", "renesas,r9a09g057-wdt";
+ 			reg = <0 0x14400000 0 0x400>;
 -- 
 2.43.0
 
