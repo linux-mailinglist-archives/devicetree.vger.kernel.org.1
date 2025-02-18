@@ -1,111 +1,163 @@
-Return-Path: <devicetree+bounces-147859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2417A39A7A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 12:19:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D3FA39A8A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 12:20:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A21D3AED62
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:16:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77A82173BBD
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:17:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E06D23F28D;
-	Tue, 18 Feb 2025 11:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE4D023FC41;
+	Tue, 18 Feb 2025 11:16:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OgfonteP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26C4123C8AA;
-	Tue, 18 Feb 2025 11:15:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1464522B8CD;
+	Tue, 18 Feb 2025 11:16:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739877332; cv=none; b=esUf5SiUt3gvaDt4mAU9aHKL8mqX/NEzLDTvtfWXHzRro2w6d83siVFcENQ/3Ndtui0pAAJhFr5L7a0SBX5DFGKcZF3jq/DZI6Pe9Yu86iuDj4boKGI/qNWyfm/3WhbDvubf3WmsLmhFJnlj0sP2p2UtHBDx0EStreCMfUpWEX0=
+	t=1739877412; cv=none; b=j35JN/2tzcsEb9wz1KznibXuw3WkVbKd2BRmwSrAoJJvnHp6z4jw3cpce5/FTwKdMW7h2Bj/g6tumWDwnPE0Y2W9X6jcbN643o6VcEQfqOkZENDscsPuguHBPIX0+Ze4upvLqFTllNrxvIDcmUfNI62PTQ+Iscnx5gqChg2qYyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739877332; c=relaxed/simple;
-	bh=tDhzPakJ5XMfCG46Ztb4sSp6+H81MO0bxXrBQiJmges=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JWTugjYddXwYoSKSe7J/jRJHE/ioEcY1G8XIOOr9bQy0Q96kghUwjJ0pw3OC6FtSu7WEXk23C2ODvpYd2a7MKjkUfcNdSr12+uqIIkGk5gvr++k/4gsn4QlgtTBSmHvPpBbgzIvZ9YUwQKhMy5ZnI3AqgnHoij3da3ybGDQf7bc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-86712bc0508so1672085241.2;
-        Tue, 18 Feb 2025 03:15:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739877327; x=1740482127;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jDx7VS3L0njwqbhFxMTC4VAHmC+fcqcjdgOzLKHDmHY=;
-        b=P7Xp7rWo14OPt1fgz/toLnextPQLsOsymP31SCEa4djcJM93SqT/naXVQbjmHWyWVv
-         XREQFX6b/GW1K2ihLGIZSVtiKEolVuoqyEmCCCHoR9ByYnESaQDr68D+3hkHuacWfvRO
-         MjqsFgGon5cN7R0ACzcssM00HywxCxNFJRqFyw6PEf7a+8bZ/0Szyc1hGtZzbGthlZXX
-         YfuyRFPkw/zS6Ag8uL69Pezllv0B6uUonbsh0yxFbKsOAteXAc++Obe+ydXsSKtnHkSq
-         2YLH6ZYuvdJvHzkPX42hMOiYvRj3OEIXbfcU6Hic9ToYruqvA0ZDL+s1FiVPE8yYBoSR
-         LW8A==
-X-Forwarded-Encrypted: i=1; AJvYcCVMAZCZlec03KxLtI7DcST3In8pKveml0BCttbhuPnSu/6emil5xxDGY1leigOlu2xSxPIWw1lUh0BpRhLrdERqnS4=@vger.kernel.org, AJvYcCWjYB6YmRgyzAhMudcOHYbJlkUfOaZG1t7ALDBFRGf3GJvmvNEjSaGgM8AfaMgZc+Py1L2tDF+i1xA3@vger.kernel.org, AJvYcCXJdVM23XCdDZ247zHWPld9EB0zhSeIqNwkxSv5edZi41gOcraRSq4yITo3tovWdLentOw8Uta520h5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQZOR0VlDhGlK1VCGWEkQAYOZV3p/Fg+wy+OFoutKKuYo6peK7
-	joGWTwhy3RAstS8wt4IaAlomPulnlOEN+2ydAb8UCd4xFAb13yHqh5jNO9XDygE=
-X-Gm-Gg: ASbGnctlqiTsl3UnHfih42khfETjZ7fK1eWVdCwDaDrb/9Ss3gTPSFevfsYFUcaHhox
-	XdaeZFfrk2wHVXkd+1egdHobaH7nry3sMqN3keiebCJMhdmaJA/FKDFakTNXi4t2Tpazx6EjF9I
-	4iifxpQOsKgPu5IFMR3egUu4Y+h8eVhfm5AM3cv9CyfZ8jlrXpQlgxScowqTaIRpNhHrG7aY27p
-	7an5ZLx8wEaSVS4Jhl8LEzZxhBsYmBBytN3c5Bgj7pr7O3puPXD+PljDeFHs9a7Rawtmc9dIuzR
-	xdeOIDaS8SpQCxeU4McVAYkY+2mPCdA8tBB81c+IwmCOx0bBitBEew==
-X-Google-Smtp-Source: AGHT+IHSCvJ79vkN9MAc4uBVUpxJ5xYtB0YSKp2tw49BmSfxs/PZR2CmbPblPbf9r4iOw094bTSRpg==
-X-Received: by 2002:a05:6102:f0c:b0:4b6:15fa:566a with SMTP id ada2fe7eead31-4bd3fbcc3d3mr7096206137.2.1739877326975;
-        Tue, 18 Feb 2025 03:15:26 -0800 (PST)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4bda662615dsm1500006137.11.2025.02.18.03.15.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Feb 2025 03:15:26 -0800 (PST)
-Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4be707ffebeso327520137.2;
-        Tue, 18 Feb 2025 03:15:26 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU5ofIGkxazCpllHQ3U9WpPd3Hr6SHf8zKIBShcls5MM9Wq7dYLAgA/6r0fp/etku5mNlqclrQIMRJ5@vger.kernel.org, AJvYcCXOKTeRASTShg6ywFaLyLFf4ZOVLA4DUlRcgvux2ttBsILZWchF10kQYCVfyapOZR8fayZ6S8v1nj/k@vger.kernel.org, AJvYcCXzcbD17Ho/txO9tNgax0lKsrvq3PJzl9NZ5HbUafSIw2VD5gFsllzDE0lAbQ6E+FZzSyFydUnCx3Xy7bJZ7TvBzHg=@vger.kernel.org
-X-Received: by 2002:a05:6102:509f:b0:4bc:18aa:51b1 with SMTP id
- ada2fe7eead31-4bd3fd51f63mr5967548137.21.1739877326073; Tue, 18 Feb 2025
- 03:15:26 -0800 (PST)
+	s=arc-20240116; t=1739877412; c=relaxed/simple;
+	bh=Foto82THQt7AoFetZJgUldbW5IPLxQNH5/iotlNg39c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fdUFOLz3Rsfg3CX2E7vcmj4KQsfZ1TCe+pERuYnDoIN2LobPW9pR8wdSUYfU4efRMLSeDxIISCcVPjHICfEsAipm7+z3ctOhhlGD4Hdhlh0UldIuPAIZj7khEVylXklIy/J0MuhbsgE/CH4m4Glg+BLkJWN3bAesG8cB0my1GRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OgfonteP; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51HNnfg5029727;
+	Tue, 18 Feb 2025 11:16:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	j+yT3U+MRUAjHIURYyEXwVn1rwgWVAj6QAOByxnDqtE=; b=OgfontePzTrddn1G
+	YfAptMiGzT4d1XDeJ8Kmn0jn6MEdeu6DLcMJdRyjtmON1MIiXfeTXo8qkorv1TjH
+	OlOY5HFrFDQ5OzX0EvuvgnsDJWa/0SNDfdrN2TIw0Z4rUcrB8P+72biR0xXNh2HY
+	584bmCfmyEyTgUvTqZqaIUyXTRoyRhK6FGrlexCKRvQGXAFY5nsBFtXIW7ZS+gzm
+	UKDIbHnWe64upk34jVkp0QgVGd1bnOymlCtwFJ48eFmu4s5VO3owlEVTocF1mDBa
+	JmBlpxiqNYCGimyRYVGT/m3RBrJq3pMNW93CgjTX4vCkFwGAupRIr14/ctJSBO3L
+	F5TtBg==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44v3mg34b8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Feb 2025 11:16:33 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51IBGWIx026728
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Feb 2025 11:16:32 GMT
+Received: from [10.253.35.15] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 18 Feb
+ 2025 03:16:26 -0800
+Message-ID: <92d5f50d-efc0-462b-8cd2-e73ba77222e5@quicinc.com>
+Date: Tue, 18 Feb 2025 19:16:24 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250218105007.66358-1-biju.das.jz@bp.renesas.com> <20250218105007.66358-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250218105007.66358-3-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 18 Feb 2025 12:15:12 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX9KOKc8iHh1WppnxhcW+-PkNC=9JP7E4+-X8Ls0GvF0Q@mail.gmail.com>
-X-Gm-Features: AWEUYZlsMzm74aTFSixczw1n_AGyLj3mqcqDABHMYvcwmH3WFZ2pm9QwUhy1HhY
-Message-ID: <CAMuHMdX9KOKc8iHh1WppnxhcW+-PkNC=9JP7E4+-X8Ls0GvF0Q@mail.gmail.com>
-Subject: Re: [PATCH 02/11] dt-bindings: can: renesas,rcar-canfd: Fix typo in
- pattern properties for R-Car V4M
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Simon Horman <horms@kernel.org>, 
-	Duy Nguyen <duy.nguyen.rh@renesas.com>, linux-can@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 13/14] net: ethernet: qualcomm: Add PPE
+ debugfs support for PPE counters
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
+        Suruchi Agarwal
+	<quic_suruchia@quicinc.com>,
+        Pavithra R <quic_pavir@quicinc.com>,
+        "Simon
+ Horman" <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Kees Cook
+	<kees@kernel.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        "Philipp
+ Zabel" <p.zabel@pengutronix.de>,
+        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
+        <john@phrozen.org>
+References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
+ <20250209-qcom_ipq_ppe-v3-13-453ea18d3271@quicinc.com>
+ <5a53333b-e94c-4fb7-b23d-e1d38d2dad8e@lunn.ch>
+ <a455a2f6-ca0b-43e0-b18c-53f73344981f@quicinc.com>
+ <72171304-9a98-4734-85a3-d1302d053602@lunn.ch>
+Content-Language: en-US
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <72171304-9a98-4734-85a3-d1302d053602@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 9U6kD39eKAHav1EnDr6Oxigpqs9BUhT3
+X-Proofpoint-ORIG-GUID: 9U6kD39eKAHav1EnDr6Oxigpqs9BUhT3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-18_04,2025-02-18_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 clxscore=1015 adultscore=0 priorityscore=1501 mlxscore=0
+ phishscore=0 spamscore=0 mlxlogscore=982 impostorscore=0 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2501170000 definitions=main-2502180088
 
-On Tue, 18 Feb 2025 at 11:50, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> The Renesas R-Car V4M(R8A779H0) SoC, supports up to four channels.
-> Fix the typo 5->4 in pattern properties.
->
-> Fixes: ced52c6ed257 ("dt-bindings: can: renesas,rcar-canfd: Document R-Car V4M support")
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Gr{oetje,eeting}s,
+On 2/14/2025 10:02 PM, Andrew Lunn wrote:
+>>>> +/* The number of packets dropped because of no buffer available, no PPE
+>>>> + * buffer assigned to these packets.
+>>>> + */
+>>>> +static void ppe_port_rx_drop_counter_get(struct ppe_device *ppe_dev,
+>>>> +					 struct seq_file *seq)
+>>>> +{
+>>>> +	u32 reg, drop_cnt = 0;
+>>>> +	int ret, i, tag = 0;
+>>>> +
+>>>> +	PRINT_COUNTER_PREFIX("PRX_DROP_CNT", "SILENT_DROP:");
+>>>> +	for (i = 0; i < PPE_DROP_CNT_TBL_ENTRIES; i++) {
+>>>> +		reg = PPE_DROP_CNT_TBL_ADDR + i * PPE_DROP_CNT_TBL_INC;
+>>>> +		ret = ppe_pkt_cnt_get(ppe_dev, reg, PPE_PKT_CNT_SIZE_1WORD,
+>>>> +				      &drop_cnt, NULL);
+>>>> +		if (ret) {
+>>>> +			seq_printf(seq, "ERROR %d\n", ret);
+>>>> +			return;
+>>>> +		}
+>>>
+>>> This is an error getting the value from the hardware? You should not
+>>> put that into the debugfs itself, you want the read() call to return
+>>> it.
+>>>
+>>
+>> Yes, this error code is returned by regmap read functions in
+>> ppe_pkt_cnt_get() when the hardware counter read fails. I will
+>> remove it from debugfs file and instead log the error to the
+>> console (dev_info).
+> 
+> and return it to user space via the read() call. These functions
+> normally return the number of bytes put into the buffer. But you can
+> also return a negative error code which gets passed back to user space
+> instead.
+> 
+> 	Andrew
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+OK, I will return the negative error code returned by the read() to the
+user space, thanks.
 
