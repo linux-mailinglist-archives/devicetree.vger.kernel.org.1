@@ -1,89 +1,84 @@
-Return-Path: <devicetree+bounces-147909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22086A39C88
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 13:52:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 490CAA39CEB
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 14:08:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED6B516F69A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 12:52:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3349B3B037C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 13:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 864C325E443;
-	Tue, 18 Feb 2025 12:52:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC9EC26A1DD;
+	Tue, 18 Feb 2025 13:02:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SR3OERlx"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="I05K1oL5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C712A25A35C;
-	Tue, 18 Feb 2025 12:52:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E396126A0E4;
+	Tue, 18 Feb 2025 13:02:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739883129; cv=none; b=j+zjbhiwFpLEL0OBGC7XS9BAkjYffzR16+/vpngPEiPynx0jdOzEpy+mM8Ir5B0Q4kXGK1nYC+LqedPBlIbajJqF652d1mz502CUGGcV7gJQU2ZaGbWPykTLPALve9aVLq/oUxS9mx3r5rka4o+GyQuMni0/8oQXpFKJlg4Xxdw=
+	t=1739883760; cv=none; b=QcHCpicu62kcR0A8mNWJ/f/9io+vL7eUbwg1AxgSgFh6DEmQXhyn6w8MUMii0i9LZCpdJ/DMsQF08L0ZXC0wxcy0frvfzcbVO43FexgK+hOh1iHEQ/JFoPM6G4J89Uf6zU8NikzgiXb61HNJdhgIMo7ZmyxSHiuCnbvDusUPWtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739883129; c=relaxed/simple;
-	bh=WZCqNOQCx6zO8+iDsOvyi+ZcmH4P3OrAmCncVdzCDts=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dKI21xqnS3V9pJeOX7V5Cxxq0af7u1Dj3/B5fgDaKjNaeYNxB2ypWhbdKQKPYbO+FiUncFnyiUxMWHCCgomSm51KfifF4f18kxqN6VS8a23O6LvNFhvUBFId7d+Oxg4TRCe5A1SlvmmkDlmBA5IK5AMULKkHS0R2lJbPJYAdipw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SR3OERlx; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43971025798so17473555e9.1;
-        Tue, 18 Feb 2025 04:52:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739883126; x=1740487926; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=T00F6m62eOnON9Sf4S3pOg2h4Ua/j/4d10PkPsHZ+/k=;
-        b=SR3OERlxei12QHBRk0Gp/BfB3jUHP4GWZGSQeYNue+qYIp1bG8wXWz/VcaA5lZDdyv
-         jyVY6+hEaOpfJMtriOe7KR4H1sL2EBNLcxfZ/fMka0TxBjputn4R0vE+Cs6GEV7uOSll
-         WVi16OVu+98j/NZZXtQCxJDgWrfhJ+xHMcz3fXVik2km30AiooP11YOc+LWqTvln4V/5
-         ehbjcvGHaCs/R2/Cgu/OL7pv/rYbAEhGhCvSY03GrkrnM5u+46c7JX6qYzWSGxZA+mjG
-         K4ARSJTRCxXbfnBUGK1GuXVC6EcPOrmXQselOkmLX8jFSie8OJUK+nOr0etOIqRh7G/x
-         SYDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739883126; x=1740487926;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=T00F6m62eOnON9Sf4S3pOg2h4Ua/j/4d10PkPsHZ+/k=;
-        b=S3gpGMgyOL28TV3F96VntR2HTs6SJE/QKK/SITpxlQhvTROd6twuEhoG5FgE0gGjwS
-         94VEvo4nND65vo5wJn0j2vmEDI3yareYbpOW9X7SFZcQF/XLE9bnOXvXoxCTQtyKlVzF
-         AMRwk6gCcVDvXxN8fJFH/TtfGavlVXnuNfxsy+cPiAuZs4QWIWe4cVM/hKhCOzblvoFR
-         ttDRTqB39Qtpgc5TNB3fkfFTm7aSS9NSv7CM2yakBBJ2OxKF7zFrBP3o8i9+k8X6GVUu
-         f0aWQ+VyaH5H5vubXUMivKSlL760eKjsGCi+RSLZc1gc5l2FTHj1kC28Q78IGbF79HoZ
-         7rWw==
-X-Forwarded-Encrypted: i=1; AJvYcCVGOFDnYKVOZhxxfqy1QRV876jUDZIjjOT62JWQ8B1LgwwSTvwTLbdtKNWPUt729vTvOnpy/oFInflR@vger.kernel.org, AJvYcCX+ADsUJeEydefzIpuqtRT2m7gY7jjvYXgX3EgJeAGhKUm5geBNtmWSvk3+ANcKCyp8jVvmAN1Mjm0csiqB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYyynHnkH0syuaR+B8kmx9rA7LrPty8sxzB2SCC1Yg8lMacI0R
-	hbdy2Ex53GT9CrmpQWGVH8bg4B1BPPSdVh/OJePA/65BozZA6Gs6
-X-Gm-Gg: ASbGncv19Nn0GKRH0RDDCMEHBmSGgZ/CnhOv4vTiZclcIZ1FwBrFWvzzsoBK7syodXB
-	YBv5TZkof2FjQqPlFVHbp0baAvNfnl1jmQBBeHV+LweYCpxaaZhTulrFarw10Wg/83YkXZQhJmY
-	svULJlDbPz0s9HsB+9mysC2pMlHKU/KymE1uakq4/v/hgrbHaS1ZXSNFSer988zU42gu7yvi1tt
-	cuqhZYDO30mz99A7vXETktThjgzAMHxCyWxvYBrXYcVcjvZDPB91b2X8NlrTbH5BIvGXbk6V2Dg
-	HEmHhXSpCUdICuwZvUs4rn0MRA8=
-X-Google-Smtp-Source: AGHT+IEmUMaihQHu0knpO02wdP9d0VNbrRbAmiSUjS7OIoELcuwHR+y40zRhkum98y6zzAK+5vJKnQ==
-X-Received: by 2002:a05:6000:402a:b0:38d:e48b:1766 with SMTP id ffacd0b85a97d-38f33f118c8mr11517057f8f.6.1739883124714;
-        Tue, 18 Feb 2025 04:52:04 -0800 (PST)
-Received: from prasmi.Home ([2a06:5906:61b:2d00:6940:cc67:5b00:b151])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f25a0fa2dsm14747720f8f.101.2025.02.18.04.52.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Feb 2025 04:52:04 -0800 (PST)
-From: Lad Prabhakar <prabhakar.csengg@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Lad Prabhakar <prabhakar.csengg@gmail.com>
-Subject: [PATCH] arm64: dts: qcom: Drop `tx-sched-sp` property
-Date: Tue, 18 Feb 2025 12:51:57 +0000
-Message-ID: <20250218125157.412701-1-prabhakar.csengg@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1739883760; c=relaxed/simple;
+	bh=2vT+LJoNHR60e1jUQjWAOZQwtqzVITnSxAFh/anq/Gc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=t0V3ZUvoR4yizhdhwCmMOzGLx4OLxY3pfburyoA5GqhEHozUvHiufmZVjT66nAtG8dC9yXU6MlBkP1jtkjboc0jfAgtI6evuJlkHjty2l5A57u703LyO161sGy20vSjVVHebZWGNHV4yV51F+PDMreTHbuUYMn9TEh4cKRRkCqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=I05K1oL5; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51ICTPPa005901;
+	Tue, 18 Feb 2025 14:02:20 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=+em1inQNrRqOlMWnK47j76
+	Xsx89tO6jQVhAJigvgbyE=; b=I05K1oL5Uu/xc0zwJKgm/xbZN0WNhLmJT3HyKq
+	OkNs6FIVid9zko+BlmeP0g0fpGDjG2RTbKwXWQwlhaZwsVD8gzej2vsUFMO/iH3b
+	HMY+34IrRREP8SvuW9SM7MjapBLF1cna9XnlJnblU3YrNRhi8hcdeqDoZTZv1wp0
+	7XrjQkc6cRsACYtfo8Q9cZiP042wdWrZy+BEzfSxDx0IS/wH4XPmaq00xI03sEac
+	/w16g17eTzcCUhlhBpC9rPcZO5IAfQytdphmciTlZERcYE6YTPj0V7M6qd+mcy6N
+	XLEUZ/j1NVTvXCZZjjJiJrHJMXRtEpkphECUrMLYd3T1dw/Q==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 44u5c3t958-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Feb 2025 14:02:19 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id ECFB540045;
+	Tue, 18 Feb 2025 14:00:58 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2A6103CB70E;
+	Tue, 18 Feb 2025 14:00:03 +0100 (CET)
+Received: from localhost (10.48.87.62) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 18 Feb
+ 2025 14:00:02 +0100
+From: <patrice.chotard@foss.st.com>
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <christophe.kerello@foss.st.com>, <patrice.chotard@foss.st.com>
+Subject: [PATCH v4 0/8] Add STM32MP25 SPI NOR support
+Date: Tue, 18 Feb 2025 13:59:52 +0100
+Message-ID: <20250218130000.87889-1-patrice.chotard@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,72 +86,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SAFCAS1NODE2.st.com (10.75.90.13) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-18_05,2025-02-18_01,2024-11-22_01
 
-The `tx-sched-sp` property was removed in commit aed6864035b1 ("net:
-stmmac: platform: Delete a redundant condition branch").
+From: Patrice Chotard <patrice.chotard@foss.st.com>
 
-Therefore, it can be safely removed from the device tree.
+This series adds SPI NOR support for STM32MP25 SoCs from STMicroelectronics.
 
-Signed-off-by: Lad Prabhakar <prabhakar.csengg@gmail.com>
----
- arch/arm64/boot/dts/qcom/qcs8300-ride.dts  | 1 -
- arch/arm64/boot/dts/qcom/sa8540p-ride.dts  | 2 --
- arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 2 --
- 3 files changed, 5 deletions(-)
+On STM32MP25 SoCs family, an Octo Memory Manager block manages the muxing,
+the memory area split, the chip select override and the time constraint 
+between its 2 Octo SPI children.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-index b5c9f89b3435..af75350f59b8 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-@@ -257,7 +257,6 @@ queue3 {
- 
- 	mtl_tx_setup: tx-queues-config {
- 		snps,tx-queues-to-use = <4>;
--		snps,tx-sched-sp;
- 
- 		queue0 {
- 			snps,dcb-algorithm;
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-index 177b9dad6ff7..11663cf81e45 100644
---- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-@@ -225,7 +225,6 @@ queue3 {
- 
- 	ethernet0_mtl_tx_setup: tx-queues-config {
- 		snps,tx-queues-to-use = <1>;
--		snps,tx-sched-sp;
- 
- 		queue0 {
- 			snps,dcb-algorithm;
-@@ -302,7 +301,6 @@ queue3 {
- 
- 	ethernet1_mtl_tx_setup: tx-queues-config {
- 		snps,tx-queues-to-use = <1>;
--		snps,tx-sched-sp;
- 
- 		queue0 {
- 			snps,dcb-algorithm;
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-index 175f8b1e3b2d..eeae4f071274 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-@@ -411,7 +411,6 @@ queue3 {
- 
- 	mtl_tx_setup: tx-queues-config {
- 		snps,tx-queues-to-use = <4>;
--		snps,tx-sched-sp;
- 
- 		queue0 {
- 			snps,dcb-algorithm;
-@@ -480,7 +479,6 @@ queue3 {
- 
- 	mtl_tx_setup1: tx-queues-config {
- 		snps,tx-queues-to-use = <4>;
--		snps,tx-sched-sp;
- 
- 		queue0 {
- 			snps,dcb-algorithm;
+Due to these depedencies, this series adds support for: 
+  - Octo Memory Manager driver.
+  - Octo SPI driver.
+  - yaml schema for Octo Memory Manager and Octo SPI drivers.
+
+The device tree files adds Octo Memory Manager and its 2 associated Octo 
+SPI chidren in stm32mp251.dtsi and adds SPI NOR support in stm32mp257f-ev1
+board.
+
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+
+Changes in v4:
+  - Add default value requested by Krzysztof for st,omm-req2ack-ns, 
+    st,omm-cssel-ovr and st,omm-mux properties in st,stm32mp25-omm.yaml
+  - Remove constraint in free form test for st,omm-mux property.
+  - Fix drivers/memory/Kconfig by replacing TEST_COMPILE_ by COMPILE_TEST.
+  - Fix SPDX-License-Identifier for stm32-omm.c.
+  - Fix Kernel test robot by fixing dev_err() format in stm32-omm.c.
+  - Add missing pm_runtime_disable() in the error handling path in
+    stm32-omm.c.
+  - Replace an int by an unsigned int in stm32-omm.c
+  - Remove uneeded "," after terminator in stm32-omm.c.
+  - Update cover letter description to explain dependecies between 
+    Octo Memory Manager and its 2 Octo SPI children.
+  - Add Reviewed-by Krzysztof Kozlowski for patch 1 and 3.
+
+Changes in v3:
+  - Squash defconfig patches 8 and 9.
+  - Update STM32 Octo Memory Manager controller bindings.
+  - Rename st,stm32-omm.yaml to st,stm32mp25-omm.yaml.
+  - Update STM32 OSPI controller bindings.
+  - Reorder DT properties in .dtsi and .dts files.
+  - Replace devm_reset_control_get_optional() by 
+    devm_reset_control_get_optional_exclusive() in stm32_omm.c.
+  - Reintroduce region-memory-names management in stm32_omm.c.
+  - Rename stm32_ospi_tx_poll() and stm32_ospi_tx() to respectively to 
+    stm32_ospi_poll() and stm32_ospi_xfer() in spi-stm32-ospi.c.
+  - Set SPI_CONTROLLER_HALF_DUPLEX in controller flags in spi-stm32-ospi.c.
+
+Changes in v2:
+  - Move STM32 Octo Memory Manager controller driver and bindings from
+    misc to memory-controllers.
+  - Update STM32 OSPI controller bindings.
+  - Update STM32 Octo Memory Manager controller bindings.
+  - Update STM32 Octo Memory Manager driver to match bindings update.
+  - Update DT to match bindings update.
+
+
+Patrice Chotard (8):
+  dt-bindings: spi: Add STM32 OSPI controller
+  spi: stm32: Add OSPI driver
+  dt-bindings: memory-controllers: Add STM32 Octo Memory Manager
+    controller
+  memory: Add STM32 Octo Memory Manager driver
+  arm64: dts: st: Add OMM node on stm32mp251
+  arm64: dts: st: Add ospi port1 pinctrl entries in
+    stm32mp25-pinctrl.dtsi
+  arm64: dts: st: Add SPI NOR flash support on stm32mp257f-ev1 board
+  arm64: defconfig: Enable STM32 Octo Memory Manager and OcstoSPI driver
+
+ .../memory-controllers/st,stm32mp25-omm.yaml  |  204 ++++
+ .../bindings/spi/st,stm32mp25-ospi.yaml       |  105 ++
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |   51 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |   48 +
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |   32 +
+ arch/arm64/configs/defconfig                  |    2 +
+ drivers/memory/Kconfig                        |   17 +
+ drivers/memory/Makefile                       |    1 +
+ drivers/memory/stm32_omm.c                    |  522 ++++++++
+ drivers/spi/Kconfig                           |   10 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-stm32-ospi.c                  | 1065 +++++++++++++++++
+ 12 files changed, 2058 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/st,stm32mp25-omm.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/st,stm32mp25-ospi.yaml
+ create mode 100644 drivers/memory/stm32_omm.c
+ create mode 100644 drivers/spi/spi-stm32-ospi.c
+
 -- 
-2.43.0
+2.25.1
 
 
