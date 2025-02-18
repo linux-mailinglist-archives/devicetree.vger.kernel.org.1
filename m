@@ -1,90 +1,111 @@
-Return-Path: <devicetree+bounces-147760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64E3A394B1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 09:13:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0F88A39531
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 09:25:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C22BD17289D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 08:12:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 325713B57DC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 08:22:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 872BD22B5B1;
-	Tue, 18 Feb 2025 08:12:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BA7D22C322;
+	Tue, 18 Feb 2025 08:17:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IQRi2Vmv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W8/27QDN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C1DA22AE4E;
-	Tue, 18 Feb 2025 08:12:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A3BC22B8AA;
+	Tue, 18 Feb 2025 08:17:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739866356; cv=none; b=NqwgpIsXtDiLcoLTrfzWTJ0y/y88qUr/0F8v6hosNues4/w0LjBU+4uF+dfulnLnZoHmtIwWyBbisZijJN9+JiK9vBcXBIlE67AWkXf8f+go3gzSuqsZ3EhLU+c4leLthWIOi7RLio1txXwu01Yna9nDW4ziwhPblKjiBEeSoFc=
+	t=1739866627; cv=none; b=j2kc/HZgStDjPy/wlcuWENQOeGDQo4InqA/bEJaIRlxR+Py0B/rLi3v1HpBYnIi+8kxZ88NJ4FHkg1KyOXajVTnhDybQrkamutBj+D1bQgyHBvqNPmzfj0A6A/3k/5YuwPZUPGfvUNKqN49U82ZpqzHWcUDusc2DrXI4ThJ2dDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739866356; c=relaxed/simple;
-	bh=m0uzICN3CTQeSUf/G77xR807tJo8YURiD8Lpz5F3ens=;
+	s=arc-20240116; t=1739866627; c=relaxed/simple;
+	bh=unAtoMZ/6LB+ku15iDriUMC7ier19fz8oDz6eJJnpjw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ALhYAajpM87eqijgFShBdMvC7GR2OcARH5nDWsx3ciW78498MsRDG1rJND8D/48D6MvtlNO8p2lgjlcI67qE0vpuCuzQFMffA9nDuM/MFojjM5R0bFEngAeQc/pNg73jlJH7+tGSRy/J9utWsuchl5U4DdKIb/ZrBV6DexYoonQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IQRi2Vmv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52511C4CEE8;
-	Tue, 18 Feb 2025 08:12:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=F8wS1WHb3meBewYeI7ufU0pjVwM5Z8FU251HuWgsQheBbAp75ixSB++7KHjI9OtPWkXb37puWqpC4op9qG+uF22CxYzjs5TIjLFIViYyDvu0tPzNMQGRPsagHoPD7M5t04UePkSWQWIpaE3UWmFyLfrMlCLKyBKFhYVdHD4JyYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W8/27QDN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97349C4CEE2;
+	Tue, 18 Feb 2025 08:17:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739866356;
-	bh=m0uzICN3CTQeSUf/G77xR807tJo8YURiD8Lpz5F3ens=;
+	s=k20201202; t=1739866626;
+	bh=unAtoMZ/6LB+ku15iDriUMC7ier19fz8oDz6eJJnpjw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IQRi2VmvFsxCUwDouh54xRwY0cY4kmYzRFK8LAGBUCczQ5U1izTJrDWOi6rz1KfUt
-	 goxHiFMqd0AWPpsfvy+HJbCIBsBzEvMlVkm90Hn1Wu6nzQbTorNu8WcFIBAkm9B+HJ
-	 nbG3WQ385KXyW9FZthjupNrV9+nm6jX5T1yDRGuY0gLKobJmvB1r55CMQt0yH4dOAd
-	 9yjcdH8R6YIng+qM6PvycbzemR4koU2b8ltMNQg6/jAeUr4gFLTds1CaMoaBBtY0Tk
-	 klNNYzDYu1BR/pBi1QGxcS8RIlzjmrd391OatYOmQm0ZQtaldWlsb8kDI6FdhI/xEL
-	 3QlKkcPjc8I7A==
-Date: Tue, 18 Feb 2025 09:12:33 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jason-JH Lin <jason-jh.lin@mediatek.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Nancy Lin <nancy.lin@mediatek.com>, 
-	Singo Chang <singo.chang@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>, 
-	Xavier Chang <xavier.chang@mediatek.com>, Xiandong Wang <xiandong.wang@mediatek.com>, 
-	Sirius Wang <sirius.wang@mediatek.com>, Fei Shao <fshao@chromium.org>, 
-	Pin-yen Lin <treapking@chromium.org>, Project_Global_Chrome_Upstream_Group@mediatek.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-media@vger.kernel.org
-Subject: Re: [PATCH v4 1/8] dt-bindings: mailbox: mediatek: Add support for
- MT8196 GCE mailbox
-Message-ID: <20250218-cryptic-pompous-salmon-d816ea@krzk-bin>
-References: <20250218054405.2017918-1-jason-jh.lin@mediatek.com>
- <20250218054405.2017918-2-jason-jh.lin@mediatek.com>
+	b=W8/27QDN9jps1nyShhUPWS3f5RCyhj0k3K7aVVPA4GxyepEwMBiyAwv/VBChpTdhA
+	 /wE5ZLeiJpqRVyoMvLLdG0IT1IJitAcKhTjPght7fqvhd2w9Zdbu1zIqSz6ui40/xM
+	 RHpJHSr4qGf5xRsxmYJHahQoeiKXQ0hgHzZS2wCRcX28q1xt1CTQizsn7jU3tFnr0B
+	 wXg5KMM7PAwuT8aJ6PZwzcQ6ty1RUQX2RSvW0tCip2d3axeAeypUufgF0XyAo7T1qf
+	 HWPi47RJIcozlOD4W/Lv3zqNF3I2zI0/0tWwxecdXQnRmMPcg3xx4xrv3Ua3b0XySp
+	 VT8QUDvfqaByg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1tkIn2-000000001v6-4ALR;
+	Tue, 18 Feb 2025 09:17:13 +0100
+Date: Tue, 18 Feb 2025 09:17:12 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Abel Vesa <abel.vesa@linaro.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Trilok Soni <quic_tsoni@quicinc.com>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] usb: typec: Add support for Parade PS8830 Type-C
+ Retimer
+Message-ID: <Z7RCCF58RTsyr-eN@hovoldconsulting.com>
+References: <20250206-x1e80100-ps8830-v6-0-60b1e49cfa8d@linaro.org>
+ <20250206-x1e80100-ps8830-v6-2-60b1e49cfa8d@linaro.org>
+ <Z68EUTlHcm6TxjlY@hovoldconsulting.com>
+ <Z7Q8xwcfeE3tcBLL@hovoldconsulting.com>
+ <2025021807-equipment-ignition-017f@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250218054405.2017918-2-jason-jh.lin@mediatek.com>
+In-Reply-To: <2025021807-equipment-ignition-017f@gregkh>
 
-On Tue, Feb 18, 2025 at 01:41:46PM +0800, Jason-JH Lin wrote:
-> Add the compatible name and iommus property for MT8196.
+On Tue, Feb 18, 2025 at 09:00:27AM +0100, Greg Kroah-Hartman wrote:
+> On Tue, Feb 18, 2025 at 08:54:47AM +0100, Johan Hovold wrote:
+> > On Fri, Feb 14, 2025 at 09:52:33AM +0100, Johan Hovold wrote:
+> > > On Thu, Feb 06, 2025 at 11:28:28AM +0200, Abel Vesa wrote:
+> > > > The Parade PS8830 is a USB4, DisplayPort and Thunderbolt 4 retimer,
+> > > > controlled over I2C. It usually sits between a USB/DisplayPort PHY
+> > > > and the Type-C connector, and provides orientation and altmode handling.
+> > 
+> > Turns out Greg had picked this one up 20 minutes before I sent my
+> > comments. I did see Heikki's ack the day before and realised time was
+> > short but was not able to drop everything and review the last revision
+> > due to meetings that afternoon.
+> > 
+> > Well, well, I guess you can say I only have myself to blame for not
+> > reviewing within a week of the last revision being posted.
 > 
-> In MT8196, all command buffers allocated and used by the GCE device
-> work with IOMMU.
-> 
-> Signed-off-by: Jason-JH Lin <jason-jh.lin@mediatek.com>
-> ---
->  .../devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml     | 4 ++++
->  1 file changed, 4 insertions(+)
+> I can revert it if you want me to, or an incremental fix, your call.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks, but I think Abel should be able to test the
+not-enabled-by-boot-firmware case and if needed amend the binding these
+next few weeks.
 
-Best regards,
-Krzysztof
+I'll just send an incremental fix for the error handling for now.
 
+And sorry about the rant, just needed to vent some frustration with the
+never ending stream of interruptions and unscheduled work...
+
+Johan
 
