@@ -1,165 +1,139 @@
-Return-Path: <devicetree+bounces-148013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 647BEA3A37A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 18:02:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84630A3A3C8
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 18:13:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D6461883CB7
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 17:02:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B44931896CF4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 17:12:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A954D26D5CF;
-	Tue, 18 Feb 2025 17:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D244426FDBF;
+	Tue, 18 Feb 2025 17:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V0rViv0s"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ivVx7Wjf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F7592EAE6;
-	Tue, 18 Feb 2025 17:02:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E743E17B50A;
+	Tue, 18 Feb 2025 17:09:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739898158; cv=none; b=e7IymiN1IkGWXFtpRryNvxSk3Nc45tU/ZoWWbkYFW+g32KsRzW2GdlkhITsqQh8U+ifwrTLUcfdKTVFz1hmbHy7ARZBeBt4J5Geqyjbowh1P9ywEgf1pCSTauCwb0+QKgeXYfhTqrOfffEJwzjCGgxFZfjbeRsHrFynejPj8UE0=
+	t=1739898554; cv=none; b=DzFO2NrLF7bZ1K6P36uSkL5FFzKynpEHZRT3HougbU1j90zWY7Pd61Sx6j16UCrDWwDJTFiMm3RpWyiUeGuk0GXiibiDoT1YEdop9wOVbeUrdsMjG/cM3ArqciaByYIWz5fyDq+dn877toCR2cU8n6WdkxLryp9OIJw+QJ2smfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739898158; c=relaxed/simple;
-	bh=hxZMRmhOej47toRK0ik8X/JMRjiOAT/0BXqJA9WLLpI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u/trUrBISxvmihN5/23WUoorEArDR/LQYPP56sXWXHGEBsaAe2n8y2CVEnF71UdvW8ybdoxaTL7xqBT4x1aWyl58OI/OM3DDvJX+a+v3T4b1palv/GJvtMpT8vAm5cbgyuxEZ77BVvMkGP258xSZ9858r7Cua4wICxHJodesRCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V0rViv0s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0710C4CEE2;
-	Tue, 18 Feb 2025 17:02:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739898158;
-	bh=hxZMRmhOej47toRK0ik8X/JMRjiOAT/0BXqJA9WLLpI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V0rViv0sVQMs1kcS09YPvJGHeRgaoq1Jl9rlYGzR4H9ea6gvTt6GDQSQFfi39D5MW
-	 Lx0wkdSCEG6bIPhtC94JRqFKxcR9OBZYlYA+INqx3FWi7nUQh5Y/aBXq+qiEQI8EyK
-	 sgbC8X2HWlAbIc9fuXT0ZQxNxgZ72DWakw6ivVnB1ou4fdsrCeyCZ4yfUuuaCeWVwa
-	 wWyeva0LHupfTEwL4WJKQ17ZCeLMaJObNQO+uNdz0eByJHKyYmltmKp6BsTPAPUv83
-	 i+OgfxTIjVRcgGpIVjTZO2yfanb7r58xBadVfuw1off27um1zAjgVgWHynyitiYJap
-	 Hs4iFjifok+cw==
-Date: Tue, 18 Feb 2025 17:02:32 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Xukai Wang <kingxukai@zohomail.com>, Stephen Boyd <sboyd@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Troy Mitchell <TroyMitchell988@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 0/3] riscv: canaan: Add support for K230-Canmv clock
-Message-ID: <20250218-poplar-iron-c894fe8deca6@spud>
-References: <20250217-b4-k230-clk-v4-0-5a95a3458691@zohomail.com>
+	s=arc-20240116; t=1739898554; c=relaxed/simple;
+	bh=r3Cn8T3WHhu7Zt4TdPmxIPWpu+uYE3xrjh5sU/rQN8s=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=l/FDd0RDR4B19aZQETDsTU5uNnDPBQr8gLLLB6+EYR1mpxAHIhLRgiosfbYZCx5rjA4Sa2As7P7oSG0HiqciE9YwBWbo39rcp5xKJTWnc5QP7xAA/NSEA93hO4WfeCFI2NlAwoXrji+kJoRjaFTFc5SX25XojfWmgU0IM5gQ2k4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ivVx7Wjf; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4396f579634so20772485e9.1;
+        Tue, 18 Feb 2025 09:09:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739898551; x=1740503351; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=r3Cn8T3WHhu7Zt4TdPmxIPWpu+uYE3xrjh5sU/rQN8s=;
+        b=ivVx7WjfMFts8eIJQALC65M7ti/ht7ufXfNHgn2IRyfAsvBe0BQ+vzlh2VsBEx6Zgx
+         UBZL4v0QcpKH9G56wprO1dge4zc6CJXL4fp3sjsm9/yrEJZefOl9wLR7+CcgxyQCI8eg
+         b++spxnHq0tV78zQ9fy4ai061iSN8RNvdWlcV5EfjTKTKsciB/4/tegv6530sauODR5Q
+         aOIeyOr0YxOGEsqtd3anWidfTfNjj7pZbcj64+d4rN+lNF7U1t+XtmJ4n/LKDLydrSug
+         QVV5dpcE5QZeI+P8D7paDBMDR4FO1joVZTmYhPVZ9WUj8qvPoszu0DERCU/8Dvji8xQl
+         NmOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739898551; x=1740503351;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=r3Cn8T3WHhu7Zt4TdPmxIPWpu+uYE3xrjh5sU/rQN8s=;
+        b=RSQr4G+zG2eP4bEOWRIQxE0rl1FTmywVirRetySTGh+eu5YFvHh4zaqfwU7HzL5ZYz
+         +BGJcdRQ1yzWg3j4f4Liz6v2O2yOsiWPigaxoqTquGOL9ddM2/admijhMaaA7xRwXRcc
+         e9XHnMz8Q4p8p9MtxnXYn+EJla3N8192OMQ4StWY8ABXEkIZbLHpAL7cccBhw7kUwywp
+         P15f6YTGBsM7q538d0DHucFPlTIRTHd8ZTTUBogWUCZj126t3h4sfZyWWUqlElF138Cx
+         5OtuK4KCL9UmOTvcvGSPmf+YMWzSzMa31a1DW9Uhd0rctPcXLVpXavcUTmD+NU9yWjzR
+         eDMg==
+X-Forwarded-Encrypted: i=1; AJvYcCVl3MnlYPw9N6OuSRnnDWNzJayaHnlOljOWfYA2uyzdSo1QcSl4ZM+9x59auGH3XRbpKaFY6GYFGZtn@vger.kernel.org, AJvYcCWN2oaRfZBxyDT+7ZDcWhcW5BpmuS1FT1G3CT1HxGdSp15bJmCXBu7GAfV5fGj9ska4En8cLPSKkd81uqIr@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWRdUoHMigSk2YLsHeGYD5rYy/BdSvwpGiCOmCtuWIugYRMJxH
+	JyBAs55H7w2itUUHMEqJ4axy3OjKT5TfmeXcxTv6OKyP4Q8AT0GT
+X-Gm-Gg: ASbGncvszuln+utKK875SrB0q/HHbWAct+5Yc5EN/tMMsma6QFVoJibiQHDjqd8FjtT
+	PnUG0vamFEQRo0Y+h/k+i43YbK3xu4IbZxDYyuRHNVrnxcLIwqwPpvvl9esLSHyx7psHfA7U8IQ
+	EzbNixCIVB7KzP8NH3FxUtA6I95BGMK9K0DlcQ0z83S2DqkBrSH90m4DiXXQnSbR+0TQxQl55kN
+	0l95HUJrBnJb2BFCeEGpFGFr+noHcIo6O/tkTnU3QGgOF0tM40J/Eo13hXoRjfX9CDMOdDSkQ/j
+	s4WKogO3wJB8wztYUM3T3xbgG/rjZTqNdPRsRn6HmZXWUwkPg1Ixl36Pz/vMVunRfXc=
+X-Google-Smtp-Source: AGHT+IFlGMv2miQ0Z9W2VdMNMeh3ECaEZiiURYqLj/so8NoPpJnlEqidY8yQFjrhffXPtAAVjvhFEA==
+X-Received: by 2002:a05:600c:3501:b0:439:955d:7ad9 with SMTP id 5b1f17b1804b1-43999da89c7mr5439285e9.14.1739898550848;
+        Tue, 18 Feb 2025 09:09:10 -0800 (PST)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4398148f4fcsm72046035e9.7.2025.02.18.09.09.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Feb 2025 09:09:10 -0800 (PST)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+ Andre Przywara <andre.przywara@arm.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/8] pinctrl: sunxi: allow reading mux values from DT
+Date: Tue, 18 Feb 2025 18:09:09 +0100
+Message-ID: <12609538.O9o76ZdvQC@jernej-laptop>
+In-Reply-To: <20250214003734.14944-6-andre.przywara@arm.com>
+References:
+ <20250214003734.14944-1-andre.przywara@arm.com>
+ <20250214003734.14944-6-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kbLHPbgA0NhUTES7"
-Content-Disposition: inline
-In-Reply-To: <20250217-b4-k230-clk-v4-0-5a95a3458691@zohomail.com>
-
-
---kbLHPbgA0NhUTES7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Stephen,
+Dne petek, 14. februar 2025 ob 01:37:31 Srednjeevropski standardni =C4=8Das=
+ je Andre Przywara napisal(a):
+> So far every Allwinner SoC needs a large table in the kernel code, to
+> describe the mapping between the pinctrl function names ("uart") and
+> the actual pincontroller mux value to be written into the registers.
+> This adds a lot of data into a single image kernel, and also looks
+> somewhat weird, as the DT can easily store the mux value.
+>=20
+> Add some code that allows to avoid that table: the struct that describes
+> the existing pins will be build at *runtime*, based on very basic
+> information provided by the respective SoC's pinctrl driver. This
+> consists of the number of pins per bank, plus information which bank
+> provides IRQ support, along with the mux value to use for that.
+> The code will then iterate over all children of the pincontroller DT
+> node (which describe each pin group), and populate that struct with the
+> mapping between function names and mux values. The only thing that needs
+> adding in the DT is a property with that value, per pin group.
+>=20
+> When this table is built, it will be handed over to the existing sunxi
+> pinctrl driver, which cannot tell a difference between a hardcoded
+> struct and this new one built at runtime. It will take care of
+> registering the pinctrl device with the pinctrl subsystem.
+>=20
+> All a new SoC driver would need to do is to provide two arrays, and then
+> call the sunxi_pinctrl_dt_table_init() function.
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Is the driver in this series satisfactory to you? If it is, can I send
-you a PR containing it and the binding so that I can apply the final
-patch in the series (and merge the basic support for the k230 soc)?
+I went through the code and it makes sense. I wonder if we really need to
+build whole table instead of having on demand lookups into DT. However,
+for now, this will do. So:
 
-Cheers,
-Conor.
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-On Mon, Feb 17, 2025 at 10:45:15PM +0800, Xukai Wang wrote:
-> This patch series adds clock controller support for the Canaan Kendryte
-> K230 SoC. The K230 SoC includes an external 24MHz OSC and 4 internal
-> PLLs, with the controller managing these sources and their derived clocks.
->=20
-> The clock tree and hardware-specific definition can be found in the
-> vendor's DTS [1],
-> and this series is based on the K230 initial series [2].
->=20
-> Link: https://github.com/kendryte/k230_sdk/blob/main/src/little/linux/arc=
-h/riscv/boot/dts/kendryte/clock_provider.dtsi [1]
-> Link: https://lore.kernel.org/linux-clk/tencent_F76EB8D731C521C18D5D7C4F8=
-229DAA58E08@qq.com/ [2]
->=20
-> Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
-> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
-> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
->=20
-> ---
-> Changes in v4:
-> - Remove redundant onecell_get callback and add_provider function
-> for pll_divs.
-> - Modify the base-commit in cover letter.
-> - Link to v3: https://lore.kernel.org/r/20250203-b4-k230-clk-v3-0-362c791=
-24572@zohomail.com
->=20
-> Changes in v3:
-> - Reorder the defination and declaration in drivers code.
-> - Reorder the properties in dts node.
-> - Replace global variable `k230_sysclk` with dynamic memory allocation.
-> - Rename the macro K230_NUM_CLKS to K230_CLK_NUM.
-> - Use dev_err_probe for error handling.
-> - Remove unused includes.
-> - Link to v2: https://lore.kernel.org/r/20250108-b4-k230-clk-v2-0-27b30a2=
-ca52d@zohomail.com
->=20
-> Changes in v2:
-> - Add items and description.
-> - Rename k230-clk.h to canaan,k230-clk.h
-> - Link to v1: https://lore.kernel.org/r/20241229-b4-k230-clk-v1-0-221a917=
-e80ed@zohomail.com
->=20
-> ---
-> Xukai Wang (3):
->       dt-bindings: clock: Add bindings for Canaan K230 clock controller
->       clk: canaan: Add clock driver for Canaan K230
->       riscv: dts: canaan: Add clock initial support for K230
->=20
->  .../devicetree/bindings/clock/canaan,k230-clk.yaml |   43 +
->  arch/riscv/boot/dts/canaan/k230.dtsi               |   32 +
->  drivers/clk/Kconfig                                |    6 +
->  drivers/clk/Makefile                               |    1 +
->  drivers/clk/clk-k230.c                             | 1347 ++++++++++++++=
-++++++
->  include/dt-bindings/clock/canaan,k230-clk.h        |   49 +
->  6 files changed, 1478 insertions(+)
-> ---
-> base-commit: 7fdb24bbac37ce692346d60b89f5aa29844b8b88
-> change-id: 20241206-b4-k230-clk-925f33fed6c2
->=20
-> Best regards,
-> --=20
-> Xukai Wang <kingxukai@zohomail.com>
->=20
+Thanks!
 
---kbLHPbgA0NhUTES7
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+Jernej
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7S9KAAKCRB4tDGHoIJi
-0rI1AP9y8hypNtdPcY14Ojl+N98Ywv6/Uwj7IvHIC4k2+k80ZAD/RhGE8a8Zix3V
-2BB5hrI/mGOw51ydyOw7cdBuw6S8nAk=
-=hINT
------END PGP SIGNATURE-----
-
---kbLHPbgA0NhUTES7--
 
