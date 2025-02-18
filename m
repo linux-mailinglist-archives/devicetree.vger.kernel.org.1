@@ -1,163 +1,136 @@
-Return-Path: <devicetree+bounces-147860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54D3FA39A8A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 12:20:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F1EA39AAB
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 12:24:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77A82173BBD
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:17:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BB1E3A1BF3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:19:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE4D023FC41;
-	Tue, 18 Feb 2025 11:16:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OgfonteP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34534233136;
+	Tue, 18 Feb 2025 11:18:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1464522B8CD;
-	Tue, 18 Feb 2025 11:16:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9DDD1A5BA7
+	for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 11:18:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739877412; cv=none; b=j35JN/2tzcsEb9wz1KznibXuw3WkVbKd2BRmwSrAoJJvnHp6z4jw3cpce5/FTwKdMW7h2Bj/g6tumWDwnPE0Y2W9X6jcbN643o6VcEQfqOkZENDscsPuguHBPIX0+Ze4upvLqFTllNrxvIDcmUfNI62PTQ+Iscnx5gqChg2qYyI=
+	t=1739877539; cv=none; b=fibu2uV107Lw2cEkL4YMb1ckpoclHGOmYaQ4bE/dbkybXXZxkq5DPq6jFXqzWfwNcjHqa3VGMMzAc7RQzXESI4z71SyoPqsVVfFB+10SGhaEScIURb54Ib7sV7nXIDaqbYG90n0S/RSGHp8IVsPQ9ECUgbXEaoaA+YNmbLm0VTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739877412; c=relaxed/simple;
-	bh=Foto82THQt7AoFetZJgUldbW5IPLxQNH5/iotlNg39c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fdUFOLz3Rsfg3CX2E7vcmj4KQsfZ1TCe+pERuYnDoIN2LobPW9pR8wdSUYfU4efRMLSeDxIISCcVPjHICfEsAipm7+z3ctOhhlGD4Hdhlh0UldIuPAIZj7khEVylXklIy/J0MuhbsgE/CH4m4Glg+BLkJWN3bAesG8cB0my1GRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OgfonteP; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51HNnfg5029727;
-	Tue, 18 Feb 2025 11:16:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	j+yT3U+MRUAjHIURYyEXwVn1rwgWVAj6QAOByxnDqtE=; b=OgfontePzTrddn1G
-	YfAptMiGzT4d1XDeJ8Kmn0jn6MEdeu6DLcMJdRyjtmON1MIiXfeTXo8qkorv1TjH
-	OlOY5HFrFDQ5OzX0EvuvgnsDJWa/0SNDfdrN2TIw0Z4rUcrB8P+72biR0xXNh2HY
-	584bmCfmyEyTgUvTqZqaIUyXTRoyRhK6FGrlexCKRvQGXAFY5nsBFtXIW7ZS+gzm
-	UKDIbHnWe64upk34jVkp0QgVGd1bnOymlCtwFJ48eFmu4s5VO3owlEVTocF1mDBa
-	JmBlpxiqNYCGimyRYVGT/m3RBrJq3pMNW93CgjTX4vCkFwGAupRIr14/ctJSBO3L
-	F5TtBg==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44v3mg34b8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Feb 2025 11:16:33 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51IBGWIx026728
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Feb 2025 11:16:32 GMT
-Received: from [10.253.35.15] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 18 Feb
- 2025 03:16:26 -0800
-Message-ID: <92d5f50d-efc0-462b-8cd2-e73ba77222e5@quicinc.com>
-Date: Tue, 18 Feb 2025 19:16:24 +0800
+	s=arc-20240116; t=1739877539; c=relaxed/simple;
+	bh=LSgYXBAg0k7yMJvwwS2mIfVZl6S5GBuIKda6/CCNDQQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nz3xRIhDayXX7SFSiKErWk302tz8ZZKK+oiOXYrdRyfjMFmZ4vehxKN0KEJGqVcUxUYX7IBasYaYvVFPAEpz750KMHOPj0ERSCgFRfOc2wVD5JrJwLNeLxzN0cHC2HVUmVA6Ra4JMNk8S0ThDN0sN7/aHMYE7wOqYsePcc8D4uM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tkLcg-0006P9-LI; Tue, 18 Feb 2025 12:18:42 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tkLcg-001aFn-10;
+	Tue, 18 Feb 2025 12:18:42 +0100
+Received: from pengutronix.de (p5b164285.dip0.t-ipconnect.de [91.22.66.133])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id E7C4B3C5B4A;
+	Tue, 18 Feb 2025 11:18:41 +0000 (UTC)
+Date: Tue, 18 Feb 2025 12:18:41 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, linux-can@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Subject: Re: [PATCH 00/11] Add support for RZ/G3E CANFD
+Message-ID: <20250218-smooth-macaque-of-inquire-45fb87-mkl@pengutronix.de>
+References: <20250218105007.66358-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 13/14] net: ethernet: qualcomm: Add PPE
- debugfs support for PPE counters
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
-        Suruchi Agarwal
-	<quic_suruchia@quicinc.com>,
-        Pavithra R <quic_pavir@quicinc.com>,
-        "Simon
- Horman" <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Kees Cook
-	<kees@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        "Philipp
- Zabel" <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
-        <john@phrozen.org>
-References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
- <20250209-qcom_ipq_ppe-v3-13-453ea18d3271@quicinc.com>
- <5a53333b-e94c-4fb7-b23d-e1d38d2dad8e@lunn.ch>
- <a455a2f6-ca0b-43e0-b18c-53f73344981f@quicinc.com>
- <72171304-9a98-4734-85a3-d1302d053602@lunn.ch>
-Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <72171304-9a98-4734-85a3-d1302d053602@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9U6kD39eKAHav1EnDr6Oxigpqs9BUhT3
-X-Proofpoint-ORIG-GUID: 9U6kD39eKAHav1EnDr6Oxigpqs9BUhT3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-18_04,2025-02-18_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 clxscore=1015 adultscore=0 priorityscore=1501 mlxscore=0
- phishscore=0 spamscore=0 mlxlogscore=982 impostorscore=0 malwarescore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2501170000 definitions=main-2502180088
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="urlbflbvkkktcvz2"
+Content-Disposition: inline
+In-Reply-To: <20250218105007.66358-1-biju.das.jz@bp.renesas.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
+--urlbflbvkkktcvz2
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 00/11] Add support for RZ/G3E CANFD
+MIME-Version: 1.0
 
-On 2/14/2025 10:02 PM, Andrew Lunn wrote:
->>>> +/* The number of packets dropped because of no buffer available, no PPE
->>>> + * buffer assigned to these packets.
->>>> + */
->>>> +static void ppe_port_rx_drop_counter_get(struct ppe_device *ppe_dev,
->>>> +					 struct seq_file *seq)
->>>> +{
->>>> +	u32 reg, drop_cnt = 0;
->>>> +	int ret, i, tag = 0;
->>>> +
->>>> +	PRINT_COUNTER_PREFIX("PRX_DROP_CNT", "SILENT_DROP:");
->>>> +	for (i = 0; i < PPE_DROP_CNT_TBL_ENTRIES; i++) {
->>>> +		reg = PPE_DROP_CNT_TBL_ADDR + i * PPE_DROP_CNT_TBL_INC;
->>>> +		ret = ppe_pkt_cnt_get(ppe_dev, reg, PPE_PKT_CNT_SIZE_1WORD,
->>>> +				      &drop_cnt, NULL);
->>>> +		if (ret) {
->>>> +			seq_printf(seq, "ERROR %d\n", ret);
->>>> +			return;
->>>> +		}
->>>
->>> This is an error getting the value from the hardware? You should not
->>> put that into the debugfs itself, you want the read() call to return
->>> it.
->>>
->>
->> Yes, this error code is returned by regmap read functions in
->> ppe_pkt_cnt_get() when the hardware counter read fails. I will
->> remove it from debugfs file and instead log the error to the
->> console (dev_info).
-> 
-> and return it to user space via the read() call. These functions
-> normally return the number of bytes put into the buffer. But you can
-> also return a negative error code which gets passed back to user space
-> instead.
-> 
-> 	Andrew
+On 18.02.2025 10:49:50, Biju Das wrote:
+> The CAN-FD module on RZ/G3E is very similar to the one on both R-Car V4H
+> and RZ/G2L, but differs in some hardware parameters:
+>  * No external clock, but instead has ram clock.
+>  * Support up to 6 channels.
+>  * 20 interrupts.
+>=20
+> Biju Das (11):
+>   clk: renesas: r9a09g047: Add CANFD clock/reset
+>   dt-bindings: can: renesas,rcar-canfd: Fix typo in pattern properties
+>     for R-Car V4M
+>   dt-bindings: can: renesas,rcar-canfd: Simplify the conditional schema
+>   dt-bindings: can: renesas,rcar-canfd: Document RZ/G3E support
+>   can: rcar_canfd: Fix page entries in the AFL list
+>   can: rcar_canfd: Add gen4_type variable to struct rcar_canfd_hw_info
+>   can: rcar_canfd: Add only_internal_clks variable to struct
+>     rcar_canfd_hw_info
+>   can: rcar_canfd: Enhance multi_channel_irqs handling
+>   can: rcar_canfd: Add RZ/G3E support
+>   arm64: dts: renesas: r9a09g047: Add CANFD node
+>   arm64: dts: renesas: r9a09g047e57-smarc: Enable CANFD
 
-OK, I will return the negative error code returned by the read() to the
-user space, thanks.
+Please send the dts changes as a separate series, too. They will
+probably go mainline via the renesas SoC tree.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--urlbflbvkkktcvz2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAme0bI4ACgkQDHRl3/mQ
+kZxmZwf+Mk+rHH429fFJD5vBzdihzB3OO6lA4u6W0dSLaebC8fZrxvR/+qFsUZXa
+ekPKT+YZs74zkz5KwhHQ3WE4G4ABMK46Wp/i9rTNUIsuufFoqt9H3c+Co2fuIxjH
+9tDB9Fv81e+F14vVDa5epa/s2gtM9F0skIWyQY3FWO39V4dsf4njaERudiQhGUcU
+gtWx+x3q03JiI/dmPNxclRYeyuayyefZ/KYwjxdY6avTx00n9u15vq9A5qyTJldq
+v7XXxxpa2tjuymz7uwjlZ8x6cY2X81i1W6JSgHb5sesVUjB+y+usfFgH4k95cJWQ
+0rdmfI+SSvGvQtryHlsyAWM0sN7zuw==
+=fVPC
+-----END PGP SIGNATURE-----
+
+--urlbflbvkkktcvz2--
 
