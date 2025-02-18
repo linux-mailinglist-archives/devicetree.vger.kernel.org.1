@@ -1,132 +1,118 @@
-Return-Path: <devicetree+bounces-147684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D76FA3901C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 02:04:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A76C2A39023
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 02:07:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE2F6168260
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 01:04:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9896C189181B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 01:08:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F317718AE2;
-	Tue, 18 Feb 2025 01:04:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFC01E526;
+	Tue, 18 Feb 2025 01:07:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AhWYI/XA"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="I6aW0j/Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4185B1DFCB;
-	Tue, 18 Feb 2025 01:04:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CDB818E20;
+	Tue, 18 Feb 2025 01:07:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739840685; cv=none; b=BTmWc08TfhNqMWqEYhVWv+JUIouml0MkGc7g2wMJ/kZTKdHbobZxo6WeeSJ8rvkj/vsWN2swueROZbGxk7GiGhyCeSZ1evQRIKLX7dz2BPDIkw3ojSaL62ec+dw8O/mFMd77NGGWDGBjmnTkFSvcK6CxS81LuO8NHhODZxH3yIY=
+	t=1739840872; cv=none; b=Cpsw0UJyWIiwlOHZ1wC9M3hVnrReFsgs2VvoOAgix9NVKcoja1Byv5311OS0MQ8p0kbxm0e4fiQ8I13FOcbxopTAagNn8EEJ0JqDQMr3Ts2DCYRagT9oF2/QL458ic5y5nlTBSjt34v/Az5HFLeZWrdVJ+LO3MPP49vEAjAvxGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739840685; c=relaxed/simple;
-	bh=aaoQ8gKgzJPVqQSmP8gQjMPdFUpl9dkYQ0T4GzWMGEU=;
-	h=From:To:Subject:Date:Message-Id:MIME-Version; b=syNFFRAaBQM8eSiCYf3z9FMDmDIP0YoK/nm/CF7JShICyyBWifpCXKiiAG3MABLhMOUBouO6Z8Xw8CG1kfATfADjVxC333GnZ2tdr8Wltc0U25cRdJcLlIHJ1j/tInsUrLZP5J4RwJqn/B/K4Ok9mfXMHdMCTpTRvB8Z3uwqQ+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AhWYI/XA; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739840684; x=1771376684;
-  h=from:to:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=aaoQ8gKgzJPVqQSmP8gQjMPdFUpl9dkYQ0T4GzWMGEU=;
-  b=AhWYI/XA9P5c46DS5XLYVqi//f/r458BNc/QZIxZbshn0jAJSXNgGbHP
-   WzPEKL0NuxHfi4vKZllbSYBXTiatGxiGpT02Ruys2yQqDNBnN9pqJ4MZU
-   4+KfP6BwfB2y/iwejVR3+lQx3KoZh9O10L/604xBTmMvT7pwnb8P/9nNF
-   MxhUf2Pvc8sTbrQMDPgZd8NqJU4gVGbcdT2/vGouwjGLunEs6ghi1uYPE
-   /yvhLYMc5B/eYS8POc4voP4qwszE2974GCPWfVyWSNRGyUuoiR9p3gRWv
-   6tKNOSJKMMzk0B1YYjDtlu3ANwHA+/YmqFRtB+9TFTfIOsGQbd6f+TnWc
-   A==;
-X-CSE-ConnectionGUID: PiEvdFp9Qi6P9/S30qoX1Q==
-X-CSE-MsgGUID: rXhrls/KRZKpTMuQymRGVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="44450371"
-X-IronPort-AV: E=Sophos;i="6.13,294,1732608000"; 
-   d="scan'208";a="44450371"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2025 17:04:44 -0800
-X-CSE-ConnectionGUID: y0CgsUqRQZKsWXnRUlndvg==
-X-CSE-MsgGUID: xDGLRu3gRn+SMexcvUh5ag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,294,1732608000"; 
-   d="scan'208";a="114894122"
-Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
-  by fmviesa009.fm.intel.com with ESMTP; 17 Feb 2025 17:04:42 -0800
-From: niravkumar.l.rabara@intel.com
-To: Dinh Nguyen <dinguyen@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	niravkumar.l.rabara@intel.com,
-	nirav.rabara@altera.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] arm64: dts: socfpga: agilex5: add led and memory nodes
-Date: Tue, 18 Feb 2025 09:01:06 +0800
-Message-Id: <20250218010106.3536113-1-niravkumar.l.rabara@intel.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1739840872; c=relaxed/simple;
+	bh=uj40kfo5LTXmVRg+URNHrrqgZztW7N+flpz//iXaH54=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=VfcfdJZ5qB53NHsX8b4wCcsjNxXxYS8FIW6yRsjpU/fi2AwDR4n9PKhWr2CeheZl6XSRPgvTR6bUEWkWrHjU9ZkoipB2cm1RxDVlR3DT4izGGN91Z9fOg98MPV8MfcHchRmQuHnkS9FvOTTb+x0ZFT4HmMgPFzjJ+qT5IypQ8M4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=I6aW0j/Q; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1739840868;
+	bh=uj40kfo5LTXmVRg+URNHrrqgZztW7N+flpz//iXaH54=;
+	h=Subject:From:To:Date:In-Reply-To:References;
+	b=I6aW0j/Q7wosLhgwWVgS2ECPPxJu0Jz5eA+x22jBTYj9oIDxRj0FBplmhlWK8By0V
+	 cs53Kda7flynNbNsRNveiFnXSyouKwqp6kKuUiYHNkxHMQtJQOppXaT41G5fbUhGvF
+	 nqP9xFALQGgh4jMBFpedK0oE4DYmcS/nghS32kdsni7oVy2DYHgNj6bVuRC8czWgef
+	 Qok189hdfmtVLn3cIH+ytCjNyMt81Zeht6hDfg02nqyLLi8/2NbRTIstrGNChAVJpy
+	 FCpsFwNlmLu9sJ4dqQCdUcbO3tU/o+hn2NutXREhRWOzEHi+2oymvBxf4ppsW5CdXS
+	 W2pCgR5F49Nmg==
+Received: from [192.168.68.112] (ppp118-210-165-49.adl-adc-lon-bras34.tpg.internode.on.net [118.210.165.49])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id DA66B759DD;
+	Tue, 18 Feb 2025 09:07:46 +0800 (AWST)
+Message-ID: <a8ff6545da9dceb2b745e6301e1f997ba97776fe.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v6] media: dt-bindings: aspeed,video-engine: Convert to
+ json schema
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Jammy Huang <jammy_huang@aspeedtech.com>, "eajames@linux.ibm.com"
+ <eajames@linux.ibm.com>, "mchehab@kernel.org" <mchehab@kernel.org>, 
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>,  "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "joel@jms.id.au" <joel@jms.id.au>, "andrew@aj.id.au" <andrew@aj.id.au>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
+ "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+ <linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Date: Tue, 18 Feb 2025 11:37:46 +1030
+In-Reply-To: <TYZPR06MB656841B1071626B0B684B49AF1FB2@TYZPR06MB6568.apcprd06.prod.outlook.com>
+References: <20250213015338.3243171-1-jammy_huang@aspeedtech.com>
+	 <31c7189bc04ed8c5cce463951b717bed6a2ccf9a.camel@codeconstruct.com.au>
+	 <TYZPR06MB656841B1071626B0B684B49AF1FB2@TYZPR06MB6568.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+On Mon, 2025-02-17 at 02:11 +0000, Jammy Huang wrote:
+> Hi Andrew,
+>=20
+> Thanks for your feedback, please find my explanation below.
+>=20
+> >=20
+> > On Thu, 2025-02-13 at 09:53 +0800, Jammy Huang wrote:
+> > > Convert aspeed-video.txt to yaml format.
+> > > Update aspeed-video.txt to aspeed,video-engine.yaml in MAINTAINER fil=
+e.
+> > >=20
+> > > Signed-off-by: Jammy Huang <jammy_huang@aspeedtech.com>
+> > >=20
+...
+> > > +
+> > > +required:
+> > > +=C2=A0 - compatible
+> > > +=C2=A0 - reg
+> > > +=C2=A0 - clocks
+> > > +=C2=A0 - clock-names
+> > > +=C2=A0 - interrupts
+> >=20
+> > This should list `resets` as well, as that wasn't optional in the text =
+binding.
+> >=20
+> 'resets' is not listed as required here is because ASPEED handle reset in=
+ the clock driver
+> in ast2600/ast2500/..., etc. So I keep this part identical as previous as=
+peed-video.txt.
 
-Add LED and memory nodes, and enabled GPIO0 for Agilex5 devkit.
+It's not identical though. The text binding listed the _optional_
+properties, while the yaml binding lists the _required_ properties. The
+reset property appears in neither list across two binding definitions,
+but it has to be in one or the other for consistency.
 
-Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
----
+However, it sounds like the text binding was not accurate, and this is
+reflected in the video nodes in the SoC DTSIs. The yaml binding
+definition at least matches that reality.
 
-Changes in v3:
-  * Update commit log for better clarity.
-
-Changes in v2:
-  * Add mising blank line.
-  * Changed the name to led-0 instad of led1.
-
- .../boot/dts/intel/socfpga_agilex5_socdk.dts  | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-index c533e5a3a610..e106e48f1e3f 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-@@ -15,6 +15,26 @@ aliases {
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			label = "hps_led0";
-+			gpios = <&porta 11 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* We expect the bootloader to fill in the reg */
-+		reg = <0x0 0x80000000 0x0 0x0>;
-+	};
-+};
-+
-+&gpio0 {
-+	status = "okay";
- };
- 
- &gpio1 {
--- 
-2.25.1
-
+Andrew
 
