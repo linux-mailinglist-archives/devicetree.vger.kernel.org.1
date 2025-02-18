@@ -1,232 +1,166 @@
-Return-Path: <devicetree+bounces-148138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27AE3A3AC6C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 00:16:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57B65A3ACA0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 00:40:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0885C3ABFAD
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 23:16:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32BB01687C2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 23:40:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 054641CF5E2;
-	Tue, 18 Feb 2025 23:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C541DDC20;
+	Tue, 18 Feb 2025 23:40:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YCwqqIQv"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gtaqD/GW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E6F1D86C7
-	for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 23:16:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEF0B1CEAC3;
+	Tue, 18 Feb 2025 23:40:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739920589; cv=none; b=r/OmkYYD/kBHOalRhs9sr0aVhbh+Qsxlu9kl61FtY5dRzBKaUgQGkMbqLV5efkxL53q9kEh8DGwA+PHg4lV7Yji0JrFp11jZFDytp/d1Ef7+cSxZkmfwZjwSWkoio54q3q+7yE/bzlzWSYpHISH2v3uuhG0XHz1Q7f7mdX2ZE/I=
+	t=1739922018; cv=none; b=IcLZ+tqD+kEFbBgN//lMz4Vs2mqZsel0/ZW59pBbr2sAdMQXPHdpZeJof95Vy2DhNvZnrh1Ar4l0s8HlInBmIimRVPIifGBE7nCKXqCliYTYYlLaWAEvdn/zXDw0fGl5pxZaBIGv79YJtE4zsbVsbdDBuQae+EModyYBUVKSw8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739920589; c=relaxed/simple;
-	bh=71NOAhlA1zRx6LOJehloexvb8Dr2yZK3ZKDG/fCQnK8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bLNsHjqO0vcdQjPne7BN0BRwGaLDUH0MapZ4D2SEb/4R+DgKfgyq7L1ayajQ8dgii0pVeBQN1pZrJtBoiUBahHJOyFc+NbFJ2UYn8KA98XBdBZn+xqnPXoHH0Vg+gWDbUsgrHlib5tDa9TlooUAYr7pef8ahTCMD80s3xGzT43g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YCwqqIQv; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1739920588; x=1771456588;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=71NOAhlA1zRx6LOJehloexvb8Dr2yZK3ZKDG/fCQnK8=;
-  b=YCwqqIQvqWYf0hURb136Jh/jQhkPjhN2R0ZaBYXmaPNe1abNE9FFKZyQ
-   W6wVTmp3qGouHC5MflzHkoTkGZZfErSRMdRgw8pTWsquybenxYz8cJGhp
-   f/mybbXJAWmtAbfrJDFieG4J7a4RL5826d9i0CIP5xnSjDuiWMRLBsUwc
-   4ugPV45eh2k3rFxSG82CzJp5rz5gXI8uDWif0gI5u3FJXy542WC4qoN0M
-   ExF3FUvh5+g/UheBP/eMLEHm44jqRNJp+VARpu/qw+I/ivGNCvv2UqO+x
-   2ekPQlmq321cGvejme2VBflt1I530Se7OI1+sVlX8LKN+U0sI5037Q2gJ
-   Q==;
-X-CSE-ConnectionGUID: 0EO6P4MHS8a3TROaykBI3Q==
-X-CSE-MsgGUID: a1dMBgk5QpKXZI8cfLhynQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="51624058"
-X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; 
-   d="scan'208";a="51624058"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2025 15:16:28 -0800
-X-CSE-ConnectionGUID: J2RfxhNgTjGOZ+AaJZpasA==
-X-CSE-MsgGUID: KvOPBGGWT0q5JaJFQ+I7sg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="119193650"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by fmviesa005.fm.intel.com with ESMTP; 18 Feb 2025 15:16:21 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tkWp8-0000xP-1Z;
-	Tue, 18 Feb 2025 23:16:18 +0000
-Date: Wed, 19 Feb 2025 07:15:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: Fred Treven <ftreven@opensource.cirrus.com>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Simon Trimmer <simont@opensource.cirrus.com>,
-	Charles Keepax <ckeepax@opensource.cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	James Ogletree <jogletre@opensource.cirrus.com>,
-	Ben Bright <ben.bright@cirrus.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	David Rhodes <david.rhodes@cirrus.com>,
-	Jeff LaBundy <jeff@labundy.com>, Heiko Stuebner <heiko@sntech.de>,
-	Karel Balej <balejk@matfyz.cz>,
-	Igor Prusov <ivprusov@salutedevices.com>,
-	Jack Yu <jack.yu@realtek.com>,
-	Weidong Wang <wangweidong.a@awinic.com>,
-	Binbin Zhou <zhoubinbin@loongson.cn>,
-	Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
-	Paul Handrigan <paulha@opensource.cirrus.com>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Nuno Sa <nuno.sa@analog.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND 5/7] mfd: cs40l26: Add support for CS40L26 core
- driver
-Message-ID: <202502190628.g4aG7l2q-lkp@intel.com>
-References: <20250204231835.2000457-6-ftreven@opensource.cirrus.com>
+	s=arc-20240116; t=1739922018; c=relaxed/simple;
+	bh=vtJYJScwIgD7t/Kjv9WAvIrpkcvjsYEil5lQtdhNnDE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FYY7Agfa2ANSdHZs3eeTW2GKeB3vw+XDcNsATJ2biYERDLKqzQilN400h31+oEJMnGgxzY9UDSHiPwnwA1jrdFBsvfwRcQIfLKseNKwMGBdDMexXTNIq6Db914uGBHwQrHo22h7Zkw/F9gUoPGe+mHCCO/yzehPhJC/Lgzm7pxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gtaqD/GW; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1739922015;
+	bh=vtJYJScwIgD7t/Kjv9WAvIrpkcvjsYEil5lQtdhNnDE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gtaqD/GWX2crjMIVsm9VhPgIp6ynjZ09aQZr76a03msFBEu3FN4S2lLI3hKVIXR6g
+	 2LOCyx9ZvSLA2TOXcjTszgbUuSNTbm1pbAWf0hAavTRc+y2+rR8S5pcR5E2wOcF8tR
+	 LRplrtXfSFculPVtvURaCiLm3OcJ5reQycDBmNKAfUAstLCB74ZnIj1JtUDQNODQ4a
+	 PsSfM1eMYJZBW7KBtqIiKNy3XmfNDycBWITJZVKFPkmnkjVddJqR+8RPSF3Sjl54be
+	 1+K0vAO/qvlBsPPMzC1rIMLXxt4k7mfTjUcjcl7YqwJxTtAnEeoQmXZqMMltmntcOq
+	 eKv7Rd4oXgWSg==
+Received: from [192.168.1.143] (144.232.221.87.dynamic.jazztel.es [87.221.232.144])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 881CB17E1411;
+	Wed, 19 Feb 2025 00:40:13 +0100 (CET)
+Message-ID: <0dd48599-448f-4472-9a8a-54b7f0379c13@collabora.com>
+Date: Wed, 19 Feb 2025 01:40:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250204231835.2000457-6-ftreven@opensource.cirrus.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add HDMI1 PHY PLL clock source
+ to VOP2 on RK3588
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: Jianfeng Liu <liujianfeng1994@gmail.com>, airlied@gmail.com,
+ andy.yan@rock-chips.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, hjc@rock-chips.com, kernel@collabora.com,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, robh@kernel.org,
+ simona@ffwll.ch, tzimmermann@suse.de
+References: <1919367.CQOukoFCf9@diego>
+ <20250218121749.1382322-1-liujianfeng1994@gmail.com>
+ <lnuceofdwm6lgibworaghcujp6rrncvn4e2xc2vzltimjw3rqu@jur7x5cxt5ue>
+ <2425191.NG923GbCHz@diego>
+ <ldgdrytto5y2xf3ois23j4ymtajtwmqlxjr2zyqhwbbxcx6f6y@gzb37fntx2x6>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <ldgdrytto5y2xf3ois23j4ymtajtwmqlxjr2zyqhwbbxcx6f6y@gzb37fntx2x6>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Fred,
+Hi,
 
-kernel test robot noticed the following build errors:
+On 2/18/25 6:05 PM, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Tue, Feb 18, 2025 at 03:53:06PM +0100, Heiko Stübner wrote:
+>> Am Dienstag, 18. Februar 2025, 15:13:07 MEZ schrieb Sebastian Reichel:
+>>> On Tue, Feb 18, 2025 at 08:17:46PM +0800, Jianfeng Liu wrote:
+>>>> On Tue, 18 Feb 2025 11:00:57 +0100, Heiko Stübnerwrote:
+>>>>> So I guess step1, check what error is actually returned.
+>>>>
+>>>> I have checked that the return value is -517:
+>>>>
+>>>> rockchip-drm display-subsystem: [drm] *ERROR* failed to get pll_hdmiphy1 with -517
+>>>>
+>>>>> Step2 check if clk_get_optional need to be adapted or alternatively
+>>>>> catch the error in the vop2 and set the clock to NULL ourself in that case.
+>>>>
+>>>> I tried the following patch to set the clock to NULL when clk_get_optional
+>>>> failed with value -517, and hdmi0 is working now. There are also some
+>>>> boards like rock 5 itx which only use hdmi1, I think we should also add
+>>>> this logic to vop2->pll_hdmiphy0.
+>>>>
+>>>> @@ -3733,6 +3751,15 @@ static int vop2_bind(struct device *dev, struct device *master, void *data)
+>>>>  		return PTR_ERR(vop2->pll_hdmiphy0);
+>>>>  	}
+>>>>  
+>>>> +	vop2->pll_hdmiphy1 = devm_clk_get_optional(vop2->dev, "pll_hdmiphy1");
+>>>> +	if (IS_ERR(vop2->pll_hdmiphy1)) {
+>>>> +		drm_err(vop2->drm, "failed to get pll_hdmiphy1 with %d\n", vop2->pll_hdmiphy1);
+>>>> +		if (vop2->pll_hdmiphy1 == -EPROBE_DEFER)
+>>>> +			vop2->pll_hdmiphy1 = NULL;
+>>>> +		else
+>>>> +			return PTR_ERR(vop2->pll_hdmiphy1);
+>>>> +	}
+>>>> +
+>>>
+>>> This first of all shows, that we should replace drm_err in this
+>>> place with dev_err_probe(), which hides -EPROBE_DEFER errors by
+>>> default and instead captures the reason for /sys/kernel/debug/devices_deferred.
+>>>
+>>> Second what you are doing in the above suggestion will break kernel
+>>> configurations where VOP is built-in and the HDMI PHY is build as a
+>>> module.
+>>>
+>>> But I also think it would be better to have the clocks defined in the
+>>> SoC level DT. I suppose that means vop2_bind would have to check if
+>>> the HDMI controller <ID> is enabled and only requests pll_hdmiphy<ID>
+>>> based on that. Considering there is the OF graph pointing from VOP
+>>> to the enabled HDMI controllers, it should be able to do that.
+>>
+>>
+>> I was more thinking about fixing the correct thing, with something like:
+>>
+>> ----------- 8< ----------
+>> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+>> index cf7720b9172f..50faafbf5dda 100644
+>> --- a/drivers/clk/clk.c
+>> +++ b/drivers/clk/clk.c
+>> @@ -5258,6 +5258,10 @@ of_clk_get_hw_from_clkspec(struct of_phandle_args *clkspec)
+>>         if (!clkspec)
+>>                 return ERR_PTR(-EINVAL);
+>>
+>> +       /* Check if node in clkspec is in disabled/fail state */
+>> +       if (!of_device_is_available(clkspec->np))
+>> +               return ERR_PTR(-ENOENT);
+>> +
+>>         mutex_lock(&of_clk_mutex);
+>>         list_for_each_entry(provider, &of_clk_providers, link) {
+>>                 if (provider->node == clkspec->np) {
+>> ----------- 8< ----------
+>>
+>> Because right now the clk framework does not handle nodes in
+>> failed/disabled state and would defer indefinitly.
+> 
+> Also LGTM.
 
-[auto build test ERROR on lee-mfd/for-mfd-next]
-[also build test ERROR on broonie-sound/for-next dtor-input/next dtor-input/for-linus linus/master v6.14-rc3 next-20250218]
-[cannot apply to lee-mfd/for-mfd-fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Thank you all for the feedback and proposed solutions!
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Fred-Treven/firmware-cs_dsp-Fix-error-checking-in-wseq_write/20250217-181206
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-patch link:    https://lore.kernel.org/r/20250204231835.2000457-6-ftreven%40opensource.cirrus.com
-patch subject: [PATCH RESEND 5/7] mfd: cs40l26: Add support for CS40L26 core driver
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20250219/202502190628.g4aG7l2q-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250219/202502190628.g4aG7l2q-lkp@intel.com/reproduce)
+I'm currently on leave and without access to any testing hw, but I'll be
+back in a couple of days.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502190628.g4aG7l2q-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/mfd/cs40l26-core.c:12:
-   In file included from include/linux/mfd/core.h:13:
-   In file included from include/linux/platform_device.h:13:
-   In file included from include/linux/device.h:32:
-   In file included from include/linux/device/driver.h:21:
-   In file included from include/linux/module.h:19:
-   In file included from include/linux/elf.h:6:
-   In file included from arch/s390/include/asm/elf.h:181:
-   In file included from arch/s390/include/asm/mmu_context.h:11:
-   In file included from arch/s390/include/asm/pgalloc.h:18:
-   In file included from include/linux/mm.h:2224:
-   include/linux/vmstat.h:504:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     504 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     505 |                            item];
-         |                            ~~~~
-   include/linux/vmstat.h:511:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     511 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     512 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/vmstat.h:524:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     524 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     525 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
->> drivers/mfd/cs40l26-core.c:1173:3: error: cannot jump from this goto statement to its label
-    1173 |                 goto err_fw_rls;
-         |                 ^
-   drivers/mfd/cs40l26-core.c:1176:2: note: jump bypasses initialization of variable with __attribute__((cleanup))
-    1176 |         guard(mutex)(&cs40l26->lock);
-         |         ^
-   include/linux/cleanup.h:309:15: note: expanded from macro 'guard'
-     309 |         CLASS(_name, __UNIQUE_ID(guard))
-         |                      ^
-   include/linux/compiler.h:166:29: note: expanded from macro '__UNIQUE_ID'
-     166 | #define __UNIQUE_ID(prefix) __PASTE(__PASTE(__UNIQUE_ID_, prefix), __COUNTER__)
-         |                             ^
-   include/linux/compiler_types.h:84:22: note: expanded from macro '__PASTE'
-      84 | #define __PASTE(a,b) ___PASTE(a,b)
-         |                      ^
-   include/linux/compiler_types.h:83:23: note: expanded from macro '___PASTE'
-      83 | #define ___PASTE(a,b) a##b
-         |                       ^
-   <scratch space>:42:1: note: expanded from here
-      42 | __UNIQUE_ID_guard697
-         | ^
-   3 warnings and 1 error generated.
-
-
-vim +1173 drivers/mfd/cs40l26-core.c
-
-  1165	
-  1166	static void cs40l26_dsp_start(struct cs40l26 *cs40l26)
-  1167	{
-  1168		int i, ret;
-  1169	
-  1170		ret = cs40l26_dsp_pre_config(cs40l26);
-  1171		if (ret) {
-  1172			dev_err(cs40l26->dev, "DSP Pre Config. Failed: %d\n", ret);
-> 1173			goto err_fw_rls;
-  1174		}
-  1175	
-  1176		guard(mutex)(&cs40l26->lock);
-  1177	
-  1178		ret = cs_dsp_power_up_multiple(&cs40l26->dsp, cs40l26->wmfw, "cs40l26.wmfw", cs40l26_coeffs,
-  1179					       CS40L26_NUM_COEFF_FILES, "cs40l26");
-  1180		if (ret) {
-  1181			dev_err(cs40l26->dev, "Failed to Power Up DSP\n");
-  1182			goto err_fw_rls;
-  1183		}
-  1184	
-  1185		if (cs40l26->dsp.fw_id != CS40L26_FW_ID) {
-  1186			dev_err(cs40l26->dev, "Invalid firmware ID: 0x%X\n", cs40l26->dsp.fw_id);
-  1187			goto err_fw_rls;
-  1188		}
-  1189	
-  1190		if (cs40l26->dsp.fw_id_version < cs40l26->variant->info->fw_min_rev) {
-  1191			dev_err(cs40l26->dev, "Invalid firmware revision: 0x%X\n",
-  1192				cs40l26->dsp.fw_id_version);
-  1193			goto err_fw_rls;
-  1194		}
-  1195	
-  1196		ret = cs_dsp_run(&cs40l26->dsp);
-  1197		if (ret)
-  1198			dev_err(cs40l26->dev, "DSP Failed to run: %d\n", ret);
-  1199	
-  1200	err_fw_rls:
-  1201		for (i = 0; i < CS40L26_NUM_COEFF_FILES; i++)
-  1202			release_firmware(cs40l26_coeffs[i].coeff_firmware);
-  1203	
-  1204		release_firmware(cs40l26->wmfw);
-  1205	}
-  1206	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+Cristian
 
