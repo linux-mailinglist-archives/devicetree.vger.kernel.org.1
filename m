@@ -1,216 +1,151 @@
-Return-Path: <devicetree+bounces-148031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C26FEA3A570
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 19:26:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28ADFA3A577
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 19:27:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3885C3B55F8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 18:24:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B90D6188A46D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 18:27:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E52872356DE;
-	Tue, 18 Feb 2025 18:23:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B2s1mFEz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E948817A302;
+	Tue, 18 Feb 2025 18:27:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342ED2356A1;
-	Tue, 18 Feb 2025 18:23:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5520C17A2FC
+	for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 18:27:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739902993; cv=none; b=tHBij7w2xVvS1RRbctT+iiLA++KY3TKK8SJJYmHIEb4fzD2nuDGPJH4mfboJmAbPIT1NKEo+czekgWZtLcCEc9IceAjHucl0WFPfxP0qmF5hcS0Qo1/tLXLGcEb1/USiDSjo0AvjfQt+BLjUaAdioBMjp+V6tzEbbC9WTjU1Oak=
+	t=1739903230; cv=none; b=SOc1UBoX2CUPu+I6eVe89h8nbyapAwOBOOZFGJsWo0KPL21j1m1JkFY+oybS5jikPLXgzGrquYy+p1OfPNsLwpniPVBrfQ5WXZtSnuQNjsFmxh5wa793ybbHpbWlKw44X3HCnSDs4qS3f1DbELatDMA1EPxJszk9EIL34qUcc6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739902993; c=relaxed/simple;
-	bh=nGJUJkNAzAszvjWSp5A8aZOciq+2ykmFPOpWSTnQFC0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RuBbtLnQbCRdLzkpkuKf0JW/FfHYDj0dyiFo+LzqJNQXTs6DYWtOZT9B+o/CIGL8ZfGsQVVdkRT6SzyTNLpU4xXZ4vCnTMPBq/xT519siiMBF2uxvZnUNvuzawa7CkEKJgPfX8UhxXE5g5iWtn1g46HsMv2V9mdEbDMXCYBgBNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B2s1mFEz; arc=none smtp.client-ip=209.85.166.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-855a8c1ffe9so24670439f.1;
-        Tue, 18 Feb 2025 10:23:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739902991; x=1740507791; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z21PGtMoKOkP6/rqvgbqZXruaILXexhwG8Q6wG3Y9zo=;
-        b=B2s1mFEzNwluHyBO3ppUy+mm1qEOCEev3P/SxKGwC7tTjxh1pomLtQmMcbJ3uW9d8L
-         Vlwg3Y+9C73ou3cVpKjoBkQQzaxOl6Z3G6jt5GwQE/lOU+R9AKvB3KpKMYrOd81qs+Ju
-         1jwBdGxxYq5U6j8vn3xyckLCoi6kFYDTDSvrisXtyKPU9m7GClQiXSO4Z3/Jrf32gB0g
-         RA+bJkLiebs4BEeW9rgK9aHn1mUcfqsg8YDPtdjEoKcEggp6BiY6xs2Qi29SHjf+Rvzj
-         w55Mr1GgHZHC+bKIWOdnTfFmO2hW3MSyPHW/VmsB1YshhJe9Vv+03k7t5o4vhixWRt6V
-         pktA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739902991; x=1740507791;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=z21PGtMoKOkP6/rqvgbqZXruaILXexhwG8Q6wG3Y9zo=;
-        b=tKSx7W3rTjofF1SFoGOEUg0DYQvhBQ+esumaiyp3ATAOtFztPJZ5fJY9QS7NNT+P4U
-         lwK4OC2MkrTEda3Q7EbfNeFXaVtweOi8CuR/uwF5BWqvik7aboa5KsMj5YSyFGEST3RN
-         WZH0aM2hMnIiBAgIkzsyoO6U9DLvnjoCzr6FqoEi5WU1mV1zVrisXOhSZlyOsqvlzKcv
-         6CpZtoApqbUlG2r3SomgM5b6fAS0DbwXS8anJZZIQcozQo2oTyGdu9sIpfOA4M0dSNh+
-         YXmsgKZxNGSpilBRag0RR/TI2eyvRaqOX2vr2eQdFewL+nzRU2UccBUrYYenRtxZEXAj
-         zBgA==
-X-Forwarded-Encrypted: i=1; AJvYcCUtsC/fNstRZrfFTo4htZZdtDhFoU7ATDMHmKDTssiXyL4W8o9ZbsjZ7xTa1rjGMHQj2fATemohuxJ1@vger.kernel.org, AJvYcCVTwWmYHn3iWM8OeY07FehYHAve29QMF5QtLCTFBL7ugvVT/3JZcVzZric2fkE57QzS1v0V4WQmFrCSqnY5@vger.kernel.org, AJvYcCX3bJvtF7COdzSy7qdTJDnG9iY0R0OtFT8fwPY2KWgOi3sFkMGoSm25QinhOM4RIQwWnH6FhhldfKDRrLrWzw==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYFf/1x6eJs2tmCkgh3bU0dlBPD3Uw5dkFS9CG0EfOuX0dx3Kn
-	KN3OVYCgrmX5IynZk/yfXtkd+VyuFUpj6I8nJ3jiCQgaLmLbI619LoRNeDRicp+bSGQciDAEivM
-	RdVNXgx1V+OqutDPmCmgB8VUmjsQ=
-X-Gm-Gg: ASbGncuZyEl6jZfgncK5ie3+UwBoQu8ph3fjahbNbl+iF25+1qHhvsEV2PUumLuRd9d
-	6n03vRUaueUEVXDQpNtsL6xQmvKiypytO4+sV+uyvpYAun+VNJw6Jas86dlBnFjofnvXWKMJ+7G
-	2+cVZ09n59ffl0CZINgJ/1kEgMhoo=
-X-Google-Smtp-Source: AGHT+IH6m+3JpSoefsz/wCPh++hcK26qXs4lJwUORXK0FJ65ByGufreIwlwfoIgDMMvRpdHdGUsMMLBHV/pse5FopSc=
-X-Received: by 2002:a05:6e02:20c7:b0:3d1:883c:6e84 with SMTP id
- e9e14a558f8ab-3d2807b9b5fmr128847205ab.8.1739902991169; Tue, 18 Feb 2025
- 10:23:11 -0800 (PST)
+	s=arc-20240116; t=1739903230; c=relaxed/simple;
+	bh=GCTzL/xCfB6V2jDS+azd6MV1z1lY7BGs8D0xGHNINRk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iifPavHRyInXIrGf9XYSH1XHScGovWUCmbPgHgRKTjHcDzjuw0Ncc/gotitHRhpq/N0si7F63BNo5pulm+A2FR/PdSyvuHhfPUt5Ctygxk8NZoX+IzK9ZPqRafDhf3S6HaTcxsUVk03n5zbc+5Xcr9ioRlhmKsPHGKLpaGMxJwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tkSIy-0006Be-0w; Tue, 18 Feb 2025 19:26:48 +0100
+Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tkSIx-001dV9-1T;
+	Tue, 18 Feb 2025 19:26:47 +0100
+Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
+	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tkSIx-00A9Hm-1A;
+	Tue, 18 Feb 2025 19:26:47 +0100
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: [PATCH v4 0/6] arm64: dts: freescale: imx8mp-skov: switch to
+ nominal drive mode
+Date: Tue, 18 Feb 2025 19:26:40 +0100
+Message-Id: <20250218-imx8m-clk-v4-0-b7697dc2dcd0@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250213-a623-gpu-support-v1-0-993c65c39fd2@quicinc.com> <20250213-a623-gpu-support-v1-1-993c65c39fd2@quicinc.com>
-In-Reply-To: <20250213-a623-gpu-support-v1-1-993c65c39fd2@quicinc.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Tue, 18 Feb 2025 10:22:59 -0800
-X-Gm-Features: AWEUYZnNPg2AfVlGCXj9pinFkd16J3E28yQ3KeG-PhyvgCV6j8swgW1l6ohQvEk
-Message-ID: <CAF6AEGvDR1md6D2dnqJWOW5v3t2wnaC29VD1fyX5q48bzqEkHQ@mail.gmail.com>
-Subject: Re: [PATCH 1/5] drm/msm/a6xx: Fix gpucc register block for A621
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Jie Zhang <quic_jiezh@quicinc.com>, Rob Clark <robdclark@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAODQtGcC/23MTQqDMBCG4atI1k1JokbtqvcoXUyTiYbWH6INF
+ vHujYIQaJffMM+7kBGdxZFckoU49Ha0fRdGdkqIaqCrkVodNhFMZFzwgtp2LluqXk9aZbIoZKq
+ N0iUJ/4NDY+e9dbuH3dhx6t1nT3u+XY9KFVU8p4wqA8YAKwsN8jpgV78n13d2PmskW8qLg+eMM
+ xlzEbgEQNCgZG7wL08jztOYp4EzLbF6aATIfvm6rl///j44JQEAAA==
+X-Change-ID: 20241217-imx8m-clk-9467763dfcd8
+To: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Frank Li <Frank.li@nxp.com>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Abel Vesa <abel.vesa@linaro.org>, 
+ Marek Vasut <marex@denx.de>
+Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Ahmad Fatoum <a.fatoum@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Thu, Feb 13, 2025 at 8:10=E2=80=AFAM Akhil P Oommen <quic_akhilpo@quicin=
-c.com> wrote:
->
-> From: Jie Zhang <quic_jiezh@quicinc.com>
->
-> Adreno 621 has a different memory map for GPUCC block. So update
-> a6xx_gpu_state code to dump the correct set of gpucc registers.
->
-> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> ---
->  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c | 13 ++++++++++---
->  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h | 17 +++++++++++++++++
->  2 files changed, 27 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c b/drivers/gpu/dr=
-m/msm/adreno/a6xx_gpu_state.c
-> index 0fcae53c0b14..2c10474ccc95 100644
-> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
-> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
-> @@ -1214,12 +1214,12 @@ static void a6xx_get_gmu_registers(struct msm_gpu=
- *gpu,
->         struct a6xx_gpu *a6xx_gpu =3D to_a6xx_gpu(adreno_gpu);
->
->         a6xx_state->gmu_registers =3D state_kcalloc(a6xx_state,
-> -               3, sizeof(*a6xx_state->gmu_registers));
-> +               4, sizeof(*a6xx_state->gmu_registers));
->
->         if (!a6xx_state->gmu_registers)
->                 return;
->
-> -       a6xx_state->nr_gmu_registers =3D 3;
-> +       a6xx_state->nr_gmu_registers =3D 4;
+Unlike the i.MX8MM and i.MX8MN SoCs added earlier, the imx8mp.dtsi
+configures some clocks at frequencies that are only validated for
+overdrive mode, i.e., when VDD_SOC is 950 mV.
 
-nit, this and splitting out a6xx_gpucc_reg from a6xx_gmu_cx_registers
-could probably be it's own commit
+For the Skov i.MX8MP board, we want to run the SoC at the lower voltage of
+850 mV though to reduce heat generation and power usage. For this to work,
+clock rates need to adhere to the limits of the nominal drive mode.
 
-BR,
--R
+This is done by this series: A new imx8mp-nominal.dtsi reconfigures
+the imx8mp.dtsi clock tree to be compatible with nominal mode, an adaptation
+to the Linux clock driver makes it sanity check the actual clock rates against
+the SoC operating mode's constraints and finally the Skov DT makes use
+of it.
 
->
->         /* Get the CX GMU registers from AHB */
->         _a6xx_get_gmu_registers(gpu, a6xx_state, &a6xx_gmu_reglist[0],
-> @@ -1227,6 +1227,13 @@ static void a6xx_get_gmu_registers(struct msm_gpu =
-*gpu,
->         _a6xx_get_gmu_registers(gpu, a6xx_state, &a6xx_gmu_reglist[1],
->                 &a6xx_state->gmu_registers[1], true);
->
-> +       if (adreno_is_a621(adreno_gpu))
-> +               _a6xx_get_gmu_registers(gpu, a6xx_state, &a621_gpucc_reg,
-> +                       &a6xx_state->gmu_registers[2], false);
-> +       else
-> +               _a6xx_get_gmu_registers(gpu, a6xx_state, &a6xx_gpucc_reg,
-> +                       &a6xx_state->gmu_registers[2], false);
-> +
->         if (!a6xx_gmu_gx_is_on(&a6xx_gpu->gmu))
->                 return;
->
-> @@ -1234,7 +1241,7 @@ static void a6xx_get_gmu_registers(struct msm_gpu *=
-gpu,
->         gpu_write(gpu, REG_A6XX_GMU_AO_AHB_FENCE_CTRL, 0);
->
->         _a6xx_get_gmu_registers(gpu, a6xx_state, &a6xx_gmu_reglist[2],
-> -               &a6xx_state->gmu_registers[2], false);
-> +               &a6xx_state->gmu_registers[3], false);
->  }
->
->  static struct msm_gpu_state_bo *a6xx_snapshot_gmu_bo(
-> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h b/drivers/gpu/dr=
-m/msm/adreno/a6xx_gpu_state.h
-> index dd4c28a8d923..e545106c70be 100644
-> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h
-> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h
-> @@ -363,6 +363,9 @@ static const u32 a6xx_gmu_cx_registers[] =3D {
->         0x51e0, 0x51e2, 0x51f0, 0x51f0, 0x5200, 0x5201,
->         /* GMU AO */
->         0x9300, 0x9316, 0x9400, 0x9400,
-> +};
-> +
-> +static const u32 a6xx_gmu_gpucc_registers[] =3D {
->         /* GPU CC */
->         0x9800, 0x9812, 0x9840, 0x9852, 0x9c00, 0x9c04, 0x9c07, 0x9c0b,
->         0x9c15, 0x9c1c, 0x9c1e, 0x9c2d, 0x9c3c, 0x9c3d, 0x9c3f, 0x9c40,
-> @@ -373,6 +376,17 @@ static const u32 a6xx_gmu_cx_registers[] =3D {
->         0xbc00, 0xbc16, 0xbc20, 0xbc27,
->  };
->
-> +static const u32 a621_gmu_gpucc_registers[] =3D {
-> +       /* GPU CC */
-> +       0x9800, 0x980e, 0x9c00, 0x9c0e, 0xb000, 0xb004, 0xb400, 0xb404,
-> +       0xb800, 0xb804, 0xbc00, 0xbc05, 0xbc14, 0xbc1d, 0xbc2a, 0xbc30,
-> +       0xbc32, 0xbc32, 0xbc41, 0xbc55, 0xbc66, 0xbc68, 0xbc78, 0xbc7a,
-> +       0xbc89, 0xbc8a, 0xbc9c, 0xbc9e, 0xbca0, 0xbca3, 0xbcb3, 0xbcb5,
-> +       0xbcc5, 0xbcc7, 0xbcd6, 0xbcd8, 0xbce8, 0xbce9, 0xbcf9, 0xbcfc,
-> +       0xbd0b, 0xbd0c, 0xbd1c, 0xbd1e, 0xbd40, 0xbd70, 0xbe00, 0xbe16,
-> +       0xbe20, 0xbe2d,
-> +};
-> +
->  static const u32 a6xx_gmu_cx_rscc_registers[] =3D {
->         /* GPU RSCC */
->         0x008c, 0x008c, 0x0101, 0x0102, 0x0340, 0x0342, 0x0344, 0x0347,
-> @@ -386,6 +400,9 @@ static const struct a6xx_registers a6xx_gmu_reglist[]=
- =3D {
->         REGS(a6xx_gmu_gx_registers, 0, 0),
->  };
->
-> +static const struct a6xx_registers a6xx_gpucc_reg =3D REGS(a6xx_gmu_gpuc=
-c_registers, 0, 0);
-> +static const struct a6xx_registers a621_gpucc_reg =3D REGS(a621_gmu_gpuc=
-c_registers, 0, 0);
-> +
->  static u32 a6xx_get_cp_roq_size(struct msm_gpu *gpu);
->  static u32 a7xx_get_cp_roq_size(struct msm_gpu *gpu);
->
->
-> --
-> 2.45.2
->
+Actual configuration of the VDD_SOC rail continues to happen prior to Linux
+as well as PLL configuration that needs to happen earlier than the kernel
+running. See the corresponding barebox patch series[1] for details.
+Note that the barebox series didn't yet include VDD_SOC reconfiguration
+to 850mV, that would follow once the kernel changes have been merged.
+
+[1]: https://lore.kernel.org/barebox/20240503103717.1370636-1-a.fatoum@pengutronix.de/
+
+---
+Changes in v4:
+- remove unnecessary oneOf in dt-bindings schema (Frank)
+- rebase on top of DT clock rate change v6.14-rc3
+- Link to v3: https://lore.kernel.org/r/20250113-imx8m-clk-v3-0-0d6e9bdeaa4e@pengutronix.de
+
+Changes in v3:
+- change boolean mode properties to string property, so it's possible to
+  override in overlays (Frank).
+- Dropped Conor's Ack again due to aforementioned binding change.
+- make struct imx8mp_clock_constraints::clkid unsigned (Stephen)
+- Remove comma after sentinel member (Stephen)
+- Link to v2: https://lore.kernel.org/r/20250106-imx8m-clk-v2-0-6aaeadac65fe@pengutronix.de
+
+Changes in v2:
+- Explain in Patch 1/6 why two properties are added instead of one
+  (Conor)
+- Collect Conor's Acked-by
+- Collect Peng's Reviewed-by
+- Link to v1: https://lore.kernel.org/r/20241219-imx8m-clk-v1-0-cfaffa087da6@pengutronix.de
+
+---
+Ahmad Fatoum (6):
+      dt-bindings: clock: imx8m: document nominal/overdrive properties
+      arm64: dts: imx8mp: Add optional nominal drive mode DTSI
+      arm64: dts: imx8mp: add fsl,nominal-mode property into nominal.dtsi
+      arm64: dts: freescale: imx8mp-skov: configure LDB clock automatically
+      arm64: dts: freescale: imx8mp-skov: operate SoC in nominal mode
+      clk: imx8mp: inform CCF of maximum frequency of clocks
+
+ .../devicetree/bindings/clock/imx8m-clock.yaml     |   8 ++
+ arch/arm64/boot/dts/freescale/imx8mp-nominal.dtsi  |  64 +++++++++
+ .../arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi |   5 +-
+ .../freescale/imx8mp-skov-revb-mi1010ait-1cp1.dts  |  19 +--
+ drivers/clk/imx/clk-imx8mp.c                       | 151 +++++++++++++++++++++
+ 5 files changed, 231 insertions(+), 16 deletions(-)
+---
+base-commit: 0ad2507d5d93f39619fc42372c347d6006b64319
+change-id: 20241217-imx8m-clk-9467763dfcd8
+
+Best regards,
+-- 
+Ahmad Fatoum <a.fatoum@pengutronix.de>
+
 
