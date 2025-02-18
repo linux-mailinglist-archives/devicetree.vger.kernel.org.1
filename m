@@ -1,167 +1,86 @@
-Return-Path: <devicetree+bounces-147695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEC3AA390CF
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 03:17:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 479FBA39126
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 04:12:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C457E3B31F5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 02:16:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CF6816770E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 03:12:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC62929D05;
-	Tue, 18 Feb 2025 02:17:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF74715667D;
+	Tue, 18 Feb 2025 03:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=studer.dev header.i=@studer.dev header.b="pJHRuUoi"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="qWlCq4FO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-b.studer.dev (mail-b.studer.dev [3.21.136.164])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90FD31EEE6;
-	Tue, 18 Feb 2025 02:16:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=3.21.136.164
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91FE728373;
+	Tue, 18 Feb 2025 03:12:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739845021; cv=none; b=DTAf3DiL04yTD1871ahpGyCm6QvzpB1yEfxHmcCPoORTRFL9Jh7A77mn4FATOWICTJMoNinS3v7CvjTVzjidwe761rjP+53pilEDaceczz6ftmL9lMWEY8XMc3qyLxKkCRt2TQNnWQ0/F3osJuOmp68wri+e8epSO4vyJaR2rho=
+	t=1739848368; cv=none; b=EoBb02drsLsZ1BnalHYNZuUO3gPKeA9sGS03pLmI7G+ph8Kn25E9hA2Lq5O0UuFiWv4Icpf/arxsYpeqyZpstn+e9S+lH6u675Zjxm0U/OQplthvShCP6ylZnAKV8//B4qWlPN8zzKP9h0oKI0YNhGOPzIpYMSk4CSKJ1oCksDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739845021; c=relaxed/simple;
-	bh=1JXVA2sVlnhfQcgr028+qseD4GYQ502lyjwFC65z7iA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EeeNnH9jseCD8ekaOmCF5TemrME3xyuz6XCVTfq3vn6475A6WEYTi2rKlpRzKm+IJ+yBkApTLpTYfl2/w0aZQi6kw7hWoem6gM7Hslb6TFVb428Qa/O4eALCPx7/0fxdPZGtOLb/V+fzvTrKWRT4hCaiPESypdDq9DkeIO6+r30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=studer.dev; spf=pass smtp.mailfrom=studer.dev; dkim=pass (2048-bit key) header.d=studer.dev header.i=@studer.dev header.b=pJHRuUoi; arc=none smtp.client-ip=3.21.136.164
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=studer.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=studer.dev
-Received: from mail.studer.dev (mail.studer.dev [168.62.161.121])
-	by mail-b.studer.dev (Postfix) with ESMTPSA id 0913840028;
-	Tue, 18 Feb 2025 02:08:58 +0000 (UTC)
-dkim-signature: v=1; a=rsa-sha256; d=studer.dev; s=hmail;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
-	bh=5AA+a4IxbsmGiRmLLlpgl3OVaLWtMwq00DaT2+GNKdU=;
-	b=pJHRuUoirhakSXgBVi1wAqvRu8P4O5UhqKep0hqV2Xm+WPpeDjpMf3G2SiBDyTQhaAaDOfdFtTYMEPzp399MtvTka7gVjb6ZBsbCbBJaMrgKXEXbAGHz0hAhcftTB8Xud/hBqZeqB073X/MIdu4SF8SNzXmNiQ0do5RANUV+/rJkWqsCAuskK5ao+8lcCEQFsUQS3wWnBNUzP5CGZttjyshujt4jXO4/rfTzMVM/tuGw+Sw7BGTlPw0AH2
-	lHGT6PIWkXU98F36Tl8JlhswCK38SkV9nb58J1kGjYtkq8+iQ6II+Dc441In2meOCQfjINh3wYQSJ1yFwKP4iRZMbXmA==
-Received: from alex-framework.mynetworksettings.com (pool-68-239-44-167.bstnma.fios.verizon.net [68.239.44.167])
-	by mail.studer.dev with ESMTPSA
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
-	; Tue, 18 Feb 2025 02:08:55 +0000
-From: Alex Studer <alex@studer.dev>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1739848368; c=relaxed/simple;
+	bh=IaYak8ZAhTWiVDW7+X3d5puGKle3mrD6/+6DIpb8/6Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RLyRM2Dp+6cBfdzWeoEAI98Yh+6sWNnnhoHEvafLub8Vjz8R6duJAqOUvZoQixuXGPYGBa8BSlsSo64XfTdUT92MVXWKqeAmcimRUsusxu1uxFLRp1Bx156Yh5+NYqMPAa6LPstKVrj7x1E0wKK+kRC1q2HOS5XGKjdvTY3QCnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=qWlCq4FO; arc=none smtp.client-ip=1.95.21.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=I5sXNENN0HCvQl/q8XCRMfovXIba4uIDzB7gZ/fD00M=;
+	b=qWlCq4FOF1aeWHSc1agaVeuZ90eACl8USQx0ppHIlNKGbHQom/nahJfLuArRyx
+	VgqWYYAFnE1WsZqydOzVM0XJQREqs7MBkCy4wPXuFrHeHwKJ/vqUMp/zxeP6ooJt
+	daAtaVv42FBAtYBNdGA4uka5aUenVyJ2QkWya+rEOaKCI=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgDHalpZ+rNnj3Q0CQ--.18186S3;
+	Tue, 18 Feb 2025 11:11:23 +0800 (CST)
+Date: Tue, 18 Feb 2025 11:11:20 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frieder Schrempf <frieder@fris.de>
+Cc: linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>,
+	Conor Dooley <conor@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Frieder Schrempf <frieder.schrempf@kontron.de>, imx@lists.linux.dev,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Alex Studer <alex@studer.dev>
-Subject: [PATCH] riscv: dts: allwinner: d1: Add CPU thermal sensor and zone
-Date: Mon, 17 Feb 2025 21:06:29 -0500
-Message-ID: <20250218020629.1476126-1-alex@studer.dev>
-X-Mailer: git-send-email 2.48.1
+	Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Robin Gong <yibin.gong@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, Bo Liu <liubo03@inspur.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+	Joy Zou <joy.zou@nxp.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH v3 0/9] Use correct LDO5 control registers for PCA9450
+Message-ID: <Z7P6WBMxes7X5glY@dragon>
+References: <20241218152842.97483-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241218152842.97483-1-frieder@fris.de>
+X-CM-TRANSID:Mc8vCgDHalpZ+rNnj3Q0CQ--.18186S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUVf-BDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAgz3ZWez6b5ivgAAsD
 
-The sun20i THS (built in CPU thermal sensor) is supported in code, but
-was never added to the device tree. So, add it to the device tree,
-along with a thermal zone for the CPU.
+On Wed, Dec 18, 2024 at 04:27:23PM +0100, Frieder Schrempf wrote:
+> Frieder Schrempf (9):
+>   arm64: dts: imx8mp-skov-reva: Use hardware signal for SD card VSELECT
+...
+>   arm64: dts: imx8mm-kontron: Add support for reading SD_VSEL signal
+>   arm64: dts: imx93-kontron: Fix SD card IO voltage control
+>   arm64: dts: imx8mp-kontron: Add support for reading SD_VSEL signal
 
-Signed-off-by: Alex Studer <alex@studer.dev>
----
- arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 31 +++++++++++++++++++
- .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 16 ++++++++++
- 2 files changed, 47 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-index 6367112e6..bdde82aa8 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-@@ -3,6 +3,8 @@
- 
- #define SOC_PERIPHERAL_IRQ(nr)	(nr + 16)
- 
-+#include <dt-bindings/thermal/thermal.h>
-+
- #include "sunxi-d1s-t113.dtsi"
- 
- / {
-@@ -115,4 +117,33 @@ pmu {
- 			<0x00000000 0x0000000e 0xffffffff 0xffffffff 0x00010000>,
- 			<0x00000000 0x0000000f 0xffffffff 0xffffffff 0x00020000>;
- 	};
-+
-+	thermal-zones {
-+		cpu-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&ths>;
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu_alert>;
-+					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+
-+			trips {
-+				cpu_alert: cpu-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu-crit {
-+					temperature = <100000>;
-+					hysteresis = <0>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
- };
-diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-index e4175adb0..fcfcaf06c 100644
---- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-@@ -426,6 +426,10 @@ sid: efuse@3006000 {
- 			reg = <0x3006000 0x1000>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+
-+			ths_calibration: thermal-sensor-calibration@14 {
-+				reg = <0x14 0x8>;
-+			};
- 		};
- 
- 		crypto: crypto@3040000 {
-@@ -934,5 +938,17 @@ rtc: rtc@7090000 {
- 			clock-names = "bus", "hosc", "ahb";
- 			#clock-cells = <1>;
- 		};
-+
-+		ths: thermal-sensor@2009400 {
-+			compatible = "allwinner,sun20i-d1-ths";
-+			reg = <0x2009400 0x100>;
-+			interrupts = <SOC_PERIPHERAL_IRQ(58) IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_THS>;
-+			clock-names = "bus";
-+			resets = <&ccu RST_BUS_THS>;
-+			nvmem-cells = <&ths_calibration>;
-+			nvmem-cell-names = "calibration";
-+			#thermal-sensor-cells = <0>;
-+		};
- 	};
- };
--- 
-2.48.1
-
+Applied all 4 DTS patches, thanks!
 
 
