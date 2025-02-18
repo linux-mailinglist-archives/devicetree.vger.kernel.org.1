@@ -1,157 +1,162 @@
-Return-Path: <devicetree+bounces-147908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8694A39C71
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 13:49:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22086A39C88
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 13:52:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA5513A44C9
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 12:48:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED6B516F69A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 12:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 897922594B9;
-	Tue, 18 Feb 2025 12:49:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 864C325E443;
+	Tue, 18 Feb 2025 12:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LufKjvml"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SR3OERlx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 529C818E743;
-	Tue, 18 Feb 2025 12:49:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C712A25A35C;
+	Tue, 18 Feb 2025 12:52:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739882944; cv=none; b=np68FjvYkO/74mlloOEUug1SY4waSj93XGWoNKKCObJuBBM+kdF8DFyBTOe/LiGvy1bYj/ZWbgiy40i2Rhd1H+6i2Q96jBKeXdsN2ODNSzwZ9KLzhXmTPPwMHjUIqSG+jTjT32IzsnjxNtjYBSKzY5cNvkh617zS5H3mbtQnYvM=
+	t=1739883129; cv=none; b=j+zjbhiwFpLEL0OBGC7XS9BAkjYffzR16+/vpngPEiPynx0jdOzEpy+mM8Ir5B0Q4kXGK1nYC+LqedPBlIbajJqF652d1mz502CUGGcV7gJQU2ZaGbWPykTLPALve9aVLq/oUxS9mx3r5rka4o+GyQuMni0/8oQXpFKJlg4Xxdw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739882944; c=relaxed/simple;
-	bh=3MTAPX7BbYroUzgDrT3TI2XCGXe5QTbsIEpvN1L+HL0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZKPfHpTYxdMDxQRRzQh9kSakib4mzqmE/2lfCIuePwL+XK9yeWSWOo88CWLLL+g2h7Vyueu9MeNAhIMMGr3UdAYuyi1gLn39eOCHe+wDrfyxxXPgZ2ikWD3DpjQtbfMpW+85ptfvY1bqh7y65u90s+300WPG8UicdjW2Ts43t4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LufKjvml; arc=none smtp.client-ip=209.85.128.43
+	s=arc-20240116; t=1739883129; c=relaxed/simple;
+	bh=WZCqNOQCx6zO8+iDsOvyi+ZcmH4P3OrAmCncVdzCDts=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dKI21xqnS3V9pJeOX7V5Cxxq0af7u1Dj3/B5fgDaKjNaeYNxB2ypWhbdKQKPYbO+FiUncFnyiUxMWHCCgomSm51KfifF4f18kxqN6VS8a23O6LvNFhvUBFId7d+Oxg4TRCe5A1SlvmmkDlmBA5IK5AMULKkHS0R2lJbPJYAdipw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SR3OERlx; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4396424d173so54426125e9.0;
-        Tue, 18 Feb 2025 04:49:02 -0800 (PST)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43971025798so17473555e9.1;
+        Tue, 18 Feb 2025 04:52:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739882941; x=1740487741; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xHMEUUgzJ5Lepuax0T+IdRjsT3yoJrxVgzW4e4ftDcQ=;
-        b=LufKjvmlDUVmfLvbIZx+lAUYODeSytD9mQKXxcFDFP8oUuf8jmD/5ssOoiAqKBnaEt
-         /cAO1rIP/2294mF9rCyKQGFxl4AXl9HhSE61aQhEjMWFJT7SPN0HqU6G/j2TG9t6Wrak
-         kO19wGRrtOUnHzDyU646zQWWqVAFbJqUrP+f5lyzp2nTJ+VJfjC4kwS7mK+nuisJzdFG
-         C1HJQdwodtBerH8yNhsKldgmnk8lmtpJD0W+uSKhzi/zIqt1aFbdRb9dhyfuapBnvbaR
-         oFxHanqQmiTln0ra3zqqlUg/MzganTwGG2lM183KhlaOl2d9bNtTdKhA/Ixgio71Sev2
-         UA6w==
+        d=gmail.com; s=20230601; t=1739883126; x=1740487926; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=T00F6m62eOnON9Sf4S3pOg2h4Ua/j/4d10PkPsHZ+/k=;
+        b=SR3OERlxei12QHBRk0Gp/BfB3jUHP4GWZGSQeYNue+qYIp1bG8wXWz/VcaA5lZDdyv
+         jyVY6+hEaOpfJMtriOe7KR4H1sL2EBNLcxfZ/fMka0TxBjputn4R0vE+Cs6GEV7uOSll
+         WVi16OVu+98j/NZZXtQCxJDgWrfhJ+xHMcz3fXVik2km30AiooP11YOc+LWqTvln4V/5
+         ehbjcvGHaCs/R2/Cgu/OL7pv/rYbAEhGhCvSY03GrkrnM5u+46c7JX6qYzWSGxZA+mjG
+         K4ARSJTRCxXbfnBUGK1GuXVC6EcPOrmXQselOkmLX8jFSie8OJUK+nOr0etOIqRh7G/x
+         SYDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739882941; x=1740487741;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xHMEUUgzJ5Lepuax0T+IdRjsT3yoJrxVgzW4e4ftDcQ=;
-        b=A9GxgLKrKrfjwVh3WEMwxAeWDah+G26/diR1kdhkX4IhhcznFJHwF6cAQiTKotRu+a
-         iMFjfKg3BJzPdpG/PXc4SuB5OjfB/Y/OzjtBuCsE42BuOzUN1wDgxEf4FT8Gbs5OptAU
-         w3a0F5t9E5IC6ZH7jm0sKZ9kEAgQJ5OKBZ1/FeQnZnLbb620mRjjraAVxkHCzRw/GZnP
-         oJ/ChhqrjMk3QlAUpFWrchEMuofhiORwIKjqFmDDVgd3xS93Pg/pM4xa5DgsDjWVlbaC
-         7Sx0t2rnCg52saR6bj3hWw18pM3qlBGJ7PtH7F4+9qHCn8PtnyFGkLW+xWqpPtgkKTlu
-         TvIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWI1V/gr800+022JwuP8Zqd4fqHMpQ7+qxCBrISFTGWkU5rJfY0dLUXjD44foV+yw4muKGlofDr6YsQ@vger.kernel.org, AJvYcCWxiDG9Q2Kdrqw9k4FC/koHCJ8qyktO13pFfLNGiFGaoMDHqCVEAhSllZwLKJ44+9usstdi2jNOb6sH6HG+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcQGsh56iGvzsomZYNseSDOmtDW4SpP2DUotAlMF25sBspLpIg
-	+i32ATtNM2J+5yQxZ4KL+eMPcAtngYz59+0NG7xITnTmYWBM0kXcZGfX+KkBl6QtLZBfNnJug6a
-	BdDp0b608RTHrXI2QAVe38+tQMvY=
-X-Gm-Gg: ASbGnctNFJOwl2yHoKR6u/aOtcd9kA1jzpBfzv4sJwDSjN3ntburJGNu5792bTq4E3m
-	hs/L0r9J/wLwx6EI8s2i/48vEwtkMZEWoHWkJc7MsE0gEvLKMevr90M3AiczKSEZpFl0BC2FZgw
-	==
-X-Google-Smtp-Source: AGHT+IG+4guV9zL2bAZNHMObNNITOjYzmm8gBHf04+Fx5knp80glZYkRGDTbsirq+bKDuplePjSR8kzavUyBoBLNCGo=
-X-Received: by 2002:adf:fa08:0:b0:38f:2a99:b377 with SMTP id
- ffacd0b85a97d-38f33f57459mr12091977f8f.53.1739882940549; Tue, 18 Feb 2025
- 04:49:00 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739883126; x=1740487926;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=T00F6m62eOnON9Sf4S3pOg2h4Ua/j/4d10PkPsHZ+/k=;
+        b=S3gpGMgyOL28TV3F96VntR2HTs6SJE/QKK/SITpxlQhvTROd6twuEhoG5FgE0gGjwS
+         94VEvo4nND65vo5wJn0j2vmEDI3yareYbpOW9X7SFZcQF/XLE9bnOXvXoxCTQtyKlVzF
+         AMRwk6gCcVDvXxN8fJFH/TtfGavlVXnuNfxsy+cPiAuZs4QWIWe4cVM/hKhCOzblvoFR
+         ttDRTqB39Qtpgc5TNB3fkfFTm7aSS9NSv7CM2yakBBJ2OxKF7zFrBP3o8i9+k8X6GVUu
+         f0aWQ+VyaH5H5vubXUMivKSlL760eKjsGCi+RSLZc1gc5l2FTHj1kC28Q78IGbF79HoZ
+         7rWw==
+X-Forwarded-Encrypted: i=1; AJvYcCVGOFDnYKVOZhxxfqy1QRV876jUDZIjjOT62JWQ8B1LgwwSTvwTLbdtKNWPUt729vTvOnpy/oFInflR@vger.kernel.org, AJvYcCX+ADsUJeEydefzIpuqtRT2m7gY7jjvYXgX3EgJeAGhKUm5geBNtmWSvk3+ANcKCyp8jVvmAN1Mjm0csiqB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYyynHnkH0syuaR+B8kmx9rA7LrPty8sxzB2SCC1Yg8lMacI0R
+	hbdy2Ex53GT9CrmpQWGVH8bg4B1BPPSdVh/OJePA/65BozZA6Gs6
+X-Gm-Gg: ASbGncv19Nn0GKRH0RDDCMEHBmSGgZ/CnhOv4vTiZclcIZ1FwBrFWvzzsoBK7syodXB
+	YBv5TZkof2FjQqPlFVHbp0baAvNfnl1jmQBBeHV+LweYCpxaaZhTulrFarw10Wg/83YkXZQhJmY
+	svULJlDbPz0s9HsB+9mysC2pMlHKU/KymE1uakq4/v/hgrbHaS1ZXSNFSer988zU42gu7yvi1tt
+	cuqhZYDO30mz99A7vXETktThjgzAMHxCyWxvYBrXYcVcjvZDPB91b2X8NlrTbH5BIvGXbk6V2Dg
+	HEmHhXSpCUdICuwZvUs4rn0MRA8=
+X-Google-Smtp-Source: AGHT+IEmUMaihQHu0knpO02wdP9d0VNbrRbAmiSUjS7OIoELcuwHR+y40zRhkum98y6zzAK+5vJKnQ==
+X-Received: by 2002:a05:6000:402a:b0:38d:e48b:1766 with SMTP id ffacd0b85a97d-38f33f118c8mr11517057f8f.6.1739883124714;
+        Tue, 18 Feb 2025 04:52:04 -0800 (PST)
+Received: from prasmi.Home ([2a06:5906:61b:2d00:6940:cc67:5b00:b151])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f25a0fa2dsm14747720f8f.101.2025.02.18.04.52.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Feb 2025 04:52:04 -0800 (PST)
+From: Lad Prabhakar <prabhakar.csengg@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lad Prabhakar <prabhakar.csengg@gmail.com>
+Subject: [PATCH] arm64: dts: qcom: Drop `tx-sched-sp` property
+Date: Tue, 18 Feb 2025 12:51:57 +0000
+Message-ID: <20250218125157.412701-1-prabhakar.csengg@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217140910.108175-1-clamor95@gmail.com> <c19bd9b3-86c4-4f1a-beb9-b6aed32b3ef5@suse.de>
-In-Reply-To: <c19bd9b3-86c4-4f1a-beb9-b6aed32b3ef5@suse.de>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 18 Feb 2025 14:48:48 +0200
-X-Gm-Features: AWEUYZknhrRerz9466maOIJ-JIcnOjmCvbeJ_Q4ULJO_5cv5VSDkdN2CrbigW9c
-Message-ID: <CAPVz0n0WG1Q51SONb4fmkzi4q7Q0sZ_aKSLrLnGboNNya6nO+Q@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] drm: bridge: add ssd2825 RGB/DSI bridge support
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Javier Martinez Canillas <javierm@redhat.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-=D0=B2=D1=82, 18 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 14:36 Thom=
-as Zimmermann <tzimmermann@suse.de> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> (cc'ing Javier)
->
-> Hi
->
-> Am 17.02.25 um 15:09 schrieb Svyatoslav Ryhel:
-> > Solomon SSD2825 is a RGB to MIPI DSI bridge used in LG Optimus 4D P880
-> > and LG Optimus Vu P895
->
-> There's a driver for Solomon 13xx displays in drm/solomon. Did you check
-> that this new driver isn't just an extension of the existing code?
->
+The `tx-sched-sp` property was removed in commit aed6864035b1 ("net:
+stmmac: platform: Delete a redundant condition branch").
 
-Definitely no, ssd2825 is a RGB to DSI bridge in a pure form. While
-13xx as you have said are display controllers family.
+Therefore, it can be safely removed from the device tree.
 
-> Best regards
-> Thomas
->
-> >
-> > ---
-> > Changes on switching from v1 to v2:
-> > - added description for clock
-> > - removed clock-names
-> > - added boundries for hs-zero-delay-ns and hs-prep-delay-ns
-> > - added mutex lock for host transfers
-> > - converted to atomic ops
-> > - get drm_display_mode mode with atomic helpers
-> > - parameterized INTERFACE_CTRL_REG_6 configuration
-> > - added video mode validation and fixup
-> > - removed clock name
-> > - switched to devm_regulator_bulk_get_const
-> > - added default timings
-> > ---
-> >
-> > Svyatoslav Ryhel (2):
-> >    dt-bindings: display: bridge: Document Solomon SSD2825
-> >    drm: bridge: Add support for Solomon SSD2825 RGB/DSI bridge
-> >
-> >   .../display/bridge/solomon,ssd2825.yaml       | 141 +++
-> >   drivers/gpu/drm/bridge/Kconfig                |  14 +
-> >   drivers/gpu/drm/bridge/Makefile               |   1 +
-> >   drivers/gpu/drm/bridge/ssd2825.c              | 824 +++++++++++++++++=
-+
-> >   4 files changed, 980 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/display/bridge/s=
-olomon,ssd2825.yaml
-> >   create mode 100644 drivers/gpu/drm/bridge/ssd2825.c
-> >
->
-> --
-> --
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Frankenstrasse 146, 90461 Nuernberg, Germany
-> GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-> HRB 36809 (AG Nuernberg)
->
+Signed-off-by: Lad Prabhakar <prabhakar.csengg@gmail.com>
+---
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts  | 1 -
+ arch/arm64/boot/dts/qcom/sa8540p-ride.dts  | 2 --
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 2 --
+ 3 files changed, 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+index b5c9f89b3435..af75350f59b8 100644
+--- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
++++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+@@ -257,7 +257,6 @@ queue3 {
+ 
+ 	mtl_tx_setup: tx-queues-config {
+ 		snps,tx-queues-to-use = <4>;
+-		snps,tx-sched-sp;
+ 
+ 		queue0 {
+ 			snps,dcb-algorithm;
+diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+index 177b9dad6ff7..11663cf81e45 100644
+--- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
++++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+@@ -225,7 +225,6 @@ queue3 {
+ 
+ 	ethernet0_mtl_tx_setup: tx-queues-config {
+ 		snps,tx-queues-to-use = <1>;
+-		snps,tx-sched-sp;
+ 
+ 		queue0 {
+ 			snps,dcb-algorithm;
+@@ -302,7 +301,6 @@ queue3 {
+ 
+ 	ethernet1_mtl_tx_setup: tx-queues-config {
+ 		snps,tx-queues-to-use = <1>;
+-		snps,tx-sched-sp;
+ 
+ 		queue0 {
+ 			snps,dcb-algorithm;
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+index 175f8b1e3b2d..eeae4f071274 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+@@ -411,7 +411,6 @@ queue3 {
+ 
+ 	mtl_tx_setup: tx-queues-config {
+ 		snps,tx-queues-to-use = <4>;
+-		snps,tx-sched-sp;
+ 
+ 		queue0 {
+ 			snps,dcb-algorithm;
+@@ -480,7 +479,6 @@ queue3 {
+ 
+ 	mtl_tx_setup1: tx-queues-config {
+ 		snps,tx-queues-to-use = <4>;
+-		snps,tx-sched-sp;
+ 
+ 		queue0 {
+ 			snps,dcb-algorithm;
+-- 
+2.43.0
+
 
