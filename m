@@ -1,82 +1,107 @@
-Return-Path: <devicetree+bounces-147686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C50DAA39029
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 02:09:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D312A3904F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 02:22:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86A2D16779D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 01:09:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 147BA18933A1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 01:20:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D454B21348;
-	Tue, 18 Feb 2025 01:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 987621487E1;
+	Tue, 18 Feb 2025 01:20:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="MR++2k7U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GWb/VpUJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FCF718E20;
-	Tue, 18 Feb 2025 01:09:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CE40537F8;
+	Tue, 18 Feb 2025 01:20:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739840993; cv=none; b=LndwPYE4LyrohfEnm2Bd9KYgJr5V49AA5jY1ytY29oT9nJjgIU4rHdnhKyaYh8ERW/kRBQN4eIX+6V2R2fh9QIc7CWbuACLw/N6O+0RsnU9fJpIJKjTC8shZBEQLhMy59VN8ISMA5tfYHNhiedxmOGxDuHBf2Uiwh84nlfjtlEY=
+	t=1739841621; cv=none; b=T2qAX/ZmZtxywDwe5WJn5DiKzSwoTco+1SoiRoBwxPUOAu1oRZBZ4P4d3CoDGYzaqalZ8Hjegj3C5y8EsauKfWstcsDgZjxWwYpkOOnEk4PlrRZi8brzOfklZnveog8hIKcukCI/9hWhRv96sdyD+8fVvKpNguDTeY8kUr8oN9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739840993; c=relaxed/simple;
-	bh=42hWqZkaDlwsbOuKcR363GQ3gUU+QNYqERbd6QgQwlc=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=hhcpmCAePMgSd9ylZk78zaUub5ZKapxDJnjkENUeRM4O3+LlQFrgY6gUedMW0r6qUC4+IALQ79Zy4Cu9yjEo9oKXhk/FoFrhSQctwb037mWOIVbxPoDQIPEMeJ62r+QykBwF7YgS+4MG02DjuwpYvEUtJeKCuJBgq1pVbPK8mU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=MR++2k7U; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1739840990;
-	bh=42hWqZkaDlwsbOuKcR363GQ3gUU+QNYqERbd6QgQwlc=;
-	h=Subject:From:To:Date:In-Reply-To:References;
-	b=MR++2k7U+SQKF98nYBZwOBmOb2ncRe5qVWZZqcgx53Sxw3D5moRDfFaVkaHQo5NQ4
-	 LbioIN1E+rcU4Wp1Hu0I4t8thOoIhVZbPzjXj93GiVOal9l27Ela+cMaKBpmCu7kJn
-	 XwTfFf2rQDw6bw/3mh2fjTHBnkkNRx2UVhb/c+dhq9l6ez8P07OmspidVXdrYefeG3
-	 Y+g5frhVzF8OswBMD88vkDH54VcxI7BDmHRh7iroxNDAcLKcpqMTdUkK+83LSo9H64
-	 6NO4s475K8i/MJC9vvAQw0dmtxeDxdFCo+I+orlHbkbg9svQ5Orna6hLHx+edN52nm
-	 Ra+qldThpmp1g==
-Received: from [192.168.68.112] (ppp118-210-165-49.adl-adc-lon-bras34.tpg.internode.on.net [118.210.165.49])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 1E5A876234;
-	Tue, 18 Feb 2025 09:09:49 +0800 (AWST)
-Message-ID: <560da647d1fd12c53f6403db4207fec48899648e.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v6] media: dt-bindings: aspeed,video-engine: Convert to
- json schema
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Jammy Huang <jammy_huang@aspeedtech.com>, eajames@linux.ibm.com, 
- mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org,  joel@jms.id.au, andrew@aj.id.au,
- linux-media@vger.kernel.org,  openbmc@lists.ozlabs.org,
- devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org,  linux-kernel@vger.kernel.org
-Date: Tue, 18 Feb 2025 11:39:48 +1030
-In-Reply-To: <20250213015338.3243171-1-jammy_huang@aspeedtech.com>
-References: <20250213015338.3243171-1-jammy_huang@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1739841621; c=relaxed/simple;
+	bh=faw9/dQRG1yyXfFilLPDy5GQnixQoVs1FkcKsxZbL3I=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=HcaSL0GJ20zyDLQbsVfD5IzRKWLbzxxbPpa0g+02+Uu4F2kc7njw89m/hIE7qOexpnQ55o5KQYb9/SYA3vF8VC+2z1lSJTTiHunXfQT/I94PBs5ZkOhHstzAJkLo/e0PGMqkj2q+T2nJjZMPrnhz+aRvFAH6Nx5p+76X1CSTDng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GWb/VpUJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AB5BC4CEE4;
+	Tue, 18 Feb 2025 01:20:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739841621;
+	bh=faw9/dQRG1yyXfFilLPDy5GQnixQoVs1FkcKsxZbL3I=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=GWb/VpUJETmWTep+sh2o8ryfOUwowkwBrGdoeEsg0e2gtFAu8AcMQh28ysFEMSdo+
+	 Kh7zf5TBkTTMbWuPlg3RmpVpNWqKaE4kQki6Rsbl9HIJ2ECyEEd89hcBC7NnnfY9QC
+	 DreNL/HGJtOCDTlkSA+PBJvEqVq/dAI2eZPJPB5XkT/Y7oY4N8w+8z3W6Ft36oQHa2
+	 UClcSlqRYz1aj9CftIDghxKFZlwGz0I2bAD7NfSR6BjMq3TBBM0LGI78GjknI07Lbj
+	 FMrLLvoyQu+ORbyhaIATZgXMSAKv0QEeXCdxuN4miJ7Zq5mmwwFdsHU536JHA2k1xv
+	 7+AUU91JCjsPg==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADE82380AAD5;
+	Tue, 18 Feb 2025 01:20:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v5 0/3] net: phy: dp83822: Add support for
+ changing the transmit amplitude voltage
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <173984165125.3591662.98390841427840675.git-patchwork-notify@kernel.org>
+Date: Tue, 18 Feb 2025 01:20:51 +0000
+References: <20250214-dp83822-tx-swing-v5-0-02ca72620599@liebherr.com>
+In-Reply-To: <20250214-dp83822-tx-swing-v5-0-02ca72620599@liebherr.com>
+To: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, afd@ti.com, andrew@lunn.ch, hkallweit1@gmail.com,
+ linux@armlinux.org.uk, f.fainelli@gmail.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dimitri.fedrau@liebherr.com, dima.fedrau@gmail.com,
+ conor.dooley@microchip.com
 
-On Thu, 2025-02-13 at 09:53 +0800, Jammy Huang wrote:
-> Convert aspeed-video.txt to yaml format.
-> Update aspeed-video.txt to aspeed,video-engine.yaml in MAINTAINER
-> file.
->=20
-> Signed-off-by: Jammy Huang <jammy_huang@aspeedtech.com>
+Hello:
 
-Reviewed-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Thanks Jammy.
+On Fri, 14 Feb 2025 15:14:08 +0100 you wrote:
+> Add support for changing the transmit amplitude voltage in 100BASE-TX mode.
+> Add support for configuration via DT.
+> 
+> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> ---
+> Changes in v5:
+> - Remove default from binding
+> - Fix description in binding by defining what 100% gain means
+> - Switch to reverse christmas tree in phy_get_internal_delay
+> - Add kernel doc for phy_get_tx_amplitude_gain
+> - EXPORT_SYMBOL_GPL for phy_get_tx_amplitude_gain
+> - Link to v4: https://lore.kernel.org/r/20250211-dp83822-tx-swing-v4-0-1e8ebd71ad54@liebherr.com
+> 
+> [...]
 
-Andrew
+Here is the summary with links:
+  - [net-next,v5,1/3] dt-bindings: net: ethernet-phy: add property tx-amplitude-100base-tx-percent
+    https://git.kernel.org/netdev/net-next/c/7fff5d958648
+  - [net-next,v5,2/3] net: phy: Add helper for getting tx amplitude gain
+    https://git.kernel.org/netdev/net-next/c/961ee5aeea04
+  - [net-next,v5,3/3] net: phy: dp83822: Add support for changing the transmit amplitude voltage
+    https://git.kernel.org/netdev/net-next/c/4f3735e82d8a
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
