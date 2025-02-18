@@ -1,70 +1,76 @@
-Return-Path: <devicetree+bounces-148015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7AF0A3A3CF
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 18:13:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AEE8A3A3E1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 18:16:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B80A3B163D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 17:12:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D34F23B67E3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 17:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BBB9270ECA;
-	Tue, 18 Feb 2025 17:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 981D326FDA5;
+	Tue, 18 Feb 2025 17:13:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SdZJ40HP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ksu2lZaa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F61326FA53;
-	Tue, 18 Feb 2025 17:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68CB026FD99;
+	Tue, 18 Feb 2025 17:13:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739898575; cv=none; b=q5lwHdwMUE5uYxIF5s2nbxMI8WSJ5wDLSvZW08Djyc85FD1W6PNhOAxtopQxFLmCvdpGESAz/JAbPyqKlYGuoWITBC0JRIQjVkFSoNchyRoqRYe0W7LNKoRelADtwgp+nJ1lkPzeifvStg5N89LpJiZ9ZTdPJ7JBxRU238/AcA4=
+	t=1739898828; cv=none; b=RCD27ORRQMflzUzqJ0DMWzKGTnc+Os/h2SmZOuVYDLNG546qxsGdXKYKCd8M55DMQzE8pVgM9LqZnxtJVMuPistkagZZO9gbAq5LRT8ANd+eXO270kNvZZXe1AjARifYVClqzx/2cx7hjiJ/GB0FGvbdaxPL6QyZtznbHgC/0NQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739898575; c=relaxed/simple;
-	bh=rxpL1H7O2VdHAvI1ZRjYb0VzrGNCU0nMXi6S7wu99H0=;
+	s=arc-20240116; t=1739898828; c=relaxed/simple;
+	bh=zMBG5U0y5k0fAXa5nBTK3Y5aZzrRhzGrNTjaVJUvAHk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iEyyznePBb0+cv9crmeqyHXw7r40VfB2iZj4uG00Fw8C5gb5YPljrhY/CfLD2xqWMgjJqW3IqinhlwwmN4ztnuRqYFwYjyeY8bPwJ+ihhcZPKOpVGUeoT99VnEv63mNPSmqzreFLoUloTVy8CTVwNUA1k9k3EeqmRhhWuUAC558=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SdZJ40HP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D7E2C4CEE2;
-	Tue, 18 Feb 2025 17:09:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fIQpcuhl+HvtmNDCF0kPXpRCvfUKJVN/WcpBRPWGLhi03YjdLeH8La36dyTTxUTyeCZGrpPvPfOY95i6k5ph6sAXT8/Tu6vZlY+eZFkgiFteymEWkco5x0s8YvpaHtRe4m+Ss35pHDnY744PPySPG4quywSqjkopw8jhjigECUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ksu2lZaa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8C1CC4CEE2;
+	Tue, 18 Feb 2025 17:13:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739898574;
-	bh=rxpL1H7O2VdHAvI1ZRjYb0VzrGNCU0nMXi6S7wu99H0=;
+	s=k20201202; t=1739898827;
+	bh=zMBG5U0y5k0fAXa5nBTK3Y5aZzrRhzGrNTjaVJUvAHk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SdZJ40HPDjbGBAAp/Gk+/O3GJowuyU+8HdtKvFrmPDevJxdMmUC4aP7mnTDLd9Ty6
-	 DPdMFf7eOhEp5sSV/2KSbmAsleS09gRWkg+U1Cbtqv1IMdYxGlkUz9E4NzLiIb35mC
-	 DMCrUu3Jnmdtm9u0+3Z1hwTNA6l8D7Jb/g9mYzHRlgjLMC4Zj3+vc5QkzAy53DurTK
-	 Mi6ysZ8RTkiTknEhHYskbIFo2VevqC8WQNBXADXuKu9dXdl97MxYFh7AL+jqqfeRHH
-	 A3lzDr7TYXmlBGpmaijRa0ygexxjCUD5lySTqETOdluD7/H4Xh41JQaa1CgUOIvCuv
-	 tvDSdUMlsc+WA==
-Date: Tue, 18 Feb 2025 17:09:29 +0000
+	b=Ksu2lZaakOto5UkVGseoZ948bXS4+zoqZKlxwoJ7T9LCElMhPfUmxGFfGyZBRANAM
+	 ZI75jXLhiZUABGl0X/E72U03C0eaLuWll1e4h2MwPw/e1Kn2oasNTDtUM5lDNmx4QI
+	 VgsBSfcaeybkLRY5cZj7D7icpWmEZzIHvnkh2296g9EIEg6dXhTmXVSr04DGgwzS5X
+	 QA1p63m0KPbKxBy+RAoJaLwHsb+nzYksUMSsJ3kJx1lLIxVu1IXAzy8VCl/CPQ3UCW
+	 4bvRXOZVlyqzYxUv1edgrvKhY5aWCA3TwVo0Xb9RTMdG7yG1ndRS9EiW+lK8f6phqn
+	 XIa2Qd8sRG3wg==
+Date: Tue, 18 Feb 2025 17:13:41 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: display: bridge: Document Solomon
- SSD2825
-Message-ID: <20250218-thinly-passcode-f659d81cd5a4@spud>
-References: <20250213135605.157650-1-clamor95@gmail.com>
- <20250213135605.157650-2-clamor95@gmail.com>
- <20250213-pumice-overcrowd-6c22b0d5d66c@spud>
- <CAPVz0n1CpoAFvwwvoTOFQu4mgg57jCwS5W4GXCiUZ3eLEAdwZA@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Emil Gedenryd <emil.gedenryd@axis.com>,
+	Arthur Becker <arthur.becker@sentec.com>,
+	Mudit Sharma <muditsharma.info@gmail.com>,
+	Per-Daniel Olsson <perdaniel.olsson@axis.com>,
+	Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+	Ivan Orlov <ivan.orlov0322@gmail.com>,
+	David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v1 1/3] dt-bindings: iio: light: al3010: add al3000a
+ support
+Message-ID: <20250218-browse-animator-50e846a616b0@spud>
+References: <20250212064657.5683-1-clamor95@gmail.com>
+ <20250212064657.5683-2-clamor95@gmail.com>
+ <20250212-unwritten-compile-7011777a11b3@spud>
+ <CAPVz0n0xR_nGPdWn800H=HhMCPqnRUhqP-s1P4eMhtpZdxpxzg@mail.gmail.com>
+ <20250213-reflex-earlobe-ebbeaece6fad@spud>
+ <CAPVz0n1aw1+kKhvGwOUi_58HqRqo0fHxDNRQZt_2O4yJ=ws56w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,150 +78,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jUeovMtJEMp6ohsP"
+	protocol="application/pgp-signature"; boundary="9aHkRpTM7X6bOBao"
 Content-Disposition: inline
-In-Reply-To: <CAPVz0n1CpoAFvwwvoTOFQu4mgg57jCwS5W4GXCiUZ3eLEAdwZA@mail.gmail.com>
+In-Reply-To: <CAPVz0n1aw1+kKhvGwOUi_58HqRqo0fHxDNRQZt_2O4yJ=ws56w@mail.gmail.com>
 
 
---jUeovMtJEMp6ohsP
+--9aHkRpTM7X6bOBao
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 14, 2025 at 08:29:22AM +0200, Svyatoslav Ryhel wrote:
-> =D1=87=D1=82, 13 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 22:34 Co=
+On Fri, Feb 14, 2025 at 08:21:03AM +0200, Svyatoslav Ryhel wrote:
+> =D1=87=D1=82, 13 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 22:15 Co=
 nor Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
 > >
-> > On Thu, Feb 13, 2025 at 03:56:04PM +0200, Svyatoslav Ryhel wrote:
-> > > Add bindings for Solomon SSD2825 MIPI master bridge chip that connect=
-s an
-> > > application processor with traditional parallel LCD interface and an =
-LCD
-> > > driver with MIPI slave interface. The SSD2825 supports both parallel =
-RGB
-> > > interface and serial SPI interface.
+> > On Wed, Feb 12, 2025 at 09:39:06PM +0200, Svyatoslav Ryhel wrote:
+> > > =D1=81=D1=80, 12 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 21:2=
+0 Conor Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+> > > >
+> > > > On Wed, Feb 12, 2025 at 08:46:55AM +0200, Svyatoslav Ryhel wrote:
+> > > > > AL3000a is an ambient light sensor quite closely related to
+> > > > > exising AL3010 and can re-use exising schema for AL3010.
+> > > >
+> > > > Quite close you say, but the driver is entirely different it seems.=
+ How
+> > > > closely related is the hardware itself?
+> > > >
 > > >
-> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > ---
-> > >  .../display/bridge/solomon,ssd2825.yaml       | 140 ++++++++++++++++=
-++
-> > >  1 file changed, 140 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/display/bridge/=
-solomon,ssd2825.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/bridge/solomon=
-,ssd2825.yaml b/Documentation/devicetree/bindings/display/bridge/solomon,ss=
-d2825.yaml
-> > > new file mode 100644
-> > > index 000000000000..cd7ff971495c
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/bridge/solomon,ssd282=
-5.yaml
-> > > @@ -0,0 +1,140 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/display/bridge/solomon,ssd2825.ya=
-ml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Solomon SSD2825 RGB to MIPI-DSI bridge
-> > > +
-> > > +maintainers:
-> > > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: solomon,ssd2825
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  reset-gpios: true
-> > > +
-> > > +  dvdd-supply:
-> > > +    description: Regulator for 1.2V digital power supply.
-> > > +
-> > > +  avdd-supply:
-> > > +    description: Regulator for 1.2V analog power supply.
-> > > +
-> > > +  vddio-supply:
-> > > +    description: Regulator for 1.8V IO power supply.
-> > > +
-> > > +  spi-max-frequency:
-> > > +    maximum: 1000000
-> > > +
-> > > +  spi-cpha: true
-> > > +  spi-cpol: true
+> > > Well, I can simply duplicate al3010 or al3320a schema if re-using
+> > > schema is not allowed. AL3000a has no available datasheet online.
+> > > Downstream code for al3000a and al3010 seems to have same principles,
+> > > apart from light measurements.
 > >
-> > Should these be required? Supplies should really be required too, since
-> > the device probably cannot function without them?
+> > It's probably more of a question as to why you're duplicating the driver
+> > for them, rather than telling you not to put both bindings together.
+> > That said, information on what's actually different is helpful in the
+> > binding, to explain why you're not using a fallback compatible etc.
 > >
 >=20
-> No, since spi-* define mode in which device works. If both are present
-> it is mode 3, if none it is mode 0.
->=20
-> About supplies, device cannot work without power supply obviously, but
-> often exact supplies are not known and I would like to not enforce
-> someone to add random regulators just because they are mandatory.
+> Quoting writing-bindings.rst:
+> DON'T refer to Linux or "device driver" in bindings. Bindings should
+> be based on what the hardware has, not what an OS and driver currently
+> support.
 
-If the device doesn't work without the supplies, the supplies should be
-mandatory in the binding.
-
->=20
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  clock-names:
-> > > +    const: tx_clk
-> >
-> > Drop the _clk, since this cannot be anything else! clock-names isn't
-> > really useful when you have just one, so I'd be inclined to say remove
-> > it entirely...
-> >
->=20
-> TX_CLK is the name which datasheet refers to hence I have included
-> clock name solely to have clear link between datasheet clock
-> references and clock used here.
-
-I think people will be able to make the leap between "tx_clk" and "tx".
+No need to quite that back at me, I'm the one usually attempting to
+enforce these things. I just expect more information about the
+similiarties/differences when you're content splitting into two drivers
+but want to reuse the same binding.
 
 >=20
-> > > +  solomon,hs-zero-delay-ns:
-> > > +    description:
-> > > +      HS zero delay period
-> > > +    default: 133
-> > > +
-> > > +  solomon,hs-prep-delay-ns:
-> > > +    description:
-> > > +      HS prep delay period
-> > > +    default: 40
-> >
-> > Do these two have limits? Use maximum/minimum to set them if so.
-> > Cheers,
-> > Conor.
-> >
->=20
-> Datasheet does not specify limits actually, only defaults. I will try
-> to calculate boundaries.
+> From all available data, hw configuration of al3000a closely matches
+> al3010 and seems to be part of same sensor lineup. It is not
+> prohibited to add new compatibles to existing schema. Schema does not
+> take in account way of processing data generated by sensor and this is
+> the main difference between al3000a and al3010
 
-Hmm, that's interesting. I see in your driver that the eventual value
-gets converted down to a u8? That should at least impose some sort of
-limits I guess.
+Please mention this in your commit message.
 
---jUeovMtJEMp6ohsP
+Cheers,
+Conor.
+
+--9aHkRpTM7X6bOBao
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7S+yQAKCRB4tDGHoIJi
-0tZ9AP9JAAMNXWYdg/TBy4XNztE8Ae+dUaENkSycA9YxR2kLWwD+MJ4f+T6TzYEM
-ubzOjZtfD6wNXLAjlV5bLvbS6nd6YAU=
-=lSJg
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7S/xQAKCRB4tDGHoIJi
+0iZLAP9TckPYqEb93zq2HyljnW8ogxHQF5BWPdBZFfXYC7ZbTAEA9FAUL1hTR9S/
+NqdS/aPc+GE5mlLICMyhaTI8PnmoIwA=
+=GuzI
 -----END PGP SIGNATURE-----
 
---jUeovMtJEMp6ohsP--
+--9aHkRpTM7X6bOBao--
 
