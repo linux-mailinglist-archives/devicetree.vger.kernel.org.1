@@ -1,179 +1,245 @@
-Return-Path: <devicetree+bounces-147726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB94CA3938B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 07:45:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8520EA3939B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 07:59:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0A723A8AAE
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 06:45:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F03CB7A39B0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 06:58:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 428E01B0425;
-	Tue, 18 Feb 2025 06:45:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E151B78F3;
+	Tue, 18 Feb 2025 06:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Djvu0DZw"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GMWFFY7C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 631981E522;
-	Tue, 18 Feb 2025 06:45:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7600C1B4151
+	for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 06:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739861128; cv=none; b=OH6xF3nynBFnboMVRI6t2UIgRLhAH+Dn0Qq6i+iWQa33XIahwOiG4UqgT7Ax32O6u+baSvI8nuYoFG4HLzyhRtdMKNXmkS4KP8Vmdg1I+xHbNXkFxkQt5HVRa0i5VqqQj56GYm8eVDeKXnYEaAMY8/zhcTjzc2dpZOqdAwuLqCU=
+	t=1739861950; cv=none; b=ujljgQ2f4Ng2+CwlAlor5muj6l155ACB6mq+DaZsPJw9voTKJMYiuyjBgxYgtAEyKe8+MuVK1RnIlAeDkYhQ/tPq6wpJOZ3nHZTjh6EkdVfoLOUF6Gvdv7phGsWS5t307xm1Hz40M09IzU8Es3bfs7wF0FbmLweqz9cGNKrGbIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739861128; c=relaxed/simple;
-	bh=JeV9NGTiS5LreF1qALXiBXoNIsC31R6+99vMmtp8aGA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ctcoQrRl1Z9JB1xuAhCy8Nxa6g9eFogbQbd0KbL8FMVIs+1f+pkkXU8vlGIvllGQLcuyn5kzXtOBKjJVJ2Y3igVqA6OnOQ/JPdyyVHZn8Hsd2bkVsttS0a1+Ka+fFSLVEve0Ogz6il9GTfKjCBhE0ldQo146qr8pQvHEb31ppa4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Djvu0DZw; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-543e4bbcd86so5108828e87.1;
-        Mon, 17 Feb 2025 22:45:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739861124; x=1740465924; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SqQUy+TmHlIe2lGS+cxMn2E4zLJa5hzyQ87XCzDVJCw=;
-        b=Djvu0DZw2SVxetINmRH7ELr7tv9S30C6IGu62NM7opgmOq2FyM48HYqqRTIQbRXY3+
-         GNHlZd738gs+cfjBxX9z3An1ldynlbvs0amfI7YHQeuXl6n+u1hfPUO9h7Wj7OWUrClV
-         YkD4EiV/Uk/HQjsf/DJMhcz6LEcVHvaA9qZk2QE3ioDFlYIX1hmhhaOqwkFFXkuv/tMi
-         bui4DHm/j35fAt4T2a5DZs1hmGv9EGgSwYrrFVkErK3zaSsW+qElkatZeeJZwDgxkoVx
-         nId2zlM1g9nJvB6oLjyhbWtRG4N59gulkhkOpUFA5B/lIEGyy6ptD/r92foeGAVcLAPn
-         NinA==
+	s=arc-20240116; t=1739861950; c=relaxed/simple;
+	bh=1k9BCUkbzWXoR++auGEENP1hdbsmmSYBGTZt+PC2E2g=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=bg06IeDtMrkXm/anI1t4I7dG5yQpmG09hOJ4nd8pUxFms1j1FeKPIrdMm0RK9hXcAaFHL3eBYQ09nRPvUNp0BeIntY/RNYMspQqw7r6uP0WrDvIuEIjM2dOfYVNYLPfwLRjlCPk9/8bF/A0CGJ0FkDEqj5lNcSEEHIUahMqtROw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GMWFFY7C; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51HLdW2o012805
+	for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 06:59:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=sPShBOsY5VLSNLF1J4MNJY
+	N36AkDL1uBQgmSPpIg7MQ=; b=GMWFFY7C8RrOBTI7ZtJN+d+xoTl80XO1xDU0Fo
+	wJDu9fnLEUZ9hT20NgLojmoxVGlbWuU+cc0SvxVcBjbVVaGPI37LIjfeIiCLdj8I
+	H8LkNZ6+JlTnUhovckO8g1tJeCmyPaskgcdUQodVJJ6istQAqz4fKpVYRtDlRLQj
+	D+/mLiJptJTcjENg8qNp9OcjGOqn+R4VRmFNvIG2SYfyPwcP0CHRLQx3bYjGtKKm
+	r5cMxld3CnDJE2RH5m04mqCsWsM5egqqJH89ygI1KrwvwgLh7YuBXsyqsQOch4sH
+	U3Jut82l957S5b3MHo4+Rg1e8C5cF7J62YPBmBTNvDY9eVWg==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44ut7tuxny-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 06:59:07 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-22119b07d52so32824525ad.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2025 22:59:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739861124; x=1740465924;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SqQUy+TmHlIe2lGS+cxMn2E4zLJa5hzyQ87XCzDVJCw=;
-        b=qfBEZj9GaGI8cjOLaoRFjrtz8zIi/bwSD+KLiCxb23PFOx2IH1Rf+OHMl5+F5j5Ux7
-         6nU8dqungxL+OosDwyJvFcbmRXWtL6Q38zO05LkYDmLyR+CrxGr+93jL4g43UMcCmfny
-         LGyCUuYp3XbGWrdsjQL51VQ+AUyzOD+O0SQvcMORjM8KlBr4EGPnV0jTwgbuvyPYMRA5
-         Ha3KgG2bcqgw17oq4G+R8TuIHvEA2F0KML0jbnPYur+Ni8M5Ov3SAcukyOSVJpr0rbiH
-         0yQob5HgZTHNId3LgSf2fcWCY58jgbGoqOAuvclZsUnlL2ACA5qtbnFNW3n80jSgY6xb
-         jqEg==
-X-Forwarded-Encrypted: i=1; AJvYcCU+QXV4m3ez3dUoC2SeWHCLpxcqJpBwaqV8Tfg2eHopBN4RyL20gkmBUr1ZgxiJjL0p3wkKTlt6c/cTX0fxP8w1q+6xDxHR@vger.kernel.org, AJvYcCUbQMLzklNnds7JFWssCGswGuvXTDtRQ3yDYLph+YzwxEypExpMW77uacXVAK+iKwPjOagHAGNLbFos@vger.kernel.org, AJvYcCVA0GnmYKuZ3nq3KN3YcXUCE1X1hLGpOmSLN+PNGppk9jLUSZAYzMjC+MySSKVxwNoOw0TRiixslHoK@vger.kernel.org, AJvYcCXECuciXsZQMl7zJOm0J41J/OLjlGTuAK7kzwlYuwaQMbx6GzwuDjlQyPpyh1xeecSS8p3xPMSbhGA=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+h2tFO7JdJSd7S6nYkzzX5c8stuVlE2x00//uTzczlX1jvsew
-	Z9IKZ2DiIchZmLUNM3g548wVf7g0hUYitTgSBAMcuEeTjN8YhLwiObP/jA==
-X-Gm-Gg: ASbGncsBJJzN0zzlLXRZdVgUWqorCS8ChPMiDToPon23MUug1jTklblhtf7GlgMvheQ
-	SvYn/OYJrP86BaLpo+yN/5367lXsQPrqzYREbhSGyqRI+gVxXy7qvJ7MV5zqY/xf5IIqywulpZa
-	ObO9mFsyyE+fMNW+kv7cfKBUrUyM0+LQBhP/M/J1wTI4PMp2JUBJ9c2AGD2BOO6KEwV5JM0odMn
-	JlEjMrHV4UuWBD+L6rGDGAaTkjde6VFyeDwB528fpA4UWuigJPa4UA4EiQbNbk4/Hiwu9+PTy99
-	FHBqEv3AOtu1CeQQtfz2qMHkAYS4chFtCCH6NVqI7RZds+55gTdHD21K1N2l4Y/mHGV55Dxb
-X-Google-Smtp-Source: AGHT+IEj3If62LMKd4zu2mxufSyaNBZmRoYKgPnZLeAis7jJXTrJ3g3nqNEZsiWpXSyAKIM7D7Y5BQ==
-X-Received: by 2002:a05:6512:3ba9:b0:545:2cf5:dc6c with SMTP id 2adb3069b0e04-5452fe8ff00mr3726297e87.51.1739861124087;
-        Mon, 17 Feb 2025 22:45:24 -0800 (PST)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5452de0b2f7sm1330302e87.97.2025.02.17.22.45.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Feb 2025 22:45:23 -0800 (PST)
-Message-ID: <48b3e732-b60d-411c-a519-5e89f87eea7d@gmail.com>
-Date: Tue, 18 Feb 2025 08:45:22 +0200
+        d=1e100.net; s=20230601; t=1739861946; x=1740466746;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sPShBOsY5VLSNLF1J4MNJYN36AkDL1uBQgmSPpIg7MQ=;
+        b=XhXsBLLVIAW0GWhbFE9WskKKsmrEpehlJ4/9VbTfTqA6uBAiZdOye83xgBJZ26Mld5
+         5wm44KzXbVXUWpPTtX+DiyVCyHSX8L91koAyme8lEIietciUE+nq9OQx3IhggP23vMCQ
+         8nbbSai4ooiCNUqsj1LhDGNoXEgmlU8dY+QKaiHtEfuSs/sw8rVfEV1wbxDIoRqb6nw7
+         sgvW/ud/vhu8psqZd4IUnLbF2Ei6qF7FJyqqr7BLMTzCE04GevOcJTZ3zBgJTNxmDDnT
+         eCSHrw/XwM0T3zwknYoTYC4lfjXkRnb9O7BAZHFKoXPnlNdx90w+2QGqcfadsd5/1gKC
+         LX6g==
+X-Forwarded-Encrypted: i=1; AJvYcCXa9yOx2tK2VJw3Q7b3qN334XqWZ1d2+VppM+O1XG1OSQqx+jQQpE/drvA40bEn4lIdIgrKCzfEWHPF@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqSwJvWDZpk8MPX1At7lu/E8LOC2teBO92TTnS63W2NFx2c/yp
+	sZ5CjfvFlzE+tCh2McsObC4Pap4TrTaosNGNkGwS/G29//Gb+UOhcRJyc+/HpfdRl6nZnKKQ2ro
+	TpJJRGebg/jJ2qQawrAOgD+OYe6LtRTI6GxQkDs9OTw8k78UDWJQkiGNF5T09
+X-Gm-Gg: ASbGncsOewjs604dN8Lymx2MIdAwlLK+XsSnGYgv7Uc2imEGihd/BET72nHL0y00SBE
+	8JYD+jqrdbAtIGwGvgxY2nO1DPrXjSNvQMKt6j0IxzkBBJy99xwLBPMNq8Ru0IkRMe6pGPk6IKP
+	a16M5kWJ0h88lOZFuJ4pW858xGLKkSpYuBZlSuq/bLm/XjffyQhJiAr3Z9yVDXLPu5Tbiv5V3ij
+	rm5NfPYYtgZXbKX9ZDqcf2qD3LNHs4xw/lIqYKTB5fPX0ACIkCNp6/UkBrjMFu+wpTfD3OzxtQX
+	Y265oyCxz+NGy44LG9U=
+X-Received: by 2002:a17:902:ce0d:b0:21f:61a5:67a5 with SMTP id d9443c01a7336-221040b1342mr207349845ad.42.1739861945785;
+        Mon, 17 Feb 2025 22:59:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHqYOO4wAMcDFAf+d9a59DE0KSOadLoeto01ufkmNN6EUdIvlPkaMu/Hx2gS8aJoeu1AQFQhQ==
+X-Received: by 2002:a17:902:ce0d:b0:21f:61a5:67a5 with SMTP id d9443c01a7336-221040b1342mr207349575ad.42.1739861945423;
+        Mon, 17 Feb 2025 22:59:05 -0800 (PST)
+Received: from [10.213.103.17] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d556dc4bsm82065915ad.188.2025.02.17.22.59.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Feb 2025 22:59:05 -0800 (PST)
+From: Maulik Shah <maulik.shah@oss.qualcomm.com>
+Date: Tue, 18 Feb 2025 12:28:55 +0530
+Subject: [PATCH] arm64: dts: qcom: sm8750: Fix cluster hierarchy for idle
+ states
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/12] reboot: reboot, not shutdown, on
- hw_protection_reboot timeout
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>,
- Andrew Morton <akpm@linux-foundation.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Fabio Estevam
- <festevam@denx.de>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
- Jonathan Corbet <corbet@lwn.net>, Serge Hallyn <serge@hallyn.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>,
- Guenter Roeck <groeck@chromium.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-security-module@vger.kernel.org,
- chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
- kernel@pengutronix.de
-References: <20250113-hw_protection-reboot-v2-0-161d3fc734f0@pengutronix.de>
- <20250113-hw_protection-reboot-v2-2-161d3fc734f0@pengutronix.de>
- <7b6d3226-4422-415a-9146-16c421463ac5@gmail.com>
- <de781a07-d209-4bbe-8945-efcb4490f604@pengutronix.de>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <de781a07-d209-4bbe-8945-efcb4490f604@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250218-sm8750_cluster_idle-v1-1-5529df00f642@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAK4vtGcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDI0ML3eJcC3NTg/jknNLiktSi+MyUnFRds7RUY1OL1CSLZPNUJaDOgqL
+ UtMwKsKnRsbW1AA5NFPplAAAA
+X-Change-ID: 20250218-sm8750_cluster_idle-6fe358eb8c7e
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jishnu Prakash <quic_jprakash@quicinc.com>,
+        Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_lsrao@quicinc.com,
+        Maulik Shah <maulik.shah@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739861941; l=3606;
+ i=maulik.shah@oss.qualcomm.com; s=20240109; h=from:subject:message-id;
+ bh=1k9BCUkbzWXoR++auGEENP1hdbsmmSYBGTZt+PC2E2g=;
+ b=IVJFvD/M+jTTLQ1DOtvVjF5uoKRqWb4MxF3dlQOEaU6YLqTctjvdxJEz+3264GsnLhxHJ9as5
+ XqhwyCNi8CqA7ui4jxh5fwejc5DuqVHzTWTaCT/uX0S2VxaAjWslA1c
+X-Developer-Key: i=maulik.shah@oss.qualcomm.com; a=ed25519;
+ pk=bd9h5FIIliUddIk8p3BlQWBlzKEQ/YW5V+fe759hTWQ=
+X-Proofpoint-ORIG-GUID: W1GJuyczxVRPJ8ddXW2PIgls-f7ZxqlX
+X-Proofpoint-GUID: W1GJuyczxVRPJ8ddXW2PIgls-f7ZxqlX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-18_02,2025-02-18_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ malwarescore=0 impostorscore=0 clxscore=1015 phishscore=0 adultscore=0
+ spamscore=0 mlxlogscore=671 bulkscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2501170000
+ definitions=main-2502180052
 
-On 17/02/2025 22:22, Ahmad Fatoum wrote:
-> Hello Matti,
-> 
-> On 22.01.25 12:28, Matti Vaittinen wrote:
->> On 13/01/2025 18:25, Ahmad Fatoum wrote:
->>> hw_protection_shutdown() will kick off an orderly shutdown and if that
->>> takes longer than a configurable amount of time, an emergency shutdown
->>> will occur.
->>>
->>> Recently, hw_protection_reboot() was added for those systems that don't
->>> implement a proper shutdown and are better served by rebooting and
->>> having the boot firmware worry about doing something about the critical
->>> condition.
->>>
->>> On timeout of the orderly reboot of hw_protection_reboot(), the system
->>> would go into shutdown, instead of reboot. This is not a good idea, as
->>> going into shutdown was explicitly not asked for.
->>>
->>> Fix this by always doing an emergency reboot if hw_protection_reboot()
->>> is called and the orderly reboot takes too long.
->>>
->>> Fixes: 79fa723ba84c ("reboot: Introduce thermal_zone_device_critical_reboot()")
->>> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
->>> ---
->>>    kernel/reboot.c | 70 ++++++++++++++++++++++++++++++++++++++++-----------------
->>>    1 file changed, 49 insertions(+), 21 deletions(-)
->>>
->>> diff --git a/kernel/reboot.c b/kernel/reboot.c
->>> index 847ac5d17a659981c6765699eac323f5e87f48c1..222b63dfd31020d0e2bc1b1402dbfa82adc71990 100644
->>> --- a/kernel/reboot.c
->>> +++ b/kernel/reboot.c
->>> @@ -932,48 +932,76 @@ void orderly_reboot(void)
->>>    }
->>>    EXPORT_SYMBOL_GPL(orderly_reboot);
->>>    +static const char *hw_protection_action_str(enum hw_protection_action action)
->>> +{
->>> +    switch (action) {
->>> +    case HWPROT_ACT_SHUTDOWN:
->>> +        return "shutdown";
->>> +    case HWPROT_ACT_REBOOT:
->>> +        return "reboot";
->>> +    default:
->>> +        return "undefined";
->>> +    }
->>> +}
->>> +
->>> +static enum hw_protection_action hw_failure_emergency_action;
->>
->> nit: Do we have a (theoretical) possibility that two emergency restarts get scheduled with different actions? Should the action be allocated (maybe not) for each caller, or should there be a check if an operation with conflicting action is already scheduled?
->>
->> If this was already considered and thought it is not an issue:
->>
->> Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> 
-> __hw_protection_trigger (née __hw_protection_shutdown) has this at its start:
-> 
->   static atomic_t allow_proceed = ATOMIC_INIT(1);
-> 
->   /* Shutdown should be initiated only once. */
->   if (!atomic_dec_and_test(&allow_proceed))
->           return;
-> 
-> It's thus not possible to have a later emergency restart race against the first.
-> 
+SM8750 have two different clusters. cluster0 have CPU 0-5 as child and
+cluster1 have CPU 6-7 as child. Each cluster requires its own idle state
+and power domain in order to achieve complete domain sleep state.
 
-Ah, indeed. I missed this. Thanks for the clarification! :)
+However only single cluster idle state is added mapping CPU 0-7 to the
+same power domain. Fix this by correctly mapping each CPU to respective
+cluster power domain and add domain idle state for cluster1.
 
-Yours,
-	-- Matti
+Fixes: 068c3d3c83be ("arm64: dts: qcom: Add base SM8750 dtsi")
+Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/sm8750.dtsi | 36 +++++++++++++++++++++++++-----------
+ 1 file changed, 25 insertions(+), 11 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+index 3bbd7d18598ee0a3a0d5130c03a3166e1fc14d82..3af928be5b68b47988dd55f4add8e3712f07d5ab 100644
+--- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+@@ -178,7 +178,15 @@ cluster1_c4: cpu-sleep-1 {
+ 		};
+ 
+ 		domain-idle-states {
+-			cluster_cl5: cluster-sleep-0 {
++			cluster0_cl5: cluster-sleep-0 {
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x01000054>;
++				entry-latency-us = <2150>;
++				exit-latency-us = <1983>;
++				min-residency-us = <9144>;
++			};
++
++			cluster1_cl5: cluster-sleep-1 {
+ 				compatible = "domain-idle-state";
+ 				arm,psci-suspend-param = <0x01000054>;
+ 				entry-latency-us = <2150>;
+@@ -233,55 +241,61 @@ psci {
+ 
+ 		cpu_pd0: power-domain-cpu0 {
+ 			#power-domain-cells = <0>;
+-			power-domains = <&cluster_pd>;
++			power-domains = <&cluster0_pd>;
+ 			domain-idle-states = <&cluster0_c4>;
+ 		};
+ 
+ 		cpu_pd1: power-domain-cpu1 {
+ 			#power-domain-cells = <0>;
+-			power-domains = <&cluster_pd>;
++			power-domains = <&cluster0_pd>;
+ 			domain-idle-states = <&cluster0_c4>;
+ 		};
+ 
+ 		cpu_pd2: power-domain-cpu2 {
+ 			#power-domain-cells = <0>;
+-			power-domains = <&cluster_pd>;
++			power-domains = <&cluster0_pd>;
+ 			domain-idle-states = <&cluster0_c4>;
+ 		};
+ 
+ 		cpu_pd3: power-domain-cpu3 {
+ 			#power-domain-cells = <0>;
+-			power-domains = <&cluster_pd>;
++			power-domains = <&cluster0_pd>;
+ 			domain-idle-states = <&cluster0_c4>;
+ 		};
+ 
+ 		cpu_pd4: power-domain-cpu4 {
+ 			#power-domain-cells = <0>;
+-			power-domains = <&cluster_pd>;
++			power-domains = <&cluster0_pd>;
+ 			domain-idle-states = <&cluster0_c4>;
+ 		};
+ 
+ 		cpu_pd5: power-domain-cpu5 {
+ 			#power-domain-cells = <0>;
+-			power-domains = <&cluster_pd>;
++			power-domains = <&cluster0_pd>;
+ 			domain-idle-states = <&cluster0_c4>;
+ 		};
+ 
+ 		cpu_pd6: power-domain-cpu6 {
+ 			#power-domain-cells = <0>;
+-			power-domains = <&cluster_pd>;
++			power-domains = <&cluster1_pd>;
+ 			domain-idle-states = <&cluster1_c4>;
+ 		};
+ 
+ 		cpu_pd7: power-domain-cpu7 {
+ 			#power-domain-cells = <0>;
+-			power-domains = <&cluster_pd>;
++			power-domains = <&cluster1_pd>;
+ 			domain-idle-states = <&cluster1_c4>;
+ 		};
+ 
+-		cluster_pd: power-domain-cluster {
++		cluster0_pd: power-domain-cluster0 {
++			#power-domain-cells = <0>;
++			domain-idle-states = <&cluster0_cl5>;
++			power-domains = <&system_pd>;
++		};
++
++		cluster1_pd: power-domain-cluster1 {
+ 			#power-domain-cells = <0>;
+-			domain-idle-states = <&cluster_cl5>;
++			domain-idle-states = <&cluster1_cl5>;
+ 			power-domains = <&system_pd>;
+ 		};
+ 
+
+---
+base-commit: e5d3fd687aac5eceb1721fa92b9f49afcf4c3717
+change-id: 20250218-sm8750_cluster_idle-6fe358eb8c7e
+
+Best regards,
+-- 
+Maulik Shah <maulik.shah@oss.qualcomm.com>
+
 
