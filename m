@@ -1,241 +1,155 @@
-Return-Path: <devicetree+bounces-148006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1627A3A345
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 17:54:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BE1FA3A349
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 17:56:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6897A188A1D2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 16:54:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E99A51711F7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 16:56:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82C8826F459;
-	Tue, 18 Feb 2025 16:54:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C3426F467;
+	Tue, 18 Feb 2025 16:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BB/WU+Go"
+	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="UgXZQfso";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ZRd3b/jt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-b1-smtp.messagingengine.com (fhigh-b1-smtp.messagingengine.com [202.12.124.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 550F913B7B3;
-	Tue, 18 Feb 2025 16:54:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5720E26F45B;
+	Tue, 18 Feb 2025 16:56:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739897642; cv=none; b=oOwx884YMLdDR3QWrrmqZycpzEjx+si5ZVsGhpmMcfG3qKQNEfifSUzfL/8C41h0Py9YkIX5s20GemoK0+2AAIJ2ADLf6oQB0e3XAPw4wwKL9i1yUmdKWhWxEpOTKefNp3gzZ6bMzjbchdPoz3QRWrjK7jGNQUBhnUxEeU81azc=
+	t=1739897786; cv=none; b=kMrOEUNGmdmvzgcovNVjsQ/0C03oeEOJvAVxRne+pLCLGBs7jy9/NMTNRA2Vqs5qVJYmxrnO0mc2ivEQ7NLHWIW6ucs0KMdgDuhLpawC86Dj4sqlBhspM3kqzMuoaC/4enR28T9Ob1t5h00cfbShzc/mGW9wdcJLR8oNb0E9i9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739897642; c=relaxed/simple;
-	bh=YoP2Wb22V7FT45qYcDXO9+AVfW/P/IXMCuLIm9GpAPo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qeoA1MGB6t3MSu80/nEuKzzucatYDEbd5AvF3zvSrw73eE14yO99N3b264y0yQlNfVwrEmo4tSa9ZHsyr71ic7s2X7D2BveyB8bkwfsWOADADiejDC2vmCP8yo3+h7l8RRHizrj8vV5fqhVWHNFiEo1pq+JQybjppzDP2Z47Y/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BB/WU+Go; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D458AC4CEE4;
-	Tue, 18 Feb 2025 16:53:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739897641;
-	bh=YoP2Wb22V7FT45qYcDXO9+AVfW/P/IXMCuLIm9GpAPo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BB/WU+GohTnBhEdVx//Bcczd08fH2btl7+G5G7+hCNodMJ0M9BcCQe/7ZDr9uBQs1
-	 AGnVubcCxB/KXfdba1nkdePAPAPfexDl1fNh4zq0F/DUyu2nP6+qdcHKED7034b7O4
-	 FSoib2elHKMpF7H6khU7y8fpaeOx1vm2yzxOQixtjQzrw0nu8PDIy0I00h22dk0kk7
-	 JjHDGxBP8nB9/5t+e732ByF8GmRftWalHUAxibZqT9lh4DC+5btqyXfVevwOuA+X0h
-	 zwG6ZkTh/XciZgBNkzXLgi8Y6enlKpoAH0VRvkktuKwY66kALgGKJDTwzVYmrN/rF9
-	 C2L3cYQ+2abUg==
-Date: Tue, 18 Feb 2025 16:53:56 +0000
-From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Friday Yang =?utf-8?B?KOadqOmYsyk=?= <Friday.Yang@mediatek.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"mturquette@baylibre.com" <mturquette@baylibre.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Garmin Chang =?utf-8?B?KOW8teWutumKmCk=?= <Garmin.Chang@mediatek.com>,
-	"sboyd@kernel.org" <sboyd@kernel.org>,
-	Yong Wu =?utf-8?B?KOWQtOWLhyk=?= <Yong.Wu@mediatek.com>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: mediatek: Add SMI LARBs reset
- for MT8188
-Message-ID: <20250218-imaginary-prism-d097ebd4a38b@spud>
-References: <20250121065045.13514-1-friday.yang@mediatek.com>
- <20250121065045.13514-2-friday.yang@mediatek.com>
- <20250121-violet-widely-df3567b085a4@spud>
- <2bfb6c05a3471e54f51c06895709853661e82c9a.camel@mediatek.com>
- <20250124-aide-feisty-821cf9cf1382@spud>
- <85c616dd195da26313cab552b24f514b539193c1.camel@mediatek.com>
- <ddd1d62e-b1d2-4271-99a3-74bb0a48fb48@collabora.com>
+	s=arc-20240116; t=1739897786; c=relaxed/simple;
+	bh=6m4usxxNmRhsT+xpRwZhp0FK77JkJIcmIi/FhpxNMRM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZLZlSCJJ17Xj2iRPb0e7ByOGnAXVHEHc2m+YS8tFksA9fqfuzGJM7/bPuxDQcEZITyry54ZuaEeJ/QbCLALfQ2sNfjqnAiTsluGvgiJ9JL9KXx4EUq7xNYv0OKG1ZLTAAf5ZR2E8Dm1DSclFpEI4hAUxb+P15KVxU+v2Ms91dcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev; spf=pass smtp.mailfrom=svenpeter.dev; dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b=UgXZQfso; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ZRd3b/jt; arc=none smtp.client-ip=202.12.124.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svenpeter.dev
+Received: from phl-compute-13.internal (phl-compute-13.phl.internal [10.202.2.53])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 060242540120;
+	Tue, 18 Feb 2025 11:56:22 -0500 (EST)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-13.internal (MEProxy); Tue, 18 Feb 2025 11:56:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm1;
+	 t=1739897782; x=1739984182; bh=YAimL9/MtxGqFmKWSu1QiM4kmZSk0e/L
+	YupNttACQWU=; b=UgXZQfsoGDr0JmG6rD00RKfOl9x9wUdNo99MozfLSw0Xz6aC
+	ih2Vmv9z+rxnTSrBSjQ1WT/a1dKKqMlYP+9nMDrSeOc3XcDbarba3aEIZpXqR6LD
+	Xulfu/G4OYKwMB7vOdBR/6208YGJ0631wgJuhCb8IpBBXnYxoqn3szE9YjjZNtOw
+	1IN0K3Y8rxztC7h3fGSSsxr8TLEGXX0uH5SP7iO//AlmKx4nhCmMfulUt2UctLOv
+	0IKUdn5nlt+jNkKZPwc26vKGT07Q1SsQkpSjnu9i9SXD+otnU0C1/yZYiqeZtYcQ
+	VHPcbUzAAhORwXvi6ZGWbMMG0FPSU23HSTCu4g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1739897782; x=
+	1739984182; bh=YAimL9/MtxGqFmKWSu1QiM4kmZSk0e/LYupNttACQWU=; b=Z
+	Rd3b/jtbRv1kySJ3A/5N557ZW2ve1EdULgyZDuTa+7dJV37pWnN5Nq9IufKhCtrw
+	lqT+ofK0iy1ouNM4LdvbNdKxg7g3ybIIkp1hVmNcCmsTDAmKmhw8+4JF5dt/Ehb+
+	RlAkKq2mSZBvKOE17yzwobKRjDUmVZ/69zehu4Qa3hiX5VrmtJxprSFQvb5JFesm
+	LbJTdxXHb5EnPmLxH1oFIlTpzw0Qbh8xAxb6jl3f/V3gztQFgFO++IGRz757k84V
+	7vf/tF/8KkBuyA4l4/07SaRH1+hwhZECRP2qJ1yaAybT9gA92Cm9jBvLYmNU7vKy
+	ETLsU/yhThMvSI/9E9FOw==
+X-ME-Sender: <xms:tru0Z4vRQs_ew_uwfujeBZ4OVfoRHEmv0BGyklBEneDheC_mSsrQfg>
+    <xme:tru0Z1c20EWfB3cDxeuzxItEgws6wrgP2tRkC34Mjm6aoXeNL2MKwiThdZXGTo-e6
+    H5fvWJD87nXGjq_X6c>
+X-ME-Received: <xmr:tru0ZzylDUxmbPr6O6q07Ryd7BNjP0z-fk6ekT4Y7yNZgQiBBToFe9F4DVXJWhRaenx9sXQoxfjSEUICTiCoKG4r7q5uqvNHyeT4Ne0Qx6n8R3QYBc_UUIBOkz8t35Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeiudekgecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfgggtgfesthekredtredt
+    jeenucfhrhhomhepufhvvghnucfrvghtvghruceoshhvvghnsehsvhgvnhhpvghtvghrrd
+    guvghvqeenucggtffrrghtthgvrhhnpeegieehffethffhffefhfehkeevleevieetfeeg
+    keehhfeifffgheehieejheeihfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmh
+    epmhgrihhlfhhrohhmpehsvhgvnhesshhvvghnphgvthgvrhdruggvvhdpnhgspghrtghp
+    thhtohepuddvpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehmrghrtggrnhesmh
+    grrhgtrghnrdhsthdprhgtphhtthhopegrlhihshhsrgesrhhoshgvnhiifigvihhgrdhi
+    ohdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhrii
+    hkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghr
+    nhgvlhdrohhrghdprhgtphhtthhopehjsehjrghnnhgruhdrnhgvthdprhgtphhtthhope
+    hsvhgvnhesshhvvghnphgvthgvrhdruggvvhdprhgtphhtthhopegrshgrhhhisehlihhs
+    thhsrdhlihhnuhigrdguvghvpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvg
+    hlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
+X-ME-Proxy: <xmx:tru0Z7OudkQCQ8WODg6XJL1rO10W8-hiEqwz5aZFyD56nkTDGyOG3Q>
+    <xmx:tru0Z4_4xEomSJgPEIVZsZ1CLkQI3EpOXng9Rwh2QVQIgaFmGSIRTg>
+    <xmx:tru0ZzXr6HP_yrFIp0cgnXu3cINy2wPrs1zvHIuMkVzV8fpkN_tRgQ>
+    <xmx:tru0ZxdV99ouswqFWYT8WTLQhws84P61NKVPp0BJqdrzawqsmoiE9A>
+    <xmx:tru0ZzXJjlwkGk_3CueBPM87sCaEvEzMjgbKpdvdm-rd9_xdHoeV6hcu>
+Feedback-ID: i51094778:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 18 Feb 2025 11:56:19 -0500 (EST)
+From: Sven Peter <sven@svenpeter.dev>
+To: Hector Martin <marcan@marcan.st>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Janne Grunau <j@jannau.net>
+Cc: Sven Peter <sven@svenpeter.dev>,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Neal Gompa <neal@gompa.dev>
+Subject: Re: [PATCH v2 0/5] Add Apple SPI controller and spi-nor dt nodes
+Date: Tue, 18 Feb 2025 17:56:14 +0100
+Message-Id: <173989773063.49326.4641316959057298883.b4-ty@svenpeter.dev>
+X-Mailer: git-send-email 2.39.3 (Apple Git-146)
+In-Reply-To: <20241203-asahi-spi-dt-v2-0-cd68bfaf0c84@jannau.net>
+References: <20241203-asahi-spi-dt-v2-0-cd68bfaf0c84@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="z+c1Hyo5mnPQvSBK"
-Content-Disposition: inline
-In-Reply-To: <ddd1d62e-b1d2-4271-99a3-74bb0a48fb48@collabora.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
 
---z+c1Hyo5mnPQvSBK
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, 03 Dec 2024 08:57:56 +0100, Janne Grunau wrote:
+> This series adds SPI controller and SPI NOR flash device nodes to the
+> man Apple silicon SoC dts files. Only the subset of used SPI controllers
+> is added. Five SPI controllers exists according to pmgr ADT data but the
+> commits only add controllers found in use on any of the devices. The
+> parameters for the missing nodes are guessable but there's no point in
+> adding them since no further M1 or M2 devices are expected.
+> Together with controller nodes the first SPI device is added. All Apple
+> silicon devices connect a SPI NOR flash to spi1. This holds Apple's 1st
+> stage bootloader, firmwares, platform and machine specific config data
+> and a writeable key-value store (nvram). Expose only the nvram as mtd
+> partition since it has use beyond exploring the content. Tools from
+> asahi-nvram [1] can modify the (default) boot configuration
+> (asahi-bless), read Bluetooth sync keys (asahi-btsync) and read and
+> write arbitrary keys (asahi-nvram).
+> 
+> [...]
 
-On Tue, Feb 18, 2025 at 03:24:58PM +0100, AngeloGioacchino Del Regno wrote:
-> Il 18/02/25 13:44, Friday Yang (=E6=9D=A8=E9=98=B3) ha scritto:
-> > On Fri, 2025-01-24 at 17:31 +0000, Conor Dooley wrote:
-> > > On Wed, Jan 22, 2025 at 07:40:12AM +0000, Friday Yang (=E6=9D=A8=E9=
-=98=B3) wrote:
-> > > > On Tue, 2025-01-21 at 17:30 +0000, Conor Dooley wrote:
-> > > > > On Tue, Jan 21, 2025 at 02:50:40PM +0800, Friday Yang wrote:
-> > > > > > SMI LARBs require reset functions when applying clamp
-> > > > > > operations.
-> > > > > > Add '#reset-cells' for the clock controller located in image,
-> > > > > > camera
-> > > > > > and IPE subsystems.
-> > > > >=20
-> > > > > A new required property is an abi break, please explain why this
-> > > > > is
-> > > > > required.
-> > >=20
-> > > You never answered this part. From a quick check, looks like the
-> > > change
-> > > you made will cause probe failures if the resets are not present?
-> > > Maybe
-> > > I misread the driver code in my quick skim - but that is the
-> > > implication
-> > > of a new required property, so I didn't dig super far.
-> > >=20
-> > > Adding new properties that break a driver is not really acceptable,
-> > > so I
-> > > hope I made a mistake there.
-> > >=20
-> >=20
-> > Sorry to reply late.
-> > This is a known bus glitch issue. It worked because MediaTek has
-> > provided patches 1, 2 and 3. In other word, it can not work
-> > without patches 1, 2 and 3.
-> >=20
-> > 1.
-> > https://lore.kernel.org/all/20240327055732.28198-1-yu-chang.lee@mediate=
-k.com/
-> > 2.
-> > https://lore.kernel.org/all/20240327055732.28198-2-yu-chang.lee@mediate=
-k.com/
-> > 3.
-> > https://lore.kernel.org/all/20240327055732.28198-3-yu-chang.lee@mediate=
-k.com/
-> >=20
-> > Patches 1, 2 and 3 have been previously reviewed, and the reviewers
-> > provided the following comments:
-> > 4.
-> > https://lore.kernel.org/all/CAFGrd9qZhObQXvm2_abqaX83xMLqxjQETB2=3DwXpo=
-bDWU1CnvkA@mail.gmail.com/
-> > 5.
-> > https://lore.kernel.org/all/CAPDyKFpokXV2gJDgowbixTvOH_5VL3B5H8eyhP+KJ5=
-Fasm2rFg@mail.gmail.com/
-> > As I mentioned earlier, SMI clamp and reset operations should be
-> > implemented in SMI driver rather than the PM driver. Additionally, the
-> > reset operations have already been implemented in the clock control
-> > driver. There is no need to submit duplicate code.
-> >=20
-> > To address this, I have provided patches 6, 7 to replace patches 1, 2,
-> > and 3, as I believe this approach aligns more closely with the
-> > reviewers' requirements.
-> > 6.
-> > https://lore.kernel.org/lkml/20250121065045.13514-1-friday.yang@mediate=
-k.com/
-> > 7.
-> > https://lore.kernel.org/lkml/20250121064934.13482-1-friday.yang@mediate=
-k.com/
-> >=20
-> > What's more, I have tested the patch 6, 7 in MediaTek MT8188 SoC.
-> > It could work well. If you have any questions, please feel free to
-> > contact me.
-> >=20
-> > > > What are "SMI LARBs"? Why did things previously work
-> > > > > without
-> > > > > acting as a reset controller?
-> > > > >=20
-> > > >=20
-> > > > The background can refer to the discussion in the following link:
-> > > >=20
-> > > >=20
-> > https://lore.kernel.org/all/CAFGrd9qZhObQXvm2_abqaX83xMLqxjQETB2=3DwXpo=
-bDWU1CnvkA@mail.gmail.com/
-> > > >=20
-> > > >=20
-> > https://lore.kernel.org/all/CAPDyKFpokXV2gJDgowbixTvOH_5VL3B5H8eyhP+KJ5=
-Fasm2rFg@mail.gmail.com/
-> > > > SMI clamp and reset operations should be implemented in SMI driver
-> > > > instead of PM driver.
-> > >=20
-> > > So the answer to how it worked previously was that nothing actually
-> > > used
-> > > this multimedia interface?
-> > >=20
-> > > Your commit message needs to explain why a new required property is
-> > > okay
-> > > and why it was not there before.
-> > >=20
->=20
-> This conversation slipped through the cracks - wanted to reply to this qu=
-ite a bit
-> of time ago but then for whatever reason .... eh here we are :-)
->=20
-> Anyway.
->=20
-> The cleanest option to get the glitching situation to get resolved is pro=
-bably
-> exactly the one that Friday proposed with this series...
->=20
-> I agree that the commit needs a proper description, though, and even thou=
-gh the
-> drivers were never actually used (so it's not a huge problem - as in - no=
- device
-> gets broken when this is merged), it's still an ABI breakage, and that ha=
-s to be
-> justified with a good reason.
->=20
-> The good reason is that there's a hardware bug that you're trying to reso=
-lve here
-> and that emerged only after the initial upstreaming of this binding (do *=
-not*
-> mention drivers in DT bindings, those describe the hardware, not software=
-!), and
-> the only way to resolve this situation is by resetting the Local Arbiter =
-(LARB)
-> of the cam/img/ipe macro-blocks.
->=20
-> Failing to do this, the hardware is going to be unstable during high/dyna=
-mic load
-> conditions.
->=20
-> So, just describe the problem and how you're solving it in the commit des=
-cription:
-> that's going to be okay and justifying everything that you're doing here.
+Applied, thanks!
 
-Aye, seems fair enough to me to make the change if nothings ever used it
-as it currently is, provided it's justified in the commit message :+1:
+[1/5] arm64: dts: apple: t8103: Fix spi4 power domain sort order
+      commit: 1f7af2931158a5e819ac71bcba91e961ac5ca3ea
+[2/5] arm64: dts: apple: t8103: Add spi controller nodes
+      commit: 556cd4bbb45bb5a73042c02b7e5c982112a6ed1f
+[3/5] arm64: dts: apple: t8112: Add spi controller nodes
+      commit: 0a6d561c7e46bf46b886af209e8ebedb6d500680
+[4/5] arm64: dts: apple: t600x: Add spi controller nodes
+      commit: d08e455a865c99a8050addf4dc001bcfdf1b7b8b
+[5/5] arm64: dts: apple: Add SPI NOR nvram partition to all devices
+      commit: 3febe9de5ca5267618675650871a626d0901f8cb
 
->=20
-> I'm sorry for chiming in that late, btw.
-
---z+c1Hyo5mnPQvSBK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7S7JAAKCRB4tDGHoIJi
-0oIiAQDqz4r1wVNOAZjXPgcI3xZ7o90OxQ88cFEcH3wj/cvyRwD+JCkthqKwQ1xq
-Lz4TBSkNQL1uBnH/mhgpnht6GEakHAI=
-=GoZv
------END PGP SIGNATURE-----
-
---z+c1Hyo5mnPQvSBK--
+Best regards,
+-- 
+Sven Peter <sven@svenpeter.dev>
 
