@@ -1,71 +1,168 @@
-Return-Path: <devicetree+bounces-148131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E27D7A3AB58
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 22:51:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08DEBA3ABB6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 23:32:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D44293A2679
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 21:51:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC77C3A6D8E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 22:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4941D0F5A;
-	Tue, 18 Feb 2025 21:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B49B81B87EB;
+	Tue, 18 Feb 2025 22:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W08e2gcd"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="nbqb+bYN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22EC21BBBD3;
-	Tue, 18 Feb 2025 21:51:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D39F2862A5;
+	Tue, 18 Feb 2025 22:32:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739915502; cv=none; b=oLz/9zVeNYVFdKgMlceJFEheEHQ0UG4Gcu5La67P9hV9BAtCn7US8m0byXydmbaYTPwQm43CEnlcqa2nAv0EI9P8oqmcdVtU29YTUpe1ZJmGcZruvYh9J4xmRq3dJqT6nkexZvOoI6UZEUcNMLm3Z864BLbJaVIcb4UhIrTIYWk=
+	t=1739917928; cv=none; b=R65xx/QPrgWdIj1YtQrUr4JGIKxUkOoScT/ahj0k3wcH/V5wmeYr4spzJpFPj1Plr7LHQ5LZsuPRPq9KnTgjazbbAY5OoqluSJtYHCvpmZ/HyCzJjTPfWvoBtq9upwjG1EjIKzYo1VkD+hrU+NV3Kq7hGhH5fvZhR1O+AiqYPO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739915502; c=relaxed/simple;
-	bh=W13jQITpujW99mQ7CPujO6pRt/8mwf2HQ7ShicruSHs=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=FTs/8NvmhC/O6VaU3pwbArd99MfeIMDFiu7QNgUc5nS/EVtPTQfN7NNFHSd+1d25IftxuoBIneZd341Kkia6ed5VWuvpI17KwjtiABvl1eIjhB6lawVHy6GpgNjeN9o8zaKWP+LZFy5MpHR2TBrK+CGnhZDWEU417Wzbl7ilRhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W08e2gcd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D399C4CEE2;
-	Tue, 18 Feb 2025 21:51:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739915500;
-	bh=W13jQITpujW99mQ7CPujO6pRt/8mwf2HQ7ShicruSHs=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=W08e2gcdbMf1I/pADbgBXU+fDN0+fmoJr4ahb7ZKPp/Z7RIT3Fnx6kR/1D2NjgClJ
-	 QoARg1qgHpPMgXZw2cDNnixm9k/hzDCITbrbKLJmHpxv6Y+ssxPi2iFxjY+AWq9Kbp
-	 09y42E/YuATKOO04iYI2KnW2qWI+YFYtddwxVymXq0LITojbkglYhoQy0blo/JhTID
-	 hMdz8DOV0bt/hqGIsIKAO+0jxMUPj7yx/6VsLJErGpopgXmYxyAYAXYaLi6l2oeDWS
-	 9qB2//jKPCLHE/HBVV6+4l/IveguLtykXKqoM7WnZdTcL4DO8ISN29UxMY9XRHD7um
-	 w9IjAIOItLWsQ==
-Message-ID: <b2b9216c7c28e5eed267b9a39c8dcfb1.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1739917928; c=relaxed/simple;
+	bh=MNyQrzrM2hdZD5RtjbM9UexD/z0IBigwTDdl/68TcTw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qJ6On1smVG+oGVh3LPxLmvHp+1orsAewBXnYKstYH27uNbgcg8N50C3Rz7MjnACQ6AM+7xsnzkBs1vPydZHj1PdZfsmcTcM/iq/ihgqH20iWeWKU54Mq0BWwVzWGBnkD84fmBEUWd2qFhAdwFeaf6kl/Gu+kWk2oBiFT7ijuy4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=nbqb+bYN; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from [10.137.184.60] (unknown [131.107.160.188])
+	by linux.microsoft.com (Postfix) with ESMTPSA id 4E96820376ED;
+	Tue, 18 Feb 2025 14:32:06 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 4E96820376ED
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1739917926;
+	bh=wkHtF8Q1p9OLsyZ01ZxOlGG224lrcQMUsc6UkXJicro=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nbqb+bYNVQ0gup+rvq/dhImqOWkwYohvkh5vvpwNHfMeSwBVbDosoWWE57JaQtoSf
+	 SCCcRwRTFnVYwSEG2WcM2hfuquEeiOufFJUpLjad8c4/n4jB+k1nw8BbzOsEFrced2
+	 0YoLSIqvXbVccqXXco4HoZ+xIZRWRpOZkJdTff94=
+Message-ID: <19435dae-89b5-4c23-af1e-c8917e29c857@linux.microsoft.com>
+Date: Tue, 18 Feb 2025 14:32:06 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250218-poplar-iron-c894fe8deca6@spud>
-References: <20250217-b4-k230-clk-v4-0-5a95a3458691@zohomail.com> <20250218-poplar-iron-c894fe8deca6@spud>
-Subject: Re: [PATCH v4 0/3] riscv: canaan: Add support for K230-Canmv clock
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, Samuel Holland <samuel.holland@sifive.com>, Troy Mitchell <TroyMitchell988@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Conor Dooley <conor@kernel.org>, Xukai Wang <kingxukai@zohomail.com>
-Date: Tue, 18 Feb 2025 13:51:38 -0800
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH hyperv-next v4 6/6] PCI: hv: Get vPCI MSI IRQ domain from
+ DeviceTree
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de,
+ catalin.marinas@arm.com, conor+dt@kernel.org, dave.hansen@linux.intel.com,
+ decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com,
+ krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com, lpieralisi@kernel.org,
+ manivannan.sadhasivam@linaro.org, mingo@redhat.com, robh@kernel.org,
+ ssengar@linux.microsoft.com, tglx@linutronix.de, wei.liu@kernel.org,
+ will@kernel.org, devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org,
+ benhill@microsoft.com, bperkins@microsoft.com, sunilmut@microsoft.com
+References: <20250212174203.GA81135@bhelgaas>
+Content-Language: en-US
+From: Roman Kisel <romank@linux.microsoft.com>
+In-Reply-To: <20250212174203.GA81135@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Quoting Conor Dooley (2025-02-18 09:02:32)
-> Stephen,
->=20
-> Is the driver in this series satisfactory to you? If it is, can I send
-> you a PR containing it and the binding so that I can apply the final
-> patch in the series (and merge the basic support for the k230 soc)?
->=20
 
-Sorry, the driver is not ready.
+
+On 2/12/2025 9:42 AM, Bjorn Helgaas wrote:
+> On Tue, Feb 11, 2025 at 05:43:21PM -0800, Roman Kisel wrote:
+
+[...]
+
+>> +	 * function called later.
+> 
+> The rest of this file fits in 80 columns; please wrap this to match.
+> 
+
+Will fix, thank you for taking the time to review that!
+
+>> +	 */
+>> +	if (!domain)
+>> +		WARN_ONCE(1, "No interrupt-parent found, check the DeviceTree data.\n");
+> 
+> Is there a way to include a hint about what specific part of the
+> devicetree to look at, e.g., the node that lacks a parent?
+
+I'll improve this, will mention the bus, thanks!
+
+[...]
+
+>> +	 * the messy ifdef below.
+> 
+> Add a blank line if you intend a new paragraph here.  Otherwise, wrap
+> to fill 78 columns or so.
+
+Will fix this, appreciate noticing that!
+
+> 
+>> +	 * There is apparently no such default in the OF subsystem, and
+>> +	 * `hv_pci_of_irq_domain_parent` finds the parent IRQ domain that
+>> +	 * points to the GIC as well.
+> 
+> And here.
+
+Will fix, thanks!
+
+>> +	 * None of these two cases reaches for the MSI parent domain.
+> 
+> I don't know what "reaches for the MSI parent domain" means.  Neither
+> "searches for"?
+> 
+
+My bad, sorry about the incomprehensible phrasing! Will fix this, thank
+you!
+
+>>   	 */
+>> -	hv_msi_gic_irq_domain = acpi_irq_create_hierarchy(0, HV_PCI_MSI_SPI_NR,
+>> -							  fn, &hv_pci_domain_ops,
+>> -							  chip_data);
+>> +#ifdef CONFIG_ACPI
+>> +	if (!acpi_disabled)
+>> +		hv_msi_gic_irq_domain = acpi_irq_create_hierarchy(0, HV_PCI_MSI_SPI_NR,
+>> +			fn, &hv_pci_domain_ops,
+>> +			chip_data);
+>> +#endif
+>> +#if defined(CONFIG_OF)
+>> +	if (!hv_msi_gic_irq_domain)
+>> +		hv_msi_gic_irq_domain = irq_domain_create_hierarchy(
+>> +			hv_pci_of_irq_domain_parent(), 0, HV_PCI_MSI_SPI_NR,
+>> +			fn, &hv_pci_domain_ops,
+>> +			chip_data);
+>> +#endif
+> 
+> I don't know if acpi_irq_create_hierarchy() is helping or hurting
+> here.  It obscures the fact that the only difference is the first
+> argument to irq_domain_create_hierarchy().  If we could open-code or
+> have a helper to figure out that irq_domain "parent" argument for the
+> ACPI case, then we'd only have one call of
+> irq_domain_create_hierarchy() here and it seems like it might be
+> simpler.
+> 
+
+That looks quite dirty, no dispute over that... The root device was
+static/provate for the ACPI case, and I didn't go for changing the ACPI
+subsystem code to improve this patch, thought the only user wouldn't
+justify tinkering with the whole ACPI subsystem. Maybe I also will
+need to see if that can be used from a module/builti-in, locking,
+bogus usage, i.e. all that normally comes with promoting a private
+interface to public.
+
+Let me work out the details and post the change here to see what
+feedback that receives.
+
+Last but certainly not least: owing a great debt of gratitude to you
+(and all other folks) for helping in bringing this to the best shape
+possible!
+
+-- 
+Thank you,
+Roman
+
 
