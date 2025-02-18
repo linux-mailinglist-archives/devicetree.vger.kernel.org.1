@@ -1,120 +1,159 @@
-Return-Path: <devicetree+bounces-147838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA0F0A398AF
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:24:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4CD1A39927
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:38:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2EE63A5AAC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:18:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4CDF1882FE4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:35:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EC3B23237A;
-	Tue, 18 Feb 2025 10:18:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867FE269CF9;
+	Tue, 18 Feb 2025 10:26:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BV0bWNze"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gOCATJiI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95BC022FAE1
-	for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 10:18:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9A9F269AF4;
+	Tue, 18 Feb 2025 10:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739873894; cv=none; b=ttDlwxV05lc+zaqTGNqG4QBHO8gXbglK2rv31psPWnbzXftPjdnLN8eEqsNJW9vWDpR4ehx9R9hc0gx2pQy4XID3I9qRYbPE2oneSJ2mxiJ5tzKqj2p1HAXrDnjMbLKUbNeD8lc/dwBSrI7qCZrnMZXFLYIzrnN9RH3M9RY0Jqo=
+	t=1739874413; cv=none; b=G36DggVvOR8Kg8ZbzttqEeoa11Cb8aiwvDRDPT0XsttR931ImY6KPwbHiPCHesm+BIkbABTKfL/Ms0n05NYkMAQxbNjVuN8hq83i7TIGN7Lz7Z8NpoFhGWd2zEDVavdQKPjXvRddb+57XbUA285We0WLGrDDz4l8ZGU0mK4iHig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739873894; c=relaxed/simple;
-	bh=a3zZKi7KyqePBjsPprnaXEopvwTH/GsVqiLJf8W3hiY=;
+	s=arc-20240116; t=1739874413; c=relaxed/simple;
+	bh=mxcTS/TKtzanNcSFC5ycNWuMfjyHKMjimPE0zTyL9R0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eq9PJ1eicNMF8rn6+cGbMlmSp2YYOErhlVu/diabvDZZo4vMHgPAi4q4Z/jltUIVHOF9HT1B8xvK0tVQ8dWCzoNTq9s69dDryUwhB78gL9TjQyBf053x7t1sWy4LOlzN09ncpx1NkhzfHA6SN/MDv48SYb3KM+0at8KuvTzgecc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BV0bWNze; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-30797730cbdso54939471fa.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Feb 2025 02:18:12 -0800 (PST)
+	 To:Cc:Content-Type; b=rUVv5q4M4MrfIIo+qfuZQPBv9b263SFkCXGu+zMHS5lYMeYgZgWR3k5lywxA5Itnkw9dnC4JkwDd0/VRqQiY8b0jYKz3iU+VPxW+R+1C3p9NavJe0IrdOCUAqoQZZnn+7IB0X/XHmfzw+nvDlJJemLoidGqM9V9DtU+BbKSJmOI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gOCATJiI; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-5209ea469e9so2075376e0c.0;
+        Tue, 18 Feb 2025 02:26:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739873891; x=1740478691; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1739874410; x=1740479210; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=a3zZKi7KyqePBjsPprnaXEopvwTH/GsVqiLJf8W3hiY=;
-        b=BV0bWNze84QwlXxejkQUwvjWxPobfaaWYIqiEPxO5iV3s8GZTiqwhQOSiRvdo38Jgt
-         QHtVlCEvhzhQ7velO4otHR2RasmiHzk05aX1ArsMm4kcSsJKp6KUagXPQTJV6y80KRpR
-         DBITmof8Z8gyVJ6URiuzfaTepBniMBKoyw9wqPBjHAFNxB3uWQ2IT9xzXJQTGw5Iuvkc
-         TDU6fIoCtYGsDX6AlwVw6tZ57ETo3mlKco1OD3lM8w3/uXXmhgsJZpunM0BP+aEATZeY
-         nkJry6kokC8iScYihmNGpYyYlXGZjm9aBaNf1HqRUzCAed8tbd32enlM4ywCgkHP02Ng
-         i+Pg==
+        bh=5fTbNUo/qWCyQ6WC+r9ba4QH65ygmHbCBvKYDPCRYdE=;
+        b=gOCATJiIUNJqG89Ik8wyDceo19p7/ZNvsf3VzzwKHlnCwyPhY/Oni8KZMfWbfDsVol
+         TqaW//jsSrWs6K90YlW3tR1ArAuh9RL+jsdQSz10mEDtCxKY4WMjaw4VwwKXUDW7W4r0
+         Nn/rCp36/Fe+Tb+/1yxiTMwupPbClasNht3gU8D6uCpk1kFORz/cBuJP1v7I4q/z97HI
+         PNTl34zP7nb+mjTBzLYFda9yG7W2MlvpSDqkxG8i/MfoS4fnio2IA5fjn4V9qWreuMaM
+         2AsRTuUjDlwqUyTSDNx+81pyAXyQSKC/313kPJs40wpAmkWXqH8h65k3+a5AnRNf02jb
+         /0ZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739873891; x=1740478691;
+        d=1e100.net; s=20230601; t=1739874410; x=1740479210;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=a3zZKi7KyqePBjsPprnaXEopvwTH/GsVqiLJf8W3hiY=;
-        b=vBjMcjSxZ9A59EL4094lRku7awVr1y5VFCLw7HRL+Y6Z5NRiDmKXj09Gm2/UgJ8qzO
-         OmIpoQ2N9I05BFuTgKMk1SWXXsJYf9r8avw7zFxK8lsjYkl5Ix8uyqEVoJ/qz5Zl9dVC
-         ddVijqhe+zd7PK4p4F4J7xFpjv8tgJR77h5H3xlKnYUqSUt/6WssFwTkDPfkSiYqP0w9
-         3DwAUj30QjD4kg2CjhsYAchmCYgbqzZeWqpOXssmN4y5JnyCLYyk2BepIXUyrifptNVN
-         SpeC7iudy/cBus6ewNLm1dqawt8RqHd4eOxwvjghnkRfRvWO2P2VczVGDfvCvL6KcxV4
-         dQfA==
-X-Forwarded-Encrypted: i=1; AJvYcCVxY1lMP/jhyk+yXYTImXhn08Jop0sYUc/T2ItsNUuAPFvCOYp64TApnCkdZk3L3qDPANgSFMQWxuTJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwThAqabjPptcMVmtsox4wCR329YrtkCEsoQ1SPd2CST25Dnrk3
-	1gkMU/ozUhPWufy748uVoGl+sb3XLzTuBCX+sbyOzbaXpdQPCjvaoCJf79bGyGnS6x53LMmC0+X
-	InmO9swv0YnFsw9HPj5dR9DJM1ak2zZVC8/8/fA==
-X-Gm-Gg: ASbGnctpmOm64JEaPPUSqsh/mkQcwCHFLh6eHU3AEu06XCpDHwLrcyHQQXDmAbEr/wT
-	j6yBKSOGQU7KxZVSE8Du2zCkaTKa/EKAThZ8RlpL6X70Hk1MPHU7UoO7oUr4P6RcF4OkI8Tsr
-X-Google-Smtp-Source: AGHT+IH2phiht3fTcJfb8ofTkI1v/FLe+lY4y9euuHGDawBqpbQ+TlXpkQ41TvHsqZg8ubAlV69gCmhAwRsjaZoaReA=
-X-Received: by 2002:a2e:9f54:0:b0:308:f860:7c1 with SMTP id
- 38308e7fff4ca-30927b1b22amr37848241fa.30.1739873890696; Tue, 18 Feb 2025
- 02:18:10 -0800 (PST)
+        bh=5fTbNUo/qWCyQ6WC+r9ba4QH65ygmHbCBvKYDPCRYdE=;
+        b=F18j/y7ULltECgOU/9Ci+K+NkJxc/4U10QuYgI3si9WLHqDYy3a8HjFGNaBS/J9Kmq
+         KLHguXjRMj1l+d8pXwq6ePWfh/93D6WKngR7xQgfBXbBky0/Z1NVa4+RI03ZxtZ+oTqu
+         YhafWL/s5QkhCxPzmT0qCCUv9Zcm0+vmwJ9YCGfpFY6h8PPoqiOY36w0H7R6eMDFJ4x/
+         YCkQgBoaBvzCqlhFGnwl1+gYJYSRkkRAFs9UH7cDeD0NQ4n+QKVSVs9m4COEuLRo09Zv
+         /t8YCyXY4PJn3XrBHORBA9Vv69zunMA2Upxb/U/5n2vw0HiSqbJMxEPoIaj7fDsQiICa
+         Si8A==
+X-Forwarded-Encrypted: i=1; AJvYcCU3MV8MeNJziTveaqOn1R4Tp6l7CFjOg6RWM8UfQaTd8uVN7i25H2F9LNpHtC63pDodOgSVFOqigDBKSnTA@vger.kernel.org, AJvYcCV1L9TDXjaAJyTK3CqHMg9v+rZb1Mutme06EaABjT7F9FQ60bHxjTLWcqPGaymhaKdPgTEMF9omUl5FmeOrwxk=@vger.kernel.org, AJvYcCVaX77T/PBSd8PRMCfdxcMt/lj69yrFeNkT33+WfczeFrorIUYeX/97LkHYwqEWI9zTbn10cr8aWNvzBO2o7iT5spo=@vger.kernel.org, AJvYcCWkYoOmnQm1tuFJnGWXS1FemJrsae0YlLrZ/3/q0lpAD49p00BWz/gW+fUdx0K7VqonjI45twykYXAM@vger.kernel.org, AJvYcCXU5weLmp2K6+wDHTndw0hD7M6fnR7MB/tkICcpTSufUuka38ka0jD/GSeSdjh8/StWV3Y+26RzSzX9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyBrCDR0iLSo3Z4HOm9hZPhWBbe616CVB294XNTe64yW3Cy6lzT
+	oyjTX1wy44tebABdmhs4/WU/NcbFW1OYlI4lm2ZTpPv1EX73OqSNRpwl0FXBz5BdIqcCU3QIgVt
+	9smRtyZfVb9ooDh4WIJ0KUd/kRx0=
+X-Gm-Gg: ASbGncsPLhFiHVJ4hHlU9Dk3v5fJai8zgKvs0wjU9HPbWyI0ecpGceIER1katmrsUxh
+	fGolBso2/zH1dzEQ7hSPtAXj0FyhLJGhw3+M0mgrh4TjqxfNySSZrXYASef+Rf9W6XhTjyr1MmD
+	2GYqW2ZU1TN4eqD/Ea6mLTBu/+knNahQ==
+X-Google-Smtp-Source: AGHT+IEiB//Rvg/toRlYTHXOR+8uze5zclaIXpF6byYRu0iJ1Qv+6YSH2lmjvsHIbp5ehoRcoDDnqpS7HCosXSGukek=
+X-Received: by 2002:a05:6122:658b:b0:520:4d63:72da with SMTP id
+ 71dfb90a1353d-5209dc87d29mr6025043e0c.6.1739874410535; Tue, 18 Feb 2025
+ 02:26:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250123113042-GYA38135@gentoo> <Z5LOdh-4UxRtteOy@chonkvm.lixom.net>
- <20250127181726.GA538260-robh@kernel.org> <20250128031712-GYB47737@gentoo>
- <CACRpkdYbSOHD9UH5=+qjztxS3Cq_rxaoOT9tFtD8ZWm9zQGnPw@mail.gmail.com>
- <CACRpkdZa887vx4Lmxk1U_8w5n7AxMnyzGexeYzhsxNGT-DTYcQ@mail.gmail.com>
- <20250206133156-GYA5687@gentoo> <CACRpkdZYYZ5tUR4gJXuCrix0k56rPPB2TUGP3KpwqMgjs_Vd5w@mail.gmail.com>
- <20250214115410-GYA21743@gentoo> <CACRpkdaQZ5wJ0S=FfTzBkZOfCE7zvTPQ-wn53rHcZztbHLC8xQ@mail.gmail.com>
- <20250218095540-GYA29065@gentoo>
-In-Reply-To: <20250218095540-GYA29065@gentoo>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 18 Feb 2025 11:17:59 +0100
-X-Gm-Features: AWEUYZlziirybpkwfa2SwWJtaw_DWEb5S7JJMmpNsPZD80yNPZD4D4NQeN62kvc
-Message-ID: <CACRpkdZiD7LRAk3hhvWdnf9DCuQCWGLoE1xd_z9ddRKZP=uvLw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: gpio: spacemit: add support for K1 SoC
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Rob Herring <robh@kernel.org>, Olof Johansson <olof@lixom.net>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Conor Dooley <conor@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>, 
-	Jisheng Zhang <jszhang@kernel.org>, Jesse Taube <mr.bossman075@gmail.com>, 
-	Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
+References: <20250210184910.161780-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250210184910.161780-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 18 Feb 2025 10:26:23 +0000
+X-Gm-Features: AWEUYZl9Hr4rbmCZyrRt1t9_8JazRp98fGvLiEsB-9wshbaMSz8hdT9fU-lDNfI
+Message-ID: <CA+V-a8uOkKzijsS_dmOA1XqHYReR3n7cRGUngh-6wJG7LDRvOA@mail.gmail.com>
+Subject: Re: [PATCH v4 0/9] Add support to configure CPG block for watchdog on
+ RZ/V2H(P) and RZ/G3E SoCs
+To: Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	linux-renesas-soc@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 18, 2025 at 10:55=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wrote:
+Hi All,
 
-> > I will post it real soon.
-> >
-> can you check the v5 of the patch here [1]? which I just sent out yesterd=
-ay
-> it does 1) implement xlate() 2) instroduce custom add_pin_page()
-> the gpio part works as I tested, the gpio irq probably need more testing
+On Mon, Feb 10, 2025 at 6:49=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+>
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Hi All,
+>
+> This patch series adds SYSCON support to configure and retrieve boot
+> status information from the CPG block for the RZ/V2H(P) and RZ/G3E SoCs.
+> Summary of Changes,
+>
+>     Clock:
+>         Add syscon compatible support to the CPG block in bindings and
+>         device trees.
+>
+>     Watchdog:
+>         Document the renesas,r9a09g057-syscon-wdt-errorrst property.
+>         Update the watchdog driver to fetch and report boot status via
+>         Error Reset Registers (CPG_ERROR_RSTm) and configure the
+>         CPG_ERRORRST_SEL2 register.
+>
+>     Device Tree:
+>         -Add the syscon property to CPG nodes in R9A09G057 and R9A09G047
+>          SoC DTSI.
+>         -Add the renesas,syscon-cpg-error-rst property to WDT nodes in
+>          R9A09G057 and R9A09G047 SoC DTSI.
+>
+> v3->v4
+> - Added support to configure CPG_ERRORRST_SEL2 register
+> - Updated commit messages
+>
+> v2->v3
+> - Updated comment section to mention there aren't any ABI breakages with
+>   this patch series.
+>
+> Cheers,
+> Prabhakar
+>
+> Lad Prabhakar (9):
+>   dt-bindings: clock: rzv2h-cpg: Add syscon compatible for CPG
+>   clk: renesas: Kconfig: Select MFD_SYSCON for RZ/V2H(P) family driver
+>   arm64: dts: renesas: r9a09g047: Add `syscon` compatible for CPG node
+>   arm64: dts: renesas: r9a09g057: Add `syscon` compatible for CPG node
+>   dt-bindings: watchdog: renesas: Document
+>     `renesas,syscon-cpg-error-rst` property
+>   watchdog: rzv2h_wdt: Add support to retrieve the bootstatus
+>     information
+>   watchdog: rzv2h_wdt: Configure CPG_ERRORRST_SEL2 register
+>   arm64: dts: renesas: r9a09g057: Add `renesas,syscon-cpg-error-rst`
+>     property to WDT node
+>   arm64: dts: renesas: r9a09g047: Add `renesas,syscon-cpg-error-rst`
+>     property to WDT node
+>
+Gentle ping.
 
-Ah nice! I have the same idea, but I just bring all the stuff you
-need to reimplement in your driver into the core instead.
 
-Your driver and bindings will look the same, you will just do
-not need to reimplement the translation functions (if my code
-works as I intended...)
-
-Yours,
-Linus Walleij
+Cheers,
+Prabhakar
 
