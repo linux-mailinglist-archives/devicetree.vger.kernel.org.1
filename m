@@ -1,193 +1,119 @@
-Return-Path: <devicetree+bounces-147829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C50DBA397E2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:00:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67FF5A39818
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 11:05:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7382161EBA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:00:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 467BA7A1AF8
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 10:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B56B234969;
-	Tue, 18 Feb 2025 09:58:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51AF5232787;
+	Tue, 18 Feb 2025 10:01:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="skjPJG3q"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="NxiIsn1b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3919234962;
-	Tue, 18 Feb 2025 09:58:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 431501B415E;
+	Tue, 18 Feb 2025 10:01:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739872733; cv=none; b=m2fd6BC9rJ+E6msvBSKMaRj7xUEw5YxjBtPInqqV+NtcvwoVqzR3xFfBbSWUwdfSDZGrUPJnxUJbQOyFRtmBLHz1vtQLHbWr+iDijdeXOlyfhznHKq4g58INkZi92IrH6C0y+b9XEFDGvBAyk0wubsAfQRkzz9/jhJWKnTia3dM=
+	t=1739872869; cv=none; b=EYbIBySCO1j6MuTSho4ifU978589UbDw1FNyDzRHF+zUumO8KcOZG+R549SBcwMLzqVBwVRjGZRx5e2W5ZSfAYAjk3PO47W7iKFCLafn8x6/fZolY72cGWWKkKYW/7UIi4XKwJNLDdmz2RzfJNOw5kscPruVoAeCSg4wyIzPIis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739872733; c=relaxed/simple;
-	bh=/5c9NpxXM4pSZx9SBXZ0Bku0kkqiwO9j8xWtCl97MGc=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=Bzd0kut14udFZqTGmpRK4SvaFNo21JyV4QDjGADYyRKDSwo5YJXf9l9XZVTHOfJLM43je0143j93e7yyVlLBo3q6MViXCc5YdxP8t0tdtrKA0EIt0VIdlQr43YzmAfY/gOrauZQGk9cbtH6M73xC9q/zxEgSzW//1SprFaH7azw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=skjPJG3q; arc=none smtp.client-ip=162.240.238.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=IplbbsjtQNJ9e6AF522ZXUvBfXM+LfwzW90At7QJSew=; b=skjPJG3qHyyrQxKdigVU5Yrf/3
-	Yj1J/c5z6dFoGQWIMJTz4LBoTxUbW8gsCvnA4wrW7EZhOq66KKLmF+eUxYtNF0/HOxlgJn5x9roGh
-	5TeDGN3kOkGFJ8y8IQFZR39DRkbtQeRdu7QKAw+YKlU0G+JbpWpKyzpA3xItlRY2rqL349W98C9Mg
-	WegKmZcHRR3VkNP4DPHhdZzVHw02BBXWB0OuikiFV0Zr5Ibng073GjDtPHAVyf6sSNrSKfAylxAAK
-	TcjfojLRd+Ix+3zdxJ1yc/08VFtBY1EGx3p9oIi+SrbylPcIA5adTn/LlD1AVu/CKdCaEhXgpXt7o
-	p1+xvIRg==;
-Received: from [122.175.9.182] (port=27501 helo=zimbra.couthit.local)
-	by server.wki.vra.mybluehostin.me with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <parvathi@couthit.com>)
-	id 1tkKND-0007xL-1i;
-	Tue, 18 Feb 2025 15:28:40 +0530
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id AEF9617821C8;
-	Tue, 18 Feb 2025 15:28:29 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 85C9C17823D4;
-	Tue, 18 Feb 2025 15:28:29 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id SPe3V9-vo6EN; Tue, 18 Feb 2025 15:28:29 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 41B8D17821C8;
-	Tue, 18 Feb 2025 15:28:29 +0530 (IST)
-Date: Tue, 18 Feb 2025 15:28:29 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq <rogerq@kernel.org>, andrew+netdev@lunn.ch, 
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org, 
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, nm@ti.com, ssantosh@kernel.org, 
-	richardcochran@gmail.com, basharath <basharath@couthit.com>, 
-	schnelle@linux.ibm.com, diogo ivo <diogo.ivo@siemens.com>, 
-	m-karicheri2@ti.com, horms@kernel.org, 
-	jacob e keller <jacob.e.keller@intel.com>, m-malladi@ti.com, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, afd@ti.com, 
-	s-anna@ti.com, linux-arm-kernel@lists.infradead.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, pratheesh <pratheesh@ti.com>, 
-	Prajith Jayarajan <prajith@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, praneeth@ti.com, srk@ti.com, 
-	rogerq@ti.com, krishna <krishna@couthit.com>, 
-	pmohan <pmohan@couthit.com>, mohan <mohan@couthit.com>
-Message-ID: <1901840071.600762.1739872709135.JavaMail.zimbra@couthit.local>
-In-Reply-To: <20250214164422.1bb58a89@fedora.home>
-References: <20250214054702.1073139-1-parvathi@couthit.com> <20250214073757.1076778-5-parvathi@couthit.com> <20250214164422.1bb58a89@fedora.home>
-Subject: Re: [PATCH net-next v3 04/10] net: ti: prueth: Adds link detection,
- RX and TX support.
+	s=arc-20240116; t=1739872869; c=relaxed/simple;
+	bh=l5Ts+b7yVQJqhwAyf007dWGYtYu9ssBgiRKvaW+pf6s=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AUWZ3ywYYcr9z3jZ9oGM0uGVfXneZchvOtkhjC4mC7HaDG4sV2mmsDT6b5OfH/AqfR+oXJMsgxMv7o1SXEZXAsYIu2npQDD7z79/51N6PeqQtZYcBB7g457QeaG6V5NG2p5FHcz00gNLETqZRmvBNwOnwUSlPjZPoKH14kLbSsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=NxiIsn1b; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=XqV/29FN8TAKwZ9jAVPZuJgB96iWFCzrBQyx4X5GjRI=; b=NxiIsn1b7FykEg6OCLh5DpDtTw
+	RDjum5Qx4uV2nMLbl4A6rKayYGAtYmRYhAH5mPNiqN74w7AOyScXoApT0M3CIAtB5pfTCduRV84jd
+	8Y9wbfTlYPWDx+tG8n52sNCelLFypuJUEOv8RXNXELnwatmIl5F2DkL7iHY8TDhbx8bWA+EMZkzWV
+	awy1oAO/ET4dDzpyQfTxmlkpCH5DD/0t5BSkPOJVNP06R7088+J5tbrXKad7fHL5iEhgRrswiU0aD
+	P/xjDk3UO+AdXFAGXt0t8pbE8CJWS6djYfLefPC+snPPRg5SpASruOXsCRX6Fcqmmj6HbjXD424EU
+	wvqiQjNA==;
+Received: from i53875bc0.versanet.de ([83.135.91.192] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tkKPS-0003jc-4g; Tue, 18 Feb 2025 11:00:58 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: cristian.ciocaltea@collabora.com, Jianfeng Liu <liujianfeng1994@gmail.com>
+Cc: airlied@gmail.com, andy.yan@rock-chips.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ hjc@rock-chips.com, kernel@collabora.com, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, liujianfeng1994@gmail.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, robh@kernel.org,
+ simona@ffwll.ch, tzimmermann@suse.de
+Subject:
+ Re: [PATCH 3/4] arm64: dts: rockchip: Add HDMI1 PHY PLL clock source to VOP2
+ on RK3588
+Date: Tue, 18 Feb 2025 11:00:57 +0100
+Message-ID: <1919367.CQOukoFCf9@diego>
+In-Reply-To: <20250218095216.1253498-1-liujianfeng1994@gmail.com>
+References:
+ <1b3234ce-4526-4735-b9c0-c242e6cc3cf0@collabora.com>
+ <20250218095216.1253498-1-liujianfeng1994@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF113 (Linux)/8.8.15_GA_3968)
-Thread-Topic: prueth: Adds link detection, RX and TX support.
-Thread-Index: ruvuX5QuiCck3qy25K/1ke8txq1XdQ==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.wki.vra.mybluehostin.me: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+
+Am Dienstag, 18. Februar 2025, 10:52:16 MEZ schrieb Jianfeng Liu:
+> Hi Cristian,
+> 
+> No matter one or two hdmi ports the rk3588 boards have, most of
+> devicetrees in mainline kernel only have hdmi0 supported. After applying
+> this patch their hdmi0 support is broken.
+> 
+> So I recommend moving the vop clk part to board level devicetree.
+> Then support of hdmi0 won't be broken, and board maintainers can add
+> HDMI1 PHY PLL clk when they are adding hdmi1 support. I can add support
+> for orangepi 5 max and armsom w3 for reference by other developers.
+
+better, fix the VOP2 driver - both for the existing hdmi0 + this hdmi1
+please.
+
+I.e. the clock is optional, and the error you are seeing comes from the
+
+       vop2->pll_hdmiphy1 = devm_clk_get_optional(vop2->dev, "pll_hdmiphy1");
+       if (IS_ERR(vop2->pll_hdmiphy1)) {
+               drm_err(vop2->drm, "failed to get pll_hdmiphy1\n");
+               return PTR_ERR(vop2->pll_hdmiphy1);
+       }
+
+part. clk_get_optional is supposed to return NULL when clock-retrieval
+causes a ENOENT error. Seemingly going to a clock controller in a disabled
+node returns a different error?
+
+So I guess step1, check what error is actually returned.
+Step2 check if clk_get_optional need to be adapted or alternatively
+catch the error in the vop2 and set the clock to NULL ourself in that case.
 
 
-Hi,
+hdptxphy0 + hdpxphy1 _are_ valid supplies for the vop, so their reference
+should be in the soc-dtsi and the kernel code should just figure things out
+correctly. Wiggling with clocks in each board will cause headaches down
+the road.
 
-> On Fri, 14 Feb 2025 13:07:51 +0530
-> parvathi <parvathi@couthit.com> wrote:
-> 
->> From: Roger Quadros <rogerq@ti.com>
->> 
->> Changes corresponding to link configuration such as speed and duplexity.
->> IRQ and handler initializations are performed for packet reception.Firmware
->> receives the packet from the wire and stores it into OCMC queue. Next, it
->> notifies the CPU via interrupt. Upon receiving the interrupt CPU will
->> service the IRQ and packet will be processed by pushing the newly allocated
->> SKB to upper layers.
->> 
->> When the user application want to transmit a packet, it will invoke
->> sys_send() which will inturn invoke the PRUETH driver, then it will write
->> the packet into OCMC queues. PRU firmware will pick up the packet and
->> transmit it on to the wire.
->> 
->> Signed-off-by: Roger Quadros <rogerq@ti.com>
->> Signed-off-by: Andrew F. Davis <afd@ti.com>
->> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
->> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
-> 
-> 
->> +/* update phy/port status information for firmware */
->> +static void icssm_emac_update_phystatus(struct prueth_emac *emac)
->> +{
->> +	struct prueth *prueth = emac->prueth;
->> +	u32 phy_speed, port_status = 0;
->> +	enum prueth_mem region;
->> +	u32 delay;
->> +
->> +	region = emac->dram;
->> +	phy_speed = emac->speed;
->> +	icssm_prueth_write_reg(prueth, region, PHY_SPEED_OFFSET, phy_speed);
->> +
->> +	delay = TX_CLK_DELAY_100M;
->> +
->> +	delay = delay << PRUSS_MII_RT_TXCFG_TX_CLK_DELAY_SHIFT;
->> +
->> +	if (emac->port_id) {
->> +		regmap_update_bits(prueth->mii_rt,
->> +				   PRUSS_MII_RT_TXCFG1,
->> +				   PRUSS_MII_RT_TXCFG_TX_CLK_DELAY_MASK,
->> +				   delay);
->> +	} else {
->> +		regmap_update_bits(prueth->mii_rt,
->> +				   PRUSS_MII_RT_TXCFG0,
->> +				   PRUSS_MII_RT_TXCFG_TX_CLK_DELAY_MASK,
->> +				   delay);
->> +	}
->> +
->> +	if (emac->link)
->> +		port_status |= PORT_LINK_MASK;
->> +
->> +	writeb(port_status, prueth->mem[region].va + PORT_STATUS_OFFSET);
->> +}
->> +
->>  /* called back by PHY layer if there is change in link state of hw port*/
->>  static void icssm_emac_adjust_link(struct net_device *ndev)
->>  {
->> @@ -369,6 +426,8 @@ static void icssm_emac_adjust_link(struct net_device *ndev)
->>  		emac->link = 0;
->>  	}
->>  
->> +	icssm_emac_update_phystatus(emac);
->> +
-> 
-> It looks to me like emac->link, emac->speed and emac->duplex are only
-> used in icssm_emac_update_phystatus(). If you consider either passing
-> these as parameters to the above function, or simply merge
-> icssm_emac_update_phystatus() into your adjust_link callback, you can get
-> rid of these 3 attributes entirely. It even looks like emac->duplex is
-> simply unused.
-> 
 
-Sure, we will address this in the next version.
+Heiko
 
-Thanks and Regards,
-Parvathi.
+
 
