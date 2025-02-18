@@ -1,143 +1,111 @@
-Return-Path: <devicetree+bounces-147955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB649A3A0A4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 15:59:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68B64A3A0D0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 16:11:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 434C87A11C2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 14:58:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C81373A41BA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 15:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0800826A1B9;
-	Tue, 18 Feb 2025 14:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J+17lSJJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C0A26B2DC;
+	Tue, 18 Feb 2025 15:11:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59B82230993;
-	Tue, 18 Feb 2025 14:59:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666C326B2BF;
+	Tue, 18 Feb 2025 15:11:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739890748; cv=none; b=Y6FRlNErTFTUDU+9M10Fgbux54iV3ZQq8vRqGQydD5viGcrRzC0CGAqRLwV9p+wxV3utL0/18TmlLihK2C8DEY2sSKOyy7CiBZwvWdo1NdXHxj0fScNqd67XDQWMpAXPNC2Mi8eu6EmN6cu21nmuMCAb1qnxLd9DO8MVEZoDKgc=
+	t=1739891470; cv=none; b=aUpF/Ej7ovZlf6i+QARV2o2QZOqT7etfMmu9Ztt5xdO7E8VqoxNf+dFuySnMKM5t1z9N1YZHn1zn29Ay9nHBknGBx17XMrUdV1ZbW5KpkqXJiO6+fD86CTfYtICS0ku+vGszalaPO5mWK/UlxZfIIuDCSfvuQ+4gCifDkdRPALI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739890748; c=relaxed/simple;
-	bh=bnikpV9vWi9NNkaOO5T2BkhMOZejMFIE+U6Sht1hRz4=;
+	s=arc-20240116; t=1739891470; c=relaxed/simple;
+	bh=FEnQfhgHSqo3Q7zro/Iiqg4tKjB4Eaf1e6s01EGT+o4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DZBAZl0Mp67VMwHpPGZur1UDUta3Ye6zMe7LupbxP7ZLj23Btoz2c7ydh2vSkeNWqMW69qkzEU2Z3VMTiSm29BrC3wiLFiCvhvvjU4iwg+mp7CH4Gb+Rqw8tIWQBclwIqe1J9jZwFJsRN2eIdSth201/w86yz5FgmUKXLZtapek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J+17lSJJ; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5e033c2f106so4763816a12.3;
-        Tue, 18 Feb 2025 06:59:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739890745; x=1740495545; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :reply-to:message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oAIrJ/LjqF3PZx6DSjpQeC5ZYl3v6fqCgyrURh3Pa9A=;
-        b=J+17lSJJJZV6XYaNvDoZnUqKennHU25+JAVcQYkAf4xR2ArI7a1+tWfBiabekEN12o
-         2APagjpALlhuvrVSrXVNozP6cag+wB60zWG0v7snREqpVIANSYNBwQtWBOqsZivpr/8E
-         UPnwkvLTd//j+cOexX0GgnagJkB3DYATLwiG1jIPsm1SO8Lx3/vQwh1Rt6L//bbHYjXT
-         dtD4bcfgBDR7kq80QpRH8x9d2Jda7JRtX276BnqiYTZlp3mHw4SMm9pmz7BxwgCBgpOK
-         TPE6YG3211C4g0mdOtTbLsgdIvyvHB6lpx3wKMLZkGd7EZcMkHJm/PgDpB734am2vE/u
-         5a+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739890745; x=1740495545;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :reply-to:message-id:subject:cc:to:from:date:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=oAIrJ/LjqF3PZx6DSjpQeC5ZYl3v6fqCgyrURh3Pa9A=;
-        b=Q3C+VL2/HqwIkpKibPbak+cQFetupyQKZpLGWmZShgy7BGvF4jvrQkpRyOTXyjWO18
-         uU5eUbankhn7lBzdyL+4Q4TMkWrlM+/JeMOIdeKv+vvw+CZ+YqegN3E5oFLRIeIEU5Q7
-         rJuNUS4ZnQu3/taKLodlDFg5mZJZ6oHmzPn1YjlcMUPn7Hkp/9Bu+IXFWm7cNblOPC6s
-         f/m+aFA+cZlllEto/5JOea4iOr8iWTEVGiX7b/ShCPD3XSRfpzZoILPAPSLjrE1ISvx8
-         bdxgUqTC+0Xsvi/6gD66jsyyuJKnudfqudHoO669fBdsLxyiq+OacuGduH5Dwby813rv
-         cCKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXFDadNpSkTCqeuP64rDNUMIR/tpUvGzkBdD6+frD1rWe/RFgd1rdSF43JxQx4CA945avAR5q42xmbg@vger.kernel.org, AJvYcCXnouf1tAgPE1NaM1dRRZVL80ICcvaXrkr4nejjmK/I1AIXJErpSBGj3MB+Zp7f7k6QzVOUtVVrW+8H@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTTMRqzUEyORSoJFDbktYZSdwtmqtPvaJhxXzhBUNwjuCbiVBe
-	sPwUIj6IZal7N5E59YONm74aMILJ7ILAOTwRwNfwvHwQ8xLYPzVh
-X-Gm-Gg: ASbGncvtIjbh3p0B3CMer00wBTH4tGxKg36Hxr3u5DaSvTgqJVA396a++JtnknzY6I7
-	xZqk8esVW/1FNQ2PSBYpOvC6XJe+bRCNsHfBA3Mf/IxSyIcuwpcoM0/lzh2xhXoot/yh81Ysr1h
-	Bz87DlnveSi/Np2xaQpYXmiaaCpGIxImAFOdNQxuKcz11w+uRr+4H664W9jdk/EfiUW1O5Bqyqw
-	MkDXsQv0sXyo1r27KFxl02wGDsFTdDq0k9TPngP/YZwtc1INLm6MNF9dA0+I4ntL97sQoDiYjm9
-	BVtTOAZ6oiMnE6U=
-X-Google-Smtp-Source: AGHT+IHfGUb6DAP5PY1vAqYBMMTlEpLIKDLmvPxJw/HfikZVPdieC7mOeVaDwsd2Oi5vIHAKZzcd1g==
-X-Received: by 2002:a05:6402:2386:b0:5dc:6e27:e6e8 with SMTP id 4fb4d7f45d1cf-5e036139cb5mr24069087a12.24.1739890745271;
-        Tue, 18 Feb 2025 06:59:05 -0800 (PST)
-Received: from localhost ([185.92.221.13])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abbbc841eb0sm121224966b.128.2025.02.18.06.59.04
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 18 Feb 2025 06:59:04 -0800 (PST)
-Date: Tue, 18 Feb 2025 14:59:04 +0000
-From: Wei Yang <richard.weiyang@gmail.com>
-To: Mike Rapoport <rppt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Alexander Graf <graf@amazon.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Andy Lutomirski <luto@kernel.org>,
-	Anthony Yznaga <anthony.yznaga@oracle.com>,
-	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Eric Biederman <ebiederm@xmission.com>,
-	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=L4FN98rmxS+N1tA9FdIbRAx1otB/AbreW/O+fkrNb2qIlLZFqEDiBtAX5e8F744i/1aKzPqdrrIavNYNkdHVLhiE75Thp1ZLed9wfDSF/HW5FKkyFVM2/Rb4CLlmEAsP325bdge1BZapsHnuwoeArU/+2rSpJnjvx7zpR/wTHm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1C2ED13D5;
+	Tue, 18 Feb 2025 07:11:26 -0800 (PST)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CA19D3F6A8;
+	Tue, 18 Feb 2025 07:11:04 -0800 (PST)
+Date: Tue, 18 Feb 2025 15:11:01 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Vincenzo Frascino <vincenzo.frascino@arm.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, Will Deacon <will@kernel.org>,
 	Mark Rutland <mark.rutland@arm.com>,
-	Paolo Bonzini <pbonzini@redhat.com>,
-	Pasha Tatashin <pasha.tatashin@soleen.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Pratyush Yadav <ptyadav@amazon.de>,
-	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Tom Lendacky <thomas.lendacky@amd.com>,
-	Usama Arif <usama.arif@bytedance.com>,
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v4 01/14] mm/mm_init: rename init_reserved_page to
- init_deferred_page
-Message-ID: <20250218145904.x57chhz3whvckzu3@master>
-Reply-To: Wei Yang <richard.weiyang@gmail.com>
-References: <20250206132754.2596694-1-rppt@kernel.org>
- <20250206132754.2596694-2-rppt@kernel.org>
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 1/8] dt-bindings: arm: Add Morello compatibility
+Message-ID: <Z7SjBWme-HhNYwtV@bogus>
+References: <20250213180309.485528-1-vincenzo.frascino@arm.com>
+ <20250213180309.485528-2-vincenzo.frascino@arm.com>
+ <CACRpkda-J_NHC7Te=Shk0A-35qWms3xeM2MggdGM0ze3Gt0KMw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250206132754.2596694-2-rppt@kernel.org>
-User-Agent: NeoMutt/20170113 (1.7.2)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkda-J_NHC7Te=Shk0A-35qWms3xeM2MggdGM0ze3Gt0KMw@mail.gmail.com>
 
-On Thu, Feb 06, 2025 at 03:27:41PM +0200, Mike Rapoport wrote:
->From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+On Fri, Feb 14, 2025 at 11:38:54AM +0100, Linus Walleij wrote:
+> Hi Vincenzo,
 >
->When CONFIG_DEFERRED_STRUCT_PAGE_INIT is enabled, init_reserved_page()
->function performs initialization of a struct page that would have been
->deferred normally.
+> thanks for your patch!
 >
->Rename it to init_deferred_page() to better reflect what the function does.
+> On Thu, Feb 13, 2025 at 7:03 PM Vincenzo Frascino
+> <vincenzo.frascino@arm.com> wrote:
+>
+> > Add compatibility to Arm Morello System Development Platform.
+> >
+> > Note: Morello is at the same time the name of an Architecture [1], an SoC
+> > [2] and a Board [2].
+> > To distinguish in between Architecture/SoC and Board we refer to the first
+> > as arm,morello and to the second as arm,morello-sdp.
+> >
+> > [1] https://developer.arm.com/Architectures/Morello
+> > [2] https://www.morello-project.org/
+> >
+> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml | 4 ++++
+>
+> I was thinking, that since the .dtsi and .dts files are not reusing
+> any of the Juno .dtsi (correct me if I'm wrong!) this should not
+> be in vexpress-juno.yaml, instead perhaps you should create a new
+> morello.yaml file?
+>
 
-Would it be confused with deferred_init_pages()?
+It is me who suggested to put it along with other vexpress stuff as I
+wasn't sure how much of vexpress bindings will be reused here when
+Vincenzo started this. I agree it can be a separate binding on its own
+as I don't see much commonality now with the vexpress bindings.
 
-And it still calls __init_reserved_page_zone(), even we __SetPageReserved()
-after it. Current logic looks not clear.
+Just a note, though the file is named arm,vexpress-juno.yaml, it also
+carries bindings for all Vexpress based Arm Ltd boards(both 32-bit and
+64-bit ones), but they all use common vexpress bindings in general.
 
+I just thought of highlighting that so that the expectation to reuse
+this file is not to check commonality in juno dtsi files but to check
+the vexpress binding reuse. Hope we are aligned with that.
 
--- 
-Wei Yang
-Help you, Help me
+--
+Regards,
+Sudeep
 
