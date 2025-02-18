@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-147752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-147753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77FE2A39417
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 08:48:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 350F0A39425
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 08:53:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E6F01664D4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 07:48:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2120E3AABA5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 07:49:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51D351EDA01;
-	Tue, 18 Feb 2025 07:48:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 788771F1818;
+	Tue, 18 Feb 2025 07:49:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lQIi2Mpk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JbbFLjOZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 245311EB1AC;
-	Tue, 18 Feb 2025 07:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C1281F17EB;
+	Tue, 18 Feb 2025 07:49:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739864919; cv=none; b=d6AZzHfg2Zqr27tEK6blQdDL2+wthsxslaR/yyC6Tg09jMvLhTg+vU0CIbFZWjtBeuuK3/frbHeM63DFHOyN5Xzm0Wh+yBQYPAE0rNUoqbe8GoWFV2nPHj+SZuwevysRIIx0tZGOSpyLHWRDjC0Kn/Dm9FQYnGNpbvsLUwyW8w4=
+	t=1739864994; cv=none; b=DRjB4UGfg21Z4/I49as1JvwSZwbECsgaMP9RLBpC8eI226egfvw20DkTjqLbTHNrEH6dafpIZnG5UrI8v+W+riYS0kNmXYXu/almN/mKc0DpEoPuQfH00tM6aEEElZruzqugS3Srk4nTcum/vlV1WAvreX+Z79nzkEwxQYWt0Tw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739864919; c=relaxed/simple;
-	bh=KjPN6J7xIODQEOoGOnXImXeqrwuVDRBiVFGRboXzfQY=;
+	s=arc-20240116; t=1739864994; c=relaxed/simple;
+	bh=P1q49kmYJ1DKMzMpGC0ebZsxyzkRb/s7NK7yqdrQuZ4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hiSw9rCZIY1hrJTOBPC9u0vOkmaS8f6fCqVQ7VvrKC0nB5a+FY5sDkQdB5VaOWUK24t7kJ3p8SQf+qt879G7JcR3E44KSQq8XL+JNnCYQ6Oe41QAE/xg1zg1ZqhTMQ1BEGEJ4SULMjgfh32hL5fkqT3Fr1VcYGDCB+ntB9jNlQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lQIi2Mpk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63E0EC4CEE2;
-	Tue, 18 Feb 2025 07:48:35 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rK9eyvITqlLRtrkdzvrZAsz+v9JEVKMC/JholDdRM7j6z9MPfKS6rbhxZQ0/gvWaLr+k4xKECmHdTwVUUzigUg8KhPGUQF+KhTEuKv0jk6z+2MsppUKb6lAVgUKgTcyKhgPXexxoXWVmSzwqfZ9n5iZKjKcXX9UcQg9vYuEkFyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JbbFLjOZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48474C4CEE2;
+	Tue, 18 Feb 2025 07:49:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739864918;
-	bh=KjPN6J7xIODQEOoGOnXImXeqrwuVDRBiVFGRboXzfQY=;
+	s=k20201202; t=1739864993;
+	bh=P1q49kmYJ1DKMzMpGC0ebZsxyzkRb/s7NK7yqdrQuZ4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lQIi2MpkuUGfU/T+PL936SFHfz7lYya6UKne+Sl7O+izcaAQMCe8vt+cjRTxColkP
-	 so9f55XA/JTIE+YXSk70Uk95U74qnS+3qTyC4Jk/MIAKLDjn8rIglbCKRqdBx6kIDl
-	 mGQM7kenMy+tvxfRUL5KgZ8akDeaWA0FBKCn+3m/f0QRG3sNsVYsu9tzS5LqU2dPh2
-	 jywichmTb5MfZrRXvTLWn2FBF/QM0wG9L57UBeQemGyANy8HGd0edbCNIe9yxawnXn
-	 8sSVQ9EN5977uY97vydHY2fCEF0mDs4pJJDJWNBHV10MZgGeVcxUBjZx6XAyYq/Lap
-	 4EJzMdGONj1uA==
-Message-ID: <95e061b6-a680-453d-ac69-9fa28f8be76a@kernel.org>
-Date: Tue, 18 Feb 2025 08:48:32 +0100
+	b=JbbFLjOZnqd0xeibVXu8HpU3+TvQXxyiJc3Xt+WTrAeaXik3eUMd3+9z8vnu5QWOC
+	 rX6z1VqokYkcF79FcO9BuexjFU+ZijBw3XY/zZg+tiT3WFJY/l/9NdNzRnE+0eHSJe
+	 /DMkCAhqxx7a8gURormOpb53NGbLOnNIl+9oMf5uQEB/eO7rtBs223ZASOHCVKKcTe
+	 lH88TnwY6/Jh5I49MFcvI6+eMKQeUoKiY2Q8QZsDOWwK/p8um085sXRZ3i6R7kltur
+	 XyXeYGnWNlra7wvH/t9VWx+YRlXr2QUc7otV/D1B0UYSGXXdveor+rw4Le4XcQ9PTT
+	 EFSF8hgWIUssA==
+Message-ID: <a1112ce0-c3d8-4765-8b80-5fb31e2cfcc5@kernel.org>
+Date: Tue, 18 Feb 2025 08:49:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] linux-qcom-base-6.6: Add firmware-name in BT node for
- qcs615-ride
-To: Jiayang Mao <quic_jiaymao@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, quic_bt@quicinc.com
-References: <20250218074255.4152013-1-quic_jiaymao@quicinc.com>
-Content-Language: en-US
+Subject: Re: [PATCH v2 1/5] net: phy: bcm63xx: add support for BCM63268 GPHY
+To: Kyle Hendry <kylehendrydev@gmail.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, =?UTF-8?Q?Fern=C3=A1ndez_Rojas?=
+ <noltari@gmail.com>, Jonas Gorski <jonas.gorski@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20250218013653.229234-1-kylehendrydev@gmail.com>
+ <20250218013653.229234-2-kylehendrydev@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -104,23 +110,75 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250218074255.4152013-1-quic_jiaymao@quicinc.com>
+In-Reply-To: <20250218013653.229234-2-kylehendrydev@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/02/2025 08:42, Jiayang Mao wrote:
-> The qcs615-ride platform uses the QCA6698 Bluetooth chip. While the
-> QCA6698 shares the same IP core as the WCN6855, it has different RF
-> components and RAM sizes, requiring new firmware files. Use the
-> firmware-name property to specify the nvm and rampatch firmware to load.
+On 18/02/2025 02:36, Kyle Hendry wrote:
+> This patch adds support for the internal gigabit PHY on the
+> BCM63268 SoC. The PHY has a low power mode that has can be
+> enabled/disabled through the GPHY control register. The
+> register is passed in through the device tree, and the
+> relevant bits are set in the suspend and resume functions.
+> 
+> Signed-off-by: Kyle Hendry <kylehendrydev@gmail.com>
+> ---
+>  drivers/net/phy/bcm63xx.c | 96 +++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 96 insertions(+)
 
 
-NAK, we do not develop 6.6 kernel.
+Also two more nits:
 
-> This patch depends on below patch:
-> - WiFi/BT DTS
-> https://lore.kernel.org/all/20241203060318.1750927-1-quic_yuzha@quicinc.com/
-Not relevant to git history. Read submitting patches and internal guideline.
+> 
+> diff --git a/drivers/net/phy/bcm63xx.c b/drivers/net/phy/bcm63xx.c
+> index b46a736a3130..613c3da315ac 100644
+> --- a/drivers/net/phy/bcm63xx.c
+> +++ b/drivers/net/phy/bcm63xx.c
+> @@ -3,8 +3,11 @@
+>   *	Driver for Broadcom 63xx SOCs integrated PHYs
+>   */
+>  #include "bcm-phy-lib.h"
+> +#include <linux/mfd/syscon.h>
+>  #include <linux/module.h>
+>  #include <linux/phy.h>
+> +#include <linux/regmap.h>
+> +
+>  
+
+
+No need for new line.
+
+>  #define MII_BCM63XX_IR		0x1a	/* interrupt register */
+>  #define MII_BCM63XX_IR_EN	0x4000	/* global interrupt enable */
+> @@ -13,10 +16,19 @@
+>  #define MII_BCM63XX_IR_LINK	0x0200	/* link changed */
+>  #define MII_BCM63XX_IR_GMASK	0x0100	/* global interrupt mask */
+>  
+> +#define PHY_ID_BCM63268_GPHY	0x03625f50
+> +
+> +#define GPHY_CTRL_IDDQ_BIAS	BIT(0)
+> +#define GPHY_CTRL_LOW_PWR	BIT(3)
+> +
+>  MODULE_DESCRIPTION("Broadcom 63xx internal PHY driver");
+>  MODULE_AUTHOR("Maxime Bizon <mbizon@freebox.fr>");
+>  MODULE_LICENSE("GPL");
+>  
+> +struct bcm_gphy_priv {
+> +		struct regmap *gphy_ctrl;
+
+
+Messed indentation.
+
+> +};
+> +
+>  static int bcm63xx_config_intr(struct phy_device *phydev)
+>  {
+>  	int reg, err;
+> @@ -69,6 +81,80 @@ static int bcm63xx_config_init(struct phy_device *phydev)
+>  	return phy_write(phydev, MII_BCM63XX_IR, reg);
+>  }
+
+
 
 Best regards,
 Krzysztof
