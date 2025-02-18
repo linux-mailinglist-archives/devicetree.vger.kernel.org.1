@@ -1,117 +1,169 @@
-Return-Path: <devicetree+bounces-148010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD110A3A34D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 17:57:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BA64A3A378
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 18:02:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F6261715B8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 16:57:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2ADA174155
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2025 17:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05A3A26F47B;
-	Tue, 18 Feb 2025 16:56:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6200A26F473;
+	Tue, 18 Feb 2025 17:01:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="JT7M3Vf8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bMdQ1jgl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BECB26F464;
-	Tue, 18 Feb 2025 16:56:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336EE23FC68;
+	Tue, 18 Feb 2025 17:00:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739897815; cv=none; b=bmPxlAahRi+IdH0Opn3jJBqpNqKIckPUVZ7A+RnovsaPPZnsmMW9igc4I6bwBo3xZPWej78AynC/RmGT+n06pEEGE+5BJdU1XsVdkeDQy48LCiKAADNgVqdwloD6GWFs7E2qk0QY5Nd2Jvo8I/wApJee0twnemkO3pOqgfGzKus=
+	t=1739898060; cv=none; b=T77dJGywbCF3wgpsrlnq0KRgweS5R5dALZS4O2kW0AnkqJewUCeOxfGPi1i3X5doGU3dpn+9Q1FDxqzhFUqcwSYeR5G/O7OL39s6Uu/tRZMlgPrNWr5RhSSyiXVIFEzGt9awO0CTPflqco/T4qPpYi1KczH7berUc3FXSznqVh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739897815; c=relaxed/simple;
-	bh=1Z+E4K93ItU1vKD7N9kAJm1Yd2bIpepWNCurOWLgMFM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Lpw1J/uLFfgcGWihXIFZsPudxq8O6AieeylUbbIEFpXyGI80NfRw/GU7Wg5pLCDxImGFDbuGAVgz1b51iGbBG5JEbFFhp1XK2wGsDfGboChGlDg6jbc0bWu6ja9NcXlO9ypYoMQHUl1InyNI3MQn/LEp5I3zg+NVXQG08SGsOcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=JT7M3Vf8; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.corp.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
-	by mail11.truemail.it (Postfix) with ESMTPA id 0F7CC1FDF4;
-	Tue, 18 Feb 2025 17:56:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1739897806;
-	bh=VTT5nixGLScMkP/ESGSGO/qN0E/oO+2nTyHJ2WATgu4=; h=From:To:Subject;
-	b=JT7M3Vf8OD8GwmqxEQbrF6fC0Oq/4kh4pwAh+BNfikSUPNvIMjuJ7u71pXFbmSiuG
-	 z9qHKCZQAVKtKpXFtvsv+9fjOgsNL3niWxEtu5vuwYAyGFkpb3JHV/dISd9xLY+YKo
-	 a/1xOI4s+31JsMlf/pTqEy6xxXazid7x5kDbGQREpdX7U8bBSWGTIJpDT4RCVX045A
-	 L4kWJShCN6KmjUQhus+kFfQ95wTFXzY1QbeCek7EYCetYrJgb4INa5v9PBd5gNwAg9
-	 5rF8600qkxSYj9QdSDXV/iMrvcAvFRr3u6B5+jQGkGqndopWsouJstCuUyjGAPIiCF
-	 lfWQX68RSUQaA==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1739898060; c=relaxed/simple;
+	bh=wxVWlXKd4zOjpRPoDQOUTBz16/v4noEajLoaLCp3H3s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XrKMGZD4iryJ/aX5Ils/0aX88Rj2NpBkrdw360F2V6lylo2GaO+n89T0ZLwWh3lVm3jGhU74AjClzsr6jmGIrzO2BfB+8dzv7NPmvmew76car9zrnCvtExYnPHP2unQ+Nxfm5aZoSLVKyIpGw8UE4JnR+ccf/Fd1rYg4iw5TojE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bMdQ1jgl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0877C4CEE4;
+	Tue, 18 Feb 2025 17:00:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739898059;
+	bh=wxVWlXKd4zOjpRPoDQOUTBz16/v4noEajLoaLCp3H3s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bMdQ1jglKvPsgXNlQIywqNhdxIcZB6r1xwgdtlGlNXvWeYmhE8GGQJ8pW5C3oeOwD
+	 M0JqZl4PU72vbjh8mr4pqQswaGDikgrfMTCBuFHoGEuohVQYbvcNxDqjkO34YL0J4p
+	 B3O5lWK2JuyxGt1yUcSjEw/CrVBrAvcU7Jl+xu3INQ+OHQ1e/8zmIf1h71PGFIrTjn
+	 EJv/TCZcDhic9mqBdCPA6lQ7m81f3flZ0nJ2c01guEIhk0ITbX4C7RC0v6b5Pct3W4
+	 5Dk2oF4EvI9YgDzK6VbVjeuYICPjWCiCv0cwQNvTrF76PAVfhVsIsyHlckB3c6xVnf
+	 pWRcjjEFDtcOg==
+Date: Tue, 18 Feb 2025 17:00:54 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Xukai Wang <kingxukai@zohomail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Farouk Bouabid <farouk.bouabid@cherry.de>,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] hwmon: (amc6821) Add PWM polarity configuration with OF
-Date: Tue, 18 Feb 2025 17:56:33 +0100
-Message-Id: <20250218165633.106867-3-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250218165633.106867-1-francesco@dolcini.it>
-References: <20250218165633.106867-1-francesco@dolcini.it>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Troy Mitchell <TroyMitchell988@gmail.com>
+Subject: Re: [PATCH v4 3/3] riscv: dts: canaan: Add clock initial support for
+ K230
+Message-ID: <20250218-status-friend-51fb039ab97e@spud>
+References: <20250217-b4-k230-clk-v4-0-5a95a3458691@zohomail.com>
+ <20250217-b4-k230-clk-v4-3-5a95a3458691@zohomail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="wyBkyPjl9mwD8eXq"
+Content-Disposition: inline
+In-Reply-To: <20250217-b4-k230-clk-v4-3-5a95a3458691@zohomail.com>
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Add support to configure the PWM-Out pin polarity based on a device
-tree property.
+--wyBkyPjl9mwD8eXq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- drivers/hwmon/amc6821.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+On Mon, Feb 17, 2025 at 10:45:18PM +0800, Xukai Wang wrote:
+> This patch provides basic support for the K230 clock, which does not
+> cover all clocks.
+>=20
+> The clock tree of the K230 SoC consists of OSC24M,
+> PLLs and sysclk.
+>=20
+> Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
+> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
+> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
+> ---
+>  arch/riscv/boot/dts/canaan/k230.dtsi | 32 ++++++++++++++++++++++++++++++=
+++
+>  1 file changed, 32 insertions(+)
+>=20
+> diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/c=
+anaan/k230.dtsi
+> index 95c1a3d8fb1192e30113d96d3e96329545bc6ae7..e50ba03c2c21597e5f7d04a65=
+2db08f84101cbfb 100644
+> --- a/arch/riscv/boot/dts/canaan/k230.dtsi
+> +++ b/arch/riscv/boot/dts/canaan/k230.dtsi
+> @@ -3,6 +3,7 @@
+>   * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
+>   */
+> =20
+> +#include <dt-bindings/clock/canaan,k230-clk.h>
+>  #include <dt-bindings/interrupt-controller/irq.h>
+> =20
+>  /dts-v1/;
+> @@ -65,6 +66,13 @@ apb_clk: apb-clk-clock {
+>  		#clock-cells =3D <0>;
+>  	};
+> =20
+> +	osc24m: clock-24m {
+> +		compatible =3D "fixed-clock";
+> +		clock-frequency =3D <24000000>;
+> +		clock-output-names =3D "osc24m";
+> +		#clock-cells =3D <0>;
+> +	};
+> +
+>  	soc {
+>  		compatible =3D "simple-bus";
+>  		interrupt-parent =3D <&plic>;
+> @@ -138,5 +146,29 @@ uart4: serial@91404000 {
+>  			reg-shift =3D <2>;
+>  			status =3D "disabled";
+>  		};
+> +
+> +		sysclk: clock-controller@91102000 {
+> +			compatible =3D "canaan,k230-clk";
+> +			reg =3D <0x0 0x91102000 0x0 0x1000>,
+> +			      <0x0 0x91100000 0x0 0x1000>;
+> +			clocks =3D <&osc24m>;
+> +			clock-output-names =3D "CPU0_ACLK", "CPU0_PLIC", "CPU0_NOC_DDRCP4",
+> +					     "CPU0_PCLK", "PMU_PCLK", "HS_HCLK_HIGH_SRC",
+> +					     "HS_HCLK_HIGH_GATE", "HS_HCLK_SRC",
+> +					     "HS_SD0_HS_AHB_GAT", "HS_SD1_HS_AHB_GAT",
+> +					     "HS_SSI1_HS_AHB_GA", "HS_SSI2_HS_AHB_GA",
+> +					     "HS_USB0_HS_AHB_GA", "HS_USB1_HS_AHB_GA",
+> +					     "HS_SSI0_AXI", "HS_SSI1", "HS_SSI2",
+> +					     "HS_QSPI_AXI_SRC", "HS_SSI1_ACLK_GATE",
+> +					     "HS_SSI2_ACLK_GATE", "HS_SD_CARD_SRC",
+> +					     "HS_SD0_CARD_TX", "HS_SD1_CARD_TX",
+> +					     "HS_SD_AXI_SRC", "HS_SD0_AXI_GATE",
+> +					     "HS_SD1_AXI_GATE", "HS_SD0_BASE_GATE",
+> +					     "HS_SD1_BASE_GATE", "HS_OSPI_SRC",
+> +					     "HS_USB_REF_51M", "HS_SD_TIMER_SRC",
+> +					     "HS_SD0_TIMER_GATE", "HS_SD1_TIMER_GATE",
+> +					     "HS_USB0_REFERENCE", "HS_USB1_REFERENCE";
+> +			#clock-cells =3D <1>;
+> +		};
 
-diff --git a/drivers/hwmon/amc6821.c b/drivers/hwmon/amc6821.c
-index 1e3c6acd8974..1ea2d97eebca 100644
---- a/drivers/hwmon/amc6821.c
-+++ b/drivers/hwmon/amc6821.c
-@@ -845,7 +845,7 @@ static int amc6821_detect(struct i2c_client *client, struct i2c_board_info *info
- 	return 0;
- }
- 
--static int amc6821_init_client(struct amc6821_data *data)
-+static int amc6821_init_client(struct i2c_client *client, struct amc6821_data *data)
- {
- 	struct regmap *regmap = data->regmap;
- 	int err;
-@@ -864,6 +864,9 @@ static int amc6821_init_client(struct amc6821_data *data)
- 		if (err)
- 			return err;
- 
-+		if (of_property_read_bool(client->dev.of_node, "ti,pwm-inverted"))
-+			pwminv = 1;
-+
- 		err = regmap_update_bits(regmap, AMC6821_REG_CONF1,
- 					 AMC6821_CONF1_THERMOVIE | AMC6821_CONF1_FANIE |
- 					 AMC6821_CONF1_START | AMC6821_CONF1_PWMINV,
-@@ -916,7 +919,7 @@ static int amc6821_probe(struct i2c_client *client)
- 				     "Failed to initialize regmap\n");
- 	data->regmap = regmap;
- 
--	err = amc6821_init_client(data);
-+	err = amc6821_init_client(client, data);
- 	if (err)
- 		return err;
- 
--- 
-2.39.5
+Apologies for not commenting on it until now, but this patch seems like
+there's some hunks missing from it. I'd expect you to remove the dummy
+"apb-clk-clock" from the dts and replace it with a real one sourced from
+the newly added clock controller.
 
+--wyBkyPjl9mwD8eXq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7S8xgAKCRB4tDGHoIJi
+0hatAQCRO0T+IiRpcIn+PLRCtbTAxqFwW6t9fOFOpsJFJCLLowEAl60fTsjXKtv6
+qz34I22c5i04TjOJS443k9ADwTGz2wA=
+=6K8s
+-----END PGP SIGNATURE-----
+
+--wyBkyPjl9mwD8eXq--
 
