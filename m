@@ -1,215 +1,225 @@
-Return-Path: <devicetree+bounces-148312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5790A3BAAC
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:45:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 900A0A3BAB1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:45:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99A843BCF9F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 09:37:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1603188695F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 09:41:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 478731AF0C8;
-	Wed, 19 Feb 2025 09:37:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="akZ52mOn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B2D91B86E9;
+	Wed, 19 Feb 2025 09:41:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06CB0158862;
-	Wed, 19 Feb 2025 09:37:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC8FE1B4F14
+	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 09:41:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739957853; cv=none; b=XmnFuJvEpvZNnfrhqmWYxXhB/g5G5N4ra6iiVbg5reyeGMaL8Cg3tAlbmDMNmxOuWjDl1Q8NNuM6ot8ivwwA5GlVrFIBn6/WY7NOUq8BS9+nZE6RXvDxBV/zmxA757XeVYAgZrJQuHxRiagb/HqX1SMyiIfOdkdyhNPz11sdL04=
+	t=1739958102; cv=none; b=f4npT7DrQNhHyxQAtXynL97Gks8khjQeHcd/bLkbrYfgE8cFo+cyMxenZTavUwRXmlrjljozIlIj0OBkGSHpDZkbpnFof3OsbA2Esq5ben9XW3u+czXGGXv5tveU0yHxGu9Q2PGlgNblMyZUNzQpZYgS23yBNb6CGTMsr6yP7Zk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739957853; c=relaxed/simple;
-	bh=K4oA+KkwnP56DfL7rGHnpdR0LjPyDMojJc4N8dpjcE0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GizPkE96Ua043JXb09wd14H1f+2/F4OJMqFB7PKrQB0xLzV/RWybXxkm3JxIXgaZkVZRzfM7gyZa3HWGym0+TQMgR3SrgoFUgcjXnslc8HatrDXDzUwKcoQlLmeNLcS2YA3YZFHrbIybIMQfPYQHP/5ZGA4Rc96+tWGFwms7eck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=akZ52mOn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2894AC4CEE7;
-	Wed, 19 Feb 2025 09:37:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739957852;
-	bh=K4oA+KkwnP56DfL7rGHnpdR0LjPyDMojJc4N8dpjcE0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=akZ52mOn834GGh0gpbsCQx+sEfFCWCnM5CBEfBUxfozcvBVKFb5ZlkvL4lKDWA0uE
-	 2ArA9WCT58BL6w3/NQ2Z8Qh+bakdLR3WysiUc/HF6v9LjSjTuoaNdyRsikVm2lh+RB
-	 SCVxA2ywJ56jG+vkdD/pD2c0IAAS8ZC/o5vFlY4EORHUoq4ttvyNsvWFwgAWNEpeK5
-	 Olb8rDZa2SYScw0KAklITwLeP3MHfW/ms7/2sVtpCB64Jhzg/x+K8RY2dw2Jl+0cJW
-	 opB/kCg8o8IppxyDsmSyvbcQo8+ODnm7VRuexsw0zy+meCMyfQdldAbdFLuPxD3XcK
-	 0VYLhFNd528hw==
-Message-ID: <16f6d4a2-2102-48b9-a0ae-b8c6595975b8@kernel.org>
-Date: Wed, 19 Feb 2025 10:37:26 +0100
+	s=arc-20240116; t=1739958102; c=relaxed/simple;
+	bh=OqVfjPY4uovxjbBBcLnPOdCFmXYjPN5y/81gUS2Ep4E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j6vbT6nOQMPHO5O77R9WP/tECMFrqXUjUzqoLhdzN8tcVATGyizZRnFY1omdCbARAmxoSqDD1DhVT8M6QSL+T8pMzWfk7UsGGfsGCWxkjc/rg4IskVJ3SqbNBtVakLhVr/+2B9T/HqUrNw5DJf8XhuZp66GGX4C6bGD+vcua9sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tkga5-0001Ah-I0; Wed, 19 Feb 2025 10:41:25 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tkga4-001jyF-2O;
+	Wed, 19 Feb 2025 10:41:24 +0100
+Received: from pengutronix.de (p5b164285.dip0.t-ipconnect.de [91.22.66.133])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 690343C67A2;
+	Wed, 19 Feb 2025 09:41:24 +0000 (UTC)
+Date: Wed, 19 Feb 2025 10:41:24 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
+	Dimitri Fedrau <dima.fedrau@gmail.com>
+Subject: Re: [PATCH 2/2] can: flexcan: add transceiver capabilities
+Message-ID: <20250219-garnet-gorilla-of-will-6e389e-mkl@pengutronix.de>
+References: <20250211-flexcan-add-transceiver-caps-v1-0-c6abb7817b0f@liebherr.com>
+ <20250211-flexcan-add-transceiver-caps-v1-2-c6abb7817b0f@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] media: dt-bindings: Add Apple ISP
-To: fnkl.kernel@gmail.com, Sven Peter <sven@svenpeter.dev>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Hector Martin <marcan@marcan.st>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-media@vger.kernel.org, imx@lists.linux.dev
-References: <20250219-isp-v1-0-6d3e89b67c31@gmail.com>
- <20250219-isp-v1-3-6d3e89b67c31@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250219-isp-v1-3-6d3e89b67c31@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xh2teahwk43t3c4n"
+Content-Disposition: inline
+In-Reply-To: <20250211-flexcan-add-transceiver-caps-v1-2-c6abb7817b0f@liebherr.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 19/02/2025 10:26, Sasha Finkelstein via B4 Relay wrote:
-> +  reg-names:
-> +    items:
-> +      - const: coproc
-> +      - const: mbox
-> +      - const: gpio
-> +      - const: mbox2
+
+--xh2teahwk43t3c4n
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 2/2] can: flexcan: add transceiver capabilities
+MIME-Version: 1.0
+
+On 11.02.2025 14:12:34, Dimitri Fedrau via B4 Relay wrote:
+> From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+>=20
+> Currently the flexcan driver does not support adding PHYs. Add the
+> capability to ensure that the PHY is in operational state when the link
+> is set to an "up" state.
+>=20
+> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> ---
+>  drivers/net/can/flexcan/flexcan-core.c | 25 +++++++++++++++++++------
+>  drivers/net/can/flexcan/flexcan.h      |  1 +
+>  2 files changed, 20 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
+xcan/flexcan-core.c
+> index ac1a860986df69a1dd64c25ff879490d5b21073b..a03dc8e3c80546a0e2fa9a85f=
+0e0cc8159afa4f0 100644
+> --- a/drivers/net/can/flexcan/flexcan-core.c
+> +++ b/drivers/net/can/flexcan/flexcan-core.c
+> @@ -30,6 +30,7 @@
+>  #include <linux/property.h>
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+> +#include <linux/phy/phy.h>
+> =20
+>  #include "flexcan.h"
+> =20
+> @@ -634,18 +635,22 @@ static void flexcan_clks_disable(const struct flexc=
+an_priv *priv)
+> =20
+>  static inline int flexcan_transceiver_enable(const struct flexcan_priv *=
+priv)
+>  {
+> -	if (!priv->reg_xceiver)
+> -		return 0;
+> +	if (priv->reg_xceiver)
+> +		return regulator_enable(priv->reg_xceiver);
+> +	else if (priv->xceiver)
+> +		return phy_power_on(priv->xceiver);
+> =20
+> -	return regulator_enable(priv->reg_xceiver);
+> +	return 0;
+>  }
+> =20
+>  static inline int flexcan_transceiver_disable(const struct flexcan_priv =
+*priv)
+>  {
+> -	if (!priv->reg_xceiver)
+> -		return 0;
+> +	if (priv->reg_xceiver)
+> +		return regulator_disable(priv->reg_xceiver);
+> +	else if (priv->xceiver)
+> +		return phy_power_off(priv->xceiver);
+> =20
+> -	return regulator_disable(priv->reg_xceiver);
+> +	return 0;
+>  }
+> =20
+>  static int flexcan_chip_enable(struct flexcan_priv *priv)
+> @@ -2061,6 +2066,7 @@ static int flexcan_probe(struct platform_device *pd=
+ev)
+>  	struct net_device *dev;
+>  	struct flexcan_priv *priv;
+>  	struct regulator *reg_xceiver;
+> +	struct phy *xceiver;
+>  	struct clk *clk_ipg =3D NULL, *clk_per =3D NULL;
+>  	struct flexcan_regs __iomem *regs;
+>  	struct flexcan_platform_data *pdata;
+> @@ -2076,6 +2082,12 @@ static int flexcan_probe(struct platform_device *p=
+dev)
+>  	else if (IS_ERR(reg_xceiver))
+>  		return PTR_ERR(reg_xceiver);
+> =20
+> +	xceiver =3D devm_phy_optional_get(&pdev->dev, NULL);
+> +	if (IS_ERR(xceiver)) {
+> +		dev_err(&pdev->dev, "failed to get phy\n");
+> +		return PTR_ERR(xceiver);
+> +	}
 > +
-> +  iommus:
-> +    description: All 3 must be kept in sync
-> +    minItems: 3
+>  	if (pdev->dev.of_node) {
+>  		of_property_read_u32(pdev->dev.of_node,
+>  				     "clock-frequency", &clock_freq);
+> @@ -2173,6 +2185,7 @@ static int flexcan_probe(struct platform_device *pd=
+ev)
+>  	priv->clk_per =3D clk_per;
+>  	priv->clk_src =3D clk_src;
+>  	priv->reg_xceiver =3D reg_xceiver;
+> +	priv->xceiver =3D xceiver;
+> =20
+>  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3) {
+>  		priv->irq_boff =3D platform_get_irq(pdev, 1);
+
+please also add
+	if (xceiver)
+		priv->can.bitrate_max =3D xceiver->attrs.max_link_rate;
 
 
-Drop minItems
+> diff --git a/drivers/net/can/flexcan/flexcan.h b/drivers/net/can/flexcan/=
+flexcan.h
+> index 4933d8c7439e62b5d6fcc445d88c2b5ccbfa13bb..56be40875eee24aee9297c4bc=
+7c2fc4380e682ff 100644
+> --- a/drivers/net/can/flexcan/flexcan.h
+> +++ b/drivers/net/can/flexcan/flexcan.h
+> @@ -103,6 +103,7 @@ struct flexcan_priv {
+>  	struct clk *clk_per;
+>  	struct flexcan_devtype_data devtype_data;
+>  	struct regulator *reg_xceiver;
+> +	struct phy *xceiver;
 
-> +    maxItems: 3
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    minItems: 1
-> +    maxItems: 20
-> +    description: All necessary power domains. Driver will enable them in order
-> +
-> +  memory-region:
-> +    maxItems: 1
-> +
-> +  apple,dart-vm-size:
-> +    description: Supported device memory range
-> +    $ref: /schemas/types.yaml#/definitions/uint64
+All other drivers name this variable "transceiver", does it make sense
+to use this name here, too?
 
+>  	struct flexcan_stop_mode stm;
+> =20
+>  	int irq_boff;
 
-That's deducible from comaptible.
+Marc
 
-> +
-> +  apple,platform-id:
-> +    description: Platform id for firmware
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
+--xh2teahwk43t3c4n
+Content-Type: application/pgp-signature; name="signature.asc"
 
-No, use firmware-name.
+-----BEGIN PGP SIGNATURE-----
 
-> +
-> +  apple,temporal-filter:
-> +    description: Whether temporal filter should be enabled in firmware
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAme1p0EACgkQDHRl3/mQ
+kZxZawf8DS2ziMwjv52nMtPJBIEZ/Wae0iSvk40AHkni1Cj0dKISm4FEWt9LynG/
+XbJfdytN4m1N0ZiMQkPEIkck8ZXUQJuYtmky4Qw4weh3voavw9rZuDRIaCFs99ES
+6lNz5Wz59iMipHFv//iWGUrviCkhON34NtKwEd3HKAq+oMb6RYEbvYEjQL36DXj1
+0xlDfejiMuSn2J9ylx2h978MCLBibly28BVJZ+6x/qVR70moCg+LWXzKXDW83jhy
+siFJMcMfumOJRUiBz0UKVxfEV8D13Hj+XipoLeaJbOI/YA7aIAgq+a2E85TRIk37
+z6Prd0caYlIt0sKjG3r1Xtg8Zbc4aw==
+=0a4S
+-----END PGP SIGNATURE-----
 
-And why is this not enabled always? Why this is board specific?
-
-
-You miss here ports or port. ISP usually gets signal from some camera or
-other block.
-
-
-> +
-> +  sensor-presets:
-> +    additionalProperties: false
-> +
-> +    patternProperties:
-> +      '^preset[0-9]+$':
-> +        type: object
-> +
-> +        additionalProperties: false
-> +
-> +        properties:
-> +          apple,config-index:
-> +            description: Firmware config index
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-
-
-No duplicated indices. You have reg for this, assuming this is index.
-
-> +
-> +          apple,input-size:
-> +            $ref: /schemas/types.yaml#/definitions/uint32-array
-> +            minItems: 2
-> +            maxItems: 2
-> +            description: Raw sensor size
-> +
-> +          apple,output-size:
-> +            $ref: /schemas/types.yaml#/definitions/uint32-array
-> +            minItems: 2
-> +            maxItems: 2
-> +            description: Cropped and scaled image size
-> +
-> +          apple,crop:
-> +            $ref: /schemas/types.yaml#/definitions/uint32-array
-> +            minItems: 4
-> +            maxItems: 4
-> +            description: Area to crop
-
-
-All these do not look like hardware properties but rather configuration
-of sensor which should be done runtime by OS, not by DT.
-
-Best regards,
-Krzysztof
+--xh2teahwk43t3c4n--
 
