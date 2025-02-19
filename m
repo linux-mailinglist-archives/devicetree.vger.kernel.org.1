@@ -1,171 +1,195 @@
-Return-Path: <devicetree+bounces-148509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86C16A3C422
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 16:52:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DCDDA3C457
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 17:02:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10E807A43A8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:51:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB1A73B5CAD
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:59:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31E1C1F5859;
-	Wed, 19 Feb 2025 15:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TOett3/y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58D9E1F8AE5;
+	Wed, 19 Feb 2025 15:59:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE371EFFAB;
-	Wed, 19 Feb 2025 15:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFDED192580;
+	Wed, 19 Feb 2025 15:59:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739980328; cv=none; b=rchm5f2SjTEp3K/xw14lydVSfzgDH6nje9uEncV8LtLDD/ke/rnVf/+TL5iGxE/OojUj6oiPy8lD1JpyvOPlqtN4NiH0JSPzSdpkQo0hZWvo+63n7KHwGOlgVZEZXxZdTPFKQ6USrDR9R4zRGa4rSIkh7bcgsl8MEizCIo/VNLA=
+	t=1739980755; cv=none; b=ehT5i3W9bHQtkd+hvVSPnNzRsv4G0LsQaKnHYAeTIvM+OPoKgcIJX8hYzsebbhYQfwRdKJepmKmHj955VyFznTFqqfRe1dDM5hNhNs+VxV72WvDOAKqlMs05dF9se85Y3JSpNm232st3Ut0bBckd/QYWXXaTpUVyvoZz0kBUPrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739980328; c=relaxed/simple;
-	bh=LAnsK6LosCmR3Q5sroUbUdru/UW8IBuyDt8wliL0qcw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=crc8gjqAA5489WTLXBWqQ1dbmo2DH2dFyd5YVRnCP0gFMH1+NUhe5Ote4FMLSvs7B3kQ9dn/D8Plj3YsSeiuETA0ImvhQsx0RNvDxT3+V7a71uWM7Hr0aiUugD5Pa2FUXIMGAgpYerQyN5Gd95lY27Skyy+gqc8RK+TyTKew1fA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TOett3/y; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-221050f3f00so87753595ad.2;
-        Wed, 19 Feb 2025 07:52:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739980325; x=1740585125; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=ILKPl0SNay3a32+/RRSyxh1SJEExDN/cTqsidRAj8PU=;
-        b=TOett3/y1sjSnA3CjrvxLtqf6IUdiThvaQCSjO6LRffH0PLBwR+IX3vZ8Xo0KgeQys
-         d+D11OXWZSOfLxTQMjke6O/x80a7v/ETVXlS5qg7ZAY9E1Ma491ocBgBY92Ssiah0Ryt
-         uzKM9wBWav1QKXtd5+GCMlQ3+3+SSteasfErgwUy2QL5lGGI2rGjlR0ZvQyJRiA9uhHj
-         IXWWD/7zNfF3qkLDqUhnxvTprpiJlsvx9nLioMx74hPBbxp31N8JofTlXU8wIzMCGoED
-         kqZwkdEFgPDIXtHEV9Cx/qd7YmeayUdc8UbWOsALVEpUP75sKEKgihxu4MuRcPX6ddE8
-         kI+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739980325; x=1740585125;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ILKPl0SNay3a32+/RRSyxh1SJEExDN/cTqsidRAj8PU=;
-        b=UAHdg9wTuzOTR+FW+43JgJXH0jZ7/cKP2jc7rFn8wYpIKvJY++2FO6+e98W9mIGefv
-         OjqPY0LIJCz+ZcLt+dsX80sIlsojGpGv89AN6rTr541P96atiRqpiw8kHY7GDHdLZHk6
-         04C+1B2/PSOE0iAAsqOVo+LpPPYMORSN3GkRyY3EXz/WgNvrZkU8aJxFI2iD/QoMpzII
-         gZvpLpKwesr8YTU6rvKttu+SNK6XXl6tvWt/pUrnFc/gdCA5SdCE+0JTNNOJUGUfznnl
-         sgaLNrxhldXC7AbHsvted9FZYyoFdA10UbN/Unq2b2Qu3jkXTswsf83wlHskLVlDFxvO
-         9jmA==
-X-Forwarded-Encrypted: i=1; AJvYcCUTkUF1wpQGYgIHGchp8azlvc9F54+QI1GzUY+Ki3zLnEZfPYrZVbJW8RHBvXBQdALQF3FgNlISTfo3w2s6@vger.kernel.org, AJvYcCUqqvJGmhf2qTNh9AoARm4ElwfGTDfQSjONk4aKIW8ma9/882B1+MaJvtwy6isdjwYUlE0cBlqafnY+@vger.kernel.org, AJvYcCVPUrikS7Ft0dMcHfRVaOqNVaroOHNU7Wlv8bx61+qCpbnAxBxEImT7FKi24OqBZVy6KRyYcE03BN5/lcc=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFa97oXUIf4IKvIEHw794HyL4XVHOGtNxJOSWlC1iXb9u9z3hH
-	8/IzWsFhvyOCIEd/DBkFfPF7Vg9S+ER60zaeme8Ma0WDlY08HhYe
-X-Gm-Gg: ASbGncs1xyBK1fRVINCbGxF7mhC3PH4huqVnU4rcxEF9Tvtli5BLFHPehaKhiZ32kUz
-	iFQiE8lMVqibLK5jPyxUQJyfeN3tyfP31GbXsGTwkJxPaVJWWuGD90TJXULcALzhVmUC92gLWOX
-	+BZizSyD8aqpcqwVTUteHMo0hJWEi9hBIEcwjTs7SCdmrsj/A1KerHia9atjgvGjtMcsu+2mUV1
-	NjMxaA9o6HBXA2ozaokOtqNEBD33Ky/ZOpZ+k4wbH5365QI5lL3OcG3P9b/yLh/1VGS62Y4uctI
-	n4ZvT3E6pHcVcuBnOfpUiuKGRh4UV7UIAsL4vxhwtDf4YIG7pKK3t6Ec49sJnFA4
-X-Google-Smtp-Source: AGHT+IGW8+CBVhv4LqCaNkiqyMeXKPeQs7b+MCMYUpO6R3KWdsi8G6YGkHjrQBMgwy6+AQ9im63ntQ==
-X-Received: by 2002:a05:6a21:789b:b0:1ee:d2d9:351f with SMTP id adf61e73a8af0-1eed2d93688mr7526340637.42.1739980324740;
-        Wed, 19 Feb 2025 07:52:04 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-adb57c5dee4sm11119348a12.14.2025.02.19.07.52.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Feb 2025 07:52:04 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <ae40d143-a5ca-4a38-844f-ca58a06834a5@roeck-us.net>
-Date: Wed, 19 Feb 2025 07:52:01 -0800
+	s=arc-20240116; t=1739980755; c=relaxed/simple;
+	bh=PGJydsIQuR3b30jEX9zs6NTl+06JSoqWi7rQevLCPbQ=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=I22Qd96v1lfVIm3qxLKsmMcrw0vgZlsp2dGiTt8fn8N97GiNwKX+JZrqQILeTQQvVHsNLTr3Bz2BhUnkOcgx3r0j5amqPOm3DvyH3NK8zrHEvooXkeWI4gut7VWWSfYRXSZ4bkSRgl/bb4Ht0hFh+kw5BnHckkJ5Xm4HckJIM3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4YygyJ0q6Zz6GDC2;
+	Wed, 19 Feb 2025 23:57:28 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 07682140AB8;
+	Wed, 19 Feb 2025 23:59:04 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 19 Feb
+ 2025 16:59:03 +0100
+Date: Wed, 19 Feb 2025 15:59:01 +0000
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: Herve Codina <herve.codina@bootlin.com>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+	<rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Rob Herring
+	<robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Bjorn Helgaas
+	<bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-pci@vger.kernel.org>, Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
+	<steen.hegelund@microchip.com>, Thomas Petazzoni
+	<thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v7 1/5] driver core: Introduce
+ device_{add,remove}_of_node()
+Message-ID: <20250219155901.000009e4@huawei.com>
+In-Reply-To: <20250204073501.278248-2-herve.codina@bootlin.com>
+References: <20250204073501.278248-1-herve.codina@bootlin.com>
+	<20250204073501.278248-2-herve.codina@bootlin.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: hwmon: emc2305: Add YAML binding
- documentation for emc2305 driver
-To: Krzysztof Kozlowski <krzk@kernel.org>, florin.leotescu@oss.nxp.com,
- Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Michael Shych <michaelsh@nvidia.com>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: viorel.suman@nxp.com, carlos.song@nxp.com,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- Florin Leotescu <florin.leotescu@nxp.com>
-References: <20250219133221.2641041-1-florin.leotescu@oss.nxp.com>
- <20250219133221.2641041-4-florin.leotescu@oss.nxp.com>
- <fd70f78c-68a5-43ec-9eb2-3f06c5d7a20d@kernel.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <fd70f78c-68a5-43ec-9eb2-3f06c5d7a20d@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-On 2/19/25 06:01, Krzysztof Kozlowski wrote:
-[ ... ]
+On Tue,  4 Feb 2025 08:34:56 +0100
+Herve Codina <herve.codina@bootlin.com> wrote:
 
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - hwmon,emc2301
->> +      - hwmon,emc2302
->> +      - hwmon,emc2303
->> +      - hwmon,emc2305
+> An of_node can be set to a device using device_set_node().
+> This function cannot prevent any of_node and/or fwnode overwrites.
 > 
-> Nope.
+> When adding an of_node on an already present device, the following
+> operations need to be done:
+> - Attach the of_node if no of_node were already attached
+> - Attach the of_node as a fwnode if no fwnode were already attached
 > 
-> Was it ever internally reviewed?
+> This is the purpose of device_add_of_node().
+> device_remove_of_node() reverts the operations done by
+> device_add_of_node().
 > 
-No. I intentionally do not review bindings because I notoriously get it wrong,
-and instead rely on DT maintainers.
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+A few passing comments. Not suggestions to actually change anything
+at this stage though. Maybe a potential follow up if you think it's
+a good idea.
 
-I agree though that this one is really bad :-(.
+> ---
+>  drivers/base/core.c    | 61 ++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/device.h |  2 ++
+>  2 files changed, 63 insertions(+)
+> 
+> diff --git a/drivers/base/core.c b/drivers/base/core.c
+> index 5a1f05198114..d1b044af64de 100644
+> --- a/drivers/base/core.c
+> +++ b/drivers/base/core.c
+> @@ -5170,6 +5170,67 @@ void set_secondary_fwnode(struct device *dev, struct fwnode_handle *fwnode)
+>  }
+>  EXPORT_SYMBOL_GPL(set_secondary_fwnode);
+>  
+> +/**
+> + * device_remove_of_node - Remove an of_node from a device
+> + * @dev: device whose device-tree node is being removed
+> + */
+> +void device_remove_of_node(struct device *dev)
+> +{
+> +	dev = get_device(dev);
+> +	if (!dev)
+> +		return;
+Maybe use
+	struct device *d __free(put_device) = get_device(dev);
 
-Guenter
+	if (!d->of_node);
+		return;
+
+Not a reason to respin though!
+
+
+> +
+> +	if (!dev->of_node)
+> +		goto end;
+> +
+> +	if (dev->fwnode == of_fwnode_handle(dev->of_node))
+> +		dev->fwnode = NULL;
+> +
+> +	of_node_put(dev->of_node);
+> +	dev->of_node = NULL;
+> +
+> +end:
+> +	put_device(dev);
+> +}
+> +EXPORT_SYMBOL_GPL(device_remove_of_node);
+> +
+> +/**
+> + * device_add_of_node - Add an of_node to an existing device
+> + * @dev: device whose device-tree node is being added
+> + * @of_node: of_node to add
+> + *
+> + * Return: 0 on success or error code on failure.
+> + */
+> +int device_add_of_node(struct device *dev, struct device_node *of_node)
+> +{
+> +	int ret;
+> +
+> +	if (!of_node)
+> +		return -EINVAL;
+> +
+> +	dev = get_device(dev);
+
+Likewise could use __free() magic here as well for slight simpliciations.
+
+> +	if (!dev)
+> +		return -EINVAL;
+> +
+> +	if (dev->of_node) {
+> +		dev_err(dev, "Cannot replace node %pOF with %pOF\n",
+> +			dev->of_node, of_node);
+> +		ret = -EBUSY;
+> +		goto end;
+> +	}
+> +
+> +	dev->of_node = of_node_get(of_node);
+> +
+> +	if (!dev->fwnode)
+> +		dev->fwnode = of_fwnode_handle(of_node);
+> +
+> +	ret = 0;
+> +end:
+> +	put_device(dev);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(device_add_of_node);
+> +
+>  /**
+>   * device_set_of_node_from_dev - reuse device-tree node of another device
+>   * @dev: device whose device-tree node is being set
+> diff --git a/include/linux/device.h b/include/linux/device.h
+> index 80a5b3268986..1244e5892292 100644
+> --- a/include/linux/device.h
+> +++ b/include/linux/device.h
+> @@ -1191,6 +1191,8 @@ int device_online(struct device *dev);
+>  void set_primary_fwnode(struct device *dev, struct fwnode_handle *fwnode);
+>  void set_secondary_fwnode(struct device *dev, struct fwnode_handle *fwnode);
+>  void device_set_node(struct device *dev, struct fwnode_handle *fwnode);
+> +int device_add_of_node(struct device *dev, struct device_node *of_node);
+> +void device_remove_of_node(struct device *dev);
+>  void device_set_of_node_from_dev(struct device *dev, const struct device *dev2);
+>  
+>  static inline struct device_node *dev_of_node(struct device *dev)
 
 
