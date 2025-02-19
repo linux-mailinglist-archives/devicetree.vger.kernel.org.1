@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-148278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 649A2A3B7FC
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:20:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DBAEA3B739
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:13:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72B47161D86
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 09:11:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B24D17A6CA1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 09:10:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 609651E0DE3;
-	Wed, 19 Feb 2025 09:07:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1AB21E0E0D;
+	Wed, 19 Feb 2025 09:08:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QTo5ZVyD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bsj6W421"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A151E0DCD
-	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 09:07:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAA8C1DE2BE
+	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 09:07:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739956079; cv=none; b=UOVpUxZWVlpZDfY6sC54yEYJSAwtUjfeWnRLMMP7dl4Nv7vtVVxqxC3WMM2H71LEAjriCryv05rETPm6It/X7Cgdn06Bl8PXphzdjrT8u6gw3zc2mEYupwZ/yGUFILiSHA57zd+ha2ryDiyi3u3Gg1nGYyNSP6CWWd48JwFEKM0=
+	t=1739956080; cv=none; b=NT59owyBslE7L0D63lp+ry+W44pWbOYHOCgiZJ41SemSR8wro2QQzJ5+FrlfKYBQIeBySbKxCkUSZ+/AV+5ZC6zKv8UY5oTSjxPleXVkp0Huy6LYZamwsFjLmAfZ2qWTZwSwQKeC/iA9uoqSFa+w0IEHu9ofiLnPkG7gddV7sF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739956079; c=relaxed/simple;
-	bh=y9+jjNrpYcM245Swk87rbOZAHH07o2CouN1Un1joEhY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QwykzD4Qt8doqFkcu/8zbdLFHh4AjqayMgwzaUJt6uQ7ulNbZykaJZxPAAVHu0x2sOrRSeUOy3KF6X7KMFSVY2L23fbOoM9TM4IocUXDt7s8d2liXj3eBaPr5daX82r8b1BIXZGEZx76IXIVKaUVDi2XD3PYdW7jQpTHBb/1ghI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QTo5ZVyD; arc=none smtp.client-ip=209.85.218.49
+	s=arc-20240116; t=1739956080; c=relaxed/simple;
+	bh=eVMT887Zl9nmg8Aj/EZhckpL2rRL2zR2XvxzGjBNVrc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=QZ6kiHXjHYcALk/06LXZCZCam/qXNvoeYH1/Vv9TGwK4jimW0nRrYh1TskUYeWi9cyfkRKHM88qTZKYsKlKvUAICHjwODNaGS52GafzdQczywaJc1sU54ld7X2c+YezzGCHk04dbDBkRg2ZAMRnXz2nqjuk+3W+tEg9ck2zH83A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bsj6W421; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-abb9e81c408so60073966b.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 01:07:56 -0800 (PST)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-abb7d5a6577so32736066b.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 01:07:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739956075; x=1740560875; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=A4rf1uuU3YUUfNCVhsKahUo7qqP1R1Q6wSumwLKUuCA=;
-        b=QTo5ZVyDFovRNXtvGjIOhyjiHG+YAvB0ASyble6KO3CcUkjUDwYBb8Noab73z6NQng
-         WqjGqi8gJmoYVr+FC8mRd7Ld7f2FT96zYVUBDH5chR7zpEHC6gz5wLvtrSd81k7adMQ6
-         U+pzSlcHzk5A1OPkjsn3OFmin3BOJg95ggYJu5zFoyOzEiR5mMjtl0yG1x0aV3p91FZN
-         nh8Qwt7PFSqojBwojKW4tDjoZaBH14HQshl1GwXf4BAqh5EuYA+7+f2s7uLwH5n/w7CQ
-         2XmzgIit5HF83XUn4ZeFIEmy4fp2Gh+8qqX9AvSIydXG8xfuG+Oe+oDDMziH3P/PQpxu
-         bBHw==
+        d=linaro.org; s=google; t=1739956077; x=1740560877; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7e/kyLMpdbaW4hoGX8KhqKMu7hDSW4KWzFrVgpwh0Io=;
+        b=bsj6W421XreFzYk8gxKY9WyZKDypaz3X3O0KErl2iIG/MnfvdxDl/gwjsKff5hN8U0
+         KuhcJwSs7KrbRVEOSQLIzul2wbVhstDV9n0bYT4lgEKa1T8BMj40/t44X/KPmXUsd78f
+         /Cclj2lW79OZJleK5Jzkk1D72rCEbodl1MsowQPB8NvAQZ3NNCjEAYDEoXzR3YX/HnR4
+         T5/d9zEf8BWVoX5ym3SDdKPsFcIDktowNb5dS6V2OMJYEN2nWVkRVNbIf5FwNMz69nte
+         PSVGHDqW6IlZwtQch0y7WrGUygUlZ0PfsTxkvYfV91PwuTsut+9SBk09DqyaPExlL/Z5
+         dMuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739956075; x=1740560875;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=A4rf1uuU3YUUfNCVhsKahUo7qqP1R1Q6wSumwLKUuCA=;
-        b=Uk+gEUwFPYXuAGtYPdtRQHltDBQumBAdY4yhx5g6+ah7V8pyW0KjKQKiG43WxUXa0d
-         eRprAcxCCBS42muhG9nhjHRci6BlvMCwcf5WGyihz4zI/AGOtXS5DQkYcNu5O/IQA/Fm
-         LrU5wIqrJUm3ZzviFbNrZJxeNm7hsepneCgILOQxVlJ1TN7yy2tJFUtQgwhyiFzRjWvW
-         dOOJmyyLNsNmrCgdjL64o+oVJMgGQ9iNbx7opOD8Fjc3h3rDs3infmjElBywxhHqLU0g
-         QhOrh6LiRy5hS2BivNCbHBQ7rU/dXIlypNvjfpbvj4JJM+kJgDS7IkseM0kyqVzYayu0
-         sa1A==
-X-Forwarded-Encrypted: i=1; AJvYcCVZJHyaOj3hoQMTUMw4xcugU3LJ6rBU4xcr9F5dy/FfmT23RQ4+/2x48UAU2rnK6sIVk9A1UyH1Rn6P@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/o11mdl43qP8r1ZRByG4MTw8s4NhdfzssMFkAk5gZw4Xr735H
-	VSbvGHnpMxgxdZXNTSMUOvI57wvFTjm5dEuWVh1lxYUsefy9NU1ZBFyMLDPlVPM=
-X-Gm-Gg: ASbGncvES5N51LThI7oxcq5Wi0giLA+VvkMFoEY66UWzc00cG3Ed7+OfoHpOE2MB2kw
-	r7gyUMDB0F/E9mTqX5oUuKnZLzeQf9pTPTQU2kA7ZTNMGkCNG1KibbzGFu/drDoLvkmtBnAFfAj
-	e/SBWYFLWGA67XgnCJO2o/wn+MoaS9LE9DqWm2fPlF5lVXalvn2R9SPoRsqbRIdkrT2PktNyiDG
-	o5fsgmOQFg5d9/0uDinrc38SnHFpmxHEgd60+3LJ9gRFDYZZU5clPn+jBPwj/HpCTfyMrP9rEw3
-	NIQBuQGb2UYxxhjE4xYRRlDTRgEV2Q==
-X-Google-Smtp-Source: AGHT+IFityvjq83wUTEdE8yjTveE+b43ohcX+t8dYdc8VYTkgfSmcSiAm3lB7Ph2sUv1UfqtdfKuZg==
-X-Received: by 2002:a17:906:c116:b0:ab6:d519:f039 with SMTP id a640c23a62f3a-abb70d95951mr781534166b.8.1739956075448;
-        Wed, 19 Feb 2025 01:07:55 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739956077; x=1740560877;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7e/kyLMpdbaW4hoGX8KhqKMu7hDSW4KWzFrVgpwh0Io=;
+        b=adJPooEcksuwM/ShU3I+tcO8TCUpSIkXCfo/bnRhMbHPlAflo6Vb10IFCC+byAKE72
+         YHFsM7RrU60Y5PU6RmxPQPoFCaGFyHUVXcnjrObAAM6kDR1nEdFx6QVHpdEBw3n46RSh
+         yLYAu5TZn+JsWN47NCxzW5nhFhyRDrmsD1H3Gfj8R0RLIK/n2gAO1Jk0lmdPHi/crvgp
+         +plEKIvkKAMblNJXrcWCvjmJen+2a1ctZ8eLoVodNzPifl7BuOkO3aJ6Qpm2tqsDqY4I
+         l7X7EnckocdyGFnkmUz4vTm90+9oLfTDUQg04xLKAhepZq186t/a0MPZy4OiU+M+ZXwS
+         n7Yw==
+X-Forwarded-Encrypted: i=1; AJvYcCXJUgNZSsJ3NSAWoRPfPF/KmCako6a1MqrsYJSz/rknwtxrJknRgjKNno9NkqAyWRMcJVwTxcuzUOwV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQZRHc0ogQ+vvN6U0XmofBIoSd3C6dY6+WZpcOnncEcsb6BVIa
+	QVH7KthaMkjpD13DbRCmgI7H1zJXVv4+7P+HDzbEKHRbj5kUSVhr16wcFBaigVM=
+X-Gm-Gg: ASbGncuJo0Ih0lGz1x6hB5xjvtbqf7Yvw5VnhTCiE81ZZFZvD0FTe2+MPpv7a9EbflM
+	cgFNO5lZZNDiGnTHhA7bdskdHW0rdACGOReqM3O6fV3GSAPgUMT1WvCrajR65Ri0fID8WwB9N+R
+	OHY+tbk6dearfH/5u0M9yubsBIOfKjgLnvKc3p1XRHUU8S0FVSe8IGlsIYW1pN4/WL1vr4lQiVi
+	2XnLoVB7JCUoKWTd8RPrgQSLOAmbJ8eYfuzqR4NSEuZnWTAIba/SqrDqI8R3z6OE5OPTY546mmU
+	iaiUAsjVn0uRd2dzqo9xvIqdHwuB5A==
+X-Google-Smtp-Source: AGHT+IFGjkpX3+TLejfc88gfo31XjrHN5z9eYLiDkjiUP6WJ9W8wR2ONeZILHGObL6JLboIUqAXhYg==
+X-Received: by 2002:a17:907:d8b:b0:ab7:b545:b2eb with SMTP id a640c23a62f3a-abb70932f6cmr690990666b.2.1739956077105;
+        Wed, 19 Feb 2025 01:07:57 -0800 (PST)
 Received: from krzk-bin.. ([178.197.206.225])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abbac3242dcsm407695666b.107.2025.02.19.01.07.54
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abbac3242dcsm407695666b.107.2025.02.19.01.07.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2025 01:07:54 -0800 (PST)
+        Wed, 19 Feb 2025 01:07:56 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
@@ -80,10 +82,12 @@ To: Bjorn Andersson <andersson@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/2] arm64: dts: qcom: sm8750: Change labels to lower-case
-Date: Wed, 19 Feb 2025 10:07:50 +0100
-Message-ID: <20250219090751.124267-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/2] arm64: dts: qcom: Corret white-space style
+Date: Wed, 19 Feb 2025 10:07:51 +0100
+Message-ID: <20250219090751.124267-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250219090751.124267-1-krzysztof.kozlowski@linaro.org>
+References: <20250219090751.124267-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,41 +96,206 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-DTS coding style expects labels to be lowercase.  No functional impact.
-Verified with comparing decompiled DTB (dtx_diff and fdtdump+diff).
+There should be exactly one space before and after '=', and one space
+before '{'.  No functional impact.  Verified with comparing decompiled
+DTB (dtx_diff and fdtdump+diff).
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8750.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         | 40 +++++++++----------
+ .../boot/dts/qcom/msm8917-xiaomi-riva.dts     |  2 +-
+ arch/arm64/boot/dts/qcom/msm8917.dtsi         |  2 +-
+ arch/arm64/boot/dts/qcom/qcs615.dtsi          | 16 ++++----
+ arch/arm64/boot/dts/qcom/sm8750.dtsi          |  2 +-
+ 5 files changed, 31 insertions(+), 31 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+index 942290028972..cac58352182e 100644
+--- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+@@ -876,11 +876,11 @@ frame@b128000 {
+ 
+ 		pcie1: pcie@10000000 {
+ 			compatible = "qcom,pcie-ipq9574";
+-			reg =  <0x10000000 0xf1d>,
+-			       <0x10000f20 0xa8>,
+-			       <0x10001000 0x1000>,
+-			       <0x000f8000 0x4000>,
+-			       <0x10100000 0x1000>;
++			reg = <0x10000000 0xf1d>,
++			      <0x10000f20 0xa8>,
++			      <0x10001000 0x1000>,
++			      <0x000f8000 0x4000>,
++			      <0x10100000 0x1000>;
+ 			reg-names = "dbi", "elbi", "atu", "parf", "config";
+ 			device_type = "pci";
+ 			linux,pci-domain = <1>;
+@@ -956,11 +956,11 @@ pcie1: pcie@10000000 {
+ 
+ 		pcie3: pcie@18000000 {
+ 			compatible = "qcom,pcie-ipq9574";
+-			reg =  <0x18000000 0xf1d>,
+-			       <0x18000f20 0xa8>,
+-			       <0x18001000 0x1000>,
+-			       <0x000f0000 0x4000>,
+-			       <0x18100000 0x1000>;
++			reg = <0x18000000 0xf1d>,
++			      <0x18000f20 0xa8>,
++			      <0x18001000 0x1000>,
++			      <0x000f0000 0x4000>,
++			      <0x18100000 0x1000>;
+ 			reg-names = "dbi", "elbi", "atu", "parf", "config";
+ 			device_type = "pci";
+ 			linux,pci-domain = <3>;
+@@ -1036,11 +1036,11 @@ pcie3: pcie@18000000 {
+ 
+ 		pcie2: pcie@20000000 {
+ 			compatible = "qcom,pcie-ipq9574";
+-			reg =  <0x20000000 0xf1d>,
+-			       <0x20000f20 0xa8>,
+-			       <0x20001000 0x1000>,
+-			       <0x00088000 0x4000>,
+-			       <0x20100000 0x1000>;
++			reg = <0x20000000 0xf1d>,
++			      <0x20000f20 0xa8>,
++			      <0x20001000 0x1000>,
++			      <0x00088000 0x4000>,
++			      <0x20100000 0x1000>;
+ 			reg-names = "dbi", "elbi", "atu", "parf", "config";
+ 			device_type = "pci";
+ 			linux,pci-domain = <2>;
+@@ -1116,11 +1116,11 @@ pcie2: pcie@20000000 {
+ 
+ 		pcie0: pci@28000000 {
+ 			compatible = "qcom,pcie-ipq9574";
+-			reg =  <0x28000000 0xf1d>,
+-			       <0x28000f20 0xa8>,
+-			       <0x28001000 0x1000>,
+-			       <0x00080000 0x4000>,
+-			       <0x28100000 0x1000>;
++			reg = <0x28000000 0xf1d>,
++			      <0x28000f20 0xa8>,
++			      <0x28001000 0x1000>,
++			      <0x00080000 0x4000>,
++			      <0x28100000 0x1000>;
+ 			reg-names = "dbi", "elbi", "atu", "parf", "config";
+ 			device_type = "pci";
+ 			linux,pci-domain = <0>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts b/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts
+index f1d22535fedd..df135f9891a8 100644
+--- a/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts
++++ b/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts
+@@ -119,7 +119,7 @@ bq27426@55 {
+ 		monitored-battery = <&battery>;
+ 	};
+ 
+-	bq25601@6b{
++	bq25601@6b {
+ 		compatible = "ti,bq25601";
+ 		reg = <0x6b>;
+ 		interrupts-extended = <&tlmm 61 IRQ_TYPE_EDGE_FALLING>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8917.dtsi b/arch/arm64/boot/dts/qcom/msm8917.dtsi
+index 7bf58dd0146e..9d8358745c91 100644
+--- a/arch/arm64/boot/dts/qcom/msm8917.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8917.dtsi
+@@ -587,7 +587,7 @@ tsens_s4_p2: s4-p2@217 {
+ 				bits = <1 6>;
+ 			};
+ 
+-			tsens_s9_p1: s9-p1@230{
++			tsens_s9_p1: s9-p1@230 {
+ 				reg = <0x230 1>;
+ 				bits = <0 6>;
+ 			};
+diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+index f4abfad474ea..6c17860dd6c8 100644
+--- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+@@ -1819,7 +1819,7 @@ replicator@6046000 {
+ 			in-ports {
+ 				port {
+ 					replicator0_in: endpoint {
+-						remote-endpoint= <&tmc_etf_out>;
++						remote-endpoint = <&tmc_etf_out>;
+ 					};
+ 				};
+ 			};
+@@ -1832,7 +1832,7 @@ port@1 {
+ 					reg = <1>;
+ 
+ 					replicator0_out1: endpoint {
+-						remote-endpoint= <&replicator1_in>;
++						remote-endpoint = <&replicator1_in>;
+ 					};
+ 				};
+ 			};
+@@ -1872,7 +1872,7 @@ replicator@604a000 {
+ 			in-ports {
+ 				port {
+ 					replicator1_in: endpoint {
+-						remote-endpoint= <&replicator0_out1>;
++						remote-endpoint = <&replicator0_out1>;
+ 					};
+ 				};
+ 			};
+@@ -1880,7 +1880,7 @@ replicator1_in: endpoint {
+ 			out-ports {
+ 				port {
+ 					replicator1_out: endpoint {
+-						remote-endpoint= <&funnel_swao_in6>;
++						remote-endpoint = <&funnel_swao_in6>;
+ 					};
+ 				};
+ 			};
+@@ -2311,7 +2311,7 @@ port@6 {
+ 					reg = <6>;
+ 
+ 					funnel_swao_in6: endpoint {
+-						remote-endpoint= <&replicator1_out>;
++						remote-endpoint = <&replicator1_out>;
+ 					};
+ 				};
+ 
+@@ -2319,7 +2319,7 @@ port@7 {
+ 					reg = <7>;
+ 
+ 					funnel_swao_in7: endpoint {
+-						remote-endpoint= <&tpda_swao_out>;
++						remote-endpoint = <&tpda_swao_out>;
+ 					};
+ 				};
+ 			};
+@@ -2343,7 +2343,7 @@ tmc@6b09000 {
+ 			in-ports {
+ 				port {
+ 					tmc_etf_swao_in: endpoint {
+-						remote-endpoint= <&funnel_swao_out>;
++						remote-endpoint = <&funnel_swao_out>;
+ 					};
+ 				};
+ 			};
+@@ -2351,7 +2351,7 @@ tmc_etf_swao_in: endpoint {
+ 			out-ports {
+ 				port {
+ 					tmc_etf_swao_out: endpoint {
+-						remote-endpoint= <&replicator_swao_in>;
++						remote-endpoint = <&replicator_swao_in>;
+ 					};
+ 				};
+ 			};
 diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-index 3bbd7d18598e..abb92c81c76b 100644
+index abb92c81c76b..f81a3c3ae334 100644
 --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-@@ -95,11 +95,11 @@ cpu6: cpu@10000 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x10000>;
- 			enable-method = "psci";
--			next-level-cache = <&L2_1>;
-+			next-level-cache = <&l2_1>;
- 			power-domains = <&cpu_pd6>;
- 			power-domain-names = "psci";
+@@ -990,7 +990,7 @@ uart14: serial@898000 {
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
+ 				clock-names = "se";
  
--			L2_1: l2-cache {
-+			l2_1: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
- 				cache-unified;
-@@ -111,7 +111,7 @@ cpu7: cpu@10100 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x10100>;
- 			enable-method = "psci";
--			next-level-cache = <&L2_1>;
-+			next-level-cache = <&l2_1>;
- 			power-domains = <&cpu_pd7>;
- 			power-domain-names = "psci";
- 		};
+-				interconnects =	<&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+ 						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>;
 -- 
 2.43.0
 
