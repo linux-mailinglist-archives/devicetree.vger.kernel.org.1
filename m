@@ -1,189 +1,285 @@
-Return-Path: <devicetree+bounces-148493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD6BA3C2AC
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:53:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DFB0A3C2EE
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 16:02:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B51D188C961
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:53:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A6E51665D1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4A41F3B8D;
-	Wed, 19 Feb 2025 14:52:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WSbOlnUw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33DAC1F30A4;
+	Wed, 19 Feb 2025 15:02:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A8441F30DD;
-	Wed, 19 Feb 2025 14:52:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C5C1E8335
+	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 15:02:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739976776; cv=none; b=OMWZYdi9LKs27x0f1eO66+U+dOBfDQ/yvqrd3P8U01+rHM6imc2dkc3RfNl/P8WxiopSvkNd5mKVSZqIUJxFXNJ3wXow5X2VQBkTWDqSHwxEydmFCKpxvnzBLAADEPUCg/MAB+HTD3ygxY4P8FrHJ240q9QSvBiTnd7uQAkk70Y=
+	t=1739977350; cv=none; b=ckTwB0KEedbrPCeUYH5JairVR8DH7alCCvRNrIYXUofFTPvL74Dvr7mRaBulHPCBcpkQw8FejrYlGjM6zU/GZCO+oFpCVTEaEQtb6q9YGtlKdsYwTJGBdDh8fM6YhTDN2H06WF7roQtVGSG0y1rFlmLLV9S8z2P1k6egc1s0mUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739976776; c=relaxed/simple;
-	bh=5fdkaYxmkiuS0O2wwH2fC6Bj9UIsx/wgYIAqJHd76ZY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f/xzchMBwdmiV/TbpW3bApDtQW+vDXUzvHlMvZKZziab/ICjkjpy1bZY1d/ye5Lf0GbeNzffzZ93Fb1pJv7nTNrQDyVfW6k8spwvtUGPS+F14JwKQqvTl+WHtj8kIQ0Aj+qwIzSIKO5s3zqG11cSuFWZx/eqAJF85k0c1tV28l0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WSbOlnUw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FD4FC4CEE7;
-	Wed, 19 Feb 2025 14:52:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739976775;
-	bh=5fdkaYxmkiuS0O2wwH2fC6Bj9UIsx/wgYIAqJHd76ZY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WSbOlnUwbyx21Kk/13KAa/JxRDtuzPKpq1ztPse4WrCPyCst6Fw+tSGq0q5hmw34B
-	 Nu0XGfVnc9RAYS36Qxzb4Vy+/E3CrEzwy+X3ya8wbyhFpGS1ZuHr+MIL0nzC1ky9mm
-	 orMm5HqFKfbSkYtp7bMTQ8yuzSDgJKn5dUC0vuHSiPrOemOBVPjk2Z0w2/UC2cQopm
-	 tIgkRj443UV7jvYcj/cYIuEPQzH2Qx66RCvRCXM7pJkckThQNrvE2a+L6cJMV++8wD
-	 GVEQ7+p8yJeZo8Hr8NG7VTDJaVwZT/CEMFf1G0HDJkZSpJ//0HDQMwFndb8KvlDTHy
-	 74MKVMAOifiuw==
-Date: Wed, 19 Feb 2025 08:52:54 -0600
-From: Rob Herring <robh@kernel.org>
-To: Tommaso Merciai <tomm.merciai@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org, linux-media@vger.kernel.org,
-	biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/8] media: dt-bindings: renesas,rzg2l-csi2: Document
- Renesas RZ/V2H(P) SoC
-Message-ID: <20250219145254.GB2551711-robh@kernel.org>
-References: <20250210114540.524790-1-tommaso.merciai.xr@bp.renesas.com>
- <20250210114540.524790-3-tommaso.merciai.xr@bp.renesas.com>
+	s=arc-20240116; t=1739977350; c=relaxed/simple;
+	bh=RUNbt4yGPSt7OH59avth3IQQbP99cZS7WYjTwXjBDTw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=H0t2jGM8+eWEYYB6XPivPWsPajqyjySKu2+f883MqNUGgTEqqdTBBzFTR7eRVBuwCjLtT59YwLR8uoiLWL6MfcijHoQqN6lEV3JQ1mG1/6Jz0jBAjP334T0m1UmebPCPgPCgGAnbFigkbx1QjYqFPM4U4CYDoxCzsLvLQtmtLVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tkla9-0004IU-Do; Wed, 19 Feb 2025 16:01:49 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tkla6-001mdz-12;
+	Wed, 19 Feb 2025 16:01:46 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tkla6-0009xm-0e;
+	Wed, 19 Feb 2025 16:01:46 +0100
+Message-ID: <ef2026c28b9e6d59a98f6f33eb14f3b762454423.camel@pengutronix.de>
+Subject: Re: [PATCH v5 12/21] reset: thead: Add TH1520 reset controller
+ driver
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Michal Wilczynski <m.wilczynski@samsung.com>, mturquette@baylibre.com, 
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+  drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
+ jassisinghbrar@gmail.com,  paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu,  frank.binns@imgtec.com, matt.coster@imgtec.com, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+  airlied@gmail.com, simona@ffwll.ch, ulf.hansson@linaro.org,
+ jszhang@kernel.org,  m.szyprowski@samsung.com
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+Date: Wed, 19 Feb 2025 16:01:46 +0100
+In-Reply-To: <20250219140239.1378758-13-m.wilczynski@samsung.com>
+References: <20250219140239.1378758-1-m.wilczynski@samsung.com>
+	 <CGME20250219140305eucas1p26317b54727c68cf069458d270e06d962@eucas1p2.samsung.com>
+	 <20250219140239.1378758-13-m.wilczynski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250210114540.524790-3-tommaso.merciai.xr@bp.renesas.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, Feb 10, 2025 at 12:45:34PM +0100, Tommaso Merciai wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> The MIPI CSI-2 block on the Renesas RZ/V2H(P) SoC is similar to the one
-> found on the Renesas RZ/G2L SoC, with the following differences:
-> - A different D-PHY
-> - Additional registers for the MIPI CSI-2 link
-> - Only two clocks
-> 
-> Add a new compatible string, `renesas,r9a09g057-csi2`, for the RZ/V2H(P)
-> SoC.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+On Mi, 2025-02-19 at 15:02 +0100, Michal Wilczynski wrote:
+> Add reset controller driver for the T-HEAD TH1520 SoC that manages
+> hardware reset lines for various subsystems. The driver currently
+> implements support for GPU reset control, with infrastructure in place
+> to extend support for NPU and Watchdog Timer resets in future updates.
+>=20
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 > ---
->  .../bindings/media/renesas,rzg2l-csi2.yaml    | 63 ++++++++++++++-----
->  1 file changed, 48 insertions(+), 15 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-> index 7faa12fecd5b..0d07c55a3f35 100644
-> --- a/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-> @@ -17,12 +17,15 @@ description:
->  
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - renesas,r9a07g043-csi2       # RZ/G2UL
-> -          - renesas,r9a07g044-csi2       # RZ/G2{L,LC}
-> -          - renesas,r9a07g054-csi2       # RZ/V2L
-> -      - const: renesas,rzg2l-csi2
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - renesas,r9a07g043-csi2 # RZ/G2UL
-> +              - renesas,r9a07g044-csi2 # RZ/G2{L,LC}
-> +              - renesas,r9a07g054-csi2 # RZ/V2L
-> +          - const: renesas,rzg2l-csi2
+>  MAINTAINERS                  |   1 +
+>  drivers/reset/Kconfig        |  10 +++
+>  drivers/reset/Makefile       |   1 +
+>  drivers/reset/reset-th1520.c | 141 +++++++++++++++++++++++++++++++++++
+>  4 files changed, 153 insertions(+)
+>  create mode 100644 drivers/reset/reset-th1520.c
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 819686e98214..e4a0a83b4c11 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20425,6 +20425,7 @@ F:	drivers/mailbox/mailbox-th1520.c
+>  F:	drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
+>  F:	drivers/pinctrl/pinctrl-th1520.c
+>  F:	drivers/pmdomain/thead/
+> +F:	drivers/reset/reset-th1520.c
+>  F:	include/dt-bindings/clock/thead,th1520-clk-ap.h
+>  F:	include/dt-bindings/power/thead,th1520-power.h
+>  F:	include/dt-bindings/reset/thead,th1520-reset.h
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> index 5b3abb6db248..fa0943c3d1de 100644
+> --- a/drivers/reset/Kconfig
+> +++ b/drivers/reset/Kconfig
+> @@ -272,6 +272,16 @@ config RESET_SUNXI
+>  	help
+>  	  This enables the reset driver for Allwinner SoCs.
+> =20
+> +config RESET_TH1520
+> +	tristate "T-HEAD 1520 reset controller"
+> +	depends on ARCH_THEAD || COMPILE_TEST
+> +	select REGMAP_MMIO
+> +	help
+> +	  This driver provides support for the T-HEAD TH1520 SoC reset controll=
+er,
+> +	  which manages hardware reset lines for SoC components such as the GPU=
+.
+> +	  Enable this option if you need to control hardware resets on TH1520-b=
+ased
+> +	  systems.
 > +
-> +      - const: renesas,r9a09g057-csi2 # RZ/V2H(P)
->  
->    reg:
->      maxItems: 1
-> @@ -31,16 +34,24 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> -    items:
-> -      - description: Internal clock for connecting CRU and MIPI
-> -      - description: CRU Main clock
-> -      - description: CRU Register access clock
-> +    oneOf:
-> +      - items:
-> +          - description: Internal clock for connecting CRU and MIPI
-> +          - description: CRU Main clock
-> +          - description: CRU Register access clock
-> +      - items:
-> +          - description: CRU Main clock
-> +          - description: CRU Register access clock
->  
->    clock-names:
-> -    items:
-> -      - const: system
-> -      - const: video
-> -      - const: apb
-> +    oneOf:
-> +      - items:
-> +          - const: system
-> +          - const: video
-> +          - const: apb
-> +      - items:
-> +          - const: video
-> +          - const: apb
->  
->    power-domains:
->      maxItems: 1
-> @@ -48,7 +59,7 @@ properties:
->    resets:
->      items:
->        - description: CRU_PRESETN reset terminal
-> -      - description: CRU_CMN_RSTB reset terminal
-> +      - description: CRU_CMN_RSTB reset terminal or D-PHY reset
->  
->    reset-names:
->      items:
-> @@ -101,6 +112,28 @@ required:
->    - reset-names
->    - ports
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a09g057-csi2
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 2
+>  config RESET_TI_SCI
+>  	tristate "TI System Control Interface (TI-SCI) reset driver"
+>  	depends on TI_SCI_PROTOCOL || (COMPILE_TEST && TI_SCI_PROTOCOL=3Dn)
+> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+> index 677c4d1e2632..d6c2774407ae 100644
+> --- a/drivers/reset/Makefile
+> +++ b/drivers/reset/Makefile
+> @@ -35,6 +35,7 @@ obj-$(CONFIG_RESET_SIMPLE) +=3D reset-simple.o
+>  obj-$(CONFIG_RESET_SOCFPGA) +=3D reset-socfpga.o
+>  obj-$(CONFIG_RESET_SUNPLUS) +=3D reset-sunplus.o
+>  obj-$(CONFIG_RESET_SUNXI) +=3D reset-sunxi.o
+> +obj-$(CONFIG_RESET_TH1520) +=3D reset-th1520.o
+>  obj-$(CONFIG_RESET_TI_SCI) +=3D reset-ti-sci.o
+>  obj-$(CONFIG_RESET_TI_SYSCON) +=3D reset-ti-syscon.o
+>  obj-$(CONFIG_RESET_TI_TPS380X) +=3D reset-tps380x.o
+> diff --git a/drivers/reset/reset-th1520.c b/drivers/reset/reset-th1520.c
+> new file mode 100644
+> index 000000000000..d6816c86ba95
+> --- /dev/null
+> +++ b/drivers/reset/reset-th1520.c
+> @@ -0,0 +1,141 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2024 Samsung Electronics Co., Ltd.
+> + * Author: Michal Wilczynski <m.wilczynski@samsung.com>
+> + */
 > +
-> +        clock-names:
-> +          maxItems: 2
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset-controller.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <dt-bindings/reset/thead,th1520-reset.h>
+> +
+> + /* register offset in VOSYS_REGMAP */
+> +#define TH1520_GPU_RST_CFG		0x0
+> +#define TH1520_GPU_RST_CFG_MASK		GENMASK(1, 0)
+> +
+> +/* register values */
+> +#define TH1520_GPU_SW_GPU_RST		BIT(0)
+> +#define TH1520_GPU_SW_CLKGEN_RST	BIT(1)
+> +
+> +struct th1520_reset_priv {
+> +	struct reset_controller_dev rcdev;
+> +	struct regmap *map;
+> +};
+> +
+> +struct th1520_reset_map {
+> +	u32 bit;
+> +	u32 reg;
+> +};
+> +
+> +static const struct th1520_reset_map th1520_resets[] =3D {
+> +	[TH1520_RESET_ID_GPU] =3D {
+> +		.bit =3D TH1520_GPU_SW_GPU_RST,
+> +		.reg =3D TH1520_GPU_RST_CFG,
+> +	},
+> +	[TH1520_RESET_ID_GPU_CLKGEN] =3D {
+> +		.bit =3D TH1520_GPU_SW_CLKGEN_RST,
+> +		.reg =3D TH1520_GPU_RST_CFG,
+> +	}
 
-These are correct, but...
+I expect the NPU and WDT resets will be added to this list later?
+
+> +};
+> +
+> +static inline struct th1520_reset_priv *
+> +to_th1520_reset(struct reset_controller_dev *rcdev)
+> +{
+> +	return container_of(rcdev, struct th1520_reset_priv, rcdev);
+> +}
+> +
+> +static int th1520_reset_assert(struct reset_controller_dev *rcdev,
+> +			       unsigned long id)
+> +{
+> +	struct th1520_reset_priv *priv =3D to_th1520_reset(rcdev);
+> +	const struct th1520_reset_map *reset;
+> +
+> +	if (id >=3D ARRAY_SIZE(th1520_resets))
+> +		return -EINVAL;
+
+This check is not necessary. The core will have checked this in
+of_reset_simple_xlate() before returning the reset control.
 
 > +
-> +    else:
-> +      properties:
-> +        clocks:
-> +          maxItems: 3
+> +	reset =3D &th1520_resets[id];
 > +
-> +        clock-names:
-> +          maxItems: 3
+> +	return regmap_update_bits(priv->map, reset->reg, reset->bit, 0);
+> +}
+> +
+> +static int th1520_reset_deassert(struct reset_controller_dev *rcdev,
+> +				 unsigned long id)
+> +{
+> +	struct th1520_reset_priv *priv =3D to_th1520_reset(rcdev);
+> +	const struct th1520_reset_map *reset;
+> +
+> +	if (id >=3D ARRAY_SIZE(th1520_resets))
+> +		return -EINVAL;
 
-3 is already the max. You need 'minItems' here.
+This check is not necessary.
 
-Rob
+> +
+> +	reset =3D &th1520_resets[id];
+> +
+> +	return regmap_update_bits(priv->map, reset->reg, reset->bit,
+> +				  reset->bit);
+> +}
+> +
+> +static const struct reset_control_ops th1520_reset_ops =3D {
+> +	.assert	=3D th1520_reset_assert,
+> +	.deassert =3D th1520_reset_deassert,
+> +};
+> +
+> +static const struct regmap_config th1520_reset_regmap_config =3D {
+> +	.reg_bits =3D 32,
+> +	.val_bits =3D 32,
+> +	.reg_stride =3D 4,
+> +	.fast_io =3D true,
+> +};
+> +
+> +static int th1520_reset_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct th1520_reset_priv *priv;
+> +	void __iomem *base;
+> +	int ret;
+> +
+> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	priv->map =3D devm_regmap_init_mmio(dev, base,
+> +					  &th1520_reset_regmap_config);
+> +	if (IS_ERR(priv->map))
+> +		return PTR_ERR(priv->map);
+> +
+> +	/* Initialize GPU resets to asserted state */
+> +	ret =3D regmap_update_bits(priv->map, TH1520_GPU_RST_CFG,
+> +				 TH1520_GPU_RST_CFG_MASK, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	priv->rcdev.owner =3D THIS_MODULE;
+> +	priv->rcdev.nr_resets =3D 2;
+
+Better use ARRAY_SIZE(th1520_resets) here, this will simplify adding
+further resets in the future. With that,
+
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+
+regards
+Philipp
 
