@@ -1,296 +1,145 @@
-Return-Path: <devicetree+bounces-148499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DE76A3C355
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 16:16:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B881DA3C447
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 16:57:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 200A93AB9AE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:14:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C7A83B3537
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:56:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8CE21F417E;
-	Wed, 19 Feb 2025 15:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848491FDA96;
+	Wed, 19 Feb 2025 15:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cDW3FfKC"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lwlqJK1L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D3F91F3B98
-	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 15:14:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1069B1FCCE7;
+	Wed, 19 Feb 2025 15:56:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739978098; cv=none; b=tJH35yX1RyYfFZdbHdx+jAyXI7T5P+3k7Cmgxf/ZdIz/fYuV6zEB/UjYLu4k0lCrBxPZwV5nJcP8G7bs7+TBFGwGEJEdMZUURuk5SSH2pOJRO4jj7uic23Q7HtvHtkHFUqkhGwgEt8ozU9PUnksiy85KaBdsuE/Cb5+HudmhxlA=
+	t=1739980580; cv=none; b=XUylcvMQTHPtLp+1+rc8+LciWJ0sGXKX3XJv6XV3F8vwu7dPK9P+lfkWFDmfo70TAn2g1cwzrHhVyJna+hH4CTKdty6V653DCrqifTu2v9O9c+qp4rCuAGh0OAYe5bC3FXtwX/HSx+1pypWz5aVd1CUCkVyCClsrDI9D5Y9LPdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739978098; c=relaxed/simple;
-	bh=7ZzF5Ad64kAmT1EYsz/Ribn3T3yAZpN1quCf0vgkVIQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=e3B2SZ7O1YJFCUBKGxz64Hcu/4FrRNn3s5BGhFoBAdG3UqyX+j4GwGwMdQD7whFyK/ccbug7AnL3bQcQdXJcDFIywtpi+g9qVqsYfgxo2VMdcqai7gHjlx6gNz147ftMG+3/w8FIb6IVRIql7XNWODS0bARkLTP62QLw2+EFPDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cDW3FfKC; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6fb73240988so21766977b3.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 07:14:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739978095; x=1740582895; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b+E6kC7d+DNvc02YejfVB1otPtjrvjn2uNRtdwjS8Tw=;
-        b=cDW3FfKCsShYdJ8iaSqiKbbPqupv2AD7ExsgYEMfibYJ5kpKAX9zyYOTEZceVHQIwo
-         GxLEv4KVEGQ8ya6lw011D2bUFi6VSLBpi657IXERRArBGMDk+MiMWmvOIOWMbRVYa/wa
-         2WnKgXU3pF1ifQACU/asTZktc2eE8mQGFnUsdLtIDVYEvX8Q3We86uYazT4tDUT744BH
-         IIWpz1JvdxIxMl1M1O3qSbnDJ3BcuJ5ZsF1Hlfzk6OdI7+bafFhsK9mra/jLGaAVOsZ/
-         lBD70Ly2Vhg11gj0rGPebf8+j3taSKqGbcD2I9T2U8XZ41vZM0GnMFxpIty6QiSpQUiR
-         1hrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739978095; x=1740582895;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b+E6kC7d+DNvc02YejfVB1otPtjrvjn2uNRtdwjS8Tw=;
-        b=fpIZG4Sf6EFlQAjP1xmMxmiiM/3fSGLXSnYCNBLZ+qVYAMhfF+FDMWmiLsz3/jfMFR
-         MmybhXNldo1Ew3mKt4tOopgW3KFp/TTwodTO/TbyzXkDGniHZlhy0y6NlOQs1GpNAfWi
-         CsguivCnUEJe+ttrPEmvsTsHaI3ha7QDgUESAKLKYnZ6Vj1SLOE7BfNc1SWyBHdg/VRw
-         8q5E5qKUmPT2b8UjRLtggGh6/gwEVqeYi3iSmYcg/HfMogBUZ4CNMFMBubI7izY5Zl5W
-         cZAJ8VvZVYg/qgjS5ZMLNgbM/ukhfnvygC4MujInVBQ/2wixfmOR4dz1LEWzmZkARDgp
-         FYHg==
-X-Forwarded-Encrypted: i=1; AJvYcCUQOBfJtyLVx50PzSQ6U1jb5Q/GXqkGtEGF0iWxvs2+lv8e3LJbIVZfdsEgYfAT2Djx11XLMz0G4ig7@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNzZX+TQp/NKGzSEH6sqUA7zC/OPN7Zwd6GRusQppvEIEJLotE
-	tOhzmJvLl6z3kuS6LFJiGSEgSmsb1lpFmXfCujrQ5Kt6X4D18nXHcSTfGUpYBsT0O4mHwoZ0Tpf
-	z5ZaA4IAFwe0FyV5fyO5gp7nMP6h0rFGVCOzckg==
-X-Gm-Gg: ASbGncsMvdLNHL2jkmShnZXZhIK5NhwT3rfDAATSpYi6dq57o5hevtkJUMQO5uexkg2
-	04d7on5lQQxNufVU7x8gcr8Qm0ew2StxmZOin41KAcjb7xhsPNPYljPNSbZBeu+/BTUsouWrbsx
-	30rzFdY72bWOk=
-X-Google-Smtp-Source: AGHT+IGzsPfDdeeAveGhU+aOYK1SYop1lJB2Gp+ImKyViDH0yKDhHuYN7jg/YXNY7Ml0uxzkPfJKqZciVxbo+viEHSg=
-X-Received: by 2002:a05:690c:450e:b0:6fb:277f:f022 with SMTP id
- 00721157ae682-6fba56ac46amr37599417b3.15.1739978094861; Wed, 19 Feb 2025
- 07:14:54 -0800 (PST)
+	s=arc-20240116; t=1739980580; c=relaxed/simple;
+	bh=uV3soKwL+HCNAvSymtrWOzDP+EtcGO1BQkAUCm5Wg+g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k8ihoQis5BMrsJSyR+VJ3NK9gH6MxP5xEBTlb5uanFZeKgw6YNb2iELwKlkWVP3iqJQ6aI4GdjdIVn6v4ontKtPuFNhv7X4xQMsswwgcxB9c3c9efBMLpL6Z6JUYYPItloEct+/cC3UHafqbbiEEgaN3vEN2uP3an3ulq2oVOYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lwlqJK1L; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739980579; x=1771516579;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=uV3soKwL+HCNAvSymtrWOzDP+EtcGO1BQkAUCm5Wg+g=;
+  b=lwlqJK1LXTvxJ+EWudFro8aZPJMqcJPUT58kxjNEZ30GML6GSKnX9EAB
+   liAhzqJS5SDhtwvZcQMnOjFibzq++KcRAtqG30zoRL9mbRMYhlJVvLHWE
+   bu52UwMhnVY4w8glg6dMCLs/Ax2z3KE1P99rj0e51sfsjJvOcRvsRVnC5
+   0lfWofu3WTokGPBr9X39mAVp1xImbe3esC5xatTO7alkn7svGQ/jSqCQ5
+   pxUA0mChaMFS3bJs+yC9z2N5B0T1ehQeC0MuLGKtuS7gybUcwMbHaj3CP
+   nsD2xaEGaf+xVJPa2Q/lB0yICi0LRhMeUC1XMs4a4P2ex5jUPk5IiRJc5
+   w==;
+X-CSE-ConnectionGUID: p18e5709S3i1yRm3An+ukg==
+X-CSE-MsgGUID: c4WqoUpRTjW1gzzBzpm1ng==
+X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="44641211"
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; 
+   d="scan'208";a="44641211"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2025 07:56:15 -0800
+X-CSE-ConnectionGUID: 9tQ7e4C6QyWDwrfSehe6Ew==
+X-CSE-MsgGUID: pjGdWZJjSauXppPQLfgMhw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; 
+   d="scan'208";a="145612236"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2025 07:23:30 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tkluw-0000000D3ix-2SQZ;
+	Wed, 19 Feb 2025 17:23:18 +0200
+Date: Wed, 19 Feb 2025 17:23:18 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] mfd: lm3533: convert to use OF
+Message-ID: <Z7X3ZvQbSe75U-AR@smile.fi.intel.com>
+References: <20250218132702.114669-1-clamor95@gmail.com>
+ <20250218132702.114669-3-clamor95@gmail.com>
+ <Z7XqKcOUt5niXzpv@smile.fi.intel.com>
+ <CAPVz0n1_WQyOHhtEVAh53uhEUhZvqqZSEJh6XALtSrVfkMSLYw@mail.gmail.com>
+ <Z7XzgfHcjyK_UZKv@smile.fi.intel.com>
+ <CAPVz0n2WwAOb1UU7J7aDTdhXXCaAZkCpYjW_nc_CBRgkGWdEOw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250109-sar2130p-nvmem-v4-0-633739fe5f11@linaro.org>
- <20250109-sar2130p-nvmem-v4-2-633739fe5f11@linaro.org> <Z7Xv9lNc6ckJVtKc@finisterre.sirena.org.uk>
-In-Reply-To: <Z7Xv9lNc6ckJVtKc@finisterre.sirena.org.uk>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 19 Feb 2025 17:14:43 +0200
-X-Gm-Features: AWEUYZlKZrJ6BlnP5LZGrcDfshTk8gmJlBpd2Sd2bgFCh0GYo_K5SDi55MeUV-E
-Message-ID: <CAA8EJpp-mE2w_c3K08+8AR3Mn1r8X58FRXvAUFALQ-u2ppoKgw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/5] nvmem: core: verify cell's raw_len
-To: Mark Brown <broonie@kernel.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Akhil P Oommen <quic_akhilpo@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPVz0n2WwAOb1UU7J7aDTdhXXCaAZkCpYjW_nc_CBRgkGWdEOw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, 19 Feb 2025 at 16:51, Mark Brown <broonie@kernel.org> wrote:
->
-> On Thu, Jan 09, 2025 at 06:35:46AM +0200, Dmitry Baryshkov wrote:
-> > Check that the NVMEM cell's raw_len is a aligned to word_size. Otherwis=
-e
-> > Otherwise drivers might face incomplete read while accessing the last
-> > part of the NVMEM cell.
->
-> I'm seeing a bunch of failures on i.MX platforms in -next which bisect
-> to this patch.  For example on the i.MX6q based UDOOq various things
-> including the ethernet fail to come up due to the efuse not appearing:
->
-> [    1.735264] nvmem imx-ocotp0: cell mac-addr raw len 6 unaligned to nvm=
-em word size 4
-> [    1.735289] imx_ocotp 21bc000.efuse: probe with driver imx_ocotp faile=
-d with error -22
+On Wed, Feb 19, 2025 at 05:13:15PM +0200, Svyatoslav Ryhel wrote:
+> ср, 19 лют. 2025 р. о 17:07 Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> пише:
+> > On Wed, Feb 19, 2025 at 04:36:38PM +0200, Svyatoslav Ryhel wrote:
+> > > ср, 19 лют. 2025 р. о 16:27 Andy Shevchenko
+> > > <andriy.shevchenko@linux.intel.com> пише:
 
-This looks like an error on the i.MX platforms. The raw_len must be
-aligned to word size. I think the easiest fix is to implement the
-.fixup_dt_cell_info() callback like I did for the qfprom driver.
+...
 
->
-> ...
->
-> [   12.647970] platform 20c8000.anatop:tempmon: deferred probe pending: p=
-latform: wait for supplier /soc/bus@2100000/efuse@21bc000/temp-grade@20
-> [   12.648001] platform imx6q-cpufreq: deferred probe pending: (reason un=
-known)
-> [   12.648012] platform 2188000.ethernet: deferred probe pending: platfor=
-m: wait for supplier /soc/bus@2100000/efuse@21bc000/mac-addr@88
->
-> full log:
->
->    https://lava.sirena.org.uk/scheduler/job/1128243
->
-> I'm also seeing the efuse failing to come up on i.MX8MP platforms:
->
-> [    2.503137] nvmem imx-ocotp0: cell mac-address raw len 6 unaligned to =
-nvmem word size 4
-> [    2.503155] imx_ocotp 30350000.efuse: probe with driver imx_ocotp fail=
-ed with error -22
->
-> Full log:
->
->    https://lava.sirena.org.uk/scheduler/job/1126672
->
-> Bisection log, there's a bunch of additional good commits added at the
-> start because my automation feeds in results it already knows about to
-> narrow things down:
->
-> # bad: [8936cec5cb6e27649b86fabf383d7ce4113bba49] Add linux-next specific=
- files for 20250219
-> # good: [67961d4f4e34f5ed1aeebab08f42c2e706837ec5] Merge branch 'for-linu=
-x-next-fixes' of https://gitlab.freedesktop.org/drm/misc/kernel.git
-> # good: [d1a09c610027e446ed30c21f61c2f2443bf92a3f] MAINTAINERS: adjust th=
-e file entry in SPI OFFLOAD
-> # good: [5d9fca12f54d3e25e02521aa8f3ec5d53759b334] ASoC: amd: ps: fix inc=
-onsistent indenting warning in check_and_handle_sdw_dma_irq()
-> # good: [e08fe24c34d37d00e84009f2fb4c35f5978041e6] ASoC: SOF: Intel: Use =
-str_enable_disable() helper
-> # good: [d64c4c3d1c578f98d70db1c5e2535b47adce9d07] ASoC: tas2764: Add reg=
- defaults for TAS2764_INT_CLK_CFG
-> # good: [42da18e62652b58ba5ecd1524c146b202cda9bb7] ASoC: soc-pcm: cleanup=
- dpcm_fe_dai_do_trigger()
-> # good: [994719ed6d81a6f4677875ab6730254c0bc484ea] ASoC: Intel: avs: Use =
-str_on_off() in avs_dsp_core_power()
-> # good: [ae575d2145d1a2c8bb5d2835d7d54751f3b0bace] ASoC: tegra: Remove th=
-e isomgr_bw APIs export
-> # good: [f22ba3561daa792dd138ed543e0bf48efe0b999c] ASoC: SOF: imx-common:=
- set sdev->pdata->hw_pdata after common is alloc'd
-> # good: [ad0fbcebb5f6e093d433a0873758a2778d747eb8] ASoC: adau1701: use gp=
-iod_multi_set_value_cansleep
-> # good: [e957c96455e8f4c630d5e374312cad0633ca7e17] spi: offload: fix use =
-after free
-> # good: [ff4d4158ef9143327a42f7be4298751cb0d1be69] spi: spi-offload-trigg=
-er-pwm: add extra headers
-> # good: [21aa330fec31bb530a4ef6c9555fb157d0711112] ASoC: fsl_micfil: Add =
-decimation filter bypass mode support
-> # good: [c5528214c7c0a753c908a7b353309ba665985fb4] ASoC: codecs: wcd93xx-=
-sdw: fix of_property_read_bool() warnings
-> # good: [330cbb40bb3664a18a19760bd6dc6003d6624041] dt-bindings: ASoC: roc=
-kchip: Add compatible for RK3588 SPDIF
-> # good: [5a19e1985d014fab9892348f6175a19143cec810] spi: axi-spi-engine: i=
-mplement offload support
-> # good: [6cf5df1040ba0694aea6a5edc6f31811a442ea36] ASoC: SOF: imx: add dr=
-iver for the imx95 chip
-> # good: [9da195880f167ab7c2d595388decf783c9920121] ASoC: SDCA: Add suppor=
-t for PDE Entity properties
-> # good: [852c0b7204ded184924c41ab99b2ac7a70ad4dab] ASoC: Intel: soc-acpi-=
-intel-ptl-match: add rt713_vb_l2_rt1320_l13
-> # good: [4bb5b6f13fd83b32c8a93fbd399e7558415d1ce0] ASoC: amd: amd_sdw: Ad=
-d quirks for Dell SKU's
-> # good: [cb161c333927142818d6bf22a4da2b023fb2b8c9] ASoC: tas2781: Switch =
-to use %ptTsr
-> # good: [153dbf4adad0082d030c30d20541df2b1af52db6] regmap: irq: Use one w=
-ay of setting all bits in the register
-> # good: [0e9a970d7b2cb98d741bc0e32ad8c8f30c009c63] ASoC: qcom: sdw: Add g=
-et and set channel maps support from codec to cpu dais
-> # good: [583348bd65ceaf4a5067a6267dd236929e1b4b37] ASoC: SOF: ipc4-topolo=
-gy: Improve the information in prepare_copier prints
-> # good: [0a7c85b516830c0bb088b0bdb2f2c50c76fc531a] regulator: ad5398: Fix=
- incorrect power down bit mask
-> # good: [4c7518062d638837cea915e0ffe30f846780639a] ASoC: SOF: ipc4: Add s=
-upport for split firmware releases
-> # good: [215705db51eb23052c73126d2efb6acbc2db0424] spi: Replace custom fs=
-leep() implementation
-> # good: [6603c5133daadbb3277fbd93be0d0d5b8ec928e8] ASoC: dt-bindings: atm=
-el,at91-ssc: Convert to YAML format
-> # good: [25fac20edd09b60651eabcc57c187b1277f43d08] spi: gpio: Support a s=
-ingle always-selected device
-> # good: [e27c125040b1e1f26d910b46daabbe55e67fdf3b] ASoC: codecs: wcd934x:=
- use wcd934x binding header
-> # good: [652ffad172d089acb1a20e5fde1b66e687832b06] spi: fsi: Batch TX ope=
-rations
-> # good: [6eab7034579917f207ca6d8e3f4e11e85e0ab7d5] ASoC: soc-core: Stop u=
-sing of_property_read_bool() for non-boolean properties
-> # good: [856366dc924a9561dae39f252b45dfd6cc6895ce] ALSA: hda: Select avs-=
-driver by default on MBL
-> # good: [5a6a461079decea452fdcae955bccecf92e07e97] regulator: ad5398: Add=
- device tree support
-> # good: [f5aab0438ef17f01c5ecd25e61ae6a03f82a4586] regulator: pca9450: Fi=
-x enable register for LDO5
-> # good: [c1ac98492d1584d31f335d233a5cd7a4d4116e5a] spi: realtek-rtl-snand=
-: Drop unneeded assignment for cache_type
-> # good: [7ed1b265021dd13ce5619501b388e489ddc8e204] ASoC: cpcap: Implement=
- jack detection
-> # good: [89785306453ce6d949e783f6936821a0b7649ee2] spi: zynqmp-gqspi: Alw=
-ays acknowledge interrupts
-> # good: [995cf0e014b0144edf1125668a97c252c5ab775e] regmap: Reorder 'struc=
-t regmap'
-> git bisect start '8936cec5cb6e27649b86fabf383d7ce4113bba49' '67961d4f4e34=
-f5ed1aeebab08f42c2e706837ec5' 'd1a09c610027e446ed30c21f61c2f2443bf92a3f' '5=
-d9fca12f54d3e25e02521aa8f3ec5d53759b334' 'e08fe24c34d37d00e84009f2fb4c35f59=
-78041e6' 'd64c4c3d1c578f98d70db1c5e2535b47adce9d07' '42da18e62652b58ba5ecd1=
-524c146b202cda9bb7' '994719ed6d81a6f4677875ab6730254c0bc484ea' 'ae575d2145d=
-1a2c8bb5d2835d7d54751f3b0bace' 'f22ba3561daa792dd138ed543e0bf48efe0b999c' '=
-ad0fbcebb5f6e093d433a0873758a2778d747eb8' 'e957c96455e8f4c630d5e374312cad06=
-33ca7e17' 'ff4d4158ef9143327a42f7be4298751cb0d1be69' '21aa330fec31bb530a4ef=
-6c9555fb157d0711112' 'c5528214c7c0a753c908a7b353309ba665985fb4' '330cbb40bb=
-3664a18a19760bd6dc6003d6624041' '5a19e1985d014fab9892348f6175a19143cec810' =
-'6cf5df1040ba0694aea6a5edc6f31811a442ea36' '9da195880f167ab7c2d595388decf78=
-3c9920121' '852c0b7204ded184924c41ab99b2ac7a70ad4dab' '4bb5b6f13fd83b32c8a9=
-3fbd399e7558415d1ce0' 'cb161c333927142818d6bf22a4da2b023fb2b8c9' '153dbf4ad=
-ad0082d030c30d20541df2b1af52db6' '0e9a970d7b2cb98d741bc0e32ad8c8f30c009c63'=
- '583348bd65ceaf4a5067a6267dd236929e1b4b37' '0a7c85b516830c0bb088b0bdb2f2c5=
-0c76fc531a' '4c7518062d638837cea915e0ffe30f846780639a' '215705db51eb23052c7=
-3126d2efb6acbc2db0424' '6603c5133daadbb3277fbd93be0d0d5b8ec928e8' '25fac20e=
-dd09b60651eabcc57c187b1277f43d08' 'e27c125040b1e1f26d910b46daabbe55e67fdf3b=
-' '652ffad172d089acb1a20e5fde1b66e687832b06' '6eab7034579917f207ca6d8e3f4e1=
-1e85e0ab7d5' '856366dc924a9561dae39f252b45dfd6cc6895ce' '5a6a461079decea452=
-fdcae955bccecf92e07e97' 'f5aab0438ef17f01c5ecd25e61ae6a03f82a4586' 'c1ac984=
-92d1584d31f335d233a5cd7a4d4116e5a' '7ed1b265021dd13ce5619501b388e489ddc8e20=
-4' '89785306453ce6d949e783f6936821a0b7649ee2' '995cf0e014b0144edf1125668a97=
-c252c5ab775e'
-> # bad: [8936cec5cb6e27649b86fabf383d7ce4113bba49] Add linux-next specific=
- files for 20250219
-> git bisect bad 8936cec5cb6e27649b86fabf383d7ce4113bba49
-> # good: [4aa591507214c82976992e1810d5ac121a8545d2] Merge branch 'for-next=
-' of git://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next.g=
-it
-> git bisect good 4aa591507214c82976992e1810d5ac121a8545d2
-> # good: [79eb91f3f44b4146967f38834f55b21c328569ee] Merge branch 'for-next=
-' of git://git.kernel.dk/linux-block.git
-> git bisect good 79eb91f3f44b4146967f38834f55b21c328569ee
-> # good: [c21be55001aaa27cb2470ecc26109970058228f1] Merge branch 'driver-c=
-ore-next' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driver-co=
-re.git
-> git bisect good c21be55001aaa27cb2470ecc26109970058228f1
-> # good: [b708438ccc2b4dc37ec478db6589c03aca76c4ac] Merge branch 'for-next=
-' of git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git
-> git bisect good b708438ccc2b4dc37ec478db6589c03aca76c4ac
-> # bad: [3a3b9078eb6ae21a99e26b80447e1dcf31cd6491] Merge branch 'for-next'=
- of git://git.kernel.org/pub/scm/linux/kernel/git/andy/linux-auxdisplay.git
-> git bisect bad 3a3b9078eb6ae21a99e26b80447e1dcf31cd6491
-> # good: [7e17e80c3a7eb2734795f66ba946f933412d597f] Merge branch 'for-6.14=
-/stack-order' into for-next
-> git bisect good 7e17e80c3a7eb2734795f66ba946f933412d597f
-> # good: [e5bb72d538dabba8cad1224b853aa0fbd6d79844] Merge branch 'at24/for=
--next' of git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git
-> git bisect good e5bb72d538dabba8cad1224b853aa0fbd6d79844
-> # bad: [4770132f37dbf327d25455d226e54fafbef6a5c4] nvmem: qfprom: switch t=
-o 4-byte aligned reads
-> git bisect bad 4770132f37dbf327d25455d226e54fafbef6a5c4
-> # good: [3419bdfd88e314bc5f80b02fa4651c81a0a85b57] dt-bindings: nvmem: qf=
-prom: Add X1E80100 compatible
-> git bisect good 3419bdfd88e314bc5f80b02fa4651c81a0a85b57
-> # good: [d5d9e982a0886a1a99a1a8ef5320c57e257b4fb0] nvmem: core: fix bit o=
-ffsets of more than one byte
-> git bisect good d5d9e982a0886a1a99a1a8ef5320c57e257b4fb0
-> # bad: [eca73df072715efb5e880514bb8395e0a4e74a59] nvmem: core: update raw=
-_len if the bit reading is required
-> git bisect bad eca73df072715efb5e880514bb8395e0a4e74a59
-> # bad: [11ccaa3121119eeff9ab9d537e0cf6be3b10698b] nvmem: core: verify cel=
-l's raw_len
-> git bisect bad 11ccaa3121119eeff9ab9d537e0cf6be3b10698b
-> # first bad commit: [11ccaa3121119eeff9ab9d537e0cf6be3b10698b] nvmem: cor=
-e: verify cell's raw_len
+> > > MFD part is removed since MFD cells binding is unconditional, while
+> > > the device supports any amount of children grater then one. For
+> > > example, my  device uses only backlight at bank A, while all other
+> > > subdevices are not present and used. This patch switches to dynamic
+> > > bind of children.
+> >
+> > MFD does the same. Please, take your time and get familiar with how MFD works.
+> 
+> It does not. I have tried. If mfd cell binding is missing, driver will
+> complain and fail.
+
+I really don't know what exactly is going on here, you can check it later, but
+I'm 100% sure that MFD works for only driver that are present. What you are
+describing is how component framework is designed.
+
+To proove my words you can check drivers/mfd/intel_soc_pmic_*.c and find listed
+cells that never had a driver in the Linux kernel. They are just placeholders.
+
+...
+
+> > --
+> > With Best Regards,
+> > Andy Shevchenko
+
+Please, when answering, remove unrelated context from the replies.
+
+...
+
+> Let this driver rot for now, I might return to it. At some point
+
+Up to you. But thanks for trying!
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-
---=20
-With best wishes
-Dmitry
 
