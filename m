@@ -1,169 +1,156 @@
-Return-Path: <devicetree+bounces-148350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FBF4A3BBC5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 11:40:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71656A3BBFC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 11:47:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D731F3B029E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:40:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C17E73B2089
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:47:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1DAA1DE3D7;
-	Wed, 19 Feb 2025 10:40:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4F0B1C175A;
+	Wed, 19 Feb 2025 10:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tiDumWSU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TB5IDDV8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A35C41DE2D7
-	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 10:40:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24290195FE8;
+	Wed, 19 Feb 2025 10:47:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739961625; cv=none; b=K1EZTytEUtlzFj4/V29mj33UYIZpAHHmkDDeA0yM5ZK7AtTZti4Kt5boP9+uJjbYmDCFrUQSEqnaNDdCL7JmR86iOoXlZozycyAdTmNfUtMJHdT+JwsMc9o+rFaYEfpSxAT3vlZEh1o4o3/+KpIfsiyqie6k5tFgHvtBvqNR1qI=
+	t=1739962027; cv=none; b=l30Q7p1PGxBxUzJ0MjEasvT1WFMytK9fUDYAcxsF20vFSsZHlLq2oUYBVe1sEpTPwfxDnaxZotTjmmJs8AIG0U7pUBhE9GBBFbsHTxHP1YkYUhWcnBlkAP4SBpW5DaNo96UNxxT1Xg14sKlN2zzetNVWpmqfTAQaYXGGg1/CNZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739961625; c=relaxed/simple;
-	bh=+Anp7Lg+FVfajyUS0vQIj16UIiLsxJxFxYN+q8tFg5Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AsD4ApqO5prcZ129OS1zsN9KlEuvsN14mYXQj4aHvWyMNI3d2vMhSs1RriV2C2L9ZLhkXqMrlpn9wIfjt5p9Y95oeO7zhGTuJelYFAQqCEhhTYVACgIa0lmnU7SyDHfBfg/ss74jYw2YxniLVLflWoYkd+3vbjSQJAO0QxX2SAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tiDumWSU; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-38f3ea6207cso2909953f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 02:40:23 -0800 (PST)
+	s=arc-20240116; t=1739962027; c=relaxed/simple;
+	bh=X6XoxNT4Gz5IaIpfEgxxUsOFTWmm0YJ+0QKOHpxqt1Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FMZSTNRY4K8669FttTU4vCPc9mQV9YLhe1RSRcZDWc946Nft05P1lOJiG0Kej3sj2imcvoLSHdKiP70qt+mwwaKIt4iMOSjkemM2T1E7p76FIh6HsnZ/IuRymImFbCm7n4Zr/lFz6konfA+VwUKzNgjj9v99Zzi0iRyNubGebN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TB5IDDV8; arc=none smtp.client-ip=209.85.222.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7c0ba9825e9so21233985a.0;
+        Wed, 19 Feb 2025 02:47:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739961622; x=1740566422; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oTpEssmUoRIjX9Gc5CypTsWt0/nZ9V99gdm6sCPaUhg=;
-        b=tiDumWSUIen5vA5PEKbxRhze1OoAEXKqdQVOEKPbXK2dwq1GUIO2PP9INjhAMT+OuD
-         ATpTp89gX7FPZ2b57cu+BuA7v7AraLwLN3pDxegSQuozJ7Q0ujbwBiORytZnhRkG0Udh
-         mxoZjdpgWtrsOC4rvGpkEi0p+MVu/Ka9+c/QCS2oQIZrAHzXjvmK/pbN68w83cxyUzgP
-         bpHSZowD2Jgm44cUjTc9HjBRvYF/yHOre4KsKj9ZCdEwGMvNm6AjREINTSuzatNj5bVO
-         bvkpU9uQCe/Ez6MlAFBEXBXasoCkPttbwfvx9Es9BuzoU1nmoghlwtQtwdKlnpGm8scc
-         E7zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739961622; x=1740566422;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1739962025; x=1740566825; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oTpEssmUoRIjX9Gc5CypTsWt0/nZ9V99gdm6sCPaUhg=;
-        b=WtWnB9pl2FI3HK0lJBvM5b/OpI4nAo9Uak8vZSLzMGRku3igGLjXlxidKakb8VzGug
-         Ej+nOkZ8sOVTRcH1AaiCibe36KyLcO+yog1qGILxh5SPh6J/JV0R2cvqPfA1kFaeoZpH
-         ifhgmVRuf0hSB3tG7NxChC1Vqx3SX7wRvHYLND+SpbubpQQDA08dlsQKacn3tixGbbN0
-         q3C08si3IJSFlILWurafjZKKpfTlLOjJHC/Psz1DeU34CTX3BUgiTqgjmNKA5GvjjzyU
-         5OHA+C+lIT39uLrscuZLLlOOQEJRzL3f/yjwefCYSAE6t8puCOQW+pHw6BsLHDfhN+n4
-         EbXA==
-X-Forwarded-Encrypted: i=1; AJvYcCVm9yY8yKl/L9Ks0lfB4lIFM844VsfzkxeH0jm/CDXuFt5fEoZJaeWBeA712QJPv0DUVwbgTxTikZmf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXwHCJI7nic8YN09bdeq5JdbOhr6h5edOEVdtrHgvYKaNp5Q/p
-	rXN1WpXJ8vkNhybJ3sCKzNFmnJkN9jnbgX77vleX1W6gJS9cri1HsyiluJaUddeoDreMsxMd/Md
-	j
-X-Gm-Gg: ASbGncv8zTkcF7MEDzkb79g9lDIs68DLIPPzEzkihTkkP8XUG9WcgZGUToC+ja/gsBi
-	VdmAWmPbznPaTImGi/l0+Gi7bPKAAwo/3tOiVg7VkYQ87i5M4IPR27ed0fDZrHEwD4BzJBB7ZO3
-	P4IWBhJlHBVdFGqiSBoEs4lmnz71gX2roOaEa/KbE5xdRPqLOfpCh9TbSShP0dJ2pHf4CDBFn9j
-	Jt+SKvUVK4HBif44+GSlLV3LvgeUZ6ZAfiTRdKq6uhYFewZbSFe78A6mx2eGMt0e9t8y42n08hu
-	YdnNpv/kADCU4LiFMZj04q6y3+w=
-X-Google-Smtp-Source: AGHT+IEWjgG7pbgCzAJkKiubwvHKifXXf7rgGGj2vJdSFL2Ufsb0tZitD1EnLcEdqieTl59H6i3ZRw==
-X-Received: by 2002:adf:ef46:0:b0:38d:badf:9df5 with SMTP id ffacd0b85a97d-38f33f39223mr10831845f8f.17.1739961621535;
-        Wed, 19 Feb 2025 02:40:21 -0800 (PST)
-Received: from linaro.org ([2a02:2454:ff21:ef30:6f72:6161:57cf:1c9a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258eb141sm17162624f8f.41.2025.02.19.02.40.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2025 02:40:21 -0800 (PST)
-Date: Wed, 19 Feb 2025 11:40:16 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: Wolfram Sang <wsa@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH 3/3] i2c: qup: Vote for interconnect bandwidth to DRAM
-Message-ID: <Z7W1EJ7uGsaTZMRh@linaro.org>
-References: <20231128-i2c-qup-dvfs-v1-0-59a0e3039111@kernkonzept.com>
- <20231128-i2c-qup-dvfs-v1-3-59a0e3039111@kernkonzept.com>
- <5dr5ps4vb57xj2mfelgsxgoyrr3gg4ggwqggqchff6pda3ffsn@thxpg4h6kgel>
+        bh=X6XoxNT4Gz5IaIpfEgxxUsOFTWmm0YJ+0QKOHpxqt1Y=;
+        b=TB5IDDV8fRBpVsZKMsAyJCQzR/YFWO1GpN7HzjQ+xE75m/SARWBRB60YMw2UvVildr
+         QdCk44lxbuuUCyRLQCLU1++yOZrQAVyhwvJX/p59+PPQuXn9hqOBHEFDpugsM7yBGeHl
+         3ja+J5T/a7To37oJUWh3p6NusI3KVOi1jDFkruLVGxI65SkIwgx+S2BxHYA2La990QZ8
+         xfsAurTPfJv8W7AQWW4ukZ6RN17k9uWbAKEec0nORVx4uENqyxnSY1gatIeHgQeH+b/s
+         9gTcmHAlyAoVULLGh1hl+EjVcuFuJFNit66OpJA7xkYMtkhpsScWyEExy+C1skkBuAxT
+         pZ6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739962025; x=1740566825;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=X6XoxNT4Gz5IaIpfEgxxUsOFTWmm0YJ+0QKOHpxqt1Y=;
+        b=PQwHke9m3VSbqJdSiW/u+QLhFso2hGwyIH3gbpVCIidkLr5JbmpLt/JgmFwR3m56S2
+         zRDopdUAy7uf5jHE0cFMh+Odv3RdZ48wbZLgcEWWRLRQizA0vwMhOTc5N5KCvT67lqV/
+         z5ySCpgZoRLzZuPga9xpXXjLtitXPl0mv/uJQg14cdOPAzcOTrT/JkO8ZcFLvu+FHMAb
+         aX6JjDYYIITH/H+fUN3etEjiXnfYir53Dq4Cwt60YFpY7kXgSjA06wGOsL6cT+2rFNKp
+         3TV6nGtE0+va0exXA5mMBigpoZI783Gpx4vLWkbYxtwRUu0X6KmQf1WL1o1CJKicb0uF
+         uf9g==
+X-Forwarded-Encrypted: i=1; AJvYcCVcj5Nj1LJ9kwblNofkZibq9P8nd7PTNrImhaqXYTk1MHcLQNVHXWHyANIXN6XvhOamkMFWsOc2VxCBvtYK@vger.kernel.org, AJvYcCWfr6/HgJD0aKYNESdpiMN3p+TXH0KgcWrXqekZT2IJjvKCxLrCwQFdnTn0RUow0oWkugIFC8V/ippM@vger.kernel.org, AJvYcCXN0+RGCtkQgKE/YD7M9mvhQMjHyiKDowytK1oM9hpMi0E6YL0z6EJNQyWF9Bc3T2v+eKzxB4xE/CqQ/w==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMpTX+vXbNL8HarJV0HHGRMOgKWI7K9YZUz82rG4+8OvHRhl2h
+	1RlV8OOshckXGOI9pZQFqD2t8Wtgd+puJgJujOF/u2An2rjggYubOt8BQjH23EDu3PgEMTVotpI
+	mZgtYiGg3LFMLTAn/Ev4SoHKPsEs=
+X-Gm-Gg: ASbGncubf2OPwyEM72fxWkOuHXhGZMtio8GvnhPNNWu434F7S6roPasnquz//D2OsSl
+	9ksy9D66+XprrV+NFl1x/i4H/GudDoD2Tw18Jpmj0ZNYiNn1uLojTi7QmLcWDMQcFBeilDMXwuA
+	==
+X-Google-Smtp-Source: AGHT+IHoUm3poSol3l90aiabl2mWXMhem6BEH4WepFddvstmAy4EEuzF8+aa76Jy5xSJbqXxIdN1v8dRh6ukkUyfGm4=
+X-Received: by 2002:a05:622a:10:b0:471:a523:6ac1 with SMTP id
+ d75a77b69052e-4720825ec85mr34917921cf.6.1739962024842; Wed, 19 Feb 2025
+ 02:47:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5dr5ps4vb57xj2mfelgsxgoyrr3gg4ggwqggqchff6pda3ffsn@thxpg4h6kgel>
+References: <20241028175935.51250-1-arikalo@gmail.com> <87ed0uvqf7.fsf@BLaptop.bootlin.com>
+ <CAGQJe6qBpQhBwhoLss8Y4MRurRs2p6_vym5XAiMmnHqd=nQC8w@mail.gmail.com> <877c6lv8zo.fsf@BLaptop.bootlin.com>
+In-Reply-To: <877c6lv8zo.fsf@BLaptop.bootlin.com>
+From: Aleksandar Rikalo <arikalo@gmail.com>
+Date: Wed, 19 Feb 2025 11:46:53 +0100
+X-Gm-Features: AWEUYZn_ROwRxNwqcIX9RIN3H3LNA4Ee1dLND4Pxi9rVmGnL_7MZJLG0olZGhmQ
+Message-ID: <CAGQJe6pNU3y4TqC-mC5YsApR0A5WT02_jcZYHbe1W_7s72ph5Q@mail.gmail.com>
+Subject: Re: [PATCH v8 00/13] MIPS: Support I6500 multi-cluster configuration
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Theo Lebrun <theo.lebrun@bootlin.com>, 
+	Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org, 
+	Djordje Todorovic <djordje.todorovic@htecgroup.com>, Chao-ying Fu <cfu@wavecomp.com>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Geert Uytterhoeven <geert@linux-m68k.org>, 
+	Greg Ungerer <gerg@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, 
+	Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
+	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
+	Marc Zyngier <maz@kernel.org>, Paul Burton <paulburton@kernel.org>, 
+	Peter Zijlstra <peterz@infradead.org>, Serge Semin <fancer.lancer@gmail.com>, 
+	Tiezhu Yang <yangtiezhu@loongson.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Andi,
+Hello everyone,
 
-On Wed, Feb 19, 2025 at 12:02:06AM +0100, Andi Shyti wrote:
-> 
-> sorry for the very late reply here. Just one question.
-> 
+The new version, v9, is here:
+https://lore.kernel.org/linux-mips/20250129123250.711910-1-arikalo@gmail.co=
+m/
 
-Thanks for bringing the patch back up after such a long time. I've been
-meaning to resend it, but never found the time to do so... :-)
+-- Aleksandar
 
-> 
-> > downstream/vendor driver [1]. Due to lack of documentation about the
-> > interconnect setup/behavior I cannot say exactly if this is right.
-> > Unfortunately, this is not implemented very consistently downstream...
-> 
-> Can we have someone from Qualcomm or Linaro taking a peak here?
-> 
-
-I suppose I count as someone from Linaro nowadays. However, since this
-driver is only used on really old platforms nowadays, I'm not sure where
-to look or who to ask...
-
-At the end, the whole bus scaling/interconnect is always somewhat
-"imprecise". There is no clear "correct" or "wrong", since the ideal
-bandwidth depends heavily on the actual use case that we are not aware
-of in the driver. There is also overhead when voting for bandwidth,
-since that can take a couple of milliseconds.
-
-The most important part is that we vote for any bandwidth at all, since
-otherwise the bus path could potentially be completely off and it would
-get stuck. My patch implements one of the approaches that was used in
-the downstream/vendor drivers and matches what we already have upstream
-in the corresponding spi-qup driver. I think it's "good enough". If
-someone ever wants to fine tune this based on actual measurements they
-can just submit an incremental patch. Right now this series is blocking
-adding the necessary properties in the device tree and that's not good.
-
-Surprisingly this series still applies cleanly on top of linux-next. The
-dt-bindings have review tags and there was plenty of time for someone
-else to chime in for the driver. So maybe you can just pick them up? :D
-
-> > [1]: https://git.codelinaro.org/clo/la/kernel/msm-3.10/-/commit/67174e2624ea64814231e7e1e4af83fd882302c6
-> 
-> ...
-> 
-> > @@ -1745,6 +1775,11 @@ static int qup_i2c_probe(struct platform_device *pdev)
-> >  			goto fail_dma;
-> >  		}
-> >  		qup->is_dma = true;
-> > +
-> > +		qup->icc_path = devm_of_icc_get(&pdev->dev, NULL);
-> > +		if (IS_ERR(qup->icc_path))
-> > +			return dev_err_probe(&pdev->dev, PTR_ERR(qup->icc_path),
-> > +					     "failed to get interconnect path\n");
-> 
-> Can we live without it if it fails?
-> 
-
-of_icc_get() returns NULL if the interconnect API is disabled, or if
-"interconnects" is not defined in the device tree, so this is already
-handled. If "interconnects" is enabled and defined, I think we shouldn't
-ignore errors. Therefore, this should work as intended.
-
-Let me know if I should resend the patch or if you can apply it
-directly.
-
-Thanks,
-Stephan
+> Hello Aleksandar,
+>
+> > On Wed, Jan 22, 2025 at 4:06=E2=80=AFPM Gregory CLEMENT
+> > <gregory.clement@bootlin.com> wrote:
+> >>
+> >> Hello Aleksandar,
+> >>
+> >> > Taken from Paul Burton MIPS repo with minor changes from Chao-ying F=
+u.
+> >> > Tested with 64r6el_defconfig on Boston board in 2 cluster/2 VPU and
+> >> > 1 cluster/4 VPU configurations.
+> >>
+> >> I tested your series on top of v6.13, with some patches already
+> >> merged. Only the patch "[PATCH v8 09/13] MIPS: CPS: Boot CPUs in
+> >> secondary clusters" encountered a merge issue. You can review the fixe=
+d
+> >> version I created as an attachment.
+> >>
+> >> With the v2 series I sent a few days ago, cluster support continued to
+> >> work on EyeQ5 and EyeQ6. However, for specific needs requiring support
+> >> of EyeQ6, I will send a new version that takes into account the feedba=
+ck
+> >> received.
+> >>
+> >> Gregory
+> >
+> > Hello Gregory,
+> >
+> > Thank you for your time.
+> >
+> > I agree with the change in the attachment. Will you send it to the
+> > list or should I do it as a v9 version of the series?
+>
+> I will let you send a v9 version. Feel free to merge my series [1] with
+> yours, as some of my patches depend on your series.
+>
+> [1]: https://lore.kernel.org/lkml/20250123-cluster-hci-broken-v3-0-8a7ec5=
+7cbf68@bootlin.com/
+>
+> Thanks,
+>
+> Gregory
+>
+> --
+> Gr=C3=A9gory CLEMENT, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
