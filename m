@@ -1,139 +1,127 @@
-Return-Path: <devicetree+bounces-148419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F241A3BFD7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:27:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 575EBA3BFF3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:30:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4075818847F0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 13:27:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67F2B1884455
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 13:30:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEDDA1E102A;
-	Wed, 19 Feb 2025 13:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7B51DFDA5;
+	Wed, 19 Feb 2025 13:30:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="L+wa9Ip+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 034B91C8618
-	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 13:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DD8C2AE74;
+	Wed, 19 Feb 2025 13:30:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739971625; cv=none; b=hzWN5WkZ6orCnafhHKrIRHeVRigMw0STCPuZnjcMoYr50ZvPp9IeebSwMBXqncKdwmcM7unEdhGrskvH92bvPTaFKEg1bcWGcZVElsOEopsMWW+Btqk3vFOWPjH+wFgDxO+CuCvg8ncKfcI9cATtBLPkyg7zDJaWfDMjtdBY1CU=
+	t=1739971830; cv=none; b=s/iwDl2FRW5y2BxKXrrWXu5LX/+slJLyXkiuq/v1uuRtkCRV2iJdelg+zr+av/gR/OfXoBqtQPUQkimakBJLAH9gM4kX4Hnd9HzLbqaj9cQhbBrpN7ayk3GcuduYfnnDGTLKL0rokAKcaUwsTYLxta2O3FPfBqAfIWUqgmkxb8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739971625; c=relaxed/simple;
-	bh=fmJ5QXeJPJUSguLtVVuCwb23B1PIzp7T7lxo3a7/k7E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nDTfPkEpjFPLia3UsA9Gkin3gofvsDJ1V8zv6tDzptgFzRwHyr+iwJVlrbPzBC5yGt2YYNnxhBoUKzc0Bv2DVaicHFQydV5HguCm+a73LkGh34OGrNmDU13xIPSF4+Z9+lR6DatWp0WaWBzF5VtszhuwbV3D+s4Lx6CT62ig2Y0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tkk6L-0003h1-Mj; Wed, 19 Feb 2025 14:26:57 +0100
-Message-ID: <37d2a7bb-1c8c-4c33-a277-dc1a7448433b@pengutronix.de>
-Date: Wed, 19 Feb 2025 14:26:52 +0100
+	s=arc-20240116; t=1739971830; c=relaxed/simple;
+	bh=O6x7SNy89g82HPWJGUfqA0X9THHPpDCJB2dBOG1XwF0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ydqw05YG5sW0pdFf3UHOCgC0B+dpiCh381bpc2bURHCPu8MorLbrtc6O5GYtPmqbAhion4JzVHEBquOY7XW7TeTY8uP5FT3926fBwZrcrFsZvlN6YnlX9P3/yx3cwFzfOTuOmsD/fzklqiA9QmpbrNw7fx32jil3WQuqcFQ56eM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=L+wa9Ip+; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1739971826;
+	bh=O6x7SNy89g82HPWJGUfqA0X9THHPpDCJB2dBOG1XwF0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L+wa9Ip+3fVnUNZolzRaAGSL2sX+SgtItJw7JvBgQDuSf8T+1JlHglR7p0r/ZkpmC
+	 tJ6AfyICKKTVWd1I+tcnoDj1r7vGdpBq9C1Ho38SxrC21H4WYTHQJrOpoT0MDkJhqB
+	 tGOukiQF4+w0Eop1Qdg4pbhIN8dlOXpyEGrdXtW6gXh6h8mQzH7uZt70ZC60eJV7aj
+	 9q0wuWAPXe962QypjHmLp0Rfy06a5ZJRJtQu0hZBEgCt5WUDmazZhedy44TGutYHsZ
+	 PjLg9xNBmjbKvKDaSTU2ZFCFqQJx/7vO5VQZ8rhi+isQMRdgIcERR4c3R1lUtlb4s5
+	 yk1PE4ZQ29y5A==
+Received: from notapiano (unknown [IPv6:2804:14c:1a9:53ee::1000])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3DEBE17E1566;
+	Wed, 19 Feb 2025 14:30:22 +0100 (CET)
+Date: Wed, 19 Feb 2025 10:30:19 -0300
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com,
+	linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	parkeryang <Parker.Yang@mediatek.com>
+Subject: Re: [PATCH 6/6] arm64: dts: mediatek: mt8390-genio-common: Add
+ routes for DMIC
+Message-ID: <5e7d7461-1af4-4e16-b808-072fe7c34e36@notapiano>
+References: <20250218-genio700-dmic-v1-0-6bc653da60f7@collabora.com>
+ <20250218-genio700-dmic-v1-6-6bc653da60f7@collabora.com>
+ <CAGXv+5H1pfJMQPBTF_K72D3-JFsZDvZ277erZ449sc6FTkNFSA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 05/10] dt-bindings: display/lvds-codec: add
- ti,sn65lvds822
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- Frank Li <Frank.li@nxp.com>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Oleksij Rempel <o.rempel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Oleksij Rempel
- <o.rempel@pengutronix.de>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>
-References: <20250106-skov-dt-updates-v2-0-4504d3f00ecb@pengutronix.de>
- <20250106-skov-dt-updates-v2-5-4504d3f00ecb@pengutronix.de>
-Content-Language: en-US
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20250106-skov-dt-updates-v2-5-4504d3f00ecb@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAGXv+5H1pfJMQPBTF_K72D3-JFsZDvZ277erZ449sc6FTkNFSA@mail.gmail.com>
 
-Dear DRM bridge maintainers,
-
-On 06.01.25 17:06, Ahmad Fatoum wrote:
-> Add compatible strings for TI SN65LVDS822, a FlatLink LVDS receiver.
+On Wed, Feb 19, 2025 at 12:29:15PM +0800, Chen-Yu Tsai wrote:
+> On Wed, Feb 19, 2025 at 5:27 AM Nícolas F. R. A. Prado
+> <nfraprado@collabora.com> wrote:
+> >
+> > Add necessary routes for the onboard dual DMIC present on the Genio
+> > 700/510 EVK. The dmic is supplied by micbias0 and micbias2, and inputs
+> > into the MT8188 DMIC DAI.
+> >
+> > Co-developed-by: parkeryang <Parker.Yang@mediatek.com>
+> > Signed-off-by: parkeryang <Parker.Yang@mediatek.com>
+> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > ---
+> >  arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi | 6 +++++-
+> >  1 file changed, 5 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
+> > index a37cf102a6e928440cc88e7e8fe0225fc28ec962..efdeca88b8c4e58f0c17825156276babf19af145 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
+> > @@ -959,7 +959,11 @@ &sound {
+> >         pinctrl-0 = <&audio_default_pins>;
+> >         audio-routing =
+> >                 "Headphone", "Headphone L",
+> > -               "Headphone", "Headphone R";
+> > +               "Headphone", "Headphone R",
+> > +               "DMIC_INPUT", "AP DMIC",
+> > +               "AP DMIC", "AUDGLB",
+> > +               "AP DMIC", "MIC_BIAS_0",
+> > +               "AP DMIC", "MIC_BIAS_2";
+> >         mediatek,adsp = <&adsp>;
+> >         status = "okay";
 > 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> Shouldn't there also be one or two new dmic-codecs, and a dai-link here?
 
-Shawn has asked that the DT or display maintainers take this one patch
-through their tree. He has already applied the remainder of the series.
+The DMIC codec is only needed to get a wakeup delay and avoid an initial "pop"
+noise. Same as for the analog mic, for which I've recently sent a patch [1].
 
-Can you take a look? DT maintainers already acked it.
+Depending on the order that things get picked up, I can either add the patch for
+it to this series, or the series in [1]. (Well, looks like I'll be sending a v2
+for this series anyway, so I can add that patch here).
 
 Thanks,
-Ahmad
+Nícolas
 
-> ---
-> v1 -> v2:
->   - Add Rob's Acked-by
-> 
-> To: Andrzej Hajda <andrzej.hajda@intel.com> (maintainer:DRM DRIVERS FOR BRIDGE CHIPS)
-> To: Neil Armstrong <neil.armstrong@linaro.org> (maintainer:DRM DRIVERS FOR BRIDGE CHIPS)
-> To: Robert Foss <rfoss@kernel.org> (maintainer:DRM DRIVERS FOR BRIDGE CHIPS)
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com> (reviewer:DRM DRIVERS FOR BRIDGE CHIPS,in file)
-> Cc: Jonas Karlman <jonas@kwiboo.se> (reviewer:DRM DRIVERS FOR BRIDGE CHIPS)
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com> (reviewer:DRM DRIVERS FOR BRIDGE CHIPS)
-> Cc: David Airlie <airlied@gmail.com> (maintainer:DRM DRIVERS)
-> Cc: Simona Vetter <simona@ffwll.ch> (maintainer:DRM DRIVERS)
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com> (maintainer:DRM DRIVERS AND MISC GPU PATCHES)
-> Cc: Maxime Ripard <mripard@kernel.org> (maintainer:DRM DRIVERS AND MISC GPU PATCHES)
-> Cc: Thomas Zimmermann <tzimmermann@suse.de> (maintainer:DRM DRIVERS AND MISC GPU PATCHES)
-> Cc: dri-devel@lists.freedesktop.org (open list:DRM DRIVERS)
-> ---
->  Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> index 6ceeed76e88ece6d86ecd6588ead7a65362dfe62..0487bbffd7f7c4bcce3f71df19548d601715fb98 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> @@ -41,6 +41,7 @@ properties:
->            - enum:
->                - ti,ds90cf364a # For the DS90CF364A FPD-Link LVDS Receiver
->                - ti,ds90cf384a # For the DS90CF384A FPD-Link LVDS Receiver
-> +              - ti,sn65lvds822  # For the SN65LVDS822 FlatLink LVDS Receiver
->                - ti,sn65lvds94 # For the SN65DS94 LVDS serdes
->            - const: lvds-decoder # Generic LVDS decoders compatible fallback
->        - enum:
-> 
-
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+[1] https://lore.kernel.org/all/20250214-genio700-amic-wakeup-delay-200ms-v1-1-0094837c62b7@collabora.com
 
