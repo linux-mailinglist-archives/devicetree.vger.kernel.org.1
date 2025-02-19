@@ -1,158 +1,148 @@
-Return-Path: <devicetree+bounces-148613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 677D4A3CC80
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 23:38:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E815A3CC91
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 23:43:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F28053AEA7C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 22:38:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BA323AE454
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 22:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B35F525A2D7;
-	Wed, 19 Feb 2025 22:38:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3512C25A34D;
+	Wed, 19 Feb 2025 22:43:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="cbs6+BBZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PKdANEYz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBBD125A2CD;
-	Wed, 19 Feb 2025 22:38:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0547625A34B;
+	Wed, 19 Feb 2025 22:43:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740004692; cv=none; b=NIPaI1DMakYO6ito2rkSsmStOXZT6G/M3jzJhrZbr5mmMrcUd//d79cp3WI2vFJvm+IW2PV6wg5EyXHH4aBxFsmTWDTHPIwiDb4j+7tCrlVn7X+SXGqhNtFtdEIQdBr5NcI32xUT13SHOI05Jc8vtc7n7nA6EMKfhNSDsr8it48=
+	t=1740005005; cv=none; b=c1qEuVuDmsxLlTp7urVmQoTmrNykL71dGtod9vMTFNQqgY8Cd8dbIxngMM2rsrjRRtKuOMZyQ8RT7LxDJxWrPOo+RLZGRPaQAnJTqglo9fnJqu27ka+4BSyTgpZNC9ky+kE0sChAiumps7aaU+L83zRsRucblRk6potm+MwxWZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740004692; c=relaxed/simple;
-	bh=3n0Geo1g1jnDSHEKNDbBxRrW0MqCJbEfVtvyC8SrjB4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=C463KlwNHprcxyW18WxFJ9MyNR/LfOc6iH7jGOLv2m21Afy281cjtuvZE0XTtVrmwOP4hythXioqICJ3XV3Ra5T3zrmYkaeAaJlfFIPEeYeKv2dLW6T+9PlxMbbJ1ynZodP1isZSgngyeUL8106MvqdnAg6OWa76ZgsKnwH/x5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=cbs6+BBZ; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 47E9D10382D3C;
-	Wed, 19 Feb 2025 23:38:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1740004687;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=3CFR1KvYqGJu5XHi3W+uo1kT/GLaG+YUtUrdXZ244hc=;
-	b=cbs6+BBZgqDbJeBfk1zMSTh4bT5RYpQTKivyzc9qbOKAFLxWGjL3TWBCA9D7S4EudNO6QO
-	1qK8+7uCSQIWKZsVeyTsNk1h4GWp0mi7RaTlWEuz/9zFjBT3AbKPsucqmCVq8iOYpbdWeK
-	QhwSpUpOBMHGiLsLsU7mewNM8gqvkIe/ANVNoqDfSM+HyT3+WeA1K/OythlTpGSph/XPQU
-	0MdJa0bsI6eXgWUAGKhfQHWSW6DZRJE2pLBedfhstcUc3kej22U0ClvICtL7w98kjvd2dK
-	1uPh963Uoa5yWHVz9/02d+K3LySFYKySUs4L455EUDrna3RQImLLRhS/kVZaUA==
-Date: Wed, 19 Feb 2025 23:38:02 +0100
-From: Lukasz Majewski <lukma@denx.de>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Shawn
- Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-clk@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm: clk: Add ETH switch clock description for vf610
- SoC
-Message-ID: <20250219233802.20ec53e5@wsk>
-In-Reply-To: <3cebe152-6326-454c-9da6-5cf5a64f71c9@lunn.ch>
-References: <20250219114936.3546530-1-lukma@denx.de>
-	<3cebe152-6326-454c-9da6-5cf5a64f71c9@lunn.ch>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1740005005; c=relaxed/simple;
+	bh=oB01MPEv8LjdiYQ+OxWvCnlcAnbSN33JSl8xlJVCC9k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FjSiucQh0cQnEMGWgz53Xog6O4+zKikwgjfFOgMQT/SzVYuuElMZvwBPJFER5u+UxfnJq669CGnn4DfVe3bfcI0lZ/rUv49YCf16ymHjIeaTKAJsv2lylHfWZzTzWHiSGoLPGlVF9tvBTp++KUqBYpHHMk5xQgyHT9WRjmk+c68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PKdANEYz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64B31C4CED1;
+	Wed, 19 Feb 2025 22:43:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740005004;
+	bh=oB01MPEv8LjdiYQ+OxWvCnlcAnbSN33JSl8xlJVCC9k=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=PKdANEYzNjjbIr38NUk7z5p+Z9F+jXUNOmA/lCJpQk0PIvqLqO1KpO0bseNfZeNob
+	 rLtJk3fBlNATiACZPTodvbpgflqT7l3UK4V7RSUPAq2k7JSBXpDoUiU8OcNRQBWAup
+	 97RceaLpTYnX79uBjTd2v9iXYkUuKF/fOxMSmENUd9V0KSXP3vCnuXbx5c6y8PCbxe
+	 HrXq0fUDtdNUmRi/saRgQ6+7SHEZK8KUz08YiBb4ITIw/iejPUG24gETgwfO0QILbq
+	 rww1v9l2Y4wNnor4HcMEcCjb67uxHLwqtXO6Jmr3eFMSO9Dv7k7ATme476m1vIgAD8
+	 z6O9Lj1jIyaFw==
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e04cb346eeso404257a12.2;
+        Wed, 19 Feb 2025 14:43:24 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUw8wsyr+kDIoHS+Obdy+m4O2nN6FDJ66Qg8cZiAON6AHjvqJgsKwIaAboO9a4hePksKco4SUZ2sO1XYg==@vger.kernel.org, AJvYcCVXxz3TEa/wqCl+wEs0/pdc4qyetF0jwseKV2fNY7eGU6w9BPAs/iH2ZNUuOWqxC6NRXlcRVUhTnEPK@vger.kernel.org, AJvYcCWCcBAqe5QyKa48/9qla0OoOe4lD+4eqN40lAXj5YXh0daERut4eBuK8zExTzbV9F3QIBOfdLlGXCMrjDY/@vger.kernel.org, AJvYcCWI4QYUha0s4Zd6OzgWG3anWgb8mtaLAet9uA45yZrWVzFJFiRMGNkmNGY0xFygWY09pyyHlbDhutUx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOkO83LYDOULBM875nE8gp7gFTKehyu1/PxpaOhHd0gynxoWn1
+	fc8fm0jdQeAxM5ym5Y/PUhZ+OSB0OO1Cy/yr/+sXO2omfak3wN8N7Cb/IwP2uNqBZmoKsrrmup2
+	1Iir2XqW1/J9JD119EeGDdT/g3A==
+X-Google-Smtp-Source: AGHT+IFKS59MJjzGgNFJyErjdo066Kf2RALm9L7HJRWP4YBWsnRrUMaiDEu5+latsq8sxVCx8lc/g5fr4x7Fq4A6sTU=
+X-Received: by 2002:a05:6402:381b:b0:5e0:8920:c4c5 with SMTP id
+ 4fb4d7f45d1cf-5e0a4afb1ddmr203602a12.11.1740005002935; Wed, 19 Feb 2025
+ 14:43:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/yVJIrYnQ4O8OFO2hSM.94j5";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
-
---Sig_/yVJIrYnQ4O8OFO2hSM.94j5
-Content-Type: text/plain; charset=US-ASCII
+References: <cover.1739486121.git.robin.murphy@arm.com> <c2f0ae276fd5a18e1653bae8bb0c51670e35b283.1739486121.git.robin.murphy@arm.com>
+In-Reply-To: <c2f0ae276fd5a18e1653bae8bb0c51670e35b283.1739486121.git.robin.murphy@arm.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 19 Feb 2025 16:43:10 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+RA3ojYgqkELOrCd68JHRGPsuObzbRi3RA6eV7NYh0Cw@mail.gmail.com>
+X-Gm-Features: AWEUYZnOMA-FyQa1U3tn01tUjPcRrp-PbPJQL6m4k_dHn-Ztt3nE99iHpRmo__k
+Message-ID: <CAL_Jsq+RA3ojYgqkELOrCd68JHRGPsuObzbRi3RA6eV7NYh0Cw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] iommu: Get DT/ACPI parsing into the proper probe path
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo <guohanjun@huawei.com>, 
+	Sudeep Holla <sudeep.holla@arm.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Danilo Krummrich <dakr@kernel.org>, Stuart Yoder <stuyoder@gmail.com>, 
+	Laurentiu Tudor <laurentiu.tudor@nxp.com>, Nipun Gupta <nipun.gupta@amd.com>, 
+	Nikhil Agarwal <nikhil.agarwal@amd.com>, Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	iommu@lists.linux.dev, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
+	Charan Teja Kalla <quic_charante@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Andrew,
+On Thu, Feb 13, 2025 at 5:49=E2=80=AFPM Robin Murphy <robin.murphy@arm.com>=
+ wrote:
+>
+> In hindsight, there were some crucial subtleties overlooked when moving
+> {of,acpi}_dma_configure() to driver probe time to allow waiting for
+> IOMMU drivers with -EPROBE_DEFER, and these have become an
+> ever-increasing source of problems. The IOMMU API has some fundamental
+> assumptions that iommu_probe_device() is called for every device added
+> to the system, in the order in which they are added. Calling it in a
+> random order or not at all dependent on driver binding leads to
+> malformed groups, a potential lack of isolation for devices with no
+> driver, and all manner of unexpected concurrency and race conditions.
+> We've attempted to mitigate the latter with point-fix bodges like
+> iommu_probe_device_lock, but it's a losing battle and the time has come
+> to bite the bullet and address the true source of the problem instead.
+>
+> The crux of the matter is that the firmware parsing actually serves two
+> distinct purposes; one is identifying the IOMMU instance associated with
+> a device so we can check its availability, the second is actually
+> telling that instance about the relevant firmware-provided data for the
+> device. However the latter also depends on the former, and at the time
+> there was no good place to defer and retry that separately from the
+> availability check we also wanted for client driver probe.
+>
+> Nowadays, though, we have a proper notion of multiple IOMMU instances in
+> the core API itself, and each one gets a chance to probe its own devices
+> upon registration, so we can finally make that work as intended for
+> DT/IORT/VIOT platforms too. All we need is for iommu_probe_device() to
+> be able to run the iommu_fwspec machinery currently buried deep in the
+> wrong end of {of,acpi}_dma_configure(). Luckily it turns out to be
+> surprisingly straightforward to bootstrap this transformation by pretty
+> much just calling the same path twice. At client driver probe time,
+> dev->driver is obviously set; conversely at device_add(), or a
+> subsequent bus_iommu_probe(), any device waiting for an IOMMU really
+> should *not* have a driver already, so we can use that as a condition to
+> disambiguate the two cases, and avoid recursing back into the IOMMU core
+> at the wrong times.
+>
+> Obviously this isn't the nicest thing, but for now it gives us a
+> functional baseline to then unpick the layers in between without many
+> more awkward cross-subsystem patches. There are some minor side-effects
+> like dma_range_map potentially being created earlier, and some debug
+> prints being repeated, but these aren't significantly detrimental. Let's
+> make things work first, then deal with making them nice.
+>
+> With the basic flow finally in the right order again, the next step is
+> probably turning the bus->dma_configure paths inside-out, since all we
+> really need from bus code is its notion of which device and input ID(s)
+> to parse the common firmware properties with...
+>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+>  drivers/acpi/arm64/dma.c        |  5 ++++
+>  drivers/acpi/scan.c             | 10 +++-----
+>  drivers/amba/bus.c              |  2 +-
+>  drivers/base/platform.c         |  2 +-
+>  drivers/bus/fsl-mc/fsl-mc-bus.c |  2 +-
+>  drivers/cdx/cdx.c               |  2 +-
+>  drivers/iommu/iommu.c           | 43 ++++++++++++++++++++++++---------
+>  drivers/iommu/of_iommu.c        | 10 +++++++-
+>  drivers/of/device.c             |  7 +++++-
 
-> On Wed, Feb 19, 2025 at 12:49:36PM +0100, Lukasz Majewski wrote:
-> > The NXP's vf610 soc is equipped with L2 switch IP block from More
-> > Than IP (MTIP) vendor.
-> >=20
-> > It requires special clock (VF610_CLK_ESW) to be operational. =20
->=20
-> So you have a driver for this switch? It has been talked about in the
-> past, but nobody made any progress with it. Ah, it was you in 2020.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Yes, I'm going to try another time to upstream it.... :-)
-
-> It
-> will be interesting to see what you came up with in the end, pure
-> switchdev or a DSA driver.
-
-I think it would be:
-
-1. Standalone driver, which would configure the L2 switch from the very
-beginning to work (this is different from FEC on imx28/vf610 where
-switch is bypassed)
-
-2. It will use the in-switch registers to have two network interfaces
-separated. As a result - it may be slower than the fec_main.c in this
-use case.
-
-3. When somebody call "bridge ..." on it - then the in-switch
-separation would be disabled. This is the "normal" state of operation
-for L2 switch, which would be a HW accelerator for bridging.
-
-4. The switchdev would be used to manage it
-
-5. This would be just a very simple driver - just bridging and startup
-of the L2 switch.
-
-After we would have a consensus (i.e. it would be pulled to mainline) -
-I would proceed further.
-
-I will try to not touch fec_main.c driver - just write standalone, new
-for MoreThanIP L2 switch driver.
-
-If somebody would like to use FEC, then he will insert the proper
-module. If switch, another one can be inserted, depending o the target
-use case.
-
->=20
-> 	Andrew
-
-
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/yVJIrYnQ4O8OFO2hSM.94j5
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAme2XUoACgkQAR8vZIA0
-zr0H2wf+LDKQ2icJROSHbE6zYeCAmI0xkhWHqIw6W8DD1l7o1QJMYLJEsgSp9yP/
-UUWsmIh15IoamLIx3zCnhaiXns42Df+DUH7qsiAF8lLW0C11h9WAuVdJWSLNRLW7
-GQAuXwPM58hOymK71Cu9Eo1eacZ7vkd3SgZLpUa+7xIPd6Pei10g2VCpFJiv3ICw
-KM+lVEpZ93Orq35IGPAwAzTlhi4gGJPIsFez2+NtiW9vJ+KiodIfSb9mWw+bLqUn
-u9OY2vKtfVnuX8fYkd+ERBljmSeyR0fzU2ZB1+CbElSwI61y09f+CFBoSNwK4DhA
-Zoudj/6ZH6oCoKT6MoAO1nxGaCV49g==
-=xb9S
------END PGP SIGNATURE-----
-
---Sig_/yVJIrYnQ4O8OFO2hSM.94j5--
+>  drivers/pci/pci-driver.c        |  2 +-
+>  10 files changed, 60 insertions(+), 25 deletions(-)
 
