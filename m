@@ -1,141 +1,168 @@
-Return-Path: <devicetree+bounces-148346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D12A3BBAC
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 11:30:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10A94A3BBB4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 11:33:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46DDF3B3615
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:30:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCCF61713E4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:33:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F1F1DE4CA;
-	Wed, 19 Feb 2025 10:30:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDB321D7E30;
+	Wed, 19 Feb 2025 10:33:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nDfTXh7X"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="W0PukoyZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB5A1DE2D7;
-	Wed, 19 Feb 2025 10:30:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A85C2F41;
+	Wed, 19 Feb 2025 10:33:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739961013; cv=none; b=ODwRNXJOPDuTwAfFtn+bCPSsrNaukmu8EYXWQ4z12lfvPwsAlwxCJKLdaw/jIJ0hdOkEPnAdu+9rYmXmwRJ8J28rC7/Jth6wC2Cqdb6J3pzBbuO3iwDyFMMbO357plQuESwJdgHzKTckPvFd/G6v+GI0c5Tl31ZjmwwRXUE8piQ=
+	t=1739961202; cv=none; b=jEW5lJywCHFQwHr/lrWK2IsuCQHoF5zgF0fyFEdBwjHLH8UeUBL1qOAJMKoQrDgesjsGrNkBTBKGwKC7uNl5/gp+qWe+Jcxw6du3rfLLcE969o06keeNiFpowIvCLz4y1weVJLoudnfNJ0ZnF/R79no0+drN8L0URKuiFexxiFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739961013; c=relaxed/simple;
-	bh=ZlB6Fl20r1Gyf71CsikcN1lkjeaWcVEK4zgaiyqFfKc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=anDhFugXce4CUUEFIMjwUFRzfGX1mAxL8jpP5T6XDC/ns1+r8HSc+gAymtdn0Sv9aU/cCHW3CBFl4rS8704c+ACAkwLkj+jF1cNqx6lhNXXfzuTPetWim0Uuo3i1IbAHRMVbHwL8UJ4RY0B4LtlBLBAiAZ+OrhxQt1/OpqbHLS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nDfTXh7X; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-aaedd529ba1so774562066b.1;
-        Wed, 19 Feb 2025 02:30:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739961010; x=1740565810; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dqsCWWkSmH25LiinfK2WpeOAAuO01FXzi3yUfsrVLMM=;
-        b=nDfTXh7X21aJVfhGqTQhZ0Nrs0nv7FXYA9mHE7CTVNX3VgG8S7aKQqb3HtuABFYiQk
-         NiPX9bTtYyets8GcT/xYBVdNf1QqiQnkoEebEcbrXaL7yFHngA1KNhanjRbUu7ORbaBb
-         BwHxPCzGUiNecFfy4spJnRVeBWPrk1pHlV8gHThxuIBoe8fNaLgllb7GoRzdiFxILBSX
-         astxeeMNSz9G+dT+vJ9CvvYV3pzkjdQR19klxB027p72ELQ+OXQlr63tKvXw829RIUEa
-         /EcpbYpNeAEIO/pUL0RtVtOHZ41tPgyz9r8PNbR6hIe+kuO51/oBvv79G53RUM/RtqBV
-         9iTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739961010; x=1740565810;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dqsCWWkSmH25LiinfK2WpeOAAuO01FXzi3yUfsrVLMM=;
-        b=HhOYY2VNjstiswNUgWDP+vpGeYdLpRXMYYSg+magVrzl0kzARAeSlyTUP9e8wDwDOD
-         4yvLPNq5JeC5Hq5qMoL/oWDbtCnqv1adUUaipAxom0d6zWysa5kDU6uFM+2xsc0Ibpca
-         ZUSX5a5DPnLkKIA+qJjT0oDEED1wy/hx50nCs9AYsLUw5NQan4Go9jLz1SbTiNiodxOi
-         BaUsMoaObFHt6pK/BYGU8VqmXK0D/qyFz+1/bnrPpjZDd9Dz1ejmlhDjq0leYOqivRRo
-         mC9sVVK+eEbXAznhqoGTfIBKAo3J4TJz7ImFj63Id8s0p3w3st6qIljNXaEo57A6iGzy
-         buCg==
-X-Forwarded-Encrypted: i=1; AJvYcCW5/TAefFP+DrA1rsRiQJrcphHZqWGK7aMXR+7IUuCT8MG9j6bZefFMAn7evBN6gbi8iBPni9SciUuM@vger.kernel.org, AJvYcCXKR0Q1kZwA6xw10pPcone+U7tE0LQAFIHT5PJeDLkgOtC4gzZf91k9W56wt/LuAYOjye7BoYqNwH+jTbtS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCsNSDw6YO+2hLQZ/cYdtM8Uo2HQqiUp717nEgAAdsjfEcFrlD
-	woi0Qopa7f1AETZSQ3HnAv5SHt/mQxXfT0l0ic6dEm7Z54T2JMzG
-X-Gm-Gg: ASbGncvZcqQosl4dFDjx1kYw98DG4cdo/8WZPi9RkDwDRrrQ1Ix/DQah6I0l+NmJzV9
-	s6LIYQ374pvLn2+HmS+9rZZA5vH9aSXaB7wH2XDPyDwqSE70+C/T2iUkepRm9UWUdjEFXZyMGau
-	iJh7CxduiVfDtpPg7DLhuYa44LDG0YofkVma+KrlQsm8muj+jrRP0DLkQDM2KPC5Biqj7A/Y4uw
-	HUP4kl9EjQSYBOFLVd1VRlrl/9oPqAtn3/JwP1ytTWMvDTlchtW7AMs456uhu+oawd5TVzfKN1K
-	ZakQXpb9yVYWjT48CFqBk44GTbYiqvUyafzpcpa4XKH8D6pSDM+XQnMk
-X-Google-Smtp-Source: AGHT+IGMRnJbqZGcoPSmmMe5Vij/8eD1w+eN1gparuJBfqUiWqQu7i9iee9bfZFQ1AHQ3VeOe6iFJA==
-X-Received: by 2002:a05:6402:3710:b0:5e0:7cc4:ec57 with SMTP id 4fb4d7f45d1cf-5e07cc4ee69mr14087611a12.31.1739961009458;
-        Wed, 19 Feb 2025 02:30:09 -0800 (PST)
-Received: from [172.16.20.186] (62-73-104-42.ip.btc-net.bg. [62.73.104.42])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abba358ec3asm483479766b.35.2025.02.19.02.30.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Feb 2025 02:30:09 -0800 (PST)
-Message-ID: <c39e6058-0649-452f-9a21-d9d5a28ccc06@gmail.com>
-Date: Wed, 19 Feb 2025 12:29:59 +0200
+	s=arc-20240116; t=1739961202; c=relaxed/simple;
+	bh=e/jBCLCEMXLt2zyHShTUYjUTd+F+cErCr2KyPu1I/Io=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gt5b6GuzBVF0CsXAl79NwHXQMA5mjdy1DqN4oHom7HAyaOwbLkkXHH4PQ/LUxeQGfwKJaAZIIfG3X12FuT7bJ70NdVrzCJCRyxIG1ck0ZZk8JV3XblpPdzqfmn1diylF7szDofM43pzNJL8LFbS4D7ar4iZWMJX9TcMz/c6fiV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=W0PukoyZ; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (31-10-206-125.static.upc.ch [31.10.206.125])
+	by mail11.truemail.it (Postfix) with ESMTPA id 1ECAC1FA98;
+	Wed, 19 Feb 2025 11:33:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1739961195;
+	bh=BPELQkHLLDnKGOkHJi+6/rCSbKkXPkV56KASAKI3mjs=; h=From:To:Subject;
+	b=W0PukoyZU+5Ia2v5WSdcRAjlfWkwMUAnZJc1DqtOeS5jDMTEi/M9oIoNLRgyxRbd0
+	 ZwqkxEdJtSNxto3GS8vx9DCTQIiIUBwX5gNj3ufdnUj1gzD8tigMyAwtY71o0tpnkt
+	 VFQ1err5mU5IRMXCuQZELvkIP2UdzlZhD62Les9Em7rMYdGBb93nBCtUhc7HkOu+UU
+	 1844H7YmRQJ7q48rxwy4UQSau9KCybTzvQ4pUaZE1nGWPJTUyDJY/T30Xiu7sk5IZm
+	 Q4lcCI59ySw/H9pT0CfN7ccZ2bEPjPNMYOibrhqwCrEl01RLyfw6OyOvkXQ5B3/ZjZ
+	 UgyTxUn+F5KRg==
+Date: Wed, 19 Feb 2025 11:33:07 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Farouk Bouabid <farouk.bouabid@cherry.de>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] hwmon: (amc6821) Add PWM polarity configuration
+ with OF
+Message-ID: <20250219103307.GA22470@francesco-nb>
+References: <20250218165633.106867-1-francesco@dolcini.it>
+ <20250218165633.106867-3-francesco@dolcini.it>
+ <eb5c844a-e726-44c0-a0c1-7796d1a28ec3@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] dt-bindings: arm: samsung: document g0s board
- binding
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250215130500.170738-1-ivo.ivanov.ivanov1@gmail.com>
- <20250215130500.170738-2-ivo.ivanov.ivanov1@gmail.com>
- <adbbd60e-c72c-46f3-87e5-198ab1d49d9f@kernel.org>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <adbbd60e-c72c-46f3-87e5-198ab1d49d9f@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <eb5c844a-e726-44c0-a0c1-7796d1a28ec3@cherry.de>
 
-On 2/19/25 10:35, Krzysztof Kozlowski wrote:
-> On 15/02/2025 14:04, Ivaylo Ivanov wrote:
->> Add binding for the Samsung Galaxy S22+ (SM-S906B) board, which is
->> based on the Samsung Exynos2200 SoC.
->>
->> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->> ---
->>  .../devicetree/bindings/arm/samsung/samsung-boards.yaml     | 6 ++++++
->>  1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
->> index fab29f95d..bb3f6a0e1 100644
->> --- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
->> +++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
->> @@ -45,6 +45,12 @@ properties:
->>            - const: samsung,aries
->>            - const: samsung,s5pv210
->>  
->> +      - description: Exynos2200 based boards
->> +        items:
->> +          - enum:
->> +              - samsung,g0s                     # Samsung Galaxy S22+ (SM-S906B)
->
-> What does g0s stand for?
+Hello Quentin,
 
-Samsung started codenaming their S series like that since ~S20. I'd actually
-much rather use something like samsung,s22p but since 990 devices upstream
-already use the weird codenames, I've decided to do the same.
+On Wed, Feb 19, 2025 at 11:08:43AM +0100, Quentin Schulz wrote:
+> On 2/18/25 5:56 PM, Francesco Dolcini wrote:
+> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > 
+> > Add support to configure the PWM-Out pin polarity based on a device
+> > tree property.
+> > 
+> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > ---
+> >   drivers/hwmon/amc6821.c | 7 +++++--
+> >   1 file changed, 5 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/hwmon/amc6821.c b/drivers/hwmon/amc6821.c
+> > index 1e3c6acd8974..1ea2d97eebca 100644
+> > --- a/drivers/hwmon/amc6821.c
+> > +++ b/drivers/hwmon/amc6821.c
+> > @@ -845,7 +845,7 @@ static int amc6821_detect(struct i2c_client *client, struct i2c_board_info *info
+> >   	return 0;
+> >   }
+> > -static int amc6821_init_client(struct amc6821_data *data)
+> > +static int amc6821_init_client(struct i2c_client *client, struct amc6821_data *data)
+> >   {
+> >   	struct regmap *regmap = data->regmap;
+> >   	int err;
+> > @@ -864,6 +864,9 @@ static int amc6821_init_client(struct amc6821_data *data)
+> >   		if (err)
+> >   			return err;
+> > +		if (of_property_read_bool(client->dev.of_node, "ti,pwm-inverted"))
+> 
+> I know that the AMC6821 is doing a lot of smart things, but this really
+> tickled me. PWM controllers actually do support that already via
+> PWM_POLARITY_INVERTED flag for example. See
+> Documentation/devicetree/bindings/hwmon/adt7475.yaml which seems to be
+> another HWMON driver which acts as a PWM controller. I'm not sure this is
+> relevant, applicable or desired but I wanted to highlight this.
 
-I'll mention G0S it in the commit message next revision.
+From the DT binding point of view, it seems to implement the same I am
+proposing here with adi,pwm-active-state property.
 
-Best regards,
-Ivaylo
+Do you have anything more specific in mind?
 
->  Sound a bit cryptic and you did not use it in
-> commit msg to explain the origin.
->
->
-> Best regards,
-> Krzysztof
+> 
+> > +			pwminv = 1;
+> > +
+> 
+> This is silently overriding the module parameter.
+> 
+> I don't think this is a good idea, at the very least not silently.
+
+I was thinking at the same, and in the end I do have proposed this
+solution in any case.
+
+Let's look at the 2 use cases in which the DT property and the module
+parameter are different.
+
+## 1
+
+module parameter pwminv=0
+ti,pwm-inverted DT property present
+
+=> we enable the PWM inversion
+
+I think this is fair, if someone has a DT based system we need to assume
+that the DT is correct. This is a HW configuration, not a module
+parameter.
+
+## 2
+
+module parameter pwminv=1
+ti,pwm-inverted DT property absent
+
+=> we enable the PWM inversion
+
+In this case the module parameter is overriding the DT. It means that
+someone explicitly set pwminv=1 module parameter. I think is fair to
+fulfill the module parameter request in this case, overriding the DT
+
+> I would suggest to add some logic in the probe function to set this value
+> and check its consistency.
+
+With that said I can implement something around the lines you proposed,
+if you still think is worth doing it. I would personally just keep the
+priority on the module parameter over the DT and add an info print on what
+is actually configured by the driver (not checking if they are
+different).
+	
+Or I can just add a dev_info() telling the user about the actual PWM
+polarity used, making this more transparent, without changing the logic
+proposed here.
+
+Francesco
 
 
