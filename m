@@ -1,164 +1,221 @@
-Return-Path: <devicetree+bounces-148481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F791A3C1FB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:24:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DD35A3C21D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:28:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AB7B166EA5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:22:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2347D7A3796
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:26:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BD251EA7FE;
-	Wed, 19 Feb 2025 14:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B234D1F17E5;
+	Wed, 19 Feb 2025 14:27:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rm8Lp1ml"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PXgnPNuI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6C9C286281;
-	Wed, 19 Feb 2025 14:22:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E55D1EFFAF;
+	Wed, 19 Feb 2025 14:27:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739974956; cv=none; b=nS28O1ZjTyCnBx/sj7lrA2pqfolsXaAaaun+Z0YA0eFAA0EUuivoLZxNMXkdPqih7bVg6QvlKoXpSoQmeqbH7/eHhDcAg5l26eBpow1FBbVJl50Tu+aRPbNELUv+MLLOUNjTWfUIKWLpZE97o3I7hteb3fm5pqExeWeIhUDDpHI=
+	t=1739975233; cv=none; b=lNchhz6GlACihDVAkLhJ6OxScdPOjKDSoVGl4kwGwxU0FTBU8MSgz5wkTXLAcuNht5VDcLZstNQV8V3cso2wV+zQd0Ot1z7Ye3oyyywvlItZSIgmk7YVR7mf4eMFhApgJ62u2gIfyLYeTnKNXbGE4bUAbmq4DydOUHjQG9yulT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739974956; c=relaxed/simple;
-	bh=reh2ru3wGs4xpgkwhP9irvC0VjoDeR95OIEbA777fUo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=a+NO1JjFPCrUytroqKMu71HYIfOy8OMQuCCr6S6Vg6bamyA3abVnwsJHTYGZB1pQuR1eYSmiQ9AbfR/+/aLpAy3ddyf4r4TSXgWAR08VSyxgy4RtXdqFVYjvmrwDc0vNc+i2H49hC6e64QCCPX94WOBp2Vjnbw348LR6g4lCfcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rm8Lp1ml; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FEECC4AF0B;
-	Wed, 19 Feb 2025 14:22:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739974956;
-	bh=reh2ru3wGs4xpgkwhP9irvC0VjoDeR95OIEbA777fUo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Rm8Lp1ml+GLe9LpjM4u789wk9VDrcRCHCwOx5d1y1OyHKpQWu1SkSPWkLEj/iHM8K
-	 DhtqHwrVw9g5PBRsYAc09f/9PVPYCl78tlWVq7n12KDwO3oQyvj1K8udCXPVo2Xumc
-	 WRIok7A9Y6AeZRRgvrlNJLUoawaTA1/5LH7n1EYvbOBZtCPEyVuoampbIn2/R5dtDs
-	 /VPI3NwDIqO3E2udYGT8Q9n3e+vb42vS1fle+5mIAwLqbK7Vg3fAxONZsxm2T01Gfn
-	 gdIWBWtvVcBDtWRVhKRneSEyttJX26itrB7o/cTI44gZJt94az8kEgvd9i25Bu9C8E
-	 ErfCOx1KUGaQg==
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2fa48404207so13620163a91.1;
-        Wed, 19 Feb 2025 06:22:36 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU/NEaELVc8/bIIb0YqpIUv4Wu8/Vls7OQUGzH58/LREHNt5ZF9ACd82evlRA2QnFjJqh8R7Mz307c9fIrb@vger.kernel.org, AJvYcCXKUF9nir3iHxbnfMEXGmaaLpN8W3iivkVaWbO7cOdNZ013X48Vwl8xJh5AnqmjYyWDcoByvY6YDLUr@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmRS04UwVMP6GNbhirtLvAOPyW66ilumUIPpIj0iGlmpI1QEdQ
-	I+5m5reujDZzbZnvh57klMDW0w8afD/sdgMX04BawS5UlYNoHHREXBwfEv+thMH7A/6nWn83Xn6
-	qZc6SLwjwEt4FxA29IjaonSNkyg==
-X-Google-Smtp-Source: AGHT+IFcqF5yaXmkd1Kkc/nRemVogPJJE5Ke5gvEz4B9RO5EGqWKjgjJjYnTiJJa8/Cdthu+CTDKxzr7KsWY9zI/Ph4=
-X-Received: by 2002:a17:90b:39cc:b0:2fa:229f:d03a with SMTP id
- 98e67ed59e1d1-2fc4104056emr23304153a91.26.1739974955900; Wed, 19 Feb 2025
- 06:22:35 -0800 (PST)
+	s=arc-20240116; t=1739975233; c=relaxed/simple;
+	bh=vhmxI/qpUsmrpjWohWJgs/TMHfwXta/ulC9P6VHKIyA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kiQt0lUALPHcKQkTSCGmrcMoi3a8C7SeszpQFY7CobZVytj82YYR/WYXIm1H/lmsfFRgvPet+Vrhd67+Prmebcgjo86/6JMaXSiQc13QovkQHuq4j2SZ4Ap7yqfrGHPhr1riAUjO7gHftqmiccXNegfVkHTLDj6tuk7UaB8K2Lo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PXgnPNuI; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739975232; x=1771511232;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vhmxI/qpUsmrpjWohWJgs/TMHfwXta/ulC9P6VHKIyA=;
+  b=PXgnPNuI3Zt8enFDOO6lW3DIwE+Ma37qC2yKch4wE6kvULdyS0RU38HF
+   YW2crhXxV6VvZsKmY9wMydPGG/kuBnr9js9KeNg76anZgzzY4RAMmqIf0
+   w1SHboauqv7Lv9W5eKYF8qXdgqP80uqSIN5Kdp1zZEwm5hDUdvDW0ZCph
+   +fHyozL78MzHM4iFSXZ3DWUFuWOCK6SRNzyNIgauALUfeYYYGxzV2gGBH
+   ypLxWNQ1yM4ykRSqcDjDE6aM8/KwQ9KfVjIs0L9ohmPxAexI5bc2/iZUt
+   E9gSyw2u8MVEN3itNEb+HSYpL77EteB+qgXWIZ2d9WJgITPKpl4g7EnOP
+   A==;
+X-CSE-ConnectionGUID: IXdy6efWSZGse9Jad5BS8w==
+X-CSE-MsgGUID: HCwKoiUcTHqXMHScFXiJ/A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="66067582"
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; 
+   d="scan'208";a="66067582"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2025 06:26:56 -0800
+X-CSE-ConnectionGUID: 5fTf7ojeRZiQzvfXC1fUTQ==
+X-CSE-MsgGUID: zkUoBl+eRPGI1IYoJeFrYA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="145620194"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2025 06:26:52 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tkl2H-0000000D2xx-20EC;
+	Wed, 19 Feb 2025 16:26:49 +0200
+Date: Wed, 19 Feb 2025 16:26:49 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] mfd: lm3533: convert to use OF
+Message-ID: <Z7XqKcOUt5niXzpv@smile.fi.intel.com>
+References: <20250218132702.114669-1-clamor95@gmail.com>
+ <20250218132702.114669-3-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217154836.108895-1-angelogioacchino.delregno@collabora.com> <20250217154836.108895-25-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250217154836.108895-25-angelogioacchino.delregno@collabora.com>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Wed, 19 Feb 2025 22:23:20 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8qu6QeV=KJypYm=25PSGJD=jaMK6tMa2gWAoEF-mgPGg@mail.gmail.com>
-X-Gm-Features: AWEUYZm6NK2d9V3p_Lp0cN8OApA1MPTl0H47EFaINMxZJFCgqd5UGa_xL6LrvNY
-Message-ID: <CAAOTY_8qu6QeV=KJypYm=25PSGJD=jaMK6tMa2gWAoEF-mgPGg@mail.gmail.com>
-Subject: Re: [PATCH v7 24/43] drm/mediatek: mtk_hdmi: Move vendor/product
- strings to drm_bridge
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, 
-	jie.qiu@mediatek.com, junzhi.zhao@mediatek.com, 
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
-	dmitry.baryshkov@linaro.org, lewis.liao@mediatek.com, 
-	ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com, 
-	jason-jh.lin@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250218132702.114669-3-clamor95@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi, Angelo:
+On Tue, Feb 18, 2025 at 03:27:00PM +0200, Svyatoslav Ryhel wrote:
+> Remove platform data and fully relay on OF and device tree
+> parsing and binding devices.
 
-AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
-=BC
-2025=E5=B9=B42=E6=9C=8817=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=8811:=
-49=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Move the vendor and product strings to the appropriate entries
-> of struct drm_bridge and use that in mtk_hdmi_setup_spd_infoframe
-> instead of having the same as function parameters.
->
-> While at it, also beautify the strings, setting them to read
-> "MediaTek On-Chip HDMI".
+Thanks for following the advice, but the problem with this change as it does
+too much at once. It should be split to a few simpler ones.
+On top of that, this removes MFD participation from the driver but leaves it
+under MFD realm. Moreover, looking briefly at the code it looks like it open
+codes the parts of MFD. The latter needs a very goo justification which commit
+message is missing.
 
-Applied to mediatek-drm-next [1], thanks.
+...
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
+> +static const struct of_device_id lm3533_als_match_table[] = {
+> +	{ .compatible = "ti,lm3533-als" },
+> +	{ },
 
-Regards,
-Chun-Kuang.
+No comma for the terminator entry. I think I already pointed that out earlier.
 
->
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_hdmi.c | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediat=
-ek/mtk_hdmi.c
-> index e9f2f15e98fa..4bf19574463d 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
-> @@ -952,15 +952,14 @@ static int mtk_hdmi_setup_avi_infoframe(struct mtk_=
-hdmi *hdmi,
->         return 0;
->  }
->
-> -static int mtk_hdmi_setup_spd_infoframe(struct mtk_hdmi *hdmi,
-> -                                       const char *vendor,
-> -                                       const char *product)
-> +static int mtk_hdmi_setup_spd_infoframe(struct mtk_hdmi *hdmi)
->  {
-> +       struct drm_bridge *bridge =3D &hdmi->bridge;
->         struct hdmi_spd_infoframe frame;
->         u8 buffer[HDMI_INFOFRAME_HEADER_SIZE + HDMI_SPD_INFOFRAME_SIZE];
->         ssize_t err;
->
-> -       err =3D hdmi_spd_infoframe_init(&frame, vendor, product);
-> +       err =3D hdmi_spd_infoframe_init(&frame, bridge->vendor, bridge->p=
-roduct);
->         if (err < 0) {
->                 dev_err(hdmi->dev, "Failed to initialize SPD infoframe: %=
-zd\n",
->                         err);
-> @@ -1328,7 +1327,7 @@ static void mtk_hdmi_send_infoframe(struct mtk_hdmi=
- *hdmi,
->  {
->         mtk_hdmi_setup_audio_infoframe(hdmi);
->         mtk_hdmi_setup_avi_infoframe(hdmi, mode);
-> -       mtk_hdmi_setup_spd_infoframe(hdmi, "mediatek", "On-chip HDMI");
-> +       mtk_hdmi_setup_spd_infoframe(hdmi);
->         if (mode->flags & DRM_MODE_FLAG_3D_MASK)
->                 mtk_hdmi_setup_vendor_specific_infoframe(hdmi, mode);
->  }
-> @@ -1707,6 +1706,8 @@ static int mtk_hdmi_probe(struct platform_device *p=
-dev)
->         hdmi->bridge.ops =3D DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID
->                          | DRM_BRIDGE_OP_HPD;
->         hdmi->bridge.type =3D DRM_MODE_CONNECTOR_HDMIA;
-> +       hdmi->bridge.vendor =3D "MediaTek";
-> +       hdmi->bridge.product =3D "On-Chip HDMI";
->         drm_bridge_add(&hdmi->bridge);
->
->         ret =3D mtk_hdmi_clk_enable_audio(hdmi);
-> --
-> 2.48.1
->
+> +};
+
+...
+
+> +	device_property_read_string(&pdev->dev, "linux,default-trigger",
+> +				    &led->cdev.default_trigger);
+
+One prerequisite patch you probably want is an introduction of
+
+	struct device *dev = &pdev->dev;
+
+in the respective ->probe() implementations. This, in particular, makes the
+above lines shorter and fit one line.
+
+...
+
+> +static const struct of_device_id lm3533_led_match_table[] = {
+> +	{ .compatible = "ti,lm3533-leds" },
+> +	{ },
+
+As per above.
+
+> +};
+
+...
+
+> +		if (!strcmp(comatible, "ti,lm3533-als"))
+> +			lm3533->have_als = 1;
+
+If you end up having this, it's not the best what we can do. OF ID tables have
+a driver_data field exactly for the cases like this.
+
+...
+
+> +		if (!strcmp(comatible, "ti,lm3533-backlight"))
+> +			lm3533->have_backlights = 1;
+
+Ditto.
+
+...
+
+> +		if (!strcmp(comatible, "ti,lm3533-leds"))
+> +			lm3533->have_leds = 1;
+
+Ditto.
+
+...
+
+> +		ret = lm3533_update(bl->lm3533, LM3533_REG_CTRLBANK_AB_BCONF,
+> +				    1 << (2 * id + 1), 1 << (2 * id + 1));
+
+BIT() and better to use a temporary variable for this calculation.
+
+> +		if (ret)
+> +			return ret;
+
+...
+
+> +		ret = lm3533_update(bl->lm3533, LM3533_REG_OUTPUT_CONF1,
+> +				    id | id << 1, BIT(0) | BIT(1));
+
+		mask = GENMASK();
+		..., id ? mask : 0, mask);
+
+> +		if (ret)
+> +			return ret;
+> +	}
+
+...
+
+> +	bd = devm_backlight_device_register(&pdev->dev, pdev->name, pdev->dev.parent,
+> +					    bl, &lm3533_bl_ops, &props);
+
+
+With the advice from above:
+
+	bd = devm_backlight_device_register(dev, pdev->name, dev->parent, bl, &lm3533_bl_ops,
+					    &props);
+
+
+>  	if (IS_ERR(bd)) {
+>  		dev_err(&pdev->dev, "failed to register backlight device\n");
+>  		return PTR_ERR(bd);
+
+Consider another prerequisite patch (which should come before the firstly
+proposed one):
+
+	struct device *dev = &pdev->dev; // yes, this can go in this change
+	...
+
+	if (IS_ERR(bd))
+		return dev_err_probe(dev, PTR_ERR(bd), "failed to register backlight device\n");
+
+...
+
+> +static const struct of_device_id lm3533_bl_match_table[] = {
+> +	{ .compatible = "ti,lm3533-backlight" },
+> +	{ },
+
+As per above.
+
+> +};
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
