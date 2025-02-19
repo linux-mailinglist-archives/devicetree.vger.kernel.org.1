@@ -1,131 +1,191 @@
-Return-Path: <devicetree+bounces-148194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 369DDA3AF41
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 03:02:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 812CCA3AFDE
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 04:02:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3738F18899D4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 02:02:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BF5E16E003
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 03:02:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31052134BD;
-	Wed, 19 Feb 2025 02:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9727113CA8A;
+	Wed, 19 Feb 2025 03:02:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Eg5/jUfE"
+	dkim=pass (2048-bit key) header.d=studer.dev header.i=@studer.dev header.b="TBUdQCJW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-b.studer.dev (mail-b.studer.dev [3.21.136.164])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91CE02AD0C;
-	Wed, 19 Feb 2025 02:02:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA6A435977;
+	Wed, 19 Feb 2025 03:02:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=3.21.136.164
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739930558; cv=none; b=LFyWim/pI3ffPP60Q+2A8G7QuOQzZ18+c5hWF9IrNclAlbXugDXorC9fOh96VN80+2P7Tx3cS0Ay0JiA1mVrA8rTdCgkhujGNaO3nAJk/Jk7Wcuevg3fCeOgb+feM24/izBNaTnOPvqDQkk9q2OidyIwOmJpmQ4LT4YElecqaOk=
+	t=1739934164; cv=none; b=KJYNGC3vMYMcxdf4xrQqC7v0HP67cZZuG0uZ4kfduMXjZowAeDCLRbPKbZPCoc7ESzREJtF3Xp2RG5mnsMiy9I5IPSw6zJErdmev5Y0VeTcbUoVtCsxqDkIL2BC/+mogLZ3BxFUSbkPJPvS3GbxDRscX5gbqjMAZqS+buifOCG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739930558; c=relaxed/simple;
-	bh=tSVYR1llQvTI5Kv99pwKgISlYZrlOljaKobqaa3fY8A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UA9R7kUdDeoGUiHLTlrRcB5CGnFKPZA7qnHhr5jQQ5UEG4fT7MpDssn3Np2tseLKsKxQXwX46kPrTbKzak1E2hMKkQ7Z2YUiC2BMFLlnjRqtAta4s0U1rkycn247rZPGmpBM1t1VnrWe/BjjfoGAohBoBu2EiHRfXGR4nRA9w4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Eg5/jUfE; arc=none smtp.client-ip=209.85.219.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6dd43aa1558so56487246d6.0;
-        Tue, 18 Feb 2025 18:02:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739930555; x=1740535355; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=980SAjG821KkBNdaRx+A15s8OgNFk4ezjXKzzUAttK8=;
-        b=Eg5/jUfE+NE5zZo+10y4yc/As8NxAr9hvl+ao/gmFFSeRdbTIfC1OtOjfBzVtQJBk0
-         A3tQuQNM82Lu1UMfrBvXxuKiENZwy3Uu7gZzHaDhmLI5HBrnvxS4yk31zIay7jM9QNYR
-         Q05wu8sFvcvhKXwslhpf9UXNKKmOtU+DHQVyBdQDVJhzmgxlTV5rSxZ6lcLLnokyeRZU
-         QHRrJ4czSqFpFGx8mI9lCx/DmP366HE57+ZdsDGkbudmuBCs81KHQ+vMnDhsL3SLYTbL
-         5Z4PGirQf0/4hky5EUSqGovHkl8uNtGGmWkLYevuEEFHsvWBGEwj1XgmyAquwaYveLE5
-         SoHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739930555; x=1740535355;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=980SAjG821KkBNdaRx+A15s8OgNFk4ezjXKzzUAttK8=;
-        b=pNnxGjlbsAO7ma8TGslyfEvaJVRpBdy5ZwgsRkXXU6LEwlo9Bxow1CXhL67RK4cQy7
-         mC2XEoaEAWTofJ3gNpDAV7WyLFWVrhQ0J14RGdlVVj2+jR9WV0lKHsL0va910vIBb29f
-         sBB1BnTelGL2DT1WUJZpnkLmnPuKhlHzeP3tzVCSeILFDIW7F2aYEOnzM0lZC2mUvpGC
-         eTyjINDk+QEj6GcUTvMObDLge2FGaLCd/iu1eyVOO0F8uiCAwU/czsdcUXDvxmvj7b94
-         sWeHrVEGW9NTgV+B1027/tbajBrYd0Q0GfO5QGRkvtZqWjA3IQMSBM39m9IND4sYtV91
-         qnaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVBPUpx6Wo/Jvg5VXRiKsJEdP3pRkpGx+RN+wnvFZl55+ZmmnHrb92mf08zrbegESIsh4cXikXRygI4@vger.kernel.org, AJvYcCWrVTyQHrKIUBDqtbm8SYzpuKvZbr1WlqCXu1vl+H6UVyNMZuPDGVuWLIe/LT+FeeUYA5xpUl8Yu54hmIJ4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcomCzy//sq5s8Yk3QaB0N7YYlY82WTKdfeNJjrCLuxPDgXRDe
-	WG3i5k0hGZQ2v97v5qjw0IGp9Yy/2sI3QY3Cj6PyWuu9TxtVdA+v
-X-Gm-Gg: ASbGncuIOBI2wELyP32kCqMjCsP2aOGEKTSgPwAjo4JgXnC/coISfe30GTynm2cGvsT
-	Z7Mj9ZPLHl6BXL5LhtpcD8LqPNGnEKR0SDXTfns0KcbNZGIT5LBja8/c7CkfajD9My7hEbG+B7O
-	kgrj9HX/eAIPEa7go/GOPpiwYd/adZBzKXFcR5UIfo/TcEEmE31YEygeCQkFI0ef5ZpVPprUv82
-	8RynTCQYu0jQ9qKqD7rMi7OMm1pgAvJQ2P+mr//6NniDddQvypwTSlllfZ1bfDxEn0=
-X-Google-Smtp-Source: AGHT+IFao5uYt/opWCP18gBhrPbDbhzTsVioAhM4PEXmi9PCMUnZww8XRVKOU3gkOFPTX9L4VDhHrw==
-X-Received: by 2002:ad4:5f0a:0:b0:6d3:fa03:23f1 with SMTP id 6a1803df08f44-6e66ccc1141mr227209846d6.13.1739930555333;
-        Tue, 18 Feb 2025 18:02:35 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6e67ac30bafsm32452896d6.111.2025.02.18.18.02.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Feb 2025 18:02:34 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: aou@eecs.berkeley.edu,
-	unicorn_wang@outlook.com,
-	conor+dt@kernel.org,
-	guoren@kernel.org,
-	inochiama@outlook.com,
-	krzk+dt@kernel.org,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	robh@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	chao.wei@sophgo.com,
-	xiaoguang.xing@sophgo.com,
-	chunzhi.lin@sophgo.com,
-	sophgo@lists.linux.dev,
-	Chen Wang <unicornxw@gmail.com>
-Cc: Inochi Amaoto <inochiama@gmail.com>
-Subject: Re: [PATCH 0/2] Add pwm-fan for Milk-V Pioneer
-Date: Wed, 19 Feb 2025 10:02:19 +0800
-Message-ID: <173993053303.993263.3269292978255036963.b4-ty@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <cover.1739351437.git.unicorn_wang@outlook.com>
-References: <cover.1739351437.git.unicorn_wang@outlook.com>
+	s=arc-20240116; t=1739934164; c=relaxed/simple;
+	bh=2F3LU4Eq0gKjABF4rvIZDq5JKefAkZzwch+Ft+j7CYg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CXm0bdssfR5+rZJqkSVECcC5PWiibAAUa4RX/s0xvR7nT/nuO5I2NeI7z5hlnId567pUkrB4/YuaYUoa18ETraYHY1BUdieXzcuONG//H1GobonOKKTR6mIbqF7DXtAU6pXU8OwHjLjvdG5Nm2b4G7hywtxoEVJD6VJt17eEBkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=studer.dev; spf=pass smtp.mailfrom=studer.dev; dkim=pass (2048-bit key) header.d=studer.dev header.i=@studer.dev header.b=TBUdQCJW; arc=none smtp.client-ip=3.21.136.164
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=studer.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=studer.dev
+Received: from mail.studer.dev (mail.studer.dev [168.62.161.121])
+	by mail-b.studer.dev (Postfix) with ESMTPSA id A4B6240047;
+	Wed, 19 Feb 2025 03:02:35 +0000 (UTC)
+dkim-signature: v=1; a=rsa-sha256; d=studer.dev; s=hmail;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:References;
+	bh=qd6qp1+ybi0MHi3xmDnOya6FXacrtJVptDj7+jwoBCs=;
+	b=TBUdQCJWM1Gle0QybTdOW2kMgDrTXfMtboFQ20aQBjD5bfSQ92pWUNYKTZk543HV67pnT5HyOk7RHFoJ7TY/TuN283Ir1ce2yv9ggDuX82NPctt/pcJPqDEPxwqddiOcb3jOZ3RUPFOUc1a3DVtiMlPWTNAGYEauGTyAEW1Wc4g+NrrFoIZpgBsF60kybfL8NuxTaQmGRK7herpMtN/sHiFQQ/sNcpwdyNhynrpWFyaKLamRbdFJVKpUTS
+	vuZ7QUXTeIrE2qfQ03Lqpd5iwNtB5QXas5632DTZ+nByQd07N1mcMjTnNEZy7zZrUSYXVoRiaWH8gHkRqZi7MKgspVMw==
+Received: from [192.168.1.166] (pool-68-239-44-167.bstnma.fios.verizon.net [68.239.44.167])
+	by mail.studer.dev with ESMTPSA
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128)
+	; Wed, 19 Feb 2025 03:02:33 +0000
+Message-ID: <56fe8762-5b05-4b41-b7fd-f08f35012ba9@studer.dev>
+Date: Tue, 18 Feb 2025 22:02:32 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] riscv: dts: allwinner: d1: Add CPU thermal sensor and
+ zone
+To: =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20250218020629.1476126-1-alex@studer.dev>
+ <4628970.LvFx2qVVIh@jernej-laptop>
+From: Alex Studer <alex@studer.dev>
+Content-Language: en-US
+In-Reply-To: <4628970.LvFx2qVVIh@jernej-laptop>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On Wed, 12 Feb 2025 17:41:44 +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
-> 
-> Milk-V Pioneer uses fan as cooling-device, and speed of the fan is
-> controlled by the first channel of pwm controller of SG2042.
-> 
-> This patchset depends on another patchset for the SG2042 pwm controller,
-> the driver part is now on pwm/for-next [pwm-for-next] and the dts part is
-> now on sophgo/for-next [sophgo-for-next]. If you want to have a test,
-> you need to apply the corresponding patchset.
-> 
-> [...]
-
-Applied to for-next, thanks!
-
-[1/2] riscv: sophgo: dts: add pwm-fan for Milk-V Pioneer
-      https://github.com/sophgo/linux/commit/62cdf0a06dd5a650e4ca95b6f3a13daa48cf517a
-[2/2] riscv: sophgo: dts: add cooling maps for Milk-V Pioneer
-      https://github.com/sophgo/linux/commit/f047a9285f9f3fd5c0d5ae53af350b8b619e470a
+On 2/18/25 12:23 PM, Jernej Škrabec wrote:
+> Dne torek, 18. februar 2025 ob 03:06:29 Srednjeevropski standardni čas je Alex Studer napisal(a):
+>> The sun20i THS (built in CPU thermal sensor) is supported in code, but
+>> was never added to the device tree. So, add it to the device tree,
+>> along with a thermal zone for the CPU.
+>>
+>> Signed-off-by: Alex Studer <alex@studer.dev>
+>> ---
+>>  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 31 +++++++++++++++++++
+>>  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 16 ++++++++++
+>>  2 files changed, 47 insertions(+)
+>>
+>> diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+>> index 6367112e6..bdde82aa8 100644
+>> --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+>> +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+>> @@ -3,6 +3,8 @@
+>>  
+>>  #define SOC_PERIPHERAL_IRQ(nr)	(nr + 16)
+>>  
+>> +#include <dt-bindings/thermal/thermal.h>
+> Put above line on top (before SOC_PERIPHERAL_IRQ()).
+Will fix in v2.
+>> +
+>>  #include "sunxi-d1s-t113.dtsi"
+>>  
+>>  / {
+>> @@ -115,4 +117,33 @@ pmu {
+>>  			<0x00000000 0x0000000e 0xffffffff 0xffffffff 0x00010000>,
+>>  			<0x00000000 0x0000000f 0xffffffff 0xffffffff 0x00020000>;
+>>  	};
+>> +
+>> +	thermal-zones {
+>> +		cpu-thermal {
+>> +			polling-delay-passive = <0>;
+>> +			polling-delay = <0>;
+>> +			thermal-sensors = <&ths>;
+>> +
+>> +			cooling-maps {
+>> +				map0 {
+>> +					trip = <&cpu_alert>;
+>> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>> +				};
+>> +			};
+>> +
+>> +			trips {
+>> +				cpu_alert: cpu-alert {
+>> +					temperature = <85000>;
+>> +					hysteresis = <2000>;
+>> +					type = "passive";
+>> +				};
+>> +
+>> +				cpu-crit {
+>> +					temperature = <100000>;
+>> +					hysteresis = <0>;
+>> +					type = "critical";
+>> +				};
+> Where do those limits come from?
+I took them from the definitions in
+arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi, which is what I generally
+based this patch on. I checked the D1s datasheet and it does specify a
+max "Ambient Operating Temperature" of 70 C and a max "Working Junction
+Temperature Range" of 110 C. So I could use those, but the dtsi files
+for the other sunxi chips don't seem to follow their respective
+datasheets, so I wasn't sure what to do here.
+>> +			};
+>> +		};
+>> +	};
+>>  };
+>> diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+>> index e4175adb0..fcfcaf06c 100644
+>> --- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+>> +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+>> @@ -426,6 +426,10 @@ sid: efuse@3006000 {
+>>  			reg = <0x3006000 0x1000>;
+>>  			#address-cells = <1>;
+>>  			#size-cells = <1>;
+>> +
+>> +			ths_calibration: thermal-sensor-calibration@14 {
+>> +				reg = <0x14 0x8>;
+>> +			};
+>>  		};
+>>  
+>>  		crypto: crypto@3040000 {
+>> @@ -934,5 +938,17 @@ rtc: rtc@7090000 {
+>>  			clock-names = "bus", "hosc", "ahb";
+>>  			#clock-cells = <1>;
+>>  		};
+>> +
+>> +		ths: thermal-sensor@2009400 {
+>> +			compatible = "allwinner,sun20i-d1-ths";
+>> +			reg = <0x2009400 0x100>;
+> Size should be 0x400.
+Will fix in v2.
+>
+> Best regards,
+> Jernej
 
 Thanks,
-Inochi
+Alex
+
+>
+>> +			interrupts = <SOC_PERIPHERAL_IRQ(58) IRQ_TYPE_LEVEL_HIGH>;
+>> +			clocks = <&ccu CLK_BUS_THS>;
+>> +			clock-names = "bus";
+>> +			resets = <&ccu RST_BUS_THS>;
+>> +			nvmem-cells = <&ths_calibration>;
+>> +			nvmem-cell-names = "calibration";
+>> +			#thermal-sensor-cells = <0>;
+>> +		};
+>>  	};
+>>  };
+>>
+>
+>
+>
 
 
