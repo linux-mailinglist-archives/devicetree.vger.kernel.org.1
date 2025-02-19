@@ -1,211 +1,230 @@
-Return-Path: <devicetree+bounces-148205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5432BA3B0FC
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 06:41:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E66EA3B125
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 06:57:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EB68189415E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 05:41:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3ADD216764E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 05:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2F071B4F14;
-	Wed, 19 Feb 2025 05:41:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1D01B86E9;
+	Wed, 19 Feb 2025 05:57:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K4fBGo19"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="rBsELHd3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD47E25760;
-	Wed, 19 Feb 2025 05:41:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3B01AF0DC;
+	Wed, 19 Feb 2025 05:57:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739943701; cv=none; b=k55Zi/e8S1k95ZmKNNWmGcnCTlByMmTz/RwOyod2r5fT3Lwkav3ShQX4h5ia9mGCJ1G9Lhyf32M4HRwZsrvJ4YBYxlg0/RnY8tC9zZEYv20+P0A7Y1mi6eQV8kzLvgIb7N4Fcw1dhyghA2xHLc7XDMX5mHyYclTmq/Aaqd/6DVE=
+	t=1739944671; cv=none; b=HeR4p+oSUnxsNeB9UuOlQVfn3Q8A3HGIgKzmMk6E8MDJwrSTtR8L01Pf07wN8SpZV6NuutglqvShnZZMg6mdnORPXgd0UCl2tbjlCUkVkg0UHL074zj15+wY+cv5C9ylDgeqSAjksTEPPUmYhlhzWGHf1cmE5D9sbXjLRZM3PvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739943701; c=relaxed/simple;
-	bh=NH/GYPtUq6MwTSuRGjCkV3AXLDR9tKW3R/QsctmHmpY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FT2L7V7+K/qgDFHAiEvWSKQNpsIoX1fxl8o1zS2QDxwZpJ30ZlqHGXqnHBe7IAv3SZW6cUPNdM6UebdGIbaMhzn0Ar3lYJhZq/zaEBZpAu+2k42z9RXIqFL70vScKUqXJaP6IC4YeTrWPDYCnzg37fsQbAVoM8hSW6A4+sfbB4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K4fBGo19; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5e0939c6456so89594a12.3;
-        Tue, 18 Feb 2025 21:41:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739943698; x=1740548498; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LRcsV6GoFajL/k7gPCeavo6eC1d5s36mJUqIVFTMKHA=;
-        b=K4fBGo19J3m2615iz5O0KwpPwprOacy3H9DSzOdhs9dCcyX4XiIWejH6VcjCEdMxRT
-         vpB7QJMWsnC+Sm5KEKoM0EKFB0OpOGUZVVa1LQJGe8Z3YgaUDuIbSP8qcr2KrPSCmMAA
-         VSCJOwaBsBx3YYEOvcxXCKuyAKh7phU1e69FxfvCbTL6POkJHmwOWPz4jkPL6vu6EAyw
-         zhOlug7ZV9uGiGk52Nf5aGz/MDA2h3pZTApPy27t+6VU8QZ90ZnY/p6G85zeTwyjdol6
-         5VWvix3y85W/z4fgAoLt7bCDOribWlNeJoKBU6M+xcwJC1g0B15jnbB1+PB2jiBiycBw
-         fCJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739943698; x=1740548498;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LRcsV6GoFajL/k7gPCeavo6eC1d5s36mJUqIVFTMKHA=;
-        b=FFEGQ7Xgmw7+pIY67sR+/PP/2aSAc8HmKeEGDt9/qoFfOr2KC6rHIUPfUP2zMl0oPv
-         Sj528AsRe1VD++SPv+aHApDlP4VpIDkagqYKXE050GgVwh1SMUyYyiswe8NXhTQIczmp
-         kKwNjubVQTAmvYCCqhwHI4QFZyVgWVL3ojtEhEBPSsnSl4jRCtj8h9N/6IcPoP6/bS+4
-         QsnOX3QGTFQOtpvn8gBYTo38cqKqgpdNsbykMR9JujUmNeh8BmsgblnoYgu0lAArjU4J
-         b6dABPEwcuYD/ugK5eOpUbofdBbXqwugysDy14tYXXIfWH2W8zvMtRMGjt/Lr1alL1N+
-         ot+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCULnYBKGNjKhz3EMY5aDnWF55A9c0Y/MsyaPTnaTv9blzlzIshCszaT9oGgeCk7COR+UymBArXpDruOtKrl@vger.kernel.org, AJvYcCXigee2wP9xutSNGK/CnF+A8KoVARgh/GihfXxZfvBhDNyjCz9JpqsofTVT+xeKHg4Qid8tnOJcIzEf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqVCl+JapWuL8G3yv6bXWNeyakPdtaEQghHSQd3EoFyI1sBDVB
-	aqqphWESdoTOx0EfuZzrDzhsn0H3Q3DVRkv4j9xrSELQTtVzEraA
-X-Gm-Gg: ASbGncuYHdMSActuE53da4EjMRFinXVutnUDgz8nXU8mKBUsxlpFKHRX8QKTTkIzhjT
-	ZET+nyWxrIn+Nnk1fsLZ1tYa2cn45oDVosf5SnjX2rd0DLIXAQJqGBX0Kxy39CQ/z/kEm3jNg/7
-	oLpgBIE0kq/uxsWjqU4SsrJsDL1JpHtEADeWR5aQ3kvQFbKyYiqPTSBNIdhG/3ZCavx4lH5arN8
-	bvtWafXdoXnOWF68XwZl7ENd1Eo7jBEDPd2Cch/ngzeUOehQ+gnYibDYI6f1QSRokLR1UV67I/M
-	TUE+1CA0od5Hq5KMYaGWIzOor9YDiaBgC1gzPoU23H/6plQtCWRKnkonnMgHTEadgQ==
-X-Google-Smtp-Source: AGHT+IE6McCybXsclJruyebbY+EIZW3bx08t3CeM0dcMArcOBNQnZGaXHD1Epi61kkrMMUgHgWugUw==
-X-Received: by 2002:a17:907:7b83:b0:ab7:eda3:3612 with SMTP id a640c23a62f3a-abb70de2909mr1830140366b.50.1739943697665;
-        Tue, 18 Feb 2025 21:41:37 -0800 (PST)
-Received: from [192.168.50.244] (83.8.115.239.ipv4.supernova.orange.pl. [83.8.115.239])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba9cf8a262sm904238066b.22.2025.02.18.21.41.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Feb 2025 21:41:37 -0800 (PST)
-Message-ID: <d6f8713d-fd7d-4de5-af71-cbb1fbe0f771@gmail.com>
-Date: Wed, 19 Feb 2025 06:41:35 +0100
+	s=arc-20240116; t=1739944671; c=relaxed/simple;
+	bh=pfHqlSLud+JXl9D7n5BlEkHhIeYAhbebredddS+EqlM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=lzLlUyEQ0qaTEahHu5Jq+V+9z2vB6gr63uQGN606vlOwdnjBJD2YsVlnWK1pM4OX81H4un5Q6gKg2Q6vZIth/9JB91d3kT1XxOUt1GuJON/X9HMdK9jkjkjY5Dc1jfBsX0pGRV1AaFDvF2WeDGIp6m7Bvxp0+G2BpgUjiIK76os=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=rBsELHd3; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1739944670; x=1771480670;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:to:cc;
+  bh=pfHqlSLud+JXl9D7n5BlEkHhIeYAhbebredddS+EqlM=;
+  b=rBsELHd3O8u2BDLTWlqnTm737daUqi7VfMQXjB6sj3o6Eyf1oxMiDv6B
+   N84QtODxV/hDlCMxwVcrF6geKPGFfv0xq7BkSOWYaE/dGhZOAPTcAvpWC
+   5R7Xe9Vg/DBA7sLdnVHIehkLeuNjWh3LgQ6QbmgrXeb30x1IJnKL+N5rW
+   vafH36nabrms9QvbJp4Z0CMmTM2/3DXn76MXpZV/uIGD791/+tV5mzCHi
+   lTVcVnmSDYhbYyg1XmddzV7Be+GHojG/JgznSOUtcGc/PUSqPR64/UqgY
+   EFm71BVCPOdlJ1W92xS2uhSy0ILo1wLAOGUzGyyIGwu1fMLaCeH3zTUkQ
+   w==;
+X-CSE-ConnectionGUID: H/CF0+SBQUK7yXSaxQ9BXA==
+X-CSE-MsgGUID: tuIP3dstSBa4Jp38XcbJ+Q==
+X-IronPort-AV: E=Sophos;i="6.13,298,1732604400"; 
+   d="scan'208";a="37849285"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Feb 2025 22:57:49 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 18 Feb 2025 22:57:21 -0700
+Received: from [10.40.56.22] (10.10.85.11) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Tue, 18 Feb 2025 22:57:17 -0700
+From: Balakrishnan Sambath <balakrishnan.s@microchip.com>
+Date: Wed, 19 Feb 2025 11:22:27 +0530
+Subject: [PATCH v3] ASoC: dt-bindings: atmel-at91sam9g20ek: convert to
+ json-schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/9] mfd: bcm590xx: Add support for BCM59054
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Conor Dooley <conor+dt@kernel.org>,
- Scott Branden <sbranden@broadcom.com>, linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- ~postmarketos/upstreaming@lists.sr.ht, Ray Jui <rjui@broadcom.com>,
- linux-kernel@vger.kernel.org, Stanislav Jakubek <stano.jakubek@gmail.com>,
- Lee Jones <lee@kernel.org>, Mark Brown <broonie@kernel.org>
-References: <20250215-bcm59054-v4-0-dbfb2d76a855@gmail.com>
- <173992516047.2065189.12949590674422169603.robh@kernel.org>
-From: Artur Weber <aweber.kernel@gmail.com>
-Content-Language: en-US
-In-Reply-To: <173992516047.2065189.12949590674422169603.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-ID: <20250219-sound-atmel-at91sam9g20ek-v3-1-d7c082af4e14@microchip.com>
+X-B4-Tracking: v=1; b=H4sIAJpxtWcC/32NywrCMBREf6XctZE8ajGu+h/SRUxum4umKUktS
+ um/Gwtu3QycgTmzQsZEmOFSrZBwoUxxLKAOFVhvxgEZucIguayFFJzl+BwdM3PAR0ktsgl6kBz
+ v7MZRO8T6pJSFsp8S9vTa3deusKc8x/Terxb5bX9W8ce6SCbYuTEclcDG9LoNZFO0nqajjQG6b
+ ds+vyWJRMYAAAA=
+X-Change-ID: 20241210-sound-atmel-at91sam9g20ek-b0e9dee4533c
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>, Andrei Simion
+	<andrei.simion@microchip.com>, Liam Girdwood <lgirdwood@gmail.com>, "Mark
+ Brown" <broonie@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Nicolas
+ Ferre" <nicolas.ferre@microchip.com>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>
+CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Balakrishnan Sambath <balakrishnan.s@microchip.com>
+X-Mailer: b4 0.14.2
 
-On 19.02.2025 01:42, Rob Herring (Arm) wrote:
-> 
-> On Sat, 15 Feb 2025 10:39:35 +0100, Artur Weber wrote:
->> Add support for the BCM59054 MFD to the bcm590xx driver and fix a
->> couple of small bugs in it that also affected the already supported
->> BCM59056.
->>
->> While we're at it - convert the devicetree bindings to YAML format
->> and drop the bcm59056 DTS in favor of describing the PMU in users'
->> DTS files, as is done for most other MFDs.
->>
->> The BCM59054 is fairly similar to the BCM59056, with the primary
->> difference being the different number and layout of regulators.
->> It is primarily used in devices using the BCM21664 and BCM23550
->> chipsets.
->>
->> This patchset has been tested on a Samsung Galaxy Grand Neo
->> (baffinlite rev02; DTS not in mainline yet) with a BCM59054 PMIC.
->> Testing on a BCM59056 would be appreciated.
->>
->> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
->> ---
->> Changes in v4:
->> - Fix yamllint warnings in DT bindings
->> - Address miscelaneous review comments related to DT bindings
->>    - Note that I did not end up moving the regulator refs from
->>      allOf compatible matches; I explained my reasoning in [1].
->>      [1] https://lore.kernel.org/lkml/ab853605-859d-44c6-8cbd-44391cd677e6@gmail.com/
->> - Add PMU ID/revision parsing to MFD driver
->> - Fix instances of regulator data not matching vendor kernel for
->>    BCM59054
->> - Use different voltage table for BCM59054 VSR reg based on PMU
->>    revision
->> - Link to v3: https://lore.kernel.org/r/20250131-bcm59054-v3-0-bbac52a84787@gmail.com
->>
->> Changes in v3:
->> - Split out regulator DT bindings into separate YAML
->> - Use tables of regulator info instead of get_XXX_register, reg_is_XXX
->>    functions
->> - Drop "regulator: bcm590xx: Add proper handling for PMMODE registers";
->>    it adds unnecessary noise to the series and will be submitted separately
->> - Link to v2: https://lore.kernel.org/r/20231030-bcm59054-v2-0-5fa4011aa5ba@gmail.com
->>
->> Changes in v2:
->> - Fixed BCM59054 ID being passed to BCM59056 function in the
->>    regulator driver
->> - Dropped linux-rpi-kernel from the CC list
->> - Link to v1: https://lore.kernel.org/r/20231030-bcm59054-v1-0-3517f980c1e3@gmail.com
->>
->> ---
->> Artur Weber (9):
->>        dt-bindings: mfd: brcm,bcm59056: Convert to YAML
->>        dt-bindings: mfd: brcm,bcm59056: Add compatible for BCM59054
->>        ARM: dts: Drop DTS for BCM59056 PMU
->>        mfd: bcm590xx: Add support for multiple device types + BCM59054 compatible
->>        mfd: bcm590xx: Add PMU ID/revision parsing function
->>        regulator: bcm590xx: Use dev_err_probe for regulator register error
->>        regulator: bcm590xx: Store regulator descriptions in table
->>        regulator: bcm590xx: Rename BCM59056-specific data as such
->>        regulator: bcm590xx: Add support for BCM59054 regulators
->>
->>   .../devicetree/bindings/mfd/brcm,bcm59056.txt      |   39 -
->>   .../devicetree/bindings/mfd/brcm,bcm590xx.yaml     |   76 ++
->>   .../bindings/regulator/brcm,bcm59054.yaml          |   56 +
->>   .../bindings/regulator/brcm,bcm59056.yaml          |   51 +
->>   arch/arm/boot/dts/broadcom/bcm28155-ap.dts         |   68 +-
->>   arch/arm/boot/dts/broadcom/bcm59056.dtsi           |   91 --
->>   drivers/mfd/bcm590xx.c                             |   86 +-
->>   drivers/regulator/bcm590xx-regulator.c             | 1294 ++++++++++++++++----
->>   include/linux/mfd/bcm590xx.h                       |   22 +
->>   9 files changed, 1377 insertions(+), 406 deletions(-)
->> ---
->> base-commit: 0c3836482481200ead7b416ca80c68a29cfdaabd
->> change-id: 20240816-bcm59054-a880695e41e8
->>
->> Best regards,
->> --
->> Artur Weber <aweber.kernel@gmail.com>
->>
->>
->>
-> 
-> 
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
-> 
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
-> 
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
-> 
->    pip3 install dtschema --upgrade
-> 
-> 
-> New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/broadcom/' for 20250215-bcm59054-v4-0-dbfb2d76a855@gmail.com:
-> 
-> arch/arm/boot/dts/broadcom/bcm53340-ubnt-unifi-switch8.dtb: mpcore@19000000: $nodename:0: 'mpcore@19000000' does not match '^([a-z][a-z0-9\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
-> 	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-> 
+Convert atmel-at91sam9g20ek-wm8731-audio DT binding to yaml
+based json-schema.Change file name to match json-scheme naming.
 
-Looks like a false-positive; this patchset does not modify this DTS at
-all.
+Signed-off-by: Balakrishnan Sambath <balakrishnan.s@microchip.com>
+---
+Changes in v3:
+- Add recommended minItems and maxItems.
+- Fix commit subject and a typo in example.
+- Link to v2: https://lore.kernel.org/r/20241211-sound-atmel-at91sam9g20ek-v2-1-86a0e31e6af9@microchip.com
 
-Best regards
-Artur
+Changes in v2:
+- Add missing CODEC pin options to 'atmel,audio-routing' items.
+- Drop 'minItems' from 'atmel,audio-routing' since enum defines valid connections.
+- Add subsystem tag to subject.
+- Add blank line between properties and fix typo.
+- Add audio complex description.
+- Link to v1: https://lore.kernel.org/lkml/20240214-at91sam9g20ek-wm8731-yaml-v1-1-33333e17383b@microchip.com
+---
+ .../bindings/sound/atmel,at91sam9g20ek-wm8731.yaml | 72 ++++++++++++++++++++++
+ .../sound/atmel-at91sam9g20ek-wm8731-audio.txt     | 26 --------
+ 2 files changed, 72 insertions(+), 26 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/atmel,at91sam9g20ek-wm8731.yaml b/Documentation/devicetree/bindings/sound/atmel,at91sam9g20ek-wm8731.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..627da2d890b24a14e595d1752276c94b158451a8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/atmel,at91sam9g20ek-wm8731.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/atmel,at91sam9g20ek-wm8731.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Atmel at91sam9g20ek wm8731 audio complex
++
++maintainers:
++  - Balakrishnan Sambath <balakrishnan.s@microchip.com>
++
++description:
++  The audio complex configuration for Atmel at91sam9g20ek with WM8731 audio codec.
++
++properties:
++  compatible:
++    const: atmel,at91sam9g20ek-wm8731-audio
++
++  atmel,model:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: The user-visible name of this sound complex.
++
++  atmel,audio-routing:
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    description: A list of the connections between audio components.
++    minItems: 2
++    maxItems: 4
++    items:
++      enum:
++        # Board Connectors
++        - Ext Spk
++        - Int Mic
++
++        # CODEC Pins
++        - LOUT
++        - ROUT
++        - LHPOUT
++        - RHPOUT
++        - LLINEIN
++        - RLINEIN
++        - MICIN
++
++  atmel,ssc-controller:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of the SSC controller.
++
++  atmel,audio-codec:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of WM8731 audio codec.
++
++required:
++  - compatible
++  - atmel,model
++  - atmel,audio-routing
++  - atmel,ssc-controller
++  - atmel,audio-codec
++
++additionalProperties: false
++
++examples:
++  - |
++    sound {
++        compatible = "atmel,at91sam9g20ek-wm8731-audio";
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_pck0_as_mck>;
++        atmel,model = "wm8731 @ AT91SAMG20EK";
++        atmel,audio-routing =
++            "Ext Spk", "LHPOUT",
++            "Int Mic", "MICIN";
++        atmel,ssc-controller = <&ssc0>;
++        atmel,audio-codec = <&wm8731>;
++    };
+diff --git a/Documentation/devicetree/bindings/sound/atmel-at91sam9g20ek-wm8731-audio.txt b/Documentation/devicetree/bindings/sound/atmel-at91sam9g20ek-wm8731-audio.txt
+deleted file mode 100644
+index 9c5a9947b64d454a892e1e4148ff06be7c33d6cd..0000000000000000000000000000000000000000
+--- a/Documentation/devicetree/bindings/sound/atmel-at91sam9g20ek-wm8731-audio.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-* Atmel at91sam9g20ek wm8731 audio complex
+-
+-Required properties:
+-  - compatible: "atmel,at91sam9g20ek-wm8731-audio"
+-  - atmel,model: The user-visible name of this sound complex.
+-  - atmel,audio-routing: A list of the connections between audio components.
+-  - atmel,ssc-controller: The phandle of the SSC controller
+-  - atmel,audio-codec: The phandle of the WM8731 audio codec
+-Optional properties:
+-  - pinctrl-names, pinctrl-0: Please refer to pinctrl-bindings.txt
+-
+-Example:
+-sound {
+-	compatible = "atmel,at91sam9g20ek-wm8731-audio";
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_pck0_as_mck>;
+-
+-	atmel,model = "wm8731 @ AT91SAMG20EK";
+-
+-	atmel,audio-routing =
+-		"Ext Spk", "LHPOUT",
+-		"Int MIC", "MICIN";
+-
+-	atmel,ssc-controller = <&ssc0>;
+-	atmel,audio-codec = <&wm8731>;
+-};
+
+---
+base-commit: 0ad2507d5d93f39619fc42372c347d6006b64319
+change-id: 20241210-sound-atmel-at91sam9g20ek-b0e9dee4533c
+
+Best regards,
+-- 
+Balakrishnan Sambath <balakrishnan.s@microchip.com>
+
 
