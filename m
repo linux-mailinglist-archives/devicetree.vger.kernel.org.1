@@ -1,105 +1,170 @@
-Return-Path: <devicetree+bounces-148631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88B02A3CD0A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 00:08:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2E9A3CD1C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 00:11:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1696F7A8763
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 23:07:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08E29189ABFC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 23:11:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ACBD25E449;
-	Wed, 19 Feb 2025 23:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61F8025C708;
+	Wed, 19 Feb 2025 23:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D1WQq79V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ssGYmnJ9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F13CA25D550;
-	Wed, 19 Feb 2025 23:08:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD9225A334;
+	Wed, 19 Feb 2025 23:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740006491; cv=none; b=crh8Ks6rndS8nyPaIHommHQYMjqluTdBQrY/6Ocu1Sdaw4W5OkxqvjSAQuGwGPEJjjW4euXsoghRwx+5aLBk/EoeQ4pbWwLdDY/DQjxog9uAMu9VwNCGuFp8jbhOttMBPlD5vl4JTb6cjhthQ88unZC8BuHmbqw/0cohyVeS+MQ=
+	t=1740006638; cv=none; b=FQGw3yfvm6wNqJ4ZuD6LQ6fyudaPmnOnq00g/W6l5YZSvOYeXj+DD9JrZ6UFAWamKE9Hnmp0oKT1xoMTDj03IBXlw3F88y5CKw0Iyrp7M+cWvt7lBu1zk5lH+Qhg4ARQJttKKFD7ZSAIovwzqseL/Ffmx8sB5/ZMoUBTvLCm5kc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740006491; c=relaxed/simple;
-	bh=Xs1gPh4JhWP/8ya71+EAU0oDhPGutD9vI7+Q3WYB95M=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=rOYWyj+zcflKuc1RkmyyuQme4sYarZ7E7o7Wzr73gp1vPuMm/rMDn5e37P+gyJZLTsXwxBfwrEldr8Np6bvHeg7IO20gsvq2IEkcQv8X8v7mlCFgqyqCFdUmNLsGYDJfgf0aGDsAI7gd4nRz7l6+5mM0F0xdPhMmebpoAyXPKpY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D1WQq79V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 993ECC4CEE0;
-	Wed, 19 Feb 2025 23:08:07 +0000 (UTC)
+	s=arc-20240116; t=1740006638; c=relaxed/simple;
+	bh=CYLczoHD6qvbYSNlRY5igolvyzZvd2e9ewBvJXOSbIw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T4EcFv9klRyyDuVV0XcPBjZuj7m0EEMb/3fDZduONNGKjLsYNmDjo62iGu34HYTeXxFcUfJwg+MlVPOHdG4Q376f4LL9eiiqS4ogpJQgywGyKJCMvmEu03E0cWEWkCzAKf60iEviRP3RqZOHz6OOp8sfnELfjBuZwdwTavhwblY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ssGYmnJ9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EA85C4CED1;
+	Wed, 19 Feb 2025 23:10:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740006490;
-	bh=Xs1gPh4JhWP/8ya71+EAU0oDhPGutD9vI7+Q3WYB95M=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=D1WQq79VgZEirpJs744p3R9dpoIsArvKYimSeVZi9Dr/le2i6qCy1OkEdhSUia5RK
-	 5V/5naZORZ8p0bbk1NWRUso5TaVI/orUw64L+b/z9b3Z3YSfhD9XXmEFShUwly5fD2
-	 eqEXkgKpORJq0TvVtEgo6wgEuyB+0V2WiLI5RMSnBcUT+nDM8CG8oTGskabVj86COH
-	 i3mZw0gXSp/TVXy7CPNzGsvkvavbejDF02r5ACd8t+rOLHZaAzqDt/AfNm7cJJtdNA
-	 obprQoZVpM3MMKGKZsVJgP1ZbnF2af9DmBr59HPqdyINDhLD9vLP+MSe2EHP7hiZUY
-	 Hq1f4T0gWj8ww==
-From: Mark Brown <broonie@kernel.org>
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Andrei Simion <andrei.simion@microchip.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Balakrishnan Sambath <balakrishnan.s@microchip.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20250219-sound-atmel-at91sam9g20ek-v3-1-d7c082af4e14@microchip.com>
-References: <20250219-sound-atmel-at91sam9g20ek-v3-1-d7c082af4e14@microchip.com>
-Subject: Re: [PATCH v3] ASoC: dt-bindings: atmel-at91sam9g20ek: convert to
- json-schema
-Message-Id: <174000648731.2064138.12115170736497220241.b4-ty@kernel.org>
-Date: Wed, 19 Feb 2025 23:08:07 +0000
+	s=k20201202; t=1740006637;
+	bh=CYLczoHD6qvbYSNlRY5igolvyzZvd2e9ewBvJXOSbIw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ssGYmnJ9qxwuROAsGnBlSTwZir7tTkewQhMyWzapIUf0BfmMOI2Ju3oj8Vr49jREA
+	 lUF4QK8E0rZiO07qAKQLe0etXjkWtMS5tNUHq8pqqbknRdEIOnVI8XmdBSfze0riaJ
+	 QmWNOZmUeyzjZtAbiLv7WJLTu+X/breMLqPTt1Z563RcmmbjqUJMTPzpZcTuICsr13
+	 gyJYadZesKuK9+AnT7OrceSijZnMd92ubLhHUpUhSN+5jkVVB0NW1sZeFsyqGDr2Qb
+	 IxULEIJhGfskmfeCtB9KknZYkDsKvA6jpYULrSeRQ3CnTcVFr4P9ETmWiUq39Zt9+b
+	 AU2rl7Sggwogw==
+Date: Wed, 19 Feb 2025 17:10:36 -0600
+From: Rob Herring <robh@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/6] dt-bindings: thermal: rockchip: document otp thermal
+ trim
+Message-ID: <20250219231036.GA3137058-robh@kernel.org>
+References: <20250216-rk3576-tsadc-upstream-v1-0-6ec969322a14@collabora.com>
+ <20250216-rk3576-tsadc-upstream-v1-4-6ec969322a14@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-42535
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250216-rk3576-tsadc-upstream-v1-4-6ec969322a14@collabora.com>
 
-On Wed, 19 Feb 2025 11:22:27 +0530, Balakrishnan Sambath wrote:
-> Convert atmel-at91sam9g20ek-wm8731-audio DT binding to yaml
-> based json-schema.Change file name to match json-scheme naming.
+On Sun, Feb 16, 2025 at 12:34:53AM +0100, Nicolas Frattaroli wrote:
+> Several Rockchip SoCs, such as the RK3576, can store calibration trim
+> data for thermal sensors in OTP cells. This capability should be
+> documented.
+
+Is several most or a minority as this change is enabled for everyone.
+
 > 
+> Such a rockchip thermal sensor may reference cell handles that store
+> both a chip-wide trim for all the sensors, as well as cell handles
+> for each individual sensor channel pointing to that specific sensor's
+> trim value.
 > 
+> Additionally, the thermal sensor may optionally reference cells which
+> store the base in terms of degrees celsius and decicelsius that the trim
+> is relative to.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  .../bindings/thermal/rockchip-thermal.yaml         | 44 ++++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> index 49ceed68c92ce5a32ed8d4f39bd88fd052de0e80..8d27ddefcc64e29f0faab059888805802c948b41 100644
+> --- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> @@ -40,6 +40,21 @@ properties:
+>        - const: tsadc
+>        - const: apb_pclk
+>  
+> +  nvmem-cells:
+> +    items:
+> +      - description: cell handle of the low byte of the chip fallback trim value
+> +      - description: cell handle of the high byte of the chip fallback trim value
+> +      - description: cell handle to where the trim's base temperature is stored
+> +      - description:
+> +          cell handle to where the trim's tenths of Celsius base value is stored
+> +
+> +  nvmem-cell-names:
+> +    enum:
+> +      - trim_l
+> +      - trim_h
+> +      - trim_base
+> +      - trim_base_frac
+> +
+>    resets:
+>      minItems: 1
+>      maxItems: 3
+> @@ -51,6 +66,12 @@ properties:
+>        - const: tsadc
+>        - const: tsadc-phy
+>  
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+>    "#thermal-sensor-cells":
+>      const: 1
+>  
+> @@ -72,6 +93,29 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      enum: [0, 1]
+>  
+> +patternProperties:
+> +  "^([a-z]+)@[0-9]+$":
 
-Applied to
+If each node is a sensor or channel, then make that the node name.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/1] ASoC: dt-bindings: atmel-at91sam9g20ek: convert to json-schema
-      commit: c8d08464bce947ee060e0174a3f4e87503269d0c
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+> +    type: object
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+> +        description: sensor ID, a.k.a. channel number
+> +
+> +      nvmem-cells:
+> +        items:
+> +          - description: handle of cell containing low byte of calibration data
+> +          - description: handle of cell containing high byte of calibration data
+> +
+> +      nvmem-cell-names:
+> +        items:
+> +          - const: trim_l
+> +          - const: trim_h
+> +
+> +    required:
+> +      - reg
+> +
+> +    unevaluatedProperties: false
+> +
+>  required:
+>    - compatible
+>    - reg
+> 
+> -- 
+> 2.48.1
+> 
 
