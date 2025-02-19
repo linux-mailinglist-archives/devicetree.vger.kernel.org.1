@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-148211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AB6DA3B1F3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 08:04:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40F70A3B200
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 08:13:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E56723A5ECB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 07:04:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C95C1895126
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 07:13:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87B591BEF83;
-	Wed, 19 Feb 2025 07:04:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6385C1C175A;
+	Wed, 19 Feb 2025 07:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F/G9/SRM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PKUbgD8z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E18B2AE95;
-	Wed, 19 Feb 2025 07:04:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395E61C173D;
+	Wed, 19 Feb 2025 07:13:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739948685; cv=none; b=f760Lyuce1Tu6DBfnMtuSlhHao/8pLIqwbiVejSi6+IB5T/j5TB4oRME2CNsq+2oMXNaXPSYWOmj0gQISGVeXQUXl88SVPpNAdkszET2nbHfNx0iySNCdN9n00K0HdExNR4fSxQEIAMrJ6FkXa57xfdqFr2CZEIUBJGbEJMzbqQ=
+	t=1739949202; cv=none; b=LgpIRtUZAiu9yNG1N5mPJ5cpGK2YCh7nd/nnQ8uqQ4dFsTPMA4kGWHNFHSjSKbyJpQ3s1tXDohc4Vf+PjTcSxluvka+nc92wGcF1d+Xq+LMhKcEctrF0dHijYDjEMf8I7LZtfxWM0nD9fusplLAISX2Y5TE4ljtN1cvNk6aqlDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739948685; c=relaxed/simple;
-	bh=dC7GQvlXoM5iJvG/a0Q7zqLPoi8qff/clSHCbNA/WV8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=hs+CpRuPQBVeS7wDTEHx6XH+t08e5vGoOfoRk64b/gVmRNky0VFNeTBaMtYXadEN4Nlqetr/+dVaceroiv8QUer6FwFHy56J93lMWkg0O+GQU0jKb4e9BFt9Z/+7XU5Qf9y/yBsBBqL7zme5hZW+XEnbcuP31RNZI7MeOGFcR0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F/G9/SRM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50FA4C4CED1;
-	Wed, 19 Feb 2025 07:04:41 +0000 (UTC)
+	s=arc-20240116; t=1739949202; c=relaxed/simple;
+	bh=9FgT1+1tE7gWdG75LwlHrufTFrMoHOw0nKEua0q9+OU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eGOWUaFLDczusVAeLZJiNzvl9uZeeq1ETLeGkXCg97fZmlbMeofVcQMcUvUkCORN9MKhn61Djxkt1SAE974dT9CLsOd/kcePGFgTloSwjOttpoP6EKRLN605u3ct05l6FT9IBM/2EgBqG6a5/A22r3R6STKeqcI7HY1+6drBCJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PKUbgD8z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5E92C4CEE7;
+	Wed, 19 Feb 2025 07:13:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739948684;
-	bh=dC7GQvlXoM5iJvG/a0Q7zqLPoi8qff/clSHCbNA/WV8=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=F/G9/SRMlTVv33DHCVwJpFaidrJSp1gBhL0DCehLZSZsFlDWoB6L6DWm98EtkZusi
-	 JzTyV4ANYuOJ2cpl9nzS7fN65fS6Wyet3eRlR7lbIdt9WH6eqLRzHb7wuhyPzpc4HY
-	 CdDckYTznRsfD+ilGUF7nXID4BrQQkqkrv0CD3E8ZUlCNEI01U7DCN79uDN6XTPnXE
-	 YWHLBfdsdJePkuoTdWiFlMEm7oZOw7NdCTZusP2JZMsvufKz6BUy8al4TEeVJKM4mH
-	 Kf5yCEiD/+frL+zjXoJZYXmk9FlnP7AaXKGha6nbatl3CZ74g90HpCvWIq9Zk9rHGD
-	 Bk/8MxsH4lKwQ==
-Message-ID: <cab7b294-a27c-438a-b6e1-b8928a8ad202@kernel.org>
-Date: Wed, 19 Feb 2025 08:04:39 +0100
+	s=k20201202; t=1739949201;
+	bh=9FgT1+1tE7gWdG75LwlHrufTFrMoHOw0nKEua0q9+OU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PKUbgD8z0xSJXOuXv4BNfqDcRlfSVitVHVEtw1PYtcAVUJyW8aQwHLztvh3zNok9U
+	 j97vEcBl3H8DdM/M65EfLzf0tcyuIDOJCEUZ8IBs7gHieM/uQmaAuIppaL5YCZfpC1
+	 k+vrAvBulU9bKYm2brNFNKpJvz4Q7LaJhuAqQzXo5JY4WaWP60fOEDar3RS+LBgtqG
+	 QVzNyV9BJgr6Bdx5WWTl2pS6rp2ci6K4zVrP/9KIPsLRzgYvoUoU60PdktkgwvHDKt
+	 BYkIdM7CGsOO9wcrek/H49KjgGLncJEGWtT+/uki+JogfqbpM5Mpv1OtcP836Va2Gm
+	 W5vEhToPLQ0Dg==
+Message-ID: <048edaab-253e-4823-9083-0e7fcc339fa5@kernel.org>
+Date: Wed, 19 Feb 2025 08:13:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: socfpga: agilex5: add TB daughter board
- support
-To: niravkumar.l.rabara@intel.com, Dinh Nguyen <dinguyen@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, nirav.rabara@altera.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250218094434.3574060-1-niravkumar.l.rabara@intel.com>
- <20250218094434.3574060-3-niravkumar.l.rabara@intel.com>
+Subject: Re: [PATCH v5 2/8] dt-bindings: arm: Add Morello fvp compatibility
+To: Vincenzo Frascino <vincenzo.frascino@arm.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Sudeep Holla <sudeep.holla@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>
+References: <20250213180309.485528-1-vincenzo.frascino@arm.com>
+ <20250213180309.485528-3-vincenzo.frascino@arm.com>
+ <20250214-utopian-griffin-of-innovation-fabc40@krzk-bin>
+ <9570e9bd-0555-4abb-930d-3f393df2b4ca@arm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,39 +110,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250218094434.3574060-3-niravkumar.l.rabara@intel.com>
+In-Reply-To: <9570e9bd-0555-4abb-930d-3f393df2b4ca@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/02/2025 10:44, niravkumar.l.rabara@intel.com wrote:
-> @@ -0,0 +1,27 @@
-> +// SPDX-License-Identifier:     GPL-2.0
-> +/*
-> + * Copyright (C) 2025, Altera Corporation
-> + */
-> +#include "socfpga_agilex5_socdk.dts"
-> +
-> +/ {
-> +	model = "SoCFPGA Agilex5 SoCDK - TB";
-> +	compatible = "intel,socfpga-agilex5-socdk-tb", "intel,socfpga-agilex5";
-> +
-> +	leds {
-> +		led-0 {
-> +			label = "hps_led0";
-> +			gpios = <&portb 12 GPIO_ACTIVE_HIGH>;
-> +		};
-> +	};
-> +};
-> +
-> +&spi0 {
-> +	status = "okay";
-> +
-> +	spidev@0{
-> +		compatible = "rohm,dh2228fv";
+On 18/02/2025 19:07, Vincenzo Frascino wrote:
+> 
+> 
+> On 14/02/2025 08:12, Krzysztof Kozlowski wrote:
+>> On Thu, Feb 13, 2025 at 06:03:03PM +0000, Vincenzo Frascino wrote:
+>>> Add compatibility to Arm Morello Fixed Virtual Platform.
+>>>
+>>> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml | 4 ++++
+>>>  1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+>>> index 40e7910756c8..e71e3e33c4be 100644
+>>> --- a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+>>> @@ -122,6 +122,10 @@ properties:
+>>>          items:
+>>>            - const: arm,morello-sdp
+>>
+>> That's just part of the enum here.
+>>
+> 
+> I am not sure on what you want me to do :)
 
-NAK. You do not have such device there.
-
-Also, follow DTS coding style and fix all white space issues here.
+Don't duplicate, combine pieces which look like enumeration into one
+enum entry.
 
 Best regards,
 Krzysztof
