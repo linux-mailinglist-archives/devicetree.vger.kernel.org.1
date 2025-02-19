@@ -1,174 +1,276 @@
-Return-Path: <devicetree+bounces-148548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D91DA3C7AA
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 19:34:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2CE7A3C7B6
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 19:36:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECFC1179F53
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 18:31:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF0251884D71
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 18:36:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AE0021578A;
-	Wed, 19 Feb 2025 18:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8682E1D47B5;
+	Wed, 19 Feb 2025 18:36:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="PmypkfxN"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="KOunV8es"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57FD0215184
-	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 18:29:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739989775; cv=none; b=na6hJTof5SSyUPulMWdvs9zseOQdlUjq2Og8L7dzF1wNRuEkZYf3PJhhxOlA5XqzGDv+qzczyvtroiQSsTk08vCsHASIvlLg/fC8cWe/OqVuVfbNCsmHDfwvkHnZeXDeLRlBzbmjDASiJhkcYv4A63eNs90m2vew2hsauE0nja0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739989775; c=relaxed/simple;
-	bh=hNvfVR0ZZ2UFjzAGnYJWeJC+N+Q90ykly/lra30oclk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tdxK5+ml/2ACQpCCdn/3+CvWRnacHRQiTVae76lUxqepEokJM1YBWGFEIG6Ul+xPWQgQvUs1xNS2aN4E/Fuzjo2IMlf/rwp0ebllC5V1geRqT0GfWWDgOa0Tu6z/fSewkovM//SE1YJbuF/z1W4N4+8dbOz0iF4otVRZQSts4So=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=PmypkfxN; arc=none smtp.client-ip=209.85.222.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7be49f6b331so8092885a.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 10:29:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1739989772; x=1740594572; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tKMJ3X6Jzp+wNnNxZ3cTu3f1diCv42/eMEvkIcSBFc4=;
-        b=PmypkfxNzF+1Ps74JyQib0woINIH5uY8g24xF+LDigxh14LIjFyLE4tKpMD43Pz3GO
-         MCBNVELcQ9qeJ+GlKdR7zSCCGPr5akM/moSmVRLGvpsA3lIROeti2Jl9tXfBJjTItK2c
-         yYlpknRMhmSE3bcZl9cojpPBNKSOi05sL9qzJqVAxnCzwH/w6Eg81YPgtoHaXrEVyOLH
-         RjsUJ3bO6J01LTuSmO2En+JrIvAWh9IuI6FvwT+9z1E/9lMuv0FO08vAjWaH5cdSmKHX
-         SB4tUgyMVmlq2LuYol7f5Mo4ZcjHP+FdRq9UMqrZw9INshSXW5yUndjpcLxwQXQMMVhe
-         oV3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739989772; x=1740594572;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tKMJ3X6Jzp+wNnNxZ3cTu3f1diCv42/eMEvkIcSBFc4=;
-        b=nMCYo1Juy3gBY7BvPu3QRjJkmxwbtWIgkUlUwMVx6VWnLHHbR0HYGcj8wbV0onS2aY
-         Y34NSE2woksZsd3UPF6VU1JLdt/OBuIYePkhhUz5JWwKLjKurM/Lw/6V2fyUmWR3l24Z
-         n/VWUNmJJnmSwOZ+mXmV5IvXOy+4bKmkJb2ccD6tjVdYfHiHi7KvuxhMFM88i5mNZ0mw
-         irbS1VdFtsByiEP8MOsWYa+R2+JjrzPh2uyDpQvkL0cG/lscbsoiwysYib1IjnYLnyvX
-         LCxIxX7LRJiFNz2BomrMbWb21DjGyxwaFpRQ96IrfqSEC+YR/QVTiYoHy7kzktp2HzjR
-         7Zdw==
-X-Forwarded-Encrypted: i=1; AJvYcCUpK7UC7ZcaZ6eu5uWG3daTQdxTboHypJ3+I2LZrH8ziCDsGdj8eJ72Y5Yplq27iiGVN1/MhS4hjltJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxV/EgC0ymEkapFYm1ki6zpZuMb3q0+Ox81+TAV5OFukv1g66SQ
-	R2NQSxjK5B49mv3L82uDqtiyQXQS9rQ97uedCT0N7QJCr9ufns2w8K7H02PRO/E=
-X-Gm-Gg: ASbGnctYTO/jzmCk2d1TI2dGCjRX3n03t96LK/RBdufzqMlcQK8nmllIsc+cx3/XFeC
-	pP5Gkmm7RL+5S/egx3VHcHfY1aiHGyRFfxqPOdsWeRASG3GNQOQMT1eIpOan+1mSMgkm+cTnfTv
-	O3ECbyNdnjOXuVNt30WPlgTJUeEIa59OG/IP3oa+icqFD9EoVCo3JZlvTzSFwnXKAra/LzQ3cn/
-	lFrTWF/MUlO/fVJwkvmLgFpSEIkMGz/V9ULoVgYOxGicH1aAnG/2Fw9dKytGA+9M0FqxU1b3r/I
-	A6ui4eOCyy3iFrASqZTavzfHkIeboWti32Y/BBEAfRa2K4yhuoaP3ZSzU8UjX3oC
-X-Google-Smtp-Source: AGHT+IG6vD9GMzJFRgKV5tkVvAkzSXjZzf3sKuYbia/+L+uYcxerEW/IEbYH+D0NjcMpo2cEEaQ1ow==
-X-Received: by 2002:a05:620a:1787:b0:7be:5bc1:9460 with SMTP id af79cd13be357-7c08aa9ab2dmr2845829285a.35.1739989765100;
-        Wed, 19 Feb 2025 10:29:25 -0800 (PST)
-Received: from ziepe.ca (hlfxns017vw-142-68-128-5.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.128.5])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c0a609cb1bsm303023085a.111.2025.02.19.10.29.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2025 10:29:24 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1tkop2-000000009V2-07PN;
-	Wed, 19 Feb 2025 14:29:24 -0400
-Date: Wed, 19 Feb 2025 14:29:24 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Stuart Yoder <stuyoder@gmail.com>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Charan Teja Kalla <quic_charante@quicinc.com>
-Subject: Re: [PATCH 2/2] iommu: Get DT/ACPI parsing into the proper probe path
-Message-ID: <20250219182924.GN3696814@ziepe.ca>
-References: <cover.1739486121.git.robin.murphy@arm.com>
- <c2f0ae276fd5a18e1653bae8bb0c51670e35b283.1739486121.git.robin.murphy@arm.com>
- <20250214201435.GF3696814@ziepe.ca>
- <4a7823b2-2634-4148-8446-ad01a09b6880@arm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7914D286284;
+	Wed, 19 Feb 2025 18:36:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739990202; cv=pass; b=FsauBOoVHX0kb73kQ5B2a2lfBoXjelHSk+qxHiuMg2NkRRXb5Xkg7creyjXuH/Wt8d2hOZwvDXDeh+keyeFNvhIi2OQ3/TXrE/GeoqetP/Io55gn+4Mc90nq96tRYGyEZd/KmZ5zI0zHSF/s5j1ORE7+IlnDfmKWHha0HP2hfCA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739990202; c=relaxed/simple;
+	bh=TsUixF9mIv/35vEeja6Bk/sYddab6SYJhgJi5S2YhrA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Sd/AsQUb0hucGewHjBjqx66erZfyGdDXGQNWH7zjzcYyUMzGrGEQlIqijwRtu4hnCPW4JObVLwFyGZ9xpoFg1v3wNuuvY/x6Nz0ZAvPFWfNXBgz4Bb2SZwYcvVNgihh9tyJjUC8U1mooR3sX2JoRmP71YjXvXJfVqS+dpG6Nti8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=KOunV8es; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1739990144; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=gYnkSY7/jVSezHnWDffS2tNP3fqZwhApKxOUK0q6i6dOUFv72iitGi1VcQLsiEjlPwv4dcJJiXf6UNyjLA7PXXIyAnsA2jJeyAbBoCMzrupFutLd7IWeE5iJVBmMXnd6q8CWtUha8EgN6EJl6fkPX1TIZZnppjp6DhLc8hw5Ols=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1739990144; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=tIsfIrSG8Z3x+sFuGOSs6OyFacOIgUXadmEso+KA17k=; 
+	b=XgC2wxMT1phAWHbJ30TF4r2eoSbncZRC2RE8KS/xwZXFpbfmb7jN1kfk5EMECDmjXQbaq9LBvgkiEYV8hF8CIidoz+a8qSI6p9juN3HaXUsdFHUOc9yFJwYsCp2MjirCTghH2cn7wsrplGS23LEAS61alKEHFyJEerDwkQn+7x0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
+	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1739990144;
+	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=tIsfIrSG8Z3x+sFuGOSs6OyFacOIgUXadmEso+KA17k=;
+	b=KOunV8esVfnnMFXE3vjufoybEmlveiO6sMy+CNBOSH2/IYxmExzPNKNUYjx2Rt92
+	C8snIxuIISrZZCgFE5O800gUgQxwHQNz2sfwz/PBaHaOwstqaHTTPAJPIdyybgEht36
+	Bv1Sn1LqB7v+teUCxMWrY7xOpXf1v2ehaFKravvo=
+Received: by mx.zohomail.com with SMTPS id 1739990142683136.66201924766733;
+	Wed, 19 Feb 2025 10:35:42 -0800 (PST)
+Message-ID: <3fcdbd35-9ff2-4159-8076-98eefd6ed8c7@collabora.com>
+Date: Wed, 19 Feb 2025 21:35:36 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4a7823b2-2634-4148-8446-ad01a09b6880@arm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 4/6] media: platform: synopsys: Add support for HDMI
+ input driver
+To: Hans Verkuil <hverkuil@xs4all.nl>,
+ Shreeya Patel <shreeya.patel@collabora.com>, Heiko Stuebner
+ <heiko@sntech.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, jose.abreu@synopsys.com,
+ nelson.costa@synopsys.com, shawn.wen@rock-chips.com,
+ nicolas.dufresne@collabora.com,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: kernel@collabora.com, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Tim Surber <me@timsurber.de>
+References: <20250218184439.28648-1-dmitry.osipenko@collabora.com>
+ <20250218184439.28648-5-dmitry.osipenko@collabora.com>
+ <f32a0011-1653-48dd-9061-047f9009310b@xs4all.nl>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Content-Language: en-US
+In-Reply-To: <f32a0011-1653-48dd-9061-047f9009310b@xs4all.nl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-On Mon, Feb 17, 2025 at 03:00:46PM +0000, Robin Murphy wrote:
-> On 14/02/2025 8:14 pm, Jason Gunthorpe wrote:
-> > On Thu, Feb 13, 2025 at 11:49:00PM +0000, Robin Murphy wrote:
-> > 
-> > > much just calling the same path twice. At client driver probe time,
-> > > dev->driver is obviously set; conversely at device_add(), or a
-> > > subsequent bus_iommu_probe(), any device waiting for an IOMMU really
-> > 
-> > Could you put the dev->driver test into iommu_device_use_default_domain()?
-> > 
-> > It looks like many of the cases are just guarding that call.
-> > 
-> > > should *not* have a driver already, so we can use that as a condition to
-> > > disambiguate the two cases, and avoid recursing back into the IOMMU core
-> > > at the wrong times.
-> > 
-> > Which sounds like this:
-> > 
-> > > +		mutex_unlock(&iommu_probe_device_lock);
-> > > +		dev->bus->dma_configure(dev);
-> > > +		mutex_lock(&iommu_probe_device_lock);
-> > > +	}
-> > 
-> > Shouldn't call iommu_device_use_default_domain() ?
+Hi Hans,
+
+Thank you very much for the review!
+
+On 2/19/25 12:11, Hans Verkuil wrote:
+> Hi Dmitry,
 > 
-> Semantically it shouldn't really be called at this stage, but it won't be
-> anyway since "to_<x>_driver(NULL)->driver_managed_dma" is not false -
-> trouble is it's also not true ;)
-
-That case in PCI I understood, but the other cases seemed like they
-would be OK, especially if group is NULL
-
-> > This is the test I mean, if iommu_group is set then
-> > dev->iommu->iommu_dev->ops is supposed to be valid too. It seems like
-> > it should be done earlier..
+> More review comments. Some are trivial, but the real problem is that the 5V/HPD
+> handling is really confusing and, from what I can tell, incorrect in places.
 > 
-> Yeah, looking at it now I'm really not sure why this ended up in this order
-> - I guess I was effectively adding the dma_configure() call to the front of
-> the existing iommu_fwspec_ops() check, and then I moved the lockdep_assert()
-> up to make more sense. But then the ops check probably should have been
-> after the group check to begin with, for much the same reasoning as above.
-> I'll sort that out for v2.
-
-I guess check it at the top and then check it again after re-locking.
-
-> > > +	 * And if we do now see any replay calls, they would indicate someone
-> > > +	 * misusing the dma_configure path outside bus code.
-> > > +	 */
-> > > +	if (dev_iommu_fwspec_get(dev) && dev->driver)
-> > > +		dev_WARN(dev, "late IOMMU probe at driver bind, something fishy here!\n");
-> > 
-> > WARN_ON_ONCE or dump_stack() to get the stack trace out?
+> I suspect that there are some misunderstandings on how this is supposed to
+> work. I've tried to explain it in my comments, but feel free to contact me if
+> anything is still unclear.
 > 
-> Indeed, hence dev_WARN() (!= dev_warn())
+...
+>> +#define EDID_NUM_BLOCKS_MAX				2
+> 
+> Is this indeed the maximum number of supported EDID blocks?
+> These days 4 EDID blocks is typically the maximum. If the hardware
+> supports it, then I recommend implementing support for 4 EDID blocks.
+> 
+> If it really only supports 2 blocks, then add a comment stating that
+> this is a HW limitation.
 
-Oh, I've never seen that variation before!
+Good catch. Hardware supports 4 EDID blocks, will change in v8.
 
-Jason
+...
+>> +static int hdmirx_subscribe_event(struct v4l2_fh *fh,
+>> +				  const struct v4l2_event_subscription *sub)
+>> +{
+>> +	switch (sub->type) {
+>> +	case V4L2_EVENT_SOURCE_CHANGE:
+>> +		if (fh->vdev->vfl_dir == VFL_DIR_RX)
+> 
+> This is weird, the direction is always RX, so can't you just drop this test?
+
+Suppose this code was copied from another driver, will drop.
+
+...
+>> +static int hdmirx_set_edid(struct file *file, void *fh, struct v4l2_edid *edid)
+>> +{
+>> +	struct hdmirx_stream *stream = video_drvdata(file);
+>> +	struct snps_hdmirx_dev *hdmirx_dev = stream->hdmirx_dev;
+>> +	u16 phys_addr;
+>> +	int ret = 0;
+>> +
+>> +	if (edid->pad)
+>> +		return -EINVAL;
+>> +
+>> +	if (edid->start_block)
+>> +		return -EINVAL;
+>> +
+>> +	if (edid->blocks > EDID_NUM_BLOCKS_MAX) {
+>> +		edid->blocks = EDID_NUM_BLOCKS_MAX;
+>> +		return -E2BIG;
+>> +	}
+>> +
+>> +	hdmirx_disable_irq(hdmirx_dev->dev);
+>> +
+>> +	if (!edid->blocks) {
+>> +		cec_phys_addr_invalidate(hdmirx_dev->cec->adap);
+>> +		hdmirx_dev->edid_blocks_written = 0;
+>> +
+>> +		hdmirx_dev->hpd_pull_low = true;
+>> +
+>> +		if (tx_5v_power_present(hdmirx_dev))
+>> +			hdmirx_plugout(hdmirx_dev);
+>> +		else
+>> +			hdmirx_hpd_ctrl(hdmirx_dev, false);
+>> +	} else {
+>> +		phys_addr = cec_get_edid_phys_addr(edid->edid,
+>> +						   edid->blocks * 128, NULL);
+>> +		ret = v4l2_phys_addr_validate(phys_addr, &phys_addr, NULL);
+>> +		if (ret)
+>> +			goto out;
+>> +
+>> +		if (tx_5v_power_present(hdmirx_dev))
+>> +			hdmirx_plugout(hdmirx_dev);
+>> +
+>> +		hdmirx_dev->hpd_pull_low = false;
+>> +		hdmirx_hpd_ctrl(hdmirx_dev, false);
+>> +		hdmirx_write_edid(hdmirx_dev, edid);
+>> +	}
+>> +out:
+>> +	hdmirx_enable_irq(hdmirx_dev->dev);
+> 
+> The way the HPD is handled is really confusing in the code. I had to dig through
+> the driver code to discover that the HPD is enabled via hdmirx_enable_irq(). But
+> normally interrupts have nothing to do with the HPD.
+> 
+> The HPD is really only controlled by whether there is an EDID or not, and optionally
+> whether 5V is high or not. The only reason for pulling the HPD low if 5V is low is
+> to save a bit of power: if nothing is connected, then there is no need to pull the HPD
+> high, after all, nobody is listening to it.
+> 
+> But this is typically entirely separate from interrupts.
+> 
+> The 5V decides whether there is a video source or not, so if it goes low, then you
+> stop streaming. The HPD tells the video source if there is an EDID or not. But that
+> is independent of video streaming. Updating the EDID while the source is sending
+> video shouldn't interrupt video capture. Most likely the source will detect an EDID
+> change, parse the new EDID and then it might decide to stop streaming and reconfigure,
+> or just continue streaming.
+> 
+> The code feels like you are trying to be smart, when it is really just a fairly
+> dumb mechanism.
+> 
+> I think this should be rewritten, unless there are some odd hardware constraints.
+> In which case that should be documented.
+
+Thanks a lot for the clarification! The HPD logic was borrowed from the downstream driver, will try to change it for v8. I'm not aware about hardware constraints and TRM suggests that driving HPD seprately from 5v should work fine, will see how it will work in practice.
+
+...
+>> +static int hdmirx_g_parm(struct file *file, void *priv,
+>> +			 struct v4l2_streamparm *parm)
+>> +{
+>> +	struct hdmirx_stream *stream = video_drvdata(file);
+>> +	struct snps_hdmirx_dev *hdmirx_dev = stream->hdmirx_dev;
+>> +	struct v4l2_fract fps;
+>> +
+>> +	if (parm->type != V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE)
+>> +		return -EINVAL;
+>> +
+>> +	fps = v4l2_calc_timeperframe(&hdmirx_dev->timings);
+>> +	parm->parm.capture.timeperframe.numerator = fps.numerator;
+>> +	parm->parm.capture.timeperframe.denominator = fps.denominator;
+> 
+> You can just write:
+> 
+> 	parm->parm.capture.timeperframe = v4l2_calc_timeperframe(&hdmirx_dev->timings);
+
+Ack
+
+...
+>> +static void hdmirx_plugin(struct snps_hdmirx_dev *hdmirx_dev)
+>> +{
+>> +	hdmirx_submodule_init(hdmirx_dev);
+>> +	hdmirx_update_bits(hdmirx_dev, SCDC_CONFIG, POWERPROVIDED,
+>> +			   POWERPROVIDED);
+>> +	hdmirx_hpd_ctrl(hdmirx_dev, true);
+> 
+> Just because the 5V appeared, it doesn't mean that the HPD should
+> go high. That depends on whether there is an EDID or not.
+> 
+> As I said above, the whole 5V/HPD handling seems confused in this driver.
+
+In v6 I added 'hpd_pull_low' variable that force-disables HPD if there is no EDID. Hence, this hdmirx_hpd_ctrl() call doesn't enable HPD without EDID. I'll remove this call in v8 if driving HPD independently from 5v status will work fine.
+
+static void hdmirx_hpd_ctrl(struct snps_hdmirx_dev *hdmirx_dev, bool en)
+{
+...
+	if (hdmirx_dev->hpd_pull_low && en)
+		return;
+        ^^^^
+
+...
+>> +static void hdmirx_delayed_work_res_change(struct work_struct *work)
+>> +{
+>> +	struct snps_hdmirx_dev *hdmirx_dev;
+>> +	bool plugin;
+>> +
+>> +	hdmirx_dev = container_of(work, struct snps_hdmirx_dev,
+>> +				  delayed_work_res_change.work);
+>> +
+>> +	mutex_lock(&hdmirx_dev->work_lock);
+>> +	plugin = tx_5v_power_present(hdmirx_dev);
+>> +	v4l2_dbg(1, debug, &hdmirx_dev->v4l2_dev, "%s: plugin:%d\n",
+>> +		 __func__, plugin);
+>> +	if (plugin) {
+>> +		hdmirx_interrupts_setup(hdmirx_dev, false);
+>> +		hdmirx_submodule_init(hdmirx_dev);
+>> +		hdmirx_update_bits(hdmirx_dev, SCDC_CONFIG, POWERPROVIDED,
+>> +				   POWERPROVIDED);
+>> +		hdmirx_hpd_ctrl(hdmirx_dev, true);
+>> +		hdmirx_phy_config(hdmirx_dev);
+>> +
+>> +		if (hdmirx_wait_signal_lock(hdmirx_dev)) {
+>> +			hdmirx_plugout(hdmirx_dev);
+> 
+> plugout() pulls the HPD low, but why? That has nothing to do with the signal lock.
+> 
+> You need to take a good look at the 5V/HPD handling, this isn't right.
+> 
+> Feel free to ask questions if you are not clear on how it should behave.
+
+Again thanks a lot for the review, very appreciate! Will contact you if will become necessary.
+
+-- 
+Best regards,
+Dmitry
 
