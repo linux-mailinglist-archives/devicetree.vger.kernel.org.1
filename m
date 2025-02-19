@@ -1,48 +1,79 @@
-Return-Path: <devicetree+bounces-148272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3518AA3B534
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 09:55:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF22A3B6F6
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:11:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E553188A264
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 08:50:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 114633B3C25
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 08:59:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5BA11DF962;
-	Wed, 19 Feb 2025 08:41:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E9DE1DFE0B;
+	Wed, 19 Feb 2025 08:51:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kIijJnw0"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Hu3XFiON"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 950111DF73E;
-	Wed, 19 Feb 2025 08:41:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97BF21DED71
+	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 08:51:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739954480; cv=none; b=T0CqL9UoVarxGz92IzJXuJEVDxVy1yQpRhgWuQSjetYGTRm/UQxWjjy3gHFobC4lj8PdsArJT2NBShMxrxja1KI+s3RgJ6Kf/RQEXG5YMCokMPWgymUk/IQODa5nOVwaa6fHCjUMH5lR7sfGmaIR/zMyuwBz6+l7TW25jASGbZ8=
+	t=1739955110; cv=none; b=EiTt+11mt8ECpzPkIgIYU1O0CqdeX/lIKqKO0QOE234GodHZSRERat8Cy98EqagpRvTR+TYeuLfaEyKSff/hglZ3Si2oo+drUZ2rb91K0eqUYl+/Nh7TBggQEZ4gW/IjrZdAAfU/kqkcG3/r9d+ydqfDuuK4LwLo6UyWMX4C98s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739954480; c=relaxed/simple;
-	bh=AWxFIxSuM9UaTpKU/0MoKHzcPWlerTByo5D5vqmvIfw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FO89lntoQooXZbClSHm4sT9HrfhjuabhrCcqNXWfO8WCSlo+LRS8n4MDBYcde0bjIOGVE2odcMdfNrdfx2Hc/YeOP/NkHG6djEsyDFbmf7QfbR1utPQYVGwbKDoK6xhus106TTvdZHb+ehAsl/dWLZgjvL+HRZzALhIJZEN67UA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kIijJnw0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E12FC4CED1;
-	Wed, 19 Feb 2025 08:41:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739954480;
-	bh=AWxFIxSuM9UaTpKU/0MoKHzcPWlerTByo5D5vqmvIfw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kIijJnw0ape2lmf/Jq93R6AJ9h5NBudnmJkGi7ddXqnfyBHZtA3OulmrggyTs0KLJ
-	 atypGe1XFkxd7+e/COEQZKv9qAuSwVgqUd2BFnlKd8ym0PYQexi1r5/L0q+OU/TFsE
-	 ejET0eFwVw7tj+COfoq6vDFBWrnkz/R5ny72Iu/vT0iwCptwab1zflYjJhLB/nlkzw
-	 ykTstCIb+hJAFJMPnFP8dKjB1SFQ062nUXcfFT16++cmomNDhGvyS5ryHaCLYaHDM/
-	 oc2uhcJMluJ8WfLgk9RbKVkwnl6zjE/rS7VyXSy6rzHDJ3zqVWPI7OxltYLYSp1BNq
-	 878I90C7zkhZw==
-Message-ID: <675ddbf4-dfeb-48dd-b48a-466bf2888ce5@kernel.org>
-Date: Wed, 19 Feb 2025 09:41:15 +0100
+	s=arc-20240116; t=1739955110; c=relaxed/simple;
+	bh=4hEJCtsnqq4IxG0/jdpykXd8yIpqzDbGLFMkp9yeVds=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=tgC7t3+zZHD1xG2SfSvWT8CW7UNEzFLKcer1qfDaAb62WkRCnKmd5vpgEia16y5TVAgOhsfUPhyvFAPwVu1qdvaZn6+CdRHCLN9iqDS9ujCw2fAfhwZqIFH16mcn2spRriCh1XZTn8KAjNw5fuf73fJRnmu5K5H9wh9w/TEOqJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Hu3XFiON; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-abbc38adeb1so229600566b.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 00:51:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1739955103; x=1740559903; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=J2dopUOEbkWXudLU7sGnWO1wuCY7VI0h4RAqKInLyyw=;
+        b=Hu3XFiONQpWzzuRi4ikpbNt8qydWJDT0R5Ca+gCgpyhAfkvYpeSMA9wY4il7MdmQ6M
+         TmWdGmH2aCCs5QF05WSI07+TORMvgt0huv/n+cFNVJUdme88KWknGoBOZtFbYKeyoFjX
+         Q7qMMmaNeG8tofiGPxNC2U9mMKWNAglh9bnBeGxB9ABOheMnKrTwg+aTFyqdQDx4REjP
+         iVidBNJI9GQX0Nf65dDgSB5jQZXq5h0QVKFOgEgyNi9Jf8h+u0LW/hetagL4+1rhiEDM
+         DVq4H1bycmr/asrrDgHtEx9J2Q2zZgWbVjpWhvOq8GsPp9ZLhvlxoS1wq+Ja35ezc3dZ
+         3/2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739955103; x=1740559903;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=J2dopUOEbkWXudLU7sGnWO1wuCY7VI0h4RAqKInLyyw=;
+        b=VfFxde9G85A1gwqOwku8sDjklsjGu8OhMNJrQ7PrNzZns2tTO+sfzNnAoxekMLQehj
+         iA1s4hOV58Vypm+JBnNdig2j7Hy8oK+TYPSTuZ7qkrDzx6UX1uOYTx8jlBcmfwQKvr5u
+         ImkdhukD/grj4rLQkjqu6/38Xh2Sxi3Pd5iAvnQXhyVXA9+Q50cUC+WEof4mmxRhOyia
+         f2yDWSbAWeMQpMOhI/ZE91/sK1Zvh4zdtgnKeviUnVWdm+j3aIkCXTqRqbU5LJHP/uGw
+         vcSHZKwm4FmRFGsGhu2MQqLBv6yWkZQKfaE066eUN4Zy9NfQgy974uJioxrtIgmUtBxO
+         hgHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWlxF/SsqyeQ+2D1uT5MO3alkF1eaA8FOwmUYY+ASIjq7GGoPNXx+ztQo66DgAWuf6NiiVSCNvZSGoU@vger.kernel.org
+X-Gm-Message-State: AOJu0YzA8FXtC5yQb7cNHyxN59RvEVDtUTLwEpIByc6PSS1WK1XHUJhI
+	TpkGhUQ9HqrETlN5c4NDM3kzhtbmjnkkOUcop1TFP7sXyOQhvtrdrMPswB6Vvgo=
+X-Gm-Gg: ASbGncvhmU8J5pb4o9D6S1DO9JxopM7l/n6ZxEFnFq5FhLL3tVeEj7+4VtHzzHU40Ji
+	vGZFborgbVDw+4v59GRHBHB2lnqCqmD78Vwr4JDpal0lwljPFcggFyd7RqA9917RRemdxhbbCjU
+	8+3JVHYRETATr4wJ/Lk8ggInO0zq2h6T14+54YRMV8TEqU/GFgMXrWzIy4YCt7a6lQ0MAI6RjaD
+	g34eNGHJ7+rVdJnO66+8aymN2tuup+7JBzyTQ8dOdj/3Ktt+MKyzWu6fkeo7VBQ/QhwbxV0p9ke
+	yvIDSN+0AEV7L0GvVxdFnkk=
+X-Google-Smtp-Source: AGHT+IFy5LMwjMHF+lyBsWbylZGlIxP2bWCWlwmQuf2NyzqyYPCLtQrAK5Xis2XKpiM0bordtD+JoA==
+X-Received: by 2002:a17:907:96a1:b0:ab6:fd1d:ef6b with SMTP id a640c23a62f3a-abbccebec04mr281429866b.27.1739955102477;
+        Wed, 19 Feb 2025 00:51:42 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.25])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba532594a0sm1246033266b.68.2025.02.19.00.51.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Feb 2025 00:51:41 -0800 (PST)
+Message-ID: <a99ab8eb-274b-449c-8bb6-be9422c5b2a2@tuxon.dev>
+Date: Wed, 19 Feb 2025 10:51:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,321 +81,192 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/3] arm64: dts: exynos: add initial support for
- exynos2200 SoC
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250215130500.170738-1-ivo.ivanov.ivanov1@gmail.com>
- <20250215130500.170738-3-ivo.ivanov.ivanov1@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 01/16] dt-bindings: clock: at91: Split up per SoC
+ partially
+To: Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Ryan Wanner <ryan.wanner@microchip.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alexander Dahl <ada@thorsis.com>
+References: <20250210164506.495747-1-ada@thorsis.com>
+ <20250210164506.495747-2-ada@thorsis.com>
+ <a1dff4af-d771-4424-869f-15d3b6bca013@tuxon.dev>
+ <20250217-shortwave-scoreless-38cb49fe5548@thorsis.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250215130500.170738-3-ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20250217-shortwave-scoreless-38cb49fe5548@thorsis.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/02/2025 14:04, Ivaylo Ivanov wrote:
-> diff --git a/arch/arm64/boot/dts/exynos/exynos2200.dtsi b/arch/arm64/boot/dts/exynos/exynos2200.dtsi
-> new file mode 100644
-> index 000000000..645a31d46
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/exynos/exynos2200.dtsi
-> @@ -0,0 +1,560 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
-> +/*
-> + * Samsung's Exynos 2200 SoC device tree source
-> + *
-> + * Copyright (c) 2025, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> + */
-> +
-> +#include <dt-bindings/clock/samsung,exynos2200.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	compatible = "samsung,exynos2200";
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	interrupt-parent = <&gic>;
-> +
-> +	aliases {
-> +		pinctrl0 = &pinctrl_alive;
-> +		pinctrl1 = &pinctrl_cmgp;
-> +		pinctrl2 = &pinctrl_hsi1;
-> +		pinctrl3 = &pinctrl_ufs;
-> +		pinctrl4 = &pinctrl_hsi1ufs;
-> +		pinctrl5 = &pinctrl_peric0;
-> +		pinctrl6 = &pinctrl_peric1;
-> +		pinctrl7 = &pinctrl_peric2;
-> +		pinctrl8 = &pinctrl_vts;
-> +	};
-> +
-> +	xtcxo: clock-1 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-output-names = "oscclk";
-> +	};
-> +
-> +	ext_26m: clock-2 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-output-names = "ext-26m";
-> +	};
-> +
-> +	ext_200m: clock-3 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-output-names = "ext-200m";
+Hi, Alexander,
 
-What do these two last clocks represent? Where are they?
+On 17.02.2025 11:47, Alexander Dahl wrote:
+> Hello Claudiu,
+> 
+> Am Mon, Feb 17, 2025 at 11:11:44AM +0200 schrieb Claudiu Beznea:
+>> Hi, Alexander,
+>>
+>> On 10.02.2025 18:44, Alexander Dahl wrote:
+>>> Before adding even more new indexes creating more holes in the
+>>> clk at91 drivers pmc_data->chws arrays, split this up.
+>>>
+>>> This is a partial split up only for SoCs affected by upcoming changes
+>>> and by that PMC_MAIN + x hack, others could follow by the same scheme.
+>>>
+>>> Binding splitup was proposed for several reasons:
+>>>
+>>> 1) keep the driver code simple, readable, and efficient
+>>> 2) avoid accidental array index duplication
+>>> 3) avoid memory waste by creating more and more unused array members.
+>>>
+>>> Old values are kept to not break dts, and to maintain dt ABI.
+>>>
+>>> Link: https://lore.kernel.org/linux-devicetree/20250207-jailbird-circus-bcc04ee90e05@thorsis.com/T/#u
+>>> Signed-off-by: Alexander Dahl <ada@thorsis.com>
+>>> ---
+>>>
+>>> Notes:
+>>>     v2:
+>>>     - new patch, not present in v1
+>>>
+>>>  .../dt-bindings/clock/microchip,sam9x60-pmc.h | 19 +++++++++++
+>>>  .../dt-bindings/clock/microchip,sam9x7-pmc.h  | 25 +++++++++++++++
+>>>  .../clock/microchip,sama7d65-pmc.h            | 32 +++++++++++++++++++
+>>>  .../dt-bindings/clock/microchip,sama7g5-pmc.h | 24 ++++++++++++++
+>>>  4 files changed, 100 insertions(+)
+>>>  create mode 100644 include/dt-bindings/clock/microchip,sam9x60-pmc.h
+>>>  create mode 100644 include/dt-bindings/clock/microchip,sam9x7-pmc.h
+>>>  create mode 100644 include/dt-bindings/clock/microchip,sama7d65-pmc.h
+>>>  create mode 100644 include/dt-bindings/clock/microchip,sama7g5-pmc.h
+>>>
+>>
+>> [ ...]
+>>
+>>> diff --git a/include/dt-bindings/clock/microchip,sama7g5-pmc.h b/include/dt-bindings/clock/microchip,sama7g5-pmc.h
+>>> new file mode 100644
+>>> index 0000000000000..ad69ccdf9dc78
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/clock/microchip,sama7g5-pmc.h
+>>> @@ -0,0 +1,24 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+>>> +/*
+>>> + * The constants defined in this header are being used in dts and in
+>>> + * at91 sama7g5 clock driver.
+>>> + */
+>>> +
+>>> +#ifndef _DT_BINDINGS_CLOCK_MICROCHIP_SAMA7G5_PMC_H
+>>> +#define _DT_BINDINGS_CLOCK_MICROCHIP_SAMA7G5_PMC_H
+>>> +
+>>> +#include <dt-bindings/clock/at91.h>
+>>> +
+>>> +/* old from before bindings splitup */
+>>> +#define SAMA7G5_PMC_MCK0	PMC_MCK		/* 1 */
+>>> +#define SAMA7G5_PMC_UTMI	PMC_UTMI	/* 2 */
+>>> +#define SAMA7G5_PMC_MAIN	PMC_MAIN	/* 3 */
+>>> +#define SAMA7G5_PMC_CPUPLL	PMC_CPUPLL	/* 4 */
+>>> +#define SAMA7G5_PMC_SYSPLL	PMC_SYSPLL	/* 5 */
+>>> +
+>>> +#define SAMA7G5_PMC_AUDIOPMCPLL	PMC_AUDIOPMCPLL	/* 9 */
+>>> +#define SAMA7G5_PMC_AUDIOIOPLL	PMC_AUDIOIOPLL	/* 10 */
+>>> +
+>>> +#define SAMA7G5_PMC_MCK1	PMC_MCK1	/* 13 */
+>>> +
+>>> +#endif
+>>
+>> I would have expected this to be something like:
+>>
+>> #ifndef __DT_BINDINGS_CLOCK_MICROCHIP_SAMA7G5_PMC_H__
+>> #define __DT_BINDINGS_CLOCK_MICROCHIP_SAMA7G5_PMC_H__
+>>
+>> /* Core clocks. */
+>> #define SAMA7G5_MCK0			1
+>> #define SAMA7G5_UTMI			2
+>> #define SAMA7G5_MAIN			3
+>> #define SAMA7G5_CPUPLL			4
+>> #define SAMA7G5_SYSPLL			5
+>> #define SAMA7G5_DDRPLL			6
+>> #define SAMA7G5_IMGPLL			7
+>> #define SAMA7G5_BAUDPLL			8
+> 
+> Okay no reference to the old header, but numbers.  Got that.
+> 
+> I'm not sure where you got the 7 and 8 from here, according to my
+> analysis, sama7g5 does not use those.
 
-I see we have them also on Google GS101, so same question there :/
+From include/dt-bindings/clock/at91.sh
 
+#define PMC_IMGPLL              (PMC_MAIN + 4)
 
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu-map {
-> +			cluster0 {
-> +				core0 {
-> +					cpu = <&cpu0>;
-> +				};
-> +
-> +				core1 {
-> +					cpu = <&cpu1>;
-> +				};
-> +
-> +				core2 {
-> +					cpu = <&cpu2>;
-> +				};
-> +
-> +				core3 {
-> +					cpu = <&cpu3>;
-> +				};
-> +			};
-> +
-> +			cluster1 {
-> +				core0 {
-> +					cpu = <&cpu4>;
-> +				};
-> +
-> +				core1 {
-> +					cpu = <&cpu5>;
-> +				};
-> +
-> +				core2 {
-> +					cpu = <&cpu6>;
-> +				};
-> +			};
-> +
-> +			cluster2 {
-> +				core0 {
-> +					cpu = <&cpu7>;
-> +				};
-> +			};
-> +		};
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a510";
-> +			reg = <0>;
-> +			capacity-dmips-mhz = <260>;
-> +			dynamic-power-coefficient = <189>;
-> +			enable-method = "psci";
-> +			cpu-idle-states = <&little_cpu_sleep>;
-> +		};
-> +
-> +		cpu1: cpu@100 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a510";
-> +			reg = <0x100>;
-> +			capacity-dmips-mhz = <260>;
-> +			dynamic-power-coefficient = <189>;
-> +			enable-method = "psci";
-> +			cpu-idle-states = <&little_cpu_sleep>;
-> +		};
-> +
-> +		cpu2: cpu@200 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a510";
-> +			reg = <0x200>;
-> +			capacity-dmips-mhz = <260>;
-> +			dynamic-power-coefficient = <189>;
-> +			enable-method = "psci";
-> +			cpu-idle-states = <&little_cpu_sleep>;
-> +		};
-> +
-> +		cpu3: cpu@300 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a510";
-> +			reg = <0x300>;
-> +			capacity-dmips-mhz = <260>;
-> +			dynamic-power-coefficient = <189>;
-> +			enable-method = "psci";
-> +			cpu-idle-states = <&little_cpu_sleep>;
-> +		};
-> +
-> +		cpu4: cpu@400 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a710";
-> +			reg = <0x400>;
-> +			capacity-dmips-mhz = <380>;
-> +			dynamic-power-coefficient = <560>;
-> +			enable-method = "psci";
-> +			cpu-idle-states = <&big_cpu_sleep>;
-> +		};
-> +
-> +		cpu5: cpu@500 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a710";
-> +			reg = <0x500>;
-> +			capacity-dmips-mhz = <380>;
-> +			dynamic-power-coefficient = <560>;
-> +			enable-method = "psci";
-> +			cpu-idle-states = <&big_cpu_sleep>;
-> +		};
-> +
-> +		cpu6: cpu@600 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a710";
-> +			reg = <0x600>;
-> +			capacity-dmips-mhz = <380>;
-> +			dynamic-power-coefficient = <560>;
-> +			enable-method = "psci";
-> +			cpu-idle-states = <&big_cpu_sleep>;
-> +		};
-> +
-> +		cpu7: cpu@700 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-x2";
-> +			reg = <0x700>;
-> +			capacity-dmips-mhz = <488>;
-> +			dynamic-power-coefficient = <765>;
-> +			enable-method = "psci";
-> +			cpu-idle-states = <&prime_cpu_sleep>;
-> +		};
-> +
-> +		idle-states {
-> +			entry-method = "psci";
-> +
-> +			little_cpu_sleep: cpu-sleep-0 {
-> +				compatible = "arm,idle-state";
-> +				idle-state-name = "c2";
-> +				entry-latency-us = <70>;
-> +				exit-latency-us = <170>;
-> +				min-residency-us = <2000>;
-> +				arm,psci-suspend-param = <0x10000>;
-> +			};
-> +
-> +			big_cpu_sleep: cpu-sleep-1 {
-> +				compatible = "arm,idle-state";
-> +				idle-state-name = "c2";
-> +				entry-latency-us = <235>;
-> +				exit-latency-us = <220>;
-> +				min-residency-us = <3500>;
-> +				arm,psci-suspend-param = <0x10000>;
-> +			};
-> +
-> +			prime_cpu_sleep: cpu-sleep-2 {
-> +				compatible = "arm,idle-state";
-> +				idle-state-name = "c2";
-> +				entry-latency-us = <150>;
-> +				exit-latency-us = <190>;
-> +				min-residency-us = <2500>;
-> +				arm,psci-suspend-param = <0x10000>;
-> +			};
-> +		};
-> +	};
-> +
-> +	pmu-a510 {
-> +		compatible = "arm,cortex-a510-pmu";
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_cluster0>;
-> +	};
-> +
-> +	pmu-a710 {
-> +		compatible = "arm,cortex-a710-pmu";
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_cluster1>;
-> +	};
-> +
-> +	pmu-x2 {
-> +		compatible = "arm,cortex-x2-pmu";
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_cluster2>;
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		ranges;
-> +
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +
-> +		chipid@10000000 {
-> +			compatible = "samsung,exynos2200-chipid",
-> +				     "samsung,exynos850-chipid";
-> +			reg = <0 0x10000000 0 0x24>;
-
-All numbers in hex please:
-s/0/0x0/
-
-> +		};
-> +
-
-Rest looks good.
+#define PMC_BAUDPLL             (PMC_MAIN + 5)
 
 
-Best regards,
-Krzysztof
+> 
+>>
+>> // ...
+>>
+>> #define SAMA7G5_MCK1			13
+>>
+>> #endif /* __DT_BINDINGS_CLOCK_MICROCHIP_SAMA7G5_PMC_H__ */
+>>
+>> Same for the other affected SoCs.
+>>
+>> The content of include/dt-bindings/clock/at91.h would be limited eventually
+>> only to the PMC clock types.
+> 
+> What does this mean?  The clocks split out are no PMC clocks?  
+
+Still PMC clocks. Keeping the types in separate header allows keeping the
+code PMC code common for all SoCs. Then the newly added headers will be
+used only in the SoC DTes and SoC clock driver (e.g. in your case
+drivers/clk/at91/sam9x60.c)
+
+> Then
+> the old PMC_MAIN etc. definitions were named wrong?  All or only some
+> of them?  Or is this different between older and newer SoC variants of
+> the at91 family?
+> 
+> From a quick glance in the SAM9X60 datasheet for example the clock
+> generator provides MD_SLCK, TD_SLCK, MAINCK, and PLL clocks, while the
+> PMC provides MCK, USB clocks, GCLK, PCK, and the peripheral clocks.
+
+drivers splits this into:
+- core clocks
+- peripheral clocks
+- generic clocks
+- system clocks
+- programmable
+
+It's how the code sees it, just a logical split.
+
+Thank you,
+Claudiu
+
+> 
+> The chws array in drivers/clk/at91/sam9x60.c however gets main_rc_osc
+> (from clock generator), mainck (clock generator), pllack (clock
+> generator), upllck (clock generator, UTMI), but also mck (from PMC).
+> 
+> This creates the impression things are mixed up here.  I find all this
+> quite confusing to be honest.
+> 
+>> The other "#define PMC_*" defines will eventually go to SoC specific
+>> bindings. "#define AT91_PMC_*" seems to not belong here anyway and these
+>> would in the end removed, as well.
+> 
+> Okay, you seem to have an idea how this should look like in the long
+> run.  Are there any plans at Microchip or at91 clock maintainer side
+> to clean this up in the near future?
+> 
+> I would like to rather put my small changes for otpc on top of a clean
+> tree, instead of trying to clean up clock drivers and bindings for a
+> whole family of SoCs and boards, where I can test only one of them.
+> O:-)
+> 
+> Greets
+> Alex
+> 
+
 
