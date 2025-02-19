@@ -1,240 +1,172 @@
-Return-Path: <devicetree+bounces-148429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7DA7A3C057
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:46:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A300DA3C03C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:43:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 186F717B65A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 13:41:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E91147A56A1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 13:42:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F25D1E3790;
-	Wed, 19 Feb 2025 13:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13C4B1E7C25;
+	Wed, 19 Feb 2025 13:43:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="lOqoTwCJ"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="Sy1GdYfn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91C0B1D5175
-	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 13:41:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75FDE1E0B62
+	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 13:43:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739972515; cv=none; b=cyX7dlqTWpoViI/t7dtkrBCIN9dIvEidLnZaRz3iIcu6rZOS9MDXs46fI8GS8cfVlnBYld/DFnevIb9vat5grqxsWiN5/R/MO85mNVHiUgLDW5eAzP6aNOnjGt5SKVH9evmzKyX5KW+m9l4GVWinygJdNh24xYwvJIhdpjUJo/E=
+	t=1739972592; cv=none; b=e51w3F+/uaPqdCCzAYTMdnRRwEAYkT2Ao71uFKxz1KKL2SV05EYJ0kZdIWG92xlmyvxb/ymmPZrn+r9NVkcfj2CSSaWSqbbGXCdL7WkKsa9NU8LZN+WvUBtGOF/jByvgFyW+EaHqz3bPmj+rdtFKvu3qQoV/ksCW13VmXWrlfio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739972515; c=relaxed/simple;
-	bh=MSbo5OyVwpx0ccYvcjvrWMHWauQADeNmshAHT3OzVbI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xd/urwcEWAbw7RIfOM5WI8UYiJ3qIYGIcbnbupIwljvdo6qo7PPEVWjnCX3iNnHjbRQ6oi82ufcCxkOR5s8wavoikSNGUivIrczL1uajq8+Stnv9TkUZ9d5wNedCuQsgqErpc+Eroqgnn4fQEB0fAOLcM8PFelhkm0FaDQcmzJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch; spf=none smtp.mailfrom=ffwll.ch; dkim=pass (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b=lOqoTwCJ; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ffwll.ch
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43995b907cfso11943625e9.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 05:41:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google; t=1739972512; x=1740577312; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YhEsWoeyFhMZ+H0YbRGARkl/BdUesonQu+oufx1Ijlo=;
-        b=lOqoTwCJEGXEtQKjj3/sVEyB7DN/AlPyo4iCEwin2HXxKZdRTyGCDUrFV81/G9kQyj
-         wEa6qdaQVbah3EIng4teYj0IffTE/koDURkId7Up3XNouicYilxGUg6p58eCzOV1g3l1
-         +a1orOZWVjhE0ilPHaMqhDpirQyt9GsqL8qBk=
+	s=arc-20240116; t=1739972592; c=relaxed/simple;
+	bh=2ZTdAQt9df8PaTguKr01nU1Fak9WbZrG4FFH1ejRmE8=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WVVwhmWzfELSsOS/P0Fvew/+dTfInPH/jXH8wps8u977y9oJpXPZK2eF+m/U7PeVjL4SiycMKPdv0UOoCSsGx/P2m6SUnvIleaJmgTmFCPmOtIv5JC5MpDLnPn4hoiesblSyekLfkormsa952vknWyh6+0Xbpy00I9cgSYHlBlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=Sy1GdYfn; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-oo1-f72.google.com (mail-oo1-f72.google.com [209.85.161.72])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 085533F2C5
+	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 13:43:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1739972588;
+	bh=WFjePigVwF4Z8j9CYTif0ybYr6jQ2TZ/Iin7O5BwwQ4=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=Sy1GdYfnf0ibXu9MD7IVANlxgA5M+uiNrl+9OfU+GPV+FMWjwnhXXM4t4sIs/9fE3
+	 3xfTi2QbzESK+biWiF/5dxO3iv+LbDoULGpFKp4G6zRVv/animRcaxX8atCQNMnxK2
+	 I8lTJBCYhmUDGrQ7Aj++2sPA0omHtbhD8O7zc+cqKEV/aB+BAVGseXdn2SzDeb8vVc
+	 p2LFBO8tJiR5kZr7NQrEr4i7+gZw0ttB94pagxjqvmCskiSiotwmPGef+64qkVBYa1
+	 JXteMJfHht34KMA1KFjYEK5mmoV19grosRstT2TkwK/CO69cjH7y6xAa5VYkQWDI2p
+	 QM03VYq3b/x4A==
+Received: by mail-oo1-f72.google.com with SMTP id 006d021491bc7-5fcf9131da5so1000049eaf.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 05:43:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739972512; x=1740577312;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YhEsWoeyFhMZ+H0YbRGARkl/BdUesonQu+oufx1Ijlo=;
-        b=GgkOEZXiqfwRQDwKJLiW4601XP1oPBRzbGCZaI39WfsfRpHQhy0jcDsUh1mWC0bvoj
-         DCVJNIwF/A2vCGmVObRZDuOerLd99UvCGP8GgVa4RyoGBGwYbPyFgfNA6Bt/EM0eD2Y2
-         Mu6y+y3WAex84t8z5l45pLbS2BlHRwa6o8wRlKapdBPYocfmhBzyxy0P+aSYsIct1zYT
-         On5Pzy7fTzpXTTU28z+PyJCrNz10Jrg495dYp5YNqIcr82R8taDzcKeydYirGUL9Wood
-         xj5tOlaLQnq/axBX6FtMQjevkN2aLtEeHeqeDxiArhF36MHVbYZ8AMOzBO5e7gowFq+4
-         Wm6w==
-X-Forwarded-Encrypted: i=1; AJvYcCWBNrPPCXs79yVdXw4NElmR9rZtFz5pC38PUqGW3fql3mebzbUICAkjgsApsr4c/V0FJDK7mUaiub4P@vger.kernel.org
-X-Gm-Message-State: AOJu0YyK11YEHOwzEpiQb7ys9J3M1fjE1bpj15Q6Kx1UiOxxvhwH6hFw
-	xzZYvOhN3X5rHCNYb5W9RhV0OVk7NFGec/lRw8TsXrQaDK9xTc0DGvKuoQ1d2xY=
-X-Gm-Gg: ASbGnctBupIQiesiawsyPVvATThYjWf0fJhRnCu4iWnZwMhxHl7Y3qLN/u0cY3BK1x4
-	RlL7wwCR7Dt3R7M4Os28O8zUK7JnlGopm6LDaj33ihew8p5AZxXNbqOBhlF7Fdr6lujjpR7Tn/V
-	e0DMDXi/PdMT7ctMmIC3Npzy9PLVQwQhSvHPHOeTh4nDXulpW4DiZw8Fs3JeicBzZFxB01J03+X
-	Jocy+8pjhkGj59XuYcc2ykXrQ/cLLfJmXVVWNxOpnXgr0WVo6ieiE/mOfX1LFT7TbpkYe1MT66I
-	9z0gvNZOmg/iusvM+bUK9YpMDRs=
-X-Google-Smtp-Source: AGHT+IH5SPDJC9pS46sc9lnXQknme1kBqPSFPC97vyzoPEWE/sFG6YIJSWi/4TZyqRhIbFPVeJg7KA==
-X-Received: by 2002:a05:600c:1c12:b0:439:9a5a:d3c4 with SMTP id 5b1f17b1804b1-4399a5ad56amr28220925e9.2.1739972511749;
-        Wed, 19 Feb 2025 05:41:51 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258b4491sm17570552f8f.7.2025.02.19.05.41.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2025 05:41:51 -0800 (PST)
-Date: Wed, 19 Feb 2025 14:41:48 +0100
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	=?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
-	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
-	Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Louis Chauvet <louis.chauvet@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 2/4] drm/atomic-helper: Introduce
- drm_atomic_helper_reset_crtc()
-Message-ID: <Z7XfnPGDYspwG42y@phenom.ffwll.local>
-Mail-Followup-To: Herve Codina <herve.codina@bootlin.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	=?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
-	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
-	Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Louis Chauvet <louis.chauvet@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20250203145824.155869-1-herve.codina@bootlin.com>
- <20250203145824.155869-3-herve.codina@bootlin.com>
+        d=1e100.net; s=20230601; t=1739972586; x=1740577386;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WFjePigVwF4Z8j9CYTif0ybYr6jQ2TZ/Iin7O5BwwQ4=;
+        b=ZKucjX+OzHDdXDODbUA5JRq04WGa43LCZkRjx35lmqn/SAgOLYwOo+vhW3h7B/M0MY
+         YgLhKRauytgE+z0cnTmReanbjQbBdNTP0zklRmjnMaaRNHbznYCnyp9jTZ8LdQbYppiX
+         a+LMU5aBuvpcpO/czvH8XZi6dN//ly+qlBKOsHtNXbHU6auBw7XG3cwCaS/Wr2tLGr3v
+         B+OEIK3gluCjvmKFH21NZv2q3LpxjOAEOuxfbFGHvjro7EzrS3Ac8a5G3eDYCaKRPU+I
+         2Qat6O9p7jkcdYO5QZBgztQ+VM5CBdxZXsX5ZsdrfAVYnWbMmuCvQ9o6Ppq7VeTYeXgu
+         H7+w==
+X-Forwarded-Encrypted: i=1; AJvYcCXwaSZR22FGNnPxsTOHNEUnZw0vl1nEZOC/d25TXlDSgo1dAzfPb77wzf0PumAl2uhXHyglczojbmjM@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJCJfvw2u02ayWohhIGpACmWcsSPDCATAb15ozNLzr2sxruXw8
+	lseo5RjgPJxYiSHFJYl5j6ly3d+U7CVAP4vynL2KLRuN3k7CAgxm/8WvOi7pStGUc7FU9LyHzGs
+	UKxAsHBbsXdQye5F+BVptKWgdr/GREY12zRwYnHm+0OdJqgDtj84gkY2NWiXLAqp5mbR/UC9GQM
+	fxME1TxJNyNxqFx88tCBK1Cs6p9PJnUyHgHY9/GLG7952V9U1C7w==
+X-Gm-Gg: ASbGnct3aVe4RhyYg0oqtviH7xLK7ERaWPq/nepFVlPjg61vSjniq6OX07jXM2r+EKR
+	dR7JBpFWD0iTkd1r39qxJeeK34y2WHGXexJG9dYrQhy6bbrAVt15/eGl98z6AYnx1fQ/LeDI7gI
+	7/IzCi6FoCbCfOTiw=
+X-Received: by 2002:a05:6808:398a:b0:3f4:d61:36cf with SMTP id 5614622812f47-3f40f236581mr2682840b6e.30.1739972586668;
+        Wed, 19 Feb 2025 05:43:06 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGYn9lRXBv/JpzO42HxdnnTEcRnjUT2CvEOcRyp+AhxkqJL3rRw8dalMjzUUDUoa47Zxxh/fN+SUIulaLwLwpw=
+X-Received: by 2002:a05:6808:398a:b0:3f4:d61:36cf with SMTP id
+ 5614622812f47-3f40f236581mr2682828b6e.30.1739972586434; Wed, 19 Feb 2025
+ 05:43:06 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 19 Feb 2025 05:43:05 -0800
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 19 Feb 2025 05:43:05 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20250207093618.126636-1-sandie.cao@deepcomputing.io>
+References: <20250207093618.126636-1-sandie.cao@deepcomputing.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250203145824.155869-3-herve.codina@bootlin.com>
-X-Operating-System: Linux phenom 6.12.11-amd64 
+Mime-Version: 1.0
+Date: Wed, 19 Feb 2025 05:43:05 -0800
+X-Gm-Features: AWEUYZknIHcy7u_-bftvl8Qvj-VvK3o4Nv3eX4N0vbhXOKNS0iUj00wp-j9bK3U
+Message-ID: <CAJM55Z-Csuw+sUgKkNUdsXfX0LkhsQKRTXfVXxm4kmKeABodTg@mail.gmail.com>
+Subject: Re: [PATCH] riscv: dts: starfive: fml13v01: enable pcie1
+To: Sandie Cao <sandie.cao@deepcomputing.io>, Conor Dooley <conor@kernel.org>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Feb 03, 2025 at 03:58:21PM +0100, Herve Codina wrote:
-> drm_atomic_helper_reset_crtc() allows to reset the CRTC active outputs.
-> 
-> This resets all active components available between the CRTC and
-> connectors.
-> 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+Sandie Cao wrote:
+> Starfive Soc common defines GPIO28 as pcie1 reset, GPIO21 as pcie1 wakeup;
+> But the FML13V01 board uses GPIO21 as pcie1 reset, GPIO28 as pcie1 wakeup;
+> redefine pcie1 gpio and enable pcie1 for pcie based Wi-Fi.
+>
+> Signed-off-by: Sandie Cao <sandie.cao@deepcomputing.io>
+
+Unfortunately I don't yet have a board to test this on, but it looks ok to me.
+
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+
 > ---
->  drivers/gpu/drm/drm_atomic_helper.c | 41 +++++++++++++++++++++++++++++
->  include/drm/drm_atomic_helper.h     |  2 ++
->  2 files changed, 43 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-> index 8ed186ddaeaf..cac807df8a86 100644
-> --- a/drivers/gpu/drm/drm_atomic_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> @@ -3363,6 +3363,47 @@ int drm_atomic_helper_disable_all(struct drm_device *dev,
->  }
->  EXPORT_SYMBOL(drm_atomic_helper_disable_all);
->  
-> +/**
-> + * drm_atomic_helper_reset_crtc - reset the active outputs of a CRTC
-> + * @crtc: DRM CRTC
-> + * @ctx: lock acquisition context
-> + *
-> + * Reset the active outputs by indicating that connectors have changed.
-> + * This implies a reset of all active components available between the CRTC and
-> + * connectors.
-
-I think you definitely want a
-
-	Note: This relies on resetting &drm_crtc_state.connectors_changed.
-	For drivers which optimize out unnecessary modesets this will
-	result in a no-op commit, achieving nothing.
-
-> + *
-> + * Returns:
-> + * 0 on success or a negative error code on failure.
-> + */
-> +int drm_atomic_helper_reset_crtc(struct drm_crtc *crtc,
-> +				 struct drm_modeset_acquire_ctx *ctx)
-
-So this is pretty close to DP drivers doing link-retraining when
-reconnecting a cable. Would be really nice if that could also be rolled
-out there where it fits, and maybe augment the documentation accordingly
-so that dp helpers point at this?
-
-Either way would be good to extend the kerneldoc a bit to explain what
-this is good for. Either way.
-
-Acked-by: Simona Vetter <simona.vetter@ffwll.ch>
-
-Cheers, Sima
-> +{
-> +	struct drm_atomic_state *state;
-> +	struct drm_crtc_state *crtc_state;
-> +	int ret;
+>  .../jh7110-deepcomputing-fml13v01.dts         | 34 +++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+> index 30b0715196b6..8d9ce8b69a71 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+> @@ -11,6 +11,40 @@ / {
+>  	compatible = "deepcomputing,fml13v01", "starfive,jh7110";
+>  };
+>
+> +&pcie1 {
+> +	perst-gpios = <&sysgpio 21 GPIO_ACTIVE_LOW>;
+> +	phys = <&pciephy1>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie1_pins>;
+> +	status = "okay";
+> +};
 > +
-> +	state = drm_atomic_state_alloc(crtc->dev);
-> +	if (!state)
-> +		return -ENOMEM;
+> +&sysgpio {
+> +	pcie1_pins: pcie1-0 {
+> +		clkreq-pins {
+> +			pinmux = <GPIOMUX(29, GPOUT_LOW,
+> +					      GPOEN_DISABLE,
+> +					      GPI_NONE)>;
+> +			bias-pull-down;
+> +			drive-strength = <2>;
+> +			input-enable;
+> +			input-schmitt-disable;
+> +			slew-rate = <0>;
+> +		};
 > +
-> +	state->acquire_ctx = ctx;
+> +		wake-pins {
+> +			pinmux = <GPIOMUX(28, GPOUT_HIGH,
+> +					      GPOEN_DISABLE,
+> +					      GPI_NONE)>;
+> +			bias-pull-up;
+> +			drive-strength = <2>;
+> +			input-enable;
+> +			input-schmitt-disable;
+> +			slew-rate = <0>;
+> +		};
+> +	};
+> +};
 > +
-> +	crtc_state = drm_atomic_get_crtc_state(state, crtc);
-> +	if (IS_ERR(crtc_state)) {
-> +		ret = PTR_ERR(crtc_state);
-> +		goto out;
-> +	}
-> +
-> +	crtc_state->connectors_changed = true;
-> +
-> +	ret = drm_atomic_commit(state);
-> +out:
-> +	drm_atomic_state_put(state);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL(drm_atomic_helper_reset_crtc);
-> +
->  /**
->   * drm_atomic_helper_shutdown - shutdown all CRTC
->   * @dev: DRM device
-> diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
-> index 9aa0a05aa072..53382fe93537 100644
-> --- a/include/drm/drm_atomic_helper.h
-> +++ b/include/drm/drm_atomic_helper.h
-> @@ -139,6 +139,8 @@ int drm_atomic_helper_set_config(struct drm_mode_set *set,
->  
->  int drm_atomic_helper_disable_all(struct drm_device *dev,
->  				  struct drm_modeset_acquire_ctx *ctx);
-> +int drm_atomic_helper_reset_crtc(struct drm_crtc *crtc,
-> +				 struct drm_modeset_acquire_ctx *ctx);
->  void drm_atomic_helper_shutdown(struct drm_device *dev);
->  struct drm_atomic_state *
->  drm_atomic_helper_duplicate_state(struct drm_device *dev,
-> -- 
-> 2.47.1
-> 
-
--- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+>  &usb0 {
+>  	dr_mode = "host";
+>  	status = "okay";
+>
+> base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+> --
+> 2.34.1
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
