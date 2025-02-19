@@ -1,238 +1,278 @@
-Return-Path: <devicetree+bounces-148447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B3F5A3C1C2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:17:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5545A3C140
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:07:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 214EC17D620
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:11:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57E7F1725BB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B75621EB1B8;
-	Wed, 19 Feb 2025 14:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 794F11EB184;
+	Wed, 19 Feb 2025 14:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XyxD30Nh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gYALs8ml"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BAAA1EB18E;
-	Wed, 19 Feb 2025 14:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48BFD1E1A3B;
+	Wed, 19 Feb 2025 14:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739973604; cv=none; b=mNQEP6nY5FvdeQVIajBu8gdrQ+SE354Ik/QpawBz/S9KWFYomukEUqanf68l8wiDUTEDPHAHN8PpfrPXVar25K96uOyiLcSpswSrt7+SKpFR4sTdCf5pEUJTeXLkUIds1qTuM1nSbpjTK7hTmh5vaRMPKgKyD2mN0a/UpR6vvrQ=
+	t=1739973673; cv=none; b=PG0uh56q2bMAEXapjbKCQJV0jXGWTK8VWTiIJm2q2Pqr9uQSToYWwpTqbIbnG1Wdp0WP53P2kajsBGnuwI+QLtldtvJPjs+h/B3TAXumJpClHpTtJFnnVP79qYox79I66CCidBQ/9jawuj9bT4Z7KWDoB1DL9qxPf1cwWex+JOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739973604; c=relaxed/simple;
-	bh=6ZusAGCt8DmvwKekcN+BSAym8y589HIO8Pfps4RSgf4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=THNsNlHtjB6kBWb6GHUPgJAzhAaHyjprPJh7cXAqmsglPodV/id5VW0MWxm9yyomH7AevGWMQD/V0UjY40Tv43hmI5fIKumLNGT31G+n+CNeE1Ov+4leCyifAmLrfE2bXWGHfUsv5eho8CRZlQD61uwMYe4sXyIWrOsxcPozA2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XyxD30Nh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD8F7C4CED1;
-	Wed, 19 Feb 2025 14:00:03 +0000 (UTC)
+	s=arc-20240116; t=1739973673; c=relaxed/simple;
+	bh=Ah42zirfWgU7LWvxY7zMUQ4RD7yPe5FX8hB+F2CoHHg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i4Aau0VyxSIZpAtVgOeVfgQ2L8oUTxjtsXoUdWcNPN9MFPVJi9ooZFOQQhAumixq5Ju9/wOmeTcmknrM914b6nPMRebC6OBJao8pI28ZNy9d0Hc3DBmK24GWVjiM4EtaBaX3mNSdVkhTWIsUtIjuMex99YlPxfJwP9L1fu1wAXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gYALs8ml; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D77A5C4CED1;
+	Wed, 19 Feb 2025 14:01:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739973604;
-	bh=6ZusAGCt8DmvwKekcN+BSAym8y589HIO8Pfps4RSgf4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XyxD30Nhe6YpYKbVqAcwLSFdWrWdkr8UMwlbRcelUl+NHjeZNFl+ovapTnOxHdbmo
-	 U6iW805NuGZsY0w5I0KTfJy1TEvE1rJGWiIGsDwp/mNi7VxCpcts13ReFpEFUZO0gf
-	 msEbEHvkAc0hlm5njKOThBXXwVy6Wp1wSqY3A46hrysJzXjIPPifoKa+Da6vT5F+lk
-	 cB4toeJnVqijSBkCQ4c3iLIzmsQ9Yx1pLvWp2OkSEqXf7UMXB+FzTzOZFpB5kfSM5f
-	 CqzNlOJM+gKYItgy4+0MbqFb9KHnkZSm5QEHMVwjYwSeiRTGu27lb7sIoSj+xGHVW+
-	 Q9NED/SG9qUUA==
-Date: Wed, 19 Feb 2025 08:00:02 -0600
-From: Rob Herring <robh@kernel.org>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>, sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC] dt-bindings: rtc: sophgo: add RTC support for Sophgo
- CV1800 series SoC
-Message-ID: <20250219140002.GA2354937-robh@kernel.org>
-References: <20250216180924.2506416-1-alexander.sverdlin@gmail.com>
- <20250218210630.GA872024-robh@kernel.org>
- <03302dcb85408facaee075dfdc6cd72a4fddcc59.camel@gmail.com>
+	s=k20201202; t=1739973673;
+	bh=Ah42zirfWgU7LWvxY7zMUQ4RD7yPe5FX8hB+F2CoHHg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gYALs8mlbi80V0H9lBr2L6F0iHCBN4XUWOVGk+LKaazfCU1YIeJuhTiWtFu30Mdym
+	 jFK0zrrdW2Z2r2o1RR+khR/GixdY2NgQ6ol1lcjyWOY8GuRlQzZZ/ydapTBTZaYnxS
+	 JbmeTJLEIDvYn2zAFOpkqSRacgZ3UnXhTfdp4NxQBAG579XeRhgISYQZvEQoADPHcs
+	 hDfAthn8qvHJMHmt64/YPbTmkbj8SXfMBkB3wj5vw6UzNOxCoxQrG6FJm6vC5hfuO1
+	 bN7jNyw27C6lJa+N5UQIzhWw7LxBdf/wjKBxoXIwZH36zalnABun5AsqALa4xYBi+b
+	 sm0DoNZ3StZCw==
+Message-ID: <fd70f78c-68a5-43ec-9eb2-3f06c5d7a20d@kernel.org>
+Date: Wed, 19 Feb 2025 15:01:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <03302dcb85408facaee075dfdc6cd72a4fddcc59.camel@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] dt-bindings: hwmon: emc2305: Add YAML binding
+ documentation for emc2305 driver
+To: florin.leotescu@oss.nxp.com, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Shych <michaelsh@nvidia.com>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: viorel.suman@nxp.com, carlos.song@nxp.com,
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ Florin Leotescu <florin.leotescu@nxp.com>
+References: <20250219133221.2641041-1-florin.leotescu@oss.nxp.com>
+ <20250219133221.2641041-4-florin.leotescu@oss.nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250219133221.2641041-4-florin.leotescu@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Feb 18, 2025 at 10:41:31PM +0100, Alexander Sverdlin wrote:
-> Thank you for your feedback Rob!
+On 19/02/2025 14:32, florin.leotescu@oss.nxp.com wrote:
+> From: Florin Leotescu <florin.leotescu@nxp.com>
 > 
-> On Tue, 2025-02-18 at 15:06 -0600, Rob Herring wrote:
-> > > QUESTION:
-> > > 
-> > > I'm unsure about reg properties in the subnodes (child devices) of
-> > > RTCSYS:
-> > > - they will not be used anyway by the drivers because they genuinely
-> > > overlap (the whole point of going MFD) -- therefore the drivers will do
-> > > syscon_node_to_regmap(pdev->dev.parent->of_node)
-> > > - as I understood from the history of MFD dt bindings' submissions, regs
-> > > are encouraged, if can be specified
-> > > - overlapping regs cause dt_binding_check warnings:
-> > > Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.example.dts:34.19-39.15: Warning (unique_unit_address_if_enabled): /example-0/rtcsys@5025000/mcu@0: duplicate unit-address (also used in
-> > > node /example-0/rtcsys@5025000/pmu@0)
-> > > Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.example.dts:34.19-39.15: Warning (unique_unit_address_if_enabled): /example-0/rtcsys@5025000/mcu@0: duplicate unit-address (also used in
-> > > node /example-0/rtcsys@5025000/rtc@0)
-> > > 
-> > > Shall I remove the MMIO resources from the actual devices or rather ignore the warnings?
-> > 
-> > Ignore the warnings is not an option.
-> > 
-> > Removing makes since if the registers and bitfields are completely mixed 
-> > up. If they are, then I find it hard to believe the child nodes are 
-> > separate blocks. And if they aren't, then it should all be just 1 node. 
-> 
-> The HW vendor calls it "RTC". But this "RTC" is also responsible for the
-> whole power sequencing and [chip-wide] power management. And afterwards
-> they've put SRAM controller registers and remoteproc (independent 8051 core)
-> controller into the same address space (interleaved). I have hard times
-> to apply any strict logic here.
-> 
-> > You don't have to have child nodes to have separate drivers.
-> 
-> But if I don't utilize "simple-mfd" and children nodes, then I'd need
-> some MFD core driver registering the "cells" even though, there will be
-> no other functions in it?
-> 
-> On the other hand, maybe this is the way forward if we are unsure as
-> of now, which cells do we want to implement at all as a separate driver
-> and which ones are we going to combine in a single driver?..
 
-Those are all OS questions which have little to do with the DT binding. 
-Design the binding to best match the h/w.
+A nit, subject: drop second/last, redundant "YAML binding
+documentation". Three useless/redundant terms. The "dt-bindings" prefix
+is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-> > >   .../bindings/mfd/sophgo,cv1800b-rtcsys.yaml   | 222 ++++++++++++++++++
-> > >   1 file changed, 222 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.yaml b/Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.yaml
-> > > new file mode 100644
-> > > index 000000000000..2dc7c2df15c1
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.yaml
-> > > @@ -0,0 +1,222 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/mfd/sophgo,cv1800b-rtcsys.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Cvitek CV18xx/Sophgo SG200x Real Time Clock module
-> > > +
-> > > +maintainers:
-> > > +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> > > +  - sophgo@lists.linux.dev
-> > > +
-> > > +description:
-> > > +  The RTC (Real Time Clock) is an independently powered module in the chip. It
-> > > +  contains a 32KHz oscillator and a Power-On-Reset (POR) sub-module, which can
-> > > +  be used for time display and scheduled alarm produce. In addition, the
-> > > +  hardware state machine provides triggering and timing control for chip
-> > > +  power-on, power-off and reset.
-> > > +
-> > > +  Furthermore, the 8051 subsystem is located within RTCSYS and is independently
-> > > +  powered. System software can use the 8051 to manage wake conditions and wake
-> > > +  the system while the system is asleep, and communicate with external devices
-> > > +  through peripheral controllers.
-> > > +
-> > > +  Technical Reference Manual available at
-> > > +    https://github.com/sophgo/sophgo-doc/releases/download/sg2000-trm-v1.01/sg2000_trm_en.pdf
-> > > +
-> 
-> [...]
-> 
-> > 
-> > > +  "^sram@[0-9a-f]+$":
-> > > +    type: object
-> > > +    additionalProperties: false
-> > > +
-> > > +    description:
-> > > +      Provide 2KB of SRAM, which can host software code or temporary data.
-> > > +
-> > > +    properties:
-> > > +      compatible:
-> > > +        items:
-> > > +          - enum:
-> > > +              - sophgo,cv1800b-rtc-sram
-> > > +
-> > > +      reg:
-> > > +        maxItems: 1
-> > > +
-> > > +      clocks:
-> > > +        maxItems: 1
-> > > +
-> > > +    required:
-> > > +      - compatible
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - "#address-cells"
-> > > +  - "#size-cells"
-> > > +  - ranges
-> > > +
-> > > +additionalProperties:
-> > > +  type: object
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/sophgo,cv1800.h>
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +
-> > > +    rtcsys@5025000 {
-> > > +        compatible = "sophgo,cv1800b-rtcsys", "simple-mfd", "syscon";
-> > > +        reg = <0x5025000 0x2000>;
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <1>;
-> > > +        ranges = <0 0x5025000 0x2000>;
-> > > +
-> > > +        mcu@0 {
-> > > +            compatible = "sophgo,cv1800b-rtc-dw8051";
-> > > +            reg = <0x0 0x1000>;
-> > > +            clocks = <&clk CLK_SRC_RTC_SYS_0>;
-> > > +            sram = <&rtc_sram>;
-> > > +        };
-> > > +
-> > > +        pmu@0 {
-> > > +            compatible = "sophgo,cv1800b-rtc-pmu";
-> > > +            reg = <0x0 0x2000>;
-> > > +            interrupts = <18 IRQ_TYPE_LEVEL_HIGH>,
-> > > +                         <19 IRQ_TYPE_LEVEL_HIGH>;
-> > > +            interrupt-names = "longpress", "vbat";
-> > > +        };
-> > > +
-> > > +        rtc@0 {
-> > > +            compatible = "sophgo,cv1800b-rtc";
-> > > +            reg = <0 0x2000>;
-> > > +            interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
-> > > +            interrupt-names = "alarm";
-> > > +            clocks = <&clk CLK_RTC_25M>;
-> > > +        };
-> > > +
-> > > +        rtc_sram: sram@0 {
-> > > +            compatible = "sophgo,cv1800b-rtc-sram";
-> > > +            reg = <0x0 0x1000>;
-> > 
-> > How does the SRAM overlap registers?
-> 
-> Those are not SRAM cells mapped into this address space,
-> but rather several control registers controlling reset,
-> power and clock of the SRAM.
+And drop all driver references - you put it everywhere.
 
-The 'sram' property points to regions of SRAM memory. So what you have 
-is incorrect use of the property.
 
-Rob
+> Add yaml-based Device Tree bindings documentation for emc2305 driver
+> The file provides the necessary structure, configuration
+> and other parameters for Device Tree definition.
+> 
+> Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
+> ---
+>  .../devicetree/bindings/hwmon/emc2305.yaml    | 95 +++++++++++++++++++
+
+Filename matching compatible.
+
+>  1 file changed, 95 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/emc2305.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/emc2305.yaml b/Documentation/devicetree/bindings/hwmon/emc2305.yaml
+> new file mode 100644
+> index 000000000000..51e2a82d8f25
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/emc2305.yaml
+> @@ -0,0 +1,95 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/emc2305.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: EMC2305 i2c pwm fan controller
+> +
+> +maintainers:
+> +  - Michael Shych <michaelsh@nvidia.com>
+> +
+> +description: |
+> +  The driver implements support for Microchip EMC2301/2/3/5 PWM Fan Controller.
+
+This is a binding so describe hardware, not your implementation.
+
+
+> +  The EMC2301 Fan Controller supports only one controlled PWM fan channel.
+> +  The EMC2305 Fan Controller supports up to 5 independently
+> +  controlled PWM fan drives.
+> +
+
+Missing fan-common reference.
+
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - hwmon,emc2301
+> +      - hwmon,emc2302
+> +      - hwmon,emc2303
+> +      - hwmon,emc2305
+
+Nope.
+
+Was it ever internally reviewed?
+
+
+> +
+> +  reg:
+> +    description: I2C address of the emc2305 device
+
+Look how other bindings do it.
+
+> +
+> +  pwm_output:
+
+NAK.
+
+There are so many issues with this code, from trivial incorrect quotes
+and not following DTS coding style, to actual duplicating other schemas
+or common part.
+
+Sorry, get it first internally reviewed.
+
+> +    description: "PWM output type Push-Pull/ Open Drain"
+> +    maxItems: 1
+> +
+> +  pwm_polarity:
+> +    description: "PWM polarity"
+> +    maxItems: 1
+> +
+> +  '#cooling-cells':
+> +    description: "cooling state range"
+
+Do you see any binding like that? Any?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    thermal_zones {
+> +        a55-thermal {
+> +                trips {
+> +                        atrip0: trip0 {
+> +                                temperature = <55000>;
+> +                                hysteresis = <2000>;
+> +                                type = "active";
+> +                        };
+> +
+> +                        atrip1: trip1 {
+> +                                temperature = <65000>;
+> +                                hysteresis = <2000>;
+> +                                type = "active";
+> +                        };
+> +
+> +                        atrip2: trip2 {
+> +                                temperature = <75000>;
+> +                                hysteresis = <2000>;
+> +                                type = "active";
+> +                        };
+> +                };
+> +
+> +                cooling-maps {
+> +                        map1 {
+> +                                trip = <&atrip0>;
+> +                                cooling-device = <&emc2301 4 6>;
+> +                        };
+> +
+> +                        map2 {
+> +                                trip = <&atrip1>;
+> +                                cooling-device = <&emc2301 6 8>;
+> +                        };
+> +
+> +                        map3 {
+> +                                trip = <&atrip2>;
+> +                                cooling-device = <&emc2301 8 10>;
+> +                        };
+> +                };
+> +        };
+> +
+> +    }
+
+This DTS is also in very poor shape - even your indentation does not
+match. Drop redundant parts - entire thermal.
+
+> +    emc2301: pwm@2f {
+> +       compatible = "hwmon,emc2301";
+> +       reg = <0x2f>;
+> +       #cooling-cells = <2>;
+> +       pwm_output = <0x1>;
+> +       pwm_polarity = <0x1>;
+> +    };
+
+
+Best regards,
+Krzysztof
 
