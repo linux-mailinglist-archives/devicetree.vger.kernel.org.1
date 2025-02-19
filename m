@@ -1,142 +1,141 @@
-Return-Path: <devicetree+bounces-148410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C70F4A3BF46
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:01:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F2AA3BF55
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:04:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C62CD3AA6C6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 12:58:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B35617993E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 12:59:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD89E1E25F1;
-	Wed, 19 Feb 2025 12:54:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9361B1F3BBC;
+	Wed, 19 Feb 2025 12:56:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="Ojhv1gYn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VwnG13my"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC8B1E105E;
-	Wed, 19 Feb 2025 12:54:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B63A01E377E
+	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 12:56:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739969698; cv=none; b=H1jt/O9oEbdYqrZLw5o5wFehZBgk/mFJMjd3eMAZTE6CULRmtNdFRp1iTSkP9VHnhIuzZ5sQ+A3LhT8jOEs23/ZN0vYAjIEY/kK1kcMoHWWGh7QkU6vS21qx59T2K0DucPu9VWj0EtKUf+ianccKIZ68LarhQG1QYRKh7+WVvN0=
+	t=1739969778; cv=none; b=YHc0MljU68R5fn/K2Ja7yXYl3x6ZqNQO6vXJaiuGrYuyjBYk4mEk6mhHCXUSeyL5+OetcSmmhVaW8nbR5xTPQWZwK7FqMzYRYkiiMsdl36C0WIQnA8DltlE/SOj5q9ev5WQCitBq3xFSXeGGgaqMdHsSDSHEOR32dCK8g4qVaUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739969698; c=relaxed/simple;
-	bh=Q/nXdxHGvbQWNEHz1kYW91/CQ5zP3gVSY2KAUBZiO50=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=ub1IVltrktRrcLOZJxM+kYWjUOpMYjc2TluH4XQwTzsZXF4HZyssMYfSD+qXcW+Kqgl+GYG4Z5Aj1GmQJ1Mjy+XozO4MbDkRNOsd0Gc7VULlYs2ohJIFA1dctcFdoCusio2W6nfXno3bKtqD8LEtlKgbF4dmsy+tlFm5gKlvCHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=Ojhv1gYn; arc=none smtp.client-ip=212.227.15.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1739969668; x=1740574468; i=markus.elfring@web.de;
-	bh=NX2wgBTb57YNhQ0Dx2z58i0VYdMln4e5I4vq7Id/u/8=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=Ojhv1gYnRx2oJvMCOW/7S5ogYi96h1eNZmBVjkDZE6HIgfn2bII237fhxN/7KZsD
-	 TbJx6YTDA0wj+xQ01ee78LN1sBK+MH13PGLGB/C2RrJh/biFIvTeFPRkrML/4qQfw
-	 13mbxKPnYqG1ZEAAxz45Af1J+rnwzpyRElAJ5GGPXFlyUjrngYViYaCA2uzkrzaBe
-	 u7F1I8C/D0N2pLh3o5zqFrKhTyf1zdui4pGYEY//aVIcyQyfTzj7y/RylJsBhEhm5
-	 OY6nKHp6dqx0f94VeuS+NaVOSVPC1/zKK2qHQQ4yS5cIyEasMyvXo9g9vArg3PRx8
-	 yEDdFZZg0UFaQfEtOg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.29] ([94.31.70.10]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MZjEJ-1toFzn27IF-00OMPN; Wed, 19
- Feb 2025 13:54:28 +0100
-Message-ID: <218b109e-a05f-42f2-b0bf-1b15d1a28b50@web.de>
-Date: Wed, 19 Feb 2025 13:54:22 +0100
+	s=arc-20240116; t=1739969778; c=relaxed/simple;
+	bh=qIlOQDKp2BMWAKpyHevexXikoqaAwH0jROBx3zSA5GI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lxS+ob8ZOm3Sr2Amvmopll0uCZiX06ce00Zs+DWyq2FRmSauPYqUpdR0wutrXW2prj/NPdkDoK6nCpDAbh+LUfmTHJeDAKLnNn1iPN0GkJutKLslb8Y4tSGKzvG4clgnW/38odaFaDFrGwR6rKgbabynNorxiBXq4RnybJqF2FI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VwnG13my; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-54605bfcc72so1009096e87.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 04:56:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739969773; x=1740574573; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jpdeNF19DgfEm3H7/Uvp6T3atcP8vyt6RGMBKgTt3ic=;
+        b=VwnG13myL5E8RvtV3/GNi/KFhM1Yj32853h7dm9ZAv8NvY2ZgGQk4DQl8cx9ek9oNJ
+         ezFmyupxKMBVohKCOc4EtKVO5ypQRmGfJvkXEHZpK1hwASHWB5aJlrnK2hG3cSg9TRbv
+         cC3gO158jT8s/3zsiflHnBlbk85XNTXt8HRkyNop1ZzikKEC8YZsx2ftw9QSxxSVrVrg
+         6W1rt//5ygsiqMab/jg5qpQxDLOYN7aWyKIqjtWjxuKfilVlwBIzQ5bh90YTaam/f9b5
+         tqa3SE9nsQ9y3loJfBdbiUDZLib7uv9K5nKJRH+uHp/trevoIv5dtl7B6Oze18PK4Qqg
+         XMBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739969773; x=1740574573;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jpdeNF19DgfEm3H7/Uvp6T3atcP8vyt6RGMBKgTt3ic=;
+        b=AGO5hdkm+iCbrpZVZOIXkGuXYCBuAeUrEAUD+2118uS8tzPUNzTqEA7kmhstVtwUHm
+         hcm9JrALpgw2/BXL+HK9DY+EK+ZD+KBp9o0+uwABj11DDF0VaOcshMh79RKO1uCcse7I
+         Xcpr3zQJio/FXOpZnWy5EhkJ5XewhoB17hlqANbAO8nP0UdD8CQksCRBPLmGnsrj7GxC
+         B+yFargYFGZNGbzRDotJsbmpV08mSK1dENrOfr41tpMGzZpsDDif/PeQQ7y2QkyWtehV
+         3ayuY2jIiYx4sHlmgGtBJtMRKQB3uI5NF2zky+YZtuivDA5ATALMCfaLmhhox/PPs6vz
+         w2Bg==
+X-Forwarded-Encrypted: i=1; AJvYcCX+FYhiJjLqlrwns+mX+Z8S9CG2y78pm0BNA1uJ3nmR5tzreuvWW3mhxUq2Ob0L8Q3/RKzAJV21+fJh@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzOHAOQTkvXWE2r8L5JO22TGfUBXWJkh7YW3RYHJfjgetQIPvy
+	2mssQCAEq87Zxg98s44Xm7Frlvf9RLIY78kWs9AwDmMhZbYOSzqPxxO31IEQCZI=
+X-Gm-Gg: ASbGnctsA3jAsoVtfk9fFkCmK6FFpKGDbaSFqTSwyzig0h0xiAGIRn37Vnptyn66Ixn
+	igQCNZyJdangqTDe6DCQk1C/3kjpdEiFbWX4Cc7DDtFg+iejKhi7xplrNRyA28Nx8slLr95lLrp
+	/hUvNnNHKrPmsyyjf1PJ0JP34tfFEnogJjTjw67lNCH1/LVA3hfKqSWL5Xcye5W3pIlaWpa9/0f
+	lvmyrtoHevgfeYhGF+QGbpbrhEmu2IuTU9vs0Uzk71Gzkk1PjZrctHjChiM5ikB4b7p/4FNPEPJ
+	EEK/CsN/BgrgBs1uy7e3veKAYT2doSrBlEch9N8dsY1m2iK3eqX9YTvLkriCRq0JTw8t+Dg=
+X-Google-Smtp-Source: AGHT+IH0YmAtnjvMy5+btGUvGsvhy9fusmwBi9HtyhuX25OtuhvvQajrAtK6BmKWaYMSFy6bf3k0Sg==
+X-Received: by 2002:a05:6512:3b23:b0:545:550:83e6 with SMTP id 2adb3069b0e04-5462eaa1f1amr1151645e87.5.1739969772537;
+        Wed, 19 Feb 2025 04:56:12 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5462c60f99fsm421664e87.118.2025.02.19.04.56.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Feb 2025 04:56:11 -0800 (PST)
+Date: Wed, 19 Feb 2025 14:56:09 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Yongxing Mou <quic_yongmou@quicinc.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: display/msm: Redocument the
+ dp-controller for QCS8300
+Message-ID: <yjt6wwzrufigpuotsspoolnnonkueyb6evk3gtrtb6zpceuinu@em3ry7pufabw>
+References: <20250212-mst_qcs8300-v1-0-38a8aa08394b@quicinc.com>
+ <20250212-mst_qcs8300-v1-1-38a8aa08394b@quicinc.com>
+ <wyd7i47pkafa7n2yjohuvlh4btasxle4rw5xm55h4bhv24yvah@pfo224xz4xfl>
+ <b4008932-ce56-4cc0-9b53-2253051514da@kernel.org>
+ <CAA8EJpoowyKcwDQgbWy4xGHzngNQOcWt_z_Xc49GFB1qYjYO6A@mail.gmail.com>
+ <0171746e-1d3c-42e5-9cde-7dcf2708ffc3@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Gerald Loacker <gerald.loacker@wolfvision.net>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Mehdi Djait <mehdi.djait@bootlin.com>,
- Michael Riesch <michael.riesch@wolfvision.net>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Alexander Shiyan <eagle.alexander923@gmail.com>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Kever Yang <kever.yang@rock-chips.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Paul Kocialkowski <paulk@sys-base.io>, Philipp Zabel
- <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Val Packett <val@packett.cool>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- Mehdi Djait <mehdi.djait@linux.intel.com>
-References: <20250219-v6-8-topic-rk3568-vicap-v4-5-e906600ae3b0@wolfvision.net>
-Subject: Re: [PATCH v4 05/11] media: rockchip: add a driver for the rockchip
- camera interface
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20250219-v6-8-topic-rk3568-vicap-v4-5-e906600ae3b0@wolfvision.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:QIH6bMsC4SL6tM5FXvxmKgSOSHYCPU+Qy2oNfHkFEGuXlyilvv/
- IFsq49vVgAZ/Pz+LhRUXX39v0QsqT4VJ0lzMuThOjmq2AA6jbH631PmDEgT1rfrLNEJUcyz
- fVzOl/gOx3F9fxs0UJNOZNUdE4T49CZVR/EQoWROi04wkD8GyzY3YidoSpCPlyoa8a/6rNh
- ZlaRJ7Sc+nD/ATpgRsMUw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:irdIEICfqUI=;IsbIQ2vMNaB35dqJ5SZn3/+Sp3+
- mXwNV2aM8hxp6dDAjuGUyS+Y0n0nQfiuRYj7EjV5dbJJPQ1qgTA/aoOsbdgHzr4anJUz1urak
- 1Fy4Ld/li3SbQBe+1bTlAnjy45NtgK6c32v9JDO15iuqxJH/8sBokEUieuUTpvpqmTWGqHrGK
- LMhCNWRZ4fMI4B/hcCNE9611FTaENHqw0wZt2QxPmiIHc0dEw42A3IGY9A/eEP35n2QyTML9P
- TPMoN+DzXd5uFBST/7zzYvoG74g0tgseOgdVpdCoLMpSOyD0mw2kLzIM59mPaj/FA2tRif03b
- 4jeH+E2Ox5p7mJ6ZPxVdBGY8QrqoJH+/TjcT3OgP+JtNSeHzc9rlnjJ6I2svyQhCJ3CfJjsYb
- VnKSQs3Sfa8gJUEkrlcJ/ZIiPEX7UCvqDWO2xJmwBeAZbpzZ4CsKXlG6nuhNUK2Q7YTODUogH
- RSaVLVg3S3X4dY5dV4s73smx3kDb92+vxtH1rJaUkchMdy+XiRpJaeKk1/smFaHtEdou/4iov
- Ouv0TiV2K51V5KrGuB6kBsUw9cnqsSZQ2HnMvYJ57Q99QYx62BjMGj0hHh8m+87+QfP1p2EFK
- Vo7oh4O1UO7pD/IRenTP0pWWqG+mIMSNe78luOBp5MW7CPBqharvXE4pfuNjCRS+rDoHsrfSy
- m4OGd8g9l9eSJDAr7q/tunzX5ksrBN2N0ao4evDDKf4MopkrUavi3wrJEfL5Kd0vwp8NDtHze
- gmbelQPmuIwtKsHfIQwa3tsLfhZPN9w+leySKkJr541BKuGe77AL5SHeqMrix/GoWZPA25pgX
- aBAtiVUz0l67QHVN3xoTZWA53me/9XxuLwA3uyO0q8lRXKn3kHfFqWQFRXNNDOJqmE12CvkuW
- alJmeRxP6SumTbWDk0NE2AnNTMCRBVeVRF/rUVbT7tL05ILNmU7T/0Uu8xTDW546L2dl/JxT9
- DFMOejqdbzQIeTDxXRePaLbcU/K8nrZLFPlyd/7SFu7ea/RrO4OXChCQS9jQZn/JN+irxc1fY
- gMboO6kG+hEvwl8jERbxhjBsSAEyow55ijMMdRhw95xogj6GOXRzrJnaTsm2Dztd7PVGSyigj
- wc0NLwrTQBoyyi7649VfhzDAXWIpM3twStyRwnpnGuBT2fq+fDjqVYZjygyKf7XZXtf6r/9cB
- BIS5BDKPY6DZ936Q7thnh//IRKWVRex5o7810MS3lZSXHj95gH/V5fi/YiFjKl/AP6u1NgM3T
- vOkzaJ75n2J2bhfyPcRZKe9dKlnwPDYX/8V2vCOnW+vU3YrLbMkuoEzXU2FWgTHiJwrPZ/RTj
- R8uij/kRfK+pF5NIn3HrXTvpiwjcG9qSnZqDrHjhd6sZKd6/PoUFsVg59irRrleUNQBlSru64
- Odc/rgs2jkQRD3fDWxGBjl116fQCxh3SHnRa5aJ8Wb9/66RHlNepWfOmVn6FCCAkL/tCEzuad
- Ok5fKh33orINRYSUGyKpM0Vp7u50=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0171746e-1d3c-42e5-9cde-7dcf2708ffc3@quicinc.com>
 
-=E2=80=A6
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-stream.c
-> @@ -0,0 +1,622 @@
-=E2=80=A6
-> +static void rkcif_stream_push_buffer(struct rkcif_stream *stream,
-> +				     struct rkcif_buffer *buffer)
-> +{
-> +	unsigned long lock_flags;
-> +
-> +	spin_lock_irqsave(&stream->driver_queue_lock, lock_flags);
-> +	list_add_tail(&buffer->queue, &stream->driver_queue);
-> +	spin_unlock_irqrestore(&stream->driver_queue_lock, lock_flags);
-> +}
-=E2=80=A6
+On Wed, Feb 19, 2025 at 05:56:14PM +0800, Yongxing Mou wrote:
+> 
+> 
+> On 2025/2/12 20:26, Dmitry Baryshkov wrote:
+> > On Wed, 12 Feb 2025 at 12:54, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > 
+> > > On 12/02/2025 11:41, Dmitry Baryshkov wrote:
+> > > > On Wed, Feb 12, 2025 at 03:12:24PM +0800, Yongxing Mou wrote:
+> > > > > We need to enable mst for qcs8300, dp0 controller will support 2 streams
+> > > > > output. So not reuse sm8650 dp controller driver and will add a new driver
+> > > > > patch for qcs8300 mst feature. Modify the corresponding dt-bingding file
+> > > > > to compatible with the qcs8300-dp.
+> > > > 
+> > > > NAK for a different reason: QCS8300 is still compatible with SM8650.
+> > > > Enable features instead of randomly reshuffle compats. In this case,
+> > > > enable MST for both architectures.
+> > > > 
+> > > So the original patch was probably correct...
+> > 
+> > I have no idea. I'd let Yongxing Mou to comment on this. It would be
+> > nice  instead of getting a lengthy explanation of obvious items to get
+> > an answer to an actual question: is QCS8300 compatible with SM8650 or
+> > not. In other words whether they can support the same number of MST
+> > streams on each controller or not.
+> > 
+> Hi, in hardware, the SM8650's DP controller supports 2 INTFs, while the
+> QCS8300's DP0 controller supports 4 INTFs.In sst mode, only one INTF will be
+> used, they are same, but for MST, sm8650 supports 2 streams while qcs8300
+> support 4 streams. Thanks.
 
-Under which circumstances would you become interested to apply a statement
-like =E2=80=9Cguard(spinlock_irqsave)(&stream->driver_queue_lock);=E2=80=
-=9D?
-https://elixir.bootlin.com/linux/v6.14-rc3/source/include/linux/spinlock.h=
-#L572
+So, they are not compatible. Please use separate compatible.
 
-Regards,
-Markus
+-- 
+With best wishes
+Dmitry
 
