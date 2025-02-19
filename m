@@ -1,181 +1,200 @@
-Return-Path: <devicetree+bounces-148497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54C43A3C339
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 16:13:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04EDBA3C34B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 16:15:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4852D188DA4B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:13:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D158A3B6DE3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:13:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E061F3D5D;
-	Wed, 19 Feb 2025 15:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2522C1F3D53;
+	Wed, 19 Feb 2025 15:13:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="NFew1VZB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lwjf7v7P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5611DE3DB;
-	Wed, 19 Feb 2025 15:12:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54B771DE3DB;
+	Wed, 19 Feb 2025 15:13:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739977976; cv=none; b=UPLy0BGkB8SYnHm+AMM5ddwWAIlWL2Z83gGvSQs1NazVGXT9TW8UqNpu7mLigl0EpLQQcVKacvSJrxeYv7mnSRb7yARJ9x49f8ZwnkLblucd0/BU0rq7ia8fseAd3LN0jbaeVCc0w8xC8RwEiRcksqKdM2D0KKeiCsZENd11rTM=
+	t=1739978010; cv=none; b=A73BEtmI0WtJXtiYP0EMpix2uMEVyGoX9bsj4g1um1fHSLm9lGCH7sgsbPTIl5QP3/qpOsiKg3ZDXiBPzk2kLXjDBvyyPd1m6IVlGfOwyPrraAuHWtu7thRZdEJVXNAOH4g21qEyDDccKrjIdV7m66icUf8+LGKdow3IwH+P/P8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739977976; c=relaxed/simple;
-	bh=29oxftSFXsmpDE4X4dZAZ6VvDZJaQKQuZeE68GZKBb8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rk4uyUit+4Opqv1U/+PrpkAd1HzzL/bJKSd0/xdWGjuZ5QvOViZfoSFOM2H3nRFy0/0zOYglYr1ev4spmZURlxZ10UZ+ymHemhxjVXjtQ1x1CCrhsgYAbrFD/u+ZfIXccP2CPKAePaws2hFDYDFgliRAVkOiWtS2Uty4ThAmOa0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=NFew1VZB; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 927F1169;
-	Wed, 19 Feb 2025 16:11:29 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1739977889;
-	bh=29oxftSFXsmpDE4X4dZAZ6VvDZJaQKQuZeE68GZKBb8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NFew1VZBeE6rU09ufexPjt/w3BDgT0EVFy+yMXjoh5u+RfqjlewLGm3HoxddeHXSL
-	 X4p4SVEAUowkB79nOEF8IBmh03EqZYEd6/OERvSeYeBIOYieaL1wE9pYvTBnWLQW3X
-	 ooPtmh37zuZ0q2K1NeQiev2nHB78cbtdFmQgAoy8=
-Date: Wed, 19 Feb 2025 17:12:37 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Tommaso Merciai <tomm.merciai@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, linux-media@vger.kernel.org,
-	biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/8] media: dt-bindings: renesas,rzg2l-csi2: Document
- Renesas RZ/V2H(P) SoC
-Message-ID: <20250219151237.GB31825@pendragon.ideasonboard.com>
-References: <20250210114540.524790-1-tommaso.merciai.xr@bp.renesas.com>
- <20250210114540.524790-3-tommaso.merciai.xr@bp.renesas.com>
- <20250214002951.GB8393@pendragon.ideasonboard.com>
- <20250219145139.GA2551711-robh@kernel.org>
+	s=arc-20240116; t=1739978010; c=relaxed/simple;
+	bh=heG+JSCrMhZza5YuqnAywconlxDmO02WZfs3lNmw9Bg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dIlB5xS2L0D2IFXKeIHVu+J6kvKGXqX/zaB7eDp90xKR1Fyc7fBkIqUuKtw9uD7pkagD+fyZ8H9vmtTbeXpv53xfR1AQ5TWa/6I22+2Tl8A2OCvrNseWZAVBvWJV/5XQjJ4H3JLSeWXjTcaJKEbnBeXykGdJA64qVVz0uADXSVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lwjf7v7P; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4398e839cd4so6184195e9.0;
+        Wed, 19 Feb 2025 07:13:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739978006; x=1740582806; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=drt0+j9GwUEYRUPa0Msh+AZlxPlFbPJs9VWQL5t8VpM=;
+        b=Lwjf7v7PdDf4mMOlt8lMlilhGB5p6pDB0ILCE48LPI0R/ZV+dQ/W1rqfk2hacCUagI
+         o/Jdc1Bv50fkT4BYH7PiixWoNad9VzMCO/Q7TwyHFvPR1+4PLkszCBDPRb4fdYoFrMTj
+         aOWYHI8W6uafgN51U2yk3JUaOAR1pyFuyy9C7m8TBYTcG/A96OXN1aQcLiJC/52b4rz2
+         ysXu/DO0wxB4I010RJ8KhPDjA5FjX+RdVUvqaSxFOrYxTMPjuJ7nzs6lxmyZLFiiIhtx
+         70sPMmUdHKkslqItYql0UVanOehjbHhx4Bu5f1tMvt/GsNCHJnkLoTuLlWY8xY62Dwxo
+         6dDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739978006; x=1740582806;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=drt0+j9GwUEYRUPa0Msh+AZlxPlFbPJs9VWQL5t8VpM=;
+        b=WuLjwOoYQzN6/trbiteqy88sPNV4H4DQx61bBn7aYxTaYtoDv0mXz2D2GgmqMISxmE
+         QjPpUpb2nmTzFkJz12EESETvctg8nkLoNip5D5vOTk24GdBOTeDAAUFH5t5sb/86VBWB
+         UMfMc978ZAxELWIZn0DedtxjG2UYwBw1eaxAEbO1Ngx7mB0cjN5oc5uLjj/emFbggqwz
+         kdmE4/6eFFQGLKGutS6zyWDt3sF4PdVe34wDRyX6yBWJyy0jEDGp8G7QnvSNi0yZ+5+a
+         peLfXi9pNnbvsZG6fx85yyIqllbThttOo4YqZsrUe/dDItkbKK5UfOWN8bpP3rxR2ZkN
+         UV6w==
+X-Forwarded-Encrypted: i=1; AJvYcCVxbz+iIqb2Wz/h2fyMvsBGIVBJwJBr4FRP7B3ozsf+QBqOE2mwRuS0G0HwBzKZhEhnHAnf5f08aZ7G@vger.kernel.org, AJvYcCW6JhEA7w6VYTcuLzlXl41xdJl6V7IluLtwMmFGO71u4rUuEwA6dl/TXtTQiLcmR7FLcAKL+M73jafR@vger.kernel.org, AJvYcCW6VqydYS4MnuTX5ZVAauN8ug8ZMLG07Y12KjKCyj2Hv2G+DHqllTT/xBUDhiqfaBi1giOXlqTnXMDCtmA=@vger.kernel.org, AJvYcCWTBkHIJmi33EqNs3OkJEN1kmSvqDXTpjO8FPZ3IX3JCuED2kpS5jFNXqaqxdfPFxF/h3KkjZxyAzq9bLyu@vger.kernel.org, AJvYcCXA7cZOt8zMS77X+iuH9QqyEVllPLn0C0S94YyTayuyKuaE/BdUO+4lbj6N1/M+i9hDoNF2x1Yfy+o1EA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYmN6/V+lh440R0pyJ2GfV/xHfOX85W2wH2PFj+/3/JPvW8hI7
+	YO6cfSiWjMzCTZOnOPSkUXRHlr/0HqLjR+qJtetHPTasRh6JauGfHnDsbK1a5T/0r/IFA2RqCcP
+	8QZXUc/C2EpCPuOGGa8oLQmarSc8=
+X-Gm-Gg: ASbGncsQs+W51MTGRYpxhKM25kwYAi590rRcLChepQe6R2/InIdEYnTmf64sakETWRi
+	y9/5vBZBHiyzN+2b6zufYEgh/j4PLAlPFV2H4HAwScThrsjFFgSVJWTQdMx214KMiMh1+zF9lGw
+	==
+X-Google-Smtp-Source: AGHT+IGZjyYv7inH5rGul4/nFCxLPjiYnaafDWPgkEdRu9+5PeRR1GZ+8z1ALgaPlmJj0wiSt+tzaqhh5lN+rJfpqVs=
+X-Received: by 2002:a05:6000:1fa1:b0:38d:c6b8:9fe1 with SMTP id
+ ffacd0b85a97d-38f57ea1cfcmr3735864f8f.24.1739978006290; Wed, 19 Feb 2025
+ 07:13:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250219145139.GA2551711-robh@kernel.org>
+References: <20250218132702.114669-1-clamor95@gmail.com> <20250218132702.114669-3-clamor95@gmail.com>
+ <Z7XqKcOUt5niXzpv@smile.fi.intel.com> <CAPVz0n1_WQyOHhtEVAh53uhEUhZvqqZSEJh6XALtSrVfkMSLYw@mail.gmail.com>
+ <Z7XzgfHcjyK_UZKv@smile.fi.intel.com>
+In-Reply-To: <Z7XzgfHcjyK_UZKv@smile.fi.intel.com>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Wed, 19 Feb 2025 17:13:15 +0200
+X-Gm-Features: AWEUYZkkApm2pdMCm-ce2W0NUEFkWtCs86nFAeRIR60gASygQyZJcvz4RbQHc2Q
+Message-ID: <CAPVz0n2WwAOb1UU7J7aDTdhXXCaAZkCpYjW_nc_CBRgkGWdEOw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] mfd: lm3533: convert to use OF
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>, 
+	Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 19, 2025 at 08:51:39AM -0600, Rob Herring wrote:
-> On Fri, Feb 14, 2025 at 02:29:51AM +0200, Laurent Pinchart wrote:
-> > Hi Tommaso, Prabhakar,
-> > 
-> > Thank you for the patch.
-> > 
-> > On Mon, Feb 10, 2025 at 12:45:34PM +0100, Tommaso Merciai wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > 
-> > > The MIPI CSI-2 block on the Renesas RZ/V2H(P) SoC is similar to the one
-> > > found on the Renesas RZ/G2L SoC, with the following differences:
-> > > - A different D-PHY
-> > > - Additional registers for the MIPI CSI-2 link
-> > > - Only two clocks
-> > > 
-> > > Add a new compatible string, `renesas,r9a09g057-csi2`, for the RZ/V2H(P)
-> > > SoC.
-> > > 
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> > > ---
-> > >  .../bindings/media/renesas,rzg2l-csi2.yaml    | 63 ++++++++++++++-----
-> > >  1 file changed, 48 insertions(+), 15 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-> > > index 7faa12fecd5b..0d07c55a3f35 100644
-> > > --- a/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-> > > @@ -17,12 +17,15 @@ description:
-> > >  
-> > >  properties:
-> > >    compatible:
-> > > -    items:
-> > > -      - enum:
-> > > -          - renesas,r9a07g043-csi2       # RZ/G2UL
-> > > -          - renesas,r9a07g044-csi2       # RZ/G2{L,LC}
-> > > -          - renesas,r9a07g054-csi2       # RZ/V2L
-> > > -      - const: renesas,rzg2l-csi2
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - enum:
-> > > +              - renesas,r9a07g043-csi2 # RZ/G2UL
-> > > +              - renesas,r9a07g044-csi2 # RZ/G2{L,LC}
-> > > +              - renesas,r9a07g054-csi2 # RZ/V2L
-> > > +          - const: renesas,rzg2l-csi2
-> > > +
-> > 
-> > I'd drop the empty line.
-> > 
-> > > +      - const: renesas,r9a09g057-csi2 # RZ/V2H(P)
-> > >  
-> > >    reg:
-> > >      maxItems: 1
-> > > @@ -31,16 +34,24 @@ properties:
-> > >      maxItems: 1
-> > >  
-> > >    clocks:
-> > > -    items:
-> > > -      - description: Internal clock for connecting CRU and MIPI
-> > > -      - description: CRU Main clock
-> > > -      - description: CRU Register access clock
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - description: Internal clock for connecting CRU and MIPI
-> > > +          - description: CRU Main clock
-> > > +          - description: CRU Register access clock
-> > > +      - items:
-> > > +          - description: CRU Main clock
-> > > +          - description: CRU Register access clock
-> > >  
-> > >    clock-names:
-> > > -    items:
-> > > -      - const: system
-> > > -      - const: video
-> > > -      - const: apb
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: system
-> > > +          - const: video
-> > > +          - const: apb
-> > > +      - items:
-> > > +          - const: video
-> > > +          - const: apb
-> > 
-> > I would move the clocks and clock-names definitions to the conditional
-> > below. Otherwise I think a device tree that has two clocks only but
-> > incorrectly uses "system" and "video" instead of "video" and "apb" will
-> > validate.
-> 
-> No, that wouldn't be allowed. The preference is to have it like this 
-> because it discourages creating more variations. If the names are all 
-> defined in if/then schema, then you can just add a new one with any 
-> names you want. Though if the variations become such a mess, then 
-> defining them in the if/then schemas would probably be better.
-> 
-> It would be better if 'clocks' could be reworked to avoid the 'oneOf' 
-> though (oneOf == poor error messages). It just needs a 'minItems: 2' 
-> added and the descriptions reworded for both cases.
+=D1=81=D1=80, 19 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 17:07 Andy=
+ Shevchenko
+<andriy.shevchenko@linux.intel.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Wed, Feb 19, 2025 at 04:36:38PM +0200, Svyatoslav Ryhel wrote:
+> > =D1=81=D1=80, 19 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 16:27 =
+Andy Shevchenko
+> > <andriy.shevchenko@linux.intel.com> =D0=BF=D0=B8=D1=88=D0=B5:
+> > > On Tue, Feb 18, 2025 at 03:27:00PM +0200, Svyatoslav Ryhel wrote:
+> > > > Remove platform data and fully relay on OF and device tree
+> > > > parsing and binding devices.
+> > >
+> > > Thanks for following the advice, but the problem with this change as =
+it does
+> > > too much at once. It should be split to a few simpler ones.
+> > > On top of that, this removes MFD participation from the driver but le=
+aves it
+> > > under MFD realm. Moreover, looking briefly at the code it looks like =
+it open
+> > > codes the parts of MFD. The latter needs a very goo justification whi=
+ch commit
+> > > message is missing.
+>
+> ...
+>
+> > Splitting this into a set of commits would be nearly impossible,
+>
+> I don't buy this.
+> One patch can introduce device property support.
+> Another one removes the old platform data interface.
+>
+> So, at bare minimum there will be two patches. (Besides the advice to hav=
+e
+> two more.)
+>
+> > original driver does not relay on OF, it relays on platform data.
+>
+> And?..
+>
+> > Ripping out platform data will leave behind a broken useless driver.
+>
+> Hmm... This cna be the case if and only if we have the user in kernel.
+> Is this the case?
+>
+> > So it has to be done simultaneously.
+>
+> Nope.
+>
+> > MFD part is removed since MFD cells binding is unconditional, while
+> > the device supports any amount of children grater then one. For
+> > example, my  device uses only backlight at bank A, while all other
+> > subdevices are not present and used. This patch switches to dynamic
+> > bind of children.
+>
+> MFD does the same. Please, take your time and get familiar with how MFD w=
+orks.
+>
 
-Don't the items in clocks need to match the items in clock-names ? We
-can't reorder clock-names items as that would be an ABI breakage, so we
-can't reorder clocks items either.
+It does not. I have tried. If mfd cell binding is missing, driver will
+complain and fail.
 
--- 
-Regards,
+> ...
+>
+> > > > +     device_property_read_string(&pdev->dev, "linux,default-trigge=
+r",
+> > > > +                                 &led->cdev.default_trigger);
+> > >
+> > > One prerequisite patch you probably want is an introduction of
+> > >
+> > >         struct device *dev =3D &pdev->dev;
+> > >
+> > > in the respective ->probe() implementations. This, in particular, mak=
+es the
+> > > above lines shorter and fit one line.
+> >
+> > This is not a scope of this patchset. Original driver uses &pdev->dev
+>
+> Indirectly it is. The change you are proposing tries to continue using th=
+is
+> construction with making needlessly longer.
+>
+> ...
+>
+> > > > +             if (!strcmp(comatible, "ti,lm3533-als"))
+> > > > +                     lm3533->have_als =3D 1;
+> > >
+> > > If you end up having this, it's not the best what we can do. OF ID ta=
+bles have
+> > > a driver_data field exactly for the cases like this.
+> >
+> > This is required by core driver to handle some attributes and is here
+> > solely not to touch those in this patch.
+>
+> What does this mean?
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
 
-Laurent Pinchart
+Let this driver rot for now, I might return to it. At some point
 
