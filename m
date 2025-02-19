@@ -1,195 +1,161 @@
-Return-Path: <devicetree+bounces-148511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DCDDA3C457
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 17:02:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86030A3C4BD
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 17:19:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB1A73B5CAD
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:59:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65B3B179C4F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 16:16:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58D9E1F8AE5;
-	Wed, 19 Feb 2025 15:59:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A723F1FDE02;
+	Wed, 19 Feb 2025 16:16:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="x9kPpfjt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFDED192580;
-	Wed, 19 Feb 2025 15:59:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B006748F;
+	Wed, 19 Feb 2025 16:16:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739980755; cv=none; b=ehT5i3W9bHQtkd+hvVSPnNzRsv4G0LsQaKnHYAeTIvM+OPoKgcIJX8hYzsebbhYQfwRdKJepmKmHj955VyFznTFqqfRe1dDM5hNhNs+VxV72WvDOAKqlMs05dF9se85Y3JSpNm232st3Ut0bBckd/QYWXXaTpUVyvoZz0kBUPrQ=
+	t=1739981784; cv=none; b=azJMnGutQ29eYKRH13JUzK44+7ol2b+AriH3K3DEL4NLVQVDVQMnDplQAjkUhFifIFGqYCaA7tD8cZTRoKFBGo8oHioVSZne+g8MScDZlK49R4fI/QVgijki2sS1+OSI0yjcjmABwA6pe6zRM+TW6ba9L6b8bjre/O06XVQzaiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739980755; c=relaxed/simple;
-	bh=PGJydsIQuR3b30jEX9zs6NTl+06JSoqWi7rQevLCPbQ=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I22Qd96v1lfVIm3qxLKsmMcrw0vgZlsp2dGiTt8fn8N97GiNwKX+JZrqQILeTQQvVHsNLTr3Bz2BhUnkOcgx3r0j5amqPOm3DvyH3NK8zrHEvooXkeWI4gut7VWWSfYRXSZ4bkSRgl/bb4Ht0hFh+kw5BnHckkJ5Xm4HckJIM3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4YygyJ0q6Zz6GDC2;
-	Wed, 19 Feb 2025 23:57:28 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 07682140AB8;
-	Wed, 19 Feb 2025 23:59:04 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 19 Feb
- 2025 16:59:03 +0100
-Date: Wed, 19 Feb 2025 15:59:01 +0000
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Herve Codina <herve.codina@bootlin.com>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
-	<rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Rob Herring
-	<robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Bjorn Helgaas
-	<bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-pci@vger.kernel.org>, Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
-	<steen.hegelund@microchip.com>, Thomas Petazzoni
-	<thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v7 1/5] driver core: Introduce
- device_{add,remove}_of_node()
-Message-ID: <20250219155901.000009e4@huawei.com>
-In-Reply-To: <20250204073501.278248-2-herve.codina@bootlin.com>
-References: <20250204073501.278248-1-herve.codina@bootlin.com>
-	<20250204073501.278248-2-herve.codina@bootlin.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1739981784; c=relaxed/simple;
+	bh=CouTLvYHAtiNnlip9G0FD5i1Ag/n1t/QF1IZSAX1CUM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MT8ReuoIgB7S4bAU/XADOv/mjc33aFlslZ7bsFF4LV52yzQ+Syfxb51iao7mnjWEP3vmiLL+CCXTMR7g+Gr2YWFfbQOsTVCJ0HUXF3BGo8vP6HQfbogpvA96KfuCJZv89Dgeuczi9C3455OJuwDLVErHdB/B9W4cOwKu2CimtcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=x9kPpfjt; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (31-10-206-125.static.upc.ch [31.10.206.125])
+	by mail11.truemail.it (Postfix) with ESMTPA id B9B981FBB9;
+	Wed, 19 Feb 2025 17:16:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1739981777;
+	bh=S95CwWHL/dwOp5pCYoF4ahbpyruv/6wZ8TXtXTkd3Sc=; h=From:To:Subject;
+	b=x9kPpfjtqHJZoRmH/qoGX2oUXBCDuEReb0dAFhh7Jaaxuqayh81oi8NuFuYo8GjpF
+	 wv16O8md/5XeETP1LuGDo+Zl8rNN7skzwaA2zTGh44Z+6eVCEXAm2P0hqear7XVNB0
+	 sf7u/R8c/6aIRU/DW5T3ILZpdVOL/8xLf+9HMcAf/FyvXyE6hyWDJzUvAEAA1i5364
+	 saCrKHtyRvGcMfGjADd9AgPeu7t4+sx7hszahL5+9mJxRCEPbMhizjvyLco+p0iJ3e
+	 HF66ubp9TBInBCV2ZcjQrH5vBNvuFm5Xwup3+8MG4G7C5FIKwx5c3eFgPJbF42xnCI
+	 8LL10B3n0W//Q==
+Date: Wed, 19 Feb 2025 17:16:11 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Quentin Schulz <quentin.schulz@cherry.de>,
+	Francesco Dolcini <francesco@dolcini.it>,
+	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Farouk Bouabid <farouk.bouabid@cherry.de>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] hwmon: (amc6821) Add PWM polarity configuration
+ with OF
+Message-ID: <20250219161611.GB22470@francesco-nb>
+References: <20250218165633.106867-1-francesco@dolcini.it>
+ <20250218165633.106867-3-francesco@dolcini.it>
+ <eb5c844a-e726-44c0-a0c1-7796d1a28ec3@cherry.de>
+ <07ec64e7-041d-4f5a-a04c-daa4b0794111@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <07ec64e7-041d-4f5a-a04c-daa4b0794111@roeck-us.net>
 
-On Tue,  4 Feb 2025 08:34:56 +0100
-Herve Codina <herve.codina@bootlin.com> wrote:
-
-> An of_node can be set to a device using device_set_node().
-> This function cannot prevent any of_node and/or fwnode overwrites.
+On Wed, Feb 19, 2025 at 05:46:10AM -0800, Guenter Roeck wrote:
+> On 2/19/25 02:08, Quentin Schulz wrote:
+> > Hi Francesco,
+> > 
+> > On 2/18/25 5:56 PM, Francesco Dolcini wrote:
+> > > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > 
+> > > Add support to configure the PWM-Out pin polarity based on a device
+> > > tree property.
+> > > 
+> > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > ---
+> > >   drivers/hwmon/amc6821.c | 7 +++++--
+> > >   1 file changed, 5 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/drivers/hwmon/amc6821.c b/drivers/hwmon/amc6821.c
+> > > index 1e3c6acd8974..1ea2d97eebca 100644
+> > > --- a/drivers/hwmon/amc6821.c
+> > > +++ b/drivers/hwmon/amc6821.c
+> > > @@ -845,7 +845,7 @@ static int amc6821_detect(struct i2c_client *client, struct i2c_board_info *info
+> > >       return 0;
+> > >   }
+> > > -static int amc6821_init_client(struct amc6821_data *data)
+> > > +static int amc6821_init_client(struct i2c_client *client, struct amc6821_data *data)
+> > >   {
+> > >       struct regmap *regmap = data->regmap;
+> > >       int err;
+> > > @@ -864,6 +864,9 @@ static int amc6821_init_client(struct amc6821_data *data)
+> > >           if (err)
+> > >               return err;
+> > > +        if (of_property_read_bool(client->dev.of_node, "ti,pwm-inverted"))
+> > 
+> > I know that the AMC6821 is doing a lot of smart things, but this really tickled me. PWM controllers actually do support that already via PWM_POLARITY_INVERTED flag for example. See Documentation/devicetree/bindings/hwmon/adt7475.yaml which seems to be another HWMON driver which acts as a PWM controller. I'm not sure this is relevant, applicable or desired but I wanted to highlight this.
+> > 
+> > > +            pwminv = 1;
+> > > +
+> > 
+> > This is silently overriding the module parameter.
+> > 
+> > I don't think this is a good idea, at the very least not silently.
+> > 
+> > I would suggest to add some logic in the probe function to set this value and check its consistency.
+> > 
+> > Something like:
+> > 
+> > """
+> > diff --git a/drivers/hwmon/amc6821.c b/drivers/hwmon/amc6821.c
+> > index 1e3c6acd89740..3a13a914e2bbb 100644
+> > --- a/drivers/hwmon/amc6821.c
+> > +++ b/drivers/hwmon/amc6821.c
+> > @@ -37,7 +37,7 @@ static const unsigned short normal_i2c[] = {0x18, 0x19, 0x1a, 0x2c, 0x2d, 0x2e,
+> >    * Insmod parameters
+> >    */
+> > 
+> > -static int pwminv;    /*Inverted PWM output. */
+> > +static int pwminv = -1;    /* -1 not modified by the user, 0 default PWM output, 1 inverted PWM output */
+> >   module_param(pwminv, int, 0444);
+> > 
+> >   static int init = 1; /*Power-on initialization.*/
+> > @@ -904,6 +904,7 @@ static int amc6821_probe(struct i2c_client *client)
+> >       struct amc6821_data *data;
+> >       struct device *hwmon_dev;
+> >       struct regmap *regmap;
+> > +    bool pwminv_dt;
+> >       int err;
+> > 
+> >       data = devm_kzalloc(dev, sizeof(struct amc6821_data), GFP_KERNEL);
+> > @@ -916,6 +917,18 @@ static int amc6821_probe(struct i2c_client *client)
+> >                        "Failed to initialize regmap\n");
+> >       data->regmap = regmap;
+> > 
+> > +    pwminv_dt = of_property_read_bool(client->dev.of_node, "ti,pwm-inverted");
+> > +
+> > +    if (pwminv == -1) {
+> > +        pwminv = pwminv_dt;
 > 
-> When adding an of_node on an already present device, the following
-> operations need to be done:
-> - Attach the of_node if no of_node were already attached
-> - Attach the of_node as a fwnode if no fwnode were already attached
-> 
-> This is the purpose of device_add_of_node().
-> device_remove_of_node() reverts the operations done by
-> device_add_of_node().
-> 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-A few passing comments. Not suggestions to actually change anything
-at this stage though. Maybe a potential follow up if you think it's
-a good idea.
+> A devicetree property, associated with a single instance of the driver,
+> overriding a module parameter affecting all instances ? This is a no-go.
 
-> ---
->  drivers/base/core.c    | 61 ++++++++++++++++++++++++++++++++++++++++++
->  include/linux/device.h |  2 ++
->  2 files changed, 63 insertions(+)
-> 
-> diff --git a/drivers/base/core.c b/drivers/base/core.c
-> index 5a1f05198114..d1b044af64de 100644
-> --- a/drivers/base/core.c
-> +++ b/drivers/base/core.c
-> @@ -5170,6 +5170,67 @@ void set_secondary_fwnode(struct device *dev, struct fwnode_handle *fwnode)
->  }
->  EXPORT_SYMBOL_GPL(set_secondary_fwnode);
->  
-> +/**
-> + * device_remove_of_node - Remove an of_node from a device
-> + * @dev: device whose device-tree node is being removed
-> + */
-> +void device_remove_of_node(struct device *dev)
-> +{
-> +	dev = get_device(dev);
-> +	if (!dev)
-> +		return;
-Maybe use
-	struct device *d __free(put_device) = get_device(dev);
+I will rework the patch in such a way that the module parameter, when
+specified, takes always the precedence over the DT code, works for you
+Guenter ?
 
-	if (!d->of_node);
-		return;
-
-Not a reason to respin though!
-
-
-> +
-> +	if (!dev->of_node)
-> +		goto end;
-> +
-> +	if (dev->fwnode == of_fwnode_handle(dev->of_node))
-> +		dev->fwnode = NULL;
-> +
-> +	of_node_put(dev->of_node);
-> +	dev->of_node = NULL;
-> +
-> +end:
-> +	put_device(dev);
-> +}
-> +EXPORT_SYMBOL_GPL(device_remove_of_node);
-> +
-> +/**
-> + * device_add_of_node - Add an of_node to an existing device
-> + * @dev: device whose device-tree node is being added
-> + * @of_node: of_node to add
-> + *
-> + * Return: 0 on success or error code on failure.
-> + */
-> +int device_add_of_node(struct device *dev, struct device_node *of_node)
-> +{
-> +	int ret;
-> +
-> +	if (!of_node)
-> +		return -EINVAL;
-> +
-> +	dev = get_device(dev);
-
-Likewise could use __free() magic here as well for slight simpliciations.
-
-> +	if (!dev)
-> +		return -EINVAL;
-> +
-> +	if (dev->of_node) {
-> +		dev_err(dev, "Cannot replace node %pOF with %pOF\n",
-> +			dev->of_node, of_node);
-> +		ret = -EBUSY;
-> +		goto end;
-> +	}
-> +
-> +	dev->of_node = of_node_get(of_node);
-> +
-> +	if (!dev->fwnode)
-> +		dev->fwnode = of_fwnode_handle(of_node);
-> +
-> +	ret = 0;
-> +end:
-> +	put_device(dev);
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(device_add_of_node);
-> +
->  /**
->   * device_set_of_node_from_dev - reuse device-tree node of another device
->   * @dev: device whose device-tree node is being set
-> diff --git a/include/linux/device.h b/include/linux/device.h
-> index 80a5b3268986..1244e5892292 100644
-> --- a/include/linux/device.h
-> +++ b/include/linux/device.h
-> @@ -1191,6 +1191,8 @@ int device_online(struct device *dev);
->  void set_primary_fwnode(struct device *dev, struct fwnode_handle *fwnode);
->  void set_secondary_fwnode(struct device *dev, struct fwnode_handle *fwnode);
->  void device_set_node(struct device *dev, struct fwnode_handle *fwnode);
-> +int device_add_of_node(struct device *dev, struct device_node *of_node);
-> +void device_remove_of_node(struct device *dev);
->  void device_set_of_node_from_dev(struct device *dev, const struct device *dev2);
->  
->  static inline struct device_node *dev_of_node(struct device *dev)
+Francesco
 
 
