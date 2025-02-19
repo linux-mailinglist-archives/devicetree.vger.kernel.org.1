@@ -1,162 +1,163 @@
-Return-Path: <devicetree+bounces-148540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77985A3C6C7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 18:53:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2028BA3C6D8
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 18:58:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4B3D7A508D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 17:52:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C17E3B7D88
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 17:57:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A36272144D3;
-	Wed, 19 Feb 2025 17:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB6452144CE;
+	Wed, 19 Feb 2025 17:57:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="Ls6dW2V6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a44ocDxA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FCF11FECAE;
-	Wed, 19 Feb 2025 17:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B7E11ADC86;
+	Wed, 19 Feb 2025 17:57:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739987574; cv=none; b=ZpsR6rB2/qP9oOA0Mt7SMC7H4MdYZkEQqnyokBG+Fi308hK/EoyecZTlDE4uqdrElSk9pu0TKWZ8cCNek6C45PrbjvLm+sFKopkg79+OEGqYlt84MOTbSuXSGAesy+N1FoOreuWCUjrfAsyLjRzC/86YWYFglfAE9/DjsI/tx6Y=
+	t=1739987867; cv=none; b=VaFV5HPEinBQkS4xAeEjsjVpDar2OmzcGeXnccsgOBr56uQvL/Dd+2r4EyeQi2C8QQi177UJXdKckOWOCRGIWRcGK+EyiFwdjPdmMA+t8R6EdBoa5GU5TbTqImOyZ3Nu3i3xvrX1a5kj2H0hVhMZ7njvJG69+97clGKX6g37Jog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739987574; c=relaxed/simple;
-	bh=dlmR4Na0OX/qKkccPY4vem3xExkWHBIdlfSNvg2r00g=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=XEgHa+YR1yG5YuLnHYiOQaOuDoL/ShIl1Fn54kABgTismeowt3A8yBkpLjXeZugpCuMVlgZ0fXhHgbTR1K/DM2dQRdsw38qwHItt1IpsJG6IpCDYgZnubBnKjv8s5hNnRQcbi9KuzsMibteGvIv4+t636lqD4XYCnc4/aROUOWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=Ls6dW2V6; arc=none smtp.client-ip=212.227.15.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1739987519; x=1740592319; i=markus.elfring@web.de;
-	bh=2GFYDHqlQzpJl9rL6j0rWVOfQYmcKGDAiJjmIMqNelc=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=Ls6dW2V6JhYAwKGdHgNr/DTHAWjJwlQtCquFJT2nKaDxW63cQO2iesbwNIF6O2KU
-	 h+qFPye0rWU9F4QJpcdy3Ts8TgkjDCyoEDFJOEhIclyUYD2C+ASKBxsvjv9YYgtgg
-	 o7NUpTaChyQpJLl1unnJiNxJZg40gdpjL/24NHpi3Y8hgHIvsdzLpNjCucxN5c600
-	 2npkcTUTGfHhb2ZY2mNafQniwFHAZMfm4YiXQv/3doE2hIUykkoJtD5fPMfk3SozG
-	 Tqswrfd0wvMLtRewFipCtbIMX8whVvnQoQsvL+8kRI4lKy38OkxJZZBt5jvnvZIeX
-	 yeLOEHpRbUWcWCPyvQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.29] ([94.31.70.10]) by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MCGSU-1tbUZ30T2o-00EK2P; Wed, 19
- Feb 2025 18:51:59 +0100
-Message-ID: <c929975d-6928-4161-b062-64636a4f278e@web.de>
-Date: Wed, 19 Feb 2025 18:51:51 +0100
+	s=arc-20240116; t=1739987867; c=relaxed/simple;
+	bh=bNlAhfaAmhX6VaFyFfgt8A57xz33sy1WuFva1LsY4j8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aJaLkLSJtaoCKvkavLYJKqUIbyzSa+jqF00deYDyb+a4yYHD6cD6c4xe+3MCw5r/s2PaSlkI/mh2dptWDVEUQ6Rv04uDvp7mKP9EkpQfuP7JMAAclD7OF1tkks9snunbMWfTJriFitf0bzqxbjIvN7KuEY50HsHZ/YdgssHEqyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a44ocDxA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3C23C4CED1;
+	Wed, 19 Feb 2025 17:57:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739987867;
+	bh=bNlAhfaAmhX6VaFyFfgt8A57xz33sy1WuFva1LsY4j8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=a44ocDxACxnXGyjoxzQcz8G/7t/hSKnD6q+yY4uNYd9R/XkNjCO5VpBkUh8uzL8q8
+	 7K4C3RNO1rGNm1B1VodEgPZKREmqoW0j1TOdVtogiePmEg5wBMM2gvXjHZp/sllm1Y
+	 c/WeL4usFP/oxisjnHLEMszr6mMqPm/CJ7B1Toljm18PLaNTW8TiI0VbLjMbZsEz7g
+	 fNp/Yjekg+e77sJZrR+JYlIAaOYQEprh7r+dL6KR8HyMYjgSWIxYNAxEy2F2BVy9A4
+	 QbyU4bAVT+KCKw6iWW/0qZOCmhf4M95s/FK1n7NaxJBCgMowosJMuXYlU9vApK5/YA
+	 txJlAQEyRLPMA==
+Date: Wed, 19 Feb 2025 23:27:35 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Chen Wang <unicorn_wang@outlook.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	maz@kernel.org, Chen Wang <unicornxw@gmail.com>, kw@linux.com,
+	u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu, arnd@arndb.de,
+	bhelgaas@google.com, conor+dt@kernel.org, guoren@kernel.org,
+	inochiama@outlook.com, krzk+dt@kernel.org, lee@kernel.org,
+	lpieralisi@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
+	pbrobinson@gmail.com, robh@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-riscv@lists.infradead.org, chao.wei@sophgo.com,
+	xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com,
+	helgaas@kernel.org
+Subject: Re: [PATCH v3 2/5] PCI: sg2042: Add Sophgo SG2042 PCIe driver
+Message-ID: <20250219175735.ruwt7s5rbwswvsi6@thinkpad>
+References: <cover.1736923025.git.unicorn_wang@outlook.com>
+ <ddedd8f76f83fea2c6d3887132d2fe6f2a6a02c1.1736923025.git.unicorn_wang@outlook.com>
+ <20250119122353.v3tzitthmu5tu3dg@thinkpad>
+ <BM1PR01MB254540560C1281CE9898A5A0FEE12@BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM>
+ <20250122173451.5c7pdchnyee7iy6t@thinkpad>
+ <MA0PR01MB56715414B26AA601CFFB54C8FEFB2@MA0PR01MB5671.INDPRD01.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Sebastian LaVine <slavine@d3embedded.com>,
- Stuart Burtner <sburtner@d3embedded.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-Cc: LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de,
- Abel Vesa <abel.vesa@linaro.org>,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Angelo Gioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Ard Biesheuvel <ardb@kernel.org>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Biju Das <biju.das.jz@bp.renesas.com>,
- Bjorn Andersson <quic_bjorande@quicinc.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
- <conor+dt@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Devarsh Thakkar <devarsht@ti.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>,
- Fabio Estevam <festevam@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Hans Verkuil <hverkuil@xs4all.nl>,
- Javier Carrasco <javier.carrasco@wolfvision.net>, Jianzhong Xu <xuj@ti.com>,
- Julien Massot <julien.massot@collabora.com>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Kory Maincent <kory.maincent@bootlin.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Mikhail Rudenko <mike.rudenko@gmail.com>,
- =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- Nishanth Menon <nm@ti.com>, Rob Herring <robh@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
- Spencer Hill <shill@d3engineering.com>, Tero Kristo <kristo@kernel.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Umang Jain <umang.jain@ideasonboard.com>, Vaishnav Achath
- <vaishnav.a@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Will Deacon <will@kernel.org>, Zhi Mao <zhi.mao@mediatek.com>
-References: <20250212195656.69528-3-slavine@d3embedded.com>
-Subject: Re: [PATCH 2/4] media: i2c: Add driver for Sony IMX728
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20250212195656.69528-3-slavine@d3embedded.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:UWazyhhgLJErNLDk5cBHjE48IdmfMZl8bvuL5WGtFrLv7QPsGnV
- xjhR0feAbp68V6Z3PT/3/ImwcTznMRu9DAvUPD6DCggY0RbYRSY14gzXfxMaC+EuFD8AXmW
- B0D2Joi7xZMmkZvzIU4foa3mUl8raYFA/0nlrHD0vjV9T8qDORZBB1aXaf6XANrszKwUIN6
- v+rFLWtUXoW68aPdcecog==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:lPNuBB8wTIQ=;iBOV+TkYE/qZL4SzQiFuEJC5f3Z
- tITcdP7QCl52zwd+QpvMmDFB4zEfWKmFcWiijEKOFYMHJ3WCeFpE8s2+cMqywIUAPLfy/h8Rb
- KgdOFeFxjh1vnEeNjFB6sdTNdajlUVi7O2pST6N43G2fE5GEtwqB+CJ3Vhdvldnbkp5Vx7SFQ
- 4hIOLQn9cDVj3JhvogOh8dFfLFq6kqzsSZ27XWMzJOoNPh9s2cKl2czqywDb8RfIF0liYIrgK
- FuJK/ExanfdV2omcDTTnwJEzxWL6v4CdVxChCR1UyHPisF5UL6umEYaI7mgJ5WK56FFBvXORB
- kCYCJQIwfJA85p33j8uRvvRxrGzQMC2NdDMlaUQm86Jj697ohFvVw4LCHzdC3mB+z+ljPCx3E
- hOqrTAsxmG+W+A6rvc0HG8CctPsUiomTQQacTXGMQXgrOO7qzDq7yPaQlG5cUqYZoSu2HXTRh
- VbE1ygM6VzsgHuOr1RUBVCX1BTkT7uR+fhiyZ+MkdUG3K9r9h/Wdx/zDBbVVBbgoqF0rVVVnV
- /Gbp49BgrwCrhK3UhdXaQ7fzqSfUt5/mcOK5hIENzfIMmAdkADg18h9loJBmLm1HlJ/maaM5u
- STe0CAGjQai498NGHY8pQvGoJswriXRBvhyca/NLka7IsXheqgZeEkV+k4ObGxStK8McJ7FYF
- Hmil4pmIcDJos8LU6xWcQXx8mNzi69u/M/MFtXAiF53d7ELxoNzIAlFrB5JSIVFUUXsRwe/8L
- d6cs6QOlAuds9cfAp5JjlTYXYifGUomc0hct9Lcxc8N9YPkQOVXF51j/vku3xh2CzSXiQWjQs
- etEXrJyJjifpTzmuFFXtYKrrXRVK0ArVq29OH/8JYYxEiPqXWtZH667tjb23sfPnWIOtDqnb5
- mCMX8zGzowpd7VKElSowTEcGC2/xoWXstOIbhMzTo3PhN/k7Ka1CLMPBkX8Bi2/JjMKjEOGS4
- gEZY7M7XFk6jyDalb2MsqFTrF45FWEvlztm3umru5dQA7dRl24B4+RWtiogreiaeTCTsA42jl
- 6lZE6NThPiKp955LeGXd1exxpUymWGFvPZ5mz5X/DSPO0pf6N+71srsQd62OwuHP6YlNusRb1
- 4MWIwjNECl9pbOZ5dZ5ag6Z7QhuFS+wozJkgi36tpA2HX/uxZCsI7SqZ58cCjS9Jt8QZ4FRtx
- Q+OIRAXIFtuSEFMH0zOF4fo5XiQ4qTczKTwcEHeqk/Iq/5RGIxLWJGYsaS8xvyYd0blIUsSGU
- nyqTs720/yeYI+3X86RiS44fJaQ9aFzPCwkv48nBaiXVtXEsS8c2o6aDr0osUwYIfIaYar8h1
- N3tU+nE3mg3fkhe6YvJAwKJZIgXA1UG1uFsMwdK9oiNjcJQSsx/h3OBQ8ygkFEYgbaNZWPHyJ
- 1XRAQStkyXq60TUULOAYf5oxcvPtPe0vf/Jmr/at5qE0y2sqvmeU3Ra2g6AdIvcaDH/QwYqYL
- cuIgYfa6Wqlv498T/zfjVg5kujRU=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <MA0PR01MB56715414B26AA601CFFB54C8FEFB2@MA0PR01MB5671.INDPRD01.PROD.OUTLOOK.COM>
 
-> Adds a driver for the Sony IMX728 image sensor.
+On Mon, Feb 17, 2025 at 04:22:08PM +0800, Chen Wang wrote:
+> 
+> On 2025/1/23 1:34, Manivannan Sadhasivam wrote:
+> 
+> [......]
+> > > > > +/*
+> > > > > + * SG2042 PCIe controller supports two ways to report MSI:
+> > > > > + *
+> > > > > + * - Method A, the PCIe controller implements an MSI interrupt controller
+> > > > > + *   inside, and connect to PLIC upward through one interrupt line.
+> > > > > + *   Provides memory-mapped MSI address, and by programming the upper 32
+> > > > > + *   bits of the address to zero, it can be compatible with old PCIe devices
+> > > > > + *   that only support 32-bit MSI address.
+> > > > > + *
+> > > > > + * - Method B, the PCIe controller connects to PLIC upward through an
+> > > > > + *   independent MSI controller "sophgo,sg2042-msi" on the SOC. The MSI
+> > > > > + *   controller provides multiple(up to 32) interrupt sources to PLIC.
+> > > > > + *   Compared with the first method, the advantage is that the interrupt
+> > > > > + *   source is expanded, but because for SG2042, the MSI address provided by
+> > > > > + *   the MSI controller is fixed and only supports 64-bit address(> 2^32),
+> > > > > + *   it is not compatible with old PCIe devices that only support 32-bit MSI
+> > > > > + *   address.
+> > > > > + *
+> > > > > + * Method A & B can be configured in DTS, default is Method B.
+> > > > How to configure them? I can only see "sophgo,sg2042-msi" in the binding.
+> > > 
+> > > The value of the msi-parent attribute is used in dts to distinguish them,
+> > > for example:
+> > > 
+> > > ```dts
+> > > 
+> > > msi: msi-controller@7030010300 {
+> > >      ......
+> > > };
+> > > 
+> > > pcie_rc0: pcie@7060000000 {
+> > >      msi-parent = <&msi>;
+> > > };
+> > > 
+> > > pcie_rc1: pcie@7062000000 {
+> > >      ......
+> > >      msi-parent = <&msi_pcie>;
+> > >      msi_pcie: interrupt-controller {
+> > >          ......
+> > >      };
+> > > };
+> > > 
+> > > ```
+> > > 
+> > > Which means:
+> > > 
+> > > pcie_rc0 uses Method B
+> > > 
+> > > pcie_rc1 uses Method A.
+> > > 
+> > Ok. you mentioned 'default method' which is not accurate since the choice
+> > obviously depends on DT. Maybe you should say, 'commonly used method'? But both
+> > the binding and dts patches make use of in-built MSI controller only (method A).
+> 
+> "commonly used method" looks ok to me.
+> 
+> Binding example only shows the case for Method A, due to I think the writing
+> of case for Method A  covers the writing of case for Method B.
+> 
+> DTS patches use both Method A and B. You can see patch 4 of this patchset,
+> pcie_rc1 uses Method A, pcie_rc0 & pcie_rc2 use Method B.
+> 
+> > In general, for MSI implementations inside the PCIe IP, we don't usually add a
+> > dedicated devicetree node since the IP is the same. But in your reply to the my
+> > question on the bindings patch, you said it is a separate IP. I'm confused now.
+> 
+> I learned the writing of DTS from "brcm,iproc-pcie", see
+> arch/arm/boot/dts/broadcom/bcm-cygnus.dtsi for example. Wouldn't it be
+> clearer to embed an msi controller in topo?
+> 
+> And regarding what you said, "we don't usually add a dedicated devicetree
+> node", do you have any example I can refer to?
+> 
 
-See also:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
-cumentation/process/submitting-patches.rst?h=3Dv6.14-rc3#n94
+You can refer all DWC glue drivers under drivers/pci/controller/dwc/ and their
+corresponding DT bindings.
 
+- Mani
 
-=E2=80=A6
-> +++ b/drivers/media/i2c/imx728.c
-> @@ -0,0 +1,9655 @@
-=E2=80=A6
-> +static int imx728_set_stream(struct v4l2_subdev *sd, int enable)
-> +{
-> +       struct imx728 *imx728 =3D to_imx728(sd);
-> +       int ret;
-> +
-> +       mutex_lock(&imx728->lock);
-=E2=80=A6
-> +       __v4l2_ctrl_grab(imx728->ctrl.v_flip, enable);
-> +
-> +       mutex_unlock(&imx728->lock);
-=E2=80=A6
-
-Under which circumstances would you become interested to apply a statement
-like =E2=80=9Cguard(mutex)(&imx728->lock);=E2=80=9D?
-https://elixir.bootlin.com/linux/v6.14-rc3/source/include/linux/mutex.h#L2=
-01
-
-Regards,
-Markus
+-- 
+மணிவண்ணன் சதாசிவம்
 
