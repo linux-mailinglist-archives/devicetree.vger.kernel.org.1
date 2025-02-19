@@ -1,135 +1,146 @@
-Return-Path: <devicetree+bounces-148563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C314A3C930
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 20:53:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E1DDA3C981
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 21:19:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 651ED1778F3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 19:53:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B42927A7469
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 20:18:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5439C22B8D5;
-	Wed, 19 Feb 2025 19:53:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EA7522E402;
+	Wed, 19 Feb 2025 20:18:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dl3wCCrw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q2hpu+3V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B81621CC74;
-	Wed, 19 Feb 2025 19:53:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EF2F1B4247;
+	Wed, 19 Feb 2025 20:18:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739994789; cv=none; b=Kuf8KCpFdXI2qtMe7XAbWVE5XZI3Wa/zFSbMrUf0M/N1mHX+StFlj+3KJzW1MT8urU6HfK9oICujhdNc/J9+tdrgbkIWDmOXfz44MchdPP6nEUN1dzH/DYaRAo1Dss0i8HtTa+8Y/pn1mewelVLSQ0Kp2DJXIBct88csxA2kStE=
+	t=1739996339; cv=none; b=FqbJ15cBu6JDfSg4mvPO2fucy+lFUlCDK9AtavzQztw8J8OQ1JgUEA3e3eIX2L4D923jibvICM9uU6v+bx40am32FX/LPxTZITannj41870nnyH4vASCLxHkKJOUKn+9ldgDO0egfV51A56d1LO3E7NCyCayjYmceFJfM01Bwug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739994789; c=relaxed/simple;
-	bh=HsDHGgK4UsCxfTTilvLNPDsEGFD1Ny6U1KaboEmVuts=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AcKoC2hQdm6vAgXJnv6Ym69/qWI8vILq2tWUau9dNfqgv8PA/aLOXOEAcY+eyy5BgjQzv8n5GBrpuNy6H5d8TMW3C4jtMaWePU0t1f6MZoEyyaFkvfoqhLx5RlhPC1rEkNQzOQa+SwIyLj6tsrYvfd4HN+ImA+aVY+6B40tatM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dl3wCCrw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44213C4CED1;
-	Wed, 19 Feb 2025 19:53:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739994788;
-	bh=HsDHGgK4UsCxfTTilvLNPDsEGFD1Ny6U1KaboEmVuts=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Dl3wCCrwQGgcAhkIawjXvSVyrkU1CteqE8gO2kb7B+PfAmZlam30TrnLqSIZI6NI5
-	 hoi8f3X5FEM5p+jIcO3PvhjqbXNPKI1p9zYvYUtgfWEyCF64iCBi4mGvSAtxS1iZdc
-	 GTLtzNQfoW1WhkrJSvL+Y8kbSjJomZDRl0/OtqrI9hYzLbVyASffnlV8mpM7K+G5Rt
-	 4aHYYrN9v6o2Qyf9sDVIoH5YltWElBg9tO/V6w0isDHEE1TDM0wg5NazVRjTJeT+zG
-	 pqQYfLgHP05OhSjc7FXIcNBG0LIVjRFa2BNZj7qbTvw4bBGCndtHDzQhngSne1xC39
-	 tNk0mmeyQzVEQ==
-Message-ID: <8325c9dc-7163-4476-b1ea-c3fb0278c09d@kernel.org>
-Date: Wed, 19 Feb 2025 20:53:02 +0100
+	s=arc-20240116; t=1739996339; c=relaxed/simple;
+	bh=oXeGgZ0czwVwUtkAvKWihshapBTjaKnRt7r/lDXjwUg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G/dEnmsOAglL3+olUOgRRtworeDEMhVKXJjN7EXo24F9qSTcByeBQPveedK1N6JXjeAG6xTH7xqMWjoR0DKQot1gAcC0xtAhguTscQNYjEISqbfBnfEaBeJoba+oO8/McdOE8mAYkq7LO0G8ZyyPv51Cl1/Z7rDG/ixKHM4VcfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Q2hpu+3V; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1739996338; x=1771532338;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=oXeGgZ0czwVwUtkAvKWihshapBTjaKnRt7r/lDXjwUg=;
+  b=Q2hpu+3VcrCRlHkvWLhmtgMWXagzMGN6IzF3XEoSKkB8S75vJPiqrjpV
+   nxyyNpYw5oCMMQ9cQYIpUTjHtazcwPn4b9U24hLvmKoaawcasppXLbMLp
+   0t/0OK/I34XUOq7tZzzawPehEw4l3q9e1egUczWhDGRcQesFkCUFNNHd2
+   kirYqC6sJIHEfX5m4vvdundIhE5qMsivBNvvX50+/0JCo9FGMZ+16FJOT
+   UxwW041ZPeMm3OOySCgV/41ImWBgzzr8CqrDmKcxoZvV4GTUvFsy37umT
+   mRX83A5FTcGhWLvpxA8iw95Pg5tOFU7aJ/rVW3CAnFiWkQK9Lrom/tD4T
+   A==;
+X-CSE-ConnectionGUID: KtbOo9zsTl6ZLs51G89LzA==
+X-CSE-MsgGUID: SJ245mD+TyeUsZcdq/1PLA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="51734465"
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; 
+   d="scan'208";a="51734465"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2025 12:18:57 -0800
+X-CSE-ConnectionGUID: vlRCi91XTOu32FEws8/1Vg==
+X-CSE-MsgGUID: yYmc9FLARoeVY4knBxElMg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; 
+   d="scan'208";a="138038520"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2025 12:18:52 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tkqWv-0000000D7cB-47Tq;
+	Wed, 19 Feb 2025 22:18:49 +0200
+Date: Wed, 19 Feb 2025 22:18:49 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] mfd: lm3533: convert to use OF
+Message-ID: <Z7Y8qcNDxjsqJfhM@smile.fi.intel.com>
+References: <20250218132702.114669-1-clamor95@gmail.com>
+ <20250218132702.114669-3-clamor95@gmail.com>
+ <Z7XqKcOUt5niXzpv@smile.fi.intel.com>
+ <CAPVz0n1_WQyOHhtEVAh53uhEUhZvqqZSEJh6XALtSrVfkMSLYw@mail.gmail.com>
+ <Z7XzgfHcjyK_UZKv@smile.fi.intel.com>
+ <CAPVz0n2WwAOb1UU7J7aDTdhXXCaAZkCpYjW_nc_CBRgkGWdEOw@mail.gmail.com>
+ <Z7X3ZvQbSe75U-AR@smile.fi.intel.com>
+ <CAPVz0n19D1mS_prvMo-HD3m7U9+iknm49JSj5ydNUHoqjK7gZw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/8] dt-bindings: arm: Add Morello fvp compatibility
-To: Vincenzo Frascino <vincenzo.frascino@arm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Sudeep Holla <sudeep.holla@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Russell King <linux@armlinux.org.uk>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>
-References: <20250213180309.485528-1-vincenzo.frascino@arm.com>
- <20250213180309.485528-3-vincenzo.frascino@arm.com>
- <20250214-utopian-griffin-of-innovation-fabc40@krzk-bin>
- <9570e9bd-0555-4abb-930d-3f393df2b4ca@arm.com>
- <048edaab-253e-4823-9083-0e7fcc339fa5@kernel.org>
- <f40a1c37-e088-45fb-9d8f-d04db6f50a79@arm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <f40a1c37-e088-45fb-9d8f-d04db6f50a79@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPVz0n19D1mS_prvMo-HD3m7U9+iknm49JSj5ydNUHoqjK7gZw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 19/02/2025 12:30, Vincenzo Frascino wrote:
+On Wed, Feb 19, 2025 at 07:39:29PM +0200, Svyatoslav Ryhel wrote:
+> ср, 19 лют. 2025 р. о 17:56 Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> пише:
+> > On Wed, Feb 19, 2025 at 05:13:15PM +0200, Svyatoslav Ryhel wrote:
+> > > ср, 19 лют. 2025 р. о 17:07 Andy Shevchenko
+> > > <andriy.shevchenko@linux.intel.com> пише:
+> > > > On Wed, Feb 19, 2025 at 04:36:38PM +0200, Svyatoslav Ryhel wrote:
+> > > > > ср, 19 лют. 2025 р. о 16:27 Andy Shevchenko
+> > > > > <andriy.shevchenko@linux.intel.com> пише:
+
+...
+
+> > > > > MFD part is removed since MFD cells binding is unconditional, while
+> > > > > the device supports any amount of children grater then one. For
+> > > > > example, my  device uses only backlight at bank A, while all other
+> > > > > subdevices are not present and used. This patch switches to dynamic
+> > > > > bind of children.
+> > > >
+> > > > MFD does the same. Please, take your time and get familiar with how MFD works.
+> > >
+> > > It does not. I have tried. If mfd cell binding is missing, driver will
+> > > complain and fail.
+> >
+> > I really don't know what exactly is going on here, you can check it later, but
+> > I'm 100% sure that MFD works for only driver that are present. What you are
+> > describing is how component framework is designed.
+> >
+> > To proove my words you can check drivers/mfd/intel_soc_pmic_*.c and find listed
+> > cells that never had a driver in the Linux kernel. They are just placeholders.
 > 
-> 
-> On 19/02/2025 07:13, Krzysztof Kozlowski wrote:
->> Don't duplicate, combine pieces which look like enumeration into one
->> enum entry.
-> 
-> Is this what you mean exactly?
+> This example is not valid since those drivers do not use device tree.
 
-Yes.
+You didn't get the point. I'm telling that it should not matter if there is a
+device driver present or absent. The rest will be enumerated as usual.
 
-description could be more generic "Arm Morello System platforms", but
-it's fine in your diff as well.
+I even checked the code that handles of_compatible member from struct mfd_cell and
+at a brief glance I do not see that it can do otherwise.
 
-Best regards,
-Krzysztof
+Care to elaborate what and where is the error happened exactly?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
