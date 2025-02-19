@@ -1,108 +1,159 @@
-Return-Path: <devicetree+bounces-148362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9EB5A3BC8A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 12:16:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9DB4A3BCB5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 12:25:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66EC67A5EC8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 11:15:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90F9E3AD219
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 11:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCA721D89EF;
-	Wed, 19 Feb 2025 11:16:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB49E1DF265;
+	Wed, 19 Feb 2025 11:24:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z2581nYo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q5vS1YIY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE9551C1F10
-	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 11:16:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A80A1DEFF9
+	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 11:24:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739963798; cv=none; b=qhuI15WYTqyUsl139oDt/6TgvVGBbdj1QFTSStO1cwEECvj1AHMv/DX7CkED6GM7bLN7ZqOXnMqeV4Ttgc3Pw2w38ri0tbmw6sC2bFhQpAR3Hhjs8NqFTFFfXo/8E7kAuryefD1rKgKOymvytd2vzIr/y+TPak2pYFQwe5BpQX8=
+	t=1739964257; cv=none; b=XIQJuhpagfgveLHOap2siD4RakGiY+wqsVj7ltanLouKcDOz8CRbJ7H5MIE+U8mWmKnJ0rFcCDXvQlYDy/OZfeB7gs+6w2SSPcoRCoGS6X5nEuVPD3kKuTnfwCzfiKET4VyBU+OFdE13TFxSaOwR4ymJr/pTH8giTAVk9Ida/po=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739963798; c=relaxed/simple;
-	bh=uWOktcaedUBDqKd4C1NzqImpFID0KSF/Je2o+kES7iI=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=rn6j43xr2y0er3PcuqOob85Yh8mbgvKy4f3d2c8PSyHFkELVlw8chmxmaik97Is86xnKBfPVjyMiYuF6pBTcqzp/JE1W40Xb/Z85QTirdfqDVV15B8PWYLRM77lrJ0K0Uj5YUtSbed7WwCZ6s0RmWb+qkPISUstcfJDghjgXZlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z2581nYo; arc=none smtp.client-ip=209.85.221.43
+	s=arc-20240116; t=1739964257; c=relaxed/simple;
+	bh=3IlmgeaiPcaakLVe2YScE/woJneyFZcSXJq5bqdngbw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q2pvG2sIzykhzk1eKVZsT9NlYvlqd+rMYjr12pSLYSiqND2sh2a5kX3vOoFY0sulf1YnxBcCfhp54onjCrfQFzLfmSWMK1yUu1oDshFhLJR+QSBpn9ge2G3uYzttRR4Huw2bEaonScccd3rI4c9GwmKHSHRhtnNRU/u+AaM+nJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q5vS1YIY; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-38f2f748128so2469123f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 03:16:36 -0800 (PST)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4396a4d5e3bso49651775e9.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 03:24:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739963795; x=1740568595; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uWOktcaedUBDqKd4C1NzqImpFID0KSF/Je2o+kES7iI=;
-        b=Z2581nYoZUdJioFE5Qe/WCZqp1jMbVtJxdc85r9YGhmkDG9ZDO/YX9XW4+YbcNqXk7
-         wPSGSB13j+VdtOCCANTniQcKOGgpXGQ0/0U0adRjifpr9iCMve7vFgBy/viWcyUZuIPc
-         9ztSo+N/b6XqBh8HX2SanjwS4p/ebg7SLRaeVqbWbEu1uekLQ0SAHTDruFBv0FKj6mhU
-         AZ7+6H/1TqQaer23ovbdYRngBNMODTIArItoTxgtZjD5EIz2CcpFbEs3YllrIhSF3yFI
-         1ZxpFGbk9HVDofkDVgTNZpxNrFmW6letGneRlByL2XS29ruV26OjCiKD4d49xDZyjHpp
-         KnzQ==
+        d=linaro.org; s=google; t=1739964253; x=1740569053; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=tdPhTPgNb5WdAwuNYkFk04LlQR8UkULvprs/hSb+yyI=;
+        b=Q5vS1YIY7lYTNSNgI7OTgjuJ17bFqhTU5i2mw0UjNn5eVsfe+q6aGOu4g6Oz9Vu2gh
+         VY6etKU1zT+j05fs9hdjdxiuDu8pz6bSLgP+7pMVdi/0PdCzFnksTt+lYOtDAlUnP7Zl
+         pdW1pf598RJC3r9gW87TWDOJUNogkDbvvlYafZzE18MXs3gmS4JjFAklM6Cl8ip4iuMo
+         qeGs/QwfrsyhBkwre2IRRyoSef0qNv36C/aGKSqd9tLTqMVo93reNoghnnAmoUTsRJzL
+         XXjkm0wWzbBNGX48R3C4ABCP1E7fKnBFEzI2BT5Mu83WCbEtdC+XI1A/EKDXDjY9VGGc
+         36xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739963795; x=1740568595;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=uWOktcaedUBDqKd4C1NzqImpFID0KSF/Je2o+kES7iI=;
-        b=v+b100aOxqRyzzDWHNI2aYw3v0vuD7Oyw9No7rBU9J0zzDOhuIybQMjG51gIAAoDpk
-         9br+qhzNKW6fx7Z48xcGQ/WL/kJ8GiOPl4l1vrDZ2Zwe7IymLXwpRFaE4bZ71/aBQqG1
-         lTMzly781stwIdFqmm1krArf89N8bkoHvcawn291lpH2NrpEce2i7XJiaUwyvV5aiFB2
-         yKuQk1nu8L0pC3iL7A7Qa4ZBlPf2inDeAomcVIKWj9/uzrKsZO2TTXxWOvCWYQvuTIU/
-         iKwuLHmtRV9p0JlnNP0ZmRshFp64nBroY+aaDNjUGAUOcQ+JGnmL8H2Er/6JCRmvXEMQ
-         ZI1A==
-X-Forwarded-Encrypted: i=1; AJvYcCUz+14mlG70Q+hUXhbGttfQ8g7Has3K/UJmYDPCPA37WPMT7tXw0oMjKuYs10I7diITE5YhC9UKIo8I@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBdW+yPJLZw5DPN/teXkAZY5aMgrBoIHw8wOi2m8ZzTUz6Aj2R
-	ps4Bnx4mTFhOKJ8APDAQUPIukoxJcOXegQQf1W2xf6GwEldZ9EA0mLMztvcsWnA=
-X-Gm-Gg: ASbGnctqlFbqfokKJYfIS104oWQJ9cmMBTT7rp+NzutR7RkowpXcOURKIt+fePpL6fK
-	Z1eZD/AXTQ4QzTzdg5+FPGz0scYCRRg7J5BEf38t4+pkRwtYRHlt+5rGStGvjMNQHWKuWBQJjXT
-	9YZZLrKqJZ2cT5ZruHlV4RVQrLZS4hLoh87ooYvVlD9yN0v+rbmlcOAQ0XchWlCZ2kpuOLO4X1a
-	uhuVwmQIQfugoTCoD8Nn5NaKFC30OHio65XZLPIJtN4RTfSnahoy63tq6R8w2Batoy4Cl+4NZpW
-	XkI/zsVGOLnbvg5ux1c/
-X-Google-Smtp-Source: AGHT+IEmDDRkG1uSwNL1pvVknqup0gDz43+E3qOgrQNfjOcr23dfo95v/reLZTyiBdBUjlLYYhhYOQ==
-X-Received: by 2002:adf:f205:0:b0:38f:2726:bc0e with SMTP id ffacd0b85a97d-38f3406cd88mr15712193f8f.44.1739963795144;
-        Wed, 19 Feb 2025 03:16:35 -0800 (PST)
-Received: from [10.1.1.109] ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258ccdabsm17536949f8f.28.2025.02.19.03.16.34
+        d=1e100.net; s=20230601; t=1739964253; x=1740569053;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tdPhTPgNb5WdAwuNYkFk04LlQR8UkULvprs/hSb+yyI=;
+        b=WENPav2zQbgAFFMceW/9Px+wkYnJWa72lY5suxnsCVg8dI1tNJBSrLULx0pGaZVaQ4
+         TJ7/jg+jTzfDn4iTNemdLetHdjVnKcV4VwW6dOVrZkp+WCMZ9QnGIHPelLzx67DLtaRF
+         RWR8fC0kubVLFEh2zvIHP8lX6Kcwu187xUY0g6KY451QzNmghwde8XjA31o3nTrPsx+H
+         Z0klN4fSGErxq6JuisoshBHnxd9pkpay5a0d/mpTEJ2OoxMdMs504z3KsengHH2C+qry
+         DcvR7Cj8Nx/yR6sjJa+TSJ9vwaKuSgkEHFrKUr51dBSE4Gn7UBpuuwaEmX30T69jVOwe
+         6TRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW6peepSy25r3Vu8RXgXbvbdHshq1GJarv1e/lN6Hljb1tN/Io/X5MKA7sczrQQ921x7bUX0yibR/+U@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6KooEOYjiDDCsxT4DkKmlCcBAo/arlfeomupAGMPsECgSY/2J
+	8wXRh9ZVdXXjauBSM7gC3fVtX1c7pNhm7S83Q938DuA2wu/bxvuNQVZoCRu2RCg=
+X-Gm-Gg: ASbGncv8aM6Xr4ZokHHhe7f8Gh2v6vbUCa78ouPUCtk5/RCY3jXylZFDqhzgVXoIjCX
+	pjYFt1VHjXEIJnnGJ1CviTOwy5aE5uRxrRmTG0arkpnIPkg4DE/d1PsfQK43ggpE5Oen2ickJt6
+	dZ5G/Ufe6FZi68m7K41xv4Ul54KZJ4l7lE8oYIopOhd8aC7FzCv+jb2IktuPayKwxCwLPBn2pa0
+	AORKCY/hzdfWYIjuf78wJnUa6Tl7kjIN55pK1SGurdeNqNGW7J9BIc5u7zYDLDJ/SgdXDdfKxkN
+	3Glbcxk/NRhjoLJBH+qNj+P8IIc=
+X-Google-Smtp-Source: AGHT+IHyRalKTLx08DMpyY8D7tJnSYBfCjrsKNqbrlJWe/vLGSVDWGPykiVGFecncMvPPlaiWmLh0w==
+X-Received: by 2002:a05:600c:3b9c:b0:439:967b:46fc with SMTP id 5b1f17b1804b1-43999d8f506mr31097145e9.8.1739964253497;
+        Wed, 19 Feb 2025 03:24:13 -0800 (PST)
+Received: from linaro.org ([2a02:2454:ff21:ef30:6f72:6161:57cf:1c9a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43992ad82cfsm51235505e9.37.2025.02.19.03.24.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2025 03:16:34 -0800 (PST)
-Message-ID: <b60fe253fdf581399c11cb7e23db0e9883c81255.camel@linaro.org>
-Subject: Re: [PATCH 1/2] arm64: dts: exynos: gs101: Change labels to
- lower-case
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Peter Griffin
- <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- linux-fsd@tesla.com, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Date: Wed, 19 Feb 2025 11:16:33 +0000
-In-Reply-To: <20250219085726.70824-1-krzysztof.kozlowski@linaro.org>
-References: <20250219085726.70824-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2-2 
+        Wed, 19 Feb 2025 03:24:12 -0800 (PST)
+Date: Wed, 19 Feb 2025 12:24:07 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Wesley Cheng <quic_wcheng@quicinc.com>,
+	Greg KH <gregkh@linuxfoundation.org>
+Cc: srinivas.kandagatla@linaro.org, mathias.nyman@intel.com, perex@perex.cz,
+	conor+dt@kernel.org, dmitry.torokhov@gmail.com, corbet@lwn.net,
+	broonie@kernel.org, lgirdwood@gmail.com, tiwai@suse.com,
+	krzk+dt@kernel.org, pierre-louis.bossart@linux.intel.com,
+	Thinh.Nguyen@synopsys.com, robh@kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v35 00/31] Introduce QC USB SND audio offloading support
+Message-ID: <Z7W_Vz_kVDjIcp5N@linaro.org>
+References: <20250219004754.497985-1-quic_wcheng@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250219004754.497985-1-quic_wcheng@quicinc.com>
 
-On Wed, 2025-02-19 at 09:57 +0100, Krzysztof Kozlowski wrote:
-> DTS coding style expects labels to be lowercase.=C2=A0 No functional impa=
-ct.
-> Verified with comparing decompiled DTB (dtx_diff and fdtdump+diff).
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Tue, Feb 18, 2025 at 04:47:23PM -0800, Wesley Cheng wrote:
+> Requesting to see if we can get some Acked-By tags, and merge on usb-next.
+> 
+> Several Qualcomm based chipsets can support USB audio offloading to a
+> dedicated audio DSP, which can take over issuing transfers to the USB
+> host controller.  The intention is to reduce the load on the main
+> processors in the SoC, and allow them to be placed into lower power modes.
+> There are several parts to this design:
+>   1. Adding ASoC binding layer
+>   2. Create a USB backend for Q6DSP
+>   3. Introduce XHCI interrupter support
+>   4. Create vendor ops for the USB SND driver
+> 
+>       USB                          |            ASoC
+> --------------------------------------------------------------------
+>                                    |  _________________________
+>                                    | |sm8250 platform card     |
+>                                    | |_________________________|
+>                                    |         |           |
+>                                    |      ___V____   ____V____
+>                                    |     |Q6USB   | |Q6AFE    |  
+>                                    |     |"codec" | |"cpu"    |
+>                                    |     |________| |_________|
+>                                    |         ^  ^        ^
+>                                    |         |  |________|
+>                                    |      ___V____    |
+>                                    |     |SOC-USB |   |
+>    ________       ________               |        |   |
+>   |USB SND |<--->|QC offld|<------------>|________|   |
+>   |(card.c)|     |        |<----------                |
+>   |________|     |________|___     | |                |
+>       ^               ^       |    | |    ____________V_________
+>       |               |       |    | |   |APR/GLINK             |
+>    __ V_______________V_____  |    | |   |______________________|
+>   |USB SND (endpoint.c)     | |    | |              ^
+>   |_________________________| |    | |              |
+>               ^               |    | |   ___________V___________
+>               |               |    | |->|audio DSP              |
+>    ___________V_____________  |    |    |_______________________|
+>   |XHCI HCD                 |<-    |
+>   |_________________________|      |
+> 
 
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+As I noted on v34 [1], this version is still missing instructions and
+changes needed for testing this series. The device tree changes don't
+need to be part of the same series, but there should be at least a link
+provided to give other people the chance to provide Tested-by tags.
 
+IMO we shouldn't merge this series without those instructions, otherwise
+we risk that this just ends up being dead code that no one can use.
+
+Can you please share the device tree changes for a board upstream and
+any other changes needed to be able to test this series? E.g. for
+sm8250-mtp.dts, based on the examples in your cover letter.
+
+Thanks,
+Stephan
+
+[1]: https://lore.kernel.org/linux-arm-msm/Z63B_UE61OdrgEJY@linaro.org/
 
