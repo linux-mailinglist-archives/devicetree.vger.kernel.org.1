@@ -1,136 +1,155 @@
-Return-Path: <devicetree+bounces-148649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE326A3CD74
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 00:26:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27DDCA3CD78
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 00:27:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01668189ABC5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 23:26:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05E6017996B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 23:27:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A2925D555;
-	Wed, 19 Feb 2025 23:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B212F25D556;
+	Wed, 19 Feb 2025 23:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="EdgABP4q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UcpBcpZp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBE031D7E30;
-	Wed, 19 Feb 2025 23:26:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740007606; cv=pass; b=Zs4aTzleGU2kCZSZjJ+wxIwJev4/Coz97D7gLOKPHIRpnCy/qcx/qUZ/gChGkBwdbzUkAyFBrXzx/ibW2nRaxzaikGjvqopTDIAOtStbcR5Re6uGItZhRkOpXHLTXoDtznVIHzupw4TfRDy85DVU8pWGp1FC1QbVebD1jIQHhDg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740007606; c=relaxed/simple;
-	bh=t149zXGny9MUh9rTomjedstsAjZSGm+Ucs4XSCkChpk=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8485C1D7E30;
+	Wed, 19 Feb 2025 23:27:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740007627; cv=none; b=dJ2QF+hmXGRsII+YROs80k++uRcNtMQ/0BIBy5mEDWfesJn0chyWxU0Gpt0Gf+JS2lH+sZESLxq3drCyGgFdxJTcbTfJ7MBB15vCyYrszs2dH33pyaXiR+Hn8vgm/lL18h80aX43UHq0Hy5qnk1jA4euHA2hgfpoQa5pbfoeuxY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740007627; c=relaxed/simple;
+	bh=WX6lVmo/c25XHWA8ptWmTZ5D0wvhqhVJVdh7eGhlPHM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oK1umofJHsLwYulLM0/6Df0y2ZNwoLiRVddnnvuSkumG8olwlTRALOtLAaSJV553peVeumMd9B48aYnwzjWq/DIGhln+nRpIa/lk9fu/sV0Iu13a7Iw/eHay2fn35XoQsYp986LDpUTfjJ0cj450KX8P/JbKJBcoubYY9uId5TA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=EdgABP4q; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1740007587; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=aAGb5oMoeByvJDd94EMGXJMsYAMF6FyEThe3Aws0h4ka9BXzwDnNEN+N2AbesjfoxSJzeLcn85kPSzWH1nIwJ35Oc4QkSfkDSD9D4xE0kDForixyVJzfbt+ymGQeubYStqf9JPRmwbwbmuYQT704QLhJYaO/zQBwGXLri625/SI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1740007587; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=PXGNFT4r8OhyB7bcA09sStUpxj8AlqUe/lnXSeaoIB0=; 
-	b=OeVRzEe93uh8XyL+XrD3dNGxe8ROsZiaVHiB5/m4AhLTupgYZUwzlp3429DGYDH4eyNDCZF3pwpHxMltj/IyAwibJXVEqEWijLqniLqYNYUW0zlLsd4Ea+uF40WH+HYMK/3J3FvG0qGZvhNUKCnqflQv805F4HTHR3NsD6Xp/Kc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740007587;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=PXGNFT4r8OhyB7bcA09sStUpxj8AlqUe/lnXSeaoIB0=;
-	b=EdgABP4q2U2yfUOmmbB3kJzXjA8qpSxqJdvnA8KxIDCzR+YfncsUq2kwLcmtdSBc
-	ox1TdeoO/KZFfAnaOhjsqv3b2OPoHyWX3CePbhByayUzGqK47xJ22tHAVcepxohmwH7
-	Q4WlBq9bFCjBlttJ2TaN/k/4GUBBT8icRKaWhCXo=
-Received: by mx.zohomail.com with SMTPS id 1740007586726930.4692958102619;
-	Wed, 19 Feb 2025 15:26:26 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id BB60118093B; Thu, 20 Feb 2025 00:26:22 +0100 (CET)
-Date: Thu, 20 Feb 2025 00:26:22 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Lee Jones <lee@kernel.org>
-Cc: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>, 
-	devicetree@vger.kernel.org, linux-pm@vger.kernel.org, samuel@sholland.org, 
-	jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: (subset) [PATCH V2 2/4] mfd: axp20x: AXP717: Add
- AXP717_TS_PIN_CFG to writeable regs
-Message-ID: <rfn57iwagexbshg5akmo54l7un5ypcl6h655ahieyl3iz2oelg@oxv2wc4jcy5d>
-References: <20250204155835.161973-1-macroalpha82@gmail.com>
- <20250204155835.161973-3-macroalpha82@gmail.com>
- <173928137017.2164349.13619464947851022064.b4-ty@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z+Q6gpcPM7FAneuh1IZ5a9KYMasIPpUqhgxsR5xHNubBT3srRTksdWdewx5QU3TvImi4NhII9/3ouAtiTpKHMz05M/3DBt5Vy8okNi7blwdsVh9+O9w0nRPZuPYoD/MpPmKRTxD6ME/PP6l9mDgDHfwW8FEnjxmBi0ybsaLBLyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UcpBcpZp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFE72C4CED1;
+	Wed, 19 Feb 2025 23:27:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740007627;
+	bh=WX6lVmo/c25XHWA8ptWmTZ5D0wvhqhVJVdh7eGhlPHM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UcpBcpZpcjx53AjXDByVc1qriePQTt9PzfDcUl6el/oToFwGynzQcj26tNfwh0jFu
+	 jdDPRzx00n37KeNGxvhBjv00PW5UwN4cAkFpoMC6QMrTIhLArLkj5pfb33H389BN6S
+	 WfCRzQcTcByYd5g2voFukcfKrEcPbtuNco9AQAs/uuN8G2K2Ab6ZD3FGYa8f7/IH1I
+	 sWXgNGRRsKtutwIXQ4bKy2nnjGCvdHOeV27RIqbJjRlctjffOzOsFLhyNwITtTVvry
+	 aX5+xO3L1IPFYn3uzP5qfPJDMVmvZ9gIA6AeDgkjEeAAaW/eWU4khjoAwP82e8IO+v
+	 EbAqdSScg90Ag==
+Date: Wed, 19 Feb 2025 17:27:05 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krishna Manikandan <quic_mkrishn@quicinc.com>,
+	Jonathan Marek <jonathan@marek.ca>,
+	Kuogee Hsieh <quic_khsieh@quicinc.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH v2 07/16] dt-bindings: display/msm: qcom,sm8750-mdss: Add
+ SM8750
+Message-ID: <20250219232705.GA3166541-robh@kernel.org>
+References: <20250217-b4-sm8750-display-v2-0-d201dcdda6a4@linaro.org>
+ <20250217-b4-sm8750-display-v2-7-d201dcdda6a4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ktwyyp6o2yejuhcx"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <173928137017.2164349.13619464947851022064.b4-ty@kernel.org>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.4.2/239.939.29
-X-ZohoMailClient: External
+In-Reply-To: <20250217-b4-sm8750-display-v2-7-d201dcdda6a4@linaro.org>
 
+On Mon, Feb 17, 2025 at 05:41:28PM +0100, Krzysztof Kozlowski wrote:
+> Add MDSS/MDP display subsystem for Qualcomm SM8750 SoC, next generation
+> with two revisions up of the IP block comparing to SM8650.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/display/msm/qcom,sm8750-mdss.yaml     | 460 +++++++++++++++++++++
+>  1 file changed, 460 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8750-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8750-mdss.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..cfa21b0d081338f1b94779594798f86284ba0677
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8750-mdss.yaml
+> @@ -0,0 +1,460 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/msm/qcom,sm8750-mdss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SM8750 Display MDSS
+> +
+> +maintainers:
+> +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +description:
+> +  SM8650 MSM Mobile Display Subsystem(MDSS), which encapsulates sub-blocks like
+> +  DPU display controller, DSI and DP interfaces etc.
+> +
+> +$ref: /schemas/display/msm/mdss-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sm8750-mdss
+> +
+> +  clocks:
+> +    items:
+> +      - description: Display AHB
+> +      - description: Display hf AXI
+> +      - description: Display core
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  interconnects:
+> +    maxItems: 2
+> +
+> +  interconnect-names:
+> +    maxItems: 2
+> +
+> +patternProperties:
+> +  "^display-controller@[0-9a-f]+$":
+> +    type: object
+> +    additionalProperties: true
+> +    properties:
+> +      compatible:
+> +        const: qcom,sm8750-dpu
+> +
+> +  "^displayport-controller@[0-9a-f]+$":
+> +    type: object
+> +    additionalProperties: true
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - const: qcom,sm8750-dp
+> +          - const: qcom,sm8650-dp
 
---ktwyyp6o2yejuhcx
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: (subset) [PATCH V2 2/4] mfd: axp20x: AXP717: Add
- AXP717_TS_PIN_CFG to writeable regs
-MIME-Version: 1.0
+Just use 'contains' here with the 8750 compatible. We'll check the order 
+when the DP schema is applied.
 
-Hello Lee,
+Up to you what to do on the ones with a single compatible.
 
-On Tue, Feb 11, 2025 at 01:42:50PM +0000, Lee Jones wrote:
-> On Tue, 04 Feb 2025 09:58:32 -0600, Chris Morgan wrote:
-> > Add AXP717_TS_PIN_CFG (register 0x50) to the table of writeable
-> > registers so that the temperature sensor can be configured by the
-> > battery driver.
-> >=20
-> >=20
->=20
-> Applied, thanks!
->=20
-> [2/4] mfd: axp20x: AXP717: Add AXP717_TS_PIN_CFG to writeable regs
->       commit: ab797d7faf4c28328d2e45b09991f47a9b8e08aa
-
-Patch 3/4 has a dependency on this one. As you probably haven't done
-an immutable branch for this one, please also pick up 1/4 and 3/4. I
-just provided Acked-by to them.
-
-Greetings,
-
--- Sebastian
-
---ktwyyp6o2yejuhcx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAme2aJ4ACgkQ2O7X88g7
-+pqiGA//apsm7wetM6jM32dOHwCLK5R4Va7msusAzv+RNpZM1idOpdrhIDmvcCzK
-/07fRl4dXLKR6S7lG29vF4e3drh7k3kxKQOjj7NVGuE65nhIa49dgrTyWK2dRPiX
-6JiCkk5X6VF2zLwSLA58zwd+1OgCQHFxSFt8vWnPh2VPTrVkx1ktOltR96vsshxe
-uvYX/4JupUL/qzXnj+EmqvnSdP5xHbtv0RNrzzOhrnVV0fuDIHvB97oocJ4l+xi+
-ssmsrL1CRiR5s395NOCb29mBBA6zaRbdnvI9Qmhf5cJ/tn2Y7VVHDFuQqHk79u25
-2B7dGuiJFFmlkF7u4FouO3hAd6pNhjNXXjefHwK/B7dbNeP+OxU6U3et49ck161x
-RFxh7LqcmBcRXkHyU/wyidAiIWZbnVWrLv6Nc93B/DuKsR19k6r0iduai8lIDjlM
-fbOfFwBevEKP60H+W/RH/Mt4Dd2m90Ft4A3Vb9P0UeZLk2Xs4+nKhOlLg7RSv6rA
-JAKUO0GFhXVUfpE/vRCiuWXGHDR+OgS20sQ9y3PZr1iZxdBC/8xXPkI1XZxCqpfo
-od6kHyq/jxxV4NLg/NVcm/NgRe8HPhSVxy/MhPmVXNj+ss+dj7FOzHfdGJlATQZE
-9VbvEh+2/h1WzZn41HoyXxxf69d3R4+1gswDJR5rv0vjQQc1oeU=
-=f4Hj
------END PGP SIGNATURE-----
-
---ktwyyp6o2yejuhcx--
+Rob
 
