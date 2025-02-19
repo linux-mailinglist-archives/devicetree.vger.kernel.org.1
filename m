@@ -1,179 +1,173 @@
-Return-Path: <devicetree+bounces-148479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC43CA3C1F7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:23:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F01AA3C1FA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:23:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32C263A98C6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:20:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31FAC16D823
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:22:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954341EB184;
-	Wed, 19 Feb 2025 14:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BE6B1EB1B8;
+	Wed, 19 Feb 2025 14:22:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Na6eQl/u"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="mGuX916h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8D51E5B65;
-	Wed, 19 Feb 2025 14:20:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CFD91EA7FE
+	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 14:21:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739974846; cv=none; b=C5NAXO1gNmX0o+qGtIHIGVhoBaD17p1dgLfyF2jxZmOxZG/EojynKhkKrNFnA07TLhgBGp6pyg+R1Lz3/QQgrIvIZ1sSLauh0ldoQPSBJYhdrXFgpah08rdNo7PXjZdGctr1FuKKpnkAHeZnH1mylB7LmNqkBIZIAEDNamWYhEU=
+	t=1739974921; cv=none; b=MikSd9zThUoDogHGrPtZl6RMB54VP22DuPjCS+hsSog3z1ulN/6txkrG6Fq7vibvBriqoJVLnIrIRHM8nbXjHmDWZ9yymq0UyGkleVum2e8/lAsGbChtXYOfkq4JfZBh6ij67N+QDqxFMQ0/w9asEzctNsQrVrLF5umL0w4oGrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739974846; c=relaxed/simple;
-	bh=tXlCdH0X+xikR3zseXWRre0Ou4/Yp8Pw7Nsiy7ySbig=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Evo8TQ3BBHKyXThsNqGPOKlgRrBRcSJ8qn/6D9lGpmRTQl+QuigEXVNHQBsjOMPRVlIftfCfZLa3fUu5U+Hrk+KuEeCLtGnUDTFS0K/uoIMAwzRKATfguLKNhJj4auY12/wVYYpj5m8LB1s2VRsLJOx/fn9kuGEL8w9vwnhCeH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Na6eQl/u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59C92C4CED1;
-	Wed, 19 Feb 2025 14:20:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739974844;
-	bh=tXlCdH0X+xikR3zseXWRre0Ou4/Yp8Pw7Nsiy7ySbig=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Na6eQl/uA9zuc0lfzqHgEBKDBNxXa+POV4YGyC7MYTKQgEeIiqC0LwfmCEMI7xaPl
-	 W14jPeyWZh3KH0yFp2GUqn+n/JygquKIcYT2GdLQNHcndZFCcwajW4ccDus/IVmYHA
-	 XnaX2P6VoI4YbhQggPkLIiXhfWwoEDOwe8xMIARPegxooK+KEg3vN0GequKbRixfax
-	 yd7dURDozQQqAqnbAuAe0ig3ChKUWIoRy+13B5BqnVqfnfryZvXSw2Q6mGE7AWr42P
-	 Hnda7rXxX8eTL5mwbb+nII8mRGSs6Oj0j2Pg4DyMqMIEyzaYRf/r7kzy/b0faJS7bF
-	 XOVYd78wU1bVA==
-Date: Wed, 19 Feb 2025 08:20:42 -0600
-From: Rob Herring <robh@kernel.org>
-To: Aradhya Bhatia <aradhya.bhatia@linux.dev>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Maxime Ripard <mripard@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Simona Vetter <simona@ffwll.ch>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Devarsh Thakkar <devarsht@ti.com>,
-	Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-	Jayesh Choudhary <j-choudhary@ti.com>,
-	Francesco Dolcini <francesco@dolcini.it>,
-	DRI Development List <dri-devel@lists.freedesktop.org>,
-	Devicetree List <devicetree@vger.kernel.org>,
-	Linux Kernel List <linux-kernel@vger.kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>
-Subject: Re: [PATCH v5 2/3] dt-bindings: display: ti: Add schema for AM625
- OLDI Transmitter
-Message-ID: <20250219142042.GA2436009-robh@kernel.org>
-References: <20250209160925.380348-1-aradhya.bhatia@linux.dev>
- <20250209160925.380348-3-aradhya.bhatia@linux.dev>
- <16db8f3d-04a2-408a-964f-4cf9478229b4@ideasonboard.com>
- <8c6e790e-f1b6-46ab-9acf-bdea8076405b@linux.dev>
- <cd62bf21-adad-4422-8fac-ebd20e8b39a5@ideasonboard.com>
- <062b78a3-7e83-4202-a753-4e7bd43e8bc2@linux.dev>
+	s=arc-20240116; t=1739974921; c=relaxed/simple;
+	bh=qocFPkQyCPvV1h2KH38pPVOHg99R91NSuDTDGCCnb+4=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Nb0R0tdTKCecY2021rTMpsRIgzTd2KK9ZXwhdrcp9qk6OpJ3XObhyq+widRFT6y2LCGmZvgnjp8W4BrLVWDBNCmhideFX+NmWbOdYwfm6OwlIbGsPjGv9O6lBLbssgrOnbeNw48Ov/ZY+2wKkaZ4wFA9cX88HfqfH7u7I3XXGpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=mGuX916h; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-oi1-f199.google.com (mail-oi1-f199.google.com [209.85.167.199])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 78F993F2C5
+	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 14:21:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1739974917;
+	bh=TNFsSZbXf9eUik7wRM0fvibJQY2YnOZp+sKu7B0H7PU=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=mGuX916hjaGA3c9vr8PYPR/LXlipIYN8B8NTcMo5Xu2E+qIBaCv+d1QoLzIyQyRQN
+	 kt6d7wqwEpNKHfAEtVD6B8AS7SbmEpzvfzpmrLXe5Qe9Pz2DnS7R5YBcGis2j0P5v5
+	 ZNKWJhQPVabT0eP7Nu8LzQ0oGSZQzMbDCo78cHVsBUUB9ndwuEonibVJgbzTeDbvOK
+	 fs4bYQrNHy5cpTnIndZQTNRUk9wXzMgnY9uZHA3HWyW3c6+isc02dya1Ds1tVJzbYo
+	 LtA4bTDBTGTAjaAB7LhFlSd/VUzB08VUDd7A7G/OU+RVfU4GR3qWdr2iwW8sSm+7vO
+	 Te9g+YYvAlmtA==
+Received: by mail-oi1-f199.google.com with SMTP id 5614622812f47-3f413404320so626945b6e.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 06:21:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739974916; x=1740579716;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TNFsSZbXf9eUik7wRM0fvibJQY2YnOZp+sKu7B0H7PU=;
+        b=jJAOR/YkHQj3PZcQi91e+5LlAsxxjNfxS9pWjzVItIf5Q+1/3KZ1r6d7y2ansnt+il
+         bfIzS8yt8qFfbQfz2Pi7CQexDAOCmB//bEzmrt0de3TGi/z2ZJoZzvLOMwReK9CW5S80
+         bjU+YiN9hHsyHeoFAh8akoZdGSrM5mqe7v5I2m1r6YJ7WGFqYj3abdMvjNjjnsBObZTX
+         cPl4QGZaGwGasMp+0vdSDnfHv1Esb8cCLC2fNUZsuSKbHHYs0btYTWI/vBiQfsNn8hiv
+         QTX6pCT52L5ZZT+mACZ3VJSYP8SnwLmadbhwk95msipiPkCD9mTXD2ucLkJuQ3zKDzY1
+         gb6w==
+X-Forwarded-Encrypted: i=1; AJvYcCWSrm315jvt0WRqiWB85YjGffz6hwuGKegjLUBCEiR9RVfAq4zk6t/Pxo09k4ZJYa6Sqk1FFw7Wbn9R@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKX+RG70olqHCOOIrv7vn3dbGEA2bbJKgoxbCGj0rvpgJeu1cR
+	sAvsRGn19tGwQ2C/SBHVgKT6/XbUEqJunqgl74iSSUgxMqk336l/CkYHz4ebide38su3xnMuI0g
+	dkFYojTDnPoyvcPCQqHanUCXy7Q/eG0CPngQY+CjnNzpNfYwGAO4nlMHmyKT0b4nTvYCCZ+Ltis
+	zOAqX+ec1itV5EBz+9x00au8JtcBsSPG59I2OZRMyyXjYOehBvfA==
+X-Gm-Gg: ASbGncvXV0ayfvSRgHh2sImiTqPVBnquaisZSSK5t2sjvlnAsKKI1IBW2TTT97icKyv
+	O6GPiGzl3PLOV0Y0EK9yeJ1k6AzRiOn11q5UI23/brrd6Y3u05D6e0b985zfQyz5tjJQD1RyJSl
+	hhWBmF/bh2AV9j96s=
+X-Received: by 2002:a05:6808:2009:b0:3f4:28:1cf9 with SMTP id 5614622812f47-3f40f24c70bmr3215800b6e.37.1739974916181;
+        Wed, 19 Feb 2025 06:21:56 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEEKEwejCxHSGMNqBDr8UWGdz+HnH9g09SOIuN3EzxDyFqmETR+GIxaKnUFIYn1IRhg7V7hGhncJdXEh66k2zg=
+X-Received: by 2002:a05:6808:2009:b0:3f4:28:1cf9 with SMTP id
+ 5614622812f47-3f40f24c70bmr3215763b6e.37.1739974915815; Wed, 19 Feb 2025
+ 06:21:55 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 19 Feb 2025 06:21:55 -0800
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 19 Feb 2025 06:21:55 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20250215-fml13v01_emmc_speed-v1-1-e3bd224ae0e8@hotmail.com>
+References: <20250215-fml13v01_emmc_speed-v1-1-e3bd224ae0e8@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <062b78a3-7e83-4202-a753-4e7bd43e8bc2@linux.dev>
+Mime-Version: 1.0
+Date: Wed, 19 Feb 2025 06:21:55 -0800
+X-Gm-Features: AWEUYZkshXOe8nO7q9Z2xgk8mlOteMmpUwpHHVMO_JGbLr-I9D65us9gjN0VrVM
+Message-ID: <CAJM55Z9GJr3BtbQeFpNU2P=nomsOvQ6dsVYFX_s=tHznu75ptQ@mail.gmail.com>
+Subject: Re: [PATCH] riscv: dts: starfive: fml13v01: increase eMMC bus speed
+To: Maud Spierings via B4 Relay <devnull+maud_spierings.hotmail.com@kernel.org>, 
+	Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Maud Spierings <maud_spierings@hotmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Feb 14, 2025 at 06:11:11PM +0530, Aradhya Bhatia wrote:
-> Hi Tomi,
-> 
-> 
-> On 13/02/25 18:50, Tomi Valkeinen wrote:
-> > Hi,
-> > 
-> > On 13/02/2025 14:33, Aradhya Bhatia wrote:
-> > 
-> >>>> +  ti,companion-oldi:
-> >>>> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >>>> +    description:
-> >>>> +      phandle to companion OLDI transmitter. This property is
-> >>>> mandatory for the
-> >>>> +      primarty OLDI TX if the OLDI TXes are expected to work either
-> >>>> in dual-lvds
-> >>>> +      mode or in clone mode. This property should point to the
-> >>>> secondary OLDI
-> >>>> +      TX.
-> >>>> +
-> >>>> +  ti,secondary-oldi:
-> >>>> +    type: boolean
-> >>>> +    description:
-> >>>> +      Boolean property to mark the OLDI transmitter as the secondary
-> >>>> one, when the
-> >>>> +      OLDI hardware is expected to run as a companion HW, in cases of
-> >>>> dual-lvds
-> >>>> +      mode or clone mode. The primary OLDI hardware is responsible
-> >>>> for all the
-> >>>> +      hardware configuration.
-> >>>
-> >>> I think these work, but I'm wondering if we would ever need to check
-> >>> something from the main oldi from the secondary oldi. In that case
-> >>> "crossed phandles" would be better, i.e. something like:
-> >>>
-> >>> (in the first oldi:)
-> >>> ti,slave-oldi = <phandle-to-second-oldi>
-> >>>
-> >>> (in the second oldi:)
-> >>> ti,master-oldi = <phandle-to-first-oldi>
-> >>
-> >> When I had first designed the code and the devicetree for OLDI, it was
-> >> done so with the belief that we wouldn't reqiure a bridge instance for
-> >> the secondary OLDI, at all.
-> >>
-> >> While that idea holds true for dual-lvds configuration, it doesn't so
-> >> for the clone mode configuration. For clone mode, as you pointed out, we
-> >> will require a 2nd bridge instance to configure any of the bridges and
-> >> panels that come after the 2nd OLDI.
-> >>
-> >>
-> >>>
-> >>> Then again, if we ever need that, even with these bindings the driver
-> >>> could find the first oldi, but needs to go via the dss's node.
-> >>
-> >> While it is possible to do it this way, it might not be the cleanest
-> >> one. And _if_ there is a ever a DSS in future with more than 2 OLDI
-> >> TXes, say 4, then the decipher logic may get too complicated.
-> >>
-> >> While I cannot think of any case where the secondary OLDI bridge DT
-> >> might need to access the primary OLDI bridge at the moment, I wonder if
-> >> we should play it safer and have this option anyway.
-> >>
-> >> Maybe something like this?
-> >>
-> >> (primary OLDI)
-> >> ti,primary-oldi;
-> >> ti,companion-oldi = <phandle-to-secondary-oldi>;
-> >>
-> >> (secondary OLDI)
-> >> ti,secondary-oldi;
-> >> ti,companion-oldi = <phandle-to-primary-oldi>;
-> > 
-> > How is this different than my proposal, except a bit more verbose?
-> 
-> That's all the difference there is. Just an alternative to what you
-> suggested.
-> 
-> > 
-> > If you're thinking about a 4-OLDI hardware, how would this work there?
-> 
-> I didn't mean that my alternative would be more helpful. I meant that
-> passing phandles would be a simpler way for 4-OLDI hardware in general.
-> 
-> We'd have to sift through a max of 4 OLDI nodes to find the right
-> primary OLDI for a given secondary OLDI - if we try to find it via the
-> dss and oldi-transmitter parent DT nodes. Passing phandles directly
-> would save on all that logic.
+Maud Spierings via B4 Relay wrote:
+> From: Maud Spierings <maud_spierings@hotmail.com>
+>
+> The assigned clock speed of 50 MHz is and max-frequency of 100MHz are
+> limitting this interface which is SDIO 5.0 capable. Sadly at 200MHz it
+> fails to mount an eMMC drive, 150MHz (really 132 MHz) is the highest it
+> was able to get.
+>
+> This improves the seq read/write performance by 2x~
+>
+> Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
+> ---
+> I put this in this specific dts instead of the common one as I cannot
+> test if other boards are also able to handle these speeds.
 
-I prefer the data in the DT be the minimum needed. Parsing the DT 
-doesn't need to be particularly fast because you should only do it once. 
-There's even a function already to find occurrences of a property name 
-all over the tree.
+Hi Maud,
 
-Rob
+Thanks for the patch!
+
+These settings work on my Milk-V Mars board booting off eMMC, but I'm not sure
+if that means we can just raise the frequency across all the JH7110 boards.
+The eMMC on my Milk-V mars is a detachable module that identifies as
+
+  mmcblk0: mmc0:0001 DG4016 14.7 GiB
+
+I guess what works might depend on the module too. Is the eMMC on the framework
+board soldered on?
+
+Raising the max-frequency to 200MHz seems right for all boards since we're
+already saying mmc0 supports HS200 mode.
+
+Maybe we could begin by raising the max frequency to 200MHz for all boards,
+but only assign the 150MHz rate on the framework board?
+
+/Emil
+>
+> This patch depends on [1]
+>
+> [1]: https://lore.kernel.org/all/20250207093618.126636-1-sandie.cao@deepcomputing.io/
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+> index 8d9ce8b69a71be78ca57618ae842c9f415648450..1f4bac9f89463a6af844b8f1743bdfa659e612ab 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+> @@ -11,6 +11,11 @@ / {
+>  	compatible = "deepcomputing,fml13v01", "starfive,jh7110";
+>  };
+>
+> +&mmc0 {
+> +	max-frequency = <200000000>;
+> +	assigned-clock-rates = <150000000>;
+> +};
+> +
+>  &pcie1 {
+>  	perst-gpios = <&sysgpio 21 GPIO_ACTIVE_LOW>;
+>  	phys = <&pciephy1>;
+>
+> ---
+> base-commit: 0bc08ec1ff5a32449d2b04704173dbf3ebd6b014
+> change-id: 20250215-fml13v01_emmc_speed-67812bd9b404
+>
+> Best regards,
+> --
+> Maud Spierings <maud_spierings@hotmail.com>
+>
+>
 
