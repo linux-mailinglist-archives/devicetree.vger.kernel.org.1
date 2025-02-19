@@ -1,124 +1,141 @@
-Return-Path: <devicetree+bounces-148345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C915FA3BBA4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 11:29:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63D12A3BBAC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 11:30:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6CA73B1882
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:28:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46DDF3B3615
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:30:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE3A1D7984;
-	Wed, 19 Feb 2025 10:29:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F1F1DE4CA;
+	Wed, 19 Feb 2025 10:30:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RZIgGHQS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nDfTXh7X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BB6E155753;
-	Wed, 19 Feb 2025 10:29:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB5A1DE2D7;
+	Wed, 19 Feb 2025 10:30:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739960942; cv=none; b=UtKhYvuybE+M19CCR/SP46qdFpecw6JQJsKU1t/Q3krj3F2zgN3OPSnTfgH/8pcbKxvmqu+EEephQq6RmFh+ScXj4Tt6OUGXrGOn6OpQQ/rGygn+yyWWhAsMTOOCWLCVrXjAQCejIp/xZ8RruCWru2krOlmDPSV8zetSljUO/Sk=
+	t=1739961013; cv=none; b=ODwRNXJOPDuTwAfFtn+bCPSsrNaukmu8EYXWQ4z12lfvPwsAlwxCJKLdaw/jIJ0hdOkEPnAdu+9rYmXmwRJ8J28rC7/Jth6wC2Cqdb6J3pzBbuO3iwDyFMMbO357plQuESwJdgHzKTckPvFd/G6v+GI0c5Tl31ZjmwwRXUE8piQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739960942; c=relaxed/simple;
-	bh=dTy7kgJLz8uEW2tF3dDC1mdS9gH2aS8cAJdE5jPiMp0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WO46yrHY85UtKjH/smDRIRvcygCTBcT2YfdWESVFYiK3LtmVdlup1DIWC9bcYqL/tO5V4zvEaQU8xd+lPk5CBxdYl4ZvHmpI/kzT4uS0Z4aPNChW+bjAZPmGD32dj4xI6PE6eKKNbEgEC1IQxbbnqYZs7FOdLuVPGoL+/CzCqFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RZIgGHQS; arc=none smtp.client-ip=209.85.218.53
+	s=arc-20240116; t=1739961013; c=relaxed/simple;
+	bh=ZlB6Fl20r1Gyf71CsikcN1lkjeaWcVEK4zgaiyqFfKc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=anDhFugXce4CUUEFIMjwUFRzfGX1mAxL8jpP5T6XDC/ns1+r8HSc+gAymtdn0Sv9aU/cCHW3CBFl4rS8704c+ACAkwLkj+jF1cNqx6lhNXXfzuTPetWim0Uuo3i1IbAHRMVbHwL8UJ4RY0B4LtlBLBAiAZ+OrhxQt1/OpqbHLS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nDfTXh7X; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-aaf900cc7fbso989173266b.3;
-        Wed, 19 Feb 2025 02:29:00 -0800 (PST)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-aaedd529ba1so774562066b.1;
+        Wed, 19 Feb 2025 02:30:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739960939; x=1740565739; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LsEKril/EX6NGOi9AuHscz8JJQEqiJ3caiBRAkVCLUs=;
-        b=RZIgGHQSJPjAOeVJxwfgC75hDnLWGtNYzVYXMBZC7Mj6agoxkl9f6feQRyKbrkRNn0
-         lqKCfJJITJ+3sL5UDv5R424soaT097yi2Eb0SMH4GEKFNXk6O6NQM++ICpNyZwYcj1PX
-         Mw4m3Crfb1SANb14HEcOzpXPEd7W8lrNgHCfM7KKyASUv3lIaxEm/zEm97rerdwg1xeH
-         4Xc7QI+fslTennphYyu58NuotM8+TCvjpQtbyNe4xWTjssQ9geFYMCgPbSDVboMd9aG/
-         V9pNel9a5ZLI5tNdqRHHSKpXc9uoHGDV7IkzLZ0hCEfGdLVU0ekacL/mD3cT8HmwTMqt
-         0vwQ==
+        d=gmail.com; s=20230601; t=1739961010; x=1740565810; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dqsCWWkSmH25LiinfK2WpeOAAuO01FXzi3yUfsrVLMM=;
+        b=nDfTXh7X21aJVfhGqTQhZ0Nrs0nv7FXYA9mHE7CTVNX3VgG8S7aKQqb3HtuABFYiQk
+         NiPX9bTtYyets8GcT/xYBVdNf1QqiQnkoEebEcbrXaL7yFHngA1KNhanjRbUu7ORbaBb
+         BwHxPCzGUiNecFfy4spJnRVeBWPrk1pHlV8gHThxuIBoe8fNaLgllb7GoRzdiFxILBSX
+         astxeeMNSz9G+dT+vJ9CvvYV3pzkjdQR19klxB027p72ELQ+OXQlr63tKvXw829RIUEa
+         /EcpbYpNeAEIO/pUL0RtVtOHZ41tPgyz9r8PNbR6hIe+kuO51/oBvv79G53RUM/RtqBV
+         9iTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739960939; x=1740565739;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LsEKril/EX6NGOi9AuHscz8JJQEqiJ3caiBRAkVCLUs=;
-        b=LhqkZLI9uPoF9UWqVsaxP6iQMRhmLdu41DygIOyRsDz8FZkJRJsSjjvKYrVEV6CEe9
-         ypcs5zRJs8o47NOWEY5hrl8GPLs6c/qSQUUHCeaHPSJwK3hwn04VMKpSZifplcXEVvzd
-         Pe2+kOMZPz0bDgqKtmSO7+66Xpml8NpZHLm5N54DgT9rNbwvEw67bJtp8xvZScsyIKFD
-         xWuOvPNKaKgRR4pUd4LZP+xANDB0QZcqY7q9Rxmci2IsdOWcpgUlw81ZlxWcVUrdx+sX
-         x0N6U3/NMnztlXx9VOPgqVuR+r4fw1VNjCphtcfQrLGfB2ifmuC0HILjO8L4Rd+nCtD9
-         1P+w==
-X-Forwarded-Encrypted: i=1; AJvYcCUN6mUfBwsLay2oddV/Bl7XxM2fEhY5KCXLvVZP8muuysoOzoiKwPtThgNB5hSqnOTEOSv1rt74kTnJ@vger.kernel.org, AJvYcCUls//PDieIj82z51j8m8tjC0963bDjj7j1y+TbaK00liGd4KLzQSyP+zpu2aoAIkOFmd3G4o4ADjo9/rL3@vger.kernel.org, AJvYcCWmFNhuAnyXJoud7aDZPwYIfwRcgQcdxnKwxsURqdk7/Myy9Rhmz1iJUCKxz4t+ewnbE8GHs0B/GDr3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4KDNzlS65HLFaGAcT40YkMcHZhUW9c86BUkk6dSl4nJDL5rCw
-	9mN0BIzVSbIHDDDbM7n5Y0aiUO9ZLldnQTD/Fs5VLYO3QuXhCd7mTA2POQ==
-X-Gm-Gg: ASbGncv/+kbCQznUFhRBHTqHsQkQ15cce0k4P3lpuyPY7RmBnjHBToU/LTJfFYrlcG9
-	h+SUt7d7YpbhSClqY8y9urdhY2mw39yHf/6LbA0jJO2TeaEdw6qY8hM9lZEBeMJ5/O/7TfnQkHu
-	FIbNwzn/yMNvIRZseI8H2qovaO/NSxDSD9a6SQEgDEFQ0m3pWOhAp8k+RTEUw/mYyfl6xpvsiA0
-	c784fNr0WLfQoCZSbV6mseKVn6nHLplNAcLbDCue/SukE7xLLbHSa8kaeUtfgwSzrLpWdwq2w9k
-	XLT93CYt5MtW
-X-Google-Smtp-Source: AGHT+IERCwsrYngeQYiwia2oay4tPlR4ratg5zYgI6wHKY5o0gLlObZP3WA2uLSBNxJEm/1Q1/jRng==
-X-Received: by 2002:a17:907:d27:b0:aba:5f40:7f2e with SMTP id a640c23a62f3a-abb70d95048mr1686384966b.45.1739960938565;
-        Wed, 19 Feb 2025 02:28:58 -0800 (PST)
-Received: from debian ([2a00:79c0:646:8200:45fb:7d1a:5e4d:9727])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb9553fbd0sm611778066b.84.2025.02.19.02.28.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2025 02:28:57 -0800 (PST)
-Date: Wed, 19 Feb 2025 11:28:55 +0100
-From: Dimitri Fedrau <dima.fedrau@gmail.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject: Re: [PATCH 1/2] dt-bindings: can: fsl,flexcan: add transceiver
- capabilities
-Message-ID: <20250219102855.GA3888@debian>
-References: <20250211-flexcan-add-transceiver-caps-v1-0-c6abb7817b0f@liebherr.com>
- <20250211-flexcan-add-transceiver-caps-v1-1-c6abb7817b0f@liebherr.com>
- <20250219-huge-zippy-hawk-231ae0-mkl@pengutronix.de>
+        d=1e100.net; s=20230601; t=1739961010; x=1740565810;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dqsCWWkSmH25LiinfK2WpeOAAuO01FXzi3yUfsrVLMM=;
+        b=HhOYY2VNjstiswNUgWDP+vpGeYdLpRXMYYSg+magVrzl0kzARAeSlyTUP9e8wDwDOD
+         4yvLPNq5JeC5Hq5qMoL/oWDbtCnqv1adUUaipAxom0d6zWysa5kDU6uFM+2xsc0Ibpca
+         ZUSX5a5DPnLkKIA+qJjT0oDEED1wy/hx50nCs9AYsLUw5NQan4Go9jLz1SbTiNiodxOi
+         BaUsMoaObFHt6pK/BYGU8VqmXK0D/qyFz+1/bnrPpjZDd9Dz1ejmlhDjq0leYOqivRRo
+         mC9sVVK+eEbXAznhqoGTfIBKAo3J4TJz7ImFj63Id8s0p3w3st6qIljNXaEo57A6iGzy
+         buCg==
+X-Forwarded-Encrypted: i=1; AJvYcCW5/TAefFP+DrA1rsRiQJrcphHZqWGK7aMXR+7IUuCT8MG9j6bZefFMAn7evBN6gbi8iBPni9SciUuM@vger.kernel.org, AJvYcCXKR0Q1kZwA6xw10pPcone+U7tE0LQAFIHT5PJeDLkgOtC4gzZf91k9W56wt/LuAYOjye7BoYqNwH+jTbtS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCsNSDw6YO+2hLQZ/cYdtM8Uo2HQqiUp717nEgAAdsjfEcFrlD
+	woi0Qopa7f1AETZSQ3HnAv5SHt/mQxXfT0l0ic6dEm7Z54T2JMzG
+X-Gm-Gg: ASbGncvZcqQosl4dFDjx1kYw98DG4cdo/8WZPi9RkDwDRrrQ1Ix/DQah6I0l+NmJzV9
+	s6LIYQ374pvLn2+HmS+9rZZA5vH9aSXaB7wH2XDPyDwqSE70+C/T2iUkepRm9UWUdjEFXZyMGau
+	iJh7CxduiVfDtpPg7DLhuYa44LDG0YofkVma+KrlQsm8muj+jrRP0DLkQDM2KPC5Biqj7A/Y4uw
+	HUP4kl9EjQSYBOFLVd1VRlrl/9oPqAtn3/JwP1ytTWMvDTlchtW7AMs456uhu+oawd5TVzfKN1K
+	ZakQXpb9yVYWjT48CFqBk44GTbYiqvUyafzpcpa4XKH8D6pSDM+XQnMk
+X-Google-Smtp-Source: AGHT+IGMRnJbqZGcoPSmmMe5Vij/8eD1w+eN1gparuJBfqUiWqQu7i9iee9bfZFQ1AHQ3VeOe6iFJA==
+X-Received: by 2002:a05:6402:3710:b0:5e0:7cc4:ec57 with SMTP id 4fb4d7f45d1cf-5e07cc4ee69mr14087611a12.31.1739961009458;
+        Wed, 19 Feb 2025 02:30:09 -0800 (PST)
+Received: from [172.16.20.186] (62-73-104-42.ip.btc-net.bg. [62.73.104.42])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abba358ec3asm483479766b.35.2025.02.19.02.30.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Feb 2025 02:30:09 -0800 (PST)
+Message-ID: <c39e6058-0649-452f-9a21-d9d5a28ccc06@gmail.com>
+Date: Wed, 19 Feb 2025 12:29:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250219-huge-zippy-hawk-231ae0-mkl@pengutronix.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] dt-bindings: arm: samsung: document g0s board
+ binding
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250215130500.170738-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250215130500.170738-2-ivo.ivanov.ivanov1@gmail.com>
+ <adbbd60e-c72c-46f3-87e5-198ab1d49d9f@kernel.org>
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <adbbd60e-c72c-46f3-87e5-198ab1d49d9f@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Marc,
+On 2/19/25 10:35, Krzysztof Kozlowski wrote:
+> On 15/02/2025 14:04, Ivaylo Ivanov wrote:
+>> Add binding for the Samsung Galaxy S22+ (SM-S906B) board, which is
+>> based on the Samsung Exynos2200 SoC.
+>>
+>> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>> ---
+>>  .../devicetree/bindings/arm/samsung/samsung-boards.yaml     | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+>> index fab29f95d..bb3f6a0e1 100644
+>> --- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+>> @@ -45,6 +45,12 @@ properties:
+>>            - const: samsung,aries
+>>            - const: samsung,s5pv210
+>>  
+>> +      - description: Exynos2200 based boards
+>> +        items:
+>> +          - enum:
+>> +              - samsung,g0s                     # Samsung Galaxy S22+ (SM-S906B)
+>
+> What does g0s stand for?
 
-thanks for reviewing. I think I messed up with the previous answer using
-my corporate mail account. Sorry.
+Samsung started codenaming their S series like that since ~S20. I'd actually
+much rather use something like samsung,s22p but since 990 devices upstream
+already use the weird codenames, I've decided to do the same.
 
-Am Wed, Feb 19, 2025 at 10:15:11AM +0100 schrieb Marc Kleine-Budde:
-> Hey Dimitri,
-> 
-> thanks for your contribution!
-> 
-> On 11.02.2025 14:12:33, Dimitri Fedrau via B4 Relay wrote:
-> > From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-> > 
-> > Currently the flexcan driver does not support adding PHYs.
-> 
-> That's not 100% correct. The flexcan driver does support PHYs, but via
-> the old can-transceiver binding.
-> 
-> Can you rephrase the commit message.
-
-You are right, will fix it in V2
+I'll mention G0S it in the commit message next revision.
 
 Best regards,
-Dimitri Fedrau
+Ivaylo
+
+>  Sound a bit cryptic and you did not use it in
+> commit msg to explain the origin.
+>
+>
+> Best regards,
+> Krzysztof
+
 
