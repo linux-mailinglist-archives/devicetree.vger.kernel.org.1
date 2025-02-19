@@ -1,66 +1,64 @@
-Return-Path: <devicetree+bounces-148604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A2EA3CBBB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 22:46:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57B9AA3CBCA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 22:50:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66DD2189C21C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 21:46:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3022D3B41AB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 21:49:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1743241CB5;
-	Wed, 19 Feb 2025 21:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DE762580F2;
+	Wed, 19 Feb 2025 21:49:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q4uNK/QF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SSwWSClU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B03F61DE88C;
-	Wed, 19 Feb 2025 21:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18EE82580ED;
+	Wed, 19 Feb 2025 21:49:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740001570; cv=none; b=dyy+I7ZOk3VZcyhRTftZzqwRfTK2oyP7jkUai9i/nedbcQ24j26z9uDpvQmZIbcEp+pDmr4ZZHMP6Hu13CC5FppYxt1Hm+i0b/G5yfXrrVb/TxXWyWpQTfhBqSuHYY8Mo+BP1hSooustgyLjel8ycCfc8/u5qu18CUDm4Wg0Zio=
+	t=1740001797; cv=none; b=Xkm4et2/Ngnsdzgmm3fH0AMp5RBFEpOvFvrCpG86rkNaATHtEaPBj3xTcEzD1qjhDkUqElWh/itDGsEvrEBagYQnufaAqn6n6neQbYR35fL5k+aZ+s9rntdGOcyKnhmq5rD8Yp1CHuNGgJ+itOAhEY0oz7SjlFsqPZfjY4E3XsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740001570; c=relaxed/simple;
-	bh=V7MoC2zW7sWj9u+pbh19DBSYNN547r5t17dp94udUps=;
+	s=arc-20240116; t=1740001797; c=relaxed/simple;
+	bh=V1p1tT7UNLn3zJwu+41I707JUQAwN9RLXALKhZOBi0Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RZSy13OKR/gugrC995z0ojctWYmEdrZVaMP16IhRzd6jFgbBq7t2JVu8ciIPWqAtSis643XUczD4GTcxHw/03kWVdk3vIm+i8sh6v21GyMk9rgfgY0A37f7MPa8WxC+TTlzPIl9idtojgk4Z478W06gFiyEtAm/qlwY7w9N4SN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q4uNK/QF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8AEFC4CED1;
-	Wed, 19 Feb 2025 21:46:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=S84hYeQ2yA7eiXzhbyFxDR6yJjNln26DSbbio91qYgwR42GfBISFB1mQtP/tzKeCktszqw79xlVnqpMIvUlm1dJK4QF8JxxwqIVMp9yBZsJr/mqA6bY36Pq881nY4dnoyNU70W4xDTcp/nFQ6vL/OfonO/qJ9E+FNdp06MLAMHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SSwWSClU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A79EC4CEE6;
+	Wed, 19 Feb 2025 21:49:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740001570;
-	bh=V7MoC2zW7sWj9u+pbh19DBSYNN547r5t17dp94udUps=;
+	s=k20201202; t=1740001796;
+	bh=V1p1tT7UNLn3zJwu+41I707JUQAwN9RLXALKhZOBi0Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q4uNK/QFChz31+NC+j93t7UkCweE7BJU+8DRtb5qgKMD17V9p+kNw2zDIIO1vcf4V
-	 7blwlLDwnpnB5h3WQw8/R1wV+Z4BBR1gTWNuWT3e2X2QVzYwjVah/M5hA7uckzcEwX
-	 WjAfPnV+wUDh70Nr6UHgVwTqA1LFuis5Be73wYFNK5+F8dPRMKLX0ZM3NYaQZAVLGO
-	 p2Ntz7KzCdvedb7XHLHJmdNQsGgax8m/NF3ynNcTpJv+utMaBoqsIhqEcZ3frnR39k
-	 /zVKGzlZimahEhGWr4De65FYDeOA5ReS7PPHrku4HCIy076XjZEKIcjLso0NLjNaOH
-	 lJ/qVSgQcUz3A==
-Date: Wed, 19 Feb 2025 15:46:08 -0600
-From: Rob Herring <robh@kernel.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=SSwWSClUsLcb50H6wcw8uNxRz4rkMZZ7OBldjZF6ML75IG6C4tywp6GErrMbtAl46
+	 yzRrDVY0v2WqoYCpEpicEw6QkYa7Lu7gbSIX0Is6cqSJSAkfEGvdEc1g4So+PjNm+b
+	 pTADXkCwNmoRm7Y1qGn2AxsxIKxD4V9pv9Y6uDZmTq6WulZMyKUrDj0VDjYo0zGwA4
+	 P8KLsiBrGvobF2g4LZP8mjqO5JhzeQVm3RTid+v+xbTgjaM2+6ek2UCfJHpfK/i/55
+	 zKPVWsQ7+8W9GeXj9Zr2I3xG2d7DNmASWyAkIFH9wenBhfe47IqR02i0uLT2sTmMSo
+	 qrw2tmgYHvCAQ==
+Date: Wed, 19 Feb 2025 15:49:55 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	linux-kernel@vger.kernel.org, arm-scmi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v2 2/7] dt-bindings: firmware: Add i.MX95 SCMI LMM and
- CPU protocol
-Message-ID: <20250219214608.GA3003788-robh@kernel.org>
-References: <20250212-imx-lmm-cpu-v2-0-3aee005968c1@nxp.com>
- <20250212-imx-lmm-cpu-v2-2-3aee005968c1@nxp.com>
+	linux-arm-kernel@lists.infradead.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-kernel@vger.kernel.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: mmc-slot: Make compatible
+ property optional
+Message-ID: <174000172538.3013190.16324788737757814573.robh@kernel.org>
+References: <20250212-mmc-slot-v3-0-2bf288207040@microchip.com>
+ <20250212-mmc-slot-v3-1-2bf288207040@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,64 +67,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250212-imx-lmm-cpu-v2-2-3aee005968c1@nxp.com>
+In-Reply-To: <20250212-mmc-slot-v3-1-2bf288207040@microchip.com>
 
-On Wed, Feb 12, 2025 at 03:40:24PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+
+On Wed, 12 Feb 2025 14:52:10 +0530, Dharma Balasubiramani wrote:
+> The compatible property is required for some vendor-specific device trees, such
+> as Amlogic's meson-mx-sdio, but is unnecessary for others, like Microchip's
+> DTS. To resolve unintended warnings for configurations that do not require it,
+> remove compatible from the required properties in mmc-slot.yaml.
+
+Please rewrap your commit message at the right length. checkpatch.pl 
+will tell you this so I don't have to.
+
 > 
-> Add i.MX SCMI Extension protocols bindings for:
-> - Logic Machine Management(LMM) Protocol
->   intended for boot, shutdown, and reset of other logical machines (LM).
->   It is usually used to allow one LM to manager another used as an offload
->   or accelerator engine..
-> - CPU Protocol.
->   allows an agent to start or stop a CPU. It is used to manage auxiliary
->   CPUs in an LM (e.g. additional cores in an AP cluster).
+> Since meson-mx-sdio still requires compatible, explicitly add it to its
+> required list in amlogic,meson-mx-sdio.yaml.
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
 > ---
->  .../devicetree/bindings/firmware/nxp,imx95-scmi.yaml     | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>  Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml | 3 +++
+>  Documentation/devicetree/bindings/mmc/mmc-slot.yaml              | 1 -
+>  2 files changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
-> index 1a95010a546b14b1d3d97aa990c0305a551f2620..75f63819285b191a815dc4287e34d299983b1c40 100644
-> --- a/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
-> @@ -11,6 +11,14 @@ maintainers:
->    - Peng Fan <peng.fan@nxp.com>
->  
->  properties:
-> +  protocol@80:
-> +    $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
-> +    unevaluatedProperties: false
 
-Please add 'description' to these to say what the protocol is.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +
-> +    properties:
-> +      reg:
-> +        const: 0x80
-> +
->    protocol@81:
->      $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
->      unevaluatedProperties: false
-> @@ -19,6 +27,14 @@ properties:
->        reg:
->          const: 0x81
->  
-> +  protocol@82:
-> +    $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        const: 0x82
-> +
->    protocol@84:
->      $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
->      unevaluatedProperties: false
-> 
-> -- 
-> 2.37.1
-> 
 
