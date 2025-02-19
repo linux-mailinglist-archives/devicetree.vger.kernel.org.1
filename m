@@ -1,148 +1,180 @@
-Return-Path: <devicetree+bounces-148615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E815A3CC91
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 23:43:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13ABCA3CCA3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 23:51:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BA323AE454
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 22:43:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CDCF1896E7B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 22:51:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3512C25A34D;
-	Wed, 19 Feb 2025 22:43:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6706125B66C;
+	Wed, 19 Feb 2025 22:51:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PKdANEYz"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="m+dF/oRw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0547625A34B;
-	Wed, 19 Feb 2025 22:43:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C759023C8CC;
+	Wed, 19 Feb 2025 22:51:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740005005; cv=none; b=c1qEuVuDmsxLlTp7urVmQoTmrNykL71dGtod9vMTFNQqgY8Cd8dbIxngMM2rsrjRRtKuOMZyQ8RT7LxDJxWrPOo+RLZGRPaQAnJTqglo9fnJqu27ka+4BSyTgpZNC9ky+kE0sChAiumps7aaU+L83zRsRucblRk6potm+MwxWZQ=
+	t=1740005485; cv=none; b=CdfBwr5Op1rtsVpWLVqcolE+K94HiqKj4YhbUml/lTS/gaUVgzq7jglDeNJXQeUvOM+hiumZnSz5X0UkrK89PE/+JJDtrdlwSa7l8RoAE1rl+5lkQ/fS57UNbJHqHKSReMBpPc055u6vnWDtGdck13qFKudmrzIylWa7HasRULk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740005005; c=relaxed/simple;
-	bh=oB01MPEv8LjdiYQ+OxWvCnlcAnbSN33JSl8xlJVCC9k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FjSiucQh0cQnEMGWgz53Xog6O4+zKikwgjfFOgMQT/SzVYuuElMZvwBPJFER5u+UxfnJq669CGnn4DfVe3bfcI0lZ/rUv49YCf16ymHjIeaTKAJsv2lylHfWZzTzWHiSGoLPGlVF9tvBTp++KUqBYpHHMk5xQgyHT9WRjmk+c68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PKdANEYz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64B31C4CED1;
-	Wed, 19 Feb 2025 22:43:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740005004;
-	bh=oB01MPEv8LjdiYQ+OxWvCnlcAnbSN33JSl8xlJVCC9k=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=PKdANEYzNjjbIr38NUk7z5p+Z9F+jXUNOmA/lCJpQk0PIvqLqO1KpO0bseNfZeNob
-	 rLtJk3fBlNATiACZPTodvbpgflqT7l3UK4V7RSUPAq2k7JSBXpDoUiU8OcNRQBWAup
-	 97RceaLpTYnX79uBjTd2v9iXYkUuKF/fOxMSmENUd9V0KSXP3vCnuXbx5c6y8PCbxe
-	 HrXq0fUDtdNUmRi/saRgQ6+7SHEZK8KUz08YiBb4ITIw/iejPUG24gETgwfO0QILbq
-	 rww1v9l2Y4wNnor4HcMEcCjb67uxHLwqtXO6Jmr3eFMSO9Dv7k7ATme476m1vIgAD8
-	 z6O9Lj1jIyaFw==
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e04cb346eeso404257a12.2;
-        Wed, 19 Feb 2025 14:43:24 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUw8wsyr+kDIoHS+Obdy+m4O2nN6FDJ66Qg8cZiAON6AHjvqJgsKwIaAboO9a4hePksKco4SUZ2sO1XYg==@vger.kernel.org, AJvYcCVXxz3TEa/wqCl+wEs0/pdc4qyetF0jwseKV2fNY7eGU6w9BPAs/iH2ZNUuOWqxC6NRXlcRVUhTnEPK@vger.kernel.org, AJvYcCWCcBAqe5QyKa48/9qla0OoOe4lD+4eqN40lAXj5YXh0daERut4eBuK8zExTzbV9F3QIBOfdLlGXCMrjDY/@vger.kernel.org, AJvYcCWI4QYUha0s4Zd6OzgWG3anWgb8mtaLAet9uA45yZrWVzFJFiRMGNkmNGY0xFygWY09pyyHlbDhutUx@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOkO83LYDOULBM875nE8gp7gFTKehyu1/PxpaOhHd0gynxoWn1
-	fc8fm0jdQeAxM5ym5Y/PUhZ+OSB0OO1Cy/yr/+sXO2omfak3wN8N7Cb/IwP2uNqBZmoKsrrmup2
-	1Iir2XqW1/J9JD119EeGDdT/g3A==
-X-Google-Smtp-Source: AGHT+IFKS59MJjzGgNFJyErjdo066Kf2RALm9L7HJRWP4YBWsnRrUMaiDEu5+latsq8sxVCx8lc/g5fr4x7Fq4A6sTU=
-X-Received: by 2002:a05:6402:381b:b0:5e0:8920:c4c5 with SMTP id
- 4fb4d7f45d1cf-5e0a4afb1ddmr203602a12.11.1740005002935; Wed, 19 Feb 2025
- 14:43:22 -0800 (PST)
+	s=arc-20240116; t=1740005485; c=relaxed/simple;
+	bh=YaqNAzVcaPa2EnpUmSOLCSRYurwsI9uT/T9+XNUlP+8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jsFSFOQVCKC8wqbOwhnYn9LgN0hgMFRRDbT2DEAsytUmFCkVluI9+AJjpzRAaJT8dDzTdiDk7E8faqt0HwEw0EUNRwkAQ5XRqY8BmCPeBVRSY1JH9eOQK5CQc8jEo3oJINYsxp+HvZO1Fk36ai8516zMUCr4d9yA0BM/hnGld0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=m+dF/oRw; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=CBLCEogiLTx2PTS7BtILZh9Og4OzIj+0Y+joFEKIYq4=; b=m+dF/oRwCmIwDs9a3/gn0ZWjaG
+	by0scE3rRECPq7eEcr+YBVFEDrA6UEl/oC/bfhGt3CleKhMf1SN/UlUKD2Fuc2ghd2CnLGJfe1Z5E
+	ydDkHobvR4LfVUO/hIewM6/8tDwVk1XR6Rk2WmJ55DqxF7Q6faylgVknyfq8JgNnW8CqO6G4Ffo4Q
+	K1MeesZWZHWGPV7eCQalek8p3TZ63+pWYhU+sN6t0TP9Q70VI44BXsMWyDGGVdni6IoJt4AIJ/hDe
+	6Qj5pp+AQ0mY0aqckgZdFIUlP+7p89Bbpc2QuUz4l+l/SJYwjxzL5OOFFLAYyTo3psioRsukZNbBh
+	o1dI0G5g==;
+Received: from i53875bc0.versanet.de ([83.135.91.192] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tksuR-00067C-PW; Wed, 19 Feb 2025 23:51:15 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Vinod Koul <vkoul@kernel.org>
+Cc: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, quentin.schulz@cherry.de,
+ sebastian.reichel@collabora.com, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dse@thaumatec.com, Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject: Re: [PATCH v6 2/2] phy: rockchip: Add Samsung MIPI D-/C-PHY driver
+Date: Wed, 19 Feb 2025 23:51:14 +0100
+Message-ID: <2030933.8hb0ThOEGa@diego>
+In-Reply-To: <Z68zdiIl75k2Vv9i@vaman>
+References:
+ <20250213210554.1645755-1-heiko@sntech.de>
+ <20250213210554.1645755-3-heiko@sntech.de> <Z68zdiIl75k2Vv9i@vaman>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1739486121.git.robin.murphy@arm.com> <c2f0ae276fd5a18e1653bae8bb0c51670e35b283.1739486121.git.robin.murphy@arm.com>
-In-Reply-To: <c2f0ae276fd5a18e1653bae8bb0c51670e35b283.1739486121.git.robin.murphy@arm.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 19 Feb 2025 16:43:10 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+RA3ojYgqkELOrCd68JHRGPsuObzbRi3RA6eV7NYh0Cw@mail.gmail.com>
-X-Gm-Features: AWEUYZnOMA-FyQa1U3tn01tUjPcRrp-PbPJQL6m4k_dHn-Ztt3nE99iHpRmo__k
-Message-ID: <CAL_Jsq+RA3ojYgqkELOrCd68JHRGPsuObzbRi3RA6eV7NYh0Cw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] iommu: Get DT/ACPI parsing into the proper probe path
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo <guohanjun@huawei.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Russell King <linux@armlinux.org.uk>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Danilo Krummrich <dakr@kernel.org>, Stuart Yoder <stuyoder@gmail.com>, 
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>, Nipun Gupta <nipun.gupta@amd.com>, 
-	Nikhil Agarwal <nikhil.agarwal@amd.com>, Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	iommu@lists.linux.dev, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
-	Charan Teja Kalla <quic_charante@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-On Thu, Feb 13, 2025 at 5:49=E2=80=AFPM Robin Murphy <robin.murphy@arm.com>=
- wrote:
->
-> In hindsight, there were some crucial subtleties overlooked when moving
-> {of,acpi}_dma_configure() to driver probe time to allow waiting for
-> IOMMU drivers with -EPROBE_DEFER, and these have become an
-> ever-increasing source of problems. The IOMMU API has some fundamental
-> assumptions that iommu_probe_device() is called for every device added
-> to the system, in the order in which they are added. Calling it in a
-> random order or not at all dependent on driver binding leads to
-> malformed groups, a potential lack of isolation for devices with no
-> driver, and all manner of unexpected concurrency and race conditions.
-> We've attempted to mitigate the latter with point-fix bodges like
-> iommu_probe_device_lock, but it's a losing battle and the time has come
-> to bite the bullet and address the true source of the problem instead.
->
-> The crux of the matter is that the firmware parsing actually serves two
-> distinct purposes; one is identifying the IOMMU instance associated with
-> a device so we can check its availability, the second is actually
-> telling that instance about the relevant firmware-provided data for the
-> device. However the latter also depends on the former, and at the time
-> there was no good place to defer and retry that separately from the
-> availability check we also wanted for client driver probe.
->
-> Nowadays, though, we have a proper notion of multiple IOMMU instances in
-> the core API itself, and each one gets a chance to probe its own devices
-> upon registration, so we can finally make that work as intended for
-> DT/IORT/VIOT platforms too. All we need is for iommu_probe_device() to
-> be able to run the iommu_fwspec machinery currently buried deep in the
-> wrong end of {of,acpi}_dma_configure(). Luckily it turns out to be
-> surprisingly straightforward to bootstrap this transformation by pretty
-> much just calling the same path twice. At client driver probe time,
-> dev->driver is obviously set; conversely at device_add(), or a
-> subsequent bus_iommu_probe(), any device waiting for an IOMMU really
-> should *not* have a driver already, so we can use that as a condition to
-> disambiguate the two cases, and avoid recursing back into the IOMMU core
-> at the wrong times.
->
-> Obviously this isn't the nicest thing, but for now it gives us a
-> functional baseline to then unpick the layers in between without many
-> more awkward cross-subsystem patches. There are some minor side-effects
-> like dma_range_map potentially being created earlier, and some debug
-> prints being repeated, but these aren't significantly detrimental. Let's
-> make things work first, then deal with making them nice.
->
-> With the basic flow finally in the right order again, the next step is
-> probably turning the bus->dma_configure paths inside-out, since all we
-> really need from bus code is its notion of which device and input ID(s)
-> to parse the common firmware properties with...
->
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> ---
->  drivers/acpi/arm64/dma.c        |  5 ++++
->  drivers/acpi/scan.c             | 10 +++-----
->  drivers/amba/bus.c              |  2 +-
->  drivers/base/platform.c         |  2 +-
->  drivers/bus/fsl-mc/fsl-mc-bus.c |  2 +-
->  drivers/cdx/cdx.c               |  2 +-
->  drivers/iommu/iommu.c           | 43 ++++++++++++++++++++++++---------
->  drivers/iommu/of_iommu.c        | 10 +++++++-
->  drivers/of/device.c             |  7 +++++-
+Hi Vinod,
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+thanks for the review.
+I've dropped all the parts that would've just gotten a "ok, changed" ;-)
 
->  drivers/pci/pci-driver.c        |  2 +-
->  10 files changed, 60 insertions(+), 25 deletions(-)
+Am Freitag, 14. Februar 2025, 13:13:42 MEZ schrieb Vinod Koul:
+> On 13-02-25, 22:05, Heiko Stuebner wrote:
+
+> > +	{ 200,  7,   1,  0, 33,  9,  0, 26,  5,  0, 11},
+> > +	{ 190,  7,   1,  0, 32,  9,  0, 25,  5,  0, 11},
+> > +	{ 180,  6,   1,  0, 32,  8,  0, 25,  5,  0, 10},
+> > +	{ 170,  6,   0,  0, 32,  8,  0, 25,  5,  0, 10},
+> > +	{ 160,  5,   0,  0, 31,  8,  0, 24,  4,  0,  9},
+> > +	{ 150,  5,   0,  0, 31,  8,  0, 24,  5,  0,  9},
+> > +	{ 140,  5,   0,  0, 31,  8,  0, 24,  5,  0,  8},
+> > +	{ 130,  4,   0,  0, 30,  6,  0, 23,  3,  0,  8},
+> > +	{ 120,  4,   0,  0, 30,  6,  0, 23,  3,  0,  7},
+> > +	{ 110,  3,   0,  0, 30,  6,  0, 23,  3,  0,  7},
+> > +	{ 100,  3,   0,  0, 29,  5,  0, 22,  2,  0,  6},
+> > +	{  90,  3,   0,  0, 29,  5,  0, 22,  2,  0,  6},
+> > +	{  80,  2,   0,  0, 28,  5,  0, 22,  2,  0,  5},
+> > +};
+> 
+> any word on where this table came from, maybe worth documenting that
+> part
+
+sadly not.
+
+The table itself came from the vendor-kernel, and I would assume there
+it came from some super-secret additional documentation Rockchip
+got with the IP documentation.
+
+It is sadly not part of the RK3588 manual.
+
+
+> > +
+> > +static void samsung_mipi_dcphy_bias_block_enable(struct samsung_mipi_dcphy *samsung)
+> > +{
+> > +	u32 bias_con2 = 0x3223;
+> 
+> magic value?
+
+Converted over to some more meaningful constants.
+Did the same to bias_con0+1 below that one too.
+
+
+> > +static void samsung_mipi_dphy_lane_disable(struct samsung_mipi_dcphy *samsung)
+> > +{
+> > +	regmap_update_bits(samsung->regmap, DPHY_MC_GNR_CON0, PHY_ENABLE, 0);
+> > +	regmap_update_bits(samsung->regmap, COMBO_MD0_GNR_CON0, PHY_ENABLE, 0);
+> > +	regmap_update_bits(samsung->regmap, COMBO_MD1_GNR_CON0, PHY_ENABLE, 0);
+> > +	regmap_update_bits(samsung->regmap, COMBO_MD2_GNR_CON0, PHY_ENABLE, 0);
+> > +	regmap_update_bits(samsung->regmap, DPHY_MD3_GNR_CON0, PHY_ENABLE, 0);
+> 
+> Is writing to a register (mmio) faster than a switch case for checking
+> lane count and disabling specific lanes?
+
+It might make sense to mimic the lane_enable way of doing things, even if
+just for things looking the same in both functions.
+
+I guess disabling lanes does not really care about minimal speed differences
+a switch/case would cause :-)
+
+> 
+> > +static void samsung_mipi_dcphy_pll_configure(struct samsung_mipi_dcphy *samsung)
+> > +{
+> > +	regmap_update_bits(samsung->regmap, PLL_CON0, S_MASK | P_MASK,
+> > +			   S(samsung->pll.scaler) | P(samsung->pll.prediv));
+> > +
+> > +	if (samsung->pll.dsm < 0) {
+> > +		u16 dsm_tmp;
+> > +
+> > +		/* Using opposite number subtraction to find complement */
+> > +		dsm_tmp = abs(samsung->pll.dsm);
+> > +		dsm_tmp = dsm_tmp - 1;
+> > +		dsm_tmp ^= 0xffff;
+> > +		regmap_write(samsung->regmap, PLL_CON1, dsm_tmp);
+> > +	} else {
+> > +		regmap_write(samsung->regmap, PLL_CON1, samsung->pll.dsm);
+> > +	}
+> > +
+> > +	regmap_update_bits(samsung->regmap, PLL_CON2,
+> > +			   M_MASK, M(samsung->pll.fbdiv));
+> > +
+> > +	if (samsung->pll.ssc_en) {
+> > +		regmap_write(samsung->regmap, PLL_CON3,
+> > +			     MRR(samsung->pll.mrr) | MFR(samsung->pll.mfr));
+> > +		regmap_update_bits(samsung->regmap, PLL_CON4, SSCG_EN, SSCG_EN);
+> > +	}
+> > +
+> > +	regmap_write(samsung->regmap, PLL_CON5, RESET_N_SEL | PLL_ENABLE_SEL);
+> > +	regmap_write(samsung->regmap, PLL_CON7, PLL_LOCK_CNT(0xf000));
+> > +	regmap_write(samsung->regmap, PLL_CON8, PLL_STB_CNT(0xf000));
+> 
+> I guess you are writing to upper nibble, maybe define that, if we can
+
+Nope ... the value is defined as bits [15:0] and both being pll lock and
+stabilization timing control registers. Sadly yet again, their usage detail
+is not documented, the manual even does not supply a unit for the 
+register value :-(
+
+
+Heiko
+
+
 
