@@ -1,124 +1,162 @@
-Return-Path: <devicetree+bounces-148544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB80FA3C715
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 19:11:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74F0BA3C73D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 19:19:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD9771888981
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 18:11:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 518313AD3A0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 18:19:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCA53214819;
-	Wed, 19 Feb 2025 18:11:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 766D41D61B5;
+	Wed, 19 Feb 2025 18:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nhktd3B3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gEuHK7X9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E94121423A;
-	Wed, 19 Feb 2025 18:11:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 498A08468;
+	Wed, 19 Feb 2025 18:19:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739988704; cv=none; b=rSIZm4YlD/zUmkg0HNgDf57ONDebvO8lqKz5N9GM/utcy2zmPiQjXNvFcb/sEeQMpMfGWzjkRmyUQPT7RkIfpiufGeT/DuU3hDfdEPZUp3FlZvp3dibmtIqJUI/n2xN5wsofrOTt40CK1HTKsfIHGrFiJOlBvKr6UmUuq+lfnGI=
+	t=1739989195; cv=none; b=ocwkS9miayzivoz0ybwmmTn7lfdLYNjD2QeuC4kyayBiyW6I0hoIEqUJ98/mfgqhYT1WYx6Kdr4TuFQDnTVwvzJMUrof9juyO2CasEf7CzOVD7XPrH+9JsFgQzSNguPW1CqNLqKrnDm9Vg2KjEy7Gt9IcPeEubabjgVx0R0GVBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739988704; c=relaxed/simple;
-	bh=3LZDiVVNFHrrTvKMy+aaUFJQiQjaTqA2aBCNOTEezAQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g7KtoOh7KJ/OWQqtrSoLJOTsrwll4Rk4l8TVhf4D/oVgW8tP9yGXoSvM4XvVWMK8ry3FeP5Fw/X7DM1leWb/IkeDaQaMhDUijWAdSasqor7fgfHsY5oUQhLxFYfol4ukemKoq7cQf49uBB06i32WbeiLUOrnx2B/Q5pVBUwuNTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nhktd3B3; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-abb90f68f8cso21412166b.3;
-        Wed, 19 Feb 2025 10:11:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739988701; x=1740593501; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EX7iW7aQk19gr4mr35uOFeWPZKaps87azPiJHXGQMpU=;
-        b=Nhktd3B30VsiOGUO/lkf7lStQAHGwpc0v9juMyRY3zjMNjbg3hRdmu74xPXeJtdQcG
-         lYlzF5djsgtLSTucQCfnCpmHl8o4Xp0Mthrkn0SWS3pqXydihpuUQOEVVnL7YPe9ieFM
-         w+W7KI1ALy6oYhvo+RE9CegA4Z5+zyjDNCyzRiEk10Cet5U0ffK8eR/bQxPg2AqbKHp0
-         INAxhCkVe2vTmwJVGVo7YdI+drRv948Os/aFBANKLiDND79BHRZj5eZEIp3I6YgNOfMZ
-         wja5yrjdNiv565NafV8sFCHiKF3ahjYIb36Ae6iroqP066FGZzWNAML7lY9HJAqN11Og
-         grXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739988701; x=1740593501;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EX7iW7aQk19gr4mr35uOFeWPZKaps87azPiJHXGQMpU=;
-        b=BIZK5NMV5XuVztgajVyRXSDSiOdYRfdlx9C9SLz/S7AJP0MO9grcl8KfoY/NnOSuAg
-         vyXq2NX/iqYi51yff22XPwueQJRNOHWdZLkVQ6RdE5fFUVA8+9zBDh3S0Se08OTufB05
-         +nqh5xbUO7awhwnoE3SSabf197P0I+qRSJIYzbeDx2R7gCvnTQJ3pBd1MDT8n1bfOte5
-         nQyWolwp8QTXFOwD9gGJbY2BZNAJhjjX+uhJVWEBvvskdo1Sm9RynCycqpbYiDLrAgAu
-         dCdkvFv69E2U6imZqoyAdZmj8BE4ZFZOR4ui+bqEZHjjR2h2prECpprzgUNuxayE3Bge
-         Xmtg==
-X-Forwarded-Encrypted: i=1; AJvYcCUjHQqXBlZHV5Q86wUjiLfcDryYnlJOEpTTW2P5PY2tkqVen12UTsIT2+EpgJurYHRFdRUrK50xYjCfXqwJ@vger.kernel.org, AJvYcCWyz8cdoZOMIfTsUJcyVq6DIkxChyNsl4HjMcskxw5Cb0csNfWIUKqGcQIbQ6NIYBkbIlv54wziHdoL@vger.kernel.org, AJvYcCXxXM6E+9eoSIaHp65NqXvBPdlDRk7CNdomGCFRgE59jWXFyMl36ZDHYuMZ6H7A08HLJEZ9EkrH4tXn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxeQ2xi0GXMePu/MjNgc+VZj2rWsNbBW1y2MPOmZI1/g7Z1H6ma
-	dwa851UuSADhMOH5nwRmrSlyYT2VJNIBD/08ewxD1jQMkeV0nx1ZdNk5pR5B73g=
-X-Gm-Gg: ASbGnctu2sP7qCJqAL5EC8N0PGT2X2KzYzqdJNpgwdO77zWkal+TA3929by/Ld0N55G
-	Uuw+gb9JHv7SM/PKZDk1nmA/gJYrqeN5Tc8WtJacLacoud96Rf4HG5XLN9/nsSqwVB36hvK2s+3
-	/rEuCuHlsbRxtzE7BhgPwT/imUewC3S3EPfBDenxwoNPYU+TyOmGeQY7VrAsaHBgvnp89COK+nl
-	oXpMI32CrVx7pNyal3THZuZ2W/0JV+ArIsHUraZHbk00PBwA6blP0u0CSuBIdMp9J0CKN5hFUV7
-	QX5chRRqTFJ1BH5rZHTWJkOff359fgzo+eAmFYh01dEIJ68=
-X-Google-Smtp-Source: AGHT+IEJpTPW7wSmUpDukWtijT9eGXBjCmFlUxZGRjvR2GsGxyDjjg4XrIW4SthKGdN7ujvQTG+O+w==
-X-Received: by 2002:a17:907:934a:b0:aa6:9461:a186 with SMTP id a640c23a62f3a-abb70dd663amr1847442766b.46.1739988701033;
-        Wed, 19 Feb 2025 10:11:41 -0800 (PST)
-Received: from [192.168.125.132] ([82.79.237.175])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abba7c63162sm524674566b.182.2025.02.19.10.11.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Feb 2025 10:11:40 -0800 (PST)
-Message-ID: <ceca2d24-78a4-48bf-872d-71866ad97b92@gmail.com>
-Date: Wed, 19 Feb 2025 13:10:41 -0500
+	s=arc-20240116; t=1739989195; c=relaxed/simple;
+	bh=sHLR2umxSZ85uY5OTldNfRDRYKI9Bn9zbd8hKKtL81s=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=S8CIlEqRIt+23jvuWady3s8gCBswMuwcyPNwQYpu5xsX8392vbQuOuhKYs7lL9gyCEKhwGv8QZRMo6gHZCWrcGE2VMG7xJHwu/jUPrx4vcxrPebGsTx+RcW0E9dZ6xKrh1lsAhd7QeDFtISSRXujzN0xlxzgvuseGph1J5hVEg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gEuHK7X9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 032C1C4CED1;
+	Wed, 19 Feb 2025 18:19:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739989195;
+	bh=sHLR2umxSZ85uY5OTldNfRDRYKI9Bn9zbd8hKKtL81s=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=gEuHK7X9eCCR3c9KY3NED3a0CLUl+TAoWzoMJT6n7P0V2TwmstBmIee1a4Uatuj3z
+	 gC88UeGuL6zp8W6ho275A8vY/9N4RAklRoPFeb7O4uF78mllmFItNB4nEU2pWPxjEb
+	 zygLfW8wNapYSGYemf75nlbtfqgkjFjQGpu/rqhnvLZxJLtVb+n4ZKszTFx6Y9Ejlt
+	 vW9AZ8cDSP4+/4Tc16Il4BbuvuLX5zCdIk0vGfXjPxO9zifLQBWFgCxUD77ewRXcGl
+	 RpiEHy4TzdGUEesFXW+v17ST0tsnMh63WXnmBFvVRa0A/ohhA+hQLHHPnIwJZQ52ai
+	 QtU7FFpoERfJA==
+Date: Wed, 19 Feb 2025 12:19:52 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	michal.simek@amd.com, bharat.kumar.gogada@amd.com,
+	jingoohan1@gmail.com
+Subject: Re: [PATCH v13 3/3] PCI: amd-mdb: Add AMD MDB Root Port driver
+Message-ID: <20250219181952.GA225098@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] clk: imx8mp: fix parents of AUDIOMIX DSP/OCRAM_A
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Abel Vesa <abelvesa@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Marek Vasut <marex@denx.de>,
- Stephen Boyd <sboyd@kernel.org>, "S.J. Wang" <shengjiu.wang@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250217165718.74619-1-laurentiumihalcea111@gmail.com>
- <DB9PR04MB8461866A0B6A068E49D53FBE88FA2@DB9PR04MB8461.eurprd04.prod.outlook.com>
-Content-Language: en-US
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-In-Reply-To: <DB9PR04MB8461866A0B6A068E49D53FBE88FA2@DB9PR04MB8461.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250219102124.725344-4-thippeswamy.havalige@amd.com>
 
+On Wed, Feb 19, 2025 at 03:51:24PM +0530, Thippeswamy Havalige wrote:
+> Add support for AMD MDB (Multimedia DMA Bridge) IP core as Root Port.
 
-On 2/18/25 08:43, Peng Fan (OSS) wrote:
-> Hi Laurentiu,
->
->> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
->> Subject: [PATCH 0/4] clk: imx8mp: fix parents of AUDIOMIX
->> DSP/OCRAM_A
->>
->> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->>
->> Correct the parent of the AUDIOMIX DSP and OCRAM_A clock gates by
->> setting it to AUDIO_AXI_CLK_ROOT, instead of AUDIO_AHB_CLK_ROOT.
->> Additionally, set the frequency of AUDIO_AXI_CLK_ROOT to 800MHz
->> instead of the current 400MHz.
-> The patchset looks good to me, just one nit, 
-> Should fixes tag be added for the patchset?
+> +#define AMD_MDB_TLP_IR_STATUS_MISC		0x4C0
+> +#define AMD_MDB_TLP_IR_MASK_MISC		0x4C4
+> +#define AMD_MDB_TLP_IR_ENABLE_MISC		0x4C8
+> +#define AMD_MDB_TLP_IR_DISABLE_MISC		0x4CC
+> +
+> +#define AMD_MDB_TLP_PCIE_INTX_MASK	GENMASK(23, 16)
+> +
+> +#define AMD_MDB_PCIE_INTR_INTX_ASSERT(x)	BIT((x) * 2)
 
+> +#define AMD_MDB_PCIE_INTX_BIT(x) (1U << (2 * (x) + AMD_MDB_PCIE_INTR_INTX))
 
-sure, will send a V2 with that
+I don't think you need both AMD_MDB_PCIE_INTR_INTX_ASSERT() and
+AMD_MDB_PCIE_INTX_BIT().
 
+AMD_MDB_PCIE_INTX_BIT() is essentially the same as
+FIELD_PREP(AMD_MDB_TLP_PCIE_INTX_MASK, AMD_MDB_PCIE_INTR_INTX_ASSERT).
+
+I would just do this:
+
+  #define AMD_MDB_PCIE_INTR_INTX(x)     BIT((x) * 2)
+
+and in amd_mdb_intx_irq_mask() and amd_mdb_intx_irq_unmask(), do this:
+
+  val = FIELD_PREP(AMD_MDB_TLP_PCIE_INTX_MASK,
+                   AMD_MDB_PCIE_INTR_INTX(data->hwirq));
+
+Then all the users do FIELD_PREP() or FIELD_GET() at the point of use.
+
+It's a little confusing for dw_pcie_rp_intx_flow() to do the
+FIELD_GET() there, but amd_mdb_intx_irq_mask() and
+amd_mdb_intx_irq_unmask() have the equivalent of FIELD_PREP() hidden
+inside AMD_MDB_PCIE_INTX_BIT().
+
+> +static void amd_mdb_intx_irq_mask(struct irq_data *data)
+> +{
+> +	struct amd_mdb_pcie *pcie = irq_data_get_irq_chip_data(data);
+> +	struct dw_pcie *pci = &pcie->pci;
+> +	struct dw_pcie_rp *port = &pci->pp;
+> +	unsigned long flags;
+> +	u32 val;
+> +
+> +	raw_spin_lock_irqsave(&port->lock, flags);
+> +	val = AMD_MDB_PCIE_INTX_BIT(data->hwirq);
+> +	pcie_write(pcie, val, AMD_MDB_TLP_IR_DISABLE_MISC);
+
+I guess AMD_MDB_TLP_IR_DISABLE_MISC and AMD_MDB_TLP_IR_ENABLE_MISC are
+set up so writing zero bits does nothing, and writing a one bit only
+masks or unmasks that single interrupt?  It's somewhat unusual, so a
+comment to that effect might be useful.
+
+> +	raw_spin_unlock_irqrestore(&port->lock, flags);
+> +}
+> +
+> +static void amd_mdb_intx_irq_unmask(struct irq_data *data)
+> +{
+> +	struct amd_mdb_pcie *pcie = irq_data_get_irq_chip_data(data);
+> +	struct dw_pcie *pci = &pcie->pci;
+> +	struct dw_pcie_rp *port = &pci->pp;
+> +	unsigned long flags;
+> +	u32 val;
+> +
+> +	raw_spin_lock_irqsave(&port->lock, flags);
+> +	val = AMD_MDB_PCIE_INTX_BIT(data->hwirq);
+> +	pcie_write(pcie, val, AMD_MDB_TLP_IR_ENABLE_MISC);
+> +	raw_spin_unlock_irqrestore(&port->lock, flags);
+> +}
+
+> +static irqreturn_t dw_pcie_rp_intx_flow(int irq, void *args)
+> +{
+> +	struct amd_mdb_pcie *pcie = args;
+> +	unsigned long val;
+> +	int i;
+> +
+> +	val = FIELD_GET(AMD_MDB_TLP_PCIE_INTX_MASK,
+> +			val = pcie_read(pcie, AMD_MDB_TLP_IR_STATUS_MISC));
+
+The "val = pcie_read()" looks like a useless assignment to val.  I
+would do something like this:
+
+  val = pcie_read(pcie, AMD_MDB_TLP_IR_STATUS_MISC);
+  intx_status = FIELD_GET(AMD_MDB_TLP_PCIE_INTX_MASK, val);
+
+  for (i = 0; i < PCI_NUM_INTX; i++) {
+    if (intx_status & AMD_MDB_PCIE_INTR_INTX(i))
+      generic_handle_domain_irq(pcie->intx_domain, i);
+  }
+
+> +	for (i = 0; i < PCI_NUM_INTX; i++) {
+> +		if (val & AMD_MDB_PCIE_INTR_INTX_ASSERT(i))
+> +			generic_handle_domain_irq(pcie->intx_domain, i);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
 
