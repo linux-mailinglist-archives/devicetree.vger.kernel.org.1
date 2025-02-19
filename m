@@ -1,336 +1,146 @@
-Return-Path: <devicetree+bounces-148348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 035CBA3BBB8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 11:34:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CA22A3BBC1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 11:40:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D54DC3B4BF6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:34:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B27C3AF663
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAD7F1D6DD8;
-	Wed, 19 Feb 2025 10:34:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D7AC1DE2BD;
+	Wed, 19 Feb 2025 10:40:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C825z0XG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DV86bqWV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03BE62F41;
-	Wed, 19 Feb 2025 10:34:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E3011DCB0E;
+	Wed, 19 Feb 2025 10:40:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739961293; cv=none; b=hQnqbSohY723KuV6jtXy0byPm4tZyUdGKJPeb6g7aMrbP6q+6LcVFWNE9EEem3jSDEA/XNHAGOtwrf4mZeLk6EyZws4J382LoubsIeokUUnzcub6pRqXghWlnhZjgiu5kzKQLasIIy1Chs7hxIT/E4SIiwX0sYd6vETvNu6i98w=
+	t=1739961602; cv=none; b=pfeiYTgEYHPmEEHHQBRy1gjmi0bzL4lkxfQzQNzXCXlo/YD1FRcvtHnzg7XMVke8F1GofPejiQMIttrXpdiSEgecmZnFnsCfHZAQGTnKvD1uGv6piYoX7hXMFMeNG/ydBCHL9xyazS8C6sfOxjOoxEDI2FCH2qNd5fUvKPidCQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739961293; c=relaxed/simple;
-	bh=9Ub+E5wMUiJzaBLWqqi6gei1gnHLU8PLO/WLmDQvMEg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o8CfmJ6cbSFQirGK/nDig3YxvHnN9RV+7QcGtlbil+lWVzkr9tDAIMl9hsXAqcIBjQQp7oaYINAVHE0LfeNSHAC5HURTtYd3n3YqN49dGwWBeuOECMU7X719g39ZGJb5ogzG8XRLJ9xCjV9fwUf0/YJpHsOjc40wdfXG4J74QM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C825z0XG; arc=none smtp.client-ip=209.85.128.51
+	s=arc-20240116; t=1739961602; c=relaxed/simple;
+	bh=lXU3tTIAeJiomJooZbXJpor0uGS973vQBTqQNryFYqI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SaS9pZfGyBwSq5Ck5ylFXpK0m91ZSkZpK24JoWwUEqiCyW/xDyAoQJw1CBnyj2ElFsazK0LtbSCQ8J50Xg33LL7TCNRorJgMunWgXOrve80AerDKxdg6OICfFE+zxbCMz4tExSWbDM+blWeXHqCpEqV8uugYTmvj32PtXMAsnow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DV86bqWV; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43995b907cfso10371815e9.3;
-        Wed, 19 Feb 2025 02:34:51 -0800 (PST)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-abb7a6ee2deso620425166b.0;
+        Wed, 19 Feb 2025 02:39:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739961290; x=1740566090; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8vW3Mq6FmuxLxhnil1RMWEPl2NZrnvIFyftaR5qP/us=;
-        b=C825z0XGYFrcLxMqiqI2vYsrFJgt0rcriJ9sZLTfZ6DRcaVzZqtKOzs5TJgt9EYbYr
-         bzgn5hjP9tn2Cb54gTmaz67yMgRW/7HogqnwNxVLqoABg+RGQSq2fyjEmZE3LYScinMx
-         xH0xD0REEOK/lAFXwK1pB0HpJ3xJofsQax/M3ix4mljhMQlmz810DuM9b+5q+PgYenVW
-         MzOw5QYeKbjB4dtMw2f3q5pmsHmjuTHhMJ3NDcH2WkwUg/3UBwOI0+LcdFlQXR8wsJqe
-         rNb+CVnsSOMfULWcvH7F6FlSsMJWaYfOnVLwO8b6O+wOIR5sTTLHl1wEzAYNT2mskjaU
-         OwSg==
+        d=gmail.com; s=20230601; t=1739961598; x=1740566398; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BUGhyiuFOr1ZWNKevH7tnwn0IzxKsvGCdgwL0ltDteA=;
+        b=DV86bqWVm5xw48nmrAhjzzxVttFHq5YsiT//IpASLNVpbKZ2w1Pty2lqum+Mm0kpER
+         BUM1TeXuSpFB7njneHZF1aitjBZcrEQU0Cly8SYtG+MGtxa//MofpfX5ufD/cVghGv07
+         h3VFtGV3DP4oT3FeL7O7J99u703Mzz0+E25VBTd+4R16+dH2487Qm/W+AwnzXsYms37x
+         1zUrGBt4M1bzTepJ/SoDI2dhOxeXhd0j5LSao/0Dl4mmqB3EB4yaRhrpFqYr1piufca5
+         r/ITG71lpSiT+M3Jpisdb9Azf8qFRUbOKXtAKY42KQf3h8/c6a1mX0FXW0YYM7Wzw3M7
+         LrCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739961290; x=1740566090;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8vW3Mq6FmuxLxhnil1RMWEPl2NZrnvIFyftaR5qP/us=;
-        b=oS23HCa4M8AzmC6P+2rGr7Qw/3qrhvd2+CBYRDTT4YRMKjI11N1oiOYQ4TCLR4auqV
-         jF3yw/rc4tHU/+vuOyLXKCE2CNpcI68krnhDF2qjDR8vHVFhM18b6P/AHLE78UvERQNV
-         aeQZ/Km3bPwgYwfOBF8GIod6PnzVf5b6Rl49dEP4WNy70ZUF3zMkv2EOQFxImLjSLLdU
-         HsB0vrWf8navwPHKGN73AUYna7/sb77lFsRaAaQPxAjp2peZmbvBtlbYVPVxd6n2o8wN
-         CUUngemFQGHZ+8pjc/22mfUJ51nHnce24SxehWrVxDc6plU11DG0p8nJx8qE+8uun0UV
-         GsLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW+b/btd/klnvuGcQ2B61FODCJRdNThWPUhZIBPhcXHPhUb8Bn+UtYUA8k2V+/2CNjw0+JJdgjFk4jF@vger.kernel.org, AJvYcCWnVBbd8RV5gwJcE9wmrCQB8XoDqCo5DIdpFAh+St30FPJLg6LbqscqQdpPtrtp+OjmkabmkAfonr1CvSko@vger.kernel.org
-X-Gm-Message-State: AOJu0YwV8nmt1vby4Be8wujknkSfQgGjRmtsR+49gLXf6BYgqKXufXsN
-	dVSARcP7qKxR6laVOQIsYQC0/hw8fonAnu0UQx1O3Kq/Vccay8rV
-X-Gm-Gg: ASbGncuiua4RCWoEmob1KVVX+ShKkUZInTv8puFc/iGTxDAJZXKteonp2UOofQCTFPy
-	1HxN0s4FMWFR9ll4+l9sGmB70sedUlfw+XOLAqNYdlXd+YmQeCZELrDLrfFLC2guS1dpYEFgqME
-	dUEOHV1g9NF0xxvq9HE8SkFFc/qHGAYr2j+bDxnxrRp9K8VPLixOpMCxINTt4NLvDc++nusxE1W
-	DJAQyULtFBWKeAknf9QPEYXVL8WfzDFlBXZx6XUawOXSghCn7EQ0cyZSMFJjNmR0AsIS2oOy4XR
-	g1BO+iv/jg8QMKYHgBYfJ6yIxN3fLC3K27MNZTEClFCXI1kEkS8Z6Mhr
-X-Google-Smtp-Source: AGHT+IH8omL6HrDnxAeU3OszfLwGA6mXMUbGoGbtQrSkt2R2L/0PJO2LLFU+a6jkdDY0idhFewAIbQ==
-X-Received: by 2002:a05:600c:1d27:b0:439:9e8b:228d with SMTP id 5b1f17b1804b1-4399e8b2474mr7936925e9.19.1739961289921;
-        Wed, 19 Feb 2025 02:34:49 -0800 (PST)
-Received: from [172.16.20.186] (62-73-104-42.ip.btc-net.bg. [62.73.104.42])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-439872b59e9sm76783555e9.31.2025.02.19.02.34.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Feb 2025 02:34:49 -0800 (PST)
-Message-ID: <451d52cc-ccb7-44ae-b6c1-cd3ab65465c1@gmail.com>
-Date: Wed, 19 Feb 2025 12:34:43 +0200
+        d=1e100.net; s=20230601; t=1739961598; x=1740566398;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BUGhyiuFOr1ZWNKevH7tnwn0IzxKsvGCdgwL0ltDteA=;
+        b=u2zMywbJBBq3wE36gPiR5sgB6dT8SuiX+SmaQDdvT3Exr8AuPo6j1ivGDalHypiFL1
+         m3FADMlTSg8Pa0viXHfBD8acPJaZ/Q1VSFg88GWcXSM2x23soPIia8Ra7rBLh0meqR8j
+         dQQ+0yECj/6EPZBlPwKqDYBUCDOyH8Q+ohAcjMx9Po9sxSuqbVM1IAN44Uzg2acXBaLi
+         ArX7V4IMs+CMzk3Wl2CpduYO+9nUHkDmFvfJ71ls44DyYpa8ZCDug8XULEiVjZynnU1K
+         fAHvmCWbzBFCmkSgccktzZ/o0+vE7q2PDiTNsZSIoGp4P005T3kEin4xbboNGmAFu77l
+         a3CQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVF4xv5Y2Bj5Yq82VcNMQhi2BQMX+YtEqPX2kZePZHcdqJ0XV9pQw8+O0HiRANHxwjIePpYmOSd+uHa@vger.kernel.org, AJvYcCVX+4DtschiklDR5EjxyWG0fKaDKRLyC24tSuqGdBoc52dAu5dBBYomX3OiZxQAz6yZ7xjsn6vkZyiuL6Md@vger.kernel.org, AJvYcCX0PTRNNGBRrntT/nV9BqyX95BXGBWgBN6PHv4odjEp56yIlsKwtDkp1wpvZ7HJwelhWT8+7/g3mDjw@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywnrd4pyIh63hJOPH+o/k4kVv+cSstRDsE1dGjmySQjldVi2XgM
+	mN4I18XDy0lKdpAPW7fdwZF56hnrNm38kfaszo9DfQVpZgHYgeii
+X-Gm-Gg: ASbGncvlS5kCDwByKF+v1KYPfmnHclFK5ZcRwPWd/+/mKFO2t9uTa1QXGc4sGpLCYTJ
+	/SB6qBslnBc+Kw4MPHQ32o2UNEOD4fEVdXzv/+ebhAcow5M2XORw60mxi/QF4pvZR9/7NmfAZjf
+	WQKW2ji91fHqvZ71ifKdWbNw7zIlChy9e8v8LkkvNPwdPfJe8cpZMqZd+h476EE3NfVsiiYOf6R
+	XObHhDVP8fir13HR7rFlR79pfvPqTpz671wcIvncO+vkPq0H812mXHTE096TnRegyH9N07rqTRM
+	iM5ctgMB1qp0
+X-Google-Smtp-Source: AGHT+IFZOJr0RD8oSFFzKuNKPNhV3qDiWrFYEJv8XqOoA/m0Yzw0TYkg+/f0prDgRkLbm1psWPtJmw==
+X-Received: by 2002:a17:907:da6:b0:ab7:87ec:79fa with SMTP id a640c23a62f3a-abbcd0bbdddmr281041766b.51.1739961598268;
+        Wed, 19 Feb 2025 02:39:58 -0800 (PST)
+Received: from debian ([2a00:79c0:646:8200:45fb:7d1a:5e4d:9727])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb99fd1983sm581040466b.108.2025.02.19.02.39.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Feb 2025 02:39:57 -0800 (PST)
+Date: Wed, 19 Feb 2025 11:39:55 +0100
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Subject: Re: [PATCH 2/2] can: flexcan: add transceiver capabilities
+Message-ID: <20250219103955.GB3888@debian>
+References: <20250211-flexcan-add-transceiver-caps-v1-0-c6abb7817b0f@liebherr.com>
+ <20250211-flexcan-add-transceiver-caps-v1-2-c6abb7817b0f@liebherr.com>
+ <20250219-garnet-gorilla-of-will-6e389e-mkl@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/3] arm64: dts: exynos: add initial support for
- exynos2200 SoC
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250215130500.170738-1-ivo.ivanov.ivanov1@gmail.com>
- <20250215130500.170738-3-ivo.ivanov.ivanov1@gmail.com>
- <675ddbf4-dfeb-48dd-b48a-466bf2888ce5@kernel.org>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <675ddbf4-dfeb-48dd-b48a-466bf2888ce5@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250219-garnet-gorilla-of-will-6e389e-mkl@pengutronix.de>
 
-On 2/19/25 10:41, Krzysztof Kozlowski wrote:
-> On 15/02/2025 14:04, Ivaylo Ivanov wrote:
->> diff --git a/arch/arm64/boot/dts/exynos/exynos2200.dtsi b/arch/arm64/boot/dts/exynos/exynos2200.dtsi
->> new file mode 100644
->> index 000000000..645a31d46
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/exynos/exynos2200.dtsi
->> @@ -0,0 +1,560 @@
-...
->> +
->> +	ext_26m: clock-2 {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +		clock-output-names = "ext-26m";
->> +	};
->> +
->> +	ext_200m: clock-3 {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +		clock-output-names = "ext-200m";
-> What do these two last clocks represent? Where are they?
+Hi Marc,
 
-External crystals, apparently. They aren't passed as phandles to any
-other node in the vendor DT, so I'm not really sure what samsung
-would use them for. But they're described, so I assume they exist.
+Am Wed, Feb 19, 2025 at 10:41:24AM +0100 schrieb Marc Kleine-Budde:
+> On 11.02.2025 14:12:34, Dimitri Fedrau via B4 Relay wrote:
+> > From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> > 
+[...]
+> > +
+> >  	if (pdev->dev.of_node) {
+> >  		of_property_read_u32(pdev->dev.of_node,
+> >  				     "clock-frequency", &clock_freq);
+> > @@ -2173,6 +2185,7 @@ static int flexcan_probe(struct platform_device *pdev)
+> >  	priv->clk_per = clk_per;
+> >  	priv->clk_src = clk_src;
+> >  	priv->reg_xceiver = reg_xceiver;
+> > +	priv->xceiver = xceiver;
+> >  
+> >  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3) {
+> >  		priv->irq_boff = platform_get_irq(pdev, 1);
+> 
+> please also add
+> 	if (xceiver)
+> 		priv->can.bitrate_max = xceiver->attrs.max_link_rate;
+> 
+> 
 
->
-> I see we have them also on Google GS101, so same question there :/
->
->
->> +	};
->> +
->> +	cpus {
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		cpu-map {
->> +			cluster0 {
->> +				core0 {
->> +					cpu = <&cpu0>;
->> +				};
->> +
->> +				core1 {
->> +					cpu = <&cpu1>;
->> +				};
->> +
->> +				core2 {
->> +					cpu = <&cpu2>;
->> +				};
->> +
->> +				core3 {
->> +					cpu = <&cpu3>;
->> +				};
->> +			};
->> +
->> +			cluster1 {
->> +				core0 {
->> +					cpu = <&cpu4>;
->> +				};
->> +
->> +				core1 {
->> +					cpu = <&cpu5>;
->> +				};
->> +
->> +				core2 {
->> +					cpu = <&cpu6>;
->> +				};
->> +			};
->> +
->> +			cluster2 {
->> +				core0 {
->> +					cpu = <&cpu7>;
->> +				};
->> +			};
->> +		};
->> +
->> +		cpu0: cpu@0 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a510";
->> +			reg = <0>;
->> +			capacity-dmips-mhz = <260>;
->> +			dynamic-power-coefficient = <189>;
->> +			enable-method = "psci";
->> +			cpu-idle-states = <&little_cpu_sleep>;
->> +		};
->> +
->> +		cpu1: cpu@100 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a510";
->> +			reg = <0x100>;
->> +			capacity-dmips-mhz = <260>;
->> +			dynamic-power-coefficient = <189>;
->> +			enable-method = "psci";
->> +			cpu-idle-states = <&little_cpu_sleep>;
->> +		};
->> +
->> +		cpu2: cpu@200 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a510";
->> +			reg = <0x200>;
->> +			capacity-dmips-mhz = <260>;
->> +			dynamic-power-coefficient = <189>;
->> +			enable-method = "psci";
->> +			cpu-idle-states = <&little_cpu_sleep>;
->> +		};
->> +
->> +		cpu3: cpu@300 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a510";
->> +			reg = <0x300>;
->> +			capacity-dmips-mhz = <260>;
->> +			dynamic-power-coefficient = <189>;
->> +			enable-method = "psci";
->> +			cpu-idle-states = <&little_cpu_sleep>;
->> +		};
->> +
->> +		cpu4: cpu@400 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a710";
->> +			reg = <0x400>;
->> +			capacity-dmips-mhz = <380>;
->> +			dynamic-power-coefficient = <560>;
->> +			enable-method = "psci";
->> +			cpu-idle-states = <&big_cpu_sleep>;
->> +		};
->> +
->> +		cpu5: cpu@500 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a710";
->> +			reg = <0x500>;
->> +			capacity-dmips-mhz = <380>;
->> +			dynamic-power-coefficient = <560>;
->> +			enable-method = "psci";
->> +			cpu-idle-states = <&big_cpu_sleep>;
->> +		};
->> +
->> +		cpu6: cpu@600 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a710";
->> +			reg = <0x600>;
->> +			capacity-dmips-mhz = <380>;
->> +			dynamic-power-coefficient = <560>;
->> +			enable-method = "psci";
->> +			cpu-idle-states = <&big_cpu_sleep>;
->> +		};
->> +
->> +		cpu7: cpu@700 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-x2";
->> +			reg = <0x700>;
->> +			capacity-dmips-mhz = <488>;
->> +			dynamic-power-coefficient = <765>;
->> +			enable-method = "psci";
->> +			cpu-idle-states = <&prime_cpu_sleep>;
->> +		};
->> +
->> +		idle-states {
->> +			entry-method = "psci";
->> +
->> +			little_cpu_sleep: cpu-sleep-0 {
->> +				compatible = "arm,idle-state";
->> +				idle-state-name = "c2";
->> +				entry-latency-us = <70>;
->> +				exit-latency-us = <170>;
->> +				min-residency-us = <2000>;
->> +				arm,psci-suspend-param = <0x10000>;
->> +			};
->> +
->> +			big_cpu_sleep: cpu-sleep-1 {
->> +				compatible = "arm,idle-state";
->> +				idle-state-name = "c2";
->> +				entry-latency-us = <235>;
->> +				exit-latency-us = <220>;
->> +				min-residency-us = <3500>;
->> +				arm,psci-suspend-param = <0x10000>;
->> +			};
->> +
->> +			prime_cpu_sleep: cpu-sleep-2 {
->> +				compatible = "arm,idle-state";
->> +				idle-state-name = "c2";
->> +				entry-latency-us = <150>;
->> +				exit-latency-us = <190>;
->> +				min-residency-us = <2500>;
->> +				arm,psci-suspend-param = <0x10000>;
->> +			};
->> +		};
->> +	};
->> +
->> +	pmu-a510 {
->> +		compatible = "arm,cortex-a510-pmu";
->> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_cluster0>;
->> +	};
->> +
->> +	pmu-a710 {
->> +		compatible = "arm,cortex-a710-pmu";
->> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_cluster1>;
->> +	};
->> +
->> +	pmu-x2 {
->> +		compatible = "arm,cortex-x2-pmu";
->> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_cluster2>;
->> +	};
->> +
->> +	psci {
->> +		compatible = "arm,psci-1.0";
->> +		method = "smc";
->> +	};
->> +
->> +	soc {
->> +		compatible = "simple-bus";
->> +		ranges;
->> +
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +
->> +		chipid@10000000 {
->> +			compatible = "samsung,exynos2200-chipid",
->> +				     "samsung,exynos850-chipid";
->> +			reg = <0 0x10000000 0 0x24>;
-> All numbers in hex please:
-> s/0/0x0/
+Yes, will add it.
 
-Alright. Will fix, thanks for the reviews!
+> > diff --git a/drivers/net/can/flexcan/flexcan.h b/drivers/net/can/flexcan/flexcan.h
+> > index 4933d8c7439e62b5d6fcc445d88c2b5ccbfa13bb..56be40875eee24aee9297c4bc7c2fc4380e682ff 100644
+> > --- a/drivers/net/can/flexcan/flexcan.h
+> > +++ b/drivers/net/can/flexcan/flexcan.h
+> > @@ -103,6 +103,7 @@ struct flexcan_priv {
+> >  	struct clk *clk_per;
+> >  	struct flexcan_devtype_data devtype_data;
+> >  	struct regulator *reg_xceiver;
+> > +	struct phy *xceiver;
+> 
+> All other drivers name this variable "transceiver", does it make sense
+> to use this name here, too?
+> 
+I have no preference on this, but my intention was to name it xceiver
+according to reg_xceiver, so people familiar with the code would know
+what it is about. I can change it to transceiver, what do you think ?
 
 Best regards,
-Ivaylo
-
->
->> +		};
->> +
-> Rest looks good.
->
->
-> Best regards,
-> Krzysztof
-
+Dimitri Fedrau
 
