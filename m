@@ -1,57 +1,56 @@
-Return-Path: <devicetree+bounces-148618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F246A3CCB2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 23:53:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22F9DA3CCC0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 23:55:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3224C1897AFC
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 22:53:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88A561772B5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 22:54:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B819525B683;
-	Wed, 19 Feb 2025 22:53:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC9025B68F;
+	Wed, 19 Feb 2025 22:54:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="us79NiLE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CQpr6j3T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89C8025A341;
-	Wed, 19 Feb 2025 22:53:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2125825B674;
+	Wed, 19 Feb 2025 22:54:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740005625; cv=none; b=uVPUUJxLEI8RMyljoIc+eWl0eHwH/c6pjl9YKwA2dlKPnR3/82fsgjG/IdToNZ0vl+2AZlYPoAT0HISCQDclh31wybzTkmUMQW6fd2z2et1y6jffrXZkk8X1MotQn9ezpcepAEhEZDCVS3G/FhZsLT8ZLjNISUFaJpYbs1RjGzA=
+	t=1740005691; cv=none; b=jumy27e6btE6uxI9UCR0ilaerTfGe0v2YBL/Mxm4NTtrFzAkrPLKe7mtxr9+5EZ1K5JpECMG5DdtOEqBCbUPVdPILJFa3J+Avj1QFuqHr0UsFSOSx/CHMtvSzDhIUXm0a05dWQfWCSfBljIe1YLJ24kapHvsdS8M8aDXDEyAHNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740005625; c=relaxed/simple;
-	bh=qw8qlRg/sKH+mU8xbaUzkQuKzsGCEuW02L8EyLKk/w4=;
+	s=arc-20240116; t=1740005691; c=relaxed/simple;
+	bh=DH4hbs5EerBNAJz2J89fIqkhJwMcOqyn2uGY2e8uQmw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SkXPEWR96jnirDk5ZP6sqe12NvPEShUfHUGqUvohx3kAgbcYtkmK+7VK0UKI5zjze8HX0bQYfrebMj45DCfYTf+NMW8lzgnsnBgzkiTVCx4kCURzM+8Lu8tbN7aK9tJU4tKQsl+YNuO44tE7ngv5wyp8gO68T39DbPPhwY0L53Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=us79NiLE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8E5FC4CED1;
-	Wed, 19 Feb 2025 22:53:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=L3tdCYuf+9lByp6Qy27ENlas3i91roSWpBlK4N43JeNK5ZTQifYC2dwypEzMwLia+44dgFBqca3+xZSNVRysuCzaPKwpLBNU8J8YrbSU4SpQ9MT752AVusaJa0jh2IlA1EnbP7sk6qO4KyoHcnfuENGniNNvYpRq7/L46dXFCI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CQpr6j3T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA164C4CED1;
+	Wed, 19 Feb 2025 22:54:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740005624;
-	bh=qw8qlRg/sKH+mU8xbaUzkQuKzsGCEuW02L8EyLKk/w4=;
+	s=k20201202; t=1740005691;
+	bh=DH4hbs5EerBNAJz2J89fIqkhJwMcOqyn2uGY2e8uQmw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=us79NiLEbilIoICQcGWo0pOsJ42OEZgwMtAI7ReqKzOgGIZSsVubmpP0sp+8u0fKd
-	 fsJpN3VLVS2Ib5+sc5oqv5zOSdH0QGxUJUiTU7NmmgzLv0/EYsjOEqermmbCxyp7nW
-	 uzIQFl5nc3DQDtPHI1KzKeqwMsLuMRQPGn5J8eGdyZ4K4Jju4m0aCA3mHHn1z6Wra1
-	 zo0TDCvhFjw2xMyMjLs6d/VpD+jphUQC9nSajw38PWQelbxsdZofBSN5dVYCBae+NX
-	 AjtBd4r9ISWCkFCwnF+xK4jhWqoDcDqybhMvCYhzW0sU0aR2uoQnO8Ly9Yg73sA7VD
-	 ENl4vZ512HHAQ==
-Date: Wed, 19 Feb 2025 16:53:42 -0600
+	b=CQpr6j3Tp6tnVuvGFrQvbYy5hPtdLQMcWArX742TesOPv0KWfA/gA185MREQaS92f
+	 ajMn2Di2ssaP2WEwdPww7TmHrwH+ZYhw1LL58qmi3pbzRgu7WI9+rWKE9CR0p6HTdr
+	 5+gNTFF7pe2PiXUMyoACNp60IBXAQJGa+8zCoSAoq1UpL8w0HW9UbcSSlKBVhq1D3j
+	 4KOP+kLAlOxT4+V9lvQhqtgmpaU/EBVtYh1hABjJl8omrJxNjxW/1hl76rr19Dk4k2
+	 0HzPz1nJWioFv93Coo1RpHNpsp0Dv9/wuIQ5Sse9biYYLKX4U3b3MScrURvKrMnRnb
+	 bYi1PU6zA4RbA==
+Date: Wed, 19 Feb 2025 16:54:49 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: usb-device: Replace free-form 'reg'
- with constraints
-Message-ID: <174000562117.3119352.9476901162994430759.robh@kernel.org>
-References: <20250214114235.49476-1-krzysztof.kozlowski@linaro.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	jic23@kernel.org, devicetree@vger.kernel.org,
+	linux-pwm@vger.kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v13 5/9] dt-bindings: iio: adc: add ad485x axi variant
+Message-ID: <174000568921.3121156.5629879811490736248.robh@kernel.org>
+References: <20250214131955.31973-1-antoniu.miclaus@analog.com>
+ <20250214131955.31973-6-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,19 +59,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250214114235.49476-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250214131955.31973-6-antoniu.miclaus@analog.com>
 
 
-On Fri, 14 Feb 2025 12:42:35 +0100, Krzysztof Kozlowski wrote:
-> Replace free-form text of 'reg' property with proper constraints so
-> incorrect values can be actually reported.
+On Fri, 14 Feb 2025 15:19:51 +0200, Antoniu Miclaus wrote:
+> Add a new compatible and related bindigns for the fpga-based
+> AD485x AXI IP core, a variant of the generic AXI ADC IP.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> The AXI AD485x IP is a very similar HDL (fpga) variant of the
+> generic AXI ADC IP, intended to control ad485x familiy.
+> 
+> Although this is not preffered, the wildcard naming is used to
+> match the published firmware under the same name.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
->  Documentation/devicetree/bindings/usb/usb-device.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+> changes in v13:
+>  - adjust commit body and add comment on wildcard matching the published
+>    firmware.
+>  Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
