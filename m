@@ -1,141 +1,179 @@
-Return-Path: <devicetree+bounces-148478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA766A3C1D7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:19:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC43CA3C1F7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:23:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9E781654AD
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:13:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32C263A98C6
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:20:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58B941E8339;
-	Wed, 19 Feb 2025 14:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954341EB184;
+	Wed, 19 Feb 2025 14:20:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FnsiTdTj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Na6eQl/u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F1F1E1C1F;
-	Wed, 19 Feb 2025 14:13:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8D51E5B65;
+	Wed, 19 Feb 2025 14:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739974416; cv=none; b=GUqCBXJ7P9AdNIYPcWtYjI+YxK+eJ7uc8t+slQ7LleqpCxKiPtdogrSdJa6GKl6MdTa1ku2MzUuY4Ymrp+bBX/ReS+bF1F3zKpTEMBp9i37J43ql1PC31H7OqEKzSvgAy31fQuVptLlik0DOX2HAnGXXrDG6lrpKOoSdTDXYpKo=
+	t=1739974846; cv=none; b=C5NAXO1gNmX0o+qGtIHIGVhoBaD17p1dgLfyF2jxZmOxZG/EojynKhkKrNFnA07TLhgBGp6pyg+R1Lz3/QQgrIvIZ1sSLauh0ldoQPSBJYhdrXFgpah08rdNo7PXjZdGctr1FuKKpnkAHeZnH1mylB7LmNqkBIZIAEDNamWYhEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739974416; c=relaxed/simple;
-	bh=jso5qQFQSYU2mgkN6qCTfJjd+ezV54v2ynj9RTPzjc4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S5tX1mafdtmNLUfDUOu+cuL1tWxkMVICvYojAKDIp1QAdpCSZWTH+Xy1M1OxFPSURDPHeyjnHB0+zK63b5L6pQ+Tq1AHTBtdKOTKsZAuN3mBTm4qVoDwGeHpMoUGCOAEL6aqhFO6QidOur0uvbwCGSIs1W9dpRuqLuVCDQ7dn4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FnsiTdTj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B15A0C4CEEC;
-	Wed, 19 Feb 2025 14:13:35 +0000 (UTC)
+	s=arc-20240116; t=1739974846; c=relaxed/simple;
+	bh=tXlCdH0X+xikR3zseXWRre0Ou4/Yp8Pw7Nsiy7ySbig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Evo8TQ3BBHKyXThsNqGPOKlgRrBRcSJ8qn/6D9lGpmRTQl+QuigEXVNHQBsjOMPRVlIftfCfZLa3fUu5U+Hrk+KuEeCLtGnUDTFS0K/uoIMAwzRKATfguLKNhJj4auY12/wVYYpj5m8LB1s2VRsLJOx/fn9kuGEL8w9vwnhCeH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Na6eQl/u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59C92C4CED1;
+	Wed, 19 Feb 2025 14:20:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739974415;
-	bh=jso5qQFQSYU2mgkN6qCTfJjd+ezV54v2ynj9RTPzjc4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=FnsiTdTjIta96r2UPsWQppWhDfdDVi33yIdAv7br0buBtK0uCnRlPz0zRE70iN7jh
-	 qU5jsaxlcf56OVAeYMyc9UZZcCMR60GxCxst2IolLXGVZ/dvgaC8RZOOj8Re+N/zrA
-	 25NjV3xP/6CV/+rhx4njuRt3Wv0qvCfwVw5iHK5l6YA1fngr3GwC+Ota629c+VKEye
-	 qVFF9FH0D0rsAHnroytvbw/un7iO2yCsCfutiArUcaWitMcJArqal9WgfQ6dY7HtAi
-	 bzGz9inzKseg0RKM85ZLNScRMNjpmwIXJK5dU1ihYmGpvi2DKeeFrYZ/lOeaTOtDtK
-	 3yJ424zphsNFA==
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2fc20e0f0ceso8905041a91.3;
-        Wed, 19 Feb 2025 06:13:35 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW9zOrfK3KBHCWBgbxayw+qwmn2/31wCHNjrUQ9yeiZwa6NoXUfCCYHC8MiNSIr96yff7xtuTu7ggIO@vger.kernel.org, AJvYcCWkhhZDxHoBNLF4Yp8z8oZ6Ks83kFpC+EuwAR2+8Zd6PXgvEABvbPOW0049Ng7UKvCn66dQYAcrtvgSA7QF@vger.kernel.org
-X-Gm-Message-State: AOJu0YykOUgPE0UQzjTWlL9uDvAWfHhcQMd/I5g0mAX+ansIh/R8M8bt
-	4YZFXFpO+JPKdYbn5clHsGOLD/Vf7fnO+8JPwimnHYOHDTtH6Qw+lvEkpLbF4Z0ZK5m1AtebEk/
-	ka2qdLfMWJuTsTU40Ul4ep0ppCQ==
-X-Google-Smtp-Source: AGHT+IFa8R6i4Eeuldo8axIMgGyezQE2Aih3YKW/uwabG5hR2Fqqcd+qkA666mlQjsQf/SRPn9uJJ5YEmt8CiUS/WUI=
-X-Received: by 2002:a17:90b:3912:b0:2fa:229f:d036 with SMTP id
- 98e67ed59e1d1-2fcb5abe3cemr5694227a91.30.1739974415205; Wed, 19 Feb 2025
- 06:13:35 -0800 (PST)
+	s=k20201202; t=1739974844;
+	bh=tXlCdH0X+xikR3zseXWRre0Ou4/Yp8Pw7Nsiy7ySbig=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Na6eQl/uA9zuc0lfzqHgEBKDBNxXa+POV4YGyC7MYTKQgEeIiqC0LwfmCEMI7xaPl
+	 W14jPeyWZh3KH0yFp2GUqn+n/JygquKIcYT2GdLQNHcndZFCcwajW4ccDus/IVmYHA
+	 XnaX2P6VoI4YbhQggPkLIiXhfWwoEDOwe8xMIARPegxooK+KEg3vN0GequKbRixfax
+	 yd7dURDozQQqAqnbAuAe0ig3ChKUWIoRy+13B5BqnVqfnfryZvXSw2Q6mGE7AWr42P
+	 Hnda7rXxX8eTL5mwbb+nII8mRGSs6Oj0j2Pg4DyMqMIEyzaYRf/r7kzy/b0faJS7bF
+	 XOVYd78wU1bVA==
+Date: Wed, 19 Feb 2025 08:20:42 -0600
+From: Rob Herring <robh@kernel.org>
+To: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Maxime Ripard <mripard@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Simona Vetter <simona@ffwll.ch>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Devarsh Thakkar <devarsht@ti.com>,
+	Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+	Jayesh Choudhary <j-choudhary@ti.com>,
+	Francesco Dolcini <francesco@dolcini.it>,
+	DRI Development List <dri-devel@lists.freedesktop.org>,
+	Devicetree List <devicetree@vger.kernel.org>,
+	Linux Kernel List <linux-kernel@vger.kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>
+Subject: Re: [PATCH v5 2/3] dt-bindings: display: ti: Add schema for AM625
+ OLDI Transmitter
+Message-ID: <20250219142042.GA2436009-robh@kernel.org>
+References: <20250209160925.380348-1-aradhya.bhatia@linux.dev>
+ <20250209160925.380348-3-aradhya.bhatia@linux.dev>
+ <16db8f3d-04a2-408a-964f-4cf9478229b4@ideasonboard.com>
+ <8c6e790e-f1b6-46ab-9acf-bdea8076405b@linux.dev>
+ <cd62bf21-adad-4422-8fac-ebd20e8b39a5@ideasonboard.com>
+ <062b78a3-7e83-4202-a753-4e7bd43e8bc2@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217154836.108895-1-angelogioacchino.delregno@collabora.com> <20250217154836.108895-17-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250217154836.108895-17-angelogioacchino.delregno@collabora.com>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Wed, 19 Feb 2025 22:14:20 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_99Q5X+PurxQKewJRN4e=cxwMwX-6qzrZztOe5Eu2KuPg@mail.gmail.com>
-X-Gm-Features: AWEUYZmtLYXEQSNosRWwGHhpXxbA8tfEaeBMbNB5Y9ryg9Aq3cPAidz3jkYE8sg
-Message-ID: <CAAOTY_99Q5X+PurxQKewJRN4e=cxwMwX-6qzrZztOe5Eu2KuPg@mail.gmail.com>
-Subject: Re: [PATCH v7 16/43] drm/mediatek: mtk_hdmi: Compress of_device_id
- array entries
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, 
-	jie.qiu@mediatek.com, junzhi.zhao@mediatek.com, 
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
-	dmitry.baryshkov@linaro.org, lewis.liao@mediatek.com, 
-	ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com, 
-	jason-jh.lin@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <062b78a3-7e83-4202-a753-4e7bd43e8bc2@linux.dev>
 
-Hi, Angelo:
+On Fri, Feb 14, 2025 at 06:11:11PM +0530, Aradhya Bhatia wrote:
+> Hi Tomi,
+> 
+> 
+> On 13/02/25 18:50, Tomi Valkeinen wrote:
+> > Hi,
+> > 
+> > On 13/02/2025 14:33, Aradhya Bhatia wrote:
+> > 
+> >>>> +  ti,companion-oldi:
+> >>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >>>> +    description:
+> >>>> +      phandle to companion OLDI transmitter. This property is
+> >>>> mandatory for the
+> >>>> +      primarty OLDI TX if the OLDI TXes are expected to work either
+> >>>> in dual-lvds
+> >>>> +      mode or in clone mode. This property should point to the
+> >>>> secondary OLDI
+> >>>> +      TX.
+> >>>> +
+> >>>> +  ti,secondary-oldi:
+> >>>> +    type: boolean
+> >>>> +    description:
+> >>>> +      Boolean property to mark the OLDI transmitter as the secondary
+> >>>> one, when the
+> >>>> +      OLDI hardware is expected to run as a companion HW, in cases of
+> >>>> dual-lvds
+> >>>> +      mode or clone mode. The primary OLDI hardware is responsible
+> >>>> for all the
+> >>>> +      hardware configuration.
+> >>>
+> >>> I think these work, but I'm wondering if we would ever need to check
+> >>> something from the main oldi from the secondary oldi. In that case
+> >>> "crossed phandles" would be better, i.e. something like:
+> >>>
+> >>> (in the first oldi:)
+> >>> ti,slave-oldi = <phandle-to-second-oldi>
+> >>>
+> >>> (in the second oldi:)
+> >>> ti,master-oldi = <phandle-to-first-oldi>
+> >>
+> >> When I had first designed the code and the devicetree for OLDI, it was
+> >> done so with the belief that we wouldn't reqiure a bridge instance for
+> >> the secondary OLDI, at all.
+> >>
+> >> While that idea holds true for dual-lvds configuration, it doesn't so
+> >> for the clone mode configuration. For clone mode, as you pointed out, we
+> >> will require a 2nd bridge instance to configure any of the bridges and
+> >> panels that come after the 2nd OLDI.
+> >>
+> >>
+> >>>
+> >>> Then again, if we ever need that, even with these bindings the driver
+> >>> could find the first oldi, but needs to go via the dss's node.
+> >>
+> >> While it is possible to do it this way, it might not be the cleanest
+> >> one. And _if_ there is a ever a DSS in future with more than 2 OLDI
+> >> TXes, say 4, then the decipher logic may get too complicated.
+> >>
+> >> While I cannot think of any case where the secondary OLDI bridge DT
+> >> might need to access the primary OLDI bridge at the moment, I wonder if
+> >> we should play it safer and have this option anyway.
+> >>
+> >> Maybe something like this?
+> >>
+> >> (primary OLDI)
+> >> ti,primary-oldi;
+> >> ti,companion-oldi = <phandle-to-secondary-oldi>;
+> >>
+> >> (secondary OLDI)
+> >> ti,secondary-oldi;
+> >> ti,companion-oldi = <phandle-to-primary-oldi>;
+> > 
+> > How is this different than my proposal, except a bit more verbose?
+> 
+> That's all the difference there is. Just an alternative to what you
+> suggested.
+> 
+> > 
+> > If you're thinking about a 4-OLDI hardware, how would this work there?
+> 
+> I didn't mean that my alternative would be more helpful. I meant that
+> passing phandles would be a simpler way for 4-OLDI hardware in general.
+> 
+> We'd have to sift through a max of 4 OLDI nodes to find the right
+> primary OLDI for a given secondary OLDI - if we try to find it via the
+> dss and oldi-transmitter parent DT nodes. Passing phandles directly
+> would save on all that logic.
 
-AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
-=BC
-2025=E5=B9=B42=E6=9C=8817=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=8811:=
-49=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Compress the entries found in the of_device_id array to improve
-> readability of this file and to make that consistent with other
-> kernel drivers.
+I prefer the data in the DT be the minimum needed. Parsing the DT 
+doesn't need to be particularly fast because you should only do it once. 
+There's even a function already to find occurrences of a property name 
+all over the tree.
 
-Applied to mediatek-drm-next [1], thanks.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
-
-Regards,
-Chun-Kuang.
-
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_hdmi.c | 13 ++++---------
->  1 file changed, 4 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediat=
-ek/mtk_hdmi.c
-> index 1e50b3918069..be71105ba81d 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
-> @@ -1780,15 +1780,10 @@ static const struct mtk_hdmi_conf mtk_hdmi_conf_m=
-t8167 =3D {
->  };
->
->  static const struct of_device_id mtk_hdmi_of_ids[] =3D {
-> -       { .compatible =3D "mediatek,mt2701-hdmi",
-> -         .data =3D &mtk_hdmi_conf_mt2701,
-> -       },
-> -       { .compatible =3D "mediatek,mt8167-hdmi",
-> -         .data =3D &mtk_hdmi_conf_mt8167,
-> -       },
-> -       { .compatible =3D "mediatek,mt8173-hdmi",
-> -       },
-> -       {}
-> +       { .compatible =3D "mediatek,mt2701-hdmi", .data =3D &mtk_hdmi_con=
-f_mt2701 },
-> +       { .compatible =3D "mediatek,mt8167-hdmi", .data =3D &mtk_hdmi_con=
-f_mt8167 },
-> +       { .compatible =3D "mediatek,mt8173-hdmi" },
-> +       { /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, mtk_hdmi_of_ids);
->
-> --
-> 2.48.1
->
+Rob
 
