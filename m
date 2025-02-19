@@ -1,92 +1,165 @@
-Return-Path: <devicetree+bounces-148426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D084A3C038
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:42:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC0A6A3C02C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:41:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEA553AF74B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 13:39:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 402BA188D0E1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 13:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4062E1DED66;
-	Wed, 19 Feb 2025 13:39:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 433C41E833F;
+	Wed, 19 Feb 2025 13:41:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tQVQO5dC"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="F5ePZKWQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14B5319CD01;
-	Wed, 19 Feb 2025 13:39:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D06A1E834B;
+	Wed, 19 Feb 2025 13:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739972377; cv=none; b=Mnk7ksi5vNyJMU8L1OWbYv7m9LDIWmrEwVtTrzEf0aQTlEY9uYpVuDTYkasKqSKGPDyGxsH/6P3V/XWWU4fqdo05N2AGXOQRbZ3v60kOK88MeMeiEShGHy0f2+8S+CSSii6vP0N9QUmOPmdFWyR9w8F4OB1kmsJAoZHPS/R7/1Y=
+	t=1739972460; cv=none; b=nNHlbAukNYFtpiZMTi52jCMZoEipi9fIm4SOHXmsukgNlvRGporDO+i3IdYsq6lcy+fhkwGr1lQqfQjSLIuxh3M1Z4ciP8GTcaeqQtErNQJkvr6gxMjcVAAKMuFMLXnI0aIP9y70ks8zng42wKEKgrexKp3Ettc15YrdiXszw/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739972377; c=relaxed/simple;
-	bh=UWC9kdLXpJE8pWaUx8hrJrZzvXD6tZ1xwRInfrnG3Ig=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=etp9CXVxJpLDfJMRjSz/l/wEib/Av+rxZwkn0yrvVgqAQJQgn69gHXCTuANzkFuocwQH30kgiX0pbBTj/u/bzeL4xe6oaQ58+eQuGOTYkZAbQRx5urJcylvdrbV8zNku4vwe0zJSEAPUaByZq5GehNsa/r0NjPSnHc1Et1OjwhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tQVQO5dC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9647C4CEE7;
-	Wed, 19 Feb 2025 13:39:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739972376;
-	bh=UWC9kdLXpJE8pWaUx8hrJrZzvXD6tZ1xwRInfrnG3Ig=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tQVQO5dCEqKiUaWno2JGhXoPPQ3t/dpw4qmnD45kWzJ1NyE6ICEv2vauyi/feiOlS
-	 BUiV886IXKwAc93/rORADGCv2L6y7a4+uj6KG7p85hCdK++6LmSl3KpNq2mD+avVGi
-	 5LxCHpTeDDJfq5mJPbD3u5UHsXEFfrCsPYhxdtLeCDiiBP6sOkOMV1RHn1fvAevwNa
-	 vk9h6nslH7/S72hj73quC55agMn5OxUYrJfq+7PxE78DM8//r2q6SJ0MEs/4TvClcJ
-	 LZtFn5U2dR0sB62vXPzZQqJhqykJ8PXaUbUV2tJQBfeTLRG4wfMqSPg2tG5H21cPd4
-	 UiquDHFRX7jZg==
-Message-ID: <b728b5e7-e3bf-49d6-8829-554936850d5f@kernel.org>
-Date: Wed, 19 Feb 2025 07:39:34 -0600
+	s=arc-20240116; t=1739972460; c=relaxed/simple;
+	bh=Tvl7NLuxa/MhrFZ6wDutYPLFjwy69UYMZuxI97W8IBg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bh3cgCF4qxXwUd1Vw8ef1+TyGMjXM3gShEaJgm5N1p3FREwBDmzMWJw0ugSZLamdECoNzk++UM0ckg80McL5TtcJNsUzv7MHlshmoSdF59vmGAqHZU9Qh5p/PXructiAFt67HMcbFy4PufMyojztlHwolNzOf+u3nQm2Y7/+1wM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=F5ePZKWQ; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7A3D9169;
+	Wed, 19 Feb 2025 14:39:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1739972373;
+	bh=Tvl7NLuxa/MhrFZ6wDutYPLFjwy69UYMZuxI97W8IBg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=F5ePZKWQD+C14wb+wfDzgmEopigfymY0uMlT9W7U6DMhFq52QTFgmFW8ZGgZ0EPTA
+	 7HLdLnru62xznpFBYRF3NcQiuDJmNKSo91SN7nFxCGG5NkADaY9JT2tHLOOjqe61yu
+	 HEDR73x7nnav2J0ued+XM5lGzCBm5sGAM3Mg2l9k=
+Date: Wed, 19 Feb 2025 15:40:41 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hector Martin <marcan@marcan.st>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-media@vger.kernel.org, imx@lists.linux.dev
+Subject: Re: [PATCH 3/5] media: dt-bindings: Add Apple ISP
+Message-ID: <20250219134041.GB15114@pendragon.ideasonboard.com>
+References: <20250219-isp-v1-0-6d3e89b67c31@gmail.com>
+ <20250219-isp-v1-3-6d3e89b67c31@gmail.com>
+ <16f6d4a2-2102-48b9-a0ae-b8c6595975b8@kernel.org>
+ <CAMT+MTR7dhtt3SOMg0K3UakJQftqnc2S-rV41HdHtA+o9aSPug@mail.gmail.com>
+ <20250219105326.GA31383@pendragon.ideasonboard.com>
+ <CAMT+MTToVdm72ovNZ8ySySYe5fT99a0Y6bv02NKxADCBCe+pMQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: socfpga: agilex5: fix gpio0 address
-To: niravkumar.l.rabara@intel.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, nirav.rabara@altera.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
-References: <20250213105036.3170943-1-niravkumar.l.rabara@intel.com>
-Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20250213105036.3170943-1-niravkumar.l.rabara@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAMT+MTToVdm72ovNZ8ySySYe5fT99a0Y6bv02NKxADCBCe+pMQ@mail.gmail.com>
 
-On 2/13/25 04:50, niravkumar.l.rabara@intel.com wrote:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+On Wed, Feb 19, 2025 at 12:05:29PM +0100, Sasha Finkelstein wrote:
+> On Wed, 19 Feb 2025 at 11:53, Laurent Pinchart wrote:
+> > >
+> > > Those are board-specific and not discoverable via the ISP protocol.
+> >
+> > But they are settable through the ISP protocol, aren't they ? For
+> > instance, looking at isp-imx248.dtsi, the first four entries are
+> >
+> >         /* 1280x720 */
+> >         preset0 {
+> >                 apple,config-index = <0>;
+> >                 apple,input-size = <1296 736>;
+> >                 apple,output-size = <1280 720>;
+> >                 apple,crop = <8 8 1280 720>;
+> >         };
+> >
+> >         /* 960x720 (4:3) */
+> >         preset1 {
+> >                 apple,config-index = <0>;
+> >                 apple,input-size = <1296 736>;
+> >                 apple,output-size = <960 720>;
+> >                 apple,crop = <168 8 960 720>;
+> >         };
+> >
+> >         /* 960x540 (16:9) */
+> >         preset2 {
+> >                 apple,config-index = <0>;
+> >                 apple,input-size = <1296 736>;
+> >                 apple,output-size = <960 540>;
+> >                 apple,crop = <8 8 1280 720>;
+> >         };
+> >
+> >         /* 640x480 (4:3) */
+> >         preset3 {
+> >                 apple,config-index = <0>;
+> >                 apple,input-size = <1296 736>;
+> >                 apple,output-size = <640 480>;
+> >                 apple,crop = <168 8 960 720>;
+> >         };
+> >
+> > But I may be interested in capturing a 640x480 frame with cropping only
+> > and without scaling, with
+> >
+> > input-size = 1296x736
+> > output-size = 640x480
+> > crop = (328,128)/640x480
+> >
+> > Or I may want my cropped frame to be located in the upper-left corner:
+> >
+> > input-size = 1296x736
+> > output-size = 640x480
+> > crop = (8,8)/640x480
+> >
+> > If I set those parameters through the ISP protocol, won't it work ?
 > 
-> Use the correct gpio0 address for Agilex5.
-> 
-> Fixes: 3f7c869e143a ("arm64: dts: socfpga: agilex5: Add gpio0 node and spi dma handshake id")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> ---
-> 
-> changes in v2:
->    * Fix dtbs_check warning and update commit message for better
->      clarity.
-> 
-> link to v1:
->   - https://lore.kernel.org/all/20250212100131.2668403-1-niravkumar.l.rabara@intel.com/
-> 
->   arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
+> For cropping - you do not want to change those parameters, the sensor
+> is partially occluded, and the crop area is specified in such a way
+> to not expose those pixels.
 
-Applied!
+Surely cropping *more* wouldn't be an issue from that point of view ?
+The visible area is a device-specific property, so that could be
+specified in DT, instead of presets. The problem isn't limited to this
+device, so ideally the DT binding for this feature should be
+standardized.
 
-Thanks,
-Dinh
+In general, I'd say that even occluded pixels should be exposed to
+userspace, should an application want to capture them. If you think of
+fisheye lenses, for instance, it's common to have a round image captured
+from a rectangular sensor, and use a dewarping engine (it could just be
+GPU shaders) to un-distord it. Restricting capture to rectangles of
+fully visible pixels would result in loss of information. For this
+particular device I don't think that would really be a use case, so I'm
+not opposed to the driver setting restrictions on crop rectangles.
 
+> As for scaling - we can expose only the 1:1
+> scale and let userspace deal with it, but it appears that it expects
+> the other common output sizes to exist.
+
+Can the driver synthesize the list of scaled-down resolutions, instead
+of specifying them in DT ?
+
+-- 
+Regards,
+
+Laurent Pinchart
 
