@@ -1,134 +1,181 @@
-Return-Path: <devicetree+bounces-148233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71F04A3B31A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 09:04:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EA6FA3B333
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 09:07:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 009777A65FA
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 08:03:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 530C81893ED0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 08:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF58E1C5D78;
-	Wed, 19 Feb 2025 08:03:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25FAC1C54A7;
+	Wed, 19 Feb 2025 08:05:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="QCq3flHb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LtTs7k54"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 162101C3BE2;
-	Wed, 19 Feb 2025 08:03:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E317F1B87F4;
+	Wed, 19 Feb 2025 08:05:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739952230; cv=none; b=G8DxCpeQWHTBpyZyXnvrWG2DtouoaUBYwQdQ3sH00hCq/1rYj7wPkYWkBS5iFOhH0Z8fs3dGwRA0TKCp+d2o+RNyAffjDPLwrfIT6s67GYVpcpCcJJyjfUT0Ng3P5aWx7KTIKix4DF0iAzOrnyAhh5JD+sgto2mXPPwyWtcOHlY=
+	t=1739952359; cv=none; b=AyLkEb94OovgOHgySarSHlwsmsemFf3ZgLPXV4qypw2CL5forC62ZDov9mnxdgptosB6HhrR+L5sx0GGiDTqDBGTYn7JV5HqFgoUMvJCrSJGXOeHcLVAIBQo9DNCbPESjInBTAVZGSk1wJZYQAk5kHh6D1BkA3npWsh3/ZpAyXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739952230; c=relaxed/simple;
-	bh=3FJqN6EwD8+bzIowll8O8GIFxS2xh1EL0QvmtMy+ma4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HM96Vued8gyHJ8ckG34Qt/M3ffsv1R60rRL6Dj/mIkTTh9yWpY2byoBeKcO+6R77G1s3WmaPwEfLVy7OvlNYkXOB7rPlLfSyoK/lTQc4+z+Pg/1ymt1dBJgtflsVnJ+O6m38JFehXlz9XletsXRm8zniI+QgY7Mtjz3Ux9opRzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=QCq3flHb; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51J4sNv6011235;
-	Wed, 19 Feb 2025 09:03:30 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	L+7sXH1zQ3Bs1zuV6xldCwud87Dn2o2qNqX9CUqAE+w=; b=QCq3flHbn19hHlK/
-	TiexE6BIyESXuvJ8uAq5/9VOgis5BL+J7unkKrBA4QiAspMXPsoBa5Kn+Gftn1nB
-	69QSoyhS63RG38gtPam1vB0Rq4kDvWkXm7gedbfaCGUbVCc3OcRwXKgl5Ukhphyl
-	UOAWYUdQsC8mGdjua5eByQZT+EpAe+4R1gDeEMb35emUrJG3a0sR/piDWiTw502S
-	QSenoSx+X2Ugb2z/nz6nkzwHdjk0GdjDe+wdqEjbPXTqRgMjj5BU27O+xwiig5PB
-	KdjWPYu8X1Vhuwf5pLKdrQYPCcgA9c0YmcLD49y1Zw5V0y3PPa0L+S5H8AUyUgMC
-	RFXIfA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 44vyykt8b8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Feb 2025 09:03:30 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id EB5614004B;
-	Wed, 19 Feb 2025 09:02:16 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 892EE43E766;
-	Wed, 19 Feb 2025 09:01:18 +0100 (CET)
-Received: from localhost (10.48.87.62) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 19 Feb
- 2025 09:01:18 +0100
-From: <patrice.chotard@foss.st.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <christophe.kerello@foss.st.com>, <patrice.chotard@foss.st.com>
-Subject: [PATCH v5 8/8] arm64: defconfig: Enable STM32 Octo Memory Manager and OcstoSPI driver
-Date: Wed, 19 Feb 2025 09:00:59 +0100
-Message-ID: <20250219080059.367045-9-patrice.chotard@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250219080059.367045-1-patrice.chotard@foss.st.com>
-References: <20250219080059.367045-1-patrice.chotard@foss.st.com>
+	s=arc-20240116; t=1739952359; c=relaxed/simple;
+	bh=mjCUzREEp607MSaIY9+burmTdQYRMJRZfKMZFQK9qjU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pRpEHFW5Ux7QYNZDTJNfMqmYd3wtVqWaEr/H7hlNwlZV6GpyUfXMtgP+YO28pCmIx/5K2kjfMw/+wwKF5VN4E/ui07OI4Y34g/1n6vjlKf6BUXsb+KtnteDAxrt1TwiRDb3SiGAgE/OyIKRrm0FmMQzURrwCv0UjutPTb5yLdpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LtTs7k54; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89A40C4CEE6;
+	Wed, 19 Feb 2025 08:05:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739952358;
+	bh=mjCUzREEp607MSaIY9+burmTdQYRMJRZfKMZFQK9qjU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LtTs7k5448c55/qTkprhKuOd2Qy3r5GNrqgGlI3kmpGlLZauRS0NkATXtOr23HMVF
+	 oQv7yvc3HvB+7UwiknxrUblX+ci0rfWpcvSgff6Oo8/RpQl3SwAN9H9obgkP8x6r+z
+	 YsBct4IZ5DzMQ+OUvPTVsPsJuXSLOElcyMwi+/lEYITH1jeR/3iiDJJVoJLzt4v2NF
+	 GrEbwq2RWX2ALB3lRyEpGig0PpiGPmxmTyLkeSS0WR0jO74JDap/ZzYw7hoy4bOb/b
+	 9C5DnzJRAxpGTp3xHScogUvHC6w+MqkDBrHTi7Wxs3dCCxZ6874M6KpSwnEphYyVlO
+	 uw7so1h4DQJYg==
+Date: Wed, 19 Feb 2025 09:05:55 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/5] dt-bindings: clock: document exynos7870 clock
+ driver CMU bindings
+Message-ID: <20250219-competent-bullfinch-of-justice-09cbfb@krzk-bin>
+References: <20250219-exynos7870-pmu-clocks-v3-0-0d1e415e9e3a@disroot.org>
+ <20250219-exynos7870-pmu-clocks-v3-2-0d1e415e9e3a@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SAFCAS1NODE2.st.com (10.75.90.13) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-19_03,2025-02-18_01,2024-11-22_01
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250219-exynos7870-pmu-clocks-v3-2-0d1e415e9e3a@disroot.org>
 
-From: Patrice Chotard <patrice.chotard@foss.st.com>
+On Wed, Feb 19, 2025 at 12:20:29AM +0530, Kaustabh Chakraborty wrote:
+> +  Exynos7870 clock controller is comprised of several CMU units, generating
+> +  clocks for different domains. Those CMU units are modeled as separate device
+> +  tree nodes, and might depend on each other. The root clock in that root tree
+> +  is an external clock: OSCCLK (26 MHz). This external clock must be defined
+> +  as a fixed-rate clock in dts.
+> +
+> +  Each clock is assigned an identifier and client nodes can use this identifier
+> +  to specify the clock which they consume. All clocks available for usage
+> +  in clock consumer nodes are defined as preprocessor macros in
+> +  'dt-bindings/clock/exynos7870.h' header.
 
-Enable STM32 OctoSPI driver.
-Enable STM32 Octo Memory Manager (OMM) driver which is needed
-for OSPI usage on STM32MP257F-EV1 board.
+Full path and drop quotes
 
-Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
----
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 246a13412bf0..b089cf4b90a1 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -577,6 +577,7 @@ CONFIG_SPI_QUP=y
- CONFIG_SPI_QCOM_GENI=m
- CONFIG_SPI_S3C64XX=y
- CONFIG_SPI_SH_MSIOF=m
-+CONFIG_SPI_STM32_OSPI=m
- CONFIG_SPI_SUN6I=y
- CONFIG_SPI_TEGRA210_QUAD=m
- CONFIG_SPI_TEGRA114=m
-@@ -1506,6 +1507,7 @@ CONFIG_EXTCON_USB_GPIO=y
- CONFIG_EXTCON_USBC_CROS_EC=y
- CONFIG_FSL_IFC=y
- CONFIG_RENESAS_RPCIF=m
-+CONFIG_STM32_OMM=m
- CONFIG_IIO=y
- CONFIG_EXYNOS_ADC=y
- CONFIG_IMX8QXP_ADC=m
--- 
-2.25.1
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - samsung,exynos7870-cmu-mif
+> +      - samsung,exynos7870-cmu-dispaud
+> +      - samsung,exynos7870-cmu-fsys
+> +      - samsung,exynos7870-cmu-g3d
+> +      - samsung,exynos7870-cmu-isp
+> +      - samsung,exynos7870-cmu-mfcmscl
+> +      - samsung,exynos7870-cmu-peri
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 10
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 10
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - "#clock-cells"
+
+This goes after clock-names, to keep the same order. No need to repeat
+old mistakes.
+
+> +  - clocks
+> +  - clock-names
+> +  - reg
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynos7870-cmu-mif
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynos7870-cmu-dispaud
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +            - description: CMU_DISPAUD bus clock (from CMU_MIF)
+> +            - description: DECON external clock (from CMU_MIF)
+> +            - description: DECON vertical clock (from CMU_MIF)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: bus
+> +            - const: decon_eclk
+> +            - const: decon_vclk
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynos7870-cmu-fsys
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +            - description: CMU_FSYS bus clock (from CMU_MIF)
+> +            - description: USB20DRD clock (from CMU_MIF)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: bus
+> +            - const: usb20drd_refclk
+
+Drop _refclk suffix
+
+Best regards,
+Krzysztof
 
 
