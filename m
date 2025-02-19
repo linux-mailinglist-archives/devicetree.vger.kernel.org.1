@@ -1,285 +1,209 @@
-Return-Path: <devicetree+bounces-148494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DFB0A3C2EE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 16:02:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9433FA3C30B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 16:06:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A6E51665D1
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:02:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E136189A6AF
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:06:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33DAC1F30A4;
-	Wed, 19 Feb 2025 15:02:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FECC1F4615;
+	Wed, 19 Feb 2025 15:06:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="C6oc98/c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02olkn2049.outbound.protection.outlook.com [40.92.50.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C5C1E8335
-	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 15:02:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739977350; cv=none; b=ckTwB0KEedbrPCeUYH5JairVR8DH7alCCvRNrIYXUofFTPvL74Dvr7mRaBulHPCBcpkQw8FejrYlGjM6zU/GZCO+oFpCVTEaEQtb6q9YGtlKdsYwTJGBdDh8fM6YhTDN2H06WF7roQtVGSG0y1rFlmLLV9S8z2P1k6egc1s0mUc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739977350; c=relaxed/simple;
-	bh=RUNbt4yGPSt7OH59avth3IQQbP99cZS7WYjTwXjBDTw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=H0t2jGM8+eWEYYB6XPivPWsPajqyjySKu2+f883MqNUGgTEqqdTBBzFTR7eRVBuwCjLtT59YwLR8uoiLWL6MfcijHoQqN6lEV3JQ1mG1/6Jz0jBAjP334T0m1UmebPCPgPCgGAnbFigkbx1QjYqFPM4U4CYDoxCzsLvLQtmtLVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tkla9-0004IU-Do; Wed, 19 Feb 2025 16:01:49 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tkla6-001mdz-12;
-	Wed, 19 Feb 2025 16:01:46 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tkla6-0009xm-0e;
-	Wed, 19 Feb 2025 16:01:46 +0100
-Message-ID: <ef2026c28b9e6d59a98f6f33eb14f3b762454423.camel@pengutronix.de>
-Subject: Re: [PATCH v5 12/21] reset: thead: Add TH1520 reset controller
- driver
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Michal Wilczynski <m.wilczynski@samsung.com>, mturquette@baylibre.com, 
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-  drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
- jassisinghbrar@gmail.com,  paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu,  frank.binns@imgtec.com, matt.coster@imgtec.com, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
-  airlied@gmail.com, simona@ffwll.ch, ulf.hansson@linaro.org,
- jszhang@kernel.org,  m.szyprowski@samsung.com
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
-Date: Wed, 19 Feb 2025 16:01:46 +0100
-In-Reply-To: <20250219140239.1378758-13-m.wilczynski@samsung.com>
-References: <20250219140239.1378758-1-m.wilczynski@samsung.com>
-	 <CGME20250219140305eucas1p26317b54727c68cf069458d270e06d962@eucas1p2.samsung.com>
-	 <20250219140239.1378758-13-m.wilczynski@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFE4B1F426F;
+	Wed, 19 Feb 2025 15:05:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.50.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739977560; cv=fail; b=MbHtPofSVx7Q8gcQgSBlm3CpFsaU/HoYmoA/q6sWql0SccfA5Fp4MuUD3VZgRu8vwXqOrZJsSDY+b+vfCIdDjxlRwCoOXIWpFlXPAXpcsc6VtySc0wqiJlMDUls8oH4fetwh1FZdXMSHWVgJ93pNqXP/8ywdvfziToSxqHsJeIc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739977560; c=relaxed/simple;
+	bh=uIsFiPVN46DhWPwg+v8vLFSizs4KjygYozxTHzBYpv8=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=u3fmNVAdv9tT9UPn5S912zDeDOt548yNKrB61Vmj2D3UE62D5bwHkbNogqI0LiPjQMwexmgesWZDccEsidZOUOLONBAVxoEZjCRkhiHZ09Or/KkxUW2bFWhIwHnUMXzaPMj0v5SFog4Iq0Mt5kgKLVoqI4X7lzaPn1jZAsBpmkI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=C6oc98/c; arc=fail smtp.client-ip=40.92.50.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lxmt5XKdsF9rcxPfcGdggxg24pDZWuwCUJcIKB80jHO0VGcXifgrXoYvF6+VqJG8+LxZduS0ovWtJAYLNa4NkdBAKshp7bZDHzYS8qiqZ8s2iJ5tRVu+h7cNepaU55c3Po55YgUKsD2uWDihMAoFAJR1K2+mMr64F+ya9hxvUpehO+alsCRFKmgjgVcjHdtcjfOlb/9QxTNCo0Bdf3uFbGeuKv0b7vfDm+YJ3J/AY6WwyKNfIhCDLdKMGGL0nRvWgkJV+tWxay0MkSdliiXLP6wi3H2pFOPTXa51x4sYSyyBnYpFKxPB106FV5Y76oP2RmDVTPHoe8iglkEok1OHaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XxenyQmpsC6nEdCAFBQzPGy6VJEFVMeu0MEn2p9V+Qg=;
+ b=mCUZLlDzHYmHY6GudVD7gUwC2KwZZU1eqrvuScWxZjL8v9H0cKuWxRTKfcKIm149oStrn75p4OAN8479OWcUyXMW2brFVNR4oqO4sVeRjTGKEMonNscGtBccVteanNeUHVapirQ6ap6dNKlxFmaAVyddgxx4q3F5LIW4TnTWL+00mFmxpqT36PbcUuQk5XqL0pcBCU1o6HfuJwJJpgdsqZOjLTVOXlwv+4y5csnS6KLYhdWSy+lSWnbElLmCkR+xhGnZG13+p3L5oJp+k+nT6SYXPDJ2MWcCgsbc96CX2RSV6BTyQSIPzlxW3cAB8zDGldlhfjytssrmQVPVKfsjNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XxenyQmpsC6nEdCAFBQzPGy6VJEFVMeu0MEn2p9V+Qg=;
+ b=C6oc98/clVRTG1iMazzWYMuOlCJ78Y8iio9TRw559r8n3XJNejsReu/XSHkahscbwM/wmKnymtwGr24JPpRPwHZIcTBQSIn1p/p5Nz0tYfxUjGxk4y28FipjyyJlGbrLxSnd0fMDK0RfzCxOZoJ8RvgMLrgE6IH8HrDIhbyaip4tCqnBIbQ6tubIFw3I4NOV82eBEp6CGkaHI3etvv8K/MXaau5KdHXBne8rBY5XhdQGwFimJBfgYpH8gnSpjC6tv+kyOqqTnrW8FKNW/hGq7/DnKzgIYDz3RVZgaycwz9TwmpjIE1MSXBXpATnJo04hEPgHXWEzJiNxnYFv4SicJg==
+Received: from AM7P189MB1009.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:175::17)
+ by AM0P189MB0675.EURP189.PROD.OUTLOOK.COM (2603:10a6:208:1a2::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.15; Wed, 19 Feb
+ 2025 15:05:56 +0000
+Received: from AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
+ ([fe80::e9f1:a878:e797:ee1a]) by AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
+ ([fe80::e9f1:a878:e797:ee1a%2]) with mapi id 15.20.8466.015; Wed, 19 Feb 2025
+ 15:05:56 +0000
+Message-ID:
+ <AM7P189MB100973D1DC0164099067E2AEE3C52@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+Date: Wed, 19 Feb 2025 16:05:55 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] riscv: dts: starfive: fml13v01: increase eMMC bus speed
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Maud Spierings via B4 Relay <devnull+maud_spierings.hotmail.com@kernel.org>,
+ Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250215-fml13v01_emmc_speed-v1-1-e3bd224ae0e8@hotmail.com>
+ <CAJM55Z9GJr3BtbQeFpNU2P=nomsOvQ6dsVYFX_s=tHznu75ptQ@mail.gmail.com>
+Content-Language: en-US
+From: Maud Spierings <maud_spierings@hotmail.com>
+In-Reply-To: <CAJM55Z9GJr3BtbQeFpNU2P=nomsOvQ6dsVYFX_s=tHznu75ptQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM0PR01CA0171.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:aa::40) To AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:175::17)
+X-Microsoft-Original-Message-ID:
+ <4f84e2ce-9f0a-4cba-9610-9a087e297169@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7P189MB1009:EE_|AM0P189MB0675:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4bbafeb3-ff85-4578-76b6-08dd50f6e92a
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|15080799006|5072599009|461199028|19110799003|8060799006|6090799003|3412199025|440099028;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ZUhqWkM1WXM0bVdmS3BmMEN6WHhCc1ZEZjQ5K3I4UGVuMDdoZjBxOVJ4VWpH?=
+ =?utf-8?B?VmtlcTd3YVJ4ME4yb3pWVmt0OXo2eDNXdVFobkhpZE1Fbm51VUN2Y2lWaXJZ?=
+ =?utf-8?B?QWxJdlNmVzhLMnZMWENCbUtVakQyNmVGRkxOUzJVMDFoWXZlUmN0MHVmb1V6?=
+ =?utf-8?B?aFlhMTROSldxZEV2QnJvSmwvY0RQV1JrS3JEUGloOU9RNXdsTDd3UjdMb0pz?=
+ =?utf-8?B?dGlMWDd1dHhHem8vL0hFM3dCYmxTTUxVbjUzOGI1dVF2ZHJEblkyL0cvTVNV?=
+ =?utf-8?B?eTFSamRhdzhnczBqL1h3MWZ6QTh1ODFsKzZXZUVvSTZVeW1RR05ZTStPU0FP?=
+ =?utf-8?B?cG40N1N6OHFzM3lBNFU5bnkrYm1SK2RscVozTDV6R3M2QkhEczJCVjlGRUpX?=
+ =?utf-8?B?K2J1ZThIQTZ2QjZ4Q3lrb0R2ZzNJd3pCWUdLTVNXMVJyMDRUbld2YUx5MmMz?=
+ =?utf-8?B?aERkRjE5VTNoK3c1QnpwV2tFVnZ5WkNVQldPRmFEbXNsZzE5SXdLRW9oUmpn?=
+ =?utf-8?B?SGt3djNwYWFJVWxFWkk3UmJKd0Q0akhBd1FlUmppeVNmS0NuSHVsYk5ZSVVW?=
+ =?utf-8?B?Z3pxOWYzQkhLNVYvblR6MkNaWHFwVDcwdmRyczFKcmMvZGdDY0YzOTNpZHZY?=
+ =?utf-8?B?Y1FvN3E0VVU0Umx6aVQ2cE90bU9EWFhEbGZibWlNWnZjZ1R2M2tWS2dpWDhx?=
+ =?utf-8?B?N1MwaXJjeGZwVzNqcEtDSThTMVhiNTVmMHh1bk44SDdub3JRRFhoQUFwVUxj?=
+ =?utf-8?B?TXhyYitoQ1FKTHA2YjNVUGhhZTZMSjRVL0MvQTlQOXNsKzNhaFM3d3VDOGgv?=
+ =?utf-8?B?TGtHQkw1ZXd4aW1Uc29TTURxbDBTRmFhVEw3NHcrUGQzeERoakR4Q3hhT0ow?=
+ =?utf-8?B?OVBTTXVwQjRjNG8vUmdCYUhSeDVPM25lbmRkZzdCbGdoWlRrUmZpWlBpUDk1?=
+ =?utf-8?B?dmRnb2dwWmlYTW40Z2dYcVJHOHpxVGdySDdrbW9MVVQwRm1ZcCtwVkswNWpP?=
+ =?utf-8?B?T3p3bzlNNXUxaUFVc0dvM2lYM3ZxcFB2dHQ5SCtyR21Zc25Pb250VEMvaWE5?=
+ =?utf-8?B?c0UrcG50T3ZJd0VtNXRHSDZqR1VSdDNUVFRFK28rOGtKY2hUMGYzMkdWT0Zi?=
+ =?utf-8?B?cWFCQmhYSUliN1JFTjI2L0R1TnpWekdzWHpzY1ppTWhPeTVRTWpERmQ4cWow?=
+ =?utf-8?B?bmVWRVJoR0V5RGJ5dXFPRk4vb3NsSXc5anpuOW5RNXZpWXYrUGd3bDFEZzN2?=
+ =?utf-8?B?b2FwTGZUbTVvTWV3bHhPN3F4U0Z3cEoyejZmYU8wRUFkNVBsZzZPSFZ5U3BI?=
+ =?utf-8?B?enllU2ZjL3kwWVJDMlJsRWY1YmxEdGV6alNSb0RVck1sNCsvRnhMenJZckhq?=
+ =?utf-8?B?U1ZmQWFocUZ3UEhsMHdRWjROdDRGYzZlT0VNQVUvNFVKbkdVM3l1VDkvQk5n?=
+ =?utf-8?B?WmVHSVJzMWlsUEtWdDJYbkZyV1ltMlJFaENvZUh3PT0=?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?L1ZaNXBGcUszcEtKVlBLRjA3bGVxNzAvQXloRzkwemNxVi9XcXkveGhyZjZx?=
+ =?utf-8?B?b1hDN2RwTEpPL2VrWTcrNVlRL1JOdWVIK1Y3SWErNVBiTG9TbllRZFNOOWov?=
+ =?utf-8?B?OSt2WTNCa3Z4QmhxeDdBeVU5VHdNdEIxMzJTd042WU9xUk9WOFdyMWRGcUZi?=
+ =?utf-8?B?Mld1cXcvV0hyV1VKNm1MZWdsTEV0ZkEzdTNUM2E0TGx4QitkT3JMdnVtZFZ0?=
+ =?utf-8?B?MDl2Z01hWitrYnorRWZsUVdnS1QvMzhNRk5sZ0tjRjlrYUpIREkrTHh2Z3NN?=
+ =?utf-8?B?bUtnTDBGYUIydjZvTHBnVnJ2WVYvQjFzcExxL2dWRmxOaU02Y25kT0VlSE1Y?=
+ =?utf-8?B?S2YzQ3dqT3ZrWEI5NENvR2tDSkVHOFlFcHZ6OUllSTdtaG9Ka0ZqRHFQZEQz?=
+ =?utf-8?B?cFlneW5kd1Vlckx4a0QzVmZ4MG9LUHdJVUh6SDJFWS9aTDlpcTJ1WmFEdWRZ?=
+ =?utf-8?B?bHhKS29UYmlDbFJJWnhPcXpSMEllWjdBQWR4UkZKSHhnbytWVVowMzhwdHEx?=
+ =?utf-8?B?dHdzcTdpVDhjMm9JK3djRFZodzQreFhUdEFPU1ZpdzBhNkpGZTgva3FVeU9h?=
+ =?utf-8?B?U1lLZjJhL0o5VzIrSGozNmpGSkFKYkVQNDlIZVZpV1BMempRUFkzU3Y0UDRK?=
+ =?utf-8?B?aDFSR1pnb0c2aDBlK2JqZndMdDgrUDlFeW5CalEwY3dFYUNXeTVPR3p4cE82?=
+ =?utf-8?B?UmdqL3F6SkNNSlhjVjdQNElSSVBjNnE3T1BwL1Y4UDdrVXRScW1EVS9lQk9u?=
+ =?utf-8?B?SzE1eHdLQkppaFR0d0gzbVU2d3VLUFV5aXFhbkhiQTZrL3RuODdaTDhNU200?=
+ =?utf-8?B?V2FteDF5Z21ndVFzditPV1VkaEJ1VHgwWXhuNnlPQnp5MFpUUXFWTmN0MkVF?=
+ =?utf-8?B?eTJsT3hFaHVrYzVDMlJDbzZ0eGVQSkhHc3VXZzVlQUp2aHdoWHBDNEwvcGZp?=
+ =?utf-8?B?dkxBekVLcGZPcUZtVG14VklNZ0ZXdEdhMnZOQzA4dUs5a3VoQUNtZ2RKUXFJ?=
+ =?utf-8?B?d1p4WEdnbkZ5Q2Uxbzd4aHlTVjZTUHRzNTEvSUhQdCt1b3AxRU1Ra1llbkdF?=
+ =?utf-8?B?bHU4U00rb0I2QVFuTmVDK3ZSK3NKM1g2VGU2eUV2VHdXN29TTGdMbHZad3kv?=
+ =?utf-8?B?WmJNeTdDeThDL1NyZ3FKS1ZmYjY4c0NROWx0Ly8xVDVjYjQ1NzlabmlQVUV1?=
+ =?utf-8?B?dFU0Y25lbkNjN2VNR3NMTkVHdDZ0RnRwTXZEREdkVXowNWxuTERrdHFTMFhY?=
+ =?utf-8?B?cFFTRlVLS0lKYXJYRTFXRmNNTDM4R0J4RUJGTG05TFB4c0N0U0cwYWRZMXRn?=
+ =?utf-8?B?YU9yYXc2MThGWDJYbURWQWs3RzVGUTd3RVdCVU1oeS82b2RPRmV6azNqQmdn?=
+ =?utf-8?B?VHNWT0FGK1BEcU1vOHE1bWxja0xGc0txR3E0ZGxHMXRIcHd5dHNTeEo3SytD?=
+ =?utf-8?B?bGFlZ3NKOEVKOWFNdzFhTVhKV1dGNnNhcCtmSHg1Z1ppOUJzdm1Ebmk3eFBi?=
+ =?utf-8?B?UUQyV3RMMEw5eUxHbzJ5N1ljUzB1SkxhN0VyUzlub2pJQU9kd0lUelVYZmFB?=
+ =?utf-8?B?cmYzbWNYUm9mWGpDWE8zbkY5dzBqQitWRm8wN3U1VG9HQzlEVlU2MlNQL0ll?=
+ =?utf-8?B?OWVKWUxlcXFrZlF2N3hiTUQ2aXhXWE0vMERBcEpORjlNMFRId3ZBcHh0ckxO?=
+ =?utf-8?B?VDJQblhEZ0NJN3FOVmVJMDB5eDE2MnMvMlluTjc3TllQY1cxZTJOdC9MZkhN?=
+ =?utf-8?Q?7QzLdcO50S0N/k9gZUuok+VXpzV4vQp/C2XE3c5?=
+X-OriginatorOrg: sct-15-20-7719-19-msonline-outlook-3b3e0.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4bbafeb3-ff85-4578-76b6-08dd50f6e92a
+X-MS-Exchange-CrossTenant-AuthSource: AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2025 15:05:56.4814
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0P189MB0675
 
-On Mi, 2025-02-19 at 15:02 +0100, Michal Wilczynski wrote:
-> Add reset controller driver for the T-HEAD TH1520 SoC that manages
-> hardware reset lines for various subsystems. The driver currently
-> implements support for GPU reset control, with infrastructure in place
-> to extend support for NPU and Watchdog Timer resets in future updates.
->=20
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  MAINTAINERS                  |   1 +
->  drivers/reset/Kconfig        |  10 +++
->  drivers/reset/Makefile       |   1 +
->  drivers/reset/reset-th1520.c | 141 +++++++++++++++++++++++++++++++++++
->  4 files changed, 153 insertions(+)
->  create mode 100644 drivers/reset/reset-th1520.c
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 819686e98214..e4a0a83b4c11 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20425,6 +20425,7 @@ F:	drivers/mailbox/mailbox-th1520.c
->  F:	drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
->  F:	drivers/pinctrl/pinctrl-th1520.c
->  F:	drivers/pmdomain/thead/
-> +F:	drivers/reset/reset-th1520.c
->  F:	include/dt-bindings/clock/thead,th1520-clk-ap.h
->  F:	include/dt-bindings/power/thead,th1520-power.h
->  F:	include/dt-bindings/reset/thead,th1520-reset.h
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 5b3abb6db248..fa0943c3d1de 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -272,6 +272,16 @@ config RESET_SUNXI
->  	help
->  	  This enables the reset driver for Allwinner SoCs.
-> =20
-> +config RESET_TH1520
-> +	tristate "T-HEAD 1520 reset controller"
-> +	depends on ARCH_THEAD || COMPILE_TEST
-> +	select REGMAP_MMIO
-> +	help
-> +	  This driver provides support for the T-HEAD TH1520 SoC reset controll=
-er,
-> +	  which manages hardware reset lines for SoC components such as the GPU=
-.
-> +	  Enable this option if you need to control hardware resets on TH1520-b=
-ased
-> +	  systems.
-> +
->  config RESET_TI_SCI
->  	tristate "TI System Control Interface (TI-SCI) reset driver"
->  	depends on TI_SCI_PROTOCOL || (COMPILE_TEST && TI_SCI_PROTOCOL=3Dn)
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index 677c4d1e2632..d6c2774407ae 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -35,6 +35,7 @@ obj-$(CONFIG_RESET_SIMPLE) +=3D reset-simple.o
->  obj-$(CONFIG_RESET_SOCFPGA) +=3D reset-socfpga.o
->  obj-$(CONFIG_RESET_SUNPLUS) +=3D reset-sunplus.o
->  obj-$(CONFIG_RESET_SUNXI) +=3D reset-sunxi.o
-> +obj-$(CONFIG_RESET_TH1520) +=3D reset-th1520.o
->  obj-$(CONFIG_RESET_TI_SCI) +=3D reset-ti-sci.o
->  obj-$(CONFIG_RESET_TI_SYSCON) +=3D reset-ti-syscon.o
->  obj-$(CONFIG_RESET_TI_TPS380X) +=3D reset-tps380x.o
-> diff --git a/drivers/reset/reset-th1520.c b/drivers/reset/reset-th1520.c
-> new file mode 100644
-> index 000000000000..d6816c86ba95
-> --- /dev/null
-> +++ b/drivers/reset/reset-th1520.c
-> @@ -0,0 +1,141 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2024 Samsung Electronics Co., Ltd.
-> + * Author: Michal Wilczynski <m.wilczynski@samsung.com>
-> + */
-> +
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset-controller.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <dt-bindings/reset/thead,th1520-reset.h>
-> +
-> + /* register offset in VOSYS_REGMAP */
-> +#define TH1520_GPU_RST_CFG		0x0
-> +#define TH1520_GPU_RST_CFG_MASK		GENMASK(1, 0)
-> +
-> +/* register values */
-> +#define TH1520_GPU_SW_GPU_RST		BIT(0)
-> +#define TH1520_GPU_SW_CLKGEN_RST	BIT(1)
-> +
-> +struct th1520_reset_priv {
-> +	struct reset_controller_dev rcdev;
-> +	struct regmap *map;
-> +};
-> +
-> +struct th1520_reset_map {
-> +	u32 bit;
-> +	u32 reg;
-> +};
-> +
-> +static const struct th1520_reset_map th1520_resets[] =3D {
-> +	[TH1520_RESET_ID_GPU] =3D {
-> +		.bit =3D TH1520_GPU_SW_GPU_RST,
-> +		.reg =3D TH1520_GPU_RST_CFG,
-> +	},
-> +	[TH1520_RESET_ID_GPU_CLKGEN] =3D {
-> +		.bit =3D TH1520_GPU_SW_CLKGEN_RST,
-> +		.reg =3D TH1520_GPU_RST_CFG,
-> +	}
+On 2/19/25 3:21 PM, Emil Renner Berthing wrote:
+> Maud Spierings via B4 Relay wrote:
+>> From: Maud Spierings <maud_spierings@hotmail.com>
+>>
+>> The assigned clock speed of 50 MHz is and max-frequency of 100MHz are
+>> limitting this interface which is SDIO 5.0 capable. Sadly at 200MHz it
+>> fails to mount an eMMC drive, 150MHz (really 132 MHz) is the highest it
+>> was able to get.
+>>
+>> This improves the seq read/write performance by 2x~
+>>
+>> Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
+>> ---
+>> I put this in this specific dts instead of the common one as I cannot
+>> test if other boards are also able to handle these speeds.
+> Hi Maud,
+>
+> Thanks for the patch!
+>
+> These settings work on my Milk-V Mars board booting off eMMC, but I'm not sure
+> if that means we can just raise the frequency across all the JH7110 boards.
+> The eMMC on my Milk-V mars is a detachable module that identifies as
+>
+>    mmcblk0: mmc0:0001 DG4016 14.7 GiB
+>
+> I guess what works might depend on the module too. Is the eMMC on the framework
+> board soldered on?
 
-I expect the NPU and WDT resets will be added to this list later?
 
-> +};
-> +
-> +static inline struct th1520_reset_priv *
-> +to_th1520_reset(struct reset_controller_dev *rcdev)
-> +{
-> +	return container_of(rcdev, struct th1520_reset_priv, rcdev);
-> +}
-> +
-> +static int th1520_reset_assert(struct reset_controller_dev *rcdev,
-> +			       unsigned long id)
-> +{
-> +	struct th1520_reset_priv *priv =3D to_th1520_reset(rcdev);
-> +	const struct th1520_reset_map *reset;
-> +
-> +	if (id >=3D ARRAY_SIZE(th1520_resets))
-> +		return -EINVAL;
+No it is also a detachable module, it supports the same interface as 
+most eMMC modules seem to.
 
-This check is not necessary. The core will have checked this in
-of_reset_simple_xlate() before returning the reset control.
+> Raising the max-frequency to 200MHz seems right for all boards since we're
+> already saying mmc0 supports HS200 mode.
+>
+> Maybe we could begin by raising the max frequency to 200MHz for all boards,
+> but only assign the 150MHz rate on the framework board?
 
-> +
-> +	reset =3D &th1520_resets[id];
-> +
-> +	return regmap_update_bits(priv->map, reset->reg, reset->bit, 0);
-> +}
-> +
-> +static int th1520_reset_deassert(struct reset_controller_dev *rcdev,
-> +				 unsigned long id)
-> +{
-> +	struct th1520_reset_priv *priv =3D to_th1520_reset(rcdev);
-> +	const struct th1520_reset_map *reset;
-> +
-> +	if (id >=3D ARRAY_SIZE(th1520_resets))
-> +		return -EINVAL;
+That seems alright with me, I'll send a v2 with max-frequency adjusted 
+in jh7110-common instead.
 
-This check is not necessary.
-
-> +
-> +	reset =3D &th1520_resets[id];
-> +
-> +	return regmap_update_bits(priv->map, reset->reg, reset->bit,
-> +				  reset->bit);
-> +}
-> +
-> +static const struct reset_control_ops th1520_reset_ops =3D {
-> +	.assert	=3D th1520_reset_assert,
-> +	.deassert =3D th1520_reset_deassert,
-> +};
-> +
-> +static const struct regmap_config th1520_reset_regmap_config =3D {
-> +	.reg_bits =3D 32,
-> +	.val_bits =3D 32,
-> +	.reg_stride =3D 4,
-> +	.fast_io =3D true,
-> +};
-> +
-> +static int th1520_reset_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct th1520_reset_priv *priv;
-> +	void __iomem *base;
-> +	int ret;
-> +
-> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	base =3D devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	priv->map =3D devm_regmap_init_mmio(dev, base,
-> +					  &th1520_reset_regmap_config);
-> +	if (IS_ERR(priv->map))
-> +		return PTR_ERR(priv->map);
-> +
-> +	/* Initialize GPU resets to asserted state */
-> +	ret =3D regmap_update_bits(priv->map, TH1520_GPU_RST_CFG,
-> +				 TH1520_GPU_RST_CFG_MASK, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	priv->rcdev.owner =3D THIS_MODULE;
-> +	priv->rcdev.nr_resets =3D 2;
-
-Better use ARRAY_SIZE(th1520_resets) here, this will simplify adding
-further resets in the future. With that,
-
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-
-regards
-Philipp
+> /Emil
+kind regards,
+Maud
 
