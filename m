@@ -1,316 +1,159 @@
-Return-Path: <devicetree+bounces-148359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3902A3BC78
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 12:12:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BACDA3BC7F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 12:15:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8257716647B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 11:12:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 565833B8B90
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 11:13:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF5CD1DEFCD;
-	Wed, 19 Feb 2025 11:12:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AA6B1DED4A;
+	Wed, 19 Feb 2025 11:13:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="XJs1fd/u"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="n6SRoUbC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012003.outbound.protection.outlook.com [52.101.66.3])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D410B1DE89A;
-	Wed, 19 Feb 2025 11:12:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.3
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739963551; cv=fail; b=tQmmSjD2N/E5ggM1jjtqs7VkdMAYvbT+ReZt5a9uTjgMgwMvBnjRrAgxzrtVDtznTCV4M4AQQaijwHmguNZQnIpUbrQhXaIpqCj10g0q/8ctA859Rr9urGph5KhdUOIXhUYz7Ve3q81r0b6y2V7VGzv/+dLAgbQsC246Dd9taK0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739963551; c=relaxed/simple;
-	bh=pn6dKZ1wgHzKhaP072B9x1q9E35wom4OHYK9/tx05hI=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=TMhhM0jqvUtPecvjFe2aRs6GvDuZYCW4ghwIFYjA4xO4Xgv8T6/wJi91YyZfWp+pMCV9DNpN0O7ie0yP+qZrrpE+WScveP3eEwmgtsId0fma3krjHifmHP7OJhW2RAjF3aOd13gtZ6yQIBRskYFmsi4soarEZ7imjiIVU+4DF5s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=XJs1fd/u; arc=fail smtp.client-ip=52.101.66.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rdCHI8qbUDLIETmtsbc3acraexgrZznUhufN4zab89vq9i7VicoJwyaiELRNv4VlLk/NMsyaKpBghoMFT2UmF9Iy0vxDSSznIZ7Qh/LUBgMxemY6nCEkgtV9Kg4FT8oH058Lk0tLzdm3FtIl+7vp9VzewzlrgqGdM6ogLxiIlr/pVk5i3A97aFHhbij/ma0lIbCk4Y/xewBQkDzFrPo4WcbiDn5Z6iNr4BlzYBSRyY+1M3Op880n/aFT0DiuZJherYPFdc1kTfAwssHL34gEZpWflKd4Sowl1Mt1StLLQSbooH8x+nAo2RY+BBjID6OQcuxDa1BA/OukwugmpVPbyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1L9E/7RvbrV4ahhQwBNI7f7Ey1tvgqcvFMXpYuxXGQw=;
- b=C4gqlRd5AZKfzRZ/TdIqH9dRZUMrADqldyMy00xzeaPPKEFjo+Teadiwa8VrCYW0ZGnQmKWkbz0gUouY9tI+Bc3FyqcrGeQXs+x+38Xgs9jQrD67gbSB9KPFTAQJya95cX9WxEcy4kCeCGM0RSQl4BOVQ9TT7KaBV66GBYCyxHxphd4/cwJIVgT+RKEY2uO6Avlum4eAis2Eg/xWmfcPKiEYeJZuY8bWf3IBOOyFTmTW5+Q5YCeinaI5RenBgk15uTe55WDsEabYmnp7ldc7VHfGM/sIzSzcBAxNXZwG8LuO8OYL3WkfxeReUJ2ijCPUNqm3+6hQoNKLSzXU6EgS5A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1L9E/7RvbrV4ahhQwBNI7f7Ey1tvgqcvFMXpYuxXGQw=;
- b=XJs1fd/uKeumQ/I1J4FufMOjJv5UPT8jaif4V6JmfAdQHN7byAtw2oLJg9R3aDQLUJxxrlRAXZO0MaEVl3ybV99SbhRomJK175sSmQhBfrZthto+gErD2bXS1kp/nmfjdqXQEMD/CLd2wYtHZ+Vwlemu7hqAwlfI1n7gLSzV758=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by DBBPR04MB7530.eurprd04.prod.outlook.com (2603:10a6:10:1f5::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.14; Wed, 19 Feb
- 2025 11:12:25 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a%6]) with mapi id 15.20.8445.016; Wed, 19 Feb 2025
- 11:12:25 +0000
-Message-ID: <24e8abf9-0bb9-4cbd-857b-0842fc914486@cherry.de>
-Date: Wed, 19 Feb 2025 12:12:24 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] hwmon: (amc6821) Add PWM polarity configuration
- with OF
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Farouk Bouabid
- <farouk.bouabid@cherry.de>, Francesco Dolcini
- <francesco.dolcini@toradex.com>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250218165633.106867-1-francesco@dolcini.it>
- <20250218165633.106867-3-francesco@dolcini.it>
- <eb5c844a-e726-44c0-a0c1-7796d1a28ec3@cherry.de>
- <20250219103307.GA22470@francesco-nb>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <20250219103307.GA22470@francesco-nb>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0112.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:bb::11) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311951D6DC5
+	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 11:13:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739963626; cv=none; b=bZ2fgkNQoFNoSAr5z38rMB8x+8yhesHBgv+zfjAlUHo6SPLNnowM3ntSNMv+JalabTTp6VkeOHiPf6E12+7eI67/7rI8LeyVT12LcYNI+FFRe0LItrwa/SG2hnvCBhUKXQltNhmQmCM6TS27TL0mb0Im99NWaWmCq2O0o67RQTg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739963626; c=relaxed/simple;
+	bh=0dMvZpkMqAf5szJMQQWz9hZIxQuXcUu2H3721CUqrQs=;
+	h=From:To:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=kYDUEK1RRBLsxDRMWGlkgjtcfHlNRH13UGdVOKYxhjSqftLf2qpGW8CCyK7XoE4nap0rQ4GOQaBpwiM4cgvdebx1jRzIKCWQwqcUCIiYT3u4yvfXfRZAH+wqOTMui1Oh8mIg+D1rCFtgaxCFDwdrU0VkdSMADNumgnWlwoo98d4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=n6SRoUbC; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250219111342epoutp019d6a3333a9d96769932fea325826bf25~ll7ISfyfm2188821888epoutp01C
+	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 11:13:42 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250219111342epoutp019d6a3333a9d96769932fea325826bf25~ll7ISfyfm2188821888epoutp01C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1739963622;
+	bh=0dMvZpkMqAf5szJMQQWz9hZIxQuXcUu2H3721CUqrQs=;
+	h=From:To:In-Reply-To:Subject:Date:References:From;
+	b=n6SRoUbCj2+tD/mL42uRULbQbROD/zyrjQyHTvsBjyvx9nSOTq/lPIqaGWs0jiBWE
+	 2b3L1PpiyrIxRtBCx4N3YtZzr8PF0Ri9GAXO4Fi0qqY+f5rPfOuJdARs7IHtJ+WPHa
+	 t+hjMeGkUF0fMdpKldRUZaHCzg+KxTEvew3V03wY=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+	20250219111341epcas5p2c4c156a585441c71a1d0353081da2f6c~ll7HmUk950392603926epcas5p28;
+	Wed, 19 Feb 2025 11:13:41 +0000 (GMT)
+Received: from epsmgec5p1new.samsung.com (unknown [182.195.38.178]) by
+	epsnrtp4.localdomain (Postfix) with ESMTP id 4YyYfq67llz4x9Pw; Wed, 19 Feb
+	2025 11:13:39 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+	epsmgec5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	12.07.19710.3ECB5B76; Wed, 19 Feb 2025 20:13:39 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250219111339epcas5p14e032bd5012501f1d233b8b3d1ad6787~ll7FvMJNa0313203132epcas5p1q;
+	Wed, 19 Feb 2025 11:13:39 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250219111339epsmtrp2e00d203ad34ab3cc0bda6149a7c59e4a~ll7FucTfk0712207122epsmtrp2F;
+	Wed, 19 Feb 2025 11:13:39 +0000 (GMT)
+X-AuditID: b6c32a44-36bdd70000004cfe-1b-67b5bce3a95f
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	54.DD.18729.3ECB5B76; Wed, 19 Feb 2025 20:13:39 +0900 (KST)
+Received: from INBRO002756 (unknown [107.111.84.9]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250219111337epsmtip262aef9ade6732725607180a6f93f56e5~ll7EBMYyO0205602056epsmtip2q;
+	Wed, 19 Feb 2025 11:13:37 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>, "'Peter
+ Griffin'" <peter.griffin@linaro.org>, =?UTF-8?Q?'Andr=C3=A9_Draszik'?=
+	<andre.draszik@linaro.org>, "'Tudor Ambarus'" <tudor.ambarus@linaro.org>,
+	"'Rob Herring'" <robh@kernel.org>, "'Krzysztof	Kozlowski'"
+	<krzk+dt@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>,
+	<linux-fsd@tesla.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+In-Reply-To: <20250219085726.70824-1-krzysztof.kozlowski@linaro.org>
+Subject: RE: [PATCH 1/2] arm64: dts: exynos: gs101: Change labels to
+ lower-case
+Date: Wed, 19 Feb 2025 16:43:36 +0530
+Message-ID: <0a8c01db82bf$53954ee0$fabfeca0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|DBBPR04MB7530:EE_
-X-MS-Office365-Filtering-Correlation-Id: 55f626bb-f935-4c1d-91c2-08dd50d64a02
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TVJPQ3VZWHowc3h4NzhjM1VYd0NLWFh3MmhVV2lBU1kwS0pUVFFNZWs2ci9E?=
- =?utf-8?B?aGhDN1luWHZQUUVXa1JUaFpVYmpWUDJNRDJMUUg2VWZ4aHNqd2ZGbk1zeUZp?=
- =?utf-8?B?TFNieWt2SnB4RURZWUVRb2NBUHhSUy9TcFdLNGZoVWhacEFxUUt3ZGc0MkZp?=
- =?utf-8?B?d0llQXhjSTBMdFZBb1VTSWJyd0FZdEg0aDI4anV5Wkl4OHNBZjJmMmRIUElQ?=
- =?utf-8?B?ZWVUR0NhNitQcDVteks4YTl2cldlWE9wditTd1MxZW5UNXVHL3k5bG1haHZI?=
- =?utf-8?B?U3VyV0phL0pqUjNOWU9ad2hUWHRnc1NwcDIzM29mUVRsdGpPVWVQdnVGOGo4?=
- =?utf-8?B?b1B1MGVNa2pSK3Y4Y3llbWRQK1Y3MFRvTXFDSFoybkxya0VUUHE4ZnpQTWtG?=
- =?utf-8?B?ZlgyRGFxb2NEVzd6VW9BNCtWZWM0OWxNSVJ6SWRGUUhlY2FzSHd3QkNjY2lJ?=
- =?utf-8?B?QWt0ZUFkTGF1SkJNVWJlbzEyYkpXeG5nb2lnWExSYTVQbVI1UVdOK0UvTVNB?=
- =?utf-8?B?T0s2dlA1ZDFtZitGVTZaNlRRNkJSUUF0cTZIby9BTjB6bW94Y0lIQVNhMGtt?=
- =?utf-8?B?TnpNNzJrZGxFSWkxR1JZMm01VmovYnZ1WGRyYklYSE9VK1hXd0FNcWVYaW5P?=
- =?utf-8?B?WGEzVkxFZEtzT3FQZUhkZnJZRGlxMzZxQW1jUys2UFdYNHJ2V0paTXdDNTJx?=
- =?utf-8?B?RkFoT1c1bXFCRzl5QkJkWkVoUVM4emxPT1F5UzlISXZkRHh2OWVyd3hkZ25l?=
- =?utf-8?B?VWtDdW1HbDZ6NSt1ME9mb0tmb3ZnU09EeHE2NXEyeWxFM2F3MmNjMmw3Nk1M?=
- =?utf-8?B?UzdBdnV6aTM4UUdndDVYN1FJOXhqYjhuZ2xXdXkyVVRENWR5NmdJVFkxMk84?=
- =?utf-8?B?TittZFhSeW5VOWlVMzFEa3hJaHdwM1hvWFlaS3lHSitMMkJKalE5bzFTeGZD?=
- =?utf-8?B?QXZzK29hdjAyRGd3OXRJbTJpM2wvYTlsQWlOcmgwMXE3T0doL0RwbFpBeXhv?=
- =?utf-8?B?RjNrcUdLYnFzNUpjeXR5dG5vbDFmK01HaVZhUy9uUmNTNTNIakZPSnByamlx?=
- =?utf-8?B?a3Y4R1JQUWo2YmM4ei94dzRSSGlhRGZRUU1KVUFXdUFXWjNrRlRQeDMwczBm?=
- =?utf-8?B?MDRuMDVZbzVHc1o0RElEdG84YUFIK3Uvaklsd2wzYUs4OCtLTGlZTFlWcE8r?=
- =?utf-8?B?NEJDNG8xVGFKRCtQR1dLbTZMNmU4U09BMGl4cXd5eWdySHJPTWpqanhwRXFj?=
- =?utf-8?B?Wmx0dmN4djlNa2JuQzRucS9NUVlhcDZxRDNmR3FEczY0MDlkblJkdSswRzVM?=
- =?utf-8?B?QnJZN013THRjb3FlbnAxOU5lUGxOOUlId3ZwOHQrVldQbkFleWNWdkZMc21z?=
- =?utf-8?B?U21mUGJCVlRsWUN4RldVbE9MS01JdWt2R0d4WWVtSmk5T2Q1VnhhU053UDN4?=
- =?utf-8?B?Y0FtTCtyNXVpci9YNHZtRUVPTVM4UEhtWDRqTE94amh2UVJCZjZybFlqZm9k?=
- =?utf-8?B?V0x1VjhMK08zNWJQTG1XazRlWWFOcGlJZ2duY0xuWFVQaU0yRENJbW0xb0lZ?=
- =?utf-8?B?cFYxRktVTnJodEtCd1ludkM0MHlPeDNvVGU0SkYyUGU4eW1PYXdocGVhTitl?=
- =?utf-8?B?SFpqL3NiMzQzSVRobCt3ODJoUUxWSmg2ZzNsWFE2alBqbWFKUU9sUG9ONmxJ?=
- =?utf-8?B?YTk4OTBaa012YmFVL01qRVNveGNBcFFnWlA5VXZhYTdBUldKM08wSm5OS29n?=
- =?utf-8?B?azRHMkFEeEYzNHptMlJ5YTA2MGwwT0I0OU41SkhnRWZmNWxwVnd5QmR1Ty9Q?=
- =?utf-8?B?cXhySUZrUWpYN1BZbEVDL09VT1NNaFY1UXRhdVNlYnhpOGdxeGM3VTk0eXMv?=
- =?utf-8?Q?9aZ1k35MzAmH2?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?c1kwSW5heWNaNVp5am5JUEhBaG1EeUQxKy9wQjA3cUd5Yk42UmRrRTRLWXRs?=
- =?utf-8?B?Njdka3NUek9lMmE5WkpmajJXMFlwWmtaM3BUM3hMQXdWTlRBeitLWEloeUlC?=
- =?utf-8?B?MGNBWElDTEgyV0p3c0g0dWd1NnhhVG1KTFI2Q1MrVE9QNFZ2MjU5N2c4WjQ2?=
- =?utf-8?B?YndBczg5U3o4Y1VLWUlySWZ4cm1HY3JHRC91bi9IcHJseXAvQ2I3VHJtV056?=
- =?utf-8?B?OWtTMVZvY3duUlZ0ODRVb3UydXh1MEhpcmdtV0ZiM0xpNlhoZW0xNmZPaVBB?=
- =?utf-8?B?L0xLNTlHQ3FnMENKVDRRY1phdjc4d3ozZ3JuLzhKZ3Z4UnFDSklxdTRBcC8z?=
- =?utf-8?B?aW8wN1BmM3NqUm1nY0I4M2lkQ3kzbFdQQ3RvQU93dDJEbU9HS09jS0JFYjJC?=
- =?utf-8?B?Z1R4Vzh0OVpTakVOejdVMUk3THZXTTU5UmJLWmJUdldQWis4dnpOZHUyNzhk?=
- =?utf-8?B?b1hMVkhrM1RtMUhObndtR0tXSW4yVlN1b3REZWRyTkV5ZlhoYlJjdEFsVVFV?=
- =?utf-8?B?UUMwRWtaQmNub3V4QXBwZjlhL3NDWUwySWhaNXJWbHhxY2JrZzk5YzRsYjhl?=
- =?utf-8?B?c1Y1cHVIYXRNLzU5bEV0WklVanA2MTk1V0REbUJBZXlvUFl4dVdMZ3BSMEVl?=
- =?utf-8?B?TzJkNmNKaXp5Qm9qbmxjRHpqL0dYS1RBaXNrQmxJOVBSRzhwV1owNDdLMjFW?=
- =?utf-8?B?d3BFOEJJMHZIei9jT0MrWmUyeGVTcE9yaUEwRDZ4VFNncEpWcGVWQktRSzY3?=
- =?utf-8?B?ZHNWYjgzVWlhV3U4UVlYSitIaHU5ekJ0QVMycEtKK1NDdFRNOVIyM2RjYUhO?=
- =?utf-8?B?OXpPTTlLc2E1L3pkZkpUUWpvR1VZZGY4U0dZcGxIVlBEUFhoZEVkKzZSRDRT?=
- =?utf-8?B?ckM2cmkvM0N0VVQ3SkdXVjg5cTQwaEpESjYzRnFpVXJnOEJXTHkzSjZrcUtC?=
- =?utf-8?B?dGtoNHljMU05dHlMVnNQRUVnTjBNbmJMWDdPd0N2eVlqYjd4VVhHRlFYdXc1?=
- =?utf-8?B?MU9lUWtEMGdWTDRMTFJEL1p3QVFkRENCb1gwYVNQTm52V0g0QWxHbUxmL2dn?=
- =?utf-8?B?WTM0RXZZcVpwTVEwZ1NBNEloS0doOURHdUt1VjJ1aFBIT0dQZzBWY0tlbDZU?=
- =?utf-8?B?QkxGc0hhVGhqQUwvU0RoK1ptSWU0WUJ2WVpXNkxzRXdDS3pRaEtJemROZTVs?=
- =?utf-8?B?MmhTWHV5NlJ1OFlKdVRacWhQM0NLL3J2dlNJL3pXWTF2eVNuWExRTVNGdkVD?=
- =?utf-8?B?MkkwQW5LVXJCVFI4UkphVjluc00vS0ZGTUswanRTRHpUZWNkSnE5QndzME13?=
- =?utf-8?B?Rjg1M2tmd001MGtON25jN0F5bkMxYTNPMVcxQlM5OUo1YnRSNlRTbkVmeVR6?=
- =?utf-8?B?VnZRSUlDa1ladkx2YVZuNmJXYkRwQkNwY0JmdlpGRldXNHQrTnhRYVEvdnVo?=
- =?utf-8?B?UUxZekVYNUZ1U3pCNzM0WjZkK000cWtzZ3B3TU1MVFdrMllKUTlaYkFvTGR2?=
- =?utf-8?B?QUtLeUpPbmNBZEhyQnJrb3V2RFNXN010V20yVWRubit1dFNEbFg5TVluWFMw?=
- =?utf-8?B?K0IrWXJNK0VsTGkwdDI3azBvOXNqcEdia0YrOGlISHp1ekMxRExOOE5rUFl4?=
- =?utf-8?B?enFzeHEzckszU3M4NjZzOXMrODd3MDNNdXVlMXhjeFB4bXF6RDRoRnFESE5Y?=
- =?utf-8?B?cHlzZWtFMndxOVZSSm1ZSWN5Vmw5UjAzSThXb3ZjSGNFRU1lY05hNTQ5dmdQ?=
- =?utf-8?B?MlBnWEpROTlMbzlzVnFCcTIxVlhaNHNScUZXMG5YdnNVNGpkaWNwT2UySzlZ?=
- =?utf-8?B?bzBrVTFFNFFURTRUME45MlNrYVVIUURMRWJHMU9OUmppd0tDTjJPeXdiOElZ?=
- =?utf-8?B?Zzh5ajRpdW5UZjN1L1k3RTNQU1g1ZGRuRDNkZ1VvMGZFNUdMYzdvSS93WWNX?=
- =?utf-8?B?TFlQVDJ2SzlxV0V5VjdKdzFRVVA3MzFLT0p3YjNENXdyaFRpNU5WTlArS0pZ?=
- =?utf-8?B?R2hZek1pYUlnclE3eEVQdmhuWWdvZnBmK2JtUHhmWEJOTG8vRHlqVWJUc3Ns?=
- =?utf-8?B?RCtCbEdyVnR2QU5ZbzJONGJVdTROZGs4c3g0SWhTTkN6dDlaS3VyVi93L09k?=
- =?utf-8?B?Y0dDa1pHbnlCamFEajVMemFZNWVqR2tmZmNacWUwcTZxWWRIbTJ3SUVnN1Bk?=
- =?utf-8?B?S0E9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 55f626bb-f935-4c1d-91c2-08dd50d64a02
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2025 11:12:25.3161
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qq37oR3s8xvrarkSHDdZ4tZtLxwiY5XfmeXgkY6Oc3e2ISuT463NOeBdZUiyxfeNhd+PIr0iqoqpTYO86qqIiBkF3gkYkmkWWVDd2eFNX+Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7530
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQD7+/KmEPmGt2fnlavaRogKLr3OSgH4fj3DtP3Cb4A=
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrMJsWRmVeSWpSXmKPExsWy7bCmuu7jPVvTDb4t0bfY8mozi8WaveeY
+	LOYfOcdq8XLWPTaLva+3sltsenyN1eLhq3CLy7vmsFnMOL+PyWLDjH8sFv/37GC3+HQrzoHH
+	Y9OqTjaPO9f2sHlsXlLv8a9pLrvH501yAaxR2TYZqYkpqUUKqXnJ+SmZeem2St7B8c7xpmYG
+	hrqGlhbmSgp5ibmptkouPgG6bpk5QMcpKZQl5pQChQISi4uV9O1sivJLS1IVMvKLS2yVUgtS
+	cgpMCvSKE3OLS/PS9fJSS6wMDQyMTIEKE7IzZr6awlSwjati57HD7A2MPzm7GDk5JARMJE5e
+	6WTvYuTiEBLYzShx9/kjFgjnE6PEvx9LWSGcb4wSZxt/McO0PPjxmRkisZdR4tH+NqiWF4wS
+	1+7dB6tiE9CV2LG4jQ0kISLwj1midckeNpAEp4CLxPOX/ewgtrBAoMS9eTNZQGwWAVWJXTvu
+	MoLYvAKWEif2vGaGsAUlTs58AlbDLKAtsWzha6gzFCR+Pl3GCmKLCFhJrGm5zQRRIy7x8ugR
+	sI8kBJZySByY9JMdosFFYsuFNywQtrDEq+NboOJSEp/f7WWDsKsl1m+YB1XTwSjRuL0GwraX
+	2PnoJlCcA2iBpsT6XfoQu/gken8/YQIJSwjwSnS0CUFUq0o0v7sKNUVaYmJ3NyuE7SHxcNEu
+	aJBOZ5To2PKUZQKjwiwkb85C8uYsJO/MQti8gJFlFaNkakFxbnpqsmmBYV5qOTzKk/NzNzGC
+	U6+Wyw7GG/P/6R1iZOJgPMQowcGsJMLbVr8lXYg3JbGyKrUoP76oNCe1+BCjKTDsJzJLiSbn
+	A5N/Xkm8oYmlgYmZmZmJpbGZoZI4b/POlnQhgfTEktTs1NSC1CKYPiYOTqkGpoDbrLKtcl2m
+	6iuFDI+FB/6co9jWfzd7MfMut04ehoQn95c5XclbviEh6fm617wF8gtPZ0pMKxHKvGR31+HF
+	vuoNC7aouJmUnv77//tp2X++T5ZoB2W9P6sV6Zcz+8u22o8PRHosbuw4PW3bkdu77IumTZVM
+	Cnd8KX774fo9QTM+T//XW3zAKeTp6Yi0Vl3h/oKw7+waW7U/dL9e0zJt+ZNQlesam4xyP/pL
+	+It2Pl32sfk2V+7WjS1vNrVNmpYzNd7yEzvjieP3tR9Ybdy1QPIzt7RmS1PQ/F+fv+7I2v/g
+	009N9/C3Hyyin06dv0nWXnxK2oUHjq5vm56u2auWq29rJX3i80FZz92Mto/8JCWVWIozEg21
+	mIuKEwGMfY6hRgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupjkeLIzCtJLcpLzFFi42LZdlhJXvfxnq3pBt3XBC22vNrMYrFm7zkm
+	i/lHzrFavJx1j81i7+ut7BabHl9jtXj4Ktzi8q45bBYzzu9jstgw4x+Lxf89O9gtPt2Kc+Dx
+	2LSqk83jzrU9bB6bl9R7/Guay+7xeZNcAGsUl01Kak5mWWqRvl0CV8bJLdOZCuZwVDzfupql
+	gXEiexcjJ4eEgInEgx+fmbsYuTiEBHYzSrz4/5oJIiEtcX3jBKgiYYmV/56zQxQ9Y5ToW74G
+	LMEmoCuxY3EbG4gtItDGIrFzYzZE0VRGifuvjzOCJDgFXCSev+wHaxAW8Jd4cWYv2AYWAVWJ
+	XTvugtXwClhKnNjzmhnCFpQ4OfMJC4jNLKAt0fuwlRHGXrYQokZCQEHi59NlrBCLrSTWtNxm
+	gqgRl3h59Aj7BEahWUhGzUIyahaSUbOQtCxgZFnFKJlaUJybnltsWGCYl1quV5yYW1yal66X
+	nJ+7iREcZVqaOxi3r/qgd4iRiYPxEKMEB7OSCG9b/ZZ0Id6UxMqq1KL8+KLSnNTiQ4zSHCxK
+	4rziL3pThATSE0tSs1NTC1KLYLJMHJxSDUyrvIzbxUWSl6tY71qj6GO/y9RhetbfJEvvaLaE
+	+a/TNumukTF8fbNnperMrqklcsY9bVZy0zpeZV4tsPu09o/mcouQbh3hC6diX+yVdglatDyn
+	+caJC48PHzzy5+71R2/WHu18zp1mmflvrcP+oD1fGvOVhf1nXb++tsFuRtti0bexS2KeM1qf
+	3vKl7GB3sUSDdTuvQbJ4mtvbK5sZFv+vP+s9MVVP/Cv7dW8WK+vbVyxvt+T+X9R5mu2f8mnu
+	sN1+HFEWLMttVgvou7Gn1Er8nNPRte+Y142E8nSbCfV/52z8yPFB9+TtjsuGEg5/GK9IST5u
+	PsSjUD9Ze7lKcSz3xcUC7Lc9FP5WzS6sOarEUpyRaKjFXFScCACocSW/IQMAAA==
+X-CMS-MailID: 20250219111339epcas5p14e032bd5012501f1d233b8b3d1ad6787
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250219085733epcas5p1daa87b1a68552e70bea4ae52f4bf1998
+References: <CGME20250219085733epcas5p1daa87b1a68552e70bea4ae52f4bf1998@epcas5p1.samsung.com>
+	<20250219085726.70824-1-krzysztof.kozlowski@linaro.org>
 
-Hi Francesco,
+Hi Krzysztof
 
-On 2/19/25 11:33 AM, Francesco Dolcini wrote:
-> Hello Quentin,
-> 
-> On Wed, Feb 19, 2025 at 11:08:43AM +0100, Quentin Schulz wrote:
->> On 2/18/25 5:56 PM, Francesco Dolcini wrote:
->>> From: Francesco Dolcini <francesco.dolcini@toradex.com>
->>>
->>> Add support to configure the PWM-Out pin polarity based on a device
->>> tree property.
->>>
->>> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
->>> ---
->>>    drivers/hwmon/amc6821.c | 7 +++++--
->>>    1 file changed, 5 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/hwmon/amc6821.c b/drivers/hwmon/amc6821.c
->>> index 1e3c6acd8974..1ea2d97eebca 100644
->>> --- a/drivers/hwmon/amc6821.c
->>> +++ b/drivers/hwmon/amc6821.c
->>> @@ -845,7 +845,7 @@ static int amc6821_detect(struct i2c_client *client, struct i2c_board_info *info
->>>    	return 0;
->>>    }
->>> -static int amc6821_init_client(struct amc6821_data *data)
->>> +static int amc6821_init_client(struct i2c_client *client, struct amc6821_data *data)
->>>    {
->>>    	struct regmap *regmap = data->regmap;
->>>    	int err;
->>> @@ -864,6 +864,9 @@ static int amc6821_init_client(struct amc6821_data *data)
->>>    		if (err)
->>>    			return err;
->>> +		if (of_property_read_bool(client->dev.of_node, "ti,pwm-inverted"))
->>
->> I know that the AMC6821 is doing a lot of smart things, but this really
->> tickled me. PWM controllers actually do support that already via
->> PWM_POLARITY_INVERTED flag for example. See
->> Documentation/devicetree/bindings/hwmon/adt7475.yaml which seems to be
->> another HWMON driver which acts as a PWM controller. I'm not sure this is
->> relevant, applicable or desired but I wanted to highlight this.
-> 
->  From the DT binding point of view, it seems to implement the same I am
-> proposing here with adi,pwm-active-state property.
-> 
-
-Ah! It seems like I read only the part that agreed with the idea I had 
-in mind :)
-
-> Do you have anything more specific in mind?
-> 
-
-Yes, #pwm-cells just below in the binding. You can then see that the 
-third cell in a PWM specifier is for the polarity. If I didn't misread 
-once more, I believe that what's in adi,pwm-active-state is ignored 
-based on the content of the PWM flags in a PWM cell specifier, c.f. 
-adt7475_set_pwm_polarity followed by adt7475_fan_pwm_config in 
-adt7475_probe. I would have assumed that having the polarity inverted in 
-adi,pwm-active-state would mean that the meaning of the flag in the PWM 
-cell specifier would be inverted as well, meaning 0 -> inverted, 
-PWM_POLARITY_INVERTED -> doubly inverted so "normal" polarity.
-
-adt7475_fan_pwm_config was added a few years after adt7475_set_pwm_polarity.
-
->>
->>> +			pwminv = 1;
->>> +
->>
->> This is silently overriding the module parameter.
->>
->> I don't think this is a good idea, at the very least not silently.
-> 
-> I was thinking at the same, and in the end I do have proposed this
-> solution in any case.
-> 
-> Let's look at the 2 use cases in which the DT property and the module
-> parameter are different.
-> 
-> ## 1
-> 
-> module parameter pwminv=0
-> ti,pwm-inverted DT property present
-> 
-> => we enable the PWM inversion
-> 
-> I think this is fair, if someone has a DT based system we need to assume
-> that the DT is correct. This is a HW configuration, not a module
-> parameter.
-> 
-> ## 2
-> 
-> module parameter pwminv=1
-> ti,pwm-inverted DT property absent
-> 
-> => we enable the PWM inversion
-> 
-> In this case the module parameter is overriding the DT. It means that
-> someone explicitly set pwminv=1 module parameter. I think is fair to
-> fulfill the module parameter request in this case, overriding the DT
-> 
-
-Why are we not assuming the DT is correct here as well? I don't like 
-that the behavior is different depending on the presence of the DT 
-property. Its absence should carry as much weight as its presence. If 
-you don't want that to be the case, we can always have another property like
-
-ti,pwm-polarity = <0>; /* normal polarity */
-
-or
-
-ti,pwm-polarity = <PWM_POLARITY_INVERTED>;
-
-and then the absence of the DT property is a "weak" normal polarity for 
-which we shouldn't print the error message if it differs from the module 
-param. But honestly, I don't think the DT people will be happy with that 
-suggestion :)
-
->> I would suggest to add some logic in the probe function to set this value
->> and check its consistency.
-> 
-> With that said I can implement something around the lines you proposed,
-> if you still think is worth doing it. I would personally just keep the
-> priority on the module parameter over the DT and add an info print on what
-> is actually configured by the driver (not checking if they are
-> different).
-> 	
-
-Module params over DT is fine with me, I just want consistency here, so 
-if it's always the case, fine :)
-
-Not really sure we need a dev_info, that's pretty verbose. I liked 
-dev_err for when both settings differ.
-
-Cheers,
-Quentin
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
+> Sent: Wednesday, February 19, 2025 2:27 PM
+> To: Peter Griffin <peter.griffin=40linaro.org>; Andr=C3=A9=20Draszik=0D=
+=0A>=20<andre.draszik=40linaro.org>;=20Tudor=20Ambarus=20<tudor.ambarus=40l=
+inaro.org>;=0D=0A>=20Rob=20Herring=20<robh=40kernel.org>;=20Krzysztof=20Koz=
+lowski=20<krzk+dt=40kernel.org>;=0D=0A>=20Conor=20Dooley=20<conor+dt=40kern=
+el.org>;=20Alim=20Akhtar=0D=0A>=20<alim.akhtar=40samsung.com>;=20linux-fsd=
+=40tesla.com;=20linux-arm-=0D=0A>=20kernel=40lists.infradead.org;=20linux-s=
+amsung-soc=40vger.kernel.org;=0D=0A>=20devicetree=40vger.kernel.org;=20linu=
+x-kernel=40vger.kernel.org=0D=0A>=20Cc:=20Krzysztof=20Kozlowski=20<krzyszto=
+f.kozlowski=40linaro.org>=0D=0A>=20Subject:=20=5BPATCH=201/2=5D=20arm64:=20=
+dts:=20exynos:=20gs101:=20Change=20labels=20to=20lower-case=0D=0A>=20=0D=0A=
+>=20DTS=20coding=20style=20expects=20labels=20to=20be=20lowercase.=20=20No=
+=20functional=20impact.=0D=0A>=20Verified=20with=20comparing=20decompiled=
+=20DTB=20(dtx_diff=20and=20fdtdump+diff).=0D=0A>=20=0D=0A>=20Signed-off-by:=
+=20Krzysztof=20Kozlowski=20<krzysztof.kozlowski=40linaro.org>=0D=0A>=20---=
+=0D=0A=0D=0AReviewed-by:=20Alim=20Akhtar=20<alim.akhtar=40samsung.com>=0D=
+=0A=0D=0A=0D=0A
 
