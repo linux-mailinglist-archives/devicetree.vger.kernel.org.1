@@ -1,137 +1,238 @@
-Return-Path: <devicetree+bounces-148446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89A36A3C0FB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:02:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B3F5A3C1C2
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 15:17:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EB1B17D3F9
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 13:56:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 214EC17D620
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:11:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 048081EA7C6;
-	Wed, 19 Feb 2025 13:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B75621EB1B8;
+	Wed, 19 Feb 2025 14:00:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.com header.i=@amazon.com header.b="uVXB7M5c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XyxD30Nh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-80009.amazon.com (smtp-fw-80009.amazon.com [99.78.197.220])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55D43286281;
-	Wed, 19 Feb 2025 13:55:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=99.78.197.220
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BAAA1EB18E;
+	Wed, 19 Feb 2025 14:00:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739973321; cv=none; b=sy2Bvpu09F93gTgztc5PISLjOUv2Nxuiyqc3Gqn7KqttjQkbikeP1T2j7v2xRsE9YLEzlpG2aNQEcm1u1iUe6NfWQbB5tJQwGyXBguqDwff04KOYNLdQK7Hp0KnUgM/dKKXqhvgV1o2cUVhsvSsN0GeS+dMYJmBo0wmQTi3KyTw=
+	t=1739973604; cv=none; b=mNQEP6nY5FvdeQVIajBu8gdrQ+SE354Ik/QpawBz/S9KWFYomukEUqanf68l8wiDUTEDPHAHN8PpfrPXVar25K96uOyiLcSpswSrt7+SKpFR4sTdCf5pEUJTeXLkUIds1qTuM1nSbpjTK7hTmh5vaRMPKgKyD2mN0a/UpR6vvrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739973321; c=relaxed/simple;
-	bh=Rc0k2hXGgw1uh7x0JIX+uzUH8a98VI2YuRrPPA9zVIw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DAIrsQZroAIUf6tgFTrgIaov9/G/uZDgwK9Qv/WoF+dYKEWdO0jHqjhX1ZkKZC5kdPfMOvnopsriEL47YLkyyBReK9zkAiZf7AMpt02Ih4lSevHwgxdVsmuu83n85vCHgNYtRj5ykS6Nx2DBwn8vbPcq3KLCdv37anKjan1P7Wg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.com header.i=@amazon.com header.b=uVXB7M5c; arc=none smtp.client-ip=99.78.197.220
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1739973320; x=1771509320;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=57nPLxtLibpkK5qPp8QpRrsWkbDlQlqDET5gkkKYRG8=;
-  b=uVXB7M5cyZLysMGuSVF/79vI9AyRNj63EwEGDaEnRaCPROiolv3BpNqm
-   0xQR3AhHvXUUzDeevCgpSke4aLW1VVOLgLx7o8kkBhNcxw6kOMi/3GULy
-   DCkcnzkMyOdxO0GB8PPKWkEKl8gwp6BKnZTbf+5dY8dR31eN1dUtilv5i
-   M=;
-X-IronPort-AV: E=Sophos;i="6.13,299,1732579200"; 
-   d="scan'208";a="173851478"
-Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.25.36.210])
-  by smtp-border-fw-80009.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2025 13:55:18 +0000
-Received: from EX19MTAUWA002.ant.amazon.com [10.0.38.20:64466]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.12.97:2525] with esmtp (Farcaster)
- id 109703bc-b166-4b29-a69a-d899c4750143; Wed, 19 Feb 2025 13:55:17 +0000 (UTC)
-X-Farcaster-Flow-ID: 109703bc-b166-4b29-a69a-d899c4750143
-Received: from EX19D020UWC004.ant.amazon.com (10.13.138.149) by
- EX19MTAUWA002.ant.amazon.com (10.250.64.202) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1258.39;
- Wed, 19 Feb 2025 13:55:08 +0000
-Received: from [0.0.0.0] (10.253.83.51) by EX19D020UWC004.ant.amazon.com
- (10.13.138.149) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14; Wed, 19 Feb 2025
- 13:55:00 +0000
-Message-ID: <d8c43707-65a2-4176-85e2-acdb4c9d16ad@amazon.com>
-Date: Wed, 19 Feb 2025 14:54:57 +0100
+	s=arc-20240116; t=1739973604; c=relaxed/simple;
+	bh=6ZusAGCt8DmvwKekcN+BSAym8y589HIO8Pfps4RSgf4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=THNsNlHtjB6kBWb6GHUPgJAzhAaHyjprPJh7cXAqmsglPodV/id5VW0MWxm9yyomH7AevGWMQD/V0UjY40Tv43hmI5fIKumLNGT31G+n+CNeE1Ov+4leCyifAmLrfE2bXWGHfUsv5eho8CRZlQD61uwMYe4sXyIWrOsxcPozA2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XyxD30Nh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD8F7C4CED1;
+	Wed, 19 Feb 2025 14:00:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739973604;
+	bh=6ZusAGCt8DmvwKekcN+BSAym8y589HIO8Pfps4RSgf4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XyxD30Nhe6YpYKbVqAcwLSFdWrWdkr8UMwlbRcelUl+NHjeZNFl+ovapTnOxHdbmo
+	 U6iW805NuGZsY0w5I0KTfJy1TEvE1rJGWiIGsDwp/mNi7VxCpcts13ReFpEFUZO0gf
+	 msEbEHvkAc0hlm5njKOThBXXwVy6Wp1wSqY3A46hrysJzXjIPPifoKa+Da6vT5F+lk
+	 cB4toeJnVqijSBkCQ4c3iLIzmsQ9Yx1pLvWp2OkSEqXf7UMXB+FzTzOZFpB5kfSM5f
+	 CqzNlOJM+gKYItgy4+0MbqFb9KHnkZSm5QEHMVwjYwSeiRTGu27lb7sIoSj+xGHVW+
+	 Q9NED/SG9qUUA==
+Date: Wed, 19 Feb 2025 08:00:02 -0600
+From: Rob Herring <robh@kernel.org>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>, sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC] dt-bindings: rtc: sophgo: add RTC support for Sophgo
+ CV1800 series SoC
+Message-ID: <20250219140002.GA2354937-robh@kernel.org>
+References: <20250216180924.2506416-1-alexander.sverdlin@gmail.com>
+ <20250218210630.GA872024-robh@kernel.org>
+ <03302dcb85408facaee075dfdc6cd72a4fddcc59.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 00/14] kexec: introduce Kexec HandOver (KHO)
-To: Dave Young <dyoung@redhat.com>, Mike Rapoport <rppt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, Andrew Morton <akpm@linux-foundation.org>,
-	Andy Lutomirski <luto@kernel.org>, Anthony Yznaga
-	<anthony.yznaga@oracle.com>, Arnd Bergmann <arnd@arndb.de>, Ashish Kalra
-	<ashish.kalra@amd.com>, Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Borislav Petkov <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>, David Woodhouse
-	<dwmw2@infradead.org>, Eric Biederman <ebiederm@xmission.com>, Ingo Molnar
-	<mingo@redhat.com>, James Gowans <jgowans@amazon.com>, Jonathan Corbet
-	<corbet@lwn.net>, Krzysztof Kozlowski <krzk@kernel.org>, Mark Rutland
-	<mark.rutland@arm.com>, Paolo Bonzini <pbonzini@redhat.com>, Pasha Tatashin
-	<pasha.tatashin@soleen.com>, "H. Peter Anvin" <hpa@zytor.com>, Peter Zijlstra
-	<peterz@infradead.org>, Pratyush Yadav <ptyadav@amazon.de>, Rob Herring
-	<robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, Saravana Kannan
-	<saravanak@google.com>, Stanislav Kinsburskii
-	<skinsburskii@linux.microsoft.com>, Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Gleixner <tglx@linutronix.de>, Tom Lendacky <thomas.lendacky@amd.com>,
-	Usama Arif <usama.arif@bytedance.com>, Will Deacon <will@kernel.org>,
-	<devicetree@vger.kernel.org>, <kexec@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-doc@vger.kernel.org>,
-	<linux-mm@kvack.org>, <x86@kernel.org>
-References: <20250206132754.2596694-1-rppt@kernel.org>
- <CALu+AoRMQyRDFS_4L0KQkmrFT_S+yk=uZ-Mqt86JQYKKnj-5Ug@mail.gmail.com>
- <Z7WJD6eBLuIRnLwk@kernel.org>
- <CALu+AoSaEthfed1NOYPiQgm_g-dhibVMRAp0+=_+9qTT4_x=tg@mail.gmail.com>
-Content-Language: en-US
-From: Alexander Graf <graf@amazon.com>
-In-Reply-To: <CALu+AoSaEthfed1NOYPiQgm_g-dhibVMRAp0+=_+9qTT4_x=tg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EX19D041UWA003.ant.amazon.com (10.13.139.105) To
- EX19D020UWC004.ant.amazon.com (10.13.138.149)
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <03302dcb85408facaee075dfdc6cd72a4fddcc59.camel@gmail.com>
 
+On Tue, Feb 18, 2025 at 10:41:31PM +0100, Alexander Sverdlin wrote:
+> Thank you for your feedback Rob!
+> 
+> On Tue, 2025-02-18 at 15:06 -0600, Rob Herring wrote:
+> > > QUESTION:
+> > > 
+> > > I'm unsure about reg properties in the subnodes (child devices) of
+> > > RTCSYS:
+> > > - they will not be used anyway by the drivers because they genuinely
+> > > overlap (the whole point of going MFD) -- therefore the drivers will do
+> > > syscon_node_to_regmap(pdev->dev.parent->of_node)
+> > > - as I understood from the history of MFD dt bindings' submissions, regs
+> > > are encouraged, if can be specified
+> > > - overlapping regs cause dt_binding_check warnings:
+> > > Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.example.dts:34.19-39.15: Warning (unique_unit_address_if_enabled): /example-0/rtcsys@5025000/mcu@0: duplicate unit-address (also used in
+> > > node /example-0/rtcsys@5025000/pmu@0)
+> > > Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.example.dts:34.19-39.15: Warning (unique_unit_address_if_enabled): /example-0/rtcsys@5025000/mcu@0: duplicate unit-address (also used in
+> > > node /example-0/rtcsys@5025000/rtc@0)
+> > > 
+> > > Shall I remove the MMIO resources from the actual devices or rather ignore the warnings?
+> > 
+> > Ignore the warnings is not an option.
+> > 
+> > Removing makes since if the registers and bitfields are completely mixed 
+> > up. If they are, then I find it hard to believe the child nodes are 
+> > separate blocks. And if they aren't, then it should all be just 1 node. 
+> 
+> The HW vendor calls it "RTC". But this "RTC" is also responsible for the
+> whole power sequencing and [chip-wide] power management. And afterwards
+> they've put SRAM controller registers and remoteproc (independent 8051 core)
+> controller into the same address space (interleaved). I have hard times
+> to apply any strict logic here.
+> 
+> > You don't have to have child nodes to have separate drivers.
+> 
+> But if I don't utilize "simple-mfd" and children nodes, then I'd need
+> some MFD core driver registering the "cells" even though, there will be
+> no other functions in it?
+> 
+> On the other hand, maybe this is the way forward if we are unsure as
+> of now, which cells do we want to implement at all as a separate driver
+> and which ones are we going to combine in a single driver?..
 
-On 19.02.25 13:49, Dave Young wrote:
-> On Wed, 19 Feb 2025 at 15:32, Mike Rapoport <rppt@kernel.org> wrote:
->> On Mon, Feb 17, 2025 at 11:19:45AM +0800, RuiRui Yang wrote:
->>> On Thu, 6 Feb 2025 at 21:34, Mike Rapoport <rppt@kernel.org> wrote:
->>>> == Limitations ==
->>>>
->>>> Currently KHO is only implemented for file based kexec. The kernel
->>>> interfaces in the patch set are already in place to support user space
->>>> kexec as well, but it is still not implemented it yet inside kexec tools.
->>>>
->>> What architecture exactly does this KHO work fine?   Device Tree
->>> should be ok on arm*, x86 and power*, but how about s390?
->> KHO does not use device tree as the boot protocol, it uses FDT as a data
->> structure and adds architecture specific bits to the boot structures to
->> point to that data, very similar to how IMA_KEXEC works.
->>
->> Currently KHO is implemented on arm64 and x86, but there is no fundamental
->> reason why it wouldn't work on any architecture that supports kexec.
-> Well,  the problem is whether there is a way to  add dtb in the early
-> boot path,  for X86 it is added via setup_data,  if there is no such
-> way I'm not sure if it is doable especially for passing some info for
-> early boot use.  Then the KHO will be only for limited use cases.
+Those are all OS questions which have little to do with the DT binding. 
+Design the binding to best match the h/w.
 
+> > >   .../bindings/mfd/sophgo,cv1800b-rtcsys.yaml   | 222 ++++++++++++++++++
+> > >   1 file changed, 222 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.yaml b/Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.yaml
+> > > new file mode 100644
+> > > index 000000000000..2dc7c2df15c1
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/mfd/sophgo,cv1800b-rtcsys.yaml
+> > > @@ -0,0 +1,222 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/mfd/sophgo,cv1800b-rtcsys.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Cvitek CV18xx/Sophgo SG200x Real Time Clock module
+> > > +
+> > > +maintainers:
+> > > +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> > > +  - sophgo@lists.linux.dev
+> > > +
+> > > +description:
+> > > +  The RTC (Real Time Clock) is an independently powered module in the chip. It
+> > > +  contains a 32KHz oscillator and a Power-On-Reset (POR) sub-module, which can
+> > > +  be used for time display and scheduled alarm produce. In addition, the
+> > > +  hardware state machine provides triggering and timing control for chip
+> > > +  power-on, power-off and reset.
+> > > +
+> > > +  Furthermore, the 8051 subsystem is located within RTCSYS and is independently
+> > > +  powered. System software can use the 8051 to manage wake conditions and wake
+> > > +  the system while the system is asleep, and communicate with external devices
+> > > +  through peripheral controllers.
+> > > +
+> > > +  Technical Reference Manual available at
+> > > +    https://github.com/sophgo/sophgo-doc/releases/download/sg2000-trm-v1.01/sg2000_trm_en.pdf
+> > > +
+> 
+> [...]
+> 
+> > 
+> > > +  "^sram@[0-9a-f]+$":
+> > > +    type: object
+> > > +    additionalProperties: false
+> > > +
+> > > +    description:
+> > > +      Provide 2KB of SRAM, which can host software code or temporary data.
+> > > +
+> > > +    properties:
+> > > +      compatible:
+> > > +        items:
+> > > +          - enum:
+> > > +              - sophgo,cv1800b-rtc-sram
+> > > +
+> > > +      reg:
+> > > +        maxItems: 1
+> > > +
+> > > +      clocks:
+> > > +        maxItems: 1
+> > > +
+> > > +    required:
+> > > +      - compatible
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - "#address-cells"
+> > > +  - "#size-cells"
+> > > +  - ranges
+> > > +
+> > > +additionalProperties:
+> > > +  type: object
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/clock/sophgo,cv1800.h>
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +
+> > > +    rtcsys@5025000 {
+> > > +        compatible = "sophgo,cv1800b-rtcsys", "simple-mfd", "syscon";
+> > > +        reg = <0x5025000 0x2000>;
+> > > +        #address-cells = <1>;
+> > > +        #size-cells = <1>;
+> > > +        ranges = <0 0x5025000 0x2000>;
+> > > +
+> > > +        mcu@0 {
+> > > +            compatible = "sophgo,cv1800b-rtc-dw8051";
+> > > +            reg = <0x0 0x1000>;
+> > > +            clocks = <&clk CLK_SRC_RTC_SYS_0>;
+> > > +            sram = <&rtc_sram>;
+> > > +        };
+> > > +
+> > > +        pmu@0 {
+> > > +            compatible = "sophgo,cv1800b-rtc-pmu";
+> > > +            reg = <0x0 0x2000>;
+> > > +            interrupts = <18 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                         <19 IRQ_TYPE_LEVEL_HIGH>;
+> > > +            interrupt-names = "longpress", "vbat";
+> > > +        };
+> > > +
+> > > +        rtc@0 {
+> > > +            compatible = "sophgo,cv1800b-rtc";
+> > > +            reg = <0 0x2000>;
+> > > +            interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
+> > > +            interrupt-names = "alarm";
+> > > +            clocks = <&clk CLK_RTC_25M>;
+> > > +        };
+> > > +
+> > > +        rtc_sram: sram@0 {
+> > > +            compatible = "sophgo,cv1800b-rtc-sram";
+> > > +            reg = <0x0 0x1000>;
+> > 
+> > How does the SRAM overlap registers?
+> 
+> Those are not SRAM cells mapped into this address space,
+> but rather several control registers controlling reset,
+> power and clock of the SRAM.
 
-Every architecture has a platform specific way of passing data into the 
-kernel so it can find its command line and initrd. S390x for example has 
-struct parmarea. To enable s390x, you would remove some of its padding 
-and replace it with a KHO base addr + size, so that the new kernel can 
-find the KHO state tree.
+The 'sram' property points to regions of SRAM memory. So what you have 
+is incorrect use of the property.
 
-
-Alex
-
+Rob
 
