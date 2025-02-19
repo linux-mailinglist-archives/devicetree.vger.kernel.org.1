@@ -1,104 +1,112 @@
-Return-Path: <devicetree+bounces-148268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9EFFA3B4B4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 09:45:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62FD5A3B4D3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 09:47:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3333C166C49
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 08:41:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0624189C9BD
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 08:43:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD2C1CC8B0;
-	Wed, 19 Feb 2025 08:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B84451E5B80;
+	Wed, 19 Feb 2025 08:37:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="l++9H2hQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DZxcmtt/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23B301DFE39;
-	Wed, 19 Feb 2025 08:36:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 293F01E5219;
+	Wed, 19 Feb 2025 08:37:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739954203; cv=none; b=FfeYJHckVysMDhpZJi8Cu29IrAIhxLxR2PCXpBh10/jqxbbUZJ4IXRaJf3vkGiVnRLH8RZI3de4C+ehwS+luTsBlT2s4DYr/z9J0s2jYpLPvW2ts5Ijc4iC8snewaWJDpcNgossZUic2chZ+5/rIFRpWqpMzlhgaglbjX+sbmTQ=
+	t=1739954265; cv=none; b=hoLdUXh35xjPCF9qTD015qodzxWALocsOKaa+cwsV8liD2e78x5ruj/3IUM5UptIl3SgZGc7BzjUzha3hA+kX80s77eoCRBcn7LyqHWVUgS8bLifeAIwyK9qE8CgZ+IfbjiVVm98tqETEFmvtnAo9e6DPGgm1tLbCekIspg8m5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739954203; c=relaxed/simple;
-	bh=dXFsWhl638wEt2WdRXJGFWD7cfvkLuyTrUtgYE7Ngxs=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Pai0jQrP6SnH41DAJqKckJPLXVF/9KT3WoX7+hne3dhhgRAeEiCe8So9LoGpz/bJhtlQ3BZTqnnQEFOXUE8BslS71cWZFGiT/s0Qo7VJ+/6pc0Zdvf6SzQLhDFF4ml6VWLXlcrkFiam6Qrn0wDbCFVg+6MfSAa8gIUa10r7PuCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=l++9H2hQ; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4EA8244340;
-	Wed, 19 Feb 2025 08:36:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1739954199;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dXFsWhl638wEt2WdRXJGFWD7cfvkLuyTrUtgYE7Ngxs=;
-	b=l++9H2hQn/u+qIStQwH+1g2AA05EkXihmbppaCB50w/4E3wzZ+DRpmt5pPqOpvTFO0d2SK
-	lksQ12wkhaE3L5QYRXvgFT65A8lOVd0ZpggZYyL5wjcfLf+V95q8ghjUdBmU0t8zsfJF1i
-	Wrr43E3j7b9wAPgzMstJDi0gj1nIQXmUGbT3IKRQpKIw4F55+3A+WOdcBe1JAUnXZ5gyx9
-	6UtozZyYqj25MyIojkEyWDPX39XgupTlFt0RB/dRFxWVw0Q19RIM4hxHkcMIAVn5IgQtZn
-	VC4cle9xOjdMXPIqysebj2B8a1zSC+/pO/RycD0/h/oORDC6sUClmOMV4hM6DA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,  richard@nod.at,
-  vigneshr@ti.com,  krzk+dt@kernel.org,  conor+dt@kernel.org,
-  linux-mtd@lists.infradead.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  git@amd.com,  amitrkcian2002@gmail.com
-Subject: Re: [PATCH v12 1/3] dt-bindings: mtd: Describe MTD partitions
- concatenation
-In-Reply-To: <20250218213903.GA1203860-robh@kernel.org> (Rob Herring's message
-	of "Tue, 18 Feb 2025 15:39:03 -0600")
-References: <20250205133730.273985-1-amit.kumar-mahapatra@amd.com>
-	<20250205133730.273985-2-amit.kumar-mahapatra@amd.com>
-	<20250211212928.GA1188800-robh@kernel.org>
-	<87r043r2lq.fsf@bootlin.com>
-	<20250212160659.GA3883406-robh@kernel.org>
-	<874j0zqgps.fsf@bootlin.com>
-	<20250218213903.GA1203860-robh@kernel.org>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Wed, 19 Feb 2025 09:36:37 +0100
-Message-ID: <87ldu2qqju.fsf@bootlin.com>
+	s=arc-20240116; t=1739954265; c=relaxed/simple;
+	bh=6PvpWyUlJr1JrXpOq5b9KVIFXtSr6e/OFucjN1kuZ6g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Oq+x6g41CqCxhLqORoNMys/UD4Uao0zAyE0zzyHeiXgNAHvA6l0eNeZuKNkSKUGyUqA8UieF/i8+8GM6AyS+8m3rF7uOrJaWpoqjXs6GbpYm5icL1fCkqV94C7A7bG+efZ7byJp4AmZweH+EKZgqy+czrPqOLq9Z7X73BkbbxV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DZxcmtt/; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-545316f80beso3505166e87.1;
+        Wed, 19 Feb 2025 00:37:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739954258; x=1740559058; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=adqVmCnS5uT2sSC5Nt1D/tH/YhkxZfG0Rnxs9zqPhxc=;
+        b=DZxcmtt/2isNKcPmbh0W25WJhmgKKusoMYoi2OmfT+bttNwzHkTkW8MGU4mgfixH98
+         t7MA8cTBgLrQG+G6/2j8gD8uHRrne76Jd80VCag1RlrxqzsqdyfSCLlC46jvewoNgaCf
+         N90ffNE6umRjPfc6ILOLxWZGt4RRu9htQfB1vR2dX6PGMmJw6SdWNUh8f07ymNY6x4sc
+         sVq07n4+VZk615E97CX+krqctSLe+CHjc+2gBheds/K08TcyEL0BiD9WrpnRqson9sk6
+         Fli7EHvpzy70fH7Z7TEpnaQYp/A5x6I5D1pBHVmT9ObJlr1OLsxt5D4hjbPt5EHRQdiP
+         kYew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739954258; x=1740559058;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=adqVmCnS5uT2sSC5Nt1D/tH/YhkxZfG0Rnxs9zqPhxc=;
+        b=Ayh65BaUTd4YLIufWCK6K5IU2u23ZXfaWozGBdEXM3/FRGC6xVjY+n/LlLMYCS0ZHb
+         C7bCrt7IgCqca8FPQvshItcVlXXCnc7s2GxecpKQ1ZDqA1mtjHfQEkbs+vjGyYpN3LBC
+         gobT1ChzllDPhZlDBKFPs79rutsY7pnOwphbw5zcl3RvMmFNL/YiyRMn8GOwz/YWblAe
+         wtQSk24P0HMKk6YlrCZHBT8oCLaTbTVR3CphHnOgYrF6wRitrCs/6g7HubKvZbQhHkbY
+         dH1uPB7D5KG1r1GkyJvsUn8v3KU7kpVHAy27lsGNeS07Mrm1xShko1o12BJPOlOIifQX
+         QQqA==
+X-Forwarded-Encrypted: i=1; AJvYcCW9lBLEbGKiTWmY+P4UeKbsHOs/6d5v9yaknE2WdB5LcIF7suIixA3NFkoO/BQPHKooE5BjP9VnN4Ca@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJNenxwqeLxxUAkDqTlJVBuZp5mtCE/iYfWkhB9ynCdMjj5CGb
+	I24g1ObZYusDYoz0UMY0ccwhJJkwN7iuZ25qYKznm6PNvKWg7RRY+pfVXA==
+X-Gm-Gg: ASbGncvKlgYduhoqZFkcRH3Ckb7th77Wxv6g12si8e7E6NRoyTYgOD1FoAT8G30Qb0r
+	5CKvWVItxWA3gXvtA+EOGPvxan8RGcBnGUtbaq2EGTj5KEn406SP3zt+ZZf0jbYdGnwhoP1OCM6
+	l8WQSCo6AM2yEpS3C+0yZ46MGqih09pphCbnQSoOce7+pT19eu5x4qcH7rb+LGLCp4XwHX6BsQ+
+	EPaK+0GzPmGlmHuZqn+4jjMEFbFpTWEmq61TljocemYCdA7R73XRw2EVtzCbdZDfrAmzLnArDvz
+	J233t4k=
+X-Google-Smtp-Source: AGHT+IGXBdJnh9W9V8TuQUmNWAYbOUGjPIBgd4HpnPHeaP89ZWNe8M4sAwibLKzPGO1rhHic6wedYQ==
+X-Received: by 2002:a05:6512:3d88:b0:545:b9a:b4b8 with SMTP id 2adb3069b0e04-5452fe7b62dmr5797655e87.51.1739954257796;
+        Wed, 19 Feb 2025 00:37:37 -0800 (PST)
+Received: from xeon.. ([188.163.112.51])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5452d8e54f7sm1692319e87.9.2025.02.19.00.37.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Feb 2025 00:37:35 -0800 (PST)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v1 0/2] extcon: add basic Maxim MAX14526 MUIC support
+Date: Wed, 19 Feb 2025 10:37:22 +0200
+Message-ID: <20250219083724.56945-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeifeejjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefujghffgffkfggtgfgsehtqhertddtreejnecuhfhrohhmpefoihhquhgvlhcutfgrhihnrghluceomhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepffeghfejtdefieeguddukedujeektdeihfelleeuieeuveehkedvleduheeivdefnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddupdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrmhhithdrkhhumhgrrhdqmhgrhhgrphgrthhrrgesrghmugdrtghomhdprhgtphhtthhopehrihgthhgrrhgusehnohgurdgrthdprhgtphhtthhopehvihhgnhgvshhhrhesthhirdgtohhmpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrn
- hgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhmthgusehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-Hi Rob,
+The MAX14526 is a simple multiplexer of common inputs on a single
+mini/micro USB for portable devices.
 
->> I'm talking about storing in a central place all the concatenated
->> partitions. Your proposal with "next-partition" works fine if we locate
->> it inside the 'partitions' node, but I feel like the 'part-concat'
->> instead was not fitting very well there. So I was wondering in this case
->> if moving the concatenation of the partitions would be eligible to the
->> chosen node, or if that's reserved to *very* few properties (and should
->> remain like that).
->
-> You would have to solve the same problem as this patchset which is how=20
-> to support N sets of concatenated partitions.
->
-> In general though, we add new things to /chosen very carefully. It's=20
-> usually "things the bootloader configured/enabled" which I don't think=20
-> this qualifies as.
+Svyatoslav Ryhel (2):
+  dt-bindings: extcon: Document Maxim MAX14526 MUIC
+  extcon: Add basic support for Maxim MAX14526 MUIC
 
-Interesting, I didn't have this "things the bootloader did" explicit
-case in mind.
+ .../bindings/extcon/maxim,max14526.yaml       |  46 +++
+ drivers/extcon/Kconfig                        |  12 +
+ drivers/extcon/Makefile                       |   1 +
+ drivers/extcon/extcon-max14526.c              | 308 ++++++++++++++++++
+ 4 files changed, 367 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/extcon/maxim,max14526.yaml
+ create mode 100644 drivers/extcon/extcon-max14526.c
 
-Thanks!
-Miqu=C3=A8l
+-- 
+2.43.0
+
 
