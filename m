@@ -1,244 +1,164 @@
-Return-Path: <devicetree+bounces-148516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0B95A3C4F7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 17:28:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36A75A3C504
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 17:30:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4E52189B960
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 16:24:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89ABD16FDF2
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 16:28:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 754B91FE461;
-	Wed, 19 Feb 2025 16:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ABAC1FECAC;
+	Wed, 19 Feb 2025 16:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b="GpxOnN5c"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mEfAWXqE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2041.outbound.protection.outlook.com [40.107.22.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8903E1FE469;
-	Wed, 19 Feb 2025 16:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739982239; cv=fail; b=rd3X8X4tpk6iCqTTHmSWKmHu3sGR9qYpMnu+HQOJhdOypLIsBFHwyJwdmTk6QTRrjBFwLMTD5RktoiFc2NJ1Yvro3NFvJC3PSCAqrf7HCgQUyPmZXkQtOb9J/4uMBtrd5Rh71osnckEYtgcTAbgB3HD2WWOSxb47I0b86/HwP5k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739982239; c=relaxed/simple;
-	bh=JtLb3V2v26WXatdwaZxzFsoT2kCIQkygyNxnUxZYg3k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=duzFjloK2ifkG3AbfHU4oLW85zqMj8M3/WntjkG4lWWD+mn8esNHSAj9LccW/zP5r3dCSc/SVjwo2gecElUnQg5LS5CKp3zoi3XPiiUC65tyK9WIIMgUvNN2VkxOel8NHe783ML1sJ+u90ckw/bm67CMAcWj8eez6FngVM2JOeA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com; spf=pass smtp.mailfrom=mt.com; dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b=GpxOnN5c; arc=fail smtp.client-ip=40.107.22.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mt.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fFHbcm8aDJlU1CbQ1sRlnXNkPFtyazzegRVSYFZfEKhqVACp9Hoxn2MOxrllzQ9cYp5pIpvK28smMHNwdc81LgSuKNHJMzuvpv5xUlpfpLkWfo/sEhEFm/2+M1nk1EPoffT1H8pari5sESrHY/6KktelOvA5OqmVS6EpHUgHPwLkx+g0mp8y0vQkk3QxY1Lf+4aHbYVuOSmb3fM4Z6nIQmfQHhZ0wsb2wVQ7d8enbRXLDi2HZu2/R+2IaR8lFBEmFdoGzNLfYiSuc8sWDpOPztspQE0R+Qq8OP/tiW0a8UpYwp2xZktPHABnGGDmoZMB1oDOhDeoCCTIkJLoNS4JaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=acWuaP7/tiffKcycS+rRgZfZGxHSkrHJbwJhE0LtJN4=;
- b=JOdmvIWZLzAYVl34PQ/7pMPmDfNGL8RWufecFaWOmx7XJzqeDJ8C91TiYSGg+6+9Iyxehce0ZjPc4VsH+r3CGTVz9IVFFj/fiMu11NEmb14R9MaE6KtMOI8f3dPze0RF7kx9ZKnQLDvH3104UxAT3PlzogY3om0AmNNYgpctgCCeFpJnZoCSD0Plmu0VJM1DN1IFRIoMq9LRWfDaYChwOLH28RYlUFYsBi5SxhIRwFP2YCbPtl+UPek1KPAtk33Rn3YU4IApvuUKZjYRYIksIR1VP0moYtphe08hXyiPw29tt1rgJQZUmsS+Bt7cCZohOW8sxbewLeRhxcNmIb+crg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mt.com; dmarc=pass action=none header.from=mt.com; dkim=pass
- header.d=mt.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mt.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=acWuaP7/tiffKcycS+rRgZfZGxHSkrHJbwJhE0LtJN4=;
- b=GpxOnN5cRBUVy52R+UzZ+7zN3ebQaXxP77uQkyPxksQSFYVyQMVzzf10+6ST+mnPpHPNVeYosPyiGzANhudhAAmTX24h/KR5K4CS3iYZdZ5WQXwHB/BbVqm6nAPcdN3MMnkKZSUh0N3ATjNJsYejXsfxiFuKM+nMTohc/f6NeXP40W2xm4mBRRmgLzUFO9Ign86s/1VKQldjpJGU73UUvD8VBDRnhiqDzeXQhEgJq7oQdGY3tLFfG7m/ESIvGA67FWkYJcbI1+2HqLkH8yaU5eGJU45HKYS3aGxWPgb+R7urGSGNZ3DN0iQBby1I3LQfFwrEhJBU7zMN30WneduufQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mt.com;
-Received: from AS8PR03MB6775.eurprd03.prod.outlook.com (2603:10a6:20b:29d::16)
- by AM9PR03MB7186.eurprd03.prod.outlook.com (2603:10a6:20b:270::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.19; Wed, 19 Feb
- 2025 16:23:54 +0000
-Received: from AS8PR03MB6775.eurprd03.prod.outlook.com
- ([fe80::8a03:2bdb:89c5:32e8]) by AS8PR03MB6775.eurprd03.prod.outlook.com
- ([fe80::8a03:2bdb:89c5:32e8%4]) with mapi id 15.20.8466.015; Wed, 19 Feb 2025
- 16:23:54 +0000
-Date: Wed, 19 Feb 2025 17:23:47 +0100
-From: Manuel Traut <manuel.traut@mt.com>
-To: Markus Burri <markus.burri@mt.com>
-Cc: linux-kernel@vger.kernel.org,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 240481FE45B
+	for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 16:28:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1739982497; cv=none; b=cclefq5tIiJxlPaRc/69hWRiSkftEUW/1Yg2xneEbHw0BlYj9XLb1w6OocCfY/j5Ur6m46ypPsViAG1livKz0QTs8BZ1TtLbvaIK63R/cXSYHWBV8K1bbk/HzJn9eNHrGNLSbzQ7hKjAbqg7oVYleG0wSTDT4+RttFACuv5RGG0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1739982497; c=relaxed/simple;
+	bh=gIEAaQuMpvcrLQDh3vZAHZqWFqhXyhJidbzOzOnz2ls=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FnqqeY+LAHg0qYtRheymIG7p5xchcwJhgwioaL4w9Gjr/+b26NupbsmgNbKS0XcUd4EBBG53fJZsaGbZZZmJLYpbKwZydwIuUkpKKvSfHz7TfAmnkuAqss/fvhBnUyPTCHbwR4KvbEQG71xNCdpoZHM7fiouBkfGphmtiUgLlMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mEfAWXqE; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-38f403edb4eso2030755f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 08:28:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739982494; x=1740587294; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=MRwCTxrrfvwtx9nFWmK+OK00bxF7qgqDJMInBEnLV1g=;
+        b=mEfAWXqEV3E+1cLWPKyAUOvWBVSOB2FLarif4Js/WWZdVmjgkjT0Ug9JEUQEJx1o37
+         mrwvMfZd9M0aR8qhgmDQK/BRN5hpgaEO3NNadpuLCpWhfXVw6mgNspdKJACjpVkByu3h
+         76/ZifkX/qMa8RWErEyjBMaLlMvUqHDxix5ChdsHcwciqZKaGez5QIQG9vqPcmB06z4O
+         dsm7sLFZD0XuPCd9LjvhxPr39oYiUf2vj/ULif+B01RWgLt1dzj02x4OOq8U0IbF6Mib
+         N6pw+22tEfSSFKISprcvfiYpKIGwso4GXN02Uett2yUdX39j4EINhRTwGjtVDueYqTJt
+         3O9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739982494; x=1740587294;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MRwCTxrrfvwtx9nFWmK+OK00bxF7qgqDJMInBEnLV1g=;
+        b=KvWrROzP4iK/G+HOqAZm2hwCWPZeqf9O8cCkV0YfNDSaRCL7/oEqk7QvhtgFarRQzg
+         UmqmXLGIZrUNravEvc+jL/Cm8ZySV9kDSexGwA0vOlKafbJ7DgEd+UZclZpA8x/KJGUG
+         V5NxG9QOdeJjGVS5acMDUzPn3o66wPYgWztMAldmNU3blIT53Nqd4gXcq0dhr+R3FsUy
+         KO5h4f3fl6beDpHDW1M7/c5YLpmxFQjybOfUhY0WcR3MG4vxnw9UIsLM7p5yGPIJNFAy
+         dmfVYmUT1wUHi5ZSGsTOisTx41YUG7MvSlwjPBDhK0lfdoXZh5RppMVNk5+e+c/XNMdj
+         d+sg==
+X-Forwarded-Encrypted: i=1; AJvYcCXJcHbwaQu6F47jr9mpLGlkx1/QUQ+0go4fcUd5VrS4oU5KOPjB+iwgV8r0NYQ4eUft1PSwXgiKVJlM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnFhS4Lwma0TywsN+NsCqYTK/PF520n2rI/vEgc+upLHJ7uw3G
+	Tki2i/hJTgvQU4g6n5ms2Rjm8Qndvw6zRGEd2iX/kyjvtfn/N94ccyqc9r96LWA=
+X-Gm-Gg: ASbGncvDXlK9kCkf5rCzxHx2YjUB1VrQ+iyypO8H5/EDxJiY0jT1fj6oWLv3qhln7xf
+	+9z4Q6KJhmTAZEKdlkDNM7M+2mXJE2jdab6fNslnvV5LqesfDHQ0mgnm75CT0FjHEBRmGHlPCUu
+	XQjYhwqmRklJv7Y1L3VrWRvZgv6yTIXRWvcHxZabw8Xz1TELP5rFApK4XxpquJwZqQUTjET1DXO
+	vvER9egBbfmb4aWixfA5Nvdmm8R1lW5D3CeO0dWJXM5Xuvb9y094Vndy9VrJ7Jk5sfqf8F4VEqx
+	Vz9RJcseUQywm0SmT43R2sZ2+Tk=
+X-Google-Smtp-Source: AGHT+IH8qkvsyXpimgmtGKizvI1hdDhttqIBX8KjR41D6xYWe3cw/2Xh8D6uRRAu4ip26Fbz7QtqJw==
+X-Received: by 2002:adf:f60f:0:b0:38d:dc4d:3476 with SMTP id ffacd0b85a97d-38f33f58da4mr15133466f8f.52.1739982494207;
+        Wed, 19 Feb 2025 08:28:14 -0800 (PST)
+Received: from linaro.org ([2a02:2454:ff21:ef30:c59a:9aec:ce42:c01f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4395a1b824dsm215833715e9.34.2025.02.19.08.28.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Feb 2025 08:28:13 -0800 (PST)
+Date: Wed, 19 Feb 2025 17:28:12 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] rtc-rv8803: extend sysfs to trigger internal
- ts-event
-Message-ID: <Z7YFk_SqDaucs092@mt.com>
-References: <20250116131532.471040-1-markus.burri@mt.com>
- <20250116131532.471040-5-markus.burri@mt.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250116131532.471040-5-markus.burri@mt.com>
-X-ClientProxiedBy: CH0PR03CA0246.namprd03.prod.outlook.com
- (2603:10b6:610:e5::11) To AS8PR03MB6775.eurprd03.prod.outlook.com
- (2603:10a6:20b:29d::16)
+	Conor Dooley <conor+dt@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Akhil P Oommen <quic_akhilpo@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: x1e80100: Apply consistent
+ critical thermal shutdown
+Message-ID: <Z7YGnN9XwDqOpwc4@linaro.org>
+References: <20250219-x1e80100-thermal-fixes-v1-0-d110e44ac3f9@linaro.org>
+ <20250219-x1e80100-thermal-fixes-v1-2-d110e44ac3f9@linaro.org>
+ <Z7X6jZev8fpoq0Ih@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR03MB6775:EE_|AM9PR03MB7186:EE_
-X-MS-Office365-Filtering-Correlation-Id: 34a99deb-947d-484b-2b29-08dd5101cdce
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?wEwFAzk97Npciu0tVpTN+spqJpLcmhzLWDpX5HYJGy6sbMzMMesRBPd6KQps?=
- =?us-ascii?Q?B383F6Z0vfCR6sTuNyJsE3EBxKQMIPzvRJ7JGtsVkbftxJKZa8WSxSsFhX/m?=
- =?us-ascii?Q?nQfjQmx244dIAq/RVgk44SVtEb3NjPG4wCPECJ/mWHS5Djozt77gDynJPTPK?=
- =?us-ascii?Q?Y9KUCSAojRfcEZRr9woe829inKDXnoY5YvjP9rtXtszgUEl2WuBesFHMZsrN?=
- =?us-ascii?Q?EzVhSkJiHvQMuh7yVVQjMZfolt8UpbGy606RkZr/VOg1YfLM/Bka+/vp7GQK?=
- =?us-ascii?Q?0KUS++hmKvn+sEOKyqtrVVsBpetJKVAoyxFID4Ct7+/YuqXl7Z1yDLZcjlrR?=
- =?us-ascii?Q?nWXeaDyxizj4NDMqcb3W///UPjFXGlOKoeEycakF3SW8FOnblBh4GnK9h63q?=
- =?us-ascii?Q?PKdxqmZCbgzgtI56wgSPG89y0Xv33ZpJ5s58ZLgxX9Z6jo9/g39oOU6vk/uZ?=
- =?us-ascii?Q?ieKaWwOUMumfivL079m48d2VokkrTUPRpZGX6sIPVjDu30e5OGztI16ksJQ9?=
- =?us-ascii?Q?zHtF5O1m5FW1tPGp2aUQ6u3a/qGyyWpj3HKjV0gVy/hocPAbxUXRli4nyuD6?=
- =?us-ascii?Q?zMUE/aee5LXg0TLZw+qTsRGRy3NFg2eaj9GeIRJ/6W6cgp6KWctdPkml6pKw?=
- =?us-ascii?Q?wzADcAUdV4x1OJY6o+tc2JFMlC2eZCfXJXol5caZPiR9ikuKmkZo7zFs+EpG?=
- =?us-ascii?Q?Tpwyog3Phbim9vgDQYgmeovt8l+eU6q5NLHaNx3cQxFc9Bu6K5WjADe67VGE?=
- =?us-ascii?Q?7Meu8fflz9B8Vk2oY6/207qClcjlk8GKMNflxtiOVhbZT1BhDZ57Z51RwAad?=
- =?us-ascii?Q?v0s3PKmF+39kDN9XsFlfwRVgcEedyrj0hlCS3ED1TdYXcvz2rVsU0WcCarMZ?=
- =?us-ascii?Q?GQQnDixhrXCxnGPVMsWEZL6u60I5DNcka36DnX3qY6Zg0OoapTNFf/1u+5W6?=
- =?us-ascii?Q?qaC9p5Cqq3n6KA88zYGGPLFkS/AcloQdb/8aj7Ep0QHypI69t2spW0IImqd7?=
- =?us-ascii?Q?XvSMRaLtwq1t/YcxPOdH0dVCjYHKaTGeqnmgzv0tLskvRwHvVeFN/gnvvGRZ?=
- =?us-ascii?Q?eAr+EQVQWODVDnGxHOby8O1o+4GJj5GQI3ANIBuVesD6g2l7FImMSuhaYMNj?=
- =?us-ascii?Q?WIYGFE/65XOFZmqrsxrOywZC1xw9+uqVuX4yRXvCXBQKlxLMmBrE9QZoSXsL?=
- =?us-ascii?Q?XQ1LD0BOKYA+AdDQjaCmknL0WYWsIEOgsS8izoZgxw4AyIsW+x/WiU70FN/E?=
- =?us-ascii?Q?SZVQlgT6BoM5RL6YwRAEUJ/K+cpAjjtbZ+3bWbae4ypZ1r59IsLjYctXOc8u?=
- =?us-ascii?Q?tLRXMOfSb9r9QjGGi+hN/FeY+JKOULdDJsdryWCU4sK0mF4YRp6gej/kLsma?=
- =?us-ascii?Q?MZznfvukxGX5qNn4nr0AyVDh16ewLFgnPDf0YisvIjtoiNtd4Ed8WEl4tZf9?=
- =?us-ascii?Q?+mY+kTBAD+UuiKKnAMhsk6ier97ezXSN?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR03MB6775.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?aozmmgBghvoihEKNBnKKJ3G2jhBRg0HIij4TlH+5e+VIiAiSca71TnqhChbO?=
- =?us-ascii?Q?5i2JupdjN1Dl/oz7RXR0S/qVDZiNVqpAByxpdblue5pmDTvm3UNqP7jckurB?=
- =?us-ascii?Q?NIIHHkJmGC9o3PfG7I0u/WiXo5Hk++7sNnQDghAhB3kTo3O8hkA9H3WVyJ5F?=
- =?us-ascii?Q?6EA5FYo/AUWUTANw3ZkYBhI43VjwVQZhhIBw1cdm4VuAH6faInO4bxTMbUNw?=
- =?us-ascii?Q?rQ4YxcJh0/PytYE6YtdVSfg0YZ4hoTx+XwV9GB2q7lusBE+KrWqa+KXbIbKg?=
- =?us-ascii?Q?rU9P3lMMjV5v8vAYVwW155NVp/YRYR18/FhuoqDa0kBJpM8USUyYmva8UPAv?=
- =?us-ascii?Q?6EVF7lADyjbWkbAF4bIXuPj5CZocsQ/DWwmzMO8UhQ/374Fr+jaEWjTx3igy?=
- =?us-ascii?Q?80hlXJZekyIOpyl265gbeysjBVhb5bfmLzT3pcwNDKJZyok1K2Tat99u5wIK?=
- =?us-ascii?Q?UWMbVIghv7V2sYrTpOVIn0oXLxgn/2qlLtzCwP11F5EA1Tw2/91eT2nmvJ1B?=
- =?us-ascii?Q?ww49cKg4o7QnF5JC139hSQIh/ohi0Lz9dw1paXM71KbuKyWpkychWPXieM69?=
- =?us-ascii?Q?85LyLSWGSQORoNox5rXMHz8OCMyzb50aM7lTLJ+ZMGAlGvk8Xg3WhOEx2j+g?=
- =?us-ascii?Q?RfyGqgrd7cQDu2UcysEodO1w7jS82x2dzGbuFhVTzLmwR6BCAuhItTjJJzMJ?=
- =?us-ascii?Q?7ZBmGwkrPb07t9v90hLCqWYJCH/53ZcyAZL/JGiYH1XudMuB0+F/koS9CEZF?=
- =?us-ascii?Q?frxn/HHQTOu2jKmE1ofB7DnEROgzr3GyE9XIt8Nxald87MxlitGfdWCuT+kS?=
- =?us-ascii?Q?AQ+WnpghYYKBf7vlkQx8M2XooCqAyMb8VvfVj7M6A+Eh6KJnKXiCJ0MrDKta?=
- =?us-ascii?Q?bMW8z7HVIGsnMjbqm2BeYzyKGbfGBr3JxZ41MFQGiMv0KYFWN8GAkUrOlL3t?=
- =?us-ascii?Q?kk3pMuphUF+aYKU0aC3dzQG1rU4ktlb6zxmmEyfV4pTr+ZSPr5MEN2LfT5mR?=
- =?us-ascii?Q?jL/Mb/MG4zTD6J3+d3QHK4EelLgp2zOVnMiVwer/EIXcw/ig1hKWBeh5HTLW?=
- =?us-ascii?Q?TZHZyRqvCP4l880L7mRUxAnnsijmvVLFVgzdgnUzNV4qwggziIhleCQjXj+W?=
- =?us-ascii?Q?v+dZE8K+pL5E8te5tKm81zcHyVBgzuU5GinYLCVHuGmPQjiVbyU9kS/2VsML?=
- =?us-ascii?Q?2+c4r2UKo2fC5hjS0z8UKh8CzsJfSHhEv635/QH0HVfkZbVzvw4mxdQA82QH?=
- =?us-ascii?Q?/3BldLNHALHWneUS08SdXCGI098Nt6/rJFh0+6uG3ePH4OjseZc6CPFgGOQx?=
- =?us-ascii?Q?6n5j5TnXzHQ0bSO8X5nG4L0fnbIo+r0fk5ttSu1GH2lVksqCDYRhCetbqy6W?=
- =?us-ascii?Q?YzEyaVxIXd4k96ciiZi6uR2eZR4rR3o9F3qLbTq0bmWrXbvZKen0S2zp0XFM?=
- =?us-ascii?Q?33US3YzGikc/1vOq9rgB2PhPeeXkkfCCH1LhgPi0hkFPRUKxsnEwSoRqBOKp?=
- =?us-ascii?Q?JImfap13ZAB5frjHxt0a5VOErBf7T07E1dbS/TEIkVvwxZWFVzo20EluPPLH?=
- =?us-ascii?Q?uMiQ/+P0m3dN+z0kxw+Y9D+gXDVcAPtUYnuDCAuU?=
-X-OriginatorOrg: mt.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34a99deb-947d-484b-2b29-08dd5101cdce
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR03MB6775.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2025 16:23:54.7206
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fb4c0aee-6cd2-482f-a1a5-717e7c02496b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0h0hZ0IY571UcUgRLZ9RayfPbnVWTiISo6zGWKRTlCv/u1rs5/IBmd+yewI38n6fReU222qgeHnjsaSWGCLcIw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR03MB7186
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Z7X6jZev8fpoq0Ih@hovoldconsulting.com>
 
-On Thu, Jan 16, 2025 at 02:15:31PM +0100, Markus Burri wrote:
-> Extend sysfs to trigger an internal time-stamp event.
+On Wed, Feb 19, 2025 at 04:36:45PM +0100, Johan Hovold wrote:
+> On Wed, Feb 19, 2025 at 12:36:19PM +0100, Stephan Gerhold wrote:
+> > The firmware configures the TSENS controller with a maximum temperature of
+> > 120°C. When reaching that temperature, the hardware automatically triggers
+> > a reset of the entire platform. Some of the thermal zones in x1e80100.dtsi
+> > use a critical trip point of 125°C. It's impossible to reach those.
+> > 
+> > It's preferable to shut down the system cleanly before reaching the
+> > hardware trip point. Make the critical temperature trip points consistent
+> > by setting all of them to 115°C and apply a consistent hysteresis.
+> > The ACPI tables also specify 115°C as critical shutdown temperature.
+> > 
+> > Cc: stable@vger.kernel.org
+> > Fixes: 4e915987ff5b ("arm64: dts: qcom: x1e80100: Enable tsens and thermal zone nodes")
+> > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 > 
-> The trigger function can be used from an application to trigger an
-> internal time-stamp event.
+> > @@ -8483,7 +8483,7 @@ trip-point1 {
+> >  				};
+> >  
+> >  				cpu-critical {
+> > -					temperature = <110000>;
+> > +					temperature = <115000>;
 > 
-> Signed-off-by: Markus Burri <markus.burri@mt.com>
-Reviewed-by: Manuel Traut <manuel.traut@mt.com>
+> Have you asked the authors where this lower limit came from (or
+> determined it was just copy pasta some other way)?
+> 
 
-> ---
->  .../ABI/testing/sysfs-class-rtc-tamper        |  7 ++++
->  drivers/rtc/rtc-rv8803.c                      | 33 +++++++++++++++++++
->  2 files changed, 40 insertions(+)
+I haven't asked before sending the patch, but it looks like copy-paste
+from sm8550.dtsi. That one also has these weird double passive trip
+points for the CPU, which are dropped for x1e80100.dtsi in the last
+patch of this series. Rajendra and Abel are in the Cc though in case
+they would like to comment. :-)
+
+> >  					hysteresis = <1000>;
+> >  					type = "critical";
+> >  				};
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-class-rtc-tamper b/Documentation/ABI/testing/sysfs-class-rtc-tamper
-> index f035d0fa5..2fd6578a6 100644
-> --- a/Documentation/ABI/testing/sysfs-class-rtc-tamper
-> +++ b/Documentation/ABI/testing/sysfs-class-rtc-tamper
-> @@ -18,4 +18,11 @@ Description:	(RO) Attribute to read the stored timestamps form buffer FIFO.
->  		- "1234.567 EVIN1=1" for a trigger from EVIN1 changed from low to high
->  		- "1234.567 EVIN1=0 EVIN2=1 for a simultaneous trigger of EVIN1 changed to low and
->  		  EVIN2 changed to high.
-> +		- "1234.567 CMD=0" for a internal trigger
->  
-> +What:		/sys/class/rtc/rtcX/tamper/trigger
-> +Date:		January 2025
-> +KernelVersion:	6.13
-> +Contact:	Markus Burri <markus.burri@mt.com>
-> +Description:	(WO) Attribute to trigger an internal timestamp event
-> +		Write a '1' to trigger an internal event and store a timestamp.
-> diff --git a/drivers/rtc/rtc-rv8803.c b/drivers/rtc/rtc-rv8803.c
-> index 764e654c2..ca3a19162 100644
-> --- a/drivers/rtc/rtc-rv8803.c
-> +++ b/drivers/rtc/rtc-rv8803.c
-> @@ -904,12 +904,45 @@ static ssize_t read_show(struct device *dev, struct device_attribute *attr, char
->  	return offset;
->  }
->  
-> +static ssize_t trigger_store(struct device *dev, struct device_attribute *attr, const char *buf,
-> +			     size_t count)
-> +{
-> +	struct rv8803_data *rv8803 = dev_get_drvdata(dev->parent);
-> +	struct i2c_client *client = rv8803->client;
-> +	int ret;
-> +	unsigned long tmo;
-> +
-> +	guard(mutex)(&rv8803->flags_lock);
-> +
-> +	/* CMDTRGEN */
-> +	ret = rv8803_write_reg(client, RX8901_WRCMD_CFG, BIT(0));
-> +	if (ret < 0)
-> +		return ret;
-> +	ret = rv8803_write_reg(client, RX8901_WRCMD_TRG, 0xFF);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	tmo = jiffies + msecs_to_jiffies(100); /* timeout 100ms */
-> +	do {
-> +		usleep_range(10, 2000);
-> +		ret = rv8803_read_reg(client, RX8901_WRCMD_TRG);
-> +		if (ret < 0)
-> +			return ret;
-> +		if (time_after(jiffies, tmo))
-> +			return -EBUSY;
-> +	} while (ret);
-> +
-> +	return count;
-> +}
-> +
->  static DEVICE_ATTR_WO(enable);
->  static DEVICE_ATTR_RO(read);
-> +static DEVICE_ATTR_WO(trigger);
->  
->  static struct attribute *rv8803_rtc_event_attrs[] = {
->  	&dev_attr_enable.attr,
->  	&dev_attr_read.attr,
-> +	&dev_attr_trigger.attr,
->  	NULL
->  };
->  
-> -- 
-> 2.39.5
+> > @@ -8737,7 +8737,7 @@ trip-point0 {
+> >  				};
+> >  
+> >  				video-critical {
+> > -					temperature = <125000>;
+> > +					temperature = <115000>;
+> >  					hysteresis = <1000>;
+> >  					type = "critical";
+> >  				};
 > 
+> Ok, make sense to backport the first patch as well then.
+> 
+
+Exactly. :D
+
+> Looks good to me:
+> 
+> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+
+Thanks!
+Stephan
 
