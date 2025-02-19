@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-148295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA79EA3B99A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:34:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71EF0A3B983
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 10:33:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CB42180000
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 09:27:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B99ED18856EF
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 09:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBA941DF97F;
-	Wed, 19 Feb 2025 09:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 074221E1021;
+	Wed, 19 Feb 2025 09:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fAcSnX3E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WinqEIH0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4116158862;
-	Wed, 19 Feb 2025 09:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC261E0E0A;
+	Wed, 19 Feb 2025 09:25:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739957006; cv=none; b=IjigKyNLEUXeYy7ikoJo25WivnN9J2tVEKPugT/Jm/0BvjYYU/A6ElfpGW3GX9/DQ9OxKD1BBUS5oSdA0c0CAbTelAraKnRqG9PJAr4yXL4FKWRCYlVq0PHzhx0HSZFZ1B5w2hpTyaG+zQKXAwAeQlnrW8oOjin4UV12NMAP78o=
+	t=1739957110; cv=none; b=aKfJMldK0WPPOW3BLp+nVDDAAOZerufCOVEDo6NW+ssrY+JGMV+6Qg8DTELQfcmnlAMsu8RDyJaVcO9N0P+9IQr5KepWdV0lwU254O5kuzoXYFGicf+2FP+7XMwh73BwWiV/ekO3xZViFffh0gW1P0xltVFzsoIlf/jxtCL/tu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739957006; c=relaxed/simple;
-	bh=YhYVhJFyUQYcroil7prEDBRqCCm4sFrb0M3BiFATJmQ=;
+	s=arc-20240116; t=1739957110; c=relaxed/simple;
+	bh=MmDCocIFSUXV+xZa3WIpR+8qm3Y5VnuEZAGr13l/yPg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TQUp1ogJIgq3JNsH423rekXydSBNDhYeJuEuVVCyOshOGnMgH6XbmYGRHxJMbdSBlSDuxk3j6ELtb7CHi37X5LAG6uCg2o48lGcAViixRJgETevvhP1OvwQ71IqTdgJ03x68xlkt2XiO1rFe9x1C9l64Sy4mC2tewpI8AnLWwqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fAcSnX3E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BB66C4CEE7;
-	Wed, 19 Feb 2025 09:23:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NTDGs2BPUaZWlDEGj89VTFupUoHau6JqgL1218FF15lQ0/myjsj9iEp8VjaEBY/eBGoptU7yUkCDAeU+VmPx3AcqrhrAR5gdTtLIOjONtbUKJxyKG5/92mWUWKGS12lIhHFEhf65wSbCRP/veVVekrCKDAOdSAKSfy2In1Y/Zro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WinqEIH0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8808C4CEE8;
+	Wed, 19 Feb 2025 09:25:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739957006;
-	bh=YhYVhJFyUQYcroil7prEDBRqCCm4sFrb0M3BiFATJmQ=;
+	s=k20201202; t=1739957110;
+	bh=MmDCocIFSUXV+xZa3WIpR+8qm3Y5VnuEZAGr13l/yPg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fAcSnX3EF5Q+IrlrEyrnqGo2Un8ajJzh6xKpblEgnfstRR4eRks2hb9DnEQ+muGxO
-	 Ag1hM80kkg44gIMSZAfmM8BvdQReN2ciCsUEXWF7EMAYw64JB2ooQ3UD27sYwZ1ZEy
-	 CpW24qZagRG6+Zno8B0KryXnXCHgFfKRPLjH+dw7xX4FJhG0tDnY6XE4QxPz9OCImm
-	 ICMOY21O0jh/1JBjo6brcbRuUmA0Wv4EpdEYLQNU2PWSftE/I3fSYKxVR3QkJUnqkf
-	 aVfyFMpjYEZLChLQxXyHfrDV+PdDX7tXK6ECJ3hpIbTUnGnaT80M0czDb4l0pCL/T+
-	 H3uI8VAzuZarQ==
-Message-ID: <23f1971f-117a-4515-a7e8-116f03abccc7@kernel.org>
-Date: Wed, 19 Feb 2025 10:23:17 +0100
+	b=WinqEIH0TfrYIQFc6AgV6RXuBC+tFpt8fVcrq7875pzx0HcIZtcVnkKss8OBc3TSJ
+	 yVvEc++JS7N9elGpBqf0tXjA8Il05yAnzgsqRTHc8IBv6fof1f6wPpPuVA/Z/fUeke
+	 Ct0yltxMSHn1TFx+usR2dYRU0TuhRhymsGtbEBU4vfcXgUaZQUw6yHGfP0BrhYSVeG
+	 ip8+EHJTVd7e/mPv4qLWDe6MoC/EZ2GUOZVEpikbjvK03qx8fGpsE8nLXyJNuzh5/S
+	 rdPCrmbkWZtvtU9UTdZ5CyM2e9TMVcuUcDRCmtNzLlunaQtCBB/dLOY0iAunwnRKTn
+	 gd6RkZE+GIKSg==
+Message-ID: <4d8abd3f-c39b-49ea-8a43-b6ad0cf6fb15@kernel.org>
+Date: Wed, 19 Feb 2025 10:25:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/7] dt-bindings: display: mediatek: ccorr: Add support
+Subject: Re: [PATCH 7/7] dt-bindings: display: mediatek: tdshp: Add support
  for MT8196
 To: Jay Liu <jay.liu@mediatek.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
  Philipp Zabel <p.zabel@pengutronix.de>,
@@ -68,7 +68,7 @@ Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org,
  Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20250219092040.11227-1-jay.liu@mediatek.com>
- <20250219092040.11227-5-jay.liu@mediatek.com>
+ <20250219092040.11227-8-jay.liu@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,16 +114,87 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250219092040.11227-5-jay.liu@mediatek.com>
+In-Reply-To: <20250219092040.11227-8-jay.liu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
 On 19/02/2025 10:20, Jay Liu wrote:
 > Add a compatible string for MediaTek MT8196 SoC
 
-You do not add compatible for soc but its component. But even if this
-was correct commit msg, you still repeat what is in the diff. Say
-something useful, is it compatible with 8195 maybe? Or with something else?
+No, this is just bogus commit msg.
+
+You did not try enough, just pasted same useless and incorrect message
+to every patch.
+
+> 
+> Signed-off-by: Jay Liu <jay.liu@mediatek.com>
+> ---
+>  .../display/mediatek/mediatek,tdshp.yaml      | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,tdshp.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,tdshp.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,tdshp.yaml
+> new file mode 100644
+> index 000000000000..5ed7bdd53d0e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,tdshp.yaml
+
+Filename matching exactly compatible.
+
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,tdshp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek display clarity correction
+> +
+> +maintainers:
+> +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> +  - Philipp Zabel <p.zabel@pengutronix.de>
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  MediaTek display clarity correction, namely TDSHP, provides a
+> +  operation used to adjust sharpness in display system.
+> +  TDSHP device node must be siblings to the central MMSYS_CONFIG node.
+> +  For a description of the MMSYS_CONFIG binding, see
+> +  Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> +  for details.
+
+Missing blank line. Do not introduce own style.
+
+> +properties:
+> +  compatible:
+> +    oneOf:
+
+Drop, unless this is already going to grow?
+
+
+> +      - enum:
+> +          - mediatek,mt8196-disp-tdshp
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
+
+Drop
 
 
 Best regards,
