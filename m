@@ -1,160 +1,267 @@
-Return-Path: <devicetree+bounces-148424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADD2CA3C028
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:40:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32EE2A3C034
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 14:42:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13BCB1765FE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 13:37:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 989FB3AAE8D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 13:38:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 525CD1E3769;
-	Wed, 19 Feb 2025 13:37:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C451E3769;
+	Wed, 19 Feb 2025 13:38:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BFWk/jig"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jyzTA/hk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 233BA1E0DFE;
-	Wed, 19 Feb 2025 13:37:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB45A19CD01;
+	Wed, 19 Feb 2025 13:38:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1739972227; cv=none; b=YMsNGNFC13Kl5UcXYnUuYiEO59ctVw8yyv5l7tub22vIUfC7com6907qWSHmlA/3IKAzCBKuPrZePr49ALjl59lZxG6VPgNQSGgyL+nyT347XF5lNzIw5ua+WYE0xQgdcO1GV73LC+ukDhiO1Gjh7P9RAY3kG7fXwbHG3k2UVhM=
+	t=1739972326; cv=none; b=ax0qWpQJtIMAvBfWTVpv0/GZZVbZsRVuU19HDHNsx7vUNwG+mX2nX0xhvAAuXdp7/Fgz5GuBss1gLsshoO2hj5WsRn0H0ItHZf6XzZGW6g0rvO3Q3MaCC6wcfc64cXewIi9JrmA7zxyqV/qt9aseIILH8RtysvFV2mtgJ8N+AdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1739972227; c=relaxed/simple;
-	bh=b17Q3TzJrxxMz54pH+z89L0mjFrLAuOg+g6ZufoF97s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kAOB5Seutnp3fUK7zybMfxXHiRFIb7I7rAvOCxvuNBLA06SJn1jY9dPE3Y6Zaaz0/F+iOGD21BcjzMNgM8elkI3VQxsJnsM5TUo+zTWfuQvGu4UakRB1ivnVTURvv3o5vruhKkeiQXcG08zOSaFXxMHQDSrc0/Y5Gffv2i/3/0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BFWk/jig; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95174C4CED1;
-	Wed, 19 Feb 2025 13:37:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739972225;
-	bh=b17Q3TzJrxxMz54pH+z89L0mjFrLAuOg+g6ZufoF97s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BFWk/jigD0B6pdk/g694GJQE+a3tmWLH0SoUAQHDwCziKd5q8xxoXBELWEZtO/T8A
-	 ZV8XhVOFg98l9eb2uK+IhaRvdkTru5HbRWXF4gXLqdOGSF7EGYJWKCP/LkxGF+U/Lb
-	 3kl8NTwlajJ2t73By5PY8eFW2B8PS4AwkfY3vXRH8wfaHkOzGNCoTcy/5ifmDQseod
-	 O+LPHPsTvGqq2rUOZ75BsdWG3JEuwAR1InZocPsEHvRCTfbSihcvnt9dS9Os7MRjeo
-	 kf3IsULrYTmiayEK1z8wWIuHu/ag91OtIE2KQX+Pi9hP5mE9VMfEuEn+GmJKnLQ8QM
-	 L6TuLZXjBN29A==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1tkkGI-00000000802-30yU;
-	Wed, 19 Feb 2025 14:37:14 +0100
-Date: Wed, 19 Feb 2025 14:37:14 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Jonathan Marek <jonathan@marek.ca>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Maximilian Luz <luzmaximilian@gmail.com>,
-	linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/7] arm64: dts: qcom: x1e80100: enable rtc
-Message-ID: <Z7XeioAlf69sp0aj@hovoldconsulting.com>
-References: <20250120144152.11949-1-johan+linaro@kernel.org>
- <20250127002026.GA2534668-robh@kernel.org>
+	s=arc-20240116; t=1739972326; c=relaxed/simple;
+	bh=ss+b8WFJ460bWqkMhzwN0V/1Oxr3SxGisl0KFPLpS6I=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=p6cEV740g/TYG5qyXwfCyU4TGY905tMtYE3bEcda2Artra65hc/qpkMdne4WO3QgTNEET5ttIoqhquH/TAP8x+YSbbN7wbtgdP0kgCh9oVFNt94XPNt9dynDPpvQfzg7q/6WR/jmeReesxUtrkl+Pe8bXs78eFqT/ERkZyONZB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jyzTA/hk; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8413A442F7;
+	Wed, 19 Feb 2025 13:38:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1739972322;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=40VQPDLl9432aUrN3sAc+VkJbcJXajTxhY3GmtVBO3o=;
+	b=jyzTA/hk2CspLLq+x9cJh7syK0+LIGn6EqqtqPFmwKa33Yy6M2hIK8NI0QM+3FKswz6lnL
+	HUn9JiMz3g0KpuYt2WUwT44yZrdJjnYVPM42NNqIIRARogu8Anb/leIeYVgAPxcAtu46eV
+	A5nXsUoVeSBoGUsSwlwtmhbZxZjDpNp7SxzGFAe/l2aC0W9U4Atz8OBIQvC77JksfpGP/O
+	frxXq6v9F+uP2pL9D+dIX8jPDaONdpqti6Z+Z0nBpVkgt2RNCSTZ+Wzeq6IHa9pZiGmpuH
+	rSif1XCrS+/T7NaBy+KxjsP5yMPOH4tnq2b9FvphL690g2mwt8Fttl3vqK9cdA==
+Date: Wed, 19 Feb 2025 14:38:40 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 0/3] i2c: Introduce i2c bus extensions
+Message-ID: <20250219143840.2730cddf@bootlin.com>
+In-Reply-To: <20250205173918.600037-1-herve.codina@bootlin.com>
+References: <20250205173918.600037-1-herve.codina@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250127002026.GA2534668-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeigeefkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeejueeggeehiedtvefhjedtveeugeehtdekteffkeeggeefkefhlefhfeetiedvheenucffohhmrghinhepkhgvrhhnvghlrdhorhhgpdhlphgtrdgvvhgvnhhtshdpghhithhhuhgsrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeelpdhrtghpthhtohepfihsrgdorhgvnhgvshgrshesshgrnhhgqdgvnhhgihhnvggvrhhinhhgrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlr
+ dhorhhgpdhrtghpthhtoheplhhinhhugidqihdvtgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhm
+X-GND-Sasl: herve.codina@bootlin.com
 
-[ +CC: Ard and Maximilian ]
+Hi Wolfram,
 
-Hi Rob,
+In order for me to move forward on this new feature sending a patch for the
+binding or reworking my proposal can you provide feedback on the topic and
+the current implementation available in this RFC.
 
-and sorry about the late follow up on this. I had to find some time to
-think more about this so it ended up on the back burner.
+Best regards,
+Hervé
 
-On Sun, Jan 26, 2025 at 06:20:26PM -0600, Rob Herring wrote:
-> On Mon, Jan 20, 2025 at 03:41:45PM +0100, Johan Hovold wrote:
-> > This series adds support for utilising the UEFI firmware RTC offset to
-> > the Qualcomm PMIC RTC driver and uses that to enable the RTC on all X
-> > Elite machines.
-> > 
-> > Included is also a patch to switch the Lenovo ThinkPad X13s over to
-> > using the UEFI offset.
-> > 
-> > The RTCs in many Qualcomm devices are effectively broken due to the time
-> > registers being read-only. Instead some other non-volatile memory can be
-> > used to store an offset which a driver can take into account. On Windows
-> > on Arm laptops, the UEFI firmware (and Windows) use a UEFI variable for
-> > storing such an offset.
-> > 
-> > When RTC support for the X13s was added two years ago we did not yet
-> > have UEFI variable support for these machines in mainline and there were
-> > also some concerns regarding flash wear. [1] As not all Qualcomm
-> > platforms have UEFI firmware anyway, we instead opted to use a PMIC
-> > scratch register for storing the offset. [2]
-> > 
-> > On the UEFI machines in question this is however arguable not correct
-> > as it means that the RTC time can differ between the UEFI firmware (and
-> > Windows) and Linux.
-> > 
-> > Now that the (reverse engineered) UEFI variable implementation has been
-> > merged and thoroughly tested, let's switch to using that to store the
-> > RTC offset also on Linux. The flash wear concerns can be mitigated by
-> > deferring writes due to clock drift until shutdown.
-> > 
-> > Note that this also avoids having to wait for months for Qualcomm to
-> > provide a free PMIC SDAM scratch register for X1E and future platforms,
-> > and specifically allows us to enable the RTC on X1E laptops today.
-> > 
-> > Rob had some concerns about adding a DT property for indicating that a
-> > machine uses UEFI for storing the offset and suggested that the driver
-> > should probe for this instead. Unfortunately, this is easier said than
-> > done given that UEFI variable support itself is probed for and may not
-> > be available until after the RTC driver probes.
+On Wed,  5 Feb 2025 18:39:13 +0100
+Herve Codina <herve.codina@bootlin.com> wrote:
+
+> The big picture behind this RFC series is to support a Linux device
+> with a connector to physically add and remove an add-on to/from the
+> main device to augment its features at runtime, adding devices on
+> non-discoverable busses, using device tree overlays.
 > 
-> This information would be useful in the binding commit...
->
-> Seems like something I would say, but this is v1 and I have no memory of 
-> discussing this. 
-
-You're right, I should have mentioned this in the commit message and
-linked to the RFC discussion directly:
-
-	https://lore.kernel.org/lkml/Y9qO0yQ7oLux2L9n@hovoldconsulting.com/
-
-> I would also say probe ordering is not a DT problem, 
-> but sounds like an OS problem. Aren't there other things needing EFI 
-> variables earlyish too? Do you really want to have to update the DT to 
-> enable this?
-
-Yeah, there are more things that expect EFI variables during early boot,
-including systemd. In fact, that is the reason why the Qualcomm efivars
-implementation can currently only be built in:
-
-	https://lore.kernel.org/lkml/ZJ11H8btBhvCx9gD@hovoldconsulting.com/
-
-The variable service is supposed to be a runtime service that is
-available when drivers probe (module init), so I think it's reasonably
-to simple refuse further modular efivars implementation (we already have
-another from Google).
-
-Since allowing the Qualcomm implementation to be modular now would
-regress user space it seems at least that one will need to stay built-in
-indefinitely.
-
-And again, hopefully all of this goes away (for future platforms) once
-Qualcomm fix their UEFI implementation so that the UEFI time and
-variable services can be used directly.
-
-I've dropped the DT property for v2. 
-
-Johan
+> The related big picture has been already presented in
+>   - the 'Add support for GE SUNH hot-pluggable connector' series [0]
+>   - the 'Runtime hotplug on non-discoverable busses with device tree
+>     overlays' talk at Linux Plumbers Conference 2024 [1].
+> 
+> This series focuses on the i2c related part.
+> 
+> An i2c bus is wired to the connector and allows an add-on board to
+> connect additional i2c devices to this bus.
+> 
+> When device tree nodes are added, the I2C core tries to probe client
+> devices based on the classic DT structure:
+> 
+>   i2c@abcd0000 {
+>       some-client@42 { compatible = "xyz,blah"; ... };
+>   };
+> 
+> However for hotplug connectors described via device tree overlays [0]
+> there is additional level of indirection, which is needed to decouple
+> the overlay and the base tree:
+> 
+>   --- base device tree ---
+> 
+>   i2c1: i2c@abcd0000 {
+>       compatible = "xyz,i2c-ctrl";
+>       i2c-bus-extension@0 {
+>           i2c-bus = <&i2c_ctrl>;
+>       };
+>       ...
+>   };
+> 
+>   i2c5: i2c@cafe0000 {
+>       compatible = "xyz,i2c-ctrl";
+>       i2c-bus-extension@0 {
+>           i2c-bus = <&i2c-sensors>;
+>       };
+>       ...
+>   };
+> 
+>   connector {
+>       i2c_ctrl: i2c-ctrl {
+>           i2c-parent = <&i2c1>;
+>           #address-cells = <1>;
+>           #size-cells = <0>;
+>       };
+> 
+>       i2c-sensors {
+>           i2c-parent = <&i2c5>;
+>           #address-cells = <1>;
+>           #size-cells = <0>;
+>       };
+>   };
+> 
+>   --- device tree overlay ---
+> 
+>   ...
+>   // This node will overlay on the i2c-ctrl node of the base tree
+>   i2c-ctrl {
+>       eeprom@50 { compatible = "atmel,24c64"; ... };
+>   };
+>   ...
+> 
+>   --- resulting device tree ---
+> 
+>   i2c1: i2c@abcd0000 {
+>       compatible = "xyz,i2c-ctrl";
+>       i2c-bus-extension@0 {
+>           i2c-bus = <&i2c_ctrl>;
+>       };
+>       ...
+>   };
+> 
+>   i2c5: i2c@cafe0000 {
+>       compatible = "xyz,i2c-ctrl";
+>       i2c-bus-extension@0 {
+>           i2c-bus = <&i2c-sensors>;
+>       };
+>       ...
+>   };
+> 
+>   connector {
+>       i2c-ctrl {
+>           i2c-parent = <&i2c1>;
+>           #address-cells = <1>;
+>           #size-cells = <0>;
+> 
+>           eeprom@50 { compatible = "atmel,24c64"; ... };
+>       };
+> 
+>       i2c-sensors {
+>           i2c-parent = <&i2c5>;
+>           #address-cells = <1>;
+>           #size-cells = <0>;
+>       };
+>   };
+> 
+> Here i2c-ctrl (same goes for i2c-sensors) represent the part of I2C bus
+> that is on the hot-pluggable add-on. On hot-plugging it will physically
+> connect to the I2C adapter on the base board. Let's call the 'i2c-ctrl'
+> node an "extension node".
+> 
+> In order to decouple the overlay from the base tree, the I2C adapter
+> (i2c@abcd0000) and the extension node (i2c-ctrl) are separate nodes.
+> Rightfully, only the former will probe into an I2C adapter, and it will
+> do that perhaps during boot, long before overlay insertion or after the
+> overlay has been inserted for instance if the I2C adapter is remove and
+> re-probed for whatever reason after the overlay insertion.
+> 
+> The extension node won't probe into an I2C adapter or any other device
+> or bus, so its subnodes ('eeprom@50') won't be interpreted as I2C
+> clients by current I2C core code.
+> 
+> The extension node is linked to the adapter node in two ways. The first
+> one with the i2c-bus-extension adapter sub-node and the second one with
+> the i2c-parent property in the extension node itself.
+> 
+> The purpose of those two links is to handle device probing in several
+> cases.
+> 
+> - First case: Adapter already probed when add-on devices are added
+> 
+> When devices are added by the overlay, an OF change notification is
+> triggered so that busses can support those new devices.
+> 
+> Going from a newly added device node, the i2c-parent property allows to
+> find the corresponding I2C adapter and register the new I2C client with
+> this adapter.
+> 
+> The patch 1 in this series proposes modification to handle this case
+> and, by the nature of the modification, all cases where a phandle refers
+> an extension node instead of the adapter node itself.
+> 
+> - Second case: Add-on devices already present in device-tree when
+>   adapter is probed
+> 
+> In this case, everything is already described in the device-tree and
+> then the adapter is probed.
+> 
+> OF change notifications don't play a role in this case either because
+> they were never triggered (the overlay was applied by the bootloader)
+> or they were triggered before the adapter is probed and so were
+> missed/ignored.
+> 
+> The adapter probe process registers device already described at the
+> adapter node level (current code) and, thanks to i2c-bus-extension
+> adapter sub-node and its i2c-bus property, it can also follow the
+> extension and registers devices described in those extension nodes.
+> 
+> The patch 2 and 3 in this series proposes modifications to handle this
+> case.
+> 
+> I know device-tree bindings for i2c-bus-extension and i2c-parent are not
+> yet provided in this RFC series.
+> 
+> I would like to discuss the proposal before going further and write
+> those needed bindinds (i2c-bus-extension needs to be added in
+> i2c-controller.yaml available in dt-schema repository [2]).
+> 
+> Best regards,
+> Hervé Codina
+> 
+> [0] https://lore.kernel.org/all/20240917-hotplug-drm-bridge-v4-0-bc4dfee61be6@bootlin.com/
+> [1] https://lpc.events/event/18/contributions/1696/
+> [2] https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/i2c/i2c-controller.yaml
+> 
+> Herve Codina (3):
+>   i2c: core: Follow i2c-parent when retrieving an adapter from node
+>   i2c: i2c-core-of: Move children registration in a dedicated function
+>   i2c: i2c-core-of: Handle i2c bus extensions
+> 
+>  drivers/i2c/i2c-core-base.c | 43 ++++++++++++++++++++++++++++-
+>  drivers/i2c/i2c-core-of.c   | 54 +++++++++++++++++++++++++++++--------
+>  2 files changed, 85 insertions(+), 12 deletions(-)
+> 
 
