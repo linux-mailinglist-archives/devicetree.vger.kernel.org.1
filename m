@@ -1,207 +1,299 @@
-Return-Path: <devicetree+bounces-149092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6878A3E3D3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 19:28:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E80A3E3E9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 19:32:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA7D87A7793
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:27:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 090FD1662AD
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1228721481A;
-	Thu, 20 Feb 2025 18:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 115EE2135A4;
+	Thu, 20 Feb 2025 18:31:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="1SSIrEjH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KKfKmhv4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F53A212D83
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 18:27:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238391B6CE0;
+	Thu, 20 Feb 2025 18:31:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740076060; cv=none; b=Iqx1I9G+aaA0dZpUmtnqwzOeFmreKmMJvwukdeFoSgFHV1/VScfPJ3Os/G8K4srY/1lLKEfRtTNkZYDFztKCIEtlsKabGJ5anN218gRK6hi0JNO7PStOVzN82vq9Vi27PdbXDxHwz2TnAYchsixL4EWcGmO4Qx057nQRuZ+aJPU=
+	t=1740076319; cv=none; b=q9PSPmyvDh2uB4iKAp5bp5MHkSJMiEcRGyYlRjQCp33rn+2a1JkaGWsDP0IxH9r2yRiU/bIJ2sjMUi32wFCMgvwqFCLDSF+5n2mTfOz6nCxzp7X7ucyu9RxqB2NYFly19pY8ivQvnJHbkhPln93o+FFB6RiVthvtBZ51YWpgytM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740076060; c=relaxed/simple;
-	bh=VHgizFaYz1ce+SVHS71EReLg+1ZGhqjTgNtrNddwkIc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=QJApQ3WPySXnxTXPn0FRXSYwyDA7mvJcb1pLyzcWZ4TUTwUGRNRpqRu0QI8C8x701vdjmk9VPwVZg7hT689V0qDrlZ3dOmzep2zhOFlGWZCcMX2AcNiM2yyzNNfBH2tZHigDGC5xcTnJMGewMYc6hlnEwBH6iAOtp7D4ffoJSNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=1SSIrEjH; arc=none smtp.client-ip=209.85.160.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-2b1a9cbfc8dso301605fac.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 10:27:36 -0800 (PST)
+	s=arc-20240116; t=1740076319; c=relaxed/simple;
+	bh=sMr3lvJ7EopRpQyFUlg/MoDrJDe+8pm+RaJvLNxz/5k=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=JCuu8p2TKwiuVy569wPnOV32RJhHkKjbpudqng52p8Yz99mMmdBDC4TgRowDd9R9GiYjn0ZSdhjxBIUuj3FuYew+VmnRNbBHDZyuip+1fxWB+xGeo0+RJpFtZa8KT7JyRcloH8ItMz6gPC5eCUrqroUKQSKPLSaA9sF97YF6Cls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KKfKmhv4; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5dee1626093so4465764a12.1;
+        Thu, 20 Feb 2025 10:31:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1740076055; x=1740680855; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=W7qk0FcOBmefqQ8ES313TjuenUiSsXs8dKbnSBmPA7Y=;
-        b=1SSIrEjH90mSrpXDTaWr1//pNXAGMg37AmfHRR3j0KpGQehZOSENaI1jI0C9oZWCJd
-         w68ay8tCsRevFlbC4QYrloGmYGh14zD7xu3uG63lBLDeXGYcJ3E/Hy7wnSVhvWRMzXFt
-         dIWiixbtiyiFc8nz0ZAmfx2aVDXzuHbRYAqM+aUAHpH9RBOpJvi2RqZ+I5CHEP6b8w68
-         Kea+ce4o841ANlA/gvEKM/s6anhc7r3v7zTWRb8HXioFhzfuZNuSC7ASItHj5y4As+hG
-         L0zmo0sZWsW2w1UpVY1fPVp3odAYHD7ESPQ8pamkUA3+Rtkd54Tm0/WBuXO7KZ79CcFh
-         0qng==
+        d=gmail.com; s=20230601; t=1740076314; x=1740681114; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sMr3lvJ7EopRpQyFUlg/MoDrJDe+8pm+RaJvLNxz/5k=;
+        b=KKfKmhv4WUrXRRr6H8rDFbwcU40/37aJOlGT9IeYCjCe1i3bbhKAV1A+e28KEW8Q09
+         T3N3FZHX2UGyBgIOffQbKAZaOqpVJokIOGWw1TZWEB6FNk55kiNRE2ikQEmyUrY/gZ+W
+         lStY2bRgVtkpI/wUh5z9OzsKrApirjvrEf9nyPXrrDwIXnUVqSbBbfzq9ugoCzENYqsH
+         YQbPge37FdSZQ4mMNuLVCA4VucxsPAMJQ4FmLoy/p9JN5qt3l832VeRFR7Z3wnDO1Tu4
+         frTp0isDsQTLx7+5vgO5JLaYXUy1mMExevPzhqUodZpzx/Ml5e0eulyhaLNXz8m243o2
+         w1Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740076055; x=1740680855;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W7qk0FcOBmefqQ8ES313TjuenUiSsXs8dKbnSBmPA7Y=;
-        b=MC+A/PUm0IQPAVzM7DQ0bL2accpYBCjfs6SlNWLoCpaREXGzyDNUJRaMCBhG2ldSIc
-         2NgTpe19x1/nKqsVF67uUIpxF0Jj+tddvG4KRT0SYENkMEGaXoLpvJ5tbfjxggs9RQub
-         ysDAJNkUlHhliwJ96SZ5oOdZCavvGks5PTAvWYu5CBDu3qKgunoBu+n2EZbcVKPC44pt
-         9yECxWCfZ5uVdfbRkedRvYkvYCUsCvcSRVkCMho2YR5pX46+VXFOFsEQ1oRLaVoASM6m
-         CMOAditIPe+w42i9Iq2azZeCndgwORqj6AVSeKEqtxonxpUR2jRMkZhXXFmZJPj4HnX3
-         NvKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUdaUDZhSANWQB7RBFjf6HxkiCTeRr54enPDxeLtlLP97X9lkTDOjAF4AF3G9W/bYu0y7bfYfYjjhXZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPc4Uc3zTQFtTxxBZNUSgQX7TgVr8TQBd0muyufpmFpwNDvAgr
-	nrUKfcrPuvDDqrjaXt/zZcSW/Wb70naRlkhQzq/Gb0Z+ch4Cy4UwhPJ3Wwfo86U=
-X-Gm-Gg: ASbGnctQUgdE94QdQmOAryLUB7wpmwcmaDKsM+4GgvZ3sjs2EPGy7d6ANdLkYlNUnHb
-	NIvcfKHM/TwN0OHE3/ohvema6RYb2pTP2PCARulXRgqEZMtae9aodcFnWOG3sBGQY2kmM3KVZEh
-	vQ1O0hc8DorbBB3dTPHBIbaYyzwr/pNCtlb/w4EfRoN5fzle5jrnDP+Xw9yjhaUHJzukoswvF76
-	0ltT8oKtNL3D5VRDOiTzsD7fvdgqmV0FtfFPALTWjXhnnik4gwQVRuyVJiuc144zCrllzWJykOM
-	cbCrC+viKCSpgFUZCoVj3kQLI8K//VdUjzZ5jq2Pdfa1y5PrZYqQ
-X-Google-Smtp-Source: AGHT+IGsm/MqvD+9VZNwdbbtbnUbjtDWYbJQ7F2+IksnXJpGnAqy8TY/Rb9MOR38Jj96OQB0zkHZQg==
-X-Received: by 2002:a05:6870:1705:b0:297:2763:18d4 with SMTP id 586e51a60fabf-2bd50cef076mr52222fac.15.1740076055473;
-        Thu, 20 Feb 2025 10:27:35 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2b963a16847sm6402045fac.49.2025.02.20.10.27.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Feb 2025 10:27:34 -0800 (PST)
-Message-ID: <fd3ba169-c5e0-4405-961f-d7c11c68dffb@baylibre.com>
-Date: Thu, 20 Feb 2025 12:27:32 -0600
+        d=1e100.net; s=20230601; t=1740076314; x=1740681114;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sMr3lvJ7EopRpQyFUlg/MoDrJDe+8pm+RaJvLNxz/5k=;
+        b=E3IV6hGVW3CmwKmuDqmOsaQ5JO4xfzTE1rlwkJFsjt0H4zGFhv3f3cM3MVR1xVfuSd
+         E4ad8zGqqD/0yIXEUglF+YmWzfFXC1Mb8FBlho2h5Lf76g/n4LNASnZOLeJXAiaIGAKV
+         9wJ13g2G5g027sB5e5/gNPItXQX3jPD8zW6sIyaYAOI0SS3eZCp+4XBSHUxLUxKUMep0
+         JjtMutn7HuIvqdwDu6qkg6nzSLMFTj+4rLEMA6CuW4dms3mGcC2BeF5XCrN//J7D2ZWQ
+         xvOsEwq8nzrN6BbJc8t5JeVBtibSNU0rr103GBsvkU+gghSOOZT/CWuoQwytNM/eIaPP
+         Ur7w==
+X-Forwarded-Encrypted: i=1; AJvYcCWLq9BAtr8gyNlF0IKTwcAc5Hg4gYZxJsZTmUE57GDFcPq+FmJ3S7dAEX7Gs7mvkrV8Q4LarlTmj9tP@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEiO29t+8J8Qu/SaDxoBSMYAQs+mwSkkYB9PF6smxnxFHbGIsE
+	bZvgyH81stkP4LduWVDPT3RxGmzimWudHLvCnlSQMAnz40UpgqGY
+X-Gm-Gg: ASbGnctPAtfy0MF9KcQmdx0e6MwgAWYt1K88yWGxggiBlIPPE9XdcCKva3DAGjgA9sP
+	gSCqt2ir5ggbYPpo0pG/MwMZFNNbhvhiBALPj6jhMBeoVtPxr/spOThLSrwLchrDMuoxynlGT7t
+	Tt4xAWSYfJ/KJRYcuhcIq1rkDDNPxDdhzxBZhZp+v+PW8GlUoxlqNxG0Lt+cbdXIrSsBsPx/Sb0
+	tnUXFtGfzP7n6EcP6MLzJiRQ+3xmoTDELoOFoDTESPiBSKrTy4c1CEPdvyh4Byf6exW3OmZd6Ef
+	/EBcGvdtFjN9fikjffathCgUsVUCOsIiloTjOpMtqXjJsklZTnoNJG5O2WZMUcelSeUxOwEo
+X-Google-Smtp-Source: AGHT+IFbxBiIiVyThGFUApBE/J2v7Yf4y9GSheJDY9cjGQbwdKH79wDotPht1emZ1XR1jrwSaRJKuA==
+X-Received: by 2002:a05:6402:3491:b0:5de:5e08:babd with SMTP id 4fb4d7f45d1cf-5e0a12b9c7amr4570026a12.11.1740076314077;
+        Thu, 20 Feb 2025 10:31:54 -0800 (PST)
+Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece270b17sm12453533a12.62.2025.02.20.10.31.50
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 20 Feb 2025 10:31:53 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 14/14] Documentation: ABI: testing: ad4080 docs
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250220135429.8615-1-antoniu.miclaus@analog.com>
- <20250220135429.8615-15-antoniu.miclaus@analog.com>
- <8f588f4b88d122815df694660d19672e8ccd3d70.camel@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <8f588f4b88d122815df694660d19672e8ccd3d70.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
+Subject: Re: [PATCH v7 0/3] Add HDMI audio on the rk3588 SoC
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <2357838.ElGaqSPkdT@earth>
+Date: Thu, 20 Feb 2025 19:31:36 +0100
+Cc: linux-kernel@vger.kernel.org,
+ Algea Cao <algea.cao@rock-chips.com>,
+ Heiko Stuebner <heiko@sntech.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ dri-devel@lists.freedesktop.org,
+ Niklas Cassel <cassel@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ kernel@collabora.com,
+ David Airlie <airlied@gmail.com>,
+ Dragan Simic <dsimic@manjaro.org>,
+ Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sugar Zhang <sugar.zhang@rock-chips.com>,
+ linux-rockchip@lists.infradead.org,
+ Chen-Yu Tsai <wens@csie.org>,
+ FUKAUMI Naoki <naoki@radxa.com>,
+ devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Johan Jonker <jbx6244@gmail.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Alexey Charkov <alchark@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <BA73C4A1-C680-4748-9CE1-4B3B19A14261@gmail.com>
+References: <20250217215641.372723-1-detlev.casanova@collabora.com>
+ <B8EF5196-55FB-44EC-B93C-E327C791225B@gmail.com> <2357838.ElGaqSPkdT@earth>
+To: Detlev Casanova <detlev.casanova@collabora.com>
+X-Mailer: Apple Mail (2.3826.400.131.1.6)
 
-On 2/20/25 8:53 AM, Nuno Sá wrote:
-> On Thu, 2025-02-20 at 15:54 +0200, Antoniu Miclaus wrote:
->> Add documentation for the ad4080 attributes.
->>
->> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
->> ---
->>  .../ABI/testing/sysfs-bus-iio-adc-ad4080      | 55 +++++++++++++++++++
->>  1 file changed, 55 insertions(+)
->>  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad4080
->>
->> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-ad4080
->> b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad4080
->> new file mode 100644
->> index 000000000000..e37bfba0e989
->> --- /dev/null
->> +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad4080
->> @@ -0,0 +1,55 @@
->> +What:		/sys/bus/iio/devices/iio:deviceX/lvds_sync
->> +Date:		February 2025
->> +KernelVersion:
->> +Contact:	linux-iio@vger.kernel.org
->> +Description:
->> +		This attribute handles the data synchronization
->> process.Because the CNV
->> +		signal is not taken into account by the FPGA when capturing
->> the data, we
->> +		need a process that configures the ADC to output pattern
->> data, writes the
->> +		SYNC bit in the axi_adc register map, waits until the custom
->> HDL syncs the
->> +		data correctly, and then changes the output mode to analog
->> data instead of
->> +		the fixed pattern.
-> 
-> I'll comment this one in the driver. I have some questions on how this works...
-> 
->> +
->> +What:		/sys/bus/iio/devices/iio:deviceX/lvds_lvds
->> +Date:		February 2025
->> +KernelVersion:
->> +Contact:	linux-iio@vger.kernel.org
->> +Description:
->> +		Configures the signal type of the CNV signal. The value can
->> be either CMOS
->> +		(lvds_cnv=0) or LVDS (lvds_cnv=1).
-> 
-> The name seems to be wrong with what you have implemented. From this
-> description, I would think of this as a DT property? Can the signal type really
-> change at runtime?
-> 
->> +
->> +What:		/sys/bus/iio/devices/iio:deviceX/filter_sel
->> +Date:		February 2025
->> +KernelVersion:
->> +Contact:	linux-iio@vger.kernel.org
->> +Description:
->> +		This attribute enables the digital filter functionality of
->> the AD4080.In
->> +		order to capture data correctly, the function must configure
->> the ADC
->> +		through SPI to select the filter type and enable data capture
->> in filter
->> +		mode through axi_adc(In this mode, data is gated by a signal
->> generated by
->> +		the AD4080 (GPIO1 and is not continuous as it is when the
->> filter is
->> +		disabled).
->> +
->> +What:		/sys/bus/iio/devices/iio:deviceX/filter_sel_available
->> +Date:		February 2025
->> +KernelVersion:
->> +Contact:	linux-iio@vger.kernel.org
->> +Description:
->> +		Return the available filter modes that can be set.
-> 
-> There's a standard attr for this. I think we settled 
 
-Yup. filter_type and filter_type_available. 
 
->> +
->> +What:		/sys/bus/iio/devices/iio:deviceX/sinc_dec_rate
->> +Date:		February 2025
->> +KernelVersion:
->> +Contact:	linux-iio@vger.kernel.org
->> +Description:
->> +		Set the filter’s decimation rate.
->> +
->> +What:		/sys/bus/iio/devices/iio:deviceX/sinc_dec_rate_available
->> +Date:		February 2025
->> +KernelVersion:
->> +Contact:	linux-iio@vger.kernel.org
->> +Description:
->> +		Return the available filter's decimation rates.
->> +
->> +
-> 
-> I'm not yet convinced we need the dec_rate custom attr. I'll add more comments
-> in the driver.
+> Wiadomo=C5=9B=C4=87 napisana przez Detlev Casanova =
+<detlev.casanova@collabora.com> w dniu 20 lut 2025, o godz. 18:03:
+>=20
+> Hi Piotr,
+>=20
+> On Thursday, 20 February 2025 06:16:20 EST Piotr Oniszczuk wrote:
+>>=20
+>>=20
+>> Detelv,
+>>=20
+>> Just curious of your opinion:
+>>=20
+>> I=E2=80=99m on 6.14-rc3 and using
+>> =
+https://gitlab.collabora.com/cristicc/linux-next/-/commits/rk3588-hdmi-bri=
+d
+>> ge + this v7 series.
+>=20
+> Do you have the branch available somewhere ?
 
-If we do need it, in another driver recently we concluded that
-decimation rate is the same as oversampling ratio and there is
-already a standard attribute for oversampling ratio, so we used
-that.
+My tests are on my MiniMyth2 distro.=20
+My build system is vanilla upstream+patches style. =20
+Kernel is mainline 6.14-rc3 kernel with applied series of patches:
 
-> 
-> - Nuno Sá
-> 
-> 
+PATCHFILES +=3D 1001-math.h-add-DIV_ROUND_UP_NO_OVERFLOW.patch
+PATCHFILES +=3D =
+1002-clk-divider-Fix-divisor-masking-on-64-bit-platforms.patch
+PATCHFILES +=3D 1003-clk-composite-replace-open-coded-abs_diff.patch
+# hdmi video support
+PATCHFILES +=3D =
+1010-FROM-ML-phy-phy-rockchip-samsung-hdptx-Don-t-use-dt-.patch
+PATCHFILES +=3D =
+1011-FROM-UPSTREAM-drm-rockchip-Don-t-change-hdmi-referen.patch
+PATCHFILES +=3D =
+1012-FROM-UPSTREAM-drm-rockchip-vop2-Drop-unnecessary-if_.patch
+PATCHFILES +=3D =
+1013-FROM-UPSTREAM-drm-rockchip-vop2-Improve-display-mode.patch
+PATCHFILES +=3D =
+1014-WIP-drm-rockchip-vop2-Improve-display-modes-handling.patch
+PATCHFILES +=3D =
+1015-drm-bridge-dw-hdmi-Sync-comments-with-actual-bus-for.patch
+PATCHFILES +=3D =
+1016-drm-bridge-connector-Sync-supported_formats-with-com.patch
+PATCHFILES +=3D =
+1017-drm-connector-hdmi-Evaluate-limited-range-after-comp.patch
+PATCHFILES +=3D =
+1018-drm-connector-hdmi-Add-support-for-YUV420-format-ver.patch
+PATCHFILES +=3D =
+1019-drm-connector-hdmi-Improve-debug-message-for-support.patch
+PATCHFILES +=3D =
+1020-drm-connector-hdmi-Use-YUV420-output-format-as-an-RG.patch
+PATCHFILES +=3D 1021-phy-Add-HDMI-configuration-options.patch
+PATCHFILES +=3D 1022-phy-hdmi-Add-color-depth-configuration.patch
+PATCHFILES +=3D =
+1023-phy-rockchip-samsung-hdptx-Fix-clock-ratio-setup.patch
+PATCHFILES +=3D =
+1024-phy-rockchip-samsung-hdptx-Drop-unused-lcpll_config.patch
+PATCHFILES +=3D =
+1025-phy-rockchip-samsung-hdptx-Setup-TMDS-char-rate-via-.patch
+PATCHFILES +=3D =
+1026-phy-rockchip-samsung-hdptx-Add-high-color-depth-mana.patch
+PATCHFILES +=3D =
+1027-phy-rockchip-samsung-hdptx-Cleanup-internal-rate-han.patch
+PATCHFILES +=3D =
+1028-phy-rockchip-samsung-hdptx-Avoid-Hz-hHz-unit-convers.patch
+PATCHFILES +=3D =
+1029-TEST-phy-rockchip-samsung-hdptx-Add-verbose-logging.patch
+PATCHFILES +=3D 1030-WIP-drm-bridge-Add-detect_ctx-hook.patch
+PATCHFILES +=3D =
+1031-WIP-drm-bridge-connector-Switch-from-detect-to-detec.patch
+PATCHFILES +=3D =
+1032-WIP-drm-bridge-dw-hdmi-qp-Add-high-TMDS-clock-ratio-.patch
+PATCHFILES +=3D =
+1033-WIP-drm-rockchip-vop2-Add-high-color-depth-support.patch
+PATCHFILES +=3D 1034-WIP-drm-rockchip-vop2-Add-YUV420-support.patch
+PATCHFILES +=3D =
+1035-WIP-drm-rockchip-dw_hdmi_qp-Make-use-of-phy_configur.patch
+PATCHFILES +=3D =
+1036-WIP-drm-rockchip-dw_hdmi_qp-Add-10bpc-and-YUV420-out.patch
+PATCHFILES +=3D =
+1037-WIP-drm-bridge-dw-hdmi-qp-Enable-10bpc-and-YUV420.patch
+# hdmi audio support
+PATCHFILES +=3D =
+1040-drm-bridge-synopsys-add-audio-support-for-dw-hdmi-qp-v7.patch
+# cec support
+PATCHFILES +=3D 1045-drm-bridge-synopsys-add-cec-support.patch
+# var additions
+PATCHFILES +=3D 1060-net-ethernet-add-yt6801-gige-pcie-controller.patch
+PATCHFILES +=3D =
+1061-net-ethernet-yt6801-gige-pcie-silence-debug-msgs.patch
+PATCHFILES +=3D 1062-WIP-iommu-rockchip-add-flush_iotlb_all-ops.patch
+PATCHFILES +=3D 1063-media-rockchip-add-rkvdec2-driver.patch
+PATCHFILES +=3D 1064-media-rkvdec2-add-iommu-support-v3.patch
+PATCHFILES +=3D 1065-wip-add-hevc-support.patch
+PATCHFILES +=3D 1066-wip-hevc-add-ref-frames-support.patch
+# dtsi additions
+PATCHFILES +=3D 1070-arm64-dtsi-rk3588s-add-vop2-clock-resets.patch
+PATCHFILES +=3D 1071-arm64-dtsi-rockchip-3588s-add-hdmi-bridge.patch
+PATCHFILES +=3D =
+1072-arm64-dtsi-rockchip-3588-hdmi-add-audio-support.patch
+PATCHFILES +=3D =
+1074-arm64-dtsi-rockchip-add-rkvdec2-video-vecoder-on-rk3588.patch
+PATCHFILES +=3D 1077-arm64-dtsi-rkvdec2-add-iommu-support-v3.patch
+PATCHFILES +=3D =
+1078-arm64-dtsi-rockchip-rk356x-add-rkvdec2-video-decoder-nodes.patch
+# dts patches
+PATCHFILES +=3D =
+1080-arm64-dts-rockchip-rk3588s-rock5a-dts-improvements.patch
+PATCHFILES +=3D =
+1081-arm64-dts-rockchip-rk3588-rock5b-dts-improvements.patch
+PATCHFILES +=3D =
+1082-arm64-dts-rockchip-rk3588s-rock5c-dts-improvements.patch
+PATCHFILES +=3D =
+1083-arm64-dts-rockchip-rk3588-rock5itx-dts-improvements.patch
+PATCHFILES +=3D =
+1084-arm64-dts-rockchip-rk3588s-opi5-dts-improvements.patch
+PATCHFILES +=3D =
+1085-arm64-dts-rockchip-rk3588-opi5plus-dts-improvements.patch
+PATCHFILES +=3D 1086-arm64-dts-rockchip-rk3588s-add-opi5pro-dts.patch
+PATCHFILES +=3D 1087-arm64-dts-rockchip-rk3588s-add-nanopi-m6-dts.patch
+PATCHFILES +=3D =
+1088-arm64-dts-rockchip-rk3588s-nanopc-r6s-dts-improvements.patch
+PATCHFILES +=3D =
+1089-arm64-dts-rockchip-rk3588-nanopc-t6-dtsi-improvements.patch
+PATCHFILES +=3D 1090-arm64-dts-rockchip-rk3588-add-rock5t-dt.patch
 
+ patches are from: =
+https://github.com/warpme/minimyth2/tree/master/script/kernel/linux-6.14/f=
+iles
+
+Kernel config is: =
+https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-6.14/f=
+iles/linux-6.14-arm64-armv8.config
+
+Above patching is effectively:=20
+
+- =
+https://gitlab.collabora.com/cristicc/linux-next/-/commits/rk3588-hdmi-bri=
+dge
+- Yours hdmi audio v7
+. added cec support
+- added rkvdec2 (including hevc)
+- some dts enablements for above
+
+
+>=20
+>> On mine rock5b all works nicely but - at boot time - i=E2=80=99m =
+getting some oops
+>> in kernel like this:
+>> https://gist.github.com/warpme/e1668acbef7817e5d2a88a6840328722
+>=20
+> I did notice that at one point but it disappeard after a rebase on the =
+the=20
+> latest master so I didn't look further into that.
+
+Indeed - i.e. i don=E2=80=99t have these oops on rk3588 based =
+orange5plus.
+Also 6.12 kernel is clean.
+But i have them reproducible on rock5b (and also e.g. on rock5t)
+ =20
+> Could it be related to 2518a0e1b878042f9afa45ae063e544a16efc1a3 "ASoC: =
+simple-
+> card: use __free(device_node) for device node" ?
+>=20
+
+I tried with 2518a0e1b878042f9afa45ae063e544a16efc1a3 revered and this =
+NOT helps.
+With reverted above commit, dmesg is: =
+https://gist.github.com/warpme/dbfe813583e4660a02b74315f193e768
+
+ =20
 
