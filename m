@@ -1,160 +1,208 @@
-Return-Path: <devicetree+bounces-148787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4EF3A3D667
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:22:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A533A3D680
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:26:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6DE016D650
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:22:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CB813B5658
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 398C61F0E51;
-	Thu, 20 Feb 2025 10:22:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDB1D1F131A;
+	Thu, 20 Feb 2025 10:26:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="sI8O7S0Y"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="VN7NdsOO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2070.outbound.protection.outlook.com [40.107.247.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BAC71EF080
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 10:22:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740046943; cv=none; b=ClIEm6BgRqrKFkoJldiXRLJbHZTfEzdaUxy3zm2GZ0W+iHGdtMpDiL2MIeCKtGmWs03HO/K9HAq8m1KnQDipJTRH+RfHjEKIRPTL6rX48o3FX6dfmXu6MtP4g4NZr2dQdymxlRph2RE6K75oUmQ3fwWsQdKPjII9JeVUSNhGwOE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740046943; c=relaxed/simple;
-	bh=jOVTKQclGET5JYRc6XUbL9hn0R2HM4yai3zEupfHd2E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=U7ODoh7EwC6QZGvkXWP/5ZksTOvUt8JcxJ2XWmSII76y3UL/gY8MNgQnIJr4OpIeS5McMpsLrpsOyfv6STCJ3HlbDHEXfvRF0MxeevagG72bZs/exlbubuBO7d6fzyXfuOPSsx5zyuGrgRAj9Sj4046diWTWxJnA+QIOH0auln0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=sI8O7S0Y; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-545fed4642aso854332e87.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 02:22:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1740046938; x=1740651738; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XkSjnPvhIdGSMhTbx4xuOa7rgF3IDrn9ZbqjQjQTkQo=;
-        b=sI8O7S0Y+7kDFw+A6OnhYh0Prqh+udMMJuxY5+kRemV3TRjmCEp2JcwazAbBuRDcDh
-         HNuwTDDT7VipdNFdqY8AFtRTmgRWsxC6FhZQRDJgihK6Ko0EU6gS8ABkH/wUrfvkNCAX
-         qofjcaXFY3XWSuxDevmpLRta/bumGsaJcQ3aB0F+UI839y5JMrMmZv6T5XLW5TxTaQY+
-         /yCGfWcwzBjRIqDtazxwdTG6f66fRopI2JtuQHZEwDL6bx2CEtVsD7KxgQjb1CmIr8hg
-         Zbwir77cNb9d07BBezLKcOMsKqLmZbqemiyHVtd2sZnFE7MxJLEEdmfL4nx1a/k5cxVD
-         qrPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740046938; x=1740651738;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XkSjnPvhIdGSMhTbx4xuOa7rgF3IDrn9ZbqjQjQTkQo=;
-        b=axsXe8Ph9nAwVoWLyXWGEoM4wbm57+VZli9qtYIWtxdly6fwuYlZBVUehiwsed+E/0
-         AomiaM8Hw0gRJ7mUP0H7R3AFlJx0IxQaTWzaz9Si+HzViveCShgm7jodxO4urosFMtFi
-         Wae3wUGaiNCTaSvTIDbSz/iyVVsIXPHo03qxO+O+DiHzrYtiWnFz1T97szWa4rUQmSyX
-         tc+g5LVw2gGfXZ0h3bZ9WJNcxwVkxCYfPgHf7ehVSzjkgUznnaz7iWTIEmwSfndck5/a
-         6Y5TF+8Qtslcxuv2fFrl4cmuP44Y/FEa0P8SqvxAyG7zn7Uv0tGyKNo14m28/8Jch/3K
-         uvAg==
-X-Forwarded-Encrypted: i=1; AJvYcCULsfbhaNXVTuigRt8KBsDEEITsqSE24/sTrvZb6jPZry160d3Wikqm+53+1U3rRk/tSDQAUAdbtFLw@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCNRCegJBuEWNPgcjzt4b0ZdG9nawo6k0xVCn7AwOgRAS7ORNS
-	MuyGdeRECPaTvrLGJ+rBAcfW3TsKBMvlW7zWOHGXxxQq5VAIWVW6MJTRIiX4Q+oBTtbYR3+Jg5g
-	ls9e/qWjEpoc+fnl2Ucii3TbNs44ik0motMTaLA==
-X-Gm-Gg: ASbGnctPW73AoLbQpJVpyOvlZL/X2JkpEmOj1KSFaE0Wuk4QWwvwl0V6aULmpd26coa
-	G5CVoLXZZShf34tkqR3SZ2noiq3/ai8QYdUD9oNs9GbbMeNJl+7VYzh15YdV1r6knK9JjvjlSyP
-	nKV6V48fOlGVG/njDua+BzRm3SXW0=
-X-Google-Smtp-Source: AGHT+IE7ycVVt1d8Epdhqngc45O4P0xrOwOQkPZv5wp+QGx6BPbp3JM32UOKdgqnWZwOei+ObE4ZSLIyhVDxExTl7Dg=
-X-Received: by 2002:ac2:4c46:0:b0:545:bf4:4bc7 with SMTP id
- 2adb3069b0e04-547243c348amr871274e87.19.1740046938079; Thu, 20 Feb 2025
- 02:22:18 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4FB61F0E5D;
+	Thu, 20 Feb 2025 10:26:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740047171; cv=fail; b=Gc1jjjymUgitsgUWNrZit2W5eeUkKRk/SPAcWHxfC/tXHpqMiZl/VxwEOr/O+NhHyN2IW5XhZ7c4QtyF47cjinuMMlcHTt3xyIjIQFluW9RgKwZc1N9I3jyOJWhgZG79jkDh9rDNgFz2XEsPNPIzVnWSc0ZTI5gX6916YQgv29Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740047171; c=relaxed/simple;
+	bh=oag5FjhH+GTnC1Oopa/AgCwJYAk6WAk1XILq/yRDP2g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=fmHJ44w2QJOWzn5i/T+efJlxw7wugCWs01jFgFf2V+OmLW+L5O2iws6e4ksRlddecY69KV7znJW1EaDDiUe+Bvd+cuqAr0vCjqhcx9XGLJRLad0i4sqKujLJHlibGXLRm8gB+AkSs/h/4FQtzMPLnvUuMKoIcvVvZdiAqmZV7co=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=VN7NdsOO; arc=fail smtp.client-ip=40.107.247.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=El7c2iALGshqVgDQLhJjPo8iJnXA4ixfxzm0jtpO39swghrppX3moBOTwcx9XX5HjOVuuuyrO2J2IgFO7K3vixxOw4i/dwUHyKaN7zmyKLXleEDJ/GnrVijrLwOfhwCm7oN+BocuSC8t3FpG89tNLtmfi7IcPzLT5wI5SvDRArFK9ixQa0QlIN4UQVbFtEhsYy1q1Z9jlZ//lG6MFnmOhO1s17R5iaZo2Ih2nRuAZLD4fuGSxVF52vudU1O8xmwQFKI1RzZi65ViqpocjzRdGyYzJesbyDzmRnttjKNx1VfB4MdkEhyH4DovjCrp79o34fKvYCF/pxPjlx2bnVdeig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iJfi73Jr0AEU2g8qCrCDuIrFDoa1dNmjHuoOXNJn8pk=;
+ b=qfDYGz/uBVPHYRmpe9145dN1tt8Wqa2sCEQg5mQEV5+kQ38fa6nGE8oxaOqDEZPl6ZEMTyggjfAYFSQWsKNaINLPsTuvJm/Gsmpfc3My/dsGalG10AI8d8pE8k3slw1YghlvUIy4aZDSU9Kaf1OOEgKM20wzfvnco5Y6VlKgXPlKRIGB5hwnwt57hGr1OHwPTyJ3aCHoJR6oJfptYoJYZpJ8QCE1zUXIgWSnjjc9UcalhfFhPZR4ki/AW+M96x4Z5Kzarp/aVRwJP6IrKRqpYr3VctFbGUrwKkTsYh1NYXwZj8oEcbJGvYIOmx5NnAJefFrLLQbyRDF842KrXN9lcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iJfi73Jr0AEU2g8qCrCDuIrFDoa1dNmjHuoOXNJn8pk=;
+ b=VN7NdsOOCGWBY0G5wi+h+SGMeyqtKKeav1nnv6BspXquSworRn7kWldsKlJvCEI8VIyje8YhBDt3R17ndIrDDj6W7bDudB+idFnASemgAG5j+wA4nDtNy+c5iT67+Hyq/liA0qUKHnkNpfKLrksTuDtOEbSsrgRLUY37dCLA+AETK4V4W2r4bA6/7DELZoenYYrirR11I1veSdjaXlRibmfUgKrhs2KWagXRA03cFJPt7hI8id7ytQJ6qCH8kAbg1IoYzb8SgVwLHYKSrn3MaMBh2qDKymk9xjix6VZOq97kqC2zTwJ5OAH/MCtWXKRPwvGbv4M1bTuyyty7XzOV3A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB8829.eurprd04.prod.outlook.com (2603:10a6:102:20c::17)
+ by PA4PR04MB7598.eurprd04.prod.outlook.com (2603:10a6:102:e9::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.17; Thu, 20 Feb
+ 2025 10:26:07 +0000
+Received: from PAXPR04MB8829.eurprd04.prod.outlook.com
+ ([fe80::cdc5:713a:9592:f7ad]) by PAXPR04MB8829.eurprd04.prod.outlook.com
+ ([fe80::cdc5:713a:9592:f7ad%7]) with mapi id 15.20.8445.016; Thu, 20 Feb 2025
+ 10:26:07 +0000
+Date: Thu, 20 Feb 2025 18:22:42 +0800
+From: Xu Yang <xu.yang_2@nxp.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, peter.chen@kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, jun.li@nxp.com
+Subject: Re: [PATCH 1/6] dt-bindings: usb: chipidea: add compatible for
+ i.MX95 platform
+Message-ID: <20250220102242.g2sijuvh4wq56gq6@hippo>
+References: <20250219093104.2589449-1-xu.yang_2@nxp.com>
+ <20250219093104.2589449-2-xu.yang_2@nxp.com>
+ <Z7YbsvFMb7ZP6xFu@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z7YbsvFMb7ZP6xFu@lizhi-Precision-Tower-5810>
+X-ClientProxiedBy: SG2PR02CA0058.apcprd02.prod.outlook.com
+ (2603:1096:4:54::22) To PAXPR04MB8829.eurprd04.prod.outlook.com
+ (2603:10a6:102:20c::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217-03-k1-gpio-v5-0-2863ec3e7b67@gentoo.org> <20250217-03-k1-gpio-v5-1-2863ec3e7b67@gentoo.org>
-In-Reply-To: <20250217-03-k1-gpio-v5-1-2863ec3e7b67@gentoo.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 20 Feb 2025 11:22:07 +0100
-X-Gm-Features: AWEUYZkU7hdFlPspPbvUdBzoHfPqDtoAsaxfbkwGu_CSQGks7Gip_UiARp6sYIc
-Message-ID: <CAMRc=MdGBTXRSAgY2vjOrqVVRzOyYh7N8yZsjK+W4cYFCQAwhQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/5] gpio: of: support to add custom add pin range function
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Conor Dooley <conor@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>, 
-	Jisheng Zhang <jszhang@kernel.org>, Jesse Taube <mr.bossman075@gmail.com>, 
-	Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8829:EE_|PA4PR04MB7598:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1e17a581-6fdc-460d-cc25-08dd5198fc8c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|7416014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?5aWfbtyTAKVEM3z/LeTtO64TOnZ128uBmxn3BIAJFiRBAQSrjzafV+JJlU9V?=
+ =?us-ascii?Q?VXT0c4+PYyasO1lgoc+A0KvV4w4yP51TsCDHPi40h8aiVu/8R/N4IEBP0Bfn?=
+ =?us-ascii?Q?WyOhbawPE58ZKqD6ztvyIFIbqcvlQ9hUxlPMnhyCqK9t9p7xGaxdWviMQFb0?=
+ =?us-ascii?Q?1nzgpfEIcfOOlQktQWlq44uOEcO0ij/OB45WxvF84I0TmAs4NZ4+CjuumWeF?=
+ =?us-ascii?Q?L8id1T3xoGBzreA+Kk+X/xR5z8Mopms+gKJcwwp1Wt7SOqq3J8SkzWV7sSbt?=
+ =?us-ascii?Q?yEUz95kLoJ5UG7eyRilcl+LWXkGX4e0xnpFfk4LijwTgStXGOF77xggFlv6y?=
+ =?us-ascii?Q?A+idcXL7sBdl0GxwOJCN2Jk9sxbyjgvw2HBnbo9nZLbnHIvGPmto0us/ejpU?=
+ =?us-ascii?Q?TyJl2RreP36FlPRmwR6fY4LW6zNqjcmx3Qa61t3Izz78cQA6OrdoewBDQm/X?=
+ =?us-ascii?Q?qLZci59VAkFMvyjFTSleVFaenYGy1PZ/DUY2DWaesJk45XQSPPBnlI1oHdlD?=
+ =?us-ascii?Q?JL7ktO3883XpBRSxrLRQmKxpyZ6x5DBlvUY42d16fk44OIMIYDXIejuarTOV?=
+ =?us-ascii?Q?aDwRdAQu/7pK6IyyleQruYp1hr46eXQyT324r85jwPyxUaqifcLHxqX705Ix?=
+ =?us-ascii?Q?edk1m9nROdsIpb0gp4/p4TPWKC/dqFgegrQGUOUnHZyDb+JflGUjnSmZqBkt?=
+ =?us-ascii?Q?IapPnHq3DIfiH6vlnDWif0GhvYmGRfq8C3+vjq1Lz/hBUNuATRZabzeOUlDR?=
+ =?us-ascii?Q?/u2Dfux70XKWnCkCZ0rUhE7kYpPb9nZqxQbgnycVoiJYXFWcV1OMWUhRBWh0?=
+ =?us-ascii?Q?BAkVQPpNDH7WF4GoDco0CBo6S9LHyBkTUFkMxnSdVv1U4EH1Uz5rSxx85uB+?=
+ =?us-ascii?Q?SuVYjVmFVOUBn9hk2aeLxs6BISvcFxPORibCRfdT2XqmIJAzS17nyK/uEgoL?=
+ =?us-ascii?Q?5l96BdfEFifacGsYAFUsP5y7OhiQa1B9aXzU7YKjoyh4EXRzpip/+GoQtpbG?=
+ =?us-ascii?Q?vFQ+A6xpAyadbd7XeXMY9DzInPMlaVP1Q8ACHtGO/eSTV8O0K1AMgI7Yl5bQ?=
+ =?us-ascii?Q?g4FP0+FJHNeU3D0xoWU4WlzD3SdQXnM19+Z9BYapq9Jyp8/D0691ccHnWPqa?=
+ =?us-ascii?Q?uAY3Ho3vfG4jf6v1t0PEuCD3kEBVgLbumqZlF7NkF0WhSegYkR/B36D6St5M?=
+ =?us-ascii?Q?bBw2Nz8/8+gmiupZokuL5LXnMXish7vH2VR75BXacunwpyBZbXrx7EjIzJlm?=
+ =?us-ascii?Q?ISV+7P3lJ/W4EbKncExt2IEInPT3sn6SeG05ius6vBpOnpfpQ0Gl8cERC0YX?=
+ =?us-ascii?Q?upGUfrhmW6qQBdR7/EQHx3hAR6vt8e2uN8Nmb8AWSYkMqPk8DE79GuW8Rbfm?=
+ =?us-ascii?Q?czO5F/5XpOFsR3pL/NURVRUGF8Wzy8LRohKEilwSr1SsxjDyn6jmeL3bSkXz?=
+ =?us-ascii?Q?m4tKPjP5fF9XQG6hcBA5EpCtyJ6pzjL1?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8829.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?xj1TDHV2X4SrAWlkkQTVWOvjM36reJr2Mywu5dcFzl+UD/aftY8W0sIffNja?=
+ =?us-ascii?Q?bijJrpXt14c7ms1l0SxkPGHpuJnj8KTw2UlvIp9VSOpo1Wh/4b6PdomvIMQD?=
+ =?us-ascii?Q?+gOGXpVAmqyUiswGeKZs2MqMxCyaN3mTRQ9i1dAICefIZLB32/n48VcY0lJs?=
+ =?us-ascii?Q?TBJh/RZzYREkQ1fWKZ23wrj2lMcnXVuyDSctKxEInJg3bMAuYYzDM0d1qX1U?=
+ =?us-ascii?Q?mctz6BP3B67G3YOHPm6XroQB0jNYpfiHVCQ2xAzaGqdiYWbrRJQ2gLIu6zZz?=
+ =?us-ascii?Q?xB8puVpvOK3qR3jts6DLFbWbCkIvJcDK7Muz+SkIcqF0ozAVRYU2N1ndIkxu?=
+ =?us-ascii?Q?OL+1p6OD+jvxwj7t9IRS9hPKbs2RwHf4mGozNcDuLx1i0jyldviDqYGhaSRL?=
+ =?us-ascii?Q?5djgr+z7Lz13of1kEDSG2vsCm0rNk84YJTcDddy5QTHLewR2LMWBvKelfVRD?=
+ =?us-ascii?Q?g15zLmydYWWfYF40jSlQ7Y7Y/kvT74X/GcBgb1lbbSObVfAtarJ6H8J503lE?=
+ =?us-ascii?Q?YTWEpYHyfAXD0dF6JHlKZjnlsYoo160ZuzoZL0AVnSfmtssB0osvXCjtjJrM?=
+ =?us-ascii?Q?Uo2wnYFr0Dn4ZP9GghGEqyrlzFvBhiuATn3KJpF7t7XvxS1JybQfbcnya/I6?=
+ =?us-ascii?Q?Jj8kVF0aw2gMXpL0KtAQAdTEqbOyYIF4oOiPf2nAIGBP40MCe2r1NqLYQ0sm?=
+ =?us-ascii?Q?uyeEYUMY9wobVIf5Yc6DAwDf80zK1wu2LoVmd0K5mc/i4i6jkG5vkpldTTW8?=
+ =?us-ascii?Q?jxNOzaHLibTAbwmoegrPbAbXRiqRFikxsSITFZjApT+Mn53DKJ8+0RbE8j1A?=
+ =?us-ascii?Q?cTkGnZ8stGaIsm6vuFMsF3NVmKFGLE5lkF9SarPmyO2xAN6vgrOp1GoP+67z?=
+ =?us-ascii?Q?XoTXEE95jnA+N9SQJTF4CLsoVailq73+A1Uw9K+x+dNeWt5fysrjLYa89hKx?=
+ =?us-ascii?Q?aPWXWm4j+MP9lOmnD4Pqcg6GgSs0Fz8RO0UlAm4CQJ866wHORTK6dTpiJ94p?=
+ =?us-ascii?Q?xJuTwtrgvGO/aX5SUfhBDQ+tKpTBx3XAqPHb7qQ0HKEAMKoX4c4r98LYq+2F?=
+ =?us-ascii?Q?HMS8OHXNzENThWU37zlhdixHbyVtHxvV+i2uC56TG2nmS5Az8SF20h6GJrBu?=
+ =?us-ascii?Q?ZSl7FN3pSqYyTlb/XsbZnntAsRzZ9+xlHbu1HX2yEgLcZkoDOeNNY3B46+jv?=
+ =?us-ascii?Q?GB4mkUlOVYB2Z40vIOtKZURi2u4l6zn9AMS75ZWEBHh6UrB+D02sE/G306Xr?=
+ =?us-ascii?Q?CPl2EqYtUpFf59w323mjxLSA8x52AbYPXtSzRt5uMdtWsL+mn0SVaa4tFdi4?=
+ =?us-ascii?Q?XLN/u0drUVcQV2iBeNiptEcsSvzdp/KE1Pg3Nq2Ci3bqZxho5Qpofa89VScR?=
+ =?us-ascii?Q?pzug7aeZlznM74BsRPCrY9FNBc5r3cS8h1QBfgUoqHgDGB7j0JOMWvnsEa35?=
+ =?us-ascii?Q?XTBij1oLXdkXwBAlWBHi1A4ZdnMvXnHoUUBY8G1ntxVKwwqz35SSI8quIC6W?=
+ =?us-ascii?Q?nYHTk9EBs72xfstdfnw8SngpuDcAfSEAnadcBDrxgYMusw1vavmnM4V90RJG?=
+ =?us-ascii?Q?TAtehrn7xELnYTNqz2xJpswFlnd3yKv1hRon3AlR?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e17a581-6fdc-460d-cc25-08dd5198fc8c
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8829.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2025 10:26:07.2023
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VNmLf/gw6KN+q4D8L22Vf5JlF3MXxtSc+aGOF/8YN+UiuqzVfBvA2pQtEadHEjf/uLPca28JUHE7amNzQ2lf/g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7598
 
-On Mon, Feb 17, 2025 at 1:58=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
->
-> Export custom function to add gpio pin range from pinctrl
-> subsystem. This would make it possible to add pins to multi
-> gpio chips.
->
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> ---
->  drivers/gpio/gpiolib-of.c   | 5 ++++-
->  include/linux/gpio/driver.h | 7 +++++++
->  2 files changed, 11 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
-> index 2e537ee979f3e2b6e8d5f86f3e121a66f2a8e083..64c8a153b823d65faebed9c4c=
-d87952359b42765 100644
-> --- a/drivers/gpio/gpiolib-of.c
-> +++ b/drivers/gpio/gpiolib-of.c
-> @@ -1170,7 +1170,10 @@ int of_gpiochip_add(struct gpio_chip *chip)
->         if (chip->of_gpio_n_cells > MAX_PHANDLE_ARGS)
->                 return -EINVAL;
->
-> -       ret =3D of_gpiochip_add_pin_range(chip);
-> +       if (!chip->of_add_pin_range)
-> +               chip->of_add_pin_range =3D of_gpiochip_add_pin_range;
-> +
-> +       ret =3D chip->of_add_pin_range(chip);
->         if (ret)
->                 return ret;
->
-> diff --git a/include/linux/gpio/driver.h b/include/linux/gpio/driver.h
-> index 2dd7cb9cc270a68ddedbcdd5d44e0d0f88dfa785..a7b966c78a2f62075fb7804f6=
-e96028564dda161 100644
-> --- a/include/linux/gpio/driver.h
-> +++ b/include/linux/gpio/driver.h
-> @@ -528,6 +528,13 @@ struct gpio_chip {
->          */
->         int (*of_xlate)(struct gpio_chip *gc,
->                         const struct of_phandle_args *gpiospec, u32 *flag=
-s);
-> +
-> +       /**
-> +        * @of_add_pin_range:
-> +        *
-> +        * Callback to add pin ranges from pinctrl
-> +        */
+On Wed, Feb 19, 2025 at 12:58:10PM -0500, Frank Li wrote:
+> On Wed, Feb 19, 2025 at 05:30:59PM +0800, Xu Yang wrote:
+> > The i.MX95 USB2.0 controller is basically compatible with i.MX7d, except
+> > it needs a second interrupt for wakeup handling. This will add compatible
+> > for i.MX95 platform and restriciton on interrupt property. Besides, this
+>                           ^ typo,
+> 
+> run check-patch --code-spell
+> 
+> > will also add iommus property.
+> 
+> dt-bindings: usb: Add i.MX95 compatible string 'fsl,imx95-usb'
+> 
+> The i.MX95 USB2.0 controller is mostly compatible with i.MX7D, except it
+> requires a second interrupt for wakeup handling. Add the compatible string
+> for the i.MX95 platform, add the iommus property, and enforce the
+> interrupt property restriction. Keep the same restriction for existing
+> compatible strings.
 
-Please, make the API contract more specific: describe the return value
-and check it in the call place if it can return errors.
+Okay.
 
-Also: is this even OF-specific if it doesn't take any OF argument? Why
-not just add_pin_range()?
+> 
+> Fix below nit.
+> 
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> 
+> Frank
+> 
+> 
+> >
 
-Bart
+[...]
 
+> > +    description:
+> > +      One interrupt for USB controller and wakeup interrupt combined
+> > +      case or two interrupts for individual USB controller and wakeup
+> 
+> Needn't descrition here. Items: descrption already provide enough
+> informaiton.  Or you can change first
+> 
+> description: USB controller interrupt Or combine USB controller and wakeup
+> interrupts.
 
-> +       int (*of_add_pin_range)(struct gpio_chip *chip);
->  #endif /* CONFIG_OF_GPIO */
->  };
->
->
-> --
-> 2.48.1
->
+Okay. will do.
+
+Thanks,
+Xu Yang
 
