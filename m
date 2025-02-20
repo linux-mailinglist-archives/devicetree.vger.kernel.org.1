@@ -1,101 +1,122 @@
-Return-Path: <devicetree+bounces-149117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BA59A3E604
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 21:43:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F56EA3E635
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 22:00:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EB973BB088
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 20:42:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D715188C043
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 21:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C137826388E;
-	Thu, 20 Feb 2025 20:43:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 223422641FB;
+	Thu, 20 Feb 2025 21:00:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Jz7UUagN";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="JaGBK3GN"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="N2eGWgaU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40A3F1E9B32;
-	Thu, 20 Feb 2025 20:42:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 922EF1EB1B9
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 21:00:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740084181; cv=none; b=lYE55R/n0KAQF/tA3+SRNDF9RaeGNoSUamqb2jgnUF24SUImh0gRIkXPwjL31yYKp/Vja4YRWmvPUPvhlSPcURK05yER+5dgVegziSbXH3tkZZEJB2mJ28lZl9DsVeQZJyKVklALjZIAoDuR61D+rNvVtQwK68TD5sQwTCE7WkA=
+	t=1740085209; cv=none; b=BkpbopiioayT1QTouvqjmBDdeo+tqQ8/78Ry7BaZdfZxKD0zi1o0O/s8G+ondimNKX6f6f6zQWrPlhTkRrU7fPI2m6RNJKiu5UCVmM8DAaZtRrQRMfhKb4qfMYUG2E4Uy7QlESE6dtxVo1frgGXt1EBvk1L5A+sZ0+3sr0LBvro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740084181; c=relaxed/simple;
-	bh=yyB4raD5FkLDm+6eE9B6NLj9Ve2fAT7IBWp7UlnhxWk=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=FYryC6U4ibQaa/dssCh4xlLpiD4O+0PNJ6UlI21EMjmRRtH8rZN/BNyhOsl8nOfvc9b1EEXlk3d4thRHWw9M43lT5s6L+ARsNG5Q2mMXZ5CtKvhyRVbFTCTpyeBg4NFhBKN6N1+p727HaFKCp8e0zCwh3FT3EJhsxJoSpFfAlwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=Jz7UUagN; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=JaGBK3GN; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1740084178;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RtHWekfr9PAPqze2jQ7chZG40e+mSXvS0nobf0sErKA=;
-	b=Jz7UUagNJTKbH56LgA1I1S2wceAMMcMLhEFTOQqAXc8zhpwat3W7Md4/GbVOSEl7Ja7f6t
-	BV49/BFemaZOqEOVn4yRHDyY/W9L1s4vwD20lQDSJmg7pHswUgvc2diuh1ACjW3B3wCCiR
-	nb9UU/+ChkaiD0TV7bOceMRn225UlaZst7NAec1BQ85bQBDgRNL+8nc8nkzBgAd2s0Ldh/
-	vM/2IuIdN5fmR1Y2kPmAfRRmoQlQGfb7sMGtdDLelpP4Yq5ze2z5X585jfLSk03FJ82HKI
-	RNpnzH9P6BEFX1OQE6VgcsfUgcxIC9y+u6chBR8e8pplO9v8gn2uX6V3HXw1dw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1740084178;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RtHWekfr9PAPqze2jQ7chZG40e+mSXvS0nobf0sErKA=;
-	b=JaGBK3GNvF9d/Xprp9sb0i3FtrYJ+tMeGHw68qv5QxzNEaV92P6GDoaIuTka6bxo7IX8wm
-	7Kwx8ZWXVTO9O3CQ==
-To: Frank Li <Frank.li@nxp.com>, Kishon Vijay Abraham I <kishon@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Anup Patel
- <apatel@ventanamicro.com>, Marc Zyngier <maz@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich
- <dakr@kernel.org>, Manivannan Sadhasivam
- <manivannan.sadhasivam@linaro.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?=
- <kw@linux.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, Shuah
- Khan <shuah@kernel.org>, Richard Zhu <hongxing.zhu@nxp.com>, Lucas Stach
- <l.stach@pengutronix.de>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob
- Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Niklas Cassel <cassel@kernel.org>, dlemoal@kernel.org, jdmason@kudzu.us,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-pci@vger.kernel.org, linux-kselftest@vger.kernel.org,
- imx@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v15 00/15] PCI: EP: Add RC-to-EP doorbell with platform
- MSI controller
-In-Reply-To: <Z7eKBsxrmthtElpz@lizhi-Precision-Tower-5810>
-References: <20250211-ep-msi-v15-0-bcacc1f2b1a9@nxp.com>
- <Z7eKBsxrmthtElpz@lizhi-Precision-Tower-5810>
-Date: Thu, 20 Feb 2025 21:42:57 +0100
-Message-ID: <87r03sgxf2.ffs@tglx>
+	s=arc-20240116; t=1740085209; c=relaxed/simple;
+	bh=WGW2UHqyf60UGKjfqVwTY9uJ6ULEeS2wFSdlsPLXyCA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Lfm6lMsmXyKCEaRnQWlgwQmRt5J9e4sSJY34ZIXDeLxZ3/T2FL2HuWrMAM86LcA5iASTeaCyipAYNsihkQVYqZ6PJlIBlnNlXosOWjWXrbg9eXgshwLBFFbYKbirpPQQNQlUDz5WwiSn5WbBsA1lIBzN/eqrbGeiJ9zfE1yZ05E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=N2eGWgaU; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51KH1hSW010230;
+	Thu, 20 Feb 2025 20:59:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=pp1; bh=Ay90aIoC12ub+sc0fHvsFF5x1FZK0nWJsCdk9go52
+	qA=; b=N2eGWgaUoGXSDi66BDr5tA0WdtrHAtk/swtHmFULEQo9iRBYY8OdmPSHV
+	6d5R5Q8WIZdTw0fdnVn1g9FUleTXrzdUvNoSGDQWBD/B9yNXSTJayCvfdEmHddZE
+	lbHCFkhazqUv3yiYei+ScgS38mJymzG5REIOrwyJOzjweMI8nPgXRBTwZGeIBsKn
+	ICCBJcs4kPv6MPNJMNjxK4GyG4LhoxVRVKVSLZkZubkK2h4uD3Bh/8pr2X9oLGB8
+	wejvGTloIOHgfzYaTkZ2uqkPkd8Rszo52iKkA77+DAwTqIR5+CM+JkpE/sRHMhs5
+	RaXwqA5XKPSBVnB2pOx54vqr8cbgA==
+Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 44wu80dc63-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Feb 2025 20:59:51 +0000 (GMT)
+Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma12.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 51KI81Cg002323;
+	Thu, 20 Feb 2025 20:59:50 GMT
+Received: from smtprelay06.wdc07v.mail.ibm.com ([172.16.1.73])
+	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 44w03xc6p0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Feb 2025 20:59:50 +0000
+Received: from smtpav06.wdc07v.mail.ibm.com (smtpav06.wdc07v.mail.ibm.com [10.39.53.233])
+	by smtprelay06.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 51KKxnDh9568946
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 20 Feb 2025 20:59:49 GMT
+Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 979295803F;
+	Thu, 20 Feb 2025 20:59:49 +0000 (GMT)
+Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 2785358054;
+	Thu, 20 Feb 2025 20:59:49 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.61.129.233])
+	by smtpav06.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Thu, 20 Feb 2025 20:59:49 +0000 (GMT)
+From: Eddie James <eajames@linux.ibm.com>
+To: linux-aspeed@lists.ozlabs.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
+        eajames@linux.ibm.com
+Subject: [PATCH v2 0/3] ARM: dts: aspeed: Add Balcones system
+Date: Thu, 20 Feb 2025 14:59:45 -0600
+Message-ID: <20250220205948.1777200-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.43.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: 9nsGT2CUchekFR5PniEZCCRtzcHlEDhH
+X-Proofpoint-ORIG-GUID: 9nsGT2CUchekFR5PniEZCCRtzcHlEDhH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-20_09,2025-02-20_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 spamscore=0 phishscore=0 malwarescore=0 mlxscore=0
+ adultscore=0 mlxlogscore=787 bulkscore=0 suspectscore=0 lowpriorityscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502200140
 
-On Thu, Feb 20 2025 at 15:01, Frank Li wrote:
-> On Tue, Feb 11, 2025 at 02:21:53PM -0500, Frank Li wrote:
->
-> Thomas Gleixner and Marc Zyngier:
->
-> 	Do you have any comments about irq/msi part?
+The Balcones system is similar to Bonnell but with a POWER11 processor.
 
-I'm not having objections, but this needs to be acked by Marc as he had
-pretty strong opinions on the overall approach.
+Changes since v1:
+ - Add all the ucd9000 driver supported compatible strings
+ - Fix node ordering in Balcones device tree
+ - Improve commit message to explain addition of ibm-power11-dual.dtsi
 
-Thanks,
+Eddie James (3):
+  dt-bindings: arm: aspeed: add IBM Balcones board
+  dt-bindings: hwmon: ucd90320: Add additional compatible strings
+  ARM: dts: aspeed: Add Balcones system
 
-        tglx
+ .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+ .../bindings/hwmon/pmbus/ti,ucd90320.yaml     |   6 +
+ arch/arm/boot/dts/aspeed/Makefile             |   1 +
+ .../dts/aspeed/aspeed-bmc-ibm-balcones.dts    | 594 +++++++++++++
+ .../arm/boot/dts/aspeed/ibm-power11-dual.dtsi | 779 ++++++++++++++++++
+ .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 769 +----------------
+ 6 files changed, 1383 insertions(+), 767 deletions(-)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dts
+ create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-dual.dtsi
+
+-- 
+2.43.5
+
 
