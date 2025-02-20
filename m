@@ -1,325 +1,146 @@
-Return-Path: <devicetree+bounces-149057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 932A5A3E222
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:20:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81252A3E27C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:30:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B09A7A724B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:19:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B35343BE103
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:23:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7DE8211A04;
-	Thu, 20 Feb 2025 17:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D37AE213248;
+	Thu, 20 Feb 2025 17:23:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="Mo7fg0Zd"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="XcMOk1fK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5452E2F852
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 17:19:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE0C212FB7
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 17:23:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740071994; cv=none; b=OEf8FgLAHaIhZhVEVhFIGpa6HkUd2kndd3dgI7EFzye1jN3z1xQwhgRu/ZYqmYDaDMJhO7gGYPHZCuJdL9tBuiHuSGdT416qyeOm/w/B/47e/Evwr+ILGj4IP7Fj9J20iUIR1ai9Yh0pKwrm8A+crgAylOKJIrac0K0wuLjqvbs=
+	t=1740072201; cv=none; b=ZJ4rKVuyxnB/AIjCZ6P74uykQ1VACMztHxpZHlc8AcgSrIKTDmrlcV6ffdGkwXozT/u94fcjqfEmmdQkfeZsPemOTCg9KvbjIsKhgVsILJLFUoG5sh7AqvHKYL9mAR9dcT19E+fJMaoJ1cv22YxutyXy9UfCUtMnQPGArtMRM2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740071994; c=relaxed/simple;
-	bh=wHpTEubI2khX23N3hbzesh0W4Nr5ERdcdAJECH9gUjw=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jp3AGuuOIROuY02g+jfg+0y+lGOe3VUew+5MOi1UHiaGP1nSkR2tEBE5s8zqsQHsgbiGLp+mc4bDF8YLX70KnG9M7QoCEcAlxDiHvhAUL10rlIzSTKhPsJlBYjskdPWXXia+r1XZgPs3M7UHh9wf2Wby6CjSpw67VI4bzRol2ro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=Mo7fg0Zd; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ab7483b9bf7so193928566b.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 09:19:52 -0800 (PST)
+	s=arc-20240116; t=1740072201; c=relaxed/simple;
+	bh=Hw97JhtnKXny8SYR4ztJSphSmBHJYnbnmdgEdROhDAc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kzxub6y0fTVwASTqXhj43UAlvjOIbh//IZhzyKgnVpswdrmDRDmzaD6AEk4ELnYo86DdCZlPJ6XKJKJTGuyB8hZV1Ae1JrLFEMCuX2Ev7qI0JsqX0eJsAbQv1noqu0/SDkB15/TXvolpy8qwV7j2+lwxw+kqBAp+p6XC05lnqpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=XcMOk1fK; arc=none smtp.client-ip=209.85.167.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3f422d6e3b0so105780b6e.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 09:23:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1740071991; x=1740676791; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MPZerQPnM8TdIpEWmUTlPs508hpImW7bIHM5wPNO+wc=;
-        b=Mo7fg0ZdyP6Uup760jYAa3GIQZJYAhnZjgZXWdjgqq9I6e10USVdSWyu1IKJCPykLc
-         /w2EL9MsZdarBClT2AgPpgo25Ag3W9ZmPFWsb3mXIjYHY3CoNFJKxSBdfe+ExfesmNr9
-         VEA3fcd/Ek0hWkX/luRhAkd9DSmNUvcaP1OJwC0/acYkTI+cRO9KaQxR1EBJiXbtsEv2
-         90SV1sLvrV0w5edHoxywpPQuCkpXJ9bekokBXHhEOOVKUwmh4u0yq92qGd9QBdbMr+XI
-         QFmi214BJzkS9RZcZCeVncCVJPuKE1QkVVlVTzGKjCPN8nnoKfXdmk7WjS+lC9ln0fdi
-         DULQ==
+        d=broadcom.com; s=google; t=1740072199; x=1740676999; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=KO7H4VHs+QczF3CD8h6LeuqD7FLc0DNQxeiDRPSrHIA=;
+        b=XcMOk1fKSFwtiOhq9Sk0y4dPiOkwB8x5ekbD/BlfQzUW0t1wUVUOTKqhwDv17/Cr4S
+         egij/t8pRz98rARva+h5SZfiwjgM2czJovP5dKrG7Vbu2U94UnibqDccQDQ+fc+DbgkN
+         3nrJ4t4LIZqRBqjWPkB/nNPIB6ZckCliO/ZRk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740071991; x=1740676791;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1740072199; x=1740676999;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MPZerQPnM8TdIpEWmUTlPs508hpImW7bIHM5wPNO+wc=;
-        b=J3AKbUcVobYKK+TbwrQIndmtYCJ8KSsiyGmwEdLZNMTop0jZt4CPyW1ce3+/quTVMF
-         /MLyogydWAGUoOVslnNva4Wm/4Y5kDAwoj4gzzOSp8a6zoDiFa0X57EUILipBKsS3Xv1
-         xDJmWCktTMtHFMhL7jYhmKrLIErxlNsUq0xLCHqS+EQzEQM+tfPo88KhKbqVzrGFo0f0
-         M1JlZ7UfTR9qMPDtDTiFZKWh/tlI6apfBSXDZlq+nYqlmBxJGT1E7R8bI/sYflrrAev8
-         Z9plpiPEXno08etqsP53xBnttzAbZMNI6ooDsLzM2kefsfiwO1EzWUZQKMf3//0AkYnQ
-         s/gw==
-X-Forwarded-Encrypted: i=1; AJvYcCUVSkxMmDcmZuyjdZipLY7ZETqcNs9SV+MMQz2cwaxxCExttx7sVkhEeHOjW/Yt//eN8vtUG9SNFgea@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWMPvuZLdSBd6OifQ6Y6mSmaGhf/8fBCZvSfkQ+bekObD9Mgp+
-	Yd4I+xwEpOJEmaTyk3Mna6evKFDc5Ho2R8BGxL19SQylgdVyYQxEdC2sKmQ54xk=
-X-Gm-Gg: ASbGncuCHcuVurrnZ3p2MFpS91252luLG5owsCSQSlU/IeBXrhaycWXhTzsEOboVic3
-	9eIs3SzE+QNYsjrdamqmDasT8/OzkhOvMAmC9lz/6avGDPU6XndMRuU/ljAlAg1/yeJuKz7wWwJ
-	6ZgcS4mURXh+wpqxikHj5TKg2fJRjxd2XkXCFijDPUxkWh7sXHgUq8Ni9X05O6Sh5DMNkJp/ey6
-	/A0hbciJwa86tq+5uo8uK7JkFjBwKbrnQ0PF+mTSrEubIeO5IWf+fN4tE6uI4bc+3fFLKk/1zTm
-	+yG42ScoWrFbuebUlinsV5pFqYxbrGE5el0N+NSy7tapbLa3627FJEwYPUs=
-X-Google-Smtp-Source: AGHT+IHWDM5v5Bb9ov4BBEUlzQ3ZQRxMJhj7b+2LTELKPttlDQENJhZRr+MIBUS3293eAO/wNa8PsA==
-X-Received: by 2002:a17:907:6095:b0:ab7:bac4:b321 with SMTP id a640c23a62f3a-abc09aacbb4mr14530366b.29.1740071990587;
-        Thu, 20 Feb 2025 09:19:50 -0800 (PST)
-Received: from localhost (host-79-41-239-37.retail.telecomitalia.it. [79.41.239.37])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb3d276290sm1176404866b.178.2025.02.20.09.19.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Feb 2025 09:19:50 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Thu, 20 Feb 2025 18:20:54 +0100
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v7 05/11] clk: rp1: Add support for clocks provided by RP1
-Message-ID: <Z7dkdu4J7uvug7wP@apocalypse>
-References: <cover.1738963156.git.andrea.porta@suse.com>
- <4da2f1106ea6b239eba9c117bf6c129fbdb3ee87.1738963156.git.andrea.porta@suse.com>
- <0ef80d00-7213-47c8-9876-1d32011d8d3d@gmx.net>
+        bh=KO7H4VHs+QczF3CD8h6LeuqD7FLc0DNQxeiDRPSrHIA=;
+        b=auNo4YhXrpeOdshRWiI2DTBVFCxXNfYDn0Bj8icsvy1kG/Ml1jMxeV46D6HU0UPFeK
+         2n72XRKu07g8U07/ElQcgkRJVZRAB+dKJYMjfz7lK9uYac+7+H5Sm1VaiOm5Mv4pnsAz
+         /XZlStkQ97BGu+cZjIL0HsHy8Dx/l7ob0Afk7o/t1A7V5/JuDeKlvUwzmJOUmGCJwbl7
+         UiOvMJAEa0O1T+eO1y4jhqMndYYTGycTFdLtEeppsCKz8u8xZEvc10bbEikLIrl6fTdU
+         QGKdJ7BAuHlLZTfTgSO9SW8wtW1Z0UmL1pTGQarcWO+UfI2P0pJPxCgt/roaTfHeGlYZ
+         k0+A==
+X-Gm-Message-State: AOJu0Yx+tn1+eneETZD0pIBeRNQnSyMRwZp9bJ5+kMI/avspDa+9pWPp
+	q3EWosZwgv/b/Tr+EPrXtdmyB137wj02hG46BKLEfZAnyZqtiz2IscooEKgCag==
+X-Gm-Gg: ASbGncvH/7lMOvwwGq9/LZMqpnCPG87wlRn16oOxdF4ZdXYNTPXY/H6iZeJsxts/x8A
+	WBc8s732k2urUsuGtgcdBkFRl5ExhG+5BKJu2Qw7Y74ADMxohNHtq6mJxoRR94nPaQK8UQ6cUeo
+	nZLeplZoK8uDupvCPQZqEIfsONdw1HCLgHr5gg+gBE1a08NTg/iU0WV/JflxZrobgxaIvRSJegy
+	FYMBxMP4+FMNJ1pefhtvMtbx+ej5nI3NrI/oTX6pqy/CkokSxgNUYB5KPImU8ThHidlkxR0DJVL
+	/xYTuI8hghU1Re3dYwrYhNR8upX53pYoBJnRoics+83PVnOWGcn7tfRsW/Io9TKUet6Ogvo+L7M
+	l2KeN
+X-Google-Smtp-Source: AGHT+IFNMmfpJyIfAe5dEZJG05M/SHFALg3tklMXrjbHlFxkP4JFLXWaPkYg6R+CYIbTkwyziA3SlA==
+X-Received: by 2002:a05:6808:14d0:b0:3f3:f90b:f1b3 with SMTP id 5614622812f47-3f42469d77bmr204952b6e.5.1740072199073;
+        Thu, 20 Feb 2025 09:23:19 -0800 (PST)
+Received: from [10.171.122.29] (wsip-98-189-219-228.oc.oc.cox.net. [98.189.219.228])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f40b027906sm1450746b6e.42.2025.02.20.09.23.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Feb 2025 09:23:18 -0800 (PST)
+Message-ID: <89e74137-c3cb-4318-969c-81e5f4a3a778@broadcom.com>
+Date: Thu, 20 Feb 2025 09:23:15 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0ef80d00-7213-47c8-9876-1d32011d8d3d@gmx.net>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/5] net: phy: enable bcm63xx on bmips
+To: Kyle Hendry <kylehendrydev@gmail.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, =?UTF-8?Q?Fern=C3=A1ndez_Rojas?=
+ <noltari@gmail.com>, Jonas Gorski <jonas.gorski@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20250218013653.229234-1-kylehendrydev@gmail.com>
+ <20250218013653.229234-3-kylehendrydev@gmail.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20250218013653.229234-3-kylehendrydev@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Stefan,
 
-On 15:58 Sat 08 Feb     , Stefan Wahren wrote:
-> Hi Andrea,
+
+On 2/17/2025 5:36 PM, Kyle Hendry wrote:
+> Allow the bcm63xx PHY driver to be built on bmips machines
 > 
-> Am 07.02.25 um 22:31 schrieb Andrea della Porta:
-> > RaspberryPi RP1 is an MFD providing, among other peripherals, several
-> > clock generators and PLLs that drives the sub-peripherals.
-> > Add the driver to support the clock providers.
-> > 
-> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> Signed-off-by: Kyle Hendry <kylehendrydev@gmail.com>
 
-...
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+-- 
+Florian
 
-> > +
-> > +#define MAX_CLK_PARENTS			16
-> > +
-> > +/*
-> > + * Secondary PLL channel output divider table.
-> > + * Divider values range from 8 to 19.
-> > + * Invalid values default to 19
-> Maybe it's worth to add a short define for this invalid value?
-
-Ack.
-
-> > + */
-> > +static const struct clk_div_table pll_sec_div_table[] = {
-> > +	{ 0x00, 19 },
-> > +	{ 0x01, 19 },
-> > +	{ 0x02, 19 },
-> > +
-
-...
-
-> > +	regmap_read(clockman->regmap, reg, &val);
-> > +
-> > +	return val;
-> > +}
-> > +
-> > +static int rp1_pll_core_is_on(struct clk_hw *hw)
-> > +{
-> > +	struct rp1_clk_desc *pll_core = container_of(hw, struct rp1_clk_desc, hw);
-> > +	struct rp1_clockman *clockman = pll_core->clockman;
-> > +	const struct rp1_pll_core_data *data = pll_core->data;
-> > +
-> Please drop this empty line
-
-Ack.
-
-> > +	u32 pwr = clockman_read(clockman, data->pwr_reg);
-> > +
-> > +	return (pwr & PLL_PWR_PD) || (pwr & PLL_PWR_POSTDIVPD);
-> > +}
-> > +
-> > +static int rp1_pll_core_on(struct clk_hw *hw)
-> > +{
-> > +	struct rp1_clk_desc *pll_core = container_of(hw, struct rp1_clk_desc, hw);
-> > +	struct rp1_clockman *clockman = pll_core->clockman;
-> > +	const struct rp1_pll_core_data *data = pll_core->data;
-> > +
-> ditto
-
-Ack.
-
-> > +	u32 fbdiv_frac, val;
-> > +	int ret;
-> > +
-> > +	spin_lock(&clockman->regs_lock);
-
-...
-
-> > +static int rp1_pll_ph_on(struct clk_hw *hw)
-> > +{
-> > +	struct rp1_clk_desc *pll_ph = container_of(hw, struct rp1_clk_desc, hw);
-> > +	struct rp1_clockman *clockman = pll_ph->clockman;
-> > +	const struct rp1_pll_ph_data *data = pll_ph->data;
-> > +	u32 ph_reg;
-> > +
-> > +	/* TODO: ensure pri/sec is enabled! */
-> Please extend this TODO. Primary/secondary of what
-
-I think the orginal comment is misleading. It seems to be related
-to the fact that phase shifted clocks should have their parent enabled
-before setting them up. Pri here shuold be the only phased clock, while
-Sec is not and depends directly on a core clock, so I'll change that
-comment entirely.
-
-> > +	spin_lock(&clockman->regs_lock);
-> > +	ph_reg = clockman_read(clockman, data->ph_reg);
-> > +	ph_reg |= data->phase << PLL_PH_PHASE_SHIFT;
-> > +	ph_reg |= PLL_PH_EN;
-> > +	clockman_write(clockman, data->ph_reg, ph_reg);
-> > +	spin_unlock(&clockman->regs_lock);
-> > +
-> > +	return 0;
-> > +}
-
-...
-
-> > +static unsigned long rp1_clock_recalc_rate(struct clk_hw *hw,
-> > +					   unsigned long parent_rate)
-> > +{
-> > +	struct rp1_clk_desc *clock = container_of(hw, struct rp1_clk_desc, hw);
-> > +	struct rp1_clockman *clockman = clock->clockman;
-> > +	const struct rp1_clock_data *data = clock->data;
-> > +	u64 calc_rate;
-> > +	u64 div;
-> > +
-> Please drop empty line
-
-Ack.
-
-> > +	u32 frac;
-> > +
-> > +	div = clockman_read(clockman, data->div_int_reg);
-> > +	frac = (data->div_frac_reg != 0) ?
-> > +		clockman_read(clockman, data->div_frac_reg) : 0;
-> > +
-> > +	/* If the integer portion of the divider is 0, treat it as 2^16 */
-> > +	if (!div)
-> > +		div = 1 << 16;
-> > +
-> > +	div = (div << CLK_DIV_FRAC_BITS) | (frac >> (32 - CLK_DIV_FRAC_BITS));
-> > +
-> > +	calc_rate = (u64)parent_rate << CLK_DIV_FRAC_BITS;
-> > +	calc_rate = div64_u64(calc_rate, div);
-> > +
-> > +	return calc_rate;
-> > +}
-
-...
-
-> > +		ctrl |= (AUX_SEL << CLK_CTRL_SRC_SHIFT) & data->clk_src_mask;
-> > +	} else {
-> > +		ctrl &= ~data->clk_src_mask;
-> > +		ctrl |= (index << CLK_CTRL_SRC_SHIFT) & data->clk_src_mask;
-> > +	}
-> > +
-> > +	clockman_write(clockman, data->ctrl_reg, ctrl);
-> > +	spin_unlock(&clockman->regs_lock);
-> > +
-> > +	sel = rp1_clock_get_parent(hw);
-> > +	WARN(sel != index, "(%s): Parent index req %u returned back %u\n",
-> > +	     clk_hw_get_name(hw), index, sel);
-> I don't think such an important clock callback should emit WARN(),
-> because this might cause a message flood.
-> 
-> So i think either a WARN_ONCE() or dev_warn_once() might be better.
-
-Ack.
-
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int rp1_clock_set_rate_and_parent(struct clk_hw *hw,
-> > +					 unsigned long rate,
-> > +					 unsigned long parent_rate,
-> > +					 u8 parent)
-> > +{
-> > +	struct rp1_clk_desc *clock = container_of(hw, struct rp1_clk_desc, hw);
-> > +	struct rp1_clockman *clockman = clock->clockman;
-> > +	const struct rp1_clock_data *data = clock->data;
-> > +	u32 div = rp1_clock_choose_div(rate, parent_rate, data);
-> > +
-> > +	WARN(rate > 4000000000ll, "rate is -ve (%d)\n", (int)rate);
-> This looks suspicious. Is this is a limit? Except of this, casting to
-> int is wrong.
-
-I think that's not an hard limit, the original intent was probably
-to filter some clock rates resulting from functions that can return
-a (negative) error code.
-Since clock->data->max_freq contains the maximum frequency achievable,
-I'll turn that WARN into a proper one that check for that limit.
-
-> 
-> In case this is not possible please make it a WARN_ONCE() or dev_warn_once()
-> > +
-> > +	if (WARN(!div,
-> > +		 "clk divider calculated as 0! (%s, rate %ld, parent rate %ld)\n",
-> > +		 clk_hw_get_name(hw), rate, parent_rate))
-> > +		div = 1 << CLK_DIV_FRAC_BITS;
-> Same here
-
-Ack.
-
-Many thanks,
-Andrea
-
-> > +
-> > +	spin_lock(&clockman->regs_lock);
-> > +
-> > +	clockman_write(clockman, data->div_int_reg, div >> CLK_DIV_FRAC_BITS);
-> > +	if (data->div_frac_reg)
-> > +		clockman_write(clockman, data->div_frac_reg, div << (32 - CLK_DIV_FRAC_BITS));
-> > +
-> > +	spin_unlock(&clockman->regs_lock);
-> > +
-> > +	if (parent != 0xff)
-> > +		rp1_clock_set_parent(hw, parent);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > 
 
