@@ -1,179 +1,209 @@
-Return-Path: <devicetree+bounces-148996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2C4CA3DEEC
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 16:42:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9BDBA3DEF7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 16:43:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 741B8175528
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:40:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72480173F21
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:41:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C5991FECB7;
-	Thu, 20 Feb 2025 15:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0257D1F8916;
+	Thu, 20 Feb 2025 15:41:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IaJh0gSh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g2cUMLWd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 943511FE46F
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 15:40:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 022CD1D5CD7
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 15:41:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740066018; cv=none; b=YddDsFyz7ycqcsU4WyPNytLeAjFRbOU3y2a+gvzHc7GQFH2yoU3dvXbQYiXXJbOG5StXi/eH4zGjkIsh2m9Ue5GBv0i1+JBlYlsqcpMSJ9R+UmjnRORDQ55bwYqUuh60bzl8eDtvQCl+2z2zYPD2V2iGbKh9rwW7WIfXGUlsvX0=
+	t=1740066099; cv=none; b=t7Qlp2sN6iUVYw2y4ZyUYPiqHsH3RNCYrB6+PNjcQ+V5S3UwoLi9W0bqdm1Yg19taB8/90owiB+tPtnfeSysnsZFRyYa5xr92Yd4Em3MVd6DpP9kMHlj0xn9sR2xtf9KM3wfsUI433R5id9H4/vqrcQB9h45X/+pN7VjO5r1e7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740066018; c=relaxed/simple;
-	bh=QzUct+KndAjVKXbG8XpNZWnNqhY8tjjZDMXHiF5+5/U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=n/9BFw5jpvxq3URECCOYldsLeParmS89U/KZqdhaEv2eggKOEu+a4kE6NLCVCJByxMP/iKmZVTFfI0jNdXwdRgtG8y78tnWtPd/aD7lhnbugUvYZxrJTdU8cGKBX8zWrraWU/PjUh1D2NDcDD7m+5bhYu6bhjvmQnUsMxYHY5NE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IaJh0gSh; arc=none smtp.client-ip=209.85.128.178
+	s=arc-20240116; t=1740066099; c=relaxed/simple;
+	bh=g7tyuwR9gUJihZXDPyoe71VF4DyU1ICECDXXEFnbpOA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CW6Oifja87t/37TWETZrjKoCsVsjFDJo/ZoeTXZEr4dB05LL2tRzak7DGlN2mc5pyko3lHQTHaCDZFKX2UyYqWazop0jyS7Bmc9h81MBzD/NSps/xfisSbZIFWSrtHG0LhdjNrgQgMcoRjZXu09W9p9vx8a5PIeOWRY75CiOnPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g2cUMLWd; arc=none smtp.client-ip=209.85.208.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6f7031ea11cso9224667b3.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 07:40:16 -0800 (PST)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5dfb26020dbso161597a12.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 07:41:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740066015; x=1740670815; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UuoPq2e93XPbKnAaHkR9ErZM40sqwUWhuIwAQ7Wv18c=;
-        b=IaJh0gShCWhMBWSZPiL4GMMZQrXIm6kmfSHwjbWiAL3xe/xmaoCPYiEcAXTirpbwoU
-         UJGsAWPpHOgPM3VA9Sor8tmqLHUjk+4cMmP2r79NcY+99VAGdDh8qpHM/e+eKt5340Eq
-         O4yNPRoZU4m1avLXrjyXhIP9dBAj6bQuOkqIiYyN2jbXXOUhoC97nDA0VYPPdWUJdGW3
-         yUQvsSyn/NcCHWFrYTrYcebKv/gesx3JgUaHvmFySyl5y7vQp7Opz+IXvp9Fo2+HMtss
-         U3zr3hedZtdF5hRCiMouiSRNkGmBpgzpkTbD3s1p5cnASTiamV5nhddPFbDUMtMpSDaC
-         9kYA==
+        d=linaro.org; s=google; t=1740066096; x=1740670896; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nEYeQ6GtRcKGrYsaEJZjfB2MCXvU3nNrB1n4nbL63sM=;
+        b=g2cUMLWd4Y3PGRoCatNDfFZ4c0o9WNW5466k1P5MSqA5mvgrRPktrGEwAWc8lVQRrp
+         Szk2TI2hRwPp5xGs4c6U3DXJU7Goh7SVUUz+PoxKa3eMbc1KB9H4vKXj94aVHBIXMAP/
+         GftQ4Let+em4FB/C70VTNrGwfj3Yv8intocmthWrPhvtO6IwOpSWAqk06UdzOc2r3nqJ
+         xUuaRZNjJDwi1+cevDubw0tSTC+6pOI8IyHMfxVWtlR8NRgjVTfjRigGMcd4i6WxVCzE
+         7SexP5aFcPqZspPfhAwv4i3QPp4fxK6JhE2ap5F3ZSApP6IlvPXHeOrN5PGxGoKPejov
+         +8cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740066015; x=1740670815;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UuoPq2e93XPbKnAaHkR9ErZM40sqwUWhuIwAQ7Wv18c=;
-        b=GMEew0BMN+KPHUH4RUGdXQvK2KzHJ1+iwkFTPXmUhhmmiOMoGFSwKF0c+FaQznM4J+
-         +2hfBquXxW4eufCbHKJnaeFezZjIwkTbSZgp+ZpuwY6jiVrBiZ6VyWd+Yx0x6ThVvB/a
-         v4Y7Xvr4n9PWd6Pk/gdaIScwuE4wes5nrHv3W/ERYkBEzg5CfdsBirS41ZpPvKcRyuSs
-         gRXvKuhi5krP05m2TUCIaROjJmmYO+hacqq2Hsd65fj9yS0xFYIs8EdeTTeKnLfozDXa
-         dN/0LY8IPXt1sBnermu99Gn3+G20Knct+Cw0Xh/vqQ88q+zGEWQbx9U6Q3TUO7fn6TTg
-         WiOA==
-X-Forwarded-Encrypted: i=1; AJvYcCWlMyJJrYoIb35sGQG8tm4bCNVk+IBDQkf8Uz8eXQ8Lw/NR/ugvDf9n6lZImHw9IaXsE3YmUcAbVUH/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yytw6LHj6B2eqGRONMznFkziERgugX8nWL6SmMfcrllgN5YC/E7
-	vk461EncL1DSDHwdok/kFo1SHcr2zCOh6GaG/sFDkGtoIq4zFSsT1Kb64azOVvbJOyNxI7R62VV
-	CqhnkF1EC9oNV3G83ov7BgWQaNGyoZ7DdqE1tzQ==
-X-Gm-Gg: ASbGncuk7Nmz9RQRW11U6JVfmTA8fJDiK+5PpQtlhgHaZaJsW6HMch+E4dp7dsOl0vY
-	xkekFjLSRocaPi68mwUV/41D2IHI+IUOyyCCJv/01sGHebMpeZksW58zId7gNcHVXKH3JG5IGtC
-	e/
-X-Google-Smtp-Source: AGHT+IHtHZhFj6w8a+w7dVjeZYWKiittrIVs8CqnEw31ZTbZ6uSF2vKph0PXxTGqAHFiH+3dzNT93tQlYHmsEeOEsb4=
-X-Received: by 2002:a05:690c:fcc:b0:6f9:82a8:e5dd with SMTP id
- 00721157ae682-6fba579f34dmr76095757b3.29.1740066013981; Thu, 20 Feb 2025
- 07:40:13 -0800 (PST)
+        d=1e100.net; s=20230601; t=1740066096; x=1740670896;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nEYeQ6GtRcKGrYsaEJZjfB2MCXvU3nNrB1n4nbL63sM=;
+        b=Lgwfg5s9Aw4I5vkPMHEOvXiYujWLc1J+90cdxoXAF72HJVN9UtciQlvo+GPIq3nEHV
+         JNAkf3GEvVmgMFYJWk6GNDyp4/Wz81dpdppMfFXQ1u3f78gCuxa2zr6qOKj9hBosBsGo
+         GqDSG2TRIx7pcKiiwXf4R1ijgYxJOf/unfcmHvlH/hrtSrmQLY5CMGJenjCcaG0KHMnu
+         Of23a7vPwTliwT5Nal+7hJsnv/qZbqR3oqGXf0FgMNCsLfqyF3mR2dWueI1BQ7aVRJCc
+         HVCAIZfjOhZ+TekZdg3/4+AY5QBup4HYz8c3JxhlWz6CnPXJgfFIFtcWB6GJl4KHmKjJ
+         inkg==
+X-Forwarded-Encrypted: i=1; AJvYcCVtEmiainPYP2MwjvdxhIJIaDYYXov+W4aTj1zV+87wrgNiu5VhMIZXjXK2dH5JxbouJji8KBca0skH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwI9n1Xa4spMAy6enOmSSwg/dPQLimZXBEGuz9SNeqGQRvUXnJC
+	w8X+9qfI2gUUBs0lltrNL5apBxSGq9eFq04k37n5vtRUARM/R6QNFqt/Tew37+w=
+X-Gm-Gg: ASbGncvkjfKSnVfUGuultin4u166PGc0MdWlVyPIxx5DqyI7i4YYvPuaJt6ZpYBcVOS
+	W5/BJ+jA2bnaFyHhDBiQy+gwCf8lD5RJegEZNY71sJ8rAVeODCUf6kh7Xl0ajcIpxb0VvJgZAVx
+	+c3zx6VmRGKEiuqodryt++NsZ8frixcgyW87kIzyO7SNh0rJUZSEBtLWedcdgaQ/26wdVf3jEjC
+	c4QXrauEmeP8XSq9aB1GejPbZPrOF+DqXnKreJ+POn7fRBmUMqHvHiceyv9hXYU+lTaxOwDQPUp
+	QYX0pjUSKJWwisfoXwar/AOKDmwuHM4w80kwspjSOVxOHbDTMbJ6PnEEprF6FxPr
+X-Google-Smtp-Source: AGHT+IExwKWWZGa3QQuOIsvL9AuraePZZp67jekYfmLrqefoxYMI+vPNlwgRQmppVbQJY0ggaquYhQ==
+X-Received: by 2002:a05:6402:5246:b0:5d0:d183:cc11 with SMTP id 4fb4d7f45d1cf-5e035ff8110mr7633794a12.2.1740066096180;
+        Thu, 20 Feb 2025 07:41:36 -0800 (PST)
+Received: from krzk-bin.. (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece287c7fsm12097608a12.70.2025.02.20.07.41.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Feb 2025 07:41:35 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [RESEND PATCH 1/2] dt-bindings: remoteproc: Add SM8750 MPSS and CDSP
+Date: Thu, 20 Feb 2025 16:41:31 +0100
+Message-ID: <20250220154132.199358-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250220-dual-dsi-v2-0-6c0038d5a2ef@linaro.org>
- <20250220-dual-dsi-v2-4-6c0038d5a2ef@linaro.org> <grdadzunaabzg5jxpsiasgzbioy24tctlhhyxg6zwdkpv5vjwe@7k2di2myu4k6>
-In-Reply-To: <grdadzunaabzg5jxpsiasgzbioy24tctlhhyxg6zwdkpv5vjwe@7k2di2myu4k6>
-From: Jun Nie <jun.nie@linaro.org>
-Date: Thu, 20 Feb 2025 23:40:03 +0800
-X-Gm-Features: AWEUYZnHnOuixko96mQ2117kijVCx6xdBgICQdXQ3HuBcopAGGxNVlm-TLHVG9A
-Message-ID: <CABymUCMn+USbm21agBZbe=JmV-FzLdVD4s0xgg0CPU=M9jvC9w@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] dt-bindings: display/msm: dsi-controller-main:
- Document dual panel property
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krishna Manikandan <quic_mkrishn@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org> =E4=BA=8E2025=E5=B9=B42=E6=
-=9C=8820=E6=97=A5=E5=91=A8=E5=9B=9B 18:33=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Thu, Feb 20, 2025 at 06:07:55PM +0800, Jun Nie wrote:
-> > The DSI interface can be connected to a panel that has a dual DSI chann=
-el,
-> > or to two separate panels, each equipped with a single DSI channel. To
-> > prevent the DSC configuration for the dual panel setup from disrupting =
-the
-> > current configuration of a single panel with a dual DSI channel, add a =
-dual
-> > panel property to support the use of two panels.
->
-> Please use the terms from the standard. The "channel" is mostly used for
-> the "Virtual Channel" or the "logical channel".
+Add remote processor PAS loaders for SM8750 MPSS (modem) and CDSP
+processors.  Both are compatible with earlier SM8650 with minor
+differences:
+1. SM8750 CDSP has one more sixth shutdown interrupt.
+2. SM8750 MPSS lacks fifth memory region for Qlink Logging, according to
+   downstream sources.  There might be other differences, because the
+   modem currently crashes after starting.
 
-OK, will use DSI link for all later description.
->
-> Also I don't follow how DSC configuration for a dual panel setup can
-> disrupt current (?) configuration of a single panel.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-For the disruption, Marijn mentioned it in the last post.
-https://gitlab.freedesktop.org/drm/msm/-/issues/41#note_2411541
+---
 
->
-> >
-> > Signed-off-by: Jun Nie <jun.nie@linaro.org>
-> > ---
-> >  .../devicetree/bindings/display/msm/dsi-controller-main.yaml      | 8 =
-+++++++-
-> >  1 file changed, 7 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controll=
-er-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller=
--main.yaml
-> > index ffbd1dc9470e2091b477b0c88392d81802119f48..e3f2eabde27609a66d6d81f=
-afcb14e1bc014613c 100644
-> > --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main=
-.yaml
-> > +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main=
-.yaml
-> > @@ -88,9 +88,15 @@ properties:
-> >    qcom,dual-dsi-mode:
-> >      type: boolean
-> >      description: |
-> > -      Indicates if the DSI controller is driving a panel which needs
-> > +      Indicates if the DSI controller is driving display device which =
-needs
->
-> Unrelated change
->
-> >        2 DSI links.
-> >
-> > +  qcom,dual-panel:
-> > +    type: boolean
-> > +    description: |
-> > +      Indicates if the DSI controller is driving display device that c=
-omposed
-> > +      with 2 independent panels and needs 2 DSI links.
->
-> How is tht different from qcom,dual-dsi-mode?
+Resend after some time.
+---
+ .../bindings/remoteproc/qcom,sm8550-pas.yaml  | 46 +++++++++++++++++--
+ 1 file changed, 42 insertions(+), 4 deletions(-)
 
-Your questioning is right. The dual panel case is a subset of
-dual-dsi-mode, not parallel with
-dual-dsi-mode. It is single panel with 2 DSI link by default, and 2
-panel with 1 DSI link in
-each panel if property dual-panel is present.
->
-> > +
-> >    qcom,master-dsi:
-> >      type: boolean
-> >      description: |
-> >
-> > --
-> > 2.34.1
-> >
->
-> --
-> With best wishes
-> Dmitry
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+index a24cbb61bda7..2dd479cf4821 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+@@ -24,11 +24,15 @@ properties:
+           - qcom,sm8650-adsp-pas
+           - qcom,sm8650-cdsp-pas
+           - qcom,sm8650-mpss-pas
++          - qcom,sm8750-mpss-pas
+           - qcom,x1e80100-adsp-pas
+           - qcom,x1e80100-cdsp-pas
+       - items:
+           - const: qcom,sm8750-adsp-pas
+           - const: qcom,sm8550-adsp-pas
++      - items:
++          - const: qcom,sm8750-cdsp-pas
++          - const: qcom,sm8650-cdsp-pas
+ 
+   reg:
+     maxItems: 1
+@@ -114,6 +118,23 @@ allOf:
+         memory-region:
+           minItems: 3
+           maxItems: 3
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,sm8750-cdsp-pas
++    then:
++      properties:
++        interrupts:
++          maxItems: 6
++        interrupt-names:
++          maxItems: 6
++        memory-region:
++          minItems: 3
++          maxItems: 3
++
+   - if:
+       properties:
+         compatible:
+@@ -144,6 +165,21 @@ allOf:
+           minItems: 5
+           maxItems: 5
+ 
++  - if:
++      properties:
++        compatible:
++          enum:
++            - qcom,sm8750-mpss-pas
++    then:
++      properties:
++        interrupts:
++          minItems: 6
++        interrupt-names:
++          minItems: 6
++        memory-region:
++          minItems: 4
++          maxItems: 4
++
+   - if:
+       properties:
+         compatible:
+@@ -171,6 +207,7 @@ allOf:
+             - qcom,sdx75-mpss-pas
+             - qcom,sm8550-mpss-pas
+             - qcom,sm8650-mpss-pas
++            - qcom,sm8750-mpss-pas
+     then:
+       properties:
+         power-domains:
+@@ -184,10 +221,11 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - qcom,sm8550-cdsp-pas
+-            - qcom,sm8650-cdsp-pas
+-            - qcom,x1e80100-cdsp-pas
++          contains:
++            enum:
++              - qcom,sm8550-cdsp-pas
++              - qcom,sm8650-cdsp-pas
++              - qcom,x1e80100-cdsp-pas
+     then:
+       properties:
+         power-domains:
+-- 
+2.43.0
+
 
