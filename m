@@ -1,95 +1,61 @@
-Return-Path: <devicetree+bounces-149028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE06FA3DFDB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:08:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DC26A3DFFC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:11:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4173819C337B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 16:06:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB1563A1FA9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 16:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9771E1FFC78;
-	Thu, 20 Feb 2025 16:06:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 553FB1FECA3;
+	Thu, 20 Feb 2025 16:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CqjJcjLn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GCEeVrFW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EAEE1FCCFD
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 16:06:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29FDC1CA84;
+	Thu, 20 Feb 2025 16:07:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740067568; cv=none; b=GCGavkZWLyOUApYuSNKDmU+jcFquRnrgSVG5YV0eVGHR1Yu3bd6dPs0M3dWwaD4tpdYRXNzmV/eAfntVml5SvMi/3SN6dwV2YLqqewXuiN64Dv3npcFHb0HA6qPXlMZ9Ed35gQgmUKlnWld/BehKg2krvUd7vDhqfXxUfdRT6Tc=
+	t=1740067632; cv=none; b=WDQEPjpqPzx6RGhOsJZp7v8v3DtrtUBZDKpcOOUno62mmMRanmWD6OXe7AYieL0XjxKJY8e/LlCvn0ZRES6zNm/ISoYTWxeo83eZOpqCsyTxNKadNkibPywyYTdn9TdKPljV+G7rd0o3QZlFPDp80uNf7Z2ZEJ9dHYR80Eizi6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740067568; c=relaxed/simple;
-	bh=Nf2y1MMpVRCHrg7D1taBIhcNvsvuihqIz6ZQlJvVEx8=;
+	s=arc-20240116; t=1740067632; c=relaxed/simple;
+	bh=l6hNtVh2SuFZL7oYVzMnlU/JqKefg9mBjESFTWFKWPU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MFY0KaNCx1e/wly4dl3+MeWExISb26i84EX78Sf6O4++L7xhi4+PrnjJzW3msZu52cVHjs88zzfSfFk+QCXbekA+TNa8gvbvAiYNu9wprIB0pXiZCqBTYX1dwXGUFNac0HDWTH1+/UKzm/D8lRkBqosSAzMx4DvN8ehnYBSxsk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CqjJcjLn; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5452ca02bdbso1073986e87.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 08:06:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740067564; x=1740672364; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MkkB90jz+wMakqJRXGQ1C6qQcAHn7eE+AZf1sKmMuTw=;
-        b=CqjJcjLn2QWgB++PwXinKvFD+FSE7EJFCNTiOfzrufCAGttLjZJaFNuuaqeV7sJwWh
-         puGw/FcM40AiFV9M5HNbpIQQr2USkN/hDU29gy3ZxBflrjldLtgeRTt7Ry3t4KUhrEZF
-         W1zWNu+t6Bb7niVmBRpWRa7KLReK1O2oS0jMKtw5sZfaFtFpMa+89ISDG+PJhjXuTVKJ
-         ++nVSQBYrvQwddi7sr+b8Icn3PLPr4f2QJY8OmL2BVbkVsdVTDtAbAe1zHpXm7sOM+4R
-         yXe/kL/R5u7zi1KyIJzvcKmZESqwRXgpEe+9YeK/ibnjIGgU4yjuZAnVYdqcDFW4DM4f
-         iSNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740067564; x=1740672364;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MkkB90jz+wMakqJRXGQ1C6qQcAHn7eE+AZf1sKmMuTw=;
-        b=nt0z+NL/unRTxuVDE3jWU5CurAtDXchDxKqKABelpXrOoRMfyPvEcnqsv4snhx1RnJ
-         /EITSn5oIYJArvf3aELWkVO1I0/pXH9zVtfiRgiBgtNP+L6X6nx5IgK1vf6TZK+gkoSW
-         gTbVPIIbL5iiYd0XgcIbMP1ug9nx8NanIkhk2c4mksXOQfONrPeA8SUVNJtpdDJedYFT
-         RO/u40rmmj+0JB3HkjYPBfSJAT6N37aZ8W2Hb0wSL3DETdzG1/7qNOaxmkUqrwN4V0vZ
-         BRxv9LSX/T9ijawp0EEz8CouvWMdqmd93rZ0A4AFfmM/lE7aFe4c+h5mHxQxV5612oeq
-         lzkA==
-X-Forwarded-Encrypted: i=1; AJvYcCVoeJsuAuNXCJsYzl36tpRLhISNgW7TSJTF2XnPck1GQ0gyqoBdnR4A58aXo9d79F6cZod6QowhIRXg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWqtmOqyjTekXoUuJyGlPI84OdpcQmAog+uHCLv5y/b+4zffUc
-	lW0uPG8qI5uu4ixZHcTfx9mcekEJaK1YPrp7Bk9PEXODiQ6hfqhxmLncHm2DgdA=
-X-Gm-Gg: ASbGncsVrboR5cgiZ6pTvkET8jbF7/AxFzy0pZ59cc9u26YqnOCt0qWaz5jV/ZGXbki
-	di6JWkjEkaJFcYVGPahcVRTUFTxblmH+QIATE6Ht3wr4p9Q+grQU0V7/F/rTB/XSH8pRmA4AI37
-	OP/QVG211+N4r1HB/kV3/ZA7B97H96Fa8X/2gBYbNMESrUm/riIx9QI+Pdds2rXsiDVvvXy1EhR
-	cWwJatiFCZjMq1BgAQBS3+rPZl7Z5fSTvhtSaQWIw9EDgcEAjcvAwDw/wKjG03GVkS8F1viU5ru
-	NUtV5WyDnrTJNt4XGiuMYZSHWuMvO6OfhklvMlstPQP+dSoaFKsL+8NmNrUURmDrpMq7CvE=
-X-Google-Smtp-Source: AGHT+IGijbQuJnFDPCWe6HgsMNO3D4A6C28HoopGz6paJ7IRT0n3o5ue7K6hTp+dIyALAFK8rj+fHw==
-X-Received: by 2002:a05:6512:3dab:b0:545:d72:95e5 with SMTP id 2adb3069b0e04-5452fe2e42cmr8354282e87.7.1740067564235;
-        Thu, 20 Feb 2025 08:06:04 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5482a61ac5dsm252e87.212.2025.02.20.08.06.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Feb 2025 08:06:03 -0800 (PST)
-Date: Thu, 20 Feb 2025 18:06:01 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jun Nie <jun.nie@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krishna Manikandan <quic_mkrishn@quicinc.com>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 5/5] drm/msm/dsi: Support DSC for dual panel case
-Message-ID: <m7brftsrxdikfeumbjkubeeleezka7mwjbchxefqgs4ybtca5n@ge3ay2olagq2>
-References: <20250220-dual-dsi-v2-0-6c0038d5a2ef@linaro.org>
- <20250220-dual-dsi-v2-5-6c0038d5a2ef@linaro.org>
- <iibq3orsb7uf44luz2he2auox43ki42m2z4nnderyqlhypvfgo@pwqpvua6vuyo>
- <CABymUCNajuc8WnWgf2JehFYUY-MqxCYmD=By8nY-JppxYHsyNw@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=E/cpOk7i+67UsHGeP+zvwEhsJEatAVBbCLMIk9wS7srS4eGSOMfjRPHqPsKP0P+Xr/0sqb3/FUANZElvcta/o9MU8lkLcscP3F3jtpDzsMkm5LL6j6EKcCyhI3QeEW/YogDLBAcxdGK32aRLpQQGLVAnQavse/7Yid6FU0ScJUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GCEeVrFW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3ACACC4CED1;
+	Thu, 20 Feb 2025 16:07:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740067629;
+	bh=l6hNtVh2SuFZL7oYVzMnlU/JqKefg9mBjESFTWFKWPU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GCEeVrFW8PGOEmpEwNkFCj+GIPpkCWgQdJ3MgUDaQ6AugO6SkVv0YICcIItn63i9g
+	 g/gJ1Cp9gU56wu34B/Uj2JxFThzlFe/ibsszMoB3RrYNARJNNLVTlF744Dp/E34Csc
+	 jiDfcwePCQ26D7vBoXhCLaEjgyeGYFfrzFxvzIOvHbo80kG8K2e95cvNvAgu+fYlzO
+	 afDULBE6Cytsp0uEPiBoxRcD+k4FBg2L1J/esF5WAkyFKedgblGCtq/gsBdRXm4w7g
+	 cLoogKIlH5DP+2YbbJMV22ylts8AMYlIQ/u2rB76bLYFc4ry6ALCdvTT5l96R88c5F
+	 Lrgvdr0w9+SVw==
+Date: Thu, 20 Feb 2025 16:07:04 +0000
+From: Lee Jones <lee@kernel.org>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+	samuel@sholland.org, jernej.skrabec@gmail.com, wens@csie.org,
+	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: (subset) [PATCH V2 2/4] mfd: axp20x: AXP717: Add
+ AXP717_TS_PIN_CFG to writeable regs
+Message-ID: <20250220160704.GC824852@google.com>
+References: <20250204155835.161973-1-macroalpha82@gmail.com>
+ <20250204155835.161973-3-macroalpha82@gmail.com>
+ <173928137017.2164349.13619464947851022064.b4-ty@kernel.org>
+ <rfn57iwagexbshg5akmo54l7un5ypcl6h655ahieyl3iz2oelg@oxv2wc4jcy5d>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,162 +65,54 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABymUCNajuc8WnWgf2JehFYUY-MqxCYmD=By8nY-JppxYHsyNw@mail.gmail.com>
+In-Reply-To: <rfn57iwagexbshg5akmo54l7un5ypcl6h655ahieyl3iz2oelg@oxv2wc4jcy5d>
 
-On Thu, Feb 20, 2025 at 11:42:28PM +0800, Jun Nie wrote:
-> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> 于2025年2月20日周四 18:39写道：
-> >
-> > On Thu, Feb 20, 2025 at 06:07:56PM +0800, Jun Nie wrote:
-> > > There is dual DSI case that every DSI link is connected to an independent
-> > > panel. In this dual panel case, the frame width for DSC on each link should
-> > > be halved to support the usage case.
-> >
-> > Isn't it the case for the DSI panel utilizing two DSI links?
+On Thu, 20 Feb 2025, Sebastian Reichel wrote:
+
+> Hello Lee,
 > 
-> The added case here is 2 DSI panel utilizing two DSI links, 1 DSI link
-> in each panel.
-> I assume default case is 1 panel with 2 DSI link, such as Marijn's case.
+> On Tue, Feb 11, 2025 at 01:42:50PM +0000, Lee Jones wrote:
+> > On Tue, 04 Feb 2025 09:58:32 -0600, Chris Morgan wrote:
+> > > Add AXP717_TS_PIN_CFG (register 0x50) to the table of writeable
+> > > registers so that the temperature sensor can be configured by the
+> > > battery driver.
+> > > 
+> > > 
+> > 
+> > Applied, thanks!
+> > 
+> > [2/4] mfd: axp20x: AXP717: Add AXP717_TS_PIN_CFG to writeable regs
+> >       commit: ab797d7faf4c28328d2e45b09991f47a9b8e08aa
+> 
+> Patch 3/4 has a dependency on this one. As you probably haven't done
+> an immutable branch for this one, please also pick up 1/4 and 3/4. I
+> just provided Acked-by to them.
 
-So it should be halved in your case, but not in Marijn's case? I can
-suspect that if you are describing two DSI panels as a single instance,
-you should also adjust drm_dsc_config accordingly (on the panel's side?)
+Here you go: :)
 
-Maybe drm_dsc_config.pic_width and drm_dsc_config.pic_height should be
-set on the panel's side? But then, how will that function for the DSI
-panels or bridges which can change the mode?
+The following changes since commit 2014c95afecee3e76ca4a56956a936e23283f05b:
 
-> > > Signed-off-by: Jun Nie <jun.nie@linaro.org>
-> > > ---
-> > >  drivers/gpu/drm/msm/dsi/dsi.h         |  3 ++-
-> > >  drivers/gpu/drm/msm/dsi/dsi_host.c    | 13 +++++++++----
-> > >  drivers/gpu/drm/msm/dsi/dsi_manager.c | 10 ++++++++--
-> > >  3 files changed, 19 insertions(+), 7 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/msm/dsi/dsi.h b/drivers/gpu/drm/msm/dsi/dsi.h
-> > > index 35b90c462f637111159b204269ce908614a21586..5a8978bed9f4ca897b418ced60194042d9dd8d05 100644
-> > > --- a/drivers/gpu/drm/msm/dsi/dsi.h
-> > > +++ b/drivers/gpu/drm/msm/dsi/dsi.h
-> > > @@ -74,7 +74,8 @@ void msm_dsi_host_enable_irq(struct mipi_dsi_host *host);
-> > >  void msm_dsi_host_disable_irq(struct mipi_dsi_host *host);
-> > >  int msm_dsi_host_power_on(struct mipi_dsi_host *host,
-> > >                       struct msm_dsi_phy_shared_timings *phy_shared_timings,
-> > > -                     bool is_bonded_dsi, struct msm_dsi_phy *phy);
-> > > +                     bool is_bonded_dsi, bool is_dual_panel,
-> > > +                     struct msm_dsi_phy *phy);
-> > >  int msm_dsi_host_power_off(struct mipi_dsi_host *host);
-> > >  int msm_dsi_host_set_display_mode(struct mipi_dsi_host *host,
-> > >                                 const struct drm_display_mode *mode);
-> > > diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
-> > > index 976c5d82a2efa0fc51657b8534675890be7c33a6..752a97f7181c30dade0a7745492bf16649b3197b 100644
-> > > --- a/drivers/gpu/drm/msm/dsi/dsi_host.c
-> > > +++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
-> > > @@ -902,7 +902,8 @@ static void dsi_update_dsc_timing(struct msm_dsi_host *msm_host, bool is_cmd_mod
-> > >       }
-> > >  }
-> > >
-> > > -static void dsi_timing_setup(struct msm_dsi_host *msm_host, bool is_bonded_dsi)
-> > > +static void dsi_timing_setup(struct msm_dsi_host *msm_host, bool is_bonded_dsi,
-> > > +                          bool is_dual_panel)
-> > >  {
-> > >       struct drm_display_mode *mode = msm_host->mode;
-> > >       u32 hs_start = 0, vs_start = 0; /* take sync start as 0 */
-> > > @@ -947,7 +948,10 @@ static void dsi_timing_setup(struct msm_dsi_host *msm_host, bool is_bonded_dsi)
-> > >                       return;
-> > >               }
-> > >
-> > > -             dsc->pic_width = mode->hdisplay;
-> > > +             if (is_dual_panel)
-> > > +                     dsc->pic_width = hdisplay;
-> > > +             else
-> > > +                     dsc->pic_width = mode->hdisplay;
-> > >               dsc->pic_height = mode->vdisplay;
-> > >               DBG("Mode %dx%d\n", dsc->pic_width, dsc->pic_height);
-> > >
-> > > @@ -2369,7 +2373,8 @@ static void msm_dsi_sfpb_config(struct msm_dsi_host *msm_host, bool enable)
-> > >
-> > >  int msm_dsi_host_power_on(struct mipi_dsi_host *host,
-> > >                       struct msm_dsi_phy_shared_timings *phy_shared_timings,
-> > > -                     bool is_bonded_dsi, struct msm_dsi_phy *phy)
-> > > +                     bool is_bonded_dsi, bool is_dual_panel,
-> > > +                     struct msm_dsi_phy *phy)
-> > >  {
-> > >       struct msm_dsi_host *msm_host = to_msm_dsi_host(host);
-> > >       const struct msm_dsi_cfg_handler *cfg_hnd = msm_host->cfg_hnd;
-> > > @@ -2412,7 +2417,7 @@ int msm_dsi_host_power_on(struct mipi_dsi_host *host,
-> > >               goto fail_disable_clk;
-> > >       }
-> > >
-> > > -     dsi_timing_setup(msm_host, is_bonded_dsi);
-> > > +     dsi_timing_setup(msm_host, is_bonded_dsi, is_dual_panel);
-> > >       dsi_sw_reset(msm_host);
-> > >       dsi_ctrl_enable(msm_host, phy_shared_timings, phy);
-> > >
-> > > diff --git a/drivers/gpu/drm/msm/dsi/dsi_manager.c b/drivers/gpu/drm/msm/dsi/dsi_manager.c
-> > > index be13bf682a9601484c9c14e8419563f37c2281ee..158b6cc907cb39cc3b182d3088b793d322a3527c 100644
-> > > --- a/drivers/gpu/drm/msm/dsi/dsi_manager.c
-> > > +++ b/drivers/gpu/drm/msm/dsi/dsi_manager.c
-> > > @@ -24,6 +24,7 @@ struct msm_dsi_manager {
-> > >       struct msm_dsi *dsi[DSI_MAX];
-> > >
-> > >       bool is_bonded_dsi;
-> > > +     bool is_dual_panel;
-> > >       bool is_sync_needed;
-> > >       int master_dsi_link_id;
-> > >  };
-> > > @@ -31,6 +32,7 @@ struct msm_dsi_manager {
-> > >  static struct msm_dsi_manager msm_dsim_glb;
-> > >
-> > >  #define IS_BONDED_DSI()              (msm_dsim_glb.is_bonded_dsi)
-> > > +#define IS_DUAL_PANEL()              (msm_dsim_glb.is_dual_panel)
-> > >  #define IS_SYNC_NEEDED()     (msm_dsim_glb.is_sync_needed)
-> > >  #define IS_MASTER_DSI_LINK(id)       (msm_dsim_glb.master_dsi_link_id == id)
-> > >
-> > > @@ -55,6 +57,7 @@ static int dsi_mgr_parse_of(struct device_node *np, int id)
-> > >               msm_dsim->is_bonded_dsi = of_property_read_bool(np, "qcom,dual-dsi-mode");
-> > >
-> > >       if (msm_dsim->is_bonded_dsi) {
-> > > +             msm_dsim->is_dual_panel = of_property_read_bool(np, "qcom,dual-panel");
-> > >               if (of_property_read_bool(np, "qcom,master-dsi"))
-> > >                       msm_dsim->master_dsi_link_id = id;
-> > >               if (!msm_dsim->is_sync_needed)
-> > > @@ -214,6 +217,7 @@ static int dsi_mgr_bridge_power_on(struct drm_bridge *bridge)
-> > >       struct mipi_dsi_host *host = msm_dsi->host;
-> > >       struct msm_dsi_phy_shared_timings phy_shared_timings[DSI_MAX];
-> > >       bool is_bonded_dsi = IS_BONDED_DSI();
-> > > +     bool is_dual_panel = IS_DUAL_PANEL();
-> > >       int ret;
-> > >
-> > >       DBG("id=%d", id);
-> > > @@ -222,7 +226,8 @@ static int dsi_mgr_bridge_power_on(struct drm_bridge *bridge)
-> > >       if (ret)
-> > >               goto phy_en_fail;
-> > >
-> > > -     ret = msm_dsi_host_power_on(host, &phy_shared_timings[id], is_bonded_dsi, msm_dsi->phy);
-> > > +     ret = msm_dsi_host_power_on(host, &phy_shared_timings[id],
-> > > +                                 is_bonded_dsi, is_dual_panel, msm_dsi->phy);
-> > >       if (ret) {
-> > >               pr_err("%s: power on host %d failed, %d\n", __func__, id, ret);
-> > >               goto host_on_fail;
-> > > @@ -230,7 +235,8 @@ static int dsi_mgr_bridge_power_on(struct drm_bridge *bridge)
-> > >
-> > >       if (is_bonded_dsi && msm_dsi1) {
-> > >               ret = msm_dsi_host_power_on(msm_dsi1->host,
-> > > -                             &phy_shared_timings[DSI_1], is_bonded_dsi, msm_dsi1->phy);
-> > > +                             &phy_shared_timings[DSI_1], is_bonded_dsi,
-> > > +                             is_dual_panel, msm_dsi1->phy);
-> > >               if (ret) {
-> > >                       pr_err("%s: power on host1 failed, %d\n",
-> > >                                                       __func__, ret);
-> > >
-> > > --
-> > > 2.34.1
-> > >
-> >
-> > --
-> > With best wishes
-> > Dmitry
+  Linux 6.14-rc1 (2025-02-02 15:39:26 -0800)
+
+are available in the Git repository at:
+
+  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-power-v6.15
+
+for you to fetch changes up to bfad07fe298bfba0c7ddab87c5b5325970203a1e:
+
+  mfd: axp20x: AXP717: Add AXP717_TS_PIN_CFG to writeable regs (2025-02-20 16:05:09 +0000)
+
+----------------------------------------------------------------
+Immutable branch between MFD and Power due for the v6.15 merge window
+
+----------------------------------------------------------------
+Chris Morgan (1):
+      mfd: axp20x: AXP717: Add AXP717_TS_PIN_CFG to writeable regs
+
+ drivers/mfd/axp20x.c       | 1 +
+ include/linux/mfd/axp20x.h | 1 +
+ 2 files changed, 2 insertions(+)
 
 -- 
-With best wishes
-Dmitry
+Lee Jones [李琼斯]
 
