@@ -1,116 +1,100 @@
-Return-Path: <devicetree+bounces-148773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F2C2A3D56F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:53:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE798A3D591
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:57:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAB463A7E9E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:50:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8187D189D3F9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D19A1F0E37;
-	Thu, 20 Feb 2025 09:49:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h4yQ/+N2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA9F1F12F2;
+	Thu, 20 Feb 2025 09:57:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-190d.mail.infomaniak.ch (smtp-190d.mail.infomaniak.ch [185.125.25.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 786DA1EE006
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 09:49:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5C281F03EB
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 09:57:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740044963; cv=none; b=gMjtQAdASoB/JqbterKihZxFI6UpARmURIElRkieVyttqQTyR0KN6knwGvH3TPMMQWnj6v8FeuappDSK9VxZXs6TiYZDV/iUhXcpHwrlKvC0qNC5UkUHUZxHST943bCYOSuDCaq9OXfKzlfUb00bvXxa1gbSLx3wPCk7NB2wHFA=
+	t=1740045442; cv=none; b=WvWmWKpau/fbWqtuWHHaS9ddXn0hfQ/C7t9C+UzWnHzBitQNLA6DCyD/Qyly1xY4d/2ziGbU1N8dv97/sGTceoGjqtOTokUGrh7cG+SjH9mDJltx77K7uYjwm1km1eCTOjLDlvnlcwU/i0orQoyglx7KUsJF8B0iIxTb2MITSdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740044963; c=relaxed/simple;
-	bh=ArcLgFk2io66TkX35tqAR2Buc0pUYz2AJzitE5PaYuo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XsLD0zk7O4ZKKqLR/RvhmFG4g1c2H2F/WsDtYJIOpc56D8g40cC/deAV8rPThjS2PlPsQL3MUTjrRPssEjkX+4qrKSYj2sHH7YgTPLHT+QMI8i3QYAwaV3/p3hEETdOYs/r09HWjLQn4XofYNd/gbh8tIlylCxAoveFv80NdliY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h4yQ/+N2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08609C4CEEA
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 09:49:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740044963;
-	bh=ArcLgFk2io66TkX35tqAR2Buc0pUYz2AJzitE5PaYuo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=h4yQ/+N2jxxsI0C8gBGC92X0RZ0eAas6xX/uKm1RM0aktZl2+55m+tpnh/SOr2E6Y
-	 9TU0pDQCOuVRJNn94W2euN1zRXqHqEh/VybQtBQaX0ggh1RCPbHOEFyV09j86Sl2rn
-	 /wUTA5oFRFngTC1nQ5rIk+00BJxAMlbxagWthqSBZRkuTteviIQhph9uJF/PuACeQ4
-	 9EfMkK+cJ5tvRxkGMXKe/B+teDXjCdE7xiXsFW48yC4LWUv3Rv1HnouFpcAkYkGb7q
-	 zs8tNGNbp/9YaFLgFlTCisinHB8BVmNle2TXZ5uIp8lrNbliK1fNnREJqK+jNKFw1q
-	 HWmKMCVqWLVHQ==
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e5dc299deb4so699819276.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 01:49:22 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW2IUGgPGGjyNmZwpKvFGRTd+nT1rCQUZm6qJ/MHS09wzLuSjIA/P/RA8lLszs8astAhGU9F6D0l1qp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6CYQ8uiYGB5P8VqwNetGZ6cknrHgvqcnrlxDlTp7hxFPJ7R0u
-	/Z9w39esohCLNuuPrXXxpPdEmsQQq2OIY2jB1nT84tu7bvnMmPPJIPcxSjE2jSKWAj52mwMlN0N
-	HdwwURasOFo2r3LyXG2hyRs52BbRSnK5T9xD+vA==
-X-Google-Smtp-Source: AGHT+IG2VfvF2GnkRpoys0YJzodvdqc/5xzJY6uPb9btHNHUh2VENPQuq2gVXoso8g5unIWhVfhtqhWMRKw8m8MprAc=
-X-Received: by 2002:a05:6902:1706:b0:e5b:4482:a4f7 with SMTP id
- 3f1490d57ef6-e5e0a09240fmr5734034276.12.1740044962299; Thu, 20 Feb 2025
- 01:49:22 -0800 (PST)
+	s=arc-20240116; t=1740045442; c=relaxed/simple;
+	bh=HCenMjy/1zY1WNhoLNaLkQ7qj8Ms8jFNldivjvVtGJA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cFr79k6Op4gwDLCil05t6ZOJBwmoHPx8NRVNc7sAcIm1F0sJMinsv9T3zs7Coen3TVRVnpFXlDDX2GpZslGCnZV0smxvxrYaoMDvPtkA1uSmfJR0PCCc5yxCVECB5aPBRW1Td0IlGQT0kggcn9bAqucRv2PB63xPdFmAB4F8in0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
+Received: from smtp-4-0000.mail.infomaniak.ch (smtp-4-0000.mail.infomaniak.ch [10.7.10.107])
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4Yz7w82L4wz9ps;
+	Thu, 20 Feb 2025 10:57:12 +0100 (CET)
+Received: from unknown by smtp-4-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4Yz7w73jlBzbbQ;
+	Thu, 20 Feb 2025 10:57:11 +0100 (CET)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Subject: [PATCH 0/2] gpio: pcf857x: add support for reset-gpios on (most)
+ PCA967x
+Date: Thu, 20 Feb 2025 10:56:50 +0100
+Message-Id: <20250220-pca976x-reset-driver-v1-0-6abbf043050e@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250220094456.32818-1-clamor95@gmail.com> <20250220094456.32818-4-clamor95@gmail.com>
-In-Reply-To: <20250220094456.32818-4-clamor95@gmail.com>
-From: Robert Foss <rfoss@kernel.org>
-Date: Thu, 20 Feb 2025 10:49:11 +0100
-X-Gmail-Original-Message-ID: <CAN6tsi5cfXCOiYDFCGVdt5+Ug_YVfWrY92RA6GWt66-3j73vCw@mail.gmail.com>
-X-Gm-Features: AWEUYZl5H9Gg9NYfvDiAyEwJCEBbXZYFr80mYoMdK-I6EKVYjTLvZcUu8t-JWBE
-Message-ID: <CAN6tsi5cfXCOiYDFCGVdt5+Ug_YVfWrY92RA6GWt66-3j73vCw@mail.gmail.com>
-Subject: Re: [PATCH v1 3/3] drm/bridge: simple-bridge: Add support for MStar TSUMU88ADT3-LF-1
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxim Schwalm <maxim.schwalm@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGL8tmcC/x3MMQqAMAxA0atIZgNatBqvIg6ljZpFJRUpSO9uc
+ XzD/y9EVuEIU/WC8iNRzqOgrSvwuzs2RgnFYBrTN6YlvLyjwSZUjnxjUHlY0ZNz1I+WOmOhpJf
+ yKunfzkvOH5SYnhJmAAAA
+X-Change-ID: 20250219-pca976x-reset-driver-c9aa95869426
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Quentin Schulz <quentin.schulz@cherry.de>
+X-Mailer: b4 0.14.2
+X-Infomaniak-Routing: alpha
 
-On Thu, Feb 20, 2025 at 10:45=E2=80=AFAM Svyatoslav Ryhel <clamor95@gmail.c=
-om> wrote:
->
-> From: Maxim Schwalm <maxim.schwalm@gmail.com>
->
-> A simple HDMI bridge used in ASUS Transformer AiO P1801-T.
->
-> Signed-off-by: Maxim Schwalm <maxim.schwalm@gmail.com>
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  drivers/gpu/drm/bridge/simple-bridge.c | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/drivers/gpu/drm/bridge/simple-bridge.c b/drivers/gpu/drm/bri=
-dge/simple-bridge.c
-> index ab0b0e36e97a..c0f1f7baaa37 100644
-> --- a/drivers/gpu/drm/bridge/simple-bridge.c
-> +++ b/drivers/gpu/drm/bridge/simple-bridge.c
-> @@ -277,6 +277,11 @@ static const struct of_device_id simple_bridge_match=
-[] =3D {
->                         .timings =3D &ti_ths8134_bridge_timings,
->                         .connector_type =3D DRM_MODE_CONNECTOR_VGA,
->                 },
-> +       }, {
-> +               .compatible =3D "mstar,tsumu88adt3-lf-1",
-> +               .data =3D &(const struct simple_bridge_info) {
-> +                       .connector_type =3D DRM_MODE_CONNECTOR_HDMIA,
-> +               },
->         },
->         {},
->  };
-> --
-> 2.43.0
->
+The PCA9670, PCA9671, PCA9672 and PCA9673 all have a RESETN input pin
+that is used to reset the I2C GPIO expander.
 
-Reviewed-by: Robert Foss <rfoss@kernel.org>
+One needs to hold this pin low for at least 4us and the reset should be
+finished after about 100us according to the datasheet[1]. Once the reset
+is done, the "registers and I2C-bus state machine will be held in their
+default state until the RESET input is once again HIGH.".
+
+Because the logic is reset, the latch values eventually provided in the
+Device Tree via lines-initial-states property are inapplicable so they
+are simply ignored if a reset GPIO is provided.
+This is eventually enforced by the Device Tree binding by making sure
+both cannot be present at the same time.
+
+Finally, the reset-gpios property is specific to PCA9670, PCA9671,
+PCA9672 and PCA9673 so make it specific to those chips.
+
+[1] https://www.nxp.com/docs/en/data-sheet/PCA9670.pdf 8.5 and fig 22.
+
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+---
+Quentin Schulz (2):
+      dt-bindings: gpio: nxp,pcf8575: add reset GPIO
+      gpio: pcf857x: add support for reset-gpios on (most) PCA967x
+
+ .../devicetree/bindings/gpio/nxp,pcf8575.yaml      | 33 ++++++++++++++++++++++
+ drivers/gpio/gpio-pcf857x.c                        | 29 +++++++++++++++++--
+ 2 files changed, 59 insertions(+), 3 deletions(-)
+---
+base-commit: 6537cfb395f352782918d8ee7b7f10ba2cc3cbf2
+change-id: 20250219-pca976x-reset-driver-c9aa95869426
+
+Best regards,
+-- 
+Quentin Schulz <quentin.schulz@cherry.de>
+
 
