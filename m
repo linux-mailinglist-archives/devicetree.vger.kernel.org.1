@@ -1,228 +1,162 @@
-Return-Path: <devicetree+bounces-149146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BADE9A3E7CC
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 23:53:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 140A9A3E801
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 00:08:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDC8719C3DDE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 22:53:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B73203BBBAF
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 23:08:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC772641E3;
-	Thu, 20 Feb 2025 22:53:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF830264F81;
+	Thu, 20 Feb 2025 23:08:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VxQgHgsb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NsR+P/R4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD9F41C5D67;
-	Thu, 20 Feb 2025 22:53:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F5E91F1307;
+	Thu, 20 Feb 2025 23:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740091989; cv=none; b=rxHqRHLoP+sn5y/IjVuszoolOYIjnMFITHdQeZ6FWxVKmwTKdjaA9VhMZfHuTzb5hbG+C3NTtQoFuv1lsSeclsxL7ZiQQkYrUbm90597DbJrGN4TyufBkoUY6uJ4ClGkGIVbs4+EZWuGo5PFRPzn+c+OWWnGNHQS3i1Y/aQhnkA=
+	t=1740092907; cv=none; b=qGHbvrkRJXxd4RMcHTSe6Xf77X/ks3Rde4e5UpuNadSr/9XkfX7SeCPCMZFOgwETvMcRxjCpk1WU0yHillO0W9KOZX9XCmKF5/81Zu8XjTU2/tpqiFIl0O1/KtfLNK6Sn3TJnZrKVfwUk3yCjb4vEGCkbszOiypWLi5zGQAs1Uw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740091989; c=relaxed/simple;
-	bh=ghJE7I/qntVNlueEdQaHszb2vjdnYucsL+pK8Eztovg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=h5rvE434WjXnbRX/Loi7S/4N000lW0gIdVdFq7BIYrOiUo4vQWTtqSK8Ya70JZ2FuSeYa9LiN17HLukXyDoIs8KexWYJ/6ApYfiBVgRa3FR33wQNLWZezOTBVObmWn7BVYPkzALW5juiIalPDqzO95xZ5+AYT9WoynFVKYcRI3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VxQgHgsb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51KGDvlq002872;
-	Thu, 20 Feb 2025 22:52:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+LhQJ2cNrP1sZLJLlXAaWHjyrUnROMmZ4qkqaQHwakk=; b=VxQgHgsbWKpz6md2
-	3NgyegGgh8YQn7ZaGfdTI07PHI1hthK8BypmOOnPfgHT3g4y9GIMVpaKGOUp/osY
-	2nd4m0KoNtzjyYbKXeff4AJy9Q2DpDVHzE4Zzfve7dM/ahGHnqqxtCvWK+FIFnQM
-	zz83xUuDlz2oVuhe/pFIQ3kT1iSce2UZuSdLgS3JesuzsUoBxuYgRZwsAoMaLw0V
-	yJVVdABE04GrmBuZoUpl0MJZrfa/FGCh8ONzGj3ydjh+5mc8cM0z9SBPRDs73b9e
-	4cVoStbfT5hgLRiwxNxYN4as7CcUK/4gMJoXaBIIfKBgaJk5+2DPf+5xfa3NZJSl
-	kpProA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44vyy2fp9q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Feb 2025 22:52:52 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51KMqpET009129
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Feb 2025 22:52:51 GMT
-Received: from [10.134.70.212] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 20 Feb
- 2025 14:52:50 -0800
-Message-ID: <4841020a-5320-4ce2-88b9-34f008febf62@quicinc.com>
-Date: Thu, 20 Feb 2025 14:52:50 -0800
+	s=arc-20240116; t=1740092907; c=relaxed/simple;
+	bh=pl+/7EWG3hPE+Epp1RScVgVLKto/qJ+PZdiT/igveD4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JE9nSvhCpKkluUeuVxHvd0NsCiDN22/II2gGIqwV2dAV0lQdIN279btj4OxNXDsKnHEpMROjkhq5xeedY0+IYkodAJY6LLSua+f/OHEGVWJM+q2XFDYFnCLfHujqrThaip24/8wBOPuneNPYNv2ZCIRCraf1Ovj3UFUkViTNqSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NsR+P/R4; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5e0505275b7so2340123a12.3;
+        Thu, 20 Feb 2025 15:08:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740092904; x=1740697704; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vgLCVi2eqi2umimuqd7r8m9jVOLKYJ0bYbbWZhjQWDg=;
+        b=NsR+P/R42SxlMwxW7+ucLIwM+8rfLW598PFbrCw1yQMqXd0Cnn1TlcsGkN9rCusXU/
+         fq1725ED7rrRm9TX0vEiJXhkHc2KclJhaJCDv5fs57QA1pkNtpQOI2HB5dj0QfMUDMqp
+         TfVGo1BoMe4azBdy2ix3yAv/g5z/yvrHbgzx1/jb9BIlEtsvsr2zFws0wNV8gk/EHAiv
+         vTA+UpN9ttSmiKLa49evJFUv2/Mp8mYCo/RJeu3vdsM4UPX77kyWdIlD8mtAU4wTiE96
+         AdZAJTZaJSd/ow2IdrSnBJK3I0wofjWcCpyuitsVxHpLYNufTblBRUUlW4w2ZbaaFcRD
+         Ovbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740092904; x=1740697704;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vgLCVi2eqi2umimuqd7r8m9jVOLKYJ0bYbbWZhjQWDg=;
+        b=ByrgraTy/qgzwNHfqbsu9YfFJZ+YNfaenPSX7el+9Rw7CNG//QMTkE3SFS+q+Zu+iO
+         D+3AFbUNZhHlnqmMfUyOHj5RZc4HUmeLah9aLZk6g64+6RBUA2ylNWQLKtbYd/VcfzKe
+         EFDpV/AZu0WX+xD56c/Y813YXjIvGPBEf747lnbp7eJGsdjIbw3S/jVOIR8L8ucNS6fH
+         NXaTkPjtu54wVz0M/g98VXfFe1gM0ralkPjGHOWNvQ+rskXcn06bSGe8XjqfypxLG0Ru
+         7Cv5WDdUycAuJG3Yg7jG/JxQ6nqZHfGt/w/GrxPvY5QX+FkWdXl6NP4SEt0fFPx8RHAp
+         F/Ew==
+X-Forwarded-Encrypted: i=1; AJvYcCURxd76F3DaauCPmg7XfiOxj0wgwVe/zPockvUrot+BTZ3F0fpvvT4e4d7fKx7o8a7JdNjb272RhfXs3BrJ@vger.kernel.org, AJvYcCVXwrGBOp+EhvMPqnt0Uh8FjJ0xFC8x5GawIF194VL0069oEcx5b9t86V/X+opDbdXfqEFYnuURdvyzibY=@vger.kernel.org, AJvYcCXL1WNMonsbRPY6YJ7qsayMWqjkYpe9jJ0SqQ3XQxQUkLxTIMgP18M1F+Hzsoemq6v3CYp2WyKb+xeD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6shKqK6QCVnN+b6bhoW2+zRlg3x9xghnQIkPy/mRJ8RQmb3RZ
+	k9w+/kMGnKIGtzEjSXCwwABHCj9tOnmR6v60ZTGVT4gPdTEoxKjG
+X-Gm-Gg: ASbGncvhP91P0Gqvf45ZqAEZVVHXxt0HhEwko+6aVRRwUHRMymu3s3X9lGslFxD1Skv
+	HqB3VqfieGfeWywyTM0sNQUqUEh0bAvJvcnef/wfAs/XxAGxpOqCk37xMlBQbIOGBdvW07cBusT
+	Ca27vXyVsUQ/hVYmrrIlKELrW2efUuen9MU9GcYCzreCpdrPo7uhfO3n7YVoFJ/DzXaiJa5pr1r
+	k53tYlJZsOFbEiyYqrSrCE4uvLEQS1KmXWfA2YTTaxO5e7UHYwtdQS0op2bKLFdeTBYv3OOmg1N
+	rFyftU60hkJPBX3ksXmBXoAzgX0x
+X-Google-Smtp-Source: AGHT+IEDvxSma402XTJDmRJ/JuNvt76UQM64+7z10txDsXDLl3qf7Mk9kk+qny/wDvwm+o3bDkamYw==
+X-Received: by 2002:a17:906:3293:b0:abb:cdca:1c08 with SMTP id a640c23a62f3a-abc09a0bfcfmr94355266b.16.1740092904163;
+        Thu, 20 Feb 2025 15:08:24 -0800 (PST)
+Received: from demon-pc.localdomain ([188.27.130.21])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb9654a6b2sm909107066b.135.2025.02.20.15.08.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Feb 2025 15:08:23 -0800 (PST)
+From: Cosmin Tanislav <demonsingur@gmail.com>
+To: 
+Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Cosmin Tanislav <demonsingur@gmail.com>
+Subject: [PATCH v2 0/6] media: v4l: add support for Virtual Channel IDs
+Date: Fri, 21 Feb 2025 01:08:08 +0200
+Message-ID: <20250220230818.275262-1-demonsingur@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 14/16] drm/msm/dpu: Add missing "fetch" name to
- set_active_pipes()
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Clark
-	<robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Dmitry
- Baryshkov" <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        "Marijn Suijten" <marijn.suijten@somainline.org>,
-        David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Jonathan Marek
-	<jonathan@marek.ca>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Srini Kandagatla
-	<srinivas.kandagatla@linaro.org>
-References: <20250217-b4-sm8750-display-v2-0-d201dcdda6a4@linaro.org>
- <20250217-b4-sm8750-display-v2-14-d201dcdda6a4@linaro.org>
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20250217-b4-sm8750-display-v2-14-d201dcdda6a4@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: gnqIgwloMtZpENg2vID9N5dlsa59Em0X
-X-Proofpoint-GUID: gnqIgwloMtZpENg2vID9N5dlsa59Em0X
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-20_09,2025-02-20_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- lowpriorityscore=0 clxscore=1015 adultscore=0 phishscore=0 mlxlogscore=999
- bulkscore=0 malwarescore=0 impostorscore=0 priorityscore=1501 mlxscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502200152
+Content-Transfer-Encoding: 8bit
 
+Multi-camera systems often have issues with receiving video streams
+from multiple cameras at the same time because the cameras use the same
+Virtual Channel IDs.
 
+CSI bridges might not support remapping the Virtual Channel IDs, making
+it impossible to receive the separate video streams at the same
+time, while the CSI receiver is able to de-mux streams based on VC IDs.
 
-On 2/17/2025 8:41 AM, Krzysztof Kozlowski wrote:
-> The set_active_pipes() callback configures CTL_FETCH_PIPE_ACTIVE and
-> newer DPU v12.0 comes with CTL_PIPE_ACTIVE, thus rename it to
-> set_active_fetch_pipes() to better match the purpose.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cameras sometimes have support for changing the VC IDs they output
+themselves.
 
-Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+For a practical example, GMSL2 deserializer chips do not support VC ID
+remapping in tunnel mode, and neither do the serializers. Allowing the
+cameras to have their VC IDs configured would allow multi-camera setups
+to use tunnel mode.
 
-> 
-> ---
-> 
-> Changes in v2:
-> 1. New patch
-> ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c   | 12 ++++++------
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c |  6 +++---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h |  2 +-
->   3 files changed, 10 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> index 7191b1a6d41b3a96f956d199398f12b2923e8c82..7de79696a21e58a4c640f00265610ccce8b5d253 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> @@ -445,9 +445,9 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
->   
->   	uint32_t lm_idx;
->   	bool bg_alpha_enable = false;
-> -	DECLARE_BITMAP(fetch_active, SSPP_MAX);
-> +	DECLARE_BITMAP(active_fetch, SSPP_MAX);
->   
-> -	memset(fetch_active, 0, sizeof(fetch_active));
-> +	memset(active_fetch, 0, sizeof(active_fetch));
->   	drm_atomic_crtc_for_each_plane(plane, crtc) {
->   		state = plane->state;
->   		if (!state)
-> @@ -464,7 +464,7 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
->   		if (pstate->stage == DPU_STAGE_BASE && format->alpha_enable)
->   			bg_alpha_enable = true;
->   
-> -		set_bit(pstate->pipe.sspp->idx, fetch_active);
-> +		set_bit(pstate->pipe.sspp->idx, active_fetch);
->   		_dpu_crtc_blend_setup_pipe(crtc, plane,
->   					   mixer, cstate->num_mixers,
->   					   pstate->stage,
-> @@ -472,7 +472,7 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
->   					   &pstate->pipe, 0, stage_cfg);
->   
->   		if (pstate->r_pipe.sspp) {
-> -			set_bit(pstate->r_pipe.sspp->idx, fetch_active);
-> +			set_bit(pstate->r_pipe.sspp->idx, active_fetch);
->   			_dpu_crtc_blend_setup_pipe(crtc, plane,
->   						   mixer, cstate->num_mixers,
->   						   pstate->stage,
-> @@ -492,8 +492,8 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
->   		}
->   	}
->   
-> -	if (ctl->ops.set_active_pipes)
-> -		ctl->ops.set_active_pipes(ctl, fetch_active);
-> +	if (ctl->ops.set_active_fetch_pipes)
-> +		ctl->ops.set_active_fetch_pipes(ctl, active_fetch);
->   
->   	_dpu_crtc_program_lm_output_roi(crtc);
->   }
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> index 9d4866509e97c262006e15cf3e02a2f1ca851784..2e1e22589f730d1a60c3cbf6ad6b6aeaea38c6fb 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> @@ -675,8 +675,8 @@ static void dpu_hw_ctl_reset_intf_cfg_v1(struct dpu_hw_ctl *ctx,
->   	}
->   }
->   
-> -static void dpu_hw_ctl_set_fetch_pipe_active(struct dpu_hw_ctl *ctx,
-> -	unsigned long *fetch_active)
-> +static void dpu_hw_ctl_set_active_fetch_pipes(struct dpu_hw_ctl *ctx,
-> +					      unsigned long *fetch_active)
->   {
->   	int i;
->   	u32 val = 0;
-> @@ -764,7 +764,7 @@ struct dpu_hw_ctl *dpu_hw_ctl_init(struct drm_device *dev,
->   		c->ops.update_pending_flush_dspp = dpu_hw_ctl_update_pending_flush_dspp;
->   
->   	if (mdss_ver->core_major_ver >= 7)
-> -		c->ops.set_active_pipes = dpu_hw_ctl_set_fetch_pipe_active;
-> +		c->ops.set_active_fetch_pipes = dpu_hw_ctl_set_active_fetch_pipes;
->   
->   	c->idx = cfg->id;
->   	c->mixer_count = mixer_count;
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
-> index f04ae0b1d986fa8f73e5bf96babfca3b4f3a0bf5..b8bd5b22c5f8dadd01c16c352efef4063f2614a6 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
-> @@ -243,7 +243,7 @@ struct dpu_hw_ctl_ops {
->   	void (*setup_blendstage)(struct dpu_hw_ctl *ctx,
->   		enum dpu_lm lm, struct dpu_hw_stage_cfg *cfg);
->   
-> -	void (*set_active_pipes)(struct dpu_hw_ctl *ctx,
-> +	void (*set_active_fetch_pipes)(struct dpu_hw_ctl *ctx,
->   		unsigned long *fetch_active);
->   };
->   
-> 
-> -- 
-> 2.43.0
-> 
+Add support for specifying these Virtual Channel IDs in Video Interface
+Endpoints.
+
+Add support for parsing VC IDs in v4l2_fwnode_endpoint_parse().
+This allows us to retrieve the specified VC IDs in camera drivers and
+configure the hardware to use them.
+
+The supported values are 0 to 3, with a maximum of 4 values.
+Although the CSI-2 specification allows for up to 32 virtual channels,
+most hardware doesn't support more than 4. This can be extended later
+if need be.
+
+The driver must validate the number of VC IDs and the VC IDs
+themselves.
+
+Add an example implementation for IMX219.
+
+V2:
+ * goto err_rpm_put on failure to configure VC ID in imx219, and print
+   error
+
+Cosmin Tanislav (5):
+  dt-bindings: media: video-interfaces: add support for Virtual Channel
+    IDs
+  media: v4l: fwnode: parse Virtual Channel IDs for CSI2 buses
+  dt-bindings: media: imx219: add support for Virtual Channel IDs
+  media: i2c: imx219: pass format's code to imx219_get_format_bpp()
+  media: i2c: imx219: implement configurable VC ID
+
+Laurent Pinchart (1):
+  media: i2c: imx219: Report streams using frame descriptors
+
+ .../devicetree/bindings/media/i2c/imx219.yaml |  2 +
+ .../bindings/media/video-interfaces.yaml      | 11 ++++
+ drivers/media/i2c/imx219.c                    | 56 ++++++++++++++++++-
+ drivers/media/v4l2-core/v4l2-fwnode.c         | 15 +++++
+ include/media/v4l2-mediabus.h                 |  5 ++
+ 5 files changed, 86 insertions(+), 3 deletions(-)
+
+-- 
+2.48.1
 
 
