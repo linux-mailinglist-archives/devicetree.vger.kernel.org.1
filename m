@@ -1,100 +1,130 @@
-Return-Path: <devicetree+bounces-149138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 733AEA3E772
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 23:22:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92B59A3E77D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 23:25:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1D1E7AA6F1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 22:21:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A9C13AA59B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 22:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F032673AB;
-	Thu, 20 Feb 2025 22:21:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD68B1F03FD;
+	Thu, 20 Feb 2025 22:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jK5xDA+8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mt3Te2Ft"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9824E266F1D;
-	Thu, 20 Feb 2025 22:21:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 849A41EA7EA;
+	Thu, 20 Feb 2025 22:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740090085; cv=none; b=tqoh+UXkOCEje1vpx+bbie+S/8pdWL00KkBHvSW8jZ2+APnvHQb7uizMGWI6BEii7+p6n9Rufw4mQptqd6+or8ZEwGHNsCpqTcV/jnJmVFrkG+OCIjTXQhnqKc6wyr1cE6KImcvpjQvEFFmPfN8JpEDo18LKeDMSeAcDw05Aq+M=
+	t=1740090337; cv=none; b=bpkbmqqMOFN9UMFuaAMiXKEe8cDLZQjJFj1pXqHtqDIQdxnInjmOG4tvT3vVUIfuy19eq8/xAlZCLa964V3fQTXcKHwSw363rUU98hgubj/j3tQNmp2+COE33qsZM/9z1uaXDLX+Riyjg6N82irh7IBhOi7VosY1P7OO262CkIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740090085; c=relaxed/simple;
-	bh=zbNXVuTI6mbjIQeoZSBtFo9TA3uSX1SrbRnfFkQ2RCc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=cB5WwLx5/cWbgFPZA7VnvSRcnVDbHGlNBnO+GZy4YzuQLmLCllXhgFTrCLIZeXWCcr2gvIByqAMnMvcyH7ms824fQkyn9mzhRme4jVkdqg1KGGVtqpJ/g0uXZiagH1pBE1bacxIvv+xgJQha9/JYEl8uvbPeLFhh9PN7ONb9pdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jK5xDA+8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E9C9C4CED1;
-	Thu, 20 Feb 2025 22:21:23 +0000 (UTC)
+	s=arc-20240116; t=1740090337; c=relaxed/simple;
+	bh=RJiaUdl2RvW6e22DMN7RYxWmy6sBbotkEMjdbKNhlxo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gfWi32ylnMxBswRaJfUI8N4sDqH2Mj5ld4Q1n68H/MOgv8lbzcCDCwZ3O69C9AUxZMAH1D03sb+OVfyi9AX2qnjTktKcrvNiG0LEhgG7kXkwdhNb4XoZm4/JJgipog9qYLNxd40zj6S5ddA4NcngLp8iYLMDjudNkh5w2TByi9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mt3Te2Ft; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC3B2C4CED1;
+	Thu, 20 Feb 2025 22:25:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740090085;
-	bh=zbNXVuTI6mbjIQeoZSBtFo9TA3uSX1SrbRnfFkQ2RCc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=jK5xDA+8ot0Dd6uczig1y/B15n+S/ITuUq5KSTNB1Du11O6oMSDrtPwDhH7uRCMxr
-	 4UGQ0LPbyvaaTXr2C8aSWsSf4FW5L4sw0UxCXnePt0z5G0uWGI7+0FxOvO2ltDZxWj
-	 0esECf8bkZERXHSVaAiRThGQPgAslam3cr75uOXqmwknnQf4uDHvPiDPQzThT0JELW
-	 CwiJnsyswiTlbxcHnCdBID3QddkafsRQX260vIR2ouHJbfdkNJNA16y+BcgZixRyjZ
-	 h24JyUosLRtpnwaHwGQFJkDw/fzHIGwGy2Vykc95mwQEnxKGY35Cn01QBEZ5Y27cJk
-	 bIiwfgQSuQRew==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250220-ppcyaml-spi-v3-1-e340613c7875@posteo.net>
-References: <20250220-ppcyaml-spi-v3-1-e340613c7875@posteo.net>
-Subject: Re: [PATCH v3] dt-bindings: spi: Convert Freescale SPI bindings to
- YAML
-Message-Id: <174009008319.2293629.4152742389838123835.b4-ty@kernel.org>
-Date: Thu, 20 Feb 2025 22:21:23 +0000
+	s=k20201202; t=1740090336;
+	bh=RJiaUdl2RvW6e22DMN7RYxWmy6sBbotkEMjdbKNhlxo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Mt3Te2FtyuZ+yp9KJmQeaNyj3kpDuuTeR+PBQW/1mCbe7JTKrTjx8EGBVUxmw1kh+
+	 o7r9iBQwNO5Cm1v3zGj9O0hBG9MCaAcp4bz/hLnbXCrt9I4AFo/m2niXpaOW4ybJPP
+	 l/mfC53NKy6Kgjq2SgeFv1sjbhtKpeAtxUwsr/XoyAhREgfPOzuBVhalr2FHwereKU
+	 x4h0DbVXYV/sE6NE2lO4efiXAkEAsbPg69xW9l3adGU56I8apAjAMJGGRRxt0iD1rk
+	 Efpye7hidjorq4dfja4hFPFvSFSINokwNxIKbJuLkkwhucnnJFFh9ekJ+lgxISlN6q
+	 VHraLlyodNQQw==
+Date: Thu, 20 Feb 2025 14:25:35 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Felix Fietkau <nbd@nbd.name>, Sean Wang
+ <sean.wang@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "Chester A. Unal" <chester.a.unal@arinc9.com>,
+ Daniel Golle <daniel@makrotopia.org>, DENG Qingfang <dqfext@gmail.com>,
+ Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+ netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ upstream@airoha.com
+Subject: Re: [PATCH net-next v5 05/15] net: airoha: Move DSA tag in DMA
+ descriptor
+Message-ID: <20250220142535.584b0423@kernel.org>
+In-Reply-To: <20250217-airoha-en7581-flowtable-offload-v5-5-28be901cb735@kernel.org>
+References: <20250217-airoha-en7581-flowtable-offload-v5-0-28be901cb735@kernel.org>
+	<20250217-airoha-en7581-flowtable-offload-v5-5-28be901cb735@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-42535
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, 20 Feb 2025 13:46:32 +0100, J. Neuschäfer wrote:
-> fsl-spi.txt contains the bindings for the fsl,spi and fsl,espi
-> contollers. Convert them to YAML.
-> 
-> 
+On Mon, 17 Feb 2025 14:01:09 +0100 Lorenzo Bianconi wrote:
+> +static u32 airoha_get_dsa_tag(struct sk_buff *skb, struct net_device *dev)
+> +{
+> +#if IS_ENABLED(CONFIG_NET_DSA)
+> +	struct ethhdr *ehdr;
+> +	struct dsa_port *dp;
+> +	u8 xmit_tpid;
+> +	u16 tag;
+> +
+> +	if (!netdev_uses_dsa(dev))
+> +		return 0;
+> +
+> +	dp = dev->dsa_ptr;
+> +	if (IS_ERR(dp))
+> +		return 0;
+> +
+> +	if (dp->tag_ops->proto != DSA_TAG_PROTO_MTK)
+> +		return 0;
+> +
+> +	if (skb_ensure_writable(skb, ETH_HLEN))
+> +		return 0;
 
-Applied to
+skb_cow_head() is a lot cheaper (for TCP)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+> +	ehdr = (struct ethhdr *)skb->data;
+> +	tag = be16_to_cpu(ehdr->h_proto);
+> +	xmit_tpid = tag >> 8;
 
-Thanks!
+> @@ -2390,8 +2498,10 @@ static int airoha_probe(struct platform_device *pdev)
+>  	for (i = 0; i < ARRAY_SIZE(eth->ports); i++) {
+>  		struct airoha_gdm_port *port = eth->ports[i];
+>  
+> -		if (port && port->dev->reg_state == NETREG_REGISTERED)
+> +		if (port && port->dev->reg_state == NETREG_REGISTERED) {
+> +			airoha_metadata_dst_free(port);
+>  			unregister_netdev(port->dev);
 
-[1/1] dt-bindings: spi: Convert Freescale SPI bindings to YAML
-      commit: f3bfa0f07976a7996b6dedba21d2e0d164f08ce8
+Looks a tiny bit reversed, isn't it?
+First unregister the netdev, then free its metadata.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> +		}
+>  	}
+>  	free_netdev(eth->napi_dev);
+>  	platform_set_drvdata(pdev, NULL);
+> @@ -2416,6 +2526,7 @@ static void airoha_remove(struct platform_device *pdev)
+>  			continue;
+>  
+>  		airoha_dev_stop(port->dev);
+> +		airoha_metadata_dst_free(port);
+>  		unregister_netdev(port->dev);
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+same here
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+>  	}
+>  	free_netdev(eth->napi_dev);
 
