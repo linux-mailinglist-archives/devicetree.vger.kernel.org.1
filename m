@@ -1,157 +1,267 @@
-Return-Path: <devicetree+bounces-148866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60E36A3DA08
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:30:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B51DA3DA10
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:31:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFE203AB35F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:25:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E5FB1771A9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:27:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D4261FC7C2;
-	Thu, 20 Feb 2025 12:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB511F473A;
+	Thu, 20 Feb 2025 12:26:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ec7ISYIy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LpHAY1VV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71BF01FBE8F;
-	Thu, 20 Feb 2025 12:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DA761F4639;
+	Thu, 20 Feb 2025 12:26:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740054284; cv=none; b=jE/3qUlU1GLXQDA3WC5giQfj3492UaUEb/TRbpxyxqb+idI1StsRyTOYYy/foRvl3LsoRUVEbp2CaQx41q5HenhxF0nL4fG3B5Q/TX0OKY5lyVKc2IDEtvGRPN8fpQSCQQbn/mlruqHPs8I3Hz7rF9PFinZhs18ZN5coFdlzR5c=
+	t=1740054398; cv=none; b=ZvcOvnxgK/UqQXKGp6iwFk3olyg5otGkRfRnYJvNfwNRtEPl2+Vq3C7CDtZdetTE53MwULP+HPyGefiO61R3C/5grqa08Wj1Qmi1AaXFkMtLIP3s2398E0tLiuxH32d2ReK9EEC0xpIWHJtgT16bkqTnjQOMPysQHrpVrSfVlVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740054284; c=relaxed/simple;
-	bh=Tu6kHcip9wT6NuYvevfbwekjEW8uMu2I+njT1S0ZChs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ABmvMF5T6bAqoGxXNb1ZQkmn59xZxPNEZ5cp0zXogk5WdQ7Ask2fe2ZeWuIHQwC8dqzVxcp+3wExESKR4br4TcXxY3w9G+MTrIUkFyOX8T/GqPN6rwlLyBEEz1IjzTtQXL31KIJnZdCXiCDajHVuIc46duETNYGLQPQLTo37mkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ec7ISYIy; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A39E5526;
-	Thu, 20 Feb 2025 13:23:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1740054196;
-	bh=Tu6kHcip9wT6NuYvevfbwekjEW8uMu2I+njT1S0ZChs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ec7ISYIyxKj7p1aDBfI0cs3o71ZuFypwEgzlAlAm3Yq34BA92sPP0qFKffE4LIOY/
-	 Tvo/hWawHXXn/WmsFBnlkaacx8+W3GXgc97kLzUhoM5XnAfq3gvbOZktYt/AVVACQF
-	 A20vMZ82NFDzQUwN+W2xeykEgmq2dyXQn0UV8eFY=
-Date: Thu, 20 Feb 2025 14:24:24 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Quentin Schulz <foss+kernel@0leil.net>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: nxp,pcf8575: add reset GPIO
-Message-ID: <20250220122424.GB20111@pendragon.ideasonboard.com>
-References: <20250220-pca976x-reset-driver-v1-0-6abbf043050e@cherry.de>
- <20250220-pca976x-reset-driver-v1-1-6abbf043050e@cherry.de>
+	s=arc-20240116; t=1740054398; c=relaxed/simple;
+	bh=/ag2+pqBfNA1YnPg2qWQBfIKIJRPfPq2nVeOyjnOjME=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jMR6J6zcKGvdal2azB5n/FMKOHFo4c09r+Hj0EWdvKoVE5W1K69kXKvTsXT99nO6sz9b9ylRDZLtDvALUOv5Nr6mYlAju8DLL/sqx4wzHWszDqpsq2CFJn+o4X1skinU/KciOQdSJq/NqEYt/NUbFldXb1DfQTmLC8lo3jyLakI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LpHAY1VV; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-38f31f7732dso574682f8f.1;
+        Thu, 20 Feb 2025 04:26:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740054395; x=1740659195; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qH3DdgoKEAfwj4iaPXGOxAlwGgUTybVzhqeu1NMzPMo=;
+        b=LpHAY1VV4bnUVGNwzKdm6fhXfUwM8GfItSQ55kzxwwYth7I+KgqFaGrsHNiGzsyaQL
+         YdZaq5P3no0ByyE5e/x/VIEdZvgUNv1Ttp3svsN2XCwQ0lXOMDvGScugUPejXXs2F794
+         fpr1g/h08de7TjVTiyav2Omwy92PF7FkqadA+gsoieqpkRi4Y8U44kmksbrwtjb0wTxC
+         olwmsLUJXwuE5Ds97ib+x+cg2sdpljDI3mMUCRqmur9ZjWIchFCgSYp7EKZJhR1aIji6
+         8djfrlG1xG3a87GGjCEcUMgWHpwPJjN4frp8w2fiUcjpPZTD9J3X9loPDpukmnfVEeO1
+         NEAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740054395; x=1740659195;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qH3DdgoKEAfwj4iaPXGOxAlwGgUTybVzhqeu1NMzPMo=;
+        b=qDC4HRc/JvggJbTvaSo98Yn0/GaQEfuvdvaKyncZdmz7HCxgASeKNXx/CFuz13WLb1
+         2STliW+enfVp2iyhoONuGqCLQ4KZ1J1Mg7vzR52eBNjlgTEmEglGCvxijv+qPS94hjXz
+         nFFOPNccytJaKLz4TscfflG8XjAI3eA89guLmD5RUYEnyJjqBrK9MEGy9fBy7O75Tfko
+         QQGbyhYGQytq/5dl2omFyJg/vW4wDoxQ7ha9zBjROTVi01qZmXXUA7D8Evlj2Lvi5oDN
+         CyDns59s8fT2bEzd1Ykoo9LeqpOirS49iVXvi8sFnuEWZ7q9jz+FXUbBr6mwyMpwXxHe
+         /Y8g==
+X-Forwarded-Encrypted: i=1; AJvYcCVI9beKsgclcu3ghDef5ZGNXjCE0EEQOP+V3Wn7bRpjyU9F8yewUpRli7EQXAaNyV5BsjkChCU7Xj7L@vger.kernel.org, AJvYcCWmN1Jf4V20koCP+X2C4ne8fySZWmFQHlas/r7KSE9dulavXJ+49bZRQ0LHvCnspWp+Me4O+yVeGoOqSBbL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBjAISb/zE03bBwLJ2HnShZoIbUeidGRusfGXIpwVEL4pTL7aa
+	7jssM2FemOeKotCact7tRmFwNvoUt4nmzXpwT1YRDYKr+pjb2So0Z2tqI1za6momxvlQhK9iC2L
+	k1YvvEsPYb3PVAKu4SeQEJE1NX+I=
+X-Gm-Gg: ASbGncudzaI081gEmvKZVZDTnLlNOBxujTKiZyUAmDTMoknG36lv890VkbH6mAS9vz2
+	pmObBzkf0Rt6rKqL7FSIqz7rqEKEmzj60CWs3AOVg0SZ+1haKJPTQQMMWGtFNkPHBiKKMS9unnQ
+	==
+X-Google-Smtp-Source: AGHT+IEJTUmZHt18x/a4EVaHGfsjiEvSDzeEMYQTsZEr7m09QmHa6Dk5Cu5cXVAh1apSpLSOdMYco8A9NnvUxoKYV4Q=
+X-Received: by 2002:a5d:58eb:0:b0:38d:b12f:60d1 with SMTP id
+ ffacd0b85a97d-38f61609f19mr2169886f8f.26.1740054394477; Thu, 20 Feb 2025
+ 04:26:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250220-pca976x-reset-driver-v1-1-6abbf043050e@cherry.de>
+References: <20250217140910.108175-1-clamor95@gmail.com> <20250217140910.108175-3-clamor95@gmail.com>
+ <zmwn3dnnmwhms2qxqwb6ksshx27fcq2i4wujz5utuldaiqs6oz@idvy3dirrmuo>
+ <CAPVz0n3bqLhuC0gxXD-=L0ETMmhOv1Ku0PrWUb_Yn09v3UNuOA@mail.gmail.com>
+ <hemnpzzz3ddibdbqwkazwuoalmvuc2mekebqxfrnxiod6futni@sgdjgtrbcwza>
+ <CAPVz0n24o5yar-0oO5dPb3vLzuK=Ln8+JKuaooSRwPfiaLQ9vA@mail.gmail.com>
+ <jo7nnxrzwi43qqii7wtekdbc6vluakkvg4ndw266ajgkpe3y52@whd5nly34nju>
+ <CAPVz0n3HsXJeyRJGP=_UMhs7d4OA-P_yXx5B9EQDU7vQCz8qoA@mail.gmail.com> <3lms6xzzu3hfhkncikcmvl6btzdcc2cwoh4kwhw53hdakecrij@yqoyl3bqmm5m>
+In-Reply-To: <3lms6xzzu3hfhkncikcmvl6btzdcc2cwoh4kwhw53hdakecrij@yqoyl3bqmm5m>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Thu, 20 Feb 2025 14:26:22 +0200
+X-Gm-Features: AWEUYZnht_Ew12HsnJseDT7TV_6lFwyWBz022uUOwakEZ6gmzeAR7-sBzh9_wRA
+Message-ID: <CAPVz0n3YZass3Bns1m0XrFxtAC0DKbEPiW6vXimQx97G243sXw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] drm: bridge: Add support for Solomon SSD2825
+ RGB/DSI bridge
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Quentin,
+=D1=82, 20 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 13:35 Dmitry Bar=
+yshkov <dmitry.baryshkov@linaro.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Thu, Feb 20, 2025 at 09:37:18AM +0200, Svyatoslav Ryhel wrote:
+> > =D1=81=D1=80, 19 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 15:34 =
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org> =D0=BF=D0=B8=D1=88=D0=B5:
+> > >
+> > > On Tue, Feb 18, 2025 at 04:36:17PM +0200, Svyatoslav Ryhel wrote:
+> > > > =D0=B2=D1=82, 18 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 16=
+:20 Dmitry Baryshkov <dmitry.baryshkov@linaro.org> =D0=BF=D0=B8=D1=88=D0=B5=
+:
+> > > > >
+> > > > > On Tue, Feb 18, 2025 at 02:45:19PM +0200, Svyatoslav Ryhel wrote:
+> > > > > > =D0=B2=D1=82, 18 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=
+=BE 14:31 Dmitry Baryshkov <dmitry.baryshkov@linaro.org> =D0=BF=D0=B8=D1=88=
+=D0=B5:
+> > > > > > >
+> > > > > > > On Mon, Feb 17, 2025 at 04:09:10PM +0200, Svyatoslav Ryhel wr=
+ote:
+> > > > > > > > SSD2825 is a cost-effective MIPI Bridge Chip solution targe=
+ting mainly
+> > > > > > > > smartphones. It can convert 24bit RGB interface into 4-lane=
+ MIPI-DSI
+> > > > > > > > interface to drive display modules of up to 800 x 1366, whi=
+le supporting
+> > > > > > > > AMOLED, a-si LCD or LTPS panel technologies for smartphone =
+applications.
+> > > > > > > >
+> > > > > > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > > > > > > > ---
+> > > > > > > >  drivers/gpu/drm/bridge/Kconfig   |  14 +
+> > > > > > > >  drivers/gpu/drm/bridge/Makefile  |   1 +
+> > > > > > > >  drivers/gpu/drm/bridge/ssd2825.c | 824 +++++++++++++++++++=
+++++++++++++
+> > > > > > > >  3 files changed, 839 insertions(+)
+> > > > > > > >  create mode 100644 drivers/gpu/drm/bridge/ssd2825.c
+> > > > > > > >
+...
+> > > > > > >
+> > > > > > > From v1:
+> > > > > > >
+> > > > > > > Most of these flags should be set depending on the
+> > > > > > > mipi_dsi_device.mode_flags.
+> > > > > > >
+> > > > > > > > +             ssd2825_write_reg(priv, SSD2825_PLL_CTRL_REG,=
+ 0x0001);
+> > > > > > > > +             ssd2825_write_reg(priv, SSD2825_VC_CTRL_REG, =
+0x0000);
+> > > > > > >
+> > > > > > > Why? Why do you need this special handling for the
+> > > > > > > MIPI_DCS_SET_DISPLAY_ON? Why can't it just go to .atomic_enab=
+le()?
+> > > > > > >
+> > > > > >
+> > > > > > This has to be called after panel init dsi sequence completes, =
+is
+> > > > > > atomic_enable called after panel init dsi seq is completed? May=
+be you
+> > > > > > can suggest where to place it.
+> > > > >
+> > > > > That depends on a panel. Significant number of panel drivers call=
+ all
+> > > > > DSI programming in .prepare because some DSI hosts can not transf=
+er
+> > > > > commands after starting DSI video stream.
+> > > > >
+> > > > > So these commands should go to your .enable().
+> > > > >
+> > > >
+> > > > This is weird and counter intuitive to send dsi commands in prepare=
+,
+> > > > there should be smth like enable_post. Oh well, fine, I will try to
+> > > > fit this somehow.
+> > > >
+> >
+> > Who had made this cursed framework?
+> >
+> > Functions are called in the next seq
+> >
+> > panel_prepare > bridge_pre_enable > bridge_enable > panel_enable
+>
+> Use drm_bridge.pre_enable_prev_first or drm_panel.prepare_prev_first. I
+> think that fixes your order issues.
+>
 
-Thank you for the patch.
+This seems to have no effect. I have set panel.prepare_prev_first =3D
+true in the panel probe, which should result in
+bridge_atomic_pre_enable be called before panel prepare,
+and yet I still have this:
 
-On Thu, Feb 20, 2025 at 10:56:51AM +0100, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@cherry.de>
-> 
-> A few of the I2C GPIO expander chips supported by this binding have a
-> RESETN pin to be able to reset the chip. The chip is held in reset while
-> the pin is low, therefore the polarity of reset-gpios is expected to
-> reflect that, i.e. a GPIO_ACTIVE_HIGH means the GPIO will be held low
-> for reset and released high, GPIO_ACTIVE_LOW means the GPIO will be held
-> high for reset and released low.
+[   45.280653] renesas_r61307_prepare start
+[   45.300873] renesas_r61307_prepare end
+[   45.301070] ssd2825_bridge_atomic_pre_enable start
+[   45.317248] ssd2825_bridge_atomic_pre_enable end
+[   45.317287] ssd2825_bridge_atomic_enable start
+[   45.331650] ssd2825_bridge_atomic_enable end
+[   45.331677] renesas_r61307_enable start
+[   45.520959] renesas_r61307_enable end
 
-I think the convention in DT is the opposite. The DT property is
-"reset-gpios", no "resetn-gpio", so the polarity should indicate how to
-drive the GPIO to assert a logical "reset". GPIO_ACTIVE_LOW should mean
-that the chip will be in reset when the physical GPIO is 0.
+With or without the flag it is same
 
-Could DT maintainers confirm this ?
-
-> Out of the supported chips, only PCA9670, PCA9671, PCA9672 and PCA9673
-> show a RESETN pin in their datasheets. They all share the same reset
-> timings, that is 4+us reset pulse[0] and 100+us reset time[0].
-> 
-> When performing a reset, "The PCA9670 registers and I2C-bus state
-> machine will be held in their default state until the RESET input is
-> once again HIGH."[1] meaning we now know the state of each line
-> controlled by the GPIO expander. Therefore, setting lines-initial-states
-> and reset-gpios both does not make sense and their presence is XOR'ed.
-> 
-> [0] https://www.nxp.com/docs/en/data-sheet/PCA9670.pdf Fig 22.
-> [1] https://www.nxp.com/docs/en/data-sheet/PCA9670.pdf 8.5
-> 
-> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
-> ---
->  .../devicetree/bindings/gpio/nxp,pcf8575.yaml      | 33 ++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-> index 3718103e966a13e1d77f73335ff73c18a3199469..d08d3f848f82e74de949da16d26a810dc52a74e5 100644
-> --- a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-> @@ -73,6 +73,39 @@ properties:
->  
->    wakeup-source: true
->  
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description:
-> +      GPIO controlling the (reset active LOW) RESET# pin.
-> +
-> +      Performing a reset makes all lines initialized to their input (pulled-up)
-> +      state.
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
-> +            contains:
-> +              enum:
-> +                - nxp,pca9670
-> +                - nxp,pca9671
-> +                - nxp,pca9672
-> +                - nxp,pca9673
-> +    then:
-> +      properties:
-> +        reset-gpios: false
-> +
-> +  # lines-initial-states XOR reset-gpios
-> +  # Performing a reset reinitializes all lines to a known state which
-> +  # may not match passed lines-initial-states
-> +  - if:
-> +      required:
-> +        - lines-initial-states
-> +    then:
-> +      properties:
-> +        reset-gpios: false
-> +
->  patternProperties:
->    "^(.+-hog(-[0-9]+)?)$":
->      type: object
-> 
-
--- 
-Regards,
-
-Laurent Pinchart
+> > There is no gap in between bridge_pre_enable and bridge enable, hence
+> > I cannot call dsi commands in panel_prepare since bridge is not even
+> > pre_enabled, and if I call then in panel_enable, I cannot complete
+> > bridge configuration since bridge enable is called before. like WTF!
+> >
+> > I enclose log with function call seq
+> >
+> > DSI commands in panel prepare
+> > [   75.149700] ssd2825_dsi_host_transfer start  << this is panel prepar=
+e
+> > [   75.149737] ssd2825 spi0.2: Bridge is not enabled
+> > [   75.149750] panel-renesas-r61307 spi0.2.1: Failed to exit sleep mode=
+: -19
+> > [   75.149779] ssd2825_bridge_atomic_pre_enable start
+> > [   75.178518] ssd2825_bridge_atomic_pre_enable end
+> > [   75.178552] ssd2825_bridge_atomic_enable start
+> > [   75.179026] ssd2825_bridge_atomic_enable end
+> >
+> > DSI commands in panel enable
+> >
+> > [  102.821580] ssd2825_bridge_atomic_pre_enable start
+> > [  102.852000] ssd2825_bridge_atomic_pre_enable end
+> > [  102.852057] ssd2825_bridge_atomic_enable start
+> > [  102.852840] ssd2825_bridge_atomic_enable end
+> > [  102.852866] ssd2825_dsi_host_transfer start  << panel enable
+> > [  102.853876] ssd2825_dsi_host_transfer end
+> > [  102.948420] ssd2825_dsi_host_transfer start
+> > [  102.949289] ssd2825_dsi_host_transfer end
+> > [  102.978389] ssd2825_dsi_host_transfer start
+> > [  102.979567] ssd2825_dsi_host_transfer end
+> > [  102.980117] ssd2825_dsi_host_transfer start
+> > [  102.981248] ssd2825_dsi_host_transfer end
+> > [  102.981809] ssd2825_dsi_host_transfer start
+> > [  102.982851] ssd2825_dsi_host_transfer end
+> > [  102.983537] ssd2825_dsi_host_transfer start
+> > [  102.984556] ssd2825_dsi_host_transfer end
+> > [  102.986743] ssd2825_dsi_host_transfer start
+> > [  102.988078] ssd2825_dsi_host_transfer end
+> > [  102.989445] ssd2825_dsi_host_transfer start
+> > [  102.990411] ssd2825_dsi_host_transfer end
+> > [  102.990912] ssd2825_dsi_host_transfer start
+> > [  102.992274] ssd2825_dsi_host_transfer end
+> >
+> > In both cases there is no gap in between bridge pre_enable and enable
+> >
+> > > > > But what is the case for these calls? Are you manually implementi=
+ng the
+> > > > > MIPI_DSI_MODE_LPM flag? What exactly do they do? What happens if =
+the
+> > > > > panel driver asks for the MIPI_DCS_SET_DISPLAY_ON command after y=
+ou've
+> > > > > programmed those registers? What happens if the panel asks for th=
+e
+> > > > > backlight control?
+> > > > >
+> > > >
+> > > > Backlight is externally controlled, at least on my device, so I can=
+not
+> > > > test other cases. If I configure those registers before dsi sequenc=
+e
+> > > > is completed panel stays black. If I simply remove those
+> > > > configuration, panel stays black.
+> > > >
 
