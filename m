@@ -1,131 +1,157 @@
-Return-Path: <devicetree+bounces-148711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D2F0A3D228
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 08:25:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E9D7A3D25E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 08:33:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26B6518938F7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 07:24:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55BC4172AEB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 07:33:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069451E5B8A;
-	Thu, 20 Feb 2025 07:23:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6BC1E5B7A;
+	Thu, 20 Feb 2025 07:33:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="agtM5qoz"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WahCwp+u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 810461E5B66
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 07:23:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A071B4236;
+	Thu, 20 Feb 2025 07:33:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740036202; cv=none; b=CySrkG8Ok9D6tI030YY/KB2sJWM6kzuGwzcQrb9YUzt29VGep5uxXVvVAbTD2KPQTPRtaLANGIW1AJcT3vY0r5kw94FZ3GFM4xFg0g6yOy0/GXgKm7ER7Gk+UdC9f4e/glJPBgMCREHQC7st6a/EB9B6L58brQaiLc6IX9BZJEg=
+	t=1740036810; cv=none; b=dKO86NZh+SOmDN5IzzXlRSdt6jAQ0OsQOhbAGfMCnENcdqy4q/k7h3sxIp7MTLFf3+un4T339C/I2by7eGj3S+5M0kBpmTZeN6NkcCcrgMDG60tpCTmh8AXnev97l/S3Ip5LK2QgPCf8BqJnlTmn9YZs+sg6bWZWced6aV7OTI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740036202; c=relaxed/simple;
-	bh=K9ZzoyM+1e7NO7J3zZUXwBhWI7XOqAzjHQnjtaar3Do=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OMlmU5OqDDW3xFrjiafGhr/Nxq3p12xtWd/OVdk/lBFCmBrfBdRa1SDJjnQ5fhX552i9EtvwftQ7hf25WASft4YlUzK+STmqparrnivqm/FpAXshMuz0umOcRZVq7nH+qGAS0XZk1Vz4nA32YnzA0XY0WKcDwyf0j/EQxRDnpIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=agtM5qoz; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-22128b7d587so9820635ad.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 23:23:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740036201; x=1740641001; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MBR10xYOtbIjIrHbSQCuv8sZHXeBgnoMVNUybGZJ2DI=;
-        b=agtM5qozeRV1lBkKO8JEekz8289DS0m1DLp0uFYMR9rAJOJw3bZB5H1vYUcZ0OOyqd
-         YX/5aPXLMgwb/JTmZ9PB+dDjUQa6f1MO3a7ST7jCUvHF+SqcBEWykwqtLpsyHILyxg2K
-         wE+cgorKR7jMmQGHOnPM2rGHp7BrqyVAJb3mKVLzRkbvonI/xIz9YKsN3lgghMxe8hd9
-         Wty+AixQLkbAg019zbSleNakrQwFaiN8fGswDJJbwA212EDCMAkzQ1C1aIDTXwScAD9B
-         3uPESW7AvdDE5sMBBW/3HoMBefDngooH2bMoL1XyTpGnyEXB94fP8FVpHmvrgnC49owt
-         80fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740036201; x=1740641001;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MBR10xYOtbIjIrHbSQCuv8sZHXeBgnoMVNUybGZJ2DI=;
-        b=M3+nd2VefcfTnrQL/dLdaDKmNpAwpkbD/yWCCRfMEEMJogSDNOUnsScyqIHT+h1gbW
-         A+9ww13GOlyuqR/iqKnZuMrSkLHqmRNpJd9PJtDsVqyOEWm3505IUraKPnE4MkMJbKrW
-         J86Nqdf2+aTl19qI8vu2blFwk7B9J/jbaq/fIzkpg8emfdaJY3QkpCL7xtX4L9EGQQ4b
-         yiuUegqLeI1VvJ578BZONQZsb0cB5vkByCdwga6C3WdPGLB5j+RRZ5BUxrlvG5LWYcPz
-         GyMf9iqvg8zKhHzY0yfIX+cPeL2yEKLJDKFf7kBlucf+Cc/lTldFz/xPwMgwXy0xqRE8
-         QfoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUb9hkN5fI8ExPZKxpih//GYq43F4suR3mXxTV/VUVEXdSNWR38EI5jGobCIfeSSmeYu17wAZnN2VG6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZbSPOo4Hn/OYkT6SzQYJWE2Tddi+fTez+pw0PocSqR54Dfz3F
-	h/UGnqJQ60JBpf2xlAy/xQy9cVTuvc125vXZQGxXDbOxiFZQ7iucbx/PKtg2Ig==
-X-Gm-Gg: ASbGncv2mlSd3pu/XhHGGJKDpZ20PVT/jW61pM9u5Qrq41iWK46CliLjVjyv7ExAZny
-	66Rdw/bzucs+/Da8bsPis+fs+tEEINTeiqXqEn6q8VM5hwZLxYhUFiYmZZovpeMtaCRAYoC9jnq
-	RtWQ1tuDH8YlWVHDFSq7us8l2EwntpUDcxAphfsGQfTZz/GqS5E4ohuCa2aRGkpzPWmmn7Vsfly
-	+v5Agc2jkU6tmOgU4L4FezJgPvILhVURlw0i3ozh244Ztqu90Lgr1+OlEq5IOxDhbreczAgKDCL
-	Nw3+khz3+KwQuWVt4CZLx02QPg==
-X-Google-Smtp-Source: AGHT+IH9J0UpkJyiDrwNycJp/VSjSgTQ57aAkzHJRzuBfh3r1oEjseg2xJjXQ71AdNSHN8VrWOQlLw==
-X-Received: by 2002:a17:903:1d0:b0:21f:3e2d:7d58 with SMTP id d9443c01a7336-22170773856mr86334165ad.13.1740036200747;
-        Wed, 19 Feb 2025 23:23:20 -0800 (PST)
-Received: from thinkpad ([120.60.70.244])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d5348f1esm115522325ad.51.2025.02.19.23.23.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2025 23:23:20 -0800 (PST)
-Date: Thu, 20 Feb 2025 12:53:10 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mrinmay Sarkar <quic_msarkar@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/6] PCI: dwc: pcie-qcom-ep: enable EP support for
- SAR2130P
-Message-ID: <20250220072310.kahf4w4u43slbwke@thinkpad>
-References: <20250217-sar2130p-pci-v1-0-94b20ec70a14@linaro.org>
- <20250217-sar2130p-pci-v1-4-94b20ec70a14@linaro.org>
+	s=arc-20240116; t=1740036810; c=relaxed/simple;
+	bh=qfktQxsrR0jCrrG973vqi6wovqwwDhVqkQOQ5Cv8kK0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ZxuHa6Hp/xpZcCj4b5VDAeovyIIzFja4SjhCAFmPZe7qyV06xpDwJ0hKjLOaKRk062bOl/AQU8zaLSauM1QgFQlH5X/1K+7kTwzbbbp2H5Ja+5nvEHH1A5tNiPCSNCFz6BOwVhJifmb8Pr9d2ifAUGT350VICw/3tDZlodlpdSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WahCwp+u; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51K6imo6016231;
+	Thu, 20 Feb 2025 07:33:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Kswv/0KcplL4nDKeu7ghMCJBi6VuEULInLAZ3cUQB08=; b=WahCwp+uwAlxoZ3b
+	f8VoezZ+OHNculTJ3BdZQO31N90x+w1yVx3V1uFVP9dbwI/xoZDAEASe0nXB4PEe
+	3NRJwP5vJBfBbEkpZq+e9RByF06JWYqpUS27KPVxAw+n0Cgw8e5+u5Oz8ooaS5bt
+	IkCLWUsRn+fh97GPite1duc4vXc1FuExiYAc4M61vJ58ad71f6VFXpd13hCg07n9
+	yo9Xmm0f3j3qVHwfhUKSR/yCQVPzrRf6dnvp6lLzf9PpdiEg5wVS4R7TO0iI+vRg
+	LTt5o1DFzcCsAdfRkIk7Y20zkTpIcbuk+K9pONChiGbm8XgkqRZ2gYf0UjAip1l1
+	EExcsg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44vyy4db0r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Feb 2025 07:33:13 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51K7XCAP017270
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Feb 2025 07:33:12 GMT
+Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 19 Feb
+ 2025 23:33:06 -0800
+Message-ID: <1b22b005-4ad3-4ba9-9f6c-b540ed45dfc7@quicinc.com>
+Date: Thu, 20 Feb 2025 15:33:04 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250217-sar2130p-pci-v1-4-94b20ec70a14@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] Add MST support for qcs8300 platform
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Simona
+ Vetter" <simona@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250212-mst_qcs8300-v1-0-38a8aa08394b@quicinc.com>
+ <87058b73-8854-4dbd-9f27-1da2a8240c16@kernel.org>
+ <2ede97c5-a4f2-42fb-b3cd-68f26297150b@quicinc.com>
+ <ffa5b482-2404-4497-a041-38f970cc9086@kernel.org>
+Content-Language: en-US
+From: Yongxing Mou <quic_yongmou@quicinc.com>
+In-Reply-To: <ffa5b482-2404-4497-a041-38f970cc9086@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PjhgIJL9HvYOkZxFWN795Lzo-iwKEXdo
+X-Proofpoint-ORIG-GUID: PjhgIJL9HvYOkZxFWN795Lzo-iwKEXdo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-20_03,2025-02-20_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ lowpriorityscore=0 mlxlogscore=999 spamscore=0 adultscore=0 phishscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502200053
 
-On Mon, Feb 17, 2025 at 08:56:16PM +0200, Dmitry Baryshkov wrote:
-> Enable PCIe endpoint support for the Qualcomm SAR2130P platform.
+
+
+On 2025/2/19 20:07, Krzysztof Kozlowski wrote:
+> On 19/02/2025 11:02, Yongxing Mou wrote:
+>>
+>>
+>> On 2025/2/12 17:06, Krzysztof Kozlowski wrote:
+>>> On 12/02/2025 08:12, Yongxing Mou wrote:
+>>>> This series of patches introduces how to enable MST functionality on
+>>>> the qcs8300 platform. The qcs8300 platform uses dpu_8_4 hardware, which
+>>>> is the same as the sa8775p, but it only has one DPU. So it only has one
+>>>> DP0 controller, supporting 4-stream MST. This patch only enables
+>>>> 2-stream MST, using intf0 and intf3. The first and second patches are
+>>>> modifications to the correspond dt-bindings, third patch is the dp
+>>>> controller driver after not reuse sm8650, fourth patch is the qcs8300
+>>>> dts modification which add the clk support for stream 1.
+>>>>
+>>>> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
+>>>> ---
+>>>> This patch depends on following series:
+>>>> https://lore.kernel.org/all/20250120-mdssdt_qcs8300-v4-0-1687e7842125@quicinc.com/
+>>>> https://lore.kernel.org/all/20250114-dts_qcs8300-v3-0-d114cc5e4af9@quicinc.com/
+>>>> https://lore.kernel.org/all/20241202-dp_mst_bindings-v1-0-9a9a43b0624a@quicinc.com
+>>>> https://lore.kernel.org/all/20241205-dp_mst-v1-0-f8618d42a99a@quicinc.com/
+>>>
+>>> Buggy patch cannot be the dependency. You need to fix the original patch
+>>> instead. You are not supposed to wait till knowingly incorrect patches
+>>> get merged so you can send a fix. You must respond to that patch
+>>> stopping its merging process.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>> Thanks for the reminder. I hadn't noticed that before. We will wait for
+>> our dependencies to be ready before sending the new patchset.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom-ep.c | 1 +
->  1 file changed, 1 insertion(+)
+> So this means you intend the knowingly incorrect patch to be applied? If
+> so, all this should be just NAKed.
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> index c08f64d7a825fa5da22976c8020f96ee5faa5462..dec5675c7c9d52b77f084ae139845b488fa02d2c 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> @@ -933,6 +933,7 @@ static const struct of_device_id qcom_pcie_ep_match[] = {
->  	{ .compatible = "qcom,sa8775p-pcie-ep", .data = &cfg_1_34_0},
->  	{ .compatible = "qcom,sdx55-pcie-ep", },
->  	{ .compatible = "qcom,sm8450-pcie-ep", },
-> +	{ .compatible = "qcom,sar2130p-pcie-ep", },
-
-Could you please use a fallback? I'd prefer to not add compatible to the driver
-unless it requires special config.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+> Best regards,
+> Krzysztof
+Hi, that is not my intention. I will correct the patch after i know it 
+is incorrect. Thanks.
 
