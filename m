@@ -1,305 +1,245 @@
-Return-Path: <devicetree+bounces-149094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B2F1A3E42B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 19:48:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F6EA3E44B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 19:56:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48DC13A6A89
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:47:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1426189F587
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:56:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55FC3262D28;
-	Thu, 20 Feb 2025 18:47:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377D12638AA;
+	Thu, 20 Feb 2025 18:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CfYG8yng"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="r8bjeQvc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 463041E3761;
-	Thu, 20 Feb 2025 18:47:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6594262D3F;
+	Thu, 20 Feb 2025 18:55:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740077276; cv=none; b=h/JLkBqeAaE9jgNsAawgoLESQgObfFJ+o54lgad2IWwDuw79KxDNwIxk1dfP7qRk2fh1H26AZZY5mdaHPpfOXrdxllH3xB+dgiVJ7sP3hn7GQpupuMuoyjjudGIQjgXItMS15DCBirEsKfBGbcHDsoywMrpMxj+QGploz+8mmDg=
+	t=1740077746; cv=none; b=TwKImzGimqeZgmuuzIjPEYOFaFjlXfyQ5un1/VjeUP62E+BI1J5HcwQkt+IhP9AQpJWBJN9aEkaY4g1SpGygAPF4UjB9sK/paOqo2TIBI3AzAkBoBxjLJcwDnV755pbVcGj5rdjikHFw2lkSczwuW6ikMumP8O2QE6DmrkF/hYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740077276; c=relaxed/simple;
-	bh=U/v7Z2RwsmYdj4bE/uoN4+EXjKlJnSaWg6pKH5TQUQo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kC6NWt83ikCoPycKMIVC/U0aS7HFAHLYPqYltj3IPuw2t3imSMMzfrBvi6q2zeYvnrjCxedk7DByUW2k91LTAJmQuh0ik6kmX1L4Kx52xSm815GtFWLX9PYlzV4hCYjvKfRJbGfzMEkIoS7byxNO2Uncs2vQsik6ahFW/yLwrkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CfYG8yng; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-38f2b7ce2e5so764033f8f.2;
-        Thu, 20 Feb 2025 10:47:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740077272; x=1740682072; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FYowbf1CODQB9n/ooqpW/RrguAGNvEkQlicasZTK5YI=;
-        b=CfYG8yngsK1fyHL9G8RvxYoSuJj/xFeBUq1AU5wThBpq/LE94w38crCJduaEBafE8a
-         F4mV3fTeQ+USHwJ7ts45uzqtVyFNep942XQ7esTor6PRLIErC8J0Vjwfepf9DBJeQFMW
-         Lkzg2kXn0w3MGY0kUp79ITC/h7p2nWYYy+Eq5eIcKQYEPrZHNyQSojukEsoVUJQ+TwQM
-         +Ojf/EggWlNgb3EemK5yAornFDWW3nEK+NEi8hECZ5Sgz193qD0Qm5uU+ZWtpcvfV99R
-         7rAE+4CmTsGF9z/aU4vQ2QB9bvY1HAyTvBFtuBduGab/G3BAnUluFvsRCCKyvpGR4FrY
-         tMYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740077272; x=1740682072;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FYowbf1CODQB9n/ooqpW/RrguAGNvEkQlicasZTK5YI=;
-        b=rGrMSA9cV2JTif/bGYAe0884dtUAIoc8PYEZFcKhw9nk7agSFKKjOjgc+n5CMs+erA
-         BL0+SihHq3dgV4cURx/BH6OtCYQp02r7H5YdY4/fbR3oCKMNZopXqck9Z/SNpKcQEAmX
-         2KReucfy/alZEEcSqbt38DgcKxpQLDEGa9R4u5KEgb2/PELweUVTYu36ZjxXpzSODc/a
-         wf/Q9ztuhNx9GmImsa9FsSHNGLPUcNXNP0K7XF8i6P+pwRDstFnm4DgVwibGylwHyG0y
-         Nf3yPeafVbYU/uxIcSZh/0AsKYsC7LGDawuHqSg6rnVH2Y0jrOSlpy4ey5EVPA4bMPxq
-         h8hQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVyH17x8H18yB3YXiJZOlE5EFNEI74bLLSbRqm3yQD6JHnmyPloykkxWkgESOtbCam5e3T6+g1wk1PMpfRl@vger.kernel.org, AJvYcCX8QECsLtorzVNoS1WXRVAxqIuz7FP0konE8Q5B6zm4J0SJbfYYzn7/VOxRMpahd3q45svjXJXBT5Li@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/X+bVzNv3qn5eJfK/MKnmH94ybujT9HA6IWHujw9ZAuWwWtEx
-	uB4/PHJ9mVnNlkqE0loaRjzlwr9ifXB3PtZP2Ofyowf3vWIo2RP57bwUJHrIH+DLhW7tAOJ6xHt
-	5utUHf1xAQydLsePbahz294YXFus=
-X-Gm-Gg: ASbGncvrEix12eUmvjFWhkYyItaaZPnYxhm1O5JPi64tG7RQ0PFAkoiKVkWdbsqkYbV
-	PkoEyjK+obx8AryZ1WEWppph5iPKOa4EpCaQ9U4Xi8FOeDMSvmRJHcqCft8X1e1L0CO51dvJ5eg
-	==
-X-Google-Smtp-Source: AGHT+IG1h/GefZOV4P1HsTrp8FNSeQFVHto9fM1VgGfcvU3zZQIk8JhTxjoMYMD9GYGAM+8+jDBfjPdO0nrQTyxDfco=
-X-Received: by 2002:a5d:588c:0:b0:38d:ddf2:afea with SMTP id
- ffacd0b85a97d-38f6e95f301mr354116f8f.13.1740077272198; Thu, 20 Feb 2025
- 10:47:52 -0800 (PST)
+	s=arc-20240116; t=1740077746; c=relaxed/simple;
+	bh=WndaJvfa9ap2UrSfD6FG4qjtrHLbOmfjna8J1EtVtVI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Aupbzy1yDa1Hd5wCM+7f7nHlnVQYmxPmCUf7s1SskLmLu6wgh+5wYqHqeKyjyYhtKQMsTHk/dUk1xGnqrW99igT9JevDW5Jn947z18nx+Ne6pmpouh50hApPDve6sRCfOxGJM1BiBov4OG1MgI0diq3jXHD3ukHjmAkfb84/00A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=r8bjeQvc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5DBEC4CED1;
+	Thu, 20 Feb 2025 18:55:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1740077745;
+	bh=WndaJvfa9ap2UrSfD6FG4qjtrHLbOmfjna8J1EtVtVI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r8bjeQvcRkDymICywYT9q7QL5RUGwa+PkIOjJmN8jrS0hbyLuHPFsX4eW9fBSAebZ
+	 vBMiptw8y7VcvOgVnTE9Bcn65kGPbAKYoao7aeHsLNlw+ZoSum9j7yQUap15a3+AhU
+	 5LKcIGaGdeDuf5aFE+WlzoJ8w3gLnGT19PduqGjs=
+Date: Thu, 20 Feb 2025 19:55:42 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Grant Likely <grant.likely@secretlab.ca>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>, Binbin Zhou <zhoubinbin@loongson.cn>,
+	linux-sound@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, stable@vger.kernel.org
+Subject: Re: [PATCH 0/2] driver core: platform: avoid use-after-free on
+ device name
+Message-ID: <2025022017-tarot-harbor-965d@gregkh>
+References: <20250218-pdev-uaf-v1-0-5ea1a0d3aba0@bootlin.com>
+ <2025022005-affluent-hardcore-c595@gregkh>
+ <D7XB6MXRYVLY.3RM4EJEWD1IQM@bootlin.com>
+ <2025022004-scheming-expend-b9b3@gregkh>
+ <D7XE2DSESCHX.328BJ5KCEFH0A@bootlin.com>
+ <2025022019-enigmatic-mace-60ca@gregkh>
+ <D7XHGNJMMUMF.OUL1VHGK5KVM@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217140910.108175-1-clamor95@gmail.com> <20250217140910.108175-3-clamor95@gmail.com>
- <zmwn3dnnmwhms2qxqwb6ksshx27fcq2i4wujz5utuldaiqs6oz@idvy3dirrmuo>
- <CAPVz0n3bqLhuC0gxXD-=L0ETMmhOv1Ku0PrWUb_Yn09v3UNuOA@mail.gmail.com>
- <hemnpzzz3ddibdbqwkazwuoalmvuc2mekebqxfrnxiod6futni@sgdjgtrbcwza>
- <CAPVz0n24o5yar-0oO5dPb3vLzuK=Ln8+JKuaooSRwPfiaLQ9vA@mail.gmail.com>
- <jo7nnxrzwi43qqii7wtekdbc6vluakkvg4ndw266ajgkpe3y52@whd5nly34nju>
- <CAPVz0n3HsXJeyRJGP=_UMhs7d4OA-P_yXx5B9EQDU7vQCz8qoA@mail.gmail.com>
- <3lms6xzzu3hfhkncikcmvl6btzdcc2cwoh4kwhw53hdakecrij@yqoyl3bqmm5m>
- <CAPVz0n3YZass3Bns1m0XrFxtAC0DKbEPiW6vXimQx97G243sXw@mail.gmail.com> <eard52ujlocxwshi6ynoimmvfyktpx6f5gcwfn2chaxul2l7my@e24kauxjsw2a>
-In-Reply-To: <eard52ujlocxwshi6ynoimmvfyktpx6f5gcwfn2chaxul2l7my@e24kauxjsw2a>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 20 Feb 2025 20:47:41 +0200
-X-Gm-Features: AWEUYZl-KaoI55H_XPbgbTsfitI_Et-bq7N7i7G6bn1Yk0vigS5xOUWgbobezIQ
-Message-ID: <CAPVz0n3GqWhMvos_dacsgEyiv3dV5_VnYR7YuNGe2XTLWe30jQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] drm: bridge: Add support for Solomon SSD2825
- RGB/DSI bridge
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <D7XHGNJMMUMF.OUL1VHGK5KVM@bootlin.com>
 
-=D1=87=D1=82, 20 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 17:07 Dmit=
-ry Baryshkov <dmitry.baryshkov@linaro.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Thu, Feb 20, 2025 at 02:26:22PM +0200, Svyatoslav Ryhel wrote:
-> > =D1=82, 20 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 13:35 Dmitry=
- Baryshkov <dmitry.baryshkov@linaro.org> =D0=BF=D0=B8=D1=88=D0=B5:
-> > >
-> > > On Thu, Feb 20, 2025 at 09:37:18AM +0200, Svyatoslav Ryhel wrote:
-> > > > =D1=81=D1=80, 19 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 15=
-:34 Dmitry Baryshkov <dmitry.baryshkov@linaro.org> =D0=BF=D0=B8=D1=88=D0=B5=
-:
-> > > > >
-> > > > > On Tue, Feb 18, 2025 at 04:36:17PM +0200, Svyatoslav Ryhel wrote:
-> > > > > > =D0=B2=D1=82, 18 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=
-=BE 16:20 Dmitry Baryshkov <dmitry.baryshkov@linaro.org> =D0=BF=D0=B8=D1=88=
-=D0=B5:
-> > > > > > >
-> > > > > > > On Tue, Feb 18, 2025 at 02:45:19PM +0200, Svyatoslav Ryhel wr=
-ote:
-> > > > > > > > =D0=B2=D1=82, 18 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =
-=D0=BE 14:31 Dmitry Baryshkov <dmitry.baryshkov@linaro.org> =D0=BF=D0=B8=D1=
-=88=D0=B5:
-> > > > > > > > >
-> > > > > > > > > On Mon, Feb 17, 2025 at 04:09:10PM +0200, Svyatoslav Ryhe=
-l wrote:
-> > > > > > > > > > SSD2825 is a cost-effective MIPI Bridge Chip solution t=
-argeting mainly
-> > > > > > > > > > smartphones. It can convert 24bit RGB interface into 4-=
-lane MIPI-DSI
-> > > > > > > > > > interface to drive display modules of up to 800 x 1366,=
- while supporting
-> > > > > > > > > > AMOLED, a-si LCD or LTPS panel technologies for smartph=
-one applications.
-> > > > > > > > > >
-> > > > > > > > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > > > > > > > ---
-> > > > > > > > > >  drivers/gpu/drm/bridge/Kconfig   |  14 +
-> > > > > > > > > >  drivers/gpu/drm/bridge/Makefile  |   1 +
-> > > > > > > > > >  drivers/gpu/drm/bridge/ssd2825.c | 824 +++++++++++++++=
-++++++++++++++++
-> > > > > > > > > >  3 files changed, 839 insertions(+)
-> > > > > > > > > >  create mode 100644 drivers/gpu/drm/bridge/ssd2825.c
-> > > > > > > > > >
-> > ...
-> > > > > > > > >
-> > > > > > > > > From v1:
-> > > > > > > > >
-> > > > > > > > > Most of these flags should be set depending on the
-> > > > > > > > > mipi_dsi_device.mode_flags.
-> > > > > > > > >
-> > > > > > > > > > +             ssd2825_write_reg(priv, SSD2825_PLL_CTRL_=
-REG, 0x0001);
-> > > > > > > > > > +             ssd2825_write_reg(priv, SSD2825_VC_CTRL_R=
-EG, 0x0000);
-> > > > > > > > >
-> > > > > > > > > Why? Why do you need this special handling for the
-> > > > > > > > > MIPI_DCS_SET_DISPLAY_ON? Why can't it just go to .atomic_=
-enable()?
-> > > > > > > > >
-> > > > > > > >
-> > > > > > > > This has to be called after panel init dsi sequence complet=
-es, is
-> > > > > > > > atomic_enable called after panel init dsi seq is completed?=
- Maybe you
-> > > > > > > > can suggest where to place it.
-> > > > > > >
-> > > > > > > That depends on a panel. Significant number of panel drivers =
-call all
-> > > > > > > DSI programming in .prepare because some DSI hosts can not tr=
-ansfer
-> > > > > > > commands after starting DSI video stream.
-> > > > > > >
-> > > > > > > So these commands should go to your .enable().
-> > > > > > >
-> > > > > >
-> > > > > > This is weird and counter intuitive to send dsi commands in pre=
-pare,
-> > > > > > there should be smth like enable_post. Oh well, fine, I will tr=
-y to
-> > > > > > fit this somehow.
-> > > > > >
-> > > >
-> > > > Who had made this cursed framework?
-> > > >
-> > > > Functions are called in the next seq
-> > > >
-> > > > panel_prepare > bridge_pre_enable > bridge_enable > panel_enable
-> > >
-> > > Use drm_bridge.pre_enable_prev_first or drm_panel.prepare_prev_first.=
- I
-> > > think that fixes your order issues.
-> > >
+On Thu, Feb 20, 2025 at 07:26:41PM +0100, Théo Lebrun wrote:
+> On Thu Feb 20, 2025 at 5:19 PM CET, Greg Kroah-Hartman wrote:
+> > On Thu, Feb 20, 2025 at 04:46:59PM +0100, Théo Lebrun wrote:
+> >> On Thu Feb 20, 2025 at 3:06 PM CET, Greg Kroah-Hartman wrote:
+> >> > On Thu, Feb 20, 2025 at 02:31:29PM +0100, Théo Lebrun wrote:
+> >> >> On Thu Feb 20, 2025 at 1:41 PM CET, Greg Kroah-Hartman wrote:
+> >> >> > On Tue, Feb 18, 2025 at 12:00:11PM +0100, Théo Lebrun wrote:
+> >> >> >> The solution proposed is to add a flag to platform_device that tells if
+> >> >> >> it is responsible for freeing its name. We can then duplicate the
+> >> >> >> device name inside of_device_add() instead of copying the pointer.
+> >> >> >
+> >> >> > Ick.
+> >> >> >
+> >> >> >> What is done elsewhere?
+> >> >> >>  - Platform bus code does a copy of the argument name that is stored
+> >> >> >>    alongside the struct platform_device; see platform_device_alloc()[1].
+> >> >> >>  - Other busses duplicate the device name; either through a dynamic
+> >> >> >>    allocation [2] or through an array embedded inside devices [3].
+> >> >> >>  - Some busses don't have a separate name; when they want a name they
+> >> >> >>    take it from the device [4].
+> >> >> >
+> >> >> > Really ick.
+> >> >> >
+> >> >> > Let's do the right thing here and just get rid of the name pointer
+> >> >> > entirely in struct platform_device please.  Isn't that the correct
+> >> >> > thing that way the driver core logic will work properly for all of this.
+> >> >> 
+> >> >> I would agree, if it wasn't for this consideration that is found in the
+> >> >> commit message [0]:
+> >> >
+> >> > What, that the of code is broken?  Then it should be fixed, why does it
+> >> > need a pointer to a name at all anyway?  It shouldn't be needed there
+> >> > either.
+> >> 
+> >> I cannot guess why it originally has a separate pdev->name field.
 > >
-> > This seems to have no effect. I have set panel.prepare_prev_first =3D
-> > true in the panel probe, which should result in
-> > bridge_atomic_pre_enable be called before panel prepare,
-> > and yet I still have this:
->
-> I've cc'ed you on the patch that should fix this behaviour.
->
-
-And this did not resolve my issue. I managed to configure panel to
-work, but it makes panel degrade.
-
-With the flag above seq is better bridge_prep > panel_prep > bridge_en
-> panel_en but this is still not enough.
-
-It seems that my panel hw must be enabled before bridge_pre_enable,
-preferable just before it is called, if I contain all in panel_prepare
-I get no image with light halo in the middle. If I set hw
-configuration in panel probe as a last step, it will be active and
-panel degrades so I end up with flickering once image appears.
-
-This partially is related to a 6.13 regression which causes bridge to
-be pre/enabled extremely late, approx 75 sec from start and it skips
-entire bootanimation.
-
+> > Many people got this wrong when we designed busses, it's not unique.
+> > But we should learn from our mistakes where we can :)
 > >
-> > [   45.280653] renesas_r61307_prepare start
-> > [   45.300873] renesas_r61307_prepare end
-> > [   45.301070] ssd2825_bridge_atomic_pre_enable start
-> > [   45.317248] ssd2825_bridge_atomic_pre_enable end
-> > [   45.317287] ssd2825_bridge_atomic_enable start
-> > [   45.331650] ssd2825_bridge_atomic_enable end
-> > [   45.331677] renesas_r61307_enable start
-> > [   45.520959] renesas_r61307_enable end
+> >> >> > It is important to duplicate! pdev->name must not change to make sure
+> >> >> > the platform_match() return value is stable over time. If we updated
+> >> >> > pdev->name alongside dev->name, once a device probes and changes its
+> >> >> > name then the platform_match() return value would change.
+> >> >> 
+> >> >> I'd be fine sending a V2 that removes the field *and the fallback* [1],
+> >> >> but I don't have the full scope in mind to know what would become broken.
+> >> >> 
+> >> >> [0]: https://lore.kernel.org/lkml/20250218-pdev-uaf-v1-2-5ea1a0d3aba0@bootlin.com/
+> >> >> [1]: https://elixir.bootlin.com/linux/v6.13.3/source/drivers/base/platform.c#L1357
+> >> >
+> >> > The fallback will not need to be removed, properly point to the name of
+> >> > the device and it should work correctly.
+> >> 
+> >> No, it will not work correctly, as the above quote indicates.
 > >
-> > With or without the flag it is same
+> > I don't know which quote, sorry.
 > >
-> > > > There is no gap in between bridge_pre_enable and bridge enable, hen=
-ce
-> > > > I cannot call dsi commands in panel_prepare since bridge is not eve=
-n
-> > > > pre_enabled, and if I call then in panel_enable, I cannot complete
-> > > > bridge configuration since bridge enable is called before. like WTF=
-!
-> > > >
-> > > > I enclose log with function call seq
-> > > >
-> > > > DSI commands in panel prepare
-> > > > [   75.149700] ssd2825_dsi_host_transfer start  << this is panel pr=
-epare
-> > > > [   75.149737] ssd2825 spi0.2: Bridge is not enabled
-> > > > [   75.149750] panel-renesas-r61307 spi0.2.1: Failed to exit sleep =
-mode: -19
-> > > > [   75.149779] ssd2825_bridge_atomic_pre_enable start
-> > > > [   75.178518] ssd2825_bridge_atomic_pre_enable end
-> > > > [   75.178552] ssd2825_bridge_atomic_enable start
-> > > > [   75.179026] ssd2825_bridge_atomic_enable end
-> > > >
-> > > > DSI commands in panel enable
-> > > >
-> > > > [  102.821580] ssd2825_bridge_atomic_pre_enable start
-> > > > [  102.852000] ssd2825_bridge_atomic_pre_enable end
-> > > > [  102.852057] ssd2825_bridge_atomic_enable start
-> > > > [  102.852840] ssd2825_bridge_atomic_enable end
-> > > > [  102.852866] ssd2825_dsi_host_transfer start  << panel enable
-> > > > [  102.853876] ssd2825_dsi_host_transfer end
-> > > > [  102.948420] ssd2825_dsi_host_transfer start
-> > > > [  102.949289] ssd2825_dsi_host_transfer end
-> > > > [  102.978389] ssd2825_dsi_host_transfer start
-> > > > [  102.979567] ssd2825_dsi_host_transfer end
-> > > > [  102.980117] ssd2825_dsi_host_transfer start
-> > > > [  102.981248] ssd2825_dsi_host_transfer end
-> > > > [  102.981809] ssd2825_dsi_host_transfer start
-> > > > [  102.982851] ssd2825_dsi_host_transfer end
-> > > > [  102.983537] ssd2825_dsi_host_transfer start
-> > > > [  102.984556] ssd2825_dsi_host_transfer end
-> > > > [  102.986743] ssd2825_dsi_host_transfer start
-> > > > [  102.988078] ssd2825_dsi_host_transfer end
-> > > > [  102.989445] ssd2825_dsi_host_transfer start
-> > > > [  102.990411] ssd2825_dsi_host_transfer end
-> > > > [  102.990912] ssd2825_dsi_host_transfer start
-> > > > [  102.992274] ssd2825_dsi_host_transfer end
-> > > >
-> > > > In both cases there is no gap in between bridge pre_enable and enab=
-le
-> > > >
-> > > > > > > But what is the case for these calls? Are you manually implem=
-enting the
-> > > > > > > MIPI_DSI_MODE_LPM flag? What exactly do they do? What happens=
- if the
-> > > > > > > panel driver asks for the MIPI_DCS_SET_DISPLAY_ON command aft=
-er you've
-> > > > > > > programmed those registers? What happens if the panel asks fo=
-r the
-> > > > > > > backlight control?
-> > > > > > >
-> > > > > >
-> > > > > > Backlight is externally controlled, at least on my device, so I=
- cannot
-> > > > > > test other cases. If I configure those registers before dsi seq=
-uence
-> > > > > > is completed panel stays black. If I simply remove those
-> > > > > > configuration, panel stays black.
-> > > > > >
->
-> --
-> With best wishes
-> Dmitry
+> >> Let's assume we remove the field, this situation would be broken:
+> >>  - OF allocates platform devices and gives them names.
+> >>  - A device matches with a driver, which gets probed.
+> >>  - During the probe, driver does a dev_set_name().
+> >>  - Afterwards, the upcoming platform_match() against other drivers are
+> >>    called with another device name.
+> >> 
+> >> We should be safe as there are guardraids to not probe twice a device,
+> >> see __driver_probe_device() that checks dev->driver is NULL. But it
+> >> isn't a situation we should be in.
+> >
+> > The fragility of attempting to match a driver to a device purely by a
+> > name is a very week part of using platform devices.
+> 
+> I never said the opposite, and I agree.
+> However the mechanism exists and I was focused on not breaking it.
+> 
+> > Why would a driver change the device name?  It's been given to the
+> > driver to "bind to" not to change its name.  That shouldn't be ok, fix
+> > those drivers.
+> 
+> I do get the argument that devices shouldn't change device names. I'll
+> take the devil's advocate and give at least one argument FOR allowing
+> changing names: prettier names, especially as device names leak into
+> userspace through pseudo filesystems.
+
+Then that same driver should have created a prettier name when it
+created the device and sent it to the driver core :)
+
+> If we agree that device names shouldn't be changed one a device is
+> matched with a driver, then (1) we can remove the pdev->name field and
+> (2) `dev_set_name()` should warn when used too late.
+> 
+> Turn the implicit explicit.
+> 
+> 
+> diff --git a/drivers/base/core.c b/drivers/base/core.c
+> index 5a1f05198114..3532b068e32d 100644
+> --- a/drivers/base/core.c
+> +++ b/drivers/base/core.c
+> @@ -3462,10 +3462,13 @@ static void device_remove_class_symlinks(struct device *dev)
+>  int dev_set_name(struct device *dev, const char *fmt, ...)
+>  {
+>         va_list vargs;
+>         int err;
+> 
+> +       if (dev_WARN_ONCE(dev, dev->driver, "device name is static once matched"))
+> +               return -EPERM;
+
+What?  No, this is a platform driver thing, not a driver core thing.
+Let's just remove the name pointer in the platform driver structure and
+then we can handle the rest from there.
+
+> +
+>         va_start(vargs, fmt);
+>         err = kobject_set_name_vargs(&dev->kobj, fmt, vargs);
+>         va_end(vargs);
+>         return err;
+>  }
+> 
+> (Unsure about the exact error code to return.)
+> 
+> [...]
+> 
+> > Do we have examples today of platform drivers that like to rename
+> > devices?  I did a quick search and couldn't find any in-tree, but I
+> > might have missed some.
+> 
+> The cover letter expands on the quest for those drivers:
+> 
+> On Tue Feb 18, 2025 at 12:00 PM CET, Théo Lebrun wrote:
+> > Out of the 37 drivers that deal with platform devices and do a
+> > dev_set_name() call, only one might be affected. That driver is
+> > loongson-i2s-plat [0]. All other dev_set_name() calls are on children
+> > devices created on the spot. The issue was found on downstream kernels
+> > and we don't have what it takes to test loongson-i2s-plat.
+
+out-of-tree drivers don't matter to us :)
+
+
+> [...]
+> >
+> >    ⟩ # Finding potential trouble-makers:
+> >    ⟩ git grep -l 'struct platform_device' | xargs grep -l dev_set_name
+> >
+> [...]
+> > [0]: https://elixir.bootlin.com/linux/v6.13.2/source/sound/soc/loongson/loongson_i2s_plat.c#L155
+> 
+> [...]
+> 
+> > Or if this really is an issue, let's fix OF to not use the platform bus
+> > and have it's own bus for stuff like this.
+> 
+> That used to exist! I cannot see how it could be a good idea to
+> reintroduce the distinction though.
+> 
+> commit eca3930163ba8884060ce9d9ff5ef0d9b7c7b00f
+> Author: Grant Likely <grant.likely@secretlab.ca>
+> Date:   Tue Jun 8 07:48:21 2010 -0600
+> 
+>     of: Merge of_platform_bus_type with platform_bus_type
+
+True, that was nice, but we shouldn't let one force bugs in the other :)
+
+Anyway try removing the name pointer and let's see what falls out.
+
+thanks,
+
+greg k-h
 
