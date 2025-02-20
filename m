@@ -1,125 +1,201 @@
-Return-Path: <devicetree+bounces-148654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EBDCA3CDED
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 00:54:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67FC1A3CE13
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 01:28:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E2303B092D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2025 23:53:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C63CC7A6C15
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 00:27:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E749425EF87;
-	Wed, 19 Feb 2025 23:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E93E7182D7;
+	Thu, 20 Feb 2025 00:28:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="V6a03BCC"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="AQrG9NKo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAF1A22ACD3;
-	Wed, 19 Feb 2025 23:53:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740009209; cv=none; b=LP/5glY7p2EVEWSoQ2oleunEG7HC4KDW6W/ynhcpzHs+swJ5Wn83UzjVEJU47EtyVjgnBsWEwFhYGYVnjR0EsLrtr4ndopl0oVeYev5NoIC4PCbLdtc2yMpFxCpXIWbMMFth6GJJEYnUa3uF2BUWS/SC/yhcyOITdIx0hBVnjQE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740009209; c=relaxed/simple;
-	bh=i0Rp9LuxpN8z5adg/8KRCvBQDnqcW6wz9SN9DFPPd1s=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=W8HUKpJM3QfnN9UJz77G+SJ7I8ZB4ETav48NwabrmTP5OkmJv+DymfJdDfVJvcBz07AR2oiSa/WOuN3FB+am0rrrHmfHKXgXLe+kyhZACsfHaNgs8AUwbXKtk5fHiDqaIRBy/NJjPftOJceL4KhwIBbaesVHX9TTt7Mdv46Rbo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=V6a03BCC; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740009208; x=1771545208;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=i0Rp9LuxpN8z5adg/8KRCvBQDnqcW6wz9SN9DFPPd1s=;
-  b=V6a03BCCtBlpDsRFf//+BXvdR1ZeZiCj34fJj8XOAuK7W3Vb6MFEkQoD
-   R6cakuxd6FjA9HJaqMQepIYz8XEo2/2jQJ9vYK7fxZUYnIfzRq4oEFq24
-   gcMZfWArghlu739yhQBaaO0Txv7e7kfvFYDsXA7exux61KgYSrAMOjLfW
-   h/azSCZFSZ6oNvFZOFLXOTorx+my1mAF3kcGoG9fBUXqCsFstG4FsNV1N
-   ohtX74/YN86sxI/clwxlFUYOk5zRRq9PG5/FclPU9u8QsppBKUQH/95Xy
-   q2m7opntxpPFa4AxQiCbqYrcTGrVuQ/3k3OsUTKYrHRMN6G1TY12pciXU
-   A==;
-X-CSE-ConnectionGUID: mnPfVF5jT8KIsYQESxaCHg==
-X-CSE-MsgGUID: Zqwd5fQdQcCGTtrm7lhUpw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="43600402"
-X-IronPort-AV: E=Sophos;i="6.13,300,1732608000"; 
-   d="scan'208";a="43600402"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2025 15:53:27 -0800
-X-CSE-ConnectionGUID: Fehi+BFDRUKfPTErQ/RApw==
-X-CSE-MsgGUID: VILevhSPQQKs9KucMsEizg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,300,1732608000"; 
-   d="scan'208";a="119806694"
-Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2025 15:53:26 -0800
-Date: Wed, 19 Feb 2025 15:53:25 -0800 (PST)
-From: matthew.gerlach@linux.intel.com
-To: Krzysztof Kozlowski <krzk@kernel.org>
-cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
-    robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, 
-    conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com, 
-    linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    linux-kernel@vger.kernel.org, matthew.gerlach@altera.com, 
-    peter.colberg@altera.com
-Subject: Re: [PATCH v7 3/7] arm64: dts: agilex: Fix fixed-clock schema
- warnings
-In-Reply-To: <c5755f14-3efd-d4ef-4e34-6446608dedfd@linux.intel.com>
-Message-ID: <75f74b7d-659-7c51-9ee5-6cb7b1bafeac@linux.intel.com>
-References: <20250215155359.321513-1-matthew.gerlach@linux.intel.com> <20250215155359.321513-4-matthew.gerlach@linux.intel.com> <20250216-astonishing-funky-skylark-c64bba@krzk-bin> <c5755f14-3efd-d4ef-4e34-6446608dedfd@linux.intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EABB21805E;
+	Thu, 20 Feb 2025 00:28:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740011307; cv=pass; b=NVMInxXF//Grjc6u9tjX1c0nxgwJNZjqMKs9pWC97R1ji84h4BPOVRTbUheYzC0zox70eZjpZ1c3KZVxSeu1kNq1yGRN/o/12DWC5aDPQpKCHYYcVrkaSScYmGgaBdXqn/XPuM4/4buz1uYcWGW02T8/SDmhHCBnbMaJWneGUWQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740011307; c=relaxed/simple;
+	bh=nbf2v6AGLqe3sDaXNkYTeZUxdwUeX4DQLJdykyqTGwA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H6hndixljcqPlYSztbx8BUZ0QiHa2qTpQpCjdcts3BdxrWbEYop9eKftr6mn04xK5pO6SSnneuDsx7UQFCFtMDYXjYfRKhgFkOIkr84XijbSYHPQS6NJ8PpvxvFskHQBqLy7pxU+0+k9LhJN2ZyM18Joal5tjTyjGepoo5Y7908=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=AQrG9NKo; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1740011287; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=nVmhw67RIhlVPD0U6iUgTDL+EAOOogJ4irI3NoYVYLClU6YIUS2RfqmURgDXwMxmYRKqR2Nk7J3JBY6ixM3qPBnkIl4RrvldWv9U3Mc4m51NEmCkdpgJKyFMUlMRFZG1RSgx0LODCj3YGChUwpFtsKSpPU5HEsTgChG6R84pp/Y=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1740011287; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=tAz9mG1QzuvEf2OdpS0A1Mmv42BVI91Fqs66KZi4GbM=; 
+	b=H3oEARUuGeRkGUgRS5dzetOKYF9GjV8GgFJdr+uWi0PkMveZZ/0Fbk/0QHvT6g9RxxYLsDQgRVBZcQDlnaRZi5V6nngQ3c/E0VpGhg0fxIrUa8g+5qChf+E7wGbLJlyNBUTyDS5GT9zRaBdaftw0IXFOFUViGb1fpEppCNkxjVI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740011287;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=tAz9mG1QzuvEf2OdpS0A1Mmv42BVI91Fqs66KZi4GbM=;
+	b=AQrG9NKoXgF86aaBiE+9MzKBsqDDIXC2ziT2xgcTmjQT+Z9jwMC+YKQjGhhgAm4/
+	xG7Cd3Y6C+MM2N1mzqVz1BmVwySI0ITIUXcWGCi1WaLE9tILNBYLO/BOQWK1YvkXEw7
+	MSkDls/MFKXy95Kv7oDB4iOyInr34iBt7XHd+05I=
+Received: by mx.zohomail.com with SMTPS id 1740011285906551.8635618898012;
+	Wed, 19 Feb 2025 16:28:05 -0800 (PST)
+Received: by venus (Postfix, from userid 1000)
+	id 6CCBA180608; Thu, 20 Feb 2025 01:28:00 +0100 (CET)
+Date: Thu, 20 Feb 2025 01:28:00 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Chanwoo Choi <cw00.choi@samsung.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Pavel Machek <pavel@ucw.cz>, Hans de Goede <hdegoede@redhat.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, 
+	Purism Kernel Team <kernel@puri.sm>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v17 1/7] dt-bindings: power: supply: add maxim,max77705
+ charger
+Message-ID: <dsrokndf2gknamheatwslbx7d6nd6sk2g2hyggj4ee7pfu7nr4@emyeig3baryc>
+References: <20250123-starqltechn_integration_upstream-v17-0-8b06685b6612@gmail.com>
+ <20250123-starqltechn_integration_upstream-v17-1-8b06685b6612@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3nnsvdjlfrs3g5ul"
+Content-Disposition: inline
+In-Reply-To: <20250123-starqltechn_integration_upstream-v17-1-8b06685b6612@gmail.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.3.1/239.999.45
+X-ZohoMailClient: External
 
 
+--3nnsvdjlfrs3g5ul
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v17 1/7] dt-bindings: power: supply: add maxim,max77705
+ charger
+MIME-Version: 1.0
 
-On Tue, 18 Feb 2025, matthew.gerlach@linux.intel.com wrote:
+Hi,
 
->
->
-> On Sun, 16 Feb 2025, Krzysztof Kozlowski wrote:
->
->> On Sat, Feb 15, 2025 at 09:53:55AM -0600, Matthew Gerlach wrote:
->>> All Agilex SoCs have the fixed-clocks defined in socfpga_agilex.dsti,
->> 
->> 
->> That's not what I asked / talked about. If the clocks are in SoC, they
->> cannot be disabled.
->
-> There are two clocks, cb_intoosc_hs_div2_clk and cb_intosc_ls_clk, in the SoC 
-> with a known frequency. These warnings can be fixed in the DTSI.
->
->> 
->> If they clocks are not in SoC, they should not be in DTSI.
->
-> The two clocks, f2s_free_clk and osc1, are not in the SoC; so they should be 
-> removed from DTSI.
+On Thu, Jan 23, 2025 at 06:04:26PM +0300, Dzmitry Sankouski wrote:
+> Add maxim,max77705 charger binding.
+>=20
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
 
-Since these clock changes are not directly related to adding PCIe Root 
-Port support to Agilex chips, I think they should be in their patch set.
+Acked-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Matthew Gerlach
+-- Sebastian
 
->
->> 
->> These were my statements last time and this patch does not comple.
->> Commit msg does not explain why this should be done differently.
->> 
->> Best regards,
->> Krzysztof
->> 
->> 
->
-> Thanks for the feedback,
-> Matthew Gerlach
->
+> ---
+> Changes in v14:
+> - fix required children nodes order: reverse reg and compatible
+> - add reviewed trailers
+> ---
+>  Documentation/devicetree/bindings/power/supply/maxim,max77705.yaml | 50 =
+++++++++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max7770=
+5.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max77705.yaml
+> new file mode 100644
+> index 000000000000..bce7fabbd9d3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max77705.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/supply/maxim,max77705.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim MAX777705 charger
+> +
+> +maintainers:
+> +  - Dzmitry Sankouski <dsankouski@gmail.com>
+> +
+> +description: |
+> +  This is a device tree bindings for charger found in Maxim MAX77705 chi=
+p.
+> +
+> +allOf:
+> +  - $ref: power-supply.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: maxim,max77705-charger
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - monitored-battery
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +        charger@69 {
+> +            compatible =3D "maxim,max77705-charger";
+> +            reg =3D <0x69>;
+> +            monitored-battery =3D <&battery>;
+> +            interrupt-parent =3D <&pm8998_gpios>;
+> +            interrupts =3D <11 IRQ_TYPE_LEVEL_LOW>;
+> +        };
+> +    };
+>=20
+> --=20
+> 2.39.5
+>=20
+
+--3nnsvdjlfrs3g5ul
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAme2dwYACgkQ2O7X88g7
++pqwXw//VLCEgYBR5TpFRR5uS6nRwuRyYJsQYJvSCT0DkF8PdL1JUvIc0LA7iao5
+slEskVoovRBUzx3HHyS+YAR2X4D3iwdgR/XVntfoUrqaIlti578Kbz6whhNwj2kh
+ZcU0l95pwFAmlO6ESzPrlnjaiXMmvOKh97wi4W9Hd56Jq6yedxuXmLk9SLhV9o3L
+0vPs1m32R7Y3ifpA0Z/YVLZ2zkvGu06SfoQCy0UMibFR3N61jyqtfH40OJ5xJxah
+fHyYm1MArhBM96FU8sSYlzLj5hW9qC3OyHA7fico01GAVGunKQPG3EaIFU+CaQfI
+4c4ocixlCO7yxBGR3pqHGxcGT0b/9jwp1cwel0PUTLfJz2bBCv8mSbi5SOk/L+94
+5fpOC22yOgOl7ZDJTtIX6chEg98y0qT8TBHB91zDOkTaPRL+jxZk41gnQrma59eT
+sx3qL6vPysqm2ff9YrJDoWiOZ87aTG/wU7YAl/ZDzIaRJQNjE2EEuaB3LGnDUVPm
+WWIC5hbHAy4GIuQ7GmKPTsQW/IflA+btAZ1Ooffe4OyKEqPPTun+rvnRRmuaqB+9
+VTeQfr6sQs6lHQlin1KNqlmikU4pc90/At93BZG15eQ6ptftbNCU+Zo+1o9BDyfd
+k7kHKZwx6siqO1mCbhYe7iXH3G/hMeGR0hTr0Pl/i4IDNb26oJI=
+=dZFk
+-----END PGP SIGNATURE-----
+
+--3nnsvdjlfrs3g5ul--
 
