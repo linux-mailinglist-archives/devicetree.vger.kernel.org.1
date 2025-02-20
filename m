@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-148847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E649A3D9B0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:19:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E8AFA3D9C2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:21:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA0467A9722
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:18:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9514189F564
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:20:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6409A1F4635;
-	Thu, 20 Feb 2025 12:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4CAD1F582D;
+	Thu, 20 Feb 2025 12:19:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pZmAClDq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SshpZezd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4321F1527;
-	Thu, 20 Feb 2025 12:18:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD91E1F4639;
+	Thu, 20 Feb 2025 12:19:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740053924; cv=none; b=CQSxE/FFZM+s1xRUKDahLostMrk8mMSf+LYA1EGrzBZqP6TZ5Ksg1bb7yfBwXMetMmNSlFTHQnjnhoo+lIBkoWBscy4tM3M93ygc/lTJyaVjPIv4YGUjgo6wrLWSgNAhcYB0EcKwhwYeml0O/JCmnw/WYGOyUoQoEXUgyUuLB2A=
+	t=1740053959; cv=none; b=hhjyiVscM8zEr0GlgSmJuCPpV3XR5x445kzpWJeZNoWcZXZOChMrgaMhP0xCeYyzyY40LhCy6bz3vMq0PFccTeIH+/VWkIFvqXQVxxwFR3wkg0uDmFFi1Eb9svA6uhxHFoq7QgUihrwFqcEwMx4+a+XL5Tz14cDRoqspEn0rVNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740053924; c=relaxed/simple;
-	bh=ROtfoAxK2xKoTpAY9yzScsPJvBzno5iFrQIaQBKBu3c=;
+	s=arc-20240116; t=1740053959; c=relaxed/simple;
+	bh=iIoWKfGlgEHsajgKFT5jnEn1DVJa1FWjnc925juAW+I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i63B2Zk83LPIi8drPSHnWlHKTaIbv/TyzYZrpr5ZVMkSFwcHlqfJ/6z21DmSARP/Y163zAUC9Ta98h+gZHBpDXGl18TJjxOqDYO0FQM4P0ZZ4ECGkUaH4P5tSp4OLZ4nmh7aFPDrlu5mlJLEWHv5N+eRxeoAkKcaUmLFL0cNvHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pZmAClDq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64FEBC4CED6;
-	Thu, 20 Feb 2025 12:18:40 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Od3JQUGYtP0Fiokk4mNeNCo3/GTwrcxPSWDxf7nUUecI31FmGgnln0Q/UWxDXdypv0AGC3tq7At+azZXs/STSEk1uTWEKtuaWf3ZYkxSga5H6xendI5XEA52t57TYVetsHW7nU/PMNQvLO4ynS+42cNg3xZOVe3Ai5YUlHetPCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SshpZezd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85446C4CED1;
+	Thu, 20 Feb 2025 12:19:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740053923;
-	bh=ROtfoAxK2xKoTpAY9yzScsPJvBzno5iFrQIaQBKBu3c=;
+	s=k20201202; t=1740053959;
+	bh=iIoWKfGlgEHsajgKFT5jnEn1DVJa1FWjnc925juAW+I=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pZmAClDqJctUzeBcm/RKv4BNSxNZZonfD1YCbGI2MlLcIIq3J5V1l1BG51LyDIeEK
-	 gvoHb3StaWq7vzu2HnOdcQZUL17Di6AHFz1OuzWU4lWhl1C6LE/05W85cUr4WiTH34
-	 q9o1u+g72dFDHU/stZicAoT9cnbrFP2EwNQrsxsL0QDin2Fm2R+tXWQbpbf1lX3Nrc
-	 Bq3RySLhc/WC+W8im2py53+NP6ifQL/sfH0u21xAj80Q80OYz/3ZP8uDlWYi+5Jdzm
-	 C3mPSJaJb0z1IgsERnPithYKaoA+sYEXo0JfBlpu7XND2Cz4M8thLNL4osHLRzZKkJ
-	 zpgY3N/rzwaJg==
-Message-ID: <22142d49-b6ba-43d3-aefe-ae64fd867e8e@kernel.org>
-Date: Thu, 20 Feb 2025 13:18:38 +0100
+	b=SshpZezdlDGtiM6TiHutcpm/8gi64FjaHnFRk1hcp5QsBJnBUkeVau9CXQg8cPj45
+	 B4IcqdwVrnmrMvAZj5j7ZfR3XDpVoZJZ993XyEcgaW89aZQWRiNVUaZZ7swh6oXE42
+	 zFe++tSHLwuxo+NorFenV3rlxWyN0LQwrR9lii5fWgjMUoPNVuYUaTJY+fyshyYyqF
+	 C8vAr4Gt05I9c3h6oFWiooNQ3x9Fma0vVMk1D+Yf6xZXGZwGg/vb1n7h+MfixWy1pT
+	 bF9M0wKzpvGhcqdJrUTqLW1RSm+IRHXAT/VpJ0ab18QLfZIqya0AwxriipUyHCeQ2B
+	 R77fGt/HNcNqQ==
+Message-ID: <30f92eb0-8483-4699-83b9-387a1fdd4931@kernel.org>
+Date: Thu, 20 Feb 2025 13:19:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/6] arm64: Kconfig: add ARCH_CIX for cix silicons
+Subject: Re: [PATCH 5/6] arm64: defconfig: Enable CIX SoC
 To: Peter Chen <peter.chen@cixtech.com>, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de
 Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
- Fugang Duan <fugang.duan@cixtech.com>
+ "Fugang . duan" <fugang.duan@cixtech.com>
 References: <20250220084020.628704-1-peter.chen@cixtech.com>
- <20250220084020.628704-5-peter.chen@cixtech.com>
+ <20250220084020.628704-6-peter.chen@cixtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,31 +103,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250220084020.628704-5-peter.chen@cixtech.com>
+In-Reply-To: <20250220084020.628704-6-peter.chen@cixtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 20/02/2025 09:40, Peter Chen wrote:
-> From: Fugang Duan <fugang.duan@cixtech.com>
+> Enable CIX SoC support at ARM64 defconfig
 > 
-> Add ARCH_CIX for CIX SoC series support.
-> 
-> Signed-off-by: Fugang Duan <fugang.duan@cixtech.com>
+> Acked-by: Fugang.duan <fugang.duan@cixtech.com>
+
+You keep using different names in different patches.
+
 > Signed-off-by: Peter Chen <peter.chen@cixtech.com>
 > ---
->  arch/arm64/Kconfig.platforms | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  arch/arm64/configs/defconfig | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-> index 02f9248f7c84..977b61894cbc 100644
-> --- a/arch/arm64/Kconfig.platforms
-> +++ b/arch/arm64/Kconfig.platforms
-> @@ -399,4 +399,10 @@ config ARCH_ZYNQMP
->  	help
->  	  This enables support for Xilinx ZynqMP Family
->  
-> +config ARCH_CIX
-C is not after Z... keep sane order.
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index cb7da4415599..1dd46d200401 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -45,6 +45,7 @@ CONFIG_ARCH_BCMBCA=y
+>  CONFIG_ARCH_BRCMSTB=y
+>  CONFIG_ARCH_BERLIN=y
+>  CONFIG_ARCH_BLAIZE=y
+> +CONFIG_ARCH_CIX=y
+
+
+And this is not in order with savedefconfig...
+
 
 Best regards,
 Krzysztof
