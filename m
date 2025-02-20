@@ -1,110 +1,98 @@
-Return-Path: <devicetree+bounces-148808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29BC0A3D7A4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:02:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BDDEA3D7E4
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:10:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 535241888876
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:02:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A627516FC5B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:10:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEB7B1D79B6;
-	Thu, 20 Feb 2025 11:02:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 443241EE7B6;
+	Thu, 20 Feb 2025 11:10:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NrTkn4C1"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Lj5Rz8xF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D921A2862BD;
-	Thu, 20 Feb 2025 11:02:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B6A51DA10C;
+	Thu, 20 Feb 2025 11:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740049324; cv=none; b=MA/RofPL3rpO5jKw2ULLJiL2wULLz4If0Lcu4JWBCd4Eo9vHU+o/H1m+GDYAr0Q6q0i6E4R3LUlMO/7N0TOYSDiavSH+pXVdOMU+RCT0fTTwiV6Rbz8vCm8N1OiaETHOTy0zjdurP7dIEtnDxFWcGg+HwU68MGvOZ6s7AtsmYhM=
+	t=1740049802; cv=none; b=f54qmfzfYSjQReC6Kb5783yu5X4jAUJGnUUFn4rb3WE8KEaaO0M9Qrhu8rt8OerEFJfggdjKp3Uwpo5EuahRLTp1l1NaVRXnPmQ2hlZwT/oiz4ZZI9f/dcokDXiRMIOukqDL/NY5KOPoelcCsXAj8xU569gMhVZnXSbKM6mVXZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740049324; c=relaxed/simple;
-	bh=9ASkIEzS+6XMgMIawHaWqrHsCYwuVwK6odSFxevMpFA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CrXVr2hztSPZYaD5nUF4ZKdFTEHEM3vJVcnUm9fxHVI3cUWcO5+IbwcyEpiNEeAIIXAuUlRAjeA6N2Dmti0vdTSbberUUTpVmp5nYYDWtIVzmEPJaVHfA4v+jo55OODBSubu5AcA1JlEaLbZllGI/iZ1eef/rhWzB+vKqDbuVsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NrTkn4C1; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1740049802; c=relaxed/simple;
+	bh=KbXYp775cdnty7f1RIZ5D4SMIl7u1xJAlQegzHLVtg0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uXD8+WbdhebCHK8gF06MFAY0U9yqQBLowMkSW+x4/tv1yeZBTxIdOFP6U52csL8Fv4gaZelDb3mOJk8uXo++jbBiN40hl6DRq2Bth6X/2qj8r5CHK/VMbqhPz4KiXIYVqsrlaFBhi/c8gNw2hi8fhCiO5W9W8njGA/S5qGBDexM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Lj5Rz8xF; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740049321;
-	bh=9ASkIEzS+6XMgMIawHaWqrHsCYwuVwK6odSFxevMpFA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NrTkn4C1My6ql2JSSgUKNTpsKonypHW/rh1EN8tqXylBFSd+0pQhJNtbK0UvDPPYp
-	 KLIYunu1n3s1FYSU9Wdo173rtn2zjJCWnCADGvfzDFLsN4v712RUpMcdwHQtDkqFAu
-	 rkC9MwlFA+thadeUIghQshp4KnZEf01INDT+UsxgeyvcvBtXpGB9xyoVDZqhvHJRmr
-	 RCEiobnxn2lWWgx4/bf7iKMQ0cpokEUsnI06J1tDQa0bxIxQiGoW6przJqwOYHahcm
-	 iH9rMEcqtZ+OpYmZiWBhciqklYq1vYUG5ttORkC/agYKpRo2E1xM8tX1KRz3NVn0I1
-	 rVSagHCoYLaPQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	s=mail; t=1740049798;
+	bh=KbXYp775cdnty7f1RIZ5D4SMIl7u1xJAlQegzHLVtg0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Lj5Rz8xFMibe4IC22N7/0i+iFcJChPrurFTfbm6FxtnBiXZjlcr0ysS8d18Kkk24H
+	 JcBMXGugW9or6w3gy2zAAokcERw07Ft+q1MFQ1V2By+tzJ/v6fH0ruqbuLQpam24jt
+	 bPUDMenlljFsyIHHrpTOnBx9ZzkkK1b/VDqJAkM8NFwKZP2Ax76OFtvFev2/qe75fY
+	 qvgblGP7EeS4BCNpIFWY6dAXfHAAd92g+8/GGE9MjJeqcAqLF/wVQJTQbhkU5GlhuO
+	 kNqVg06Py0PppaZ+hxFneiwETXc5Sennhn7a9nOMU9k2pD73FX6G4ZIZA0R1zbSFWK
+	 v8TN7mI5oOR7A==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 57C6917E1247;
-	Thu, 20 Feb 2025 12:02:00 +0100 (CET)
-Message-ID: <fa07a088-2ba2-4475-89b4-5104db2a28ae@collabora.com>
-Date: Thu, 20 Feb 2025 12:01:59 +0100
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B37CF17E1247;
+	Thu, 20 Feb 2025 12:09:57 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: linux-mediatek@lists.infradead.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com,
+	pablo.sun@mediatek.com
+Subject: [PATCH v1 0/4] MediaTek MT8188 Display Graph: Chromebooks+Genio
+Date: Thu, 20 Feb 2025 12:09:44 +0100
+Message-ID: <20250220110948.45596-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] MediaTek MT8188 MTU3 USB and Genio 510/700 TypeC
-To: chunfeng.yun@mediatek.com
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@collabora.com, pablo.sun@mediatek.com
-References: <20250220105514.43107-1-angelogioacchino.delregno@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250220105514.43107-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Il 20/02/25 11:55, AngeloGioacchino Del Regno ha scritto:
-> This series adds MTU3 nodes to the MT8188 base devicetree, fixes the
-> Geralt Chromebooks to use it, and adds support for all of the USB
-> ports, including TypeC Power Delivery, Alternate Modes, etc, found
-> on the MediaTek Genio 510 and Genio 700 Evaluation Kits.
-> 
-> This also adds the missing SuperSpeed port to the mtk-xhci binding.
+Like already done for MT8195 in a parallel series, this one adds a
+base display controller graph for the MT8188 SoC, migrates the Geralt
+Chromebooks to use it, and adds support for the DSI display found on
+the Genio 510 and Genio 700 boards.
 
-Forgot to add....
+While at it, this also adds pinmux configuration for switching on/off
+the fixed power supply of the touchscreen IC found in Genio 510 and 700
+IoT boards to stop relying on the bootloader preconfiguring it as GPIO
+before booting the kernel.
 
-Changes in v3:
-  - Added a commit to allow the SuperSpeed port in mtk-xhci, resolving
-    dtbs_check failures
-  - Removed useless vdd-supply from xhci1 in mt8390-genio-common.dtsi
-  - Removed useless interrupts-extended, as the wakeup interrupt cannot
-    be found anywhere in the schematics; the wakeup anyway works because
-    of the pericfg's syscon-wakeup doing the same job.
+AngeloGioacchino Del Regno (4):
+  arm64: dts: mediatek: mt8188: Add base display controller graph
+  arm64: dts: mediatek: mt8390-genio-common: Add Display on DSI0
+  arm64: dts: mediatek: mt8188-geralt: Add graph for DSI and DP displays
+  arm64: dts: mediatek: mt8390-genio-common: Configure touch vreg pins
 
-Cheers!
+ .../boot/dts/mediatek/mt8188-geralt.dtsi      | 155 +++++++++++++++++-
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi      | 140 ++++++++++++++++
+ .../dts/mediatek/mt8390-genio-common.dtsi     | 154 ++++++++++++++++-
+ 3 files changed, 434 insertions(+), 15 deletions(-)
 
-> 
-> AngeloGioacchino Del Regno (3):
->    dt-bindings: usb: mediatek,mtk-xhci: Add port for SuperSpeed EP
->    arm64: dts: mediatek: mt8188: Add MTU3 nodes and correctly describe
->      USB
->    arm64: dts: mediatek: mt8390-genio-700: Add USB, TypeC Controller, MUX
-> 
->   .../bindings/usb/mediatek,mtk-xhci.yaml       |   4 +
->   .../boot/dts/mediatek/mt8188-geralt.dtsi      |  18 +++
->   arch/arm64/boot/dts/mediatek/mt8188.dtsi      | 121 +++++++++-----
->   .../dts/mediatek/mt8390-genio-common.dtsi     | 151 +++++++++++++++++-
->   4 files changed, 251 insertions(+), 43 deletions(-)
-> 
-
-
+-- 
+2.48.1
 
 
