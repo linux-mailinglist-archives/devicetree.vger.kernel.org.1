@@ -1,133 +1,95 @@
-Return-Path: <devicetree+bounces-148743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95E50A3D3A6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:50:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9F49A3D406
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:00:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 044AE189DC0C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 08:50:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A85C188BAC9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:00:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D81D31EF080;
-	Thu, 20 Feb 2025 08:49:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5BBB1EC01D;
+	Thu, 20 Feb 2025 09:00:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qZ/G4mng"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="o5RK3r4R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E18791EE7B1
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 08:49:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED9C81EBFE0;
+	Thu, 20 Feb 2025 09:00:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740041395; cv=none; b=Jo0sD5109XfszD6qQOxnPveyIooOEndndtDZSn8w+ODtdmVXlS+iTSZjrI+hgNsYF1BM3PyVoUxtPo6jo9DZgZ2Ud9E5tP0Hn3X7+kjGYQhVg2FJsKdqVaZS6gn1DCWRgGvxAFkHUPYqmK/wJnUhC6D1nMzSKXl79dPJZ4YUG/Q=
+	t=1740042005; cv=none; b=cayHqF/sfMi+H334UeR6OMMVk6XZxXS0C+pImjU590l0ZQ3s8NYR7+LayrS1Sv2OJuurA/epCbNd+XaIyuSdfRq721g2FNj6yMi9WqH/qA0IBqYZkUVz5HpJG+F7X8RskNVToDfaTQgEjFVCH1bxs2xI6A35Oyp6S8cHhFCwZGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740041395; c=relaxed/simple;
-	bh=jEV8vZz5gqNDMyTZ0uRsv3MOluyxCEuJ8kKQq9xb6d0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ciCQWoAVcezAcW+Wh+6ltYtktF6rv0wZO24Uwq+GYqO2J/Qxx3T/Guz26C5vFDT6L1j4j2pxS1aU6MfSK1zDUBC8+SpgzWxDLoFLO/mWvQtjAywWtoVRrVObVIOjnUrAHgaydNOjzz7Wmzz8aTLqpnn4W3Ulu0qhpgMzf+gppj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qZ/G4mng; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-439990502bdso896165e9.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 00:49:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740041392; x=1740646192; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yWB+SbZyOVXJ9r7wbGT1zybdbas8WjeIU9tjrK4U+Qo=;
-        b=qZ/G4mngc1ZVhsQuyUKGZKgsod2pDUiY7Xdf/UjuGF7LAs+G4b4OsLmOSMROyT8dz0
-         cBPuIHDqiW/7vwJshalgd3jM6zMBEKWBMl5CBxlZOl8iGvl2rF4+nf4B3qkpLeZ/0vMU
-         ezGpNe53Gx9lOChqMXmEsheFe2WMoB/1qj3NWSMb6elfG9CqD/V0XZ1PzFJDP4Jb5FUZ
-         AgOpruEpTugjlyY8CD1+CxYOhG6C8R8FPOusBNQSbtMGy9LL4J9+0AmqaKPaZblnq28H
-         GN6GP9XbwvUa2efL6exna2y7JvgaFAuIhuQwFfzVWy+0/1WrpOnJdvK69+HCrLj4RjV3
-         GBRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740041392; x=1740646192;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yWB+SbZyOVXJ9r7wbGT1zybdbas8WjeIU9tjrK4U+Qo=;
-        b=K6A+Lh605mCdPMSDQZJXWvBYLNUcUXBO8+1eCO3Py55dEjR6jlnZ8DAJpUA+GTkK+O
-         taPnXM5/rpwJapR+FXK6QiommE6qaewykux5dsOv6OYCQQQ58nrfaGsQeiyUTpY8Wzxz
-         hydv/Uhi7wuloRi1p9GHmFHmiUd89mLmQUBf22EJsputfCNJRfSi83NQrm/kym+sp2U+
-         j7P2Pzi44nta9wFUtDMGiTSuVob+N+zpFhvUZcYNQL6aTklE9rEY3GAzmcy3G6Lg1Xni
-         UxNXV74HPgeTK7oSblmdDyAE70d/tiFcceGCusZ6XriifyZe9ycNc1jUEaBlH8WN5ymN
-         ZQqg==
-X-Forwarded-Encrypted: i=1; AJvYcCXXuYAb+02q/TAp5d/gwYDTrB2GA5fazbv8Ju2ArRtz7Ll5ADnrOU+EcCcV4nvujY4J6OFR+HrioXHT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1BfMjopqDSuGIUOiU5LmkFCd+6PjJiGNnu63nEealnFMQ3Jaa
-	4ixluWRWhPwmJ/MymrDJ5lUIz8JUKyyB4M3X0s35BZ2Yi1q6x58ptyYtx1cOCkc=
-X-Gm-Gg: ASbGncs9AHQcDfyTUUG9CYS9Cyfs2wEk41bDXWnv3ljU5Buj7GprGedwHWqL3F9wxJT
-	iNxSIMJlNQCgs4n8Z4B6pSastC2nqkuhjqE9ugB1h2nixGSvtLKcL8w+nSbUeC6MDbjvT7NBxw7
-	4FLO4k5ABZExQZqkcQoDf3m4r3s0ypTLz9VGkSBWNO5tX5QplX6DZygpfprBTfJR+xbFy2AqaDd
-	xZ9IwIxfW/r3Hcj8wWoHYkiKaTmK2UTjb0p5S4ajZPWPFrkTFCDgwctxP4AYcACTPUPM7Mh3ALV
-	3cAI9wiIzEZYK+APOX4k/3QY35kbnb9ENOVfx4EyWdA+RJwkz8xqaNnaGH5Hvl7v
-X-Google-Smtp-Source: AGHT+IG4bbBOJVCPcprWYWGX/77B392vmnYMBASei1ZZmXUU29L/4ALcpBiVpQXD2ZjiroNLeZ3IYg==
-X-Received: by 2002:a05:600c:1549:b0:439:9a40:aa27 with SMTP id 5b1f17b1804b1-4399a40adf7mr22683255e9.5.1740041392220;
-        Thu, 20 Feb 2025 00:49:52 -0800 (PST)
-Received: from [127.0.1.1] (46-253-189-43.dynamic.monzoon.net. [46.253.189.43])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4395a1b8397sm234417565e9.36.2025.02.20.00.49.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Feb 2025 00:49:51 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Thu, 20 Feb 2025 09:49:43 +0100
-Subject: [PATCH v2 4/4] arm64: dts: qcom: sm8750-qrd: Enable ADSP
+	s=arc-20240116; t=1740042005; c=relaxed/simple;
+	bh=5A0WJvrt3x58g4nbFzK9ZSfFmD/sJiUvrzE2dXSE80E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LuZntdp6Tnz7Ig7n5sQnW9egNxPjY70eF7oqE8MKTEtMeH7tj2Jwv6CDvdSavLvLlzVFl9MlVAhlYqdErQX0O7YCJDI/Lwc8SETbW6VMcUnNdNQmXoe4VJXsIU2biyGSoCbqMQGDx1EbTSzE4jiIxRmhcVEh6wGXoE0q9Ow/fvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=o5RK3r4R; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1740042001;
+	bh=5A0WJvrt3x58g4nbFzK9ZSfFmD/sJiUvrzE2dXSE80E=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=o5RK3r4Rk9WuvoZOwJfe9Bu4c2+bFvpTfB8Lp7FMchF966NYGq3kXX8uZRvTpAI/q
+	 Dwfe6h34fU5aOjsijyu0VYbWRO0FUSr7H49ARLQyUa0TjBKJtBo2Zt/uITT8SJMzRn
+	 WjryCNBtusogoc+S67rQF/PN6pnd8zi+Ksto9eIxPrfFibUssDiT7SlEw1sX/t833+
+	 8Y7C/G/6SMRN6vVliSe1hO1382MY9OBR9LYXeqOoUDQZK1X6RMlVC2hWSYDNyNBm5I
+	 1YXRY/8LRBaoj2/Vf08lBbSH4QZfhsksmA/OISb8ROElksWNnSPow/RXgRijH53bwR
+	 /AbUPWxZD2SHQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6D2A417E1560;
+	Thu, 20 Feb 2025 10:00:00 +0100 (CET)
+Message-ID: <71767679-057b-4d4b-be3f-3c21bb9877b6@collabora.com>
+Date: Thu, 20 Feb 2025 09:59:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v3] arm64: dts: mediatek: mt8183: Switch to Elan
+ touchscreen driver
+To: Hsin-Te Yuan <yuanhsinte@chromium.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Enric Balletbo i Serra <eballetbo@kernel.org>,
+ Hsin-Yi Wang <hsinyi@chromium.org>, Benjamin Tissoires <bentiss@kernel.org>,
+ Hans de Goede <hdegoede@redhat.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20250120-post-reset-v3-1-8f394bb25c8f@chromium.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250120-post-reset-v3-1-8f394bb25c8f@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250220-sm8750-audio-v2-4-fbe243c4afc3@linaro.org>
-References: <20250220-sm8750-audio-v2-0-fbe243c4afc3@linaro.org>
-In-Reply-To: <20250220-sm8750-audio-v2-0-fbe243c4afc3@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Melody Olvera <quic_molvera@quicinc.com>, 
- Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
 
-Enable ADSP on QRD8750 board.
+Il 20/01/25 04:35, Hsin-Te Yuan ha scritto:
+> After commit 2be404486c05 ("HID: i2c-hid-of: Add reset GPIO support to
+> i2c-hid-of"), the i2c-hid-of driver used by some mt8183 devices resets
+> the touchscreen without having enough post-reset delay. This makes those
+> touchscreen fail to get probed.
+> 
+> Switch to Elan touchscreen driver, which has enough post-reset delay.
+> 
+> Fixes: 2be404486c05 ("HID: i2c-hid-of: Add reset GPIO support to i2c-hid-of")
+> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
 
-Reviewed-by: Melody Olvera <quic_molvera@quicinc.com>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+Applied after fixing a merge issue.
 
-Firmware release will follow up later.
----
- arch/arm64/boot/dts/qcom/sm8750-qrd.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+Thanks!
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-index f77efab0aef9bab751a947173bcdcc27df7295a8..341774bb042ff88af8acf49c2f0ef14f9994dfc9 100644
---- a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-@@ -782,6 +782,13 @@ &qupv3_1 {
- 	status = "okay";
- };
- 
-+&remoteproc_adsp {
-+	firmware-name = "qcom/sm8750/adsp.mbn",
-+			"qcom/sm8750/adsp_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
- &tlmm {
- 	/* reserved for secure world */
- 	gpio-reserved-ranges = <36 4>, <74 1>;
-
--- 
-2.43.0
+Regards,
+Angelo
 
 
