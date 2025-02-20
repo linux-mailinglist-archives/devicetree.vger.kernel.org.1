@@ -1,109 +1,192 @@
-Return-Path: <devicetree+bounces-148799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16415A3D758
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:52:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22E7FA3D75B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:52:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC755163171
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:52:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAA0E164DA6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:52:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907D91EE032;
-	Thu, 20 Feb 2025 10:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3233B1F1523;
+	Thu, 20 Feb 2025 10:52:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PN026PoY"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="C05FatH4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4B201C6FE9;
-	Thu, 20 Feb 2025 10:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02F0C1AF0C8;
+	Thu, 20 Feb 2025 10:52:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740048727; cv=none; b=ALmocbgAYtdcTHpBBLzDpL3p/QoQZ0pPZCBP8PZu2jKMKJUgbOVaLCjTCmxdCeF/4jVEYu7/HDA+dk7CalKaXxICEGASnZuwwcrMgR5gApw0WFkP+eAgZOfqrTwNVdodRqLLP6B9ttl++8Y4cWom2vMrwyQopdHsH2PJAKqEsgc=
+	t=1740048760; cv=none; b=KFIQjnyLdS57R+UwX/TyKFtS0t1e4nnuZ1i0PepayT9zIWuYShavqogWgZwW/hMESpO+X3ZzF9GkRgXZLZct/czjYNMk4Bud1CN16oYe9TYvIajijwliEeyFI+dd4ajDyzaql+fLEU6TN3gOFcVZT+xkhxCVaD2TVMPcY5/0XII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740048727; c=relaxed/simple;
-	bh=Hj8rjbo/gVN/i8pFWBGBMOAQRZnmKNy8TUBNnlxGBuo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IMZ3ZDw2Fbj30c5xqbxJEhWw0wxOtaEMCcGXPaL1D7EOsd7z9LBHIoFcZpegiXpQBRZpyvt0GYXKge077noW/JsFt/8+SmBb8BW+uQInIxO5rVlIN840K36+GzSyJoObYYKRZjbw6B0FGoP4K2k0IzK8nfJNNu3ryUSdma4XWMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PN026PoY; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6fb9dae0125so6498757b3.1;
-        Thu, 20 Feb 2025 02:52:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740048725; x=1740653525; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hj8rjbo/gVN/i8pFWBGBMOAQRZnmKNy8TUBNnlxGBuo=;
-        b=PN026PoYVFq2tSUMqaJWMEiElJt0LnqGpmwmYXconyXxRBNaam5ZndYeoRdETU07SJ
-         gcrdy9mX96Ygs4fFUw4DRdpTIoEAI56Z/i1R4IxarIKkRdHhlGtUepZRZlLW3U3dG+IN
-         peIcg0hxBCG2Iu++fipG1kgveAjEapW4NTaI/uoCqk6NY/E8jMw2+rQc8USRRl0uvFU7
-         NoJ0n4/fOf4RFiVzJsc7h8DSvimUJMtzMJ+mNcYP4J1NX/0AY49/OGGJuyxP2Z6oK3Q0
-         PkrLrsaVB8Vdcdavnd9qpI1Oo7wH3+09Pz7Pxf2dTcfkNN2BbAxSWkJaevMy7tBXtoYe
-         UXRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740048725; x=1740653525;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Hj8rjbo/gVN/i8pFWBGBMOAQRZnmKNy8TUBNnlxGBuo=;
-        b=EzqT47C9GuBqz+myzcsJaVJ0stsMZuv8nE17Qz0gRLlY7VT0HOKow81MVJpzMD6y+C
-         hlICs75RrvU+0w38HPOwjkrNKrdf6tw0jmb8nehU5YI+Q3KB1oHaRiu3mENGdPC1b8t3
-         VnlIs7aTGHVByK+X7U4yD1b+WJjV9gvVO2tC7INEk4NZMEqFmGnB0Vb5YTwZI0OCbL7b
-         nsIVSuz8k97I8XFEqUcbJHKNzV4rGpD7i6olzfuPq01/w2TUibZ2gFOG2VIaM7IENU0H
-         zLhtXFVfl2nRyXJoh5OppUQdYYld1bPR0YlT2O2feRPtwgaRvriVphvu91Btg0pgwPaS
-         i4LA==
-X-Forwarded-Encrypted: i=1; AJvYcCUgb96cKkB6+/GUoYgXJi5v6N1hhy9zPJYL1js2A0Xy4Eu0QkzNUPr6I9nNp76CxX275jDKQ/qcMdCvlOc=@vger.kernel.org, AJvYcCWMr6ipfgGN9Ast0e4cSr/C3jmdN71cpoRhwu4xpPf/b6SKug2yD0TgzjOvPKrXSJK3mWUPOPTJAfdZIb4ebuO32A==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfjFYqQTqeGghAjnH+H0MpB7afrYlEM0K6afmkih7PEsGS5w+N
-	pIZR7QN2i/MsISqhLaGdg+hEFKQklusXnVwwCNQj9xkyD4Oxz87WLkz32DH+eDdZtBe4RPubpqt
-	YDCU95JeLCD8kX+AiV0Ea9V6Y0STKBS1nqVk=
-X-Gm-Gg: ASbGncuuyDJ171UkCJMC8aqhTi5AUBGA5uNyXFNSa+RCjgWrgCrvYaGkmIeI2sTkAkI
-	rKD9JrPBYXmDnSNmYCgKnHr/qf2+DzM6pq4apBWxv2lN1e/fk50uUNtG3d19AW37RgA3gPU6lYg
-	==
-X-Google-Smtp-Source: AGHT+IF9+aS+ynBE5ue2zge/OhE/pa8hemMC3oWG6WvPFWkiUbJGQkTTOSAQWmSslbYENvfTgEdMM9Pf2lXBJvLmJdo=
-X-Received: by 2002:a05:690c:fcf:b0:6ef:6fef:4cb6 with SMTP id
- 00721157ae682-6fba53693ddmr68921587b3.0.1740048724665; Thu, 20 Feb 2025
- 02:52:04 -0800 (PST)
+	s=arc-20240116; t=1740048760; c=relaxed/simple;
+	bh=jzc3UeO8gPwWIIcpOp7LoiCQrGSVxTENx4elv1fUfkI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fMJ7iADjL+3BVqCRYK24DvE5KHqSQmZIYXei/AgR1GzDVDdMLx5JDZShfyNHVMQg0hXU5ItWbMT0VKjAEM6DqK8DWNYoH9uXSiTO4TGkrwN14HGksZrUynyrwVfJI6jYgsu8Ha0syeWeRPBOmlU153HFDF8e4e9XhS2nVvK1jvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=C05FatH4; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=S+RdLYqZdmsOg0CbsW6QLZRD3BJ6XER56v5MU0dQRVc=; b=C05FatH44QfhrPp864MxbxdgFr
+	RabFjZsr9lUlg6YOhIu6yuvBktL81zlOGNcN2RsYemh78AGxGEdieEEgDWN3r5OprsTBtnpkVFjEX
+	IJOpz4GYbru83ZD5gP36n4V7B4bQwWZ05QV1dk9tr+5ODIzUMrqN5TemnsIrgukQAMMTge+eEy6U/
+	AYK5mMn21/lUaNvD4RgicLpIXUnGdUIH69r29oVGVtWbc4l4O4n0UGO8ScXiLGAmbQyQ48OPG+jke
+	M2uH1h0YT4+NA/qTXDf55qzxm3vJ6d2KC/GeRwhlccGfBZji5cDp0zP9YOsrmEnzpjH1iTX7t9NEK
+	8qJtlhEw==;
+Received: from i53875bc0.versanet.de ([83.135.91.192] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tl4AR-0004Vd-9R; Thu, 20 Feb 2025 11:52:31 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Quentin Schulz <foss+kernel@0leil.net>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>
+Subject:
+ Re: [PATCH 2/2] gpio: pcf857x: add support for reset-gpios on (most) PCA967x
+Date: Thu, 20 Feb 2025 11:52:29 +0100
+Message-ID: <6110750.alqRGMn8q6@diego>
+In-Reply-To: <20250220-pca976x-reset-driver-v1-2-6abbf043050e@cherry.de>
+References:
+ <20250220-pca976x-reset-driver-v1-0-6abbf043050e@cherry.de>
+ <20250220-pca976x-reset-driver-v1-2-6abbf043050e@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250218161352.269237-1-simeddon@gmail.com> <20250218211200.GA991534-robh@kernel.org>
-In-Reply-To: <20250218211200.GA991534-robh@kernel.org>
-From: Siddharth Menon <simeddon@gmail.com>
-Date: Thu, 20 Feb 2025 16:21:28 +0530
-X-Gm-Features: AWEUYZnvxPMzu2JSXYZi9-VDvGcvoVv0K_ixyoZ1-_UtcfPD29hExXVJsI4K0qk
-Message-ID: <CAGd6pzMLQary4PYHN_7vc4xoS3SiAs_Rva+HymcXi_OFoGSakw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: hwlock: Convert to dtschema
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, andersson@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, baolin.wang@linux.alibaba.com, 
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Wed, 19 Feb 2025 at 02:42, Rob Herring <robh@kernel.org> wrote:
->
-> The consumer side lives in dtschema already. Please add the provider
-> side there too. Patches to devicetree-spec@vger.kernel.org or GH PR are
-> fine.
+Am Donnerstag, 20. Februar 2025, 10:56:52 MEZ schrieb Quentin Schulz:
+> From: Quentin Schulz <quentin.schulz@cherry.de>
+>=20
+> The PCA9670, PCA9671, PCA9672 and PCA9673 all have a RESETN input pin
+> that is used to reset the I2C GPIO expander.
+>=20
+> One needs to hold this pin low for at least 4us and the reset should be
+> finished after about 100us according to the datasheet[1]. Once the reset
+> is done, the "registers and I2C-bus state machine will be held in their
+> default state until the RESET input is once again HIGH.".
+>=20
+> Because the logic is reset, the latch values eventually provided in the
+> Device Tree via lines-initial-states property are inapplicable so they
+> are simply ignored if a reset GPIO is provided.
+>=20
+> [1] https://www.nxp.com/docs/en/data-sheet/PCA9670.pdf 8.5 and fig 22.
+> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+> ---
+>  drivers/gpio/gpio-pcf857x.c | 29 ++++++++++++++++++++++++++---
+>  1 file changed, 26 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/gpio/gpio-pcf857x.c b/drivers/gpio/gpio-pcf857x.c
+> index 7c57eaeb0afeba8953d998d8eec60a65b40efb6d..94077208e24ae99a1e8762e78=
+3f0eabc580fa520 100644
+> --- a/drivers/gpio/gpio-pcf857x.c
+> +++ b/drivers/gpio/gpio-pcf857x.c
+> @@ -5,6 +5,7 @@
+>   * Copyright (C) 2007 David Brownell
+>   */
+> =20
+> +#include <linux/delay.h>
+>  #include <linux/gpio/driver.h>
+>  #include <linux/i2c.h>
+>  #include <linux/interrupt.h>
 
-Thank you and Krzysztof for the feedback, I shall address the issues in the
-next patch set.
+this is missing
+#include <linux/gpio/consumer.h>
 
-> For the descriptions, you'll need to relicense the text in hwlock.txt to
-> dual GPL/BSD. You will need TI's permission for that.
+because otherwise you end up with
+=2E./drivers/gpio/gpio-pcf857x.c: In function =E2=80=98pcf857x_probe=E2=80=
+=99:
+=2E./drivers/gpio/gpio-pcf857x.c:300:21: error: implicit declaration of fun=
+ction =E2=80=98devm_gpiod_get_optional=E2=80=99; did you mean =E2=80=98devm=
+_regulator_get_optional=E2=80=99? [-Wimplicit-function-declaration]
+  300 |         rstn_gpio =3D devm_gpiod_get_optional(&client->dev, "reset"=
+, GPIOD_OUT_HIGH);
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~
+      |                     devm_regulator_get_optional
+=2E./drivers/gpio/gpio-pcf857x.c:300:68: error: =E2=80=98GPIOD_OUT_HIGH=E2=
+=80=99 undeclared (first use in this function)
+  300 |         rstn_gpio =3D devm_gpiod_get_optional(&client->dev, "reset"=
+, GPIOD_OUT_HIGH);
+      |                                                                    =
+^~~~~~~~~~~~~~
+=2E./drivers/gpio/gpio-pcf857x.c:300:68: note: each undeclared identifier i=
+s reported only once for each function it appears in
+=2E./drivers/gpio/gpio-pcf857x.c:309:17: error: implicit declaration of fun=
+ction =E2=80=98gpiod_set_value=E2=80=99 [-Wimplicit-function-declaration]
+  309 |                 gpiod_set_value(rstn_gpio, 0);
+      |                 ^~~~~~~~~~~~~~~
 
-Regarding the relicensing, should I first submit a patch to relicense
-the hwlock.txt
-binding, then follow up with a patch to replace it with the YAML file
-and correct
-incorrect paths?
 
-Regards,
-Siddharth Menon
+
+> @@ -272,12 +273,11 @@ static const struct irq_chip pcf857x_irq_chip =3D {
+> =20
+>  static int pcf857x_probe(struct i2c_client *client)
+>  {
+> +	struct gpio_desc *rstn_gpio;
+>  	struct pcf857x *gpio;
+> -	unsigned int n_latch =3D 0;
+> +	unsigned int n_latch;
+>  	int status;
+> =20
+> -	device_property_read_u32(&client->dev, "lines-initial-states", &n_latch=
+);
+> -
+>  	/* Allocate, initialize, and register this gpio_chip. */
+>  	gpio =3D devm_kzalloc(&client->dev, sizeof(*gpio), GFP_KERNEL);
+>  	if (!gpio)
+> @@ -297,6 +297,29 @@ static int pcf857x_probe(struct i2c_client *client)
+>  	gpio->chip.direction_output	=3D pcf857x_output;
+>  	gpio->chip.ngpio		=3D (uintptr_t)i2c_get_match_data(client);
+> =20
+> +	rstn_gpio =3D devm_gpiod_get_optional(&client->dev, "reset", GPIOD_OUT_=
+HIGH);
+> +	if (IS_ERR(rstn_gpio)) {
+> +		return dev_err_probe(&client->dev, PTR_ERR(rstn_gpio),
+> +				     "failed to get reset GPIO\n");
+> +	}
+> +
+> +	if (rstn_gpio) {
+> +		/* Reset already held with devm_gpiod_get_optional with GPIOD_OUT_HIGH=
+ */
+> +		usleep_range(4, 8); /* tw(rst) > 4us */
+> +		gpiod_set_value(rstn_gpio, 0);
+> +		usleep_range(100, 200); /* trst > 100uS */
+> +
+> +		/*
+> +		 * Reset "will initialize to their default states of all I/Os to
+> +		 * inputs with weak current source to VDD", which is the same as
+> +		 * writing 1 for all I/Os which is 0 in n_latch.
+> +		 */
+> +		n_latch =3D 0;
+> +	} else {
+> +		device_property_read_u32(&client->dev, "lines-initial-states",
+> +					 &n_latch);
+
+device_property_read_u32 will not fill n_latch if the property is missing.
+Before n_latch was always set to 0 at the declaration point above.
+I guess that should be kept, because we want 0, except if
+device_property_read_u32 provides a different value.
+
+
+Heiko
+
+
 
