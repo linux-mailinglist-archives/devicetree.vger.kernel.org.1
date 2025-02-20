@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-148778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBA93A3D60F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:08:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3F7DA3D618
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:09:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEF7A175DC3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:08:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1765D1897B5B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:08:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B5801F03CB;
-	Thu, 20 Feb 2025 10:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68D441F0E3C;
+	Thu, 20 Feb 2025 10:08:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pMN66nek"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FwPxPics"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0CA11EF080
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 10:08:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38441EC00F
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 10:08:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740046099; cv=none; b=TM/x1+DfK6WahHprNtXEsAWywk1nevWQaZ2q0T9y7lnG0c0txDh25teMLWkCvr/y6dre0Ifz9xsKRDmTliilDLHJ1Dyek8ErtTgSJ8xBSYOzEs2CKmfkN+HqPG+1t7Ocv5n5+puvy547Q5GtS//Pd5O7a6LlbgqIdaTYrgwmK2g=
+	t=1740046108; cv=none; b=GoGs2ZOQKVnYEvM8Gu/xlj5smZt18lcqCUy7tPaT4xF3dVI78U76Ct+YGIVI0Ag3aiBj00ISfo8bj1lBYUeGqsyuqD6UvZ4y1EJeduz76M8MJvN7iScp24WYNVdNKBxdEX8FFVTC0Fzc3B/Wf1755I523O5TSBxgs7jDO9buLwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740046099; c=relaxed/simple;
-	bh=lyKLAJr554JAOHjjCnxBQz5CBxEAxvVfUFObcdY1ag4=;
+	s=arc-20240116; t=1740046108; c=relaxed/simple;
+	bh=hKjATXyKQvv1McdvtRyxOrJ1QBY9gQvAVDuJEgo+cmU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tD295zg02JFDddkDaMeH6/hUc2itcpTHflGZEcxbImnLPO2vac72FIqp+tAwWnHAsjSoq8g4IGkxJglTcy9GRwUtgYLOoI5qHzsX0jCqc1gTDByKlGK3QSLHOIRUntHtOP/6uTi7SIztT+4X9E3+xMKM15nm6b4nnK++wPVegDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pMN66nek; arc=none smtp.client-ip=209.85.216.46
+	 In-Reply-To:To:Cc; b=p3a37kLubYPZnQ26+nhL6mbNPhPo4zHU1EDbotI0Lw3XvwYS/k+mADib76cXLGnfHWcO4EHoemryoYYKVMTqTTny4W5uzflD1y2Bus15U5CAKuYOfaF3sqE4pzL+mwrvbTlZD2ugguUMIxSwI66zB+Y3TYWTe5f73JmLPFKlcm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FwPxPics; arc=none smtp.client-ip=209.85.216.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2f83a8afcbbso1271516a91.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 02:08:17 -0800 (PST)
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2fc1f410186so3192706a91.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 02:08:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740046097; x=1740650897; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1740046106; x=1740650906; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=K2bbvpaMxnQ9ItTta/5Hoc0GpndlEEH7ZCqt3McNEd4=;
-        b=pMN66nekuLFBz4im6BfMjGPPlebDjrLzCFvhrRIRXrD6ZtDYlwp+qUbwiwX5Jc2Qv5
-         bje0EmL34ZoRpJPgi+CrlWQ95kyPPX1WxJAhecZTWP2hV349c0cD+RdUU18rK1A4kFI8
-         o2CcveKuw6Fdste+s/0v6EyXlr1rmXOWMUJDQ28N5tVzXT0VX0WU+Tg3BXoXlNOQV3Fu
-         iVy3VEelOhkcOD+tpxc1afrdyS0UkpDKMDFr192a/1WtLuCIx1sSvv9etKQmNafk/E/A
-         uyBc9cyMJoIXqKUghPbWxBoPiBWhZ2uc9vQVnH0dV/HyttFTu1fnrGB8OR+4J6o5SVGE
-         OsBA==
+        bh=/VlfjNAVucjRp1bpDBN6LbVxMwNg8iNsPGxdLh6LJhU=;
+        b=FwPxPicsK0e5wdFXt7Gc2eOR5j/mkhJdJFNPBEC3Vl/MnoWBZTytHVif3R0oEw/asu
+         JsNT6SX1rtVAv9FYuXLcOCzJMX3Fl/YBtaYomJww9N4F4jlHEst2lrk3nDPJIv1IxU8f
+         ES3DUU4P1YgxBwJLAhi5bdl4uYw8nkJhDMM6rsm1a+HAiDI7x0d9qBSzlmiVX0gvSe4f
+         4a6/cHW5sic8hIeDjgYIDwVKXtQPISioagxzG6ZvhASjpAIklIK57DZNveW0RqKN0IO9
+         EB71ES48k/DYKz0P/nnMdJfjN2UoZv35OIojT/+qb0Z9Y6hNTg7bA+xRm/3JxrLcIkOp
+         RH3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740046097; x=1740650897;
+        d=1e100.net; s=20230601; t=1740046106; x=1740650906;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=K2bbvpaMxnQ9ItTta/5Hoc0GpndlEEH7ZCqt3McNEd4=;
-        b=bJqWnpDA6xDz+t9vCPm3pYOBcn7huxY8NMsGoNytlPCC83mY3mvQz/3mdoqwmBohbB
-         MmPIu2B0kk6g92nbKWveyMoaaZiXhYqxfm3sgR1+20MZdAdyoCiwkp+iIDyI4bVQ7YbK
-         ZC30alyENqYS1rPpJpO3EZAk2JvKU8353iP69PdjlqEmok8yMhs9x6UaMFXlDgDMcegS
-         VSvsQbouCxiyoFZfTKGv4d/EK27RCMqZYCOuTo++Clw5qUWPoGfbv2bOXnaIL3CgJ1If
-         R8CU7HfZqABOLxoNwATvdyDCXhXisCp+lj2Uyw7+fpyuFSGpVf1YRmYA2kmSFPMx+/ML
-         LAbA==
-X-Forwarded-Encrypted: i=1; AJvYcCWVmpKb4+gAxux1NQr5PVF4THmgJJWYdtfxFeRBAg6IfXC7S7it5cTwZ6uILwCZKMJ9fly/5/uKMWtL@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRW0YduS4+LsC0PJ1/TRkSmxDSjkTUVauqHfi3G4gRrhseevfe
-	Hl9gosEuRzP315X9VEGsRrC6y9HYxD2MV5swZ1VB9FP6MFv57+wphuCg+nLG7bo=
-X-Gm-Gg: ASbGnct+j5mfmqh/fOW+RzJGTOFISw++Ti69Fn4JTap6Zu4ejvqPcusOfPLI8OdPL2f
-	NCm2CDghTYYApVOaUFru4oQXsZFlNLpdXSSL1CR0Fbuh7BX22g5HkogiMigoulQZWabs/pDP/ow
-	Vg75/9msjq2/9cpjH9CJeCoWWiMJZGSY1ZVolrjmiWkQ4lPl+kRGIkOjMYQJiswIbRyImsc4QDz
-	7W/8m/6xXJh9GTy3QjgqzhBXHIT5gSIhNPx+Fb7nkNFJNHoc07AomAnJ1UZc0/anClOx4DguhFU
-	iKUGDhiyzRef
-X-Google-Smtp-Source: AGHT+IHCE4RtRNEXKZoOaSDN6mdrpoY8L7CkHQP/kzENk3sqFeSHV34QzJKi6JsrMhW9w9ua07iDCQ==
-X-Received: by 2002:a17:90a:d445:b0:2fa:21d3:4332 with SMTP id 98e67ed59e1d1-2fccc97dfe7mr4597618a91.12.1740046097223;
-        Thu, 20 Feb 2025 02:08:17 -0800 (PST)
+        bh=/VlfjNAVucjRp1bpDBN6LbVxMwNg8iNsPGxdLh6LJhU=;
+        b=ozgAiaUOILwBMuxtITQVVc8auN3Vi8AL0pVWFBNH5xU+AGvZ8RUTyKfzr6Rtc1mMqZ
+         YmjgXoPBj7TTWGW7DaKJf0Z9JPo2hX5tDR92SRuUJaZ6w/8cS8aeLGnRKX0ladXGUogE
+         jX4Sd4WJ6dUNyVGX1rRPZP1aAvFac8fyjGwPFOjwu/ljPNVZXITr4o0zAtOx31kARbB2
+         JZXrAdhW5LM7ihdX/u9ko35pVkWQumkXIKArdcC5PHMWMGDxDWSQikdv7cy4TmR3Ec1D
+         +Q0zdG8+TDdtRXWxZ9Jlgfhe97qd4y0zOJgUooQJULAoyOPQbA0+8kl1nJMQJMzDnNkF
+         EH/w==
+X-Forwarded-Encrypted: i=1; AJvYcCV9Gm5lj9RMkJ2p0gNjX40UeWzrsWc1Eb4drG851OYYc338W50i10G49oyoCkdSMKYLLYhHgNvmlRo7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyR9rVYAoT/ChH9iY5XuDFWBIsZLBSwHSS0bDB9j2xj3+HQ8lnx
+	MZ1WM4lh9lcxUnQU8NpYFZ9SyoQEuBTIU/+n/CJW294c3cAimqlvtJ0GptNL1QE=
+X-Gm-Gg: ASbGnctaGPq88vmR4uz/eES23xh2BK8L5HekWqtsmATwGmL/BnkhicBgEpkmuEYKNwu
+	1E8eXI9a6WfiBzDJ95VRUr9yNvpPMFS7jHl6yvy6bmynaRCkhQUCArsfEvVBsXv2MMXO0CV6xZJ
+	PPR1vNOoDSZQdbQRWad3sE+rlTcFf0iYuuOIiOFmAvWkprHD5e4hYi/SIkilw5UPzZFC90u8A9g
+	lb7Hxiz2Tbnt5UuzacYxehPzssUhVKPpbILwnXY8XGqAT8mdrrIXbIUbi78hZSqQiDMF4LJdg3G
+	DaMsVqxbYn9e
+X-Google-Smtp-Source: AGHT+IFLxCMRudIcVvWorr4RKj/8cYBxLwu8tZJdzz6fVcUHM0ZcwncySmXk/oO/UFw1vBTAIhvBXQ==
+X-Received: by 2002:a17:90b:3dc3:b0:2fa:1d9f:c80 with SMTP id 98e67ed59e1d1-2fcccc92715mr4602368a91.17.1740046106054;
+        Thu, 20 Feb 2025 02:08:26 -0800 (PST)
 Received: from [127.0.1.1] ([112.65.12.217])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fbf98b3305sm15304645a91.6.2025.02.20.02.08.07
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fbf98b3305sm15304645a91.6.2025.02.20.02.08.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Feb 2025 02:08:16 -0800 (PST)
+        Thu, 20 Feb 2025 02:08:25 -0800 (PST)
 From: Jun Nie <jun.nie@linaro.org>
-Date: Thu, 20 Feb 2025 18:07:52 +0800
-Subject: [PATCH v2 1/5] drm/msm/dsi: add support VBIF_CTRL_PRIORITY to
- v2.8.0 controller
+Date: Thu, 20 Feb 2025 18:07:53 +0800
+Subject: [PATCH v2 2/5] drm/msm/dsi: check DSC width for the bonded DSI
+ case
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250220-dual-dsi-v2-1-6c0038d5a2ef@linaro.org>
+Message-Id: <20250220-dual-dsi-v2-2-6c0038d5a2ef@linaro.org>
 References: <20250220-dual-dsi-v2-0-6c0038d5a2ef@linaro.org>
 In-Reply-To: <20250220-dual-dsi-v2-0-6c0038d5a2ef@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, 
@@ -103,54 +103,81 @@ Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org, Jun Nie <jun.nie@linaro.org>, 
  Jonathan Marek <jonathan@marek.ca>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1740046076; l=1578;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740046076; l=3234;
  i=jun.nie@linaro.org; s=20240403; h=from:subject:message-id;
- bh=lyKLAJr554JAOHjjCnxBQz5CBxEAxvVfUFObcdY1ag4=;
- b=m9wZrPVBSR+QFJ2DUz/SNoHz3xMrc85nVdPM1VuwlkkM2KmcuqsZt4IzPpcd3vqZEPukV8UFz
- Q1wZLZvkNnCDMVDPFv4QVErnUTSQ+9VvDwTKh1lvQQdWOSoY1Qs3jj7
+ bh=hKjATXyKQvv1McdvtRyxOrJ1QBY9gQvAVDuJEgo+cmU=;
+ b=17pUwBv+mzfkMK56B94QuKGJ5abm9UfGVZw6OxOxzVqtsJOc1Qzti6XjMCs6YMZ6yjKN42pT3
+ fcq4CIFTnJvCLNjFsk1NSHXjb+L9HGGWs7B7Fnq3c6PVYwCgXOTrJQV
 X-Developer-Key: i=jun.nie@linaro.org; a=ed25519;
  pk=MNiBt/faLPvo+iJoP1hodyY2x6ozVXL8QMptmsKg3cc=
 
-This change originates from the Qualcomm Android Linux driver. It is
-essential to support a dual-DSI configuration with two panels in
-some circumstances per testing. As the name suggests, this modification
-may enhance the bandwidth robustness of a bus.
+The frame width is validated to ensure it is a multiple of the DSC slice.
+In the case of bonded DSI, the frame is divided horizontally in half for
+compression and is delivered through two DSI interfaces. Therefore, the
+width for each DSI interface should also be a multiple of the slice.
+Currently, the implementation only validates this requirement against the
+entire frame width. Use half of the frame width for validation.
 
 Co-developed-by: Jonathan Marek <jonathan@marek.ca>
 Signed-off-by: Jonathan Marek <jonathan@marek.ca>
 Signed-off-by: Jun Nie <jun.nie@linaro.org>
 ---
- drivers/gpu/drm/msm/dsi/dsi_host.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/msm/dsi/dsi.h         | 3 ++-
+ drivers/gpu/drm/msm/dsi/dsi_host.c    | 6 +++++-
+ drivers/gpu/drm/msm/dsi/dsi_manager.c | 2 +-
+ 3 files changed, 8 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/msm/dsi/dsi.h b/drivers/gpu/drm/msm/dsi/dsi.h
+index 87496db203d6c7582eadcb74e94eb56a219df292..35b90c462f637111159b204269ce908614a21586 100644
+--- a/drivers/gpu/drm/msm/dsi/dsi.h
++++ b/drivers/gpu/drm/msm/dsi/dsi.h
+@@ -79,7 +79,8 @@ int msm_dsi_host_power_off(struct mipi_dsi_host *host);
+ int msm_dsi_host_set_display_mode(struct mipi_dsi_host *host,
+ 				  const struct drm_display_mode *mode);
+ enum drm_mode_status msm_dsi_host_check_dsc(struct mipi_dsi_host *host,
+-					    const struct drm_display_mode *mode);
++					    const struct drm_display_mode *mode,
++					    bool is_bonded_dsi);
+ unsigned long msm_dsi_host_get_mode_flags(struct mipi_dsi_host *host);
+ int msm_dsi_host_register(struct mipi_dsi_host *host);
+ void msm_dsi_host_unregister(struct mipi_dsi_host *host);
 diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
-index 42e100a8adca09d7b55afce0e2553e76d898744f..f59c4cd6bc8cdb31c1302f8e3ff395486c0b4898 100644
+index f59c4cd6bc8cdb31c1302f8e3ff395486c0b4898..908f5f1649d650f1cf152fc0b263541dc566ac68 100644
 --- a/drivers/gpu/drm/msm/dsi/dsi_host.c
 +++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
-@@ -2238,13 +2238,23 @@ int msm_dsi_host_cmd_rx(struct mipi_dsi_host *host,
- 	return ret;
+@@ -2489,7 +2489,8 @@ int msm_dsi_host_set_display_mode(struct mipi_dsi_host *host,
  }
  
-+#define DSI_VBIF_CTRL			(0x01CC - 4)
-+#define DSI_VBIF_CTRL_PRIORITY		0x07
-+
- void msm_dsi_host_cmd_xfer_commit(struct mipi_dsi_host *host, u32 dma_base,
- 				  u32 len)
+ enum drm_mode_status msm_dsi_host_check_dsc(struct mipi_dsi_host *host,
+-					    const struct drm_display_mode *mode)
++					    const struct drm_display_mode *mode,
++					    bool is_bonded_dsi)
  {
  	struct msm_dsi_host *msm_host = to_msm_dsi_host(host);
-+	const struct msm_dsi_cfg_handler *cfg_hnd = msm_host->cfg_hnd;
-+	u32 reg;
+ 	struct drm_dsc_config *dsc = msm_host->dsc;
+@@ -2499,6 +2500,9 @@ enum drm_mode_status msm_dsi_host_check_dsc(struct mipi_dsi_host *host,
+ 	if (!msm_host->dsc)
+ 		return MODE_OK;
  
- 	dsi_write(msm_host, REG_DSI_DMA_BASE, dma_base);
- 	dsi_write(msm_host, REG_DSI_DMA_LEN, len);
-+	if (cfg_hnd->minor >= MSM_DSI_6G_VER_MINOR_V2_8_0) {
-+		reg = dsi_read(msm_host, DSI_VBIF_CTRL);
-+		reg |= (DSI_VBIF_CTRL_PRIORITY & 0x7);
-+		dsi_write(msm_host, DSI_VBIF_CTRL, reg);
-+	}
- 	dsi_write(msm_host, REG_DSI_TRIG_DMA, 1);
++	if (is_bonded_dsi)
++		pic_width = mode->hdisplay / 2;
++
+ 	if (pic_width % dsc->slice_width) {
+ 		pr_err("DSI: pic_width %d has to be multiple of slice %d\n",
+ 		       pic_width, dsc->slice_width);
+diff --git a/drivers/gpu/drm/msm/dsi/dsi_manager.c b/drivers/gpu/drm/msm/dsi/dsi_manager.c
+index b93205c034e4acc73d536deeddce6ebd694b4a80..be13bf682a9601484c9c14e8419563f37c2281ee 100644
+--- a/drivers/gpu/drm/msm/dsi/dsi_manager.c
++++ b/drivers/gpu/drm/msm/dsi/dsi_manager.c
+@@ -428,7 +428,7 @@ static enum drm_mode_status dsi_mgr_bridge_mode_valid(struct drm_bridge *bridge,
+ 			return MODE_ERROR;
+ 	}
  
- 	/* Make sure trigger happens */
+-	return msm_dsi_host_check_dsc(host, mode);
++	return msm_dsi_host_check_dsc(host, mode, IS_BONDED_DSI());
+ }
+ 
+ static int dsi_mgr_bridge_attach(struct drm_bridge *bridge,
 
 -- 
 2.34.1
