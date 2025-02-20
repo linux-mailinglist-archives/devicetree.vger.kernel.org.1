@@ -1,60 +1,66 @@
-Return-Path: <devicetree+bounces-149056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09DBDA3E259
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:26:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 660A4A3E248
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:23:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAD4D704913
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:18:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3782D1888360
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:20:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F573212FA6;
-	Thu, 20 Feb 2025 17:18:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045CC211A0B;
+	Thu, 20 Feb 2025 17:20:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dcmOzMvW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V48dg0Ro"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E499C204875;
-	Thu, 20 Feb 2025 17:18:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5CF1FECD1;
+	Thu, 20 Feb 2025 17:20:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740071888; cv=none; b=nhBPryCukQCE+Sxm6C5css82NM756AalXoF/93Cl+r+OXDsmyJhK6C7JlOjLzeQNVRQSOSbuiK1NbA/uA7/HYIpWKF3+cs+EBUR7py0Mf/q5LzeYwxZrjF1rKoH/Hf1bSWqG3FBt5IHLtT29MZq2tl3o/b/YXSsXLUlBAcVI/JU=
+	t=1740072039; cv=none; b=rM7BAosNVfd4DDj/gRodPCay6Fn55cS5yJCwnm733h8WfMbCT6tm0xQhZbO2Or/018wvMOyCLX0+PL8Yrz9xe5c3YdfVAFf09kJo78kw71p4yIyzWFWVJTAaa8QM9xP/dqaplCDCPSwf06JNZuAXNBNQ0mv7GQ5k5bX4Nor3714=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740071888; c=relaxed/simple;
-	bh=Z2dgO0/WumT0UHpa9g/06CqR8KBq3+iPEhbdAQlISMM=;
+	s=arc-20240116; t=1740072039; c=relaxed/simple;
+	bh=Hu1WTAfqe+K8mtqQXODfypOXtNqLo8VKfdA62K3E6Jo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KaO042bwNv6BZTngBdLtDpc+cqsWHsfD8Vg4tTWl7jcrbg+PoXFPjn3lOQvooP3CZ/92qmA317v0rAH78gCGlQXTS8G6MgYAdQAyXlvwvsmjDBEW5CYLe52qnAXTMixD0k21yRk8TDN6qxa+82ii38Va/t33dWt1RGxmzMiNCbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dcmOzMvW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B913DC4CEE2;
-	Thu, 20 Feb 2025 17:18:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=j+gLzeb5WBatOKX8aBS6HQdK2IqWSxTPSprWoqm6RENHN9LO9LiPzmiALOmDontDZ5faD0d5gLf99mMHkES8foapr4jXtl2HFxO8gNQ4FraRlmNfOnZOfnncGZCzlTHxlruTDCoqwrPdav9v3m6vlR5FQXKnxvnK0UW+UWp/E4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V48dg0Ro; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62945C4CED1;
+	Thu, 20 Feb 2025 17:20:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740071887;
-	bh=Z2dgO0/WumT0UHpa9g/06CqR8KBq3+iPEhbdAQlISMM=;
+	s=k20201202; t=1740072039;
+	bh=Hu1WTAfqe+K8mtqQXODfypOXtNqLo8VKfdA62K3E6Jo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dcmOzMvW4JIwJparBiYVKIryFuiTlW2Pqv3d/5vZ9aqOGbSzX2myip7poZdKwQxF/
-	 kco7+x0wcGepCahG6fG0kJ+OX+2q6DDFFYRksccaPpTzcUSASKXlGr+6DGjPx3ti0L
-	 47IhkEtO1nGrTNLup+6HGfXnihDHyi+0n72UbxHTcyrDs6sg1PTdp2IzIzDZkG3Dur
-	 MUbJx9n0ZcRIGxSKiCheGaeoXS5Z+cSQhdrWXy2+XHij3t67Xc12I50Od96cKnkh1S
-	 wbXDmzuOmXXcv0PQiFkWqau/auRrUmJClFqqUkE3ogOx6lKLKIx46SiljExgCDS1aa
-	 NAZTXhuW/V3Vw==
-Date: Thu, 20 Feb 2025 17:18:02 +0000
+	b=V48dg0RoRUN6ItMpHAomEWvzy7LCNB16MvbcB3yO8qei7e0TU8wMFwJTPYb/VsmxR
+	 YznzFN2hyHtMkOv/KBFyFFvYkpCeyPtbBaN+mkU9vS4jb6PvV+UWM7waQL2VfoUo9J
+	 +HDxcPhFqIUbWlHqJThGXpqU51bSKDTgN2mDT+ZSBWx+NtJLUZeFZGxsaQvP67ETG3
+	 h9VtqEX9FycYDcR4NWW0LNjSW1ZfHxCuNxSUBYxIwczx1oQCU+alH1IeQjLpE9Ku0J
+	 C83KM5q1+Ep5V74SENppQ1ge1clkV3+QIxLFib6Nx4mbks5yK2pmMwOw+X8C4BUUWl
+	 4W4UKo20naVEA==
+Date: Thu, 20 Feb 2025 17:20:35 +0000
 From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunfeng.yun@mediatek.com, gregkh@linuxfoundation.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, kernel@collabora.com,
-	pablo.sun@mediatek.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: usb: mediatek,mtk-xhci: Add port for
- SuperSpeed EP
-Message-ID: <20250220-travel-undercoat-339822407907@spud>
-References: <20250220105514.43107-1-angelogioacchino.delregno@collabora.com>
- <20250220105514.43107-2-angelogioacchino.delregno@collabora.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: Dimitri Fedrau <dima.fedrau@gmail.com>,
+	Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: can: fsl,flexcan: add transceiver
+ capabilities
+Message-ID: <20250220-underfed-taekwondo-22c1d4f4eea9@spud>
+References: <20250220-flexcan-add-transceiver-caps-v2-0-a81970f11846@liebherr.com>
+ <20250220-flexcan-add-transceiver-caps-v2-1-a81970f11846@liebherr.com>
+ <20250220-tasteful-loud-firefly-1e2438-mkl@pengutronix.de>
+ <20250220155642.GA43726@debian>
+ <20250220-intelligent-serious-badger-978793-mkl@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,40 +68,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZISaQ+/FlBvHadWX"
+	protocol="application/pgp-signature"; boundary="cvX9SZ/wFqhw/Mos"
 Content-Disposition: inline
-In-Reply-To: <20250220105514.43107-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250220-intelligent-serious-badger-978793-mkl@pengutronix.de>
 
 
---ZISaQ+/FlBvHadWX
+--cvX9SZ/wFqhw/Mos
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 20, 2025 at 11:55:12AM +0100, AngeloGioacchino Del Regno wrote:
-> Add a port used to connect the SuperSpeed output endpoint to a
-> Type-C connector.
+On Thu, Feb 20, 2025 at 05:02:56PM +0100, Marc Kleine-Budde wrote:
+> On 20.02.2025 16:56:42, Dimitri Fedrau wrote:
+> > Am Thu, Feb 20, 2025 at 09:44:50AM +0100 schrieb Marc Kleine-Budde:
+> > > On 20.02.2025 09:22:10, Dimitri Fedrau via B4 Relay wrote:
+> > > > From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> > > >=20
+> > > > Currently the flexcan driver does only support adding PHYs by using=
+ the
+> > > > "old" regulator bindings. Add support for CAN transceivers as a PHY.
+> > > >=20
+> > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> > >=20
+> > > Is it possible express in the biding that we either want to have
+> > > xceiver-supply or phys?
+> > >
+> > I didn't found anything to express that in the binding.
 >=20
-> Note that the MediaTek XHCI controllers are always in front of a
-> different controller handling the USB HS (usually, MTU3), so the
-> only port that this controller provides is SuperSpeed, while the
-> HighSpeed one comes from elsewhere.
+> What about something like this:
 >=20
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+> | dependencies:
+> |   prop-a: ["!prop-b"]
+> |   prop-b: ["!prop-a"]
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+  # the internal reference buffer always requires high-z mode
+  - if:
+      required:
+        - refin-supply
+    then:
+      properties:
+        adi,no-ref-high-z: false
 
---ZISaQ+/FlBvHadWX
+Do it like so ;)
+
+Cheers,
+Conor.
+
+--cvX9SZ/wFqhw/Mos
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7djygAKCRB4tDGHoIJi
-0pwNAP9LSza0fN2VrkokGvJROiNTsBtv8u28z6YZ0tVasE/wSQD9GZqsn3abIJ14
-wNsSo8xwfhXVj8RsgcZpEbcLFtCN+Ag=
-=OB/N
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7dkYwAKCRB4tDGHoIJi
+0sOqAQChswDW5EztBIATr02uhJsvr3xn+8xab4wiA4bMf6Q9aQEAhXf6L4AA8aOv
+abXs1cmkgb+Qd63fLNDXupY9Ymvq/QM=
+=BfK4
 -----END PGP SIGNATURE-----
 
---ZISaQ+/FlBvHadWX--
+--cvX9SZ/wFqhw/Mos--
 
