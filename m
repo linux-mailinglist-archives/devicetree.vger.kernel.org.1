@@ -1,313 +1,140 @@
-Return-Path: <devicetree+bounces-148928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C72DBA3DC07
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:05:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AD3CA3DC0E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:06:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E9CB3BBA41
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:04:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52CF57A6D39
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:05:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 612501ADC9B;
-	Thu, 20 Feb 2025 14:04:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38971B85C5;
+	Thu, 20 Feb 2025 14:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kl90/mwn"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="btmol7l+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 464751C3C07;
-	Thu, 20 Feb 2025 14:04:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E3E1A8F94;
+	Thu, 20 Feb 2025 14:06:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740060285; cv=none; b=m7qEryuj5r1isLhRIGAB85hCPXYMNwxzkmKP91A91j2FCiwtV4sJ/lvyCd4UL3vJTjB0fsHYdvIHTr4TV0In6cY89U/SCxMmmYpk2IYR0tPzdRZIE741UB1V6sbRM4ebIztu/rKfYd/fMPhvY+j1KT+hxrhv4UAjUqvh4sPC3Fk=
+	t=1740060392; cv=none; b=unMqydj/LulESYOddfqj63/ooyal//Nmo7UbUcp30faAJgTgP/vmpIyfr54vCvgLi1CEmBIxOKOmxjnCDkdDcyVgmLUGMW8Z+mb90/2D8wGaXjZ6fivEjAMOas1s1UeHV00HxGfM7Jq8nxIHoO9r3dcW97Trg2MPIPZXyxMtvLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740060285; c=relaxed/simple;
-	bh=DWSYAHUTargpU400f9NK3gvtZ8FTGTCpxJjIS2y1L/s=;
+	s=arc-20240116; t=1740060392; c=relaxed/simple;
+	bh=4oo5bwiM+XhKfUR8UYyGQVQWQ/6Ov6wGIKczUKT0zuU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QO0EvQnRTkEGNfcv07kheC4QdypHJNeEtHhsnSPCSMeDB2caW8/nYaCeNOL7Hiw9wM4zR36I4h1VNacNuHmUIuM8GMt9WNZ+oshB5cuG/xRpAFOgVc7B1Eb8QN+RXnv4zZD6IR0UNNWERc9lttkZ04Ve2TQX/tljNuzmDBR/w1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kl90/mwn; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740060283; x=1771596283;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DWSYAHUTargpU400f9NK3gvtZ8FTGTCpxJjIS2y1L/s=;
-  b=kl90/mwnoi01V90U5bziIzlKuiRbOOu/hjkkQ49YBSIG07yrtwHRNram
-   OGbUpPKL+avKUYmoMUiS7p7iGUhMrWKoLg/W3KgT07Fc0XRPPaXUuZAOa
-   JAuICpky2txJue2tq85HIGJhxxv59zTBp+O2DOVUieTPpqaDYkRMG7rj9
-   0PBOfV6qnpK/RzN5QYFK4sid5ZUNyZJSayBQUm1fVUdlglUb/u03lYiTO
-   3z2/A6qVyEHw/DHpwMb02TD3iQS2sMdc2zmjkQvlWtL2KKWfQM5vp8+v/
-   gUHiOfca3vTkAsEU2YnX60c3xOBboAwkBdPDnmaUoLl9ISIf0iVUsGfUY
-   w==;
-X-CSE-ConnectionGUID: QoQqtPzmSba509bjNqHOQA==
-X-CSE-MsgGUID: +ZD6xKFxRv6etvGDH81pyQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="40707053"
-X-IronPort-AV: E=Sophos;i="6.13,301,1732608000"; 
-   d="scan'208";a="40707053"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2025 06:04:42 -0800
-X-CSE-ConnectionGUID: apojjs4AR7mOwWcYYd5TxA==
-X-CSE-MsgGUID: fYV6tpzvSFOT2RzZ5HweAw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="152242291"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2025 06:04:37 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tl7AG-0000000DLyt-3fDh;
-	Thu, 20 Feb 2025 16:04:32 +0200
-Date: Thu, 20 Feb 2025 16:04:32 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 2/9] iio: adc: add helpers for parsing ADC nodes
-Message-ID: <Z7c2cBQpjoc9-Vyu@smile.fi.intel.com>
-References: <cover.1739967040.git.mazziesaccount@gmail.com>
- <6c5b678526e227488592d004c315a967b9809701.1739967040.git.mazziesaccount@gmail.com>
- <Z7ZB7RQhyI5Dohrq@smile.fi.intel.com>
- <b1c1ed68-2f4d-447c-9957-5a1bbc63ef6e@gmail.com>
- <Z7ci7tUlRQqZEZSN@smile.fi.intel.com>
- <ec76334b-bb13-4076-811d-9174170dd677@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=EAm3ZB5L12/umHboqDi2IKSuOUVC02hExqFtx4T7Kyce992jW+qF8iqE7reJW6+XimuD8NyDSYByePL0Bkla2uZ5q5+6Yket4rZ3c2G60mXaNLsXzY9Ta8aUBpPuT8PIK6aXS6Jop0zHl/cFQXgNc9PMbxUmn6qeEiCzT0EOXDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=btmol7l+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B85BC4CEDD;
+	Thu, 20 Feb 2025 14:06:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1740060391;
+	bh=4oo5bwiM+XhKfUR8UYyGQVQWQ/6Ov6wGIKczUKT0zuU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=btmol7l+E9F0Dq7CHFxzj9ptIoP+WuCKdQeF+u8NmZcIuPkyJT5yDE84M3+w0mGE/
+	 p/2qSrormQ0zOOprtPL8ucuyM3VHc7dHH7VBp0EWNDJDfNSbLCDVQSzYiq5Orhkqic
+	 7RCgsE2BhKYMI1t2f75vNDYQLIB6HMfqUkhwybrk=
+Date: Thu, 20 Feb 2025 15:06:28 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Grant Likely <grant.likely@secretlab.ca>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>, Binbin Zhou <zhoubinbin@loongson.cn>,
+	linux-sound@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, stable@vger.kernel.org
+Subject: Re: [PATCH 0/2] driver core: platform: avoid use-after-free on
+ device name
+Message-ID: <2025022004-scheming-expend-b9b3@gregkh>
+References: <20250218-pdev-uaf-v1-0-5ea1a0d3aba0@bootlin.com>
+ <2025022005-affluent-hardcore-c595@gregkh>
+ <D7XB6MXRYVLY.3RM4EJEWD1IQM@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ec76334b-bb13-4076-811d-9174170dd677@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <D7XB6MXRYVLY.3RM4EJEWD1IQM@bootlin.com>
 
-On Thu, Feb 20, 2025 at 03:40:30PM +0200, Matti Vaittinen wrote:
-> On 20/02/2025 14:41, Andy Shevchenko wrote:
-> > On Thu, Feb 20, 2025 at 09:13:00AM +0200, Matti Vaittinen wrote:
-> > > On 19/02/2025 22:41, Andy Shevchenko wrote:
-> > > > On Wed, Feb 19, 2025 at 02:30:27PM +0200, Matti Vaittinen wrote:
-
-...
-
-> > > > > +EXPORT_SYMBOL_GPL(iio_adc_device_num_channels);
-> > > > 
-> > > > No namespace?
-> > > 
-> > > I was considering also this. The IIO core functions don't belong into a
-> > > namespace - so I followed the convention to keep these similar to other IIO
-> > > core stuff.
-> > 
-> > But it's historically. We have already started using namespaces
-> > in the parts of IIO, haven't we?
+On Thu, Feb 20, 2025 at 02:31:29PM +0100, Théo Lebrun wrote:
+> Hello Greg,
 > 
-> Yes. But as I wrote, I don't think adding new namespaces for every helper
-> file with a function or two exported will scale. We either need something
-> common for IIO (or IIO "subsystems" like "adc", "accel", "light", ... ), or
-> then we just keep these small helpers same as most of the IIO core.
-
-It can be still pushed to IIO_CORE namespace. Do you see an issue with that?
-
-Or a new opaque namespace for the mentioned cases, something like IIO_HELPERS.
-
-> > > (Sometimes I have a feeling that the trend today is to try make things
-> > > intentionally difficult in the name of the safety. Like, "more difficult I
-> > > make this, more experience points I gain in the name of the safety".)
-> > > 
-> > > Well, I suppose I could add a namespace for these functions - if this
-> > > approach stays - but I'd really prefer having all IIO core stuff in some
-> > > global IIO namespace and not to have dozens of fine-grained namespaces for
-> > > an IIO driver to use...
-
-...
-
-> > > > > +	if (!allowed_types || allowed_types & (~IIO_ADC_CHAN_PROP_TYPE_ALL)) {
-> > > > 
-> > > > Unneeded parentheses around negated value.
-> > > > 
-> > > > > +	if (found_types & (~allowed_types)) {
-> > > > 
-> > > > Ditto.
-> > > > 
-> > > > > +		long unknown_types = found_types & (~allowed_types);
-> > > > 
-> > > > Ditto and so on...
-> > > > 
-> > > > Where did you get this style from? I think I see it first time in your
-> > > > contributions. Is it a new preferences? Why?
-> > > 
-> > > Last autumn I found out my house was damaged by water. I had to empty half
-> > > of the rooms and finally move out for 2.5 months.
-> > 
-> > Sad to hear that... Hope that your house had been recovered (to some extent?).
+> On Thu Feb 20, 2025 at 1:41 PM CET, Greg Kroah-Hartman wrote:
+> > On Tue, Feb 18, 2025 at 12:00:11PM +0100, Théo Lebrun wrote:
+> >> The use-after-free bug appears when:
+> >>  - A platform device is created from OF, by of_device_add();
+> >>  - The same device's name is changed afterwards using dev_set_name(),
+> >>    by its probe for example.
+> >> 
+> >> Out of the 37 drivers that deal with platform devices and do a
+> >> dev_set_name() call, only one might be affected. That driver is
+> >> loongson-i2s-plat [0]. All other dev_set_name() calls are on children
+> >> devices created on the spot. The issue was found on downstream kernels
+> >> and we don't have what it takes to test loongson-i2s-plat.
+> >> 
+> >> Note: loongson-i2s-plat maintainers are CCed.
+> >> 
+> >>    ⟩ # Finding potential trouble-makers:
+> >>    ⟩ git grep -l 'struct platform_device' | xargs grep -l dev_set_name
+> >> 
+> >> The solution proposed is to add a flag to platform_device that tells if
+> >> it is responsible for freeing its name. We can then duplicate the
+> >> device name inside of_device_add() instead of copying the pointer.
+> >
+> > Ick.
+> >
+> >> What is done elsewhere?
+> >>  - Platform bus code does a copy of the argument name that is stored
+> >>    alongside the struct platform_device; see platform_device_alloc()[1].
+> >>  - Other busses duplicate the device name; either through a dynamic
+> >>    allocation [2] or through an array embedded inside devices [3].
+> >>  - Some busses don't have a separate name; when they want a name they
+> >>    take it from the device [4].
+> >
+> > Really ick.
+> >
+> > Let's do the right thing here and just get rid of the name pointer
+> > entirely in struct platform_device please.  Isn't that the correct
+> > thing that way the driver core logic will work properly for all of this.
 > 
-> Thanks. I finalized rebuilding last weekend. Just moved back and now I'm
-> trying to carry things back to right places... :rolleyes:
+> I would agree, if it wasn't for this consideration that is found in the
+> commit message [0]:
+
+What, that the of code is broken?  Then it should be fixed, why does it
+need a pointer to a name at all anyway?  It shouldn't be needed there
+either.
+
+> > It is important to duplicate! pdev->name must not change to make sure
+> > the platform_match() return value is stable over time. If we updated
+> > pdev->name alongside dev->name, once a device probes and changes its
+> > name then the platform_match() return value would change.
 > 
-> > > Now I'm finally back, but
-> > > during the moves I lost my printed list of operator precedences which I used
-> > > to have on my desk. I've been writing C for 25 years or so, and I still
-> > > don't remember the precedence rules for all bitwise operations - and I am
-> > > fairly convinced I am not the only one.
-> > 
-> > ~ (a.k.a. negation) is higher priority in bitops and it's idiomatic
-> > (at least in LK project).
+> I'd be fine sending a V2 that removes the field *and the fallback* [1],
+> but I don't have the full scope in mind to know what would become broken.
 > 
-> I know there are well established, accurate rules. Problem is that I never
-> remember these without looking.
+> [0]: https://lore.kernel.org/lkml/20250218-pdev-uaf-v1-2-5ea1a0d3aba0@bootlin.com/
+> [1]: https://elixir.bootlin.com/linux/v6.13.3/source/drivers/base/platform.c#L1357
 
-There are very obvious cases like below.
+The fallback will not need to be removed, properly point to the name of
+the device and it should work correctly.
 
-> > > What I understood is that I don't really have to have a printed list at
-> > > home, or go googling when away from home. I can just make it very, very
-> > > obvious :) Helps me a lot.
-> > 
-> > Makes code harder to read, especially in the undoubtful cases like
-> > 
-> > 	foo &= (~...);
-> 
-> This is not undoubtful case for me :) And believe me, reading and
-> deciphering the
-> 
-> foo &= (~bar);
-> 
-> is _much_ faster than seeing:
+thanks,
 
-Strongly disagree. One need to parse an additional pair of parentheses,
-and especially when it's a big statement inside with nested ones along
-with understanding what the heck is going on that you need them in the
-first place.
-
-On top of that, we have a common practices in the LK project and
-with our history of communication it seems you are trying to do differently
-from time to time. Sounds like a rebellion to me :-)
-
-> foo &= ~bar;
-> 
-> and having to google the priorities.
-
-Again, this is something a (regular) kernel developer keeps refreshed.
-Or even wider, C-language developer.
-
-> > > > > +		int type;
-> > > > > +
-> > > > > +		for_each_set_bit(type, &unknown_types,
-> > > > > +				 IIO_ADC_CHAN_NUM_PROP_TYPES - 1) {
-> > > > > +			dev_err(dev, "Unsupported channel property %s\n",
-> > > > > +				iio_adc_type2prop(type));
-> > > > > +		}
-> > > > > +
-> > > > > +		return -EINVAL;
-> > > > > +	}
-
-...
-
-> > > > > +		tmp.required &= (~BIT(IIO_ADC_CHAN_PROP_COMMON));
-> > > > 
-> > > > Redundant outer parentheses. What's the point, please?
-> > > 
-> > > Zero need to think of precedence.
-> > 
-> > Huh? See above.
-> > Everything with equal sign is less precedence than normal ops.
-> 
-> Sure. It's obvious if you remember that "Everything with equal sign is less
-> precedence than normal ops". But as I said, I truly have hard time
-> remembering these rules. When I try "going by memory" I end up having odd
-> errors and suggestions to add parenthesis from the compiler...
-
-The hardest to remember probably the
-
-	foo && bar | baz
-
-case and alike. These are the only ones that I totally agree on with you.
-But negation.
-
-> By the way, do you know why anyone has bothered to add these
-> warnings/suggestions about adding the parenthesis to the compiler? My guess
-> is that I am not only one who needs the precedence charts ;)
-
-Maybe someone programmed too much in LISP?.. (it's a rhetorical one)
-
-...
-
-> > > > > +		ret = fwnode_property_read_u32(child, "common-mode-channel",
-> > > > > +					       &common);
-> > > > 
-> > > > I believe this is okay to have on a single line,
-> > > 
-> > > I try to keep things under 80 chars. It really truly helps me as I'd like to
-> > > have 3 parallel terminals open when writing code. Furthermore, I hate to
-> > > admit it but during the last two years my near vision has deteriorated... :/
-> > > 40 is getting more distant and 50 is approaching ;)
-> > 
-> > It's only 86 altogether with better readability.
-> > We are in the second quarter of 21st century,
-> > the 80 should be left in 80s...
-> > 
-> > (and yes, I deliberately put the above too short).
-> 
-> I didn't even notice you had squeezed the lines :)
-> 
-> But yeah, I truly have problems fitting even 3 80 column terminals on screen
-> with my current monitor. And when working on laptop screen it becomes
-> impossible. Hence I strongly prefer keeping the 80 chars limit.
-
-Maybe you need a bigger monitor after all? (lurking now :-)
-
-...
-
-> > > > > +#include <linux/iio/iio.h>
-> > > > 
-> > > > I'm failing to see how this is being used in this header.
-> > > 
-> > > I suppose it was the struct iio_chan_spec. Yep, forward declaration could
-> > > do, but I guess there would be no benefit because anyone using this header
-> > > is more than likely to use the iio.h as well.
-> > 
-> > Still, it will be a beast to motivate people not thinking about what they are
-> > doing. I strongly prefer avoiding the use of the "proxy" or dangling headers.
-> 
-> Ehh. There will be no IIO user who does not include the iio.h.
-
-It's not your concern. That's the idea of making C units as much independent
-and modular as possible (with common sense in mind). And in this case I see
-no point of including this header. Again, the main problem is this will call
-people to use the new header as a "proxy" and that's what I fully against to.
-
-> And, I need the iio_chan_spec here.
-
-Do you really need it or is it just a pointer?
-
-...
-
-> And as I said, I suggest saving some of the energy for reviewing the next
-> version. I doubt the "property type" -flags and bitwise operations stay, and
-> it may be all of this will be just meld in the bd79124 code - depending on
-> what Jonathan & others think of it.
-
-Whenever this code will be trying to land, the review comments still apply.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+greg k-h
 
