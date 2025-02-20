@@ -1,140 +1,123 @@
-Return-Path: <devicetree+bounces-148945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 139EAA3DCA5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:26:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48A83A3DC96
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:24:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE2C986247D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:21:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B368C188A3A4
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F5011FAC46;
-	Thu, 20 Feb 2025 14:21:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D80E1FAC48;
+	Thu, 20 Feb 2025 14:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pTQJE6OD"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="BJNvxyah"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583D91EEA3B;
-	Thu, 20 Feb 2025 14:21:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 926401DE4DB;
+	Thu, 20 Feb 2025 14:22:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740061278; cv=none; b=gr6Jh0XuaeyQ6p3c2fWA/EWZaAO+J9184oYOoIdfMkGmuDvtTW1ThObHf37aunmUPFlkSk1RlDzc1j56nbF0uorebvtqK+CveSAAGiLLRqbiQ9w2fOuTkBx1RfrenBv8qZFpCAHS+ERM0KqIovVZTIBXTxwZS12mXx1iNmeFSyM=
+	t=1740061368; cv=none; b=CIMBS8H6EiWTh3w1R9DSEm+V/BCvHcK3BZl2VBnErHUveE3PO2rdp5VVd24DarFt6cVp7Dx+CwkI7HY9nWmvaK+k6qfuentMdd4TVcneoOSFyhQj/uKeNF4Lk3Uu0ODdThm6yliMutuUMc61YvAF+iGYQrOu6outSO+Tmhrrj84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740061278; c=relaxed/simple;
-	bh=t1YRfXHSR0r4DzbqO4O5hCHBJK6Wk9U+htitk02MAB8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tTxETJNUXX17jP+GCFkGSebF+jdaC4aRX+qZ/1ooKSokzNfWFQGx2439maG1vda3b1wxTeiTCyshYiJlH9dLA7dvCGC6KggIn/3jCYSnacYwP/l7Zk9edvUVkdYNIBir3X90ZIlnOhFMN+9CW1zfXE0joyXZ0VQy/RDx/Z/f8iM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pTQJE6OD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B221C4CEDD;
-	Thu, 20 Feb 2025 14:21:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740061278;
-	bh=t1YRfXHSR0r4DzbqO4O5hCHBJK6Wk9U+htitk02MAB8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=pTQJE6OD2Wd1RK/TY96gGa7OLrWKjlapSJ9+hEKgspSGa7NMMEswTg4pLgf5PhESR
-	 01sOIB5OdAY2Ax5kGfuICyeMuo20X0kiE7bDMJxqsMWGrj3ZL/AWVoUWu2cFWi8hVJ
-	 a5XN0lV5TJiAtfsgShNAePZ/esyekVbL+rn/3tsFVIX1JVbfefTa6rKK1Qq1fuWcXJ
-	 N9sXWpJfhUWq1b8mc8pFPrdKogm1UTYmVYfJuSyKs6a+nyEg9M4nnpw9MwGappcGH/
-	 hXfj3IVJUVXI9OCIY3wo/BkTwBKDJjU44bCQD8iFNEDV8NRpflFHMkT6Dyu2OmVl2e
-	 wIaT4/Y4tTJvA==
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2fcce9bb0ecso1775877a91.3;
-        Thu, 20 Feb 2025 06:21:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW4v5haYIrc+1FzTvGZXM4B6JTVMVsT0glLLQN75+oW9Xu54p0Fk3TZ35K6e4VS0VLr8CdWIZWWRuy/@vger.kernel.org, AJvYcCXFmKso7vhsrXDJL0uyYe2YJtZfcA+u+7KL9KCOsfVbM4ZMdXEZaopxMsGXOtBf93c8lbs8An9PJRSaLggG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2duVEXeglVhK5JF/sx8gqvJAjW/1Dw0G1TDZnRp/nLz6Ah8wJ
-	vN8djYMvTOoZx9/iYkWCZhiPghUMiVofR6Jn3AwXTG3lN3Ec08QZcyHGZCFgn0GIW+RtqvipMoL
-	9vdrAkbXujR51L+Qrt4R5RMaxEQ==
-X-Google-Smtp-Source: AGHT+IEM7TeLueuZHPQaOMtrQ+jefGLGWiXk9sVHtvUBeiE5X3S4o44Ic7KtorBRdm5c8t14xyWBYmEyM00igBUqouk=
-X-Received: by 2002:a17:90b:2250:b0:2fa:b84:b31f with SMTP id
- 98e67ed59e1d1-2fc41040fcemr33893917a91.25.1740061277661; Thu, 20 Feb 2025
- 06:21:17 -0800 (PST)
+	s=arc-20240116; t=1740061368; c=relaxed/simple;
+	bh=34E2uyxipqnXz/zSLXyThTnrnQw9zA58NwL7KiIJu38=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=F3Kl4U9PP+tGGqotGU6oY9p7RGedrZWrE4s91BpGRfMItc9J5wtIDOEs0b5Yx4nXF5Bp8dII9wjktj9P60eJchAjQNxDLYiELPpzZ+diMyg+o8p9DDzgvuBZgNi4NYt33VOs2cl2WACECpj6Ip2RGtbOz0Il8iQlkBjoUmh5sYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=BJNvxyah; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 2371d7b2ef9611ef8eb9c36241bbb6fb-20250220
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=GcvisJBlaHb60eTCRvfZzRziYBjU9GCsPsjapGIbpsM=;
+	b=BJNvxyahKDqIeAHuFqtX9QgihHu4UJCLL1wofi1PTb96oPD1a4+49QCI97iz6LTBivdTKwLVoKmPoRAod4akmsOIX6xUFo9TbiDfPUmEofoIztWkO3HKQEtaHfj+/rawMUtydVdDBgxkBe0EhMhcnT4fG9D6o3ePPlbLmyuRTYY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.46,REQID:5ed9bcf4-67b6-470b-bcec-5941e1aeb7a3,IP:0,U
+	RL:0,TC:0,Content:0,EDM:-30,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-30
+X-CID-META: VersionHash:60aa074,CLOUDID:708621dc-d480-4873-806f-0f365159227b,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:2,IP:nil
+	,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:
+	1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 2371d7b2ef9611ef8eb9c36241bbb6fb-20250220
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 2140693216; Thu, 20 Feb 2025 22:22:39 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Thu, 20 Feb 2025 22:22:37 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.28 via Frontend Transport; Thu, 20 Feb 2025 22:22:37 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, Chunfeng Yun
+	<chunfeng.yun@mediatek.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	<linux-usb@vger.kernel.org>, Alexandre Mergnat <amergnat@baylibre.com>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chris-qj chen
+	<chris-qj.chen@mediatek.com>
+Subject: [PATCH] dt-bindings: usb: mtu3: Add ports property
+Date: Thu, 20 Feb 2025 22:22:30 +0800
+Message-ID: <20250220142230.2530583-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217154836.108895-1-angelogioacchino.delregno@collabora.com> <20250217154836.108895-32-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250217154836.108895-32-angelogioacchino.delregno@collabora.com>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Thu, 20 Feb 2025 22:22:01 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8JLpoF4isgm-F7Z6W-tSxkdqACSaHvyARgaPo8PNdWsg@mail.gmail.com>
-X-Gm-Features: AWEUYZkuEEgZl0b7vlV6l42zcGpmz08ZpO3TrJPmfidMvCivGVZgPuOu7_J_xKI
-Message-ID: <CAAOTY_8JLpoF4isgm-F7Z6W-tSxkdqACSaHvyARgaPo8PNdWsg@mail.gmail.com>
-Subject: Re: [PATCH v7 31/43] drm/mediatek: mtk_hdmi: Remove goto in mtk_hdmi_clk_enable_audio()
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, 
-	jie.qiu@mediatek.com, junzhi.zhao@mediatek.com, 
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
-	dmitry.baryshkov@linaro.org, lewis.liao@mediatek.com, 
-	ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com, 
-	jason-jh.lin@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-Hi, Angelo:
+Define the ports property in the mediatek,mtu3 device tree binding schema.
+Include definitions for port@0 and port@1, specifying their roles as
+High Speed (HS) and Super Speed (SS) data buses, respectively.
 
-AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
-=BC
-2025=E5=B9=B42=E6=9C=8817=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=8811:=
-50=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> If the clk_prepare_enable() call for the SPDIF clock fails, just
-> disable and unprepare the clock in the error check branch and
-> return immediately instead of jumping to the end with a goto,
-> slightly reducing code size.
->
-> This commit brings no functional changes.
+Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+---
+ .../devicetree/bindings/usb/mediatek,mtu3.yaml       | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-Applied to mediatek-drm-next [1], thanks.
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+index d4e187c78a0b..21fc6bbe954f 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+@@ -155,6 +155,18 @@ properties:
+       property is used. See graph.txt
+     $ref: /schemas/graph.yaml#/properties/port
+ 
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: High Speed (HS) data bus.
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Super Speed (SS) data bus.
++
+   enable-manual-drd:
+     $ref: /schemas/types.yaml#/definitions/flag
+     description:
+-- 
+2.45.2
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
-
-Regards,
-Chun-Kuang.
-
->
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_hdmi.c | 9 ++++-----
->  1 file changed, 4 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediat=
-ek/mtk_hdmi.c
-> index bf8cf7fc8c07..2e98a8ed6cbe 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
-> @@ -1095,13 +1095,12 @@ static int mtk_hdmi_clk_enable_audio(struct mtk_h=
-dmi *hdmi)
->                 return ret;
->
->         ret =3D clk_prepare_enable(hdmi->clk[MTK_HDMI_CLK_AUD_SPDIF]);
-> -       if (ret)
-> -               goto err;
-> +       if (ret) {
-> +               clk_disable_unprepare(hdmi->clk[MTK_HDMI_CLK_AUD_BCLK]);
-> +               return ret;
-> +       }
->
->         return 0;
-> -err:
-> -       clk_disable_unprepare(hdmi->clk[MTK_HDMI_CLK_AUD_BCLK]);
-> -       return ret;
->  }
->
->  static void mtk_hdmi_clk_disable_audio(struct mtk_hdmi *hdmi)
-> --
-> 2.48.1
->
 
