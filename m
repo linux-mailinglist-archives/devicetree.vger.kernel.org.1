@@ -1,130 +1,141 @@
-Return-Path: <devicetree+bounces-149139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92B59A3E77D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 23:25:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89FF2A3E782
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 23:27:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A9C13AA59B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 22:25:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2FD919C42C4
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 22:27:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD68B1F03FD;
-	Thu, 20 Feb 2025 22:25:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CED62641D4;
+	Thu, 20 Feb 2025 22:27:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mt3Te2Ft"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="KPzLH7iV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 849A41EA7EA;
-	Thu, 20 Feb 2025 22:25:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 471CB1EE02A
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 22:27:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740090337; cv=none; b=bpkbmqqMOFN9UMFuaAMiXKEe8cDLZQjJFj1pXqHtqDIQdxnInjmOG4tvT3vVUIfuy19eq8/xAlZCLa964V3fQTXcKHwSw363rUU98hgubj/j3tQNmp2+COE33qsZM/9z1uaXDLX+Riyjg6N82irh7IBhOi7VosY1P7OO262CkIY=
+	t=1740090450; cv=none; b=dWbsIY8qctxsve+hP506fDnvehqehDW9/Bk5jqUcaVo0G1A0q06fRXwCz23leOI8XOpIUPrM/3QBI1P17NKHA4fdFzbcB+g9+FwX2Kg3CarbeEWq9yc+LvON7m0AwM/VGa06zvj52sBfFwvW/pCi89bwFc1HG7SFL7ed02ER9JA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740090337; c=relaxed/simple;
-	bh=RJiaUdl2RvW6e22DMN7RYxWmy6sBbotkEMjdbKNhlxo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gfWi32ylnMxBswRaJfUI8N4sDqH2Mj5ld4Q1n68H/MOgv8lbzcCDCwZ3O69C9AUxZMAH1D03sb+OVfyi9AX2qnjTktKcrvNiG0LEhgG7kXkwdhNb4XoZm4/JJgipog9qYLNxd40zj6S5ddA4NcngLp8iYLMDjudNkh5w2TByi9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mt3Te2Ft; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC3B2C4CED1;
-	Thu, 20 Feb 2025 22:25:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740090336;
-	bh=RJiaUdl2RvW6e22DMN7RYxWmy6sBbotkEMjdbKNhlxo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Mt3Te2FtyuZ+yp9KJmQeaNyj3kpDuuTeR+PBQW/1mCbe7JTKrTjx8EGBVUxmw1kh+
-	 o7r9iBQwNO5Cm1v3zGj9O0hBG9MCaAcp4bz/hLnbXCrt9I4AFo/m2niXpaOW4ybJPP
-	 l/mfC53NKy6Kgjq2SgeFv1sjbhtKpeAtxUwsr/XoyAhREgfPOzuBVhalr2FHwereKU
-	 x4h0DbVXYV/sE6NE2lO4efiXAkEAsbPg69xW9l3adGU56I8apAjAMJGGRRxt0iD1rk
-	 Efpye7hidjorq4dfja4hFPFvSFSINokwNxIKbJuLkkwhucnnJFFh9ekJ+lgxISlN6q
-	 VHraLlyodNQQw==
-Date: Thu, 20 Feb 2025 14:25:35 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Felix Fietkau <nbd@nbd.name>, Sean Wang
- <sean.wang@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "Chester A. Unal" <chester.a.unal@arinc9.com>,
- Daniel Golle <daniel@makrotopia.org>, DENG Qingfang <dqfext@gmail.com>,
- Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- upstream@airoha.com
-Subject: Re: [PATCH net-next v5 05/15] net: airoha: Move DSA tag in DMA
- descriptor
-Message-ID: <20250220142535.584b0423@kernel.org>
-In-Reply-To: <20250217-airoha-en7581-flowtable-offload-v5-5-28be901cb735@kernel.org>
-References: <20250217-airoha-en7581-flowtable-offload-v5-0-28be901cb735@kernel.org>
-	<20250217-airoha-en7581-flowtable-offload-v5-5-28be901cb735@kernel.org>
+	s=arc-20240116; t=1740090450; c=relaxed/simple;
+	bh=Wwlx+PMNjFVQG+p5LgCwO5bEhpwUj2L8Wcxf+n7/TkU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sLVMjAWgLiUgjRqlPivHlK03/vRBujsbro2ib6C0sqbNdig0VJ61vjJs3oIJcMksV01nGiFr3TNJoF06GSB0HRA4zuTkkji/VKw6V/QBkLgEQY977tjUtGW9K5zUxQz9VC9zpKKrIJLxZm7UpaRgExS6usueboLePCZ0veNrff0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=KPzLH7iV; arc=none smtp.client-ip=209.85.160.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-2bc66e26179so273172fac.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:27:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1740090446; x=1740695246; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pCESArWTseHQGpGv7tpeQqcnGXM7p2OA6JgdrilOIUE=;
+        b=KPzLH7iVYauwnVWpKAzd8c+gRI8jqXjZVAi9CYURZRm+LzfNpuJXNW3mUISQNVvHOq
+         KKfd9kbCYUQN9B/ikEQDVVHzAWI7XV+nyHXbosauAIf1U81o4h4NMdQDvGfaw0NkA/6N
+         zCed+5cfix5tupuIhaXHF5xB4CYKiNY/HZlZPr0o/MgrJN/xTr0x8KVCdLaiBKfhwGWB
+         iE92+aMeJp7PJruw2cyqy5xyPGQkphC8QDpqcW2Uj6Wk9gV4B6aC8uVT1nzkhaC7OBXV
+         eDX1Aah/as5lKXknbKr87J8IYW4w86yHgKBGzXW2gKME+buUA8mhSEOl+XvRRRAzfhXa
+         MGyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740090446; x=1740695246;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pCESArWTseHQGpGv7tpeQqcnGXM7p2OA6JgdrilOIUE=;
+        b=IHQ3q15iJDfz70lN4ntmrb0XF/AIJrYSO2Q9UgENgfbqnZqscJGvPMKmGf37yd2DHC
+         Lpk29rvPyRpwKrAnEWoh0MfulS+KxKFVpYN25NKYSq/Wvk76bJWm6gtFrijL0CVK3OXC
+         ANoaUrbYM+hdx79IEJQQh56MwBTkmIGcNEguSqACJkIB/F2ClqNB55aA5e/MG5DFM1Wx
+         8HcuWhAIr5pdz9obNoBqtkP4An5pVBIfQt5GUhKYoPFYSivfbRELSUqceiaEJVD9Ybq+
+         b+rC6Pc4eHbHz5QjWHU3x6OaUoEAu9FhZn/U7CXH03arHbKEE0SH3M+8f3+06K/Jpqhf
+         4RNA==
+X-Forwarded-Encrypted: i=1; AJvYcCVLUBf4R3tzhumLv306PSQ0HaWcKOE0ogNuT3jmSYKY/cLZhUFhUVFz20ZEYz5LodXSpVb3P9v0fMJL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxI+gLpNHBU8lhbEm48VcbUCGVsD0pAnoug+RJjuJCIzefy2b7v
+	dky6DWRU0gD8eKI8oQxHu0Df8WQAfk94BpRMpimlzVjL2JGGTK3pTtLOeR4Aeh0=
+X-Gm-Gg: ASbGncue0y7ESpIxCe7j62osbM4NtzpTt70gZYuNuCiF2jYXACi6HsA67rE+cNsbZAy
+	FxbBmud6sK2+tTVJwdSmrkgEGTgN7dq68va3n8vLB/wAD/GYpbvqn8SfkluujWsSXSJiTLTA1ZT
+	Y6RSaXWqa+i1nCCpDPkLJUCO0R8LBFe6V7LIyvCSlHoBXlFkF5GXIRJELbyZ7De8wZrMZ+iRd/8
+	8G8pb7cKNQGh7Mb6OxNKTajlDz1MY0fcVXPZEmXWOXU1GLgJA5nYEYIrq/AOhp+xZyidF7k7dne
+	uMPhY/368U9ji9Y+B6KHwZ5ro6MQnjLePMF3ACqKiqCLtoKbWoOj
+X-Google-Smtp-Source: AGHT+IEZpgJbx9x8Shte5+BRZ16avAvT1+wdr0Mi+ErzsXsYe5ooaU2WYdYSImpsg2NCEWK5B0Iz2g==
+X-Received: by 2002:a05:6870:6b97:b0:2b8:ec17:66e9 with SMTP id 586e51a60fabf-2bd50cdbd64mr746258fac.11.1740090446165;
+        Thu, 20 Feb 2025 14:27:26 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2b9548878adsm6600768fac.17.2025.02.20.14.27.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Feb 2025 14:27:24 -0800 (PST)
+Message-ID: <7c5e2364-038b-48a8-ad67-3cf0f2fd2be3@baylibre.com>
+Date: Thu, 20 Feb 2025 16:27:23 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v3 12/17] iio: adc: ad7768-1: Add GPIO controller
+ support
+To: Linus Walleij <linus.walleij@linaro.org>,
+ Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Sergiu Cuciurean
+ <sergiu.cuciurean@analog.com>, lars@metafoo.de,
+ Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, jic23@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ jonath4nns@gmail.com, marcelo.schmitt1@gmail.com
+References: <cover.1739368121.git.Jonathan.Santos@analog.com>
+ <62cb9786b02adde118db9349617cb796585ceb02.1739368121.git.Jonathan.Santos@analog.com>
+ <CACRpkdaSY7WH191makzPcZqLd-vBsC_f6yagWzBa65MrC+pjKA@mail.gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <CACRpkdaSY7WH191makzPcZqLd-vBsC_f6yagWzBa65MrC+pjKA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, 17 Feb 2025 14:01:09 +0100 Lorenzo Bianconi wrote:
-> +static u32 airoha_get_dsa_tag(struct sk_buff *skb, struct net_device *dev)
-> +{
-> +#if IS_ENABLED(CONFIG_NET_DSA)
-> +	struct ethhdr *ehdr;
-> +	struct dsa_port *dp;
-> +	u8 xmit_tpid;
-> +	u16 tag;
-> +
-> +	if (!netdev_uses_dsa(dev))
-> +		return 0;
-> +
-> +	dp = dev->dsa_ptr;
-> +	if (IS_ERR(dp))
-> +		return 0;
-> +
-> +	if (dp->tag_ops->proto != DSA_TAG_PROTO_MTK)
-> +		return 0;
-> +
-> +	if (skb_ensure_writable(skb, ETH_HLEN))
-> +		return 0;
+On 2/19/25 2:34 PM, Linus Walleij wrote:
+> Hi Jonathan/Sergiu,
+> 
+> thanks for your patch!
+> 
+> On Wed, Feb 12, 2025 at 7:20 PM Jonathan Santos
+> <Jonathan.Santos@analog.com> wrote:
+> 
+>> From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+>>
+>> The AD7768-1 has the ability to control other local hardware (such as gain
+>> stages),to power down other blocks in the signal chain, or read local
+>> status signals over the SPI interface.
+>>
+>> This change exports the AD7768-1's four gpios and makes them accessible
+>> at an upper layer.
+>>
+>> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+>> Co-developed-by: Jonathan Santos <Jonathan.Santos@analog.com>
+>> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> 
+> Is it not possible to use the gpio regmap library in this driver
+> like we do in drivers/iio/addac/stx104.c?
+> 
+> It cuts down the code size of simple GPIO chips on random
+> chips quite a lot.
+> 
+> Yours,
+> Linus Walleij
 
-skb_cow_head() is a lot cheaper (for TCP)
+I think the answer is "no" since we need to hold a conditional lock
+while accessing registers. Namely: iio_device_claim_direct_mode()/
+iio_device_release_direct_mode().
 
-> +	ehdr = (struct ethhdr *)skb->data;
-> +	tag = be16_to_cpu(ehdr->h_proto);
-> +	xmit_tpid = tag >> 8;
+Unless we add some extra stuff to the gpio regmap implementation to
+add optional callbacks to call these. Which could be worth it given
+that quite a few ADCs provide GPIOs like this.
 
-> @@ -2390,8 +2498,10 @@ static int airoha_probe(struct platform_device *pdev)
->  	for (i = 0; i < ARRAY_SIZE(eth->ports); i++) {
->  		struct airoha_gdm_port *port = eth->ports[i];
->  
-> -		if (port && port->dev->reg_state == NETREG_REGISTERED)
-> +		if (port && port->dev->reg_state == NETREG_REGISTERED) {
-> +			airoha_metadata_dst_free(port);
->  			unregister_netdev(port->dev);
-
-Looks a tiny bit reversed, isn't it?
-First unregister the netdev, then free its metadata.
-
-> +		}
->  	}
->  	free_netdev(eth->napi_dev);
->  	platform_set_drvdata(pdev, NULL);
-> @@ -2416,6 +2526,7 @@ static void airoha_remove(struct platform_device *pdev)
->  			continue;
->  
->  		airoha_dev_stop(port->dev);
-> +		airoha_metadata_dst_free(port);
->  		unregister_netdev(port->dev);
-
-same here
-
->  	}
->  	free_netdev(eth->napi_dev);
 
