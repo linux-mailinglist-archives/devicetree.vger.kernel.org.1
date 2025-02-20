@@ -1,164 +1,168 @@
-Return-Path: <devicetree+bounces-148896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8C9A3DAC0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:06:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38FF2A3DAF5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:11:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6766C16B26E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:04:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E20A7A5C9A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:10:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52EA41F5845;
-	Thu, 20 Feb 2025 13:04:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 174DA1F8670;
+	Thu, 20 Feb 2025 13:11:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cixtech.com header.i=@cixtech.com header.b="vDqX1vsa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JnfvHoIa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2108.outbound.protection.outlook.com [40.107.255.108])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0691F150F;
-	Thu, 20 Feb 2025 13:04:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.108
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740056675; cv=fail; b=YN47d+H24AovnPyBOUj0gdqElLzVfIIowc+Xo0zlurrJYGwaWnxnb65JmOpKcrbcn4fnB5xda1qAuVS4XNawX1TtWUpPp+9PvczPcRZ+mPhDWcb62vxKOcp7M2dw2VtrwAoFcsql0sSjlcJDZh/+6NFGdYS23kL472X4CChtzQ4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740056675; c=relaxed/simple;
-	bh=CI0u3Yfozdll+nTEefZ4zvEC3bmgqR0x/SatG0jEQo8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KdWr/s9acsepZTd77cL/RlSsec+jZy9mBQFCTglzH0XzUSTwtq64L4cgCHSsMLQ7tHxJpGio8aAbsPiMVCwB7qBavqHuIXHjUDlRdqUIeOpF0uEwqDLpIHez/1xbU7oFI9EhOS0/EB4hMUFp8O4rXoN+yCo7KrnQ3RB3lCxIR0s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; dkim=pass (2048-bit key) header.d=cixtech.com header.i=@cixtech.com header.b=vDqX1vsa; arc=fail smtp.client-ip=40.107.255.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bExzj5mylULSkGxTrGg9Sc2f8E48Rw4/qJ6RJuXqG1IPl+HmkZyT7jItfNei5bbMY982u/llKNbNtsV+VTiBazfYHyHF7aNBWy8LayxXLslRXVTrHiC8mBO9lv0GXxFqAbzXOSw5BO2NYDKG12QerSf3CTxgRt827eKASJt3LrtwxkShPkdBeOqSfnfd7J+rdxR/hFRxpizHe4dF1bsB7RCFbmTbINN5q7Z/EyDlS0smqi0DkMfnxy0HodqOM3VXsBfRIqTG469qbDejqMImytWWDRflOQ7oJy8r7Ef9mIrM2C6EN67kwIEmDupi18tiAbude3Lhv/PDpX8ffdtHJg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1U5vY+9Tbvon7+bjCazrPJZmUHW5C0e1GwOQvzCKrOE=;
- b=UcicdJ3XighkdnqiQLy/v+LFfRKLlz0Hsm9EMwhS83pb8+ELxQd2IAep/LHWS+vLVCz8GqfcTXFmTvk/vANsLldb89BMxmN1ECnOepchVqdfLI9kxsihFE2oR2K5BBEnZhMOKVDY/UtXFhyDpHKn0xgbDeG8bC5XCFyC1yBVBD64QJ5mjgPArsVFnEaHHdukT8xjudRBJvJ9Do+FdvZU23XE4RfXcv1J+9ClGj5Og7YSkeIiw02PblF3N90COvM6XVyjDhISYP3hOzOisVhHMWEipYEmxaITUqmhMSZdMGsJ3QvdqzSxcFARzlDHYjJC/RI1ABNCDvSiDUjTXP4jvg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cixtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1U5vY+9Tbvon7+bjCazrPJZmUHW5C0e1GwOQvzCKrOE=;
- b=vDqX1vsaDaLm0VwUZDCaW3kNpZjU432k+hQfn5Ub1mb5wfYSsKtxZ8oZh5/mPqtrEV9v97uy9JHMZSPJ6LQwAuQFPx6LN3sPeXmN7GvJmPKdbMHdjxiPCTOZEg8I1LeG+RIK6S6teRBOFlkhPvzb/NuonxpWyYbIaYpt1qZcK5Tcl6XMXmWmAbiZ9zufSgZwPXFW9iXykzRM2QjrT88VVkOkayF3cek1yUEERPNHICuvgnnc3cKHb4aAwlRiLwdkyOmxgbk7xlDspmplTctM5AxFMkRxmb5p7XgKy1b/WEKaP0vTB4WxyQybno69StNJ7iu41US1Q6vUaqw8knZ/sw==
-Received: from SI2PR01CA0045.apcprd01.prod.exchangelabs.com
- (2603:1096:4:193::19) by KL1PR06MB6257.apcprd06.prod.outlook.com
- (2603:1096:820:d1::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.12; Thu, 20 Feb
- 2025 13:04:29 +0000
-Received: from SG1PEPF000082E8.apcprd02.prod.outlook.com
- (2603:1096:4:193:cafe::4) by SI2PR01CA0045.outlook.office365.com
- (2603:1096:4:193::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.15 via Frontend Transport; Thu,
- 20 Feb 2025 13:04:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG1PEPF000082E8.mail.protection.outlook.com (10.167.240.11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8466.11 via Frontend Transport; Thu, 20 Feb 2025 13:04:28 +0000
-Received: from nchen-desktop (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id CAB16512A743;
-	Thu, 20 Feb 2025 21:04:27 +0800 (CST)
-Date: Thu, 20 Feb 2025 21:04:26 +0800
-From: Peter Chen <peter.chen@cixtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
-	Fugang Duan <fugang.duan@cixtech.com>
-Subject: Re: [PATCH 2/6] dt-bindings: vendor-prefixes: Add CIX Technology
- Group Co., Ltd.
-Message-ID: <Z7coWuT2vTbCpECf@nchen-desktop>
-References: <20250220084020.628704-1-peter.chen@cixtech.com>
- <20250220084020.628704-3-peter.chen@cixtech.com>
- <2955e9ad-f97a-44b0-be9c-d6bac90a8f9d@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 899F71F3BAF;
+	Thu, 20 Feb 2025 13:11:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740057106; cv=none; b=ui7ABsBaXtbSMmWv/opLTAuT0eTVPUXrJvE8dr/QfOXr9SJSJ0lW/niLv2MqfsLkvPXkW9Q9mVtqtEo2hITQwMtcLQbGqKZfz+z9LlW1NBfsPMjfdhY6PiFlXKw0hBJAwUPnpzhvsvgZhlGuErmh1WJbgjH/qNSrQ0y46IREUZ8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740057106; c=relaxed/simple;
+	bh=1rFDlxPm9dOSxZVbvPEae5HPKIG7G0vod8A15RjRzcQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TFayW1in7qwMhsc742+YTjKPgVpBeAaeYhGLK2KFuo+1rOKwUT+m7W8MMzOH9sw7arHtZlgGK9y5E393UPWR41hAiFbnS3lGTHt1nO2/2rh0ojByLYT5D3AgFmm81Ct2GTcW6hVAg6N59XA0gka2X7u0KYX3lNxqBHyiDSGOGY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JnfvHoIa; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2fbfa8c73a6so1789941a91.2;
+        Thu, 20 Feb 2025 05:11:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740057104; x=1740661904; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JF5QN09m8wD/DAxZp57pL5p7sOu+zrVbutsLKLdh4Cc=;
+        b=JnfvHoIaLrEbMLjp84Tw9biNKNaCmeYitMV5MddxypoZE0mzF1u5MtXoX8GZ0f3sgb
+         2gk9PZ1krdK8OIGjG9K0sB8JEfHQWTXNqmuc/2popocho6zyRnNYdkMAt/aWfOnB2XcB
+         xj5/H1lBDx1DSEpoyZWgQ7+xqpvz7z06511LcKMVxKNYLjawe/hSAmCa1ufBusJqFjT0
+         rGVYcbuPM80Y9IlrZhx58JR10sxJoj2tjEGNtPw2GU+NBNnSNwVxaasPNfV0c3ECr58a
+         TPI/v+ZtFpHJaE6+Eo16Z71aP3naJtfkBFGeIaiAuoE8QMyb3r+mehuBIB0Nq7mxDnpr
+         Gz1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740057104; x=1740661904;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JF5QN09m8wD/DAxZp57pL5p7sOu+zrVbutsLKLdh4Cc=;
+        b=nyMGSlWwv5rbCp/6QFG0cwlq7DdcPHLrv7kF7LAflZATl15DMeELVB7pwXyp8fe5pK
+         6F/tyvII+EUZvc9Sv7L0JG9pA0jM9xNeK83ZevR9wVDrRS0dklKYoC3FjW0n2ZFkWDyd
+         v7XZXqRWyx2/YmaYUBWOGkipHljc5enV+WNuOMyfYRBvceUYFCbIOdYw3wOLMrs77Cqb
+         4Ckq9xh8WbdHjbRoCp20xP/YbPg72amKqGbWuZ+gjRN/5DJsH9qtdltqeqS+cc3hNMcc
+         J0thAvsPtSNEjLmnihPzYYLMyDz1fQtGAxxO2VHSVu8hupjcJV0MLlQOFMUHES4/ydE+
+         YlJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUtaxczASbEUjXikrd1dUjMf/WAtQCLGSMAxdUNTjOqQcy4WJLVY5Yz6no57I+ViB1YlUNQTmbQP8Hv@vger.kernel.org, AJvYcCWBbaRmSOkBYT1iaqTtO+oKXh0SrIGW/8h1ZcfKzW8QFS/itxpThgg0KqZsxyLivS/QNXYn0+OuGP2BmqPe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJh45y71GzQZG/SKjL14XcS85dm6b3GHPo5zqKpRgRVV9RIs8M
+	OeYn2L+34MDkUhIEvMUMJi6WbNJhvu4ic/bAN9i4V7wk3Z6dFo5eiCAR4RaRiAqpmd2DARvWkNC
+	UCjTQBnfcieaO8NCNQKpgPEAe6x4=
+X-Gm-Gg: ASbGncsFyRBAiVLXVi162qCTScmz2OSgS3XMG8kc7hYdcEPrPjDHcwZr2vrPy8F0MO2
+	oXYoF+kCVwALckFk29/qDbhqU5kQ/7yMJkoAAKzsbz6XHqa5aba5CFYP7u8h3MiwNYoIfb/R8Bl
+	bwnwUwNhE4ooCBSe0W2Fce8GbXmkofh9o=
+X-Google-Smtp-Source: AGHT+IF6yx7qrSwJDRsToFTnlYa/h0A1YhshZSR5dL4PvWKAo3vckuyvm/Wyqi6jEyYBH3tHibJkW5A+JtSeL88Uo4M=
+X-Received: by 2002:a17:90b:2f86:b0:2ee:ee77:2263 with SMTP id
+ 98e67ed59e1d1-2fc40c1d548mr36337290a91.7.1740057102215; Thu, 20 Feb 2025
+ 05:11:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2955e9ad-f97a-44b0-be9c-d6bac90a8f9d@kernel.org>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG1PEPF000082E8:EE_|KL1PR06MB6257:EE_
-X-MS-Office365-Filtering-Correlation-Id: c4e86911-2131-4297-862b-08dd51af1bf4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?bClRmsfVsINuCph/roynLSAQNyQum2z2Z3wX0CZrE7vsJ20zCS/6PJhstK/y?=
- =?us-ascii?Q?8jqZqlnqA6b/pEa+ixB0i50WUvELMIoPlJv5N5qPhL1S2GELYoHLW2O3lD9q?=
- =?us-ascii?Q?KMKz6CJ0IGhb9VJugxjGC6KULWXGfiuRzqov5n5ipB0Vdd29GcbCcOskLxAc?=
- =?us-ascii?Q?mXeyQdyZpMBk58hGcs0Dp9ptEUOO/KKKRZ2IOzT1jmHySpH75w0gdEMXEU0R?=
- =?us-ascii?Q?uBKskkGMCug9D3JYTRwFboZIHrRPgtCWFCzF0vAt1DH/vEbzlFycWdHXs6LP?=
- =?us-ascii?Q?rvgpJqSLxyNAx/AiUG/g8O7gYRftYetvaummG5MS59cTeqHd+gM8IXLhR8c7?=
- =?us-ascii?Q?4dHKsaaZZte9edKnj+6q2OkReQYKZVWDTuYA2Gha/FFDBQx3ra+7sQ+eFqx1?=
- =?us-ascii?Q?PInNtgM3ws/yrfyLJMX47A1v7L2wpt4CBN8E8ZMJ+w2xqYoNsgPdvmDDrvhm?=
- =?us-ascii?Q?ISN2PDXF84tvRdgCd77WtDFasW7crvfWUO6PqVV1a5kdx+xLcOcAaO2El35B?=
- =?us-ascii?Q?a3Iq7W69EsASbfKMA1q6IuUSsG7iaEO4QBdqEDTv1J6O5QkdterfR/NVtOP6?=
- =?us-ascii?Q?rIOQqmhYf1PxSgGs6k9+g+C3QHSAVOFkOXMBzZX5g5uUvKwgWl+Cy7DR6LrZ?=
- =?us-ascii?Q?5NWkhXK71gBszNq8bMjLmnYEIrOzC73euYDo3D4BNQ4Dhr0SyXdR4hO8BMSi?=
- =?us-ascii?Q?qhyUEKkM4MvYHeUQR3PVLB6KlKiQyjiyPIba0/9zfkWJiPNEgDiLS58e3mL/?=
- =?us-ascii?Q?l6quaDa1Gy5TPY1rPYwuQX6OdS7l8EXSk9r0H+yAJZdnQuFo9VoqnLx4y3im?=
- =?us-ascii?Q?lRsuxrSi9N1OCAHHgBGDww67l+ER7YaQtKSV/vvTHuR/jN1PYkkeW0MkObg/?=
- =?us-ascii?Q?aDSVDvo+VtChYo7QxxtUcH8hTXNz8kQYoZNXvyjKKjNYxU14UxDg2++RIYXV?=
- =?us-ascii?Q?EFWEDBJ8O+jLoYvE85nLsNTkPsN+BoG3IU1zHpoOvgNwjUbgAub6PsgM8pbM?=
- =?us-ascii?Q?fWxvGoAv6NHwjady2cBBrYsKsRKqFK+xYHOOEm+AjzIC87mch6q5KK5SBHDG?=
- =?us-ascii?Q?g1F76MZkXt7houy1O6RoflbkBKmDN8Sklkm1coUNdeHAh5upylKsUdTnTJzY?=
- =?us-ascii?Q?vhM6zF2S/vtnge+m2IiVQNAv9KraJVLAcsppjc79/q1kok557pC7lokulcWd?=
- =?us-ascii?Q?VmqPVjOjlPV4/svx9mlD3US/lwGDu73bn2r9O82He1q6Vho7QhrA02rGND/j?=
- =?us-ascii?Q?cwTFww/YNyQCn1hJXTkiYMXAoxIzZZJoU9fudVu9zbdBH/DvceRz6VqqwOP6?=
- =?us-ascii?Q?B5co7EKaJXYJfrz+z9ceuIztvP1hcFFcU+6ySzddQd9J4U8/SbEXEC9MRUqV?=
- =?us-ascii?Q?xBynmWPPo+SX7wZd3M1DcGF9MXj9zm0RcNDPudMhuShEd7KjrcNLxwsZkMvj?=
- =?us-ascii?Q?ixwIUDHVx2M=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2025 13:04:28.4896
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c4e86911-2131-4297-862b-08dd51af1bf4
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: SG1PEPF000082E8.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6257
+References: <20250219192102.423850-1-daniel.baluta@nxp.com>
+ <20250219192102.423850-3-daniel.baluta@nxp.com> <12614210.O9o76ZdvQC@steina-w>
+In-Reply-To: <12614210.O9o76ZdvQC@steina-w>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Thu, 20 Feb 2025 15:11:30 +0200
+X-Gm-Features: AWEUYZlFjxlk4pWxNFB2rtjCHWnzpKUBBv6ujaPIet0mutNPJ0j906GL3_pdrJk
+Message-ID: <CAEnQRZDU9HoiD9uBNi+inrZcn8KCRp3pUZQfRqaq5kauuxOi6Q@mail.gmail.com>
+Subject: Re: [PATCH v2 2/8] dt-bindings: dsp: fsl,dsp: Add resets property
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: p.zabel@pengutronix.de, robh@kernel.org, shawnguo@kernel.org, 
+	linux-arm-kernel@lists.infradead.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	mathieu.poirier@linaro.org, shengjiu.wang@nxp.com, Frank.Li@nxp.com, 
+	peng.fan@nxp.com, laurentiu.mihalcea@nxp.com, iuliana.prodan@nxp.com, 
+	Daniel Baluta <daniel.baluta@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 25-02-20 13:18:07, Krzysztof Kozlowski wrote:
-> EXTERNAL EMAIL
-> 
-> On 20/02/2025 09:40, Peter Chen wrote:
-> > CIX Technology Group Co., Ltd. is a high performance Arm SoC design
-> > company. Link: https://www.cixtech.com/.
+On Thu, Feb 20, 2025 at 12:37=E2=80=AFPM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> Hi,
+>
+> Am Mittwoch, 19. Februar 2025, 20:20:56 CET schrieb Daniel Baluta:
+> > On i.MX8MP we introduced support for using a reset controller
+> > to control DSP operation.
 > >
-> > Acked-by: Fugang Duan <fugang.duan@cixtech.com>
-> > Signed-off-by: Peter Chen <peter.chen@cixtech.com>
+> > This patch adds reset property which is required for i.MX8MP.
+> >
+> > Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
 > > ---
-> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> 
-> 
-> Please re-order the patches, because your previous patch uses
-> undocumented prefix.
+> >  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 19 ++++++++++++++++++-
+> >  1 file changed, 18 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Docum=
+entation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > index ab93ffd3d2e5..923e7f079f1b 100644
+> > --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > @@ -82,6 +82,13 @@ properties:
+> >      description:
+> >        Phandle to syscon block which provide access for processor enabl=
+ement
+> >
+> > +  resets:
+> > +    description:
+> > +      A pair consisting of phandle to audio-blk-control and an index r=
+eferencing
+> > +      the DSP Run/Stall bit in audiomix registers.
+> > +      See include/dt-bindings/reset/imx8mp-reset-audiomix.h for each i=
+ndex meaning.
+> > +    maxItems: 1
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -164,6 +171,16 @@ allOf:
+> >              - const: txdb1
+> >              - const: rxdb0
+> >              - const: rxdb1
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - fsl,imx8mp-dsp
+> > +              - fsl,imx8mp-hifi4
+> > +    then:
+> > +      required:
+> > +        - "resets"
+> >
+> >  additionalProperties: false
+> >
+> > @@ -220,5 +237,5 @@ examples:
+> >                 <&mu2 3 0>;
+> >        memory-region =3D <&dsp_vdev0buffer>, <&dsp_vdev0vring0>,
+> >                        <&dsp_vdev0vring1>, <&dsp_reserved>;
+> > -      fsl,dsp-ctrl =3D <&audio_blk_ctrl>;
+> > +      resets =3D <&audio_blk_ctrl IMX8MP_AUDIOMIX_DSP>;
+>
+> Am I missing something here? fsl,dsp-ctrl is used to get the regmap from =
+syscon.
 
-Will do, thanks.
+fsl,dsp-ctrl was used to control the DSP. This functionality for
+imx8mp have been now replaced by
+using the reset controller.
 
-Regards,
-Peter
+The example where the diff happens is for imx8mp so for this reason I
+changed it to use the
+new way of doing the rest.
 
