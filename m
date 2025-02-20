@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-148871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C4ECA3DA17
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:32:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46EFBA3D9D3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:22:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7461418960AE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:30:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E19E819C1272
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:21:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28A29846D;
-	Thu, 20 Feb 2025 12:30:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F17FC1F8AE2;
+	Thu, 20 Feb 2025 12:20:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-8fa8.mail.infomaniak.ch (smtp-8fa8.mail.infomaniak.ch [83.166.143.168])
+Received: from smtp-8fac.mail.infomaniak.ch (smtp-8fac.mail.infomaniak.ch [83.166.143.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2671F63E4
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 12:30:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.166.143.168
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF7C21F4E27
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 12:20:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.166.143.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740054615; cv=none; b=CEpZWaiaNMEEKHL8BGZ5Lh6gpxienoaY7goOtU83Sg9gUSDe9hhBSQbMGSGLdXV4jYuXegSqUFgQYHhO41uBcdQFoTXF0mPKOx6C9peNS46mwqVyw+HDRPZ55bhEMV4ie6Wdehf8sIBJfYJaFEx+lOxjZDJVxzKz4oaIqoqn4sE=
+	t=1740054048; cv=none; b=aylU5y1M/9GpswGcHsLKWsTr9HX9uIGBTtgj5p86iiNmjvM4ZPgPjaIUuPbgY9IoxkzsEWuk3zzbIfhbeZWHXFpyEChZTPLhWnnVl8jOynY/u7rFVLiZSkVy/c08sjtflF/AWVrPRpINRG3vB619WyWlrWhChvEJ37j/bWxOmAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740054615; c=relaxed/simple;
-	bh=wEHei7rK9AAwWqopWPvUals/MXPnXVHEoEKBHAfk5B0=;
+	s=arc-20240116; t=1740054048; c=relaxed/simple;
+	bh=T1iXvRyD29yOzLTQL99Z3lF9EZFdZpHfsWETfDgieRE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oKxZxHN1rMH3G6Ey4GlRrI5726eH8nXinjy7QV9EYyDyHeWaxro+VUxcQ7CIH0gHLL+n52dhxHV7ZMzrJzoCN7slOgTSLODneri2MWrYa8lOCaBKMKA53mUN4nIq8dBNrz3gD+DyylJdpUKh9qAkkboL4WRiEyjqUnxnxHLrdzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=83.166.143.168
+	 In-Reply-To:To:Cc; b=Dnh/VSL7NS65zAuoaXwslLzfmdD9BA2Hlhcu5ltozUMsZDBoa4xJJHDc5BsmGwwZY/vG9kew+2dZVilbae7IL0jdPJEoZ0Pp+3Kiw7v4YDDqP0dymFRs4lfJ0o8zNWvabkWiMXBgnaT2xfx7k8O1O4yex5QL/8ecQibOqkMfRhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=83.166.143.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-3-0000.mail.infomaniak.ch (smtp-3-0000.mail.infomaniak.ch [10.4.36.107])
-	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4YzC5c2v1qzsY6;
+Received: from smtp-3-0000.mail.infomaniak.ch (unknown [IPv6:2001:1600:4:17::246b])
+	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4YzC5d0BYnzmGV;
+	Thu, 20 Feb 2025 13:20:37 +0100 (CET)
+Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4YzC5c2rkSzGKM;
 	Thu, 20 Feb 2025 13:20:36 +0100 (CET)
-Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4YzC5b6Cy2zGpB;
-	Thu, 20 Feb 2025 13:20:35 +0100 (CET)
 From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Thu, 20 Feb 2025 13:20:11 +0100
-Subject: [PATCH 2/5] arm64: dts: rockchip: fix pinmux of UART5 for PX30
- Ringneck on Haikou
+Date: Thu, 20 Feb 2025 13:20:12 +0100
+Subject: [PATCH 3/5] arm64: dts: rockchip: add support for
+ HAIKOU-LVDS-9904379 adapter for PX30 Ringneck
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,7 +46,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250220-ringneck-dtbos-v1-2-25c97f2385e6@cherry.de>
+Message-Id: <20250220-ringneck-dtbos-v1-3-25c97f2385e6@cherry.de>
 References: <20250220-ringneck-dtbos-v1-0-25c97f2385e6@cherry.de>
 In-Reply-To: <20250220-ringneck-dtbos-v1-0-25c97f2385e6@cherry.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -55,50 +55,187 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Quentin Schulz <quentin.schulz@cherry.de>, stable@vger.kernel.org
+ Quentin Schulz <quentin.schulz@cherry.de>
 X-Mailer: b4 0.14.2
 X-Infomaniak-Routing: alpha
 
 From: Quentin Schulz <quentin.schulz@cherry.de>
 
-UART5 uses GPIO0_B5 as UART RTS but muxed in its GPIO function,
-therefore UART5 must request this pin to be muxed in that function, so
-let's do that.
+The HAIKOU-LVDS-9904379 adapter is an adapter for PX30 Ringneck with the
+Haikou carrierboard. It is to be inserted in the fake PCIe slot labelled
+Video Connector.
 
-Fixes: 5963d97aa780 ("arm64: dts: rockchip: add rs485 support on uart5 of px30-ringneck-haikou")
-Cc: stable@vger.kernel.org
+This adapter expects an Admatec 9904379 1024x600 LVDS display with
+backlight and touchscreen. An EEPROM is also found on the adapter.
+
+This adds support for this adapter on PX30 Ringneck when inserted in
+Haikou carrierboard.
+
 Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 ---
- arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/rockchip/Makefile              |   5 +
+ .../px30-ringneck-haikou-lvds-9904379.dtso         | 130 +++++++++++++++++++++
+ 2 files changed, 135 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-index 2321536c553fed20bc02d91f40a5d5a6dc20892c..08a11e47584137ed84f31aadc53a1bdd2ca95530 100644
---- a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-@@ -194,6 +194,13 @@ sd_card_led_pin: sd-card-led-pin {
- 			  <3 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
+diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+index e4d9c48b95bba204f50697480d06e9a4071e56d3..b40b82bd07223f542c17704e7844f002bb31e1c5 100644
+--- a/arch/arm64/boot/dts/rockchip/Makefile
++++ b/arch/arm64/boot/dts/rockchip/Makefile
+@@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-ctouch2-of10.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-edimm2.2.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-firefly-jd4-core-mb.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-ringneck-haikou.dtb
++dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-ringneck-haikou-lvds-9904379.dtbo
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-bpi-p2-pro.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-evb.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-roc-cc.dtb
+@@ -191,6 +192,10 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
+ # result of the application of <overlay-1>.dtbo and other listed overlays on top
+ # of <base>.dtb.
+ 
++dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-ringneck-haikou-haikou-lvds-9904379.dtb
++px30-ringneck-haikou-haikou-lvds-9904379-dtbs := px30-ringneck-haikou.dtb \
++	px30-ringneck-haikou-lvds-9904379.dtbo
 +
-+	uart {
-+		uart5_rts_gpio: uart5-rts-gpio {
-+			rockchip,pins =
-+			  <0 RK_PB5 RK_FUNC_GPIO &pcfg_pull_up>;
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-vz-2-uhd.dtb
+ rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb \
+ 	rk3568-wolfvision-pf5-display-vz.dtbo \
+diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou-lvds-9904379.dtso b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou-lvds-9904379.dtso
+new file mode 100644
+index 0000000000000000000000000000000000000000..3fc088a5636a24b40a8536b28a210fce79f6d333
+--- /dev/null
++++ b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou-lvds-9904379.dtso
+@@ -0,0 +1,130 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2025 Cherry Embedded Solutions GmbH
++ *
++ * HAIKOU-LVDS-9904379 adapter for PX30 Ringneck and Haikou carrierboard.
++ *
++ * This adapter needs to be plugged in the fake PCIe connector called Video
++ * Connector on Haikou carrierboard.
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/pinctrl/rockchip.h>
++
++&{/} {
++	backlight_lvds: backlight-lvds {
++		compatible = "pwm-backlight";
++		brightness-levels = <0 255>;
++		default-brightness-level = <255>;
++		num-interpolated-steps = <255>;
++		power-supply = <&vcc3v3_baseboard>;
++		pwms = <&pwm0 0 25000 0>;
++	};
++
++	panel {
++		compatible = "admatec,9904379", "panel-lvds";
++		backlight = <&backlight_lvds>;
++		data-mapping = "vesa-24";
++		height-mm = <126>;
++		power-supply = <&vcc3v3_baseboard>;
++		width-mm = <224>;
++
++		panel-timing {
++			clock-frequency = <49500000>;
++			hactive = <1024>;
++			hback-porch = <90>;
++			hfront-porch = <90>;
++			hsync-len = <90>;
++			vactive = <600>;
++			vback-porch = <10>;
++			vfront-porch = <10>;
++			vsync-len = <10>;
++		};
++
++		port {
++			panel_in_lvds: endpoint {
++				remote-endpoint = <&lvds_out_panel>;
++			};
 +		};
 +	};
- };
- 
- &pwm0 {
-@@ -227,7 +234,7 @@ &uart0 {
- };
- 
- &uart5 {
--	pinctrl-0 = <&uart5_xfer>;
-+	pinctrl-0 = <&uart5_xfer &uart5_rts_gpio>;
- 	rts-gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_HIGH>;
- 	status = "okay";
- };
++};
++
++&display_subsystem {
++	status = "okay";
++};
++
++&dsi_dphy {
++	status = "okay";
++};
++
++&i2c1 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	/* EEPROM and GT928 are limited to 400KHz */
++	clock-frequency = <400000>;
++
++	touchscreen@14 {
++		compatible = "goodix,gt928";
++		reg = <0x14>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PA0 IRQ_TYPE_LEVEL_LOW>;
++		irq-gpios = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
++		reset-gpios = <&gpio0 RK_PA2 GPIO_ACTIVE_HIGH>;
++		pinctrl-0 = <&touch_int &touch_rst>;
++		pinctrl-names = "default";
++		touchscreen-inverted-x;
++		touchscreen-inverted-y;
++		AVDD28-supply = <&vcc3v3_baseboard>;
++		VDDIO-supply = <&vcc3v3_baseboard>;
++	};
++
++	eeprom@54 {
++		reg = <0x54>;
++		compatible = "st,24c04", "atmel,24c04";
++		pagesize = <16>;
++		size = <512>;
++		vcc-supply = <&vcc3v3_baseboard>;
++	};
++};
++
++&lvds {
++	status = "okay";
++};
++
++&lvds_out {
++	lvds_out_panel: endpoint {
++		remote-endpoint = <&panel_in_lvds>;
++	};
++};
++
++&pinctrl {
++	touch {
++		touch_int: touch-int {
++			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		touch_rst: touch-rst {
++			rockchip,pins = <0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++};
++
++&vopb {
++	status = "okay";
++};
++
++&vopb_mmu {
++	status = "okay";
++};
++
++&vopl {
++	status = "okay";
++};
++
++&vopl_mmu {
++	status = "okay";
++};
 
 -- 
 2.48.1
