@@ -1,43 +1,80 @@
-Return-Path: <devicetree+bounces-148852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97ACFA3D9D1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:22:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76F61A3D9DA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:23:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37013189F7A4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:21:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB2E117F7D0
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:22:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B99F1F868F;
-	Thu, 20 Feb 2025 12:20:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F741F4635;
+	Thu, 20 Feb 2025 12:22:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DS1flgh5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-bc0c.mail.infomaniak.ch (smtp-bc0c.mail.infomaniak.ch [45.157.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF98E1F5420
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 12:20:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.157.188.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 817401F4632;
+	Thu, 20 Feb 2025 12:22:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740054048; cv=none; b=gQ9nUevc3OEcKX+UpcGJqjpJTU79p/Olw3YrXo2QUy+dm5A0kbPPcJjsYRWlmsCy//pCfve7g5ma+EyEIEuvptSIj8CaCiQ4quCNg3/G+KEZrRdqoSd5Mp0Y0CBnZbJKMIy/bYxyxqTRchlMh3/Qowfahc8dgZdE7pbvZfGE/ac=
+	t=1740054149; cv=none; b=hQXyU0lSfSO+8JnRE5WD9kX2UlZ5W5FQ1g/Tx7UxlYgC+z0XbnqfUqfLdfmzxKsFxcuWBFaGVUkaNQAFKOqQL+7d0MiptgJRVEjKTcBciZJzu8Gu0GJsqjKGNRzm26wb7fAdWR4z+Rap6vWRi9zE0LY7hCOEX3EqHhL/a31Hi5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740054048; c=relaxed/simple;
-	bh=Fhu01hguLpxdSCdRiUt6ZoqGPPHRYI7QuUAEHmrpgaE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=f2BWnw6l+iOST+vs25xnJ9MDL0FY9vyYPGJoFBLLfkAo8sAAxn3d/aKpX/FBSpAaqwu4ezGhoBGc8QOu7/XyrE8DkTCeAGExuug2C9GZI4wDtzOWvLNFeMw63tyI9T2yfRK6jwcVyKgOVGwiQww6iLSoIqu84NFy+04hQ9xsIMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=45.157.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-3-0000.mail.infomaniak.ch (unknown [IPv6:2001:1600:4:17::246b])
-	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4YzC5f1kQ7zrLK;
-	Thu, 20 Feb 2025 13:20:38 +0100 (CET)
-Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4YzC5d4jCJzFb8;
-	Thu, 20 Feb 2025 13:20:37 +0100 (CET)
-From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Thu, 20 Feb 2025 13:20:14 +0100
-Subject: [PATCH 5/5] arm64: dts: rockchip: add overlay for RK3399 Puma
- Haikou Video Demo adapter
+	s=arc-20240116; t=1740054149; c=relaxed/simple;
+	bh=x8vUs23nLD376IRPtFWOy/bkius73HrUEIt6auOclws=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kpAmbAd25uwho/AvcDeWVnjcW8mTqRmECmtD+hU3YieVyu6Mm0uz17OX/iOOGpQg6kWpCCsjg8SVPQN06aRJy4jL1G/mCdMxMyMkOj4bSSftts7NDJaXc0bW76rFPu3pjcoKV1qzjyQ3ghJgN5TIgQXq1Sp8/wCF7uJdhXcNYDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DS1flgh5; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-221050f3f00so16218295ad.2;
+        Thu, 20 Feb 2025 04:22:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740054147; x=1740658947; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PxoHLUi1TIyVjtHTj1O4KVcJUPyjk0t7xM63xGaqPFA=;
+        b=DS1flgh5Kl6sqaWmS5ej0Vz4sqUlrXcOKF32dCwPwlRYes9qXobjfKmXFYE/rr09bf
+         3dGRvRsaT6LNROE4KZqGKWg2Kfym3PpMdir0w+U/W3DO+ZTQfzTKo6EjNIVGKb/HDnih
+         0YzS8fhes9T+5nYlP9Di+E9RW7k5evHhecHDAJdBaXcsmYK/Y7MKfjxDO9mqwuJ5ZQnU
+         TLumqgVlKPVLg3See5aEyU7zujTAjsEmnDbsscmcujgpQx4oxyIjlKMaacmquswPAoQ7
+         qzW01kTiD6vHpImwq6xrPQVgzkMm5lsZFJWPWZojQlRFBkfaGQrd6NOC/pZ2QwUKgmqa
+         T7tQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740054147; x=1740658947;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PxoHLUi1TIyVjtHTj1O4KVcJUPyjk0t7xM63xGaqPFA=;
+        b=N3v0etign3OgqIrO6LCGZrc1EzI2qj6J3hM2K/wEpHdYlKnqpWRSSjZn6eJitytADL
+         CJSErfnJLUVw5c+6CTkroLmMvDrsLXG7YaBq922vwhN6QCkVvDjnBa1ERKCS/Y4xdXj7
+         e3Hv5BCF4ZliMlKpWtNM9mOmGiHpPduXTk/9WphzskW7C76VL2uqB2erA6I2MTvsTJDR
+         sJ25vqRCdFLfg1ECVWQnZ5+nc6lGleleR45yA/P341odDATf5xgcUf0HvnZ256oeWwwp
+         ceAJ4EWps3jhOGpCh75YS2ztkq7XPvoQirzb4UdJ3ruUwn356TY9kRuemr74dKcfcj5l
+         5FDA==
+X-Forwarded-Encrypted: i=1; AJvYcCUfro3gbqOR4fgwpp+fokvvupIonmTATcjEQ/EI+cQwHolSkCTVeRP16aP0Zir2FrNR2M/Ru/mG/37g@vger.kernel.org, AJvYcCUwVymTgL1qr9ElXHSjd6Pw8cORcV20BFLb4RVBuxZNBzYFXPjJWnEIYXicg3KlKU2YAllMru0K5+6hAwjN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpFZh+N4YE3e8YuQ7/Ww8rJULLwBLQomZ1JuWUr3sG0WdkZT1d
+	uYCiHrN0uxbxiMfJpXhlfXzMdbCEZCzYnLFGBHCcuh5fvKN1OqT/
+X-Gm-Gg: ASbGncvUzMwRkvQ8gBNqwLLHBG/LFt0ifqd7MOMaxnkSWfvOVZ54OiRBPgBa63Zankx
+	B73ello4K0YCUpbocT6k9b5NZG2avfz3ZiRauvuWlxMfxFE4DhfPBFQDz7hJbkDmAsnQatpkxbd
+	HxnYLb5vQf5Le+AvivtWTN6y8AvbOS5KEAwLhT+H+YuVV3e+L29vLqyugjl2zu1hGDNB0baFe6S
+	N0zR/v1ua6+GMjQ+dQVHOVU22DzY+XnRw0/i+2tPzNjtN5k2Mov/QPngm1I8d/ZTs0Gt7oKnvTR
+	+XpG9LsSNc0v4N67Mw==
+X-Google-Smtp-Source: AGHT+IFPQJbD8Y0DfSGbKnFh8OFeQduLpjR2nCX2HZ+uxq5kUCQXB763DW1dJpfmXDKj/IsrLgKhzA==
+X-Received: by 2002:a05:6a00:1903:b0:730:888a:252a with SMTP id d2e1a72fcca58-732618c1eb9mr32642016b3a.15.1740054146231;
+        Thu, 20 Feb 2025 04:22:26 -0800 (PST)
+Received: from [127.0.1.1] ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-73242568146sm13653149b3a.47.2025.02.20.04.22.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Feb 2025 04:22:25 -0800 (PST)
+From: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH 0/9] arm64: dts: apple: Add CPU cache information for Apple
+ A7-A11, T2 SoCs
+Date: Thu, 20 Feb 2025 20:21:41 +0800
+Message-Id: <20250220-caches-v1-0-2c7011097768@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,238 +83,70 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250220-ringneck-dtbos-v1-5-25c97f2385e6@cherry.de>
-References: <20250220-ringneck-dtbos-v1-0-25c97f2385e6@cherry.de>
-In-Reply-To: <20250220-ringneck-dtbos-v1-0-25c97f2385e6@cherry.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Quentin Schulz <quentin.schulz@theobroma-systems.com>, 
- Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Quentin Schulz <quentin.schulz@cherry.de>
+X-B4-Tracking: v=1; b=H4sIAFUet2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDIyMD3eTE5IzUYt2k1ETTFGOjNEvDtCQloOKCotS0zAqwQdGxtbUAg5z
+ SUFgAAAA=
+X-Change-ID: 20250220-caches-bea5d32f91fb
+To: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Nick Chan <towinchenmi@gmail.com>
 X-Mailer: b4 0.14.2
-X-Infomaniak-Routing: alpha
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1554; i=towinchenmi@gmail.com;
+ h=from:subject:message-id; bh=x8vUs23nLD376IRPtFWOy/bkius73HrUEIt6auOclws=;
+ b=owEBbQKS/ZANAwAIAQHKCLemxQgkAcsmYgBntx568W0BJpT5y33IzqtpAl5xiNefECBeocdaA
+ G3h6DdBr9iJAjMEAAEIAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCZ7ceegAKCRABygi3psUI
+ JJ2mEACU7xnn3GkLol4g6uNkJmYfTXbvOFRtGSPksAHFzpaPYHeF6tCJ+QOL2JxMqXjJ2z58uM6
+ eI97d1zgxWGEcPbGOh5jVJGjXzZxqJm8KPNtF3DMfRKMYUmjZ0Lmih1ghU7l+BAwKMcW37B3s0q
+ 0eKbwQVfrWHt7AGSumZXWnYZ/PeNLbvW1f+q5zk/EnVCRjEXp9hbYfLbvYk2Au+d1t0XD/79gp0
+ teTwCARVArcj33NMB360pVAJW+NaiLBdJWRwJVqr0hEpeHSq7DSgaQQm7Jp4JbabpsaevpM/PnD
+ lKjUJO5Gql8AQBeqt2CtoLJiereJ1RBpn8LW6c/jWoxh4+HqR69liJxkknq4jL/TmSKvOdNzG8q
+ lNhxXt/Cmf8Gow5qtPdR2tLfaIHMgiwLupckugNj5cxisnrWMhyIqaNdbmq8XLGC9sxP2cUYvT1
+ aFFry5dp3kAwof5raujuJSGOPvhyQiUOUWOoEUHaoAOmZSzh6Fe4N3iLQhLuYQc3sXWXHqFtlpx
+ jBQCLj+IgeaMeGb5eqDr4jJsIcRA7+eAiBnBHyRsVMGeZbkNJL6kP8iDYy8RzCNF27FSHKtfFPL
+ GfFLtCHP8kdqAW8ObzUIwJ7Vt+ZxZv8Rrigm4kQ2O0dcqx6o+p0Uc553mjCQQolg9Wt896+vm2z
+ imvAjodSIWFfQxA==
+X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
+ fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
+Add CPU cache information for Apple A7-A11, T2 SoCs. On Apple
+A10 (T8010), A10X (T8011), T2 (T8012), only the caches in one of the
+CPU clusters can be used due to the "Apple Fusion Architecture"
+big.LITTLE switcher. The values for the P-cluster is used in this
+case.
 
-This adds support for the video-demo-adapter DEVKIT ADDON CAM-TS-A01
-(https://embedded.cherry.de/product/development-kit/) for the Haikou
-devkit with RK3399 Puma SoM.
-
-The Video Demo adapter is an adapter connected to the fake PCIe slot
-labeled "Video Connector" on the Haikou devkit.
-
-Its main feature is a Leadtek DSI-display with touchscreen and a camera
-(that is not supported yet because the expected clock rate by the driver
-cannot be exactly reached by the clock driver). To drive these
-components a number of additional regulators are grouped on the adapter
-as well as a PCA9670 gpio-expander to provide the needed additional
-gpio-lines.
-
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+Signed-off-by: Nick Chan <towinchenmi@gmail.com>
 ---
- arch/arm64/boot/dts/rockchip/Makefile              |   5 +
- .../rockchip/rk3399-puma-haikou-video-demo.dtso    | 166 +++++++++++++++++++++
- 2 files changed, 171 insertions(+)
+Nick Chan (9):
+      arm64: dts: apple: s5l8960x: Add CPU caches
+      arm64: dts: apple: t7000: Add CPU caches
+      arm64: dts: apple: t7001: Add CPU caches
+      arm64: dts: apple: s800-0-3: Add CPU caches
+      arm64: dts: apple: s8001: Add CPU caches
+      arm64: dts: apple: t8010: Add CPU caches
+      arm64: dts: apple: t8011: Add CPU caches
+      arm64: dts: apple: t8012: Add CPU caches
+      arm64: dts: apple: t8015: Add CPU caches
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 0f7c5c55c8b8be11e3fd7a69995ce1c17b22c80d..a46ed20e977aedb7cca1a9c0ad15f5441e4fe177 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -63,6 +63,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-orangepi.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-pinebook-pro.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-pinephone-pro.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou-video-demo.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-mezzanine.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-plus.dtb
-@@ -201,6 +202,10 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-ringneck-haikou-haikou-video-demo.dtb
- px30-ringneck-haikou-haikou-video-demo-dtbs := px30-ringneck-haikou.dtb \
- 	px30-ringneck-haikou-video-demo.dtbo
- 
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou-haikou-video-demo.dtb
-+rk3399-puma-haikou-haikou-video-demo-dtbs := rk3399-puma-haikou.dtb \
-+	rk3399-puma-haikou-video-demo.dtbo
-+
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-vz-2-uhd.dtb
- rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb \
- 	rk3568-wolfvision-pf5-display-vz.dtbo \
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso
-new file mode 100644
-index 0000000000000000000000000000000000000000..0377ec860d35461b7d2d4ee1f20bdd4a076a5fe6
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso
-@@ -0,0 +1,166 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2025 Cherry Embedded Solutions GmbH
-+ *
-+ * DEVKIT ADDON CAM-TS-A01
-+ * https://embedded.cherry.de/product/development-kit/
-+ *
-+ * DT-overlay for the camera / DSI demo appliance for Haikou boards.
-+ * In the flavour for use with a Puma system-on-module.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/clock/rk3399-cru.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+
-+&{/} {
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		power-supply = <&dc_12v>;
-+		pwms = <&pwm0 0 25000 0>;
-+	};
-+
-+	cam_afvdd_2v8: regulator-cam-afvdd-2v8 {
-+		compatible  = "regulator-fixed";
-+		gpio = <&pca9670 2 GPIO_ACTIVE_LOW>;
-+		regulator-max-microvolt = <2800000>;
-+		regulator-min-microvolt = <2800000>;
-+		regulator-name = "cam-afvdd-2v8";
-+		vin-supply = <&vcc2v8_video>;
-+	};
-+
-+	cam_avdd_2v8: regulator-cam-avdd-2v8 {
-+		compatible  = "regulator-fixed";
-+		gpio = <&pca9670 4 GPIO_ACTIVE_LOW>;
-+		regulator-max-microvolt = <2800000>;
-+		regulator-min-microvolt = <2800000>;
-+		regulator-name = "cam-avdd-2v8";
-+		vin-supply = <&vcc2v8_video>;
-+	};
-+
-+	cam_dovdd_1v8: regulator-cam-dovdd-1v8 {
-+		compatible  = "regulator-fixed";
-+	        gpio = <&pca9670 3 GPIO_ACTIVE_LOW>;
-+	        regulator-max-microvolt = <1800000>;
-+	        regulator-min-microvolt = <1800000>;
-+	        regulator-name = "cam-dovdd-1v8";
-+	        vin-supply = <&vcc1v8_video>;
-+	};
-+
-+	cam_dvdd_1v2: regulator-cam-dvdd-1v2 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&pca9670 5 GPIO_ACTIVE_HIGH>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-min-microvolt = <1200000>;
-+		regulator-name = "cam-dvdd-1v2";
-+		vin-supply = <&vcc3v3_baseboard>;
-+	};
-+
-+	vcc1v8_video: regulator-vcc1v8-video {
-+		compatible = "regulator-fixed";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-name = "vcc1v8-video";
-+		vin-supply = <&vcc3v3_baseboard>;
-+	};
-+
-+	vcc2v8_video: regulator-vcc2v8-video {
-+		compatible = "regulator-fixed";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <2800000>;
-+		regulator-min-microvolt = <2800000>;
-+		regulator-name = "vcc2v8-video";
-+		vin-supply = <&vcc3v3_baseboard>;
-+	};
-+
-+	video-adapter-leds {
-+		compatible = "gpio-leds";
-+
-+		video-adapter-led {
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pca9670 7 GPIO_ACTIVE_HIGH>;
-+			label = "video-adapter-led";
-+			linux,default-trigger = "none";
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	/* OV5675, GT911, DW9714 are limited to 400KHz */
-+	clock-frequency = <400000>;
-+
-+	touchscreen@14 {
-+		compatible = "goodix,gt911";
-+		reg = <0x14>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <RK_PC7 IRQ_TYPE_LEVEL_LOW>;
-+		irq-gpios = <&gpio1 RK_PC7 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&touch_int>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&pca9670 1 GPIO_ACTIVE_HIGH>;
-+		AVDD28-supply = <&vcc2v8_video>;
-+		VDDIO-supply = <&vcc3v3_baseboard>;
-+	};
-+
-+	pca9670: gpio@27 {
-+		compatible = "nxp,pca9670";
-+		reg = <0x27>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		pinctrl-0 = <&pca9670_resetn>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&gpio4 RK_PD6 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&mipi_out {
-+	mipi_out_panel: endpoint {
-+		remote-endpoint = <&mipi_in_panel>;
-+	};
-+};
-+
-+&mipi_dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "leadtek,ltk050h3148w";
-+		reg = <0>;
-+		backlight = <&backlight>;
-+		iovcc-supply = <&vcc1v8_video>;
-+		reset-gpios = <&pca9670 0 GPIO_ACTIVE_LOW>;
-+		vci-supply = <&vcc2v8_video>;
-+
-+		port {
-+			mipi_in_panel: endpoint {
-+				remote-endpoint = <&mipi_out_panel>;
-+			};
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	pca9670 {
-+		pca9670_resetn: pca9670-resetn {
-+			rockchip,pins = <4 RK_PD6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	touch {
-+		touch_int: touch-int {
-+			rockchip,pins = <1 RK_PC7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
+ arch/arm64/boot/dts/apple/s5l8960x.dtsi | 13 +++++++++++++
+ arch/arm64/boot/dts/apple/s800-0-3.dtsi | 13 +++++++++++++
+ arch/arm64/boot/dts/apple/s8001.dtsi    | 13 +++++++++++++
+ arch/arm64/boot/dts/apple/t7000.dtsi    | 13 +++++++++++++
+ arch/arm64/boot/dts/apple/t7001.dtsi    | 16 ++++++++++++++++
+ arch/arm64/boot/dts/apple/t8010.dtsi    | 13 +++++++++++++
+ arch/arm64/boot/dts/apple/t8011.dtsi    | 16 ++++++++++++++++
+ arch/arm64/boot/dts/apple/t8012.dtsi    | 13 +++++++++++++
+ arch/arm64/boot/dts/apple/t8015.dtsi    | 32 ++++++++++++++++++++++++++++++++
+ 9 files changed, 142 insertions(+)
+---
+base-commit: 3febe9de5ca5267618675650871a626d0901f8cb
+change-id: 20250220-caches-bea5d32f91fb
 
+Best regards,
 -- 
-2.48.1
+Nick Chan <towinchenmi@gmail.com>
 
 
