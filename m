@@ -1,243 +1,241 @@
-Return-Path: <devicetree+bounces-148782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4734A3D623
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:09:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE520A3D628
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:10:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F34B16FF3F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:09:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA17A1771A8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2D321F1302;
-	Thu, 20 Feb 2025 10:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A2B81F03E2;
+	Thu, 20 Feb 2025 10:09:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lNFnMr0F"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TbnxBlwP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F521EC00F
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 10:08:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F301EF080
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 10:09:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740046139; cv=none; b=C51gFQCd5z2kTQeBMm8WMIodGMfYYo8G/FloWDVozcm98/CCgE/BG8ZNXjOmTmqPQQB5MwjWNuhwlo5HPq+LSyuW0z+TEDhyPuL02eLRddHGl6YO4YGlmw481ObVMnkTk1rJQzOu82C2W1oRmwS3FsfEY3gBh2gsrpGrCZq9Ii8=
+	t=1740046186; cv=none; b=tUIKzy/hRicfakB4aoIC+621FzZMEt7jj9mtneX8Qg4Y9L3XLKjdFKIqZ/upVlbqF/+35CVH+3FcG5t5l5Z6CnYUISnzW+sP+pIofeJ/SQArLJ+3xSTyuCFEIz+i2iCER4BhjWy4gxJcLQj8rJp2qqR1cU7EFXfzCVdjZhV/kH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740046139; c=relaxed/simple;
-	bh=UmAueoCoAiEP6+F0V8D3CfDL3EJR/catd+q6wTXt9m8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kzpCktV+0nCpD0yYeDWWwUN+vR0WLALKgUpSJJ//dn8QvZ4Psgo0G4Y9QXSNY/sBMx7Unos7qRGQtyyr13g3SIWQBLhkpaOSyBG6jQNhzSAgT6xXakrznGLciAL2zb5GkTuCg1eebdjeKpRSZwS+br3E+Dy8jmgi/phggoaQYY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lNFnMr0F; arc=none smtp.client-ip=209.85.216.46
+	s=arc-20240116; t=1740046186; c=relaxed/simple;
+	bh=Zoo9uQ8Drs94E3LT5wK9nBC48YVNSJ75dwbnTzaoVHw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KvCL5FmbSFbd/6yLKcEp/LxzgC8lmo9ugMYyxGTWNKDxWBJ1wuIyRqjy4gGQIuNYRZHasRvqJwM8Qc0E1oKC6t0tmqnUJT8OXyWBjF2bXabeSNKrVLWOPFdqB1u2UNCn8ba4uVQUXKgJVtT2r9Q1DC29oXIsK9Zc6iEl6Puejxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TbnxBlwP; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2fcb6c42c47so1161436a91.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 02:08:57 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43996e95114so4383115e9.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 02:09:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740046137; x=1740650937; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8+OUzS6eo8FVNCvAvfNYtKkGJynjAEILZy6jM+oJy/s=;
-        b=lNFnMr0F2M62GSC4XD45jQ9U2KuWZG2AxE4qhmN4/MNQxPK3Z1UC2wL0VlBx2rhrjU
-         05bJyf1B4ZBCKZQjQ9mUcBJ2yYgtXxc5CwaNMsxnqdq61g9egM7dlvd9QWT4qx3J+x5V
-         qNPRedkuOqpBWDTQKh93nGaXhFWDGn4ovvuqO8HXX52OWcBiohBXRETnss+pTzgR5U0K
-         qhwaIH/vZftioLt4vYDdEya/shOkVw20ufAN8UwB4+K2u2ehLT+HA6tm5khWrTVPKU85
-         CmsqIOeufGE8K+B/YikTzQeIRTdrcOZcyVcS3hjujmz4cHNrFwyOs5Im9RK1BWev4b2S
-         QJ1A==
+        d=linaro.org; s=google; t=1740046181; x=1740650981; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VKAFazs0bK/4Q6jQNje2L8Expu/NOgNPeCn90wFFS4o=;
+        b=TbnxBlwPjjyp5w4jK7dHSTOLWZ2jty0K7BW6YS3sGDpseukWSP+NfndN8IXkZbspVn
+         y/2hRbyjkA7okR7Npwye0REGht+j8z4kKPj++qi+dFBcIwmBfBx11ZwI93N+aq7BWRY7
+         4MUHHO+fzvDRFoIqRGAsRaY4GmlMbuvHA/Yx8dxKTVQ744Y/oGu+NlhUmvY9jQOHx6GU
+         XWw5cnlAmw1B2bOx1iRckt9Zla4faaKXtB9VzVCZISstygkJR3MziNB2CaSZT8DsLrQD
+         DwYHFgSgJVm0l/J9lVq4/1wtcJS50Kie/9SNSysy8thpkUl4RigzHFMAVxMnz6xfuVx5
+         AK+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740046137; x=1740650937;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8+OUzS6eo8FVNCvAvfNYtKkGJynjAEILZy6jM+oJy/s=;
-        b=qXiZuMq5dYtBq13y3jRzHKSTjLHDuigkG0QYZixSzgP0SRm4GpC1ZcYS1mbWLOZzxZ
-         oY9yfTJTAXVl70rkovltX++AiK8iOIX908INPV8JueNWT6IwWTCb34/bqWcTNUY6fDRn
-         XHA/JJeOnx0VA6pdOLdolxUZHi8kcng1DpsVZbob9uZK1CNtLuKM9PYz6c/fu3ONbeTx
-         9pq1pOd2FKtQfgbwA6+bfBosFwt9gNaBN5fI30twHT6CFwHcUKnmArckKc3pkkqZsv+z
-         VqEsRZ4eHcO4kdfUI5T21ump7S6YlEIO+e6OnWOfBXrj/uNrLgUwMA5zk7L0gddlvukP
-         90XQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWsPze37KdfHi9ywV760KnUwLYPxGrAP69z70y6dFAbmsv7/71NsNUISPniidH+II/J3DM2sHdbonDK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8j4uEs6JVBGoxJfagFvUYeFlNoR12PCqp+FPM02lJQBzdDnkF
-	oWmZMX0K+BandKGoqLdIM2ebGv4G+PrDGtRd5iYMFuL9ZN/ywyPW7SStjewyglJk/tSYLBM8Z8S
-	WBiUo/g==
-X-Gm-Gg: ASbGncvuvnn2IKLnhesyDE1AyLWd3FWSOGJURyGMGN06kTuSTbvr25rK+8s24YY6u9R
-	wWkiG3tHT3J2NdvJu02lyCvbmxXhMeC37gSbGcukEr9dQPHbQOQUdL41u92tU+rPuErqklVT1zV
-	b1Psht36xGc5CYunQ7CSWiZOqA3tKxVcA1r/uelKSBLM8NkaOywgDn4SUENKJ5FwNZogHamkQ3Y
-	O499F6u2G1zmPV3wc9lutqesF5JsFclKZCIyjauty4FZQDD3gzM4WmtoECyCl5TRj42bPX/w8sS
-	/O88nvDwDuM1
-X-Google-Smtp-Source: AGHT+IHDtFghikb0IsdCfqFtYMffpKN5+PJogSYWwgbB8ovOAObhOmSVEFhYr1RpSHSfSypZl/GVTw==
-X-Received: by 2002:a17:90b:3d86:b0:2f4:4500:bb4d with SMTP id 98e67ed59e1d1-2fc40f233f9mr32996102a91.20.1740046137364;
-        Thu, 20 Feb 2025 02:08:57 -0800 (PST)
-Received: from [127.0.1.1] ([112.65.12.217])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fbf98b3305sm15304645a91.6.2025.02.20.02.08.47
+        d=1e100.net; s=20230601; t=1740046181; x=1740650981;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VKAFazs0bK/4Q6jQNje2L8Expu/NOgNPeCn90wFFS4o=;
+        b=WMnY0OYJQBoluuDJX5U2r1XluBxIzsb+1mpVT4BLbY2GkPdAB3R7g3UciP23Dzr9Wi
+         oiYVfC6LsTjNe5iKnR7rTV/8yWpMgc9Xq6fvXZQOoU5f7lkA5JZSiKTxP/KWPTDtoLLN
+         v1c01tLO+z6PO88XRvTIr54tVvPZK3yONvL5tsmrEgp3GQmkhuf/uZHZSgd3xWkjDBP4
+         mIWmFjbwaZG0JvZ8bTA6vnetGDc9x6SoORQMI4mlRM/fu6uNi7xX4vkUbvyYZ1tfL1HG
+         bVFTxTsxhM0SpgQyH3J9CXJIWkoPS1hrB+hA/5WguwuELFfF4dIY19IpMPybQ4T51xie
+         qamA==
+X-Forwarded-Encrypted: i=1; AJvYcCVAPZAWoCMb5vTUEnap4HbJ1loVkUnSoywdHAfL1frKDdT9K3v3b4IgOgkrESQ+wErGpqLE7F9B+0PP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9sHtRLqcJipsRqc4trFahxuaz/ZV3WnJdwLe4tyH/aHnjykvR
+	yPgFj9FSa8uCDLtxEAyKlS+AmFlxVt031iD5EzUUb26VPKKAJFFrrCis1MVJcc8=
+X-Gm-Gg: ASbGnct7pO6FMaVNdm9wOR16cywoj2xL+Sqg54rnRtqIczlUsazmHkvH0/6vBB8aNH/
+	JYNyy+G4GWyOPIB2lRgvVV5YZYTb5t8OXwX0Go4CHVqQcAaV+sQT2rdD5U5UWvksyoAUIig0HKx
+	10si/2BHzEupWng8nzjC5L5T2SOiyoEFK2MXwD/7Ecj6VBd2RdXvvw+DFSxl7TIIOMeub7VVlp3
+	0qm/8pNYvmTt2eMZ1q6XEMhSvV3f/pmY3rnxPCpAr5Wrc5RWVDyxspAOBC1BbUhkR+b4fMrdAcJ
+	x1ae5/T6TyIW5EQxth9mQAAgfq4=
+X-Google-Smtp-Source: AGHT+IERc6hIPqaeWn2CPZBGtZZAAoxkqyWFInBWc9QDvWlSHwq2D21AKF4IMfL83X3LHVGKdeB0Yw==
+X-Received: by 2002:a5d:59a2:0:b0:38d:d9bd:18a6 with SMTP id ffacd0b85a97d-38f33f437fdmr19446268f8f.42.1740046181176;
+        Thu, 20 Feb 2025 02:09:41 -0800 (PST)
+Received: from linaro.org ([2a02:2454:ff21:ef30:b30c:3d94:4d4a:a6eb])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258b4123sm20741585f8f.17.2025.02.20.02.09.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Feb 2025 02:08:57 -0800 (PST)
-From: Jun Nie <jun.nie@linaro.org>
-Date: Thu, 20 Feb 2025 18:07:56 +0800
-Subject: [PATCH v2 5/5] drm/msm/dsi: Support DSC for dual panel case
+        Thu, 20 Feb 2025 02:09:40 -0800 (PST)
+Date: Thu, 20 Feb 2025 11:09:38 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Yuvaraj Ranganathan <quic_yrangana@quicinc.com>,
+	Anusha Rao <quic_anusha@quicinc.com>,
+	Md Sadre Alam <quic_mdalam@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Luca Weiss <luca.weiss@fairphone.com>
+Subject: Re: [PATCH 7/8] dt-bindings: dma: qcom: bam-dma: Add missing
+ required properties
+Message-ID: <Z7b_YgzGJUT_un5z@linaro.org>
+References: <20250212-bam-dma-fixes-v1-0-f560889e65d8@linaro.org>
+ <20250212-bam-dma-fixes-v1-7-f560889e65d8@linaro.org>
+ <22ce4c8d-1f3b-42c9-b588-b7d74812f7b0@oss.qualcomm.com>
+ <Z6231bBqNhA2M4Ap@linaro.org>
+ <d674d626-e6a3-4683-8f45-81b09200849f@oss.qualcomm.com>
+ <Z64OKcj9Ns1NkUea@linaro.org>
+ <20250219222739.GA3078392-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250220-dual-dsi-v2-5-6c0038d5a2ef@linaro.org>
-References: <20250220-dual-dsi-v2-0-6c0038d5a2ef@linaro.org>
-In-Reply-To: <20250220-dual-dsi-v2-0-6c0038d5a2ef@linaro.org>
-To: Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krishna Manikandan <quic_mkrishn@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Jun Nie <jun.nie@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1740046076; l=5455;
- i=jun.nie@linaro.org; s=20240403; h=from:subject:message-id;
- bh=UmAueoCoAiEP6+F0V8D3CfDL3EJR/catd+q6wTXt9m8=;
- b=6BwqEYg6DasxH9/TNbFINX8D5ATykKXwrq7MbDqfVfVuPFJ845uD3DPApUtH07rTfNUFTW/dz
- GczxnFvXZZ+AWEfDhMOKDN5XUwWsjxgrouT47tVNv40LQ4kUUbFO0uQ
-X-Developer-Key: i=jun.nie@linaro.org; a=ed25519;
- pk=MNiBt/faLPvo+iJoP1hodyY2x6ozVXL8QMptmsKg3cc=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250219222739.GA3078392-robh@kernel.org>
 
-There is dual DSI case that every DSI link is connected to an independent
-panel. In this dual panel case, the frame width for DSC on each link should
-be halved to support the usage case.
+On Wed, Feb 19, 2025 at 04:27:39PM -0600, Rob Herring wrote:
+> On Thu, Feb 13, 2025 at 04:22:17PM +0100, Stephan Gerhold wrote:
+> > On Thu, Feb 13, 2025 at 03:00:00PM +0100, Konrad Dybcio wrote:
+> > > On 13.02.2025 10:13 AM, Stephan Gerhold wrote:
+> > > > On Wed, Feb 12, 2025 at 10:01:59PM +0100, Konrad Dybcio wrote:
+> > > >> On 12.02.2025 6:03 PM, Stephan Gerhold wrote:
+> > > >>> num-channels and qcom,num-ees are required when there are no clocks
+> > > >>> specified in the device tree, because we have no reliable way to read them
+> > > >>> from the hardware registers if we cannot ensure the BAM hardware is up when
+> > > >>> the device is being probed.
+> > > >>>
+> > > >>> This has often been forgotten when adding new SoC device trees, so make
+> > > >>> this clear by describing this requirement in the schema.
+> > > >>>
+> > > >>> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+> > > >>> ---
+> > > >>>  Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 4 ++++
+> > > >>>  1 file changed, 4 insertions(+)
+> > > >>>
+> > > >>> diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+> > > >>> index 3ad0d9b1fbc5e4f83dd316d1ad79773c288748ba..5f7e7763615578717651014cfd52745ea2132115 100644
+> > > >>> --- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+> > > >>> +++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+> > > >>> @@ -90,8 +90,12 @@ required:
+> > > >>>  anyOf:
+> > > >>>    - required:
+> > > >>>        - qcom,powered-remotely
+> > > >>> +      - num-channels
+> > > >>> +      - qcom,num-ees
+> > > >>>    - required:
+> > > >>>        - qcom,controlled-remotely
+> > > >>> +      - num-channels
+> > > >>> +      - qcom,num-ees
+> > > >>
+> > > >> I think I'd rather see these deprecated and add the clock everywhere..
+> > > >> Do we know which one we need to add on newer platforms? Or maybe it's
+> > > >> been transformed into an icc path?
+> > > > 
+> > > > This isn't feasible, there are too many different setups. Also often the
+> > > > BAM power management is tightly integrated into the consumer interface.
+> > > > To give a short excerpt (I'm sure there are even more obscure uses):
+> > > > 
+> > > >  - BLSP BAM (UART, I2C, SPI on older SoCs):
+> > > >     1. Enable GCC_BLSP_AHB_CLK
+> > > >     -> This is what the bam_dma driver supports currently.
+> > > > 
+> > > >  - Crypto BAM: Either
+> > > >     OR 1. Vote for single RPM clock
+> > > >     OR 1. Enable 3 separate clocks (CE, CE_AHB, CE_AXI)
+> > > >     OR 1. Vote dummy bandwidth for interconnect
+> > > > 
+> > > >  - BAM DMUX (WWAN on older SoCs):
+> > > >     1. Start modem firmware
+> > > >     2. Wait for BAM DMUX service to be up
+> > > >     3. Vote for power up via the BAM-DMUX-specific SMEM state
+> > > >     4. Hope the firmware agrees and brings up the BAM
+> > > > 
+> > > >  - SLIMbus BAM (audio on some SoCs):
+> > > >     1. Start ADSP firmware
+> > > >     2. Wait for QMI SLIMBUS service to be up via QRTR
+> > > >     3. Vote for power up via SLIMbus-specific QMI messages
+> > > >     4. Hope the firmware agrees and brings up the BAM
+> > > > 
+> > > > Especially for the last two, we can't implement support for those
+> > > > consumer-specific interfaces in the BAM driver. Implementing support for
+> > > > the 3 variants of the Crypto BAM would be possible, but it's honestly
+> > > > the least interesting use case of all these. It's not really clear why
+> > > > we are bothing with the crypto engine on newer SoCs at all, see e.g. [1].
+> > > > 
+> > > > [1]: https://lore.kernel.org/linux-arm-msm/20250118080604.GA721573@sol.localdomain/
+> > > > 
+> > > >> Reading back things from this piece of HW only to add it to DT to avoid
+> > > >> reading it later is a really messy solution.
+> > > > 
+> > > > In retrospect, it could have been cleaner to avoid describing the BAM as
+> > > > device node independent of the consumer. We wouldn't have this problem
+> > > > if the BAM driver would only probe when the consumer is already ready.
+> > > > 
+> > > > But I think specifying num-channels in the device tree is the cleanest
+> > > > way out of this mess. I have a second patch series ready that drops
+> > > > qcom,num-ees and validates the num-channels once it's safe reading from
+> > > > the BAM registers. That way, you just need one boot test to ensure the
+> > > > device tree description is really correct.
+> > > 
+> > > Thanks for the detailed explanation!
+> > > 
+> > > Do you think it could maybe make sense to expose a clock/power-domain
+> > > from the modem/adsp rproc and feed it to the DMUX / SLIM instances when
+> > > an appropriate ping arrives? This way we'd also defer probing the drivers
+> > > until the device is actually accessible.
+> > > 
+> > 
+> > Maybe, but that would result in a cyclic dependency between the DMA
+> > provider and consumer. E.g.
+> > 
+> > 	bam_dmux_dma: dma-controller@ {
+> > 		#dma-cells = <1>;
+> > 		power-domains = <&bam_dmux>;
+> > 	};
+> > 
+> > 	remoteproc@ {
+> > 		/* ... */
+> > 
+> > 		bam_dmux: bam-dmux {
+> > 			dmas = <&bam_dmux_dma 4>, <&bam_dmux_dma 5>;
+> > 			dma-names = "tx", "rx";
+> > 		};
+> > 	};
+> > 
+> > fw_devlink will likely get confused by that.
+> 
+> Why? We have a property to break cycles: post-init-providers
+> 
+> That doesn't work here?
+> 
 
-Signed-off-by: Jun Nie <jun.nie@linaro.org>
----
- drivers/gpu/drm/msm/dsi/dsi.h         |  3 ++-
- drivers/gpu/drm/msm/dsi/dsi_host.c    | 13 +++++++++----
- drivers/gpu/drm/msm/dsi/dsi_manager.c | 10 ++++++++--
- 3 files changed, 19 insertions(+), 7 deletions(-)
+Thanks, I was not aware of that property. This looks quite useful for
+fixing up some of the other cyclic dependencies we have!
 
-diff --git a/drivers/gpu/drm/msm/dsi/dsi.h b/drivers/gpu/drm/msm/dsi/dsi.h
-index 35b90c462f637111159b204269ce908614a21586..5a8978bed9f4ca897b418ced60194042d9dd8d05 100644
---- a/drivers/gpu/drm/msm/dsi/dsi.h
-+++ b/drivers/gpu/drm/msm/dsi/dsi.h
-@@ -74,7 +74,8 @@ void msm_dsi_host_enable_irq(struct mipi_dsi_host *host);
- void msm_dsi_host_disable_irq(struct mipi_dsi_host *host);
- int msm_dsi_host_power_on(struct mipi_dsi_host *host,
- 			struct msm_dsi_phy_shared_timings *phy_shared_timings,
--			bool is_bonded_dsi, struct msm_dsi_phy *phy);
-+			bool is_bonded_dsi, bool is_dual_panel,
-+			struct msm_dsi_phy *phy);
- int msm_dsi_host_power_off(struct mipi_dsi_host *host);
- int msm_dsi_host_set_display_mode(struct mipi_dsi_host *host,
- 				  const struct drm_display_mode *mode);
-diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
-index 976c5d82a2efa0fc51657b8534675890be7c33a6..752a97f7181c30dade0a7745492bf16649b3197b 100644
---- a/drivers/gpu/drm/msm/dsi/dsi_host.c
-+++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
-@@ -902,7 +902,8 @@ static void dsi_update_dsc_timing(struct msm_dsi_host *msm_host, bool is_cmd_mod
- 	}
- }
- 
--static void dsi_timing_setup(struct msm_dsi_host *msm_host, bool is_bonded_dsi)
-+static void dsi_timing_setup(struct msm_dsi_host *msm_host, bool is_bonded_dsi,
-+			     bool is_dual_panel)
- {
- 	struct drm_display_mode *mode = msm_host->mode;
- 	u32 hs_start = 0, vs_start = 0; /* take sync start as 0 */
-@@ -947,7 +948,10 @@ static void dsi_timing_setup(struct msm_dsi_host *msm_host, bool is_bonded_dsi)
- 			return;
- 		}
- 
--		dsc->pic_width = mode->hdisplay;
-+		if (is_dual_panel)
-+			dsc->pic_width = hdisplay;
-+		else
-+			dsc->pic_width = mode->hdisplay;
- 		dsc->pic_height = mode->vdisplay;
- 		DBG("Mode %dx%d\n", dsc->pic_width, dsc->pic_height);
- 
-@@ -2369,7 +2373,8 @@ static void msm_dsi_sfpb_config(struct msm_dsi_host *msm_host, bool enable)
- 
- int msm_dsi_host_power_on(struct mipi_dsi_host *host,
- 			struct msm_dsi_phy_shared_timings *phy_shared_timings,
--			bool is_bonded_dsi, struct msm_dsi_phy *phy)
-+			bool is_bonded_dsi, bool is_dual_panel,
-+			struct msm_dsi_phy *phy)
- {
- 	struct msm_dsi_host *msm_host = to_msm_dsi_host(host);
- 	const struct msm_dsi_cfg_handler *cfg_hnd = msm_host->cfg_hnd;
-@@ -2412,7 +2417,7 @@ int msm_dsi_host_power_on(struct mipi_dsi_host *host,
- 		goto fail_disable_clk;
- 	}
- 
--	dsi_timing_setup(msm_host, is_bonded_dsi);
-+	dsi_timing_setup(msm_host, is_bonded_dsi, is_dual_panel);
- 	dsi_sw_reset(msm_host);
- 	dsi_ctrl_enable(msm_host, phy_shared_timings, phy);
- 
-diff --git a/drivers/gpu/drm/msm/dsi/dsi_manager.c b/drivers/gpu/drm/msm/dsi/dsi_manager.c
-index be13bf682a9601484c9c14e8419563f37c2281ee..158b6cc907cb39cc3b182d3088b793d322a3527c 100644
---- a/drivers/gpu/drm/msm/dsi/dsi_manager.c
-+++ b/drivers/gpu/drm/msm/dsi/dsi_manager.c
-@@ -24,6 +24,7 @@ struct msm_dsi_manager {
- 	struct msm_dsi *dsi[DSI_MAX];
- 
- 	bool is_bonded_dsi;
-+	bool is_dual_panel;
- 	bool is_sync_needed;
- 	int master_dsi_link_id;
- };
-@@ -31,6 +32,7 @@ struct msm_dsi_manager {
- static struct msm_dsi_manager msm_dsim_glb;
- 
- #define IS_BONDED_DSI()		(msm_dsim_glb.is_bonded_dsi)
-+#define IS_DUAL_PANEL()		(msm_dsim_glb.is_dual_panel)
- #define IS_SYNC_NEEDED()	(msm_dsim_glb.is_sync_needed)
- #define IS_MASTER_DSI_LINK(id)	(msm_dsim_glb.master_dsi_link_id == id)
- 
-@@ -55,6 +57,7 @@ static int dsi_mgr_parse_of(struct device_node *np, int id)
- 		msm_dsim->is_bonded_dsi = of_property_read_bool(np, "qcom,dual-dsi-mode");
- 
- 	if (msm_dsim->is_bonded_dsi) {
-+		msm_dsim->is_dual_panel = of_property_read_bool(np, "qcom,dual-panel");
- 		if (of_property_read_bool(np, "qcom,master-dsi"))
- 			msm_dsim->master_dsi_link_id = id;
- 		if (!msm_dsim->is_sync_needed)
-@@ -214,6 +217,7 @@ static int dsi_mgr_bridge_power_on(struct drm_bridge *bridge)
- 	struct mipi_dsi_host *host = msm_dsi->host;
- 	struct msm_dsi_phy_shared_timings phy_shared_timings[DSI_MAX];
- 	bool is_bonded_dsi = IS_BONDED_DSI();
-+	bool is_dual_panel = IS_DUAL_PANEL();
- 	int ret;
- 
- 	DBG("id=%d", id);
-@@ -222,7 +226,8 @@ static int dsi_mgr_bridge_power_on(struct drm_bridge *bridge)
- 	if (ret)
- 		goto phy_en_fail;
- 
--	ret = msm_dsi_host_power_on(host, &phy_shared_timings[id], is_bonded_dsi, msm_dsi->phy);
-+	ret = msm_dsi_host_power_on(host, &phy_shared_timings[id],
-+				    is_bonded_dsi, is_dual_panel, msm_dsi->phy);
- 	if (ret) {
- 		pr_err("%s: power on host %d failed, %d\n", __func__, id, ret);
- 		goto host_on_fail;
-@@ -230,7 +235,8 @@ static int dsi_mgr_bridge_power_on(struct drm_bridge *bridge)
- 
- 	if (is_bonded_dsi && msm_dsi1) {
- 		ret = msm_dsi_host_power_on(msm_dsi1->host,
--				&phy_shared_timings[DSI_1], is_bonded_dsi, msm_dsi1->phy);
-+				&phy_shared_timings[DSI_1], is_bonded_dsi,
-+				is_dual_panel, msm_dsi1->phy);
- 		if (ret) {
- 			pr_err("%s: power on host1 failed, %d\n",
- 							__func__, ret);
+Nevertheless, for this specific case, I still think we should not make
+such large breaking changes at this point. As I pointed out further
+below in my quoted email, this is a legacy hardware block that will
+likely not get any major new users in the future. We're essentially
+discussing to rework several bindings and drivers just to drop a single
+straightforward "num-channels = <N>" property. A property that we will
+need to keep support for anyway, to support users with older DTBs. This
+effort (and risk) is really better spent elsewhere.
 
--- 
-2.34.1
-
+Thanks,
+Stephan
 
