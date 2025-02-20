@@ -1,302 +1,147 @@
-Return-Path: <devicetree+bounces-148904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF92AA3DB48
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:29:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4FF2A3DB56
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AE4B17A479
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:29:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B175819C13F9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:31:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35A2C1F8BAF;
-	Thu, 20 Feb 2025 13:29:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 430521F4E4B;
+	Thu, 20 Feb 2025 13:31:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JbYrHYae"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bwOJo+lI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59AE9433BE;
-	Thu, 20 Feb 2025 13:28:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874CE288A2;
+	Thu, 20 Feb 2025 13:31:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740058141; cv=none; b=Xs0re0OdTSSrSh/BKW8ckXltobxHz6/YuelfWRRDIpkyCXCXZS9FmqiSOR+9/gphUzDYMxnEonor3TaRIeqH5+awVwYvp1qk7P3ufmZ+p18RhDeIeOT4rqc455tqwA0bWcu8aSIXyxG5n4oKYFl9cmptd1W/RpOdv4r8n34CKWw=
+	t=1740058297; cv=none; b=SVqaEylj6hs18AOlJnsNw9ESrXtiGNQFwJQM89K+kGbO343qBK3BOVJRYkreYCatBAJ3zAQMuK37IBY5iM7iYmtY6IntPCSVPhC8PcPEyiJemwTNXnPNQYlFNjtC8mfDayF4etWS7AXSkRIWMhVohdjG0OCiz3o7+Xnhqi3O/Xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740058141; c=relaxed/simple;
-	bh=aW7P36P7qMNdnr9pUg4pgp/inqglHOgptn1s3sqjY7M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tPUIjZsl5tzKtVNBilT4osZ7o91y9FRfiBJ3GhnAIkB68I90Pxq3ULcgK3BZNcBh0NLh7dqsqRiXeFnloqQkF4EkgA8Gh/d/sQkFdj1+AWJWM+DPPSBSgJSyFMBcAMoGW+KR4I2Ly6AOKv/BuO+7I3bf2JJX8e8HuddQ0Z7AO9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JbYrHYae; arc=none smtp.client-ip=209.85.160.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-471feaace60so541291cf.3;
-        Thu, 20 Feb 2025 05:28:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740058138; x=1740662938; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ds16pcii8hIi7NE0pveG5m9mk6T8UXD/GemUMCtoarQ=;
-        b=JbYrHYaeNCIvDlBr2wDIR4m8HnQoRMJZ2iDOZCPozrTUV07euAS6eB8efQoPzBeGqE
-         GuKKDIuS8Vh0Dggap9CYEB5AsOCsgKhrOfy3WzE9l+62leojro6BcZmXAxnywyhqlCSZ
-         NrmnOJJNoMwYAv90HMGv8ngGnYRLmwwCNbZrmBRISq14sstMvgAElIr5oO+77a5POMis
-         C0HsihebvzsdfujIaKSPDYRNllL/4nHEzF8DC9l94AMOqQAP5vNR0owGDF6D0IFSGDgG
-         +XEMsXmG8vCCFBcweRK9vjEcXMf8AUKPrVcYqf03iJjmeFUTlSIBhLtZviNvucyEjIVg
-         81Zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740058138; x=1740662938;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ds16pcii8hIi7NE0pveG5m9mk6T8UXD/GemUMCtoarQ=;
-        b=WBrc3kjz4CZ8HfOM6VhO4jBiU6Okis7d4J4nAdJKli4ecsu2H86oW6VSb5tcoV5ajQ
-         VdDig8eGJ0vtfxD+rjJlA6noAciBRlnTLaJmjhRpJEdJ4mfJBzluHyYiFLNqU9W2MHZO
-         3o42KdoMujk7c+UzgTVtl9Pp6O4wTrA7FioOgmle0TbVlv9vkVFxRdZUSUYsKbbuu+Pb
-         n0wEzPoAnsY4au5XHEomz9xOcHuoAMdJn/5+glbT7slOJFJcoA6t2eqtmr6NQuH6aygK
-         cPypQt1gh2YaupuHTqh/EW2izoKnAY4HqrqzcS7osNTbDGgcQ2HmcTcF/pm75LAkDcD4
-         F/4g==
-X-Forwarded-Encrypted: i=1; AJvYcCUzQKur05p4KH0zs58JyxeIXRElg7LyrhQ7DnW9c67BqdlCqfnbNjAC3tlA3h0ijy1nfCVuq5FJiyL+@vger.kernel.org, AJvYcCVCby3ExQwxHWQqP3E6Jzu2NipM/lO9UemWHhwMwdEVAMJRMnXzuK9LqJEqJnRyy7tKnjmBk7boicat5qBM@vger.kernel.org, AJvYcCWJ6XrKuVYma7HZqt1dxrI+DQmyB4Z7T3/mlrGV2/9OFFQ+LG5jV4THWn6d4DlPcGhyKC9GLV7vPQ/+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLYvaKlMlkJX5y/LXR5hMiC3RPWq3UMUEns2/5EccnjZaY9Pj3
-	zDZUQ3Nyd+AhR+N558GMUUZ10Y7LR0xmzbHPJD4As72x1aIJVfl5
-X-Gm-Gg: ASbGncupXLM3yXzWZHtTxI6e94n6EqHypS+5OYOivLJS+T08X9OtsSH9OSVFlND90rL
-	nVnosUi84O3XZ0+GzWuO/H9ckt86k0MbMH2f8ZyCLhsxnDEBTPbVLFd8Ddx4graAMVkt9eT5RXf
-	1CKLTy/9cnlyax21bBLNPyaF8nIoMCdxuZN1JBO+uXMSj5NrKKYwTNCoFPwvM4gBLpy6j8UsdSw
-	HKMTF9Vr4NbGx7nGN+OydXMNCDHLyIDS14TW0ec7/Gby4IhrEOLl2NqJkUeNRR45XSWPOW/LWKy
-	y8kXbslwpLYaGO37TTV18gXb5wdYBQlvxuuz
-X-Google-Smtp-Source: AGHT+IHPZCycB/Wz1WISGCZKdwZHNRLPreMsBCK1H3+677e2/gdlTibb/D6w/+3yimQAmZPY7g+QVw==
-X-Received: by 2002:ac8:5710:0:b0:472:116f:94e1 with SMTP id d75a77b69052e-472116f97aemr22101861cf.11.1740058137951;
-        Thu, 20 Feb 2025 05:28:57 -0800 (PST)
-Received: from JSANTO12-L01.ad.analog.com ([191.255.131.70])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4720d4340f4sm16095391cf.65.2025.02.20.05.28.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Feb 2025 05:28:57 -0800 (PST)
-Date: Thu, 20 Feb 2025 10:28:52 -0300
-From: Jonathan Santos <jonath4nns@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com,
-	marcelo.schmitt@analog.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
-	dlechner@baylibre.com, Pop Paul <paul.pop@analog.com>
-Subject: Re: [PATCH RESEND v3 16/17] iio: adc: ad7768-1: add filter type and
- oversampling ratio attributes
-Message-ID: <Z7cuFJQeqQPYpX6d@JSANTO12-L01.ad.analog.com>
-Reply-To: 20250216163153.55a1ae97@jic23-huawei.smtp.subspace.kernel.org
-References: <cover.1739368121.git.Jonathan.Santos@analog.com>
- <2c3ce1701545e435238605342397e45657a0fb2a.1739368121.git.Jonathan.Santos@analog.com>
- <20250216163153.55a1ae97@jic23-huawei>
+	s=arc-20240116; t=1740058297; c=relaxed/simple;
+	bh=+BLHUOTGg4Xc2Cd4lVLcPAZ39MPOBrnJ+minoVo+LZE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
+	 References:In-Reply-To; b=rWrekwomzUAYgjCJtWLfmp+0K9uvAY8AHWEPdVUkVIGdbBw/7VBg2YXvtUyVrAfrrYfM/XbACMqzfZ/2+H3Q8nKCsF9WjiImDmMKczpmwxh3ge1L8NIRaf+6wyBENL4aLyaXhY+ECVFCTlr5ZdyIpW/Wq8BlOtA5B3U2otnA3jg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bwOJo+lI; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7AB664329B;
+	Thu, 20 Feb 2025 13:31:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1740058292;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CkUjsmd0pVsmitb0WeguhFZha5DdicaUilLQLg4YgVA=;
+	b=bwOJo+lIPQFFU574qPjJZ2V7C45r99lHmH2oSTCQ2yKnmcrL2Ei5+4CvHysZrdIs9saOar
+	0hDeIGSy//DHPp3fwPKI35rErylX5qWTujxuA9uujmRaSFHNB8I3iZ78v4ejX8abfDncsE
+	ND4CHpeaYnGqrihatO3n4LD18RCIAZ2VTdw7y0vTO+j8/y2izOyzFY06+zPUsiAvMJUgbh
+	tA+98IWix4u2J8Tag8BnLuU+B52JVvCIFQLfQ10CdgpV70C53w8MXvhnyCuVnVo7lS9g6N
+	OFPRKsw/H0UH9RiE2Kbz1K/omGs8BqSwljQnuT+Br0X2ODuDB+a5elIJK00C4A==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250216163153.55a1ae97@jic23-huawei>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 20 Feb 2025 14:31:29 +0100
+Message-Id: <D7XB6MXRYVLY.3RM4EJEWD1IQM@bootlin.com>
+To: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH 0/2] driver core: platform: avoid use-after-free on
+ device name
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, "Danilo Krummrich"
+ <dakr@kernel.org>, "Rob Herring" <robh@kernel.org>, "Saravana Kannan"
+ <saravanak@google.com>, "David S. Miller" <davem@davemloft.net>, "Grant
+ Likely" <grant.likely@secretlab.ca>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>, "Mark
+ Brown" <broonie@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>, "Takashi
+ Iwai" <tiwai@suse.com>, "Binbin Zhou" <zhoubinbin@loongson.cn>,
+ <linux-sound@vger.kernel.org>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, <stable@vger.kernel.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+References: <20250218-pdev-uaf-v1-0-5ea1a0d3aba0@bootlin.com>
+ <2025022005-affluent-hardcore-c595@gregkh>
+In-Reply-To: <2025022005-affluent-hardcore-c595@gregkh>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeijedviecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggfgtgffkffvhffuvefofhgjsehtqhertdertdejnecuhfhrohhmpefvhhorohcunfgvsghruhhnuceothhhvghordhlvggsrhhunhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgedvffeftddukedvffffjeehvedtueeuteefffeijeeiteelgefgfeeihfduheeinecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeiieegsgemfhdtfhhfmehfvgdutdemlegvfhgunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeiieegsgemfhdtfhhfmehfvgdutdemlegvfhgupdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvtddprhgtphhtthhopehgrhgvghhkhheslhhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehrrghfrggvlheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrkhhrsehkvghrn
+ hgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshgrrhgrvhgrnhgrkhesghhoohhglhgvrdgtohhmpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopehgrhgrnhhtrdhlihhkvghlhiesshgvtghrvghtlhgrsgdrtggrpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On 02/16, Jonathan Cameron wrote:
-> On Wed, 12 Feb 2025 15:18:59 -0300
-> Jonathan Santos <Jonathan.Santos@analog.com> wrote:
-> 
-> > Separate filter type and decimation rate from the sampling frequency
-> > attribute. The new filter type attribute enables sinc3, sinc3+rej60
-> > and wideband filters, which were previously unavailable.
-> > 
-> > Previously, combining decimation and MCLK divider in the sampling
-> > frequency obscured performance trade-offs. Lower MCLK divider
-> > settings increase power usage, while lower decimation rates reduce
-> > precision by decreasing averaging. By creating an oversampling
-> > attribute, which controls the decimation, users gain finer control
-> > over performance.
-> > 
-> > The addition of those attributes allows a wider range of sampling
-> > frequencies and more access to the device features.
-> > 
-> > Co-developed-by: Pop Paul <paul.pop@analog.com>
-> > Signed-off-by: Pop Paul <paul.pop@analog.com>
-> > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> As below. We should aim to 'pre bake' the value arrays for
-> get_available() to avoid the potential race conditions of a consumer
-> seeing a partly updated set a parameters change.
-> 
-> Better to see a consistent but stale one.
-> 
-> Jonathan
-> 
-> > ---
-> > v3 Changes:
-> > * removed unsed variables.
-> > * included sinc3+rej60 filter type.
-> > * oversampling_ratio moved to info_mask_shared_by_type.
-> > * reordered functions to avoid foward declaration.
-> > * simplified regmap writes.
-> > * Removed locking.
-> > * replaced some helper functions for direct regmap_update_bits
-> >   calls.
-> > * Addressed other nits.
-> > 
-> > v2 Changes:
-> > * Decimation_rate attribute replaced for oversampling_ratio.
-> > ---
-> >  drivers/iio/adc/ad7768-1.c | 359 ++++++++++++++++++++++++++++++-------
-> >  1 file changed, 290 insertions(+), 69 deletions(-)
-> > 
-> > diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
-> > index 8aea38c154fe..18f1ea0bf66d 100644
-> > --- a/drivers/iio/adc/ad7768-1.c
-> > +++ b/drivers/iio/adc/ad7768-1.c
-> 
-> > +
-> > +/* Decimation Rate range for each filter type */
-> > +static const int ad7768_dec_rate_range[][3] = {
-> > +	[AD7768_FILTER_SINC5] = { 8, 8, 1024 },
-> > +	[AD7768_FILTER_SINC3] = { 32, 32, 163840 },
-> > +	[AD7768_FILTER_WIDEBAND] = { 32, 32, 1024 },
-> > +	[AD7768_FILTER_SINC3_REJ60] = { 32, 32, 163840 },
-> > +};
-> > +
-> > +/*
-> > + * The AD7768-1 supports three primary filter types:
-> > + * Sinc5, Sinc3, and Wideband.
-> > + * However, the filter register values can also encode
-> wrap at 80 chars.
-> > + * additional parameters such as decimation rates and
-> > + * 60Hz rejection. This utility function separates the
-> > + * filter type from these parameters.
-> > + */
-> 
-> >  
-> > -	return 0;
-> > +static int ad7768_get_fil_type_attr(struct iio_dev *dev,
-> > +				    const struct iio_chan_spec *chan)
-> > +{
-> > +	struct ad7768_state *st = iio_priv(dev);
-> > +	int ret;
-> > +	unsigned int mode;
-> > +
-> > +	ret = regmap_read(st->regmap, AD7768_REG_DIGITAL_FILTER, &mode);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	mode = FIELD_GET(AD7768_DIG_FIL_FIL_MSK, mode);
-> > +
-> > +	/*
-> > +	 * From the register value, get the corresponding
-> > +	 * filter type.
-> 
-> Very short line wrap.  Stick to 80 chars.
-> 
-> > +	 */
-> > +	return ad7768_filter_regval_to_type[mode];
-> >  }
-> 
-> >  
-> > @@ -619,16 +798,25 @@ static int ad7768_read_avail(struct iio_dev *indio_dev,
-> >  			     long info)
-> >  {
-> >  	struct ad7768_state *st = iio_priv(indio_dev);
-> > -	int i;
-> > +	int i, freq_filtered, len = 0;
-> >  
-> >  	switch (info) {
-> > +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> > +		*vals = (int *)ad7768_dec_rate_range[st->filter_type];
-> > +		*type = IIO_VAL_INT;
-> > +		return IIO_AVAIL_RANGE;
-> >  	case IIO_CHAN_INFO_SAMP_FREQ:
-> > -		for (i = 0; i < ARRAY_SIZE(ad7768_clk_config); i++)
-> > -			st->samp_freq_avail[i] = DIV_ROUND_CLOSEST(st->mclk_freq,
-> > -								   ad7768_clk_config[i].clk_div);
-> > +		freq_filtered = DIV_ROUND_CLOSEST(st->mclk_freq, st->oversampling_ratio);
-> 
-> Ah. So now it is dynamic.  This hits the previously mentioned race.
-> A consumer can be holding a copy of this and acting on it whilst holding no
-> locks on this device - thus it can see a mixture of values as this update
-> occurs. To avoid that you need to precompute the combinations +
-> store the lot in arrays.  Then this code should simply be selecting the arrays.
-> A consumer holding a stale one will get a consistent (if wrong) set.
+Hello Greg,
+
+On Thu Feb 20, 2025 at 1:41 PM CET, Greg Kroah-Hartman wrote:
+> On Tue, Feb 18, 2025 at 12:00:11PM +0100, Th=C3=A9o Lebrun wrote:
+>> The use-after-free bug appears when:
+>>  - A platform device is created from OF, by of_device_add();
+>>  - The same device's name is changed afterwards using dev_set_name(),
+>>    by its probe for example.
+>>=20
+>> Out of the 37 drivers that deal with platform devices and do a
+>> dev_set_name() call, only one might be affected. That driver is
+>> loongson-i2s-plat [0]. All other dev_set_name() calls are on children
+>> devices created on the spot. The issue was found on downstream kernels
+>> and we don't have what it takes to test loongson-i2s-plat.
+>>=20
+>> Note: loongson-i2s-plat maintainers are CCed.
+>>=20
+>>    =E2=9F=A9 # Finding potential trouble-makers:
+>>    =E2=9F=A9 git grep -l 'struct platform_device' | xargs grep -l dev_se=
+t_name
+>>=20
+>> The solution proposed is to add a flag to platform_device that tells if
+>> it is responsible for freeing its name. We can then duplicate the
+>> device name inside of_device_add() instead of copying the pointer.
 >
-Yes, before the available frequencies were static, but now they depend
-on the oversampling ratio. I can create a helper function to precomput
-and fill this array and call it after configuring the digital filter, 
-where the filter type and OSR is set.
-
-For the previous static case, i call this function in the probe.
-> The < 50 check makes this more complex than normal but they are still static
-> choices I think as long as the input clock doesn't change.
+> Ick.
 >
+>> What is done elsewhere?
+>>  - Platform bus code does a copy of the argument name that is stored
+>>    alongside the struct platform_device; see platform_device_alloc()[1].
+>>  - Other busses duplicate the device name; either through a dynamic
+>>    allocation [2] or through an array embedded inside devices [3].
+>>  - Some busses don't have a separate name; when they want a name they
+>>    take it from the device [4].
+>
+> Really ick.
+>
+> Let's do the right thing here and just get rid of the name pointer
+> entirely in struct platform_device please.  Isn't that the correct
+> thing that way the driver core logic will work properly for all of this.
 
-I will include this in the helper function.
+I would agree, if it wasn't for this consideration that is found in the
+commit message [0]:
 
-> > +		for (i = 0; i < ARRAY_SIZE(ad7768_mclk_div_rates); i++) {
-> > +			st->samp_freq_avail[len] = DIV_ROUND_CLOSEST(freq_filtered,
-> > +								     ad7768_mclk_div_rates[i]);
-> > +			/* Sampling frequency cannot be lower than the minimum of 50 SPS */
-> > +			if (st->samp_freq_avail[len] >= 50)
-> > +				len++;
-> > +		}
-> >  
-> >  		*vals = (int *)st->samp_freq_avail;
-> > -		*length = ARRAY_SIZE(ad7768_clk_config);
-> > +		*length = len;
-> >  		*type = IIO_VAL_INT;
-> >  		return IIO_AVAIL_LIST;
-> >  	default:
-> > @@ -636,20 +824,45 @@ static int ad7768_read_avail(struct iio_dev *indio_dev,
-> >  	}
-> >  }
-> >  
-> > -static int ad7768_write_raw(struct iio_dev *indio_dev,
-> > -			    struct iio_chan_spec const *chan,
-> > -			    int val, int val2, long info)
-> > +static int __ad7768_write_raw(struct iio_dev *indio_dev,
-> > +			      struct iio_chan_spec const *chan,
-> > +			      int val, int val2, long info)
-> >  {
-> >  	struct ad7768_state *st = iio_priv(indio_dev);
-> > +	int ret;
-> >  
-> >  	switch (info) {
-> >  	case IIO_CHAN_INFO_SAMP_FREQ:
-> >  		return ad7768_set_freq(st, val);
-> > +
-> > +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> > +		ret = ad7768_configure_dig_fil(indio_dev, st->filter_type, val);
-> > +		if (ret)
-> > +			return ret;
-> > +
-> > +		/* Update sampling frequency */
-> > +		return ad7768_set_freq(st, st->samp_freq);
-> >  	default:
-> >  		return -EINVAL;
-> >  	}
-> >  }
-> >  
-> > +static int ad7768_write_raw(struct iio_dev *indio_dev,
-> > +			    struct iio_chan_spec const *chan,
-> > +			    int val, int val2, long info)
-> > +{
-> > +	int ret;
-> > +
-> > +	ret = iio_device_claim_direct_mode(indio_dev);
-> Previously we didn't claim this to set the sampling frequency.
-> That change looks like a potential ABI issue.  I'm fine with it
-> if we should always have this protected.
-> 
-> If you are just using it to avoid racing between setting sampling
-> frequency and oversampling ratio then don't use that, use a local
-> lock where the scope can be clearly described.
-> 
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = __ad7768_write_raw(indio_dev, chan, val, val2, info);
-> > +	iio_device_release_direct_mode(indio_dev);
-> > +
-> > +	return ret;
-> > +}
+> It is important to duplicate! pdev->name must not change to make sure
+> the platform_match() return value is stable over time. If we updated
+> pdev->name alongside dev->name, once a device probes and changes its
+> name then the platform_match() return value would change.
+
+I'd be fine sending a V2 that removes the field *and the fallback* [1],
+but I don't have the full scope in mind to know what would become broken.
+
+[0]: https://lore.kernel.org/lkml/20250218-pdev-uaf-v1-2-5ea1a0d3aba0@bootl=
+in.com/
+[1]: https://elixir.bootlin.com/linux/v6.13.3/source/drivers/base/platform.=
+c#L1357
+
+Regards,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
