@@ -1,95 +1,113 @@
-Return-Path: <devicetree+bounces-148744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9F49A3D406
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:00:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E86BAA3D415
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:02:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A85C188BAC9
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:00:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC0EF3B5C49
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:02:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5BBB1EC01D;
-	Thu, 20 Feb 2025 09:00:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="o5RK3r4R"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B061EE7DC;
+	Thu, 20 Feb 2025 09:02:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED9C81EBFE0;
-	Thu, 20 Feb 2025 09:00:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326A11EDA11
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 09:02:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740042005; cv=none; b=cayHqF/sfMi+H334UeR6OMMVk6XZxXS0C+pImjU590l0ZQ3s8NYR7+LayrS1Sv2OJuurA/epCbNd+XaIyuSdfRq721g2FNj6yMi9WqH/qA0IBqYZkUVz5HpJG+F7X8RskNVToDfaTQgEjFVCH1bxs2xI6A35Oyp6S8cHhFCwZGw=
+	t=1740042133; cv=none; b=iA8jhl4AkkIfvoYvSfYE2IMSqABvAJIZ+XF08LMhOa77KFRwd0OxQ7kKE0iK+ZfSPBHV+BC1exKCVbumO240wiXsBDI+LSyzEt41D1rPLZPkWW/vqvlVcA54Uaa//dyS3R+x598e5uB1ZLWW9ESrw1kjVxkIYvGNUIREfKHcgTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740042005; c=relaxed/simple;
-	bh=5A0WJvrt3x58g4nbFzK9ZSfFmD/sJiUvrzE2dXSE80E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LuZntdp6Tnz7Ig7n5sQnW9egNxPjY70eF7oqE8MKTEtMeH7tj2Jwv6CDvdSavLvLlzVFl9MlVAhlYqdErQX0O7YCJDI/Lwc8SETbW6VMcUnNdNQmXoe4VJXsIU2biyGSoCbqMQGDx1EbTSzE4jiIxRmhcVEh6wGXoE0q9Ow/fvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=o5RK3r4R; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740042001;
-	bh=5A0WJvrt3x58g4nbFzK9ZSfFmD/sJiUvrzE2dXSE80E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=o5RK3r4Rk9WuvoZOwJfe9Bu4c2+bFvpTfB8Lp7FMchF966NYGq3kXX8uZRvTpAI/q
-	 Dwfe6h34fU5aOjsijyu0VYbWRO0FUSr7H49ARLQyUa0TjBKJtBo2Zt/uITT8SJMzRn
-	 WjryCNBtusogoc+S67rQF/PN6pnd8zi+Ksto9eIxPrfFibUssDiT7SlEw1sX/t833+
-	 8Y7C/G/6SMRN6vVliSe1hO1382MY9OBR9LYXeqOoUDQZK1X6RMlVC2hWSYDNyNBm5I
-	 1YXRY/8LRBaoj2/Vf08lBbSH4QZfhsksmA/OISb8ROElksWNnSPow/RXgRijH53bwR
-	 /AbUPWxZD2SHQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6D2A417E1560;
-	Thu, 20 Feb 2025 10:00:00 +0100 (CET)
-Message-ID: <71767679-057b-4d4b-be3f-3c21bb9877b6@collabora.com>
-Date: Thu, 20 Feb 2025 09:59:59 +0100
+	s=arc-20240116; t=1740042133; c=relaxed/simple;
+	bh=A+r9IGGBG25pq9QT8w+tm0bS/ZjAeMW3I4gN502rFwQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DXiQ+SbN6zw8q4n0qNXdDTi5jqMVBjKcTA5bzlUgvSZgpz5cvW3LQ2x8iFNGuTdyHwv5lkbfywjbwZMVr6MzdJP2FkQlag9U0rV2ZkHn95gJq6ewaOGOK6wbbnvC0gdyvUWL3JpwOanCmJ/iUiKPMkl0CaxXFxvpYDCZyJEktFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tl2RR-0007Bo-7I; Thu, 20 Feb 2025 10:01:57 +0100
+Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tl2RQ-001uIF-0G;
+	Thu, 20 Feb 2025 10:01:56 +0100
+Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tl2RP-00CKDN-3C;
+	Thu, 20 Feb 2025 10:01:55 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v3 0/3] Add support for Plymovent AQM board
+Date: Thu, 20 Feb 2025 10:01:52 +0100
+Message-Id: <20250220090155.2937620-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v3] arm64: dts: mediatek: mt8183: Switch to Elan
- touchscreen driver
-To: Hsin-Te Yuan <yuanhsinte@chromium.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Enric Balletbo i Serra <eballetbo@kernel.org>,
- Hsin-Yi Wang <hsinyi@chromium.org>, Benjamin Tissoires <bentiss@kernel.org>,
- Hans de Goede <hdegoede@redhat.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20250120-post-reset-v3-1-8f394bb25c8f@chromium.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250120-post-reset-v3-1-8f394bb25c8f@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Il 20/01/25 04:35, Hsin-Te Yuan ha scritto:
-> After commit 2be404486c05 ("HID: i2c-hid-of: Add reset GPIO support to
-> i2c-hid-of"), the i2c-hid-of driver used by some mt8183 devices resets
-> the touchscreen without having enough post-reset delay. This makes those
-> touchscreen fail to get probed.
-> 
-> Switch to Elan touchscreen driver, which has enough post-reset delay.
-> 
-> Fixes: 2be404486c05 ("HID: i2c-hid-of: Add reset GPIO support to i2c-hid-of")
-> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+This patch series adds support for the Plymovent AQM board based on the
+STM32MP151C SoC. Additionally, the ICS-43432 device tree binding is
+converted to YAML to address a validation warning.
 
-Applied after fixing a merge issue.
+The ICS-43432 patch resolves one of the devicetree validation warnings.
+However, the false-positive warning:
 
-Thanks!
+  "audio-controller@44004000: port:endpoint: Unevaluated properties are
+   not allowed ('format' was unexpected)"
 
-Regards,
-Angelo
+remains unresolved. The "format" property is required for proper
+functionality of this device.
+
+Best regards,
+
+Oleksij Rempel (3):
+  dt-bindings: sound: convert ICS-43432 binding to YAML
+  dt-bindings: arm: stm32: Add Plymovent AQM board
+  arm: dts: stm32: Add Plymovent AQM devicetree
+
+ .../devicetree/bindings/arm/stm32/stm32.yaml  |   1 +
+ .../devicetree/bindings/sound/ics43432.txt    |  19 -
+ .../bindings/sound/invensense,ics43432.yaml   |  51 ++
+ arch/arm/boot/dts/st/Makefile                 |   1 +
+ arch/arm/boot/dts/st/stm32mp151c-plyaqm.dts   | 669 ++++++++++++++++++
+ 5 files changed, 722 insertions(+), 19 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/ics43432.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/invensense,ics43432.yaml
+ create mode 100644 arch/arm/boot/dts/st/stm32mp151c-plyaqm.dts
+
+--
+2.39.5
 
 
