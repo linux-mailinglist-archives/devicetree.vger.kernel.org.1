@@ -1,176 +1,128 @@
-Return-Path: <devicetree+bounces-149085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9C89A3E358
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 19:06:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17317A3E35B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 19:07:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 930553A59D8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:06:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8D10701D35
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFD91215F5E;
-	Thu, 20 Feb 2025 18:05:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D03182147E7;
+	Thu, 20 Feb 2025 18:05:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eIEug/o0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BEE221579C;
-	Thu, 20 Feb 2025 18:05:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A964E2147E3
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 18:05:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740074705; cv=none; b=V6OiLkrEsYV/VSqsCAy7GvuX9k0ij+Mu3kSnPXgbhXNG+Q4meGAJbiK30EOYZrT09eYkFZx0l1NeOu3Z2Lx6dqEUtZ9SW0wAi7/5pFvWRPNJdMdKsvh6ssy6DQwUCUxnhxjxF/TybHV4DWC8abcZy550o2PLjdz3tlt/+T/pQYA=
+	t=1740074711; cv=none; b=YZWxRT0ShKqQwZ+A0GFtXNSgyhTtpMYtrAqMT8A0bIiNDngV6cOH+977XYZIT3QpScudX0Ybag9hxcLOXoj73PlvRjxSQ/DoCI2u3bwSqJX+a32o8c734A6o+VuWsT0IAI6pXcI5QSahaZWfl1gye8o8UquXHbN3XQvIKn/mYIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740074705; c=relaxed/simple;
-	bh=w3+kiSyJXOb0pNy8ocDnDQd7Cizm2vu6drwZHcAQ1+w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LbSbVMU2QZHUKleKIG2JD5qz0kjOIl5jkZFn9rRFvJ5xqLkfRDQdpXA6A+wl3AYrPtQu5RJdWmtK5SLUjLPOA5si8pB8Y7Vbb+MAF1XSazb43TiChfk3oVGxxKyK0BX+QUZNRs2GfKlurHo4VjYSgutYAv4k5S1m2Oo/rQnrWd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C204F16F3;
-	Thu, 20 Feb 2025 10:05:21 -0800 (PST)
-Received: from e119884-lin.cambridge.arm.com (e119884-lin.cambridge.arm.com [10.1.196.72])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 97C743F59E;
-	Thu, 20 Feb 2025 10:05:01 -0800 (PST)
-From: Vincenzo Frascino <vincenzo.frascino@arm.com>
-To: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: Vincenzo Frascino <vincenzo.frascino@arm.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jessica Clarke <jrtc27@jrtc27.com>
-Subject: [PATCH v6 09/10] arm64: dts: morello: Add support for fvp dts
-Date: Thu, 20 Feb 2025 18:04:27 +0000
-Message-ID: <20250220180427.3382482-10-vincenzo.frascino@arm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250220180427.3382482-1-vincenzo.frascino@arm.com>
-References: <20250220180427.3382482-1-vincenzo.frascino@arm.com>
+	s=arc-20240116; t=1740074711; c=relaxed/simple;
+	bh=1Ar4twKjARHRUgMTXu0SoMkA2ntup61NxpV+y69N71U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LUAopgD5TD8qjDT13K7Gkh55sL9QtoZrJI040ndNbsGm34E8mKN7cKzz+Sgel3npBrkGKhYHRW+Cl/dxnEXpZG3slxzGtd55tMONubRDR+Y/QhnLvINhWB94rsEu1G7HMFVHoc/4KERznbMQcAoahlVAoEb7Ny4qWCUYrru6aAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eIEug/o0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0105C4CEE6;
+	Thu, 20 Feb 2025 18:05:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740074709;
+	bh=1Ar4twKjARHRUgMTXu0SoMkA2ntup61NxpV+y69N71U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eIEug/o0qw2/L/iyE9cBGMXp6B73qpyO78qULi1tE6S7cXqqQEMQfIlZcvLUVI37/
+	 2fPVaGDwbLVweFQ4/nAQqa95mXpElABNMNLi84No98SsKNoMBt4J27+ouvu2PKJfdB
+	 mjtBmTE+947qb4rn2PsuE+391B1BbZi5U5VSOYsEXKo467rZjAhmiMqYt5j9Ti7px/
+	 nWA+zMIpTQ9AjPLt2H2sG3Zo74qQfzeA5Zriex55mNtN0PvYk2T53iVR9pjSCLp4kv
+	 0pLK7tf2Tj1wcsnpke6/EfWhdIpYcZFk/sNQ0HWZ1qDz35mixe1eDcmapNZSNgGxF5
+	 y2ATPWaTwmMJg==
+Message-ID: <68c61ffc-51c7-48a4-9fba-a14562d0027d@kernel.org>
+Date: Thu, 20 Feb 2025 19:05:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: hwmon: ucd90320: Add 90160 compatible
+To: Eddie James <eajames@linux.ibm.com>, linux-aspeed@lists.ozlabs.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrew@codeconstruct.com.au, devicetree@vger.kernel.org
+References: <20250219212735.1365050-1-eajames@linux.ibm.com>
+ <20250219212735.1365050-3-eajames@linux.ibm.com>
+ <3ed2b213-0219-4ca7-817c-d6adf424612e@kernel.org>
+ <f9615bfa-9d3a-47df-a5dc-a6a1f3b4940b@linux.ibm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <f9615bfa-9d3a-47df-a5dc-a6a1f3b4940b@linux.ibm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The Morello architecture is an experimental extension to Armv8.2-A,
-which extends the AArch64 state with the principles proposed in
-version 7 of the Capability Hardware Enhanced RISC Instructions
-(CHERI) ISA.
+On 20/02/2025 17:15, Eddie James wrote:
+> 
+> On 2/20/25 08:47, Krzysztof Kozlowski wrote:
+>> On 19/02/2025 22:27, Eddie James wrote:
+>>> The 90160 is just like the 90320 but with less GPIs and GPIOs.
+>> Then isn't it compatible?
+>>
+>> Where is your driver change?
+> 
+> 
+> Sorry, my commit message should be more clear. The driver already 
+> supports the ucd90160 and matches the compatible string I added here. 
+> I'll improve my commit message for v2.
+Driver has many more entries, why are you adding only one compatible?
+Please fix all of them, not one by one.
 
-Introduce Morello fvp dts.
-
-Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
----
- arch/arm64/boot/dts/arm/Makefile        |  2 +-
- arch/arm64/boot/dts/arm/morello-fvp.dts | 77 +++++++++++++++++++++++++
- 2 files changed, 78 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/arm/morello-fvp.dts
-
-diff --git a/arch/arm64/boot/dts/arm/Makefile b/arch/arm64/boot/dts/arm/Makefile
-index 869667bef7c0..f30ee045dc95 100644
---- a/arch/arm64/boot/dts/arm/Makefile
-+++ b/arch/arm64/boot/dts/arm/Makefile
-@@ -7,4 +7,4 @@ dtb-$(CONFIG_ARCH_VEXPRESS) += rtsm_ve-aemv8a.dtb
- dtb-$(CONFIG_ARCH_VEXPRESS) += vexpress-v2f-1xv7-ca53x2.dtb
- dtb-$(CONFIG_ARCH_VEXPRESS) += fvp-base-revc.dtb
- dtb-$(CONFIG_ARCH_VEXPRESS) += corstone1000-fvp.dtb corstone1000-mps3.dtb
--dtb-$(CONFIG_ARCH_VEXPRESS) += morello-sdp.dtb
-+dtb-$(CONFIG_ARCH_VEXPRESS) += morello-sdp.dtb morello-fvp.dtb
-diff --git a/arch/arm64/boot/dts/arm/morello-fvp.dts b/arch/arm64/boot/dts/arm/morello-fvp.dts
-new file mode 100644
-index 000000000000..2072c0b72325
---- /dev/null
-+++ b/arch/arm64/boot/dts/arm/morello-fvp.dts
-@@ -0,0 +1,77 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
-+/*
-+ * Copyright (c) 2021-2024, Arm Limited. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+#include "morello.dtsi"
-+
-+/ {
-+	model = "Arm Morello Fixed Virtual Platform";
-+	compatible = "arm,morello-fvp", "arm,morello";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	bp_refclock24mhz: clock-24000000 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+		clock-output-names = "bp:clock24mhz";
-+	};
-+
-+	block_0: virtio_block@1c170000 {
-+		compatible = "virtio,mmio";
-+		reg = <0x0 0x1c170000 0x0 0x200>;
-+		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
-+	net_0: virtio_net@1c180000 {
-+		compatible = "virtio,mmio";
-+		reg = <0x0 0x1c180000 0x0 0x200>;
-+		interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
-+	rng_0: virtio_rng@1c190000 {
-+		compatible = "virtio,mmio";
-+		reg = <0x0 0x1c190000 0x0 0x200>;
-+		interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
-+	p9_0: virtio_p9@1c1a0000 {
-+		compatible = "virtio,mmio";
-+		reg = <0x0 0x1c1a0000 0x0 0x200>;
-+		interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
-+	kmi_0: kmi@1c150000 {
-+		compatible = "arm,pl050", "arm,primecell";
-+		reg = <0x0 0x1c150000 0x0 0x1000>;
-+		interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&bp_refclock24mhz>, <&bp_refclock24mhz>;
-+		clock-names = "KMIREFCLK", "apb_pclk";
-+	};
-+
-+	kmi_1: kmi@1c160000 {
-+		compatible = "arm,pl050", "arm,primecell";
-+		reg = <0x0 0x1c160000 0x0 0x1000>;
-+		interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&bp_refclock24mhz>, <&bp_refclock24mhz>;
-+		clock-names = "KMIREFCLK", "apb_pclk";
-+	};
-+
-+	eth_0: ethernet@1d100000 {
-+		compatible = "smsc,lan91c111";
-+		reg = <0x0 0x1d100000 0x0 0x10000>;
-+		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
--- 
-2.43.0
-
+Best regards,
+Krzysztof
 
