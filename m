@@ -1,139 +1,158 @@
-Return-Path: <devicetree+bounces-148933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF2D8A3DC4F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:16:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39296A3DC6F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:19:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CCC016F81E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:16:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C962188A3EB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:18:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 346641F8916;
-	Thu, 20 Feb 2025 14:16:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23ADD1FDE3B;
+	Thu, 20 Feb 2025 14:17:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="k+FnlPVz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hJzdN4qF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ECC31FBE8D
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:16:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D3AC1FBEB4;
+	Thu, 20 Feb 2025 14:17:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740060984; cv=none; b=Cq2uIFE9brF6TSlmgPbO6Y96BRKfkwcnTKc/CKExRc2zBi4HOIyOqVzz9VoaBhAzEW2lfDlHCJWtLSL+uzj08X10TjBomSmu8nkA5YUT2dLGXMohMlcEmeboe1Q00RGZ+IOHNEIg0s6hLDEBMkRMuCrCngmhwIeAlthl4O+ESqs=
+	t=1740061069; cv=none; b=m6Q/u9ZelJDBTr6Mw1hQhX5pDhvXdvNyHToE7DeYF0xTiQbEP4D39cCbjbNN3okWBMYTdk4eIU3BnR7oYmbeCBrYH5rCug7iLFNBhY9W9YJY7UmkG0/YFbMDPU9uS391G4ZgwLR4Z/UZhGh0DCtHOPWLfkIrERoOQAvoFCU7JwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740060984; c=relaxed/simple;
-	bh=YKoE3C8XckkPijkVeqGKcv6Cd5mV1W7QWYCHmbo0e3Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FW5uqeBncQhvKuN8NaZI6bigPlwoUtBWE02sBHc/WQrbdQBqDNAfr7nQBaUboiLzNr0BGOiBdHb01qF/ta4NOJF9YZiFDiPehBGgiOxskLj4uKm9LVw4xd9W+ESIQbkDEMHBUuAv/CYhzO6Ud/m8VYUrry8X+hLBfsAGoTm62J4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k+FnlPVz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51K5taFx015154
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:16:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JuYdE4dlbQ4IVCBmM2eClz9fsFF9FHokS9b6ozmwZV4=; b=k+FnlPVzYzdZ2PE6
-	Kroj/0BmRoWTMqyMDL74lahz3z0gUJEHra+1atu0vb92f2OmCzhuUwgwubYsaH9K
-	kZIijV8sXs4gJd9882zuZr9MDEh8UUUWfjgxceNdpuv0JkcEh1psJ72Vl57W8TET
-	6uX9aq//ihEVPSyatHS9FU4PpQjNzu61Ea94TK3akqkIXp3VKOi08OHQ0ftKO2x7
-	gFwI3B10Ahan1UtT6vu7pXJTpTM8rTP75+nznsOj+SdU7WYzjUDQ8dNc9e4JhVX7
-	qNssf5RV1Li7Ii6Dx4PWwnJOTpW4S03QSjt4nNqlZMn9+Nhk3tKlqe0RUzvnIE6I
-	1BiaYQ==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44vyy4edb1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:16:21 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6e19bfc2025so1864516d6.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 06:16:21 -0800 (PST)
+	s=arc-20240116; t=1740061069; c=relaxed/simple;
+	bh=LUMgRUpWvuZjoguWpdCmke5vgOR7WB4z9bLKqjwwGy0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=U5+6i5BEWkV1vCMPeL2WeM1R10+Q9MLBg+SJFt8/I0ZMFRoI20+G6mpOWk3ErYvRtVMEa6zk+vckUpu217sSyIasEzaWq6l75DGfTYe2niRPOrqQzIR033Cbg/tRfnsTrQIa4OVjzgIOMO90LGkpJDO+PrhfXz64IxgxE8HGs6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hJzdN4qF; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5e0939c6456so1649079a12.3;
+        Thu, 20 Feb 2025 06:17:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740061065; x=1740665865; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=j5NAA4XF+E1i12VZp9/nJoaJNV9QI4nVe2Rlxr+bSvU=;
+        b=hJzdN4qFf+Cy1k27abaa4bUNZAAiXpvLC/1b5TL8dIm7IpzhUmP4pp83R/+X3vhUD4
+         HJWfyQFHuVnErhy0G8q++Hc9zitIuxT2XF7u1UFiUwfi7z5jnBxlHPzoqgv348rCl+Nh
+         avfHI4shiu+Xo7744j8u5Vmarc4vSEWSX52ioiwexu6QFK/qD0oF113s2UlE0fs0jVrb
+         xVqexBe1XaIhpX1t62u2g2AANpTMiKi3fVVLNRVEFWgGKfJR+tyANr00dCREJtWZeHef
+         r0LGVDN53RDxZcyaLrb8lVV6FyMyJHeB6VGQTKqDWjnJsPZINJhnPVnG5+iSV08+78FZ
+         4NuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740060980; x=1740665780;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JuYdE4dlbQ4IVCBmM2eClz9fsFF9FHokS9b6ozmwZV4=;
-        b=jVxt7BbAZxv4/wN2bJ0DbPsPZjB/VjPGRtBM5lDY/HTTsr0+lmISK9oHjjnIyKp0Bw
-         wD2Xu6CVTE6AsvQ4eFnnTBaDjz4irPBe/Ps3+JJnBxpeK2AHCbu5/bIurvGk2RBZpLHu
-         skntNFVNCTfDK9LpRLdguV3DcvIG2W6CiUniyfLMsWqctWOs2NBB4E3+LDIqMYVSIg7U
-         m3lCP1yZ/cMvT2seCVTDnnLGZZJXNXfxn9xMgs/RTuPmalMyEQ31/tIb3ffNCo93CDH/
-         0BMnzqKn7HWrn3ovzyn/T59WA8aGjdcmAXVpnwMmIN/t+T3EO3giEA508LbxLYnAc76p
-         zXdg==
-X-Forwarded-Encrypted: i=1; AJvYcCXWp755rOeBkdrBjluvZ9ZDIZOoA07HvOwy/zTnuSQoOUCBEczcfNi+SeR2Kpr83WOmLD+PdVtRAkxs@vger.kernel.org
-X-Gm-Message-State: AOJu0YymQrrBLlkcTvG5+wZybt07Ow7iozplmqXfmVBowXb4HBHKVOR3
-	FoXHVj61NOc2r9fqrAoi2y2XNJs2AuHxsT3R6OssDsWwtxFYA70zpGUo7UirAd8Njl5L1oQdlUW
-	pHcxilqt0obbaYNNwoB/bYSO0KNpBIE3pAKeZKxP1gkew5yb2UBwyKm+v7Zo3
-X-Gm-Gg: ASbGncsdJ/6GVfdhGLpr8i9JakHTUCbL/ODr/TNhAK5ZoEjX29Ub1Lo5Jd/Uomr3qaM
-	PeLcxmzppD8ghMk/HmpS1NkSefY1fpUiv+dJf8Es4YqdCZtWV8Y4GZZiRb9DP9k+WpBB03Zq87U
-	vx7xceDCRoPX4gSyPcE4RfYQiUpWpbUzjMdIgqSKfuD0WEWDON7DfGKfYSe2w/fJJ7d4zua3hIU
-	WBKno++HJ9dZXTmCePL1D/0MkxAF7Ou2OSe8W73Hjvk1kWSFktJKGt1c6GmifKpqIvDorDLvmb+
-	XXM6+qxQ3j0z+OZhvW14TC63aq3QwModJnCFs4rgllELK02iY7NmQGy7Vzc=
-X-Received: by 2002:a05:6214:daa:b0:6d4:d1c:47d with SMTP id 6a1803df08f44-6e66cc81ee6mr117329776d6.2.1740060980166;
-        Thu, 20 Feb 2025 06:16:20 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE/rtxy8V+ibsuKKWTYNnpHRyUUiiKw18tEiKCIKFtweF7nc0fiGiUTgniZ2kAyBjdw0RVwQA==
-X-Received: by 2002:a05:6214:daa:b0:6d4:d1c:47d with SMTP id 6a1803df08f44-6e66cc81ee6mr117329606d6.2.1740060979770;
-        Thu, 20 Feb 2025 06:16:19 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba532322e6sm1462102766b.1.2025.02.20.06.16.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Feb 2025 06:16:19 -0800 (PST)
-Message-ID: <bbb099ae-2389-4b7c-9161-83d8fe94b45d@oss.qualcomm.com>
-Date: Thu, 20 Feb 2025 15:16:16 +0100
+        d=1e100.net; s=20230601; t=1740061065; x=1740665865;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j5NAA4XF+E1i12VZp9/nJoaJNV9QI4nVe2Rlxr+bSvU=;
+        b=SPqkHFVT6ggpM/GrwNoyeobjGxcfKojDd6ZDUVCfanv/eV16rUQ+bThQV6YE+qow22
+         gXogFyN9UU16lRmhHlqR80JB0r5FDLVVKUVqdm2wpyTRmqOX3EX4uzcQpus3H/Owlg7f
+         GUkQ0Np94OdcsuiizWEIdeUaiRUbGCAdHFlfI1+rqXvQ9+qKM/3AxRGn84buIN2/1EBC
+         LKn7jFQHlUHL7SOBAiQpInWgEI5LnFpzMlQhu/zBffFr0YirkEDDi3/48G/tw05XffHd
+         dZANd6QWeHhrbT6LOzPfalU1n7mU5MGHFCToRR3DQXay4W4snlCgkPHmHUiXijzwmu+g
+         brXg==
+X-Forwarded-Encrypted: i=1; AJvYcCUQTIU9/8dIDk94ADrP5BW1Cnv9Ipv3OIwN9w2ugI1AJaiOXgq8T8vPfV/fKBmzswX+d6Io8ZWc2/eJjPE=@vger.kernel.org, AJvYcCUhEcM8HWhCTJNGQlbmmB5Ts5bpXq07JDwz+LFfPL5xTyqAGxfJxvIyydNdOQ6fX11+syTzmZUZ0z/e@vger.kernel.org, AJvYcCWiS5KVvtqh5HrsWcpIo1LcuGb5pprqEHJAgZq+/TZ3xUmIu7Nvr+uJ5l+w99Vwl/SNFgr+6rHW3jounyiY@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHUQnDxJaowvoY7xQ7neBALR/a/WQDYDJ6IYwMolUj7U0hQjV+
+	TmLHzeZViB+LGFVZxUK0E4uE/vGWd7HyjeLXLOjL0CIebrpZMIky
+X-Gm-Gg: ASbGncu49AYtM//XAHmQw5hAjlckditQhtfVH6r/5/98ly9+zTYCM5f67RKmPiZ1AKL
+	OgmzRqd/JERsT4IXj9fECh5HP4mD2eNW19yAhbHcvGmlg/yrWaYFMA8rFqwJ+h+zqVSC5FtgJZp
+	kCjwivBQc5lP/oDxRYSwuZjpszqcK/wK29kSUWMbf8nonLBzXLh1JApkNJL/Ii/+KHzSI4ZIwmY
+	ISyKZXRNrch/4xI6FgCOrbNaLHG49qTvuybaGzGe4qAahsPuRMu3aB/P+pRz5qlgnXC/6P/Ksld
+	O1m1JTUxlxzP7BNzjsq3v6isUxvS
+X-Google-Smtp-Source: AGHT+IHwF/iEm5a3EKb+wf6y31mYTImtmkfKgViMWXtti2k6qyught+ricxhgsnrzaDiZKQpJ1Np8w==
+X-Received: by 2002:a05:6402:348b:b0:5e0:8064:b42e with SMTP id 4fb4d7f45d1cf-5e08064b595mr8838593a12.25.1740061065289;
+        Thu, 20 Feb 2025 06:17:45 -0800 (PST)
+Received: from demon-pc.localdomain ([188.27.130.21])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1b4f59sm12124224a12.6.2025.02.20.06.17.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Feb 2025 06:17:44 -0800 (PST)
+From: Cosmin Tanislav <demonsingur@gmail.com>
+To: 
+Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Cosmin Tanislav <demonsingur@gmail.com>
+Subject: [PATCH 0/6] media: v4l: add support for Virtual Channel IDs
+Date: Thu, 20 Feb 2025 16:17:22 +0200
+Message-ID: <20250220141739.228714-1-demonsingur@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/7] drm/msm/mdp4: drop mpd4_lvds_pll_init stub
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250220-fd-mdp4-lvds-v2-0-15afe5578a31@linaro.org>
- <20250220-fd-mdp4-lvds-v2-2-15afe5578a31@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250220-fd-mdp4-lvds-v2-2-15afe5578a31@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: dkJXHAYUkLAuawO825UciSyfyLSL5Z1o
-X-Proofpoint-ORIG-GUID: dkJXHAYUkLAuawO825UciSyfyLSL5Z1o
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-20_06,2025-02-20_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 suspectscore=0 clxscore=1015
- lowpriorityscore=0 mlxlogscore=780 spamscore=0 adultscore=0 phishscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502200103
+Content-Transfer-Encoding: 8bit
 
-On 20.02.2025 12:14 PM, Dmitry Baryshkov wrote:
-> Drop the !COMMON_CLK stub for mpd4_lvds_pll_init(), the DRM_MSM driver
-> depends on COMMON_CLK.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+Multi-camera systems often have issues with receiving video streams
+from multiple cameras at the same time because the cameras use the same
+Virtual Channel IDs.
 
-Ha, nice bit of archeology
+CSI bridges might not support remapping the Virtual Channel IDs, making
+it impossible to receive the separate video streams at the same
+time, while the CSI receiver is able to de-mux streams based on VC IDs.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cameras sometimes have support for changing the VC IDs they output
+themselves.
 
-Konrad
+For a practical example, GMSL2 deserializer chips do not support VC ID
+remapping in tunnel mode, and neither do the serializers. Allowing the
+cameras to have their VC IDs configured would allow multi-camera setups
+to use tunnel mode.
+
+Add support for specifying these Virtual Channel IDs in Video Interface
+Endpoints.
+
+Add support for parsing VC IDs in v4l2_fwnode_endpoint_parse().
+This allows us to retrieve the specified VC IDs in camera drivers and
+configure the hardware to use them.
+
+The supported values are 0 to 3, with a maximum of 4 values.
+Although the CSI-2 specification allows for up to 32 virtual channels,
+most hardware doesn't support more than 4. This can be extended later
+if need be.
+
+The driver must validate the number of VC IDs and the VC IDs
+themselves.
+
+Add an example implementation for IMX219.
+
+Cosmin Tanislav (5):
+  dt-bindings: media: video-interfaces: add support for Virtual Channel
+    IDs
+  media: v4l: fwnode: parse Virtual Channel IDs for CSI2 buses
+  dt-bindings: media: imx219: add support for Virtual Channel IDs
+  media: i2c: imx219: pass format's code to imx219_get_format_bpp()
+  media: i2c: imx219: implement configurable VC ID
+
+Laurent Pinchart (1):
+  media: i2c: imx219: Report streams using frame descriptors
+
+ .../devicetree/bindings/media/i2c/imx219.yaml |  2 +
+ .../bindings/media/video-interfaces.yaml      | 11 ++++
+ drivers/media/i2c/imx219.c                    | 54 +++++++++++++++++--
+ drivers/media/v4l2-core/v4l2-fwnode.c         | 15 ++++++
+ include/media/v4l2-mediabus.h                 |  5 ++
+ 5 files changed, 84 insertions(+), 3 deletions(-)
+
+-- 
+2.48.1
+
 
