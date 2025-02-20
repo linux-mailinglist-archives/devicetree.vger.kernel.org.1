@@ -1,87 +1,79 @@
-Return-Path: <devicetree+bounces-148944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B18E0A3DC92
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:23:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BC5FA3DC99
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:24:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DD1B17960B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:21:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5A4B421B93
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:21:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18DF61FDA89;
-	Thu, 20 Feb 2025 14:19:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB141FAC5E;
+	Thu, 20 Feb 2025 14:21:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="X7Oq9c8x"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z5wJgBhw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 792F51FAC4C
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:19:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1FE1FAC25;
+	Thu, 20 Feb 2025 14:21:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740061155; cv=none; b=umNaSwi5p+9Fzvf1ECCjFVMw1xoMKDPP3XEqJYOYm9B8ZZUIHLABX5WugA/6Ag4VaOvwv+1IWs3s8qMKlpn+4HRg48cetbI49i3Z594ozc+9IoW0c+052BmbAvrNkfXPzTfO7sI/04aGQQdjOh4z616Td3YeQWOOD3ZGD+qXHiI=
+	t=1740061306; cv=none; b=AyqfLkS0x40C4AQnYg5+pm8euO9FqLGHgQnhoiz8zow+NGpu3C/zZ2a10je17B0ibDZrQMNC/+onGErkcYoyxWjUSq27t/qYR/uXJUEryWIZchkZvWcgQDgRB8RD8NCboDY2Ci94pSim8MowHFH7AG0d0MGKtVDnrpc/Js10KtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740061155; c=relaxed/simple;
-	bh=EOKvgRMWbNRK5S4FoZ8sqAxDMmYVYMCk/LxtLibO6Os=;
+	s=arc-20240116; t=1740061306; c=relaxed/simple;
+	bh=PpVzdWc+hNukxIACDuAxZaeAROL3OgZe4+gSpyqxYFo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O1p4LHBX5e2NhKvU7U20r7LP9jprU+bMC8iiHVyIHw8RxlWeBT/7xOjxqVFOwWq6WcONNrUQHxcwz/V6Vy5Jps5CpB+ZjeUautqqUXxuO3ZVGgdX0zqoXAFkVhr/RlWqJdOapcCpBN3SHt24jK8qlNy8F9BmDv6eZCT8ORi3//Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=X7Oq9c8x; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51K6rg7F031358
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:19:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZzGpuNpEMvmvsVtbZHCixwxV188CGJ6yTEUyvKSil0I=; b=X7Oq9c8xcZesA4wx
-	IxZ3gZCZVPgvDMOOY5hRHipJYxUdD1kO6ByZvqvjWmVttH/RixOKn9yGd+mvnBji
-	roaCWYOc0P/NHzuIK/T1zYLqwH6G0s04qEHPQUNO1pBlu0x5Ydzk8q+20t0/aKBo
-	3okbRmfStWCawdjOyGQRrOHA1uteA76w1MhoO/y25gCql6zmMh27oVXRWcglr2wH
-	yMLS765/jvbW3YrXY14Tu9n0SQhPd0mOKguMrIpWKffxvZI8biwz+jlAVYgELqMS
-	VCTQzlfdVZE3oV7zN2O4T7/x2vFCLQhRemEKtulAPl62H606349dwYknDlJTNaFq
-	+i66Dg==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44vyy5ebpg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:19:12 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6e1b2251f36so2078726d6.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 06:19:11 -0800 (PST)
+	 In-Reply-To:Content-Type; b=uuNngiy6+sXeuugJjoZWg6R0KhQ8JgodngFsdg4BcyIxhKlxyA8WOGrZbG+JuT7QELxhmrY/r1fljzCZbArfk+frjs53hljsf3Uy9binm/a/Y6Ix+0r+6xWzVR5VK9DUfNyEDGvdGbbKng9X1h6+1LOr0fsMjd5YS5PW0uRJe40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z5wJgBhw; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54605bfcc72so2406007e87.0;
+        Thu, 20 Feb 2025 06:21:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740061303; x=1740666103; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mzmoiLCG8SAcHQOd7ewiQtwf2LHT2fH6DKF15WTZxJc=;
+        b=Z5wJgBhwdD+TzhkVluXL7JlBWzuZwO5hy+wlp4lfqzdQ2avgIN6DrE0hMGKV/te5LP
+         jLJNjq9/if86cG3RkvW1O8hFTr8lenVBnn7Vo5W0jWYzeJ51GvXGifkPAE4HgFbN6vT8
+         qKJBu9aATDiNBpfNfkokHFOdebQ2rGsg+P3kALz33b401buJsRa5Z5YQtc+PII7YRG2v
+         vsFPLILY+0zRNG3OA4WdcZtSWEjS2d4oDuIw+h4dz3i7gppzRDn9lblK3gj91XMJTi4Q
+         w/z9dbFZdOnTe8u9xrwmU0Yo7b2jQ/R9bWqBE4fwENtX9OluKjuifbrRjIiK+PkTcg2O
+         CPCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740061150; x=1740665950;
+        d=1e100.net; s=20230601; t=1740061303; x=1740666103;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZzGpuNpEMvmvsVtbZHCixwxV188CGJ6yTEUyvKSil0I=;
-        b=Fmfsv14Q2pniFpsH0ruVaIQOnccaOFBbR/2zgFBcglJMzwlhQbwRuRTEazjrKUMlOn
-         y5HyPVELTKiyhRgywmiCZ6hpQAXHjbAG1sZ8VuP4Xq0FkY2K2cN1PibFz5xM0UiKbWvi
-         QtCIUuvzHNTBcUs9wpy59A8kbKu5zu1Fz5HZSjrHiYl8sEnfYQGTQXZgXkTl00g4fpcx
-         zBCeRfZ6QycbRtGPYrFNpnMrigGW3uIKdEWi0hY4nDReKki5KQS9qNH5L5UkoiUWa/O7
-         uCUyqyMgr1yGMCufbHJz8coeAsKLhUSyvuI98doAX0diHoZ4A6E0JTsqoqJ5H26TAAq+
-         EWwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUg963Zf5K/9KZ+zen0rvVV51G/aSvOBRM/e1Pe4TyFjAGYRohdxlUII18A2tZe4unvLyqAf3ad9zXp@vger.kernel.org
-X-Gm-Message-State: AOJu0YyyTvi0v+M6qwd9KKL7D5eNJmdEteoucJJ1+sLnqzJCibb5HxFJ
-	xMKjhLcvm5tVRP649nLKwcFgWOCqmi3NL5GSmvn4P6yGh7uAbCS8K0V9wwmbmZw+OJ9pWBHVZ5/
-	Gci/69KzaAZUhir7sTZ8/0vr1AfepRc1rebHIMl5UHs/72DlZ4d+ArIfiV8kL
-X-Gm-Gg: ASbGnctNveu0M5DZCpR3DzYXkw568Mw9CyohKxSkW3l6uf3XsFKyTNTsZ34e+55TEt2
-	KtucTWJ2w19zr6skRfQrnhxDBqyOmhOtV6SPrUZyh6eHF93nugcgC1gX8FWy9nuTLT/59kplVx2
-	TNzRf2ZGlHVtXfifTzsJ5mHir8xQM77ytIZxBAT5rP6csRopIY9g4kB/jRhKWR/l1Meb8S3CWCT
-	FL7N3HupeUx0iw7F1UKiAdWhBldXGfxmr5wgT6ik/wlPV5A4CvKdhuQqfKeZXFpBjR0L6gCRY29
-	otH+0J7DC4DKWyt/cOdphwxPVUP8jUtNKtDFyRbuFCbtr5xuF4jsLv22qt8=
-X-Received: by 2002:a05:620a:7e8:b0:7c0:b018:5930 with SMTP id af79cd13be357-7c0b0185c4cmr395262585a.15.1740061150197;
-        Thu, 20 Feb 2025 06:19:10 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGGplcBIxuc1qJMHH/uMdBHwF3xTcMp0hOINAPPRPBlGB53/bt9zTWLON5PGnGl2kKOLrka9A==
-X-Received: by 2002:a05:620a:7e8:b0:7c0:b018:5930 with SMTP id af79cd13be357-7c0b0185c4cmr395260485a.15.1740061149834;
-        Thu, 20 Feb 2025 06:19:09 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e03aa0b1f7sm8859956a12.2.2025.02.20.06.19.07
+        bh=mzmoiLCG8SAcHQOd7ewiQtwf2LHT2fH6DKF15WTZxJc=;
+        b=Gi07b2nSjf1PRgkpo4rO8vQWHhEmIcFfSbAFzSEBP5v+hZTHGurlEu61JJVv3i+Fmq
+         NzXehb1Y1ST5SKBg6xU6rSWlTUVTreQay3KAc1azvm1R8JyDd0rMzJ6ker+sm1OAN49S
+         SHqrOfh+11Y+wMHjH2u6N5PlHc+i9F2toQTRtinjJ1wEOx2Ioj+L2ADAaoCIFgbR/xIB
+         A9p5O7nb+Q3Hee0ADAlplZh82wTDZ9vwiPFPu4cvFTGCgG1uZNWfkL5BnGtyCw0v+flS
+         bG92Q+IeiH5q1XVkuw2PRN5UfDqq0p7bmXZVY85hNE157Dap+/U/5vJw8NuF/QMT3F5V
+         QO2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUkLl4J8AGgTxr1KPBR0n9YfM4I77KZMqhEMdkB8WLx3HBFYfdwJDKfoNQBXwqUn1mSRAo/HC1O73BHbLmE@vger.kernel.org, AJvYcCVbn2Awi6+nZpXKcR6srsANstXGdP9LFq17RHK4f8fQzq82O8bJCAlElBRP7qAZXIGXlsqQYBAORcWH@vger.kernel.org, AJvYcCXZJNpKNhwYpZrjavHpki4lebiKzViIvd17/7eLD5sAdXleFKnReQpFWSQs0wHl99shA1fw6Ru/KjPqAAEybEaxaFE=@vger.kernel.org, AJvYcCXjkkCOigGd0frIaKpqm6094F98UbjnOV5RmuDZ9FoMxe4lUjeh61XCmlBBEVOXgdQal7h8gFAXQJ3P@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyfze3p3EbfIApoi+J/166a1ICAcjMB2dwWaSPIpXtHL/yKjCN1
+	snIeIOyD00016rNW0DHehjpDDQ3JqDyF7cGWmoSfhETqHeZZh/F8
+X-Gm-Gg: ASbGncvZjRn3kOVNyhKfqcAbHHC0im4e76iZyWGA28YIi2OOTK11i2wIFKlZZljUK2t
+	H7Auj5tSoU7WJR53MWAsMZQPy0ERy3zEcQzvMXQcnHfJS6JibwXC37RQxs8QgM/j3KAiil7yJOs
+	3RRrvhc3GXru8u+DkRiMqezpzhZls+auw00HZFIsCIThVr1UByz/B8ufxb1q0H79Usu9FY+bx0H
+	NseScM7SnspWkwXTEucuIOHktkZf3biYrkKeSnCO5eH3Fn2bMr7dDQQjl3/PRzQimEp1EgyEEVT
+	5Ed28vlGwDxPiVi1QnKC6IkmicOLHHn6QYz5y3U1k1fyi24UPjhU7ks2i6BXQd0tIbOjOiKt
+X-Google-Smtp-Source: AGHT+IEnorexehar0T56dUSxxROrZLAf2XndxCCWnC99AsuPb3902B0+uwY/QTJ7hoY8ePb04Bn4Lg==
+X-Received: by 2002:a05:6512:4010:b0:545:16a8:6a5d with SMTP id 2adb3069b0e04-546e3c9c9e0mr1209013e87.2.1740061302295;
+        Thu, 20 Feb 2025 06:21:42 -0800 (PST)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5452fcf6487sm1893226e87.137.2025.02.20.06.21.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Feb 2025 06:19:08 -0800 (PST)
-Message-ID: <00659634-c602-4382-b4a7-ef32f4d27dbf@oss.qualcomm.com>
-Date: Thu, 20 Feb 2025 15:19:06 +0100
+        Thu, 20 Feb 2025 06:21:40 -0800 (PST)
+Message-ID: <9018e23c-da28-41b0-b774-1598b946a2a1@gmail.com>
+Date: Thu, 20 Feb 2025 16:21:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,96 +81,258 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/7] drm/msm/mdp4: move move_valid callback to
- lcdc_encoder
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250220-fd-mdp4-lvds-v2-0-15afe5578a31@linaro.org>
- <20250220-fd-mdp4-lvds-v2-5-15afe5578a31@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250220-fd-mdp4-lvds-v2-5-15afe5578a31@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v3 2/9] iio: adc: add helpers for parsing ADC nodes
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa <nuno.sa@analog.com>,
+ David Lechner <dlechner@baylibre.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+References: <cover.1739967040.git.mazziesaccount@gmail.com>
+ <6c5b678526e227488592d004c315a967b9809701.1739967040.git.mazziesaccount@gmail.com>
+ <Z7ZB7RQhyI5Dohrq@smile.fi.intel.com>
+ <b1c1ed68-2f4d-447c-9957-5a1bbc63ef6e@gmail.com>
+ <Z7ci7tUlRQqZEZSN@smile.fi.intel.com>
+ <ec76334b-bb13-4076-811d-9174170dd677@gmail.com>
+ <Z7c2cBQpjoc9-Vyu@smile.fi.intel.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <Z7c2cBQpjoc9-Vyu@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 7t68Pb2oJvFEY2YCVvrQHv9qqj_Dr9he
-X-Proofpoint-GUID: 7t68Pb2oJvFEY2YCVvrQHv9qqj_Dr9he
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-20_06,2025-02-20_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- mlxlogscore=999 spamscore=0 bulkscore=0 clxscore=1015 suspectscore=0
- adultscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502200103
 
-On 20.02.2025 12:14 PM, Dmitry Baryshkov wrote:
-> We can check the LCDC clock directly from the LCDC encoder driver, so
-> remove it from the LVDS connector.
+On 20/02/2025 16:04, Andy Shevchenko wrote:
+> On Thu, Feb 20, 2025 at 03:40:30PM +0200, Matti Vaittinen wrote:
+>> On 20/02/2025 14:41, Andy Shevchenko wrote:
+>>> On Thu, Feb 20, 2025 at 09:13:00AM +0200, Matti Vaittinen wrote:
+>>>> On 19/02/2025 22:41, Andy Shevchenko wrote:
+>>>>> On Wed, Feb 19, 2025 at 02:30:27PM +0200, Matti Vaittinen wrote:
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h           |  1 -
->  drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c  | 27 ++++++++++++++++------
->  .../gpu/drm/msm/disp/mdp4/mdp4_lvds_connector.c    | 21 -----------------
->  3 files changed, 20 insertions(+), 29 deletions(-)
+> ...
 > 
-> diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-> index b8bdc3712c73b14f3547dce3439a895e3d10f193..e0380d3b7e0cee99c4c376bf6369887106f44ede 100644
-> --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-> +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-> @@ -191,7 +191,6 @@ struct drm_crtc *mdp4_crtc_init(struct drm_device *dev,
->  long mdp4_dtv_round_pixclk(struct drm_encoder *encoder, unsigned long rate);
->  struct drm_encoder *mdp4_dtv_encoder_init(struct drm_device *dev);
->  
-> -long mdp4_lcdc_round_pixclk(struct drm_encoder *encoder, unsigned long rate);
->  struct drm_encoder *mdp4_lcdc_encoder_init(struct drm_device *dev,
->  		struct device_node *panel_node);
->  
-> diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c b/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
-> index db93795916cdaa87ac8e61d3b44c2dadac10fd9e..cfcedd8a635cf0297365e845ef415a8f0d553183 100644
-> --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
-> +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
-> @@ -348,19 +348,32 @@ static void mdp4_lcdc_encoder_enable(struct drm_encoder *encoder)
->  	mdp4_lcdc_encoder->enabled = true;
->  }
->  
-> +static enum drm_mode_status
-> +mdp4_lcdc_encoder_mode_valid(struct drm_encoder *encoder,
-> +		const struct drm_display_mode *mode)
-> +{
-> +	struct mdp4_lcdc_encoder *mdp4_lcdc_encoder =
-> +			to_mdp4_lcdc_encoder(encoder);
+>>>>>> +EXPORT_SYMBOL_GPL(iio_adc_device_num_channels);
+>>>>>
+>>>>> No namespace?
+>>>>
+>>>> I was considering also this. The IIO core functions don't belong into a
+>>>> namespace - so I followed the convention to keep these similar to other IIO
+>>>> core stuff.
+>>>
+>>> But it's historically. We have already started using namespaces
+>>> in the parts of IIO, haven't we?
+>>
+>> Yes. But as I wrote, I don't think adding new namespaces for every helper
+>> file with a function or two exported will scale. We either need something
+>> common for IIO (or IIO "subsystems" like "adc", "accel", "light", ... ), or
+>> then we just keep these small helpers same as most of the IIO core.
+> 
+> It can be still pushed to IIO_CORE namespace. Do you see an issue with that?
 
-Crazy linebreak
+No. I've missed the fact we have IIO_CORE O_o. Thanks for pointing it out!
 
-> +	long actual, requested;
-> +
-> +	requested = 1000 * mode->clock;
-> +	actual = clk_round_rate(mdp4_lcdc_encoder->lcdc_clk, requested);
-> +
-> +	DBG("requested=%ld, actual=%ld", requested, actual);
-> +
-> +	if (actual != requested)
-> +		return MODE_CLOCK_RANGE;
-> +
-> +	return MODE_OK;
-> +}
+> Or a new opaque namespace for the mentioned cases, something like IIO_HELPERS.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+I am unsure if it really benefits to split this out of the IIO_CORE. 
+I've a feeling it falls into the category of making things harder for 
+user with no apparent reason. But yes, the IIO_CORE makes sense.
 
-Konrad
+>>>> (Sometimes I have a feeling that the trend today is to try make things
+>>>> intentionally difficult in the name of the safety. Like, "more difficult I
+>>>> make this, more experience points I gain in the name of the safety".)
+>>>>
+>>>> Well, I suppose I could add a namespace for these functions - if this
+>>>> approach stays - but I'd really prefer having all IIO core stuff in some
+>>>> global IIO namespace and not to have dozens of fine-grained namespaces for
+>>>> an IIO driver to use...
+> 
+> ...
+> 
+>>>>>> +	if (!allowed_types || allowed_types & (~IIO_ADC_CHAN_PROP_TYPE_ALL)) {
+>>>>>
+>>>>> Unneeded parentheses around negated value.
+>>>>>
+>>>>>> +	if (found_types & (~allowed_types)) {
+>>>>>
+>>>>> Ditto.
+>>>>>
+>>>>>> +		long unknown_types = found_types & (~allowed_types);
+>>>>>
+>>>>> Ditto and so on...
+>>>>>
+
+...
+
+>>>> during the moves I lost my printed list of operator precedences which I used
+>>>> to have on my desk. I've been writing C for 25 years or so, and I still
+>>>> don't remember the precedence rules for all bitwise operations - and I am
+>>>> fairly convinced I am not the only one.
+>>>
+>>> ~ (a.k.a. negation) is higher priority in bitops and it's idiomatic
+>>> (at least in LK project).
+>>
+>> I know there are well established, accurate rules. Problem is that I never
+>> remember these without looking.
+> 
+> There are very obvious cases like below.
+
+I think we just disagree on if this is obvious.
+
+>>>> What I understood is that I don't really have to have a printed list at
+>>>> home, or go googling when away from home. I can just make it very, very
+>>>> obvious :) Helps me a lot.
+>>>
+>>> Makes code harder to read, especially in the undoubtful cases like
+>>>
+>>> 	foo &= (~...);
+>>
+>> This is not undoubtful case for me :) And believe me, reading and
+>> deciphering the
+>>
+>> foo &= (~bar);
+>>
+>> is _much_ faster than seeing:
+> 
+> Strongly disagree. One need to parse an additional pair of parentheses,
+> and especially when it's a big statement inside with nested ones along
+> with understanding what the heck is going on that you need them in the
+> first place.
+> 
+> On top of that, we have a common practices in the LK project and
+> with our history of communication it seems you are trying to do differently
+> from time to time. Sounds like a rebellion to me :-)
+
+I only rebel when I (in my opinion) have a solid reason :)
+
+>> foo &= ~bar;
+>>
+>> and having to google the priorities.
+> 
+> Again, this is something a (regular) kernel developer keeps refreshed.
+> Or even wider, C-language developer.
+
+Ha. As I mentioned, I've been writing C on a daily bases for almost 25 
+years. I wonder if you intent to say I am not a kernel/C-language 
+developer? Bold claim.
+
+>>>>>> +		int type;
+>>>>>> +
+>>>>>> +		for_each_set_bit(type, &unknown_types,
+>>>>>> +				 IIO_ADC_CHAN_NUM_PROP_TYPES - 1) {
+>>>>>> +			dev_err(dev, "Unsupported channel property %s\n",
+>>>>>> +				iio_adc_type2prop(type));
+>>>>>> +		}
+>>>>>> +
+>>>>>> +		return -EINVAL;
+>>>>>> +	}
+> 
+> ...
+> 
+>>>>>> +		tmp.required &= (~BIT(IIO_ADC_CHAN_PROP_COMMON));
+>>>>>
+>>>>> Redundant outer parentheses. What's the point, please?
+>>>>
+>>>> Zero need to think of precedence.
+>>>
+>>> Huh? See above.
+>>> Everything with equal sign is less precedence than normal ops.
+>>
+>> Sure. It's obvious if you remember that "Everything with equal sign is less
+>> precedence than normal ops". But as I said, I truly have hard time
+>> remembering these rules. When I try "going by memory" I end up having odd
+>> errors and suggestions to add parenthesis from the compiler...
+> 
+> The hardest to remember probably the
+> 
+> 	foo && bar | baz
+> 
+> case and alike. These are the only ones that I totally agree on with you.
+> But negation.
+> 
+>> By the way, do you know why anyone has bothered to add these
+>> warnings/suggestions about adding the parenthesis to the compiler? My guess
+>> is that I am not only one who needs the precedence charts ;)
+> 
+> Maybe someone programmed too much in LISP?.. (it's a rhetorical one)
+> 
+> ...
+> 
+>>>>>> +		ret = fwnode_property_read_u32(child, "common-mode-channel",
+>>>>>> +					       &common);
+>>>>>
+>>>>> I believe this is okay to have on a single line,
+>>>>
+>>>> I try to keep things under 80 chars. It really truly helps me as I'd like to
+>>>> have 3 parallel terminals open when writing code. Furthermore, I hate to
+>>>> admit it but during the last two years my near vision has deteriorated... :/
+>>>> 40 is getting more distant and 50 is approaching ;)
+>>>
+>>> It's only 86 altogether with better readability.
+>>> We are in the second quarter of 21st century,
+>>> the 80 should be left in 80s...
+>>>
+>>> (and yes, I deliberately put the above too short).
+>>
+>> I didn't even notice you had squeezed the lines :)
+>>
+>> But yeah, I truly have problems fitting even 3 80 column terminals on screen
+>> with my current monitor. And when working on laptop screen it becomes
+>> impossible. Hence I strongly prefer keeping the 80 chars limit.
+> 
+> Maybe you need a bigger monitor after all? (lurking now :-)
+
+Wouldn't fit my table :)
+
+> ...
+> 
+>>>>>> +#include <linux/iio/iio.h>
+>>>>>
+>>>>> I'm failing to see how this is being used in this header.
+>>>>
+>>>> I suppose it was the struct iio_chan_spec. Yep, forward declaration could
+>>>> do, but I guess there would be no benefit because anyone using this header
+>>>> is more than likely to use the iio.h as well.
+>>>
+>>> Still, it will be a beast to motivate people not thinking about what they are
+>>> doing. I strongly prefer avoiding the use of the "proxy" or dangling headers.
+>>
+>> Ehh. There will be no IIO user who does not include the iio.h.
+> 
+> It's not your concern. That's the idea of making C units as much independent
+> and modular as possible (with common sense in mind). And in this case I see
+> no point of including this header. Again, the main problem is this will call
+> people to use the new header as a "proxy" and that's what I fully against to.
+> 
+>> And, I need the iio_chan_spec here.
+> 
+> Do you really need it or is it just a pointer?
+
+Just a pointer. Forward declaration could do it. Hmm. I didn't think of 
+people using this header as a proxy. I guess you have a point here :)
+
+> 
+> ...
+> 
+>> And as I said, I suggest saving some of the energy for reviewing the next
+>> version. I doubt the "property type" -flags and bitwise operations stay, and
+>> it may be all of this will be just meld in the bd79124 code - depending on
+>> what Jonathan & others think of it.
+> 
+> Whenever this code will be trying to land, the review comments still apply.
+
+Sure! But chances are plenty of this code gets erased :) I just wanted 
+to warn you that some of the effort on this version is likely to get 
+wasted. I did consider reverting this back to a RFC - but going back'n 
+forth with the RFC status felt odd...
+
+Yours,
+	-- Matti
+
 
