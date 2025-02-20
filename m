@@ -1,131 +1,168 @@
-Return-Path: <devicetree+bounces-148673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31DB9A3D052
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 05:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AA4CA3D062
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 05:23:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDDF63BA883
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 04:11:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 111B73BB12F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 04:23:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF241DE2BB;
-	Thu, 20 Feb 2025 04:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 512E71DF992;
+	Thu, 20 Feb 2025 04:23:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mtbUz9Pk"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VVd5OHgA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1061D7E5B
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 04:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DAAA1DA4E;
+	Thu, 20 Feb 2025 04:23:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740024670; cv=none; b=mT016UEn5f4EPAwVXGVFCztquNp3vuOTLx91GqtcJrubvxkMnWmlh9nDkN5UN7M6CKyL2vCo94Su4UowRRID4fraLdigRvFmh+m84yjbiPZG5PzkvCIDj6EGVRTHZeD4M29kbwCQamMxO8ScLI93CfraGMycp91noYTkMFf8ih8=
+	t=1740025396; cv=none; b=MoW5Wxbfg1XUliiyk8TXehsYoNCko2MLkgNBTYO7IxoGU59soLEsBAMGFNcMaW+jHDiWeYIsjK+D71v2QtU9PqhwZrmAhp/GsgD8p8oWNRPVN8cA9/tyTSjY192zQuglZzy/K1UcVEN1QRlPvM34veqEBTo/cK/dUMudAwCGbZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740024670; c=relaxed/simple;
-	bh=2XRkc/YevLtikwB6ZzcfWbAwQKl9yeQ1+/lJgTjIu7g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HH7smTgVlotbjbkxFXfcziLUdvSa+mBsn/CYGLuL9ibwzcmAuTy3n6lW6AfBd2B2EV5zjYX3wccr1K8miZdw36YDigSXwig171zGpltxqoIhaS1rNXUfQe8R2/f7kBRMs1QBCVgxINX5gO8KgggPHcnKg5rVfaTolg9dcGBsgR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mtbUz9Pk; arc=none smtp.client-ip=209.85.210.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-7272cc739f7so895927a34.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2025 20:11:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740024667; x=1740629467; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wc9s60m7yHOEPhLyVsTag4aDgZkdRpuEF7l6r52HQ0g=;
-        b=mtbUz9Pk6gbXOZsxcyq5AQYD+ryl72TlilawD7A6jTnkH3ws9pKTykRwml/hgOv7pm
-         iFIdOQatuptGmwGcJEWdzLiqP1jlYqaY0dWn9bxyP3barVGr3s5LoAHnQYvXsTgZWX2X
-         t4mzf3bc5bY5IUOnwqxm8j2JVLoe3NChVT4cv8ozP0mRKx9SbEwqYr/pPQwoOEdI4J+N
-         02jTN0DycPci60ga/ypIpuF+H4GhmFm+L7zh8BZ1RfDiWB89qnrarlhMw0fp8CSzIbAc
-         0UZ80MvH85Q0GVNI3NsQOjk+C0G56McX2wIqm84I+KXYBt+gGzq1xNFtDsq5CTULUymW
-         CrjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740024667; x=1740629467;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Wc9s60m7yHOEPhLyVsTag4aDgZkdRpuEF7l6r52HQ0g=;
-        b=m79X5iL9DF9EQ7kGkqhWX/XnXaOJ85j+db5NnVojVMFkh8v/zfL/t7Lrv9mBu/zpS/
-         RXADRbY71vBE7CnWeszv1zDmI/0MD9ThA/AIwIrCO9czlH99vmCcCz8+brOcvHcTeefz
-         Z0qRzboSFXqPjkKM7gE7c4kc35/aBOGHk3lUxAYvXQGr4rLzmW7FIpnmTWXXqN5GZ6G2
-         FBvoJO2z+iDv2C4wk/NVYg5kTGd+E08L39Xcsp/G+jf0LZQwMwMI4F1UFGO75CLER8BD
-         e10pmIWHg5NBeFfDoFP+qZoZU0roDQvC+NLw1bV2XbyZvFJxMVN9NW8SC4FChhchdKSc
-         7pfw==
-X-Forwarded-Encrypted: i=1; AJvYcCVvkeUC11UW2Hf3vScWZVAwPoRel1FIUhKb4zf24WtRy3TiGrGEOFAFSYiG4YExWv6gCW059mDmr9yC@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhK38YlNpLC8EzW2hE687sE3wn/GXoqm+nbHLDNrXxQ4CUHr/X
-	br+ll5vx+YOWrw4L9IWPSY2FSquCQbIWI2Eg+KptSycYAriFrVes8qpsR7Qy
-X-Gm-Gg: ASbGnctDvu/mZron4wnloWJ8/COHdpYoEbhFO7EbpCQSE/R7UsdI5tVU5AOz7uSJFKU
-	Y5RH4GLK5BN7M8bSK4Ktb1xmEmYJa8zUCCa5wUn4gq15OBz2BlOTWcRiy0SQ2uZr70oyTU+n/87
-	QzRptyh9qwFFhyKu62JoDIwOb78DX+CNxg8kp9XGeWoHVlWK4hrShu+tE9jz0fnugzdJzo/O6fy
-	NHB4qK7hUQZpnQC6TprMcyxnLIDa3vyHoxCayS/xVHB1SG05wTCoE6kwe6NhJfrmGNpG0QKZ2mt
-	OMeyTKi4GRAY3y8VAeWsTQan
-X-Google-Smtp-Source: AGHT+IFcFoaXxN2Jl+KgxcP9lwJBvJn/RwJMifaJCCznxCysMElgGMzyJJcWoDpzucTdc6pY6ySn1g==
-X-Received: by 2002:a05:6830:7305:b0:71d:fc70:d69f with SMTP id 46e09a7af769-727419e59d8mr1833552a34.8.1740024667519;
-        Wed, 19 Feb 2025 20:11:07 -0800 (PST)
-Received: from tower.cjhon.com ([2603:8081:ad00:4a:20f3:777f:5ae9:b018])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-727378237e4sm1025875a34.47.2025.02.19.20.11.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2025 20:11:06 -0800 (PST)
-From: Jimmy Hon <honyuenkwun@gmail.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Jimmy Hon <honyuenkwun@gmail.com>
-Subject: [PATCH UNTESTED v5 4/4] arm64: dts: rockchip: Enable HDMI1 audio output for Orange Pi 5 Ultra
-Date: Wed, 19 Feb 2025 22:10:10 -0600
-Message-ID: <20250220041010.3801-5-honyuenkwun@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250220041010.3801-1-honyuenkwun@gmail.com>
-References: <20250220041010.3801-1-honyuenkwun@gmail.com>
+	s=arc-20240116; t=1740025396; c=relaxed/simple;
+	bh=6vcS3VoH1xNHZUEUtzrCJWBN4fy1TabXnHcYOpnAfMk=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=jvLayXr0WSnkz8foFpYRfbWs2yWupPLOka3Zj9mQveScVt3HhgJFH5VhR/vSVOrOD7PWHqgJM5Zcft27NeOvke202GAVo7sTMqm7IojTOpP+hZ4Tsj5m9dtfHtJZXjWa5fBODhrpZJ05CGgTX1My4hQgdIoZMLyJu2TKgIri0Rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VVd5OHgA; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51JGVuEM012089;
+	Thu, 20 Feb 2025 04:23:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=e5Pr2H9Pf+t0Rh8BQURr7Q
+	Y6tUrNvn1rGZodMMnsojk=; b=VVd5OHgAbLsL+cc/TkHyglnlghkmjhah29UsFr
+	aPNBXEzReM2Ew3t1LqoY4k/LyLXh4TMYdupMwy1WCwoctxGISuIytcYHAj+2DUhu
+	W9kyZUHl/hLlCvCwpR0VHMLaLJYKQgDtyz4Ehx1E2O36U6l2eas2BJtwAFo0eCe2
+	DSArC3bmKTNk5T6KPCVlCJqJcRlLBr4Kdw6lCmPXsTkXKsgONaTQLpPPzgjHD/3v
+	ySnnoyC0n4ntXWByWXkpp68dshQmDhg3r3FeSh08fwQRUwcqBW7BVmkHbEdZGwyO
+	BU2SA0G35UnhCJfNVnLYwgFU4h7IvrrnDme+swWcy/QOB2Vg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44vyy1mukk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Feb 2025 04:23:10 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51K4NAdC022251
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Feb 2025 04:23:10 GMT
+Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 19 Feb 2025 20:23:05 -0800
+From: Taniya Das <quic_tdas@quicinc.com>
+Subject: [PATCH v4 0/4] Update LPASS Audio clock driver for QCM6490 board
+Date: Thu, 20 Feb 2025 09:52:49 +0530
+Message-ID: <20250220-lpass_qcm6490_resets-v4-0-68dbed85c485@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABmutmcC/22NQQ6CMBBFr0Jmbc3QQoOuvIchBOogkwiFDhIN4
+ e5W4tLle8l/fwWhwCRwTlYItLCwHyJkhwRcVw93UnyLDBp1jhqteoy1SDW53mYnrAIJzaI0Zm1
+ hrdZ17iBOx0Atv/bstYzcscw+vPeXxXztL5jq/8HFKFTYpK5tTN6Ygi7Tkx0P7uh8D+W2bR997
+ rT8ugAAAA==
+X-Change-ID: 20250206-lpass_qcm6490_resets-204f86622a5c
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Taniya Das
+	<quic_tdas@quicinc.com>
+X-Mailer: b4 0.15-dev-aa3f6
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: G6i_pcUJEGj5cGlFki4POEMdkfrJuNsI
+X-Proofpoint-ORIG-GUID: G6i_pcUJEGj5cGlFki4POEMdkfrJuNsI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-19_11,2025-02-20_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
+ adultscore=0 malwarescore=0 mlxscore=0 priorityscore=1501
+ lowpriorityscore=0 mlxlogscore=999 suspectscore=0 phishscore=0 spamscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502200027
 
-HDMI audio is available on the Orange Pi 5 Ultra HDMI1 TX port.
+This series updates the low pass audio clock controller driver for reset
+functionality. The patches are split from the below series.
+https://lore.kernel.org/all/20240318053555.20405-1-quic_tdas@quicinc.com/
 
-Signed-off-by: Jimmy Hon <honyuenkwun@gmail.com>
+The QCM6490 board requires only the reset functionality from the LPASS
+subsystem. Thus separate out the driver probe to provide the same on the
+QCM6490 boards.
+
+[v4]:
+Changes in [v4] compared to [v3]:
+- Update the documentation bindings to keep the clocks, powerdomain
+  constraints. [Krzysztof]
+- Update the driver to use 'of_device_is_compatible()' instead of
+  'desc->num_resets' check. [Dmitry]
+- Link to v3: https://lore.kernel.org/r/20250212-lpass_qcm6490_resets-v3-0-0b1cfb35b38e@quicinc.com
+
+[v3]:
+Changes in [v3] compared to [v2]:
+- update to Documentation bindings adding constraints. [Krzysztof]
+- split the DT patch for "Update protected clocks list" for QCM6490 IDP
+https://lore.kernel.org/linux-devicetree/20250206-protected_clock_qcm6490-v1-1-5923e8c47ab5@quicinc.com/
+
+[v2]:
+Changes in [v2] compared to [v1]:
+ - Updated the lpass_audio_cc_sc7280 probe to get the match_data for both SC7280 and QCM6490.
+ - Separate regmap for resets [Konrad]
+ - Split the lpassaudiocc compatible and GCC protected clocks list changes. [Dmitry]
+ - Link to V1: https://lore.kernel.org/all/20240531102252.26061-1-quic_tdas@quicinc.com/T/
+
+[v1]
+  - Add a separate platform driver for QCM6490 resets.
+  - Add device tree changes for protected clocks for GCC and LPASS AudioCC
+    compatible update.
+
+Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Changes in v4:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v3: https://lore.kernel.org/r/20250212-lpass_qcm6490_resets-v3-0-0b1cfb35b38e@quicinc.com
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts
-index 5f673ad51686..5c560a14719b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts
-@@ -42,10 +42,18 @@ hdmi1_out_con: endpoint {
- 	};
- };
- 
-+&hdmi1_sound {
-+	status = "okay";
-+};
-+
- &hdptxphy1 {
- 	status = "okay";
- };
- 
-+&i2s6_8ch {
-+	status = "okay";
-+};
-+
- &pinctrl {
- 
- 	usb {
+---
+Taniya Das (4):
+      dt-bindings: clock: qcom: Add compatible for QCM6490 boards
+      clk: qcom: lpassaudiocc-sc7280: Add support for LPASS resets for QCM6490
+      arm64: dts: qcom: qcm6490-idp: Update the LPASS audio node
+      arm64: dts: qcom: qcs6490-rb3gen2: Update the LPASS audio node
+
+ .../bindings/clock/qcom,sc7280-lpasscorecc.yaml    |  5 ++++-
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts           |  5 +++++
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts       |  5 +++++
+ drivers/clk/qcom/lpassaudiocc-sc7280.c             | 23 ++++++++++++++++++----
+ 4 files changed, 33 insertions(+), 5 deletions(-)
+---
+base-commit: 808eb958781e4ebb6e9c0962af2e856767e20f45
+change-id: 20250206-lpass_qcm6490_resets-204f86622a5c
+
+Best regards,
 -- 
-2.48.1
+Taniya Das <quic_tdas@quicinc.com>
 
 
