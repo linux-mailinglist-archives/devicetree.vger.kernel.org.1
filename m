@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-148726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7384AA3D33E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:31:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 508D4A3D34B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:34:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5B0E7A3FA8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 08:30:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81A003B6C92
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 08:32:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CBA01EB191;
-	Thu, 20 Feb 2025 08:31:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B55C91EA7EA;
+	Thu, 20 Feb 2025 08:32:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hIknsfg2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ruTunRdq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1B0C5223;
-	Thu, 20 Feb 2025 08:31:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C1C1A9B4E;
+	Thu, 20 Feb 2025 08:32:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740040287; cv=none; b=Uqo851LkA1b76eoCOPnYpamK+5r6OYQTGLwFpwBl39fS3fjuHTw+4Gtq9ixY4QLCmmvVK8iAOplFOit3X5PBbioO7zex0IOBS3Gy6fTJ93vgAUuiIoH3xaBKRp3BHPGtBrzq+x/NYPD+paSV/LjMZpMQIhNjFxjem5x7HmvwNqg=
+	t=1740040331; cv=none; b=UEIpChST8j0iLxNikTAczbts+wTkmzj5qnewoFG3bXLp3y255EDVqB5q/o+3ZtPP+CdArMe+ABv2+B18nr2x3GJ9X1WwJZqlx525jG8x4z0z/ZHrDWmKhnpRQ3lFY1hsKYDmpX/1JEH5ovuH//uQll8IuYo/9dpXIIdJ053yzJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740040287; c=relaxed/simple;
-	bh=mJzHMxuYDNmPbY//EwyEGH951YEZauw19SGS7kxc8qU=;
+	s=arc-20240116; t=1740040331; c=relaxed/simple;
+	bh=L/LHvO/D+1uYypCe6Rsib5c/g0Q47UeKeXAtGNnGShI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DUz0XfwSD1fCKRGDMwq0vj9eqr0f5z10E7SsPN2PqlJlAR65VhLHcb0edlb+1GFir/cEqtAWM3qeoHaO67Ry+290wUEln6Pg9Tz5s44CdnsT+J+L1L44wWkjCkfR6hQXUdLvrmEkVBI4fRafAXBlG+bajGSjyJIbbME3ao56H6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hIknsfg2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C34CCC4CEDD;
-	Thu, 20 Feb 2025 08:31:22 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NGfrBOs1kdeVwGsYnz9kADn43EAoZk3tnD1lwMpfG1JKJFlA/bgU8pu0ql2EmxNYw0VrV+MgGf5mDr8G//PCKUEzncxTEedZeZkxzLyY4MnTVVGXQfhZQgmQG5Oqya5sDUTPkiLtZEYd2NyX2rqe4JTCSEvIKmf41I5iYjugt/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ruTunRdq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26E27C4CED1;
+	Thu, 20 Feb 2025 08:32:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740040287;
-	bh=mJzHMxuYDNmPbY//EwyEGH951YEZauw19SGS7kxc8qU=;
+	s=k20201202; t=1740040331;
+	bh=L/LHvO/D+1uYypCe6Rsib5c/g0Q47UeKeXAtGNnGShI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hIknsfg2kvCpqa75g8T546VFMRonYE2PW/i3Iid4EgNAP2Iqt4YdkpMFkpU9jaQ10
-	 3SktCaDaV6O2pnDVhRLLpMSJ8wmsRouA+Gubz+0jQgUbK4pydz+HvzXLT9Iq1G0W/3
-	 NyCdrA3EWMlp99o9ZLFxgcHO951B6TrYl2iSvVD4cCNoY8YKiGc2sos3Ugic8dZqen
-	 cG80GqCZE+mCvXG8vHp3FMVa51YX5FGfIkLQDLUvs11H0Ilu1ThifxBQX+7G26MsnA
-	 11BalBJvHyJyK8qkIHgxT6pazTkkAvPLJi3uag94EYhgPiVszfoqJ3+pm9to2uLRAS
-	 gJ+BafrDAMCIw==
-Message-ID: <14863a52-f2ab-42ef-be86-b9da2a8d76df@kernel.org>
-Date: Thu, 20 Feb 2025 09:31:20 +0100
+	b=ruTunRdqISFlJSKFdw9+vOac+S+5tS5GWrwnWl7LsjQYMcubKQIa7vD3T0o9o9kcU
+	 oB8wCEGjke+49Cp9avK9UDFUfr/WNeYTI/CIKxNf3KTDVUX0wU5mt/yGusHDJ3snlV
+	 QWoUK/G9QFAx6GEJrJFTmH/TX67kkY6wsjLfjMjzueS6njyfB1EhPnVOK9sktTloDp
+	 dkVf+L5UCKUTovw05NVgogA8bRpkOrn4wQ5HhwqBhPaV3LQvCAftv8RVGExVmVBttu
+	 X2jpLlkMcnwy83hTRXa0vQ236vyrCegUnGYXCkoE7XgwMx3/2Y0KJiX4Xon9xEB7cC
+	 NNkRDC8rqNkHA==
+Message-ID: <e3403885-ca21-4e67-b117-f40a7a65418b@kernel.org>
+Date: Thu, 20 Feb 2025 09:32:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: hwmon: emc2305: Add YAML binding
- documentation for emc2305 driver
-To: Guenter Roeck <linux@roeck-us.net>, florin.leotescu@oss.nxp.com,
- Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Michael Shych <michaelsh@nvidia.com>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: viorel.suman@nxp.com, carlos.song@nxp.com,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- Florin Leotescu <florin.leotescu@nxp.com>
-References: <20250219133221.2641041-1-florin.leotescu@oss.nxp.com>
- <20250219133221.2641041-4-florin.leotescu@oss.nxp.com>
- <fd70f78c-68a5-43ec-9eb2-3f06c5d7a20d@kernel.org>
- <ae40d143-a5ca-4a38-844f-ca58a06834a5@roeck-us.net>
+Subject: Re: [PATCH 3/8] dt-bindings: media: nxp: Add Wave6 video codec device
+To: Nas Chung <nas.chung@chipsnmedia.com>
+Cc: "mchehab@kernel.org" <mchehab@kernel.org>,
+ "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
+ "sebastian.fricke@collabora.com" <sebastian.fricke@collabora.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-imx@nxp.com" <linux-imx@nxp.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "jackson.lee" <jackson.lee@chipsnmedia.com>,
+ "lafley.kim" <lafley.kim@chipsnmedia.com>
+References: <20250210090725.4580-1-nas.chung@chipsnmedia.com>
+ <20250210090725.4580-4-nas.chung@chipsnmedia.com>
+ <cb7937f5-2045-4903-825c-71ed70097efb@kernel.org>
+ <SL2P216MB12460EDF6265459D11E2A5A9FBFF2@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
+ <20250213-imaginary-shrimp-of-merriment-6ccb6f@krzk-bin>
+ <SE1P216MB1242EBEEAA36BE73AD466FB6FBFA2@SE1P216MB1242.KORP216.PROD.OUTLOOK.COM>
+ <ec58d467-baa3-4630-bfb0-f09d366a9be9@kernel.org>
+ <SL2P216MB1246F270DDE8CC8E21EA1DDCFBC42@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,36 +118,105 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ae40d143-a5ca-4a38-844f-ca58a06834a5@roeck-us.net>
+In-Reply-To: <SL2P216MB1246F270DDE8CC8E21EA1DDCFBC42@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/02/2025 16:52, Guenter Roeck wrote:
-> On 2/19/25 06:01, Krzysztof Kozlowski wrote:
-> [ ... ]
+On 20/02/2025 08:35, Nas Chung wrote:
+> Hi, Krzysztof.
 > 
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - hwmon,emc2301
->>> +      - hwmon,emc2302
->>> +      - hwmon,emc2303
->>> +      - hwmon,emc2305
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Wednesday, February 19, 2025 9:32 PM
+>> To: Nas Chung <nas.chung@chipsnmedia.com>
+>> Cc: mchehab@kernel.org; hverkuil@xs4all.nl; sebastian.fricke@collabora.com;
+>> robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org; linux-
+>> media@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; linux-imx@nxp.com; linux-arm-
+>> kernel@lists.infradead.org; jackson.lee <jackson.lee@chipsnmedia.com>;
+>> lafley.kim <lafley.kim@chipsnmedia.com>
+>> Subject: Re: [PATCH 3/8] dt-bindings: media: nxp: Add Wave6 video codec
+>> device
 >>
->> Nope.
+>> On 18/02/2025 10:21, Nas Chung wrote:
+>>> For example:
+>>> vpu: video-codec@4c480000 {
+>>>         compatible = "nxp,imx95-vpu";
+>>>         reg = <0x0 0x4c480000 0x0 0x50000>;
+>>> 	ranges = <0x0 0x0 0x4c480000 0x50000>;
+>>>
+>>>         vpuctrl: vpu-ctrl@40000 {
+>>>           compatible = "nxp,imx95-vpu-ctrl";
+>>> 	  reg = <0x40000 0x10000>;
+>>>         };
+>>>
+>>>         vpucore0: vpu-core@00000 {
+>>>           compatible = "nxp,imx95-vpu-core";
+>>>           reg = <0x00000 0x10000>;
+>>>         };
+>>>
+>>>         vpucore1: vpu-core@10000 {
+>>>           compatible = "nxp,imx95-vpu-core";
+>>>           reg = <0x10000 0x10000>;
+>>>         };
+>>>
+>>>         vpucore2: vpu-core@20000 {
+>>>           compatible = "nxp,imx95-vpu-core";
+>>>           reg = <0x20000 0x10000>;
+>>>         };
+>>>
+>>>         vpucore3: vpu-core@30000 {
+>>>           compatible = "nxp,imx95-vpu-core";
 >>
->> Was it ever internally reviewed?
->>
-> No. I intentionally do not review bindings because I notoriously get it wrong,
-> and instead rely on DT maintainers.
+>> Why do you need compatible here? Could it be anything else?
 > 
-> I agree though that this one is really bad :-(
+> I will update the driver based on the final DT.
+> 
+>>
+>>>           reg = <0x30000 0x10000>;
+>>
+>> Where is the rest of resources? You created children only for one
+>> resource - address space?
+> 
+> Sorry for the confusion.
+> I believe the final example looks like the one below.
+> 
+> vpu: video-codec@4c480000 {
+>         compatible = "nxp,imx95-vpu";
+>         reg = <0x0 0x4c480000 0x0 0x50000>;
+>         ranges = <0x0 0x0 0x4c480000 0x50000>;
+> 
+>         vpuctrl: vpu-ctrl@40000 {
+>           compatible = "nxp,imx95-vpu-ctrl";
+>           reg = <0x40000 0x10000>;
+>           clocks = <&scmi_clk 115>,
+>                   <&vpu_blk_ctrl IMX95_CLK_VPUBLK_WAVE>;
+>           clock-names = "vpu", "vpublk_wave";
+>           power-domains = <&scmi_devpd 21>, <&scmi_perf 10>;
+>           power-domain-names = "vpumix", "vpuperf";
+>           memory-region = <&vpu_boot>;
+>           #cooling-cells = <2>;
+>           sram = <&sram1>;
+>         };
+> 
+>         vpucore0: vpu-core@00000 {
+>           compatible = "nxp,imx95-vpu-core";
+>           reg = <0x00000 0x10000>;
+>           interrupts = <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
+>           clocks = <&scmi_clk 115>,
+>                   <&vpu_blk_ctrl IMX95_CLK_VPUBLK_WAVE>;
 
 
-Wait, my comment was not towards you, but towards NXP and their internal
-review. NXP is a big company, not individual contributor, so they should
-use internal review to catch obvious issues instead of using community
-resources for such trivial tasks.
+These are the same resources for every block so for entire device. Why
+they are no in top level node?
+
+>           clock-names = "vpu", "vpublk_wave";
+>           power-domains = <&scmi_devpd 21>;
+
+Same here
+
+Everything else also looks duplicated... All my previous comments - from
+first email - stand. Don't design DT to match your Linu driver structure.
 
 Best regards,
 Krzysztof
