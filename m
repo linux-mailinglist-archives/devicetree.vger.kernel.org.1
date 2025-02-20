@@ -1,223 +1,138 @@
-Return-Path: <devicetree+bounces-148727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 508D4A3D34B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:34:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6D81A3D34E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:36:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81A003B6C92
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 08:32:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EFE517B282
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 08:36:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B55C91EA7EA;
-	Thu, 20 Feb 2025 08:32:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A65351E8345;
+	Thu, 20 Feb 2025 08:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ruTunRdq"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="c0zN2rqC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C1C1A9B4E;
-	Thu, 20 Feb 2025 08:32:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 768575223;
+	Thu, 20 Feb 2025 08:35:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740040331; cv=none; b=UEIpChST8j0iLxNikTAczbts+wTkmzj5qnewoFG3bXLp3y255EDVqB5q/o+3ZtPP+CdArMe+ABv2+B18nr2x3GJ9X1WwJZqlx525jG8x4z0z/ZHrDWmKhnpRQ3lFY1hsKYDmpX/1JEH5ovuH//uQll8IuYo/9dpXIIdJ053yzJc=
+	t=1740040559; cv=none; b=C0HXnDoqY7wrVjRYzleVUPXnFhWnyB2fYHV6fIxPOgGjvV/hhlqLqSUVWsduh0p2vF9jopdhSSZO//3uRfuUfriiHRR0My6edlz3mWoJg0OWS6nCYoOSUyNhcbLXW3VSaLFBhm7RRDRy6Okk3cyJQ2vrlda+umFzHPtnNEDDAUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740040331; c=relaxed/simple;
-	bh=L/LHvO/D+1uYypCe6Rsib5c/g0Q47UeKeXAtGNnGShI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NGfrBOs1kdeVwGsYnz9kADn43EAoZk3tnD1lwMpfG1JKJFlA/bgU8pu0ql2EmxNYw0VrV+MgGf5mDr8G//PCKUEzncxTEedZeZkxzLyY4MnTVVGXQfhZQgmQG5Oqya5sDUTPkiLtZEYd2NyX2rqe4JTCSEvIKmf41I5iYjugt/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ruTunRdq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26E27C4CED1;
-	Thu, 20 Feb 2025 08:32:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740040331;
-	bh=L/LHvO/D+1uYypCe6Rsib5c/g0Q47UeKeXAtGNnGShI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ruTunRdqISFlJSKFdw9+vOac+S+5tS5GWrwnWl7LsjQYMcubKQIa7vD3T0o9o9kcU
-	 oB8wCEGjke+49Cp9avK9UDFUfr/WNeYTI/CIKxNf3KTDVUX0wU5mt/yGusHDJ3snlV
-	 QWoUK/G9QFAx6GEJrJFTmH/TX67kkY6wsjLfjMjzueS6njyfB1EhPnVOK9sktTloDp
-	 dkVf+L5UCKUTovw05NVgogA8bRpkOrn4wQ5HhwqBhPaV3LQvCAftv8RVGExVmVBttu
-	 X2jpLlkMcnwy83hTRXa0vQ236vyrCegUnGYXCkoE7XgwMx3/2Y0KJiX4Xon9xEB7cC
-	 NNkRDC8rqNkHA==
-Message-ID: <e3403885-ca21-4e67-b117-f40a7a65418b@kernel.org>
-Date: Thu, 20 Feb 2025 09:32:05 +0100
+	s=arc-20240116; t=1740040559; c=relaxed/simple;
+	bh=mTBcKvTKQUEaT4bFGfjSxr4o2+FAH06wQDjUkf7uPsM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XvM2sGsfpVX0O5yF46aBjWLOYQ3IPuzEC5VocWq0X5WJel1E81dZrbXJYV5fl2keSwGjwEYV7jWBPQ4HOvlV0fkOfCmdz+PjZCbU/k9A4rEUFoz7fSgeX51oSN6c878DDMrg7Y8iVCk6K4WB/9DvBHsK2SYNzq1nQtdetH7SJG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=c0zN2rqC; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9827F44466;
+	Thu, 20 Feb 2025 08:35:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1740040554;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wyzKqon1JbAJ6mkMIiukBpMAf6qqIZUI0/iiyhHUGis=;
+	b=c0zN2rqCeC+rI0FLMsinjEvErTzYmL96OZEJGEI4zeni0feD5W9esdgFjE7dVGu8/B0o6k
+	zv1/mw9SK3w19NgU48bsSqY7ribJi6SCo31NIwJeATEkZ0qM2WpW+zlkF+6HYij/QOQWlH
+	laYEq2Ux/PzKvEmmeG5YUZ29pTy0lPDNqWRC666P27XkjEnxMSw0xyOSA12j6LIyN1pHiY
+	R6TkRZGSxzhKiTNNJBWoINAoToOsDVQ0JpF5PN1GqFeIczpZheiihi9zY/iUzzneIW7+uU
+	CFgQHjBACUqX0XwEmY7MfbXdaXOsRLBOmMurm0HQ1YwvuiVT+2tW/ygNHhjusg==
+Date: Thu, 20 Feb 2025 09:35:50 +0100
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski
+ <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>,
+ linux-arm-kernel@lists.infradead.org, Christophe Leroy
+ <christophe.leroy@csgroup.eu>, Herve Codina <herve.codina@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>,
+ =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>, Marek
+ =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
+ <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
+ <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
+ mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Romain Gantois
+ <romain.gantois@bootlin.com>, Daniel Golle <daniel@makrotopia.org>, Dimitri
+ Fedrau <dimitri.fedrau@liebherr.com>, Sean Anderson <seanga2@gmail.com>
+Subject: Re: [PATCH net-next v4 15/15] dt-bindings: net: Introduce the
+ phy-port description
+Message-ID: <20250220093550.55844ab9@device-126.home>
+In-Reply-To: <20250219223530.GA3083990-robh@kernel.org>
+References: <20250213101606.1154014-1-maxime.chevallier@bootlin.com>
+	<20250213101606.1154014-16-maxime.chevallier@bootlin.com>
+	<20250219223530.GA3083990-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/8] dt-bindings: media: nxp: Add Wave6 video codec device
-To: Nas Chung <nas.chung@chipsnmedia.com>
-Cc: "mchehab@kernel.org" <mchehab@kernel.org>,
- "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
- "sebastian.fricke@collabora.com" <sebastian.fricke@collabora.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-imx@nxp.com" <linux-imx@nxp.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "jackson.lee" <jackson.lee@chipsnmedia.com>,
- "lafley.kim" <lafley.kim@chipsnmedia.com>
-References: <20250210090725.4580-1-nas.chung@chipsnmedia.com>
- <20250210090725.4580-4-nas.chung@chipsnmedia.com>
- <cb7937f5-2045-4903-825c-71ed70097efb@kernel.org>
- <SL2P216MB12460EDF6265459D11E2A5A9FBFF2@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
- <20250213-imaginary-shrimp-of-merriment-6ccb6f@krzk-bin>
- <SE1P216MB1242EBEEAA36BE73AD466FB6FBFA2@SE1P216MB1242.KORP216.PROD.OUTLOOK.COM>
- <ec58d467-baa3-4630-bfb0-f09d366a9be9@kernel.org>
- <SL2P216MB1246F270DDE8CC8E21EA1DDCFBC42@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <SL2P216MB1246F270DDE8CC8E21EA1DDCFBC42@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeiieejtdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthejredtredtvdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegveeltddvveeuhefhvefhlefhkeevfedtgfeiudefffeiledttdfgfeeuhfeukeenucfkphepvdgrtddumegtsgduleemkegugegtmeelfhdttdemsggtvddumeekkeelleemheegtdgtmegvheelvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekugegtgemlehftddtmegstgdvudemkeekleelmeehgedttgemvgehlegvpdhhvghlohepuggvvhhitggvqdduvdeirdhhohhmvgdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefuddprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrg
+ hdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
-On 20/02/2025 08:35, Nas Chung wrote:
-> Hi, Krzysztof.
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Wednesday, February 19, 2025 9:32 PM
->> To: Nas Chung <nas.chung@chipsnmedia.com>
->> Cc: mchehab@kernel.org; hverkuil@xs4all.nl; sebastian.fricke@collabora.com;
->> robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org; linux-
->> media@vger.kernel.org; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org; linux-imx@nxp.com; linux-arm-
->> kernel@lists.infradead.org; jackson.lee <jackson.lee@chipsnmedia.com>;
->> lafley.kim <lafley.kim@chipsnmedia.com>
->> Subject: Re: [PATCH 3/8] dt-bindings: media: nxp: Add Wave6 video codec
->> device
->>
->> On 18/02/2025 10:21, Nas Chung wrote:
->>> For example:
->>> vpu: video-codec@4c480000 {
->>>         compatible = "nxp,imx95-vpu";
->>>         reg = <0x0 0x4c480000 0x0 0x50000>;
->>> 	ranges = <0x0 0x0 0x4c480000 0x50000>;
->>>
->>>         vpuctrl: vpu-ctrl@40000 {
->>>           compatible = "nxp,imx95-vpu-ctrl";
->>> 	  reg = <0x40000 0x10000>;
->>>         };
->>>
->>>         vpucore0: vpu-core@00000 {
->>>           compatible = "nxp,imx95-vpu-core";
->>>           reg = <0x00000 0x10000>;
->>>         };
->>>
->>>         vpucore1: vpu-core@10000 {
->>>           compatible = "nxp,imx95-vpu-core";
->>>           reg = <0x10000 0x10000>;
->>>         };
->>>
->>>         vpucore2: vpu-core@20000 {
->>>           compatible = "nxp,imx95-vpu-core";
->>>           reg = <0x20000 0x10000>;
->>>         };
->>>
->>>         vpucore3: vpu-core@30000 {
->>>           compatible = "nxp,imx95-vpu-core";
->>
->> Why do you need compatible here? Could it be anything else?
-> 
-> I will update the driver based on the final DT.
-> 
->>
->>>           reg = <0x30000 0x10000>;
->>
->> Where is the rest of resources? You created children only for one
->> resource - address space?
-> 
-> Sorry for the confusion.
-> I believe the final example looks like the one below.
-> 
-> vpu: video-codec@4c480000 {
->         compatible = "nxp,imx95-vpu";
->         reg = <0x0 0x4c480000 0x0 0x50000>;
->         ranges = <0x0 0x0 0x4c480000 0x50000>;
-> 
->         vpuctrl: vpu-ctrl@40000 {
->           compatible = "nxp,imx95-vpu-ctrl";
->           reg = <0x40000 0x10000>;
->           clocks = <&scmi_clk 115>,
->                   <&vpu_blk_ctrl IMX95_CLK_VPUBLK_WAVE>;
->           clock-names = "vpu", "vpublk_wave";
->           power-domains = <&scmi_devpd 21>, <&scmi_perf 10>;
->           power-domain-names = "vpumix", "vpuperf";
->           memory-region = <&vpu_boot>;
->           #cooling-cells = <2>;
->           sram = <&sram1>;
->         };
-> 
->         vpucore0: vpu-core@00000 {
->           compatible = "nxp,imx95-vpu-core";
->           reg = <0x00000 0x10000>;
->           interrupts = <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
->           clocks = <&scmi_clk 115>,
->                   <&vpu_blk_ctrl IMX95_CLK_VPUBLK_WAVE>;
+Hi Rob,
 
+On Wed, 19 Feb 2025 16:35:30 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-These are the same resources for every block so for entire device. Why
-they are no in top level node?
+> On Thu, Feb 13, 2025 at 11:16:03AM +0100, Maxime Chevallier wrote:
+> > The ability to describe the physical ports of Ethernet devices is useful
+> > to describe multi-port devices, as well as to remove any ambiguity with
+> > regard to the nature of the port.
+> > 
+> > Moreover, describing ports allows for a better description of features
+> > that are tied to connectors, such as PoE through the PSE-PD devices.
+> > 
+> > Introduce a binding to allow describing the ports, for now with 2
+> > attributes :
+> > 
+> >  - The number of lanes, which is a quite generic property that allows
+> >    differentating between multiple similar technologies such as BaseT1
+> >    and "regular" BaseT (which usually means BaseT4).
+> > 
+> >  - The media that can be used on that port, such as BaseT for Twisted
+> >    Copper, BaseC for coax copper, BaseS/L for Fiber, BaseK for backplane
+> >    ethernet, etc. This allows defining the nature of the port, and
+> >    therefore avoids the need for vendor-specific properties such as
+> >    "micrel,fiber-mode" or "ti,fiber-mode".
+> > 
+> > The port description lives in its own file, as it is intended in the
+> > future to allow describing the ports for phy-less devices.
+> > 
+> > Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> > ---
+> > V4: no changes
+> > 
+> >  .../devicetree/bindings/net/ethernet-phy.yaml | 18 +++++++
+> >  .../bindings/net/ethernet-port.yaml           | 47 +++++++++++++++++++
+> >  MAINTAINERS                                   |  1 +
+> >  3 files changed, 66 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/ethernet-port.yaml  
+> 
+> Seems my comments on v2 were ignored. Those issues remain.
 
->           clock-names = "vpu", "vpublk_wave";
->           power-domains = <&scmi_devpd 21>;
+My bad, I apparently completely missed it :/ Let me get back to that :)
 
-Same here
+Thanks,
 
-Everything else also looks duplicated... All my previous comments - from
-first email - stand. Don't design DT to match your Linu driver structure.
-
-Best regards,
-Krzysztof
+Maxime
 
