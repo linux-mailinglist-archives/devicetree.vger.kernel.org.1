@@ -1,231 +1,113 @@
-Return-Path: <devicetree+bounces-148876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5BF8A3DA3B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:40:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D45EA3DA3D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:41:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 761A63B21A0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:40:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F413817B8A6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:41:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C95E1F150F;
-	Thu, 20 Feb 2025 12:40:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA0BA1F4195;
+	Thu, 20 Feb 2025 12:41:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="VLfdmlPu"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="XYhMlWAb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 418D91C831A;
-	Thu, 20 Feb 2025 12:40:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB1421C831A;
+	Thu, 20 Feb 2025 12:41:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740055214; cv=none; b=fRbhvR2vq+3FtWZBoScto7zOpc9GYEZkLP3XgRS2onHNCn+RMlOkltOx/KACgdt0uyH9/w+Q9MUEfPrWDbrg9fkmNbkST2S+0NdAnh446uN0DQWcPpmLcfHnYx24Jl9jZGG5RtEvRmHVHi9zyhsnV7LxtNyv/mcM8xoScKNtmc8=
+	t=1740055263; cv=none; b=l2BXw/qcxlN6ZE48NlFUeperHEKUYMrAeHrwrkw0zbacg7Sc2kCf+erfWNOkoS+qUjz0mXu+aSVJckdWSFbhL90GcEEMCIAKl59748oP5FiYzc7apv3WmfpU018ihIAQtBBqsJlT/K7UJSbuxJX3ISCvZaBSulvglLm76niq3Wg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740055214; c=relaxed/simple;
-	bh=hoMWmUYah4GFBzBoYZluoo3v+mmfTu1w02/CAA2R1hU=;
+	s=arc-20240116; t=1740055263; c=relaxed/simple;
+	bh=vcz8id6kh/tQSinqUfNUplzzW80d3HXm2rhjsaUZE2U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LJuqm6ne/kJLS9r5l+PyyYv/eHhWB6vQMIy/4oFEmrKq1xeT0EXNg1m01pZKoiY0dY5O89pA5xIacbyysXs0lc1nKJ3RGVKHAaViebkgqAtKQPBQZHcHe8s/hrlufz9tflGWXz4BmFPOufPHtG0tpsS1DVk2cV2yjZ83TK9Hf4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=VLfdmlPu; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=y9gueMMGR1Ohx7g9WsiSevqA6NIph2bjLV1PExbyhAw=; b=VLfdmlPubYGEmyuLQD9xrcOsdG
-	LBC1dVEo9fai396YCV9fBnTdNlhXscZOvzupjQ4WtM+eBdZjaCOSWA0jPS8PSJM6QfhDJvalzyC7g
-	eAH4+vzsabde8P7LkU3Cl+8WkHwvja9KHqHeXKFGsFM8GnFWAdyxyqYRZqnKQrqjPbHbjL/sXrzOv
-	SIDtH89+FuXAjFONCnftvgIkhK/9uynwDY4g/RQs8PtWDAMVCOvdCkLHPeZwxqIJahuFNpJMRZ6JW
-	DMQSbJ6IeMPPYUT6eFpI/3Ay3uChgY6VV+a5pCgTI4VnHJOQU20wNA8+FBv41oWWfIAeNiX03Ay0/
-	eiaDE+IQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:58218)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tl5qO-0000yE-2a;
-	Thu, 20 Feb 2025 12:39:56 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tl5qK-0000zP-0u;
-	Thu, 20 Feb 2025 12:39:52 +0000
-Date: Thu, 20 Feb 2025 12:39:52 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Swathi K S <swathi.ks@samsung.com>
-Cc: krzk+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	robh@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	pankaj.dubey@samsung.com, ravi.patel@samsung.com,
-	gost.dev@samsung.com
-Subject: Re: [PATCH v7 2/2] net: stmmac: dwc-qos: Add FSD EQoS support
-Message-ID: <Z7cimPBdZ3W9GKmI@shell.armlinux.org.uk>
-References: <20250220043712.31966-1-swathi.ks@samsung.com>
- <CGME20250220044132epcas5p305e4ed7ed1c84f9800299c2091ea0790@epcas5p3.samsung.com>
- <20250220043712.31966-3-swathi.ks@samsung.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YZcZfhWnSV4ik74s/UHrVHo6/da2/8yOtfvGxyjca1lLiL9YydLlwajafMwqwCcsGeganD5dbyUptLK0cemrrOaP+SNVLdBboeTUEpPp12g422Mc3S8iUWnjDaSbRbel6luFsm9c6Cv96bt6AdWlyagL+UMOfh4aZs6pixA2Jjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=XYhMlWAb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F398EC4CED1;
+	Thu, 20 Feb 2025 12:41:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1740055263;
+	bh=vcz8id6kh/tQSinqUfNUplzzW80d3HXm2rhjsaUZE2U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XYhMlWAbL6IQKeTn0ZqXCfEXKxq4atBoFreYpQi9YWl4SXtnXlLeMDa5s/z5A+48F
+	 wX57fAXomGN3kC/CTLzKwtpfE7M1vLY56q7/DEtmiAGtrR4dHivyz+LncH/xkvjp5b
+	 CWel/V5+pA3WvWuvw0o5C1IORYVbdVXX6dMqZc8M=
+Date: Thu, 20 Feb 2025 13:41:00 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Grant Likely <grant.likely@secretlab.ca>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>, Binbin Zhou <zhoubinbin@loongson.cn>,
+	linux-sound@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, stable@vger.kernel.org
+Subject: Re: [PATCH 0/2] driver core: platform: avoid use-after-free on
+ device name
+Message-ID: <2025022005-affluent-hardcore-c595@gregkh>
+References: <20250218-pdev-uaf-v1-0-5ea1a0d3aba0@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250220043712.31966-3-swathi.ks@samsung.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250218-pdev-uaf-v1-0-5ea1a0d3aba0@bootlin.com>
 
-On Thu, Feb 20, 2025 at 10:07:12AM +0530, Swathi K S wrote:
-> +static int fsd_eqos_probe(struct platform_device *pdev,
-> +			  struct plat_stmmacenet_data *data,
-> +			  struct stmmac_resources *res)
-> +{
-> +	struct clk *clk_rx1 = NULL;
-> +	struct clk *clk_rx2 = NULL;
-> +
-> +	for (int i = 0; i < data->num_clks; i++) {
-> +		if (strcmp(data->clks[i].id, "slave_bus") == 0)
-> +			data->stmmac_clk = data->clks[i].clk;
-> +		else if (strcmp(data->clks[i].id, "eqos_rxclk_mux") == 0)
-> +			clk_rx1 = data->clks[i].clk;
-> +		else if (strcmp(data->clks[i].id, "eqos_phyrxclk") == 0)
-> +			clk_rx2 = data->clks[i].clk;
-> +	}
-> +
-> +	/* Eth0 RX clock doesn't support MUX */
-> +	if (clk_rx1)
-> +		clk_set_parent(clk_rx1, clk_rx2);
+On Tue, Feb 18, 2025 at 12:00:11PM +0100, Théo Lebrun wrote:
+> The use-after-free bug appears when:
+>  - A platform device is created from OF, by of_device_add();
+>  - The same device's name is changed afterwards using dev_set_name(),
+>    by its probe for example.
+> 
+> Out of the 37 drivers that deal with platform devices and do a
+> dev_set_name() call, only one might be affected. That driver is
+> loongson-i2s-plat [0]. All other dev_set_name() calls are on children
+> devices created on the spot. The issue was found on downstream kernels
+> and we don't have what it takes to test loongson-i2s-plat.
+> 
+> Note: loongson-i2s-plat maintainers are CCed.
+> 
+>    ⟩ # Finding potential trouble-makers:
+>    ⟩ git grep -l 'struct platform_device' | xargs grep -l dev_set_name
+> 
+> The solution proposed is to add a flag to platform_device that tells if
+> it is responsible for freeing its name. We can then duplicate the
+> device name inside of_device_add() instead of copying the pointer.
 
-Isn't there support in DT for automatically setting the clock tree?
-See
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/clock/clock.yaml#L24
+Ick.
 
-Also, I think a cleanup like the below (sorry, it's on top of other
-patches I'm working on at the moment but could be rebased) would
-make sense.
+> What is done elsewhere?
+>  - Platform bus code does a copy of the argument name that is stored
+>    alongside the struct platform_device; see platform_device_alloc()[1].
+>  - Other busses duplicate the device name; either through a dynamic
+>    allocation [2] or through an array embedded inside devices [3].
+>  - Some busses don't have a separate name; when they want a name they
+>    take it from the device [4].
 
-With both of these, this should mean that your changes amount to:
+Really ick.
 
-1. making data->probe optional
-2. providing a dwc_eth_dwmac_data structure that has .stmmac_clk_name
-   filled in
-3. adding your compatible to the match data with a pointer to the
-   above structure.
+Let's do the right thing here and just get rid of the name pointer
+entirely in struct platform_device please.  Isn't that the correct
+thing that way the driver core logic will work properly for all of this.
 
-In other words, support for your device becomes just a matter of adding
-data structures rather than a chunk of extra code.
+thanks,
 
-Thanks.
-
-8<====
-From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Subject: [PATCH net-next] net: stmmac: clean up clock initialisation
-
-Clean up the clock initialisation by providing a helper to find a
-named clock in the bulk clocks, and provide the name of the stmmac
-clock in match data so we can locate the stmmac clock in generic
-code.
-
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
----
- .../stmicro/stmmac/dwmac-dwc-qos-eth.c        | 32 +++++++++++--------
- 1 file changed, 18 insertions(+), 14 deletions(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-index 581c0b40db57..8e343ab7a7e2 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-@@ -34,6 +34,16 @@ struct tegra_eqos {
- 	struct gpio_desc *reset;
- };
- 
-+static struct clk *dwc_eth_find_clk(struct plat_stmmacenet_data *plat_dat,
-+				    const char *name)
-+{
-+	for (int i = 0; i < plat_dat->num_clks; i++)
-+		if (strcmp(plat_dat->clks[i].id, name) == 0)
-+			return plat_dat->clks[i].clk;
-+
-+	return 0;
-+}
-+
- static int dwc_eth_dwmac_config_dt(struct platform_device *pdev,
- 				   struct plat_stmmacenet_data *plat_dat)
- {
-@@ -120,12 +130,7 @@ static int dwc_qos_probe(struct platform_device *pdev,
- 			 struct plat_stmmacenet_data *plat_dat,
- 			 struct stmmac_resources *stmmac_res)
- {
--	for (int i = 0; i < plat_dat->num_clks; i++) {
--		if (strcmp(plat_dat->clks[i].id, "apb_pclk") == 0)
--			plat_dat->stmmac_clk = plat_dat->clks[i].clk;
--		else if (strcmp(plat_dat->clks[i].id, "phy_ref_clk") == 0)
--			plat_dat->pclk = plat_dat->clks[i].clk;
--	}
-+	plat_dat->pclk = dwc_eth_find_clk(plat_dat, "phy_ref_clk");
- 
- 	return 0;
- }
-@@ -230,18 +235,12 @@ static int tegra_eqos_probe(struct platform_device *pdev,
- 
- 	eqos->dev = &pdev->dev;
- 	eqos->regs = res->addr;
-+	eqos->clk_slave = data->stmmac_clk;
- 
- 	if (!is_of_node(dev->fwnode))
- 		goto bypass_clk_reset_gpio;
- 
--	for (int i = 0; i < data->num_clks; i++) {
--		if (strcmp(data->clks[i].id, "slave_bus") == 0) {
--			eqos->clk_slave = data->clks[i].clk;
--			data->stmmac_clk = eqos->clk_slave;
--		} else if (strcmp(data->clks[i].id, "tx") == 0) {
--			data->clk_tx_i = data->clks[i].clk;
--		}
--	}
-+	data->clk_tx_i = dwc_eth_find_clk(data, "tx");
- 
- 	eqos->reset = devm_gpiod_get(&pdev->dev, "phy-reset", GPIOD_OUT_HIGH);
- 	if (IS_ERR(eqos->reset)) {
-@@ -306,15 +305,18 @@ struct dwc_eth_dwmac_data {
- 		     struct plat_stmmacenet_data *data,
- 		     struct stmmac_resources *res);
- 	void (*remove)(struct platform_device *pdev);
-+	const char *stmmac_clk_name;
- };
- 
- static const struct dwc_eth_dwmac_data dwc_qos_data = {
- 	.probe = dwc_qos_probe,
-+	.stmmac_clk_name = "apb_pclk",
- };
- 
- static const struct dwc_eth_dwmac_data tegra_eqos_data = {
- 	.probe = tegra_eqos_probe,
- 	.remove = tegra_eqos_remove,
-+	.stmmac_clk_name = "slave_bus",
- };
- 
- static int dwc_eth_dwmac_probe(struct platform_device *pdev)
-@@ -354,6 +356,8 @@ static int dwc_eth_dwmac_probe(struct platform_device *pdev)
- 	if (ret)
- 		return dev_err_probe(&pdev->dev, ret, "Failed to enable clocks\n");
- 
-+	data->stmmac_clk = dwc_eth_find_clk(plat_dat, data->stmmac_clk_name);
-+
- 	ret = data->probe(pdev, plat_dat, &stmmac_res);
- 	if (ret < 0) {
- 		dev_err_probe(&pdev->dev, ret, "failed to probe subdriver\n");
--- 
-2.30.2
-
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+greg k-h
 
