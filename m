@@ -1,60 +1,64 @@
-Return-Path: <devicetree+bounces-149052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5C0DA3E1C9
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:06:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F382A3E219
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:18:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3A1118857DF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:04:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B11C6188794C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:15:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFED212B1F;
-	Thu, 20 Feb 2025 17:03:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF33620485D;
+	Thu, 20 Feb 2025 17:08:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GmKp9n/N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W/213mEP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A1220D4E2;
-	Thu, 20 Feb 2025 17:03:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C18CD1E0B66;
+	Thu, 20 Feb 2025 17:08:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740071026; cv=none; b=NO6Li4z0yOUf3GpLP6fjSPqe2coupiI6J/SKu64XaL0FG5ywyc91AXnKYVpvCADNEE3j7G178YhN1td8ef6GQ/37yjbeCKkH/3zH8rkmffGwK3ymdokGIBfFNoLO8u/5MPCn8fDhKkF4ZkUcLmbskvUbWxlJmH1fPNuzvkxOjb0=
+	t=1740071301; cv=none; b=gnEeBt5telSgC8rTA/hfJ/ytpFkfOuP0j0Jl19ZU2Ex8bqlWAMisGMuNoACDUQJX/MLBTVdFyFDA3pjuNxovs4SsBC0FQOcxeunOo4v5xZdotf34vU/h46PuZX1F6ElQyQL5V57VixFrE1Ysb+SqzXMSEpYs0YUgDodTs4z6dXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740071026; c=relaxed/simple;
-	bh=gpPQRWVleKseipjb4fepOYISx5fxOTAg2iTAl0luXkY=;
+	s=arc-20240116; t=1740071301; c=relaxed/simple;
+	bh=zlAXRsJeJIm22gl5gl92JVR7nBolZAa4T8bMv6g+yE0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZspZWCd09NLEXpkBa49ucOHbcYMYw0MXQqmnRsnwg/KCqnl7EhYm8CbdYo6AVBhNX2UsI6Orb3wSOtPZRFIylf3sqNZyHLBWjKw07MsNkAPyljieIuKdnR5dI7uod/i1Y7NvTM/xwBEVx5/9MkjY2r/652X8E8wX2Tue2RmbFiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GmKp9n/N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C786C4CED1;
-	Thu, 20 Feb 2025 17:03:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mvuawHdtmGODIbG+Kbt5cVph4btx8FRZKFGHKSJzi5NTgg5dmPTYW1TjKqYpVlxBjNEO3O1Y4snFTmRCPMUXzOSqWRit0Vg3R1JtuvpkyDuVDl6+nhwjIakhHdv/xzfl/REACsBg4Sup2Vy89cqwlpN1BktO/v4qL8XnKs0tLPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W/213mEP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E869C4CED1;
+	Thu, 20 Feb 2025 17:08:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740071026;
-	bh=gpPQRWVleKseipjb4fepOYISx5fxOTAg2iTAl0luXkY=;
+	s=k20201202; t=1740071301;
+	bh=zlAXRsJeJIm22gl5gl92JVR7nBolZAa4T8bMv6g+yE0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GmKp9n/Nq6ReteFJTiEsO99lxULkhB/fCSWlWUHqR2aRG+0wIzl3EEHDNOjwwTy1V
-	 KslPpGf+gm8BmhK2/hMPKvHOriNfQc/7qHvRTR6EhBt9GED4fXnccaFMgBg8MBnzQi
-	 ch7GjMJwCY00EpZE8hStaxstTQ/jzIvbckqq3EipemFvdxRkUTgenkfFjJACaeixm7
-	 EOLABECyiH108wojZNMG7YR4J0Tdzq8RC/4zZxHz6bKhfnaRGogiYFBSD1/vQvP4cz
-	 ivILl0Kld3fCgAsxVCkVVzWJk/+f9Jk4F0g3SwvhJJcais19jDAKQeu4FrtS1qIGcU
-	 K7y9cjdFfWHIA==
-Date: Thu, 20 Feb 2025 17:03:41 +0000
+	b=W/213mEPCMdWwJbimZg3N/GiPzMA6A5uG7RTBiKkmfI5lseq78POsQdNmEwqhmHkr
+	 fgjfqJtips7gSJp1OxBYUPljXrtpEw9ntElkrOf37zRvI8B7/1kiFNFLtXcyZx2CCW
+	 fTwI3sf+9lLv+rrGsOj40w2c2paMDZfCXnCgMdn4WXJhNvOKtauVz1/E11X0l27JKS
+	 DHbtfauSLsQLRdqk21t7MKO/halXwSf2dz5PWHXVkFM/75giHmiWSD3N9A3J4YAHe4
+	 WsEm4KjkZHvaVVSo+JCGLVRjgtul/IOkunYchzceAwwULy/sjg1MXCLNIB9t/+fpMo
+	 RqsA3Zcb+Hu3w==
+Date: Thu, 20 Feb 2025 17:08:15 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Steffen Trumtrar <kernel@pengutronix.de>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: leds: add lp5860 LED controller
-Message-ID: <20250220-gab-bagful-ce588df069d2@spud>
-References: <20250220-v6-14-topic-ti-lp5860-v1-0-42874bdc7513@pengutronix.de>
- <20250220-v6-14-topic-ti-lp5860-v1-1-42874bdc7513@pengutronix.de>
+To: Paul Menzel <pmenzel@molgen.mpg.de>
+Cc: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>, marcel@holtmann.org,
+	luiz.dentz@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-bluetooth@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Amitkumar Karwar <amitkumar.karwar@nxp.com>,
+	Sherry Sun <sherry.sun@nxp.com>, Luke Wang <ziniu.wang_1@nxp.com>,
+	johan.korsnes@remarkable.no, kristian.krohn@remarkable.no,
+	Manjeet Gupta <manjeet.gupta@nxp.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: net: bluetooth: nxp: Add support to
+ set BD address
+Message-ID: <20250220-oversweet-dominoes-1661eca0c96c@spud>
+References: <20250220114157.232997-1-neeraj.sanjaykale@nxp.com>
+ <184919f9-25bd-4f65-9ed9-dc452a6f4418@molgen.mpg.de>
+ <AS4PR04MB96921164DAA8A63B2C0841AAE7C42@AS4PR04MB9692.eurprd04.prod.outlook.com>
+ <0e5f23a9-b1d7-4d8c-bb05-83f7a15a7285@molgen.mpg.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,106 +66,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="dhzeSjOqKqWIB870"
+	protocol="application/pgp-signature"; boundary="ZONTg+LTYUZHcXVT"
 Content-Disposition: inline
-In-Reply-To: <20250220-v6-14-topic-ti-lp5860-v1-1-42874bdc7513@pengutronix.de>
+In-Reply-To: <0e5f23a9-b1d7-4d8c-bb05-83f7a15a7285@molgen.mpg.de>
 
 
---dhzeSjOqKqWIB870
-Content-Type: text/plain; charset=us-ascii
+--ZONTg+LTYUZHcXVT
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 20, 2025 at 01:57:56PM +0100, Steffen Trumtrar wrote:
-> The lp5860 is a LED matrix driver with 18 constant current sinks and 11
-> scan switches for 198 LED dots:
->   * Supply range from 2.7 V to 5.5 V
->   * 0.1mA - 50mA per current sink
->   * 1MHz I2C and 12MHz SPI control interface
->   * 8-bit analog dimming
->   * 8/16-bit PWM dimming
->   * individual ON and OFF control for each LED dot
->   * globat 3-bit Maximum Current setting for all LED dots
->   * individual LED dot open/short detection
+On Thu, Feb 20, 2025 at 01:11:41PM +0100, Paul Menzel wrote:
+> Dear Neeraj,
 >=20
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> ---
->  .../devicetree/bindings/leds/leds-lp5860.yaml      | 112 +++++++++++++++=
-++++++
->  1 file changed, 112 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/leds/leds-lp5860.yaml b/Do=
-cumentation/devicetree/bindings/leds/leds-lp5860.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..a4e39fd843f3f260ee9c1103e=
-2cb27dcb230608c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-lp5860.yaml
-> @@ -0,0 +1,112 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-lp5860.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LED driver for LP5860 RGB LED from Texas Instruments.
-> +
-> +maintainers:
-> +  - Steffen Trumtrar <kernel@pengutronix.de>
-> +
-> +description: |
-> +  The LP5860 is multi-channel, I2C and SPI RGB LED Driver that can group=
- RGB LEDs
-> +  into a LED group or control them individually.
-> +
-> +  For more product information please see the link below:
-> +  https://www.ti.com/lit/ds/symlink/lp5860.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,lp5860
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 12000000
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  '^multi-led@[0-9a-f]$':
-> +    type: object
-> +    $ref: leds-class-multicolor.yaml#
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        minItems: 1
-> +        maxItems: 12
-> +        description:
-> +          This property denotes the LED module number(s) that is used
-> +          for the child node.
+> Thank you for your prompt reply.
+>=20
+> Am 20.02.25 um 12:59 schrieb Neeraj Sanjay Kale:
+>=20
+> > > Am 20.02.25 um 12:41 schrieb Neeraj Sanjay Kale:
+> > > > Allow user to set custom BD address for NXP chipsets.
+> > > >=20
+> > > > Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> > > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > > ---
+> > > > v2: Add allOf and unevaluatedProperties: false (Krzysztof)
+> > > > v3: Drop local-bd-address: true (Krzysztof)
+> > > > ---
+> > > >    .../devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml   | 6 =
++++++-
+> > > >    1 file changed, 5 insertions(+), 1 deletion(-)
+> > > >=20
+> > > > diff --git
+> > > a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> > > b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> > > > index 0a2d7baf5db3..a84c1c21b024 100644
+> > > > --- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-b=
+t.yaml
+> > > > +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-b=
+t.yaml
+> > > > @@ -17,6 +17,9 @@ description:
+> > > >    maintainers:
+> > > >      - Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> > > >=20
+> > > > +allOf:
+> > > > +  - $ref: bluetooth-controller.yaml#
+> > > > +
+> > > >    properties:
+> > > >      compatible:
+> > > >        enum:
+> > > > @@ -43,7 +46,7 @@ properties:
+> > > >    required:
+> > > >      - compatible
+> > > >=20
+> > > > -additionalProperties: false
+> > > > +unevaluatedProperties: false
+> > >=20
+> > > How is this diff related to the change mentioned in the commit messag=
+e?
+> >=20
+> > This is based on review comment from Krzysztof in V1 DT patch.
+> > allOf ref will import all properties defined in bluetooth-controller.ya=
+ml, including local-bd-address:
+> > https://github.com/torvalds/linux/blob/master/Documentation/devicetree/=
+bindings/net/bluetooth/bluetooth-controller.yaml#L18
+>=20
+> Thank you. I=E2=80=99d include this in the commit message, but my comment=
+ was about
+> the replacement of `additionalProperties` by `unevaluatedProperties`.
 
-I'm not really sure what you're attmpting here with the minItems: 1, maxIte=
-ms: 12.
-Are you sure you didn't mean maxItems: 1, minimum: 1, maximum: 12?
+The change is needed to permit the property defined in
+bluetooth-controller.yaml to be used.
 
---dhzeSjOqKqWIB870
+--ZONTg+LTYUZHcXVT
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7dgbQAKCRB4tDGHoIJi
-0sGgAP9DjLiuO1VdyejSM94HneZbw3cYQ5Q/w8hX8xcR6NuCewEAoVc5hCWOfsok
-t/hqvo6z6ObYxefQwx2nXChXoVmwlgA=
-=9jeY
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7dhfwAKCRB4tDGHoIJi
+0qowAQDJqiC9gO011LY1RwVtMuwshi6ln8BiwMUgXiIZWRVH0wD+Mq9pmPDdKqn4
+BOQOd7lVprKNQNq5Hn83ESn4eWMmzAk=
+=FRXl
 -----END PGP SIGNATURE-----
 
---dhzeSjOqKqWIB870--
+--ZONTg+LTYUZHcXVT--
 
