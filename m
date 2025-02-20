@@ -1,163 +1,155 @@
-Return-Path: <devicetree+bounces-148882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FE64A3DA62
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:49:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 372DAA3DA71
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:51:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05D1B3BF687
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:48:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 353C51884603
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:51:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E56C1F3FCB;
-	Thu, 20 Feb 2025 12:48:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EC421F5836;
+	Thu, 20 Feb 2025 12:51:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TUfMv4I5"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jranXwu6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8603D1EF0A3
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 12:48:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C86134B0;
+	Thu, 20 Feb 2025 12:51:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740055706; cv=none; b=ctbpOxN7guyvt8sH3Yo7imyHDEUASP/0NBwDCWkH9cQ1TDEdL3wED+qLrzo9kL084AK4JAidR5DR7PjiUtlmO4oUbMUxzi7A6O2bRQwZ65ly8xUeEv8IcyueuDyh5kvPM+UrEyoo4ymDyxPLC2ev7coq41MCbA2MLneXSdZ4XDs=
+	t=1740055891; cv=none; b=uNO9HbWwzuKgdSLuN9R15SkVHrQRRWs0e+UqyKP0LYfKrO8D+9tptR7y8TIkjifaTdgeamBOxmqd1L5hxK3RMmwxPQJOIUgA+wnTpbkoYT58VmUOexHyeKUqGtIksICRIIlA4b1shlZOXialHJRonggzn1g5yDjh5906lBKytjg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740055706; c=relaxed/simple;
-	bh=WIUGIvXY46T52kzvVJcrDhggfphRCH6n5yfZ8oqcuL8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Pp1HonBR3wb0bD7r/X4DxnR6jLexji0cUb6z3rWwu8a2Wyk5uhAViwsTBNTpVv+SoGOkhYM5M1gBfFc3UxDGLOmHoNzzec4rpRf8N6wV9bNsAXqH8tjkys64unhz/sqrRBkBD7bff8W+P0Ofka8VMEVolxm1RjWiJIj3wBnUt9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TUfMv4I5; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-22104c4de96so12977225ad.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 04:48:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740055705; x=1740660505; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CE4a7LWNgD+6bEHm+If6yI6CBWntgAegdTZ6WlyVgRs=;
-        b=TUfMv4I5hAE+HvD6qhlXIwG4Zk/1n2HYdnc4iBnCxSbbucpFASMmCmlaYJDaguE2pn
-         AtHozFLs9nYdMrXa0L7AK6z9L9ItbqS4r3JfMQfnpJ/MfwD/K7hhLsPvIvUMuyd88WxY
-         JdT4vZDJsbZMMwHbaZzXJF9eAMABD7Nou0UQeDOgBzSqoP7t5XwWrTxzm9741ThXpBTl
-         SK5YuX4tTsX+sN+/j2xnpBGCpfw6TfZ+lr5YM55ZXfwvgJ8+gMPP0R52ZLa+ocdfCjDh
-         zUu5i5ZMi+EkmfMWS1aoS+8EkznXvhkyo26XDWMwgy39qkA81AJA3qgFBmtQxFFtWhn4
-         kjpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740055705; x=1740660505;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CE4a7LWNgD+6bEHm+If6yI6CBWntgAegdTZ6WlyVgRs=;
-        b=HpgLEGLq+eCwXrBDp8AOQYqWmjXEQ7ZQDljqRaUMFyNQM22ePwz8gkwHYb9eVhqxut
-         CZgW0t+x99mS5Wgm6iK8BIOpCicvceXA88Dm8ne/ZTcBVKTo2KqjpyJDS7EIb5aQM5Rj
-         36inn7chgJZ7W3ayNmZ/OUqDKA6gQePpTnUbLrNOyFdi0LOx+B6Y7wzshryrmjvfXoRk
-         wlRM3S0bn6HRN1s8LFm/h05gb23a9SYEjqxK+x+335v1WXYTvBHnVFzAcXCIeRbDbZX7
-         sK0xI6+wyWEmS3wj+TKDBPj8m/Mm+lH+QktgAOAY0JKOpFLprm+XVL7RwM3oaDEJzVP2
-         4tfg==
-X-Forwarded-Encrypted: i=1; AJvYcCXUGiA7SqYo+x+OWxsCoqJZWcPNOLGu/CidCkoH0PkxulGlcO8vw/2N15CUkhOsPXotBI5K+YJfXr0s@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZvL/Nsrm4xwdwzA0uKWTFCB9zSj15KwcZcZZT7LnAVyDFmh5t
-	RI2xBOxVspx8r8GZhTaBpAeM/P4KpXmBnMQdftdV6oFj/+Sifc1mu7JncA==
-X-Gm-Gg: ASbGncv3Yq6RfkzeaDw82hBjdlvYi9Ckng6nqgiwqxbQz7ap4n1CHHK+goBM9uUacPf
-	nj3raqByhN3GGfvz6WeJOMd/c3KkjqvVoWrUH0jbHyowEY+pj0PJapY23mW3NZBQFg37QzcQ0hl
-	HU++KkTmtDjP0G8cmvo319Hh1p+qADIV05590nJpf1aRVpV65jPHh6vYtfMHWwT+Y01X2oftdBX
-	x4gqg+i2HQk6nM7knEDG3++5jJ+HLC5dol82p07VE35ogCN6YClSzK2grfw2fRHUM/IFTfyfM+S
-	6PoPY15SEnnzSLPpVHYatMBoB5Vy+g==
-X-Google-Smtp-Source: AGHT+IFjmiPqipTEZkwZ1WqVXZGW1oHgfOJdHBp8emwTtehMMJEryDelpL2Ck2DmoddIgyfmCqbAIg==
-X-Received: by 2002:a05:6a00:1392:b0:730:74f8:25b6 with SMTP id d2e1a72fcca58-7326179e8a0mr35184251b3a.6.1740055704812;
-        Thu, 20 Feb 2025 04:48:24 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9a27:2e77:89d4:5724])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73255f4c0d1sm11963662b3a.62.2025.02.20.04.48.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Feb 2025 04:48:24 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2] ARM: dts: vfxxx: Fix the order of the DMA entries
-Date: Thu, 20 Feb 2025 09:48:09 -0300
-Message-Id: <20250220124809.2361942-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1740055891; c=relaxed/simple;
+	bh=5ypdshPfI3nsJ88dlIy/T3H0ZdxophNkWHmQ430+TI8=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RWOsvp8C2kkBTjJYdFj1elT3LxJ96fdAWZkySBRUINidxHIlDzm38345qsexA2UAbHCSj754om13+umELcFOhfv4aZxls740jkptgkSISOS6vhpFQOUqfBNanexmF1FOIiRFb6GrNOSuvzmIRSeGIj6PjopgRya2GlfZic6ohMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jranXwu6; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id EE3BA431ED;
+	Thu, 20 Feb 2025 12:51:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1740055881;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=V12Yk4AP6w0Kz77u/6UMamy0PAJDxKPB8Crw7PN4YQw=;
+	b=jranXwu6S39ULr7tv8yQXi5n3abengdJa871FcQj+dJgjWtC3dajQGOATSbkHF2zEk+/vS
+	eZIFEIjX6HCRn9yISFCqVSadBjnXoNr9/uRMgrx9gKjOwZoXCpN3R73hyPWs2pSxQzEBMi
+	ZS0W4JNbwMT37dnOwmc7nG012BIJhdo07Cx2gl04xto8dIgKg4edkf6FghBbmqXKUOaNg6
+	4iR4s5h+7QlIP4SJDZ8LIa7pl6vP+S95Z8fDuabYpfzzksIoYGGQGwuCXNDQhMAoruckrH
+	ANDErgtjbtm/IlAVu7+FSa5I+dEIzg+UKBhTkgDrlBbg1hgJEfl6rFpKasQBVQ==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Romain Gantois <romain.gantois@bootlin.com>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
+ Arnd Bergmann <arnd@arndb.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Kory Maincent <kory.maincent@bootlin.com>, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v7 9/9] misc: add FPC202 dual port controller driver
+Date: Thu, 20 Feb 2025 13:51:13 +0100
+Message-ID: <6232449.lOV4Wx5bFT@fw-rgant>
+In-Reply-To: <Z7cbX5jX3NL4C2GR@shikoro>
+References:
+ <20250204-fpc202-v7-0-78b4b8a35cf1@bootlin.com>
+ <2025022038-hangnail-rehab-c145@gregkh> <Z7cbX5jX3NL4C2GR@shikoro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="nextPart5091325.31r3eYUQgx";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeijedukecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvufffkfgjfhggtgesghdtreertddtjeenucfhrhhomheptfhomhgrihhnucfirghnthhoihhsuceorhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeehleefieekgeetkeetieetveeitefhgfejhefggfdtfffgteefieeufeeuteegjeenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepfhifqdhrghgrnhhtrdhlohgtrghlnhgvthdpmhgrihhlfhhrohhmpehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvddvpdhrtghpthhtohepfihsrgdorhgvnhgvshgrshesshgrnhhgqdgvnhhgihhnvggvrhhinhhgrdgtohhmpdhrtghpthhtohepghhrvghgkhhhsehlihhnuhigfhhouhhnuggrthhiohhnrdhorhhgpdhrtghpthhtoheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhrtghpthhtohepthhomhhirdhvr
+ ghlkhgvihhnvghnsehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghnughirdhshhihthhisehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: romain.gantois@bootlin.com
 
-From: Fabio Estevam <festevam@denx.de>
+--nextPart5091325.31r3eYUQgx
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+Date: Thu, 20 Feb 2025 13:51:13 +0100
+Message-ID: <6232449.lOV4Wx5bFT@fw-rgant>
+In-Reply-To: <Z7cbX5jX3NL4C2GR@shikoro>
+MIME-Version: 1.0
 
-According to fsl,dspi.yaml the expected order for describing the dmas
-and dma-names properties is "tx" first, followed by "rx".
+Hello Wolfram,
 
-Adjust it acordingly to fix the following dt-schema warnings:
+On jeudi 20 f=C3=A9vrier 2025 13:09:03 heure normale d=E2=80=99Europe centr=
+ale Wolfram Sang=20
+wrote:
+> > as this is a i2c_driver, why isn't it in drivers/i2c/ somewhere?  Why
+> > misc?
+>=20
+> Because drivers/i2c is only for I2C controllers and this is not a
+> controller. Other address translators also reside in their respective
+> subsystem, e.g. media for GMSL (de-)serializers. I don't know this chip,
+> maybe it has no "respective" subsystem and, thus, misc?
 
-spi@4002c000: dma-names:0: 'tx' was expected
-spi@4002c000: dma-names:1: 'rx' was expected
+That is correct, this chip acts both as an I2C address translator and as a=
+=20
+GPIO controller with LED control and prefetch capabilities. It's meant to=20
+aggregate control signals from multiple SFP cages (or other similar port=20
+types), which have both I2C and low-speed signals.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v1:
-- Fixed Subject.
+Moreover, the chip can be configured to use an SPI master interface instead=
+ of=20
+an I2C one, although this isn't supported in this driver.
 
- arch/arm/boot/dts/nxp/vf/vfxxx.dtsi | 17 ++++++++---------
- 1 file changed, 8 insertions(+), 9 deletions(-)
+Considering all of this, I didn't think that either the I2C subsystem or th=
+e=20
+GPIO subsystem were a good fit for this component, which is why I chose the=
+=20
+misc subsystem.
 
-diff --git a/arch/arm/boot/dts/nxp/vf/vfxxx.dtsi b/arch/arm/boot/dts/nxp/vf/vfxxx.dtsi
-index 6334ad4aec4b..597f20be82f1 100644
---- a/arch/arm/boot/dts/nxp/vf/vfxxx.dtsi
-+++ b/arch/arm/boot/dts/nxp/vf/vfxxx.dtsi
-@@ -158,8 +158,8 @@ dspi0: spi@4002c000 {
- 				clocks = <&clks VF610_CLK_DSPI0>;
- 				clock-names = "dspi";
- 				spi-num-chipselects = <6>;
--				dmas = <&edma1 1 12>, <&edma1 1 13>;
--				dma-names = "rx", "tx";
-+				dmas = <&edma1 1 13>, <&edma1 1 12>;
-+				dma-names = "tx", "rx";
- 				status = "disabled";
- 			};
- 
-@@ -172,8 +172,8 @@ dspi1: spi@4002d000 {
- 				clocks = <&clks VF610_CLK_DSPI1>;
- 				clock-names = "dspi";
- 				spi-num-chipselects = <4>;
--				dmas = <&edma1 1 14>, <&edma1 1 15>;
--				dma-names = "rx", "tx";
-+				dmas = <&edma1 1 15>, <&edma1 1 14>;
-+				dma-names = "tx", "rx";
- 				status = "disabled";
- 			};
- 
-@@ -529,9 +529,8 @@ dspi2: spi@400ac000 {
- 				clocks = <&clks VF610_CLK_DSPI2>;
- 				clock-names = "dspi";
- 				spi-num-chipselects = <2>;
--				dmas = <&edma1 0 10>,
--					<&edma1 0 11>;
--				dma-names = "rx", "tx";
-+				dmas = <&edma1 0 11>, <&edma1 0 10>;
-+				dma-names = "tx", "rx";
- 				status = "disabled";
- 			};
- 
-@@ -544,8 +543,8 @@ dspi3: spi@400ad000 {
- 				clocks = <&clks VF610_CLK_DSPI3>;
- 				clock-names = "dspi";
- 				spi-num-chipselects = <2>;
--				dmas = <&edma1 0 12>, <&edma1 0 13>;
--				dma-names = "rx", "tx";
-+				dmas = <&edma1 0 13>, <&edma1 0 12>;
-+				dma-names = "tx", "rx";
- 				status = "disabled";
- 			};
- 
--- 
-2.34.1
+Best Regards,
+
+=2D-=20
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart5091325.31r3eYUQgx
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEYFZBShRwOvLlRRy+3R9U/FLj284FAme3JUEACgkQ3R9U/FLj
+285XmQ/+JH6sTra2DHeFaZhXztjqmfO3by20dIZfJUrns3TrzJOsd8LMRdvKo7xu
+TqTrQ5E10KMNtVvu98HkF2Yhig2enCQxdlwpVEnbDA8lH+PjvV9sOA3Rz8n2fokC
+uPzgzVLAA7IOe5UyMdYPU2YmDgVn+kNUJCxJVHGM/qb/H7MUI2HH8QZxj6XNa3KS
+3ZWRMcc0XImISTzDpFC02Vwcfy+Q3wr+BtvWU8aT7OM5J96JBiyzvGWPYTNarSjg
+CTHXmGmRpLmvqfS2576qBV6XUfmUNqDAZhOoDm6zftIOOimUAentfKzFjdJ9Nlam
+ccf9WrWVbjgPsv78dX60N+9DpCsNLNeD7Vg2zHvgFRDs7l9NDztEX60vyAX1YLA7
+E2dMJ2NXgIx0+Co1IHFCBa3rYZLEflLHNem1TVloSZ9JvYNV2P/nlkM+JB3zc3mX
+h/jt/XYaXQvRmURW+kc+7NKYl9yVbBZQ7xt5b5ORxMITnrJjpfay3HEAxSh5oGDv
+7bjs2t9ti/7/JpA6FTbmjHfHiCfhF3FRajqq4JrP1f5i2CVFl9d/fEPFe45hBB4u
+vV1FUr1xOiGAFNO9IdcZKyiYtdcNAkCuzCJv19+bHth9eJL3oAA9caz67gEDtvrX
+YA9mCyW7ldjs3vScFnkZHzlWenElfk+WEPa1wvwOzIA0niWYMPc=
+=J7Vz
+-----END PGP SIGNATURE-----
+
+--nextPart5091325.31r3eYUQgx--
+
+
 
 
