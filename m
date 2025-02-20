@@ -1,118 +1,108 @@
-Return-Path: <devicetree+bounces-149049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91553A3E16A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:53:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92127A3E183
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:56:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91F2B17EA6F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 16:51:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5742119C4167
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 16:53:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFDDB20B211;
-	Thu, 20 Feb 2025 16:50:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA28212B00;
+	Thu, 20 Feb 2025 16:51:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pSBaeyZF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k8tNCes7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8233A1DFD85;
-	Thu, 20 Feb 2025 16:50:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07BD220FA98;
+	Thu, 20 Feb 2025 16:51:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740070211; cv=none; b=UrJYqJDnb1Ap4FCJgovigbJdR+Nb1FRq3Up0gBKHb75XAaEEnPaCjnywN0x3+Y+uXQ8lkTvgwWoI/bfoe6L6h7uX/3EOMUBZFsYp0oBnA/PS9I6kU1EQqpnKH0XXAA29WUz/Vzoz1frQSg6VmvGjo35l1O9rHjAeaAvLfNyZkW8=
+	t=1740070260; cv=none; b=DkCMVRZLjGmnaEko2yO8xePVZyfFN33joqdBCAS5j9BzkQAat+XIZbSUtVJjg+B/iWQ+h8FhoUt2U30OCkvL69eIUo6hw2weoV9OBpTMhZQe/mzWhAOpiCJTaWhcmdBwnYG7X/kuey9UKYnVzJBCkv431yKrpuzvNm8Pvk+wLWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740070211; c=relaxed/simple;
-	bh=r7vEij098XePCNx1q/9h8YAgRgZb+uXXU16yRDQpoSU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tHh00R64DT9MYl7+yOzZ0UvV3JwG42EPev5NpYJnXF3GWJfh/K2FTANSfuWUFYZ34DKmsZUnkZH1B4nqzghWWjnZ7lIVJMBkpVx4n/A8RETQbHcOrwu2m1czOScXRZZnqpoVTk+RPsAKOELAIy7g6M9FA3/CyFM3RLks8jdTz4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pSBaeyZF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7AC6C4CED1;
-	Thu, 20 Feb 2025 16:50:08 +0000 (UTC)
+	s=arc-20240116; t=1740070260; c=relaxed/simple;
+	bh=9xnTEjnQhes40qnNUz2hg5pdStiqILnkPcPo73VxwE0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=r7jfQ5hP7zn3oe4kL8oha/cS42NnIFWT/Nh8N0eXR75nJCrSx2kDNOPmGH5W77Fsyad22JqXwg4J58eRAjXFdso1WGjYxNyUb/lmDN+ylFLrYgnxAEyY/CnYacR3BP/AMhg+3Y7/Kbnm5RztDKd+nUpT+7JVuIRmShgRzG2FTiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k8tNCes7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B80C4C4CED1;
+	Thu, 20 Feb 2025 16:50:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740070211;
-	bh=r7vEij098XePCNx1q/9h8YAgRgZb+uXXU16yRDQpoSU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pSBaeyZFC671w2GzIv2T8buca6YJuGw6jDMXRB6BOhxoQ3xgitvpNvp4j9zQEwLXk
-	 4I0v2sjtCAegGCBAcA8bGA27eJ4sb4olPi6VCs1Rn082i3KV/oKN0OpbLr0b9vM1XW
-	 7Y7qUOAB+SHHW78oydrBrpxM1GmnwSTwP+JzSxitTY5SMOF3Ebbn642fm+HhfkkWYg
-	 phJn2pj+PbFbFunMb2W0hhzNOAVlKHZ6F2xSgTk/BXus9jjoWOfvKwdtONqY8neO/y
-	 pbqPBPU+NpYg6LLXixZmFCBNr4/tA9Z6Ml1okmG4OAcQWZ/3nYJl3G9JLDk697yt9I
-	 dMYJSAF+T562Q==
-Date: Thu, 20 Feb 2025 16:50:06 +0000
-From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, gene_chen@richtek.com,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, kernel@collabora.com,
-	pablo.sun@mediatek.com
-Subject: Re: [PATCH] dt-bindings: usb: richtek,rt1711h: Add missing vbus
- power supply
-Message-ID: <20250220-countable-passenger-59144620d57b@spud>
-References: <20250219140143.104037-1-angelogioacchino.delregno@collabora.com>
+	s=k20201202; t=1740070259;
+	bh=9xnTEjnQhes40qnNUz2hg5pdStiqILnkPcPo73VxwE0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=k8tNCes7z0/TK6ne9UBLeCCHhFNFhsKBuRLRWAJuG1O59ZNUwaTILEK4WJI//9S5y
+	 6t1B09kRjVBOQ0Hh6pTK5fsDXAtc1QGiCcwxYO/xC13fcKY4nPpwckLCVoUBtnmGqW
+	 Wa7HQdSvnArJco/gm/jpVggrB1uFeCL1Ct+AjjkEv6vn/4w0/Ul+BPcXZM/nO800Cc
+	 wwV7K1u7EIFrjLXlxkHLN/UEmtdoGzoXW5pFPRcW/BtBjxdAnJ1KEuF7DKkbyXoCuO
+	 LjBGLxOnnt7Ao3hQRs7M8idp464yoHOl9Z/vGxky1/9BslO4QyrYf2cTEZBDg81gXa
+	 AjILnOxviEGAg==
+Received: by wens.tw (Postfix, from userid 1000)
+	id 2DBAC5FB8F; Fri, 21 Feb 2025 00:50:57 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Chen-Yu Tsai <wens@csie.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Shengyu Qu <wiagn233@outlook.com>
+Subject: [PATCH] arm64: dts: rockchip: rock-3a: Remove bluetooth node
+Date: Fri, 21 Feb 2025 00:50:51 +0800
+Message-Id: <20250220165051.1889055-1-wens@kernel.org>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="J037/kZKzyo6CE9E"
-Content-Disposition: inline
-In-Reply-To: <20250219140143.104037-1-angelogioacchino.delregno@collabora.com>
+Content-Transfer-Encoding: 8bit
 
+From: Chen-Yu Tsai <wens@csie.org>
 
---J037/kZKzyo6CE9E
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The Bluetooth node described in the device tree is actually on an M.2
+slot. What module is present depends on what the end user installed,
+and should be left to an overlay.
 
-On Wed, Feb 19, 2025 at 03:01:43PM +0100, AngeloGioacchino Del Regno wrote:
-> The RichTek RT1711H and RT1719 chips do have a vbus pin that is
-> used for attach/detach detection (respectively, pin A1 and 11):
-> allow a vbus-supply phandle for that.
->=20
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+Remove the existing bluetooth node. This gets rid of bogus timeout
+errors.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Fixes: 8cf890aabd45 ("arm64: dts: rockchip: Add nodes for SDIO/UART Wi-Fi/Bluetooth modules to Radxa Rock 3A")
+Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 14 --------------
+ 1 file changed, 14 deletions(-)
 
-> ---
->  Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml | 3 +++
->  1 file changed, 3 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml b=
-/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml
-> index 8da4d2ad1a91..ae611f7e57ca 100644
-> --- a/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml
-> +++ b/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml
-> @@ -30,6 +30,9 @@ properties:
->    interrupts:
->      maxItems: 1
-> =20
-> +  vbus-supply:
-> +    description: VBUS power supply
-> +
->    wakeup-source:
->      type: boolean
-> =20
-> --=20
-> 2.48.1
->=20
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+index ac79140a9ecd..44cfdfeed668 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+@@ -778,20 +778,6 @@ &uart1 {
+ 	pinctrl-0 = <&uart1m0_xfer &uart1m0_ctsn &uart1m0_rtsn>;
+ 	uart-has-rtscts;
+ 	status = "okay";
+-
+-	bluetooth {
+-		compatible = "brcm,bcm43438-bt";
+-		clocks = <&rk809 1>;
+-		clock-names = "lpo";
+-		device-wakeup-gpios = <&gpio4 RK_PB5 GPIO_ACTIVE_HIGH>;
+-		host-wakeup-gpios = <&gpio4 RK_PB4 GPIO_ACTIVE_HIGH>;
+-		shutdown-gpios = <&gpio4 RK_PB2 GPIO_ACTIVE_HIGH>;
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&bt_host_wake &bt_wake &bt_enable>;
+-		vbat-supply = <&vcc3v3_sys>;
+-		vddio-supply = <&vcc_1v8>;
+-		/* vddio comes from regulator on module, use IO bank voltage instead */
+-	};
+ };
+ 
+ &uart2 {
+-- 
+2.39.5
 
---J037/kZKzyo6CE9E
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7ddPgAKCRB4tDGHoIJi
-0jEsAP96MVC5KD9LhVk6tQKvH1Nc8949THj7womtWHiVIM3b4AEAyvTFu74qcapO
-hWWa3LjqDspE991pZ/RDvXnh2bYxxg0=
-=5wv4
------END PGP SIGNATURE-----
-
---J037/kZKzyo6CE9E--
 
