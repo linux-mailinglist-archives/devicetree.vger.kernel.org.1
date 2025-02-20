@@ -1,185 +1,186 @@
-Return-Path: <devicetree+bounces-148729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 928AEA3D352
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:36:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FDCAA3D369
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:40:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED8407A3EB7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 08:35:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59B10189DE3A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 08:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7350E1E9B07;
-	Thu, 20 Feb 2025 08:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFD501EB9F2;
+	Thu, 20 Feb 2025 08:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lEBquWKT"
+	dkim=pass (2048-bit key) header.d=cixtech.com header.i=@cixtech.com header.b="c3Y0YDll"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2131.outbound.protection.outlook.com [40.107.255.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B9D11E571F;
-	Thu, 20 Feb 2025 08:36:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740040566; cv=none; b=CRecd3pIjjYmZIh67jBzj9GuYhodsOyW1Cz0SobDS/aOoXnbOVGpCPZzGK5QFA/Se9RuTNvcTWCvN1sB5q+xmialG+H1YQPyugxCWolJ+z9rDCfdFxowZWSj5RdAZLcJ2Ix+4sHjunIQeT46h1oTipggCu3Xlr1bHEETwbg/55s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740040566; c=relaxed/simple;
-	bh=stqDS9AX3y7H3mWwV3DJihDNRqA9BbbNBvl1ESip09w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OmZYGYdCzO2NDMKL4tw4Ckzn6icwjYrb0snoRaA2J4rcEv6aWyqd7wtvrKyMoD4b7/N35SspJJ2oTCeTuQnSJ3iHtAwycjFOkNdWJshcaB/fTDb8XBO4ZhLfEbgVQIGgVwpCXlT8dQLd1JO28fcB0dZysduJ9ZlWjVO6MbgTiVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lEBquWKT; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aaee2c5ee6eso124767866b.1;
-        Thu, 20 Feb 2025 00:36:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740040563; x=1740645363; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :reply-to:message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SEaHAsDM2MLSNpt7MvRkD4rjd16wxN3bWpPMinYr6Xg=;
-        b=lEBquWKTdixtltA15hhm18jZYNX6B9IlErqxHdkIg35tfxy0MFkhsrRWll8gGs4brv
-         obwSbGZR/GQNZU+O2jLaueBh9wfFRww/SaO8jg0PSuJC5Mxd2rzy7VJZFv2DyeCnNg0j
-         RxUoja5KjrKx3cF7dTUULSFvmGkq0crtIS06T8Sv3uSY2iYVGJw/bttc2Hn6RfMP8yXk
-         Xayomqa90ATbfo2GindG+r8U021pIUAAAcx/WBTdqLv/wQLVTy6r01n/hPZH95puYlgw
-         5jcKdzBjzBGBObZep7PfDP1vxGS4GxRB5OF3kD3vFVzyUavGli1N/zd4bbQ4FnX5D4ct
-         QK1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740040563; x=1740645363;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :reply-to:message-id:subject:cc:to:from:date:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=SEaHAsDM2MLSNpt7MvRkD4rjd16wxN3bWpPMinYr6Xg=;
-        b=UT7zQfin+9oEKDCYXBWMD5ppRLPJVp0AWUaDo6n78yMl4+ceG6UMJEa3ib3UznK6WD
-         xB9dbrqsiGkgVKf/pjkbk7vhgk+j2c7xCDHs6mN0UhmuLFXsmlxXVE5kDBzldSuzAVNA
-         fykeiJib1Jq92ZaizJQgUySUGxv9lqNc4yBXf4cLNMDQR2gLixA503mW7h+fo86UrIgs
-         w38f0n6ZrWe9DTdvmSEpSitCpM7WVRJMPW9SV4yOIC/jIU4oWwxCDaDhDsGTRk6ZJlQj
-         P64igDqvYl5hCQYWZHEDstErYI7lz0GanXLnTLJIsfst886CTyfQrTAZbxuh1akNAQaP
-         URvg==
-X-Forwarded-Encrypted: i=1; AJvYcCWYarqlMvswyZ8tYCuVMkpmAxyO6ag5Tq8nDcR18CgWPMvVlZNOw2YRvy3DKx6D3jT9lSoEe19socEO@vger.kernel.org, AJvYcCWrc0aPjj1UFIloZI4u3uMRWvnHnDmIy2zibWJcN/ZdXqRG7F2JqGhhrdMoPpAG1rgUcPihwOJDFinK7ZRB@vger.kernel.org, AJvYcCXJ5XLnibiGLk6j0zbl5TnH0NDYtAgIHJJsfBZrXoWXGJdihVJ+qMw/jC06W9NHqvuXPFcINrJThxJ7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwiOUS24HGKkDbY4Uc1vb2OXcThBIWiaYho3vNiCEUCYmsPOULx
-	peZr9Nzde7RDj70Jn9GEmXlEvCnk2rpXpBJIk387stSAkBQVmCq8
-X-Gm-Gg: ASbGncukNjSTJO/K3hkgdmEuLm8YKXbYjjL9xsXUYa3WJLEWzLDkZ9e4OdfL04Q6ZNa
-	CqGZ+Mubt1ijNWnI5xOF5pwQfsnN52DPkGz6I9OWFsDrISYznclC9pKmLtGW1G87E0Ku/WsW0FK
-	z7Ry3dCHoHSAgGkJjSj1VgAmGj9BHqMv7YS0ARr2L5c23K4+zp2PnRYXmY4lZE8tD8aPfIOV5Sd
-	WmDUi2QmQmMd9C0MAV8i6bAj5IIAxdrCohEMGHiVJdRGJUelGZdb9GtWNXi62SnAYWj/SjictAP
-	PBuGMo/p/Z+rqxk=
-X-Google-Smtp-Source: AGHT+IE9Q2O6cgNo6w+VEkK3+GcOBd0W7VIAg8ovqvSo1Dx6kdse3rC3i3ABuRQoN+lqO1U9Ke9Kyg==
-X-Received: by 2002:a17:907:60d6:b0:ab7:f0fa:1340 with SMTP id a640c23a62f3a-abbcd0b2d3dmr769569466b.50.1740040562436;
-        Thu, 20 Feb 2025 00:36:02 -0800 (PST)
-Received: from localhost ([185.92.221.13])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb86c9320csm915498766b.55.2025.02.20.00.36.01
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 20 Feb 2025 00:36:01 -0800 (PST)
-Date: Thu, 20 Feb 2025 08:36:01 +0000
-From: Wei Yang <richard.weiyang@gmail.com>
-To: Mike Rapoport <rppt@kernel.org>
-Cc: Wei Yang <richard.weiyang@gmail.com>, linux-kernel@vger.kernel.org,
-	Alexander Graf <graf@amazon.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Andy Lutomirski <luto@kernel.org>,
-	Anthony Yznaga <anthony.yznaga@oracle.com>,
-	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Eric Biederman <ebiederm@xmission.com>,
-	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Paolo Bonzini <pbonzini@redhat.com>,
-	Pasha Tatashin <pasha.tatashin@soleen.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Pratyush Yadav <ptyadav@amazon.de>,
-	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Tom Lendacky <thomas.lendacky@amd.com>,
-	Usama Arif <usama.arif@bytedance.com>,
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v4 01/14] mm/mm_init: rename init_reserved_page to
- init_deferred_page
-Message-ID: <20250220083601.4p6ehmfhyvs5q5io@master>
-Reply-To: Wei Yang <richard.weiyang@gmail.com>
-References: <20250206132754.2596694-1-rppt@kernel.org>
- <20250206132754.2596694-2-rppt@kernel.org>
- <20250218145904.x57chhz3whvckzu3@master>
- <Z7WEktyNoCPylytL@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11DA21E9B07;
+	Thu, 20 Feb 2025 08:40:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.131
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740040828; cv=fail; b=eps2J2QLsGc/k97a5Z0Ynim9E/SCwmWC9ipouomJ1aStuQ1MmRB4jf1TStaVWbxSlkEu0H+LNIXqEW5J6aLNmqh6J2N2Djp6Diu/295r4n2EH6go1UOmzUnppkVLXP0xuTMcMrTkAeByVTkVCerY8bJZxcTY9f9JE0YLMSfm9uU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740040828; c=relaxed/simple;
+	bh=+s7aPaZZVApyXv4sb8XtLU8Zjh+H1BhQIABjTq9AK1g=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=ermNYuJxFKfltfzZu2SDyvkJPAO+dNMme/ZRB/BLgmO9wWm1uhl4R0CLXFUbeRANPyc0t2qq9pzjO5o8JXAtveGXVE7ACjA/PDwL5cseAsMwJtwZWCciNmNe3HSA333xkzpR/JmlwvsG4IcUMBgVlNiIE15HUpuldeRqgwXUhVM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; dkim=pass (2048-bit key) header.d=cixtech.com header.i=@cixtech.com header.b=c3Y0YDll; arc=fail smtp.client-ip=40.107.255.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gOaU7Y4KwZyiaB+OmznHvxFcyD1K8MlvOIN7hV12PbAutcKblJ6R0kLHfC0CK0me9PLXlrqAaX0KK4MyaCRSe1UkEzzCABSJRj7ata5LkXyrElptXTsdHCVtcnTQFv8vbhRFF2Lx3EA0UvxHxPzDM8GzswqALw1G1mdioK+9S3oUrd1PhSGUnGeEL6SkA/0WPD30GkPxIkrbs6OMUNrXGsEKOH3EMxG/2FzSvQxe6kypKJCAWV0T/FcqPLw1lnjBUURb++EsWpqvyBqFArcWSkce1gHcbpKUhzXKpS+9QJ29nsl05qCxF5YvJJvtXmiqsfAFHKoopanCCNE55DbCyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Vcl4Hb/xIPNiuLLKRpFX2zPcBOkD3NhqYwakqkM36EY=;
+ b=vmnXLeWgOn0ObdxLD98R7UdR3DbyfAaqzyPu8TUkuZowWEOcLsnzdK/dRgdV7XRYtdsQquGJH3Nrrxay4Cccj4PDXq2FKKHTuYKHD2qiBhNLK030vG+OqMmAY9XXLexC7GrZhW+YsOI94aGgPTdPKECi3HJWB0Ho9WF5rzfF1Xim2pcc/YojdstZBrVcuDH9NZ7T+unDAAQgreK7H0aeHLBIfauGyw/6rJ1viIyTgp8b/y5m5YxZsoiP+D782TExubutdOit7g2aj7qwEji9U3RMaltrtcaPJj3rNP6+maMfzc6AZbbzdZqMZDKy8u3oXmE365lz+sJkM9hevb6YKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cixtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Vcl4Hb/xIPNiuLLKRpFX2zPcBOkD3NhqYwakqkM36EY=;
+ b=c3Y0YDllJyAiR0fW6m7LhragUqcXE7qHQ9pmaHptuM6hagwPozf2+wegGqYBhWFLTXMewPzISLP4ymQDhl3GDKS/ikI9NfXB6Kt36aKhzrrN8Ke2Sa7+266Wd/cbw/dfTvYZ9U/83RYhNg/cwb4nOiMKBHBiYEFWWfC72vnyHvDmA4ENx0UuvQe9YsohhnVhylsgu7zhUNscg/f5PhXQBDh2/1287Hh+r3Samt0iFvLY4ZaQRoxyFw9ImqXI+0H4h5Nj/Ls0F+FdJERLDUKSxrOVDzcUlhzEFrYhWeN4LxVJqNbzLEiZDmpejXDYQRYtXQ267WhA4SWPSN/A2YQidg==
+Received: from SI2PR02CA0040.apcprd02.prod.outlook.com (2603:1096:4:196::6) by
+ TYUPR06MB6026.apcprd06.prod.outlook.com (2603:1096:400:350::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.8; Thu, 20 Feb
+ 2025 08:40:22 +0000
+Received: from SG1PEPF000082E1.apcprd02.prod.outlook.com
+ (2603:1096:4:196:cafe::f8) by SI2PR02CA0040.outlook.office365.com
+ (2603:1096:4:196::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.15 via Frontend Transport; Thu,
+ 20 Feb 2025 08:40:21 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG1PEPF000082E1.mail.protection.outlook.com (10.167.240.4) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8466.11 via Frontend Transport; Thu, 20 Feb 2025 08:40:21 +0000
+Received: from localhost.localdomain (unknown [172.16.64.25])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 63F3D41C0A01;
+	Thu, 20 Feb 2025 16:40:20 +0800 (CST)
+From: Peter Chen <peter.chen@cixtech.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	arnd@arndb.de
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com,
+	Peter Chen <peter.chen@cixtech.com>
+Subject: [PATCH 0/6] arm64: Introduce CIX P1 (SKY1) SoC
+Date: Thu, 20 Feb 2025 16:40:14 +0800
+Message-Id: <20250220084020.628704-1-peter.chen@cixtech.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z7WEktyNoCPylytL@kernel.org>
-User-Agent: NeoMutt/20170113 (1.7.2)
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG1PEPF000082E1:EE_|TYUPR06MB6026:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 3b53ebc6-9df5-460d-4cf1-08dd518a3630
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|1800799024|376014|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?bMQlp8h/OiWAxID30lkpx9KQtAzSc6pyanrsBJjmAAqyVBi2HEyp1QHZi6H/?=
+ =?us-ascii?Q?qPe+cP51xnbpC3cHHEQ+Bu+ONU+RnDgqrA5s+RUOhcyiKKMtIXBPzbpnOwU3?=
+ =?us-ascii?Q?IXx/LiR8sbMXIzCxGPSITrtJ8glJW0M7HsRiNKwNahmLMyLNk53KwvJQFky0?=
+ =?us-ascii?Q?YbnzdhQP+/bXyH4bieerS6+5+xmAhJqbWvzmkF0tMphSDeBaaJN973ZhQB/P?=
+ =?us-ascii?Q?7wAnNdCkIKt5j9j28Egqhbuwcn58Q3XpowokXdLKZ0jBHUyccOwbgZgBjPO0?=
+ =?us-ascii?Q?O35rcp5cRDinqI82mM/Pov7SRNDnVUmBfm9zkRrbtILirNx2iJSvTdv2UaFD?=
+ =?us-ascii?Q?IDWU34RB/Ptjp0TRgfav3r9LIKDEizS5u6hIRaNp7NYiePNbQUTMKElPEB+p?=
+ =?us-ascii?Q?j8zPMIEVS0Fw5pPeV5uQgKob51wbVI1j5Cj/SEwuTbOrm80pxxlrbDxCpsPs?=
+ =?us-ascii?Q?b3MdXfD1ma8TZBxkCOJ8c0AY+Qh30D+PUm8G2ml0oAO7sSL8b32PYTCnJad8?=
+ =?us-ascii?Q?GP0AfTjtGYsq5f6TFkEmkQ0i5n1r6jEYjckcEaHJkluozHMb/1/RCxvnkFER?=
+ =?us-ascii?Q?JdDkOU7go/3OfG4RoS0vqlFA3Z+kASIi8NtCRCnZC3d3dRsxplF6J3h4LKnW?=
+ =?us-ascii?Q?jW5/hx3TXtYlkdGnuLT2XfGJeRO0Rv4ZjBDhWu/Pd1JLOxBsEmdeGSWzXwTB?=
+ =?us-ascii?Q?2a+x6M5x9e9X6XGBZzHCu+1ldofujzLG2SartyaHdxnZ9CqQzKSsszAaYwOV?=
+ =?us-ascii?Q?53zdLKeLcNugc97L7oMmm3I2eP3mfIMCv+ADX35FMMmMqj9mLAUMM+bjW+Dd?=
+ =?us-ascii?Q?hNg9njzKJvY8IWbMIEsKtDFkYLUCFfxDRs+PDcwgMtQkDNpfCnMBYAzxzeUI?=
+ =?us-ascii?Q?x0ufs/Lyq+sBL900VoK6bMeFZHcv9LU/hIYHWJE1+g4p4jpJNy0aYpSnVgVM?=
+ =?us-ascii?Q?OawWTsu+uQi4+S+LlKW4NhB9lUYdj2J2RclR0+YD0nACCbegD1wS7y8fYVsd?=
+ =?us-ascii?Q?9mcYHRiAqRIQnDxBX28fJlCtUkEQfxaSeS3wtxTVl2YzOFxc+yORdKqh3DKi?=
+ =?us-ascii?Q?WTljFjFBYcQDUbC6shXZAO89SYa5nZXy2ZKHDJihxQ0JU8VCtV6cIgwQkQNJ?=
+ =?us-ascii?Q?/j/Guq8jReMP7MtdLB4Bx3krLqGoaOFk7TzshW+2rpA2YHuKw6ulPAauKLDE?=
+ =?us-ascii?Q?22jqyuSj6EWs/LerAPY/LG7Wu2mU/kYzqGyK3YoeUVGIXCYpvv3FZfVojoyV?=
+ =?us-ascii?Q?TYBrEziX2m3kvPncFgK4bKfFoenuttAk8ILvnUDqzcTdoFx/9BUWR6VLb4Ng?=
+ =?us-ascii?Q?oxWNlH4KDYopEu0/vpj5xjbzWFNNSCew+Jp1oFPmu6KJgmkI1wKSMWS1EKVI?=
+ =?us-ascii?Q?K5mNUgzFEQ5iP3cOAHhJFhfn/xvovskF1qL1yAogAirNkYffjDvHfy/PKk0+?=
+ =?us-ascii?Q?MoPzgvKOhq4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2025 08:40:21.1231
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b53ebc6-9df5-460d-4cf1-08dd518a3630
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: SG1PEPF000082E1.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYUPR06MB6026
 
-On Wed, Feb 19, 2025 at 09:13:22AM +0200, Mike Rapoport wrote:
->Hi,
->
->On Tue, Feb 18, 2025 at 02:59:04PM +0000, Wei Yang wrote:
->> On Thu, Feb 06, 2025 at 03:27:41PM +0200, Mike Rapoport wrote:
->> >From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
->> >
->> >When CONFIG_DEFERRED_STRUCT_PAGE_INIT is enabled, init_reserved_page()
->> >function performs initialization of a struct page that would have been
->> >deferred normally.
->> >
->> >Rename it to init_deferred_page() to better reflect what the function does.
->> 
->> Would it be confused with deferred_init_pages()?
->
->Why? It initializes a single page, deferred_init_pages() initializes many.
->
+Cixtech P1 (internal name sky1) is high performance generic Armv9 SoC.
+Orion O6 is the world's first open source Arm V9 Motherboard built by
+Radxa. You could find brief introduction for SoC and related boards at:
+https://radxa.com/products/orion/o6#overview
 
-See below.
+In this series, we add initial SoC and board support for Kernel building.
+Patch 1-2: Add dt-binding doc for CIX and its sky1 SoC
+Patch 3: add related maintainter entry
+Patch 4-5: add Arm64 build support
+Patch 6: add initial dts support for SoC and Orion O6 board
 
->> And it still calls __init_reserved_page_zone(), even we __SetPageReserved()
->> after it. Current logic looks not clear.
->
->There's no __init_reserved_page_zone(). Currently init_reserved_page()
->detects the zone of the page and calls __init_single_page(), so essentially
->it initializes one struct page.
->
->And we __SetPageReserved() in reserve_bootmem_region() after call to
->init_reseved_page() because pages there are indeed reserved.
-> 
+To run upstream kernel at Orion O6 board, you need to use BIOS
+released by Radxa:
+https://docs.radxa.com/en/orion/o6/bios/install-bios
 
-Hmm... I am not sure we are looking at the same code. I take a look at current
-mm-unstable, this patch set is not included.  So I am looking at previous
-version with this last commit:
+Fugang Duan (1):
+  arm64: Kconfig: add ARCH_CIX for cix silicons
 
-  8bf30f9d23eb 2025-02-06 Documentation: KHO: add memblock bindings
+Peter Chen (5):
+  dt-bindings: arm: add CIX P1 (SKY1) SoC
+  dt-bindings: vendor-prefixes: Add CIX Technology Group Co., Ltd.
+  MAINTAINERS: Add CIX SoC maintainer entry
+  arm64: defconfig: Enable CIX SoC
+  arm64: dts: cix: add initial CIX P1(SKY1) dts support
 
-Here is what I see for init_deferred_page()'s definition:
-
-init_deferred_page()
-  __init_deferred_page()
-    __init_reserved_page_zone()   <--- I do see this function, it is removed?
-      __init_single_page()
-
-What I want to say is __init_deferred_page() calls
-__init_reserved_page_zone(). This sounds imply a deferred page is always
-reserved page. But we know it is not.  deferred_init_pages() initialize the
-pages are not reserved one. Or we want to have this context in
-__init_deferred_page()?
-
->-- 
->Sincerely yours,
->Mike.
+ .../devicetree/bindings/arm/cix.yaml          |  26 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   8 +
+ arch/arm64/Kconfig.platforms                  |   6 +
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/cix/Makefile              |   2 +
+ arch/arm64/boot/dts/cix/sky1-orion-o6.dts     |  21 ++
+ arch/arm64/boot/dts/cix/sky1.dtsi             | 264 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 9 files changed, 331 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/cix.yaml
+ create mode 100644 arch/arm64/boot/dts/cix/Makefile
+ create mode 100644 arch/arm64/boot/dts/cix/sky1-orion-o6.dts
+ create mode 100644 arch/arm64/boot/dts/cix/sky1.dtsi
 
 -- 
-Wei Yang
-Help you, Help me
+2.25.1
+
 
