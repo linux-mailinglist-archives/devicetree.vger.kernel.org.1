@@ -1,156 +1,118 @@
-Return-Path: <devicetree+bounces-148934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C0F7A3DC6B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:18:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5ACEA3DC8A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:22:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3C6B1894133
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:18:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D536C168FA1
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:20:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B5EB1FBEAB;
-	Thu, 20 Feb 2025 14:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DE911FC7F1;
+	Thu, 20 Feb 2025 14:18:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hmDAx/bL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hfG7Hkzk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 634AE1FC0ED;
-	Thu, 20 Feb 2025 14:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70AF91FBEA7;
+	Thu, 20 Feb 2025 14:18:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740061027; cv=none; b=pO1Te1hRvk1LV09MqxFFClJC2qC5QIRWW+hjkcPIX4GAL6TmPPBXMhwdeAEFwIBtbQqbdD5Rt4qkff4TdN6Po+oynJCnS3KddgAO68DjJcIUQVwd28XO8cRsasSptjbEziGAdFztXHPmepeGeIlPrJsWYq1G+8og5xc6dPA+NdY=
+	t=1740061090; cv=none; b=k4PylWCXcqix2HGhLZF7P02dxeR3/dqT3APWBykhtJEeHC9aUxtzvCSt+4yoehh20CimUKgrFaCLkuSDF4e/xJINe0zetpDyhjNgKhS6/9FiNagFYDMyr2O4rHuC0oIYlaq0lkKVNaUHUY5Wsd9Y4vyqck1vVBGQb03QxDyoANg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740061027; c=relaxed/simple;
-	bh=phtVfpAQP2gqJ9uhxpOiCBTEsxgIpvS5igy/qXNkMDI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XTON1hq2HVzcUr8I/cAPtuHYWTlRgUQx8NSN05MqzFWBzHo66CxAPhtSSnj3sShIoSZplr+G/4v7I/dJ3xXhV/+YkmOD5UdbxwTN//Uf5S9fqmLOKXMUXXIrkgnIj0l7OaqAfLJ241ZamhEDopkua+u4qH6xgxHW8AYs9y5BGSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hmDAx/bL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9FA0C4CEE3;
-	Thu, 20 Feb 2025 14:17:06 +0000 (UTC)
+	s=arc-20240116; t=1740061090; c=relaxed/simple;
+	bh=rxskcT7jKFiywspCy0YwO4Ukcf4MyTckgqpNNxukoSM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=loQuPxW6pZ4k0fQeWMJvKvafgpMGLXdZ8la0VlZ52gGUeHrtW2pDxk7NAeSNRFwC20kbUH6MNnHBnLeKGTB+/MpK1+5NvkMVQkViGLNSjHX98AtB7UmVQlCftO9v5L06VD7TDbHJR1pXleR05k4UYMXGREkEdLF0v+i0pdz/AK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hfG7Hkzk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78674C4CED1;
+	Thu, 20 Feb 2025 14:18:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740061026;
-	bh=phtVfpAQP2gqJ9uhxpOiCBTEsxgIpvS5igy/qXNkMDI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=hmDAx/bL+DtKimxCl9L1Ouu9reCfWS9G4jSWwbwFIt62paGHuLWpefNgpk6rEu9mY
-	 xZW4LhwkcMuT7rH1d6qZGTSApMyHQYHP/fpyyRhBvV+DjXvOnUH6GOLoTa2xssxUow
-	 bUZuyAFc+GmYnNKCa5ACj4s+NdjMC/QflQ6vupSIK5wqLBtCH250twMfbw5duc4ltw
-	 nuH3lqb+ocRpyyMo4xPgz18M58FQS6S7PFLwq7rc/+9gl/OkZgzgl28Ex0gxg+7D7r
-	 w0AQgd+dHiiP6+vcctnz/+qeAh4+MirPOfxaOcaZqqEt8BYd1ahdBw9+OYkkuOqrJh
-	 5EfRZBi4NQS1A==
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2fcb6c42c47so1591541a91.1;
-        Thu, 20 Feb 2025 06:17:06 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUx4KCvEanqRRaAWxFSEr7T3w68Py00xJaX5oD5fiy5yPHVjG6neWEv8/oyM7YDMQLE5Q7JDhbQq6po@vger.kernel.org, AJvYcCWEjalf8P94+EQ26WsxO0RH6RbIyVlKUkMY2UG40+HVXa7TCrw+u1Y/s5fWjLzoD864j2B3VeQ3V7DsWa0t@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzg3fgPRzH3m1fCHYQEK/wFWuwx2QwD/3lbMtnuxER6UYNHBdoP
-	yR6cv89KP37+EpUfzaDh/ckGVQ6/51EkKyFtEcrDPTf3FHFJs9il6ITsC7V1XJRkLByRuKonNDd
-	18H23q7RhIZxLyZbO3s3CRagLbQ==
-X-Google-Smtp-Source: AGHT+IGyx5QWB4rzHyre9LMXoPdg2qp8oLeofiBp2HooA+47pReCBBVwzDOuk8vQdFLX+87Wzj+OpnchkAQUrEFYbI8=
-X-Received: by 2002:a17:90b:2e50:b0:2ee:aa28:79aa with SMTP id
- 98e67ed59e1d1-2fc40d14ac5mr32787274a91.6.1740061026314; Thu, 20 Feb 2025
- 06:17:06 -0800 (PST)
+	s=k20201202; t=1740061090;
+	bh=rxskcT7jKFiywspCy0YwO4Ukcf4MyTckgqpNNxukoSM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hfG7HkzkvQvZwqnCu4SLgT/iGxXcUE4dX1OScn7QGjZjmgz0PGS6HOjFhYLbrADC5
+	 /FCLE+6iq8fkYDJ/zduNZvkR8pJYFVPyxPrXv3vtkyS/iONdoxYGi3rZ6AOZm0oI6I
+	 kh2QQX3+PPrN7WDVdE7gbsvWPhrea5G/QiMSoA7O0Esz5+Vl2QEo/uxBC25tmIAdPs
+	 m5jNOja2cMHyxVbhRgSsaCOZzPZc6alWzG5Ump/8wAg1qAq1OI+dsz7KufPgYN0PdL
+	 jSnIylpEPAoREHCv2DYJAyV1sVxfgCo8QqkXQ61hCo0EproJM6gg/EfvzOyFwc0/DB
+	 bUjmhQjt6jsXw==
+Date: Thu, 20 Feb 2025 14:18:06 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Akhil P Oommen <quic_akhilpo@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/5] nvmem: core: verify cell's raw_len
+Message-ID: <Z7c5niuwR3TVTQrj@finisterre.sirena.org.uk>
+References: <20250109-sar2130p-nvmem-v4-0-633739fe5f11@linaro.org>
+ <20250109-sar2130p-nvmem-v4-2-633739fe5f11@linaro.org>
+ <Z7Xv9lNc6ckJVtKc@finisterre.sirena.org.uk>
+ <CAA8EJpp-mE2w_c3K08+8AR3Mn1r8X58FRXvAUFALQ-u2ppoKgw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217154836.108895-1-angelogioacchino.delregno@collabora.com> <20250217154836.108895-31-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250217154836.108895-31-angelogioacchino.delregno@collabora.com>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Thu, 20 Feb 2025 22:17:49 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8G36w1KZpfcVPbfZ6RjbAs3=GHdzdnPHZw=4Njnid35A@mail.gmail.com>
-X-Gm-Features: AWEUYZn7UqFdQMaggAe3FK4XBZKbvE_M4ZaCHMfj6Eg3FDhoHOMNrpbhRQkeUao
-Message-ID: <CAAOTY_8G36w1KZpfcVPbfZ6RjbAs3=GHdzdnPHZw=4Njnid35A@mail.gmail.com>
-Subject: Re: [PATCH v7 30/43] drm/mediatek: mtk_hdmi: Remove ifdef for CONFIG_PM_SLEEP
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, 
-	jie.qiu@mediatek.com, junzhi.zhao@mediatek.com, 
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
-	dmitry.baryshkov@linaro.org, lewis.liao@mediatek.com, 
-	ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com, 
-	jason-jh.lin@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="1dVZm3pFhaNe1viM"
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpp-mE2w_c3K08+8AR3Mn1r8X58FRXvAUFALQ-u2ppoKgw@mail.gmail.com>
+X-Cookie: Editing is a rewording activity.
 
-Hi, Angelo:
 
-AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
-=BC
-2025=E5=B9=B42=E6=9C=8817=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=8811:=
-50=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Since the SIMPLE_DEV_PM_OPS macro and the pm pointer are anyway
-> defined when CONFIG_PM_SLEEP is not set, remove the ifdef for it
-> and indicate that the mtk_hdmi_{remove,suspend} functions may be
-> unused (as they are, in case PM support is not built-in).
->
-> While at it, to improve readability, also compress the
-> SIMPLE_DEV_PM_OPS declaration as it even fits in less
-> than 80 columns.
+--1dVZm3pFhaNe1viM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Applied to mediatek-drm-next [1], thanks.
+On Wed, Feb 19, 2025 at 05:14:43PM +0200, Dmitry Baryshkov wrote:
+> On Wed, 19 Feb 2025 at 16:51, Mark Brown <broonie@kernel.org> wrote:
+> > On Thu, Jan 09, 2025 at 06:35:46AM +0200, Dmitry Baryshkov wrote:
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
+> > > Check that the NVMEM cell's raw_len is a aligned to word_size. Otherwise
+> > > Otherwise drivers might face incomplete read while accessing the last
+> > > part of the NVMEM cell.
 
-Regards,
-Chun-Kuang.
+> > I'm seeing a bunch of failures on i.MX platforms in -next which bisect
+> > to this patch.  For example on the i.MX6q based UDOOq various things
+> > including the ethernet fail to come up due to the efuse not appearing:
 
->
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_hdmi.c | 10 ++++------
->  1 file changed, 4 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediat=
-ek/mtk_hdmi.c
-> index f539472307e2..bf8cf7fc8c07 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
-> @@ -1694,8 +1694,7 @@ static void mtk_hdmi_remove(struct platform_device =
-*pdev)
->         mtk_hdmi_clk_disable_audio(hdmi);
->  }
->
-> -#ifdef CONFIG_PM_SLEEP
-> -static int mtk_hdmi_suspend(struct device *dev)
-> +static __maybe_unused int mtk_hdmi_suspend(struct device *dev)
->  {
->         struct mtk_hdmi *hdmi =3D dev_get_drvdata(dev);
->
-> @@ -1704,7 +1703,7 @@ static int mtk_hdmi_suspend(struct device *dev)
->         return 0;
->  }
->
-> -static int mtk_hdmi_resume(struct device *dev)
-> +static __maybe_unused int mtk_hdmi_resume(struct device *dev)
->  {
->         struct mtk_hdmi *hdmi =3D dev_get_drvdata(dev);
->         int ret =3D 0;
-> @@ -1717,9 +1716,8 @@ static int mtk_hdmi_resume(struct device *dev)
->
->         return 0;
->  }
-> -#endif
-> -static SIMPLE_DEV_PM_OPS(mtk_hdmi_pm_ops,
-> -                        mtk_hdmi_suspend, mtk_hdmi_resume);
-> +
-> +static SIMPLE_DEV_PM_OPS(mtk_hdmi_pm_ops, mtk_hdmi_suspend, mtk_hdmi_res=
-ume);
->
->  static const struct mtk_hdmi_conf mtk_hdmi_conf_mt2701 =3D {
->         .tz_disabled =3D true,
-> --
-> 2.48.1
->
+> > [    1.735264] nvmem imx-ocotp0: cell mac-addr raw len 6 unaligned to nvmem word size 4
+> > [    1.735289] imx_ocotp 21bc000.efuse: probe with driver imx_ocotp failed with error -22
+
+> This looks like an error on the i.MX platforms. The raw_len must be
+> aligned to word size. I think the easiest fix is to implement the
+> .fixup_dt_cell_info() callback like I did for the qfprom driver.
+
+That sounds pluasible, but as things stand we've got a regression on
+these platforms - taking out ethernet breaks NFS boot apart from
+anything else.  I'd also be a bit concerned that there might be other
+users with issues, does this need an audit of users before trying to
+enforce this requirement?
+
+--1dVZm3pFhaNe1viM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAme3OZ0ACgkQJNaLcl1U
+h9CR9Af+PKScD+QrhJJPzXmYa5zvi8OWNOsVRYQHd0O+qVTxLf+g/JGZiazQ3twk
+CRFIipyBWKEPjZ/61m9GKEi57ITYQPh5bG3EZRXL5XAU1v99u11+dFS13dULOhGf
+3QQsV+rdfPNaGtZIjZJNycLdCckClq3yJpDuPREeIMKAu+mPy6HOT+n/3LAd350O
+dPs4Ql07ZjRw23USloCsuK0sLfsbKD0OWGi12YcKBd+Ck/BuaH1PV5bROiPokMf2
+dl7wyawZ/FL7/Ob30h53I0eaMNeyYGSMgWSDmvGtPfluuJcDNyO64pqsRB+MB2Yg
+aYfgKPWyJ2ZGDxvbLKjqXL4ZBfWIIw==
+=dMez
+-----END PGP SIGNATURE-----
+
+--1dVZm3pFhaNe1viM--
 
