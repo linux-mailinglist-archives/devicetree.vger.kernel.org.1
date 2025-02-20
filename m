@@ -1,140 +1,106 @@
-Return-Path: <devicetree+bounces-148929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AD3CA3DC0E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:06:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99B7DA3DC19
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:07:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52CF57A6D39
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:05:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BD8A7A4CC6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:06:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38971B85C5;
-	Thu, 20 Feb 2025 14:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B50901C3BE0;
+	Thu, 20 Feb 2025 14:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="btmol7l+"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Y3SZxUxb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E3E1A8F94;
-	Thu, 20 Feb 2025 14:06:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E631A8F94;
+	Thu, 20 Feb 2025 14:07:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740060392; cv=none; b=unMqydj/LulESYOddfqj63/ooyal//Nmo7UbUcp30faAJgTgP/vmpIyfr54vCvgLi1CEmBIxOKOmxjnCDkdDcyVgmLUGMW8Z+mb90/2D8wGaXjZ6fivEjAMOas1s1UeHV00HxGfM7Jq8nxIHoO9r3dcW97Trg2MPIPZXyxMtvLo=
+	t=1740060457; cv=none; b=LM1VpI8a+1AsqvdH6XH3WFRTMMMMZXI90GqFNAgClgNkLH0yt34sSHHK+mLSh/OumqVLdyB4/KmMm5ihJY75b5AwEng1jHuER4o4iZy+9kG3SmMP56zU7awR3EGMpboMpzDYy4mL4nGOhBCT8DHWqM0SQqQpP8e2mLF8ToYYJ10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740060392; c=relaxed/simple;
-	bh=4oo5bwiM+XhKfUR8UYyGQVQWQ/6Ov6wGIKczUKT0zuU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EAm3ZB5L12/umHboqDi2IKSuOUVC02hExqFtx4T7Kyce992jW+qF8iqE7reJW6+XimuD8NyDSYByePL0Bkla2uZ5q5+6Yket4rZ3c2G60mXaNLsXzY9Ta8aUBpPuT8PIK6aXS6Jop0zHl/cFQXgNc9PMbxUmn6qeEiCzT0EOXDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=btmol7l+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B85BC4CEDD;
-	Thu, 20 Feb 2025 14:06:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1740060391;
-	bh=4oo5bwiM+XhKfUR8UYyGQVQWQ/6Ov6wGIKczUKT0zuU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=btmol7l+E9F0Dq7CHFxzj9ptIoP+WuCKdQeF+u8NmZcIuPkyJT5yDE84M3+w0mGE/
-	 p/2qSrormQ0zOOprtPL8ucuyM3VHc7dHH7VBp0EWNDJDfNSbLCDVQSzYiq5Orhkqic
-	 7RCgsE2BhKYMI1t2f75vNDYQLIB6HMfqUkhwybrk=
-Date: Thu, 20 Feb 2025 15:06:28 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Grant Likely <grant.likely@secretlab.ca>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Binbin Zhou <zhoubinbin@loongson.cn>,
-	linux-sound@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, stable@vger.kernel.org
-Subject: Re: [PATCH 0/2] driver core: platform: avoid use-after-free on
- device name
-Message-ID: <2025022004-scheming-expend-b9b3@gregkh>
-References: <20250218-pdev-uaf-v1-0-5ea1a0d3aba0@bootlin.com>
- <2025022005-affluent-hardcore-c595@gregkh>
- <D7XB6MXRYVLY.3RM4EJEWD1IQM@bootlin.com>
+	s=arc-20240116; t=1740060457; c=relaxed/simple;
+	bh=1/v+aE7ujIrr88SlyYox0ZnwxUrB1O/7TGByz1MUVXk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qjYzyDtF1Miq0FONGGwGtBEfv8l0sY9f/d6PJbpSeeonIVnZifG3TflWleT7jo/i0agp/b18aU9IMWnHyQmR9dyFWXwG5eUV86pBilBH/JoRgLTvNSYQmhKv+IaWMD2acNwXd45xX8yOzuUiKkMCxCeIv78k9IMvOAMAAqK1Dmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Y3SZxUxb; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8EB1A442F6;
+	Thu, 20 Feb 2025 14:07:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1740060446;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xTtSd4tmydl/dct6URamw55L3a/uuGkjLvkhv6bX7i0=;
+	b=Y3SZxUxbDLph24OKEmLNOqxHDZ19kmaJMwfmgDBSErO2ayIrJDJLIwGmoYgsqwYbA1z0oq
+	GIiKKYU8PAiZb63Rle1ANdXZ8UR4OF8QVB3Jdq1jIpkIGQfdPQrIvxuDq9P8JUZCgqBLNh
+	t+bCE9gu8CjCEXrLPGFFfoVyGLfxQIdg4uVjH/JypPuT5P4avU1OsZ9q9OAOqHi1nOEjzU
+	4yFQxe1e4Dakv4SEv/p9W5wcwR/5hkN2MFrhEHUClCJLjsjNzX3tbf/mSmZW6hDWhFy/Kc
+	kDUlhfLDZOehWLsuBYMOfVss3prsIA2vPwd4jORrrVGgfGGm/ZSszVhsKxWu/Q==
+Date: Thu, 20 Feb 2025 15:07:23 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dave Stevenson
+ <dave.stevenson@raspberrypi.com>, =?UTF-8?B?TWHDrXJh?= Canal
+ <mcanal@igalia.com>, Raspberry Pi Kernel Maintenance
+ <kernel-list@raspberrypi.com>, Marek Vasut <marex@denx.de>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Louis Chauvet <louis.chauvet@bootlin.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 2/4] drm/atomic-helper: Introduce
+ drm_atomic_helper_reset_crtc()
+Message-ID: <20250220150723.3cdf9d27@bootlin.com>
+In-Reply-To: <20250220-wooden-robin-of-discussion-6a36f1@houat>
+References: <20250203145824.155869-1-herve.codina@bootlin.com>
+	<20250203145824.155869-3-herve.codina@bootlin.com>
+	<Z7XfnPGDYspwG42y@phenom.ffwll.local>
+	<20250220-wooden-robin-of-discussion-6a36f1@houat>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <D7XB6MXRYVLY.3RM4EJEWD1IQM@bootlin.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeijeefvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedvhfeljedtfedtjeevffegtddutdeghfettdduhfeuhfdttdffieeuiefgvdfhvdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtudemvgdtrgemvdegieemjeejledtmedviegtgeemvgdvvdemiedtfegumeehkegrnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvgeeimeejjeeltdemvdeitgegmegvvddvmeeitdefugemheekrgdphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvhedprhgtphhtthhopehmrhhiphgrrhgusehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrlhgvgigrnhguvghrrdhsthgvihhnsegvfidrthhqqdhgrhhouhhprdgtohhmpdhrtghpthhtoheprghnughriigvjhdrhhgrjhgurgesihhnt
+ hgvlhdrtghomhdprhgtphhtthhopehnvghilhdrrghrmhhsthhrohhngheslhhinhgrrhhordhorhhgpdhrtghpthhtoheprhhfohhssheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnfgruhhrvghnthdrphhinhgthhgrrhhtsehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehjohhnrghssehkfihisghoohdrshgvpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgrihhlrdgtohhm
+X-GND-Sasl: herve.codina@bootlin.com
 
-On Thu, Feb 20, 2025 at 02:31:29PM +0100, Théo Lebrun wrote:
-> Hello Greg,
+Hi Maxime,
+
+On Thu, 20 Feb 2025 11:44:37 +0100
+Maxime Ripard <mripard@kernel.org> wrote:
+
+...
 > 
-> On Thu Feb 20, 2025 at 1:41 PM CET, Greg Kroah-Hartman wrote:
-> > On Tue, Feb 18, 2025 at 12:00:11PM +0100, Théo Lebrun wrote:
-> >> The use-after-free bug appears when:
-> >>  - A platform device is created from OF, by of_device_add();
-> >>  - The same device's name is changed afterwards using dev_set_name(),
-> >>    by its probe for example.
-> >> 
-> >> Out of the 37 drivers that deal with platform devices and do a
-> >> dev_set_name() call, only one might be affected. That driver is
-> >> loongson-i2s-plat [0]. All other dev_set_name() calls are on children
-> >> devices created on the spot. The issue was found on downstream kernels
-> >> and we don't have what it takes to test loongson-i2s-plat.
-> >> 
-> >> Note: loongson-i2s-plat maintainers are CCed.
-> >> 
-> >>    ⟩ # Finding potential trouble-makers:
-> >>    ⟩ git grep -l 'struct platform_device' | xargs grep -l dev_set_name
-> >> 
-> >> The solution proposed is to add a flag to platform_device that tells if
-> >> it is responsible for freeing its name. We can then duplicate the
-> >> device name inside of_device_add() instead of copying the pointer.
-> >
-> > Ick.
-> >
-> >> What is done elsewhere?
-> >>  - Platform bus code does a copy of the argument name that is stored
-> >>    alongside the struct platform_device; see platform_device_alloc()[1].
-> >>  - Other busses duplicate the device name; either through a dynamic
-> >>    allocation [2] or through an array embedded inside devices [3].
-> >>  - Some busses don't have a separate name; when they want a name they
-> >>    take it from the device [4].
-> >
-> > Really ick.
-> >
-> > Let's do the right thing here and just get rid of the name pointer
-> > entirely in struct platform_device please.  Isn't that the correct
-> > thing that way the driver core logic will work properly for all of this.
-> 
-> I would agree, if it wasn't for this consideration that is found in the
-> commit message [0]:
+> Given that the patch is already merged, Herve, could you send a
+> subsequent patch fixing up the doc at least?
 
-What, that the of code is broken?  Then it should be fixed, why does it
-need a pointer to a name at all anyway?  It shouldn't be needed there
-either.
+Did the patch:
+  https://lore.kernel.org/all/20250220140406.593314-1-herve.codina@bootlin.com/
 
-> > It is important to duplicate! pdev->name must not change to make sure
-> > the platform_match() return value is stable over time. If we updated
-> > pdev->name alongside dev->name, once a device probes and changes its
-> > name then the platform_match() return value would change.
-> 
-> I'd be fine sending a V2 that removes the field *and the fallback* [1],
-> but I don't have the full scope in mind to know what would become broken.
-> 
-> [0]: https://lore.kernel.org/lkml/20250218-pdev-uaf-v1-2-5ea1a0d3aba0@bootlin.com/
-> [1]: https://elixir.bootlin.com/linux/v6.13.3/source/drivers/base/platform.c#L1357
-
-The fallback will not need to be removed, properly point to the name of
-the device and it should work correctly.
-
-thanks,
-
-greg k-h
+Best regards,
+Hervé
 
