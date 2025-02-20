@@ -1,150 +1,313 @@
-Return-Path: <devicetree+bounces-148927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0A91A3DBFD
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:01:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C72DBA3DC07
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:05:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A5D53A5582
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:01:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E9CB3BBA41
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB71D1B85C5;
-	Thu, 20 Feb 2025 14:01:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 612501ADC9B;
+	Thu, 20 Feb 2025 14:04:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q+KTDZMh"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kl90/mwn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83B3D5258;
-	Thu, 20 Feb 2025 14:01:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 464751C3C07;
+	Thu, 20 Feb 2025 14:04:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740060114; cv=none; b=OYJJ67qlqCGxriWcZAFrbxdP+obFEmvm4XGQ6g0P5oYidHd0cvFre+vnZzdJsshzEsp0fFKpUBItYy7cK6QbT4NuzG+OqXeEd1kWFs+Pomx8UbkpwmT4SldQQnWkq59u/ZWolumGOa2j/SU41eppiu3h8T52kOufFCVqbaUS39c=
+	t=1740060285; cv=none; b=m7qEryuj5r1isLhRIGAB85hCPXYMNwxzkmKP91A91j2FCiwtV4sJ/lvyCd4UL3vJTjB0fsHYdvIHTr4TV0In6cY89U/SCxMmmYpk2IYR0tPzdRZIE741UB1V6sbRM4ebIztu/rKfYd/fMPhvY+j1KT+hxrhv4UAjUqvh4sPC3Fk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740060114; c=relaxed/simple;
-	bh=b4AZKnm/4CW7chhpu6yQW9p0aspr3R6qCEzhfg2YT2I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fWlp6M7enon84rdA6RQswpf8o0DdG+i1CWE9z5qJNx8WfP/Bcrxku4cLyVX3e72RmnpEZd74RFktoCjaS+Bcr34h3f1MXOP+JapWsIcm7Ara7vnY39RxXDVX6yRBi8D8ayqaFcppvNaR+K1g9HMZsWkUEZtWoPMEVQBCY2ejzcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q+KTDZMh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03174C4CEDD;
-	Thu, 20 Feb 2025 14:01:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740060114;
-	bh=b4AZKnm/4CW7chhpu6yQW9p0aspr3R6qCEzhfg2YT2I=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Q+KTDZMhrGHww4kznoyoJFRb3olr8UODUOwgc0KY/L9KBdW9BoIXyszGXXv4Ynh6Z
-	 cO0HdO06VC3E/UqF/Jg8NUdTCasfU7SOTlMugQ16kiTF2vZGHhv7tudwRpKchBJDcY
-	 8VcxRDg9kr3ykokUeRV1/TPRR3+pN/SwC5fjv62+HwG3C4tb3DfGpdAHVb+l3BvvIW
-	 uo3aq8fCpm2E2YrplY+KvwQMHgVPbrsIVesZTtmr2Ku21/tlm46VDSYvvXMCK1jhVv
-	 XBzNMX4ScWWBxkf1CsgRWByYXYhUwiB7AuXrTU5hTSZIWGsL4ttlO1axyFx0nIeMiz
-	 Hr+pDlJKgKBOA==
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-220bfdfb3f4so20268185ad.2;
-        Thu, 20 Feb 2025 06:01:53 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXSNrv1zGAcD0mGHsoCJWvPwG/q+qiFTj6J+vuXbm7gqOdHSJkeKGX4vKBPg5GR0lep0hAM4NCguC5GyXbY@vger.kernel.org, AJvYcCXWezI28maPqoN+ITNcrorVmrpWM58U9tEh6yBAXhygNWQkVj+zZZ6usgcB3IHNGQbVNH8jpk9loDh3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMsi1IihV342N5+eQ7DF1rxS8TyWWkrcrcUORtYuUpJaFHw5ZI
-	wYAZwe4kbECe1yHgYZo59jK9Ts9zXUMmJwLrN5VVj5sZ24ZiSvGAKiZL9MfJU9GUM3+MHbMlAcV
-	8rQxn8CCEssBSL0f1N9fSN/cWag==
-X-Google-Smtp-Source: AGHT+IFapzn+NKHW52s4K7DIT+hFK+iRpE1/gZU7kl7MdKEYaDixn7SWx5ZWS9wyFmn3w4NhHQTiw5+aDFJOtqZJANg=
-X-Received: by 2002:a17:902:f689:b0:220:bd01:6507 with SMTP id
- d9443c01a7336-22170988a48mr119225175ad.25.1740060113565; Thu, 20 Feb 2025
- 06:01:53 -0800 (PST)
+	s=arc-20240116; t=1740060285; c=relaxed/simple;
+	bh=DWSYAHUTargpU400f9NK3gvtZ8FTGTCpxJjIS2y1L/s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QO0EvQnRTkEGNfcv07kheC4QdypHJNeEtHhsnSPCSMeDB2caW8/nYaCeNOL7Hiw9wM4zR36I4h1VNacNuHmUIuM8GMt9WNZ+oshB5cuG/xRpAFOgVc7B1Eb8QN+RXnv4zZD6IR0UNNWERc9lttkZ04Ve2TQX/tljNuzmDBR/w1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kl90/mwn; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1740060283; x=1771596283;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=DWSYAHUTargpU400f9NK3gvtZ8FTGTCpxJjIS2y1L/s=;
+  b=kl90/mwnoi01V90U5bziIzlKuiRbOOu/hjkkQ49YBSIG07yrtwHRNram
+   OGbUpPKL+avKUYmoMUiS7p7iGUhMrWKoLg/W3KgT07Fc0XRPPaXUuZAOa
+   JAuICpky2txJue2tq85HIGJhxxv59zTBp+O2DOVUieTPpqaDYkRMG7rj9
+   0PBOfV6qnpK/RzN5QYFK4sid5ZUNyZJSayBQUm1fVUdlglUb/u03lYiTO
+   3z2/A6qVyEHw/DHpwMb02TD3iQS2sMdc2zmjkQvlWtL2KKWfQM5vp8+v/
+   gUHiOfca3vTkAsEU2YnX60c3xOBboAwkBdPDnmaUoLl9ISIf0iVUsGfUY
+   w==;
+X-CSE-ConnectionGUID: QoQqtPzmSba509bjNqHOQA==
+X-CSE-MsgGUID: +ZD6xKFxRv6etvGDH81pyQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="40707053"
+X-IronPort-AV: E=Sophos;i="6.13,301,1732608000"; 
+   d="scan'208";a="40707053"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2025 06:04:42 -0800
+X-CSE-ConnectionGUID: apojjs4AR7mOwWcYYd5TxA==
+X-CSE-MsgGUID: fYV6tpzvSFOT2RzZ5HweAw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="152242291"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2025 06:04:37 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tl7AG-0000000DLyt-3fDh;
+	Thu, 20 Feb 2025 16:04:32 +0200
+Date: Thu, 20 Feb 2025 16:04:32 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v3 2/9] iio: adc: add helpers for parsing ADC nodes
+Message-ID: <Z7c2cBQpjoc9-Vyu@smile.fi.intel.com>
+References: <cover.1739967040.git.mazziesaccount@gmail.com>
+ <6c5b678526e227488592d004c315a967b9809701.1739967040.git.mazziesaccount@gmail.com>
+ <Z7ZB7RQhyI5Dohrq@smile.fi.intel.com>
+ <b1c1ed68-2f4d-447c-9957-5a1bbc63ef6e@gmail.com>
+ <Z7ci7tUlRQqZEZSN@smile.fi.intel.com>
+ <ec76334b-bb13-4076-811d-9174170dd677@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217154836.108895-1-angelogioacchino.delregno@collabora.com> <20250217154836.108895-28-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250217154836.108895-28-angelogioacchino.delregno@collabora.com>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Thu, 20 Feb 2025 22:02:38 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8xmwncZUdjpfFNZdTc-xVm2tqE7yxFTOHK8=ihPfXL9g@mail.gmail.com>
-X-Gm-Features: AWEUYZlmnVy895-w6W37aRIYiIz5B_4hc6yNRSLEcLY9PIsmLv3U1pSvn8yAnCY
-Message-ID: <CAAOTY_8xmwncZUdjpfFNZdTc-xVm2tqE7yxFTOHK8=ihPfXL9g@mail.gmail.com>
-Subject: Re: [PATCH v7 27/43] drm/mediatek: mtk_hdmi: Remove unused members of
- struct mtk_hdmi
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, 
-	jie.qiu@mediatek.com, junzhi.zhao@mediatek.com, 
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
-	dmitry.baryshkov@linaro.org, lewis.liao@mediatek.com, 
-	ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com, 
-	jason-jh.lin@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ec76334b-bb13-4076-811d-9174170dd677@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi, Angelo:
+On Thu, Feb 20, 2025 at 03:40:30PM +0200, Matti Vaittinen wrote:
+> On 20/02/2025 14:41, Andy Shevchenko wrote:
+> > On Thu, Feb 20, 2025 at 09:13:00AM +0200, Matti Vaittinen wrote:
+> > > On 19/02/2025 22:41, Andy Shevchenko wrote:
+> > > > On Wed, Feb 19, 2025 at 02:30:27PM +0200, Matti Vaittinen wrote:
 
-AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
-=BC
-2025=E5=B9=B42=E6=9C=8817=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=8811:=
-50=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> The hdmi_colorspace csp member of struct mtk_hdmi is initialized
-> once but then it's never used at all.
-> Remove said member and the only assignment to it as a cleanup.
->
-> Also remove the ibias, ibias_up, min_clock, max_clock, min_hdisplay
-> and max_vdisplay members, as those were really completely unused.
->
-> This commit brings no functional changes.
+...
 
-Applied to mediatek-drm-next [1], thanks.
+> > > > > +EXPORT_SYMBOL_GPL(iio_adc_device_num_channels);
+> > > > 
+> > > > No namespace?
+> > > 
+> > > I was considering also this. The IIO core functions don't belong into a
+> > > namespace - so I followed the convention to keep these similar to other IIO
+> > > core stuff.
+> > 
+> > But it's historically. We have already started using namespaces
+> > in the parts of IIO, haven't we?
+> 
+> Yes. But as I wrote, I don't think adding new namespaces for every helper
+> file with a function or two exported will scale. We either need something
+> common for IIO (or IIO "subsystems" like "adc", "accel", "light", ... ), or
+> then we just keep these small helpers same as most of the IIO core.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
+It can be still pushed to IIO_CORE namespace. Do you see an issue with that?
 
-Regards,
-Chun-Kuang.
+Or a new opaque namespace for the mentioned cases, something like IIO_HELPERS.
 
->
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_hdmi.c | 8 --------
->  1 file changed, 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediat=
-ek/mtk_hdmi.c
-> index eb3b1009c305..6e4900f99b51 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
-> @@ -162,16 +162,9 @@ struct mtk_hdmi {
->         struct clk *clk[MTK_HDMI_CLK_COUNT];
->         struct drm_display_mode mode;
->         bool dvi_mode;
-> -       u32 min_clock;
-> -       u32 max_clock;
-> -       u32 max_hdisplay;
-> -       u32 max_vdisplay;
-> -       u32 ibias;
-> -       u32 ibias_up;
->         struct regmap *sys_regmap;
->         unsigned int sys_offset;
->         struct regmap *regs;
-> -       enum hdmi_colorspace csp;
->         struct platform_device *audio_pdev;
->         struct hdmi_audio_param aud_param;
->         bool audio_enable;
-> @@ -1036,7 +1029,6 @@ static int mtk_hdmi_output_init(struct mtk_hdmi *hd=
-mi)
->  {
->         struct hdmi_audio_param *aud_param =3D &hdmi->aud_param;
->
-> -       hdmi->csp =3D HDMI_COLORSPACE_RGB;
->         aud_param->aud_codec =3D HDMI_AUDIO_CODING_TYPE_PCM;
->         aud_param->aud_sample_size =3D HDMI_AUDIO_SAMPLE_SIZE_16;
->         aud_param->aud_input_type =3D HDMI_AUD_INPUT_I2S;
-> --
-> 2.48.1
->
+> > > (Sometimes I have a feeling that the trend today is to try make things
+> > > intentionally difficult in the name of the safety. Like, "more difficult I
+> > > make this, more experience points I gain in the name of the safety".)
+> > > 
+> > > Well, I suppose I could add a namespace for these functions - if this
+> > > approach stays - but I'd really prefer having all IIO core stuff in some
+> > > global IIO namespace and not to have dozens of fine-grained namespaces for
+> > > an IIO driver to use...
+
+...
+
+> > > > > +	if (!allowed_types || allowed_types & (~IIO_ADC_CHAN_PROP_TYPE_ALL)) {
+> > > > 
+> > > > Unneeded parentheses around negated value.
+> > > > 
+> > > > > +	if (found_types & (~allowed_types)) {
+> > > > 
+> > > > Ditto.
+> > > > 
+> > > > > +		long unknown_types = found_types & (~allowed_types);
+> > > > 
+> > > > Ditto and so on...
+> > > > 
+> > > > Where did you get this style from? I think I see it first time in your
+> > > > contributions. Is it a new preferences? Why?
+> > > 
+> > > Last autumn I found out my house was damaged by water. I had to empty half
+> > > of the rooms and finally move out for 2.5 months.
+> > 
+> > Sad to hear that... Hope that your house had been recovered (to some extent?).
+> 
+> Thanks. I finalized rebuilding last weekend. Just moved back and now I'm
+> trying to carry things back to right places... :rolleyes:
+> 
+> > > Now I'm finally back, but
+> > > during the moves I lost my printed list of operator precedences which I used
+> > > to have on my desk. I've been writing C for 25 years or so, and I still
+> > > don't remember the precedence rules for all bitwise operations - and I am
+> > > fairly convinced I am not the only one.
+> > 
+> > ~ (a.k.a. negation) is higher priority in bitops and it's idiomatic
+> > (at least in LK project).
+> 
+> I know there are well established, accurate rules. Problem is that I never
+> remember these without looking.
+
+There are very obvious cases like below.
+
+> > > What I understood is that I don't really have to have a printed list at
+> > > home, or go googling when away from home. I can just make it very, very
+> > > obvious :) Helps me a lot.
+> > 
+> > Makes code harder to read, especially in the undoubtful cases like
+> > 
+> > 	foo &= (~...);
+> 
+> This is not undoubtful case for me :) And believe me, reading and
+> deciphering the
+> 
+> foo &= (~bar);
+> 
+> is _much_ faster than seeing:
+
+Strongly disagree. One need to parse an additional pair of parentheses,
+and especially when it's a big statement inside with nested ones along
+with understanding what the heck is going on that you need them in the
+first place.
+
+On top of that, we have a common practices in the LK project and
+with our history of communication it seems you are trying to do differently
+from time to time. Sounds like a rebellion to me :-)
+
+> foo &= ~bar;
+> 
+> and having to google the priorities.
+
+Again, this is something a (regular) kernel developer keeps refreshed.
+Or even wider, C-language developer.
+
+> > > > > +		int type;
+> > > > > +
+> > > > > +		for_each_set_bit(type, &unknown_types,
+> > > > > +				 IIO_ADC_CHAN_NUM_PROP_TYPES - 1) {
+> > > > > +			dev_err(dev, "Unsupported channel property %s\n",
+> > > > > +				iio_adc_type2prop(type));
+> > > > > +		}
+> > > > > +
+> > > > > +		return -EINVAL;
+> > > > > +	}
+
+...
+
+> > > > > +		tmp.required &= (~BIT(IIO_ADC_CHAN_PROP_COMMON));
+> > > > 
+> > > > Redundant outer parentheses. What's the point, please?
+> > > 
+> > > Zero need to think of precedence.
+> > 
+> > Huh? See above.
+> > Everything with equal sign is less precedence than normal ops.
+> 
+> Sure. It's obvious if you remember that "Everything with equal sign is less
+> precedence than normal ops". But as I said, I truly have hard time
+> remembering these rules. When I try "going by memory" I end up having odd
+> errors and suggestions to add parenthesis from the compiler...
+
+The hardest to remember probably the
+
+	foo && bar | baz
+
+case and alike. These are the only ones that I totally agree on with you.
+But negation.
+
+> By the way, do you know why anyone has bothered to add these
+> warnings/suggestions about adding the parenthesis to the compiler? My guess
+> is that I am not only one who needs the precedence charts ;)
+
+Maybe someone programmed too much in LISP?.. (it's a rhetorical one)
+
+...
+
+> > > > > +		ret = fwnode_property_read_u32(child, "common-mode-channel",
+> > > > > +					       &common);
+> > > > 
+> > > > I believe this is okay to have on a single line,
+> > > 
+> > > I try to keep things under 80 chars. It really truly helps me as I'd like to
+> > > have 3 parallel terminals open when writing code. Furthermore, I hate to
+> > > admit it but during the last two years my near vision has deteriorated... :/
+> > > 40 is getting more distant and 50 is approaching ;)
+> > 
+> > It's only 86 altogether with better readability.
+> > We are in the second quarter of 21st century,
+> > the 80 should be left in 80s...
+> > 
+> > (and yes, I deliberately put the above too short).
+> 
+> I didn't even notice you had squeezed the lines :)
+> 
+> But yeah, I truly have problems fitting even 3 80 column terminals on screen
+> with my current monitor. And when working on laptop screen it becomes
+> impossible. Hence I strongly prefer keeping the 80 chars limit.
+
+Maybe you need a bigger monitor after all? (lurking now :-)
+
+...
+
+> > > > > +#include <linux/iio/iio.h>
+> > > > 
+> > > > I'm failing to see how this is being used in this header.
+> > > 
+> > > I suppose it was the struct iio_chan_spec. Yep, forward declaration could
+> > > do, but I guess there would be no benefit because anyone using this header
+> > > is more than likely to use the iio.h as well.
+> > 
+> > Still, it will be a beast to motivate people not thinking about what they are
+> > doing. I strongly prefer avoiding the use of the "proxy" or dangling headers.
+> 
+> Ehh. There will be no IIO user who does not include the iio.h.
+
+It's not your concern. That's the idea of making C units as much independent
+and modular as possible (with common sense in mind). And in this case I see
+no point of including this header. Again, the main problem is this will call
+people to use the new header as a "proxy" and that's what I fully against to.
+
+> And, I need the iio_chan_spec here.
+
+Do you really need it or is it just a pointer?
+
+...
+
+> And as I said, I suggest saving some of the energy for reviewing the next
+> version. I doubt the "property type" -flags and bitwise operations stay, and
+> it may be all of this will be just meld in the bd79124 code - depending on
+> what Jonathan & others think of it.
+
+Whenever this code will be trying to land, the review comments still apply.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
