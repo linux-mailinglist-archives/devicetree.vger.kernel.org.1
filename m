@@ -1,486 +1,195 @@
-Return-Path: <devicetree+bounces-148734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28FE4A3D36B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:40:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 002B3A3D380
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 09:44:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73E423B320A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 08:40:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F38D21742B1
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 08:43:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E0681EC014;
-	Thu, 20 Feb 2025 08:40:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cixtech.com header.i=@cixtech.com header.b="dtY2ObCR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F25381EB9ED;
+	Thu, 20 Feb 2025 08:43:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2125.outbound.protection.outlook.com [40.107.255.125])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECCA21E9B16;
-	Thu, 20 Feb 2025 08:40:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.125
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740040830; cv=fail; b=h7OurS865MbjVvaDWWy4EKDDRjNg398h9psrAPmghxE6zssrDgKrvPrn3SrVJ+USHGbN5m8eHDsBaGnb2tE9D2+dJMpmmWY7uFOc0lCmfjzbT55T6Vafksmy2n8zFmvolyaaKQ5cyyjAbQAUldjaX0zjEdz1kKcmtJqvT+C/h80=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740040830; c=relaxed/simple;
-	bh=rezB+cFRaAmFTOaogPFuppxRnWN+EeiKsOci+jvPkQk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JKFPLJQSSxa3c9A8sjNqHuIdcGnQPJp0R5kSFph/0/htwEqNcycEyRx+OkerfXgnzZRocFxr7ALwpzt6ATE9zOlSg4Javm1wGI7X2OPqcfTDpVP7G98QuKdbkdK7knW7vFeuuBaDTlU9lzxY4Z2H/6PGxf31Y1enKfLHx+VFW+Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; dkim=pass (2048-bit key) header.d=cixtech.com header.i=@cixtech.com header.b=dtY2ObCR; arc=fail smtp.client-ip=40.107.255.125
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ktD3jDj2nf3sHeYPWsrOBxcXzUoy52TcXaZELF0fks9qDLlI6YtSbA6x4cViWB7RkYT5/WOX5uVr1tUpf6gL0qGxQzw0kP8hC2k2AUCFFj4B6R2SMV0IFGqDgIWsrMbE7HeP1g227M8Szni/j5dIUXobvUrD5bgEayx8KOKyCxQ3gVNEO1Ny0gQ6jjcJWoAYhYCEcT6FMaP+i/0epN+7x+oo2DZdlWgLOVl9b/fmDrnfy9jOCMWL62XacaLCGn1ZRUo2mW2Pi1XlQ7UYPydwykuBSElemcyGTLNO05aKLcLa0DHlv+q3CoxPiJgfUxEvYMSkOjdm1RzoFWUzigTMsA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8p/6+QGbppW065mj787knZL8lR1F5KFuopLVqtmfV7o=;
- b=TLsWNXBZXB9Q52mXHAi9r96NKbOKTQuJYaAhf06JcH1DufV9uRBq3OryJB7k5KEwbTXIqdOtJx/WUPEvvbt9u8ZKhYkioUezcxV34hv47BCptftxK2WPAFh7wGEkwRtWquggCEukciR7L6aS1jzr84Wcz82hzf3nECVeWSkcM3Aj1tMKQ7mBCpej935ZqDuan2aLHq9+nuL1qnZdBmAz0lZMNpN+gteFXVD7Plh4ODdpcw+BsMVkJrUzb5JV84GT3eQbgARpxCW0wDbT/QbgtsiV0twsOktt/1wqMixfxlAE7Cex6VGxv2ofC7jq3KB+QSY76Z5zFg5nVfiv2Kw7cQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cixtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8p/6+QGbppW065mj787knZL8lR1F5KFuopLVqtmfV7o=;
- b=dtY2ObCRYe96cmzeozt0S0lJ6pvNz6aVsz1vbXMri//R4tGgfzrqUsooKhfHaIkhqgNDQRJ113sWBqn3TiyIlgTSHmSnOoyxsEK27Ekpswg6oUp7uIjqq65AB1exhZtTlNfx1sejg0vbmOrrEdRsXKfdwR5GDHai/A/Osc7r/AMdqEDEDsmMas2oihKp5z0H+DUUrjN/rf8Vm+BQgG88FOA7Y0Yn1gbzO1fVMr1TrTppR5yfN9eZdPCZ+btzpTTQZPaniz6qJslqsFXabY0lahMMgSi5rE41DspPdJGSRghhoKGdcOu0pLIABvqITR51v6jUZPjXS+jd2qCprr9c9w==
-Received: from SG2PR02CA0041.apcprd02.prod.outlook.com (2603:1096:3:18::29) by
- JH0PR06MB7296.apcprd06.prod.outlook.com (2603:1096:990:a2::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8466.11; Thu, 20 Feb 2025 08:40:22 +0000
-Received: from SG1PEPF000082E3.apcprd02.prod.outlook.com
- (2603:1096:3:18:cafe::ad) by SG2PR02CA0041.outlook.office365.com
- (2603:1096:3:18::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.15 via Frontend Transport; Thu,
- 20 Feb 2025 08:40:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG1PEPF000082E3.mail.protection.outlook.com (10.167.240.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8466.11 via Frontend Transport; Thu, 20 Feb 2025 08:40:21 +0000
-Received: from localhost.localdomain (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id BBA3B41C0A07;
-	Thu, 20 Feb 2025 16:40:20 +0800 (CST)
-From: Peter Chen <peter.chen@cixtech.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	arnd@arndb.de
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com,
-	Peter Chen <peter.chen@cixtech.com>,
-	"Fugang . duan" <fugang.duan@cixtech.com>
-Subject: [PATCH 6/6] arm64: dts: cix: add initial CIX P1(SKY1) dts support
-Date: Thu, 20 Feb 2025 16:40:20 +0800
-Message-Id: <20250220084020.628704-7-peter.chen@cixtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250220084020.628704-1-peter.chen@cixtech.com>
-References: <20250220084020.628704-1-peter.chen@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CA191E9B36
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 08:43:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740041005; cv=none; b=RK8dINrNrfbRP9Wkrm1xen6XJ5DLvMYHGdOrIISLo0JFGZb1oMXkNdurU71q/9G4MIt6SIR7wb/VIxcFVYuRahCyOdfpnKMyhc6QEWPZMia+kRMd1C2TMejLN2tohin9/e4bVDjWdQrTzfdYtpUQ/WfTZyACivotaZKQojyHXoo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740041005; c=relaxed/simple;
+	bh=Gp0T4fnNUqwihNa8+Tjq8O23Jixx9trh7HX0d7F1Jno=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MLibT9utAS6f2lyR/EpvNF3wdXUZ1GmAW+qXTToOEKIpy8zk5cPhKE5tMeeSmTa1SyJ808fNYuDvWLnX8zb9SOJ3BjWN4QUa2in0Ln4Q6zpIfUvI3Y1bSNNNhlP3nBI9b7oD8mGV15ehLhpNfMW5qfvfBd0IIOuG3nMHtF5US6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tl29L-00046c-RC; Thu, 20 Feb 2025 09:43:15 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tl29K-001uGz-2g;
+	Thu, 20 Feb 2025 09:43:14 +0100
+Received: from pengutronix.de (p5b164285.dip0.t-ipconnect.de [91.22.66.133])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 72CF03C7576;
+	Thu, 20 Feb 2025 08:43:14 +0000 (UTC)
+Date: Thu, 20 Feb 2025 09:43:13 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
+	Dimitri Fedrau <dima.fedrau@gmail.com>
+Subject: Re: [PATCH v2 2/2] can: flexcan: add transceiver capabilities
+Message-ID: <20250220-rugged-solid-gopher-541299-mkl@pengutronix.de>
+References: <20250220-flexcan-add-transceiver-caps-v2-0-a81970f11846@liebherr.com>
+ <20250220-flexcan-add-transceiver-caps-v2-2-a81970f11846@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG1PEPF000082E3:EE_|JH0PR06MB7296:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 5ee746e2-9e89-43f0-2696-08dd518a365a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?DgkdrpJRR/t9dvLPnwac/P+yrxzkgMbshlnCcOwroTb7QZUTm1o6J/z7yWJH?=
- =?us-ascii?Q?Gj7OqHhGiXSw2GI4RyHilFn+axzm/VHS8vZdtffH7q06Gcj8omIYhnXLyaS8?=
- =?us-ascii?Q?R+OjTCyitfXUTIZGiybk9KJo0rVzUOFBMkx9yTwD/JHUM7uaXdoCeEdJos8+?=
- =?us-ascii?Q?Wl8Y84HTyHAdzn62GPuYhkjzq1tfKDGaRSJ4rOzseCQFfaEXjpNxuwfmYQGo?=
- =?us-ascii?Q?vk1AaD3apxXz7xROsgYVdrdxF+Y/rQJBiGkbBJ9wFIWIRnYJPEIXaB/sFI9Z?=
- =?us-ascii?Q?pDujvSp6VcSN3s1ki/YUTImUW+DZ/O7dwj3vDwR5Pj0cBtCz3cOpc9g8eQTX?=
- =?us-ascii?Q?frzcY9z7Iyn7Y5GCKAZMxA9dy/D54jGgi9huX5akguYuEeAKX4mSVIoWCn+Q?=
- =?us-ascii?Q?yEf3wos+of3240sOGXEsFKOvoL4FwokmBF/mUKQK/p+DB439MHv/bg+LwMqJ?=
- =?us-ascii?Q?jmMrTl45h4y21y3FV81cgOIQdvV/2DThS44YQZVG8Gpb/pGozEHGb82kcjSm?=
- =?us-ascii?Q?kjv9wCUccsQudhP0KijgEpWL6Tl0jrzEP3siNSiXVnSw8Qfn48FGEvxtvX5P?=
- =?us-ascii?Q?U75Fc3TCwAxxRQnyE4Oyw6W/Ok6aclir+7noZvZsJbmfjXA4cFb2p4RelPmB?=
- =?us-ascii?Q?cQl5imQSniI/gmQCtlDAWZJUb1XsjGvXpdQF1MYGPanEqngXx7upBWBWNh4y?=
- =?us-ascii?Q?VaS0GnsBMdafsmfscyhVe/t0+noSGXxzvYSB93poX7BkXYbExjClPefWBE48?=
- =?us-ascii?Q?xWorP8JuUd7hA8r5w19rIody6EyjIZHDbhZ48yXr4jBnxM2gMbh9tgs6X2+E?=
- =?us-ascii?Q?f5rKo8+mem9IfQk53uhaH6QdTCR64OueohEh9ZX+hmlB2d8i0jImOh2fsU8d?=
- =?us-ascii?Q?9wi2Xhd7/QG52A9Ta4fih2Cm6hzJrzVhIZkVrsR+H5bfPGJfLI2Nm/UEuiHq?=
- =?us-ascii?Q?3Gd9fpKAtWj+IqTmAsc3/iKWJSS5ye87JwcpebWjnA5YSsPwiVNL/JOYjJxH?=
- =?us-ascii?Q?0HI1SWGSVC92M73L70KDorH6ohzkx87ehoHzej4mYxhjpdY/bVC2g3SvquyH?=
- =?us-ascii?Q?0vjwDwkbuIlvUCaYJQSlEo/ow//BeI3pzVAyyKFiWWGc0fOxFHxnvb/EWij9?=
- =?us-ascii?Q?Sfmbjen0WGQEjyHt4QhS4IfX7t6hvy4T3a/vBaylJbggjcgqVrgXkyfl6H2z?=
- =?us-ascii?Q?lJG9eUXzMYsknZK7nm5ZhAZtvsulsDcZbnnvTTJ9tmEYh2DrF1DmZAIbzlvu?=
- =?us-ascii?Q?e7eC9oTiNXjGKLDCBsXkX74uW0AFEAvOQ2C9epRVsT4ct/oUu3+yYhzUQmDr?=
- =?us-ascii?Q?qMtUxOCkBEAvRhnHfEn0zE5kJbfaEBl91ZKeS3ZRw6orgsLOC7iHTYWoPNmH?=
- =?us-ascii?Q?QeNixfHfqRdQ4opjIkfLuS1+RAFaqtkXtNQK9Xbk2I6cSKtYiod3cAJ3mGGs?=
- =?us-ascii?Q?r5dllC5u26M=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2025 08:40:21.3974
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ee746e2-9e89-43f0-2696-08dd518a365a
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: SG1PEPF000082E3.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB7296
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="5wxzyxw3wi7nxkjj"
+Content-Disposition: inline
+In-Reply-To: <20250220-flexcan-add-transceiver-caps-v2-2-a81970f11846@liebherr.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-CIX SKY1 SoC is high performance Armv9 SoC designed by Cixtech,
-and Orion O6 is open source motherboard launched by Radxa.
-See below for detail:
-https://docs.radxa.com/en/orion/o6/getting-started/introduction
 
-In this commit, it only adds limited components for running initramfs
-at Orion O6.
+--5wxzyxw3wi7nxkjj
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 2/2] can: flexcan: add transceiver capabilities
+MIME-Version: 1.0
 
-Acked-by: Fugang.duan <fugang.duan@cixtech.com>
-Signed-off-by: Peter Chen <peter.chen@cixtech.com>
----
- arch/arm64/boot/dts/Makefile              |   1 +
- arch/arm64/boot/dts/cix/Makefile          |   2 +
- arch/arm64/boot/dts/cix/sky1-orion-o6.dts |  21 ++
- arch/arm64/boot/dts/cix/sky1.dtsi         | 264 ++++++++++++++++++++++
- 4 files changed, 288 insertions(+)
- create mode 100644 arch/arm64/boot/dts/cix/Makefile
- create mode 100644 arch/arm64/boot/dts/cix/sky1-orion-o6.dts
- create mode 100644 arch/arm64/boot/dts/cix/sky1.dtsi
+On 20.02.2025 09:22:11, Dimitri Fedrau via B4 Relay wrote:
+> From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+>=20
+> Currently the flexcan driver does only support adding PHYs by using the
+> "old" regulator bindings. Add support for CAN transceivers as a PHY. Add
+> the capability to ensure that the PHY is in operational state when the li=
+nk
+> is set to an "up" state.
+>=20
+> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> ---
+>  drivers/net/can/flexcan/flexcan-core.c | 30 ++++++++++++++++++++++++----=
+--
+>  drivers/net/can/flexcan/flexcan.h      |  1 +
+>  2 files changed, 25 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
+xcan/flexcan-core.c
+> index b347a1c93536d54efaa5f7d3347bd47c20860b3e..45d9a6957d9a806ed80d810a6=
+a5f7eb99fcc702c 100644
+> --- a/drivers/net/can/flexcan/flexcan-core.c
+> +++ b/drivers/net/can/flexcan/flexcan-core.c
+> @@ -30,6 +30,7 @@
+>  #include <linux/property.h>
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+> +#include <linux/phy/phy.h>
+> =20
+>  #include "flexcan.h"
+> =20
+> @@ -644,18 +645,22 @@ static void flexcan_clks_disable(const struct flexc=
+an_priv *priv)
+> =20
+>  static inline int flexcan_transceiver_enable(const struct flexcan_priv *=
+priv)
+>  {
+> -	if (!priv->reg_xceiver)
+> -		return 0;
+> +	if (priv->reg_xceiver)
+> +		return regulator_enable(priv->reg_xceiver);
+> +	else if (priv->transceiver)
+> +		return phy_power_on(priv->transceiver);
+> =20
+> -	return regulator_enable(priv->reg_xceiver);
+> +	return 0;
+>  }
+> =20
+>  static inline int flexcan_transceiver_disable(const struct flexcan_priv =
+*priv)
+>  {
+> -	if (!priv->reg_xceiver)
+> -		return 0;
+> +	if (priv->reg_xceiver)
+> +		return regulator_disable(priv->reg_xceiver);
+> +	else if (priv->transceiver)
+> +		return phy_power_off(priv->transceiver);
+> =20
+> -	return regulator_disable(priv->reg_xceiver);
+> +	return 0;
+>  }
+> =20
+>  static int flexcan_chip_enable(struct flexcan_priv *priv)
+> @@ -2086,6 +2091,7 @@ static int flexcan_probe(struct platform_device *pd=
+ev)
+>  	struct net_device *dev;
+>  	struct flexcan_priv *priv;
+>  	struct regulator *reg_xceiver;
+> +	struct phy *transceiver;
+>  	struct clk *clk_ipg =3D NULL, *clk_per =3D NULL;
+>  	struct flexcan_regs __iomem *regs;
+>  	struct flexcan_platform_data *pdata;
+> @@ -2101,6 +2107,14 @@ static int flexcan_probe(struct platform_device *p=
+dev)
+>  	else if (IS_ERR(reg_xceiver))
+>  		return PTR_ERR(reg_xceiver);
+> =20
+> +	transceiver =3D devm_phy_optional_get(&pdev->dev, NULL);
+> +	if (PTR_ERR(transceiver) =3D=3D -EPROBE_DEFER) {
+> +		return -EPROBE_DEFER;
+> +	} else if (IS_ERR(transceiver)) {
+> +		dev_err(&pdev->dev, "failed to get phy\n");
+> +		return PTR_ERR(transceiver);
+> +	}
 
-diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
-index 79b73a21ddc2..8e7ccd0027bd 100644
---- a/arch/arm64/boot/dts/Makefile
-+++ b/arch/arm64/boot/dts/Makefile
-@@ -13,6 +13,7 @@ subdir-y += bitmain
- subdir-y += blaize
- subdir-y += broadcom
- subdir-y += cavium
-+subdir-y += cix
- subdir-y += exynos
- subdir-y += freescale
- subdir-y += hisilicon
-diff --git a/arch/arm64/boot/dts/cix/Makefile b/arch/arm64/boot/dts/cix/Makefile
-new file mode 100644
-index 000000000000..ed3713982012
---- /dev/null
-+++ b/arch/arm64/boot/dts/cix/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0
-+dtb-$(CONFIG_ARCH_CIX) += sky1-orion-o6.dtb
-diff --git a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-new file mode 100644
-index 000000000000..dbee1616076d
---- /dev/null
-+++ b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright 2025 Cix Technology Group Co., Ltd.
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include "sky1.dtsi"
-+/ {
-+	model = "Radxa Orion O6";
-+	compatible = "radxa,orion-o6";
-+
-+	chosen {
-+		stdout-path = &uart2;
-+	};
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-new file mode 100644
-index 000000000000..d98735f782e0
---- /dev/null
-+++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-@@ -0,0 +1,264 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright 2025 Cix Technology Group Co., Ltd.
-+ *
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial2 = &uart2;
-+	};
-+
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&CPU0>;
-+				};
-+				core1 {
-+					cpu = <&CPU1>;
-+				};
-+				core2 {
-+					cpu = <&CPU2>;
-+				};
-+				core3 {
-+					cpu = <&CPU3>;
-+				};
-+				core4 {
-+					cpu = <&CPU4>;
-+				};
-+				core5 {
-+					cpu = <&CPU5>;
-+				};
-+				core6 {
-+					cpu = <&CPU6>;
-+				};
-+				core7 {
-+					cpu = <&CPU7>;
-+				};
-+				core8 {
-+					cpu = <&CPU8>;
-+				};
-+				core9 {
-+					cpu = <&CPU9>;
-+				};
-+				core10 {
-+					cpu = <&CPU10>;
-+				};
-+				core11 {
-+					cpu = <&CPU11>;
-+				};
-+			};
-+		};
-+
-+		CPU0: cpu0@0 {
-+			compatible = "arm,armv8";
-+			enable-method = "psci";
-+			reg = <0x0 0x0>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <403>;
-+		};
-+
-+		CPU1: cpu1@100 {
-+			compatible = "arm,armv8";
-+			enable-method = "psci";
-+			reg = <0x0 0x100>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <403>;
-+		};
-+
-+		CPU2: cpu2@200 {
-+			compatible = "arm,armv8";
-+			enable-method = "psci";
-+			reg = <0x0 0x200>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <403>;
-+		};
-+
-+		CPU3: cpu3@300 {
-+			compatible = "arm,armv8";
-+			enable-method = "psci";
-+			reg = <0x0 0x300>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <403>;
-+		};
-+
-+		CPU4: cpu4@400 {
-+			compatible = "arm,armv8";
-+			enable-method = "psci";
-+			reg = <0x0 0x400>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		CPU5: cpu5@500 {
-+			compatible = "arm,armv8";
-+			enable-method = "psci";
-+			reg = <0x0 0x500>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		CPU6: cpu6@600 {
-+			compatible = "arm,armv8";
-+			enable-method = "psci";
-+			reg = <0x0 0x600>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		CPU7: cpu7@700 {
-+			compatible = "arm,armv8";
-+			enable-method = "psci";
-+			reg = <0x0 0x700>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		CPU8: cpu8@800 {
-+			compatible = "arm,armv8";
-+			enable-method = "psci";
-+			reg = <0x0 0x800>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		CPU9: cpu9@900 {
-+			compatible = "arm,armv8";
-+			enable-method = "psci";
-+			reg = <0x0 0x900>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		CPU10: cpu10@a00 {
-+			compatible = "arm,armv8";
-+			enable-method = "psci";
-+			reg = <0x0 0xa00>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		CPU11: cpu11@b00 {
-+			compatible = "arm,armv8";
-+			enable-method = "psci";
-+			reg = <0x0 0xb00>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+	};
-+
-+	arch_timer: timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-+		clock-frequency = <1000000000>;
-+		interrupt-parent = <&gic>;
-+		arm,no-tick-in-suspend;
-+	};
-+
-+	memory@80000000 {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		device_type = "memory";
-+		reg = <0x00000000 0x80000000 0x1 0x00000000>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	pmu: pmu {
-+		compatible = "arm,armv8-pmuv3";
-+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gic>;
-+		status = "okay";
-+	};
-+
-+	pmu_spe: pmu_spe {
-+		compatible = "arm,statistical-profiling-extension-v1";
-+		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gic>;
-+		status = "okay";
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			size = <0x0 0x28000000>;
-+			linux,cma-default;
-+		};
-+
-+	};
-+
-+	sky1_fixed_clocks: fixed-clocks {
-+		uartclk: uartclk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <100000000>;
-+			clock-output-names = "uartclk";
-+		};
-+
-+		uart_apb_pclk: uart_apb_pclk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <200000000>;
-+			clock-output-names = "apb_pclk";
-+		};
-+	};
-+
-+	soc@0 {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+		dma-ranges;
-+
-+		uart2: uart@040d0000 {
-+			compatible = "arm,pl011", "arm,primecell";
-+			reg = <0x0 0x040d0000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "uartclk", "apb_pclk";
-+			clocks = <&uartclk>, <&uart_apb_pclk>;
-+			status = "disabled";
-+		};
-+
-+		gic: interrupt-controller@0e001000 {
-+			compatible = "arm,gic-v3";
-+			#address-cells = <2>;
-+			#interrupt-cells = <3>;
-+			#size-cells = <2>;
-+			ranges;
-+			interrupt-controller;
-+			#redistributor-regions = <1>;
-+			reg = <0x0 0x0e010000 0 0x10000>,	/* GICD */
-+			      <0x0 0x0e090000 0 0x300000>;       /* GICR * 12 */
-+			redistributor-stride = <0x40000>;
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
-+			interrupt-parent = <&gic>;
-+
-+			its_pcie: its@e050000 {
-+				compatible = "arm,gic-v3-its";
-+				msi-controller;
-+				reg = <0x0 0x0e050000 0x0 0x30000>;
-+			};
-+		};
-+	};
-+};
--- 
-2.25.1
+Please use dev_err_probe(), it will be silent in case of EPROBE_DEFER.
 
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--5wxzyxw3wi7nxkjj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAme26x8ACgkQDHRl3/mQ
+kZxJ1wf/aytaPCGbQ/cDAiYhE6JJxMu3i9iCxPZTcnkjiacYKaCGTesf3DzoFD0o
+k3v+rAEubhZ4HbzR/JTM0u3NxDKlOVpI2QRdrjUQ6UpCcItnysdgZddRgIeIym1p
+I9mVOYkOIybEURT+Ym+g4tPhi6UpKrEfDAMRVBTum8NEmO8aikMAvjuu+74rDe0a
+zwfsLpKKqVgmQZTOJ9XNQQuzrvMCOv7V75BimdGosvKNiKO3PFZkkBL6mRz889VB
+mCZwLnowqCRxH6z4YGWwHr81uLFUv/03GJ5DsS88t+USqFMdKeIgCGefYpS2llGw
+67DsPbGmT2OMCOTktDJWYCiQntfVQg==
+=roda
+-----END PGP SIGNATURE-----
+
+--5wxzyxw3wi7nxkjj--
 
