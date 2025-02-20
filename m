@@ -1,190 +1,138 @@
-Return-Path: <devicetree+bounces-148839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 295F3A3D973
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:05:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01CC4A3D988
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:09:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 452933B731C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:04:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C64AE1899DD6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:09:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 390961F4607;
-	Thu, 20 Feb 2025 12:04:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFEB61F5434;
+	Thu, 20 Feb 2025 12:09:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="WNroNV/I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D30D01BCA0F;
-	Thu, 20 Feb 2025 12:04:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A5C61DA10C
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 12:09:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740053088; cv=none; b=g5Kp+nYmQiVQ+wDsMyy0t7hu7vlPevqxXfLPJn0wYrbMc85xgXJ3ajuxrr37zUqPYumfTlCDhxMjsHYhzD5SsGNhHpMz+F0KC4hP4rtDsWJo4+2otHBntlyLKkjPYoouoCDEa47yfnAftLwKFBHJxSGZMGQditMHMuw3qjEnE+k=
+	t=1740053356; cv=none; b=ho6cHATugk08t+Mmt7CGDUGuYQBZ6Dm91Lh86Ap9cd6dwbkj918vlwVovuqsl/XbkTVReRaFbZJuUpFdBSsKEwLJxcgd4srR24+jK/AEJUn01TgJD16yNJ8rrrniKDyxjHsuO5Vuxpzrj0a0SGHG4AWwJYp/KkwTcuj8dJh8248=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740053088; c=relaxed/simple;
-	bh=P7l71zGGOCBiuGUiOWJslraeV8jPeviTVd3ghPcopaA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MKGJZ+Vfz0qvuEMUpHhVzCRjg+KUy40iVhSdbm9GiLi/veoZkM2mezfIN7Xr9lbcdxhMP63BoqTnvxlbc6WUXxtrVv9xvAFQlzGwfPkGvuzkefeafZQJ2TIA6AyZBeotmOQ5o4KqzgECIf6qG8CW1priT7IMcPqK8bdBPwMcZns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
-Received: from [192.168.0.2] (ip5f5af4d1.dynamic.kabel-deutschland.de [95.90.244.209])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: pmenzel)
-	by mx.molgen.mpg.de (Postfix) with ESMTPSA id C8F6F61E6478A;
-	Thu, 20 Feb 2025 13:04:30 +0100 (CET)
-Message-ID: <9b67d408-3557-46d5-81ad-e3d6636a5e0d@molgen.mpg.de>
-Date: Thu, 20 Feb 2025 13:04:30 +0100
+	s=arc-20240116; t=1740053356; c=relaxed/simple;
+	bh=nEqX40Vz37NkqVIbEDIzHqGr0r4DVftlsWBRF0o0+UM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LmE5tq1UMNow7BiyyGUpfwb1Wshg8CJXX2SMa+88VHTlzdo7H8vBve7zDDoGW16ghgayWVppAAOVQzhdqcrd2gvDCyQAtJnqFKEv2AfqEUNnzmnEyjW1rP6lEAD9G4OiwmsZF9wzT6XXkJ2fy/rjdgzcW2eQrwVzSfdYcaNrxKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=WNroNV/I; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=KXV4
+	3S9mj4NgNoGj3IR9BRAKkRD0sIscVF1giSweZlE=; b=WNroNV/IqrF2zznyuPV/
+	8htDw93MO2tnXsQG52pOE8irAXu9D1vIUuEClRDkkofeLdzk6o837W0GMNnwpdGW
+	x7xwMygJ/8f8k7xt7mxlhnCpFdxAFYLHXugEkrZ2+sOm/1r61jfHnAFpeI8/0ojW
+	QdX5iEfhZUXl6gf0LRZWTSSXMTuO7dnlD1DV1qoGmAFqThPqpeHqWsJ0Bj1HLoMK
+	K8KLDT7PUQ4rIUBYXctYNKFJ9wGBQtvlHSp73vSJQB2w5sZ1ieIAx8SVt1bJPrdW
+	DmqJfc1OpfiYqib2cjGPt0GV3JmnFghGMSWDI4TpWnv4AHL031x0eXfxqUiPaNHF
+	SA==
+Received: (qmail 885305 invoked from network); 20 Feb 2025 13:09:04 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Feb 2025 13:09:04 +0100
+X-UD-Smtp-Session: l3s3148p1@HhtzvZEuCpkujnvP
+Date: Thu, 20 Feb 2025 13:09:03 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Romain Gantois <romain.gantois@bootlin.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Kory Maincent <kory.maincent@bootlin.com>,
+	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v7 9/9] misc: add FPC202 dual port controller driver
+Message-ID: <Z7cbX5jX3NL4C2GR@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Kory Maincent <kory.maincent@bootlin.com>,
+	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+References: <20250204-fpc202-v7-0-78b4b8a35cf1@bootlin.com>
+ <20250204-fpc202-v7-9-78b4b8a35cf1@bootlin.com>
+ <2025022038-hangnail-rehab-c145@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] Bluetooth: btnxpuart: Add support for set BD
- address
-To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-Cc: marcel@holtmann.org, luiz.dentz@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-bluetooth@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- amitkumar.karwar@nxp.com, sherry.sun@nxp.com, ziniu.wang_1@nxp.com,
- johan.korsnes@remarkable.no, kristian.krohn@remarkable.no,
- manjeet.gupta@nxp.com
-References: <20250220114157.232997-1-neeraj.sanjaykale@nxp.com>
- <20250220114157.232997-2-neeraj.sanjaykale@nxp.com>
-Content-Language: en-US
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20250220114157.232997-2-neeraj.sanjaykale@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Dear Neeraj,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fyCI02Nk4jU4SBoN"
+Content-Disposition: inline
+In-Reply-To: <2025022038-hangnail-rehab-c145@gregkh>
 
 
-Thank you for your patch. In the summary/title you could use *to set* or 
-*for setting*.
-
-Am 20.02.25 um 12:41 schrieb Neeraj Sanjay Kale:
-> This adds support for setting BD address during hci registration. NXP
-> FW does not allow vendor commands unless it receives a reset command
-> after FW download and initialization done.
-
-I’d add a blank line between paragraphs.
-
-> As a workaround, the .set_bdaddr callback function will first send the
-> HCI reset command, followed by the actual vendor command to set BD
-> address.
-
-Where is the command 0xfc22 documented?
-
-How did you verify this? Maybe document the commands how to set the BD 
-address, and how to verify it.
-
-Does Linux log new messages with your patch?
-
-> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-> Signed-off-by: Johan Korsnes <johan.korsnes@remarkable.no>
-> Signed-off-by: Kristian HusevÃ¥g Krohn <kristian.krohn@remarkable.no>
-
-The last name has some wrong character.
-
-> Tested-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> ---
-> v4: hci0 interface shows RAW mode if 'local-bd-address' not defined and
->      HCI_QUIRK_USE_BDADDR_PROPERTY is set. Add Quirk only if device tree
->      property 'local-bd-address' found. (Neeraj)
-> v5: Initialize local variable ba, update Copywrite year. (Kristian)
-> ---
->   drivers/bluetooth/btnxpuart.c | 39 ++++++++++++++++++++++++++++++++++-
->   1 file changed, 38 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/bluetooth/btnxpuart.c b/drivers/bluetooth/btnxpuart.c
-> index 1230045d78a5..dd9161bfd52c 100644
-> --- a/drivers/bluetooth/btnxpuart.c
-> +++ b/drivers/bluetooth/btnxpuart.c
-> @@ -1,7 +1,7 @@
->   // SPDX-License-Identifier: GPL-2.0-or-later
->   /*
->    *  NXP Bluetooth driver
-> - *  Copyright 2023 NXP
-> + *  Copyright 2023-2025 NXP
->    */
->   
->   #include <linux/module.h>
-> @@ -1197,6 +1197,34 @@ static int nxp_set_ind_reset(struct hci_dev *hdev, void *data)
->   	return hci_recv_frame(hdev, skb);
->   }
->   
-> +static int nxp_set_bdaddr(struct hci_dev *hdev, const bdaddr_t *bdaddr)
-> +{
-> +	u8 data[8] = { 0xfe, 0x06, 0, 0, 0, 0, 0, 0 };
-> +	struct sk_buff *skb;
-> +	int err;
-> +
-> +	memcpy(data + 2, bdaddr, 6);
-> +
-
-Add a comment about the firmware limitation/requirement?
-
-> +	skb = __hci_cmd_sync(hdev, HCI_OP_RESET, 0, NULL, HCI_INIT_TIMEOUT);
-> +	if (IS_ERR(skb)) {
-> +		err = PTR_ERR(skb);
-> +		bt_dev_err(hdev, "Reset before setting local-bd-addr failed (%ld)",
-> +			   PTR_ERR(skb));
-> +		return err;
-> +	}
-> +	kfree_skb(skb);
-> +
-> +	skb = __hci_cmd_sync(hdev, 0xfc22, sizeof(data), data, HCI_CMD_TIMEOUT);
-> +	if (IS_ERR(skb)) {
-> +		err = PTR_ERR(skb);
-> +		bt_dev_err(hdev, "Changing device address failed (%d)", err);
-> +		return err;
-> +	}
-> +	kfree_skb(skb);
-> +
-> +	return 0;
-> +}
-> +
->   /* NXP protocol */
->   static int nxp_setup(struct hci_dev *hdev)
->   {
-> @@ -1500,6 +1528,7 @@ static int nxp_serdev_probe(struct serdev_device *serdev)
->   {
->   	struct hci_dev *hdev;
->   	struct btnxpuart_dev *nxpdev;
-> +	bdaddr_t ba = {0};
->   
->   	nxpdev = devm_kzalloc(&serdev->dev, sizeof(*nxpdev), GFP_KERNEL);
->   	if (!nxpdev)
-> @@ -1547,8 +1576,16 @@ static int nxp_serdev_probe(struct serdev_device *serdev)
->   	hdev->send  = nxp_enqueue;
->   	hdev->hw_error = nxp_hw_err;
->   	hdev->shutdown = nxp_shutdown;
-> +	hdev->set_bdaddr = nxp_set_bdaddr;
-> +
->   	SET_HCIDEV_DEV(hdev, &serdev->dev);
->   
-> +	device_property_read_u8_array(&nxpdev->serdev->dev,
-> +				      "local-bd-address",
-> +				      (u8 *)&ba, sizeof(ba));
-> +	if (bacmp(&ba, BDADDR_ANY))
-> +		set_bit(HCI_QUIRK_USE_BDADDR_PROPERTY, &hdev->quirks);
-
-Please elaborate in the commit message, why the quirk is needed.
-
-> +
->   	if (hci_register_dev(hdev) < 0) {
->   		dev_err(&serdev->dev, "Can't register HCI device\n");
->   		goto probe_fail;
+--fyCI02Nk4jU4SBoN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
 
-Kind regards,
+> as this is a i2c_driver, why isn't it in drivers/i2c/ somewhere?  Why
+> misc?
 
-Paul
+Because drivers/i2c is only for I2C controllers and this is not a
+controller. Other address translators also reside in their respective
+subsystem, e.g. media for GMSL (de-)serializers. I don't know this chip,
+maybe it has no "respective" subsystem and, thus, misc?
+
+
+--fyCI02Nk4jU4SBoN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAme3G1sACgkQFA3kzBSg
+KbaylA/+MuSvTASZf+COhcuEvu14/HP0b0PaA7uCLIgDKsCyDHxRS0dc2yfNfqUT
+Ta8cinV37PXFRMqPXGuIyjEBNbaSSJ3yV6xf8hIOq0ZmsLid6Mm9Inc4U4afJu/y
+vQpZuEp07nEXodwItnxfAuOlXrlDr9nKnK8TqlF75Nw3aBJKNMWjiEcOljA/JQ64
+h5ww7RW8OuYISAn+qezHJOFDUuV0dTR1AUJhBio5kRYZTVwE5nnQRldfr/sDhAeC
+zY2XVklnyowcioof7TdWh6H77y8G0mdhU9U7Eq1ARkuWRBIjCMOQUOu1JndE7Hnm
+ZbBgdefXxmoBr6yBJDk9CikSL3l4tQTJl1DVBTYx4fhbD/iv/S7fL2s5YDfO2Rzr
+nRP4q1H+CrwAHVFjasxu+ekRFTPaqfsSrfTv5pjdaAdNvA6FpMdHOTTjo8wKApI5
+CO7O/punA/Qjam+aYinEjDAM225nSiwp9grd6gfiPgUsOcVjxDq9qG4KwKW5I9hU
+OsgCDJ+HsMaKdKwvXuFOFG5kWb2jTEhzscZgG7gWzo2sWcaS1NM5yQJaUv1Zmf5U
+bD8wJhpl1C1H1tT4A+W+4GeHCdS/Ua8aj5ZS0kEHPiSgx9ez2v4N8MbNSbAlO/7v
+xcR7s6lXmPQzZGJa7v4Xtac0+acvXQSAXjovLitaWyWOWheIqLY=
+=ye8c
+-----END PGP SIGNATURE-----
+
+--fyCI02Nk4jU4SBoN--
 
