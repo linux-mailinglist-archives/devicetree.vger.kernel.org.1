@@ -1,171 +1,123 @@
-Return-Path: <devicetree+bounces-148893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FB3AA3DABD
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:05:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 353CBA3DABC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:05:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 187EB3B8FF0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:03:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1305C174064
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:04:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 618391EEA3E;
-	Thu, 20 Feb 2025 13:03:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55D81F561B;
+	Thu, 20 Feb 2025 13:04:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cixtech.com header.i=@cixtech.com header.b="FjYK8ioM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DTRjlGQx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2120.outbound.protection.outlook.com [40.107.117.120])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8E11F5845;
-	Thu, 20 Feb 2025 13:03:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.120
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740056629; cv=fail; b=m859WComPxhpNlRAa+2cu4acdjL927DrFrDhoptNlM1ocZ+Ck1TLxeQAb2g9dvjT58ZG4Fkw9iu+M5BB50nJfb+kA/h+pkExlzfp6gNzSJwWZAmd80V9ce0n35BKzaNkUzIp/6noLewUdH1CuJfG2WK+hmLWPs06sYXClyuDvT8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740056629; c=relaxed/simple;
-	bh=Qfo+EOtmzS34sT4ACPnELe1104OurewLoEawCxinmr8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rloJ51SKbQjR5wSWcr0RllqSOpCH8UAcvxDEWGfuEff260ynaVlFimHtebIjnSrvbWmE/6Uat/7ggQi8l1uA78SXJcrI+15MRzyJMVIS4F9637ICtZjyecl+oQEncm/L40PNxSY7ir26BFU6C3Jk22cPdCygBLFge/lUftVijkQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; dkim=pass (2048-bit key) header.d=cixtech.com header.i=@cixtech.com header.b=FjYK8ioM; arc=fail smtp.client-ip=40.107.117.120
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n/aiOQEGDPpmrecCyM2DbJfn0CdFA/EsYXCXPdtoMQ+tsaSKOZJ7/ZULluw0i+OQnRaBZCEStnp+vjT/Tav3p3DHo7eb/4EZoJ8THUhEOq+Y147cPsyQ5P3SNNTBXwUc9Cnx2LkrdbgVA/sAe07fgWdz2+dja7GEjUZvPdjF6R4jeVwvqeKp68HR95kWebSaiwzzMv1llreNWsAP7Gb1h91FLlFFPwZhxram0dFNgjerFkGsz0vnFikZFBZjUr3Gv7FKZn8cGdVL41QQUqJlz0igZPOE2d14EYE0AUBQH/L122yiieqglrbFNxQjFUfPbymJ7Qs/jk11RbvYrIKv6A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rXGj8fOL7mzFSgM5TT4hmy45kIm0wjY4xEE1lcpyIfk=;
- b=ytdvXqYimgE4l8rFDcp0z5Hyn96QuiejH5fZn1I439gtdcvJadNa/XqHZdoQV4qQsoxNH1DNILgXyK5py4yLwef++S8htBhalHivscGaJjxFakJqbCFTPnLz6kMDfF/HCrE7+Fb4oAosMU7BfobFON1MqHiLzsEZCM5OOqIii1xPHlSnwJnoPmEqgW/9DcZ0evXEjXol5qU5dSHobWXligr4HNYVlk3kPV2XhJ/QmVC969Uu/w/PQi5SkqwWlfIG5/b58ajuEgrSlWvP7aKCSLrpOuykhkPb1Yx0SkqnnhUYY+zrFSpYfIL7qTH+i/Yjx4XzHkUv2Y/Xjw16xlSgnA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cixtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rXGj8fOL7mzFSgM5TT4hmy45kIm0wjY4xEE1lcpyIfk=;
- b=FjYK8ioMf8z8RzLSzywuj9f6lH5/MXH+OQGcp+LjGZDqzOXPgLDMxF/fJthhkBouvYRZpLrwdx/ig4uHJ8GNwUDyiqPwdpnD3gU4+avaKMtVG6yjkU69QwDhx5LaObX+VLerWHGzuelqqIbtt0UTYCQd0AJjDn/ncINOAD8lwdJMv2sPolPCQoisbxzba0qjMkw0ibMkF9IItEBntmGmNzFR81v9w0aWUZY99fpow44qdWtf69TUnWbGCzaGBdDuvg+T1A//3s4ZWNdRsrWMb+mqu5JxKMCZWL031zQezOtpJz7Nb13+161gqMfY0b8VNvwE/aBNi0fE84PXpDrUGg==
-Received: from SG2PR01CA0174.apcprd01.prod.exchangelabs.com
- (2603:1096:4:28::30) by KL1PR0601MB5512.apcprd06.prod.outlook.com
- (2603:1096:820:bc::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.14; Thu, 20 Feb
- 2025 13:03:44 +0000
-Received: from SG2PEPF000B66CA.apcprd03.prod.outlook.com
- (2603:1096:4:28:cafe::d6) by SG2PR01CA0174.outlook.office365.com
- (2603:1096:4:28::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8158.24 via Frontend Transport; Thu,
- 20 Feb 2025 13:03:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66CA.mail.protection.outlook.com (10.167.240.22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8466.11 via Frontend Transport; Thu, 20 Feb 2025 13:03:43 +0000
-Received: from nchen-desktop (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id C2141512A743;
-	Thu, 20 Feb 2025 21:03:42 +0800 (CST)
-Date: Thu, 20 Feb 2025 21:03:41 +0800
-From: Peter Chen <peter.chen@cixtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
-	Fugang Duan <fugang.duan@cixtech.com>
-Subject: Re: [PATCH 4/6] arm64: Kconfig: add ARCH_CIX for cix silicons
-Message-ID: <Z7coLVPh7TkQWYU_@nchen-desktop>
-References: <20250220084020.628704-1-peter.chen@cixtech.com>
- <20250220084020.628704-5-peter.chen@cixtech.com>
- <22142d49-b6ba-43d3-aefe-ae64fd867e8e@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 511851EEA3E
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 13:04:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740056649; cv=none; b=k1Ftk12ShEeSPDO8ReMxr9L66KUVzQSFQV0ouM0jAq3HqnNcoVW5XWWyGcNbN9hVYMbHxKjzUhi3M0VQW4SHUK28CT554HGXNLNaJ0fLDjSxWgoirYuq76uwHT79ZW2L+IO3RGBTbPdrG79GrDLY2wJpbDnL4uV+zuziuLPyKVM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740056649; c=relaxed/simple;
+	bh=xystygcErXcBq5wnb9GNo7Nv6U+qrQwVkR0wFmGmVds=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CsdzPxdl543TRHEfZwe3c/Fetje8cmDS78r0WP8NFpuIahFdyYCylyHBja3m0vDxx7sT6dUHalaBMfAPLXKSqOKbbw1UfqKdb49eEMsR/JltOQKrvJUG4cwKb99L3DarXsO7lkYfUEvQNizOzMCOb2kt2xUXnWK2jYfiV80Pmro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DTRjlGQx; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-220f048c038so15169475ad.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 05:04:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740056647; x=1740661447; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=y+3soSVCYAuRBJUKPnHhYTtwJmf6pTxAK2DqaA+2v2c=;
+        b=DTRjlGQxCrjw9aAQBkO1CdgCbUVsFb1EMMGC3uVdfjGCy2s94m2yRRa7Fdzps7wH5L
+         3Pr0NHEgEzX7S2API/61WstUdUko+gOsTLwfm9cseAX65Vmc3K0+ZWXN+w42FvCrvFUd
+         mgD+XJbS5HUzv5w4Z9eY990LwC9MQS0dIGPHVvDIM3Lfr4irPyk1SKKTJ6Gdv0GV80KK
+         vnPLvNZqFTbBsTRPkde+8Ui7iNhQube2xQnChpmyNvt6vbvjbZFORLliPbTminwHHBXm
+         ZKELMGHKEdowgP+i4A+atpiQcUmW9D4Gf3epEumFfEeTuZ4RUSERIU0cwKEje/YuDHI+
+         a9LQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740056647; x=1740661447;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y+3soSVCYAuRBJUKPnHhYTtwJmf6pTxAK2DqaA+2v2c=;
+        b=LDMqJMmKrEBXKCfONwj1TfnV6w9jgCLD8oxYwJRnTw1MHoY4sDS4CaxMtivUP0TSwN
+         2eddoa7qXUgFDKlsgsmK16Da8ovti+zRDLJRGPRx3hfDuni2aCquwR6A6n3U06IIE40I
+         kGv6Tydrg771syz4nbI5JVv+0QJIbLQOh3c1Uw6C8Kfse9GKhXzHyJDqH2HvPvDDXa9d
+         bjtZaH8Q6uBohS8s2ojEg31CRLt+1WZFcQyNfoFTB0ISA0ohIe1FW8YlPKXMZe4r02Kj
+         MzG1zfShM9hJn5XPvuhEeOe1NEEWj8k/aNUe9ZtPK+JC0BgE+lgXaiFDmY02YcocHgjy
+         Lnbw==
+X-Forwarded-Encrypted: i=1; AJvYcCV477sW0GKsc4U/oiQrqM/pjJb1PjdHNjTV8WHBm5zyuqiUS8ZUXU/epF+Jz87tbmuQAcGpMdl5VQ+5@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvmX5o9rPEPiBm11yBVJoMi61euOezPRqjByx4HTUfrshyyYsm
+	qhbeokFZO22xR7UJDOkfLdwu5KT8vQSshhfSnQVoDzDTfTJV+7z5pA5QlQ==
+X-Gm-Gg: ASbGncuP1IcgeNAeAei53dWFU+tJwYQD2QPVek1dDRvQkN9LvugaUy5AMMZ6OYC+OTN
+	P02e9/M36xl2G6ShuyOuMXz1HCMf4GAJ/VG8kxI2tysE9s7ORLEAaC+cDFJLPYfYY9IN36HvX6P
+	MH4GifKby0fv+xCuuPtroWQftR0Zz0tQD4qZVCGvNsnictMH4Xpm5FalE6sY5IRydqmN6miqcjG
+	c39Lk+e3ACbfKRovtp31+iQdkkQd1TMjnGzadoQy9pPfCguAYK01Q7Afc8VzV2e2LD3HdZtuZ8m
+	SLFBZizha/u8qHVB5FvTw6EOOtiIDQ==
+X-Google-Smtp-Source: AGHT+IGw9OEm8SoiJIbzYvzhoiOS9vLNOCY9vd2Z4Tmta8NM4PUADLO7vJbTIJwDirGm3pkUctatBA==
+X-Received: by 2002:a05:6a00:14c2:b0:732:5954:a815 with SMTP id d2e1a72fcca58-732618f1fa8mr33765480b3a.22.1740056647430;
+        Thu, 20 Feb 2025 05:04:07 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9a27:2e77:89d4:5724])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7326dba6585sm9508105b3a.14.2025.02.20.05.04.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Feb 2025 05:04:06 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: shawnguo@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] ARM: dts: imx31: Use nand-controller as node name
+Date: Thu, 20 Feb 2025 10:03:45 -0300
+Message-Id: <20250220130345.2375204-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <22142d49-b6ba-43d3-aefe-ae64fd867e8e@kernel.org>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CA:EE_|KL1PR0601MB5512:EE_
-X-MS-Office365-Filtering-Correlation-Id: 84baf534-e4bb-4c73-6dc0-08dd51af0125
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?C2HHjMM2nmel0Xs7H8nWTpJ0bW2uQTHtOdA05/o7ZXsfz6aWxc9VqgR4JBrY?=
- =?us-ascii?Q?g7B0ixtHN7d1/MPl/07ZnBhYx/0cgkZgmA0MG/l9w0I/CN2fDKdkuyRGKDzW?=
- =?us-ascii?Q?yvlCMWnmmogFgbvzRe6Kv1pzTUidRZ6XI64lPvGbYa4I34jOx0UcNGD6B1+e?=
- =?us-ascii?Q?lQQQBMfBHMWZQBlc8Qr/VfFIJC0nwQ2T254GUI1JFmb4nFE0JNk1ZygQuW3p?=
- =?us-ascii?Q?yQVVdpVPF3vUo2pJdtUtBqaLkFDoxkNh71sjVj95bk49k/02Vpl8i74qwx8N?=
- =?us-ascii?Q?UMecCu0OB4Wx9CZm1wIlay3skf8L+YCGI3BYhGkdc5v+1Z35YZat/v1xXiFO?=
- =?us-ascii?Q?maJ5B8uOFV3L2PhSRZdQP9msDfNOYy/o8d7UKf4Nkt3Xl3XIvH34ccpfKjTY?=
- =?us-ascii?Q?9u4WRqFRGWA4OsjK8n1jhLtmHWXAL0RsrBQ4tnyWYljfVwSw2182rT9LOBbK?=
- =?us-ascii?Q?JO53BYv94/MiAqi07fH0NxkB0u6/e61spoPoFHccISw7gSF50SvqXJjMIVBd?=
- =?us-ascii?Q?sMd25c+9LFfp9veQe+BSWLIXO5VakKGUcHbqnFrJMjrPabKS7o2JJdf3Nm2f?=
- =?us-ascii?Q?o6yynBecZsH/NmbZHnvxb94R8KMtKr+lfTP9BE92SJ4KNhrhWmfjQrW87rmx?=
- =?us-ascii?Q?BH/fD+nznW68Ze5zAqJO1ckYl7Wc2gdg0HnTeKSP3fPyL/s2bmhANBEiZdx4?=
- =?us-ascii?Q?pyf2eLc0VzJhV6VkFUxaBs3hB15rIyPrvrO7Z2LAQ8huSD2dLzz7J5/PqyrZ?=
- =?us-ascii?Q?rl5t6G82bzw1u/ASFS0XSxEi4GdqLN1D2GHc1U+o1kqbEtXfMZqMtMhpytAF?=
- =?us-ascii?Q?fhYk0Tz+VTHIotgMy6gwXybgPlfb+0HuC04RKfcqjuoNOUH/Q3ioq6SQn4pY?=
- =?us-ascii?Q?yVkfO250N2YgmYI+hUbt5MAsOgzyhXrjc1eb5v1e2XR4FOGRFtQDGBhPnO/i?=
- =?us-ascii?Q?UaI572l43xbV7NthL0o/fjKqEnlAI7i5PVg9IptpVDqXPMd85lLxRU/64nSg?=
- =?us-ascii?Q?1GuPyBxCXcNt40pBUTv49I1MQ6ni2rlvLYHSVLYUhQua8yypmAKVetOUq2xq?=
- =?us-ascii?Q?gcCdx2gfdYQ/4nA9MV2NM9SAaypXKAmoRHZT8FvsNOgKu+qOxz1/1tFBkKf1?=
- =?us-ascii?Q?VA4pUMI048U+1J4mNhvatxnyroIlZsqW8LAhWJnV88iSRf0dHlN9F6N5XkoT?=
- =?us-ascii?Q?BF8mE7fDFJDkfd4SWpw935Ue1csV22FB5U1z5ArC9L19zF3AxEGy8iV+V30S?=
- =?us-ascii?Q?eB9ibpZQkpKtk6NTWwlPIXMxEXpdhCr6zJC7dZFtvtchKn09Gw2xXFNzhWVt?=
- =?us-ascii?Q?Be8DacLuoBWXSMfiI9XdliKwWuV+EBJ63TfpwyFihKilTeKP10yjO/wev5ec?=
- =?us-ascii?Q?Lpg3fuA/2CLstsPnBB/UbhR+4SelQP4+W5Xccz0Xl4+D5gtscuk5+ZEXoyd4?=
- =?us-ascii?Q?nKHyMdU5+Ynx+nlNYRMng8COE2CK9kaD9DLTvvJ81OjiIIMm97/8GYJmOKrQ?=
- =?us-ascii?Q?UmZNqniTJvTI/d0=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2025 13:03:43.4960
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84baf534-e4bb-4c73-6dc0-08dd51af0125
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: SG2PEPF000B66CA.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB5512
+Content-Transfer-Encoding: 8bit
 
-On 25-02-20 13:18:38, Krzysztof Kozlowski wrote:
-> On 20/02/2025 09:40, Peter Chen wrote:
-> > From: Fugang Duan <fugang.duan@cixtech.com>
-> >
-> > Add ARCH_CIX for CIX SoC series support.
-> >
-> > Signed-off-by: Fugang Duan <fugang.duan@cixtech.com>
-> > Signed-off-by: Peter Chen <peter.chen@cixtech.com>
-> > ---
-> >  arch/arm64/Kconfig.platforms | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-> > index 02f9248f7c84..977b61894cbc 100644
-> > --- a/arch/arm64/Kconfig.platforms
-> > +++ b/arch/arm64/Kconfig.platforms
-> > @@ -399,4 +399,10 @@ config ARCH_ZYNQMP
-> >       help
-> >         This enables support for Xilinx ZynqMP Family
-> >
-> > +config ARCH_CIX
-> C is not after Z... keep sane order.
-> 
+From: Fabio Estevam <festevam@denx.de>
 
-Will change, thanks.
+According to mxc-nand.yaml, the correct node name must be
+'nand-controller'.
 
-Regards,
-Peter
+Change it accordingly to fix the following dt-schema warning:
+
+$nodename:0: 'nand@b8000000' does not match '^nand-controller(@.*)?'
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ arch/arm/boot/dts/nxp/imx/imx31.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/nxp/imx/imx31.dtsi b/arch/arm/boot/dts/nxp/imx/imx31.dtsi
+index 00006c90d9a7..813a81558c40 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx31.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx31.dtsi
+@@ -340,7 +340,7 @@ emi@b8000000 { /* External Memory Interface */
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 
+-			nfc: nand@b8000000 {
++			nfc: nand-controller@b8000000 {
+ 				compatible = "fsl,imx31-nand", "fsl,imx27-nand";
+ 				reg = <0xb8000000 0x1000>;
+ 				interrupts = <33>;
+-- 
+2.34.1
+
 
