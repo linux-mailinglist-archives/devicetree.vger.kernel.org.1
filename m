@@ -1,138 +1,193 @@
-Return-Path: <devicetree+bounces-148827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD683A3D8C1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:33:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2337A3D8B3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:31:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CBAA3A6D10
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:30:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5350F7A1394
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:30:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A808D1F2B83;
-	Thu, 20 Feb 2025 11:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C27DE1F2B82;
+	Thu, 20 Feb 2025 11:31:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TKRklvkO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EZRVPLJt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE93A1F4262;
-	Thu, 20 Feb 2025 11:30:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98E2F1F150A;
+	Thu, 20 Feb 2025 11:31:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740051022; cv=none; b=kO9RxfQyg8jCzDvyKoJ8nIs+uxzLoYfXbqMHIfpN7kQiOY1zMC/HMcv/hktnBjq7VHzTV8JSLbWXwTFPK0cT78KOBM2n0tPq9DLRkOsBNkIinLcJLpC0s/kz9t4yFVLZcRBzGvBVujNhO8pAKwXmfPAExASXUdpjX931VcSpzGU=
+	t=1740051095; cv=none; b=CLza0tIUgRs2dL3JJgw6Z7Dg5hOVeH7HRt3BxyAtosGDr43a9OpnUSczK0rJZ5khyelYbmxP0B1ObWowYVbXCYfB52ucOzjqHxNtZWoZpy48wYuKZzsFfI7NeslDHXUdhV6KgWU547G1uYjML2cwrj3hGKTcpJgaDkwVQEXjqvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740051022; c=relaxed/simple;
-	bh=72ypbfAx4aTzaSq8RsBOyaCCNNmiJx6es43r+SBSDig=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RUCRwDdGa70b6OeEJaVizLlYsV+WYgg3jkKAmtzVwBtEv521cpViar++WqFm1OOfViXY6cZMJZJBzrJC1GO/tPy6Sc3G/aPT84/Ay7CAGfFzFiTqZm9hdTMrq8HHFxlQeSiee1XgeOxQeUmNElA2j/PMZ/pnNnmo9KwQvXf5o9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TKRklvkO; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51K7XhIh031356;
-	Thu, 20 Feb 2025 11:30:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QjehGn6pM3+5o3M2ZHJw+kez+uzfsB/kjouEUHNTGOg=; b=TKRklvkOF5y9KnfE
-	ynJR78rOVo+Zibo3TF88BdUQTr84BtXOxfrAWTpSjM2jxMhY6Uoup6nQQsn9D4HC
-	gJTY9HJxHsjhHdJDiTfIxV6IXUa2A9mntAPIEs4nw8sKLBbn583GHZe09vde1bxw
-	3XIuVxkRwckMJxUy0Q330Qx1sN7O0nSBbuJ5mO8f6IvqlykuLZVaFzfHdghc1Mrr
-	YEG7qm7GUwwHMf/oOt5zxD9NSBBykEnN4Fi4BlrNStQ9S7k759vSzxISH/LLcXac
-	bIkdtE/FRMTw5LD0zY8PCYR8VpFP10D37zYQN39RsSH+cMU/Nr9ensg+Um7MCIiV
-	J6czqg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44vyy5dxgk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Feb 2025 11:30:14 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51KBUDmf032145
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Feb 2025 11:30:13 GMT
-Received: from hu-janathot-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 20 Feb 2025 03:30:09 -0800
-From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marcel Holtmann
-	<marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-CC: <quic_mohamull@quicinc.com>, <quic_hbandi@quicinc.com>,
-        <quic_anubhavg@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-bluetooth@vger.kernel.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-Subject: [RESEND PATCH v9 2/2] Bluetooth: hci_qca: use the power sequencer for wcn6750
-Date: Thu, 20 Feb 2025 16:59:45 +0530
-Message-ID: <20250220112945.3106086-3-quic_janathot@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250220112945.3106086-1-quic_janathot@quicinc.com>
-References: <20250220112945.3106086-1-quic_janathot@quicinc.com>
+	s=arc-20240116; t=1740051095; c=relaxed/simple;
+	bh=+YgQGxrFni52QVQyqbITt31UYjErObaKrGzH0GffrDo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=WU0VhZDuyG8uTMykc8jZ702qQx/Wavs3Fc28yMbdXb0eeuPBRyu3rvolLTny4AylBYAXFHDEYgl0eJNPcRvy1bpRe1jPC5GWyTkxI6XeJZVdpVScQG3gwQ33JIZOUZCsK5FAyWNMR75TAtDR3nMZqWaH1CJyPHnSF2YIrJQAHwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EZRVPLJt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0DEAEC4CED1;
+	Thu, 20 Feb 2025 11:31:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740051095;
+	bh=+YgQGxrFni52QVQyqbITt31UYjErObaKrGzH0GffrDo=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=EZRVPLJt89KCMZlV/Q7ROznbkUOrvVVBTWrH+qBdptgHGXAFZBLPAJto1YCGPi8mB
+	 UWyVm5nkfWIc3p6aCytgsgarzOOxhvmQc1hKPrAl/wIE7TatmkfBHBGeiykUAJY5EJ
+	 orJ1pKuWYi3XdMaka2rOWH2RH/xyrc+2MO3tRZx6JpnTEgSSH5xgG2rHFEwcThY3zA
+	 Jupl3d3fn13c4BSmLHsEzD6j5qZP0matBx6WdFtvNLalAltI1gsbZB6J55Owhb3tzX
+	 Grq6cyYQH0+Oizt3yycThUzNV/8vBOS3EI3ylmCq14wgitPz6eLs7b//kaff+HXWbh
+	 OyZjWdgZsUuww==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EE01AC021B1;
+	Thu, 20 Feb 2025 11:31:34 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Date: Thu, 20 Feb 2025 12:31:24 +0100
+Subject: [PATCH v3] dt-bindings: powerpc: Add Freescale/NXP MPC83xx SoCs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: NNvEuxUmrkkNlKWDNVLbwQ9bzHHPV2wz
-X-Proofpoint-GUID: NNvEuxUmrkkNlKWDNVLbwQ9bzHHPV2wz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-20_04,2025-02-20_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- mlxlogscore=999 spamscore=0 bulkscore=0 clxscore=1015 suspectscore=0
- adultscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502200086
+Message-Id: <20250220-ppcyaml-soc-v3-1-b8c98a61bc1a@posteo.net>
+X-B4-Tracking: v=1; b=H4sIAIsSt2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDIyMD3YKC5MrE3Bzd4vxk3eTEVMM0Q5PkNGMLSyWgjoKi1LTMCrBp0bG
+ 1tQDQw/PdXQAAAA==
+X-Change-ID: 20250220-ppcyaml-soc-cae1f14cf389
+To: Scott Wood <oss@buserror.net>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ Christophe Leroy <christophe.leroy@csgroup.eu>, 
+ Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740051094; l=3092;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=NAj+Jqp8KPeLt4L556NresRK/7mtlfJD3BTkH6XEDfQ=;
+ b=svr6EYY1rL3k+PY+Cs6q2u237DnQIj+3pXfKA5mT8jlrXmGEKRocbcBDlYHRe97Q4p7MfMFu1
+ S0bDZ6K3hzaBbFzQJovWtbkKg34hQmOcP9jjL5yXQ+iLk3a+XHakeX/
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 
-Older boards are having entry "enable-gpios" in dts, we can safely assume
-latest boards which are supporting PMU node enrty will support power
-sequencer.
+From: "J. Neuschäfer" <j.ne@posteo.net>
 
-Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Add a new binding for MPC83xx platforms, describing the board compatible
+strings used in currently existing device trees.
+
+Note that the SoC bus is called immr@... in many existing devicetrees,
+but this contradicts the simple-bus binding.
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
 ---
- drivers/bluetooth/hci_qca.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+V3:
+- split out as a single patch
+- otherwise no changes
 
-diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
-index 0ac2168f1dc4..d2fd08aceb17 100644
---- a/drivers/bluetooth/hci_qca.c
-+++ b/drivers/bluetooth/hci_qca.c
-@@ -2359,6 +2359,7 @@ static int qca_serdev_probe(struct serdev_device *serdev)
- 	switch (qcadev->btsoc_type) {
- 	case QCA_WCN6855:
- 	case QCA_WCN7850:
-+	case QCA_WCN6750:
- 		if (!device_property_present(&serdev->dev, "enable-gpios")) {
- 			/*
- 			 * Backward compatibility with old DT sources. If the
-@@ -2378,7 +2379,6 @@ static int qca_serdev_probe(struct serdev_device *serdev)
- 	case QCA_WCN3990:
- 	case QCA_WCN3991:
- 	case QCA_WCN3998:
--	case QCA_WCN6750:
- 		qcadev->bt_power->dev = &serdev->dev;
- 		err = qca_init_regulators(qcadev->bt_power, data->vregs,
- 					  data->num_vregs);
+V2:
+- part of series [PATCH v2 00/12] YAML conversion of several Freescale/PowerPC DT bindings
+  Link: https://lore.kernel.org/lkml/20250207-ppcyaml-v2-1-8137b0c42526@posteo.net/
+- trim subject line
+- fix property order to comply with dts coding style
+- add Rob Herrings's R-b tag
+---
+ .../bindings/powerpc/fsl/fsl,mpc83xx.yaml          | 67 ++++++++++++++++++++++
+ 1 file changed, 67 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/powerpc/fsl/fsl,mpc83xx.yaml b/Documentation/devicetree/bindings/powerpc/fsl/fsl,mpc83xx.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..1d7ed67473ca447e0fd2e9b8f30d20e18c601ccf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/powerpc/fsl/fsl,mpc83xx.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/powerpc/fsl/fsl,mpc83xx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale PowerQUICC II Pro (MPC83xx) platforms
++
++maintainers:
++  - J. Neuschäfer <j.ne@posteo.net>
++
++properties:
++  $nodename:
++    const: '/'
++  compatible:
++    oneOf:
++      - description: MPC83xx Reference Design Boards
++        items:
++          - enum:
++              - fsl,mpc8308rdb
++              - fsl,mpc8315erdb
++              - fsl,mpc8360rdk
++              - fsl,mpc8377rdb
++              - fsl,mpc8377wlan
++              - fsl,mpc8378rdb
++              - fsl,mpc8379rdb
++
++patternProperties:
++  "^soc@.*$":
++    type: object
++    properties:
++      compatible:
++        oneOf:
++          - items:
++              - enum:
++                  - fsl,mpc8315-immr
++                  - fsl,mpc8308-immr
++              - const: simple-bus
++          - items:
++              - const: fsl,mpc8360-immr
++              - const: fsl,immr
++              - const: fsl,soc
++              - const: simple-bus
++          - const: simple-bus
++
++additionalProperties: true
++
++examples:
++  - |
++    / {
++        compatible = "fsl,mpc8315erdb";
++        model = "MPC8315E-RDB";
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        soc@e0000000 {
++            compatible = "fsl,mpc8315-immr", "simple-bus";
++            reg = <0xe0000000 0x00000200>;
++            #address-cells = <1>;
++            #size-cells = <1>;
++            device_type = "soc";
++            ranges = <0 0xe0000000 0x00100000>;
++            bus-frequency = <0>;
++        };
++    };
++
++...
+
+---
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+change-id: 20250220-ppcyaml-soc-cae1f14cf389
+
+Best regards,
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+J. Neuschäfer <j.ne@posteo.net>
+
 
 
