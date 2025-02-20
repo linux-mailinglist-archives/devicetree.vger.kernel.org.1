@@ -1,177 +1,101 @@
-Return-Path: <devicetree+bounces-149116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B4DAA3E5F9
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 21:38:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BA59A3E604
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 21:43:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B013189C1F3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 20:39:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EB973BB088
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 20:42:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B51C1EA7D0;
-	Thu, 20 Feb 2025 20:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C137826388E;
+	Thu, 20 Feb 2025 20:43:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hH22Rwws"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Jz7UUagN";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="JaGBK3GN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 448531E9B29;
-	Thu, 20 Feb 2025 20:38:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40A3F1E9B32;
+	Thu, 20 Feb 2025 20:42:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740083929; cv=none; b=Gn3vq2arNfvrBtOV01knXOZgCjkRd+zcZcKBkx1tEqMKC41CztjVfoOpfjRY2Y0xearJrddtLn4Pxo3lDwNSnOPe0Q1ZfN7gLzBi9JJkOmumQ/Jq1UpscA1xVbXpybFQwhHr24Hkp9ij3CI8UYBc64cH+V7tKNaSjHfHjZWI5MI=
+	t=1740084181; cv=none; b=lYE55R/n0KAQF/tA3+SRNDF9RaeGNoSUamqb2jgnUF24SUImh0gRIkXPwjL31yYKp/Vja4YRWmvPUPvhlSPcURK05yER+5dgVegziSbXH3tkZZEJB2mJ28lZl9DsVeQZJyKVklALjZIAoDuR61D+rNvVtQwK68TD5sQwTCE7WkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740083929; c=relaxed/simple;
-	bh=QwsMW6iVNU91lHWFEwdgOCeBu4Y7rQxQ6qUYUGztHYc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eqKMrQPkochODNOmMUtX/Xq4tG4kRnXRYuLWQAwrsvWXBKXOwfNu6m1n6mVUvc+oAoOOIT0jOkOxgScV/r2mnmL2Shpp5yg3TuibTvJKsqtFZHJS7RHhVQVpK7LYnF6odL/Lu98xG+7cEI/XsdWkPGNA/PkONEPWLBBFDH6XtVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hH22Rwws; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4398c8c8b2cso14182525e9.2;
-        Thu, 20 Feb 2025 12:38:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740083926; x=1740688726; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=L/oPr+uhiMwVLonfT4r87s8BLvEv5cJUIRCGxgmU+Z4=;
-        b=hH22Rwws8YbHyBI2Ka8KheG4KNeJix2nFRmroQiJqt1Uyr2tpSS1myQDG/PqsJTUvm
-         ktfZDgf2gbhf2oQD1FCyoIObEjpUOgv6IIsgp6X0UXOrjCRHlQtO+II7iMNEpsXmJpbu
-         K500XocgGeCodc8t6aFLsj4NkeYXhJfj8pgJcUZWdq9AVPer2Dpui3+TZlwourEP2OhF
-         rOg6F/fjFAUZ07mWhfvJV4zNEIeO/9QhbuUlheG6zG0zdxWH5vHX3vjllCO0VH7WWOnc
-         s8arfPazIzae4OuzbZZiP7Fz854gR2ca2AMLFDYc2M/UbMMYJJto011ZCkJ70bT67qv/
-         Iktg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740083926; x=1740688726;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=L/oPr+uhiMwVLonfT4r87s8BLvEv5cJUIRCGxgmU+Z4=;
-        b=Dx3NXz0P3jGuq8n5EnzciFNZL4Gdg+XwA+huih6AMOXnlNINHhJz16+inhfr67uReM
-         LtlhEsDynwnhDZafujq8k5tdtRDRvhk+qdJKaGQj3v1/SoFz0HTi2k1oDeRoi4hDEzM0
-         4D4MHLWoxjxHYb7YiPU9PxJT10FjQ8ton5F4/tT+gPe094fVjDsS997xLmF4nMm+LMLE
-         wcvfJcpnjJv2FuP+zqAOoyi7jAKQltvB7/xg7jTPy5oRG5U71d3robUjIKtb6BtuP8yp
-         d22LaNBv58GeOo1Iy7Guy235C62Ut2c7g4/zHhgTgGR8H1rYG+Kd6Ay4ZyKd84HbsqR8
-         WUPA==
-X-Forwarded-Encrypted: i=1; AJvYcCVhyTls+Mbvvj11hA9avdICZ7j8HfVbneClZqmVbgRl/JUwMdyz1A4/9zboMbORz34dv6qVEt9rNGku@vger.kernel.org, AJvYcCVjcwsWe2f5u2B6Ju5etYtpwYM27ckz5YtJcXkTjjVcCioY71ku8z7zt3kspRPhdpsjCXYCg7flQnf3CzwS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpnUKmY0SrBabXLu3axidVG13V5JjCt6Et7HJfQ8FWlB85CsYv
-	2iDNQ4QaDQxZVgUY6P7tvEjS7/g2gI2ee/jL3dORdByah5jPp6cA
-X-Gm-Gg: ASbGncsHIv4hjyZcNBMhqMmekL1iSMYC1wk/lRcSsGjEXAe0Mkg62ybi/MW/KWsFHJ7
-	Dlnjk3DIy9CJeUs7zXVL/f9/Dd3PTtqfdFfMGmrboe7EPPIYZ714X25MBjoSO3fhbvOQRwvMtnw
-	cDLmx7psq8SYaYQyVObIrRul7/NHy+EaUoT270s7le747ZRniQWN1zX+6DXKQ70vbhQQvKdFYDt
-	yEvO795TM5JT2V3tUozi3Z7eDPwukn4JpwroA5Xvxnwg1GYPzi9VbTxStv6ZIa7p86uzSw3slk+
-	BMpQUsSkvcB38NjMubyLICpThRYYR0LSOonraJfsnqaBbN3TaZuKpx6Xx98oh0+AmoM=
-X-Google-Smtp-Source: AGHT+IH9AWEvVPP40afiEyTpAqrp+DWpZtEd4U6ccKRCJ9igZQuFw9ymkzn2FjL3McLqq0mzFVmoPw==
-X-Received: by 2002:a05:600c:524a:b0:439:86c4:a8ec with SMTP id 5b1f17b1804b1-439ae1f1147mr6622885e9.15.1740083926326;
-        Thu, 20 Feb 2025 12:38:46 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-439a3cc9551sm31663025e9.39.2025.02.20.12.38.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Feb 2025 12:38:46 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/Allwinner sunXi SoC support"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>,
- open list <linux-kernel@vger.kernel.org>,
- Philippe Simons <simons.philippe@gmail.com>
-Cc: Philippe Simons <simons.philippe@gmail.com>
-Subject: Re: [RFC PATCH 3/3] arm64: dts: allwinner: h700: Enable USB OTG
-Date: Thu, 20 Feb 2025 21:38:44 +0100
-Message-ID: <3229934.fEcJ0Lxnt5@jernej-laptop>
-In-Reply-To: <20250118102207.9339-3-simons.philippe@gmail.com>
-References:
- <20250118102207.9339-1-simons.philippe@gmail.com>
- <20250118102207.9339-3-simons.philippe@gmail.com>
+	s=arc-20240116; t=1740084181; c=relaxed/simple;
+	bh=yyB4raD5FkLDm+6eE9B6NLj9Ve2fAT7IBWp7UlnhxWk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=FYryC6U4ibQaa/dssCh4xlLpiD4O+0PNJ6UlI21EMjmRRtH8rZN/BNyhOsl8nOfvc9b1EEXlk3d4thRHWw9M43lT5s6L+ARsNG5Q2mMXZ5CtKvhyRVbFTCTpyeBg4NFhBKN6N1+p727HaFKCp8e0zCwh3FT3EJhsxJoSpFfAlwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=Jz7UUagN; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=JaGBK3GN; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1740084178;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=RtHWekfr9PAPqze2jQ7chZG40e+mSXvS0nobf0sErKA=;
+	b=Jz7UUagNJTKbH56LgA1I1S2wceAMMcMLhEFTOQqAXc8zhpwat3W7Md4/GbVOSEl7Ja7f6t
+	BV49/BFemaZOqEOVn4yRHDyY/W9L1s4vwD20lQDSJmg7pHswUgvc2diuh1ACjW3B3wCCiR
+	nb9UU/+ChkaiD0TV7bOceMRn225UlaZst7NAec1BQ85bQBDgRNL+8nc8nkzBgAd2s0Ldh/
+	vM/2IuIdN5fmR1Y2kPmAfRRmoQlQGfb7sMGtdDLelpP4Yq5ze2z5X585jfLSk03FJ82HKI
+	RNpnzH9P6BEFX1OQE6VgcsfUgcxIC9y+u6chBR8e8pplO9v8gn2uX6V3HXw1dw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1740084178;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=RtHWekfr9PAPqze2jQ7chZG40e+mSXvS0nobf0sErKA=;
+	b=JaGBK3GNvF9d/Xprp9sb0i3FtrYJ+tMeGHw68qv5QxzNEaV92P6GDoaIuTka6bxo7IX8wm
+	7Kwx8ZWXVTO9O3CQ==
+To: Frank Li <Frank.li@nxp.com>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Anup Patel
+ <apatel@ventanamicro.com>, Marc Zyngier <maz@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich
+ <dakr@kernel.org>, Manivannan Sadhasivam
+ <manivannan.sadhasivam@linaro.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?=
+ <kw@linux.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, Shuah
+ Khan <shuah@kernel.org>, Richard Zhu <hongxing.zhu@nxp.com>, Lucas Stach
+ <l.stach@pengutronix.de>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob
+ Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Niklas Cassel <cassel@kernel.org>, dlemoal@kernel.org, jdmason@kudzu.us,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-pci@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ imx@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v15 00/15] PCI: EP: Add RC-to-EP doorbell with platform
+ MSI controller
+In-Reply-To: <Z7eKBsxrmthtElpz@lizhi-Precision-Tower-5810>
+References: <20250211-ep-msi-v15-0-bcacc1f2b1a9@nxp.com>
+ <Z7eKBsxrmthtElpz@lizhi-Precision-Tower-5810>
+Date: Thu, 20 Feb 2025 21:42:57 +0100
+Message-ID: <87r03sgxf2.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain
 
-Dne sobota, 18. januar 2025 ob 11:22:06 Srednjeevropski standardni =C4=8Das=
- je Philippe Simons napisal(a):
-> RG35XX have a GPIO controlled regulator for phy0 vbus, add it.
-> Enable HCI0s controllers and otg for dr_mode.
-> Add phy0 properties to descrive id_det, external vbus, and internal vbus
->=20
-> Signed-off-by: Philippe Simons <simons.philippe@gmail.com>
+On Thu, Feb 20 2025 at 15:01, Frank Li wrote:
+> On Tue, Feb 11, 2025 at 02:21:53PM -0500, Frank Li wrote:
+>
+> Thomas Gleixner and Marc Zyngier:
+>
+> 	Do you have any comments about irq/msi part?
 
-This could work without previous two patches, right?
+I'm not having objections, but this needs to be acked by Marc as he had
+pretty strong opinions on the overall approach.
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Thanks,
 
-Best regards,
-Jernej
-
-> ---
->  .../sun50i-h700-anbernic-rg35xx-2024.dts      | 25 +++++++++++++++++--
->  1 file changed, 23 insertions(+), 2 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-20=
-24.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-> index 80ccab7b5..5a6ae42de 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-> @@ -175,6 +175,16 @@ reg_vcc5v: regulator-vcc5v { /* USB-C power input */
->  		regulator-min-microvolt =3D <5000000>;
->  		regulator-max-microvolt =3D <5000000>;
->  	};
-> +
-> +	reg_usb0_vbus: regulator-usb0-vbus {
-> +		compatible =3D "regulator-fixed";
-> +		enable-active-high;
-> +		gpio =3D <&pio 8 16 GPIO_ACTIVE_HIGH>; /* PI16 */
-> +		regulator-min-microvolt =3D <5000000>;
-> +		regulator-max-microvolt =3D <5000000>;
-> +		regulator-name =3D "usb0-vbus";
-> +		vin-supply =3D <&reg_boost>;
-> +	};
->  };
-> =20
->  &cpu0 {
-> @@ -337,12 +347,23 @@ &uart0 {
->  	status =3D "okay";
->  };
-> =20
-> -/* the AXP717 has USB type-C role switch functionality, not yet describe=
-d by the binding */
-> +/* the AXP717 has USB type-C role switch functionality */
->  &usbotg {
-> -	dr_mode =3D "peripheral";   /* USB type-C receptable */
-> +	dr_mode =3D "otg";   /* USB type-C receptable */
-> +	status =3D "okay";
-> +};
-> +
-> +&ehci0 {
-> +	status =3D "okay";
-> +};
-> +
-> +&ohci0 {
->  	status =3D "okay";
->  };
-> =20
->  &usbphy {
-> +	usb0_id_det-gpios =3D <&pio 8 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* P=
-I4 */
-> +	usb0_vbus_power-supply =3D <&usb_power>;
-> +	usb0_vbus-supply =3D <&reg_usb0_vbus>;
->  	status =3D "okay";
->  };
->=20
-
-
-
-
+        tglx
 
