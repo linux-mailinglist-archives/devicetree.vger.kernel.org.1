@@ -1,105 +1,157 @@
-Return-Path: <devicetree+bounces-148865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC1D1A3D9FE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:29:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E36A3DA08
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:30:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97FCC860679
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:24:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFE203AB35F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:25:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B031F4739;
-	Thu, 20 Feb 2025 12:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D4261FC7C2;
+	Thu, 20 Feb 2025 12:24:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="mjHugCQo"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ec7ISYIy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.4])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B227F1F4639;
-	Thu, 20 Feb 2025 12:23:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71BF01FBE8F;
+	Thu, 20 Feb 2025 12:24:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740054220; cv=none; b=lszarAYUN5TYuOLZzv67tjJveHrA6AK5+XU/Jv17QhRDkuSK+oKVbQs4brrJMtxrRyAH4aeWQvWfS1TadZOPFEa7S+2RKnH5Lf9CxO8mcHzdthHfCPg59deny9L98FU+gxbHSCN8awwDriF7OA/FKjuIMVtXmuA6xpS60S4lEXA=
+	t=1740054284; cv=none; b=jE/3qUlU1GLXQDA3WC5giQfj3492UaUEb/TRbpxyxqb+idI1StsRyTOYYy/foRvl3LsoRUVEbp2CaQx41q5HenhxF0nL4fG3B5Q/TX0OKY5lyVKc2IDEtvGRPN8fpQSCQQbn/mlruqHPs8I3Hz7rF9PFinZhs18ZN5coFdlzR5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740054220; c=relaxed/simple;
-	bh=wgpCUab/k0RMov6LLF8tRFXDTl8f/3HuLJRmCdf6fxY=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=WAc4xjE2vuBgKt5EDSpNztFFgckVZR7F9EP7bliQMxH7VZojI+FassCTvJhl0A90NCibIGckIw+VOhw+oGGYsW/2qfZEk9kAHMRQ9gco3tstnOCGQESKP9Y0VonMqI81kVyrL1ISJzcNTo79OAvRY9SI6eonGyf2DPS1Cj1ILSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=mjHugCQo; arc=none smtp.client-ip=212.227.15.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1740054212; x=1740659012; i=markus.elfring@web.de;
-	bh=wgpCUab/k0RMov6LLF8tRFXDTl8f/3HuLJRmCdf6fxY=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=mjHugCQocHoO9ONJCQKo4XAJG2KQHIrKumODKPFw7Lbxwief033lRIpP5okP6x8b
-	 xNYwMYBr9Fg1jGmvcb7j4pofgh3EebihuYIE+ZhZQlMFv3dvZCIduZYWDBnIJTnen
-	 D2N51Foy8heiUd86xP+cagu6VCIn2A6mo4pVgqru7bEBL3/sNj5lyGPmOc4G5h0L/
-	 4h3o8xAneO4HX+L8Ux1ZL3m6cpeGEw1Q7LmqQL0L8DQ3BlGXQCd2bNyBBoyJAeubm
-	 A3smTSfYaugM7uMIHsOU2RrVx/EpHagi7RbvL79ZEqKDxSv3XBIGvg4anc+7L2Yed
-	 L+g7fVsoLn36u+CaPA==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.29] ([94.31.93.25]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MzTPQ-1tPHLo0zWS-018Ahe; Thu, 20
- Feb 2025 13:23:32 +0100
-Message-ID: <41ea82d5-5254-4a24-86cb-60e9e74d7420@web.de>
-Date: Thu, 20 Feb 2025 13:23:31 +0100
+	s=arc-20240116; t=1740054284; c=relaxed/simple;
+	bh=Tu6kHcip9wT6NuYvevfbwekjEW8uMu2I+njT1S0ZChs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ABmvMF5T6bAqoGxXNb1ZQkmn59xZxPNEZ5cp0zXogk5WdQ7Ask2fe2ZeWuIHQwC8dqzVxcp+3wExESKR4br4TcXxY3w9G+MTrIUkFyOX8T/GqPN6rwlLyBEEz1IjzTtQXL31KIJnZdCXiCDajHVuIc46duETNYGLQPQLTo37mkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ec7ISYIy; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A39E5526;
+	Thu, 20 Feb 2025 13:23:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1740054196;
+	bh=Tu6kHcip9wT6NuYvevfbwekjEW8uMu2I+njT1S0ZChs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ec7ISYIyxKj7p1aDBfI0cs3o71ZuFypwEgzlAlAm3Yq34BA92sPP0qFKffE4LIOY/
+	 Tvo/hWawHXXn/WmsFBnlkaacx8+W3GXgc97kLzUhoM5XnAfq3gvbOZktYt/AVVACQF
+	 A20vMZ82NFDzQUwN+W2xeykEgmq2dyXQn0UV8eFY=
+Date: Thu, 20 Feb 2025 14:24:24 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Quentin Schulz <foss+kernel@0leil.net>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Quentin Schulz <quentin.schulz@cherry.de>
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: nxp,pcf8575: add reset GPIO
+Message-ID: <20250220122424.GB20111@pendragon.ideasonboard.com>
+References: <20250220-pca976x-reset-driver-v1-0-6abbf043050e@cherry.de>
+ <20250220-pca976x-reset-driver-v1-1-6abbf043050e@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- LKML <linux-kernel@vger.kernel.org>
-References: <20250219090751.124267-2-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Corret white-space style
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20250219090751.124267-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:YfPlJLs2x078246birqJ3kaZZmVD//+vF40edEtjC94RTGKVdn7
- Y1xD3Um/VMuGIcg8nE3Uxn+EzsVjaiDxauFnTR+hhv4HUl6R1SnLvrZBSRvgfe5q3fdjKK1
- hLIg3lVkdVVQZRqUQYQbOn7WORWrKNpMvDPd+3h9jIvmlCVs52ZjkL2OFCWben1j+ne1Ipz
- lApDS/jyZr9QmW1e+T9dg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:+W+5KHCjiOA=;SM0sFr2BQL6BZyWe+AIuS5iHdH0
- RP9KIweCtSQcsGMhuF2XlWR/E8QD49m9+jS6QQnQxQdKMUrzkbQZ1fSnls5vkqPqqWq0s/Luh
- Rl8Du3nOh5rz+NajGFpOeI1KhKVdHTl5oTlAUS2+CRfzCE/PJlyj7wFsM6Pz0BVHrpsyXN9nj
- 2QCdKwrdz5jWu/evIYRzCM+I5k/PmP29P0HQR/VCdYMI30ieFiCaQwojdlz/oREKUCurNc6Rt
- fUrC9k9t3rbwVgaR48l5b3XmCDmE5MZPmZPpqngaZiUwrMQkT2ValmF2nwPA8sMZNTU56swBa
- Ik9IJBhANpoj7tzEzZRCul5MIYNPTvycgR8ZCPvRcBW27X2+qbex5Tc5iFUrBKCklYW9vMKZp
- M7XAgxjkjLTekHZK3hIUEhOrCUkj1eBgfUaFJS90G5bGQroAZXQQHed8ufUZap+u3jzQ00jQl
- GtJl/qMn7cCd4P1Po8SRiptcR7wbv+4yVJL4MyH7rmuX+LvIehy5c1QAuCHol8HpXIzGbeXFS
- 1f5AluR851EH5Pfee3UiymxvrjUW9Bhx8lNB5TpYtmWvPY5pEzxjZhuZdvCF7rrNeMGSc2pgP
- ESPyPDMiAeN2w8gf49ZCsA232MkdWpVwe7cJyUS+ZOpHKHHIk62Vp947ZvNXeSQpLP3eEFo5x
- 4JqW38ycza/0vpnaPGRcgdmjVhK/Uy/vN/UMh32GAoG62u2QQTSJdJE81TPMgdvJzj8t6Ww4t
- lemecs7wmtCFL6ETkvBbnrUb/hBktk3Oh3uoh1MoLvHdlA0g/5CUgAx5lcE8NpjhB8k55+OtM
- jwl4dbPidMy4gb9BU7829d66O/fMcIXtk9LwgYK1kfSaUjrQCJndlM0zQ+dt1QuWY/q1atmPI
- Qo1dprvC/71E2VIJogIhsgnwWo1KG0EhMvbXIDsL75zAACQczohBNpr13wIgUaLrm4wwrBND+
- VGmnFO3wYIithBdsZ+EODq5DXp2vCENm3yAwCG3nDsFyfZ3OblCA+LmEhX6dtytDpzRmZDS2R
- 56SBJQHj7ULplltk6j98wFJhcZg3Dgr7NID/ldgzIrK+Uy7RramQVMSb9tWcU+oJA02Zadh4p
- jUGw1D0hWzlxwe/OyiO+uTOyptgxYAobCH3dBFYVQK9IUU+dtWrajDt1NiIu/ySN0fGpx8gkm
- UA8izzd2CaplR4xtSDMH1mT5Cb8Avj2rrVbKCfRKeDyWYywO5rD+TksrrPbXaC5Ft0vJti9hf
- g6SWN5elDY+vXz0VNcApB5ZDyQWKCdH32CUUa+F/KXm0dGY6D4u3GUe4XsUgsyIxtL5j/dKUo
- JYsPN07yteaE06lWJGssu0tDgZicyj1bKwCtaeK3EibZS4CeZgY/nGyBoLoBet5Zv3RXM2o+3
- ZGlKknyEugPUG2+5dTY6ztANWbTq7SDg+LvVxuSdcdDE8X+A5ISHKTpEJra2ArO7HpylteuIN
- q7A2yOXLdMejlU7q2KkVdAfn6F64=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250220-pca976x-reset-driver-v1-1-6abbf043050e@cherry.de>
 
-Please avoid a typo in the summary phrase.
+Hi Quentin,
 
+Thank you for the patch.
+
+On Thu, Feb 20, 2025 at 10:56:51AM +0100, Quentin Schulz wrote:
+> From: Quentin Schulz <quentin.schulz@cherry.de>
+> 
+> A few of the I2C GPIO expander chips supported by this binding have a
+> RESETN pin to be able to reset the chip. The chip is held in reset while
+> the pin is low, therefore the polarity of reset-gpios is expected to
+> reflect that, i.e. a GPIO_ACTIVE_HIGH means the GPIO will be held low
+> for reset and released high, GPIO_ACTIVE_LOW means the GPIO will be held
+> high for reset and released low.
+
+I think the convention in DT is the opposite. The DT property is
+"reset-gpios", no "resetn-gpio", so the polarity should indicate how to
+drive the GPIO to assert a logical "reset". GPIO_ACTIVE_LOW should mean
+that the chip will be in reset when the physical GPIO is 0.
+
+Could DT maintainers confirm this ?
+
+> Out of the supported chips, only PCA9670, PCA9671, PCA9672 and PCA9673
+> show a RESETN pin in their datasheets. They all share the same reset
+> timings, that is 4+us reset pulse[0] and 100+us reset time[0].
+> 
+> When performing a reset, "The PCA9670 registers and I2C-bus state
+> machine will be held in their default state until the RESET input is
+> once again HIGH."[1] meaning we now know the state of each line
+> controlled by the GPIO expander. Therefore, setting lines-initial-states
+> and reset-gpios both does not make sense and their presence is XOR'ed.
+> 
+> [0] https://www.nxp.com/docs/en/data-sheet/PCA9670.pdf Fig 22.
+> [1] https://www.nxp.com/docs/en/data-sheet/PCA9670.pdf 8.5
+> 
+> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+> ---
+>  .../devicetree/bindings/gpio/nxp,pcf8575.yaml      | 33 ++++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
+> index 3718103e966a13e1d77f73335ff73c18a3199469..d08d3f848f82e74de949da16d26a810dc52a74e5 100644
+> --- a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
+> @@ -73,6 +73,39 @@ properties:
+>  
+>    wakeup-source: true
+>  
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      GPIO controlling the (reset active LOW) RESET# pin.
+> +
+> +      Performing a reset makes all lines initialized to their input (pulled-up)
+> +      state.
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            contains:
+> +              enum:
+> +                - nxp,pca9670
+> +                - nxp,pca9671
+> +                - nxp,pca9672
+> +                - nxp,pca9673
+> +    then:
+> +      properties:
+> +        reset-gpios: false
+> +
+> +  # lines-initial-states XOR reset-gpios
+> +  # Performing a reset reinitializes all lines to a known state which
+> +  # may not match passed lines-initial-states
+> +  - if:
+> +      required:
+> +        - lines-initial-states
+> +    then:
+> +      properties:
+> +        reset-gpios: false
+> +
+>  patternProperties:
+>    "^(.+-hog(-[0-9]+)?)$":
+>      type: object
+> 
+
+-- 
 Regards,
-Markus
+
+Laurent Pinchart
 
