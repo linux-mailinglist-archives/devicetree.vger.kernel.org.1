@@ -1,106 +1,148 @@
-Return-Path: <devicetree+bounces-148930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99B7DA3DC19
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:07:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52A7AA3DC32
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:12:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BD8A7A4CC6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:06:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC5803A52FE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B50901C3BE0;
-	Thu, 20 Feb 2025 14:07:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3C2F1C3308;
+	Thu, 20 Feb 2025 14:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Y3SZxUxb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HiWxuCyn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E631A8F94;
-	Thu, 20 Feb 2025 14:07:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6921BC073;
+	Thu, 20 Feb 2025 14:09:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740060457; cv=none; b=LM1VpI8a+1AsqvdH6XH3WFRTMMMMZXI90GqFNAgClgNkLH0yt34sSHHK+mLSh/OumqVLdyB4/KmMm5ihJY75b5AwEng1jHuER4o4iZy+9kG3SmMP56zU7awR3EGMpboMpzDYy4mL4nGOhBCT8DHWqM0SQqQpP8e2mLF8ToYYJ10=
+	t=1740060593; cv=none; b=W/hgGb5X72gDJoZzpX3/Yvo3j1cUTT5RVVo5YCu50gYGUU7r+cct8qLjx4hRVbcs3LIe2x2XIQd2T6bhEcEZzmj/JNLgzVwu/6DCVsarg5fS66L7TlQ2nwbleUqGjXQaRmx1EItIrLwdauNtA+wDaxzb8vbExQgMuHTJyuqftPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740060457; c=relaxed/simple;
-	bh=1/v+aE7ujIrr88SlyYox0ZnwxUrB1O/7TGByz1MUVXk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qjYzyDtF1Miq0FONGGwGtBEfv8l0sY9f/d6PJbpSeeonIVnZifG3TflWleT7jo/i0agp/b18aU9IMWnHyQmR9dyFWXwG5eUV86pBilBH/JoRgLTvNSYQmhKv+IaWMD2acNwXd45xX8yOzuUiKkMCxCeIv78k9IMvOAMAAqK1Dmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Y3SZxUxb; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8EB1A442F6;
-	Thu, 20 Feb 2025 14:07:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1740060446;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xTtSd4tmydl/dct6URamw55L3a/uuGkjLvkhv6bX7i0=;
-	b=Y3SZxUxbDLph24OKEmLNOqxHDZ19kmaJMwfmgDBSErO2ayIrJDJLIwGmoYgsqwYbA1z0oq
-	GIiKKYU8PAiZb63Rle1ANdXZ8UR4OF8QVB3Jdq1jIpkIGQfdPQrIvxuDq9P8JUZCgqBLNh
-	t+bCE9gu8CjCEXrLPGFFfoVyGLfxQIdg4uVjH/JypPuT5P4avU1OsZ9q9OAOqHi1nOEjzU
-	4yFQxe1e4Dakv4SEv/p9W5wcwR/5hkN2MFrhEHUClCJLjsjNzX3tbf/mSmZW6hDWhFy/Kc
-	kDUlhfLDZOehWLsuBYMOfVss3prsIA2vPwd4jORrrVGgfGGm/ZSszVhsKxWu/Q==
-Date: Thu, 20 Feb 2025 15:07:23 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dave Stevenson
- <dave.stevenson@raspberrypi.com>, =?UTF-8?B?TWHDrXJh?= Canal
- <mcanal@igalia.com>, Raspberry Pi Kernel Maintenance
- <kernel-list@raspberrypi.com>, Marek Vasut <marex@denx.de>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Louis Chauvet <louis.chauvet@bootlin.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 2/4] drm/atomic-helper: Introduce
- drm_atomic_helper_reset_crtc()
-Message-ID: <20250220150723.3cdf9d27@bootlin.com>
-In-Reply-To: <20250220-wooden-robin-of-discussion-6a36f1@houat>
-References: <20250203145824.155869-1-herve.codina@bootlin.com>
-	<20250203145824.155869-3-herve.codina@bootlin.com>
-	<Z7XfnPGDYspwG42y@phenom.ffwll.local>
-	<20250220-wooden-robin-of-discussion-6a36f1@houat>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1740060593; c=relaxed/simple;
+	bh=x9CYPp92qt7nrQ8n1R6hogiZ3ztLUyzp5dk9F+0pnAE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QzKR1lI76g3ZsSvedl1UapkUxX68tu329flu6UxSNlwA18svp/8VgiAJGt3pnsCMARCxncSdrM+gXvEgpQ5xb/6fIOmGNa9RXKifPFHeSlMLs1tWPv6iKXz9QiGg0BQ675YDIuVdVg7eVlORvyd6f0E07q+QjwWvM8lgIWOpe5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HiWxuCyn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AF21C4CEEE;
+	Thu, 20 Feb 2025 14:09:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740060593;
+	bh=x9CYPp92qt7nrQ8n1R6hogiZ3ztLUyzp5dk9F+0pnAE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=HiWxuCynedPnTLyt9VduRt3IIwD1IfgC1Cnl08Vn2y0UtKvqjmxX7ucBMSN8sRzkA
+	 8XEK6trVBftYiqPjsDxU5Hn3rX7tZ/WsbN0JNuKQY5BGUFikvybXRtAwPvTXNeZthT
+	 jYhAR5N91dXRWNGvY9vysE7EvcsmJGMzS6hY2YMuCJvdbTFarAu4H0Urq2WE/H+pdb
+	 ttRKIzKxjpjfOKtPFZ5DTBfbWISx/puz4crnoNVq+KTT5C3eZnD2ud8w1YZ73edmHz
+	 pLq9FhUZ4cxQfGqaKPph2YRru4cADZYuseTSZf3/ZjDXAh+k39ze+ZqVL0TBXzoMkf
+	 wWS15/BieXUeg==
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2fcce9bb0ecso1726275a91.3;
+        Thu, 20 Feb 2025 06:09:53 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVYse57riNz1Gvaa6Ufq38G8h3UHyLFn+9G7DKm4HY3nvJD2s9Y2XXg0aOmyqJD1FYfrjBqmBIsU61P@vger.kernel.org, AJvYcCXIvGAI+q5SES+OzbtV6OCdP/1WlG77edNmWS3nB/3C9b7G36hsRTwQe9an66kwpxoTL9PiSm/6g4cGZHJ+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZcY84BJ7IfKKts5tzZJ77wKARFs01ub2/0JorP683QxwctsRT
+	2XI1dPJjUnhWl1JbH9Ars6GTo3oktdk2DzKaBZsdATsXzOLH1PjzoELZmfjZXOyJWoftN9JgRCK
+	sY2EO62WgM83+sNiVf0H3s4PGVw==
+X-Google-Smtp-Source: AGHT+IE0v84Qb6FC/gDtH8xNJeXoFkB/nAfUjSnTsVJesFFxd/imMIypRaefBomgcHEC0WrtRHoFrNT9UaSnKPKXvqk=
+X-Received: by 2002:a17:90b:4c07:b0:2ee:b8ac:73b0 with SMTP id
+ 98e67ed59e1d1-2fc40d1245fmr35061143a91.2.1740060593030; Thu, 20 Feb 2025
+ 06:09:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeijeefvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedvhfeljedtfedtjeevffegtddutdeghfettdduhfeuhfdttdffieeuiefgvdfhvdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtudemvgdtrgemvdegieemjeejledtmedviegtgeemvgdvvdemiedtfegumeehkegrnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvgeeimeejjeeltdemvdeitgegmegvvddvmeeitdefugemheekrgdphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvhedprhgtphhtthhopehmrhhiphgrrhgusehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrlhgvgigrnhguvghrrdhsthgvihhnsegvfidrthhqqdhgrhhouhhprdgtohhmpdhrtghpthhtoheprghnughriigvjhdrhhgrjhgurgesihhnt
- hgvlhdrtghomhdprhgtphhtthhopehnvghilhdrrghrmhhsthhrohhngheslhhinhgrrhhordhorhhgpdhrtghpthhtoheprhhfohhssheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnfgruhhrvghnthdrphhinhgthhgrrhhtsehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehjohhnrghssehkfihisghoohdrshgvpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgrihhlrdgtohhm
-X-GND-Sasl: herve.codina@bootlin.com
+References: <20250217154836.108895-1-angelogioacchino.delregno@collabora.com> <20250217154836.108895-30-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250217154836.108895-30-angelogioacchino.delregno@collabora.com>
+From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date: Thu, 20 Feb 2025 22:10:36 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9U4gNASfdiF=B-5+er0qs+F7V=gO1RwjuXw7FagMiUwA@mail.gmail.com>
+X-Gm-Features: AWEUYZkEgaHMKjmDQHz4a-_W0aseAk_FLY9Y1EUWnfNXr-s5564_MkXpbtF3WgU
+Message-ID: <CAAOTY_9U4gNASfdiF=B-5+er0qs+F7V=gO1RwjuXw7FagMiUwA@mail.gmail.com>
+Subject: Re: [PATCH v7 29/43] drm/mediatek: mtk_hdmi: Use devm managed version
+ of drm_bridge_add
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, 
+	jie.qiu@mediatek.com, junzhi.zhao@mediatek.com, 
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
+	dmitry.baryshkov@linaro.org, lewis.liao@mediatek.com, 
+	ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com, 
+	jason-jh.lin@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Maxime,
+Hi, Angelo:
 
-On Thu, 20 Feb 2025 11:44:37 +0100
-Maxime Ripard <mripard@kernel.org> wrote:
+AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
+=BC
+2025=E5=B9=B42=E6=9C=8817=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=8811:=
+50=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Simplify the probe/remove functions by using devm_drm_bridge_add()
+> as now there is no more need to manually remove the bridge.
 
-...
-> 
-> Given that the patch is already merged, Herve, could you send a
-> subsequent patch fixing up the doc at least?
+Applied to mediatek-drm-next [1], thanks.
 
-Did the patch:
-  https://lore.kernel.org/all/20250220140406.593314-1-herve.codina@bootlin.com/
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
 
-Best regards,
-Hervé
+Regards,
+Chun-Kuang.
+
+>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_hdmi.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediat=
+ek/mtk_hdmi.c
+> index e79ebed21eab..f539472307e2 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> @@ -1674,14 +1674,15 @@ static int mtk_hdmi_probe(struct platform_device =
+*pdev)
+>         hdmi->bridge.type =3D DRM_MODE_CONNECTOR_HDMIA;
+>         hdmi->bridge.vendor =3D "MediaTek";
+>         hdmi->bridge.product =3D "On-Chip HDMI";
+> -       drm_bridge_add(&hdmi->bridge);
+> +
+> +       ret =3D devm_drm_bridge_add(dev, &hdmi->bridge);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret, "Failed to add bridge\n");
+>
+>         ret =3D mtk_hdmi_clk_enable_audio(hdmi);
+> -       if (ret) {
+> -               drm_bridge_remove(&hdmi->bridge);
+> +       if (ret)
+>                 return dev_err_probe(dev, ret,
+>                                      "Failed to enable audio clocks\n");
+> -       }
+>
+>         return 0;
+>  }
+> @@ -1690,7 +1691,6 @@ static void mtk_hdmi_remove(struct platform_device =
+*pdev)
+>  {
+>         struct mtk_hdmi *hdmi =3D platform_get_drvdata(pdev);
+>
+> -       drm_bridge_remove(&hdmi->bridge);
+>         mtk_hdmi_clk_disable_audio(hdmi);
+>  }
+>
+> --
+> 2.48.1
+>
 
