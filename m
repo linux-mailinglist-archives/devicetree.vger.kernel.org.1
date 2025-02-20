@@ -1,225 +1,244 @@
-Return-Path: <devicetree+bounces-149108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFBE3A3E4E2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 20:17:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD80A3E50B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 20:30:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BC813A9314
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 19:17:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF6EB19C0BE3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 19:30:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39142147F9;
-	Thu, 20 Feb 2025 19:17:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15C762641ED;
+	Thu, 20 Feb 2025 19:30:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gb6cTjiq"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="hsLqFX2v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C490615A858;
-	Thu, 20 Feb 2025 19:17:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF502116F6
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 19:30:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740079040; cv=none; b=X6QFw3xDnDdKa3FoH0FCnjqh/AyRd/BChdYPMI+P/13C6B6O1l/StAEHo9FnFG0QrxQZH2bQxaMkDq6QSa2OLPNpUCg6+g/etRJ7jFMX3JJNCaphUsL7/66S9yAugu/QZjYYBqI0eeHfC5Qd4NItu/US4BBiLdV4iVDK3GToZvs=
+	t=1740079819; cv=none; b=hPQuRXU0juV7zJitP5VzHZaRRBPk7Tx74Xo9+wGuIPe9jnarDofxuggL7LuD5nX5ZI8iP30HGqmTHzQWeHnFfwWNiicXh6mx3XIwqUa1O/UoVMEZuY7GxeYwg483/ReJ2+GqQ59OtLfznssfevBCl47SXOt1eBMhqBRcJbovVB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740079040; c=relaxed/simple;
-	bh=lkpi7G9jCAF4vbm6a82bVaSbXE3wZ94p94V1Wbfso6Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F4UN+HW49Ux8GyxVNqVJEGlWdUXsD7cXKArx3p6/Rcz8lzq3tzplOg6t+Aw6EYgJQkGWPV1WIrtaLB2sIlI2PWv1v0vpmFLpoJjGbXWe9T9R09ekJ8XSnSnHllOSyNRyphqFopEq1ukdpMkMIZrofQ2R/ieolxy/jXAIQXsn/E0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gb6cTjiq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 060E6C4CED1;
-	Thu, 20 Feb 2025 19:17:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740079039;
-	bh=lkpi7G9jCAF4vbm6a82bVaSbXE3wZ94p94V1Wbfso6Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gb6cTjiqo42jcTPslkZNuOozcBM/CXdf5Fp8wJmu1lv/yAUJWc9b8T+7NpHp8OZ3I
-	 ESrqW3aRykQDSDHW8DVT+vQYCPvySEW3Aw/Ukh2XZ7Wi88suGJ1cabBYo2YQmLiTT3
-	 wmo3Uo46havAbMmKJziRL0/Ll8THvG2pXwQx+OcWQW0PlISCtZXvPjR3YiX4k4vnk7
-	 QNMgfw34SmhSXslPwYRi5vamgTjBBFSc1ea9v31jXP+VjgX7PMHGnnSKZ4xFg1ZW0l
-	 mJBQYbjIybfv3hIm8oubdJe9lu5f1rVQTtu7kj5tty/5+lyXbCp9ASKu4aoU8AfVFv
-	 uIHWC5PX1/DWQ==
-Date: Thu, 20 Feb 2025 13:17:18 -0600
-From: Rob Herring <robh@kernel.org>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: mturquette@baylibre.com, magnus.damm@gmail.com, krzk+dt@kernel.org,
-	rui.zhang@intel.com, daniel.lezcano@linaro.org, sboyd@kernel.org,
-	geert+renesas@glider.be, lukasz.luba@arm.com, rafael@kernel.org,
-	p.zabel@pengutronix.de, biju.das.jz@bp.renesas.com,
-	claudiu.beznea.uj@bp.renesas.com, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, john.madieu@gmail.com,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH 3/7] dt-bindings: thermal: r9a09g047-tsu: Document the
- TSU unit
-Message-ID: <20250220191718.GA3642117-robh@kernel.org>
-References: <20250220152640.49010-1-john.madieu.xa@bp.renesas.com>
- <20250220152640.49010-4-john.madieu.xa@bp.renesas.com>
+	s=arc-20240116; t=1740079819; c=relaxed/simple;
+	bh=+zPvV+cP0eDo5IjH2NxFqShcpgfy+iZmEoIrCjnmSAc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=bnX/eV3XYkBaDDoZJCE3o3y+xIln6Jx7VrNBb0MQwYGoEitQUqsxTj/1UEaMrwGbM0xRPBOY9tOimYz0WEL6Ogix6CZApGfx9D7ejgX/2TsZQf9S5kjxFgf0+yjasp0owWtaagdw/MEeyAlavmsgPVv7hbaeKfY7vEyZnzI+e+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=hsLqFX2v; arc=none smtp.client-ip=209.85.160.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-2bc5212b2easo577424fac.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 11:30:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1740079814; x=1740684614; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=rVGpcVgrbn8fCoi86uWuObdsUh5NH2AKYBrd+9ofOEc=;
+        b=hsLqFX2vXS3uLF6Fi1BymtkXh82s7WRFzxh2jJmZ3ryvPa8yhSGYpnkEL8PbeOM+31
+         t6tGWgBD68HE1JnZ+wCWuZskykwc7LUTQCGp2/pykKHK/wgNhPrirKtmMi71iOdR3O2f
+         pQcA9LrWCSZVAq0k8B8UlNZpRDqesKNQyeyT8ZESEx16wT1Ia6OSO+YJP/UW10AT4xnQ
+         YmgABGjeis57D2qDZzJOyi6uCU+83Tg7gDWnrUCg0hArJ2Z4F8gK0tPO/qm5OomQ2iOT
+         SKFOp7hqjQ7a0r2i22vEaCiejUNQorQfGdzRU2he9sgkWz5A8U+4l82/D9Yot5IWIezA
+         Aw2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740079814; x=1740684614;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rVGpcVgrbn8fCoi86uWuObdsUh5NH2AKYBrd+9ofOEc=;
+        b=W/eIm7xSj/+pEwRCr3xb+wGqS/ALu9HpC1fJwtQehkOjwteU+MQ/iy5c72WbzNOWeM
+         ycA1tn+Tj6m9WOHrw6kYnTFEouoU7HQhtMX3er8N8DZj2qZ2sIvG0yh1BQ8z4KkvFi1l
+         UJjDmifJcpWNKHaAUKOGeOnkGw/7YfCWhHagHwIrYvowdnKIk8NYh3TzdHCENHFdXse+
+         iaV/cQY9AyDhamNbad4qr5XDYBZlQd/QQHJYfOHM+7QCfadDXlM99LduG8O8CO8ihEq5
+         IUOiBGcC5anXzjOwoXELNnV2lM3h9cSPUJI2KGKURzEV/lIWu/12CBmWb1mr4T06zvod
+         Nnjw==
+X-Forwarded-Encrypted: i=1; AJvYcCWlTlGdboY83RW94lnMhnL7KkhrqSybY7cC1NkGXNS+GcAtw88ZP2F1WUnq1wsJh6yXBzd6WOs9R9dk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8hgFogNiQADoZHKGplxMhz7+fsHhcgm+wg5XgcySk0yNIWvjn
+	1d2D55SuRKWbPNILfCXkGDcD6rovawq5m0G+5laUFac05d6Dq6kQSm0aKCohGew=
+X-Gm-Gg: ASbGncv4ctiTnPnpWvQ3uKFe7K1xMqhuXXwqJJ/ug3StCWriFRiUlz/9YSMciq+Wv0M
+	/XxGJwbgdURVsdY0CZwNBdeE8v+WWDPjVUGOsP68rvt7LWn9n8JR7CwGme83DfhNoNtPblD6Eqq
+	GVG4olo+5uCFK94BCxapO+NIJ9m+apHMWEhX/Z0wW63/oCHNGojlEqYAdfM7Ea7ZJnsC4z73z5U
+	p6QeSfzODgP+6OVEUNM85Gg7HClfpsMUewmFFqf8HfUwh43KzAGAvUNAuO0OOvznApvdijAgFSf
+	mB9fCAN88dz5sZiBGhYyMDeE39ujQo8G0tqLKEQFKOPdF2NFe3pM
+X-Google-Smtp-Source: AGHT+IGEq8Y0tcbFZh65z/dXPKbs0wOrzDYh3YzYrf60tIwUskcAt4CJ59H/gVbMadc56t800wQChA==
+X-Received: by 2002:a05:6870:ac27:b0:2a3:c59f:4cba with SMTP id 586e51a60fabf-2bd50d8bd03mr197030fac.17.1740079814165;
+        Thu, 20 Feb 2025 11:30:14 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2b954875ce0sm6511893fac.15.2025.02.20.11.30.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Feb 2025 11:30:12 -0800 (PST)
+Message-ID: <6d4e65b9-1392-46e9-ac2e-0c4ef2239fa0@baylibre.com>
+Date: Thu, 20 Feb 2025 13:30:11 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250220152640.49010-4-john.madieu.xa@bp.renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/14] dt-bindings: iio: adc: add ad4080
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250220135429.8615-1-antoniu.miclaus@analog.com>
+ <20250220135429.8615-13-antoniu.miclaus@analog.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250220135429.8615-13-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 20, 2025 at 04:26:08PM +0100, John Madieu wrote:
-> The Renesas RZ/G3E SoC includes a Thermal Sensor Unit (TSU) block designed
-> to measure the junction temperature. The device provides real-time temperature
-> measurements for thermal management, utilizing a single dedicated channel
-> (channel 1) for temperature sensing.
+On 2/20/25 7:54 AM, Antoniu Miclaus wrote:
+> Add devicetree bindings for ad4080 family.
 > 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
->  .../thermal/renesas,r9a09g047-tsu.yaml        | 123 ++++++++++++++++++
->  1 file changed, 123 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/renesas,r9a09g047-tsu.yaml
+>  .../bindings/iio/adc/adi,ad4080.yaml          | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/thermal/renesas,r9a09g047-tsu.yaml b/Documentation/devicetree/bindings/thermal/renesas,r9a09g047-tsu.yaml
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
 > new file mode 100644
-> index 000000000000..dbd3860a31d0
+> index 000000000000..e0ea712b8457
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/renesas,r9a09g047-tsu.yaml
-> @@ -0,0 +1,123 @@
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
+> @@ -0,0 +1,92 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2025 Analog Devices Inc.
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/thermal/renesas,r9a09g047-tsu.yaml#
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad4080.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Renesas RZ/G3E Temperature Sensor Unit (TSU)
+> +title: Analog Devices AD4080 20-Bit, 40 MSPS, Differential SAR ADC
 > +
 > +maintainers:
-> +  - John Madieu <john.madieu.xa@bp.renesas.com>
+> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
 > +
 > +description: |
-
-Don't need '|' if there is no formatting to preserve.
-
-> +  The Temperature Sensor Unit (TSU) is an integrated thermal sensor that monitors
-
-Wrap lines at <80 char.
-
-> +  the chip temperature on the Renesas RZ/G3E SoC. The TSU provides real-time
-> +  temperature measurements for thermal management.
+> +  The AD4080 is a high speed, low noise, low distortion, 20-bit, Easy Drive,
+> +  successive approximation register (SAR) analog-to-digital converter (ADC).
+> +  Maintaining high performance (signal-to-noise and distortion (SINAD) ratio
+> +  > 90 dBFS) at signal frequencies in excess of 1 MHz enables the AD4080 to
+> +  service a wide variety of precision, wide bandwidth data acquisition
+> +  applications.
+> +
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad4080.pdf
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    const: renesas,r9a09g047-tsu
+> +    enum:
+> +      - adi,ad4080
 > +
 > +  reg:
 > +    maxItems: 1
 > +
+> +  spi-max-frequency:
+> +    maximum: 50000000
+
+Since there are potentially two independent SPI busses on this chip
+(one for configuration, one for data) it might be a good idea to put
+in a description somewhere that these SPI properties are for the
+configuration SPI bus.
+
+> +
 > +  clocks:
 > +    maxItems: 1
 > +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description: |
-> +      Interrupt specifiers for the TSU:
-> +      - S12TSUADI1: Conversion complete interrupt signal (pulse)
-> +      - S12TSUADCMPI1: Comparison result interrupt signal (level)
-> +
-> +  interrupt-names:
+> +  clock-names:
 > +    items:
-> +      - const: S12TSUADI1
-> +      - const: S12TSUADCMPI1
+> +      - const: adc-clk
 
-Odd names for the interrupts... 'S12TSUAD' is the same for both, so that 
-part is redundant from my perspective. I guess if these strings are 
-meaningful for anyone familiar with this h/w, then it's fine.
+Clocks don't need a name if there is only one clock.
+
+But the description of clocks should say which pin you mean.
+Is the the CLK+/- pins or the CNV+/- pins?
 
 > +
-> +  "#thermal-sensor-cells":
-> +    const: 0
+> +  vdd33-supply: true
 > +
-> +  renesas,tsu-calibration-sys:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      Phandle to the system controller (sys) that contains the TSU
-> +      calibration values used for temperature calculations.
+> +  vdd11-supply: true
 > +
-> +  renesas,tsu-operating-mode:
+> +  vddldo-supply: true
+> +
+> +  iovdd-supply: true
+> +
+> +  vrefin-supply: true
+
+I would expect we need a vendor boolean property to say if the
+DCO+/- pins are wired or not for the echoed clock.
+
+And what does the CNV trigger get wired to? We probably need a
+vendor boolean property to say if it is wired to something CMOS
+or LVDS. Plus maybe a pwms property or whatever makes sense for
+whatever kind of signal generator it is connected to.
+
+> +
+> +  adi,num-lanes:
+> +    description:
+> +      Nmber of lanes on which the data is sent on the output (DA, DB pins).
+
+s/Nmber/Number/
+
 > +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
-> +    description: |
-> +      TSU operating mode:
-> +      0: Mode 0 - Conversion started by software
-> +      1: Mode 1 - Conversion started by ELC trigger
+> +    enum: [1, 2]
+> +    default: 1
 > +
+
+Also, don't we need io-backends for the data interface?
+
+We can also add gpio-controller and #gpio-cells since this
+chips provides GPIOs.
+
 > +required:
 > +  - compatible
 > +  - reg
 > +  - clocks
-> +  - resets
-> +  - power-domains
-> +  - interrupts
-> +  - interrupt-names
-> +  - "#thermal-sensor-cells"
-> +  - renesas,tsu-operating-mode
-> +  - renesas,tsu-calibration-sys
+
+Assuming clocks is CLK+/- pins, this should be optional since
+the pins are used for a different function in SPI mode.
+
+> +  - clock-names
+> +  - vdd33-supply
+> +  - vdd11-supply
+> +  - vddldo-supply
+> +  - iovdd-supply
+> +  - vrefin-supply
+
+The datasheet says things like, "If VDDLDO is connected to a
+voltage source, neither VDD11 nor IOVDD should be connected to
+any external voltage source.". So making all supplies required
+doesn't seem correct.
+
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/clock/renesas,r9a09g047-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
 > +
-> +    tsu: thermal@14002000 {
-> +        compatible = "renesas,r9a09g047-tsu";
-> +        reg = <0 0x14002000 0 0x1000>;
-> +        clocks = <&cpg CPG_MOD 0x10a>;
-> +        resets = <&cpg 0xf8>;
-> +        power-domains = <&cpg>;
-> +        interrupts = <GIC_SPI 250 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "S12TSUADI1", "S12TSUADCMPI1";
-> +        #thermal-sensor-cells = <0>;
-> +        renesas,tsu-operating-mode = <0>;
-> +        renesas,tsu-calibration-sys = <&sys>;
-> +    };
-> +
-> +    thermal-zones {
-> +        cpu-thermal {
-> +            polling-delay = <1000>;
-> +            polling-delay-passive = <250>;
-> +            thermal-sensors = <&tsu>;
-> +
-> +            cooling-maps {
-> +                map0 {
-> +                    trip = <&target>;
-> +                    cooling-device = <&cpu0 0 3>, <&cpu1 0 3>,
-> +                                     <&cpu2 0 3>, <&cpu3 0 3>;
-> +                    contribution = <1024>;
-> +                };
-> +            };
-> +
-> +            trips {
-> +                target: trip-point {
-> +                    temperature = <95000>;
-> +                    hysteresis = <1000>;
-> +                    type = "passive";
-> +                };
-> +
-> +                sensor_crit: sensor-crit {
-> +                    temperature = <120000>;
-> +                    hysteresis = <1000>;
-> +                    type = "critical";
-> +                };
-> +            };
+> +        adc@0 {
+> +          compatible = "adi,ad4080";
+> +          reg = <0>;
+> +          spi-max-frequency = <10000000>;
+> +          vdd33-supply = <&vdd33>;
+> +          vdd11-supply = <&vdd11>;
+> +          vddldo-supply = <&vddldo>;
+> +          iovdd-supply = <&iovdd>;
+> +          vrefin-supply = <&vrefin>;
+> +          clocks = <&adc_clk>;
+> +          clock-names = "adc-clk";
 > +        };
 > +    };
-> -- 
-> 2.25.1
-> 
+> +...
+
 
