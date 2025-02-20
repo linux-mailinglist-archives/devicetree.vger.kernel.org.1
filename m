@@ -1,368 +1,563 @@
-Return-Path: <devicetree+bounces-148906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB6B6A3DB5C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:32:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56919A3DB69
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:35:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFE4917B1D5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:32:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AB2919C2052
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:35:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C2B91F7069;
-	Thu, 20 Feb 2025 13:32:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 097161F8690;
+	Thu, 20 Feb 2025 13:35:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eTVnYC03"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="mZYm9mpo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D88C02BD11;
-	Thu, 20 Feb 2025 13:32:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B6531F4639
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 13:35:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740058340; cv=none; b=uxcnH7AENhUWNIM/M175Zs3eD1brK82Y4opuKSyfE5dYQ1YTmXxZ8iKluzIO1o0firt5KyG+Uy9QF3MwWqDwDc9HbBAVp/gl5miXOY1uYr8Px5wBWYDyEhb/r1EHXqZ1hMRB/WXHQYyB4Fk8EIIMMNsrY86tSxDCKhpt7w6KtHU=
+	t=1740058509; cv=none; b=tnQR4DcrRixhdkpl7xO1mf9MM1+eP9wWh8IpBSI1CBme2/6YBKuTeqGYZnnVXPpOQIRYRRM32u306nACp+hTMCwmKvIwoia5Sf+GTj7DDM4UqCC7t66NmVNUenykwFfnmES7pxZFk4h737BMW8Kg6ohSsN5BgtBEfBhC5fJpu/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740058340; c=relaxed/simple;
-	bh=dOfi1/OnA8q9j6aHXa0diCiSD7lqHGHKh3L4ApSyNBw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WWaOOKgqjLXc/VgRStPbSU8QFWABybreXmh7oxMVrNiYPuYA1xSIzqoBZu9z7wPPLtdnQGaeHa9kktSf59CqsMWTupN8RhDTdJskBLuuTAJYiMAB5xqyGsw60StjAKNZlQyRY5j+I0SHS4x9IOENZNNB1E/N4OUNK87N3r3iJpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eTVnYC03; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2BE0C4CED1;
-	Thu, 20 Feb 2025 13:32:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740058337;
-	bh=dOfi1/OnA8q9j6aHXa0diCiSD7lqHGHKh3L4ApSyNBw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eTVnYC03AYiikGOLCa6NI10sXN9hmKOo8tIj77zCYftpW4VlDyxSvieq6TyjWvbjL
-	 8e1XY38sfkRKt3tGlmirHehpIZrh+WyyGq6/XIydlCitNYv0FvT4+tB9VHjV6l5Jjr
-	 5sMs+O+T52YZ34nUAWpR4cTJY93/eYH0w42NDF+BlHKDbzBPpJ3MzfOHelFbKoIDij
-	 pWl5F4ZZxO+WKxDdVBRPEsr6MWLTE+TYWLWHgb1yViLFreXdqAhgkH3RwQSMxJ9C1G
-	 j9cOkVMSRDJUFRURwTZ38C5klCfcKR4XjNMXvvvjzKN0ve1gdFW8fu2kNvkiY0tjFF
-	 GpmzHOfTloKdg==
-Date: Thu, 20 Feb 2025 14:32:14 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: Nicolas Dufresne <nicolas@ndufresne.ca>, 
-	Florent Tomasin <florent.tomasin@arm.com>, Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
-	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
-	"T . J . Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Yong Wu <yong.wu@mediatek.com>, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, nd@arm.com, 
-	Akash Goel <akash.goel@arm.com>
-Subject: Re: [RFC PATCH 0/5] drm/panthor: Protected mode support for Mali CSF
- GPUs
-Message-ID: <20250220-strict-cobalt-albatross-6f742e@houat>
-References: <3ykaewmjjwkp3y2f3gf5jvqketicd4p2xqyajqtfnsxci36qlm@twidtyj2kgbw>
- <1a73c3acee34a86010ecd25d76958bca4f16d164.camel@ndufresne.ca>
- <ppznh3xnfuqrozhrc7juyi3enxc4v3meu4wadkwwzecj7oxex7@moln2fiibbxo>
- <9d0e381758c0e83882b57102fb09c5d3a36fbf57.camel@ndufresne.ca>
- <1f436caa-1c27-4bbd-9b43-a94dad0d89d0@arm.com>
- <20250205-amorphous-nano-agouti-b5baba@houat>
- <2085fb785095dc5abdac2352adfb3e1e1c8ae549.camel@ndufresne.ca>
- <20250207160253.42551fb1@collabora.com>
- <20250211-robust-lush-skink-0dcc5b@houat>
- <20250211153223.2fef2316@collabora.com>
+	s=arc-20240116; t=1740058509; c=relaxed/simple;
+	bh=9PZ++y3xt3XHwa/mPIRCaXrYx4wweHqfcu/qZ0OszDI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GlNC/J3ug0FasB9Oszyx/0hbrF2hNYoPCpNiFS25v3W5B2LOSKl+BmLcZWztDE9FsRkp/Z6gefXRGQoNczMkS3NoHB6nxUGjTmyek0D+LDPC/w5b0Pup0SmssFhkZX5sEjD8eCEHtit5SUn/opliAw3B08crd2rJQB1zoZB21fg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=mZYm9mpo; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-30613802a6bso9305481fa.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 05:35:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1740058505; x=1740663305; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Cu+yuuRtverNnfV7CEa2S+Jw6VzXTCpMdAi/bxfVQw4=;
+        b=mZYm9mpocDxoe3q4ZzIY5CIC/GRUX3adKIeYHKX3JOZPiSIO8DEiMKm3RXu2nt0mMx
+         IXWwppi9MxCBITUhUG/D2Hxdiy1DsgeioWAuptZ+Qm644PeMlUTPIVw9uSvAZTNkVMqV
+         P+9rrYOWYGn4B/1au5uJXxlzrL3+PMy5k+kgekhwcxb/Xyy72yuqPtKasla6ssImKLwr
+         voicpkujQcYpoTfZTp0c6MOKuzitQ29wM7lgB3ENn+maNg3ZAtyoSZPuCFwRYZ9rn0qo
+         7kMAs94a8e3zf33StmpE19PCudKH/iYq2zX2Try6WoaZeqx5LYamITUp8wum0NadlJo5
+         agtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740058505; x=1740663305;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Cu+yuuRtverNnfV7CEa2S+Jw6VzXTCpMdAi/bxfVQw4=;
+        b=mKiOYBTrmBejR3awNJoJoRxw0O12z1bRPzMifUiURWBhSF8nEMv1bfPiNpr//yWyB6
+         2QGztaEteJ/xdA1MRhXmf1hTW5dESbsnMeNdqWVEcdCUNAzV6PmV93aKIloPuTJhaI2b
+         jmlwtOBLr4/fZjbdd4z9t+z0ruOcQ4+kEmEIF08NCGWqUK/hqMShxb+jP4YG1Ngx/shB
+         BjLT5Xmof+Bw+rjpIWR5xlaaMrZ3AeopdqE6M6Vn1/+bZBjeFWwsFJFQcF7DdOZ6pM8E
+         M/qfXLNmynmgV2p3MhI0fhNs1LHW0wTluLb5zMVR+eUlL9p+DDSVCd5yftk4sG8Vgsdx
+         3l0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVs3OJMb7gORTCaWIx/9IuxHsORIGdH0iNV3GZPuOWb7WE3JxW9MZAwW/bLQG63/55yfW7MtrS3cW10@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQh5cmnK7NOGDRBB8P8fs0BXuSjkt9Q/dLjUFfPHqZ+pbD4ehX
+	UYay51qkXbP+4FuxDycnd9j2JWq3e9Pkw0t3Kv7aCF+yRCzVNUmMDcJ09rv7Dn4UfwYDITjX6xl
+	QxfPkQlg1FHZDESB1r4j6S9ikoO3vQJJ1BjJjLQ==
+X-Gm-Gg: ASbGncsK3/nXsVp+VltkLRa84wW6OEDYGwyfHoE9vi29ZOOW+Hib6Qhts6TZsDSdA9O
+	+OYvxVz1zei4PmwnfhLewZGaPQE3XdKmingrcI1WWXKts9Gd4uADtKysEiGpMQNqLeBdokIEDMc
+	kDAVu8M63vPsX6isIfjcwodAHb0Sc=
+X-Google-Smtp-Source: AGHT+IFJ3Y0moWRQsY2c8tqZCGFfDGCfNZYg34cHr9rCFua7sjfN15bz8zN0aW1pb87hBmfMAH6ugfaI4rvnWWeRZuw=
+X-Received: by 2002:a05:6512:3996:b0:545:6ee:8391 with SMTP id
+ 2adb3069b0e04-5452fe264b1mr6949747e87.2.1740058505047; Thu, 20 Feb 2025
+ 05:35:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="bx6tcglxjiffynxy"
-Content-Disposition: inline
-In-Reply-To: <20250211153223.2fef2316@collabora.com>
-
-
---bx6tcglxjiffynxy
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
+References: <20250217-03-k1-gpio-v5-0-2863ec3e7b67@gentoo.org> <20250217-03-k1-gpio-v5-3-2863ec3e7b67@gentoo.org>
+In-Reply-To: <20250217-03-k1-gpio-v5-3-2863ec3e7b67@gentoo.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 20 Feb 2025 14:34:54 +0100
+X-Gm-Features: AWEUYZmF4BW8tczWJtj_gkZTWJQ3mFxBW1aKBgpwMeBwR0_JdkXbdA_CKp09ykM
+Message-ID: <CAMRc=MdJszmZ8d1MGo=bfJ8TwqOYBPLe2Jfc9MfbErDUCMQktg@mail.gmail.com>
+Subject: Re: [PATCH v5 3/5] gpio: spacemit: add support for K1 SoC
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Conor Dooley <conor@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>, 
+	Jisheng Zhang <jszhang@kernel.org>, Jesse Taube <mr.bossman075@gmail.com>, 
+	Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [RFC PATCH 0/5] drm/panthor: Protected mode support for Mali CSF
- GPUs
-MIME-Version: 1.0
 
-On Tue, Feb 11, 2025 at 03:32:23PM +0100, Boris Brezillon wrote:
-> On Tue, 11 Feb 2025 14:46:56 +0100
-> Maxime Ripard <mripard@kernel.org> wrote:
->=20
-> > Hi Boris,
-> >=20
-> > On Fri, Feb 07, 2025 at 04:02:53PM +0100, Boris Brezillon wrote:
-> > > Sorry for joining the party late, a couple of comments to back Akash
-> > > and Nicolas' concerns.
-> > >=20
-> > > On Wed, 05 Feb 2025 13:14:14 -0500
-> > > Nicolas Dufresne <nicolas@ndufresne.ca> wrote:
-> > >  =20
-> > > > Le mercredi 05 f=E9vrier 2025 =E0 15:52 +0100, Maxime Ripard a =E9c=
-rit=A0: =20
-> > > > > On Mon, Feb 03, 2025 at 04:43:23PM +0000, Florent Tomasin wrote: =
-  =20
-> > > > > > Hi Maxime, Nicolas
-> > > > > >=20
-> > > > > > On 30/01/2025 17:47, Nicolas Dufresne wrote:   =20
-> > > > > > > Le jeudi 30 janvier 2025 =E0 17:38 +0100, Maxime Ripard a =E9=
-crit=A0:   =20
-> > > > > > > > Hi Nicolas,
-> > > > > > > >=20
-> > > > > > > > On Thu, Jan 30, 2025 at 10:59:56AM -0500, Nicolas Dufresne =
-wrote:   =20
-> > > > > > > > > Le jeudi 30 janvier 2025 =E0 14:46 +0100, Maxime Ripard a=
- =E9crit=A0:   =20
-> > > > > > > > > > Hi,
-> > > > > > > > > >=20
-> > > > > > > > > > I started to review it, but it's probably best to discu=
-ss it here.
-> > > > > > > > > >=20
-> > > > > > > > > > On Thu, Jan 30, 2025 at 01:08:56PM +0000, Florent Tomas=
-in wrote:   =20
-> > > > > > > > > > > Hi,
-> > > > > > > > > > >=20
-> > > > > > > > > > > This is a patch series covering the support for prote=
-cted mode execution in
-> > > > > > > > > > > Mali Panthor CSF kernel driver.
-> > > > > > > > > > >=20
-> > > > > > > > > > > The Mali CSF GPUs come with the support for protected=
- mode execution at the
-> > > > > > > > > > > HW level. This feature requires two main changes in t=
-he kernel driver:
-> > > > > > > > > > >=20
-> > > > > > > > > > > 1) Configure the GPU with a protected buffer. The sys=
-tem must provide a DMA
-> > > > > > > > > > >    heap from which the driver can allocate a protecte=
-d buffer.
-> > > > > > > > > > >    It can be a carved-out memory or dynamically alloc=
-ated protected memory region.
-> > > > > > > > > > >    Some system includes a trusted FW which is in char=
-ge of the protected memory.
-> > > > > > > > > > >    Since this problem is integration specific, the Ma=
-li Panthor CSF kernel
-> > > > > > > > > > >    driver must import the protected memory from a dev=
-ice specific exporter.   =20
-> > > > > > > > > >=20
-> > > > > > > > > > Why do you need a heap for it in the first place? My un=
-derstanding of
-> > > > > > > > > > your series is that you have a carved out memory region=
- somewhere, and
-> > > > > > > > > > you want to allocate from that carved out memory region=
- your buffers.
-> > > > > > > > > >=20
-> > > > > > > > > > How is that any different from using a reserved-memory =
-region, adding
-> > > > > > > > > > the reserved-memory property to the GPU device and doin=
-g all your
-> > > > > > > > > > allocation through the usual dma_alloc_* API?   =20
-> > > > > > > > >=20
-> > > > > > > > > How do you then multiplex this region so it can be shared=
- between
-> > > > > > > > > GPU/Camera/Display/Codec drivers and also userspace ?   =
-=20
-> > > > > > > >=20
-> > > > > > > > You could point all the devices to the same reserved memory=
- region, and
-> > > > > > > > they would all allocate from there, including for their use=
-rspace-facing
-> > > > > > > > allocations.   =20
-> > > > > > >=20
-> > > > > > > I get that using memory region is somewhat more of an HW desc=
-ription, and
-> > > > > > > aligned with what a DT is supposed to describe. One of the ch=
-allenge is that
-> > > > > > > Mediatek heap proposal endup calling into their TEE, meaning =
-knowing the region
-> > > > > > > is not that useful. You actually need the TEE APP guid and it=
-s IPC protocol. If
-> > > > > > > we can dell drivers to use a head instead, we can abstract th=
-at SoC specific
-> > > > > > > complexity. I believe each allocated addressed has to be mapp=
-ed to a zone, and
-> > > > > > > that can only be done in the secure application. I can imagin=
-e similar needs
-> > > > > > > when the protection is done using some sort of a VM / hypervi=
-sor.
-> > > > > > >=20
-> > > > > > > Nicolas
-> > > > > > >    =20
-> > > > > >=20
-> > > > > > The idea in this design is to abstract the heap management from=
- the
-> > > > > > Panthor kernel driver (which consumes a DMA buffer from it).
-> > > > > >=20
-> > > > > > In a system, an integrator would have implemented a secure heap=
- driver,
-> > > > > > and could be based on TEE or a carved-out memory with restricte=
-d access,
-> > > > > > or else. This heap driver would be responsible of implementing =
-the
-> > > > > > logic to: allocate, free, refcount, etc.
-> > > > > >=20
-> > > > > > The heap would be retrieved by the Panthor kernel driver in ord=
-er to
-> > > > > > allocate protected memory to load the FW and allow the GPU to e=
-nter/exit
-> > > > > > protected mode. This memory would not belong to a user space pr=
-ocess.
-> > > > > > The driver allocates it at the time of loading the FW and initi=
-alization
-> > > > > > of the GPU HW. This is a device globally owned protected memory=
-=2E   =20
-> > > > >=20
-> > > > > The thing is, it's really not clear why you absolutely need to ha=
-ve the
-> > > > > Panthor driver involved there. It won't be transparent to userspa=
-ce,
-> > > > > since you'd need an extra flag at allocation time, and the buffers
-> > > > > behave differently. If userspace has to be aware of it, what's the
-> > > > > advantage to your approach compared to just exposing a heap for t=
-hose
-> > > > > secure buffers, and letting userspace allocate its buffers from t=
-here?   =20
-> > > >=20
-> > > > Unless I'm mistaken, the Panthor driver loads its own firmware. Sin=
-ce loading
-> > > > the firmware requires placing the data in a protected memory region=
-, and that
-> > > > this aspect has no exposure to userspace, how can Panthor not be im=
-plicated ? =20
-> > >=20
-> > > Right, the very reason we need protected memory early is because some
-> > > FW sections need to be allocated from the protected pool, otherwise t=
-he
-> > > TEE will fault as soon at the FW enters the so-called 'protected mode=
-'. =20
-> >=20
-> > How does that work if you don't have some way to allocate the protected
-> > memory? You can still submit jobs to the GPU, but you can't submit /
-> > execute "protected jobs"?
->=20
-> Exactly.
->=20
-> >=20
-> > > Now, it's not impossible to work around this limitation. For instance,
-> > > we could load the FW without this protected section by default (what =
-we
-> > > do right now), and then provide a DRM_PANTHOR_ENABLE_FW_PROT_MODE
-> > > ioctl that would take a GEM object imported from a dmabuf allocated
-> > > from the protected dma-heap by userspace. We can then reset the FW and
-> > > allow it to operate in protected mode after that point. =20
-> >=20
-> > Urgh, I'd rather avoid that dance if possible :)
->=20
-> Me too.
->=20
-> >=20
-> > > This approach has two downsides though:
-> > >=20
-> > > 1. We have no way of checking that the memory we're passed is actually
-> > > suitable for FW execution in a protected context. If we're passed
-> > > random memory, this will likely hang the platform as soon as we enter
-> > > protected mode. =20
-> >=20
-> > It's a current limitation of dma-buf in general, and you'd have the same
-> > issue right now if someone imports a buffer, or misconfigure the heap
-> > for a !protected heap.
-> >=20
-> > I'd really like to have some way to store some metadata in dma_buf, if
-> > only to tell that the buffer is protected.
->=20
-> The dma_buf has a pointer to its ops, so it should be relatively easy
-> to add an is_dma_buf_coming_from_this_heap() helper. Of course this
-> implies linking the consumer driver to the heap it's supposed to take
-> protected buffers from, which is basically the thing being discussed
-> here :-).
+On Mon, Feb 17, 2025 at 1:58=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
+>
+> Implement GPIO functionality which capable of setting pin as
+> input, output. Also, each pin can be used as interrupt which
+> support rising, failing, or both edge type trigger.
+>
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> ---
+>  drivers/gpio/Kconfig            |   8 +
+>  drivers/gpio/Makefile           |   1 +
+>  drivers/gpio/gpio-spacemit-k1.c | 376 ++++++++++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 385 insertions(+)
+>
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index add5ad29a673c09082a913cb2404073b2034af48..eaae729eec00a3d6d2b83769a=
+ed3e2b0ca9927e5 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -655,6 +655,14 @@ config GPIO_SNPS_CREG
+>           where only several fields in register belong to GPIO lines and
+>           each GPIO line owns a field with different length and on/off va=
+lue.
+>
+> +config GPIO_SPACEMIT_K1
+> +       bool "SPACEMIT K1 GPIO support"
+> +       depends on ARCH_SPACEMIT || COMPILE_TEST
+> +       depends on OF_GPIO
+> +       select GPIOLIB_IRQCHIP
+> +       help
+> +         Say yes here to support the SpacemiT's K1 GPIO device.
+> +
+>  config GPIO_SPEAR_SPICS
+>         bool "ST SPEAr13xx SPI Chip Select as GPIO support"
+>         depends on PLAT_SPEAR
+> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+> index af3ba4d81b583842893ea69e677fbe2abf31bc7b..6709ce511a0cf10310a94521c=
+85a2d382dcfa696 100644
+> --- a/drivers/gpio/Makefile
+> +++ b/drivers/gpio/Makefile
+> @@ -156,6 +156,7 @@ obj-$(CONFIG_GPIO_SIOX)                     +=3D gpio=
+-siox.o
+>  obj-$(CONFIG_GPIO_SL28CPLD)            +=3D gpio-sl28cpld.o
+>  obj-$(CONFIG_GPIO_SLOPPY_LOGIC_ANALYZER) +=3D gpio-sloppy-logic-analyzer=
+.o
+>  obj-$(CONFIG_GPIO_SODAVILLE)           +=3D gpio-sodaville.o
+> +obj-$(CONFIG_GPIO_SPACEMIT_K1)         +=3D gpio-spacemit-k1.o
+>  obj-$(CONFIG_GPIO_SPEAR_SPICS)         +=3D gpio-spear-spics.o
+>  obj-$(CONFIG_GPIO_SPRD)                        +=3D gpio-sprd.o
+>  obj-$(CONFIG_GPIO_STMPE)               +=3D gpio-stmpe.o
+> diff --git a/drivers/gpio/gpio-spacemit-k1.c b/drivers/gpio/gpio-spacemit=
+-k1.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..f72511b5ab8f8f0b1d1c9e89d=
+2f9ca07b623a866
+> --- /dev/null
+> +++ b/drivers/gpio/gpio-spacemit-k1.c
+> @@ -0,0 +1,376 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2023-2025 SpacemiT (Hangzhou) Technology Co. Ltd
+> + * Copyright (C) 2025 Yixun Lan <dlan@gentoo.org>
+> + */
+> +
+> +#include <linux/io.h>
+> +#include <linux/init.h>
+> +#include <linux/irq.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/gpio/driver.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pinctrl/pinctrl.h>
+> +#include <linux/property.h>
+> +#include <linux/seq_file.h>
+> +#include <linux/module.h>
+> +
 
-I'm not sure looking at the ops would be enough. Like, you can compare
-that the buffer you allocated come from the heap you got from the DT,
-but if that heap doesn't allocate protected buffers, you're screwed and
-you have no way to tell.
+Please order includes alphabetically.
 
-It also falls apart if we have a heap driver with multiple instances,
-which is pretty likely if we ever merge the carveout heap driver.
+> +#include "gpiolib.h"
+> +
+> +/* register offset */
+> +/* GPIO port level register */
+> +#define GPLR           0x00
+> +/* GPIO port direction register - R/W */
+> +#define GPDR           0x0c
+> +/* GPIO port set register - W */
+> +#define GPSR           0x18
+> +/* GPIO port clear register - W */
+> +#define GPCR           0x24
+> +/* GPIO port rising edge register R/W */
+> +#define GRER           0x30
+> +/* GPIO port falling edge register R/W */
+> +#define GFER           0x3c
+> +/* GPIO edge detect status register - R/W1C */
+> +#define GEDR           0x48
+> +/*  GPIO (set) direction register - W */
+> +#define GSDR           0x54
+> +/* GPIO (clear) direction register - W */
+> +#define GCDR           0x60
+> +/* GPIO (set) rising edge detect enable register - W */
+> +#define GSRER          0x6c
+> +/* GPIO (clear) rising edge detect enable register - W */
+> +#define GCRER          0x78
+> +/* GPIO (set) falling edge detect enable register - W */
+> +#define GSFER          0x84
+> +/* GPIO (clear) falling edge detect enable register - W */
+> +#define GCFER          0x90
+> +/* GPIO interrupt mask register, 0 disable, 1 enable - R/W */
+> +#define GAPMASK                0x9c
+> +
+> +#define NR_BANKS               4
+> +#define NR_GPIOS_PER_BANK      32
+> +
 
-> >=20
-> > I suspect you'd also need that if you do things like do protected video
-> > playback through a codec, get a protected frame, and want to import that
-> > into the GPU. Depending on how you allocate it, either the codec or the
-> > GPU or both will want to make sure it's protected.
->=20
-> If it's all allocated from a central "protected" heap (even if that
-> goes through the driver calling the dma_heap_alloc_buffer()), it
-> shouldn't be an issue.
+Please use a common prefix for all symbols, even for defines. Use
+SPACEMIT_GCFER, etc.
 
-Right, assuming we have a way to identify the heap the buffer was
-allocated from somehow. This kind of assumes that you only ever get one
-source of protected memory, and you'd never allocate a protected buffer
-=66rom a different one in the codec driver for example.
+> +#define to_spacemit_gpio_bank(x) container_of((x), struct spacemit_gpio_=
+bank, gc)
+> +
+> +struct spacemit_gpio;
+> +
+> +struct spacemit_gpio_bank {
+> +       struct gpio_chip                gc;
+> +       struct spacemit_gpio            *sg;
+> +       void __iomem                    *base;
+> +       u32                             index;
+> +       u32                             irq_mask;
+> +       u32                             irq_rising_edge;
+> +       u32                             irq_falling_edge;
+> +};
+> +
+> +struct spacemit_gpio {
+> +       struct  device                  *dev;
+> +       struct  spacemit_gpio_bank      sgb[NR_BANKS];
+> +};
 
-> > > 2. If the driver already boot the FW and exposed a DRI node, we might
-> > > have GPU workloads running, and doing a FW reset might incur a slight
-> > > delay in GPU jobs execution.
-> > >=20
-> > > I think #1 is a more general issue that applies to suspend buffers
-> > > allocated for GPU contexts too. If we expose ioctls where we take
-> > > protected memory buffers that can possibly lead to crashes if they are
-> > > not real protected memory regions, and we have no way to ensure the
-> > > memory is protected, we probably want to restrict these ioctls/modes =
-to
-> > > some high-privilege CAP_SYS_.
-> > >=20
-> > > For #2, that's probably something we can live with, since it's a
-> > > one-shot thing. If it becomes an issue, we can even make sure we enab=
-le
-> > > the FW protected-mode before the GPU starts being used for real.
-> > >=20
-> > > This being said, I think the problem applies outside Panthor, and it
-> > > might be that the video codec can't reset the FW/HW block to switch to
-> > > protected mode as easily as Panthor.
-> > >
-> > > Note that there's also downsides to the reserved-memory node approach,
-> > > where some bootloader stage would ask the secure FW to reserve a
-> > > portion of mem and pass this through the DT. This sort of things tend=
- to
-> > > be an integration mess, where you need all the pieces of the stack (T=
-EE,
-> > > u-boot, MTK dma-heap driver, gbm, ...) to be at a certain version to
-> > > work properly. If we go the ioctl() way, we restrict the scope to the
-> > > TEE, gbm/mesa and the protected-dma-heap driver, which is still a lot,
-> > > but we've ripped the bootloader out of the equation at least. =20
-> >=20
-> > Yeah. I also think there's two discussions in parallel here:
-> >=20
-> >  1) Being able to allocate protected buffers from the driver
-> >  2) Exposing an interface to allocate those to userspace
-> >=20
-> > I'm not really convinced we need 2, but 1 is obviously needed from what
-> > you're saying.
->=20
-> I suspect we need #2 for GBM, still. But that's what dma-heaps are for,
-> so I don't think that's a problem.
+Please don't use tabs in struct definitions.
 
-Yeah, that was my point too, we have the heaps for that already.
+> +
+> +static irqreturn_t spacemit_gpio_irq_handler(int irq, void *dev_id)
+> +{
+> +       struct spacemit_gpio_bank *gb =3D dev_id;
+> +       unsigned long pending;
+> +       u32 n, gedr;
+> +
+> +       gedr =3D readl(gb->base + GEDR);
+> +       if (!gedr)
+> +               return IRQ_NONE;
+> +       writel(gedr, gb->base + GEDR);
+> +
+> +       gedr =3D gedr & gb->irq_mask;
+> +       if (!gedr)
+> +               return IRQ_NONE;
+> +
+> +       pending =3D gedr;
+> +       for_each_set_bit(n, &pending, BITS_PER_LONG)
+> +               handle_nested_irq(irq_find_mapping(gb->gc.irq.domain, n))=
+;
+> +
+> +       return IRQ_HANDLED;
+> +}
+> +
+> +static void spacemit_gpio_irq_ack(struct irq_data *d)
+> +{
+> +       struct spacemit_gpio_bank *gb =3D irq_data_get_irq_chip_data(d);
+> +
+> +       writel(BIT(irqd_to_hwirq(d)), gb->base + GEDR);
+> +}
+> +
+> +static void spacemit_gpio_irq_mask(struct irq_data *d)
+> +{
+> +       struct spacemit_gpio_bank *gb =3D irq_data_get_irq_chip_data(d);
+> +       u32 bit =3D BIT(irqd_to_hwirq(d));
+> +
+> +       gb->irq_mask &=3D ~bit;
+> +
+> +       if (bit & gb->irq_rising_edge)
+> +               writel(bit, gb->base + GCRER);
+> +
+> +       if (bit & gb->irq_falling_edge)
+> +               writel(bit, gb->base + GCFER);
+> +}
+> +
+> +static void spacemit_gpio_irq_unmask(struct irq_data *d)
+> +{
+> +       struct spacemit_gpio_bank *gb =3D irq_data_get_irq_chip_data(d);
+> +       u32 bit =3D BIT(irqd_to_hwirq(d));
+> +
+> +       gb->irq_mask |=3D bit;
+> +
+> +       if (bit & gb->irq_rising_edge)
+> +               writel(bit,  gb->base + GSRER);
+> +
+> +       if (bit & gb->irq_falling_edge)
+> +               writel(bit, gb->base + GSFER);
+> +}
+> +
+> +static int spacemit_gpio_irq_set_type(struct irq_data *d, unsigned int t=
+ype)
+> +{
+> +       struct spacemit_gpio_bank *gb =3D irq_data_get_irq_chip_data(d);
+> +       u32 bit =3D BIT(irqd_to_hwirq(d));
+> +
+> +       if (type & IRQ_TYPE_EDGE_RISING) {
+> +               gb->irq_rising_edge |=3D bit;
+> +               writel(bit, gb->base + GSRER);
+> +       } else {
+> +               gb->irq_rising_edge &=3D ~bit;
+> +               writel(bit, gb->base + GCRER);
+> +       }
+> +
+> +       if (type & IRQ_TYPE_EDGE_FALLING) {
+> +               gb->irq_falling_edge |=3D bit;
+> +               writel(bit, gb->base + GSFER);
+> +       } else {
+> +               gb->irq_falling_edge &=3D ~bit;
+> +               writel(bit, gb->base + GCFER);
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static void spacemit_gpio_irq_print_chip(struct irq_data *data, struct s=
+eq_file *p)
+> +{
+> +       struct spacemit_gpio_bank *gb =3D irq_data_get_irq_chip_data(data=
+);
+> +
+> +       seq_printf(p, "%s-%d", dev_name(gb->gc.parent), gb->index);
+> +}
+> +
+> +static struct irq_chip spacemit_gpio_chip =3D {
+> +       .name           =3D "k1-gpio-irqchip",
+> +       .irq_ack        =3D spacemit_gpio_irq_ack,
+> +       .irq_mask       =3D spacemit_gpio_irq_mask,
+> +       .irq_unmask     =3D spacemit_gpio_irq_unmask,
+> +       .irq_set_type   =3D spacemit_gpio_irq_set_type,
+> +       .irq_print_chip =3D spacemit_gpio_irq_print_chip,
+> +       .flags          =3D IRQCHIP_IMMUTABLE,
+> +       GPIOCHIP_IRQ_RESOURCE_HELPERS,
+> +};
+> +
+> +static int spacemit_gpio_xlate(struct gpio_chip *gc,
+> +                              const struct of_phandle_args *gpiospec, u3=
+2 *flags)
+> +{
+> +       struct spacemit_gpio_bank *gb =3D gpiochip_get_data(gc);
+> +       struct spacemit_gpio *sg =3D gb->sg;
+> +
 
-Maxime
+Stray newline.
 
---bx6tcglxjiffynxy
-Content-Type: application/pgp-signature; name="signature.asc"
+> +       int i;
+> +
+> +       if (gc->of_gpio_n_cells !=3D 3)
+> +               return -EINVAL;
+> +
+> +       if (gpiospec->args_count < gc->of_gpio_n_cells)
+> +               return -EINVAL;
+> +
+> +       i =3D gpiospec->args[0];
+> +       if (i >=3D NR_BANKS)
+> +               return -EINVAL;
+> +
+> +       if (gc !=3D &sg->sgb[i].gc)
+> +               return -EINVAL;
+> +
+> +       if (gpiospec->args[1] >=3D gc->ngpio)
+> +               return -EINVAL;
+> +
+> +       if (flags)
+> +               *flags =3D gpiospec->args[2];
+> +
+> +       return gpiospec->args[1];
+> +}
+> +
+> +static int spacemit_add_pin_range(struct gpio_chip *gc)
+> +{
+> +       struct spacemit_gpio_bank *gb;
+> +       struct of_phandle_args pinspec;
+> +       struct pinctrl_dev *pctldev;
+> +       struct device_node *np;
+> +       int ret, trim;
+> +
+> +       np =3D dev_of_node(&gc->gpiodev->dev);
+> +       if (!np)
+> +               return 0;
+> +
+> +       gb =3D to_spacemit_gpio_bank(gc);
+> +
+> +       ret =3D of_parse_phandle_with_fixed_args(np, "gpio-ranges", 3,
+> +                                              gb->index, &pinspec);
+> +       if (ret)
+> +               return ret;
+> +
+> +       pctldev =3D of_pinctrl_get(pinspec.np);
+> +       of_node_put(pinspec.np);
+> +       if (!pctldev)
+> +               return -EPROBE_DEFER;
+> +
+> +       /* Ignore ranges outside of this GPIO chip */
+> +       if (pinspec.args[0] >=3D (gc->offset + gc->ngpio))
+> +               return -EINVAL;
+> +
+> +       if (pinspec.args[0] + pinspec.args[2] <=3D gc->offset)
+> +               return -EINVAL;
+> +
+> +       if (!pinspec.args[2])
+> +               return -EINVAL;
+> +
+> +       /* Trim the range to fit this GPIO chip */
+> +       if (gc->offset > pinspec.args[0]) {
+> +               trim =3D gc->offset - pinspec.args[0];
+> +               pinspec.args[2] -=3D trim;
+> +               pinspec.args[1] +=3D trim;
+> +               pinspec.args[0] =3D 0;
+> +       } else {
+> +               pinspec.args[0] -=3D gc->offset;
+> +       }
+> +       if ((pinspec.args[0] + pinspec.args[2]) > gc->ngpio)
+> +               pinspec.args[2] =3D gc->ngpio - pinspec.args[0];
+> +
+> +       ret =3D gpiochip_add_pin_range(gc,
+> +                                    pinctrl_dev_get_devname(pctldev),
+> +                                    pinspec.args[0],
+> +                                    pinspec.args[1],
+> +                                    pinspec.args[2]);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return 0;
+> +}
+> +
+> +static int spacemit_gpio_add_bank(struct spacemit_gpio *sg,
+> +                                 void __iomem *regs,
+> +                                 int index, int irq)
+> +{
+> +       struct spacemit_gpio_bank *gb =3D &sg->sgb[index];
+> +       struct gpio_chip *gc =3D &gb->gc;
+> +       struct device *dev =3D sg->dev;
+> +       struct gpio_irq_chip *girq;
+> +       void __iomem *dat, *set, *clr, *dirin, *dirout;
+> +       int ret, bank_base[] =3D { 0x0, 0x4, 0x8, 0x100 };
+> +
+> +       gb->index =3D index;
+> +       gb->base =3D regs + bank_base[index];
+> +
+> +       dat     =3D gb->base + GPLR;
+> +       set     =3D gb->base + GPSR;
+> +       clr     =3D gb->base + GPCR;
+> +       dirin   =3D gb->base + GCDR;
+> +       dirout  =3D gb->base + GSDR;
+> +
+> +       /* This registers 32 GPIO lines per bank */
+> +       ret =3D bgpio_init(gc, dev, 4, dat, set, clr, dirout, dirin,
+> +                        BGPIOF_UNREADABLE_REG_SET | BGPIOF_UNREADABLE_RE=
+G_DIR);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret, "failed to init gpio chip\=
+n");
+> +
+> +       gb->sg =3D sg;
+> +
+> +       gc->label               =3D dev_name(dev);
+> +       gc->request             =3D gpiochip_generic_request;
+> +       gc->free                =3D gpiochip_generic_free;
+> +       gc->ngpio               =3D NR_GPIOS_PER_BANK;
+> +       gc->base                =3D -1;
+> +
+> +#ifdef CONFIG_OF_GPIO
+> +       gc->of_xlate            =3D spacemit_gpio_xlate;
+> +       gc->of_add_pin_range    =3D spacemit_add_pin_range;
+> +       gc->of_gpio_n_cells     =3D 3;
+> +#endif
+> +
+> +       girq                    =3D &gc->irq;
+> +       girq->threaded          =3D true;
+> +       girq->handler           =3D handle_simple_irq;
+> +
+> +       gpio_irq_chip_set_chip(girq, &spacemit_gpio_chip);
+> +
+> +       /* Clear Edge Detection Settings */
+> +       writel(0x0, gb->base + GRER);
+> +       writel(0x0, gb->base + GFER);
+> +       /* Clear and Disable Interrupt */
+> +       writel(0xffffffff, gb->base + GCFER);
+> +       writel(0xffffffff, gb->base + GCRER);
+> +       writel(0, gb->base + GAPMASK);
+> +
+> +       ret =3D devm_request_threaded_irq(dev, irq, NULL,
+> +                                       spacemit_gpio_irq_handler,
+> +                                       IRQF_ONESHOT | IRQF_SHARED,
+> +                                       gb->gc.label, gb);
+> +       if (ret < 0)
+> +               return dev_err_probe(dev, ret, "failed to register IRQ\n"=
+);
+> +
+> +       ret =3D devm_gpiochip_add_data(dev, gc, gb);
+> +       if (ret < 0)
+> +               return dev_err_probe(dev, ret, "failed to add gpio chip\n=
+");
+> +
+> +       /* Eable Interrupt */
 
------BEGIN PGP SIGNATURE-----
+Enable.
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ7cu3gAKCRAnX84Zoj2+
-dnVYAYCm5cDrRcC/M6gSUPcprxXgPDvfEFST8yfosiTXvXvn+f7uGk9SwgsJajLN
-s/ajv5QBgM98Ll6MXS4tGWhLvyrRsEXngQF3qbvK9LqIZ65IRv41teKv+LiAPoAd
-jG+jSy14AQ==
-=5SxL
------END PGP SIGNATURE-----
+> +       writel(0xffffffff, gb->base + GAPMASK);
+> +
+> +       return 0;
+> +}
+> +
+> +static int spacemit_gpio_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev =3D &pdev->dev;
+> +       struct spacemit_gpio *sg;
+> +       struct resource *res;
+> +       void __iomem *regs;
+> +       int i, irq, ret;
+> +
+> +       sg =3D devm_kzalloc(dev, sizeof(*sg), GFP_KERNEL);
+> +       if (!sg)
+> +               return -ENOMEM;
+> +
+> +       regs =3D devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+> +       if (IS_ERR(regs))
+> +               return PTR_ERR(regs);
+> +
+> +       irq =3D platform_get_irq(pdev, 0);
+> +       if (irq < 0)
+> +               return irq;
+> +
+> +       sg->dev =3D dev;
+> +
+> +       for (i =3D 0; i < NR_BANKS; i++) {
+> +               ret =3D spacemit_gpio_add_bank(sg, regs, i, irq);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id spacemit_gpio_dt_ids[] =3D {
+> +       { .compatible =3D "spacemit,k1-gpio" },
+> +       { /* sentinel */ }
+> +};
+> +
+> +static struct platform_driver spacemit_gpio_driver =3D {
+> +       .probe          =3D spacemit_gpio_probe,
+> +       .driver         =3D {
+> +               .name   =3D "k1-gpio",
+> +               .of_match_table =3D spacemit_gpio_dt_ids,
+> +       },
+> +};
+> +module_platform_driver(spacemit_gpio_driver);
+> +
+> +MODULE_AUTHOR("Yixun Lan <dlan@gentoo.org>");
+> +MODULE_DESCRIPTION("GPIO driver for SpacemiT K1 SoC");
+> +MODULE_LICENSE("GPL");
+>
+> --
+> 2.48.1
+>
 
---bx6tcglxjiffynxy--
+Bart
 
