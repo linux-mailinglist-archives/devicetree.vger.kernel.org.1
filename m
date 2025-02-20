@@ -1,243 +1,228 @@
-Return-Path: <devicetree+bounces-149145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D573A3E7A4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 23:40:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BADE9A3E7CC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 23:53:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78F2F19C5131
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 22:40:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDC8719C3DDE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 22:53:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7244264634;
-	Thu, 20 Feb 2025 22:39:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC772641E3;
+	Thu, 20 Feb 2025 22:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gObFMExE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VxQgHgsb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D2C52641E3;
-	Thu, 20 Feb 2025 22:39:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD9F41C5D67;
+	Thu, 20 Feb 2025 22:53:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740091198; cv=none; b=BfsMMUZc3EtntGSH7koxJlSbkOWfl62NDgdC5TUGaEQ9s6vAZ1K33iWAtOuhca+h/7pRJwTMdU6DZ3DncyLn++GkFeUk/IBpytH/JwMW51QQRlysHv7prx885NOYj+I89+G6A4eYY9jSnUvW/yko7/NBdx8sp/HzoLDVIgMc2L4=
+	t=1740091989; cv=none; b=rxHqRHLoP+sn5y/IjVuszoolOYIjnMFITHdQeZ6FWxVKmwTKdjaA9VhMZfHuTzb5hbG+C3NTtQoFuv1lsSeclsxL7ZiQQkYrUbm90597DbJrGN4TyufBkoUY6uJ4ClGkGIVbs4+EZWuGo5PFRPzn+c+OWWnGNHQS3i1Y/aQhnkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740091198; c=relaxed/simple;
-	bh=p1o9tsd4MJKpv+j9LivH9jaM7Ei2Uell1wpGa2aaLFc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ckjENPc7+PFRaT9XU4F04V/bLDFO+oRkEg+HApLQOxmBZaYz/M088BHqKXKWHIkcoAsBJIuCzsrPsAu2pkeT4IQ6VhGyWaoduLOQrzQwYITgVFPsK4qjItbpb2g3OSOM87SwXXHn69BIoBdzJrYzc34/ialhTZDUNITKCl8VN4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gObFMExE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 916D7C4CED1;
-	Thu, 20 Feb 2025 22:39:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740091197;
-	bh=p1o9tsd4MJKpv+j9LivH9jaM7Ei2Uell1wpGa2aaLFc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gObFMExEl5qdklvlvzVjuB8ZpB4OKMBuTGEWsmjPOLYv00dcOyrDIcIIQAomN34Qd
-	 hKH6JZrkgQq7zEkBbhYapGDtiYyY0lHKVNoXsKP5Tr5Q1oHtQsZMgKHPWTEJDf7ZQv
-	 PeOzR1giqrDEDlanmtoe1Wyj2NjjEpcULYoSTQ7RJQFsxKRw8O9IGhXJ29F2v5vsGc
-	 9KuazZpl6KfofKziuSKIpk9s8eaJ3Oskpq56FyYQZlOpMSRLL9h6gGtBK8GDBHygKu
-	 XfISsSXGB2jIJFzog/sPeYQkcTy1QA7vzji+7JPQwIpTnz1SQo3PdG3BkpSlzRoecy
-	 a+Bnrt0wUYw5g==
-Date: Thu, 20 Feb 2025 23:39:54 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
-	Ryder Lee <ryder.lee@mediatek.com>,
-	Jianjun Wang <jianjun.wang@mediatek.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] PCI: mediatek-gen3: Configure PBUS_CSR registers
- for EN7581 SoC
-Message-ID: <Z7evOgTgCK_IL2i9@lore-desk>
-References: <20250202-en7581-pcie-pbus-csr-v2-0-65dcb201c9a9@kernel.org>
- <20250202-en7581-pcie-pbus-csr-v2-2-65dcb201c9a9@kernel.org>
- <20250219182650.gxzlbl6ovgbacmkm@thinkpad>
- <Z7ePW/Y9vajLjPdr@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1740091989; c=relaxed/simple;
+	bh=ghJE7I/qntVNlueEdQaHszb2vjdnYucsL+pK8Eztovg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=h5rvE434WjXnbRX/Loi7S/4N000lW0gIdVdFq7BIYrOiUo4vQWTtqSK8Ya70JZ2FuSeYa9LiN17HLukXyDoIs8KexWYJ/6ApYfiBVgRa3FR33wQNLWZezOTBVObmWn7BVYPkzALW5juiIalPDqzO95xZ5+AYT9WoynFVKYcRI3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VxQgHgsb; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51KGDvlq002872;
+	Thu, 20 Feb 2025 22:52:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	+LhQJ2cNrP1sZLJLlXAaWHjyrUnROMmZ4qkqaQHwakk=; b=VxQgHgsbWKpz6md2
+	3NgyegGgh8YQn7ZaGfdTI07PHI1hthK8BypmOOnPfgHT3g4y9GIMVpaKGOUp/osY
+	2nd4m0KoNtzjyYbKXeff4AJy9Q2DpDVHzE4Zzfve7dM/ahGHnqqxtCvWK+FIFnQM
+	zz83xUuDlz2oVuhe/pFIQ3kT1iSce2UZuSdLgS3JesuzsUoBxuYgRZwsAoMaLw0V
+	yJVVdABE04GrmBuZoUpl0MJZrfa/FGCh8ONzGj3ydjh+5mc8cM0z9SBPRDs73b9e
+	4cVoStbfT5hgLRiwxNxYN4as7CcUK/4gMJoXaBIIfKBgaJk5+2DPf+5xfa3NZJSl
+	kpProA==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44vyy2fp9q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Feb 2025 22:52:52 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51KMqpET009129
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Feb 2025 22:52:51 GMT
+Received: from [10.134.70.212] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 20 Feb
+ 2025 14:52:50 -0800
+Message-ID: <4841020a-5320-4ce2-88b9-34f008febf62@quicinc.com>
+Date: Thu, 20 Feb 2025 14:52:50 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="l8/woIF9RLKv3zSp"
-Content-Disposition: inline
-In-Reply-To: <Z7ePW/Y9vajLjPdr@lizhi-Precision-Tower-5810>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 14/16] drm/msm/dpu: Add missing "fetch" name to
+ set_active_pipes()
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Clark
+	<robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        "Dmitry
+ Baryshkov" <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        "Marijn Suijten" <marijn.suijten@somainline.org>,
+        David Airlie
+	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Jonathan Marek
+	<jonathan@marek.ca>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Srini Kandagatla
+	<srinivas.kandagatla@linaro.org>
+References: <20250217-b4-sm8750-display-v2-0-d201dcdda6a4@linaro.org>
+ <20250217-b4-sm8750-display-v2-14-d201dcdda6a4@linaro.org>
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <20250217-b4-sm8750-display-v2-14-d201dcdda6a4@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: gnqIgwloMtZpENg2vID9N5dlsa59Em0X
+X-Proofpoint-GUID: gnqIgwloMtZpENg2vID9N5dlsa59Em0X
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-20_09,2025-02-20_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ lowpriorityscore=0 clxscore=1015 adultscore=0 phishscore=0 mlxlogscore=999
+ bulkscore=0 malwarescore=0 impostorscore=0 priorityscore=1501 mlxscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502200152
 
 
---l8/woIF9RLKv3zSp
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-> On Wed, Feb 19, 2025 at 11:56:50PM +0530, Manivannan Sadhasivam wrote:
-> > On Sun, Feb 02, 2025 at 08:34:24PM +0100, Lorenzo Bianconi wrote:
-> > > Configure PBus base address and address mask to allow the hw
-> > > to detect if a given address is on PCIE0, PCIE1 or PCIE2.
-> > >
-> > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> >
-> > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> >
-> > - Mani
-> >
-> > > ---
-> > >  drivers/pci/controller/pcie-mediatek-gen3.c | 30 +++++++++++++++++++=
-+++++++++-
-> > >  1 file changed, 29 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pc=
-i/controller/pcie-mediatek-gen3.c
-> > > index aa24ac9aaecc749b53cfc4faf6399913d20cdbf2..9c2a592cae959de8fbe9c=
-a5c5c2253f8eadf2c76 100644
-> > > --- a/drivers/pci/controller/pcie-mediatek-gen3.c
-> > > +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-> > > @@ -15,6 +15,7 @@
-> > >  #include <linux/irqchip/chained_irq.h>
-> > >  #include <linux/irqdomain.h>
-> > >  #include <linux/kernel.h>
-> > > +#include <linux/mfd/syscon.h>
-> > >  #include <linux/module.h>
-> > >  #include <linux/msi.h>
-> > >  #include <linux/of_device.h>
-> > > @@ -24,6 +25,7 @@
-> > >  #include <linux/platform_device.h>
-> > >  #include <linux/pm_domain.h>
-> > >  #include <linux/pm_runtime.h>
-> > > +#include <linux/regmap.h>
-> > >  #include <linux/reset.h>
-> > >
-> > >  #include "../pci.h"
-> > > @@ -127,6 +129,13 @@
-> > >
-> > >  #define PCIE_MTK_RESET_TIME_US		10
-> > >
-> > > +#define PCIE_EN7581_PBUS_ADDR(_n)	(0x00 + ((_n) << 3))
-> > > +#define PCIE_EN7581_PBUS_ADDR_MASK(_n)	(0x04 + ((_n) << 3))
-> > > +#define PCIE_EN7581_PBUS_BASE_ADDR(_n)	\
-> > > +	((_n) =3D=3D 2 ? 0x28000000 :	\
-> > > +	 (_n) =3D=3D 1 ? 0x24000000 : 0x20000000)
->=20
-> look like these data should be in dts ?
->=20
-> > > +#define PCIE_EN7581_PBUS_BASE_ADDR_MASK	GENMASK(31, 26)
-> > > +
-> > >  /* Time in ms needed to complete PCIe reset on EN7581 SoC */
-> > >  #define PCIE_EN7581_RESET_TIME_MS	100
-> > >
-> > > @@ -931,7 +940,8 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pc=
-ie *pcie)
-> > >  static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
-> > >  {
-> > >  	struct device *dev =3D pcie->dev;
-> > > -	int err;
-> > > +	struct regmap *map;
-> > > +	int err, slot;
-> > >  	u32 val;
-> > >
-> > >  	/*
-> > > @@ -945,6 +955,24 @@ static int mtk_pcie_en7581_power_up(struct mtk_g=
-en3_pcie *pcie)
-> > >  	/* Wait for the time needed to complete the reset lines assert. */
-> > >  	msleep(PCIE_EN7581_RESET_TIME_MS);
-> > >
-> > > +	map =3D syscon_regmap_lookup_by_phandle(dev->of_node,
-> > > +					      "mediatek,pbus-csr");
-> > > +	if (IS_ERR(map))
-> > > +		return PTR_ERR(map);
-> > > +
-> > > +	/*
-> > > +	 * Configure PBus base address and address mask to allow the
-> > > +	 * hw to detect if a given address is on PCIE0, PCIE1 or PCIE2.
-> > > +	 */
-> > > +	slot =3D of_get_pci_domain_nr(dev->of_node);
->=20
-> I am not sure if too much abuse domain_id here.
->=20
-> > > +	if (slot < 0)
-> > > +		return slot;
-> > > +
-> > > +	regmap_write(map, PCIE_EN7581_PBUS_ADDR(slot),
-> > > +		     PCIE_EN7581_PBUS_BASE_ADDR(slot));
-> > > +	regmap_write(map, PCIE_EN7581_PBUS_ADDR_MASK(slot),
-> > > +		     PCIE_EN7581_PBUS_BASE_ADDR_MASK);
->=20
-> look like
-> 	syscon
-> 	{
-> 		csr1 : csr1 =3D
-> 		{
-> 			reg =3D <0x20000000, >; //or other property
-> 		}
->=20
-> 		csr2: csr2 =3D
-> 		{
-> 			....
-> 		}
-> 	}
->=20
-> 	pcie1 {
-> 		mediatek,pbus-csr =3D <&csr1>;
-> 	}
->=20
-> 	pcie2 {
->                 mediatek,pbus-csr =3D <&csr2>;
->         }
->=20
-> 	...
->=20
-> Or
-> 	pcie1 {
->                 mediatek,pbus-csr =3D <&csr1 0x20000000>;
->         }
-> 	...
->=20
-> 	you can use syscon_regmap_lookup_by_phandle_args() to get address.
-> Frank
+On 2/17/2025 8:41 AM, Krzysztof Kozlowski wrote:
+> The set_active_pipes() callback configures CTL_FETCH_PIPE_ACTIVE and
+> newer DPU v12.0 comes with CTL_PIPE_ACTIVE, thus rename it to
+> set_active_fetch_pipes() to better match the purpose.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-ack, thx for the pointer. I will fix in v3.
+Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
 
-Regards,
-Lorenzo
+> 
+> ---
+> 
+> Changes in v2:
+> 1. New patch
+> ---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c   | 12 ++++++------
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c |  6 +++---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h |  2 +-
+>   3 files changed, 10 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> index 7191b1a6d41b3a96f956d199398f12b2923e8c82..7de79696a21e58a4c640f00265610ccce8b5d253 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> @@ -445,9 +445,9 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
+>   
+>   	uint32_t lm_idx;
+>   	bool bg_alpha_enable = false;
+> -	DECLARE_BITMAP(fetch_active, SSPP_MAX);
+> +	DECLARE_BITMAP(active_fetch, SSPP_MAX);
+>   
+> -	memset(fetch_active, 0, sizeof(fetch_active));
+> +	memset(active_fetch, 0, sizeof(active_fetch));
+>   	drm_atomic_crtc_for_each_plane(plane, crtc) {
+>   		state = plane->state;
+>   		if (!state)
+> @@ -464,7 +464,7 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
+>   		if (pstate->stage == DPU_STAGE_BASE && format->alpha_enable)
+>   			bg_alpha_enable = true;
+>   
+> -		set_bit(pstate->pipe.sspp->idx, fetch_active);
+> +		set_bit(pstate->pipe.sspp->idx, active_fetch);
+>   		_dpu_crtc_blend_setup_pipe(crtc, plane,
+>   					   mixer, cstate->num_mixers,
+>   					   pstate->stage,
+> @@ -472,7 +472,7 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
+>   					   &pstate->pipe, 0, stage_cfg);
+>   
+>   		if (pstate->r_pipe.sspp) {
+> -			set_bit(pstate->r_pipe.sspp->idx, fetch_active);
+> +			set_bit(pstate->r_pipe.sspp->idx, active_fetch);
+>   			_dpu_crtc_blend_setup_pipe(crtc, plane,
+>   						   mixer, cstate->num_mixers,
+>   						   pstate->stage,
+> @@ -492,8 +492,8 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
+>   		}
+>   	}
+>   
+> -	if (ctl->ops.set_active_pipes)
+> -		ctl->ops.set_active_pipes(ctl, fetch_active);
+> +	if (ctl->ops.set_active_fetch_pipes)
+> +		ctl->ops.set_active_fetch_pipes(ctl, active_fetch);
+>   
+>   	_dpu_crtc_program_lm_output_roi(crtc);
+>   }
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+> index 9d4866509e97c262006e15cf3e02a2f1ca851784..2e1e22589f730d1a60c3cbf6ad6b6aeaea38c6fb 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+> @@ -675,8 +675,8 @@ static void dpu_hw_ctl_reset_intf_cfg_v1(struct dpu_hw_ctl *ctx,
+>   	}
+>   }
+>   
+> -static void dpu_hw_ctl_set_fetch_pipe_active(struct dpu_hw_ctl *ctx,
+> -	unsigned long *fetch_active)
+> +static void dpu_hw_ctl_set_active_fetch_pipes(struct dpu_hw_ctl *ctx,
+> +					      unsigned long *fetch_active)
+>   {
+>   	int i;
+>   	u32 val = 0;
+> @@ -764,7 +764,7 @@ struct dpu_hw_ctl *dpu_hw_ctl_init(struct drm_device *dev,
+>   		c->ops.update_pending_flush_dspp = dpu_hw_ctl_update_pending_flush_dspp;
+>   
+>   	if (mdss_ver->core_major_ver >= 7)
+> -		c->ops.set_active_pipes = dpu_hw_ctl_set_fetch_pipe_active;
+> +		c->ops.set_active_fetch_pipes = dpu_hw_ctl_set_active_fetch_pipes;
+>   
+>   	c->idx = cfg->id;
+>   	c->mixer_count = mixer_count;
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
+> index f04ae0b1d986fa8f73e5bf96babfca3b4f3a0bf5..b8bd5b22c5f8dadd01c16c352efef4063f2614a6 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
+> @@ -243,7 +243,7 @@ struct dpu_hw_ctl_ops {
+>   	void (*setup_blendstage)(struct dpu_hw_ctl *ctx,
+>   		enum dpu_lm lm, struct dpu_hw_stage_cfg *cfg);
+>   
+> -	void (*set_active_pipes)(struct dpu_hw_ctl *ctx,
+> +	void (*set_active_fetch_pipes)(struct dpu_hw_ctl *ctx,
+>   		unsigned long *fetch_active);
+>   };
+>   
+> 
+> -- 
+> 2.43.0
+> 
 
->=20
->=20
-> > > +
-> > >  	/*
-> > >  	 * Unlike the other MediaTek Gen3 controllers, the Airoha EN7581
-> > >  	 * requires PHY initialization and power-on before PHY reset deasse=
-rt.
-> > >
-> > > --
-> > > 2.48.1
-> > >
-> >
-> > --
-> > =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=
-=A9=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=
-=AE=E0=AF=8D
-
---l8/woIF9RLKv3zSp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ7evOgAKCRA6cBh0uS2t
-rMtVAQDt7OKvwzSWH4diA2tOPVBk9hZhWEwF4ifot/vwEVB59AD8CJkJDxC/ETkp
-7PzGTuXjh57IZJMnuAyy//jgFLBZfgo=
-=lyct
------END PGP SIGNATURE-----
-
---l8/woIF9RLKv3zSp--
 
