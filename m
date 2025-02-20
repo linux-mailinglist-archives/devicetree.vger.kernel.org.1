@@ -1,312 +1,90 @@
-Return-Path: <devicetree+bounces-148805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C304A3D780
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:56:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F5C3A3D787
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:58:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DC8E19C09EB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:56:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E7317A61C7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 10:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15CC51F3BA4;
-	Thu, 20 Feb 2025 10:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03EF31F1509;
+	Thu, 20 Feb 2025 10:58:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="cCHau766"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s8fzb6/7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF1CD1F1517;
-	Thu, 20 Feb 2025 10:55:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C898C1F12E0;
+	Thu, 20 Feb 2025 10:58:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740048950; cv=none; b=CCmXWe8fjpKMs6eKiil3RegzVK4khdP67+7bUtT/Uml16aLbZr38gSsAAaHbbaxWt+/HqDpmL3Dyge0XVky58A5Px4GxHD15h8LtmuLHpa03jnDp99PDt3TLf+yM5nzB5yqb32JdnmAobWfI5vwtUyvAeGhySeqxT+EzapXhZg8=
+	t=1740049083; cv=none; b=IVTnej4N2+MPF4q+t/Pi5a7V3evK4H8/98dGku0xsxzAJGAUCmy9HZngWxf269XuyUMhDLiU0ivGs7t4D0QXfoky9ZZPRKbO65HqVWyzKk5BWZ0BjF6LnU9Kt5DJiFoTQXilGCAkwLtXr7f+BFgjTyhZo0EhpUVooN8318vveU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740048950; c=relaxed/simple;
-	bh=Z35cZXbC7YRfeFkNnzpPxiyQBC3KChpHkjPu5lnoNWc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=U2s1O5olpOamlyuWTeP2F94XSw5ZEKAMKiV/vEZA8ZoiqJ/R9bEGq8QE4rR9ttKfO78RZYYbXSw1MDLVmg2NrZF4Ia4Jdn06IyHPEl74G/t/JgLEX3WhFA3u973YRvFpJNgir1Yko92SwI18SkBAwWVi5vWnN85znHYvGg/vRYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=cCHau766; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740048946;
-	bh=Z35cZXbC7YRfeFkNnzpPxiyQBC3KChpHkjPu5lnoNWc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cCHau766hFtNy4LHmWAXPbzVkfOdjpeqNQujNy2JQcyn1DoQcholfDYTnctlZ3klk
-	 aLSnGJgbxb56wcv8iNcbk/lqaUm3J+Cp+pUKhazMN4ND63ITine7KqhObfUJuA7K7C
-	 MLIHPux2gCYMK59KBkV28Zo5ojJrlJVs2kNRp9O5DGwGhGgKoge507EEQ9jsZh5PKC
-	 3U9LqWKVXCp3WpugVa6nmMMMxD9sykmyygsfnvir1RGRujApI0WJkV62rEtRcXrCEF
-	 H0pJ3CNGzO3dosCKK8zDAra9o8vmqkMTVxPYAsFmHF0HAHR6SXlcoOrjFB7cQFkcLb
-	 YDqVxBU1UeVgA==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 764F317E1570;
-	Thu, 20 Feb 2025 11:55:45 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: chunfeng.yun@mediatek.com
-Cc: gregkh@linuxfoundation.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	kernel@collabora.com,
-	pablo.sun@mediatek.com
-Subject: [PATCH v3 3/3] arm64: dts: mediatek: mt8390-genio-700: Add USB, TypeC Controller, MUX
-Date: Thu, 20 Feb 2025 11:55:14 +0100
-Message-ID: <20250220105514.43107-4-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250220105514.43107-1-angelogioacchino.delregno@collabora.com>
-References: <20250220105514.43107-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1740049083; c=relaxed/simple;
+	bh=u/HRjDo/WO6OCy5SnAsbPDEYLwXtjJNTDbTzvnDkk1I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HZ5CKcMtvrMfRPFl/XqJOrCs2Vgi1rEebSAhq4a/WuzgOork/b+TQ4Zoz0jklOa7V2WMC1bHg9sI14bRIcS5s7VJMGntC9IHrVR1fxLvKgMG9kEt5fBb/5bSPvcdGSRfYCR+BQoo4CTDGQYiwIfPM2TsU1rodBrXBL+1uSgqAis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s8fzb6/7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9014CC4CEE4;
+	Thu, 20 Feb 2025 10:58:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740049083;
+	bh=u/HRjDo/WO6OCy5SnAsbPDEYLwXtjJNTDbTzvnDkk1I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s8fzb6/7+R9aq4DgOs0UdnFguGnMxstXCYm+G3JktzzEYDB/GV00cXLeihMiU2X07
+	 nTMCqxEkqfQWm2tY3pcl2kVxXd2dECT7KY83ZmIxJKl9m/dy/O9d6KB1loGladPStg
+	 CtuyZv7XCV05Cq2tp03pH7ZccMx9Samz8VjDYeAVGv5WjAgTh0X1+tLEDXG+9KAj63
+	 QLlSjHm5iMnIqLzKJDFMXi9PHOB+wQ4qyOyPyX5OrFDwCHMXsaYyhjEXUQZtMyQ6wI
+	 pdeSP5SmYbK7woCpotk6ptHotEV6WyZLSNnq37QnuRwFuEon4uh4iVzyQ+YbmopkdU
+	 3Tcm/dhOZNquw==
+Date: Thu, 20 Feb 2025 10:57:57 +0000
+From: Lee Jones <lee@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, tsbogend@alpha.franken.de,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: Re: [RESEND PATCH net-next 1/5] dt-bindings: net: Move
+ realtek,rtl9301-switch to net
+Message-ID: <20250220105757.GA8787@google.com>
+References: <20250218195216.1034220-1-chris.packham@alliedtelesis.co.nz>
+ <20250218195216.1034220-2-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250218195216.1034220-2-chris.packham@alliedtelesis.co.nz>
 
-This board features multiple USB connectors:
- * One Type-C connector with Power Delivery and Alt. Modes;
- * One MicroUSB connector, also used for bootloader SW download;
- * One USB through the RaspberryPi-compatible pins header.
+On Wed, 19 Feb 2025, Chris Packham wrote:
 
-Add configuration for the MTU3 controllers providing OTG support
-with role switching both on the MicroUSB port, RPi pins header,
-and the Type-C port found on this board.
+> Initially realtek,rtl9301-switch was placed under mfd/ because it had
+> some non-switch related blocks (specifically i2c and reset) but with a
+> bit more review it has become apparent that this was wrong and the
+> binding should live under net/.
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+> 
+> Notes:
+>     It would probably be simplest for this to come in via net-next with an
+>     ack from Lee.
+> 
+>  .../bindings/{mfd => net}/realtek,rtl9301-switch.yaml           | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>  rename Documentation/devicetree/bindings/{mfd => net}/realtek,rtl9301-switch.yaml (97%)
 
-Moreover, add the Richtek RT1715 Type-C Power Delivery Controller
-which manages current source/sink, linked to the iTE IT5205 Type-C
-Alternate Mode Passive Mux, handling both mode switching between
-USB (up to 3.1 Gen2 10Gbps) and DisplayPort (four lanes, DP1.4,
-op to 8.1Gbps) and plug orientation switching.
+Acked-by: Lee Jones <lee@kernel.org>
 
-All USB ports reside on different controller instances, and all of
-them support host or gadget and can be configured as desired at
-runtime.
-
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../dts/mediatek/mt8390-genio-common.dtsi     | 139 ++++++++++++++++--
- 1 file changed, 130 insertions(+), 9 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-index fd977daa4185..83828baa887b 100644
---- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-@@ -260,6 +260,22 @@ &i2c1 {
- 	pinctrl-0 = <&i2c1_pins>;
- 	clock-frequency = <400000>;
- 	status = "okay";
-+
-+	typec-mux@48 {
-+		compatible = "ite,it5205";
-+		reg = <0x48>;
-+
-+		mode-switch;
-+		orientation-switch;
-+
-+		vcc-supply = <&mt6359_vcn33_1_bt_ldo_reg>;
-+
-+		port {
-+			it5205_sbu_mux: endpoint {
-+				remote-endpoint = <&typec_sbu_out>;
-+			};
-+		};
-+	};
- };
- 
- &i2c2 {
-@@ -281,6 +297,66 @@ &i2c4 {
- 	pinctrl-0 = <&i2c4_pins>;
- 	clock-frequency = <1000000>;
- 	status = "okay";
-+
-+	rt1715@4e {
-+		compatible = "richtek,rt1715";
-+		reg = <0x4e>;
-+		interrupts-extended = <&pio 12 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&tcpci_int_pins>;
-+		vbus-supply = <&usb_p1_vbus>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			op-sink-microwatt = <10000000>;
-+			power-role = "dual";
-+			try-power-role  = "sink";
-+			pd-revision = /bits/ 8 <0x03 0x00 0x01 0x08>;
-+
-+			sink-pdos = <PDO_FIXED(5000, 2000,
-+					       PDO_FIXED_DUAL_ROLE |
-+					       PDO_FIXED_DATA_SWAP)>;
-+			source-pdos = <PDO_FIXED(5000, 2000,
-+						 PDO_FIXED_DUAL_ROLE |
-+						 PDO_FIXED_DATA_SWAP)>;
-+
-+			altmodes {
-+				displayport {
-+					svid = /bits/ 16 <0xff01>;
-+					vdo = <0x001c1c47>;
-+				};
-+			};
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					typec_con_hs: endpoint {
-+						remote-endpoint = <&mtu3_hs1_role_sw>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					typec_con_ss: endpoint {
-+						remote-endpoint = <&xhci_ss_ep>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					typec_sbu_out: endpoint {
-+						remote-endpoint = <&it5205_sbu_mux>;
-+					};
-+
-+				};
-+			};
-+		};
-+	};
- };
- 
- &i2c5 {
-@@ -849,6 +925,14 @@ pins-reset {
- 		};
- 	};
- 
-+	tcpci_int_pins: tcpci-int-pins {
-+		pins-int-n {
-+			pinmux = <PINMUX_GPIO12__FUNC_B_GPIO12>;
-+			bias-pull-up;
-+			input-enable;
-+		};
-+	};
-+
- 	uart0_pins: uart0-pins {
- 		pins {
- 			pinmux = <PINMUX_GPIO31__FUNC_O_UTXD0>,
-@@ -904,6 +988,14 @@ pins-usb-hub-3v3-en {
- 		};
- 	};
- 
-+	usb2_default_pins: usb2-default-pins {
-+		pins-iddig {
-+			pinmux = <PINMUX_GPIO89__FUNC_B_GPIO89>;
-+			input-enable;
-+			bias-pull-up;
-+		};
-+	};
-+
- 	wifi_pwrseq_pins: wifi-pwrseq-pins {
- 		pins-wifi-enable {
- 			pinmux = <PINMUX_GPIO127__FUNC_B_GPIO127>;
-@@ -1012,9 +1104,21 @@ &u3phy2 {
- };
- 
- &ssusb0 {
--	dr_mode = "host";
-+	dr_mode = "otg";
-+	maximum-speed = "high-speed";
-+	usb-role-switch;
-+	wakeup-source;
- 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-+	pinctrl-0 = <&usb_default_pins>;
-+	pinctrl-names = "default";
- 	status = "okay";
-+
-+	connector {
-+		compatible = "gpio-usb-b-connector", "usb-b-connector";
-+		type = "micro";
-+		id-gpios = <&pio 83 GPIO_ACTIVE_HIGH>;
-+		vbus-supply = <&usb_p0_vbus>;
-+	};
- };
- 
- &xhci0 {
-@@ -1022,14 +1126,23 @@ &xhci0 {
- };
- 
- &ssusb1 {
--	dr_mode = "host";
-+	dr_mode = "otg";
-+	usb-role-switch;
-+	wakeup-source;
- 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-+	pinctrl-0 = <&usb1_default_pins>;
-+	pinctrl-names = "default";
- 	status = "okay";
-+
-+	port {
-+		mtu3_hs1_role_sw: endpoint {
-+			remote-endpoint = <&typec_con_hs>;
-+		};
-+	};
- };
- 
- &xhci1 {
- 	status = "okay";
--	vdd-supply = <&usb_hub_fixed_3v3>;
- 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
- 	#address-cells = <1>;
- 	#size-cells = <0>;
-@@ -1058,17 +1171,25 @@ xhci_ss_ep: endpoint {
- };
- 
- &ssusb2 {
--	interrupts-extended = <&gic GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH 0>,
--			      <&pio 220 IRQ_TYPE_LEVEL_HIGH>;
--	interrupt-names = "host", "wakeup";
--
--	dr_mode = "host";
-+	dr_mode = "otg";
-+	maximum-speed = "high-speed";
-+	usb-role-switch;
- 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-+	wakeup-source;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usb2_default_pins>;
- 	status = "okay";
-+
-+	connector {
-+		compatible = "gpio-usb-b-connector", "usb-b-connector";
-+		type = "micro";
-+		id-gpios = <&pio 89 GPIO_ACTIVE_HIGH>;
-+		vbus-supply = <&usb_p2_vbus>;
-+	};
- };
- 
- &xhci2 {
--	status = "okay";
- 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
- 	vbus-supply = <&sdio_fixed_3v3>; /* wifi_3v3 */
-+	status = "okay";
- };
 -- 
-2.48.1
-
+Lee Jones [李琼斯]
 
