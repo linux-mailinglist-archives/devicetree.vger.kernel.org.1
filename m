@@ -1,123 +1,98 @@
-Return-Path: <devicetree+bounces-148947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48A83A3DC96
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:24:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8F81A3DCC2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:29:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B368C188A3A4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:22:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B553B3A479F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:24:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D80E1FAC48;
-	Thu, 20 Feb 2025 14:22:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="BJNvxyah"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC6C41FAC5E;
+	Thu, 20 Feb 2025 14:24:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 926401DE4DB;
-	Thu, 20 Feb 2025 14:22:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8F51EF0AD;
+	Thu, 20 Feb 2025 14:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740061368; cv=none; b=CIMBS8H6EiWTh3w1R9DSEm+V/BCvHcK3BZl2VBnErHUveE3PO2rdp5VVd24DarFt6cVp7Dx+CwkI7HY9nWmvaK+k6qfuentMdd4TVcneoOSFyhQj/uKeNF4Lk3Uu0ODdThm6yliMutuUMc61YvAF+iGYQrOu6outSO+Tmhrrj84=
+	t=1740061471; cv=none; b=ACtSCnYXsgN8UscZS1Nxivu8Inx5ygH74j5h6xlKw1+qGRmwnw9TV6cTIZyYOZ/kHU/YKvA/4+QPD0HtUWYGZXTU6QpfwEDFL8bFeszE1v4e2VQ/mwfMLAsdoJ99qMZ5lal87pHp675hHy7Lul2cGgH2ofy/Mu4BSo+rg/AS9s8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740061368; c=relaxed/simple;
-	bh=34E2uyxipqnXz/zSLXyThTnrnQw9zA58NwL7KiIJu38=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=F3Kl4U9PP+tGGqotGU6oY9p7RGedrZWrE4s91BpGRfMItc9J5wtIDOEs0b5Yx4nXF5Bp8dII9wjktj9P60eJchAjQNxDLYiELPpzZ+diMyg+o8p9DDzgvuBZgNi4NYt33VOs2cl2WACECpj6Ip2RGtbOz0Il8iQlkBjoUmh5sYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=BJNvxyah; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 2371d7b2ef9611ef8eb9c36241bbb6fb-20250220
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=GcvisJBlaHb60eTCRvfZzRziYBjU9GCsPsjapGIbpsM=;
-	b=BJNvxyahKDqIeAHuFqtX9QgihHu4UJCLL1wofi1PTb96oPD1a4+49QCI97iz6LTBivdTKwLVoKmPoRAod4akmsOIX6xUFo9TbiDfPUmEofoIztWkO3HKQEtaHfj+/rawMUtydVdDBgxkBe0EhMhcnT4fG9D6o3ePPlbLmyuRTYY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:5ed9bcf4-67b6-470b-bcec-5941e1aeb7a3,IP:0,U
-	RL:0,TC:0,Content:0,EDM:-30,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-30
-X-CID-META: VersionHash:60aa074,CLOUDID:708621dc-d480-4873-806f-0f365159227b,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:2,IP:nil
-	,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:
-	1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 2371d7b2ef9611ef8eb9c36241bbb6fb-20250220
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 2140693216; Thu, 20 Feb 2025 22:22:39 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Thu, 20 Feb 2025 22:22:37 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Thu, 20 Feb 2025 22:22:37 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Chunfeng Yun
-	<chunfeng.yun@mediatek.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	<linux-usb@vger.kernel.org>, Alexandre Mergnat <amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chris-qj chen
-	<chris-qj.chen@mediatek.com>
-Subject: [PATCH] dt-bindings: usb: mtu3: Add ports property
-Date: Thu, 20 Feb 2025 22:22:30 +0800
-Message-ID: <20250220142230.2530583-1-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1740061471; c=relaxed/simple;
+	bh=5FmzeOvXEn61KTC+2HWup0o8sdMfDH6J8cL2SvlWnI8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m+6vu7l4dWWa49LiyuDQ8P2Blf6bbYHpMr4LdBZXEpgl91I48VkZnwGBTTlJTC/IQ6z9Nv8Qw85EAp+xCy45B8GOLxHRmGg7hatI+tr+aw2mwGQdkdKPcnB+yfOsEjfxOl9A5SJopYS+eU/POa7XlCycwMojftttNHQp/Na6VkY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-22104c4de96so16078705ad.3;
+        Thu, 20 Feb 2025 06:24:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740061469; x=1740666269;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fZIppiUhdCegkGeLQ0/SgLq0DHbP/ljnvKte6a5KKPk=;
+        b=iSk5k5ztmloswa5+axH3Mq2LJHtpwiFdFJ5xJLMXL7OZDorz+tBGipwlOI/B1KmqD9
+         KeiqKYvL0ebEOxX0BryWI7e+9Bzah7NwHvAiHtuMYupFXzBAHiVCR14yOzHb6MR+TnOV
+         uUiEBsLIs6Xzt2YxLFTqCCbfkwtuWuseNo/9I1dw3XFuPQfo3U+hYFhPtF9q57d27Oj2
+         m3OMmEB5J6TJNfOX5fivSXqsqG4cCYUdUU3qaONVrgzCg5RlTOoHR12xUny9mGJQKdLS
+         0LPdLfUd5eGLaIiaCACO8VtibCT9hRncjfZ4SRqLkPNM+kSIo+ZdhYIb1144SQrnfOea
+         wgNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVQCDVGj1BDIW4Ceiq0nmPhLmHZZD+QvghFPDqAGqePlNZ5jfmz14dzpe+nCflk5tu+HphXgjzhvbO7@vger.kernel.org, AJvYcCWHO+M36lBWrX3m6HTXZ7oJYoX/65ltOH5rQHItdtrxse1bpwm1Cg1P52TguV76gAkuO76QEqEWaslmhStt@vger.kernel.org, AJvYcCWq+zlL/VQuyMNXXSIs2Y6wkNBIxPqcbou8ZnZD4uA+XMga8AU4DTqfrcn7gZQqTi/rVjr/v019892a@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEYrx6RKz/MRsHPaUPrvZgQhv8fMdVKCXkkFjD2FJH4QIi2aGX
+	Esbpxsk6GXZDmrhgLKddKb7ZOsmC5B/EGmbBdYIqdCvnvKomcaaS
+X-Gm-Gg: ASbGncsEudut7mjvFWO0zMyuHU3WGe5J1TL7rLWeuK9i7FWPBzxDFqJupcD8Cg2XFDD
+	fa/KVzt3L34OSvQ/stdcRNIzrVuA5IEys+1hcECnidy4MJF6+w1RKxWoPcgxJJrmJITxOT/WJ90
+	EIpsCVz76tJ80Lrxz793oLxb944ZUX7Cc00pC7tiR4Krwb//t+0GY4NG1zMJhTsRz/wGgOXnvdb
+	8t5dXZ3bDSyGkbLmm6ot9LeGFrp0y3FGINE4F6uHovdKPCBC6a5jTbaIknhh6N7FcCt6Zpd4z9t
+	ZzcFiCfoRhBi1mx6ELWincjZo95k1UiZB4yVKuSffPNkysudvw==
+X-Google-Smtp-Source: AGHT+IEqHWvFyD2pATrLa8n7cKBoH6VgewNPY03fmxnWu+gC1tc8IFEe4lnDQmi3qJeiAbRkUmwmgg==
+X-Received: by 2002:a05:6a21:9999:b0:1ee:eeaa:919c with SMTP id adf61e73a8af0-1eeeeaa92c3mr1886839637.8.1740061469230;
+        Thu, 20 Feb 2025 06:24:29 -0800 (PST)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-73242568146sm13851313b3a.47.2025.02.20.06.24.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Feb 2025 06:24:28 -0800 (PST)
+Date: Thu, 20 Feb 2025 23:24:26 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: manivannan.sadhasivam@linaro.org
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Lukas Wunner <lukas@wunner.de>
+Subject: Re: [PATCH v3 0/5] PCI/pwrctrl: Rework pwrctrl driver integration
+ and add driver for PCI slot
+Message-ID: <20250220142426.GA1777078@rocinante>
+References: <20250116-pci-pwrctrl-slot-v3-0-827473c8fbf4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250116-pci-pwrctrl-slot-v3-0-827473c8fbf4@linaro.org>
 
-Define the ports property in the mediatek,mtu3 device tree binding schema.
-Include definitions for port@0 and port@1, specifying their roles as
-High Speed (HS) and Super Speed (SS) data buses, respectively.
+Hello,
 
-Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- .../devicetree/bindings/usb/mediatek,mtu3.yaml       | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+> This series reworks the PCI pwrctrl integration (again) by moving the creation
+> and removal of pwrctrl devices to pci_scan_device() and pci_destroy_dev() APIs.
+> This is based on the suggestion provided by Lukas Wunner [1][2]. With this
+> change, it is now possible to create pwrctrl devices for PCI bridges as well.
+> This is required to control the power state of the PCI slots in a system. Since
+> the PCI slots are not explicitly defined in devicetree, the agreement is to
+> define the supplies for PCI slots in PCI bridge nodes itself [3].
 
-diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
-index d4e187c78a0b..21fc6bbe954f 100644
---- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
-+++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
-@@ -155,6 +155,18 @@ properties:
-       property is used. See graph.txt
-     $ref: /schemas/graph.yaml#/properties/port
- 
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: High Speed (HS) data bus.
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Super Speed (SS) data bus.
-+
-   enable-manual-drd:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description:
--- 
-2.45.2
+Applied to pwrctrl, thank you!
 
+	Krzysztof
 
