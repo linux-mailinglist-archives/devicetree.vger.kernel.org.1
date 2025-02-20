@@ -1,396 +1,213 @@
-Return-Path: <devicetree+bounces-149063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 145C3A3E2B2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:40:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 703C1A3E291
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 18:33:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F092D3A88B6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:29:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 247224203D3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:33:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3E6C213E98;
-	Thu, 20 Feb 2025 17:29:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64B46212D97;
+	Thu, 20 Feb 2025 17:33:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gI+frmyr"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="YBA/LN7t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE49213E81;
-	Thu, 20 Feb 2025 17:29:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EE951D5CDD
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 17:33:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740072567; cv=none; b=u242bLOTlndV2cWqHtx9NE82D1o8/q59yT9mndgN5W0ee51lKIt6OF5lvr0KaNH8CclLzlNK8Gxy1wJi7hXu08TEPZzx5Tq6yg2kKqImvBCrwPKJCzDAWmqtcGOUkPQKaE0evyumn/7vQDsYIuGlbQUf0ZZzr7kLgkBPr14ssnU=
+	t=1740072801; cv=none; b=ORQBz7uWmt2zirVJKAWSSyTpI+lvUC2AEP1u6oc2U0TEaIAdo+f0jycDat4O/kYHEcDvnSo4B9fRgM0j84jJY74uKrdQoWSwdYRHBKLoP5/f36dY9WMZY6WpChi0dzVYSTv7LuP1P/5EWimjZznG5GG9A3Smjy5tZPhTN8JeixA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740072567; c=relaxed/simple;
-	bh=FmB27SmbgvMkwhtEPLQ00VLOXk2KaxFeGZGVu5uE+0Q=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=b7NMEQGmRv5ZH5p/5C1qY+Nmg59qsjssgnkKVCHQR6Arhj4C7fcvpbss3WiKJP34nhxrUiYY+hq+MC1sfLtY69lfT2q8YPjl+yOg+BWLxGOCRBkOa1CvTrERFAzLdefSzyrbxWm0h0W9+eNLfcZFvJr4AMS73auYIlPaNsypIwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gI+frmyr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2D246C4CEE8;
-	Thu, 20 Feb 2025 17:29:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740072566;
-	bh=FmB27SmbgvMkwhtEPLQ00VLOXk2KaxFeGZGVu5uE+0Q=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=gI+frmyrJGcxQ4y10n0gp01v4q21gu5Ykk/RbKQokMt0/mcYRFRsxpdlKLJl0ZZ5E
-	 fwjmbJYdT0tZ8CIs8ut2velsDlkqfIDU6ntSrok6sI4fApGtCx9wVZ84186awZZwAP
-	 YYLn63GDxtJOqGJLgi1mF7uYKimbNuDTt2k7FnUTqbtpneiE1B/EJG+ItYZ2ZyvXra
-	 KDk9a0wVipSm8MWIqVR3gcQtNz5Ca0u8WqZT7QkfuIkiN7s3lGuJbNGfn0dfOchHz0
-	 6pB5KrWSY2MDG7RWWJAjAQRaOIp4mWnJBLpsMrxv4TEjf4xB80Yi053A8ZLi3txEe5
-	 5SCfk/LQWv0Ug==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1E91BC021B4;
-	Thu, 20 Feb 2025 17:29:26 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Thu, 20 Feb 2025 18:29:23 +0100
-Subject: [PATCH 3/3] dt-bindings: net: Convert fsl,gianfar to YAML
+	s=arc-20240116; t=1740072801; c=relaxed/simple;
+	bh=tdSgk07Qmyb1E0a1lw0F1X8xB3gcZzChTJbUZHLvlvw=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CXNi/96+G+l9ph3tQjTPwQKXIE6SsQajmc3fSYCrZygFhZp++AwszbMxiU/rb/ahpADF4jQmodUPVmpyZQDkSwtuPgqA8C5pPyws6ImWSBWBwYZ7VwzBSp2PHwQYSImTJcgY/jf+W+mlRBUSvX8jkXRgoWZENLf5Ta1YYlccTnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=YBA/LN7t; arc=none smtp.client-ip=209.85.208.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f65.google.com with SMTP id 4fb4d7f45d1cf-5dee1626093so4362932a12.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 09:33:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1740072797; x=1740677597; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ANYY81S4UUbSzxGp9vX0hw/u/obOtXq2bTCgGH3coGw=;
+        b=YBA/LN7thNd0kfJi6YUgXpWSohTH4hfKCGstG7P6rVOIvoqYVImMOkWF2SLD/TvS3l
+         zpzriDHW07QsPXQXaeYTV7dArcZpAMR00SnpouK21pHa8IZMfcHCKN9aIW0tYLBti9nL
+         8TcxgOH9SH9ZtwiVdF78otXhfJo0Db4W2ZMF41U/afSvTQIYgGrNe3dk6luNCA2iE42X
+         G0IfBQ4yS/WJwvG6cnMYDSRA4b7cl4AVk0fLBiedZQkYQdjIaBUZE6rSUso+xS9LIAf9
+         tllmocprm5GBV2KAAwnWvpRF5cqADPVnBL/l7qrNdktdMSYVjojg4vzhoU0OCcwZLthF
+         3HOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740072797; x=1740677597;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ANYY81S4UUbSzxGp9vX0hw/u/obOtXq2bTCgGH3coGw=;
+        b=FoubpKdcEabtx5Mj+DtBkB8OilECHRPziiN2kXTAa2+/zT8TKsOFiJlP1j0YiZ+mNY
+         rotoGNdpVPl7w/mz+vQQGOoXpWOA5twLXxMsRdYrINtH7wRsatB8AI7Oz0l1nuNJutIm
+         Ngj2NbWggDXGDEafAzO6wyuJUpuljt6+R3bDjra+ENKFPZVCzRpAdoL5W1wUmblExgIR
+         bd4gQ3okW8tl9tZ+inu7b+5NgOwzLbC5TZbvdceue91pCci1ojj5lH88MPNkFLC061mL
+         wgiPKQh7phiP8pizxczgABDEgpFNdar7cPp8fKxwT8nKqUqq3dFjWK3zmlbA8rjFggR0
+         uJdw==
+X-Forwarded-Encrypted: i=1; AJvYcCWGXtLVcvTxPEHUkLtmnRAoaHB4NyZotPZbvvoZljkW1QZOXvQBf/Av9ZVdQFhtda3yMme1DGOWpULT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPpxGls2UM9UEyy7Bd7o6Jtd7xg4OKezpHFCmLhU8qU8wg0EwT
+	jXplxIk9/zcDbxHnXoYI5KOxjKBIRH2a2FbXuhlh88kpGPtLpc11xULKSCHjPW8=
+X-Gm-Gg: ASbGnctKhO9m0dADwd/1DfOsQ+NBLktvbaGE8F94vUQGoDfLdE6XCpsH9r3rYE1w36F
+	fdvsGkMCIY7o9fQBjzDIx4ksCqjQkmZQhljSQMSe5U0gO/EmEJgV6zOrzqwIpDgmpA5mdw6usWt
+	JQFYbHg62dZz6P/s2tKMtHzQNc4sgXbfvNZIIHGr1YMhhzGJJYndpJaEvKNoxTV9QLXbpbTFIkr
+	LiOPkK7q53doZAd5hsGsCv/l92jSgi2duZCrp2Az/6Hw/uDMuIlGeoAy1AAKFf1UT1FbGXISl9f
+	jwcHUw2qeNHpGeAuIipfi1HwRlMYuV+of5z2Yw5BAlZUmG08uC8i+RFYqqc=
+X-Google-Smtp-Source: AGHT+IFcZuFtypbIC0ocwrn0UjtnE5zIzW4WQOLazDAdOMAwrDA8BDnjnnZ6hgx+i5rr6QtaeBrAFg==
+X-Received: by 2002:a05:6402:524b:b0:5de:50b4:b71f with SMTP id 4fb4d7f45d1cf-5e0a12baa86mr3394933a12.12.1740072797358;
+        Thu, 20 Feb 2025 09:33:17 -0800 (PST)
+Received: from localhost (host-79-41-239-37.retail.telecomitalia.it. [79.41.239.37])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e076048c05sm5023923a12.35.2025.02.20.09.33.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Feb 2025 09:33:16 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Thu, 20 Feb 2025 18:34:21 +0100
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v7 08/11] misc: rp1: RaspberryPi RP1 misc driver
+Message-ID: <Z7dnnW4npJmfOVE0@apocalypse>
+References: <cover.1738963156.git.andrea.porta@suse.com>
+ <d1362766e3e966f78591129de918046a4b892c18.1738963156.git.andrea.porta@suse.com>
+ <87525350-b432-40b3-927c-60cd74228ea4@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250220-gianfar-yaml-v1-3-0ba97fd1ef92@posteo.net>
-References: <20250220-gianfar-yaml-v1-0-0ba97fd1ef92@posteo.net>
-In-Reply-To: <20250220-gianfar-yaml-v1-0-0ba97fd1ef92@posteo.net>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Claudiu Manoil <claudiu.manoil@nxp.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1740072564; l=9350;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=ym26/SjLOnhoBKNuOxw8M0QAUvBoR1fxquz9fbgUWwo=;
- b=oII80F8Gqfj3/3k3n+VGpeb5MH8UMOldjMTHB1ZJQyqiGepcBv8S1vLOvE163s+of9aJNSUmB
- E1Hsw4DeYVDA3007Gja/rGavCosPRv9SEcS/Lq58o63P/VcdgGkNFfw
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87525350-b432-40b3-927c-60cd74228ea4@gmx.net>
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+Hi Stefan,
 
-Add a binding for the "Gianfar" ethernet controller, also known as
-TSEC/eTSEC.
+On 15:21 Sat 08 Feb     , Stefan Wahren wrote:
+> Hi Andrea,
+> 
+> Am 07.02.25 um 22:31 schrieb Andrea della Porta:
+> > The RaspberryPi RP1 is a PCI multi function device containing
+> > peripherals ranging from Ethernet to USB controller, I2C, SPI
+> > and others.
 
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
- .../devicetree/bindings/net/fsl,gianfar.yaml       | 242 +++++++++++++++++++++
- .../devicetree/bindings/net/fsl-tsec-phy.txt       |  39 +---
- 2 files changed, 243 insertions(+), 38 deletions(-)
+...
 
-diff --git a/Documentation/devicetree/bindings/net/fsl,gianfar.yaml b/Documentation/devicetree/bindings/net/fsl,gianfar.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..dc75ceb5dc6fdee8765bb17273f394d01cce0710
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/fsl,gianfar.yaml
-@@ -0,0 +1,242 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/fsl,gianfar.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Three-Speed Ethernet Controller (TSEC), "Gianfar"
-+
-+maintainers:
-+  - J. Neuschäfer <j.ne@posteo.net>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - gianfar
-+      - fsl,etsec2
-+
-+  device_type:
-+    const: network
-+
-+  model:
-+    enum:
-+      - FEC
-+      - TSEC
-+      - eTSEC
-+
-+  reg:
-+    maxItems: 1
-+
-+  ranges: true
-+
-+  "#address-cells": true
-+
-+  "#size-cells": true
-+
-+  cell-index:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  interrupts:
-+    maxItems: 3
-+
-+  dma-coherent:
-+    type: boolean
-+
-+  fsl,magic-packet:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      If present, indicates that the hardware supports waking up via magic packet.
-+
-+  fsl,wake-on-filer:
-+    type: boolean
-+    description:
-+      If present, indicates that the hardware supports waking up by Filer
-+      General Purpose Interrupt (FGPI) asserted on the Rx int line. This is
-+      an advanced power management capability allowing certain packet types
-+      (user) defined by filer rules to wake up the system.
-+
-+  bd-stash:
-+    type: boolean
-+    description:
-+      If present, indicates that the hardware supports stashing buffer
-+      descriptors in the L2.
-+
-+  rx-stash-len:
-+    type: boolean
-+    description:
-+      Denotes the number of bytes of a received buffer to stash in the L2.
-+
-+  tx-stash-len:
-+    type: boolean
-+    description:
-+      Denotes the index of the first byte from the received buffer to stash in
-+      the L2.
-+
-+  fsl,num_rx_queues:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Number of receive queues
-+
-+  fsl,num_tx_queues:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Number of transmit queues
-+
-+  tbi-handle:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: Reference (phandle) to the TBI node
-+
-+required:
-+  - compatible
-+  - model
-+
-+patternProperties:
-+  "^mdio@[0-9a-f]+$":
-+    type: object
-+    # TODO: reference to gianfar MDIO binding
-+
-+allOf:
-+  - $ref: ethernet-controller.yaml#
-+
-+  # compatible = "gianfar" requires device_type = "network"
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: gianfar
-+    then:
-+      required:
-+        - device_type
-+
-+  # eTSEC2 controller nodes have "queue group" subnodes and don't need a "reg"
-+  # property.
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: fsl,etsec2
-+    then:
-+      patternProperties:
-+        "^queue-group@[0-9a-f]+$":
-+          type: object
-+
-+          properties:
-+            "#address-cells": true
-+
-+            "#size-cells": true
-+
-+            reg:
-+              maxItems: 1
-+
-+            interrupts:
-+              maxItems: 3
-+
-+          required:
-+            - reg
-+            - interrupts
-+
-+          additionalProperties: false
-+    else:
-+      required:
-+        - reg
-+
-+  # TSEC and eTSEC devices require three interrupts
-+  - if:
-+      properties:
-+        model:
-+          contains:
-+            enum: [ TSEC, eTSEC ]
-+    then:
-+      properties:
-+        interrupts:
-+          items:
-+            - description: Transmit interrupt
-+            - description: Receive interrupt
-+            - description: Error interrupt
-+
-+
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    ethernet@24000 {
-+        device_type = "network";
-+        model = "TSEC";
-+        compatible = "gianfar";
-+        reg = <0x24000 0x1000>;
-+        local-mac-address = [ 00 E0 0C 00 73 00 ];
-+        interrupts = <29 2>, <30 2>, <34 2>;
-+        interrupt-parent = <&mpic>;
-+        phy-handle = <&phy0>;
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    soc1 {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        ethernet@24000 {
-+            compatible = "gianfar";
-+            reg = <0x24000 0x1000>;
-+            ranges = <0x0 0x24000 0x1000>;
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+            cell-index = <0>;
-+            device_type = "network";
-+            model = "eTSEC";
-+            local-mac-address = [ 00 00 00 00 00 00 ];
-+            interrupts = <32 IRQ_TYPE_LEVEL_LOW>,
-+                         <33 IRQ_TYPE_LEVEL_LOW>,
-+                         <34 IRQ_TYPE_LEVEL_LOW>;
-+            interrupt-parent = <&ipic>;
-+
-+            mdio@520 {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                compatible = "fsl,gianfar-mdio";
-+                reg = <0x520 0x20>;
-+            };
-+        };
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    soc2 {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        ethernet {
-+            compatible = "fsl,etsec2";
-+            ranges;
-+            device_type = "network";
-+            #address-cells = <2>;
-+            #size-cells = <2>;
-+            interrupt-parent = <&gic>;
-+            model = "eTSEC";
-+            fsl,magic-packet;
-+            dma-coherent;
-+
-+            queue-group@2d10000 {
-+                #address-cells = <2>;
-+                #size-cells = <2>;
-+                reg = <0x0 0x2d10000 0x0 0x1000>;
-+                interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
-+                             <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
-+                             <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
-+            };
-+
-+            queue-group@2d14000  {
-+                #address-cells = <2>;
-+                #size-cells = <2>;
-+                reg = <0x0 0x2d14000 0x0 0x1000>;
-+                interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-+                             <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
-+                             <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
-+            };
-+        };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/net/fsl-tsec-phy.txt b/Documentation/devicetree/bindings/net/fsl-tsec-phy.txt
-index 0e55e0af7d6f59cfb571dd3fcff704b7f4c140d2..b18bb4c997ea3a221e599f694d9a28692cbcaa7c 100644
---- a/Documentation/devicetree/bindings/net/fsl-tsec-phy.txt
-+++ b/Documentation/devicetree/bindings/net/fsl-tsec-phy.txt
-@@ -8,44 +8,7 @@ Refer to Documentation/devicetree/bindings/net/fsl,gianfar-mdio.yaml
- 
- * Gianfar-compatible ethernet nodes
- 
--Properties:
--
--  - device_type : Should be "network"
--  - model : Model of the device.  Can be "TSEC", "eTSEC", or "FEC"
--  - compatible : Should be "gianfar"
--  - reg : Offset and length of the register set for the device
--  - interrupts : For FEC devices, the first interrupt is the device's
--    interrupt.  For TSEC and eTSEC devices, the first interrupt is
--    transmit, the second is receive, and the third is error.
--  - phy-handle : See ethernet.txt file in the same directory.
--  - fixed-link : See fixed-link.txt in the same directory.
--  - phy-connection-type : See ethernet.txt file in the same directory.
--    This property is only really needed if the connection is of type
--    "rgmii-id", as all other connection types are detected by hardware.
--  - fsl,magic-packet : If present, indicates that the hardware supports
--    waking up via magic packet.
--  - fsl,wake-on-filer : If present, indicates that the hardware supports
--    waking up by Filer General Purpose Interrupt (FGPI) asserted on the
--    Rx int line.  This is an advanced power management capability allowing
--    certain packet types (user) defined by filer rules to wake up the system.
--  - bd-stash : If present, indicates that the hardware supports stashing
--    buffer descriptors in the L2.
--  - rx-stash-len : Denotes the number of bytes of a received buffer to stash
--    in the L2.
--  - rx-stash-idx : Denotes the index of the first byte from the received
--    buffer to stash in the L2.
--
--Example:
--	ethernet@24000 {
--		device_type = "network";
--		model = "TSEC";
--		compatible = "gianfar";
--		reg = <0x24000 0x1000>;
--		local-mac-address = [ 00 E0 0C 00 73 00 ];
--		interrupts = <29 2 30 2 34 2>;
--		interrupt-parent = <&mpic>;
--		phy-handle = <&phy0>
--	};
-+Refer to Documentation/devicetree/bindings/net/fsl,gianfar.yaml
- 
- * Gianfar PTP clock nodes
- 
+> > +static int rp1_irq_set_type(struct irq_data *irqd, unsigned int type)
+> > +{
+> > +	struct rp1_dev *rp1 = irqd->domain->host_data;
+> > +	unsigned int hwirq = (unsigned int)irqd->hwirq;
+> > +
+> > +	switch (type) {
+> > +	case IRQ_TYPE_LEVEL_HIGH:
+> > +		dev_dbg(&rp1->pdev->dev, "MSIX IACK EN for irq %d\n", hwirq);
+> This looks a little bit inconsistent. Only this type has a debug
+> message. So either we drop this or add at least a message for
 
--- 
-2.48.0.rc1.219.gb6b6757d772
+I think that this is indeed asymmetric. That warning says
+that the 'special' IACK management is engaged for level triggered
+interrupt, which is mandatory in order to avoid missing further
+interrupts without the performance loss of busy-polling for 
+active interrupts. This is explained in par. 6.2 of:
 
+https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
 
+The point is that we're not stating the type of the interrupt
+(edge/level triggered), but we warn that we're enabling a mechanism
+useful for one type only (level triggered).
+
+> IRQ_TYPE_EDGE_RISING, too. Btw the format specifier looks wrong
+> (unsigned int vs %d).
+
+Ack.
+
+> > +		msix_cfg_set(rp1, hwirq, MSIX_CFG_IACK_EN);
+> > +		rp1->level_triggered_irq[hwirq] = true;
+> > +	break;
+> > +	case IRQ_TYPE_EDGE_RISING:
+> > +		msix_cfg_clr(rp1, hwirq, MSIX_CFG_IACK_EN);
+> > +		rp1->level_triggered_irq[hwirq] = false;
+> > +		break;
+> > +	default:
+> > +		return -EINVAL;
+> It would be nice to document why only IRQ_TYPE_LEVEL_HIGH and
+> IRQ_TYPE_EDGE_RISING are supported. In case it's a software limitation,
+> this function would be a good place. In case this is a hardware
+> limitation this should be in the binding.
+
+All ints are level-triggered. I guess I should add a short comment in
+the bindings.
+
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static struct irq_chip rp1_irq_chip = {
+> > +	.name		= "rp1_irq_chip",
+> > +	.irq_mask	= rp1_mask_irq,
+> > +	.irq_unmask	= rp1_unmask_irq,
+> > +	.irq_set_type	= rp1_irq_set_type,
+> > +};
+
+...
+
+> > +		irq_set_chip_and_handler(irq, &rp1_irq_chip, handle_level_irq);
+> > +		irq_set_probe(irq);
+> > +		irq_set_chained_handler_and_data(pci_irq_vector(pdev, i),
+> > +						 rp1_chained_handle_irq, rp1);
+> > +	}
+> > +
+> > +	err = of_overlay_fdt_apply(dtbo_start, dtbo_size, &rp1->ovcs_id, rp1_node);
+> > +	if (err)
+> > +		goto err_unregister_interrupts;
+> > +
+> > +	err = of_platform_default_populate(rp1_node, NULL, dev);
+> > +	if (err)
+> > +		goto err_unload_overlay;
+> I think in this case it's worth to add a suitable dev_err() here.
+
+Ack.
+
+Many thanks,
+Andrea
+
+> 
+> Thanks
 
