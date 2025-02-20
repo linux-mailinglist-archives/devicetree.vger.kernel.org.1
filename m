@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-148960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DC69A3DD37
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:46:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D816DA3DD3C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:47:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EFEA189CA5E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:46:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A294189EC7E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:47:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A8A41AC88B;
-	Thu, 20 Feb 2025 14:46:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E033519D06E;
+	Thu, 20 Feb 2025 14:47:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e0cNaEr2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UB7YWCo0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 636EF18A6CF
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:46:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB67413BACC
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:47:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740062809; cv=none; b=IMJpfWxfLF+FDQja3BtPc3nAoM/bv4A+ZtlD9r1Pwj6oNofafQqN7TaGIxne3BW86txjJL5alpNNPR7krnaMJR9usjYElva0PlP3v6Lsl4r+pQNugniBsObOfY3EwCWYNGDFR2+xHWvoD5DGkYfuFP7VWM9AolKjZqYoQUkua1U=
+	t=1740062853; cv=none; b=kDxkU6uoP1QsmX8RaFOg28HDXjClB+FNF87VMfEaQxqefEzkR4mMjs6EKpkEzJtCcYPH3JeZA6czmhGdRMGSVIg9xEL8JYTO3h/MY1ApESzt23CTIe2VsTXQK3K0kspdjXSqbMdiPAe3LAi/vKtxbyCkDJaTVx8tiupujT5AE8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740062809; c=relaxed/simple;
-	bh=3BC2IPxEq5/tM6nQGPYZ3pLodWYai6EreKgRdwEaAdY=;
+	s=arc-20240116; t=1740062853; c=relaxed/simple;
+	bh=8i9P5MpRYioBEZD0nn/zSGTiI1De+tNTUXmV5Pa97Ps=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e//NawMTRBABjGqGZzAg7A7fEFeefcaH49c4ytFQKEK5IZsxEBWkYQdjjO0UXj0ozRSnv5GwdjF7UZKwU2UeHgBU8TserbRbtQvFkXV2zyAA7YuBdd02se/f7FE5L0uiMU8Kv/UmufJLaRdGQ0wO7rigEyiY0AC2TIlKPXbym7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e0cNaEr2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82A92C4CED1;
-	Thu, 20 Feb 2025 14:46:46 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=UjxMBDMHvMpK86IxgaRGXN7ms8HRts9lRcd689GMjELB+T+fBK6RQFDfL8Nkd/E3mci9JSJz26AvqpzWg2SNIKAHihMr1feNkLcAgOjyDpdYK0f6kvp46JmwARBmuo2G6I6jEBhxLXn3oe8E7qcqlmh/o5EitVnR5ovbuK7k1jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UB7YWCo0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 156B3C4CED1;
+	Thu, 20 Feb 2025 14:47:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740062808;
-	bh=3BC2IPxEq5/tM6nQGPYZ3pLodWYai6EreKgRdwEaAdY=;
+	s=k20201202; t=1740062852;
+	bh=8i9P5MpRYioBEZD0nn/zSGTiI1De+tNTUXmV5Pa97Ps=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=e0cNaEr2jLE9/ajUEtIM8REvI+IyMEU7y59qlR1A9NxQLxBFRNUfq4EP0knScQgRa
-	 gl7w/qy8CDNAS4q4PEUC05cs5YFuZR2NivZV9SUMvCGxEP02+Z96mFGrGHzVIULQKi
-	 /SIHRAlNG5qCwCP2/VdF5/GEO+QTE2CwxMw1clmDtp/Ke2wlDB7w5fEpwUFoCsjgA4
-	 kTXk0MJhlqVBWfOjV73rA0+BNLJdZRox+cHupdIx5YIKVFCYva55MioLAYtkHthqkx
-	 n/Lduglvvd3SO4u6J8w/LXiDP3tXhGB1R8d0ogAVbZ0wnKunXWeN1t/4mjQAEXSLzM
-	 IH1ifiwmC5IxQ==
-Message-ID: <e0dff071-f726-47f5-b177-0485aa703263@kernel.org>
-Date: Thu, 20 Feb 2025 15:46:44 +0100
+	b=UB7YWCo0g7mN3pIGTHKrb2vUBo/ONEHmumbBfba2el+Wv0gqmoJSJ02YyYcUNA7n+
+	 zaMJ6iPbnLgNcckUtt5VwR/73w7QRzscywcLj9m/zVAfUFrB0ZKAuE0HmdfvJcr4l0
+	 hjq9JRu5Bu7CNMbKfJ05PJ1bMvMexuJcVoZhszOr84gfIsc4CbbUDZ7AGAFecTRLk1
+	 KvdYET83hnx/7v2bed2b3xLqfJA2vemt1q26XR0V0Xzp0el24AF9sRkN3+PE2OcB4A
+	 Hs+u/Dfot1eFvaEi0GEmFCwF9kPbJ1v0zvxPgoTHtl7gbaVFUp/wXo94V6Azd+PV/S
+	 BZxniKBbsAG1Q==
+Message-ID: <3ed2b213-0219-4ca7-817c-d6adf424612e@kernel.org>
+Date: Thu, 20 Feb 2025 15:47:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,12 +50,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: arm: aspeed: add IBM Balcones board
+Subject: Re: [PATCH 2/3] dt-bindings: hwmon: ucd90320: Add 90160 compatible
 To: Eddie James <eajames@linux.ibm.com>, linux-aspeed@lists.ozlabs.org
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  andrew@codeconstruct.com.au, devicetree@vger.kernel.org
 References: <20250219212735.1365050-1-eajames@linux.ibm.com>
- <20250219212735.1365050-2-eajames@linux.ibm.com>
+ <20250219212735.1365050-3-eajames@linux.ibm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,17 +101,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250219212735.1365050-2-eajames@linux.ibm.com>
+In-Reply-To: <20250219212735.1365050-3-eajames@linux.ibm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 19/02/2025 22:27, Eddie James wrote:
-> Document a new AST2600 BMC board for IBM P11 server.
-> 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> ---
+> The 90160 is just like the 90320 but with less GPIs and GPIOs.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Then isn't it compatible?
+
+Where is your driver change?
+
 
 Best regards,
 Krzysztof
