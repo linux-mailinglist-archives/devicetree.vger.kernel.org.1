@@ -1,120 +1,219 @@
-Return-Path: <devicetree+bounces-148833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EEA5A3D91E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:45:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB59A3D929
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:50:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E79D1884EC5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:45:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B16C416CCD9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 11:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E250B1F1510;
-	Thu, 20 Feb 2025 11:45:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F5D91F3BB1;
+	Thu, 20 Feb 2025 11:50:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OlXnI7ER"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C6301EFFA4;
-	Thu, 20 Feb 2025 11:45:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B5AA1EC017;
+	Thu, 20 Feb 2025 11:50:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740051927; cv=none; b=kHTd9iNRCmV0TZ4XlmPvrAAFtN/sYl9uoZnOwHWY73kLsX6kaong46Mhedlj8kXzQFqKE3vNjfXo5mbs8bG+HikKWWI9tFDzBIyX037+sr3AFQFi+RrEc28eX/70tWTeljBIZrFhfoOK9dQ203UH5FWgt6qpJB/ZpexPc5R5xuk=
+	t=1740052205; cv=none; b=RUo7uszYn3GqGIxqB2Gq2vb2hhrpsSRwz27OhkcTP7tLfxOxNOEOPyMpgMky9Gv0ylmy2e5i+EOPf4hmOMVv5z493jtdytST71Ep2v/gFm4NqzHNUs2Y1pbPhNj9ceBdP+jm2oXmo0oExtZeusbQilcNSwAv3ZO1PHOkC6LX+BA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740051927; c=relaxed/simple;
-	bh=2EEW45Yj8xi2tZwxxOWNkFYSQ4lVAi8o8LQZMo4zddc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lxUlMe8Ye5wAVtAGZHyIqSrr86S+YM761enrCokthufrS3aYQFdPGxX/hhcXLEvMJkNDQH4Dgz0lWyzkJgf6w0+7pxakiBYfPfNbbzVmQ7pw++ZYBdr4BHdlhxCb5AqvFnK12kYmgXoBHdQVcC8hvLjYU0EJU+56lbynfTB7gP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
-Received: from [192.168.0.2] (ip5f5af4d1.dynamic.kabel-deutschland.de [95.90.244.209])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: pmenzel)
-	by mx.molgen.mpg.de (Postfix) with ESMTPSA id 03CC261E6478A;
-	Thu, 20 Feb 2025 12:45:04 +0100 (CET)
-Message-ID: <184919f9-25bd-4f65-9ed9-dc452a6f4418@molgen.mpg.de>
-Date: Thu, 20 Feb 2025 12:45:03 +0100
+	s=arc-20240116; t=1740052205; c=relaxed/simple;
+	bh=C+0ekwaq00CWtb+HKL1mviruRXnG2ADk2+yUrBT9ETM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Z3gKrmxYCnBohRLKYeBl+jLA0lafCMSlFnRTcXOtbGXakRes+Nc8C1BGnqyKdc5R9FG6zDp2CVuSj5Axr8qH+y+vOr8SdmgFYDI32lHx/KHE2cdozEbBh9zAoJcwBBlX0SyxlxWMD52qoDdy2/sjqhtMmfIDTN1OjXk5tQ5ZWhk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OlXnI7ER; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C9D8EC4CED6;
+	Thu, 20 Feb 2025 11:50:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740052204;
+	bh=C+0ekwaq00CWtb+HKL1mviruRXnG2ADk2+yUrBT9ETM=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=OlXnI7ERyNOC+aNFmJFAhon8+4+UhrPZjF94w0yBX2nXCGuref0zyeVUqIJTo35mm
+	 FIjOvGpD62lOAVykIOYCm8IYNKZ+n8xCUVsK5NzEUx/JPl1E5/DO+QU8yyAyYJN8tr
+	 uWigmmHjYa4IrTC+zolMfpcLQnGbTVWWtHB0YwFn+zWV1/3AWzQRxpFVHxJb+66YHt
+	 MFDU5ALWyoUO6r914QXWxnl9JkM7U1+vJQADFAfDn4AcchAJuveGlQi7MmoYTSDl3k
+	 DSfATLelMIkMw2GKGRI0OCGO1+PlCa7oNBrtieexQCrhgmdrSxyKF0gEtPRX2ulc7L
+	 2/XkXKbcjw1GQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B85B1C021B1;
+	Thu, 20 Feb 2025 11:50:04 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Date: Thu, 20 Feb 2025 12:49:53 +0100
+Subject: [PATCH v3] dt-bindings: ata: Convert fsl,pq-sata to YAML
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] dt-bindings: net: bluetooth: nxp: Add support to
- set BD address
-To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-Cc: marcel@holtmann.org, luiz.dentz@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-bluetooth@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- amitkumar.karwar@nxp.com, sherry.sun@nxp.com, ziniu.wang_1@nxp.com,
- johan.korsnes@remarkable.no, kristian.krohn@remarkable.no,
- manjeet.gupta@nxp.com
-References: <20250220114157.232997-1-neeraj.sanjaykale@nxp.com>
-Content-Language: en-US
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20250220114157.232997-1-neeraj.sanjaykale@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20250220-ppcyaml-ata-v3-1-5e727ab86247@posteo.net>
+X-B4-Tracking: v=1; b=H4sIAOAWt2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDIyMD3YKC5MrE3BzdxJJEXSPTZJOkZFNLSwOLZCWgjoKi1LTMCrBp0bG
+ 1tQDDk7zIXQAAAA==
+X-Change-ID: 20250220-ppcyaml-ata-25c4bc59908c
+To: Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740052203; l=4260;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=I+iOxUsz/9CxQwT62hvjviACbjXEM9v+6IkeVNuuCH4=;
+ b=GP/8wcKb/lg4TszfarXzTkAsi7e0cEos83MXINc18FVkBq/T3mPTWrNYmpt1OOyGJ0sRX2BfW
+ hQPyx21r42WBocZSFiil9jgPiNp/28Nj4jsRc5TJnXrYE4Ei08mguP7
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 
-Dear Neeraj,
+From: "J. Neuschäfer" <j.ne@posteo.net>
+
+Convert the Freescale PowerQUICC SATA controller binding from text form
+to YAML. The list of compatible strings reflects current usage.
+
+To clarify the description, I changed it to mention "each SATA
+controller" instead of each port.
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Damien Le Moal <dlemoal@kernel.org>
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+---
+V3:
+- split out as a single patch
+- remove interrupt-parent property from example
+- add missing end-of-document marker (...)
+
+V2:
+- part of series [PATCH v2 00/12] YAML conversion of several Freescale/PowerPC DT bindings
+  Link: https://lore.kernel.org/lkml/20250207-ppcyaml-v2-2-8137b0c42526@posteo.net/
+- remove unnecessary multiline marker (|)
+- clarified controllers vs. ports in the description
+- trim subject line (remove "binding")
+---
+ .../devicetree/bindings/ata/fsl,pq-sata.yaml       | 60 ++++++++++++++++++++++
+ Documentation/devicetree/bindings/ata/fsl-sata.txt | 28 ----------
+ 2 files changed, 60 insertions(+), 28 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/ata/fsl,pq-sata.yaml b/Documentation/devicetree/bindings/ata/fsl,pq-sata.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..1d19ee832f0ca93735d033e9b95552b6b156c6a9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/ata/fsl,pq-sata.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/ata/fsl,pq-sata.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale 8xxx/3.0 Gb/s SATA nodes
++
++maintainers:
++  - J. Neuschäfer <j.ne@posteo.net>
++
++description:
++  SATA nodes are defined to describe on-chip Serial ATA controllers.
++  Each SATA controller should have its own node.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - fsl,mpc8377-sata
++              - fsl,mpc8536-sata
++              - fsl,mpc8315-sata
++              - fsl,mpc8379-sata
++          - const: fsl,pq-sata
++      - const: fsl,pq-sata-v2
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  cell-index:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [1, 2, 3, 4]
++    description: |
++      1 for controller @ 0x18000
++      2 for controller @ 0x19000
++      3 for controller @ 0x1a000
++      4 for controller @ 0x1b000
++
++required:
++  - compatible
++  - interrupts
++  - cell-index
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    sata@18000 {
++        compatible = "fsl,mpc8379-sata", "fsl,pq-sata";
++        reg = <0x18000 0x1000>;
++        cell-index = <1>;
++        interrupts = <44 IRQ_TYPE_LEVEL_LOW>;
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/ata/fsl-sata.txt b/Documentation/devicetree/bindings/ata/fsl-sata.txt
+deleted file mode 100644
+index fd63bb3becc9363c520a8fd06629fdc52c4d4299..0000000000000000000000000000000000000000
+--- a/Documentation/devicetree/bindings/ata/fsl-sata.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-* Freescale 8xxx/3.0 Gb/s SATA nodes
+-
+-SATA nodes are defined to describe on-chip Serial ATA controllers.
+-Each SATA port should have its own node.
+-
+-Required properties:
+-- compatible        : compatible list, contains 2 entries, first is
+-		 "fsl,CHIP-sata", where CHIP is the processor
+-		 (mpc8315, mpc8379, etc.) and the second is
+-		 "fsl,pq-sata"
+-- interrupts        : <interrupt mapping for SATA IRQ>
+-- cell-index        : controller index.
+-                          1 for controller @ 0x18000
+-                          2 for controller @ 0x19000
+-                          3 for controller @ 0x1a000
+-                          4 for controller @ 0x1b000
+-
+-Optional properties:
+-- reg               : <registers mapping>
+-
+-Example:
+-	sata@18000 {
+-		compatible = "fsl,mpc8379-sata", "fsl,pq-sata";
+-		reg = <0x18000 0x1000>;
+-		cell-index = <1>;
+-		interrupts = <2c 8>;
+-		interrupt-parent = < &ipic >;
+-	};
+
+---
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+change-id: 20250220-ppcyaml-ata-25c4bc59908c
+
+Best regards,
+-- 
+J. Neuschäfer <j.ne@posteo.net>
 
 
-Thank you for your patch.
-
-
-Am 20.02.25 um 12:41 schrieb Neeraj Sanjay Kale:
-> Allow user to set custom BD address for NXP chipsets.
-> 
-> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> v2: Add allOf and unevaluatedProperties: false (Krzysztof)
-> v3: Drop local-bd-address: true (Krzysztof)
-> ---
->   .../devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml   | 6 +++++-
->   1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
-> index 0a2d7baf5db3..a84c1c21b024 100644
-> --- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
-> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
-> @@ -17,6 +17,9 @@ description:
->   maintainers:
->     - Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
->   
-> +allOf:
-> +  - $ref: bluetooth-controller.yaml#
-> +
->   properties:
->     compatible:
->       enum:
-> @@ -43,7 +46,7 @@ properties:
->   required:
->     - compatible
->   
-> -additionalProperties: false
-> +unevaluatedProperties: false
-
-How is this diff related to the change mentioned in the commit message?
-
->   
->   examples:
->     - |
-> @@ -54,5 +57,6 @@ examples:
->               fw-init-baudrate = <3000000>;
->               firmware-name = "uartuart8987_bt_v0.bin";
->               device-wakeup-gpios = <&gpio 11 GPIO_ACTIVE_HIGH>;
-> +            local-bd-address = [66 55 44 33 22 11];
->           };
->       };
-
-
-Kind regards,
-
-Paul
 
