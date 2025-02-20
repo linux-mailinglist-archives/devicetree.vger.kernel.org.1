@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-148956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FC3CA3DD29
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:45:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFFBAA3DD35
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:46:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08BAA700A7F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:38:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 713933B1317
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:40:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C464B1FDE1B;
-	Thu, 20 Feb 2025 14:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 218521FF7B3;
+	Thu, 20 Feb 2025 14:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="F9bNGvmq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jq4xU9fI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB8411FDA89;
-	Thu, 20 Feb 2025 14:38:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA8B21FF5F4;
+	Thu, 20 Feb 2025 14:39:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740062313; cv=none; b=s2BCb+hR5gv1azX5bC6rYtXMek4XKROSkXJoJQx4+pYp21gzvpcrTs2xVuxkLPx7f123xCbUoejnflkGkUFOXU8EU06nFbntLf01ZM0+BCmi2zvZFfKFdEOhRkCG6OApODupPzSl8zcYvMsQGd6x0J1wmjRg2EP2SjTDJKKfoyI=
+	t=1740062377; cv=none; b=B/ZTAjdgSZH66W8WJYChX7iQQlX5RYpSFEDHMrzqrH3SNltrrd6tLsw0b0nGp3bg7vscLpN/3jbj4a8ozCCFDye0ebIGXUbSU3mzi5lw2pvZhoXd8hYFnDZ2vW4KyHX5tdSVqQFUL88d876sblo4tZXhuYYaYaRUB5chs3YZo2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740062313; c=relaxed/simple;
-	bh=mOxseKTpZNgDLNSeo4kqfO+xUKZPU7nr0V66dGz3Hus=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=sKjbSQtIMIHTW8gUs17iybPKNLPSAZD4gLIltxswOJzWdXo68faeMLPP24Ikpm/YOPrir0FsydQ3UqamquFJUfla0KDcUlnfuAwvyFmwKRn+oSG2AxMPUxzOY1T8RxjeFB0cZBt8Liw2YbA/dvsZwhD/OFsX6meg95B5TjEo3Jk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=F9bNGvmq; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51KAk9f3011747;
-	Thu, 20 Feb 2025 14:38:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uqgp4ZF/glsbBvLDvzSpKr94BotpGNSm9OPTQtrkRvY=; b=F9bNGvmqLetiKWSk
-	qDf7chw9u5ZHwXhVGDoZ7VHdQCsfN00nYDqFvRnLfd7hA1NeDudpe6feLKWqGvFE
-	ZrFD45Ak+HNU7qpGWK/Bgj7+2jj+MXGtIWEcJonDBfo0yshPOcINLmzsP+qbQTIi
-	YmVDg4enKxADd94XGt8aw2PzXvU5BpGUqqaSUnWOWft0lPK9+XAL7L+n5z2RT8v7
-	zQeLZIEdh7DVBcmHMOGvpThQI0agtdDkRhP/F0Rbd+WFH5lLoKGRq+yWb+Py/bTn
-	rU35v35S3XnZGoJDU3Bq7XFhK/9bR+1V1lSwX14wArqZL7gvJ1oy2oAy+rJm4YSw
-	DhswAQ==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44x2xb8kud-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Feb 2025 14:38:14 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51KEcDc7002660
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Feb 2025 14:38:13 GMT
-Received: from [10.253.79.77] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 20 Feb
- 2025 06:38:06 -0800
-Message-ID: <c592c262-5928-476f-ac2a-615c44d67277@quicinc.com>
-Date: Thu, 20 Feb 2025 22:38:03 +0800
+	s=arc-20240116; t=1740062377; c=relaxed/simple;
+	bh=v+81w0g/n3oTHfg+Hd5w5U9CvQiJXdr4f0oeUc7t3sI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pfwH1MvEsM/mx0eUfpxjxNf5ccpA/hOopkpXdq10H65vm/QLM030A3qTvEbhxRNzykHwXvc3/roV2RVzcpGDFS9aRpPosuky2//hMaHrGRGrB/mkEUdzW5l6GGT0Glj+1D+wtteuOro9Xa/wPO5V3Lq2JHYizcspFwsGezlkWlw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jq4xU9fI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFE5AC4CED1;
+	Thu, 20 Feb 2025 14:39:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740062376;
+	bh=v+81w0g/n3oTHfg+Hd5w5U9CvQiJXdr4f0oeUc7t3sI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Jq4xU9fIytnCQo4hM7XAn3x/Co3QNMrgKqBG2oTdrrvH7kzyc9m9RmTdNEJ0X0dwt
+	 B0smeoyhHj35IXZC9KreXT7yo3fCV3Q8067u2Lvfe+288zO6cS1pbmZ4585cGbWAiB
+	 VclyZSiGYyHdXH1v+zqU51ldnHajxScHCGoGMaPjKL1ferZAp+wbQyPHlcrV0hgE7/
+	 l7dSBhQDOf7BhK3jG+pcbz/Eb35QuLbQaotx+W4qETTaRVJPJHzltJmGT7JZDIgIHK
+	 AUr9U4XwE05wxbb1Hr9egAtgDw7SfDt+3b0CO7xKaMh3IW2eraFuseFzoWtEOrpjUa
+	 6vBMInJgWkYGg==
+Message-ID: <fd4263f1-3a8b-440f-aa89-af331d3b9829@kernel.org>
+Date: Thu, 20 Feb 2025 15:39:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,119 +50,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Jie Luo <quic_luoj@quicinc.com>
-Subject: Re: [PATCH net-next v3 04/14] net: ethernet: qualcomm: Initialize PPE
- buffer management for IPQ9574
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
-        Suruchi Agarwal
-	<quic_suruchia@quicinc.com>,
-        Pavithra R <quic_pavir@quicinc.com>,
-        "Simon
- Horman" <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Kees Cook
-	<kees@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        "Philipp
- Zabel" <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
-        <john@phrozen.org>
-References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
- <20250209-qcom_ipq_ppe-v3-4-453ea18d3271@quicinc.com>
- <a79027ed-012c-4771-982c-b80b55ab0c8a@lunn.ch>
+Subject: Re: [PATCH] dt-bindings: trivial-devices: Add ti,tps546b24
+To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+ monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>
+References: <c79f69d0d37e7eb61f93f5dea69148b7756a3ee5.1740056021.git.michal.simek@amd.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <a79027ed-012c-4771-982c-b80b55ab0c8a@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <c79f69d0d37e7eb61f93f5dea69148b7756a3ee5.1740056021.git.michal.simek@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: tJv55sSpdC_lXmerUQf9-QwnyZ0Cyls-
-X-Proofpoint-ORIG-GUID: tJv55sSpdC_lXmerUQf9-QwnyZ0Cyls-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-20_06,2025-02-20_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- malwarescore=0 lowpriorityscore=0 phishscore=0 impostorscore=0 spamscore=0
- mlxlogscore=606 clxscore=1015 priorityscore=1501 adultscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2502200105
 
-
-
-On 2/11/2025 9:22 PM, Andrew Lunn wrote:
->> +	/* Configure BM flow control related threshold. */
->> +	PPE_BM_PORT_FC_SET_WEIGHT(bm_fc_val, port_cfg.weight);
->> +	PPE_BM_PORT_FC_SET_RESUME_OFFSET(bm_fc_val, port_cfg.resume_offset);
->> +	PPE_BM_PORT_FC_SET_RESUME_THRESHOLD(bm_fc_val, port_cfg.resume_ceil);
->> +	PPE_BM_PORT_FC_SET_DYNAMIC(bm_fc_val, port_cfg.dynamic);
->> +	PPE_BM_PORT_FC_SET_REACT_LIMIT(bm_fc_val, port_cfg.in_fly_buf);
->> +	PPE_BM_PORT_FC_SET_PRE_ALLOC(bm_fc_val, port_cfg.pre_alloc);
+On 20/02/2025 13:53, Michal Simek wrote:
+> Describe TPS546B24 DC-DC converter which is very similar to tps546d24
+> version. The difference is that B version handles up to 20A. D version up
+> to 40A.
 > 
-> ...
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
 > 
->> +#define PPE_BM_PORT_FC_CFG_TBL_ADDR		0x601000
->> +#define PPE_BM_PORT_FC_CFG_TBL_ENTRIES		15
->> +#define PPE_BM_PORT_FC_CFG_TBL_INC		0x10
->> +#define PPE_BM_PORT_FC_W0_REACT_LIMIT		GENMASK(8, 0)
->> +#define PPE_BM_PORT_FC_W0_RESUME_THRESHOLD	GENMASK(17, 9)
->> +#define PPE_BM_PORT_FC_W0_RESUME_OFFSET		GENMASK(28, 18)
->> +#define PPE_BM_PORT_FC_W0_CEILING_LOW		GENMASK(31, 29)
->> +#define PPE_BM_PORT_FC_W1_CEILING_HIGH		GENMASK(7, 0)
->> +#define PPE_BM_PORT_FC_W1_WEIGHT		GENMASK(10, 8)
->> +#define PPE_BM_PORT_FC_W1_DYNAMIC		BIT(11)
->> +#define PPE_BM_PORT_FC_W1_PRE_ALLOC		GENMASK(22, 12)
->> +
->> +#define PPE_BM_PORT_FC_SET_REACT_LIMIT(tbl_cfg, value)	\
->> +	u32p_replace_bits((u32 *)tbl_cfg, value, PPE_BM_PORT_FC_W0_REACT_LIMIT)
->> +#define PPE_BM_PORT_FC_SET_RESUME_THRESHOLD(tbl_cfg, value)	\
->> +	u32p_replace_bits((u32 *)tbl_cfg, value, PPE_BM_PORT_FC_W0_RESUME_THRESHOLD)
-> 
-> Where is u32p_replace_bits()?
 
-u32p_replace_bits is defined by the macro __MAKE_OP(32) in the header
-file "include/linux/bitfield.h".
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> 
-> This cast does not look good. 
-
-Yes, we can remove the cast.
-
-> And this does not look like anything any
-> other driver does. I suspect you are not using FIELD_PREP() etc when
-> you should.
-> 
-> https://elixir.bootlin.com/linux/v6.14-rc2/source/include/linux/bitfield.h
-> 
-> 	Andrew
-
-The PPE_BM_XXX macros defined here write to either of two different
-32bit words in the register table, and the actual word used (0 or 1)
-is hidden within the macro. For example, the below macro.
-
-#define PPE_BM_PORT_FC_SET_CEILING_HIGH(tbl_cfg, value)	\
-	u32p_replace_bits((u32 *)(tbl_cfg) + 0x1, value,
-	PPE_BM_PORT_FC_W1_CEILING_HIGH)
-
-We could have used FIELD_PREP as well for this purpose. However using
-u32p_replace_bits() seemed more convenient and cleaner in this case,
-since with FIELD_PREP, we would have needed an assignment statement to
-be defined in the macro implementation. We also noticed many other
-drivers using u32_replace_bits(). Hope this is ok.
-
-
+Best regards,
+Krzysztof
 
