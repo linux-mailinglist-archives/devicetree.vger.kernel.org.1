@@ -1,184 +1,163 @@
-Return-Path: <devicetree+bounces-149039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D00DA3E073
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:23:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C131A3E0E4
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:35:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F4133BC315
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 16:19:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D29987AB231
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 16:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85091204840;
-	Thu, 20 Feb 2025 16:19:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AC4720B817;
+	Thu, 20 Feb 2025 16:35:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="1IWJEYbs"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fQiaFnZZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B7B1FF7C3;
-	Thu, 20 Feb 2025 16:19:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D40C51C3BE0;
+	Thu, 20 Feb 2025 16:35:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740068370; cv=none; b=nirfQlbe0fSeHCT9UkABruw2EDeaehmTx7uy6XrVln+9ZqMdTVFDY91+YMyaOSpiErjajEcACbHtiQBleMmix5+4BMgWSdcuyD4qNq9olkh/GepGfvhb7wZoJ0drpRatBW3PT5P9koyOYmmyq1V/pJel1lHceUNM+Xk+9dahwYA=
+	t=1740069318; cv=none; b=gfxmRlNP6ugcFWtZzQSUWTPMvX2jIN6JU/bjDHT3IihV/1g00Osbiy5/Gt2nWL9R1ZyERsDydsTbbBFRX2PdMuSE5w76MzrGHZ+/FiTQ1pJDSuK2p0+hDgn6v1zIAUpAfi9fjAPUXymh6gyOYUQTFBf3Yzq8Gj4L1l+s5NSs/RU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740068370; c=relaxed/simple;
-	bh=fdNUkWYIqBHHk1Go5mS2hsO50NlDOAYmlPsOmBBjZlw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nY2l03Skn3Pqoix/p2XCc7dR0CoeqZ9LmjR33H6USvvg7Ohl2+8kLC58zV+l10EZoIh7LXSHeTwIDWHhZ+yed4BMnUeSCBJxmSFC7m49Lax4hYWnMgN46nW63cjqgD3cSyZhGLwTDi0hbq7va/PUxUQqFRgzFszyD2B5WNKGElQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=1IWJEYbs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A253C4CED1;
-	Thu, 20 Feb 2025 16:19:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1740068369;
-	bh=fdNUkWYIqBHHk1Go5mS2hsO50NlDOAYmlPsOmBBjZlw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=1IWJEYbswD+naPjeNo5FuOFVhsGLrJofycv1yDl5WSTL52fwYUtfFNeUHS8Oa8AXR
-	 V+g9s4tgdRdEhH2td2TixDDT01QKffhpCISQ35siDl30FtTZCp1bTZvk3SgOtJNhzK
-	 V173iCyMghCLpORb/jZl6f70iQZj5wcLlSHNdnvc=
-Date: Thu, 20 Feb 2025 17:19:26 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Grant Likely <grant.likely@secretlab.ca>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Binbin Zhou <zhoubinbin@loongson.cn>,
-	linux-sound@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, stable@vger.kernel.org
-Subject: Re: [PATCH 0/2] driver core: platform: avoid use-after-free on
- device name
-Message-ID: <2025022019-enigmatic-mace-60ca@gregkh>
-References: <20250218-pdev-uaf-v1-0-5ea1a0d3aba0@bootlin.com>
- <2025022005-affluent-hardcore-c595@gregkh>
- <D7XB6MXRYVLY.3RM4EJEWD1IQM@bootlin.com>
- <2025022004-scheming-expend-b9b3@gregkh>
- <D7XE2DSESCHX.328BJ5KCEFH0A@bootlin.com>
+	s=arc-20240116; t=1740069318; c=relaxed/simple;
+	bh=1/Y+47l60SNTXrPXr78/DhgdYZrkHWYmn5+XP+2iCIk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=q5gp28DpzTlHyEIYsZb1jsYTc4uCnET1XrKZl7s7pew4s6/6aNImP2bRgmfrhzz/q8Zw8NlLUMimKBfq5y/8PVVirColhInRYi7E3hqfflCI7bix8aVXnhSJcUM83SP/X1PwK4JLiqNl5XDBjs0g9+gUUIV/Z4VVkSvfLqitrGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fQiaFnZZ; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51KGYsQP048123
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 20 Feb 2025 10:34:54 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1740069295;
+	bh=Erb1j78Tl39CoDzh9ac30D16Llfa3ooTqJ8erhPUCDY=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=fQiaFnZZEuGRh4BKYGGwdxs6znPM66osnJsTkoLo35Pzja8pgNJxCffu3LOHPBe8k
+	 s/PbIoOQ//sqerTNjmZ4QgQK+791700Zv4W9mtvYL95ZtDFI6F46aenAcrwL58mi8Q
+	 DNaKpIH/lEGJbfsZ4YTYcrJkfJ1Q09a+ccifLKhQ=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51KGYsDQ090117
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 20 Feb 2025 10:34:54 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 20
+ Feb 2025 10:34:54 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 20 Feb 2025 10:34:54 -0600
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51KGYsa2077700;
+	Thu, 20 Feb 2025 10:34:54 -0600
+Message-ID: <f8456f1b-b092-44b2-a916-13c4d88c5f83@ti.com>
+Date: Thu, 20 Feb 2025 10:34:54 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 01/10] arm64: dts: ti: k3-am62-wakeup: Add wakeup R5F
+ node
+To: Beleswar Prasad Padhi <b-padhi@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Andrew Davis
+	<afd@ti.com>,
+        Hari Nagalla <hnagalla@ti.com>
+References: <20250210221530.1234009-1-jm@ti.com>
+ <20250210221530.1234009-2-jm@ti.com>
+ <4740c3f8-5051-4e25-af91-b45735ffef31@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <4740c3f8-5051-4e25-af91-b45735ffef31@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <D7XE2DSESCHX.328BJ5KCEFH0A@bootlin.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Feb 20, 2025 at 04:46:59PM +0100, Th�o Lebrun wrote:
-> On Thu Feb 20, 2025 at 3:06 PM CET, Greg Kroah-Hartman wrote:
-> > On Thu, Feb 20, 2025 at 02:31:29PM +0100, Th�o Lebrun wrote:
-> >> On Thu Feb 20, 2025 at 1:41 PM CET, Greg Kroah-Hartman wrote:
-> >> > On Tue, Feb 18, 2025 at 12:00:11PM +0100, Th�o Lebrun wrote:
-> >> >> The solution proposed is to add a flag to platform_device that tells if
-> >> >> it is responsible for freeing its name. We can then duplicate the
-> >> >> device name inside of_device_add() instead of copying the pointer.
-> >> >
-> >> > Ick.
-> >> >
-> >> >> What is done elsewhere?
-> >> >>  - Platform bus code does a copy of the argument name that is stored
-> >> >>    alongside the struct platform_device; see platform_device_alloc()[1].
-> >> >>  - Other busses duplicate the device name; either through a dynamic
-> >> >>    allocation [2] or through an array embedded inside devices [3].
-> >> >>  - Some busses don't have a separate name; when they want a name they
-> >> >>    take it from the device [4].
-> >> >
-> >> > Really ick.
-> >> >
-> >> > Let's do the right thing here and just get rid of the name pointer
-> >> > entirely in struct platform_device please.  Isn't that the correct
-> >> > thing that way the driver core logic will work properly for all of this.
-> >> 
-> >> I would agree, if it wasn't for this consideration that is found in the
-> >> commit message [0]:
-> >
-> > What, that the of code is broken?  Then it should be fixed, why does it
-> > need a pointer to a name at all anyway?  It shouldn't be needed there
-> > either.
+Hi Beleswar,
+
+On 2/19/25 10:30 AM, Beleswar Prasad Padhi wrote:
+> Hi Judith,
 > 
-> I cannot guess why it originally has a separate pdev->name field.
-
-Many people got this wrong when we designed busses, it's not unique.
-But we should learn from our mistakes where we can :)
-
-> >> > It is important to duplicate! pdev->name must not change to make sure
-> >> > the platform_match() return value is stable over time. If we updated
-> >> > pdev->name alongside dev->name, once a device probes and changes its
-> >> > name then the platform_match() return value would change.
-> >> 
-> >> I'd be fine sending a V2 that removes the field *and the fallback* [1],
-> >> but I don't have the full scope in mind to know what would become broken.
-> >> 
-> >> [0]: https://lore.kernel.org/lkml/20250218-pdev-uaf-v1-2-5ea1a0d3aba0@bootlin.com/
-> >> [1]: https://elixir.bootlin.com/linux/v6.13.3/source/drivers/base/platform.c#L1357
-> >
-> > The fallback will not need to be removed, properly point to the name of
-> > the device and it should work correctly.
+> On 11/02/25 03:45, Judith Mendez wrote:
+>> From: Hari Nagalla <hnagalla@ti.com>
+>>
+>> AM62 SoC devices have a single core R5F processor in wakeup domain.
+>> The R5F processor in wakeup domain is used as a device manager
+>> for the SoC.
+>>
+>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> ---
+>> Changes since v4:
+>> - No change
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 25 ++++++++++++++++++++++
+>>   1 file changed, 25 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi 
+>> b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+>> index 9b8a1f85aa15c..061819a64300f 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+>> @@ -106,6 +106,31 @@ wkup_rti0: watchdog@2b000000 {
+>>           status = "reserved";
+>>       };
+>> +    wkup_r5fss0: r5fss@78000000 {
+>> +        compatible = "ti,am62-r5fss";
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges = <0x78000000 0x00 0x78000000 0x8000>,
+>> +             <0x78100000 0x00 0x78100000 0x8000>;
+>> +        power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
+>> +        status = "disabled";
+>> +
+>> +        wkup_r5fss0_core0: r5f@78000000 {
+>> +            compatible = "ti,am62-r5f";
+>> +            reg = <0x78000000 0x00008000>,
+>> +                  <0x78100000 0x00008000>;
+>> +            reg-names = "atcm", "btcm";
+>> +            ti,sci = <&dmsc>;
+>> +            ti,sci-dev-id = <121>;
+>> +            ti,sci-proc-ids = <0x01 0xff>;
+>> +            resets = <&k3_reset 121 1>;
+>> +            firmware-name = "am62-wkup-r5f0_0-fw";
 > 
-> No, it will not work correctly, as the above quote indicates.
-
-I don't know which quote, sorry.
-
-> Let's assume we remove the field, this situation would be broken:
->  - OF allocates platform devices and gives them names.
->  - A device matches with a driver, which gets probed.
->  - During the probe, driver does a dev_set_name().
->  - Afterwards, the upcoming platform_match() against other drivers are
->    called with another device name.
 > 
-> We should be safe as there are guardraids to not probe twice a device,
-> see __driver_probe_device() that checks dev->driver is NULL. But it
-> isn't a situation we should be in.
+> Here and everywhere else, 'resets' and 'firmware-name' are standard DT 
+> properties and should come before vendor specific properties.
 
-The fragility of attempting to match a driver to a device purely by a
-name is a very week part of using platform devices.
+Right, let me fix that, thanks.
 
-Why would a driver change the device name?  It's been given to the
-driver to "bind to" not to change its name.  That shouldn't be ok, fix
-those drivers.
+~ Judith
 
-> Another broken situation:
->  - OF allocates platform devices and gives them names.
->  - A device matches with a driver, which gets probed based on its name.
->  - During the probe, driver does a dev_set_name().
-
-Again, don't do that.  That's the breaking part.
-
->  - Module is removed.
->  - Module is re-added, the (driver, device) pair don't end up matching
->    again because the device name changed.
-
-Sure, that was a bug in the driver.  It shouldn't be changing the name,
-the name is set/owned by the bus, not the driver.
-
-Do we have examples today of platform drivers that like to rename
-devices?  I did a quick search and couldn't find any in-tree, but I
-might have missed some.
-
-Again, the bus controls the name when the device is created, changing it
-after the fact is generally not a good idea.
-
-> I might be missing other edge-cases.
 > 
-> Conclusion: we need a constant name for platform devices as we want the
-> return value of platform_match() to stay stable across time.
+> https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+> 
+> Thanks,
+> Beleswar
+> 
+>> +            ti,atcm-enable = <1>;
+>> +            ti,btcm-enable = <1>;
+>> +            ti,loczrama = <1>;
+>> +        };
+>> +    };
+>> +
+>>       wkup_vtm0: temperature-sensor@b00000 {
+>>           compatible = "ti,j7200-vtm";
+>>           reg = <0x00 0xb00000 0x00 0x400>,
 
-No, let's just not rename devices in platform drivers.
-
-Or if this really is an issue, let's fix OF to not use the platform bus
-and have it's own bus for stuff like this.
-
-thanks,
-
-greg k-h
 
