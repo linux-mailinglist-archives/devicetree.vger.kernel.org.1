@@ -1,338 +1,163 @@
-Return-Path: <devicetree+bounces-148881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0519A3DA57
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:46:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FE64A3DA62
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:49:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90A9A7A5597
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:45:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05D1B3BF687
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:48:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 463191CAA86;
-	Thu, 20 Feb 2025 12:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E56C1F3FCB;
+	Thu, 20 Feb 2025 12:48:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jCqtXfko"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TUfMv4I5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1847579CD;
-	Thu, 20 Feb 2025 12:46:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8603D1EF0A3
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 12:48:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740055600; cv=none; b=UukhdS/zN8htDZiA32bkATu9lpcvwPX0v8B/QiB406y+CSOqBusZjUlxRqv3qocTrKbMy0uk2b8fGa0b1+7Nklo4fE1d1GC0UaOr92Mot09kvAcVhw+JfvV3zjGVNZWMtB0GVdmccpo74w7pMBOOLzac4Q8mSV12OW9a1u6Q4RU=
+	t=1740055706; cv=none; b=ctbpOxN7guyvt8sH3Yo7imyHDEUASP/0NBwDCWkH9cQ1TDEdL3wED+qLrzo9kL084AK4JAidR5DR7PjiUtlmO4oUbMUxzi7A6O2bRQwZ65ly8xUeEv8IcyueuDyh5kvPM+UrEyoo4ymDyxPLC2ev7coq41MCbA2MLneXSdZ4XDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740055600; c=relaxed/simple;
-	bh=g2f//fK8aq39T2Pf40WB9z+ft2RgJY8RkoVFTl07iro=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=a7zkPz/r+Tvp9nohsX9r8NSv/BdJ41uAco4G1o3bTe2PesvjZxxE/xmp7TPoFfKAbegNy57OCTENljyLaYyJx31QBx9NiqCCV6VdT7ccajCGG7DIPbfV5wUBmrhj7vWHqPPOJ/pYHve+9dBzU3u3FxGIUeOAGvUVjhbNGx/Pf+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jCqtXfko; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 98095C4CED1;
-	Thu, 20 Feb 2025 12:46:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740055599;
-	bh=g2f//fK8aq39T2Pf40WB9z+ft2RgJY8RkoVFTl07iro=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=jCqtXfkoRqoRNaR/4Y+oEAWHZlB5kCJvT8WIioEVAp0p9EedZ6jlTprD8OtXzwd7F
-	 RWOIAI3+5N0e6rp+SpIoZUGuzcdV6/6Ua7FcEspz18d+MGWGJ8JK+rY7i4nRqpPp/v
-	 E4VpeIEpeo2XVKFCTqXa27KY++7WQdG7+WxVYQQwNKBEZwHplxAO1WwpO7vJxJfAz5
-	 oNfEYQt9+o47msCg9ku+6UVgAn0QdmmYiiTaaVpZkvwgNMxfdaZeAzbXnz4Llyis0E
-	 7Xg/9TymcdyYhwP8b3E0qHk3JsqufigVaBpHjmZmO13O5IJFMJq2xTvHbZ5Lp5f+Vm
-	 OPAtORO4fHcCQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 790C6C021B1;
-	Thu, 20 Feb 2025 12:46:39 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Thu, 20 Feb 2025 13:46:32 +0100
-Subject: [PATCH v3] dt-bindings: spi: Convert Freescale SPI bindings to
- YAML
+	s=arc-20240116; t=1740055706; c=relaxed/simple;
+	bh=WIUGIvXY46T52kzvVJcrDhggfphRCH6n5yfZ8oqcuL8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Pp1HonBR3wb0bD7r/X4DxnR6jLexji0cUb6z3rWwu8a2Wyk5uhAViwsTBNTpVv+SoGOkhYM5M1gBfFc3UxDGLOmHoNzzec4rpRf8N6wV9bNsAXqH8tjkys64unhz/sqrRBkBD7bff8W+P0Ofka8VMEVolxm1RjWiJIj3wBnUt9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TUfMv4I5; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-22104c4de96so12977225ad.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 04:48:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740055705; x=1740660505; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CE4a7LWNgD+6bEHm+If6yI6CBWntgAegdTZ6WlyVgRs=;
+        b=TUfMv4I5hAE+HvD6qhlXIwG4Zk/1n2HYdnc4iBnCxSbbucpFASMmCmlaYJDaguE2pn
+         AtHozFLs9nYdMrXa0L7AK6z9L9ItbqS4r3JfMQfnpJ/MfwD/K7hhLsPvIvUMuyd88WxY
+         JdT4vZDJsbZMMwHbaZzXJF9eAMABD7Nou0UQeDOgBzSqoP7t5XwWrTxzm9741ThXpBTl
+         SK5YuX4tTsX+sN+/j2xnpBGCpfw6TfZ+lr5YM55ZXfwvgJ8+gMPP0R52ZLa+ocdfCjDh
+         zUu5i5ZMi+EkmfMWS1aoS+8EkznXvhkyo26XDWMwgy39qkA81AJA3qgFBmtQxFFtWhn4
+         kjpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740055705; x=1740660505;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CE4a7LWNgD+6bEHm+If6yI6CBWntgAegdTZ6WlyVgRs=;
+        b=HpgLEGLq+eCwXrBDp8AOQYqWmjXEQ7ZQDljqRaUMFyNQM22ePwz8gkwHYb9eVhqxut
+         CZgW0t+x99mS5Wgm6iK8BIOpCicvceXA88Dm8ne/ZTcBVKTo2KqjpyJDS7EIb5aQM5Rj
+         36inn7chgJZ7W3ayNmZ/OUqDKA6gQePpTnUbLrNOyFdi0LOx+B6Y7wzshryrmjvfXoRk
+         wlRM3S0bn6HRN1s8LFm/h05gb23a9SYEjqxK+x+335v1WXYTvBHnVFzAcXCIeRbDbZX7
+         sK0xI6+wyWEmS3wj+TKDBPj8m/Mm+lH+QktgAOAY0JKOpFLprm+XVL7RwM3oaDEJzVP2
+         4tfg==
+X-Forwarded-Encrypted: i=1; AJvYcCXUGiA7SqYo+x+OWxsCoqJZWcPNOLGu/CidCkoH0PkxulGlcO8vw/2N15CUkhOsPXotBI5K+YJfXr0s@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZvL/Nsrm4xwdwzA0uKWTFCB9zSj15KwcZcZZT7LnAVyDFmh5t
+	RI2xBOxVspx8r8GZhTaBpAeM/P4KpXmBnMQdftdV6oFj/+Sifc1mu7JncA==
+X-Gm-Gg: ASbGncv3Yq6RfkzeaDw82hBjdlvYi9Ckng6nqgiwqxbQz7ap4n1CHHK+goBM9uUacPf
+	nj3raqByhN3GGfvz6WeJOMd/c3KkjqvVoWrUH0jbHyowEY+pj0PJapY23mW3NZBQFg37QzcQ0hl
+	HU++KkTmtDjP0G8cmvo319Hh1p+qADIV05590nJpf1aRVpV65jPHh6vYtfMHWwT+Y01X2oftdBX
+	x4gqg+i2HQk6nM7knEDG3++5jJ+HLC5dol82p07VE35ogCN6YClSzK2grfw2fRHUM/IFTfyfM+S
+	6PoPY15SEnnzSLPpVHYatMBoB5Vy+g==
+X-Google-Smtp-Source: AGHT+IFjmiPqipTEZkwZ1WqVXZGW1oHgfOJdHBp8emwTtehMMJEryDelpL2Ck2DmoddIgyfmCqbAIg==
+X-Received: by 2002:a05:6a00:1392:b0:730:74f8:25b6 with SMTP id d2e1a72fcca58-7326179e8a0mr35184251b3a.6.1740055704812;
+        Thu, 20 Feb 2025 04:48:24 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9a27:2e77:89d4:5724])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73255f4c0d1sm11963662b3a.62.2025.02.20.04.48.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Feb 2025 04:48:24 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: shawnguo@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2] ARM: dts: vfxxx: Fix the order of the DMA entries
+Date: Thu, 20 Feb 2025 09:48:09 -0300
+Message-Id: <20250220124809.2361942-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250220-ppcyaml-spi-v3-1-e340613c7875@posteo.net>
-X-B4-Tracking: v=1; b=H4sIACckt2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
- vPSU3UzU4B8JSMDI1MDIyMD3YKC5MrE3Bzd4oJMXQvTNGMLI4skIxNjUyWgjoKi1LTMCrBp0bG
- 1tQBkMzqJXQAAAA==
-X-Change-ID: 20250220-ppcyaml-spi-85f3828b2435
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1740055598; l=7775;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=boF0Ptb0S1YPvdr9oEqVUSafvrLS+pZmCso6Fl1gjco=;
- b=PO2ytQrrgjrqH3PJyuQ+9iOvcuAke4DEX0xzz8Cm49UN4/5+8w6OZPfs71uwvMhAAjIDJMerw
- 3HmahTtu0QwCZZN+iy42ppYB5whvaaz+5KXKgEiX/ZflrYRBt/PmFZx
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+From: Fabio Estevam <festevam@denx.de>
 
-fsl-spi.txt contains the bindings for the fsl,spi and fsl,espi
-contollers. Convert them to YAML.
+According to fsl,dspi.yaml the expected order for describing the dmas
+and dma-names properties is "tx" first, followed by "rx".
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+Adjust it acordingly to fix the following dt-schema warnings:
+
+spi@4002c000: dma-names:0: 'tx' was expected
+spi@4002c000: dma-names:1: 'rx' was expected
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
-V3:
-- split out as a single patch
-- use IRQ_TYPE_* constants in examples
-- drop interrupt-parent from examples, add Rob's review tag
+Changes since v1:
+- Fixed Subject.
 
-V2:
-- part of series [PATCH v2 00/12] YAML conversion of several Freescale/PowerPC DT bindings
-  Link: https://lore.kernel.org/lkml/20250207-ppcyaml-v2-8-8137b0c42526@posteo.net/
-- add missing end-of-document ("...") markers
-- add missing constraints to interrupts, fsl,espi-num-chipselects,
-  fsl,csbef and fsl,csaft properties
-- remove unnecessary type from clock-frequency property
-- fix property order to comply with dts coding style
----
- .../devicetree/bindings/spi/fsl,espi.yaml          | 65 +++++++++++++++++++
- Documentation/devicetree/bindings/spi/fsl,spi.yaml | 74 ++++++++++++++++++++++
- Documentation/devicetree/bindings/spi/fsl-spi.txt  | 62 ------------------
- 3 files changed, 139 insertions(+), 62 deletions(-)
+ arch/arm/boot/dts/nxp/vf/vfxxx.dtsi | 17 ++++++++---------
+ 1 file changed, 8 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/fsl,espi.yaml b/Documentation/devicetree/bindings/spi/fsl,espi.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..d267bbfaf02f56e5b1ab8f6b2a8a34be13fb6766
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/fsl,espi.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/fsl,espi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale eSPI (Enhanced Serial Peripheral Interface) controller
-+
-+maintainers:
-+  - J. Neuschäfer <j.ne@posteo.net>
-+
-+properties:
-+  compatible:
-+    const: fsl,mpc8536-espi
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  fsl,espi-num-chipselects:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 1, 4 ]
-+    description: The number of the chipselect signals.
-+
-+  fsl,csbef:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 15
-+    description: Chip select assertion time in bits before frame starts
-+
-+  fsl,csaft:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 15
-+    description: Chip select negation time in bits after frame ends
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - fsl,espi-num-chipselects
-+
-+allOf:
-+  - $ref: spi-controller.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    spi@110000 {
-+        compatible = "fsl,mpc8536-espi";
-+        reg = <0x110000 0x1000>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        interrupts = <53 IRQ_TYPE_EDGE_FALLING>;
-+        fsl,espi-num-chipselects = <4>;
-+        fsl,csbef = <1>;
-+        fsl,csaft = <1>;
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/spi/fsl,spi.yaml b/Documentation/devicetree/bindings/spi/fsl,spi.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..d74792fc9bf2d74c1e3126c1dc28878df95bf57e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/fsl,spi.yaml
-@@ -0,0 +1,74 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/fsl,spi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale SPI (Serial Peripheral Interface) controller
-+
-+maintainers:
-+  - J. Neuschäfer <j.ne@posteo.net>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,spi
-+      - aeroflexgaisler,spictrl
-+
-+  reg:
-+    maxItems: 1
-+
-+  cell-index:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      QE SPI subblock index.
-+      0: QE subblock SPI1
-+      1: QE subblock SPI2
-+
-+  mode:
-+    description: SPI operation mode
-+    enum:
-+      - cpu
-+      - cpu-qe
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    description: input clock frequency to non FSL_SOC cores
-+
-+  cs-gpios: true
-+
-+  fsl,spisel_boot:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      For the MPC8306 and MPC8309, specifies that the SPISEL_BOOT signal is used
-+      as chip select for a slave device. Use reg = <number of gpios> in the
-+      corresponding child node, i.e. 0 if the cs-gpios property is not present.
-+
-+required:
-+  - compatible
-+  - reg
-+  - mode
-+  - interrupts
-+
-+allOf:
-+  - $ref: spi-controller.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    spi@4c0 {
-+        compatible = "fsl,spi";
-+        reg = <0x4c0 0x40>;
-+        cell-index = <0>;
-+        interrupts = <82 0>;
-+        mode = "cpu";
-+        cs-gpios = <&gpio 18 IRQ_TYPE_EDGE_RISING          // device reg=<0>
-+                    &gpio 19 IRQ_TYPE_EDGE_RISING>;        // device reg=<1>
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/spi/fsl-spi.txt b/Documentation/devicetree/bindings/spi/fsl-spi.txt
-deleted file mode 100644
-index 0654380eb7515d8bda80eea1486e77b939ac38d8..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/spi/fsl-spi.txt
-+++ /dev/null
-@@ -1,62 +0,0 @@
--* SPI (Serial Peripheral Interface)
--
--Required properties:
--- cell-index : QE SPI subblock index.
--		0: QE subblock SPI1
--		1: QE subblock SPI2
--- compatible : should be "fsl,spi" or "aeroflexgaisler,spictrl".
--- mode : the SPI operation mode, it can be "cpu" or "cpu-qe".
--- reg : Offset and length of the register set for the device
--- interrupts : <a b> where a is the interrupt number and b is a
--  field that represents an encoding of the sense and level
--  information for the interrupt.  This should be encoded based on
--  the information in section 2) depending on the type of interrupt
--  controller you have.
--- clock-frequency : input clock frequency to non FSL_SOC cores
--
--Optional properties:
--- cs-gpios : specifies the gpio pins to be used for chipselects.
--  The gpios will be referred to as reg = <index> in the SPI child nodes.
--  If unspecified, a single SPI device without a chip select can be used.
--- fsl,spisel_boot : for the MPC8306 and MPC8309, specifies that the
--  SPISEL_BOOT signal is used as chip select for a slave device. Use
--  reg = <number of gpios> in the corresponding child node, i.e. 0 if
--  the cs-gpios property is not present.
--
--Example:
--	spi@4c0 {
--		cell-index = <0>;
--		compatible = "fsl,spi";
--		reg = <4c0 40>;
--		interrupts = <82 0>;
--		interrupt-parent = <700>;
--		mode = "cpu";
--		cs-gpios = <&gpio 18 1		// device reg=<0>
--			    &gpio 19 1>;	// device reg=<1>
--	};
--
--
--* eSPI (Enhanced Serial Peripheral Interface)
--
--Required properties:
--- compatible : should be "fsl,mpc8536-espi".
--- reg : Offset and length of the register set for the device.
--- interrupts : should contain eSPI interrupt, the device has one interrupt.
--- fsl,espi-num-chipselects : the number of the chipselect signals.
--
--Optional properties:
--- fsl,csbef: chip select assertion time in bits before frame starts
--- fsl,csaft: chip select negation time in bits after frame ends
--
--Example:
--	spi@110000 {
--		#address-cells = <1>;
--		#size-cells = <0>;
--		compatible = "fsl,mpc8536-espi";
--		reg = <0x110000 0x1000>;
--		interrupts = <53 0x2>;
--		interrupt-parent = <&mpic>;
--		fsl,espi-num-chipselects = <4>;
--		fsl,csbef = <1>;
--		fsl,csaft = <1>;
--	};
-
----
-base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
-change-id: 20250220-ppcyaml-spi-85f3828b2435
-
-Best regards,
+diff --git a/arch/arm/boot/dts/nxp/vf/vfxxx.dtsi b/arch/arm/boot/dts/nxp/vf/vfxxx.dtsi
+index 6334ad4aec4b..597f20be82f1 100644
+--- a/arch/arm/boot/dts/nxp/vf/vfxxx.dtsi
++++ b/arch/arm/boot/dts/nxp/vf/vfxxx.dtsi
+@@ -158,8 +158,8 @@ dspi0: spi@4002c000 {
+ 				clocks = <&clks VF610_CLK_DSPI0>;
+ 				clock-names = "dspi";
+ 				spi-num-chipselects = <6>;
+-				dmas = <&edma1 1 12>, <&edma1 1 13>;
+-				dma-names = "rx", "tx";
++				dmas = <&edma1 1 13>, <&edma1 1 12>;
++				dma-names = "tx", "rx";
+ 				status = "disabled";
+ 			};
+ 
+@@ -172,8 +172,8 @@ dspi1: spi@4002d000 {
+ 				clocks = <&clks VF610_CLK_DSPI1>;
+ 				clock-names = "dspi";
+ 				spi-num-chipselects = <4>;
+-				dmas = <&edma1 1 14>, <&edma1 1 15>;
+-				dma-names = "rx", "tx";
++				dmas = <&edma1 1 15>, <&edma1 1 14>;
++				dma-names = "tx", "rx";
+ 				status = "disabled";
+ 			};
+ 
+@@ -529,9 +529,8 @@ dspi2: spi@400ac000 {
+ 				clocks = <&clks VF610_CLK_DSPI2>;
+ 				clock-names = "dspi";
+ 				spi-num-chipselects = <2>;
+-				dmas = <&edma1 0 10>,
+-					<&edma1 0 11>;
+-				dma-names = "rx", "tx";
++				dmas = <&edma1 0 11>, <&edma1 0 10>;
++				dma-names = "tx", "rx";
+ 				status = "disabled";
+ 			};
+ 
+@@ -544,8 +543,8 @@ dspi3: spi@400ad000 {
+ 				clocks = <&clks VF610_CLK_DSPI3>;
+ 				clock-names = "dspi";
+ 				spi-num-chipselects = <2>;
+-				dmas = <&edma1 0 12>, <&edma1 0 13>;
+-				dma-names = "rx", "tx";
++				dmas = <&edma1 0 13>, <&edma1 0 12>;
++				dma-names = "tx", "rx";
+ 				status = "disabled";
+ 			};
+ 
 -- 
-J. Neuschäfer <j.ne@posteo.net>
-
+2.34.1
 
 
