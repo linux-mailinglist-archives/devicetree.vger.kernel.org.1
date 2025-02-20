@@ -1,123 +1,137 @@
-Return-Path: <devicetree+bounces-148950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68F1FA3DCD7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:31:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C09E7A3DD10
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:39:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90C677A2F6A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:30:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA804860547
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:31:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6D2B3987D;
-	Thu, 20 Feb 2025 14:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EDFC1D5154;
+	Thu, 20 Feb 2025 14:32:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N9C/CrOO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BjmJyU+j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1C7EEEB1
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 769CA28EA;
+	Thu, 20 Feb 2025 14:32:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740061872; cv=none; b=EhKkMOyTRnqpKdVQ6DQkBy2uOxO8E7X+1nvvgTW1yfdSHVY4C6vtAbHYSrgWuxHhwQ9s0UBSm0Il0ANdVQMfOicdG6gWbizejhgwrdIYRdmnZ8O7e3zGK6jnq+58qZBdyLhI/wc7nMxBercm2RTzpK28pDGinaATz/iokkM7tWU=
+	t=1740061923; cv=none; b=tGODDkhuWgX4MExmHhSjWVtJx+thbUfYtXKoMz1mGxvHcvenHKgv6JisxpqvA+mv5P+ZfeOAwpeUxQMLPUY3MXc+904USLz/WA14CL2FUHugiYvL7rnZloM3OVEKyN6OisekLt6Lvbl7aBKNRWrj0w1u9JQMqojjMUiSrPtM4k4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740061872; c=relaxed/simple;
-	bh=0f5c3zR7Wzjxxys0mPLOLrwMcTNVI9runvlDFVgT4WY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=toWFYqA87txGFTqN+7BGzWjQGCiWZGL8mKc0/Jk8l0herAa04ud9r36HZtVzuwh086EDZ4N/A00tk6LFghtTOp4Jsgjx+Q7+IWgN9OZHapuq7kJQLtmrT8FWkrWDDR7Vbqn1oJteBWkzgZU0UgC3wmKG6QucWFqmIe9zcVgg6Tc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N9C/CrOO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 733BEC4CED1;
-	Thu, 20 Feb 2025 14:31:09 +0000 (UTC)
+	s=arc-20240116; t=1740061923; c=relaxed/simple;
+	bh=GoGvedSskUunt8JR0ab0OKe1KhMr9oaefFluEv4FAqY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aCtv064fO0b2ntfdeQBiTht7hxG6kLD2Rde0C4usWd+Bd6Nijf/Dixw+HlQYRWleRGlnPj3gjhtnCgIcfpDZXdNiAhBP50maSWh/JsPpcRpAaaNm8FSGVIFY8myDGfx7oCnRihdXfIXLoeU8TtmJO2pDNtzizjcSRQrjZcI07W0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BjmJyU+j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3917C4AF09;
+	Thu, 20 Feb 2025 14:32:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740061872;
-	bh=0f5c3zR7Wzjxxys0mPLOLrwMcTNVI9runvlDFVgT4WY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=N9C/CrOOkDeEEPECDD6HW75/EElEsx9DHgB6xzymh7pdfKZJg8ue7j4eb/+HVnPz5
-	 djQbQw0d8ZPN41BMMj91ZU3jmjA/zFa9j7hbOVs4svf88AT1WkktQvRpqqQyoIN34E
-	 Z+nhk5ksQWr0vdNZ6dBYddoZPU8Qp1OD60FZg+6PBNDwUPrMpzPaLM8pjA/Xrrcsn0
-	 sAPhRJsTU4o2s9eRrPOOYYVK7c674lZouF7Aq/S7+YOfO8HrwyYGzlIyrNCzj2sUj5
-	 9We71I4FfvKHlWOfoWga+Y1nYs9zDhW87rc7JDJLk3FJ7eRAifZjT8A+yDB1S137/b
-	 Ck9s+UUw0EnPA==
-Message-ID: <b0e06953-91b2-43c5-b4e2-a8744673a62b@kernel.org>
-Date: Thu, 20 Feb 2025 15:31:07 +0100
+	s=k20201202; t=1740061923;
+	bh=GoGvedSskUunt8JR0ab0OKe1KhMr9oaefFluEv4FAqY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=BjmJyU+jXO9wcmng76nLJ/zgZme8LgV8F0crqAhH7kvY3zW9ea74lEjJqAxWsXukp
+	 N01BsmLRRcczRdhIGbHIrQ40uIgVOojwYi1/l/YgZOoThWIjLxQtc6Y5A/ywMc3Z8b
+	 Da3lgj4JchDjRNlOyD+TMTLzdSIY1deamLy/aWzZfpOg4M1TZLmsPWqwu5jzBeWLDi
+	 wbf6WtxKT1bOmH4UvHf2L4aIQBS4u1ybc7uPjYHM4GjJ8J8+zl7gEE+5S8hKHzJekb
+	 BwNuueGBvkDmvA5w0y5IZoD8JK/m1eTEmOESlVJrXPvmq7Of4cgq8qZiFdBnbADiQ+
+	 vKL9WXO9MkwEQ==
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2fc3027c7aeso2092813a91.0;
+        Thu, 20 Feb 2025 06:32:02 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUvNVHhYd6Qa+CI1nQm0xlEeHzFj3+Wtz1HyeVo+EOrmavgrKltjSuiLYs4nIM22lvC9MeRkZopJl8qi4sf@vger.kernel.org, AJvYcCXaR9kQ57or3aKhYqSXZhwGhTn7HzyvPl436LbOINvWPjAmc3C0B71ctTEVhdURTtZHGrfI9ef2Dsl/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBjH0Yx4hJ6QGvDXuLGKpUkzFnMT82FKZH1+zB08swVYNAn9Jw
+	+M1UikN0zOS81547STJWBl1iww1alD23O0WsqLBGtuWmPLXza4CrQdwTrT1TqJz66yVts/hsZ89
+	FAru//AYEkPqBRugdLL/294EeAg==
+X-Google-Smtp-Source: AGHT+IEEvVnA4H81470tv1H4G5h0w0yEGHELm51+9xXj/GLBqX14Y9VHjS4nUzKS5Ntqk6uBqNxa9Lc6bKjwcl3wf1E=
+X-Received: by 2002:a17:90b:3809:b0:2ee:d024:e4fc with SMTP id
+ 98e67ed59e1d1-2fc411509b7mr38299734a91.33.1740061922487; Thu, 20 Feb 2025
+ 06:32:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: imx53-mba53: Fix the PCA9554 compatible
-To: Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- Fabio Estevam <festevam@denx.de>
-References: <20250220133153.2380248-1-festevam@gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250220133153.2380248-1-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250217154836.108895-1-angelogioacchino.delregno@collabora.com> <20250217154836.108895-34-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250217154836.108895-34-angelogioacchino.delregno@collabora.com>
+From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date: Thu, 20 Feb 2025 22:32:47 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8a+oV_XwBACyy09bKdwKVy+iEPxbfZBkkdYm2jYD_k2w@mail.gmail.com>
+X-Gm-Features: AWEUYZnj0eBVMJFGwcqYWEal64YwZLRUffmMdq4xRpXkJqA2A3_JsPYTIk5oAgc
+Message-ID: <CAAOTY_8a+oV_XwBACyy09bKdwKVy+iEPxbfZBkkdYm2jYD_k2w@mail.gmail.com>
+Subject: Re: [PATCH v7 33/43] drm/mediatek: mtk_hdmi: Cleanup function mtk_hdmi_resume()
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, 
+	jie.qiu@mediatek.com, junzhi.zhao@mediatek.com, 
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
+	dmitry.baryshkov@linaro.org, lewis.liao@mediatek.com, 
+	ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com, 
+	jason-jh.lin@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 20/02/2025 14:31, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> gpio-pca95xx.yaml documents 'nxp,pca9554', so use this compatible
-> to fix the following dt-schema warning:
-> 
-> failed to match any schema with compatible: ['pca9554']
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+Hi, Angelo:
+
+AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
+=BC
+2025=E5=B9=B42=E6=9C=8817=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=8811:=
+50=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Remove the error print in case of mtk_hdmi_clk_enable_audio()
+> failures: since the APIs will already print on their own, having
+> one in there is redundant.
+
+Applied to mediatek-drm-next [1], thanks.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
+
+Regards,
+Chun-Kuang.
+
+>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
 > ---
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+>  drivers/gpu/drm/mediatek/mtk_hdmi.c | 9 +--------
+>  1 file changed, 1 insertion(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediat=
+ek/mtk_hdmi.c
+> index 50f9ab48cbf9..2614561e2634 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> @@ -1704,15 +1704,8 @@ static __maybe_unused int mtk_hdmi_suspend(struct =
+device *dev)
+>  static __maybe_unused int mtk_hdmi_resume(struct device *dev)
+>  {
+>         struct mtk_hdmi *hdmi =3D dev_get_drvdata(dev);
+> -       int ret =3D 0;
+>
+> -       ret =3D mtk_hdmi_clk_enable_audio(hdmi);
+> -       if (ret) {
+> -               dev_err(dev, "hdmi resume failed!\n");
+> -               return ret;
+> -       }
+> -
+> -       return 0;
+> +       return mtk_hdmi_clk_enable_audio(hdmi);
+>  }
+>
+>  static SIMPLE_DEV_PM_OPS(mtk_hdmi_pm_ops, mtk_hdmi_suspend, mtk_hdmi_res=
+ume);
+> --
+> 2.48.1
+>
 
