@@ -1,73 +1,70 @@
-Return-Path: <devicetree+bounces-148659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 242F0A3CE77
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 02:14:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B80CA3CEDB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 02:45:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3EA6177BC5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 01:14:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EA9C18995BA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 01:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B2C2FC23;
-	Thu, 20 Feb 2025 01:14:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89FBD1B6CE5;
+	Thu, 20 Feb 2025 01:45:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="jINtxwQI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TQR0o9Gv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0D9D15624D;
-	Thu, 20 Feb 2025 01:14:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740014078; cv=pass; b=luZRmaVlMW2virTxqBmg2R2YwtNieDUtmBOmitVPjJbsWfh2xrV0ZP5/RgHLsyE4bs6UMgC6sNtYxWs4RrMZKxBaqkGW+Tx6uRDiSIjTICTdxIanRH+MNyUOFmYmquSqTcxF9x0TJF2vBBVy18RhjDcizjU2foanxEP6z8eoR0s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740014078; c=relaxed/simple;
-	bh=zJkBB492HwKk7oWSVF9d77ThEDLdy11QUR6n3qm+NGA=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47F771F19A;
+	Thu, 20 Feb 2025 01:45:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740015951; cv=none; b=Cp9jqUdh/HN9HFPeVWgj6TPAxZYK3YI/UegJnqg82Gk3bhb50G7bzK5oOQ66hE/I6A1Rn1JrH2kn44V2DhdvwEugssCqGAk00N6IurBaWTGh3zbG2nnpJ8Pq1dlx/BUVjVKSP4Fw5SiY1AZOy/+JV4cuT8fhdspwpFNUJeuT1H4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740015951; c=relaxed/simple;
+	bh=9irbtGVWQj8eLhc5O42ch0DohPLL2OQmuJNb1bG37ZM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a+e1sNonCqv56tG7R2dPlUVFuXAK4EXDlQSMKjWV3HOwnbDZZag2Sg0KQqvHsZJkudekzhUqpt+nOiCp0l21rhs6p7gqmqPfhkUeNBPqsJia/ERHLRYslucXA1g6Vg4gu1jbBLjxpQ8MLvBkcJEXihBkbsPGY7RWStVCvmukECU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=jINtxwQI; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1740014055; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=FKE4DGPHfK3pSQzOrAVcQPJnHlLrjRyU52MeQX2NJ6KXFkZyf+7vVUyqf3F9A4uiILCGtyVvcr+KIuL5yTKAdGomO81lWjikOr8kh4F1YdJqbOFs7WAoPf9emwpua2KetQZZ9+LuSCqeULTfdAUCSfKS93sZYM3FawTTyuWT3Zk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1740014055; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=fy3eZlkZDiRooYkfeOXa4T84dJQafoGp21goOeYujS8=; 
-	b=I3rZCuLAukzm9+YE2+9Nwon/NUu4uGLAJ5wKfu2nW6afjYD717VqIwMTCYJWks5aoinyguIpmqyowo7aO3GmG5ARHbrgQR9Sx1+NLNOEawI4MJt3aUNorvzF6uiwiWcBhqd/xJTotxX5IeCsKQyyBwEEzxNB0hlHLHNM7Ig2GjI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740014055;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=fy3eZlkZDiRooYkfeOXa4T84dJQafoGp21goOeYujS8=;
-	b=jINtxwQIQmq3LfzRcCQ34frj++Sy3H73y5Hg5Yfa/3sF59RBGJ+cI+ANG4G/QeD/
-	fJC2Lyyb4+X2JUvXGqZbyY3DCUkF2oEjgBBG2X09X8U1PP2IQJu+f+p8Wz6vq0XBYtH
-	boEN1WNFQHYayKEPTHdrPMQoZxQ5foPJvbqGIEcs=
-Received: by mx.zohomail.com with SMTPS id 1740014052769796.8629411328841;
-	Wed, 19 Feb 2025 17:14:12 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id 44A8F180608; Thu, 20 Feb 2025 02:14:08 +0100 (CET)
-Date: Thu, 20 Feb 2025 02:14:08 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, kernel@collabora.com, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/6] arm64: dts: rockchip: Add thermal trim OTP and tsadc
- nodes
-Message-ID: <p3pddbmqyairfuqubvbjrsdi3s6m5w6etcfyevyatwlevetra6@5daaqilf7ve5>
-References: <20250216-rk3576-tsadc-upstream-v1-0-6ec969322a14@collabora.com>
- <20250216-rk3576-tsadc-upstream-v1-5-6ec969322a14@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=XG3goz6Dczz6OqgjkiTKpCB54PM5tjRukSlxuKVJrsBVZT3TFqD4UEBjjdg805/5mQbiRxovGoAsQQPbkPNDW/yWyuYh0+ZEdnOeTyS5yL97M1uus3fqy4O71eEB9eXC/NmaUaUSBdG5/8n+OecQtUrjUuCHw3a7l/CHvJAqJS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TQR0o9Gv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17646C4CED1;
+	Thu, 20 Feb 2025 01:45:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740015950;
+	bh=9irbtGVWQj8eLhc5O42ch0DohPLL2OQmuJNb1bG37ZM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TQR0o9GvMeGIOLknSOOAuwSnE1/m4pSPPZmKSQFEqHVDzAh6g1XNFC82sWuK3BXzh
+	 JP8AuxUjse5a6Vx4dcXyuhwZodZD68zz0TmzuGULFHVn5iYzRbdk5eGFaqkYgwCI5r
+	 1Ikrzi6cyBWFU13D2fOHcPZtv5tGiLKjj+VawXSoAOXSRCTOMtCHDbDegTVQpY1LGr
+	 l8+EzcCb9dk6k6XIDrpEx4RM2PftUlva7qfRs29WTsjW0ThOtT/HY9IouUPUjLGG5F
+	 7cg1brC8uiyKa2hM27hfBc0v9jqFPcY0/LqMHSBSwfdzxJYfUX+AdOo88/mf4P+mCo
+	 X2aytNNmfzdvw==
+Date: Thu, 20 Feb 2025 01:45:47 +0000
+From: Mark Brown <broonie@kernel.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>, Shenghao Ding <shenghao-ding@ti.com>,
+	Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>,
+	Dan Murphy <dmurphy@ti.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shi Fu <shifu0704@thundersoft.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+	Hector Martin <marcan@marcan.st>, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	asahi@lists.linux.dev, linux-hwmon@vger.kernel.org,
+	Neal Gompa <neal@gompa.dev>
+Subject: Re: [PATCH v2 20/29] ASoC: tas2764: Add SDZ regulator
+Message-ID: <Z7aJS_uq75aKLCht@finisterre.sirena.org.uk>
+References: <20250218-apple-codec-changes-v2-0-932760fd7e07@gmail.com>
+ <20250218-apple-codec-changes-v2-20-932760fd7e07@gmail.com>
+ <Z7SoL3HN7Xb3HUTm@finisterre.sirena.org.uk>
+ <CAHgNfTwmR57GyiMk+-_x3jVNjxCpgLvS4dY2wbZkJN68PgSdjQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,173 +72,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="f2oqydbedyoledmw"
+	protocol="application/pgp-signature"; boundary="L0ausYZ/FTrIXK1l"
 Content-Disposition: inline
-In-Reply-To: <20250216-rk3576-tsadc-upstream-v1-5-6ec969322a14@collabora.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.4.2/239.939.29
-X-ZohoMailClient: External
+In-Reply-To: <CAHgNfTwmR57GyiMk+-_x3jVNjxCpgLvS4dY2wbZkJN68PgSdjQ@mail.gmail.com>
+X-Cookie: Editing is a rewording activity.
 
 
---f2oqydbedyoledmw
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+--L0ausYZ/FTrIXK1l
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 5/6] arm64: dts: rockchip: Add thermal trim OTP and tsadc
- nodes
-MIME-Version: 1.0
 
-Hi,
+On Wed, Feb 19, 2025 at 02:47:04PM +1000, James Calligeros wrote:
+> On Wed, Feb 19, 2025 at 1:33=E2=80=AFAM Mark Brown <broonie@kernel.org> w=
+rote:
+> > On Tue, Feb 18, 2025 at 06:35:54PM +1000, James Calligeros wrote:
 
-On Sun, Feb 16, 2025 at 12:34:54AM +0100, Nicolas Frattaroli wrote:
-> Thanks to Heiko's work getting OTP working on the RK3576, we can specify
-> the thermal sensor trim values which are stored there now, and with my
-> driver addition to rockchip_thermal, we can make use of these.
->=20
-> Add them to the devicetree for the SoC.
->=20
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3576.dtsi | 75 ++++++++++++++++++++++++++=
-++++++
->  1 file changed, 75 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/d=
-ts/rockchip/rk3576.dtsi
-> index 73df515a3937414d89515b4ddccf71f33f6a4fe7..c55d7096a3e985d48240c2cab=
-3de572b9ece2b23 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> @@ -1441,6 +1441,48 @@ gpu_leakage: gpu-leakage@21 {
->  			log_leakage: log-leakage@22 {
->  				reg =3D <0x22 0x1>;
->  			};
-> +			bigcore_tsadc_trim_l: bigcore-tsadc-trim-l@24 {
-> +				reg =3D <0x24 0x1>;
-> +			};
-> +			bigcore_tsadc_trim_h: bigcore-tsadc-trim-h@25 {
-> +				reg =3D <0x25 0x1>;
-> +				bits =3D <0 2>;
-> +			};
+> > I get that the reference counting that the regulator API does is useful
+> > here but this isn't a regulator so shouldn't be exposed as such,
+> > particularly since this winds up being visible in the DT ABI.  I
+> > could've sworn that someone did some helpers for this case but now I go
+> > looking I can't find them, we certainly don't use any in the regulator
+> > core.
 
-Looks like TRIM-L and TRIM-H are always consecutive and even for
-Rockchip it would be weird to change that in the future. So I
-think you can simplify this:
+> From what I recall, no attempt at shared GPIO infrastructure has actually
+> landed. The multiple {de}assertions of SDZ put each chip on the same line
 
-bigcore_tsadc_trim: bigcore-tsadc-trim@24 {
-    reg =3D <0x24 0x2>;
-    bits =3D <0 10>;
-};
+Yeah, I can't find anything.  Perhaps I was thinking of the reset API,
+most of the other users were reset lines so it's plausible someone
+started and then just ended up with the reset API instead.
 
-That looks much cleaner IMHO and should also simplify the driver and
-the binding a bit :)
+> into an unusable state that requires a full power cycle to clear, so
+> we can't live without
+> handling the shared GPIO somewhat sensibly.
 
-Greetings,
+> One alternative off the top of my head is adding a dummy reset controller
+> to the DTs and integrating it into the ASoC machine driver (which we have
+> downstream). We could then put the GPIO behind a shared reset line, and h=
+it
+> that instead of the GPIO. This does seem a little complex/odd, and IIRC we
+> considered this at some point and decided against it.
 
--- Sebastian
+I'm not sure that's particularly better than the regulator version TBH,
+it's still got the problem of showing up in the device ABI.
 
-> +			litcore_tsadc_trim_l: litcore-tsadc-trim-l@26 {
-> +				reg =3D <0x26 0x1>;
-> +			};
-> +			litcore_tsadc_trim_h: litcore-tsadc-trim-h@27 {
-> +				reg =3D <0x27 0x1>;
-> +				bits =3D <0 2>;
-> +			};
-> +			ddr_tsadc_trim_l: ddr-tsadc-trim-l@28 {
-> +				reg =3D <0x28 0x1>;
-> +			};
-> +			ddr_tsadc_trim_h: ddr-tsadc-trim-h@29 {
-> +				reg =3D <0x29 0x1>;
-> +				bits =3D <0 2>;
-> +			};
-> +			npu_tsadc_trim_l: npu-tsadc-trim-l@2a {
-> +				reg =3D <0x2a 0x1>;
-> +			};
-> +			npu_tsadc_trim_h: npu-tsadc-trim-h@2b {
-> +				reg =3D <0x2b 0x1>;
-> +				bits =3D <0 2>;
-> +			};
-> +			gpu_tsadc_trim_l: gpu-tsadc-trim-l@2c {
-> +				reg =3D <0x2c 0x1>;
-> +			};
-> +			gpu_tsadc_trim_h: gpu-tsadc-trim-h@2d {
-> +				reg =3D <0x2d 0x1>;
-> +				bits =3D <0 2>;
-> +			};
-> +			soc_tsadc_trim_l: soc-tsadc-trim-l@64 {
-> +				reg =3D <0x64 0x1>;
-> +			};
-> +			soc_tsadc_trim_h: soc-tsadc-trim-h@65 {
-> +				reg =3D <0x65 0x1>;
-> +				bits =3D <0 2>;
-> +			};
->  		};
-> =20
->  		gic: interrupt-controller@2a701000 {
-> @@ -1852,6 +1894,39 @@ tsadc: tsadc@2ae70000 {
->  			rockchip,hw-tshut-temp =3D <120000>;
->  			rockchip,hw-tshut-mode =3D <0>; /* tshut mode 0:CRU 1:GPIO */
->  			rockchip,hw-tshut-polarity =3D <0>; /* tshut polarity 0:LOW 1:HIGH */
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +
-> +			tsadc@0 {
-> +				reg =3D <0>;
-> +				nvmem-cells =3D <&soc_tsadc_trim_l>, <&soc_tsadc_trim_h>;
-> +				nvmem-cell-names =3D "trim_l", "trim_h";
-> +			};
-> +			tsadc@1 {
-> +				reg =3D <1>;
-> +				nvmem-cells =3D <&bigcore_tsadc_trim_l>, <&bigcore_tsadc_trim_h>;
-> +				nvmem-cell-names =3D "trim_l", "trim_h";
-> +			};
-> +			tsadc@2 {
-> +				reg =3D <2>;
-> +				nvmem-cells =3D <&litcore_tsadc_trim_l>, <&litcore_tsadc_trim_h>;
-> +				nvmem-cell-names =3D "trim_l", "trim_h";
-> +			};
-> +			tsadc@3 {
-> +				reg =3D <3>;
-> +				nvmem-cells =3D <&ddr_tsadc_trim_l>, <&ddr_tsadc_trim_h>;
-> +				nvmem-cell-names =3D "trim_l", "trim_h";
-> +			};
-> +			tsadc@4 {
-> +				reg =3D <4>;
-> +				nvmem-cells =3D <&npu_tsadc_trim_l>, <&npu_tsadc_trim_h>;
-> +				nvmem-cell-names =3D "trim_l", "trim_h";
-> +			};
-> +			tsadc@5 {
-> +				reg =3D <5>;
-> +				nvmem-cells =3D <&gpu_tsadc_trim_l>, <&gpu_tsadc_trim_h>;
-> +				nvmem-cell-names =3D "trim_l", "trim_h";
-> +			};
->  		};
-> =20
->  		i2c9: i2c@2ae80000 {
->=20
-> --=20
-> 2.48.1
->=20
+> Is there any other option that may work here? I'm open to ideas.
 
---f2oqydbedyoledmw
+Perhaps it's time to bite the bullet and do the shared GPIO API?
+regulator could certainly use it (and has a bunch of code, we could
+probably just pull that out and wrap an API around it?) and now there's
+this too.
+
+You could possibly also open code, but that does beg the question about
+the shared API.
+
+--L0ausYZ/FTrIXK1l
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAme2gdwACgkQ2O7X88g7
-+pqOnw/7BJwL3Y6HgC9xGEeFk3FYRXVxo1LmATjJX1xSRdUBgELTq/qwrW4CGzjO
-zJYnXdbr5Ywvsdg1V4TjFEHSLLu5VHZcPXWFn1um2fFFZP6RAZqY7jKNsiMXP5dA
-JUcvuELX2Ns44BkKyoYUX9rOZOcIHOjseh6S15CVOxa/eOuxFlV0Iqs5KcY4HnZ7
-RveVjnwB29MLsGA81zAfJ53RASCMt3jtmojdqG1P2/qk/CI53Hv9oTCl9bF82yiq
-tRoCXHyyWutOOmJvG2ZUfQOZc2KADwzL2MpWaEIQV3WeZmvF35yAzxk3d9JnyKwR
-5w6SisxKXuwMp3PUGCTjAR4YVPucC3UqRBtQx+3gSkpNm4Kc8gON9vIvmJMjQgGN
-ve+nX2Uzu7yaQqOsHzARgyZ5k0Yc4P5XOkQTo0t3hqXX1Tt0Y7jlkI+wG2HoZrLi
-vKtVOBar3wq3TGQA0IVpWPNENbAtURVwB7e3zLQMlwobqmqTwUsg2VrpQKAGNuTq
-sGvCUievEwSEzSdoPVjWBzRCqKFo2hq+zdOOlBH32w+tLNU9NXGuoRmDnwH2icvk
-+3a3T2+jarvpvcA0PkkuTrUVPkp7GAjtlJusEtrKjNnqhQ5GhUMKY4FsA+N5YipZ
-4xafMEzXk43Z+4jbGJlVH0I7uSbk8sEjI5ddTd8BypmMb2dzSgE=
-=gZfm
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAme2iUoACgkQJNaLcl1U
+h9CBlwf/Ub4h2DWpJglm2UVUSMy1p+jAgsQRt9EndRI/Ud+eqYFTizBKQyKwah4/
+4BDSMQ0dIjhPBrArdfTm5Vsdj3TqgOyxaVQarJ18XKXoq9TM2JMpNr4xydKb43bl
+FvYaraHXdTwE/yx/gWaM5/lfx5JXf4yngatnf1Qz3vec5QeapYywRoWMVtBW1fBB
+rkKKv25XTHzG8D6DWK32PQnk1saKSdn6Uwx5f2qcS0OTwxCvK6mTq1/4cWE6JUGl
+tmY5wtcVMTSCxcCB3Kmp8y//HbNM+vHVTlm7KUQMg+jhf/Ydkq9CaYVX7A/QV/b2
+C1aD3TtPwl5KxBweUygcLU86e2qRQg==
+=z1+I
 -----END PGP SIGNATURE-----
 
---f2oqydbedyoledmw--
+--L0ausYZ/FTrIXK1l--
 
