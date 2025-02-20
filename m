@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-148849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE486A3D9C4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:21:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C4ECA3DA17
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:32:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 920E317C550
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:20:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7461418960AE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:30:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC9771F540F;
-	Thu, 20 Feb 2025 12:20:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28A29846D;
+	Thu, 20 Feb 2025 12:30:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-1908.mail.infomaniak.ch (smtp-1908.mail.infomaniak.ch [185.125.25.8])
+Received: from smtp-8fa8.mail.infomaniak.ch (smtp-8fa8.mail.infomaniak.ch [83.166.143.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6A1E1F4632
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 12:20:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2671F63E4
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 12:30:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.166.143.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740054045; cv=none; b=M3OoAnW5t+1C/3gi/F0tJtCEsGMqqUAgdxK1yXEhJPlB+J9uz956HXd5mNt5zbvMZ/WAnzjONJ42FMYQgEdWtUInVCvP/uzfs49fgcu7M4YDk3U6IlMpVWB9J5jck/UrPzcbjArgeIdVxqzdISoxFsu0Wy4RjV/vq+D++cz229I=
+	t=1740054615; cv=none; b=CEpZWaiaNMEEKHL8BGZ5Lh6gpxienoaY7goOtU83Sg9gUSDe9hhBSQbMGSGLdXV4jYuXegSqUFgQYHhO41uBcdQFoTXF0mPKOx6C9peNS46mwqVyw+HDRPZ55bhEMV4ie6Wdehf8sIBJfYJaFEx+lOxjZDJVxzKz4oaIqoqn4sE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740054045; c=relaxed/simple;
-	bh=RXAxhxVzfrqG1qHIsuf8PzuIRfypisrlFp/ZVrBCPRA=;
+	s=arc-20240116; t=1740054615; c=relaxed/simple;
+	bh=wEHei7rK9AAwWqopWPvUals/MXPnXVHEoEKBHAfk5B0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OAcVCPVUhAJe3Mem+aW/1ZhQY6kYkoadOc1ZvCCP+11h2wBI5vhAjb5I9kgNVXqNz10H6bhswQ1LleL++Yd0qLUz83Tejqmh1fzS7ri8Jq6nkdDC6jISe0mjktH5nEhyOyb0HsEy4+cn/7vW04G4wtbIyKnvITNxN7s+iBxJVDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.8
+	 In-Reply-To:To:Cc; b=oKxZxHN1rMH3G6Ey4GlRrI5726eH8nXinjy7QV9EYyDyHeWaxro+VUxcQ7CIH0gHLL+n52dhxHV7ZMzrJzoCN7slOgTSLODneri2MWrYa8lOCaBKMKA53mUN4nIq8dBNrz3gD+DyylJdpUKh9qAkkboL4WRiEyjqUnxnxHLrdzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=83.166.143.168
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
 Received: from smtp-3-0000.mail.infomaniak.ch (smtp-3-0000.mail.infomaniak.ch [10.4.36.107])
-	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4YzC5b6L7Zzpd8;
-	Thu, 20 Feb 2025 13:20:35 +0100 (CET)
-Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4YzC5b11GfzGGs;
+	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4YzC5c2v1qzsY6;
+	Thu, 20 Feb 2025 13:20:36 +0100 (CET)
+Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4YzC5b6Cy2zGpB;
 	Thu, 20 Feb 2025 13:20:35 +0100 (CET)
 From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Thu, 20 Feb 2025 13:20:10 +0100
-Subject: [PATCH 1/5] arm64: dts: rockchip: fix pinmux of UART0 for PX30
+Date: Thu, 20 Feb 2025 13:20:11 +0100
+Subject: [PATCH 2/5] arm64: dts: rockchip: fix pinmux of UART5 for PX30
  Ringneck on Haikou
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -45,8 +45,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250220-ringneck-dtbos-v1-1-25c97f2385e6@cherry.de>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250220-ringneck-dtbos-v1-2-25c97f2385e6@cherry.de>
 References: <20250220-ringneck-dtbos-v1-0-25c97f2385e6@cherry.de>
 In-Reply-To: <20250220-ringneck-dtbos-v1-0-25c97f2385e6@cherry.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -61,32 +61,44 @@ X-Infomaniak-Routing: alpha
 
 From: Quentin Schulz <quentin.schulz@cherry.de>
 
-UART0 pinmux by default configures GPIO0_B5 in its UART RTS function for
-UART0. However, by default on Haikou, it is used as GPIO as UART RTS for
-UART5.
+UART5 uses GPIO0_B5 as UART RTS but muxed in its GPIO function,
+therefore UART5 must request this pin to be muxed in that function, so
+let's do that.
 
-Therefore, let's update UART0 pinmux to not configure the pin in that
-mode, a later commit will make UART5 to request the GPIO pinmux.
-
-Fixes: c484cf93f61b ("arm64: dts: rockchip: add PX30-µQ7 (Ringneck) SoM with Haikou baseboard")
+Fixes: 5963d97aa780 ("arm64: dts: rockchip: add rs485 support on uart5 of px30-ringneck-haikou")
 Cc: stable@vger.kernel.org
 Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 ---
- arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-index e4517f47d519cc08ec9ee705a6f51a740687f6df..2321536c553fed20bc02d91f40a5d5a6dc20892c 100644
+index 2321536c553fed20bc02d91f40a5d5a6dc20892c..08a11e47584137ed84f31aadc53a1bdd2ca95530 100644
 --- a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
 +++ b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-@@ -222,6 +222,7 @@ &u2phy_otg {
+@@ -194,6 +194,13 @@ sd_card_led_pin: sd-card-led-pin {
+ 			  <3 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
++
++	uart {
++		uart5_rts_gpio: uart5-rts-gpio {
++			rockchip,pins =
++			  <0 RK_PB5 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++	};
  };
  
- &uart0 {
-+	pinctrl-0 = <&uart0_xfer>;
+ &pwm0 {
+@@ -227,7 +234,7 @@ &uart0 {
+ };
+ 
+ &uart5 {
+-	pinctrl-0 = <&uart5_xfer>;
++	pinctrl-0 = <&uart5_xfer &uart5_rts_gpio>;
+ 	rts-gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_HIGH>;
  	status = "okay";
  };
- 
 
 -- 
 2.48.1
