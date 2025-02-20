@@ -1,131 +1,181 @@
-Return-Path: <devicetree+bounces-148891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF8AA3DAA0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:00:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6013FA3DAB6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:04:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50CC17004AF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 12:59:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB3473AEBD8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 13:02:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B11771F7911;
-	Thu, 20 Feb 2025 12:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 727841F1508;
+	Thu, 20 Feb 2025 13:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gCIeQndH"
+	dkim=pass (2048-bit key) header.d=cixtech.com header.i=@cixtech.com header.b="g+yVesRQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2103.outbound.protection.outlook.com [40.107.255.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 332361F9A95
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 12:58:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740056327; cv=none; b=ahxxPz6LZMk4jBbVGuZPwKKIVO7aG947f9fYSQ8n+DDtYNaCM9tI91UVGIfvUjb4+ogW1CTtbtvHnmkLFf5lwqsqk/mlojvMKpMGXoTJdVFpHSmd+H0dIBCgeeDgmQSare7R7vdOvZjFa2rF/6dnlvb/Hj+hIuBhGkDxk9yRcUI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740056327; c=relaxed/simple;
-	bh=ZXWyR01Td5pUk5ZjeXQgvdvW1BakZ+DcJ2jyezTE0pM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CJePRcR6uQrUyouqdFnxv/sCeWUviWA48tM1Btf56Q4cmX7cE7vGJVytMNG6L+Jv9j/DgtZuV15NHSAaoRXIy4fcZ1wqAwZFqUDbNAMxkAqx/rh7CoK4thATJHUIoJXUguNTD0auCkDgFodQ6TjvSzE30pO3q7FeE9+9g285N74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gCIeQndH; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-22128b7d587so15275475ad.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 04:58:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740056325; x=1740661125; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ss+xLnzP86/60Uug0yXb66O9bHiQCdqH0RrPmgT0Pw8=;
-        b=gCIeQndHwQF6Dr7qJoEpciE2PHXd36ncs1O4hT3WquJEGYF0JnhE4vbj/D7O0adCed
-         WPFx13bibtge4JKyBy0F7qieWT0HmRth0XGK1WD1zNC/LWPF99NAAaqpYI6IBUcwhYQr
-         mhrWhldiW84cmnjEVgMYAmoff1HqAv+nZ/rV6QJpEdA39TE9N7A4+MiKpxQaXIB9zTBs
-         Y49ax6QSvekATCMrIRRCFCcsdapLkIXWFXwOsDiuRkdyvX0qUamhbY/j83NmX7L1XMn8
-         AOl027QVBw0Ha/17jB5NAk971ysU4W/46JBkAZkTNe2+ycIXeOoGx+baxS9jWL7AiEL/
-         O8AQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740056325; x=1740661125;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ss+xLnzP86/60Uug0yXb66O9bHiQCdqH0RrPmgT0Pw8=;
-        b=rFw1ia1bQWf9mIl29FBwtTwVPycSEwkVZHSG8I54GQ36C/2A92hxkuFtSIE32sKxht
-         u42KddYXWJmdKf9eeHwqf36w0Ua3WUnOG/fbQyGUnkmCzV7MiyEcDoiki3SmKmgCiIHg
-         Y7hkvjgvp1jLjk/BHrHndFIO0wxqLprNY/Cvp3Zw5hCcdkF1Sd7R6uln71o4NmC6idUP
-         8dwOJuKFFkpRhMm7YVra04jV+c40lllKJ6ttc7u00OxORzp8tYDd5htDNDqfctgfyRw+
-         Teul4kQsHJhc96erlpDnPuKHgqiRCg8lR2FR1oKvZsg+I4TA1ktkTKe54v6jiftILLVw
-         F2aA==
-X-Forwarded-Encrypted: i=1; AJvYcCWmG7nPinMCH64hFUFxRiRZVuCbmmrAFSfTEtab1IWOdFgBhPwmnDss0OxGWuyQxEc8pJ/eMu3tjXj9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4SVOwBzXbm+/KD0/VcSk3hhUfcoc2EuEEVHFsUrpivdMYHsFS
-	0Mh4FAB264Q7hrGMnWV8BSXXQw0PFMpQiRSIKOe/T57zn999frV8hl6Qug==
-X-Gm-Gg: ASbGncuBCCUI4H9VYqpGMp4JQO7LsaDlyxeURlgn0YEw+/AXNFCO6czDKeds6bx5Apa
-	fWVLL3/o/NA+9d0/+patLApAXfeL96NNZCIhiF23mKvvtCmL6PqqCr+ii5auJuPHeVM7lloTwPr
-	XP/yW2NIjXzd8AhnJbxECw0H6L2jcegdevVb+yA0xxxjThkFQqUzBku2RpaM421JQQqFj1VGcId
-	MBkYvKKhf18zna70SNjeAzVndtUVEEsSKu5fKhgyWazX/S034ip7B22osu4PJZU0zE2WjNa7ywM
-	uLgES1Cw0j62N15ufY6y8VyUNwBkCg==
-X-Google-Smtp-Source: AGHT+IF5a/8AyECCIuIozmX47pSxGZKQp+arqspxWdaMdWfsTMjbgi5bzRJOQToQurDsztyTIgq50w==
-X-Received: by 2002:a17:902:ea0d:b0:220:fae9:8a4 with SMTP id d9443c01a7336-2217055dda9mr96907035ad.6.1740056325282;
-        Thu, 20 Feb 2025 04:58:45 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9a27:2e77:89d4:5724])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7340b5f1bdfsm2699241b3a.120.2025.02.20.04.58.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Feb 2025 04:58:44 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: miquel.raynal@bootlin.com
-Cc: richard@nod.at,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: mtd: mxc-nand: Document fsl,imx31-nand
-Date: Thu, 20 Feb 2025 09:58:12 -0300
-Message-Id: <20250220125812.2370056-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C65FBA3D;
+	Thu, 20 Feb 2025 13:02:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.103
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740056557; cv=fail; b=InjlagGBXsHBjVyERcPzrJ8LCBMaGiN1ixzVE6RQso5QgmAEa/Mlfthdz5YCZcfY3yz8TkoFSZDzUUCGRNRNba0AGOfcPwQGjwcIbkCwxE3BBy61p4rx/6NVFQ7C1eCU2BZoAI3VmPitw1hozM2TIZyv2wDXfIDKmu/gbedR6As=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740056557; c=relaxed/simple;
+	bh=YqZaA2n9qsD669H5Tk8kzQbIlLttBlTHt5em1ZE2v9E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JhPsujdfY+bEQobKJqdbzymc9+X93LiLkEFK3UQk2rwDOg3RmVTA6nAU9fpaIfu2+CKNXXzrEuUs5mHebgS7MmIdomrEFfY96GiIouFuPMzxJhgPRjGgSBDQMS7GyuMN/fBd/uDMcH/m18DHgeiD4exEhzYEOjyZafCC+t5xJFQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; dkim=pass (2048-bit key) header.d=cixtech.com header.i=@cixtech.com header.b=g+yVesRQ; arc=fail smtp.client-ip=40.107.255.103
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YOFJAtE2qU9L/H0vsuEWzVomQbSnPvbT6CcJiv2iN3nRHbtJAusS3Nexg/sHRrV6r0Sb2Er2SNs1kcGj4CewtBEk6MGKbL0tIKu1+7Yu3mVnNvVTvgt8ZtpqChPu/BwTGqmsG/PrXPULZv6A5HleulFJduQIdyCjxqgzCDx370WWiZYJKJl/i4JYHJuJ5c2XDYZIiee3tRfh8UDn5dtz61KqIGBw6xmB4haOZiKAaAVJZ3h2KFSbEowRppcyBqFq7U/SDQ0J0UxqnmdxM031tcBoDUAHtwvAIj7etJ8R5j02eLsUJZ5yrE8vkcmdOqTROFcD5HI0RkLUooMFgWnYaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TCoP7IpccWKpwzJs+D3ogy7FJkrmSjLlKqZ1jzKPrto=;
+ b=RXGjkydJIAJEqboDzyBYT+ViULratHUVOxTtjNQecZYwKWieevNHhDTc4TXHXEZmc+2NqdA2+ioed6h0SScCsCDsOpJDz5zq9ZS2l18ZDJbPU7OlWsDCQJQl2jg1jf2KZAXoD8yPJngMML27E7S/Je5ka9i5Qx8596hZlH3zIBEBp0LAB8gu04t3T8WrMTmPCorawrA8ZaRX3tnpc4WMfIgc/IImQ7vB6muU8xVHOW08nAO5GcB+k+KUKi0+Oy5l1gBLGYOj4mPPfav4Zcul1K4U9WdFK9yqX/9OXJHaqhgRtQLEs32rcZ1aDvkmSKtYTAWlQX9JjZIqPfTuLXLiZw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cixtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TCoP7IpccWKpwzJs+D3ogy7FJkrmSjLlKqZ1jzKPrto=;
+ b=g+yVesRQYgKCYndkSQMMPCcgqBZVawjfmr9CfhjzXyVzUK5oe2K6RfEeyHNf06EBJBKapFsJw6sjxynULmnK7dvVO106Jq3I9QI9vEhAxfLV31HP96SD8kZtbfyCOqYagSD0hlKj2SwX4tg72HLDWPWnx/aIpiSVhsUFpwZW/a3KXVhUoXs9mvqB0YDfZCAUmEzSwV4B2t94FzEpVRoA7SM9YrwHI27MMbg1gguYOg6W5Xtsb0aIbYS99ECXeI9UK4Wr3iqri4GvUbz0PVoU2jZKlnTM83ei6w93xpVHJoZjpG7UV5pAIVTqqbocL8XIydzAIZVHhUGrQ3YXEyQFfg==
+Received: from SGBP274CA0009.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::21) by
+ SEYPR06MB6824.apcprd06.prod.outlook.com (2603:1096:101:1a4::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.15; Thu, 20 Feb
+ 2025 13:02:22 +0000
+Received: from SG2PEPF000B66CE.apcprd03.prod.outlook.com
+ (2603:1096:4:b0:cafe::79) by SGBP274CA0009.outlook.office365.com
+ (2603:1096:4:b0::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.15 via Frontend Transport; Thu,
+ 20 Feb 2025 13:02:21 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66CE.mail.protection.outlook.com (10.167.240.21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8466.11 via Frontend Transport; Thu, 20 Feb 2025 13:02:21 +0000
+Received: from nchen-desktop (unknown [172.16.64.25])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 8A7D5512A743;
+	Thu, 20 Feb 2025 21:02:20 +0800 (CST)
+Date: Thu, 20 Feb 2025 21:02:19 +0800
+From: Peter Chen <peter.chen@cixtech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+	"Fugang . duan" <fugang.duan@cixtech.com>
+Subject: Re: [PATCH 5/6] arm64: defconfig: Enable CIX SoC
+Message-ID: <Z7cn23Im0SeHuBFu@nchen-desktop>
+References: <20250220084020.628704-1-peter.chen@cixtech.com>
+ <20250220084020.628704-6-peter.chen@cixtech.com>
+ <30f92eb0-8483-4699-83b9-387a1fdd4931@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <30f92eb0-8483-4699-83b9-387a1fdd4931@kernel.org>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CE:EE_|SEYPR06MB6824:EE_
+X-MS-Office365-Filtering-Correlation-Id: 64ce068f-1660-400c-16d6-08dd51aed018
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|1800799024|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Qvo/f2Mz0Rj+6Bv+7pICWWhVx/gQADi8gXioZHZGwOzKQSGtpYSoLvYzQ7EH?=
+ =?us-ascii?Q?zYgSkFKzX3Z7DEjtcyIZsRCILBhjlBNjX1bSDo3OMDk72zbDrDYSPeGgHfFp?=
+ =?us-ascii?Q?XNjOyfJgbZUlCgesT2M/yG7gFP0fBzmiHL4NRVtxgeiyBube7lnCKwAxLTjx?=
+ =?us-ascii?Q?NKFaeVIG0GwMa4PF0XkkrLasG+F9MqZtk+c5/9w/Z7+O5mAsRhflv8KQn+m5?=
+ =?us-ascii?Q?4DXkBXoLG0mAMjo7Rxl6o0zLqBzvtz1l2nBma/X+/RcfSJ3M39e34zKKZ7po?=
+ =?us-ascii?Q?kf8W7yIwF3NI9RiULYNzlNjRRiWqQ2+0uaNAEMFAOJO0CoWmQP5pa1v1YnZ+?=
+ =?us-ascii?Q?u75meYO5+y+XESDNHVNyx3AwRvbqqY7ZkiSlgor+SxTxqC9cLBrOYDZiSDui?=
+ =?us-ascii?Q?jotKmB9uJtpeTLhdlLC+g10nCk5Es8ErCNMjWZPkOZRd44vWyimhB/48fTvS?=
+ =?us-ascii?Q?IvQJV22PD96nbzhPkWWwK4bi7juS6rtWlRtEQUwzzKWTT72GxJS5ZZ7v6cbp?=
+ =?us-ascii?Q?TDiLer7iNVket7a3ubnhcq6PY9oIcMAeIRVjO4YxWgIZD5yc5ARluOttQfM5?=
+ =?us-ascii?Q?8lULBW7NZkee3Wxb/JNOuWQxHLBbd8RUqojgRCnESElv+Xf2UblId1DWM8YS?=
+ =?us-ascii?Q?VXfJ0WlEqBhY7Ml7PifTtC5KGHNW/qNGe56nHclDWwqH2j+B9DLqWIlrXfm9?=
+ =?us-ascii?Q?X5wUe7vnUXgzomW3wYhAM564abVdzs23JWAHNhAVsm2XhhYgI+vzBr+WgIrn?=
+ =?us-ascii?Q?4byRH31hcn5BYsNBLHNit9Fln5UkvQsqdPhNWgB93yJOb2fzGsxzj5BQSNsx?=
+ =?us-ascii?Q?Dq5LWzTEGFdrlziPpBQYtXeqnp2ITBcI6FL3Y8Hze2zS90H0ZlYH9EUL/G90?=
+ =?us-ascii?Q?QhSOp2j7Z/O+aMCtOGZogUl/AiriXw2QTeotHismPPG/LfU0sgYugPgnGJh1?=
+ =?us-ascii?Q?rNtN7ZlEsLYlxUQ7vXONz2IILggAjzT0lekSmAPtdd0smdTHgIdpgcaUw9A1?=
+ =?us-ascii?Q?9QwFzHV5Uq00pMCNknbfQHjrp99K82r9DCfUaiWal0hxGclTeZLpLS2uVkUO?=
+ =?us-ascii?Q?St2uG1YSgiAJNBRnYbLCz5mfQw61HqZ6SGKqLq26UK2t3s10CnO5il9BKu1d?=
+ =?us-ascii?Q?prWSu1wU2Mdv2e0yv940WtYDLP254vcLvIeqKrL71PLWbuXCoUaAOdXUobyq?=
+ =?us-ascii?Q?CVOQO3IJB1I8x1VVPHDpFM4M0GhO5sWIzUSd+y1gYruY0BQF5t9igr/9gSN+?=
+ =?us-ascii?Q?hc9Dw0RBtfIeldXZ76OafrSYJ8vO6ujJwPopXKmVUK7wdetwrucW3aKCT2Rk?=
+ =?us-ascii?Q?ZBI0suFaa2jI7z5Ey130fIIVDlMPeMToNSdGWnRwmqwMiIOEjoxDMMCY5Dd1?=
+ =?us-ascii?Q?hBlHKXUE3PEymOZdp0DrHs4V0RRclsDyHT1VwxMN7EGy9gSXPBdUUYUOQzg2?=
+ =?us-ascii?Q?1a0PU4n8GZ5f4xHI/ltRVtaCfXPYbFRt6Y+H1BK74VVlpTS1CHpS+A=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2025 13:02:21.2158
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64ce068f-1660-400c-16d6-08dd51aed018
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: SG2PEPF000B66CE.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB6824
 
-From: Fabio Estevam <festevam@denx.de>
+On 25-02-20 13:19:13, Krzysztof Kozlowski wrote:
+> 
+> On 20/02/2025 09:40, Peter Chen wrote:
+> > Enable CIX SoC support at ARM64 defconfig
+> >
+> > Acked-by: Fugang.duan <fugang.duan@cixtech.com>
+> 
+> You keep using different names in different patches.
 
-imx31.dtsi uses the following NAND compatible:
-    
-compatible = "fsl,imx31-nand", "fsl,imx27-nand";
-    
-Document 'fsl,imx31-nand' to fix the following dt-schema warning:
-    
-compatible: ['fsl,imx31-nand', 'fsl,imx27-nand'] is too long
+Sorry, I just copy-to-paste. Will change them.
+> 
+> > Signed-off-by: Peter Chen <peter.chen@cixtech.com>
+> > ---
+> >  arch/arm64/configs/defconfig | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> > index cb7da4415599..1dd46d200401 100644
+> > --- a/arch/arm64/configs/defconfig
+> > +++ b/arch/arm64/configs/defconfig
+> > @@ -45,6 +45,7 @@ CONFIG_ARCH_BCMBCA=y
+> >  CONFIG_ARCH_BRCMSTB=y
+> >  CONFIG_ARCH_BERLIN=y
+> >  CONFIG_ARCH_BLAIZE=y
+> > +CONFIG_ARCH_CIX=y
+> 
+> 
+> And this is not in order with savedefconfig...
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- Documentation/devicetree/bindings/mtd/mxc-nand.yaml | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+This probably due to I have not added entry in order for
+arch/arm64/Kconfig.platforms, after I keep Kconfig.platforms
+in order, the defconfig will be in order after running
+savedefconfig.
 
-diff --git a/Documentation/devicetree/bindings/mtd/mxc-nand.yaml b/Documentation/devicetree/bindings/mtd/mxc-nand.yaml
-index cf4198e43d7f..bd8f7b683953 100644
---- a/Documentation/devicetree/bindings/mtd/mxc-nand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/mxc-nand.yaml
-@@ -14,8 +14,12 @@ allOf:
- 
- properties:
-   compatible:
--    const: fsl,imx27-nand
--
-+    oneOf:
-+      - const: fsl,imx27-nand
-+      - items:
-+          - enum:
-+              - fsl,imx31-nand
-+          - const: fsl,imx27-nand
-   reg:
-     maxItems: 1
- 
--- 
-2.34.1
+So, I still keep the patch content un-modified, just change
+the ACKed-by tag for correct name "Fugang Duan" at v2?
 
+Regards,
+Peter
 
