@@ -1,90 +1,139 @@
-Return-Path: <devicetree+bounces-148932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-148933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 371A1A3DC33
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:12:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF2D8A3DC4F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 15:16:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C843F19C12C4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:11:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CCC016F81E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 14:16:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C4AC1F754A;
-	Thu, 20 Feb 2025 14:11:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 346641F8916;
+	Thu, 20 Feb 2025 14:16:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="k+FnlPVz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D9831FBE8F
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:11:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ECC31FBE8D
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:16:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740060689; cv=none; b=cQbeZUb/QjpPblbWfk2UM5foe4DhM5traajvmohK8FD5GGXTuo3WCDpRpYMGzktZFu5QHklL8MpRuDf4AjtGHKS19wGACu0f15L5n2gxjzVySKj1k1yqP666tz9U7nRRn6c2YJwToRV9Ggx7lyiFNs6di5BBvOd8+MelNFu4vdc=
+	t=1740060984; cv=none; b=Cq2uIFE9brF6TSlmgPbO6Y96BRKfkwcnTKc/CKExRc2zBi4HOIyOqVzz9VoaBhAzEW2lfDlHCJWtLSL+uzj08X10TjBomSmu8nkA5YUT2dLGXMohMlcEmeboe1Q00RGZ+IOHNEIg0s6hLDEBMkRMuCrCngmhwIeAlthl4O+ESqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740060689; c=relaxed/simple;
-	bh=LI0Je3OsQZgBdDqnX2MsMKsQ8lnkBp+kiW/gf9oGHNY=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=kDCvrhoevJ1i4tCEuR1fMQ7rRwcpST2s7SV1yDUXC/5dC/znCBYIL3GTA/cFEmstqtv+zIktQJgmxzaK5aTAXUdbqEQmXn+SGCcj/PVZbCwiPXlSOp9U2oDrY6IuudgMH56IBjmADmC/m0Eehw1xFXtd82AIw/I8KBqwC+fdJ8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.pengutronix.de)
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <s.trumtrar@pengutronix.de>)
-	id 1tl7Gt-0001Vy-Sa; Thu, 20 Feb 2025 15:11:23 +0100
-From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-To: Pavel Machek <pavel@ucw.cz>
-Cc: Lee Jones <lee@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  Steffen Trumtrar <kernel@pengutronix.de>,  linux-leds@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] LED: Add basic LP5860 LED matrix driver
-In-Reply-To: <20250220-v6-14-topic-ti-lp5860-v1-0-42874bdc7513@pengutronix.de>
-	(Steffen Trumtrar's message of "Thu, 20 Feb 2025 13:57:55 +0100")
-References: <20250220-v6-14-topic-ti-lp5860-v1-0-42874bdc7513@pengutronix.de>
-User-Agent: mu4e 1.12.8; emacs 30.0.93
-Date: Thu, 20 Feb 2025 15:11:22 +0100
-Message-ID: <87zfigaeph.fsf@pengutronix.de>
+	s=arc-20240116; t=1740060984; c=relaxed/simple;
+	bh=YKoE3C8XckkPijkVeqGKcv6Cd5mV1W7QWYCHmbo0e3Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FW5uqeBncQhvKuN8NaZI6bigPlwoUtBWE02sBHc/WQrbdQBqDNAfr7nQBaUboiLzNr0BGOiBdHb01qF/ta4NOJF9YZiFDiPehBGgiOxskLj4uKm9LVw4xd9W+ESIQbkDEMHBUuAv/CYhzO6Ud/m8VYUrry8X+hLBfsAGoTm62J4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k+FnlPVz; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51K5taFx015154
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:16:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	JuYdE4dlbQ4IVCBmM2eClz9fsFF9FHokS9b6ozmwZV4=; b=k+FnlPVzYzdZ2PE6
+	Kroj/0BmRoWTMqyMDL74lahz3z0gUJEHra+1atu0vb92f2OmCzhuUwgwubYsaH9K
+	kZIijV8sXs4gJd9882zuZr9MDEh8UUUWfjgxceNdpuv0JkcEh1psJ72Vl57W8TET
+	6uX9aq//ihEVPSyatHS9FU4PpQjNzu61Ea94TK3akqkIXp3VKOi08OHQ0ftKO2x7
+	gFwI3B10Ahan1UtT6vu7pXJTpTM8rTP75+nznsOj+SdU7WYzjUDQ8dNc9e4JhVX7
+	qNssf5RV1Li7Ii6Dx4PWwnJOTpW4S03QSjt4nNqlZMn9+Nhk3tKlqe0RUzvnIE6I
+	1BiaYQ==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44vyy4edb1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:16:21 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6e19bfc2025so1864516d6.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 06:16:21 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740060980; x=1740665780;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JuYdE4dlbQ4IVCBmM2eClz9fsFF9FHokS9b6ozmwZV4=;
+        b=jVxt7BbAZxv4/wN2bJ0DbPsPZjB/VjPGRtBM5lDY/HTTsr0+lmISK9oHjjnIyKp0Bw
+         wD2Xu6CVTE6AsvQ4eFnnTBaDjz4irPBe/Ps3+JJnBxpeK2AHCbu5/bIurvGk2RBZpLHu
+         skntNFVNCTfDK9LpRLdguV3DcvIG2W6CiUniyfLMsWqctWOs2NBB4E3+LDIqMYVSIg7U
+         m3lCP1yZ/cMvT2seCVTDnnLGZZJXNXfxn9xMgs/RTuPmalMyEQ31/tIb3ffNCo93CDH/
+         0BMnzqKn7HWrn3ovzyn/T59WA8aGjdcmAXVpnwMmIN/t+T3EO3giEA508LbxLYnAc76p
+         zXdg==
+X-Forwarded-Encrypted: i=1; AJvYcCXWp755rOeBkdrBjluvZ9ZDIZOoA07HvOwy/zTnuSQoOUCBEczcfNi+SeR2Kpr83WOmLD+PdVtRAkxs@vger.kernel.org
+X-Gm-Message-State: AOJu0YymQrrBLlkcTvG5+wZybt07Ow7iozplmqXfmVBowXb4HBHKVOR3
+	FoXHVj61NOc2r9fqrAoi2y2XNJs2AuHxsT3R6OssDsWwtxFYA70zpGUo7UirAd8Njl5L1oQdlUW
+	pHcxilqt0obbaYNNwoB/bYSO0KNpBIE3pAKeZKxP1gkew5yb2UBwyKm+v7Zo3
+X-Gm-Gg: ASbGncsdJ/6GVfdhGLpr8i9JakHTUCbL/ODr/TNhAK5ZoEjX29Ub1Lo5Jd/Uomr3qaM
+	PeLcxmzppD8ghMk/HmpS1NkSefY1fpUiv+dJf8Es4YqdCZtWV8Y4GZZiRb9DP9k+WpBB03Zq87U
+	vx7xceDCRoPX4gSyPcE4RfYQiUpWpbUzjMdIgqSKfuD0WEWDON7DfGKfYSe2w/fJJ7d4zua3hIU
+	WBKno++HJ9dZXTmCePL1D/0MkxAF7Ou2OSe8W73Hjvk1kWSFktJKGt1c6GmifKpqIvDorDLvmb+
+	XXM6+qxQ3j0z+OZhvW14TC63aq3QwModJnCFs4rgllELK02iY7NmQGy7Vzc=
+X-Received: by 2002:a05:6214:daa:b0:6d4:d1c:47d with SMTP id 6a1803df08f44-6e66cc81ee6mr117329776d6.2.1740060980166;
+        Thu, 20 Feb 2025 06:16:20 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE/rtxy8V+ibsuKKWTYNnpHRyUUiiKw18tEiKCIKFtweF7nc0fiGiUTgniZ2kAyBjdw0RVwQA==
+X-Received: by 2002:a05:6214:daa:b0:6d4:d1c:47d with SMTP id 6a1803df08f44-6e66cc81ee6mr117329606d6.2.1740060979770;
+        Thu, 20 Feb 2025 06:16:19 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba532322e6sm1462102766b.1.2025.02.20.06.16.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Feb 2025 06:16:19 -0800 (PST)
+Message-ID: <bbb099ae-2389-4b7c-9161-83d8fe94b45d@oss.qualcomm.com>
+Date: Thu, 20 Feb 2025 15:16:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; format=flowed
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/7] drm/msm/mdp4: drop mpd4_lvds_pll_init stub
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250220-fd-mdp4-lvds-v2-0-15afe5578a31@linaro.org>
+ <20250220-fd-mdp4-lvds-v2-2-15afe5578a31@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250220-fd-mdp4-lvds-v2-2-15afe5578a31@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: dkJXHAYUkLAuawO825UciSyfyLSL5Z1o
+X-Proofpoint-ORIG-GUID: dkJXHAYUkLAuawO825UciSyfyLSL5Z1o
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-20_06,2025-02-20_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ lowpriorityscore=0 mlxlogscore=780 spamscore=0 adultscore=0 phishscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502200103
 
+On 20.02.2025 12:14 PM, Dmitry Baryshkov wrote:
+> Drop the !COMMON_CLK stub for mpd4_lvds_pll_init(), the DRM_MSM driver
+> depends on COMMON_CLK.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-Hi,
+Ha, nice bit of archeology
 
-On 2025-02-20 at 13:57 +01, Steffen Trumtrar <s.trumtrar@pengutronix.de> wrote:
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> The lp5860 is a LED matrix driver with 18 constant current sinks and 11
-> scan switches which allows controlling up to 198 LED dots.
->
-> This series adds just the basic support for the device on the SPI bus.
-> It is also possible to use it on I2C. The interface can be
-> switched/selected via an interface select pin.
->
-> Next step for this driver will be adding open and short detection of the
-> LEDs.
-
-for this next step I wonder what would be the best way to propagate the failure states of the LED to the userspace? As far as I can tell, there are already TI LED drivers (lp55xx) that check open and short failures. These drivers only emit failures via sysfs_emit.
-I need to be able to tell from userspace if an LED that is supposed to show some state info isn't broken in hardware.
-
-Any ideas welcome,
-
-Thanks,
-Steffen
-
---
-Pengutronix e.K.                | Dipl.-Inform. Steffen Trumtrar |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+Konrad
 
