@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-149142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C30BA3E791
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 23:34:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9443A3E79B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 23:38:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 084793A4560
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 22:34:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C141E7AA485
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 22:37:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFDCF264F81;
-	Thu, 20 Feb 2025 22:34:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8864E214210;
+	Thu, 20 Feb 2025 22:38:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kPHlDZmU"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fNKlmkCe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17E561F8BA4
-	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 22:34:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96D271EC01F
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 22:38:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740090888; cv=none; b=c+PwXMLZUnRexw2CNro4XbMtP8fuOYUZnneYP+/4HuII4nilPnKRQ9ZphH2nRT7bEgfpWwSDz8n/nJid71qfSaIeR+3x3lam+uQBTniFGujEzN3CabiyttYkvWyKG5GEfvOYVSahRX/Jrw1IaN1Hn8YrVvKzkkqXKIYxiwfTC/k=
+	t=1740091111; cv=none; b=CfwtAYNDwQkWuj78b0Yjq44CqDQ70PdIHY6i9K/LHRzUxHFdUTl9gPLUI4NvaCcY/hPxb9TOFsVnDP00/c0F5yvEvYG/ulNElmqhUbJzeU9YraWq2Rt8w7GODWmHaa28YgTJ89WT/cJi1LIEQODMwaQVH0n0byU+YtZyKTVlHhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740090888; c=relaxed/simple;
-	bh=mR0mUeFeZCaF51isva3tjv2Z2QlQmyqjWpLJF1WjFwY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=IhJHqkC92Pgrr/NY5JjSqJ1tEHiNFr/HqAZocxmo4yRjkBAK91rSjxbrixLwj1mf6Pz5oAXYGooA2dBbclwbl1Mv47qFGSptwQdWwW5ZgJ7Jx4sV1QNpwsx9TCbYseofFPjNMk7UJfrYfFXM9y6p0nCwvwmYpDhdxAwyCGFLkYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kPHlDZmU; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-388cae9eb9fso730762f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:34:46 -0800 (PST)
+	s=arc-20240116; t=1740091111; c=relaxed/simple;
+	bh=sWMtMJhIGgZDkwBs1wdeFaJJtPcHRts5l/4w38T2rfk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qfD7KIwiXuEd7RTEKMpqi42bRZ/Mr+8dqqR0GJfVliBhjMgZNLwoxvEiUhyDAOQIERdEJnqbdwz0NNVghZYUVwv4/RU2x4fWFIllHy+VSJYdxjnaga7tYllH2y1dvzJ2xCAZCkYC07l2g6RJSEvDDGElKbgJ4lMZnf5TcoT/WlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=fNKlmkCe; arc=none smtp.client-ip=209.85.210.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-727118c4f9aso403139a34.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 14:38:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740090885; x=1740695685; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=phlci97ebZekU4b5KeuZl5+WtfcQbkZeGNBOFT410xE=;
-        b=kPHlDZmUuUs7QGBqV6KjCYFqfNpz2qJ77uoakCxwFgeFB5X81nLcy7/LmS+m9EB80U
-         pbVjyztOZPp4wILnTpTMZMqnHRPSoMyV6+R8shCqu7+W2J1u/Q3TjS95J1no6IS+Rk6e
-         9cdr10K7z+V/CW1O+YeSuogcXuYjEtgTaH7gbmWH11VS/IawaPck2aNfPol8LEbGhIiW
-         Kcu77cwbADo60cOZ+mLDVLimaV6M3Yri41eeq3Rkn7AA+JIdi5lhDXECJExNtfHyXqPn
-         DduxwBZyG23oiLr4FjclUgriyomgaGo8j3k9SOoTZTAEGe9SgDyEL0+6pJI3J7qnAXyd
-         K7Ew==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1740091108; x=1740695908; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pZvnme7tRdTD63uQFjHp0iE5fgweZwPuVbaZo06CSNU=;
+        b=fNKlmkCeOyqBMIADau+YNglc76AOrOmhQDFNSz2eaZF1tODfP5NcxSn9gfc5fwfgMD
+         Tms4gc6lkuE/ydOWKs8DhFxgfTUKg3p/61QmC7O1hQEK5bgc/Ds2Xfja5RFoLWDJavBk
+         HL9KtkCTtVF3G+xhkZFWO/MMm/8rl098PrckC1+GDDeDkl3nIQ+4VzLAZIIM4BE+iDsU
+         Ugkn6xnCwlGdjYyD9WsbS+E484CBFJ8PFWg9l4uuxPP8/JZNdxwr1oHGYgkg8JQ1yKRs
+         Br+9AYo9lhx+akioUQnaKKeeznxd1NYjE9t6uI1auOEGFAxjTmO4d4t/QwrSOkHxzARw
+         Dr/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740090885; x=1740695685;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1740091108; x=1740695908;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=phlci97ebZekU4b5KeuZl5+WtfcQbkZeGNBOFT410xE=;
-        b=gsqm5dYFdlN8m/YFR4ZYDy0hrBTJZsh6VddIPOqvbwB8IlHvXcJoEDZqfM9gunfe+l
-         PtIqZiC78laDrq7Uqlu1j/AjA8wBE/u8gUpA02/Ze1oRTstnRa5OZcUwPIUq9bC+cwTj
-         2D23GF0POBzClYAzPE1Cs323lofUO7IHo6ePSmLYqo2bQkU1NQQCEUwERoe7EzMO2qSi
-         mslp5Kfdr7oovudOaAmNNIdSQzrRN+7IqiAUUCH5nPB5YEBqUJBfqA2LPmCoAe/QaOZu
-         7xV34IId2ic4XsLI8QaiyYvR9nXJUUAG9J4aoek2WDw6VhYspSiBjknHX0dQkHDOsWSx
-         3VUA==
-X-Forwarded-Encrypted: i=1; AJvYcCX7OAsyb3FmTbVA/pkcPrrTSdmjd2xsCWcmpne5uJnT1gkTii4P/dSX6gcTai+zFS+W9mCcj9IKius8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2kWBaQs+NCbTNPBd/dCNPxBIrIDrZO0fpJrdALBsQhORsUE9/
-	AVGLOwc4gArC5cHGYyw0T8yTV2FHk9a35vKMNHY/E42JBrvfb1G4Ih504Xcv7Dc=
-X-Gm-Gg: ASbGncuxabFfbm2y0ivMZ9prlEns+S7an5aMgXwVcUAgbS0S4b1UkVtOsCPGMOR4ZsZ
-	1aDCxoNJs1gDJjCA+8LROisbAU/t5khm+ER9NAUs//6oLJKdFnizzH6u7pZTp03xbk/X+QrB0OL
-	3II1DeUeI6+6TerdFTRCklRuDef5rFhd8DgjVfwaLzfC9Wyzskn1QUAyNsftJKj8uhDGd59XGQQ
-	zYaeeFlTsLad836IHHp1Zny+CDaBfE8qFJWjGTWxtO27FEVrOMWwLADgkArpjDBSjAwPOZv5BBo
-	ZvJLc/45jp7EZmraLHfkvJbVoYtmrBhLEdCAHqwvGJXk9V9z0AGsl5K6
-X-Google-Smtp-Source: AGHT+IEiEoJK5yBKqQlvbOAtC7qPbenK5M2XniNaSRU80N9OG0U+b3MWoNR0jG3TB6eA2sEmMFi/zg==
-X-Received: by 2002:a5d:6d8c:0:b0:38f:4531:397a with SMTP id ffacd0b85a97d-38f6e757a02mr842468f8f.3.1740090885393;
-        Thu, 20 Feb 2025 14:34:45 -0800 (PST)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f259d65dfsm22129677f8f.64.2025.02.20.14.34.43
+        bh=pZvnme7tRdTD63uQFjHp0iE5fgweZwPuVbaZo06CSNU=;
+        b=AXzglr5r5yFz1fnIS/7/H4QLlb8/w6BjXCUtXXhZTrtG3kIAgqNJDa13gO1HUIsFMo
+         OSDoiK93tvDPma9D1oPgauTO3DUZ4iUw/Rt6prXyBM+5WWTV1EaBwdnqEsmQxWujERXc
+         q95Tq8J1ARri57HlewLmEa4j9mVWy4q1XFiUmj1j77qjewO+eqVUtA8S0d7A0zagws39
+         gpjfpL62AX9JqF350Yd5Qzzfq2nGQIkTyU0yF3EstMpu9XA+B5cLsDzIDC5A7cvBwPUe
+         G5In9lXItChsQhDgSy0szm6/9y1k454xA+r66nNWr/8mOHsbTeCVOV6wTm5EwOO88CvJ
+         WPog==
+X-Forwarded-Encrypted: i=1; AJvYcCWH7hiNrLr7sLzyvQzly65NIi8f9AsnGZRPf2gJ/rxcKxmv4ot+xT9joAS5TYsjBXhohrUYVQS9zFOr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1Qv7wbVH7e2l6MlQzlOL0seLY+Di2RlDUoY0DAinJ908hN065
+	B/UZdb+JxU/XrVdPoo0+kt9nnvVQwv5+C7chfK/7XO2enlT4vUppQs9//lFICK8=
+X-Gm-Gg: ASbGncsr53ppuMgri0UjtbWqYk43PKimWD+d8qd5TuJknMQofkjzFchvsTzchKJehOG
+	D8kUEEW235lJiY7L+yP9V6LSrKeo9Q4wq2o5PTBUE6+TD8qU/HAIRkGBbYlf+gwjjoPDTHeDdTI
+	FVnCM1IMygYUQu3WvXtsh8w3Op43UJ/Q26J01fMqWChtmQYBCmNDdLT5gQHnnFzCAuTxDtp1CBO
+	h5mcgskm863ZaZyGMTCPDWjsCprIKYTrSBTCWBJWMLMBWFArPgnsZfo64d2o6KjyHqM/v1lq7kR
+	dwlnV5JSrdTzc/t9KOURmJSKBoxrLl7B2dXVor48dUvNf7/nu6Y2
+X-Google-Smtp-Source: AGHT+IEzdfjmrp9J+sxTdexLYB1VUUUSlpEgBRUKFEO5q3qrJomkJEMgCb7UY4Y09D1Vyk3fevqGpw==
+X-Received: by 2002:a05:6830:8d2:b0:727:2751:6b93 with SMTP id 46e09a7af769-7274c25bcedmr785372a34.20.1740091108688;
+        Thu, 20 Feb 2025 14:38:28 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-72732331fe0sm1729171a34.43.2025.02.20.14.38.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Feb 2025 14:34:44 -0800 (PST)
-Message-ID: <4c89d0a0-c0f3-494f-b85d-6c1d5041bba8@linaro.org>
-Date: Thu, 20 Feb 2025 22:34:42 +0000
+        Thu, 20 Feb 2025 14:38:28 -0800 (PST)
+Message-ID: <3c54045c-6001-4f13-a421-f7f4844b6ccc@baylibre.com>
+Date: Thu, 20 Feb 2025 16:38:26 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,48 +81,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] clk: qcom: videocc: Add support to attach multiple
- power domains
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To: Jagadeesh Kona <quic_jkona@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+Subject: Re: [PATCH RESEND v3 13/17] iio: adc: ad7768-1: add multiple scan
+ types to support 16-bits mode
+To: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250218-videocc-pll-multi-pd-voting-v1-0-cfe6289ea29b@quicinc.com>
- <20250218-videocc-pll-multi-pd-voting-v1-4-cfe6289ea29b@quicinc.com>
- <eec2869a-fa8f-4aaf-9fc5-e7a8baf0f864@linaro.org>
- <huluiiaqmunvmffoqadrhssd3kl2toutqtcw7rzamv3sqdglsf@7lz66x4sj3gv>
- <d4c4ecf0-9094-4341-8711-78a48e5d1344@linaro.org>
- <d444f1fb-42a0-48ef-83bc-d5aab9282b22@quicinc.com>
- <gzjyyl2kzv52zsewn5zf6ei65fymyi4pspvsmsjaqj5sklfxvc@bkg46saulni5>
- <fcc31cc7-67bd-4102-a53f-ebe66b4fd1a7@linaro.org>
- <3da96df2-1127-49bf-8114-282cc488c194@quicinc.com>
- <6b0684a0-a519-463f-b7be-176a4752a786@linaro.org>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com,
+ marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, jonath4nns@gmail.com,
+ marcelo.schmitt1@gmail.com
+References: <cover.1739368121.git.Jonathan.Santos@analog.com>
+ <854d64a0b431e66e70dcfeaf75bc6e40c4c25a78.1739368121.git.Jonathan.Santos@analog.com>
 Content-Language: en-US
-In-Reply-To: <6b0684a0-a519-463f-b7be-176a4752a786@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <854d64a0b431e66e70dcfeaf75bc6e40c4c25a78.1739368121.git.Jonathan.Santos@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/02/2025 22:31, Bryan O'Donoghue wrote:
-> It seems to me anyway we should try to push as much of this into core 
-> logic to be reused as possible.
+On 2/12/25 12:18 PM, Jonathan Santos wrote:
+> When the device is configured to Sinc5 filter and decimation x8,
+> output data is reduced to 16-bits in order to support 1 MHz of
+> sampling frequency due to clock limitation.
 
-But there's no valid use-case for doing
+It would be a bit more clear if this said that x8 is only possible
+with sinc5, so we don't have to check the filter type in the code.
+At first, I thought the code was missing that part of the check.
 
-ret = devm_pm_domain_attach_list(dev, NULL, &cc->pd_list);
+> 
+> Use multiple scan types feature to enable the driver to switch
+> scan type in runtime, making possible to support both 24-bit and
+> 16-bit resolution.
+> 
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> ---
 
-in the driver and then conditionally doing it again in really_probe().
+Reviewed-by: David Lechner <dlechner@baylire.com>
 
-Its an either/or.
-
----
-bod
 
