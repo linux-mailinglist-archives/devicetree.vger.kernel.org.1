@@ -1,89 +1,88 @@
-Return-Path: <devicetree+bounces-149037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BFB1A3E062
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:22:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BB48A3E05B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 17:21:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68FC83B16C0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 16:18:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBCFE189B785
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2025 16:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5B761FF1B3;
-	Thu, 20 Feb 2025 16:18:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A6B22080CE;
+	Thu, 20 Feb 2025 16:19:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VNlekTg7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AM+bYgeN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934621DF265;
-	Thu, 20 Feb 2025 16:18:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0E1D200BA8
+	for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 16:19:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740068308; cv=none; b=CZIasIHr7wutXH5ivN6Za0kGg71ozj+q5Mzpii4JkyhjlXgkL5QRU9ZbOSp6rS8z0vZAfDtcOG0wdhZ+Fc4tgIJ6xd+YGkNV/FFX9bS5BJAJGeioYy2s9OgASsgxWcD7UEgQyJuniP9YNPPzltEu3RJTYcTlkP0NBV4ENfBmUPc=
+	t=1740068358; cv=none; b=eymPFkgGTHc5+GoS42GegTjewgDeyuSGX8M7pdfMrCwqm+6TZb+h4xqBYDzfBi3UGrXGwUZ0fye7gJMS6wjyYEBP79MB1ea4PpQ08vq5jNV1kdbPD7PfIxF9YgGhWIopZ8KoqJBkuerOxSjsW7Wg/nkXPA3wrFKz8VG8rileElo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740068308; c=relaxed/simple;
-	bh=9RlNbYnLFzVjYgxQyd9KBfI9XCJfe/tCHW00K82XgB4=;
+	s=arc-20240116; t=1740068358; c=relaxed/simple;
+	bh=/B922pkbs/U6oOvx+Im8KE0wQFfockKMJbcW42nwAlc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b1jIcgyOHaTZHMqxegMdWefN1Sb3Up534prgLAA1DDBxYV+wXowFWNdRpQjlKU4CvdoCbclJK4n3GsAJTRE/McgjbavR0JN2eHc6nwUSwRZA0RYzWfICLr6AwMnKW6iR8pRmCBIxnuJBdLpVNiEaRqcFG39MisTVBOKoL5Cd8xI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VNlekTg7; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740068307; x=1771604307;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9RlNbYnLFzVjYgxQyd9KBfI9XCJfe/tCHW00K82XgB4=;
-  b=VNlekTg75J0qAfGXfCvz0vp9dqZZQvGYx1+ARWw+GevfDx2ZXEEsqZnY
-   EP12CT5KYU2m5qe/J5UdIeollr3MxqD8LeOG46/PH5IlfUSQv1TT5bNTR
-   oN1bDImQ7RLyF2Wt4+7LndeRXNa5rtyqrnQfWe6DeM1CqnB0co3wmKq/B
-   /rufj10FsJRtDmVRPq4jy/wkk8gWpU1aBcjP++YIz7VNKE6hAK2LTJXaR
-   wLsxEJ6u4j9zZzcyzZauVn4+Xu1botvPUdM5oxzgpK4C4w7g2pPzllIq0
-   rM2mkWK0OWKRhgpbL4pakdx4bF+W7dYCVlJ7mOj4miR39qMoy08g/L31b
-   g==;
-X-CSE-ConnectionGUID: PgqEARegRjyuSKZrIoJggA==
-X-CSE-MsgGUID: aXyg0+ITTbWTTroNejoE6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="63329824"
-X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; 
-   d="scan'208";a="63329824"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2025 08:18:26 -0800
-X-CSE-ConnectionGUID: MUBFVS80SV+FEOQ9rn5jww==
-X-CSE-MsgGUID: 0PpoekXBQF2IG16mnDk74Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; 
-   d="scan'208";a="138294951"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by fmviesa002.fm.intel.com with ESMTP; 20 Feb 2025 08:18:21 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tl9Fj-0004UJ-01;
-	Thu, 20 Feb 2025 16:18:19 +0000
-Date: Fri, 21 Feb 2025 00:17:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 7/9] iio: adc: sun20i-gpadc: Use adc-helpers
-Message-ID: <202502210037.162FN3PM-lkp@intel.com>
-References: <21b9af362b64a1d9c2a13cc46242dd6955996c46.1739967040.git.mazziesaccount@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=a18A03IXcj/rth//7jHFIB+Fv/MOu8ujbzdeJgxX+PNweqFsyZxlzBUDInANLkNBdjR4RNSCXScCYK6sFmFUb/93q4b20hXzFzyOTT7rZNfvbd0DwaH4DbQ7c0qSODtcmP5VqEnJ0bHnMMp2vMZdOWhTFsreu4zN+1rxyxbfwvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AM+bYgeN; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-547bcef2f96so532983e87.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 08:19:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740068355; x=1740673155; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FbLGtpaYb7GP8BUC9A3SVhEyUFy/pRikzTZLrMMHtrI=;
+        b=AM+bYgeN4SwhHPFPi0pcnUOuqkooYXpe4KyS4TKkc2Y9wtMNfQsmedAey1C9a1rkPv
+         5Aq+D7N8zYCLLUMIl53fuzp44OYcZ05TrkIVBGqt+DdaSW9UiwmiOlbOiiMfMn1PfQ1P
+         yiG3X6vumX52Oqvzcx3TlCYnCLL7rRokCRMU77NrgKRvHtWoNyja6AA9TBgdZsDmRABD
+         nw2K+v/jq+ygCkvd9FlcvbxQ97S4JCy0nGUNL2THdm22syx3IcdX1aG2+9uWKOZbyHOi
+         +Bs9+Ygt3oHe4xuu+3tF3+Owq9j4S7RpC2yfV2nh/dYlmBlLAqNqSu6R7Js1/EFeqTMh
+         VAdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740068355; x=1740673155;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FbLGtpaYb7GP8BUC9A3SVhEyUFy/pRikzTZLrMMHtrI=;
+        b=lAdSpQjOXwxLlQWNRY510fvrwFzYSmad5vrtmvLg/sufpEAxTOs1QUvPnz18boV9xO
+         aX48fuI33operadVNB/TJaXFsSyX2khWnpSt7D3u9UK+d8E11oY4LY3vN8KSmYkikjWD
+         oCSkIvULti78Yx5UAE7+9SiNMdp3tJUZ8rOtcK6PRFTOO65saZnQFm8pkwnAkVZFoJ9g
+         01A8gMSjBJ5dSyEZOUoWFBoNUJP35tFVrtcPFHUU5aj2jQDEE/S12qduDO42FoN5GAKn
+         Zqt2WWVXexk0BoVlzAPSC9aLLadtIbF9+ksKmrNyw5LgBzFq6qof/b8bUQhGFID9Nw+n
+         +UKg==
+X-Forwarded-Encrypted: i=1; AJvYcCUOPPNjVUvUP//GRO/FWzKiwg2M+kiqRivM0uLEAZ9LwHKbEtGR/AOQxyt0SDBKyzoSENFiBuRVl0NF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxMtX0p86ZxYge5ZIPLWmbUhHlCPSd9nfYjqbuEsmIOFVrLQ6s
+	I00yZKOqEUNSztvKB7I05P0Y5IxGvlavljFRIQI3DWlHbC41KVbadX1f2Du1TYk=
+X-Gm-Gg: ASbGncv2geL5iTZJT4iX8zbENwqR3xQWR8wDrLwCEOqpRm8OwQfZIfYaPP7jxykH8Aq
+	4nzseY+zQ2SQ46jO+huqhS8KO8tH4IAicHjR09nt9hQNEyiNEts0N/320H1leKrHPXPqcMqmJBh
+	rao9b4i/UC35zguXpGxPOfjOBMrR9YvCXPIAcqVbgQslljVDKYWjLh1gFbJTwngqerfmLxIFf4a
+	OnSL8iMg9TezUE4y0bHWaSa3jYaDpLvB9fQo6COCN5RqMgFVcO6d7fHm6ohCnqd7sjkN7sK/tYN
+	FIqqtnxVHodJo8avscTT7uVMDgXG8mOT0CbFDkGroHJpd93RD0iC3FUFfCAc2V8GeU37ibY=
+X-Google-Smtp-Source: AGHT+IGXy8UPjP+6V4rWOhniIYo8XO01HbjN5gyUL77WHLsu40hdggfhlw5BeDY+CUVIKw0g6aq+Vw==
+X-Received: by 2002:a05:6512:128b:b0:545:60b:f38b with SMTP id 2adb3069b0e04-54723e04635mr1484163e87.8.1740068354786;
+        Thu, 20 Feb 2025 08:19:14 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5461d1d8fcbsm1473583e87.83.2025.02.20.08.19.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Feb 2025 08:19:13 -0800 (PST)
+Date: Thu, 20 Feb 2025 18:19:12 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: sm8750-mtp: Enable CDSP and
+ mention MPSS
+Message-ID: <dihnqsdjqxq7uhomceeiejey7dezfyvhpnyc3zyzhyuyfdjtec@d4ruo5xbxid3>
+References: <20250220-b4-sm8750-cdsp-v2-0-a70dd2d04419@linaro.org>
+ <20250220-b4-sm8750-cdsp-v2-3-a70dd2d04419@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,32 +91,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <21b9af362b64a1d9c2a13cc46242dd6955996c46.1739967040.git.mazziesaccount@gmail.com>
+In-Reply-To: <20250220-b4-sm8750-cdsp-v2-3-a70dd2d04419@linaro.org>
 
-Hi Matti,
+On Thu, Feb 20, 2025 at 04:44:13PM +0100, Krzysztof Kozlowski wrote:
+> Enable the CDSP on MPT8750 board and add firmware for the modem, however
+> keep it as failed because modem crashes after booting for unknown
+> reasons.
 
-kernel test robot noticed the following build errors:
+So the modem crashes on MTP, but does not on QRD?
 
-[auto build test ERROR on 5bc55a333a2f7316b58edc7573e8e893f7acb532]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Matti-Vaittinen/dt-bindings-ROHM-BD79124-ADC-GPO/20250219-203748
-base:   5bc55a333a2f7316b58edc7573e8e893f7acb532
-patch link:    https://lore.kernel.org/r/21b9af362b64a1d9c2a13cc46242dd6955996c46.1739967040.git.mazziesaccount%40gmail.com
-patch subject: [PATCH v3 7/9] iio: adc: sun20i-gpadc: Use adc-helpers
-config: i386-buildonly-randconfig-002-20250220 (https://download.01.org/0day-ci/archive/20250221/202502210037.162FN3PM-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250221/202502210037.162FN3PM-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502210037.162FN3PM-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "devm_iio_adc_device_alloc_chaninfo" [drivers/iio/adc/sun20i-gpadc-iio.ko] undefined!
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8750-mtp.dts | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8750-mtp.dts b/arch/arm64/boot/dts/qcom/sm8750-mtp.dts
+> index 8eeed7f2f7766326cfc7830002768087e9783b9b..72f081a890dfe49bfbee5e91b9e51da53b9d8baf 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8750-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8750-mtp.dts
+> @@ -791,6 +791,21 @@ &remoteproc_adsp {
+>  	status = "okay";
+>  };
+>  
+> +&remoteproc_cdsp {
+> +	firmware-name = "qcom/sm8750/cdsp.mbn",
+> +			"qcom/sm8750/cdsp_dtb.mbn";
+> +
+> +	status = "okay";
+> +};
+> +
+> +&remoteproc_mpss {
+> +	firmware-name = "qcom/sm8750/modem.mbn",
+> +			"qcom/sm8750/modem_dtb.mbn";
+> +
+> +	/* Modem crashes after some time with "DOG detects stalled initialization" */
+> +	status = "fail";
+> +};
+> +
+>  &tlmm {
+>  	/* reserved for secure world */
+>  	gpio-reserved-ranges = <36 4>, <74 1>;
+> 
+> -- 
+> 2.43.0
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
