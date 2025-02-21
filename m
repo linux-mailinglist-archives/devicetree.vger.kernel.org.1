@@ -1,57 +1,67 @@
-Return-Path: <devicetree+bounces-149583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFDA2A3FDF2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:52:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B891DA3FDF8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:52:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F1EB19C6A8F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:51:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5F464274C8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:52:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C69DA250BFC;
-	Fri, 21 Feb 2025 17:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41A932505A9;
+	Fri, 21 Feb 2025 17:52:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ozPlYk25"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HBYRmx9P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B20536AF5;
-	Fri, 21 Feb 2025 17:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13FA51DE4E5;
+	Fri, 21 Feb 2025 17:52:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740160267; cv=none; b=lAwhZjGp5P6fUdilflHPLc4dw6E4c0qy7kqxI+CKdMcdJ7Q1CP+xQ7pSmwB45Bp9z+ZLj+VWfzMZq3kcYf4vb4IgB0KkkuK9KIH9m+42ny1dqIeRptWkcVyArqJZoWBpYXNKjXYjhb9O6abPTuHJcTuKWilTO/JdK1YAVqMpFGc=
+	t=1740160320; cv=none; b=tUq7ROqaR+yFKMuGbYn8I+or4nKMDiJam/w2tqYiCrfA/8cAegAv/vdcreieiOwwVWikbNoVbGCIDpjBCjWFsKGMcJoMD85w+0PJ7UxxMQtvdasS9m5llLbYr0dUThdwgwxfhPUOdZVJ2a8jg0c2IHLCsyiFAKraWOXA4FafplQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740160267; c=relaxed/simple;
-	bh=3eesD+pD1KF9e3md9IM3g/43wZo+3VaylNPe9qmeh9Y=;
+	s=arc-20240116; t=1740160320; c=relaxed/simple;
+	bh=VwTAjAXwC00P6D1+oysocktoqQUV4zh6nOgKJ0tvpA8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qve+qtwM+OwOmjGPY0yOlaecWOYBySO2iP4emERTWoePNnxB4aQ4FnEQF3aV98/yjBKNcTVypfSZTNUItPo6PIR3V5V+94WlHmwENYtlVLi4lEab9jElxJtsKWjjL5wWLd7/O7Rfy+8x2kSonprwjUCIc3sGbkI7qCwvS1EaBtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ozPlYk25; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84109C4CED6;
-	Fri, 21 Feb 2025 17:51:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FJb7Gkx4XxcdhbOG72A04OoN3gK46wzb3o2+GhZgjdq5NeL+MQ9CkgBS/2T7PNCRPkKrrcjIx4EpM2HscMSvOuDU5frRn9OcD8DUYtOKOqL70XeHxn7JK2+Hrv+vCaNtkzNiKCji6ojznN1Egrb8NfKkvR52EjrKpN8jXly+RTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HBYRmx9P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC445C4CEEF;
+	Fri, 21 Feb 2025 17:51:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740160267;
-	bh=3eesD+pD1KF9e3md9IM3g/43wZo+3VaylNPe9qmeh9Y=;
+	s=k20201202; t=1740160319;
+	bh=VwTAjAXwC00P6D1+oysocktoqQUV4zh6nOgKJ0tvpA8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ozPlYk25Sv1/W22RXkC+Dk7Ja0YpByE7SnV7XkW1CPS0aIvrKTlMX6oUW7KN4trzJ
-	 bZiC6qKvIVszmCZwHVMtHhiKR7YnnscK1F+b9h+bC712M9up/m1r01pEsixy/5+rWH
-	 Zy93kS33GWZwfNkacuU+EAcGYBTmYdoVLFP3zuYZKtLyc5PGLRgbZZxDMoLblgLIAQ
-	 CuB0j7iuKpYavK8SUKOKI+7m4ZG2HCcDTP2ZhkgSfs/rliochoTNmLfBkvO3fqgriB
-	 g2tu1Y65a4CMjHTU6nbgZYOIyVosC/gJcl3TeKMCnCJqTSUvColxR3lAH11zdrNGXi
-	 GyjppZh9GNJmw==
-Date: Fri, 21 Feb 2025 17:51:03 +0000
+	b=HBYRmx9PSj6n7ukTMVN6wSb609yCVn2ELVkVA7FiUgn3qnmxbcFwh7g7g5UM5N0nH
+	 Z/mgo/52kGqxZtRC39D18Zv8dKFuwp8XZbBx3o2JgoyZNvJ4IJZFMfK2bHCYeqGXli
+	 3FdEq5pPpT9CGBohn3dIl4fgqAcRkfJDHP33KnjKC47nH6oyTwoaiUxAQVBJS+KmId
+	 wCmgRKtStR///FTkuoJiemwBOQ5gL/RfDpp6q1kWdWWyJOdmxwF679c8gX4D35Y1x4
+	 EjPhkjL/rNOR2W5q+ze+qRfaqwf1hMsAXwz+VRhV+cU1u++RstPWQfCeNakNjj65gD
+	 OHLJudkiGwNEw==
+Date: Fri, 21 Feb 2025 17:51:54 +0000
 From: Conor Dooley <conor@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
-	robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 12/14] dt-bindings: iio: adc: add ad4080
-Message-ID: <20250221-chip-bonus-7088cf66b558@spud>
-References: <20250220135429.8615-1-antoniu.miclaus@analog.com>
- <20250220135429.8615-13-antoniu.miclaus@analog.com>
- <6d4e65b9-1392-46e9-ac2e-0c4ef2239fa0@baylibre.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Simon Horman <horms@kernel.org>,
+	Duy Nguyen <duy.nguyen.rh@renesas.com>, linux-can@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: can: renesas,rcar-canfd: Simplify
+ the conditional schema
+Message-ID: <20250221-enchilada-manhole-033a7140f29f@spud>
+References: <20250220130427.217342-1-biju.das.jz@bp.renesas.com>
+ <20250220130427.217342-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,43 +69,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4HdKVL/1015tmiZQ"
+	protocol="application/pgp-signature"; boundary="cvqklKlHeqLlpBQB"
 Content-Disposition: inline
-In-Reply-To: <6d4e65b9-1392-46e9-ac2e-0c4ef2239fa0@baylibre.com>
+In-Reply-To: <20250220130427.217342-2-biju.das.jz@bp.renesas.com>
 
 
---4HdKVL/1015tmiZQ
+--cvqklKlHeqLlpBQB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 20, 2025 at 01:30:11PM -0600, David Lechner wrote:
-> On 2/20/25 7:54 AM, Antoniu Miclaus wrote:
-
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: adc-clk
+On Thu, Feb 20, 2025 at 01:04:17PM +0000, Biju Das wrote:
+> RZ/G3E SoC has 20 interrupts, 2 resets and 6 channels that need more
+> branching with conditional schema. Simplify the conditional schema with
+> if statements rather than the complex if-else statements to prepare for
+> supporting RZ/G3E SoC.
 >=20
-> Clocks don't need a name if there is only one clock.
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-And if they do need a name, putting "clk" in the name of a clock is
-pointless!
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-
---4HdKVL/1015tmiZQ
+--cvqklKlHeqLlpBQB
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7i9BwAKCRB4tDGHoIJi
-0ic1AQD112FQkzi58+uQbPA6iGAsG1+q6jACUzdDERijSWlVDAD/UrcSGJwU8Ues
-5JRLjc8KX7hYFVUKHCxI66nGpJayZwY=
-=kQtY
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7i9OgAKCRB4tDGHoIJi
+0hJsAQD+dEXcr7xaCJA6BbWZj+Bk582fzaiXaYAUPmBJY9R16AEAucaVR1BI/nBE
+1qm6pdvP8kUpo0ZeOeGFzOJiaoWMOQI=
+=01R8
 -----END PGP SIGNATURE-----
 
---4HdKVL/1015tmiZQ--
+--cvqklKlHeqLlpBQB--
 
