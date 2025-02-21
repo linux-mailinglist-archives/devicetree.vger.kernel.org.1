@@ -1,127 +1,166 @@
-Return-Path: <devicetree+bounces-149615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B89DA3FEFF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 19:43:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56AE4A3FF1A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 19:54:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF04C188F44D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:43:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4E8F87AD9C8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:53:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BB052512FB;
-	Fri, 21 Feb 2025 18:42:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nxCAVyD6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDF4F250C1F;
+	Fri, 21 Feb 2025 18:54:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0818A205AC7
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 18:42:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B7E1F2C56;
+	Fri, 21 Feb 2025 18:54:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740163372; cv=none; b=V72egGwKzQIM+4XvobK+xQiJ9bbaDZRfBC9hHcvD1sG41wRS0EBbSnX9amzmuRJBJiPSemAq8kfL7Gjcdv7o7hXCuhjUxnhoxgEUVIXZ1USJhwwjq0qeNujJq5zr99HoiuxAwzMUo9rgOwmFTteKWmvBnriVPpldoORuz537x4Y=
+	t=1740164080; cv=none; b=RJyaEmVp4uVhOsnwF8vj9wgb+27lFXhEj9DI5afAPA1ZAO4c0eyY7LF7FKpJYZ0ldqkxw7yMgr9aqw3sn+KIPsBbofx/K/VXAW1K2gmz4nEpdYK5bdkh4mXf2BPDho7w6lLHrQzaAZZlUMTCwK8D8vZzLZFI9o5SycduwhfrMKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740163372; c=relaxed/simple;
-	bh=1bmbRUwk+BNNq6gA9Bpe7TPnHF/oaA/NQmpJ9nLPe3s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hd0K16X/NmZwOv0vLg+fAdHMaw6m9JJACuEcqocAKQ7Q/iwKTwzOVpZ4iSGbI9FCkq3UFocOPZYO8eecOMNkeS73tPUssuNvMVnPxXdGIdALLS5ySBPe0LAnjNMRN9yk3f0btLMglY1JpLhNBTGRr9pIh5ZqjP7gku8ceQ6cE0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nxCAVyD6; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51LCwGOk001826
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 18:42:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qTPvB+ML5+rJwIEK58ICt4gImdH4pwy2IL/fBgWr1SA=; b=nxCAVyD6rvRK7Hjd
-	Vi49z7faK9MdnpvKQcgAszbWY0X4GnrlAGnZ4TZ66glYyB4MvLHrD6wQc2Wk93wk
-	cEdQnkqlrVjW3+KO7Y1agbDERVmc9v9t3DTuAyXggy9FFKrThEB3XwUlBDZtz70/
-	8ejV+cIthIRrf8yF6sVFjaius9t1JS7K/p3185A6xTxNFXrTlaoVN9nDMfnGaypE
-	c6MzuzzYbPliwNl4osgjc+F7vLcp/sociuDTe9dvTrUXUYpWDKzgnIFpW2RQPiNW
-	qKkyMwZncyb70cdikeuBQUXS1F31CVHE7sdz6CDtysR9m5MoU5l2TIUepRfgb74B
-	Kdog8A==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44vyy2jwtq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 18:42:50 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-471edf114feso4178311cf.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 10:42:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740163369; x=1740768169;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qTPvB+ML5+rJwIEK58ICt4gImdH4pwy2IL/fBgWr1SA=;
-        b=uEo8SB/5QpsJbbYULsGQVVh4IXnnqlFGoquyxfenKjLF3Kmh7ur3loi+0cp3vLFLXv
-         7shSz1ODEnTsvgXEz+00eXtQvfNZlLIEJJA/XNmRFopWxwVTXao55HgdjJ+T8sUqRyj6
-         KrKAC0iK6uzNP8zLKwOs/+nb4hUWW4k5xNKUbqm8fdJvWpEg0FXJwRfsAzDJUT5G3Qk8
-         E0IZ2S0l1CQbsqO0wqScZ51OKatzrLmJulClM8Hu1A5/K3R/cDWk8Dh+nua160mccHfJ
-         xQrTqV5UEC/et3JhrhJWkUMPXsi7QfRqvT/VzLzObTz8w3lcu7BNQNmIF9VQBvR4IZYk
-         rzMg==
-X-Forwarded-Encrypted: i=1; AJvYcCWEbVzhcSDfxVdtzHohGNFMMmBjrl+PWxu3ryTH32K9LmoNkXxafNsFzXoXav0Wat5EIIyOULqK79pf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7zDF3cCOrGeHQCLpBFfqU6D3dDQTD8X28qIEYBgkAndgMa1JS
-	JLK00I1ty8vMaHQdxpxkd0cx7c0fLFwKWfpdW7PCEQLM113EcWClxjVXWkqh9rQR9pxmDXRmOV9
-	toAQTjofNMKsxuLy9Bm/e8acTA4mdMT9CyyLfzF+B01rxnoCs8Oxn1H3CKpwd
-X-Gm-Gg: ASbGncvJG5MKvNlDly3NRCsnrwX6i5oy9NAUHqTWNwLgau8srtGMEWYTMSZlgpuQqc8
-	B+IBDOfCOdXTNYPNJuYzgkD330aetQ6yECV+zAU0Juqh5oNrjrNvcEtgvfliYZ1u8gyyqZE7Gc5
-	VPcoN2wp3dxsCGi3jJHC6q/0hrHRUUDAcfI4LhHMY1zwFDyfXmR2TaL8ddQ8ThjGGvV+twccT3F
-	ZsY2c6PcIHnGc0VKBCxIoET8wicvFZhuFyQo3CjgaSMi06CJlohc++bjvgferGGoFFyowP8S62I
-	TRq55jMs5gOiM9LvH5n6QR/PPFZJTDbyD1fZ/1RHZKTXLDfcsrF04+vDQh3207UuU8Ik+Q==
-X-Received: by 2002:ac8:7fc6:0:b0:472:c7f:a978 with SMTP id d75a77b69052e-472229762c7mr18992241cf.12.1740163368937;
-        Fri, 21 Feb 2025 10:42:48 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE+yBJIomD8Ov549FRkPq+6wQGUS9vVvqGnim53nFKLCag4DBYC4EeexHxtY+4Cb7py38j4iQ==
-X-Received: by 2002:ac8:7fc6:0:b0:472:c7f:a978 with SMTP id d75a77b69052e-472229762c7mr18992111cf.12.1740163368623;
-        Fri, 21 Feb 2025 10:42:48 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abbc9ff4fcdsm645841266b.87.2025.02.21.10.42.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Feb 2025 10:42:48 -0800 (PST)
-Message-ID: <5ecc0d40-f2bd-4ad4-a4da-9b5e85274746@oss.qualcomm.com>
-Date: Fri, 21 Feb 2025 19:42:47 +0100
+	s=arc-20240116; t=1740164080; c=relaxed/simple;
+	bh=f2mi2I+2wPOqTdmUO0+fO2T6ZsFuHE9rwHsdJ8BVwyU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r7/K6X9+LbHmHG99ba3x31FcsQ9XCu7TsmK2FEWdh5SDCoUbe5GADrN6Xi7/t4mVl2i9pkZytak2GdFruk4NS4cn9VdoloryJaAcRDfvtD1h8sacLdunXO690FAGz1nhoA59W2TFxmAM2RGeBPFLi4GXQnB5+XTnpzjtjsWRT5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5CE6E169C;
+	Fri, 21 Feb 2025 10:54:55 -0800 (PST)
+Received: from J2N7QTR9R3.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D780E3F59E;
+	Fri, 21 Feb 2025 10:54:35 -0800 (PST)
+Date: Fri, 21 Feb 2025 18:54:31 +0000
+From: Mark Rutland <mark.rutland@arm.com>
+To: Vincenzo Frascino <vincenzo.frascino@arm.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, Will Deacon <will@kernel.org>,
+	Jessica Clarke <jrtc27@jrtc27.com>
+Subject: Re: [PATCH v7 00/10] arm64: dts: Add Arm Morello support
+Message-ID: <Z7jL5wBUJNjOlg4r@J2N7QTR9R3.cambridge.arm.com>
+References: <20250221180349.1413089-1-vincenzo.frascino@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v3 3/3] arm64: dts: qcom: sm8750-qrd: Enable modem
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250221-b4-sm8750-modem-v3-0-462dae7303c7@linaro.org>
- <20250221-b4-sm8750-modem-v3-3-462dae7303c7@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250221-b4-sm8750-modem-v3-3-462dae7303c7@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: N4rNOMvXLc8Uepxs-lto5fCQ2VCYfdXt
-X-Proofpoint-GUID: N4rNOMvXLc8Uepxs-lto5fCQ2VCYfdXt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-21_05,2025-02-20_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- lowpriorityscore=0 clxscore=1015 adultscore=0 phishscore=0 mlxlogscore=637
- bulkscore=0 malwarescore=0 impostorscore=0 priorityscore=1501 mlxscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502210129
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250221180349.1413089-1-vincenzo.frascino@arm.com>
 
-On 21.02.2025 5:33 PM, Krzysztof Kozlowski wrote:
-> Enable the modem (MPSS) on QRD8750 board.
+Hi Vincenzo,
+
+On Fri, Feb 21, 2025 at 06:03:39PM +0000, Vincenzo Frascino wrote:
+> The Morello architecture is an experimental extension to Armv8.2-A,
+> which extends the AArch64 state with the principles proposed in
+> version 7 of the Capability Hardware Enhanced RISC Instructions
+> (CHERI) ISA [1].
+
+None of the CHERI stuff is supported upstream, so from upstream's PoV
+this is a low-volume dev-board/SoC with an experimental ARMv8.2-A CPU.
+
+> This series adds dts support for the Arm Morello System Development
+> Platform.
+
+Do we actually need the dts for this board?
+
+I have one on my desk; it boots vanilla Debian 12 via UEFI + ACPI just
+fine, with the Debian 6.1.0-13-arm64 kernel.
+
+Is there something that we can only do with the DT? i.e. some
+functionality that isn't exposed via ACPI?
+
+How do you expect this DT to be used?
+
+Mark.
+
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
+> [1] https://www.morello-project.org/
+> 
+> To simplify the testing a linux tree rebased on 6.14-rc4 is accessible
+> at [2].
+> 
+> [2] https://codeberg.org/vincenzo/linux/src/branch/morello/dts/v6
+> 
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Sudeep Holla <sudeep.holla@arm.com>
+> Cc: Lorenzo Pieralisi <lpieralisi@kernel.org> 
+> Cc: Russell King <linux@armlinux.org.uk>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: Jessica Clarke <jrtc27@jrtc27.com>
+> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
+> 
+> Changes
+> =======
+> v7:
+>   - Rebased on 6.14-rc4.
+>   - Added review info.
+> v6:
+>   - Introduce arm,morello.yml.
+>   - Split pmu patch.
+>   - Address review comments.
+> v5:
+>   - Add support for fvp.
+>   - Add support for pmu.
+>   - Address review comments.
+>   - Rebase on 6.14-rc1.
+> v4:
+>   - Add cache information.
+>   - Address review comments.
+> v3:
+>   - Address review comments.
+>   - Rebase on 6.13-rc5.
+> v2:
+>   - Addressed review comments.
+>   - Rebased on 6.13-rc4.
+>   - Renamed arm,morello to arm,morello-sdp for clarity.
+> 
+> Vincenzo Frascino (10):
+>   arm64: Kconfig: Update description for CONFIG_ARCH_VEXPRESS
+>   dt-bindings: arm: Add Morello compatibility
+>   dt-bindings: arm: Add Morello fvp compatibility
+>   dt-bindings: arm: Add Rainier compatibility
+>   dt-bindings: arm-pmu: Add support for ARM Rainier PMU
+>   perf: arm_pmuv3: Add support for ARM Rainier PMU
+>   arm64: dts: morello: Add support for common functionalities
+>   arm64: dts: morello: Add support for soc dts
+>   arm64: dts: morello: Add support for fvp dts
+>   MAINTAINERS: Add Vincenzo Frascino as Arm Morello Maintainer
+> 
+>  .../devicetree/bindings/arm/arm,morello.yaml  |  35 ++
+>  .../devicetree/bindings/arm/cpus.yaml         |   1 +
+>  .../devicetree/bindings/arm/pmu.yaml          |   1 +
+>  MAINTAINERS                                   |   7 +
+>  arch/arm64/Kconfig.platforms                  |   5 +-
+>  arch/arm64/boot/dts/arm/Makefile              |   1 +
+>  arch/arm64/boot/dts/arm/morello-fvp.dts       |  77 +++++
+>  arch/arm64/boot/dts/arm/morello-sdp.dts       | 157 +++++++++
+>  arch/arm64/boot/dts/arm/morello.dtsi          | 323 ++++++++++++++++++
+>  drivers/perf/arm_pmuv3.c                      |   2 +
+>  10 files changed, 606 insertions(+), 3 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/arm,morello.yaml
+>  create mode 100644 arch/arm64/boot/dts/arm/morello-fvp.dts
+>  create mode 100644 arch/arm64/boot/dts/arm/morello-sdp.dts
+>  create mode 100644 arch/arm64/boot/dts/arm/morello.dtsi
+> 
+> -- 
+> 2.43.0
+> 
 
