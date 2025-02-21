@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-149197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07378A3EB08
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 04:07:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 025E0A3EB0B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 04:07:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1291019C5D3E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 03:07:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DB7D19C5D11
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 03:08:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D5C1EEA4D;
-	Fri, 21 Feb 2025 03:06:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4B8E1F12F7;
+	Fri, 21 Feb 2025 03:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fJIXdnMh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x0Eivf1X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C9951EDA22
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 03:06:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F389D1F03CC
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 03:06:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740107181; cv=none; b=cvLq0lsYge/MCtqPfdsDm+ozRzyuCoJQqYCNhbpFaSCg0l9YtOZyD21+FcjzrpT1r1syF/tvy/vHUA4YekzBpR6AeCUa+N2Sokl+5bm9pn2wdey4/0MAVoFA/VQ7n+7EDJdoZ/cn6n9CcQZpETvXHhFVDJCljSefZr5+lywdIQ0=
+	t=1740107183; cv=none; b=l6i0SypJvm4FbZKzSVNVpJiSU5tm18vkm9qHg7cXOYxNIy9YCTaL61cwUu59JS6TyCdUGtIa7djoZqqGQXOA3YnRVSvBHVD0oxod4Bc/x4k4uS+MsaYBTqrweTtsFkliok7QGiFMmJtxYY1X2Q8hqnn4FT4P/Ybx7DqJF9GUB7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740107181; c=relaxed/simple;
-	bh=b6PLMBw7yyw15o3VEzosQAWxFJYLV5zXvl5ZUGHocbU=;
+	s=arc-20240116; t=1740107183; c=relaxed/simple;
+	bh=itIH8UmE28DLal026/vQWt51OaBADCkRmt6MMWb6ec0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dSuHdrQA76ZXjBKJYOmCVY7nfcPsLXT1dP9mByJ87ynpWYOC0GX6+nAFiwgCQZBRwdtKbYX95AHHq8MXOCgWvF+yJD56pom0qTZbSr7C3uT6U/qFgFKvS8KFed2xZPofNZQz161eRFgGQUQLDBgSeD/BE0ZLUt9FtsWXXOjbNCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fJIXdnMh; arc=none smtp.client-ip=209.85.208.179
+	 In-Reply-To:To:Cc; b=K6osx+BdqNOqm5dGkAYE1Tm7heoQvF0MsBPyo01kp8nMXB3XJEn1xfFk7Hb5OwK5yd7gl2VsVDEyef/nHKeZsRMm6zyV/yIS6YE5xiuXqqOwKCtjxOkEgD6rGq2YOJjwfmNfhtEBZ4G8zd/jn6XliqODe5NaeyYqfWTGmXPieo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=x0Eivf1X; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-30a303a656aso16302071fa.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 19:06:19 -0800 (PST)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5462a2b9dedso1840393e87.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2025 19:06:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740107178; x=1740711978; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1740107180; x=1740711980; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Hf+01lWdYqM6cH2pf9TEQebVcTlfAkpm0nesnJVjo8c=;
-        b=fJIXdnMhnFFRD7MiHalQg29wbAstLuu+0VUc2u1aA4KK0VsZnW/SLBt8863ph6InV2
-         NNHIAucXAgzm2mjTCAzpLlN/RY7s8XrYO9EoRhjYAzSoCGsG8T4QNj+o6a/1IGrh4wYT
-         m8WlfKRJfTMl4KRnBziHHLYynqtQH1yducUjdHdimnHCks/lnfDW1NuHOarolN+7Rzj0
-         x7Vartn/NCd0MRKfwgUuof1vtkYtV/IMbONd8F0Elrb2ai4x331mMD3UsovnmQrDvCqw
-         nRUDRUkEA7PoZf02CKEN9MZ0y4KqgjGkCVH5Rm/q0nethq21sqD+ztflzSLJgcTpl7aP
-         Zy5g==
+        bh=VcBk8LX8RGiFV095rZ/v8IBisxh6FvmuEC9JHwGym/o=;
+        b=x0Eivf1XeU0MdkW++41XJ4fDWFeZk67LQXPAgRB8SM3pNza4SfLpsxKKmAPdLcD0Y3
+         c7Co4aLGd4uausz9zJiLj3WugV+mGzZ5zkbKP5vgcRsxz0zLIayfCAUsPw/VBrwzGxIz
+         X2RODNXVF8jlj7sXvRALP81b/Be4cGS85iIvK87FCRyoMh5G4/wClmC2axruvNseIi5y
+         0foRcIbb43vBKh/7ZRV0Vep7E0DCreNl0CyqyheRA8/PLv4Mw535dndCerEzx10zpwsJ
+         +oAm1raTyIqejByjH6/DMIz+YSYg14RZsBmLFDnoerWpQ6huznC+ngD/XKqVuExHLXnM
+         H0+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740107178; x=1740711978;
+        d=1e100.net; s=20230601; t=1740107180; x=1740711980;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Hf+01lWdYqM6cH2pf9TEQebVcTlfAkpm0nesnJVjo8c=;
-        b=enT1FHbsq2PA0LaGuYdT63NqkRjJ/24mb4nlwykfRqdZ4fcPidj03cSyWrGiokwbQL
-         m8zIg+t7dbXXSWbEGc6Diy0xaSqd3lttIdi6lo29kJl8LyRqTr11XmTp1uuzR7byBynS
-         n985Jk1cCeVZkt70OlMFEDXn7MOQZ9ulYw+oqiGF2DtwYw0bxl5sHtGmCmaSSEKaOR30
-         D06NmZQ4mTwh0GlXII7+icpRj4V2BBMpP7sgYP3eMsHBCbqwO4XzmD5J4M7LwmhIq97w
-         G567pTRY+n0pmmvM5g2H2e/CcPYcmPD7gVnMbdiX9Ad5SDzDAxSp1Ttzve4oyjk7x8OH
-         zSvw==
-X-Forwarded-Encrypted: i=1; AJvYcCXEdtJ5q1bOnWsmV/+YhAgWRStcnjuawrCcLAJmrVfzAQegAzun7aH+vgQqP+oQSQE24X3jb1s7sVib@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJBIO7C7Ol8hfu7DMnbK3SFqtTO36SxQCW0gt4rmrV9msUbdvL
-	FEw2mAyOux3tLAdd4Pz9ROrx7ot1XQ+nQ6PRqvkXoTdlS6Ap0MVMg4jJIcdWdBg=
-X-Gm-Gg: ASbGnct37Cj5VV6VsnIE2lZrLkaiqqZC5dKBxMTbZbZsVJRZBxfmkAxBqwRmjYR3sL3
-	E0d1o7fRVCScG2gxQUnpHqHjkHzVEdrdwPyg4xC8e/6AjOA57afY+bttPjS1ZeunxWYHQAYjQGB
-	cnJnigUrQ0UcCqdmQEZIO6Xtv1LxUH5QaDsD+fhDRULSxQlrJLz+8U3CkI7CLhwph36yBH4W91O
-	6IhKk4Lq3IK9k8M4gkValkU0r5JAt9WVzy7yTUuWs8QLe1GtKY2UJhJyc/ejHNxci653F+DEkX0
-	f1fjTENZF0bwfNwYXBHYZyPjhXYU6TLrAHB7T++Qp48IZF8l7f67C+Sd96uzpVCYmDZ6zA==
-X-Google-Smtp-Source: AGHT+IFIkUTVECcUanvIgEQylzLf9cAeuyCvSYP0ViEN5AYii2FSHeNuyGSW+Wo3XvGPACfY4hAK+Q==
-X-Received: by 2002:a2e:9dd1:0:b0:302:22e6:5f8 with SMTP id 38308e7fff4ca-30a5b1a0abbmr2867681fa.22.1740107177715;
-        Thu, 20 Feb 2025 19:06:17 -0800 (PST)
+        bh=VcBk8LX8RGiFV095rZ/v8IBisxh6FvmuEC9JHwGym/o=;
+        b=Ddb2inV17f9HEwzWAMDCWzPU7zCnk/QDnZJdrGRip7ZEPcvAHHz+ONR5NktYhN779n
+         fb3d35ZzGe4Yi+vc3r389Q5EV6APmCkaqyWYwdd6mSUyTd0BGPdacuU/gEZqITXQEizT
+         8OSMJkN9Gg/AGy2GSC3l//Al5fMHEFqK23RzvUxleGnrBZXH7BzfflskhlxhdbqrVWEw
+         C4f5rXVYgmj2jU/iG36kR5QhmkRub7Zu3yOlM16Z1DnLu6pm+0M4oN79Yyc5/hdkX4n9
+         yaRXYQKM2D/VfMVeAsDAkVID4Uuo40JTMCVjGMRgXwIdmwCmmzyGMzsUhT5Yf+45QGfe
+         oyMw==
+X-Forwarded-Encrypted: i=1; AJvYcCUHVWV+EWOAjde+2rvu4fa/HXLU6r8xDEtlF/Dh2G19Zm+sIg983ISmiILFgSMOybWwMw+8lWJH957R@vger.kernel.org
+X-Gm-Message-State: AOJu0YzReRwJKs99jADLIYUru8iEEyk42YhudpxJ6Lg+wh+vKETG3qDv
+	z0CFOXAvTCYWIKwy0bgqP6TwK4fk9CW5G9iYfjQCDu6YBHU05db0PRQ3MFriGGU=
+X-Gm-Gg: ASbGncvaPZs4wLHjINHmKc/3fCbEkDBzhTb7Cit1RwtmN11c/AVXLFxDGse8NwA0HqA
+	1QtQ37eiUZpwOuvnsPWqpENmlOQj6MJRdLz6Hx8mpT7c9s5DALENt/a/LLi+BsY0VlPUUy7MXFa
+	xiS+jDe0GB15J5hTs9HkWqhdpVbLC7/SSeYsEvTM0WsZmQ7jzDBBk7EHUXcgx3u3GoYdlop1zUV
+	/Ks5sQIkLAXMPly1piLsBIF4CFx75QVTevmK9OKYZmtl0PNsEe/fElH/tWCzaJMSXNKnLQryXXB
+	p/Im2/oXXob8mUCws+cD0CzeGW0m6Ot1g2ZIVZTmh8dxf5vSGym9YleXYFINXzIypr0YQw==
+X-Google-Smtp-Source: AGHT+IFXvdc2fyi/lO5TeWjQg2BckbeLJtxtIh4LjuQ+/7pWa0B56pUmkwGIizEjWYjzFlrCAPv5xQ==
+X-Received: by 2002:a05:6512:3053:b0:545:b28:2f94 with SMTP id 2adb3069b0e04-54839144fe8mr354503e87.25.1740107180172;
+        Thu, 20 Feb 2025 19:06:20 -0800 (PST)
 Received: from [127.0.1.1] (2001-14ba-a0c3-3a00--782.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::782])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30a2be45876sm16021071fa.68.2025.02.20.19.06.15
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30a2be45876sm16021071fa.68.2025.02.20.19.06.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Feb 2025 19:06:16 -0800 (PST)
+        Thu, 20 Feb 2025 19:06:18 -0800 (PST)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 21 Feb 2025 05:06:04 +0200
-Subject: [PATCH v2 5/6] arm64: dts: qcom: sar2130p: add PCIe EP device
- nodes
+Date: Fri, 21 Feb 2025 05:06:05 +0200
+Subject: [PATCH v2 6/6] arm64: dts: qcom: sm8450: add PCIe EP device nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250221-sar2130p-pci-v2-5-cc87590ffbeb@linaro.org>
+Message-Id: <20250221-sar2130p-pci-v2-6-cc87590ffbeb@linaro.org>
 References: <20250221-sar2130p-pci-v2-0-cc87590ffbeb@linaro.org>
 In-Reply-To: <20250221-sar2130p-pci-v2-0-cc87590ffbeb@linaro.org>
 To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
@@ -101,49 +100,49 @@ Cc: =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
  linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2669;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2643;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=b6PLMBw7yyw15o3VEzosQAWxFJYLV5zXvl5ZUGHocbU=;
- b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnt+2b+vvnC24YRd+vl6st9IhT/q4OakLKzn3F1
- t8d/ehBxPaJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZ7ftmwAKCRAU23LtvoBl
- uAF/EACctPzzgaDqLQSaaREFQA19W77YUO8fSLwo3g+BSjaRWIwdGGBwAYYblO6NDQbrbFBLBeR
- 8eF7IJ8kUlXvnyu4KSXXIgnDBBz/WLUuMTMRnpceYGLb6tyTDwD0Xud9/6KLl4MUSMPB1wEAZuq
- 46ejpKeBjz+WebjjgGHhJBTJENBluVHXQxAmY775Xz4kzri80ApF2jPAp+r01yDYx3/pT9x+ssa
- WjwgRG5QcB9Bk6RL4HtvK67DeDuIOmlcNr/LiByWzyHdCjKGciVB4wU+rmOeQqX1OVrHR8nN17E
- RGpX+V/T/aTMo5brQIb7qpppdLjQYIbqavISKKvkffR9xNsNJoMC+qfXrfsGWeSTW+WJB6gYagz
- 83JFjAlhFRv020J13Xo37JZih7UakHZqu+OPRTLv037h5WCuMsGpI9S4RwzMrmqr3eQmVvCqi31
- mi7tozjx5CIq01SxleumvS+dGtxZEgmMg8i50tUkYZZkoB6piCFSpGjhESpdIMoMqBzJPB/Zdqr
- lWJwJvnj7ZuvqyNWkmNgwglr5yzaL+JxPo7VVpjmPaiDRzKSzMd85Rr2JV+55MC18H3REqLbJlW
- uIgAW70fhj9sjmdql0B0oJ49fFyXkTnkckt4NRoNfGMJSpRpui/adCnNj5hMuLxlsJ/Jnv8p+MY
- zcyXB9UJ+LWiNjg==
+ bh=itIH8UmE28DLal026/vQWt51OaBADCkRmt6MMWb6ec0=;
+ b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnt+2bRGfqizSlKdB8tdyZiV1VxNhZGs2adFF6Q
+ ur6WJ32FfSJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZ7ftmwAKCRAU23LtvoBl
+ uIuzEACbi9w3d7ZvRKbNhxJBhT/FFx65l6Q3qqCPHdUy0xu8P27eHy4CEE+HUKOdryYpUAX7PN+
+ F2DOuhUd16MznS4jqU8J3f0TUKZQGygL/ywiCs73mWFHdbBXe2c/WUiuvtkwzVu5v4eYcUEYLv1
+ SxF5W9gILOOHxxWAn63F2DJBHYjQ9pUrUdIlQdfSG1cr3SH1mOsJFEqaIYOQ7nNj8PEn1gQjMj4
+ b3JaDSvjfQglIvYCefHMgFuapvnEQkKqK7U+JnIrTCkMyY2N4vWLfZHBfsseBHyFADSrWcKXmAB
+ XsLL5mT9hpKnGQ3l8hiLXLvgdpMf7IqGR3zAOf/BbWny2PgXcu/9kWVj7k4LEFl/J5Lu4HOHftP
+ QMm8B9EEIIjHMLjCxT2a45mKVkgV2U9cM+hGbmKY9uxdJP1qReRQ8vnIGWRC3zp5vsgys8oxYp8
+ XKAbPH7NB74VTjheIGFQkPqNS7qJqDw3pSo45anzlfED8U51oqjzIAZkOJZHcdWJEO2JsSFnFkh
+ Vd1vI8i9mLAEDl1jlEd9pjyT5pEmLUXfNsbEYYNq1GDlaDQmafRGkDmCAjO5AZOUAFM62BUTED5
+ rY09HCjSKqVtJMby7JsVMyThE7X8LAOxJhtp3qnd4gFbUzwfCp1iNtRF1Leq4E3xUmCvjyCHgQV
+ NbXKbg4/8LoBT3w==
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On the Qualcomm AR2 Gen1 platform the second PCIe host can be used
+On the Qualcomm SM8450 platform the second PCIe host can be used
 either as an RC or as an EP device. Add device node for the PCIe EP.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sar2130p.dtsi | 61 ++++++++++++++++++++++++++++++++++
- 1 file changed, 61 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 62 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sar2130p.dtsi b/arch/arm64/boot/dts/qcom/sar2130p.dtsi
-index dd832e6816be85817fd1ecc853f8d4c800826bc4..b45e9e2ae0357bd0c7d719eaf4fc1faa1cf913f2 100644
---- a/arch/arm64/boot/dts/qcom/sar2130p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sar2130p.dtsi
-@@ -1474,6 +1474,67 @@ pcie@0 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 9c809fc5fa45a98ff5441a0b6809931588897243..3783930d63a73158addc44d00d9da2efa0986a25 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -2262,6 +2262,68 @@ pcie@0 {
  			};
  		};
  
 +		pcie1_ep: pcie-ep@1c08000 {
-+			compatible = "qcom,sar2130p-pcie-ep";
++			compatible = "qcom,sm8450-pcie-ep";
 +			reg = <0x0 0x01c08000 0x0 0x3000>,
 +			      <0x0 0x40000000 0x0 0xf1d>,
 +			      <0x0 0x40000f20 0x0 0xa8>,
 +			      <0x0 0x40001000 0x0 0x1000>,
 +			      <0x0 0x40200000 0x0 0x1000000>,
 +			      <0x0 0x01c0b000 0x0 0x1000>,
-+			      <0x0 0x40002000 0x0 0x2000>;
++			      <0x0 0x40002000 0x0 0x1000>;
 +			reg-names = "parf",
 +				    "dbi",
 +				    "elbi",
@@ -157,23 +156,21 @@ index dd832e6816be85817fd1ecc853f8d4c800826bc4..b45e9e2ae0357bd0c7d719eaf4fc1faa
 +				 <&gcc GCC_PCIE_1_MSTR_AXI_CLK>,
 +				 <&gcc GCC_PCIE_1_SLV_AXI_CLK>,
 +				 <&gcc GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
-+				 <&gcc GCC_DDRSS_PCIE_SF_CLK>,
-+				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>,
-+				 <&gcc GCC_CFG_NOC_PCIE_ANOC_AHB_CLK>,
-+				 <&gcc GCC_QMIP_PCIE_AHB_CLK>;
++				 <&rpmhcc RPMH_CXO_CLK>,
++				 <&gcc GCC_DDRSS_PCIE_SF_TBU_CLK>,
++				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>;
 +			clock-names = "aux",
 +				      "cfg",
 +				      "bus_master",
 +				      "bus_slave",
 +				      "slave_q2a",
++				      "ref",
 +				      "ddrss_sf_tbu",
-+				      "aggre_noc_axi",
-+				      "cnoc_sf_axi",
-+				      "qmip_pcie_ahb";
++				      "aggre_noc_axi";
 +
 +			interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>,
 +				     <GIC_SPI 440 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>;
++				     <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
 +			interrupt-names = "global",
 +					  "doorbell",
 +					  "dma";
@@ -184,21 +181,24 @@ index dd832e6816be85817fd1ecc853f8d4c800826bc4..b45e9e2ae0357bd0c7d719eaf4fc1faa
 +					 &config_noc SLAVE_PCIE_1 QCOM_ICC_TAG_ACTIVE_ONLY>;
 +			interconnect-names = "pcie-mem",
 +					     "cpu-pcie";
-+			iommus = <&apps_smmu 0x1e00 0x1>;
++
++			iommus = <&apps_smmu 0x1c80 0x7f>;
 +			resets = <&gcc GCC_PCIE_1_BCR>;
 +			reset-names = "core";
 +			power-domains = <&gcc PCIE_1_GDSC>;
 +			phys = <&pcie1_phy>;
 +			phy-names = "pciephy";
-+
 +			num-lanes = <2>;
++
++			pinctrl-names = "default";
++			pinctrl-0 = <&pcie1_default_state>;
 +
 +			status = "disabled";
 +		};
 +
  		pcie1_phy: phy@1c0e000 {
- 			compatible = "qcom,sar2130p-qmp-gen3x2-pcie-phy";
- 			reg = <0x0 0x01c0e000 0x0 0x2000>;
+ 			compatible = "qcom,sm8450-qmp-gen4x2-pcie-phy";
+ 			reg = <0 0x01c0e000 0 0x2000>;
 
 -- 
 2.39.5
