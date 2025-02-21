@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-149602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60227A3FE68
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 19:12:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3292A3FE69
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 19:12:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0022D1887E9A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:11:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 961E01888EED
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:11:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08F552512C3;
-	Fri, 21 Feb 2025 18:11:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A835D2512D7;
+	Fri, 21 Feb 2025 18:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ugHih2+d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CUO5XUpE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8E97250BFC
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 18:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 798B624CEEE;
+	Fri, 21 Feb 2025 18:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740161464; cv=none; b=G6wGBJMsrhYMkfEMtvUYAdDF3h5HaeDeca/onj62H24nP944+kjOEQVWBkrCgWeVhc7UNtUYNAq1VXUS+AOsliREMWX+ndFCezEm7289he5LKj9J/IeQWcpKlkOj8LKDpIbgRzwha3covlUhodDJ0bm13m7oOv7zHSOE5uCBQek=
+	t=1740161466; cv=none; b=fk5Dmn751wV+w6TgizeUg9rcY/oLBIohXsoLgJ6UnjdX+bfJrFM+zEquyDn9NtPjz09PXjy0wuPNIQ0LKsqoo0OfjWcypv6Mfs6jj3QwN8XPWJDYC47m+UFjU/+SMhwxH03V3AbG3ab06G/oQpuulN2Mae7PKfXdZPmatWwwOy4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740161464; c=relaxed/simple;
-	bh=85EHNpoj5FaBLPd9sBcxsflJ1IRBinF2k5EJ5sLuFrI=;
+	s=arc-20240116; t=1740161466; c=relaxed/simple;
+	bh=mb3+FQLiAdF0GxPdTxxNZ1nsfmB1mwgJcruotyetN9Y=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=U0V21LuEURAR1zGbqjDEdgLKRdXlKTVzt0Rl7r8n7LEZ9BqQdvbMQXtBS7JNbbRwBw+inc0SiOxXx3euGCk5XhAikUgOPhIj/fCcr9JpP3GdXONgl64SiZmsBHW3gKOFMChmeTxTAhYbiwV7UiA8ejezFOxWm6r6kmkBVdt7X4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ugHih2+d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AFCAC4CED6;
-	Fri, 21 Feb 2025 18:11:04 +0000 (UTC)
+	 Message-Id:Subject; b=FfKwKMhJKgFzN6AljS0xTh6i4UD+xHj5fvLvNh8jI+gF3uoGS0tSRcG2UI78iUEQrOzzDSzlPlxe5VtIYfQ6htdloGkZqEO8AyqW6PRsWwH4uNpOu8yNiPl7fveTxfYsSIeLjJciSTLRS03xIpdc6LeNX8FSllwnTex7QDi0+FE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CUO5XUpE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 217A1C4CED6;
+	Fri, 21 Feb 2025 18:11:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740161464;
-	bh=85EHNpoj5FaBLPd9sBcxsflJ1IRBinF2k5EJ5sLuFrI=;
+	s=k20201202; t=1740161466;
+	bh=mb3+FQLiAdF0GxPdTxxNZ1nsfmB1mwgJcruotyetN9Y=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ugHih2+df1SPzqPMF4JymvJh3qPDtYfg/57ha36Haggascwnbf9cefDuq+XTAbN8/
-	 8NWWww0/IOJD5t09tFuaGCQIuVOePl2pX+pPAH4saW0ZDKbTGBe6Z/XamZUf0GFp4e
-	 3/TL/baKioAfw9en6OsjJcf+AdxOv1BxWjh5DERLkUqqkR0rV4e5FDzA8QrTjTisdm
-	 UZllos3ha7Mlh32eQwh25CopC7uZ3875Q6+1pPss+FlfHZRDMu3m71lSOgVBD2RNlK
-	 SOk1zHeuYts/E6ZYZruNWFd1lJ9EdsiZwJSj/UMjVbAr+KTsk7P38ahEMBOmwUugrA
-	 bqMZWkJHeaRWg==
-Date: Fri, 21 Feb 2025 12:11:02 -0600
+	b=CUO5XUpE5/sksVVDBuF3JnxmN+bHo+c1O9ILuMJqjeQdO+1d4uH9jXDth3xbNBetl
+	 b9lCeEagUllp9vXDf12sYZJscUOgiOjcu57Es5G3iiVC8zOpU7vLE/MyHdotn1oJEA
+	 VPiOP12WJaT2QMAXEL/G9HIN+dllsF+42fpaZZTSuTdqBkXE/i8l7lFuLgpCXjTPYA
+	 u2/TtfZuka8QjTNTQqME60gh7MZErwn2Gbis8sy2tusEo2rDNqEMHSrlYZycoxpgLM
+	 qBjp06wjA6Jk/WF5wqsV/5fntE6+n/eM/SsyiFpdu13hL8xYkpSueAGhdYn3Kt5w0W
+	 pwOjHKW9HN2XQ==
+Date: Fri, 21 Feb 2025 12:11:04 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,43 +51,78 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org, 
- linux-aspeed@lists.ozlabs.org, conor+dt@kernel.org, 
- andrew@codeconstruct.com.au
-To: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <20250220205948.1777200-1-eajames@linux.ibm.com>
-References: <20250220205948.1777200-1-eajames@linux.ibm.com>
-Message-Id: <174015998324.3469672.1009055817022487781.robh@kernel.org>
-Subject: Re: [PATCH v2 0/3] ARM: dts: aspeed: Add Balcones system
+Cc: Simon Sun <simon.sun@yunjingtech.com>, linux-kernel@vger.kernel.org, 
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Alexandre Mergnat <amergnat@baylibre.com>, Macpaul Lin <macpaul@gmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>, Bear Wang <bear.wang@mediatek.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Yow-Shin Liou <yow-shin.liou@mediatek.com>, 
+ Fabien Parent <fparent@baylibre.com>, 
+ Chris-qj chen <chris-qj.chen@mediatek.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Pablo Sun <pablo.sun@mediatek.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <20250221144941.2844333-1-macpaul.lin@mediatek.com>
+References: <20250221144941.2844333-1-macpaul.lin@mediatek.com>
+Message-Id: <174015998416.3469778.7696460950092748736.robh@kernel.org>
+Subject: Re: [PATCH v5] arm64: dts: mediatek: mt8395-genio-1200-evk: add
+ support for TCPC port
 
 
-On Thu, 20 Feb 2025 14:59:45 -0600, Eddie James wrote:
-> The Balcones system is similar to Bonnell but with a POWER11 processor.
+On Fri, 21 Feb 2025 22:49:41 +0800, Macpaul Lin wrote:
+> From: Fabien Parent <fparent@baylibre.com>
 > 
-> Changes since v1:
->  - Add all the ucd9000 driver supported compatible strings
->  - Fix node ordering in Balcones device tree
->  - Improve commit message to explain addition of ibm-power11-dual.dtsi
+> Enable USB Type-C support on MediaTek MT8395 Genio 1200 EVK by adding
+> configuration for TCPC Port, USB-C connector, MUX IT5205 and related
+> settings.
 > 
-> Eddie James (3):
->   dt-bindings: arm: aspeed: add IBM Balcones board
->   dt-bindings: hwmon: ucd90320: Add additional compatible strings
->   ARM: dts: aspeed: Add Balcones system
+> Configure dual role switch capability, set up PD (Power Delivery) profiles,
+> and establish endpoints for SS (SuperSpeed) and HS (HighSpeed) USB.
 > 
->  .../bindings/arm/aspeed/aspeed.yaml           |   1 +
->  .../bindings/hwmon/pmbus/ti,ucd90320.yaml     |   6 +
->  arch/arm/boot/dts/aspeed/Makefile             |   1 +
->  .../dts/aspeed/aspeed-bmc-ibm-balcones.dts    | 594 +++++++++++++
->  .../arm/boot/dts/aspeed/ibm-power11-dual.dtsi | 779 ++++++++++++++++++
->  .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 769 +----------------
->  6 files changed, 1383 insertions(+), 767 deletions(-)
->  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dts
->  create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-dual.dtsi
+> Update pinctrl configurations for U3 P0 VBus default pins and set dr_mode
+> to "otg" for OTG (On-The-Go) mode operation.
 > 
-> --
-> 2.43.5
+> Add ITE IT5205 (TYPEC MUX) under I2C2 bus and configure its properties;
+> also add references and configurations to 'typec-mux' node.
 > 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Signed-off-by: Yow-Shin Liou <yow-shin.liou@mediatek.com>
+> Signed-off-by: Simon Sun <simon.sun@yunjingtech.com>
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> ---
+>  .../dts/mediatek/mt8395-genio-1200-evk.dts    | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
 > 
+> Changes for v2:
+>  - Drop the no need '1/2' DT Schema update patch in the 1st version.
+>  - Fix indent for 'ports' node, it should under the 'connector' node.
+>  - Correct the index for 'port@0' and 'port@1' node.
+> 
+> Changes for v3:
+>  - Correct the order between new added nodes.
+> 
+> Changes for v4:
+>  - Reorder for property 'op-sink-microwatt'.
+>  - Fix indentation for 'source-pdos' and 'sink-pdos' nodes.
+>  - Correct node 'pin-cmd-dat' with 'pins-vbus'.
+>  - Add both Highspeed and Superspeed ports to ssusb0 port.
+>  - Set 'role-switch-default-mode' = "peripheral" for ssusb0 port.
+>  - Rename endpoint of USB data port to 'mtu3_hs0_role_sw' and
+>    'mtu3_ss0_role_sw'.
+>  - Drop it5205fn phandle for node typec-mux@48.
+>  - Reorder properties of typec-mux@48
+>  - Add "Reviewed-by:" tag. Thanks!
+> 
+> Changes for v5:
+>  - Squash two patches into one patch and refine commit messages:
+>    suggested by reviewer.
+>  - Drop 'role-switch-default-mode'
+>  - Add altmodes settings
+>  - Drop 'Reviewed-by:' tag since the two sub patches has been combined
+>    into a new patch.
 > 
 
 
@@ -105,63 +140,10 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20250220205948.1777200-1-eajames@linux.ibm.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/mediatek/' for 20250221144941.2844333-1-macpaul.lin@mediatek.com:
 
-arch/arm/boot/dts/aspeed/aspeed-ast2500-evb.dtb: /ahb/apb/pwm-tacho-controller@1e786000: failed to match any schema with compatible: ['aspeed,ast2500-pwm-tacho']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minipack.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2500-lhc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: timer: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: bus@1e600000: compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
-	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: syscon@1e6e2000: 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^silicon-id@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@560: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic0']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@570: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic1']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/display@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2600-gfx', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: adc@1e6e9000: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: adc@1e6e9100: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: crypto@1e6fa000: 'aspeed,ahbc' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/video@1e700000: failed to match any schema with compatible: ['aspeed,ast2600-video-engine']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: gpio@1e780000: 'usb-power-hog' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/timer@1e782000: failed to match any schema with compatible: ['aspeed,ast2600-timer']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: lpc@1e789000: lpc-snoop@80: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: lpc@1e789000: reg-io-width: 4 is not of type 'object'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: kcs@24: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: kcs@28: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: kcs@2c: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: kcs@114: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: sdc@1e740000: sdhci@1e740100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: sdc@1e740000: sdhci@1e740200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/bus@1e78a000/i2c@400/pwm@53: failed to match any schema with compatible: ['maxim,max31785a']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: pressure-sensor@76: '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: fsi@1e79b000: compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
-	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: fsi@1e79b100: compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
-	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dtb: lpc@1e789000: reg-io-width: 4 is not of type 'object'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dtb: usb@11201000: 'ports' does not match any of the regexes: '^usb@[0-9a-f]+$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/usb/mediatek,mtu3.yaml#
 
 
 
