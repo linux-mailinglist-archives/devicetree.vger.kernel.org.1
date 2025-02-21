@@ -1,106 +1,121 @@
-Return-Path: <devicetree+bounces-149424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E84A3F6FF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:16:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A8E8A3F6CF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:06:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 931FE19C1959
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:15:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19735189A610
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:06:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A4E520E01C;
-	Fri, 21 Feb 2025 14:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 016DC20E33F;
+	Fri, 21 Feb 2025 14:05:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-8fa9.mail.infomaniak.ch (smtp-8fa9.mail.infomaniak.ch [83.166.143.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7F4C1D5173
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 14:15:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.166.143.169
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C261433DE;
+	Fri, 21 Feb 2025 14:05:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740147320; cv=none; b=ejOOPulZalp3JIk9UgURijjoYe6QWkpxrUyUDuvakZSjp5C1XOHT6wq5CGrvIJqTQsk2xIlLehlHSeaqdIDOxs7QrzKH6iGLFmEZg74jydMzyrYFP42XM5LFR1YJDsiPYQx7d389fBMkU3QelkqUhVCEPqyd0pay97/XlNKwU9U=
+	t=1740146745; cv=none; b=QaB7WwsE9Qo4/vfDVbx4arlImn+3VWOvp3lhqA+IZzh/pU3BnxLkDlHIU4XqnFX9FaH3l8Z2z+Qn2EmXUnSZ7at3Be0Ul5h8UsmneDnNl0JYtx/KWCuTKfebmtKGhtimCMUuEYnEzhm1ECm8991aEDIHAEQRs87f2gpXAwy72WY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740147320; c=relaxed/simple;
-	bh=ud9Ewppi6nbTHhEJv90ldubIDs0VF8/bmpXcameaIzg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=d/SfDYD8vduUb/H3wYcssnX/EABwoPyYw4yDxH5/xupPXHB2nwRLvmb86tOfHo/emB2QOllokVdaVwxebSW8IAoon4O+hB8cKisgZKwsLXCOJoGcovA1Ye6817cndDmiQvJe4m+EP3CgBQzZ/3b7knr8gkVhz+Ji6u8xL0cVfbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=83.166.143.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-4-0000.mail.infomaniak.ch (unknown [IPv6:2001:1600:7:10:40ca:feff:fe05:0])
-	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4YzsMd2NfgzTCq;
-	Fri, 21 Feb 2025 15:05:01 +0100 (CET)
-Received: from unknown by smtp-4-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4YzsMc4HR9zYHX;
-	Fri, 21 Feb 2025 15:05:00 +0100 (CET)
-From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Fri, 21 Feb 2025 15:04:34 +0100
-Subject: [PATCH v2 2/5] arm64: dts: rockchip: fix pinmux of UART5 for PX30
- Ringneck on Haikou
+	s=arc-20240116; t=1740146745; c=relaxed/simple;
+	bh=YiJ/Qghnk0jq0ET6Vz0pUevyXrZcESw1J1T+Ctvxad8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U0Nbnwj5i7TpXJ040QggwdUKEDmvDSJSSrX+NHRcSlxrDon7YSIwhaVLeARxS49EXQGdEetzbfbS9/jVoe6fBXiiAMEP67KLPhKImJbihCi/BjJhB3eUnO07ZK5GiUkxD4QqtZuQPwAgPkG6x0SaY3vllrGgKfsB90Nd7bGmVn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1tlTet-00007v-00; Fri, 21 Feb 2025 15:05:39 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id BF6E6C03B4; Fri, 21 Feb 2025 15:04:35 +0100 (CET)
+Date: Fri, 21 Feb 2025 15:04:35 +0100
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Aleksandar Rikalo <arikalo@gmail.com>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/5] MIPS: Allow using multi-cluster with a broken HCI.
+Message-ID: <Z7iH83W6Og2AA92f@alpha.franken.de>
+References: <20250123-cluster-hci-broken-v3-0-8a7ec57cbf68@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250221-ringneck-dtbos-v2-2-310c0b9a3909@cherry.de>
-References: <20250221-ringneck-dtbos-v2-0-310c0b9a3909@cherry.de>
-In-Reply-To: <20250221-ringneck-dtbos-v2-0-310c0b9a3909@cherry.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Quentin Schulz <quentin.schulz@theobroma-systems.com>, 
- Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Quentin Schulz <quentin.schulz@cherry.de>, stable@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Infomaniak-Routing: alpha
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250123-cluster-hci-broken-v3-0-8a7ec57cbf68@bootlin.com>
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
+On Thu, Jan 23, 2025 at 12:01:53PM +0100, Gregory CLEMENT wrote:
+> Hello,
+> 
+> Some CM3.5 reports indicate that Hardware Cache Initialization is
+> complete, but in reality it's not the case. They also incorrectly show
+> that Hardware Cache Initialization is supported. Unfortunately, it is
+> not possible to detect this issue at runtime and the information has
+> to be passed by the device tree.
+> 
+> In this third version, I rebased on v6.13. I also addressed remarks
+> made by Rob and Krzysztof, and endeavored to add more explanation
+> about CM, explaining why we now need to represent it in the device
+> tree.
+> 
+> My initial proposal was integrated into the series set by Aleksandar
+> here [1]. And the series adding the CM binding was here: [2]. The
+> patches 1,2,3, and 5 have no dependencies while patch 4 should depend
+> on this series [1]. Actually, those five patches should replace
+> patches 10, 11, and 12.
+> 
+> Gregory
+> 
+> [1]: https://lore.kernel.org/all/20241028175935.51250-1-arikalo@gmail.com/
+> [2]: https://lore.kernel.org/all/20240612-cm_probe-v2-5-a5b55440563c@flygoat.com/
+> 
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> ---
+> Changes in v3:
+> - Provide a more detailed explanation about the CM in the device tree binding.
+> - Make the reg property optional for all compatible strings.
+> - Use "mobileye" instead of "mti" for the eyeq6-cm compatible string.
+> - Address and correct the formatting issues in example and description.
+> - Link to v2: https://lore.kernel.org/r/20250116-cluster-hci-broken-v2-0-fc52cfb7a19e@bootlin.com
+> 
+> Changes in v2:
+> - Use compatible string instead of property
+> - Link to v1: https://lore.kernel.org/r/20241115-cluster-hci-broken-v1-0-00636800611d@bootlin.com
+> 
+> ---
+> Gregory CLEMENT (5):
+>       dt-bindings: mips: Document mti,mips-cm
+>       dt-bindings: mips: mips-cm: Add a new compatible string for EyeQ6
+>       MIPS: cm: Detect CM quirks from device tree
+>       MIPS: CPS: Support broken HCI for multicluster
+>       MIPS: mobileye: dts: eyeq6h: Enable cluster support
+> 
+>  .../devicetree/bindings/mips/mti,mips-cm.yaml      | 57 ++++++++++++++++++++++
+>  arch/mips/boot/dts/mobileye/eyeq6h.dtsi            |  4 ++
+>  arch/mips/include/asm/mips-cm.h                    | 22 +++++++++
+>  arch/mips/kernel/mips-cm.c                         | 14 ++++++
+>  arch/mips/kernel/smp-cps.c                         |  5 +-
+>  5 files changed, 101 insertions(+), 1 deletion(-)
 
-UART5 uses GPIO0_B5 as UART RTS but muxed in its GPIO function,
-therefore UART5 must request this pin to be muxed in that function, so
-let's do that.
+series applied to mips-next.
 
-Fixes: 5963d97aa780 ("arm64: dts: rockchip: add rs485 support on uart5 of px30-ringneck-haikou")
-Cc: stable@vger.kernel.org
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
----
- arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-index 2321536c553fed20bc02d91f40a5d5a6dc20892c..e9ebac0f4984a26ec288083f74c7e193cdbec326 100644
---- a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-@@ -194,6 +194,13 @@ sd_card_led_pin: sd-card-led-pin {
- 			  <3 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
-+
-+	uart {
-+		uart5_rts_pin: uart5-rts-pin {
-+			rockchip,pins =
-+			  <0 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
- };
- 
- &pwm0 {
-@@ -227,7 +234,7 @@ &uart0 {
- };
- 
- &uart5 {
--	pinctrl-0 = <&uart5_xfer>;
-+	pinctrl-0 = <&uart5_xfer &uart5_rts_pin>;
- 	rts-gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_HIGH>;
- 	status = "okay";
- };
+Thomas.
 
 -- 
-2.48.1
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
