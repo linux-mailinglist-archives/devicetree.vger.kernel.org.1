@@ -1,94 +1,89 @@
-Return-Path: <devicetree+bounces-149189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F9EBA3EAA1
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 03:15:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFD48A3EAE3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 03:50:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC09C19C41C9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 02:15:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86B0E4227B9
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 02:50:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 951272629C;
-	Fri, 21 Feb 2025 02:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC92017A2E2;
+	Fri, 21 Feb 2025 02:50:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=deepcomputing-io.20200927.dkim.feishu.cn header.i=@deepcomputing-io.20200927.dkim.feishu.cn header.b="U1GWQHhI"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="bS3XDmJS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from va-1-15.ptr.blmpb.com (va-1-15.ptr.blmpb.com [209.127.230.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C7F553AC
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 02:15:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.127.230.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E917A442F;
+	Fri, 21 Feb 2025 02:50:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740104132; cv=none; b=hm+bocuR9dFA4aDwXx4jQC37xQIwnUZaNDAS2nWdLa9/JLNHHl6D9WLD2j5m3PojzcvqpzlEn31xdDZIs16syfMEdPbihmQ91QYG+JJbTvo/VE/UVa6key6rP5G1GbuIvt2ne4QV8JA/b8G7HEBW1dTnpvaVQbQkgkpMtoDYbP0=
+	t=1740106244; cv=none; b=BE0eu79AARy6CRkRGn5btoYgdyvKmsLQninmn5g0Va6j10AdSUZi9l1vKQ9KGuUb5NPVu7uyCiLfYiZkw9mCTV2IJnAYI3noteQActyeZ4bCFsFWPOHDpGB+cgPmCYNU3/G8cRVIIaFfq3l71RKEpRiTGs5xcCoahOCmcjwCZFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740104132; c=relaxed/simple;
-	bh=hlm1M6ahY0CYSiVTuxAdUw59lv8G+DoHwmaCHg6AnIg=;
-	h=Mime-Version:Date:Content-Type:From:To:Cc:Subject:Message-Id; b=krAQqbDtkI5M/n+X+k/UMpbOG5bEvYQ9+Ef+eHENPy8ZJyQ1edsRs+Jx2kZtktVF88VAkA2Yx9hDIhbj5fWCLeWVKtnSz06Qa+oM80fZZ//lDsqEOU91buZ2h+t8vjzh/V+Qa40JJ+06MGe6WS3Ov/F5IwpSTHeD7gHkCUsTebw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=deepcomputing.io; spf=pass smtp.mailfrom=deepcomputing.io; dkim=pass (2048-bit key) header.d=deepcomputing-io.20200927.dkim.feishu.cn header.i=@deepcomputing-io.20200927.dkim.feishu.cn header.b=U1GWQHhI; arc=none smtp.client-ip=209.127.230.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=deepcomputing.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=deepcomputing.io
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=s1; d=deepcomputing-io.20200927.dkim.feishu.cn; t=1740103985;
-  h=from:subject:mime-version:from:date:message-id:subject:to:cc:
- reply-to:content-type:mime-version:in-reply-to:message-id;
- bh=252guJ30wHEGOM0mF3VIvyLsmSRltl8PT5yIko8TGpg=;
- b=U1GWQHhI0ARL5PG7Xgie+/CNClhTdeO2ve7wCOp7Kf//AaUNKmfAEbW341E2xagS6CjjHf
- gfmbLo8lKQCyfZjs/UpYDYgQFunmpc1gLZcxUd3iiZRyXH9na638QDhVe8r/AGXlpUecj5
- NWHrIUntkxUY5+Y768xql8QgdBice+o5V4VAT66+RK7d4NQX3VyFl9l1pqKEREwMPbDIyY
- 2r2vLKbE85N3L2XEQtoYZf5t8rEtiJ5xyDFAk/bYM6fboEEKF1rwfOHupi01RmeUeYhWc4
- CJ9tHfQmAdYzj3tPRSoxZqB6GKAHlNLjvQ+mFnETvtmaAaCQvBImSyzqKB976g==
+	s=arc-20240116; t=1740106244; c=relaxed/simple;
+	bh=UnJlIFv0UPUzNd+Vm3edQcV3c4YlHIanESgLP3djvo0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=XhpBAnfagB6CNJYk+rW2BtXsBvsJsSdetbB4UK2LyGaQSypv6Iql4o5BcmSfbJUtjQdvAC0f699hEKFWYRTyM8x6Pxc/BgpuUzhWKLvmEC+qH8ifD5p9iPlfSxEDpC74Yf+fwmEvvNmgnyRVBx3RSWh2QxvdLR/R7aKgWk6qNfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=bS3XDmJS; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1740106233;
+	bh=UnJlIFv0UPUzNd+Vm3edQcV3c4YlHIanESgLP3djvo0=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=bS3XDmJSaRwxBcjtYnMTwIb+H/BxFKEtm3Pk7VaDsbV19owr6Q+j1opLuCdtqhQjD
+	 6+dx3TMF4X+YLGT3ur3e/AynpgFoaPBP+vI223VEgbjjCuBxhzUe2/vHDgY8UUS0cH
+	 tpBvqc2ZQBtmnsdWHuqYkOS0I56/E++xdqSsN1+TrdBmEqzThNE3Mt9bOaUCZdn5W/
+	 WdhUezPTM4PI7OoUGenB05aasczV9qn3O4nKodwZiLdtHvP0rDpANhShljodZzXkja
+	 OkbLOh5h3ULoqcIbv8eNIuBjrOS2om0ynANUpLZCNQDTt2xg1fj4v7QJ7m0hoFy9Ec
+	 7ljKn+ys0IO6Q==
+Received: from [192.168.53.88] (ppp118-210-81-188.adl-adc-lon-bras32.tpg.internode.on.net [118.210.81.188])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 59BAE76B4D;
+	Fri, 21 Feb 2025 10:50:29 +0800 (AWST)
+Message-ID: <eec1e53185baeed99e5e0c86875f121ab4d25fd1.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v5] ARM: dts: aspeed: yosemite4: add I3C config in DTS
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Delphine CC Chiu <delphine_cc_chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+Cc: MarshallZhan-wiwynn <marshall_zhan@wiwynn.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Fri, 21 Feb 2025 13:20:28 +1030
+In-Reply-To: <20250220023233.1686419-1-delphine_cc_chiu@wiwynn.com>
+References: <20250220023233.1686419-1-delphine_cc_chiu@wiwynn.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Fri, 21 Feb 2025 10:12:15 +0800
-Content-Transfer-Encoding: 7bit
-X-Lms-Return-Path: <lba+267b7e12f+a6b4fe+vger.kernel.org+sandie.cao@deepcomputing.io>
-Received: from roma-MacBookPro.. ([113.110.143.117]) by smtp.feishu.cn with ESMTPS; Fri, 21 Feb 2025 10:13:02 +0800
-Content-Type: text/plain; charset=UTF-8
-From: "Sandie Cao" <sandie.cao@deepcomputing.io>
-X-Original-From: Sandie Cao <sandie.cao@deepcomputing.io>
-X-Mailer: git-send-email 2.34.1
-To: "Emil Renner Berthing" <kernel@esmil.dk>, 
-	"Conor Dooley" <conor@kernel.org>, "Rob Herring" <robh@kernel.org>, 
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>
-Cc: "Paul Walmsley" <paul.walmsley@sifive.com>, 
-	"Palmer Dabbelt" <palmer@dabbelt.com>, 
-	"Albert Ou" <aou@eecs.berkeley.edu>, <linux-riscv@lists.infradead.org>, 
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, 
-	<sandie.cao@deepcomputing.io>
-Subject: [PATCH] riscv: dts: starfive: fml13v01: enable USB 3.0 port
-Message-Id: <20250221021215.407988-1-sandie.cao@deepcomputing.io>
+MIME-Version: 1.0
 
-Add usb_cdns3 configuration to support super speed USB device on the
-FML13V01 board.
+Hi,
 
-Signed-off-by: Sandie Cao <sandie.cao@deepcomputing.io>
----
- .../boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts     | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Thu, 2025-02-20 at 10:32 +0800, Delphine CC Chiu wrote:
+> From: MarshallZhan-wiwynn <marshall_zhan@wiwynn.com>
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
-index 8d9ce8b69a71..221c91696ffd 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
-+++ b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
-@@ -49,3 +49,9 @@ &usb0 {
- 	dr_mode = "host";
- 	status = "okay";
- };
-+
-+&usb_cdns3 {
-+       phys = <&usbphy0>, <&pciephy0>;
-+       phy-names = "cdns3,usb2-phy", "cdns3,usb3-phy";
-+};
-+
+Typically git's user.name config should reflect your well-known name
+(with spaces between your individual names, and without e.g. a -wiwynn
+suffix).
 
-base-commit: 38818f7c9c179351334b1faffc4d40bd28cc9c72
--- 
-2.34.1
+>=20
+> Set I3C config in yosemite4 DTS.
+>=20
+> Test plan:
+> Tested PLDM GetTID successfully with the I3C hub driver.
+
+How was this successful? Your patch fails to build on top of v6.14-rc1.
+
+Please make sure you're testing against an upstream kernel tree.
+
+Andrew
 
