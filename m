@@ -1,343 +1,146 @@
-Return-Path: <devicetree+bounces-149672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6477FA40127
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:38:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CAA8A4014F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:48:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DC683AFDB8
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 20:37:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D3BD3A71FF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 20:48:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9048F1FF1D7;
-	Fri, 21 Feb 2025 20:38:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FE2D24FC1E;
+	Fri, 21 Feb 2025 20:48:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ndfbt+48"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mwEQsBy8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 590DC1D7E2F;
-	Fri, 21 Feb 2025 20:38:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D0A1EE028;
+	Fri, 21 Feb 2025 20:48:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740170286; cv=none; b=SzP2Bl26et8at73ZrIsE6zBkIBCGMI5SyeXYOIZ95s/fP1TkQkOV+61BnH7EoxvxW9ajzCenl7f7yB+R5TtlSrXEJyFcB/OQ/Sq9IZkktaXrmGRaN1Ltq9SP8R6rPhVqDUd9SGj4V5xG2fvA8EyTxzctBArKou9/tuKXJtzaZVA=
+	t=1740170928; cv=none; b=F1rrkDWv8LO2L6y1R/mryo+kYx5ciyScgq9QmOZosiQxFUeqkxoJpe8ZwtLJUx4TUUsjzrwpEit56wgg6qPtZRb4SnZsx0O2UcMC3v8QfiunTdQfSaHCIvVLBvPiHQ1bYJWu8NqdfU8Yb9WM4+/3yYZa1eo9ML+arlU90MVAl+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740170286; c=relaxed/simple;
-	bh=cZReEKvxGMFAzn2nYLfiWitsoEwnGLiU1ItJsk7GJrQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WWyBjQGucfA3LQgLjIU4D5Hs+HEcb6nFbAjz2zOZpzUnX7rgUfy3WZZS+w1xSQak5gK1U4Vm4E5jqIlB5A5DwEOJDu1F8blKFBxFVg+fa8DUuGlXs4Hn8xbPFRJFIM5MnIAqLdYdweUIYBKHPW4ttiR9/ulDM0hwR5RtZEzTQI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ndfbt+48; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94787C4CED6;
-	Fri, 21 Feb 2025 20:38:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740170285;
-	bh=cZReEKvxGMFAzn2nYLfiWitsoEwnGLiU1ItJsk7GJrQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ndfbt+48L4RUb3WT78YqKEkPhF3BzDwk9jaSj6fPv91ryKts6+cOTdoQgapK2WP0j
-	 8s0traSuhiLn53SJu6fL4ilpCUF8Nz8CUmU7BVBo3Lzk2eprS+ah0xVQ0T4mCzTETe
-	 PhZMvy0gKeAA+mEoGpLNH7rx9uIsPMvC+mbfSwfYgV9/iwh1SkPucuS6HDUdCS3yON
-	 KN1vTiTDcNH95IeouzRup2F9LQMCJBifFZbg8Sj5HqAAQtsJLYTPB7PCUVoQMlRVtt
-	 HCJSPaFTSjpuD1bJaYsRx7EpyZpgQDd0itSh2KMcV9LeQWf73Z8sGW6Ge6+oVhEGze
-	 henAZXi/4khyA==
-Date: Fri, 21 Feb 2025 14:38:03 -0600
-From: Rob Herring <robh@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>,
-	Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: Document TI LM3533 MFD
-Message-ID: <20250221203803.GA24813-robh@kernel.org>
-References: <20250218132702.114669-1-clamor95@gmail.com>
- <20250218132702.114669-2-clamor95@gmail.com>
+	s=arc-20240116; t=1740170928; c=relaxed/simple;
+	bh=SbxxSR6UlVOTyDC0umpE2D/Efl8Gy+5ksp6Nhjeam6E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mlrwYZlgLQQg/Zapyak9d/xaMIBbxN8BKVmJYZh4EwqfMGxLuss5DUb+w1HDBo4YyAT0QZzjzS+nUIPmM4Ht5TlQF6sWrlnnN176p7qwKEzDvojFG2wg1G9d6JNz4cz9A6FGVmWK3VZe8MEi2IIAD8xdA9H611nFeWuyFR0XhC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mwEQsBy8; arc=none smtp.client-ip=209.85.221.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-52088c0aaa3so1449012e0c.3;
+        Fri, 21 Feb 2025 12:48:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740170926; x=1740775726; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y/iCHBPFuLorNTUcfCCYjYnDaLq7xu6QwBWdt3kJRVc=;
+        b=mwEQsBy80hfd8YGMiJ1YyPKKQNwz7KFYdd8QEzZ56LbYtS+2Nd2qvhHqmbjuRFK7ia
+         lmXgRlEYLRrSZR7okkOxxUU5T/tdScN3FJoNTF0jW+wAV2UhdpdxVRiXYo8i/enAMhSg
+         xpRufQs/Ed6qfxuFhO6QK2stb+VFktCTfs4PmYEOR7dbMD8YM5kiyxd+fucZy+bQbwpJ
+         KwYEYKOzQbzLPdsCOoInF8ufoGJFYUqKI/FMXZo8RLFHUEFYfTWbucJTmZnvix3zUIl+
+         7WDolzwu3QrJYxDHsV59IDOqGopd2KFtF2KcwBZWyjrE+BEYIpjHUMcvgP7E2WiKDQl8
+         JyiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740170926; x=1740775726;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y/iCHBPFuLorNTUcfCCYjYnDaLq7xu6QwBWdt3kJRVc=;
+        b=uoRb0UEk2bLGMr9aLkeMWG7+XEWHgbJcGt5mSDshxb5IyVRderezx1uDxBE+8ZOaXY
+         Bg1g8Uj9H7qA1Fx6W0feFcCOE/ujCgGfCgncYOOVfmS98W5BvSnUNvTZcU/d82C1GrLH
+         ERykuyttVkaunf7rgEpe4krIPA0Ci1tYWyn/0iiNhKGzXLwNF3Unz+lD58jdTLcQcqDR
+         1SY7C8eGauS0Z6nj8xYNfX+ssiJrybq9KRgQI0WG8q6qZc3B8p+u3v2Y6RtEjPo9+GBX
+         0yZDPQH1zFJu958uDEYXtGAQI3EhtXUJuMsfT9M/cUYLHdhEMTB3xo6NsE26rmoN9JLo
+         Gm3w==
+X-Forwarded-Encrypted: i=1; AJvYcCV+2XDcmgtU1xmA+Q4SpJGdcOWJILOYIq0ornxkOHKqWg38+69LWsM4HThMRibseTL5amjFcGB+Zy7+RWYp@vger.kernel.org, AJvYcCVYz7704QZY6vFiCEk1m51CH64TdCigewdjMiczxOXCSjRrNhUbOS8eAGHau+mwMrTkZEG7URRVBKXWmADD9yddEuU=@vger.kernel.org, AJvYcCW1ct4JJCnjK5IbCSyjPsYLTD3/Tf5qkGn7GTbmJCUEq8IVqDBkx5k32NSSwj+TMHgo68SDydTNJJBR@vger.kernel.org, AJvYcCXcIeDbdbf2CtbY2UowNOoIQ4EUVTqUkGgQ8xNJj5dr78oPjc3XZRHVUfxMFJjG2+KTGNQv1qAs003w@vger.kernel.org
+X-Gm-Message-State: AOJu0YyB56K4nMzYNcO6VwXoTIiKyL3t4nxkusBO1/sEygMHsx8MB6lO
+	vvX0czzAn6A6ZqizkqEMS69em1UGqGeNrMHBI/xpGj28slVgN/3wIehZNzoR7qcQbXmBgLFUQBS
+	RODo1uzGYEhAlA4lSgKfHm8q2dqw=
+X-Gm-Gg: ASbGncvvEMuuMstGMoSI3GG9hFgXjZ94BPVJxu9KM8I43TyPuqrnI09OXxYN/8seKRt
+	Qnc/YManbsL6HXkBlE2Vj7UK1b3uP1Bkg+5U9dM5AKLAvBtoSqCUbizEUh7p0u+6i3hJ8ZTo/D9
+	PqHfEVWaqUMzjHKIRp97IKRw+PbC+rySuYdc+nmAzz
+X-Google-Smtp-Source: AGHT+IFnaqXISjQiDZgk5wTk5BuBvFo5GhismdmqShdnjYpNbfvT/ETGznMHTSEr2ABh/qaI/uxU0qsTBvAthkuASeI=
+X-Received: by 2002:a05:6122:320a:b0:520:8a22:8ea5 with SMTP id
+ 71dfb90a1353d-521ee491232mr3269159e0c.11.1740170925862; Fri, 21 Feb 2025
+ 12:48:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250218132702.114669-2-clamor95@gmail.com>
+References: <20250220150110.738619-1-fabrizio.castro.jz@renesas.com> <20250220150110.738619-3-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <20250220150110.738619-3-fabrizio.castro.jz@renesas.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 21 Feb 2025 20:48:18 +0000
+X-Gm-Features: AWEUYZktxNZsGsy_ofBaTRQA_KKe6harHFKTJUF5r2etz0d4RdGpD36zLim4JW0
+Message-ID: <CA+V-a8sWwK46LHATQ_RGzXOfC=kkuagvgjWFe+YE7XZ-kaOVSg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/7] dt-bindings: dma: rz-dmac: Restrict properties for RZ/A1H
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 18, 2025 at 03:26:59PM +0200, Svyatoslav Ryhel wrote:
-> Add bindings for the LM3533 - a complete power source for
-> backlight, keypad, and indicator LEDs in smartphone handsets.
-> The high-voltage inductive boost converter provides the
-> power for two series LED strings display backlight and keypad
-> functions.
-> 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+On Thu, Feb 20, 2025 at 3:02=E2=80=AFPM Fabrizio Castro
+<fabrizio.castro.jz@renesas.com> wrote:
+>
+> Make sure we don't allow for the clocks, clock-names, resets,
+> reset-names. and power-domains properties for the Renesas
+> RZ/A1H SoC because its DMAC doesn't have clocks, resets,
+> and power domains.
+>
+> Fixes: 209efec19c4c ("dt-bindings: dma: rz-dmac: Document RZ/A1H SoC")
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 > ---
->  .../devicetree/bindings/mfd/ti,lm3533.yaml    | 231 ++++++++++++++++++
->  1 file changed, 231 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ti,lm3533.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/ti,lm3533.yaml b/Documentation/devicetree/bindings/mfd/ti,lm3533.yaml
-> new file mode 100644
-> index 000000000000..83542f0c7bf7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/ti,lm3533.yaml
-> @@ -0,0 +1,231 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/ti,lm3533.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI LM3533 Complete Lighting Power Solution
-> +
-> +description: |
+> v3->v4:
+> * No change.
+> v2->v3:
+> * No change.
+> v1->v2:
+> * No change.
+> ---
+>  .../devicetree/bindings/dma/renesas,rz-dmac.yaml          | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Use '>' rather than '|' if only formatting is paragraphs.
+Cheers,
+Prabhakar
 
-> +  The LM3533 is a complete power source for backlight,
-> +  keypad, and indicator LEDs in smartphone handsets. The
-> +  high-voltage inductive boost converter provides the
-> +  power for two series LED strings display backlight and
-> +  keypad functions.
-
-Wrap lines at 80
-
-blank line here
-
-> +  https://www.ti.com/product/LM3533
+> diff --git a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml b=
+/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
+> index b356251de5a8..82de3b927479 100644
+> --- a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
+> +++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
+> @@ -112,6 +112,14 @@ allOf:
+>          - resets
+>          - reset-names
+>
+> +    else:
+> +      properties:
+> +        clocks: false
+> +        clock-names: false
+> +        power-domains: false
+> +        resets: false
+> +        reset-names: false
 > +
-> +maintainers:
-> +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,lm3533
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  enable-gpios:
-> +    description: GPIO to use to enable/disable the backlight (HWEN pin).
-> +    maxItems: 1
-> +
-> +  ti,boost-ovp-microvolt:
-> +    description:
-> +      Boost OVP select (16V, 24V, 32V, 40V)
-> +    enum: [ 16000000, 24000000, 32000000, 40000000 ]
-> +    default: 16000000
-> +
-> +  ti,boost-freq-hz:
-> +    description:
-> +      Boost frequency select (500KHz or 1MHz)
-> +    enum: [ 500000, 1000000 ]
-> +    default: 500000
-> +
-> +  light-sensor@0:
-> +    type: object
-> +    description:
-> +      Properties for an illumination sensor.
-> +
-> +    properties:
-> +      compatible:
-> +        const: ti,lm3533-als
-> +
-> +      reg:
-> +        const: 0
-> +
-> +      ti,resistor-value-ohm:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: |
-
-Don't need '|'. Elsewhere too.
-
-> +          Internal configuration resister value when ALS is in Analog Sensor
-> +          mode and PWM mode is disabled.
-> +        minimum: 1575
-> +        maximum: 200000
-> +
-> +      ti,pwm-mode:
-> +        type: boolean
-> +        description: |
-> +          Switch for mode in which ALS is running. If this propertly is
-> +          set then ALS is running in PWM mode, internal resistor value is
-> +          set to high-impedance (0) and resistor-value-ohm propertly is
-> +          ignored.
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +
-> +    additionalProperties: false
-
-Move this above 'properties'.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +  - enable-gpios
-> +
-> +patternProperties:
-> +  "^backlight@[01]$":
-> +    type: object
-> +    description:
-> +      Properties for a backlight device.
-> +
-> +    $ref: /schemas/leds/backlight/common.yaml#
-> +
-> +    properties:
-> +      compatible:
-> +        const: ti,lm3533-backlight
-> +
-> +      reg:
-> +        description: |
-> +          The control bank that is used to program the two current sinks. The
-> +          LM3533 has two control banks (A and B) and are represented as 0 or 1
-> +          in this property. The two current sinks can be controlled
-> +          independently with both banks, or bank A can be configured to control
-> +          both sinks with the led-sources property.
-> +        minimum: 0
-> +        maximum: 1
-> +
-> +      default-brightness: true
-> +
-> +      ti,max-current-microamp:
-> +        description:
-> +          Maximum current in µA with a 800 µA step.
-> +        enum: [ 5000, 5800, 6600, 7400, 8200, 9000, 9800,
-> +                10600, 11400, 12200, 13000, 13800, 14600,
-> +                15400, 16200, 17000, 17800, 18600, 19400,
-> +                20200, 21000, 21800, 22600, 23400, 24200,
-> +                25000, 25800, 26600, 27400, 28200, 29000,
-> +                29800 ]
-> +        default: 5000
-> +
-> +      ti,pwm-config-mask:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: |
-> +          Control Bank PWM Configuration Register mask that allows to configure
-> +          PWM input in Zones 0-4
-> +          BIT(0) - PWM Input is enabled
-> +          BIT(1) - PWM Input is enabled in Zone 0
-> +          BIT(2) - PWM Input is enabled in Zone 1
-> +          BIT(3) - PWM Input is enabled in Zone 2
-> +          BIT(4) - PWM Input is enabled in Zone 3
-> +          BIT(5) - PWM Input is enabled in Zone 4
-> +
-> +      ti,linear-mapping-mode:
-> +        description: |
-> +          Enable linear mapping mode. If disabled, then it will use exponential
-> +          mapping mode in which the ramp up/down appears to have a more uniform
-> +          transition to the human eye.
-> +        type: boolean
-> +
-> +      ti,hardware-controlled:
-> +        description: |
-> +          Each backlight has its own voltage Control Bank (A and B) and there are
-> +          two HVLED sinks which by default are linked to respective Bank. Setting
-> +          this property will link both sinks to a Control Bank of backlight where
-> +          property is defined.
-> +        type: boolean
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
-> +  "^led@[0-3]$":
-> +    type: object
-> +    description:
-> +      Properties for a led device.
-> +
-> +    $ref: /schemas/leds/common.yaml#
-> +
-> +    properties:
-> +      compatible:
-> +        const: ti,lm3533-leds
-> +
-> +      reg:
-> +        description:
-> +          4 led banks
-> +        minimum: 0
-> +        maximum: 3
-> +
-> +      linux,default-trigger: true
-> +
-> +      ti,max-current-microamp:
-> +        description:
-> +          Maximum current in µA with a 800 µA step.
-> +        enum: [ 5000, 5800, 6600, 7400, 8200, 9000, 9800,
-> +                10600, 11400, 12200, 13000, 13800, 14600,
-> +                15400, 16200, 17000, 17800, 18600, 19400,
-> +                20200, 21000, 21800, 22600, 23400, 24200,
-> +                25000, 25800, 26600, 27400, 28200, 29000,
-> +                29800 ]
-> +        default: 5000
-> +
-> +      ti,pwm-config-mask:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          Same descryption and function as for backlight.
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        led-controller@36 {
-> +            compatible = "ti,lm3533";
-> +            reg = <0x36>;
-> +
-> +            enable-gpios = <&gpio 110 GPIO_ACTIVE_HIGH>;
-> +
-> +            ti,boost-ovp-microvolt = <24000000>;
-> +            ti,boost-freq-hz = <500000>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            backlight@0 {
-> +                compatible = "ti,lm3533-backlight";
-> +                reg = <0>;
-> +
-> +                ti,max-current-microamp = <23400>;
-> +                default-brightness = <113>;
-> +                ti,hardware-controlled;
-> +            };
-
-Please make the example complete.
-
-> +        };
-> +    };
-> +...
-> -- 
-> 2.43.0
-> 
+>  additionalProperties: false
+>
+>  examples:
+> --
+> 2.34.1
+>
+>
 
