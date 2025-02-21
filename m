@@ -1,161 +1,192 @@
-Return-Path: <devicetree+bounces-149648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39B7CA4006F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:09:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF73DA40085
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:16:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04C604239EB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 20:09:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 930384256C4
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 20:16:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B1F8253326;
-	Fri, 21 Feb 2025 20:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 993511FF7D6;
+	Fri, 21 Feb 2025 20:16:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="aBgdtEA3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U+cdmgjI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAF8C1FBCB9
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 20:09:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1721FBC86;
+	Fri, 21 Feb 2025 20:16:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740168555; cv=none; b=fTMOXC5nIdtCFkfX//970l/HzYQojoi3XrC3891+IjTda5dwnEjATa4C44CT7bLIl0RwideF1Q23c6cHbzRhukknS5NSL/6paiyqgJ72PE4lj6+d2E8YdfC0OsTTCePpSHJ6tOXX0Kgi+GerWBBftBJIyQzJCOhV0dv59QfT3G4=
+	t=1740168995; cv=none; b=NXUA/EoIp4ByeI+QMxn20MSl+Jx/PSutmhWkRAssWhBdxiamqJVgk8UFJPAWGuopqyXCTqf/Qt9Vhx6D1ziFjvSJ3KV4aNqvYhFl1eoEzmrJkNCn9vtQPmM7+YGAanfhcm6++thZT5gxBXuWjWDOK3+Tpj7bhrW818sbOYnRZes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740168555; c=relaxed/simple;
-	bh=F4ZxpWiPpVGVIIx6Y5UzKKxpUZ2iM962XiXBPB3ONhY=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=XfjcHjUs2pS8kB19yRCkDpVsDA99ds427mu802QG01w4STAmVmzKezgipu1Ypx9/aJj90Ue6afVYoTwD7tZrIlEomDgnabTYf5YZnOn0E2YS3B9ss9DPMwtPAAQ1GquTxA+PkQNVCfybjVnuzfWU4/HWRGaFR+hGhIg8KVqYy8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=aBgdtEA3; arc=none smtp.client-ip=209.85.160.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-2bcbd92d5dbso1068691fac.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 12:09:13 -0800 (PST)
+	s=arc-20240116; t=1740168995; c=relaxed/simple;
+	bh=s9Ca1JGprDjYoElIXiW7zquH+1K14cmVqWxpnGGfyR0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cM9VbK/R9a4iwmZXLOmQY2uOgPcftmBoZIKW0pzklz+SFoqbJafEyvhIw2xpfO0g0LcQkf3VkEY33rThAgWtPojfyCeTf8lHdVlA7XUKhdKkzcntnnygPYoJAnVm4gjBNjp3s1fdYJ54VJTTShhXbeyOm7IYq2j7G7Ue3g9Aex4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U+cdmgjI; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5deb1266031so4606518a12.2;
+        Fri, 21 Feb 2025 12:16:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1740168553; x=1740773353; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:subject:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=W1lUGQu2HwadOSJWdDUBLoMmirB+DmWjdW3wr4b1Cj4=;
-        b=aBgdtEA3kLKwwHLbVev9Bo9OMIcz4k//w/DjxQM6fmy5b/nlt9lfEznATVIvhIsePc
-         KsQiVF7RBM1h/bbA6+L2g64L/gfIA+EgxosoYDieRZHDXd7fHyv8w+R9wZ7FYTg4lyn4
-         YoyXZTQooopJEHdnPolQ1lrrQE+eA8OefNFLc=
+        d=gmail.com; s=20230601; t=1740168992; x=1740773792; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HOnW1Ydd3mEGmkYd1wAkSF1KEHTUQp/FI13uGVZWzx4=;
+        b=U+cdmgjIJfGbd7FHXpSVNQM3Sz86Wk2mi0VErowyWv5m+Zgn6uqquexbYGfAwC3zbD
+         3txe2hx2QAArVjO6npmp/BXCaOFlJ8EmmdrQuwBmfkWUP3UvthfR7SAVJXMg+jSi5Etz
+         CXbou7r6/Q0u2mW4p4gBu3uhr5z6Q2V3Uih9m1Y51qKJy68o4M//8TydgGSUaXi3VhHw
+         VuJvFyPBJ0KG47hV0lWI6zXhQ+PsWhhEfWlgxhT42xFnJ1CUtNpvT4oYLeTxpfezI6nX
+         nNrtFndZNgKkvUETejSZES9U4d3GY30ogMvF40etm+b6Jm22g5Ug4zHG8Dk531lqxQNX
+         67xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740168553; x=1740773353;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:subject:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1740168992; x=1740773792;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=W1lUGQu2HwadOSJWdDUBLoMmirB+DmWjdW3wr4b1Cj4=;
-        b=nrSUL6bXyU5huAVSghTznq44UxhEkFxVWVPh0FIOiDKLivEbabAPCQaIu4R2qmbR/k
-         mDm1ROiWBANSF/2jAJBUisulr+f7aSgvzc5pnYQZJs9PxkcIwNSSbjgucQ6N0zI+Bh+d
-         YZRbHyq7T9GNl+hZu7MNJiZNrp/ofuSdmKGggMHUMqXtnQOxXouKPxNuE2ubq43E+Sgf
-         TDS10gyqKP+vIzBSWEvfwPxhJ275wZDfaePWVBsTPzgA0FlySC79709Z5oODhfTrH8YD
-         aowokF/SVvP9shmdvAlX07emGbxOKjZmYfgWIoEJj+Qcs7t4rXVhxcD2KnczjU40mpJB
-         /+bw==
-X-Gm-Message-State: AOJu0YyE9gPI53w8aTVm0nT8/sYxmnygJv29adlDa76zz9D9dUyApYyX
-	n4KTMoakv0JgrYADC5Fx9F6DZSU5inboTVMYcALTEMceyRt/nPS7r7w+sg8riw==
-X-Gm-Gg: ASbGncsAlBo22JX10y5RaHfye9e1xWidI025Du534rmfpoQozwyy8A0bo29ne1E9Rfk
-	Kh9yOVU9TVBRXFCwwh+56knK354yDfwayNRTPU8HRHrI0IktHaI6T189E4JdAW4bT9v5eSPzG36
-	6f74Z/C/dX51owClvDVXb3anpT/K78xmZsddrRc70zd4TrLsIDcZzaJS5C4WpUSUkiJA49nKeMu
-	Sl1TLy4IMn60Tp5Uc7Vt0A7yrinluhCrsp7krVSBRpBJYTgDdARusjFHjqQYitqKlP+Zo7nZKRZ
-	eFp/jAHCF99nQEamz31u1MZtbMmwkldEX5gG79teMEQ3LxlmKaEr1fAPGgOkMquofw==
-X-Google-Smtp-Source: AGHT+IHSa8f4sqShohgGPtu37G2TvzvQIIJNhmNCM0Znb6JovHA4q8y5Xak/spLsgW1qS4w7BMynGQ==
-X-Received: by 2002:a05:6870:4191:b0:2bc:8c86:ea31 with SMTP id 586e51a60fabf-2bd50d808cbmr3370127fac.20.1740168552765;
-        Fri, 21 Feb 2025 12:09:12 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-72728fba70asm2632841a34.50.2025.02.21.12.09.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Feb 2025 12:09:11 -0800 (PST)
-Message-ID: <47e20ea6-e5fb-44cf-810c-5fbe8d26abcb@broadcom.com>
-Date: Fri, 21 Feb 2025 12:09:09 -0800
+        bh=HOnW1Ydd3mEGmkYd1wAkSF1KEHTUQp/FI13uGVZWzx4=;
+        b=cyKhZSZBAJBLpzbV6RF857Bt2KF8rMa+wxQFKlRz1y4zO+IhgK49/0JUkTZkzgs49A
+         z2keo03n9uTcePKMs9hm6hDHwLJHoZS6K30JbUapZ1+8B+FZZUx7QgeDSVRZmt+FEtVE
+         tzFJmpma4w0BxDxKjQofPs4/TkoowXg+tHW9cdsHAogEQTBvuzVbEjS3s8KPhB3d1Ljv
+         4zbCrH742Ei0en1rTEWahb9BGwHBLA7Dqdk0g71g8pyPZoVbYlQTGNiMN6fLu6xymuPX
+         W05o9ParR5+eEZ2vQ4spDyJ/dK2n4KjczcotUp50omjhy374YiDhiFTzQcY0YZHVRTgM
+         3Kfg==
+X-Forwarded-Encrypted: i=1; AJvYcCVtdcWgkpCTPWsCgLtARGUxjv5P0mNblxoFzUSweZjXMLEnhLD5MQ7e/Oov6CiuREfSwG0dqqnKpzCvRcCe@vger.kernel.org, AJvYcCW9FwIcxVYhs7ElsEHSxms92AajP7azVHPU1hGEPHeP8vS/aGUNifixh5uXoLuR4x30rADkNdZ39YjK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRq2xBDtEP0pQSm7B8X/6mvwGXX31uW7zpKAYVY0y/n9/PkfUK
+	W/dOzG/LDOIjrU13+CvQRAJ0xcNGAkDt/aeVB+m16jUyY8eXLVQx
+X-Gm-Gg: ASbGncuAcpr4e2lEsx05ACFmodGfEbWhKSb79VluJYP41VczFXi4pHcTdn8njjNzoSP
+	lWWoxGVUKcIGIOSH41NJ/dKUJLn4ivkfRqeq521DYUF5izprTx9LV/WeWIjTgxw5WPZHcZBi73J
+	LyQlczSOOw/8WAOwuH/UFFVmP10tfSYZ+EXPEUfKmmB0G7OHhFzDH4Kae8qjJyBA9vX3yvi6zZm
+	ygU2z8DTSj8bOVjHqqqWrZ7DhNvVChWeM6wWtQFG7gB/9l56JPI51uZnAp67JKsq/eXor6BgrJt
+	I9TVELA4wc5gnXmYW4TAPCbgc0ud/WSju+O9bdXjmaPiFRBMDUf3rLGknPLtimpXsVeliVlE
+X-Google-Smtp-Source: AGHT+IGBCXqFh6dVss0FJaa0R4w77fQmveolGcalYyOeZbZ8ZnN8wMd3he5AW2qgmgbfNBz9J/WLBA==
+X-Received: by 2002:a17:906:3291:b0:aa6:7737:1991 with SMTP id a640c23a62f3a-abc0d99370emr406213066b.2.1740168991705;
+        Fri, 21 Feb 2025 12:16:31 -0800 (PST)
+Received: from hex.my.domain (83.8.202.192.ipv4.supernova.orange.pl. [83.8.202.192])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1b4f70sm14127594a12.12.2025.02.21.12.16.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Feb 2025 12:16:30 -0800 (PST)
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH v5 0/9] mfd: bcm590xx: Add support for BCM59054
+Date: Fri, 21 Feb 2025 21:16:22 +0100
+Message-Id: <20250221-bcm59054-v5-0-065f516a9042@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Subject: Re: [PATCH v2 0/5] net: phy: bcm63xx: Enable internal GPHY on
- BCM63268
-To: Kyle Hendry <kylehendrydev@gmail.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, =?UTF-8?Q?Fern=C3=A1ndez_Rojas?=
- <noltari@gmail.com>, Jonas Gorski <jonas.gorski@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20250218013653.229234-1-kylehendrydev@gmail.com>
-Content-Language: en-US
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20250218013653.229234-1-kylehendrydev@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABbfuGcC/3XM0QqCMBTG8VeRXbc4Z9vR2VXvEV2czVmD1NCQI
+ nz3ZhCK0OV3OL//Wwyhj2EQh+wt+jDGIXZtGrTLhL9yewkyVmkLBcqAxVw631AJZCRbC3lJwWC
+ wIr3f+1DH5zd1Oqd9jcOj61/f8ojzdY5oBA1LZEQJUhMWdWnBY9DHS8PxtvddI+bIqP5BlSDVb
+ ACRmRxvof5BAtS4gjpB59iTYmsKW2yhWaBCWkGTYOVqp6oiZ0u0htM0fQAr3mnuSwEAAA==
+X-Change-ID: 20240816-bcm59054-a880695e41e8
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Stanislav Jakubek <stano.jakubek@gmail.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ Artur Weber <aweber.kernel@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740168989; l=3685;
+ i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
+ bh=s9Ca1JGprDjYoElIXiW7zquH+1K14cmVqWxpnGGfyR0=;
+ b=aFJpFuZ+ebHX70O5WBucS7JoKsGSEuk18Xndc8WOLJhnTnDv+6bbkju8vARTfhpQSZwSEV28T
+ 6RaTBMzd0jCDJCgqyKCSaWEc7TatABVG4UfnieAtNegNHC00gssBy/5
+X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
+ pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
 
+Add support for the BCM59054 MFD to the bcm590xx driver and fix a
+couple of small bugs in it that also affected the already supported
+BCM59056.
 
+While we're at it - convert the devicetree bindings to YAML format
+and drop the bcm59056 DTS in favor of describing the PMU in users'
+DTS files, as is done for most other MFDs.
 
-On 2/17/2025 5:36 PM, Kyle Hendry wrote:
-> Some BCM63268 bootloaders do not enable the internal PHYs by default.
-> This patch series adds a phy driver to set the registers required
-> for the gigabit PHY to work.
-> 
-> Currently the PHY can't be detected until the b53 switch is initialized,
-> but this should be solvable through the device tree. I'm currently
-> investigating whether the the PHY needs the whole switch to be set up
-> or just specific clocks, etc.
-> 
-> v2 changes:
-> - Remove changes to b53 dsa code and rework fix as a PHY driver
-> - Use a regmap for accessing GPHY control register
-> - Add documentaion for device tree changes
+The BCM59054 is fairly similar to the BCM59056, with the primary
+difference being the different number and layout of regulators.
+It is primarily used in devices using the BCM21664 and BCM23550
+chipsets.
 
-I really preferred v1 to v2 which conveyed the special intent better 
-than going through layers and layers of abstraction here with limited 
-re-usability.
+This patchset has been tested on a Samsung Galaxy Grand Neo
+(baffinlite rev02; DTS not in mainline yet) with a BCM59054 PMIC.
+Testing on a BCM59056 would be appreciated.
 
-At least with v2, the logic to toggle the IDDQ enable/disable remains 
-within the PHY driver which is a better location.
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+---
+Changes in v5:
+- Make regulator binding descriptions reference mfd/brcm,bcm590xx.yaml
+  instead of mfd/brcm,bcm59056.yaml
+- Move regmap type enum to common MFD header
+- Link to v4: https://lore.kernel.org/r/20250215-bcm59054-v4-0-dbfb2d76a855@gmail.com
+
+Changes in v4:
+- Fix yamllint warnings in DT bindings
+- Address miscelaneous review comments related to DT bindings
+  - Note that I did not end up moving the regulator refs from
+    allOf compatible matches; I explained my reasoning in [1].
+    [1] https://lore.kernel.org/lkml/ab853605-859d-44c6-8cbd-44391cd677e6@gmail.com/
+- Add PMU ID/revision parsing to MFD driver
+- Fix instances of regulator data not matching vendor kernel for
+  BCM59054
+- Use different voltage table for BCM59054 VSR reg based on PMU
+  revision
+- Link to v3: https://lore.kernel.org/r/20250131-bcm59054-v3-0-bbac52a84787@gmail.com
+
+Changes in v3:
+- Split out regulator DT bindings into separate YAML
+- Use tables of regulator info instead of get_XXX_register, reg_is_XXX
+  functions
+- Drop "regulator: bcm590xx: Add proper handling for PMMODE registers";
+  it adds unnecessary noise to the series and will be submitted separately
+- Link to v2: https://lore.kernel.org/r/20231030-bcm59054-v2-0-5fa4011aa5ba@gmail.com
+
+Changes in v2:
+- Fixed BCM59054 ID being passed to BCM59056 function in the
+  regulator driver
+- Dropped linux-rpi-kernel from the CC list
+- Link to v1: https://lore.kernel.org/r/20231030-bcm59054-v1-0-3517f980c1e3@gmail.com
+
+---
+Artur Weber (9):
+      dt-bindings: mfd: brcm,bcm59056: Convert to YAML
+      dt-bindings: mfd: brcm,bcm59056: Add compatible for BCM59054
+      ARM: dts: Drop DTS for BCM59056 PMU
+      mfd: bcm590xx: Add support for multiple device types + BCM59054 compatible
+      mfd: bcm590xx: Add PMU ID/revision parsing function
+      regulator: bcm590xx: Use dev_err_probe for regulator register error
+      regulator: bcm590xx: Store regulator descriptions in table
+      regulator: bcm590xx: Rename BCM59056-specific data as such
+      regulator: bcm590xx: Add support for BCM59054 regulators
+
+ .../devicetree/bindings/mfd/brcm,bcm59056.txt      |   39 -
+ .../devicetree/bindings/mfd/brcm,bcm590xx.yaml     |   76 ++
+ .../bindings/regulator/brcm,bcm59054.yaml          |   56 +
+ .../bindings/regulator/brcm,bcm59056.yaml          |   51 +
+ arch/arm/boot/dts/broadcom/bcm28155-ap.dts         |   68 +-
+ arch/arm/boot/dts/broadcom/bcm59056.dtsi           |   91 --
+ drivers/mfd/bcm590xx.c                             |   86 +-
+ drivers/regulator/bcm590xx-regulator.c             | 1289 ++++++++++++++++----
+ include/linux/mfd/bcm590xx.h                       |   28 +
+ 9 files changed, 1378 insertions(+), 406 deletions(-)
+---
+base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
+change-id: 20240816-bcm59054-a880695e41e8
+
+Best regards,
 -- 
-Florian
-
+Artur Weber <aweber.kernel@gmail.com>
 
 
