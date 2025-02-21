@@ -1,68 +1,66 @@
-Return-Path: <devicetree+bounces-149551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF2FCA3FC9F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:03:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 772E6A3FC8D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:01:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B81C519E08E0
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:58:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2621F167F84
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54BE21D590;
-	Fri, 21 Feb 2025 16:56:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1856422A4D2;
+	Fri, 21 Feb 2025 16:57:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rejCUcjj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KjnfJHw4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 989382153E4;
-	Fri, 21 Feb 2025 16:56:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E21E522A4C4;
+	Fri, 21 Feb 2025 16:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740157000; cv=none; b=vBRWgPVfTNdxLHCmuKMuUkwhR05/HuwlrgU3UIDtCDkfZ3xm9RDp9YlOhCvHB5rJX5FvNQfIxEITEdi6mMP/ZSwDrqkJUO2ONQcLZmJVUdS6ghN0MeGVX4w56MuhNGMWDQOWEg2sfbZybAcBSAJz4qx+Tq4Ih98p4OHe79Nm1cM=
+	t=1740157038; cv=none; b=RTrGAul2mm0hASX6W5ArnYrGY4PBq6snPR+Y8mRfPqNzpmVWn9CgIV/ykXTXBHskImf4er1yTfzDIybF3LV0czqFcrwSeB2tMa2GOlX1NUC8jeDQjWmhrThHvCI/wjLx5fOP1amVTJNKpZeDzo5ov07tRBSLXtY2d/obROrBmQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740157000; c=relaxed/simple;
-	bh=4NYNCyUlBCcUiP2flqZ7vpZ04JrfY05TT3Q9of0jt1o=;
+	s=arc-20240116; t=1740157038; c=relaxed/simple;
+	bh=Zermek77njNBefiJAHShs4Pi/BmVFoEIkevP8SsNO7c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iWgmcLC5FSZddkLGvWnJZ0Ii1IwhQFAvJvuXpjpwCLsXsOWh83XCM+8Kfbmr0F1RikARKc6WH4BRaIABxj9BAojuFw93U288mx0LG/lQw8JIyaKqOXTFbFT1grW6fTIKGfWnnm/Ot2CjJtbARlzP9SZ0NAq6esFc94QNGNlqWhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rejCUcjj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87EC6C4CED6;
-	Fri, 21 Feb 2025 16:56:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=l2WWqTeGfq2AFTSUkg/rPsAx+U9qL4OXZKZ8pwbBWjvij3ksKSDmd69+NK1AdkeEunMAFW/ewHz9juxgEMryKklem6hs/5pqjD7G4D85UnkytVu8M4XyDiDggpRafltwEcdhTqqjoqtWz9aYYMOVCMxS683zTjog96IBG12F7l8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KjnfJHw4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB91BC4CEE2;
+	Fri, 21 Feb 2025 16:57:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740157000;
-	bh=4NYNCyUlBCcUiP2flqZ7vpZ04JrfY05TT3Q9of0jt1o=;
+	s=k20201202; t=1740157037;
+	bh=Zermek77njNBefiJAHShs4Pi/BmVFoEIkevP8SsNO7c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rejCUcjjFUhWfC4zPJeNa1HrBYGq2xsIqO0ZPaU8aMD1mp8MbDX81KHJKm8uC1N4G
-	 nZ1Uip6A11axdtE8FsNCFX7Aq9EnYmS46aoACenNEv0ma2HctX5SbNSwqAZRLyGMWC
-	 lyRKYCXrGs8JR1p66yMCStilgPUAaCcbaXQ27IRa0daLgmqXucCHpzWn1c9qzULyVJ
-	 bwWxE7Mf0fc1oE0RYZRole8xO6UtHf1xx1VmsUr2I9YVpWXkODSr265pUQVWcajUh/
-	 Fqo0kKew/oQiCo693InP0JB0KlhaxgZKb72mseLhCyftg1IVG/4hTFdDfhBQnUOejn
-	 40vGGHGGJiz4A==
-Date: Fri, 21 Feb 2025 16:56:32 +0000
+	b=KjnfJHw4iEGxUc/9qW1y7MXbhibKG8rh7AogVr9UljZJegm57+LQQHRNYxKckJ7CF
+	 FWayh52wKAV7sxOYBy2yRP1kIBucfaUT//Oz6Smay5wM4rX3aDy1XWtHwWW7TEQmw3
+	 SptwbeiWbL/fTdM1HOAih5VwfFervTEScmXCZsx8pEdHzYHE8WrTynaqiBwG4OZ6Ke
+	 vDGpq5FRy5051igtlr0CdoKc2Eih2iIJKMOuJP390ZByyLDQ2pj0Fwqyp9YV6FQXND
+	 O04FwzPPaYC+BJYhF3zEGDLtqIbpBXVRvhPU3jEGlY5r9nvEPOEH4m0Pu+KdL2FdgE
+	 +dM9ARU52UE5A==
+Date: Fri, 21 Feb 2025 16:57:12 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Eason Yang <j2anfernee@gmail.com>
-Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-	venture@google.com, yuenn@google.com, benjaminfair@google.com,
-	jic23@kernel.org, lars@metafoo.de, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, nuno.sa@analog.com,
-	dlechner@baylibre.com, javier.carrasco.cruz@gmail.com,
-	andriy.shevchenko@linux.intel.com, gstols@baylibre.com,
-	olivier.moysan@foss.st.com, mitrutzceclan@gmail.com,
-	tgamblin@baylibre.com, matteomartelli3@gmail.com,
-	marcelo.schmitt@analog.com, alisadariana@gmail.com,
-	joao.goncalves@toradex.com, thomas.bonnefille@bootlin.com,
-	ramona.nechita@analog.com, herve.codina@bootlin.com,
-	chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
-	yhyang2@nuvoton.com, openbmc@lists.ozlabs.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: adc: add NCT7201 ADCs
-Message-ID: <20250221-spinout-opt-7d9b5a529610@spud>
-References: <20250221090918.1487689-1-j2anfernee@gmail.com>
- <20250221090918.1487689-2-j2anfernee@gmail.com>
+To: Friday Yang <friday.yang@mediatek.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Garmin Chang <garmin.chang@mediatek.com>,
+	Yong Wu <yong.wu@mediatek.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: clock: mediatek: Add SMI LARBs reset
+ for MT8188
+Message-ID: <20250221-cavalier-property-7e7eceba7bc6@spud>
+References: <20250221075058.14180-1-friday.yang@mediatek.com>
+ <20250221075058.14180-2-friday.yang@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,129 +68,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JLz+NO4dK9qNL/Og"
+	protocol="application/pgp-signature"; boundary="+dgGrOCgl0PEyxI6"
 Content-Disposition: inline
-In-Reply-To: <20250221090918.1487689-2-j2anfernee@gmail.com>
+In-Reply-To: <20250221075058.14180-2-friday.yang@mediatek.com>
 
 
---JLz+NO4dK9qNL/Og
+--+dgGrOCgl0PEyxI6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 21, 2025 at 05:09:17PM +0800, Eason Yang wrote:
-> Add a binding specification for the Nuvoton NCT7201/NCT7202 up to 12-bit
-> ADCs with I2C interface.
+On Fri, Feb 21, 2025 at 03:50:53PM +0800, Friday Yang wrote:
+> On the MediaTek platform, some SMI LARBs are directly connected to
+> the SMI Common, while others are connected to the SMI Sub-Common,
+> which in turn is connected to the SMI Common. The hardware block
+> diagram can be described as follows.
 >=20
-> Signed-off-by: Eason Yang <j2anfernee@gmail.com>
-> ---
->  .../bindings/iio/adc/nuvoton,nct7201.yaml     | 57 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,nct=
-7201.yaml
+>              SMI-Common(Smart Multimedia Interface Common)
+>                  |
+>          +----------------+------------------+
+>          |                |                  |
+>          |                |                  |
+>          |                |                  |
+>          |                |                  |
+>          |                |                  |
+>        larb0       SMI-Sub-Common0     SMI-Sub-Common1
+>                    |      |     |      |             |
+>                   larb1  larb2 larb3  larb7       larb9
 >=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.ya=
-ml b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
-> new file mode 100644
-> index 000000000000..830c37fd9f22
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/nuvoton,nct7201.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton nct7201 and similar ADCs
-> +
-> +maintainers:
-> +  - Eason Yang <j2anfernee@gmail.com>
-> +
-> +description: |
-> +  The NCT7201/NCT7202 is a Nuvoton Hardware Monitor IC, contains up to 1=
-2 voltage
-> +  monitoring channels, with SMBus interface, and up to 4 sets SMBus addr=
-ess
-> +  selection by ADDR connection. It also provides ALERT# signal for event
-> +  notification and reset input RSTIN# to recover it from a fault conditi=
-on.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nuvoton,nct7201
-> +      - nuvoton,nct7202
-
-When you respin, please add a note about what differs between these
-devices that requires different handling in the driver.
-
-Cheers,
-Conor.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        adc@1d {
-> +            compatible =3D "nuvoton,nct7202";
-> +            reg =3D <0x1d>;
-> +            interrupt-parent =3D <&gpio3>;
-> +            interrupts =3D <30 IRQ_TYPE_LEVEL_LOW>;
-> +            reset-gpios =3D <&gpio3 28 GPIO_ACTIVE_LOW>;
-> +        };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 3864d473f52f..fdc4aa5c7eff 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2831,6 +2831,7 @@ L:	openbmc@lists.ozlabs.org (moderated for non-subs=
-cribers)
->  S:	Supported
->  F:	Documentation/devicetree/bindings/*/*/*npcm*
->  F:	Documentation/devicetree/bindings/*/*npcm*
-> +F:	Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
->  F:	Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.yaml
->  F:	arch/arm/boot/dts/nuvoton/nuvoton-npcm*
->  F:	arch/arm/mach-npcm/
-> --=20
-> 2.34.1
+> For previous discussion on the direction of the code modifications,
+> please refer to:
+> https://lore.kernel.org/all/CAFGrd9qZhObQXvm2_abqaX83xMLqxjQETB2=3D
+> wXpobDWU1CnvkA@mail.gmail.com/
+> https://lore.kernel.org/all/CAPDyKFpokXV2gJDgowbixTvOH_5VL3B5H8ey
+> hP+KJ5Fasm2rFg@mail.gmail.com/
 >=20
+> On the MediaTek MT8188 SoC platform, we encountered power-off failures
+> and SMI bus hang issues during camera stress tests. The issue arises
+> because bus glitches are sometimes produced when MTCMOS powers on or
+> off. While this is fairly normal, the software must handle these
+> glitches to avoid mistaking them for transaction signals. What's
+> more, this issue emerged only after the initial upstreaming of this
+> binding. Without these patches, the SMI becomes unstable during camera
+> stress tests.
+>=20
+> The software solutions can be summarized as follows:
+>=20
+> 1. Use CLAMP to disable the SMI sub-common port after turning off the
+>    LARB CG and before turning off the LARB MTCMOS.
+> 2. Use CLAMP to disable/enable the SMI sub-common port.
+> 3. Implement an AXI reset for SMI LARBs.
+>=20
+> This patch add '#reset-cells' for the clock controller located in image,
+> camera and IPE subsystems.
+>=20
+> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
 
---JLz+NO4dK9qNL/Og
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--+dgGrOCgl0PEyxI6
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7iwQAAKCRB4tDGHoIJi
-0lg0AQDsCEVD4EkUP/fg7wjfm3Cmgy9UN51JuRZ9eaXp870WdQD6A/esC7erCxcf
-CxjVOVmPKf/shRAcubLnpnBnLq4xlQI=
-=Az49
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7iwaAAKCRB4tDGHoIJi
+0uzgAP4v0yoFN7BfxFWWiitccUXoshHXQp4HLPtHW7d1YoN4TAD+IQ2jThGJf4Pc
+L5rsRAnTiFrghIbu/VG+WOs0atI7nAI=
+=soR+
 -----END PGP SIGNATURE-----
 
---JLz+NO4dK9qNL/Og--
+--+dgGrOCgl0PEyxI6--
 
