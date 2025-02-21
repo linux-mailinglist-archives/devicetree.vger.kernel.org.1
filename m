@@ -1,186 +1,256 @@
-Return-Path: <devicetree+bounces-149542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E1E1A3FC29
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:53:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E744DA3FC2B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:53:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB5DA8805B6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:42:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2B328841DC
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6652F2116EF;
-	Fri, 21 Feb 2025 16:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C4920CCF5;
+	Fri, 21 Feb 2025 16:41:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O6+FH+4N"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ezFa7UoS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C433E20012D;
-	Fri, 21 Feb 2025 16:40:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2FFE200BBC;
+	Fri, 21 Feb 2025 16:41:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740156045; cv=none; b=eTY2c2h0h4g1R3s7hB7gLxF3Rc4MaxKwq6T3HY21x2ZUdjliZaC/FwiK5AYCCAWr1mGtDvfdvLC6EAQZC/fxEizGKs1UilZl+5lb1NvHGc2ZiKKuCgoG3qoXZQ/oF+M7nR/Fmt41xBb7TbyV/lBEjWuWEJRm0dFI16g9eAJII4Y=
+	t=1740156075; cv=none; b=FwGKtOVZ/Nqu3PZM8nJb8lyVfujalgagTO217o5YoYz3yGFBp2GLwALNdBcQUhPPV6+ThGLIJ60Guf+kFKHiAw0oRDOEUxwWxu72KxxgimktYvlOUJsk4nMROxE5muS3IhvZWklxmm9dvBbW1dkK+0J1qXKglhYS2NM0+08Moh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740156045; c=relaxed/simple;
-	bh=GpoYUbvMHeDFXWzT7i5jYtr05xdjDSBLMsc7Xba85xU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jNisjRC02W3D5BN8KE1kDpF8gT+gKt1h6ziF+xw48HjH9AUZRDLOudV3Z7XnD+dzJQdEyBQPEmDFJ/Gn9Nr/SPjC2XtVAA7s+mIgum/o7Ss0RSYR870C4gnBWui39Cp8Rg1jyQl/4SOhIjS0Cwv9sE43FpGGDPMEpK/qV6JwmGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O6+FH+4N; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2fc0bd358ccso4808737a91.2;
-        Fri, 21 Feb 2025 08:40:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740156043; x=1740760843; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8oriecgGQRM7a6Kxdnk4S3T7p3y/bp+RUK8BxU8K1jc=;
-        b=O6+FH+4NeKccMJ0DhZuEJcgWnNMwpuX8FW6xTsRSEIv9lw9s1988+URs2JAYVnRp2U
-         2sr9FIJ8+TgFZi0kqsB+FZa9IjoOfZz/03BYDbBaO0oF3tkMlsDVsXrS+yKfLR2Wb3O5
-         yw9pAws20WXzhzV/NCfQJhEL5ziEbQQP7hg3T3sDyxisDZgSjS3IVUqoh8pc/Nsv0KrL
-         2iArRbhvW4wv7M6OxM429flDzJIYl/WLKI8LnXtXQV5vY5Wtvjsxm43vYTbrgHJ6Ig5G
-         9A5WPUQrNPIBxokj/pwPuhij1v45uCtOY+zIYb+ckjJvbpZkVQZZTOj1HCsew88kOT4G
-         7ytQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740156043; x=1740760843;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8oriecgGQRM7a6Kxdnk4S3T7p3y/bp+RUK8BxU8K1jc=;
-        b=RmTCdeysVENG66KkPxYuOfnOs5LkgKpZn+ucIDLzwTqW60cAu0ChPLvKOIHBDw0qNr
-         +C/CcYCGG5IvlIzx/MLZv5Tn6YvAaO2MQZhXSiVbTioPeXNl/Ej4IAxVD5vJM9jCqDWw
-         SOGHtx+aEIoVDBTbbfEHfg8Kv0uIj9E6oID4OwB4jlVUJNk6gJkpz+BKAFW3gQ4PIml+
-         oiEPfxr6yds8noYJxas+LMijJiFdTob/n1EfQ2E1AEwuZGpXuFjwJH1OcPf3BmiFvc/P
-         VFJijOGwtE5AlpmwoQiwObONn64DvWEfXGsTepEaQXuQ25XdNyySSk0D7lXpimWeqnGk
-         9MNw==
-X-Forwarded-Encrypted: i=1; AJvYcCW9uCFdFY5j4Euo8O/eiamjvwuMx+xzd76JOPtWXKNgeCDEVs5lUXnr4EsAO4LSzd7yb+l7xwgdWyx1aBW6@vger.kernel.org, AJvYcCWJv71pT9EYQS51wno/Mb2bhit5vlwRSfzeJq9Id/7XrtvdY6D30k+Ev+2e77bDsWRH4/3jB3yyjN6O@vger.kernel.org, AJvYcCXBLYCxkM2PN5VtKPBuoDCpnpk5ssVixyvfYPYnt6q6X1U0GO0hpl0mZOEeQkUqehVtKAxr+Oz3VOy8JQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJYyFU4CaZujAkn6heObGv5hynbxCoxGNwi25c7HoKVeOS/ZWL
-	kQMPYTECnGFQctqADwprhjTX19zk0lHRglL2vaOPHVrkwhov5UXi7OZuERT7swQXU/6pMh3kGnf
-	jprO9YvOklyzOpCfzJeSNHGf+AMo=
-X-Gm-Gg: ASbGncvTOu3Pm9jqj6cDu3wqft9OA6hCJrFPio7Q8Ldk9PbPl/ERJA7tLE0Vz9KF198
-	P5zfsVvUafxWnwQYSsOg0ofMK5Cf9vYTW3gmVNzFXZ2vnF4Q1y2k7AF1iVq5FoqqREMAjid2e3N
-	XwuU+qAA==
-X-Google-Smtp-Source: AGHT+IE5DwaJf4Z30vTQF7YhDIZiPDJYIZdu3bh2rwyOO8cxVmUaTU1ujj+ntqMidNIo7C+7G9AHNXs0n4irABzLme4=
-X-Received: by 2002:a17:90b:3ec6:b0:2ee:ab11:fab2 with SMTP id
- 98e67ed59e1d1-2fce7b083a3mr5328015a91.22.1740156042924; Fri, 21 Feb 2025
- 08:40:42 -0800 (PST)
+	s=arc-20240116; t=1740156075; c=relaxed/simple;
+	bh=WscDxsnPeboOXwOU6QK25fEzgybvqretWJ8oeCzqNCQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WMeaM3BJinPTP2x4rR8+LFOhpws5hGBfIMxPgrCo9Sgu7v0OxTvt635tp60u+z5Xrxcf8iL/zX93mqZwa0+h9Di7NW1pOse2Q/OtQTlIaL8apuAtVp2iw9gRo5h7PcjQp2RopMtS46fbwP7w5FrllafdIwjb39A2TKRIQvkVGuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ezFa7UoS; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1740156073; x=1771692073;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WscDxsnPeboOXwOU6QK25fEzgybvqretWJ8oeCzqNCQ=;
+  b=ezFa7UoS4ZmXU7sqSpiasnSFM26jJZGES2jzW+KI67SmUpiSkORwy/dH
+   OAISRtpnlzUtg3SFf54bMLMh2YmIFo9cvnovvaSc/GGVgnOYO8W9d+7FF
+   9EZDSYmBLebClYnOwV6ejVioe2Z9VhF2y7TzbS63uFLk5vc4mN1U79ZCk
+   cx7HO042NT9OW2weOGza1ZRLgtx9UiJWPGBmyzTN3VmMiiqq91aXxdDOw
+   bY/f09g6RnKiBSt/dUo9tVmmLGOtJ0RFBlBTUDAPuj93/LdTg4lCUQZwD
+   Tq9nOMIriETMM24bIEnMDJTQPbAUdaH2egnyyw7v7FVqHGdyXdtEWQbrk
+   A==;
+X-CSE-ConnectionGUID: enbT+JuaTbiv+jjPrx9eTg==
+X-CSE-MsgGUID: Hb+BfkJoRP6H6s9T/+fTBw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11352"; a="58390954"
+X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; 
+   d="scan'208";a="58390954"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2025 08:41:13 -0800
+X-CSE-ConnectionGUID: UimGude1RQaPxjrN7gVF9g==
+X-CSE-MsgGUID: 7mnoeVakSyWE0PfzvQEy5A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; 
+   d="scan'208";a="120039765"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2025 08:41:08 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tlW5J-0000000Dh2u-1chT;
+	Fri, 21 Feb 2025 18:41:05 +0200
+Date: Fri, 21 Feb 2025 18:41:05 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v3 2/9] iio: adc: add helpers for parsing ADC nodes
+Message-ID: <Z7isoU9hKXlgsu33@smile.fi.intel.com>
+References: <cover.1739967040.git.mazziesaccount@gmail.com>
+ <6c5b678526e227488592d004c315a967b9809701.1739967040.git.mazziesaccount@gmail.com>
+ <Z7ZB7RQhyI5Dohrq@smile.fi.intel.com>
+ <b1c1ed68-2f4d-447c-9957-5a1bbc63ef6e@gmail.com>
+ <Z7ci7tUlRQqZEZSN@smile.fi.intel.com>
+ <ec76334b-bb13-4076-811d-9174170dd677@gmail.com>
+ <Z7c2cBQpjoc9-Vyu@smile.fi.intel.com>
+ <9018e23c-da28-41b0-b774-1598b946a2a1@gmail.com>
+ <Z7dCnRzuQTaJXzmb@smile.fi.intel.com>
+ <cb27d8b1-c978-4443-9ad2-96e930701976@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250120092146.471951-1-sergio.paracuellos@gmail.com>
- <CAMhs-H-VevC+_=HxhMU6-at0bKut_JqdgO7j2detuB4s8R_QFQ@mail.gmail.com>
- <Z7iHorlRgtsi1LOo@alpha.franken.de> <CAMhs-H-fcWU-rz_3FeAuRe0xdCMmvffX2zrZwwmt=8RYpY4Lyg@mail.gmail.com>
- <Z7idguBa2bxZRoxX@alpha.franken.de>
-In-Reply-To: <Z7idguBa2bxZRoxX@alpha.franken.de>
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Fri, 21 Feb 2025 17:40:34 +0100
-X-Gm-Features: AWEUYZmBhqj8-3tVa95inuQXfZp89XjOlNWgufDeJ2KSqTBDe4ACRkfogOXIoD0
-Message-ID: <CAMhs-H91Pv4bygmL2jL0=swn-wHT0mRYGaYO6Hjm5O-xmmrJ0w@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] mips: dts: ralink: update system controller nodes
- and its consumers
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: linux-clk@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
-	p.zabel@pengutronix.de, linux-mips@vger.kernel.org, 
-	devicetree@vger.kernel.org, yangshiji66@outlook.com, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cb27d8b1-c978-4443-9ad2-96e930701976@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Fri, Feb 21, 2025 at 4:37=E2=80=AFPM Thomas Bogendoerfer
-<tsbogend@alpha.franken.de> wrote:
->
-> On Fri, Feb 21, 2025 at 03:50:09PM +0100, Sergio Paracuellos wrote:
-> > Hi Thomas,
-> >
-> > On Fri, Feb 21, 2025 at 3:05=E2=80=AFPM Thomas Bogendoerfer
-> > <tsbogend@alpha.franken.de> wrote:
-> > >
-> > > On Fri, Feb 21, 2025 at 11:48:34AM +0100, Sergio Paracuellos wrote:
-> > > > Hi Thomas,
-> > > >
-> > > > El El lun, 20 ene 2025 a las 10:21, Sergio Paracuellos <
-> > > > sergio.paracuellos@gmail.com> escribi=C3=B3:
-> > > >
-> > > > > Hi all!
-> > > > >
-> > > > > Ralinks SoCs have a system controller node which serves as clock =
-and reset
-> > > > > providers for the rest of the world. This patch series introduces=
- clock
-> > > > > definitions for these SoCs. The clocks are registered in the driv=
-er using
-> > > > > a bunch of arrays in specific order so these definitions represen=
-t the
-> > > > > assigned
-> > > > > identifier that is used when this happens so client nodes can eas=
-ily use it
-> > > > > to specify the clock which they consume without the need of check=
-ing
-> > > > > driver code.
-> > > > >
-> > > > > DTS files which are currently on tree are not matching system con=
-troller
-> > > > > bindings. So all of them are updated to properly match them.
-> > > > >
-> > > > > I'd like this series to go through kernel mips git tree if possib=
-le.
-> > > > >
-> > > > > Thanks in advance for your time.
-> > > > >
-> > > > > Changes in v3:
-> > > > > - Address Krzysztof comments in v2 (Thanks!):
-> > > > >   + Drop reset include file since what it was defined there were =
-hardware
-> > > > >     constants and no binding related indexes at all.
-> > > > >   + Update patches for not referring to this reset removed file.
-> > > >
-> > > >
-> > > > I was expecting this series going through the mips tree.
-> > >
-> > >   DTC     arch/mips/boot/dts/ralink/rt3883_eval.dtb
-> > > Error: /local/tbogendoerfer/korg/linux/arch/mips/boot/dts/ralink/rt38=
-83.dtsi:2.1-9 syntax error
-> > > FATAL ERROR: Unable to parse input tree
-> >
-> > Weird, it looks like dtc is not happy with the "include" line with new
-> > definitions? Are you getting this only with rt3883? Since all the
-> > patches are almost the same and I compile tested this before sending..
-> > Something got corrupted? I don't have my laptop now to check but I
-> > will recheck again on monday.
->
-> rt2880_eval.dts:/include/ "rt2880.dtsi"
-> rt3052_eval.dts:#include "rt3050.dtsi"
-> rt3883_eval.dts:/include/ "rt3883.dtsi"
->
-> rt3052 works, rt2880 and rt3883 don't.
->
-> changing the /include/ to #include makes them compile.
+On Fri, Feb 21, 2025 at 12:10:23PM +0200, Matti Vaittinen wrote:
+> On 20/02/2025 16:56, Andy Shevchenko wrote:
+> > On Thu, Feb 20, 2025 at 04:21:37PM +0200, Matti Vaittinen wrote:
+> > > On 20/02/2025 16:04, Andy Shevchenko wrote:
+> > > > On Thu, Feb 20, 2025 at 03:40:30PM +0200, Matti Vaittinen wrote:
+> > > > > On 20/02/2025 14:41, Andy Shevchenko wrote:
+> > > > > > On Thu, Feb 20, 2025 at 09:13:00AM +0200, Matti Vaittinen wrote:
+> > > > > > > On 19/02/2025 22:41, Andy Shevchenko wrote:
+> > > > > > > > On Wed, Feb 19, 2025 at 02:30:27PM +0200, Matti Vaittinen wrote:
 
-Mmmm...does this mean that this was broken before my patches? Since I
-have not touched the files that need the replacement. So I probably
-checked in the openwrt tree and missed this totally. Sorry for that.
-How do you want to handle this? Should I send v4 including these
-replacements? Or do you prefer to handle them directly?
+...
 
-Thanks again and sorry for the inconvenience.
+> > > > > > > > > +EXPORT_SYMBOL_GPL(iio_adc_device_num_channels);
+> > > > > > > > 
+> > > > > > > > No namespace?
+> > > > > > > 
+> > > > > > > I was considering also this. The IIO core functions don't belong into a
+> > > > > > > namespace - so I followed the convention to keep these similar to other IIO
+> > > > > > > core stuff.
+> > > > > > 
+> > > > > > But it's historically. We have already started using namespaces
+> > > > > > in the parts of IIO, haven't we?
+> > > > > 
+> > > > > Yes. But as I wrote, I don't think adding new namespaces for every helper
+> > > > > file with a function or two exported will scale. We either need something
+> > > > > common for IIO (or IIO "subsystems" like "adc", "accel", "light", ... ), or
+> > > > > then we just keep these small helpers same as most of the IIO core.
+> > > > 
+> > > > It can be still pushed to IIO_CORE namespace. Do you see an issue with that?
+> > > 
+> > > No. I've missed the fact we have IIO_CORE O_o. Thanks for pointing it out!
+> > > 
+> > > > Or a new opaque namespace for the mentioned cases, something like IIO_HELPERS.
+> > > 
+> > > I am unsure if it really benefits to split this out of the IIO_CORE. I've a
+> > > feeling it falls into the category of making things harder for user with no
+> > > apparent reason. But yes, the IIO_CORE makes sense.
+> > 
+> > Probably I was not clear, I mean to put this under a given namespace. There is
+> > no a such, we have currently:
+> > 
+> > IIO_BACKEND
+> > IIO_DMA_BUFFER
+> > IIO_DMAENGINE_BUFFER
+> > IIO_GTS_HELPER
+> > IIO_RESCALE
+> 
+> Ah. So, the IIO core stuff is still not in a namespace. Those listed above
+> are all too specific (I believe, in general, and definitely to carry ADC
+> helpers).
+> 
+> Adding 'ADC_HELPERS' would just add yet another way too specific one. So,
+> currently there is no suitable namespace for these helpers, and I still
+> believe they fit best to where the rest of the IIO-core stuff is.
+> 
+> If we want really play the namespace game, then the existing IIO stuff
+> should be put in a IIO_CORE-namespace instead of creating more new small
+> ones. I am afraid that adding all existing IIO core to a IIO_CORE namespace
+> and converting all existing users to use the IIO_CORE is not a reasonable
+> request for a person trying to:
+> 
+> 1. Write a driver
+> 2. Add a small helper to aid others (instead of just melding it all in the
+> given new driver - which does not benefit anyone else and just leads to code
+> duplication in the long run...)
 
-Best regards,
-     Sergio Paracuellos
->
-> Thomas.
->
-> --
-> Crap can work. Given enough thrust pigs will fly, but it's not necessaril=
-y a
-> good idea.                                                [ RFC1925, 2.3 =
-]
+That's why more specific, but also a bit general might work, like IIO_HELPERS,
+considering that they may be used by many drivers.
+
+While it may be not your call, somebody should do the job. Jonathan? :-)
+
+> > > > > > > (Sometimes I have a feeling that the trend today is to try make things
+> > > > > > > intentionally difficult in the name of the safety. Like, "more difficult I
+> > > > > > > make this, more experience points I gain in the name of the safety".)
+> > > > > > > 
+> > > > > > > Well, I suppose I could add a namespace for these functions - if this
+> > > > > > > approach stays - but I'd really prefer having all IIO core stuff in some
+> > > > > > > global IIO namespace and not to have dozens of fine-grained namespaces for
+> > > > > > > an IIO driver to use...
+
+...
+
+> > > > > foo &= (~bar);
+> > > > > 
+> > > > > is _much_ faster than seeing:
+> > > > 
+> > > > Strongly disagree. One need to parse an additional pair of parentheses,
+> > > > and especially when it's a big statement inside with nested ones along
+> > > > with understanding what the heck is going on that you need them in the
+> > > > first place.
+> > > > 
+> > > > On top of that, we have a common practices in the LK project and
+> > > > with our history of communication it seems you are trying to do differently
+> > > > from time to time. Sounds like a rebellion to me :-)
+> > > 
+> > > I only rebel when I (in my opinion) have a solid reason :)
+> > > 
+> > > > > foo &= ~bar;
+> > > > > 
+> > > > > and having to google the priorities.
+> > > > 
+> > > > Again, this is something a (regular) kernel developer keeps refreshed.
+> > > > Or even wider, C-language developer.
+> > > 
+> > > Ha. As I mentioned, I've been writing C on a daily bases for almost 25
+> > > years. I wonder if you intent to say I am not a kernel/C-language developer?
+> > > Bold claim.
+> > 
+> > I'm just surprised by seeing that style from a 25y experienced C developer,
+> > that's all.
+> 
+> I am not. If something, these 25 years have taught me to understand that
+> even if something is simple and obvious to me, it may not be simple and
+> obvious to someone else. Similarly, something obvious to someone else, is
+> not obvious to me. Hence, I am very careful when telling people that:
+> 
+> >>> Again, this is something a (regular) kernel developer keeps refreshed.
+> >>> Or even wider, C-language developer.
+> 
+> I may however say that "this is something _I_ keep refreshed (as a
+> kernel/C-developer)".
+
+True.
+
+> As an example,
+> 
+> >>>> foo &= (~bar);
+> 
+> This is something _I_ find very clear and exact, with zero doubt if negation
+> is applied before &=. For _me_ the parenthesis there _help_, and for _me_
+> the parenthesis cause no confusion when reading the code.
+> 
+> I won't go and tell that I'd expect any C or kernel developer to be able to
+> fluently parse "foo &= (~bar)". (Whether I think they should is another
+> matter).
+
+> Oh well, let's wait and see what Jonathan thinks of these helpers in
+> general. We can continue the parenthesis discussion when we know whether the
+> code is going to stay.
+
+Sure, but it's not only about these helpers, it's about the style in general.
+Spreading unneeded characters in the code seems to me as an attempt to put
+_your_ rules over the subsytem's ones. Whatever, let's Jonathan to judge, we
+will never agree on a keep growing list of things anyway...
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
