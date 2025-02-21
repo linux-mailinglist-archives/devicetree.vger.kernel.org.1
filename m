@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-149450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 492F6A3F8AF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:29:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE49BA3F8AD
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:29:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E6E370292C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:27:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4492819C7C92
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:27:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3DE5215F7E;
-	Fri, 21 Feb 2025 15:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE4E216E19;
+	Fri, 21 Feb 2025 15:25:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G2vwxtpA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p6I5c41R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB0742116F9
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 15:25:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACFE7215F6B
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 15:25:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740151511; cv=none; b=RXUe4tylUVIy8SGEEASjiDOgrlENKuZmckPEekonbK8WcOGDmVXX+TueVeJkyRDUILX54widYup6BunbEeaUTud+uKeiutcxREunxT/InmYzEK4eEEZcHgPkkwN230QlGU9U0MfnLlA0pHh/hvo7p9uvL7xHtzNrpyQndkBmDeo=
+	t=1740151513; cv=none; b=ZxaCk4vDP+PJFY11K/bVNg3PwkcWlave7hFxKL0BeYyR6UgiauWUwO1131uFECfckEDeVxx9CHBD3XW38V+zvhifJHL8XcI5KVpj/ObFyr+FYnfeVD0VJ3QxVHgoA53CG+pHhAmjIim9VDiIDeH6mr+Gr+Ini7Au9Fwl1p9WJ1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740151511; c=relaxed/simple;
-	bh=9VwNmNeCKWvrEI0E43BuyMfe52M7P67PLdAG7OHfpN8=;
+	s=arc-20240116; t=1740151513; c=relaxed/simple;
+	bh=ESNFAo0W8bIcHw5ZPbGGU0/A64Vmk44uaAkW3dodBRQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ENSoaueYxzALqvGNRQmVfsvk9MQlTq9VM/kEsiKztYtHqeSuoyIirBrVcbXS5xdMknUJ0wftgY/RddO+ONEEjT4BNMBHcA7ff6Co+zttISuti9Q5UhRDZ2sjcPTYMpeZ/vIaE/omMAyxDWvCeW8CuhnJ8hnqgapkWjUAVTlR5so=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G2vwxtpA; arc=none smtp.client-ip=209.85.218.45
+	 In-Reply-To:To:Cc; b=GUW/4rkitWjw/sWyVe3JfpiLAogKaH6/t34K4TV1u/TwXAfJZ76imi0uXclEU8Q6JHybKTAvHt7dInWnx9pE2OG4ypHCrNbEgEPSAaNOOg8vc03SnTgkbqxK8gS2MOHhlqTE3pwYiN/Pvr0jcFkSqRaxPzQ8apoqWXCRIGefY7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p6I5c41R; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-abad214f9c9so37883066b.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 07:25:09 -0800 (PST)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-abb9fac29d8so36114666b.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 07:25:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740151508; x=1740756308; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1740151510; x=1740756310; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zxNPRrxR3UMx3sFuHZSjQWUIyV+Refeg1tW/AVVJ31Q=;
-        b=G2vwxtpAVHHXntDZVx7ivj5nyeg6wN7oc/afh2qi+ht24s4/PpfM8o9zBnV84XN3IF
-         Ooq8JFRlJOhAR/OHk5FxJRYA9CHYjKZy1EmWIgKUNniZFayiONlPx0T6HNcXqSCzq4CJ
-         GThhC2U9z9P2aPfobRr2LYe2kCyhRvEY/xd09lU9wD7rvqY2WxH23ffLE3LQEIvwY4J0
-         qolhfZQADB9NNUpQ+90KKezzycw6+PyUB/dSgxgmVKna1uPA0ObA5stPYNSXdBSyJILQ
-         QjW4Qp4zaF/Sunx6kYLYN4/8jygzfP+qqgaVYxCODNTo8ii2x28iU0LJwk5TH86xe76a
-         6F8g==
+        bh=bEw8TbcK6Q3ctC14U9SOir0rvTkUsaIx3mimKGEmrWk=;
+        b=p6I5c41Rj4YINB6fwUWEnhKw4h4N0EeNS7CjnntG1zSxAPqFIBjzBuTR0liS/yObNs
+         oeA7eoZoryuYioA8OI+UZ114XyEYurknIlTtlIJeRs5C0vSvnmO2i2G9yaUmA3zo2so4
+         6mqj9nGg0y+mdTxIMxsqu+wqf9LGOjTB1amAVNtGDHeCBZXVxXArmHH119XUsyUD1XEB
+         CdAySzRqKPoHUGqH/wpU63CtTWo0grz8zO5Y510f5KdKoqIkSdxgFTgSW9GsXQKQexRl
+         HYpVpeiR9KHP5MXiA5ukO5zREixl9BAzRXNiC+uFr1IWbYYSnAs/CuUXgFnHkWXI3J9d
+         Xk4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740151508; x=1740756308;
+        d=1e100.net; s=20230601; t=1740151510; x=1740756310;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zxNPRrxR3UMx3sFuHZSjQWUIyV+Refeg1tW/AVVJ31Q=;
-        b=NEXLQjZvmJYFEbYMGxiDyl3qHVHWlpglTnSqW075cslzUOJjgq7FD8Osd+FIG4DHAS
-         owW0RNXWqU26L38Fb/Vcn4u1V5l9b2hqiz7dvCdwkP0SqoYW6YrSnz08wbqoBWGYSgPQ
-         oIeVJHYOYf5ZSex//dh9hNSDbNC0dSKzo1m4QXWXCgJ2BLkDRWI+60Up+QIqcw9bVQiU
-         bmxBEy2XUOna0zla3clWIGEHNZemb/WfXkjk7zZ8qzEYQrPeBaT4J8iLtR9NuxbdPz+s
-         cfsTcV9Hy1aguYDOYEat5FilFpZSlx+RkUuIpKIFuhXXtQPUCxTVg/NOCsZPBo3OGeqa
-         8jmA==
-X-Forwarded-Encrypted: i=1; AJvYcCU2YihEwNJTXjKyUNnUQji/Chnrci+gHCnu7YeyfgEnX1X5HFOTilk0SbZwLTbXLrbksj/7ubaXuKfd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yywz0EsHZfWUaXO1pA4mqK3IG0rwwz9Ic35yZLkCRmEP66wcxXV
-	0YnciSpjxpWKzc7U+W6OSdHyR7gAH4QVtFOxxZPBaQ3kA9D5u0Pn41PDffpSWp8=
-X-Gm-Gg: ASbGncspsKy3zlCLONzz7UfFOxIdCxIt4B7CnmPqEhG/QHlLJEYSN7uRX3UYkIckPau
-	11dAMGzEngfQX7KNvcbVFwKc/vTjlEHvguQJu6+3Vzd2tENzBx9d+wkx4ih3ASUM4naMJ/YH1nA
-	We6RDStnNW9NWEqoStULmz4iRJZrYbNaScYfUweL34iJEYrR2uH8DjxLqTpwrmySc/2XnWooRMX
-	lFXz4eBuDlF5uO0OPSwS+ah2Sc/paJgEwrcwam/wTvqu0HTDDX5vANC8ppgDE3stgIubj/Sh4x2
-	8LHI6ZSRXci3Of6Gl2nbPNckwHBWDScGBvdeoy0uRMSNy2BEyPXI2k+hiH6oUP0FkzwqECE1hVb
-	W
-X-Google-Smtp-Source: AGHT+IHh0fQaTyfAd7x4CiJbEqFqx/Echs59QFfVMAyNt0Xg9z7x/W4mDeJ4QDQAi9ApihkTQ3yXlA==
-X-Received: by 2002:a17:907:7f8b:b0:ab7:cb76:1ae3 with SMTP id a640c23a62f3a-abc099c279cmr142429766b.2.1740151508098;
-        Fri, 21 Feb 2025 07:25:08 -0800 (PST)
+        bh=bEw8TbcK6Q3ctC14U9SOir0rvTkUsaIx3mimKGEmrWk=;
+        b=ZGWfseKptx31JNmckwjRCEV27k3KOX0aM8heLJfgZ4BGt4IJvhOS1GJGGNYeUg+u3v
+         903B5gEsC07Lu5OL6Kihsom/5f2SFqIHenUo1ptzUqj5w6lw2YN/0F+yiq8/5CxYTHI1
+         GkIHtUlp49fW3VepBv/QHXTRawkXi9F4m22Wz8uKo/2DVLrsttsI8HmwIUVjt2oNaQf1
+         y1ioqj5wL9ObX/eWILlD1mgpD46lZ9CGDwn/oPDS7geLRlOVboZTDxLB7Pgc8aFSN9OJ
+         k6GzmzrZFozLdfM4IK1BwOrhFV//k+4+/8eF7YkQajeNDQfyTjGhisbCtVG7jGI4CkW+
+         c9WA==
+X-Forwarded-Encrypted: i=1; AJvYcCX1vSnvH7OzDEnUwcuj1qwvI3gGTq201ii6ObBlLOQyT4VXRZrvoR7798oqLFau02i98rt0PBN6w6iu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+VbG64TWqD1qTMSQ44VJT1YX4yBR7TCiGiS71T8WlNw9qmjIp
+	+F0BWZfVNXbxbJ3OInyrjBbpbNuUF6oiKDKefsOmTcZ13oQi/MEkCglN/oQF/yc=
+X-Gm-Gg: ASbGnct/C9UfiwTRSGSMGH9csS9CkCZc4utRqlNlsWO8ytos2xesXUMic+sY6eVls8f
+	O9YnAXxcOrSdJamtBwFmFYuDupf14bsRWOlM3fwbe6N9yyqQrdcWsrwLf2NKgCFSvCIupgCh1ra
+	EeYz9yuTClFxfAC2g/1oKc+3QKJHXEf/QcZV4glv7aSxJD6yfUPMiY/sO3xPNb0oj1t+Cw9cs/A
+	dsl+ToUxaJBq1pV5OOiiLIDe9LqgDPcUsNGUFTn2oQFalqa74pM7DYxPMiH13QKJNAlR9lRHXCm
+	f5wDdwaewaUivTcK9tGa5yYShyiFcBYTqa28tgzwhwee5CmLIoAMjJHjdwezzGFBsvg71lTYA5e
+	a
+X-Google-Smtp-Source: AGHT+IFMiyoijhhsN/r66rGa3gdxIeiogjo+gOS8owC4awJmR9PjmfqBaix2rAFdUv1+W8Bs+pHTyA==
+X-Received: by 2002:a17:907:2ce2:b0:ab7:cd83:98bb with SMTP id a640c23a62f3a-abc09a3c1c5mr142336366b.5.1740151509961;
+        Fri, 21 Feb 2025 07:25:09 -0800 (PST)
 Received: from [127.0.1.1] (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abbaa56026fsm865456666b.113.2025.02.21.07.25.06
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abbaa56026fsm865456666b.113.2025.02.21.07.25.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Feb 2025 07:25:07 -0800 (PST)
+        Fri, 21 Feb 2025 07:25:09 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Fri, 21 Feb 2025 16:24:19 +0100
-Subject: [PATCH v3 09/21] drm/msm/dpu: Clear CTL_FETCH_PIPE_ACTIVE on mixer
- reset
+Date: Fri, 21 Feb 2025 16:24:20 +0100
+Subject: [PATCH v3 10/21] drm/msm/dpu: Clear CTL_FETCH_PIPE_ACTIVE on
+ ctl_path reset
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250221-b4-sm8750-display-v3-9-3ea95b1630ea@linaro.org>
+Message-Id: <20250221-b4-sm8750-display-v3-10-3ea95b1630ea@linaro.org>
 References: <20250221-b4-sm8750-display-v3-0-3ea95b1630ea@linaro.org>
 In-Reply-To: <20250221-b4-sm8750-display-v3-0-3ea95b1630ea@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, 
@@ -107,27 +107,28 @@ Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
  Rob Clark <robdclark@chromium.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1076;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1056;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=9VwNmNeCKWvrEI0E43BuyMfe52M7P67PLdAG7OHfpN8=;
- b=kA0DAAoBwTdm5oaLg9cByyZiAGe4mrSg/e3xXqGoaof807wjPY4hcAiqoJ02A2Y8HGAKoTAAS
- IkCMwQAAQoAHRYhBN3SYig9ERsjO264qME3ZuaGi4PXBQJnuJq0AAoJEME3ZuaGi4PXsFQP/Avo
- A/CWck20edK9vihNhad341ZvUbBaUW4Rc3fw7DvnDOXT+MOopRGMO8GyCH5s0e7MVVIWlQYv9ph
- kyzUpzOo70C3ssipW7zJU6oJkMP2j8Ydvo7i6j4F2e1OD2WlcfY40bZ2pPmOtbXNdeR7iCuoAk7
- p80XegXIlzPE0Fc0VRQQCzDP2xIH96/iyRw/7K7rCFxv4AIKZq/7m8d7Tuwv0DnfeZgay+N1qa5
- cy9Uz+sChIr9NjE4dEQPadqXmR5TnQrSrJqhSNl7JRxs5O/TScaDpKRDRGeM1zeRoxp7QIXLH9W
- 8vX0NjfRqE+htZJSH1yFlUoLH5+fJQF0A9d7rUQlZjWXrhrLexCUjH/eKp9RXtxX2772utDlKF/
- TwCPhN4MJS09C3XTQX8xdowMHI5siFkrK1FLCn8OGtrYgdihNtIi3YXKolbcWNe9Fi5JoAO1Kpf
- 9mkSWz3pK1FtqcTuadbKvwlSh8ADtRkWcc8NkoE6jx4rLi/K3lT+uRCiPg309UmSJcwXloBPRUD
- lpABBINqeAk1K7W5KtNOH5eDxE8SOJJbww7Mro/TYEoHDivtuO5dph/J1P1QU4sk3hjQ8BFDYtX
- QtCIE5m1xHmtz1O2TmzObe/M6yiqIgw1Lcp+zge2SEba5w/2IJ3khamf4glL3S0I0k22chHL90D
- OUtJ8
+ bh=ESNFAo0W8bIcHw5ZPbGGU0/A64Vmk44uaAkW3dodBRQ=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBnuJq16yN8kEhw7drJLPUlvodxfwFeC/r2eVwDW
+ WjtMKuMWWGJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ7iatQAKCRDBN2bmhouD
+ 1/+sEACGJReGDn+b3f01/aVELZif6yYJJ+SA6Yf266CzmM/U9rNv6xCkX1jnrgfNjDVdScFkSCT
+ +XFtYc1C5WkoH9zVGxJ6e8nn4tVBnUQQ6JTseswL1JEW/U8tCd0JWZdiC110M2dDTt1FERCNH7/
+ M6jyHhX/wgenyGMGn+vS0IrVWlGmJyqJal/7zhASirLtsF5svm5ARV4kUpjuPmM1dGaNWIli+pz
+ sTgI8Cn2Pu3pf2ZODIfaoBlWGvREKN8BnTsPTmU7luLLe+dThw/9ujQBU7WRUIKEaSA8BsfoLe8
+ ZFI1ZA+0J4foWj6zw3JVu9F0rgKby7wF56NgVssD5AYlydwMNYvMhAadjAanmm17MoXituoBwhE
+ B1Bwe8H29yFG4uXSemzj5Mw4/VvT0IOzcK0TzuREtFjdKBmY20nLrM4ZjLVrRB/Xeaic458aPjt
+ 1QL86hQ8sl0ZBdFw19JRUbmIsZVBktJBc9QewRnURgDJehfrvUO5Ti4UID4l/w2G8MH7e7IzyYP
+ sU7zxSLb4n393BRm1XV1KzHgRFpG52hVnOuNFcJIuEuvVpVIjZM2zo4QtzgQFzd8eEu7vY/TRM7
+ +odudo4ZW8C55I/iXdluEBKSUBLFEnVYhr/fNPoLhoRmb6rVVITxo1qF3zG+C3jT0lkPwN1SK6z
+ 28cs2UOTVRqOM5A==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Resetting mixers should also include resetting active fetch pipes.
+Resetting entire CTL path should also include resetting active fetch
+pipes.
 
-Fixes: ae4d721ce100 ("drm/msm/dpu: add an API to reset the encoder related hw blocks")
+Fixes: e1a950eec256 ("drm/msm/dpu: add reset_intf_cfg operation for dpu_hw_ctl")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
@@ -135,23 +136,23 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Changes in v3:
 1. New patch, split from previous big DPU v12.0.
 ---
- drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 3 +++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-index 48e6e8d74c855b1fcf13c8f42516437039fc27da..090b2aa5a63b4797169b24928908215e2424e6b1 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-@@ -2199,6 +2199,9 @@ static void dpu_encoder_helper_reset_mixers(struct dpu_encoder_phys *phys_enc)
- 		/* clear all blendstages */
- 		if (phys_enc->hw_ctl->ops.setup_blendstage)
- 			phys_enc->hw_ctl->ops.setup_blendstage(ctl, hw_mixer[i]->idx, NULL);
-+
-+		if (ctl->ops.set_active_fetch_pipes)
-+			ctl->ops.set_active_fetch_pipes(ctl, NULL);
- 	}
- }
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+index 757411f8ecec2eb7096b323a99894a5d0cc37fd9..1c14770865b4b5f83a95feb35d8ca6b0c87fdb53 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+@@ -644,6 +644,9 @@ static void dpu_hw_ctl_reset_intf_cfg_v1(struct dpu_hw_ctl *ctx,
  
+ 	dpu_hw_ctl_clear_all_blendstages(ctx);
+ 
++	if (ctx->ops.set_active_fetch_pipes)
++		ctx->ops.set_active_fetch_pipes(ctx, NULL);
++
+ 	if (cfg->intf) {
+ 		intf_active = DPU_REG_READ(c, CTL_INTF_ACTIVE);
+ 		intf_active &= ~BIT(cfg->intf - INTF_0);
 
 -- 
 2.43.0
