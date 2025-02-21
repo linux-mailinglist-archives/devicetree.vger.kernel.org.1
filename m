@@ -1,63 +1,68 @@
-Return-Path: <devicetree+bounces-149572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2422A3FDB8
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:45:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E02DCA3FDC8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:48:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F006C424DEF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:45:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD991189A273
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:47:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CE3D250BF3;
-	Fri, 21 Feb 2025 17:44:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E49624CEFE;
+	Fri, 21 Feb 2025 17:46:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZPOf5sim"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T2M1eUcu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BD61250BE4;
-	Fri, 21 Feb 2025 17:44:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3AF536AF5;
+	Fri, 21 Feb 2025 17:46:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740159893; cv=none; b=ESlZZil+1ZD8+unfPgAe/XUFN3XMMxqHasz2AX/nOqS7hEapApNptyVPGO548IKstSlZ+4I1VimZ2jytYBoofTaM39HdR58vZMyurogxfK7rYhEh6jJmQSPUBy3snY/MPgEUo1ImD0e7ihI0THDrZwo2BZgpFnHDb33fJW4qimk=
+	t=1740160016; cv=none; b=Tg4pGKoum8Dq/rolhSj0WILqRsOwysmYEZ5HQ2nUN02kHunRxSphOLzgnhtOOF/w3jjUrPyiK2zPQijZHL1HOVRUGXTDElvzW9aMg6DCzD+S+A/KOlv0BTnoqTAEWsQrI7wD4+mE05WAMVRhrbMymVmSuHK2M3v9UFybTJ9WNW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740159893; c=relaxed/simple;
-	bh=QPNHx/gCu6fp/YFqDUM4iahi/PpuN0Fxs/mtMVW1iKE=;
+	s=arc-20240116; t=1740160016; c=relaxed/simple;
+	bh=pkMm6RkLxj0MLvOjXO6Zq/qKdEhQUSinbouhRvXjrME=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dc8ZyPyAEsZz2sEEqzZuKdZT3GZTShmIn0iAnUrCZgzg7SrXkIYl+3dLlPvjnT6h2TWz1a8vycdr8wSOSUWMJnXlvaSCfizM4nuKYiNE08KJFhJgh2AC3YLED/ewGXHhCBgdoGqIYnYbx5SDPsocWI7ConZhJE3j/G2I+u9I2Js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZPOf5sim; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0556C4CED6;
-	Fri, 21 Feb 2025 17:44:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZCyNPQjdxPMMPvEc28YjX3zrrUHKqbj7EWfn1y7ljuKvIRexuO2VumjPYfg+5JMDGnFqHnfYiuGSdrASqBJH37xAaog3v+JrE/Dt6Ml198FmoEOW47XSBvKbEAnmg3/P9FUKc60MVBxN7tdMJiL5v5QutuWpzDxWnfpD0Vtm6ZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T2M1eUcu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEF7AC4CED6;
+	Fri, 21 Feb 2025 17:46:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740159893;
-	bh=QPNHx/gCu6fp/YFqDUM4iahi/PpuN0Fxs/mtMVW1iKE=;
+	s=k20201202; t=1740160015;
+	bh=pkMm6RkLxj0MLvOjXO6Zq/qKdEhQUSinbouhRvXjrME=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZPOf5simgMKFdYrvDdlqMHPgoRcq3ZMhiAg1d7mDKLxIFej5774p75tSx7qY8f8Ee
-	 aEHKDApLvO7ORyVHvk/zJBGbzdTyinrw8SuGM5Xfj+kr+6GET/KqZM8COGsBcmeNQH
-	 dzT5FFjEyeO+z5dQsslqawuiAHRl3F094Nge1lPuPV5HAZRf8nbmohl7zKnKLfpulK
-	 47di3YIg1LDjsxsY/m/Il0RdQmOScABsaSLflYVaW7xesFRXxV3/fQQ7Ld8Iz558ba
-	 +S/pujWeuxyu1wH1mOnKMtyvhu+QO/fKVywv/sv4rbOX2MHtG5l0PNSAy55v6wQIQp
-	 rMTaX2U8taHZw==
-Date: Fri, 21 Feb 2025 17:44:48 +0000
+	b=T2M1eUcu8YEAN59gO+QTHvsz8Moc4Z/JlLwFqm+v/GWd1vBBTNc2rH24rR6ZVcXwL
+	 dzZJm7j3LZoRHOURuEfI/MDagEjV+GlTv+Eb67Am2ydeTZq7BxXc7lchUWMQjDohVW
+	 22UXQr6iX7OYOL84YR3P8NFyPiDcF9DjhJTTSWNPptqAUH3B9Fuj8Ef87jObOvwgnh
+	 Zy4Z/MtHsvC7wWf3SN4pl5hMfn4f2iQpsIjLRHzf0zVb+UZoHHMq7YF6QOIXSbvOYa
+	 HOOH324RwhLUXaRVOoqfs1oEYc/BvNbwy0ziBrR9Sa3NJwlm/V91QWfbALwNK7oSkp
+	 hwnMT3PYOfYaQ==
+Date: Fri, 21 Feb 2025 17:46:49 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Macpaul Lin <macpaul.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>, dmaengine@vger.kernel.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v4 3/7] dt-bindings: dma: rz-dmac: Document RZ/V2H(P)
- family of SoCs
-Message-ID: <20250221-facing-irk-e81537b74318@spud>
-References: <20250220150110.738619-1-fabrizio.castro.jz@renesas.com>
- <20250220150110.738619-4-fabrizio.castro.jz@renesas.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-usb@vger.kernel.org,
+	Alexandre Mergnat <amergnat@baylibre.com>,
+	Bear Wang <bear.wang@mediatek.com>,
+	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+	Chris-qj chen <chris-qj.chen@mediatek.com>
+Subject: Re: [PATCH] dt-bindings: usb: mtu3: Add ports property
+Message-ID: <20250221-reenter-sassy-5b27b03f8b06@spud>
+References: <20250220142230.2530583-1-macpaul.lin@mediatek.com>
+ <ae34efcd-4fe1-4e45-a1e1-0744138a84b9@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,40 +70,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/EEPdWrb1pzJ6kc4"
+	protocol="application/pgp-signature"; boundary="szY3iyQERCl/suc/"
 Content-Disposition: inline
-In-Reply-To: <20250220150110.738619-4-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <ae34efcd-4fe1-4e45-a1e1-0744138a84b9@collabora.com>
 
 
---/EEPdWrb1pzJ6kc4
+--szY3iyQERCl/suc/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 20, 2025 at 03:01:06PM +0000, Fabrizio Castro wrote:
-> Document the Renesas RZ/V2H(P) family of SoCs DMAC block.
-> The Renesas RZ/V2H(P) DMAC is very similar to the one found on the
-> Renesas RZ/G2L family of SoCs, but there are some differences:
-> * It only uses one register area
-> * It only uses one clock
-> * It only uses one reset
-> * Instead of using MID/IRD it uses REQ NO/ACK NO
-> * It is connected to the Interrupt Control Unit (ICU)
+On Thu, Feb 20, 2025 at 04:56:00PM +0100, AngeloGioacchino Del Regno wrote:
+> Il 20/02/25 15:22, Macpaul Lin ha scritto:
+> > Define the ports property in the mediatek,mtu3 device tree binding sche=
+ma.
+> > Include definitions for port@0 and port@1, specifying their roles as
+> > High Speed (HS) and Super Speed (SS) data buses, respectively.
+> >=20
+> > Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@col=
+labora.com>
+> > Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 >=20
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Some SoCs do have SuperSpeed peripheral mode, so for this commit
+>=20
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---/EEPdWrb1pzJ6kc4
+--szY3iyQERCl/suc/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7i7kAAKCRB4tDGHoIJi
-0kGtAQDAv6PvDXuy1DRsUbcFwv/HIDd5S2cZytEFuVRd8/LSrAEA0KU/NrdmlLB3
-PiIKz/q6WUNpQtHH2ocN6H4WtNECgQA=
-=TqZi
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7i8CQAKCRB4tDGHoIJi
+0nPqAP0fP5poDJRA3Z3q8SHg6Q/EHMEj/DnqgJGRMdIOzsP9RAD7Bc10OD+TWsBu
+8fXcBQQfSDrvW31wIXdCY/T7A+BXmwE=
+=4Nd+
 -----END PGP SIGNATURE-----
 
---/EEPdWrb1pzJ6kc4--
+--szY3iyQERCl/suc/--
 
