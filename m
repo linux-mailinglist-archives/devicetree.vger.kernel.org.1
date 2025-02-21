@@ -1,264 +1,144 @@
-Return-Path: <devicetree+bounces-149568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56619A3FD88
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:32:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D379EA3FD9A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:39:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A7891890698
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:32:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7927718832C6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:38:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3415C2505C5;
-	Fri, 21 Feb 2025 17:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 445062505D3;
+	Fri, 21 Feb 2025 17:38:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ijHunvv5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JnXOP68m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9279235955;
-	Fri, 21 Feb 2025 17:32:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A38EA2505D0
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 17:38:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740159123; cv=none; b=oLv6y1OkMXFM/p/408F33kSmW4mE0IgWMSB4Ff2KsmiGqg7znv44YRrerFZRXn9sRIeZSBVgtLJ+tdqD7lVBVQT4DNy4Bi0Vtnl5gGDDhlgCaV47PkCe1udZ+397KHj2vl2CBiu7wX/QFyCzgz8rhKp5RTWL4MTBMDqT9Wj4E1g=
+	t=1740159527; cv=none; b=JKbtexMOODxxp8mJ0TCjUsk6rEGH9y8wSBgKikIpLSu9sJc8IDRwiPmwFQ0fUiU+GatUvMyIS+VNjss7RGIlp9NHbD9kBQ5lryvYJCeS37O0hpseMRM68t62CzrJCg+zqfOtDk2UMWYgvdbMuI1077CpMvfKguuZnX3e5n92+a0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740159123; c=relaxed/simple;
-	bh=VgWxCpwf2Q9KFMIddgUkc2CYRnkLJjOOEXo3QLe5ToE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LwviaYhorPV7VCNQatiOdwUus43vQqfATNx5v2m2j010FDlE1tZPlvBuQ9tTgT1AkEbrTPEwQSzIauEgTkZsL5LjBVw0BMhm0MCRJqVDCRL4d1QYHTfoLZioAlsRfVZYX35/x/+hwVnFL131hDLFg8nEzf8IeJdTsyrlVym47nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ijHunvv5; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-221206dbd7eso50503265ad.2;
-        Fri, 21 Feb 2025 09:32:01 -0800 (PST)
+	s=arc-20240116; t=1740159527; c=relaxed/simple;
+	bh=qIP63+uFmKIQiAqirrGDSCV5Cld724eX5jwqFNrBJYA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S+GsAcSA0WEonHQS/NitPuVWLGGiU++GMzj5M7PadBJQfjMu4ORL87KLDn1jQ7BUawdwndZInVbrT93KslHmj+O0G4ZJyevp1gMGcA28mXLYzbCB3CJGgCMBBMikQ8RCXYdbHn1GmXSBPg3KvL4dAkeYx8kfzXcU05wF/RX56PU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JnXOP68m; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-221050f3f00so54454955ad.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 09:38:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740159121; x=1740763921; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QZTfoZLKdGhieUhqNYuabAUMhySDG/Lsaab0mVAiuGk=;
-        b=ijHunvv5LuBZEwGp0skc8ozrfSXxe9VuyCPUkUxQyn7aZgWiyDiumpmHw+In3vJzfU
-         ZSKQ0PCSmmIOOxDnDBt3FwwYS5RMx2zogqQj5+TS0Lk09aQWDtCdnqhK3fqK1rJWoj8z
-         wBKtjB1n5jr47zUktrA0WTVe4JKeA8T2P+lKq8iHcDrra3vp8iihOvjadzK+Ur9RGaqq
-         uOeGpkgbzJZ5NLM+d16h4spYtXmvew8RmHo80MKxfBO4P1rASmEk1kM3PadgJ2OLKXhE
-         mKUFGjYafXoIA12fP5Cl8JYYkou3WEm+2CfYhKz7qW2dXLAJlF8WlJVxnATZ/KZJTFwQ
-         a0Pw==
+        d=linaro.org; s=google; t=1740159525; x=1740764325; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=FiHwJM8dSlFwqISp7CMjrgy4RPDtS5r3xeIe6eP69ds=;
+        b=JnXOP68mJwIy8eoqtOrm3QcKKM4CqpxOsZP2pXf953zz5R5/qCI3JsVJSCsnXOoMDS
+         PFmmpsCti0W3sVIr0oqe+Dn7q+orK/fX1AY1B08T0quhid02AmB7yvxYBAfNxnlWxN0A
+         olFiZjrD9SLMvSrBDsLbPCfcZJSEl86ZSIaHzjFyCyjekT2Mq+IV5Y97KErZkT/92bTg
+         tqZplnoWq0b+vEBMrkjjXpzWRzaZkDMwinTSihWG5fHBPKZkE8J/SL8dgcrMI8kKFho/
+         xzspW43RtKg3YPIhu/npVhFgvRPplpc7wzIvTzULv04SvIrN9u2XEvBLPf7jqcWuP/pG
+         7uBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740159121; x=1740763921;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QZTfoZLKdGhieUhqNYuabAUMhySDG/Lsaab0mVAiuGk=;
-        b=C+f2BCF/UoxD8XHjdP3lGCy0G+Dy3bcLgnYEBNUGwcSWiARJTrdKLAfJcMNHAvsyz4
-         A3XuBt8+KCL0N/mdctcJTWmVAnOsfrlXWL6DWoN7rSKVcmDmr3meGVFTPeI9RnJRx4pf
-         ffs2M9OLL5GBPDqQWcuqbLeYNWNRNtFdRC/6LGrwE1GkBbDvZpitBSfmxH7edkIkcnGa
-         87KSVejOO+RFYxO6v8hCbb50jwWLvz4Sbkjgc/K1OGod+AS2HzTNiGaOOuEqwU71ZuqW
-         DOGqqzaQRsKye8EtWPneDgR5x9FeGF7iyYq6V5fheFf8teWUADOvhwkiYtStBs83244K
-         culg==
-X-Forwarded-Encrypted: i=1; AJvYcCUjm/1pXThXFv23EmDyBGABdnktgVfyTwemTw6TqZuKRmgfjYreU5/q4lIhFVTS1XcwotUshekAkFG6@vger.kernel.org, AJvYcCVm4u7gQLMacYFXA10XdLj4g+23ruGHCcKft/Y7xLMpLClKYZ6dn7XQfJ2zmQrP0l94TBIqP95If5GIGQ==@vger.kernel.org, AJvYcCVqbxBplpDgOVUrjZYRaT0MQB+BLQTFMU6BumQlxxIm8WDjs8YZFkZPT9am1LXjFDi2mC2doEQDbOfRZxLt@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywbpl53hfqaGP2RoHF6PaaNIdvI7Tydj0SRM2W3N0ylgATJkpBA
-	sAy3m/r1YbqCxWY08QrLLwnTVEablPykdKzxbIjz6N6KbG0ja2C5PsiQXcnvtYBD+T7Zwn/eBlb
-	gy1GS7mSSyIKVczHNjmz4Ma59hv2XAdndnCM=
-X-Gm-Gg: ASbGncvZ6Zhtq57qe632qldyIY2knTiDOOpGJZ5WMIigYD7mRL4oxMEhclTM7Jf82Sy
-	35ZeFIk24mHWSLVQbnj/0AeD6TpWWQwvyXXHkpdknlggvbWn++cIFi6A62prL+szoX5+4TN2u8h
-	2MNLs50A==
-X-Google-Smtp-Source: AGHT+IGvX6qvGMn+KIoSiym6cWI0/nkZPpF6Z96ZqNT2izY3BoWxN63KfbmCr+lFl0lhQj/RNR4+SRdsolaQeSBPF+s=
-X-Received: by 2002:a17:90b:4fd2:b0:2fc:2a9c:21de with SMTP id
- 98e67ed59e1d1-2fce7b0814emr6701344a91.35.1740159120658; Fri, 21 Feb 2025
- 09:32:00 -0800 (PST)
+        d=1e100.net; s=20230601; t=1740159525; x=1740764325;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FiHwJM8dSlFwqISp7CMjrgy4RPDtS5r3xeIe6eP69ds=;
+        b=SeGlrhhrch0MFzFxuCk+CxzuF9eFEY3KKIlX/fPBPVzM3uVs1MFOCqnQ3QA+afJY9Y
+         4hH0JDohAUhQKnhN/LJ8zBPE4hNz2eMx6M9O5o1T7Uay6NgpG1nuJjQaIy8rKfyhOxbb
+         W+Xp7LS35iQEqwsz0n/rk8B6ukciaAS+WYDitNy7uY2cSwK8s+ggv4Kr2jPBl43c74iI
+         wAU+l6am2heRKepozgtPuBa8FbExwUtI/DpJl1cD6LRO3y6b7Ncw5lZ0rJ2EEvM34MHe
+         kEn2aY6n8+OJG7EwnaL2TAnyQs417LKglZFFETJX7Elkfn+0nOyAbyv3LKId79JeBqQe
+         9K8A==
+X-Forwarded-Encrypted: i=1; AJvYcCV4JIie2fManr9vDMc+16G4jEh+OdlkptY+fFMEXmNREmG6xz4APBIYnaxrdxHXOOq9vOroXog/f8Hn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmFxOXBtRQCtxRBdmXc+hoNReBGji7k11nnk7KhZw6cqZvEBbY
+	2n44jJ6YzLXfSsiThP0hPAjumXP3GaAYsRbUXaUl09n5N3pQueBZqFn+6Kmlhg==
+X-Gm-Gg: ASbGncuGd6G3A54NKyT3omVJBpfuuXRgMb+6Jl2qoZ9pElaxuIUc1Aj5lF+VTUP4vje
+	cBFrTSNEg0FuALf3I3sg+wG51vRJKy1SzpBYVIfC05Y7hheK4xpw1hdSKbBkf2p2l2rYb4ZfuG9
+	pHjwtT789VmO5HR7bwvojQTuAPxInI9jhNeCYg32iFV729xiW0OxewRW9HppTke4ZUHSFZFq0b+
+	RNWRGtxgs9VynDLYSTWJrh05lyqNW4zLMBMwEIB41x9lycgpXEfuUUXGZ3TqiH8vkUulnbySWuv
+	1Zhc9OvQXS5cG9mGUEI4YOCTTQNf7EoBBUY=
+X-Google-Smtp-Source: AGHT+IFOundMH+uCAPZpiCXJrYcHQOAFx0FBt3tRpEx6h5NQf8ybpnEEcUX3gkiekCR/3GOpiHaQrA==
+X-Received: by 2002:a17:903:2f06:b0:21f:2ded:76ea with SMTP id d9443c01a7336-2219ffa36d9mr64483195ad.36.1740159524826;
+        Fri, 21 Feb 2025 09:38:44 -0800 (PST)
+Received: from thinkpad ([120.60.73.12])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d556fb40sm139273425ad.193.2025.02.21.09.38.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Feb 2025 09:38:44 -0800 (PST)
+Date: Fri, 21 Feb 2025 23:08:40 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v3 3/5] PCI/pwrctrl: Skip scanning for the device further
+ if pwrctrl device is created
+Message-ID: <20250221173840.dc3eocblfklbrklo@thinkpad>
+References: <20250116-pci-pwrctrl-slot-v3-3-827473c8fbf4@linaro.org>
+ <20250220232451.GA319309@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250120092146.471951-1-sergio.paracuellos@gmail.com>
- <20250120092146.471951-7-sergio.paracuellos@gmail.com> <Z7i1aDGiHLsOFYyz@alpha.franken.de>
-In-Reply-To: <Z7i1aDGiHLsOFYyz@alpha.franken.de>
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Fri, 21 Feb 2025 18:31:51 +0100
-X-Gm-Features: AWEUYZmfPnR0Xkg3hXec_be0Y2VGoRk2tcCq1Cvh3Y4Iuwhnyr8MUjUABCqx5YI
-Message-ID: <CAMhs-H-8N766PMZMwmV8B3e=65pPZHA4ntnRWDMoqR-U_xULfA@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] mips: dts: ralink: mt7628a: update system
- controller node and its consumers
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: linux-clk@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
-	p.zabel@pengutronix.de, linux-mips@vger.kernel.org, 
-	devicetree@vger.kernel.org, yangshiji66@outlook.com, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250220232451.GA319309@bhelgaas>
 
-On Fri, Feb 21, 2025 at 6:19=E2=80=AFPM Thomas Bogendoerfer
-<tsbogend@alpha.franken.de> wrote:
->
-> On Mon, Jan 20, 2025 at 10:21:46AM +0100, Sergio Paracuellos wrote:
-> > Current MT7628A device tree file system controller node is wrong since =
-it is
-> > not matching bindings. Hence, update it to match current bindings updat=
-ing
-> > it also to use new introduced clock constants.
-> >
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > ---
-> >  arch/mips/boot/dts/ralink/mt7628a.dtsi | 38 ++++++++++++++++----------
-> >  1 file changed, 24 insertions(+), 14 deletions(-)
-> >
-> > diff --git a/arch/mips/boot/dts/ralink/mt7628a.dtsi b/arch/mips/boot/dt=
-s/ralink/mt7628a.dtsi
-> > index 45a15e005cc4..309966049c56 100644
-> > --- a/arch/mips/boot/dts/ralink/mt7628a.dtsi
-> > +++ b/arch/mips/boot/dts/ralink/mt7628a.dtsi
-> > @@ -1,4 +1,5 @@
-> >  // SPDX-License-Identifier: GPL-2.0
-> > +#include <dt-bindings/clock/mediatek,mtmips-sysc.h>
-> >
-> >  / {
-> >       #address-cells =3D <1>;
-> > @@ -16,11 +17,6 @@ cpu@0 {
-> >               };
-> >       };
-> >
-> > -     resetc: reset-controller {
-> > -             compatible =3D "ralink,rt2880-reset";
-> > -             #reset-cells =3D <1>;
-> > -     };
-> > -
-> >       cpuintc: interrupt-controller {
-> >               #address-cells =3D <0>;
-> >               #interrupt-cells =3D <1>;
-> > @@ -36,9 +32,11 @@ palmbus@10000000 {
-> >               #address-cells =3D <1>;
-> >               #size-cells =3D <1>;
-> >
-> > -             sysc: system-controller@0 {
-> > -                     compatible =3D "ralink,mt7620a-sysc", "syscon";
-> > +             sysc: syscon@0 {
-> > +                     compatible =3D "ralink,mt7628-sysc", "syscon";
-> >                       reg =3D <0x0 0x60>;
-> > +                     #clock-cells =3D <1>;
-> > +                     #reset-cells =3D <1>;
-> >               };
-> >
-> >               pinmux: pinmux@60 {
-> > @@ -138,7 +136,7 @@ watchdog: watchdog@100 {
-> >                       compatible =3D "mediatek,mt7621-wdt";
-> >                       reg =3D <0x100 0x30>;
-> >
-> > -                     resets =3D <&resetc 8>;
-> > +                     resets =3D <&sysc 8>;
-> >                       reset-names =3D "wdt";
-> >
-> >                       interrupt-parent =3D <&intc>;
-> > @@ -154,7 +152,7 @@ intc: interrupt-controller@200 {
-> >                       interrupt-controller;
-> >                       #interrupt-cells =3D <1>;
-> >
-> > -                     resets =3D <&resetc 9>;
-> > +                     resets =3D <&sysc 9>;
-> >                       reset-names =3D "intc";
-> >
-> >                       interrupt-parent =3D <&cpuintc>;
-> > @@ -190,7 +188,9 @@ spi: spi@b00 {
-> >                       pinctrl-names =3D "default";
-> >                       pinctrl-0 =3D <&pinmux_spi_spi>;
-> >
-> > -                     resets =3D <&resetc 18>;
-> > +                     clocks =3D <&sysc MT76X8_CLK_SPI1>;
-> > +
-> > +                     resets =3D <&sysc 18>;
-> >                       reset-names =3D "spi";
-> >
-> >                       #address-cells =3D <1>;
-> > @@ -206,7 +206,9 @@ i2c: i2c@900 {
-> >                       pinctrl-names =3D "default";
-> >                       pinctrl-0 =3D <&pinmux_i2c_i2c>;
-> >
-> > -                     resets =3D <&resetc 16>;
-> > +                     clocks =3D <&sysc MT76X8_CLK_I2C>;
-> > +
-> > +                     resets =3D <&sysc 16>;
-> >                       reset-names =3D "i2c";
-> >
-> >                       #address-cells =3D <1>;
-> > @@ -222,7 +224,9 @@ uart0: uartlite@c00 {
-> >                       pinctrl-names =3D "default";
-> >                       pinctrl-0 =3D <&pinmux_uart0_uart>;
-> >
-> > -                     resets =3D <&resetc 12>;
-> > +                     clocks =3D <&sysc MT76X8_CLK_UART0>;
-> > +
-> > +                     resets =3D <&sysc 12>;
-> >                       reset-names =3D "uart0";
-> >
-> >                       interrupt-parent =3D <&intc>;
-> > @@ -238,7 +242,9 @@ uart1: uart1@d00 {
-> >                       pinctrl-names =3D "default";
-> >                       pinctrl-0 =3D <&pinmux_uart1_uart>;
-> >
-> > -                     resets =3D <&resetc 19>;
-> > +                     clocks =3D <&sysc MT76X8_CLK_UART1>;
-> > +
-> > +                     resets =3D <&sysc 19>;
-> >                       reset-names =3D "uart1";
-> >
-> >                       interrupt-parent =3D <&intc>;
-> > @@ -254,7 +260,9 @@ uart2: uart2@e00 {
-> >                       pinctrl-names =3D "default";
-> >                       pinctrl-0 =3D <&pinmux_uart2_uart>;
-> >
-> > -                     resets =3D <&resetc 20>;
-> > +                     clocks =3D <&sysc MT76X8_CLK_UART2>;
-> > +
-> > +                     resets =3D <&sysc 20>;
-> >                       reset-names =3D "uart2";
-> >
-> >                       interrupt-parent =3D <&intc>;
-> > @@ -290,6 +298,8 @@ wmac: wmac@10300000 {
-> >               compatible =3D "mediatek,mt7628-wmac";
-> >               reg =3D <0x10300000 0x100000>;
-> >
-> > +             clocks =3D <&sysc MT76X8_CLK_WMAC>;
-> > +
-> >               interrupt-parent =3D <&cpuintc>;
-> >               interrupts =3D <6>;
-> >
-> > --
-> > 2.25.1
->
-> I get
->
->   DTC     arch/mips/boot/dts/ralink/vocore2.dtb
-> /local/tbogendoerfer/korg/linux/arch/mips/boot/dts/ralink/mt7628a.dtsi:27=
-5.28-284.4: ERROR (phandle_references): /usb-phy@10120000: Reference to non=
--existent node or label "resetc"
->
-> /local/tbogendoerfer/korg/linux/arch/mips/boot/dts/ralink/mt7628a.dtsi:27=
-5.28-284.4: ERROR (phandle_references): /usb-phy@10120000: Reference to non=
--existent node or label "resetc"
->
-> ERROR: Input tree has errors, aborting (use -f to force output)
->
-> for CONFIG_DTB_VOCORE2=3Dy and a similair failure for CONFIG_DTB_OMEGA2P=
-=3Dy
->
-> I'll apply rest of the series, please send a fixed patch for mt7628a
+On Thu, Feb 20, 2025 at 05:24:51PM -0600, Bjorn Helgaas wrote:
+> On Thu, Jan 16, 2025 at 07:39:13PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> > From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > 
+> > The pwrctrl core will rescan the bus once the device is powered on. So
+> > there is no need to continue scanning for the device further.
+> 
+> > @@ -2487,7 +2487,14 @@ static struct pci_dev *pci_scan_device(struct pci_bus *bus, int devfn)
+> >  	struct pci_dev *dev;
+> >  	u32 l;
+> >  
+> > -	pci_pwrctrl_create_device(bus, devfn);
+> > +	/*
+> > +	 * Create pwrctrl device (if required) for the PCI device to handle the
+> > +	 * power state. If the pwrctrl device is created, then skip scanning
+> > +	 * further as the pwrctrl core will rescan the bus after powering on
+> > +	 * the device.
+> > +	 */
+> > +	if (pci_pwrctrl_create_device(bus, devfn))
+> > +		return NULL;
+> 
+> I assume it's possible for the PCI device to already be powered on
+> even if there's a pwrctrl device for it?
+> 
 
-Sure, thanks a lot!
+Yes, if the device was powered on by the bootloader.
 
-Best regards,
-     Sergio Paracuellos
+> Does this change the enumeration order in that case?  It sounds like
+> it may delay enumeration of the PCI device until the pwrctrl core
+> rescans the bus?
+> 
 
->
-> Thomas.
->
-> --
-> Crap can work. Given enough thrust pigs will fly, but it's not necessaril=
-y a
-> good idea.                                                [ RFC1925, 2.3 =
-]
+So previously, while enumerating a PCI device that requires a pwrctrl device
+(indicated by DT), its client driver won't be probed until the pwrctrl driver is
+probed (thanks to devlink). This was required to make sure that there would be
+no race between client drivers and pwrctrl drivers probing parallely.
+
+So in that case, there is no reason to enumerate the such devices in the first
+place. That's why this patch is skipping the enumeration for those devices.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
