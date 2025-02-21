@@ -1,181 +1,215 @@
-Return-Path: <devicetree+bounces-149405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3892DA3F590
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:17:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0D68A3F5F2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:30:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82E217A65AF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 13:16:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 767E27AD34B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 13:28:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83FC81EF01;
-	Fri, 21 Feb 2025 13:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE9CD20E320;
+	Fri, 21 Feb 2025 13:28:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oV58woYz"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="PuMLlOuW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D66920A5EA
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 13:16:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740143791; cv=none; b=pTTPXdlAMlZDVL/w3FTCf/lf4yfDaCqfbEM6P8UT75yxdBxgBOYtOeS6RTqEfZdNeVzjXOyICkkZx6/y2+vRP4K9E9kJCIWXkgJuPC1nOTNPCqfHSho9TtYe2452YAh0JPNQwU2gzUh9GkcsSSN4nTAphK3xoXEfFiCxiztkBUQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740143791; c=relaxed/simple;
-	bh=usxW3iALsfPZDjvbzJfu4kB+HuQ7zuH5NyXbX1jKYVQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mBxJbz5o25W4qKyHlNBBQEnigD5KWEaCDKVzTAlxj3g/3LpV6yFR5RCuK+LbTXEDdmIVScVksn1jYh5K0iYj7du387cN2GpJrkMqaHIlPtCJvQ4Ld1CmoO21xz24P1/XFlTWVxIbUBHWlMjSk/AqglACsl7bIoyaa4ZwaWnu/Cc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oV58woYz; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5dc5a32c313so379339a12.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 05:16:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740143788; x=1740748588; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=HuLqhu3JmGBzjCZvULGc+vY++b5XygaCEKMmQr8WksA=;
-        b=oV58woYzFdP7qYAJdp4tB9uAk0AEMIUOQmE/1nhvqgVVia48onkmRHGIvkpN3co7Mb
-         mTW7pk2ABwIUWyRRR3MrGnVw3W3LZrUxPKjwzPfh1DOwHzE3NXb5u3EBHAgohKfEOTy5
-         CfpWI/EMX0jlMwOOcoVb1WNh7s0yAn88vm3+QrvrGoadU7w/7BW1iO4Wvvsx+IotpzDN
-         5nTv3O8BjhhymmAsHvME22evT1HJfnYaGxM+DrrDgRUq3cctPKSrRPSo5fl/mIn2iqJB
-         rPfsdE/X+NiJ+5S9tiVP6SXWlpv+AVDrBos/kTvGjmrHUNGCYGEoGM5ThUwHNgTiLjnq
-         dhrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740143788; x=1740748588;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HuLqhu3JmGBzjCZvULGc+vY++b5XygaCEKMmQr8WksA=;
-        b=fjVQdDzBtLSlyiexJfQeZ7+4lFP3mMcfozvIsxYY7fhAdAh7d9zyyvLNcy/weVrHc2
-         axl56adKGLepNBGwIK+UsVM+nbrvEwzVI9+57uICTtBH6TJ/50U5zVsxjU5XzLc2ySuM
-         jM6WxwiyhL+ISUADcUw2oryRzIpLpjWhSzZQo5xwDc7AVm5x+GZ1ZyeetPqOuD35DpGh
-         I22+O9nRDh3MjWuGkaCPPAp9YzUdKK+2u+/vaybKSncyHTZs+msub88n+fXxGH7rMkZ2
-         36QmSeYvpgFzqtk1bhiNDNi01mimOANanFkUCjwDp9dRi9P7EYjeFaxsoUAtWRwL3IEG
-         LaSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXhevalEcvMo18+QPfooPHy0J1V4Gaf4g2R/pbGEtRsPgbK9DGlCtnIIl9D+27FdBbpn7Q9EufJAql+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMwe0R8OhlSyBWnyeJa2U1xUBA1n1CHSGvyALTjt8A0XJZM7th
-	X/g0wHetqZ0mBARTJypf769xEm48XpfIM+BD7seH3FCJ+88JzEtcgjQJWiRYVdeh+oX+BJZqyS4
-	83o8=
-X-Gm-Gg: ASbGnctOlgofNON3qHxabu+9BugoLg7TK05K5YrDvQuZqz0RpVtg2vbz2iCSsDo6Z4J
-	7X55d44gqr6vi4236+rNFBM/OKsG1eKgBAXZpdlhbA0ArzJ+9R9OkveLr1PDfyZsWqHh9iBZJaD
-	syqqsLongfuYOrT9+lcBwtYDY1aMmHkFaBxuQSZHTOnEv65msFdHEfNROJ1/m1cYK9J9SQj70AE
-	HkxuVNmij7Go+xbvVoRgQhN6GtyUDGNB06z1HQrDTVV6IKVBhhNYj+xG2JO7yRrmAwJBAR7j3Hn
-	YYuYs/3dbE1uq+Q0eIyMJK4BWTxCj0lbtko08M7g2sWmH6tj01m31O+4QuWFLhcmLVsCQPKTiKw
-	+Eb3j
-X-Google-Smtp-Source: AGHT+IHyaoSfFlo9oiTbzWYLyufNzsCGgbvwOOWfLPnqyUL86Ms80Ejowilrbj3d5d81IAwIA2+XSA==
-X-Received: by 2002:a05:6402:2108:b0:5de:3b3c:d02d with SMTP id 4fb4d7f45d1cf-5e0b724a9ccmr1004101a12.9.1740143787453;
-        Fri, 21 Feb 2025 05:16:27 -0800 (PST)
-Received: from [192.168.0.18] (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5decdfe758asm13670691a12.0.2025.02.21.05.16.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Feb 2025 05:16:25 -0800 (PST)
-Message-ID: <ebf41227-a0c5-44eb-b6a7-53e30b24e298@linaro.org>
-Date: Fri, 21 Feb 2025 14:16:23 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895E320E01F;
+	Fri, 21 Feb 2025 13:28:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740144510; cv=pass; b=HGejC6XHjdH01OPTIH8izesMq1Q6gnNhoMi26Nzerr+nWikeHbCBU0xXmeze4fakc73TwcCPMkz+DAEcGC+uq328BczCsVWV84wrcZ4NQ9Qq32drwS67zUre0h2DGOy9q1+ceGCzUVPB4/PDCMbD5aCGeOHeqTeTuCV738BRvn0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740144510; c=relaxed/simple;
+	bh=vQlYiaR18cP3KvL9U52HaroiXZjM1E7sxNQ7bgVw2wY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MGcFotnJyhxoZkLo9LJdjz+ErOv0Jug9vyTa21r0OxGXsNH8ZkA6IAZOYXuStlUvBSiJYEcy0ekK+4CwoivIxMPxjyo7pLEzjZdO/EgyPwpz+C6+VgWrRRJhqbIJv9q0qjGZVom4qGLMeCRP85+sEz3F0UFnSiUdXji3/sZjGcY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=PuMLlOuW; arc=pass smtp.client-ip=136.143.188.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1740144486; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=CEWSyxZxoMOT30Lbo9c/GiuYjoKB6lCUpiX7XU0G/Y8ZiqpYqf3rBOyRZg3p3EUHlznUdn9nMDEklLTGSPhLqIzU8Fw5lc1z/YH4ZKY275MvVMGDDuDJOs4OAL56SOjQw6gy15xh3hALazhelUqafcJiGmIfSvjSzKVmIYXvHXA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1740144486; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=1NT+BJtGmQPBJxVdJtnETf4Hylev5huwZTuiokcMHso=; 
+	b=S86mae6WsnRg2XGXkrPfCqE7h05p93U6+lmxxLm0OXhnJTkS6Rhukhuh593E5UqWtXkx7hw4QWFuZTTKBP2RnjA0JR6eJ7Vc2a+6OagTK0+GThs8xkkz1FB1urqkF6uZyFCJyGWNITTVXqqU/Wl5MGfsjUMiyYIgTDB9nW9Xbpo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740144486;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=1NT+BJtGmQPBJxVdJtnETf4Hylev5huwZTuiokcMHso=;
+	b=PuMLlOuWX0TxQ7RVYJKBcIdAjCg5FCDYgvjVenaUwWadc3X2osGRNo0qF+mSfFFc
+	0aRd4Yf/iuxWI2wuedtZqG4B4iO1GCl234AiT4Jo3X7gIjX2PjbTlxyfKlQ0aUGXcTC
+	p0CPmV3tSgS/1YUJxLKWsjScJ0XdjN/ekszEukDw=
+Received: by mx.zohomail.com with SMTPS id 1740144484347820.7261259225404;
+	Fri, 21 Feb 2025 05:28:04 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Rob Herring <robh@kernel.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH 4/6] dt-bindings: thermal: rockchip: document otp thermal trim
+Date: Fri, 21 Feb 2025 14:27:58 +0100
+Message-ID: <4631308.LvFx2qVVIh@workhorse>
+In-Reply-To: <20250219231036.GA3137058-robh@kernel.org>
+References:
+ <20250216-rk3576-tsadc-upstream-v1-0-6ec969322a14@collabora.com>
+ <20250216-rk3576-tsadc-upstream-v1-4-6ec969322a14@collabora.com>
+ <20250219231036.GA3137058-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: display/msm: qcom,sa8775p-mdss: Add missing
- eDP phy
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Clark <robdclark@gmail.com>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- dri-devel@lists.freedesktop.org, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-arm-msm@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Mahadevan <quic_mahap@quicinc.com>
-References: <20250221121703.72230-1-krzysztof.kozlowski@linaro.org>
- <174014368122.2668239.11304901481263017777.robh@kernel.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <174014368122.2668239.11304901481263017777.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-On 21/02/2025 14:14, Rob Herring (Arm) wrote:
+On Thursday, 20 February 2025 00:10:36 Central European Standard Time Rob 
+Herring wrote:
+> On Sun, Feb 16, 2025 at 12:34:53AM +0100, Nicolas Frattaroli wrote:
+> > Several Rockchip SoCs, such as the RK3576, can store calibration trim
+> > data for thermal sensors in OTP cells. This capability should be
+> > documented.
 > 
-> On Fri, 21 Feb 2025 13:17:03 +0100, Krzysztof Kozlowski wrote:
->> The Qualcomm SA8775p MDSS display block comes with eDP phy, already used
->> in DTS and already documented in phy/qcom,edp-phy.yaml binding.  Add the
->> missing device node in the binding and extend example to silence
->> dtbs_check warnings like:
->>
->>   sa8775p-ride.dtb: display-subsystem@ae00000: Unevaluated properties are not allowed ('phy@aec2a00', 'phy@aec5a00' were unexpected)
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../display/msm/qcom,sa8775p-mdss.yaml        | 32 +++++++++++++++++--
->>  1 file changed, 30 insertions(+), 2 deletions(-)
->>
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.example.dtb: phy@aec2a00: reg: [[0, 183249408], [0, 512], [0, 183247360], [0, 208], [0, 183248384], [0, 208], [0, 183246848], [0, 456]] is too long
-> 	from schema $id: http://devicetree.org/schemas/phy/qcom,edp-phy.yaml#
-> 
-Insufficient testing. I'll send v2.
+> Is several most or a minority as this change is enabled for everyone.
 
-Best regards,
-Krzysztof
+Downstream has trim_h/trim_l nodes for the following SoCs:
+- RK3502
+- RK3528
+- RK3562
+- RK3566
+- RK3568
+- RK3576
+- RV1126
+
+If you'd prefer I split the bindings or add a conditional to only enable this 
+on those specific compatibles, let me know. It is worth noting that all of 
+these SoCs are fairly new, so I assume this is the design that Rockchip is 
+using going forward.
+
+Additionally, trim_base/trim_base_frac seem to only be set in downstream DTs 
+for RK3562, RK3566, RK3568 and RV1126, so while I'm at it I'd add those to a 
+separate conditional as well.
+
+> > Such a rockchip thermal sensor may reference cell handles that store
+> > both a chip-wide trim for all the sensors, as well as cell handles
+> > for each individual sensor channel pointing to that specific sensor's
+> > trim value.
+> > 
+> > Additionally, the thermal sensor may optionally reference cells which
+> > store the base in terms of degrees celsius and decicelsius that the trim
+> > is relative to.
+> > 
+> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > ---
+> > 
+> >  .../bindings/thermal/rockchip-thermal.yaml         | 44
+> >  ++++++++++++++++++++++ 1 file changed, 44 insertions(+)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> > b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml index
+> > 49ceed68c92ce5a32ed8d4f39bd88fd052de0e80..8d27ddefcc64e29f0faab0598888058
+> > 02c948b41 100644 ---
+> > a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml +++
+> > b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml> 
+> > @@ -40,6 +40,21 @@ properties:
+> >        - const: tsadc
+> >        - const: apb_pclk
+> > 
+> > +  nvmem-cells:
+> > +    items:
+> > +      - description: cell handle of the low byte of the chip fallback
+> > trim value +      - description: cell handle of the high byte of the chip
+> > fallback trim value +      - description: cell handle to where the trim's
+> > base temperature is stored +      - description:
+> > +          cell handle to where the trim's tenths of Celsius base value is
+> > stored +
+> > +  nvmem-cell-names:
+> > +    enum:
+> > +      - trim_l
+> > +      - trim_h
+> > +      - trim_base
+> > +      - trim_base_frac
+> > +
+> > 
+> >    resets:
+> >      minItems: 1
+> >      maxItems: 3
+> > 
+> > @@ -51,6 +66,12 @@ properties:
+> >        - const: tsadc
+> >        - const: tsadc-phy
+> > 
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 0
+> > +
+> > 
+> >    "#thermal-sensor-cells":
+> >      const: 1
+> > 
+> > @@ -72,6 +93,29 @@ properties:
+> >      $ref: /schemas/types.yaml#/definitions/uint32
+> >      enum: [0, 1]
+> > 
+> > +patternProperties:
+> 
+> > +  "^([a-z]+)@[0-9]+$":
+> If each node is a sensor or channel, then make that the node name.
+
+Will do in V2. Should the node name be something like e.g. `gpu` for the GPU 
+thermal sensor/channel? Maybe suffixed with e.g. `-tsadc` or something, to 
+disambiguate it from other mentions of the GPU, or is disambiguation 
+unnecessary noise because it's evident from it being a child of tsadc anyway, 
+much like cpu and codec aren't suffixed with anything in simple-audio-card's 
+dai-link?
+
+> 
+> > +    type: object
+> > +    properties:
+> > +      reg:
+> > +        maxItems: 1
+> > +        description: sensor ID, a.k.a. channel number
+> > +
+> > +      nvmem-cells:
+> > +        items:
+> > +          - description: handle of cell containing low byte of
+> > calibration data +          - description: handle of cell containing high
+> > byte of calibration data +
+> > +      nvmem-cell-names:
+> > +        items:
+> > +          - const: trim_l
+> > +          - const: trim_h
+> > +
+> > +    required:
+> > +      - reg
+> > +
+> > +    unevaluatedProperties: false
+> > +
+> > 
+> >  required:
+> >    - compatible
+> >    - reg
+
+
+
+
 
