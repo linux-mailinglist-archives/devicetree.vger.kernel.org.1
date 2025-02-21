@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-149502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3432A3FA74
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:13:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87316A3FA7C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:14:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38F07440481
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:07:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F0AC188F919
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:09:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A711D54F7;
-	Fri, 21 Feb 2025 16:00:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79866200BBE;
+	Fri, 21 Feb 2025 16:03:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xOiSueHh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fLRJQsPv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295C61F152B
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 16:00:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A70FF1F9F47
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 16:03:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740153644; cv=none; b=G+DV7+/oqK0LjD37MEIyNckFY3f0NCuXXaORTcBLv8K06+LHrslMcr0h6dS6qDOv8pZ0Wp/BKL3MxI5zzInKpynG75g3kcncTtD2R04l+3bjnyRKVV0gM6DoPpBB0bQYXnHvwnWC8eQaS/RMN5ysHnXTh83uF6tvVnRFBUpY/Dg=
+	t=1740153791; cv=none; b=ASC9z1RLtFxQtZ4vqRfzaZcNiwrJJpEuxhXg8Ivzc3S9psUbBTVzYU36TK6i7ifoW+7q+y33mpwZxtfAr+tNusFnSYmFyYfQNLKiX/tL3IP5223F+5eGES3ZwD8dnaXPQQWJvN2RWcAlLfLvwqLB13RsPL7QdoILjx0RD7dmr38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740153644; c=relaxed/simple;
-	bh=Q9/weWMqsRUAJgN7rFGcM/rDMNKtQZwTpoVO7ftqEdc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aKvCOmGprw1S4VyniY0JkXxMqnV6Ye4O/XZc7s28mflS6pbqpC1MFa1rWt2mtdVkMcIkus/sYp3VJgBD2ajb/iqBcdw/Fi1bSx50DOgpj0x3W3Zj8rzd28lOBTEla++azaDxk67zgCtk6s7RcxpFQCuHDUY9mPpufJqUoj1mUoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xOiSueHh; arc=none smtp.client-ip=209.85.218.49
+	s=arc-20240116; t=1740153791; c=relaxed/simple;
+	bh=RYYrqjZBBPZWi7VA/WRn8140pmz5H68xLv5MzgliR78=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eL7Vdwv6SNResNv84crWAb+8yoWZCsqsqiJxoTt0/72V7k8mCt1eyLZxBVCCvMrjEkhGCNajXISWyk7BSzpuQHUyozPWk+IhXnbs4+DpY8ciC4hTd9nH0B8YIBZEJc9vh/CZlzrL+tN1Ygm+X16jDz+JwZkVtxLoQHcWKFu2NBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fLRJQsPv; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ab7e08f56a0so40597166b.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 08:00:41 -0800 (PST)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-abbb16a0565so33104966b.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 08:03:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740153640; x=1740758440; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1740153787; x=1740758587; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=97064Lo4S+yLBMHfAaUS5/jSMM3joMD+alo0JyNN3fU=;
-        b=xOiSueHhy8QF7hfHeYYoZQdtdv3OW1EfLtPRwYADfKK9JsViiO55gdIFwrbE87H61l
-         Ly4vNSNKrvmzgubU7rU0DYhc/jqKWu56GHAjpd258AMDuFVU6Jd14lJvGQ9JlbbbK0sf
-         kp6f/IV+oMCBVGvL9ywKRh5ZV5MLbf7qWgyIpEPb0ZGlbtpieuXgeLZb8RBoN8zz7bL+
-         kCFAZ5lawUoy81GNK1+7VtAR6rdXmYYQkgiFvEjhKaEHrJHsj07/jW+/h+PjiVDRlQgb
-         eCcE0Mo5Qoh7XxGnJGmMsj82n7sfnOpAUoGnUyG3si4HdcF1pR3c9OyaZwg9JP3nFGn8
-         2k6g==
+        bh=Iecpj9KIMrY3zBOzgwFtaRTFMVnp7wDD9F9a7Nu1whg=;
+        b=fLRJQsPvpsPxK9IVBT0WhA9wHoBXOW/bAFqOatLe49WYbn3T0q3mXQ1mbjBlzjLPB3
+         1q7Ku3syMUVBONjEc9eMXf+jmv3CmZGIs/129+UcXjqmBksyno0kWJ8UhevZ+BpuqpcB
+         rvGtwh6nRezkwFMoejBD4aT4iVkoGQUISQ+6eVavVS1EkpXLhSYq6UTb4M1hQc3N8W3I
+         5U873zWJ20Fz6Y0ANLaj0XsPVr3q7m+A1wX84HEypPIOZd6o8XtbRmq6C4ll8GCoG7ZJ
+         CIYtDzum4LJ2/9vt0Yf4qCqQSnKg9PO+e++YKWuGDuNFbFUoyPTM9jPw9b/Y/XJdimjZ
+         f8pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740153640; x=1740758440;
+        d=1e100.net; s=20230601; t=1740153787; x=1740758587;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=97064Lo4S+yLBMHfAaUS5/jSMM3joMD+alo0JyNN3fU=;
-        b=dbOhsJc0zo9uNEmqNJJoIxh/gikSnQkyFlndtKq5JoIiQWdPlTZtC0uRhJQ3eHs/Wj
-         3Iz0d7MYCTMoxiAdTwXH9TpjfmoXWQ3r+oep+Z/knAfAULavtpsfZ9+4gHJomOJICf5j
-         YXsWu2L4/R9fqkIphC+xvmcwnJHs7w7rqHDKmGR4XgL+r8uhBj8yon0xgyUY/BewPBsJ
-         7TekwwWD1N8LqeaYUTvbPYunOOIB7db7EmQV2N1alm43hTTdktFrhkMj/SKTLP7TLNTN
-         T/gYWK8+Tz1xSbWSTODxDk3cD4LVSYaq/CWRAHzjoMdRE07fuwbzBsB2/d8WAQx6umsM
-         9HiA==
-X-Forwarded-Encrypted: i=1; AJvYcCVo3y/qgl+Kl9EZiNIrNCU5ulndE00jbVwOQA54OUf3tFijmE8PgQpXLuhuqbNb0IyyYi0zW9lFauw0@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywdu8i+rWc2dOauhzKDSDcuhyxCFResfN18/07o1LdVLW+hFwNw
-	Ijp3VMC+apUnlcuxXYUYN/PthW0+cy5eTHjJgoDdV0mGddO83pepugPxZLM5sUU=
-X-Gm-Gg: ASbGncsjUHvE/fDfrcdejaiRx1cEbOitAQpwkrjGjIO5T9+b/KphgwsFdGIA96vYJpD
-	eCZIDOcC9dotnacCHMduEksyaSv9KNhsyOFVNSiwnbXrdqpZRLqngu8lmZ4b7Ha3dnaiaO8ooFz
-	45ya3ObZh2zoS7Pa9vHsJKfcpUS6E++s/xOWhnSWavd94xZ+pa6Gz+J+H65Obei6H63YTsrGVrY
-	eEjZXHVRjuXFNmHg+dvxp9mooSQnXrhPplOYuKNd+gM1cvyrgdPn5hyFuuwQ953w2qF3DF18rHB
-	M2KXZ7msLeiuOPl18YCD626k9YXSfOY+6CkxfBFl+68v/QlLkksU+OeVl66UzBVTBOHOFYKz1UE
+        bh=Iecpj9KIMrY3zBOzgwFtaRTFMVnp7wDD9F9a7Nu1whg=;
+        b=rpDtoo6d4S7iLvPwYThHDG+8pucLAJhkXayodo6rI1AeYlx2rNi5gQHtZNGyVAs3H8
+         gfpRgHVk4+iPkx91ez5xNIVYqq8tWh8mc7Z3aB3npJHwk+JIxziRvKb/bv/HlUN7Rb5f
+         5+7qo8znlBuOuNy+UNuLl/s1hhcmuOE8//DlPQJjHgwaH47JPAehX1+rVypy5ncTSZZC
+         WCXMr5eCVOWpBlMhC7O3+ZjCNg1XxoghLbxq8bhbq5ihHDTxFqtEfuDRHYRq/whJmo/v
+         hIjrf8tNULFuZq3Uo+MhudMFt7RydZcBOm52AQvyfY3K1MrKPDw0pisIr+LvvfaGKbkr
+         TtvA==
+X-Forwarded-Encrypted: i=1; AJvYcCUSmvAzG7aXLX1+IZe0W0bfMxGdpKCd7pA/1jmLDOzp7gF+d0NTr9GxLMH2yXKP/u+lWqOyYmRh0x01@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeMOmJet/YHFx89bzkhbVocz60stkkvfpx8Ak2wkFwWunF7ODj
+	gtUkuNQWMfu+gd8f+/W8/esDf/fb7N35Fu85jmiZwFpIoSExaHuuurQAx8Ayaig=
+X-Gm-Gg: ASbGncuU2wyuJQVbwR1cabmBS2PzkaIehrCMdy1Hi60ka4UHyz6SWAoHGrz2TqNFUUy
+	XFe/lXYVeJ/+AyyARFUNA8ao9eeTWrZ1a42Vsz5+iIvKUapXJpZXmKPPMBGzaQKlzYVqsc8ERi7
+	w738PD9zGhWURm2EO+0kJcHf9xMu1lXnmL++LQYpiJX/zvDgc65HX8/ij+QkPCjJT3rf2L8ngo+
+	B58S7uWkCkHHqhSMqOQnu/z14e2Z1eFSw7MejGgIYj0lxQAKKBNrjwaaI06BmXeC6ZlSIK9C79E
+	oPouXjfgo1zn/ly5U9LwECiO6PPxZtS3j+zMy6JFJc8UTCClqEc7b48Knt8F6UbysWQwucs1v0w
 	=
-X-Google-Smtp-Source: AGHT+IHhkj9hOW37OUEtDt15pY4+O+vqnXmLkqZtiWM6bCvEaBTH0PBg3GND1eglU1hwgUThMgFgSA==
-X-Received: by 2002:a17:907:2ce2:b0:ab7:cd83:98bb with SMTP id a640c23a62f3a-abc09a3c1c5mr146987666b.5.1740153640111;
-        Fri, 21 Feb 2025 08:00:40 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFD94Z2C6E/AhuO+19C1vGdBFuuX7tNp0Xx3W8Vs2QPQWhGEEzUJ2reXTaWktyO+VoDRaxiJA==
+X-Received: by 2002:a17:907:9722:b0:ab6:d3b6:d825 with SMTP id a640c23a62f3a-abc09a578efmr125277166b.6.1740153785316;
+        Fri, 21 Feb 2025 08:03:05 -0800 (PST)
 Received: from krzk-bin.. (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb9da9f0desm983616166b.105.2025.02.21.08.00.38
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb98640619sm1040782766b.54.2025.02.21.08.03.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Feb 2025 08:00:39 -0800 (PST)
+        Fri, 21 Feb 2025 08:03:04 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Mathieu Poirier <mathieu.poirier@linaro.org>,
@@ -84,9 +84,9 @@ To: Bjorn Andersson <andersson@kernel.org>,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3] dt-bindings: remoteproc: Add SM8750 CDSP
-Date: Fri, 21 Feb 2025 17:00:36 +0100
-Message-ID: <20250221160036.159557-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH RFC v2 1/2] dt-bindings: remoteproc: Add SM8750 MPSS
+Date: Fri, 21 Feb 2025 17:02:59 +0100
+Message-ID: <20250221160300.160404-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -96,74 +96,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add remote processor PAS loader for SM8750 CDSP processor, compatible
-with earlier SM8650 with minor difference: one more sixth shutdown
-interrupt.
+Add remote processor PAS loader for SM8750 MPSS (modem).  Device looks
+fully compatible with SM8650, however it lacks fifth memory region for
+Qlink Logging, according to downstream sources.  This is a bit tricky,
+because updated downstream sources for newer downstream release dropped
+that fifth memory region as well.
+
+There might be other differences against SM8650, because the modem
+currently crashes after starting.
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
 
-Changesin v3:
-1. Split MPSS into separate patch, keep the ack.
+Changes in v2:
+Split from previous MPSS+CDSP:
+https://lore.kernel.org/all/20250220154132.199358-1-krzysztof.kozlowski@linaro.org/
 
-v2: https://lore.kernel.org/all/20250220154132.199358-1-krzysztof.kozlowski@linaro.org/
+Retain the Ack - no changes to the binding itself.
 ---
- .../bindings/remoteproc/qcom,sm8550-pas.yaml  | 29 ++++++++++++++++---
- 1 file changed, 25 insertions(+), 4 deletions(-)
+ .../bindings/remoteproc/qcom,sm8550-pas.yaml    | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-index a24cbb61bda7..8bfded3c66ef 100644
+index 8bfded3c66ef..2dd479cf4821 100644
 --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
 +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-@@ -29,6 +29,9 @@ properties:
+@@ -24,6 +24,7 @@ properties:
+           - qcom,sm8650-adsp-pas
+           - qcom,sm8650-cdsp-pas
+           - qcom,sm8650-mpss-pas
++          - qcom,sm8750-mpss-pas
+           - qcom,x1e80100-adsp-pas
+           - qcom,x1e80100-cdsp-pas
        - items:
-           - const: qcom,sm8750-adsp-pas
-           - const: qcom,sm8550-adsp-pas
-+      - items:
-+          - const: qcom,sm8750-cdsp-pas
-+          - const: qcom,sm8650-cdsp-pas
+@@ -164,6 +165,21 @@ allOf:
+           minItems: 5
+           maxItems: 5
  
-   reg:
-     maxItems: 1
-@@ -114,6 +117,23 @@ allOf:
-         memory-region:
-           minItems: 3
-           maxItems: 3
-+
 +  - if:
 +      properties:
 +        compatible:
-+          contains:
-+            enum:
-+              - qcom,sm8750-cdsp-pas
++          enum:
++            - qcom,sm8750-mpss-pas
 +    then:
 +      properties:
 +        interrupts:
-+          maxItems: 6
++          minItems: 6
 +        interrupt-names:
-+          maxItems: 6
++          minItems: 6
 +        memory-region:
-+          minItems: 3
-+          maxItems: 3
++          minItems: 4
++          maxItems: 4
 +
    - if:
        properties:
          compatible:
-@@ -184,10 +204,11 @@ allOf:
-   - if:
-       properties:
-         compatible:
--          enum:
--            - qcom,sm8550-cdsp-pas
--            - qcom,sm8650-cdsp-pas
--            - qcom,x1e80100-cdsp-pas
-+          contains:
-+            enum:
-+              - qcom,sm8550-cdsp-pas
-+              - qcom,sm8650-cdsp-pas
-+              - qcom,x1e80100-cdsp-pas
+@@ -191,6 +207,7 @@ allOf:
+             - qcom,sdx75-mpss-pas
+             - qcom,sm8550-mpss-pas
+             - qcom,sm8650-mpss-pas
++            - qcom,sm8750-mpss-pas
      then:
        properties:
          power-domains:
