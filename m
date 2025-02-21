@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-149707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBEC7A402BD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 23:34:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AAE6A402F9
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 23:46:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 614BC8631F5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 22:33:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6677217AAFF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 22:46:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EF8920766D;
-	Fri, 21 Feb 2025 22:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 068611FFC56;
+	Fri, 21 Feb 2025 22:46:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dYjhTcww"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PGkQXt1/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F7FB1FF612;
-	Fri, 21 Feb 2025 22:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3BC11F03DC;
+	Fri, 21 Feb 2025 22:46:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740177188; cv=none; b=AbPMo1rQARJtGCYGozecnc1Xa3P1QhuPWXicLKiF+rMJBhB2rlx7zoDwnJuvLh9cJsC3mldhVfhz/yf4hPYYwkePWLHJ2ZEvnT4fdGNX9C+KVgzXGBci9ts6s14YcqiJxbTvSFY0q2b7ICRQkeybslypvTLgOWQ2eR4AzubcGFs=
+	t=1740178014; cv=none; b=OxmS3o+jLgxIFtlyuJIb4aj6riogq3NVNZbAZnYEftuincOmOb2poDOdPSoyK5Ri03QVfqtBoxobUzmIg2e3J3t3t9BDV/74PRCcgE8hC88tkaSdnHwAmoSf/GihgKqzZGdsKUWgNWoixsqViLLeKvbUl0nvAVapyQqs2H50ol4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740177188; c=relaxed/simple;
-	bh=jhNLKKmZdBg6gC6tf7E+ph0/0dRu9QCUxQqNNWqYgC0=;
+	s=arc-20240116; t=1740178014; c=relaxed/simple;
+	bh=Bj5XeMMlWNoOQqinEQeMbQ7s90ZmJ+tHoedMx1SjyTw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J+ljDK6OwJBlTDADdpAY84LqqsIlxlZktv6GChKUrQJCEYkBBobDkOQGQMFzxHniY2jS6Mmw1dvOyfsCFpoV32DBINXmWl5JXa5utC5ectAOYNlStVdX7lLq7MtURlEzG2hiYrxq58U+fpRUWeJxbJpqgy0V/ldG7Tov9WJDc4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dYjhTcww; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3D05C4CEEA;
-	Fri, 21 Feb 2025 22:33:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Plljk4nttbn5WBDBPa4JqYK3MoRWlvdEa0H++oMfPxchSZ2zrP043miQJDRF+F1NTMwTXis/U1YA9I2OEvczAGBg5MS0SwU4TwUHZrJofwdVjpD0v5qoxHSmm58S9j2wKBjAFT0oSxtmQbjSDqwlYb3/1hXbVOJaxp8+5M8HMzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PGkQXt1/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28C00C4CED6;
+	Fri, 21 Feb 2025 22:46:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740177187;
-	bh=jhNLKKmZdBg6gC6tf7E+ph0/0dRu9QCUxQqNNWqYgC0=;
+	s=k20201202; t=1740178013;
+	bh=Bj5XeMMlWNoOQqinEQeMbQ7s90ZmJ+tHoedMx1SjyTw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dYjhTcwwqkB+c0oQIgk5fXqY7qD4VMlHaawaWAbdLAgVxTx4vfF28H23IGQVv6/wW
-	 F5djNnKngrl0f+naFDP4anowjcC+UUlJBfW2G90yCVkA8fnDxg9wUaVQUhJE5Rftwe
-	 x6hyPuSRyFIIAjNBIj9ZU2BH0iHb2D5wtYv/wOgzovzxXuOuy365iHa/Ztyb5Vlnuw
-	 C0VTKNpHdMGINUOuHbM3InaaOMmyisQGF6ZmDQbkC7iPgj1+zH7el90AjnSPPCFqc3
-	 osWpNaSTdCDmB23MaI9DbNlpajc5ecKR025rkdU3EETMUctdciuGxyoF/ejPSHz9AM
-	 vlLgeM8y2HUSQ==
-Date: Fri, 21 Feb 2025 16:33:06 -0600
+	b=PGkQXt1/qiDU9PqRG/31BKqsYquB3kRz/AgzXjg0qHJf4pf6V+4nenrvojOZp1+N6
+	 Ku2CohG2BCz/UqFF3eGk+B4Sxm4/1EIUECT94Ns6zb+ony1CY3viqGwiN6nRK+Ft2a
+	 MkA8l7mUu27JpcFb3f+lunbDBRCQZNpBXpG5QFN+SZLOvkPyDKGmIY/Zk69d6QO8Fe
+	 9S2F3CLRQKP3N0G60tztoim059YpcJxNzFW+qDsG7xxYKHjCxppp23eSctNs1tua2G
+	 AjQumYwweVBfcSLz/zv/mjfZZEfBUVullfyOQ/TC19hIr3jskScFzdxiiGnzyKGVmQ
+	 ZH5vuhtG0A+xA==
+Date: Fri, 21 Feb 2025 16:46:51 -0600
 From: Rob Herring <robh@kernel.org>
-To: "bo.kong" <bo.kong@mediatek.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
-	zhaoyuan.chen@mediatek.com, teddy.chen@mediatek.com
-Subject: Re: [PATCH v4 1/4] media: dt-bindings: add MT8188 AIE
-Message-ID: <20250221223306.GA190439-robh@kernel.org>
-References: <20250220070114.15015-1-bo.kong@mediatek.com>
- <20250220070114.15015-2-bo.kong@mediatek.com>
+To: Peter Chen <peter.chen@cixtech.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, arnd@arndb.de,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+	"Fugang . duan" <fugang.duan@cixtech.com>
+Subject: Re: [PATCH 6/6] arm64: dts: cix: add initial CIX P1(SKY1) dts support
+Message-ID: <20250221224651.GA195444-robh@kernel.org>
+References: <20250220084020.628704-1-peter.chen@cixtech.com>
+ <20250220084020.628704-7-peter.chen@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,137 +61,368 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250220070114.15015-2-bo.kong@mediatek.com>
+In-Reply-To: <20250220084020.628704-7-peter.chen@cixtech.com>
 
-On Thu, Feb 20, 2025 at 02:59:50PM +0800, bo.kong wrote:
-> From: Bo Kong <Bo.Kong@mediatek.com>
+On Thu, Feb 20, 2025 at 04:40:20PM +0800, Peter Chen wrote:
+> CIX SKY1 SoC is high performance Armv9 SoC designed by Cixtech,
+> and Orion O6 is open source motherboard launched by Radxa.
+> See below for detail:
+> https://docs.radxa.com/en/orion/o6/getting-started/introduction
 > 
-> Add YAML device tree bindings for MT8188 AIE.
+> In this commit, it only adds limited components for running initramfs
+> at Orion O6.
 > 
-> Signed-off-by: Bo Kong <Bo.Kong@mediatek.com>
+> Acked-by: Fugang.duan <fugang.duan@cixtech.com>
+> Signed-off-by: Peter Chen <peter.chen@cixtech.com>
 > ---
-> Changes in v4:
-> 1. Remove address-cells and size-cells
-> 2. Remove larb12 related content
-> 3. Update id content
+>  arch/arm64/boot/dts/Makefile              |   1 +
+>  arch/arm64/boot/dts/cix/Makefile          |   2 +
+>  arch/arm64/boot/dts/cix/sky1-orion-o6.dts |  21 ++
+>  arch/arm64/boot/dts/cix/sky1.dtsi         | 264 ++++++++++++++++++++++
+>  4 files changed, 288 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/cix/Makefile
+>  create mode 100644 arch/arm64/boot/dts/cix/sky1-orion-o6.dts
+>  create mode 100644 arch/arm64/boot/dts/cix/sky1.dtsi
 > 
-> Changes in v3:
-> None
-> 
-> Changes in v2:
-> 1. Fix coding style
-> ---
->  .../bindings/media/mediatek,mt8188-aie.yaml   | 90 +++++++++++++++++++
->  1 file changed, 90 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8188-aie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8188-aie.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8188-aie.yaml
+> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
+> index 79b73a21ddc2..8e7ccd0027bd 100644
+> --- a/arch/arm64/boot/dts/Makefile
+> +++ b/arch/arm64/boot/dts/Makefile
+> @@ -13,6 +13,7 @@ subdir-y += bitmain
+>  subdir-y += blaize
+>  subdir-y += broadcom
+>  subdir-y += cavium
+> +subdir-y += cix
+>  subdir-y += exynos
+>  subdir-y += freescale
+>  subdir-y += hisilicon
+> diff --git a/arch/arm64/boot/dts/cix/Makefile b/arch/arm64/boot/dts/cix/Makefile
 > new file mode 100644
-> index 000000000000..232b5afc2ad3
+> index 000000000000..ed3713982012
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8188-aie.yaml
-> @@ -0,0 +1,90 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/mediatek,mt8188-aie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/arch/arm64/boot/dts/cix/Makefile
+> @@ -0,0 +1,2 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +dtb-$(CONFIG_ARCH_CIX) += sky1-orion-o6.dtb
+> diff --git a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
+> new file mode 100644
+> index 000000000000..dbee1616076d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
+> @@ -0,0 +1,21 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright 2025 Cix Technology Group Co., Ltd.
+> + *
+> + */
 > +
-> +title: The AI Engine Unit of MediaTek Camera System
+> +/dts-v1/;
 > +
-> +maintainers:
-> +  - Bo Kong <bo.kong@mediatek.com>
+> +#include "sky1.dtsi"
+> +/ {
+> +	model = "Radxa Orion O6";
+> +	compatible = "radxa,orion-o6";
 > +
-> +description:
-> +  AIE(AI Engine) is one of the units in mt8188 ISP which
-> +  provides hardware accelerated face detection function,
-> +  it can detect different sizes of faces in a raw image.
+> +	chosen {
+> +		stdout-path = &uart2;
+> +	};
+> +};
+> +
+> +&uart2 {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
+> new file mode 100644
+> index 000000000000..d98735f782e0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/cix/sky1.dtsi
+> @@ -0,0 +1,264 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright 2025 Cix Technology Group Co., Ltd.
+> + *
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial2 = &uart2;
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&CPU0>;
+> +				};
+> +				core1 {
+> +					cpu = <&CPU1>;
+> +				};
+> +				core2 {
+> +					cpu = <&CPU2>;
+> +				};
+> +				core3 {
+> +					cpu = <&CPU3>;
+> +				};
+> +				core4 {
+> +					cpu = <&CPU4>;
+> +				};
+> +				core5 {
+> +					cpu = <&CPU5>;
+> +				};
+> +				core6 {
+> +					cpu = <&CPU6>;
+> +				};
+> +				core7 {
+> +					cpu = <&CPU7>;
+> +				};
+> +				core8 {
+> +					cpu = <&CPU8>;
+> +				};
+> +				core9 {
+> +					cpu = <&CPU9>;
+> +				};
+> +				core10 {
+> +					cpu = <&CPU10>;
+> +				};
+> +				core11 {
+> +					cpu = <&CPU11>;
+> +				};
+> +			};
+> +		};
+> +
+> +		CPU0: cpu0@0 {
+> +			compatible = "arm,armv8";
+> +			enable-method = "psci";
+> +			reg = <0x0 0x0>;
+> +			device_type = "cpu";
+> +			capacity-dmips-mhz = <403>;
+> +		};
+> +
+> +		CPU1: cpu1@100 {
+> +			compatible = "arm,armv8";
+> +			enable-method = "psci";
+> +			reg = <0x0 0x100>;
+> +			device_type = "cpu";
+> +			capacity-dmips-mhz = <403>;
+> +		};
+> +
+> +		CPU2: cpu2@200 {
+> +			compatible = "arm,armv8";
+> +			enable-method = "psci";
+> +			reg = <0x0 0x200>;
+> +			device_type = "cpu";
+> +			capacity-dmips-mhz = <403>;
+> +		};
+> +
+> +		CPU3: cpu3@300 {
+> +			compatible = "arm,armv8";
+> +			enable-method = "psci";
+> +			reg = <0x0 0x300>;
+> +			device_type = "cpu";
+> +			capacity-dmips-mhz = <403>;
+> +		};
+> +
+> +		CPU4: cpu4@400 {
+> +			compatible = "arm,armv8";
+> +			enable-method = "psci";
+> +			reg = <0x0 0x400>;
+> +			device_type = "cpu";
+> +			capacity-dmips-mhz = <1024>;
+> +		};
+> +
+> +		CPU5: cpu5@500 {
+> +			compatible = "arm,armv8";
+> +			enable-method = "psci";
+> +			reg = <0x0 0x500>;
+> +			device_type = "cpu";
+> +			capacity-dmips-mhz = <1024>;
+> +		};
+> +
+> +		CPU6: cpu6@600 {
+> +			compatible = "arm,armv8";
+> +			enable-method = "psci";
+> +			reg = <0x0 0x600>;
+> +			device_type = "cpu";
+> +			capacity-dmips-mhz = <1024>;
+> +		};
+> +
+> +		CPU7: cpu7@700 {
+> +			compatible = "arm,armv8";
+> +			enable-method = "psci";
+> +			reg = <0x0 0x700>;
+> +			device_type = "cpu";
+> +			capacity-dmips-mhz = <1024>;
+> +		};
+> +
+> +		CPU8: cpu8@800 {
+> +			compatible = "arm,armv8";
+> +			enable-method = "psci";
+> +			reg = <0x0 0x800>;
+> +			device_type = "cpu";
+> +			capacity-dmips-mhz = <1024>;
+> +		};
+> +
+> +		CPU9: cpu9@900 {
+> +			compatible = "arm,armv8";
+> +			enable-method = "psci";
+> +			reg = <0x0 0x900>;
+> +			device_type = "cpu";
+> +			capacity-dmips-mhz = <1024>;
+> +		};
+> +
+> +		CPU10: cpu10@a00 {
+> +			compatible = "arm,armv8";
+> +			enable-method = "psci";
+> +			reg = <0x0 0xa00>;
+> +			device_type = "cpu";
+> +			capacity-dmips-mhz = <1024>;
+> +		};
+> +
+> +		CPU11: cpu11@b00 {
+> +			compatible = "arm,armv8";
+> +			enable-method = "psci";
+> +			reg = <0x0 0xb00>;
+> +			device_type = "cpu";
+> +			capacity-dmips-mhz = <1024>;
+> +		};
+> +	};
+> +
+> +	arch_timer: timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+> +		clock-frequency = <1000000000>;
+> +		interrupt-parent = <&gic>;
+> +		arm,no-tick-in-suspend;
+> +	};
+> +
+> +	memory@80000000 {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		device_type = "memory";
+> +		reg = <0x00000000 0x80000000 0x1 0x00000000>;
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+> +	pmu: pmu {
+> +		compatible = "arm,armv8-pmuv3";
 
-Wrap lines at 80 char.
+Also needs the CPU model specific compatible string.
 
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: mediatek,mt8188-aie
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: Physical base address and length of the register space.
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +		interrupt-parent = <&gic>;
+> +		status = "okay";
 
-Drop description. That's every 'reg' entry.
+okay is the default, don't need status.
 
+> +	};
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +	pmu_spe: pmu_spe {
+> +		compatible = "arm,statistical-profiling-extension-v1";
+> +		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_LOW>;
+> +		interrupt-parent = <&gic>;
+> +		status = "okay";
+> +	};
 > +
-> +  mediatek,larb:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Must contain the local arbiters in the current SoCs, see
-> +      Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-> +      for details.
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
 > +
-> +  iommus:
-> +    maxItems: 4
-> +    description:
-> +      Points to the respective IOMMU block with master port as argument, see
-> +      Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml for details.
-> +      Ports are according to the HW.
+> +		linux,cma {
+> +			compatible = "shared-dma-pool";
+> +			reusable;
+> +			size = <0x0 0x28000000>;
+> +			linux,cma-default;
+> +		};
+> +
+> +	};
+> +
+> +	sky1_fixed_clocks: fixed-clocks {
 
-It's not really clear what the 4 entries are. Like any other property, 
-the order should be defined.
+Drop this container node.
 
+> +		uartclk: uartclk {
+
+clock-100000000 for the node name.
+
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <100000000>;
+> +			clock-output-names = "uartclk";
+> +		};
 > +
-> +  power-domains:
-> +    maxItems: 1
+> +		uart_apb_pclk: uart_apb_pclk {
+
+Similar here.
+
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <200000000>;
+> +			clock-output-names = "apb_pclk";
+> +		};
+> +	};
 > +
-> +  clocks:
-> +    items:
-> +      - description: clock for imgsys main ipe
-> +      - description: clock for ipe fdvt
-> +      - description: clock for ipe top
+> +	soc@0 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +		dma-ranges;
 > +
-> +  clock-names:
-> +    items:
-> +      - const: img_ipe
-> +      - const: ipe_fdvt
-> +      - const: ipe_top
+> +		uart2: uart@040d0000 {
+
+serial@...
+
+> +			compatible = "arm,pl011", "arm,primecell";
+> +			reg = <0x0 0x040d0000 0x0 0x1000>;
+> +			interrupts = <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH>;
+> +			clock-names = "uartclk", "apb_pclk";
+> +			clocks = <&uartclk>, <&uart_apb_pclk>;
+> +			status = "disabled";
+> +		};
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - iommus
-> +  - power-domains
-> +  - clocks
-> +  - clock-names
+> +		gic: interrupt-controller@0e001000 {
+> +			compatible = "arm,gic-v3";
+> +			#address-cells = <2>;
+> +			#interrupt-cells = <3>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			interrupt-controller;
+> +			#redistributor-regions = <1>;
+> +			reg = <0x0 0x0e010000 0 0x10000>,	/* GICD */
+> +			      <0x0 0x0e090000 0 0x300000>;       /* GICR * 12 */
+> +			redistributor-stride = <0x40000>;
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+> +			interrupt-parent = <&gic>;
 > +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/memory/mediatek,mt8188-memory-port.h>
-> +    #include <dt-bindings/power/mediatek,mt8188-power.h>
-> +    #include <dt-bindings/clock/mediatek,mt8188-clk.h>
-> +    aie@15310000 {
-> +      compatible = "mediatek,mt8188-aie";
-> +      reg = <0x15310000 0x1000>;
-> +      interrupts = <GIC_SPI 787 IRQ_TYPE_LEVEL_HIGH 0>;
-> +      iommus = <&vpp_iommu M4U_PORT_L12_FDVT_RDA_0>,
-> +               <&vpp_iommu M4U_PORT_L12_FDVT_RDB_0>,
-> +               <&vpp_iommu M4U_PORT_L12_FDVT_WRA_0>,
-> +               <&vpp_iommu M4U_PORT_L12_FDVT_WRB_0>;
-> +      power-domains = <&spm MT8188_POWER_DOMAIN_IPE>;
-> +      clocks = <&imgsys CLK_IMGSYS_MAIN_IPE>,
-> +               <&ipesys CLK_IPE_FDVT>,
-> +               <&ipesys CLK_IPESYS_TOP>;
-> +      clock-names = "img_ipe",
-> +                    "ipe_fdvt",
-> +                    "ipe_top";
-> +    };
+> +			its_pcie: its@e050000 {
+
+msi-controller@...
+
+> +				compatible = "arm,gic-v3-its";
+> +				msi-controller;
+> +				reg = <0x0 0x0e050000 0x0 0x30000>;
+> +			};
+> +		};
+> +	};
+> +};
 > -- 
-> 2.45.2
+> 2.25.1
 > 
 
