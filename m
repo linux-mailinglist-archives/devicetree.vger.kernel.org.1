@@ -1,368 +1,116 @@
-Return-Path: <devicetree+bounces-149726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED107A40384
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:35:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FFF0A40395
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:40:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 889363A27A7
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 23:35:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 353523B566E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 23:40:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C2020767C;
-	Fri, 21 Feb 2025 23:35:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC30520B1F7;
+	Fri, 21 Feb 2025 23:40:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WxXzFf/W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VoyY0X+y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2251E282D;
-	Fri, 21 Feb 2025 23:35:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2D0018DB0B;
+	Fri, 21 Feb 2025 23:40:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740180926; cv=none; b=rrNmpEmgjqcJL7+XAqKBWtsMxm8FJ6ZlbOhRiACuDUTXJvSF9KZYE3ZdImAAJXu3g6BMs1soj/CYO7Y9hb1hckti1ljq5h2cn/ccwaIPq6xhbxzzfWwpeauzGteFJh95d/0uXU6/CNfUTHIN4iW426EczLsIhhgAP9c9ysFeKFQ=
+	t=1740181243; cv=none; b=qSAjBatQUkaTNMm4V6sMk0TzDxtRxbtXP7GPTpe3duwH+bS3bKsYYxKOF/pirHUbhQHoQH4sEmosmE74GpNo+hPe27RokHWOEmHbKeRgEee3cgn6axt4o61wQg4wUvJFUI+uwbuGiJsRFWw9+k8wRpiAO3WfkVKW7oW6xUPAVp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740180926; c=relaxed/simple;
-	bh=2BXKvKN+NIlL2XxsOK9qTOUnB+5mVH/ECw+o7ix1FKI=;
+	s=arc-20240116; t=1740181243; c=relaxed/simple;
+	bh=OMCDVsQbn+5F1Lg61OuxMEK9sGVYuBuiegxwEU46gMY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JjOBGJK/uqToEKy+mHB2uJ/IkYoViyeZvyhe51xEPxCx/3M0AIx6v/dQiBfVdk/6Tu1HjG7ChK+6FPC7gPhNOuUnuXRHg5ptqXV1OuD7iRZVhnJsie4EqZpmwS9C0OTcWdcveN2nKTkD50XnlpVXXe/uLEZ9RvulqCgQOYsRw9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WxXzFf/W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 603C0C4CED6;
-	Fri, 21 Feb 2025 23:35:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PfCjWUemzCsWwGWvtSG7Lj1j2iNJ8aHaPIyTx/H0izcPxcvJvBxL/74O8xNulHY88o2jRm4jKMsMSyr9h1DRGo1uerJaIOl39iePFI20/Um61Gcu6OEuwnt+vhVuVPgQSuTKcHlO+7kI9Tm9iKI5jfnts6nHzDLPBHbcpPYBlFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VoyY0X+y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FC6FC4CED6;
+	Fri, 21 Feb 2025 23:40:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740180925;
-	bh=2BXKvKN+NIlL2XxsOK9qTOUnB+5mVH/ECw+o7ix1FKI=;
+	s=k20201202; t=1740181243;
+	bh=OMCDVsQbn+5F1Lg61OuxMEK9sGVYuBuiegxwEU46gMY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WxXzFf/WX6xRDeNHibxGerQWt1dEOSTG3Nu3jp/+6YQnfjyu018nm0c13MnMHktAt
-	 egjEaJtffukq50v46M1QiY1rW/Vkj8VL1bD3ZUo9M6C3F9FCbNaB1S31R00D5+rZ9U
-	 chv7bURqh63DS1FIQkfc+jxQCR5YTSioZq/wkQX+u9lt21rE9VmSAfyMsVLZl2g1FN
-	 KB2XTuXJMO5yXhfn+xp8RBdCxgGHeqe79DtQgi5eiXpsUQhXUn140sKwJHbiQfTfOK
-	 OXmb6LC+clATkAgLsd6fHriaL0tf0gGGmFGPIfgbAAjimWbQ9EnaiN8mNk4DotSw4w
-	 YG2cwQX4Xi0Yw==
-Date: Fri, 21 Feb 2025 17:35:23 -0600
+	b=VoyY0X+yQSKVMby/G/x1/JrL2hCHNW6yv8JGE75JrTxe+fq9Unhw/+Vtj5yJcsRRs
+	 pIgCcW1fyPhIWTyJTL5EkRhTkGlejWIiS/M9/Pm+JCpGw8w9kf08avnMFjFLAIG6/6
+	 ziY0DWe9TR5E+ptGSkJe535KTcbsM8fRz68GVN5H9zX16ZRH7Ydiz8jVlxq1fXfRlt
+	 GPZKYyYqVC1q/QWSdZOomG/Wr/bY3sS7RxivYIqJ0piVyyqATaDHKX+LQztzLh2l56
+	 TtDX+njNQbwvSDUG3ZSoSV6TiKen1HYWKZ+qoubdcXNux+xgx8VtUtWwGgxBjcJUg5
+	 62RjqvADws+Lw==
+Date: Fri, 21 Feb 2025 17:40:41 -0600
 From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.ne@posteo.net>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: net: Convert fsl,gianfar to YAML
-Message-ID: <20250221233523.GA372501-robh@kernel.org>
-References: <20250220-gianfar-yaml-v1-0-0ba97fd1ef92@posteo.net>
- <20250220-gianfar-yaml-v1-3-0ba97fd1ef92@posteo.net>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Wilson Ding <dingwei@marvell.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	andrew@lunn.ch, gregory.clement@bootlin.com,
+	sebastian.hesselbarth@gmail.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, p.zabel@pengutronix.de, salee@marvell.com,
+	gakula@marvell.com
+Subject: Re: [PATCH v2 1/4] dt-bindings: reset: Add Armada8K reset controller
+Message-ID: <20250221234041.GA387671-robh@kernel.org>
+References: <20250220232527.882888-1-dingwei@marvell.com>
+ <20250220232527.882888-2-dingwei@marvell.com>
+ <20250221-icy-flounder-of-potency-ee1a05@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250220-gianfar-yaml-v1-3-0ba97fd1ef92@posteo.net>
+In-Reply-To: <20250221-icy-flounder-of-potency-ee1a05@krzk-bin>
 
-On Thu, Feb 20, 2025 at 06:29:23PM +0100, J. Neuschäfer wrote:
-> Add a binding for the "Gianfar" ethernet controller, also known as
-> TSEC/eTSEC.
+On Fri, Feb 21, 2025 at 09:46:01AM +0100, Krzysztof Kozlowski wrote:
+> On Thu, Feb 20, 2025 at 03:25:24PM -0800, Wilson Ding wrote:
+> > Add device-tree binding documentation for the Armada8K reset driver.
+> > 
+> > Signed-off-by: Wilson Ding <dingwei@marvell.com>
+> > ---
+> >  .../reset/marvell,armada8k-reset.yaml         | 45 +++++++++++++++++++
+> >  1 file changed, 45 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/reset/marvell,armada8k-reset.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/reset/marvell,armada8k-reset.yaml b/Documentation/devicetree/bindings/reset/marvell,armada8k-reset.yaml
+> > new file mode 100644
+> > index 000000000000..b9f7f3c24d3c
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/reset/marvell,armada8k-reset.yaml
+> > @@ -0,0 +1,45 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright 2025 Wilson Ding <dingwei@marvell.com>
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/reset/marvell,armada8k-reset.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Marvell Armada8K reset controller
+> > +
+> > +maintainers:
+> > +  - Wilson Ding <dingwei@marvell.com>
+> > +
+> > +description: The reset controller node must be a sub-node of the system
+> > +  controller node on Armada7K/8K or CN913x SoCs.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: marvell,armada8k-reset
+> > +
+> > +  offset:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Offset in the register map for the gpio registers (in bytes)
 > 
-> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> ---
->  .../devicetree/bindings/net/fsl,gianfar.yaml       | 242 +++++++++++++++++++++
->  .../devicetree/bindings/net/fsl-tsec-phy.txt       |  39 +---
->  2 files changed, 243 insertions(+), 38 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/fsl,gianfar.yaml b/Documentation/devicetree/bindings/net/fsl,gianfar.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..dc75ceb5dc6fdee8765bb17273f394d01cce0710
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/fsl,gianfar.yaml
-> @@ -0,0 +1,242 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/fsl,gianfar.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale Three-Speed Ethernet Controller (TSEC), "Gianfar"
-> +
-> +maintainers:
-> +  - J. Neuschäfer <j.ne@posteo.net>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - gianfar
-> +      - fsl,etsec2
-> +
-> +  device_type:
-> +    const: network
-> +
-> +  model:
-> +    enum:
-> +      - FEC
-> +      - TSEC
-> +      - eTSEC
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ranges: true
-> +
-> +  "#address-cells": true
+> That's neither correct nor needed. Your device knows ofsset based on the
+> compatible.
 
-enum: [ 1, 2 ]
+Or use 'reg'.
 
-because 3 is not valid here.
+But really, just add #reset-cells to the parent node. There's no need 
+for a child node here. The parent needs a specific compatible though.
 
-> +
-> +  "#size-cells": true
-
-enum: [ 1, 2 ]
-
-because 0 is not valid here.
-
-
-> +
-> +  cell-index:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  interrupts:
-> +    maxItems: 3
-
-Based on the if/then schema, you need 'minItems' here if the min is not 
-3.
-
-Really, move the descriptions here and make them work for the combined 
-interrupt case (just a guess).
-
-> +
-> +  dma-coherent:
-> +    type: boolean
-
-dma-coherent: true
-
-> +
-> +  fsl,magic-packet:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      If present, indicates that the hardware supports waking up via magic packet.
-> +
-> +  fsl,wake-on-filer:
-> +    type: boolean
-> +    description:
-> +      If present, indicates that the hardware supports waking up by Filer
-> +      General Purpose Interrupt (FGPI) asserted on the Rx int line. This is
-> +      an advanced power management capability allowing certain packet types
-> +      (user) defined by filer rules to wake up the system.
-> +
-> +  bd-stash:
-> +    type: boolean
-> +    description:
-> +      If present, indicates that the hardware supports stashing buffer
-> +      descriptors in the L2.
-> +
-> +  rx-stash-len:
-> +    type: boolean
-> +    description:
-> +      Denotes the number of bytes of a received buffer to stash in the L2.
-> +
-> +  tx-stash-len:
-> +    type: boolean
-> +    description:
-> +      Denotes the index of the first byte from the received buffer to stash in
-> +      the L2.
-> +
-> +  fsl,num_rx_queues:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Number of receive queues
-
-Constraints? I assume there's at least more than 0.
-
-> +
-> +  fsl,num_tx_queues:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Number of transmit queues
-
-Constraints?
-
-> +
-> +  tbi-handle:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Reference (phandle) to the TBI node
-> +
-> +required:
-> +  - compatible
-> +  - model
-> +
-> +patternProperties:
-> +  "^mdio@[0-9a-f]+$":
-> +    type: object
-> +    # TODO: reference to gianfar MDIO binding
-> +
-> +allOf:
-> +  - $ref: ethernet-controller.yaml#
-> +
-> +  # compatible = "gianfar" requires device_type = "network"
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: gianfar
-> +    then:
-> +      required:
-> +        - device_type
-> +
-> +  # eTSEC2 controller nodes have "queue group" subnodes and don't need a "reg"
-> +  # property.
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: fsl,etsec2
-> +    then:
-> +      patternProperties:
-> +        "^queue-group@[0-9a-f]+$":
-> +          type: object
-> +
-> +          properties:
-> +            "#address-cells": true
-> +
-> +            "#size-cells": true
-
-These have no effect if there are not child nodes or a 'ranges' 
-property.
-
-> +
-> +            reg:
-> +              maxItems: 1
-> +
-> +            interrupts:
-> +              maxItems: 3
-
-Need to define what each one is.
-
-> +
-> +          required:
-> +            - reg
-> +            - interrupts
-> +
-> +          additionalProperties: false
-> +    else:
-> +      required:
-> +        - reg
-> +
-> +  # TSEC and eTSEC devices require three interrupts
-> +  - if:
-> +      properties:
-> +        model:
-> +          contains:
-> +            enum: [ TSEC, eTSEC ]
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          items:
-> +            - description: Transmit interrupt
-> +            - description: Receive interrupt
-> +            - description: Error interrupt
-> +
-> +
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    ethernet@24000 {
-> +        device_type = "network";
-> +        model = "TSEC";
-> +        compatible = "gianfar";
-> +        reg = <0x24000 0x1000>;
-> +        local-mac-address = [ 00 E0 0C 00 73 00 ];
-> +        interrupts = <29 2>, <30 2>, <34 2>;
-> +        interrupt-parent = <&mpic>;
-> +        phy-handle = <&phy0>;
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    soc1 {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-
-You don't need the soc1 node.
-
-> +
-> +        ethernet@24000 {
-> +            compatible = "gianfar";
-> +            reg = <0x24000 0x1000>;
-> +            ranges = <0x0 0x24000 0x1000>;
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +            cell-index = <0>;
-> +            device_type = "network";
-> +            model = "eTSEC";
-> +            local-mac-address = [ 00 00 00 00 00 00 ];
-> +            interrupts = <32 IRQ_TYPE_LEVEL_LOW>,
-> +                         <33 IRQ_TYPE_LEVEL_LOW>,
-> +                         <34 IRQ_TYPE_LEVEL_LOW>;
-> +            interrupt-parent = <&ipic>;
-> +
-> +            mdio@520 {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                compatible = "fsl,gianfar-mdio";
-> +                reg = <0x520 0x20>;
-> +            };
-> +        };
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    soc2 {
-
-bus {
-
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        ethernet {
-> +            compatible = "fsl,etsec2";
-> +            ranges;
-> +            device_type = "network";
-> +            #address-cells = <2>;
-> +            #size-cells = <2>;
-> +            interrupt-parent = <&gic>;
-> +            model = "eTSEC";
-> +            fsl,magic-packet;
-> +            dma-coherent;
-> +
-> +            queue-group@2d10000 {
-> +                #address-cells = <2>;
-> +                #size-cells = <2>;
-> +                reg = <0x0 0x2d10000 0x0 0x1000>;
-> +                interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
-> +                             <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
-> +                             <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
-> +            };
-> +
-> +            queue-group@2d14000  {
-> +                #address-cells = <2>;
-> +                #size-cells = <2>;
-> +                reg = <0x0 0x2d14000 0x0 0x1000>;
-> +                interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-> +                             <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
-> +                             <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
-> +            };
-> +        };
-> +    };
-> +
-> +...
+Rob
 
