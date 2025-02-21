@@ -1,69 +1,70 @@
-Return-Path: <devicetree+bounces-149696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 170FFA4022C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 22:40:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 831F8A40230
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 22:41:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00EBC4262B6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:40:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21E023BC4A2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:41:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A916725333B;
-	Fri, 21 Feb 2025 21:40:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E1B5253F0E;
+	Fri, 21 Feb 2025 21:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lrqIfVBf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KYGip4rx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CDD62505A0;
-	Fri, 21 Feb 2025 21:40:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C4D2500BC;
+	Fri, 21 Feb 2025 21:41:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740174037; cv=none; b=eijrba0XzDcw/LwM83ZcfHcQJYcd2x2GeQbThIyFRfkZW+FVp6a5lYyciuMj3/SgiiTQLBCTFq1N8C+NVJT2cloVMOvsup9UmDC+dHoC6uRT70+vg7Tyq5Zc/DnXjdcFOX8nR9KH6sjj74nDw5TDwTKDpLKTnhSq827m0+vTeb4=
+	t=1740174080; cv=none; b=hbAwx24+PsVYX3g4dk5ft18qbv/+QQ/7bwH7ovWv6wrSpbtJ773U10/l5MiOwg6OlerriuQT6ywnQwPs6FJ53jUvWg3Ql1OYPU1E/OZjcQE7yzjVXLZup4AnNv7Td0UkfwsHPHNAxTnmGVOiJlYS9xSCYpOrLeywYYAlts50qbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740174037; c=relaxed/simple;
-	bh=9fvV1HXHQezyHbGraYC4O5PEEvTUXe//QLm/vAzf9a0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=RhkFHM9/sY8xWg1nlCkWdr5euHFk1AXl2xeL7xdEYHYweNXJpfmHBmXMgt/R6Ckj/537ZnI5goenzw7xK4//EFBnDoIapTvfjkgZ6TIltCluMHe+A0mSCYiJoD0y773wGFC5beMtD6Io9XipwOIbiJAuCTvsQVSyRTijrzHFJ5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lrqIfVBf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3CE8C4CED6;
-	Fri, 21 Feb 2025 21:40:36 +0000 (UTC)
+	s=arc-20240116; t=1740174080; c=relaxed/simple;
+	bh=v/SnGzcx/eJMMDRtXAJDI041OLygL1homwL+H1J7zik=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OpEbpzeEs2qBp5cal9GPIXav5sFrtpYuwuqe56PvwhCR6ZHgfEMpEkhKlNzhxdGlEVCq6b+cuwcBJXZgq00ObN7XrjLZMFOAGLoOZaNVljOYfXyrNxNrh6t+WHPakUhjmLz+HseKbjexs/YE7xmvc+/Ba63RuWXcXMtStwvHjP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KYGip4rx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C381C4CED6;
+	Fri, 21 Feb 2025 21:41:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740174037;
-	bh=9fvV1HXHQezyHbGraYC4O5PEEvTUXe//QLm/vAzf9a0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=lrqIfVBfJONAREehMa52UNOot1th/3/B4a+NqS7b7TbT6xuGaqMSF+ZmHZCxPviuV
-	 7Um77DfVykXYaoZq8gRPEqdq/uKufY0jYKWnHxvED2bVEbD4s25RcmVlRRNsBZsNCC
-	 43fLjUiyeYIEAJm45P3gmC/obYuYwjvlhj5Xuv6Idpv/IByGD34GihwIyyNA9McwKI
-	 vS4FhoFMR5QivgpnLAcIAnYl9KyMhH1EdIuu+jctszitd/I+xKFQyXh+tNsH8boub6
-	 ucH21pL8TXW0/zv6SD+iZfBIWvyEmZQ1oZhVNsrDY4dCjtnS0c6rPkBbH75GrCDmGn
-	 NJnrEjFyAjvdw==
-Date: Fri, 21 Feb 2025 15:40:35 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Stanimir Varbanov <svarbanov@suse.de>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	s=k20201202; t=1740174079;
+	bh=v/SnGzcx/eJMMDRtXAJDI041OLygL1homwL+H1J7zik=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KYGip4rxDmQyH7aQXu+iG9aeJNld3pXpDWP3s2+vbrAuZT2ifOoC6rEkPdTaPSObk
+	 EWa6Cep/KYehSBuvj2FoGKJQBbcCB7hqAO24VFEdgZVcYXa6jcQbTLOrsccpVyA/y2
+	 vuJrQl9cJGqr77is6sZ7RO/KBFNVFNe75Mdx2F6jKhKSgY10Mv+Ri21iSgfKV3YwMr
+	 gXN+9qZ3tn9y7ezxuCq/gJwgotcNmER7dFPTpXOvTLPNDUg+kPWBYWwM2lnlmBMuaD
+	 4zP/LDWnktt2NGVhjCWQafUR3sIF9JOZYPPomIvgiNWLZb8OcmxB2Lv5TFNnwMIhH2
+	 iXtW28jAwc3lQ==
+Date: Fri, 21 Feb 2025 15:41:17 -0600
+From: Rob Herring <robh@kernel.org>
+To: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Jim Quinlan <jim2101024@gmail.com>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: Re: [PATCH v5 -next 08/11] PCI: brcmstb: Adding a softdep to MIP
- MSI-X driver
-Message-ID: <20250221214035.GA362971@bhelgaas>
+	Hector Martin <marcan@marcan.st>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-media@vger.kernel.org, imx@lists.linux.dev
+Subject: Re: [PATCH 1/5] dt-bindings: power: apple,pmgr-pwrstate: Add
+ force-{disable,reset} properties
+Message-ID: <20250221214117.GA119777-robh@kernel.org>
+References: <20250219-isp-v1-0-6d3e89b67c31@gmail.com>
+ <20250219-isp-v1-1-6d3e89b67c31@gmail.com>
+ <400d64ed-670a-4297-b43b-cdf4e8599c7b@kernel.org>
+ <CAMT+MTSb2gdkfCZE3i+0ah8AgE_G8mH2MFTms=QgFwd-nbA8Ag@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,37 +73,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250120130119.671119-9-svarbanov@suse.de>
+In-Reply-To: <CAMT+MTSb2gdkfCZE3i+0ah8AgE_G8mH2MFTms=QgFwd-nbA8Ag@mail.gmail.com>
 
-On Mon, Jan 20, 2025 at 03:01:16PM +0200, Stanimir Varbanov wrote:
-> In case brcmstb PCIe driver and MIP MSI-X interrupt controller
-> drivers are built as modules there could be a race in probing.
-> To avoid this add a softdep to MIP driver to guarantee that MIP
-> driver will be load first.
+On Wed, Feb 19, 2025 at 10:43:17AM +0100, Sasha Finkelstein wrote:
+> On Wed, 19 Feb 2025 at 10:34, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > On 19/02/2025 10:26, Sasha Finkelstein via B4 Relay wrote:
+> > > From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> > >
+> > > Add properties to set disable/reset bits when powering down
+> > > certain domains
+> >
+> >
+> > Please explain why and what problem are you solving. This looks too
+> > close to SW policy or really arbitrary choice. Background would be useful.
+> 
+> The ISP block has some weird requirements where some of it's power domains
+> will not power down correctly without using the "force disable" or "force reset"
+> pmgr feature. Basically a hardware quirk.
 
-Maybe this one too?  Should this be moved to after the irq_bcm2712_mip
-driver is added, but before brcmstb will claim bcm2712?  I just want
-to avoid bisection problems when possible, and it sounds like if we
-lose the race, interrupts might not work as expected?
-> 
-> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> ---
-> v4 -> v5:
->  - New patch in the series.
-> 
->  drivers/pci/controller/pcie-brcmstb.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/pci/controller/pcie-brcmstb.c b/drivers/pci/controller/pcie-brcmstb.c
-> index 03396a9d97be..744fe1a4cf9c 100644
-> --- a/drivers/pci/controller/pcie-brcmstb.c
-> +++ b/drivers/pci/controller/pcie-brcmstb.c
-> @@ -1997,3 +1997,4 @@ module_platform_driver(brcm_pcie_driver);
->  MODULE_LICENSE("GPL");
->  MODULE_DESCRIPTION("Broadcom STB PCIe RC driver");
->  MODULE_AUTHOR("Broadcom");
-> +MODULE_SOFTDEP("pre: irq_bcm2712_mip");
-> -- 
-> 2.47.0
-> 
+Add that to the commit message.
+
+Rob
 
