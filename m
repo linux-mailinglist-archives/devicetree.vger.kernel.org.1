@@ -1,115 +1,153 @@
-Return-Path: <devicetree+bounces-149608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8F9AA3FE92
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 19:17:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 603A2A3FE9D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 19:20:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 129313BB901
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:17:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFAE717BAD2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:19:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3927B250BEC;
-	Fri, 21 Feb 2025 18:17:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FD87250BF3;
+	Fri, 21 Feb 2025 18:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SbH61J8L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gr+BZI1a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE841FC0FF;
-	Fri, 21 Feb 2025 18:17:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71C291D5AA7;
+	Fri, 21 Feb 2025 18:19:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740161872; cv=none; b=k3/9RFGU2BMOF1+aJb6I2ut8bRosOCjV0fDL6x3L7rH7d0Hk3Lq953Ov0ANqZ7d5gJPC1SxMqpnaPKvWdXy8DIPPCk6fij4oISemyEfQWY8xIzePS6gPeAmUbbO5zdsmFOT52L3Os0oLFw5b3/ZnA56pLsHgGTpleuUnkOjwth0=
+	t=1740161981; cv=none; b=ng8ivSQCc4LZqPya6h+w1QH+dJJf6usAemV64N1/EMj/2c5zVSpRwCHa8DOZaYeAoJ9fmrlCleo2YDgyX/u8CSqy6XR90qSLEaecoTO3b8/pslOsX+7/6pDC3NOZmfLJb66FQlLx+XWkmI5y3tro5z/s+34Rv8QpGgY6tpkgS4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740161872; c=relaxed/simple;
-	bh=U1W17n2j1LxEWs4Y4W56XmMTe4fnObSaTHj7aF3YLUY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=q3shLX8UjNHvFNlM61bJo7D9s9vswha7ZQ9WgQZPILN3yVw0cfA1p2Oaj/17GG/7evK8izB8Eu3YO2wV481kuMDpaZE8PWQoJkZnTRfmDsI6a5LXxlDU2nX6X8jgN9ZGhOdwA9cmL/4dEwgEvrbra65dP4eHKS0xVZcHAZ85vF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SbH61J8L; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-38f2b7ce319so2018423f8f.2;
-        Fri, 21 Feb 2025 10:17:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740161869; x=1740766669; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U1W17n2j1LxEWs4Y4W56XmMTe4fnObSaTHj7aF3YLUY=;
-        b=SbH61J8LUiRWx3DdZ5apqvjgfZF8EGsu2l4XHq7Ii3NZ7gcb+isiTjaIaSXUghgX9k
-         pIYL37agjMO1PG/oSxmLQ63gjERympyyMuHWKxbbzLgTjSYV8mn6jQkQ18jDpSncKN7i
-         A8gw+61QSQh6wgLKwlBF/TcCdhlrI6N0irjYOEQ/Xt3WxZP3QebS0QtpEnJUfljLz9ZW
-         8Jlux3vL2lrtYeBySCDz1lKuXCx0HbF7g9tPibx00TI2EWCFIWCMaGV6yPBUAFrUhva5
-         yAiqK1zDrL8Ec0LVHUFlJFR27CwSp6Q+qV16JLkSzP8h7p/p41RA/C9mEBpZh6185eMv
-         Qx6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740161869; x=1740766669;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U1W17n2j1LxEWs4Y4W56XmMTe4fnObSaTHj7aF3YLUY=;
-        b=QyYDGiPdN8p6TjmZTY3g0HjwXyG+YW9NrOKgznqyX8WAjAzryx+Q7Kd+dB/zhd/gPA
-         X1K7wi2HaX+cZgq+ZIcYi8kvXWY0ZrXBWLol5imPnd1adQ8ziA7TDqaM4mkYXcfpztct
-         INJwKDyVBI85Dw33lo6TMReTMp6/i+ZpNEKNsC5sgQAsOa4RImIMtg0NzJnP0oF+0zaU
-         3zTvFRUy1/YJ7IFFOKVsWhZ5WB4HU237I9AUwh1Vz3flaIRXdupIjVg070CZebLkHT2K
-         PwmvKg66elMyQwBXlUfNhjWCUTViWYOzLrf+XEQZx8FvqJGO63YkV0L/MQaGs2W+W+Dh
-         JiNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVbzoDlpwmk6HeiUEe5SEuUXndeEZwChRl2B3BeTgDVDV4jEm+PE+i7EBfeXbYPWxMjis17qdo8mA==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCk/loBJqHi60XF+OZD0o5+gottfXUoy0IMs42Pw3jDCoSkAf1
-	HhLHyKJkxd2KfHt/9KIdl56oEobwCpBflaK44OfMueximPdK3ncDoYTBJgBTV0I=
-X-Gm-Gg: ASbGncs9wHDAlj0mOcgm9gq6ofXOsPLV2Mh+N/bJffwsEZsfMJyQE7oG925LX6yA8x/
-	90l+qXCoNfLp/XuXc1eMnih0tqVP7EEi6KRi+fUR6Yfih0xT9wjTJHGKcQk9Tc2y8Zk9hVWQyTi
-	aoCmt1enXiuDiFLO4jpPDXAQm3TLjq/R9z4vd4yfmB1UUAwSvwgFJRhzupHZ/vAcRHR/NtH2cYk
-	d340HjgwQQuuGbA9mtaOEZea1d/bCNRTl5ZeeYz/odOoMJpa3h2C7HhLtYwmYnri5R1QllpcnqJ
-	6+2gkIq5daBcY/jVZU/qD+B98VDUFPHSGsWwvCUjhi1f1+ome55g+Oc1o5WSapiU0j6f77K78AI
-	U/Q==
-X-Google-Smtp-Source: AGHT+IGALAtK0qhzwHjSpW0g95HnjvEvJPGyQ0Ey4mOVtgunT7qzZCNsspeeesB5+gBG16CVVLhPtQ==
-X-Received: by 2002:a5d:6c69:0:b0:38f:231a:635e with SMTP id ffacd0b85a97d-38f6eb6e4bamr4302293f8f.25.1740161868722;
-        Fri, 21 Feb 2025 10:17:48 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-439b02e425esm24683075e9.17.2025.02.21.10.17.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Feb 2025 10:17:48 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org, lee@kernel.org,
- samuel@sholland.org, wens@csie.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- robh@kernel.org, sre@kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject:
- Re: [PATCH V2 4/4] arm64: dts: allwinner: rg35xx: Add no-thermistor property
- for battery
-Date: Fri, 21 Feb 2025 19:17:47 +0100
-Message-ID: <3335250.aeNJFYEL58@jernej-laptop>
-In-Reply-To: <20250204155835.161973-5-macroalpha82@gmail.com>
-References:
- <20250204155835.161973-1-macroalpha82@gmail.com>
- <20250204155835.161973-5-macroalpha82@gmail.com>
+	s=arc-20240116; t=1740161981; c=relaxed/simple;
+	bh=4vSeGG+kxcYAxGRnNrN1TSagj87TxXGRn6oSMGUXYLs=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=OeXfFvXRimnFulyVH2lPvCsURFq7jNj7VJlJtXMeI6X+fVMkR7BAH2vwhwTNOWZlqLnLVx/uwfXNomnznwlqnsqXRkHAzkgnjUcQTpIR5nBOkJ+sptBtPmCkTw9miVqZMQee5E7vQkS4b7oLx83XA0idQ8ZABcunP5nMLU/LmqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gr+BZI1a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC826C4CED6;
+	Fri, 21 Feb 2025 18:19:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740161981;
+	bh=4vSeGG+kxcYAxGRnNrN1TSagj87TxXGRn6oSMGUXYLs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Gr+BZI1aYh23TMrdhw8XBRwlWvhHRuYPRHopsd5dndfnftQfFoaYgePUToB1KA6qV
+	 eS4Kjtaao8ynimXs9KWT39YV2Dp+/7icAMV8TQCoffK1sKu8Zp7F57E3c6ndTSVZI1
+	 WFGKRIRqN0c+LAaA+NkTPZ7O5lRGmMjDVw9U7fbJVP2SHZZ/MQRQ4cg23KyWiXsvUv
+	 3LLS81crp5w0Y3+ld1nxb5A9H/g+NH96YmRXWzH7DSPcBhRacR6DkrSyIXdgEaYF6m
+	 FtE3dggt6nRK0Jpo0CNQmTFj1mqoqdTnpP65ZV1jmJbejPsmRbX54L5js4ucAs37UT
+	 gZNF+NAp0xfIg==
+Date: Fri, 21 Feb 2025 12:19:38 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v7 5/5] PCI: of: Create device-tree PCI host bridge node
+Message-ID: <20250221181938.GA352971@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250221093427.3d83b9e3@bootlin.com>
 
-Dne torek, 4. februar 2025 ob 16:58:34 Srednjeevropski standardni =C4=8Das =
-je Chris Morgan napisal(a):
-> From: Chris Morgan <macromorgan@hotmail.com>
->=20
-> Add the property of x-powers,no-thermistor for the battery of the
-> Anbernic RG35XX series of H700 devices.
->=20
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+On Fri, Feb 21, 2025 at 09:34:27AM +0100, Herve Codina wrote:
+> Hi Bjorn,
+> 
+> On Thu, 20 Feb 2025 18:07:53 -0600
+> Bjorn Helgaas <helgaas@kernel.org> wrote:
+> 
+> > On Thu, Feb 20, 2025 at 09:25:14AM +0100, Herve Codina wrote:
+> > > On Wed, 19 Feb 2025 11:39:12 -0600
+> > > Bjorn Helgaas <helgaas@kernel.org> wrote:  
+> > > > On Tue, Feb 04, 2025 at 08:35:00AM +0100, Herve Codina wrote:  
+> > > > > PCI devices device-tree nodes can be already created. This was
+> > > > > introduced by commit 407d1a51921e ("PCI: Create device tree node for
+> > > > > bridge").
+> > > > > 
+> > > > > In order to have device-tree nodes related to PCI devices attached on
+> > > > > their PCI root bus (the PCI bus handled by the PCI host bridge), a PCI
+> > > > > root bus device-tree node is needed. This root bus node will be used as
+> > > > > the parent node of the first level devices scanned on the bus. On
+> > > > > device-tree based systems, this PCI root bus device tree node is set to
+> > > > > the node of the related PCI host bridge. The PCI host bridge node is
+> > > > > available in the device-tree used to describe the hardware passed at
+> > > > > boot.
+> > > > > 
+> > > > > On non device-tree based system (such as ACPI), a device-tree node for
+> > > > > the PCI host bridge or for the root bus does not exist. Indeed, the PCI
+> > > > > host bridge is not described in a device-tree used at boot simply
+> > > > > because no device-tree are passed at boot.
+> > > > > 
+> > > > > The device-tree PCI host bridge node creation needs to be done at
+> > > > > runtime. This is done in the same way as for the creation of the PCI
+> > > > > device nodes. I.e. node and properties are created based on computed
+> > > > > information done by the PCI core. Also, as is done on device-tree based
+> > > > > systems, this PCI host bridge node is used for the PCI root bus.    
+> > > > 
+> > > > This is a detailed low-level description of what this patch does.  Can
+> > > > we include a high level outline of what the benefit is and why we want
+> > > > this patch?
+> > > > 
+> > > > Based on 185686beb464 ("misc: Add support for LAN966x PCI device"), I
+> > > > assume the purpose is to deal with some kind of non-standard PCI
+> > > > topology, e.g., a single B/D/F function contains several different
+> > > > pieces of functionality to be driven by several different drivers, and
+> > > > we build a device tree description of those pieces and then bind those
+> > > > drivers to the functionality using platform_device interfaces?  
+> > > 
+> > > What do you think if I add the following at the end of the commit log?
+> > > 
+> > >    With this done, hardware available in complex PCI device can be
+> > >    described by a device-tree overlay loaded by the PCI device driver
+> > >    on non device-tree based systems. For instance, the LAN966x PCI device
+> > >    introduced by commit 185686beb464 ("misc: Add support for LAN966x
+> > >    PCI device") can be available on x86 systems.  
+> > 
+> > This isn't just about complexity of the device.  There are NICs that
+> > are much more complex.
+> > 
+> > IIUC this is really about devices that don't follow the standard
+> > "one PCI function <--> one driver" model, so I think it's important to
+> > include something about the case of a single function that includes
+> > several unrelated bits of functionality that require different
+> > drivers.
+> 
+> Yes.
+> 
+> > 
+> > "LAN966x" might mean something to people who know that this thing has
+> > a half dozen separate things inside it, but the name by itself doesn't
+> > suggest that, so I don't think it's really helpful to the general
+> > audience.
+> > 
+> 
+> Does this one at the end of the commit log sound better?
+> 
+>     With this done, hardware available in a PCI device that doesn't follow
+>     the PCI model consisting in one PCI function handled by one driver can
+>     be described by a device-tree overlay loaded by the PCI device driver
+>     on non device-tree based systems. Those PCI devices provide a single PCI
+>     function that includes several functionalities that require different
+>     driver. The device-tree overlay describes in that case the internal
+>     devices and their relationships. It allows to load drivers needed by
+>     those different devices in order to have functionalities handled.
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Best regards,
-Jernej
-
-
-
+Yep, thanks.
 
