@@ -1,68 +1,69 @@
-Return-Path: <devicetree+bounces-149662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54B1EA400C9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:26:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A320A400EA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:29:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9516319E23C1
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 20:25:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5449570175E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 20:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 532AD253B4A;
-	Fri, 21 Feb 2025 20:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B2E3253B5D;
+	Fri, 21 Feb 2025 20:29:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UsLfve8U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bjumTcQE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9DD253358;
-	Fri, 21 Feb 2025 20:24:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D89125333B;
+	Fri, 21 Feb 2025 20:29:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740169478; cv=none; b=uvdhm895TjRyZ6uE9mLj8y1F6SXpUOFwg9UkvWWWKs5tl5Z3iNhusWV5lFVCo2XD1LcpdY8pI2jhsjS4q45khLbb1MFbjBbAOYlxJE7OyhSzKUsTt34oNJGOLzLX1XgOSxD1KvY/5V8bpFaQ6dMiK4tM5++LiGzY6TbvY2ZV6RM=
+	t=1740169753; cv=none; b=MPz7q+4zR++d751wqXjSd1ooRukctdTxeWDn97w9Vub8m8hO2rXVfM06KnXTVi7I9LwR/H6x0L9JvocmrRUQl0wYBsIxEuboWsSEJz/W8hgf+0XwY0aATpnKB+DXs0g6OjJvyINH12TsKhPnMbiO7ELj4VMN4isO+bo5BXfYZco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740169478; c=relaxed/simple;
-	bh=mBxOob9mR9l0oBnEHnalaehXgK5zljRRPtdejwjytTE=;
+	s=arc-20240116; t=1740169753; c=relaxed/simple;
+	bh=dVquMpewX/+NkVDUur45gc/Yc+Kf01Dyu5/+irO3VQQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kA41tvExsfnBegD0CrWg9qEhuGM7hXhZFq+0KhqYD6HtE3k7M+byUbjNGyLNzYq/623Dwl20AmVnRqlp2ytqTY68LZv6VlaRI91jwtsxXBQHkqtk9nTvWwHsqLCFk1G9oC7mMT0vND7V/mUF9g2+g+jI/tams/r6B0ayuiO0tk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UsLfve8U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61DD3C4CED6;
-	Fri, 21 Feb 2025 20:24:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lUIYg7PQL3CzouPp9Gtzm/AuY+QXD98XfsW4tNqYUohoy5Xosc9mD8Nl7MrnJARWUH7m+TVo3DVWhz2ZxGkzzbCMWvvFLixmHYeHY9tCeKqs3fPSbTMT0Guj7XIZaZBhb3A0diJDvReEPFUh80pbITMWRadzGSlqx0+PazUwEuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bjumTcQE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BFE3C4CED6;
+	Fri, 21 Feb 2025 20:29:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740169477;
-	bh=mBxOob9mR9l0oBnEHnalaehXgK5zljRRPtdejwjytTE=;
+	s=k20201202; t=1740169752;
+	bh=dVquMpewX/+NkVDUur45gc/Yc+Kf01Dyu5/+irO3VQQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UsLfve8UhiJdIdS7O/I4w2L9xjbFX0/6hNAk1uZEDS6mMBTEKyC+W/vroPDxIYwWL
-	 ZFdMgFV3HA6gwJDD0ZrR1Wbedb0dMXIVGivmiHKYgVIj8J683EEkeUB+jUnLXuFCMw
-	 DwUqYeTbi7DfUdo1TErzfzy2qffpXB/YNeVrdMtvaRlsTOdupQ74A/FLpV1uC7Z08j
-	 ZXj5GqRSlWgoZK3j+n77/CznraznV4auFXe88siGFwGqo7WWyLndWJubrT7nRUChhk
-	 /8b2ueOCmfIOvyWeO6vDKRsjjTTUmgi2c1/JYP80cHEI6ULW6Mf9FC0o8yclGEuBqY
-	 Q4EjSXPgJuWSA==
-Date: Fri, 21 Feb 2025 14:24:35 -0600
+	b=bjumTcQEe3AkEx1htsLx8vIkarGUhMuyiJN/Y7/yuFH+aEk9JVLZiXlUQpoxscDQN
+	 nl1JurFoUMGGamq0lPlyRGP6+oQHdTFJ5PLY41+fhsD3Yf0islbtygj1mqFHnsG7mU
+	 OjZFMU3TJTJql8pF5wZfMXW3l7v4PNUFJHxPaBFz95rYCk0QSyHL9gcJ2Ma6+NGTyl
+	 bu6TKCukf1mcoD7Qkj5rA2i4jmvxmzH+2+d/egMUqjS8NlcItPdhALD23WPl/DvWLT
+	 GVREGNQjzhE7gVSIOgnIIWS3yqe9qhJyg8gWLSO/WBRnWhhPakwnjGcYk3mULXRUI9
+	 XpGW5nhWfYGSQ==
+Date: Fri, 21 Feb 2025 14:29:10 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Liam Girdwood <lgirdwood@gmail.com>,
-	linux-kernel@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
-	linux-hwmon@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Baojun Xu <baojun.xu@ti.com>, Mark Brown <broonie@kernel.org>,
-	Shenghao Ding <shenghao-ding@ti.com>,
-	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-	Takashi Iwai <tiwai@suse.com>,
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	David Airlie <airlied@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-renesas-soc@vger.kernel.org,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	devicetree@vger.kernel.org, Simona Vetter <simona@ffwll.ch>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Shi Fu <shifu0704@thundersoft.com>, Kevin Lu <kevin-lu@ti.com>,
-	Hector Martin <marcan@marcan.st>, devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
-	Neal Gompa <neal@gompa.dev>, Jaroslav Kysela <perex@perex.cz>
-Subject: Re: [PATCH v2 04/29] ASoC: dt-bindings: tas2770: add compatible for
- TAS5770L
-Message-ID: <174016947515.19125.7118711540459460393.robh@kernel.org>
-References: <20250218-apple-codec-changes-v2-0-932760fd7e07@gmail.com>
- <20250218-apple-codec-changes-v2-4-932760fd7e07@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	dri-devel@lists.freedesktop.org,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Maxime Ripard <mripard@kernel.org>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: gpu: mali-bifrost: Add compatible for
+ RZ/V2H(P) SoC
+Message-ID: <174016975012.24654.2096409843196384969.robh@kernel.org>
+References: <20250218115922.407816-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250218115922.407816-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,19 +72,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250218-apple-codec-changes-v2-4-932760fd7e07@gmail.com>
+In-Reply-To: <20250218115922.407816-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
 
-On Tue, 18 Feb 2025 18:35:38 +1000, James Calligeros wrote:
-> A variant of TAS2770 known as TAS5770L is found in Apple Silicon Macs.
+On Tue, 18 Feb 2025 11:59:20 +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Reviewed-by: Neal Gompa <neal@gompa.dev>
-> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
+> Add a compatible string for the Renesas RZ/V2H(P) SoC variants that
+> include a Mali-G31 GPU. These variants share the same restrictions on
+> interrupts, clocks, and power domains as the RZ/G2L SoC, so extend
+> the existing schema validation accordingly.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->  .../bindings/sound/ti,tas2770.yaml       | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
