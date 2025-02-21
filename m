@@ -1,342 +1,123 @@
-Return-Path: <devicetree+bounces-149464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F8E2A3F90A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:39:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6F0DA3F908
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:39:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3009C19E24ED
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:34:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0033D17B5E2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CE6B45009;
-	Fri, 21 Feb 2025 15:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nrTcbptD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5749A1C174A;
+	Fri, 21 Feb 2025 15:37:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CEAD1E87B;
-	Fri, 21 Feb 2025 15:34:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A83D58632E;
+	Fri, 21 Feb 2025 15:37:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740152068; cv=none; b=dMtx2mIeUzueSSl+Sie9KJa3Tu4dewc+PUH8xTuWOmPwv8ZFcdLtRlfcOhhfr9OciOhHa94RZsgS0ZuAS+qbqQIqP5/MuwU8A+y05AudhU79876eYRYAztC8pDiGnMlF/VUOPR8oi82c3QkbzPGTm9T4YHBgZpb53pjBSPN8Cug=
+	t=1740152237; cv=none; b=YeBgsEAzQhgyDtrpk/atys9jr/QK3BcJmzaBPk60z9VXLZLn+387GtBdagNkEPAy4DeoX3XzWxTfFWcb93y5WzvMHKzJglvM+bpBaKWw1NiykYma/vYMzHcRQBmII7HonSPDtutAY0knHkznv/zx+WgHeMkWW6L2Z0DXsJiVyI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740152068; c=relaxed/simple;
-	bh=+Z3XfbTAZg67slX1S2nMCGuCzrMKLEVhy8QHBbbegAs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=MlWNF/qvFNJVlSRSDdcUIV/9Yw9YzWf3ZbBq+121/a2l037u9R0LHaSoVB87q28awvlFK6299PNuyTdEEJqRvQjmBMqZNBVnvO9DAObXA8vHSzYdHWErOXCVcPdJZkJ6czzaYsqFjGrC/sZCPFrHKCUOTJZUf+WtkgGb/zRuU4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nrTcbptD; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51LD0TdK012089;
-	Fri, 21 Feb 2025 15:34:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zNGkxsDdav15OKMPklH64+1ptIhGBJSq1byiab6H0rU=; b=nrTcbptDfTv6ksZf
-	dM0bbRzcQUTHCLE+NPCY7KZ5YI5T8s6S5fs7jL9lGmpz7146caARDulBxQG77xz1
-	8a5FfaokHprYeyoLisxyWo7NG3/6P4mCgR0bxBycxXOjYmMt4dOVgtX/zLkFhBg6
-	wjP5Mn+cctmjAOMDDo2rjqgiLtix5SQeZPQik+5yLZKi+npEWOQ4SHWyXJdF9GL0
-	dI5gZIm335fLdPwBU7t7KtlQq7HO9GP1WywmToWlkWIF2ryTTB8mEEBgLLneG0Di
-	a8ql2UVz86GtzqYergNvu+u2e5TGxH7Dwk3+gJXamqgZhluFckq7BIOWqIfxoRac
-	EBMSrQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44vyy1tgec-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Feb 2025 15:34:18 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51LFYHus004446
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Feb 2025 15:34:17 GMT
-Received: from [10.219.0.139] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 21 Feb
- 2025 07:34:12 -0800
-Message-ID: <87f042c2-16df-4ffd-9178-9a13b4ea7acb@quicinc.com>
-Date: Fri, 21 Feb 2025 21:04:09 +0530
+	s=arc-20240116; t=1740152237; c=relaxed/simple;
+	bh=fNwEUMICWArtXN6ij1vQ7gWszyVTypN8591MquG7YJ8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u0IcOx151YsOl3fv+o1XxCFOKebfRzigU3gRaXdx5gbdXsLUtO2cf8j6UKq6SN4H5/K+vnotN4YG7DRVg9hq7bH73Nw3pr3A4YVwNV0Ph8jOhjoS1v2wNDnULEkcD1HeefAyNWXuTOjFiSLSkB23utZDQFJsXhnaC3Oxgs0DT98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1tlV5S-0001AO-00; Fri, 21 Feb 2025 16:37:10 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id CA4BEC0135; Fri, 21 Feb 2025 16:36:34 +0100 (CET)
+Date: Fri, 21 Feb 2025 16:36:34 +0100
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc: linux-clk@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+	p.zabel@pengutronix.de, linux-mips@vger.kernel.org,
+	devicetree@vger.kernel.org, yangshiji66@outlook.com,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/6] mips: dts: ralink: update system controller nodes
+ and its consumers
+Message-ID: <Z7idguBa2bxZRoxX@alpha.franken.de>
+References: <20250120092146.471951-1-sergio.paracuellos@gmail.com>
+ <CAMhs-H-VevC+_=HxhMU6-at0bKut_JqdgO7j2detuB4s8R_QFQ@mail.gmail.com>
+ <Z7iHorlRgtsi1LOo@alpha.franken.de>
+ <CAMhs-H-fcWU-rz_3FeAuRe0xdCMmvffX2zrZwwmt=8RYpY4Lyg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v9 1/2] arm64: dts: qcom: qcs6490-rb3gen: add and
- enable BT node
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marcel Holtmann
-	<marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        <quic_mohamull@quicinc.com>, <quic_hbandi@quicinc.com>,
-        <quic_anubhavg@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-bluetooth@vger.kernel.org>
-References: <20250220112945.3106086-1-quic_janathot@quicinc.com>
- <20250220112945.3106086-2-quic_janathot@quicinc.com>
- <s36psuynvcak337thjcy6o532mvxrqogwutdinqodco6tzeebu@npaazdpl6qh3>
-Content-Language: en-US
-From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-In-Reply-To: <s36psuynvcak337thjcy6o532mvxrqogwutdinqodco6tzeebu@npaazdpl6qh3>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: C4q-OqX5UI9zA275EU6Y0zGN8b0Uy5P1
-X-Proofpoint-ORIG-GUID: C4q-OqX5UI9zA275EU6Y0zGN8b0Uy5P1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-21_05,2025-02-20_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
- adultscore=0 malwarescore=0 mlxscore=0 priorityscore=1501
- lowpriorityscore=0 mlxlogscore=999 suspectscore=0 phishscore=0 spamscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502210112
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMhs-H-fcWU-rz_3FeAuRe0xdCMmvffX2zrZwwmt=8RYpY4Lyg@mail.gmail.com>
 
+On Fri, Feb 21, 2025 at 03:50:09PM +0100, Sergio Paracuellos wrote:
+> Hi Thomas,
+> 
+> On Fri, Feb 21, 2025 at 3:05 PM Thomas Bogendoerfer
+> <tsbogend@alpha.franken.de> wrote:
+> >
+> > On Fri, Feb 21, 2025 at 11:48:34AM +0100, Sergio Paracuellos wrote:
+> > > Hi Thomas,
+> > >
+> > > El El lun, 20 ene 2025 a las 10:21, Sergio Paracuellos <
+> > > sergio.paracuellos@gmail.com> escribió:
+> > >
+> > > > Hi all!
+> > > >
+> > > > Ralinks SoCs have a system controller node which serves as clock and reset
+> > > > providers for the rest of the world. This patch series introduces clock
+> > > > definitions for these SoCs. The clocks are registered in the driver using
+> > > > a bunch of arrays in specific order so these definitions represent the
+> > > > assigned
+> > > > identifier that is used when this happens so client nodes can easily use it
+> > > > to specify the clock which they consume without the need of checking
+> > > > driver code.
+> > > >
+> > > > DTS files which are currently on tree are not matching system controller
+> > > > bindings. So all of them are updated to properly match them.
+> > > >
+> > > > I'd like this series to go through kernel mips git tree if possible.
+> > > >
+> > > > Thanks in advance for your time.
+> > > >
+> > > > Changes in v3:
+> > > > - Address Krzysztof comments in v2 (Thanks!):
+> > > >   + Drop reset include file since what it was defined there were hardware
+> > > >     constants and no binding related indexes at all.
+> > > >   + Update patches for not referring to this reset removed file.
+> > >
+> > >
+> > > I was expecting this series going through the mips tree.
+> >
+> >   DTC     arch/mips/boot/dts/ralink/rt3883_eval.dtb
+> > Error: /local/tbogendoerfer/korg/linux/arch/mips/boot/dts/ralink/rt3883.dtsi:2.1-9 syntax error
+> > FATAL ERROR: Unable to parse input tree
+> 
+> Weird, it looks like dtc is not happy with the "include" line with new
+> definitions? Are you getting this only with rt3883? Since all the
+> patches are almost the same and I compile tested this before sending..
+> Something got corrupted? I don't have my laptop now to check but I
+> will recheck again on monday.
 
+rt2880_eval.dts:/include/ "rt2880.dtsi"
+rt3052_eval.dts:#include "rt3050.dtsi"
+rt3883_eval.dts:/include/ "rt3883.dtsi"
 
-On 2/21/2025 7:25 PM, Dmitry Baryshkov wrote:
-> On Thu, Feb 20, 2025 at 04:59:44PM +0530, Janaki Ramaiah Thota wrote:
->> Add the PMU node for WCN6750 present on the qcs6490-rb3gen
->> board and assign its power outputs to the Bluetooth module.
->>
->> In WCN6750 module sw_ctrl and wifi-enable pins are handled
->> in the wifi controller firmware. Therefore, it is not required
->> to have those pins' entries in the PMU node.
->>
->> Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 167 ++++++++++++++++++-
->>   1 file changed, 166 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> index 7a36c90ad4ec..0a3243499dfb 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> @@ -1,6 +1,6 @@
->>   // SPDX-License-Identifier: BSD-3-Clause
->>   /*
->> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
->> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->>    */
->>   
->>   /dts-v1/;
->> @@ -34,6 +34,7 @@ / {
->>   
->>   	aliases {
->>   		serial0 = &uart5;
->> +		serial1 = &uart7;
->>   	};
->>   
->>   	chosen {
->> @@ -218,6 +219,63 @@ vph_pwr: vph-pwr-regulator {
->>   		regulator-min-microvolt = <3700000>;
->>   		regulator-max-microvolt = <3700000>;
->>   	};
->> +
->> +	wcn6750-pmu {
->> +		compatible = "qcom,wcn6750-pmu";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&bt_en>;
-> 
-> pinctrl-0
-> (pinctrl-1 etc.)
-> pinctrl-names
-> 
-> 
->> +		vddaon-supply = <&vreg_s7b_0p972>;
->> +		vddasd-supply = <&vreg_l11c_2p8>;
->> +		vddpmu-supply = <&vreg_s7b_0p972>;
->> +		vddrfa0p8-supply = <&vreg_s7b_0p972>;
->> +		vddrfa1p2-supply = <&vreg_s8b_1p272>;
->> +		vddrfa1p7-supply = <&vreg_s1b_1p872>;
->> +		vddrfa2p2-supply = <&vreg_s1c_2p19>;
->> +
->> +		bt-enable-gpios = <&tlmm 85 GPIO_ACTIVE_HIGH>;
->> +
->> +		regulators {
->> +			vreg_pmu_rfa_cmn: ldo0 {
->> +				regulator-name = "vreg_pmu_rfa_cmn";
->> +			};
->> +
->> +			vreg_pmu_aon_0p59: ldo1 {
->> +				regulator-name = "vreg_pmu_aon_0p59";
->> +			};
->> +
->> +			vreg_pmu_wlcx_0p8: ldo2 {
->> +				regulator-name = "vreg_pmu_wlcx_0p8";
->> +			};
->> +
->> +			vreg_pmu_wlmx_0p85: ldo3 {
->> +				regulator-name = "vreg_pmu_wlmx_0p85";
->> +			};
->> +
->> +			vreg_pmu_btcmx_0p85: ldo4 {
->> +				regulator-name = "vreg_pmu_btcmx_0p85";
->> +			};
->> +
->> +			vreg_pmu_rfa_0p8: ldo5 {
->> +				regulator-name = "vreg_pmu_rfa_0p8";
->> +			};
->> +
->> +			vreg_pmu_rfa_1p2: ldo6 {
->> +				regulator-name = "vreg_pmu_rfa_1p2";
->> +			};
->> +
->> +			vreg_pmu_rfa_1p7: ldo7 {
->> +				regulator-name = "vreg_pmu_rfa_1p7";
->> +			};
->> +
->> +			vreg_pmu_pcie_0p9: ldo8 {
->> +				regulator-name = "vreg_pmu_pcie_0p9";
->> +			};
->> +
->> +			vreg_pmu_pcie_1p8: ldo9 {
->> +				regulator-name = "vreg_pmu_pcie_1p8";
->> +			};
->> +		};
->> +	};
->>   };
->>   
->>   &apps_rsc {
->> @@ -799,6 +857,39 @@ &pon_resin {
->>   	status = "okay";
->>   };
->>   
->> +&qup_uart7_cts {
->> +	/*
->> +	 * Configure a bias-bus-hold on CTS to lower power
->> +	 * usage when Bluetooth is turned off. Bus hold will
->> +	 * maintain a low power state regardless of whether
->> +	 * the Bluetooth module drives the pin in either
->> +	 * direction or leaves the pin fully unpowered.
->> +	 */
->> +	bias-bus-hold;
->> +};
->> +
->> +&qup_uart7_rts {
->> +	/* We'll drive RTS, so no pull */
->> +	drive-strength = <2>;
->> +	bias-disable;
->> +};
->> +
->> +&qup_uart7_rx {
->> +	/*
->> +	 * Configure a pull-up on RX. This is needed to avoid
->> +	 * garbage data when the TX pin of the Bluetooth module is
->> +	 * in tri-state (module powered off or not driving the
->> +	 * signal yet).
->> +	 */
->> +	bias-pull-up;
->> +};
->> +
->> +&qup_uart7_tx {
->> +	/* We'll drive TX, so no pull */
->> +	drive-strength = <2>;
->> +	bias-disable;
->> +};
->> +
->>   &qupv3_id_0 {
->>   	status = "okay";
->>   };
->> @@ -842,12 +933,86 @@ &sdhc_2 {
->>   &tlmm {
->>   	gpio-reserved-ranges = <32 2>, /* ADSP */
->>   			       <48 4>; /* NFC */
->> +
->> +	bt_en: bt-en-state {
->> +		pins = "gpio85";
->> +		function = "gpio";
->> +		output-low;
->> +		bias-disable;
->> +	};
->> +
->> +	qup_uart7_sleep_cts: qup-uart7-sleep-cts-state {
->> +		pins = "gpio28";
->> +		function = "gpio";
->> +		/*
->> +		 * Configure a bias-bus-hold on CTS to lower power
->> +		 * usage when Bluetooth is turned off. Bus hold will
->> +		 * maintain a low power state regardless of whether
->> +		 * the Bluetooth module drives the pin in either
->> +		 * direction or leaves the pin fully unpowered.
->> +		 */
->> +		bias-bus-hold;
->> +	};
->> +
->> +	qup_uart7_sleep_rts: qup-uart7-sleep-rts-state {
->> +		pins = "gpio29";
->> +		function = "gpio";
->> +		/*
->> +		 * Configure pull-down on RTS. As RTS is active low
->> +		 * signal, pull it low to indicate the BT SoC that it
->> +		 * can wakeup the system anytime from suspend state by
->> +		 * pulling RX low (by sending wakeup bytes).
->> +		 */
->> +		bias-pull-down;
->> +	};
->> +
->> +	qup_uart7_sleep_rx: qup-uart7-sleep-rx-state {
->> +		pins = "gpio31";
->> +		function = "gpio";
->> +		/*
->> +		 * Configure a pull-up on RX. This is needed to avoid
->> +		 * garbage data when the TX pin of the Bluetooth module
->> +		 * is floating which may cause spurious wakeups.
->> +		 */
->> +		bias-pull-up;
->> +	};
->> +
->> +	qup_uart7_sleep_tx: qup-uart7-sleep-tx-state {
->> +		pins = "gpio30";
->> +		function = "gpio";
->> +		/*
->> +		 * Configure pull-up on TX when it isn't actively driven
->> +		 * to prevent BT SoC from receiving garbage during sleep.
->> +		 */
->> +		bias-pull-up;
->> +	};
->>   };
->>   
->>   &uart5 {
->>   	status = "okay";
->>   };
->>   
->> +&uart7 {
->> +	/delete-property/interrupts;
-> 
-> Missing space before 'interrupts'.
-> 
->> +	interrupts-extended = <&intc GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>,
->> +				<&tlmm 31 IRQ_TYPE_EDGE_FALLING>;
-> 
-> Align by the opening angle bracket.
-> 
->> +	pinctrl-1 =  <&qup_uart7_sleep_cts>, <&qup_uart7_sleep_rts>,
->> +		<&qup_uart7_sleep_tx>, <&qup_uart7_sleep_rx>;
-> 
-> Align '<' vertically.
-> 
->> +	pinctrl-names = "default", "sleep";
-> 
-> Vertical list, please, aligned by the opening quote.
-> 
-> Also please add empty line before status.
-> 
+rt3052 works, rt2880 and rt3883 don't.
 
-Thanks for the review comments Dmitry, will address all the comments in
-patch v10.
-Thanks,
-Janakiram
+changing the /include/ to #include makes them compile.
+
+Thomas.
+
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
