@@ -1,166 +1,88 @@
-Return-Path: <devicetree+bounces-149677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F664A4017B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:57:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1B1AA401C7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 22:07:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A14019C733A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 20:57:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFE9C3B9327
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4E91254B11;
-	Fri, 21 Feb 2025 20:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AF79253F35;
+	Fri, 21 Feb 2025 21:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=denx.de header.i=@denx.de header.b="XaWOyyQC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uHtzlPiN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 136FD253F00;
-	Fri, 21 Feb 2025 20:57:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAD6C253B64;
+	Fri, 21 Feb 2025 21:05:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740171427; cv=none; b=ew18Ulu/+13SQ39BnRdRzkiqqLpcUJnaQ1lalA2MGNkAT+KMEAkrXRhUfJ/aCc2s5qGacZbLHxGKF4tHUzSgCPzdJZ+pnQ/X9nFUSbGtZzgHU2RTc5n40rteaKSLQ/s15K3dWuaPy0hknfD5Q64XeN4xd0fdJYtwMMVuEsB9paI=
+	t=1740171943; cv=none; b=fsr3OZ623OIF/Hgtw8yTGkTZ0l+sOGD3DLobtVpGTUa2EIp1fFRg79CHZHKWOSm/lDH08sTw0w+vTbggymzEEDe4GVER7nbtt8uUC0XNBKBjfoFO0cMr56aFnoLvvnQNGgf6qzjODqAVfqbseZy3W9mTRYDuoB1Tep2OxCz82gE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740171427; c=relaxed/simple;
-	bh=kOHyjkAbVvoXX9gGg/hCrX4B5PRYKw39p/lfXQa348Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=b61eod0lqZ1IWPGPe/5SMLOL30QBnenqoN4wmdifGy0DG5ZZfPY4jzRjzrXo/ySup0Vai1dgvfO38orUi7aMEZD72Tou7WHULLpuZXdU3MKfqqDNT6aQAVhYZuVODNFCbPqV7XlfSFIhU2RZznItlEM5T4QqURmPTqDbZ1i21mk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=XaWOyyQC; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7102210382D37;
-	Fri, 21 Feb 2025 21:57:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1740171423;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+4P3zUmOi3UZOMRfYiGLCxCaTB0yCp04qj61xUw8Zww=;
-	b=XaWOyyQCdjUl7qg/VkPioYDwaSF252DLdpXA541hXRWeuRNS6m01jwoFYhAsxZKlO3HHPP
-	tsDvh7NthvGV4lyOofw09c6I5DzKgMauR3FstuCw66M7IWPO0KDHq3sXtiz/5Es5V6yY+R
-	3hmJn/Vs+jGP/PS50iuJsKsxSkEyPkgLHAA7kFu0hVCbPhTozlSkidXoQmcH8v9tvT1u+c
-	VwPbzsp7woswVBRySFrcl0XHLZgsh7vTcSLu3u+WmO54BsQHvwP2jdl6ouSiQl3sBFHgOt
-	0Vg1kxNth4SbtSpRsSmFHUO06cfJfT/QOPe+1e84WI+7lohIpLZiPJiAWZnBTQ==
-Date: Fri, 21 Feb 2025 21:56:59 +0100
-From: Lukasz Majewski <lukma@denx.de>
-To: Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof@spud.smtp.subspace.kernel.org,
-	Kozlowski@spud.smtp.subspace.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>, Aradhya Bhatia <a-bhatia1@ti.com>,
-	rafal@milecki.pl, devicetree@vger.kernel.org,
-	Guenter Roeck <linux@roeck-us.net>,
-	Noah Wang <noahwang.wang@outlook.com>, linux-kernel@vger.kernel.org,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Alex Vdovydchenko <xzeol@yahoo.com>,
-	Grant Peltier <grantpeltier93@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH 2/2] dt-bindings: trivial-devices: Document SPI
- measurement on LWE boards
-Message-ID: <20250221215659.61ecc523@wsk>
-In-Reply-To: <20250221-scuba-rematch-ada1a9b750b1@spud>
-References: <20250221155418.1167670-1-lukma@denx.de>
-	<20250221155418.1167670-2-lukma@denx.de>
-	<20250221-scuba-rematch-ada1a9b750b1@spud>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1740171943; c=relaxed/simple;
+	bh=0bZ69u0J8mKNwNBMFzORl5doQm4ibw8K9+y0rI9OSeA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZnY1KVZVYXTXGUy1Mpq2MlxyKOq6CNKZ+r3R1hEq/hN5s7SeymBGq1g7cqNSelPTZn5tyi7qj3UObI55SdzyRUDu0QYjN2v1VZ6kmjvKXEyA55COcJk0jX2IGuKaXH3mrcmf99ej3lcNBd1j5EAx20C0fej2e1iDTPwd3QdX1Bs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uHtzlPiN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18900C4CED6;
+	Fri, 21 Feb 2025 21:05:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740171942;
+	bh=0bZ69u0J8mKNwNBMFzORl5doQm4ibw8K9+y0rI9OSeA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uHtzlPiNaCNGbBeHlrnCyBYkMLL0fhqY4i89dvWzyIWRrGpmeSOvhEAby294S14fO
+	 uReXEouIfA7fqHf3k8CZQDe3xBPlDQ2lth1PGpyvj4DkI/lTuyRBibdd4gfKtw38pX
+	 4PY89AI/o7yVuu0VDLKtpsrePslJsTApVCEt81FAHz8UZmAvUVr27bYr8jp2YGO/kf
+	 S4nk0AkWbdHJiSHB9BWe3OKVA/D4pPJUw0xyePGwbW5ifIgNS88T4PnEsl3pdipQy5
+	 MsMo7SYOSVRY3hQiyoDWBaJzkDXOqHOx0aXEJsePYUixoVDYiTDQ0OUKBgX1zXutU3
+	 ibH94VL7esm+Q==
+Date: Fri, 21 Feb 2025 15:05:40 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: andrew+netdev@lunn.ch, linux-mips@vger.kernel.org,
+	tsbogend@alpha.franken.de, edumazet@google.com, conor+dt@kernel.org,
+	krzk+dt@kernel.org, devicetree@vger.kernel.org, pabeni@redhat.com,
+	kuba@kernel.org, lee@kernel.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, davem@davemloft.net
+Subject: Re: [RESEND PATCH net-next 1/5] dt-bindings: net: Move
+ realtek,rtl9301-switch to net
+Message-ID: <174017193985.80495.3415505860680168485.robh@kernel.org>
+References: <20250218195216.1034220-1-chris.packham@alliedtelesis.co.nz>
+ <20250218195216.1034220-2-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/+8m2XaJSdgbNjty+rTzoe70";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
-
---Sig_/+8m2XaJSdgbNjty+rTzoe70
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi Conor,
-
-> On Fri, Feb 21, 2025 at 04:54:18PM +0100, Lukasz Majewski wrote:
-> > The measurement device on Liebherr's (LWE) boards is used to monitor
-> > the overall state of the device. It does have SPI interface to
-> > communicate with Linux host via spidev driver. Document the SPI DT
-> > binding as trivial SPI device.
-> >=20
-> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> > ---
-> >  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml
-> > b/Documentation/devicetree/bindings/trivial-devices.yaml index
-> > fadbd3c041c8..5d736a9792c2 100644 ---
-> > a/Documentation/devicetree/bindings/trivial-devices.yaml +++
-> > b/Documentation/devicetree/bindings/trivial-devices.yaml @@ -161,6
-> > +161,8 @@ properties:
-> >            - jedec,spd5118
-> >              # Linear Technology LTC2488
-> >            - lineartechnology,ltc2488
-> > +            # Liebherr on-board measurement SPI device
-> > +          - lwe,btt =20
->=20
-> How does "btt" translate to what the device actually is? Seems kinda
-> random!
-
-Btt is a family of devices (bttc, btt3, xea) - to control heavy duty
-machines.
-
-That was the original codename - conceived probably 30+ years ago.
-
-> Also, where is patch 3, adding the lwe,btt to the spidev driver so
-> that it will probe?
-
-I've posted it to Mark Brown (and also linux-spi ML) for review.
-
->=20
-> Cheers,
-> Conor.
->=20
-> >              # 5 Bit Programmable, Pulse-Width Modulator
-> >            - maxim,ds1050
-> >              # 10 kOhm digital potentiometer with I2C interface
-> > --=20
-> > 2.39.5
-> >  =20
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250218195216.1034220-2-chris.packham@alliedtelesis.co.nz>
 
 
+On Wed, 19 Feb 2025 08:52:12 +1300, Chris Packham wrote:
+> Initially realtek,rtl9301-switch was placed under mfd/ because it had
+> some non-switch related blocks (specifically i2c and reset) but with a
+> bit more review it has become apparent that this was wrong and the
+> binding should live under net/.
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+> 
+> Notes:
+>     It would probably be simplest for this to come in via net-next with an
+>     ack from Lee.
+> 
+>  .../bindings/{mfd => net}/realtek,rtl9301-switch.yaml           | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>  rename Documentation/devicetree/bindings/{mfd => net}/realtek,rtl9301-switch.yaml (97%)
+> 
 
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/+8m2XaJSdgbNjty+rTzoe70
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAme46JsACgkQAR8vZIA0
-zr1VUwgAwBZajgQjcPFeaU3Q6nMY3VKiS77ZAR4yoPeC45gwkOj42VXAhLOxvL7t
-V9d1ELcUIonegBxDDSLpOytEbvhLMTP6A+udP+BJumsGPq7NA2zaSNsf1Fi1QU15
-bYzbZBmIjzNKLsL8qAE5kr9qpZgHuqZEJRh8TGyVwCFiRbM9I5Jyy+JlUfFUWSv5
-t/bEwXxa52JKDhqD0I7N444kw6mkigdtpcRRV8U+Yex7c2TJcWn/M8agnRVoMF25
-0yJS32kMNvZpek79cMxstz4vuJdizRUhmU09ms74bPXxfgPTn224u/YCfAGkEPGU
-ylQa/z2zesFufBZXdQAfWV65b6xHtA==
-=AFkW
------END PGP SIGNATURE-----
-
---Sig_/+8m2XaJSdgbNjty+rTzoe70--
 
