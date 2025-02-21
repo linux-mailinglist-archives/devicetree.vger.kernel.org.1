@@ -1,100 +1,187 @@
-Return-Path: <devicetree+bounces-149409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 343C5A3F64C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:49:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5941FA3F659
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:50:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D210188D9BF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 13:49:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C70CE18915BC
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 13:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC07B200B98;
-	Fri, 21 Feb 2025 13:49:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="EOlMpGf6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47BDA209F51;
+	Fri, 21 Feb 2025 13:50:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2C61757EA;
-	Fri, 21 Feb 2025 13:49:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F3C9192B74
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 13:50:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740145744; cv=none; b=j20SGzyn+iKOU6A3qHkca35h5wvrh5qQjsYvJ6MseqQic0k5sKi6E7vPasVr9h1aaEfIqepWL2mmEHH2wYh1lFxpux8mf1wSZRXSZShGTldxznoVzTqv+nOLRRB9WSFTS1xxhtZb0fl2BU6NsUrscvyQPY1ZV/bKUZTAqarR4LQ=
+	t=1740145816; cv=none; b=J+pa/QvVLvy43mPIe4cAiSqERQtth5D28KoNqvfntvqn5JCSLXh1VRnV//ard1kBb6vhhfJ1H907ZbXo9/oPmM/hUYDSR4Zn6QhaD24++LbQ9nZ0R6/H0U02bbSjcivlqR0LdmT4UX9OfikTcd8dpwQ1XEvNhkyOISNYoc+E8+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740145744; c=relaxed/simple;
-	bh=LpD8P8JjpqI/NjmfRrr1AhD28mE8fg5sTAYIzzPCseM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ULIiyJWIhzPxM20hJVfgHx6EUOYkO9zNLb2a3k5bpP0gtX0gdELKGMwrbogUGNTWc6WAo+skOEF5YsuKi1BRtnVRyWQHSsrOcJFqppDOIRT1Zv9Ai1eaMyGDFb+sr3gdZ0K+U6Se+3yZNMzk/Nf9sQOlysmqHL0RPfERNOIFfQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=EOlMpGf6; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=4PA6AoUOc58pLObnZDeDC9vxCiLpRKUfWVTweUqJLBc=; b=EOlMpGf6Z4x3XKn2jeJ+0MxWRx
-	o4RGyPM2SqMWVeWo83VUGe9BS8ebFNLcac3bio+6ZsUtXIigNT9XgaGxEChymTXGdSvPQS8tqCfQt
-	X0gsEgE4dGAXxl/u7TtRsNUJisMPbhpX5iQLoQNsFVNr31JwYJIK2YPw/g/MWChTPHGMQFNpOjayF
-	o6D/PVRpFCklSoWC+PYXbLM3sMq4rx9peHg1bArSQX0sUeU+7J+0iRH7LZ4EzFAViLTQFJVA7Fm3C
-	io3Tbp2qETu9gobdkTgfO8azcy8/TiUc4kNSSmhuiSUYvDPaFUdhZFwBYzCsF1IjCT7DHbCM+FpBH
-	iaieQ5wg==;
-Received: from i53875a87.versanet.de ([83.135.90.135] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tlTOh-0004r8-VJ; Fri, 21 Feb 2025 14:48:56 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Quentin Schulz <foss+kernel@0leil.net>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>
-Subject:
- Re: [PATCH v2 2/2] gpio: pcf857x: add support for reset-gpios on (most)
- PCA967x
-Date: Fri, 21 Feb 2025 14:48:55 +0100
-Message-ID: <1947442.eGJsNajkDb@diego>
-In-Reply-To: <20250221-pca976x-reset-driver-v2-2-a2bcb9fdc256@cherry.de>
-References:
- <20250221-pca976x-reset-driver-v2-0-a2bcb9fdc256@cherry.de>
- <20250221-pca976x-reset-driver-v2-2-a2bcb9fdc256@cherry.de>
+	s=arc-20240116; t=1740145816; c=relaxed/simple;
+	bh=+OGK6S7sr/csBxUsXpd2Oq8bTN43O0NJ2ft0Ngbg0qM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oT6DWZiAMGD8sVQttylZYFSjli3rsbs6qbNBOxu4lOBLYh+3HFJvmBtTNGsuH9a3WZLjwHHLPl7E7BOrwl2VeThuxK4czcgb3rh5qyT93fz0FYnAeBLtEi/ckFo0Olby23FDgfKSerItTTmH8cr7Ldq5ousWDeqRY3G3qw84G3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tlTPA-0005C2-FE; Fri, 21 Feb 2025 14:49:24 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tlTP7-0026xT-29;
+	Fri, 21 Feb 2025 14:49:21 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tlTP7-009zCt-1g;
+	Fri, 21 Feb 2025 14:49:21 +0100
+Date: Fri, 21 Feb 2025 14:49:21 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Donald Hunter <donald.hunter@gmail.com>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
+	Kyle Swenson <kyle.swenson@est.tech>,
+	Dent Project <dentproject@linuxfoundation.org>,
+	kernel@pengutronix.de,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v5 07/12] net: ethtool: Add PSE new budget
+ evaluation strategy support feature
+Message-ID: <Z7iEYQzsdpUFmfZE@pengutronix.de>
+References: <20250218-feature_poe_port_prio-v5-0-3da486e5fd64@bootlin.com>
+ <20250218-feature_poe_port_prio-v5-7-3da486e5fd64@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250218-feature_poe_port_prio-v5-7-3da486e5fd64@bootlin.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Am Freitag, 21. Februar 2025, 11:14:27 MEZ schrieb Quentin Schulz:
-> From: Quentin Schulz <quentin.schulz@cherry.de>
-> 
-> The PCA9670, PCA9671, PCA9672 and PCA9673 all have a RESETN input pin
-> that is used to reset the I2C GPIO expander.
-> 
-> One needs to hold this pin low for at least 4us and the reset should be
-> finished after about 100us according to the datasheet[1]. Once the reset
-> is done, the "registers and I2C-bus state machine will be held in their
-> default state until the RESET input is once again HIGH.".
-> 
-> Because the logic is reset, the latch values eventually provided in the
-> Device Tree via lines-initial-states property are inapplicable so they
-> are simply ignored if a reset GPIO is provided.
-> 
-> [1] https://www.nxp.com/docs/en/data-sheet/PCA9670.pdf 8.5 and fig 22.
-> 
-> Tested-by: Heiko Stuebner <heiko@sntech.de> # RK3588 Tiger Haikou Video Demo
-> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+Hi Kory,
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+On Tue, Feb 18, 2025 at 05:19:11PM +0100, Kory Maincent wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+> 
+> This patch expands the status information provided by ethtool for PSE c33
+> with current port priority and max port priority. It also adds a call to
+> pse_ethtool_set_prio() to configure the PSE port priority.
 
+Thank you! Here are some comments...
 
+> --- a/Documentation/networking/ethtool-netlink.rst
+> +++ b/Documentation/networking/ethtool-netlink.rst
+> @@ -1790,6 +1790,12 @@ Kernel response contents:
+>    ``ETHTOOL_A_C33_PSE_PW_LIMIT_RANGES``       nested  Supported power limit
+>                                                        configuration ranges.
+>    ``ETHTOOL_A_PSE_PW_D_ID``                      u32  Index of the PSE power domain
+> +  ``ETHTOOL_A_C33_PSE_BUDGET_EVAL_STRAT``        u32  Budget evaluation strategy
+> +                                                      of the PSE
+> +  ``ETHTOOL_A_C33_PSE_PRIO_MAX``                 u32  Priority maximum configurable
+> +                                                      on the PoE PSE
+> +  ``ETHTOOL_A_C33_PSE_PRIO``                     u32  Priority of the PoE PSE
+> +                                                      currently configured
+
+Please remove _C33_ from these fields, as they are not specific to Clause 33.
+
+>    ==========================================  ======  =============================
+>  
+>  When set, the optional ``ETHTOOL_A_PODL_PSE_ADMIN_STATE`` attribute identifies
+> @@ -1866,6 +1872,51 @@ equal.
+>  The ``ETHTOOL_A_PSE_PW_D_ID`` attribute identifies the index of PSE power
+>  domain.
+>  
+> +When set, the optional ``ETHTOOL_A_C33_PSE_PRIO_SUPP_MODES`` attribute
+> +identifies the priority mode supported by the C33 PSE.
+> +When set, the optional ``ETHTOOL_A_C33_PSE_BUDGET_EVAL_STRAT`` attributes is used to
+> +identifies the currently configured C33 PSE budget evaluation strategy.
+> +The available strategies are:
+> +
+> +1. Disabled:
+> +
+> +   In this mode, the port is excluded from active budget evaluation. It
+> +   allows the port to violate the budget and is intended primarily for testing
+> +   purposes.
+> +
+> +2. Static Method:
+> +
+> +   This method involves distributing power based on PD classification. It’s
+> +   straightforward and stable, with the PSE core keeping track of the budget
+> +   and subtracting the power requested by each PD’s class. This is the
+> +   safest option and should be used by default.
+> +
+> +   Advantages: Every PD gets its promised power at any time, which guarantees
+> +   reliability.
+> +
+> +   Disadvantages: PD classification steps are large, meaning devices request
+> +   much more power than they actually need. As a result, the power supply may
+> +   only operate at, say, 50% capacity, which is inefficient and wastes money.
+> +
+> +3. Dynamic Method:
+> +
+> +   This method monitors the current consumption per port and subtracts it from
+> +   the available power budget. When the budget is exceeded, lower-priority
+> +   ports are shut down. This method is managed by the PSE controller itself.
+> +
+> +   Advantages: This method optimizes resource utilization, saving costs.
+> +
+> +   Disadvantages: Low-priority devices may experience instability.
+> +
+> +.. kernel-doc:: include/uapi/linux/ethtool.h
+> +    :identifiers: ethtool_pse_budget_eval_strategies
+> +
+> +When set, the optional ``ETHTOOL_A_C33_PSE_PRIO_MAX`` attribute identifies
+> +the C33 PSE maximum priority value.
+> +When set, the optional ``ETHTOOL_A_C33_PSE_PRIO`` attributes is used to
+> +identifies the currently configured C33 PSE priority.
+> +For a description of PSE priority attributes, see ``PSE_SET``.
+> +
+>  PSE_SET
+>  =======
+>  
+> @@ -1879,6 +1930,8 @@ Request contents:
+>    ``ETHTOOL_A_C33_PSE_ADMIN_CONTROL``        u32  Control PSE Admin state
+>    ``ETHTOOL_A_C33_PSE_AVAIL_PWR_LIMIT``      u32  Control PoE PSE available
+>                                                    power limit
+> +  ``ETHTOOL_A_C33_PSE_PRIO``                 u32  Control priority of the
+> +                                                  PoE PSE
+
+Please remove _C33_ from these field, as they are not specific to
+Clause 33.
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
