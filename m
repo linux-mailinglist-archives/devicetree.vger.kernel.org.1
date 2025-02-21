@@ -1,153 +1,266 @@
-Return-Path: <devicetree+bounces-149418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C27DA3F6E9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:13:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF3EA3F6EB
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:13:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 434A73BB56B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:13:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDD233BB672
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 072DA20E330;
-	Fri, 21 Feb 2025 14:13:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C50DF20F062;
+	Fri, 21 Feb 2025 14:13:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ex7YmK4/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E4V+FGgM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2058.outbound.protection.outlook.com [40.92.22.58])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA89433DE;
-	Fri, 21 Feb 2025 14:13:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.22.58
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740147200; cv=fail; b=KvuYRXhQ3UZHBc5bQIhMMW7bpvLPzJpNh42QOse9aHd6kbpPaYQsQ3qLmxM7CE5Wf5htb93nPm9bTvq7ocZFLnBFgyYryqcIBkeVcTyGtse/7LxEvB3oZNQUH09gHTx1DAewEGb9FgluF6LTcNzmMP1Czc0KOIPRKWJ0W+xMUaI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740147200; c=relaxed/simple;
-	bh=hhJc1VEzn2FXcR0EiwWQtVlnCIZzMbCPadUS06Q/X7Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=doIz+Wto8vtqlyg/Icl+SYRT7U8f/ZJe/hWhR2ALUERXJgAmm8TfWwP8Bfhx5tjqz6n+pRGnqjdE3+0SFQW3bYGToLn7Go3wxldpRd0Xur3EjLiXqNSY727eoPg1ZA0Sq+AFIudydFrvp5GZ2CmWLRL+mOCBNtG+620yH2O215k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=ex7YmK4/; arc=fail smtp.client-ip=40.92.22.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nmz/lYSlu3tb589I87RoCHgxYt6KvA1judyvL1yRoejYqK8ICt+HdZYrh3ilRfyvwJ1w2MiVK9k07608zbloIJMrzmpJTEJgYoHteSjmRjxblwZQhwgElUgs9c8vWQ7We/JjhomnGFCQ8ZvYazb+PXylkCbYvKLDLkSK4NSotUTkJGlfGt4oQc6ZbE7nuSmcPvDxb5JFctCnWgQZx5EPWj2K8i7Ja1Sr4Qgc8V5rPsCSXha+5yBSe2zKLHux98UTiLmK/bGw9W5TIzs9TKrwskP8U845ZzzOtQLYv190UqH5fFgit1x6crd7UJCbsyeTNsElnzzzmWchTTTFp3tTmg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hhJc1VEzn2FXcR0EiwWQtVlnCIZzMbCPadUS06Q/X7Q=;
- b=u9cghipuOyAqoZrAIwljhg6asgteVuQqdqk2Eal2bcF9/PB/8hjf2Sw3XMjUOk4JMoNuBJTHhvdOuzDv5x6YFoKipLWXVaMrhGbH3Ik4wEYg0u9jb7CdJf/Oxak2dlOa6vKGAAgBRUH+mOSHOCcox6mBLNOSwXEL3cMNCci+dpr/wNScPNqSfeUfDOQFbcN6GS/AB+WL60Vpn3IINx+omKwUVRBRcA3ncRJlU7pvQZ8G2saJu5uJJnWbi9V37RoRmIZpe7aysp+9/jDlmEdakqwO8pjnfQDSvkbchJU1+KI/Mhr4Lt3lBcxBLnm2ItU/xeiBTLzkJroO/dVudIpGYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hhJc1VEzn2FXcR0EiwWQtVlnCIZzMbCPadUS06Q/X7Q=;
- b=ex7YmK4/VsOv8vg5+lT0iknTuRoMddjB+OfujGeZSjqYRs4KS2+Rp9VRyDxUVYynIal/U5/rWs9HwdrN39lHGsxML8LwIcM4GvPaFTHYQzq4fFduzX83rpWVob1UvHt7ZcDn9LUkKEuwao1HlgJTa+4TMaoU+Eb97jqtzKUwPNtHVD3TV8h94/TDtYpj4gVB7r9mhPgdUFBkOJEt8HliTpgUn7Eo6Mejjhncvuw9ZRaVbmQPbeXDsSZEbk/2FvZf+fKVU3/2RuDpq+Ljjhfr4Z+c4wG+GtYNR0hUnzHR+bIUQs169e0mUMN3Hh+0gNYS52bkoZV6OXkPHqKvBhUcyA==
-Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
- by SA1PR19MB4880.namprd19.prod.outlook.com (2603:10b6:806:1aa::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.17; Fri, 21 Feb
- 2025 14:13:17 +0000
-Received: from DS7PR19MB8883.namprd19.prod.outlook.com
- ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
- ([fe80::e0c2:5b31:534:4305%6]) with mapi id 15.20.8466.015; Fri, 21 Feb 2025
- 14:13:17 +0000
-From: George Moussalem <george.moussalem@outlook.com>
-To: dmitry.baryshkov@linaro.org
-Cc: amitk@kernel.org,
-	devicetree@vger.kernel.org,
-	george.moussalem@outlook.com,
-	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	quic_srichara@quicinc.com,
-	robh@kernel.org,
-	thara.gopinath@gmail.com
-Subject: Re: [PATCH v4 4/5] thermal: qcom: tsens: Add support for IPQ5018 tsens
-Date: Fri, 21 Feb 2025 18:13:12 +0400
-Message-ID:
- <DS7PR19MB888370DA2FE2AE936C47C13E9DC72@DS7PR19MB8883.namprd19.prod.outlook.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <zesif5ehsoho3725k4xjqhb3tizj6fj6ufocdlzd3facj5hrrt@r4t5hthvyp2p>
-References: <zesif5ehsoho3725k4xjqhb3tizj6fj6ufocdlzd3facj5hrrt@r4t5hthvyp2p>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: DX0P273CA0014.AREP273.PROD.OUTLOOK.COM
- (2603:1086:300:26::19) To DS7PR19MB8883.namprd19.prod.outlook.com
- (2603:10b6:8:253::16)
-X-Microsoft-Original-Message-ID:
- <20250221141312.5022-1-george.moussalem@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE625433DE;
+	Fri, 21 Feb 2025 14:13:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740147205; cv=none; b=P9X0OQz3ctMuCTFPr4fSAgdNx6dhkZanxUEiMsaoTOC3eZN+YYEXD6ljpfWTog0eW33+O+UT22dbnGkS633DKeZa/C8gjHM0IQFENHyA7tV9wDbvahcy3rkjCuNNF299lf0h/sF5fRcZ9e5OfE4AlgUfwszzBUm54ucXXaX38Qg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740147205; c=relaxed/simple;
+	bh=Rdw7VcsQXfPz8ijFFRK9pCO/RD7kMR5M0Z/uSgEDHcs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EykDFFxpAFB0mvsVeEUm6hpVoMuslynDqvU/gFOkDffDSaNFTInw0rvMAwh3DLTpFdZcaLvVClQ/n7SYDmgCNpTB8Ukk8fdYM2m5KOzj0WOdOp0nN2hcDfB+4PI/wPmMaNQ1P5MNKBIqBH6M2to/mjZPsD/4qz18zIiqX26RCMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=E4V+FGgM; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1740147204; x=1771683204;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Rdw7VcsQXfPz8ijFFRK9pCO/RD7kMR5M0Z/uSgEDHcs=;
+  b=E4V+FGgMeFEMoyeauFsbzatVvwZo9rI0kc6cYtZLdZtp/7+AXeqpG+G4
+   QPdQxvKOIlD1dbU03pAq4gs/xMlGOObnnz1qhl7BzHBHdiqKZ49znveVC
+   a/XzjliS8a0lzODEXZk32XoNpJaVgw6NxKihKyZdVVESua+SM2eOOHMo9
+   P9tUp2qWvXyVBCM7AFXgGbN2/8Vuo9ZCH2V2pUzee3i8g6AgX3s+OSXu7
+   HuMyRDXj78WzfH2CEKwO+5vvagu9AjbjUvFWiBZJh9AfYKmIz1g+hMZ5L
+   7rXllncBj/NLeiUAsh9ij/7FlMiPoyQ7y+sp3b16O9PBtLdfcpUzn0EwJ
+   Q==;
+X-CSE-ConnectionGUID: wveR+8v0TJaNKM8PX3j3Lw==
+X-CSE-MsgGUID: cs9z5RIFSfy08XVWNdpOMA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11352"; a="41105529"
+X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; 
+   d="scan'208";a="41105529"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2025 06:13:23 -0800
+X-CSE-ConnectionGUID: kuWEpc3JQdWW113ZADD5WQ==
+X-CSE-MsgGUID: r9mxKPfoREW6/MVEd3c6sQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; 
+   d="scan'208";a="115099483"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2025 06:13:16 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id E5D12120289;
+	Fri, 21 Feb 2025 16:13:13 +0200 (EET)
+Date: Fri, 21 Feb 2025 14:13:13 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Michael Riesch <michael.riesch@wolfvision.net>
+Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Gerald Loacker <gerald.loacker@wolfvision.net>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Sebastian Fricke <sebastian.fricke@collabora.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Paul Kocialkowski <paulk@sys-base.io>,
+	Alexander Shiyan <eagle.alexander923@gmail.com>,
+	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 04/11] media: dt-bindings: media: add bindings for
+ rockchip mipi csi host
+Message-ID: <Z7iJ-UaLabqK4ZhY@kekkonen.localdomain>
+References: <20250219-v6-8-topic-rk3568-vicap-v4-0-e906600ae3b0@wolfvision.net>
+ <20250219-v6-8-topic-rk3568-vicap-v4-4-e906600ae3b0@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|SA1PR19MB4880:EE_
-X-MS-Office365-Filtering-Correlation-Id: ef12ec26-fed6-4566-3b78-08dd5281e303
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|7092599003|5072599009|8060799006|15080799006|461199028|19110799003|3412199025|440099028|1710799026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?1n4LIlse0pGHyjDiIjPRvp0Xe35KCCccb8H2fSiN1Y9hfTnAap9suUWxUGbV?=
- =?us-ascii?Q?uuqMEwUQMgRfx6yemoA4r6wcmELsSGQmGC7+gzfYdfxDfbypiRVZ+PeplTv/?=
- =?us-ascii?Q?eWt5QdwDsHCm/cm0gKFEsnGNQ+xay8pIYiubl3TclU3hqQFH+phW8I8LMcAN?=
- =?us-ascii?Q?z/dKsdbRK/WStQm+kRwQC5GnU5p6PWR1IAD0H8bdEPZXKppbTrwtFPRfyU5P?=
- =?us-ascii?Q?dH64+OREbmJxn9mFdd3Tuuw5IsAzrqoFZP4dJ9O2vmomn/dUUWTjBRMB4Tgj?=
- =?us-ascii?Q?CVejHPjQgXfxepaQT/o5lTUT01gkKaXOTXKRUPTqMkJT/6tPEAppEpICsQC1?=
- =?us-ascii?Q?VVmR1C3FdBImT6VGf9YOrtj05h+tyfPVMUz2it1uFo/vKnJb/nAZ6RT48AwC?=
- =?us-ascii?Q?/+tJXpck1BttPwDjQwR5e+7hSmDYhWROmWmpcxEN9wKD5xiwxF1K3reqlf13?=
- =?us-ascii?Q?ESfdeYmS5NaHHqHGDCJAez0FIxn5s1r5uRBoKvp4iHdYYVSazo5knQUk9z4j?=
- =?us-ascii?Q?aGadfK2SY5uCzjPYfjLVZqCruEsfOZQMVhBWUL/ke06+/7PWLtcvcc5ysHcM?=
- =?us-ascii?Q?YPFtkD7EJu7hiLdsvs6/jZ8e8kmJKPaLOUrWQ5Q8/d5wlY9yOkzzajoYQx50?=
- =?us-ascii?Q?q7jdLu/5mJXTzDovh8hEOIK2f+UTfRzMipUMKLloLGEv9f9hFJ8zvQ41tYtt?=
- =?us-ascii?Q?njnfWjZZVUPDIE1b+o7yAQLigT02Nsy1dYVyqSwMUKqYzsPdQbkIva3V7Moq?=
- =?us-ascii?Q?sAyVi5x6JkTjacTJtr4A6+EPwfFRELUAmPR7lUTl/z+oxTJQ+sGG5nR7aIKu?=
- =?us-ascii?Q?ATQ/KaNVDJKlv2qvVT7KaqbRP4XxYrqMP/WlCL+XIy2sPlsbiNoGZJvmsOB8?=
- =?us-ascii?Q?X9gGHz/g/7HBhc7x6i52RcOIMV8EcimLntwNIswxyKf2iTvUWlfbaCt1uafK?=
- =?us-ascii?Q?YlP4yUPVWocfGoPOvMWDwRWvkiO6fFnm37vPAPXUAYx95Y6QWoA2euIsVN5Q?=
- =?us-ascii?Q?BZlMtc+kDR6zxIPaoxIq17Z3S/DBvwz7gZn9wXH4el9ZnHmXfq3C6YU9ospD?=
- =?us-ascii?Q?9LPqpUw3xGXfxrZ8jjc5rpiU4zdkE7p2GgGDQBNtf9J4hCtwYEQ=3D?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?zsTg/IAD/S0fKpm9YkZCdNJIjweiRCz9iuCj0HFlHwjKonpBtvhxrMHRodx2?=
- =?us-ascii?Q?/f+U46TkfSSUfkr7wdt5m0yTcV66WH82tG8/x/4bNGgGixmMEycRBaf2uIHt?=
- =?us-ascii?Q?rEX/bIXnObH30D1CZ0feEd9VtmqJ2wJMuDG69/YOmVTSmigIrqM6rHoukpqT?=
- =?us-ascii?Q?4a6qE91qlxqj3o6tEII7Zy3G5aVE2gmTbx16Rn087lJnYTVTmokK6CEgmJSY?=
- =?us-ascii?Q?sRPWLwMr0demqNOCTgSawn2uYx/v45cK48G9/qj/dEg6jj2wMHah6tBPTPzL?=
- =?us-ascii?Q?/rd7/SP894OfUE0MSRB0WOZkNZZeg+Kg/M2QUYxNrLnpfcgBr22iBYZdk4bt?=
- =?us-ascii?Q?/nOpIwgq1R+EPLPMlCBq8QrTeg18z2/4xtbhlPh9DFkva6G5GI9gKw/p8wdY?=
- =?us-ascii?Q?s1/kDJkxjvrznu5VD85qyzoX65K/j/PvGcJKdyPJkERfZUCy2snCWqdhtOIe?=
- =?us-ascii?Q?aGCOqNYB8eagvdzjoi/QPX9lqWyliuBVM8eB1bGdVLf7hlZJcoFg7EQ1EKWM?=
- =?us-ascii?Q?Esz1JgUYcdblYiuBlRdbUvqkQOChIN2zmcbCDk3KUDokSUgl2JuKVJt6/obe?=
- =?us-ascii?Q?Dpdzw2NBNxZvoG+ySSQgR1tF2PkFded3o4hZRv7ZCwv/HcuNhkX+fX08jeWL?=
- =?us-ascii?Q?vCcyKV7tLLlCCbxgHHJW6PVTm4POdabhEq3es9FX/X8cbGhU9gyJhRlvCpyp?=
- =?us-ascii?Q?pCYxUy+ITjAolzyDhNIRhh3pXwICFcjBkWPWJPwjWZs+gK2AIN2CXjy8ZoCk?=
- =?us-ascii?Q?MDOPdRAJgTzlaJx/Nt0D3MFuE6COB8cNRA3zfHZWO1XLCLamTymr1sNgbad9?=
- =?us-ascii?Q?gvsSEz6O8kXnr9MKLAovrN5u/UxcW0IlwJd4ufmkHN1eGoY+WmLBztepOtS4?=
- =?us-ascii?Q?NMgGnePwHfiNLFaHLuUEq4+rrm7JjXaN8Ts5AVYYQ/Hw4y9G6yuBQ0qk+i5Y?=
- =?us-ascii?Q?Y8f6BvzJ4DyaToY1sL0YWWKDCEKyh6someOXZcXFRuVHUtahpF0whwWszfrS?=
- =?us-ascii?Q?t+fSYaxw8ppxJuWttu/lwWrHZzKkrlUBPXwXqgf1I7Fo3GDK9aH2CZR+wXht?=
- =?us-ascii?Q?F5wilWbbGFOJbnMcwgZYKrO9XjrrHYI6QoktJwsp7EKeUes8aNgzffU+8keO?=
- =?us-ascii?Q?mAse9OHUAN3WAkZ+hcdrCS9TlkFV6mI75xjfDhrqPbX3duSMei0SbWRDPg1Y?=
- =?us-ascii?Q?stjRp+1GVKsRZpkeMRFL9AWCdpzJ0r5zMzkYhlngMU256+i2DvGgphELlF6q?=
- =?us-ascii?Q?tRqtj+13OiHoBfC2nxDD?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef12ec26-fed6-4566-3b78-08dd5281e303
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2025 14:13:17.4270
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR19MB4880
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250219-v6-8-topic-rk3568-vicap-v4-4-e906600ae3b0@wolfvision.net>
 
-Good catch, thanks! Will fix and send a v5 after a quick test.
-Also found that the addresses in the tsens and qfprom nodes in patch 5 need
-padding.
+Hi Michael,
+
+On Wed, Feb 19, 2025 at 11:16:35AM +0100, Michael Riesch wrote:
+> Add documentation for the Rockchip RK3568 MIPI CSI-2 Host unit.
+> 
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> ---
+>  .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 123 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 124 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
+> new file mode 100644
+> index 000000000000..288941686e96
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip RK3568 MIPI CSI-2 Host
+> +
+> +maintainers:
+> +  - Michael Riesch <michael.riesch@wolfvision.net>
+> +
+> +description:
+> +  The Rockchip RK3568 MIPI CSI-2 Host is a CSI-2 bridge with one input port
+> +  and one output port. It receives the data with the help of an external
+> +  MIPI PHY (C-PHY or D-PHY) and passes it to the Rockchip RK3568 Video Capture
+> +  (VICAP) block.
+> +
+> +properties:
+> +  compatible:
+> +    const: rockchip,rk3568-mipi-csi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description: MIPI C-PHY or D-PHY.
+> +
+> +  phy-names:
+> +    items:
+> +      - const: csiphy
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port node. Connect to e.g., a MIPI CSI-2 image sensor.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              bus-type:
+> +                enum: [1, 4]
+> +
+> +            required:
+> +              - bus-type
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Output port node. Connect to RK3568 VICAP MIPI CSI-2 port.
+
+What's the purpose of a port node without an endpoint?
+
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - phys
+> +  - phy-names
+> +  - ports
+> +  - power-domains
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3568-cru.h>
+> +    #include <dt-bindings/power/rk3568-power.h>
+> +
+> +    parent {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        csi: csi@fdfb0000 {
+> +            compatible = "rockchip,rk3568-mipi-csi";
+> +            reg = <0x0 0xfdfb0000 0x0 0x10000>;
+> +            clocks = <&cru PCLK_CSI2HOST1>;
+> +            phys = <&csi_dphy>;
+> +            phy-names = "csiphy";
+> +            power-domains = <&power RK3568_PD_VI>;
+> +            resets = <&cru SRST_P_CSI2HOST1>;
+> +            status = "disabled";
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                csi_in: port@0 {
+> +                    reg = <0>;
+> +                };
+> +
+> +                csi_out: port@1 {
+> +                    reg = <1>;
+> +
+> +                    csi_output: endpoint {
+> +                        remote-endpoint = <&vicap_mipi_input>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index cd8fa1afe5eb..d83a7762dbe3 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20407,6 +20407,7 @@ M:	Michael Riesch <michael.riesch@wolfvision.net>
+>  L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
+> +F:	Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
+>  F:	Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
+>  
+>  ROCKCHIP CRYPTO DRIVERS
+> 
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
