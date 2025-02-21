@@ -1,168 +1,138 @@
-Return-Path: <devicetree+bounces-149260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F31E6A3EECA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 09:36:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75B64A3EECF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 09:37:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD32F7AC88A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 08:35:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9A951889777
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 08:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 457FC201028;
-	Fri, 21 Feb 2025 08:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5310E201028;
+	Fri, 21 Feb 2025 08:37:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A0mCHeJz"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="N2CLjoRF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36994201004
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 08:36:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F7341FF1DD
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 08:37:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740126979; cv=none; b=BeLks6kUTUHlWWzqyp3pKVYx1SQimxZ9iRtgD6m5uocGUnZgM5H18jvXX9g22Ahzkz01j4OdzLpYipbhbA9gWYpLbmdGkqgTz+BwT+mbGoODSz8mBRTvwJuS+g88ZhrQStGYwJb0gnNfle/cVMxgp7s9NDiODmaelmZcEFeUhR4=
+	t=1740127051; cv=none; b=Cw901joIhcHfZizoGmOaEuN9bi9G5pbFbvg9SbBXIUndPq0oiRfS4qpHyrB+buQB+k9pAzS8BYI84Rf6sthdKbBZhmuqI6TMPDt5cvd5Yh/ixURGwJvUH6uF1dpjKb9m+7GiZHooUQo9v03U18S3JPKzjjtxM6irrAjzSC+7PVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740126979; c=relaxed/simple;
-	bh=X65HoBLNdWc+ar+FG9X4zpgTBh0u4+kjCrslR/6RP3U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Lm7B5i4TEmPPZObk6WXeqhE2zRoOK+X1T74v5Cf6sbVz7Ey5bqpBMyTBoDsla2NeeHtFwd0QCEGjl7/h7yVRGMqslp4RN1WU3oAPYnLNqAFfIbMMbXwHhB5JtxHb8jmix/CXqbHHpf+UDbupeZ9CNMEgvjtQSYnkxolDlWWFKig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A0mCHeJz; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5dfb26020dbso283393a12.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 00:36:16 -0800 (PST)
+	s=arc-20240116; t=1740127051; c=relaxed/simple;
+	bh=1Pyc5XSXk8/KpOI0I+Y0iOOSNDehTqvQGNhqxWmM4TE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gZ6o2ojMuTysOqAjcHnHEL/gD2MabyYnD1qG473sp1WOPTMnFNrgbWSgxxirOXhC7zAd0QB/+XOL0P6dlBlg7h7CaEqCBKO/k05x0NEeKPkEDVL5whoTJGmdcw9iFUQPsqoqgO6xZcxy1tGTPtODAOGQudwDjrBN+cBVYCrgxRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=N2CLjoRF; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30613802a6bso18715651fa.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 00:37:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740126975; x=1740731775; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QKL8Ay+wgKZPnwjJZqrrXxULzTRfOvNphhjWatjKPCg=;
-        b=A0mCHeJzY207G7dtGxk+0capY1k0OLcZqLe5zSqfm3p93W3dWS7IdWFLDSfHDHCZ0l
-         Au7PO7p9zWLEaDFGy3mr+KIWmBVuTdFwcTIoFmSBSkC/TIaJMmqnpWzGaP5GziDiN4oX
-         0tgrIRVEUd0WpMkKS1CTbSCQZ2T7ricjjkho3XB8AN6YbjGypcZqs1pnI8Dbkdtlf4nd
-         Hytp4IwJrQwmhDfv+NEAjBczw7WK5zrLDCwe67x1hp/JqNl2Zo3mEuBh8EfDg7YW5+Z1
-         U30LFxkIfH2I1K+SVL0//CpI924voIB+eaov1NrQ/S+B49pcOsM7lv8oa5cr2OmelkCH
-         EpFw==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1740127047; x=1740731847; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fW/FAUY+BtuxgqThnl6ySpYQqHb8f9LhIhu4HPMnZ10=;
+        b=N2CLjoRFHcoshO2ncCSOlJbY+mx4oO6D0aFI5TFfFT6oe01+/VcP0Kq7EfOrOR6+nE
+         KDfo4RhqnXmSYSpsdrX69MTYP33TAXvGeN4HBtGKpoMkXAEZI4pGUcolWMIyyP4e/kT4
+         RfROlg08rffd2AWfCu6nFhiTp/rYYcXjMKvF4cA37ECEhSM1penkRhlJw/HBD6i6BTCc
+         5HG1dGQ0JGdcPnYS5iMFM/omdul/l70eKl6NfcUTratis0zsYyTftkTF6Yq1+2XpDV6Q
+         hLmYRqba22AToEmwjvyHnszwJba0Wutkg6XNonuq1e8ae/poJRHOdxw2Gi+nfCrFl6x1
+         Fp2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740126975; x=1740731775;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QKL8Ay+wgKZPnwjJZqrrXxULzTRfOvNphhjWatjKPCg=;
-        b=J47dxQfjTFa/rw4nCMKHXHtpZsNI9mCrNysKmPxZ4vTlEpdGpdpBdCZWhWUXJ4i6m+
-         Eu0SNuXAf3L9lfn68v65jKhXK/mlTQ6/eijEaypPb4mcjr+iDkaMj6ZV5N0YpX3xg0So
-         jRL1Xgn2ldlKK1KVeOGxWeASOrheWYgZDTEcEtUAPeO9ClikGsr7KIdRfRNS6qniQ8I7
-         B3m2pYGZpxtJShqkSKQQPyAYoi0osr+sX1XUl7DFH9A8FjAPD4RcdunpC/wSzDPe0KUt
-         zd1PKKzB13Dd79vpjPAt+rnILBiQLFqrvfwXlyKNELssZiRaZsbre84W2WtuHD1+zdIq
-         8MfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU5ajk1xiGvTNzDHe7sQ7T8cqDhIJJmW8z/y9m5KQUQd0L0/1XhI16dnWTDH3IbdEsFd+NAAVkOtCYn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxE5i+Jev8qCLf6BsBFKAzNFACJyYU6lybmu6sFckpKriwQyawM
-	Ua1l2ib+sg1Q/0o8zee1HS2c2cRt3cGDOAe+6liSHyfEBwYu9hRcfGkTy8VwHUI=
-X-Gm-Gg: ASbGncuIRTdQu4tLUY2C5ijoNVxPBGlYcZkHCLorKy/WRkb4k+T0qplxWxw5K7hYg0C
-	9vYq/LIVJjC/C6dAsKLxQTP2Xe8QY9LSxs/xiK4REosy+tIrmbJ6poW3Bh8X2cutaLR+6B4YlWW
-	Zfh8+2QsgS8rifNyCelOMGx61mu780BKOYW59cmHMcur80hk3hSoHotJUmzJaWbWd5w0txzbEab
-	jphjTAHrNJueKU0BwZzdzs8GMBPRtUHwCTpZS5ChkLCd3PkobMslaKfNER04QbqlqRgS0SK8gJe
-	7cGS/89VIHkvakpVNj/AuBZH9CYGBqW03N/RfoOQzqgM8d6gQGD+qjPvpUv2iQPH+LLBnQYUpfX
-	ahBzX
-X-Google-Smtp-Source: AGHT+IHhMeTPzc9o8Mc3A4pZdz/U1wryY1ec8xOhVWr4LxFvamT5fLAo0iBOuCyeUhsvP1eG63wRew==
-X-Received: by 2002:a17:907:7f9e:b0:abb:e7b0:5437 with SMTP id a640c23a62f3a-abc096c807fmr90322566b.0.1740126975506;
-        Fri, 21 Feb 2025 00:36:15 -0800 (PST)
-Received: from [192.168.0.18] (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb6e4df5basm1236889766b.152.2025.02.21.00.36.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Feb 2025 00:36:14 -0800 (PST)
-Message-ID: <938c66cf-5be4-4b14-bc1b-8b9f7afaf290@linaro.org>
-Date: Fri, 21 Feb 2025 09:36:13 +0100
+        d=1e100.net; s=20230601; t=1740127047; x=1740731847;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fW/FAUY+BtuxgqThnl6ySpYQqHb8f9LhIhu4HPMnZ10=;
+        b=HlwnDVBA8KMpP6BBs4Tofsvo22xJG9hQ5s/Cfs4q77IAlctmS//0B2MEGh9pWYlVKX
+         cYOYgqknLlXlDQ6e+lUAPVII9zDTWi0YuYEsnPCBnUASY7vQCazz3pc465Xd44FcZb1S
+         KQRZVCfHYYdOGaZ7C4X8q9UWM9qtc19+oVOYG5jWB40xOfQss7M/x6gxTF1jo+FsOZuX
+         kMFmUxfo0lSU9KbmicosvmS6avzNe3L/UPpsYI7tCeauryHalvGQ347ZKr50tz4CBPVa
+         r1Pe7Yb9s8P5Qjor939hiKC4TSlfOl6Haze7P+3UOnUf79fwfcFWFjBb/4SMnpOAclZM
+         KRfg==
+X-Forwarded-Encrypted: i=1; AJvYcCWeHk4CrkE+0T87vxsLq/AEFV5ML1P4mzcVpiDHFH7PGcg2xze/LPRvfyC2y3GmP3Z7CdRW1KjhMmpI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvCf12q4bZJ4PHgypD0wEOV3ZEIIkK1/kwEWCQ6JPlYmmLwick
+	0r9R++EbBhWk7IsVNUOLF7PDjfTIkkRy67zHQC4YsAVK17CZbmYOyual9kvNX3n9oaZo/rGQHQ+
+	+N3/IJndS1qTas5rD2xaTGkzheI5piVjJAxWRuQ==
+X-Gm-Gg: ASbGncv2iVx0tsctRm2Z/WCttmpgdMLpt2ifBle4z+VEFJpeqytdLSlKKBN/sNARhqw
+	21vyw1K5K58WWIpvBMUqIsTma2zGEu3mtMEMzaTDOKqWCsUqJRfKxM9DGqKxjYGiG/sKLXY0e9b
+	s1D/7npHKTOjSx45VE5RlVozg9SH1HJYFRyfRRxJ0=
+X-Google-Smtp-Source: AGHT+IEVJYqpV94JpnSSmFsbKfheCNp8/0iZB0ZSGoVT/MInSsid5S3N4SwldmQ4L5O1E7gpGonbz4t6nSMa3dwR6i0=
+X-Received: by 2002:a05:6512:230a:b0:545:17b:3cf9 with SMTP id
+ 2adb3069b0e04-54838f5c910mr744359e87.48.1740127047367; Fri, 21 Feb 2025
+ 00:37:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v15 1/3] dt-bindings: i2c: aspeed: support for
- AST2600-i2cv2
-To: Ryan Chen <ryan_chen@aspeedtech.com>,
- "brendan.higgins@linux.dev" <brendan.higgins@linux.dev>,
- "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
- "joel@jms.id.au" <joel@jms.id.au>,
- "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20241007035235.2254138-1-ryan_chen@aspeedtech.com>
- <20241007035235.2254138-2-ryan_chen@aspeedtech.com>
- <SI6PR06MB7535BFD3377505F5191AED7FF2C72@SI6PR06MB7535.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <SI6PR06MB7535BFD3377505F5191AED7FF2C72@SI6PR06MB7535.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250217-03-k1-gpio-v5-0-2863ec3e7b67@gentoo.org>
+ <20250217-03-k1-gpio-v5-3-2863ec3e7b67@gentoo.org> <CAMRc=MdJszmZ8d1MGo=bfJ8TwqOYBPLe2Jfc9MfbErDUCMQktg@mail.gmail.com>
+ <MA0PR01MB567180C0FE89E3BEBAF2B12EFEC42@MA0PR01MB5671.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <MA0PR01MB567180C0FE89E3BEBAF2B12EFEC42@MA0PR01MB5671.INDPRD01.PROD.OUTLOOK.COM>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Fri, 21 Feb 2025 09:37:16 +0100
+X-Gm-Features: AWEUYZkPeZ_f9Qkm0Zlcw9GzT4Sb60CF7RDIsxK-TmMLrjs_ajHOShwiT4OIdzI
+Message-ID: <CAMRc=MdX6KiGk1zBRK3bZpN3iM16-8mDq40sTez6YO2kJEq0zQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/5] gpio: spacemit: add support for K1 SoC
+To: Chen Wang <unicorn_wang@outlook.com>
+Cc: Yixun Lan <dlan@gentoo.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, linux-gpio@vger.kernel.org, 
+	Linus Walleij <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor@kernel.org>, Yangyu Chen <cyy@cyyself.name>, devicetree@vger.kernel.org, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Jesse Taube <mr.bossman075@gmail.com>, 
+	Jisheng Zhang <jszhang@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Inochi Amaoto <inochiama@outlook.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, spacemit@lists.linux.dev, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 21/02/2025 09:25, Ryan Chen wrote:
-> Hello Krzysztof,
-> 	I am going to submit v16, and will update the yaml file, in my this version will add aspeed,enable-byte.
-> 	So, we should I do about this patch about " Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>" 
-> 	Should I remove it ? or I should keep this Reviewed-by?
+On Fri, Feb 21, 2025 at 12:36=E2=80=AFAM Chen Wang <unicorn_wang@outlook.co=
+m> wrote:
+>
+>
+> On 2025/2/20 21:34, Bartosz Golaszewski wrote:
+> > On Mon, Feb 17, 2025 at 1:58=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wro=
+te:
+> [......]
+> >> +#define to_spacemit_gpio_bank(x) container_of((x), struct spacemit_gp=
+io_bank, gc)
+> >> +
+> >> +struct spacemit_gpio;
+> >> +
+> >> +struct spacemit_gpio_bank {
+> >> +       struct gpio_chip                gc;
+> >> +       struct spacemit_gpio            *sg;
+> >> +       void __iomem                    *base;
+> >> +       u32                             index;
+> >> +       u32                             irq_mask;
+> >> +       u32                             irq_rising_edge;
+> >> +       u32                             irq_falling_edge;
+> >> +};
+> >> +
+> >> +struct spacemit_gpio {
+> >> +       struct  device                  *dev;
+> >> +       struct  spacemit_gpio_bank      sgb[NR_BANKS];
+> >> +};
+> > Please don't use tabs in struct definitions.
+>
+> Why not=EF=BC=9FI see
+> https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct=
+-declarations-and-initializers
+>
 
-If you add a new property, then please drop the review tag.
+This is for the tip tree, not treewide.
 
+It's my personal maintainer preference. We do use both under
+drivers/gpio/ but I prefer no-tabs in new code.
 
-Best regards,
-Krzysztof
+Bart
 
