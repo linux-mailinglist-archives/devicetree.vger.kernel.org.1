@@ -1,187 +1,352 @@
-Return-Path: <devicetree+bounces-149410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5941FA3F659
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:50:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EA4CA3F694
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:56:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C70CE18915BC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 13:50:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C90F58634A1
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 13:55:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47BDA209F51;
-	Fri, 21 Feb 2025 13:50:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C58C20E027;
+	Fri, 21 Feb 2025 13:55:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OqzNB9be"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F3C9192B74
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 13:50:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E94920AF93
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 13:55:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740145816; cv=none; b=J+pa/QvVLvy43mPIe4cAiSqERQtth5D28KoNqvfntvqn5JCSLXh1VRnV//ard1kBb6vhhfJ1H907ZbXo9/oPmM/hUYDSR4Zn6QhaD24++LbQ9nZ0R6/H0U02bbSjcivlqR0LdmT4UX9OfikTcd8dpwQ1XEvNhkyOISNYoc+E8+Y=
+	t=1740146112; cv=none; b=EQyiIxfQF7SHLz1H7fHmJj8gfxEUEPo5cJZ20fRLeqdg5yQ4NzX4uaJXwC5Im1nGWh45zz5g/n0QreHotoSyzprTOW6eHUCQJavQRYzrlXSg2VIFpXrYCE6C7usRRl/MGwDwZZWjcdj4cHQtCHBTMqjzIs8CxuC/M6N/2PxdvRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740145816; c=relaxed/simple;
-	bh=+OGK6S7sr/csBxUsXpd2Oq8bTN43O0NJ2ft0Ngbg0qM=;
+	s=arc-20240116; t=1740146112; c=relaxed/simple;
+	bh=HO7i7XxZkxelkKOIDkBkNovHj3SjDp4B3C/5v6f+hnU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oT6DWZiAMGD8sVQttylZYFSjli3rsbs6qbNBOxu4lOBLYh+3HFJvmBtTNGsuH9a3WZLjwHHLPl7E7BOrwl2VeThuxK4czcgb3rh5qyT93fz0FYnAeBLtEi/ckFo0Olby23FDgfKSerItTTmH8cr7Ldq5ousWDeqRY3G3qw84G3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tlTPA-0005C2-FE; Fri, 21 Feb 2025 14:49:24 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tlTP7-0026xT-29;
-	Fri, 21 Feb 2025 14:49:21 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tlTP7-009zCt-1g;
-	Fri, 21 Feb 2025 14:49:21 +0100
-Date: Fri, 21 Feb 2025 14:49:21 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Donald Hunter <donald.hunter@gmail.com>,
-	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	Simon Horman <horms@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-	Kyle Swenson <kyle.swenson@est.tech>,
-	Dent Project <dentproject@linuxfoundation.org>,
-	kernel@pengutronix.de,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 07/12] net: ethtool: Add PSE new budget
- evaluation strategy support feature
-Message-ID: <Z7iEYQzsdpUFmfZE@pengutronix.de>
-References: <20250218-feature_poe_port_prio-v5-0-3da486e5fd64@bootlin.com>
- <20250218-feature_poe_port_prio-v5-7-3da486e5fd64@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=B9Ht5tvHnIZkoKQMpOFCXodB7Z1mp763THdq+skIlT0dImr0FuGcHYjwfTVGcRrfHoco7P4iyZdK64oQosdsSUJ0EhvBOBWchIZrSuj5e8O5Ubpa1ATB+/BcNbmQ2nLnbKQlBURlj/U+RXSU+akAqcCF1BCZyNoIYvMCyGPCuP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OqzNB9be; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-54622940ef7so2313463e87.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 05:55:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740146108; x=1740750908; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6wNJiZKSoKPVlfFfRZ9OJ6JR74GVm4JTrMp+TJUPtiw=;
+        b=OqzNB9beJMATa+jmK/3+y42ZLvQNd483fXxOjn8mae909RDFMGv+f5YSUU/6RbM/oQ
+         RlIGUfcw7SSeo9cR48naWmpM4tWIcwISouhli1qgWygwPhZHGMQlTfgFu7mb0YXgf+wT
+         wcSk5BS2TgE82tX9ybWd+RcvjWB/lhpxUpcUPuYKjhtGFT3p/yrL5NX7XWeXz0LtEJbU
+         NDRbwunNMevnRNqcW1Bu/mB8b3JO9awcb2vrBkPqQf+kZSqmrymk+qIKqNFN93E3z/Mv
+         N9Xo7yyWKK2r0sVHAn7pg4Mgnn8EjckACdbsyg1G16ABLN7TggyqGYE5U+bbTmNOeIyb
+         EQMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740146108; x=1740750908;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6wNJiZKSoKPVlfFfRZ9OJ6JR74GVm4JTrMp+TJUPtiw=;
+        b=KI24dZHCfNkWozYYNLUoPWn96UcnI2uio4Ld+gCFYCaBGfoWx4foGWAAU8svAO26XA
+         6NmZQ4hnoZRzaGUvuk6Rc1e0rV2+1jQ7av4vBKuKaGkKE+Uo9ObWXY41k1A18HzzvWKw
+         hai+MGRaERFiQSRkCRx/yRkpvS5jxZcwQCwIs0q/b2wALn4VzMy1BPMni8edOkns3Wv9
+         UEmg+08kwoVxHwUe6Qx3OAKNEqKTrhj3lpy454fZBnAL/loqQ71r5+y23XBMzQRJeWYZ
+         pVV2Go3vv3FXqdExBs9EW9Pw/sWnRXpBYY8LWUmOddthAqskc9Tz1tFdWCLRbhw8NBwE
+         5wHA==
+X-Forwarded-Encrypted: i=1; AJvYcCUkzQX7XuL+HSnC9kduxbaIacVN9o/xwvNvweyp69gyU+D4v9F0f7uHAs8hn65SVndd8xLD0sRLjh6e@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkJPLvBzbuvwkQKaCrhuwLYARaMZpEYb6J3Wyx1jFPW23o7AnP
+	YDhdsUKw+dY2Xemmedv0FtTTWiSb2HBWZzImc1Iw4cDMBn0HXr76UFhgMBq0udg=
+X-Gm-Gg: ASbGncuLB4uwmzY+CNO4czm2dyUxaZD12P006BIkowiwhdDiErZEAzx5hFK3hLrV20G
+	Z27cJcT/VvXyDLVUn633JvudTLr+o1ypx4M9jsiyOqF3hnuaNMt0vBRhejY2Y5iHz9GbqXLV59G
+	QQNDX8RsExYlpdgkPfNzdboTVrcpYy+5iKNf/RuXGgO5beFMugz/6PaKddn2OgOPNKKT7JKRPwM
+	emid1yTWjZUTiF5TsIoR90B0Laecv0TG9mAmaLH9LAHmXwrNoIQj/BoTf3NDtpSDT51A4bhRVIm
+	SnV9xlgV9v4E7sUYgLu1Ov56KZy3CupVNTV0KDvTZk7uyIKT04QdGO4s63ou2bbsb0ovlD9aJKR
+	zh1NPQg==
+X-Google-Smtp-Source: AGHT+IEXHt9PwDCHU7/bbW2hfGATqtM9ttAqItuz3wSuFU98Zngu1NcXX829XFI2rQeO3C89Zh/YMA==
+X-Received: by 2002:a05:6512:31c6:b0:545:c7d:1796 with SMTP id 2adb3069b0e04-54838f5be58mr1376208e87.43.1740146108161;
+        Fri, 21 Feb 2025 05:55:08 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5453035f233sm2085404e87.215.2025.02.21.05.55.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Feb 2025 05:55:07 -0800 (PST)
+Date: Fri, 21 Feb 2025 15:55:05 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	quic_mohamull@quicinc.com, quic_hbandi@quicinc.com, quic_anubhavg@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-bluetooth@vger.kernel.org
+Subject: Re: [RESEND PATCH v9 1/2] arm64: dts: qcom: qcs6490-rb3gen: add and
+ enable BT node
+Message-ID: <s36psuynvcak337thjcy6o532mvxrqogwutdinqodco6tzeebu@npaazdpl6qh3>
+References: <20250220112945.3106086-1-quic_janathot@quicinc.com>
+ <20250220112945.3106086-2-quic_janathot@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250218-feature_poe_port_prio-v5-7-3da486e5fd64@bootlin.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20250220112945.3106086-2-quic_janathot@quicinc.com>
 
-Hi Kory,
-
-On Tue, Feb 18, 2025 at 05:19:11PM +0100, Kory Maincent wrote:
-> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+On Thu, Feb 20, 2025 at 04:59:44PM +0530, Janaki Ramaiah Thota wrote:
+> Add the PMU node for WCN6750 present on the qcs6490-rb3gen
+> board and assign its power outputs to the Bluetooth module.
 > 
-> This patch expands the status information provided by ethtool for PSE c33
-> with current port priority and max port priority. It also adds a call to
-> pse_ethtool_set_prio() to configure the PSE port priority.
-
-Thank you! Here are some comments...
-
-> --- a/Documentation/networking/ethtool-netlink.rst
-> +++ b/Documentation/networking/ethtool-netlink.rst
-> @@ -1790,6 +1790,12 @@ Kernel response contents:
->    ``ETHTOOL_A_C33_PSE_PW_LIMIT_RANGES``       nested  Supported power limit
->                                                        configuration ranges.
->    ``ETHTOOL_A_PSE_PW_D_ID``                      u32  Index of the PSE power domain
-> +  ``ETHTOOL_A_C33_PSE_BUDGET_EVAL_STRAT``        u32  Budget evaluation strategy
-> +                                                      of the PSE
-> +  ``ETHTOOL_A_C33_PSE_PRIO_MAX``                 u32  Priority maximum configurable
-> +                                                      on the PoE PSE
-> +  ``ETHTOOL_A_C33_PSE_PRIO``                     u32  Priority of the PoE PSE
-> +                                                      currently configured
-
-Please remove _C33_ from these fields, as they are not specific to Clause 33.
-
->    ==========================================  ======  =============================
+> In WCN6750 module sw_ctrl and wifi-enable pins are handled
+> in the wifi controller firmware. Therefore, it is not required
+> to have those pins' entries in the PMU node.
+> 
+> Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 167 ++++++++++++++++++-
+>  1 file changed, 166 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> index 7a36c90ad4ec..0a3243499dfb 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: BSD-3-Clause
+>  /*
+> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>   */
 >  
->  When set, the optional ``ETHTOOL_A_PODL_PSE_ADMIN_STATE`` attribute identifies
-> @@ -1866,6 +1872,51 @@ equal.
->  The ``ETHTOOL_A_PSE_PW_D_ID`` attribute identifies the index of PSE power
->  domain.
+>  /dts-v1/;
+> @@ -34,6 +34,7 @@ / {
 >  
-> +When set, the optional ``ETHTOOL_A_C33_PSE_PRIO_SUPP_MODES`` attribute
-> +identifies the priority mode supported by the C33 PSE.
-> +When set, the optional ``ETHTOOL_A_C33_PSE_BUDGET_EVAL_STRAT`` attributes is used to
-> +identifies the currently configured C33 PSE budget evaluation strategy.
-> +The available strategies are:
-> +
-> +1. Disabled:
-> +
-> +   In this mode, the port is excluded from active budget evaluation. It
-> +   allows the port to violate the budget and is intended primarily for testing
-> +   purposes.
-> +
-> +2. Static Method:
-> +
-> +   This method involves distributing power based on PD classification. It’s
-> +   straightforward and stable, with the PSE core keeping track of the budget
-> +   and subtracting the power requested by each PD’s class. This is the
-> +   safest option and should be used by default.
-> +
-> +   Advantages: Every PD gets its promised power at any time, which guarantees
-> +   reliability.
-> +
-> +   Disadvantages: PD classification steps are large, meaning devices request
-> +   much more power than they actually need. As a result, the power supply may
-> +   only operate at, say, 50% capacity, which is inefficient and wastes money.
-> +
-> +3. Dynamic Method:
-> +
-> +   This method monitors the current consumption per port and subtracts it from
-> +   the available power budget. When the budget is exceeded, lower-priority
-> +   ports are shut down. This method is managed by the PSE controller itself.
-> +
-> +   Advantages: This method optimizes resource utilization, saving costs.
-> +
-> +   Disadvantages: Low-priority devices may experience instability.
-> +
-> +.. kernel-doc:: include/uapi/linux/ethtool.h
-> +    :identifiers: ethtool_pse_budget_eval_strategies
-> +
-> +When set, the optional ``ETHTOOL_A_C33_PSE_PRIO_MAX`` attribute identifies
-> +the C33 PSE maximum priority value.
-> +When set, the optional ``ETHTOOL_A_C33_PSE_PRIO`` attributes is used to
-> +identifies the currently configured C33 PSE priority.
-> +For a description of PSE priority attributes, see ``PSE_SET``.
-> +
->  PSE_SET
->  =======
+>  	aliases {
+>  		serial0 = &uart5;
+> +		serial1 = &uart7;
+>  	};
 >  
-> @@ -1879,6 +1930,8 @@ Request contents:
->    ``ETHTOOL_A_C33_PSE_ADMIN_CONTROL``        u32  Control PSE Admin state
->    ``ETHTOOL_A_C33_PSE_AVAIL_PWR_LIMIT``      u32  Control PoE PSE available
->                                                    power limit
-> +  ``ETHTOOL_A_C33_PSE_PRIO``                 u32  Control priority of the
-> +                                                  PoE PSE
+>  	chosen {
+> @@ -218,6 +219,63 @@ vph_pwr: vph-pwr-regulator {
+>  		regulator-min-microvolt = <3700000>;
+>  		regulator-max-microvolt = <3700000>;
+>  	};
+> +
+> +	wcn6750-pmu {
+> +		compatible = "qcom,wcn6750-pmu";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&bt_en>;
 
-Please remove _C33_ from these field, as they are not specific to
-Clause 33.
+pinctrl-0
+(pinctrl-1 etc.)
+pinctrl-names
+
+
+> +		vddaon-supply = <&vreg_s7b_0p972>;
+> +		vddasd-supply = <&vreg_l11c_2p8>;
+> +		vddpmu-supply = <&vreg_s7b_0p972>;
+> +		vddrfa0p8-supply = <&vreg_s7b_0p972>;
+> +		vddrfa1p2-supply = <&vreg_s8b_1p272>;
+> +		vddrfa1p7-supply = <&vreg_s1b_1p872>;
+> +		vddrfa2p2-supply = <&vreg_s1c_2p19>;
+> +
+> +		bt-enable-gpios = <&tlmm 85 GPIO_ACTIVE_HIGH>;
+> +
+> +		regulators {
+> +			vreg_pmu_rfa_cmn: ldo0 {
+> +				regulator-name = "vreg_pmu_rfa_cmn";
+> +			};
+> +
+> +			vreg_pmu_aon_0p59: ldo1 {
+> +				regulator-name = "vreg_pmu_aon_0p59";
+> +			};
+> +
+> +			vreg_pmu_wlcx_0p8: ldo2 {
+> +				regulator-name = "vreg_pmu_wlcx_0p8";
+> +			};
+> +
+> +			vreg_pmu_wlmx_0p85: ldo3 {
+> +				regulator-name = "vreg_pmu_wlmx_0p85";
+> +			};
+> +
+> +			vreg_pmu_btcmx_0p85: ldo4 {
+> +				regulator-name = "vreg_pmu_btcmx_0p85";
+> +			};
+> +
+> +			vreg_pmu_rfa_0p8: ldo5 {
+> +				regulator-name = "vreg_pmu_rfa_0p8";
+> +			};
+> +
+> +			vreg_pmu_rfa_1p2: ldo6 {
+> +				regulator-name = "vreg_pmu_rfa_1p2";
+> +			};
+> +
+> +			vreg_pmu_rfa_1p7: ldo7 {
+> +				regulator-name = "vreg_pmu_rfa_1p7";
+> +			};
+> +
+> +			vreg_pmu_pcie_0p9: ldo8 {
+> +				regulator-name = "vreg_pmu_pcie_0p9";
+> +			};
+> +
+> +			vreg_pmu_pcie_1p8: ldo9 {
+> +				regulator-name = "vreg_pmu_pcie_1p8";
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &apps_rsc {
+> @@ -799,6 +857,39 @@ &pon_resin {
+>  	status = "okay";
+>  };
+>  
+> +&qup_uart7_cts {
+> +	/*
+> +	 * Configure a bias-bus-hold on CTS to lower power
+> +	 * usage when Bluetooth is turned off. Bus hold will
+> +	 * maintain a low power state regardless of whether
+> +	 * the Bluetooth module drives the pin in either
+> +	 * direction or leaves the pin fully unpowered.
+> +	 */
+> +	bias-bus-hold;
+> +};
+> +
+> +&qup_uart7_rts {
+> +	/* We'll drive RTS, so no pull */
+> +	drive-strength = <2>;
+> +	bias-disable;
+> +};
+> +
+> +&qup_uart7_rx {
+> +	/*
+> +	 * Configure a pull-up on RX. This is needed to avoid
+> +	 * garbage data when the TX pin of the Bluetooth module is
+> +	 * in tri-state (module powered off or not driving the
+> +	 * signal yet).
+> +	 */
+> +	bias-pull-up;
+> +};
+> +
+> +&qup_uart7_tx {
+> +	/* We'll drive TX, so no pull */
+> +	drive-strength = <2>;
+> +	bias-disable;
+> +};
+> +
+>  &qupv3_id_0 {
+>  	status = "okay";
+>  };
+> @@ -842,12 +933,86 @@ &sdhc_2 {
+>  &tlmm {
+>  	gpio-reserved-ranges = <32 2>, /* ADSP */
+>  			       <48 4>; /* NFC */
+> +
+> +	bt_en: bt-en-state {
+> +		pins = "gpio85";
+> +		function = "gpio";
+> +		output-low;
+> +		bias-disable;
+> +	};
+> +
+> +	qup_uart7_sleep_cts: qup-uart7-sleep-cts-state {
+> +		pins = "gpio28";
+> +		function = "gpio";
+> +		/*
+> +		 * Configure a bias-bus-hold on CTS to lower power
+> +		 * usage when Bluetooth is turned off. Bus hold will
+> +		 * maintain a low power state regardless of whether
+> +		 * the Bluetooth module drives the pin in either
+> +		 * direction or leaves the pin fully unpowered.
+> +		 */
+> +		bias-bus-hold;
+> +	};
+> +
+> +	qup_uart7_sleep_rts: qup-uart7-sleep-rts-state {
+> +		pins = "gpio29";
+> +		function = "gpio";
+> +		/*
+> +		 * Configure pull-down on RTS. As RTS is active low
+> +		 * signal, pull it low to indicate the BT SoC that it
+> +		 * can wakeup the system anytime from suspend state by
+> +		 * pulling RX low (by sending wakeup bytes).
+> +		 */
+> +		bias-pull-down;
+> +	};
+> +
+> +	qup_uart7_sleep_rx: qup-uart7-sleep-rx-state {
+> +		pins = "gpio31";
+> +		function = "gpio";
+> +		/*
+> +		 * Configure a pull-up on RX. This is needed to avoid
+> +		 * garbage data when the TX pin of the Bluetooth module
+> +		 * is floating which may cause spurious wakeups.
+> +		 */
+> +		bias-pull-up;
+> +	};
+> +
+> +	qup_uart7_sleep_tx: qup-uart7-sleep-tx-state {
+> +		pins = "gpio30";
+> +		function = "gpio";
+> +		/*
+> +		 * Configure pull-up on TX when it isn't actively driven
+> +		 * to prevent BT SoC from receiving garbage during sleep.
+> +		 */
+> +		bias-pull-up;
+> +	};
+>  };
+>  
+>  &uart5 {
+>  	status = "okay";
+>  };
+>  
+> +&uart7 {
+> +	/delete-property/interrupts;
+
+Missing space before 'interrupts'.
+
+> +	interrupts-extended = <&intc GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&tlmm 31 IRQ_TYPE_EDGE_FALLING>;
+
+Align by the opening angle bracket.
+
+> +	pinctrl-1 =  <&qup_uart7_sleep_cts>, <&qup_uart7_sleep_rts>,
+> +		<&qup_uart7_sleep_tx>, <&qup_uart7_sleep_rx>;
+
+Align '<' vertically.
+
+> +	pinctrl-names = "default", "sleep";
+
+Vertical list, please, aligned by the opening quote.
+
+Also please add empty line before status.
+
+> +	status = "okay";
+> +
+> +	bluetooth: bluetooth {
+> +		compatible = "qcom,wcn6750-bt";
+> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+> +		vddaon-supply = <&vreg_pmu_aon_0p59>;
+> +		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
+> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+> +		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
+> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+> +		max-speed = <3200000>;
+> +	};
+> +};
+> +
+>  &usb_1 {
+>  	status = "okay";
+>  };
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
+
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+With best wishes
+Dmitry
 
