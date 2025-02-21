@@ -1,164 +1,107 @@
-Return-Path: <devicetree+bounces-149432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E382CA3F7BC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:52:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09C46A3F7C8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:54:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57CD642678F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:50:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B8B83B9B29
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:52:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 952BD20E038;
-	Fri, 21 Feb 2025 14:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 079B021019C;
+	Fri, 21 Feb 2025 14:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="du5vhu5y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ePu0mX4u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 033701D9688;
-	Fri, 21 Feb 2025 14:50:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 155E820F09A
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 14:52:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740149421; cv=none; b=T/c+WCBj9g36DN8AiS3zQQ5GQtJLlwOmyVoEBxBAv9CVbEi2R0BJJAmMAev7Er93xLyUNdFc858++o/8T2vPk+Ae6tmyHLEO2c2bpkPElIoym82rqzmasVg4vqBmYfQmqfCG4B86LctbtAspXD9Xp90utUJi80AhN3GYZ5RCeSE=
+	t=1740149523; cv=none; b=RL1CE7gi+UlAt/p3WEcy588ReRUlVcekWraR3wksYLcPGRdCLPqvqEyc6uWeAyVIXdZ/iC2lGyUDc+361Rs+bXq21hSg/zbYPEs3d7KN9euVKAjFIt5ocJQu/2Kf0yFiDoODTGOPa092+YOTwtZhy/S7BzsopxH2/iv1U4X7TKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740149421; c=relaxed/simple;
-	bh=ICu7jURi+eCrwMnxHY2hXLjjLEW2O8TGiD4PRBFSzOY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=n0z4majEHLWeTslQfpl8NmwU/o0bakDrrdykSw01dFDbt67ggI7j8FN/OqW6EFmRAga5z+TRq8hHjc/caZknAQYFBtl7jgKFHYgqjrpNoLDXoQuaqMl7yIx8DjSd753n+MZofTlNB6NyI3cfr5ykNFlZZieFve9zJE6593Qps9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=du5vhu5y; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2f9b9c0088fso3884859a91.0;
-        Fri, 21 Feb 2025 06:50:19 -0800 (PST)
+	s=arc-20240116; t=1740149523; c=relaxed/simple;
+	bh=Q83QYgMg9BNvYcSvd+0OOQUvMk1vcqMy7DCAkX3vSsA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TLSUi6H/aruqkf+c84UaPbq/m3bEjQqv5VYoO+AG5E2e73eEmXmTArGTCwc8aeHspvha6KbmFpZb8wuOc9VBJp5B6C+XR570Eb4FDghVGOQrDmeGe/VwC0+GU1KbuN+WylFHIe6jRL48amowfXPqyXi5q+YQuFIn3TEdWtfps6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ePu0mX4u; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-546202d633dso2303099e87.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 06:52:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740149419; x=1740754219; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TnaCgJJbjuqCnFgvXsUR+uoiDyGbCE42OXDtThDpJQE=;
-        b=du5vhu5y7dEITCD11UhyEE28TAC7uDWe2CDSTaUqP6wISABQTdqxOuxw1F5CuajhCY
-         bHjOpjbRf7KEqnOCIyoNCAn5x2wwLW4IjGDmJsWA5/FMqwgf4qzceZfdqgK4Io7PlA5q
-         VELpveQZZ0NiT5mOQjmeZQYyJBtIpV/CfPylOqMnzgZLUO4BYdMjb1e9KTRiQ3/143xF
-         In8A5KQR4dgq4Mf5UDVEjU6xQDw/FvXfEka/8v6k9nR7lM9ZHK3ipNPIBXp0ppWg21uJ
-         etpGo6V2tnvGozRBDgUR4N1HO2/vjcbJrCN/pq63e/4yIJ4RklzY8S3Gcav+pAnwuz2c
-         Vfig==
+        d=linaro.org; s=google; t=1740149520; x=1740754320; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=HErEzyWkwZ0RWbaKsVAHI18mvYGkCDcx4TEVCFIo6Ww=;
+        b=ePu0mX4uLCR9UaSHS0mKe82zg3BoMIoOtlqJ0Yo7TDSPa2+uI5PTb8qUsr1GatkaDi
+         5O/HQtVHKKTrpfNOew6ZpIezyOZumtkpSVeXJ3V0b47bRQrWZVrUZqTSBbIGwQRdBjzM
+         fmOLSt3KXeEkk4+05Pkn+AP4feDw2KNNOjcW9aEX8rOxJbZF3sfVhep7pY8RB84aCkPA
+         mIx9xU0Q9373EpvJalD5PMQ6X6QdQTaH6A96vJsiHZKKunHjop9ULflDMjG1LgOSvRdW
+         40PutE98+etUI4QLKj/1zR/IH21MDfgpQip4A1Km2jxemkX36pWU0+CaJHXnyUAt3K8O
+         VvEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740149419; x=1740754219;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TnaCgJJbjuqCnFgvXsUR+uoiDyGbCE42OXDtThDpJQE=;
-        b=DfZ3jmY3srZOPdUZNi2EqjOv65bSJ6hnLVc8y8Kh9lzGLJeOQ/RFaWCmOVLwL2lykR
-         yfVMpqEiGdDbCSAFMYyN71fG89P76t0OtRM0vZSV6FN6bn23sw63qw7XJSCDbmSYoPZ/
-         zrKs9obNjw8ftuGb9JjPiaeRNpYpjGOwzQ+afsugBxqXYPZ/HeBNj3w1lC+D0bACWO5U
-         c5ieestvA8xjtGYq18UfkHMFKY/Fkn4JdslQHihga5SDcmkf4oSyU6OafOGqbc537c31
-         7SMsXek5561qVngNoJqWvsHFTuMYdpPULuaNw73DG7r9A92WmyreNJWE4oZPHb6wY/Z5
-         5/og==
-X-Forwarded-Encrypted: i=1; AJvYcCUw8JKJU3DFHzTwR+EFoO3ylIe6AA4+DdMIMH8O9eKvFF43Venv07MMGekKRgfKRVGQ4a1dpmgKwONRH8Oo@vger.kernel.org, AJvYcCWO4V7bMxNnlokDrq7BB7zzWQFdMOGxLGhRZ1U1lRMAhlYrIvFb49RTj6OdWbgQOLaS+uk8sHmmFyG4EA==@vger.kernel.org, AJvYcCWvDVKkFp4id18aho4wq/te2iKDTPyHZacBt15lWQSlRW86IOIEq+1aWsNsafPUPu7V/x8hWcywYnF6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLoS+GTs/rwdjNT3pvuDTFkO5O2FszZ13N0KUoYzBTqXt7wJ38
-	yeaGMAtC8GiJxjaNLMHmOUInPh/0dXs12ndr6ZIVW4+Vvow72WLLiP55qDOkrW3arfteYdCxgTa
-	6r1BD0w95qVzZTTwRW60XtGxmBF0=
-X-Gm-Gg: ASbGncvP3aM3Uzgpvex1qDAE0cAJb7fWBJPJoXQ1lapgUisyYSoxIAV6ZwBRp0uWa1c
-	7qpwzyrVdASQGDIrg0w2xZj31V65S4quQ6X3CmCE1KfFlk4apy/Mu66i8CpUVjILP9E/vqAson8
-	KTqAbjBQ==
-X-Google-Smtp-Source: AGHT+IGL5LVGSgK6IiICRZeBIWASDeK/qq211mmEywpTL8p7CKlj5qrng3Lt1HAaQc2t2ryZnSqP1uQVzUQ/vQHQd5g=
-X-Received: by 2002:a17:90a:c105:b0:2fb:fe21:4841 with SMTP id
- 98e67ed59e1d1-2fccc117c76mr14345975a91.8.1740149417752; Fri, 21 Feb 2025
- 06:50:17 -0800 (PST)
+        d=1e100.net; s=20230601; t=1740149520; x=1740754320;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HErEzyWkwZ0RWbaKsVAHI18mvYGkCDcx4TEVCFIo6Ww=;
+        b=PeDufOk9HIZp2bhXkP/rLpbSNpeP4yMNY/LWhOhbgUCd2xEzp6eNTD/TB5sMcep9D+
+         Xj5e7ogR1HlqV4MoJHyMKQo4CwW9R2jAMZccKJxi9zDCx2ZcBRXLkq1UPej8e1gnA2B2
+         BgnKrJSTRshuYYzZDFmc5oWdorWl0zPxB3o0l6L1a7XuuV6Pov4DbIjYrk8iUvqsGW7p
+         bab9Ef9aicWLCY2zE1KhGd1qLKfDdgmmhNjtbFFswcIzBUBBu/GFzAVvEe4BL3KHb4qd
+         ArlyitzyPDRQOX51uHeGM3FXRrpG5RPh7O0xa+smclPP+YBdXeqPRDvh0QC/QN8C2SVW
+         qeVg==
+X-Forwarded-Encrypted: i=1; AJvYcCXU1vwbcQY3+MYLpFxmCthYs+XWichtjzqbWGKRQ/CZiVWvZMGApS5pIJ5IMKGwJCIaVH5MaveiSvR5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNDOOLRKXmkMdiwFMXdq0TSqKTiKEH9uCRZ48EI9OQkmkN7cNA
+	+zjBw9p7sv7CBjE5N4GSe01IfeEKR8XpmmQtyTTz73ddUir6f+aA2kyeZaINWAtWh9YohJR+xyj
+	N
+X-Gm-Gg: ASbGnctsC0I22sxxpSQZSCLuJI6CKf1vPqO3Xl+nkzXETDJmpMxlRKd20inwyje2ISA
+	rBaicMZaMRSZecJeup5ufbSUtq24h7IO0bZdfbuXhVJe5lj7TGLThZfnE/Y8YIV0j3A8hiZJhFN
+	rtKuglGgTdTrYRyB1A18atShsYEs+I5EWmwo9AQWsT4PpRTwh7Pgb23upF32ziUdcBW4vgs9DQ2
+	rGuUKbz/uUIsLyWq6LxO1vXwHvbpOr2TAOuRwT/Fj5uZBQL4nSFRWQ+OiLSKv8Sw4iEfmwYwarZ
+	pvGzflv+eVkcxIk0RbuPTC+dNW7XGl8qPNcQs5BsazE1wZghr++PCWltWPLjYswnShA+wS4/61T
+	UXTEYVA==
+X-Google-Smtp-Source: AGHT+IFNLcfJ7gKB3ypJv7fmqVunoNkPKowHqZRPbtqkqs0FOKNliqghvaJdULQs4XtpGOsuoHAisA==
+X-Received: by 2002:a05:6512:3e1b:b0:545:1d13:c063 with SMTP id 2adb3069b0e04-54838ef088fmr1338727e87.14.1740149520104;
+        Fri, 21 Feb 2025 06:52:00 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-545317a7525sm2043942e87.13.2025.02.21.06.51.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Feb 2025 06:51:58 -0800 (PST)
+Date: Fri, 21 Feb 2025 16:51:56 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: George Moussalem <george.moussalem@outlook.com>
+Cc: amitk@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, quic_srichara@quicinc.com, 
+	robh@kernel.org, thara.gopinath@gmail.com
+Subject: Re: [PATCH v4 4/5] thermal: qcom: tsens: Add support for IPQ5018
+ tsens
+Message-ID: <5quz7ulnxvhsafmjxw2ktwfrkqjcnzeao2msfwdhltoz6im3c2@dh2dbczl2qkn>
+References: <hmhagxzvumlmzvnbw533ebzilbvknexarsnxjfwi4djq3eabkc@efferfxbxkt3>
+ <DS7PR19MB88835F4120912ED00626709B9DC72@DS7PR19MB8883.namprd19.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250120092146.471951-1-sergio.paracuellos@gmail.com>
- <CAMhs-H-VevC+_=HxhMU6-at0bKut_JqdgO7j2detuB4s8R_QFQ@mail.gmail.com> <Z7iHorlRgtsi1LOo@alpha.franken.de>
-In-Reply-To: <Z7iHorlRgtsi1LOo@alpha.franken.de>
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Fri, 21 Feb 2025 15:50:09 +0100
-X-Gm-Features: AWEUYZnevsycp0vJDlGMFc7DxBxXdxcU7bf0Djx6LzWJk3KIOpX1he7jf8P7O04
-Message-ID: <CAMhs-H-fcWU-rz_3FeAuRe0xdCMmvffX2zrZwwmt=8RYpY4Lyg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] mips: dts: ralink: update system controller nodes
- and its consumers
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: linux-clk@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
-	p.zabel@pengutronix.de, linux-mips@vger.kernel.org, 
-	devicetree@vger.kernel.org, yangshiji66@outlook.com, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DS7PR19MB88835F4120912ED00626709B9DC72@DS7PR19MB8883.namprd19.prod.outlook.com>
 
-Hi Thomas,
+On Fri, Feb 21, 2025 at 06:41:44PM +0400, George Moussalem wrote:
+> I've just checked the downstream dts and driver, it contains 5 sensors,
+> but only 4 are used. So I propose we leave the number of sensors to 5 and
+> adjust the commit message. Thoughts?
 
-On Fri, Feb 21, 2025 at 3:05=E2=80=AFPM Thomas Bogendoerfer
-<tsbogend@alpha.franken.de> wrote:
->
-> On Fri, Feb 21, 2025 at 11:48:34AM +0100, Sergio Paracuellos wrote:
-> > Hi Thomas,
-> >
-> > El El lun, 20 ene 2025 a las 10:21, Sergio Paracuellos <
-> > sergio.paracuellos@gmail.com> escribi=C3=B3:
-> >
-> > > Hi all!
-> > >
-> > > Ralinks SoCs have a system controller node which serves as clock and =
-reset
-> > > providers for the rest of the world. This patch series introduces clo=
-ck
-> > > definitions for these SoCs. The clocks are registered in the driver u=
-sing
-> > > a bunch of arrays in specific order so these definitions represent th=
-e
-> > > assigned
-> > > identifier that is used when this happens so client nodes can easily =
-use it
-> > > to specify the clock which they consume without the need of checking
-> > > driver code.
-> > >
-> > > DTS files which are currently on tree are not matching system control=
-ler
-> > > bindings. So all of them are updated to properly match them.
-> > >
-> > > I'd like this series to go through kernel mips git tree if possible.
-> > >
-> > > Thanks in advance for your time.
-> > >
-> > > Changes in v3:
-> > > - Address Krzysztof comments in v2 (Thanks!):
-> > >   + Drop reset include file since what it was defined there were hard=
-ware
-> > >     constants and no binding related indexes at all.
-> > >   + Update patches for not referring to this reset removed file.
-> >
-> >
-> > I was expecting this series going through the mips tree.
->
->   DTC     arch/mips/boot/dts/ralink/rt3883_eval.dtb
-> Error: /local/tbogendoerfer/korg/linux/arch/mips/boot/dts/ralink/rt3883.d=
-tsi:2.1-9 syntax error
-> FATAL ERROR: Unable to parse input tree
+SGTM
 
-Weird, it looks like dtc is not happy with the "include" line with new
-definitions? Are you getting this only with rt3883? Since all the
-patches are almost the same and I compile tested this before sending..
-Something got corrupted? I don't have my laptop now to check but I
-will recheck again on monday.
-
-Thanks,
-    Sergio Paracuellos
->
-> that's what I get after applying the series building for RT3883.
->
-> Thomas.
->
-> --
-> Crap can work. Given enough thrust pigs will fly, but it's not necessaril=
-y a
-> good idea.                                                [ RFC1925, 2.3 =
-]
+-- 
+With best wishes
+Dmitry
 
