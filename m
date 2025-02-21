@@ -1,97 +1,92 @@
-Return-Path: <devicetree+bounces-149419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF3EA3F6EB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:13:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C0CBA3F6F0
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:14:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDD233BB672
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:13:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC73B8609C6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C50DF20F062;
-	Fri, 21 Feb 2025 14:13:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 591A7204F77;
+	Fri, 21 Feb 2025 14:14:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E4V+FGgM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H1dXC+xm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE625433DE;
-	Fri, 21 Feb 2025 14:13:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB9B20E6FA
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 14:14:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740147205; cv=none; b=P9X0OQz3ctMuCTFPr4fSAgdNx6dhkZanxUEiMsaoTOC3eZN+YYEXD6ljpfWTog0eW33+O+UT22dbnGkS633DKeZa/C8gjHM0IQFENHyA7tV9wDbvahcy3rkjCuNNF299lf0h/sF5fRcZ9e5OfE4AlgUfwszzBUm54ucXXaX38Qg=
+	t=1740147261; cv=none; b=SRCECbZCPN4aKB6Dl+4jHJ3MSZPkJp3vtacAaUFBZuaYS/F7BZGre+U7+a8+X/VkQ9EQOXY0Usf+BM/eG1ZFObYjVVMUrzg5Qh1MrCofrQEIis+XZTikeJRLLVLml3Nz8wDEvnwuf7YLXUpHpJJaPhyY0wjBD6ixol9CKgtJIVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740147205; c=relaxed/simple;
-	bh=Rdw7VcsQXfPz8ijFFRK9pCO/RD7kMR5M0Z/uSgEDHcs=;
+	s=arc-20240116; t=1740147261; c=relaxed/simple;
+	bh=8R1ntMvdxgNOKHWq3nr/j34/07DXc1wBynfM1J+M5UQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EykDFFxpAFB0mvsVeEUm6hpVoMuslynDqvU/gFOkDffDSaNFTInw0rvMAwh3DLTpFdZcaLvVClQ/n7SYDmgCNpTB8Ukk8fdYM2m5KOzj0WOdOp0nN2hcDfB+4PI/wPmMaNQ1P5MNKBIqBH6M2to/mjZPsD/4qz18zIiqX26RCMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=E4V+FGgM; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740147204; x=1771683204;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Rdw7VcsQXfPz8ijFFRK9pCO/RD7kMR5M0Z/uSgEDHcs=;
-  b=E4V+FGgMeFEMoyeauFsbzatVvwZo9rI0kc6cYtZLdZtp/7+AXeqpG+G4
-   QPdQxvKOIlD1dbU03pAq4gs/xMlGOObnnz1qhl7BzHBHdiqKZ49znveVC
-   a/XzjliS8a0lzODEXZk32XoNpJaVgw6NxKihKyZdVVESua+SM2eOOHMo9
-   P9tUp2qWvXyVBCM7AFXgGbN2/8Vuo9ZCH2V2pUzee3i8g6AgX3s+OSXu7
-   HuMyRDXj78WzfH2CEKwO+5vvagu9AjbjUvFWiBZJh9AfYKmIz1g+hMZ5L
-   7rXllncBj/NLeiUAsh9ij/7FlMiPoyQ7y+sp3b16O9PBtLdfcpUzn0EwJ
-   Q==;
-X-CSE-ConnectionGUID: wveR+8v0TJaNKM8PX3j3Lw==
-X-CSE-MsgGUID: cs9z5RIFSfy08XVWNdpOMA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11352"; a="41105529"
-X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; 
-   d="scan'208";a="41105529"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2025 06:13:23 -0800
-X-CSE-ConnectionGUID: kuWEpc3JQdWW113ZADD5WQ==
-X-CSE-MsgGUID: r9mxKPfoREW6/MVEd3c6sQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; 
-   d="scan'208";a="115099483"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2025 06:13:16 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id E5D12120289;
-	Fri, 21 Feb 2025 16:13:13 +0200 (EET)
-Date: Fri, 21 Feb 2025 14:13:13 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Michael Riesch <michael.riesch@wolfvision.net>
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Gerald Loacker <gerald.loacker@wolfvision.net>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Paul Kocialkowski <paulk@sys-base.io>,
-	Alexander Shiyan <eagle.alexander923@gmail.com>,
-	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 04/11] media: dt-bindings: media: add bindings for
- rockchip mipi csi host
-Message-ID: <Z7iJ-UaLabqK4ZhY@kekkonen.localdomain>
-References: <20250219-v6-8-topic-rk3568-vicap-v4-0-e906600ae3b0@wolfvision.net>
- <20250219-v6-8-topic-rk3568-vicap-v4-4-e906600ae3b0@wolfvision.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=UEDu+gDm+n0s6Y0pBV5MV6LWMbBZPUUclgbDBWsR4QBWipT+hdcAvWsuCx6O+Y65F4k1Frq18VWrrnBxSjSPLZdbOyfcG+ny/tivStScfhXiyngJ3oNv4UGqxJn1r2P23FRPK96PqTsSCc9tm4bBOr9Spp7eGboIHoFIHp0Jgz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H1dXC+xm; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30613802a04so22807761fa.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 06:14:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740147257; x=1740752057; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=kjc5mojYE3t4OSrHJVJCVcArh6fCjBoE/KbptrPihx4=;
+        b=H1dXC+xm8xwCUrggGtHs/j+pHuuJfcs/GrE8Ohv9Ovv3T2hVzQUaZ/TzSIqeTNN4yb
+         4VcPgCyvNHhRVI7EGLpDvpFifDZkT6AeQOCPdA5I4KbZiXuqYE16My0AMA/iFk6JrB1o
+         aTPYN3JmOxHR5swrNAK+Rby+EE0SsD9tcoDq/MiaR71/YYE8mz7lbrUQfDbY265FKsFZ
+         Jk5fh0uoQK2CN4pzmuQubNO4U70wRHcWPnt3othhntAWEPImafRXc8aRyfbwsMbVnJK0
+         4C5OEb87m6i+a83jCCdyPoZPeHqepidDGV/2mHfTrPiRusk0F83I9D7RzG4R8eC/T6tw
+         e1bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740147257; x=1740752057;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kjc5mojYE3t4OSrHJVJCVcArh6fCjBoE/KbptrPihx4=;
+        b=BY5S9ZtMAliBnoZRpv1AIkgBV5+CWR4PaEGjKlCWAyhMpXi9ux3N/obmNSN167g5Sx
+         d3v/Kj+jJRyFKFlp/0977h8USojo4W0K0nPGBbDR75au/nZH+b0pEB4EyQq1eHqce8BH
+         djxTPAafFbOTtsPpEFA4LyTt1rda+af3ran4dnmCgS3EG3xQ7/znmwIe7aNW/eU7nkAZ
+         RbwAXZwWlBULRzmh4ZPZ5L1wF3ujbN8GRV0lvMtZKzqK9mxuiStDN+t7bqpnJuBjJSAR
+         vXx5qHuQ2MtTkBf3z4k8j+hI+MFyMdGDmKGRVp86mUMsBBPJXkdHh4kltEPTZDvj7hri
+         I66w==
+X-Forwarded-Encrypted: i=1; AJvYcCXbvSO94v3so+dLqhe040QQ/d1nKiKYCdyCHPYoczXGdZH2j7lUvSZQQzSHz2LHzD/km0GLdMPz+wCu@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywx0v22ZTjOhONro+hKnixS2790MZIkoG3pAPFPrIL4+wed+qgH
+	6CIGSXlBHAOO92wlb457A+xQiXXYyn2d+BJtj6CRM0ayisHGbnqeidKQjeWwHjE=
+X-Gm-Gg: ASbGncsiJ+Uljh6XaD8Fqibz6LYjpqqbbCjlkEpCkVpxXS/ve/5yH06ff/3ccVJxeXq
+	186oin3L5OjDLGtEmjv7yLMZkOIsVf80UbQAaLuoWwQzL0JL3e5Y3Eix5M8ogqT7P1OZLx/bkKb
+	JWPE+awctjf6xDPWp7A5ggRnDB8N1yTLUxqP9V7rU60VKmtUVqF+mpRCqtGR6uTYEjcjBGcwICL
+	X8Ax3pWTK6vvhAjCa2Fe/R+C/awbmmo1mnvTB90rEOv5R9zSg9P20VRv6jV8Yifa2SgB5s1JcPH
+	MJegOxsIU1GcT/t+SZiOiQYIJQ/FUjQVVYenmk5iktj/bQKhKaQv9ouNQuICsffLppLiqdMZ5Mi
+	mRZ796w==
+X-Google-Smtp-Source: AGHT+IGE3i7E5NeJLGZxn4+JQpuFC+AkpZ8fzRpeljlxc9T2QsR4EDahxkpiTqdExMPqOpBH1TyfSQ==
+X-Received: by 2002:a05:6512:3a89:b0:545:2a96:34fc with SMTP id 2adb3069b0e04-5483914820dmr1344462e87.31.1740147257524;
+        Fri, 21 Feb 2025 06:14:17 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-545280ec98dsm2394749e87.42.2025.02.21.06.14.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Feb 2025 06:14:16 -0800 (PST)
+Date: Fri, 21 Feb 2025 16:14:14 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 04/10] dt-bindings: clock: Add Qualcomm QCS615 Display
+ clock controller
+Message-ID: <5f5nt4g3fy7446gxnjg53n4uir57hm62ewgusekls5sbmadwez@pfxmhrkck3zi>
+References: <20250221-qcs615-v5-mm-cc-v5-0-b6d9ddf2f28d@quicinc.com>
+ <20250221-qcs615-v5-mm-cc-v5-4-b6d9ddf2f28d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,167 +95,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250219-v6-8-topic-rk3568-vicap-v4-4-e906600ae3b0@wolfvision.net>
+In-Reply-To: <20250221-qcs615-v5-mm-cc-v5-4-b6d9ddf2f28d@quicinc.com>
 
-Hi Michael,
-
-On Wed, Feb 19, 2025 at 11:16:35AM +0100, Michael Riesch wrote:
-> Add documentation for the Rockchip RK3568 MIPI CSI-2 Host unit.
+On Fri, Feb 21, 2025 at 02:50:15PM +0530, Taniya Das wrote:
+> Add DT bindings for the Display clock on QCS615 platforms. Add the
+> relevant DT include definitions as well.
 > 
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+I don't remember responding with it, nor does lore find such an email.
+I'm totally confused, what is going on?
+
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 > ---
->  .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 123 +++++++++++++++++++++
->  MAINTAINERS                                        |   1 +
->  2 files changed, 124 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
-> new file mode 100644
-> index 000000000000..288941686e96
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
-> @@ -0,0 +1,123 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip RK3568 MIPI CSI-2 Host
-> +
-> +maintainers:
-> +  - Michael Riesch <michael.riesch@wolfvision.net>
-> +
-> +description:
-> +  The Rockchip RK3568 MIPI CSI-2 Host is a CSI-2 bridge with one input port
-> +  and one output port. It receives the data with the help of an external
-> +  MIPI PHY (C-PHY or D-PHY) and passes it to the Rockchip RK3568 Video Capture
-> +  (VICAP) block.
-> +
-> +properties:
-> +  compatible:
-> +    const: rockchip,rk3568-mipi-csi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  phys:
-> +    maxItems: 1
-> +    description: MIPI C-PHY or D-PHY.
-> +
-> +  phy-names:
-> +    items:
-> +      - const: csiphy
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port node. Connect to e.g., a MIPI CSI-2 image sensor.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              bus-type:
-> +                enum: [1, 4]
-> +
-> +            required:
-> +              - bus-type
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Output port node. Connect to RK3568 VICAP MIPI CSI-2 port.
-
-What's the purpose of a port node without an endpoint?
-
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - phys
-> +  - phy-names
-> +  - ports
-> +  - power-domains
-> +  - resets
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rk3568-cru.h>
-> +    #include <dt-bindings/power/rk3568-power.h>
-> +
-> +    parent {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        csi: csi@fdfb0000 {
-> +            compatible = "rockchip,rk3568-mipi-csi";
-> +            reg = <0x0 0xfdfb0000 0x0 0x10000>;
-> +            clocks = <&cru PCLK_CSI2HOST1>;
-> +            phys = <&csi_dphy>;
-> +            phy-names = "csiphy";
-> +            power-domains = <&power RK3568_PD_VI>;
-> +            resets = <&cru SRST_P_CSI2HOST1>;
-> +            status = "disabled";
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                csi_in: port@0 {
-> +                    reg = <0>;
-> +                };
-> +
-> +                csi_out: port@1 {
-> +                    reg = <1>;
-> +
-> +                    csi_output: endpoint {
-> +                        remote-endpoint = <&vicap_mipi_input>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index cd8fa1afe5eb..d83a7762dbe3 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20407,6 +20407,7 @@ M:	Michael Riesch <michael.riesch@wolfvision.net>
->  L:	linux-media@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
-> +F:	Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
->  F:	Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
->  
->  ROCKCHIP CRYPTO DRIVERS
-> 
+>  .../bindings/clock/qcom,qcs615-dispcc.yaml         | 73 ++++++++++++++++++++++
+>  include/dt-bindings/clock/qcom,qcs615-dispcc.h     | 52 +++++++++++++++
+>  2 files changed, 125 insertions(+)
 
 -- 
-Kind regards,
-
-Sakari Ailus
+With best wishes
+Dmitry
 
