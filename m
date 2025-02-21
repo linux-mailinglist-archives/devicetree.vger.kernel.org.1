@@ -1,109 +1,94 @@
-Return-Path: <devicetree+bounces-149556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DEC4A3FCE8
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:09:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20CBEA3FD09
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:12:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B8FD1887620
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:06:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B888D18968E9
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:08:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B82C524BD06;
-	Fri, 21 Feb 2025 17:05:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F56024BD11;
+	Fri, 21 Feb 2025 17:08:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mH40HEwT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GzjWBLIb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB042475C8;
-	Fri, 21 Feb 2025 17:05:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26973214A85;
+	Fri, 21 Feb 2025 17:08:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740157551; cv=none; b=Qirdo97/XOG1WznQPa3KXRlSvk4gpJ1Kidpo/nu4NOKkZMM32iKdpBHNV2BBs+f1KMcSI3Aj4j+pOSAQW7Ab5YTSCRcaeHPCkVRNbhKo/Qi59dSX7v4KkNvT0mQEAm9+ZGugLZgsYWqOA0llsnFOxfAWe+pnFwQlxNRcrWZX1Nw=
+	t=1740157718; cv=none; b=N7kjrsf9wOk4BS3MF6HcGH1Hc/ZBfqXC4zj+k6V+IYvEeRiaIrsbrLJVr5xn/0pD6cmBm1VDF9R+79TEMN3dNPUXuGs93BH8QZ5jCQ8hS7UjhoCuIi/5ys20gaLq+YQIxJmS4ph9yLvD5DT/ZWZ7C3t1rqJun22TSAFahbaus48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740157551; c=relaxed/simple;
-	bh=jSby6rnqKjliEMlrxy3uDKVy/l12aoQ+Uo0UrPP40Lk=;
+	s=arc-20240116; t=1740157718; c=relaxed/simple;
+	bh=s5eo+jWFRpAipFm09lCIDLtuXzM+294r4TRujXXE5u0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rtTG5l2/nQ04klyDNugORVlcpz8DBX6puVqsV1oILR5YahdTLEvNHGrE2jIVlOA2OQWvXN3onxwPRiUaT80JJq/bKzTcWzoA2cBjyCtgXaszmjXueis9EEfGFNaKnUFR7v45eFaK0MrpH87oX7teb7v74pdprPZNrV3bGSpuwbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mH40HEwT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6174AC4CEE4;
-	Fri, 21 Feb 2025 17:05:51 +0000 (UTC)
+	 To:Cc:Content-Type; b=vEUv7asuDd37lKcVCDHj+sXxu4syvlMZ+Xxi4oP/d+cI4cPnWJ7OyAhU+MOJNF+7gchuhBkf120B2GBYcD8UOBMZmGt+jzO4RJ4LP9gyCWrBhxUld5J1KbgCkREhidiSph3HGMjRmDHA2oFdYvBo8fT1HwFGsgKdga/gItQt6SY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GzjWBLIb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 060DDC4CEEB;
+	Fri, 21 Feb 2025 17:08:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740157551;
-	bh=jSby6rnqKjliEMlrxy3uDKVy/l12aoQ+Uo0UrPP40Lk=;
+	s=k20201202; t=1740157718;
+	bh=s5eo+jWFRpAipFm09lCIDLtuXzM+294r4TRujXXE5u0=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=mH40HEwTHjeM9NIpgOxjL1qMY7pdYQ+4m/N8gfR36FGqUOJSlxHZRUrUFtUNlCHeY
-	 y1q5VTos3TTxyvhmGBd/I6KG/Qw5FsqvLb9aqd/jEaaGUNaiN+v53BLGBziZf41XIY
-	 Jn8yFesjGGQLx301ywkDLAeE/CxpnEi6sCYyPTeCUsiT6NRB4UosQH9tEXwtSYwuSV
-	 qk14DooIeQCm1U10v+SFBxEExW4vM4xEUhgW7mx2RO2nog27cpEi8diecsKpAGtiz7
-	 0pivjoWncSbm9UxIzu2skfabPmQY0v4m4HG/JRpgYGxbUoen0NTwk9c3wMmLtyo4bS
-	 oxN0PJHae2Ydg==
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5e05780509dso3368698a12.2;
-        Fri, 21 Feb 2025 09:05:51 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUKJCR3HNY3fb+8UjHNqgvzFJt2aLwAMBhoOipCMsfkbWSwY2ga67ImEPIGfywnMYs1NW4RPzU/vNye@vger.kernel.org
-X-Gm-Message-State: AOJu0YwA87MNFidLYWZOBoaQDJGSwsz+ZBjlWKzAl1sJZqblz1m+8Yz4
-	u/ujj593dRB1aHXzPZtLTOqlpDfrYjaIuCZ47UAoFCRTpYyGH0T8Igu/EISrNNBUwwsNAOTlES2
-	wWG43XT8VTn54mnb4ZMqa8cmQcg==
-X-Google-Smtp-Source: AGHT+IEHxK5Q0XUfTPtZAuMZkAwRWMw8XfiydzGFLhctNfa4yiIzH0cTCubtuN3R8RmjkWGuvnxxNAal/4l8vQ8oXyY=
-X-Received: by 2002:a05:6402:3513:b0:5de:39fd:b2ff with SMTP id
- 4fb4d7f45d1cf-5e0b6feec0amr3935821a12.0.1740157549868; Fri, 21 Feb 2025
- 09:05:49 -0800 (PST)
+	b=GzjWBLIbRxpFtvcpYed3KJH5oTstoyhONMh/76infiaUq8+BKchsHfECQe7rxsIqF
+	 qFcpc8lIOphgU56JOdmPiHKujaATg0VW9uoRwxwBPQfyI3sPAXrly4pFA18F7KGWNL
+	 NwoG9XpzqWnq+f+a0L78ehWlYynKd4CiEsPHyaZrD4oAmPCR9IYJYgqMx1K2vds61F
+	 FEmTYM4LhyFNfXyTfRI0N1ACovuQO4ZA4AeXRs5g0uVERIQI+fDEDiDFZmPsvnKVm8
+	 pj9479jGjo1KY/PzySQYuxqdo61I+bvpRxMZCkBO3lFaJX9yUMRAOjxaBY5wzIgPsG
+	 yBAgKohor6mFA==
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5e04f87584dso3551980a12.3;
+        Fri, 21 Feb 2025 09:08:37 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX1wazPxrwvqWoLP25eyGM8yj8jKq/K+wgXAtmpanZtQUiYDj5JQ5JnEbqE0THwp5TeMIeOL0YmbPPh2YeA@vger.kernel.org, AJvYcCXTHCTn5HG1IZSf/vM76Mn+S1bWy8jxV0ogBXb3HFQu1iZ+vMn1jkxIHasrXj3l9dhUF03BrvB/zSZL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwswD8TG3+TIEx9W0yWXU/EWtGrxzfvjk8rxdKllb8rnpUB45UO
+	g05XkT63FcuNxzrsO5Yy51AxxUvzF+Mi97na/jmE198i9ALiKpGzHFskGWapml/2g+P5zWDQJCn
+	BZ61ZsRWb3OR8QTwd9ZYr1i/1Wg==
+X-Google-Smtp-Source: AGHT+IF3O3vdI8KmOvbFRUGPLCBofMuxQiMkHrsWb3wzJcHfb8wAPbp8iF9eEU1cB0o4czpk21gl9NW97USVLhVQ01s=
+X-Received: by 2002:a05:6402:e02:b0:5e0:9ec6:12d1 with SMTP id
+ 4fb4d7f45d1cf-5e0b70f0800mr4060556a12.18.1740157716547; Fri, 21 Feb 2025
+ 09:08:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1704728353.git.michal.simek@amd.com> <18339ffa3d8c3bf284d9c53ce950beea76516408.1704728353.git.michal.simek@amd.com>
-In-Reply-To: <18339ffa3d8c3bf284d9c53ce950beea76516408.1704728353.git.michal.simek@amd.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Fri, 21 Feb 2025 11:05:37 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+z-q3fJUdXeSz3mO34=nPYJ+Atc0tvpFswZc3j_rZNdg@mail.gmail.com>
-X-Gm-Features: AWEUYZn8Prd84CYTiqgtyxCxmUOA14ATU8QMJIUIGFlCopSWEzeQLWfyxKnLtX4
-Message-ID: <CAL_Jsq+z-q3fJUdXeSz3mO34=nPYJ+Atc0tvpFswZc3j_rZNdg@mail.gmail.com>
-Subject: Re: [PATCH 01/14] arm64: xilinx: Move address/size-cells to proper locations
-To: Michal Simek <michal.simek@amd.com>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com, 
-	git@xilinx.com, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+References: <20250218090427.20318-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250218090427.20318-1-angelogioacchino.delregno@collabora.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 21 Feb 2025 11:08:25 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+4+=3ccuwa1whv+UQ56H6ueia4Mqy2z73M-5D15zZw=Q@mail.gmail.com>
+X-Gm-Features: AWEUYZmwuM1JP26BKUCaWcwByGaIWjPB3I55aqksnOcD6mvIR49_PbC1vcSeCe8
+Message-ID: <CAL_Jsq+4+=3ccuwa1whv+UQ56H6ueia4Mqy2z73M-5D15zZw=Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: mediatek: dsc: Add MT8188 compatible
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+	airlied@gmail.com, simona@ffwll.ch, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	kernel@collabora.com, pablo.sun@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 8, 2024 at 9:39=E2=80=AFAM Michal Simek <michal.simek@amd.com> =
-wrote:
+On Tue, Feb 18, 2025 at 3:04=E2=80=AFAM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
 >
-> Move cells to board dtsi files from generic zynqmp.dtsi. Changes are
-> related to qspi, spi, nand, i2c and ethernet
-> address cells
+> Add compatible for Display Stream Compression (DSC) IP found in
+> the display controller of the MT8188 SoC.
 >
->  make -j8 W=3D1 dtbs
-
-I don't think this is an improvement. The warnings are guidance, not 100% r=
-ule.
-
+> This IP is fully compatible with the one found on MT8195.
 >
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
 > ---
->
->  arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts  |  6 ++++++
->  arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts  |  2 ++
->  arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts  |  2 ++
->  .../boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts    |  4 ++++
->  .../boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts    |  8 ++++++++
->  .../boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts    |  2 ++
->  .../boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts    |  2 ++
->  arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts  |  2 ++
->  arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts  |  6 ++++++
->  arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts  |  4 ++++
->  arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts  |  4 ++++
->  arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts  |  6 ++++++
->  arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts  |  6 ++++++
->  arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts |  2 ++
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi             | 14 --------------
->  15 files changed, 56 insertions(+), 14 deletions(-)
+>  .../devicetree/bindings/display/mediatek/mediatek,dsc.yaml     | 3 +++
+>  1 file changed, 3 insertions(+)
+
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
