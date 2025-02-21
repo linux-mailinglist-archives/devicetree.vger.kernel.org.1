@@ -1,100 +1,133 @@
-Return-Path: <devicetree+bounces-149392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88C5EA3F415
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 13:21:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 520C2A3F416
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 13:21:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE41A421ADD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 12:19:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5660B7A6AB5
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 12:20:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4AF320A5C9;
-	Fri, 21 Feb 2025 12:19:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZZZ5wLf5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A3C820A5D2;
+	Fri, 21 Feb 2025 12:21:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABBD4155336;
-	Fri, 21 Feb 2025 12:19:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE4E209F58;
+	Fri, 21 Feb 2025 12:21:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740140358; cv=none; b=oE2BPHbV2HGnkcDaWUfY1V1zp72GUAY1F7CVLykkfMZDPhzAmXbUfIhicdowpx7UXxVo/VQJlOGGqTmVl+egFT51YW0tOkS9mH3jhrDSr2XPqgDC00rkAjdMWwE1DoaA9tYa2DQGnl2z+p2+CJu3yl3YxL+M0cqHHxCT2TfDwIs=
+	t=1740140492; cv=none; b=XpbIOlFnV5sFOZooCRIsta/4EhHd7f+GTuhTCLClstHaKQrm5OlvhfNvcO96YLyOuCIPa1w2ZuUVo6YdebkIqCmi6t1uB5CxUeSlAbwbYNp77vuT0pYtgC7QOlaUc6DY2onI15K6FJFPOXW5574b7RJZ2iBoE1c1xi10VMJ7sN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740140358; c=relaxed/simple;
-	bh=U0KNTaFUX+p6z2lVUkCdSpbxBvvlCxp+c7WOKr3+c8w=;
+	s=arc-20240116; t=1740140492; c=relaxed/simple;
+	bh=JCMgSxffp9jYC8mhi+AC0xWwLcS0IUPYJaEcEyNJmJs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iOE/M23Fa9SkRhPUWTC880DBA7qjXrZm1hlKMVI9aE74A4GRkMCXLAjGWwNh/jy4wL3Ktrwd1zDk0Z/K8CKqVJ41O0b6FYs1eGiDwHuKNoZMrda6PhdhZ/heXLtkJ75dASKX//Io8CorFkngaSCQJYVMkwgbKcwGBbx5q2t5YWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZZZ5wLf5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 810A3C4CED6;
-	Fri, 21 Feb 2025 12:19:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740140358;
-	bh=U0KNTaFUX+p6z2lVUkCdSpbxBvvlCxp+c7WOKr3+c8w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZZZ5wLf5VtHPf8ZqzyS32bZ3e0tK1MDH84+jLF1+fXonbYfSETFUwNgz+NAZUn/S0
-	 RgeREfRdgPEvaFDFzQ8qKqZN0uXh6dKbnL2hQ7g2AnmbViNhzORic3NtPyTBqeQSjT
-	 Pus32lE/bxfMzTE118OJGAgwG0BnLlKcfiwmf9eO2aNNdXpsXbxOg99LLvTHbSJs3Z
-	 cfAcWNViw8WESGB708v54Ey3fZVL6c+r1PcxzMOY1OKlHmq2vBQCIHOXg55V2bBNwa
-	 L7TH4wpQvmrg84s24EXbEobUxeBTVOK4X7johFfDLQiW+8+gBgC0xW0CZLJa7CD0Dg
-	 /6y0PN8IGR1bA==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1tlS09-000000007ck-27ZI;
-	Fri, 21 Feb 2025 13:19:29 +0100
-Date: Fri, 21 Feb 2025 13:19:29 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=YS4K91JYcfnqazB5LAEQuYIxiiDlK1Ba9jvImIQmVe/FIDh5oZmInNAFJ7XXl7pkZ2SJCOwfxYMlBxwYZGxo+va5KPcCEdCayJaFbm4G8vM5rk4t5g4C0Thv/oh7VMDqlHqXPZepwtpk5WWWsJfvWYg82bnkfn+TePCLKu1ehO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [180.172.118.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 134FF3430CB;
+	Fri, 21 Feb 2025 12:21:29 +0000 (UTC)
+Date: Fri, 21 Feb 2025 12:21:25 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Chen Wang <unicorn_wang@outlook.com>, Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v5 0/4] arm64: dts: qcom: x1e80100: crd/t14s:
- Enable Parade Type-C retimers
-Message-ID: <Z7hvUZiza6DWHZnp@hovoldconsulting.com>
-References: <20250220-x1e80100-dts-crd-t14s-enable-typec-retimers-v5-0-380a3e0e7edc@linaro.org>
- <Z7hGbEUsQU_MUL5t@hovoldconsulting.com>
- <Z7hKXNOwHlLLNtNx@linaro.org>
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	linux-gpio@vger.kernel.org,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>,
+	Yangyu Chen <cyy@cyyself.name>, devicetree@vger.kernel.org,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Jesse Taube <mr.bossman075@gmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 3/5] gpio: spacemit: add support for K1 SoC
+Message-ID: <20250221122125-GYA35549@gentoo>
+References: <20250217-03-k1-gpio-v5-0-2863ec3e7b67@gentoo.org>
+ <20250217-03-k1-gpio-v5-3-2863ec3e7b67@gentoo.org>
+ <CAMRc=MdJszmZ8d1MGo=bfJ8TwqOYBPLe2Jfc9MfbErDUCMQktg@mail.gmail.com>
+ <MA0PR01MB567180C0FE89E3BEBAF2B12EFEC42@MA0PR01MB5671.INDPRD01.PROD.OUTLOOK.COM>
+ <CAMRc=MdX6KiGk1zBRK3bZpN3iM16-8mDq40sTez6YO2kJEq0zQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Z7hKXNOwHlLLNtNx@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMRc=MdX6KiGk1zBRK3bZpN3iM16-8mDq40sTez6YO2kJEq0zQ@mail.gmail.com>
 
-On Fri, Feb 21, 2025 at 11:41:48AM +0200, Abel Vesa wrote:
-> On 25-02-21 10:25:00, Johan Hovold wrote:
-> > On Thu, Feb 20, 2025 at 07:42:29PM +0200, Abel Vesa wrote:
+Hi Bartosz Golaszewski:
 
-> > > Abel Vesa (4):
-> > >       arm64: dts: qcom: x1e80100-crd: Describe the Parade PS8830 retimers
-> > >       arm64: dts: qcom: x1e80100-crd: Enable external DisplayPort support
-> > >       arm64: dts: qcom: x1e80100-t14s: Describe the Parade PS8830 retimers
-> > >       arm64: dts: qcom: x1e80100-t14s: Enable external DisplayPort support
-> > 
-> > It looks like you've addressed all the comments I had on v1 (except for
+On 09:37 Fri 21 Feb     , Bartosz Golaszewski wrote:
+> On Fri, Feb 21, 2025 at 12:36 AM Chen Wang <unicorn_wang@outlook.com> wrote:
+> >
+> >
+> > On 2025/2/20 21:34, Bartosz Golaszewski wrote:
+> > > On Mon, Feb 17, 2025 at 1:58 PM Yixun Lan <dlan@gentoo.org> wrote:
+> > [......]
+> > >> +#define to_spacemit_gpio_bank(x) container_of((x), struct spacemit_gpio_bank, gc)
+> > >> +
+> > >> +struct spacemit_gpio;
+> > >> +
+> > >> +struct spacemit_gpio_bank {
+> > >> +       struct gpio_chip                gc;
+> > >> +       struct spacemit_gpio            *sg;
+> > >> +       void __iomem                    *base;
+> > >> +       u32                             index;
+> > >> +       u32                             irq_mask;
+> > >> +       u32                             irq_rising_edge;
+> > >> +       u32                             irq_falling_edge;
+> > >> +};
+> > >> +
+> > >> +struct spacemit_gpio {
+> > >> +       struct  device                  *dev;
+> > >> +       struct  spacemit_gpio_bank      sgb[NR_BANKS];
+> > >> +};
+> > > Please don't use tabs in struct definitions.
+> >
+> > Why not？I see
+> > https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct-declarations-and-initializers
+> >
 > 
-> Oh, sorry, missed that one.
+> This is for the tip tree, not treewide.
 > 
-> Let me respin.
+> It's my personal maintainer preference. We do use both under
+> drivers/gpio/ but I prefer no-tabs in new code.
+> 
 
-I don't think you need to respin over just that. And that extra newline
-has already been copy-pasted into two more dts in mainline since (yeah,
-it's odd to see the original patch go in after the copies). We can just
-take a pass at cleaning this up at some later point.
+thanks for this explanation..
 
-Johan
+my intention was trying to keep struct members aligned
+if tabs is a no-go, would using multi blank spaces to align be acceptable?
+
+something like:
+
+struct spacemit_gpio_bank {
+	struct gpio_chip       gc;
+	struct spacemit_gpio   *sg;
+	void   __iomem         *base;
+       ...
+}
+
+> Bart
+
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
