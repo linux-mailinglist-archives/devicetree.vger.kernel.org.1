@@ -1,59 +1,65 @@
-Return-Path: <devicetree+bounces-149679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E640A401C4
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 22:07:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4751A401C9
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 22:08:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0479A189DF9B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:07:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F76B189A44A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:08:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F3E253F28;
-	Fri, 21 Feb 2025 21:06:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09EF62528EB;
+	Fri, 21 Feb 2025 21:08:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dp60rGrq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UjP/evoV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC0EE253336;
-	Fri, 21 Feb 2025 21:06:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D235E1FF7C8;
+	Fri, 21 Feb 2025 21:08:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740171988; cv=none; b=p5T1rc2J88RgdclZoLZ6dPbuxrCIc/NI3DPbP3OQgjd5FTCwab8DDNg4xSeUdlKnCfEmma+LiFTEhdgvTLDe9HwTaEeWdNhiQBmRpGXo9KNe0NMDmBaVHbhBnlNR8scwsbsBclFCH8LDF6uOoI+nww/nbohjozeH6eazjLEHuBY=
+	t=1740172083; cv=none; b=L7dPWTGQgxcIEDOg0l2Pb49wnGJE0Nds9Q7uhQir0h6qTki8XKwxI2MZwm3UWB0JlxVsKkuxQgauYLttWcSIeFSueLc4vRMIhywGvIvwnFLdlWFxxLUrxsm6Vo5B+2S6kbYKkz2AF11s7v5nTgyPl7qO6DY8m/Up3NeenJ2NN5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740171988; c=relaxed/simple;
-	bh=qmjNEUFgu/ZxCPLIcQrJ7jiCisWI5FZVUdmhNrXSM5s=;
+	s=arc-20240116; t=1740172083; c=relaxed/simple;
+	bh=OkPgP7EaLg3zzaugexfyoWlImQLRS4upEXuczawslTg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hG06Ez03niDhp6w2d10Fb0uqlMV0a05PiRDq3b1W4Qwda9lhh1ikOFSwScsRhQhO0imoynsMeItbxRPqeY6i8GDXyENKLGv5slDrSuZ5zyh3/MpEUmouqWvn1VTKgCyJzgR6goHETvG70Za10aGPxlAL1voQpQuavdm1WQA3qkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dp60rGrq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01FC4C4CED6;
-	Fri, 21 Feb 2025 21:06:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uPHdWOGavQURaRWfpwS6XdbFYJLu3YSZIy3oPWtuyoR/FaqcZjjcmAwBKrvmw8IDWiG4aCsGn37VQstvOnrzqbb1aHpYhAVujE8bWFH4hXnI4iaxLStCEcXULSGjzeqUvz5PRALHVTPcxBPitkN+OHTbTBrCmczW9WXWg0Fkjfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UjP/evoV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D880C4CED6;
+	Fri, 21 Feb 2025 21:08:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740171988;
-	bh=qmjNEUFgu/ZxCPLIcQrJ7jiCisWI5FZVUdmhNrXSM5s=;
+	s=k20201202; t=1740172083;
+	bh=OkPgP7EaLg3zzaugexfyoWlImQLRS4upEXuczawslTg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Dp60rGrq6U1l67hpl/CYzbZ3zyyZo6W5wWv3Y/1JEPznaiaiORw56TUo+qaqoP5gu
-	 5RYvlC/SQ7V7N3uh7aTiqHWlUFV6OhPwWoUZFsDPIUtpJWU2eigIr67Zbj1CwBtY3Q
-	 rskyK8M8V18bs8XHHhKRYVcwoAHhufOLrOLN6y+esIrLAyCe9wN8yn5rHnmceSCvNL
-	 /uOZ92pylNx/daZvi33/rEi/TiPYiJUy4bZlAvx5DNCXdbegksVwb/tB2t9+EwdlS7
-	 VD187nIanJ50eG0aZwqOt0c3N3NuEactEAX68WDySsJYrTWi0BJlk16KCINZ5P2X1a
-	 PkXYbEYOTfT/A==
-Date: Fri, 21 Feb 2025 15:06:26 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: conor+dt@kernel.org, tsbogend@alpha.franken.de, davem@davemloft.net,
-	pabeni@redhat.com, netdev@vger.kernel.org, kuba@kernel.org,
-	andrew+netdev@lunn.ch, devicetree@vger.kernel.org, lee@kernel.org,
-	linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-	krzk+dt@kernel.org, edumazet@google.com
-Subject: Re: [RESEND PATCH net-next 2/5] dt-bindings: net: Add switch ports
- and interrupts to RTL9300
-Message-ID: <174017197206.81138.17349230717480144240.robh@kernel.org>
-References: <20250218195216.1034220-1-chris.packham@alliedtelesis.co.nz>
- <20250218195216.1034220-3-chris.packham@alliedtelesis.co.nz>
+	b=UjP/evoV2VwHrbmdUraWzGUzMnMW5rkxuTFNQ3Pygm6Ghc8onscQK5Ik95eaGIK0j
+	 6eFoTozzzHYhdc0BAbqPQifxZnALbSMJh+itz7obQhyAahrR/19gGay6wGlvPi1mLz
+	 3RamjjbXdsSaOIGbKyKvoGMWHP53AkeO4mhUNe1eS5KWfGMWgVAs94tdwb2Icv86de
+	 0IuYHY5s/pOjmQf4AW+seWUqoQudHe3Wb2s4OZX1FcjF3l9X1Yp05dPq0gRqMfG7ad
+	 qSDruJWsmdaBt+f/5oVUMapdPqg7BQzE8rMWmoKxwwdTHBJdw7YXXtuKAYueompzQe
+	 iIlBJTKh+kzCg==
+Date: Fri, 21 Feb 2025 15:08:01 -0600
+From: Rob Herring <robh@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 1/4] dt-bindings: interrupt-controller: Add support for
+ Amlogic A4 and A5 SoCs
+Message-ID: <20250221210801.GA81340-robh@kernel.org>
+References: <20250219-irqchip-gpio-a4-a5-v1-0-3c8e44ae42df@amlogic.com>
+ <20250219-irqchip-gpio-a4-a5-v1-1-3c8e44ae42df@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,28 +68,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250218195216.1034220-3-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20250219-irqchip-gpio-a4-a5-v1-1-3c8e44ae42df@amlogic.com>
 
-
-On Wed, 19 Feb 2025 08:52:13 +1300, Chris Packham wrote:
-> Add bindings for the ethernet-switch and interrupt properties for the
-> RTL9300.
+On Wed, Feb 19, 2025 at 03:29:03PM +0800, Xianwei Zhao wrote:
+> Update dt-binding document for GPIO interrupt controller
+> of Amlogic A4 and A5 SoCs
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
+>  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml       | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> Notes:
->     This is tecnically v7 of [1] changes from that are:
->     - Use ethernet-switch.yaml#/$defs/ethernet-ports
->     - Enforce "ethernet-ports" be used instead of just "ports"
->     - Add interrupts for the switch block
-> 
->     [1] - https://lore.kernel.org/lkml/20250204030249.1965444-2-chris.packham@alliedtelesis.co.nz/
-> 
->  .../bindings/net/realtek,rtl9301-switch.yaml  | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
-> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+> index a93744763787..03548ee695bd 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+> @@ -35,6 +35,9 @@ properties:
+>                - amlogic,meson-sm1-gpio-intc
+>                - amlogic,meson-a1-gpio-intc
+>                - amlogic,meson-s4-gpio-intc
+> +              - amlogic,a4-gpio-intc
+> +              - amlogic,a4-gpio-ao-intc
+> +              - amlogic,a5-gpio-intc
+>                - amlogic,c3-gpio-intc
+>                - amlogic,t7-gpio-intc
+>            - const: amlogic,meson-gpio-intc
+> @@ -49,7 +52,7 @@ properties:
+>  
+>    amlogic,channel-interrupts:
+>      description: Array with the upstream hwirq numbers
+> -    minItems: 8
+> +    minItems: 2
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+There should be an if/then schema that retains 8 as the minimum for the 
+existing cases.
 
+>      maxItems: 12
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+>  
+> 
+> -- 
+> 2.37.1
+> 
 
