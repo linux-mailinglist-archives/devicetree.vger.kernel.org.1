@@ -1,127 +1,164 @@
-Return-Path: <devicetree+bounces-149258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C1EEA3EEB3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 09:29:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B9BDA3EEBF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 09:34:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4811F70266B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 08:29:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F7FF702903
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 08:34:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B2120124E;
-	Fri, 21 Feb 2025 08:29:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A666A20011E;
+	Fri, 21 Feb 2025 08:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HvxU30n1"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="S6J7F+HS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 267F21FFC70;
-	Fri, 21 Feb 2025 08:29:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB5F720124F;
+	Fri, 21 Feb 2025 08:34:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740126573; cv=none; b=D9i/CEbbJkOyY9y/uIJtEp0Eo9Qp1XZ4HlRo6ex4Kf5FjhBSIuKFY0lSm5CCGs5DrJT2XlBSCstkjmqmWgR7xv24ZKxDH5/0wPuOUX2JSuxy0IuWK8LOf6BOCEX9bk35r2nIlgNeyLP0t2WsXNQh3ffSn9/k6ghwCFjDFMSMI9k=
+	t=1740126874; cv=none; b=obPy4DSZb4WdNRw/xATnVQOcxlSJnlmOXZ6EhbwhJBBnKO+1CulxsORJIhx0UFrZYDTvvrnaUtqqV7fVGOcSNPw2OfdmuQPA/9TC7hrjVUCmPby4IATqPDlMTHbA0to8XhzmMymlrFyBtEYoSWtjOqBfh048cmNnENvuoBc8o08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740126573; c=relaxed/simple;
-	bh=s5py78X+bkLRcyKPY3xhJ6L9RK6qQ2sT3UrsfZBnPWY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JIVoQbpmGpriYUK6ryH6Cbo1IbOy5WPg3qR71aSdj2wDAdzK/bLMsfV2CxSC7RO3qfcQ/GomYRlF83kqnMC60j0iTKaqjrzPW+IuvlkjICf0nPTX318AWr/42kWyLNSB/z1bsU7/7GyKQWtLEilDsE+cS42JTGlOkXFGbxJQe0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HvxU30n1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 608DAC4CEDD;
-	Fri, 21 Feb 2025 08:29:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740126573;
-	bh=s5py78X+bkLRcyKPY3xhJ6L9RK6qQ2sT3UrsfZBnPWY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HvxU30n1CA5o60znnQnJxTtG845eGsG2Pe/r+BQbE7bOqEBM452DAuEruOd8b8zQB
-	 qBicNyfKD4lWXwxN1ebFKhsnnA2U1hPjB28jd/CAe9/lQXbDfR0UH/nMc4qKCdEw11
-	 3SlT0wMblTC4PJ0hp9jgS3JnevlkUTZ2OrxaFJz1zxYoXtqlDN6H48c92XkGSnHKdM
-	 F1NgyQ4HuhST3ca7tfKB9vVJ4ZI/JjC6+lnUw0y/ijoPyF5tlGpkLoIFPzHibYQywV
-	 hu3ZHcNznXSBh0QTGOKe+Vj9hMKo+p0l6jKFd6Lf2FWVQiLrcZM8nyQtHhULyH0eZI
-	 3cTuSr2jSHgHA==
-Message-ID: <4420c389-e53e-4f10-b2f7-7a5429d282ce@kernel.org>
-Date: Fri, 21 Feb 2025 09:29:28 +0100
+	s=arc-20240116; t=1740126874; c=relaxed/simple;
+	bh=zaRVgOwT6oHtTXJXZK0GZbB0pQZQMS4QkIAurMtM3n4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kLd920nPgxZyrxR3fCp4W7275Ammr5BhqU/jPB9/YBuU2vDSKKF1ZlLOiMtqM/d/lZZkBMYJz/uA7TiesWQHoUe1EscZq7g7l6+9dyRSxpP9OOsnfyjI0InWZUo4wkurgAIJkNisM4p8cc8XcJZdLcvXGrlBqb2y6evno4fjnCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=S6J7F+HS; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DAC6E441A2;
+	Fri, 21 Feb 2025 08:34:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1740126869;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=B/hAkJYr1MTXE9QbhqHRx2R7LVjm7if7A1UAshiK8iY=;
+	b=S6J7F+HSU6fkbzT/xMd0/SL98AE2wV0CoKq8rM+XYmDbhRWG3tFkghZxib6ka+ec7KZbqB
+	jp3gBXxgeEoUu9YXAB5kPtIdVI+HQsY20CG4sFucuSrOR7mG6H5brnTBDG/by+zBjXVjBJ
+	CxRq2ejdwFCj02OY+3ukR7/455eiRPl99ETBfsN4IGdsZpjm4rKe48ZkYaXePW/ZDhwuKA
+	v+nehWCDKuhOFG7boEFHeOgbgheOZ/lpdzVMq+RJgkhwH5q1JAN0VR4AIKhoeRn88wumzi
+	Q3quNVewISor9FwIAsM1j1Ci+p+jOtald7upPYIsgz49EOFLK931TraNLBu9zw==
+Date: Fri, 21 Feb 2025 09:34:27 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Rob Herring
+ <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Bjorn Helgaas
+ <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-pci@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v7 5/5] PCI: of: Create device-tree PCI host bridge node
+Message-ID: <20250221093427.3d83b9e3@bootlin.com>
+In-Reply-To: <20250221000753.GA321042@bhelgaas>
+References: <20250220092514.444e90e4@bootlin.com>
+	<20250221000753.GA321042@bhelgaas>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] dt-bindings: nvmem: Add compatible for IPQ5018
-To: George Moussalem <george.moussalem@outlook.com>,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, amitk@kernel.org, thara.gopinath@gmail.com,
- dmitry.baryshkov@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- quic_srichara@quicinc.com
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250221065219.17036-1-george.moussalem@outlook.com>
- <DS7PR19MB8883C8E61B02269AAD7D8C1C9DC72@DS7PR19MB8883.namprd19.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <DS7PR19MB8883C8E61B02269AAD7D8C1C9DC72@DS7PR19MB8883.namprd19.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeileehiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeviefffeegiedtleelieeghfejleeuueevkeevteegffehledtkeegudeigffgvdenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudehpdhrtghpthhtohephhgvlhhgrggrsheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepghhrvghgkhhhsehlihhnuhigfhhouhhnuggrthhiohhnrdhorhhgpdhrtghpthhtoheprhgrfhgrvghlsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegurghkrheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsrghrrghvrghnrghksehgohhog
+ hhlvgdrtghomhdprhgtphhtthhopegshhgvlhhgrggrshesghhoohhglhgvrdgtohhmpdhrtghpthhtoheplhhiiihhihdrhhhouhesrghmugdrtghomh
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 21/02/2025 07:52, George Moussalem wrote:
-> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+Hi Bjorn,
+
+On Thu, 20 Feb 2025 18:07:53 -0600
+Bjorn Helgaas <helgaas@kernel.org> wrote:
+
+> On Thu, Feb 20, 2025 at 09:25:14AM +0100, Herve Codina wrote:
+> > On Wed, 19 Feb 2025 11:39:12 -0600
+> > Bjorn Helgaas <helgaas@kernel.org> wrote:  
+> > > On Tue, Feb 04, 2025 at 08:35:00AM +0100, Herve Codina wrote:  
+> > > > PCI devices device-tree nodes can be already created. This was
+> > > > introduced by commit 407d1a51921e ("PCI: Create device tree node for
+> > > > bridge").
+> > > > 
+> > > > In order to have device-tree nodes related to PCI devices attached on
+> > > > their PCI root bus (the PCI bus handled by the PCI host bridge), a PCI
+> > > > root bus device-tree node is needed. This root bus node will be used as
+> > > > the parent node of the first level devices scanned on the bus. On
+> > > > device-tree based systems, this PCI root bus device tree node is set to
+> > > > the node of the related PCI host bridge. The PCI host bridge node is
+> > > > available in the device-tree used to describe the hardware passed at
+> > > > boot.
+> > > > 
+> > > > On non device-tree based system (such as ACPI), a device-tree node for
+> > > > the PCI host bridge or for the root bus does not exist. Indeed, the PCI
+> > > > host bridge is not described in a device-tree used at boot simply
+> > > > because no device-tree are passed at boot.
+> > > > 
+> > > > The device-tree PCI host bridge node creation needs to be done at
+> > > > runtime. This is done in the same way as for the creation of the PCI
+> > > > device nodes. I.e. node and properties are created based on computed
+> > > > information done by the PCI core. Also, as is done on device-tree based
+> > > > systems, this PCI host bridge node is used for the PCI root bus.    
+> > > 
+> > > This is a detailed low-level description of what this patch does.  Can
+> > > we include a high level outline of what the benefit is and why we want
+> > > this patch?
+> > > 
+> > > Based on 185686beb464 ("misc: Add support for LAN966x PCI device"), I
+> > > assume the purpose is to deal with some kind of non-standard PCI
+> > > topology, e.g., a single B/D/F function contains several different
+> > > pieces of functionality to be driven by several different drivers, and
+> > > we build a device tree description of those pieces and then bind those
+> > > drivers to the functionality using platform_device interfaces?  
+> > 
+> > What do you think if I add the following at the end of the commit log?
+> > 
+> >    With this done, hardware available in complex PCI device can be
+> >    described by a device-tree overlay loaded by the PCI device driver
+> >    on non device-tree based systems. For instance, the LAN966x PCI device
+> >    introduced by commit 185686beb464 ("misc: Add support for LAN966x
+> >    PCI device") can be available on x86 systems.  
 > 
-> Document the QFPROM block found on IPQ5018
+> This isn't just about complexity of the device.  There are NICs that
+> are much more complex.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+> IIUC this is really about devices that don't follow the standard
+> "one PCI function <--> one driver" model, so I think it's important to
+> include something about the case of a single function that includes
+> several unrelated bits of functionality that require different
+> drivers.
 
-Any explanation why you are sending this? Why there is no cover letter?
+Yes.
 
-This is 1.5 year old work, so I assume Qualcomm is abandoning this chip
-and maybe there is no point in merging this in the first place?
+> 
+> "LAN966x" might mean something to people who know that this thing has
+> a half dozen separate things inside it, but the name by itself doesn't
+> suggest that, so I don't think it's really helpful to the general
+> audience.
+> 
+
+Does this one at the end of the commit log sound better?
+
+    With this done, hardware available in a PCI device that doesn't follow
+    the PCI model consisting in one PCI function handled by one driver can
+    be described by a device-tree overlay loaded by the PCI device driver
+    on non device-tree based systems. Those PCI devices provide a single PCI
+    function that includes several functionalities that require different
+    driver. The device-tree overlay describes in that case the internal
+    devices and their relationships. It allows to load drivers needed by
+    those different devices in order to have functionalities handled.
 
 Best regards,
-Krzysztof
+Hervé
 
