@@ -1,219 +1,168 @@
-Return-Path: <devicetree+bounces-149611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AED77A3FECD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 19:28:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9220A3FEDB
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 19:32:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85FD6422618
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:27:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4630B423593
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:31:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A66E92512F8;
-	Fri, 21 Feb 2025 18:27:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AB0D25332A;
+	Fri, 21 Feb 2025 18:31:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="kFnbmfdM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TSsUI0O/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03olkn2095.outbound.protection.outlook.com [40.92.58.95])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9971D5AA7;
-	Fri, 21 Feb 2025 18:27:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.58.95
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740162473; cv=fail; b=S3xuig4OB8u8GALfJOFM0WE8wEe0vMzNfRIzTCjPIo/6/XKXAkj5MVPqlIYZuOKbKr5dYxIpPW3dur9/1EW+HGCXEUBAcyokaDJ1alLX1IalrcWodLy4T/YhPycVqtnJyO1hMxAC5fS6OdlyAll0LpcKhrwONAvo+hhaedVxSUw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740162473; c=relaxed/simple;
-	bh=A4ePnOMT8Up35+rMlPXzd/lagByAhTXfVKGbhNjLMzA=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=uzhpNaJA8IFuD/eLWmZ8mhiy5P2xYLZ8iANPSzya+ZowMwnzuxld5I6uNo91nc8geR2YVwwP7+3UDgLP6HM6cWEIrLHcTS0/wdW3ottHnHMpuqE6KNBTeAubiWx2ApvfSPSaYDC7d2Cd1fN6E0YwzkvDkbTtrDBMgLIMTCX2chc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=kFnbmfdM; arc=fail smtp.client-ip=40.92.58.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VUYYxFIXrRIEqgFzoXLjPA4LbY8pDZhXQY0Nxd+bFKCf59qJCAASCAxwVQ5ucrkYrjzd89lMEPmQQTKHqV2vvX3mDQyJh9Y3zN5ZM3uJUsCn2QqH+GEhE4rJOJAYw/B/5PZJ/L0GCapZ/pCkUQW9VNeSwOXuIxy01WgqMNwRBOFudAqF3xE55nwJgVqVM+5S0RT+nPwmv3C6AgE/TqK2Efm0iUPqHpQhlAvyp100nqQtjxswli1ebZ9zOd+dsFpG0bpmSzjeldSA4f/ASBGw8/cK9D/SfQ28WmovsGQiVvKtJbCpXoaNC/rC+WMcaC2u6kUjSONY2t1o7Du2MdfW6A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2r7hKyArOjEkZviJW0WSxKu7tyWIFSlN3CH5B78ntDE=;
- b=E9Kdb7Za+MW5W19Dasky+vFx91T0hU3xxf0wSPKEF6epc80TubiJfX5lq/rrNrQMThniQos3FJdwumuMDnEdzRymIC24pSRsznt9KN/e6bLuHXkL4nODofs7zry4igbj1MuhU28Tu7TJKbyQZ6+nRuPJiowdsfERdKHrXfmDdS6/I7xDY8XCOm0Eff1jawXus/AQplVPvI9UPO2GCbzTbMDQDPdpoMa/9aC56te4QjBJPBcKJsGVBcxZadpm3ndo/TPJzUOJxMZWTtMHy5fmm4/V77n+5aWdMTBe8JgNSVZhll1cvLjuzwuaovjYOV1OniB0gUZDHJF5mHEagsaVew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2r7hKyArOjEkZviJW0WSxKu7tyWIFSlN3CH5B78ntDE=;
- b=kFnbmfdMg82APPEAQBQDKYWdTudHu5qXCWR2wAukXGNXwIKNuaj1/Ddh0E0heXo0/bvHJAPO9s4DSXHmIfOi3DhopwWbVJs9LOf+aq3nabJXNRgz88SZzkg9nmYSO+aOTrm9qKK+CJNEH7v7LaMnZLkbdzQBGdwOz0H5YRpn+AvbdUf2WwvZHyblWc1rCLYivqn2fPa2xYLCraz59azGZNEa7aPX11+cFH4friF4X53Yx3ABLGpaUKDtWcvu6LS0EGcaJP20poPJ36JNooNlKqb1wvenUX3sltPWHzPdG1+bxGdCcXxB5YKq31vhgm2QnqobYWgexQv8qp/bHWkxLA==
-Received: from AM7P189MB1009.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:175::17)
- by PAWP189MB2804.EURP189.PROD.OUTLOOK.COM (2603:10a6:102:46a::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.15; Fri, 21 Feb
- 2025 18:27:48 +0000
-Received: from AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
- ([fe80::e9f1:a878:e797:ee1a]) by AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
- ([fe80::e9f1:a878:e797:ee1a%2]) with mapi id 15.20.8466.016; Fri, 21 Feb 2025
- 18:27:48 +0000
-Message-ID:
- <AM7P189MB1009AC050A4FFC8BBB5D718DE3C72@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
-Date: Fri, 21 Feb 2025 19:27:47 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] riscv: dts: starfive: fml13v01: enable USB 3.0 port
-To: Sandie Cao <sandie.cao@deepcomputing.io>,
- Emil Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250221055857.481992-1-sandie.cao@deepcomputing.io>
-Content-Language: en-US
-From: Maud Spierings <maud_spierings@hotmail.com>
-In-Reply-To: <20250221055857.481992-1-sandie.cao@deepcomputing.io>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS4P195CA0028.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d6::13) To AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:20b:175::17)
-X-Microsoft-Original-Message-ID:
- <a9d642ad-a036-4429-8986-3fd851d171e4@hotmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 703C5253329;
+	Fri, 21 Feb 2025 18:31:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740162695; cv=none; b=H6yvkXY3MGJn9lyA1GSQIsdSNME9tRLrF0wvy21+Vp9P6DYHyvnw5BwMnoMGRjUiXsDSYGdhjVP/A6GJtyt/5bg1VwuBMGhpVMN1DUXTrQeAjYxyYAdgqa/B5qlu/oKFBFyhwEL0taQDEHqIci63QMTMEkNhK7P2BU369PTqo4Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740162695; c=relaxed/simple;
+	bh=w9dzlHwE4zOZSXrrOMFXhcyCGCwY0q2gs3vSEVl5ROo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=OIhzoCmOzVdPIcSJ/7iHZ0rEmssVX6WXBl+QlHPnbDm0mQ2+AH8J/T8ATqbn4A911g6RAP5yFJRRvfmId2fKWFT1095brp6pT1saJMyRYr9H59+4RsXkC80ssccEfz9SMhfU3rt9/7kmDOznUlSAdMFiSu94szwzzobtuSTWpew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TSsUI0O/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9F4CC4CED6;
+	Fri, 21 Feb 2025 18:31:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740162694;
+	bh=w9dzlHwE4zOZSXrrOMFXhcyCGCwY0q2gs3vSEVl5ROo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=TSsUI0O/LPq4tUi+VtJdBejS0VyBbnZ9CEQNTq6bY3jWmDeMZfurbKC+P/JikOtij
+	 VvFnMYIIAlWnK42mwCiGL8Fr36g/om3oZRKfQ+X8Ze0QKjeykT31YPfp+XgAFjmzmL
+	 PYcjuUSFIt8oVFLrci4VItDo0qKSxr5YDZJ5zw11zKtY4muX2F8VxrChohhPPqm5rX
+	 +7hRYvXXSbUUEfo+cY07eMcnrMPTK1+vVgZy3jNk4z8HeRoMKkanA9k6ge3pj+YIpD
+	 Ba6EU1qw4JLJ9EXASUOk5rpXPSWnRm+wCZfc//WkJnFrHSZvWQkc1O3/lOMr1/5Z0K
+	 GHTSL2mAKWmKQ==
+Date: Fri, 21 Feb 2025 12:31:31 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Hui Ma =?utf-8?B?KOmprOaFpyk=?= <Hui.Ma@airoha.com>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>,
+	Ryder Lee <Ryder.Lee@mediatek.com>,
+	Jianjun Wang =?utf-8?B?KOeOi+W7uuWGmyk=?= <Jianjun.Wang@mediatek.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	Frank Li <Frank.li@nxp.com>, upstream <upstream@airoha.com>
+Subject: Re: =?utf-8?B?5Zue5aSNOiBbUEFUQ0ggdjIgMi8y?= =?utf-8?Q?=5D_PCI?=
+ =?utf-8?Q?=3A?= mediatek-gen3: Configure PBUS_CSR registers for EN7581 SoC
+Message-ID: <20250221183131.GA353053@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7P189MB1009:EE_|PAWP189MB2804:EE_
-X-MS-Office365-Filtering-Correlation-Id: 62ffc30a-bbb5-4e8f-5669-08dd52a57176
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|19110799003|15080799006|461199028|5072599009|6090799003|8060799006|440099028|3412199025;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?WGlvS0N6ZWFRbFVRNTF6Y01YRXcyajZ5SVNUZXlzNEhGWXlKZWdGY1Q3ZlVy?=
- =?utf-8?B?ZW9DTWRPU1IybGlzR1FNR1Jvd1gzSWpHcnA4aUJKSVNzSWZZdkExRjEwNTEy?=
- =?utf-8?B?SFhDYnp0bVhKVjQ4cld3UzlUQUtuanpmYzNObDV6OEh6ZVRON3lwWWRlMjJM?=
- =?utf-8?B?UmFTM0tZbExtQjdSaktDMzMvcVNoOWg0bXFmNllGejEzOTVtdkZRT2VOMys0?=
- =?utf-8?B?ajg4QkRLRVNscmlNZFdVb0YxRW5rT0xmNEVSdXVJT2JrRy9hVmpSSHRwSmxQ?=
- =?utf-8?B?akVraUNhUUFBTjhrM2JuejM4WEVYWkY2emNWekErRmtHajd0c1hVanVyc053?=
- =?utf-8?B?R3Eza0VzcVR5TTFCaE05SWhSQ0gxRXd5OEFqQzZQeUlnTm5abDEvTmE0RTZ5?=
- =?utf-8?B?ekJjS25QM2tFTDAwdW9xaUg3dVorZWE3V0lseUVxeXRsZnFyRzZEeXVTOEgr?=
- =?utf-8?B?NC9KQkoyS2hQTjBHNDB0SHl0TFgwbmJtcVZncnkwUU1lZU9QenFVcW84UFIv?=
- =?utf-8?B?TWRJZ2EwNXQ4WUxuZXQ2VmdrNlNnS3ZTMFh2dXN4S2t3amdwalYxU1daT3py?=
- =?utf-8?B?djhoSTY4ZEI1M1dDOFlmMkdyZ1VGTktmNTAyaDYrRWM0VGowZ1NueU1TNGdx?=
- =?utf-8?B?Nmc4emVjS3k1TVYwb3hJTklEdlZVaTU3RUNveGVOc01JUm5nVUh2alhTOWRm?=
- =?utf-8?B?cnMzVzJWOVZHR1pKTnFXY1B1dEdkRzNYNHFnWUM1bUYzUmZWK2lTbXJUa2wz?=
- =?utf-8?B?UFBBMjduZ28wMVR2MlV4dmdKYitERlRKdlBKdFVvbVloNmcxbmUvNFBMc3g2?=
- =?utf-8?B?anAyanlnNWVGQ2pXUWtYV3dLM09mRnI0U1RiblJEdlFSYVpTYW5ZaW5HSi9t?=
- =?utf-8?B?MkZvNnlhZitCYlJpVExFL1Z1ZnRleGJ1eFk2a1NwQW9EbFQydkltM2JWd2g3?=
- =?utf-8?B?Y3E1M3BqdHNNUEN0dFY5cng0MnA5RWNUTlo0RWJ1VjUzNnZ3d1o3aVAwOXJ5?=
- =?utf-8?B?RnVKalpKRWx5cUZQTmhUN1VtVTRNODNhRjQvTU9ZUitIbitMN0g4ZERYQkwy?=
- =?utf-8?B?Z0NOdkNtZTA1eEtpSzJpYVpHeFBuRnZmckxHYXpFbkxHcFptcEJJQW5FNWg1?=
- =?utf-8?B?TTNyUkk5SEExcDJMZkRYOENzZVVrVVJSUlBYMTVOWjRkM1pRK3hDaW1rdmtJ?=
- =?utf-8?B?aDdhV09EK21RNWM2OFBwa2wyNHIrWWZjSEt4R3VvTk5uWXNOYnozM1J0UWpl?=
- =?utf-8?B?a3VpODFqVTZBZHcyQ0RsMkVzQldZT3BKeVo1Wno3amx0djU5Z3VuUDIyb2Ez?=
- =?utf-8?B?bHhLaFoza3hIWEVNZkVSLzNJUkxTZ0Vvd01uNTB0SGh1UkZwZkN4NzBDSTdL?=
- =?utf-8?B?SFNORElpV0pUcUxiWlZnaTVkK3A1eExKS0dFd2E2QU9rMXZSV0tGYm9pQWhV?=
- =?utf-8?B?bFk1TVRwRFlmd1IrTG9uc0ZUSDliMlhaU2JPd3h3PT0=?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?RzBscThnUmZVVTZ0c0VUQ205MDE4RFRCV24zSEhxVlc5cUtiYkVDYUhxSXJw?=
- =?utf-8?B?NkRjQlJITldDM1cvQ3NvNWxBV2VOVXhESWdSZHc0OWpRdmk2VGl2SlpoU3R2?=
- =?utf-8?B?elFBbi9zbkhjUzZTNTh5a1ZPeGhIMW9YQ0Fkc1hnNWw5MkR6WTRNRXk2N0dS?=
- =?utf-8?B?WElJSkpqcjlhS21hRm1TM3d5T2xlSWRnZW0yaExCaE1jZEluRU52enVpd3RE?=
- =?utf-8?B?ZjlCeGVYV2l1R2I5R25OY2k3U1dYZFpiRmNPY1U5VnRsUTVqa01GMmZPRVJm?=
- =?utf-8?B?eDlacjdnZWY1NEo4YW9lM3gwVzJhK3IybnBtTFQwRG0wYjlGbGh1SGFlckRm?=
- =?utf-8?B?VlhlU0Nvc0QxZ0dyZzdhbkUyQzV3T0dCdWIwUWhlWHFBcGJXYlVDTWF5M3g5?=
- =?utf-8?B?cHREdklEMGlZQTlqaXZSSzF6MGJINlM4bmZPdzEyWWdEa1pnZDNHdmEyQ2Ra?=
- =?utf-8?B?NXM3ZUlDZEhsZlRyZ29UNm5uODhUUkpwUDE1QVFWazlUV2VqZlpsWGFSQzht?=
- =?utf-8?B?RHZOdk1WUXQ0RXN0MTh4Y0lDOTlRRHUrREx0MkxDdDUyUWdlK3dnL21FVnFa?=
- =?utf-8?B?U1cxMDNoSWcxOC85N3NtTVNHblZKU3NqeU1aTW9XRnJpcTVud3JSRVMvaWtC?=
- =?utf-8?B?Z29RSEFzVnF0a1JVUkx6MTNvNVAwU2hiRzBZdExuQTE5Vmd3UklPYUlsdHVT?=
- =?utf-8?B?dzNKWkJsc20rVnh6QzhDZi9jdzA1OUk1YWo0bUJpNCtKU0FwdzVMWnZMMHZG?=
- =?utf-8?B?cTd1YTUvV0wwcis3MG44V1FQL0c3Z01LNk9iUDhHUi81K3dTZmZHeEZnZHUr?=
- =?utf-8?B?ajR1Z1IzWE1WSUhUejlYOUowTTVERkswZi9odGhPckZsZDgvUVVwL0pwUEdr?=
- =?utf-8?B?ekxZOEVaS0NkOWRiSG5ScW1oQWRDT3AzajdVQXdWaHAwYXJQZVpOWFE2c3Ny?=
- =?utf-8?B?RDVmQWJNaGw2OG0xZ2h0T01BTFdtZU4wMGNDL3lxWWg5YUd1c0NGSGF5ZzF1?=
- =?utf-8?B?MDhHOFdqVWl3STg0bFh6Vy9WNXg2c2xjajR6WVgza2xpcFlyeU42cHZ0dzQ0?=
- =?utf-8?B?VnZmQkxCdGR2QTV3SGlMUGQ3czdjZm5iczNVVXBVTlhhRXRsQXdadVMrclZ4?=
- =?utf-8?B?bmRhSnFsUEFPNm5WeTdIT2JERUpQeFpyNUxQMmVjN29USmE2elNKWUVuQlhl?=
- =?utf-8?B?amRWdjBmeGhxSHo4VVdDblhudUYzaVlkMmduVmFqQ2MzTldQb2xnRkpkTW1G?=
- =?utf-8?B?SXByTWNnVVk0TkgvYU5GN25kbVBZdzZhN05CWXRINStSQ1A1eWJRNVJSS2Va?=
- =?utf-8?B?eWhGNU5NdWZxYmdkRmN3eTVDVWxvWjc4R0hKUEwxaWdFdVlYQ1R6TEZkWGRQ?=
- =?utf-8?B?cVpIcExwaUxNcDFZTU1rNDdzVEhjb1lnTW10ZUM2UXYwNi9Za21Sb2t4bWJ5?=
- =?utf-8?B?SDVhRjFmTC9kKzlUSFlQS1h4TG1qaTFsNW0xWlZpRFo1aytLTGdHTFZnZG1i?=
- =?utf-8?B?QVQ5MHoxcTF5ZXhZZ1hLUDAvSDJSQ0trUUI5eDM4WTJ1czlidllha2RKbHND?=
- =?utf-8?B?TzVoYW91QUhKUDkxSS9PNFBvSjVGYVNZVGRjUzlIdm1wbnlXWEQ4M012Mllq?=
- =?utf-8?B?QkJ2aGJDeTQxMjhzS0hEdkx5NmdNdGFhOUxyYW5lbDNjTzNRdno5ekFsU1pG?=
- =?utf-8?B?bUFCNHZRV0pTY1pmcmNONGV4MTFVWXIrVzNNaEQ2aG9ZQ01Ubkh1VUhjY0E0?=
- =?utf-8?Q?LABWHa+/Qag5cP9x3FcUsExpb2DQHb8EfEvS/wJ?=
-X-OriginatorOrg: sct-15-20-4734-24-msonline-outlook-c54b5.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62ffc30a-bbb5-4e8f-5669-08dd52a57176
-X-MS-Exchange-CrossTenant-AuthSource: AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2025 18:27:48.7266
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWP189MB2804
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <SG2PR03MB6341ACD4DADDB280A8ACAA29FFC72@SG2PR03MB6341.apcprd03.prod.outlook.com>
 
-On 2/21/25 6:58 AM, Sandie Cao wrote:
-> Add usb_cdns3 and usb0_pins configuration to support super speed USB
-> device on the FML13V01 board.
+On Fri, Feb 21, 2025 at 09:30:40AM +0000, Hui Ma (马慧) wrote:
+> > On Thu, Feb 20, 2025 at 08:54:06PM +0100, Lorenzo Bianconi wrote:
+> > > On Feb 20, Bjorn Helgaas wrote:
+> > > > On Sun, Feb 02, 2025 at 08:34:24PM +0100, Lorenzo Bianconi wrote:
+> > > > > Configure PBus base address and address mask to allow the hw to 
+> > > > > detect if a given address is on PCIE0, PCIE1 or PCIE2.
+> > 
+> > > > > +#define PCIE_EN7581_PBUS_ADDR(_n)	(0x00 + ((_n) << 3))
+> > > > > +#define PCIE_EN7581_PBUS_ADDR_MASK(_n)	(0x04 + ((_n) << 3))
+> > > > > +#define PCIE_EN7581_PBUS_BASE_ADDR(_n)	\
+> > > > > +	((_n) == 2 ? 0x28000000 :	\
+> > > > > +	 (_n) == 1 ? 0x24000000 : 0x20000000)
+> > > > 
+> > > > Are these addresses something that should be expressed in devicetree?
+> > > 
+> > > Do you have any example/pointer for it?
+> > > 
+> > > > It seems unusual to encode addresses directly in a driver.
+> > > 
+> > > AFAIK they are fixed for EN7581 SoC.
+> > 
+> > So this is used to detect if a given address is on PCIE0, PCIE1 or
+> > PCIE2.  What does that mean?  There are no other mentions of PCIE0
+> > etc in the driver, but maybe they match up to "pcie0/1/2" in
+> > arch/arm64/boot/dts/mediatek/mt7988a.dtsi?
+> > 
+> > It looks like you use PCIE_EN7581_PBUS_ADDR(slot), where "slot"
+> > came from of_get_pci_domain_nr(), which suggests that these might
+> > be three separate Root Ports?
+> 
+> >I was using pci_domain to detect the specific PCIe controller
+> >(something similar to what is done here [0]) but I agree with
+> >Frank, it does not seem completely correct.
+> 
+> > [0] https://github.com/torvalds/linux/blob/master/drivers/pci/controller/pcie-mediatek.c#L1048
+> 
+> > Are we talking about an MMIO address that an endpoint driver uses
+> > for readw() etc, and this code configures the hardware apertures
+> > through the host bridge?  Seems like that would be related to the
+> > "ranges" properties in DT.
+> 
+> >I guess so, but I do not have any documentation about pbus-csr
+> >(adding Hui in the loop).
+> 
+> >As pointed out by Frank, do you agree to add these info in the dts?
+> >Something like:
+> 
+> >pcie0: pcie@1fc00000 {
+> >	....
+> >	mediatek,pbus-csr = <&pbus_csr 0x0 0x20000000 0x4 0xfc000000>;
+> >	....
+> >};
+> >
+> >pcie1: pcie@1fc20000 {
+> >	....
+> >	mediatek,pbus-csr = <&pbus_csr 0x8 0x24000000 0xc 0xfc000000>;
+> >	....
+> >};
+> 
+> >@Hui: can you please provide a better explanation about pbus-csr usage?
 >
-> Signed-off-by: Sandie Cao <sandie.cao@deepcomputing.io>
-> ---
->
-> Changes in v2:
-> - Remove space to pass checkpatch.pl.
-> - Add usb0_pins and pass test on board.
->
->   .../jh7110-deepcomputing-fml13v01.dts         | 19 +++++++++++++++++++
->   1 file changed, 19 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
-> index 8d9ce8b69a71..f2857d021d68 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
-> @@ -43,9 +43,28 @@ GPOEN_DISABLE,
->   			slew-rate = <0>;
->   		};
->   	};
-> +
-> +	usb0_pins: usb0-0 {
-> +		vbus-pins {
-> +			pinmux = <GPIOMUX(25,  GPOUT_SYS_USB_DRIVE_VBUS,
-> +					       GPOEN_ENABLE,
-> +					       GPI_NONE)>;
-> +			bias-disable;
-> +			input-disable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
->   };
->   
->   &usb0 {
->   	dr_mode = "host";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&usb0_pins>;
->   	status = "okay";
->   };
-> +
-> +&usb_cdns3 {
-> +	phys = <&usbphy0>, <&pciephy0>;
-> +	phy-names = "cdns3,usb2-phy", "cdns3,usb3-phy";
-> +};
->
-> base-commit: 38818f7c9c179351334b1faffc4d40bd28cc9c72
+> 	Pbus-csr (base and mask) is used to determine the address
+> 	range can be access by PCIe bus.
+> 
+> 1FBE3400 PCIE0_MEM_BASE 32 PCIE0 base address
+> 1FBE3404 PCIE0_MEM_MASK 32 PCIE0 base address mask
+> 1FBE3408 PCIE1_MEM_BASE 32 PCIE1 base address
+> 1FBE340C PCIE1_MEM_MASK 32 PCIE1 base address mask
+> 1FBE3410 PCIE2_MEM_BASE 32 PCIE2 base address
+> 1FBE3414 PCIE2_MEM_MASK 32 PCIE2 base address mask
 
-Works as expected, thank you very much!
+"Can be accessed by PCIe bus" sounds like DMA.  Is that what you mean?
 
-Tested-by: Maud Spierings <maud_spierings@hotmail.com>
+I doubt it, because if you have multiple host bridges, I assume they
+would all be able to handle DMA to all of system memory.
 
-kind regards,
-Maud
+It would make more sense if this is some sort of description of host
+bridge apertures, e.g., something like this to allow CPU MMIO accesses
+to reach the first 2GB of PCI memory space below any of the pcie0,
+pcie1, pcie2 host bridges:
 
+  pcie0 0000:00: root bus resource [mem 0x84000000000-0x8407fffffff] (bus address [0x00000000-0x7fffffff])
+  pcie1 0001:00: root bus resource [mem 0x84100000000-0x8417fffffff] (bus address [0x00000000-0x7fffffff])
+  pcie2 0002:00: root bus resource [mem 0x84200000000-0x8427fffffff] (bus address [0x00000000-0x7fffffff])
+
+But I think this would be described via 'ranges' properties.  And I
+think it would make sense if the driver had to learn this address map
+from devicetree and program it into the hardware, so maybe that's
+what Pbus-csr is for?  Total speculation on my part.
+
+Bjorn
 
