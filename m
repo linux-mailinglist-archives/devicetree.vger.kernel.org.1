@@ -1,94 +1,152 @@
-Return-Path: <devicetree+bounces-149557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20CBEA3FD09
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:12:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9E20A3FD1D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:15:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B888D18968E9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:08:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C864A7A760A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F56024BD11;
-	Fri, 21 Feb 2025 17:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61B124C680;
+	Fri, 21 Feb 2025 17:10:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GzjWBLIb"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TvzXkccs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26973214A85;
-	Fri, 21 Feb 2025 17:08:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E10981728;
+	Fri, 21 Feb 2025 17:10:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740157718; cv=none; b=N7kjrsf9wOk4BS3MF6HcGH1Hc/ZBfqXC4zj+k6V+IYvEeRiaIrsbrLJVr5xn/0pD6cmBm1VDF9R+79TEMN3dNPUXuGs93BH8QZ5jCQ8hS7UjhoCuIi/5ys20gaLq+YQIxJmS4ph9yLvD5DT/ZWZ7C3t1rqJun22TSAFahbaus48=
+	t=1740157844; cv=none; b=fw/FVAiJexTFxQeVVoFvKxY5oT7sByxgLdIvo5kkqJILpff5KLMjm/+o3Wkqh3K274E0Yt/4jrsH+brwvPwhGGJKBod5Z4LIbAWhOkuhzJzgI+iVUkilEuyacVYpyXwvimAbcAWr5LAEScIvozjTLR3CES3Gz5ClOA5GnADqGxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740157718; c=relaxed/simple;
-	bh=s5eo+jWFRpAipFm09lCIDLtuXzM+294r4TRujXXE5u0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=vEUv7asuDd37lKcVCDHj+sXxu4syvlMZ+Xxi4oP/d+cI4cPnWJ7OyAhU+MOJNF+7gchuhBkf120B2GBYcD8UOBMZmGt+jzO4RJ4LP9gyCWrBhxUld5J1KbgCkREhidiSph3HGMjRmDHA2oFdYvBo8fT1HwFGsgKdga/gItQt6SY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GzjWBLIb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 060DDC4CEEB;
-	Fri, 21 Feb 2025 17:08:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740157718;
-	bh=s5eo+jWFRpAipFm09lCIDLtuXzM+294r4TRujXXE5u0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=GzjWBLIbRxpFtvcpYed3KJH5oTstoyhONMh/76infiaUq8+BKchsHfECQe7rxsIqF
-	 qFcpc8lIOphgU56JOdmPiHKujaATg0VW9uoRwxwBPQfyI3sPAXrly4pFA18F7KGWNL
-	 NwoG9XpzqWnq+f+a0L78ehWlYynKd4CiEsPHyaZrD4oAmPCR9IYJYgqMx1K2vds61F
-	 FEmTYM4LhyFNfXyTfRI0N1ACovuQO4ZA4AeXRs5g0uVERIQI+fDEDiDFZmPsvnKVm8
-	 pj9479jGjo1KY/PzySQYuxqdo61I+bvpRxMZCkBO3lFaJX9yUMRAOjxaBY5wzIgPsG
-	 yBAgKohor6mFA==
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5e04f87584dso3551980a12.3;
-        Fri, 21 Feb 2025 09:08:37 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX1wazPxrwvqWoLP25eyGM8yj8jKq/K+wgXAtmpanZtQUiYDj5JQ5JnEbqE0THwp5TeMIeOL0YmbPPh2YeA@vger.kernel.org, AJvYcCXTHCTn5HG1IZSf/vM76Mn+S1bWy8jxV0ogBXb3HFQu1iZ+vMn1jkxIHasrXj3l9dhUF03BrvB/zSZL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwswD8TG3+TIEx9W0yWXU/EWtGrxzfvjk8rxdKllb8rnpUB45UO
-	g05XkT63FcuNxzrsO5Yy51AxxUvzF+Mi97na/jmE198i9ALiKpGzHFskGWapml/2g+P5zWDQJCn
-	BZ61ZsRWb3OR8QTwd9ZYr1i/1Wg==
-X-Google-Smtp-Source: AGHT+IF3O3vdI8KmOvbFRUGPLCBofMuxQiMkHrsWb3wzJcHfb8wAPbp8iF9eEU1cB0o4czpk21gl9NW97USVLhVQ01s=
-X-Received: by 2002:a05:6402:e02:b0:5e0:9ec6:12d1 with SMTP id
- 4fb4d7f45d1cf-5e0b70f0800mr4060556a12.18.1740157716547; Fri, 21 Feb 2025
- 09:08:36 -0800 (PST)
+	s=arc-20240116; t=1740157844; c=relaxed/simple;
+	bh=O2KxljMLsiJkvk1x1mV/7tfMvB7XKbaHrSbExGg+UZ8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Fc732dVJs9wyxHRWtAIa75qx9bgjA7756yzgrnzcfedNxnlV6L3jaqtcQtugO4u1QciljoMdfno2WYCiAxYA2Dk890VATrlvPgeyfNpAqhdsw9G2x7uY5mgI1riJgRQMRc9xxxo7h2W79U45EL5beDnTUYFJcvzpx7hoWmG8L3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TvzXkccs; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51LCoZnL012227;
+	Fri, 21 Feb 2025 17:10:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=YGZR5bb4Yo+zoe/67pesCM
+	UP0GY+ikdMoIV3QP+AqIc=; b=TvzXkccs4mfZ/kC4XZGdCdBtZn3vUdw4nsAC4/
+	VbNGM8KpcSGrPVNZtEcOg5IX6pFK9NY/5xdI8J/L+Diy11L2K2IqzfBqNImATGOa
+	vitfWzbI0BFzq1PHy6GruRBOV6+kAMHvSsQV2oNzq931bJhgncRklSAPti0yd0V8
+	hh14vXtrSD/hveH1UL+etnhJMfVQDJcKEw+OGWjNVshDOAKEm8/QRC8AIi9UY2jI
+	FQXWX6vX1cgoEVoYOaE1ynwZkp5mdjxBztK+icpJ9vpl3ZJ2HkrSCQkSEwtjhAtp
+	voWfcmgjwRB4X/BOtdLgUYl0dx4NYMePn3dGscLv/bRouvLA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44vyy1tsr1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Feb 2025 17:10:37 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51LHAaw7018264
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Feb 2025 17:10:36 GMT
+Received: from hu-janathot-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 21 Feb 2025 09:10:32 -0800
+From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <quic_mohamull@quicinc.com>, <quic_janathot@quicinc.com>,
+        <quic_hbandi@quicinc.com>, <quic_anubhavg@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v10 0/1] Enable Bluetooth on qcs6490-rb3gen2 board
+Date: Fri, 21 Feb 2025 22:40:13 +0530
+Message-ID: <20250221171014.120946-1-quic_janathot@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250218090427.20318-1-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250218090427.20318-1-angelogioacchino.delregno@collabora.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 21 Feb 2025 11:08:25 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+4+=3ccuwa1whv+UQ56H6ueia4Mqy2z73M-5D15zZw=Q@mail.gmail.com>
-X-Gm-Features: AWEUYZmwuM1JP26BKUCaWcwByGaIWjPB3I55aqksnOcD6mvIR49_PbC1vcSeCe8
-Message-ID: <CAL_Jsq+4+=3ccuwa1whv+UQ56H6ueia4Mqy2z73M-5D15zZw=Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: display: mediatek: dsc: Add MT8188 compatible
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
-	airlied@gmail.com, simona@ffwll.ch, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	kernel@collabora.com, pablo.sun@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ZDP17XihiEKhjL8PGY0kSh2PGUnjlsnQ
+X-Proofpoint-ORIG-GUID: ZDP17XihiEKhjL8PGY0kSh2PGUnjlsnQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-21_05,2025-02-20_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
+ adultscore=0 malwarescore=0 mlxscore=0 priorityscore=1501
+ lowpriorityscore=0 mlxlogscore=661 suspectscore=0 phishscore=0 spamscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502210120
 
-On Tue, Feb 18, 2025 at 3:04=E2=80=AFAM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Add compatible for Display Stream Compression (DSC) IP found in
-> the display controller of the MT8188 SoC.
->
-> This IP is fully compatible with the one found on MT8195.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->  .../devicetree/bindings/display/mediatek/mediatek,dsc.yaml     | 3 +++
->  1 file changed, 3 insertions(+)
+Patch 1/1
+  Addressed review comments related to alignment in patch 1
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+----
+Changes from v9:
+* Addressed review comments provided Dmitry 
+* Link to v9: https://lore.kernel.org/linux-arm-msm/20250220112945.3106086-1-quic_janathot@quicinc.com/
+
+Changes from v8:
+* Fixed the dtb-check warning  in P1 and removed tag: Reviewed-by
+* Link to v8: https://lore.kernel.org/linux-arm-msm/20250127064940.1360404-1-quic_janathot@quicinc.com/
+
+Changes from v7:
+* updated P1 & P2 with tag: Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> 
+* Link to v7: https://lore.kernel.org/lkml/20250107134157.211702-1-quic_janathot@quicinc.com/#t
+
+Changes from v6:
+* Elaborated the commit message with more information.
+* Link to v6: https://lore.kernel.org/lkml/20241223135700.22660-1-quic_janathot@quicinc.com/
+
+Changes from v5:
+* Update the wcn6750 required properties in bindings.
+* Link to v5: https://lore.kernel.org/linux-arm-msm/20241209103455.9675-1-quic_janathot@quicinc.com/
+
+Changes from v4:
+* Added reviewed tag by Krzysztof in p1
+* Updated the p2 commit message with sw_ctrl and wifi-enable are
+  handled in wifi FW.
+* Added blank line between the nodes in p2
+* Placed the structures in proper order in p4
+* Link to v4: https://lore.kernel.org/all/20241204131706.20791-1-quic_janathot@quicinc.com/
+
+Changes from v3:
+* Defined the PMU node and used the its output to power up BT
+* Used power sequencer for wcn wcn6750 module
+* Split the patch to multiple as per subtree
+* Add description of the PMU of the WCN6750 module
+* Include separate UART state node for sleep pin configuarion
+* Link to v3: https://lore.kernel.org/linux-arm-msm/20241022104600.3228-1-quic_janathot@quicinc.com/
+
+Changes from v2:
+* Sorted nodes alphabetically
+* Link to v2: https://lore.kernel.org/linux-arm-msm/20241010105107.30118-1-quic_janathot@quicinc.com/
+
+Changes from v1:
+* Corrected the board name in subject
+* Link to v1: https://lore.kernel.org/linux-arm-msm/20241009111436.23473-1-quic_janathot@quicinc.com/
+Janaki Ramaiah Thota (1):
+  arm64: dts: qcom: qcs6490-rb3gen: add and enable BT node
+
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 171 ++++++++++++++++++-
+ 1 file changed, 170 insertions(+), 1 deletion(-)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
 
