@@ -1,298 +1,134 @@
-Return-Path: <devicetree+bounces-149618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFEC2A3FF21
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 19:57:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 287E8A3FF27
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 19:59:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA6F14233CA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:57:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13FB1189234A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:59:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60E8C2512E0;
-	Fri, 21 Feb 2025 18:57:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B5922512F9;
+	Fri, 21 Feb 2025 18:58:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D6nWTbXo"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="REPiqKEh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5432C1F2C56;
-	Fri, 21 Feb 2025 18:57:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0762C2512C9
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 18:58:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740164236; cv=none; b=K+vftZeoMD3jvikRo1LdyQYArH91v6tG00hKulrcdXW9baiORT6fm6xk6lIu8Ysan+B9ERFTJeMKmsHBw3qp29m/xG7TKKU9VuWGIIhE/gsL21NgFB2xyjbw4PUPvVOp5mATU12uxuEA/jXtCjMoMZjr05HUHrS3OhmQqOaM0KI=
+	t=1740164333; cv=none; b=OogP0YfXlYO7I80GooIHZaGj85oib3DPhQ2Uy1jFP4ssm8E9UlM6it/J0LnLcEXQ+WIkQ0CvrhQPW6wnJ3BcYmvAE5DUl+pZYi8vKGhTX+XmnDmKx4n9aCt7CpoqBl7ks4FzE27bUA/4sBOIpMQYC1ZqV0Xl87v234k/Vb9XT+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740164236; c=relaxed/simple;
-	bh=kWmfsVvKg5wKceJECbS7L8a9jKBdmJvOaYvIFoU+wqY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eZaY8ts9I5yRISzI2CmYBHGXnGmTgsZQpChTUoVxT+XwACwAoBic1dx/uyX58fEbkYtbUTpLZnnmHakbnsqacrpiTd7yJzE0iSYrmiPwwajo+g4HTBaQLDRo9fP7uMfsX7+QHJ5s+LKrxPiebmglpq3xJM7G7qrcaNtbCW+G9HA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D6nWTbXo; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-38f6475f747so1123497f8f.3;
-        Fri, 21 Feb 2025 10:57:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740164233; x=1740769033; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PN3oGQQws7Six7IFqs4lj8276Rsr9itBvWsUOy5dh5s=;
-        b=D6nWTbXoGHCUCHMZLe81OQe+qraoOyvP4aHMYkY3h5jSaY7mZ4XD4UQowoDSqWqOT7
-         0Bhpx7ZH4WLwSVVIx/s2Pk+oaH3BCKbqp3z0gwvAvKFyTmmZTVT6QTe1V8WoDV5Epbi9
-         brtr68XedNXonNsnRaQwfnz9Y46YtRq1i+hbW2QTQ7Lbo8au+G8/tLJGmRgkf997RF0G
-         aYX/zw/QbBWtlVNCfeOxyX9s2XQ/V0bybE/9ziurTNarevEYQsHIIhaR8efeUzfgmNez
-         nEt/UsZk4tUYhTU4tW4M0UJLRKYaf9hszq1oSXZbYy1f+W9hv0sxqlxMfrSnYdyfXfYP
-         7abA==
+	s=arc-20240116; t=1740164333; c=relaxed/simple;
+	bh=cAHIOldwwFNo/wAZhPUz57LxWBpil7EujySEEBgkP2U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=vAQYcEB+lemYQgG61BGGA+EZ95/bt6Zyw67Uqi9gAVwQZ7J0Dk8ipMD9B52CwisbSknqHGrWFZM+RNGQsBWsbDk2AhzFXjE8eL7y4ih1nKFWn6SWs7xqHvqmEDsjrFwiHOoX8Lsk/xYjhOqbmSi2E8lzOwlXShlbNgp6GNmST14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=REPiqKEh; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51LCd9O4031600
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 18:58:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	EzV2o4eyTRfwYhyLT+w9P16JkkzT3HqrChTdrDEUE9U=; b=REPiqKEhhs+LdFQY
+	hSz3lOjsRSwlCbqBi9sF1End6d7GNX9uK3QSB0bTU5HtJgJp6HU69u9f6Ty47snI
+	Na2NsjWKUnRUof6L3c+4AK6ue+gRevvzw+i7FkXVKJzGgwx4Mpl0fSeYHj2swm1a
+	3NHAMWO39LSI7n3tSmzZv42NURMVNV91VCNolbTjRX2BnybiIi7t1ZcyaGugHl8g
+	lAYLrMySLtcrM7mjayAgpWaQcOKB0uV+SNGfbVIG1QPUqv8Rlc+qWSEV69QCs0e+
+	SoLEvfVxXfZp4t0Dxhigql8jsZRcD1/Oxs4g9zXQ0xz79MDspbrgiG3ECMCph80H
+	rJUMVA==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44vyy5jw7d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 18:58:50 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6e662a02f30so5573976d6.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 10:58:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740164233; x=1740769033;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PN3oGQQws7Six7IFqs4lj8276Rsr9itBvWsUOy5dh5s=;
-        b=JwASLUi5o8oovaZSAVNayrhWcXyIuRVJPmyjCQCSpERjjypriwSaWwXA9wzUyv6q2U
-         oIkM3U0JnPAs99hmRrpe2BDsWlc5nDz0tj2ZhahCC03oG6txWDKjOFk3eMvdr7XTVCyy
-         zjQkFjFOPtLIHNwWUI18/Ddr/4u3wQmBq41XQuK8QNDWmpq4j947CtIXP7f4RLLwJFSr
-         dqG5dOsvLdrh3ZsNGb+HS5RAtzoKrrAN+nxS9rAkSd2U3irYqk2bpsWuZe4Du4eu9xIP
-         oFBXQQDhI48NmOQbSEPSV73zqkGXAjpA6AN7TdrwmD0LyWMADdCObXB9u4+T1xEizvnt
-         NJlA==
-X-Forwarded-Encrypted: i=1; AJvYcCVUuVfclliq9mxD8VQ245C0S7bGmYYLkEQTW+Ew53CbIE13hqGbxslWjqylGwBztIlQgh4fIx7V6pKj@vger.kernel.org, AJvYcCWIiPz+kX+kHEQLXQGKeq9Tm8+60CYfVVU+zGOUkwDkCKjgZowudCtDHVlduswIsraBjRlWokRQBPCX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/rNlVT1oYc0R7EcA8Y8LxjB5WrS38YjI9IrQwhj3/fygo4yH4
-	4TVva4e3lVOX0dz8yu8Y+ipqLk5AQWfHpive7S6gusCM1GZQlUR/
-X-Gm-Gg: ASbGncsYxA29ggapgHp8nRCv3pLSLw0jP/fa67+pSY7iv4zv9kzuSYfKyTAQm4p03dq
-	CJasdlvaFaGSLBnHn8oGBpDzZH17VpKoT9+E3NePFz09RF9oZe8L0NXjOK6CK0ClT4z5X5gAIAe
-	HfYrNNMS/ESR3cOvqhZYnp8T4jO1exE6TpKP44Ei0sKBdD6r8QaXW6N0KmIu8rxTpa0+xXiMGjh
-	/xrQVA7ptJREaVNmDcLWiQKKdNYU9VpZr59CcedxAYlMTJZ5AIHnnKpweYCVX4gq5cX+RhtHroQ
-	eF7KSzhLZoIKCtd4x7A6TRaDTiYH+37D60aMeFuseOAxyBpBeUSFnTTE1t7BcV87WSTYvfrfj6Z
-	xBg==
-X-Google-Smtp-Source: AGHT+IED3JUpuFrGJtsUJIgfdM5lhUdX84mBy/uSqrlejM+ibWRA7x2nFo9HzaxyAF3shIBnXClB+g==
-X-Received: by 2002:a05:6000:1fae:b0:38d:cbc2:29f6 with SMTP id ffacd0b85a97d-38f6e947434mr3452719f8f.17.1740164232187;
-        Fri, 21 Feb 2025 10:57:12 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f259d5655sm24085725f8f.77.2025.02.21.10.57.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Feb 2025 10:57:11 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Samuel Holland <samuel@sholland.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Ryan Walklin <ryan@testtoast.com>
-Cc: Andre Przywara <andre.przywara@arm.com>,
- Chris Morgan <macroalpha82@gmail.com>,
- Hironori KIKUCHI <kikuchan98@gmail.com>,
- Philippe Simons <simons.philippe@gmail.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, Ryan Walklin <ryan@testtoast.com>
-Subject:
- Re: [PATCH v7 00/27] drm: sun4i: add Display Engine 3.3 (DE33) support
-Date: Fri, 21 Feb 2025 19:57:09 +0100
-Message-ID: <2221204.Mh6RI2rZIc@jernej-laptop>
-In-Reply-To: <20250216183524.12095-1-ryan@testtoast.com>
-References: <20250216183524.12095-1-ryan@testtoast.com>
+        d=1e100.net; s=20230601; t=1740164330; x=1740769130;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EzV2o4eyTRfwYhyLT+w9P16JkkzT3HqrChTdrDEUE9U=;
+        b=UAFIT7N+DfhnHNMVaBG/eAezpsQSx8rn62EzR/o78tyXqUxi/cXnrto12zXPawe4CS
+         HEgScvLujEY4daNGUJ3H13uPoKh/HmkMMmZPWhLz2Jzw7UqSWRieH9mfGGqG207T9ILI
+         38RECOGk8LX6n79SPfTs3tguPch/BPNk3ik/j2bNE+WGVNtHy8dxxAeiio/qIglkk0xd
+         DNVXkUppPzKuGt/l4E7zWkbv7Fd/7hx32ttwVK/0aiXJy3622t0yv6RJWLBsiazRQ8ZX
+         3RxR3qe5DT26+VI+OxDhHHzD3YGl1oHT/PBDFO4LWErWUVKUZFCvMMX4F5F3qmRnejtf
+         yWOw==
+X-Forwarded-Encrypted: i=1; AJvYcCWMTFtCMLw66YYiztXS3Nfn5JzYsCJ5w6yjL+Cx+BT6Y0vKk6gMLdFzhNOrHcbVk8/O3/cWB/1ICfv1@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNzWrQpkWCEbQHjRIeEnSyb5hv0XTGEwZidzjbznRlEELzG67y
+	4PV+U5rurxGIriVuIxUX1Yi2FnofrH+WATV7gXthJksQGoNLpMnC/DgbwFVlUNJjZEpo1oHXRCf
+	NDtDsgASJft7zms73G8ms52UutkOqkwqhKLI++l7E5enJspBCr9BxIEsHfJ1O
+X-Gm-Gg: ASbGncsQdg7O3BQ7KP3Us0kuSdCINEKAGul3fVX9KfnPtDKLJT/qPAQenCZq+GOo8GC
+	ZibzTmhkYa4LBR2FrxB8J1hRbnE0Y2LUVPr3toXbEX/rzGdG3ZCC5p6VLGq9tE+phvxQ5LOHCAU
+	vRkbaNE4CYRr5CnY7JVb5sfqso4MXQGLWmB/hnnFAlYXoGba7oTZvw2w2JrmxNc6WNwJ4JRZ2Jt
+	iuxBIZRYTc/NFF1/ygwmlH3j7FgcMfNaRGbryJ/t066GAvqKGI80SiNwm6F4rEECPZdVJqBwzI4
+	qrqjpk28gzdwq3+gKylE+PYxJmPwjkhi2nP+GqxPhfho4Ak1+tOeOzQeLmPUnav/51RQgg==
+X-Received: by 2002:a05:6214:e64:b0:6d8:b169:dcd1 with SMTP id 6a1803df08f44-6e6ae9ffd9bmr19075626d6.11.1740164329998;
+        Fri, 21 Feb 2025 10:58:49 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHDMKRFaHc4D4Ja2PLy4N1h1xcVjFyYawh08UFrwgsskejYut5579S4YNCx1aQqtDmho2zVhw==
+X-Received: by 2002:a05:6214:e64:b0:6d8:b169:dcd1 with SMTP id 6a1803df08f44-6e6ae9ffd9bmr19075416d6.11.1740164329513;
+        Fri, 21 Feb 2025 10:58:49 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece271223sm14404266a12.59.2025.02.21.10.58.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Feb 2025 10:58:49 -0800 (PST)
+Message-ID: <103f33ed-595a-422b-ad13-13d9c1f0ee78@oss.qualcomm.com>
+Date: Fri, 21 Feb 2025 19:58:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 1/1] arm64: dts: qcom: qcs6490-rb3gen: add and enable
+ BT node
+To: Janaki Ramaiah Thota <quic_janathot@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: quic_mohamull@quicinc.com, quic_hbandi@quicinc.com,
+        quic_anubhavg@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250221171014.120946-1-quic_janathot@quicinc.com>
+ <20250221171014.120946-2-quic_janathot@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250221171014.120946-2-quic_janathot@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: w5Q9FiQsmZupG97r5gnLMlE2CL1uiR4d
+X-Proofpoint-GUID: w5Q9FiQsmZupG97r5gnLMlE2CL1uiR4d
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-21_07,2025-02-20_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=868 spamscore=0 bulkscore=0 clxscore=1015 suspectscore=0
+ adultscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502210131
 
-Hi Ryan,
+On 21.02.2025 6:10 PM, Janaki Ramaiah Thota wrote:
+> Add the PMU node for WCN6750 present on the qcs6490-rb3gen
+> board and assign its power outputs to the Bluetooth module.
+> 
+> In WCN6750 module sw_ctrl and wifi-enable pins are handled
+> in the wifi controller firmware. Therefore, it is not required
+> to have those pins' entries in the PMU node.
+> 
+> Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+> ---
 
-sorry for very late review, but here we go...
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Dne nedelja, 16. februar 2025 ob 19:31:59 Srednjeevropski standardni =C4=8D=
-as je Ryan Walklin napisal(a):
-> Hi All,
->=20
-> v7 of this patch adding support for the Allwinner DE33 display engine, us=
-ed in the H616 family of SoCs. Apologies for the short interval between ver=
-sions but a compile error due to a missed helper function in patch 11 snuck=
- by me. v7 only differs from v6 in adding this back.
->=20
-> v6 includes some small fixes to the device tree documentation, improves n=
-aming of an enum type, moves colorspace configuration from the sunxi engine=
- object to the mixer object, and a handful of very small style and whitespa=
-ce changes. All comments/tags from previous versions addressed. No function=
-al change from v5.=20
->=20
-> A v1 patch to enable LCD output for the Anbernic RGnnXX family of devices=
- which use this SoC with an RGB LCD will be submitted shortly.
->=20
-> Thanks to those who have reviewed and tested previous versions, and to Je=
-rnej for the initial patch.
->=20
-> Original blurb below:
->=20
-> There is existing mainline support for the DE2 and DE3 AllWinner display =
-pipeline IP blocks, used in the A64 and H6 among others, however the H700 (=
-as well as the H616/H618 and the T507 automotive SoC) have a newer version =
-of the Display Engine (v3.3/DE33) which adds additional high-resolution sup=
-port as well as YUV colour formats and AFBC compression support.
->=20
-> This patch set adds DE33 support, following up from the previous RFC [1],=
- with significant rework to break down the previous relatively complex set =
-into more logical steps, detailed below.
->=20
-> 1. Refactor the existing DE2/DE3 code in readiness to support YUV colour =
-formats in the DE3 engine (patches 1-4).
-> 2. Add YUV420 colour format support in the DE3 driver (patches 5-13).
-> 3. Replace the is_de3 mixer flag with an enum to support multiple DE vers=
-ions (patch 14).
-> 4. Refactor the mixer, vi_scaler and some register code to merge common i=
-nit code and more easily support multiple DE versions (patches 15-18).
-> 5. Add Arm Frame Buffer Compression (AFBC) compressed buffer support to t=
-he DE3 driver. This is currently only supported for VI layers (for HW-decod=
-ed video output) but is well integrated into these changes and a subsequent=
- patchset to enable the Video Engine is planned. (patch 19).
-> 6. Add DT bindings for the DE33 engine. (patches 20-22).
-> 7. Extend the DE2/3 driver for the DE33, comprising clock, mixer, vi_scal=
-er, fmt and csc module support (patches 23-27).
-
-This patchset actually introduces 3 disticnt features, which should IMO be =
-separated
-and thus making reviewing patches easier.
-
-1. native 10-bit YUV420 output (without YUV->RGB->YUV conversions) - this i=
-s used on
-    HDMI for proper 10-bit 4K@60 HDR output
-2. Display Engine 3.3 (DE33) support
-3. AFBC modifier/format support (used for more efficient GPU or VPU output =
-rendering)
-
-If I'm not mistaken, your goal is only DE33 support. There is are two reaso=
-ns why
-I've never sent these patches myself:
-
-1. scaling YUV images doesn't work
-
-Not a problem for any user who doesn't use video player with DRM plane rend=
-ering,
-which I assume is most of them. We can get around of this issue to deny sca=
-ling
-YUV buffers until the issue is sorted out.
-
-2. plane allocations are hackish
-
-DE33 for the first time introduced option to move planes between the mixers=
-=2E DRM
-has also support for this, but for time being static allocation is acceptab=
-le and tbh,
-even dynamic support need appropriate initial setting.
-As you might guessed this is done in DE33 clock driver using magic values. =
-Proper
-way would be to introduce some kind of connection between mixer/plane and c=
-lock
-driver, so initial configuration can be moved to appropriate module instead=
- of
-being thrown into clock driver. I need to check where to put it and how to =
-properly
-connect DT nodes. Maybe syscon phandle? I'll do some research.
-
-There is one glaring issue (when you work on driver and test every aspect o=
-f it).
-DE33 introduced RCQ, which is basically DMA, which copies shadowed registers
-from memory buffer directly to hw registers. IIRC it does that at vblank ti=
-me. This
-tells you that current concept of writing register values at any time users=
-pace feels
-to do commit is wrong and we've been lucky that it works as well as it does=
-=2E So,
-in order to fix this, driver would need quite a big reorganization. Introdu=
-cing
-shadow buffers would solve most of the issues, most likely also with YUV sc=
-aling.
-Implementing RCQ would be then relatively simple and even improve timings.
-Note that even DE3 has occasional issue with YUV scaler and also read-modif=
-y-read
-access to some of its register can produce bogus value and thus corrupt ima=
-ge
-until next commit.
-
-This is not to say that these issues must be solved with this effort, I'm j=
-ust stating
-them to make people aware.
-
-Best regards,
-Jernej
-
->=20
-> Further patchsets are planned to support HDMI and the LCD timing controll=
-er present in these SoCs.
->=20
-> Regards,
->=20
-> Ryan
->=20
-> Jernej Skrabec (21):
->   drm: sun4i: de2/de3: Change CSC argument
->   drm: sun4i: de2/de3: Merge CSC functions into one
->   drm: sun4i: de2/de3: call csc setup also for UI layer
->   drm: sun4i: de2: Initialize layer fields earlier
->   drm: sun4i: de3: Add YUV formatter module
->   drm: sun4i: de3: add format enumeration function to engine
->   drm: sun4i: de3: add formatter flag to mixer config
->   drm: sun4i: de3: add YUV support to the DE3 mixer
->   drm: sun4i: de3: pass mixer reference to ccsc setup function
->   drm: sun4i: de3: add YUV support to the color space correction module
->   drm: sun4i: de3: add YUV support to the TCON
->   drm: sun4i: support YUV formats in VI scaler
->   drm: sun4i: de2/de3: add mixer version enum
->   drm: sun4i: de2/de3: refactor mixer initialisation
->   drm: sun4i: vi_scaler refactor vi_scaler enablement
->   drm: sun4i: de2/de3: add generic blender register reference function
->   drm: sun4i: de2/de3: use generic register reference function for layer
->     configuration
->   drm: sun4i: de3: Implement AFBC support
->   drm: sun4i: de33: mixer: add Display Engine 3.3 (DE33) support
->   drm: sun4i: de33: vi_scaler: add Display Engine 3.3 (DE33) support
->   drm: sun4i: de33: fmt: add Display Engine 3.3 (DE33) support
->=20
-> Ryan Walklin (6):
->   drm: sun4i: de3: refactor YUV formatter module setup
->   dt-bindings: allwinner: add H616 DE33 bus binding
->   dt-bindings: allwinner: add H616 DE33 clock binding
->   dt-bindings: allwinner: add H616 DE33 mixer binding
->   clk: sunxi-ng: ccu: add Display Engine 3.3 (DE33) support
->   drm: sun4i: de33: csc: add Display Engine 3.3 (DE33) support
->=20
->  .../bus/allwinner,sun50i-a64-de2.yaml         |   7 +-
->  .../clock/allwinner,sun8i-a83t-de2-clk.yaml   |   1 +
->  .../allwinner,sun8i-a83t-de2-mixer.yaml       |  21 +-
->  drivers/clk/sunxi-ng/ccu-sun8i-de2.c          |  25 ++
->  drivers/gpu/drm/sun4i/Makefile                |   3 +-
->  drivers/gpu/drm/sun4i/sun4i_tcon.c            |  28 +-
->  drivers/gpu/drm/sun4i/sun50i_afbc.c           | 250 +++++++++++++
->  drivers/gpu/drm/sun4i/sun50i_afbc.h           |  87 +++++
->  drivers/gpu/drm/sun4i/sun50i_fmt.c            | 100 +++++
->  drivers/gpu/drm/sun4i/sun50i_fmt.h            |  32 ++
->  drivers/gpu/drm/sun4i/sun8i_csc.c             | 345 +++++++++++++++---
->  drivers/gpu/drm/sun4i/sun8i_csc.h             |  20 +-
->  drivers/gpu/drm/sun4i/sun8i_mixer.c           | 226 +++++++++---
->  drivers/gpu/drm/sun4i/sun8i_mixer.h           |  53 ++-
->  drivers/gpu/drm/sun4i/sun8i_ui_layer.c        |  41 ++-
->  drivers/gpu/drm/sun4i/sun8i_ui_scaler.c       |   2 +-
->  drivers/gpu/drm/sun4i/sun8i_vi_layer.c        | 133 +++++--
->  drivers/gpu/drm/sun4i/sun8i_vi_scaler.c       | 115 ++++--
->  drivers/gpu/drm/sun4i/sun8i_vi_scaler.h       |   2 +-
->  drivers/gpu/drm/sun4i/sunxi_engine.h          |  29 ++
->  20 files changed, 1306 insertions(+), 214 deletions(-)
->  create mode 100644 drivers/gpu/drm/sun4i/sun50i_afbc.c
->  create mode 100644 drivers/gpu/drm/sun4i/sun50i_afbc.h
->  create mode 100644 drivers/gpu/drm/sun4i/sun50i_fmt.c
->  create mode 100644 drivers/gpu/drm/sun4i/sun50i_fmt.h
->=20
->=20
-
-
-
-
+Konrad
 
