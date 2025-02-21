@@ -1,283 +1,321 @@
-Return-Path: <devicetree+bounces-149421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF04EA3F6F2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:15:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD0F4A3F6DC
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:10:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C93EE174152
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:15:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEBA9189840A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:10:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C897C1D5173;
-	Fri, 21 Feb 2025 14:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C71AE20E00D;
+	Fri, 21 Feb 2025 14:10:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lpcK20Mt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-190d.mail.infomaniak.ch (smtp-190d.mail.infomaniak.ch [185.125.25.13])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21561ADC98
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 14:15:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8843B433DE;
+	Fri, 21 Feb 2025 14:10:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740147313; cv=none; b=WEZiMBgkqNPBbpwNDbKz0Aw1d0IAR+hX1snFE31WjIIxbp4viBuq0zVW0yStjzFfYktBofYVphpFwFk/NAr2jwWXeZiXEhyvvntsFpzZBv8Knm0U74KsrM6DMt72WZBEG+bPY3WvQO+c6ciYxLCroNfENpeaYfrSq/oVGbLAzTU=
+	t=1740147042; cv=none; b=IWfpO1Er+PfkjFy7OYXcOAGeMcBtETUwBIcsJ2L/ASySCI5+RiFdAygOVAzEMAjO81xPo1uXT5lZLd+ZmBljQQ7tAkbkI6l/kBqNHudNRNFOYAbSaHSImW7/dypi/P5XYRB51Yqat/o6iQaS7ojrukCIx83xjhxSLxl8coC6SQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740147313; c=relaxed/simple;
-	bh=Fhu01hguLpxdSCdRiUt6ZoqGPPHRYI7QuUAEHmrpgaE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ir4O43j9hHYrDraOMN/xJn7BFP+GRRVKc0sq4Ku4O7u7qJ5MR2pWYBer+MLVJOneTE2jdfCZFUSAz80UvHP7fPWqvBcSjgVu5Wq5M0DLq98HKoFxQxpHkseWA2Wu+W5P5h8CVb2xwZm00iq8EggXr5FfXuJ4c1iYw3c+u+dX1NI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-4-0000.mail.infomaniak.ch (unknown [IPv6:2001:1600:7:10:40ca:feff:fe05:0])
-	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4YzsMg2wt0zRTj;
-	Fri, 21 Feb 2025 15:05:03 +0100 (CET)
-Received: from unknown by smtp-4-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4YzsMf5Yy2zYKb;
-	Fri, 21 Feb 2025 15:05:02 +0100 (CET)
-From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Fri, 21 Feb 2025 15:04:37 +0100
-Subject: [PATCH v2 5/5] arm64: dts: rockchip: add overlay for RK3399 Puma
- Haikou Video Demo adapter
+	s=arc-20240116; t=1740147042; c=relaxed/simple;
+	bh=sRkollq7aUdEod9DwGNTqSYaedg1P55G6GG07rIbd3s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OXgzqo5n9X5YPF/Qawn75oJTSxnpF+G2WHP+90c1p3kLkKkxo5n3tk8/rt2vgHecPsrPGtJMlfrMHokB0BqhK/qv23o5B1SH2nhyU9RVIxjCCSsHrWrvCMnCGPnPQy9K6BFp9yGhg69Zrr5lWK235RjkHJmbXsBDch4nz3biSZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lpcK20Mt; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1740147041; x=1771683041;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=sRkollq7aUdEod9DwGNTqSYaedg1P55G6GG07rIbd3s=;
+  b=lpcK20Mt0qzlLIGxWyqEhMlwhWEhGB2NEokOiTxQBPyN6hdV9NZSR1EP
+   +zFETpjgI5O4ME5ND3Y57ctyCXw/JjGbqU8/0kr8NiItPVJhH6rt6VeSX
+   onZHKoVM/C5bFCNtSZe0HZGTsqvxmIDDxZ8iiAXUTxJ1W1qNsS71uDqoT
+   DLddZ1H0H0W3CrnK+beCIt4eD2xYn97XiFwmrOKks5rhIlCtbGfXl0jd7
+   wOS5+QzSiCL72Jl4+fDn3MpsoDDELpMGE8X170MtaSA6Pe42BrJFP6jaO
+   f51CF2XavdGmu3JefuJ1SCNBnVeJ1lyNzmNshm1ai1x7cF/DZvQQL2CUs
+   Q==;
+X-CSE-ConnectionGUID: p47Em7V9S2qM1NV41GZsCw==
+X-CSE-MsgGUID: q9y2nIinTHyFuburhOrypA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11352"; a="40842066"
+X-IronPort-AV: E=Sophos;i="6.13,304,1732608000"; 
+   d="scan'208";a="40842066"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2025 06:10:40 -0800
+X-CSE-ConnectionGUID: aCI6g3nqRDavtpRc+aawEg==
+X-CSE-MsgGUID: e6xGiywaQ1+G1N9OiCqMlA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; 
+   d="scan'208";a="120361076"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2025 06:10:34 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 36155120289;
+	Fri, 21 Feb 2025 16:10:31 +0200 (EET)
+Date: Fri, 21 Feb 2025 14:10:31 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Michael Riesch <michael.riesch@wolfvision.net>
+Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Gerald Loacker <gerald.loacker@wolfvision.net>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Sebastian Fricke <sebastian.fricke@collabora.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Paul Kocialkowski <paulk@sys-base.io>,
+	Alexander Shiyan <eagle.alexander923@gmail.com>,
+	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 03/11] media: dt-bindings: media: add bindings for
+ rockchip rk3568 vicap
+Message-ID: <Z7iJV1rOaqMmcjY7@kekkonen.localdomain>
+References: <20250219-v6-8-topic-rk3568-vicap-v4-0-e906600ae3b0@wolfvision.net>
+ <20250219-v6-8-topic-rk3568-vicap-v4-3-e906600ae3b0@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250221-ringneck-dtbos-v2-5-310c0b9a3909@cherry.de>
-References: <20250221-ringneck-dtbos-v2-0-310c0b9a3909@cherry.de>
-In-Reply-To: <20250221-ringneck-dtbos-v2-0-310c0b9a3909@cherry.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Quentin Schulz <quentin.schulz@theobroma-systems.com>, 
- Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Quentin Schulz <quentin.schulz@cherry.de>
-X-Mailer: b4 0.14.2
-X-Infomaniak-Routing: alpha
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250219-v6-8-topic-rk3568-vicap-v4-3-e906600ae3b0@wolfvision.net>
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
+Hi Michael,
 
-This adds support for the video-demo-adapter DEVKIT ADDON CAM-TS-A01
-(https://embedded.cherry.de/product/development-kit/) for the Haikou
-devkit with RK3399 Puma SoM.
+Thanks for the update.
 
-The Video Demo adapter is an adapter connected to the fake PCIe slot
-labeled "Video Connector" on the Haikou devkit.
+On Wed, Feb 19, 2025 at 11:16:34AM +0100, Michael Riesch wrote:
+> Add documentation for the Rockchip RK3568 Video Capture (VICAP) unit.
+> 
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> ---
+>  .../bindings/media/rockchip,rk3568-vicap.yaml      | 168 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 169 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
+> new file mode 100644
+> index 000000000000..3dc15efeb32e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
+> @@ -0,0 +1,168 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/rockchip,rk3568-vicap.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip RK3568 Video Capture (VICAP)
+> +
+> +maintainers:
+> +  - Michael Riesch <michael.riesch@wolfvision.net>
+> +
+> +description:
+> +  The Rockchip RK3568 Video Capture (VICAP) block features a digital video
+> +  port (DVP, a parallel video interface) and a MIPI CSI-2 port. It receives
+> +  the data from camera sensors, video decoders, or other companion ICs and
+> +  transfers it into system main memory by AXI bus.
+> +
+> +properties:
+> +  compatible:
+> +    const: rockchip,rk3568-vicap
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: ACLK
+> +      - description: HCLK
+> +      - description: DCLK
+> +      - description: ICLK
+> +
+> +  clock-names:
+> +    items:
+> +      - const: aclk
+> +      - const: hclk
+> +      - const: dclk
+> +      - const: iclk
+> +
+> +  rockchip,cif-clk-delaynum:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 127
+> +    description:
+> +      Delay the DVP path clock input to align the sampling phase, only valid
+> +      in dual edge sampling mode.
 
-Its main feature is a Leadtek DSI-display with touchscreen and a camera
-(that is not supported yet because the expected clock rate by the driver
-cannot be exactly reached by the clock driver). To drive these
-components a number of additional regulators are grouped on the adapter
-as well as a PCA9670 gpio-expander to provide the needed additional
-gpio-lines.
+I suppose there's further documentation on this somewhere else? A reference
+would be nice.
 
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
----
- arch/arm64/boot/dts/rockchip/Makefile              |   5 +
- .../rockchip/rk3399-puma-haikou-video-demo.dtso    | 166 +++++++++++++++++++++
- 2 files changed, 171 insertions(+)
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    items:
+> +      - description: ARST
+> +      - description: HRST
+> +      - description: DRST
+> +      - description: PRST
+> +      - description: IRST
+> +
+> +  reset-names:
+> +    items:
+> +      - const: arst
+> +      - const: hrst
+> +      - const: drst
+> +      - const: prst
+> +      - const: irst
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to general register file used for video input block control.
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          The digital video port (DVP, a parallel video interface).
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              bus-type:
+> +                enum: [5, 6]
+> +
+> +            required:
+> +              - bus-type
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: The MIPI CSI-2 port.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 0f7c5c55c8b8be11e3fd7a69995ce1c17b22c80d..a46ed20e977aedb7cca1a9c0ad15f5441e4fe177 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -63,6 +63,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-orangepi.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-pinebook-pro.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-pinephone-pro.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou-video-demo.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-mezzanine.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-plus.dtb
-@@ -201,6 +202,10 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-ringneck-haikou-haikou-video-demo.dtb
- px30-ringneck-haikou-haikou-video-demo-dtbs := px30-ringneck-haikou.dtb \
- 	px30-ringneck-haikou-video-demo.dtbo
- 
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou-haikou-video-demo.dtb
-+rk3399-puma-haikou-haikou-video-demo-dtbs := rk3399-puma-haikou.dtb \
-+	rk3399-puma-haikou-video-demo.dtbo
-+
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-vz-2-uhd.dtb
- rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb \
- 	rk3568-wolfvision-pf5-display-vz.dtbo \
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso
-new file mode 100644
-index 0000000000000000000000000000000000000000..0377ec860d35461b7d2d4ee1f20bdd4a076a5fe6
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso
-@@ -0,0 +1,166 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2025 Cherry Embedded Solutions GmbH
-+ *
-+ * DEVKIT ADDON CAM-TS-A01
-+ * https://embedded.cherry.de/product/development-kit/
-+ *
-+ * DT-overlay for the camera / DSI demo appliance for Haikou boards.
-+ * In the flavour for use with a Puma system-on-module.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/clock/rk3399-cru.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+
-+&{/} {
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		power-supply = <&dc_12v>;
-+		pwms = <&pwm0 0 25000 0>;
-+	};
-+
-+	cam_afvdd_2v8: regulator-cam-afvdd-2v8 {
-+		compatible  = "regulator-fixed";
-+		gpio = <&pca9670 2 GPIO_ACTIVE_LOW>;
-+		regulator-max-microvolt = <2800000>;
-+		regulator-min-microvolt = <2800000>;
-+		regulator-name = "cam-afvdd-2v8";
-+		vin-supply = <&vcc2v8_video>;
-+	};
-+
-+	cam_avdd_2v8: regulator-cam-avdd-2v8 {
-+		compatible  = "regulator-fixed";
-+		gpio = <&pca9670 4 GPIO_ACTIVE_LOW>;
-+		regulator-max-microvolt = <2800000>;
-+		regulator-min-microvolt = <2800000>;
-+		regulator-name = "cam-avdd-2v8";
-+		vin-supply = <&vcc2v8_video>;
-+	};
-+
-+	cam_dovdd_1v8: regulator-cam-dovdd-1v8 {
-+		compatible  = "regulator-fixed";
-+	        gpio = <&pca9670 3 GPIO_ACTIVE_LOW>;
-+	        regulator-max-microvolt = <1800000>;
-+	        regulator-min-microvolt = <1800000>;
-+	        regulator-name = "cam-dovdd-1v8";
-+	        vin-supply = <&vcc1v8_video>;
-+	};
-+
-+	cam_dvdd_1v2: regulator-cam-dvdd-1v2 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&pca9670 5 GPIO_ACTIVE_HIGH>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-min-microvolt = <1200000>;
-+		regulator-name = "cam-dvdd-1v2";
-+		vin-supply = <&vcc3v3_baseboard>;
-+	};
-+
-+	vcc1v8_video: regulator-vcc1v8-video {
-+		compatible = "regulator-fixed";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-name = "vcc1v8-video";
-+		vin-supply = <&vcc3v3_baseboard>;
-+	};
-+
-+	vcc2v8_video: regulator-vcc2v8-video {
-+		compatible = "regulator-fixed";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <2800000>;
-+		regulator-min-microvolt = <2800000>;
-+		regulator-name = "vcc2v8-video";
-+		vin-supply = <&vcc3v3_baseboard>;
-+	};
-+
-+	video-adapter-leds {
-+		compatible = "gpio-leds";
-+
-+		video-adapter-led {
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pca9670 7 GPIO_ACTIVE_HIGH>;
-+			label = "video-adapter-led";
-+			linux,default-trigger = "none";
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	/* OV5675, GT911, DW9714 are limited to 400KHz */
-+	clock-frequency = <400000>;
-+
-+	touchscreen@14 {
-+		compatible = "goodix,gt911";
-+		reg = <0x14>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <RK_PC7 IRQ_TYPE_LEVEL_LOW>;
-+		irq-gpios = <&gpio1 RK_PC7 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&touch_int>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&pca9670 1 GPIO_ACTIVE_HIGH>;
-+		AVDD28-supply = <&vcc2v8_video>;
-+		VDDIO-supply = <&vcc3v3_baseboard>;
-+	};
-+
-+	pca9670: gpio@27 {
-+		compatible = "nxp,pca9670";
-+		reg = <0x27>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		pinctrl-0 = <&pca9670_resetn>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&gpio4 RK_PD6 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&mipi_out {
-+	mipi_out_panel: endpoint {
-+		remote-endpoint = <&mipi_in_panel>;
-+	};
-+};
-+
-+&mipi_dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "leadtek,ltk050h3148w";
-+		reg = <0>;
-+		backlight = <&backlight>;
-+		iovcc-supply = <&vcc1v8_video>;
-+		reset-gpios = <&pca9670 0 GPIO_ACTIVE_LOW>;
-+		vci-supply = <&vcc2v8_video>;
-+
-+		port {
-+			mipi_in_panel: endpoint {
-+				remote-endpoint = <&mipi_out_panel>;
-+			};
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	pca9670 {
-+		pca9670_resetn: pca9670-resetn {
-+			rockchip,pins = <4 RK_PD6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	touch {
-+		touch_int: touch-int {
-+			rockchip,pins = <1 RK_PC7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
+Don't you need things like data-lanes here? Or is this a single lane
+receiver?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3568-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/rk3568-power.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+> +
+> +    parent {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        vicap: video-capture@fdfe0000 {
+> +            compatible = "rockchip,rk3568-vicap";
+> +            reg = <0x0 0xfdfe0000 0x0 0x200>;
+> +            interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
+> +            assigned-clocks = <&cru DCLK_VICAP>;
+> +            assigned-clock-rates = <300000000>;
+> +            clocks = <&cru ACLK_VICAP>, <&cru HCLK_VICAP>,
+> +                     <&cru DCLK_VICAP>, <&cru ICLK_VICAP_G>;
+> +            clock-names = "aclk", "hclk", "dclk", "iclk";
+> +            iommus = <&vicap_mmu>;
+> +            power-domains = <&power RK3568_PD_VI>;
+> +            resets = <&cru SRST_A_VICAP>, <&cru SRST_H_VICAP>,
+> +                     <&cru SRST_D_VICAP>, <&cru SRST_P_VICAP>,
+> +                     <&cru SRST_I_VICAP>;
+> +            reset-names = "arst", "hrst", "drst", "prst", "irst";
+> +            rockchip,grf = <&grf>;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                vicap_dvp: port@0 {
+> +                    reg = <0>;
+> +
+> +                    vicap_dvp_input: endpoint {
+> +                        bus-type = <MEDIA_BUS_TYPE_BT656>;
+> +                        bus-width = <16>;
+> +                        pclk-sample = <MEDIA_PCLK_SAMPLE_DUAL_EDGE>;
+> +                        remote-endpoint = <&it6801_output>;
+> +                    };
+> +                };
+> +
+> +                vicap_mipi: port@1 {
+> +                    reg = <1>;
+
+Where is the endpoint?
+
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index bbfaf35d50c6..cd8fa1afe5eb 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20407,6 +20407,7 @@ M:	Michael Riesch <michael.riesch@wolfvision.net>
+>  L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
+> +F:	Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
+>  
+>  ROCKCHIP CRYPTO DRIVERS
+>  M:	Corentin Labbe <clabbe@baylibre.com>
+> 
 
 -- 
-2.48.1
+Kind regards,
 
+Sakari Ailus
 
