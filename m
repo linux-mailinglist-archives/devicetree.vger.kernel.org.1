@@ -1,84 +1,145 @@
-Return-Path: <devicetree+bounces-149373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE161A3F2ED
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 12:29:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9021A3F2F3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 12:31:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC5F07AC872
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 11:28:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 266D81890AB3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 11:31:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7846207E1A;
-	Fri, 21 Feb 2025 11:29:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 600AC1F4E3B;
+	Fri, 21 Feb 2025 11:31:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZbJkkHvc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lzyagziK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8F1C2AE89;
-	Fri, 21 Feb 2025 11:29:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6CB71BD517;
+	Fri, 21 Feb 2025 11:31:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740137376; cv=none; b=B/xb65/tis6q8qD0A61PnGfeCbCT3vv+kaoU6bWN/VKSS0EnTE3f2JZAR3GKLBEKLqCeWOxgdIWFC+BoqgHLEK7oL/2URL3vqCHpyPxC4pNS1P108t1OsllPYmp1+depNCHZeP+0dYJGKnQilCs32ZU2Jg/U/c/+4n9IMpColME=
+	t=1740137482; cv=none; b=Bczj5TI5MyIasipftS7FVR3s1/75JxkHrx2OHufW4WKSyddrqhMDMrwMFFuYzhWpAmFjPJz6rhOhbFz+Uj0MmeMnfeB+9bUol8/JOFK83KS2zpDnaouIKICe4ywuLIh+NjYJ4NCrtAQpqSa4jKB0xYMSvAk2bK/cdgut+yEPE5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740137376; c=relaxed/simple;
-	bh=jbk4DEG9UrzRtPvZJWw/GF822FOiEs/xz207ZNkvg8c=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=UKVgw2A63rCQQaGEJI5UHLkJ+AMEW0OJ6Pl0UBGMnAzjNQr0Q4Akw9Ml0TnHlVCxCahoYZ0drhmsunayJG6CiaypjQwZAGcpXcM3G1IWDHKh7UvG2SAAJXQHtV4D19yX5Jxxx2qh0wZ/uexhjqibmdvVG4c/r3GL60Yyza6ebfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZbJkkHvc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E48BC4CED6;
-	Fri, 21 Feb 2025 11:29:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740137376;
-	bh=jbk4DEG9UrzRtPvZJWw/GF822FOiEs/xz207ZNkvg8c=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ZbJkkHvc7BWb9Yk62hRMTP+HIhJm8gfW26xn2zOq9MD2Z5oC6SsXvtQqXz7KYl+WU
-	 JUEbbb5BIv9Wkinc3cxxW+CVyjOdhZXiMpu4NgWNLKKasqc+biqnvCeRJ2PM3ph7Fn
-	 78bbNjzbQBAR9vAJ25jmKWWlvomzdpVi+ERRFpK5WwYsenyfNCTXsEKEHFk9KbbQoh
-	 FiRYglRTtzWLcJEBqGtcpyAjroXTn/1aO/RL9+QoZWYsYESIeNGNkf43VYlA/MoXw8
-	 46EdZ1zqybfYMDZ71wdF7JI7Yi42KmkxSBudCAaljRxWe/ko4nMCAH0UrccN5+4jMs
-	 dy+Wc5yvnLrZw==
-From: Niklas Cassel <cassel@kernel.org>
-To: Damien Le Moal <dlemoal@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Cc: linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250220-ppcyaml-ata-v3-1-5e727ab86247@posteo.net>
-References: <20250220-ppcyaml-ata-v3-1-5e727ab86247@posteo.net>
-Subject: Re: [PATCH v3] dt-bindings: ata: Convert fsl,pq-sata to YAML
-Message-Id: <174013737433.11062.6647133485954758533.b4-ty@kernel.org>
-Date: Fri, 21 Feb 2025 12:29:34 +0100
+	s=arc-20240116; t=1740137482; c=relaxed/simple;
+	bh=2sYSAvls+4ReyVP1ib+1dhbqf+0o0BnL1erhUxo8L90=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=J9fmtbpHfSGYYQLDgYDj1lxmu3JNY8YqOPt9i2cEQwVbWDzWdb/aeDSyW9S2h9FtTmrAkth/NbMXPkmTAXkcZ7Xxfr3dkHodA9zbRcZsHeGx8/WZDlUwODUWxFdEZgyIEQtcDi94Nscx3/WMct3G9kVSAaYjmFmgnT99gDiDkTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lzyagziK; arc=none smtp.client-ip=209.85.160.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-47210a94356so15711151cf.3;
+        Fri, 21 Feb 2025 03:31:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740137479; x=1740742279; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fLzzEgvqFE7GbnZ2AxDXQJUzBi6py5ZBkycvuKHjYMY=;
+        b=lzyagziK+mToDxY663klDVwt/N6Wh7egIvNBlVSca8Mn7/UhSqeGMa+kLhTQU3LJM5
+         F0uZIjee5AJcr0/KryTlggKtw0oN8DSrRjt6nokZOwvqQW2l3Y8YKme2JbNfjVJbsdun
+         YznWeM81vq21Rmk+E8U4fWjAe2tWHIBvOMtOzD+2DbkvRK5O8GOS6LdKqepwS9OuUceM
+         wBEmHAL8ZpSDNH+jZZbgn0NZj5OKovavxc+H8cHqBiaILGoWJBV+euAvdNww+D/1AazM
+         O+kciyVx4837RvOualzn8mg4R8/HEJQdgkS+g+ZMpZ/SmCqDr71IasejxFAuZWLYJzt/
+         N4xQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740137479; x=1740742279;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fLzzEgvqFE7GbnZ2AxDXQJUzBi6py5ZBkycvuKHjYMY=;
+        b=SgLSvJ2NfQkXEyr2/wQr3/JzGYK2W2gQQQ4HAKtFZyysItnL6qduAfTyQBuFgDwstv
+         lSIYvgRo+YX0LMASu+0juT5L8Z+u6k+UvZrPGXNI/SDhLJbuVaTraVW02dkL00p9jBUv
+         gsIqV9UozYAkHwzTAD69Dz/cEus3Rj9GMAYF26BeHmLKFtCcWoT2gpSz683Y/sBLibxc
+         HcfGlsfif8KbktdWIKJ8h1DtvCfmcHNWRw32J/8hFHCemO73NyWNfuN7EPU/lyVAOVSh
+         0DLdco6pv9qbVjCKWDEofS3yYBIBXGau3RMUPm1FW5IkUG1dMqBljc5/ozqpkBJXmeQ+
+         tH0g==
+X-Forwarded-Encrypted: i=1; AJvYcCUVpbDYv7caoNj6VZ+IQ3RMJw6M9j9fHApYFm9gHR82DviGmLP2LvS90lnNXeqL6LgxdgXSST1f9Yvk@vger.kernel.org, AJvYcCV8uG0sw4kdn3jMM25qQR/TVUL8CYcyVl0I8Kd7Qjp/bUL3LZk6X20klAIEjJF1C7Mivjw0ON7Yh0K+eNQ=@vger.kernel.org, AJvYcCVmk+mfpZZyA5bheItvqrboWXZX7AftTL9/Io/BGVFrL2iJQLvkU9LYNv1hO07lJzwf1YpAI6p1q6Y5pi4=@vger.kernel.org, AJvYcCW04WuDvqpkon0bY/l+JLQU8qVzYm6G5iLGP2dcdzM/YvV9Q76/nte37XcVrBM5wTT5GZvbGxvGqWOmKnyM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyb2R6kEI5r37hfhig0v1AS3i+bQoYCRpGrMT2eXGoSuMXAUboI
+	Va1Pq5xxKjU58UqoH57AbYy81tlLb6hBM9s6SDKuJPhG7INfGA/gGBLNtSDrWSeGaqIm7b1MCN6
+	JseeU3DAPdtkoPujJGPiUUJuxYAQ=
+X-Gm-Gg: ASbGnctVqcrRHST+wHsJvwpbup+VjdNK84uwnj3MwdZQSCE6LiIUfiOkV11VgaeAWAU
+	+m+kWrbEjKV9nQv4YQVWP6U6u+boByOo2esEMuzeCY/igY6m6rRDBma+tnDGPLFZTfzL4F2fUSC
+	fazdlUwtQfprfY4NbsBQ66LSRwFSQ30kuBrzw9ZA==
+X-Google-Smtp-Source: AGHT+IFXgBHzvJE7xTARImFvwXCJFuJ53+r7HKxZ0EgS/TsYE76YhhfXmNth8OohHrtxj5r3VNLo5+k7NxnowBJnZyM=
+X-Received: by 2002:a05:622a:101:b0:472:1b70:ee35 with SMTP id
+ d75a77b69052e-472228b445dmr33601771cf.3.1740137479508; Fri, 21 Feb 2025
+ 03:31:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.14.2
+References: <20250218-apple-codec-changes-v2-0-932760fd7e07@gmail.com>
+ <20250218-apple-codec-changes-v2-14-932760fd7e07@gmail.com> <4e0e2ae0-c53d-444c-9d8a-d465be690232@roeck-us.net>
+In-Reply-To: <4e0e2ae0-c53d-444c-9d8a-d465be690232@roeck-us.net>
+From: James Calligeros <jcalligeros99@gmail.com>
+Date: Fri, 21 Feb 2025 21:31:08 +1000
+X-Gm-Features: AWEUYZkxOvXOcjPt0xQT1Ig8EoTQnHW-sw6rQquHl8P6f2lTyg4bCTVsUynHGrI
+Message-ID: <CAHgNfTzfK4HnYs+LDH7kcR+pZqSxT9YBZYQ=c+Mcpva4Vx=D_w@mail.gmail.com>
+Subject: Re: [PATCH v2 14/29] ASoC: tas2770: expose die temp to hwmon
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Shenghao Ding <shenghao-ding@ti.com>, 
+	Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>, Dan Murphy <dmurphy@ti.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shi Fu <shifu0704@thundersoft.com>, Jean Delvare <jdelvare@suse.com>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, =?UTF-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
+	Hector Martin <marcan@marcan.st>, linux-sound@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	asahi@lists.linux.dev, linux-hwmon@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 20 Feb 2025 12:49:53 +0100, J. Neuschäfer wrote:
-> Convert the Freescale PowerQUICC SATA controller binding from text form
-> to YAML. The list of compatible strings reflects current usage.
-> 
-> To clarify the description, I changed it to mention "each SATA
-> controller" instead of each port.
-> 
-> 
-> [...]
+On Wed, Feb 19, 2025 at 1:20=E2=80=AFAM Guenter Roeck <linux@roeck-us.net> =
+wrote:
+>
+> On 2/18/25 00:35, James Calligeros wrote:
+> > +static int tas2770_hwmon_read(struct device *dev,
+> > +                           enum hwmon_sensor_types type,
+> > +                           u32 attr, int channel, long *val)
+> > +{
+> > +     struct tas2770_priv *tas2770 =3D i2c_get_clientdata(to_i2c_client=
+(dev));
+> > +     int ret;
+> > +
+> > +     switch (attr) {
+> > +     case hwmon_temp_input:
+> > +             ret =3D tas2770_read_die_temp(tas2770, (int *)val);
+>
+> Type casting a pointer like this is never a good idea. This only works
+> if sizeof(int) =3D=3D sizeof(long).
 
-Applied to libata/linux.git (for-6.15), thanks!
+I will rework this when dropping the die temp sysfs interface. This
+was mostly so that
+I didn't have to change any of the code there, but since we're going
+to drop that
+anyway it's redundant.
 
-[1/1] dt-bindings: ata: Convert fsl,pq-sata to YAML
-      https://git.kernel.org/libata/linux/c/08a04e20
+> > +             if (!ret)
+> > +                     *val *=3D 1000;
+>
+> The calculations in the previous patch suggest that this is wrong.
+>
+> Either case, this is redundant. The temperature is already displayed
+> as device specific sysfs attribute. Displaying it twice does not make sen=
+se.
+> I would suggest to either drop the sysfs attribute in the previous patch
+> or to drop this patch.
 
-Kind regards,
-Niklas
+The calculation in the datasheet yields the temperature in degrees Celsius.
+hwmon consumers expect temperatures in "millidegrees" Celsius as per the
+sysfs interface documentation[1]. Regardless, as above I will likely rework=
+ this
+when dropping the die temp sysfs interface so that things are a little
+more logical.
 
+Regards,
+James
+
+[1] https://www.kernel.org/doc/Documentation/hwmon/sysfs-interface
 
