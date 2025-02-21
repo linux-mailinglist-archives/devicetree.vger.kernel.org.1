@@ -1,259 +1,186 @@
-Return-Path: <devicetree+bounces-149535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46C28A3FBC2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:45:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E1E1A3FC29
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:53:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A614189ED91
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:40:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB5DA8805B6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:42:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DB5211492;
-	Fri, 21 Feb 2025 16:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6652F2116EF;
+	Fri, 21 Feb 2025 16:40:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J9oYJyXx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O6+FH+4N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8593C20012D;
-	Fri, 21 Feb 2025 16:36:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C433E20012D;
+	Fri, 21 Feb 2025 16:40:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740155813; cv=none; b=TZwh07ejTVZqeXt6axfYYBaoPVdfPuPpTXG2mgQQ/hYQpEf5qhfKvpI95CqQad+NEFuIe/OT8AqX/qaygakYKeXwirLcV9xmgEozqa5HxQ13eLlcfBpAb+6tpaLhUOwVdZ3idZsOc5DCAE7uYtH2uqGA9TyQsz9kDH+5QD8q3XE=
+	t=1740156045; cv=none; b=eTY2c2h0h4g1R3s7hB7gLxF3Rc4MaxKwq6T3HY21x2ZUdjliZaC/FwiK5AYCCAWr1mGtDvfdvLC6EAQZC/fxEizGKs1UilZl+5lb1NvHGc2ZiKKuCgoG3qoXZQ/oF+M7nR/Fmt41xBb7TbyV/lBEjWuWEJRm0dFI16g9eAJII4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740155813; c=relaxed/simple;
-	bh=h95P4AcDHTPKa8n4KBUFfHZ3f+SCiz2fCZdKlS89CWU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qrmXqh9OUOppoUq/cJIin2wdTUm99tnLRd8OI7qO4Kg6krdg6LtHlgpaQnno9zgh61XJs9lHKPdvxuYQ8fi9mGwp93mBVx9sxTxklmGCGoUXIS9TaS9/boZ6hvnxrYbjetu0terSCj0JAgMBcTaMkMtnsUew7r0xbaV169bLY6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J9oYJyXx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9ECBC4CED6;
-	Fri, 21 Feb 2025 16:36:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740155812;
-	bh=h95P4AcDHTPKa8n4KBUFfHZ3f+SCiz2fCZdKlS89CWU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J9oYJyXxX4MdcyAuOisFvnDlgwwDcb5BH5LlKs2wk8v2pCx9rLsEHijLRegH6EPqk
-	 JXL/8iZapYZZXHInsOQ7/E4RY1RQ1PQ+qn5bHLm/FfUDNWG8dJgmHUBBM7SookSnfI
-	 psfIYVIwviM2wIQf6YpMqnl4v5JZgjPF6lcYaFjWD0YA5P5fcqHfCQbE4kPNVdp0yw
-	 JojTcAladLZDa8tVjXGYuOZjvAi3VQ8FDiEsQZq0Qq+9mKSo2/j964WTUOrDb0fdEj
-	 W4rsSNAOZARO2kxwfFuvj5c9UN3ZA4MhNsfU/Aq+0jqXsgGG8/ek7G/G9WGWGAQS0z
-	 cBU8TxvC3RQ3g==
-Date: Fri, 21 Feb 2025 10:36:51 -0600
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.ne@posteo.net>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: net: Convert fsl,gianfar-{mdio,tbi} to
- YAML
-Message-ID: <20250221163651.GA4130188-robh@kernel.org>
-References: <20250220-gianfar-yaml-v1-0-0ba97fd1ef92@posteo.net>
- <20250220-gianfar-yaml-v1-1-0ba97fd1ef92@posteo.net>
+	s=arc-20240116; t=1740156045; c=relaxed/simple;
+	bh=GpoYUbvMHeDFXWzT7i5jYtr05xdjDSBLMsc7Xba85xU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jNisjRC02W3D5BN8KE1kDpF8gT+gKt1h6ziF+xw48HjH9AUZRDLOudV3Z7XnD+dzJQdEyBQPEmDFJ/Gn9Nr/SPjC2XtVAA7s+mIgum/o7Ss0RSYR870C4gnBWui39Cp8Rg1jyQl/4SOhIjS0Cwv9sE43FpGGDPMEpK/qV6JwmGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O6+FH+4N; arc=none smtp.client-ip=209.85.216.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2fc0bd358ccso4808737a91.2;
+        Fri, 21 Feb 2025 08:40:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740156043; x=1740760843; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8oriecgGQRM7a6Kxdnk4S3T7p3y/bp+RUK8BxU8K1jc=;
+        b=O6+FH+4NeKccMJ0DhZuEJcgWnNMwpuX8FW6xTsRSEIv9lw9s1988+URs2JAYVnRp2U
+         2sr9FIJ8+TgFZi0kqsB+FZa9IjoOfZz/03BYDbBaO0oF3tkMlsDVsXrS+yKfLR2Wb3O5
+         yw9pAws20WXzhzV/NCfQJhEL5ziEbQQP7hg3T3sDyxisDZgSjS3IVUqoh8pc/Nsv0KrL
+         2iArRbhvW4wv7M6OxM429flDzJIYl/WLKI8LnXtXQV5vY5Wtvjsxm43vYTbrgHJ6Ig5G
+         9A5WPUQrNPIBxokj/pwPuhij1v45uCtOY+zIYb+ckjJvbpZkVQZZTOj1HCsew88kOT4G
+         7ytQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740156043; x=1740760843;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8oriecgGQRM7a6Kxdnk4S3T7p3y/bp+RUK8BxU8K1jc=;
+        b=RmTCdeysVENG66KkPxYuOfnOs5LkgKpZn+ucIDLzwTqW60cAu0ChPLvKOIHBDw0qNr
+         +C/CcYCGG5IvlIzx/MLZv5Tn6YvAaO2MQZhXSiVbTioPeXNl/Ej4IAxVD5vJM9jCqDWw
+         SOGHtx+aEIoVDBTbbfEHfg8Kv0uIj9E6oID4OwB4jlVUJNk6gJkpz+BKAFW3gQ4PIml+
+         oiEPfxr6yds8noYJxas+LMijJiFdTob/n1EfQ2E1AEwuZGpXuFjwJH1OcPf3BmiFvc/P
+         VFJijOGwtE5AlpmwoQiwObONn64DvWEfXGsTepEaQXuQ25XdNyySSk0D7lXpimWeqnGk
+         9MNw==
+X-Forwarded-Encrypted: i=1; AJvYcCW9uCFdFY5j4Euo8O/eiamjvwuMx+xzd76JOPtWXKNgeCDEVs5lUXnr4EsAO4LSzd7yb+l7xwgdWyx1aBW6@vger.kernel.org, AJvYcCWJv71pT9EYQS51wno/Mb2bhit5vlwRSfzeJq9Id/7XrtvdY6D30k+Ev+2e77bDsWRH4/3jB3yyjN6O@vger.kernel.org, AJvYcCXBLYCxkM2PN5VtKPBuoDCpnpk5ssVixyvfYPYnt6q6X1U0GO0hpl0mZOEeQkUqehVtKAxr+Oz3VOy8JQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJYyFU4CaZujAkn6heObGv5hynbxCoxGNwi25c7HoKVeOS/ZWL
+	kQMPYTECnGFQctqADwprhjTX19zk0lHRglL2vaOPHVrkwhov5UXi7OZuERT7swQXU/6pMh3kGnf
+	jprO9YvOklyzOpCfzJeSNHGf+AMo=
+X-Gm-Gg: ASbGncvTOu3Pm9jqj6cDu3wqft9OA6hCJrFPio7Q8Ldk9PbPl/ERJA7tLE0Vz9KF198
+	P5zfsVvUafxWnwQYSsOg0ofMK5Cf9vYTW3gmVNzFXZ2vnF4Q1y2k7AF1iVq5FoqqREMAjid2e3N
+	XwuU+qAA==
+X-Google-Smtp-Source: AGHT+IE5DwaJf4Z30vTQF7YhDIZiPDJYIZdu3bh2rwyOO8cxVmUaTU1ujj+ntqMidNIo7C+7G9AHNXs0n4irABzLme4=
+X-Received: by 2002:a17:90b:3ec6:b0:2ee:ab11:fab2 with SMTP id
+ 98e67ed59e1d1-2fce7b083a3mr5328015a91.22.1740156042924; Fri, 21 Feb 2025
+ 08:40:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250220-gianfar-yaml-v1-1-0ba97fd1ef92@posteo.net>
+References: <20250120092146.471951-1-sergio.paracuellos@gmail.com>
+ <CAMhs-H-VevC+_=HxhMU6-at0bKut_JqdgO7j2detuB4s8R_QFQ@mail.gmail.com>
+ <Z7iHorlRgtsi1LOo@alpha.franken.de> <CAMhs-H-fcWU-rz_3FeAuRe0xdCMmvffX2zrZwwmt=8RYpY4Lyg@mail.gmail.com>
+ <Z7idguBa2bxZRoxX@alpha.franken.de>
+In-Reply-To: <Z7idguBa2bxZRoxX@alpha.franken.de>
+From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date: Fri, 21 Feb 2025 17:40:34 +0100
+X-Gm-Features: AWEUYZmBhqj8-3tVa95inuQXfZp89XjOlNWgufDeJ2KSqTBDe4ACRkfogOXIoD0
+Message-ID: <CAMhs-H91Pv4bygmL2jL0=swn-wHT0mRYGaYO6Hjm5O-xmmrJ0w@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] mips: dts: ralink: update system controller nodes
+ and its consumers
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: linux-clk@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+	p.zabel@pengutronix.de, linux-mips@vger.kernel.org, 
+	devicetree@vger.kernel.org, yangshiji66@outlook.com, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 20, 2025 at 06:29:21PM +0100, J. Neuschäfer wrote:
-> Move the information related to the Freescale Gianfar (TSEC) MDIO bus
-> and the Ten-Bit Interface (TBI) from fsl-tsec-phy.txt to a new binding
-> file in YAML format, fsl,gianfar-mdio.yaml.
-> 
-> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> ---
-> 
-> dt-bindings: net: Convert fsl,gianfar-tbi to YAML
-> ---
->  .../devicetree/bindings/net/fsl,gianfar-mdio.yaml  | 94 ++++++++++++++++++++++
->  .../devicetree/bindings/net/fsl-tsec-phy.txt       | 41 +---------
->  2 files changed, 96 insertions(+), 39 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/fsl,gianfar-mdio.yaml b/Documentation/devicetree/bindings/net/fsl,gianfar-mdio.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..2dade7f48c366b7f5c7408e1f7de1a6f5fc80787
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/fsl,gianfar-mdio.yaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/fsl,gianfar-mdio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale Gianfar (TSEC) MDIO Device
-> +
-> +description:
-> +  This binding describes the MDIO is a bus to which the PHY devices are
-> +  connected. For each device that exists on this bus, a child node should be
-> +  created.
-> +
-> +  As of this writing, every TSEC is associated with an internal Ten-Bit
-> +  Interface (TBI) PHY. This PHY is accessed through the local MDIO bus. These
-> +  buses are defined similarly to the mdio buses, except they are compatible
-> +  with "fsl,gianfar-tbi". The TBI PHYs underneath them are similar to normal
-> +  PHYs, but the reg property is considered instructive, rather than
-> +  descriptive. The reg property should be chosen so it doesn't interfere with
-> +  other PHYs on the bus.
-> +
-> +maintainers:
-> +  - J. Neuschäfer <j.ne@posteo.net>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,gianfar-tbi
-> +      - fsl,gianfar-mdio
-> +      - fsl,etsec2-tbi
-> +      - fsl,etsec2-mdio
-> +      - fsl,ucc-mdio
-> +      - gianfar
+On Fri, Feb 21, 2025 at 4:37=E2=80=AFPM Thomas Bogendoerfer
+<tsbogend@alpha.franken.de> wrote:
+>
+> On Fri, Feb 21, 2025 at 03:50:09PM +0100, Sergio Paracuellos wrote:
+> > Hi Thomas,
+> >
+> > On Fri, Feb 21, 2025 at 3:05=E2=80=AFPM Thomas Bogendoerfer
+> > <tsbogend@alpha.franken.de> wrote:
+> > >
+> > > On Fri, Feb 21, 2025 at 11:48:34AM +0100, Sergio Paracuellos wrote:
+> > > > Hi Thomas,
+> > > >
+> > > > El El lun, 20 ene 2025 a las 10:21, Sergio Paracuellos <
+> > > > sergio.paracuellos@gmail.com> escribi=C3=B3:
+> > > >
+> > > > > Hi all!
+> > > > >
+> > > > > Ralinks SoCs have a system controller node which serves as clock =
+and reset
+> > > > > providers for the rest of the world. This patch series introduces=
+ clock
+> > > > > definitions for these SoCs. The clocks are registered in the driv=
+er using
+> > > > > a bunch of arrays in specific order so these definitions represen=
+t the
+> > > > > assigned
+> > > > > identifier that is used when this happens so client nodes can eas=
+ily use it
+> > > > > to specify the clock which they consume without the need of check=
+ing
+> > > > > driver code.
+> > > > >
+> > > > > DTS files which are currently on tree are not matching system con=
+troller
+> > > > > bindings. So all of them are updated to properly match them.
+> > > > >
+> > > > > I'd like this series to go through kernel mips git tree if possib=
+le.
+> > > > >
+> > > > > Thanks in advance for your time.
+> > > > >
+> > > > > Changes in v3:
+> > > > > - Address Krzysztof comments in v2 (Thanks!):
+> > > > >   + Drop reset include file since what it was defined there were =
+hardware
+> > > > >     constants and no binding related indexes at all.
+> > > > >   + Update patches for not referring to this reset removed file.
+> > > >
+> > > >
+> > > > I was expecting this series going through the mips tree.
+> > >
+> > >   DTC     arch/mips/boot/dts/ralink/rt3883_eval.dtb
+> > > Error: /local/tbogendoerfer/korg/linux/arch/mips/boot/dts/ralink/rt38=
+83.dtsi:2.1-9 syntax error
+> > > FATAL ERROR: Unable to parse input tree
+> >
+> > Weird, it looks like dtc is not happy with the "include" line with new
+> > definitions? Are you getting this only with rt3883? Since all the
+> > patches are almost the same and I compile tested this before sending..
+> > Something got corrupted? I don't have my laptop now to check but I
+> > will recheck again on monday.
+>
+> rt2880_eval.dts:/include/ "rt2880.dtsi"
+> rt3052_eval.dts:#include "rt3050.dtsi"
+> rt3883_eval.dts:/include/ "rt3883.dtsi"
+>
+> rt3052 works, rt2880 and rt3883 don't.
+>
+> changing the /include/ to #include makes them compile.
 
-Can you just comment out this to avoid the duplicate issue.
+Mmmm...does this mean that this was broken before my patches? Since I
+have not touched the files that need the replacement. So I probably
+checked in the openwrt tree and missed this totally. Sorry for that.
+How do you want to handle this? Should I send v4 including these
+replacements? Or do you prefer to handle them directly?
 
-Though I think if you write a custom 'select' which looks for 
-'device_type = "mdio"' with gianfar compatible and similar in the other 
-binding, then the warning will go away. 
+Thanks again and sorry for the inconvenience.
 
-> +      - ucc_geth_phy
-> +
-> +  reg:
-> +    minItems: 1
-> +    items:
-> +      - description:
-> +          Offset and length of the register set for the device
-> +
-> +      - description:
-> +          Optionally, the offset and length of the TBIPA register (TBI PHY
-> +          address register). If TBIPA register is not specified, the driver
-> +          will attempt to infer it from the register set specified (your
-> +          mileage may vary).
-> +
-> +  device_type:
-> +    const: mdio
-> +
-
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-
-These are defined in mdio.yaml, so drop them here.
-
-> +
-> +required:
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +allOf:
-> +  - $ref: mdio.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - gianfar
-> +              - ucc_geth_phy
-> +    then:
-> +      required:
-> +        - device_type
-
-Essentially, move this to the 'select' schema and add that property 
-device_type must be 'mdio'. You won't need it here anymore because it 
-had to be true for the schema to be applied.
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        mdio@24520 {
-> +            reg = <0x24520 0x20>;
-> +            compatible = "fsl,gianfar-mdio";
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            ethernet-phy@0 {
-> +                reg = <0>;
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/net/fsl-tsec-phy.txt b/Documentation/devicetree/bindings/net/fsl-tsec-phy.txt
-> index 9c9668c1b6a24edff7b7cf625b9f14c3cbc2e0c8..0e55e0af7d6f59cfb571dd3fcff704b7f4c140d2 100644
-> --- a/Documentation/devicetree/bindings/net/fsl-tsec-phy.txt
-> +++ b/Documentation/devicetree/bindings/net/fsl-tsec-phy.txt
-> @@ -1,47 +1,10 @@
->  * MDIO IO device
->  
-> -The MDIO is a bus to which the PHY devices are connected.  For each
-> -device that exists on this bus, a child node should be created.  See
-> -the definition of the PHY node in booting-without-of.txt for an example
-> -of how to define a PHY.
-> -
-> -Required properties:
-> -  - reg : Offset and length of the register set for the device, and optionally
-> -          the offset and length of the TBIPA register (TBI PHY address
-> -	  register).  If TBIPA register is not specified, the driver will
-> -	  attempt to infer it from the register set specified (your mileage may
-> -	  vary).
-> -  - compatible : Should define the compatible device type for the
-> -    mdio. Currently supported strings/devices are:
-> -	- "fsl,gianfar-tbi"
-> -	- "fsl,gianfar-mdio"
-> -	- "fsl,etsec2-tbi"
-> -	- "fsl,etsec2-mdio"
-> -	- "fsl,ucc-mdio"
-> -	- "fsl,fman-mdio"
-> -    When device_type is "mdio", the following strings are also considered:
-> -	- "gianfar"
-> -	- "ucc_geth_phy"
-> -
-> -Example:
-> -
-> -	mdio@24520 {
-> -		reg = <24520 20>;
-> -		compatible = "fsl,gianfar-mdio";
-> -
-> -		ethernet-phy@0 {
-> -			......
-> -		};
-> -	};
-> +Refer to Documentation/devicetree/bindings/net/fsl,gianfar-mdio.yaml
->  
->  * TBI Internal MDIO bus
->  
-> -As of this writing, every tsec is associated with an internal TBI PHY.
-> -This PHY is accessed through the local MDIO bus.  These buses are defined
-> -similarly to the mdio buses, except they are compatible with "fsl,gianfar-tbi".
-> -The TBI PHYs underneath them are similar to normal PHYs, but the reg property
-> -is considered instructive, rather than descriptive.  The reg property should
-> -be chosen so it doesn't interfere with other PHYs on the bus.
-> +Refer to Documentation/devicetree/bindings/net/fsl,gianfar-mdio.yaml
->  
->  * Gianfar-compatible ethernet nodes
->  
-> 
-> -- 
-> 2.48.0.rc1.219.gb6b6757d772
-> 
+Best regards,
+     Sergio Paracuellos
+>
+> Thomas.
+>
+> --
+> Crap can work. Given enough thrust pigs will fly, but it's not necessaril=
+y a
+> good idea.                                                [ RFC1925, 2.3 =
+]
 
