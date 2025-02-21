@@ -1,67 +1,66 @@
-Return-Path: <devicetree+bounces-149712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 619D2A40347
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:04:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67918A4034A
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:06:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1353C17B88D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 23:04:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52E5419C5A03
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 23:05:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF39E1FBC99;
-	Fri, 21 Feb 2025 23:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00606202C3E;
+	Fri, 21 Feb 2025 23:05:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tgvJqDQd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YmXTk9nv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A47B61E282D;
-	Fri, 21 Feb 2025 23:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4AF31FBC99;
+	Fri, 21 Feb 2025 23:05:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740179079; cv=none; b=KcbvgwPBVwpBbPZt2/wzNOADQ8JIqcPT1g4NYRzZpBMgV7KMCzgCbK5NzplDC1+9nre1GFOr3ZY87GFSfgMBE33k2BdqDv1wU9CxgfzUydDaGd1a6VkQCjcFPJ/2/+rWOOzfQ4KLlCV3+z9TvoAFX8zUujW/5iwX7f94OhMo+68=
+	t=1740179128; cv=none; b=FTk29OYy9ItOJ1A4aeWJN5x0WaGH9SLDB3sSV/P9JkWJgQmltUYuDKTmyBAse4hxkDjIFq2OU3UAuWP98GZaljCeZNtvsgtGhXIAgeHxFL6gdinSceTIfDw3G0hGVJAESScBl/0MV2WPxUzxLDUXM+FuA3gywBoyd4AGZGoaJoc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740179079; c=relaxed/simple;
-	bh=TD01oMs/cT4X0Fy2SpIRvb3nsE0dn+rUszo1Uxi/EQU=;
+	s=arc-20240116; t=1740179128; c=relaxed/simple;
+	bh=03Ft+MdsQIGJO6vJjyqtVZOgWYCQ92Iofj9AeHmdSOo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NwQV/SFSOcbahcWIdW45pXgzakjjmHv1qP0s+3IhOUQLaS7iYW2AkqeS15lbtdeC1+JokwT3A76JG3HtbqF6yOKCR464yGpQQYuJ1n/JhfxkChZ3RxlHIerTcc1vYmOF+Klk4+Xt7rNGDf6EoBInpTGh3a8Dsc8guWDqB1xxojM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tgvJqDQd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30F20C4CED6;
-	Fri, 21 Feb 2025 23:04:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HVoIhwZ6evDRJHX59+D8Ci870lYFQ1lmIkyeN8l8+03Tt3szLGCp4d2gBRvG0oKgta1rtrZrfN87SLzIXcC1NUUbQIP6LH4/5yOAN8pK9dOnv0WzgjSjDolx0c/Rv4VBSGAVorwGHZoOZkrXgZdDt3blw9+WWHv4CwELi9Q8IME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YmXTk9nv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11662C4CED6;
+	Fri, 21 Feb 2025 23:05:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740179079;
-	bh=TD01oMs/cT4X0Fy2SpIRvb3nsE0dn+rUszo1Uxi/EQU=;
+	s=k20201202; t=1740179128;
+	bh=03Ft+MdsQIGJO6vJjyqtVZOgWYCQ92Iofj9AeHmdSOo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tgvJqDQdtUNY39WPOqVS0RcbLiV6KR6BcEFsD26sDIRauIw7lst3emjdm7zbEwCY6
-	 n4xAfwbp/icn7AafbN1reijfR+ChYIQh3r3QzKKEaDqlN2ypBeRkWq8guD8YVAN9ZN
-	 t1IoLIqNAjSv4PPZpO4dy11dFfjku+Bs76eBWlunAVpjZkBStElkKlu/oRc7qX+Mi2
-	 FrEbRtbn5f0kQzLVDFyExrinB1rKTbbr/Y3jwE9yU6AxX+63LGhBLy7psl/UP4PZyZ
-	 6ooYaar6fKyRn7oYwb5w7kqkpucekupVCgrqVG8IcQjYvW1pvousLuZoc5/fBtwwVc
-	 /M5VE/EtMmlaQ==
-Date: Fri, 21 Feb 2025 17:04:37 -0600
+	b=YmXTk9nvYswSV/0KmzCwAhOC05TwSyC/f3YQUi0jSfNf/BUzm4lFSnUpflB6mPkaf
+	 gsgc1gjwi+TToDH96aDHj2pWz3J4CYnyJ62EL0B4jRhovo1NQbC/wBEzi1kcWpXp1w
+	 FvmKt6CJQbUeJbpoyzwRLS86I2Ct/ZYbSX65xfZLx8NJfsRNMmoRkkAxlEqjRPThgE
+	 8Ku0YWu/jwHh5lcyDdlxEavgMF8vkJQEcCeoxSbv8TnywNSYNzeizaXLweeQSOffGC
+	 +zQ3IJHGLglkb8KcoLBMI792Em/NS9pwPzhT3EBXJDk1LsV4KsZW6MqrwyovNaWJdd
+	 gjEB8qhp1J9QA==
+Date: Fri, 21 Feb 2025 17:05:26 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>
 Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>, devicetree@vger.kernel.org,
-	Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Simon Horman <horms@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	stable@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-can@vger.kernel.org, Marc Kleine-Budde <mkl@pengutronix.de>,
+	Duy Nguyen <duy.nguyen.rh@renesas.com>, devicetree@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Maxime Ripard <mripard@kernel.org>,
-	David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
-	Jonas Karlman <jonas@kwiboo.se>, Robert Foss <rfoss@kernel.org>,
-	Maxim Schwalm <maxim.schwalm@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: Re: [PATCH v1 1/3] dt-bindigs: display: extend the LVDS codec with
- Triple 10-BIT LVDS Transmitter
-Message-ID: <174017907686.233693.6584851812411863603.robh@kernel.org>
-References: <20250220094456.32818-1-clamor95@gmail.com>
- <20250220094456.32818-2-clamor95@gmail.com>
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: can: renesas,rcar-canfd: Fix typo in
+ pattern properties for R-Car V4M
+Message-ID: <174017912595.234654.3928820060314078728.robh@kernel.org>
+References: <20250220094516.126598-1-biju.das.jz@bp.renesas.com>
+ <20250220094516.126598-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,19 +69,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250220094456.32818-2-clamor95@gmail.com>
+In-Reply-To: <20250220094516.126598-2-biju.das.jz@bp.renesas.com>
 
 
-On Thu, 20 Feb 2025 11:44:54 +0200, Svyatoslav Ryhel wrote:
-> From: David Heidelberg <david@ixit.cz>
+On Thu, 20 Feb 2025 09:45:11 +0000, Biju Das wrote:
+> The Renesas R-Car V4M(R8A779H0) SoC, supports up to four channels.
+> Fix the typo 5->4 in pattern properties.
 > 
-> LVDS transmitter used in the Microsoft Surface RT.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Fixes: ced52c6ed257 ("dt-bindings: can: renesas,rcar-canfd: Document R-Car V4M support")
+> Cc: stable@vger.kernel.org
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> v1->v2:
+>  * Added Rb tag from Geert
+>  *  *  Added the tag Cc:stable@vger.kernel.org
+> ---
+>  .../devicetree/bindings/net/can/renesas,rcar-canfd.yaml         | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
