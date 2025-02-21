@@ -1,61 +1,68 @@
-Return-Path: <devicetree+bounces-149550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B538A3FC40
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:55:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF2FCA3FC9F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 18:03:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEC971680E8
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:52:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B81C519E08E0
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99336212B06;
-	Fri, 21 Feb 2025 16:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54BE21D590;
+	Fri, 21 Feb 2025 16:56:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d+mezyth"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rejCUcjj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E5DE207A2E;
-	Fri, 21 Feb 2025 16:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 989382153E4;
+	Fri, 21 Feb 2025 16:56:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740156749; cv=none; b=aAa4tg9oJQ334HIxgFeSKD2PBfJ9ySKGmpw0xhA6kUG3c5R7JRmIPqIbkoOP81d+cw9vOaM4T1By6Dx93ZqWOkCp3wUHWuGWxVz74UWLPgJ47UTBscJji5U+dY0DRhYrelRwEJbk+gq4GRrwT7FUHok5JZ4MRFtbZGJ4mF3hhtU=
+	t=1740157000; cv=none; b=vBRWgPVfTNdxLHCmuKMuUkwhR05/HuwlrgU3UIDtCDkfZ3xm9RDp9YlOhCvHB5rJX5FvNQfIxEITEdi6mMP/ZSwDrqkJUO2ONQcLZmJVUdS6ghN0MeGVX4w56MuhNGMWDQOWEg2sfbZybAcBSAJz4qx+Tq4Ih98p4OHe79Nm1cM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740156749; c=relaxed/simple;
-	bh=lL/MvTZeP9yBIOaMchub2lXV69E2rqGAnYMQrOKZXRY=;
+	s=arc-20240116; t=1740157000; c=relaxed/simple;
+	bh=4NYNCyUlBCcUiP2flqZ7vpZ04JrfY05TT3Q9of0jt1o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lJWw26dSOLpCzeX6hq7LMNAUB/NxuTqGzI086WTrICKhgmyzYWfxHnhJFau70joLKxQwlrBl9XQrsDLwxvrcs2Um4cyhNh0njCAzDSU/f16AtYzrA+yBz75AjzmL655+sguO28DeIM6hUI38foc8pwAsg7XJ9KwP42Q5MUF8cGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d+mezyth; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04B72C4CED6;
-	Fri, 21 Feb 2025 16:52:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iWgmcLC5FSZddkLGvWnJZ0Ii1IwhQFAvJvuXpjpwCLsXsOWh83XCM+8Kfbmr0F1RikARKc6WH4BRaIABxj9BAojuFw93U288mx0LG/lQw8JIyaKqOXTFbFT1grW6fTIKGfWnnm/Ot2CjJtbARlzP9SZ0NAq6esFc94QNGNlqWhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rejCUcjj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87EC6C4CED6;
+	Fri, 21 Feb 2025 16:56:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740156749;
-	bh=lL/MvTZeP9yBIOaMchub2lXV69E2rqGAnYMQrOKZXRY=;
+	s=k20201202; t=1740157000;
+	bh=4NYNCyUlBCcUiP2flqZ7vpZ04JrfY05TT3Q9of0jt1o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d+mezythexuErDLP3PWc770FEtoUXJNzMfTarekyooZJpaC+pCCrL/ebHbaRgn6iC
-	 F/vtDW3RhRvc9Mh3Pxhi5OFuZeERBOwcgLzz97ANMaT+JtI37UCiG1+iNPCyHyDBz0
-	 3vVnuIVyCJ2bFxkqAFB37plgwiIVMcm/ZzzeFuyARIolKPMq5Vux1s0a5VzqIyk+5K
-	 ccc/LNpGKoUCPoMmLk4agfPGIANbJ090FPs7l0WCIlGBK2g4gG2BQQH+yvdW1H/rvm
-	 tZMKgulsbwfYZuPUxAu8yXRIRiXsNs67H4KWQNoP4aNLxZ0e5JrcyyHvZemDxo9AT9
-	 I7M/eObZb1K9g==
-Date: Fri, 21 Feb 2025 16:52:24 +0000
+	b=rejCUcjjFUhWfC4zPJeNa1HrBYGq2xsIqO0ZPaU8aMD1mp8MbDX81KHJKm8uC1N4G
+	 nZ1Uip6A11axdtE8FsNCFX7Aq9EnYmS46aoACenNEv0ma2HctX5SbNSwqAZRLyGMWC
+	 lyRKYCXrGs8JR1p66yMCStilgPUAaCcbaXQ27IRa0daLgmqXucCHpzWn1c9qzULyVJ
+	 bwWxE7Mf0fc1oE0RYZRole8xO6UtHf1xx1VmsUr2I9YVpWXkODSr265pUQVWcajUh/
+	 Fqo0kKew/oQiCo693InP0JB0KlhaxgZKb72mseLhCyftg1IVG/4hTFdDfhBQnUOejn
+	 40vGGHGGJiz4A==
+Date: Fri, 21 Feb 2025 16:56:32 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Quentin Schulz <foss+kernel@0leil.net>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Heiko Stuebner <heiko@sntech.de>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: nxp,pcf8575: add reset GPIO
-Message-ID: <20250221-grazing-blooming-d21874a59096@spud>
-References: <20250221-pca976x-reset-driver-v2-0-a2bcb9fdc256@cherry.de>
- <20250221-pca976x-reset-driver-v2-1-a2bcb9fdc256@cherry.de>
+To: Eason Yang <j2anfernee@gmail.com>
+Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+	venture@google.com, yuenn@google.com, benjaminfair@google.com,
+	jic23@kernel.org, lars@metafoo.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, nuno.sa@analog.com,
+	dlechner@baylibre.com, javier.carrasco.cruz@gmail.com,
+	andriy.shevchenko@linux.intel.com, gstols@baylibre.com,
+	olivier.moysan@foss.st.com, mitrutzceclan@gmail.com,
+	tgamblin@baylibre.com, matteomartelli3@gmail.com,
+	marcelo.schmitt@analog.com, alisadariana@gmail.com,
+	joao.goncalves@toradex.com, thomas.bonnefille@bootlin.com,
+	ramona.nechita@analog.com, herve.codina@bootlin.com,
+	chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
+	yhyang2@nuvoton.com, openbmc@lists.ozlabs.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: adc: add NCT7201 ADCs
+Message-ID: <20250221-spinout-opt-7d9b5a529610@spud>
+References: <20250221090918.1487689-1-j2anfernee@gmail.com>
+ <20250221090918.1487689-2-j2anfernee@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,118 +70,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="GiYkKQYTh3xozX1M"
+	protocol="application/pgp-signature"; boundary="JLz+NO4dK9qNL/Og"
 Content-Disposition: inline
-In-Reply-To: <20250221-pca976x-reset-driver-v2-1-a2bcb9fdc256@cherry.de>
+In-Reply-To: <20250221090918.1487689-2-j2anfernee@gmail.com>
 
 
---GiYkKQYTh3xozX1M
+--JLz+NO4dK9qNL/Og
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 21, 2025 at 11:14:26AM +0100, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@cherry.de>
+On Fri, Feb 21, 2025 at 05:09:17PM +0800, Eason Yang wrote:
+> Add a binding specification for the Nuvoton NCT7201/NCT7202 up to 12-bit
+> ADCs with I2C interface.
 >=20
-> A few of the I2C GPIO expander chips supported by this binding have a
-> RESETN pin to be able to reset the chip. The chip is held in reset while
-> the pin is low, therefore the polarity of reset-gpios is expected to
-> reflect that, i.e. a GPIO_ACTIVE_HIGH means the GPIO will be driven high
-> for reset and then driven low, GPIO_ACTIVE_LOW means the GPIO will be
-> driven low for reset and then driven high. If a GPIO is directly routed
-> to RESETN pin on the IC without any inverter, GPIO_ACTIVE_LOW is thus
-> expected.
->=20
-> Out of the supported chips, only PCA9670, PCA9671, PCA9672 and PCA9673
-> show a RESETN pin in their datasheets. They all share the same reset
-> timings, that is 4+us reset pulse[0] and 100+us reset time[0].
->=20
-> When performing a reset, "The PCA9670 registers and I2C-bus state
-> machine will be held in their default state until the RESET input is
-> once again HIGH."[1] meaning we now know the state of each line
-> controlled by the GPIO expander. Therefore, setting lines-initial-states
-> and reset-gpios both does not make sense and their presence is XOR'ed.
->=20
-> [0] https://www.nxp.com/docs/en/data-sheet/PCA9670.pdf Fig 22.
-> [1] https://www.nxp.com/docs/en/data-sheet/PCA9670.pdf 8.5
->=20
-> Tested-by: Heiko Stuebner <heiko@sntech.de> # exclusion logic
-> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+> Signed-off-by: Eason Yang <j2anfernee@gmail.com>
 > ---
->  .../devicetree/bindings/gpio/nxp,pcf8575.yaml      | 38 ++++++++++++++++=
-++++++
->  1 file changed, 38 insertions(+)
+>  .../bindings/iio/adc/nuvoton,nct7201.yaml     | 57 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,nct=
+7201.yaml
 >=20
-> diff --git a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml b/Do=
-cumentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-> index 3718103e966a13e1d77f73335ff73c18a3199469..633ac5cfa04a10bcbb748b658=
-0938cddae9e5596 100644
-> --- a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-> @@ -73,6 +73,44 @@ properties:
-> =20
->    wakeup-source: true
-> =20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.ya=
+ml b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
+> new file mode 100644
+> index 000000000000..830c37fd9f22
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/nuvoton,nct7201.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton nct7201 and similar ADCs
+> +
+> +maintainers:
+> +  - Eason Yang <j2anfernee@gmail.com>
+> +
+> +description: |
+> +  The NCT7201/NCT7202 is a Nuvoton Hardware Monitor IC, contains up to 1=
+2 voltage
+> +  monitoring channels, with SMBus interface, and up to 4 sets SMBus addr=
+ess
+> +  selection by ADDR connection. It also provides ALERT# signal for event
+> +  notification and reset input RSTIN# to recover it from a fault conditi=
+on.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nuvoton,nct7201
+> +      - nuvoton,nct7202
+
+When you respin, please add a note about what differs between these
+devices that requires different handling in the driver.
+
+Cheers,
+Conor.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
 > +  reset-gpios:
 > +    maxItems: 1
-> +    description:
-> +      GPIO controlling the (reset active LOW) RESET# pin.
 > +
-> +      The active polarity of the GPIO must translate to the low state
-> +      of the RESET# pin on the IC, i.e. if a GPIO is directly routed
-> +      to the RESET# pin without any inverter, GPIO_ACTIVE_LOW is
-> +      expected.
+> +required:
+> +  - compatible
+> +  - reg
 > +
-> +      Performing a reset makes all lines initialized to their input (pul=
-led-up)
-> +      state.
+> +additionalProperties: false
 > +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
-> +            contains:
-> +              enum:
-> +                - nxp,pca9670
-> +                - nxp,pca9671
-> +                - nxp,pca9672
-> +                - nxp,pca9673
-> +    then:
-> +      properties:
-> +        reset-gpios: false
+> +examples:
+> +  - |
 > +
-> +  # lines-initial-states XOR reset-gpios
-> +  # Performing a reset reinitializes all lines to a known state which
-> +  # may not match passed lines-initial-states
-> +  - if:
-> +      required:
-> +        - lines-initial-states
-> +    then:
-> +      properties:
-> +        reset-gpios: false
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
 > +
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
->  patternProperties:
->    "^(.+-hog(-[0-9]+)?)$":
->      type: object
->=20
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        adc@1d {
+> +            compatible =3D "nuvoton,nct7202";
+> +            reg =3D <0x1d>;
+> +            interrupt-parent =3D <&gpio3>;
+> +            interrupts =3D <30 IRQ_TYPE_LEVEL_LOW>;
+> +            reset-gpios =3D <&gpio3 28 GPIO_ACTIVE_LOW>;
+> +        };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 3864d473f52f..fdc4aa5c7eff 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2831,6 +2831,7 @@ L:	openbmc@lists.ozlabs.org (moderated for non-subs=
+cribers)
+>  S:	Supported
+>  F:	Documentation/devicetree/bindings/*/*/*npcm*
+>  F:	Documentation/devicetree/bindings/*/*npcm*
+> +F:	Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
+>  F:	Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.yaml
+>  F:	arch/arm/boot/dts/nuvoton/nuvoton-npcm*
+>  F:	arch/arm/mach-npcm/
 > --=20
-> 2.48.1
+> 2.34.1
 >=20
 
---GiYkKQYTh3xozX1M
+--JLz+NO4dK9qNL/Og
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7ivSAAKCRB4tDGHoIJi
-0i4uAQCOotpFqkxjesyA4pzx8vBjHsoaP4kjzuwTp6HUZPpbowD/T/5gmpO+ZEtu
-bcpjC1AoutvVhB2/ora78T73faYGJQA=
-=QQ8C
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7iwQAAKCRB4tDGHoIJi
+0lg0AQDsCEVD4EkUP/fg7wjfm3Cmgy9UN51JuRZ9eaXp870WdQD6A/esC7erCxcf
+CxjVOVmPKf/shRAcubLnpnBnLq4xlQI=
+=Az49
 -----END PGP SIGNATURE-----
 
---GiYkKQYTh3xozX1M--
+--JLz+NO4dK9qNL/Og--
 
