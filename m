@@ -1,125 +1,276 @@
-Return-Path: <devicetree+bounces-149430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6271A3F79A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:45:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9831A3F7AC
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 15:50:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0E21175C17
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:44:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D9153A7872
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 14:49:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E5FF20FA90;
-	Fri, 21 Feb 2025 14:44:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E92C209671;
+	Fri, 21 Feb 2025 14:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="Oqd6dpyx"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="HFSQI30C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7256A20D51D;
-	Fri, 21 Feb 2025 14:44:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740149087; cv=pass; b=KW8EvX+cfrAsvSqKnYav1jWNpGpEFdqawV7Yo7Tx7ArdbA6toKXJVSgHIZpTRm6wCOLMyPD6eXT2FExDs+LwVDGay5091wlgrvZv+a2xkZqwPOxJBlZ79fMcTjyXRrM6EcCGEJ8c7JcEZ3QvAHJqssldlKkbTZSW7TLCFnPhr0c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740149087; c=relaxed/simple;
-	bh=OpXQbIwdry+KWlb0cihUCK41OtZVFuebRon28vjN7XA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SJg3+1TObytLssd05QtG34t5V8DIrRF4//KpX6vk5dLvK1NbQOp5q6tLnQ/vifIP3f+BelQ75tsfLzlLojrhMiGF0By1uitu42ITe/PH3O5xVLnjwWGNrLnep3t7ZwC7C31IwTOthjHuj8+v0vlxCWjscUufjRc9740YICfh6hU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=Oqd6dpyx; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1740149018; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=LlJGyGMRQMGa7d1hiq5ol+5x17hrNEGOITinBxi2RfLVUmuqWFvWwvZraOoEpi4OYi1YoOLNyqvnuoBhJv5NjSBAknykKoIDBYOOujNCSffFzetkfrbLL99wcmnReve0li94vUEnRp/md2vSGDu2zRk6o3mUwB3ZXFwJScQUKxg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1740149018; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=gA8mn4fOHoGECCHqYXtlx2zwyQnjDL6NNJx/mEGL37k=; 
-	b=SS5CeWfivsYuXpFsx/0MPvpuxMWFRxte1/ddDomWFSwswVstzSnzPNvljfY4htomab7qaxtT3qI+cXo+9mA4ytBNiy2AqaiXhG+Y0rBgX6bKYRLZeo5xmTxEYemz2Kg0vt+8tTa5BgxPqXvk6GWwPr1ADZQqOXGt1rrKGMkXUmQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740149018;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=gA8mn4fOHoGECCHqYXtlx2zwyQnjDL6NNJx/mEGL37k=;
-	b=Oqd6dpyxZY9ouCf7T8Ku9XIIh2lKIO7kgmqL3aRYfciczdjFa77sxZ12CaQ/izzJ
-	3eUDdaUsKGpAhc87xv6+Ln8RjEH0POVBgunMSnnqLqqH0XNLvDk09FnQIz0S1CHOx2t
-	l0fX5qeyonfxOLsyVYaCaZsUIY5ALfsn9B5l3MNg=
-Received: by mx.zohomail.com with SMTPS id 1740149014815682.0553532876535;
-	Fri, 21 Feb 2025 06:43:34 -0800 (PST)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: linux-kernel@vger.kernel.org, Algea Cao <algea.cao@rock-chips.com>,
- Heiko Stuebner <heiko@sntech.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- dri-devel@lists.freedesktop.org, Niklas Cassel <cassel@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, kernel@collabora.com,
- David Airlie <airlied@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Robert Foss <rfoss@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sugar Zhang <sugar.zhang@rock-chips.com>, linux-rockchip@lists.infradead.org,
- Chen-Yu Tsai <wens@csie.org>, FUKAUMI Naoki <naoki@radxa.com>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Johan Jonker <jbx6244@gmail.com>, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Alexey Charkov <alchark@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v7 0/3] Add HDMI audio on the rk3588 SoC
-Date: Fri, 21 Feb 2025 09:43:31 -0500
-Message-ID: <4988041.31r3eYUQgx@trenzalore>
-In-Reply-To: <5E535D58-AEFF-45A4-A1EA-1FA282F366AE@gmail.com>
-References:
- <20250217215641.372723-1-detlev.casanova@collabora.com>
- <BA73C4A1-C680-4748-9CE1-4B3B19A14261@gmail.com>
- <5E535D58-AEFF-45A4-A1EA-1FA282F366AE@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A241D9688;
+	Fri, 21 Feb 2025 14:49:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740149403; cv=none; b=NrUfvtqB3ekseDT5D7cKoUHeSUZ6pdJovrLZo4YiRlnZlx4Xz/nvnjfxCADrVEG+qh8b8NjrS+ZlfkYNwJRHUY/4Arh3inwRX9FzriLtqdZubmbZY2FDzk9wrkMbZLs4THncUOFfKTTziGr/gx7wVIF5XWQ4HOlFFPLt74k7PPg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740149403; c=relaxed/simple;
+	bh=bQMa1bETMwX0QcNeLATCLvgrmj4wOZuAEtSUu8IqHhk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=oaEj4hrtP91RTis1bK5MKtVgOJpew4P/q1840+fTh6CQHh9WQDZwiRDJagTWGOlijKotlwpQUDn8m5RaPnU4rPMJZAZdF+pCj4eSOt1iWwrGFmwxialmKsLQ/hdM2MN+fEVRkAGj3EjEKFvHr+q0fNPFM3wPYE8eeoytWAP29Sc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=HFSQI30C; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 1bc8b3c8f06311ef8eb9c36241bbb6fb-20250221
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=cyoFmNA4gH9PoRDuPAgIw3tFvZSaFPLD3iSzf04UG9o=;
+	b=HFSQI30CL/bCkUjyNO5ulEUFCHIsHdcPf/1XNPGQ2+uuhSki7mgVcEUgbOo7R0volV8R/k+m3rTMyfmW+0VZAUm+4/KlDWEsBsAIXqEQoLm6vYKlIHutvMijEaiYolfoEuV8MnQJK+N2MYFR2mtQFwXx8QmMEuNxHRK73tMB4lI=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.46,REQID:a1075417-63da-4d5b-90df-2effd141ea09,IP:0,U
+	RL:0,TC:0,Content:0,EDM:-25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:60aa074,CLOUDID:83b06bb5-a2a1-4ef3-9ef9-e116773da0a7,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:1|19,IP:
+	nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,L
+	ES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 1bc8b3c8f06311ef8eb9c36241bbb6fb-20250221
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 425047828; Fri, 21 Feb 2025 22:49:53 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Fri, 21 Feb 2025 22:49:51 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.28 via Frontend Transport; Fri, 21 Feb 2025 22:49:51 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, Alexandre Mergnat
+	<amergnat@baylibre.com>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<linux-usb@vger.kernel.org>, Chris-qj chen <chris-qj.chen@mediatek.com>,
+	Fabien Parent <fparent@baylibre.com>, Yow-Shin Liou
+	<yow-shin.liou@mediatek.com>, Simon Sun <simon.sun@yunjingtech.com>
+Subject: [PATCH v5] arm64: dts: mediatek: mt8395-genio-1200-evk: add support for TCPC port
+Date: Fri, 21 Feb 2025 22:49:41 +0800
+Message-ID: <20250221144941.2844333-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On Friday, 21 February 2025 06:42:31 EST Piotr Oniszczuk wrote:
-> Small data point: on rock5b switching in dts analog audio: from
-> audio-graph-card to simple-audio-card (so dts is:
-> https://gist.github.com/warpme/349b27e49bc6f617ef1041047e75adab ) makes
-> kernel oops go away with analog audio still working=E2=80=A6
->=20
-> so maybe issue is in audio-graph-card code (or its dts fragments)?
+From: Fabien Parent <fparent@baylibre.com>
 
-I can reproduce with your config (I guess that removing the driver for anal=
-og=20
-audio hides the issue)
+Enable USB Type-C support on MediaTek MT8395 Genio 1200 EVK by adding
+configuration for TCPC Port, USB-C connector, MUX IT5205 and related
+settings.
 
-I'm really feel like simple_util_clean_reference(card) in simple_probe()=20
-errors path should not be called anymore, since
-https://lore.kernel.org/all/87zfk4o5l2.wl-kuninori.morimoto.gx@renesas.com/
+Configure dual role switch capability, set up PD (Power Delivery) profiles,
+and establish endpoints for SS (SuperSpeed) and HS (HighSpeed) USB.
 
-I'm adding Kuninori Morimoto in the to list of this thread for extra input=
-=20
-(See thread at https://lore.kernel.org/all/B8EF5196-55FB-44EC-B93C-E327C791=
-225B@gmail.com/) as they made that change.
-Especially those commits:
-      ASoC: audio-graph-card2: use __free(device_node) for device node
-      ASoC: audio-graph-card: use __free(device_node) for device node
-      ASoC: simple-card: use __free(device_node) for device node
+Update pinctrl configurations for U3 P0 VBus default pins and set dr_mode
+to "otg" for OTG (On-The-Go) mode operation.
 
-Detlev.
+Add ITE IT5205 (TYPEC MUX) under I2C2 bus and configure its properties;
+also add references and configurations to 'typec-mux' node.
 
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+Signed-off-by: Yow-Shin Liou <yow-shin.liou@mediatek.com>
+Signed-off-by: Simon Sun <simon.sun@yunjingtech.com>
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+---
+ .../dts/mediatek/mt8395-genio-1200-evk.dts    | 100 ++++++++++++++++++
+ 1 file changed, 100 insertions(+)
+
+Changes for v2:
+ - Drop the no need '1/2' DT Schema update patch in the 1st version.  
+ - Fix indent for 'ports' node, it should under the 'connector' node.
+ - Correct the index for 'port@0' and 'port@1' node.
+
+Changes for v3:
+ - Correct the order between new added nodes.
+
+Changes for v4:
+ - Reorder for property 'op-sink-microwatt'.
+ - Fix indentation for 'source-pdos' and 'sink-pdos' nodes.
+ - Correct node 'pin-cmd-dat' with 'pins-vbus'.
+ - Add both Highspeed and Superspeed ports to ssusb0 port.
+ - Set 'role-switch-default-mode' = "peripheral" for ssusb0 port.
+ - Rename endpoint of USB data port to 'mtu3_hs0_role_sw' and
+   'mtu3_ss0_role_sw'.
+ - Drop it5205fn phandle for node typec-mux@48.
+ - Reorder properties of typec-mux@48
+ - Add "Reviewed-by:" tag. Thanks!
+
+Changes for v5:
+ - Squash two patches into one patch and refine commit messages:
+   suggested by reviewer.
+ - Drop 'role-switch-default-mode'
+ - Add altmodes settings
+ - Drop 'Reviewed-by:' tag since the two sub patches has been combined
+   into a new patch.
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+index 1ef6262b65c9..6d139d40f8b3 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+@@ -224,6 +224,21 @@ &i2c2 {
+ 	pinctrl-0 = <&i2c2_pins>;
+ 	pinctrl-names = "default";
+ 	status = "okay";
++
++	typec-mux@48 {
++		compatible = "ite,it5205";
++		reg = <0x48>;
++		vcc-supply = <&mt6359_vibr_ldo_reg>;
++		mode-switch;
++		orientation-switch;
++		status = "okay";
++
++		port {
++			it5205_sbu_ep: endpoint {
++				remote-endpoint = <&mt6360_ssusb_sbu_ep>;
++			};
++		};
++	};
+ };
+ 
+ &i2c6 {
+@@ -330,6 +345,61 @@ mt6360_ldo7: ldo7 {
+ 				regulator-always-on;
+ 			};
+ 		};
++
++		tcpc {
++			compatible = "mediatek,mt6360-tcpc";
++			interrupts-extended = <&pio 17 IRQ_TYPE_LEVEL_LOW>;
++			interrupt-names = "PD_IRQB";
++
++			connector {
++				compatible = "usb-c-connector";
++				label = "USB-C";
++				data-role = "dual";
++				op-sink-microwatt = <10000000>;
++				power-role = "dual";
++				try-power-role = "sink";
++
++				source-pdos = <PDO_FIXED(5000, 1000,
++							 PDO_FIXED_DUAL_ROLE |
++							 PDO_FIXED_DATA_SWAP)>;
++				sink-pdos = <PDO_FIXED(5000, 2000,
++						       PDO_FIXED_DUAL_ROLE |
++						       PDO_FIXED_DATA_SWAP)>;
++
++				altmodes {
++					displayport {
++						svid = /bits/ 16 <0xff01>;
++						vdo = <0x00001c46>;
++					};
++				};
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++						typec_con_hs: endpoint {
++							remote-endpoint = <&mtu3_hs0_role_sw>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++						typec_con_ss: endpoint {
++							remote-endpoint = <&mtu3_ss0_role_sw>;
++						};
++					};
++
++					port@2 {
++						reg = <2>;
++						mt6360_ssusb_sbu_ep: endpoint {
++							remote-endpoint = <&it5205_sbu_ep>;
++						};
++					};
++				};
++			};
++		};
+ 	};
+ };
+ 
+@@ -755,6 +825,13 @@ pins-reset {
+ 		};
+ 	};
+ 
++	u3_p0_vbus: u3-p0-vbus-default-pins {
++		pins-vbus {
++			pinmux = <PINMUX_GPIO63__FUNC_VBUSVALID>;
++			input-enable;
++		};
++	};
++
+ 	uart0_pins: uart0-pins {
+ 		pins {
+ 			pinmux = <PINMUX_GPIO98__FUNC_UTXD0>,
+@@ -885,8 +962,31 @@ &ufsphy {
+ };
+ 
+ &ssusb0 {
++	dr_mode = "otg";
++	pinctrl-names = "default";
++	pinctrl-0 = <&u3_p0_vbus>;
++	usb-role-switch;
+ 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+ 	status = "okay";
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			mtu3_hs0_role_sw: endpoint {
++				remote-endpoint = <&typec_con_hs>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			mtu3_ss0_role_sw: endpoint {
++				remote-endpoint = <&typec_con_ss>;
++			};
++		};
++	};
+ };
+ 
+ &ssusb2 {
+-- 
+2.45.2
 
 
