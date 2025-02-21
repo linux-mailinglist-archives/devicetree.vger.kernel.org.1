@@ -1,64 +1,68 @@
-Return-Path: <devicetree+bounces-149660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDABDA400B3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:23:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4978A400BA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 21:24:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2299219E161B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 20:23:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 671BD3B95B8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 20:24:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB165253331;
-	Fri, 21 Feb 2025 20:23:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2201425335D;
+	Fri, 21 Feb 2025 20:24:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iKipNSvy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B18uDJU9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 805A71DED6F;
-	Fri, 21 Feb 2025 20:23:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D31E225333B;
+	Fri, 21 Feb 2025 20:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740169388; cv=none; b=CQHQrmozgWyBgXzLEUhRLNZ5iCAoaSBWGtko8GY0Y8qhg+sjFKhRZN7cSr1/vLM5oyPGGry7f5MqS8BCTBSHr0vy1NHmwYf9CSTUomuwQwdkukrZmf+F5FQLEvyj80ylsLpwjrdmLhyj3LPFjmwYfkWKzkGQWZ6KPFv1mSRpQDg=
+	t=1740169465; cv=none; b=conMmm1wMrpQdU0nZssZ5TuwDV15ESEoRm6rSU05A811ezGTjXTOUXuozmr8qAJ7RyHizZqVF7qBbxUvhesmMWvKIKGdnY9d3Xbt2DIuwS2bTHMUbP5L4h1GtoLj1EfgpA7mQBpIDAhpgKnclN+enV13Id/K8FizL63UqUfEdk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740169388; c=relaxed/simple;
-	bh=5UVbj5X1SwTrcgQ04/E/Vjuw1gEEFd1mtvfu98G7pP8=;
+	s=arc-20240116; t=1740169465; c=relaxed/simple;
+	bh=BA/9a3AUaurPTfHWK9D4oMHkVThzECRSNECXYl7rXsg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oOGX2ZfhEYIs0Oc1TgDqNMFGE30/uGNaV/qRbbSGALiT1FCubjZZ98vauTALtDq6vOB8j+02wIZ3E7Npi0G9EgFYFwgAmPwCDMg2GppAx/2GEXQADtb2Kb0k+ekxklasWTy0xLPi2jCgjiLcMiClP9LMy9lq7xHWydshY8tw4mI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iKipNSvy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3BF5C4CED6;
-	Fri, 21 Feb 2025 20:23:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JCx/3tgnw51EKAnavueQ/d5J6bHqmyKWkj3YjSkwjppCi7srtF+Ohid3qQtYyWskUvVRRTxK7aNr88fbpe7c9AtXHr7M8wZLBNEULrnzPeTRto8y7j9azihmDGjoMlNXSu2lQMAagWQ5qW7DR8Dy7l61dA9n6nx6GUR4xFPl8Cg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B18uDJU9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71B51C4CED6;
+	Fri, 21 Feb 2025 20:24:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740169388;
-	bh=5UVbj5X1SwTrcgQ04/E/Vjuw1gEEFd1mtvfu98G7pP8=;
+	s=k20201202; t=1740169464;
+	bh=BA/9a3AUaurPTfHWK9D4oMHkVThzECRSNECXYl7rXsg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iKipNSvyRoqaiJEQQVdtuW2AuP8Gtg+YGmA/ltmU/kwkJpBrXWQwFVjkcfmzcZZ5A
-	 BgvOr4bvVEbc1nbPPgAk8FrnlQ3ubyfdp07T4T+DnW8idjf+SVtHGGwoCRBZ2ITw6W
-	 7NYKya7fYrXcylmmxGhCoQMFLfQcWSWqDAIMvhw1eifBkXVzWlrE2bMNAbDwx9TTuQ
-	 kl1q+ugWFAwuyQ5mMwmYljWFu0F2/kAqPWwSW7HBxtaKywExII7oyQhO0561SZ9Deb
-	 xrx6eVePUIVYiXYiBY4SBQHo3bzrmpMUKGiyK4M/Pi9Dl1acaSE9zYqDoIrByOIu4O
-	 ZYqLs5cOk7fkg==
-Date: Fri, 21 Feb 2025 14:23:06 -0600
-From: Rob Herring <robh@kernel.org>
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Alex Elder <elder@kernel.org>,
-	Stanislav Jakubek <stano.jakubek@gmail.com>,
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH RFC 4/5] clk: bcm21664: Add matching bus clocks for
- peripheral clocks
-Message-ID: <20250221202306.GA15720-robh@kernel.org>
-References: <20250216-kona-bus-clock-v1-0-e8779d77a6f2@gmail.com>
- <20250216-kona-bus-clock-v1-4-e8779d77a6f2@gmail.com>
+	b=B18uDJU9zEEEgtr9YKx+ZwX0JSEnq/X3dGGbLR+xCXFrI0BtfYoc02IaDUmBjdHkd
+	 kuDJb/hkfcHcUaKwBGpDcUqntPtqeOiTKaKvFV1YcFeWTqUAqoTK3x+I1OrMaTSWXf
+	 BtA0IHaoHJ753jo65VmOgQ9eMPPlfZh8kiyjIVKaY0EgDeM6j1JTA+ySthTRTrG9Gr
+	 XPRd6BnX7De7k4jrwBPX2hUoSSAWkedQm8lzF5KsQ9qusfN1ecAlshNJ2PlShlU9z0
+	 CQurln8aNdF1jbeZ5MnnCB0SJFyIAOzsJGs/Dkc0Zz2hLDgW6BRS86ANoIEteB5Ttq
+	 9JQ2o+DNgA2wA==
+Date: Fri, 21 Feb 2025 14:24:22 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+	Dan Murphy <dmurphy@ti.com>, Shenghao Ding <shenghao-ding@ti.com>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Hector Martin <marcan@marcan.st>, linux-hwmon@vger.kernel.org,
+	Mark Brown <broonie@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+	linux-sound@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
+	Neal Gompa <neal@gompa.dev>, linux-kernel@vger.kernel.org,
+	asahi@lists.linux.dev, Conor Dooley <conor+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Shi Fu <shifu0704@thundersoft.com>, Kevin Lu <kevin-lu@ti.com>,
+	devicetree@vger.kernel.org, Baojun Xu <baojun.xu@ti.com>
+Subject: Re: [PATCH v2 03/29] ASoC: dt-bindings: tas27xx: add compatible for
+ SN012776
+Message-ID: <174016946225.18751.4498850006869111777.robh@kernel.org>
+References: <20250218-apple-codec-changes-v2-0-932760fd7e07@gmail.com>
+ <20250218-apple-codec-changes-v2-3-932760fd7e07@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +71,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250216-kona-bus-clock-v1-4-e8779d77a6f2@gmail.com>
+In-Reply-To: <20250218-apple-codec-changes-v2-3-932760fd7e07@gmail.com>
 
-On Sun, Feb 16, 2025 at 05:12:39PM +0100, Artur Weber wrote:
-> Now that bus clock support has been implemented into the Broadcom Kona
-> clock driver, add bus clocks corresponding to HUB_TIMER, SDIO, UART and
-> BSC, as well as the USB OTG bus clock.
+
+On Tue, 18 Feb 2025 18:35:37 +1000, James Calligeros wrote:
+> The TI SN012776 is a variant of TAS2764 found in Apple Silicon Macs.
+> It continues Apple's long-standing policy of getting vendors to
+> spin out subtly incompatible and Apple-exclusive variants of their
+> publicly available parts.
 > 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> Reviewed-by: Neal Gompa <neal@gompa.dev>
+> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
 > ---
->  drivers/clk/bcm/clk-bcm21664.c       | 107 +++++++++++++++++++++++++++++++----
->  include/dt-bindings/clock/bcm21664.h |  19 ++++++-
+>  .../bindings/sound/ti,tas27xx.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-This is part of the binding, so it goes in the binding patch or on its 
-own.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
