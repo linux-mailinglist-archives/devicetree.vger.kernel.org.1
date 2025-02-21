@@ -1,185 +1,208 @@
-Return-Path: <devicetree+bounces-149319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 222F7A3F110
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 10:56:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A7A7A3F11B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 10:57:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9EDB4230B8
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 09:54:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43CC016ED88
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 09:57:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38DBA2045BC;
-	Fri, 21 Feb 2025 09:54:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6FDF2046B9;
+	Fri, 21 Feb 2025 09:57:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NkOPN4BG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ll+/2cuY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6307B1EB18D;
-	Fri, 21 Feb 2025 09:54:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8C5B204694
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 09:57:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740131684; cv=none; b=tOP2U9NobcaTT2lu/8ewwzSbzJ27YvfYlqNQIb/uVMWrgiuZBm21WuvaXBmB7ELK2nG+u7M8onwsdq2o8gSE4/o5vtsXlVGSV0sv5fm1BxHpu2tfyfXNgTLWiDFOYZcwRffRr3koz0N37ngxZminnV8H4vm9LYlCGkHxHyOlTec=
+	t=1740131855; cv=none; b=B6/6aw2SaEhS1BPtgMqZpHtf2Gc1q8KLgm/sZnIY/TpTHk1kclAlNtcfDZRDsTyENeX1kq36RPyyPhCl2EM8BfXH49fSOK7jNNcK3fY75FEW0o7yAfYA4CVfPv+gY4qEzms+VCpiyfzWbcb4ol0FyawkdAqcvWZEChssoDiY7n0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740131684; c=relaxed/simple;
-	bh=ro3d+iKXGoqGnuNHlS/fgeOaWF0UBAOH6kPyVBHtOvc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PAnqCJEQkLWEfoZt5u3SaDK1uH5x28E2hYHsL+tMTF1JVfC7LDwvyjyYkf+xe1ww99ZixBGYHK+5E/+fjWgdbnOst9iLlv3JtlwqwbwBeZw2qEnf+a5pfvgzBHTmV9n+e5fhBAG6tO39hAsggQoiUULtOOIW9HDqehW1Aj/9z2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NkOPN4BG; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5dccaaca646so3481380a12.0;
-        Fri, 21 Feb 2025 01:54:42 -0800 (PST)
+	s=arc-20240116; t=1740131855; c=relaxed/simple;
+	bh=awRrQG8My2jPkSTLVXCSEmn4cnN81ZIxkT+0wrUaW+c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M0bJstyHxBPHidTKLETUUz345d3gD3xVfxT1FN4C76S6WZd3oPCn8hubEZUGcEjNvvxC5gh9u/QvUSszThr+N8luG8grBngY7epYAe0HQf3gvcJvg5/Zx95ih1OtxWSIqpxDMazlrXbPXv6kYz2ZoLngIgUV3G4o0f5CFMTYphA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ll+/2cuY; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5dc191ca8baso373603a12.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 01:57:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740131681; x=1740736481; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PCWLQJXIRaGa+NaKBUA5lVma2HK+tvmrsuX2eAKzx3I=;
-        b=NkOPN4BG9MXg0QTCk4CxCM1p6P9kITIMSVAnU0qs3YGkIrR0iGXBLES+tmz9rTKQZc
-         7kBzhG3tCWhd5WY0wA4g20bcqsm52KLaFNWCHAv1H6YMY04t4bVbSmUslgp9BXTR6Mny
-         QYckUIXRAcULhYpAPf36sH7QnMGF19TIl1vhKwUjAR9/PAp70nmFKi4PEJrrucZHXzm9
-         2L1BR36dW8ZMreumuWk18uGZiMW7idv5QjfSy/WzHx9igo436HWvJ6+/BwWyOLBsiyr7
-         dSpxbMw4bPRU8vso96gSPkKLsbxQoakBP4teON3nGQkuMqvKnfkqgx/qzc9+qUSvgm8f
-         8BtQ==
+        d=linaro.org; s=google; t=1740131852; x=1740736652; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=iqkMt33aIVzf/RYUp5sQ7i66jsblVvCNxT/7o/SCfHc=;
+        b=ll+/2cuYw5QyQN5q6BjzH4d4nzVXiSsvkYyelgGzEigXY8PWfOV83BQnevGQnXHp3s
+         A3OXcyovMXowHaYfFgKpbxgJ0MvKgI3LYstdj1pLgwbn4Bfo8tAOtx3NFpz0r2drbLo0
+         0/rWfkUOBPpk/fRBgAcY1j7Sx33RUk50CnyUFLbOwqJAh/BWs1p5kkFWzoXsMHQwLvXg
+         lWMHnY4ZLe+ll1uQCKmzXLNpNCfjhEKadGDh0GPI2z2/iamVBS3V347a5mFKO3WEPkCR
+         sD4YR9IwFwgbNLyZMddMRLV0gkoUSdPfgB2SzefPxvQjwuJa76JRriAmf2W+5MfvXDTN
+         zjaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740131681; x=1740736481;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PCWLQJXIRaGa+NaKBUA5lVma2HK+tvmrsuX2eAKzx3I=;
-        b=p1RRB6ApKl0ehiWwMJAswYv/ZWXihj5EMxHYIMYtP3kR9X6NRqUTgJq200LcUntOyB
-         XPaKBm3VUOS5mAsRFn3DCQy8T9Ueyp6M4BnHp37SvCPAmfx8Q0WFaSegiSO+k3z45yJc
-         UCsIU9AZas+iYgdINVsbl2Au5lNJqxQR09t4gm64Nq4HBhBBGvQbxYBaCD+VoM9CjU6U
-         OIg7X/0M7chDAym28/rbqivok9J/BQOidvxPJMrYVgrmjOdOzuqRBY7xclEnv9KroOr8
-         9k3UlvJKL4bEQdjph9Fx9Avhw1hYhejYEGGiHJKJVW8bqyWt0VDFusY6UAQYgsDeqAax
-         qQ9A==
-X-Forwarded-Encrypted: i=1; AJvYcCWBkrAu3RNzEpNxxwQcRwPaxBQskKcbjjMJOW2GGqmFDp36FYD9kNMx0AyOApleIQbknAmGmWsKI/IX@vger.kernel.org, AJvYcCXmHi5XXn1iia/4YFPZRR6l11wLKtZwErhcJl+inih4324IOIADolLYXtcCVH8WhFJZHMk8mT6RK7wBPruH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1DS5tJWn/aLOOXHVJlFWIZgGN/a4yVZfwq1fKHhr55tsMXK6L
-	I4wsHSelenikf3/CkNyLjN59oCnuEw7T/1dYFoY3u4IJ6QGWTxXvMW3N2gY5OgALURlB6ExM1z1
-	96PdRoEYCpotW9WlVRH+n51IvKUc=
-X-Gm-Gg: ASbGncsTRsKp4xz/2jxsq9o8cVjGVpQFhVxTlwqwuljdYMwBpSlA9PAjEhNclySOVFr
-	+atKi39ujUiIbP4ytAOjAxWpEnLeicD+n2RgQqSXNqgryNBbOBi/UzZWaTgXtOTJHtrQPLXRfMp
-	5iAlnmhuA=
-X-Google-Smtp-Source: AGHT+IERzieE0HXpOGPr2oPq6V5HcGC9rINMOoagVFBANbqyTomsPjFp0m4XiausshWj0LORrEm4V/CktVu+ZQyj1Kw=
-X-Received: by 2002:a05:6402:90b:b0:5e0:6e6c:e2b5 with SMTP id
- 4fb4d7f45d1cf-5e0a1261230mr6369087a12.9.1740131680329; Fri, 21 Feb 2025
- 01:54:40 -0800 (PST)
+        d=1e100.net; s=20230601; t=1740131852; x=1740736652;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iqkMt33aIVzf/RYUp5sQ7i66jsblVvCNxT/7o/SCfHc=;
+        b=aKJKaKbTONJUPMrzrabCyn6w5Fs17+lJWL/GtIuZSt7obLmT9qxRu+V9awDw2IHlc9
+         deRDyUiNQ9GLs/lSdbD0IAYeafe+lnraKVzBRp7Tq3EztAMDZNpVaqpmm4u2FMJsKbj8
+         00cg4kIZg4LBVJRAUolEruGSBDv1+BkfwZv4D4aGlWW+OFKuXpq270Y2E7Ns5HpXb1N1
+         tNfulrXF3zNTDFVMHJ4CMjGg9b7QrR8P7zvQPzvie6yruUnOZOQyqRgdm1afOS0WoJtu
+         BdMxnkv3H2/5ffvKr4O4M5Jlp2uH288qHr3EqOuTUDujVENhc6PWv69Pospjahz5XF7P
+         BMXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUte5zeRBQUjrRblIGLerZfKwmIzoKcWxc4sgGzFO2sjC9YZUfRp/ad0ap5TZZjEZir+p2P/oCfzyF1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxj0KXLIyBeFZ6hsEnbRGQnKEMWPoRur2b59vGir7qyYnWcDUWy
+	GMrji1QvaZdt2V+mIvUt6TOxyqsdnTqNHcAWXAqWwt1MjO/SqzqmT4ieWvpdr/A=
+X-Gm-Gg: ASbGncuRn3kqx7H7ICY3aQv7u//jqFOVebssm1QbceFAn7iJq6CF7lj/U+i8s/UBNjf
+	aRCa2bthfHK54kNoOfBVge1qfSKXDVL/3ZyUMI2nIxkIgA1QKm0DazhQ5p9jQPZgYDKs3bteflc
+	Dq5emQwac83Q/JKnESDfrHNT+MkS5cscm/ba2UQTtk/A0QMVcClZh98A3LELWpcCd7jZyK3ETPR
+	KIvfbj2tXWhQggChi6XZVOpWaAXhntATjhL6Yygnm6sap7d9MRqw6wczwRMLXmSPT26IZKt6i8X
+	U28TohBQPtBgdaQeBwyPmfaPFTMalJHuePzgUU68x0wKVa5zt+W53f/7h84VRWgU7GIbkns0iyv
+	IpKBo
+X-Google-Smtp-Source: AGHT+IGIZHDigZqENXwGcceTFgMb1ySsKzxAP+ch/y6jbGNwougXaHtLskU7bRrP43X1lCZ5wZa+Pg==
+X-Received: by 2002:a05:6402:4406:b0:5e0:803c:2440 with SMTP id 4fb4d7f45d1cf-5e0b72311b3mr774032a12.8.1740131852097;
+        Fri, 21 Feb 2025 01:57:32 -0800 (PST)
+Received: from [192.168.0.18] (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1d367dsm13706646a12.44.2025.02.21.01.57.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Feb 2025 01:57:31 -0800 (PST)
+Message-ID: <4fd7bb26-f182-4030-8e03-b8973d0596a6@linaro.org>
+Date: Fri, 21 Feb 2025 10:57:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250118102207.9339-1-simons.philippe@gmail.com>
- <20250118102207.9339-3-simons.philippe@gmail.com> <3229934.fEcJ0Lxnt5@jernej-laptop>
-In-Reply-To: <3229934.fEcJ0Lxnt5@jernej-laptop>
-From: Philippe Simons <simons.philippe@gmail.com>
-Date: Fri, 21 Feb 2025 10:54:27 +0100
-X-Gm-Features: AWEUYZlqXqdJfwgEwnpCfDSpt4wrYNSKsocDQVRpSu4fjABOQ7YP3MhnhFElf50
-Message-ID: <CADomA4_yMUS_S-YDrQdSKmZrDMwPeakkJBix-r08UFQejTYYcw@mail.gmail.com>
-Subject: Re: [RFC PATCH 3/3] arm64: dts: allwinner: h700: Enable USB OTG
-To: =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Samuel Holland <samuel@sholland.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/Allwinner sunXi SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] dt-bindings: PCI: qcom-ep: describe optional IOMMU
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Mrinmay Sarkar <quic_msarkar@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250221-sar2130p-pci-v2-0-cc87590ffbeb@linaro.org>
+ <20250221-sar2130p-pci-v2-1-cc87590ffbeb@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20250221-sar2130p-pci-v2-1-cc87590ffbeb@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 20, 2025 at 9:38=E2=80=AFPM Jernej =C5=A0krabec <jernej.skrabec=
-@gmail.com> wrote:
->
-> Dne sobota, 18. januar 2025 ob 11:22:06 Srednjeevropski standardni =C4=8D=
-as je Philippe Simons napisal(a):
-> > RG35XX have a GPIO controlled regulator for phy0 vbus, add it.
-> > Enable HCI0s controllers and otg for dr_mode.
-> > Add phy0 properties to descrive id_det, external vbus, and internal vbu=
-s
-> >
-> > Signed-off-by: Philippe Simons <simons.philippe@gmail.com>
->
-> This could work without previous two patches, right?
+On 21/02/2025 04:06, Dmitry Baryshkov wrote:
+> Some of Qualcomm platforms have an IOMMU unit between the PCIe IP and
+> DDR. Changethe schema in order to allow specifying the IOMMU.
 
-While this correctly describes the board, it currently doesn't works
-as expected.
-HCIs will enable the 5v on PHY and will never disable it.
-Resulting in a blown regulator on the board if plugged with another host.
-I managed to get this working by removing the PHY ref from the HCI,
-but this is wrong.
 
->
-> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
->
-> Best regards,
-> Jernej
->
-> > ---
-> >  .../sun50i-h700-anbernic-rg35xx-2024.dts      | 25 +++++++++++++++++--
-> >  1 file changed, 23 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-=
-2024.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.d=
-ts
-> > index 80ccab7b5..5a6ae42de 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dt=
-s
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dt=
-s
-> > @@ -175,6 +175,16 @@ reg_vcc5v: regulator-vcc5v { /* USB-C power input =
-*/
-> >               regulator-min-microvolt =3D <5000000>;
-> >               regulator-max-microvolt =3D <5000000>;
-> >       };
-> > +
-> > +     reg_usb0_vbus: regulator-usb0-vbus {
-> > +             compatible =3D "regulator-fixed";
-> > +             enable-active-high;
-> > +             gpio =3D <&pio 8 16 GPIO_ACTIVE_HIGH>; /* PI16 */
-> > +             regulator-min-microvolt =3D <5000000>;
-> > +             regulator-max-microvolt =3D <5000000>;
-> > +             regulator-name =3D "usb0-vbus";
-> > +             vin-supply =3D <&reg_boost>;
-> > +     };
-> >  };
-> >
-> >  &cpu0 {
-> > @@ -337,12 +347,23 @@ &uart0 {
-> >       status =3D "okay";
-> >  };
-> >
-> > -/* the AXP717 has USB type-C role switch functionality, not yet descri=
-bed by the binding */
-> > +/* the AXP717 has USB type-C role switch functionality */
-> >  &usbotg {
-> > -     dr_mode =3D "peripheral";   /* USB type-C receptable */
-> > +     dr_mode =3D "otg";   /* USB type-C receptable */
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&ehci0 {
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&ohci0 {
-> >       status =3D "okay";
-> >  };
-> >
-> >  &usbphy {
-> > +     usb0_id_det-gpios =3D <&pio 8 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>=
-; /* PI4 */
-> > +     usb0_vbus_power-supply =3D <&usb_power>;
-> > +     usb0_vbus-supply =3D <&reg_usb0_vbus>;
-> >       status =3D "okay";
-> >  };
-> >
->
->
->
->
+Missing space - "Change the"
+
+> 
+> Fixes: 9d3d5e75f31c ("dt-bindings: PCI: qcom-ep: Add support for SA8775P SoC")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> index 1226ee5d08d1ae909b07b0d78014618c4c74e9a8..800accdf5947e7178ad80f0759cf53111be1a814 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> @@ -75,6 +75,9 @@ properties:
+>        - const: doorbell
+>        - const: dma
+>  
+> +  iommus:
+> +    maxItems: 1
+> +
+>    reset-gpios:
+>      description: GPIO used as PERST# input signal
+>      maxItems: 1
+> @@ -233,6 +236,20 @@ allOf:
+>            minItems: 3
+>            maxItems: 3
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,sdx55-pcie-ep
+> +    then:
+> +      properties:
+> +        iommus:
+> +          false
+
+iommus: false
+
+> +
+> +    else:
+> +      required:
+> +        - iommus
+
+
+You make it required but commit msg does not explain that. It actually
+is quite permissive: "allow specifying". This is ABI break so either
+drop required or rephrase commit msg explaining why this has to be
+required now.
+
+Best regards,
+Krzysztof
 
