@@ -1,68 +1,63 @@
-Return-Path: <devicetree+bounces-149734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D59B7A403BB
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:50:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79841A403C9
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:53:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2142422E65
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 23:50:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 157803B7475
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 23:53:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D5A254AE8;
-	Fri, 21 Feb 2025 23:50:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B34254B07;
+	Fri, 21 Feb 2025 23:53:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ebzXRD7f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WGB2ubSj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 529D8204694;
-	Fri, 21 Feb 2025 23:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AF87254AE0;
+	Fri, 21 Feb 2025 23:53:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740181800; cv=none; b=WNeNMBjHd/0XChyFhPQRsfn7hNECt56FiPRB7vGNxmeWsArfOkdI1G4B+oSAGs4UAsJSgwv2Tbf364wlIR1xAplaIciTJcs+tmd0DBOu7+Yq0ahMcHpJOZdLYtkjhcIJvl7UadZXK3DIvsk4xKZsnE/tAH56mjtGCnrKjuxQaoQ=
+	t=1740181991; cv=none; b=LQAoIZFRdhMhQR+zPwFzJfGjbd4OEfuUeC30WI1h1N61aOiRNq70li7oVSmGRQ1awcBw931YU3beVzcZAORAgKr8rBRYbS9SJv3kKWitVIgrm5NWtudY2OudhAMnEFQFkM2ULfb7Yoxz/mlYBjMImvV8uVk3/Ay+Q9vEplCwKTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740181800; c=relaxed/simple;
-	bh=7nyMY4mFAeqXaY4AyfMQMXfQBWFBvvYOoJjP9MhKH6g=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=F+BY5lnvXAPasNk62OnB8yfxPCZ0yjxE7YimP/B/W1N21vBOV/eReDZAzpzT0SqMJYkRuLlmpqjg/sEwKW2DWwuru6zTvWxSDwFfn0vPW+Y4DWiHIqQrqJo/8XSfcOcbHTNfkPtSx+wpVlkESk1o3NB6L0A99Cu6KkEW5R03724=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ebzXRD7f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E5E9C4CED6;
-	Fri, 21 Feb 2025 23:49:59 +0000 (UTC)
+	s=arc-20240116; t=1740181991; c=relaxed/simple;
+	bh=/YFrwlZgyvLoJMUeq+tvf10yh7R4xJNFEg5KwtEoi2M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Em+tkEU0mxqfQRC/UJxuZvhoHaLMR4I6I1GVQTG5ZlqSNkEnKtlYozFcgRscWtns41GNwkm67UmT1ZhJM7wzyPHzDaJ6dSyE7gCfsLHu+ewknYImfHqAtv6ub7HdkwhCnJXHnmsBAWKRyPVVp9NpTJ0PasegTiykZnTeFanMyPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WGB2ubSj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8F5EC4CED6;
+	Fri, 21 Feb 2025 23:53:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740181799;
-	bh=7nyMY4mFAeqXaY4AyfMQMXfQBWFBvvYOoJjP9MhKH6g=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=ebzXRD7fV/Ixvgj7XqgttlHaThg3WUGKW8yUnOnyCWMx2md84LfMFxeaxPr5BKc12
-	 FGB2wrsPt3Uwg65UNNG/nb95tdPXbew7VdMIhM00g1Dn0pDeuAiSr1aUFI1d0z8gbq
-	 iWILf7txi/VGSlSsYX1hNot9bKuVUnL/W/cEyw/fIKp9P3f95HELNiew7T3Y4vhMtV
-	 r0D98tM4UbWejYZIvR2VB+SrrRySlhP1f/iFaKnMFmoyBeMSq5Du6WuwgHvQcT15Rm
-	 HIkLrKamIw0mDTxFcbe4I1DWWPYkR9yY2S8zwwwQ8mM6DcSDpKkpc5NSCq2xYowVTT
-	 nb2P3yw3NxN5Q==
-Date: Fri, 21 Feb 2025 17:49:58 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	s=k20201202; t=1740181989;
+	bh=/YFrwlZgyvLoJMUeq+tvf10yh7R4xJNFEg5KwtEoi2M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WGB2ubSjMbE6ueP9Gqq/84p4aoMNKf5redslySU1HfRmrAGAB+WTs0uN0rlcHj2/S
+	 /C33QhzEcp347yjR7IjJfmzQAZaMwDFv97KvhwwXzN01mYS1puRP4RAkqhJZTRy516
+	 t8BxpUPsAU+QgITpLUJxHCTWHRphP4ebBQFsZGs1KF+YJi0OW56vzjt8XTXijJFVPJ
+	 CHDLgVM/4xGktwYIkgHFEvlkqtLJ4JeH+gZR/UY+q4I6zYEEPEmMbI0Yf/bCogRcOl
+	 6xTfn4UyKw/F3TtA32gdHnr3JAmIcz8q7+Qwjcd7ZX5bLRYKUxJ9vjnJ078aFlOMvm
+	 bmlu6PSROh/rQ==
+Date: Fri, 21 Feb 2025 17:53:07 -0600
+From: Rob Herring <robh@kernel.org>
+To: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	James Clark <james.clark@linaro.org>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Niklas Cassel <cassel@kernel.org>,
-	Shashank Babu Chinta Venkata <quic_schintav@quicinc.com>,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH 2/2] PCI: sophgo-dwc: Add Sophgo SG2044 PCIe driver
-Message-ID: <20250221234958.GA372914@bhelgaas>
+	Conor Dooley <conor+dt@kernel.org>, kernel@quicinc.com,
+	linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
+	linux-arm-kernel@lists.infradead.org, kernel@oss.qualcomm.com,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: arm: Add Coresight device Trace NOC
+ definition
+Message-ID: <20250221235307.GA401276-robh@kernel.org>
+References: <20250221-trace-noc-driver-v1-0-0a23fc643217@quicinc.com>
+ <20250221-trace-noc-driver-v1-1-0a23fc643217@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,184 +66,152 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250221013758.370936-3-inochiama@gmail.com>
+In-Reply-To: <20250221-trace-noc-driver-v1-1-0a23fc643217@quicinc.com>
 
-On Fri, Feb 21, 2025 at 09:37:56AM +0800, Inochi Amaoto wrote:
-> Add support for DesignWare-based PCIe controller in SG2044 SoC.
+On Fri, Feb 21, 2025 at 03:40:28PM +0800, Yuanfang Zhang wrote:
+> Adds new coresight-tnoc.yaml file describing the bindings required
+> to define Trace NOC in the device trees.
+> 
+> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+> ---
+>  .../bindings/arm/qcom,coresight-tnoc.yaml          | 107 +++++++++++++++++++++
+>  1 file changed, 107 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..b8c1aaf014fb483fd960ec55d1193fb3f66136d2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/qcom,coresight-tnoc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Ttrace NOC(Network On Chip)
+> +
+> +maintainers:
+> +  - yuanfang Zhang <quic_yuanfang@quicinc.com>
+> +
+> +description:
+> +  The Trace NoC is an integration hierarchy which is a replacement of Dragonlink tile configuration.
+> +  It brings together debug component like TPDA, funnel and interconnect Trace Noc which collects trace
+> +  from subsystems and transfers to QDSS sink.
+> +
+> +  It sits in the different subsystem of SOC and aggregates the trace and transports it to Aggregation TNoC
+> +  or to QDSS trace sink eventually. Trace NoC embeds bridges for all the interfaces(APB, ATB, QPMDA & NTS).
+> +
+> +  Trace NoC can take inputs from different trace sources i.e. ATB, QPMDA.
 
-> @@ -341,6 +341,16 @@ config PCIE_ROCKCHIP_DW_EP
->  	  Enables support for the DesignWare PCIe controller in the
->  	  Rockchip SoC (except RK3399) to work in endpoint mode.
->  
-> +config PCIE_SOPHGO_DW
-> +	bool "SOPHGO DesignWare PCIe controller"
+Wrap lines at 80 char. And you need '>' to preserve paragraphs.
 
-What's the canonical styling of "SOPHGO"?  I see "Sophgo" in the
-subject line and in Chen Wang's SG2042 series.  Pick the official
-styling and use it consistently.
+> +
+> +# Need a custom select here or 'arm,primecell' will match on lots of nodes
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - qcom,coresight-tnoc
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^tn(@[0-9a-f]+)$"
 
-Reorder this so the menuconfig menu items remain alphabetically
-sorted.
+blank line
 
-> +	depends on ARCH_SOPHGO || COMPILE_TEST
-> +	depends on PCI_MSI
-> +	depends on OF
-> +	select PCIE_DW_HOST
-> +	help
-> +	  Enables support for the DesignWare PCIe controller in the
-> +	  SOPHGO SoC.
+> +  compatible:
+> +    items:
+> +      - const: qcom,coresight-tnoc
+> +      - const: arm,primecell
 > +
->  config PCI_EXYNOS
->  	tristate "Samsung Exynos PCIe controller"
->  	depends on ARCH_EXYNOS || COMPILE_TEST
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 2
 
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * PCIe host controller driver for Sophgo SoCs.
+Need to describe what each entry is.
 
-Looks too generic, since Chen Wang's series says Sophgo SG2042 SoC is
-Cadence-based, so this driver apparently doesn't cover all Sophgo
-SoCs.
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: apb_pclk
+> +
+> +  in-ports:
+> +    description: |
 
-> + *
+Don't need '|'
 
-Spurious blank line.
+> +      Input connections from subsystem to TNoC
+> +    $ref: /schemas/graph.yaml#/properties/ports
 
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/irqchip/chained_irq.h>
-> +#include <linux/irqdomain.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/property.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset.h>
-> +
-> +#include "pcie-designware.h"
-> +
-> +#define to_sophgo_pcie(x)		dev_get_drvdata((x)->dev)
-> +
-> +#define PCIE_INT_SIGNAL			0xc48
-> +#define PCIE_INT_EN			0xca0
-> +
-> +#define PCIE_SIGNAL_INTX_SHIFT		5
-> +#define PCIE_INT_EN_INTX_SHIFT		1
+You have to define the 'port' nodes.
 
-Define masks with GENMASK() and get rid of the _SHIFT #defines.
+> +
+> +  out-ports:
+> +    description: |
+> +      Output connections from the TNoC to Aggreg TNoC or to legacy CoreSight trace bus.
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port:
+> +        description: |
+> +          Output connections from the TNoC to Aggreg TNoC or to legacy CoreSight trace bus.
 
-> +#define PCIE_INT_EN_INT_SII		BIT(0)
-> +#define PCIE_INT_EN_INT_INTA		BIT(1)
-> +#define PCIE_INT_EN_INT_INTB		BIT(2)
-> +#define PCIE_INT_EN_INT_INTC		BIT(3)
-> +#define PCIE_INT_EN_INT_INTD		BIT(4)
+'connections' sounds like more than 1, but you only have 1 port. 
 
-These are unused, drop them.
+Wrap at 80 char.
 
-> +#define PCIE_INT_EN_INT_MSI		BIT(5)
+> +        $ref: /schemas/graph.yaml#/properties/port
 > +
-> +struct sophgo_pcie {
-> +	struct dw_pcie pci;
-> +	void __iomem *app_base;
-> +	struct clk_bulk_data *clks;
-> +	unsigned int clk_cnt;
-> +	struct reset_control *rst;
-> +	struct irq_domain *irq_domain;
-
-Indent the member names to align vertically as most other drivers do.
-
-> +};
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - in-ports
+> +  - out-ports
 > +
-> +static int sophgo_pcie_readl_app(struct sophgo_pcie *sophgo, u32 reg)
-> +{
-> +	return readl_relaxed(sophgo->app_base + reg);
-> +}
+> +additionalProperties: false
 > +
-> +static void sophgo_pcie_writel_app(struct sophgo_pcie *sophgo, u32 val, u32 reg)
-> +{
-> +	writel_relaxed(val, sophgo->app_base + reg);
-> +}
+> +examples:
+> +  - |
+> +    tn@109ab000  {
+> +      compatible = "qcom,coresight-tnoc", "arm,primecell";
+> +      reg = <0x0 0x109ab000  0x0 0x4200>;
 > +
-> +static void sophgo_pcie_intx_handler(struct irq_desc *desc)
-> +{
-> +	struct dw_pcie_rp *pp = irq_desc_get_handler_data(desc);
-> +	struct irq_chip *chip = irq_desc_get_chip(desc);
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct sophgo_pcie *sophgo = to_sophgo_pcie(pci);
-> +	unsigned long hwirq = PCIE_SIGNAL_INTX_SHIFT;
-> +	unsigned long reg;
+> +      clocks = <&aoss_qmp>;
+> +      clock-names = "apb_pclk";
 > +
-> +	chained_irq_enter(chip, desc);
+> +      in-ports {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
 > +
-> +	reg = sophgo_pcie_readl_app(sophgo, PCIE_INT_SIGNAL);
+> +        port@0 {
+> +          reg = <0>;
 > +
-> +	for_each_set_bit_from(hwirq, &reg, PCI_NUM_INTX + PCIE_SIGNAL_INTX_SHIFT)
-
-Use FIELD_GET() here and iterate through PCI_NUM_INTX.  Then you don't
-need for_each_set_bit_from() and shouldn't need PCIE_SIGNAL_INTX_SHIFT
-here and below.
-
-> +		generic_handle_domain_irq(sophgo->irq_domain,
-> +					  hwirq - PCIE_SIGNAL_INTX_SHIFT);
+> +          tn_ag_in_tpdm_gcc: endpoint {
+> +            remote-endpoint = <&tpdm_gcc_out_tn_ag>;
+> +          };
+> +        };
+> +      };
 > +
-> +	chained_irq_exit(chip, desc);
-> +}
-> +
-> +static void sophgo_intx_mask(struct irq_data *d)
-> +{
-> +	struct dw_pcie_rp *pp = irq_data_get_irq_chip_data(d);
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct sophgo_pcie *sophgo = to_sophgo_pcie(pci);
-> +	unsigned long flags;
-> +	u32 val;
-> +
-> +	raw_spin_lock_irqsave(&pp->lock, flags);
-> +
-> +	val = sophgo_pcie_readl_app(sophgo, PCIE_INT_EN);
-> +	val &= ~BIT(d->hwirq + PCIE_INT_EN_INTX_SHIFT);
-
-FIELD_PREP().
-
-> +	sophgo_pcie_writel_app(sophgo, val, PCIE_INT_EN);
-> +
-> +	raw_spin_unlock_irqrestore(&pp->lock, flags);
-> +};
-> +
-> +static void sophgo_intx_unmask(struct irq_data *d)
-> +{
-> +	struct dw_pcie_rp *pp = irq_data_get_irq_chip_data(d);
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct sophgo_pcie *sophgo = to_sophgo_pcie(pci);
-> +	unsigned long flags;
-> +	u32 val;
-> +
-> +	raw_spin_lock_irqsave(&pp->lock, flags);
-> +
-> +	val = sophgo_pcie_readl_app(sophgo, PCIE_INT_EN);
-> +	val |= BIT(d->hwirq + PCIE_INT_EN_INTX_SHIFT);
-
-Ditto.
-
-> +	sophgo_pcie_writel_app(sophgo, val, PCIE_INT_EN);
-> +
-> +	raw_spin_unlock_irqrestore(&pp->lock, flags);
-> +};
-> +
-> +static void sophgo_intx_eoi(struct irq_data *d)
-> +{
-> +}
-> +
-> +static struct irq_chip sophgo_intx_irq_chip = {
-> +	.name			= "INTx",
-> +	.irq_mask		= sophgo_intx_mask,
-> +	.irq_unmask		= sophgo_intx_unmask,
-> +	.irq_eoi		= sophgo_intx_eoi,
-
-Name these ending with the irq_chip field names, e.g.,
-sophgo_intx_irq_mask(), to make them easier to find with grep.
-
-Bjorn
+> +      out-ports {
+> +        port {
+> +          tn_ag_out_funnel_in1: endpoint {
+> +            remote-endpoint = <&funnel_in1_in_tn_ag>;
+> +          };
+> +        };
+> +      };
+> +    };
+> +...
+> 
+> -- 
+> 2.34.1
+> 
 
