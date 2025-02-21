@@ -1,196 +1,133 @@
-Return-Path: <devicetree+bounces-149221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD3A2A3ECC4
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 07:19:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B868FA3ECDA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 07:35:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A83F7174E0B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 06:19:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 406943B94F6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 06:35:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ADF31FCCE9;
-	Fri, 21 Feb 2025 06:18:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 187101FBC99;
+	Fri, 21 Feb 2025 06:35:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VNtxgC0X"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FF/NZIsu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D22311E5B78;
-	Fri, 21 Feb 2025 06:18:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A361FC114;
+	Fri, 21 Feb 2025 06:35:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740118737; cv=none; b=uSkn+fUxtqTeDxb4+kTjBg3XiaRLbsaS7znPKTNNmpAG060Oz4VN59YSCqYTbZvL1J9dCvN3zPrl1iF1FCprNYz2/gED8YIZgQo1GbCliSVdUf1MAD6LpK5uPcOEBzT9LI1I/jWlmdcJ/HEaSWASqeFDh3okAuk0bAnBFh/hMyU=
+	t=1740119737; cv=none; b=aoySlFCpaJzRJVVFO0CifSW8/dXQd+agkC+69KQ8nzw39zerXEB4rrtJPEUFysOzcZa20F4EC0fJmYfJAR8ttfEaKdT/t95nWGvn4J1bIDzPOdU5ly7bvZTdaCeFxy5csI4rPyJCuV2mM1a/7bSgXpZwPAFHm05a+C+5sCgC/JM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740118737; c=relaxed/simple;
-	bh=8Tx8j0lvA4+fEQUw3oEHp9MRGre6e3kM75ckUoHtBvM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Mn5P8KODLvCsmyXUdcxqBqaO9WtgXHUy3iuQPVvTpsEDHqYLqnA+wcBFlM8zxSBS6TwSP8p0XuDfrTSEHJHUPYnYXKEmZT6GkdrMvO0izg2ffgDfuRHq2eqsAf0isZ8WdwicqexFzAVW/xhnO0dp0Ozsf3xJVazYng5VZoP7npg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VNtxgC0X; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51L5xxQM015703;
-	Fri, 21 Feb 2025 06:18:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8I4xAWQpxfpMRrlRqjIPNzPFALUHLmb31EkOijYpW6M=; b=VNtxgC0Xcwat/Hel
-	II6pZygsOYs+4dL+Gw5OUM+0wJMQF25vPL7o8cxYnJWke32T6oQUL/Nzvp2HlWFU
-	I0s3Pdhlb8UhvDM2YIlsQ7l+vEKC+AK4WghYBxKwtzsicPMCmOgVuGmXlmywhYz8
-	lPrwh1qi0USSZ2+ekpYsVdVvdFfP5geo3DNZTEjIDOJajbjWB500rgWJywoBTC80
-	jCIykSaJdI8Rq/ABSru4o56m1y7ew0t6p6AFl7Ab3mdUGaqxDNNf0MdAPPGmd6Ot
-	0hr8TByMMgvZ2nbSXdFkbeDz5H29Ut1qWFh9meCuJqMOBvWVexKlrisufhd4vg4e
-	ifntgA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44xku6r1pc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Feb 2025 06:18:50 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51L6InsI031251
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Feb 2025 06:18:49 GMT
-Received: from [10.216.53.96] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 20 Feb
- 2025 22:18:43 -0800
-Message-ID: <17561e13-822b-440a-b62d-3d0eac1861d9@quicinc.com>
-Date: Fri, 21 Feb 2025 11:48:40 +0530
+	s=arc-20240116; t=1740119737; c=relaxed/simple;
+	bh=Nf4fcOuWgRppA+LblaREvE6VQmo3gUUHrklfBY5bz90=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=skneyhoBbQ2G3ZPQZypf8m7YpJRe3XbV/rGSmlA3TisufEpyVJrv0GQ67L6OoF+Zn4+V0dbMgCUwFcqiGeh/xhLa3lxjWr+DdP9nZNjg3rnMgRJpIMC+AzWG0HEBsHk344YnbG2wLtoD/K1uPe8pQIGfCa1qr/zOelpEIVpfYIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FF/NZIsu; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-220bff984a0so33712405ad.3;
+        Thu, 20 Feb 2025 22:35:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740119735; x=1740724535; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gaAwgWYN6mC8bbarqgL9b/ntEOrc+hTOljfxQkKCFDg=;
+        b=FF/NZIsuQOL6aQur6rN/Hf6IfItdnTYYGIsMZ0g6E9tz8kt22ogPE988VyDGiG8IcI
+         QcNbKu0cJ4hvo+y4sqLIq/Uw6oY5gEtnBNIOy2bLRXBUvyh8QhgpHOyeBp73UcHXNfL+
+         tu6t4SR+zy7OgZhYiqBOsDQnepCEIt9RQvCd/Lp6uDX6nj1+fCgn4ui91wJ7u/sg9maQ
+         v+reEUXW6bxFL8+EuKHR15COBdB3HlYoOKpoUP52W3LrXcOw3bo587O5JbzeZ3lYevaZ
+         BYvRzbrVNcsPCFeBU4z2u9dvfQDxdCtEuHHg6uNczNLOC5WlyFMIjG1EBlgBL8wCg5N+
+         oyNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740119735; x=1740724535;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gaAwgWYN6mC8bbarqgL9b/ntEOrc+hTOljfxQkKCFDg=;
+        b=X+4MvuA1CsDnmS8A6i8AIUFzh7EaIWAfjWkmFiIcmCjvm/P536+WhQlsIkIu+K5Cr1
+         B6cuACr1JdmpoymEdryiT/Bh2vxFBsitU72+VADu4It7zwJb4v1PNSyVgQ72phtW6XO4
+         qIOKd6T2LLbZimKfPPJHicx6vdBuQNACN4TV4Cp4bq8CD/JV0GFhuBCw8aLj7FhYNMmn
+         giAOlZiqskD/X+Q7y25K/OVYXs4hvPRez1CG5Ke88WSu+lEgs+m61j5CJHNJN970UGhy
+         jvKnC/ryPkf5ZQlShSc1BhS6O8nwp4RQB+J+s8Us+cYzow+jFaYk4D78ues4GFwsdczi
+         9ELQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVlDZGqlS0KILoAXr+fDVvoYABWos8i8XEw2w1g7aLsgaNLnC4q/mKjz4YZeuUMIQOC6zzLpvuj6278@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYf+yh3iO8fck5UArdhgEfBhRK/a4rXbPY1CZvYgto7YjJ3xPd
+	aYqOqqKGvhBY67JYzVVAvYTt6AVPJmPgBmwthpOPg4IdzOacQURx2OPiiw==
+X-Gm-Gg: ASbGncsW5oTI+WEK0YCdxuUPJcLhR/Q1R7ADlHuThC431jHPuyjOUvqbNUXd/MKdmpu
+	YAQQjGq4M3kTJ4F8hyUOWinmAzlSlrpOs/oapYxvCEF1wHX39qSAuRqhj3xI82H7kOGW79A021E
+	Sdk4EccJoOqMzv+DKvNBxTmDDEKiWNXmX73k9iR6PGEpwe1lC43/z1LDNURhVuJwNmKB6/oLd5o
+	/PLXSUlsMxszuJ6AXsSkzs6vVdv01U1dp2ruGgYXbXp1avLoKSQRFJwDqNh4XZ+rSHSDB3PQEqD
+	pezEWJE0C/5d0gMeD3uY9kszUY2rR6ylLJKu
+X-Google-Smtp-Source: AGHT+IH9IEr9JoMJYSAg85kbfpXIEgYLzM3yHCu2Pv76Pa87pXjWae8C0Nh0Xn4+HTysrZd6HUuoIg==
+X-Received: by 2002:a05:6a21:9988:b0:1ee:bd99:9c71 with SMTP id adf61e73a8af0-1eef3cdcb2fmr4082990637.24.1740119734846;
+        Thu, 20 Feb 2025 22:35:34 -0800 (PST)
+Received: from cs20-buildserver.lan ([2403:c300:dc0a:4fe5:2e0:4cff:fe68:863])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-adb57c5dc68sm13777275a12.9.2025.02.20.22.35.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Feb 2025 22:35:34 -0800 (PST)
+From: Stanley Chu <stanley.chuys@gmail.com>
+X-Google-Original-From: Stanley Chu <yschu@nuvoton.com>
+To: frank.li@nxp.com,
+	miquel.raynal@bootlin.com,
+	alexandre.belloni@bootlin.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-i3c@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	tomer.maimon@nuvoton.com,
+	kwliu@nuvoton.com,
+	yschu@nuvoton.com
+Subject: [PATCH RESEND v2 0/4] Add support for Nuvoton npcm845 i3c controller
+Date: Fri, 21 Feb 2025 14:35:24 +0800
+Message-Id: <20250221063528.1810007-1-yschu@nuvoton.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V8 2/7] interconnect: core: Add dynamic id allocation
- support
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Odelu Kukatla <quic_okukatla@quicinc.com>,
-        "Mike
- Tipton" <quic_mdtipton@quicinc.com>,
-        Jeff Johnson
-	<quic_jjohnson@quicinc.com>,
-        Andrew Halaney <ahalaney@redhat.com>,
-        Sibi
- Sankar <quic_sibis@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250205182743.915-1-quic_rlaggysh@quicinc.com>
- <20250205182743.915-3-quic_rlaggysh@quicinc.com>
- <bwiuhfgv4jw7tlwjqffgrxvskxbpf4forz46nn5g3vihz3z5od@w25y7hdprykf>
- <f40f6b9d-8f31-4ce6-a912-1aa484863d5e@quicinc.com>
- <6j576swreyqcyu7ryxtyojjmo7clfwb7fibw2aeuvif5vzexpq@du2farsldpti>
-Content-Language: en-US
-From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-In-Reply-To: <6j576swreyqcyu7ryxtyojjmo7clfwb7fibw2aeuvif5vzexpq@du2farsldpti>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: pg88hATFIV5t7CKqbUc97r4tMNKK-jOM
-X-Proofpoint-GUID: pg88hATFIV5t7CKqbUc97r4tMNKK-jOM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-21_01,2025-02-20_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 spamscore=0 impostorscore=0 suspectscore=0 clxscore=1015
- mlxscore=0 bulkscore=0 phishscore=0 mlxlogscore=999 lowpriorityscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502210046
+Content-Transfer-Encoding: 8bit
 
+This patchset adds support for the Nuvoton npcm845
+Board Management controller (BMC) SoC family.
 
+The Nuvoton npcm845 uses the same Silvico IP but an older version.
+This patchset adds fixes for the npcm845 specific hardware issues.
 
-On 2/17/2025 6:32 AM, Dmitry Baryshkov wrote:
-> On Sun, Feb 16, 2025 at 10:08:51PM +0530, Raviteja Laggyshetty wrote:
->>
->>
->> On 2/10/2025 4:20 PM, Dmitry Baryshkov wrote:
->>> On Wed, Feb 05, 2025 at 06:27:38PM +0000, Raviteja Laggyshetty wrote:
->>>> The current interconnect framework relies on static IDs for node
->>>> creation and registration, which limits topologies with multiple
->>>> instances of the same interconnect provider. To address this, update
->>>> the interconnect framework APIs icc_node_create() and icc_link_create()
->>>> APIs to dynamically allocate IDs for interconnect nodes during creation.
->>>> This change removes the dependency on static IDs, allowing multiple
->>>> instances of the same hardware, such as EPSS L3.
->>>>
->>>> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
->>>> ---
->>>>  drivers/interconnect/core.c | 13 ++++++++++++-
->>>>  1 file changed, 12 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/interconnect/core.c b/drivers/interconnect/core.c
->>>> index 9d5404a07e8a..40700246f1b6 100644
->>>> --- a/drivers/interconnect/core.c
->>>> +++ b/drivers/interconnect/core.c
->>>> @@ -20,6 +20,8 @@
->>>>  
->>>>  #include "internal.h"
->>>>  
->>>> +#define ICC_DYN_ID_START 10000
->>>> +
->>>>  #define CREATE_TRACE_POINTS
->>>>  #include "trace.h"
->>>>  
->>>> @@ -826,7 +828,12 @@ static struct icc_node *icc_node_create_nolock(int id)
->>>>  	if (!node)
->>>>  		return ERR_PTR(-ENOMEM);
->>>>  
->>>> -	id = idr_alloc(&icc_idr, node, id, id + 1, GFP_KERNEL);
->>>> +	/* negative id indicates dynamic id allocation */
->>>> +	if (id < 0)
->>>
->>> Nit: I think it might be better to add an explicit define for that and
->>> to decline all other negatdive values. Please leave us some room for
->>> future expansion.
->>>
->> Do you mean to replace the value of ALLOC_DYN_ID from -1 to some
->> positive value like 100000 and to use it as initial ID for the nodes
->> requiring the dynamic allocation ? This explicit define can be used as
->> check for dynamic allocation and also as argument to idr_alloc min value
->> argument. Is my interpretation of the comment correct ?
-> 
-> No, it is not. I asked to add an explicit define for -1 in the ICC
-> framework and make icc_node_create_nolock() reject all other negative
-> values.
+--
+v3:
+ - Add more description in dt-binging commit message
+ - Add the svc_i3c_drvdata structure in struct svc_i3c_master
+ - Improve the do_daa
+---
+v2:
+ - Add a new compatible string in dt-binding doc.
+ - Add driver data for npcm845 to address the quirks.
+ - Modify svc_i3c_master_write to be reused by SVC_I3C_QUIRK_FIFO_EMPTY fix.
+ - Fix typo of SVC_I3C_QUIRK_FALSE_SLVSTART fix.
+ - Remove the code changes in svc_i3c_master_do_daa_locked, will add it in
+   another patch series for common improvement.
+---
 
-Understood, will make the change as suggested.
-> 
->>
->>>> +		id = idr_alloc(&icc_idr, node, ICC_DYN_ID_START, 0, GFP_KERNEL);
->>>> +	else
->>>> +		id = idr_alloc(&icc_idr, node, id, id + 1, GFP_KERNEL);
->>>> +
->>>>  	if (id < 0) {
->>>>  		WARN(1, "%s: couldn't get idr\n", __func__);
->>>>  		kfree(node);
->>>> @@ -962,6 +969,10 @@ void icc_node_add(struct icc_node *node, struct icc_provider *provider)
->>>>  	node->avg_bw = node->init_avg;
->>>>  	node->peak_bw = node->init_peak;
->>>>  
->>>> +	if (node->id >= ICC_DYN_ID_START)
->>>> +		node->name = devm_kasprintf(provider->dev, GFP_KERNEL, "%s@%s",
->>>> +					    node->name, dev_name(provider->dev));
->>>> +
->>>>  	if (node->avg_bw || node->peak_bw) {
->>>>  		if (provider->pre_aggregate)
->>>>  			provider->pre_aggregate(node);
->>>> -- 
->>>> 2.39.2
->>>>
->>>
->>
-> 
+Stanley Chu (4):
+  dt-bindings: i3c: silvaco: Add npcm845 compatible string
+  i3c: master: svc: Add support for Nuvoton npcm845 i3c
+  i3c: master: svc: Fix npcm845 FIFO empty issue
+  i3c: master: svc: Fix npcm845 invalid slvstart event
+
+ .../bindings/i3c/silvaco,i3c-master.yaml      |  4 +-
+ drivers/i3c/master/svc-i3c-master.c           | 57 +++++++++++++++++--
+ 2 files changed, 56 insertions(+), 5 deletions(-)
+
+-- 
+2.34.1
 
 
