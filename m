@@ -1,133 +1,92 @@
-Return-Path: <devicetree+bounces-149342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EC56A3F1DF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 11:23:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8F92A3F201
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 11:29:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C33613BA3AC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 10:21:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8365E3A9572
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 10:26:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDDE5202F7B;
-	Fri, 21 Feb 2025 10:21:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TvcUqRO/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FD63204F93;
+	Fri, 21 Feb 2025 10:26:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out28-194.mail.aliyun.com (out28-194.mail.aliyun.com [115.124.28.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68071C1F2F;
-	Fri, 21 Feb 2025 10:21:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C6E19CC20;
+	Fri, 21 Feb 2025 10:26:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740133309; cv=none; b=eSzmWC7X8UsFxUSVj1J4NaixKFmkEWs/NDx5WPfnJGT9LaFYSHxEk2smQmk7VHFLKqvORSeYEnpuZRGcuOyv80YDKve+9ou/dJLrHkzrrUeu2Nc0i28cYSqBl/YpfeA+k1A2wV2+ewKRr18Ja8AHdatix44tvlmlhy4cRuIRi4s=
+	t=1740133606; cv=none; b=UhJVocsgzNf3tpFYjYz70FaGgs8abnoQnMk2pYvrV4Xqg/zOy4jZGpGKAPHXwwn+vUM9VAJGV0Af53FRJUTztelYxvzX2J9hfdfse0FhekODrqkjXkoAVFj4Ttrlr7hLoMdNNN0sU4ahrjlE66sqK84lqc4BqP7QicMT96KOj08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740133309; c=relaxed/simple;
-	bh=XGK2u8TzDSVYk6sYqHcLEUtV1chH/9Nf1/m1rp6PLFk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LaGlTS/uDFrkw2P23Vaoh+vuZdHJTI1oXMxi+MsbbbqvmS7/j3x25giQKnZrb3pTGz0hIccpDqyK7v+JYhKTvspyII6dnoc+N236YMoDgaJOvPrs03C51NwGerx/zS7sfmVONmP1u+zrZTj/gQRB1t7iWOqBVrFYY0Kgq5vUMC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TvcUqRO/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8CB3C4CED6;
-	Fri, 21 Feb 2025 10:21:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740133309;
-	bh=XGK2u8TzDSVYk6sYqHcLEUtV1chH/9Nf1/m1rp6PLFk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TvcUqRO/wdyzQqZ5+SB544WaloOOKDZNuHTBCKvW+7CKs50oi/U8PLV45rCydbztx
-	 eI03a66HfPq+gU/kWT3snjZAMEzAdno1YL2FwkdFu79HZY60KB2YVpGSd7lH05mpfq
-	 NEOHRSOBFjmBUin5DC+CUoLSCFl1pNq+hwQGu4bJSC/TZnd1VJeFJ5+Nkq/anr72XT
-	 Srd42611UD0zqqp3wNGozkxmgbOhJEvmsPB6lJf0UDrGa6yfMdgLE4xos9FNIm0eyj
-	 739Y04BzEU5Zc5miWg53unjJMXGzla/6gHq6nZvheOQXrmMBKyUwu56ZJ9n9q7Efib
-	 4TjYeFeJhLMuw==
-Date: Fri, 21 Feb 2025 11:21:46 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Chester A. Unal" <chester.a.unal@arinc9.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [PATCH net-next v5 12/15] net: airoha: Introduce Airoha NPU
- support
-Message-ID: <Z7hTujrG-zOiBcZe@lore-desk>
-References: <20250217-airoha-en7581-flowtable-offload-v5-0-28be901cb735@kernel.org>
- <20250217-airoha-en7581-flowtable-offload-v5-12-28be901cb735@kernel.org>
- <20250220143839.5ea18735@kernel.org>
+	s=arc-20240116; t=1740133606; c=relaxed/simple;
+	bh=hcojOVOlZteYvTqZoEhKcz1p/KBnRLCEoAM+7JodPXM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZfMc7+9rDZF1BT8MWheInR8kegH8GYa6S2WjtPEw/n+FILNUbRWi4c8gYUkW3Go9A2pWPb2p8+D0DLsMa16Iqqq1YEi1kFYXTZW371PD20vrvCsPwSe8weGl+f2T6JZOMBIoLhr896S/JvPhRcEa4g2j5/BQojtRV6WaltGDMNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=115.124.28.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.bYUQxFL_1740133585 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Fri, 21 Feb 2025 18:26:30 +0800
+From: wangweidong.a@awinic.com
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	perex@perex.cz,
+	tiwai@suse.com,
+	wangweidong.a@awinic.com,
+	rf@opensource.cirrus.com,
+	jack.yu@realtek.com,
+	ivprusov@salutedevices.com,
+	zhoubinbin@loongson.cn,
+	quic_pkumpatl@quicinc.com,
+	paulha@opensource.cirrus.com,
+	nuno.sa@analog.com,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: yijiangtao@awinic.com
+Subject: [PATCH V1 0/2] ASoC: codecs: Add aw88166 amplifier driver
+Date: Fri, 21 Feb 2025 18:26:21 +0800
+Message-ID: <20250221102623.369435-1-wangweidong.a@awinic.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="RxJWLYxefS/CP3b0"
-Content-Disposition: inline
-In-Reply-To: <20250220143839.5ea18735@kernel.org>
+Content-Transfer-Encoding: 8bit
+
+From: Weidong Wang <wangweidong.a@awinic.com>
+
+Add the awinic,aw88166 property to support the aw88166 chip.
+
+The driver is for amplifiers aw88166 of Awinic Technology
+Corporation. The AW88166 is a high efficiency digital
+Smart K audio amplifier
+
+Weidong Wang (2):
+  ASoC: dt-bindings: Add schema for "awinic,aw88166"
+  ASoC: codecs: Add aw88166 amplifier driver
+
+ .../bindings/sound/awinic,aw88395.yaml        |    1 +
+ sound/soc/codecs/Kconfig                      |   13 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/aw88166.c                    | 1937 +++++++++++++++++
+ sound/soc/codecs/aw88166.h                    |  534 +++++
+ 5 files changed, 2487 insertions(+)
+ create mode 100644 sound/soc/codecs/aw88166.c
+ create mode 100644 sound/soc/codecs/aw88166.h
 
 
---RxJWLYxefS/CP3b0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+base-commit: 334426094588f8179fe175a09ecc887ff0c75758
+-- 
+2.47.0
 
-On Feb 20, Jakub Kicinski wrote:
-> On Mon, 17 Feb 2025 14:01:16 +0100 Lorenzo Bianconi wrote:
-> > +static int airoha_npu_send_msg(struct airoha_npu *npu, int func_id,
-> > +			       void *p, int size)
-> > +{
-> > +	u16 core =3D 0; /* FIXME */
-> > +	u32 val, offset =3D core << 4;
-> > +	dma_addr_t dma_addr;
-> > +	void *addr;
-> > +	int ret;
-> > +
-> > +	addr =3D kzalloc(size, GFP_ATOMIC | GFP_DMA);
->=20
-> You need the actual "zone DMA" memory from ISA times?
-> I think that's what GFP_DMA is for. Any kmalloc'd memory
-> can be DMA'ed to/from.
-
-ack, I agree. We can drop it. I will fix it in v6.
-
->=20
-> > +	if (dma_set_coherent_mask(dev, 0xbfffffff))
->=20
-> Coherent mask is not contiguous on purpose?
-> Quick grep reveals no such cases at present, not sure if it works.
-> Maybe add a comment, at least ?
-
-Ack, right. I think it is wrong. I will fix it in v6.
-
-Regards,
-Lorenzo
-
-> --=20
-> pw-bot: cr
-
---RxJWLYxefS/CP3b0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ7hTugAKCRA6cBh0uS2t
-rANTAQDEQ8k7BX7x63iA2wmUooQvqpv1wCUZnNUKVcwf10KapgEAwCZGXymtR/Vg
-ssK3jSJEkoXsWRojYyqODeH7VvJcfgA=
-=KhfQ
------END PGP SIGNATURE-----
-
---RxJWLYxefS/CP3b0--
 
