@@ -1,65 +1,67 @@
-Return-Path: <devicetree+bounces-149711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BAD7A4031E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 23:58:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 619D2A40347
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:04:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D46213BDC60
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 22:58:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1353C17B88D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 23:04:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314E3250BF3;
-	Fri, 21 Feb 2025 22:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF39E1FBC99;
+	Fri, 21 Feb 2025 23:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nRmW6HFe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tgvJqDQd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03E6A1EE028;
-	Fri, 21 Feb 2025 22:58:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A47B61E282D;
+	Fri, 21 Feb 2025 23:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740178687; cv=none; b=PT/Bpx2lCmnlX80D96smwAR9Bj2f2tAauI8IsIQCtT2w7gP/1g1k6x4NQ4i8+XjCDZ1rZybPBIKDtca9xUFbZnZzXW216w65Lau9yPQpUUa0eBdAZJBjFAcFsGum1y/NMzxfOek7ePPatFUUtnVCi116t7oyFXS/8ks02PJ3eI0=
+	t=1740179079; cv=none; b=KcbvgwPBVwpBbPZt2/wzNOADQ8JIqcPT1g4NYRzZpBMgV7KMCzgCbK5NzplDC1+9nre1GFOr3ZY87GFSfgMBE33k2BdqDv1wU9CxgfzUydDaGd1a6VkQCjcFPJ/2/+rWOOzfQ4KLlCV3+z9TvoAFX8zUujW/5iwX7f94OhMo+68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740178687; c=relaxed/simple;
-	bh=UD1mJc3L2/1M1eMRVEKmlNYviOU+pPZbwPDjudm8YBg=;
+	s=arc-20240116; t=1740179079; c=relaxed/simple;
+	bh=TD01oMs/cT4X0Fy2SpIRvb3nsE0dn+rUszo1Uxi/EQU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U6PZWLzW+v9ILkCGQd5abSMDK5sBnWmMY5BXc7X7r1LJZelfUGZSXVzSjcZTstHmydBWAem6n1JX3oyv5YrlQbmZwNVCBZdaH96GVAKAzdqmXwtN3Q/tN+gG4RQuLKx8JtEHmm5mVXLwMESAodZYa/EwvhjJ/vMsveu9zAF+bpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nRmW6HFe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4604FC4CED6;
-	Fri, 21 Feb 2025 22:58:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NwQV/SFSOcbahcWIdW45pXgzakjjmHv1qP0s+3IhOUQLaS7iYW2AkqeS15lbtdeC1+JokwT3A76JG3HtbqF6yOKCR464yGpQQYuJ1n/JhfxkChZ3RxlHIerTcc1vYmOF+Klk4+Xt7rNGDf6EoBInpTGh3a8Dsc8guWDqB1xxojM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tgvJqDQd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30F20C4CED6;
+	Fri, 21 Feb 2025 23:04:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740178686;
-	bh=UD1mJc3L2/1M1eMRVEKmlNYviOU+pPZbwPDjudm8YBg=;
+	s=k20201202; t=1740179079;
+	bh=TD01oMs/cT4X0Fy2SpIRvb3nsE0dn+rUszo1Uxi/EQU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nRmW6HFetk9gBcJVjmGedrpzJc9A5xydWmGgUh72T7lAekfxLErtovTbwri7P6iWX
-	 9UpIEdRt4wWFLLz+i05k8TMksdeLUu/AnBTFceKjeUKU3HyDcQdVt42LBkR99aoTS9
-	 9w5KKoRClz6TH5MDMLblw7fg+1uscFK6m8bzj7SAHNHeQr01+JEIz6FVAjUq4TfjOx
-	 6yKWSE9D9fiWAV/qs+aFIiseALoM4d5P1SSRP0X2UWgORso08uI5MEeAo+eEHpKrGc
-	 dlf/bIAkk2+VV+9t1I/9fZH9n4YXh6OLkUWsS4c52sLAm992bUDUG4zyiAywOtxuj5
-	 ZfspYHi4bM9sw==
-Date: Fri, 21 Feb 2025 16:58:04 -0600
+	b=tgvJqDQdtUNY39WPOqVS0RcbLiV6KR6BcEFsD26sDIRauIw7lst3emjdm7zbEwCY6
+	 n4xAfwbp/icn7AafbN1reijfR+ChYIQh3r3QzKKEaDqlN2ypBeRkWq8guD8YVAN9ZN
+	 t1IoLIqNAjSv4PPZpO4dy11dFfjku+Bs76eBWlunAVpjZkBStElkKlu/oRc7qX+Mi2
+	 FrEbRtbn5f0kQzLVDFyExrinB1rKTbbr/Y3jwE9yU6AxX+63LGhBLy7psl/UP4PZyZ
+	 6ooYaar6fKyRn7oYwb5w7kqkpucekupVCgrqVG8IcQjYvW1pvousLuZoc5/fBtwwVc
+	 /M5VE/EtMmlaQ==
+Date: Fri, 21 Feb 2025 17:04:37 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
-	devicetree@vger.kernel.org,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Woojung Huh <woojung.huh@microchip.com>, kernel@pengutronix.de,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>, devicetree@vger.kernel.org,
+	Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Jakub Kicinski <kuba@kernel.org>
-Subject: Re: [PATCH v3 2/3] dt-bindings: arm: stm32: Add Plymovent AQM board
-Message-ID: <174017868413.223507.11279781037859848554.robh@kernel.org>
-References: <20250220090155.2937620-1-o.rempel@pengutronix.de>
- <20250220090155.2937620-3-o.rempel@pengutronix.de>
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Maxime Ripard <mripard@kernel.org>,
+	David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
+	Jonas Karlman <jonas@kwiboo.se>, Robert Foss <rfoss@kernel.org>,
+	Maxim Schwalm <maxim.schwalm@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>
+Subject: Re: [PATCH v1 1/3] dt-bindigs: display: extend the LVDS codec with
+ Triple 10-BIT LVDS Transmitter
+Message-ID: <174017907686.233693.6584851812411863603.robh@kernel.org>
+References: <20250220094456.32818-1-clamor95@gmail.com>
+ <20250220094456.32818-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,22 +70,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250220090155.2937620-3-o.rempel@pengutronix.de>
+In-Reply-To: <20250220094456.32818-2-clamor95@gmail.com>
 
 
-On Thu, 20 Feb 2025 10:01:54 +0100, Oleksij Rempel wrote:
-> Add support for the Plymovent AQM board based on the ST STM32MP151 SoC
-> to the STM32 devicetree bindings.
+On Thu, 20 Feb 2025 11:44:54 +0200, Svyatoslav Ryhel wrote:
+> From: David Heidelberg <david@ixit.cz>
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> LVDS transmitter used in the Microsoft Surface RT.
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
-> changes v3:
-> - fix alphabetical order
-> ---
->  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 1 +
+>  Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
