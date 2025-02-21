@@ -1,133 +1,114 @@
-Return-Path: <devicetree+bounces-149518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BD03A3FB77
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:36:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BB0EA3FB36
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:28:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65C128611B2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:22:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FCAD18848FF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:23:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4456A1FF7BE;
-	Fri, 21 Feb 2025 16:20:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sxS+lqTX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D12361D5166;
+	Fri, 21 Feb 2025 16:23:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E601F12EC;
-	Fri, 21 Feb 2025 16:20:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57EAE1AF0B8;
+	Fri, 21 Feb 2025 16:23:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740154851; cv=none; b=C/hoCi+ie9u8MMogs96OqFnT4zta3Z/kFCkaqYuzx9hQCgbCbxY6zyOQy0FX+YPuAvfOZapK4JJYky2hDn/Z1GA9XQnXsKWLDQ2nF6M+Z+wP5Q1Q6v17KYhwlJdr86Re/XLjeJupZRWSntl56An53elTixpXGOWxUojk70Qb5Hk=
+	t=1740155005; cv=none; b=pR51n3KQr/3t+eYDPk3J4WiRznPlA1aQ6/HkOIrWuMLdYcwVg5F4HZnfD4IIByB+9khu5kEgo+RRDtR/7+gDfQVuelFDAP9ARdgurvnNnt17egOySZitNtHFDkf2LQQoAQQGg0xSPyKvxLDOLqey1vWBJpmqTSTfbEP7S15hr7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740154851; c=relaxed/simple;
-	bh=CzSlUJkJavr6tg9qXqPdOFxv0E7DQx3gmqGsWPi2+4A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J+nXv2ZZfjc6AXQZNKlbgU+FMSFp5f0ghO6vp78rBt0QwVissexHHiA0YudaCTc/zigSGKKsFp8hccN/wIQWfDLU+umx/r2Z3Di3fqcTKK9KEb/SVw7xgnLEpxRdbKGngw7kTN9aHQQS//e97eoZLNnmqyyrUrn7jSyVesKC9x0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sxS+lqTX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C813C4CED6;
-	Fri, 21 Feb 2025 16:20:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740154850;
-	bh=CzSlUJkJavr6tg9qXqPdOFxv0E7DQx3gmqGsWPi2+4A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sxS+lqTX3YKLwwOghYwmgy+SYrfEqibdh4ochFG4t+ukjtGxKhwAsLxLILv3L5HQ2
-	 +ancH9z5ZBNThHlwysITvca+fkvw9i2YZIavzQtLKJ6yfGELCLGWovcJJgGbe9ztxd
-	 q6MGjdPPc9W2664tFv5ei9Pi3hHB7iX0DbGzAtqagaYOpm5uhvz8i6qDj0xPFbIb0z
-	 RoHv78K3nOukLlXaHSDsDCA7wW8qxKelEqIzRHQhEBsyHkRjnxETXvtgqgqmsIbFrn
-	 lNNS13RAuOwBLHzzvrim7H5XtXvCdlWipq6HAaUm8EwkN6WhaPOSOAcJgscM3mweUx
-	 6OOADCaWOD3pQ==
-Message-ID: <c70234c6-ec40-49ec-8a0d-3a99bb769bb0@kernel.org>
-Date: Fri, 21 Feb 2025 17:20:45 +0100
+	s=arc-20240116; t=1740155005; c=relaxed/simple;
+	bh=h/T2p8PhwABwt31/Iqz8HRPa+7IdK39YSrNwY6k1pe8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hd4gC7wSXcHfLMjPjIDuidSVaAfQCvqg+RJ0pceT27Zgs83Q5hZfs1fK/5Qkx/Amzi72M76g+/vSYh2/s/y5EmANZqwRHyB6ybEkpus5W9zHO1Hqi4Tl8n3reRedyXRWPMc25cj8GpKquttMidZ4W1KB32OiSiF5fAkM53PkSms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-220e83d65e5so45523135ad.1;
+        Fri, 21 Feb 2025 08:23:24 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740155003; x=1740759803;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ITi5eWVIokI8NX7Dfs1unagdyttshAyr98E6hiT7dVo=;
+        b=Q+vJJ4/QaGzDcn48c1gv6VjuYSauT68Oz3s7oTiivJr4/7ZZ/K8Y/9//+Dv8ZocKu0
+         Cgp1gfLnEyAwr0UZX8NJpu5m+N6+f/MlWLo8BeciaCKSuAZffuJDfzhAQ0g7OGJNv+9U
+         Xak60klM+s1uVJlesX55wXxWlcl7qKT6B0x/s+ynNJay+KQWb3HI89k+jdc5Gi0NmxIz
+         xmcbZwjTlcPBYmfVXRgKDoYOtf/mQMaA+b/Lxu2dK47HwkRixwjFqITJdeIUP5AWl6Io
+         ujIBM/JlHKd5PrBkC0HJ0mk1YKWj17ehM+A6o0VlbSAbr7+yyGgysdVYI92Wp99D3cPS
+         AwNg==
+X-Forwarded-Encrypted: i=1; AJvYcCVHwQN+25RiuU/m9AWtYY7/aHh97lHp5hEgDC9NGf/mzSx7pIj3VyeGz+M+FdKR15w2+S0N3DM/oWO302Dz@vger.kernel.org, AJvYcCWAkKl80FUybPJvMbb2buI4m+7JrZ8L0LaMvPi0D4KV6XKPiqDcEwc+EwL4Zhs9qHI6/yqdsphnn8FJ@vger.kernel.org, AJvYcCXLpVHOlSjBVp6UZtXT58+IposncQ5IlP6AGvhs9NukkuqJmf8Gg8JCffrgH64JRkpaG24QrdwDLJhZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9O96DSu9pI1smYMP2Xey2VaZEFbP+AjI6V/e+1wcUXqq58Oqx
+	a+YpZcmpY57O3JS4ope8UWTqiBETW6OnFJhI7HXlLdXL11UsAPPu
+X-Gm-Gg: ASbGncv5JzJNxftHtUl/r4U+KU4z5KPM8JOcCh0L84YsRiqAvkgj8OH/ko3VZX0IM4y
+	8Q3aL2Vcrm0geCAw1/9z1taeuuxh0NSVnWtKQ/Kf+sdq5BqSc59B5cxBgAYxrLleGS6qN7uJHeS
+	4aXZB8l9mYEj/B1opJv+s3pfRO2TfuA7JTdzTMVTlXO0Kgu97gSeY217z/yXuCgtgIv+at8hTEV
+	C5SC+jVT8QY9BbU9lX8GWDUERPtG7iDCLfh4Kg/HaZASE2hpjn190IiVbInzhkg4AxCl+RWD6CI
+	d4GIUDO0V88nXazxCNm3aiqRQMBKMdC961l3qS5imJ22jnVynJrI2nV2zNGN
+X-Google-Smtp-Source: AGHT+IH6382mgQ/qs604OZFx5389HScCACYI476oB/HnFj1e8TkJWM8SG7lXAnABvg5u4OW6bEYXTA==
+X-Received: by 2002:a17:903:32c2:b0:220:d078:eb28 with SMTP id d9443c01a7336-2219fff356dmr48806535ad.48.1740155003489;
+        Fri, 21 Feb 2025 08:23:23 -0800 (PST)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-220d556e169sm139087635ad.192.2025.02.21.08.23.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Feb 2025 08:23:22 -0800 (PST)
+Date: Sat, 22 Feb 2025 01:23:21 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jim Quinlan <jim2101024@gmail.com>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH v5 -next 03/11] irqchip: Add Broadcom bcm2712 MSI-X
+ interrupt controller
+Message-ID: <20250221162321.GC3753638@rocinante>
+References: <20250120130119.671119-1-svarbanov@suse.de>
+ <20250120130119.671119-4-svarbanov@suse.de>
+ <87bjvs86w8.ffs@tglx>
+ <b1009877-6749-4bb1-95b9-ae976bef591c@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] dt-bindings: nvmem: Add compatible for IPQ5018
-To: George Moussalem <george.moussalem@outlook.com>,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, amitk@kernel.org, thara.gopinath@gmail.com,
- dmitry.baryshkov@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- quic_srichara@quicinc.com
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250221161101.17204-1-george.moussalem@outlook.com>
- <DS7PR19MB8883D5A1DCD11909775DFE2D9DC72@DS7PR19MB8883.namprd19.prod.outlook.com>
- <c16ec4c3-3475-4b55-83c6-cc651c015356@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <c16ec4c3-3475-4b55-83c6-cc651c015356@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b1009877-6749-4bb1-95b9-ae976bef591c@broadcom.com>
 
-On 21/02/2025 17:19, Krzysztof Kozlowski wrote:
-> On 21/02/2025 17:10, George Moussalem wrote:
->> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>
->> Document the QFPROM block found on IPQ5018
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+Hello,
+
+[...]
+> > As this is a new controller and required for the actual PCI muck, I
+> > think the best way is to take it through the PCI tree, unless someone
+> > wants me to pick the whole lot up.
 > 
-> 
-> Not much improved - still no cover letter. Read carefully previous feedback.
+> Agreed, the PCI maintainers should take patches 1 through 9 inclusive, and I
+> will take patches 10-11 through the Broadcom ARM SoC tree, Bjorn, KW, does
+> that work?
 
-And to prove it is not only my email client:
-https://lore.kernel.org/all/DS7PR19MB8883D5A1DCD11909775DFE2D9DC72@DS7PR19MB8883.namprd19.prod.outlook.com/
+No problem.
 
-so whatever you are doing - sending via some weird Outlook - needs to be
-fixed *before* you post next version.
+As such, when applying, I took all the patches from #1 through #8 and
+dropped #9 as it has been superseded.
 
-Best regards,
-Krzysztof
+	Krzysztof
 
