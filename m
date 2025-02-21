@@ -1,327 +1,367 @@
-Return-Path: <devicetree+bounces-149181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60E3DA3E9DC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 02:23:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EF85A3E9E2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 02:24:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE5E218996ED
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 01:23:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8DFA17DA97
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 01:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C132E4207F;
-	Fri, 21 Feb 2025 01:22:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E3E64A8F;
+	Fri, 21 Feb 2025 01:24:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VwxPFtEx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B132864A8F
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 01:22:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE3E38F9C;
+	Fri, 21 Feb 2025 01:24:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740100976; cv=none; b=Ib4FCTtlZp2nbMKt8bXHqSwTEr7L5mPWmuYcTqVD3Lqe0qJ4A4QkhLJE4rTCifOV5hSq82+c9GFam3NZNsg+Yo2W4iFJnZi9oOE7bA3uIV8FtnjxyOUdD329zlPWEHZoeRNH8Bf353JKk3aA+mspXzNiOMy9ZzdhKLV6oe6rIHk=
+	t=1740101059; cv=none; b=ddB5HPvJ48yFzFJbbT8zkcxf/8N0Jw/qYXzAn4s88F+kjwTMZpWwGpsjzMndH28MpJjL1S6yI1jrQPhHK82PL9pezUIz9CfmB7WtyAPLJQmS2MjZkI2/1rAvzp4fHTQh7RtGbqvHmqfsma7Wk6tKnRjHH+QHuehoq3m6ihJrt/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740100976; c=relaxed/simple;
-	bh=wxntAHk21KiBJP0ukIKmCC3zcN9QcoR8KT16lZo6UXk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YfKMsyKPaXMs5iZMWont7vpO1kJ5RU47A7HAb5h4WaEpL8/6jk4gZLQpyrvOYBhH2poUq3t3h5Z351yYnEhWt3jkq9WIvw+oe60lTQcOR8XPfilwzgAn2o1PUVJRjVKICMl+iilhTxKgaRA7MB5JwpIucLmlY9l5o0ZC9TuW2Z0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1BFD41C01;
-	Thu, 20 Feb 2025 17:23:11 -0800 (PST)
-Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C926A3F59E;
-	Thu, 20 Feb 2025 17:22:51 -0800 (PST)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev
-Subject: [PATCH 3/3] arm64: dts: allwinner: h616: add YuzukiHD Chameleon support
-Date: Fri, 21 Feb 2025 01:20:38 +0000
-Message-ID: <20250221012038.13706-4-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.46.3
-In-Reply-To: <20250221012038.13706-1-andre.przywara@arm.com>
-References: <20250221012038.13706-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1740101059; c=relaxed/simple;
+	bh=TEfAd7HsAZOFHcIsdN/PiGBEMnhR/7RCqIf9fF5nf6s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=luD+dUMBhdoECVUyhwY2qTjJssWpMTRLLfcfwIgYDqd5oT4hUfXkB0QvCvTEPoVxaajuG6KedjzAUmsg7RgGtzNbGzGCCEoK3ZEWlm5fPxNTjpoJp5bpr5GOYY2NpskVq3C08JHJz1u7kfLcwKWmiUx6Hfy5nWratV0EU03czyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VwxPFtEx; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51KFawHn016354;
+	Fri, 21 Feb 2025 01:23:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	AmhIMgW1+wbY5wABjJwWKdRq5lYl5yQJv/t2v68ssUs=; b=VwxPFtExn9neAZTm
+	Twa+THI9F1o8veLbZ70ceBQjfne0pHefvJpKmDLtrq51NBYHkoVKUz5/oHlbH4de
+	LICDbWLQ1OhT8sZemzWjZvVVPBcGh7RTsf6oOmYwXtZjnTpeAqX21RaCldt39/dh
+	amvJp5MALdyrblcibIDzEjVWsnHw69wB7qEe856T+3clf+uUMTS7qxWCdFsKA+7c
+	H8wjK8qaE3D4AIoICMOoAPEL6Em57cmwQL/VvRleStmcj/ezo5THUZwqvsSZv9Vq
+	Pm62H4BHzrAshEoIDbOkIFGnvPI2vUyyO0AgzekEP686mJ2tpg7qoRUBhR5NsyjP
+	gKlipw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44vyy17xq3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Feb 2025 01:23:55 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51L1NssZ016847
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Feb 2025 01:23:54 GMT
+Received: from [10.133.33.30] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 20 Feb
+ 2025 17:23:49 -0800
+Message-ID: <06bed294-0d48-412b-a844-42d7fea6e4b1@quicinc.com>
+Date: Fri, 21 Feb 2025 09:23:47 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 2/7] Coresight: Add trace_id function to retrieving
+ the trace ID
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>,
+        "Alexander
+ Shishkin" <alexander.shishkin@linux.intel.com>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao
+	<quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20250217093024.1133096-1-quic_jiegan@quicinc.com>
+ <20250217093024.1133096-3-quic_jiegan@quicinc.com>
+ <168c214a-38a5-45d4-a776-d7819cbab9f3@arm.com>
+Content-Language: en-US
+From: Jie Gan <quic_jiegan@quicinc.com>
+In-Reply-To: <168c214a-38a5-45d4-a776-d7819cbab9f3@arm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: qItzYiTwEx2WAB_2YfQxST5jayKuMeM7
+X-Proofpoint-ORIG-GUID: qItzYiTwEx2WAB_2YfQxST5jayKuMeM7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-20_09,2025-02-20_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 lowpriorityscore=0 phishscore=0 clxscore=1015
+ suspectscore=0 spamscore=0 mlxlogscore=999 mlxscore=0 bulkscore=0
+ malwarescore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2502100000 definitions=main-2502210008
 
-The Chameleon board is an OpenHardware devboard made by YuzukiTsuru.
-The form factor resembles the Raspberry Pi Model A boards, though it
-differs significantly in its features:
 
-  - Allwinner H618 SoC (4 * Arm Cortex-A53 cores, 1MB L2 cache, 1.4 GHz)
-  - between 512MiB and 2GiB DDR3 DRAM
-  - up to 128 GiB eMMC flash
-  - AXP313a PMIC
-  - 100 Mbit/s Ethernet pins on a header
-  - XR829 WIFI+Bluetooth chip
-  - 4 * USB 2.0 USB-C ports
-  - microSD card slot
-  - 3.5mm A/V port
 
-Add the devicetree describing the board's peripherals and their
-connections.
+On 2/21/2025 1:34 AM, Suzuki K Poulose wrote:
+> On 17/02/2025 09:30, Jie Gan wrote:
+>> Add 'trace_id' function pointer in ops. It's responsible for
+>> retrieving the device's trace ID.
+>>
+>> Co-developed-by: James Clark <james.clark@linaro.org>
+>> Signed-off-by: James Clark <james.clark@linaro.org>
+>> Reviewed-by: James Clark <james.clark@linaro.org>
+>> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+> 
+> 
+> minor nit: Given this is an optional callback, we could as well make
+> this a generic ops and avoid checking if it is a link/source etc. We
+> anyway check if the op is available before calling it.
+> 
+> i.e.:
+> 
+> struct coresight_ops {
+> +    int (*trace_id)(struct coresight *csdev,...);
+> 
+>      ...
+> };
+>
+Hi Suzuki,
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../sun50i-h618-yuzukihd-chameleon.dts        | 222 ++++++++++++++++++
- 2 files changed, 223 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-yuzukihd-chameleon.dts
+Thanks for comment. Looks a good idea because the trace_id is a generic
+function for the coresight_deivce, which can simplify our codes.
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 00bed412ee31c..448698fed5f79 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -48,6 +48,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-longanpi-3h.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-yuzukihd-chameleon.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-2024.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-h.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-plus.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-yuzukihd-chameleon.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-yuzukihd-chameleon.dts
-new file mode 100644
-index 0000000000000..c60d42130cf79
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-yuzukihd-chameleon.dts
-@@ -0,0 +1,222 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2024 Arm Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-h616.dtsi"
-+#include "sun50i-h616-cpu-opp.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	model = "Yuzuki Chameleon";
-+	compatible = "yuzukihd,chameleon", "allwinner,sun50i-h618";
-+
-+	aliases {
-+		ethernet1 = &sdio_wifi;
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	reg_vcc5v: vcc5v {
-+		/* board wide 5V supply directly from the USB-C socket */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	wifi_pwrseq: pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&rtc CLK_OSC32K_FANOUT>;
-+		clock-names = "ext_clock";
-+		pinctrl-0 = <&x32clk_fanout_pin>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&pio 6 11 GPIO_ACTIVE_LOW>; /* PG11 */
-+	};
-+};
-+
-+&codec {
-+	allwinner,audio-routing = "Line Out", "LINEOUT";
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&ehci2 {
-+	status = "okay";
-+};
-+
-+&ehci3 {
-+	status = "okay";
-+};
-+
-+&mmc0 {
-+	bus-width = <4>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-+	disable-wp;
-+	vmmc-supply = <&reg_dldo1>;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	bus-width = <4>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	non-removable;
-+	vmmc-supply = <&reg_dldo1>;
-+	vqmmc-supply = <&reg_dldo1>;
-+	status = "okay";
-+
-+	sdio_wifi: wifi@1 {
-+		reg = <1>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <6 12 IRQ_TYPE_LEVEL_LOW>;  /* PG12 */
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
-+&mmc2 {
-+	bus-width = <8>;
-+	cap-mmc-hw-reset;
-+	mmc-ddr-3_3v;
-+	non-removable;
-+	vmmc-supply = <&reg_dldo1>;
-+	vqmmc-supply = <&reg_dldo1>;
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&ohci2 {
-+	status = "okay";
-+};
-+
-+&ohci3 {
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pc-supply = <&reg_dldo1>;
-+	vcc-pf-supply = <&reg_dldo1>;	/* via VCC_IO */
-+	vcc-pg-supply = <&reg_dldo1>;
-+	vcc-ph-supply = <&reg_dldo1>;	/* via VCC_IO */
-+	vcc-pi-supply = <&reg_dldo1>;
-+};
-+
-+&r_i2c {
-+	status = "okay";
-+
-+	axp313: pmic@36 {
-+		compatible = "x-powers,axp313a";
-+		reg = <0x36>;
-+		#interrupt-cells = <1>;
-+		interrupt-controller;
-+		interrupt-parent = <&pio>;
-+		interrupts = <2 2 IRQ_TYPE_LEVEL_LOW>;	/* PC2 */
-+
-+		vin1-supply = <&reg_vcc5v>;
-+		vin2-supply = <&reg_vcc5v>;
-+		vin3-supply = <&reg_vcc5v>;
-+
-+		regulators {
-+			/* Supplies VCC-PLL, so needs to be always on. */
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc1v8";
-+			};
-+
-+			/* Supplies VCC-IO, so needs to be always on. */
-+			reg_dldo1: dldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc3v3";
-+			};
-+
-+			reg_dcdc1: dcdc1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <990000>;
-+				regulator-name = "vdd-gpu-sys";
-+			};
-+
-+			reg_dcdc2: dcdc2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdc3: dcdc3 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1500000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-name = "vdd-dram";
-+			};
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
-+
-+/* Connected to the Bluetooth UART pins of the XR829 Wifi/BT chip. */
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	/*
-+	 * PHY0 pins are connected to a USB-C socket, but a role switch
-+	 * is not implemented: both CC pins are pulled to GND.
-+	 * The VBUS pins power the device, so a fixed peripheral mode
-+	 * is the best choice.
-+	 * The board can be powered via GPIOs, in this case port0 *can*
-+	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
-+	 * then provided by the GPIOs. Any user of this setup would
-+	 * need to adjust the DT accordingly: dr_mode set to "host",
-+	 * enabling OHCI0 and EHCI0.
-+	 */
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb0_id_det-gpios = <&pio 6 18 GPIO_ACTIVE_HIGH>; /* PG18 */
-+	usb0_vbus-supply = <&reg_vcc5v>;
-+	usb1_vbus-supply = <&reg_vcc5v>;
-+	usb2_vbus-supply = <&reg_vcc5v>;
-+	usb3_vbus-supply = <&reg_vcc5v>;
-+	status = "okay";
-+};
--- 
-2.46.3
+Will update a new version to acheive the idea.
+
+Thanks,
+Jie
+
+
+> 
+> 
+> 
+>> ---
+>>   drivers/hwtracing/coresight/coresight-core.c  | 27 +++++++++++++++++++
+>>   drivers/hwtracing/coresight/coresight-dummy.c | 11 ++++++++
+>>   .../coresight/coresight-etm3x-core.c          |  1 +
+>>   .../coresight/coresight-etm4x-core.c          |  1 +
+>>   drivers/hwtracing/coresight/coresight-stm.c   | 11 ++++++++
+>>   drivers/hwtracing/coresight/coresight-tpda.c  | 11 ++++++++
+>>   include/linux/coresight.h                     |  8 ++++++
+>>   7 files changed, 70 insertions(+)
+>>
+>> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/ 
+>> hwtracing/coresight/coresight-core.c
+>> index 0a9380350fb5..6cad777757f3 100644
+>> --- a/drivers/hwtracing/coresight/coresight-core.c
+>> +++ b/drivers/hwtracing/coresight/coresight-core.c
+>> @@ -23,6 +23,7 @@
+>>   #include "coresight-etm-perf.h"
+>>   #include "coresight-priv.h"
+>>   #include "coresight-syscfg.h"
+>> +#include "coresight-trace-id.h"
+>>   /*
+>>    * Mutex used to lock all sysfs enable and disable actions and 
+>> loading and
+>> @@ -1515,6 +1516,32 @@ void coresight_remove_driver(struct amba_driver 
+>> *amba_drv,
+>>   }
+>>   EXPORT_SYMBOL_GPL(coresight_remove_driver);
+>> +int coresight_etm_get_trace_id(struct coresight_device *csdev, enum 
+>> cs_mode mode,
+>> +                   struct coresight_device *sink)
+>> +{
+>> +    int trace_id;
+>> +    int cpu = source_ops(csdev)->cpu_id(csdev);
+>> +
+>> +    switch (mode) {
+>> +    case CS_MODE_SYSFS:
+>> +        trace_id = coresight_trace_id_get_cpu_id(cpu);
+>> +        break;
+>> +    case CS_MODE_PERF:
+>> +        trace_id = coresight_trace_id_get_cpu_id_map(cpu, &sink- 
+>> >perf_sink_id_map);
+>> +        break;
+>> +    default:
+>> +        trace_id = -EINVAL;
+>> +        break;
+>> +    }
+>> +
+>> +    if (!IS_VALID_CS_TRACE_ID(trace_id))
+>> +        dev_err(&csdev->dev,
+>> +            "Failed to allocate trace ID on CPU%d\n", cpu);
+>> +
+>> +    return trace_id;
+>> +}
+>> +EXPORT_SYMBOL_GPL(coresight_etm_get_trace_id);
+>> +
+>>   MODULE_LICENSE("GPL v2");
+>>   MODULE_AUTHOR("Pratik Patel <pratikp@codeaurora.org>");
+>>   MODULE_AUTHOR("Mathieu Poirier <mathieu.poirier@linaro.org>");
+>> diff --git a/drivers/hwtracing/coresight/coresight-dummy.c b/drivers/ 
+>> hwtracing/coresight/coresight-dummy.c
+>> index 9be53be8964b..c47f0382b943 100644
+>> --- a/drivers/hwtracing/coresight/coresight-dummy.c
+>> +++ b/drivers/hwtracing/coresight/coresight-dummy.c
+>> @@ -41,6 +41,16 @@ static void dummy_source_disable(struct 
+>> coresight_device *csdev,
+>>       dev_dbg(csdev->dev.parent, "Dummy source disabled\n");
+>>   }
+>> +static int dummy_source_trace_id(struct coresight_device *csdev, 
+>> __maybe_unused enum cs_mode mode,
+>> +                 __maybe_unused struct coresight_device *sink)
+>> +{
+>> +    struct dummy_drvdata *drvdata;
+>> +
+>> +    drvdata = dev_get_drvdata(csdev->dev.parent);
+>> +
+>> +    return drvdata->traceid;
+>> +}
+>> +
+>>   static int dummy_sink_enable(struct coresight_device *csdev, enum 
+>> cs_mode mode,
+>>                   void *data)
+>>   {
+>> @@ -59,6 +69,7 @@ static int dummy_sink_disable(struct 
+>> coresight_device *csdev)
+>>   static const struct coresight_ops_source dummy_source_ops = {
+>>       .enable    = dummy_source_enable,
+>>       .disable = dummy_source_disable,
+>> +    .trace_id = dummy_source_trace_id,
+>>   };
+>>   static const struct coresight_ops dummy_source_cs_ops = {
+>> diff --git a/drivers/hwtracing/coresight/coresight-etm3x-core.c b/ 
+>> drivers/hwtracing/coresight/coresight-etm3x-core.c
+>> index c103f4c70f5d..a38e72ef8e79 100644
+>> --- a/drivers/hwtracing/coresight/coresight-etm3x-core.c
+>> +++ b/drivers/hwtracing/coresight/coresight-etm3x-core.c
+>> @@ -701,6 +701,7 @@ static const struct coresight_ops_source 
+>> etm_source_ops = {
+>>       .cpu_id        = etm_cpu_id,
+>>       .enable        = etm_enable,
+>>       .disable    = etm_disable,
+>> +    .trace_id    = coresight_etm_get_trace_id,
+>>   };
+>>   static const struct coresight_ops etm_cs_ops = {
+>> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/ 
+>> drivers/hwtracing/coresight/coresight-etm4x-core.c
+>> index 2c1a60577728..1a993d5380e7 100644
+>> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>> @@ -1064,6 +1064,7 @@ static const struct coresight_ops_source 
+>> etm4_source_ops = {
+>>       .cpu_id        = etm4_cpu_id,
+>>       .enable        = etm4_enable,
+>>       .disable    = etm4_disable,
+>> +    .trace_id    = coresight_etm_get_trace_id,
+>>   };
+>>   static const struct coresight_ops etm4_cs_ops = {
+>> diff --git a/drivers/hwtracing/coresight/coresight-stm.c b/drivers/ 
+>> hwtracing/coresight/coresight-stm.c
+>> index b581a30a1cd9..64fcfa916562 100644
+>> --- a/drivers/hwtracing/coresight/coresight-stm.c
+>> +++ b/drivers/hwtracing/coresight/coresight-stm.c
+>> @@ -281,9 +281,20 @@ static void stm_disable(struct coresight_device 
+>> *csdev,
+>>       }
+>>   }
+>> +static int stm_trace_id(struct coresight_device *csdev, 
+>> __maybe_unused enum cs_mode mode,
+>> +            __maybe_unused struct coresight_device *sink)
+>> +{
+>> +    struct stm_drvdata *drvdata;
+>> +
+>> +    drvdata = dev_get_drvdata(csdev->dev.parent);
+>> +
+>> +    return drvdata->traceid;
+>> +}
+>> +
+>>   static const struct coresight_ops_source stm_source_ops = {
+>>       .enable        = stm_enable,
+>>       .disable    = stm_disable,
+>> +    .trace_id    = stm_trace_id,
+>>   };
+>>   static const struct coresight_ops stm_cs_ops = {
+>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/ 
+>> hwtracing/coresight/coresight-tpda.c
+>> index 189a4abc2561..d80b6427e5a6 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tpda.c
+>> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
+>> @@ -241,9 +241,20 @@ static void tpda_disable(struct coresight_device 
+>> *csdev,
+>>       dev_dbg(drvdata->dev, "TPDA inport %d disabled\n", in->dest_port);
+>>   }
+>> +static int tpda_trace_id(struct coresight_device *csdev, 
+>> __maybe_unused enum cs_mode mode,
+>> +             __maybe_unused struct coresight_device *sink)
+>> +{
+>> +    struct tpda_drvdata *drvdata;
+>> +
+>> +    drvdata = dev_get_drvdata(csdev->dev.parent);
+>> +
+>> +    return drvdata->atid;
+>> +}
+>> +
+>>   static const struct coresight_ops_link tpda_link_ops = {
+>>       .enable        = tpda_enable,
+>>       .disable    = tpda_disable,
+>> +    .trace_id    = tpda_trace_id,
+>>   };
+>>   static const struct coresight_ops tpda_cs_ops = {
+>> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
+>> index 157c4bd009a1..70407d61262e 100644
+>> --- a/include/linux/coresight.h
+>> +++ b/include/linux/coresight.h
+>> @@ -368,6 +368,7 @@ struct coresight_ops_sink {
+>>    * Operations available for links.
+>>    * @enable:    enables flow between iport and oport.
+>>    * @disable:    disables flow between iport and oport.
+>> + * @trace_id:    alloc or read the traceid.
+>>    */
+>>   struct coresight_ops_link {
+>>       int (*enable)(struct coresight_device *csdev,
+>> @@ -376,6 +377,8 @@ struct coresight_ops_link {
+>>       void (*disable)(struct coresight_device *csdev,
+>>               struct coresight_connection *in,
+>>               struct coresight_connection *out);
+>> +    int (*trace_id)(struct coresight_device *csdev, enum cs_mode mode,
+>> +            struct coresight_device *sink);
+>>   };
+>>   /**
+>> @@ -385,6 +388,7 @@ struct coresight_ops_link {
+>>    *        is associated to.
+>>    * @enable:    enables tracing for a source.
+>>    * @disable:    disables tracing for a source.
+>> + * @trace_id:    alloc or read the traceid.
+>>    */
+>>   struct coresight_ops_source {
+>>       int (*cpu_id)(struct coresight_device *csdev);
+>> @@ -392,6 +396,8 @@ struct coresight_ops_source {
+>>                 enum cs_mode mode, struct coresight_trace_id_map 
+>> *id_map);
+>>       void (*disable)(struct coresight_device *csdev,
+>>               struct perf_event *event);
+>> +    int (*trace_id)(struct coresight_device *csdev, enum cs_mode mode,
+>> +            struct coresight_device *sink);
+>>   };
+>>   /**
+>> @@ -697,4 +703,6 @@ int coresight_init_driver(const char *drv, struct 
+>> amba_driver *amba_drv,
+>>   void coresight_remove_driver(struct amba_driver *amba_drv,
+>>                    struct platform_driver *pdev_drv);
+>> +int coresight_etm_get_trace_id(struct coresight_device *csdev, enum 
+>> cs_mode mode,
+>> +                   struct coresight_device *sink);
+>>   #endif        /* _LINUX_COREISGHT_H */
+> 
 
 
