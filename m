@@ -1,172 +1,190 @@
-Return-Path: <devicetree+bounces-149263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D75A3EEDA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 09:38:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A700A3EEE6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 09:42:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16E0F1896AEA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 08:38:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 670FC19C415A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 08:42:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83A9520102A;
-	Fri, 21 Feb 2025 08:38:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0393A20102C;
+	Fri, 21 Feb 2025 08:42:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cRNDj7Dy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B08O8XZt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED5B01FE470;
-	Fri, 21 Feb 2025 08:38:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5B7C201004;
+	Fri, 21 Feb 2025 08:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740127121; cv=none; b=CBLY4qGr09r/+M0fM7O1zco071CM83GhedPDH9pqWl71F8ZgdIc3USLS1U0AAmUWNGBY0R8oY112e3ev9/uqh9lWECQCgGxbQK8tWr419dAJDreaJghmKkiHBD1TYYilsOHp16GEJbRmKzAFeF0rl9lcd+fJC+FNDkbKT38X6NQ=
+	t=1740127365; cv=none; b=cMfDAETc/8WgZDIBtqfTYK7VZTQbTKdN/1v3HXKc0HoZ6ofuNbJT0bYQ9zVXbpWpMKFKKC27qiRUaiO4xIW2E5ut6W1n7c/jZr7M3Ld6xF9Tnm40lfAzoiJKMRmeuFCPWv1bFPpjvQQ6UieNI0haNTu1Ra75eaf8HpZQKDecTqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740127121; c=relaxed/simple;
-	bh=nqodSYX9zfwa+wP+jRooDOmd19luEYIiS/x1QP3QuqQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dFwJl45jt6lv/TVcyOJVbp5OkdidR1TdUL7iWUd8Yj4aFD6v6lbe6RrvMHs/VQtfIXzEy8cu3OQJlgY6tYIj4LOx4ix+c4ee/jMwpKHmrlSdy7PMmIl818hixIjnNXpLpsb+gdZ2nHCPGob/dTZAGMmgzI21Vc7BIyhLbAVhUqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cRNDj7Dy; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740127120; x=1771663120;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nqodSYX9zfwa+wP+jRooDOmd19luEYIiS/x1QP3QuqQ=;
-  b=cRNDj7Dyy5ybFnbejEr3tuNkbavsqAPRmB92vlO9nit68D0zi74awByQ
-   GPJKTTsVYw/AtnWNOlWBhIRo/lN43rNTELpuUAZSU5TVZ945Wjuk6ptZo
-   Sni8uCdGcI0NAoxw45dhYLt+Q6bMTVOfSYaRczJF1y2hgEEWZ98LZ7vnX
-   wViGeUxKA+nyQRJB8UFV93DQ+HMl88m9qSc7ru4jM+OwIf+4hy/DSUWDP
-   U+TX+xvF27wV1FLk5iqIslULaj+eOSSreuHT3i85ITAPBsuPNiu17Zf0c
-   DoQ9Jr6zzvt1ORrG8r8XCNxcNtWwXJzkwpAv3KQl9CwedjxDI+eziLSHA
-   Q==;
-X-CSE-ConnectionGUID: d58bBZWtRka+y0xDCXz5iA==
-X-CSE-MsgGUID: xdK3Yt0ZRD+pfiyAy4tdxg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="41058466"
-X-IronPort-AV: E=Sophos;i="6.13,304,1732608000"; 
-   d="scan'208";a="41058466"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2025 00:38:39 -0800
-X-CSE-ConnectionGUID: yBxMvSy1Rh+CXJ0lab4mqA==
-X-CSE-MsgGUID: 08+yRwERQR+OdaXElvcbxA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,304,1732608000"; 
-   d="scan'208";a="115255765"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2025 00:38:35 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 81C82120289;
-	Fri, 21 Feb 2025 10:38:32 +0200 (EET)
-Date: Fri, 21 Feb 2025 08:38:32 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Cosmin Tanislav <demonsingur@gmail.com>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: media: video-interfaces: add support
- for Virtual Channel IDs
-Message-ID: <Z7g7iCUlsUN2LBIW@kekkonen.localdomain>
-References: <20250220230818.275262-1-demonsingur@gmail.com>
- <20250220230818.275262-2-demonsingur@gmail.com>
+	s=arc-20240116; t=1740127365; c=relaxed/simple;
+	bh=tiSil00U2JnnP/E3p6huezKqRMcZxe+h8zlz8nw2jKs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OVic2l1e2zsjhwQZswLV4ZCuezoucrjVcsvbBv+WSXfjWJsyDCbMPO7GBPP27lzDNZYE6hv1imOobccwNxBUrlQwY3fyeMDa3LtGPntJF+2D+YDKboKTHqDymXFf0ytuvZceffVG1myFcdltLHmeDHnlCquNfXeEqyuydHoAb8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B08O8XZt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C868BC4CED6;
+	Fri, 21 Feb 2025 08:42:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740127365;
+	bh=tiSil00U2JnnP/E3p6huezKqRMcZxe+h8zlz8nw2jKs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=B08O8XZtpmkFmyuZRyImuXZVPePB/tjexi6Y/rSbdFMvp/WHg67u+UOAjYf1bSSxC
+	 jmuIUGF3/TIpbf6do3X9wkSaWZX33AIphlbuZn/dL3n+YujVlpVNHczq0xjqSn1VGi
+	 sbI+sU/IuSxeRMo68/2GVsqJnFOzIDibdnOZtLXd53NAz3F+OXs6qIhSnZEq1XpJnn
+	 CEgz09/e3ehmXX3Zs0LVt++4Q6q76Mx9Bnky5vOS7d6WH2neMBTnmzrTYXxxcAaCMy
+	 aNW/iqvr0pNhEjTulukl79VeZn4Sea93fu3CLwKRyb0/D9iLWnRzUXW36V51tQjmS6
+	 +q0h6tmOYkcEw==
+Message-ID: <abe231fb-6891-4008-92a9-9c3525ea0bcf@kernel.org>
+Date: Fri, 21 Feb 2025 09:42:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250220230818.275262-2-demonsingur@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] leds: add support for TI LP5860 LED driver chip
+To: Steffen Trumtrar <s.trumtrar@pengutronix.de>, Pavel Machek
+ <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Steffen Trumtrar <kernel@pengutronix.de>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250220-v6-14-topic-ti-lp5860-v1-0-42874bdc7513@pengutronix.de>
+ <20250220-v6-14-topic-ti-lp5860-v1-2-42874bdc7513@pengutronix.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250220-v6-14-topic-ti-lp5860-v1-2-42874bdc7513@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Cosmin,
-
-Thanks for the patches.
-
-On Fri, Feb 21, 2025 at 01:08:09AM +0200, Cosmin Tanislav wrote:
-> Multi-camera systems often have issues with receiving video streams
-> from multiple cameras at the same time because the cameras use the same
-> Virtual Channel IDs.
+On 20/02/2025 13:57, Steffen Trumtrar wrote:
+> This adds support for the Texas Instruments LP5860 LED driver chip
+> via SPI interfaces.
 > 
-> CSI bridges might not support remapping the Virtual Channel IDs, making
-> it impossible to receive the separate video streams at the same
-> time, while the CSI receiver is able to de-mux streams based on VC IDs.
-> 
-> Cameras sometimes have support for changing the VC IDs they output
-> themselves.
-> 
-> For a practical example, GMSL2 deserializer chips do not support VC ID
-> remapping in tunnel mode, and neither do the serializers. Allowing the
-> cameras to have their VC IDs configured would allow multi-camera setups
-> to use tunnel mode.
 
-We've tried to avoid having virtual channels in firmware and in UAPI,
-I'm not yet entirely convinced we need to depart from the established
-practices. Let's see. Apart from that, please see my comments below.
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-> 
-> Add support for specifying these Virtual Channel IDs in Video Interface
-> Endpoints. The supported values are 0 to 3, with a maximum of 4 values.
-> Although the CSI-2 specification allows for up to 32 virtual channels,
-> most hardware doesn't support more than 4. This can be extended later
-> if need be.
-> 
-> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
-> ---
->  .../devicetree/bindings/media/video-interfaces.yaml   | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.yaml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> index 038e85b45befa..414b5fa8f3472 100644
-> --- a/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> +++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> @@ -231,6 +231,17 @@ properties:
->        shall be interpreted as 0 (ABC). This property is valid for CSI-2 C-PHY
->        busses only.
->  
-> +  vc-ids:
+....
 
-Other properties aren't using abbreviations, at least most of them. How
-about "virtual-channels"?
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 4
-
-Shouldn't this be 32?
-
-> +    items:
-> +      maximum: 3
-
-31 here, too.
-
-> +    description:
-> +      An array of Virtual Channel IDs. These are unsigned integers that specify
-
-I'd leave out the explanation on the data type. It's redundant.
-
-> +      the VC IDs used by the device for its data streams. This property is valid
-> +      for MIPI CSI-2 only.
 > +
->    strobe:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      enum: [ 0, 1 ]
+> +	return 0;
+> +}
+> +
+> +int lp5860_device_init(struct lp5860 *lp)
+> +{
+> +	int ret;
+> +
+> +	dev_set_drvdata(lp->dev, lp);
+> +
+> +	ret = lp5860_enable_disable(lp, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_update_bits(lp->regmap, LP5860_DEV_INITIAL,
+> +				 LP5860_MODE_MASK,
+> +				 LP5860_MODE_1 << LP5860_MODE_OFFSET);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = sysfs_create_group(&lp->dev->kobj, &lp5860_group);
 
--- 
-Kind regards,
 
-Sakari Ailus
+Where is ABI documentation?
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	return lp5860_probe_dt(lp);
+> +}
+
+
+...
+
+> +static const struct of_device_id lp5860_of_match[] = {
+> +	{ .compatible = "ti,lp5860" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, lp5860_of_match);
+> +
+> +static struct spi_driver lp5860_driver = {
+> +	.driver = {
+> +		.name = "lp5860",
+> +		.of_match_table = of_match_ptr(lp5860_of_match),
+
+
+Drop of_match_ptr, you have a warning here.
+
+> +	},
+> +	.probe	= lp5860_probe,
+> +	.remove = lp5860_remove,
+> +};
+> +
+> +module_spi_driver(lp5860_driver);
+> +
+> +MODULE_DESCRIPTION("TI leds lp5860");
+> +MODULE_AUTHOR("Steffen Trumtrar <kernel@pengutronix.de>");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("spi:leds-lp5860");
+
+You should not need MODULE_ALIAS() in normal cases. If you need it,
+usually it means your device ID table is wrong (e.g. misses either
+entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
+for incomplete ID table.
+
+Best regards,
+Krzysztof
 
