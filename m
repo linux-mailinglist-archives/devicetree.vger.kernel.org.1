@@ -1,105 +1,99 @@
-Return-Path: <devicetree+bounces-149727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B7EA40392
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:39:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 447ADA4035D
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:14:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58CD7189AE6E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 23:40:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F38253A4D3D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 23:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C5020B1E7;
-	Fri, 21 Feb 2025 23:39:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB394204F6F;
+	Fri, 21 Feb 2025 23:14:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=erdfelt.com header.i=@erdfelt.com header.b="vocGKBdt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PtYlutvN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out.bound.email (out.bound.email [141.193.244.10])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B023818DB0B
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 23:39:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.193.244.10
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EFAA1F9F70;
+	Fri, 21 Feb 2025 23:14:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740181189; cv=none; b=Pc+Yx2qUG2xVOxar1KzwAc6ZZjMH+jqLXhun23fBdOxC5VQVkN4A1IZH+pzRPsZ/GkEmax0vrdaJfXJ4ldyOUqMzIfTQr+pYNLc6RrAeUWKJfdjDrp+fXmW84H/c9EJaUTRMembC3/N4elVZliXNSWPSSXlDKEAGgTOokApcUxw=
+	t=1740179667; cv=none; b=uZGirqevJRuDOZlUchE0KPMjkYS6+5NW8JDaeJWYQ/GUCL6JO5Yo1Ktt9avhx/JDv5dMGlnD2FNhWazHW03j6e3d+GaqT3byP/VkiiLxsS3O1s63MjtVmov45+6ZCtpkQnSJHgzmkG8r4tfCVw5mnmy060J7ojrWbjuCpYxaFHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740181189; c=relaxed/simple;
-	bh=vyhNgeOrYGbDnImKc/jEWBJHmyIIcC5LBYoCURsL4I8=;
+	s=arc-20240116; t=1740179667; c=relaxed/simple;
+	bh=ZxrEIfABUThlyL83NqEocjM+61rjSOj8pPycrC979mA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fkQ4zDFx8/y265LSs5TBv3gU+oyNXhu61cDwdQ3+bDdOtFTiFO+m6KbozrqovHKaruGl/25MJ+MFrXe9UA9IBcjexgJvy3NuZo1CbpTZopgaTqtOZbL5UVDTbsKVGQ5kc33KWSCfC2k2WLftjdOnROGiBnfiPejaFavXr8zsyTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=erdfelt.com; spf=pass smtp.mailfrom=erdfelt.com; dkim=pass (1024-bit key) header.d=erdfelt.com header.i=@erdfelt.com header.b=vocGKBdt; arc=none smtp.client-ip=141.193.244.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=erdfelt.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=erdfelt.com
-Received: from mail.sventech.com (localhost [127.0.0.1])
-	by out.bound.email (Postfix) with ESMTP id C15528A0A03;
-	Fri, 21 Feb 2025 15:13:40 -0800 (PST)
-Received: by mail.sventech.com (Postfix, from userid 1000)
-	id AA9A3160036F; Fri, 21 Feb 2025 15:13:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=erdfelt.com;
-	s=default; t=1740179620;
-	bh=vyhNgeOrYGbDnImKc/jEWBJHmyIIcC5LBYoCURsL4I8=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=Im9iYDTAW6xj9OuoqmURgWg7ZiQ2GmQprhMPru8svEZsDkK0LiVwBMuVEuIxjYDxCgpkb2a5R981UA3CohTrzBFPLD40+CdZGu2jO1Qp2mCgnbmWbX/qp4pbiW68LZv01EOhKcG0Efk2Fedfg9e3UgSS4kqotQVEHsmkSn9ZPPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PtYlutvN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFE8BC4CED6;
+	Fri, 21 Feb 2025 23:14:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740179667;
+	bh=ZxrEIfABUThlyL83NqEocjM+61rjSOj8pPycrC979mA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vocGKBdt41/eCeMu4YU+CArZ78x0+Z6/Yq+IyO5iYGUXepO/opn0ydttE0nRqJZqx
-	 t3RJJtpU/sTaXAiB73iUozN03MYw6M53uRcz9x9RcmFOuzrmx9nK21+UHD5VRbdSAF
-	 KU/zTDvmuJLrpyrpf8w4fS5xqipCkBBwSrI+TOZ8=
-Date: Fri, 21 Feb 2025 15:13:40 -0800
-From: Johannes Erdfelt <johannes@erdfelt.com>
-To: Jimmy Hon <honyuenkwun@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+	b=PtYlutvNQyz6oh+FTLV0+g6YgzBGvtEDnAeLuVtvfEQVJ8x7CikJM6sLo4J79vbt3
+	 aPTnNK6arjQGvH7jYmvV3VMqnPD3d2d1kKGWhfMZJi/ps1tpMF9aXO/U5xtbntm/K4
+	 iVF9YmZQtFKCO+oKaSHAEBmfvl1/6CgFU3iYXndbEPgbKPlr/CdU7nwTdLU/Oz6/gA
+	 OiWKgoiuUCKw2q4hz3Gx+1yWoTSVssDk6zwFf3G+TOLqWDTU55dopjf7+iWMLMn2ti
+	 xCA1X0HrmLjV7ZIYqnQf0T5tZLlF3uqmogRBv5RU12I2FhaiLzyB9cXEnRqQ3vtOve
+	 3AP8pg1r1gK8g==
+Date: Fri, 21 Feb 2025 17:14:24 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.ne@posteo.net>
+Cc: devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+	=?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.neuschaefer@gmx.net>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH UNTESTED v5 0/4] Orange Pi 5 Ultra
-Message-ID: <20250221231340.GS16911@sventech.com>
-References: <20250220041010.3801-1-honyuenkwun@gmail.com>
+	linux-kernel@vger.kernel.org,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v3] dt-bindings: pci: Convert fsl,mpc83xx-pcie to YAML
+Message-ID: <174017966427.307648.3944377161217971562.robh@kernel.org>
+References: <20250220-ppcyaml-pci-v3-1-ca94a4f62a85@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250220041010.3801-1-honyuenkwun@gmail.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250220-ppcyaml-pci-v3-1-ca94a4f62a85@posteo.net>
 
-On Wed, Feb 19, 2025, Jimmy Hon <honyuenkwun@gmail.com> wrote:
-> This patchset is looking for testers. I do not have the hardware to test.
 
-I do have hardware and I gave your branch[1] a test.
+On Thu, 20 Feb 2025 13:29:58 +0100, J. Neuschäfer wrote:
+> Formalise the binding for the PCI controllers in the Freescale MPC8xxx
+> chip family. Information about PCI-X-specific properties was taken from
+> fsl,pci.txt. The examples were taken from mpc8315erdb.dts and
+> xpedite5200_xmon.dts.
+> 
+> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> ---
+> V3:
+> - split out as a single patch
+> - remove obsolete reference to fsl,pci.txt
+> - remove unnecessary newline near the end of fsl,mpc8xxx-pci.yaml
+> 
+> V2:
+> - part of series [PATCH v2 00/12] YAML conversion of several Freescale/PowerPC DT bindings
+>   Link: https://lore.kernel.org/lkml/20250207-ppcyaml-v2-6-8137b0c42526@posteo.net/
+> - merge fsl,pci.txt into fsl,mpc8xxx-pci.yaml
+> - regroup compatible strings, list single-item values in one enum
+> - trim subject line (remove "binding")
+> - fix property order to comply with dts coding style
+> ---
+>  .../devicetree/bindings/pci/fsl,mpc8xxx-pci.yaml   | 113 +++++++++++++++++++++
+>  Documentation/devicetree/bindings/pci/fsl,pci.txt  |  27 -----
+>  2 files changed, 113 insertions(+), 27 deletions(-)
+> 
 
-The following things tested successfully for me:
-- Kernel boots
-- Ethernet
-- SPI NOR
-- Micro SD card
-- eMMC
-- Bottom M.2 M-key slot (using an NVME drive)
-- USB 2.0 ports
-- Blue LED (using heartbeat trigger at least)
-
-I did not test:
-- RTC
-- UART
-- HDMI1
-- HDMI IN
-- Analog audio
-- Mali GPU
-- Heat sink fan
-
-However, neither of the USB 3.0 ports work. There are no XHCI messages
-during boot. I confirmed my kernel config does build XHCI. I haven't
-ruled out a mistake on my end yet.
-
-Also, the green LED is constantly lit even when the trigger is set to
-none and the brightness is set to 0. This made is a bit harder to
-confirm that the blue LED was working. I haven't ruled out a mistake on
-my end for this one yet either.
-
-I'll also see if I can give HDMI a test.
-
-JE
-
-[1] https://github.com/jimmyhon/linux/tree/integrate-6.15
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
