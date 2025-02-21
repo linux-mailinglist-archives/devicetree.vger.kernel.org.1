@@ -1,133 +1,144 @@
-Return-Path: <devicetree+bounces-149393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 520C2A3F416
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 13:21:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12A61A3F44B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 13:30:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5660B7A6AB5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 12:20:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A16361752E8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 12:29:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A3C820A5D2;
-	Fri, 21 Feb 2025 12:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4A1520A5F0;
+	Fri, 21 Feb 2025 12:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KDWs/cKw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE4E209F58;
-	Fri, 21 Feb 2025 12:21:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B779B209F2E;
+	Fri, 21 Feb 2025 12:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740140492; cv=none; b=XpbIOlFnV5sFOZooCRIsta/4EhHd7f+GTuhTCLClstHaKQrm5OlvhfNvcO96YLyOuCIPa1w2ZuUVo6YdebkIqCmi6t1uB5CxUeSlAbwbYNp77vuT0pYtgC7QOlaUc6DY2onI15K6FJFPOXW5574b7RJZ2iBoE1c1xi10VMJ7sN0=
+	t=1740140969; cv=none; b=evcW6eoQacqHIfdovvbSx/ogs11yoktM+hE2HbbAc+o6BtJfR0V8p7VOJvKMVGoO3KvvxQp/8rsASGZjsdlCgHcLvbfNlehDuZrP/PYpYnQCMfz6U3i3A3+LOfvHf4p5nPvcKN/F9X1xfeKBt+ei6SsBWW0rJvy/x2/NLzvAPvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740140492; c=relaxed/simple;
-	bh=JCMgSxffp9jYC8mhi+AC0xWwLcS0IUPYJaEcEyNJmJs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YS4K91JYcfnqazB5LAEQuYIxiiDlK1Ba9jvImIQmVe/FIDh5oZmInNAFJ7XXl7pkZ2SJCOwfxYMlBxwYZGxo+va5KPcCEdCayJaFbm4G8vM5rk4t5g4C0Thv/oh7VMDqlHqXPZepwtpk5WWWsJfvWYg82bnkfn+TePCLKu1ehO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [180.172.118.52])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 134FF3430CB;
-	Fri, 21 Feb 2025 12:21:29 +0000 (UTC)
-Date: Fri, 21 Feb 2025 12:21:25 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Chen Wang <unicorn_wang@outlook.com>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	linux-gpio@vger.kernel.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>,
-	Yangyu Chen <cyy@cyyself.name>, devicetree@vger.kernel.org,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Jesse Taube <mr.bossman075@gmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 3/5] gpio: spacemit: add support for K1 SoC
-Message-ID: <20250221122125-GYA35549@gentoo>
-References: <20250217-03-k1-gpio-v5-0-2863ec3e7b67@gentoo.org>
- <20250217-03-k1-gpio-v5-3-2863ec3e7b67@gentoo.org>
- <CAMRc=MdJszmZ8d1MGo=bfJ8TwqOYBPLe2Jfc9MfbErDUCMQktg@mail.gmail.com>
- <MA0PR01MB567180C0FE89E3BEBAF2B12EFEC42@MA0PR01MB5671.INDPRD01.PROD.OUTLOOK.COM>
- <CAMRc=MdX6KiGk1zBRK3bZpN3iM16-8mDq40sTez6YO2kJEq0zQ@mail.gmail.com>
+	s=arc-20240116; t=1740140969; c=relaxed/simple;
+	bh=yeXSTli4MjZbx7FP0/Y3On8xKZiLQ1Wgmzdq+wGSUmg=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=WgP9aFuupVe7F01CWmTJ3bClrcf4zG1hgY6KeBP+GDZO6IzaKssaxFNZA45u71RqcNIm3MOfR8fKJDD6fh/HemS/uXeH8mQ3zUrj8yne6oOUfleHlG9lu0TyfdPJNMfd7B3ouu23Y/+WM7Y3+ttRDegOvbeb+0ARmJ2hxh8Bvkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KDWs/cKw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E56EC4CEDD;
+	Fri, 21 Feb 2025 12:29:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740140969;
+	bh=yeXSTli4MjZbx7FP0/Y3On8xKZiLQ1Wgmzdq+wGSUmg=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=KDWs/cKwawUW6RUJpFTguLvs6ax6RrAFU9bAFB2Om9yvjH2i/1RXMvDs1s8x4ilad
+	 VpGg8HGVR3Aq6NUzjMe9PdYjkvcf7chFBOkkGIM99T+MV2ena0gM+qXFq40b0Z/way
+	 IdZKWm58LDy9pIWGoEU7LHLhRbcJO5xmQ9gekIP1+tsqH24cS5RZaaSg8XXbiqxkhc
+	 oyJolu1DDUQ3jl54N+KARxpfxIE/NO3bSe9tVeI9uSdMF6kJLz1reojsuHsawo3Jt1
+	 AWNg7/t7+UsgL4Od+JmS96abev+jaYpMT6Tj9EESw7hyvV/G3n3fw4ax2x7DGMBnA8
+	 G7F9/Hy1W1leg==
+Date: Fri, 21 Feb 2025 06:29:27 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMRc=MdX6KiGk1zBRK3bZpN3iM16-8mDq40sTez6YO2kJEq0zQ@mail.gmail.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+ devicetree@vger.kernel.org, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ heiko@sntech.de, linux-rockchip@lists.infradead.org, 
+ Shawn Lin <shawn.lin@rock-chips.com>, linux-pci@vger.kernel.org, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Simon Xue <xxm@rock-chips.com>
+To: Kever Yang <kever.yang@rock-chips.com>
+In-Reply-To: <20250221104357.1514128-2-kever.yang@rock-chips.com>
+References: <20250221104357.1514128-1-kever.yang@rock-chips.com>
+ <20250221104357.1514128-2-kever.yang@rock-chips.com>
+Message-Id: <174014096734.2508114.17981034112064393929.robh@kernel.org>
+Subject: Re: [RFC PATCH v6 1/2] dt-bindings: PCI: dw: rockchip: Add rk3576
+ support
 
-Hi Bartosz Golaszewski:
 
-On 09:37 Fri 21 Feb     , Bartosz Golaszewski wrote:
-> On Fri, Feb 21, 2025 at 12:36 AM Chen Wang <unicorn_wang@outlook.com> wrote:
-> >
-> >
-> > On 2025/2/20 21:34, Bartosz Golaszewski wrote:
-> > > On Mon, Feb 17, 2025 at 1:58 PM Yixun Lan <dlan@gentoo.org> wrote:
-> > [......]
-> > >> +#define to_spacemit_gpio_bank(x) container_of((x), struct spacemit_gpio_bank, gc)
-> > >> +
-> > >> +struct spacemit_gpio;
-> > >> +
-> > >> +struct spacemit_gpio_bank {
-> > >> +       struct gpio_chip                gc;
-> > >> +       struct spacemit_gpio            *sg;
-> > >> +       void __iomem                    *base;
-> > >> +       u32                             index;
-> > >> +       u32                             irq_mask;
-> > >> +       u32                             irq_rising_edge;
-> > >> +       u32                             irq_falling_edge;
-> > >> +};
-> > >> +
-> > >> +struct spacemit_gpio {
-> > >> +       struct  device                  *dev;
-> > >> +       struct  spacemit_gpio_bank      sgb[NR_BANKS];
-> > >> +};
-> > > Please don't use tabs in struct definitions.
-> >
-> > Why not？I see
-> > https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct-declarations-and-initializers
-> >
+On Fri, 21 Feb 2025 18:43:56 +0800, Kever Yang wrote:
+> rk3576 is using dwc controller, with msi interrupt directly to gic instead
+> of to gic its, so
+> - no its support is required and the 'msi-map' is not need anymore,
+> - a new 'msi' interrupt is needed.
 > 
-> This is for the tip tree, not treewide.
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> ---
 > 
-> It's my personal maintainer preference. We do use both under
-> drivers/gpio/ but I prefer no-tabs in new code.
+> Changes in v6:
+> - Fix make dt_binding_check and make CHECK_DTBS=y
+> 
+> Changes in v5:
+> - Add constraints per device for interrupt-names due to the interrupt is
+> different from rk3588.
+> 
+> Changes in v4:
+> - Fix wrong indentation in dt_binding_check report by Rob
+> 
+> Changes in v3:
+> - Fix dtb check broken on rk3588
+> - Update commit message
+> 
+> Changes in v2:
+> - remove required 'msi-map'
+> - add interrupt name 'msi'
+> 
+>  .../bindings/pci/rockchip-dw-pcie-common.yaml | 59 +++++++++++++++----
+>  .../bindings/pci/rockchip-dw-pcie.yaml        |  4 +-
+>  2 files changed, 50 insertions(+), 13 deletions(-)
 > 
 
-thanks for this explanation..
+My bot found errors running 'make dt_binding_check' on your patch:
 
-my intention was trying to keep struct members aligned
-if tabs is a no-go, would using multi blank spaces to align be acceptable?
+yamllint warnings/errors:
 
-something like:
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml: anyOf:1:then:properties:interrupt-names: {'type': 'array', 'items': [{'const': 'sys'}, {'const': 'pmc'}, {'const': 'msg'}, {'const': 'legacy'}, {'const': 'err'}, {'const': 'msi'}], 'minItems': 6, 'maxItems': 6} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml: anyOf:1:then:properties:interrupt-names: 'oneOf' conditional failed, one must be fixed:
+	[{'const': 'sys'}, {'const': 'pmc'}, {'const': 'msg'}, {'const': 'legacy'}, {'const': 'err'}, {'const': 'msi'}] is too long
+	[{'const': 'sys'}, {'const': 'pmc'}, {'const': 'msg'}, {'const': 'legacy'}, {'const': 'err'}, {'const': 'msi'}] is too short
+	False schema does not allow 6
+	1 was expected
+	6 is greater than the maximum of 2
+	6 is greater than the maximum of 3
+	6 is greater than the maximum of 4
+	6 is greater than the maximum of 5
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-ep.example.dtb: pcie-ep@fe150000: interrupt-names: ['sys', 'pmc', 'msg', 'legacy', 'err', 'dma0', 'dma1', 'dma2', 'dma3'] is too long
+	from schema $id: http://devicetree.org/schemas/pci/rockchip-dw-pcie-ep.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-ep.example.dtb: pcie-ep@fe150000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+	from schema $id: http://devicetree.org/schemas/pci/rockchip-dw-pcie-ep.yaml#
 
-struct spacemit_gpio_bank {
-	struct gpio_chip       gc;
-	struct spacemit_gpio   *sg;
-	void   __iomem         *base;
-       ...
-}
+doc reference errors (make refcheckdocs):
 
-> Bart
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250221104357.1514128-2-kever.yang@rock-chips.com
 
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
