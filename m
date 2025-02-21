@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-149538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8A94A3FBDB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:48:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4E49A3FC2A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:53:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A93494259E9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:41:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0F518837E2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:42:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92247214803;
-	Fri, 21 Feb 2025 16:40:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BB6E21516D;
+	Fri, 21 Feb 2025 16:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="p1pGOIC5"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="jzbgJ3N3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from s2.avantea.pl (s2.avantea.pl [46.242.128.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C5521420D;
-	Fri, 21 Feb 2025 16:40:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98CB21506B;
+	Fri, 21 Feb 2025 16:40:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.242.128.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740156017; cv=none; b=WFDnaaw3y8faKyjGJ6Uh3s3XzDa56B/JBwqN31v1JDtKpVqqf4hDW80S07XXdgSR65eqnjSIYrD7G0m2d1RW+CFTpmbm399I3ECLrLpyfIUd/L9SHWo6ZB9o4gSnWrjWeFkZPSw5f8Gp95p0ow354ZB4r4aju+lz7c1B0raFi/A=
+	t=1740156025; cv=none; b=L6WrCCjbts2cvpYIiNDF+0rAuucJIve87gPHrM//eQWIUcx9c1vyPGzJc5V8DcicdSXpAScYQOtziMcexPZkuQj2gUR7kkwGvdrouoe+VN2zIww6MpG/ZyjPO0c45pqlgGlSG8thHBIDQC0wPxKeJkPOGBFEuW6X09NYRJ9bz+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740156017; c=relaxed/simple;
-	bh=TES/SuY81HkKlCk4x2V0WYEnKObg3ukIt1CVKciqxW0=;
+	s=arc-20240116; t=1740156025; c=relaxed/simple;
+	bh=NoTkzKUfQbY94bo+4zepZ8agovRIedf7h4l4Z54zNNw=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=F0H83O2Px/uLgJs52UtgB/mHisvdx/3ZzoK/QUfr3fQl9b3LsB5MFY/FZC36K/2RNqMgWiFMpYYvB/H6fQvlC0Un8eayNGQE8ixdWIpNWsxt9agpT8+LAKJ5yBBFaOgyB12yPYpVlG6sBxZGcabEXU7qex6EC5x3ZJpROA9ZbRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=p1pGOIC5; arc=none smtp.client-ip=46.242.128.95
+	 MIME-Version:Content-Type; b=M2oJJ5Ro7bSCb8PI+syjQACuoUDNsc8wxT4gI0GAkPORHbx9nrbPKZoxvijqNwk/Z30gUHudNsGu3uGekmCmHBf8H8Hw2AkjOtebypX1D0oXnPiuW8zU3zTA+CO4Jad6gMVYTpKlF8OfN1NWDNzPZc6xnMqlHOYOeIFH8px7NLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=jzbgJ3N3; arc=none smtp.client-ip=46.242.128.95
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczodrzynski.pl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -37,17 +37,17 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
 	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=U2i+tFSML7sT+8AM5vIWnSdSP/UjJ3mmCMahXU8/Uc0=; b=p1pGOIC5KroF7U+KU+hMlEUo2p
-	gChyrkqBaGtW4djBrZcHJhS7RQ5U87eV3gBR0dq7UttRIsAgWjI6xO3/nqnC4b+SKV8QeQEBlaB3C
-	swS5I8XmqwD65u1uZ9rcwEblo7RAuCroiAnfp0t7tPZKL+1upBfmtIkjLuwF8ZS3GvYJaQ9jwfoN5
-	CCLk37otP528jmLS1hF5EZyU/apPvK46QKaH91zhQGFWYWoJi+yJyZaNvqPB6CudOEUmG2EMT+YR0
-	ErHfYDXNJIrtLZWcnMSLIQ7bghLo3J6Ot8WpQ1lEID/GBdBcllqj5ifmla+CDnOoy0piCwj3LFNtu
-	7/aU6zCQ==;
+	bh=OnPJY1YmRTCsjsI68pp1t+5Ummz4CbGGB5KW9cC+vdo=; b=jzbgJ3N3bGi56lsr6UvckXM0yt
+	yZOXDH4GRVzsBSgeNrr3aBGqiQwQpnU+4IOO/q1NKQxN6McMD2th6RTZnA7fUQVEU7Rxrld3qW7vX
+	ejKqNS26vNC8GtFfck9M2CYKWAsz2UOfunS4M2CANjzsXU70trqtOsAVu6un+D38bSdy82YXFAVQ3
+	CkCGDCpkLZrkQJCaiVqGu77keQZ+QWdamB/o8fAurdj+gSQTNHqyQbNr1JBSAjXjdL1ievKPNltPF
+	vee2wFsY616tA0+8+f9+zbWVlSvCCkOZsDqYjM3u1vBdB2yS0njabCEcgYeR1r8sfhX5vVManuZKd
+	TW3xjTWQ==;
 Received: from [62.171.184.96] (helo=buildhost.contaboserver.net)
 	by s2.avantea.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.96-58-g4e9ed49f8)
 	(envelope-from <kuba@szczodrzynski.pl>)
-	id 1tlViv-00AOLX-34;
+	id 1tlViw-00AOLX-2K;
 	Fri, 21 Feb 2025 17:17:58 +0100
 From: =?UTF-8?q?Kuba=20Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
 To: Maxime Ripard <mripard@kernel.org>,
@@ -68,9 +68,9 @@ Cc: David Airlie <airlied@gmail.com>,
 	linux-phy@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH 3/5] drm/sun4i: Enable LVDS output on sun20i D1s/T113
-Date: Fri, 21 Feb 2025 17:17:49 +0100
-Message-Id: <20250221161751.1278049-4-kuba@szczodrzynski.pl>
+Subject: [PATCH 4/5] riscv: dts: allwinner: d1s-t113: Add D-PHY to TCON LCD0
+Date: Fri, 21 Feb 2025 17:17:50 +0100
+Message-Id: <20250221161751.1278049-5-kuba@szczodrzynski.pl>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
 References: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
@@ -84,64 +84,27 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Authenticated-Id: kuba@szczodrzynski.pl
 
-The Allwinner D1s/T113 needs to use the combo D-PHY to enable LVDS
-output.
-
-Enable LVDS support in the TCON and configure it using the PHY.
+The sun4i TCON needs a reference to the D-PHY in order to support LVDS
+on Allwinner D1s/T113.
 
 Signed-off-by: Kuba Szczodrzyński <kuba@szczodrzynski.pl>
 ---
- drivers/gpu/drm/sun4i/sun4i_tcon.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-index ccf335a61..58230a552 100644
---- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
-+++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-@@ -171,6 +171,30 @@ static void sun6i_tcon_setup_lvds_phy(struct sun4i_tcon *tcon,
- 			  SUN6I_TCON0_LVDS_ANA0_EN_DRVD(val));
- }
+diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+index e4175adb0..d241ba306 100644
+--- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
++++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+@@ -828,6 +828,8 @@ tcon_lcd0: lcd-controller@5461000 {
+ 			resets = <&ccu RST_BUS_TCON_LCD0>,
+ 				 <&ccu RST_BUS_LVDS0>;
+ 			reset-names = "lcd", "lvds";
++			phys = <&dphy>;
++			phy-names = "dphy";
+ 			#clock-cells = <0>;
  
-+static void sun20i_tcon_setup_lvds_dphy(struct sun4i_tcon *tcon,
-+					const struct drm_encoder *encoder)
-+{
-+	union phy_configure_opts opts = { };
-+
-+	if (!tcon->quirks->has_combo_dphy || !tcon->dphy)
-+		return;
-+
-+	phy_init(tcon->dphy);
-+	phy_set_mode(tcon->dphy, PHY_MODE_LVDS);
-+	phy_configure(tcon->dphy, &opts);
-+	phy_power_on(tcon->dphy);
-+}
-+
-+static void sun20i_tcon_disable_lvds_dphy(struct sun4i_tcon *tcon,
-+					  const struct drm_encoder *encoder)
-+{
-+	if (!tcon->quirks->has_combo_dphy || !tcon->dphy)
-+		return;
-+
-+	phy_power_off(tcon->dphy);
-+	phy_exit(tcon->dphy);
-+}
-+
- static void sun4i_tcon_lvds_set_status(struct sun4i_tcon *tcon,
- 				       const struct drm_encoder *encoder,
- 				       bool enabled)
-@@ -1550,8 +1574,12 @@ static const struct sun4i_tcon_quirks sun9i_a80_tcon_tv_quirks = {
- 
- static const struct sun4i_tcon_quirks sun20i_d1_lcd_quirks = {
- 	.has_channel_0		= true,
-+	.has_combo_dphy		= true,
-+	.supports_lvds		= true,
- 	.dclk_min_div		= 1,
- 	.set_mux		= sun8i_r40_tcon_tv_set_mux,
-+	.setup_lvds_phy		= sun20i_tcon_setup_lvds_dphy,
-+	.disable_lvds_phy	= sun20i_tcon_disable_lvds_dphy,
- };
- 
- /* sun4i_drv uses this list to check if a device node is a TCON */
+ 			ports {
 -- 
 2.25.1
 
