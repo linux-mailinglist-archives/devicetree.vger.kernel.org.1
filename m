@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-149310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B40DA3F090
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 10:39:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDFF8A3F099
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 10:40:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 996271882678
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 09:38:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC5F419C0A03
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 09:39:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5A72204699;
-	Fri, 21 Feb 2025 09:38:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B8DE204F6B;
+	Fri, 21 Feb 2025 09:39:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LPYUgpNU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AEE4204681;
-	Fri, 21 Feb 2025 09:38:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A9482046B6;
+	Fri, 21 Feb 2025 09:39:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740130694; cv=none; b=aW0DnEbVJ+JKvf95/1tl762i9C08aAEJfJws8QE4e9KmpgpFdcRQvU3/mTf0HIaKs418/nIcoBdmf1XpBJ7XheEll3donf14+0OIBz6818CgAdeN9jex+zeIkGukdTsVGEZjF5v1tsqgHyKw9Ga5QZIAYoKmnnL8RA0w4csfgCw=
+	t=1740130749; cv=none; b=K37evrlB2oY03iiNbDb2jCQ0797LGTLU70WutTdBFXShN2uKg15oQJaHl7FMKQk5WJfY5DdQyokY15f2/dAvXYn++Tq67r9uvRzUeXC1VqXl7Zj5SRzuIiorQN7bJlTrieuYBvFCRnu8tgd0PGo4O287xHJH61zCQ/DJxFR6avk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740130694; c=relaxed/simple;
-	bh=EJx2vfs/+2gpk8AKPvz/birlYYWJkI2Q7eInv+jf3Ew=;
+	s=arc-20240116; t=1740130749; c=relaxed/simple;
+	bh=7iSC6jX/BBYZhH5CaMvHMaDMArGW/YNl+vqAADY7Ryo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ny0JuSkYbF8YLW8/O3q16QwnG4YQJUfU5GE84yADYznS5WIaLscC0Ja31mJxrpZGOBbCiniWJYyLlgrbqWhX/7ml0o7YPiuPgoLNL9VU5nscWZhsdZ+FTknhUFig4I2yVzLvUUBXKeFSxlNDMdRYMhoe2zNv9DPVbUukmpEUm8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
-Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
-	id 1tlPU1-0006Eb-00; Fri, 21 Feb 2025 10:38:09 +0100
-Received: by alpha.franken.de (Postfix, from userid 1000)
-	id C726BC0135; Fri, 21 Feb 2025 10:37:26 +0100 (CET)
-Date: Fri, 21 Feb 2025 10:37:26 +0100
-From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob Herring <robh@kernel.org>,
-	Aleksandar Rikalo <arikalo@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	"linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/5] dt-bindings: mips: mips-cm: Add a new compatible
- string for EyeQ6
-Message-ID: <Z7hJVnJSg3C9lmLY@alpha.franken.de>
-References: <20250123-cluster-hci-broken-v3-0-8a7ec57cbf68@bootlin.com>
- <20250123-cluster-hci-broken-v3-2-8a7ec57cbf68@bootlin.com>
- <afa2e874-c078-4c3e-b485-d948a0bb6a6f@app.fastmail.com>
- <CAL_JsqKXYruNn+MtxbvCCWU2OmqeV-uAyyzN+F-ppSJVscr91w@mail.gmail.com>
- <bf08785b-9963-4539-92ef-b73c3abe8c19@app.fastmail.com>
- <87tt9iucu9.fsf@BLaptop.bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=lUfUFALNz7pk5urY/S82cguHPGIfd0+c+4Fy13QdPm+rdds/ibR+UxvENAPZd5LOpxvKJz60cjoVlGJl/EzARlXUQHUsCuOGNpB4fJGtVfp6iMICTjl5BSh5o1zy8xjJs2WxnNxMInWhI/9W8bmzR9bPFHM6ruQBI5lG1V0olGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LPYUgpNU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41675C4CED6;
+	Fri, 21 Feb 2025 09:39:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740130748;
+	bh=7iSC6jX/BBYZhH5CaMvHMaDMArGW/YNl+vqAADY7Ryo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LPYUgpNUY6pSswlFIBr7Sc7Jt7au5PvMrBxeQRljl90tC9FK685BZQaXbYqm8lk0+
+	 G05lEdamwdcfC9P5awa+51GjhhSHmY5kXPfyE++ev9CVcuFS91FVc6qGCzCtw3u3kq
+	 DVXcvlbu8SPq0RLTGPnamPS8F5eywE0BT1MDl/i+kl0R6iNZr3AuNuR0oeTj0jI+dC
+	 BgQNxQTQy2dbIXAPv6HNdxmsQ9XCZZc9qtq1I+BK/XQ/bASOz+9DMrv4jl/SFc19Pc
+	 ku+synFWgrAeQQGcAmJcnkYIY4sL2hmx+/UemrDn4BdzT6i7/gaPHczw5Kj9hGSYBd
+	 4pTbZdSAlFJdQ==
+Date: Fri, 21 Feb 2025 10:39:06 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v3 3/7] soc: samsung: exynos-chipid: add support for
+ exynos7870
+Message-ID: <20250221-stimulating-sophisticated-armadillo-0a72bb@krzk-bin>
+References: <20250219-exynos7870-v3-0-e384fb610cad@disroot.org>
+ <20250219-exynos7870-v3-3-e384fb610cad@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,88 +63,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87tt9iucu9.fsf@BLaptop.bootlin.com>
+In-Reply-To: <20250219-exynos7870-v3-3-e384fb610cad@disroot.org>
 
-On Tue, Jan 28, 2025 at 05:23:26PM +0100, Gregory CLEMENT wrote:
-> > 在2025年1月27日一月 下午10:07，Rob Herring写道：
-> >> On Mon, Jan 27, 2025 at 3:43 PM Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
-> >>>
-> >>>
-> >>>
-> >>> 在2025年1月23日一月 上午11:01，Gregory CLEMENT写道：
-> >>> > The CM3.5 used on EyeQ6 reports that Hardware Cache Initialization is
-> >>> > complete, but in reality it's not the case. It also incorrectly
-> >>> > indicates that Hardware Cache Initialization is supported. This new
-> >>> > compatible string allows warning about this broken feature that cannot
-> >>> > be detected at runtime.
-> >>> >
-> >>> > Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> >>> > ---
-> >>> >  Documentation/devicetree/bindings/mips/mti,mips-cm.yaml | 12 +++++++++++-
-> >>> >  1 file changed, 11 insertions(+), 1 deletion(-)
-> >>> >
-> >>> > diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
-> >>> > b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
-> >>> > index
-> >>> > 4324b2306535f1bf66c44b1f96be9094ee282041..d129d6382847768dc026336d8d2c7328b6b81f9b
-> >>> > 100644
-> >>> > --- a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
-> >>> > +++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
-> >>> > @@ -19,7 +19,12 @@ maintainers:
-> >>> >
-> >>> >  properties:
-> >>> >    compatible:
-> >>> > -    const: mti,mips-cm
-> >>> > +    oneOf:
-> >>> > +      - const: mti,mips-cm
-> >>> > +      - const: mobileye,eyeq6-cm
-> >>> > +        description:
-> >>> > +          On EyeQ6 the HCI (Hardware Cache Initialization) information for
-> >>> > +          the L2 cache in multi-cluster configuration is broken.
-> >>> >
-> >>> >    reg:
-> >>> >      description:
-> >>> > @@ -44,4 +49,9 @@ examples:
-> >>> >        compatible = "mti,mips-cm";
-> >>> >        reg = <0x1bde8000 0x8000>;
-> >>> >      };
-> >>> > +
-> >>> > +  - |
-> >>> > +    coherency-manager {
-> >>> > +      compatible = "mobileye,eyeq6-cm";
-> >>>
-> >>> I think “mobileye,eyeq6-cm”, “mti,mips-cm” would describe the hardware better as eyeq6’s CM is just a special variant of mips-cm.
-> >>
-> >> Is s/w that only understands “mti,mips-cm” useful on eyeq6 chip? If
-> >> so, I agree. If not, then a fallback compatible is not useful.
-> >
-> > Yes, mobileye,eyeq6-cm only enable an additional bug workaround in software.
-> >
+On Wed, Feb 19, 2025 at 12:33:13AM +0530, Kaustabh Chakraborty wrote:
+> Add the product ID of Exynos7870 (S5E7870) to the existing list.
 > 
-> Having "mti,mips-cm" is not useful for the EyeQ6 chip. On the EyeQ6, we
-> obtain all relevant information related to CM dynamically without
-> needing this compatible string.
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+>  drivers/soc/samsung/exynos-chipid.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> > The programming interfaces and so on remains unchanged.
-> 
-> Even without a compatible string, we are able to utilize the CM. At
-> present, there is no node in the device tree, and apart from the
-> hardware being faulty, we do not need it.
-> 
-> >
-> > Also other firmware components like U-Boot doesn’t need to be aware of
-> > eyeq6 variant.
-> 
-> It's the same for the firmware; they don't need to have "mti, mips-cm"
-> information, as they can retrieve all they need dynamically.
 
-so it the current patch version correct ? If yes and nothing else is
-outstanding, I'm going to apply the series.
+This does not apply anymore - conflict. Please rebase and resend.
 
-Thomas.
+Best regards,
+Krzysztof
 
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
 
