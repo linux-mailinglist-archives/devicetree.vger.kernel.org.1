@@ -1,132 +1,214 @@
-Return-Path: <devicetree+bounces-149204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E91DA3EB8C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 04:59:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95E9EA3EC05
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 06:02:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9F543B5907
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 03:59:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBADD19C2041
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 05:02:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BF6E1F4262;
-	Fri, 21 Feb 2025 03:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C9E21D5CD4;
+	Fri, 21 Feb 2025 05:02:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QYnnX1xp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cDxxyE1H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E2022862AC;
-	Fri, 21 Feb 2025 03:59:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CF158F6E;
+	Fri, 21 Feb 2025 05:02:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740110353; cv=none; b=LOtLt5UJkX1h9k8VN7KLtBtHfgsEslE3+vRrIRJtUuBaaM88tUgjqYnAItgJTfrNnS1vfWYltAJB0TPlRA6UD2ojiTkolNLuaWV6b8XqtC3m2bOr3XZtuJ3Q/sEcOdxvmtSRO6bNoWNtaEoCp4V+B7eOEsPxR0QURF2XHz8KkRU=
+	t=1740114141; cv=none; b=FpyqqqQ0JcnXw9WsTfNRGY+07nY2rgfYEmAj1LDNBZOMNqAIvpb81gaWA8Rjff0avYJxS+M1Cgog99Vf/ccsPu+YfjmPwzlp6NhovBQoKHbHB9Yklj3JP6vREf3CkZKaGepTmTUHK1ApLfA7R2ffj3J1JMSSRpv9s/lbbqdzLZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740110353; c=relaxed/simple;
-	bh=XZ2RM16Az6uz92GdxRvDu5nPmKE66mfQnEP/WoRbzlQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QRrPh0Puo2r9pu04604o+t5Uw1BRjDVFNAWh75aZtNFU+6fmkHoyoDIb1iewUYT0rcJQbWyVg5QufJqbMAD1nuaJlyyDtE2BhdvrYtS7VQZ+ikwKMrdb/SXLxeu8Ix1YZJIH5BI8KyI9Xdio0cw97biX1NIKeKXIE2fiJAKuP7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QYnnX1xp; arc=none smtp.client-ip=209.85.216.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2fc383a11cdso381797a91.2;
-        Thu, 20 Feb 2025 19:59:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740110352; x=1740715152; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VND56wFi3Kn3v77IS87WtpNyey62fEJlfCeDgLZ0JRI=;
-        b=QYnnX1xpn/4r3nxRKhPvLYHFFi9v/5uvmLU6V28YlKNzXAUvpz90e49643xCzLXymt
-         lqTIE/UDj27OL2ZGUz7lYUeRfZBnG8zrEqYMIN62KjqQefIOnlr7s0OW78vNNgMeGxsq
-         T4q5hukV+dNBUEHNvSnKhpfNgGngeK9dcDMFTkP06s/VKgIBXNZEMmpRbN5LNxdLVfxw
-         I7U+OKtqBwGE1hEkQxcuMlqSDKIAiAjY2L/NO8F0URkjRNbc7GtQR0snw655Y5R8p2MP
-         ics8faEz7oqCBJ9zcUluEgOejUYTla1Rh1f9OgwH3Rm6iB5ZfY4wuGzPuRKqRQeFbKsr
-         7Yvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740110352; x=1740715152;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VND56wFi3Kn3v77IS87WtpNyey62fEJlfCeDgLZ0JRI=;
-        b=fi6ob1YreajkmTmspziTAmVBP4OjQCmvhS2AltJQTLBAgSofNzU6Tp5EWHp0jGnrpa
-         WC94sohDd/NgSIseMBksiT0RuLlobplrQQWACBbNX1ZMeGT1fB46DSFp/3O03sbnnHJO
-         Zhf5duzrEj9eX/OQfmUQuB1mcs0NWyhT0Nq8bnll6VBkH5MMNuVnk/r+VZCMsG9p+MF2
-         p2msdfAvoqGCLiEGvj8VZ/ZcDlaWAJh9UMDZJNO2mV43yfHzqWr0XRxi/D/aS/WcI7oO
-         Ubd8HliQ17ihWffc1G6JSXjCX/Qb2zOXe4wZZ2qoq64huNhMZFC05/bOza+SE6si/FDh
-         zx5A==
-X-Forwarded-Encrypted: i=1; AJvYcCUCQHKPweuj6C7NLJOB6xcZ1sypNr2y5Nr20J1BzUNy4LQ6Th34CFf/Ljgz5w9Zjph6C6z8/HIkpkXqAKKhdGQ=@vger.kernel.org, AJvYcCUpP6opduF96IToPhuBADoiYNWe9T/s1QFlyUXGPDZ1q1+qdxqd+2dQ+1Ueyi46HAcGCBbp7egRYugn@vger.kernel.org, AJvYcCVmMO0Sh6HFmGG1nk3nnBUbC+XtpQFPL/4DGyfeiw8pFsOBcGEI1Dgj5MD6I1gtNAS0+KUzS4Kq+2fwFsME@vger.kernel.org, AJvYcCXDyM4ZbM9I6G3+BtCWaa+ZtLVfs4trGE53+iYNOmr2SGDbgX4CBp6dF0fUizzPBaAF0dtd@vger.kernel.org, AJvYcCXyZ6kpzUIMQaPfmcL2AUos2DO8wfVsTv5lc37PRHWAFnw99BqnY5fkFnrDv3m+4DylSDVFz+24sCug@vger.kernel.org
-X-Gm-Message-State: AOJu0YzARDEuWrEH+ElySGbo3cTcLS4Y7ScZQaOg3zEoXHGkNoHS6X2j
-	JCC1x2UmuwkYq8aJFmxALsiTX7b89nX8I3hJTDYeQl5MkwYM3PSVJrELRD2IkiJSTIGnFZqGdXB
-	h5h3gYu+LEWMjc2HD/Aq3v4adZc4=
-X-Gm-Gg: ASbGncvl3JUSZMlU9rbWAY9/UCLRHk5vBXnhTDi0OJqiYorZ/Tkj3RRbceSS4AyB6Ov
-	iS6V9YFK5vJDK21UTEgumCnTf8DSelmCJb2nO6Uf4FlwWLpxWi4TI3fbZEZNEM7/htZ0Lukduyi
-	W2CDCkZws=
-X-Google-Smtp-Source: AGHT+IG/p3FXeTyrAAqDE1FrvSFfCyLSjW6tz4Gy4+kr+TxE6tY3gEvqPTJfJGL9UcELpQzeYJ728itJafYL886LXvI=
-X-Received: by 2002:a17:90b:4c04:b0:2ee:f59a:94d3 with SMTP id
- 98e67ed59e1d1-2fce75eed74mr1150380a91.0.1740110351760; Thu, 20 Feb 2025
- 19:59:11 -0800 (PST)
+	s=arc-20240116; t=1740114141; c=relaxed/simple;
+	bh=c0i9YKcxMAZSczsGbyv7PfTF7dO7v+vR2vxrFUcpWcI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=laNLAEOMm+DtlVAhPcR+hz/CBC82XA0lmzvE1FaTeHztcON8qcIFVQgJw+o7IfWIb3fDr/0I3IOCARRY4z2qlsOAqqTEjywuzBbyEB/ijD88V+EKWkqg4iK4mPR6kwegbPExG6M52sWP8jAOBWj+iL0jVmu+BF2tODl2iRtgB7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cDxxyE1H; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51L51v4M213326
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 20 Feb 2025 23:01:57 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1740114117;
+	bh=MkLdPAobDI226xV6MrDXZ/BCT77j0+a518w5n2XSOTE=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=cDxxyE1HRPjxMhq3S6vKJ2ld3V9almRBCT1eusBDwdsWh2dXupZp4zvgBeGEsJp5M
+	 0Fm5f+8kcbN0nMGwiLDfTERIQXGzNLmVMfz+bdNxRBB0tTKy2Z/2xAMpTUzuA8t0vq
+	 Vl/6q8opOSOeKpkM3phBHJUl/Gje40A6/+cC8Cd4=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51L51vcS013703
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 20 Feb 2025 23:01:57 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 20
+ Feb 2025 23:01:57 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 20 Feb 2025 23:01:57 -0600
+Received: from [172.24.227.115] (abhilash-hp.dhcp.ti.com [172.24.227.115])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51L51qaw092694;
+	Thu, 20 Feb 2025 23:01:53 -0600
+Message-ID: <998346fc-9228-49c3-bac7-9a701a0cc5e6@ti.com>
+Date: Fri, 21 Feb 2025 10:31:51 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241219170425.12036-1-dakr@kernel.org> <20241219170425.12036-8-dakr@kernel.org>
- <g63h5f3zowy375yutftautqhurflahq3o5nmujbr274c5d7u7u@j5cbqi5aba6k>
-In-Reply-To: <g63h5f3zowy375yutftautqhurflahq3o5nmujbr274c5d7u7u@j5cbqi5aba6k>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Fri, 21 Feb 2025 04:58:59 +0100
-X-Gm-Features: AWEUYZlzKjop4fZ8volzu6pW1ujhScrt60C60cL2W8m76ir8T5HPKhxKjw-6XfY
-Message-ID: <CANiq72=gZhG8MOCqPi8F0yp3WR1oW77V+MXdLP=RK_R2Jzg-cw@mail.gmail.com>
-Subject: Re: [PATCH v7 07/16] rust: add `io::{Io, IoRaw}` base types
-To: Alistair Popple <apopple@nvidia.com>
-Cc: Danilo Krummrich <dakr@kernel.org>, gregkh@linuxfoundation.org, rafael@kernel.org, 
-	bhelgaas@google.com, ojeda@kernel.org, alex.gaynor@gmail.com, 
-	boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com, 
-	benno.lossin@proton.me, tmgross@umich.edu, a.hindborg@samsung.com, 
-	aliceryhl@google.com, airlied@gmail.com, fujita.tomonori@gmail.com, 
-	lina@asahilina.net, pstanner@redhat.com, ajanulgu@redhat.com, 
-	lyude@redhat.com, robh@kernel.org, daniel.almeida@collabora.com, 
-	saravanak@google.com, dirk.behme@de.bosch.com, j@jannau.net, 
-	fabien.parent@linaro.org, chrisi.schrefl@gmail.com, paulmck@kernel.org, 
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, rcu@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIIHYyIDEvMl0gZHQtYmluZGluZ3M6IG1l?=
+ =?UTF-8?Q?dia=3A_cdns=2Ccsi2rx=2Eyaml=3A_Add_optional_interrupts_for_cdns-c?=
+ =?UTF-8?Q?si2rx?=
+To: Jai Luthra <jai.luthra@linux.dev>,
+        Changhuang Liang
+	<changhuang.liang@starfivetech.com>
+CC: "mripard@kernel.org" <mripard@kernel.org>,
+        "linux-media@vger.kernel.org"
+	<linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "devarsht@ti.com" <devarsht@ti.com>,
+        "vaishnav.a@ti.com" <vaishnav.a@ti.com>,
+        "r-donadkar@ti.com" <r-donadkar@ti.com>,
+        "u-kumar1@ti.com" <u-kumar1@ti.com>
+References: <20250217130013.2802293-1-y-abhilashchandra@ti.com>
+ <20250217130013.2802293-2-y-abhilashchandra@ti.com>
+ <m6ijg5colbev6lyhiobblecb4wlvwezpccibnso26gd3dadrfh@twgul4eel6hg>
+ <ZQ0PR01MB13022FE965643879D8794733F2FAA@ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn>
+ <swqtud4ohcsjjt4ofgrovsa5h7koriuvpmxb3hdemnndwems2a@nwiny4dvuzwg>
+Content-Language: en-US
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+In-Reply-To: <swqtud4ohcsjjt4ofgrovsa5h7koriuvpmxb3hdemnndwems2a@nwiny4dvuzwg>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Alistair,
+Hi Jai,Changhuang,
 
-On Fri, Feb 21, 2025 at 2:20=E2=80=AFAM Alistair Popple <apopple@nvidia.com=
-> wrote:
->
-> Is this a known issue or limitation? Or is this a bug/rough edge that sti=
-ll
-> needs fixing? Or alternatively am I just doing something wrong? Would app=
-reciate
-> any insights as figuring out what I'd done wrong here was a bit of a roug=
-h
-> introduction!
+Thanks for the reviews.
 
-Yeah, it is a result of our `build_assert!` machinery:
+On 18/02/25 21:07, Jai Luthra wrote:
+> On Tue, Feb 18, 2025 at 09:35:50AM +0000, Changhuang Liang wrote:
+>> Hi Jai, Abhilash
+>>
+>>> Hi Abhilash,
+>>>
+>>> On Mon, Feb 17, 2025 at 06:30:12PM +0530, Yemike Abhilash Chandra wrote:
+>>>> The Cadence CSI2RX IP exposes 3 interrupts [0] 12.7 camera subsystem.
+>>>> Enabling these interrupts will provide additional information about a
+>>>> CSI packet or an individual frame. So, add support for optional
+>>>> interrupts and interrupt-names properties.
+>>>>
+>>>> [0]: http://www.ti.com/lit/pdf/spruil1
+>>>>
+>>>> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+>>>> ---
+>>>>
+>>>> Changes in v2:
+>>>> - Address Krzysztof's review comment to remove flexibility while adding
+>>>>    interrupts.
+>>>>
+>>>>   .../devicetree/bindings/media/cdns,csi2rx.yaml         | 10
+>>> ++++++++++
+>>>>   1 file changed, 10 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>>>> b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>>>> index 2008a47c0580..f335429cbde9 100644
+>>>> --- a/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>>>> +++ b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>>>> @@ -24,6 +24,16 @@ properties:
+>>>>     reg:
+>>>>       maxItems: 1
+>>>>
+>>>> +  interrupts:
+>>>> +    minItems: 3
+>>>> +    maxItems: 3
+>>>> +
+>>>> +  interrupt-names:
+>>>> +    items:
+>>>> +      - const: info
+>>>> +      - const: error
+>>>> +      - const: monitor
+>>>> +
+>>>
+>>> How many interrupt lines are actually exposed by the Cadence IP?
+>>
+>> I only see that the Cadence IP exposes two interrupt lines: irq and err_irq. If there are any mistakes,
+>> please help correct them.
+>>
+> 
+> Thank you Changhuang for the quick confirmation.
+> This seems to match CSI_ERR_IRQ and CSI_IRQ in TI's integration.
+> 
+>>> It is not clear to me from the TRM [0]. From the "Table 12-1524. CSI_RX_IF
+>>> Hardware Requests" it looks like there are three separate interrupt lines
+>>> CSI_ERR_IRQ, CSI_IRQ and CSI_LEVEL, which are routed to the Arm core/GIC.
+>>> And four lines for the ASF submodule (?) that are not routed to GIC.
+>>>
+> 
+> Abhilash,
+> 
+> What is unclear to me is where the third CSI_LEVEL interrupt line is coming
+> from?
+> 
+> The TRM description of the CSI_LEVEL interrupt says it is for PSI_L overflow
+> or VP0/VP1 frame/line mismatch, both of which are outside the Cadence CSI2RX,
+> instead belonging to the TI wrapper hardware, which has its own driver.
 
-    https://rust.docs.kernel.org/kernel/macro.build_assert.html
+Yes, we will update the device tree bindings accordingly. We are 
+planning to handle the TI-specific interrupt line separately in another 
+series.
 
-which works by producing a build (link) error rather than the usual
-compiler error and thus the bad error message.
+> 
+>>> This does not match with the error, info and monitor line names mentioned
+>>> here.
+>>>
+>>> In my understanding which interrupt lines are actually integrated will vary
+>>> from SoC to SoC, so please check what are the actual interrupt line names
+>>> exposed by the Cadence IP. Maybe Maxime knows more.
+>>>
+>>> But I don't think it is correct to make all 3 mandatory together, as some
+>>> vendors may only integrate the error interrupt ignoring the rest.
+>>
+>> Agreed.
+>>
+> 
+> I think by default there should only be two optional interrupt lines for
+> cdns-csi2rx, "irq" and "err_irq" which is common across vendors.
+> 
+> If this third TI-specific CSI_LEVEL interrupt *has* to be handled by
+> cdns-csi2rx driver, it would be better to create conditional bindings and
+> match data in the driver such that the irq is only requested if
+> "ti,j721e-csi2rx" compatible is present.
 
-`build_assert!` is really the biggest hammer we have to assert
-something is true at build time, since it may rely on the optimizer.
-For instance, if `static_assert!` is usable in that context, it should
-be instead of `build_assert!`.
+I will correct this in v3 by introducing bindings that allow vendors
+the flexibility to use either two or three interrupt lines.
 
-Ideally we would have a way to get the message propagated somehow,
-because it is indeed confusing.
+Thanks and Regards,
+Yemike Abhilash Chandra
 
-I hope that helps.
-
-Cheers,
-Miguel
+> 
+>> Best Regards,
+>> Changhuang
+> 
+> Thanks,
+> Jai
 
