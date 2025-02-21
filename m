@@ -1,58 +1,71 @@
-Return-Path: <devicetree+bounces-149317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5E28A3F0DD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 10:48:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 518D1A3F0F1
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 10:51:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D05043B4348
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 09:47:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54F21188480F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 09:48:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 809EB2054F5;
-	Fri, 21 Feb 2025 09:44:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89E1204599;
+	Fri, 21 Feb 2025 09:45:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RxErVFXq"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="oRbDChC6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565582054E9;
-	Fri, 21 Feb 2025 09:44:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F03F201246;
+	Fri, 21 Feb 2025 09:45:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740131056; cv=none; b=je1Ri2xaKC06VRHkCY9TxaMeWdknT9BKaTBPG3dy+E/4kRSn5RMAgLe5i8UGpqAHboNwFlBhNdvuvui4YHWjsEBaZva+T1HyyDLOeYyPU2ugVMSi7Fvr+ysUwbqb02eVqXurH6m5zYPkReOIxX1QxcAhZ3jGNBFiHbSZzedULcw=
+	t=1740131132; cv=none; b=IMFbciEe+BQcMHfyzr3gz8TF8Msypbxgnb1TyIBprvynNRMBKacQH5pcelO41rTu0FwNJ/B81aXk3PAOf3Qg3bcu24mxI26b1sLdKSn/4T3AakJUzpQfEqRZxh+QjvcDjTrL/qYBocnZ6qm6qE6WA1xbOqGRaRhuTA0Uh8RiZfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740131056; c=relaxed/simple;
-	bh=oGc08unFJjdspqNPw0ls9wEq6ey6P+fkD8tthUluMQA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EGP+aDSpXmJ0ZCI2KCAze6jDCEA4pedeCRInb2/MOPHQTRKw+5JZZqMPT6SnPJkW2zFymcUVZDaJEk98M+iVr1OxdyhOM/2PhP3m1jxtQb1Vts76/lyBEfHiBNTeg3ETu8BcSOz83591lNmuLVNFa+gwzgxgzjBzwCnd9sK/dJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RxErVFXq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D194C4CED6;
-	Fri, 21 Feb 2025 09:44:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740131055;
-	bh=oGc08unFJjdspqNPw0ls9wEq6ey6P+fkD8tthUluMQA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RxErVFXqII+ugR/34j5LlavZu6TDo0qG4vxbyVUD/RTVc8Cv4v6rgzAx6aT8x0XWP
-	 oNPbiAJnYWoEl0173U2EMZG4+DZjUUeDl6jKfKA+IVQhK4WjemXmXTsdb7sle+xEqN
-	 jiCfCFlAikceK/A2qDcyASm8tktM/9SVe9G36pX5ZbTorKX2UfTafhOWPgNQVMVZ2o
-	 DNww8ujp+j6n91i2jrf49QBh6PPn8t4U76h2IHrmqpjOPWC6fmsjmUHBckWW4VV2I3
-	 IVm7vDuV/bt/cD2Q67Y/6CgNO+EkTgjN2AVryTcQjs/2P02PqqdLoLfiZktXEEwuU8
-	 ulH+s+Aj+IDfw==
-Date: Fri, 21 Feb 2025 10:44:12 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Stanley Chu <stanley.chuys@gmail.com>
-Cc: frank.li@nxp.com, miquel.raynal@bootlin.com, 
-	alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	tomer.maimon@nuvoton.com, kwliu@nuvoton.com, yschu@nuvoton.com
-Subject: Re: [PATCH v3 1/4] dt-bindings: i3c: silvaco: Add npcm845 compatible
- string
-Message-ID: <20250221-nippy-spotted-finch-fa0a5b@krzk-bin>
-References: <20250221063528.1810007-1-yschu@nuvoton.com>
- <20250221063528.1810007-2-yschu@nuvoton.com>
+	s=arc-20240116; t=1740131132; c=relaxed/simple;
+	bh=/KcGc01eSsUrerPGVPWSAYZtIfEjNnei9zlH7mBhz24=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=hQ2Gdys1FbPvwh0LuNv5D/+fkwKFZfi8iukOZtkxVQfhyCTWhpeg17xc1DtZG+C5SWbsaXFLEbNHk4BXtr5Tu7WsvJjtFdhAk4wbMBqjSelPos9rPnvoauK6hcF+yiiF7bGjlFowJRnS0npdBHEB75LRxjQKi6Uwi/R8SjrXF8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=oRbDChC6; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0DBEB43299;
+	Fri, 21 Feb 2025 09:45:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1740131122;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UpG//t1awC6TTYgGgCG1xSqQY/MSKf51OZV8VicRJJw=;
+	b=oRbDChC6bFmowtU0JHKSoS4k/X7btTZpHcZ8WaDUz442bJdEC9M9nY5L1e0roqJh/FCl7q
+	feEJmVov/RmYcssEDj9U0icJtAxEz8rlJHUF+9MeL5X5VErjTkJVh/e9LfqncMHDh08d3h
+	dt2/pSgtDxz5LTHXOFl29bNKYPWhuHWUBbS0qDq1UdT+LK6A6zJUqE4gClKK639bpcA78M
+	L5nsCrV3tZ3nvI1TljibJKR2Y8dVpozUtdQvDIjq6ry/3YRE8OL+Aa+J2vnEBl5HL2KcLN
+	LUtyBX15132MvBzMSIHCVZ9MxNSTelYGtBsN4QNK0y2clxl8LP5FwfUCePo7GQ==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob Herring <robh@kernel.org>,
+ Aleksandar Rikalo <arikalo@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vladimir
+ Kondratiev <vladimir.kondratiev@mobileye.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
+ <theo.lebrun@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] dt-bindings: mips: mips-cm: Add a new compatible
+ string for EyeQ6
+In-Reply-To: <Z7hJVnJSg3C9lmLY@alpha.franken.de>
+References: <20250123-cluster-hci-broken-v3-0-8a7ec57cbf68@bootlin.com>
+ <20250123-cluster-hci-broken-v3-2-8a7ec57cbf68@bootlin.com>
+ <afa2e874-c078-4c3e-b485-d948a0bb6a6f@app.fastmail.com>
+ <CAL_JsqKXYruNn+MtxbvCCWU2OmqeV-uAyyzN+F-ppSJVscr91w@mail.gmail.com>
+ <bf08785b-9963-4539-92ef-b73c3abe8c19@app.fastmail.com>
+ <87tt9iucu9.fsf@BLaptop.bootlin.com> <Z7hJVnJSg3C9lmLY@alpha.franken.de>
+Date: Fri, 21 Feb 2025 10:45:21 +0100
+Message-ID: <877c5jskb2.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,24 +73,120 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250221063528.1810007-2-yschu@nuvoton.com>
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeileejudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefujghffffkgggtgfesthhqredttddtjeenucfhrhhomhepifhrvghgohhrhicuvefngffogffpvfcuoehgrhgvghhorhihrdgtlhgvmhgvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefghfegvdehgfdtjedvtefhvdeikefgteeuhfeukeettefgvdeuueettddtkeegveenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmedukeeitgemfhgvsgefmegtfhegtdemsgdtrgejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmedukeeitgemfhgvsgefmegtfhegtdemsgdtrgejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehgrhgvghhorhihrdgtlhgvmhgvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedufedprhgtphhtthhopehtshgsohhgvghnugesrghlphhhrgdrfhhrrghnkhgvnhdruggvpdhrtghpthhtohepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomhdprhgtphhtthhopehrohgsh
+ heskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghrihhkrghlohesghhmrghilhdrtghomhdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepvhhlrgguihhmihhrrdhkohhnughrrghtihgvvhesmhhosghilhgvhigvrdgtohhmpdhrtghpthhtohepthhhvghordhlvggsrhhunhessghoohhtlhhinhdrtghomh
+X-GND-Sasl: gregory.clement@bootlin.com
 
-On Fri, Feb 21, 2025 at 02:35:25PM +0800, Stanley Chu wrote:
-> From: Stanley Chu <yschu@nuvoton.com>
-> 
-> Nuvoton npcm845 SoC uses the same Silvico IP but an older version.
-> Need to add a new compatible string to distinguish between different
-> hardware versions.
-> 
-> Signed-off-by: Stanley Chu <yschu@nuvoton.com>
-> ---
->  Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+Hello Thomas,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> On Tue, Jan 28, 2025 at 05:23:26PM +0100, Gregory CLEMENT wrote:
+>> > =E5=9C=A82025=E5=B9=B41=E6=9C=8827=E6=97=A5=E4=B8=80=E6=9C=88 =E4=B8=
+=8B=E5=8D=8810:07=EF=BC=8CRob Herring=E5=86=99=E9=81=93=EF=BC=9A
+>> >> On Mon, Jan 27, 2025 at 3:43=E2=80=AFPM Jiaxun Yang <jiaxun.yang@flyg=
+oat.com> wrote:
+>> >>>
+>> >>>
+>> >>>
+>> >>> =E5=9C=A82025=E5=B9=B41=E6=9C=8823=E6=97=A5=E4=B8=80=E6=9C=88 =E4=B8=
+=8A=E5=8D=8811:01=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
+>> >>> > The CM3.5 used on EyeQ6 reports that Hardware Cache Initialization=
+ is
+>> >>> > complete, but in reality it's not the case. It also incorrectly
+>> >>> > indicates that Hardware Cache Initialization is supported. This new
+>> >>> > compatible string allows warning about this broken feature that ca=
+nnot
+>> >>> > be detected at runtime.
+>> >>> >
+>> >>> > Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>> >>> > ---
+>> >>> >  Documentation/devicetree/bindings/mips/mti,mips-cm.yaml | 12 ++++=
++++++++-
+>> >>> >  1 file changed, 11 insertions(+), 1 deletion(-)
+>> >>> >
+>> >>> > diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.ya=
+ml
+>> >>> > b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>> >>> > index
+>> >>> > 4324b2306535f1bf66c44b1f96be9094ee282041..d129d6382847768dc026336d=
+8d2c7328b6b81f9b
+>> >>> > 100644
+>> >>> > --- a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>> >>> > +++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>> >>> > @@ -19,7 +19,12 @@ maintainers:
+>> >>> >
+>> >>> >  properties:
+>> >>> >    compatible:
+>> >>> > -    const: mti,mips-cm
+>> >>> > +    oneOf:
+>> >>> > +      - const: mti,mips-cm
+>> >>> > +      - const: mobileye,eyeq6-cm
+>> >>> > +        description:
+>> >>> > +          On EyeQ6 the HCI (Hardware Cache Initialization) inform=
+ation for
+>> >>> > +          the L2 cache in multi-cluster configuration is broken.
+>> >>> >
+>> >>> >    reg:
+>> >>> >      description:
+>> >>> > @@ -44,4 +49,9 @@ examples:
+>> >>> >        compatible =3D "mti,mips-cm";
+>> >>> >        reg =3D <0x1bde8000 0x8000>;
+>> >>> >      };
+>> >>> > +
+>> >>> > +  - |
+>> >>> > +    coherency-manager {
+>> >>> > +      compatible =3D "mobileye,eyeq6-cm";
+>> >>>
+>> >>> I think =E2=80=9Cmobileye,eyeq6-cm=E2=80=9D, =E2=80=9Cmti,mips-cm=E2=
+=80=9D would describe the hardware better as eyeq6=E2=80=99s CM is just a s=
+pecial variant of mips-cm.
+>> >>
+>> >> Is s/w that only understands =E2=80=9Cmti,mips-cm=E2=80=9D useful on =
+eyeq6 chip? If
+>> >> so, I agree. If not, then a fallback compatible is not useful.
+>> >
+>> > Yes, mobileye,eyeq6-cm only enable an additional bug workaround in sof=
+tware.
+>> >
+>>=20
+>> Having "mti,mips-cm" is not useful for the EyeQ6 chip. On the EyeQ6, we
+>> obtain all relevant information related to CM dynamically without
+>> needing this compatible string.
+>>=20
+>> > The programming interfaces and so on remains unchanged.
+>>=20
+>> Even without a compatible string, we are able to utilize the CM. At
+>> present, there is no node in the device tree, and apart from the
+>> hardware being faulty, we do not need it.
+>>=20
+>> >
+>> > Also other firmware components like U-Boot doesn=E2=80=99t need to be =
+aware of
+>> > eyeq6 variant.
+>>=20
+>> It's the same for the firmware; they don't need to have "mti, mips-cm"
+>> information, as they can retrieve all they need dynamically.
+>
+> so it the current patch version correct ? If yes and nothing else is
+> outstanding, I'm going to apply the series.
 
-Best regards,
-Krzysztof
+Thank you for taking care of it. From my perspective, this patch is the
+correct version, and you can apply this series.
 
+Gregory
+
+>
+> Thomas.
+>
+> --=20
+> Crap can work. Given enough thrust pigs will fly, but it's not necessaril=
+y a
+> good idea.                                                [ RFC1925, 2.3 ]
+
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
