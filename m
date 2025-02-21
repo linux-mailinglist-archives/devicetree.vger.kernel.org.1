@@ -1,134 +1,128 @@
-Return-Path: <devicetree+bounces-149628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DF43A3FF63
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 20:11:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86FA5A3FF8D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 20:16:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C34767AD7F8
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 19:10:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79BBB7A61F1
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 19:15:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85031253B72;
-	Fri, 21 Feb 2025 19:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C44A250BE6;
+	Fri, 21 Feb 2025 19:16:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BZN6Tze0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jhlp4fF7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C178B2528FB;
-	Fri, 21 Feb 2025 19:10:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65B2D1F12EC
+	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 19:16:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740165021; cv=none; b=KxsS+vuBiUzPefi3FjPT8vwhQeg4rPHNCOZOnAMtZtQKUAD/hwfb1Syf1hlmieRqUABu80Ub9DqTzPKqQr5bmH2FDWOUs4t8uC6Xya2Rus7sSnlhNEdJznQ/Vq5RhYePDlAwGO7YhviqN2crFFTwTBhGHPk6hVC5auMkG5sF/UA=
+	t=1740165395; cv=none; b=Ww835xv3T2c3LAc6BDvMrP7jdOiOT8lb+VBTZS38LVYmYIy5ngVq2cK2eldd/16gUlGq93am3kloxG072tZJzhFsph/iZQRpERYcow4h13xOOyqDkX+fbnwoBck9R/0RHl8Hs8xduCbefP+nABLBiwFxjyrU39uKlmRJTlRY1Go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740165021; c=relaxed/simple;
-	bh=aGMEv09mgvOMWn0LVWhHooUpN8dKT5EsPlQPTtFVSQA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=T4Zn7YqxK5TdEA7NX28nHKS01KCN3TcXjvDJcjVRdpAAW6lDGWLO4NP+bqS4Mzp6EsnSCMNfAdE43Puf+yublKa6Km1pTlkHzGfO11arU0yrpmBmYTDzFfpvKUH1LoaKBmVpVzPUu8XZlfmUTdiJSSEVfy+dcgla/tGiBgh5do8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BZN6Tze0; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5ded368fcd9so3565222a12.1;
-        Fri, 21 Feb 2025 11:10:19 -0800 (PST)
+	s=arc-20240116; t=1740165395; c=relaxed/simple;
+	bh=5fvG/DVaGj5l8z8BF8vLq3u/qF14rEVt1HH0vUnX6qw=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=B3PcoBHyTtuAJIrAcG4cIBijqg7KIvC7dYAezuDceMTsIwYUv+OyD31xWf5Z0igL9j69vhMmIepvRe8CW3XttMDclggR0Yr/YfRWnUP6Zmoz+0ZPSBx7WeQ83LYVO1++QdNcBEQwx2McQ1GateMqFgL7jvOSLooMka5Ema5UEfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jhlp4fF7; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-439a331d981so21610845e9.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 11:16:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740165018; x=1740769818; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1740165392; x=1740770192; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=V3oJX0NNej/zcXG8s4cxQRhfNdLEwQ8bXLo+d66KAIA=;
-        b=BZN6Tze01ufY8ojkhaayAdhwtDONWiUJql73W1YJNwyxxoiGeSVXYOGNtDRCFkb7zt
-         s1q/m7S1qHVxfkCeSD+4AjnkpugepRDkKDLlr4Tv8DKVm0/EprzPRg/fzTfhVwvmqM1J
-         5nBCEYy6bLczVeYPA+H4V4wfZAJRoGixV5bIXwvDeNTRoB8niopx7JhQXS0FqrjDgRmb
-         ZsBG/qFoxgmLZE93ux92RYjXVLOS9x0yWneAYqmBfFNQBLKI/lxjNoTREFYm5ecYdCox
-         0BEf21tsOQy3zQfu/jaQNS9HT8ZBnHf5FzwwTpHFGou2/02pCKboicGM/+dWwMU+ZMcr
-         QEGQ==
+        bh=kVZmPLX9SKE4OV/m5m7MNKgR1nn72J93NrOuCk0UxAI=;
+        b=jhlp4fF79+aaHu5NjiIxAjtLP2Arb58VoghKjVLT1o4339vf//wkkIEljuU9SihVuj
+         q9xODfuPoHFB6INogOBb5XbRhclmOtk86+Ly31KcxBkrL3kUirZgKSbvrqCpJe5Ygj7D
+         f18KmG/KYZxkumNjvAWS7sjF5W78j6y75IXZKG46wR7swOoeYfxxUOzCyfSt2VWJ/swJ
+         RNu22fdKpcXD7q7Ze3RgP3rJrJqx1w3FUuRsHbjhPIBuTijKJr5N5JXmTbQK9s3KvBVC
+         E72scLqVnKBqmfUTL1K+K8GDK6TSz6UVPG/mjeHPtHin02H9nrnDet7AHC1HEdeQAjtt
+         GJDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740165018; x=1740769818;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V3oJX0NNej/zcXG8s4cxQRhfNdLEwQ8bXLo+d66KAIA=;
-        b=c7HUiAd6ZH28F+r91FhH1hJdDL3btpzWfU+39x2R0qDnYlQ9A5JPGhe0aLF1ZcnUl9
-         E3uu24CWQc56CWqffm4nlxpOA3f8zjh3EyhbKg71Pdi3NPAoOm7id0YaXXcEuW3Dckc1
-         Z/Ski9ZCKkA/gBPW7uAZLnFMl5A3GYQANROftFkmRi4bJuSmYV7i/Uo269bZcnVGCE9L
-         xLR1LPjP7rPn6AWZ+ft7tWdodxAUlqv/Y4+GgECfzGAsHJD5Lstv1YVIvIqtwMWd6Sai
-         FCzlGVku7FJGttZdTz6fB5jF3rznphP22NBWo+8XwqL25IQuWidsCDBMgEuFkpexYrtV
-         Ntlg==
-X-Forwarded-Encrypted: i=1; AJvYcCUFlF5N+pHyY2lukkdlnxa/kvJRwJtGPRLVrDboZo0zlGxsvZRoMLlH106S4KNmQv5dJbiuLuWE8k1E@vger.kernel.org, AJvYcCWN07QPIokWlckDnjfRxJUCe8QPL6XjhSb2qB7cPS+VjGBk0BVDhUKPIr6flC8Wmg2jFF14vrmuvhu696Y6@vger.kernel.org, AJvYcCXTtHm1RJ72WzfFnbViI68rko4rbnAoJH+Og8csy0vw3E3e7T8MboXKLXzvS9O+1WrWM00Zmg8s1312@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBRslDir++As8ZLBy975hlgA5qy3DV0Prb2sGz2UNlP+HnTYAb
-	BXRt7MH+tySso1zqYWEvWJELU9gl+XDIwPEPyX46Pq5atUpUa6GJ
-X-Gm-Gg: ASbGncsXEEmoBCWavZ+jpRHejfH0mTxlDR3ZA4YYUfzNbXjxN3fGhXDvpR51b0zeFvu
-	HZvV7ecHoc4pXkVKnF0v8T/KOISIQz9SWkohRYq7ftOeCiBhKszB4Y3JQrVk8p61SJDE412j76C
-	pc0ixEK5h2MnrGtamTc9lx0VLsh1xsOsIDz2owkyJtsHwmu+v92z3QRvRlWh2JbxxlhozCLpOJM
-	RpNWM80EfLvG6xMqhCok8CNNa1jPWKDbybeatvUDS+mVXT0wtbhjXrAmscURKWjXyOXbTfHGe8X
-	W1H0nE1D1h+Uvcb63FRF9cx0Av+aPilNrCR3WP6tqMbVcUkK4V2B7z3o7+o=
-X-Google-Smtp-Source: AGHT+IGynN4ZF370Lzvi3ueh0CqKqONEKwybpfbsK9fvcCWm2za00Rn41+jeaxCDTpgJmAnwoZijwA==
-X-Received: by 2002:a17:907:7f9f:b0:ab7:c94f:af87 with SMTP id a640c23a62f3a-abc09a4b598mr518223166b.16.1740165017795;
-        Fri, 21 Feb 2025 11:10:17 -0800 (PST)
-Received: from playground.nxp.com ([82.79.237.175])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb9b187203sm1027261566b.61.2025.02.21.11.10.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Feb 2025 11:10:17 -0800 (PST)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Abel Vesa <abelvesa@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Marek Vasut <marex@denx.de>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-clk@vger.kernel.org,
-	imx@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: imx8mp: change AUDIO_AXI_CLK_ROOT freq. to 800MHz
-Date: Fri, 21 Feb 2025 14:09:29 -0500
-Message-Id: <20250221190929.31469-5-laurentiumihalcea111@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250221190929.31469-1-laurentiumihalcea111@gmail.com>
-References: <20250221190929.31469-1-laurentiumihalcea111@gmail.com>
+        d=1e100.net; s=20230601; t=1740165392; x=1740770192;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=kVZmPLX9SKE4OV/m5m7MNKgR1nn72J93NrOuCk0UxAI=;
+        b=ReRJ1ouqw0TqKegxTkTtSyrP9w/wH0LfFrr/pYdvf840qNp9waS5WKrU0S8SCRzXlr
+         9/rc87FaxFc17imgU22PrCJlxYrYvnMi8+MB2OvD93VB046gKEZxbPD/j3pMDt/aCqiO
+         tKHMM1o3QmejEibEjqACvtZh+z55lja+wUpoTUeBPnlYM5ggMeNwQO5tM9J2F3AuOxh5
+         GjZ3jf6TDvEUnbVSi0XKICPXKTK9/Ffd3BdKrYhDxwDUEsA8+IFm90KndeWReg0HUQNb
+         fBYdBAhVG7zaJFeH/AoNPecAVKNT5IoTZPawnEQwWs1VmTKogMvrjMp9pN4+w5foyXfW
+         EO8A==
+X-Forwarded-Encrypted: i=1; AJvYcCXGBb4jqSJgMrB9/mnuH7j4Tl65hgc8p/VcYtQgqQUKqkO4vEfXY0Y2R+PYFw4qTJc/h+/V3PI1KypH@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywkt28xI0D1dZQH1Dvx4Vtmn2CyI1YWPXIIOps9Wee5x0t4Geb+
+	WP5pZsMa0pKql3vTIhncQCac7YpDRCuY5RQ7fnGTKQvTRB5p8Z698mdE2ixqZ14=
+X-Gm-Gg: ASbGnctzqvCwNWTs0NQrsz5V808vfwlsrzAv7EkFp7Og1vyaiaRZr/O87RSgQNYjlyf
+	og/bYZ8Fgh6gXQ7IGf5qrBKOVQ/zqM6yxwx/ITZR3KZh/CpFNRHbA/g9BgSIUInsrc7L8+7G2tl
+	sFyUiwhIAB0sOr80VzDxnEsambQRmLLe7Eirdbq4Id3t24cubDasDePNUXmYNSVeH2lIIUN80FX
+	GPpolJvQfqAiDpvGKnNlVACnMNDouyUU7oH2fAAHD+1Tpmg4CnJ709Xl5qHmVLuqrRDvqFhsnBj
+	tIckEVo3Tz5MTWNAHfVR6Kt8wijR
+X-Google-Smtp-Source: AGHT+IEZIpW2AjGEyy2pSB737lSPq5c0PLgcm0gC9yalYRLXf6Zt62YGC6R9bY4VkJI99cTLRTXYvw==
+X-Received: by 2002:a05:600c:4ed1:b0:439:8ada:e3b0 with SMTP id 5b1f17b1804b1-439ae21636emr38684615e9.19.1740165391631;
+        Fri, 21 Feb 2025 11:16:31 -0800 (PST)
+Received: from localhost ([2.124.154.225])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-439b02e425esm25934415e9.17.2025.02.21.11.16.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Feb 2025 11:16:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 21 Feb 2025 19:16:29 +0000
+Message-Id: <D7YD5C0HCSZ1.2DOE3TAA7024Y@linaro.org>
+Cc: <quic_mohamull@quicinc.com>, <quic_hbandi@quicinc.com>,
+ <quic_anubhavg@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v10 1/1] arm64: dts: qcom: qcs6490-rb3gen: add and
+ enable BT node
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Janaki Ramaiah Thota" <quic_janathot@quicinc.com>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250221171014.120946-1-quic_janathot@quicinc.com>
+ <20250221171014.120946-2-quic_janathot@quicinc.com>
+In-Reply-To: <20250221171014.120946-2-quic_janathot@quicinc.com>
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+On Fri Feb 21, 2025 at 5:10 PM GMT, Janaki Ramaiah Thota wrote:
+> Add the PMU node for WCN6750 present on the qcs6490-rb3gen
 
-AUDIO_AXI_CLK_ROOT can't run at currently requested 600MHz w/ its parent
-SYS_PLL1 configured at 800MHz. Configure it to run at 800MHz as some
-applications running on the DSP expect the core to run at this frequency
-anyways. This change also affects the AUDIOMIX NoC.
+Is it rb3gen or rb3gen2? Also in the subject.
 
-Fixes: b739681b3f8b ("arm64: dts: imx8mp: Fix SDMA2/3 clocks")
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-Reviewed-by: Iuliana Prodan <iuliana.prodan@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The file that you patch seems to be "rb3gen2".
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 86c3055789ba..54147bce3b83 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -834,7 +834,7 @@ pgc_audio: power-domain@5 {
- 						assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>,
- 									 <&clk IMX8MP_SYS_PLL1_800M>;
- 						assigned-clock-rates = <400000000>,
--								       <600000000>;
-+								       <800000000>;
- 					};
- 
- 					pgc_gpu2d: power-domain@6 {
--- 
-2.34.1
+> board and assign its power outputs to the Bluetooth module.
+>
+> In WCN6750 module sw_ctrl and wifi-enable pins are handled
+> in the wifi controller firmware. Therefore, it is not required
+> to have those pins' entries in the PMU node.
+>
+> Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 171 ++++++++++++++++++-
+>  1 file changed, 170 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/bo=
+ot/dts/qcom/qcs6490-rb3gen2.dts
+> index 7a36c90ad4ec..de03770e0b90 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
 
+[..]
+
+Best regards,
+Alexey
 
