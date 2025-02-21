@@ -1,108 +1,111 @@
-Return-Path: <devicetree+bounces-149515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68667A3FB17
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:26:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFFF9A3FBE4
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:48:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8240D168F40
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:20:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FFBE177A9C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AACC51F2BB5;
-	Fri, 21 Feb 2025 16:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D7751F4299;
+	Fri, 21 Feb 2025 16:40:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="2hls+aUo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from s2.avantea.pl (s2.avantea.pl [46.242.128.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DD081E1C36;
-	Fri, 21 Feb 2025 16:16:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BEF21F12EC;
+	Fri, 21 Feb 2025 16:40:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.242.128.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740154609; cv=none; b=mUg4DmpKpW6+A85qhfSNuCpD7+7uY10HyJk9Lq0howhJI803o3nWQDvDlu3s3lxieBY2SOkHH67F7FWSADsJIcuCrI9M5dNM0BbnoWxXmXmQEYVqV7j3DoixgNIvgEL76yv3Z3nWMgPeMla1CpLZ73WKeCNklW5laYXCPwbxt3Q=
+	t=1740156037; cv=none; b=XSj3gVPZJ3q1S7DBYxULw1KZWgqc7XucTiQljOgYgqPRM84Xl/Y+QPtMNnaSH8BpfdFUePHURjNfntAxK67y1rgRkxF8Jqzjh8A81pBJ4jmOI4ODaCgtJK7j+vjVpWLua7ZlqM6h5D+1qSmT/bao7q/bafrwxjmSHMIJZJxoTyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740154609; c=relaxed/simple;
-	bh=62BjU1wiNs+I6ByCG2YQUuxnFrCx1qtKkdARbuTJls4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D/QTlQWZVBlS6V0DB5/miIRS3YvrQLg3/MrTzU4R9vgIVKI7pyF41W8OkkEIpIdwmJyvWwX1Dj5QftHRbwZMzhxXtsV2gd1boJDhMYBp9zil1M0Tq8JaUtSYp/ph5QEkH4AC229Rw5yKwCxf5xqedokniDKG6RTi8TYv0XT03vk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2fc1c80cdc8so3784328a91.2;
-        Fri, 21 Feb 2025 08:16:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740154607; x=1740759407;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dtzdmLHWgF7iyekmReF4eZfVX/GiXF6V9kKExFtIjGQ=;
-        b=Tq3AqJ+T0xkzas9AkCLCOZctX4qBM1tTg1ISxc2ZxRXH8RGbmV58HHc6gXOOZv74mS
-         gslnacapKOx2+XhK+om/SURVI+uDUZ8esb116hNCmpG12qHIHMx+LNt6VeKSAwi5L4Hd
-         BFC45H3+MpDgT0gcwitnNCJ5MDxSy80GrVS1VxH4wsvNYFa67KqxOYOYVjO3ktPv90mB
-         xXTiGG30Du3kOvh4IyFqUoLgpuyCEuGCqU0pWFcbZwcprSe1jTi0/KLvQTcv9jX3g7Aq
-         mcvev3vTIlr8RaDoZ3VNS6HXmfM8jvY3Vq/cUiC+vHeE4i9TePkxeHsVhLFf5dVnPIou
-         /Rlw==
-X-Forwarded-Encrypted: i=1; AJvYcCW21XvV7esrVKwLo6HCQ4ytCHmaLuNRLTO1bwWD84CN9NDOZw1JyRi4QaUaQSlTaxldws45PSJWVR/z@vger.kernel.org, AJvYcCWCvFWjr4gi/21BfNucbThU2LGtkOCtDCenNgi33csh/5RV9ovDafoV0HnG8nEuFKMU4GmmaIENv8iNqCF4@vger.kernel.org, AJvYcCX4qIKaHk2fAccbqAKbLzZWLPCG4u1Og/uMIJZ04mUytdDC0AKQLgJ8gmSP/GnQS61l3HLfa093sQLY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzSNnXZEk45zd6udajaDUvXAALrhv6lESkWlJ4l+3jkQQvEUMf
-	Z6BGBRR3aHtd6z/fjXjLedlD4Y628iWKO1/OgAR0WG1txUK1Nq32
-X-Gm-Gg: ASbGncu+gJg+dhu4aeuW+QtyFs64fCb6EZmobL42W1ZiuNqabWGcowHeD12J60zXtPp
-	I0Mn9jDnbzNhapKCtKlski/4IKQuOg0N3Fq34RORq0W49tUgvXE4xGOyLncEiyMhncKMMcxAlDJ
-	u7/Q39Gfz1FglIdwSEXlDWZeBRYYpcARj9rCapIjOhlOlZ+o5r0MPOe5/uOiBF5wUScjInXgsFf
-	j44GffrUlMrnQdqYZt8Qz5mr7KCZr6KdMiF7SCI4bJyK5HP0iENp3RItCkeuvp7KwM8YfxKq7GO
-	iSDIuIE3m6j1mTmw6YKWG7DTE8Uk/p+zWpccqsPVseGEemsESwk/4Jc4wOzx
-X-Google-Smtp-Source: AGHT+IEDUawQ7p9G7A8dpF66pDVzseghqUjomgJNjmCvXMcR3CS02dZrBRorlwXIR837s2Xy/Uu6aw==
-X-Received: by 2002:a17:90b:5292:b0:2ee:7c65:ae8e with SMTP id 98e67ed59e1d1-2fce77a638fmr6700136a91.11.1740154607259;
-        Fri, 21 Feb 2025 08:16:47 -0800 (PST)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-2fceb05f715sm1586207a91.24.2025.02.21.08.16.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Feb 2025 08:16:46 -0800 (PST)
-Date: Sat, 22 Feb 2025 01:16:44 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1740156037; c=relaxed/simple;
+	bh=ZVmiymIAhMQOMLZ34be0QbNLgSkp+U56bA+I1slqbnI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=hSFAAzEBh4mMa+IVU+IncdZGc/asjs0a83G7mfmMp3lsky0b5BeGV5tDt+6S5gVOhLX8YnDVf9890io2m6QRu9QZOh1hLUSrFz9391Y+k4/K1G30DYgmltCbuu2ouVcUY2ynyXPuyTwriR24hgETuOGZhLA50CRefINbuP5ehYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=2hls+aUo; arc=none smtp.client-ip=46.242.128.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczodrzynski.pl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=szczodrzynski.pl; s=x; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=7RHCIXkAEB3Q6gvisTKmVhU8q9lDZL30dJeI5tINmhs=; b=2hls+aUoDtpBz0zvI2ZI+E++3Y
+	2siSdOmW4PBTuCYqdXDVDUjQQzkZolBRiM/lcNIyuEBi3qoke0fXe8kGHUj0EXivc5mMo90iPZlOj
+	UugrMUSaZD6WPVVUXYBxfZ8qRsQpzkHGvN6lGAQVlprOSt+fsD+ZFLtNob53O7VRou3OqBDqpToaD
+	O3Lmfdm+LI+F2GigjHqX68zctIEpDRVm+PgNmysmtiegJsoUH25nBghgwpD2+0aKgU5q7WPMf0xpv
+	OLkrjOlqMvbx5EFFJlFxp5sAIQKRbDi1NJXVyvPkA9JrUsf4gM3A21nFS/uNLty+KLTvVlBrRC7mA
+	SXhLlq+g==;
+Received: from [62.171.184.96] (helo=buildhost.contaboserver.net)
+	by s2.avantea.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96-58-g4e9ed49f8)
+	(envelope-from <kuba@szczodrzynski.pl>)
+	id 1tlVit-00AOLX-29;
+	Fri, 21 Feb 2025 17:17:55 +0100
+From: =?UTF-8?q?Kuba=20Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
+To: Maxime Ripard <mripard@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Jim Quinlan <jim2101024@gmail.com>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: Re: [PATCH v5 -next 06/11] PCI: brcmstb: Add bcm2712 support
-Message-ID: <20250221161644.GA3753638@rocinante>
-References: <20250120130119.671119-7-svarbanov@suse.de>
- <20250212180237.GA85622@bhelgaas>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH 0/5] drm/sun4i: Support LVDS on D1s/T113 combo D-PHY
+Date: Fri, 21 Feb 2025 17:17:46 +0100
+Message-Id: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250212180237.GA85622@bhelgaas>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Id: kuba@szczodrzynski.pl
 
-Hello,
+Some Allwinner chips (notably the D1s/T113 and the A100) have a "combo
+MIPI DSI D-PHY" which is required when using single-link LVDS0. The same
+PD0..PD9 pins are used for either DSI or LVDS.
 
-> > Add bare minimum amount of changes in order to support PCIe RC hardware
-> > IP found on RPi5. The PCIe controller on bcm2712 is based on bcm7712 and
-> > as such it inherits register offsets, perst, bridge_reset ops and inbound
-> > windows count.
-> 
-> Add blank line between paragraphs.  We can fix when merging if you
-> don't repost for other reasons.
+Other than having to use the combo D-PHY, LVDS output is configured in
+the same way as on older chips.
 
-Updated directly on the branch.  Thank you!
+This series enables the sun6i MIPI D-PHY to also work in LVDS mode. It
+is then configured by the LCD TCON, which allows connecting a
+single-link LVDS display panel.
 
-	Krzysztof
+Kuba Szczodrzyński (5):
+  phy: allwinner: phy-sun6i-mipi-dphy: Support LVDS in combo D-PHY
+  drm/sun4i: Support LVDS using MIPI DSI combo D-PHY
+  drm/sun4i: Enable LVDS output on sun20i D1s/T113
+  riscv: dts: allwinner: d1s-t113: Add D-PHY to TCON LCD0
+  riscv: dts: allwinner: d1s-t113: Add LVDS0 pins
+
+ .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 10 +++
+ drivers/gpu/drm/sun4i/sun4i_tcon.c            | 40 ++++++++++++
+ drivers/gpu/drm/sun4i/sun4i_tcon.h            |  6 ++
+ drivers/phy/allwinner/phy-sun6i-mipi-dphy.c   | 65 ++++++++++++++++++-
+ 4 files changed, 119 insertions(+), 2 deletions(-)
+
+-- 
+2.25.1
+
 
