@@ -1,96 +1,87 @@
-Return-Path: <devicetree+bounces-149514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1DE4A3FB6C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:35:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68667A3FB17
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 17:26:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28ED93A84D0
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:17:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8240D168F40
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 16:20:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A18852135BE;
-	Fri, 21 Feb 2025 16:12:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tCQCdmlZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AACC51F2BB5;
+	Fri, 21 Feb 2025 16:16:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2259211A29
-	for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 16:12:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DD081E1C36;
+	Fri, 21 Feb 2025 16:16:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740154334; cv=none; b=FeL0+1K4DSK0IFBloc98a1r5uzgFCU3k2Hyq9KG3F7QAVPZ6Kf2n0nUi7QVqipXSXjwtp4gCyxV6qpduZFXkkIyHkqmpbkg9Z2OI3ldC5Eg/8FMnNHlliJkQPOC5vl3WhgxmMQXF1dlXE9S8jFR/80RTs3ZuFU7OfM9bLF247eI=
+	t=1740154609; cv=none; b=mUg4DmpKpW6+A85qhfSNuCpD7+7uY10HyJk9Lq0howhJI803o3nWQDvDlu3s3lxieBY2SOkHH67F7FWSADsJIcuCrI9M5dNM0BbnoWxXmXmQEYVqV7j3DoixgNIvgEL76yv3Z3nWMgPeMla1CpLZ73WKeCNklW5laYXCPwbxt3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740154334; c=relaxed/simple;
-	bh=5H4PEf9E9yk8XT2swQY06hLeXngmDP4x4LJ+LIwvvO0=;
+	s=arc-20240116; t=1740154609; c=relaxed/simple;
+	bh=62BjU1wiNs+I6ByCG2YQUuxnFrCx1qtKkdARbuTJls4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eo5oK593LATnypgJzWcJLgV3C6RwPOKFB/FVWPCKLWOAtL3M2q8w/a5xD/rjMWi4PWz8IAowP5OiZ1obj4e9pQmwMRQwCUomkTomYtH+B03vQO3BbzNXT7IrQyIDb3NiuXC8ULAvLEGPUjMuVooF5vioVUsBL1tjBz2Zg71OAxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tCQCdmlZ; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30a2f240156so22196301fa.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 08:12:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740154331; x=1740759131; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IbnhtJEa4SquPfm19GzdxAOTsJ3ZtzFT/hW1Tsd7YMA=;
-        b=tCQCdmlZrK5safywGUkkygQaJbsKc+gaZcMtb/4y4lvzf1VJ08M8p32AL72hYKTjkw
-         8rMvO23OXJTmrrMeaaoNmxMuhhPG1iMt6nMY2DZU9k4Ar2tmCwc2F2d9NTWzwD8hHtnL
-         fMDvcRFqpobj05moA5HNa0yVPLaaxeeasy4SZMagewU0sswpK4zYYMVxjvwTFMmnpG6x
-         gC5qjo1SZSIpW1A0w4Pn2Sl+/xx0A0iCYalSyKMaUlJKTXNDZeKsUNf7o+Z3rqK25/bD
-         6x8U/IyC4hqDFGpkzKL46bGspjsmNjFV1i2JrMJFJK0MJRkIr0y8tPwF5LTxpcdN0S+G
-         RvAw==
+	 Content-Type:Content-Disposition:In-Reply-To; b=D/QTlQWZVBlS6V0DB5/miIRS3YvrQLg3/MrTzU4R9vgIVKI7pyF41W8OkkEIpIdwmJyvWwX1Dj5QftHRbwZMzhxXtsV2gd1boJDhMYBp9zil1M0Tq8JaUtSYp/ph5QEkH4AC229Rw5yKwCxf5xqedokniDKG6RTi8TYv0XT03vk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2fc1c80cdc8so3784328a91.2;
+        Fri, 21 Feb 2025 08:16:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740154331; x=1740759131;
+        d=1e100.net; s=20230601; t=1740154607; x=1740759407;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IbnhtJEa4SquPfm19GzdxAOTsJ3ZtzFT/hW1Tsd7YMA=;
-        b=btIiLDKvDCUAHV5HbazcnjAKaZWele0QpoR43SH3BPYred82abHXPumAvtzCm/G2kA
-         JUUpv7zpkuFcWQ1oJjU34g3H3/ufnVwbPli4ieapkGoXdtbINM5IAxiiabbqV90IL4rD
-         R7A4mjB2z7iUTJ1qmDzU42KSeDlpi7dZEA29lGZYo0pK2HGy5IcYbai8+eDcUySS5I2y
-         QTyHESl59LvZVTo+38WrSinHzM7Ldsa+Ra/qTpKTs1vjokNqmrR0Xwiv7gjWtNFJDf8H
-         6VO1QO3nKVBWByhC7WafyZJ4kAQlxScFKqBBJEEhXtIpUrOUxZVHR06/rdlkuy5cmYeo
-         S6yQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUxe3PQpRBj1E9WKHKYQKn5YlwFylcwG4+Y5aSexzATyWQ+crIAxeqAIyuqbNSZlt4hN+lwos6aQ95X@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5Byz0DaQO+nDeHDzZMymXgSun5aN/1eUby0TEpfOwHfjH8HlO
-	ka1WwMl69aRxjjlGvRxOEKtMrW86CoJIR4ODkeAIQ7Fg3+IteIqGYKg+phqHk2Y=
-X-Gm-Gg: ASbGncveIW6eBENI2Ai90VL1vwcXZWnT/nXmguN8f19JcyYTQqOe1Yc5qf8RRbmXoPs
-	D1aI/3er+OsR7Jegrl5L/xKEh0jmmVSE/5EJAzfoDgFOjYnOJvqQfRw3DUmG/CllUBceKze8G69
-	xxhzBAlZt+6uLsN5V7imelvkkB4jszQLCVdQJpOFyttHRty+hEOauvDI6kI2sh/N47w5WC17L1L
-	R7/VoyNuGHopbbon2AyJw26sX2IUTvVDqs1DWP67cagL9UYJpvACLo5RcD03sJK4CU5w+XlWZqc
-	rRdT77sEozg1WA4acOxntDVcU+sbfNzcZM9IjWy6/vRgNL1XIbVVqmbNteAMfXQxzzKogktA65p
-	jsyCiFg==
-X-Google-Smtp-Source: AGHT+IEKm09ffSc5M3frvvgU3E9J1EUpouTHSwPL5rhTUfv0oqJAypzPAMmviTh4qLAjGZjUYSJxPQ==
-X-Received: by 2002:a2e:7d07:0:b0:308:ec6f:7022 with SMTP id 38308e7fff4ca-30a598e29c8mr15100431fa.17.1740154330646;
-        Fri, 21 Feb 2025 08:12:10 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30a25195701sm20109501fa.4.2025.02.21.08.12.10
+        bh=dtzdmLHWgF7iyekmReF4eZfVX/GiXF6V9kKExFtIjGQ=;
+        b=Tq3AqJ+T0xkzas9AkCLCOZctX4qBM1tTg1ISxc2ZxRXH8RGbmV58HHc6gXOOZv74mS
+         gslnacapKOx2+XhK+om/SURVI+uDUZ8esb116hNCmpG12qHIHMx+LNt6VeKSAwi5L4Hd
+         BFC45H3+MpDgT0gcwitnNCJ5MDxSy80GrVS1VxH4wsvNYFa67KqxOYOYVjO3ktPv90mB
+         xXTiGG30Du3kOvh4IyFqUoLgpuyCEuGCqU0pWFcbZwcprSe1jTi0/KLvQTcv9jX3g7Aq
+         mcvev3vTIlr8RaDoZ3VNS6HXmfM8jvY3Vq/cUiC+vHeE4i9TePkxeHsVhLFf5dVnPIou
+         /Rlw==
+X-Forwarded-Encrypted: i=1; AJvYcCW21XvV7esrVKwLo6HCQ4ytCHmaLuNRLTO1bwWD84CN9NDOZw1JyRi4QaUaQSlTaxldws45PSJWVR/z@vger.kernel.org, AJvYcCWCvFWjr4gi/21BfNucbThU2LGtkOCtDCenNgi33csh/5RV9ovDafoV0HnG8nEuFKMU4GmmaIENv8iNqCF4@vger.kernel.org, AJvYcCX4qIKaHk2fAccbqAKbLzZWLPCG4u1Og/uMIJZ04mUytdDC0AKQLgJ8gmSP/GnQS61l3HLfa093sQLY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzSNnXZEk45zd6udajaDUvXAALrhv6lESkWlJ4l+3jkQQvEUMf
+	Z6BGBRR3aHtd6z/fjXjLedlD4Y628iWKO1/OgAR0WG1txUK1Nq32
+X-Gm-Gg: ASbGncu+gJg+dhu4aeuW+QtyFs64fCb6EZmobL42W1ZiuNqabWGcowHeD12J60zXtPp
+	I0Mn9jDnbzNhapKCtKlski/4IKQuOg0N3Fq34RORq0W49tUgvXE4xGOyLncEiyMhncKMMcxAlDJ
+	u7/Q39Gfz1FglIdwSEXlDWZeBRYYpcARj9rCapIjOhlOlZ+o5r0MPOe5/uOiBF5wUScjInXgsFf
+	j44GffrUlMrnQdqYZt8Qz5mr7KCZr6KdMiF7SCI4bJyK5HP0iENp3RItCkeuvp7KwM8YfxKq7GO
+	iSDIuIE3m6j1mTmw6YKWG7DTE8Uk/p+zWpccqsPVseGEemsESwk/4Jc4wOzx
+X-Google-Smtp-Source: AGHT+IEDUawQ7p9G7A8dpF66pDVzseghqUjomgJNjmCvXMcR3CS02dZrBRorlwXIR837s2Xy/Uu6aw==
+X-Received: by 2002:a17:90b:5292:b0:2ee:7c65:ae8e with SMTP id 98e67ed59e1d1-2fce77a638fmr6700136a91.11.1740154607259;
+        Fri, 21 Feb 2025 08:16:47 -0800 (PST)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-2fceb05f715sm1586207a91.24.2025.02.21.08.16.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Feb 2025 08:12:10 -0800 (PST)
-Date: Fri, 21 Feb 2025 18:12:08 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
-	Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, Rob Clark <robdclark@chromium.org>
-Subject: Re: [PATCH v3 11/21] drm/msm/dpu: Clear CTL_FETCH_PIPE_ACTIVE before
- blend setup
-Message-ID: <7nd7j7wslq5fclik6trs2egwj7kx5wy246ljaqmwbkvnutu547@qgxcx66kjsw2>
-References: <20250221-b4-sm8750-display-v3-0-3ea95b1630ea@linaro.org>
- <20250221-b4-sm8750-display-v3-11-3ea95b1630ea@linaro.org>
+        Fri, 21 Feb 2025 08:16:46 -0800 (PST)
+Date: Sat, 22 Feb 2025 01:16:44 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Jim Quinlan <jim2101024@gmail.com>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH v5 -next 06/11] PCI: brcmstb: Add bcm2712 support
+Message-ID: <20250221161644.GA3753638@rocinante>
+References: <20250120130119.671119-7-svarbanov@suse.de>
+ <20250212180237.GA85622@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,21 +90,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250221-b4-sm8750-display-v3-11-3ea95b1630ea@linaro.org>
+In-Reply-To: <20250212180237.GA85622@bhelgaas>
 
-On Fri, Feb 21, 2025 at 04:24:21PM +0100, Krzysztof Kozlowski wrote:
-> Before blend setup, all existing blend stages are cleared, so shall be
-> active fetch pipes.
-> 
-> Fixes: b3652e87c03c ("drm/msm/disp/dpu1: add support to program fetch active in ctl path")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
+Hello,
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Add bare minimum amount of changes in order to support PCIe RC hardware
+> > IP found on RPi5. The PCIe controller on bcm2712 is based on bcm7712 and
+> > as such it inherits register offsets, perst, bridge_reset ops and inbound
+> > windows count.
+> 
+> Add blank line between paragraphs.  We can fix when merging if you
+> don't repost for other reasons.
 
--- 
-With best wishes
-Dmitry
+Updated directly on the branch.  Thank you!
+
+	Krzysztof
 
