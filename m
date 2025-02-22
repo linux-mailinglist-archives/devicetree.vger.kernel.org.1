@@ -1,113 +1,231 @@
-Return-Path: <devicetree+bounces-149808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85BF0A4079B
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 11:48:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAFEBA407A6
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 11:55:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05C893BE340
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:48:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6615F3BED13
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:54:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2301207A09;
-	Sat, 22 Feb 2025 10:48:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3F672080D6;
+	Sat, 22 Feb 2025 10:55:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RMvSABCR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gat/Sz7B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43AEA16F0FE
-	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 10:48:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B368C205E04;
+	Sat, 22 Feb 2025 10:55:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740221319; cv=none; b=Zd432yXgADi71PTDqxRjbohWkwWiLfLsReXWgIIQhuMLAqKdIjOsfwMIYf1ByDn7pM+49jJ7pctEF8DcPZM+xxa+2EBUtgbu5+DUmwXXNIfDDlv1UohGVXgzLTxVCo4UnbAceXFA5ZBX6MVBKGDEOxUfR+ZiXeLLsxTs6m4s+rs=
+	t=1740221700; cv=none; b=hUgYh/J+xvvic4sM1UHseB0HASNWM9r8AX4WrUrl1rEVQ3YRmHsJXwQYz+kvB5zgIHyVi5B3dybcBrVEQBw0KP4/sygUMN99pXCJn/0+sWziz/6/X+55HWBux4LBDBtr5rF8Ew15UNFFgfWRhF+V1V0d8GMo8CivRvvB+5Zc7Y4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740221319; c=relaxed/simple;
-	bh=f4Bw/JJH34S6WqqDPjmH5pwEvRSGU7yq69HeWIS5/4k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=egdMXYvTwMXZZApXQnETwnXg+d4fbBUbumZIF3IabQLrB4b8bfJYuywkJ89/Q8Jc32+TTg3ImU0sXgbDbW9E2kcZxTwLxADhhnkJ9gupYXe6Gj40HgiUE0ctN3Iazy3h75+gTZrMKYO+pXMZa9mkpGRZJHG/aDSUpnWlfkknCI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RMvSABCR; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43994ef3872so17427955e9.2
-        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 02:48:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740221316; x=1740826116; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=f4Bw/JJH34S6WqqDPjmH5pwEvRSGU7yq69HeWIS5/4k=;
-        b=RMvSABCRQjSufhFIrKke4nKctqxLBXp/SZsCrdNH7RtjQ7LXa0BhOaZmdlaGaVgwmO
-         cjaKqHBVv4A3M91qf7OZPtgqJxhabTq26Lt27/S56TyKxwYXHdT1gC7W4YLFdLw2y3IS
-         akpwHrLqMDmp60ooOoECjz5NohMtD+cOIFOkn+GjjdhzjGMkqcQfAq3vsEDvDEUHldZZ
-         uMDm9L/Tq2h/FR//3CscQuKdvjRZRmrUynSkpRToYNwNjkooRdqhMTLWjrXkGBX2ZL9l
-         g67yTEtaY/HAUmPIt+s4vu3S/qp1YRj2gozl7D+s+Tm9NHor7BARp+NI+N9tpZ7P4Ncv
-         Mkyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740221316; x=1740826116;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=f4Bw/JJH34S6WqqDPjmH5pwEvRSGU7yq69HeWIS5/4k=;
-        b=nPGTqZhiL4hL1mr6WGjvlpJJXUGo2QX/NC8Zq/zyg6GsRC1RDN8hLpmgB8qakbKRsH
-         MqOHLqLYTtWsg761rLsFmNhQPCSEkMVzaFN3SYhkgdaJayS41+y0meZLWAwfjCt4zljJ
-         UdO7YDAZV+WnxdkUFDLVLSF7qKb3Rewrx+RmjUicRetj9HFeFQ2JGaTAft61MUnk48od
-         bkbzavZ4aGRAXnspmOVvGbWZBIUz53E8nq+wJ/5IOsgvL9rUcKD8DoQLTpvfa7PRkLMn
-         jdbKgZwj7Z54oCWAumICj7kj+sC1Wy1QEPCNqD4tPv/CCN5oy6R5zLiTY0ElhVoFekIM
-         nflg==
-X-Gm-Message-State: AOJu0Yz0dxAJehdodymn9HDpC4M+mwCUPP50I8yFsbOUNoQkcLSpofL1
-	txSaUZPYKIStQt/dT68IJN67f0FDXWWAeDRmZIiwfl9jYHZU7tF7
-X-Gm-Gg: ASbGncs3smeGKkvnnYCtO19mP0D6Ttk1NhJgkyko24pZYWp9qw2Oux/zUpNJlJ2aijV
-	N7eOSyq9Xz/ja+1VhDzwADtTbifNEBIofupF+V8LCF5p+EqBBDn/2OFhaJu0O2/L/OY/ZXoDq71
-	7T5+4dPxixPAiqiJlWu/NDOSUue1oLjhkmjReP3I9OZ/1qV9qOe1VmfvXZcVmNgAZErFMDNzLzX
-	QiU/dtb51plKv5/1Oho8mjxvSxbX7X+2VeEQC9Amm9JaELHGEplUywsocgpVuKtKHuu9ztAs4OD
-	GsqPysApjBYqOjeSQBWUkvOH7gzoi2m+6POL3ao34M/Y5R/bOJXFgl0dZUUaOIFexfHh+N2iELx
-	qXA==
-X-Google-Smtp-Source: AGHT+IHGb1ynqcv3I1Lqpb4WSdae1Gn6bKYqVXe+dHJe3J8zwqiVL/sjjSKDSwbxbZrGWdzbVBO7Rg==
-X-Received: by 2002:a5d:6d8c:0:b0:385:ee40:2d88 with SMTP id ffacd0b85a97d-38f6e7565e1mr5843559f8f.3.1740221316419;
-        Sat, 22 Feb 2025 02:48:36 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-439b02ce735sm43140405e9.3.2025.02.22.02.48.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Feb 2025 02:48:35 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>
-Cc: devicetree@vger.kernel.org, samuel@sholland.org, wens@csie.org,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- Chris Morgan <macromorgan@hotmail.com>
-Subject:
- Re: [PATCH 4/4] arm64: dts: allwinner: h700: Add USB Host for RG35XX-H
-Date: Sat, 22 Feb 2025 11:48:33 +0100
-Message-ID: <870112230.0ifERbkFSE@jernej-laptop>
-In-Reply-To: <20241018160617.157083-5-macroalpha82@gmail.com>
-References:
- <20241018160617.157083-1-macroalpha82@gmail.com>
- <20241018160617.157083-5-macroalpha82@gmail.com>
+	s=arc-20240116; t=1740221700; c=relaxed/simple;
+	bh=tpiNARPMRnaxyVWSNLnBj09zFwu06CDN3perlT5OQ0A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=F8sbG57ohil5qmewSEOiA4KNt+ZUYHzwKt6bF5v9vYcoQRK9+NIX7swuynu5vHL6bz5g9O0EtXD3mz4m0zyovnqlI/QKVdqqeXsTSb47BWLJ666Btmlc9P9quMXiV1NbBHmW02+avSZpwBntZnvLhc0d6N7y4bPuP0nBIrfq6j4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gat/Sz7B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8CD7C4CED1;
+	Sat, 22 Feb 2025 10:54:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740221700;
+	bh=tpiNARPMRnaxyVWSNLnBj09zFwu06CDN3perlT5OQ0A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Gat/Sz7B2sFGh26oZsm2+ZS8AKtlpYORAeSwUNvgOZIeYQJMq2LQMhwbxx6idb3du
+	 2T63yG1nXuw2jORzPJwRN3OThVFc1c3Ue1xW7OZkDul+yGMsCJkw+y6CMgc/JagcHj
+	 pl94i52RbogEYkxwC5bmUDy1Wvk5owmVymHsdyqVY39wiAgsb55NSn1gJA+TW+47Tz
+	 xf6lIiWdIqXeNDGl1btNkLvY1AxYyv8noRjYmwtL3mVQbCPLIv/qJVDOXllJ25W4Lj
+	 r7rTsZANCCodyV4c0gKiCxPeXAQvNKICGnpvk2kIMudCyOLBtW3mgpWtQ1Jva7d6Uj
+	 9xokZk00pYvaA==
+Message-ID: <38996ae8-321b-4239-8fe9-b769fdff296c@kernel.org>
+Date: Sat, 22 Feb 2025 11:54:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] coresight: add coresight Trace NOC driver
+To: Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
+ <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: kernel@quicinc.com, linux-kernel@vger.kernel.org,
+ coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ kernel@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250221-trace-noc-driver-v1-0-0a23fc643217@quicinc.com>
+ <20250221-trace-noc-driver-v1-2-0a23fc643217@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250221-trace-noc-driver-v1-2-0a23fc643217@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Dne petek, 18. oktober 2024 ob 18:06:17 Srednjeevropski standardni =C4=8Das=
- je Chris Morgan napisal(a):
-> From: Chris Morgan <macromorgan@hotmail.com>
->=20
-> The RG35XX-H has a USB host port in addition to the USB OTG port used
-> for charging. The host port receives its power from two distinct GPIO
-> controlled regulators.
->=20
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+On 21/02/2025 08:40, Yuanfang Zhang wrote:
+> Add driver to support Coresight device Trace NOC(Network On Chip).
+> Trace NOC is an integration hierarchy which is a replacement of
+> Dragonlink configuration. It brings together debug components like
+> TPDA, funnel and interconnect Trace Noc.
+> 
+> It sits in the different subsystem of SOC and aggregates the trace
+> and transports to QDSS trace bus.
+> 
+> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+> ---
+>  drivers/hwtracing/coresight/Kconfig          |  10 ++
+>  drivers/hwtracing/coresight/Makefile         |   1 +
+>  drivers/hwtracing/coresight/coresight-tnoc.c | 191 +++++++++++++++++++++++++++
+>  drivers/hwtracing/coresight/coresight-tnoc.h |  53 ++++++++
+>  4 files changed, 255 insertions(+)
+> 
+> diff --git a/drivers/hwtracing/coresight/Kconfig b/drivers/hwtracing/coresight/Kconfig
+> index 06f0a7594169c5f03ca5f893b7debd294587de78..712b2469e37610e6fc5f15cedb2535bf570f99aa 100644
+> --- a/drivers/hwtracing/coresight/Kconfig
+> +++ b/drivers/hwtracing/coresight/Kconfig
+> @@ -247,4 +247,14 @@ config CORESIGHT_DUMMY
+>  
+>  	  To compile this driver as a module, choose M here: the module will be
+>  	  called coresight-dummy.
+> +
+> +config CORESIGHT_TNOC
+> +	tristate "Coresight Trace Noc driver"
+> +	help
+> +	  This driver provides support for Trace NoC component.
+> +	  Trace NoC is a interconnect that is used to collect trace from
+> +	  various subsystems and transport it QDSS trace sink.It sits in
+> +	  the different tiles of SOC and aggregates the trace local to the
+> +	  tile and transports it another tile or to QDSS trace sink eventually.
+> +
+>  endif
+> diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
+> index 4ba478211b318ea5305f9f98dda40a041759f09f..ab1cff8f027495fabe3872d52f8c0877e39f0ea8 100644
+> --- a/drivers/hwtracing/coresight/Makefile
+> +++ b/drivers/hwtracing/coresight/Makefile
+> @@ -51,3 +51,4 @@ coresight-cti-y := coresight-cti-core.o	coresight-cti-platform.o \
+>  		   coresight-cti-sysfs.o
+>  obj-$(CONFIG_ULTRASOC_SMB) += ultrasoc-smb.o
+>  obj-$(CONFIG_CORESIGHT_DUMMY) += coresight-dummy.o
+> +obj-$(CONFIG_CORESIGHT_TNOC) += coresight-tnoc.o
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Why do you keep adding entries to the end instead to some logically
+ordered place?
+
+Dummy driver, before tpda (obviously tpda should go after tpdm) and now
+this... This is just unnecessarily making simultaneous edits difficult.
+
+> diff --git a/drivers/hwtracing/coresight/coresight-tnoc.c b/drivers/hwtracing/coresight/coresight-tnoc.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..11b9a7fd1efdc9fff7c1e9666bda14acb41786cb
+> --- /dev/null
+> +++ b/drivers/hwtracing/coresight/coresight-tnoc.c
+> @@ -0,0 +1,191 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/amba/bus.h>
+> +#include <linux/io.h>
+> +#include <linux/coresight.h>
+> +#include <linux/of.h>
+> +
+> +#include "coresight-priv.h"
+> +#include "coresight-tnoc.h"
+> +#include "coresight-trace-id.h"
+> +
+
+
+> +
+> +	drvdata->base = devm_ioremap_resource(dev, &adev->res);
+> +	if (!drvdata->base)
+> +		return -ENOMEM;
+> +
+> +	spin_lock_init(&drvdata->spinlock);
+> +
+> +	ret = trace_noc_init_default_data(drvdata);
+> +	if (ret)
+> +		return ret;
+> +
+> +	desc.ops = &trace_noc_cs_ops;
+> +	desc.type = CORESIGHT_DEV_TYPE_LINK;
+> +	desc.subtype.link_subtype = CORESIGHT_DEV_SUBTYPE_LINK_MERG;
+> +	desc.pdata = adev->dev.platform_data;
+> +	desc.dev = &adev->dev;
+> +	desc.access = CSDEV_ACCESS_IOMEM(drvdata->base);
+> +	drvdata->csdev = coresight_register(&desc);
+> +	if (IS_ERR(drvdata->csdev))
+> +		return PTR_ERR(drvdata->csdev);
+> +
+> +	pm_runtime_put(&adev->dev);
+> +
+> +	dev_dbg(drvdata->dev, "Trace Noc initialized\n");
+
+
+Drop. There is really no need to tell that function finished.
+
+Please run standard kernel tools for static analysis, like coccinelle,
+smatch and sparse, and fix reported warnings. Also please check for
+warnings when building with W=1. Most of these commands (checks or W=1
+build) can build specific targets, like some directory, to narrow the
+scope to only your code. The code here looks like it needs a fix. Feel
+free to get in touch if the warning is not clear.
+
 
 Best regards,
-Jernej
-
-
+Krzysztof
 
