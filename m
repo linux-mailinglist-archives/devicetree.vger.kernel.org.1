@@ -1,131 +1,187 @@
-Return-Path: <devicetree+bounces-149824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23064A40868
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 13:41:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1039A407E5
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 12:36:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10281424F64
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 12:41:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36CD63B93FA
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 11:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314BA20A5E4;
-	Sat, 22 Feb 2025 12:41:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2710720764A;
+	Sat, 22 Feb 2025 11:36:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ENxxpIdc"
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="ABVOlES/";
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="ujfBiNk5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3281.qiye.163.com (mail-m3281.qiye.163.com [220.197.32.81])
+Received: from bayard.4d2.org (bayard.4d2.org [5.78.89.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F0202066CC;
-	Sat, 22 Feb 2025 12:41:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 554C36FC3;
+	Sat, 22 Feb 2025 11:36:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.78.89.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740228095; cv=none; b=jcPyKd5YQOCc+NmVgTG7BtysjOttbqWBn2DkB7TQJrAqIOS2dodWN8QRYsLa2Q3DC8KGjkTSlUel1uHKw1vywkjZ8dR+9Jj6LXqYDxeg9GeEAwkHQasDcFvhOD70HpU6z1NyWAhLCPkUSaa0S2/1wGadz5jMTqJoKceLNU4Ot0E=
+	t=1740224181; cv=none; b=exn47O3uYRyGiG16ZW3SHRXR6p/6/RYW3qMKIcJvYxtijmL8H7CMDoKeklbakgdJX9oZn+3GohIRc1rKua+mSBrQw9rc8DPEI+bd3LlWdUBKh2XKQ9bbbsxlp1uljPR4/2yJrtXoOgMWQn9pdgCXlLxqGtqmPG7NlkroXs6pQ/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740228095; c=relaxed/simple;
-	bh=6yispmSF8NEHuiD6p8lfFKKzPSmXUg+uCfdj0up52oo=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=bKHW0f7TJBwFFQAtHBHkz0Bs09tmWyxpHCYwtliZevuf/Saz4raps1WIgeEJA83QzicisHOjLYQ7x5/mKYKp7so2LMpN7Gyrwk/ZnTWLT9KcZ4pGu5aairsqm72p5BzpTCPz5td7IDBXbocIvEBJbiyr4+wQfhiyLV+bhDEhMuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ENxxpIdc; arc=none smtp.client-ip=220.197.32.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.26] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id bdb51f7f;
-	Sat, 22 Feb 2025 19:25:41 +0800 (GMT+08:00)
-Message-ID: <799ccbd2-0c3b-4a55-b47e-1899975c4020@rock-chips.com>
-Date: Sat, 22 Feb 2025 19:25:41 +0800
+	s=arc-20240116; t=1740224181; c=relaxed/simple;
+	bh=SOwH0X3o/HhmS2t6HTuMd4f+rDYK0rxVnzjVPLbUQq4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KOnCQixG19Lf3WZlQmm9f6ozYVICcTXt3i8EJRL0uLP236aTqGMcgfbXHG3xSInEXqA+RUYefQ3B3i5sYBRiIJcdfc+5ZMh+kb2u8aulLKmCfsO2xkQceCGKAjNZojr5Al4i6PRylwOmChgrkh2nX9Gs8K9AJJQCaSpTwdSFUPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=ABVOlES/; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=ujfBiNk5; arc=none smtp.client-ip=5.78.89.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
+Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
+	by bayard.4d2.org (Postfix) with ESMTP id 5ED23122FE26;
+	Sat, 22 Feb 2025 03:36:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1740224177; bh=SOwH0X3o/HhmS2t6HTuMd4f+rDYK0rxVnzjVPLbUQq4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ABVOlES/GvScXjONNVDQvu/S0Hs0wPhbGU2RDAYy2cEeih5WIoQHqUmafU13fxDFu
+	 YsWFXJluYDlaEhjHUYJtm2u/bMA+KvTfONDIopxwdKbEsNXl97hmYRAj+c2EU+Hw3p
+	 aedeLCEuNoaB0KPVlAkQ7MYLSueCdk9AD24hVdyeB8ILjIz+UYi6NcQ+cBwz+nZ3B5
+	 rufn8cDIc5M/ZRIN1c1aQh0Bo731er7upOX6k9iMX7l3fRbu1OlRImXED2Fh7wYcTZ
+	 m6Bv/z5YeJlkg0VNvaVFDSz/rgmlcKN7K5jzF/dAIfusm/7qdgudQVhZFY23ha9iDJ
+	 eIMiVIe5K6luw==
+X-Virus-Scanned: amavisd-new at 4d2.org
+Received: from bayard.4d2.org ([127.0.0.1])
+ by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id g1TN3FBn8qRe; Sat, 22 Feb 2025 03:36:13 -0800 (PST)
+Received: from ketchup (unknown [183.217.80.34])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: heylenay@4d2.org)
+	by bayard.4d2.org (Postfix) with ESMTPSA id A95BC122FE25;
+	Sat, 22 Feb 2025 03:36:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1740224173; bh=SOwH0X3o/HhmS2t6HTuMd4f+rDYK0rxVnzjVPLbUQq4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ujfBiNk57CUKu+M7ljRJ0+19wzyuQi2TwhupqBRWE2X11DD7xojiJc8aH0nGqrQoO
+	 TRAGFEfGaWX/oiqAjv1Es0p6ALLAmtUospfJZV4CkJPT5E82aSN/F9LTdzFPP8ZDhf
+	 3qJlfAh1xm2cinokwTI4NuRutnBj7HD1c0v+GB69Enj4+A6qJ/3bbmh5Z0MUnbRyfA
+	 oLSLnZU+Gfebcy1tEnnKWUyi2SoCuZzL3zf0snIAMOy+Af/Vh+P462eOicyqiuPPZ/
+	 gsNYyP+yc0R/g2KdgmZ6Utb9q+qkFadB29zPBxIPZdkKhBlsWhX1k82nPc8YyvHejt
+	 Wo/go59RUiKOA==
+Date: Sat, 22 Feb 2025 11:36:00 +0000
+From: Haylen Chu <heylenay@4d2.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Haylen Chu <heylenay@outlook.com>, Yixun Lan <dlan@gentoo.org>,
+	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Chen Wang <unicornxdotw@foxmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: soc: spacemit: Add spacemit,k1-syscon
+Message-ID: <Z7m2oNXbwJ06KtLQ@ketchup>
+References: <20250103215636.19967-2-heylenay@4d2.org>
+ <20250103215636.19967-4-heylenay@4d2.org>
+ <aw2vqnz5vcccqqvrrhz5tgawj7fnzzg3tds7nnepuorit37a7r@jcj3wrs7d73h>
+ <Z6rdBhQ7s2ReOgBL@ketchup>
+ <19e5129b-8423-4660-8e4f-8b898214d275@kernel.org>
+ <Z63T_EDvXiuRQbvb@ketchup>
+ <2ab715bd-e26c-41bb-ac64-baa864d90414@kernel.org>
+ <Z7BTVu10EKHMqOnJ@ketchup>
+ <3e196e9c-c942-4026-8d6c-69c9930bebd5@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Damon Ding <damon.ding@rock-chips.com>
-Subject: Re: [PATCH v6 08/14] drm/rockchip: analogix_dp: Add support to get
- panel from the DP AUX bus
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com,
- cristian.ciocaltea@collabora.com, l.stach@pengutronix.de,
- dmitry.baryshkov@linaro.org, andy.yan@rock-chips.com, hjc@rock-chips.com,
- algea.cao@rock-chips.com, kever.yang@rock-chips.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20250123100747.1841357-1-damon.ding@rock-chips.com>
- <20250123100747.1841357-9-damon.ding@rock-chips.com>
- <3340006.44csPzL39Z@diego>
-Content-Language: en-US
-In-Reply-To: <3340006.44csPzL39Z@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQktJTlZCTR8fSEgaTx5MHh5WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a952d67f14803a3kunmbdb51f7f
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NhQ6Agw6HDIKER8cNz4OTxY2
-	SFEaFA5VSlVKTE9LSUlITk9ISktIVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKQ0pPNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=ENxxpIdc+fRY3imBB4Fvef5vOGZG6fA5wJ7ZQJ3/Q4CHHOsDZlC+5/w3k4E3rp5BOTyNBD/acHQvH9bxtM6Ew6mLSBkk31732mwP2INmd+pp5ON4Wv4pZ1/ZSYTKU/EsXsoRaBhyh7otaP6W3DmyJLjc4G1myUF7V4vX7iQqVTg=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=4IlcUWxsBK99tkFDt+EwbEGgFcki2T86lZTSUVVIHWQ=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3e196e9c-c942-4026-8d6c-69c9930bebd5@kernel.org>
 
-Hi Heiko,
+On Sat, Feb 22, 2025 at 10:52:02AM +0100, Krzysztof Kozlowski wrote:
+> On 15/02/2025 09:41, Haylen Chu wrote:
+> > 
+> >>> 	};
+> >>>
+> >>> For the other two clock controllers (APBS and APBC), syscons are really
+> >>> unnecessary and it's simple to fold them.
+> >>
+> >>
+> >> I don't follow. Do we talk about children or syscon compatible?
+> > 
+> > APBS region contains only clock (PLL) bits and APBC region contains only
+> > reset and clock bits, so I was thinking about dropping the syscon nodes
+> > and changing their compatible to spacemit,k1-plls and
+> > spacemit,k1-cru-apbc.
+> > 
+> > In summary, my plan is,
+> > 
+> > - For MPMU, APMU and APBC region, keep the binding in soc/spacemit.
+> >   They'll be reset, clock and power controllers, with compatible
+> >   "spacemit,k1-syscon-*".
+> > - For APBS region, write a new binding clock/spacemit,k1-plls, as it
+> >   contains only PLL-related bits. It acts as clock controller.
+> > - All split children will be eliminated, there'll be only four device
+> >   nodes, one for each region, matching the datasheet.
+> > - Put all clock-related binding definition of SpacemiT K1 in
+> >   dt-bindings/clock/spacemit,k1-ccu.h
+> > 
+> > Is it fine for you?
+> > 
+> 
+> That did not explain hardware to me.
 
-On 2025/1/31 4:33, Heiko Stübner wrote:
-> Hi Damon,
-> 
-> Am Donnerstag, 23. Januar 2025, 11:07:41 MEZ schrieb Damon Ding:
->> Move drm_of_find_panel_or_bridge() a little later and combine it with
->> component_add() into a new function rockchip_dp_link_panel(). The function
->> will serve as done_probing() callback of devm_of_dp_aux_populate_bus(),
->> aiding to support for obtaining the eDP panel via the DP AUX bus.
->>
->> If failed to get the panel from the DP AUX bus, it will then try the other
->> way to get panel information through the platform bus.
->>
->> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
->>
->> ---
-> 
->> @@ -450,9 +461,17 @@ static int rockchip_dp_probe(struct platform_device *pdev)
->>   	if (IS_ERR(dp->adp))
->>   		return PTR_ERR(dp->adp);
->>   
->> -	ret = component_add(dev, &rockchip_dp_component_ops);
->> -	if (ret)
->> -		return ret;
->> +	ret = devm_of_dp_aux_populate_bus(analogix_dp_get_aux(dp->adp), rockchip_dp_link_panel);
-> 
-> This causes an undefined-reference error, so you probably need something like:
-> 
-> diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
-> index f9cbbb40b36f..fa946a809858 100644
-> --- a/drivers/gpu/drm/rockchip/Kconfig
-> +++ b/drivers/gpu/drm/rockchip/Kconfig
-> @@ -8,6 +8,7 @@ config DRM_ROCKCHIP
->          select DRM_PANEL
->          select VIDEOMODE_HELPERS
->          select DRM_ANALOGIX_DP if ROCKCHIP_ANALOGIX_DP
-> +       select DRM_DISPLAY_DP_AUX_BUS if ROCKCHIP_ANALOGIX_DP
->          select DRM_DW_HDMI if ROCKCHIP_DW_HDMI
->          select DRM_DW_HDMI_QP if ROCKCHIP_DW_HDMI_QP
->          select DRM_DW_MIPI_DSI if ROCKCHIP_DW_MIPI_DSI
-> 
-> 
-> 
-> 
-> 
+Sorry if my replies haven't made things clear. I'm goint to make a
+(hopefully) more clear conclusion,
 
-Yeah, I will add a new separate commit to do it in the next version.
+> You assume that some way, maybe
+> through magical crystal ball, I know your hardware and will tell you
+> what to do.
+>
+> No.
+> 
+> I have dozens of other patches in my inbox. It's you who should explain
+> the hardware in simple, concise way so we can judge whether DT
+> description is correct.
+> 
+> Again: define what is the actual device, what is its address space, what
+> are its possible *separate* and *distinctive* children.
 
-Best regards
-Damon
+The series covers four seperate blocks,
 
+- Application Power Manage Unit, APMU
+- Main Power Manage Unit, MPMU
+- APB Bus Clock Unit, APBC
+- APB Spare, APBS
+
+they're clearly separate blocks and have their own distinct, separate
+address spaces, confirmed by the Address Mapping section in the TRM[1].
+
+These four blocks provide hardware bits for three purposes: power
+management, reset signals and clocks. Not every block is capable of all
+the three functionalities,
+
+- APMU, MPMU: power, reset, clock
+- APBC: clock, reset
+- APBS: clock
+
+Reset and clock bits, if present, always stay in the same register.
+Power management bits stay in others. These two types of registers
+interleave if present in the same block (APMU and MPMU case).
+
+These blocks have no child: power, clock and reset definitions differ
+from block to block, no reusable nodes could be split from them.
+
+Hope this conclusion will help the reviewing. Please tell if something
+is unclear.
+
+> 
+> Best regards,
+> Krzysztof
+
+Thanks,
+Haylen Chu
+
+[1]: https://developer.spacemit.com/documentation?token=LzJyw97BCipK1dkUygrcbT0NnMg
 
