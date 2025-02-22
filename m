@@ -1,191 +1,164 @@
-Return-Path: <devicetree+bounces-149790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43D7BA40718
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:48:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DA89A40729
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:52:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66A6A189D807
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 09:48:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9645F19C6D76
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 09:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8694207640;
-	Sat, 22 Feb 2025 09:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48531207A1C;
+	Sat, 22 Feb 2025 09:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VXHW6iT7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GUY1MgXT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20FB81E990D
-	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 09:48:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B9FD207657;
+	Sat, 22 Feb 2025 09:52:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740217718; cv=none; b=InzmfaTd8Swj/OQEjSW40VHLmkYL5IfNvwAYHZdbthaxdothZ2wdxill2TQzQUuDCc4IUmvXfmZ4ekeAMNNscETFVxTyxn1Bz1IJ7lGf3qTz+vyHOsTOAp9GsML7shZsaVwFA+FaoE9p4qS4cqEOt3AYJdiWkxbqlG8UbBPqWdA=
+	t=1740217929; cv=none; b=NYyoajpWdMUJCOrj09Sog8nQPQ4sKx2/yDChfHvQqBvYemaVzdFo7SHOeGU69ffxFVb0jEuIo624vjZc8rE2p4bNBjwaIi6oMDXXdqYIop3hXW+OniuJxW0j0UW3q72BXbWD98mR/sKCyv1UP6zcl5NKLVhau2r/pV6YYNATAW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740217718; c=relaxed/simple;
-	bh=ztSqARlpjqYzwMSasyTQ+otEfFsPH2w9nVNI61+VeH0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=umkRNLCIiPgN7OvPlIcLoaZUujzrhVkxeA/qv38Wuf5YUlsrpYQ/X8roI5qiKWNl3n2GcL3nYo9xEwMFLF//mBpp7r1xlbc8xvwLW1426a9+BB8MMFmkbg1+5MgJk2yL33FK3DCBnMzglAKj28V6Quz6LM2jB6q3plnUr7EasUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VXHW6iT7; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43996e95114so18739075e9.3
-        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 01:48:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740217715; x=1740822515; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=odi1efTWWEwIVG7IaIikJsL9BAzjMuppltEZzw/Hk9k=;
-        b=VXHW6iT7rsZV+AszMp5sFVrTdyyn/cQ5R0qEA8ujxffZ5kT4AXJk53SWoFUOEtGBo/
-         x1o+obHx5xA1R1YO/TYI6wutNIUNvHMSO+wp5F+R8+g5hqXHf6RiGFaK5EES03mpJbZq
-         IVzKoOfzlx2LyuhkNeC7InkTnOuoankm03zMbfHar3RazwzuOX/0noRw8UrMqmORw7RY
-         pK9fyRUAFi6WzeRVwjZ8nB7LxWK9jHzBblHQUyBBzkxBSkNZ1sKCheA6ynSjDeIEXzMB
-         o2upP370hxftwDwvSPdCWwTwFv10skmlRMP+DXpN4JjIaQDjMDm5FaYhONZZRCdIpTB0
-         fEGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740217715; x=1740822515;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=odi1efTWWEwIVG7IaIikJsL9BAzjMuppltEZzw/Hk9k=;
-        b=bg6Nf5saItHQTidpJ3iasPqiddG1m4UqjL4n3MygtIQ2JdDHg12SKopGWVr2vnixfX
-         gQ2pSCXEcZYNf5TSC/bMgHfjPiVNtqtg5sujbstZHh4hKbUdYJOfwu8qJogej1e5Ydbd
-         +78kNzSXDgVf/xIYMM0AtMHqeG+C6QlON7FlaNe3nHF+P2xASpsbX4n7rUFGc0KXY4AS
-         yHjqd6UnZaWTI+4ytwNg6YtA4Xac2gwFj+f4zCNIk2Z8TStQDft8GOau4edZWVCXftHa
-         94NbPxP7yWfS+CDLDqCcNDu3O2MZU6FJG4Qt8JssojxLWFH6sdF+kgrrnbTyXqN2Z4sO
-         UGtA==
-X-Forwarded-Encrypted: i=1; AJvYcCUI6zPt7WW+zWyWkk6MYK/5R8IymZ8dGVWSV01Shu47v3CpMHK4/vbxCuhRPO5lmiB93zev2n8z0Zto@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzl5vgB2RPr7yPJH2hKaLtEJlY368UJKmXTgvGdawDN0fJ8vW71
-	yv8SsYsO9oha+1jXQDtjDd21fvD3a/jpDzDEUyvjFCQVVwu9iRmn
-X-Gm-Gg: ASbGnctiBjgAu9X9YGYdpODrhbTBYp+SJAKM2XJUZ4rs65Lnz7KTBScLIcL5wopvo+Z
-	2Dof92vXKaKoMFDMi4BQVYj8yhAI507udQIyQ2uscvV+g1WHrzxDYHGiPa+1dM4eLz0inAj29wp
-	O8+xRKOUD9i3XMdF8bKl6WLDFdGZN+fi4SgLFd5mCtTf/E9eOA24GzbkjRDPQ52NDypkR6f/sBY
-	rJ7wp4BhhSpLLqKtDwqeVWRDWMfXkbuiKOYVSgmULnBOlXNRl67Tvm6XydQT2OX8W5Lgl0vX3t2
-	NhuFgGvBgS/I6wJhrvEkzASslrbaV3Z/oMVKKEK//7Xa0zqXb8CiJvJqrlP17l3ETIk81A8Th3j
-	tMA==
-X-Google-Smtp-Source: AGHT+IFUTa70+9kLfcm5J6KugqNrq5ylrSHEHWyLg2k4fxiZqzwuPYhX/x3EnpJl6rQ7Cmu+/YYJkw==
-X-Received: by 2002:a05:6000:1f83:b0:38c:5bfa:a93d with SMTP id ffacd0b85a97d-38f70772c98mr5722741f8f.10.1740217715291;
-        Sat, 22 Feb 2025 01:48:35 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f25914171sm26137034f8f.53.2025.02.22.01.48.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Feb 2025 01:48:34 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>
-Cc: Andre Przywara <andre.przywara@arm.com>,
- Chris Morgan <macroalpha82@gmail.com>,
- Hironori KIKUCHI <kikuchan98@gmail.com>,
- Philippe Simons <simons.philippe@gmail.com>, linux-sunxi@lists.linux.dev,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Ryan Walklin <ryan@testtoast.com>
-Subject: Re: [PATCH 6/8] arm64: dts: allwinner: h616: add LCD,
- LVDS and PWM pins
-Date: Sat, 22 Feb 2025 10:48:33 +0100
-Message-ID: <4407188.ejJDZkT8p0@jernej-laptop>
-In-Reply-To: <20250216092827.15444-7-ryan@testtoast.com>
-References:
- <20250216092827.15444-1-ryan@testtoast.com>
- <20250216092827.15444-7-ryan@testtoast.com>
+	s=arc-20240116; t=1740217929; c=relaxed/simple;
+	bh=sOMAW8cG2GfHTMf3SqhYwuELAxdo/LpQe+CzmYleSzQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Um55cbTQP/oOyKCkTWiWCbac6mg8L8tmWqdTJjeyChbJXOUSPliR/rEhKhtnyJvh3lb0M0b1wMa47CVlTU+8JIK3M3gcSoOIg0p+jSRhxDhJdzXsxteifCKwqxkJ0jpxsrt+NqhbUVMTL5S+Ld/TB7syU3Zrmf/QBCcDQECcCok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GUY1MgXT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EED33C4CED1;
+	Sat, 22 Feb 2025 09:52:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740217929;
+	bh=sOMAW8cG2GfHTMf3SqhYwuELAxdo/LpQe+CzmYleSzQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=GUY1MgXTQOyriPbV/qtpWcFe/zUFNbZsRzCUsO+DL+/ONDosFOp5Wv+v9VoJcCSTQ
+	 cM8bbgL7lymsXxTvauGMSdITHAdJNNx4OQRMYM5ho/UCe8SYg47VmVun/oLExAFUqz
+	 Es8SENLFtVwyPhklAdLAZsto3ryONIkUQgtBatV3OSEcvWQ+JgkItLVHkL1fYknYw3
+	 R5pe9YpD3HjDIVbjlW0N+3BLna9ZeMUtT5WQfzRn94ASJpyjuwwfO0UpWi9tgvDDBy
+	 a5ctJFgKuJkv4MZYRpNYnEINiUzgAAsFmbxMt7jYXUJl+MhSpwOgNQ1TTFGzKkUY96
+	 +R8/9iNO90A2A==
+Message-ID: <3e196e9c-c942-4026-8d6c-69c9930bebd5@kernel.org>
+Date: Sat, 22 Feb 2025 10:52:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] dt-bindings: soc: spacemit: Add spacemit,k1-syscon
+To: Haylen Chu <heylenay@4d2.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Haylen Chu <heylenay@outlook.com>,
+ Yixun Lan <dlan@gentoo.org>, linux-riscv@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>,
+ Chen Wang <unicornxdotw@foxmail.com>, Jisheng Zhang <jszhang@kernel.org>,
+ Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
+References: <20250103215636.19967-2-heylenay@4d2.org>
+ <20250103215636.19967-4-heylenay@4d2.org>
+ <aw2vqnz5vcccqqvrrhz5tgawj7fnzzg3tds7nnepuorit37a7r@jcj3wrs7d73h>
+ <Z6rdBhQ7s2ReOgBL@ketchup> <19e5129b-8423-4660-8e4f-8b898214d275@kernel.org>
+ <Z63T_EDvXiuRQbvb@ketchup> <2ab715bd-e26c-41bb-ac64-baa864d90414@kernel.org>
+ <Z7BTVu10EKHMqOnJ@ketchup>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <Z7BTVu10EKHMqOnJ@ketchup>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Dne nedelja, 16. februar 2025 ob 10:27:13 Srednjeevropski standardni =C4=8D=
-as je Ryan Walklin napisal(a):
-> From: Jernej Skrabec <jernej.skrabec@gmail.com>
->=20
-> The Allwinner H616 (and its H618, H700 and T507 package variants with
-> the same die) have 28 video output pins for RGB/SPI and LVDS display.
-> These are in GPIO Bank D and are multiplexed.
->=20
-> In RGB mode, pins PD0-PD23 are for 24-bit RGB pixel output, pins
-> PD24-PD27 are for clock, DE, HSYNC and VSYNC, and PD28 is a PWM
-> backlight control.
->=20
-> In LVDS mode, pins PD0-PD9 are for LVDS0 and LVDS1, and can be
-> configured by the H616 display engine for either one high-resolution
-> (dual link) or two low resolution displays.
->=20
-> Add device tree nodes for the LCD, LVDS0, LVDS1 and PWM pins.
+On 15/02/2025 09:41, Haylen Chu wrote:
+> 
+>>> 	};
+>>>
+>>> For the other two clock controllers (APBS and APBC), syscons are really
+>>> unnecessary and it's simple to fold them.
+>>
+>>
+>> I don't follow. Do we talk about children or syscon compatible?
+> 
+> APBS region contains only clock (PLL) bits and APBC region contains only
+> reset and clock bits, so I was thinking about dropping the syscon nodes
+> and changing their compatible to spacemit,k1-plls and
+> spacemit,k1-cru-apbc.
+> 
+> In summary, my plan is,
+> 
+> - For MPMU, APMU and APBC region, keep the binding in soc/spacemit.
+>   They'll be reset, clock and power controllers, with compatible
+>   "spacemit,k1-syscon-*".
+> - For APBS region, write a new binding clock/spacemit,k1-plls, as it
+>   contains only PLL-related bits. It acts as clock controller.
+> - All split children will be eliminated, there'll be only four device
+>   nodes, one for each region, matching the datasheet.
+> - Put all clock-related binding definition of SpacemiT K1 in
+>   dt-bindings/clock/spacemit,k1-ccu.h
+> 
+> Is it fine for you?
+> 
 
-Let's just drop PWM pins. PWM support is not yet implemented and it doesn't
-fall into display themed patch anyway.
+That did not explain hardware to me. You assume that some way, maybe
+through magical crystal ball, I know your hardware and will tell you
+what to do.
+
+No.
+
+I have dozens of other patches in my inbox. It's you who should explain
+the hardware in simple, concise way so we can judge whether DT
+description is correct.
+
+Again: define what is the actual device, what is its address space, what
+are its possible *separate* and *distinctive* children.
 
 Best regards,
-Jernej
-
->=20
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> [ryan@testtoast.com: add RGB, LVDS1 and PWM pin assignments]
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> ---
->  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 32 +++++++++++++++++++
->  1 file changed, 32 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/=
-boot/dts/allwinner/sun50i-h616.dtsi
-> index 242bac95840f8..806ad87705abc 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> @@ -322,6 +322,32 @@ ir_rx_pin: ir-rx-pin {
->  				function =3D "ir_rx";
->  			};
-> =20
-> +			/omit-if-no-ref/
-> +			lcd0_rgb888_pins: lcd0-rgb888-pins {
-> +				pins =3D "PD0", "PD1", "PD2", "PD3",
-> +				       "PD4", "PD5", "PD6", "PD7",
-> +				       "PD8", "PD9", "PD10", "PD11",
-> +				       "PD12", "PD13", "PD14", "PD15",
-> +				       "PD16", "PD17", "PD18", "PD19",
-> +				       "PD20", "PD21", "PD22", "PD23",
-> +				       "PD24", "PD25", "PD26", "PD27";
-> +				function =3D "lcd0";
-> +			};
-> +
-> +			/omit-if-no-ref/
-> +			lvds0_pins: lvds0-pins {
-> +				pins =3D "PD0", "PD1", "PD2", "PD3", "PD4",
-> +				       "PD5", "PD6", "PD7", "PD8", "PD9";
-> +				function =3D "lvds0";
-> +			};
-> +
-> +			/omit-if-no-ref/
-> +			lvds1_pins: lvds1-pins {
-> +				pins =3D "PD10", "PD11", "PD12", "PD13", "PD14",
-> +				       "PD15", "PD16", "PD17", "PD18", "PD19";
-> +				function =3D "lvds1";
-> +			};
-> +
->  			mmc0_pins: mmc0-pins {
->  				pins =3D "PF0", "PF1", "PF2", "PF3",
->  				       "PF4", "PF5";
-> @@ -348,6 +374,12 @@ mmc2_pins: mmc2-pins {
->  				bias-pull-up;
->  			};
-> =20
-> +			/omit-if-no-ref/
-> +			pwm0_pin: pwm0-pin {
-> +				pins =3D "PD28";
-> +				function =3D "pwm0";
-> +			};
-> +
->  			/omit-if-no-ref/
->  			spi0_pins: spi0-pins {
->  				pins =3D "PC0", "PC2", "PC4";
->=20
-
-
-
-
+Krzysztof
 
