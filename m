@@ -1,132 +1,108 @@
-Return-Path: <devicetree+bounces-149909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1F9EA40C2B
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 00:41:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B03AEA40C33
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 00:49:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D7B11898D6E
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 23:41:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57E121893454
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 23:49:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3457420468B;
-	Sat, 22 Feb 2025 23:41:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C2E22046AC;
+	Sat, 22 Feb 2025 23:48:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="VIPasXYg";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="NqROBFzd"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="s5Hgk1Za"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a5-smtp.messagingengine.com (fout-a5-smtp.messagingengine.com [103.168.172.148])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5BC72045A5
-	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 23:41:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.148
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE07204594;
+	Sat, 22 Feb 2025 23:48:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740267678; cv=none; b=iH91QIJ+rP/VT5jIHb27str6faWE4+QXjottKJ6GKiUnUpV3GlhR5B/TWhOd22xIMZikHFnfxo9Xc8l3+gnsrnwvLYxtpR4/Xy++EnH+vtrNkS3Jd2BaOM50Xu0MAzBe6dtDRUI3BhgJZZOdmccDSnDb28OerB36Q5yoyi5HoBI=
+	t=1740268127; cv=none; b=CW47QN2lhdZqd90b81xOjv9cnX3h1Pkr9YMGUKidwfAYa8PsCBI7Hp4dw587V8cUwPxS5KyPp/sYhKNGcOmUraAfSlZlbP20ylujASJYU1J8Fak0fchDsGDNIxSuXxwZZM9bDwSB8s6O0HdiiQD8arAf/E0Kj5C2p4o3Jr48sE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740267678; c=relaxed/simple;
-	bh=+KnZ+bHpq3Adbno5MHK+SYpaXqn+rPN2eRCC8cungUg=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=lr4MehC+1xG989WwBU0DkcgGJA7ZdBQ7JkSe/6Gs6T+LBBajC9LWJj4+SBVUOEZ2UNLqo5kkZJOhrlnTPTrI9BU0FVCEf6eMrhTEsIXuBmWaXgn4MSO8SILY4nlI0BfhkQQbrhJ1xFge1z6aPvQ2hPOTQP6NUIeD3gA9eCkZNww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=VIPasXYg; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=NqROBFzd; arc=none smtp.client-ip=103.168.172.148
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-13.internal (phl-compute-13.phl.internal [10.202.2.53])
-	by mailfout.phl.internal (Postfix) with ESMTP id B4394138098E;
-	Sat, 22 Feb 2025 18:41:15 -0500 (EST)
-Received: from phl-imap-07 ([10.202.2.97])
-  by phl-compute-13.internal (MEProxy); Sat, 22 Feb 2025 18:41:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm1;
-	 t=1740267675; x=1740354075; bh=+KnZ+bHpq3Adbno5MHK+SYpaXqn+rPN2
-	eRCC8cungUg=; b=VIPasXYgFYZXnBRT1VNix9zYrQg+fBuQiS88EXgxYAB3w6fM
-	hG8bytPl4UWmCOkwi8OrrxMaHhaQsf1oDNv3nbj52/CgFOFjb9zTt0pJTbrEmfS1
-	Kd4BXEKhmxFJgB5DRz8tyAF6pMzSML1B88z6MjYyFlzbp2JNdxi7W1Gm54VtoePR
-	XDCBdvhLMnrP6AZVJfkRYkg9IIQRltVI8PT1AX4a/T7xqXcmPLbmnkS79SdwdTR9
-	CDtSxzpSTYmPd1++v/zMRsiYKDaNBA6C1O26/LMUwmqfL6gocs85H2qyxMkO4hGc
-	6U7yivCuajyWMz0QbnEt3JLuRp5RMnzlGx4e1w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1740267675; x=
-	1740354075; bh=+KnZ+bHpq3Adbno5MHK+SYpaXqn+rPN2eRCC8cungUg=; b=N
-	qROBFzdGqd48ACpHZMA4RQ34K7/CbqYwDeYRuhd1zeswpqR8NstOCAD3RW6pZ0PV
-	BH4Myiec7K4535df5NABB39sKb2v1Nsnb9cNPrQaELABK99IXcXXKpRQx/zU4Id0
-	e+AG8gjDbU7DC9LoM75jT9eNH+V+Cc2MuToBDmlt33KrI9zNH9V/3TcVByow01MS
-	xANEZM8QUIr1LBdPygppUWtrCPD4+VpELOwBrs95DP7kychTFjA4jY+HFRuJLWg2
-	B5D7YJqHQI/3klc8qeJy36VqXj2fKha/0Uz7MHrJsNDqRS/8f++/tJesbCq5Kn2d
-	Jw41AOvaWMaXA9odMumaw==
-X-ME-Sender: <xms:m2C6Z0CKr54xzCZX3ePLmZ-I3_J8CBdmV9SQzSf2YfQcuvpOIPgUfw>
-    <xme:m2C6Z2h56YFUIJyrkBEW1M3usrm2Imq4dWgW_TI4gYBNeD3r1s5o7TgkcaDH3ZAM2
-    fLm0D2CdF9fNgtSiA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdejgedvjecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthhqredtredt
-    jeenucfhrhhomhepfdfthigrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtoh
-    grshhtrdgtohhmqeenucggtffrrghtthgvrhhnpeeghffgkedtueeiudeukedvveevhfdu
-    uefhhedviefgffduheeuieeihefhfefgveenucevlhhushhtvghrufhiiigvpedvnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgs
-    pghrtghpthhtohepudefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrnhgurh
-    gvrdhprhiihiifrghrrgesrghrmhdrtghomhdprhgtphhtthhopeifvghnshestghsihgv
-    rdhorhhgpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgrihhlrdgtoh
-    hmpdhrtghpthhtohepkhhikhhutghhrghnleeksehgmhgrihhlrdgtohhmpdhrtghpthht
-    ohepmhgrtghrohgrlhhphhgrkedvsehgmhgrihhlrdgtohhmpdhrtghpthhtohepshhimh
-    honhhsrdhphhhilhhiphhpvgesghhmrghilhdrtghomhdprhgtphhtthhopegtohhnohhr
-    odgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvg
-    hlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:m2C6Z3l5vCZ3r4nRVTB4zUpEz5Zm54INr-rWHDQLOnQHOblRzgxhbg>
-    <xmx:m2C6Z6za0QFUiDxuRCN17QEN8gJRBnllq3-hmjctAHdfqAhTsVTbhQ>
-    <xmx:m2C6Z5RnpEu3JDgm9R0IL7k7oZEjZaCYpKK1TW6XVU20H-E7UPqejQ>
-    <xmx:m2C6Z1auZT8EbfpaOZTeBjtGkqQvf5IBDZRSxVV2DtO5KX8LUAtvyQ>
-    <xmx:m2C6Z4JhcubZ1qsHl2-1f2nPREQtGv81LjK19ySJq6RnFgtmzhfE94vK>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 854E6BA006F; Sat, 22 Feb 2025 18:41:15 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1740268127; c=relaxed/simple;
+	bh=xF0ox/74UjRXraUThum9vQmu1wwYLfV5VLUVBmCwffw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BFwlPW8Q+89AQQ5i7Bnux21y8XbXWKGqyRKxkjREbAM+vta4pq7CTSzp+GHZ7sYKXSbYQUp1MccTrjc1S6L/LAuFMtJoQuIa+5UgAQL6f7VL2yJ874jvAb7SQ6q7cxgwBMN56iNmqhCHfYCjaseus0uf6Qmf57U71dSIghG6UyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=s5Hgk1Za; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=tzYj2SBwZYdiAHJqAPsKe/dFQvpKAGWUcio6ju4eMVk=; b=s5Hgk1ZaHT8uyo1V0KFNKBG13Q
+	zjV6RXP84BOVzBXJEm+GgJgVWSEmzBLzu9mogqDdbrgilm0MVthYje9q9/mJnYBATkiHYTiX3w8wQ
+	fuAE7X0bFIvpqsz5uZfs7TSHF6fulhi5E94SMS26d6w3HSfO8M4vKtVTE6kAEBRY/CMblw8OyJ1u1
+	ACKVx9wTemKktI+imsrHU0umpqVfWHZl3c6jo72DeDdsln+qZgZPO0B0ya3QOihMhNFK18sLfcVR+
+	Fg6Q62ms02VS5GXU4Gquz2fj8JzZGD5axR3ZFMvWIPEwL9JZH6m152GRYj+ygcchPIPID8xgbJgs8
+	LT1kRlQg==;
+Received: from i53875a10.versanet.de ([83.135.90.16] helo=phil.fritz.box)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tlzEN-0004TL-OW; Sun, 23 Feb 2025 00:48:23 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: linux-kernel@vger.kernel.org,
+	Detlev Casanova <detlev.casanova@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Tim Lunn <tim@feathertop.org>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Alexey Charkov <alchark@gmail.com>,
+	Stephen Chen <stephen@radxa.com>,
+	Elon Zhang <zhangzj@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v5 0/2] Add Radxa Rock 4D support
+Date: Sun, 23 Feb 2025 00:48:16 +0100
+Message-ID: <174026756680.3008209.2974583864870803696.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250218160714.140709-1-detlev.casanova@collabora.com>
+References: <20250218160714.140709-1-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sun, 23 Feb 2025 12:40:54 +1300
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Chen-Yu Tsai" <wens@csie.org>,
- "Samuel Holland" <samuel@sholland.org>
-Cc: "Andre Przywara" <andre.przywara@arm.com>,
- "Chris Morgan" <macroalpha82@gmail.com>,
- "Hironori KIKUCHI" <kikuchan98@gmail.com>,
- "Philippe Simons" <simons.philippe@gmail.com>, linux-sunxi@lists.linux.dev,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Message-Id: <840e7248-de05-4c96-b743-917649d71dfa@app.fastmail.com>
-In-Reply-To: <4407188.ejJDZkT8p0@jernej-laptop>
-References: <20250216092827.15444-1-ryan@testtoast.com>
- <20250216092827.15444-7-ryan@testtoast.com>
- <4407188.ejJDZkT8p0@jernej-laptop>
-Subject: Re: [PATCH 6/8] arm64: dts: allwinner: h616: add LCD, LVDS and PWM pins
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Sat, 22 Feb 2025, at 10:48 PM, Jernej =C5=A0krabec wrote:
-> Dne nedelja, 16. februar 2025 ob 10:27:13 Srednjeevropski standardni=20
-> =C4=8Das je Ryan Walklin napisal(a):
->> From: Jernej Skrabec <jernej.skrabec@gmail.com>
->> Add device tree nodes for the LCD, LVDS0, LVDS1 and PWM pins.
->
-> Let's just drop PWM pins. PWM support is not yet implemented and it do=
-esn't
-> fall into display themed patch anyway.
 
-That's fine, this can be re-added when the PWM driver is implemented, an=
-d will squash the backlight and panel nodes in the next patch.
+On Tue, 18 Feb 2025 11:04:17 -0500, Detlev Casanova wrote:
+> Add the basic support for the board. (Not officially released yet)
+> It is based on the Rockchip rk3576 SoC, so I haven't added the
+> following devices yet:
+>  - VOP/HDMI
+>  - UFS
+> as the support for those has not been merged yet, but are close to be
+> and I already validated that they work.
+> It will come with another patch set.
+> 
+> [...]
 
-Ryan
+Applied, thanks!
+
+[1/2] dt-bindings: arm: rockchip: Add Radxa ROCK 4D board
+[2/2] arm64: dts: rockchip: Add Radxa ROCK 4D device tree
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
