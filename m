@@ -1,189 +1,342 @@
-Return-Path: <devicetree+bounces-149896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F20A40B92
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 21:31:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99CFBA40B9F
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 21:57:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2402189F64A
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 20:31:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 110D83B5140
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 20:57:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B33C1F4289;
-	Sat, 22 Feb 2025 20:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 837EF202F61;
+	Sat, 22 Feb 2025 20:57:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=xypron.glpk@gmx.de header.b="Dj0n9cDc"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b="Hym+9PDY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B12E18EB0
-	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 20:31:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740256309; cv=none; b=ZplhFJ91KPIuUPVgvis4xMxYCreuvFuF8mNO4n9D9HO7mKMwJNs0KjbvDZZhbFIv089kOGYCPIDj3udUgIeiuHvvlarXw81V13GXswmnQMMkdYxANgQr6jvoJB6JVJ9OfLBV1IZN840h1Ghg4CbpEWPkGjjPytT0HZDNtY59dqA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740256309; c=relaxed/simple;
-	bh=qbP6ARrQvZa7twzrzaKyxh1Rp4Q53ChomPYabHe6Kp0=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=MjC8zNz0hH5Hd3Y0EEOUlP3J6nH4uLGxbEM+aUJ41C6ZJ+mnYimbS4s02d+FliZgDUBiEewllsHtKaa/Sl+ZJR7Ixas0bTPFrSpYaBpf0LpemY3AEvJHPQB48YR0rtckWLxInQxjfAUZx5KJ4j7CinRnTVNsKTsyVGGXKuMH98Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=xypron.glpk@gmx.de header.b=Dj0n9cDc; arc=none smtp.client-ip=212.227.15.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1740256303; x=1740861103; i=xypron.glpk@gmx.de;
-	bh=qbP6ARrQvZa7twzrzaKyxh1Rp4Q53ChomPYabHe6Kp0=;
-	h=X-UI-Sender-Class:Date:From:To:CC:Subject:In-Reply-To:References:
-	 Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=Dj0n9cDcqrqUwTaiECbHruE7gN/Dqmcb6dId3CTxZpFk2i42jMS/Z63PdVBJMrVV
-	 Kgib7tKxradrPyHrlzqJGEXkcZH/amC3AmAruWhA13UF/x40fLym+uIozse0uSt3h
-	 lps2fHesvWURz4QI2GRcVngjrYcNpFvTL66cHNcPk78fSd0EOnYQa381bNyT+eMIS
-	 M6Vso5WSoxekDWWLULt+3EXpiE+qKLcJcqSJIuWbnWryfEGGrTQyPQmdDAtX2U7JF
-	 np6d8vPHAxfb1QD3wts/n+si2nTY5XkVpSlUYhhNXmeuF4LHFQqbrTlrm36lWsQ6T
-	 CAuIGdCzpEOZ6Ze/JQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [127.0.0.1] ([46.114.105.158]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MkHMZ-1t280c07pp-00nQ8U; Sat, 22
- Feb 2025 21:31:43 +0100
-Date: Sat, 22 Feb 2025 21:31:40 +0100
-From: Heinrich Schuchardt <xypron.glpk@gmx.de>
-To: Ayush Singh <ayush@beagleboard.org>, Jason Kridner <jkridner@beagleboard.org>,
- Deepak Khatri <lorforlinux@beagleboard.org>, d-gole@ti.com,
- Robert Nelson <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- David Gibson <david@gibson.dropbear.id.au>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Pantelis Antoniou <pantelis.antoniou@gmail.com>
-CC: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-Subject: Re: [Question] Status of user-space dynamic overlays API
-User-Agent: Thunderbird for Android
-In-Reply-To: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
-References: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
-Message-ID: <2FB1BF12-E30C-4D99-8F71-2B28CEB16478@gmx.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 857A2202C39;
+	Sat, 22 Feb 2025 20:57:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.156.173
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740257868; cv=fail; b=buuDbGbS32e4i91bgxXNYUFZvruyOzNV9X7wjsMP/DxFuoXrLaxDJlmrgIBjpD1+EXITAvbn9Ohaa3QlfSgph03j+nfaHR1HbwSiq+TosdJtbCOoB/d1LbbnCB2512eq+LJU7PU/OK93cBnZF8A6I+JyD+hOUW6zYqisRyq1l78=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740257868; c=relaxed/simple;
+	bh=7XnMkxAqzX0lhXKAvrTLxsRpeF4pmE/zoFCSa7vicr8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 MIME-Version:Content-Type; b=V7TCQzeKAEqNTjhjcIrIAfUnQHczPlkehcP+49lG3P9POYtcyUJ84JnUqMjVW2QVLmwsJUZuqtObDf2I4q5Xb5K8toOuSjFgtj+EbLaWvrJ0wLNa9SJE+Q+DcYR75e1A2/sIGBB1UGsEgX8iXIOHLp7iCW9ZFq4BTw6g/Znubhc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=fail (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b=Hym+9PDY reason="signature verification failed"; arc=fail smtp.client-ip=67.231.156.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51MKo9LD016579;
+	Sat, 22 Feb 2025 12:57:18 -0800
+Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2049.outbound.protection.outlook.com [104.47.58.49])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 44yeykrfua-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 22 Feb 2025 12:57:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=a6qtUM/kKFQ2gxGO9yL5FdGNb7cNI3Mr/xbm9b+wFr8ZDH4Z99DppTm4YdXg/gVD0v8otqaMb443LD+P/31vE5nJ/rt75jjqY4YpkRr4EvcGXsGZGoNVgp5JLBslMSzb0kmugPKeBAZggBJAfyeB7POGFJJ+aATDXXeiRk3+4svsljgsiKdQtE9U3q6usuimo4kpARSs0S+truXPkB4ummpz4mn7/pxJGVjkot9Rsnit+h8ltKKSx7DruB1b02u/cyslplxqPn0aa7ZHqy02xyyhG1TiHXELar3dfsqgblyac6fly19CWVtTnSIU8jKKamVCuftVfag/CLyrq1cvjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hQPd7PvTKqhA6s4n24TNfL8QpxgX4OVccQRWTgLj5hQ=;
+ b=I+QWp786ivAvhU0hI+5wldaYGWU8PdHgJxdxKpzD59iyZcO7cVxorV5jjuwKicFyYI71rUTVDy3DKUi9gf07fdBCp2Ga2XtUxK3Tkvy0M8fsFDcOYrCs3/HQsKlk1kqL9nZFmmnv6qkJRZ3GyQ+0GzNCTx/Z0j4VZ3nH+NOyuKx5jMMzANqwKd1dGLxs7B+j3mjGN6ldHtbjogWsVMzjGg73v5J1dSY+FFgwiTbHMwP6wKAQVQFTyigCSsKmJaZhc2rc9S0cFs+DAMcONq7xFZgmsnxvJQJXGL2v3dJ9PBxieBVC1X0w0nxzsFtsp90XoLcRpVw5ijJxx43xGlpz6w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
+ dkim=pass header.d=marvell.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hQPd7PvTKqhA6s4n24TNfL8QpxgX4OVccQRWTgLj5hQ=;
+ b=Hym+9PDYTK5ry/w+4d1KZ2uyNDznmJP4KILVXOUZkDh9GufOgfhhqCBHLXUc33I9zY+Z1q93CvQZx9XYjx/3iPB9LMSdi0IBIAlAwS/w6GQpqtJkhLtv5cd0pv55qRYS0IAVBoISa2HlEBR0fb4svn8LikBPi3+vr1cK57zfD4Q=
+Received: from BY3PR18MB4673.namprd18.prod.outlook.com (2603:10b6:a03:3c4::20)
+ by SJ0PR18MB4430.namprd18.prod.outlook.com (2603:10b6:a03:303::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.18; Sat, 22 Feb
+ 2025 20:57:14 +0000
+Received: from BY3PR18MB4673.namprd18.prod.outlook.com
+ ([fe80::fbd6:a3a:9635:98b5]) by BY3PR18MB4673.namprd18.prod.outlook.com
+ ([fe80::fbd6:a3a:9635:98b5%5]) with mapi id 15.20.8466.016; Sat, 22 Feb 2025
+ 20:57:14 +0000
+From: Wilson Ding <dingwei@marvell.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "conor+dt@kernel.org"
+	<conor+dt@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        Sanghoon Lee <salee@marvell.com>,
+        Geethasowjanya Akula <gakula@marvell.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: reset: Add Armada8K reset controller
+Thread-Topic: [PATCH v2 1/4] dt-bindings: reset: Add Armada8K reset controller
+Thread-Index: AQHbhWxZLiQyNPIeNk2TKZdUrH8ckQ==
+Date: Sat, 22 Feb 2025 20:57:13 +0000
+Message-ID:
+ <BY3PR18MB4673F55565B70458E1F3F9A6A7C62@BY3PR18MB4673.namprd18.prod.outlook.com>
+References: <20250220232527.882888-1-dingwei@marvell.com>
+ <20250220232527.882888-2-dingwei@marvell.com>
+ <20250221-icy-flounder-of-potency-ee1a05@krzk-bin>
+ <20250221234041.GA387671-robh@kernel.org>
+In-Reply-To: <20250221234041.GA387671-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BY3PR18MB4673:EE_|SJ0PR18MB4430:EE_
+x-ms-office365-filtering-correlation-id: d775fec0-9bc8-4c90-d618-08dd53837be1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|366016|1800799024|13003099007|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?NjFHaDZndjZSU2dyZ3oza3FybnNwdHRqcVNYbFdDM215M3l2a2FwUU1oRFJk?=
+ =?utf-8?B?b3V6T2NLd3RZd1dXeDc5L1FkMDlwT256MnpGUFM3VGtBRnZGeFdIR1lkRzgy?=
+ =?utf-8?B?YjFIQnFpcTZEaVhSbGJyUDRucmJGZklGVzg4WDJqbzUrNDZPcVVpL3BpMmZ2?=
+ =?utf-8?B?bFJZRHJuRDJNWElJQUh6VDRhMjk0NkdxVW9Ua3FuN3FHeDQzQ3AvSHRZWGxz?=
+ =?utf-8?B?cWpWWTBBMFFUQkJIdlZ2d0dDKy9HY1BvbTBKb0ZJUU84TVpZVDFSNjJRVXZt?=
+ =?utf-8?B?MlBFWXJlaW5nRXdGUzlkUmVPSEVQc0lLSlJrazQ2Y3Y4WkNMUVNQaVlNVXNM?=
+ =?utf-8?B?ZXpUK01pallhNXhPV1M1Yk41bW5BTC9obWliYXlFQ0VBbW5pRW8wOHl0VnZh?=
+ =?utf-8?B?UlRuRVZaTlZldzVzL1VjMVNRaXJIcENNNWF3S0RWRDVqU2ZkcGoxaHd5eHBW?=
+ =?utf-8?B?Zm5qM05yMmdIQXJURHBoUVZYUGdCSTlWWVJrNE8yc3pvdUViSnpraU1FbEo5?=
+ =?utf-8?B?NXNubHJYa290cG5OeWM5ZXY1K2phbFdpQ3ZQN1VYUWFVaUl1dHBiR2k0SWRh?=
+ =?utf-8?B?bUQ4NTJBSm4xR1dmbUF2MjFrNm1YY0N1VStiOWVaeWk1Y2lUL2ZjYVIrVTFn?=
+ =?utf-8?B?N2hBcEZJblhwRXZ4NVBDUlFVaWd4WG5CSnBLQ05BTlZERmgyWEcwOEVlT2Z5?=
+ =?utf-8?B?ajdoLzFER2g4Tjh2OTdKek1HQVAxTVQxOEhISmdkSGtzbWZ3dDI2R3ljaHBU?=
+ =?utf-8?B?Z1NSQnhEQmNTVFZnVVRubDFyQ1NhdjJXeWFMRWJ1VGxkRDBoWTBYcmlFaHBq?=
+ =?utf-8?B?WDBvb0NEcUJqQlc0V2dickZDckNXcDgrWkZiaVBHRGptZU80SzIwWlZnd0ZY?=
+ =?utf-8?B?TWEvRGszNDkzSzRETElrNGswRytwZmxDMXF1ODZkOGErVS95RUQwZEhNanFi?=
+ =?utf-8?B?YW9wMS9IRk51WjVSbUE4ZmkrQ2ZBOXR0UVdwVktiWWRoMThJQnhLNkVZU3lw?=
+ =?utf-8?B?MitCdWQyNDllTWJGSFN4Vnltcm1XcGorRkdOb0dWUVRaT0R2UHNMMldsSWdH?=
+ =?utf-8?B?NGdjSVhSblgvckdzWlgveDRiSnRlVW0yMnF6d1I2TzkwNDFjWld0allUVUxU?=
+ =?utf-8?B?b2xTVXREcUxITGJjN1p6eEZ1M0MzNGNvbjByL1JWditQOG90VTBTWVpUU3o0?=
+ =?utf-8?B?Nzl2dE1ReFNCc01WbS9qVkdKeHR1Y3ZwcW9ZSkRHLzl5Y3BMRVRnRFd6UmNi?=
+ =?utf-8?B?cHVJcjE3UzgwRk5FL1JzNEZzS3lqTUZKWUNFWFMwSVRzT1pvdkRIVzNtaVVB?=
+ =?utf-8?B?WVdWNXMxWllsRVVMTnVZQ3dIUlF5Um1zamlsUnJWMFZpSUl0S1M0RVRiSkli?=
+ =?utf-8?B?QWsyYlJIMlBVRjVqMVptMU4raTJabm5TbllnbWFXQ2NZbWVVQmVrd1FYMjFR?=
+ =?utf-8?B?UExuVjNJS2VueEdpNzJUb1ZQeVZPc1dxVHE2Zi9ERm1xZkxyenJ6V0tNaDZK?=
+ =?utf-8?B?MGw4OExiSXBSaFAzMVJFeE9MMElWYnBJeUYvc1ZlT2piUEJvR2R3a1d1L0RK?=
+ =?utf-8?B?K2xzNjFPNXJnOFRXdDFoNm9OUGhKT2dIa09IdzJTYzdZdmdIZFVrTmxiQWpl?=
+ =?utf-8?B?ckNGbWFlRXpDSGxyYUErQjB5RHkwRzFLdnpsRzVuNzAzUzVPUkdPNUFQczMr?=
+ =?utf-8?B?U0V1cE9ldnEyeUhmVUJvdXE3dHhrWG52SCsvS25xRzlraDBjVWlHZUY1aSt1?=
+ =?utf-8?B?eituc0c0dTQ4S0RQODIxejRZVE82dnZGRDZPZFR4TXBib0huUzFDbGppS0xP?=
+ =?utf-8?B?L0FmMDF4NVFOVTArWTAxckJvV2FvN0kwcHhBbmNzekJjelBVVmFzVWwrbHNF?=
+ =?utf-8?Q?19pCHVl8dwT4F?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY3PR18MB4673.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(13003099007)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?alplL3cydHlQa2IzRUhCRUpDWE1USVppTWFsaTRqcnBsTzVZUXZ5WWpuWXJF?=
+ =?utf-8?B?Qk9KajFtaTJiQjNIUDZJMnNjUjVDclBFQ2s1YVdSY1Uyc0YwekxyMGZpRVFP?=
+ =?utf-8?B?V1JQcXJsRTQ5WW5LTy90ais3ckJGb1pQeGFsNmdMcVZwL1ZlbmNOSEU0VDJD?=
+ =?utf-8?B?cjIzcUNwWnAxWUZGRVlibUdwQTJRM3IrNjBWSDdLZ1p4dGhkR3R5V3hrVDhN?=
+ =?utf-8?B?N29nSFhodVB4Rjh2ZkloeHVaUjJ4aEx0R2kzRTJUdmgrYmRza0FLL1BiRXRq?=
+ =?utf-8?B?WVVsbXA1TUlvZmQvblo2Z28vdFVDckhHUlMwVkpwc3pLc3FtTEI3SHVvUklC?=
+ =?utf-8?B?UWhLcTMzRkUxK3AxSFgwTVNZbVRqRU56U0lrNFhMVnRSb25jYVRDVm5FV1BC?=
+ =?utf-8?B?Z2JpN1hCTzRKRXFwY3lsSWNpMXhYdEsyMWo3WFZCdEZpT2xzYzRIZDN5Wlht?=
+ =?utf-8?B?MTFHSGJxUGRpMEd1QUpLMXNOb0p2cHhZTWF0a1BIRVkxczJoSFRRMWdROWNX?=
+ =?utf-8?B?Yk96ZlVmZnJqcUtGNTc2WXE3T3pPMW85bktNdjYvNFdkKzM3TDdBZlZ1YmRw?=
+ =?utf-8?B?M0NCZ0E4RE5xSHR2WUJ5M2hTZjJNK1VLZC9Fd2NGVWJFYWlhU0tGeXJONno2?=
+ =?utf-8?B?d0tCdmtXdlR3Q3ppR2VpUlFhakNFZXZqWG53bW1kZWdxQ1RFRW1ObjdYZUVY?=
+ =?utf-8?B?Yk1UWkwxaC9RdjZPUWhhTy9jS3FHNTZKNnUxdWJLN3lnbUlBa1R1UHkwaWxa?=
+ =?utf-8?B?T3ZCSG5DZFpzaXNTUzNrMHhkTlBRdzFlalRRY1hwd2lvVUZONDdPaHFNclRO?=
+ =?utf-8?B?djZTeFNkekoyUy94N1IrTXIxZklFNlI4ZEJwVEpVQTZQN2dRZDVIQVJrcjl4?=
+ =?utf-8?B?NmxFQUd1RlhaSFVDMVNjSEt6RTRoWWJUT2szTEVYNktTQUpaUDhGVWcrd0hE?=
+ =?utf-8?B?cXJybEU0UVo0K29uS3UyL2lFWEtHdU1oV3NaM1Fvb1RERXN2TkJJSmhkb2tm?=
+ =?utf-8?B?ZkFLaDJpblRxUzl6VVZXVStUWjZxbVlFcTE2NWlJdTIxMER0cTlIclFxSnNx?=
+ =?utf-8?B?Z01Ud2k4aksyK3BJT0Y5cVRPbXdNNjNQWDU3akRIUUxnY2lrTnhyMXFMenh3?=
+ =?utf-8?B?dHFQLzdSR2NITm5EMGNCNS9LODNFN3NHYXFzWmRYZnFvdm85bkdZK290eXZY?=
+ =?utf-8?B?RTZJZ1hXMmpnWExIOEJLSGFlMk5jVkRVdVA2OGtuUjBFZzgwWXh1OGpBSHZo?=
+ =?utf-8?B?QTBQSkt6OTI3WG0xWlRGV24yejluTTFNbjdYNUdMZng0cXduT0NZQWlSWGV3?=
+ =?utf-8?B?NGo4eGdCcmZsTEVWVExsajdrUzNwR2c2Ry9JNnF4aWxhK2VuWW9zZkpabGJT?=
+ =?utf-8?B?eW5UMkQ2MDh5SEphUWhMaUhZV2UzeVZocmFNekd3WmM4VVQrRkxQUDZwRkQz?=
+ =?utf-8?B?YlBEQXhJWG1YYk5jT3VpdUJxMnJPdkFVeDk4RnRiSWl4bnloODYrbkRzWjhR?=
+ =?utf-8?B?c3RuWEgvb1BkQTRCMEhscUgycFJFeUJuY29nck1NYjk3c0JQM1B0bTRIek8w?=
+ =?utf-8?B?bGUwWFJIdUpXSjhJWmlrVlpJK0NRSitFbWp1WUJQSkdHV0wyWkdPbXhwOGpX?=
+ =?utf-8?B?Zk9PdzByNUJVcmxJK1NHcDU0MHh1NktjQzNIaFVmMVlSazJiSWdNaUk4S0V6?=
+ =?utf-8?B?RU5ZYmlGTlNqNVpTdU9ndHRZYnpHVTZqRjFGRDBKVnlhRDhEWlpvMTEzRDNL?=
+ =?utf-8?B?bmpMVkpXa0daRFJtUE1MM0pxbWlYdTZBazlFYWJWZ21xdzFMdElaRTUrU09m?=
+ =?utf-8?B?VTM0UGNoTzgvS1hCZ0tyYkFTVVlXYVhZK2xnRXROVDZqbTRpTk1Ncit2bEJn?=
+ =?utf-8?B?U0U5czdnSzlOQ3dLbkNKaXA3Q1pMVmMzclZLd1ZteERzWGg0MmZhZ09qRlY4?=
+ =?utf-8?B?ZXRkVnhLK1NDQnE2d21Dc04yTmlISDBBNUFOL21uN3pCWGIvRE8ya3MyYXRY?=
+ =?utf-8?B?VVJXbWpLd0xUNm42N0pKUWduOWFoZ05ORnJzNHdncXpCV0hGNGwyekd3RW9R?=
+ =?utf-8?B?L1Z2YUV5WjFBYXRGR3NCVDZ1THNHUG5VbFd6Nno2WHNqQVpYamdvKy9iZlFz?=
+ =?utf-8?Q?VPaI=3D?=
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+X-OriginatorOrg: marvell.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY3PR18MB4673.namprd18.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d775fec0-9bc8-4c90-d618-08dd53837be1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Feb 2025 20:57:14.0299
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EsY0KM1hpYmI5KJOiz8MyuOBKM6ZEgyYKPRFUMSsWywEM29PH+wBznRqABpZQuf2Xpa0M5OvnOXs4yaAmYJ4oQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR18MB4430
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:b4/wua6F1mlRqSOfxA+yhPuGWPMXI8Yu3hV25dL6xtYcahveXsk
- kvNlWcl4SkCLax0InZjzdOZwg2r7iV56rhmfD6itbY85c+VSBF8KKK+sVjB8U94TmdHBcsX
- jWRxl8CNg+g8UWendjQsPagvy0TUA75NiV+PS9spPC7armCjE14Wq+nH+x6UfVhgil7bMnB
- 8QOqoTtIrMEt5fy/QkVFw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:KgLjmSOJGUw=;rkaGyV3muxK654si1vT4bgbF2oa
- fAjsJheJVY3LM7EDxh63+gi1nejW98PPgs0KEpGp2AWOZ42ar3y7PiFwnl+aRot0JV0C7s+H/
- KCp7l+NsmFF/dBotcIjpQKKEIzjvvemIZ/kXA6GWD9429Vx8ToQjIiqDGRSpX1CSdZ5St5CHV
- 5QJK1aXnYX6OjCdGGa8A94YRzwlWerlTHCwGa7pTks+Jz0snK0zWxN2Yh9cVMHjRVF3GXfemO
- T9Vx7YaQn53D2UxsI5+kI78VZdQ1LC6TKi63Q7Yg8fHep85B9HMWn5L0v3rb9E3Pyl0/UKMc/
- RWkqE3cL2pNSuT2iFTPtvkqqsHAy3QdeVoBQHwp0m795jMHswlh81R++Q8DYHfNHi9ZP+LJhi
- FzM50KK3BxprqCwgBi9ZK9XhF0p46F2HDqM/rcB4dK1RxMcNuENEmB8VSbzQAD72BXKb05uxK
- 13YndfrF2/G0i16YHCPAusD5ZghUb9Ll0HhlNxKMihsHmgGqzSBVOdozvKzoe5WyS3xmgUUcl
- zjvnByCILdI+8wyDJ1eMZa8aINTrL0N6RVkey5weCcFCMJ2I1VrDJ7YMrOw8iYBBbYrpwSXX7
- Z4OL2IsCyfw/pxmgMxj7lb5G1MQWV5LvgLggSWGIAw/kH9tUZhI2z9kgeO+XlTwpgGwSgrihH
- kDYyxtvfVs8GNexF6NAknX8lsgFXk13QRDIsYDqaypp8R5EqygUIPnD/c8eLK8R1iMWnQz5j9
- IDGrne57C/Ro6tSRbEOHo9WV7e5j+VVntWOkTEGQ89DHaHtLWE4oP5NJf2ppYI/7L1BP1RKND
- n0Uut1xyHnKpHpsEgZNOo4iV8igY8BW4066ABfjl8ShpIPdaX4XiupNY6/F7vGFJ32Jc//h0D
- I5fYfithZalcVRbWQZs4Xm7YlRDrgK+TvHC2fRcOEnt3uXqjMMMbDNVmhTF3UbcuIVpLCZ+fa
- AFCgEZbf73mQGAGxteheDu8zQUP3xo8Vuclp2xpUOb9ukhSsidLoIdxhXyeDDjkodApA1+5M4
- uiNUuc/5Dg4eXSdBj1ZMDCm1fUVDldEnE72A1FVtAS+QvcNaw/tgMp8dCfX/1sFGFSW6Oomsd
- 6PSNSfq5xzZCEg+2y1KQIOnklPPO52sd7QJtUv1xPtaYFGTVj5yq/c+JnMOarRzIsKlbU0PlD
- rfvBoGEIvwobYzdJ/34JVEY9mwk/CrqnKAakf5rzPZO+LX1pp/5covbv3ukXJaADVXFuN3YKH
- XL+XxVhIO/yQyc5I0NDLeUR3qaO3uVSOtMsvbFqP4DeudWgyPvB8P/HOP2MJvIRJWs08ZqOJn
- shM1Lqyr3yvA+iZklTXuTjm1Vm2UVnAOzZSZrUBiIOd9MJebyQ9p0vn1YEyPsqWm58O1TLiX5
- gi09wnHH6nHHWzYom1YR1Sbp75keep5bYPH2CmvpktmhMP8XwBQWzI9KqYY7P8Yi7zolGAu65
- iJhYsgA==
+X-Proofpoint-ORIG-GUID: B7ufZx2zJZblnEGWCWkhrUowYnnPq-4C
+X-Proofpoint-GUID: B7ufZx2zJZblnEGWCWkhrUowYnnPq-4C
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-22_09,2025-02-20_02,2024-11-22_01
 
-Am 22=2E Februar 2025 21:13:56 MEZ schrieb Ayush Singh <ayush@beagleboard=
-=2Eorg>:
->Hello everyone=2E
->
->I have been looking at ways to do runtime devicetree overlay application,=
- and was just wondering what the current status of the different proposals =
-[0], [1] were=2E They seem to be quite old and I think they were already re=
-jected, but due to all the broken links, I am not really sure about the exa=
-ct reasons=2E Also, maybe we now have the solutions to some the blockers at=
- the time=2E
->
->
->Let me fist go over some of the use cases where I think dynamic devicetre=
-e overlays can be useful=2E I am mostly interested in their use in single b=
-oard computers like PocketBeagle 2 [2], Raspberry Pi [3], etc=2E
->
->
-># Uses
->
->## Dynamic Pin muxing
->
->A lot of SBC's aimed for creating hardware projects expose headers, where=
- each pin can be used for multiple things like GPIO, I2C, PWM, etc, dependi=
-ng on the pinmux=2E I think Raspberry Pi has it's own solution to do usersp=
-ace pinmux, but if userspace devicetree application was a thing, it could p=
-robably be used for this=2E Additionally, being able to use dynamic devicet=
-ree overlays for pin muxing would allow much easier transition to use prope=
-r device trees during production=2E
->
->
->## Dynamic Sensors/Devices
->
->Using devices such as sensors, external ADCs, EEPROMs, etc are also a com=
-mon usecase in SBC's=2E A lot of current solutions seem to be designed arou=
-nd using user-space drivers in such cases=2E This is a bit of a shame since=
- Linux kernel already has drivers for a lot of these drivers, and they are =
-probably going to be of higher quality than most user space drivers=2E
->
->
-># Challenges
->
->## Security
->
->The concerns regarding security seemed to show up in the other proposals=
-=2E There was a proposal to have a devicetree property to allow/deny the ap=
-plication of overlays in some nodes, with default being deny=2E Was it insu=
-fficient?
->
->
->## Memory Leaks
->
->Currently, updating/removing properties leaks memory=2E Was it one of the=
- reasons for the rejection of previous proposals?
->
->
->Maybe kernel already has some solutions more suited to my usecase that I =
-am unware of?
->
->
->[0]: https://lore=2Ekernel=2Eorg/all/1417605808-23327-1-git-send-email-pa=
-ntelis=2Eantoniou@konsulko=2Ecom/#t
->
->[1]: https://lore=2Ekernel=2Eorg/all/20161220190455=2E25115-1-xypron=2Egl=
-pk@gmx=2Ede/
->
->[2]: https://www=2Ebeagleboard=2Eorg/boards/pocketbeagle-2
->
->[3]: https://www=2Eraspberrypi=2Ecom/
->
->
->Best Regards,
->
->Ayush Singh
->
 
-Hello Ayush,
 
-On [1] I gave up when I got the impression that the maintainers only wante=
-d to further their own companies interest and did not show openness for a g=
-lobally usable functionality=2E
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Friday, February 21, 2025 3:41 PM
+> To: Krzysztof Kozlowski <krzk@kernel.org>
+> Cc: Wilson Ding <dingwei@marvell.com>; linux-kernel@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> andrew@lunn.ch; gregory.clement@bootlin.com;
+> sebastian.hesselbarth@gmail.com; krzk+dt@kernel.org; conor+dt@kernel.org;
+> p.zabel@pengutronix.de; Sanghoon Lee <salee@marvell.com>;
+> Geethasowjanya Akula <gakula@marvell.com>
+> Subject: [EXTERNAL] Re: [PATCH v2 1/4] dt-bindings: reset: Add Armada8K
+> reset controller
+>=20
+> On Fri, Feb 21, 2025 at 09:=E2=80=8A46:=E2=80=8A01AM +0100, Krzysztof Koz=
+lowski wrote: > On
+> Thu, Feb 20, 2025 at 03:=E2=80=8A25:=E2=80=8A24PM -0800, Wilson Ding wrot=
+e: > > Add device-
+> tree binding documentation for the Armada8K reset driver. > > > > Signed-=
+off-
+> by:=20
+> On Fri, Feb 21, 2025 at 09:46:01AM +0100, Krzysztof Kozlowski wrote:
+> > On Thu, Feb 20, 2025 at 03:25:24PM -0800, Wilson Ding wrote:
+> > > Add device-tree binding documentation for the Armada8K reset driver.
+> > >
+> > > Signed-off-by: Wilson Ding <dingwei@marvell.com>
+> > > ---
+> > >  .../reset/marvell,armada8k-reset.yaml         | 45 +++++++++++++++++=
+++
+> > >  1 file changed, 45 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/reset/marvell,armada8k-reset.yaml
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/reset/marvell,armada8k-reset.yam
+> > > l
+> > > b/Documentation/devicetree/bindings/reset/marvell,armada8k-reset.yam
+> > > l
+> > > new file mode 100644
+> > > index 000000000000..b9f7f3c24d3c
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/reset/marvell,armada8k-reset
+> > > +++ .yaml
+> > > @@ -0,0 +1,45 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) # Copyright
+> > > +2025 Wilson Ding <dingwei@marvell.com> %YAML 1.2
+> > > +---
+> > > +$id:
+> > > +https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__devicetree.org_
+> > > +schemas_reset_marvell-2Carmada8k-2Dreset.yaml-
+> 23&d=3DDwIBAg&c=3DnKjWec2
+> > >
+> +b6R0mOyPaz7xtfQ&r=3DsXDQZu4GyqNVDlFUXakSGJl0Dh81ZIPlU26YS4KHGIA
+> &m=3DQ8Y
+> > >
+> +WjAVZaKSaPD0B9Hb3Il6KsiVTSpeB9Br9zI5bqQ9MyW0LQnEdiE2kzdfMRQfa
+> &s=3DVRF
+> > > +OPAwNVByPfjGNG1IWJt_mAet2LVsQmFVALenV7Ck&e=3D
+> > > +$schema:
+> > > +https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__devicetree.org_
+> > > +meta-2Dschemas_core.yaml-
+> 23&d=3DDwIBAg&c=3DnKjWec2b6R0mOyPaz7xtfQ&r=3DsXD
+> > >
+> +QZu4GyqNVDlFUXakSGJl0Dh81ZIPlU26YS4KHGIA&m=3DQ8YWjAVZaKSaPD0B
+> 9Hb3Il6K
+> > >
+> +siVTSpeB9Br9zI5bqQ9MyW0LQnEdiE2kzdfMRQfa&s=3D3F_XMbPCmCHx0pRO
+> vv0KP1cZ
+> > > +tvjQBFPSBpdty-yVZjY&e=3D
+> > > +
+> > > +title: Marvell Armada8K reset controller
+> > > +
+> > > +maintainers:
+> > > +  - Wilson Ding <dingwei@marvell.com>
+> > > +
+> > > +description: The reset controller node must be a sub-node of the
+> > > +system
+> > > +  controller node on Armada7K/8K or CN913x SoCs.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: marvell,armada8k-reset
+> > > +
+> > > +  offset:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description: Offset in the register map for the gpio registers
+> > > + (in bytes)
+> >
+> > That's neither correct nor needed. Your device knows ofsset based on
+> > the compatible.
+>=20
+> Or use 'reg'.
+>=20
+> But really, just add #reset-cells to the parent node. There's no need for=
+ a child
+> node here. The parent needs a specific compatible though.
+>=20
 
-Best regards
+I am not inventing the 'offset' property. I just tried to follow the other =
+existing
+sub-nodes under the same parent node (system-controller). The mvebu-gpio
+driver also uses 'offset' instead of 'reg' for the syscon device (see below=
+). But it
+seems also not correct from your point of view. Now, I am a bit confused wh=
+at
+should be the right scheme for the Armada's system-controller, including GP=
+IO
+and Reset controller. And dt_binding_check complains "system-controller@
+440000:  compatible: ['syscon', 'simple-mfd'] is too short". Can you point =
+me
+any  reference for me to fix these issues.
 
-Heinrich
+CP110_LABEL(syscon0): system-controller@440000 {
+	compatible =3D "syscon", "simple-mfd";
+	reg =3D <0x440000 0x1000>;
 
+	CP110_LABEL(clk): clock {
+		compatible =3D "marvell,cp110-clock";
+		#clock-cells =3D <2>;
+	};
+
+	CP110_LABEL(pinctrl): pinctrl {
+		compatible =3D "marvell,armada-8k-cpm-pinctrl";
+	};
+
+	CP110_LABEL(gpio1): gpio@100 {
+		compatible =3D "marvell,armada-8k-gpio";
+		offset =3D <0x100>;
+		#gpio-cells =3D <2>;
+		...
+	};
+
+	CP11X_LABEL(unit_swrst): reset-controller@268 {
+		compatible =3D "marvell,armada8k-reset";
+		offset =3D <0x268>;
+		#reset-cells =3D <1>;
+	};
+
+};
+
+> Rob
 
