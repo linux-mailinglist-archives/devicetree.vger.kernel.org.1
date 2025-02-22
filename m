@@ -1,246 +1,135 @@
-Return-Path: <devicetree+bounces-149750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6187A40528
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 03:48:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C35EAA4057B
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 05:36:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CFBA177A52
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 02:48:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD174422CC3
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 04:36:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00F531C3BEE;
-	Sat, 22 Feb 2025 02:48:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49D718634C;
+	Sat, 22 Feb 2025 04:36:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="W9eTPIkt";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="GXuQ/77m"
+	dkim=pass (1024-bit key) header.d=erdfelt.com header.i=@erdfelt.com header.b="E/dlZ6D1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a8-smtp.messagingengine.com (fout-a8-smtp.messagingengine.com [103.168.172.151])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE5DF2AEE1;
-	Sat, 22 Feb 2025 02:48:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
+Received: from out.bound.email (out.bound.email [141.193.244.10])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EC94F4FA
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 04:36:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.193.244.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740192507; cv=none; b=UaWQiT8tj7G1lbpdIJT6yWJS01aPVFPOy9VMbYf9RPn6uU6+AMAexmeXIbEEwkiNq7FPgaBZC3+NyScg6kjvD2XLaxJGPlqrsrLBRbKWAS3fPmbZRmdvcpn/5RM8yoMHpcrWsqiCWR+kFnacn3ONNVuLmt8ZlbDk44vpEkCBFqc=
+	t=1740199002; cv=none; b=YlWFYIwtddNZ9+UivxTuSQ9NJcVON0CA/Gb8DFeOoOEbclgV1+kij3jMVDAjKPP0pdvZd6EazPdyRqOQUIOb+8JnazIh0XU49oxiAXEmtCKVp5llfJau1zUGKPOOBYvCIngV9OKcaktODX+I8DYuKy4tuNKf+YqkDwMFHhm4A1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740192507; c=relaxed/simple;
-	bh=NHnjuluBBV4NxVlFad4bdOku97NB5P20SjOv81aRVg8=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=RcRtdy5OhvE1qacYoVaJnZ3zQWOAQubrTBMp9DNplpwzu2O1feksXo+C+VOZaOTKlGJ6ndFGgTizvvugJYuTPpdiDZNhrV9ih/oT9ux8NUi+fmVF+LZmZKG9mxci/yvl78MOLIXD5qZTzHXw0pGGk9t8JFOk7Jwo4x8KR6nEDFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=W9eTPIkt; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=GXuQ/77m; arc=none smtp.client-ip=103.168.172.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-13.internal (phl-compute-13.phl.internal [10.202.2.53])
-	by mailfout.phl.internal (Postfix) with ESMTP id B21EA1380A37;
-	Fri, 21 Feb 2025 21:48:24 -0500 (EST)
-Received: from phl-imap-07 ([10.202.2.97])
-  by phl-compute-13.internal (MEProxy); Fri, 21 Feb 2025 21:48:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm1;
-	 t=1740192504; x=1740278904; bh=+Ml4921wRMeo4Va2Ot0cFWeiFqoEb/Sa
-	Xu+3hQO+9WI=; b=W9eTPIktQ2s23LhhHptCJ14xAtHMXQN1J5/nwPzlwHn5mb8X
-	sI024syw071x9sjmeAMIh2ftcBEykETf38Nl2CP7BTK7GqWMZfX4fUmBmRkCIlMW
-	dQhWbSSu2hdIQXmrR1r69jnBmAj8YpxtfcPMQbmNzV0zUl0h3pu7Zk0nBdM6fELV
-	mUc989mZIHLY8Gmsp5Kwl1IUwa4e6VG35ej8EaAbZjxey4rjBVIDgHrHeq8YTq+m
-	1fT5PIpqBLZdviWZZS6AOtgOS4tMgMONJuFtAay0fzNZVAHNRTAkMIM+T9de3zBG
-	QVeI/YedqDEgPDzIHJripftg8fgCXMyWToPwsQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1740192504; x=
-	1740278904; bh=+Ml4921wRMeo4Va2Ot0cFWeiFqoEb/SaXu+3hQO+9WI=; b=G
-	XuQ/77mgC6GJMn17RU4R49h0XDjO1x78fm9CQsYnhSGGz7FGqN7m8MPASSVsdKX2
-	XtRZlsjzBEfYdYiSaaOkLo4ipcW2Y4hjAO7Dsq52o/XbRhc9HHRJRuKsLGr70gid
-	nIHrNBRBjZqfGl4KjkwXBQGlrzt3JaAZszJdI8sciJ47t51/JuxjoaQrFR2Qd7Ae
-	Be/icjIs47N05h2qmtc4L4V3tlmDTwx7WbRgIvjm/YG2clO8rEg6VVOHohfflkql
-	RecwZ3tCft1KmZ9d9l3ly40p8i3CiVbJMbc4vBTEIyX0hKsbASY/asSTDFO6YP4j
-	dmRt/Px0h+KMkveO53KRw==
-X-ME-Sender: <xms:9zq5Z0hLvkeuMwA_cnETwKqgUSlolXj9MQgsXpgwQzmaXeRWJMGNvA>
-    <xme:9zq5Z9DZ_qFRkViArcKCqmvRfwe8qbS8DdjR44qSon968tNtS82Eb82LLfPVJL4ph
-    gDB-8zLNei5Ue3SLA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdejudejfecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthhqredtredt
-    jeenucfhrhhomhepfdfthigrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtoh
-    grshhtrdgtohhmqeenucggtffrrghtthgvrhhnpeeghffgkedtueeiudeukedvveevhfdu
-    uefhhedviefgffduheeuieeihefhfefgveenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgs
-    pghrtghpthhtohepvdefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrnhgurh
-    gvrdhprhiihiifrghrrgesrghrmhdrtghomhdprhgtphhtthhopehmthhurhhquhgvthht
-    vgessggrhihlihgsrhgvrdgtohhmpdhrtghpthhtohepfigvnhhssegtshhivgdrohhrgh
-    dprhgtphhtthhopegurghnihgvlhesfhhffihllhdrtghhpdhrtghpthhtoheprghirhhl
-    ihgvugesghhmrghilhdrtghomhdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtg
-    esghhmrghilhdrtghomhdprhgtphhtthhopehkihhkuhgthhgrnhelkeesghhmrghilhdr
-    tghomhdprhgtphhtthhopehmrggtrhhorghlphhhrgekvdesghhmrghilhdrtghomhdprh
-    gtphhtthhopehsihhmohhnshdrphhhihhlihhpphgvsehgmhgrihhlrdgtohhm
-X-ME-Proxy: <xmx:9zq5Z8H1UxQeIorLCKziqKv-KX9dnWKQiRQFXXGqAoBi65EUPZ6f7g>
-    <xmx:9zq5Z1R1WkfRMZyxeOBaSEtFx6cRh4UH_ab5KOUMnXy_KDTCeK0r7Q>
-    <xmx:9zq5ZxwxoeTWFJcclrbFIm3Ibl6snmPR30wUQy_jZDWm6wqtin3Syw>
-    <xmx:9zq5Zz6tdzmIBMOl6MSs-EtVdatVYUt7niiNsSRE8LwWs3vQAfe2Jg>
-    <xmx:-Dq5Z4ipYhLDsQw2gde9HrsjorcDR9629C5VR3jImetuL6B0DxBdTVin>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 1E245BA006F; Fri, 21 Feb 2025 21:48:23 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1740199002; c=relaxed/simple;
+	bh=xw1MYUehC/PqWz+FBsCYkD4o1jder8YINF31oJwP4jo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rJVfqkk4hKAjtmcuBuxKOW2oeuv6NXGNeKLSzngoFR06vnSwrf6ciFjhD/a8iiflDEh0Xt7XGbQkrBtF9hDHmjWBVIMIdO+b8P/l3/Rwmo9xgbod7AIu7Sj6/mF0R5l44X4FNGK9F6H59jAqzTArouHVsGFGocdIUz17G2U2Fqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=erdfelt.com; spf=pass smtp.mailfrom=erdfelt.com; dkim=pass (1024-bit key) header.d=erdfelt.com header.i=@erdfelt.com header.b=E/dlZ6D1; arc=none smtp.client-ip=141.193.244.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=erdfelt.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=erdfelt.com
+Received: from mail.sventech.com (localhost [127.0.0.1])
+	by out.bound.email (Postfix) with ESMTP id 6B4318A0A03;
+	Fri, 21 Feb 2025 20:31:38 -0800 (PST)
+Received: by mail.sventech.com (Postfix, from userid 1000)
+	id 53B7B160036F; Fri, 21 Feb 2025 20:31:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=erdfelt.com;
+	s=default; t=1740198698;
+	bh=JVPXaGswn6h9CQME9YRi+phZaOE/13SLpDLogchJANM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=E/dlZ6D1Arf0WodgxXqPt7bEWnIj0uZOjyg5MC8RpBmWOdzP+vhBPGysfC826Lk6c
+	 CR/F3LJo6ghe6xix0waGz2pVBrcmgBBZ4ZCLo7r7o4PGUvANoq5eX+UhShO0yp9HzY
+	 10uZfly67E3E8fptEz2mMXBCggsZshbeEPq9JA50=
+Date: Fri, 21 Feb 2025 20:31:38 -0800
+From: Johannes Erdfelt <johannes@erdfelt.com>
+To: Jimmy Hon <honyuenkwun@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH UNTESTED v5 0/4] Orange Pi 5 Ultra
+Message-ID: <20250222043138.GT16911@sventech.com>
+References: <20250220041010.3801-1-honyuenkwun@gmail.com>
+ <20250221231340.GS16911@sventech.com>
+ <CALWfF7KW8_vAx49nNygKpLHNJQVpjvVdVpzYiTAWgQvSopHikw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sat, 22 Feb 2025 15:48:01 +1300
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Maxime Ripard" <mripard@kernel.org>, "Chen-Yu Tsai" <wens@csie.org>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Thomas Zimmermann" <tzimmermann@suse.de>,
- "David Airlie" <airlied@gmail.com>, "Daniel Vetter" <daniel@ffwll.ch>,
- "Samuel Holland" <samuel@sholland.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>
-Cc: "Andre Przywara" <andre.przywara@arm.com>,
- "Chris Morgan" <macroalpha82@gmail.com>,
- "Hironori KIKUCHI" <kikuchan98@gmail.com>,
- "Philippe Simons" <simons.philippe@gmail.com>,
- "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org
-Message-Id: <2a864555-d81f-4048-aa0b-c286544faa50@app.fastmail.com>
-In-Reply-To: <2221204.Mh6RI2rZIc@jernej-laptop>
-References: <20250216183524.12095-1-ryan@testtoast.com>
- <2221204.Mh6RI2rZIc@jernej-laptop>
-Subject: Re: [PATCH v7 00/27] drm: sun4i: add Display Engine 3.3 (DE33) support
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CALWfF7KW8_vAx49nNygKpLHNJQVpjvVdVpzYiTAWgQvSopHikw@mail.gmail.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 
-On Sat, 22 Feb 2025, at 7:57 AM, Jernej =C5=A0krabec wrote:
-> Hi Ryan,
->
-> sorry for very late review, but here we go...
+On Fri, Feb 21, 2025, Jimmy Hon <honyuenkwun@gmail.com> wrote:
+> On Fri, Feb 21, 2025 at 5:13 PM Johannes Erdfelt <johannes@erdfelt.com> wrote:
+> > However, neither of the USB 3.0 ports work. There are no XHCI messages
+> > during boot. I confirmed my kernel config does build XHCI. I haven't
+> > ruled out a mistake on my end yet.
+> 
+> Does your kernel config have CONFIG_PHY_ROCKCHIP_USBDP?
+> Both USB 3 ports on the Max/Ultra ports are wired to the usbdp
+> controller and not combphy2_psu controller.
+> It'll be set if you're using the arm64 defconfig.
 
-No problem, thanks for the review!
+Yeah, we came to the same conclusion. I noticed this was disabled in my
+config when I was looking for potential mistakes I may have made.
 
-> This patchset actually introduces 3 disticnt features, which should IM=
-O=20
-> be separated
-> and thus making reviewing patches easier.
->
-> 1. native 10-bit YUV420 output (without YUV->RGB->YUV conversions) -=20
-> this is used on
->     HDMI for proper 10-bit 4K@60 HDR output
-> 2. Display Engine 3.3 (DE33) support
-> 3. AFBC modifier/format support (used for more efficient GPU or VPU=20
-> output rendering)
->
-> If I'm not mistaken, your goal is only DE33 support.=20
+Enabling it fixes the USB 3.0 port problem.
 
-This is my initial goal, but I would still like good HDMI and video supp=
-ort (including HW decode).=20
+> > Also, the green LED is constantly lit even when the trigger is set to
+> > none and the brightness is set to 0. This made is a bit harder to
+> > confirm that the blue LED was working. I haven't ruled out a mistake on
+> > my end for this one yet either.
+> 
+> Checking the schematic for the Max and the Ultra, they both use
+> PWM4_M0 and PWM5_M1 to control the blue and green LEDs.
 
-It took some refactoring and resequencing of (your) existing driver work=
- to get to this series, and I have left out the HDMI and separated the T=
-CON code for the same reason, that initially I am intending to just supp=
-ort RGB operation to an LCD. I do intend however to use the HDMI code ei=
-ther in or out of tree but think that will be a much bigger/more complex=
- change to mainline given the current HDMI code is more invasive to the =
-generic driver.
+Some brief testing makes it seem like the LEDs are inverted.
 
-The YUV and AFBC changes seemed more self-contained and seemed reasonabl=
-e approaches given that they were both features of the DE3 and up. I am =
-happy either to split these into either 4 or 5 separate patches ie:
+If I set the trigger for each LED to "default-on", then they turn off.
+If both are set to "default-on", then only the red LED is lit.
 
-1a. refactor CSC code to prepare for YUV
-1b. add YUV for DE3
-2. refactor mixer enumeration and regmaps to support DE3+
-3. add DE33
-4. Add AFBC
+Also, "heartbeat" appears to be inverted.
 
-My only reluctance is that that adds more work to manage multiple patche=
-s which are logically grouped and in terms of ease of review, all these =
-4 steps are in the current set in that order (apart from AFBC which is c=
-ompletely standalone), and I don't think submitting them separately redu=
-ces complexity. It however will reduce reviewer burden as you suggest, b=
-ut this has been a slow process already.
+I tried a new DT with this patch and it appears to work correctly on the
+Ultra I have. However, it raises the question why the Max behaves
+differently from the Ultra.
 
-I am happy to accept either process but this has been some time already =
-now with lots of stylistic feedback but not much on the correctness of t=
-he approach and code, and I am keen to get this landed.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-compact.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-compact.dtsi
+index 87090cb98020..ed51a4763318 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-compact.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-compact.dtsi
+@@ -4,6 +4,7 @@
+ 
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/pinctrl/rockchip.h>
++#include <dt-bindings/pwm/pwm.h>
+ #include "rk3588-orangepi-5.dtsi"
+ 
+ / {
+@@ -62,13 +63,13 @@ &hym8563 {
+ 
+ &led_blue_pwm {
+ 	/* PWM_LED1 */
+-	pwms = <&pwm4 0 25000 0>;
++	pwms = <&pwm4 0 25000 PWM_POLARITY_INVERTED>;
+ 	status = "okay";
+ };
+ 
+ &led_green_pwm {
+ 	/* PWM_LED2 */
+-	pwms = <&pwm5 0 25000 0>;
++	pwms = <&pwm5 0 25000 PWM_POLARITY_INVERTED>;
+ };
+ 
+ /* phy2 */
 
-There is are two=20
-> reasons why
-> I've never sent these patches myself:
->
-> 1. scaling YUV images doesn't work
->
-> Not a problem for any user who doesn't use video player with DRM plane=20
-> rendering,
-> which I assume is most of them. We can get around of this issue to den=
-y=20
-> scaling
-> YUV buffers until the issue is sorted out.
+JE
 
-Good to know, I hadn't appreciated that. Mostly relevant for video as yo=
-u say and it would be good to land YUV support without scaling, then ext=
-end subsequently, possibly when we get to the video engine?
-
-> 2. plane allocations are hackish
->
-> DE33 for the first time introduced option to move planes between the=20
-> mixers. DRM
-> has also support for this, but for time being static allocation is=20
-> acceptable and tbh,
-> even dynamic support need appropriate initial setting.
-> As you might guessed this is done in DE33 clock driver using magic=20
-> values. Proper
-> way would be to introduce some kind of connection between mixer/plane=20
-> and clock
-> driver, so initial configuration can be moved to appropriate module=20
-> instead of
-> being thrown into clock driver. I need to check where to put it and ho=
-w=20
-> to properly
-> connect DT nodes. Maybe syscon phandle? I'll do some research.
-
-Thanks, I was not aware of this either.
-
-> There is one glaring issue (when you work on driver and test every=20
-> aspect of it).
-> DE33 introduced RCQ, which is basically DMA, which copies shadowed=20
-> registers
-> from memory buffer directly to hw registers. IIRC it does that at=20
-> vblank time. This
-> tells you that current concept of writing register values at any time=20
-> userspace feels
-> to do commit is wrong and we've been lucky that it works as well as it=20
-> does. So,
-> in order to fix this, driver would need quite a big reorganization.=20
-> Introducing
-> shadow buffers would solve most of the issues, most likely also with=20
-> YUV scaling.
-> Implementing RCQ would be then relatively simple and even improve=20
-> timings.
-> Note that even DE3 has occasional issue with YUV scaler and also=20
-> read-modify-read
-> access to some of its register can produce bogus value and thus corrup=
-t=20
-> image
-> until next commit.
-
-Thanks, again I wasn't aware. All my testing has shown remarkable stabil=
-ity and there are some downstream users out-of-tree with good feedback, =
-but would be happy to support an effort to improve this.
-
-Regards,
-
-Ryan
 
