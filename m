@@ -1,75 +1,120 @@
-Return-Path: <devicetree+bounces-149864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E053A40A48
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 17:49:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DE15A40A55
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 17:50:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF619189E24E
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 16:49:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B8F817F7F9
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 16:50:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBFA71EA7EA;
-	Sat, 22 Feb 2025 16:49:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE4AE205E1C;
+	Sat, 22 Feb 2025 16:50:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RzAezybb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zwQxLk1w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF533D984;
-	Sat, 22 Feb 2025 16:49:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27A351F0E44
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 16:50:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740242984; cv=none; b=hRBXKVcS4B5tj2SABxEE+qMfAuwzt66XJe5dD7D/Ikfkn31l/9gjlLsT2kZDbtRJSDa+h4o//YgT9eXd9FQH+cD3LrkkmtsQr3LPbITLVazE9DEocjzzvfz/tDrXggv6LtJBXnxFixt7EN51pPrL4au3gvBOiyu7JZHA65JUkPg=
+	t=1740243046; cv=none; b=VW7YYWhnjBYtUJEVqvOfKynxNfAY8s1Ctjw2TsRGcJQI97SUJ4nT2GzZ/pGkNp5quEIbr4rH9A2gn2uXsHpTDXeKwP+kDjCd2dscyfs8Cynw1U1Lk8zvwz3WhHX+scZ3vnycgJAAcAHS7qiRtdvNVLXSxtxpQC1p/4b3JLnOrDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740242984; c=relaxed/simple;
-	bh=nhizLBYVg2p41YJchW0wYIs81W1910Nptu+bsCGqr10=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tDJQiUy0+8P3zSA99j2qaiTXf0Z3+rX2c1SRIgTx2uUs4fkyVHGIi6hMdPHMrChOktLOYZUsF1D+ywfINhwDrh2ezc7Z+rYkwOlPYBxc4zzQaUEJx6fEO9z2x9Qr5VsEcwzvxQpcTOM4tZ2jXVhccJmM4dJJbnvppZcCIts8QUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RzAezybb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E37D2C4CED1;
-	Sat, 22 Feb 2025 16:49:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740242984;
-	bh=nhizLBYVg2p41YJchW0wYIs81W1910Nptu+bsCGqr10=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=RzAezybbMIBvgw9tFHVHbXhRjWC3axhgSqw3eWvMZG9xscY16eHQsMnMhALgAp3ON
-	 KDHMi0QvbbmtDi24yIFu99r1NWPw6IxWhMEkrkqU17AJEdUH9mICBcJKNPD3DX+/SP
-	 1pN4GAHSFWIzXIoy9y4D/QnbrgbeuKcA+e4p5+2/3TzRun/kqqCVzOBf2oXTMlwSxu
-	 eABznr1WZGDz0uY6WO1ZE97Yoa4A6UMW53GgR5o8oQ8n/Bo7R5pfC75TzpruaNwDND
-	 ZXBgLrI3uI3a2gf7f7rxNdZUoLd0ivjfDaPolzaJSRzUqABWldIUdyzCh8YF6X2x1O
-	 ADrDqqkegVjRA==
-Date: Sat, 22 Feb 2025 16:49:37 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 02/14] iio: backend: add support for sync process
-Message-ID: <20250222164937.44bf13b3@jic23-huawei>
-In-Reply-To: <20250220135429.8615-3-antoniu.miclaus@analog.com>
-References: <20250220135429.8615-1-antoniu.miclaus@analog.com>
-	<20250220135429.8615-3-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1740243046; c=relaxed/simple;
+	bh=/OChm8Qzq++h2Z0XzJa9A1Q8OC0xJGEjGJZCAa2C5lo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tfnsou+yZVKeKwVYWQRWHvhpJdzQ4ZxDtlNU2YeOuBeXUA+tMl8vhkT5kp4DmPXsxe4w3x1U+yadyXHzbJcP8iIpmMXqWYZXJoyQS7Qd6IfCpktv+OpmlL7AzoNLpwwcPz4zZzWha0xV024KRUd0EUP5x6qldkye2qSydmzy8oQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zwQxLk1w; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-221050f3f00so69970425ad.2
+        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 08:50:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740243044; x=1740847844; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Nh3uPvkc34gfmbS9x9Jf9cyF6fwE3/AJhfsNKJ7Ug5s=;
+        b=zwQxLk1wHPc+FGHKgpyd9Mqngre4hZA3l5IC6WkbMOzm7rqF6cegvD57PfKf8k1L/T
+         4t7bZoVUKaeFLZQfsepgj0Fe5rVDtLOv2lzIQXsuNvaoSDAiv201gTdcAHgITHw5rkj9
+         ypqa2UAHKo6B92bCG0nuCjD2nQ5HgfCvbkYdJ+cahdmys/9LbBGGl26AZsx1wjGxKHjN
+         goEnh1Rajslt7LwQXA6OLXS/DUWtEkJR6MBlh/2voNStEyHRK2LQ0OTXPdYHTMOyFxag
+         SIiyhWtBPtJPEni9kr5/NTimAl6mc54jLfPUZFPwa9aBm7nir8sQBeiYgTZdGuT0/iLn
+         r38Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740243044; x=1740847844;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nh3uPvkc34gfmbS9x9Jf9cyF6fwE3/AJhfsNKJ7Ug5s=;
+        b=jB02ovn0gPyZlLmZBTgF/qAYNCpdZcBKjkxMLhDjEJRUMsc8F7e9LXB9ilVVhdZtMG
+         vGspJYQP7FhO624Wbpcgl/M3KUnZgwsGAoz4SriBadpze4AfdA27dMhrSLwf9zkEH6rF
+         JP42EijjZtvZ+zTpJuICPnYfc0pd5j21pLZe+opeXU18wDFsBBppurdbA9+kt2IyNmvX
+         z2hBY6WwqlQT0yW/m2h/L8nzygVP3dSxaR18MYOGjjQZTl4SyviN8WIa1X4USoz4dqrp
+         kDFUl7S4ITlWs96wah4bUKZB+QxL8yHcZE/1p5zoXDk54QipuPCZHMREykbfAAwLHP2I
+         D6eA==
+X-Forwarded-Encrypted: i=1; AJvYcCWAecMN4V8wuDRobsCF0N2wx2ICV7s9dNIQP5dei1rX1Ye91IrQ+4qRpj1NKP8DCn84AfYwr07RL3/C@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSGhvkrF1O0owMt7Va2ccrrru/JiOqsyClddISNNZnHQF/lOtC
+	nMBcThsx4mP6C57T0u3eKeJGckAh9Zizw7HOX4psMcPEUOOQmqfblE3dI1OHKA==
+X-Gm-Gg: ASbGnct4d0yEXT2gPi2LqgQBHpn9I99tGjV/mGIpNSqjglcAO3w9LzFcLCtjNQ0VNId
+	EjxfmocWDPypYftSUAHMv10TfOeQlwj79/Uzn9bIZxZ27r3IGaaim7T+hqLB5M/rQjK5qGpKCKp
+	xynAsVCXo5Lp6YrWulHt7MEK4wgUao613HGAbwh/+Ewmfbpjo6eNSG2QKoAt/UGeEiRXUKLKC+n
+	ZXt3hD+DH1ZvvrisHxZ3oHKx1NqGO347PiLOllCfJmwS0QBV1gIARJMbrT2nnG4u2d2xQsasxAd
+	mQxGyrJKZVxL0izi1rbbFL0nv1OIfnWt5b8mSw==
+X-Google-Smtp-Source: AGHT+IE+8VM4q3PcS+7asdjIzH29CbmnLh7RVggUoKvA5I0EZzfah7IwjW111tGxF+X6VyOekWmPqA==
+X-Received: by 2002:a17:902:ea08:b0:21f:988d:5756 with SMTP id d9443c01a7336-2219ffa35c2mr127317725ad.42.1740243044225;
+        Sat, 22 Feb 2025 08:50:44 -0800 (PST)
+Received: from thinkpad ([120.60.135.149])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d53494cbsm153853295ad.43.2025.02.22.08.50.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Feb 2025 08:50:43 -0800 (PST)
+Date: Sat, 22 Feb 2025 22:20:38 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mrinmay Sarkar <quic_msarkar@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 6/8] PCI: dwc: pcie-qcom-ep: enable EP support for
+ SAR2130P
+Message-ID: <20250222165038.eyausqiccrivkv5t@thinkpad>
+References: <20250221-sar2130p-pci-v3-0-61a0fdfb75b4@linaro.org>
+ <20250221-sar2130p-pci-v3-6-61a0fdfb75b4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250221-sar2130p-pci-v3-6-61a0fdfb75b4@linaro.org>
 
-On Thu, 20 Feb 2025 15:54:12 +0200
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+On Fri, Feb 21, 2025 at 05:52:04PM +0200, Dmitry Baryshkov wrote:
+> Enable PCIe endpoint support for the Qualcomm SAR2130P platform. It is
+> impossible to use fallback compatible to any other platform since
+> SAR2130P uses slightly different set of clocks.
+> 
 
-> Add backend support for enabling/disabling the sync process.
-> This setting can be adjusted within the IP cores interfacing devices.
+Still, why do you want the compatible to be added to the driver? It shall be
+defined in the binding with the respective clock difference. Driver should just
+work with the fallback compatible.
 
-More details needed here as well.  Not obvious what sync we are talking
-about and what bitslip might be? I'd guess it's a skid control on the serial
-interface but good to have something describing it here.
+- Mani
 
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
