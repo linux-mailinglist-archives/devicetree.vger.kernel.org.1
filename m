@@ -1,130 +1,117 @@
-Return-Path: <devicetree+bounces-149803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AD23A40791
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 11:45:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A65EA40795
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 11:46:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D31F3BE181
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:44:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0580B424B18
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B29D2080DB;
-	Sat, 22 Feb 2025 10:44:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99B8D1FBE9B;
+	Sat, 22 Feb 2025 10:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l8P0K5LH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H2D94ZE/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65B021FBE9B
-	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 10:44:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0581FBCB9
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 10:46:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740221098; cv=none; b=UcLRSXdQiJ9LJ3thQJbvH4Uys9c51xs/XtkKtqjXjvoWUuYpOrijsb+DcvDDWOwbt1y+j29hj1/3LqWBdw5HRmkWihZVzaSZBFN+fBI+fqKaMaDfJ8hMzhDvEls2Nf4flrFgtP1DOczs0D54RoPYE4JoMhh2nU0ADgUwSbq9Y2E=
+	t=1740221169; cv=none; b=cbkiADm/Hy9b9oy7c6Pcln26pmD/RUC20HnQ9oIUK+qMHDFVA4g7V0Ln2haaS4FnpRmOxNNOIopU9AacgdL+PCS/465/qODNKhZtjxihi5S1VwXXIDl/gtLtivqH3PDaLzfPeOrbpDxAWX7P1b7F1kdQquYGQwyx0rMvW8W2C/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740221098; c=relaxed/simple;
-	bh=Ip6rEfEPJW+ur/k62wT8po48+aPGMwOgnDrZ1Bc4Ug4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l3ilTz4Ovap+7bhCPwE3B82tmNh+118vZVAkraS+TmqBJTM6aC1bJW94rEf/ur0vrZEpMDa0IreVWSUkpCDBqIjuGw1W9xXKGrL157kS0I8CZi1m+Jw7gFSty5oPPdnFxJDSijHHuERfQhVj0R9hFOQW7BQi4apSBw6lQV5Dm1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l8P0K5LH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68BA6C4CED1;
-	Sat, 22 Feb 2025 10:44:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740221097;
-	bh=Ip6rEfEPJW+ur/k62wT8po48+aPGMwOgnDrZ1Bc4Ug4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=l8P0K5LHDT6AFi3xRs0WJ6Obf5y+2Amvy8pGXDe0Zn4/MWFfSE2SQI4JThoLyVujh
-	 qjbxkNJq7A/3S1J7s95dT+0NZru8jxqkoVYvXM6g5EB6g43+wNhTtPq9iv8KOQjSzc
-	 5k8R7Ek33xNbFFg1QZtnzERnrovOJolItzWQttburWpXaJ6NUWTnuWkje2KeEd37ot
-	 KOCEL2BqIiJvnVdtqSrVnnQJrl8zwvnlmPI8er72Dqflnj59NBf533wwFv075rRZMK
-	 3YGXFm9U7G/sKzg5SHYcVK2kAwzNkfY03Klv2kp33nAHgU/bo8bFvOTv+As/VZsAHJ
-	 1T2LQK8Gzv3CQ==
-Message-ID: <5ab95f85-9a91-4bbc-8eef-299376ab46f2@kernel.org>
-Date: Sat, 22 Feb 2025 11:44:51 +0100
+	s=arc-20240116; t=1740221169; c=relaxed/simple;
+	bh=3w6AYLRAJDHJkRy108s/uPBLDjUnLunLph49q7bXdfo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BZxRe7K4gRbfaUtvbdJh9kg7eqk3E7OcL3NZl3rfy3LRMPdqWfPy2BSMxvSoHYqZWz6Z3vnqTFskJsUhSXvU/igcCCBh2claToYcgEKQUeyyDnxFPfvGK2uVrJg1ISZp3vhHp4xELhxFHgB+HLnrSClG5ldXFGsB4484lHQWF50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H2D94ZE/; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43948f77f1aso17572405e9.0
+        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 02:46:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740221166; x=1740825966; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3w6AYLRAJDHJkRy108s/uPBLDjUnLunLph49q7bXdfo=;
+        b=H2D94ZE/LnZAyHMfJWgUSUwCDQ8ziJWBjIGmjAxViF8w3cEo/rt5Z2ZDTwI3hxQX0u
+         MFUq3OHnONYjcJNaj3AOkSLURAGemUXC5tgN8hIgAIjrSdP7DiPdc7TxaZzT7lZl0L2a
+         fXA2V3IDaxrJjHIIUsNEVeZ/rdjG0Eh1dpXdL7NBlviR1m0z7AFxakw2MYJ4uZ310avq
+         V2IJ1nY44Z33th1SriMAWRRcfV5VVOa+ow5SWaRis0tOu8EkYQcwJotp1AK03nS85wZx
+         3Cg0aKgpGIcPP2P8QHGWbwBUf3MOFtmssa1HN5jKjFVcJf2sdUOmyiJyBE0xXFNLcSQW
+         atYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740221166; x=1740825966;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3w6AYLRAJDHJkRy108s/uPBLDjUnLunLph49q7bXdfo=;
+        b=LlraWIFrGzsoXcni8xf46rn7JuHXYCILma4OAeGOEug0zsZB2UFvv2hW77Mw9CVr+P
+         WprfPugHn3n21V7AYF+5yIBlT9T6HuPcHbU86KilW9FkOPRbuRsXQ+zbcEhjBL4h+rB6
+         qGO0k2+DcFgiinjm8XWmg0vehbKRKw5+qn8HVNcwBz40L2PSn2MA35LTOQLVxr16e9jz
+         qTaqXGvKzuuRKFAlv2jo2KnTzfBbHnFwSHRxlOeQw6Jb2wMKIBPuEPMGzsKD3V7rjzC8
+         ba9iX4m1iVaLTPHCPrlk9969Rb1Umo3Kk3xW8Rd8GlGVUNfD+8HO+qjO84fYfR0CAKHd
+         clJw==
+X-Gm-Message-State: AOJu0YzEZYRIFfD3u+Jtg3vpLuddsZu4YjpEp60Vr50P/xxK3eaXI6W1
+	d1fjvC6YfHAIlLBgC49Za6+AjszzwhMyzyw/3m21xpfgMlUcuhgT
+X-Gm-Gg: ASbGncsmdhrskxYfL1eLkMOYR3FULb3MkoLk3f2vUujnbf9csXK0Gr2kQLdF3HtRkn/
+	eiPDkX3D9VrO5FDb+IvcsgdWa6/ipPjokRVLVfMKXEd9up2BBg0A4wbyEcN8ndNhPEhuRqGMlvQ
+	1zq/1XVDho9n3T3zmIOar3yM5uOTd0boqattOMk54sMp+Fdwv/CCpjBkVYCywRpp7KX4GJz76Qy
+	fIrhCvsjDzcKCfsKyYMqbXqbLa6V0TflJM+SzKpirwXyA6mXPt2DUmk3stAIbkomAfN86Bxq8o+
+	1F0eJ1vRv0UmiOagwU5iHhm4dv4/jz0qn426/hZIX60uiG2NTHBQA8b11Ir9lHE+FvVRaLjNtVa
+	g4Q==
+X-Google-Smtp-Source: AGHT+IFPEhyALCE/PyGlhC/F28EWgnFqx4EM0WCKxLB2JiXjfn2Dgj5KCVbcYlDNA9QMmDfmCK8jYA==
+X-Received: by 2002:a05:600c:468f:b0:439:9377:fa21 with SMTP id 5b1f17b1804b1-439ae214295mr53463335e9.19.1740221165830;
+        Sat, 22 Feb 2025 02:46:05 -0800 (PST)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f259d65bcsm26074249f8f.65.2025.02.22.02.46.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Feb 2025 02:46:05 -0800 (PST)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>
+Cc: devicetree@vger.kernel.org, samuel@sholland.org, wens@csie.org,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ Chris Morgan <macromorgan@hotmail.com>
+Subject:
+ Re: [PATCH 2/4] arm64: dts: allwinner: h700: Set cpusldo to always-on for
+ RG35XX
+Date: Sat, 22 Feb 2025 11:46:03 +0100
+Message-ID: <2224078.Icojqenx9y@jernej-laptop>
+In-Reply-To: <20241018160617.157083-3-macroalpha82@gmail.com>
+References:
+ <20241018160617.157083-1-macroalpha82@gmail.com>
+ <20241018160617.157083-3-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: bcm2711: Don't mark timer regs unconfigured
-To: Stefan Wahren <wahrenst@gmx.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org,
- bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org
-References: <20250222094113.48198-1-wahrenst@gmx.net>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250222094113.48198-1-wahrenst@gmx.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On 22/02/2025 10:41, Stefan Wahren wrote:
-> From: Phil Elwell <phil@raspberrypi.com>
-> 
-> During upstream process of Raspberry Pi 4 back in 2019 the ARMv7 stubs
-> didn't configured the ARM architectural timer. This firmware issue has
-> been fixed in 2020, which gave users enough time to update their system.
-> 
-> So drop this property to allow the use of the vDSO version of
-> clock_gettime.
-> 
-> Link: https://github.com/raspberrypi/tools/pull/113
-> Fixes: 7dbe8c62ceeb ("ARM: dts: Add minimal Raspberry Pi 4 support")
-> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-> ---
+Dne petek, 18. oktober 2024 ob 18:06:15 Srednjeevropski standardni =C4=8Das=
+ je Chris Morgan napisal(a):
+> From: Chris Morgan <macromorgan@hotmail.com>
+>=20
+> Set the cpusldo regulator for the AXP717 to "regulator-always-on". Its
+> current functionality is still unknown as there are no schematics
+> available, however it was observed that upon reboot if this regulator
+> was disabled GPIO detection logic in the bootloader was inconsistent.
+> Keep the regulator powered on for now until it can be defined
+> correctly.
+>=20
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Best regards,
-Krzysztof
+Jernej
+
+
 
