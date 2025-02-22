@@ -1,139 +1,249 @@
-Return-Path: <devicetree+bounces-149783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2697CA406FB
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:36:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08EE5A40704
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:41:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6DC219C6F53
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 09:36:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B2713BE27E
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 09:41:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 523CD207649;
-	Sat, 22 Feb 2025 09:35:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAA07207653;
+	Sat, 22 Feb 2025 09:41:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AQwbxbyH"
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="MTmNgGFK";
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="fsrD8CFh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bayard.4d2.org (bayard.4d2.org [5.78.89.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A4452066ED
-	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 09:35:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 364A946434;
+	Sat, 22 Feb 2025 09:41:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.78.89.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740216955; cv=none; b=oMEjc6Ouu+XaXUQn8xsE+yE9w4YT4SZ1XpANMyCFwV+0BLwDoRwYMOJ/ffbT1z4UYfOY0Y4DiKL7/z5E3BWFKcYy7dWLEe0Nfr8QkC269dvACdpewD5pLhru0BpTvrKj5Bmqmex5TQh8Zc0R66qR0cpf39oXD2LBqi/7akeKzqg=
+	t=1740217283; cv=none; b=d0rsypHhGH5Yl/D3X1/p+1c3F9XBWCQDAoja7noMLYa4V0aDuXgiFLgPM7TxIpvAK3JvUsNn7PVUm0aWFWmowB4kbBTGth6vraMPSnWJe5aRQQkPXiYlm4aEtjE0GWkEFqoL+YhSBFQh2odC1L/j7XPR11E4KEUWwYVfgEgwJ3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740216955; c=relaxed/simple;
-	bh=tY0toxuyeFkv5yLBBrKxkKw5L2ZKpN3XGwVbVHevqFc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=u86SZSsip6+VTp1eoRdb/UAIWYIFa3u6pKoOBpnKXAPxCej50bjcQwaJl8ThpOzUqJ0rT2Crk1DZO8mxTHR0l2fEY7Zksn1nifzMNln+xqOnmBxAhewHfCfaiMioIL7/knrauYJS7iX8hUUUYgZV+FcI1OB5c9pFEO4oBqG2fUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AQwbxbyH; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-439a4dec9d5so26810045e9.0
-        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 01:35:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740216952; x=1740821752; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iHlH9GRTTu/x712yX9JTl9QV/kQ/7As/47pnB+L0hd4=;
-        b=AQwbxbyH1oNiWZAe+0/EcpUm4Xs1b4wKPMDDD6BXOkG46WezQv1YlUCUP1IwitLtEe
-         iqNzG53A1AbZ6Bxc3RdHPQ2WIQ531/L7kpbfHmm88ifOb4Waee4/ujseDCAUNgQfaQD7
-         5LzCQARl+HFjMhDcySIepknIKSVDk8H08mf8X7VWBeOFtbZuxTIyPpuPmdnY1m882veW
-         Dh/YOooDjlyRzw3m6S8raYIt/14R77mNtMbrj72VaH5vOjLB7mrqoLKIn+Wlx83CNVj/
-         4OklsAiiijb65TpmANrFViQZcx2W+fgsdt0aO2T5BBJzr4ToOPdyUybV1ou1aZ50/aki
-         skzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740216952; x=1740821752;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iHlH9GRTTu/x712yX9JTl9QV/kQ/7As/47pnB+L0hd4=;
-        b=X7hl4afLOJKvxvMk9Z+68DCOS0UZPAreqXTdKWoJqhbWZ0T0srpIm37WVLDkEfuwNP
-         xheRmJJOgNay7zKEduTYPXcHywYR430F2KsuMS46KK7g8rE/d7IGpR++IRVCEVMUFDgw
-         EDFMVTOrLjfiIJ2RU3zw9xLnTHUffANbQLBDIxjHwcTRZ8YlaCTYmcwF9+4BNVrSDp2H
-         UzSOnd/WhrvwIXqfYt8d53LgcmKkh0l4mPmUNNGOATxu2oHzoVHm0tKfYOSzDGkorY4G
-         O6VmYMyqQ5jP1RBt9zhXn+ffyHxZ+yI1aJrR/m5V+YsINWU8I4hKiUQFf8+Fk/POL2DL
-         mq4A==
-X-Forwarded-Encrypted: i=1; AJvYcCVHRz4THwxiT+dpSwdPj8/PYfLBNH3MR/6DEI9K41xxcCwi7j6vrT3WH2wO67+DnhQL8InoYy+199Bc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEX2U2LGkMpY2rhWYJXNxJasq+LJXjyjA1MZljaIgaF31dimmT
-	bNz+XeFh6qGusOAaJy0FvkxmzyiKQ8Lukjtp4b68AqweXbEBBPio
-X-Gm-Gg: ASbGnct7+orXDDDqBj4B9BFhOir23NoUH/UPSzWG2dhrP4bJOmvoCrNCQv2onjRdym8
-	V35kCAZgK9kQyLcMNLtVeaTs+Er/ewqQwPa1l1VQthW4VOTc15gmP5sCnVp+YKpALPmKcN+LEAC
-	voSB26s/AoVDo6SQ1sKKwtg9PpryIDWvbBFMVY5qCed0VvVYxPD0DWEziA0fkAq3JUFPi6Q3FhK
-	9C+2vG8VYbGgPEBWAapKNYqod8iFUR6T6d1HVj7dLRjopgmogbhuaI7dsQGpKfxEkEHuRRE183s
-	3pGM4is1cMFgjxdZ9R9Mb4jv5ZUCrUtiABDbcVjCSdE9AxIJLroNtiSgnCHAKAALEjDeaOYb/4J
-	LmQ==
-X-Google-Smtp-Source: AGHT+IF/vk0QCfHjxCD3xQN2FAZ8znHgGm0G7SYedRPknv6M80yqxBaJ4GKJcXeQpUbJdA5Bq/HgXw==
-X-Received: by 2002:a05:600c:3c86:b0:439:9b80:ca6f with SMTP id 5b1f17b1804b1-439ae1d7272mr66049675e9.5.1740216951812;
-        Sat, 22 Feb 2025 01:35:51 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258ccdccsm25767979f8f.24.2025.02.22.01.35.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Feb 2025 01:35:51 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>
-Cc: Andre Przywara <andre.przywara@arm.com>,
- Chris Morgan <macroalpha82@gmail.com>,
- Hironori KIKUCHI <kikuchan98@gmail.com>,
- Philippe Simons <simons.philippe@gmail.com>, linux-sunxi@lists.linux.dev,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Ryan Walklin <ryan@testtoast.com>
-Subject:
- Re: [PATCH 1/8] bus: sun50i: add DE33 compatible string to the DE2 bus driver
-Date: Sat, 22 Feb 2025 10:35:49 +0100
-Message-ID: <9408152.CDJkKcVGEf@jernej-laptop>
-In-Reply-To: <20250216092827.15444-2-ryan@testtoast.com>
-References:
- <20250216092827.15444-1-ryan@testtoast.com>
- <20250216092827.15444-2-ryan@testtoast.com>
+	s=arc-20240116; t=1740217283; c=relaxed/simple;
+	bh=DJC8m9RjcUzmFrWWZuFi8uTLafSc+0ybR8NGmMT4ltU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I2wB/gXdpF0lLRq/GbpioLQO2q4ViU947hy/cqysCg3xM/juOjN4k3eDEjocV7FyvDVMlREulSuzHmWaHolwMQae+7RozEOmEz3udUXM8AkJfknpm4vkpknceLaMt5yiRPAKJ0SC6uEoiQrQisZo3nxscisesejrMNOAm4J8+jU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=MTmNgGFK; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=fsrD8CFh; arc=none smtp.client-ip=5.78.89.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
+Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
+	by bayard.4d2.org (Postfix) with ESMTP id BCC8D122FE22;
+	Sat, 22 Feb 2025 01:41:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1740217272; bh=DJC8m9RjcUzmFrWWZuFi8uTLafSc+0ybR8NGmMT4ltU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MTmNgGFKrF0rvg4QXmmV19OqkJVyWfyWDRyZWlpxDA6uFgBDQRsh5EQBzVy3cBc/r
+	 LFszsOKShCd6gP4NLii3bpQT0rtipIuw0HvQ1pEA/dVshKV2KARxM7ARIxg6/7YUft
+	 0UWP7172G67OqFIf7UGGXJY1EfOQRbRsdHTRlM0hV90WJXhBPp3e4VskBMegQTGJaK
+	 8ik2qQYHWXMbmNBpiDgMuvKQs9+w0cDz2RFsPi7N6H8jr4pkL/oENH/w5O8grpRhaN
+	 UBxrNKeCcHyTa9NVKdkLjjBWD6WM4kXQqeZZxWhrnORIiW6P+JAs9NQwOJiz5YYOcC
+	 EMXwp4zu67WtQ==
+X-Virus-Scanned: amavisd-new at 4d2.org
+Received: from bayard.4d2.org ([127.0.0.1])
+ by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id LY7T0GXny8v4; Sat, 22 Feb 2025 01:40:59 -0800 (PST)
+Received: from ketchup (unknown [183.217.80.34])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: heylenay@4d2.org)
+	by bayard.4d2.org (Postfix) with ESMTPSA id 5985B122FE21;
+	Sat, 22 Feb 2025 01:40:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1740217259; bh=DJC8m9RjcUzmFrWWZuFi8uTLafSc+0ybR8NGmMT4ltU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fsrD8CFhRg9q1QR3OxrQIQHy3dE0MqTVoVYAvG3TGvs3NnmAxV9kTeBrX41ZVaBtk
+	 muxP1MVHiyiU0yciKzLJYVBEOE5Gj7qlSt85kYEf+dLglu0jow5R2YIU2jBMli0Idn
+	 7NVEOebBcciUrFG8/dgpB4bXshEJ+w1dd/xFlTrp1CxNsm72OEp7lW7h3ffMD/HRpB
+	 lv0EK5fRodtDs+leawlaqoCzkzXgx/o9sZlQngL5GUbTUPqenE5xFLBptADrbt8vRp
+	 +5Ek0voMUxAaNt0XZCptEvIcwtT2GEEBWcB4u14Ced7NxYvWHrnq9SvIa5p20iY4S7
+	 k4vGgMWkv0VSQ==
+Date: Sat, 22 Feb 2025 09:40:47 +0000
+From: Haylen Chu <heylenay@4d2.org>
+To: Alex Elder <elder@riscstar.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Haylen Chu <heylenay@outlook.com>, Yixun Lan <dlan@gentoo.org>
+Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Chen Wang <unicornxdotw@foxmail.com>,
+	Guodong Xu <guodong@riscstar.com>
+Subject: Re: [PATCH v4 3/4] clk: spacemit: Add clock support for Spacemit K1
+ SoC
+Message-ID: <Z7mbn_de-KV-yqQP@ketchup>
+References: <20250103215636.19967-2-heylenay@4d2.org>
+ <20250103215636.19967-5-heylenay@4d2.org>
+ <f8b30551-25e7-4626-8c03-6d8807041d8a@riscstar.com>
+ <Z7HNLq3DgJj7WKGI@ketchup>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z7HNLq3DgJj7WKGI@ketchup>
 
-Dne nedelja, 16. februar 2025 ob 10:27:08 Srednjeevropski standardni =C4=8D=
-as je Ryan Walklin napisal(a):
-> The Allwinner H616 series includes a newer display engine (DE33). Add a
-> compatible string to the existing bus driver.
->=20
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> ---
->  drivers/bus/sun50i-de2.c | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/drivers/bus/sun50i-de2.c b/drivers/bus/sun50i-de2.c
-> index dfe588179acab..47c87d51a603b 100644
-> --- a/drivers/bus/sun50i-de2.c
-> +++ b/drivers/bus/sun50i-de2.c
-> @@ -31,6 +31,7 @@ static void sun50i_de2_bus_remove(struct platform_devic=
-e *pdev)
-> =20
->  static const struct of_device_id sun50i_de2_bus_of_match[] =3D {
->  	{ .compatible =3D "allwinner,sun50i-a64-de2", },
-> +	{ .compatible =3D "allwinner,sun50i-h616-de33", },
+Hi Alex,
 
-Since there is no functionality change, just go with h616 compatible with a=
-64
-fallback. No need to change the driver.
+Before answering the reply, I'd like to share some information on these
+unconfirmed questions.
 
-Best regards,
-Jernej
+On Sun, Feb 16, 2025 at 11:34:06AM +0000, Haylen Chu wrote:
+> On Thu, Feb 13, 2025 at 10:04:10PM -0600, Alex Elder wrote:
+> > On 1/3/25 3:56 PM, Haylen Chu wrote:
+> > > diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
+> > > new file mode 100644
+> > > index 000000000000..6fb0a12ec261
+> > > --- /dev/null
+> > > +++ b/drivers/clk/spacemit/ccu-k1.c
 
->  	{ /* sentinel */ }
->  };
-> =20
->=20
+...
 
+> The next clock is weird, and it's the only one of its kind.  It is not
+> > represented in the clock tree diagram. It is a "factor 1" clock (so it
+> > just passes the parent's rate through), and has no gate.  Do you know
+> > why it's defined?  It is used only as one of the MPMU parent clocks.
+> > Why isn't just the pll1_d7 clock used in its place?
+> 
+> It is represented in the diagram. The photo version of the diagram seems
+> hard to search so I will ask the vendor to publish a PDF version if
+> possible.
+> 
+> As the definition involves no hardware bits, I guess it's actually an
+> alias listed to keep the tree structure in similar form. Will confirm
+> this with the vendor.
 
+Yes, it's confirmed as a placeholder.
 
+> 
+> > > +static CCU_FACTOR_DEFINE(pll1_d7_351p08, "pll1_d7_351p08", CCU_PARENT_HW(pll1_d7),
+> > > +			 1, 1);
+> > > +
+> > > +static CCU_GATE_DEFINE(pll1_d6_409p6, "pll1_d6_409p6", CCU_PARENT_HW(pll1_d6),
+> > > +		       MPMU_ACGR,
+> > > +		       BIT(0), BIT(0), 0, 0);
+> > > +static CCU_GATE_FACTOR_DEFINE(pll1_d12_204p8, "pll1_d12_204p8", CCU_PARENT_HW(pll1_d6),
+> > > +			      MPMU_ACGR,
+> > > +			      BIT(5), BIT(5), 0, 2, 1, 0);
+> > > +
+> > > +static CCU_GATE_DEFINE(pll1_d5_491p52, "pll1_d5_491p52", CCU_PARENT_HW(pll1_d5),
+> > > +		       MPMU_ACGR,
+> > > +		       BIT(21), BIT(21), 0, 0);
+> > > +static CCU_GATE_FACTOR_DEFINE(pll1_d10_245p76, "pll1_d10_245p76", CCU_PARENT_HW(pll1_d5),
+> > > +			      MPMU_ACGR,
+> > > +			      BIT(18), BIT(18), 0, 2, 1, 0);
+> > > +
+> > > +static CCU_GATE_DEFINE(pll1_d4_614p4, "pll1_d4_614p4", CCU_PARENT_HW(pll1_d4),
+> > > +		       MPMU_ACGR,
+> > > +		       BIT(15), BIT(15), 0, 0);
+> > > +static CCU_GATE_FACTOR_DEFINE(pll1_d52_47p26, "pll1_d52_47p26", CCU_PARENT_HW(pll1_d4),
+> > > +			      MPMU_ACGR,
+> > > +			      BIT(10), BIT(10), 0, 13, 1, 0);
+> > > +static CCU_GATE_FACTOR_DEFINE(pll1_d78_31p5, "pll1_d78_31p5", CCU_PARENT_HW(pll1_d4),
+> > > +			      MPMU_ACGR,
+> > > +			      BIT(6), BIT(6), 0, 39, 2, 0);
+> > > +
+> > > +static CCU_GATE_DEFINE(pll1_d3_819p2, "pll1_d3_819p2", CCU_PARENT_HW(pll1_d3),
+> > > +		       MPMU_ACGR,
+> > > +		       BIT(14), BIT(14), 0, 0);
+> > > +
+> > > +static CCU_GATE_DEFINE(pll1_d2_1228p8, "pll1_d2_1228p8", CCU_PARENT_HW(pll1_d2),
+> > > +		       MPMU_ACGR,
+> > > +		       BIT(16), BIT(16), 0, 0);
 
+...
+
+> > I couldn't find the "ripc_clk" on the clock tree diagram.  It is
+> > never used elsewhere, so I think this definition can go away.
+> 
+> I'm not sure whether the ripc_clk doesn't exist or it's just missing in
+> both datasheet and clock tree diagram. Will confirm with the vendor.
+
+It's just missing in the datasheet and clock tree diagram and now they
+have been completed[1].
+
+> > > +static CCU_GATE_DEFINE(ripc_clk, "ripc_clk", CCU_PARENT_NAME(vctcxo_24m),
+> > > +		       MPMU_RIPCCR,
+> > > +		       0x3, 0x3, 0x0,
+> > > +		       0);
+> > > +
+
+....
+
+> > > +static const struct clk_parent_data dpubit_parents[] = {
+> > > +	CCU_PARENT_HW(pll1_d3_819p2),
+> > > +	CCU_PARENT_HW(pll2_d2),
+> > > +	CCU_PARENT_HW(pll2_d3),
+> > > +	CCU_PARENT_HW(pll1_d2_1228p8),
+> > > +	CCU_PARENT_HW(pll2_d4),
+> > > +	CCU_PARENT_HW(pll2_d5),
+> > 
+> > The next two parent clocks are duplicates.  It looks this way on the
+> > clock tree diagram as well.  Is this correct? Can you find out from
+> > SpacemiT whether one of them is actually a different clock (like
+> > pll2_d6 or something)?  It makes no sense to have two multiplexed
+> > parent clocks with the same source.
+> 
+> Yes, will confirm it later. The register description[2] suggests it's
+> wrong (there aren't two configuration for MIPI_BIT_CLK_SEL resulting in
+> the same frequency).
+
+The clock tree diagram (and the vendor driver) were wrong. The 7th.
+parent should be pll2_d7 (427MHz * 7 is roughly 3GHz, which is PLL2's
+frequency). The diagram has been corrected.
+
+> > > +	CCU_PARENT_HW(pll2_d8),
+> > > +	CCU_PARENT_HW(pll2_d8),
+> > > +};
+> > > +static CCU_DIV_FC_MUX_GATE_DEFINE(dpu_bit_clk, "dpu_bit_clk", dpubit_parents,
+> > > +				  APMU_LCD_CLK_RES_CTRL1,
+> > > +				  17, 3, BIT(31),
+> > > +				  20, 3, BIT(16), BIT(16), 0x0,
+> > > +				  0);
+> > > +
+
+...
+
+> > > diff --git a/drivers/clk/spacemit/ccu_ddn.c b/drivers/clk/spacemit/ccu_ddn.c
+> > > new file mode 100644
+> > > index 000000000000..1df555888ecb
+> > > --- /dev/null
+> > > +++ b/drivers/clk/spacemit/ccu_ddn.c
+> > > @@ -0,0 +1,140 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * Spacemit clock type ddn
+> > > + *
+> > > + * Copyright (c) 2024 SpacemiT Technology Co. Ltd
+> > > + * Copyright (c) 2024 Haylen Chu <heylenay@4d2.org>
+> > > + */
+> > > +
+> > > +#include <linux/clk-provider.h>
+> > > +
+> > > +#include "ccu_ddn.h"
+> > 
+> > What does "DDN" stand for?
+> 
+> I'm not sure, the name is kept from the vendor driver. I could change it
+> to a more descriptive name, like "fraction-factor".
+
+It's abbreviated from "Divider Denominator Numerator", confirmed by the
+vendor. Quite weird a name. I'll make the abbreviation and corresponding
+explanation more clear in the next revision.
+
+Thanks,
+Haylen Chu
+
+[1]: https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb#part208
 
