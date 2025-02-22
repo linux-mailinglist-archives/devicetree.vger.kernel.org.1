@@ -1,156 +1,194 @@
-Return-Path: <devicetree+bounces-149801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51888A4078E
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 11:44:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DE12A4078F
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 11:44:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B461819C6E42
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:44:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9C687ACE59
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:43:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 054B8207E1B;
-	Sat, 22 Feb 2025 10:44:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 223B12080DB;
+	Sat, 22 Feb 2025 10:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TAWwjkpd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IoFSy4Ku"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D182D1FBE9B;
-	Sat, 22 Feb 2025 10:44:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5802C1FBE9B
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 10:44:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740221060; cv=none; b=HJz9cifn1xrzKr3QgCqs0M/jMiF4Sgz62nikBBo2PfxwQBMEQ3/GRPrVk6k5kNSnhjm+5hIu6bhBjGpAE95l0kyUrbH2y4zoXXOtPqXCOB268WlkdidSb4IjKx/htzUQEtu5g8jj5TM4+T9eIPxykf7XCRjH4EaG7lO+rLFEzGc=
+	t=1740221086; cv=none; b=gc176Dv2r7/5zXIsdp+su2oXLaGrar1ZoSvJWPyhq5bVlzS76ijD+8LXF5Mu7EF4w/lV5qJBYLki8fHcdTkSyLr1FcSttRWzg1wCBorqpLxVZFS7w5y2fn6gwELVFjryiccMYw1SFVOwJnk/3831XUcFO64J/0KQ9O3kbstnR5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740221060; c=relaxed/simple;
-	bh=KklBsnKcVFSuYBzhg3x4RUn9m/fVl0ZPRbgJvxFW3Kg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eLddnZnaWIjnQkbrBxB8iMdnc08VvaEjKxzWcCGUZPT4QctTpOLg/LUSQ+KGfznDTSn8vT476kQEV4jp50yIJUGddhsAsJ5tmOcyo9tU+dJ3JNHUf43EAwzfl/WKwG/zUCpQFL7YsuenRijvqfXmwmTZtvbupzH1nC95V2e8aBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TAWwjkpd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF059C4CEE6;
-	Sat, 22 Feb 2025 10:44:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740221060;
-	bh=KklBsnKcVFSuYBzhg3x4RUn9m/fVl0ZPRbgJvxFW3Kg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=TAWwjkpd+5cFg6+zzP9oLs1xn1rF2z5+dbD0nvnQlS8YjnyJWHp+/gQ+4ueZrNcX+
-	 V0O8iEW/VgTO8jrhysPvVMFU7IRTf8vApyrqogJRYxD04B55UpF/q1OQbTYv4Uzeyr
-	 Y+46wNkZA8wPM+Df41iCJz/K6YVexwN3W47XLGYlC8ufvCexlmHXozu9VGPZsixfq6
-	 tcvJNg2ATFeFuDPq/AU2abj3/aSJqLFBZYdO32ryolKyfrUqJjCF1bRvSlmKcxK3mR
-	 wllzj44pFCV6bMynfX6RT5XkQgByYhYo1surtZDfu7wWaqxxm9HCGRaHu2cAThwwy1
-	 OL9xpO93NtnOg==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Sat, 22 Feb 2025 11:43:45 +0100
-Subject: [PATCH v3 2/2] PCI: mediatek-gen3: Configure PBUS_CSR registers
- for EN7581 SoC
+	s=arc-20240116; t=1740221086; c=relaxed/simple;
+	bh=ZkSYuU2wPBZsc0CMDXq4Db5mtSgXumjkBjdN1jIn1FA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=egDN5cqSffwi0pmql4pahLH07akWg7mo/P7iWQ3cjSmTcKt3l5cKvyCz0XJ5Q580GBM3AxX4Iz1bY1w2PxppluzMBCXz8jGOd/Jhvr0r48pStKVsk2h1P7q3btpP5sVTBg3TMnNDytaJ6Jah3AYh1bwKSGRtn/WvQyn/9wPRABY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IoFSy4Ku; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-38f325ddbc2so2119436f8f.1
+        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 02:44:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740221082; x=1740825882; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kln87c/5kKVDMW1BPsIyv6Xt4UdEnHbw8gswLoQRLeM=;
+        b=IoFSy4KuBFVolg0txB1A2rFMKdJYrhBr3rjps8Mn33kMnkh99fSAvWlJ3uxcimmGiR
+         nppjgU1e76RKrBQts9nsVCAxOcKeb7ggkW/1JErpaDHnLKAWuwHbK1etUMWNy2usfTg4
+         N8QLvSl3RCjR/u12RimYiPDwu/lJtQr7OcapfvXlBvtBJAgae4sP0pwBnj5jabifBxLj
+         nYk1qKqD2++hbty3h1A91xVhOU9Emc0yE1ZXjgOxMN75FcMO2WCjPHZ0etgVi6I7XKMu
+         68XRqGdIyWOIoFfWwoRh4slpL69kMDxANWd1zaOyZzwqL4Wur8yf/xjuROFYCO4yBHkb
+         8V3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740221082; x=1740825882;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kln87c/5kKVDMW1BPsIyv6Xt4UdEnHbw8gswLoQRLeM=;
+        b=uHsmywl/7OhUnx3f7DeeCLJTyeRqyiuEMwjPrloGzKOqOJAjIa5/wR6Zy3o8mJVe4Z
+         700Xy1KWWpxdib65E96YuGq+9F34WzbpIvM6S1aRpJKMA/smOFakxdP+17p0QT4OxDU+
+         ff54QiBuMFglWcVRG8t8SoDyYqL/C5NQwHeemHHydDY42giIKG9y5C4Q8TqDindYy58+
+         xJ1dg4LCM3YT1vq8GNMGBmBBtrQCGWO3+Z8iYHSbRNE1++oTLOFa4Sxt2QI2qsXv5A7G
+         P+7K8PL+j7Ra9E9ON4eMPQpbsd5nm7lFwAOVI0jy49N4ndTNHYAcXoF4S2CWQH2sh8Uk
+         fcvw==
+X-Gm-Message-State: AOJu0Yz20wWNNMA5977eEvAIVDv4ODCbxVkckJNjjmz5S2TIYdviV22X
+	0CM3EhrpUDoPCSwvlM6A7YTrOqO8qx59UA5ODX9GClKa5gf/pBbS
+X-Gm-Gg: ASbGnctiGPO7yifNzHV6wllhkNvnOsi1BaCqj9tI2osccB4AMni4S0wVVy2nfE4ui6A
+	OhDF7oJiRQJm6Oxj8IcMEPoblPhyV/VqJRkGz3KM8W8Zc2XjrQwGbcvimPHPrdT2ROmLGVBPw8+
+	1WN9PgMtknY21rrFffFm9Tlx8ZqhUTtZSs87Qdnd/UuphpPfAtvkISuebPl/rNdZYv6HLUixyka
+	kXok1MwRlobvo1p4f6XQGS1o0THEDdIZ0zNABaD7wqSNrn8JPE7TO2jhjJut+9dfW76usch9Zk9
+	rh80nPsDQjQKA+cUuSCZykIIxIlRG79Q6+EtEnm37mjRqCen5Iec5guNq3g+mnuJhsORJHJRX0E
+	b4Q==
+X-Google-Smtp-Source: AGHT+IGlk5s5bSykqpq59rfKC/AkOqaYQYpG5g3eNqje/wCAOIpYetAD1JWu0hEmADBRto9+cG1uvA==
+X-Received: by 2002:a05:6000:401e:b0:385:fd07:8616 with SMTP id ffacd0b85a97d-38f7023e7abmr5279379f8f.0.1740221082457;
+        Sat, 22 Feb 2025 02:44:42 -0800 (PST)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-439b036756csm43118085e9.31.2025.02.22.02.44.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Feb 2025 02:44:41 -0800 (PST)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>
+Cc: devicetree@vger.kernel.org, samuel@sholland.org, wens@csie.org,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ Chris Morgan <macromorgan@hotmail.com>
+Subject:
+ Re: [PATCH 1/4] arm64: dts: allwinner: h700: Add MMC2 for Anbernic RG35XX
+Date: Sat, 22 Feb 2025 11:44:39 +0100
+Message-ID: <1884930.atdPhlSkOF@jernej-laptop>
+In-Reply-To: <20241018160617.157083-2-macroalpha82@gmail.com>
+References:
+ <20241018160617.157083-1-macroalpha82@gmail.com>
+ <20241018160617.157083-2-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250222-en7581-pcie-pbus-csr-v3-2-e0cca1f4d394@kernel.org>
-References: <20250222-en7581-pcie-pbus-csr-v3-0-e0cca1f4d394@kernel.org>
-In-Reply-To: <20250222-en7581-pcie-pbus-csr-v3-0-e0cca1f4d394@kernel.org>
-To: Ryder Lee <ryder.lee@mediatek.com>, 
- Jianjun Wang <jianjun.wang@mediatek.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-X-Mailer: b4 0.14.2
 
-Configure PBus base address and address mask to allow the hw
-to detect if a given address is accessible on PCIe controller.
+Hi Chris,
 
-Fixes: f6ab898356dd ("PCI: mediatek-gen3: Add Airoha EN7581 support")
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/pci/controller/pcie-mediatek-gen3.c | 34 ++++++++++++++++++++++++++++-
- 1 file changed, 33 insertions(+), 1 deletion(-)
+sorry it took so long.
 
-diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
-index 0f64e76e2111468e6a453889ead7fbc75804faf7..51103b7624c09ca957c22a25536dc9da25428e48 100644
---- a/drivers/pci/controller/pcie-mediatek-gen3.c
-+++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-@@ -15,6 +15,7 @@
- #include <linux/irqchip/chained_irq.h>
- #include <linux/irqdomain.h>
- #include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/msi.h>
- #include <linux/of_device.h>
-@@ -24,6 +25,7 @@
- #include <linux/platform_device.h>
- #include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
- #include <linux/reset.h>
- 
- #include "../pci.h"
-@@ -930,9 +932,13 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie *pcie)
- 
- static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
- {
-+	struct pci_host_bridge *host = pci_host_bridge_from_priv(pcie);
- 	struct device *dev = pcie->dev;
-+	struct resource_entry *entry;
-+	u32 val, args[2], size, mask;
-+	struct regmap *pbus_regmap;
-+	resource_size_t addr;
- 	int err;
--	u32 val;
- 
- 	/*
- 	 * The controller may have been left out of reset by the bootloader
-@@ -944,6 +950,32 @@ static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
- 	/* Wait for the time needed to complete the reset lines assert. */
- 	msleep(PCIE_EN7581_RESET_TIME_MS);
- 
-+	/*
-+	 * Configure PBus base address and base address mask to allow the
-+	 * hw to detect if a given address is accessible on PCIe controller.
-+	 */
-+	pbus_regmap = syscon_regmap_lookup_by_phandle_args(dev->of_node,
-+							   "mediatek,pbus-csr",
-+							   ARRAY_SIZE(args),
-+							   args);
-+	if (IS_ERR(pbus_regmap))
-+		return PTR_ERR(pbus_regmap);
-+
-+	entry = resource_list_first_type(&host->windows, IORESOURCE_MEM);
-+	if (!entry)
-+		return -EINVAL;
-+
-+	addr = entry->res->start - entry->offset;
-+	err = regmap_write(pbus_regmap, args[0], lower_32_bits(addr));
-+	if (err)
-+		return err;
-+
-+	size = lower_32_bits(resource_size(entry->res));
-+	mask = size ? GENMASK(31, __fls(size)) : 0;
-+	err = regmap_write(pbus_regmap, args[1], mask);
-+	if (err)
-+		return err;
-+
- 	/*
- 	 * Unlike the other MediaTek Gen3 controllers, the Airoha EN7581
- 	 * requires PHY initialization and power-on before PHY reset deassert.
+Dne petek, 18. oktober 2024 ob 18:06:14 Srednjeevropski standardni =C4=8Das=
+ je Chris Morgan napisal(a):
+> From: Chris Morgan <macromorgan@hotmail.com>
+>=20
+> Add support for the second MMC slot on the Anbernic RG35XX series.
+> The second MMC card is connected to MMC2 (WiFi if present is MMC1).
+> The MMC logic is powered by cldo3 via the power domain to which
+> it is connected, and also has an external 3.3v GPIO controlled
+> regulator required for functionality.
+>=20
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  .../sun50i-h700-anbernic-rg35xx-2024.dts      | 27 +++++++++++++++++--
+>  1 file changed, 25 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-20=
+24.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+> index 80ccab7b5ba7..e2039fd76b3d 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+> @@ -18,6 +18,9 @@ / {
+>  	compatible =3D "anbernic,rg35xx-2024", "allwinner,sun50i-h700";
+> =20
+>  	aliases {
+> +		mmc0 =3D &mmc0;
+> +		mmc1 =3D &mmc2;
+> +		mmc2 =3D &mmc1;
 
--- 
-2.48.1
+Please drop those. As a rule, we don't have it in any DT, since there are m=
+ore
+universal to identify root partition than a relying on device order.
+
+>  		serial0 =3D &uart0;
+>  	};
+> =20
+> @@ -175,6 +178,15 @@ reg_vcc5v: regulator-vcc5v { /* USB-C power input */
+>  		regulator-min-microvolt =3D <5000000>;
+>  		regulator-max-microvolt =3D <5000000>;
+>  	};
+> +
+> +	reg_vcc3v3_mmc2: regulator-vcc3v3-mmc2 {
+> +		compatible =3D "regulator-fixed";
+> +		enable-active-high;
+> +		gpio =3D <&pio 4 4 GPIO_ACTIVE_HIGH>; /* PE4 */
+> +		regulator-min-microvolt =3D <3300000>;
+> +		regulator-max-microvolt =3D <3300000>;
+> +		regulator-name =3D "vcc3v3-mmc2";
+> +	};
+>  };
+> =20
+>  &cpu0 {
+> @@ -186,10 +198,21 @@ &ehci0 {
+>  };
+> =20
+>  &mmc0 {
+> -	vmmc-supply =3D <&reg_cldo3>;
+> -	disable-wp;
+> +	bus-width =3D <4>;
+>  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;  /* PF6 */
+> +	disable-wp;
+> +	no-1-8-v;
+
+Please leave properties in same order to minimize patch size. From
+what I can see, only above property is added, which is not needed anyway.
+
+> +	vmmc-supply =3D <&reg_cldo3>;
+> +	status =3D "okay";
+> +};
+> +
+> +&mmc2 {
+>  	bus-width =3D <4>;
+> +	cd-gpios =3D <&pio 4 22 GPIO_ACTIVE_LOW>; /* PE22 */
+> +	disable-wp;
+> +	no-1-8-v;
+> +	vmmc-supply =3D <&reg_vcc3v3_mmc2>;
+> +	vqmmc-supply =3D <&reg_cldo3>;
+
+Is this another SD card slot or eMMC? You configured it as it would be SD c=
+ard,
+but mmc2 slots are usually used for eMMC, which needs different configurati=
+on.
+
+Best regards,
+Jernej
+
+>  	status =3D "okay";
+>  };
+> =20
+>=20
+
+
+
 
 
