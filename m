@@ -1,94 +1,91 @@
-Return-Path: <devicetree+bounces-149743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3F18A4045F
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 01:45:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C911BA40481
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 02:07:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A72917077BB
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:44:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A296423E34
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 01:07:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E217F5674D;
-	Sat, 22 Feb 2025 00:44:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5677B15A868;
+	Sat, 22 Feb 2025 01:07:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MiNGo1xG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T2M1WL+O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2827D4F218;
-	Sat, 22 Feb 2025 00:44:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ACF615854A
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 01:06:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740185046; cv=none; b=N7MaCeVDNL5m5JCXparcjAZvzmiBhIbms/zSdAjWYdcEzCtzWv+7YCd+Ks4d4NmKgGOxQJosIRm+puRnYoXCkKyb7hUYps8vRkE9EHZmu8WDw4Mp7plrIFJ2Y/Gap3HkLe0POZlZ/8+q3qX0PM5Wj5XuBpuMAV7RNShX+r44dxY=
+	t=1740186421; cv=none; b=QogJAf/8jJ3rzDCuYkHB06wyM2lDNzKIx8cHane7C6NWCaUWi87qMgk/bWbeD6qziUlCPANF8XuD5NDee/WMqFZnmSYigrsVv7jvy0o8KquYZjlL9lxDkmfw6KvBhEMWDKDfRbLtuLTjRtPkslg/sUs8DTjzstPatzqwRAsx8iU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740185046; c=relaxed/simple;
-	bh=rVIkEHAtGYkLu2/McHlDwK6UU1jTxU5sHLOBbtEgOcA=;
+	s=arc-20240116; t=1740186421; c=relaxed/simple;
+	bh=oWNjA4iAb86TL9euhzKXI+ikt4IOF7STMLKlY2f/5Yc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K+nEv0sQZU5/7aVbepCZSXiSmbS6yodaCq+qLuAo3C65u4nrw2c3wn5nNqT58Ml8omhybJFDrtyzlHlfHMRK4dpBnB0Fz2s+GwzR/xvOhcd+7lVgKT2iVRdYbttpqO4sw+RbUWGaAn8yKgZpMNr2DXqX21Ku1r0IuYuRr8e84HE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MiNGo1xG; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7c0818add57so278321685a.3;
-        Fri, 21 Feb 2025 16:44:04 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dBGX+w1uxL8X1qv7RZYpkrgbtAHJAa/UL7MQqAAqIrhQ8/RQkBorPJgHzgtw0ICOrs4iknqP8kR0fjQUuuQmvGhC87K6/reV2ZXXRSeSV6MEysTinbZi4+En3Tz8tF5Xbj4wzEsyaVjGP2HtmLajGNJ7JTXRu3hTj/HhEznkrbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=T2M1WL+O; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5461a485aa2so2404681e87.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 17:06:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740185044; x=1740789844; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1740186417; x=1740791217; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0mfYiMV8kidUXmGLYF/BaWuuheQWf14kVQL8yo9io9o=;
-        b=MiNGo1xGrOm5yGnRjX+SIWdDC1Hkg+VhVqaNgCjjGyX6oDSWBsteOtz0ObMIUxkWza
-         PRZ5QR9gXMP7YQcEtkKs5V3OPE91AyeKMTpL60OgYyOlYSY113TOF/4PFFjPBPmkoiLm
-         kDqlVlEmuvNIYlI4ykoHD5G2HWIc9MF5YKJODaLcAOR2rNBVM1CvGvE/rTe4kx9VIl2W
-         qRtiahxxDad5ZQ2/GCFseMT0aFI4hN8C14uANH7phKmBfhlp6JSPB5kt9JJoUg5UArfi
-         rbVMIzbzx+DIwW59ChQrwsiSl/iOwanNKMB3GhZ3JB1ojyLPb2TsnERJnBhxosssIjpq
-         QpVA==
+        bh=SXPIaDT705xuetNhhFasT7VZfBwG839I1ETVy1U9JU0=;
+        b=T2M1WL+OQCezs9X6uQsXyfVuar8bbfB7qZLDjwJVCs6wCdR0EMJXi8sZ2/8Yz2QUwO
+         C3KLTupYXVyK5T0abivr+XyEFWP5DYgRTD41HVkYT7bHIm+d1vKGoa5smSrKSg9/ab4y
+         VgrlwqxWy1pOqZhgdPiGqvAept+ngle5rYLR9GN5CDnnhdGHyPgC5D3PKogKoQiibpL4
+         gs/+sjsntGsEfxewj3+6lXzh0u94TIGk92Qc9eAYmXemSf2j/hIpkZaWCav/tEUoBz28
+         qezxudzzIutHPyiisII9hryeotOBL2XVn/CaH+jqWOR+AQa44nHMFAwDJZT9K5s3z+l3
+         4tZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740185044; x=1740789844;
+        d=1e100.net; s=20230601; t=1740186417; x=1740791217;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0mfYiMV8kidUXmGLYF/BaWuuheQWf14kVQL8yo9io9o=;
-        b=eWxwCndAg6vzwHeb7msdtveAU4JplTNQLFSVG5arjgAQ/gwfLY/sD0dlGyFLRBlP0M
-         Yt/RsKxaWXlKX7ipSCOq/CNx62s8HTmL738mdkCJ0Y+KZkPLvJIrlETvDn4KXK7Ohc8h
-         LN8r5x/9t3Ld9jG6xcTipl82VyQ9JXpQWyqmmZmnfX3YtH+aZDOB3HEfYPtmxO5QqA4Z
-         Y2600QGdmqXVNXRyLif7SypmQHykUoC9pf5CJMERnUwvCIaFHZC6dAcJggM2gc/i2XiT
-         mM5fiZkrM77yNHuKyr4Ts4QL6grG5lzDHOAIwL6PCdMthFxDyR2LH8oUWm3WBBYr88nm
-         yDpg==
-X-Forwarded-Encrypted: i=1; AJvYcCUMJZA1IIwKxWpW2Q/kfCny1VOuIV/nzt7+A5OMtaZIWZslJMrsfvrjnBHfPJ8o6c0cM1MGWmv2nke6@vger.kernel.org, AJvYcCUsKPoeOT5kwHHcP5x8QCAV6cv8+TrBmlGp5uha8vzpgSDSBtDUoxgWQHIu0zkdtR3KrOrbO/jV8ulr@vger.kernel.org, AJvYcCUuk93UqWHBuw6IRpE0AXnNe68wKjC4hFZYhjVFUcToCUpZtT2Gx6VtBCSOOS081NK5EUyuwRVOguYFIQ9z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6n1qdpyCmvtxn1DS2EvRaPBUk/ZX7A0aVP7QYYDigUf7E8hrt
-	1oeMv2eXm2G47+K8o7T0JMhWPYYWa7GAu2ZmHTk8CmGUKs4BhQ/7
-X-Gm-Gg: ASbGnct4LsVTr/KCV5bYWNsPCsFTizsjy/qu7TBxdUgOYdgTRGXF6975D+0uO4MYx0V
-	5rSnbYf+daOtowHk3xMtejN1V2K8GqNvtygktYoEJnBDezEvA2zIithBZAWMigaeodMuP5qxz/G
-	C5VbpkaPZzFd82wJ2zIRtTCsT+kyGPKj4SQWtdBuG3kUZaSJxHAyzHPPtw36IgNfzkCpXem962n
-	Jtd7Ct/+IsMJiL2dh0Zma53062Dh5ZQtkQ52P11Q2EShZLeEGFka1hz8dUmjjwxzbIk5NVlRv12
-	OA==
-X-Google-Smtp-Source: AGHT+IFzV+P0z5pv+ZCpM8NN+jOatwS5dJ8bp2X5/A+AMv3Hu8hpM6OiyB0lB2UVj8l8h5auvYUeaw==
-X-Received: by 2002:a05:620a:801b:b0:7c0:c42a:7078 with SMTP id af79cd13be357-7c0cf96d0f1mr710092885a.52.1740185043862;
-        Fri, 21 Feb 2025 16:44:03 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c096443dc4sm721179685a.60.2025.02.21.16.44.01
+        bh=SXPIaDT705xuetNhhFasT7VZfBwG839I1ETVy1U9JU0=;
+        b=vUOSmwiXv6I8ZMhd6SjF6hQ+nfQVXPHycYceYhRoIx/wm3OOrOLuIzsB9+FbG2Qz/H
+         0TTtv9YWIObxJ3axT42yHF5esOeTc+SFhtDLnxYyEaXnJfaOIr+uB8OfM9v7tDAIOdcR
+         pEwvXpbneggFQHihbtFk0vJ0KgTdzkYZt1DHw1NQXP/vQufxc0Bp+1gtwGRY4ENvOn5T
+         PDWNFp5MxugfKADw8COCzuBOEbeoYSWf6GNtI0bJAnlqiO/LeJi9jrJuhCoKYYtfZlUQ
+         cqALh/wvF34ENBwBEUpk9d80znfvrioomkkN/wH91zem0VH3qBZ0FD7PnEw12FQiwHf2
+         gQog==
+X-Forwarded-Encrypted: i=1; AJvYcCU0BgiQIobug3F68V3UrnBojR6nUAfw/IL1GcJyr1+dNzLqGcVQK7eJPn4yvlGO26eLpHgDH1S/DTvG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvH400KX4LnAl0sqaPfb3V0ZKvyWv3PAjVh2EyknyQE1mFR/vh
+	G4Yzttl6XbSlTInhOEB6TLdxe6p8Sm4dZxj1LHIdHK7VDleSugmOj5KwQezWKW0=
+X-Gm-Gg: ASbGnctM0nH5JNIboiONfeZVc5sm6PEjC6M0i+zMJyKnIR2pSU3PiqqW2ERTvfAktu+
+	jB4LyvGCHOdCBgKsaMJc9lWQVWDtDNLUIphNFmsWkxmy8sFeViHUZVc0pwixhHtzSPgRBMp5Woc
+	4aAmklnLk+IVn2iinG9wPR6OlVwDX6cmOLjOC87yLTSkF8WE5NnCbfKsho34c2SAdmMVZdqJglZ
+	JGN5wMYndEAgljGiEZMVZlL1ZKjusCVQn9teGM1jqeOYmBpJqLes4I56H4oIB4qc4ju8/dzA+A+
+	/KpDcMW7qdl9w6UxQvxaxqm9/16wUcsFfVm0GeMkGwC5vf3H1CEMxd+wzzuhtKvCNvR2sZ1qJZM
+	//cx/Ww==
+X-Google-Smtp-Source: AGHT+IHi+ordHXE50By3g3XEuMDzRdPKjNWp+dXW81whZVyJYjc5ubTtNYsiZV1PtpJnAOhMKIvswQ==
+X-Received: by 2002:a05:6512:3c87:b0:545:d54:2ec6 with SMTP id 2adb3069b0e04-54838ee2884mr1658130e87.2.1740186417340;
+        Fri, 21 Feb 2025 17:06:57 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54527b7961dsm2518317e87.46.2025.02.21.17.06.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Feb 2025 16:44:02 -0800 (PST)
-Date: Sat, 22 Feb 2025 08:43:46 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Bjorn Helgaas <helgaas@kernel.org>, 
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+        Fri, 21 Feb 2025 17:06:55 -0800 (PST)
+Date: Sat, 22 Feb 2025 03:06:53 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Niklas Cassel <cassel@kernel.org>, 
-	Shashank Babu Chinta Venkata <quic_schintav@quicinc.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH 2/2] PCI: sophgo-dwc: Add Sophgo SG2044 PCIe driver
-Message-ID: <fanm6m6fx6cqwalhdvrxmjzsluiyptbvrwbi5ufwbqmxsf62xl@lntprhkjv6tm>
-References: <20250221013758.370936-3-inochiama@gmail.com>
- <20250221234958.GA372914@bhelgaas>
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v4 0/6] Bluetooth: qca: add Qualcomm WCN3950 BT/WiFi chip
+ support
+Message-ID: <3s36j75eoqszm5hiftia543h2a6nxaa74wubrr6nq4akzq4hta@wyuwa5onjauz>
+References: <20250207-rb1-bt-v4-0-d810fc8c94a9@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,204 +94,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250221234958.GA372914@bhelgaas>
+In-Reply-To: <20250207-rb1-bt-v4-0-d810fc8c94a9@linaro.org>
 
-On Fri, Feb 21, 2025 at 05:49:58PM -0600, Bjorn Helgaas wrote:
-> On Fri, Feb 21, 2025 at 09:37:56AM +0800, Inochi Amaoto wrote:
-> > Add support for DesignWare-based PCIe controller in SG2044 SoC.
+On Fri, Feb 07, 2025 at 10:41:14PM +0200, Dmitry Baryshkov wrote:
+> Qualcomm Robotics RB1 platform uses a new member of the WCN39xx family
+> of BT/WiFi chips. Add support for this member of the family and enable
+> it to be used on the RB1 board.
 > 
-> > @@ -341,6 +341,16 @@ config PCIE_ROCKCHIP_DW_EP
-> >  	  Enables support for the DesignWare PCIe controller in the
-> >  	  Rockchip SoC (except RK3399) to work in endpoint mode.
-> >  
-> > +config PCIE_SOPHGO_DW
-> > +	bool "SOPHGO DesignWare PCIe controller"
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+> Changes in v4:
+> - Added empty line before status property (Konrad)
+> - Reword Bluetooth commit message to follow linux-firmware changes
+>   (cmnv13t.bin and cmnv13s.bin were merged).
+> - Link to v3: https://lore.kernel.org/r/20250202-rb1-bt-v3-0-6797a4467ced@linaro.org
 > 
-> What's the canonical styling of "SOPHGO"?  I see "Sophgo" in the
-> subject line and in Chen Wang's SG2042 series.  Pick the official
-> styling and use it consistently.
+> Changes in v3:
+> - Mention new firmware files.
+> - Link to v2: https://lore.kernel.org/r/20250201-rb1-bt-v2-0-fd44011749bb@linaro.org
 > 
+> Changes in v2:
+> - Corrected QUP interconnects (Konrad)
+> - Added /delete-property/ interrupts and an empty line before status
+>   (Konrad)
+> - Enabled downloading of different NVMs as required for v1.3 of the chip.
+> - Link to v1: https://lore.kernel.org/r/20250201-rb1-bt-v1-0-ae896c4923d8@linaro.org
+> 
+> ---
+> Dmitry Baryshkov (6):
+>       dt-bindings: net: bluetooth: qualcomm: document WCN3950
+>       Bluetooth: qca: simplify WCN399x NVM loading
+>       Bluetooth: qca: add WCN3950 support
 
-This is my mistake. It should be "Sophgo", I will change it.
+Gracious ping, these patches have been sent two weeks ago.
 
-> Reorder this so the menuconfig menu items remain alphabetically
-> sorted.
+>       arm64: dts: qcom: qcm2290: fix (some) of QUP interconnects
+>       arm64: dts: qcom: qcm2290: add UART3 device
+>       arm64: dts: qcom: qrb2210-rb1: add Bluetooth support
 > 
-
-I think this order is applied to the entry title in menuconfig,
-and is not the config key? If so, I will change it.
-
-> > +	depends on ARCH_SOPHGO || COMPILE_TEST
-> > +	depends on PCI_MSI
-> > +	depends on OF
-> > +	select PCIE_DW_HOST
-> > +	help
-> > +	  Enables support for the DesignWare PCIe controller in the
-> > +	  SOPHGO SoC.
-> > +
-> >  config PCI_EXYNOS
-> >  	tristate "Samsung Exynos PCIe controller"
-> >  	depends on ARCH_EXYNOS || COMPILE_TEST
+>  .../bindings/net/bluetooth/qualcomm-bluetooth.yaml |  2 +
+>  arch/arm64/boot/dts/qcom/qcm2290.dtsi              | 31 +++++---
+>  arch/arm64/boot/dts/qcom/qrb2210-rb1.dts           | 83 ++++++++++++++++++++++
+>  drivers/bluetooth/btqca.c                          | 27 +++++--
+>  drivers/bluetooth/btqca.h                          |  4 ++
+>  drivers/bluetooth/hci_qca.c                        | 25 +++++++
+>  6 files changed, 157 insertions(+), 15 deletions(-)
+> ---
+> base-commit: a1d1e1f2fae5fcb5f2e43b81afa9596c606e683d
+> change-id: 20250201-rb1-bt-cec7a314991d
 > 
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * PCIe host controller driver for Sophgo SoCs.
-> 
-> Looks too generic, since Chen Wang's series says Sophgo SG2042 SoC is
-> Cadence-based, so this driver apparently doesn't cover all Sophgo
-> SoCs.
-> 
-
-OK, I will change the description to point it only cover
-the controller based on the DesignWare core.
-
-> > + *
-> 
-> Spurious blank line.
-> 
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/gpio/consumer.h>
-> > +#include <linux/irqchip/chained_irq.h>
-> > +#include <linux/irqdomain.h>
-> > +#include <linux/mfd/syscon.h>
-> > +#include <linux/module.h>
-> > +#include <linux/phy/phy.h>
-> > +#include <linux/property.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/reset.h>
-> > +
-> > +#include "pcie-designware.h"
-> > +
-> > +#define to_sophgo_pcie(x)		dev_get_drvdata((x)->dev)
-> > +
-> > +#define PCIE_INT_SIGNAL			0xc48
-> > +#define PCIE_INT_EN			0xca0
-> > +
-> > +#define PCIE_SIGNAL_INTX_SHIFT		5
-> > +#define PCIE_INT_EN_INTX_SHIFT		1
-> 
-> Define masks with GENMASK() and get rid of the _SHIFT #defines.
-> 
-> > +#define PCIE_INT_EN_INT_SII		BIT(0)
-> > +#define PCIE_INT_EN_INT_INTA		BIT(1)
-> > +#define PCIE_INT_EN_INT_INTB		BIT(2)
-> > +#define PCIE_INT_EN_INT_INTC		BIT(3)
-> > +#define PCIE_INT_EN_INT_INTD		BIT(4)
-> 
-> These are unused, drop them.
-> 
-> > +#define PCIE_INT_EN_INT_MSI		BIT(5)
-> > +
-> > +struct sophgo_pcie {
-> > +	struct dw_pcie pci;
-> > +	void __iomem *app_base;
-> > +	struct clk_bulk_data *clks;
-> > +	unsigned int clk_cnt;
-> > +	struct reset_control *rst;
-> > +	struct irq_domain *irq_domain;
-> 
-> Indent the member names to align vertically as most other drivers do.
-> 
-> > +};
-> > +
-> > +static int sophgo_pcie_readl_app(struct sophgo_pcie *sophgo, u32 reg)
-> > +{
-> > +	return readl_relaxed(sophgo->app_base + reg);
-> > +}
-> > +
-> > +static void sophgo_pcie_writel_app(struct sophgo_pcie *sophgo, u32 val, u32 reg)
-> > +{
-> > +	writel_relaxed(val, sophgo->app_base + reg);
-> > +}
-> > +
-> > +static void sophgo_pcie_intx_handler(struct irq_desc *desc)
-> > +{
-> > +	struct dw_pcie_rp *pp = irq_desc_get_handler_data(desc);
-> > +	struct irq_chip *chip = irq_desc_get_chip(desc);
-> > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > +	struct sophgo_pcie *sophgo = to_sophgo_pcie(pci);
-> > +	unsigned long hwirq = PCIE_SIGNAL_INTX_SHIFT;
-> > +	unsigned long reg;
-> > +
-> > +	chained_irq_enter(chip, desc);
-> > +
-> > +	reg = sophgo_pcie_readl_app(sophgo, PCIE_INT_SIGNAL);
-> > +
-> > +	for_each_set_bit_from(hwirq, &reg, PCI_NUM_INTX + PCIE_SIGNAL_INTX_SHIFT)
-> 
-> Use FIELD_GET() here and iterate through PCI_NUM_INTX.  Then you don't
-> need for_each_set_bit_from() and shouldn't need PCIE_SIGNAL_INTX_SHIFT
-> here and below.
+> Best regards,
+> -- 
+> Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > 
 
-OK, I will change it
-
-> > +		generic_handle_domain_irq(sophgo->irq_domain,
-> > +					  hwirq - PCIE_SIGNAL_INTX_SHIFT);
-> > +
-> > +	chained_irq_exit(chip, desc);
-> > +}
-> > +
-> > +static void sophgo_intx_mask(struct irq_data *d)
-> > +{
-> > +	struct dw_pcie_rp *pp = irq_data_get_irq_chip_data(d);
-> > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > +	struct sophgo_pcie *sophgo = to_sophgo_pcie(pci);
-> > +	unsigned long flags;
-> > +	u32 val;
-> > +
-> > +	raw_spin_lock_irqsave(&pp->lock, flags);
-> > +
-> > +	val = sophgo_pcie_readl_app(sophgo, PCIE_INT_EN);
-> > +	val &= ~BIT(d->hwirq + PCIE_INT_EN_INTX_SHIFT);
-> 
-> FIELD_PREP().
-> 
-> > +	sophgo_pcie_writel_app(sophgo, val, PCIE_INT_EN);
-> > +
-> > +	raw_spin_unlock_irqrestore(&pp->lock, flags);
-> > +};
-> > +
-> > +static void sophgo_intx_unmask(struct irq_data *d)
-> > +{
-> > +	struct dw_pcie_rp *pp = irq_data_get_irq_chip_data(d);
-> > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > +	struct sophgo_pcie *sophgo = to_sophgo_pcie(pci);
-> > +	unsigned long flags;
-> > +	u32 val;
-> > +
-> > +	raw_spin_lock_irqsave(&pp->lock, flags);
-> > +
-> > +	val = sophgo_pcie_readl_app(sophgo, PCIE_INT_EN);
-> > +	val |= BIT(d->hwirq + PCIE_INT_EN_INTX_SHIFT);
-> 
-> Ditto.
-> 
-> > +	sophgo_pcie_writel_app(sophgo, val, PCIE_INT_EN);
-> > +
-> > +	raw_spin_unlock_irqrestore(&pp->lock, flags);
-> > +};
-> > +
-> > +static void sophgo_intx_eoi(struct irq_data *d)
-> > +{
-> > +}
-> > +
-> > +static struct irq_chip sophgo_intx_irq_chip = {
-> > +	.name			= "INTx",
-> > +	.irq_mask		= sophgo_intx_mask,
-> > +	.irq_unmask		= sophgo_intx_unmask,
-> > +	.irq_eoi		= sophgo_intx_eoi,
-> 
-> Name these ending with the irq_chip field names, e.g.,
-> sophgo_intx_irq_mask(), to make them easier to find with grep.
-> 
-> Bjorn
-
-Thanks, I will take all the comments and improve the driver.
-
-Regards,
-Inochi
+-- 
+With best wishes
+Dmitry
 
