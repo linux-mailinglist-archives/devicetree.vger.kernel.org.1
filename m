@@ -1,163 +1,151 @@
-Return-Path: <devicetree+bounces-149760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96689A40602
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 08:14:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCCA9A40616
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 08:24:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE222427AD5
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 07:13:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A743F3B9937
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 07:22:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414BD20101A;
-	Sat, 22 Feb 2025 07:12:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29BEF1FFC69;
+	Sat, 22 Feb 2025 07:22:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bz6myFUY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OHxcmYpb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6158B1FBE80;
-	Sat, 22 Feb 2025 07:12:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60F347494;
+	Sat, 22 Feb 2025 07:22:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740208367; cv=none; b=CPtykh0VCKxS90sgn4gCn9vcENbbZqm7F6wUVNniW27y2CVoGZB6SdTHQbSPkijXUVwltU9it7lkwQdmVHVmptcFDe0ozJ+KrHNRcDkWCtFnKQWE8w0Qxk6x7o4Xk0HwzM2x+VXPpbNsMIxVkfG+7z8VpLjC+pkQWgfzOxT87r0=
+	t=1740208969; cv=none; b=SR2usAJ2q7Leha9+qd5xhqRX02YXoSU6gN+AY7pFv5lZ5sWi3sTmbqGboGn2dFQCiL1RPfkUa8eEn4acbB+Rf955s4mYQaP1F0m0HA4RgoNQaTb7nwOYBrKDYNuNavw3unY5OsImfGfNwLtu/dguFJlc+7PBVkbN9S5Bwt2WIc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740208367; c=relaxed/simple;
-	bh=dFvwOZ5dC15JFZ0LBEBtNHa5Vae+Ru0PUsBlKdvzXME=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CPVVqPeQMD9z8sHCAJuhh4cZtRtuho4fp4c05LdJOSNM4ExbvCbLJpo1uRaMDgCG6yrGDfTITSsf6VYIa4aqPA4Wddr+eh3KxbSLXyfXUDF5bXsoGG6dYVPh15hrJkHz7bKYRNz0P9sspFzE2WKSyCFPoa3wkkf7igFPA/PsAB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bz6myFUY; arc=none smtp.client-ip=209.85.128.43
+	s=arc-20240116; t=1740208969; c=relaxed/simple;
+	bh=1wLzZlUplRYghJxP4Pd4ugXxm92+g9Fy6PS8vGc2tM8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nnQqPrGN8LciwMXneRXMYvi2mty3mN08NDAWppJ/frWyBtnmIg3DjM49eMPZX1PkndjcmKd7So/6oE6fKUN9ywd6OTLXMJCOHIgDvU8kfYBUpt7QjSOpmxBusQwkc9Cd55sd1XsPjG0fPs0aL7xRVWbfR2xEXwO0k75vRC7KeSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OHxcmYpb; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4393dc02b78so19228385e9.3;
-        Fri, 21 Feb 2025 23:12:45 -0800 (PST)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aaf3c3c104fso491461466b.1;
+        Fri, 21 Feb 2025 23:22:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740208363; x=1740813163; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LTAsnwOgTop98RwuXEKcTakuBncufoIvq2Qgi1NzXxk=;
-        b=bz6myFUYcmX4+FD2GhqLeVlpFq6GXGTMs/uOmRzJ7gEDWYCw5B6sSJmJ93CD/xwnWI
-         nXbnBOI8mvM94w8btFYa+yPOGapqt/U+R+xoOFibYjuY5sMcawwxTPWVPwGMZnXy6194
-         07bTEqpff8Lk7KHoI3OMifpESwO8K0+z6XNOATl+2CKdKcAy9K7+skUw9GnT/hc5oq2A
-         qIvlUEBKqiogwO9RHMuFIPPTfufLZFVbz5XEOvhpTRFuiQzecbQHwnNWl8Hjw9K7lML4
-         AQQwr4nmYwgFaKorcycxk4Mwq+USu+regqWtPlOnfZWuo6Jleo3Ow5pGyZBMBJN7Euxd
-         Rsjg==
+        d=gmail.com; s=20230601; t=1740208966; x=1740813766; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=aEnOhCave/qwMORS6+m/BSs/u7Kbv390RWFos8Jc8bs=;
+        b=OHxcmYpbqK6UwO5UJuguY1msLcjPSaRoZxAlqBDWY1f8v26icJaMj0ClvPVZjtdth8
+         YQCYFDYYP7TbTwq6DjPd03xPtoCrqC5CG+Q/iD/6gR5KNjUOXDX8JuzAju1PPZCqytsb
+         b9+JU06ZK0rjqwlyVmwzFGXUdG1mcsGNr2nxoCrSKdyIMwwmQxBf7u+3rrn45U0oTTyN
+         T5DAu3j/yvVEFb9yYCzuXz/ozUhzn0FhlHAjY61HZGmDdNZRk9Qq85YOT/6eL1j5nQ2s
+         +HZjhiGMkAeolA4+Jw72vNmX7kVzW37QJcXMlVCy3Q9RkeaQ2UiDMxU9kvnATePSVuUm
+         1HJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740208363; x=1740813163;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LTAsnwOgTop98RwuXEKcTakuBncufoIvq2Qgi1NzXxk=;
-        b=i/bc8uh9PwQqHdv7vfKqo4rgoxNWyjgYcLrLMlnBpC50XWQOfFcgHZoPKWPwKfqnzm
-         NlnUmmbP9fmKzwTeRvwZ5WFqBFi4G7k1TAHpPTbDFEclfOXB3SEJSfP/Z2Db/823rhuj
-         jTEeSY3WJmX6ZMcQjvK3efGOdu0ycytnMcU11+mkD+nggkClEsXpegGiJUvhLjZ72m8I
-         nliihvyy303XXsUN6LeKKjsUfFSa6xH/LSgFCcrcrZGt0C7MLN01yYANVoxD5vEXTxUD
-         OpRbpWYOX+JFQYeT+H9jaw3emX1zJQRz/TPiwCtcjMBmymGzIJzLFerepjdXa0vyA9LU
-         E2iQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVWiLBKuv7pFbJUt7XmSux+ttQwlW0QZd9tMHuan8blEqTcYV9jMYf1nyQ8SsO3OvXdo8ZV6jIMX37N@vger.kernel.org, AJvYcCW0RJPQUFd4+Y07fB4yUX4ibTn4tcWU0JjBJ4a9bDPk4XFNRoA3sVISoXK3Xbh31e6JQHBNfBcdIR4=@vger.kernel.org, AJvYcCW6bWWApdlNCXjQZdUXJcbsIgXoUpU7GlGAj9v3RauQEG/ny4XmiYfSwhcZi6I2AcHG8MCCFHhnXspqp4/N@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqGjfPHcbk2Qbqzd1jp9/I9YHY+4Z/HGrjqY9zdfsa0bQ9SfPE
-	DzugKzMurLtuYQv8fgcvJZTgTuwoulQZNBBQOe9tY0mjlc80zhJip9wcqycSz8U64wNvydBua59
-	WX1abdsD2MksXaDCxJHKttKpCCL8=
-X-Gm-Gg: ASbGnct5WPMKzQTgXd34wBkZpd75r/1XCIVnVaaMtFWV4Mbe+qt4LNfhfHEiSU8z91w
-	pmWi7uYKufuWGuOSyfY2d30Ow091rEfRLloYqDpcKi457tR/5JeTCSM1SSuwYUOHOYCbUjvyaTC
-	QhtLu1SUe/
-X-Google-Smtp-Source: AGHT+IFpeHsH0roklyL6OX+DAA5G9pNCA9k7IH5a5JKagExdTufcff0WuC0tA9KCn/3LNJ8ta82SQMehiWE81TylpUQ=
-X-Received: by 2002:a05:6000:2c3:b0:38f:287a:43e2 with SMTP id
- ffacd0b85a97d-38f6e74f577mr5088199f8f.11.1740208363580; Fri, 21 Feb 2025
- 23:12:43 -0800 (PST)
+        d=1e100.net; s=20230601; t=1740208966; x=1740813766;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aEnOhCave/qwMORS6+m/BSs/u7Kbv390RWFos8Jc8bs=;
+        b=trbDycvRW4GkUNSNzHbkkO8ljw3vUNZy2A4zxUqUnn9CJXZhESvGUHZYLlKKZbUDrY
+         GPtFBP7rxwZX+MD6zTyHc0xThZkDsNoEH0n3XgacFHi4FRvy+5jfipMqvbE41xze7Dit
+         8SZRy1x0hOeUnATxtKar/W186FsSbOT68HusIx+G/ZJfdt08I9ldHGi5a38fLNnh3y47
+         8WxL3L51YrKZQg4sc9ZuydZkLtbZqchsMnyelSndzcZAGlfJtZPKoukAPIoY1UTfRraD
+         SyrDF/oEr8ERVQOx163Lvxmnx5mIKbYPhWSTeiFBDh4P12rfxztyg2BXEA323QkN3N/d
+         i+wQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWgLP1aUYmE3EbRB4VrZB6cPhBVFllnaaFtI9jwedpD08yfg7oX1A1nOWEmaOh5r86n7rVBibwo1lYLVd7d@vger.kernel.org, AJvYcCX171mnCTEm1jJ9nWykr+qluNvZQToY9Tn8EO5P45lIdm3LflvghLqEkWlUL0/YLgezlDtUvj9Oq8nC@vger.kernel.org, AJvYcCXWgzTRWQa1MS4Cdy6p9NkeI6pz2EbZSOozEegixW+3i3vKmQJV9K2rHebZZRkyUd/aAL+z1ZFNYmSH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwuAIvIOTRClSwohsyIom+rF/b1nRqK2ELhxouoE8XW43ygk3sH
+	nxn0Va/PJP3nfJTmXAbxoGaWcY2s0yTLTyO+bAp3QXumwC/ByWv+e7LTvE79
+X-Gm-Gg: ASbGncsIbIQWwYM8W38oVeEBtu5WqJVR6jdObX9q9+tHQ85SmvEQxNYO95FJsRChLc9
+	jWOUHkMaR039RIegZQXZNZMfiR0icm5XhJn7njXgAy6T8QdW8YG+JW+aCpixgvd3x/6/5XKj2ef
+	dSEctMrKYgdLVH8QiMHOrVodaCf+uz08SwbeXAec6AkSYEYv4VYabHcKEEW7/cRA/ZbSeH5qCyT
+	E1Ir6KqKLB+rXdHZ8WVyTpeNWO6VYQ1Niid07WY1AH5p0XG0zdzsfgF0PVfAtjV3TsnNKWIL5BD
+	xHW1hww0u5gK9YN3HNZgvGQ=
+X-Google-Smtp-Source: AGHT+IFsLluCqw1OK1Vu8s2oXQXiFugZr6iSL5teJLTvRjaP7xZkkMKHNbaGmCsCMH4Xe4pZawKPkw==
+X-Received: by 2002:a17:907:7815:b0:ab7:faca:a323 with SMTP id a640c23a62f3a-abc0de14741mr546560966b.39.1740208965284;
+        Fri, 21 Feb 2025 23:22:45 -0800 (PST)
+Received: from debian ([2a00:79c0:67a:4900:45fb:7d1a:5e4d:9727])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abbda707e3dsm645419466b.106.2025.02.21.23.22.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Feb 2025 23:22:44 -0800 (PST)
+Date: Sat, 22 Feb 2025 08:22:41 +0100
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: dimitri.fedrau@liebherr.com, Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: can: fsl,flexcan: add transceiver
+ capabilities
+Message-ID: <20250222072241.GA3458@debian>
+References: <20250221-flexcan-add-transceiver-caps-v3-0-a947bde55a62@liebherr.com>
+ <20250221-flexcan-add-transceiver-caps-v3-1-a947bde55a62@liebherr.com>
+ <20250221-drinking-tantrum-6e0bf9051160@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250219082817.56339-1-clamor95@gmail.com> <20250219082817.56339-2-clamor95@gmail.com>
- <20250221211301.GA83357-robh@kernel.org>
-In-Reply-To: <20250221211301.GA83357-robh@kernel.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Sat, 22 Feb 2025 09:12:32 +0200
-X-Gm-Features: AWEUYZkCxMZZPVvPpKV9x65X2mUq-ivSm95fUrOfZvJCZWbN17EBW1rBtHAh8yA
-Message-ID: <CAPVz0n11um0ebY8_fn9owxo_pp+jbykFFYxhDA=BwZccvcJZgw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: thermal: generic-adc: Add optional
- io-channel-cells property
-To: Rob Herring <robh@kernel.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Laxman Dewangan <ldewangan@nvidia.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250221-drinking-tantrum-6e0bf9051160@spud>
 
-=D0=BF=D1=82, 21 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 23:13 Rob =
-Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Wed, Feb 19, 2025 at 10:28:16AM +0200, Svyatoslav Ryhel wrote:
-> > Since device is a thermal sensor it needs '#io-channel-cells' to allow
-> > exposure of thermal data via IIO means.
->
-> This looks odd. The consumer is also a producer? What in DT would be the
-> 2nd consumer. If you don't have a consumer in the DT, then you don't
-> need '#io-channel-cells'.
->
-
-No, this binding in general describes converting of iio adc data into
-thermal data, using device specific conversion table. Resulting
-thermal data is exposed as thermal sensor cell for thermal zone
-binding. What I did is that I just exposed thermal data as temp iio
-channel (processed). Real use case: I own an embedded device which has
-a dedicated sensor for battery temperature control, but to indicate
-the temperature is used adc channel of that sensor and adc data is
-converted using a device specific table into temperature. Basically
-this fits existing generic-adc-thermal setup to create a thermal zone,
-but along with all that, the fuel gauge which monitors battery can
-accept iio temp channel to expose battery temperature. This is what I
-am adding here.
-
-adc sensor > generic-adc-thermal > temp channel > battery gauge
-
-> I would like to see Jonathan's buy in on this.
->
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+Am Fri, Feb 21, 2025 at 04:59:16PM +0000 schrieb Conor Dooley:
+> On Fri, Feb 21, 2025 at 08:40:04AM +0100, Dimitri Fedrau via B4 Relay wrote:
+> > From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> > 
+> > Currently the flexcan driver does only support adding PHYs by using the
+> > "old" regulator bindings. Add support for CAN transceivers as a PHY.
+> > 
+> > Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
 > > ---
-> >  .../devicetree/bindings/thermal/generic-adc-thermal.yaml      | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/thermal/generic-adc-ther=
-mal.yaml b/Documentation/devicetree/bindings/thermal/generic-adc-thermal.ya=
-ml
-> > index 12e6418dc24d..4bc2cff0593c 100644
-> > --- a/Documentation/devicetree/bindings/thermal/generic-adc-thermal.yam=
-l
-> > +++ b/Documentation/devicetree/bindings/thermal/generic-adc-thermal.yam=
-l
-> > @@ -30,6 +30,9 @@ properties:
-> >    io-channel-names:
-> >      const: sensor-channel
-> >
-> > +  '#io-channel-cells':
-> > +    const: 1
->
-> You have to document what is in the cells.
->
+> >  .../devicetree/bindings/net/can/fsl,flexcan.yaml          | 15 +++++++++++++++
+> >  1 file changed, 15 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> > index 73252fe56fe6c8e9fd19142208bb655dc86d47cd..81125883cf86b9d19616bde378f74bdb6a32f1b2 100644
+> > --- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> > +++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> > @@ -77,6 +77,9 @@ properties:
+> >    xceiver-supply:
+> >      description: Regulator that powers the CAN transceiver.
+> >  
+> > +  phys:
+> > +    maxItems: 1
 > > +
-> >    temperature-lookup-table:
+> >    big-endian:
+> >      $ref: /schemas/types.yaml#/definitions/flag
 > >      description: |
-> >        Lookup table to map the relation between ADC value and temperatu=
-re.
-> > @@ -60,6 +63,7 @@ examples:
-> >          #thermal-sensor-cells =3D <0>;
-> >          io-channels =3D <&ads1015 1>;
-> >          io-channel-names =3D "sensor-channel";
-> > +        #io-channel-cells =3D <1>;
-> >          temperature-lookup-table =3D <
-> >                (-40000) 2578
-> >                (-39000) 2577
-> > --
-> > 2.43.0
-> >
+> > @@ -171,6 +174,18 @@ allOf:
+> >          interrupts:
+> >            maxItems: 1
+> >          interrupt-names: false
+> > +  - if:
+> > +      required:
+> > +        - xceiver-supply
+> > +    then:
+> > +      properties:
+> > +        phys: false
+> > +  - if:
+> > +      required:
+> > +        - phys
+> > +    then:
+> > +      properties:
+> > +        xceiver-supply: false
+> 
+> The duplication here is not needed, they both will cause errors in the
+> same situation. With one dropped,
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+
+Thanks for your help, will drop one and sent out a V4.
+
+Best regards,
+Dimitri Fedrau
 
