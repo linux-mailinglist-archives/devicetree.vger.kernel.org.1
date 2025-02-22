@@ -1,160 +1,124 @@
-Return-Path: <devicetree+bounces-149753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9504A40597
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 06:11:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40476A40598
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 06:12:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF24A189D416
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 05:11:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5C893A815E
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 05:12:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAAE21F0E5F;
-	Sat, 22 Feb 2025 05:11:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1AA1F0E5F;
+	Sat, 22 Feb 2025 05:12:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="NYhwOKJh";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="4nfDT4Xu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nsXw96XF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a5-smtp.messagingengine.com (fhigh-a5-smtp.messagingengine.com [103.168.172.156])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4521F16D4E6;
-	Sat, 22 Feb 2025 05:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.156
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81BE318C0C
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 05:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740201071; cv=none; b=HoiPg0lVfMOIWI+bYZc4/h3QZKiHVpQb4NvPtTcQpHoVSVePXK2vo3ZM0s+u/g2Lpl6FdPgE8n/W52QkJYiNoklM0odhkMg1olxkns5G8MBppYYh7IXTrziI/L2tyOTWQW3sTsnai2FPI0RhFGegPYlKjTQIo/zFV6A0AN8MemA=
+	t=1740201173; cv=none; b=KuDUVYSDwN7W2FYNR81lt24tsTgKMn6WFwzdfrDwNS+bnjU8uohTvt7dZXQHaKdZieryb0dh5bxT6yQXwv49ZJwYHXws1s94ICJY3cxWwgWIfad4JLzOILHCk65Wqwsa4dNH6FM2XWnWYM3vRIViFkuxLyNevlG7AauAAk+Ds5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740201071; c=relaxed/simple;
-	bh=FS7Y1dSUAKOMwo2kWuMHZBI3QV+UsaPs9EvNMIb4aio=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=j2bCGJDClBo4+5KJPYw0p89+2KDOrFbI5jhUUnIOGJGYwvGDHsdPfbMFaY/igC/qg8jOdCdeQp5ZTmKKBgOyp9MDI0GnHIYVQRA4ejsU0unpxNZpfHqI9jF2zPJ6YXEZ/f0p5ZUpUMMVMrjdnLykHA9EnB8+RrMfOkYjbdJcakU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=NYhwOKJh; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=4nfDT4Xu; arc=none smtp.client-ip=103.168.172.156
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-13.internal (phl-compute-13.phl.internal [10.202.2.53])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 1224D11400A6;
-	Sat, 22 Feb 2025 00:11:08 -0500 (EST)
-Received: from phl-imap-07 ([10.202.2.97])
-  by phl-compute-13.internal (MEProxy); Sat, 22 Feb 2025 00:11:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm1;
-	 t=1740201068; x=1740287468; bh=ftugCOFOnAKLUgdSUiW218ZfB28SAFls
-	af4JlXUchKw=; b=NYhwOKJh5ACBXljf5FhqyZahOUbRc3MKjwkg1Z2xOS/RB39K
-	xN2MFxJE5FXzzm0bcQtBdrNOoMaK0HSLKwgFXM8ooNnoSxCCI6izIakpBRZbaTQZ
-	LmavxIL/DM3KJ3gS7TDnvJQQ6i0Tuxa3tuFw52y2xkJOOft4dwcBkoBQ0jn24u9c
-	2yjO4XCOW6CyYrb+pMQ2LKMA3/AqXgPWuBxdCs8SdRnLZbj0M76dkAyhVv+Pt8VE
-	ai73m7aLNk0goINuHdJKHgTWCLlNNe/2sgWQo7be/qKSaGcK/g2f1FgUumBFD/TR
-	496oXSPhGnxIvtUSw4RsfWFAvWsvORe1wZ+ucg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1740201068; x=
-	1740287468; bh=ftugCOFOnAKLUgdSUiW218ZfB28SAFlsaf4JlXUchKw=; b=4
-	nfDT4XuDP0bxRlehwe7RViGr5xCIGPaWP2qL5alDa5yU4s/AgL0tY0t56doYl03a
-	ftsBYlWLgZGzMNGJX5uB/Ua9bxcjOS2vF/01RJn7/DsBqoWL+wbyx+rmFo0z/7jX
-	sepi7OHzQVtKl//rTmvcTr4X4m7bGRK4hWY2X+g0PKeQ6jxSL8sY/nkR4EqYBU2f
-	9v7FuBibliWjp7wbdx+UraE5y6PYdy0V5IuSxLM58kom67ZfognzIrsbcwoKG1/k
-	WG7g+0xssvQNM/K72+OQxL4YsZK8dWCYNGYZD7K1XRB3tt3oUvW8x50NGaZuKA6w
-	Q+XJcQn8nFTx1gSInysgg==
-X-ME-Sender: <xms:aly5ZxnYk5l9lx9C0lpDA5d-XRgyHKque53KFyOQsqTUdsCAtgtbJg>
-    <xme:aly5Z82UG2WnUu9ERzmudia1Vkxfzrso-LWiP6eTPPojB-XtmYIzqcQ6FAd5yRqBv
-    BMEsJ3CyEzPRbTUIA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdejvddtvdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthhqredtredt
-    jeenucfhrhhomhepfdfthigrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtoh
-    grshhtrdgtohhmqeenucggtffrrghtthgvrhhnpeeghffgkedtueeiudeukedvveevhfdu
-    uefhhedviefgffduheeuieeihefhfefgveenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgs
-    pghrtghpthhtohepudegpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopeifvghnsh
-    estghsihgvrdhorhhgpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgr
-    ihhlrdgtohhmpdhrtghpthhtoheplhhgihhrugifohhougesghhmrghilhdrtghomhdprh
-    gtphhtthhopehsihhmohhnshdrphhhihhlihhpphgvsehgmhgrihhlrdgtohhmpdhrtghp
-    thhtohepmhgrtghrohhmohhrghgrnheshhhothhmrghilhdrtghomhdprhgtphhtthhope
-    gsrhhoohhnihgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhn
-    vghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsth
-    hsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheplhhinhhugidqshhunhigihes
-    lhhishhtshdrlhhinhhugidruggvvh
-X-ME-Proxy: <xmx:aly5Z3rhyr4Bpjp9i5j_uoiahH66QS_3uUzzB1I9EN_moKDKAw6wuw>
-    <xmx:a1y5ZxkJUXCs0m1EwBznwQE5_eV3iKY69tXP2dqVhnq4EKdzmbuhhw>
-    <xmx:a1y5Z_0Z_e1kUcujNYF-jE-ugKjkIbDRZtl_TqpvOo7xEP4qGL5kVQ>
-    <xmx:a1y5Zwv7P5ZTRUVvLL14R7zuNfcRY2VE8awUaUbXCuUd3pUPhqbKoQ>
-    <xmx:bFy5Z23dxiFwFde2KEo5_GAhHDnin3frHZUnTUBWcc9Lc7NFwkfLo42_>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id D2BDCBA006F; Sat, 22 Feb 2025 00:11:06 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1740201173; c=relaxed/simple;
+	bh=E4FIsE6nmLgxpG3V2YuLHeNNdUIktG/4o9yAJdRHopM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BmFRwb3dlfq9pqk/68mClKsgccjQ3jTDi71uF8wZHUg44qKbZ2wcOS/1Jd9lfNeqlGE0IPhdoe9hMuABfbdTpm0wvv7T1SZAlJcdCmR4UcnYe7/HEG4rrx1uMBtkt94Z2bZjb2bmsWAkWi3mYK+o6FQEVjczcif4OMUeYvCmmg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nsXw96XF; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-38f2b7ce2f3so2033759f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 21:12:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740201170; x=1740805970; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6T/KCHf+Ei6zi7zTvWLwzhq48X8JCTZYV766cOvpN9c=;
+        b=nsXw96XFm+VtxYL56u+Aelwf9qw39Ko9BKSrEEGmr14DRpl+nGNtna3BVTBbh19Fw+
+         zV3MYHad2iRNZJjfShwtRg/NzyQiI3xAaJaq6I4em+GTs7SK/HC95UGHn9CHDkUu4Ne4
+         Fk6/QS0IYNk4A66MzjUlH4IyxBETFgVPhPQuJSSQWqTcDinmPxyrjdGk/1TwiY8DSrdT
+         /mWOrqqyS85oxsis44d4NNjBUS2MON0uXbneGcsFJCTFUUjYbymYF/Ln6ijVkKFLzUuJ
+         +HUoN2eNeej57OqKRUtGnCRK/TIyOMlrDEeLnxRefH/8mu4Cqmc4y+PzBRig64Qyk3Hi
+         cyFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740201170; x=1740805970;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6T/KCHf+Ei6zi7zTvWLwzhq48X8JCTZYV766cOvpN9c=;
+        b=kx/iMW1u4fn3CQY+a5RUmht/4pFrOphaUVHJzqZawwyShiUh/4LzM+W7PAh6diU2ab
+         K12EPkDkTV6qsrxOGh8DLu57ZsxU0Mx5hZeZ9jqoLS2MnS8/k9BtGNziCAgwbiLtistN
+         Udbkgf1n2QXhu7no/mA1FbjX8StsLsxV97f8g4gFROfSDJwzTL9eFa6fp3XEYhi3NvLg
+         UQyTdqYxq4g8SLJvKwQe+Tpkn3b9ztnbbEEAdr8gVWkAfDGiibIlHkjxG+tQofmQ/FJw
+         Rg1LEg+DpFB/hGVJDhtN8vuW2TrXVELzJ48n2IrXYBUpICO0y9ossbmGlhXUUoJYU2gz
+         Y0fw==
+X-Forwarded-Encrypted: i=1; AJvYcCXmpwsBplwtKiotwllkosOeR8jymaUaNs0vzE8PUjkD5VmFKIU+ZPK/L5+mKM8VtVmHRg0oHfWTBdli@vger.kernel.org
+X-Gm-Message-State: AOJu0YymcUO048PC19ugGahJZ+DaIkLXxi5sL/o9c46BLQCxUKba3Dm6
+	L8RTD0zwNsBRkL8c/y0CDhRWGBrfnpIAEeBOnJLgcXNNAFwYaO5UoUyovUKT9chib/tTURXD9Vj
+	t4x2Zxp7I8jg+UGaKb8y0HlMWEDI=
+X-Gm-Gg: ASbGnct54SyRHMadyAdiQRork8WJrmqADmWw97iY/gkdgDACGfuR0qLE8DuWws8Aztv
+	bRIfI1O0fq+LJcXggXC9IRyD9YZHwVKqzqpX1oD7JyAA/aSujxfmDH2i8zJ5Mf6CHo6xHcWee9C
+	mVnveSDSzp7xDPVAI9DUPC3bCNewb8LEnYwGenqOM=
+X-Google-Smtp-Source: AGHT+IEW6AS6PpfMRepDRzL9ExNcBTNuvf/NS8ymolr77jne2YAUCpK0x5UZBFn7h33SprUxjhKLmpAbB1mx2B78zlE=
+X-Received: by 2002:a05:6000:1a86:b0:38a:8906:6b66 with SMTP id
+ ffacd0b85a97d-38f708267ffmr5716008f8f.38.1740201169476; Fri, 21 Feb 2025
+ 21:12:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sat, 22 Feb 2025 18:10:46 +1300
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>,
- "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
- "Chen-Yu Tsai" <wens@csie.org>, "Samuel Holland" <samuel@sholland.org>
-Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- "Chris Morgan" <macromorgan@hotmail.com>, "Rob Herring" <robh@kernel.org>,
- "Philippe Simons" <simons.philippe@gmail.com>
-Message-Id: <69bce5eb-c478-4b9f-a875-1e2a8a540898@app.fastmail.com>
-In-Reply-To: <2733255.KRxA6XjA2N@jernej-laptop>
-References: <20250214220247.10810-1-ryan@testtoast.com>
- <20250214220247.10810-3-ryan@testtoast.com>
- <2733255.KRxA6XjA2N@jernej-laptop>
-Subject: Re: [PATCH v3 2/5] ASoC: sun4i-codec: correct dapm widgets and controls for
- h616
-Content-Type: text/plain; charset=utf-8
+References: <20250220041010.3801-1-honyuenkwun@gmail.com> <20250221231340.GS16911@sventech.com>
+ <CALWfF7KW8_vAx49nNygKpLHNJQVpjvVdVpzYiTAWgQvSopHikw@mail.gmail.com> <20250222043632.GU16911@sventech.com>
+In-Reply-To: <20250222043632.GU16911@sventech.com>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Fri, 21 Feb 2025 23:12:38 -0600
+X-Gm-Features: AWEUYZmOz5ZgFaqw7x29fs1q8XxuuW6_nHq5zINvZiHD-ka87Z3BCTFNSH7lH2Q
+Message-ID: <CALWfF7JWiZnqJCAqCK4-TjVuUTqv96+=u2pC2iNvTbCBOCLuqw@mail.gmail.com>
+Subject: Re: [PATCH UNTESTED v5 0/4] Orange Pi 5 Ultra
+To: Johannes Erdfelt <johannes@erdfelt.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 21 Feb 2025, at 8:05 AM, Jernej =C5=A0krabec wrote:
-> Dne petek, 14. februar 2025 ob 23:02:24 Srednjeevropski standardni =C4=
-=8Das=20
-> je Ryan Walklin napisal(a):
+On Fri, Feb 21, 2025 at 10:36=E2=80=AFPM Johannes Erdfelt <johannes@erdfelt=
+.com> wrote:
+>
+> On Fri, Feb 21, 2025, Jimmy Hon <honyuenkwun@gmail.com> wrote:
+> > On Fri, Feb 21, 2025 at 5:13=E2=80=AFPM Johannes Erdfelt <johannes@erdf=
+elt.com> wrote:
+> > > I'll also see if I can give HDMI a test.
+> >
+> > Please report your results when you do. This is one of the differences
+> > from the Orange Pi 5 Max. The HDMI1 pinctrls does not use the default
+> > pinctrls like other RK3588 boards (including the Orange Pi 5 Plus).
+>
+> No luck yet. I do see this message in the kernel logs 8 times at boot:
+>
+> [   41.552751] rockchip-drm display-subsystem: [drm] *ERROR* failed to
+> get pll_hdmiphy0
+Oh, I believe you're hitting this.
+https://lore.kernel.org/linux-rockchip/0dd48599-448f-4472-9a8a-54b7f0379c13=
+@collabora.com/T/#ma4eb427de77b5a4806a2c2b5bef2fc8d4003f801
 
->>  static const struct snd_kcontrol_new sun50i_h616_card_controls[] =3D=
- {
->> -	SOC_DAPM_PIN_SWITCH("LINEOUT"),
->> +	SOC_DAPM_PIN_SWITCH("Speaker"),
+I included that patchset in the integrate-6.15 branch. I don't have
+the problem on the Max because it has both the HDMI0 and HDMI1
+enabled. However, with only HDMI1 on the Ultra, it's not handling the
+disabled hdptxphy0. A quick hack is to also enable hdptxphy0 also in
+the Ultra dts.
 
-> Will this break sun50i-h616-x96-mate and sun50i-h616-orangepi-zero bas=
-ed boards?
-> If so, other solution must be found.
-
-My understanding is that this a separate concept from the codec power co=
-ntrol itself, which is already covered by the analog and digital power s=
-upply DAPM widgets. For the H616's single lineout output, it doesn't mak=
-e sense to have a separate control for this, as the codec should power o=
-ff when idle using the existing DAPM widgets, and the lineout route is a=
-lways active when the codec is on. The LINEOUT control here is redundant=
-, and not connected to any userspace mechanism in the current state.=20
-
-However for the RG35XX, which has a speaker amp controlled externally, w=
-ith audio routed via a passive mux, it make sense to specify this as a s=
-eparate route in userspace with a corresponding control (via GPIO pin in=
- this case).
-
-The other H616 devices (Orange Pi etc) only have a single route defined =
-in their DTS, and no internal speaker to require a speaker switch. This =
-control does not do anything for them, and removing it should not have a=
-n impact. I do not have this hardware to test, but on the RG35XX devices=
- audio is produced without it being present, and with the speaker switch=
- in either state (headphones plugged in and speaker amp off, or speaker =
-amp on and headphones connected).
-
-I did try to convey in the commit message but happy to correct the comme=
-nt if you feel it is not clear.
-
-Regards,
-
-Ryan
+>
+> I'll confirm with the vendor image that my HDMI setup is correct.
+>
+> JE
+>
+Jimmy
 
