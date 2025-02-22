@@ -1,203 +1,145 @@
-Return-Path: <devicetree+bounces-149835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3DF3A4089A
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 14:13:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA21BA408A0
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 14:23:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86ECD16B806
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 13:13:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FD18189C0D7
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 13:23:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72780205E0B;
-	Sat, 22 Feb 2025 13:13:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="gTKOoqjo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCEFE20AF64;
+	Sat, 22 Feb 2025 13:23:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3278.qiye.163.com (mail-m3278.qiye.163.com [220.197.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348CC1B2182;
-	Sat, 22 Feb 2025 13:13:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63FE520967F;
+	Sat, 22 Feb 2025 13:23:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740229989; cv=none; b=V0ZEhMdoFOR24OcrAEBUq8PYBQeucXon7mVjQgIXGuVPcbbwIpdNoPcW/plztGBKyiQXFVyJrH5hSXi1FAcG06nFcZcHnUKliDnYMg8b55ZGjL3hwY5i0hIf4EgtZVHGAdfchKMOjHzBOZdRdagBeBl64g0LHOASE8zMLLYFdCQ=
+	t=1740230589; cv=none; b=m3irBCW/oM/6LX3R2z+np7aX07H9Zg0waa9LWjtuTSLi+996MD1wkzoU9phNmI2FlYj1Zp/AOyG9nE96E1qwG2UsqBTBFl8lxrXpXGbGF3KiRm8V9ZkttMtn+t+uYsWsugNSZC1kNO6UtvjWHCuiCOdj0li+NIZpA68kyWsmMO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740229989; c=relaxed/simple;
-	bh=Rx/6+HUXxBmrnqVvIGBM2Tk5eSZ0r/3y2PGuz6akjn4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Iw9j5wV4n2Rx1WQ9dyTi83HneUbU6t9X4zVLsUmcLfgrG4fhqnj2UGxKyT/ucWHRH75ApQje4mmzD918u+XUZqEynszqa9mu4BCIRxn1Z6h5tJODZz03iU1Xr37/GLqDQm1LB/580PHURAgpt/0XBpVRX7SrLzhTTJuZ+JrEbtc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=gTKOoqjo; arc=none smtp.client-ip=220.197.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.26] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id bdb96d2d;
-	Sat, 22 Feb 2025 19:57:15 +0800 (GMT+08:00)
-Message-ID: <eb46b2d8-a170-4813-963d-8509089f72fa@rock-chips.com>
-Date: Sat, 22 Feb 2025 19:57:15 +0800
+	s=arc-20240116; t=1740230589; c=relaxed/simple;
+	bh=cHo6vTlfrzwUzW/DT/egpBCH21mBMOMH3CKUk8ZULrE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u8HUgX6s+BtIeUHuGeDwqcI7PRP8OlqgLCd8sEmILs5zIZg6grQP2pTcrbs+pZ9PmCT+JhXkZESvbCyKaMtaHiVoB0PALdnfA9t1KPQ6Ha0sRyMwN2nnD+1o0JoF8Y+IU1Q8ZLl38WVt0SjKVqoxUb/tT9ZjHcxSWeDVrDvPPJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [180.172.118.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 21D1C3431F0;
+	Sat, 22 Feb 2025 13:23:06 +0000 (UTC)
+Date: Sat, 22 Feb 2025 13:23:01 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Jesse Taube <mr.bossman075@gmail.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH v5 1/5] gpio: of: support to add custom add pin range
+ function
+Message-ID: <20250222132301-GYA37325@gentoo>
+References: <20250217-03-k1-gpio-v5-0-2863ec3e7b67@gentoo.org>
+ <20250217-03-k1-gpio-v5-1-2863ec3e7b67@gentoo.org>
+ <CAMRc=MdGBTXRSAgY2vjOrqVVRzOyYh7N8yZsjK+W4cYFCQAwhQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 08/14] drm/rockchip: analogix_dp: Add support to get
- panel from the DP AUX bus
-To: Lucas Stach <l.stach@pengutronix.de>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com,
- cristian.ciocaltea@collabora.com, dmitry.baryshkov@linaro.org,
- andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
- kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org
-References: <20250123100747.1841357-1-damon.ding@rock-chips.com>
- <20250123100747.1841357-9-damon.ding@rock-chips.com>
- <cfc5b39e21fb214c53fda3276847b8e235af818f.camel@pengutronix.de>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <cfc5b39e21fb214c53fda3276847b8e235af818f.camel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0odQ1ZCQ09CGEhCQ0tMTklWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a952d84d7db03a3kunmbdb96d2d
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Njo6HDo6IzISGR8CThJLNRoh
-	GU8aCwhVSlVKTE9LSUlOT0hMSUlKVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFPSk5JNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=gTKOoqjoAKeFhXf1a8vmXg379vWYpEnKYnWD8KI0jK15KYdeKWwgwvp3kY0GK0x79LyCoTpcw+VSZq059SK53WSlCuP5TJKbYlTRYmQRY19EDQdLxuTeMVNBb+bqPTib5svQpS9eeXAMEptvdCAFFK74gn2utyUTVoD/0KO+uqw=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=wGmhqrAjYzagqI94aWqLld2LAsNs8E1/VGtS52n0S4U=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMRc=MdGBTXRSAgY2vjOrqVVRzOyYh7N8yZsjK+W4cYFCQAwhQ@mail.gmail.com>
 
-Hi Lucas,
+Hi Bartosz Golaszewski:
 
-On 2025/2/8 3:42, Lucas Stach wrote:
-> Hi Damon,
+On 11:22 Thu 20 Feb     , Bartosz Golaszewski wrote:
+> On Mon, Feb 17, 2025 at 1:58 PM Yixun Lan <dlan@gentoo.org> wrote:
+> >
+> > Export custom function to add gpio pin range from pinctrl
+> > subsystem. This would make it possible to add pins to multi
+> > gpio chips.
+> >
+> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> > ---
+> >  drivers/gpio/gpiolib-of.c   | 5 ++++-
+> >  include/linux/gpio/driver.h | 7 +++++++
+> >  2 files changed, 11 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
+> > index 2e537ee979f3e2b6e8d5f86f3e121a66f2a8e083..64c8a153b823d65faebed9c4cd87952359b42765 100644
+> > --- a/drivers/gpio/gpiolib-of.c
+> > +++ b/drivers/gpio/gpiolib-of.c
+> > @@ -1170,7 +1170,10 @@ int of_gpiochip_add(struct gpio_chip *chip)
+> >         if (chip->of_gpio_n_cells > MAX_PHANDLE_ARGS)
+> >                 return -EINVAL;
+> >
+> > -       ret = of_gpiochip_add_pin_range(chip);
+> > +       if (!chip->of_add_pin_range)
+> > +               chip->of_add_pin_range = of_gpiochip_add_pin_range;
+> > +
+> > +       ret = chip->of_add_pin_range(chip);
+> >         if (ret)
+> >                 return ret;
+> >
+> > diff --git a/include/linux/gpio/driver.h b/include/linux/gpio/driver.h
+> > index 2dd7cb9cc270a68ddedbcdd5d44e0d0f88dfa785..a7b966c78a2f62075fb7804f6e96028564dda161 100644
+> > --- a/include/linux/gpio/driver.h
+> > +++ b/include/linux/gpio/driver.h
+> > @@ -528,6 +528,13 @@ struct gpio_chip {
+> >          */
+> >         int (*of_xlate)(struct gpio_chip *gc,
+> >                         const struct of_phandle_args *gpiospec, u32 *flags);
+> > +
+> > +       /**
+> > +        * @of_add_pin_range:
+> > +        *
+> > +        * Callback to add pin ranges from pinctrl
+> > +        */
 > 
-> Am Donnerstag, dem 23.01.2025 um 18:07 +0800 schrieb Damon Ding:
->> Move drm_of_find_panel_or_bridge() a little later and combine it with
->> component_add() into a new function rockchip_dp_link_panel(). The function
->> will serve as done_probing() callback of devm_of_dp_aux_populate_bus(),
->> aiding to support for obtaining the eDP panel via the DP AUX bus.
->>
->> If failed to get the panel from the DP AUX bus, it will then try the other
->> way to get panel information through the platform bus.
->>
-> The changes in this patch effectively revert 86caee745e45
-> ("drm/rockchip: analogix_dp: allow to work without panel"). Please
-> correct this in the next revision of this patchset.
+> Please, make the API contract more specific: describe the return value
+> and check it in the call place if it can return errors.
 > 
-> Regards,
-> Lucas
+> Also: is this even OF-specific if it doesn't take any OF argument? Why
+> not just add_pin_range()?
 > 
+now, this patch is obsolete, please ignore
+it will be replaced by the one sent by LinusW
+https://lore.kernel.org/all/20250218-gpio-ranges-fourcell-v1-0-b1f3db6c8036@linaro.org/
 
-Oh, I see. I will fix it in the next version.
-
->> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
->>
->> ---
->>
->> Changes in v4:
->> - Use done_probing() to call drm_of_find_panel_or_bridge() and
->>    component_add() when getting panel from the DP AUX bus
->>
->> Changes in v5:
->> - Use the functions exported by the Analogix side to get the pointers of
->>    struct analogix_dp_plat_data and struct drm_dp_aux.
->> - Use dev_err() instead of drm_err() in rockchip_dp_poweron().
->>
->> Changes in v6:
->> - Keep drm_err() in rockchip_dp_poweron()
->> - Pass 'dp' in drm_...() rather than 'dp->drm_dev'
->> ---
->>   .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 37 ++++++++++++++-----
->>   1 file changed, 28 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
->> index 13f32aeea7ca..004b1b68d1cf 100644
->> --- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
->> +++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
->> @@ -393,11 +393,27 @@ static const struct component_ops rockchip_dp_component_ops = {
->>   	.unbind = rockchip_dp_unbind,
->>   };
->>   
->> +static int rockchip_dp_link_panel(struct drm_dp_aux *aux)
->> +{
->> +	struct analogix_dp_plat_data *plat_data = analogix_dp_aux_to_plat_data(aux);
->> +	struct rockchip_dp_device *dp = pdata_encoder_to_dp(plat_data);
->> +	int ret;
->> +
->> +	ret = drm_of_find_panel_or_bridge(dp->dev->of_node, 1, 0, &plat_data->panel, NULL);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = component_add(dp->dev, &rockchip_dp_component_ops);
->> +	if (ret)
->> +		return ret;
->> +
->> +	return ret;
->> +}
->> +
->>   static int rockchip_dp_probe(struct platform_device *pdev)
->>   {
->>   	struct device *dev = &pdev->dev;
->>   	const struct rockchip_dp_chip_data *dp_data;
->> -	struct drm_panel *panel = NULL;
->>   	struct rockchip_dp_device *dp;
->>   	struct resource *res;
->>   	int i;
->> @@ -407,10 +423,6 @@ static int rockchip_dp_probe(struct platform_device *pdev)
->>   	if (!dp_data)
->>   		return -ENODEV;
->>   
->> -	ret = drm_of_find_panel_or_bridge(dev->of_node, 1, 0, &panel, NULL);
->> -	if (ret < 0 && ret != -ENODEV)
->> -		return ret;
->> -
->>   	dp = devm_kzalloc(dev, sizeof(*dp), GFP_KERNEL);
->>   	if (!dp)
->>   		return -ENOMEM;
->> @@ -434,7 +446,6 @@ static int rockchip_dp_probe(struct platform_device *pdev)
->>   
->>   	dp->dev = dev;
->>   	dp->adp = ERR_PTR(-ENODEV);
->> -	dp->plat_data.panel = panel;
->>   	dp->plat_data.dev_type = dp->data->chip_type;
->>   	dp->plat_data.power_on = rockchip_dp_poweron;
->>   	dp->plat_data.power_off = rockchip_dp_powerdown;
->> @@ -450,9 +461,17 @@ static int rockchip_dp_probe(struct platform_device *pdev)
->>   	if (IS_ERR(dp->adp))
->>   		return PTR_ERR(dp->adp);
->>   
->> -	ret = component_add(dev, &rockchip_dp_component_ops);
->> -	if (ret)
->> -		return ret;
->> +	ret = devm_of_dp_aux_populate_bus(analogix_dp_get_aux(dp->adp), rockchip_dp_link_panel);
->> +	if (ret) {
->> +		if (ret != -ENODEV) {
->> +			drm_err(dp, "failed to populate aux bus : %d\n", ret);
->> +			return ret;
->> +		}
->> +
->> +		ret = rockchip_dp_link_panel(analogix_dp_get_aux(dp->adp));
->> +		if (ret)
->> +			return ret;
->> +	}
->>   
->>   	return 0;
->>   }
+> Bart
 > 
 > 
+> > +       int (*of_add_pin_range)(struct gpio_chip *chip);
+> >  #endif /* CONFIG_OF_GPIO */
+> >  };
+> >
+> >
+> > --
+> > 2.48.1
+> >
 > 
 
-Best regards
-Damon
-
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
