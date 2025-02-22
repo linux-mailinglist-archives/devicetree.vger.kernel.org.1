@@ -1,250 +1,117 @@
-Return-Path: <devicetree+bounces-149879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E172A40ABE
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 18:48:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D1D3A40AD8
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 18:58:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 948813BC525
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 17:48:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0609701891
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 17:58:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57FB81C84BF;
-	Sat, 22 Feb 2025 17:48:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C1620AF86;
+	Sat, 22 Feb 2025 17:58:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uufSI/Kj"
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="w9BPuyrm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2090F1DDE9;
-	Sat, 22 Feb 2025 17:48:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA24A27453;
+	Sat, 22 Feb 2025 17:58:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740246534; cv=none; b=P1GwrsSGEeYVofZCNHCBVE+L5IP072iOTNIvSUQriio0dn6VpU+Q7VcPMYlYETPqjbpsr1VrbbwwbILjqFNR0YpZ8nfEyGv+mosFtCW4ZAvD3pATVC37gZSVw6Va6DiSsAGbnczYiBjJhiDBArvcX+9WqVas8kWp0vt0NqMb8WM=
+	t=1740247097; cv=none; b=Vm6AEtDmtqASo4uSHLV0yZUHtTrMwtbaAU6PQkv7/3HPjdpniG5udf7y5RF9pi5tzyM2f07z/6gjreWfREPbL2UpQkpDlMBztmVVs+lGZJcy2r9YfjGFp/3SMMDMniOpnS5GJqs9B6GG7QaXX6u4YxL2f8lOyFnKD4AGxTJNBZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740246534; c=relaxed/simple;
-	bh=5ybd0CwdvZUfkyyz0Lx7Y9BJ2t0H8wklafTIwBHYZX8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I3fO0zfIUx3VN8LiO+PO4BCr6V0fRSjnbsT5qRa7fhyPcZEHP19BF6n9vVsp6yfma1kkM2TkeM5dLN484vIrfV1ls+rFA3JeV7Uz66HXF+FjMaOH2q5ifSCfqzmWNnf2BQKzzmIR/79HfayHZCbprskDPhx4Xi3/yjzNe8Jx7F4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uufSI/Kj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EA5EC4CED1;
-	Sat, 22 Feb 2025 17:48:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740246533;
-	bh=5ybd0CwdvZUfkyyz0Lx7Y9BJ2t0H8wklafTIwBHYZX8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=uufSI/KjoYZSCRhv+C4yr4nbjcz3n9qgwzMQoRwTRyL8B/8ttuiTO1sMXR8737KGU
-	 E3S7Fb6nbxerOzSpnbHY/a8LjQQu9xJJ1fUo+qryOIm0ePD8x+fWfaEAtniCtqqX4V
-	 8VpMGn28m0hSkTmyGttS8fz36s8MLl0w9F4+xe6+QGVv5xHgH+eyD8D8O+hTOtSceH
-	 2arfUBXfpA4pfsR4+bXXs7ThOjPXeiUiuZK347JJIYJM9mJancayUX2wexXgg3miHh
-	 8GD6pUNITa9PUFgmzcN8mG3XMYAfPaDS6PAv2LZpB33d8z1bxYNajoOvrYl5qqCuHM
-	 RnTHIUcGGd7/w==
-Date: Sat, 22 Feb 2025 17:48:42 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>, Matti Vaittinen
- <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
- <samuel@sholland.org>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa
- <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>, Javier
- Carrasco <javier.carrasco.cruz@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 2/9] iio: adc: add helpers for parsing ADC nodes
-Message-ID: <20250222174842.57c091c5@jic23-huawei>
-In-Reply-To: <Z7isoU9hKXlgsu33@smile.fi.intel.com>
-References: <cover.1739967040.git.mazziesaccount@gmail.com>
-	<6c5b678526e227488592d004c315a967b9809701.1739967040.git.mazziesaccount@gmail.com>
-	<Z7ZB7RQhyI5Dohrq@smile.fi.intel.com>
-	<b1c1ed68-2f4d-447c-9957-5a1bbc63ef6e@gmail.com>
-	<Z7ci7tUlRQqZEZSN@smile.fi.intel.com>
-	<ec76334b-bb13-4076-811d-9174170dd677@gmail.com>
-	<Z7c2cBQpjoc9-Vyu@smile.fi.intel.com>
-	<9018e23c-da28-41b0-b774-1598b946a2a1@gmail.com>
-	<Z7dCnRzuQTaJXzmb@smile.fi.intel.com>
-	<cb27d8b1-c978-4443-9ad2-96e930701976@gmail.com>
-	<Z7isoU9hKXlgsu33@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1740247097; c=relaxed/simple;
+	bh=zBJm8w0eoEzjJRQwRdP3zJ15CnTfGY4H/uK7c9QWlZ0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Z6Ek9Z9KE3LIIIdH1Mo88jnyVCHxGeLJ4guh7/x49VXlyQ6MoMVnStDpySGlCo4WBONXQpsDBzwTQenb+q9YRE07G0MeLHVwvUAms6dkNGviULDPUkVd0kfMpdIgwHDNvmOYR3OcX7jH7ufuqLG2DMgnMgdLXzk/eQ41m/zDuK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=w9BPuyrm; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
+	t=1740247093; bh=zBJm8w0eoEzjJRQwRdP3zJ15CnTfGY4H/uK7c9QWlZ0=;
+	h=From:Subject:Date:To:Cc;
+	b=w9BPuyrmUaGnbfJlWkGyWpo/IbSNmcqqd51ubJKse5SWIEVv6viyfqAxKjhvKZXrp
+	 +LAXWHzyIRfjxFUzOBjwHYxVOtNtiojtfCoCCNJoo2Tj7yh9nPxZCsNx3AbCdCFkZU
+	 tJi9NKkQAg9LRWKc3PxzeSmRePxcS9aZrj5P+QCg=
+From: Luca Weiss <luca@lucaweiss.eu>
+Subject: [PATCH 0/4] Add display support for Fairphone 3 smartphone
+Date: Sat, 22 Feb 2025 18:58:03 +0100
+Message-Id: <20250222-fp3-display-v1-0-ccd812e16952@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACsQumcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDIyMj3bQCY92UzOKCnMRK3SRzy+QkY2PLVDPTJCWgjoKi1LTMCrBp0bG
+ 1tQDkCxt6XQAAAA==
+X-Change-ID: 20250222-fp3-display-b79cb339e65b
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Luca Weiss <luca@lucaweiss.eu>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1410; i=luca@lucaweiss.eu;
+ h=from:subject:message-id; bh=zBJm8w0eoEzjJRQwRdP3zJ15CnTfGY4H/uK7c9QWlZ0=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBnuhAtOMgMIIULVqOl2TfliSKPzCtAe8HUnHgGm
+ ZVVHmyUYjeJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZ7oQLQAKCRBy2EO4nU3X
+ VpFeD/96+G3P3rXbbcjnbQmEG/uTd4hWh4s+cFUlOLKY8NVoYgct7oRsdw0fK3se4ue2X7FFLSj
+ 1AxwNkuoiubDChk6zgSxwV2iQTnHpKSM6U3THaM/fmGDZA506i/UzB8lY1NU4iu+t/13BfSUHoJ
+ 3s3GXwltMwmZz5vG/S0bFwnGJ1ETLcH7nWro5nbKXgTTnUv/pi475rfTP+f23+CUACXgRcqLWwA
+ Uc0suIdFts42ZTzFxakDTOT83xcrY4jV60nH+rFHN0XbosQ9+EWt2Ykz8vcmmufQItBPE5bhmvK
+ VpjrajLLa/Lss8sAMesn6DgxiCsHBqt6DmXp3cwmuPEis8g+whap3prH/2J0f3ow8itF2XQ3TUW
+ z8/WfXsAhs0tLo4+dQnbV5/zaitAPOVw55AxTijDtqXwI+hYIP50stJ46H3BpCbn8EWhHpKTLPM
+ 2tnp893Mmgz29wWdOhcFQ/KprcgtkFj6qRdyClPNgYG5GJRB537NYvzCBAX4D/RJw+wycIUAliI
+ 0Z9+YIfdujir8ssEhtH9WBPHo1YNt9vKjX1f0+U021GbGU73yYL7Fr3QIYtZkzRzOE0OMk/QZ/n
+ NM+GxdeKIZ2nEIS8mtTwKo3nN56qD3fl2OgqiK2GxTmAtY3n559CCNC/N28r7MiL6DV4Un3r+qR
+ JxSoXm6HU6sOwOw==
+X-Developer-Key: i=luca@lucaweiss.eu; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
-On Fri, 21 Feb 2025 18:41:05 +0200
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+Add a driver for the HX83112B-based panel, and enable it on Fairphone 3
+to enable display output, and enable GPU as well.
 
-> On Fri, Feb 21, 2025 at 12:10:23PM +0200, Matti Vaittinen wrote:
-> > On 20/02/2025 16:56, Andy Shevchenko wrote:  
-> > > On Thu, Feb 20, 2025 at 04:21:37PM +0200, Matti Vaittinen wrote:  
-> > > > On 20/02/2025 16:04, Andy Shevchenko wrote:  
-> > > > > On Thu, Feb 20, 2025 at 03:40:30PM +0200, Matti Vaittinen wrote:  
-> > > > > > On 20/02/2025 14:41, Andy Shevchenko wrote:  
-> > > > > > > On Thu, Feb 20, 2025 at 09:13:00AM +0200, Matti Vaittinen wrote:  
-> > > > > > > > On 19/02/2025 22:41, Andy Shevchenko wrote:  
-> > > > > > > > > On Wed, Feb 19, 2025 at 02:30:27PM +0200, Matti Vaittinen wrote:  
-> 
-> ...
-> 
-> > > > > > > > > > +EXPORT_SYMBOL_GPL(iio_adc_device_num_channels);  
-> > > > > > > > > 
-> > > > > > > > > No namespace?  
-> > > > > > > > 
-> > > > > > > > I was considering also this. The IIO core functions don't belong into a
-> > > > > > > > namespace - so I followed the convention to keep these similar to other IIO
-> > > > > > > > core stuff.  
-> > > > > > > 
-> > > > > > > But it's historically. We have already started using namespaces
-> > > > > > > in the parts of IIO, haven't we?  
-> > > > > > 
-> > > > > > Yes. But as I wrote, I don't think adding new namespaces for every helper
-> > > > > > file with a function or two exported will scale. We either need something
-> > > > > > common for IIO (or IIO "subsystems" like "adc", "accel", "light", ... ), or
-> > > > > > then we just keep these small helpers same as most of the IIO core.  
-> > > > > 
-> > > > > It can be still pushed to IIO_CORE namespace. Do you see an issue with that?  
-> > > > 
-> > > > No. I've missed the fact we have IIO_CORE O_o. Thanks for pointing it out!
-> > > >   
-> > > > > Or a new opaque namespace for the mentioned cases, something like IIO_HELPERS.  
-> > > > 
-> > > > I am unsure if it really benefits to split this out of the IIO_CORE. I've a
-> > > > feeling it falls into the category of making things harder for user with no
-> > > > apparent reason. But yes, the IIO_CORE makes sense.  
-> > > 
-> > > Probably I was not clear, I mean to put this under a given namespace. There is
-> > > no a such, we have currently:
-> > > 
-> > > IIO_BACKEND
-> > > IIO_DMA_BUFFER
-> > > IIO_DMAENGINE_BUFFER
-> > > IIO_GTS_HELPER
-> > > IIO_RESCALE  
-> > 
-> > Ah. So, the IIO core stuff is still not in a namespace. Those listed above
-> > are all too specific (I believe, in general, and definitely to carry ADC
-> > helpers).
+Please let me know if you have a better compatible string for me to use,
+unfortunately unlike Fairphone 4 panel, this panel doesn't seem to have
+a nice unique model number from DJN, it's just referenced as "FP3" - the
+device it's made for so I've chosen "djn,fairphone-fp3-panel".
 
-Not yet. On todo list... Trick is working out what the correct break up is.
+Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+---
+Luca Weiss (4):
+      dt-bindings: vendor-prefixes: document Shenzhen DJN Optronics Technology
+      dt-bindings: display: panel: Add Himax HX83112B
+      drm/panel: Add driver for DJN HX83112B LCD panel
+      arm64: dts: qcom: sdm632-fairphone-fp3: Enable display and GPU
 
-> > 
-> > Adding 'ADC_HELPERS' would just add yet another way too specific one. So,
-> > currently there is no suitable namespace for these helpers, and I still
-> > believe they fit best to where the rest of the IIO-core stuff is.
+ .../bindings/display/panel/himax,hx83112b.yaml     |  75 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm64/boot/dts/qcom/msm8953.dtsi              |   2 +-
+ arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts  |  62 +++
+ drivers/gpu/drm/panel/Kconfig                      |  10 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-himax-hx83112b.c       | 430 +++++++++++++++++++++
+ 7 files changed, 581 insertions(+), 1 deletion(-)
+---
+base-commit: 197aed880d4de2127c80c389ec62601b7d837351
+change-id: 20250222-fp3-display-b79cb339e65b
 
-Just add an IIO namespace.  That would be the one I'd expect a typical
-driver to use.  We can move things into it later. The ones above are
-more obscure functionality.  Avoid the IIO_CORE naming as I'd expect
-that to be stuff the core alone should call and we shouldn't see in drivers.
-
-> > 
-> > If we want really play the namespace game, then the existing IIO stuff
-> > should be put in a IIO_CORE-namespace instead of creating more new small
-> > ones. I am afraid that adding all existing IIO core to a IIO_CORE namespace
-> > and converting all existing users to use the IIO_CORE is not a reasonable
-> > request for a person trying to:
-> > 
-> > 1. Write a driver
-> > 2. Add a small helper to aid others (instead of just melding it all in the
-> > given new driver - which does not benefit anyone else and just leads to code
-> > duplication in the long run...)  
-> 
-> That's why more specific, but also a bit general might work, like IIO_HELPERS,
-> considering that they may be used by many drivers.
-> 
-> While it may be not your call, somebody should do the job. Jonathan? :-)
-
-It's on the list.  Not that near the top of it, but there to do at somepoint.
-
-> 
-> > > > > > > > (Sometimes I have a feeling that the trend today is to try make things
-> > > > > > > > intentionally difficult in the name of the safety. Like, "more difficult I
-> > > > > > > > make this, more experience points I gain in the name of the safety".)
-> > > > > > > > 
-> > > > > > > > Well, I suppose I could add a namespace for these functions - if this
-> > > > > > > > approach stays - but I'd really prefer having all IIO core stuff in some
-> > > > > > > > global IIO namespace and not to have dozens of fine-grained namespaces for
-> > > > > > > > an IIO driver to use...  
-> 
-> ...
-> 
-> > > > > > foo &= (~bar);
-> > > > > > 
-> > > > > > is _much_ faster than seeing:  
-> > > > > 
-> > > > > Strongly disagree. One need to parse an additional pair of parentheses,
-> > > > > and especially when it's a big statement inside with nested ones along
-> > > > > with understanding what the heck is going on that you need them in the
-> > > > > first place.
-> > > > > 
-> > > > > On top of that, we have a common practices in the LK project and
-> > > > > with our history of communication it seems you are trying to do differently
-> > > > > from time to time. Sounds like a rebellion to me :-)  
-> > > > 
-> > > > I only rebel when I (in my opinion) have a solid reason :)
-> > > >   
-> > > > > > foo &= ~bar;
-> > > > > > 
-> > > > > > and having to google the priorities.  
-> > > > > 
-> > > > > Again, this is something a (regular) kernel developer keeps refreshed.
-> > > > > Or even wider, C-language developer.  
-> > > > 
-> > > > Ha. As I mentioned, I've been writing C on a daily bases for almost 25
-> > > > years. I wonder if you intent to say I am not a kernel/C-language developer?
-> > > > Bold claim.  
-> > > 
-> > > I'm just surprised by seeing that style from a 25y experienced C developer,
-> > > that's all.  
-> > 
-> > I am not. If something, these 25 years have taught me to understand that
-> > even if something is simple and obvious to me, it may not be simple and
-> > obvious to someone else. Similarly, something obvious to someone else, is
-> > not obvious to me. Hence, I am very careful when telling people that:
-> >   
-> > >>> Again, this is something a (regular) kernel developer keeps refreshed.
-> > >>> Or even wider, C-language developer.  
-> > 
-> > I may however say that "this is something _I_ keep refreshed (as a
-> > kernel/C-developer)".  
-> 
-> True.
-> 
-> > As an example,
-> >   
-> > >>>> foo &= (~bar);  
-> > 
-> > This is something _I_ find very clear and exact, with zero doubt if negation
-> > is applied before &=. For _me_ the parenthesis there _help_, and for _me_
-> > the parenthesis cause no confusion when reading the code.
-> > 
-> > I won't go and tell that I'd expect any C or kernel developer to be able to
-> > fluently parse "foo &= (~bar)". (Whether I think they should is another
-> > matter).  
-> 
-> > Oh well, let's wait and see what Jonathan thinks of these helpers in
-> > general. We can continue the parenthesis discussion when we know whether the
-> > code is going to stay.  
-> 
-> Sure, but it's not only about these helpers, it's about the style in general.
-> Spreading unneeded characters in the code seems to me as an attempt to put
-> _your_ rules over the subsytem's ones. Whatever, let's Jonathan to judge, we
-> will never agree on a keep growing list of things anyway...
-> 
-I need to find some time to consider it a bit more and look at other users.
-I'm not keen on this being 'general' if we only have one user in the short
-term.
-
-Jonathan
-
+Best regards,
+-- 
+Luca Weiss <luca@lucaweiss.eu>
 
 
