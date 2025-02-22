@@ -1,129 +1,158 @@
-Return-Path: <devicetree+bounces-149887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E1D2A40B6D
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 20:26:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 108FEA40B71
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 20:34:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66F5C19C13CA
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 19:26:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B38D3BADA8
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 19:34:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD3D20E6ED;
-	Sat, 22 Feb 2025 19:26:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 740EE1F541E;
+	Sat, 22 Feb 2025 19:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BwOLtVL2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FLXWY96x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C3D18F2FC;
-	Sat, 22 Feb 2025 19:26:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D1D81422DD
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 19:34:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740252373; cv=none; b=W6RkGs7CfiYuaj/H+Gi0He7wBi6iHaEPYA7Lww8LuEHNQCZhVlTZZTuxdZf/IC0KTQ483bjpCFJjK3W9S5Iwyr2iqhDCb1lIzvZwth71qMFDbf3N5tIWWKEP73pYqTe6YX3mO/a9N1kw3lihHl19ny4WrlgvYDDAZ1Td1sS6uOw=
+	t=1740252853; cv=none; b=PAuUTKlnfLZc5Fqh3jRm4i2ndlCSp9tXYMHNPKMfBLEcpHd686LyL5gqxmbAozmUeIuECC8XqtFCSPwZyyQ/E3H8MuFDbDYfWdhKkoHdBBMsylCvquxkQddzQVIzzq6Pdmqgq10v6Lme07cY7a2Jp7+hQAqO9tPjgqpvVJkRiG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740252373; c=relaxed/simple;
-	bh=2s5bZx8UtviIS3xhQ0sLk1pPacXIKC0ImhvYY7AtgJc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RIaJb8XDWVbUWb6MjLtAd61K+sImdmcsn6RoxKVuP4XATHI/vqcXkBAT9Kb0mV12u5Lht8sls367wJCOuPcVteTFBPxoxjveQigliUayvkqlzKAz+4hBv95ertT2kf+vQ6x5S5+PH8Fw1ho9FqwEbPCUms5/RPxgk62kcQkQtd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BwOLtVL2; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740252372; x=1771788372;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2s5bZx8UtviIS3xhQ0sLk1pPacXIKC0ImhvYY7AtgJc=;
-  b=BwOLtVL2omk21ZPMZXyrvgZXN0EEgiicU5OsPyyyULUsAlUnA7SNzuee
-   Eyr/1t75rztrjw8itzWtFXYlMWh53gC2QAXeMLgG8eU8jcYJNJtsB/YzG
-   2OV2nsHAR4G3ZB0swzleljRYE5t+xeU+rTT2iWKuHWtBPpKITJh678vHc
-   etn34PoMbYNHL2Qdxpci7edCzYkQmW2Mpcq5sYoGMA3nmbHbA5PWhHbDH
-   aIBbuI5cygFJPqWxRuQLvLfz6NElkc26VcYCdTfU14M1BFO1/PheZvN74
-   QXPOOcQGNrpPyvmAqS0YpvC5Sa9bfeuSeUGHVNyNi/BhuziQ883TpAFZj
-   Q==;
-X-CSE-ConnectionGUID: UKtxV7KJRpen74f1IBwM2A==
-X-CSE-MsgGUID: PWFF9f3/R2a7awDjRuivOw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11353"; a="51678571"
-X-IronPort-AV: E=Sophos;i="6.13,308,1732608000"; 
-   d="scan'208";a="51678571"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2025 11:26:11 -0800
-X-CSE-ConnectionGUID: e3Et3qLpRDak3dassD98OA==
-X-CSE-MsgGUID: p/RH7JihSw6T2Pin3kCEkA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="116586745"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by orviesa008.jf.intel.com with ESMTP; 22 Feb 2025 11:26:08 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tlv8U-0006q7-2b;
-	Sat, 22 Feb 2025 19:26:03 +0000
-Date: Sun, 23 Feb 2025 03:25:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: Vincenzo Frascino <vincenzo.frascino@arm.com>,
-	linux-sound@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Vincenzo Frascino <vincenzo.frascino@arm.com>,
-	Maruthi Srinivas Bayyavarapu <maruthi.srinivas.bayyavarapu@xilinx.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] MAINTAINERS: Add Vincenzo Frascino as Xilinx
- Sound Driver Maintainer
-Message-ID: <202502230334.bQ3wP2MG-lkp@intel.com>
-References: <20250221175030.1395815-5-vincenzo.frascino@arm.com>
+	s=arc-20240116; t=1740252853; c=relaxed/simple;
+	bh=pXRTDJruqLO1LOR3AEuSmmZsmD2t1z+mrrqpD1mZ4+E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ixowagjvSPg4zQypxWGEvs22XRuWzzYdPIshBaPykx9fxWo6SFTYUbXgtwfvQa9hPk7scnnTbyh5Ze6yEG6++cspLYt3wA8W4JXM2UAZa3iQMVQVC6mBEZWhn1lDaWKHUqVQUWVyOMtuLL70uPhX9fgq7rNdNR7KYgbZziaHtYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FLXWY96x; arc=none smtp.client-ip=209.85.161.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-5fc016cbbe8so1949546eaf.0
+        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 11:34:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740252849; x=1740857649; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pd43a9MHVoICh4a3HzPPv+MCm5aOiuEViUTV2lQ3hCA=;
+        b=FLXWY96xHnVk/ivwJ36daAghs9goZ6SeZb8pvPdv1nO1LHFYbE9keKX7tz3idT32G9
+         Qwwg7S7BdiiuJ014RbNbcJild5zRW3aC/gUWX8osVLFJW+w+4jFYrE0t6ZmXVpp6fhmr
+         n/vtcBj/b5zxrz6dhOb5KU8qDnH1pMpa3RqGnxGl9nQsWAl8A9mCpPp/9FXvDHmSGGWm
+         IwOk6/u5meCyN3OSQwNZq9VAPnvEXhyKwuwXWB/j1qhtL+C07/1pqXU+5t6sTsbYkDDo
+         kVz7xhmEymup0oqHVVesHAKpA/7EzmtBFPdX5ZMvKlihtYx2LuRrAksivRC5lCyMy+Ur
+         iVGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740252849; x=1740857649;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Pd43a9MHVoICh4a3HzPPv+MCm5aOiuEViUTV2lQ3hCA=;
+        b=wgmsXIoBgcggF2Q4PqVli03Z9fJjQ3zrRf5AWOuYJAjt/36tBv9f2K2TLcWqrri6ic
+         kPV13teICS9PgHxfSh2APUSEhNY4mauwyYHBZjvTNMFLpee6ZMSOaXLgzv9odiFlHzPI
+         cAUlL1s1EN1RR2xenZln06KpSqhCBBkFiLsb1LaH/y9ziurcEcGh2NnDZSm92ifXk6fx
+         w3zZuGSuFZRjiUW9NtmEH8yExb8ys5XbhS25p3O3y5AcUmulcfT1zDamxjbggJU2r8Ds
+         hcv5bTv5CzPCDmSd6VFpYSpCEzz6dMQuR/M04pSfj1gReQA4lI9c7ppJLKukvsUBkymc
+         moLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWKpA6hRdj9IEPCtVrdzoW/PYRuizVqGqQVHIGazYUTIU5e8bhDbheus3XnEHY1v5G1jmAQuN3QOXDD@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXh222HIKarXqlTrRSvPa4xb6G9JRFyQccQdEXhfyGxqRl3buI
+	qMwC9y2o/ji3LTWnLg7cWat20u8W1kxriLZ3s7mjPuyM99HQBZGh
+X-Gm-Gg: ASbGncsjbDWfu+eGp+V18jrvIyXjs/k4/4PAVF4/At6Q/sX2kUqbWj7x8yDbrqkWjNM
+	XO03jCZ+WCP45LV15jb4KEg4vIxTWjR4jPrHbdzgCTHZXB5IG0NQhRkQpaXBGph1P9ry40H9t8U
+	B5cav/hMxT0D84YO7zTcumrIKsxOmIY2wNOmuM9H+EMNW3OynYqadIN5A3rJeJi3iaDRKAKPns0
+	ZUgb97brj9yddceNlwxjkc0uOEyMQ4UPJZkb96KVN0UwopIMscu2GgcI8QaKqnq5nKxUeBfbIYY
+	ILOzeXfgn4gBqtfbmWd8hoXLcwVkKfBwJw==
+X-Google-Smtp-Source: AGHT+IECzTbYt3NmTrSq+8RDe0MmHfmCsANljrYV/iu6RSScvtdnp87PSX3HecDEFNEkc/hybrkhtw==
+X-Received: by 2002:a05:6820:999:b0:5fc:b418:8cd3 with SMTP id 006d021491bc7-5fd1963475emr5853290eaf.6.1740252849525;
+        Sat, 22 Feb 2025 11:34:09 -0800 (PST)
+Received: from tower.cjhon.com ([2603:8081:ad00:4a:b69:ffa3:9d4e:2cd7])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5fce7afabd8sm2724012eaf.34.2025.02.22.11.34.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Feb 2025 11:34:08 -0800 (PST)
+From: Jimmy Hon <honyuenkwun@gmail.com>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Johannes Erdfelt <johannes@erdfelt.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Jimmy Hon <honyuenkwun@gmail.com>
+Subject: [PATCH v7 0/5] Orange Pi 5 Ultra
+Date: Sat, 22 Feb 2025 13:33:27 -0600
+Message-ID: <20250222193332.1761-1-honyuenkwun@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250221175030.1395815-5-vincenzo.frascino@arm.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Vincenzo,
+Add device-tree for Orange Pi 5 Ultra
 
-kernel test robot noticed the following build warnings:
+Thanks to Johannes for testing
 
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on linus/master v6.14-rc3 next-20250221]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The schematic has been published for the Orange 5 Ultra. [1]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vincenzo-Frascino/ASoC-dt-bindings-xlnx-i2s-Convert-to-json-schema/20250222-015201
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20250221175030.1395815-5-vincenzo.frascino%40arm.com
-patch subject: [PATCH v2 4/4] MAINTAINERS: Add Vincenzo Frascino as Xilinx Sound Driver Maintainer
-reproduce: (https://download.01.org/0day-ci/archive/20250223/202502230334.bQ3wP2MG-lkp@intel.com/reproduce)
+It's a sibling of the Orange Pi 5 Max [2] with the HDMI0 switched out 
+for the HDMI RX. As a side affect the pin for USB_OTG_PWREN [3][4] has 
+changed.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502230334.bQ3wP2MG-lkp@intel.com/
+Also, the Ultra's PWM_LEDs have the polarity inverted
 
-All warnings (new ones prefixed by >>):
+Patch 1 can be included in 6.14-fixes
+Patch 2 and 3 can be used on 6.14-rc1
+Patch 4 can be used with 6.15-rc1
+Patch 5 is waiting for HDMI audio patchset [5]
 
-   Warning: Documentation/translations/zh_TW/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
-   Warning: Documentation/userspace-api/netlink/index.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
-   Warning: Documentation/userspace-api/netlink/specs.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/sound/xlnx,i2s.txt
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/sound/xlnx,audio-formatter.txt
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/sound/xlnx,spdif.txt
-   Warning: lib/Kconfig.debug references a file that doesn't exist: Documentation/dev-tools/fault-injection/fault-injection.rst
-   Using alabaster theme
+My testing branch with dependent patchsets is on github [6]. This now 
+includes extra patch in clk to throw NOENT [7]
 
+[1] http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-5-Ultra.html
+[2] http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-5-Max.html
+[3] https://github.com/orangepi-xunlong/linux-orangepi/blob/orange-pi-6.1-rk35xx/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts#L306
+[4] https://github.com/orangepi-xunlong/linux-orangepi/blob/orange-pi-6.1-rk35xx/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts#L321
+[5] https://lore.kernel.org/linux-rockchip/20250217215641.372723-1-detlev.casanova@collabora.com/
+[6] https://github.com/jimmyhon/linux/tree/integrate-6.15
+[7] https://lore.kernel.org/linux-rockchip/2425191.NG923GbCHz@diego/
+
+Changes in v7:
+- Forgot to commit additional include in Ultra dts
+
+Changes in v6:
+- Add R-b from Rob
+- More differences between Max and Ultra
+- Ultra PWM_LEDs have different polarity than Max
+Link to v5: https://lore.kernel.org/linux-rockchip/20250220041010.3801-1-honyuenkwun@gmail.com/
+
+Changes in v5:
+- add USB 3.0
+- add HDMI1
+- add HDMI audio
+Link to v4: https://lore.kernel.org/linux-rockchip/20241229184256.1870-10-honyuenkwun@gmail.com/
+
+Jimmy Hon (5):
+  arm64: dts: rockchip: Differences in Orange Pi 5 Max
+  dt-bindings: arm: rockchip: Add Xunlong Orange Pi 5 Ultra
+  arm64: dts: rockchip: Add Orange Pi 5 Ultra board
+  arm64: dts: rockchip: Enable HDMI1 on Orange Pi 5 Ultra
+  arm64: dts: rockchip: Enable HDMI1 audio output for Orange Pi 5 Ultra
+
+ .../devicetree/bindings/arm/rockchip.yaml     |  3 +-
+ arch/arm64/boot/dts/rockchip/Makefile         |  1 +
+ .../rockchip/rk3588-orangepi-5-compact.dtsi   |  9 --
+ .../dts/rockchip/rk3588-orangepi-5-max.dts    |  8 ++
+ .../dts/rockchip/rk3588-orangepi-5-ultra.dts  | 84 +++++++++++++++++++
+ 5 files changed, 95 insertions(+), 10 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts
+
+base-commit: fa15cc73121279f93757ec76312b0d0b73f7462a
+prerequisite-patch-id: e7cb3b62d173506d38a10a8e71eedd62ba6a1bc0
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.48.1
+
 
