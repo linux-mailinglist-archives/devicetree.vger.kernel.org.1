@@ -1,103 +1,96 @@
-Return-Path: <devicetree+bounces-149782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CFB3A406E7
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:30:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2697CA406FB
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:36:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BEA219C6D92
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 09:30:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6DC219C6F53
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 09:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70C3E2063DC;
-	Sat, 22 Feb 2025 09:30:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 523CD207649;
+	Sat, 22 Feb 2025 09:35:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VKMZp71y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AQwbxbyH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4111D7E42;
-	Sat, 22 Feb 2025 09:30:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A4452066ED
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 09:35:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740216641; cv=none; b=NyO1njDb0sb5hfoJFIMDA9P0VyifqMHLzZ6nXU9CXFCAyCdHD/M0FshoyVui3fEw1SwoxJhko6AeQmdqWopoPBYXl8KWQyHJyhzimzzshXpSVDnK35W1iQoLWS8O0Pyas8/MsgCb7xlSqvonZCm+emxslE22rOuOAwWMfKpDl2U=
+	t=1740216955; cv=none; b=oMEjc6Ouu+XaXUQn8xsE+yE9w4YT4SZ1XpANMyCFwV+0BLwDoRwYMOJ/ffbT1z4UYfOY0Y4DiKL7/z5E3BWFKcYy7dWLEe0Nfr8QkC269dvACdpewD5pLhru0BpTvrKj5Bmqmex5TQh8Zc0R66qR0cpf39oXD2LBqi/7akeKzqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740216641; c=relaxed/simple;
-	bh=ohDuKgeYqsp+9JhZO++8jr92MnlHbq65lbOggkplOMg=;
+	s=arc-20240116; t=1740216955; c=relaxed/simple;
+	bh=tY0toxuyeFkv5yLBBrKxkKw5L2ZKpN3XGwVbVHevqFc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=r8bnZt4E2gcB4ucIUQjf3D9r5w0kZEWyF75RcFBxdbqf4wgbEdhCMld+6anUxr8xb9WA7lWwF3HYi7YsIlKuzka5nZwTY1/mbILm1LqDgSiejjmkqf806LLtLVR0FZRAWayiNwlbPDvc04Sm65Myqd2AVszKboEuLvGkZ7YLFEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VKMZp71y; arc=none smtp.client-ip=209.85.221.49
+	 MIME-Version:Content-Type; b=u86SZSsip6+VTp1eoRdb/UAIWYIFa3u6pKoOBpnKXAPxCej50bjcQwaJl8ThpOzUqJ0rT2Crk1DZO8mxTHR0l2fEY7Zksn1nifzMNln+xqOnmBxAhewHfCfaiMioIL7/knrauYJS7iX8hUUUYgZV+FcI1OB5c9pFEO4oBqG2fUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AQwbxbyH; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-38f488f3161so1476691f8f.3;
-        Sat, 22 Feb 2025 01:30:39 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-439a4dec9d5so26810045e9.0
+        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 01:35:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740216638; x=1740821438; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1740216952; x=1740821752; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=K9F20fzricZrTGW+QeF883b7IwAmdJ0gyJoHIxyxNBc=;
-        b=VKMZp71yNa0qWdUIJNJzmWMZCX1Q5pTN6BLPmWyM7mHpJJMvImvRHbqrpPPPpq8K3c
-         Zkdqvr+pg2+yCPi9BgjxBoyiWQVuPUSzb1JZYf9KKcaQJAbn/Xye/81VlM6Z/8mpmeat
-         bcPdwscGNAoGwRqXq9jT1INLYlaF0ZiIuZF5pmPR0/ozGbCYYTEHLGQDDZvvY5EMl9Oq
-         vg6fpQmKpUX0D/C/VeUOZ3MedeJynFiWxsyHCnMVNJQtGHmGYrT3Fsms+N7iuE6JdyDY
-         Nv5mZyVQ4ZzqQ6XVA0YfVmummBbovCim59IUZ8cPx4j8gy2FO0Y6ocknmAN9QNKOiCB3
-         hISg==
+        bh=iHlH9GRTTu/x712yX9JTl9QV/kQ/7As/47pnB+L0hd4=;
+        b=AQwbxbyH1oNiWZAe+0/EcpUm4Xs1b4wKPMDDD6BXOkG46WezQv1YlUCUP1IwitLtEe
+         iqNzG53A1AbZ6Bxc3RdHPQ2WIQ531/L7kpbfHmm88ifOb4Waee4/ujseDCAUNgQfaQD7
+         5LzCQARl+HFjMhDcySIepknIKSVDk8H08mf8X7VWBeOFtbZuxTIyPpuPmdnY1m882veW
+         Dh/YOooDjlyRzw3m6S8raYIt/14R77mNtMbrj72VaH5vOjLB7mrqoLKIn+Wlx83CNVj/
+         4OklsAiiijb65TpmANrFViQZcx2W+fgsdt0aO2T5BBJzr4ToOPdyUybV1ou1aZ50/aki
+         skzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740216638; x=1740821438;
+        d=1e100.net; s=20230601; t=1740216952; x=1740821752;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=K9F20fzricZrTGW+QeF883b7IwAmdJ0gyJoHIxyxNBc=;
-        b=kM1Od0ccdwWBBgxULHc4MruPQLzytXO7RLWYVzD9DUjYSGecLgkJdr6ONHsfU1tZga
-         2LV/oHVA9s6g34wtkPARlsXmAGf68wWymLqaSMLMXLTsu0G5OG6obJtKxarnFURtDGgY
-         4YD6jp1sXs8oCLxw5JZWq/1OLrrJalrzO/PlfY3E9YYVAgaQavdQeTgGwMqXK6msTB/E
-         juOKlE2sxAUOS2AAxSY0pyjIYg10pqhbOl9xDSjb34Rjt3PyA87+oQmHnqT4HQ4/PawO
-         UuC8fMrnKWs5Q2hVHKYTwhR+Qt83pxxkE/5BSwCR4uXQnEa482EiWZcqK4fSWE8baqzy
-         uOqA==
-X-Forwarded-Encrypted: i=1; AJvYcCUoNkOLIVlqLRyk+t7cWlDntDCqrvkji01iqKUMv/fyJjfDw+sd/xZY9rZEuCSbbN4tHZ2qrUnSRNcI@vger.kernel.org, AJvYcCVluzBBOiEQW2PBJ/06LBmsoWQWkMaxpoYez8OVeqf+94cmgQ//jxy9L0cthzQK1R5LlL/FXwQNJU0E@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyPbsgSuY26UYD8KI2vmRrO+2zApWe/AZXxUCqAI4NxLssBbqa
-	3O/5LSL7tvJ9AtipISLeloOsynpQzEndIenwjwoumJZdb59FAHBR
-X-Gm-Gg: ASbGncvrRn50NHH/u3okwzTuQI7vkZan9nuQgIOrQbRqcWI3/LwjScv+3VLL+dJhyWD
-	gAt+WjD8jBowDLcbzTtzRCWeNQWz8Q+7FsPNdFDeHUlNVryq1LHCCzwEz0Hz3SOJMlbBHBUauSw
-	VxrgKKaq2FiLTV72l/fBsJxZayNR+kx4F8DRSzya0KVyAdbTiIbuQnHxjSFhfhSlfM+x4Wc6ijZ
-	UKB129eIai2rq9u848SeGJYy64Fef+INFIqhwg+WHRo+5K66T+zgnywLW0fCAyWoZ05mj/EZJSd
-	oXNcH7aV+xZpas6jx7wrkL7KDJPIMoYuVYWsu/ewfRoZVht7w4Pu88PVlvxnH7wOFlX/lzBTOMv
-	2cg==
-X-Google-Smtp-Source: AGHT+IGveW3w0SKQKx8LXKO0L/gAvng9bbQi2cKgrZ9bQASh6DROV0jb7VWS/TE7EA2uJePz27ztjw==
-X-Received: by 2002:a5d:47a9:0:b0:385:f249:c336 with SMTP id ffacd0b85a97d-38f70859ab3mr5498849f8f.45.1740216637740;
-        Sat, 22 Feb 2025 01:30:37 -0800 (PST)
+        bh=iHlH9GRTTu/x712yX9JTl9QV/kQ/7As/47pnB+L0hd4=;
+        b=X7hl4afLOJKvxvMk9Z+68DCOS0UZPAreqXTdKWoJqhbWZ0T0srpIm37WVLDkEfuwNP
+         xheRmJJOgNay7zKEduTYPXcHywYR430F2KsuMS46KK7g8rE/d7IGpR++IRVCEVMUFDgw
+         EDFMVTOrLjfiIJ2RU3zw9xLnTHUffANbQLBDIxjHwcTRZ8YlaCTYmcwF9+4BNVrSDp2H
+         UzSOnd/WhrvwIXqfYt8d53LgcmKkh0l4mPmUNNGOATxu2oHzoVHm0tKfYOSzDGkorY4G
+         O6VmYMyqQ5jP1RBt9zhXn+ffyHxZ+yI1aJrR/m5V+YsINWU8I4hKiUQFf8+Fk/POL2DL
+         mq4A==
+X-Forwarded-Encrypted: i=1; AJvYcCVHRz4THwxiT+dpSwdPj8/PYfLBNH3MR/6DEI9K41xxcCwi7j6vrT3WH2wO67+DnhQL8InoYy+199Bc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEX2U2LGkMpY2rhWYJXNxJasq+LJXjyjA1MZljaIgaF31dimmT
+	bNz+XeFh6qGusOAaJy0FvkxmzyiKQ8Lukjtp4b68AqweXbEBBPio
+X-Gm-Gg: ASbGnct7+orXDDDqBj4B9BFhOir23NoUH/UPSzWG2dhrP4bJOmvoCrNCQv2onjRdym8
+	V35kCAZgK9kQyLcMNLtVeaTs+Er/ewqQwPa1l1VQthW4VOTc15gmP5sCnVp+YKpALPmKcN+LEAC
+	voSB26s/AoVDo6SQ1sKKwtg9PpryIDWvbBFMVY5qCed0VvVYxPD0DWEziA0fkAq3JUFPi6Q3FhK
+	9C+2vG8VYbGgPEBWAapKNYqod8iFUR6T6d1HVj7dLRjopgmogbhuaI7dsQGpKfxEkEHuRRE183s
+	3pGM4is1cMFgjxdZ9R9Mb4jv5ZUCrUtiABDbcVjCSdE9AxIJLroNtiSgnCHAKAALEjDeaOYb/4J
+	LmQ==
+X-Google-Smtp-Source: AGHT+IF/vk0QCfHjxCD3xQN2FAZ8znHgGm0G7SYedRPknv6M80yqxBaJ4GKJcXeQpUbJdA5Bq/HgXw==
+X-Received: by 2002:a05:600c:3c86:b0:439:9b80:ca6f with SMTP id 5b1f17b1804b1-439ae1d7272mr66049675e9.5.1740216951812;
+        Sat, 22 Feb 2025 01:35:51 -0800 (PST)
 Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f259d8e62sm25790168f8f.71.2025.02.22.01.30.36
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258ccdccsm25767979f8f.24.2025.02.22.01.35.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Feb 2025 01:30:37 -0800 (PST)
+        Sat, 22 Feb 2025 01:35:51 -0800 (PST)
 From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Samuel Holland <samuel@sholland.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Ryan Walklin <ryan@testtoast.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>
 Cc: Andre Przywara <andre.przywara@arm.com>,
  Chris Morgan <macroalpha82@gmail.com>,
  Hironori KIKUCHI <kikuchan98@gmail.com>,
- Philippe Simons <simons.philippe@gmail.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, Ryan Walklin <ryan@testtoast.com>
+ Philippe Simons <simons.philippe@gmail.com>, linux-sunxi@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Ryan Walklin <ryan@testtoast.com>
 Subject:
- Re: [PATCH v7 08/27] drm: sun4i: de3: add YUV support to the DE3 mixer
-Date: Sat, 22 Feb 2025 10:30:35 +0100
-Message-ID: <3860147.kQq0lBPeGt@jernej-laptop>
-In-Reply-To: <20250216183710.8443-9-ryan@testtoast.com>
+ Re: [PATCH 1/8] bus: sun50i: add DE33 compatible string to the DE2 bus driver
+Date: Sat, 22 Feb 2025 10:35:49 +0100
+Message-ID: <9408152.CDJkKcVGEf@jernej-laptop>
+In-Reply-To: <20250216092827.15444-2-ryan@testtoast.com>
 References:
- <20250216183710.8443-3-ryan@testtoast.com>
- <20250216183710.8443-9-ryan@testtoast.com>
+ <20250216092827.15444-1-ryan@testtoast.com>
+ <20250216092827.15444-2-ryan@testtoast.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,160 +100,37 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
 
-Dne nedelja, 16. februar 2025 ob 19:36:08 Srednjeevropski standardni =C4=8D=
+Dne nedelja, 16. februar 2025 ob 10:27:08 Srednjeevropski standardni =C4=8D=
 as je Ryan Walklin napisal(a):
-> From: Jernej Skrabec <jernej.skrabec@gmail.com>
+> The Allwinner H616 series includes a newer display engine (DE33). Add a
+> compatible string to the existing bus driver.
 >=20
-> The mixer in the DE3 display engine supports YUV 8 and 10 bit
-> formats in addition to 8-bit RGB. Add the required register
-> configuration and format enumeration callback functions to the mixer,
-> and store the in-use output format (defaulting to RGB) and color
-> encoding in the mixer configuration.
->=20
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 > Signed-off-by: Ryan Walklin <ryan@testtoast.com>
->=20
 > ---
-> Changelog v4..v5:
-> - Remove trailing whitespace
+>  drivers/bus/sun50i-de2.c | 1 +
+>  1 file changed, 1 insertion(+)
 >=20
-> Changelog v5..v6:
-> - Move color format and encoding flags to mixer and add struct.
-> ---
->  drivers/gpu/drm/sun4i/sun8i_mixer.c | 54 +++++++++++++++++++++++++++--
->  drivers/gpu/drm/sun4i/sun8i_mixer.h | 11 ++++++
->  2 files changed, 62 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.c b/drivers/gpu/drm/sun4i/=
-sun8i_mixer.c
-> index a170f68708b1f..bc934186bfd6f 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_mixer.c
-> +++ b/drivers/gpu/drm/sun4i/sun8i_mixer.c
-> @@ -23,7 +23,10 @@
->  #include <drm/drm_gem_dma_helper.h>
->  #include <drm/drm_probe_helper.h>
+> diff --git a/drivers/bus/sun50i-de2.c b/drivers/bus/sun50i-de2.c
+> index dfe588179acab..47c87d51a603b 100644
+> --- a/drivers/bus/sun50i-de2.c
+> +++ b/drivers/bus/sun50i-de2.c
+> @@ -31,6 +31,7 @@ static void sun50i_de2_bus_remove(struct platform_devic=
+e *pdev)
 > =20
-> +#include <uapi/linux/media-bus-format.h>
-> +
->  #include "sun4i_drv.h"
-> +#include "sun50i_fmt.h"
->  #include "sun8i_mixer.h"
->  #include "sun8i_ui_layer.h"
->  #include "sun8i_vi_layer.h"
-> @@ -390,12 +393,52 @@ static void sun8i_mixer_mode_set(struct sunxi_engin=
-e *engine,
-> =20
->  	DRM_DEBUG_DRIVER("Switching display mixer interlaced mode %s\n",
->  			 interlaced ? "on" : "off");
-> +
-> +	if (mixer->color_model.format =3D=3D MEDIA_BUS_FMT_RGB888_1X24)
-> +		val =3D SUN8I_MIXER_BLEND_COLOR_BLACK;
-> +	else
-> +		val =3D 0xff108080;
-> +
-> +	regmap_write(mixer->engine.regs,
-> +		     SUN8I_MIXER_BLEND_BKCOLOR(bld_base), val);
-> +	regmap_write(mixer->engine.regs,
-> +		     SUN8I_MIXER_BLEND_ATTR_FCOLOR(bld_base, 0), val);
-> +
-> +	if (mixer->cfg->has_formatter)
-> +		sun50i_fmt_setup(mixer, mode->hdisplay,
-> +				 mode->vdisplay, mixer->color_model.format);
-> +}
-> +
-> +static u32 *sun8i_mixer_get_supported_fmts(struct sunxi_engine *engine, =
-u32 *num)
-> +{
-> +	struct sun8i_mixer *mixer =3D engine_to_sun8i_mixer(engine);
-> +	u32 *formats, count;
-> +
-> +	count =3D 0;
-> +
-> +	formats =3D kcalloc(5, sizeof(*formats), GFP_KERNEL);
-> +	if (!formats)
-> +		return NULL;
-> +
-> +	if (mixer->cfg->has_formatter) {
-> +		formats[count++] =3D MEDIA_BUS_FMT_UYYVYY10_0_5X30;
-> +		formats[count++] =3D MEDIA_BUS_FMT_YUV8_1X24;
-> +		formats[count++] =3D MEDIA_BUS_FMT_UYVY8_1X16;
-> +		formats[count++] =3D MEDIA_BUS_FMT_UYYVYY8_0_5X24;
-> +	}
-> +
-> +	formats[count++] =3D MEDIA_BUS_FMT_RGB888_1X24;
-> +
-> +	*num =3D count;
-> +
-> +	return formats;
->  }
-> =20
->  static const struct sunxi_engine_ops sun8i_engine_ops =3D {
-> -	.commit		=3D sun8i_mixer_commit,
-> -	.layers_init	=3D sun8i_layers_init,
-> -	.mode_set	=3D sun8i_mixer_mode_set,
-> +	.commit			=3D sun8i_mixer_commit,
-> +	.layers_init		=3D sun8i_layers_init,
-> +	.mode_set		=3D sun8i_mixer_mode_set,
-> +	.get_supported_fmts	=3D sun8i_mixer_get_supported_fmts,
->  };
-> =20
->  static const struct regmap_config sun8i_mixer_regmap_config =3D {
-> @@ -484,6 +527,11 @@ static int sun8i_mixer_bind(struct device *dev, stru=
-ct device *master,
->  	if (!mixer->cfg)
->  		return -EINVAL;
-> =20
-> +	/* default output format, supported by all mixers */
-> +	mixer->color_model.format =3D MEDIA_BUS_FMT_RGB888_1X24;
-> +	/* default color encoding, ignored with RGB I/O */
-> +	mixer->color_model.encoding =3D DRM_COLOR_YCBCR_BT601;
-> +
->  	regs =3D devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(regs))
->  		return PTR_ERR(regs);
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.h b/drivers/gpu/drm/sun4i/=
-sun8i_mixer.h
-> index 8417b8fef2e1f..5f465a974fbdf 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_mixer.h
-> +++ b/drivers/gpu/drm/sun4i/sun8i_mixer.h
-> @@ -9,6 +9,7 @@
->  #include <linux/clk.h>
->  #include <linux/regmap.h>
->  #include <linux/reset.h>
-> +#include <drm/drm_color_mgmt.h>
->  #include <drm/drm_plane.h>
-> =20
->  #include "sunxi_engine.h"
-> @@ -177,6 +178,11 @@ struct sun8i_mixer_cfg {
->  	unsigned int	scanline_yuv;
->  };
-> =20
-> +struct sun8i_color_model {
-> +	u32			format;
-> +	enum drm_color_encoding	encoding;
-> +};
-> +
->  struct sun8i_mixer {
->  	struct sunxi_engine		engine;
-> =20
-> @@ -186,6 +192,11 @@ struct sun8i_mixer {
-> =20
->  	struct clk			*bus_clk;
->  	struct clk			*mod_clk;
-> +
-> +	struct regmap			*top_regs;
-> +	struct regmap			*disp_regs;
+>  static const struct of_device_id sun50i_de2_bus_of_match[] =3D {
+>  	{ .compatible =3D "allwinner,sun50i-a64-de2", },
+> +	{ .compatible =3D "allwinner,sun50i-h616-de33", },
 
-This chunk is DE33 specific and should go in patch 24.
+Since there is no functionality change, just go with h616 compatible with a=
+64
+fallback. No need to change the driver.
 
 Best regards,
 Jernej
 
-> +
-> +	struct sun8i_color_model	color_model;
+>  	{ /* sentinel */ }
 >  };
 > =20
->  enum {
 >=20
 
 
