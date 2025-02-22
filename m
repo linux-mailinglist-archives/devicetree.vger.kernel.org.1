@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-149818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 705A9A40810
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 12:51:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA0F9A40819
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 12:53:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D6AF167DB5
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 11:51:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 86F077ABC71
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 11:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B21A2080C9;
-	Sat, 22 Feb 2025 11:51:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B476620A5F5;
+	Sat, 22 Feb 2025 11:53:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZxPwRKCJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qp3fRkHh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C8431FA16B;
-	Sat, 22 Feb 2025 11:51:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A9F7207E1D;
+	Sat, 22 Feb 2025 11:53:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740225082; cv=none; b=tIKUj2bbR8mOF0P8vBs0+OiWIJKjPbtoITIVvheClYlSWGplYLY8p0TMUfuG22wBvmtvDKkZnlmAU2Rs3Cua3up6l3UgZpI6EONJ+E8Mot7IIIK4YKhSOr1YLk2HMjQlKuWBRpw2onh0W7ELbW5iVcWhUYmDV9XuVsIE4AyCfCY=
+	t=1740225218; cv=none; b=Pfvixpu5fS4g4KOAyuorPUpteWOLIzlBtu+7u9MHwhdi41aqCVHCST6ntav7D0VTytCdXuuyH4+wDQbE8QEVyGM0ih3HycO9LH3MQedmYEOYrcy+rCHpiJJD6zTguBLVeqq1cwfJtrF+s2AzrS54f3gErFOkOLwOH2YyoV6dUwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740225082; c=relaxed/simple;
-	bh=ku62Uk/dTVfCf8h3O/d79/aHXW5kgZZ4NGjvVli0V+4=;
+	s=arc-20240116; t=1740225218; c=relaxed/simple;
+	bh=n/LG/dKXU2OIZXGkhCaxoGXfyyXVnUjTtrluECT61AI=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hKoEt6PLk1wa/0oz8XtP0KTWZYaiTjE3J7cehzP1TPKRX8fOnR3C1giigBBVWnOpggRsuusGOtoXI22P8NjWQFTSR+BtRyrnceQIelGdRboE0A7Seo3QU5alG0dx5e7mv3pj1ogJAS4OFsSNI5UiubjbVCa7aYjXesMAisNyAoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZxPwRKCJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1865CC4CED1;
-	Sat, 22 Feb 2025 11:51:16 +0000 (UTC)
+	 MIME-Version:Content-Type; b=SoHEm7BLw7+GlSEw5FKHSw6P4gT5ogxnW+es1yNHi8soxwmlQJfojnmWenygRahtiY2YLZ8mvLNJY9FAx93Xr8uI4pXbgZc7jzgx8uLXRVIsi0haZHmOPX7AyPpJOejopOpqrrN5SYJUx0dtrKXJDPxvXPIIPImbiwzazHtMQtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qp3fRkHh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2F10C4CED1;
+	Sat, 22 Feb 2025 11:53:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740225081;
-	bh=ku62Uk/dTVfCf8h3O/d79/aHXW5kgZZ4NGjvVli0V+4=;
+	s=k20201202; t=1740225218;
+	bh=n/LG/dKXU2OIZXGkhCaxoGXfyyXVnUjTtrluECT61AI=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ZxPwRKCJDZlN37zONde3bMg6ditISNa2k57GB7d8JSA0srBmveXYe3VaDwShwkEMz
-	 OMa1tIAu0xMAF0Rc2ugIYlaJt4crlJfb7pEhOzcc7zEwhAaYivuon8/1i2ciaRFlre
-	 FMxPYEs8ZZhl7nBjPhYIPYzTrFlDeRe+PuDEcq+i3odNYiH4+nd/fkbCSPo2uEGBLu
-	 cWuacppLnW0nqBZj3owlhwjDWCECJlIOl+Q9UaZ6RWuEG5n2FM4UZYlsXFGR2h6TBm
-	 N1xOb4GDl419YjlRRoZT22UZwz4Tn31SPZMQGfRgiTZY/M0+vowERFpsmVBvr+bQs9
-	 5jmjWotvs6iTQ==
-Date: Sat, 22 Feb 2025 11:51:11 +0000
+	b=Qp3fRkHhy3Y5GKMrBn84A8SvAW69doXDsfXZ7vmJ4ygmUyRPE4w6pQmNpF8JjBGle
+	 9oHBiiHiOjSw6F7U0CGTet+h0+7pdGNSEQR2In+t58dDLFZljGhSCm3nKN4xP+zPSD
+	 JgqyfekBRJ72sEN7spZOWnpyqgICgiAyg1wJfiqpHTbKMKIsXlieppAnEm0qfscTPb
+	 yvN0s688ZzXchiejUslubn3wyaR7fPXQaMbVMJ2FC8i3Qly0xOKG23iZfh3t2ovCR0
+	 Y9g8Lk+JR+6pGHCGqs0GOC73pTdszStgkj5U1c8ZU2LDiCzUsKiF2gtDv6DRsTG02j
+	 4rSe/JEK4DFsQ==
+Date: Sat, 22 Feb 2025 11:53:28 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, lars@metafoo.de,
- Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, jonath4nns@gmail.com,
- marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH RESEND v3 06/17] Documentation: ABI: add wideband filter
- type to sysfs-bus-iio
-Message-ID: <20250222115111.63a1cb89@jic23-huawei>
-In-Reply-To: <42296bf2-2818-4224-9e52-d1fef59d8a76@baylibre.com>
-References: <cover.1739368121.git.Jonathan.Santos@analog.com>
-	<aea512746712f8f6d07d29ec6977609c127fabe0.1739368121.git.Jonathan.Santos@analog.com>
-	<42296bf2-2818-4224-9e52-d1fef59d8a76@baylibre.com>
+To: "Sperling, Tobias" <Tobias.Sperling@Softing.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+ <broonie@kernel.org>, "linux-iio@vger.kernel.org"
+ <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 0/2] Support for TI ADS7128 and ADS7138 ADCs
+Message-ID: <20250222115328.3208a0ce@jic23-huawei>
+In-Reply-To: <BE1P281MB242028CC2123871D0FD167A1EFFB2@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
+References: <20250213-adc_ml-v4-0-66b68f8fdb8c@softing.com>
+	<20250216155436.239a4b35@jic23-huawei>
+	<BE1P281MB242028CC2123871D0FD167A1EFFB2@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,53 +68,53 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Thu, 20 Feb 2025 15:28:09 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+On Mon, 17 Feb 2025 14:56:53 +0000
+"Sperling, Tobias" <Tobias.Sperling@Softing.com> wrote:
 
-> On 2/12/25 12:16 PM, Jonathan Santos wrote:
-> > The Wideband Low Ripple filter is used for AD7768-1 Driver.
-> > Document wideband filter option into filter_type_available
-> > attribute.
-> > 
-> > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> > ---
-> > v3 Changes:
-> > * None, since we still did not agree on a better name for this filter type.
+> > Von: Jonathan Cameron <jic23@kernel.org>
+> > Gesendet: Sonntag, 16. Februar 2025 16:55
+> >
+> > On Thu, 13 Feb 2025 16:58:56 +0100
+> > Tobias Sperling via B4 Relay <mailto:devnull+tobias.sperling.softing.com@kernel.org>
+> > wrote:
 > >   
-> 
-> I'm convinced at this point that "wideband" is fine.
-> 
-> > v2 Changes:
-> > * Removed FIR mentions.
-> > ---
-> >  Documentation/ABI/testing/sysfs-bus-iio | 2 ++
-> >  1 file changed, 2 insertions(+)
+> > > This patch series adds support for Texas Instruments ADS7128 and
+> > > ADS7138, which are 12-bit, 8 channel analog-to-digital converters (ADCs)
+> > > with build-in digital window comparator (DWC), using the I2C interface.
+> > >
+> > > The driver exposes the interfaces to read the raw values, as well as the
+> > > minimum and maximum value for each channel. In addition several settings
+> > > can be configured, like the DWC, sampling frequency or an averaging
+> > > filter/oversampling. Interrupts triggered by the DWC, if configured, are
+> > > then exposed as IIO events.
+> > >
+> > > ADS7128 differs in the addition of further hardware features, like a
+> > > root-mean-square (RMS) and a zero-crossing-detect (ZCD) module, which
+> > > are not yet supported by the driver.
+> > >
+> > > Regarding the I2C interface the chips using opcodes to define the way
+> > > how the registeres are accessed, like single or multiple register(s)
+> > > read/write or setting/clearing only bits.  
+> > LGTM. Applied to the togreg branch of iio.git and pushed out initially
+> > as testing for 0-day to take a look at it.
 > > 
-> > diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-> > index f83bd6829285..9b879e7732cd 100644
-> > --- a/Documentation/ABI/testing/sysfs-bus-iio
-> > +++ b/Documentation/ABI/testing/sysfs-bus-iio
-> > @@ -2291,6 +2291,8 @@ Description:
-> >  		* "sinc3+pf2" - Sinc3 + device specific Post Filter 2.
-> >  		* "sinc3+pf3" - Sinc3 + device specific Post Filter 3.
-> >  		* "sinc3+pf4" - Sinc3 + device specific Post Filter 4.
-> > +		* "wideband" - filter with wideband low ripple passband
-> > +		  and sharp transition band.  
+> > I did notice whilst applying that the Kconfig ordering for these TI parts
+> > has gotten scrambled. So at some point we should clean that up and
+> > bring them back into alphanumeric order!
+> > 
+> > Jonathan  
 > 
-> The description could perhaps be made a bit more generic though
-> instead of using specifics from the AD7768-1 datasheet. Something
-> along the lines of Jonathan's 'flattish to a wide range of frequencies'
-> description.
-
-That is sort of what what low ripple passband and sharp transition band means
-but with technical (sounding :) terms.  The only missing bit is it isn't
-a narrow pass filter.
-
-
+> Ok, thanks for the info. Then everything is going its way I guess. :)
 > 
-> >  
-> >  What:		/sys/.../events/in_proximity_thresh_either_runningperiod
-> >  KernelVersion:	6.6  
+> I can prepare a patch for the ordering. Shall this be based on top
+> of this patch set or just the master branch?
+
+This is a rare case where basing on my testing branch is the
+best option.  Right now that matches togreg, but I'll probably be
+applying some stuff on top today and that might touch this file.
+
+Jonathan
 > 
+> Tobias
 
 
