@@ -1,144 +1,93 @@
-Return-Path: <devicetree+bounces-149778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 234CBA406AD
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:07:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D6FA406B3
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:10:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 164B7420765
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 09:07:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 548A917CDB0
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 09:10:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F26206F36;
-	Sat, 22 Feb 2025 09:07:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23392066D3;
+	Sat, 22 Feb 2025 09:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="KArh123C"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="pG73TqlZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AE382066ED;
-	Sat, 22 Feb 2025 09:07:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55592AF04;
+	Sat, 22 Feb 2025 09:10:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740215247; cv=none; b=LK5I9oKSJk5AriMZpzblOVy09/elXiE8QGF7p2yXSg7IwU4EebVyvmVpzImxNNvzebgOG0WTQ+ISQpnb/fLxj5m+x2PjjUbwLd0wTx2QsfZWMLQOckrAsYhFMZQ1FvqVCPtUv9vexZJLJx856V/3JDQHSMJ9E6PY7aFrrF37BHc=
+	t=1740215427; cv=none; b=kpnPgm5Vmf8VUg2pXxyYTiFMBVMBZ6kbm7Lk5bpe7wVyV1nljaiymTZoSuHL5u0DBy/qu5o/pHeFSJ5o/Yxat/JqshTy0sqDNQZmN6HyCLoF2nLVqgUZSbrj8PxO1L+AIBB1rP/1hVQO9u7TAeGRawYi2X80yyD62YBDPcHQg0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740215247; c=relaxed/simple;
-	bh=DGVHAvrt7/GwOnW84gSaOyLUfPomcROxBm84kwq5ka8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pTWnolj8E8GiWxN5pQhdzkLwO8xbj1U3hacbuNjw02G2jg9Y4bZ2/3NlCqEFTuUHZKNWv/FbMsChbn6qXj7WLzZF+pLJDPp/N9c+WrzJDe9ttGQhsPWGscd5HOhIlGcDsTYV8egTJwF4atQv1jdMPc2Ox1pqOwZue6/VRqw2O7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=KArh123C; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 6c185d3af0fc11ef8eb9c36241bbb6fb-20250222
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=HPsNNs9KKcxnwX5yrPHiFvRJBeS87FY0TR1JfHBnylY=;
-	b=KArh123CRiWU2Mjd2AR0jC0eu0eNLqeTFFiYEdW1SfkR3rKKIx0zA2F3t0l5+1XMqbSN2pgaruO9uV6EDwOb4oRIudwvg5Mkl0pG0kITeV6akQuvNmZfCIUAsFiXV8wS/6vLHPWkdzdGSdpT4a7YmQl0nqLD6fho99jlljpE03g=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:141646f9-d8e2-4408-aa9c-91232cfe2ff4,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:91be6ba4-5c06-4e72-8298-91cabc9efadf,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 6c185d3af0fc11ef8eb9c36241bbb6fb-20250222
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-	(envelope-from <chunfeng.yun@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 399313465; Sat, 22 Feb 2025 17:07:20 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Sat, 22 Feb 2025 17:07:20 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Sat, 22 Feb 2025 17:07:19 +0800
-From: Chunfeng Yun <chunfeng.yun@mediatek.com>
-To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>
-CC: Chunfeng Yun <chunfeng.yun@mediatek.com>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] phy: mediatek: xsphy: add support to set disconnect threshold
-Date: Sat, 22 Feb 2025 17:07:10 +0800
-Message-ID: <20250222090710.10909-2-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250222090710.10909-1-chunfeng.yun@mediatek.com>
-References: <20250222090710.10909-1-chunfeng.yun@mediatek.com>
+	s=arc-20240116; t=1740215427; c=relaxed/simple;
+	bh=IOzuINMkP8/jYoWkvyZGSyLnrz2QRHSYnZDmR7OufNk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SwOU12IUsj2VPpXIk8p8BfFtob4tVWm/bNrx7oZLIwc07R9ANBTH7IrDeqMA5GPd/HoW4JZsNbDJY2969ZzHfQ1x3YIe8hNkiwAmVdA+olV32/QxSKczoniV6o/DywWtPxWb+yL998OWb1BMvePxufMxGzttNj//UFqCKkSOa7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=pG73TqlZ; arc=none smtp.client-ip=220.197.32.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=HNf3ovGngIu+2imVC6jh5NhzQqrcYgc31OJf+dXqycE=;
+	b=pG73TqlZWjD/lpev2f0r2Oon0FE7bKhizo3EOL4E8vmZbeMhTHho9HhElLiGHz
+	TLN93grFoPq2ishUfDPsJbanYld6c4rXGeuDbAvBg+CUIoOlYjd+6Va+djVNVZv7
+	I1GzMFnot5SUWcTCEyD2MDbYhmWfhVxYSniRNJzOZcTbo=
+Received: from dragon (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgAXoo1TlLlnd1N6CQ--.21701S3;
+	Sat, 22 Feb 2025 17:09:41 +0800 (CST)
+Date: Sat, 22 Feb 2025 17:09:39 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+	linux@ew.tq-group.com, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/5] arm64: dts: mba8mx: change sound card model name
+Message-ID: <Z7mUU/Rgj3Gx7g9E@dragon>
+References: <20250120132503.556547-1-alexander.stein@ew.tq-group.com>
+ <20250120132503.556547-5-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250120132503.556547-5-alexander.stein@ew.tq-group.com>
+X-CM-TRANSID:M88vCgAXoo1TlLlnd1N6CQ--.21701S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrurWxGF13uFW8Ar1UJFW7XFb_yoW3Xrg_AF
+	Wftw1DJa1DZF4fur1Fkr4agrZa9ws7WF1DGr13Ww13X3WrKa1kGF4qq342yw1j9a4jg345
+	Crn3t3yq93yjkjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8pHq7UUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRf7ZWe5dcBuMAAAs1
 
-Add a property to tune usb2 phy's disconnect threshold.
+On Mon, Jan 20, 2025 at 02:25:02PM +0100, Alexander Stein wrote:
+> From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+> 
+> The card name for ALSA is generated from the model name string and
+> is limited to 16 characters. Use a shorter name to prevent cutting the
+> name.
+> 
+> Since nearly all starter kit mainboards for i.MX based SoM by TQ-Systems
+> use the same codec with the same routing on board it is a good idea to
+> use the same mode name for the sound card. This allows sharing a default
+> asound.conf in BSP over all the kits.
+> 
+> Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v2: change property name
----
- drivers/phy/mediatek/phy-mtk-xsphy.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+I may have missed some prerequisite ones, but #4 and #5 do not apply for
+me.
 
-diff --git a/drivers/phy/mediatek/phy-mtk-xsphy.c b/drivers/phy/mediatek/phy-mtk-xsphy.c
-index 7c248f5cfca5..cac0f008bcb3 100644
---- a/drivers/phy/mediatek/phy-mtk-xsphy.c
-+++ b/drivers/phy/mediatek/phy-mtk-xsphy.c
-@@ -59,6 +59,7 @@
- #define XSP_USBPHYACR6		((SSUSB_SIFSLV_U2PHY_COM) + 0x018)
- #define P2A6_RG_BC11_SW_EN	BIT(23)
- #define P2A6_RG_OTG_VBUSCMP_EN	BIT(20)
-+#define PA6_RG_U2_DISCTH	GENMASK(7, 4)
- 
- #define XSP_U2PHYDTM1		((SSUSB_SIFSLV_U2PHY_COM) + 0x06C)
- #define P2D_FORCE_IDDIG		BIT(9)
-@@ -95,6 +96,7 @@ struct xsphy_instance {
- 	int eye_src;
- 	int eye_vrt;
- 	int eye_term;
-+	int discth;
- };
- 
- struct mtk_xsphy {
-@@ -244,9 +246,12 @@ static void phy_parse_property(struct mtk_xsphy *xsphy,
- 					 &inst->eye_vrt);
- 		device_property_read_u32(dev, "mediatek,eye-term",
- 					 &inst->eye_term);
--		dev_dbg(dev, "intr:%d, src:%d, vrt:%d, term:%d\n",
-+		device_property_read_u32(dev, "mediatek,disconnect-threshold",
-+					 &inst->discth);
-+		dev_dbg(dev, "intr:%d, src:%d, vrt:%d, term:%d, discth:%d\n",
- 			inst->efuse_intr, inst->eye_src,
--			inst->eye_vrt, inst->eye_term);
-+			inst->eye_vrt, inst->eye_term,
-+			inst->discth);
- 		break;
- 	case PHY_TYPE_USB3:
- 		device_property_read_u32(dev, "mediatek,efuse-intr",
-@@ -285,6 +290,9 @@ static void u2_phy_props_set(struct mtk_xsphy *xsphy,
- 	if (inst->eye_term)
- 		mtk_phy_update_field(pbase + XSP_USBPHYACR1, P2A1_RG_TERM_SEL,
- 				     inst->eye_term);
-+	if (inst->discth)
-+		mtk_phy_update_field(pbase + XSP_USBPHYACR6, PA6_RG_U2_DISCTH,
-+				     inst->discth);
- }
- 
- static void u3_phy_props_set(struct mtk_xsphy *xsphy,
--- 
-2.46.0
+Shawn 
 
 
