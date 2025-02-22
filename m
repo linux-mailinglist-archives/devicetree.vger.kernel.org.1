@@ -1,128 +1,188 @@
-Return-Path: <devicetree+bounces-149746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1514A40489
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 02:08:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF262A404A8
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 02:23:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0683419C73F9
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 01:08:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E916D19C0087
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 01:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B258315A868;
-	Sat, 22 Feb 2025 01:08:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89DFF3D984;
+	Sat, 22 Feb 2025 01:23:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DyNUL0nT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P3rM9GAs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0D415689A
-	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 01:08:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFCD02A1CF
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 01:23:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740186493; cv=none; b=fclroCF0ScxAtj9PkkZODVnmK4gi4eWgZOoj5/RBbYlsLhlHY7lr0kMMEgOHT1Q6WHzzgTbI8YvcA//MDbxLA5Kxx1ZzX1cSzB+TIgIRSk6PpMlVJMqhW480hPhJY0n9Qh1QEmjTsgAfGvDJMO+Qhq6COI8a0fdUcTVCd4oG1Dg=
+	t=1740187425; cv=none; b=SQAQ9Wy6dZyzqgqb/5yC+F/NbKkKNT6PL25tkpEYoow3Aj+G8twFrVGvktk9NaMx+jqhBN8mTvCbgc9U+TVIrJRnkAwU1UdHIplQnEY71ylwMNhNSwhKTiS52MWRKb53bdOPohTgeFRoB4EzDv+LTHU8FEyX7IixhrrYBstXU3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740186493; c=relaxed/simple;
-	bh=eDoZofir2hrwtDXk4TstUXKmfWtDhK2Qg53ThG5kWVU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D7T0P+XV4juRNI7KT/FRv2yWcjACr14k0vr9AuvzEaUlogyD7HUZZoEkyc3NpbNc6W9lQnMP3Hg3Rm8D4Q1htbUE16oRT6B4+0RjsPMbvcl8J0jn8EvJ1wp1jj6wtnGc9Ej+OO9V1uVIu0wz2Oa0comKUuDlIkqjnrHCZDRxgXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DyNUL0nT; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51LJ7kda026095
-	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 01:08:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	A+7uD3mDnAjZ85phjsnwE9FBImVmeY69xngWW0qTBWI=; b=DyNUL0nTJYBVhFf0
-	og4j6GIdZLb3sj4Bmbl4A7R+FXV7dUCrKMKOP2gxwnLGhMMA7czoVadbohPvozsp
-	2T5x9qGg6kyzPs0K+0Y/PYY/F5FfHthrn+Z17Hhc/YOWMGddgfFsGgyDlWkTxGHq
-	pcvHfzgCuSd7fWDPiZJ/itDPOjuCxxcHKmMHoPAM+ysZ0tIunmqW8lJWdD/7/CB1
-	t1NtmbLQnUcv4WbTw9LMQzSP9kzwQVFpgklJR/81JOAaK0ALdUB5rpirbuvueHEp
-	g4Hsbj8udKfJ29u8OZoMczWmkYHytkSahWAr1IAdgmJ/M4LdC5audl6MpvItfY2y
-	QpPCWw==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44x2r3wtak-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 01:08:11 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c0b3f276edso57591085a.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 17:08:10 -0800 (PST)
+	s=arc-20240116; t=1740187425; c=relaxed/simple;
+	bh=ER9G9HRhcPMgPnDB9OZ93csc2pWtHxSYJcTG/yuD4Tg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=r3kf3gXSY6Elk1v7/j7puaPlRDxPrkLX8fvQZT2Qzi1AtAQ7Dh9TNVogHkaHQ8vcqSnE2Yzje6va76QD3T8MEx7uAdxUWqQBW8CjuW+LBFfR4HAwkvIjsSDXK4YZkfeJjsxgVSm8Q9L2faRx7vvXxxfNKmkWUT1VyULHzdlRDNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P3rM9GAs; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-439a2780b44so17289645e9.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 17:23:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740187422; x=1740792222; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yhpklwBnBdF83FBre0/tkR3DVtuVLWezPApNRpdK4qw=;
+        b=P3rM9GAsGdX8oYRYmTTKTRUC3zl8ssL1hfkZx+tgT8BBh//YbLq6iH4WYac64vF8PH
+         acLQ5W4VTptTuYSQ1JFyD+Keyz63jsJLitsaJPiYAmbhnh43epcUlzqLjH7AJhWSFmaH
+         dgLskbIfEP7p48w7PhN26QuHfsW6BlBmnaPDWR7nY2ZJQ8P2gK0NOc3lewFqzuK4gu1H
+         4GjMkACgghxEINjZoDQfM2XIrEVt+8tVbM8jouXrMmOlVsMwFeXvrqmTqNgbHVK37f+b
+         s9ly97eUJkYocUWeXzySfaS3Ll8k/ZoqtTPnaqx7V7utlDpZUmQtdath6HfEPCWqLllF
+         Y7CA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740186490; x=1740791290;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A+7uD3mDnAjZ85phjsnwE9FBImVmeY69xngWW0qTBWI=;
-        b=McpOjg74C/uzjFwIHLWOo3F8HNJYNg0uDfw2kcuwshz0to4PmZ5lejDds34GylN5FT
-         PoDi/clfrCCpnmsnavO7SxpOTdhRfi0/uVcxw12TBDvzcgZMaA6veNLmKeSGIm8Mmcku
-         P1bn61c6hBGN2cfogWVKa7r8plKmOU/i3G6L23P9+TLnWDtunYSFKdZ9Z3CkV+zl79yK
-         6+j74ZtbraqhjNVrE14TkkC/8DH79kySYxsR59UbPP5ktldKTrSLz+8MfvvF075jH2y7
-         We8T2mhp/X55G+01swEF1UHXtGuMlWvB91T7UgFX3er9t2F58CrU2teFaux52fwxK9lB
-         xO5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXpwRLiSB/uTk4pmb4CszBoQvp1rB2LFlNLG66DwhU7AfQjfTJyvRg+9edLAIqfNWfpyHi4PBKBnOJY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzs4+zFslaFw2xw699y97aCZ1rV6bcARGQBT/z1jYaprh/XlLc6
-	s4MvRmxm10fokcPox4HFrNu1wQZIHHdqz1feVvi0CdrXgUw6hXE5PfyVu3INlx/99EkOlsycbHG
-	hyi0VtFoX9nm4RQK3V5UfBm7Qah3BPfru9lpVheUPb4chBceIVbTIzGLpS21h
-X-Gm-Gg: ASbGncsi/Ty7UEsH9dZ5+Be06HAWHFksLLFNhHtklfUvyzVPUfXiMHK+cYgOh26Mito
-	yhex0O4Zzc2w+omcwZqf/CpRb2DyawZn9cmhgO/RERc8svtbB8mug7R1xeM2l1im7Zusl2XUG31
-	lC6w1VUmip5zxgGpaxen3eIHfXwpc7JT+hUBt/HQNS0bN4gVgFPFUSTsnI9StYwejiGzA5oTPpW
-	X5tIcmIuy9F5PZiFifOeEm95cVs+nT4C757hqxcmut3MZjAF89ARd3Cfe7i41u58sPYmZqwoxKV
-	voj73xTjYcX55Xt/BkR3ar3s5e/1aPpCfbIl4+nfTGe41zP/YKFOC+BLaGMrfVj57wWJ4A==
-X-Received: by 2002:a05:620a:4726:b0:7c0:9dc9:754b with SMTP id af79cd13be357-7c0cede771dmr299452885a.0.1740186489625;
-        Fri, 21 Feb 2025 17:08:09 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFYYxDYScxOyOYt19LdLCGEcGFQfxafa8JYctydRNjUWNq0I7T1fbGD53XYaGYpG7lGZnjSKQ==
-X-Received: by 2002:a05:620a:4726:b0:7c0:9dc9:754b with SMTP id af79cd13be357-7c0cede771dmr299450885a.0.1740186488939;
-        Fri, 21 Feb 2025 17:08:08 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1b4e8dsm14342801a12.14.2025.02.21.17.08.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Feb 2025 17:08:08 -0800 (PST)
-Message-ID: <20c6b5fd-321e-4165-9c83-3b53a481818d@oss.qualcomm.com>
-Date: Sat, 22 Feb 2025 02:08:06 +0100
+        d=1e100.net; s=20230601; t=1740187422; x=1740792222;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yhpklwBnBdF83FBre0/tkR3DVtuVLWezPApNRpdK4qw=;
+        b=mZKG6HcjNpksOc5E2JM2/5nXgHrM0XhEwjte+GVZM/AzTdNk/bmXpBMwuVNJPVDMfX
+         Oi+Je/vCEDzkyco6klbcNUCasMg2v9ziOmKOK2VA/NpEvCue/egxoNdQEph7le6Xf0yI
+         OtRbNsc2z29VL2TalVGiyZm9tM82i2dFZJ/rlS83et6c+JAoTbkEwVkqbjqusm5UAgvX
+         X8xdSSws/HvWZ72TTCnmbDLqIqM9ao3ewt+ztZTxqctl2gjxu7XbsWy0Gim1T779HXrn
+         1Tc6/Dcj92r3fzzjQ6AMqp/pnP3iC9velYjgBNi33oXns6eD8DJfhbxwF1nAF2crq0KM
+         98Ig==
+X-Forwarded-Encrypted: i=1; AJvYcCWdC0Sn6jPLvlhGBumaye1jBFpai5r80PNsnTpaoQ3ulDaNdDqhahDZsVgobwQYNwsxnhdM86pNAIj1@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo379iz/e/7Mgdme4dFu9DHO/aKdnYDnZgHaaIBxdlypN44wW5
+	HHXMbbH52gJwI79IztObjTeLc6mb+JYeH2vSlDFYkRdKBUbkdzqOBhMZK7OfHj64cQcSJ2dUPZG
+	xwUYTofeBPjsw9cBzB5JRdlekrmc=
+X-Gm-Gg: ASbGncul/zAYceUlhywhGT5v4c3qgKSFyzs2niRxHDLMLnum9ys4guMje7kS7M+lcTx
+	uJe8xPWNLY1XacrlgQQFvayRbwStRDISfLfTptsya2YN6afOfabVoygQsV6LJMGp6ArFn9aMWAn
+	pdnofKYLSHrEJNL07GFlbDQh2ZZgqynipDDRsYm4s=
+X-Google-Smtp-Source: AGHT+IG6BhZoWxIICbyhwCocwO6xXPSTdwoF7JNw6rq6Z7HpxVUaKQWpWlNOEVmxHVYRzUrHtcVK/scClbl6g5MFXm4=
+X-Received: by 2002:a05:6000:1f83:b0:38f:2193:f8c2 with SMTP id
+ ffacd0b85a97d-38f6e979541mr4649885f8f.31.1740187421737; Fri, 21 Feb 2025
+ 17:23:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: qrb5165-rb5: enable sensors DSP
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250222-rb3-rb5-slpi-v1-0-6739be1684b6@linaro.org>
- <20250222-rb3-rb5-slpi-v1-2-6739be1684b6@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250222-rb3-rb5-slpi-v1-2-6739be1684b6@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: JZO18OZ1Vg6F403oEOIlFHmWg2FLiCuj
-X-Proofpoint-GUID: JZO18OZ1Vg6F403oEOIlFHmWg2FLiCuj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-21_09,2025-02-20_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
- bulkscore=0 phishscore=0 mlxlogscore=715 suspectscore=0 priorityscore=1501
- mlxscore=0 spamscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2502220006
+References: <20250220041010.3801-1-honyuenkwun@gmail.com> <20250221231340.GS16911@sventech.com>
+In-Reply-To: <20250221231340.GS16911@sventech.com>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Fri, 21 Feb 2025 19:23:30 -0600
+X-Gm-Features: AWEUYZmVkmKF-0YNx_3i9PYhg9DTepHiFBL2v1CGPi2zlflcOJAt316mjfq3NKU
+Message-ID: <CALWfF7KW8_vAx49nNygKpLHNJQVpjvVdVpzYiTAWgQvSopHikw@mail.gmail.com>
+Subject: Re: [PATCH UNTESTED v5 0/4] Orange Pi 5 Ultra
+To: Johannes Erdfelt <johannes@erdfelt.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 22.02.2025 1:43 AM, Dmitry Baryshkov wrote:
-> Enable SLPI, sensors DSP, on the Qualcomm Robotics RB5 platform. The
-> firmware for the DSP is a part of linux-firmware repository.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+On Fri, Feb 21, 2025 at 5:13=E2=80=AFPM Johannes Erdfelt <johannes@erdfelt.=
+com> wrote:
+>
+> On Wed, Feb 19, 2025, Jimmy Hon <honyuenkwun@gmail.com> wrote:
+> > This patchset is looking for testers. I do not have the hardware to tes=
+t.
+>
+> I do have hardware and I gave your branch[1] a test.
+Thanks for the test results
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>
+> The following things tested successfully for me:
+> - Kernel boots
+> - Ethernet
+> - SPI NOR
+> - Micro SD card
+> - eMMC
+> - Bottom M.2 M-key slot (using an NVME drive)
+> - USB 2.0 ports
+> - Blue LED (using heartbeat trigger at least)
+>
+> I did not test:
+> - RTC
+> - UART
+> - HDMI1
+> - HDMI IN
+> - Analog audio
+> - Mali GPU
+> - Heat sink fan
+>
+> However, neither of the USB 3.0 ports work. There are no XHCI messages
+> during boot. I confirmed my kernel config does build XHCI. I haven't
+> ruled out a mistake on my end yet.
+Does your kernel config have CONFIG_PHY_ROCKCHIP_USBDP?
+Both USB 3 ports on the Max/Ultra ports are wired to the usbdp
+controller and not combphy2_psu controller.
+It'll be set if you're using the arm64 defconfig.
 
-Konrad
+On my Orange Pi 5 Max, dmesg | grep xhci will show (e.g. io mem)
+[    0.769699] xhci-hcd xhci-hcd.4.auto: xHCI Host Controller
+[    0.769919] xhci-hcd xhci-hcd.4.auto: new USB bus registered,
+assigned bus number 1
+[    0.770062] xhci-hcd xhci-hcd.4.auto: hcc params 0x0220fe64 hci
+version 0x110 quirks 0x0000808002000010
+[    0.770119] xhci-hcd xhci-hcd.4.auto: irq 89, io mem 0xfc000000
+[    0.770351] xhci-hcd xhci-hcd.4.auto: xHCI Host Controller
+[    0.770585] xhci-hcd xhci-hcd.4.auto: new USB bus registered,
+assigned bus number 2
+[    0.770602] xhci-hcd xhci-hcd.4.auto: Host supports USB 3.0 SuperSpeed
+[    0.770837] usb usb1: Manufacturer: Linux 6.14.0-rc1-2-rockchip-ARCH xhc=
+i-hcd
+[    0.770844] usb usb1: SerialNumber: xhci-hcd.4.auto
+[    0.772069] usb usb2: Manufacturer: Linux 6.14.0-rc1-2-rockchip-ARCH xhc=
+i-hcd
+[    0.772076] usb usb2: SerialNumber: xhci-hcd.4.auto
+[    0.792369] xhci-hcd xhci-hcd.5.auto: xHCI Host Controller
+[    0.792640] xhci-hcd xhci-hcd.5.auto: new USB bus registered,
+assigned bus number 3
+[    0.792781] xhci-hcd xhci-hcd.5.auto: hcc params 0x0220fe64 hci
+version 0x110 quirks 0x0000808002000010
+[    0.792826] xhci-hcd xhci-hcd.5.auto: irq 90, io mem 0xfc400000
+[    0.793058] xhci-hcd xhci-hcd.5.auto: xHCI Host Controller
+[    0.793311] xhci-hcd xhci-hcd.5.auto: new USB bus registered,
+assigned bus number 4
+[    0.793327] xhci-hcd xhci-hcd.5.auto: Host supports USB 3.0 SuperSpeed
+[    0.793530] usb usb3: Manufacturer: Linux 6.14.0-rc1-2-rockchip-ARCH xhc=
+i-hcd
+[    0.793537] usb usb3: SerialNumber: xhci-hcd.5.auto
+[    0.794703] usb usb4: Manufacturer: Linux 6.14.0-rc1-2-rockchip-ARCH xhc=
+i-hcd
+[    0.794710] usb usb4: SerialNumber: xhci-hcd.5.auto
+
+>
+> Also, the green LED is constantly lit even when the trigger is set to
+> none and the brightness is set to 0. This made is a bit harder to
+> confirm that the blue LED was working. I haven't ruled out a mistake on
+> my end for this one yet either.
+Checking the schematic for the Max and the Ultra, they both use
+PWM4_M0 and PWM5_M1 to control the blue and green LEDs.
+
+Have you tried booting the vendor BSP 5.10 or 6.1 kernels? What's the
+behavior on those kernels? It's using GPIO pins there, whereas we're
+using PWM to be able to control brightness.
+
+>
+> I'll also see if I can give HDMI a test.
+Please report your results when you do. This is one of the differences
+from the Orange Pi 5 Max. The HDMI1 pinctrls does not use the default
+pinctrls like other RK3588 boards (including the Orange Pi 5 Plus).
+
+>
+> JE
+>
+> [1] https://github.com/jimmyhon/linux/tree/integrate-6.15
+>
+
+Jimmy
 
