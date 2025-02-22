@@ -1,370 +1,145 @@
-Return-Path: <devicetree+bounces-149859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1D78A409CC
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 17:00:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 026B1A40A31
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 17:45:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AF363BA91F
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 15:57:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51BEA18872BA
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 16:45:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 875981D63D3;
-	Sat, 22 Feb 2025 15:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 735532063FF;
+	Sat, 22 Feb 2025 16:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NfE3D0ul"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kfUqTW/H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 596CE1CDA3F;
-	Sat, 22 Feb 2025 15:57:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E9E142E7C
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 16:45:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740239821; cv=none; b=BEIfIZ/GxVe/+c5W1xZZ5WGnFK2NlTOKyU4M82GFsUGsbSkYiZgVh3FtGeyUc3Z5A5g7vMUEB+pUFtHKbY96etSsfJVreVTaAo2ng3/B1YLm5g38qdHKLPEUPdSOSRbRILwqMEFYLSwGQP2dUra8c1daid3th/0WsdKddgoxAEw=
+	t=1740242728; cv=none; b=K6E25daw4jtSijxzqMv1SKJDEYSHEDChKLIyPYb0/535cjoG9kuOpDDJp4sv3V4WaBPRxvY8jonZoW41JhtlZUeF1KeuIDcZVyU6oIjAG8nIBnXUjXQ3aQhPe3pJdbabj1C63r6e7B5pS+zdb4b+1z9l37xXHVMrzW74Sc1kJdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740239821; c=relaxed/simple;
-	bh=X9W99eyKCCVl+jjs+X+HEG5aWdDTZJ6O9eeXlGZgHIo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=b4Ru2QY5xWdlTG72pKeQhvAOo/ZpaETiNClVsfZwaEZu7gp2dj1SHqWLJoRT4xutjiztaP9YM0JldJJKOiUnHXevzx4bQTR5RjfkCXIX7eKmZMB+4vcju/tNChtGgbQVJcB54ZGiJkau5CYYjzEICrO9YZ0O5DmDopPuzUfUhOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NfE3D0ul; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 658E4C4CEE4;
-	Sat, 22 Feb 2025 15:56:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740239820;
-	bh=X9W99eyKCCVl+jjs+X+HEG5aWdDTZJ6O9eeXlGZgHIo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=NfE3D0ullPSwME2gEhJw0c44jhYZs5BBr7UUwuqFk2V40WucOM3O482iEfGDtes49
-	 a0C6QJFbP92YzLZYDav2t65AW34dqIT0nCD/48QXQXdbBnCLiyIl/OCUsx4Txsx231
-	 rWPSvr9wSpFjmK9fE0gFS6cXEY0D8vzIGPBX6FmVBGyaHVfwN7Mh4J5p9Xbtk6BRWl
-	 cJtxvxTBE6fdwX/+WTy4Fgg1jU3zCEZulclQ+Zr0Fzh6ihG95XM0hFEv9xuzNr7ug3
-	 DInfASsVVhOYEoMxt3NVuaxGWpi+ghgE2BRBbKXfYxYUeCf5m6SBvjjGBHZFBDqLF/
-	 qga1Nx127Iltw==
-Date: Sat, 22 Feb 2025 15:56:46 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Eason Yang <j2anfernee@gmail.com>
-Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- nuno.sa@analog.com, dlechner@baylibre.com, javier.carrasco.cruz@gmail.com,
- andriy.shevchenko@linux.intel.com, gstols@baylibre.com,
- olivier.moysan@foss.st.com, mitrutzceclan@gmail.com, tgamblin@baylibre.com,
- matteomartelli3@gmail.com, marcelo.schmitt@analog.com,
- alisadariana@gmail.com, joao.goncalves@toradex.com,
- thomas.bonnefille@bootlin.com, ramona.nechita@analog.com,
- herve.codina@bootlin.com, chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
- yhyang2@nuvoton.com, openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] iio: adc: add support for Nuvoton NCT7201
-Message-ID: <20250222155646.7fa6375a@jic23-huawei>
-In-Reply-To: <20250221090918.1487689-3-j2anfernee@gmail.com>
-References: <20250221090918.1487689-1-j2anfernee@gmail.com>
-	<20250221090918.1487689-3-j2anfernee@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1740242728; c=relaxed/simple;
+	bh=JXFsezySFMvH6dWTeipk0QmL7JcopcvOM6ol/N+7mjA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YK/Lc6YIZOlEAxoGhmHo/YErS6D8jCxeFA8ZAAN9da5OHqvD2yfuTnbRQT1Up6t933q2uIWvKOZm5wVVH9eoOzLBjVx+j4TBgJBDI41C/7UOaAK6UxsKNRbkvo3Lq93VyPWFwzVzc7y5CbPRUJFNJsP/CcL8DbhDyv/yHEl50Z0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kfUqTW/H; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-22113560c57so62819415ad.2
+        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 08:45:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740242726; x=1740847526; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=LZEW2F8jhxjQK9Q9oSPPUZJG+m/4ROcwe0KKWOIKsKM=;
+        b=kfUqTW/H8msq+2eH3LjTGu2tcmY+s3vp0m3rAX/IBWSsrPTVCaPf+6aOJ8UhY6nnvH
+         +K5zfLAZoIRl8uyIfjNMoTTU7AZJJ0PmUjvAoysdSheT3GDZmnPLZtuI31iwxp/XFEp2
+         P0/VMRdyeElF+n414RIOnM7Gh7S9r1xcNqKbNj+HjULJ6z0ScibGXTo/yzeS791PiRqS
+         k3qyfUNsPbd3em7xvPFpT36NzvPf9wFWc3NdGdkAusSvHCQHsdm8ms5OLz6QS0GB5iSx
+         UZ7JBqA1mllcNJY1++hdlibqCPtGCjlozIu10YTGXKG4lMyZ0Lr7oXFRBNXbgRE9XbrT
+         yXaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740242726; x=1740847526;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LZEW2F8jhxjQK9Q9oSPPUZJG+m/4ROcwe0KKWOIKsKM=;
+        b=ZlZQPtknFnES9RqdJf0Frjf/lVSxIW4wXqlO6WseL+WjBnli9Jr6EUMt4n+XLMKjp8
+         kqufYhFYi0ymQg5fX5Ao4QfyNvOD/OuxEiQLbuCg76Dtrj6vGQkpgi6wUhetzGcbrOrt
+         up9rpbpP/ehA5ZLYm331FfBtlEkLvHQNybDhoFQ7f4qrErW1LoUXtpBfRFEVNF67h0sO
+         fqvaJTQ2nYU968dFD0O642mn1Cq2fFAICIXZySs9WET5HaSwKvvwj71FO/e1CW+Kfd1j
+         BTQSiIRi7tlbpska4v5eT5resEZ13Iv0fXT2JBnvZRoTicl3Rqj36oFF+qgwiOWy+9Bd
+         AVaA==
+X-Forwarded-Encrypted: i=1; AJvYcCW13Pj/WliZ5kXCVlgPB8VRafVU3TbGeWU/y5ilrhyBnye0qcg28PkDZ7aDtQ7Cm9/o08o2u0zqU8TC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJL0JFkQKKnRukOOnGWguK9qm9OYlSyaSALgflX/H6eRXBclYg
+	+nVWFOEHx6KN5RBHKK/HsjX2J5IWsBAt5FQxA4/nVQjq4FiWwbPu5UMx1L4YKw==
+X-Gm-Gg: ASbGncsHrhy75YXyDPUv9Qf55+qpk2Uhax9ZupHJsYV2yC3sTlsj9rpsmog1IIuX/Dw
+	Xpd4u5l04/eSSopeCqRHJXg7TI2IUpOG8i60jszuuOrS7JbVwcnLLV1sCYTUm/b7lZ1DImJTggt
+	PA7wNkJJ7UPdK7i61pI0/rsTfKJWOJ820HJKxYPL/EZF7UnegsauzAUZcphKlc57jOZEFovKEa/
+	BCsLHAV9o7AeFn706azH3LJ1AmzWbEvvSALHEi34LJd3SYIw37UjPlMX/VXORVWHTxiRYPh3qvG
+	lDe6Y3bAz5rdOmbRzFbxWJuiqeEcecBFhqtGtg==
+X-Google-Smtp-Source: AGHT+IFefW7NdAtgrUtX0UD5D5oBiGvpdHU/yEEJULTisRJfCVMuYZyWxzWgJKzrin6iK0N9uqtPOg==
+X-Received: by 2002:a05:6a21:394c:b0:1ee:c8e7:2032 with SMTP id adf61e73a8af0-1eef52f8796mr10968813637.19.1740242726067;
+        Sat, 22 Feb 2025 08:45:26 -0800 (PST)
+Received: from thinkpad ([120.60.135.149])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73440ea9381sm1325845b3a.157.2025.02.22.08.45.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Feb 2025 08:45:25 -0800 (PST)
+Date: Sat, 22 Feb 2025 22:15:17 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mrinmay Sarkar <quic_msarkar@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/8] dt-bindings: PCI: qcom-ep: describe optional
+ dma-coherent property
+Message-ID: <20250222164517.2qkzdwofgjdb4yk5@thinkpad>
+References: <20250221-sar2130p-pci-v3-0-61a0fdfb75b4@linaro.org>
+ <20250221-sar2130p-pci-v3-1-61a0fdfb75b4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250221-sar2130p-pci-v3-1-61a0fdfb75b4@linaro.org>
 
-On Fri, 21 Feb 2025 17:09:18 +0800
-Eason Yang <j2anfernee@gmail.com> wrote:
-
-> Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
+On Fri, Feb 21, 2025 at 05:51:59PM +0200, Dmitry Baryshkov wrote:
+> Qualcomm SA8775P supports cache coherency on the PCIe EP controller.
+> Allow 'dma-coherent' property to be used for this device. This fixes
+> a part of the following error (the second part is fixed in the next
+> commit):
 > 
-> NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up to
-> 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins for
-> independent alarm signals, and the all threshold values could be set for
-> system protection without any timing delay. It also supports reset input
-> RSTIN# to recover system from a fault condition.
+> pcie-ep@1c10000: Unevaluated properties are not allowed ('dma-coherent', 'iommus' were unexpected)
 > 
-> Currently, only single-edge mode conversion and threshold events support.
+> Fixes: 4b220c6fa9f3 ("arm64: dts: qcom: sa8775p: Mark PCIe EP controller as cache coherent")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+- Mani
+
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> Signed-off-by: Eason Yang <j2anfernee@gmail.com>
-Hi Eason
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> index 1226ee5d08d1ae909b07b0d78014618c4c74e9a8..0c2ca4cfa3b190b3fb204f0d7142370734fb3534 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> @@ -91,6 +91,8 @@ properties:
+>        - const: pcie-mem
+>        - const: cpu-pcie
+>  
+> +  dma-coherent: true
+> +
+>    resets:
+>      maxItems: 1
+>  
+> 
+> -- 
+> 2.39.5
+> 
 
-A few comments from me. May well overlap in some places with other feedback.
-
-Jonathan
-
-> diff --git a/drivers/iio/adc/nct7201.c b/drivers/iio/adc/nct7201.c
-> new file mode 100644
-> index 000000000000..c5d1540bcc00
-> --- /dev/null
-> +++ b/drivers/iio/adc/nct7201.c
-> @@ -0,0 +1,487 @@
-
-> +
-> +#define NCT7201_VOLTAGE_CHANNEL(chan, addr)				\
-> +	{								\
-> +		.type = IIO_VOLTAGE,					\
-> +		.indexed = 1,						\
-> +		.channel = chan,					\
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-> +		.address = addr,					\
-> +		.event_spec = nct7201_events,				\
-> +		.num_event_specs = ARRAY_SIZE(nct7201_events),		\
-> +	}
-> +
-> +static const struct iio_chan_spec nct7201_channels[] = {
-> +	NCT7201_VOLTAGE_CHANNEL(1, 0),
-> +	NCT7201_VOLTAGE_CHANNEL(2, 1),
-> +	NCT7201_VOLTAGE_CHANNEL(3, 2),
-> +	NCT7201_VOLTAGE_CHANNEL(4, 3),
-> +	NCT7201_VOLTAGE_CHANNEL(5, 4),
-> +	NCT7201_VOLTAGE_CHANNEL(6, 5),
-> +	NCT7201_VOLTAGE_CHANNEL(7, 6),
-> +	NCT7201_VOLTAGE_CHANNEL(8, 7),
-> +};
-> +
-> +static const struct iio_chan_spec nct7202_channels[] = {
-> +	NCT7201_VOLTAGE_CHANNEL(1, 0),
-> +	NCT7201_VOLTAGE_CHANNEL(2, 1),
-> +	NCT7201_VOLTAGE_CHANNEL(3, 2),
-> +	NCT7201_VOLTAGE_CHANNEL(4, 3),
-> +	NCT7201_VOLTAGE_CHANNEL(5, 4),
-> +	NCT7201_VOLTAGE_CHANNEL(6, 5),
-> +	NCT7201_VOLTAGE_CHANNEL(7, 6),
-> +	NCT7201_VOLTAGE_CHANNEL(8, 7),
-> +	NCT7201_VOLTAGE_CHANNEL(9, 8),
-> +	NCT7201_VOLTAGE_CHANNEL(10, 9),
-> +	NCT7201_VOLTAGE_CHANNEL(11, 10),
-> +	NCT7201_VOLTAGE_CHANNEL(12, 11),
-We normally number channels from 0 which would simplify this but I don't really
-mind if you want to keep the offset of 1.  Maybe just have one macro
-parameter though and do the +1 in the macro.
-> +};
-
-> +static int nct7201_read_event_value(struct iio_dev *indio_dev,
-> +				    const struct iio_chan_spec *chan,
-> +				    enum iio_event_type type,
-> +				    enum iio_event_direction dir,
-> +				    enum iio_event_info info,
-> +				    int *val, int *val2)
-> +{
-> +	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-> +	u16 volt;
-> +	unsigned int value;
-> +	int err;
-> +
-> +	if (chan->type != IIO_VOLTAGE)
-> +		return -EOPNOTSUPP;
-> +
-> +	if (info != IIO_EV_INFO_VALUE)
-> +		return -EINVAL;
-> +
-> +	if (dir == IIO_EV_DIR_FALLING) {
-> +		err = regmap_read(chip->regmap16, NCT7201_REG_VIN_LOW_LIMIT(chan->address),
-> +				  &value);
-> +		if (err < 0)
-> +			return err;
-> +		volt = value;
-> +	} else {
-> +		err = regmap_read(chip->regmap16, NCT7201_REG_VIN_HIGH_LIMIT(chan->address),
-> +				  &value);
-> +		if (err < 0)
-> +			return err;
-> +		volt = value;
-No real point in assigning to volt here, 
-> +	}
-> +
-> +	*val = FIELD_GET(NCT7201_REG_VIN_MASK, volt);
-> +
-> +	return IIO_VAL_INT;
-> +}
-> +
-> +static int nct7201_write_event_value(struct iio_dev *indio_dev,
-> +				     const struct iio_chan_spec *chan,
-> +				     enum iio_event_type type,
-> +				     enum iio_event_direction dir,
-> +				     enum iio_event_info info,
-> +				     int val, int val2)
-> +{
-> +	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-> +
-> +	if (chan->type != IIO_VOLTAGE)
-> +		return -EOPNOTSUPP;
-> +
-> +	if (info != IIO_EV_INFO_VALUE)
-> +		return -EOPNOTSUPP;
-> +
-> +	if (dir == IIO_EV_DIR_FALLING)
-> +		regmap_write(chip->regmap16, NCT7201_REG_VIN_LOW_LIMIT(chan->address),
-> +			     FIELD_PREP(NCT7201_REG_VIN_MASK, val));
-> +	else
-> +		regmap_write(chip->regmap16, NCT7201_REG_VIN_HIGH_LIMIT(chan->address),
-> +			     FIELD_PREP(NCT7201_REG_VIN_MASK, val));
-Check for error returns.
-> +
-> +	return 0;
-> +}
-> +
-> +static int nct7201_read_event_config(struct iio_dev *indio_dev,
-> +				     const struct iio_chan_spec *chan,
-> +				     enum iio_event_type type,
-> +				     enum iio_event_direction dir)
-> +{
-> +	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-> +
-> +	if (chan->type != IIO_VOLTAGE)
-> +		return -EOPNOTSUPP;
-> +
-> +	return !!(chip->vin_mask & BIT(chan->address));
-> +}
-> +
-> +static int nct7201_write_event_config(struct iio_dev *indio_dev,
-> +				      const struct iio_chan_spec *chan,
-> +				      enum iio_event_type type,
-> +				      enum iio_event_direction dir,
-> +				      bool state)
-> +{
-> +	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-> +	unsigned int mask;
-> +
-> +	if (chan->type != IIO_VOLTAGE)
-> +		return -EOPNOTSUPP;
-> +
-> +	mask = BIT(chan->address);
-> +
-> +	if (!state && (chip->vin_mask & mask))
-> +		chip->vin_mask &= ~mask;
-> +	else if (state && !(chip->vin_mask & mask))
-> +		chip->vin_mask |= mask;
-> +
-> +	if (chip->num_vin_channels <= 8)
-> +		regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1, chip->vin_mask);
-> +	else
-> +		regmap_bulk_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1,
-> +				  &chip->vin_mask, sizeof(chip->vin_mask));
-
-Check errors on these writes.
-
-> +
-> +	return 0;
-> +}
-
-> +static int nct7201_init_chip(struct nct7201_chip_info *chip)
-> +{
-> +	u8 data[2];
-> +	unsigned int value;
-> +	int err;
-> +
-> +	regmap_write(chip->regmap, NCT7201_REG_CONFIGURATION,
-> +		     NCT7201_BIT_CONFIGURATION_RESET);
-
-Check for errors on all accesses to the device.  It can get
-fiddly in paths where you are already handling an error but
-that's not the case here.
-
-> +
-> +	/*
-> +	 * After about 25 msecs, the device should be ready and then
-> +	 * the Power Up bit will be set to 1. If not, wait for it.
-
-Wrap to 80 chars.
-
-> +	 */
-> +	mdelay(25);
-> +	err = regmap_read(chip->regmap, NCT7201_REG_BUSY_STATUS, &value);
-> +	if (err < 0)
-> +		return err;
-> +	if (!(value & NCT7201_BIT_PWR_UP))
-> +		return dev_err_probe(&chip->client->dev, -EIO,
-> +				     "Failed to power up after reset\n");
-> +
-> +	/* Enable Channel */
-> +	if (chip->num_vin_channels <= 8) {
-> +		data[0] = NCT7201_REG_CHANNEL_ENABLE_1_MASK;
-> +		err = regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1, data[0]);
-> +		if (err < 0)
-> +			return dev_err_probe(&chip->client->dev, -EIO,
-> +					     "Failed to write NCT7201_REG_CHANNEL_ENABLE_1\n");
-> +	} else {
-> +		data[0] = NCT7201_REG_CHANNEL_ENABLE_1_MASK;
-> +		data[1] = NCT7201_REG_CHANNEL_ENABLE_2_MASK;
-> +		err = regmap_bulk_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1,
-> +					data, ARRAY_SIZE(data));
-> +		if (err < 0)
-> +			return dev_err_probe(&chip->client->dev, -EIO,
-> +					    "Failed to write NCT7201_REG_CHANNEL_ENABLE_1 and NCT7201_REG_CHANNEL_ENABLE_2\n");
-> +	}
-> +
-> +	value = get_unaligned_le16(data);
-> +	chip->vin_mask = value;
-
-Local variable doesn't seem to add any benefits so just assign vin_mask directly.
-
-> +
-> +	/* Start monitoring if needed */
-> +	err = regmap_read(chip->regmap, NCT7201_REG_CONFIGURATION, &value);
-> +	if (err < 0)
-> +		return dev_err_probe(&chip->client->dev, -EIO,
-> +				     "Failed to read NCT7201_REG_CONFIGURATION\n");
-> +
-> +	regmap_set_bits(chip->regmap, NCT7201_REG_CONFIGURATION, NCT7201_BIT_CONFIGURATION_START);
-> +
-> +	return 0;
-> +}
-> +
-> +static int nct7201_probe(struct i2c_client *client)
-> +{
-> +	const struct nct7201_adc_model_data *model_data;
-> +	struct nct7201_chip_info *chip;
-> +	struct iio_dev *indio_dev;
-> +	int ret;
-> +
-> +	model_data = i2c_get_match_data(client);
-> +	if (!model_data)
-> +		return -EINVAL;
-> +
-> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*chip));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +	chip = iio_priv(indio_dev);
-> +
-> +	chip->regmap = devm_regmap_init_i2c(client, &nct7201_regmap8_config);
-> +	if (IS_ERR(chip->regmap))
-> +		return dev_err_probe(&client->dev, PTR_ERR(chip->regmap),
-> +			"Failed to init regmap\n");
-
-Where it doesn't lead to really long lines, align all parameters to just
-after the opening bracket.
-
-
-> +
-> +	chip->regmap16 = devm_regmap_init_i2c(client, &nct7201_regmap16_config);
-> +	if (IS_ERR(chip->regmap16))
-> +		return dev_err_probe(&client->dev, PTR_ERR(chip->regmap16),
-> +			"Failed to init regmap16\n");
-> +
-> +	chip->num_vin_channels = model_data->num_vin_channels;
-> +
-> +	ret = devm_mutex_init(&client->dev, &chip->access_lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	chip->client = client;
-> +
-> +	ret = nct7201_init_chip(chip);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	indio_dev->name = model_data->model_name;
-> +	indio_dev->channels = model_data->channels;
-> +	indio_dev->num_channels = model_data->num_channels;
-> +	if (client->irq)
-> +		indio_dev->info = &nct7201_info;
-> +	else
-> +		indio_dev->info = &nct7201_info_no_irq;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	return devm_iio_device_register(&client->dev, indio_dev);
-> +}
-
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
