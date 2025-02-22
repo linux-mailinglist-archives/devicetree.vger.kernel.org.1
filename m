@@ -1,182 +1,128 @@
-Return-Path: <devicetree+bounces-149739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84A57A4043C
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 01:34:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C87A9A40457
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 01:43:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 616EE4253A1
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:34:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC1F6169973
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 279453BBC1;
-	Sat, 22 Feb 2025 00:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12CFB5588F;
+	Sat, 22 Feb 2025 00:43:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bpS0MyCr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KzP33SR+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7875435948;
-	Sat, 22 Feb 2025 00:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF463597D
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 00:43:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740184470; cv=none; b=eQFWJoXPhrZDlmgsRazDD9Sdk/PqQYIzj2Z95723rvXa2Eaq24H+Jfeap1U9TPKO0EIX97JWliCNRFwjPT5Nao0Oogdk7bJKGUO9Wui4vT480GqaVkHq2Oqxn5KUOHQFtDdGTeMRLMoJt+bSyquC5/FqeqZdUHThFjspP6iXxPY=
+	t=1740184994; cv=none; b=AK82ce57iFgbaLznn2KCe6LMbNFCbq3/DJlGkKt2NFoxKQ3Vtmz6aIqA12l1t0C+Usc2TuB4eOz5W6KzzOpBt/brmPymvR+aMmND+gZ3eLKNZHUj6xLnehzgIsCGub0oMkBFKqyhPCfG8ubQth3CUwxjjNMoKkPBRqYkv7Z5uKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740184470; c=relaxed/simple;
-	bh=f1vgxh32DbPx0po+Ss3wIsjqVbC9YsEogM1Sg6vonzQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DbiRR/VsW9G830I8U6kCm0/EXISbhwjHaou3t8B0gqXiOlkLPSH6gWfVlBgeJxAUorCzoRnedRawDi+Py+1/f5xyUKUuYlvLNIqk+XC+1SLsNbF2pN47zWeaXaslMxjXJVsxUTEoudgn6KIj7JeIokROSxGCRY7jh0Opk14NjQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bpS0MyCr; arc=none smtp.client-ip=209.85.222.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7c04df48a5bso282431385a.2;
-        Fri, 21 Feb 2025 16:34:28 -0800 (PST)
+	s=arc-20240116; t=1740184994; c=relaxed/simple;
+	bh=6r9NvDVZOxd1+FXBugV/iaH5ExhH58VY6S09wppsyK4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RpDMHpXFE8hN/Roesv54K0yyYksbxCInPJHcS1r2CuNWB5AmFO/K7pFLWUTNTla0/9nNi16BwuH0uy8Gh4bsDfLfOvuGiqunTHAovwmLWq3xUdIuRF2w7ZwLEZR7M8DUaeTmBmhjM8C8AKTLcXGTPUxY14sG673eV6sK1ejgg/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KzP33SR+; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-548409cd2a8so370560e87.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2025 16:43:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740184467; x=1740789267; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wStl+6IKZhys/kjLjbrppMxAjOWicsS14gQYbb4jIcI=;
-        b=bpS0MyCrrB1IGS7WfgjfJgh7Vo2IK+mRjTRBay3745x9LiBgHSJF1uN2yAlnUvVj77
-         hYunKAJSdyDCT0EIVxiCoVoxRJg7G+yKRV73CQXyGB36LHTHFOyFSmYe1NvduHYrt4vZ
-         9eheBCmP57Bkjnc+sOAzGLAUllVcIrA/4vUXTDsDL+TbJbkECdzWsI0TuudfUtlZzfOn
-         sJkE7FCJSaVswye3nckiYf+RNsy8KU5ZaSBCFQnzLUuN8pae3dbe2RzX3Amqw2jqiYV0
-         w51FkwzVoF7qfqFAfixlYLIBMvKQE33BSUbOWm6ezf97lBFlslFtYiGtBOy/HddqRd85
-         dfUA==
+        d=linaro.org; s=google; t=1740184990; x=1740789790; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Va34volQUwpd0lqEoh8I/BGYl1sF6wHNMFNfDzJaKck=;
+        b=KzP33SR+9vPkTDvL/Ot2mMAXiVS3INFesdVJEYQgGwDw07ZPauLJ7pukw+pGL3bOCJ
+         tFVQZa1oPIcpKYDu6FEuID/WhbBPaoBY0S1GshmltwjO91jrgcL//V/bzCoB1GH4Ni0f
+         RNeXg9v4/IsZerScOyNkStLi8TP4p2STmdBu5YGUKe2efLMAm1NEcCTxkunxsmTddBp3
+         QNQyVdBBqCeA+yIEpP/EqXgDFnqP7Al8vo8ofeQwx5d2+GClH53wyqrb2b2KqPB6yqbA
+         j2TapxAONSKwZeErIJSRRD44nBlkGev7LlP5XAzvmo96iO//qK+7IR1LPG+Rvk/2sWek
+         aiNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740184467; x=1740789267;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wStl+6IKZhys/kjLjbrppMxAjOWicsS14gQYbb4jIcI=;
-        b=q1eTdgK5kFZwbn2PsdG2oMZKGz5V5k80pCiY+uJOpZLRnrPS6ef6h112uAj5kdnfGJ
-         IedxldjT0h0n3cvs8BSMSNADFFlKtzOwx0I+p/haTBUPR761/SHyF3yZxTwZaOBfN8FY
-         /05uCrE2mQ4CY2fRK/wpl3mV8eOSSPLyc20W16OGInknr8ppiVCvBKTsfQMsoenVj+qm
-         +e+nQiJcWN3UF3noLjieEVPc67IotBMLCdcD9aH50U/CrEUCn48I6T6NjdW7NQ6JSLlz
-         Rmtje1LWWujEr2g0WYTWcM1BduvPS76+xMYxNt9PJd+5eubVt52aJMqr4N4qyYW8lbW1
-         XmSg==
-X-Forwarded-Encrypted: i=1; AJvYcCVbehary3H7ORD0XigFbrjo8d4is2E5aBAHSTVOSLFQPPhVh/rdz0MsOHumLH2fgKB6mR8Tta/Sa8Qq@vger.kernel.org, AJvYcCWDKo8F5womTlHrlP1BnHWbMnsZtzULCKW4QqXcix3id1MQt9oUG830h36Js4DL2pi6nxNFHOKs69Sc8oYu@vger.kernel.org, AJvYcCXkEJpSSYaGDagGXWUeW6IBgi0LhOX5xupr+gtB60XZH/P50GbrBYAmgoRhH+1K06F/1F129x4ap+c1@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEhgvTvP94B25VzP0SGjiRAi/0ev9k/qkTVcgMnPR5/WrVIzeK
-	20okYuvx80eKhp3Gnv/SxMbJ0fGYsGnh586BUqnjMDeoHrSuiQDf
-X-Gm-Gg: ASbGncvg9O6CatkW+yyFlec16T7XrdSgEh6z9Znb0e+2KFHM0GZXLRe20LSqKT5ZVG4
-	IKyFSPz2u05nf1C3+j4xw0bNxXCS7LnbSW22b19l9s1qHvTiyo7fAGl2TMJj0gYopkh0LM2UJU8
-	Df0FBIGgzSFmpYbhSilU6BiqZv5fGd+ibFJEUSTgS0cjt4/+iUmOF2ZVLFIiabNMCCir5yCmt3t
-	l8OIh6IzaTv+0VJInnBbCYSrzWRQivbHid7AdcF3CFxglAHvwCfgHcByIgVQRDo0n/8DtFmA8BH
-	NQ==
-X-Google-Smtp-Source: AGHT+IFHrDz0qc8zD5XdcpfmhF3hdDGMdxF6JouYGWlJZR7lIXsOACUUisCSrhGBpwJguI83XxPhyw==
-X-Received: by 2002:a05:620a:1910:b0:7c0:ad3e:84a7 with SMTP id af79cd13be357-7c0cef1255amr657209885a.26.1740184467296;
-        Fri, 21 Feb 2025 16:34:27 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c09619fbfesm721817485a.18.2025.02.21.16.34.25
+        d=1e100.net; s=20230601; t=1740184990; x=1740789790;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Va34volQUwpd0lqEoh8I/BGYl1sF6wHNMFNfDzJaKck=;
+        b=xSdTdfHJz0rpQ1JMpCKWXJ7qJ4MZX8uYwkdcpRmHcPfaSAeC6ngBVnQVa9v7i3AyyA
+         FCzhhPqT1nFRgN0UOO6hW0geMVGazIjVcKoYVaQtzlXn54GyV86xZFfF8gBkmTOqujIa
+         23or+BMAzqm2717zmKnRisorfnquEvMjgyRQsi23oALxpVfgTjPybinXab9Ro0gZtYFE
+         CcdnYnocaqUFEkCQxrnWbLQYnPDvMyIzUmLoA3rNp/MXHJmgnwYsLMYtEZlDCTFgPMef
+         hADqt+bGBul6qtAsYW6EgrLvIMh2Q5mHsZhK5yAIC9zhszknrmW//uWQ8K1D3NxKnqlE
+         xgCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU5n1orJua8u+Zf+ZSRCkxMeWu9n+JJYRZhewvsfKU1PPvSnsnCoHqr8koOol7I21UC7LQH/eod1S39@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5McedL2ZXHgMUIsXfSUF7NTVvuVfenQzmEUY8c23c96+ckmtO
+	NHTGI7k2qikM8CSdWP+FzKUL/aZAJWo8FSJzLe9Cqd70/aFcK+mSi08+Cd84I+E=
+X-Gm-Gg: ASbGncvcGxaz2loPaLXNtK9grvGBbiqgY/wuKThNp9Tdz4LTpDzpBvzE92U9cGjdCPy
+	+fjxGDiEsz9dAcZngv6dA/oumBj6r88MRM6g14hjEbI2T0JcnMZWVJqxvVdUZPU8DlP1pLx5m9t
+	J7WXa9Lc1RDiP5674+YQXuOGflZim7mUZfalg8IFiHtoEqDd13SdJn53s/kgkWibwpcQJydB4N4
+	MuNDH3ZMKPHTubzL20HgzXk0mzN4iRLIeKS7PUOf+zudCphy9BoXzdHJP9/PhGE8chUBcLbmad4
+	a0bCL0LOgHS7fxwPgmwmeeB0gLeHw/c5Nw==
+X-Google-Smtp-Source: AGHT+IHW6AzEqg41ONAvf2JAYQ914QZwrhsnEGMBF8vrkjYSrGQkOEJPeA4nAoCS9xF4eeyaR1elDg==
+X-Received: by 2002:a05:6512:3b87:b0:545:5a5:b69d with SMTP id 2adb3069b0e04-54838efb008mr2523396e87.31.1740184989632;
+        Fri, 21 Feb 2025 16:43:09 -0800 (PST)
+Received: from umbar.lan ([192.130.178.90])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5452c301175sm2412090e87.139.2025.02.21.16.43.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Feb 2025 16:34:26 -0800 (PST)
-Date: Sat, 22 Feb 2025 08:34:10 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Niklas Cassel <cassel@kernel.org>, 
-	Shashank Babu Chinta Venkata <quic_schintav@quicinc.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pci: Add Sophgo SG2044 PCIe host
-Message-ID: <2egxw3r63cbsygpwqaltp4jjlkuwoh4rkwpgv4haj4sgz5sked@vkotadyk4g6y>
-References: <20250221013758.370936-1-inochiama@gmail.com>
- <20250221013758.370936-2-inochiama@gmail.com>
- <20250221-cavalier-cramp-6235d4348013@spud>
+        Fri, 21 Feb 2025 16:43:08 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH 0/2] arm64: dts: qcom: enable SLPI on RB3 and RB5 platforms
+Date: Sat, 22 Feb 2025 02:43:03 +0200
+Message-Id: <20250222-rb3-rb5-slpi-v1-0-6739be1684b6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250221-cavalier-cramp-6235d4348013@spud>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJcduWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDIyMj3aIkYyA21S3OKcjUtUxJSjYzMTVOTUuxUAJqKShKTcusABsXHVt
+ bCwAt/j4oXgAAAA==
+X-Change-ID: 20250222-rb3-rb5-slpi-9dbc6453efd8
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=610;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=6r9NvDVZOxd1+FXBugV/iaH5ExhH58VY6S09wppsyK4=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnuR2aI9lNBVN6mX7+J5+IcaAxZo2jmrP1ziHR0
+ KEHWDHhztaJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ7kdmgAKCRCLPIo+Aiko
+ 1XEOB/4+IuC2xlZycdEfwculJpkZukbx7ZknQoJVhM6gX3aZnH2INvIfL2XYwjn28vi1fd3G4/k
+ mCarpchiRcGdX1Cf//pr8osqKAIcK3LLXQdbmzcZWNrhHuOTH51CXcluNbFBP5oUShokxSXiAf4
+ j367MNOPXwilnH8mK1QnpFapdNw3EoruibsIX04Kif43UM4pTX47R49x0EESKY28TzJkuvc9Jjw
+ cYielC+5wpkZhFOJuX+/oeS0PWm6fmkHVAuLJJnu14OVlGPvxqSDuyM6oDx4IQ4qP+cBFj3svMo
+ 3vrR8gpWdPt2MUeNRp0BP2fRIeao1hAwCbyYovOzH1fi4KCM
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On Fri, Feb 21, 2025 at 05:01:41PM +0000, Conor Dooley wrote:
-> On Fri, Feb 21, 2025 at 09:37:55AM +0800, Inochi Amaoto wrote:
-> > The pcie controller on the SG2044 is designware based with
-> > custom app registers.
-> > 
-> > Add binding document for SG2044 PCIe host controller.
-> > 
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > ---
-> >  .../bindings/pci/sophgo,sg2044-pcie.yaml      | 125 ++++++++++++++++++
-> >  1 file changed, 125 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pci/sophgo,sg2044-pcie.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/sophgo,sg2044-pcie.yaml b/Documentation/devicetree/bindings/pci/sophgo,sg2044-pcie.yaml
-> > new file mode 100644
-> > index 000000000000..040dabe905e0
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pci/sophgo,sg2044-pcie.yaml
-> > @@ -0,0 +1,125 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pci/sophgo,sg2044-pcie.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: DesignWare based PCIe Root Complex controller on Sophgo SoCs
-> > +
-> > +maintainers:
-> > +  - Inochi Amaoto <inochiama@gmail.com>
-> > +
-> > +description: |+
-> > +  SG2044 SoC PCIe Root Complex controller is based on the Synopsys DesignWare
-> > +  PCIe IP and thus inherits all the common properties defined in
-> > +  snps,dw-pcie.yaml.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/pci/pci-host-bridge.yaml#
-> > +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: sophgo,sg2044-pcie
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: Data Bus Interface (DBI) registers
-> > +      - description: iATU registers
-> > +      - description: Config registers
-> > +      - description: Sophgo designed configuration registers
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: dbi
-> > +      - const: atu
-> > +      - const: config
-> > +      - const: app
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: core clk
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: core
-> > +
-> > +  dma-coherent: true
-> 
-> Why's this here? RISC-V is dma-coherent by default, with dma-noncoherent
-> used to indicate systems/devices that are not.
-> 
-> Cheers,
-> Conor.
-> 
+Enable Sensors DSP aka SLPI On Qualcomm RB3 (aka db845c) and RB5 boards.
 
-The PCIe is dma coherent, but the SoC itself is marked as
-dma-noncoherent. So I add dma-coherent to the binding. I
-wonder whether dma-coherent is necessary even in this case?
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Dmitry Baryshkov (2):
+      arm64: dts: qcom: sdm845-db845c: enable sensors DSP
+      arm64: dts: qcom: qrb5165-rb5: enable sensors DSP
 
-Regards,
-Inochi
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts   | 6 ++++++
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 6 ++++++
+ 2 files changed, 12 insertions(+)
+---
+base-commit: 0b77125c44649e993485ce9751de9b57a21ef4a6
+change-id: 20250222-rb3-rb5-slpi-9dbc6453efd8
+
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 
