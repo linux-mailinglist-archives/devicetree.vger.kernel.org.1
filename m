@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-149861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99D2EA40A38
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 17:46:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7455A40A40
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 17:47:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C21031885321
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 16:46:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C3A918843D4
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 16:47:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AEE13D984;
-	Sat, 22 Feb 2025 16:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0D3E1D63C5;
+	Sat, 22 Feb 2025 16:47:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K2Hk913w"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a6oC30cj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC457142E7C
-	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 16:45:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DB4012D758
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 16:47:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740242761; cv=none; b=ETwaZ7m1BKLb9E6eMvOjBHs32YjB8m4MFOVSdTN1I4axOJZVDJfdFs20WZYLyvoGPEUG0f0nJwc3hZicGuZIWQHUbyTLDB4Uu0miFLOAqpIS50EVR8pjpOWfXeTJgEavrrWS3Tq3Xb0Ezvk7IBzQtSgUMxIC5bD6TdZ/HPWba+E=
+	t=1740242858; cv=none; b=Y1PYMiYk3vucT+4i5FM0Fqq5xKmCTfW1mlBpVasGJIS3BMlCzAASV4r0O2vVcrZfghssZ1ie8wyDiFFSbi5+Z6FXF730RrNkEzawqE9OS4qDycpMd1thA88LjCkSKgWgxPqhLvjVuECof4BLTD90biuUMezWfVWiBasBxJ7fWOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740242761; c=relaxed/simple;
-	bh=HbhOkf5va9izRWN4DhX+2ILrR2FahUcR5Ju840IsDmk=;
+	s=arc-20240116; t=1740242858; c=relaxed/simple;
+	bh=xkRFKhnFEnAD58kFXG3gKfKhJMfoPrLt7gh+o9s6UKA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gAWU5GYA1SSjkV2Jv2b9cUCsH2VkLwZ65x3tvsZBwclLZwYDM0XeazxHgBiCDs3Q/bxHMX+H2E0hNAVYaeZfAuJdY2Pn8MrbAy5Tqs6ahV/FLJn8upZtw8y803YS291VOWEeN3m+anDRB8msbA8vdzW5F4ittyH6QeO7vVOlMR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K2Hk913w; arc=none smtp.client-ip=209.85.214.176
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hy5fnEai2lUH2blzGUqpcQNfkJvvXaSAuQDYPyNojo8fcaOYT78qM927o+Er2IsK1pQ8JQYTr50yETT8HL6EQ9b16W5WEYw3KPLcS8RI/OeC8ZGiebkyQhbxmcCVWaRIqfjb8GUHN8Yv2v6BQo6U8EvgsKBRxcS4X6IZPKD+szc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a6oC30cj; arc=none smtp.client-ip=209.85.214.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-22128b7d587so60003065ad.3
-        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 08:45:59 -0800 (PST)
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-220d398bea9so47416055ad.3
+        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 08:47:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740242759; x=1740847559; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1740242856; x=1740847656; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=npHEnlQklkIzG9S0yPJOdrGcjNp3Yqbn0DwAvN51LJ8=;
-        b=K2Hk913wBWdCBXJqs6hHfxZNdbIiuQUPwSwJmT7Kdm63TTmkBCl1WUjoUGthjPHROg
-         g7akvXbrEZyPAdB+ucrMT7O3oO2m/kkuKMwFbpvTpn0n3ABdJEHsOMiBk81hlef+DXkw
-         lXoLq783N+ORHeFd9yZqcVCVkL0pcWHGBCfTX1o1TP4nHtDbBYnGs6LhDeVsx3ZvXNuF
-         TkA01w2pMKEOvu94UF/ExX2OoEte+n+IXyqGaY4kwKmjabZnNTJtR9jZqlbpDt7z3Ei7
-         X87oaIrrYDJ/RoF5yj0edUUngeI5Rdws8qHOsCz5/RqYeREXBXkNc+J4VUtjHkC24WRa
-         txig==
+        bh=zJ7NQVTPXTDow2MBFx4sxVbqLZ6Sf0I/R5YTNHSvMMk=;
+        b=a6oC30cjXe7cBQQ01oSJlogHV84zCeph/LUBkdyEhOfIUfMFIVM1cPJQznCuLZPUA1
+         9s7yRmMh1vvydOERrfaoEvm9EuhxFUlMR0Rj2ZhGnHqCYJHGrI4ERSTligomx4xLsrFB
+         5Ll+Ubi0HNgJi+VSSOISSzcCDB4C1NI9G3o6SZnp3N3J+chrm+t9cTpFS3NWvKUyidcX
+         +uEK2A9pgyFqS6IXXX+fbjGli6C8AMTCwgXkAjMcDdFGbXFu9D/Dn7mcsyj1CiUEUdyk
+         NjNDXcRAGGA3EtG+0/1wzqTyn/tA/q91g+/xnij/167VxBFQSIVKMl7lhEjcxDPezfqm
+         o4Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740242759; x=1740847559;
+        d=1e100.net; s=20230601; t=1740242856; x=1740847656;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=npHEnlQklkIzG9S0yPJOdrGcjNp3Yqbn0DwAvN51LJ8=;
-        b=mlb7DI/HKSGmnOqm9hUflOZd8P3ybnvWja4LRYLuD3wkbDkVt5mKzdBNBUPd+N9qHx
-         zy/ZyI7iXjzuE7KZpu95Xwfu20/hZ7w5eSz1xAKSRpiXmQicNXdzk1qHp6FrO7ifZQJF
-         Q39GQVDjFFQOBrJUkTWj62dPxhFnP986fk/TV1WKy1m5AApkr9KXjKBNxxovlbe4wfNz
-         oOGlKOlEMk9N5G8XANTCZk76f02oT5LVpvMnWRsirfDWOQHmUCmFV2jRw+53ajV4YDy3
-         LYGP/6fHXTdWW2Moz0KPBz0YIFfvs2dG0fPyQ5eJB4TLNZFhC5XyCpmDMrt08rQry+4B
-         HsDA==
-X-Forwarded-Encrypted: i=1; AJvYcCWRvRhfVZW3og2VOpVISAE406L+LrGcki1tQZnPejth1Vv30UIHJ6ChB65ARxYrTgrUX2TpFgxBG3VO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJeJbr0Fh+Yhc1dC0+Lyqdn4X992b1BwseCGMk2tCGyBx4v+fd
-	Q67SkSy7U19HL5vwW6M7gtiNfXbWoiMeSSZTmpQ3WR355iVT2G2XZq3NuXlOEw==
-X-Gm-Gg: ASbGncsKSSp5PqcJRzX4HDpnKCCaxOUfAcBKnmfTf6ndDpJN5K9hRq6eKzIYjIp3tlK
-	gnlzvLglc5mw5LrTHyPr5q3M9HxG2aOGBAnAqlSkRZjFpYc2VQGm/xe2KBX151lJ7qi+FTCS3dW
-	c7vbsKVm+QHRPCWT9AocgaUfYT/UUHrczIfMM0XJ98BOR79cMrSs2sWjM2ChoqNa6ZnhRQGmO1I
-	zuHg4F8DOCJ924siUUruFDwSQFIpX8w184uQ7fsmZMqrrcQhVNcPo6mj1k5dORq93q8G0lppVWL
-	HzGzq+LFt5C8qXrN1C4RSkHqS5YrUveN9pPJDw==
-X-Google-Smtp-Source: AGHT+IEAg9fXG3M0fKnjbzdl5VZ4lVQEn0XTGMRwRl+F+PVh6Z/VGrlb+f87puQR4ZYwRqZLtT0tTg==
-X-Received: by 2002:a17:902:f550:b0:220:e63c:5b13 with SMTP id d9443c01a7336-2219fff4ef2mr110406945ad.46.1740242759049;
-        Sat, 22 Feb 2025 08:45:59 -0800 (PST)
+        bh=zJ7NQVTPXTDow2MBFx4sxVbqLZ6Sf0I/R5YTNHSvMMk=;
+        b=h7tK7L2BgnccqFdbAYkOeTQgexZOpctVY/8hPKwdvQX7jGA9RfmUuwdpVQ2tZMB+HY
+         T3mtGTTOlx138dYKhXra04luxUTnaPvsQi35PFfsL7stv+HSinp2biZ9PcZIKt3WzMf8
+         +RNnvVKJwXpXidPiV+PTjj0HBr9yXch+Hnrd3y4GioR75IqqmSryngTCQNWHCxKQ3hdU
+         Al0/I7VHULWz+XiJfex2YRzGBd3M7Bp9aHTz+oLm6eAsRaFb2FYPh9EmBNP8rWVjpkdi
+         g3mjdZxxwf6q9rEUIhvPk6sL1GzsDuNQEvBVK/Xt0WGkZBuItuAwPyBPDCTOgNk9GBft
+         DIwg==
+X-Forwarded-Encrypted: i=1; AJvYcCVb8S6KlTAUU+/u1MTWsaUTUGn+jTLJUGdyLStDKy2UU6WqoR3ZbCKTNv3sfPa+6jpbMFWIMKbBDArC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/b7kMIelCbjffJLdCDMBTHyFo6zschvMX7Mx/oUV7gjq252wT
+	P0IGzItqEr5CWuNZhgkYApWtH+eFZWHe8BseoJJIHiDV16BsHXtBOedbhWOB8g==
+X-Gm-Gg: ASbGncuYVSY62FkBqdJizzl6mhE/VfRaawlqylCkOl+0a92r+IGAQavcR3QGMT+1VTG
+	5tyesnJcS/lA9RE92Gmxz1O0uS3rkIx96LGnEi1zATiyBXcnaRSMKT9sIfkyWbo5WT8Ieu2U/sm
+	i1hO1muT7s4uvTbeEmpGI0BNPGlboZ+zlz2NWvzbeButuyFVTJmnth4gcbNtHxvXW+TIO6+zVz8
+	Nh8wxyzjcskYt0uDl1u1zlSARkFkm1y879fztZJxfhlPz0xImiJNOE/I8AUMLsKzwhFILfhDslw
+	Y7S2C9iOYX/oUpaNUWUzLaspzGXmlCBwViO+NQ==
+X-Google-Smtp-Source: AGHT+IG8mfk9DVO07sEMYxIy/TppsA1X7fgCLQ8dMAl2olyAokABZhmYBGxDPvxrOxubVbPS/Lfn3Q==
+X-Received: by 2002:a17:902:e812:b0:21f:4c8b:c4de with SMTP id d9443c01a7336-221a119192fmr118946245ad.42.1740242856520;
+        Sat, 22 Feb 2025 08:47:36 -0800 (PST)
 Received: from thinkpad ([120.60.135.149])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d545d09esm152627855ad.112.2025.02.22.08.45.53
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-220d53491f7sm152955845ad.38.2025.02.22.08.47.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Feb 2025 08:45:58 -0800 (PST)
-Date: Sat, 22 Feb 2025 22:15:50 +0530
+        Sat, 22 Feb 2025 08:47:36 -0800 (PST)
+Date: Sat, 22 Feb 2025 22:17:30 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
@@ -87,10 +87,11 @@ Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/8] dt-bindings: PCI: qcom-ep: describe optional IOMMU
-Message-ID: <20250222164550.smiisjruiyyket6u@thinkpad>
+Subject: Re: [PATCH v3 4/8] dt-bindings: PCI: qcom-ep: consolidate DMA vs
+ non-DMA usecases
+Message-ID: <20250222164730.kelz4csyvd46onyx@thinkpad>
 References: <20250221-sar2130p-pci-v3-0-61a0fdfb75b4@linaro.org>
- <20250221-sar2130p-pci-v3-2-61a0fdfb75b4@linaro.org>
+ <20250221-sar2130p-pci-v3-4-61a0fdfb75b4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,20 +101,14 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250221-sar2130p-pci-v3-2-61a0fdfb75b4@linaro.org>
+In-Reply-To: <20250221-sar2130p-pci-v3-4-61a0fdfb75b4@linaro.org>
 
-On Fri, Feb 21, 2025 at 05:52:00PM +0200, Dmitry Baryshkov wrote:
-> Some of Qualcomm platforms have an IOMMU unit between the PCIe IP and
-> DDR. For example, SA8775P specifies the iommu alththough it is not a
-> part of bindings. Change the schema in order to require the IOMMU for
-> SA8775P and forbid it from being used on SDX55 (SM8450 will be handled
-> in a later patch).
+On Fri, Feb 21, 2025 at 05:52:02PM +0200, Dmitry Baryshkov wrote:
+> On Qualcomm platforms here are two major kinds of PCIe EP controllers:
+> ones which use eDMA and IOMMU and the ones which do not (like SDX55 /
+> SDX65). It doesn't make sense to c&p similar properties all over the
+> place. Merge these two usecases into a single conditional clause.
 > 
-> This fixes the following warning:
-> 
-> pcie-ep@1c10000: Unevaluated properties are not allowed ('iommus' was unexpected)
-> 
-> Fixes: 9d3d5e75f31c ("dt-bindings: PCI: qcom-ep: Add support for SA8775P SoC")
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
@@ -121,37 +116,130 @@ Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 - Mani
 
 > ---
->  Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../devicetree/bindings/pci/qcom,pcie-ep.yaml      | 68 +++++++++++-----------
+>  1 file changed, 35 insertions(+), 33 deletions(-)
 > 
 > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> index 0c2ca4cfa3b190b3fb204f0d7142370734fb3534..6075361348352bb8d607acecc76189e28b03dc5b 100644
+> index d22022ff2760c5aa84d31e3c719dd4b63adbb4cf..2c1918ca30dcfa8decea684ff6bfe11c602bbc7e 100644
 > --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
 > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> @@ -75,6 +75,9 @@ properties:
->        - const: doorbell
->        - const: dma
+> @@ -131,6 +131,7 @@ required:
 >  
-> +  iommus:
-> +    maxItems: 1
+>  allOf:
+>    - $ref: pci-ep.yaml#
 > +
->    reset-gpios:
->      description: GPIO used as PERST# input signal
->      maxItems: 1
-> @@ -162,6 +165,7 @@ allOf:
->            maxItems: 2
->          interrupt-names:
->            maxItems: 2
+>    - if:
+>        properties:
+>          compatible:
+> @@ -140,9 +141,43 @@ allOf:
+>      then:
+>        properties:
+>          reg:
+> +          minItems: 6
+>            maxItems: 6
+>          reg-names:
+> +          minItems: 6
+>            maxItems: 6
+> +        interrupts:
+> +          minItems: 2
+> +          maxItems: 2
+> +        interrupt-names:
+> +          minItems: 2
+> +          maxItems: 2
 > +        iommus: false
+> +    else:
+> +      properties:
+> +        reg:
+> +          minItems: 7
+> +          maxItems: 7
+> +        reg-names:
+> +          minItems: 7
+> +          maxItems: 7
+> +        interrupts:
+> +          minItems: 3
+> +          maxItems: 3
+> +        interrupt-names:
+> +          minItems: 3
+> +          maxItems: 3
+> +      required:
+> +        - iommus
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sdx55-pcie-ep
+> +    then:
+> +      properties:
+>          clocks:
+>            items:
+>              - description: PCIe Auxiliary clock
+> @@ -161,11 +196,6 @@ allOf:
+>              - const: slave_q2a
+>              - const: sleep
+>              - const: ref
+> -        interrupts:
+> -          maxItems: 2
+> -        interrupt-names:
+> -          maxItems: 2
+> -        iommus: false
 >  
 >    - if:
 >        properties:
-> @@ -234,6 +238,8 @@ allOf:
->          interrupt-names:
->            minItems: 3
->            maxItems: 3
-> +      required:
-> +        - iommus
+> @@ -175,12 +205,6 @@ allOf:
+>                - qcom,sm8450-pcie-ep
+>      then:
+>        properties:
+> -        reg:
+> -          minItems: 7
+> -          maxItems: 7
+> -        reg-names:
+> -          minItems: 7
+> -          maxItems: 7
+>          clocks:
+>            items:
+>              - description: PCIe Auxiliary clock
+> @@ -201,14 +225,6 @@ allOf:
+>              - const: ref
+>              - const: ddrss_sf_tbu
+>              - const: aggre_noc_axi
+> -        interrupts:
+> -          minItems: 3
+> -          maxItems: 3
+> -        interrupt-names:
+> -          minItems: 3
+> -          maxItems: 3
+> -      required:
+> -        - iommus
+>  
+>    - if:
+>        properties:
+> @@ -218,12 +234,6 @@ allOf:
+>                - qcom,sa8775p-pcie-ep
+>      then:
+>        properties:
+> -        reg:
+> -          minItems: 7
+> -          maxItems: 7
+> -        reg-names:
+> -          minItems: 7
+> -          maxItems: 7
+>          clocks:
+>            items:
+>              - description: PCIe Auxiliary clock
+> @@ -238,14 +248,6 @@ allOf:
+>              - const: bus_master
+>              - const: bus_slave
+>              - const: slave_q2a
+> -        interrupts:
+> -          minItems: 3
+> -          maxItems: 3
+> -        interrupt-names:
+> -          minItems: 3
+> -          maxItems: 3
+> -      required:
+> -        - iommus
 >  
 >  unevaluatedProperties: false
 >  
