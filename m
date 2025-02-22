@@ -1,247 +1,155 @@
-Return-Path: <devicetree+bounces-149872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2246DA40AA4
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 18:28:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BD60A40AA9
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 18:28:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1910189DB98
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 17:28:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C1221892FC2
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 17:28:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C173120AF85;
-	Sat, 22 Feb 2025 17:27:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0C241F1506;
+	Sat, 22 Feb 2025 17:28:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gY+oOA88"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IbitMuKf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC963206F21;
-	Sat, 22 Feb 2025 17:27:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08FCD1487ED
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 17:28:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740245257; cv=none; b=gpzND+1IkXdiUooQX31A5z6yev2thQGqp0Y+INZj5XkVCJxMP2WqUeUz79/6GeAXh/15m7ZmVAWShOPpbJLs8QpEJPr/kxp3YPfVpMHmMDwT6edD2QIo3pi38ssNtefCT0q71eY4JB0+Gz+Z57cxImxu9HjpACaDWz27mAkLLug=
+	t=1740245319; cv=none; b=NO2MDnwz37FOl0MkZhbcYzvKJM6r189olev6Tep+O9wEyXwcgvnjyv1BVdXZzvYeyxH3gnnjBFv/g+zc1yBJ/ZlX+P2MAJKCHEhKhbsCtyKdEg9CDFy1dCUkFrnkkF3uy7SBM5gGJE8qowD4CsevWq9GqJTt63StqJOfT+Ki/iI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740245257; c=relaxed/simple;
-	bh=kTto4xIKc9Je695ZIz56kxuh+GmQXgr0EbFNnTRPPEk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E7w/JoKUZBUuZUeBApv4ojWlZAsGGCDcUVGFmwiyYjN64S9ve1rxYhsYJZHTwcx6u11pu+Jxnj64PyWEHknJrm7nmI7HEJWCSOVI+OpjHikNw3MyX4occYvkxsZioYSGyUyIsIgonrELPLOKQyASymcGXgzEr+thezFn+Uixy6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gY+oOA88; arc=none smtp.client-ip=209.85.221.47
+	s=arc-20240116; t=1740245319; c=relaxed/simple;
+	bh=QT+tTfv8WvbkbkVHFzZVxqJM0URBlFvHxgMCS/wyP3g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mEtxJ9CgLgEH/8Pd3/MHrdLLaC4r1ait1lP7egaBYFIibD73/q/x0lAokMRMbuI05IiGZPaASfTb9wOQePH6iG+YHJVlXzXePBovS+5nw0rpLRmi43/AcL5RCb8xvQsSwX8ARwViXTC0eOhmdS9+qbBqxc1OsK7HjyBTbMxAFY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IbitMuKf; arc=none smtp.client-ip=209.85.210.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-38f265c6cb0so1574588f8f.2;
-        Sat, 22 Feb 2025 09:27:35 -0800 (PST)
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-726819aa651so1490074a34.1
+        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 09:28:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740245254; x=1740850054; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KbsnDqo+jKFfG9OjzvRLLLNExokXEbWLQJQYr/9dkCM=;
-        b=gY+oOA88Lc/E++ExHm7d/DiODlhWMywe1EploJ827SszK9obAfGPeZJp00eETlq3Bb
-         ISOctJsyl1aqMaDRL/gMzP0CMjwTw74nRJgbhE9vHrUos6ivwS4E7A1kggCXB+FTJBHv
-         G1Le/L6dHKKxwtEo/YAJOWEJpjHf/4j9DLiZcI/KV0goQM+36JAE+R6Dml/+8Bx7i8Wm
-         9FPaURoZp166YzDaCcb0u0vr71//wRRGp/9oF86Q5J+uukP1KipzDUIUYeknGzwGWjCr
-         qbDnMxAJV7sU7zzvZpGupaCO98PHMsb73W8I8m8JUD396/gIGoFXR9+4NMmTRlKbIsOK
-         fRbQ==
+        d=gmail.com; s=20230601; t=1740245317; x=1740850117; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/RDwd1dzgwI+i7ONubzdJYvtvlrF6300doLfGnBg5ak=;
+        b=IbitMuKf1CyIIXWctJuZaHAsXvPvVuJ6nRL8WAOQMJPs53gFGh7RbZppm3HXkgJ33A
+         stKK/ymoxo+Gf5q0EN5udW3dHRBwvsPxU8cNkE/uaQjy9mp9neOgF86TAAXEZeVITKXQ
+         1UPjZQZld/gkUK0XW4PxPVhJl3qvES6TIPARIBSvO66sLm9lZCf+16lMTYFrgrRa5d9y
+         LnU+Jd1qPdrXAls3WNUAj2RczTLu2KxVuKNqY3XezBbyq2S4QG+KsAwz77BXCSEUa+Xq
+         ldp9BWHxow70cE/3AYaqsSFNyljhLHGpYLz9c4N9BEXVzN+UYdCRRNh3Kke7w9uvPdus
+         YXIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740245254; x=1740850054;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KbsnDqo+jKFfG9OjzvRLLLNExokXEbWLQJQYr/9dkCM=;
-        b=EjnYOGg4cJcjNU78b5MzNX1ruEOG6NRsT9XvF8uBUyj9VuR9qZ6Ai4G6l1b8XFZ9TN
-         FToeykXmKgvmm0uB4zOjJHTuuwsxIQcWsmwdQGb6UCzEWAjvI8KddSqj4EA6T+oZ28er
-         7XCOZ9cMjPhpgoTMw8+roUXVEJtvXNxL9zHf7mN6xXZW1M0duyuZohEmmSrBg53lQsM9
-         byW89sbBtp49DNX+oCU4ha6x11dh8U7nZXHhgNGVJIyt6EuTLlij12ZfxS7ramX6VKeb
-         wR3UIPV/1DQs64UUl2s6PcLyNJVN4B+JyXtFB1as5GSZvESCA1PMTzSJVCx/MqX6Qx36
-         /0sQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUIO24nTwiIgzPiVkzRsmO2rygHksYKY84dFM7o6WHNXJU0R1VIniC8oBk5bqJeQlzcf727IEa/SEBC@vger.kernel.org, AJvYcCWBjenEUfQPY+Kj5g6v2m3gyEpaYEnJ6Gv5rwtZ0fNke1bU2u23TsCFlZz/8ANHunVNMbbg6Os5li7rlaBh@vger.kernel.org, AJvYcCXMJxcIyciuhMkzrALe/mtwTYL6XNYiTViR3+D41fDB1XYGLKyXQmoPN3Jh7Wb9Zhrkln33HGqDS+WES5M=@vger.kernel.org, AJvYcCXiBAy1OjptAj7AxGz8eH30X9sl2VF8h5Od1co/rTRBRuXtazbkokMb9uhx4rHyfwB+F+aSnRjTSUP1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8/DDL35WQXv7JfGKkyGcZqJLBMnEJlcIcko3pyxtMYumaBRG0
-	iGEDAh/adEl9Mg2LdhInsCFXlsWA81BMDG7S2AfpHB8bO6jcdeZ2xb2zDdyBmB0jMUetEkpDb3M
-	WPGp1W3KIgck5v6fTIfVIDKnHqq0=
-X-Gm-Gg: ASbGncv6KOavgKP6HLQW/M9lZNQE9A4nVJhoO+NWrpGM1R6Oow9UJb3kAwoHiFFBEFz
-	kruBGnI6hYS6zU/yIyRA3jV6uUrqYbFPeEZ6ZrHGYYNbdNs9WcjYrb5HoNHTzY3uUDRxBe9MYOa
-	SvezR+SH7j
-X-Google-Smtp-Source: AGHT+IHTghOHN6kJstZnfUDas3illVWVKVD1L/KYEQOwU4ukfEOZ1p5i3lCyE5jNp0NA+6QNzUegyMxRltNkAdNG1UI=
-X-Received: by 2002:a05:6000:1541:b0:38d:d767:364 with SMTP id
- ffacd0b85a97d-38f70789915mr5506556f8f.13.1740245253661; Sat, 22 Feb 2025
- 09:27:33 -0800 (PST)
+        d=1e100.net; s=20230601; t=1740245317; x=1740850117;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/RDwd1dzgwI+i7ONubzdJYvtvlrF6300doLfGnBg5ak=;
+        b=QtdeDNlQG94UJ/FxokAlRjmUyg8de+HjjQSqme7iUOBKTVhtFJQnpHflHzZQgwunjn
+         gibqec6PkN2QllUkSIKPAaQnu8nc/LSaqV+LY4UXXNaT3EZPd9/34x9EtKv5BACkP65z
+         zOuZP5md8ZmuE75+0lvygatHRT9VoviFBi8smlpthZ8DTiwMFtOz8wTgBD+nv9sIRyWG
+         4yqw2JXbqqyny5vwBYIsQMunaYs5CDjuaTei+X2TWEqdrPpBZsMTRwFpnxKcfVgaosdl
+         9qGLLd9D+OPCpM3NDMHCB9zEH8cgEtLnqA2mtXpUIwTl8kWtu4XPxQiiaxoAO7VeRW3e
+         L/MQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWCVYzvA1bFMih5DU5oh/TNw89rmkeDc8HPF0mS18ucE+QWc1YYkRGW/t6d1RjqBIT8Xb/Pp3NgQ67a@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxn3ayzzspwDFDsvxQ4A2BY2WpzG0uk7q1FMweb5snfhm1cAI8Y
+	rTD/7UDB5EH7NGZUwPz6r+B3XUFiOj42EZS/RMENxHRGbsUluIFH
+X-Gm-Gg: ASbGncs7QXDGCei6gs69mMbmis/9lfgiRQrHBatqbcU7F/dMJmJkNsgfVj/eS+ZpW72
+	kNBN6yzNzl4tsfyLYTIcJTuyXvG9RVT3ihywxzIvVmFXPNG0TSYZ5aBVxrXKmRCJrRUBhyf7KCC
+	Ca0cYG+RoVELhpLiv9oFlNBTMRNhgNmJIHScYk0JoC6+yZM9TG93pHPiUTsWqNcEiqalq0ddzH2
+	GcF38Bz06XLMOdng7ReiPJdm9Uk+gMTzmGZRgBz40MOz0Hbh/R+wCOUg6Jr0QXYPUHSq513SA+P
+	7igPIJpxlfKElgUgcfEZFfEUYmdkCmWd6AI=
+X-Google-Smtp-Source: AGHT+IF0NTsU8DfMoaFZ2lsiXddsrGmALe0QLSbx/QBGxRbH4pRWZ/f5aNtmVBWOMYxv3yoy32tzkA==
+X-Received: by 2002:a05:6808:1815:b0:3f4:1197:29ba with SMTP id 5614622812f47-3f425a5fa53mr5553662b6e.2.1740245316893;
+        Sat, 22 Feb 2025 09:28:36 -0800 (PST)
+Received: from tower.cjhon.com ([2603:8081:ad00:4a:996a:132b:43a2:f7b0])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2b963a0ac4bsm7244238fac.47.2025.02.22.09.28.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Feb 2025 09:28:35 -0800 (PST)
+From: Jimmy Hon <honyuenkwun@gmail.com>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Johannes Erdfelt <johannes@erdfelt.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Jimmy Hon <honyuenkwun@gmail.com>
+Subject: [PATCH v6 0/5] Orange Pi 5 Ultra
+Date: Sat, 22 Feb 2025 11:27:47 -0600
+Message-ID: <20250222172752.6254-1-honyuenkwun@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217140336.107476-1-clamor95@gmail.com> <20250217140336.107476-3-clamor95@gmail.com>
- <20250222125335.177fc746@jic23-huawei> <CAPVz0n3YHgct6x_3-mhzmTOTejLj19xDLm9C8Dqe-GHv8fJBrA@mail.gmail.com>
- <20250222172536.5fb73658@jic23-huawei>
-In-Reply-To: <20250222172536.5fb73658@jic23-huawei>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Sat, 22 Feb 2025 19:27:22 +0200
-X-Gm-Features: AWEUYZkvzLoKnhe8MH6tySC-2B2ZPIvM1dNMIpsUstCBCrCwQzT8EZK5RGz6gdI
-Message-ID: <CAPVz0n1xCFKzCFf7oM0vYKLQX1eb4_JnehVNPz0Cpxfb5COfsA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] iio: light: Add support for AL3000a illuminance sensor
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>, Matti Vaittinen <mazziesaccount@gmail.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Emil Gedenryd <emil.gedenryd@axis.com>, 
-	Arthur Becker <arthur.becker@sentec.com>, Mudit Sharma <muditsharma.info@gmail.com>, 
-	Per-Daniel Olsson <perdaniel.olsson@axis.com>, Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>, 
-	Ivan Orlov <ivan.orlov0322@gmail.com>, David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-=D1=81=D0=B1, 22 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 19:25 Jona=
-than Cameron <jic23@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Sat, 22 Feb 2025 14:56:41 +0200
-> Svyatoslav Ryhel <clamor95@gmail.com> wrote:
->
-> > =D1=81=D0=B1, 22 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 14:53 =
-Jonathan Cameron <jic23@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
-> > >
-> > > On Mon, 17 Feb 2025 16:03:35 +0200
-> > > Svyatoslav Ryhel <clamor95@gmail.com> wrote:
-> > >
-> > > > AL3000a is a simple I2C-based ambient light sensor, which is
-> > > > closely related to AL3010 and AL3320a, but has significantly
-> > > > different way of processing data generated by the sensor.
-> > > >
-> > > > Tested-by: Robert Eckelmann <longnoserob@gmail.com>
-> > > > Tested-by: Antoni Aloy Torrens <aaloytorrens@gmail.com>
-> > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > Reviewed-by: David Heidelberg <david@ixit.cz>
-> > >
-> > > Whilst I am confused by earlier statements about not
-> > > having information on the conversion to illuminance values, I'm
-> > > going to assume the look up table in here is based on some
-> > > reasonable data from somewhere and hence that this is a sensor
-> > > with appropriate filtering of the light to be able to do a non linear
-> > > conversion from the value read and standard light curves.
-> > >
-> > > As such the IIO_LIGHT channel type is fine for this device.
-> > >
-> >
-> > Thank you, but IIO_INTENSITY may be proper channel as well, after your
-> > explanations. If you wish, I may upload v5 with swapping LIGHT with
-> > INTENSITY.
->
-> Where does the lux_table set of values come from?
-> That seems to be key question for this driver.
->
+Add device-tree for Orange Pi 5 Ultra
 
-3.1.10 kernel driver for this device
+Thanks to Johannes for testing
 
-> >
-> > > Applied patches 1 and 2 to the togreg branch of iio.git.
-> > > Note that I'll initially push this out as testing to allow
-> > > the autobuilders to see if they can find any issues that we missed.
-> > > Patch 3 will need to go via the appropriate SoC tree as normal.
-> > >
-> > > Jonathan
-> > >
-> > > > ---
-> > > >  drivers/iio/light/Kconfig   |  10 ++
-> > > >  drivers/iio/light/Makefile  |   1 +
-> > > >  drivers/iio/light/al3000a.c | 209 ++++++++++++++++++++++++++++++++=
-++++
-> > > >  3 files changed, 220 insertions(+)
-> > > >  create mode 100644 drivers/iio/light/al3000a.c
-> > > >
-> > > > diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
-> > > > index 29ffa8491927..37f83e1d8893 100644
-> > > > --- a/drivers/iio/light/Kconfig
-> > > > +++ b/drivers/iio/light/Kconfig
-> > > > @@ -43,6 +43,16 @@ config ADUX1020
-> > > >        To compile this driver as a module, choose M here: the
-> > > >        module will be called adux1020.
-> > > >
-> > > > +config AL3000A
-> > > > +     tristate "AL3000a ambient light sensor"
-> > > > +     depends on I2C
-> > > > +     help
-> > > > +       Say Y here if you want to build a driver for the Dyna Image=
- AL3000a
-> > > > +       ambient light sensor.
-> > > > +
-> > > > +       To compile this driver as a module, choose M here: the
-> > > > +       module will be called al3000a.
-> > > > +
-> > > >  config AL3010
-> > > >       tristate "AL3010 ambient light sensor"
-> > > >       depends on I2C
-> > > > diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefil=
-e
-> > > > index f14a37442712..03f10786273a 100644
-> > > > --- a/drivers/iio/light/Makefile
-> > > > +++ b/drivers/iio/light/Makefile
-> > > > @@ -7,6 +7,7 @@
-> > > >  obj-$(CONFIG_ACPI_ALS)               +=3D acpi-als.o
-> > > >  obj-$(CONFIG_ADJD_S311)              +=3D adjd_s311.o
-> > > >  obj-$(CONFIG_ADUX1020)               +=3D adux1020.o
-> > > > +obj-$(CONFIG_AL3000A)                +=3D al3000a.o
-> > > >  obj-$(CONFIG_AL3010)         +=3D al3010.o
-> > > >  obj-$(CONFIG_AL3320A)                +=3D al3320a.o
-> > > >  obj-$(CONFIG_APDS9300)               +=3D apds9300.o
-> > > > diff --git a/drivers/iio/light/al3000a.c b/drivers/iio/light/al3000=
-a.c
-> > > > new file mode 100644
-> > > > index 000000000000..e2fbb1270040
-> > > > --- /dev/null
-> > > > +++ b/drivers/iio/light/al3000a.c
-> > > > @@ -0,0 +1,209 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > > +#include <linux/array_size.h>
-> > > > +#include <linux/bitfield.h>
-> > > > +#include <linux/device.h>
-> > > > +#include <linux/err.h>
-> > > > +#include <linux/i2c.h>
-> > > > +#include <linux/mod_devicetable.h>
-> > > > +#include <linux/module.h>
-> > > > +#include <linux/pm.h>
-> > > > +#include <linux/regmap.h>
-> > > > +#include <linux/regulator/consumer.h>
-> > > > +#include <linux/types.h>
-> > > > +
-> > > > +#include <linux/iio/iio.h>
-> > > > +
-> > > > +#define AL3000A_REG_SYSTEM           0x00
-> > > > +#define AL3000A_REG_DATA             0x05
-> > > > +
-> > > > +#define AL3000A_CONFIG_ENABLE                0x00
-> > > > +#define AL3000A_CONFIG_DISABLE               0x0b
-> > > > +#define AL3000A_CONFIG_RESET         0x0f
-> > > > +#define AL3000A_GAIN_MASK            GENMASK(5, 0)
-> > > > +
-> > > > +/*
-> > > > + * These are pre-calculated lux values based on possible output of=
- sensor
-> > > > + * (range 0x00 - 0x3F)
-> > > > + */
-> > > > +static const u32 lux_table[] =3D {
-> > > > +     1, 1, 1, 2, 2, 2, 3, 4,                                 /* 0 =
-- 7 */
-> > > > +     4, 5, 6, 7, 9, 11, 13, 16,                              /* 8 =
-- 15 */
-> > > > +     19, 22, 27, 32, 39, 46, 56, 67,                         /* 16=
- - 23 */
-> > > > +     80, 96, 116, 139, 167, 200, 240, 289,                   /* 24=
- - 31 */
-> > > > +     347, 416, 499, 600, 720, 864, 1037, 1245,               /* 32=
- - 39 */
-> > > > +     1495, 1795, 2155, 2587, 3105, 3728, 4475, 5373,         /* 40=
- - 47 */
-> > > > +     6450, 7743, 9296, 11160, 13397, 16084, 19309, 23180,    /* 48=
- - 55 */
-> > > > +     27828, 33408, 40107, 48148, 57803, 69393, 83306, 100000 /* 56=
- - 63 */
-> > > > +};
-> > >
->
+The schematic has been published for the Orange 5 Ultra. [1]
+
+It's a sibling of the Orange Pi 5 Max [2] with the HDMI0 switched out 
+for the HDMI RX. As a side affect the pin for USB_OTG_PWREN [3][4] has 
+changed.
+
+Also, the Ultra's PWM_LEDs have the polarity inverted
+
+Patch 1 can be included in 6.14-fixes
+Patch 2 and 3 can be used on 6.14-rc1
+Patch 4 can be used with 6.15-rc1
+Patch 5 is waiting for HDMI audio patchset [5]
+
+My testing branch with dependent patchsets is on github [6]. This now 
+includes extra patch in clk to throw NOENT [7]
+
+[1] http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-5-Ultra.html
+[2] http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-5-Max.html
+[3] https://github.com/orangepi-xunlong/linux-orangepi/blob/orange-pi-6.1-rk35xx/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts#L306
+[4] https://github.com/orangepi-xunlong/linux-orangepi/blob/orange-pi-6.1-rk35xx/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts#L321
+[5] https://lore.kernel.org/linux-rockchip/20250217215641.372723-1-detlev.casanova@collabora.com/
+[6] https://github.com/jimmyhon/linux/tree/integrate-6.15
+[7] https://lore.kernel.org/linux-rockchip/2425191.NG923GbCHz@diego/
+
+Changes in v6:
+- Add R-b from Rob
+- More differences between Max and Ultra
+- Ultra PWM_LEDs have different polarity than Max
+Link to v5: https://lore.kernel.org/linux-rockchip/20250220041010.3801-1-honyuenkwun@gmail.com/
+
+Changes in v5:
+- add USB 3.0
+- add HDMI1
+- add HDMI audio
+Link to v4: https://lore.kernel.org/linux-rockchip/20241229184256.1870-10-honyuenkwun@gmail.com/
+
+Jimmy Hon (5):
+  arm64: dts: rockchip: Differences in Orange Pi 5 Max
+  dt-bindings: arm: rockchip: Add Xunlong Orange Pi 5 Ultra
+  arm64: dts: rockchip: Add Orange Pi 5 Ultra board
+  arm64: dts: rockchip: Enable HDMI1 on Orange Pi 5 Ultra
+  arm64: dts: rockchip: Enable HDMI1 audio output for Orange Pi 5 Ultra
+
+ .../devicetree/bindings/arm/rockchip.yaml     |  3 +-
+ arch/arm64/boot/dts/rockchip/Makefile         |  1 +
+ .../rockchip/rk3588-orangepi-5-compact.dtsi   |  9 --
+ .../dts/rockchip/rk3588-orangepi-5-max.dts    |  8 ++
+ .../dts/rockchip/rk3588-orangepi-5-ultra.dts  | 83 +++++++++++++++++++
+ 5 files changed, 94 insertions(+), 10 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts
+
+base-commit: fa15cc73121279f93757ec76312b0d0b73f7462a
+prerequisite-patch-id: e7cb3b62d173506d38a10a8e71eedd62ba6a1bc0
+-- 
+2.48.1
+
 
