@@ -1,63 +1,68 @@
-Return-Path: <devicetree+bounces-149735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79841A403C9
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:53:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4587A403D9
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 01:07:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 157803B7475
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2025 23:53:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68EE43BB8B7
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 00:07:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B34254B07;
-	Fri, 21 Feb 2025 23:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440AA800;
+	Sat, 22 Feb 2025 00:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WGB2ubSj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b2fs5jSv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AF87254AE0;
-	Fri, 21 Feb 2025 23:53:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19EC94C6C;
+	Sat, 22 Feb 2025 00:07:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740181991; cv=none; b=LQAoIZFRdhMhQR+zPwFzJfGjbd4OEfuUeC30WI1h1N61aOiRNq70li7oVSmGRQ1awcBw931YU3beVzcZAORAgKr8rBRYbS9SJv3kKWitVIgrm5NWtudY2OudhAMnEFQFkM2ULfb7Yoxz/mlYBjMImvV8uVk3/Ay+Q9vEplCwKTc=
+	t=1740182857; cv=none; b=rQ/W6rQLxlezuBIZXdnjwpmGAW7w+CRpPSGGv6jwoZBryyvC7VS2CSR+9tOFLSwRep8rSdLOK7H1zEhrzSkIcWd19wttblwYrExEVUtsgLrisg2pAYjBRxe3gZdi5N+qcT+8/pE7fzssniop3G2BuhGYfeaMRsqo41O7MJnkI0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740181991; c=relaxed/simple;
-	bh=/YFrwlZgyvLoJMUeq+tvf10yh7R4xJNFEg5KwtEoi2M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Em+tkEU0mxqfQRC/UJxuZvhoHaLMR4I6I1GVQTG5ZlqSNkEnKtlYozFcgRscWtns41GNwkm67UmT1ZhJM7wzyPHzDaJ6dSyE7gCfsLHu+ewknYImfHqAtv6ub7HdkwhCnJXHnmsBAWKRyPVVp9NpTJ0PasegTiykZnTeFanMyPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WGB2ubSj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8F5EC4CED6;
-	Fri, 21 Feb 2025 23:53:09 +0000 (UTC)
+	s=arc-20240116; t=1740182857; c=relaxed/simple;
+	bh=AWj4ITZuRanuJ+M84ptjWCJk4l50otylm68xoUwxSgs=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=j/LR+MGSu7rBCx+Yg0eEWXbYd3SFKgnyTTcXWI7G610YmaGiFdf2T2fpVbu7g2jzU0ZssktUF292JaanDvA/f0wfXb1UN3jkxCFWh54Q8tx63zYDBaAvCC0WhDJX+CqBCZkGuzG8ONIkrBCbPA3gexGXKvta6JX0cCjwtLoIwM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b2fs5jSv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F75AC4CED6;
+	Sat, 22 Feb 2025 00:07:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740181989;
-	bh=/YFrwlZgyvLoJMUeq+tvf10yh7R4xJNFEg5KwtEoi2M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WGB2ubSjMbE6ueP9Gqq/84p4aoMNKf5redslySU1HfRmrAGAB+WTs0uN0rlcHj2/S
-	 /C33QhzEcp347yjR7IjJfmzQAZaMwDFv97KvhwwXzN01mYS1puRP4RAkqhJZTRy516
-	 t8BxpUPsAU+QgITpLUJxHCTWHRphP4ebBQFsZGs1KF+YJi0OW56vzjt8XTXijJFVPJ
-	 CHDLgVM/4xGktwYIkgHFEvlkqtLJ4JeH+gZR/UY+q4I6zYEEPEmMbI0Yf/bCogRcOl
-	 6xTfn4UyKw/F3TtA32gdHnr3JAmIcz8q7+Qwjcd7ZX5bLRYKUxJ9vjnJ078aFlOMvm
-	 bmlu6PSROh/rQ==
-Date: Fri, 21 Feb 2025 17:53:07 -0600
-From: Rob Herring <robh@kernel.org>
-To: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@linaro.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	s=k20201202; t=1740182856;
+	bh=AWj4ITZuRanuJ+M84ptjWCJk4l50otylm68xoUwxSgs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=b2fs5jSvzjiXNBjYZMclGhfJIA7V+BQx9LiQB8PGf5kbHASKga5yF4WsFKCbBpt8M
+	 dlyRA7mDkiuF4ZGwRP1NbkGuVTYM6naci/SCiqugfhxKJCQd/i1q/9Q54QbdibkdEn
+	 dqgVLT3UMG4L8e1ZFFpHsLeJTxwtDh5EG/V/HDaIerZBaD/TO8IgbleYjuvzxanGqg
+	 bEF3zrzxSwhYJ5h4C3zHgzMaLR+TFo7KefxHmRbcAtDu0d63+HsfgqqUqNdgc3krqP
+	 wD7/HM+Fwu46kKbLlhxGP9iQWdiDFxa3a65sdM/lSya7bwWZ/QicToi6rc91engsnS
+	 LJ7R4Vr+nq9Iw==
+Date: Fri, 21 Feb 2025 18:07:35 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Hui Ma =?utf-8?B?KOmprOaFpyk=?= <Hui.Ma@airoha.com>,
+	Ryder Lee <Ryder.Lee@mediatek.com>,
+	Jianjun Wang =?utf-8?B?KOeOi+W7uuWGmyk=?= <Jianjun.Wang@mediatek.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel@quicinc.com,
-	linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org, kernel@oss.qualcomm.com,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: arm: Add Coresight device Trace NOC
- definition
-Message-ID: <20250221235307.GA401276-robh@kernel.org>
-References: <20250221-trace-noc-driver-v1-0-0a23fc643217@quicinc.com>
- <20250221-trace-noc-driver-v1-1-0a23fc643217@quicinc.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	Frank Li <Frank.li@nxp.com>, upstream <upstream@airoha.com>
+Subject: Re: =?utf-8?B?5Zue5aSNOiBbUEFUQ0ggdjIgMi8y?= =?utf-8?Q?=5D_PCI?=
+ =?utf-8?Q?=3A?= mediatek-gen3: Configure PBUS_CSR registers for EN7581 SoC
+Message-ID: <20250222000735.GA373804@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,152 +71,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250221-trace-noc-driver-v1-1-0a23fc643217@quicinc.com>
+In-Reply-To: <Z7kJ3Ejd4Mi_Lj0b@lore-desk>
 
-On Fri, Feb 21, 2025 at 03:40:28PM +0800, Yuanfang Zhang wrote:
-> Adds new coresight-tnoc.yaml file describing the bindings required
-> to define Trace NOC in the device trees.
+On Sat, Feb 22, 2025 at 12:18:52AM +0100, Lorenzo Bianconi wrote:
+> [...]
 > 
-> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-> ---
->  .../bindings/arm/qcom,coresight-tnoc.yaml          | 107 +++++++++++++++++++++
->  1 file changed, 107 insertions(+)
+> > >
+> > > 	Pbus-csr (base and mask) is used to determine the address
+> > > 	range can be access by PCIe bus.
+> > > 
+> > > 1FBE3400 PCIE0_MEM_BASE 32 PCIE0 base address
+> > > 1FBE3404 PCIE0_MEM_MASK 32 PCIE0 base address mask
+> > > 1FBE3408 PCIE1_MEM_BASE 32 PCIE1 base address
+> > > 1FBE340C PCIE1_MEM_MASK 32 PCIE1 base address mask
+> > > 1FBE3410 PCIE2_MEM_BASE 32 PCIE2 base address
+> > > 1FBE3414 PCIE2_MEM_MASK 32 PCIE2 base address mask
+> > 
+> > "Can be accessed by PCIe bus" sounds like DMA.  Is that what you mean?
+> > 
+> > I doubt it, because if you have multiple host bridges, I assume they
+> > would all be able to handle DMA to all of system memory.
+> > 
+> > It would make more sense if this is some sort of description of host
+> > bridge apertures, e.g., something like this to allow CPU MMIO accesses
+> > to reach the first 2GB of PCI memory space below any of the pcie0,
+> > pcie1, pcie2 host bridges:
+> > 
+> >   pcie0 0000:00: root bus resource [mem 0x84000000000-0x8407fffffff] (bus address [0x00000000-0x7fffffff])
+> >   pcie1 0001:00: root bus resource [mem 0x84100000000-0x8417fffffff] (bus address [0x00000000-0x7fffffff])
+> >   pcie2 0002:00: root bus resource [mem 0x84200000000-0x8427fffffff] (bus address [0x00000000-0x7fffffff])
+> > 
+> > But I think this would be described via 'ranges' properties.  And I
+> > think it would make sense if the driver had to learn this address map
+> > from devicetree and program it into the hardware, so maybe that's
+> > what Pbus-csr is for?  Total speculation on my part.
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..b8c1aaf014fb483fd960ec55d1193fb3f66136d2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml
-> @@ -0,0 +1,107 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/qcom,coresight-tnoc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Ttrace NOC(Network On Chip)
-> +
-> +maintainers:
-> +  - yuanfang Zhang <quic_yuanfang@quicinc.com>
-> +
-> +description:
-> +  The Trace NoC is an integration hierarchy which is a replacement of Dragonlink tile configuration.
-> +  It brings together debug component like TPDA, funnel and interconnect Trace Noc which collects trace
-> +  from subsystems and transfers to QDSS sink.
-> +
-> +  It sits in the different subsystem of SOC and aggregates the trace and transports it to Aggregation TNoC
-> +  or to QDSS trace sink eventually. Trace NoC embeds bridges for all the interfaces(APB, ATB, QPMDA & NTS).
-> +
-> +  Trace NoC can take inputs from different trace sources i.e. ATB, QPMDA.
-
-Wrap lines at 80 char. And you need '>' to preserve paragraphs.
-
-> +
-> +# Need a custom select here or 'arm,primecell' will match on lots of nodes
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - qcom,coresight-tnoc
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^tn(@[0-9a-f]+)$"
-
-blank line
-
-> +  compatible:
-> +    items:
-> +      - const: qcom,coresight-tnoc
-> +      - const: arm,primecell
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 2
-
-Need to describe what each entry is.
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb_pclk
-> +
-> +  in-ports:
-> +    description: |
-
-Don't need '|'
-
-> +      Input connections from subsystem to TNoC
-> +    $ref: /schemas/graph.yaml#/properties/ports
-
-You have to define the 'port' nodes.
-
-> +
-> +  out-ports:
-> +    description: |
-> +      Output connections from the TNoC to Aggreg TNoC or to legacy CoreSight trace bus.
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port:
-> +        description: |
-> +          Output connections from the TNoC to Aggreg TNoC or to legacy CoreSight trace bus.
-
-'connections' sounds like more than 1, but you only have 1 port. 
-
-Wrap at 80 char.
-
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - in-ports
-> +  - out-ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    tn@109ab000  {
-> +      compatible = "qcom,coresight-tnoc", "arm,primecell";
-> +      reg = <0x0 0x109ab000  0x0 0x4200>;
-> +
-> +      clocks = <&aoss_qmp>;
-> +      clock-names = "apb_pclk";
-> +
-> +      in-ports {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        port@0 {
-> +          reg = <0>;
-> +
-> +          tn_ag_in_tpdm_gcc: endpoint {
-> +            remote-endpoint = <&tpdm_gcc_out_tn_ag>;
-> +          };
-> +        };
-> +      };
-> +
-> +      out-ports {
-> +        port {
-> +          tn_ag_out_funnel_in1: endpoint {
-> +            remote-endpoint = <&funnel_in1_in_tn_ag>;
-> +          };
-> +        };
-> +      };
-> +    };
-> +...
+> I agree we should provide these info to the driver via the dts.
 > 
-> -- 
-> 2.34.1
+> Do you agree to pass the register offsets, base address and base mask values
+> in the 'mediatek,pbus-csr' phandle array? Something like:
 > 
+> pcie0: pcie@1fc00000 {
+> 	...
+> 	mediatek,pbus-csr = <&pbus_csr 0x0 0x20000000 0x4 0xfc000000>;
+> 	...
+> }
+> 
+> where:
+> - reg offset for base address:	0x0
+> - base address value:		0x20000000
+> - reg offset for base mask:	0x4
+> - base mask value:		0xfc000000
+> 
+> Or do you prefer to just pass register offsets in mediatek,pbus-csr phandle
+> array and get base address values reading ranges property? Something like:
+> 
+> pcie0: pcie@1fc00000 {
+> 	...
+> 	ranges = <0x02000000 0 0x20000000 0x0 0x20000000 0 0x4000000>;
+> 	...
+> 	mediatek,pbus-csr = <&pbus_csr 0x0 0x4>;
+> 	...
+> }
+> 
+> Considering the latter, even if it is not a real problem for EN7581 since we
+> have just a single range, what if we have multiple ranges?
+
+I'm really hesitant about giving DT advice because I don't understand
+it well, but I do think it's important to specify host bridge aperture
+addresses in 'ranges' because there's lots of generic code that
+expects them there.
+
+If you have to program the aperture addresses into the hardware, those
+register addresses should be described separately elsewhere.  I assume
+the aperture size is configurable since you have to write a mask
+value, so the driver would have to compute the mask value based on the
+aperture size.
+
+Bjorn
 
