@@ -1,138 +1,110 @@
-Return-Path: <devicetree+bounces-149900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5654A40BB4
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 22:26:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 484A8A40BE2
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 23:37:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB47016E847
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 21:26:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 094CA17DA46
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 22:37:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA104203711;
-	Sat, 22 Feb 2025 21:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B09421F0E47;
+	Sat, 22 Feb 2025 22:37:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="OLJCMGjE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iTCwvpZN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22861EA7D4;
-	Sat, 22 Feb 2025 21:26:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740259579; cv=pass; b=DW9utnYIRcwldEdjmb5onxOhNK+NP74JU0FIdecOTkNmrHsR8UKkzQEw+/ZM74uOy01/9tPUmhWC3wH1Kv0RSBodxXq4xwxQOHhPyjnagc7oWEEDa5civTuNPeqQfUflleCAVUEJcVg/7zgG5bP9MP2cWW1qAtXhndS5SkiKVa4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740259579; c=relaxed/simple;
-	bh=zCvYe3s1S8w1LI2+NFee1pbAFTm/lUZRUu+i5RJPw7I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qfYcdLWgR4ojc1fToFW5lVUKJaL/8sQAHDoelz+JZnhTsge/WL51NODGhdQ/9BC7l5qMQ5Dg1pBWogSWkXpvscG+HsLRLaAxLG5CBuTi5IbPlgl1t4KjQopJHhCkLDZTiQ+lxsdYuCzpsfh5pSmS/NecOLI8z1q8n4YIvS7k1Pg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=OLJCMGjE; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1740259531; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=kahvBBzC/sE5LzO7udW6on5iWQY6boAaWgpShXdSq3ZopHjNleUp5y/noGK051JyO29yFaUhLQ00F9gITZjlOzCkVySoTpuJ0fN2BfS8iGKp6CheJoZmQLWbnwnvyUW/jYJtTEcu9QoHRFnNIRgZclMNLHoXnCYh0ym51yzHKDY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1740259531; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=HHhVwOm8XCVyTGfKeefhbmzIfD+mbGXuyzinCDr/k+8=; 
-	b=lhwJVlRdv79ql3NhjmhU0772ptdonzIUfRZbzoqBBqJKjMc+/G9mbVp8oqqsAAebIp03wX2hWOoEuLOTUNplLKJIXw4F+c+9NSstsy7bWjU6B2qtereggchIA/v0dGEdc/f6lbig3wvhPezr3tb8250YE2b7SdYfMAe2qLQifJY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
-	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740259531;
-	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=HHhVwOm8XCVyTGfKeefhbmzIfD+mbGXuyzinCDr/k+8=;
-	b=OLJCMGjEEoSmAKmRUvUvA00/1MMQFy9EED6VKygTYzduAjvSSeNVrm7uSj2rQKv2
-	+QtQnzqoyeeE9ieDueRneNoL0uG/mfc+Cl4p89cY7JivNFBXpyiTNwRQJ+SKCNoPnHj
-	UV6qWYJehOaweRPxe/dHUfzh0ptkPInR9jZgKMpw=
-Received: by mx.zohomail.com with SMTPS id 1740259529876548.7189453271194;
-	Sat, 22 Feb 2025 13:25:29 -0800 (PST)
-Message-ID: <dfb0ef63-8867-4d00-abdd-8280623c3405@collabora.com>
-Date: Sun, 23 Feb 2025 00:25:18 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A112AF04
+	for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 22:37:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740263825; cv=none; b=RHsgqYJ+kTeufiqHdTMiEQXIjDxEnC2GxIw0HLi/dTMMuGQOhgqgCV8YQ2DNyR5NYK89lKpiHtTAee8lVBSYVDfaVLlpwMwMM8Wdrp3oNTLUfxIfM8zv+Xvz6dIP94vyfPqIfbJd7J2ML9+i/C71TUswHdUSpoLVrpyugoccddo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740263825; c=relaxed/simple;
+	bh=2/GVEbxQ97fbkhIcJUEnqr5o5JOI8aPTh6cyD4iHKT0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=a8bZwurgrwUyp792YsJtyo9S72APv57zKU1yrQAKklJsPSk0jS4O6zymxbjxkNqIfMFMve1t3BJliydvtNH/CMmBpfDnugsA3cfNGNzDf9+zjpbqqnMRUjer87O4dCVRtfvnLZrClBwxek4GGawLHOKGeYbawUA5nJKR9sjuuyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iTCwvpZN; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-438a3216fc2so31401825e9.1
+        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2025 14:37:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740263821; x=1740868621; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2/GVEbxQ97fbkhIcJUEnqr5o5JOI8aPTh6cyD4iHKT0=;
+        b=iTCwvpZNWcofQrZ7s0HE+fSBK1MX0DGUKJElUJ8g7si7NP5hlcEQxVuJT+njcsn8vy
+         LKQ60tdGndJs1SPHnO0OkN7cv862iwP6lqUwhoHScI67oKg53kTX9diT1AL8FhJCb2Pk
+         xnmYvXgvzp6TUPsHXa7krO7jo91Zrt/ZbwNcRRV6t4b2EJhkKtEaX6CWhuY02IHv4zOP
+         LifP2S9ygP6k6N4As0F7RWouuQLzcir6lDv2N7GFLIM3ApHgqpBrFPK/DbBQMUDbg5a3
+         SH1IaDMIenapwZ9m5WuOh/xz0ysulsfy4b1/S7X8KZlYr30uo+Gy3aCXd38o635OcsSE
+         NS9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740263821; x=1740868621;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2/GVEbxQ97fbkhIcJUEnqr5o5JOI8aPTh6cyD4iHKT0=;
+        b=sOXbr3DE48x6cpKG9GGVAOHSTSGttPQlfaEj6PWso1hXQx3wbcEJQy4qBVLsCSjcI1
+         OkGsEzlYggPHqGdheFonkLuNJ6FO1O6NpSr8BsElDS6+XG8Y7h8f6yWQ7LOrNlmASOG1
+         Xzo/aAvxuswxe8TQ6++4EiD+SiP6KMzPf+IhFzpoKgEW7hHkj6zJBh/sov64U2xG0gCm
+         be62v7p6EWQ1kFHiYm12k9MAzsve/cf1hwTQr7+cjAbtClWxe+ekJIsf6aJGyHe1/jv7
+         LlQkbQmhdmeLOX4l8oay3neX7zECKvhV4Lmt752dFCqwA9IRsDGoQfnZ+bQdcG1P9GfC
+         NfCg==
+X-Forwarded-Encrypted: i=1; AJvYcCWPBwWsVMsn2ZeM6gR0gctIONUeq9PddyhGpHN3HcbmfaMDqwnE6G/Gu0p7ZZKpjMlQQ/m7/gYseJaJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yym1AFknTzTkUCDi865f4m/0HPy2mSMfnQsXuzEB2OVwM73w0OE
+	xq2bGOGpV5BxKqbPrKxFcA5rkRKjw/f/lojubwPEFUJ/jP0vKw1xlQ8D8TJ1ZFqB4HorDjPMiDa
+	U6P+Km+BXOJ6Vhx31kM7Wl9XSpcbO0MhW4GCfmw==
+X-Gm-Gg: ASbGncsG2TAT9B96AKaaINxd9BIil8Pz/LUtQ2EoyYeCqOUGSlNlft79OlDXjmbrfoB
+	vWyrS/0QK/jjnDEd540PW4NcStp47Cxhnppw0WU0mfO8lortRFEFFe4e24FkwZShibDzXwAenZr
+	AZd8ZVJoHmd0TFtH/sLM7yxzQVLQfxCH25AtAyL8A=
+X-Google-Smtp-Source: AGHT+IGHmpDWi6/WtmtOBhBVoA+cMa1qycvf3lB7IeXFUX1UY4PKgFEcR3pytfVzteR2rj111qNX0UWQpuYrewIJGhQ=
+X-Received: by 2002:a05:600c:5489:b0:439:86fb:7326 with SMTP id
+ 5b1f17b1804b1-439aebb5558mr53829545e9.22.1740263820918; Sat, 22 Feb 2025
+ 14:37:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 4/6] media: platform: synopsys: Add support for HDMI
- input driver
-To: Markus Elfring <Markus.Elfring@web.de>,
- Dingxian Wen <shawn.wen@rock-chips.com>,
- Shreeya Patel <shreeya.patel@collabora.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Jose Abreu <Jose.Abreu@synopsys.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Nelson Costa <Nelson.Costa@synopsys.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Rob Herring <robh@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, kernel@collabora.com,
- Tim Surber <me@timsurber.de>
-References: <20250218184439.28648-5-dmitry.osipenko@collabora.com>
- <9e46e0f9-ef0d-406f-9fa9-9c4464a8db88@web.de>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Content-Language: en-US
-In-Reply-To: <9e46e0f9-ef0d-406f-9fa9-9c4464a8db88@web.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+References: <20250222193332.1761-1-honyuenkwun@gmail.com> <20250222193332.1761-5-honyuenkwun@gmail.com>
+ <20250222211820.GY16911@sventech.com>
+In-Reply-To: <20250222211820.GY16911@sventech.com>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Sat, 22 Feb 2025 16:36:50 -0600
+X-Gm-Features: AWEUYZl7mqFGT6hL26BmUv2bUvBOH_-pwsfvZ96RvVOY1DCUAzUtL_VvJwDEiN0
+Message-ID: <CALWfF7+82pkOhqpRxCzPMhvdV6_e9o4UGixWMvwj2gStQ9PgLw@mail.gmail.com>
+Subject: Re: [PATCH v7 4/5] arm64: dts: rockchip: Enable HDMI1 on Orange Pi 5 Ultra
+To: Johannes Erdfelt <johannes@erdfelt.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2/19/25 23:56, Markus Elfring wrote:
-> …
->> +++ b/drivers/media/platform/synopsys/hdmirx/snps_hdmirx.c
->> @@ -0,0 +1,2718 @@
-> …
->> +static u32 hdmirx_readl(struct snps_hdmirx_dev *hdmirx_dev, int reg)
->> +{
->> +	u32 val;
->> +
->> +	guard(spinlock_irqsave)(&hdmirx_dev->rst_lock);
->> +
->> +	val = readl(hdmirx_dev->regs + reg);
->> +
->> +	return val;
->> +}
-> 
-> May such a function implementation be simplified?
-> 
-> {
-> 	guard(spinlock_irqsave)(&hdmirx_dev->rst_lock);
-> 	return readl(hdmirx_dev->regs + reg);
-> }
+On Sat, Feb 22, 2025 at 3:18=E2=80=AFPM Johannes Erdfelt <johannes@erdfelt.=
+com> wrote:
+>
+> I've tested this patchset up to this patch. I unfortunately don't have a
+> way to test audio on the HDMI port currently.
+>
+> All of the issues I had previously are fixed in this patchset.
+Thanks for the verification. Will you be sending your Tested-By: for
+patch 3 and 4 then?
 
-That will work, thanks.
+Jimmy
 
-> …
->> +static int hdmirx_get_detected_timings(struct snps_hdmirx_dev *hdmirx_dev,
->> +				       struct v4l2_dv_timings *timings)
->> +{
-> …
->> +	mutex_lock(&hdmirx_dev->work_lock);
->> +retry:
->> +	memset(timings, 0, sizeof(struct v4l2_dv_timings));
-> …
->> +	mutex_unlock(&hdmirx_dev->work_lock);
->> +
->> +	return ret;
->> +}
-> …
-> 
-> Would you become interested to apply a statement like “guard(mutex)(&hdmirx_dev->work_lock);”?
-> https://elixir.bootlin.com/linux/v6.14-rc3/source/include/linux/mutex.h#L201
-
-That will make code less consistent and less intuitive to me. Anyways,
-thanks for the suggestion.
-
--- 
-Best regards,
-Dmitry
+>
+> Thanks for the work in putting this together, especially without access
+> to hardware.
+>
+> JE
+>
 
