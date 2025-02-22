@@ -1,145 +1,78 @@
-Return-Path: <devicetree+bounces-149836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA21BA408A0
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 14:23:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25DEAA408A6
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 14:25:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FD18189C0D7
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 13:23:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A98C83B4B71
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 13:25:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCEFE20AF64;
-	Sat, 22 Feb 2025 13:23:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F0C20AF85;
+	Sat, 22 Feb 2025 13:25:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63FE520967F;
-	Sat, 22 Feb 2025 13:23:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7901B207A0E;
+	Sat, 22 Feb 2025 13:25:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740230589; cv=none; b=m3irBCW/oM/6LX3R2z+np7aX07H9Zg0waa9LWjtuTSLi+996MD1wkzoU9phNmI2FlYj1Zp/AOyG9nE96E1qwG2UsqBTBFl8lxrXpXGbGF3KiRm8V9ZkttMtn+t+uYsWsugNSZC1kNO6UtvjWHCuiCOdj0li+NIZpA68kyWsmMO4=
+	t=1740230742; cv=none; b=ioCRuct9rvvkA48tkFoLcz8kGZJUxqxCyGqgwRlpeim8VXZtO7bYahSwl7aXFn29KGaAL5M2or+E5BHwelo7TddHg/8MJoI6GEO5k3y8wjapT9/jAOC+KtAil0kPIN+cz6+eu2XZSa+mSBd6JXByKuBtIHJggn0z936MFGLtVV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740230589; c=relaxed/simple;
-	bh=cHo6vTlfrzwUzW/DT/egpBCH21mBMOMH3CKUk8ZULrE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u8HUgX6s+BtIeUHuGeDwqcI7PRP8OlqgLCd8sEmILs5zIZg6grQP2pTcrbs+pZ9PmCT+JhXkZESvbCyKaMtaHiVoB0PALdnfA9t1KPQ6Ha0sRyMwN2nnD+1o0JoF8Y+IU1Q8ZLl38WVt0SjKVqoxUb/tT9ZjHcxSWeDVrDvPPJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [180.172.118.52])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 21D1C3431F0;
-	Sat, 22 Feb 2025 13:23:06 +0000 (UTC)
-Date: Sat, 22 Feb 2025 13:23:01 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Jesse Taube <mr.bossman075@gmail.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH v5 1/5] gpio: of: support to add custom add pin range
- function
-Message-ID: <20250222132301-GYA37325@gentoo>
-References: <20250217-03-k1-gpio-v5-0-2863ec3e7b67@gentoo.org>
- <20250217-03-k1-gpio-v5-1-2863ec3e7b67@gentoo.org>
- <CAMRc=MdGBTXRSAgY2vjOrqVVRzOyYh7N8yZsjK+W4cYFCQAwhQ@mail.gmail.com>
+	s=arc-20240116; t=1740230742; c=relaxed/simple;
+	bh=BJ0o5CoL7JzS5CVcEkg5VlfLD/GqRHmfGMCYNaiDfuA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=a0SVH9+uQgtE3vuBMqbZtjC6PncCEeitqBWowdu0XgTq4PvHNhAYBU+239tML4VJy/aGMvDTmxEMYe/1n78vIfK83Ubb9xRfglXw0cf28S1gXluA96jd8mJULSCV+S9RmpmFfz4kl9z5hYeQ2ZXYXb1i1rQsCE8lGDejUMKj47E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D69A3C4CEE2;
+	Sat, 22 Feb 2025 13:25:41 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id 0C42F5F7C0;
+	Sat, 22 Feb 2025 21:25:39 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org, lee@kernel.org, 
+ samuel@sholland.org, jernej.skrabec@gmail.com, conor+dt@kernel.org, 
+ krzk+dt@kernel.org, robh@kernel.org, sre@kernel.org, 
+ Chris Morgan <macromorgan@hotmail.com>
+In-Reply-To: <20250204155835.161973-1-macroalpha82@gmail.com>
+References: <20250204155835.161973-1-macroalpha82@gmail.com>
+Subject: Re: (subset) [PATCH V2 0/4] Fix RG35XX Battery Charging Issues
+Message-Id: <174023073898.2739576.4232537101952700431.b4-ty@csie.org>
+Date: Sat, 22 Feb 2025 21:25:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMRc=MdGBTXRSAgY2vjOrqVVRzOyYh7N8yZsjK+W4cYFCQAwhQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-Hi Bartosz Golaszewski:
+On Tue, 04 Feb 2025 09:58:30 -0600, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> The Anbernic RG35XX devices sometimes fail to charge when the register
+> for the battery temperature sensor is set to the incorrect value either
+> by user error or an incorrectly programmed efuse. Allow users to
+> hard-code if a temperature sensor is not present (which is the case for
+> all Anbernic RGxx series devices) to prevent this issue from causing
+> problems. Additionally, a bug was identified with the handling of PMU
+> faults while this fix was being tested.
+> 
+> [...]
 
-On 11:22 Thu 20 Feb     , Bartosz Golaszewski wrote:
-> On Mon, Feb 17, 2025 at 1:58 PM Yixun Lan <dlan@gentoo.org> wrote:
-> >
-> > Export custom function to add gpio pin range from pinctrl
-> > subsystem. This would make it possible to add pins to multi
-> > gpio chips.
-> >
-> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> > ---
-> >  drivers/gpio/gpiolib-of.c   | 5 ++++-
-> >  include/linux/gpio/driver.h | 7 +++++++
-> >  2 files changed, 11 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
-> > index 2e537ee979f3e2b6e8d5f86f3e121a66f2a8e083..64c8a153b823d65faebed9c4cd87952359b42765 100644
-> > --- a/drivers/gpio/gpiolib-of.c
-> > +++ b/drivers/gpio/gpiolib-of.c
-> > @@ -1170,7 +1170,10 @@ int of_gpiochip_add(struct gpio_chip *chip)
-> >         if (chip->of_gpio_n_cells > MAX_PHANDLE_ARGS)
-> >                 return -EINVAL;
-> >
-> > -       ret = of_gpiochip_add_pin_range(chip);
-> > +       if (!chip->of_add_pin_range)
-> > +               chip->of_add_pin_range = of_gpiochip_add_pin_range;
-> > +
-> > +       ret = chip->of_add_pin_range(chip);
-> >         if (ret)
-> >                 return ret;
-> >
-> > diff --git a/include/linux/gpio/driver.h b/include/linux/gpio/driver.h
-> > index 2dd7cb9cc270a68ddedbcdd5d44e0d0f88dfa785..a7b966c78a2f62075fb7804f6e96028564dda161 100644
-> > --- a/include/linux/gpio/driver.h
-> > +++ b/include/linux/gpio/driver.h
-> > @@ -528,6 +528,13 @@ struct gpio_chip {
-> >          */
-> >         int (*of_xlate)(struct gpio_chip *gc,
-> >                         const struct of_phandle_args *gpiospec, u32 *flags);
-> > +
-> > +       /**
-> > +        * @of_add_pin_range:
-> > +        *
-> > +        * Callback to add pin ranges from pinctrl
-> > +        */
-> 
-> Please, make the API contract more specific: describe the return value
-> and check it in the call place if it can return errors.
-> 
-> Also: is this even OF-specific if it doesn't take any OF argument? Why
-> not just add_pin_range()?
-> 
-now, this patch is obsolete, please ignore
-it will be replaced by the one sent by LinusW
-https://lore.kernel.org/all/20250218-gpio-ranges-fourcell-v1-0-b1f3db6c8036@linaro.org/
+Applied to dt-for-6.15 in git@github.com:linux-sunxi/linux-sunxi.git, thanks!
 
-> Bart
-> 
-> 
-> > +       int (*of_add_pin_range)(struct gpio_chip *chip);
-> >  #endif /* CONFIG_OF_GPIO */
-> >  };
-> >
-> >
-> > --
-> > 2.48.1
-> >
-> 
+[4/4] arm64: dts: allwinner: rg35xx: Add no-thermistor property for battery
+      commit: c2eedcafb0e2613d44f57d7a8b416d752d76a15f
 
+Best regards,
 -- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+Chen-Yu Tsai <wens@csie.org>
+
 
