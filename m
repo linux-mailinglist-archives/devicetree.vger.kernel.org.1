@@ -1,93 +1,86 @@
-Return-Path: <devicetree+bounces-149779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68D6FA406B3
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:10:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A083CA406C8
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 10:23:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 548A917CDB0
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 09:10:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CE873BE237
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2025 09:23:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23392066D3;
-	Sat, 22 Feb 2025 09:10:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5008A2066E8;
+	Sat, 22 Feb 2025 09:23:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="pG73TqlZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BnZNWhD1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55592AF04;
-	Sat, 22 Feb 2025 09:10:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EEDD46434;
+	Sat, 22 Feb 2025 09:23:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740215427; cv=none; b=kpnPgm5Vmf8VUg2pXxyYTiFMBVMBZ6kbm7Lk5bpe7wVyV1nljaiymTZoSuHL5u0DBy/qu5o/pHeFSJ5o/Yxat/JqshTy0sqDNQZmN6HyCLoF2nLVqgUZSbrj8PxO1L+AIBB1rP/1hVQO9u7TAeGRawYi2X80yyD62YBDPcHQg0U=
+	t=1740216189; cv=none; b=SHlsY8v2o0e3v28QTBFr6ROsM+xTIx9td/vZ7bi44NuAkHuaO0Vta6v61ROPYGGWNicxBx2WER18A1L7/9IezEd1r+/Tmojpzl81u+NVicOQIFGOa8RM7sES3eC663STostk/9m1FkqJ4zm5GebSKgzVIQhM/STORIjmQSisVZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740215427; c=relaxed/simple;
-	bh=IOzuINMkP8/jYoWkvyZGSyLnrz2QRHSYnZDmR7OufNk=;
+	s=arc-20240116; t=1740216189; c=relaxed/simple;
+	bh=d9Ddo/CZA7p51c09ka8t36EE346MIjUHq2P1nR4cCe4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SwOU12IUsj2VPpXIk8p8BfFtob4tVWm/bNrx7oZLIwc07R9ANBTH7IrDeqMA5GPd/HoW4JZsNbDJY2969ZzHfQ1x3YIe8hNkiwAmVdA+olV32/QxSKczoniV6o/DywWtPxWb+yL998OWb1BMvePxufMxGzttNj//UFqCKkSOa7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=pG73TqlZ; arc=none smtp.client-ip=220.197.32.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=HNf3ovGngIu+2imVC6jh5NhzQqrcYgc31OJf+dXqycE=;
-	b=pG73TqlZWjD/lpev2f0r2Oon0FE7bKhizo3EOL4E8vmZbeMhTHho9HhElLiGHz
-	TLN93grFoPq2ishUfDPsJbanYld6c4rXGeuDbAvBg+CUIoOlYjd+6Va+djVNVZv7
-	I1GzMFnot5SUWcTCEyD2MDbYhmWfhVxYSniRNJzOZcTbo=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgAXoo1TlLlnd1N6CQ--.21701S3;
-	Sat, 22 Feb 2025 17:09:41 +0800 (CST)
-Date: Sat, 22 Feb 2025 17:09:39 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	linux@ew.tq-group.com, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=q9C1Blfsd09CLFQJerNJ9INF3reWVHTp6Ly6jSiZRwfi+v/6/JXvoTQLde4qw639Gh3M0f/dNPKFsoNMuhg/ATcoXuLnzU3OeiTGd1Z9BNLOntEiYxbCA0IXTFfcAKfjEgkZMfdfvs9Udg+h/TwWmJBoQ8y5m9OZ6JN7qxdBjrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BnZNWhD1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD940C4CED1;
+	Sat, 22 Feb 2025 09:23:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740216188;
+	bh=d9Ddo/CZA7p51c09ka8t36EE346MIjUHq2P1nR4cCe4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BnZNWhD1OLkX3kdLgYZECk3rtCtrSZde4PwxrRZlOFio5WCcOKo3aiHuOao/2Y1YW
+	 8lPhlLc/uMFCm2fU1zmt9aKJin/S8T36he2t5TEktmlKdm0wTE2a1RpomGGioU1/M/
+	 G+q3RqiR3ybe4UhJMsg2HfAAZxzX+O1cLlhNPdUuSTGdsG94EaH1ElNWwkZ5pxiluD
+	 RpSk7BetVjSf26CGNh9td5Q3+0H5jKPm8siVsdiLiS4zTE8ZnKNfDzh6Ecc92F4t4i
+	 rgHbusQ6378EmXeJqanZ13wT907BKls3wQpBxzXwVTKWxNWPsKdvWd8UxTdQw2X5CU
+	 z+why2119B+ew==
+Date: Sat, 22 Feb 2025 10:23:05 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
+	Imran Shaik <quic_imrashai@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/5] arm64: dts: mba8mx: change sound card model name
-Message-ID: <Z7mUU/Rgj3Gx7g9E@dragon>
-References: <20250120132503.556547-1-alexander.stein@ew.tq-group.com>
- <20250120132503.556547-5-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH v5 1/4] dt-bindings: clock: qcom: Add compatible for
+ QCM6490 boards
+Message-ID: <20250222-discerning-skinny-toad-4cc396@krzk-bin>
+References: <20250221-lpass_qcm6490_resets-v5-0-6be0c0949a83@quicinc.com>
+ <20250221-lpass_qcm6490_resets-v5-1-6be0c0949a83@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250120132503.556547-5-alexander.stein@ew.tq-group.com>
-X-CM-TRANSID:M88vCgAXoo1TlLlnd1N6CQ--.21701S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrurWxGF13uFW8Ar1UJFW7XFb_yoW3Xrg_AF
-	Wftw1DJa1DZF4fur1Fkr4agrZa9ws7WF1DGr13Ww13X3WrKa1kGF4qq342yw1j9a4jg345
-	Crn3t3yq93yjkjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8pHq7UUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRf7ZWe5dcBuMAAAs1
+In-Reply-To: <20250221-lpass_qcm6490_resets-v5-1-6be0c0949a83@quicinc.com>
 
-On Mon, Jan 20, 2025 at 02:25:02PM +0100, Alexander Stein wrote:
-> From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+On Fri, Feb 21, 2025 at 03:04:54PM +0530, Taniya Das wrote:
+> On the QCM6490 boards, the LPASS firmware controls the complete clock
+> controller functionalities and associated power domains. However, only
+> the LPASS resets required to be controlled by the high level OS. Thus,
+> add the new QCM6490 compatible to support the reset functionality for
+> Low Power Audio subsystem.
 > 
-> The card name for ALSA is generated from the model name string and
-> is limited to 16 characters. Use a shorter name to prevent cutting the
-> name.
-> 
-> Since nearly all starter kit mainboards for i.MX based SoM by TQ-Systems
-> use the same codec with the same routing on board it is a good idea to
-> use the same mode name for the sound card. This allows sharing a default
-> asound.conf in BSP over all the kits.
-> 
-> Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 
-I may have missed some prerequisite ones, but #4 and #5 do not apply for
-me.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Shawn 
+Best regards,
+Krzysztof
 
 
