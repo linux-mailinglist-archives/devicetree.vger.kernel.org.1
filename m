@@ -1,147 +1,124 @@
-Return-Path: <devicetree+bounces-149935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18F13A40D8E
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 10:04:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB052A40DA4
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 10:32:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6E3216C970
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 09:03:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E88F13B4A50
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 09:32:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C90371FF7DB;
-	Sun, 23 Feb 2025 09:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F2B41FECCB;
+	Sun, 23 Feb 2025 09:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="UP91jSsr";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ozyeWCSV"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="mEvbdRS1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from flow-a6-smtp.messagingengine.com (flow-a6-smtp.messagingengine.com [103.168.172.141])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD831D89F8;
-	Sun, 23 Feb 2025 09:03:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 815981DA63D;
+	Sun, 23 Feb 2025 09:32:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740301397; cv=none; b=O9I7yH9uKq2R1og6M9vt7EHo5REw6slKcsMcb6F9UZDsp/qN8Xc5PNDzBLuV5Lw3nY2HiXYR94DZp3jKr4uy/21PJuzmG6BvRgKmdOEyQmwN6KQruMY0ypIw7L8sOqnOpK8RR5CW275p6pXXgmQ15zv9VY1Lpaf10YVwz2sGhp0=
+	t=1740303163; cv=none; b=rYA9j1YXX6FQVjP+oS4M47TXC2VT85drNtnmyD49yw8jlvpV6VcHrqxOVwFg8M5SLSb3eKEcCf2TWM+baUPJGyESJ+3PYQI8q9vO/RWg4u7lD/LajPoARfewWpebvPr6Z+BJgcYQamnO9OPVQjtGSItTAsKqL9cxW4y9g9M03dU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740301397; c=relaxed/simple;
-	bh=fCEcMc7RMUMnSFEpm2pdzeZjD2OWZZgNfbMOgPYCsEk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VpUGgSvLp4AN+1fzDvPncVsetqj0Y0RLLvZnMd8DdRC34K0GXuAbI5TGmKz2q4XOKST+VWBhin3MNANrfqBb5WHtESCHzjGXoHlQ38U7OCWPZz1C3mS9OYeOq7TdgWdFMFr682GkkAY7JshnQenfQ5gQnXbHjV8NUpXvJMSL0kE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=UP91jSsr; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ozyeWCSV; arc=none smtp.client-ip=103.168.172.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-13.internal (phl-compute-13.phl.internal [10.202.2.53])
-	by mailflow.phl.internal (Postfix) with ESMTP id 68ABD200D15;
-	Sun, 23 Feb 2025 04:03:13 -0500 (EST)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-13.internal (MEProxy); Sun, 23 Feb 2025 04:03:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm2; t=1740301393; x=1740308593; bh=rR0lG1HqwL
-	HdKmh1L1Q+3HA+XJIsSU89HsqNgZSMZYY=; b=UP91jSsrK21sGc1fKzC0Xubvi/
-	Px4QjbV6BgKX2of72GCoI1++xhm58Y90bUtAlQ8BbromQukfP7uRjf+QBosA4tKU
-	xjNVvZlyxAYwOg6qUGA14YxpESaNeXo++GKCMa4ZVkPxYgTiL/34P0HXI5P9QB5Q
-	hRNCaCh3kHcJt5kZceiqMlJhsarUcbc7BPUZVF6e/RFvumm1S/qyvuHBKOy0SQSL
-	cTxOZlG6l8J8AhLzPmZVZqGgE8p876szBPfQ6yJET1S3b/5J491YdjOBZHNefgIU
-	epYvEHMx9EdFtPqr6EZT/K0DkwavXSKyBQYMff8efUrsI6lzy4+seUPKdMlQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-	1740301393; x=1740308593; bh=rR0lG1HqwLHdKmh1L1Q+3HA+XJIsSU89Hsq
-	NgZSMZYY=; b=ozyeWCSVrq6ZeFCaCQrEBXXOybLROwbF7zB4axtI05UnC8bMek/
-	HplkY+Yvidoj+m8cI1r4lRSwj9ZTJ7TaZqHt3HMlT4PIflL+DlVGoN5K1oCG8aUz
-	p3F9I69j3MnwgJyvJzTSxQabyUBOzBhPMlK28TqnxjcRrKc30e93jAjx8kwUhAwD
-	3Zyj1O3z02AAVqY37WA7wMAFH4ZFwzdoXYjR+3riyStqb67uD6p9j0ByZkOcC+59
-	uBAaryvqNyaDSmPXMMRmkluf8DVrYM5VyyRDPL/eo6mY45RZdsFB8QX5Inuyrd9P
-	AG8VzmK4W5axKyqv2tT30XAg+H2GfBS0ylw==
-X-ME-Sender: <xms:T-S6Z2C_xYV3bNnptucocY4qCtKeewxrsC0NAgKeJtJHQOEnAvf_IA>
-    <xme:T-S6ZwjYmJMzaRjxL0LrFwxA-ln-OAx4dKP6-Z6hCSL2O4048xGhSw4v0UFmtDOeC
-    3B0MlGpmv5vJ4UGKGA>
-X-ME-Received: <xmr:T-S6Z5mD6zi27a04xfe7S4HaT139eF6aNHYgTPpzBta_8Oc-LAlDN2BGuz2sAmgbwgWzae5WkzIuim3CprI_Zam768WV9ky-65U>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdejheegtdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttdej
-    necuhfhrohhmpeflrghnnhgvucfirhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqne
-    cuggftrfgrthhtvghrnhepudefhfehudetjeeutdfhvefhtdeltdfgheefkeefleegveev
-    tedtveelfffhiedtnecuffhomhgrihhnpehgihhthhhusgdrtghomhenucevlhhushhtvg
-    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjsehjrghnnhgruhdrnhgv
-    thdpnhgspghrtghpthhtohepvddvpdhmohguvgepshhmthhpohhuthdprhgtphhtthhope
-    hfnhhklhdrkhgvrhhnvghlsehgmhgrihhlrdgtohhmpdhrtghpthhtohepshhvvghnsehs
-    vhgvnhhpvghtvghrrdguvghvpdhrtghpthhtoheprghlhihsshgrsehrohhsvghniiifvg
-    highdrihhopdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthho
-    pehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodguth
-    eskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhgrrhgtrghnsehmrghrtggrnhdrshht
-    pdhrtghpthhtohepuhhlfhdrhhgrnhhsshhonheslhhinhgrrhhordhorhhgpdhrtghpth
-    htohepmhgthhgvhhgrsgeskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:T-S6Z0zqcRiXeOlqKx8mmZ-1komXthg5pod44TaAINRYJcNV8t5iTw>
-    <xmx:T-S6Z7TOVONgPflH1HKdseNAh33d0XxwpGvUFdpRLFugHALGbaLAcQ>
-    <xmx:T-S6Z_ZWqCOWzXqX9ZYAAtiduWdDKEfNkz9cFA_BldrCFC1LmRChjA>
-    <xmx:T-S6Z0ScM17wGYjATkl3QKYgA9tAn_PeJErj30vEXjLZkqKlK1MzRw>
-    <xmx:UeS6Z1nV0QWUnynP-qzHUMWNgfwJNKMvjNTeFFlmE23wPF3FtzGIHOd8>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 23 Feb 2025 04:03:11 -0500 (EST)
-Date: Sun, 23 Feb 2025 10:03:09 +0100
-From: Janne Grunau <j@jannau.net>
-To: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hector Martin <marcan@marcan.st>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-media@vger.kernel.org, imx@lists.linux.dev,
-	Eileen Yoon <eyn@gmx.com>, Asahi Lina <lina@asahilina.net>
-Subject: Re: [PATCH 4/5] media: apple: Add Apple ISP driver
-Message-ID: <20250223090309.GA430621@robin.jannau.net>
-References: <20250219-isp-v1-0-6d3e89b67c31@gmail.com>
- <20250219-isp-v1-4-6d3e89b67c31@gmail.com>
- <20250219113422.GA26386@robin.jannau.net>
- <CAMT+MTR4yPzC-NBLT6uLhveHFDWpwwn=hUzU6=WDc73+UVEMwQ@mail.gmail.com>
+	s=arc-20240116; t=1740303163; c=relaxed/simple;
+	bh=IIbQtGdGs7/uoTW3BPrdz9oK55TicYM24n7b/K73gFU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DyI62z9TiJ7b8lZasDCZ6jku+kixXrkf0cxz8pkSve5MkEfCmLBaP2jHzV1ExhWVJSU1ANvjaaIAtYfydPa4RDN6NaFDpGgf8PFI0gzfSoKkqrf7GamihMxUC21zTlyR+AQfYJC7tbs8uioLYjwdMrxHQyCkWbpGZqf1G8ncBFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=mEvbdRS1; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1740303154;
+	bh=IIbQtGdGs7/uoTW3BPrdz9oK55TicYM24n7b/K73gFU=;
+	h=From:Subject:Date:To:Cc:From;
+	b=mEvbdRS1VxG65ooVjFYOLU7F8HeB1To6Bi79Hb7N9zMDZvL8lbl0MX/6g2u6q+37U
+	 4x5ZNGK9SD7cpsNG0F6fw+hLOWhpFzQ8QhAKGzZA9xIPNEUuOTkCd3CGCfRzuKud9J
+	 2A2/3Ivu6OWh68VIRPentM+bXr74fL/vtOUmVa3v5GasPfr8Sp/Q1zlyCZpYppKyXj
+	 dHq/IWwK/uUtNquzGdqxqF9tP98nj9/pp+B3yGfoFtN32iCtHKBja5bzfoTdwFjmKH
+	 fzEAdLXjvhTTdOFstg4yAbIK54ARp6OQ2tXe8jayHVHC0juxHL22s0jyfrEhGBvRPe
+	 YRVRphvDUijLw==
+Received: from localhost (unknown [188.27.58.83])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with UTF8SMTPSA id CBB1117E00BD;
+	Sun, 23 Feb 2025 10:32:33 +0100 (CET)
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH v2 0/5] Improve Rockchip VOP2 display modes handling on
+ RK3588 HDMI1
+Date: Sun, 23 Feb 2025 11:31:36 +0200
+Message-Id: <20250223-vop2-hdmi1-disp-modes-v2-0-f4cec5e06fbe@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAMT+MTR4yPzC-NBLT6uLhveHFDWpwwn=hUzU6=WDc73+UVEMwQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPjqumcC/4WNQQ6CMBBFr0K6dgwzEayuvIdhUdpRJgGGtKbRE
+ O5u5QIu30v++6tJHIWTuVariZwlic4F6FAZP7j5ySChsKGampqwgawLwRAmQQiSFpg0cAJ2Nrg
+ T2d5bNmW7RH7Ie+/eu8KDpJfGz36T8Wf/FTNCDRYvLbkzNhjam9dxdL1Gd/Q6mW7bti+VtVD5v
+ gAAAA==
+X-Change-ID: 20250215-vop2-hdmi1-disp-modes-ea8da428bc8e
+To: Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.14.2
 
-On Sun, Feb 23, 2025 at 09:48:30AM +0100, Sasha Finkelstein wrote:
-> On Wed, 19 Feb 2025 at 12:34, Janne Grunau <j@jannau.net> wrote:
-> > > +     while (maps < end) {
-> > > +             maps++;
-> > > +             maps = of_translate_dma_region(dev->of_node, maps, &heap_base,
-> > > +                                            &heap_size);
-> > > +     }
-> >
-> > The hand-rolled reserved memory parsing looks like it can be replaced
-> > with of_iommu_get_resv_region();
-> 
-> I have looked into it, and `of_iommu_get_resv_region` does the wrong
-> thing. We fill out `reg`, and it grabs that instead of `iommu-addresses`.
+As a followup to getting basic HDMI1 output support [1] merged upstream,
+make use of the HDMI1 PHY PLL to provide better VOP2 display modes
+handling for the second HDMI output port on RK3588 SoC, similarly to
+what has been achieved recently for HDMI0 [2].
 
-Downstream commit 704ace01cd3c4 [0] ("iommu: Add IOMMU_RESV_TRANSLATED
-for non 1:1 mapped reserved regions") adds device virtual addresses to
-struct iommu_resv_region. Sorry for the added dependency but it is
-required anyway for the isp to work.
+Please note Heiko's fix [3] in of_clk_get_hw_from_clkspec() is also
+required for boards that do not provide HDMI0 output, that is to ensure
+devm_clk_get_optional() returns NULL instead of ERR_PTR(-EPROBE_DEFER),
+which otherwise would put rockchip-drm module in a permanent deferred
+probe mode.
 
-ciao Janne
+Additionally, enable HDMI1 output on Rockchip RK3588 EVB1.
 
-[0] https://github.com/AsahiLinux/linux/commit/704ace01cd3c423b1e2492f0777d9c4c0f3404d8
+[1] https://lore.kernel.org/lkml/20241211-rk3588-hdmi1-v2-0-02cdca22ff68@collabora.com/
+[2] https://lore.kernel.org/lkml/20250204-vop2-hdmi0-disp-modes-v3-0-d71c6a196e58@collabora.com/
+[3] https://lore.kernel.org/lkml/20250222223733.2990179-1-heiko@sntech.de/
+
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+---
+Changes in v2:
+- Make use of dev_err_probe() for handling failures when trying to get
+  pll_hdmiphy1 optional clock (Sebastian)
+- Add a new patch to replace drm_err() calls in vop2_bind() and
+  vop2_create_crtcs() with dev_err_probe(), to simplify error handling
+  and improve consistency, along with some related fixes
+- Link to v1: https://lore.kernel.org/r/20250215-vop2-hdmi1-disp-modes-v1-0-81962a7151d6@collabora.com
+
+---
+Cristian Ciocaltea (5):
+      drm/rockchip: vop2: Improve display modes handling on RK3588 HDMI1
+      drm/rockchip: vop2: Consistently use dev_err_probe()
+      arm64: dts: rockchip: Enable HDMI1 PHY clk provider on RK3588
+      arm64: dts: rockchip: Add HDMI1 PHY PLL clock source to VOP2 on RK3588
+      arm64: dts: rockchip: Enable HDMI1 on rk3588-evb1
+
+ arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts |  42 ++++++++-
+ arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi   |  22 +++++
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c     | 108 +++++++++++++----------
+ 3 files changed, 123 insertions(+), 49 deletions(-)
+---
+base-commit: 0ae0fa3bf0b44c8611d114a9f69985bf451010c3
+change-id: 20250215-vop2-hdmi1-disp-modes-ea8da428bc8e
+
 
