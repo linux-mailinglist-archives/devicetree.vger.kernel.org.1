@@ -1,105 +1,121 @@
-Return-Path: <devicetree+bounces-150020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9784EA40FBC
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 17:30:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DA9DA41051
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 17:58:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 076AC3B587A
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 16:30:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9814188D1F2
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 16:58:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B5E1804A;
-	Sun, 23 Feb 2025 16:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2F678F37;
+	Sun, 23 Feb 2025 16:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SW7/guI7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cxy91jOa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6793EEA8;
-	Sun, 23 Feb 2025 16:30:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 841888C11
+	for <devicetree@vger.kernel.org>; Sun, 23 Feb 2025 16:58:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740328236; cv=none; b=n3Sv7Eumzbv0dyFEbc27werQamUVeJkJiZbPO0vCUHBXuWABwPUhWlHGa+GixkdzE9CRgXDwuILzyJmXAGnjYKnbQb7oDSDFEvQE16pQiU7t/8bkheh1yyI9J/eHmizRfSu3vQJPDL5tzJl+gKaR95PLJd4zDKwl0/DZu8hwBpk=
+	t=1740329902; cv=none; b=bfJmxyb61LarS2iN1d1b+uwwXGrGq8E8VsUDJt+43kutDNqRCJkrsaIinyPEbsOmBSiXGcniNHf37ZqOq73SpAGi4pr4v0w4FhXmXTIJBLKON7+2+O1OxZcBnGhNboLaHG6cTUUf4huTzlXUXltjvC1dS4j1cMXGFOSt2QOcDjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740328236; c=relaxed/simple;
-	bh=QfKdiEk49aDWt010gngXbc3vJUxTK0YB03j5djAbuSM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Nlqv7LgwCj8zMgssetHyffn7XpzQmEoqSuRy8YsiML7j9hZNtlr6yHy1sjv3WJk0JQbzAyPEJQ3CvevAhMV5fW4P7BOy8Q2a3F8gOs5cdUrl8z3SDylfwY/0v9g84hQG8l18HUjbXYbNTqykGwV4+94gDU80+Yyq+ok7J+AY/0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SW7/guI7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D82E5C4CEDD;
-	Sun, 23 Feb 2025 16:30:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740328235;
-	bh=QfKdiEk49aDWt010gngXbc3vJUxTK0YB03j5djAbuSM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=SW7/guI7iN1/8drBB39h5FaVJkqRojBn31+ZtOaZr/aaBcQue6cIy5785HZ3oXljI
-	 LlOBYYxYWKHKcJWFJdxoV3zXYKpE0BLR8pTvle0s8Ja5wcFDTffbOAoHN6L5d7Rw+9
-	 tqADmqonQH4E9OrvZhopW7RHnGAfOAMS0eoLk11Ofps6vd0nyRaWzA1M95vScL8NMV
-	 vFgfnLj5JyEn2y+1mSDcxfSoEFbrVrAumZlqbQzYbURtpuiK/h71NvTqXe8PFG7gcg
-	 sAxp72j1ftLeBSd+AZBa+NZ6AiqjX43hcWKBlATuc5AJocQ+atufejV26yCkg1sv90
-	 LEF5z7wRlxjeA==
-Date: Sun, 23 Feb 2025 16:30:18 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
- <samuel@sholland.org>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa
- <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>, Javier
- Carrasco <javier.carrasco.cruz@gmail.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 6/9] iio: adc: rzg2l_adc: Use adc-helpers
-Message-ID: <20250223163018.2c0290e8@jic23-huawei>
-In-Reply-To: <25c5d22f6f0cbd1355eee2e9d9103c3ee71cebdc.1739967040.git.mazziesaccount@gmail.com>
-References: <cover.1739967040.git.mazziesaccount@gmail.com>
-	<25c5d22f6f0cbd1355eee2e9d9103c3ee71cebdc.1739967040.git.mazziesaccount@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1740329902; c=relaxed/simple;
+	bh=QCsQ0u+SAc6TlicPRftn+NH/8ZOo7FYW8XnHA45KydE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pw5Dw5yPKGU+R8txj2RmU/dU9s/qpZmiT4SVMh8+UmZ9PsyIjX5N0TiLnTeGvNdqNKhExq8zM7Z4ifKvC/cs5HImKoxnIUQlbKLGWE2evTe5dNR383P7xn9MvSQdK7h7bBieSJDTfnJx4Q/u0y5eiU0dRUC5WZWIjRdB9GjQtrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cxy91jOa; arc=none smtp.client-ip=209.85.216.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2f44353649aso5387305a91.0
+        for <devicetree@vger.kernel.org>; Sun, 23 Feb 2025 08:58:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740329901; x=1740934701; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9EGpteKkKO5lNSPCicYif8sBx0HN06bRRtVSVBOGESw=;
+        b=cxy91jOa8PAZWUIHlLifsMbo+N1ZVSDGKoGmDuNXDYJhsf2lRgvCMwSspdDkjLMwG9
+         jfrn4EvNpfmWzr1lq14ohUfk/2Ly53aHkxtgAmrx1co08efGkan/w2PsIf4t2WabRwKt
+         qfUIoLiHTNkIf702AaoXQWy5hcrgrhyPJ4D08pA3QW2ZB5jIOKJ07RMtpJQuINAvQJB2
+         B4HN492Dees1dUYel7o7MvMDdqpkc6zPEN5jElo2tNmaija+RRCQu6mssZeczEk7dEjK
+         c3XRZBqxUCZVlvLeQYR9wLYBpT+H+35LSlTW4B6dpLR2AmvtDzjwA0cssDpOuj+xLgcj
+         85zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740329901; x=1740934701;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9EGpteKkKO5lNSPCicYif8sBx0HN06bRRtVSVBOGESw=;
+        b=Qn4uTMEjXV7RN9nsON9Jdo6DgokfczzdpNGDmSTzXXg6QD88B1r4zmk4oJQkdGcwVj
+         9GLDHIjDJE2ZLifNzz99mRGYb/jm1TdajHUNz487egE5kmIXZwYbfUOL4ps1Ktj5UHvz
+         9rCmwN+U3MNGdHLGgP+AhS+Nxiip3KncJJw6wJzsXXt2aOzWxyaDuytSRaIsBM1N7jkb
+         1SvRr7YeISWtH83SdMCjEhMqlERAguPA4H0D4Yb+G4a/Fil9rwf5ZILVcM0N0/RQGS11
+         yy8O0dpD3usifDsjM0U85i/R0Xr4tllNm9/8VoLq3nFMzHNgV2JUavRfGXLM7nNN9DbM
+         JSsA==
+X-Forwarded-Encrypted: i=1; AJvYcCU3Vr8ZXVTohynZJQIwWBm+xCuIWgY4fqEJBbH2yVf/GuZpbs8PSdQeGrhmaXlh0euW5rhSShlzTyHc@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRKyxYuCe5eJ3aFp2nXLUie9YCfShypQ31L+vDsO95sOkNbsU0
+	SyclqPEs/Gc/fMOqt1koCrgc3ecrDRa8ntSZyBU7bm8yCubuE8Yp
+X-Gm-Gg: ASbGncss0OhTZULoF8WHgxcIZR0w4pKo4NTca7a/6z89EtHxXb05vTjs4xGjEJIqvCI
+	+stRO2vT2+BSb6whbzpYosTpgv3aAmeJWMMwZKABv1V85Lf7IVeWwofpnCY0xRZawXc0tmqxEKP
+	b6IdNTjco2nDhl+epx9NDnPe0xhdvHqLnSKLbBkJ7coqUsIrmJRp5a2O160fkIKumX9MpHuTKSm
+	kRwb1I72w0Erl3bxo0hyvGq1R54s6Uy60gkUgJcnhoB+C8JrgPxXkXRfLE4cv8gmsAQwL9II5oF
+	VTYHQoWzyfsEybJ8LsWYSsJ4iu94CLOt/aeyxQZwJxscU4EYghzJ6HN2UjVu4W2x16+IGaKqXoY
+	GiQ==
+X-Google-Smtp-Source: AGHT+IHXAZ25HkqqX80WIfqWOaMr/ZBt00AQsjCyROwdSk9sUPpO/FNT5YIIgbZSuGIbUxzZe9RKhA==
+X-Received: by 2002:a17:90b:2792:b0:2f4:465d:5c94 with SMTP id 98e67ed59e1d1-2fce78a33cfmr18547518a91.11.1740329900750;
+        Sun, 23 Feb 2025 08:58:20 -0800 (PST)
+Received: from ?IPV6:2600:8802:b00:ba1:8069:4a70:1a15:7c01? ([2600:8802:b00:ba1:8069:4a70:1a15:7c01])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fceb07a2a8sm4823011a91.34.2025.02.23.08.58.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Feb 2025 08:58:19 -0800 (PST)
+Message-ID: <fb23aeaf-4e24-484c-a0ee-56781892fdda@gmail.com>
+Date: Sun, 23 Feb 2025 08:58:18 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] ARM: dts: bcm2711: PL011 UARTs are actually r1p5
+To: Stefan Wahren <wahrenst@gmx.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org,
+ bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+ Andrea della Porta <andrea.porta@suse.com>
+References: <20250223125614.3592-1-wahrenst@gmx.net>
+ <20250223125614.3592-2-wahrenst@gmx.net>
+Content-Language: en-US
+From: Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20250223125614.3592-2-wahrenst@gmx.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Wed, 19 Feb 2025 14:31:38 +0200
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-> The new devm_iio_adc_device_alloc_chaninfo() -helper is intended to help
-> drivers avoid open-coding the for_each_node -loop for getting the
-> channel IDs. The helper provides standard way to detect the ADC channel
-> nodes (by the node name), and a standard way to convert the "reg",
-> "diff-channels", "single-channel" and the "common-mode-channel" to
-> channel identification numbers used in the struct iio_chan_spec.
-> Furthermore, the helper checks the ID is in range of 0 ... num-channels.
+
+On 23/02/2025 04:56, Stefan Wahren wrote:
+> From: Phil Elwell <phil@raspberrypi.com>
 > 
-> The original driver treated all found child nodes as channel nodes. The
-> new helper requires channel nodes to be named channel[@N]. This should
-> help avoid problems with devices which may contain also other but ADC
-> child nodes. Quick grep from arch/* with the rzg2l_adc's compatible
-> string didn't reveal any in-tree .dts with channel nodes named
-> othervice. Also, same grep shows all the .dts seem to have channel IDs
-> between 0..num of channels.
+> The ARM PL011 UART instances in BCM2711 are r1p5 spec, which means they
+> have 32-entry FIFOs. The correct periphid value for this is 0x00341011.
+> Thanks to N Buchwitz for pointing this out.
+
+Should not that require warrant a Reported-by here?
+
 > 
-> Use the new helper.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
 
-I should have read on.  Definitely more convincing with these usecases.
-however drag them to start of series.  Better to add infrastructure
-so some use and then on to your new driver.
+Some people might consider this to be a bug fix, mind adding a Fixes tag?
 
-Looks good to me.
-
-Jonathan
+Thanks!
+-- 
+Florian
 
 
