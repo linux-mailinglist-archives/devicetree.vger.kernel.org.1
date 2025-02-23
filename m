@@ -1,121 +1,125 @@
-Return-Path: <devicetree+bounces-150021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DA9DA41051
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 17:58:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77624A41053
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 18:01:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9814188D1F2
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 16:58:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C73E03B7CA2
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 17:01:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2F678F37;
-	Sun, 23 Feb 2025 16:58:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE41F13633F;
+	Sun, 23 Feb 2025 17:01:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cxy91jOa"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XiXDHEr3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 841888C11
-	for <devicetree@vger.kernel.org>; Sun, 23 Feb 2025 16:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 567057603F;
+	Sun, 23 Feb 2025 17:01:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740329902; cv=none; b=bfJmxyb61LarS2iN1d1b+uwwXGrGq8E8VsUDJt+43kutDNqRCJkrsaIinyPEbsOmBSiXGcniNHf37ZqOq73SpAGi4pr4v0w4FhXmXTIJBLKON7+2+O1OxZcBnGhNboLaHG6cTUUf4huTzlXUXltjvC1dS4j1cMXGFOSt2QOcDjA=
+	t=1740330074; cv=none; b=cLeGNINrSa4NRur42zRyao2Xp0DpdmVgKJ/cLU92ChkFv2+gzPPpLCCqGoMIUl504Oqz3RcinKtALp3Zv5XJGFiO04fO+j6XH9BJO1hCgJUdRyA2wx3f3MLXK5lY5hKNI3tjRrZK8EUxWjqC9DmJpkPmkRJxDhpScP18DHqvvvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740329902; c=relaxed/simple;
-	bh=QCsQ0u+SAc6TlicPRftn+NH/8ZOo7FYW8XnHA45KydE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pw5Dw5yPKGU+R8txj2RmU/dU9s/qpZmiT4SVMh8+UmZ9PsyIjX5N0TiLnTeGvNdqNKhExq8zM7Z4ifKvC/cs5HImKoxnIUQlbKLGWE2evTe5dNR383P7xn9MvSQdK7h7bBieSJDTfnJx4Q/u0y5eiU0dRUC5WZWIjRdB9GjQtrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cxy91jOa; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2f44353649aso5387305a91.0
-        for <devicetree@vger.kernel.org>; Sun, 23 Feb 2025 08:58:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740329901; x=1740934701; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9EGpteKkKO5lNSPCicYif8sBx0HN06bRRtVSVBOGESw=;
-        b=cxy91jOa8PAZWUIHlLifsMbo+N1ZVSDGKoGmDuNXDYJhsf2lRgvCMwSspdDkjLMwG9
-         jfrn4EvNpfmWzr1lq14ohUfk/2Ly53aHkxtgAmrx1co08efGkan/w2PsIf4t2WabRwKt
-         qfUIoLiHTNkIf702AaoXQWy5hcrgrhyPJ4D08pA3QW2ZB5jIOKJ07RMtpJQuINAvQJB2
-         B4HN492Dees1dUYel7o7MvMDdqpkc6zPEN5jElo2tNmaija+RRCQu6mssZeczEk7dEjK
-         c3XRZBqxUCZVlvLeQYR9wLYBpT+H+35LSlTW4B6dpLR2AmvtDzjwA0cssDpOuj+xLgcj
-         85zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740329901; x=1740934701;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9EGpteKkKO5lNSPCicYif8sBx0HN06bRRtVSVBOGESw=;
-        b=Qn4uTMEjXV7RN9nsON9Jdo6DgokfczzdpNGDmSTzXXg6QD88B1r4zmk4oJQkdGcwVj
-         9GLDHIjDJE2ZLifNzz99mRGYb/jm1TdajHUNz487egE5kmIXZwYbfUOL4ps1Ktj5UHvz
-         9rCmwN+U3MNGdHLGgP+AhS+Nxiip3KncJJw6wJzsXXt2aOzWxyaDuytSRaIsBM1N7jkb
-         1SvRr7YeISWtH83SdMCjEhMqlERAguPA4H0D4Yb+G4a/Fil9rwf5ZILVcM0N0/RQGS11
-         yy8O0dpD3usifDsjM0U85i/R0Xr4tllNm9/8VoLq3nFMzHNgV2JUavRfGXLM7nNN9DbM
-         JSsA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3Vr8ZXVTohynZJQIwWBm+xCuIWgY4fqEJBbH2yVf/GuZpbs8PSdQeGrhmaXlh0euW5rhSShlzTyHc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRKyxYuCe5eJ3aFp2nXLUie9YCfShypQ31L+vDsO95sOkNbsU0
-	SyclqPEs/Gc/fMOqt1koCrgc3ecrDRa8ntSZyBU7bm8yCubuE8Yp
-X-Gm-Gg: ASbGncss0OhTZULoF8WHgxcIZR0w4pKo4NTca7a/6z89EtHxXb05vTjs4xGjEJIqvCI
-	+stRO2vT2+BSb6whbzpYosTpgv3aAmeJWMMwZKABv1V85Lf7IVeWwofpnCY0xRZawXc0tmqxEKP
-	b6IdNTjco2nDhl+epx9NDnPe0xhdvHqLnSKLbBkJ7coqUsIrmJRp5a2O160fkIKumX9MpHuTKSm
-	kRwb1I72w0Erl3bxo0hyvGq1R54s6Uy60gkUgJcnhoB+C8JrgPxXkXRfLE4cv8gmsAQwL9II5oF
-	VTYHQoWzyfsEybJ8LsWYSsJ4iu94CLOt/aeyxQZwJxscU4EYghzJ6HN2UjVu4W2x16+IGaKqXoY
-	GiQ==
-X-Google-Smtp-Source: AGHT+IHXAZ25HkqqX80WIfqWOaMr/ZBt00AQsjCyROwdSk9sUPpO/FNT5YIIgbZSuGIbUxzZe9RKhA==
-X-Received: by 2002:a17:90b:2792:b0:2f4:465d:5c94 with SMTP id 98e67ed59e1d1-2fce78a33cfmr18547518a91.11.1740329900750;
-        Sun, 23 Feb 2025 08:58:20 -0800 (PST)
-Received: from ?IPV6:2600:8802:b00:ba1:8069:4a70:1a15:7c01? ([2600:8802:b00:ba1:8069:4a70:1a15:7c01])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fceb07a2a8sm4823011a91.34.2025.02.23.08.58.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 23 Feb 2025 08:58:19 -0800 (PST)
-Message-ID: <fb23aeaf-4e24-484c-a0ee-56781892fdda@gmail.com>
-Date: Sun, 23 Feb 2025 08:58:18 -0800
+	s=arc-20240116; t=1740330074; c=relaxed/simple;
+	bh=hce+YrPGmrSFkOORUi3xYv5tzmbWodZaL3ZsXnTZWtQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pl+VsR56bfREU/xD7zUujn92F9gUn8CjqOr9kPGs5b7SSWvcIvpVNskfVl8TGkWKXfzlKgT/pflmJsK2pYZf2DRvmuel4IQ9HzstnBIfI3dtRtyhnrYMPAGyOf9yjokZcBmx2VTCnqCXQyf6dWxtNMFo7/ZpNO7aY+VNfe7pqnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XiXDHEr3; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1740330073; x=1771866073;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hce+YrPGmrSFkOORUi3xYv5tzmbWodZaL3ZsXnTZWtQ=;
+  b=XiXDHEr3d3JvkDEa9sPwmjhHqJYLWWSHCOLIRMuAJY03WNHoHS8/Khw9
+   KQRew84sb/xj4cehG4ED+XOYX0yRbODsdHx4KPCqyR6Iy6qKcPh4l0W12
+   1RWkdwRL5o/18qMIt2G+PQtuVMlqdz1bDgF1QpC8lfOofSyji7pVGlH4M
+   7dXvuU9dHGii+ZwzKt/HXoEGmWcvRkZyPVSHKDDYiZ4JFSJ8LAggJ14I7
+   ZtswQFz6SxQKfLx8MLkTfXxRxJCu4eREo0hKQ5P1ECr8K53JGvyFsHp+Z
+   OMCZ7WJ5AQu4ZnhdgPMuQDP7NXOSA2ENtAgoA8DK81D4oIZVLiVT1z0WL
+   w==;
+X-CSE-ConnectionGUID: jSos5SuhTkeub1TTp5tneg==
+X-CSE-MsgGUID: bqmabwlzToO+ZMyWgWOzwA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="63557680"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; 
+   d="scan'208";a="63557680"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2025 09:01:11 -0800
+X-CSE-ConnectionGUID: pt1LIXu7QMCp6BV5jQiC4w==
+X-CSE-MsgGUID: dtvLSN++Sc+fPbZlSCdwpQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; 
+   d="scan'208";a="116360702"
+Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
+  by fmviesa010.fm.intel.com with ESMTP; 23 Feb 2025 09:01:07 -0800
+Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tmFLk-0007T1-38;
+	Sun, 23 Feb 2025 17:01:04 +0000
+Date: Mon, 24 Feb 2025 01:00:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] MAINTAINERS: add entry for Samsung Exynos2200 SoC
+Message-ID: <202502240019.JZE1rcyX-lkp@intel.com>
+References: <20250223123044.725493-5-ivo.ivanov.ivanov1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ARM: dts: bcm2711: PL011 UARTs are actually r1p5
-To: Stefan Wahren <wahrenst@gmx.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org,
- bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
- Andrea della Porta <andrea.porta@suse.com>
-References: <20250223125614.3592-1-wahrenst@gmx.net>
- <20250223125614.3592-2-wahrenst@gmx.net>
-Content-Language: en-US
-From: Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20250223125614.3592-2-wahrenst@gmx.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250223123044.725493-5-ivo.ivanov.ivanov1@gmail.com>
 
+Hi Ivaylo,
 
+kernel test robot noticed the following build warnings:
 
-On 23/02/2025 04:56, Stefan Wahren wrote:
-> From: Phil Elwell <phil@raspberrypi.com>
-> 
-> The ARM PL011 UART instances in BCM2711 are r1p5 spec, which means they
-> have 32-entry FIFOs. The correct periphid value for this is 0x00341011.
-> Thanks to N Buchwitz for pointing this out.
+[auto build test WARNING on krzk/for-next]
+[also build test WARNING on robh/for-next krzk-dt/for-next pinctrl-samsung/for-next linus/master v6.14-rc3 next-20250221]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Should not that require warrant a Reported-by here?
+url:    https://github.com/intel-lab-lkp/linux/commits/Ivaylo-Ivanov/dt-bindings-arm-samsung-document-g0s-board-binding/20250223-203243
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250223123044.725493-5-ivo.ivanov.ivanov1%40gmail.com
+patch subject: [PATCH v2 4/4] MAINTAINERS: add entry for Samsung Exynos2200 SoC
+reproduce: (https://download.01.org/0day-ci/archive/20250224/202502240019.JZE1rcyX-lkp@intel.com/reproduce)
 
-> 
-> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502240019.JZE1rcyX-lkp@intel.com/
 
-Some people might consider this to be a bug fix, mind adding a Fixes tag?
+All warnings (new ones prefixed by >>):
 
-Thanks!
+   Warning: Documentation/translations/zh_TW/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
+   Warning: Documentation/translations/zh_TW/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
+   Warning: Documentation/userspace-api/netlink/index.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
+   Warning: Documentation/userspace-api/netlink/specs.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/clock/samsung,exynos2200-cmu.yaml
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.yaml
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
+   Warning: lib/Kconfig.debug references a file that doesn't exist: Documentation/dev-tools/fault-injection/fault-injection.rst
+   Using alabaster theme
+
 -- 
-Florian
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
