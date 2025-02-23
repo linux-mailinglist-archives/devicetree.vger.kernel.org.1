@@ -1,128 +1,113 @@
-Return-Path: <devicetree+bounces-150006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1DDDA40F1F
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 14:39:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10AD9A40F23
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 14:42:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 593DA3B66A2
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 13:39:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C6BD1752EE
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 13:42:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 435C0205E31;
-	Sun, 23 Feb 2025 13:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 236F8207670;
+	Sun, 23 Feb 2025 13:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SEmd8SjX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VOvT3YKM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE731E480;
-	Sun, 23 Feb 2025 13:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3D6E205E31;
+	Sun, 23 Feb 2025 13:42:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740317971; cv=none; b=pErEExO5HDW9o5itdWzdJb+RY4N2Jjny4CywqxZwxVhfdAQ4enWnU2EXWLYGJD2wF9dcdziPZVEVVDqit4WSnipthCEWQ5kwPwNOAdiakv7FT4vClJmd/3jp5H0DQx5qtXt8LDZiIPlG3AfxDYptODqF+N8HOmUF+pdWJ+mnPa4=
+	t=1740318149; cv=none; b=rw0DngkZVOb0ryH1LUwhDABF06ilt78T11MXjHNBnx9ia3yHif3ANEBjS0qHWc3KAsO6KoR682ykhLCrVOeF3a9NO2czQJZQrC6hzVTNyDc44RQSu27agoWwfBapXh2tUclTZgqhxcYEGyfqXPTMx1UyZqWnvuTMyBrpmpbZFAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740317971; c=relaxed/simple;
-	bh=VYHAAbUCUiGYFAjtyjDhjex55dizi9CWqp4qfEujigE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CFUou9/o91LjgM8c00ms/o+cBYxIiQDU3CjZ0UXqM5/8IL95eqWpLriskrgCz2XRWffVtAnR9n+5FCksyQJhEWFdUJrdpx9lUYKyFWzg2YZHV8Rl4w+iGH6zIBGVyL12pOAdDpk1ACByzVwWftZz2vwzOXlDASgq8egOihLNcBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SEmd8SjX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 847C3C4CEDD;
-	Sun, 23 Feb 2025 13:39:30 +0000 (UTC)
+	s=arc-20240116; t=1740318149; c=relaxed/simple;
+	bh=jwn6l1jyxsK/cyBjr2VSFnuiR+pFjsZ0dp+FXBN4EKk=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=KVWh9EjNZKi0hhYlmxsE5sStXoil1tahyRAEoseb8Y3z12ZFd7E83aV2jW4amXfdZBXKag6Pwu0DvZIpGH7p7YOY0rhOmCyGI4keeCE73jm0fZ+Aro4ZlaO5VYoWKocMlBVyeN0lpMKjHUMoOhtppFD2foxTY6pn5z6xkWy3Yy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VOvT3YKM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40BD3C4CEDD;
+	Sun, 23 Feb 2025 13:42:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740317970;
-	bh=VYHAAbUCUiGYFAjtyjDhjex55dizi9CWqp4qfEujigE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SEmd8SjXchvYTXVG5atKw3xbjW2JO9AMH5ttIiw9mLwE6biRdEUFCrohtDDXFK9Vx
-	 ds4iJbPcOuDT+4z0DP4fZHkZOpXQYLavo5thpJ2/BOpXfkHOScg0R4YAXuKszdvh8R
-	 TAduUGcDDNMtHzy4ZOTYSU3YFuB25on7Ho9rUXGiiHYVmvILEkmL7QGVBU2SS8Bte+
-	 Ah8UFr4MrzET2ns/pTHERSxJ7sQha7I1cSu6IBAbnT2sSND86o18wSUypcIcV6p+a9
-	 k8H17kVJtKplzHYusTyMDcZ7p9gVq4QN+sJRaXdaJRd92LDokt92gIU9NuNDQaVqDY
-	 OmibVSyXn+bbQ==
-Date: Sun, 23 Feb 2025 14:39:28 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Ryder Lee <ryder.lee@mediatek.com>,
-	Jianjun Wang <jianjun.wang@mediatek.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: mediatek-gen3: Add
- mediatek,pbus-csr phandle array property
-Message-ID: <Z7slEJgCQMqp_I6p@lore-desk>
-References: <20250222-en7581-pcie-pbus-csr-v3-0-e0cca1f4d394@kernel.org>
- <20250222-en7581-pcie-pbus-csr-v3-1-e0cca1f4d394@kernel.org>
- <20250223-hulking-goldfish-of-symmetry-cbfed4@krzk-bin>
+	s=k20201202; t=1740318148;
+	bh=jwn6l1jyxsK/cyBjr2VSFnuiR+pFjsZ0dp+FXBN4EKk=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=VOvT3YKM+eQXCjRRFCLOAagcaYsSs5wa1B8tqegM6X9ADvs0gZKCNKE+rZilru1J/
+	 i4DJn5BI6aHcO5IgQcZpbDb86ceSV3Ggq+usy+L1e/99m6F71L3OhOCCjHMK0IBHDr
+	 V5HpUmjnaQ9lPJY1VfK1J6F0MiedheykIXvVwKK+WIjB+zFay5LaliiRTDZG4Y3bfR
+	 1BvnlL02+nVY7f+gORG02yX3dXP65Z2XJ3K4pSb8tNAkpbAMlS8y385ce2gv4xzoTy
+	 o5vwp7Hui2MHDxOt5YJFkGdrZfPxAz+27/uVLfIvoPTJkwUA/uvDubZ+6NJwivYpM9
+	 +1jPMY8oF0sHw==
+Date: Sun, 23 Feb 2025 07:42:26 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="LboHElsNia9vOOZK"
-Content-Disposition: inline
-In-Reply-To: <20250223-hulking-goldfish-of-symmetry-cbfed4@krzk-bin>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, Vinod Koul <vkoul@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-phy@lists.infradead.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Abel Vesa <abel.vesa@linaro.org>, linux-kernel@vger.kernel.org
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20250223122227.725233-4-ivo.ivanov.ivanov1@gmail.com>
+References: <20250223122227.725233-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250223122227.725233-4-ivo.ivanov.ivanov1@gmail.com>
+Message-Id: <174031814650.3676571.3567229546810248196.robh@kernel.org>
+Subject: Re: [PATCH v2 3/8] dt-bindings: phy: add
+ samsung,exynos2200-usbcon-phy schema file
 
 
---LboHElsNia9vOOZK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Sun, 23 Feb 2025 14:22:22 +0200, Ivaylo Ivanov wrote:
+> The Exynos2200 SoC has a USB controller PHY, which acts as an
+> intermediary between a USB controller (typically DWC3) and other PHYs
+> (UTMI, PIPE3). Add a dt-binding schema for it.
+> 
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> ---
+>  .../phy/samsung,exynos2200-usbcon-phy.yaml    | 76 +++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.yaml
+> 
 
-> On Sat, Feb 22, 2025 at 11:43:44AM +0100, Lorenzo Bianconi wrote:
-> > Introduce the mediatek,pbus-csr property for the pbus-csr syscon node
-> > available on EN7581 SoC. The airoha pbus-csr block provides a configura=
-tion
-> > interface for the PBUS controller used to detect if a given address is
-> > accessible on PCIe controller.
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  .../devicetree/bindings/pci/mediatek-pcie-gen3.yaml     | 17 +++++++++=
-++++++++
-> >  1 file changed, 17 insertions(+)
-> >=20
->=20
-> You got review tag, so if you decided to skip it, this should be
-> mentioned why.
->=20
->=20
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Since I modified the patch with respect to the previous version, I was thin=
-king
-you want to review it again before applying the Reviewed-by tag. Added it n=
-ow.
+yamllint warnings/errors:
 
-Regards,
-Lorenzo
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.example.dts:18:18: fatal error: dt-bindings/clock/samsung,exynos2200-cmu.h: No such file or directory
+   18 |         #include <dt-bindings/clock/samsung,exynos2200-cmu.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1511: dt_binding_check] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
->=20
-> Best regards,
-> Krzysztof
->=20
+doc reference errors (make refcheckdocs):
 
---LboHElsNia9vOOZK
-Content-Type: application/pgp-signature; name="signature.asc"
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250223122227.725233-4-ivo.ivanov.ivanov1@gmail.com
 
------BEGIN PGP SIGNATURE-----
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ7slEAAKCRA6cBh0uS2t
-rPy9AQCgBZ/Fs6+vlGg02YKCLsxEfSZgokp+F0deZxshMw9y8AEAwEhLv/Dps1LX
-LD5v1+vVobF58lYLVJoLkG/UfUOe7QA=
-=W+YN
------END PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
---LboHElsNia9vOOZK--
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
