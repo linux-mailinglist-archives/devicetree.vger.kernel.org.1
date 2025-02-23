@@ -1,93 +1,65 @@
-Return-Path: <devicetree+bounces-150081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FC94A4124B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 00:45:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AFE7A4127D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 01:27:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16FF4171A29
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 23:44:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAF711701AC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 00:27:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B84362054FE;
-	Sun, 23 Feb 2025 23:43:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49859DF60;
+	Mon, 24 Feb 2025 00:27:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f7W5rXcZ"
+	dkim=pass (2048-bit key) header.d=buserror.net header.i=@buserror.net header.b="1+v+ww0e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from baldur.buserror.net (baldur.buserror.net [165.227.176.147])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4186203710
-	for <devicetree@vger.kernel.org>; Sun, 23 Feb 2025 23:43:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5908410F2;
+	Mon, 24 Feb 2025 00:27:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=165.227.176.147
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740354237; cv=none; b=SkSHD3Ms4FknZhB7JsUpPABPDwU4g15qSQDC+MWNcqdZqwl8LYuYTe5rrALtrxSoyJ2LrbaLGjx4QJeOr3zXXB1Ai/RemysDjAedtlYhCQ1V88lyd0tstby+X1D2F3cJedJAWNzYOMLfezaruFZY+AsB/mUIOK2he3edeV4VG4w=
+	t=1740356859; cv=none; b=uymgHnBJHXgpsiIOlqEA0P+rUfsq+R+sVf3WEi+je3Kmw0SvY5ul85WVegA47Bq2HxTxB5fwtYUUKk7HcK3N6VhNoJ6mKc4aGp0NSUsMg2hnzfIK/sF7mmN8sGOJY6PRu/hgB2tqDU/A3Yt0uOLIaXu4ELK7vDhD72VQa75NzHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740354237; c=relaxed/simple;
-	bh=deTx+omgnbLOs8r75CSTqyV8OyfmK0sMG1fGy+1WAXA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jMsjs0E99oJyEAcPVZ50IIsV/FZMfbytzqIbjfhT9jM68RUH2RMY3BOsxyRxnP2kWMs9A5g+LVZzn+F1pkX+E4J8BpraP0GdhZLEaKuALhRHd2g7nFkzxHsTKsOOWUND6cNg4sLgSoCY067W27f5tmmOs2abNM1jgyPZIUoDwHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f7W5rXcZ; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-54622829175so3668899e87.0
-        for <devicetree@vger.kernel.org>; Sun, 23 Feb 2025 15:43:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740354233; x=1740959033; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=28j2oUhHrE0UtIm5Z7Iu9myzi6x7Y72gOBfh9gvCc7A=;
-        b=f7W5rXcZfjbLnPu9d2Fjv268Mx56fiFxIf7KMch/7XYFz5jSR8G6VpdD5oxO6TSti9
-         ZgLPrEdkKf/2JBZMhBv5BHOrjyvIJu/pNsEr+wS7t1ujiDfvJlNEaXJkNEhbTxX2AmvU
-         rQhc657cnWk/CH4/Qie0Vk4zZFHb5F3QdHhX/nOpjlkVkstIRXLcPryCBD+ONifqrpN2
-         YZH3dPrWnt4R/Z9SD4yh2wFoV+1vJRRw5mmBgP3kuw0Ej9Dp2AFyUJRpeitI1PCOYRac
-         IHO31DPVQImRqq3/jEt8OkWGH3CdKhuMp4mnco9zXXwD75m4U1hu7NUon02d3SKAOcZJ
-         5tWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740354233; x=1740959033;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=28j2oUhHrE0UtIm5Z7Iu9myzi6x7Y72gOBfh9gvCc7A=;
-        b=QwyHJyv5H0C1hjCHTwmYRF++Nc83204/O1YZfuKWKCCNx63KyUTSsfTUG/6P3uHMle
-         7i+AxCtw+Qa4TFAmc2Ip50ONhghx6M7mt7F5BFDWE+LGn1pHwRedbgxh/wpfh5hiPoN5
-         im8XeJTRAl3psANCh4Tti/r8PUxP99A7PWU1M6yA/Kv3olYGNzRqCUxmaI1UNlxoA7dy
-         65uB0xKq4FyV8kQZ+DhRHoodTZjZrWGanIbsb/ELLmhhZgEGxVXNvscCMpADSWIcOSWF
-         xI2fPL6tQZVqt7jhLHpIO/kcWW/XsK9h+U3XXyF2dtk8XA8xzZFbHsIl6W50xqY3nvlY
-         1kkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV+m3DkZnktHYuDNWrVx5vkY7mjO78dPtEZ4rwdnb78+YSuDB1uFoo7eLvRDbPbiAqNxLUVKqKtA//v@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOiNmwVC9SGqiknSttm+j8+Qe8ZDMcj4upZcOQeO4W2fpHyrrn
-	WvJ0lrj2AzPh6nRdeHC8iwsYuEnOwkf7ZG095s52voA8NMg6ewdgKC1Jhp4HATbR3DJojBCiW2w
-	4
-X-Gm-Gg: ASbGncsyxq+wTJv+JrNWBzP3fII7GYpO/+Rvu+XTX2W7kIsxI83CQTjslkmhCQsmEBF
-	NSWLiiyGbSDLfmmz7/Wd/vPaHP9zGj1RdBuun/KzhOLH0ONziMYIPLWBe1p5zqi68XC77gCJiyE
-	zaO14JTL9MgJ12mOKD+yTCqJPn+jl4jjc3vryvP4WNkPi3kS5amV6My5+WE/sGW9Y5gScUblzbR
-	7v1epVJ9Y/0XFqORHp3osO2qVnk3dVEc72aR+cv9HFyGjF7oiXBsi6COYiPl4gxv7CEnaKyEI7V
-	vA/1kjFnW1B8FLAmrR7ZXab8l2cXAoobPZ1fpdV5zsDMk/tGC87xWRIPSZ3C/5ri+ieJk5sCx5D
-	pXk3OTA==
-X-Google-Smtp-Source: AGHT+IHqDyDmO/r2yjSG30eHo/aZTvnzBBS3IoH2SUfydcMTabalwcojF162vAWAlTXJ3voBa2nsQQ==
-X-Received: by 2002:a05:6512:308a:b0:545:296e:ac28 with SMTP id 2adb3069b0e04-54839144ee2mr4857016e87.24.1740354232909;
-        Sun, 23 Feb 2025 15:43:52 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54526741fe5sm3065509e87.90.2025.02.23.15.43.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Feb 2025 15:43:51 -0800 (PST)
-Date: Mon, 24 Feb 2025 01:43:49 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/8] dt-bindings: phy: snps-eusb2: add exynos2200
- support
-Message-ID: <4tvpl3pujnuw2qjwu7f7ryrr5dndxow7srkkp2223wmexr23bi@7nmgrpq6znpg>
-References: <20250223122227.725233-1-ivo.ivanov.ivanov1@gmail.com>
- <20250223122227.725233-3-ivo.ivanov.ivanov1@gmail.com>
+	s=arc-20240116; t=1740356859; c=relaxed/simple;
+	bh=0I41af2cJ7npBQ2S28LqxW7YvzWA+DEHxxUd9YrgFBM=;
+	h=Date:From:To:Cc:Message-ID:References:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To:Subject; b=djVL+SNZzn9QmYIFpAjt0JLWLDKExawg8yyex9nWgt6ssDR1usHF7303q5SWKhWb4jHKO8GHGsUJ3YlRr0qnhJ7RPpTzwVYV21fmPcHFfQ1fq5vGcaORSEiIGqZnln93Y0LudmBzJyCPYvcFGKBEBb0t63f7s1oXpMrgEAfGWGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=buserror.net; spf=pass smtp.mailfrom=buserror.net; dkim=pass (2048-bit key) header.d=buserror.net header.i=@buserror.net header.b=1+v+ww0e; arc=none smtp.client-ip=165.227.176.147
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=buserror.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buserror.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=buserror.net; s=rsa_sel; h=Subject:In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description;
+	bh=ESEjuP0qNKG7M31LDxN5dSH9PUQiZX8A161LNfHK2gs=; b=1+v+ww0eli53gNR6dEhBDOqi2B
+	mrW7UtVHR4Yzh81YhZxcdbGJtdQbX0Wu/Ew7/1BUBebZUQQ8ArhhfBhL/GJ0C1qpVgStWr8RVCCMk
+	5GjYDXmpB2WORXvs59CtqCoEoNWh+fxUYKMgEsuxU7LV9qRHumXtRtcbpHRb61IuAQ/ildErwsOAH
+	FJyH0AnNYosXBzEa8H9KKSFQM3sQ0+8qXyzLk8KIPl1Zb7H+jvVMtD6XvhIgW+7dEPA8EtsmFO/jE
+	/4gfAdWIyG1k5Utcfe66gKke/O3HjMVSXUFscRPdrWWMViDr399GxelCcOF1PMttz5jRwigl2yYHE
+	PoRjdYtQ==;
+Received: from oss by baldur.buserror.net with local (Exim 4.96)
+	(envelope-from <oss@buserror.net>)
+	id 1tmLfR-00ELyd-2y;
+	Sun, 23 Feb 2025 17:45:50 -0600
+Date: Sun, 23 Feb 2025 17:45:49 -0600
+From: Crystal Wood <oss@buserror.net>
+To: Rob Herring <robh@kernel.org>
+Cc: j.ne@posteo.net, devicetree@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-mtd@lists.infradead.org
+Message-ID: <Z7uzLeXiXIdVYNM5@buserror.net>
+References: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
+ <20250207-ppcyaml-v2-9-8137b0c42526@posteo.net>
+ <Z6kQpuQf5m-bXTyt@buserror.net>
+ <20250210215324.GA1040564-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,119 +68,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250223122227.725233-3-ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20250210215324.GA1040564-robh@kernel.org>
+X-SA-Exim-Connect-IP: <locally generated>
+X-SA-Exim-Rcpt-To: robh@kernel.org, j.ne@posteo.net, devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, mpe@ellerman.id.au, npiggin@gmail.com, christophe.leroy@csgroup.eu, naveen@kernel.org, linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
+X-SA-Exim-Mail-From: oss@buserror.net
+X-Spam-Level: 
+X-Spam-Report: 
+	*  -15 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 NO_RELAYS Informational: message was not relayed via SMTP
+Subject: Re: [PATCH v2 09/12] dt-bindings: memory-controllers: Convert
+ fsl,elbc to YAML
+X-SA-Exim-Version: 4.2.1 (built Wed, 06 Jul 2022 17:57:39 +0000)
+X-SA-Exim-Scanned: Yes (on baldur.buserror.net)
 
-On Sun, Feb 23, 2025 at 02:22:21PM +0200, Ivaylo Ivanov wrote:
-> Exynos 2200 makes use of the Synposys eUSB2 IP, so document it in the
-> binding. Unlike the currently documented Qualcomm SoCs, it doesn't provide
-> reset lines for reset control and uses more clocks.
+On Mon, Feb 10, 2025 at 03:53:24PM -0600, Rob Herring wrote:
+> Generally, if a bus has control registers or resources like clocks, then 
+> we tend not to call them 'simple-bus'. And '"specific-bus", 
+> "simple-bus"' gives some problems around what driver if any do you 
+> bind to. 
+
+Isn't the general idea that you bind to the first one in the list that
+you have a driver for, since it goes from most to least specific?
+
+> If you have chip selects, then you have config registers for those. 
+> Not really "simple" if you ask me. That being said, you could keep 
+> 'simple-bus' here. I would tend to err on making the schema match the 
+> actual .dts rather than updating the .dts files on older platforms like 
+> these.
+
+By that definition I wonder how much truly qualifies.  Even with
+IMMR/CCSR, firmware needs to at least set the base register (which is
+itself inside CCSR, so there's no way to avoid relying on knowledge of
+what the firmware did, except on 8xx).  Though I acknowledge that eLBC is
+a stretch, with FCM and UPM being exceptions.  FCM didn't exist in the
+original LBC, and UPM was... kind of considered a fringe use case
+until someone hooked NAND up to it.  :-P
+
+The point back then wasn't that such registers don't exist, but that the
+OS can use the devices without having to care.  But of course, there's
+subjectivity there about what the OS might care about (e.g. UPM).
+
+FWIW, on these chips (especially the later ones) there were all sorts of
+things (in general, not specifically LBC-related) that firmware had to
+set up to present a coherent system to the OS.  Not all the choices made
+there were great, but if we tried to describe all the gory details from
+the start I'm sure we would have made an even bigger mess of it.
+
+> > For non-NAND devices this bus generally meets the definition of "an
+> > internal I/O bus that cannot be probed for devices" where "devices on the
+> > bus can be accessed directly without additional configuration
+> > required".  NAND flash is an exception, but those devices have
+> > compatibles that are specific to the bus controller.
 > 
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov@gmail.com>
-> ---
->  .../bindings/phy/snps,eusb2-phy.yaml          | 64 +++++++++++++++++--
->  1 file changed, 57 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/snps,eusb2-phy.yaml b/Documentation/devicetree/bindings/phy/snps,eusb2-phy.yaml
-> index 22c77968f..f4164db71 100644
-> --- a/Documentation/devicetree/bindings/phy/snps,eusb2-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/snps,eusb2-phy.yaml
-> @@ -23,6 +23,7 @@ properties:
->                - qcom,x1e80100-snps-eusb2-phy
->            - const: qcom,sm8550-snps-eusb2-phy
->        - const: qcom,sm8550-snps-eusb2-phy
-> +      - const: samsung,exynos2200-snps-eusb2-phy
->  
->    reg:
->      maxItems: 1
-> @@ -31,12 +32,12 @@ properties:
->      const: 0
->  
->    clocks:
-> -    items:
-> -      - description: ref
-> +    minItems: 1
-> +    maxItems: 3
->  
->    clock-names:
-> -    items:
-> -      - const: ref
-> +    minItems: 1
-> +    maxItems: 3
->  
->    resets:
->      maxItems: 1
-> @@ -58,11 +59,60 @@ required:
->    - compatible
->    - reg
->    - "#phy-cells"
-> -  - clocks
-> -  - clock-names
+> NAND bindings have evolved quite a bit if you haven't been paying 
+> attention.
 
-Why? Clocks are required in both if clauses.
+I haven't, as I acknowledged... but I was describing how eLBC does it,
+and just meant that we're not binding to drivers that don't know about
+the bus in that case.  The NAND control registers are part of eLBC/IFC,
+not a separate block (the reg in the NAND node itself is just the SRAM
+used as a buffer).  I'm not sure what that would be expected to look like
+these days.
 
->    - vdd-supply
->    - vdda12-supply
-> -  - resets
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sm8550-snps-eusb2-phy
-> +
-> +    then:
-> +      properties:
-> +        reg:
-> +          maxItems: 1
-> +
-> +        clocks:
-> +          items:
-> +            - description: ref
-> +
-> +        clock-names:
-> +          items:
-> +            - const: ref
-> +
-> +      required:
-> +        - clocks
-> +        - clock-names
-> +        - resets
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - samsung,exynos2200-snps-eusb2-phy
-> +
-> +    then:
-> +      properties:
-> +
-> +        clocks:
-> +          items:
-> +            - description: Reference clock
-> +            - description: Bus (APB) clock
-> +            - description: Control clock
-> +
-> +        clock-names:
-> +          items:
-> +            - const: ref
-> +            - const: bus
-> +            - const: ctrl
-> +
-> +      required:
-> +        - clocks
-> +        - clock-names
->  
->  additionalProperties: false
->  
-> -- 
-> 2.43.0
-> 
-
--- 
-With best wishes
-Dmitry
+-Crystal
 
