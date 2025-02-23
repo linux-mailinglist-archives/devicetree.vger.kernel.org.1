@@ -1,125 +1,148 @@
-Return-Path: <devicetree+bounces-150012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DCB3A40F6F
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 16:29:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 699D4A40F79
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 16:34:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3E69166567
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 15:29:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39FEE1682C0
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 15:33:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF22220A5E2;
-	Sun, 23 Feb 2025 15:29:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06FB92063FD;
+	Sun, 23 Feb 2025 15:33:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="dla8E8dk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YHMc3IuM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3FF326AF3;
-	Sun, 23 Feb 2025 15:29:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3759BBE5E;
+	Sun, 23 Feb 2025 15:33:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740324568; cv=none; b=hyQueAA2eTP3tyzXVZcmyiumfPabBpImpjU5sxWnXaBMH2DbwFc95s4AxChL1zQWAc8hCdtQBw7JLzfeAt1dxZwqWfx1FdxkdDGwfnJZe0wj6/4//hS2YnQIGVCfLwTzF4T6OxUTuWRR/Bhz0+dRo6t6bUn+uF3uY1KVq3fmYfI=
+	t=1740324798; cv=none; b=kQELsz/7YMcZ9c1UUXZAhIDGnpEkjy/KAq/NwmrXMrYiC7ItqQ2MB60ZpR034+oFsMfySGdZZF6ifgg7pkkFdGICRv7y7eKnGdC1+agglf4GjKgP8MZ9R6sN6jWiqD6kPyaLeYxS1M501HGu5I7EKPVRVAqhud+LTWQ1oZfcJvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740324568; c=relaxed/simple;
-	bh=hN7DZ9oLfkraNLNI5u4MTj4WoyJjFliLGCQi+3yJ2kc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fp/YXzXW4BZ16A3E6aa9rFf0LTVLeM0eocsrG3Bv+R5/KeIQMWqiFdSULL04MD3lPha959nPPzXZVd+DwNqaPP1M5CF7DgsgqqKDpmXMQl7ibutT/3+rHyEdSZMnXuXW7eLfz20ObbUF4/nmAgAkFELo0KKC/jyQWzTc7RIMPyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=dla8E8dk; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1740324557; bh=hN7DZ9oLfkraNLNI5u4MTj4WoyJjFliLGCQi+3yJ2kc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=dla8E8dkJPoZDFQlxhvpcCJvubg+X44jV2yRz9wQ267cH9CqTMsMT/UTyKLQGm25t
-	 eW8zwFE7QkVVpZ0d06dMd4Ty6sg+CvHQbINoQJ5ELCFD4ftaaLMx08WWqYwVlyi6RD
-	 YRPMxtazghT9NvVxiViyHjE6dlCppgtE4ErlsMU4=
-Message-ID: <89cbb27e-414a-472f-8664-db5b4d37ddc1@lucaweiss.eu>
-Date: Sun, 23 Feb 2025 16:29:16 +0100
+	s=arc-20240116; t=1740324798; c=relaxed/simple;
+	bh=TmFkSpRQVJxcajxNzeTd7Dwo5yMA/jCVbuXoqVieW+A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VBjHs7d/N73OMcujOtQ9bkpEEcmJSWjD3Gbjbxa6LsnFn6J/t3wJPbzai7mCoK9NF7LguQ5lpv+Zfg5L/Lx2cFLaW6wq0lb3VZm2Q7zHNblUJovKtd2rs+JLmD34osTopElXQg6fIabdcLAwrtMcu699YFyFkOGQCoPNPoFzitY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YHMc3IuM; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-307bc125e2eso33842601fa.3;
+        Sun, 23 Feb 2025 07:33:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740324794; x=1740929594; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YgjojD0fkXCQkwACLWsbK5zmwbRWKyzVLcOWkG51yvI=;
+        b=YHMc3IuMKYa8P+s4PAGzwZKwRvTIAuIqzrn00dw3EqHGIsfpaiHrPnvLN74Mb+SiXR
+         PgHWniPg4MI/U0IJs2OfoonRuOfuEubTbazlt6P0c/GxthoSaRlcH1re2XH4IOBgT+63
+         ARcoyR3u2B3dcYjbtBxxfWhfo9DmkxrQfa7OGzuV/pdaxiQVBfLaijMtJFohprMRCSZr
+         KsHXX+tiGt+wkstE8+vnBDAaCwYKCpZOQK5r3UA46pOrX/ycpTqpHW08jOzhb4eEStnw
+         esJszJ1BigmolAJnYn7A93rbxJ5condhjo7QjBMuu83YdVlURA/aS+pBMAzxDahqmO/g
+         wYZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740324794; x=1740929594;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YgjojD0fkXCQkwACLWsbK5zmwbRWKyzVLcOWkG51yvI=;
+        b=Ef5PC+sMkRhlrxRxfy6VawjTXzmoVrcnUXVBuv7SzycatlA16+BjaB2yDCuADVNutR
+         j5+h08821yW+Lu3YdJpNkMumVK9CN7XVOEFZvisotRg0oo8WakzjzgBmwHXrD+l300uR
+         Sv2bDnyHoaephjUORyyW3VffG5MxGYoMuG0ym607HApV7kb1FnidB5QHNBTyKD7mXS3I
+         C+s4F07PDe4fnDB9KluiO59pDX+LNGgzv0cuUlOkv/urjwHGF2D9EQj1SydVRm0y31lt
+         wXBGKyxr3hJB53Uxvy27I2to/BPqbPMM0hUxZ2TvPo/DUAkH/rDyDANxr9/QHlqOgDxd
+         qzTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUjtZHkWBqJ7ww8sYifN5FbV45i4xJ/UAo7JMFqzIAVUQ2g//e7JA8E9FyCJdArBAPhCKrWe9eJJtWde9wU@vger.kernel.org, AJvYcCWY7kK113nl8kSk8c1+ZNSJHXldxx/uotCplONgAep9F2/5nzfSX4LCmzY+Dd1Dgm/6Wn+IWZi8VYvf@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcDKvD/+a5vzr+kWVGusnxU9zZI7V0TVexuQT2XE3S0J5wpA7M
+	lY1xvfJUUgFpBWgdYo3XYv6T2g2iqimjZVvZyqrLfGaDobcdzHI9
+X-Gm-Gg: ASbGncv2YDpMl5HjxrK8z1dTBBsX0YAjkjlPXH0+/UCPPfLJYwE+viqTINJhFRv/CBv
+	k35X5FV8bY0vDtsCWj6TYn2D8mqcRt4+NuYEv8mCkZBSnqwOyzBAiSkkjfZnV+EQAcDrcSog7I6
+	JRWkeXVkZPagaKDltyhz5pYuOrJlIBX5qWXuqNqvqy/aRx6BFB0Dynf6+728vyVdrr5Nhnu9hve
+	13Tw8KnZlu8OJDjh7wUQN+a4I1Fc3WN5CZIk1VfBUdlN8Jp8df4Z367V/EMqYyzJ+/3P+19UCE8
+	uUelwwKj/YfxjPsS
+X-Google-Smtp-Source: AGHT+IG77PHKjf5AhiLyerMkTqb453TjzWBZYQ7pg1s4WIRVRUE0L2S+OmWF2VO1uU3W239jf6xc6Q==
+X-Received: by 2002:a05:6512:1386:b0:545:e19:ba24 with SMTP id 2adb3069b0e04-54838f791d4mr4496251e87.48.1740324793960;
+        Sun, 23 Feb 2025 07:33:13 -0800 (PST)
+Received: from xeon.. ([188.163.112.51])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54523dd8ca3sm3025569e87.181.2025.02.23.07.33.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Feb 2025 07:33:13 -0800 (PST)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] drm: bridge: add ssd2825 RGB/DSI bridge support
+Date: Sun, 23 Feb 2025 17:32:42 +0200
+Message-ID: <20250223153244.149102-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/4] dt-bindings: display: panel: Add Himax HX83112B
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20250222-fp3-display-v1-0-ccd812e16952@lucaweiss.eu>
- <20250222-fp3-display-v1-2-ccd812e16952@lucaweiss.eu>
- <20250223-tricky-saffron-rattlesnake-aaad63@krzk-bin>
-Content-Language: en-US
-From: Luca Weiss <luca@lucaweiss.eu>
-In-Reply-To: <20250223-tricky-saffron-rattlesnake-aaad63@krzk-bin>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
+Solomon SSD2825 is a RGB to MIPI DSI bridge used in LG Optimus 4D P880
+and LG Optimus Vu P895
 
-On 23-02-2025 12:54 p.m., Krzysztof Kozlowski wrote:
-> On Sat, Feb 22, 2025 at 06:58:05PM +0100, Luca Weiss wrote:
->> Himax HX83112B is a display driver IC used to drive LCD DSI panels.
->> Describe it and the Fairphone 3 panel from DJN using it.
->>
->> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
->> ---
->>   .../bindings/display/panel/himax,hx83112b.yaml     | 75 ++++++++++++++++++++++
->>   1 file changed, 75 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx83112b.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx83112b.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..e6bd4b33d40be98e479d84617aea6d2af0df70e4
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/panel/himax,hx83112b.yaml
->> @@ -0,0 +1,75 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/panel/himax,hx83112b.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Himax HX83112B-based DSI display panels
->> +
->> +maintainers:
->> +  - Luca Weiss <luca@lucaweiss.eu>
->> +
->> +description:
->> +  The Himax HX83112B is a generic DSI Panel IC used to control
->> +  LCD panels.
->> +
->> +allOf:
->> +  - $ref: panel-common.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    contains:
->> +      const: djn,fairphone-fp3-panel
-> 
-> Why no himax,hx83112b fallback?
+---
+Changes on switching from v2 to v3:
+- added mutex guard
+- configuration register flags parametrized using panel flags
+- removed unneded debug messages
+- removed unimplemented modes checks
+- added check for maximum pixel row length
+- use types header
+- remove ssd2825_to_ns
+- shift bridge setup into atomic pre-enable
+- cleaned default values of hzd and hpd
 
-While this is the driver IC for this panel, I don't think there's any 
-"generic" init sequence that can successfully configure this panel, so 
-generic hx83112b driver could work I'd say.
+Changes on switching from v1 to v2:
+- added description for clock
+- removed clock-names
+- added boundries for hs-zero-delay-ns and hs-prep-delay-ns
+- added mutex lock for host transfers
+- converted to atomic ops
+- get drm_display_mode mode with atomic helpers
+- parameterized INTERFACE_CTRL_REG_6 configuration
+- added video mode validation and fixup
+- removed clock name
+- switched to devm_regulator_bulk_get_const
+- added default timings
+---
 
-Regards
-Luca
+Svyatoslav Ryhel (2):
+  dt-bindings: display: bridge: Document Solomon SSD2825
+  drm: bridge: Add support for Solomon SSD2825 RGB/DSI bridge
 
-> 
-> Best regards,
-> Krzysztof
-> 
+ .../display/bridge/solomon,ssd2825.yaml       | 141 +++
+ drivers/gpu/drm/bridge/Kconfig                |  13 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/ssd2825.c              | 821 ++++++++++++++++++
+ 4 files changed, 976 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/solomon,ssd2825.yaml
+ create mode 100644 drivers/gpu/drm/bridge/ssd2825.c
+
+-- 
+2.43.0
 
 
