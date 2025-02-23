@@ -1,139 +1,152 @@
-Return-Path: <devicetree+bounces-150046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8DD0A410DF
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 19:30:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCDFAA410F1
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 19:46:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57FEF1893D47
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 18:30:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BD213B7024
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 18:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2654C18A6B7;
-	Sun, 23 Feb 2025 18:29:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="PZjIDHxA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E34B413C3F6;
+	Sun, 23 Feb 2025 18:46:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 624AA189B9D;
-	Sun, 23 Feb 2025 18:29:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740335349; cv=pass; b=isYC++zTKC9MtUvNBvHh4uKDyL3xBkPQm/N7o0BuUVpgRVMzwQSLNBx5CGg48AJbGeeQNeP2H7THeb3AZhjuG3Hn52R1DSQim/OfZuNEholFKlQ9usoBMi973B5owAAoOzaw4g8XjTtCLiTpoUPkaCkUktdwOu6XfwcRoW9m5Bo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740335349; c=relaxed/simple;
-	bh=9e1rDRhjtWx8RcwMZlExf40SAo2UlhVvfwW0sy8Zjso=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ptoYvl5kby8tCcJ5WUm+wkhRDhGDsIVGLvl4nSkVgiwpvzD2BmLl+aX96f6GfVQCUNifzaAhjOCglzfr3xfprU6LjXrGPE08FfGtaYXyCAnV6XybAI/7yan08eOoRTsFvu46Q+2YmcERgRMTKu7fAOSYonajSgrWdMjbi6xQuYg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=PZjIDHxA; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1740335306; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=cL4JaMAa7tvCMV2YcOmcOO/bK4Q+iWWEzNd+06z1PeUsT+/y7f3MRsL5nmrTudQfj4D0TzkVtUZMv9TaRimtwt8BXslYh3S4e96H2mGNoTcYFyQmraHB30uONdYx/NXZiU3gSAGr7gXtIgQcyY/n/NINvTCINK9PQGxOoCbnxVk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1740335306; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=iIPCjPu2+AmsIf/cCFUaH7Ayf0dQa1TgmFz1djm75zk=; 
-	b=cyLBLlpJcwCpCrAKPtovB5xMsr2LvlGllseRb8K34VbStL40Pc6lD/YZWGYgmK1lF4TWNErJqq4qbmpLHAMa78mtnL9Fu0cD4owIE/qYKbypZEFcO1bXKiwrPdvdRp2Pa/rqz3mzFgTLoWtAVyL+Gi+O9KDWRTiH0U1B4zdrpvE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
-	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740335306;
-	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=iIPCjPu2+AmsIf/cCFUaH7Ayf0dQa1TgmFz1djm75zk=;
-	b=PZjIDHxAT92MMwPJRiUP6uXYiE6ZiMCqUVMoVa1/BVvlnmspFZcgPMbjkFZVa254
-	Pv80bPZmtqpm7RtutAqd1nbnmsWHmTl3i8n9pABkEz80isEpwMXJN6ZQy0VTHldVnSm
-	X7wujA3St2Uo6fPydQC/MUT9hI/9uvPrMoC/Egkg=
-Received: by mx.zohomail.com with SMTPS id 1740335304668991.4732596987989;
-	Sun, 23 Feb 2025 10:28:24 -0800 (PST)
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: Shreeya Patel <shreeya.patel@collabora.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	jose.abreu@synopsys.com,
-	nelson.costa@synopsys.com,
-	shawn.wen@rock-chips.com,
-	nicolas.dufresne@collabora.com,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: kernel@collabora.com,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Tim Surber <me@timsurber.de>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Subject: [PATCH v9 6/6] arm64: dts: rockchip: Enable HDMI receiver on rock-5b
-Date: Sun, 23 Feb 2025 21:27:10 +0300
-Message-ID: <20250223182710.314587-7-dmitry.osipenko@collabora.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250223182710.314587-1-dmitry.osipenko@collabora.com>
-References: <20250223182710.314587-1-dmitry.osipenko@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 185D7CA64
+	for <devicetree@vger.kernel.org>; Sun, 23 Feb 2025 18:46:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740336410; cv=none; b=PWpQVL+oYjMwYsXtjcqoE93qVKilWuNLFOIxtukiBeCdRAsb/bwm7cyrIQj1QAU7X6axfPmtiweKp/T3TMD5r/wVpS5NjmtXTeqfnsYkcZFRzjm/+KdjY6q8tsjJK6e7Xcr+lfLdzD3vL7SrgSkKPIGjAVe3jpDVlHWmA4KA/zk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740336410; c=relaxed/simple;
+	bh=2cSQNGsUfMbz2CkOc9WDLF15tzVkbeDZlgyHbXhN+e8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=g00F1r7QKPfQ8x0GWpyso42GkpCZfxbDGBtHhr9tmDQW5S/Xawzg+ifd6yI3Zzd/A1HtQNGQNxD9xcEZgkHfzw3kdKxzQ4M06yakUZHMFIOdckn4zFWhtMTN5QZq4JKneijcyvymX7xxyf4T2OF/KBYV8LZgYpgu/LEzYLokqTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <l.stach@pengutronix.de>)
+	id 1tmGzp-0000h2-Hx; Sun, 23 Feb 2025 19:46:33 +0100
+Message-ID: <7ccf5c8261a1d899e9fc9f1afc3b85952c021de9.camel@pengutronix.de>
+Subject: Re: [PATCH] arm64: dts: imx8mp: configure GPU and NPU clocks to
+ overdrive rate
+From: Lucas Stach <l.stach@pengutronix.de>
+To: Shawn Guo <shawnguo2@yeah.net>
+Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team
+	 <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, patchwork-lst@pengutronix.de
+Date: Sun, 23 Feb 2025 19:46:31 +0100
+In-Reply-To: <Z7rLWJ52aUqGkFiY@dragon>
+References: <20250204182737.3361431-1-l.stach@pengutronix.de>
+	 <Z7rLWJ52aUqGkFiY@dragon>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Hi Shawn,
 
-The Rock 5B has a Micro HDMI port, which can be used for receiving
-HDMI data. This enables support for it.
+Am Sonntag, dem 23.02.2025 um 15:16 +0800 schrieb Shawn Guo:
+> On Tue, Feb 04, 2025 at 07:27:37PM +0100, Lucas Stach wrote:
+> > A lot of other clocks on the i.MX8MP, including the DRAM set up by the
+> > bootloader are already running at overdrive clock rates. While this is =
+a
+> > deviation from the configuration of other i.MX8M* family SoCs, overdriv=
+e
+> > is the default for most i.MX8MP boards and only some special purpose
+> > boards will choose to run the SoC at nominal drive rates.
+>=20
+> Are any of these special purpose boards in upstream?  If so, does this
+> change have any impact on them?
+>=20
+I'm pretty sure that none of the boards upstream are designed to run at
+the nominal drive voltages right now. imx8mp-skov is one example of a
+board that's designed to run at nominal voltages, but that is only on
+the way to upstream now and Ahmad is aware of this patch and will
+adjust the nominal drive DT as needed.
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
----
- .../arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Regards,
+Lucas
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index d597112f1d5b..377824e69e20 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -220,6 +220,18 @@ hdmi0_out_con: endpoint {
- 	};
- };
- 
-+&hdmi_receiver_cma {
-+	status = "okay";
-+};
-+
-+&hdmi_receiver {
-+	status = "okay";
-+	hpd-gpios = <&gpio1 RK_PC6 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_hpd>;
-+	pinctrl-names = "default";
-+	memory-region = <&hdmi_receiver_cma>;
-+};
-+
- &hdptxphy_hdmi0 {
- 	status = "okay";
- };
-@@ -377,6 +389,12 @@ &pcie3x4 {
- };
- 
- &pinctrl {
-+	hdmirx {
-+		hdmirx_hpd: hdmirx-5v-detection {
-+			rockchip,pins = <1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	hym8563 {
- 		hym8563_int: hym8563-int {
- 			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
--- 
-2.48.1
+> Shawn
+>=20
+> > Up the GPU and
+> > NPU clock rates to their overdrive level to be consistent with other
+> > clocks set up in the dtsi.
+> >=20
+> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 16 ++++++++--------
+> >  1 file changed, 8 insertions(+), 8 deletions(-)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boo=
+t/dts/freescale/imx8mp.dtsi
+> > index e0d3b8cba221..aeaa6a5c2f56 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > @@ -816,12 +816,12 @@ pgc_mlmix: power-domain@4 {
+> >  						assigned-clocks =3D <&clk IMX8MP_CLK_ML_CORE>,
+> >  								  <&clk IMX8MP_CLK_ML_AXI>,
+> >  								  <&clk IMX8MP_CLK_ML_AHB>;
+> > -						assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL1_800M>,
+> > +						assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL2_1000M>,
+> >  									 <&clk IMX8MP_SYS_PLL1_800M>,
+> >  									 <&clk IMX8MP_SYS_PLL1_800M>;
+> > -						assigned-clock-rates =3D <800000000>,
+> > +						assigned-clock-rates =3D <1000000000>,
+> >  								       <800000000>,
+> > -								       <300000000>;
+> > +								       <400000000>;
+> >  					};
+> > =20
+> >  					pgc_audio: power-domain@5 {
+> > @@ -2232,9 +2232,9 @@ gpu3d: gpu@38000000 {
+> >  			clock-names =3D "core", "shader", "bus", "reg";
+> >  			assigned-clocks =3D <&clk IMX8MP_CLK_GPU3D_CORE>,
+> >  					  <&clk IMX8MP_CLK_GPU3D_SHADER_CORE>;
+> > -			assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL1_800M>,
+> > -						 <&clk IMX8MP_SYS_PLL1_800M>;
+> > -			assigned-clock-rates =3D <800000000>, <800000000>;
+> > +			assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL2_1000M>,
+> > +						 <&clk IMX8MP_SYS_PLL2_1000M>;
+> > +			assigned-clock-rates =3D <1000000000>, <1000000000>;
+> >  			power-domains =3D <&pgc_gpu3d>;
+> >  		};
+> > =20
+> > @@ -2247,8 +2247,8 @@ gpu2d: gpu@38008000 {
+> >  				 <&clk IMX8MP_CLK_GPU_AHB>;
+> >  			clock-names =3D "core", "bus", "reg";
+> >  			assigned-clocks =3D <&clk IMX8MP_CLK_GPU2D_CORE>;
+> > -			assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL1_800M>;
+> > -			assigned-clock-rates =3D <800000000>;
+> > +			assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL2_1000M>;
+> > +			assigned-clock-rates =3D <1000000000>;
+> >  			power-domains =3D <&pgc_gpu2d>;
+> >  		};
+> > =20
+> >=20
+> > base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+> > --=20
+> > 2.39.5
+> >=20
+>=20
 
 
