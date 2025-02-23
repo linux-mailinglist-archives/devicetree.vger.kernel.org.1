@@ -1,175 +1,147 @@
-Return-Path: <devicetree+bounces-150076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 106F7A411DA
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 22:14:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF894A411DC
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 22:14:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 485363B0D01
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 21:13:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12E0C3B6CF3
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 21:13:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539BC23F420;
-	Sun, 23 Feb 2025 21:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3008623F41D;
+	Sun, 23 Feb 2025 21:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bE5F2f0w"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="pWWp/55C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0EDD1779AE;
-	Sun, 23 Feb 2025 21:13:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A63B823F262
+	for <devicetree@vger.kernel.org>; Sun, 23 Feb 2025 21:13:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740345220; cv=none; b=tXiQmJeJLu2yQeBL1Ab863AOvtQvpvpJlCCbX2xlO6moswZQQhJnhsDF1BlGF8wkgNOdSBQTouoTfS+ni3zoouJig8mH5s5MwwC5CzcR0TX0yh5yUCWt+U6GE/uS66w4EUEOHoILpgGAusi4vhYptaOgkGiF5ctr8yqjSk4rW1Q=
+	t=1740345234; cv=none; b=Uv3lcMx/5nv+NTnqg87q+O/2w1pT1niYScUNn755tcypgL1HFu8snPOsQbRUzVOw4qyMf7Yb14PBZwex41BZ2xWaUZnMwR6RjgtA02M9HdMKTnGuJ6p7SuHVdx8vUW/q6EREV2aLZjQRj6vpn83vYk3QfT4qXo5SXvHgo6DQr6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740345220; c=relaxed/simple;
-	bh=t2ax8UCJSHBbBrK6Bhi1jvtf9DO+eaUf94fq1tvpzwg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VDqFpYHZvNmIY+dO/SB6N+JhlhLPjQuYyuKotwjLCIsZPp7TfpPJQkGovg5OcCdbk9p8ulNzoX0QlIOvMelP6e2kRc67sVugE0Te7LPnJe5Hu2zjMPXc6OBGus/5VViIiFX9+HGTB0pl+0IROuMENDCzxNvMRr9gYNP1WTQcEI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bE5F2f0w; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-520a48f37b4so2122969e0c.2;
-        Sun, 23 Feb 2025 13:13:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740345217; x=1740950017; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+iedaQHLBD4XXfzSGe7haPi2kZ1YTY82HI9Qk9Wdqtg=;
-        b=bE5F2f0wyxCTrtDfjv5IWKljCOv6bcLdsNJqxMGCUv27yjioZthMGMpRYoT4jTN6au
-         ZzIC79tz6fdhYvjquksprYmjahKtES1Bzb2IE36jCN3lSs6qVtjLBSf3CzWIVwFLhKvY
-         e0Zl2/iPIf7UYesKArr6G7t6ezdDA8oerUyykECu8Yep3QpzYs7dsitye0YGgSPkhup1
-         M0OELuiOEKzeycJMaOd+IBTuJDZB2GG+KSx68Acx5SYHRcGYdPBNS3Tlwg3U/V7tF4/3
-         3+DjO3olLJ5WjhlSRPy8DoqLtnDGYy3u2Si+mRkouBHK8pMQEipLKfo/jEKb8PgfdBsG
-         RYZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740345217; x=1740950017;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+iedaQHLBD4XXfzSGe7haPi2kZ1YTY82HI9Qk9Wdqtg=;
-        b=D4RQcb/HXvsZauReNTB7Se9iUbCHIFgSxB+2cahrqob4jRs4acCWMmLfeurV5ZCQuz
-         TVuy083LujPlT0DjnxMfuRlO1J8x9N5r9iFZLM1QGAmdb0yqh7561UzfHf7NgB+OuEtt
-         9pb8Qf2LzBoECNuzGjm82/Jb+vYubrQFYX6o+PD7gJgSf1MMr2JTvca5jQqZZLZwtSG0
-         VAV+abfJnuj0+5Ryn9naSUdcXvkWCmZhgzTDAL+tKJrKgRXOhqtNNc7tNr0rirq6r2Ff
-         ioqZNhEsZGpUB6PImBXkPFHovs6bI9kvNXrcWyfJWDAR3tGgAmDUXS5uKIwVhfhDp4lN
-         yckA==
-X-Forwarded-Encrypted: i=1; AJvYcCUcxdTPBKLsU7rPM436vdi1nGsAL81c8xJH7QaVtgLROxsIqhlbNWxwE7vq4NfUy9uM7kYahx5d6WXHTBdM@vger.kernel.org, AJvYcCVPaDAaPfYwIH0tFDVvjI+Rkpd4k385/PbOlQyUEG70BS+tU1ZN5ERlWSTJlWVInMDJLYnVRzMmgUkTL18Ut1JhQBI=@vger.kernel.org, AJvYcCW3V/QKUnrqjDTFpc7V3ItmRwScszYJF6vjvjAMPsFZN3HT090Gv3nZBJuDIwCsS9CAgSiMBH2RdqGR184=@vger.kernel.org, AJvYcCXU0PX3QhxJL5i8PV33EABJRD8wkFBVaPrE77SWNcyGoqjnl+MURkMmh52Wd1Cf8bJxKmTFl5Sy9atc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwDAVQvd1CJn/hYbcf9YEkrry95QVs+PHgn5KYvZcytVXo+GKA
-	nI7nDxiFDYNSsjDAhRbQsH7kpnnes9cwIq7ZlbaoyncgSWXokEiZwDqiMWPPHDp4bLMP/7/fxrh
-	hFksWQejYbI45Wd73IUh8fY/FR+RfEX2eUf4=
-X-Gm-Gg: ASbGncu19XWCNsOr3VhKop1eoTCoX5MjHapItJp5q+1pLJc5iXLkTDnlzJfohnOWT35
-	TMhBoUs57dl2i6Tam56s8soadXczb8gHUoIyesoinalvcTOSPzpj4oc/aP4Lgefp5T7zJ/wAa4r
-	gsKET7lGun8Gnt5hi/cvaxuTGjRsiEohRRfEE5Ow+f
-X-Google-Smtp-Source: AGHT+IHB3Ce8MjRqHhtiwx5o5M0oXoOYpkGLBpVBucfsJhVjAe0Qw6N6cQ4oWtTgk9FhGO3nyP2c6oRdpNb7yoY8j1w=
-X-Received: by 2002:a05:6122:6589:b0:520:64ea:c474 with SMTP id
- 71dfb90a1353d-521efbb5975mr5320566e0c.5.1740345217540; Sun, 23 Feb 2025
- 13:13:37 -0800 (PST)
+	s=arc-20240116; t=1740345234; c=relaxed/simple;
+	bh=XZDXKhTwAsTdWmNwWvCsW4dBHabuvPaPaUXGTXcf+Kk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=U8hKR7f4EMIKFxOVp6MLTLdrxwnzLJy9AsJTAXzhDTs7ut+rzqWHR5oKcSGdyDI5cwye35NFu+NEDp+H096DbfB2SUkOF64gpk/dCTowYroY4gz175ZRb5vvXIX2G5W7BQMy6fKdABTvylO0dYMowfwEmz70Yokf3wQgMfPNbJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=pWWp/55C; arc=none smtp.client-ip=212.227.15.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1740345224; x=1740950024; i=wahrenst@gmx.net;
+	bh=XZDXKhTwAsTdWmNwWvCsW4dBHabuvPaPaUXGTXcf+Kk=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=pWWp/55CJSndmRv5PHx+l8DHnYjh14mgYv5TJXpQccn5m7Ss9FH25Pf2VH9LAZgF
+	 XHwi3yaIUZobgqjsQxKdS9BVkZr7ZO2MJEnrM5x9m5dXdPPTu5cfm5skAmjmZ3EY8
+	 bxc1ulJ2Gzo2/0RTlOj8oeaN4SxPk1nRRRf+cc79HCAGL9ZwqzU7u9WWUpCOMUyLE
+	 cidPguOvDVDPMFWQ39BgXvdK2ASaejGo3vFC08eQPPT/l2n3xKRdh1FGay0J6wKZd
+	 a12chO61w4Ra7Lc551EzLQaPQ4v8X51GxZZ8sWPa+o8/Jyyt2YQaZmR7Joc1FnReW
+	 NaxRkbOJB+mXJIymeA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1M6Ue3-1tfRXi3du5-003QMJ; Sun, 23
+ Feb 2025 22:13:43 +0100
+Message-ID: <32deb7f1-a155-4cd8-b00a-048676a60c0b@gmx.net>
+Date: Sun, 23 Feb 2025 22:13:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250221155532.576759-1-tommaso.merciai.xr@bp.renesas.com> <20250221155532.576759-6-tommaso.merciai.xr@bp.renesas.com>
-In-Reply-To: <20250221155532.576759-6-tommaso.merciai.xr@bp.renesas.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Sun, 23 Feb 2025 21:13:11 +0000
-X-Gm-Features: AWEUYZmei4BJm6FCm1F9SVWWh34_vuw78FqYfU_WkHTsESS75iMW3IL44Ar9S5A
-Message-ID: <CA+V-a8uxOuf-9_3TLhFkz0TxNk50fmieJcGOCyxOFY3Mzedy2g@mail.gmail.com>
-Subject: Re: [PATCH v2 05/18] media: rzg2l-cru: csi2: Use devm_pm_runtime_enable()
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
-	linux-media@vger.kernel.org, biju.das.jz@bp.renesas.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Hans Verkuil <hverkuil@xs4all.nl>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: bcm2711: Don't mark timer regs unconfigured
+To: Phil Elwell <phil@raspberrypi.com>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ linux-arm-kernel@lists.infradead.org, bcm-kernel-feedback-list@broadcom.com,
+ devicetree@vger.kernel.org
+References: <20250222094113.48198-1-wahrenst@gmx.net>
+ <5ab95f85-9a91-4bbc-8eef-299376ab46f2@kernel.org>
+ <CAMEGJJ04D-LJ5=NdYYu=8Dfsy+mb0sQpL6n_pT+DAcyKAiPyvw@mail.gmail.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <CAMEGJJ04D-LJ5=NdYYu=8Dfsy+mb0sQpL6n_pT+DAcyKAiPyvw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:xLfENJY+bNTRHJcJ9Svd+mnb6wcFGfwwOP/QJ+owuO5tewx/dCo
+ pg6y1zyAcGrbN06fNo7S+YzkIOmnPG6dNWWrhlCNZx/owKq4FGbwGs2E+zeYVDWb5dtfF6t
+ TtuvVUgN6gPunDmbgqZc84oqKVYDJonBImo8RXJUYxWoMld/yxBLAguv7ZwMEhizvK3w4M2
+ l1VFT8HoJ+phXbADKydGA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:AxeeNlHYTSM=;6OgijR+JVVwXAKykImkIETmC+KD
+ pixqyklUQCaY/yBgtCJ6SI2M6+ZIm/5EkkMh6fz/VX3KHwuE9t7qDrX8Ot+x0CEDi/S3G2wvq
+ /DKe1Fo7YMtMLKM00oVMQms94ESYg1Ugzw+KQi22o55EnfQPKNvH8VTws2ruYnTaydNb1g9KF
+ Od/KFOwVGaKjZoEHfqIxILaQo24Lv8BgLEEKY/sB+b4dE0lYP98dp9guvJsqV6HK73PPQ1n7f
+ mB0EiJsSijReYSSQ5cwxMv7myWbiRds0B01kuNsHEkjRwYyqBLPCCFztCociER6xMn3+0al0a
+ 7rc0LaDezacazm+kiEn19+RAdFUTs9WCpLWu8yUKH815qAFU8BOGZcvw3ZMQMzWKyqo8Qr2d2
+ MYKXhdhuhKb70p7HP4jbatPeXCaf3LAEx/dxjL7AQKAcM4w0hbgs0tj/AZINs20QNJynYAgn1
+ iAQDQHjrRyLcLaCiXaAAgijTj94G2eYWLo185MA0/X/N5J4sQOT1vJ1jH0O+2aIEH4M1V1Zqi
+ ycF/KGXulzOL5ZX4d/b13B+6pf3YFb2nxuTzxFCx4tpzd07n7TdrXbcWpmpJxTYe69I0PwmV7
+ jKTsgYOnP2QGjbB8tDe3AqkmGVYGboLEdDp0Gsr3v0mtbGo5aDm3YnlJEI6RpSZq3vlAtA3SR
+ 7pqeC1CHe98FrPCwgY5CTbzcwDLfjL9FX/yOdjk0I3izn8QmR+/SWoEeAq133ReVxdFeUhlu5
+ TbHf6sJjlmx3I10IWpjq+M4lWyge7dpntbiLYkUi8MEXpYbAV8SEJA4PesbtyBlJGDZEcaDxG
+ EHDtZaI4jPASP/3OSD3fnB/f/Nr9sLnCLAZNtKbmZ0JiV11yNDZOoh/3yoiZY397VJUTndZZd
+ lBvpdLWsybinjrWhyAt+usjizFjDWFAKdasoVJcRIkaXznTfamsjAM1OtCzzf99Ha/cmnna5S
+ zBqDPLt80lRjhFs2k9qll+7d1K2PntjtZYQ40M3D97lqFKrR5gYTLYjSslkgvLaxFB2vywmUc
+ VTUja6dpOakvHgxLLchxZ/ex2QCiqR0Z+vgLLZMROF7o6EwvuARZXlMZvw1tUagvZF/RpYOZD
+ VttbH+DwPFSj31Bd47s/lUe+lQ1tvMKIa6G/nSYa6PZ7tjUaUmA5CNCA8coThxpN2h4BJJCWX
+ Naf7sEs3nWCMcWwpzjQ6IhrVGyg+8AO5sdIUxnVp14HUQmIICMe8uALjck3tChV8x2V9VQUa/
+ LLuulo1RiUMP/wUqfwiI3Y7CPvafwZXoD2xu9CZ4Rhe7INy+GkME0rngCmbZQOaqPrAF6xvXT
+ 5iUmN1V6cpFiHL1fNRqDXUqzRoJMIKZT2g7yIKlUZyO5n/Bzso3umMkd1tMBW8tBqdi1HSo07
+ pU/bflsPdFm5W/YjogNOrrROjH64n6IvgLpziDxYpU3zusl0hmxLoTseBGDtzkoypUkbO7kQI
+ EbJGRMWHCaryMtSuCUXPwZj0saG+jAkHeAjxDHUGB4z6p1rq6
 
-On Fri, Feb 21, 2025 at 4:05=E2=80=AFPM Tommaso Merciai
-<tommaso.merciai.xr@bp.renesas.com> wrote:
->
-> Use newly added devm_pm_runtime_enable() into rzg2l_csi2_probe() and
-> drop error path accordingly. Drop also unnecessary pm_runtime_disable()
-> from rzg2l_csi2_remove().
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> ---
-> Changes since v1:
->  - Collected tags
->
->  drivers/media/platform/renesas/rzg2l-cru/rzg2l-csi2.c | 11 +++++------
->  1 file changed, 5 insertions(+), 6 deletions(-)
->
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Am 23.02.25 um 17:11 schrieb Phil Elwell:
+> On Sat, 22 Feb 2025 at 10:44, Krzysztof Kozlowski <krzk@kernel.org> wrot=
+e:
+>> On 22/02/2025 10:41, Stefan Wahren wrote:
+>>> From: Phil Elwell <phil@raspberrypi.com>
+>>>
+>>> During upstream process of Raspberry Pi 4 back in 2019 the ARMv7 stubs
+>>> didn't configured the ARM architectural timer. This firmware issue has
+>>> been fixed in 2020, which gave users enough time to update their syste=
+m.
+>>>
+>>> So drop this property to allow the use of the vDSO version of
+>>> clock_gettime.
+>>>
+>>> Link: https://github.com/raspberrypi/tools/pull/113
+>>> Fixes: 7dbe8c62ceeb ("ARM: dts: Add minimal Raspberry Pi 4 support")
+>>> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+>>> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+>>> ---
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> FYI, although the patch was written by me, the commit message has been
+> completely rewritten.
+Sorry, for mention this in the commit log, but i thought this was
+necessary to explain why this property was accepted in the first place.
 
-Cheers,
-Prabhakar
+This is the original one:
 
-> diff --git a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-csi2.c b/driv=
-ers/media/platform/renesas/rzg2l-cru/rzg2l-csi2.c
-> index 948f1917b830..4ccf7c5ea58b 100644
-> --- a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-csi2.c
-> +++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-csi2.c
-> @@ -805,11 +805,13 @@ static int rzg2l_csi2_probe(struct platform_device =
-*pdev)
->         if (ret)
->                 return ret;
+https://github.com/raspberrypi/linux/commit/d06cb3534b6553a1f76bef2ddaf833=
+e23dc12a4c
+
 >
-> -       pm_runtime_enable(dev);
-> +       ret =3D devm_pm_runtime_enable(dev);
-> +       if (ret)
-> +               return ret;
->
->         ret =3D rzg2l_validate_csi2_lanes(csi2);
->         if (ret)
-> -               goto error_pm;
-> +               return ret;
->
->         csi2->subdev.dev =3D dev;
->         v4l2_subdev_init(&csi2->subdev, &rzg2l_csi2_subdev_ops);
-> @@ -834,7 +836,7 @@ static int rzg2l_csi2_probe(struct platform_device *p=
-dev)
->         ret =3D media_entity_pads_init(&csi2->subdev.entity, ARRAY_SIZE(c=
-si2->pads),
->                                      csi2->pads);
->         if (ret)
-> -               goto error_pm;
-> +               return ret;
->
->         ret =3D v4l2_subdev_init_finalize(&csi2->subdev);
->         if (ret < 0)
-> @@ -852,8 +854,6 @@ static int rzg2l_csi2_probe(struct platform_device *p=
-dev)
->         v4l2_async_nf_unregister(&csi2->notifier);
->         v4l2_async_nf_cleanup(&csi2->notifier);
->         media_entity_cleanup(&csi2->subdev.entity);
-> -error_pm:
-> -       pm_runtime_disable(dev);
->
->         return ret;
->  }
-> @@ -867,7 +867,6 @@ static void rzg2l_csi2_remove(struct platform_device =
-*pdev)
->         v4l2_async_unregister_subdev(&csi2->subdev);
->         v4l2_subdev_cleanup(&csi2->subdev);
->         media_entity_cleanup(&csi2->subdev.entity);
-> -       pm_runtime_disable(&pdev->dev);
->  }
->
->  static int rzg2l_csi2_pm_runtime_suspend(struct device *dev)
-> --
-> 2.34.1
->
->
+> Phil
+
 
