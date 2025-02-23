@@ -1,51 +1,53 @@
-Return-Path: <devicetree+bounces-149918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B57A40CA4
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 04:23:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2407AA40CAD
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 05:04:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 307107A6E96
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 03:22:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 821C0188534F
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 04:03:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 531783594C;
-	Sun, 23 Feb 2025 03:23:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1AAA158218;
+	Sun, 23 Feb 2025 04:03:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ZEx5XNFT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04FD717D2;
-	Sun, 23 Feb 2025 03:23:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F861F5EA;
+	Sun, 23 Feb 2025 04:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740281000; cv=none; b=EDZLhfyK8p/+GQhSntO0caPgh79gnkfQG1EDLRfaESQkZpJ+K7NGCAKbBMyn8p9TS2qWjY4arKzdi4d0pHiNIIxD0iHcbxV0MKER+ktHxbuv0KJpRB/5VClA5TW2sq8jxJXSz3i8Lf4+cO2I40ruyEGYiG6YEhpR5YN5MT+g5A8=
+	t=1740283416; cv=none; b=PZZk/yhAgPGKRGd/GIknptJGPwnrCZNiF4tpqXI0se53K0VV40+Zqu4Lu+168mD9Z22GS5jfiQk6l92Z245DK9hvUlIg6eOuM2iIOrX2huFm+ujlDsMlVh2ZJL+jEU4lDZZL8UGc6Qvc6oke9doTxKNnyTKkrPKuHyhPmCsylyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740281000; c=relaxed/simple;
-	bh=ybEuh9mXdFe2N3eI3z6GwXQG2B9Khh6pcNZq9U+xH/4=;
+	s=arc-20240116; t=1740283416; c=relaxed/simple;
+	bh=nfWXgAqEYJpJZrZYKtP2v1+tL0HqoQwQS+EghXX7mHs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XmYuCAEEwp8iItAunCeek/wm9NvE/n9QQClTch3Idut5oedBcGbYD3wYQjXuTdBGSuoj/z5/rZ7RJ8Bom5Z1GO1TWMFErmyo0xsukHdAXad1PU12QJa+qO9xslbY2Wf2/hS6YFLBRnjZ4gLF3+xglr7uZq0ckC4DnTHEtUMi/Ok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [180.172.118.52])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id CB1E0343208;
-	Sun, 23 Feb 2025 03:23:17 +0000 (UTC)
-Date: Sun, 23 Feb 2025 03:23:12 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH RTF 0/2] gpiolib: of: Handle threecell gpios
-Message-ID: <20250223032312-GYB33864@gentoo>
-References: <20250218-gpio-ranges-fourcell-v1-0-b1f3db6c8036@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ApPkEVXP3Yg0Tv3jrrpWb+MfT9JDqa33gIEqy60hsH+hMumD8rBfL+zw6jVp9eJlbVPti1ux4GYl4u5FpbFmnpwbOb841d2de5X3lHLYrPx81VA2InP1HALI35aynXRu2hhF73OGNzznyaiZrivlZN8QxleXRwXR4Rjo/cqqKQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ZEx5XNFT; arc=none smtp.client-ip=1.95.21.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=JIgRN+3XWpbCfDnE3nN0Ey2Rm2UwEB6WW3O8E2/greM=;
+	b=ZEx5XNFTiFbr2pRhIM56TXOExKvgiNVvoa9/oTHwGTqtXcxtydYDRufHTk9p+1
+	K8/+114z56brO9VRWxiou3kcDvtHJBpgyNA83/HvdBdysTotDNrtm2cYFDO8zRLG
+	O7g5v61Mwp4PcQZuRXoffIT1hcQkIU6n54GdxFmZ3ZYv0=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgAHj_D0nbpnJRTGCQ--.24347S3;
+	Sun, 23 Feb 2025 12:03:01 +0800 (CST)
+Date: Sun, 23 Feb 2025 12:03:00 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Mathew McBride <matt@traverse.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH] arm64: dts: freescale: ten64: add usb hub definition
+Message-ID: <Z7qd9GPGM8+NBioH@dragon>
+References: <20250129045352.10728-1-matt@traverse.com.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,40 +56,118 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250218-gpio-ranges-fourcell-v1-0-b1f3db6c8036@linaro.org>
+In-Reply-To: <20250129045352.10728-1-matt@traverse.com.au>
+X-CM-TRANSID:Ms8vCgAHj_D0nbpnJRTGCQ--.24347S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxGFyUGr45JF1rCr1DKr4fuFg_yoW5XF4kp3
+	Z8ursrCrs5XFy7t3W2gF1xtFZ8Ww4rKF93Zr98Jr4UAryDuasrKrnFkr43uF1UXF18Cw4a
+	vF4DZry2kFnIg3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UoMKZUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBBX7ZWe5p-zUGwABsE
 
-Hi Linus Walleij:
-
-On 11:28 Tue 18 Feb     , Linus Walleij wrote:
-> This adds some code in the gpiolib OF core to deal with
-> several gpio chip instances per OF node.
+On Wed, Jan 29, 2025 at 03:53:52PM +1100, Mathew McBride wrote:
+> A device tree binding for the Microchip USB5744 hub controller
+> was added in commit 02be19e914b8 ("dt-bindings: usb: Add support
+> for Microchip usb5744 hub controller").
 > 
-> The change was prompted by the need of the Spacemit GPIO
-> controller.
+> U-Boot will consume this binding in order to perform the
+> necessary actions to enable the USB hub ports over I2C.
+> (We previously used our own out-of-tree driver for
+> this task)
 > 
-this patch works for me, many thanks
-I will send a patch v6 of spacemit's gpio on top of this 
-
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> The Ten64 board does not have any switchable supplies
+> for the voltage rails utilized by the USB5744, so a
+> pair of dummy supplies have been added to facilitate
+> operation with U-Boot's hub driver.
+> 
+> Signed-off-by: Mathew McBride <matt@traverse.com.au>
 > ---
-> Linus Walleij (2):
->       gpiolib: of: Use local variables
->       gpiolib: of: Handle threecell GPIO chips
+>  .../boot/dts/freescale/fsl-ls1088a-ten64.dts  | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
 > 
->  drivers/gpio/gpiolib-of.c   | 126 ++++++++++++++++++++++++++++++++++++--------
->  include/linux/gpio/driver.h |  24 ++++++++-
->  2 files changed, 126 insertions(+), 24 deletions(-)
-> ---
-> base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
-> change-id: 20250217-gpio-ranges-fourcell-85888ad219da
-> 
-> Best regards,
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
+> index bc0d89427fbe5..fc15c83d222f6 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
+> @@ -87,6 +87,22 @@ sfp_xg1: dpmac1-sfp {
+>  		los-gpios = <&sfpgpio 7 GPIO_ACTIVE_HIGH>;
+>  		maximum-power-milliwatt = <2000>;
+>  	};
+> +
+> +	usb1v2_supply: regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "usbhub_1v2";
+> +		regulator-min-microvolt = <1200000>;
+> +		regulator-max-microvolt = <1200000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	system3v3_supply: regulator {
+
+Same node name for two regulators above?  Won't kernel complain?
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "system_3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+>  };
+>  
+>  /* XG1 - Upper SFP */
+> @@ -231,6 +247,12 @@ at97sc: tpm@29 {
+>  		compatible = "atmel,at97sc3204t";
+>  		reg = <0x29>;
+>  	};
+> +
+> +	usbhub: usb-hub@2d {
+> +		compatible = "microchip,usb5744";
+> +		reg = <0x2d>;
+> +	};
+> +
+>  };
+>  
+>  &i2c2 {
+> @@ -378,10 +400,33 @@ partition@9400000 {
+>  	};
+>  };
+>  
+> +/* LS1088A USB Port 0 - direct to bottom USB-A port */
+>  &usb0 {
+>  	status = "okay";
+>  };
+>  
+> +/* LS1088A USB Port 1 - to Microchip USB5744 USB Hub */
+>  &usb1 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+
+Nit: unnecessary newline
+
+Shawn
+
+>  	status = "okay";
+> +
+> +	hub_2_0: hub@1 {
+> +		compatible = "usb424,2744";
+> +		reg = <1>;
+> +		peer-hub = <&hub_3_0>;
+> +		i2c-bus = <&usbhub>;
+> +		vdd-supply = <&system3v3_supply>;
+> +		vdd2-supply = <&usb1v2_supply>;
+> +	};
+> +
+> +	hub_3_0: hub@2 {
+> +		compatible = "usb424,5744";
+> +		reg = <2>;
+> +		peer-hub = <&hub_2_0>;
+> +		i2c-bus = <&usbhub>;
+> +		vdd-supply = <&system3v3_supply>;
+> +		vdd2-supply = <&usb1v2_supply>;
+> +	};
+>  };
 > -- 
-> Linus Walleij <linus.walleij@linaro.org>
+> 2.45.1
 > 
 
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
 
