@@ -1,51 +1,52 @@
-Return-Path: <devicetree+bounces-150004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E43CA40F11
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 13:58:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD500A40F10
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 13:57:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F0F83B9491
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 12:57:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2F731898E4A
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 12:58:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B6B820765E;
-	Sun, 23 Feb 2025 12:57:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1309A205E31;
+	Sun, 23 Feb 2025 12:57:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="a5zNDwgS"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="kD4TUfWZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D2071C84CA
-	for <devicetree@vger.kernel.org>; Sun, 23 Feb 2025 12:57:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2EB020550B
+	for <devicetree@vger.kernel.org>; Sun, 23 Feb 2025 12:57:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740315470; cv=none; b=TZBoa4oRETDNF7f0miLFcctjTe6swNjdUZtS7q2KQUt0+nAo15yPPS2cagkjkH/hny535huI8lFNHPR8iAWAmyVcgrgLoVoWbA2r2RppjQ1PnPJaDZYjbsYBe63HUion8AJsL5OUF19vfRmVPEhxQmL7DvARE55EZOC6OLUMsO8=
+	t=1740315472; cv=none; b=Ff+zV8OVFYt+wP9DGCOE5P+cI3E/1TdlnjR17y30EPxRV6D2WsitGd1d+V5/lIBjHIrTLyykeg0NZ/Qo8zUk/nYnNZOJVRW6spX080LkLEK1CeBsJK2XvAMu8y1LBNztHOJxMYP1fjReHwcbBpClQQEvai5FEiXCPsLj4MA8p+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740315470; c=relaxed/simple;
-	bh=YyiyW9CLP7JCzGjiTRbb8mzYI0N0e/he15/GIVwyxOE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=joUqVX+b9mx9MppTVs9nY9wenOZgTwqPTvhL263KPykrfZJUYPxB6vHi5chI8IyqQMKiKPJydxOM7OTv+muCXx5jTXa4fW5snfOGLYCfYGD+zK/qGf9GIuj0r0uwG1AZUE1BI1V2rHEi3/1MZQkyvEPE9sQnDf35L1zShUlQHLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=a5zNDwgS; arc=none smtp.client-ip=212.227.15.15
+	s=arc-20240116; t=1740315472; c=relaxed/simple;
+	bh=Dwf9gb4ujmcGnNJEx5bZ/Qevkhq/j2XVCx/f7a980+g=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=IfqBtDyJisRsW5V01UsPV8aSzrXik8pDN0EUJjVav95bCXdDiVH/2MSJ65nptyBtQXoz4Uip4esL0bCzrReAOIHDoQtaQSCAtEK8WUq8Eqj4iPyWWPAHvXtySMhtPrDYkBqgCkcG0jmnGUwqKoCoFNG/0ECi1lMc0IZPmM66Mb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=kD4TUfWZ; arc=none smtp.client-ip=212.227.15.18
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
 	s=s31663417; t=1740315458; x=1740920258; i=wahrenst@gmx.net;
-	bh=fOAmXLgFxWZ+ulX7KAiIBOK6edcQA4gcgth7a0IxJXQ=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:
-	 MIME-Version:Content-Transfer-Encoding:cc:
+	bh=zc5CpEky2NIZDfhanuWrTwGiO14SFMDkXoWyMl5EyRg=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:In-Reply-To:
+	 References:MIME-Version:Content-Transfer-Encoding:cc:
 	 content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=a5zNDwgSdiH9Xy5GP5f5p3dc+kxcUXKfevPR0EjMSqimbkQQlGpQ1hmGba3V2DDn
-	 DjdTIr3iO1gsFUyaf4aYEuoGWHovl1xlZdrxZsIL87Wh56BruOyzqWlJBTNCRkcJu
-	 62HS8NJG/I90koyN0YR8nQwEmx5m0fsUQQvcrwD2RcBpkFzUQ0AETobj9EgBSHYgE
-	 aDWrsTB4OPm4xlRh0BgzxrSCJz1p6knF1vc7Km/jfvt5NeYokrx5AKRvmpW3gLJGM
-	 RjK+lpIqPw3+0aQXnf3zjrKn4MDqQZozshUeAUvY07bAgmVc6QcT2htFNiIwEHSJG
-	 aipjBKAQVSCS2J6A0Q==
+	b=kD4TUfWZEP27ktDphP6TLIFtLqDAzh/XdBN1DU2rv93CzPK5PP6DzyqeH/xwBjMT
+	 QVRs8mYAUtqx/DRayVHe5CAmACjLz0VvhNz13RSU7ILIHPDAkb9ZX1H0nbgke+0mM
+	 wpGDHtlAFhLhJEd3BiX/BX9tVw99QIbo3JgrHFuCS5rbT/64tsKF51pta4awIWK55
+	 senSMSqAngAeBuvytM8HymE1vVPxx5zgB7Nsq+kr6cxL9oeo7Q1XIKdyPYazTS/f7
+	 sc+TdKnmcWElVKej1eAeVFKUgqLNANEUQL5h9YOuE+Ed8H88k1Yz4kRhXcfzf9XP6
+	 MezJlKjHHt02Q5szMg==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from stefanw-SCHENKER ([37.4.251.153]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mel3n-1tDxC84AlR-00hs2w; Sun, 23
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MXXuH-1tojqn1mut-00RtW8; Sun, 23
  Feb 2025 13:57:38 +0100
 From: Stefan Wahren <wahrenst@gmx.net>
 To: Rob Herring <robh@kernel.org>,
@@ -58,10 +59,12 @@ Cc: Phil Elwell <phil@raspberrypi.com>,
 	devicetree@vger.kernel.org,
 	Andrea della Porta <andrea.porta@suse.com>,
 	Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH 0/2] ARM: dts: bcm271x: Adjust PL011 primecell-periphid
-Date: Sun, 23 Feb 2025 13:56:12 +0100
-Message-Id: <20250223125614.3592-1-wahrenst@gmx.net>
+Subject: [PATCH 1/2] ARM: dts: bcm2711: PL011 UARTs are actually r1p5
+Date: Sun, 23 Feb 2025 13:56:13 +0100
+Message-Id: <20250223125614.3592-2-wahrenst@gmx.net>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250223125614.3592-1-wahrenst@gmx.net>
+References: <20250223125614.3592-1-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,43 +72,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:5hVBDRw1GpkiLmHAzwcsX/ABqcqVS33Z/ILCNuN+T3Mylbvytnu
- VcEI8FQ2RlfLy0Iv7Oq8OXRlJwRAMBtelpklzok96aPHGTiLaLth8N6lYM54Eo3XMC73wb2
- qdNltJI6tJSMmbwU2/5bwbdhNijJqdbQGuVDh8NzKVY8mx6fEqDhG7t4nRoAYl2VrBrDkHq
- brbfuTaX2rloBS9Hy1IwQ==
+X-Provags-ID: V03:K1:tJfhFtLlSGhjDfQBOf4zyVel94Tr2+RePyIQd+wtxYdxooAheJi
+ AVO1n0o1lTf1wTOOQiNNpvqnKbJva6Kge82l7FuVljgP3iNjXDqLAsuTXlrOuBtxw4sz7c3
+ lfIy/xA7G20FvQclkUmd/BtU/mVe6tA2Y+YU9hS3wkBHH90JfpvXDWuKMNbHoJU0/8A5eV6
+ 1lbwInj8sAw6B29+NhUog==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:g7GFx7o6EPs=;ikqmq2U+l61LaW7FF0Lx97feNLK
- qEetAqPlgu/4G6jmyFsS5hjIKXqA4i1bC4avXH0YXZm4e+t6zeBqSkk18Ze3X6Gk/exLy0G67
- kWNGAgrErZZT10s7+DprO3WvcGh0PLSBjRgFzwL3gByP6V86k5+nze7x7qiiUl3OQbKUpopAW
- ksKEVvAyq90EHjzmpqZ8yY2SzJe+vdlvirQSrVSBbl/RhyBPp9qlh4stANSMbTHAL0eGBSZ4F
- rOBabopxG89Wh++sAVyo060/cpbYeRcr9rLcCneeVVu47+/FH5/2WleHrIPndPdwOhgLzDe8h
- 3zvg/+7t/sRuviR8nOu1wJhFuFyRGjNYhEZmtYCbnwhwGjBszkCGfU8YlwdUNCfgtvwHvEFL+
- MxSEdSCZoicaum3BkhPB6oj3pFGJ76DbVWJp4VVB/PEa5K6ER6lYigGe4stF8yEsOwGr888/o
- o/yN3S9ojAKMnyG0ZYajO7dnTQNrCgwso3kaZdyhMR5MSqdfz7mkGVyILrF0e/JMsR++NXa6F
- 7W7TDzrRxbGlG31rcwDb8jgu+2czzk0POJXAaJrusiymTzgWrKEgL/qLJJc/C64wcQRdgbJ3U
- Kbw28mtNczNEDVCmcG2UUCdi5qTDzCDZfJVsdlfkBHyHrFIydUxYx9CCWfht/1uGU8A8c9LL8
- /l4YLUZtR+wWBLzGn0pLbp/QdQ8rckytpg48wKJqAQ5lIlG6IRsI++fF4hH9hDIuUnv8sErSN
- yyeoMNayhzF3lzDIGs2XOhrFDro3LVXhHvNPWXCFOCL/qxS1tyqLN1iYgO4n8a5EiqC09VcdD
- oSvOQi2vGGdSZ6OQ1MIJzeuRv+6WLy8I0+wwvb+7l8111GZfgTGTQg08VWZkGaJdWASpbOvux
- jNH4ody4bOsR5+IO+bVy+rpneA8FCHFryMQ+nBDkBfqkGZWkH0B79HgCLbR1sqxl3Kg43/C2P
- fyYpvhwNfsSrReRzSmhETX4ykmTVKGF5H5unm3cCqmWdBhrNN0vRVY0H2CDJyhHXG95d11Y9Y
- giu8DhDZYcNqcvTwDwrOCE+qSWW2VNbOfNL13oFOUvc2K4epdKgMqZqXtOQp0Xz4aaPsvWR2/
- HgFWblID83wVpnmWEVK4zRUKmJfK1D5tXToYShFXH6GO3QX5l0nSyPjwl+Zodo1uix9F2Sqtv
- DulgympQ/+7ZJww9DfRKcOdZaqYITEVhw7RQ+Xx6bfJlWa4dCdOMOv9P1YWtGlgcjveOETBWO
- 4+TET/uM2x4SnHN98ugSwgyA//9hCYPQC7HCeDzuHy6Tz0SjwdkRHaMFthdlSx0tUw/8DDACe
- UgPguX3mGLj0hP45jeWc8IJ+iYOvFBOZguZKPVq/MJNhv35kXwdiAQ84Lj/lTrUgAlBNo+Q+i
- lYmphBAYY4APe9V6ndjAxtkSCufGEF0WAwuDFREUcmRb0O9QDe4OgKX1iQ
+UI-OutboundReport: notjunk:1;M01:P0:epv+g7wgT2U=;PxNsoeA0w2+4YjCTVlJt4Cvp+aM
+ nNcR231aF95ttCymSmoY/EGQGW2uZD7kjT6ShKy7oQraX9Ae5USywcyfPXCv+GaSGNiH6rmH3
+ qPrXwIMyECD9/WU8Eo8390pKx1ns7moZKhCIlruYnHLvRHsscCJDpHKpUV5kogBqyhvNIj65+
+ EWQQc9FsZA46goztD97RaVH6gmpAbrrQKJP/hlUiX8v7/vnWkypzD9n7HGVwIV3UHaC1dPgZQ
+ ccznzb6yufEN7sxxwjISsPTf84sdwtbXqQPh1QbsMHQI+ujYri2GV/kHSqeRqYFzpRKv7b6ti
+ ueC/Q0PD53AXl2gFsZkcYbExsSBx0qAmm7R/UQYMFjzDD4KDIOEbZBXF0tTORQCJF95+oiHuy
+ exLa8RaxdeHO8y4eltJz5+251i+cuUt4VkYxTTXawrEel8bes034aMjddG7K+JOBScz7+YBsg
+ BMlfry9eryq7aWxhWQc8ORdENOfqh1Yoq7N4hbVLl0u5RRYbL+aYdsgloYqjyFqY4YhedOdEn
+ aQ72BpmknYdvoR2bRELaOjuhjODarIRXKohXflSJOMmP+ULylpRmjTwMgLn8drfI7scsh/s1/
+ 6qHi8rsl5tlH5+YrP18WciuI3Bhzcj4BW77klWsk/OlcLvq6tByosctxFv+qg0EPrbVuQxhdx
+ irtiHBCAgnSrPFJ2UMgobWAHFixUWLR/e7OJg8D9htP12X8NMfZVFJfBv2HKhIJ+WZHTxvxZ5
+ NzrdCV5R4fWXNuHVoOaYjcGOVbVg+FcgT06/N2ndTrTBM5b29veI7jx4gVM1AtBcGp7xKCN/M
+ 3/4ktP9KSsSdq9Mi8SNpLNpWggpFI1FJYl0GECtylZgGjGpdcjR/wKICfdhySX9J84mp+7k4K
+ nOD1bTspBmdG+7OhsqZ66QdCVSJ4XDBGD1KbeCY7FTdBzJU5kZY5z0n7rOEG8T8emuJ2Kzn/B
+ PHtwb0s8qNbCXLokVF2NBY8n0qGXt7oki0Nw+tsHqtyWJ0GUo5adSdc0C/ct4p/OxBuh1GhHA
+ aIta7hEUh3cssFQP8AiGn6RwTRrPLYVWzsM/lyMFKHuN88EWXwUw/O0em0oX6VO7TAnEstb+s
+ XFzHczei+vuhTiuT70YRCExD+ceYxJg+BWGuxVIRZwuqFai9hpGzO2ukBnqAATpli41juyscB
+ dFhxUHdRKng6yXOKeavWz+IDvqQPZ657yx1nZqeNrVKbIkqhKlUcUDN17vW26fIdK7DO/okY+
+ kVjFGlK3tdW+dMumj8ILNIiHHCDF0Ac5fSe/zH6nmMGUFNhKM++p8hfQ0UOViIVcWxmc3TJi6
+ 5tPePqFVBmg/T3N1jCxMfB+D172Umjw5c5LAwF2jP1CpRzFf3DsaNzHtaoA2cIdn9BnQqUBAM
+ d4iNNipwE0+9fcOD/+0Gk3qda11lb0xxr2K/JfsO7uD3s4SNiKuMPX7VUB
 
-This small patch series adjust the PL011 UARTs primecell-periphid for
-BCM2711 and BCM2712. This has just been taken from the vendor tree.
+From: Phil Elwell <phil@raspberrypi.com>
 
-Phil Elwell (2):
-  ARM: dts: bcm2711: PL011 UARTs are actually r1p5
-  arm64: dts: bcm2712: PL011 UARTs are actually r1p5
+The ARM PL011 UART instances in BCM2711 are r1p5 spec, which means they
+have 32-entry FIFOs. The correct periphid value for this is 0x00341011.
+Thanks to N Buchwitz for pointing this out.
 
- arch/arm/boot/dts/broadcom/bcm2711.dtsi   | 9 +++++----
- arch/arm64/boot/dts/broadcom/bcm2712.dtsi | 2 +-
- 2 files changed, 6 insertions(+), 5 deletions(-)
+Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+=2D--
+ arch/arm/boot/dts/broadcom/bcm2711.dtsi | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts/b=
+roadcom/bcm2711.dtsi
+index 7cf93fdc676c..cdccdef267f7 100644
+=2D-- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
+@@ -134,7 +134,7 @@ uart2: serial@7e201400 {
+ 			clocks =3D <&clocks BCM2835_CLOCK_UART>,
+ 				 <&clocks BCM2835_CLOCK_VPU>;
+ 			clock-names =3D "uartclk", "apb_pclk";
+-			arm,primecell-periphid =3D <0x00241011>;
++			arm,primecell-periphid =3D <0x00341011>;
+ 			status =3D "disabled";
+ 		};
+
+@@ -145,7 +145,7 @@ uart3: serial@7e201600 {
+ 			clocks =3D <&clocks BCM2835_CLOCK_UART>,
+ 				 <&clocks BCM2835_CLOCK_VPU>;
+ 			clock-names =3D "uartclk", "apb_pclk";
+-			arm,primecell-periphid =3D <0x00241011>;
++			arm,primecell-periphid =3D <0x00341011>;
+ 			status =3D "disabled";
+ 		};
+
+@@ -156,7 +156,7 @@ uart4: serial@7e201800 {
+ 			clocks =3D <&clocks BCM2835_CLOCK_UART>,
+ 				 <&clocks BCM2835_CLOCK_VPU>;
+ 			clock-names =3D "uartclk", "apb_pclk";
+-			arm,primecell-periphid =3D <0x00241011>;
++			arm,primecell-periphid =3D <0x00341011>;
+ 			status =3D "disabled";
+ 		};
+
+@@ -167,7 +167,7 @@ uart5: serial@7e201a00 {
+ 			clocks =3D <&clocks BCM2835_CLOCK_UART>,
+ 				 <&clocks BCM2835_CLOCK_VPU>;
+ 			clock-names =3D "uartclk", "apb_pclk";
+-			arm,primecell-periphid =3D <0x00241011>;
++			arm,primecell-periphid =3D <0x00341011>;
+ 			status =3D "disabled";
+ 		};
+
+@@ -1175,6 +1175,7 @@ &txp {
+ };
+
+ &uart0 {
++	arm,primecell-periphid =3D <0x00341011>;
+ 	interrupts =3D <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
+ };
 
 =2D-
 2.34.1
