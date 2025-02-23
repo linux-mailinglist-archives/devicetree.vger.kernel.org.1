@@ -1,138 +1,138 @@
-Return-Path: <devicetree+bounces-150029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1FEA41084
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 18:36:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27FA6A41097
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 18:54:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 913F2176298
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 17:34:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BD363B3819
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 17:54:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ED4918E756;
-	Sun, 23 Feb 2025 17:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8A513B2A9;
+	Sun, 23 Feb 2025 17:54:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="TGDv9Lfb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jhMQcmO5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B68941607B4;
-	Sun, 23 Feb 2025 17:33:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740332031; cv=pass; b=KK8T90Kj8CUFwGDfnHnVPLuRorZQeUQdR1YKqNjmw3ps+Ndh8L28Oh4wCdNz88bRhliyIjJVqNswc97bY6KKw6G9OMNTBxCjRUGLAdTrIGdIp3OeNbv9zhOEq/YTARCwWvHEcq0SDndbuHToxhh90+m0oHNgnKWxVjCpDxAvlCc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740332031; c=relaxed/simple;
-	bh=9e1rDRhjtWx8RcwMZlExf40SAo2UlhVvfwW0sy8Zjso=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NTPoVfUc+8ZUKi4nRFIVohPbLTk7+935UapHr3clkx/Bb1hUR9u9Ut25pDpZqLk1BnW8ZbTIMNZngtnwIG/ltjQjH9FATJrWjNXDlSCDslMSr4MADm6IxQ0qoQYOXjt0XFG103eZIEWQTSFZIgC4Yl9lGEv1GSB3zD48HsrWQT0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=TGDv9Lfb; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1740331995; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=GV71px/iMtYpz1fgoqWPtAUFHFgH6bMWXkyCPwKgRpUT7nr07DNRsA8mAM38B6Q7HdZZQGKZyFQ+2efUfcgVLIyDyr1VGrlYiOriOR7pHEMFuRwdvRa7qrClkYVTkxYnQU5tJmweb9YP0PiaN/QuxSvY6ye2xzYLHysmDuZKyOk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1740331995; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=iIPCjPu2+AmsIf/cCFUaH7Ayf0dQa1TgmFz1djm75zk=; 
-	b=BSyfbf3GB65cWAV4fisJfbpZGMl2Xh4TnWz1AyjBgBYzQ9EX38LNlI0wf0cz0BZILi7ERKXRR4BIvcTtvCcYiRDdTpdSsB9YuiOcugRt9MQ/dnIXQO4eUseA3UZU2OxLwGHr7edkSVA5HfgXXpjoy7QsdnwG4L4048+hn0Fpjmo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
-	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740331995;
-	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=iIPCjPu2+AmsIf/cCFUaH7Ayf0dQa1TgmFz1djm75zk=;
-	b=TGDv9LfbbRPyY8nX2VtbtTGpDgTE4lIbdW8M26iAETvejqQjr4k1BUU/P5vUj59s
-	fB2Rr04I507sSirguQhVXPla3ehZIfRZ9VGIa0Gab+Dk4lOlvqLoGaKojiGEunU0a3U
-	M1svlHLdg7nnA3CohGQmLznBPo9tfRkeYpx3YDtM=
-Received: by mx.zohomail.com with SMTPS id 1740331994974877.7597302947063;
-	Sun, 23 Feb 2025 09:33:14 -0800 (PST)
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: Shreeya Patel <shreeya.patel@collabora.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	jose.abreu@synopsys.com,
-	nelson.costa@synopsys.com,
-	shawn.wen@rock-chips.com,
-	nicolas.dufresne@collabora.com,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: kernel@collabora.com,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 795AD2770B;
+	Sun, 23 Feb 2025 17:54:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740333272; cv=none; b=jD0cK8GHjZOIqaXjrViix7+I9MD7EnTUHlfjbV4TWKDqqvx+t5nwx3r0MbSbdpIiBQz/HfB/xdeq2vuxDwGdOSLhyD+xi4quIca+67Ttc+v7onWnfjMdtZj9KY3n4rCiy6RVVsFbfUpevTzdVAy/b2QAGshukaV5f1O9Htr35f4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740333272; c=relaxed/simple;
+	bh=9iFdhdTQZ2gneruKLG7YkE93h9YE3aeXMlyNM4pD9u8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jIP0V28ztaYO0Pj+kdmGfGGgsK1xuJl5JcFehJrNXHyCyk9tOWV8NmXBbUiUUi0tWPJ3O1bUaOrlMXDHFyStDTBS5bU2269qSwuh6t+I+RzLar9YzMHG7sKBomMzAsxuHZ9nuOrMs55e/LbumMWognPb42q563CgT9FFACazUNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jhMQcmO5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 009D7C4CEDD;
+	Sun, 23 Feb 2025 17:54:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740333271;
+	bh=9iFdhdTQZ2gneruKLG7YkE93h9YE3aeXMlyNM4pD9u8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jhMQcmO5owvm412qh9aUibQCAE5R3H0Y3labMbi96L/jt2+CCd3WvH8UF16mZ5MQB
+	 Op9z/uv4OxpBHVLnUkOdjvePsC4VrM+yzCROUe68AVgBUrv7w2DmJHs4xbHfzB8QpG
+	 Ozv4nty8IY+SrpRbBFPQHCs0ru5G1hevXj0yQo/cLPvQgyoOxJf1iid9sarJrcIcRd
+	 eCJ2zlHemard7aIoWHBWDMYtSOYnbGfGHmDHpa7KlLg3WtovNvwgZK8HmKTQRBnOID
+	 k675DyqrTrGHvR6fyQY78uyW/dVn8TdfgorHiV6DURp3ebpe+dlJCScpuL1M0bgk3c
+	 jWSaiEQEmv7uA==
+Date: Sun, 23 Feb 2025 19:54:07 +0200
+From: Mike Rapoport <rppt@kernel.org>
+To: Alexander Gordeev <agordeev@linux.ibm.com>
+Cc: Dave Young <dyoung@redhat.com>, Alexander Graf <graf@amazon.com>,
 	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Tim Surber <me@timsurber.de>
-Subject: [PATCH v8 6/6] arm64: dts: rockchip: Enable HDMI receiver on rock-5b
-Date: Sun, 23 Feb 2025 20:30:19 +0300
-Message-ID: <20250223173019.303518-7-dmitry.osipenko@collabora.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250223173019.303518-1-dmitry.osipenko@collabora.com>
-References: <20250223173019.303518-1-dmitry.osipenko@collabora.com>
+	Andrew Morton <akpm@linux-foundation.org>,
+	Andy Lutomirski <luto@kernel.org>,
+	Anthony Yznaga <anthony.yznaga@oracle.com>,
+	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+	Borislav Petkov <bp@alien8.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	David Woodhouse <dwmw2@infradead.org>,
+	Eric Biederman <ebiederm@xmission.com>,
+	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Paolo Bonzini <pbonzini@redhat.com>,
+	Pasha Tatashin <pasha.tatashin@soleen.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Pratyush Yadav <ptyadav@amazon.de>,
+	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Tom Lendacky <thomas.lendacky@amd.com>,
+	Usama Arif <usama.arif@bytedance.com>,
+	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
+	Philipp Rudo <prudo@redhat.com>, Heiko Carstens <hca@linux.ibm.com>,
+	Vasily Gorbik <gor@linux.ibm.com>,
+	Christian Borntraeger <borntraeger@linux.ibm.com>,
+	Sven Schnelle <svens@linux.ibm.com>, linux-s390@vger.kernel.org
+Subject: Re: [PATCH v4 00/14] kexec: introduce Kexec HandOver (KHO)
+Message-ID: <Z7tgvwRkV-GAtBL_@kernel.org>
+References: <20250206132754.2596694-1-rppt@kernel.org>
+ <CALu+AoRMQyRDFS_4L0KQkmrFT_S+yk=uZ-Mqt86JQYKKnj-5Ug@mail.gmail.com>
+ <Z7WJD6eBLuIRnLwk@kernel.org>
+ <CALu+AoSaEthfed1NOYPiQgm_g-dhibVMRAp0+=_+9qTT4_x=tg@mail.gmail.com>
+ <d8c43707-65a2-4176-85e2-acdb4c9d16ad@amazon.com>
+ <CALu+AoR0BbmbZeOkLU55OpD8kxGsVnFs+pXgEC9Y_MpB4=GMvQ@mail.gmail.com>
+ <Z7dbxJNxlW2EA_aa@tuxmaker.boeblingen.de.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z7dbxJNxlW2EA_aa@tuxmaker.boeblingen.de.ibm.com>
 
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
+On Thu, Feb 20, 2025 at 05:43:48PM +0100, Alexander Gordeev wrote:
+> On Thu, Feb 20, 2025 at 09:49:52AM +0800, Dave Young wrote:
+> > On Wed, 19 Feb 2025 at 21:55, Alexander Graf <graf@amazon.com> wrote:
+> > > >>> What architecture exactly does this KHO work fine?   Device Tree
+> > > >>> should be ok on arm*, x86 and power*, but how about s390?
+> > > >> KHO does not use device tree as the boot protocol, it uses FDT as a data
+> > > >> structure and adds architecture specific bits to the boot structures to
+> > > >> point to that data, very similar to how IMA_KEXEC works.
+> > > >>
+> > > >> Currently KHO is implemented on arm64 and x86, but there is no fundamental
+> > > >> reason why it wouldn't work on any architecture that supports kexec.
+> > > > Well,  the problem is whether there is a way to  add dtb in the early
+> > > > boot path,  for X86 it is added via setup_data,  if there is no such
+> > > > way I'm not sure if it is doable especially for passing some info for
+> > > > early boot use.  Then the KHO will be only for limited use cases.
+> > >
+> > >
+> > > Every architecture has a platform specific way of passing data into the
+> > > kernel so it can find its command line and initrd. S390x for example has
+> > > struct parmarea. To enable s390x, you would remove some of its padding
+> > > and replace it with a KHO base addr + size, so that the new kernel can
+> > > find the KHO state tree.
+> > 
+> > Ok, thanks for the info,  I cced s390 people maybe they can provide inputs.
+> 
+> If I understand correctly, the parmarea would be used for passing the
+> FDT address - which appears to be fine. However, s390 does not implement
+> early_memremap()/early_memunmap(), which KHO needs.
 
-The Rock 5B has a Micro HDMI port, which can be used for receiving
-HDMI data. This enables support for it.
-
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
----
- .../arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index d597112f1d5b..377824e69e20 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -220,6 +220,18 @@ hdmi0_out_con: endpoint {
- 	};
- };
+KHO uses early_memremap()/early_memunmap() because it parses FDT before
+phys_to_virt() is available on arm64 and x86. AFAIU on s390 phys_to_virt()
+can be used at setup_arch() time, so it shouldn't be a problem to add
+appropriate wrappers.
  
-+&hdmi_receiver_cma {
-+	status = "okay";
-+};
-+
-+&hdmi_receiver {
-+	status = "okay";
-+	hpd-gpios = <&gpio1 RK_PC6 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_hpd>;
-+	pinctrl-names = "default";
-+	memory-region = <&hdmi_receiver_cma>;
-+};
-+
- &hdptxphy_hdmi0 {
- 	status = "okay";
- };
-@@ -377,6 +389,12 @@ &pcie3x4 {
- };
- 
- &pinctrl {
-+	hdmirx {
-+		hdmirx_hpd: hdmirx-5v-detection {
-+			rockchip,pins = <1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	hym8563 {
- 		hym8563_int: hym8563-int {
- 			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
 -- 
-2.48.1
-
+Sincerely yours,
+Mike.
 
