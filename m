@@ -1,58 +1,55 @@
-Return-Path: <devicetree+bounces-149927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E1CDA40D52
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 08:59:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C10A2A40D57
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 09:14:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F17417AEF3
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 07:59:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BE2A3BDFAA
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 08:14:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30D6B1FC7E2;
-	Sun, 23 Feb 2025 07:59:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 713B71FCCE0;
+	Sun, 23 Feb 2025 08:14:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="VeBopwtz"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="RCtDqBhC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DA871FC7C8;
-	Sun, 23 Feb 2025 07:58:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C832AF0E;
+	Sun, 23 Feb 2025 08:14:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740297542; cv=none; b=po2YPVSzR6mZy739adjxkcCUC3HkhZGXjds3q7Z+feWwUM0+LZNp6CI3EM7ocDl9XPQShcThrc/GK23Yw4AgoCJXN5TE/kEZRR9pRqhD5WVVM8T+/tIU+m7bRH7Ef7krdvls3mA68M9s3IB676PR+5/quI4MIRX6uXZBSqpFlOo=
+	t=1740298492; cv=none; b=kEoccMryL34peuY5uO8aTwsbYMRi6Qx59AM7tacBY7zEe/fPwWedFoa2R3sbp1HUtC4MGy5jiMIqB5QaCN3+LVeiJmpwzlzrpSKbTJOQ4L0BL64bhmHUGuXpFI5M0z/gnxDAbGEFBAWr4h2D+1ft9vIFTQhY8sY0II6K9PI/w+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740297542; c=relaxed/simple;
-	bh=Oz3P9N3xl5usKcUKWWwm/yarUuwrPLqlOqj5lKlurM0=;
+	s=arc-20240116; t=1740298492; c=relaxed/simple;
+	bh=EsSDH5RDWjgl+Q0mmtZhHUdhAQy1893oIm7uW2kYDbw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RRA9duUGDo9k2Z/YVjCupnmMMVAlKs4EraeCI29nzygQaazkB+cYo/Ch0dn6RTSgQBd3/Wy52SbmX2SXLbjNC2Nsj1iYy+4BAInseId8F5bQqUMkdXqCUDUn3Ybz69BPY6pucEN4HsrBCTlgFoNNgSfbiMaBmulBuUEUfH96K0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=VeBopwtz; arc=none smtp.client-ip=1.95.21.17
+	 Content-Type:Content-Disposition:In-Reply-To; b=NJKPpGV+DlSL0602aGG0WIuMgUcr5cO/zgS+866TbwS9dFfBJ09No0p9V+CsivZqAl0yZrG8oVp46rjBV/CF1njvOVMLaANyOl8fMN8exVCIYBNWy0FNTb198U/yjOlTJaaOcgH14zhQ/rN6XiXFDRt6KJL1Wwlj0Ec+zLMdtNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=RCtDqBhC; arc=none smtp.client-ip=220.197.32.17
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=zf7C3JIfy4ywsPNZ0w+h08cIa2jemMKNKRi45EogFjg=;
-	b=VeBopwtzBAgZy9FqVI+FAMxjeG5ieI31VYLCgb2v/zrFjuYWIIvqlauDw9+YCF
-	yZEp9wPhsQtTJPHloc2sWQGyxf7AnGbYJiDwMk/v9z45cU5QyDQNM8oRE/sgj5pb
-	FEA7LhpSk+mWbYxEbpiEOpzynHr7sJEepifNpCHXX9/Xo=
+	Content-Type; bh=n3SRU/TDBo/tfOH6JoaPn06v8I/Q1ljpHPKh21D3Jgw=;
+	b=RCtDqBhCNuIrI9hy8GZFB1a0sHFGaDzajlFD8ozBMopzGI7CR/9wG3aUu/LHLd
+	0ouIQ679RbCOxLaOnRVbggWzKKP6jwSmP9r6nVDCLqs2bbJEinA5pqJ356RjVYtU
+	SfvLyTPKzL+nPQ6NszY8LSkEnekdnKoWPjHBUGiKxN3zo=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgBXXvcK1bpnD5KfCQ--.23112S3;
-	Sun, 23 Feb 2025 15:58:04 +0800 (CST)
-Date: Sun, 23 Feb 2025 15:58:02 +0800
+	by gzsmtp3 (Coremail) with SMTP id M88vCgB339XU2Lpn4weMCQ--.22264S3;
+	Sun, 23 Feb 2025 16:14:14 +0800 (CST)
+Date: Sun, 23 Feb 2025 16:14:12 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.li@nxp.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
+To: Stefan Eichenberger <eichest@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, francesco.dolcini@toradex.com,
 	devicetree@vger.kernel.org, imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] arm64: dts: freescale: imx8mm-verdin: Remove LVDS
- panel and backlight
-Message-ID: <Z7rVCnypQW1wpyAW@dragon>
-References: <20250214092634.12414-1-francesco@dolcini.it>
+Subject: Re: [PATCH v1 0/2] arm64: dts: freescale:
+ imx8mm/imx8mp-verdin-dahlia: add Microphone Jack to sound card
+Message-ID: <Z7rY1DCwS3RjjS9s@dragon>
+References: <20250217145744.179213-1-eichest@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,23 +58,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250214092634.12414-1-francesco@dolcini.it>
-X-CM-TRANSID:Mc8vCgBXXvcK1bpnD5KfCQ--.23112S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUsku4UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEhD8ZWe6kuHc6AAAsB
+In-Reply-To: <20250217145744.179213-1-eichest@gmail.com>
+X-CM-TRANSID:M88vCgB339XU2Lpn4weMCQ--.22264S3
+X-Coremail-Antispam: 1Uf129KBjvdXoW7XFyrKF13GFWfWw4xtFWDArb_yoWxKFb_Wa
+	n7CF1kJr1ktFsrG345Gr45Ja1I9ay8AryrWryDWFZ2v348Ja4rZ3s8KFn5WF1Uta929F47
+	Zw15XFsI9rWa9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0kR67UUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEhD8ZWe6kuHc6AABsA
 
-On Fri, Feb 14, 2025 at 10:26:34AM +0100, Francesco Dolcini wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On Mon, Feb 17, 2025 at 03:56:39PM +0100, Stefan Eichenberger wrote:
+> This patch series adds a Microphone Jack to the simple-audio-card of the
+> Verdin iMX8MM and iMX8MP Dahlia carrier board device trees to separate
+> the microphone and headphone functions.
 > 
-> Remove LVDS panel and backlight nodes from the Verdin iMX8M Mini SoM
-> dtsi file, those two hardware components are not part of the SoM,
-> therefore they should not be present in this file.
+> This resolves the following boot-time kernel log message, which
+> indicated a conflict when the microphone and headphone functions were
+> not separated:
+>   debugfs: File 'Headphone Jack' in directory 'dapm' already present!
 > 
-> This is solving a dtb checker warning about panel-lvds compatible.
-> 
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> Stefan Eichenberger (2):
+>   arm64: dts: freescale: imx8mp-verdin-dahlia: add Microphone Jack to
+>     sound card
+>   arm64: dts: freescale: imx8mm-verdin-dahlia: add Microphone Jack to
+>     sound card
 
-Applied, thanks!
+Applied both, thanks!
 
 
