@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-149926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59056A40D46
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 08:38:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E1CDA40D52
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 08:59:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15EA417883F
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 07:38:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F17417AEF3
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 07:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A33061FC7CE;
-	Sun, 23 Feb 2025 07:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30D6B1FC7E2;
+	Sun, 23 Feb 2025 07:59:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="NJ25arv6"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="VeBopwtz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5875F1FC11F;
-	Sun, 23 Feb 2025 07:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DA871FC7C8;
+	Sun, 23 Feb 2025 07:58:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740296328; cv=none; b=KbraAm7tDQ6Dd6m6uuuABV4j8Fgu8bEQp0GSjFu+KLkp/cgcp5ASRj6smflWtx2oRJTGgetX6cPvSESB8fAsGLZQnIOUfyK4PM8by3MkqQZlwpuieKy5hyyc3uWpJQmPmRVEWyqbi57iRM+IOHQ2vXxAII98E70Gx2FhODrLYio=
+	t=1740297542; cv=none; b=po2YPVSzR6mZy739adjxkcCUC3HkhZGXjds3q7Z+feWwUM0+LZNp6CI3EM7ocDl9XPQShcThrc/GK23Yw4AgoCJXN5TE/kEZRR9pRqhD5WVVM8T+/tIU+m7bRH7Ef7krdvls3mA68M9s3IB676PR+5/quI4MIRX6uXZBSqpFlOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740296328; c=relaxed/simple;
-	bh=i2dYoaxI8qTqb4j86RQOLybkjeou1XdI0LVEdkYI/yc=;
+	s=arc-20240116; t=1740297542; c=relaxed/simple;
+	bh=Oz3P9N3xl5usKcUKWWwm/yarUuwrPLqlOqj5lKlurM0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LuUj5cXdz+cJ4uzJ80MyqboUM/8q6TB4tw0nJR/PpWS3GcSc2m90JvUGG1oX6/sz4+BCQAsJDW742VPGuKQxxeUEDQG6p9aoruQpldrHlxByCwcAgbjNaVRz6E3PUBTR9VwxNJVyt3a2RiuzNibMeKj9zJd7EjFKtRUiVmBIsac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=NJ25arv6; arc=none smtp.client-ip=1.95.21.15
+	 Content-Type:Content-Disposition:In-Reply-To; b=RRA9duUGDo9k2Z/YVjCupnmMMVAlKs4EraeCI29nzygQaazkB+cYo/Ch0dn6RTSgQBd3/Wy52SbmX2SXLbjNC2Nsj1iYy+4BAInseId8F5bQqUMkdXqCUDUn3Ybz69BPY6pucEN4HsrBCTlgFoNNgSfbiMaBmulBuUEUfH96K0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=VeBopwtz; arc=none smtp.client-ip=1.95.21.17
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=oPXVRdAdTKk+04iwLdlaaflbSGUMVrgPOHzRGIn45yQ=;
-	b=NJ25arv6TSaeOvQf8IygctFsn3BzU1ead0BXGkM/ZNb2emKqNBj2QZ7MiKFSRM
-	4TEWq7VmJE/7hetNDF693lfCMLIuERGkIzwypO8oW2Rlc58WMkFT6o0lpeWJO+a1
-	NUEmVZ4McAIcgXGFYsi5D0N4hL+63Yaza4qw92VJku7I8=
+	Content-Type; bh=zf7C3JIfy4ywsPNZ0w+h08cIa2jemMKNKRi45EogFjg=;
+	b=VeBopwtzBAgZy9FqVI+FAMxjeG5ieI31VYLCgb2v/zrFjuYWIIvqlauDw9+YCF
+	yZEp9wPhsQtTJPHloc2sWQGyxf7AnGbYJiDwMk/v9z45cU5QyDQNM8oRE/sgj5pb
+	FEA7LhpSk+mWbYxEbpiEOpzynHr7sJEepifNpCHXX9/Xo=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgCXS3Zg0Lpnl1efCQ--.23292S3;
-	Sun, 23 Feb 2025 15:38:10 +0800 (CST)
-Date: Sun, 23 Feb 2025 15:38:08 +0800
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgBXXvcK1bpnD5KfCQ--.23112S3;
+	Sun, 23 Feb 2025 15:58:04 +0800 (CST)
+Date: Sun, 23 Feb 2025 15:58:02 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: rafael@beims.me
+To: Francesco Dolcini <francesco@dolcini.it>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rafael Beims <rafael.beims@toradex.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: colibri-imx8x: Add missing gpio-line-names
-Message-ID: <Z7rQYN06RUFR2Xqy@dragon>
-References: <20250210123134.1659719-1-rafael@beims.me>
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.li@nxp.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: freescale: imx8mm-verdin: Remove LVDS
+ panel and backlight
+Message-ID: <Z7rVCnypQW1wpyAW@dragon>
+References: <20250214092634.12414-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,18 +61,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250210123134.1659719-1-rafael@beims.me>
-X-CM-TRANSID:Mc8vCgCXS3Zg0Lpnl1efCQ--.23292S3
+In-Reply-To: <20250214092634.12414-1-francesco@dolcini.it>
+X-CM-TRANSID:Mc8vCgBXXvcK1bpnD5KfCQ--.23112S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxuWlDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAgb8ZWe6xy0Q-QABsG
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUsku4UUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEhD8ZWe6kuHc6AAAsB
 
-On Mon, Feb 10, 2025 at 09:30:50AM -0300, rafael@beims.me wrote:
-> From: Rafael Beims <rafael.beims@toradex.com>
+On Fri, Feb 14, 2025 at 10:26:34AM +0100, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
 > 
-> Add missing gpio-line-names for SODIMM_79 and SODIMM_97
+> Remove LVDS panel and backlight nodes from the Verdin iMX8M Mini SoM
+> dtsi file, those two hardware components are not part of the SoM,
+> therefore they should not be present in this file.
 > 
-> Signed-off-by: Rafael Beims <rafael.beims@toradex.com>
+> This is solving a dtb checker warning about panel-lvds compatible.
+> 
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
 Applied, thanks!
 
