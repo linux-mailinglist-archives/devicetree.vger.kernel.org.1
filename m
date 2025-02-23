@@ -1,532 +1,348 @@
-Return-Path: <devicetree+bounces-150059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76CDEA41123
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 20:01:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26D0AA4115B
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 20:53:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D946188A229
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 19:01:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D2F7189914A
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 19:53:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84897207DF1;
-	Sun, 23 Feb 2025 18:59:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2A001D6DD4;
+	Sun, 23 Feb 2025 19:52:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="ZW7mviti"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ojYrZgzS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BDBD205AB8;
-	Sun, 23 Feb 2025 18:59:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F17FE18E362;
+	Sun, 23 Feb 2025 19:52:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740337143; cv=none; b=r/BC06+M2RauGhMIZCjeukORXwdbzMBySnGmqiWfcVW2Vu/3iWxM1h+YaoaaLc87feFJu1jE2fk1LIO/+1V0vywr3oIFbFXG9KIZuXzKDc9ZkIeVlM8OM+4pLzWpIDHbAGkPEe0Gzk7OHKB8Be8pjV5iJbC6w0oxOQimVsZhI8s=
+	t=1740340372; cv=none; b=SPRpwwo8cZ4cUaWZhuDQBFT3tcKppOzzocZE0+v4ADNh8dKd0V4WOkmLH62H1wEgRRFYEtyy5nMfbtsojwbSburKQOI7gHNSyxPQ8xhBP3J0Pv+rdmM+0UnrKamAlfM/VmkYyfsYEuvK7IMy8ZvqLYZPEFQfaewe4TPJMsGWxqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740337143; c=relaxed/simple;
-	bh=n6TmArhLEu5eZCXZTy7SUUToG2kqcPyvPFl6FEMcjXc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OnegbLERqpJETkQA1EQaL9mtbVVNCDLqviyZ1xe8S/8YERqnjwWdVEKz/GarqWqSLe/tJI+emmHNlYuQkfdq/VHnwoE0y4dGdehAJMeXpD2X511wZNOnK0ug79H89iB+KMmxfBSGYpZR2E6sExV6TfB8Lig5gqrG6/o0aZWUJXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=ZW7mviti; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-Received: from [192.168.34.162] (254C2546.nat.pool.telekom.hu [37.76.37.70])
-	by mail.mainlining.org (Postfix) with ESMTPSA id B004ABBAC4;
-	Sun, 23 Feb 2025 18:58:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
-	s=psm; t=1740337139;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GlHPwyr8ZnTM5/WlKroU3Y27jw+MUZrDVj5fqkf7a04=;
-	b=ZW7mvitit8z6GSin/Hue14uQh2SZOJucFcv8s1SvNSHs2Hk1Kyy5YgZDDwbSMC/fv/uX7Z
-	l0BXfCGpk85iABTzWBWkLWKm5s4KRKN1XEIkYowkO5aFlPpyhDjDR5jtTP4azq1/AfEZHr
-	5ik7zP1h+sorv60eQevlscstEuZyShq9pyO/Mn+TnpTXQfg/LmJ8zQV7D6VnEyqu6pkSLK
-	em96t0MUh2b9XFsT5dSMtAXIS0deuAWf4E4OsFu7MQ1Yvr8HvZDflrbojDKvTnkfjYXv+b
-	sB6Y718KMiDMbl2EN67a+ZntLa2Hdtu17/dLZQHTd5RikJzfaUHYv9ZXvjOoYg==
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Date: Sun, 23 Feb 2025 19:57:53 +0100
-Subject: [PATCH v2 8/8] arm64: dts: qcom: Add Xiaomi Redmi 3S
+	s=arc-20240116; t=1740340372; c=relaxed/simple;
+	bh=5w359TFKUHppBtewoOBQmlEO7muyTT9vA1okmFelfOo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nyhlYlRA0oPVUEdV0MwGqSGLYieSYTfA+F4autpP1QLaeqN6lDaAWODn/wcNcFwmEBi+FEIG4ojjRGgzMnrjGz0XGW38/ig2KXqhWXwhI4RggMVk6YQOJEc3FdMBEjKmnu9vwzn6srGS5/svK9XPzN+njzTMxUC79DZvNJTuozo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ojYrZgzS; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1BFDA4DC;
+	Sun, 23 Feb 2025 20:51:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1740340283;
+	bh=5w359TFKUHppBtewoOBQmlEO7muyTT9vA1okmFelfOo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ojYrZgzSYkYvpp1yi9+kcZhEhbca6Ou/CxjFhMGHLUz7t4T52khjp68JiVAN/PEDm
+	 Y7DxK2MtFpvj+aWNo7RSY/WCWFlQNh2I5btpDOxrwsqtah8iwXD6EgCo4uoPnF63Bm
+	 jlq8NBCR2K69/i7oriEJ+5VsDRYI7ABAwtYCPeas=
+Date: Sun, 23 Feb 2025 21:52:32 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
+	linux-media@vger.kernel.org, biju.das.jz@bp.renesas.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 11/18] media: rzg2l-cru: Add register mapping support
+Message-ID: <20250223195232.GF8330@pendragon.ideasonboard.com>
+References: <20250221155532.576759-1-tommaso.merciai.xr@bp.renesas.com>
+ <20250221155532.576759-12-tommaso.merciai.xr@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250223-msm8937-v2-8-b99722363ed3@mainlining.org>
-References: <20250223-msm8937-v2-0-b99722363ed3@mainlining.org>
-In-Reply-To: <20250223-msm8937-v2-0-b99722363ed3@mainlining.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, 
- =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
- Linus Walleij <linus.walleij@linaro.org>, Lee Jones <lee@kernel.org>, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
- Robin Murphy <robin.murphy@arm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, iommu@lists.linux.dev, 
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1740337120; l=10383;
- i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
- bh=n6TmArhLEu5eZCXZTy7SUUToG2kqcPyvPFl6FEMcjXc=;
- b=N7bIf6xEJTyvKNjzcpfALzmGJmAjTgKA04ysXxecpMk7MT/COYCKUplgr0QwD6qWgPwPB6it9
- WbQBnV8nqrlAsU4J90nUHGa6l+RJ2XBLJDtetdemzZPRvJl62hDZy1n
-X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
- pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250221155532.576759-12-tommaso.merciai.xr@bp.renesas.com>
 
-Add initial support for Xiaomi Redmi 3S (land).
+Hi Tommaso,
 
-Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
----
- arch/arm64/boot/dts/qcom/Makefile                |   1 +
- arch/arm64/boot/dts/qcom/msm8937-xiaomi-land.dts | 408 +++++++++++++++++++++++
- 2 files changed, 409 insertions(+)
+Thank you for the patch.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 140b0b2abfb555b8ef61bd9ed0217d8997800809..18f0c0f7ebadf86a36b02461c02bdba7bfebe397 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -64,6 +64,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8917-xiaomi-riva.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8929-wingtech-wt82918hd.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8937-xiaomi-land.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-huawei-kiwi.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-longcheer-l9100.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8937-xiaomi-land.dts b/arch/arm64/boot/dts/qcom/msm8937-xiaomi-land.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..dce61a14b4152ebd6dc80cb77481c4da2fde126d
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8937-xiaomi-land.dts
-@@ -0,0 +1,408 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2024, Barnabas Czeman
-+ */
-+/dts-v1/;
-+
-+#include <dt-bindings/arm/qcom,ids.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+
-+#include "msm8937.dtsi"
-+#include "pm8937.dtsi"
-+#include "pmi8950.dtsi"
-+
-+/delete-node/ &qseecom_mem;
-+
-+/ {
-+	model = "Xiaomi Redmi 3S (land)";
-+	compatible = "xiaomi,land", "qcom,msm8937";
-+	chassis-type = "handset";
-+
-+	qcom,msm-id = <QCOM_ID_MSM8937 0x0>;
-+	qcom,board-id = <0x1000b 1>, <0x2000b 1>;
-+
-+	aliases {
-+		mmc0 = &sdhc_1;
-+		mmc1 = &sdhc_2;
-+	};
-+
-+	speaker_amp: audio-amplifier {
-+		compatible = "awinic,aw8738";
-+		mode-gpios = <&tlmm 124 GPIO_ACTIVE_HIGH>;
-+		awinic,mode = <5>;
-+		sound-name-prefix = "Speaker Amp";
-+		pinctrl-0 = <&speaker_amp_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	headphones_switch: audio-switch {
-+		compatible = "simple-audio-amplifier";
-+		enable-gpios = <&tlmm 129 GPIO_ACTIVE_HIGH>;
-+		sound-name-prefix = "Headphones Switch";
-+		pinctrl-0 = <&headphones_switch_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	battery: battery {
-+		compatible = "simple-battery";
-+
-+		charge-full-design-microamp-hours = <4100000>;
-+		constant-charge-current-max-microamp = <1000000>;
-+		voltage-min-design-microvolt = <3400000>;
-+		voltage-max-design-microvolt = <4400000>;
-+	};
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		stdout-path = "framebuffer0";
-+
-+		framebuffer0: framebuffer@8dd01000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0x0 0x8dd01000 0x0 (720 * 1280 * 3)>;
-+			width = <720>;
-+			height = <1280>;
-+			stride = <(720 * 3)>;
-+			format = "r8g8b8";
-+
-+			clocks = <&gcc GCC_MDSS_AHB_CLK>,
-+				 <&gcc GCC_MDSS_AXI_CLK>,
-+				 <&gcc GCC_MDSS_VSYNC_CLK>,
-+				 <&gcc GCC_MDSS_MDP_CLK>,
-+				 <&gcc GCC_MDSS_BYTE0_CLK>,
-+				 <&gcc GCC_MDSS_PCLK0_CLK>,
-+				 <&gcc GCC_MDSS_ESC0_CLK>;
-+			power-domains = <&gcc MDSS_GDSC>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_keys_default>;
-+		pinctrl-names = "default";
-+
-+		key-volup {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+		};
-+	};
-+
-+	irled {
-+		compatible = "gpio-ir-tx";
-+		gpios = <&tlmm 45 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	reserved-memory {
-+		reserved@84a00000 {
-+			reg = <0x0 0x84a00000 0x0 0x1900000>;
-+			no-map;
-+		};
-+
-+		framebuffer: memory@8dd01000 {
-+			reg = <0x0 0x8dd01000 0x0 (720 * 1280 * 3)>;
-+			no-map;
-+		};
-+	};
-+
-+	vph_pwr: vph-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&blsp1_i2c2 {
-+	status = "okay";
-+
-+	led-controller@45 {
-+		compatible = "awinic,aw2013";
-+		reg = <0x45>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		vcc-supply = <&pm8937_l10>;
-+		vio-supply = <&pm8937_l5>;
-+
-+		led@0 {
-+			reg = <0>;
-+			function = LED_FUNCTION_INDICATOR;
-+			led-max-microamp = <5000>;
-+			color = <LED_COLOR_ID_RED>;
-+		};
-+
-+		led@1 {
-+			reg = <1>;
-+			function = LED_FUNCTION_INDICATOR;
-+			led-max-microamp = <5000>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		led@2 {
-+			reg = <2>;
-+			function = LED_FUNCTION_INDICATOR;
-+			led-max-microamp = <5000>;
-+			color = <LED_COLOR_ID_BLUE>;
-+		};
-+	};
-+};
-+
-+&blsp1_i2c3 {
-+	status = "okay";
-+
-+	touchscreen@3e {
-+		compatible = "edt,edt-ft5306";
-+		reg = <0x3e>;
-+
-+		interrupts-extended = <&tlmm 65 IRQ_TYPE_LEVEL_LOW>;
-+		reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
-+		vcc-supply = <&pm8937_l10>;
-+		iovcc-supply = <&pm8937_l5>;
-+
-+		pinctrl-0 = <&tsp_int_rst_default>;
-+		pinctrl-names = "default";
-+
-+		touchscreen-size-x = <720>;
-+		touchscreen-size-y = <1280>;
-+	};
-+};
-+
-+&pm8937_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
-+&pm8937_spmi_regulators {
-+	/* APC */
-+	pm8937_s5: s5 {
-+		regulator-min-microvolt = <1050000>;
-+		regulator-max-microvolt = <1350000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&pmi8950_wled {
-+	qcom,num-strings = <2>;
-+	qcom,external-pfet;
-+	qcom,current-limit-microamp = <20000>;
-+	qcom,ovp-millivolt = <29600>;
-+
-+	status = "okay";
-+};
-+
-+&rpm_requests {
-+	regulators-0 {
-+		compatible = "qcom,rpm-pm8937-regulators";
-+
-+		vdd_s1-supply = <&vph_pwr>;
-+		vdd_s2-supply = <&vph_pwr>;
-+		vdd_s3-supply = <&vph_pwr>;
-+		vdd_s4-supply = <&vph_pwr>;
-+
-+		vdd_l1_l19-supply = <&pm8937_s3>;
-+		vdd_l2_l23-supply = <&pm8937_s3>;
-+		vdd_l3-supply = <&pm8937_s3>;
-+		vdd_l4_l5_l6_l7_l16-supply = <&pm8937_s4>;
-+		vdd_l8_l11_l12_l17_l22-supply = <&vph_pwr>;
-+		vdd_l9_l10_l13_l14_l15_l18-supply = <&vph_pwr>;
-+
-+		pm8937_s1: s1 {
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1225000>;
-+		};
-+
-+		pm8937_s3: s3 {
-+			regulator-min-microvolt = <1300000>;
-+			regulator-max-microvolt = <1300000>;
-+		};
-+
-+		pm8937_s4: s4 {
-+			regulator-min-microvolt = <2050000>;
-+			regulator-max-microvolt = <2050000>;
-+		};
-+
-+		pm8937_l2: l2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		pm8937_l5: l5 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8937_l6: l6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8937_l7: l7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8937_l8: l8 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2900000>;
-+		};
-+
-+		pm8937_l9: l9 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8937_l10: l10 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <3000000>;
-+		};
-+
-+		pm8937_l11: l11 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-allow-set-load;
-+			regulator-system-load = <200000>;
-+		};
-+
-+		pm8937_l12: l12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8937_l13: l13 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3075000>;
-+		};
-+
-+		pm8937_l14: l14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8937_l15: l15 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8937_l16: l16 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8937_l17: l17 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2900000>;
-+		};
-+
-+		pm8937_l19: l19 {
-+			regulator-min-microvolt = <1225000>;
-+			regulator-max-microvolt = <1350000>;
-+		};
-+
-+		pm8937_l22: l22 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+		};
-+
-+		pm8937_l23: l23 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+	};
-+};
-+
-+&sdc2_cmd_default {
-+	drive-strength = <12>;
-+};
-+
-+&sdc2_data_default {
-+	drive-strength = <12>;
-+};
-+
-+&sdhc_1 {
-+	vmmc-supply = <&pm8937_l8>;
-+	vqmmc-supply = <&pm8937_l5>;
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	cd-gpios = <&tlmm 67 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&pm8937_l11>;
-+	vqmmc-supply = <&pm8937_l12>;
-+	pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
-+	pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
-+	pinctrl-names = "default", "sleep";
-+	status = "okay";
-+};
-+
-+&sleep_clk {
-+	clock-frequency = <32768>;
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <0 4>, <20 4>;
-+
-+	gpio_keys_default: gpio-keys-default-state {
-+		pins = "gpio91";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	headphones_switch_default: headphones-switch-default-state {
-+		pins = "gpio129";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	sdc2_cd_default: sdc2-cd-default-state {
-+		pins = "gpio67";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	speaker_amp_default: speaker-amp-default-state {
-+		pins = "gpio124";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	tsp_int_rst_default: tsp-int-rst-default-state {
-+		pins = "gpio64", "gpio65";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&wcnss {
-+	vddpx-supply = <&pm8937_l5>;
-+	status = "okay";
-+};
-+
-+&wcnss_iris {
-+	compatible = "qcom,wcn3620";
-+	vddxo-supply = <&pm8937_l7>;
-+	vddrfa-supply = <&pm8937_l19>;
-+	vddpa-supply = <&pm8937_l9>;
-+	vdddig-supply = <&pm8937_l5>;
-+};
-+
-+&wcnss_mem {
-+	status = "okay";
-+};
-+
-+&xo_board {
-+	clock-frequency = <19200000>;
-+};
+On Fri, Feb 21, 2025 at 04:55:25PM +0100, Tommaso Merciai wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Prepare for adding support for RZ/G3E and RZ/V2HP SoCs, which have a
+> CRU-IP that is mostly identical to RZ/G2L but with different register
+> offsets and additional registers. Introduce a flexible register mapping
+> mechanism to handle these variations.
+> 
+> Define the `rzg2l_cru_info` structure to store register mappings and
+> pass it as part of the OF match data. Update the read/write functions
+> to use indexed register offsets from `rzg2l_cru_info`, ensuring
+> compatibility across different SoC variants.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> ---
+>  .../platform/renesas/rzg2l-cru/rzg2l-core.c   | 46 ++++++++++++-
+>  .../renesas/rzg2l-cru/rzg2l-cru-regs.h        | 65 ++++++++++---------
+>  .../platform/renesas/rzg2l-cru/rzg2l-cru.h    |  4 ++
+>  .../platform/renesas/rzg2l-cru/rzg2l-video.c  | 12 ++--
+>  4 files changed, 92 insertions(+), 35 deletions(-)
+> 
+> diff --git a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+> index eed9d2bd0841..abc2a979833a 100644
+> --- a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+> +++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+> @@ -22,6 +22,7 @@
+>  #include <media/v4l2-mc.h>
+>  
+>  #include "rzg2l-cru.h"
+> +#include "rzg2l-cru-regs.h"
+>  
+>  static inline struct rzg2l_cru_dev *notifier_to_cru(struct v4l2_async_notifier *n)
+>  {
+> @@ -269,6 +270,9 @@ static int rzg2l_cru_probe(struct platform_device *pdev)
+>  
+>  	cru->dev = dev;
+>  	cru->info = of_device_get_match_data(dev);
+> +	if (!cru->info)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "Failed to get OF match data\n");
+>  
+>  	irq = platform_get_irq(pdev, 0);
+>  	if (irq < 0)
+> @@ -317,8 +321,48 @@ static void rzg2l_cru_remove(struct platform_device *pdev)
+>  	rzg2l_cru_dma_unregister(cru);
+>  }
+>  
+> +static const u16 rzg2l_cru_regs[] = {
+> +	[CRUnCTRL] = 0x0,
+> +	[CRUnIE] = 0x4,
+> +	[CRUnINTS] = 0x8,
+> +	[CRUnRST] = 0xc,
+> +	[AMnMB1ADDRL] = 0x100,
+> +	[AMnMB1ADDRH] = 0x104,
+> +	[AMnMB2ADDRL] = 0x108,
+> +	[AMnMB2ADDRH] = 0x10c,
+> +	[AMnMB3ADDRL] = 0x110,
+> +	[AMnMB3ADDRH] = 0x114,
+> +	[AMnMB4ADDRL] = 0x118,
+> +	[AMnMB4ADDRH] = 0x11c,
+> +	[AMnMB5ADDRL] = 0x120,
+> +	[AMnMB5ADDRH] = 0x124,
+> +	[AMnMB6ADDRL] = 0x128,
+> +	[AMnMB6ADDRH] = 0x12c,
+> +	[AMnMB7ADDRL] = 0x130,
+> +	[AMnMB7ADDRH] = 0x134,
+> +	[AMnMB8ADDRL] = 0x138,
+> +	[AMnMB8ADDRH] = 0x13c,
+> +	[AMnMBVALID] = 0x148,
+> +	[AMnMBS] = 0x14c,
+> +	[AMnAXIATTR] = 0x158,
+> +	[AMnFIFOPNTR] = 0x168,
+> +	[AMnAXISTP] = 0x174,
+> +	[AMnAXISTPACK] = 0x178,
+> +	[ICnEN] = 0x200,
+> +	[ICnMC] = 0x208,
+> +	[ICnMS] = 0x254,
+> +	[ICnDMR] = 0x26c,
+> +};
+> +
+> +static const struct rzg2l_cru_info rzgl2_cru_info = {
+> +	.regs = rzg2l_cru_regs,
+> +};
+> +
+>  static const struct of_device_id rzg2l_cru_of_id_table[] = {
+> -	{ .compatible = "renesas,rzg2l-cru", },
+> +	{
+> +		.compatible = "renesas,rzg2l-cru",
+> +		.data = &rzgl2_cru_info,
+> +	},
+>  	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, rzg2l_cru_of_id_table);
+> diff --git a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru-regs.h b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru-regs.h
+> index 1c9f22118a5d..82920db7134e 100644
+> --- a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru-regs.h
+> +++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru-regs.h
+> @@ -10,71 +10,76 @@
+>  
+>  /* HW CRU Registers Definition */
+>  
+> -/* CRU Control Register */
+> -#define CRUnCTRL			0x0
+>  #define CRUnCTRL_VINSEL(x)		((x) << 0)
+>  
+> -/* CRU Interrupt Enable Register */
+> -#define CRUnIE				0x4
+>  #define CRUnIE_EFE			BIT(17)
+>  
+> -/* CRU Interrupt Status Register */
+> -#define CRUnINTS			0x8
+>  #define CRUnINTS_SFS			BIT(16)
+>  
+> -/* CRU Reset Register */
+> -#define CRUnRST				0xc
+>  #define CRUnRST_VRESETN			BIT(0)
+>  
+>  /* Memory Bank Base Address (Lower) Register for CRU Image Data */
+> -#define AMnMBxADDRL(x)			(0x100 + ((x) * 8))
+> +#define AMnMBxADDRL(base, x)		((base) + (x) * 2)
+>  
+>  /* Memory Bank Base Address (Higher) Register for CRU Image Data */
+> -#define AMnMBxADDRH(x)			(0x104 + ((x) * 8))
+> +#define AMnMBxADDRH(base, x)		AMnMBxADDRL(base, x)
+>  
+> -/* Memory Bank Enable Register for CRU Image Data */
+> -#define AMnMBVALID			0x148
+>  #define AMnMBVALID_MBVALID(x)		GENMASK(x, 0)
+>  
+> -/* Memory Bank Status Register for CRU Image Data */
+> -#define AMnMBS				0x14c
+>  #define AMnMBS_MBSTS			0x7
+>  
+> -/* AXI Master Transfer Setting Register for CRU Image Data */
+> -#define AMnAXIATTR			0x158
+>  #define AMnAXIATTR_AXILEN_MASK		GENMASK(3, 0)
+>  #define AMnAXIATTR_AXILEN		(0xf)
+>  
+> -/* AXI Master FIFO Pointer Register for CRU Image Data */
+> -#define AMnFIFOPNTR			0x168
+>  #define AMnFIFOPNTR_FIFOWPNTR		GENMASK(7, 0)
+>  #define AMnFIFOPNTR_FIFORPNTR_Y		GENMASK(23, 16)
+>  
+> -/* AXI Master Transfer Stop Register for CRU Image Data */
+> -#define AMnAXISTP			0x174
+>  #define AMnAXISTP_AXI_STOP		BIT(0)
+>  
+> -/* AXI Master Transfer Stop Status Register for CRU Image Data */
+> -#define AMnAXISTPACK			0x178
+>  #define AMnAXISTPACK_AXI_STOP_ACK	BIT(0)
+>  
+> -/* CRU Image Processing Enable Register */
+> -#define ICnEN				0x200
+>  #define ICnEN_ICEN			BIT(0)
+>  
+> -/* CRU Image Processing Main Control Register */
+> -#define ICnMC				0x208
+>  #define ICnMC_CSCTHR			BIT(5)
+>  #define ICnMC_INF(x)			((x) << 16)
+>  #define ICnMC_VCSEL(x)			((x) << 22)
+>  #define ICnMC_INF_MASK			GENMASK(21, 16)
+>  
+> -/* CRU Module Status Register */
+> -#define ICnMS				0x254
+>  #define ICnMS_IA			BIT(2)
+>  
+> -/* CRU Data Output Mode Register */
+> -#define ICnDMR				0x26c
+>  #define ICnDMR_YCMODE_UYVY		(1 << 4)
+>  
+> +enum rzg2l_cru_common_regs {
+> +	CRUnCTRL,	/* CRU Control */
+> +	CRUnIE,		/* CRU Interrupt Enable */
+> +	CRUnINTS,	/* CRU Interrupt Status */
+> +	CRUnRST, 	/* CRU Reset */
+> +	AMnMB1ADDRL,	/* Bank 1 Address (Lower) for CRU Image Data */
+> +	AMnMB1ADDRH,	/* Bank 1 Address (Higher) for CRU Image Data */
+> +	AMnMB2ADDRL,    /* Bank 2 Address (Lower) for CRU Image Data */
+> +	AMnMB2ADDRH,    /* Bank 2 Address (Higher) for CRU Image Data */
+> +	AMnMB3ADDRL,    /* Bank 3 Address (Lower) for CRU Image Data */
+> +	AMnMB3ADDRH,    /* Bank 3 Address (Higher) for CRU Image Data */
+> +	AMnMB4ADDRL,    /* Bank 4 Address (Lower) for CRU Image Data */
+> +	AMnMB4ADDRH,    /* Bank 4 Address (Higher) for CRU Image Data */
+> +	AMnMB5ADDRL,    /* Bank 5 Address (Lower) for CRU Image Data */
+> +	AMnMB5ADDRH,    /* Bank 5 Address (Higher) for CRU Image Data */
+> +	AMnMB6ADDRL,    /* Bank 6 Address (Lower) for CRU Image Data */
+> +	AMnMB6ADDRH,    /* Bank 6 Address (Higher) for CRU Image Data */
+> +	AMnMB7ADDRL,    /* Bank 7 Address (Lower) for CRU Image Data */
+> +	AMnMB7ADDRH,    /* Bank 7 Address (Higher) for CRU Image Data */
+> +	AMnMB8ADDRL,    /* Bank 8 Address (Lower) for CRU Image Data */
+> +	AMnMB8ADDRH,    /* Bank 8 Address (Higher) for CRU Image Data */
+> +	AMnMBVALID,	/* Memory Bank Enable for CRU Image Data */
+> +	AMnMBS,		/* Memory Bank Status for CRU Image Data */
+> +	AMnAXIATTR,	/* AXI Master Transfer Setting Register for CRU Image Data */
+> +	AMnFIFOPNTR,	/* AXI Master FIFO Pointer for CRU Image Data */
+> +	AMnAXISTP,	/* AXI Master Transfer Stop for CRU Image Data */
+> +	AMnAXISTPACK,	/* AXI Master Transfer Stop Status for CRU Image Data */
+> +	ICnEN,		/* CRU Image Processing Enable */
+> +	ICnMC,		/* CRU Image Processing Main Control */
+> +	ICnMS,		/* CRU Module Status */
+> +	ICnDMR,		/* CRU Data Output Mode */
+> +};
+> +
+>  #endif /* __RZG2L_CRU_REGS_H__ */
+> diff --git a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru.h b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru.h
+> index 8b898ce05b84..00c3f7458e20 100644
+> --- a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru.h
+> +++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru.h
+> @@ -80,6 +80,10 @@ struct rzg2l_cru_ip_format {
+>  	bool yuv;
+>  };
+>  
+> +struct rzg2l_cru_info {
+> +	const u16 *regs;
+> +};
+> +
+>  /**
+>   * struct rzg2l_cru_dev - Renesas CRU device structure
+>   * @dev:		(OF) device
+> diff --git a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c
+> index cd69c8a686d3..f25fd9b35c55 100644
+> --- a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c
+> +++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c
+> @@ -44,12 +44,16 @@ struct rzg2l_cru_buffer {
+>   */
+>  static void rzg2l_cru_write(struct rzg2l_cru_dev *cru, u32 offset, u32 value)
+>  {
+> -	iowrite32(value, cru->base + offset);
+> +	const u16 *regs = cru->info->regs;
+> +
+> +	iowrite32(value, cru->base + regs[offset]);
+
+Should out-of-bound accesses be checked ? Ideally that should be done at
+build time, but in some cases that may be hard. Maybe rzg2l_cru_write()
+and rzg2l_cru_read() could implement compile-time checks, and
+__rzg2l_cru_write() and __rzg2l_cru_read() could be used for the cases
+where checks are not possible at compile time (for AMnMBxADDRL and
+AMnMBxADDRH as far as I can see).
+
+>  }
+>  
+>  static u32 rzg2l_cru_read(struct rzg2l_cru_dev *cru, u32 offset)
+>  {
+> -	return ioread32(cru->base + offset);
+> +	const u16 *regs = cru->info->regs;
+> +
+> +	return ioread32(cru->base + regs[offset]);
+>  }
+>  
+>  /* Need to hold qlock before calling */
+> @@ -132,8 +136,8 @@ static void rzg2l_cru_set_slot_addr(struct rzg2l_cru_dev *cru,
+>  		return;
+>  
+>  	/* Currently, we just use the buffer in 32 bits address */
+> -	rzg2l_cru_write(cru, AMnMBxADDRL(slot), addr);
+> -	rzg2l_cru_write(cru, AMnMBxADDRH(slot), 0);
+> +	rzg2l_cru_write(cru, AMnMBxADDRL(AMnMB1ADDRL, slot), addr);
+> +	rzg2l_cru_write(cru, AMnMBxADDRH(AMnMB1ADDRH, slot), 0);
+
+This seems fairly error-prone. The first argument doesn't seem to be
+needed.
+
+>  }
+>  
+>  /*
 
 -- 
-2.48.1
+Regards,
 
+Laurent Pinchart
 
