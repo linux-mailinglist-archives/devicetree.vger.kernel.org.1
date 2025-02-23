@@ -1,171 +1,92 @@
-Return-Path: <devicetree+bounces-149941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-149942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74BC8A40DAD
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 10:33:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8235A40DBF
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 10:43:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBD0B1891F1D
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 09:33:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 408003B07AB
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2025 09:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10A242054F4;
-	Sun, 23 Feb 2025 09:32:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2321C84BA;
+	Sun, 23 Feb 2025 09:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gV6T0FbU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZSUUKBfa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36AE420469F;
-	Sun, 23 Feb 2025 09:32:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E07C198E7B;
+	Sun, 23 Feb 2025 09:43:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740303168; cv=none; b=btXzkG+7XKAX4swh7h9k6FTvMrQkWdsBiEEMhO5x7a5cAcEMNBWovTBJ6j0fLNNTDY3hCIxgh7gkWuoxL3nQ9HVGtqeAmAs6xQVCctHPof9FUoJpsIKedCkhst/exeKkIrA9JCpT+CyWyL7SDexJDQdhdb9w6riYDKx3qI5hQ3w=
+	t=1740303810; cv=none; b=eJYxlaB5fCU8D+XYiIwKG6w1CC+wBT1q9sOtPiv08CQg+gvIc/9MTDwliQlJ8yEc4I69oTibwDmPtWXxfbcDk50vUBGGP9UW13yL+BDq4U9Byl518UllYZVlp3xov7YIoU1Lk6Dm7oOumWKHoqqCsbczXcQ+5cePGrmeJuk5o30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740303168; c=relaxed/simple;
-	bh=SamXBzmLvsEp0Jz0d1kldxkjLOu7b/3p5uRtusyt+UA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JG8KzW41qp0NbejuiY3PylKSnABi8GWQ/2tkq2eRSFmcF1XcCq7TofxicO2nrD1fChwkiXJ3t1HkRiH+IrcFZMr1utYid1h+Y88Xc7kW/5NeAJnOTRtajsoqNDyurH5ldiXjgX5HZQFUfTcgIKoLgJdiOXk464iAsHIyngcFkj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gV6T0FbU; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740303158;
-	bh=SamXBzmLvsEp0Jz0d1kldxkjLOu7b/3p5uRtusyt+UA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=gV6T0FbUkqPXyPLFWBm3QQPz31sFBb3BkKmgsHcGetQZE7swMz8EsWM9Oi8PwohXM
-	 YVrqJyCj9cY8Mj9er7uh5wjFjpqBZNifDIjgUFNlgXP6TMDXECyTaV5RlpiGfAd+jO
-	 3MxYo1AmpGvCrQT1S+9mzImWYCGODvrvlFlcpX7jM6QR6i9Oatlnhn+fA+f9Cgbtr+
-	 JSZe4hRKC6XB8RVJcIaRJHFvGL+k5QI0xyj3rM276iZOU71fZx/y0+XsTVr/AD6XlD
-	 ISRdJIUYzvjV2TeEmyGUCLEbxux3mDI9eAJZaI8g6cGB3j4YYSWI5LDcYO2ehE6TVG
-	 niwkz6FRTCG9g==
-Received: from localhost (unknown [188.27.58.83])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with UTF8SMTPSA id F2CF117E0D66;
-	Sun, 23 Feb 2025 10:32:37 +0100 (CET)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Sun, 23 Feb 2025 11:31:41 +0200
-Subject: [PATCH v2 5/5] arm64: dts: rockchip: Enable HDMI1 on rk3588-evb1
+	s=arc-20240116; t=1740303810; c=relaxed/simple;
+	bh=n3VmuDkahaRSXSSONIGxA6K3sJl+bXqC/Tuu5fPag6w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=butuhgMxUht1mxO8H/JgjZAc6k8ap49bJQIiD6EbRlqAZvgCDKddAYrfcw+NOQIE6ZyhOnXfUeBYVAIa5fg51wg9S7iHA6R6t1zP4xrexr9RdQjqd+pUcD4reu2pU3w8XsHYvZUuz1c88Q4WcFI7k0Xur0VgUwjaOTBJME/29ZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZSUUKBfa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C96CC4CEDD;
+	Sun, 23 Feb 2025 09:43:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740303809;
+	bh=n3VmuDkahaRSXSSONIGxA6K3sJl+bXqC/Tuu5fPag6w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZSUUKBfaBVt20BCaE2r4RGaUbqvbpZAtRTPBl99e3OjmAUd3O/MxP/xt7JwAZVX5K
+	 ASSWS6hMqB4DFthWyh/373e6K4DDXdhdUF4WUjEMUb/q8LIe2+FRc1EBfNNJTCTqga
+	 kau5tCytLK1rOe3QMF3k+LR2E4Z7YuWg0e4BIyV3N+TDFVEjikyzeFCvfoPo6shAZ4
+	 Z7eJuiS0WrYL5I8mtAYgh6DXqjWc2uGRS8pYTsUCO+Nkk+v6A8+PgMvzvR0pRVWXop
+	 VoBn1u6JZksCjMtB4006IMgP3NJfFNikGliU4Grk3Btu3eoYIyVNG0YuvT7K91ibiQ
+	 sqOKU8UXP5XDw==
+Date: Sun, 23 Feb 2025 10:43:25 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Ryder Lee <ryder.lee@mediatek.com>, 
+	Jianjun Wang <jianjun.wang@mediatek.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: mediatek-gen3: Add
+ mediatek,pbus-csr phandle array property
+Message-ID: <20250223-hulking-goldfish-of-symmetry-cbfed4@krzk-bin>
+References: <20250222-en7581-pcie-pbus-csr-v3-0-e0cca1f4d394@kernel.org>
+ <20250222-en7581-pcie-pbus-csr-v3-1-e0cca1f4d394@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250223-vop2-hdmi1-disp-modes-v2-5-f4cec5e06fbe@collabora.com>
-References: <20250223-vop2-hdmi1-disp-modes-v2-0-f4cec5e06fbe@collabora.com>
-In-Reply-To: <20250223-vop2-hdmi1-disp-modes-v2-0-f4cec5e06fbe@collabora.com>
-To: Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250222-en7581-pcie-pbus-csr-v3-1-e0cca1f4d394@kernel.org>
 
-Add the necessary DT changes to enable the second HDMI output port on
-Rockchip RK3588 EVB1.
+On Sat, Feb 22, 2025 at 11:43:44AM +0100, Lorenzo Bianconi wrote:
+> Introduce the mediatek,pbus-csr property for the pbus-csr syscon node
+> available on EN7581 SoC. The airoha pbus-csr block provides a configuration
+> interface for the PBUS controller used to detect if a given address is
+> accessible on PCIe controller.
+> 
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>  .../devicetree/bindings/pci/mediatek-pcie-gen3.yaml     | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
 
-While at it, switch the position of &vop_mmu and @vop to maintain the
-alphabetical order.
+You got review tag, so if you decided to skip it, this should be
+mentioned why.
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts | 42 ++++++++++++++++++++++--
- 1 file changed, 40 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-index 3fd0665cde2ca15cd309919ff751b00e0f53a400..27a7895595ee9fa2f5d5f3096cbe334c1d3792cf 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-@@ -132,6 +132,17 @@ hdmi0_con_in: endpoint {
- 		};
- 	};
- 
-+	hdmi1-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi1_con_in: endpoint {
-+				remote-endpoint = <&hdmi1_out_con>;
-+			};
-+		};
-+	};
-+
- 	pcie20_avdd0v85: regulator-pcie20-avdd0v85 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "pcie20_avdd0v85";
-@@ -364,10 +375,30 @@ hdmi0_out_con: endpoint {
- 	};
- };
- 
-+&hdmi1 {
-+	status = "okay";
-+};
-+
-+&hdmi1_in {
-+	hdmi1_in_vp1: endpoint {
-+		remote-endpoint = <&vp1_out_hdmi1>;
-+	};
-+};
-+
-+&hdmi1_out {
-+	hdmi1_out_con: endpoint {
-+		remote-endpoint = <&hdmi1_con_in>;
-+	};
-+};
-+
- &hdptxphy0 {
- 	status = "okay";
- };
- 
-+&hdptxphy1 {
-+	status = "okay";
-+};
-+
- &i2c2 {
- 	status = "okay";
- 
-@@ -1371,11 +1402,11 @@ &usb_host1_xhci {
- 	status = "okay";
- };
- 
--&vop_mmu {
-+&vop {
- 	status = "okay";
- };
- 
--&vop {
-+&vop_mmu {
- 	status = "okay";
- };
- 
-@@ -1385,3 +1416,10 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
- 		remote-endpoint = <&hdmi0_in_vp0>;
- 	};
- };
-+
-+&vp1 {
-+	vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
-+		remote-endpoint = <&hdmi1_in_vp1>;
-+	};
-+};
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
--- 
-2.48.1
+Best regards,
+Krzysztof
 
 
