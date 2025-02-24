@@ -1,79 +1,48 @@
-Return-Path: <devicetree+bounces-150288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB1E6A41A60
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:11:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00A3FA41A63
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:11:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 232B3188AB1E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 10:10:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D4B6188B1BB
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 10:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC8624A048;
-	Mon, 24 Feb 2025 10:09:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8806B24A05B;
+	Mon, 24 Feb 2025 10:10:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="UXveu3sV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gaav39Br"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E493288DA
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 10:09:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58AEB24A044;
+	Mon, 24 Feb 2025 10:10:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740391790; cv=none; b=s+zWhWjLn+97fTASYMi2Mk9fKr+FzV0ICokRH47Eo/nT0Gik0GPPY6U6Y2W/lts2tllX228CqmWj41lFK9E35EePYOx8EytR9yWU6DTDBbeAxcsCSpNG+qJ5a/Q/CGUtNTkD6M9j/htctoCpa7t4vXM/VavdigkE97Of1P10o9A=
+	t=1740391829; cv=none; b=BrHvE6rWAyiH4oHIdu9AtIgmwybIXyA/ncSs+uoUEAiQzKpBSinzd5JJ+vv6HsfY5ZXpvdXc1u0vqJ1dllsf6+mXW7dXPYsAxXYZJXqCHvJQAHWMEQ1nwXgVhUWIdL0rzqWko2b2BaX/c/wAIspDXO+bc/qHv4pGPrwc3h0i3ro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740391790; c=relaxed/simple;
-	bh=onsgqZAXMYjXcbxCGiWbRtaJ+BeYoCF9p0aj3MGF+9s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gx0cEpthXWUO6/aV0WEzJaCAgBYj2LLG+WQ7D/mk6wojzN1Dl5PlFCYY6/EFpIKHgMme3qYgjFwcQDA6YvLZWpw8+cluf39wjFju8zQJnPob150iiHvIhcLlhUNaONe/FidXYJa8jsitm+evvlxFykHjmWGJY7Mud8A7+9OLjhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=UXveu3sV; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2fc0d44a876so6641556a91.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 02:09:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1740391787; x=1740996587; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tzuuWbIPCWD9clddarDhLCMxJJqBds3nJvxITaDNJ0A=;
-        b=UXveu3sVsiHpzREDS/fGZ/XL83zN6Q69l17pgLSFSM6Y7N6iFH0uQ8Q9pzPrpKwVUK
-         ew6lUvPupZDkSovCW/JQJc93QHqVsYnLUtrWvAO0+PpbKppGRsxhujR8aQsa6Np/jhfF
-         8V7sFYf8cNT29AWbISfmNKOrOEl+9WJCz7kXz+fZtAgrCEEl3G745YUklFpRLXaMs0Bf
-         JXdxrkf+LcXwaopO2KHfp3ruzkHPROQvI3frpwp5uIna90+5XNSFFnTEcMCumLH6tiXb
-         x1drF6mevY4vfCoGfS8hcorcyo45b0aN/XlSzycVCBrtfgDlS5plv76jVIftj6PSjaSm
-         0zDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740391787; x=1740996587;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tzuuWbIPCWD9clddarDhLCMxJJqBds3nJvxITaDNJ0A=;
-        b=ViDEU4j1oTdVNGYe8VcjxSVJxBRYGt9EFmMBsvMxLMzZ+ymrU4sDBAMD2JfDAMIWGc
-         OyBAemgFp/oTRUODG9eHmvwiETqsjekVsFz2HGMTAsahl7NtF2iyiJwIm1O3rxYaE5jT
-         ixfQfJqbblz+i/0+Y7oQX3LiyY8JBxvmYqjXJARW2Kjh4nWQsLNSj0txwRYNKUp0QghS
-         lo5wkMO8gzLjdcKH2T3wcgv5Wltj9gI6WRYm++fXRsaWjxZoNRtGB++btLDdov/nJU4F
-         43fKGd8zNnA4tZn2e41WJzl8bA9F/if3KWsjGH3fhwi8ZxQSGehucyD+dviiyPwqoKUQ
-         x7ng==
-X-Forwarded-Encrypted: i=1; AJvYcCW4Sg2jPcI+fKpP82NnFMWyaMoBEuLKJV8iQgrMTI/Cp8qbP+S+BDexSQnDAoAUOw6ukP+ELWQdrFB0@vger.kernel.org
-X-Gm-Message-State: AOJu0YybZTO9J+esN2tRoyn0wX0hFIj6Ripj6I9K8zlo1q0ZgcdVlwJ0
-	/FifUMOCGs3LwSDAbsYqNwD5l759MOhnFlQqEyC2TVhpe1UNf8kNM0zgmIFKzQ==
-X-Gm-Gg: ASbGncuFJJEYArydlPNjqSneHTvjAEPPw4iPoz1DeQpQMzobts9lsZCF6SN01N1JdcK
-	gnnyizeNfbBmsHCYKQWzQsEhhUGBWolpLfHwZpm6mar9dnT11cGLQe1XkC3uHu+OkzlGHiERxfD
-	KGN7bXpcllCjqwRFbSqThGLKN+F00EZWIiqZJpt1MjMeLjoYacBS/wZr3ulVmBcu/THWBvn0dQi
-	ueFJhpMX99ecz/pGgzivZQJ8oJxQeglLze//6kmvs9YzdWX1g4vdj6hu8ac8QUd8S85Uk1e34GR
-	/hTFCri0ZedcsjTsXMP/jYL1SV8eQURS8g==
-X-Google-Smtp-Source: AGHT+IFE4qPU5r/sYI/18fNQBufutCp3kvlLxt4qVEHc7LdtGYhLZ8zXj+IvLCmKDtM8j1R4H64bTw==
-X-Received: by 2002:a17:90b:53cc:b0:2f9:cf97:56ac with SMTP id 98e67ed59e1d1-2fce75eecf5mr25548742a91.0.1740391787513;
-        Mon, 24 Feb 2025 02:09:47 -0800 (PST)
-Received: from [172.16.119.211] ([103.15.228.94])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fceb05109dsm6108055a91.15.2025.02.24.02.09.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Feb 2025 02:09:46 -0800 (PST)
-Message-ID: <fed58d7b-d9af-402d-a215-a7e620239728@beagleboard.org>
-Date: Mon, 24 Feb 2025 15:39:41 +0530
+	s=arc-20240116; t=1740391829; c=relaxed/simple;
+	bh=nGIgI5Cm6+5BTpZFR8Wf9vbZLwRowF8CBnVRRVc2t4s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=pjm42Oz4zEjwrnagWQTiaKCwDMy77Pb5DpIEhVoEubuHdln+Fw6Rx9ZvawPKUsZR4srh4xiwVrkpBSIBRkQBoCkOhUHu3MCICELPGibMERke7GI6y+nia+6qo8v2jdo0euZGfs/A62s35iTmr7y+xuTxL8VVYQIfN2dZqCOlzB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gaav39Br; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDE8EC4CED6;
+	Mon, 24 Feb 2025 10:10:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740391828;
+	bh=nGIgI5Cm6+5BTpZFR8Wf9vbZLwRowF8CBnVRRVc2t4s=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Gaav39BrdspeY62DXl0BvVCSbwBKXiuf/w7Cu3HImF8o1tsU+wA3P7cF16KWVpVUb
+	 3Zlt4E8NROAwG0DhJCe8Tcaet7K9+bLxiDGFhPb5+NtMjOc2HIxQOCzvyqei1K9fMI
+	 Q/wqenyTdrE229v+TICaIdNTnqXbROoE6lQNm+aJEwJ/dQGpq2zTn6DJ5R59eC1c4E
+	 mw3KT4q+kY3oehIiECukwYmo+BhM8g27Z0cc2oZV4zgyQ3qw/GX/LoRfzIk01OmL6j
+	 4qvt80OZLcGMl4Lp/5HdkVBPeDXw4TaS4mC56aNRQGMLGOq3ae4SZsLETVuNstiU6k
+	 9MQwpZe0XDiug==
+Message-ID: <f810b8a2-4261-4b68-b59b-4efa0219b5db@kernel.org>
+Date: Mon, 24 Feb 2025 11:10:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,113 +50,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [Question] Status of user-space dynamic overlays API
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: xypron.glpk@gmx.de, Jason Kridner <jkridner@beagleboard.org>,
- Deepak Khatri <lorforlinux@beagleboard.org>, d-gole@ti.com,
- Robert Nelson <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- David Gibson <david@gibson.dropbear.id.au>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Pantelis Antoniou <pantelis.antoniou@gmail.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>
-References: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
- <CAMuHMdUhw6q1DAOBJwG5FJUs_QHj3hZMD3damOo2uLZQgS9e7A@mail.gmail.com>
+Subject: Re: [PATCH v9 1/3] dt-binding: clock: ast2700: modify soc0/1 clock
+ define
+To: Ryan Chen <ryan_chen@aspeedtech.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250224095506.2047064-1-ryan_chen@aspeedtech.com>
+ <20250224095506.2047064-2-ryan_chen@aspeedtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <CAMuHMdUhw6q1DAOBJwG5FJUs_QHj3hZMD3damOo2uLZQgS9e7A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250224095506.2047064-2-ryan_chen@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 2/24/25 14:07, Geert Uytterhoeven wrote:
-
-> Hi Ayush,
->
-> On Sat, 22 Feb 2025 at 21:14, Ayush Singh <ayush@beagleboard.org> wrote:
->> # Challenges
->>
->> ## Security
->>
->> The concerns regarding security seemed to show up in the other
->> proposals. There was a proposal to have a devicetree property to
->> allow/deny the application of overlays in some nodes, with default being
->> deny. Was it insufficient?
-> This is the most important issue: using DT overlays, you can change
-> about anything.  There is no protection yet to limit this to e.g. the
-> expansion connectors on your board.
-> This is what the various WIP "connector" abstractions are trying
-> to solve.
-
-Thanks for clarifying. However, as I mentioned above, there are usecases 
-for dynamic overlays outside of connectors. Specifically, for the 
-usecase of connecting random sensors to board pins. I do agree that any 
-fairly well specified connector should probably have it's own drivers 
-rather than using a generic userspace API.
-
-Would it be enough to use `aliases` to specify the nodes where an 
-overlay can be applied as I have described here [0]. To further lock 
-down things, it might be possible to allow introducing indirection or 
-scoping nodes of sort. Here is an example:
-
-\ {
-
-aliases {
-
-export_node0 = &spi0_scoped;
-
-};
-
-};
-
-&spi0 {
-
-spi0_scoped {};
-
-// Stuff already connected internally
-
-};
-
-Any children of `spi0_scoped` should be treated as devices directly 
-connected to `spi0` but should provided isolation for any changes that 
-userspace overlays can make.
-
->> ## Memory Leaks
->>
->> Currently, updating/removing properties leaks memory. Was it one of the
->> reasons for the rejection of previous proposals?
-> IMO this is a minor issue. I am sure this can be improved upon.  We just
-> need some way to keep track of which properties are part of the initial
-> FDT (and thus can't be freed), and which were allocated dynamically.
->
->> [0]:
->> https://lore.kernel.org/all/1417605808-23327-1-git-send-email-pantelis.antoniou@konsulko.com/#t
-> FTR, I do keep this up to date:
-> https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/overlays
-
-Thanks, will check the patches.
-
-Is there a list or mailing thread documenting what would be needed to 
-move this effort forward. I would love to help in any way possible.
-
-> Gr{oetje,eeting}s,
->
->                          Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                  -- Linus Torvalds
+On 24/02/2025 10:55, Ryan Chen wrote:
+> -remove redundant SOC0_CLK_UART_DIV13:
+> SOC0_CLK_UART_DIV13 is not use at clk-ast2700.c, the clock
+> source tree is uart clk src -> uart_div_table -> uart clk.
+> 
+> -Change SOC0_CLK_HPLL_DIV_AHB to SOC0_CLK_AHBMUX:
+> modify clock tree implement.
+> older CLK_AHB use mpll_div_ahb/hpll_div_ahb to be ahb clock source.
+> mpll->mpll_div_ahb
+>                   -> clk_ahb
+> hpll->hpll_div_ahb
 
 
-[0]: 
-https://lore.kernel.org/all/d5bed265-1dbd-44d1-8287-8ca993624b79@beagleboard.org/
+I can barely understand it and from the pieces I got, it does not
+explain need for ABI break.
 
 
-Best Regards,
 
-Ayush Singh
-
+Best regards,
+Krzysztof
 
