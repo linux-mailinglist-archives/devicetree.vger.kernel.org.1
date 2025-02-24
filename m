@@ -1,249 +1,158 @@
-Return-Path: <devicetree+bounces-150442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0060AA421F5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 14:52:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F6D1A4224E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 15:04:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C213188EA83
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:52:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEA52421D34
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:57:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F3722571DA;
-	Mon, 24 Feb 2025 13:51:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F0024A079;
+	Mon, 24 Feb 2025 13:57:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ro0ihmqi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IBekRFC0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6092254863;
-	Mon, 24 Feb 2025 13:51:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08892136327;
+	Mon, 24 Feb 2025 13:57:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740405066; cv=none; b=nv4qK0TyIrj5glxuuTpRKKm4++t8b12tbz8/DDRDI1HaBSfxImvk5M3PYP8/5deiK3JPOX72yU9/CdXlTS72xFlxmDhIfgheGZ1KffsP11Yk7CGMADf83ywOyEAlvmO7dStrenn010BqDNe6edmd2B0YNgUix2t0MBkNE9AFVOo=
+	t=1740405424; cv=none; b=BWNneHT6sRaAKiAzf7iwaioqjK+T9LEny/8Y8viJNK1UUJjRLAlMDkELfCLAMBBr602ZYA+76ggb3swtavPpD3LeXx0jKCHLPD2DipTXNj5vTJZyIwOgpthgp8zQVNBgh/uSolBDI/PYJy5hNuGRXk0YbSvbf3qBwF9S6OlBAzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740405066; c=relaxed/simple;
-	bh=FJ54yO04PKk7jacqo+ONYP3+FlHuQ9rLC64gl6G9Bxw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TLX3VOlyWJ6Ks4h7nyT1Suw5R9ZI50Bah9v4BbTSwDfbVfUX+j8WFUyvoq6JPzq6Tvg/gbYTOCUqu8EnN10j9ZE+Kh4tL3gvtEpoSL48ZYdRVzRby3zMabt8mWDyxKVoN2t5+r6EokzgKE87XmYWtfC7txoB+NlK66x36k/ggfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ro0ihmqi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 320E5C4AF62;
-	Mon, 24 Feb 2025 13:51:05 +0000 (UTC)
+	s=arc-20240116; t=1740405424; c=relaxed/simple;
+	bh=OQ7YbuLAqtoQmHB21uw+7T4OIQyqMIGl/9dHS8SMf3I=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=N7AU7AoYiosiceNS8eicOntOf59K8vx4RE5pHPL1CkpMaonjOU9kDxvfTn2Huz9/0BxVv+DY6P5yEeO4DYRV7pxQ8sJmOyF5lYXJqlFfsCpu+73taydVEXd0yfN7QwnKU8PojfGPENKSbzlhyQuswITEd9h5Dl+xDpNbHHR9SGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IBekRFC0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34C8DC4CEE6;
+	Mon, 24 Feb 2025 13:57:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740405065;
-	bh=FJ54yO04PKk7jacqo+ONYP3+FlHuQ9rLC64gl6G9Bxw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Ro0ihmqi+4apnSzbXn8tkuIVC7wo9uBi/D2ZQpOl0vVlM39cbj1s9sntlWes+lrQz
-	 nsHPQoo+08M7Lc9JD1dW2YO3XnNFrvD967VzZRSjTfN+zRzWQ9pGFu7imj6hDU8r2n
-	 KyBjoJjXlL3e+ABFnZY1KZdV4T16rqDz+FXcpEIxclDBb2rJSzolYx13PcwnSQ0fSZ
-	 AHnwYpcC1zmnE81SYBkzeG0qovniJuQVNcoKkm9rDQ9anSDmYjzyBFAAV+B5dTYlC/
-	 j6wbwNlFO3Ns/HevkME0DSkh4+uaDGtqv2w3T4+QeFaZd4VWk6qs51BhsbTLonCLbR
-	 eEcTedc1b35tg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1FE6CC021BB;
-	Mon, 24 Feb 2025 13:51:05 +0000 (UTC)
-From: Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
-Date: Mon, 24 Feb 2025 14:51:04 +0100
-Subject: [PATCH 14/14] arm64: dts: freescale: Add the BOE av123z7m-n17
- variant of the Moduline Display
+	s=k20201202; t=1740405423;
+	bh=OQ7YbuLAqtoQmHB21uw+7T4OIQyqMIGl/9dHS8SMf3I=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=IBekRFC0f6gWwCSFDsRNzMkpGSB2uuxZWf8eLw1JIuQCbgnybT8Nr9dWdAq6C7sis
+	 +UhxPIog8lJhYq50ZvxT4ZQ8NTT1ltpdZcoKdSf1iVYg7itMrVXxF4evLvHMo0f8F4
+	 20aj9DfOAFix0I2zhLERV2oEPOyuYXlhPMgr92riUWrfPD54dcZZEYTlGHtao8N75W
+	 6T/XtUBmY64ed3q7yWX6vVFP4g7XwXNBRrVgAuHcNk42BwG91wLRJc+KqvDgknPm/a
+	 /8BBroJCopj4QsMIfGtEgKfLq+RmA+Q3EugyZ4Mv4AaSY03IBqYxn/pwkIYSBvjJ0O
+	 V+SGYdotM9nvQ==
+Date: Mon, 24 Feb 2025 07:57:01 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250224-initial_display-v1-14-5ccbbf613543@gocontroll.com>
-References: <20250224-initial_display-v1-0-5ccbbf613543@gocontroll.com>
-In-Reply-To: <20250224-initial_display-v1-0-5ccbbf613543@gocontroll.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
- Liu Ying <victor.liu@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, 
- Maud Spierings <maudspierings@gocontroll.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1740405062; l=3566;
- i=maudspierings@gocontroll.com; s=20250214; h=from:subject:message-id;
- bh=oTP9B5+eckemcAq7BoHH8WLYSzQY53IU8NlYcoi8TI4=;
- b=aQ+VE0ltCkVpecPynixQhO2jlXkv5MbH2Ub/umJWYy2F2l+LhIXFrAg+miCS5eqAogchWhS3+
- 7JLJf8Xl76wCUt081BHlCJk6B9CStdy7l91pUD5HAkmbSCe6tqa6zBQ
-X-Developer-Key: i=maudspierings@gocontroll.com; a=ed25519;
- pk=7chUb8XpaTQDvWhzTdHC0YPMkTDloELEC7q94tOUyPg=
-X-Endpoint-Received: by B4 Relay for maudspierings@gocontroll.com/20250214
- with auth_id=341
-X-Original-From: Maud Spierings <maudspierings@gocontroll.com>
-Reply-To: maudspierings@gocontroll.com
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-mediatek@lists.infradead.org, 
+ Yow-Shin Liou <yow-shin.liou@mediatek.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Chris-qj chen <chris-qj.chen@mediatek.com>, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ Alexandre Mergnat <amergnat@baylibre.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Simon Sun <simon.sun@yunjingtech.com>, linux-usb@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Macpaul Lin <macpaul@gmail.com>, 
+ Fabien Parent <fparent@baylibre.com>, ChiYuan Huang <cy_huang@richtek.com>, 
+ Bear Wang <bear.wang@mediatek.com>, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Pablo Sun <pablo.sun@mediatek.com>
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <20250224114934.3583191-1-macpaul.lin@mediatek.com>
+References: <20250224114934.3583191-1-macpaul.lin@mediatek.com>
+Message-Id: <174040535775.2710776.691558658609135796.robh@kernel.org>
+Subject: Re: [PATCH v6] arm64: dts: mediatek: mt8395-genio-1200-evk: add
+ support for TCPC port
 
-From: Maud Spierings <maudspierings@gocontroll.com>
 
-Add the BOE av123z7m-n17 variant of the Moduline Display, this variant
-comes with a 12.3" 1920x720 display.
+On Mon, 24 Feb 2025 19:49:34 +0800, Macpaul Lin wrote:
+> From: Fabien Parent <fparent@baylibre.com>
+> 
+> Enable USB Type-C support on MediaTek MT8395 Genio 1200 EVK by adding
+> configuration for TCPC Port, USB-C connector, MUX IT5205 and related
+> settings.
+> 
+> Configure dual role switch capability, set up PD (Power Delivery) profiles,
+> and establish endpoints for SS (SuperSpeed) and HS (HighSpeed) USB.
+> 
+> Update pinctrl configurations for U3 P0 VBus default pins and set dr_mode
+> to "otg" for OTG (On-The-Go) mode operation.
+> 
+> Add ITE IT5205 (TYPEC MUX) under I2C2 bus and configure its properties;
+> also add references and configurations to 'typec-mux' node.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Signed-off-by: Yow-Shin Liou <yow-shin.liou@mediatek.com>
+> Signed-off-by: Simon Sun <simon.sun@yunjingtech.com>
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../dts/mediatek/mt8395-genio-1200-evk.dts    | 102 ++++++++++++++++++
+>  1 file changed, 102 insertions(+)
+> 
+> Changes for v2:
+>  - Drop the no need '1/2' DT Schema update patch in the 1st version.
+>  - Fix indent for 'ports' node, it should under the 'connector' node.
+>  - Correct the index for 'port@0' and 'port@1' node.
+> 
+> Changes for v3:
+>  - Correct the order between new added nodes.
+> 
+> Changes for v4:
+>  - Reorder for property 'op-sink-microwatt'.
+>  - Fix indentation for 'source-pdos' and 'sink-pdos' nodes.
+>  - Correct node 'pin-cmd-dat' with 'pins-vbus'.
+>  - Add both Highspeed and Superspeed ports to ssusb0 port.
+>  - Set 'role-switch-default-mode' = "peripheral" for ssusb0 port.
+>  - Rename endpoint of USB data port to 'mtu3_hs0_role_sw' and
+>    'mtu3_ss0_role_sw'.
+>  - Drop it5205fn phandle for node typec-mux@48.
+>  - Reorder properties of typec-mux@48
+>  - Add "Reviewed-by:" tag. Thanks!
+> 
+> Changes for v5:
+>  - Squash two patches into one patch and refine commit messages:
+>    suggested by reviewer.
+>  - Drop 'role-switch-default-mode'
+>  - Add altmodes settings
+>  - Drop 'Reviewed-by:' tag since the two sub patches has been combined
+>    into a new patch.
+> 
+> Changes for v6:
+>  - Add 'pd-revision' property to 'connector', thanks ChiYuan Huang's help!.
+>  - Add 'Reviewed-by' tag. Thanks!
+> 
 
-Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
 
----
-Currently the backlight driver is not available, this will be upstreamed
-in a future patch series. It is a Maxim max25014atg.
----
- ...tx8p-ml81-moduline-display-106-av123z7m-n17.dts | 133 +++++++++++++++++++++
- 1 file changed, 133 insertions(+)
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dts b/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..129c69598f38566460efb271628c1d1e10eb2a85
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dts
-@@ -0,0 +1,133 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2025 GOcontroll B.V.
-+ * Author: Maud Spierings <maudspierings@gocontroll.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mp-tx8p-ml81-moduline-display-106.dtsi"
-+
-+/ {
-+	model = "GOcontroll Moduline Display with BOE av123z7m-n17 display";
-+
-+	panel {
-+		compatible = "boe,av123z7m-n17";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_panel>;
-+		enable-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
-+		power-supply = <&reg_3v3_per>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				dual-lvds-odd-pixels;
-+
-+				panel_in0: endpoint {
-+					remote-endpoint = <&lvds1_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				dual-lvds-even-pixels;
-+
-+				panel_in1: endpoint {
-+					remote-endpoint = <&lvds0_out>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&i2c4 {
-+	bridge@2d { /* sn65dsi85 */
-+		compatible = "ti,sn65dsi84";
-+		reg = <0x2d>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_lvds_bridge>;
-+		enable-gpios = <&gpio4 14 GPIO_ACTIVE_HIGH>;
-+		vcc-supply = <&reg_1v8_per>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				dsi_lvds_bridge_in: endpoint {
-+					remote-endpoint = <&mipi_dsi_out>;
-+					data-lanes = <1 2 3 4>;
-+				};
-+			};
-+
-+			port@2 {
-+				reg = <2>;
-+
-+				lvds0_out: endpoint {
-+					remote-endpoint = <&panel_in1>;
-+				};
-+			};
-+
-+			port@3 {
-+				reg = <3>;
-+
-+				lvds1_out: endpoint {
-+					remote-endpoint = <&panel_in0>;
-+				};
-+			};
-+		};
-+	};
-+
-+	/* max25014 @ 0x6f */
-+};
-+
-+&lcdif1 {
-+	status = "okay";
-+};
-+
-+&mipi_dsi {
-+	samsung,esc-clock-frequency = <12000000>;
-+	/*
-+	 * burst has to be at least 2x dsi clock that the sn65dsi85 expects
-+	 * display pixelclock * bpp / lanes / 2 = dsi clock
-+	 * 88.000.000 * 24 / 4 / 2 = 264.000.000
-+	 * range gets rounded up to 265.000.000 - 270.000.000
-+	 * 267.500.000 * 2 = 535.000.000
-+	 */
-+	samsung,burst-clock-frequency = <535000000>;
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			mipi_dsi_out: endpoint {
-+				remote-endpoint = < &dsi_lvds_bridge_in>;
-+				data-lanes = <1 2 3 4>;
-+			};
-+		};
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl_lvds_bridge: lvdsbridgegrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI1_TXD2__GPIO4_IO14 /* COM pin 113 */
-+			MX8MP_DSE_X1
-+		>;
-+	};
-+
-+	pinctrl_panel: panelgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO07__GPIO1_IO07 /* COM pin 157 */
-+			MX8MP_DSE_X1
-+			MX8MP_IOMUXC_GPIO1_IO09__GPIO1_IO09 /* COM pin 159 */
-+			MX8MP_DSE_X1
-+		>;
-+	};
-+};
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
--- 
-2.48.1
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/mediatek/' for 20250224114934.3583191-1-macpaul.lin@mediatek.com:
+
+arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dtb: usb@11201000: 'ports' does not match any of the regexes: '^usb@[0-9a-f]+$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/usb/mediatek,mtu3.yaml#
+
+
+
 
 
 
