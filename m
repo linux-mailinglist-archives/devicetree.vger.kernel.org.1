@@ -1,166 +1,97 @@
-Return-Path: <devicetree+bounces-150627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72C09A42E75
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 21:58:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B98DAA42E79
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 22:00:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78328189AB43
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 20:58:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0ABA33B2A74
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 20:59:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F171263C86;
-	Mon, 24 Feb 2025 20:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 011C81EDA0C;
+	Mon, 24 Feb 2025 21:00:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="lPItqs9C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jKJE2Nyq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF471A5B82
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 20:58:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C93B6EEA9;
+	Mon, 24 Feb 2025 21:00:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740430706; cv=none; b=j5h3HGsY9a3YhaXZf4qfuLdxvBh6cU+jdUCAhyKU4tdvoacSKr6Cz5lq69jpaVyPoPGE87u7Qj/hgy9MyHIvL201nFxX76WboVyoI4ItLrOd99J2kqVDxExdYYVUG+LXP3z3rfkJUaoBedXoreVXXVecorD1zrc1PgBUCQjc+H4=
+	t=1740430800; cv=none; b=KS6kx5ZAfC8Duy055WQMoA3Imq8uzPBLy05Qb3jxAxTkf918JKKHYSZr7V8zM31CIJWVRB3xAsyWGWqCBx/7EX/9mQ6BzBvWJYpbZoBAohOdujBf4gpr42KwoqD9H6Sb4W/J2NGEXIWU15j9RHXfGNucqjkGoURt+MtE5vv4FR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740430706; c=relaxed/simple;
-	bh=5NTBVZtPucMG0j4onj8D4B3Tzw8Ztr68uizMJjq18iU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HAPaXFRfcDWojNz09mnLVR5vxIkQvazvimvdCK7LBCjeLK+/NiX1WXw7nrf9OW1lr0rXh15zBsY4L3gAs4ojXj4NIFsOYY/x7iYQSQ/V4pqC0swJj/BwTsgw/ZFHs3Pew4M/QBG8SALYdZ0nV2EWDMqkI7PWBVNY5Wup4vHwDac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=lPItqs9C; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id 32A53240101
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 21:58:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1740430701; bh=5NTBVZtPucMG0j4onj8D4B3Tzw8Ztr68uizMJjq18iU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:Content-Transfer-Encoding:From;
-	b=lPItqs9CzEX3MHXDUteuWzg/eh47rC4iOuc0Nm5GK65+l2ZAsJ8ft7ZoO8yMutuwx
-	 a7ne/OwJHenS0lA6f0UYTpoGv1sKQCNbpyTamlYIsfoP9kzAXteH9o+oEeF+9MrIET
-	 3d9nnVEKTYM5M9wMFP1Bliy4QS/+FKrHwYQJBjRUjTbteQuqF7GTsKxPqjOyr01nnb
-	 IP4cuiktw+YifxM8GGgqDbleIUbE4OBVgFxqjvU+UPcuPpUd5rsCKk7jQbCFZmnhET
-	 nsZPdYZlionomJXwguYa/TmkvcsDt0X9LRmZshn5E2yv0PWIxRRBqlzfZ4SEeHrkIQ
-	 XM2loQdI6DGYw==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4Z1tP74dwRz9rxD;
-	Mon, 24 Feb 2025 21:58:19 +0100 (CET)
-Date: Mon, 24 Feb 2025 20:58:19 +0000
-From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-To: Rob Herring <robh@kernel.org>
-Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: net: Convert fsl,gianfar-{mdio,tbi} to
- YAML
-Message-ID: <Z7zdawaVsQbBML95@probook>
-References: <20250220-gianfar-yaml-v1-0-0ba97fd1ef92@posteo.net>
- <20250220-gianfar-yaml-v1-1-0ba97fd1ef92@posteo.net>
- <20250221163651.GA4130188-robh@kernel.org>
+	s=arc-20240116; t=1740430800; c=relaxed/simple;
+	bh=1NWuUJYlBH4z8CLnCuFgDe9PmgNjtMn3ihoud+NaoFQ=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=rehlRnwOKFm8g2Hm4PTWrWJnZklmEuY1CHPd7ewvzlNQ2jvAsK5ct2Gw9cLnzagZ0QYgRlPCbwTtEsWf3G7rf1SAjYQq23wpxSb71n+UJzxDjo193VFZ3z+0EuUJyvTaW17tQ/KFFn//IdGj3NIzmoc80PS4rHgGkkbtMWsbe4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jKJE2Nyq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4343BC4CEDD;
+	Mon, 24 Feb 2025 21:00:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740430800;
+	bh=1NWuUJYlBH4z8CLnCuFgDe9PmgNjtMn3ihoud+NaoFQ=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=jKJE2NyqR29Kt023x1gm6GHxQM7pqiwXfSsuxPIHyrOnrissYnlWvUJkdHkXvqFnN
+	 VTtglcilgltURoaGmYj80s/JFMl3wIsh0RTmwup8CF1lhCSC/GlAF1lXBsnsn9wmrG
+	 Wz8HEV+AnMJa9axgQJpr0Cg4pIUa8y1//W0F+GqX2DcOanm6CmJgHAk5BRtSwfljNb
+	 yIVV6o1s2WD+plV5mhe/UybjBjcIwoU7gpK1nt6STNWQF9A3RnpSForPL0gCG9Ll4J
+	 KTQee+lBd289/cmy9z3JL1RS65moR2f2XpS/zm84KqjqWwqYI+VKPaGbU+LNtQG9Fc
+	 eFeGiPwj7/4Ug==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EB0E6380CEFC;
+	Mon, 24 Feb 2025 21:00:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250221163651.GA4130188-robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] bluetooth: btnxpuart: Support for controller wakeup
+ gpio config
+From: patchwork-bot+bluetooth@kernel.org
+Message-Id: 
+ <174043083176.3606604.9199619659831675695.git-patchwork-notify@kernel.org>
+Date: Mon, 24 Feb 2025 21:00:31 +0000
+References: <20250219091512.290231-1-loic.poulain@linaro.org>
+In-Reply-To: <20250219091512.290231-1-loic.poulain@linaro.org>
+To: Loic Poulain <loic.poulain@linaro.org>
+Cc: marcel@holtmann.org, neeraj.sanjaykale@nxp.com, robh@kernel.org,
+ krzk+dt@kernel.org, linux-bluetooth@vger.kernel.org,
+ devicetree@vger.kernel.org, amitkumar.karwar@nxp.com
 
-On Fri, Feb 21, 2025 at 10:36:51AM -0600, Rob Herring wrote:
-> On Thu, Feb 20, 2025 at 06:29:21PM +0100, J. Neuschäfer wrote:
-> > Move the information related to the Freescale Gianfar (TSEC) MDIO bus
-> > and the Ten-Bit Interface (TBI) from fsl-tsec-phy.txt to a new binding
-> > file in YAML format, fsl,gianfar-mdio.yaml.
-> > 
-> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> > ---
-[...]
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fsl,gianfar-tbi
-> > +      - fsl,gianfar-mdio
-> > +      - fsl,etsec2-tbi
-> > +      - fsl,etsec2-mdio
-> > +      - fsl,ucc-mdio
-> > +      - gianfar
+Hello:
+
+This series was applied to bluetooth/bluetooth-next.git (master)
+by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+
+On Wed, 19 Feb 2025 10:15:11 +0100 you wrote:
+> When using the out-of-band WAKE_IN and WAKE_OUT pins, we have to tell
+> the firmware which pins to use (from controller point of view). This
+> allows to report remote wakeup support when WAKE_OUT(c2h) is configured.
 > 
-> Can you just comment out this to avoid the duplicate issue.
+> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+> ---
+>  v2: - Move pin properties read in ps_setup
+>      - Display warning in case of wakein prop without related gpio
 > 
-> Though I think if you write a custom 'select' which looks for 
-> 'device_type = "mdio"' with gianfar compatible and similar in the other 
-> binding, then the warning will go away. 
+> [...]
 
-I'm not sure how the 'select' syntax works, is there a reference
-document I could read?
+Here is the summary with links:
+  - [v2,1/2] bluetooth: btnxpuart: Support for controller wakeup gpio config
+    https://git.kernel.org/bluetooth/bluetooth-next/c/f66b266e3e4f
+  - [v2,2/2] dt-bindings: net: bluetooth: nxp: Add wakeup pin properties
+    https://git.kernel.org/bluetooth/bluetooth-next/c/c3bb10f6d38a
 
-> 
-> > +      - ucc_geth_phy
-> > +
-> > +  reg:
-> > +    minItems: 1
-> > +    items:
-> > +      - description:
-> > +          Offset and length of the register set for the device
-> > +
-> > +      - description:
-> > +          Optionally, the offset and length of the TBIPA register (TBI PHY
-> > +          address register). If TBIPA register is not specified, the driver
-> > +          will attempt to infer it from the register set specified (your
-> > +          mileage may vary).
-> > +
-> > +  device_type:
-> > +    const: mdio
-> > +
-> 
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> 
-> These are defined in mdio.yaml, so drop them here.
-
-Will do.
-
-> 
-> > +
-> > +required:
-> > +  - reg
-> > +  - "#address-cells"
-> > +  - "#size-cells"
-> > +
-> > +allOf:
-> > +  - $ref: mdio.yaml#
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - gianfar
-> > +              - ucc_geth_phy
-> > +    then:
-> > +      required:
-> > +        - device_type
-> 
-> Essentially, move this to the 'select' schema and add that property 
-> device_type must be 'mdio'. You won't need it here anymore because it 
-> had to be true for the schema to be applied.
-
-I'll have to read up on how select works.
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
-Best Regards,
-J. Neuschäfer
 
