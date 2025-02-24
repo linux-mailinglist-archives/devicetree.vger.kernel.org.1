@@ -1,144 +1,224 @@
-Return-Path: <devicetree+bounces-150382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B2BA41ED1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:26:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00615A41F08
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:31:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72A3344060B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 12:20:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D88A188E8D4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 12:27:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 823CC248886;
-	Mon, 24 Feb 2025 12:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF4CB233739;
+	Mon, 24 Feb 2025 12:27:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hQpPXP8y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RU33N3fL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BD6223BD17;
-	Mon, 24 Feb 2025 12:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2837221F1B;
+	Mon, 24 Feb 2025 12:27:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740399541; cv=none; b=JJgcImqB+By5E+NiLIsmpb5y41v7hrOb85MRdTUQ1DAifqsVugsx1Z7Z9MUXU0pB575+ZVhGzgu+rY4kiVwb+9Bq8VuJ1v7JvzrSZrnq1vUeGElt+xNdzvI7L9NJ/dvXgmOzJu9e5JcEnDsVnD45E3IQ3cNWpUBT6qX4RXT1sC4=
+	t=1740400020; cv=none; b=olCf4ObUO9C8zcLYwM4/Frzn4uKuMQjaidRtzkTwKZwO0M4rgmCZczzKc425z0rF0ZFmMRdi9YvZY9bAmYklvNDHHhbR/J12Od2FzdfGeOjwqMa/1EiklI6/nDJWNsk8Yaw5e7R9G8xzorReW+2m2aw6cUsQ9MW2r1DQSbqgGi4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740399541; c=relaxed/simple;
-	bh=TgNZAgjSLI03J+0oLYbfYvcRE9moSayu1l7EX/brVYo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZvJ/+d0h2ZhpLwDR2aVFmSNN3CazogoUqlDiIx2Qgcaf11n4OPZdCqODfo0LWMqZLCns1iNhwqwerGsA9HJyLS2KzZ6RAxxat2ApRe8iKAFv11VBxYr9iQTFMDSrivHySB3WoxlR6YLqcaA8+AbOO4YY7xQAdrLMXXTd16EW3m0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hQpPXP8y; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740399537;
-	bh=TgNZAgjSLI03J+0oLYbfYvcRE9moSayu1l7EX/brVYo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hQpPXP8ypkU1j0KONnWG3KE49hGsbMsEcL9kT47k/YJQs2fnJ1m8V/ezcvfUvH5jr
-	 s2ZgH3FWlJZpogW58JV5dQMv55OmnJdRSsmJQZizXWFlWz3etQcqUaurC6FrD9bUtB
-	 ZGKTj2m4BYEn7ysUTpCN1GWJsha7aECg7uILTrVeATjweKW6xZRN8VE+BOPpz+PHcS
-	 C7Fa2rSyjbN3iHkECVjpdNBsWb9OIOXjZJDoRGMMnQTgkyEGxUiqMPJTOTEWU2Z14u
-	 JdKVeEbL3rbnAFpyBI9CUDniQUtBB3OdVkV2mZPeuikzzZqU3bt49hknaL4OfXQFT3
-	 qhsXQ8hCFjc4g==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B21C617E00EC;
-	Mon, 24 Feb 2025 13:18:56 +0100 (CET)
-Message-ID: <fd173075-df66-4ee7-a9fa-07e840976f26@collabora.com>
-Date: Mon, 24 Feb 2025 13:18:55 +0100
+	s=arc-20240116; t=1740400020; c=relaxed/simple;
+	bh=lMaZnIo/c51auDH+6WQwJ9/tpgxxJvj9CF15z4hlGWQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Uyfc4DT3dV9K2+QNZexpMGZ0XrBo2Lwkfw/dAIk6zSxpyXeYDC0fSP0zN0KUbfBlwSluD3b9WDrazHjuCkRZtvBUDO/r/LILU0LD0XoxXawVL0FfngeHrJsJbKFnOkRVKff6ihp3BLuti4iDrfWXporG+S0aiJ3XqwUCDfvYc4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RU33N3fL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30E6DC4AF09;
+	Mon, 24 Feb 2025 12:27:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740400020;
+	bh=lMaZnIo/c51auDH+6WQwJ9/tpgxxJvj9CF15z4hlGWQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=RU33N3fLUHbl4fLDk+4+4/KChfNrl/ODuy1CGNeQxxo8Ju3ZjG/upPsFp75dbUrma
+	 ONfNyRQJLq4ex8Jt9xfBuEcTi6tnarW0vBkLn6OI36iOwHLwtDZI6GLqawGYnU6Vyq
+	 EnTbnTfROMyE1TErimAq2KJgT8EGuN6BKZPJKbpDDCId4VAD568hqkT8Prn3Ia6X7m
+	 BC8GtkJx//yNrr20ou4x9jelVEDmu6WcRrMs3T1nnOIJnAdXNd+rV4eBkIqpvIHr5J
+	 MmgpZT9DpU4JcHSsxG5bcyM0O1vLpcgP9AY2o6XqPD5+/UH7eOAhWPfUi/c3qEm+7k
+	 UZeXwafboJPMA==
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-aaeec07b705so695003466b.2;
+        Mon, 24 Feb 2025 04:27:00 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUeSbwjLOGg3Jze6kcGSr7rhXZBGgW86FWJXnP7OgPlKeX3/Q0SNPqDdj5A3eCL3q052X/L5vfhc3hyHc9F@vger.kernel.org, AJvYcCVt3E+/cJUHHEZ2HrLHPZy+24TezOE0G7A6tb9EkuSm0+XqSd33KZxol3U8LFDUPIonLiZ8L2+YJ3Ei@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQDTXWmd54PX4+cMLoKzSb9ACPbXh420gqSw8G7a7YvA/w7wxY
+	wqeoovcxazfJfAkRltiBaE3zmzToiEqZXIhcPpZFtigekRcio6Jp0Pqib/JpltCeRRn4HQzvFtE
+	YQ+KyisqsAu5hF8F6UjkE6ZlC+w==
+X-Google-Smtp-Source: AGHT+IE0bdnAF+czJ4RoK5ksBXS0GISmkLkK0AOBEJHD5YhJY25EFFnVa4LvHrvx4VDNZsHs7ulbsTvrislbrRlsIW4=
+X-Received: by 2002:a17:906:3199:b0:ab6:32d2:16d4 with SMTP id
+ a640c23a62f3a-abc0de519c6mr975592166b.56.1740400018723; Mon, 24 Feb 2025
+ 04:26:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: mtu3: Add ports property
-To: =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- =?UTF-8?B?TWFjcGF1bCBMaW4gKOael+aZuuaWjCk=?= <Macpaul.Lin@mediatek.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- Alexandre Mergnat <amergnat@baylibre.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-Cc: "macpaul@gmail.com" <macpaul@gmail.com>,
- =?UTF-8?B?QmVhciBXYW5nICjokKnljp/mg5/lvrcp?= <bear.wang@mediatek.com>,
- =?UTF-8?B?Q2hyaXMtcWogQ2hlbiAo6Zmz5aWH6YCyKQ==?=
- <Chris-qj.Chen@mediatek.com>, =?UTF-8?B?UGFibG8gU3VuICjlravmr5Pnv5Qp?=
- <pablo.sun@mediatek.com>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20250220142230.2530583-1-macpaul.lin@mediatek.com>
- <0e58bfb8f2f7b7e83e3da6075986ddbcc84531fc.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <0e58bfb8f2f7b7e83e3da6075986ddbcc84531fc.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250224114648.1606184-1-vincenzo.frascino@arm.com> <20250224114648.1606184-2-vincenzo.frascino@arm.com>
+In-Reply-To: <20250224114648.1606184-2-vincenzo.frascino@arm.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 24 Feb 2025 06:26:45 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJTsk6uudqNJ7dpkH_GeKnAuqTWHSw=WmeN=-PBXDS1Pg@mail.gmail.com>
+X-Gm-Features: AWEUYZmi7hUhVER6mycTzw9mt2QdU5RhHSNKbnPAfDOl3xceqac7UV8a1ZEPzTQ
+Message-ID: <CAL_JsqJTsk6uudqNJ7dpkH_GeKnAuqTWHSw=WmeN=-PBXDS1Pg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] ASoC: dt-bindings: xlnx,i2s: Convert to json-schema
+To: Vincenzo Frascino <vincenzo.frascino@arm.com>
+Cc: linux-sound@vger.kernel.org, 
+	Maruthi Srinivas Bayyavarapu <maruthi.srinivas.bayyavarapu@xilinx.com>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 22/02/25 09:35, Chunfeng Yun (云春峰) ha scritto:
-> On Thu, 2025-02-20 at 22:22 +0800, Macpaul Lin wrote:
->> Define the ports property in the mediatek,mtu3 device tree binding
->> schema.
->> Include definitions for port@0 and port@1, specifying their roles as
->> High Speed (HS) and Super Speed (SS) data buses, respectively.
->>
->> Suggested-by: AngeloGioacchino Del Regno <
->> angelogioacchino.delregno@collabora.com>
->> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
->> ---
->>   .../devicetree/bindings/usb/mediatek,mtu3.yaml       | 12
->> ++++++++++++
->>   1 file changed, 12 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
->> b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
->> index d4e187c78a0b..21fc6bbe954f 100644
->> --- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
->> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
->> @@ -155,6 +155,18 @@ properties:
->>         property is used. See graph.txt
->>       $ref: /schemas/graph.yaml#/properties/port
->>   
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +
->> +    properties:
->> +      port@0:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        description: High Speed (HS) data bus.
->> +
->> +      port@1:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        description: Super Speed (SS) data bus.
->> +
->>     enable-manual-drd:
->>       $ref: /schemas/types.yaml#/definitions/flag
->>       description:
-> Reviewed-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> 
-> Thank you
-> 
+On Mon, Feb 24, 2025 at 5:47=E2=80=AFAM Vincenzo Frascino
+<vincenzo.frascino@arm.com> wrote:
+>
+> Convert the Xilinx I2S device tree binding documentation to json-schema.
+>
+> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
+> ---
+>  .../devicetree/bindings/sound/xlnx,i2s.txt    | 28 --------
+>  .../devicetree/bindings/sound/xlnx,i2s.yaml   | 68 +++++++++++++++++++
+>  2 files changed, 68 insertions(+), 28 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/xlnx,i2s.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/sound/xlnx,i2s.txt b/Docum=
+entation/devicetree/bindings/sound/xlnx,i2s.txt
+> deleted file mode 100644
+> index 5e7c7d5bb60a..000000000000
+> --- a/Documentation/devicetree/bindings/sound/xlnx,i2s.txt
+> +++ /dev/null
+> @@ -1,28 +0,0 @@
+> -Device-Tree bindings for Xilinx I2S PL block
+> -
+> -The IP supports I2S based playback/capture audio
+> -
+> -Required property:
+> - - compatible: "xlnx,i2s-transmitter-1.0" for playback and
+> -              "xlnx,i2s-receiver-1.0" for capture
+> -
+> -Required property common to both I2S playback and capture:
+> - - reg: Base address and size of the IP core instance.
+> - - xlnx,dwidth: sample data width. Can be any of 16, 24.
+> - - xlnx,num-channels: Number of I2S streams. Can be any of 1, 2, 3, 4.
+> -                     supported channels =3D 2 * xlnx,num-channels
+> -
+> -Example:
+> -
+> -       i2s_receiver@a0080000 {
+> -               compatible =3D "xlnx,i2s-receiver-1.0";
+> -               reg =3D <0x0 0xa0080000 0x0 0x10000>;
+> -               xlnx,dwidth =3D <0x18>;
+> -               xlnx,num-channels =3D <1>;
+> -       };
+> -       i2s_transmitter@a0090000 {
+> -               compatible =3D "xlnx,i2s-transmitter-1.0";
+> -               reg =3D <0x0 0xa0090000 0x0 0x10000>;
+> -               xlnx,dwidth =3D <0x18>;
+> -               xlnx,num-channels =3D <1>;
+> -       };
+> diff --git a/Documentation/devicetree/bindings/sound/xlnx,i2s.yaml b/Docu=
+mentation/devicetree/bindings/sound/xlnx,i2s.yaml
+> new file mode 100644
+> index 000000000000..5d7f0c651944
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/xlnx,i2s.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx I2S PL block
+> +
+> +description: |
 
-Is everyone okay if I pick this (and the XHCI one [1]) in the MediaTek trees?
+Don't need '|' if no formatting to preserve.
 
-This is so that I don't get devicetree warnings when picking the DT patches
-that are adding USB MUX/TCPC to the MediaTek boards.
+> +  The IP supports I2S based playback/capture audio.
+> +
+> +maintainers:
+> +  - Vincenzo Frascino <vincenzo.frascino@arm.com>
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - xlnx,i2s-receiver-1.0
+> +      - xlnx,i2s-transmitter-1.0
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 4
 
-[1]: 
-https://lore.kernel.org/r/20250220105514.43107-2-angelogioacchino.delregno@collabora.com
+If there is more than 1 entry, then you need to describe what each one
+is. Looks like 1 entry per channel? But I can only guess.
 
-Thanks,
-Angelo
+> +    description: |
+> +      Base address and size of the IP core instance.
+
+That's every 'reg' property if there's only 1 entry. Description
+should be specific to this binding or dropped.
+
+> +
+> +  xlnx,dwidth:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum:
+> +      - 16
+> +      - 24
+> +    description: |
+> +      Sample data width. Can be any of 16, 24.
+
+Don't repeat constraints in prose.
+
+> +
+> +  xlnx,num-channels:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 4
+> +    description: |
+> +      Number of I2S streams.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - xlnx,dwidth
+> +  - xlnx,num-channels
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    i2s_receiver@a0080000 {
+
+i2s@...
+
+> +      compatible =3D "xlnx,i2s-receiver-1.0";
+> +      reg =3D <0x0 0xa0080000 0x0 0x10000>;
+> +      xlnx,dwidth =3D <0x18>;
+> +      xlnx,num-channels =3D <1>;
+> +    };
+> +    i2s_transmitter@a0090000 {
+
+i2s@...
+
+> +      compatible =3D "xlnx,i2s-transmitter-1.0";
+> +      reg =3D <0x0 0xa0090000 0x0 0x10000>;
+> +      xlnx,dwidth =3D <0x18>;
+> +      xlnx,num-channels =3D <1>;
+> +    };
+> +
+> +...
+> --
+> 2.43.0
+>
 
