@@ -1,127 +1,186 @@
-Return-Path: <devicetree+bounces-150379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAC42A41E9E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:16:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C34B5A41EEC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:28:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18839189FAA6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 12:11:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61D57176BB2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 12:19:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACF622571B2;
-	Mon, 24 Feb 2025 12:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08889221F0F;
+	Mon, 24 Feb 2025 12:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="f4kNN1gG"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Z/8RGydi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16682571A9;
-	Mon, 24 Feb 2025 12:11:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE31D219301;
+	Mon, 24 Feb 2025 12:16:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740399081; cv=none; b=WTpnCPp5SCqlSF/4WDBRFG38cZBOAxE8grqZg08B75Etr702x1LouU1OGZSglmR3/t31m6gac0As2anQOvhun+cviU7JOexwEZ36CoCuaoEZr4FoW35Q2szlXf/WBsVkLKG/8iDa1gLzyzOa21dByZ7ndqt/JbiCfVjLKU6rD2g=
+	t=1740399416; cv=none; b=jNZHhKwVD6afn+dWvYr3B2N9R1e0WLyDA+IKqdUdTzQoa6vnthNIaDbdxEQPGnUPEbD1cvewfCrOZRo9rgDM/uKcEn5+ZV45/QGX5P9dLQMCGSPJFc6UFLcZsBDP1PMldHcIeGaqMXUonk6cjzxNTloFRMVLYNcm2GZih76X6vg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740399081; c=relaxed/simple;
-	bh=ODQGT2jxBVYFc2B4tHTCMsKCmhMyMr8umsD4pQ/YKwA=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FbCcqwaEmLLG+Nu3LwM5TmKP6SaYrDyf2VOYteQVreLtVw3gnWTPt2ySl5k3XuDQTa70gLAcUHTjTnkJkVMS7ultgNNfyb4PmsNMPGaZ+npe/NhnYRwA+9EkT877Iuddp5+TG4ruJqgaXqRnmHHK1k5C1fTcElQ22MopuUHqLIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=f4kNN1gG; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51OCBCod910846
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 24 Feb 2025 06:11:12 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1740399072;
-	bh=gp1YmZDLlctdJ2qAsgxJlardnafNa0a8HtmhPHKallg=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=f4kNN1gGAr0m0N8FzVKQbvTwswQoGRbZW4+Mc9RPbqyTyPphJXJUMhnOwKkltfOdt
-	 0+bY9mM2ut/had/lHM2mV1dzTfqWjE/ue8ggfpPuPQ+Bs+4k1WIQ5siTMqNNTcbejo
-	 0Zp/OArPggxqwaPsgagYxVtGyA4r0agFa4S6imV8=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51OCBCD2014532
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 24 Feb 2025 06:11:12 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 24
- Feb 2025 06:11:11 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 24 Feb 2025 06:11:11 -0600
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.113])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51OCBAPi119936;
-	Mon, 24 Feb 2025 06:11:11 -0600
-Date: Mon, 24 Feb 2025 17:41:10 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>
-CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-j784s4-j742s2-evm: Add overlay
- for PCIe NTB
-Message-ID: <20250224121110.w3mu55otlgplcw6j@uda0492258>
-References: <20250202093636.2699064-1-s-vadapalli@ti.com>
- <20250202093636.2699064-3-s-vadapalli@ti.com>
- <d6440feb-ea23-49f8-9886-82d0e2145f12@ti.com>
+	s=arc-20240116; t=1740399416; c=relaxed/simple;
+	bh=Y15ZhHu7iJ6ibqKhdC9DV8IKCHSBdZW414wrmaSvjaw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IxLWIWBPtVORJ1WG33dguNN2YLzExDLj++dGeHf63R7NTZtZrUIRHXm64egX3HS9E+a1OPSkOhSRHi3X0ruXco/WoLRnic1NGOlMWmfaH0qSGRxRaLHuEoD8aJ+WGAVGqhhX/PJ2t2HX/RTTJ0LCi1cklTGnCTY90CVRIJL3yeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Z/8RGydi; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1740399412;
+	bh=Y15ZhHu7iJ6ibqKhdC9DV8IKCHSBdZW414wrmaSvjaw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Z/8RGydiMIaU4nW0aucQVnOld8I6EDs6fJF5nbrLaiDbJ6y/7rjkEsVSm4uAWLmiB
+	 QnkDqiA73KIG9bqh7Mo7hqY5uMYmh9r6xvbAfh2NG/XeG/B6djdCwc7KfPQ4xHT/TC
+	 127MIVYEkRtBccJhFirtGLPi1rE9oyssDPtIXPl/DIZ2+fUHcZMP6HTNZvhfRQTMOi
+	 KjusILL3zxuCLLoWcnJt1/R9aAFeQ29boM0W3BllfYRzmw1uehpP89yNYNa+PE8GjT
+	 nmMZhBuX5UwIVhYFwfBgNhiHORSU8APTKLmCJjtWGsbkzfXHZvvkejx5hDgaJqiHDQ
+	 bAmQIbXHd5DFg==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 289C517E0DE7;
+	Mon, 24 Feb 2025 13:16:52 +0100 (CET)
+Message-ID: <faba9d7a-077d-4372-b4de-0f2da06d3418@collabora.com>
+Date: Mon, 24 Feb 2025 13:16:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <d6440feb-ea23-49f8-9886-82d0e2145f12@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] usb: mtk-xhci: add support remote wakeup of mt8196
+To: =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
+Cc: "linux-mediatek@lists.infradead.org"
+ <linux-mediatek@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "mathias.nyman@intel.com" <mathias.nyman@intel.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>
+References: <20250215100615.808-1-chunfeng.yun@mediatek.com>
+ <20250215100615.808-3-chunfeng.yun@mediatek.com>
+ <7804ef70-efe7-476b-ae5e-bf665bfb4a47@collabora.com>
+ <91de8a46de1f41462ea8aab138e47d75f11e17b9.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <91de8a46de1f41462ea8aab138e47d75f11e17b9.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Feb 24, 2025 at 05:35:47PM +0530, Vignesh Raghavendra wrote:
-
-Hello Vignesh,
-
+Il 22/02/25 09:33, Chunfeng Yun (云春峰) ha scritto:
+> On Tue, 2025-02-18 at 09:57 +0100, AngeloGioacchino Del Regno wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>
+>>
+>> Il 15/02/25 11:06, Chunfeng Yun ha scritto:
+>>> There are three USB controllers on mt8196, each controller's wakeup
+>>> control is different, add some specific versions for them.
+>>>
+>>> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+>>
+>> Since all of the USB controllers of the MT8196 SoC are behind MTU3,
+>> and
+>> since the wakeup control for all of them will be handled by the MTU3
+>> driver
+>> and *not* by the xhci-mtk driver....
+>>
+>> NACK!
+>>
+>> Please drop this commit.
+> Please help to pick up these patches, I also hate to add these specific
+> wakeup ways, but our haredware designer do not follow the hwip rules
+> sometimes.
 > 
-> 
-> On 02/02/25 15:06, Siddharth Vadapalli wrote:
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-pcie-ntb.dtso b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-pcie-ntb.dtso
-> > new file mode 100644
-> > index 000000000000..e44173f670fa
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-pcie-ntb.dtso
-> > @@ -0,0 +1,92 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> > +/**
-> > + * DT Overlay for enabling NTB functionality using PCIE0 and PCIE1 instances of
-> > + * PCIe on the J784S4 EVM and the J742S2 EVM.
-> > + *
-> > + * J784S4 EVM Product Link: https://www.ti.com/tool/J784S4XEVM
-> > + * J742S2 EVM Product Link: https://www.ti.com/tool/J742S2XH01EVM
-> > + *
-> > + * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-> > + */
-> > +
-> > +/dts-v1/;
-> > +/plugin/;
-> > +
-> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +#include <dt-bindings/soc/ti,sci_pm_domain.h>
-> > +
-> > +#include "k3-pinctrl.h"
-> > +
-> > +&{/} {
-> > +	epf_bus {
-> 
-> 
-> no underscore in node name please
 
-Thank you for pointing this out. I will fix it in this as well as the
-previous patch in this series and post the v2 series.
+That makes this commit have sense, then.
 
-Regards,
-Siddharth.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+> Thank you.
+> 
+>>
+>> Cheers,
+>> Angelo
+>>
+>>> ---
+>>> v3: no changes
+>>> v2: modify marcos name
+>>> ---
+>>>    drivers/usb/host/xhci-mtk.c | 26 ++++++++++++++++++++++++++
+>>>    1 file changed, 26 insertions(+)
+>>>
+>>> diff --git a/drivers/usb/host/xhci-mtk.c b/drivers/usb/host/xhci-
+>>> mtk.c
+>>> index 904831344440..3f8e37b25322 100644
+>>> --- a/drivers/usb/host/xhci-mtk.c
+>>> +++ b/drivers/usb/host/xhci-mtk.c
+>>> @@ -113,6 +113,14 @@
+>>>    #define WC1_IS_P_95         BIT(12)
+>>>    #define WC1_IS_EN_P0_95             BIT(6)
+>>>
+>>> +/* mt8196 */
+>>> +#define PERI_WK_CTRL0_8196   0x08
+>>> +#define WC0_IS_EN_P0_96              BIT(0)
+>>> +#define WC0_IS_EN_P1_96              BIT(7)
+>>> +
+>>> +#define PERI_WK_CTRL1_8196   0x10
+>>> +#define WC1_IS_EN_P2_96              BIT(0)
+>>> +
+>>>    /* mt2712 etc */
+>>>    #define PERI_SSUSB_SPM_CTRL 0x0
+>>>    #define SSC_IP_SLEEP_EN     BIT(4)
+>>> @@ -129,6 +137,9 @@ enum ssusb_uwk_vers {
+>>>        SSUSB_UWK_V1_4,         /* mt8195 IP1 */
+>>>        SSUSB_UWK_V1_5,         /* mt8195 IP2 */
+>>>        SSUSB_UWK_V1_6,         /* mt8195 IP3 */
+>>> +     SSUSB_UWK_V1_7,         /* mt8196 IP0 */
+>>> +     SSUSB_UWK_V1_8,         /* mt8196 IP1 */
+>>> +     SSUSB_UWK_V1_9,         /* mt8196 IP2 */
+>>>    };
+>>>
+>>>    /*
+>>> @@ -381,6 +392,21 @@ static void usb_wakeup_ip_sleep_set(struct
+>>> xhci_hcd_mtk *mtk, bool enable)
+>>>                msk = WC0_IS_EN_P3_95 | WC0_IS_C_95(0x7) |
+>>> WC0_IS_P_95;
+>>>                val = enable ? (WC0_IS_EN_P3_95 | WC0_IS_C_95(0x1)) :
+>>> 0;
+>>>                break;
+>>> +     case SSUSB_UWK_V1_7:
+>>> +             reg = mtk->uwk_reg_base + PERI_WK_CTRL0_8196;
+>>> +             msk = WC0_IS_EN_P0_96;
+>>> +             val = enable ? msk : 0;
+>>> +             break;
+>>> +     case SSUSB_UWK_V1_8:
+>>> +             reg = mtk->uwk_reg_base + PERI_WK_CTRL0_8196;
+>>> +             msk = WC0_IS_EN_P1_96;
+>>> +             val = enable ? msk : 0;
+>>> +             break;
+>>> +     case SSUSB_UWK_V1_9:
+>>> +             reg = mtk->uwk_reg_base + PERI_WK_CTRL1_8196;
+>>> +             msk = WC1_IS_EN_P2_96;
+>>> +             val = enable ? msk : 0;
+>>> +             break;
+>>>        case SSUSB_UWK_V2:
+>>>                reg = mtk->uwk_reg_base + PERI_SSUSB_SPM_CTRL;
+>>>                msk = SSC_IP_SLEEP_EN | SSC_SPM_INT_EN;
+>>
+>>
+>>
 
