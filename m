@@ -1,66 +1,81 @@
-Return-Path: <devicetree+bounces-150445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026C9A42298
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 15:14:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05B02A422CC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 15:20:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C22EC1896B3D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 14:09:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3379B424D77
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 14:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D018A86340;
-	Mon, 24 Feb 2025 14:06:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0319F1482E1;
+	Mon, 24 Feb 2025 14:11:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=juszkiewicz.com.pl header.i=@juszkiewicz.com.pl header.b="jmEONay1";
-	dkim=pass (2048-bit key) header.d=juszkiewicz.com.pl header.i=@juszkiewicz.com.pl header.b="q6yWtIK0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fT8RpreA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from haruka.juszkiewicz.com.pl (haruka.juszkiewicz.com.pl [185.243.53.191])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04E9E6F30F;
-	Mon, 24 Feb 2025 14:06:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.243.53.191
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A4CB154C0B
+	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 14:11:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740405996; cv=none; b=pCsiH6Sc/xHv7urX5hZvh5jYxHgYOyWMqYq0VFuEPKKp7P3vNdlITu2nTazMltsb2E9FeROmKvW4x2NDCiOh4CUu97pQPVhJffPyXtXtAXiT/ITx4oBoN8WXMnOdVfwjcm60ISsnx2KsDQjqszO3f/+rMlPFEQW3Mb95wONwLj8=
+	t=1740406305; cv=none; b=F4IV0G5jlbAWQiv6/uDavpFSC1Z+RlFlr25RR3++ZNeGWCM7B/a6xwBIv7j87EY1AF/zrNm6GlQ/FvsMtl/Amoj6eagrMhdb+/u0QahhmLufyG2rcUJf/TVjh9EHUy6HCWompjTPolXtnH/LnfzaLJjo1rwiHAoS5JamdqLa3eQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740405996; c=relaxed/simple;
-	bh=Rrh8Qdukg1Q9sg3ZBF4IlAc2JjQo/OBav10chUu9xTM=;
+	s=arc-20240116; t=1740406305; c=relaxed/simple;
+	bh=mHWwTWC/kf0zAVvvADcyawTErLnyR1eigQeSezspEYc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iq0uf1XSafbhqJ6HtuZg5owzLGwlHI1XmyxouxM+6ib9e1hmJ6F+L4uIXWpwW83ybT+BTKc+QcREpSNgkYVhJfY+IhM69W1ESIg+G68dw1Yz1SoXEToyBg/d9EAqQkqB/6i1lRbyg5NLy30/YOUZAszVFX1lBT8qm37IuTziMpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=juszkiewicz.com.pl; spf=pass smtp.mailfrom=juszkiewicz.com.pl; dkim=pass (2048-bit key) header.d=juszkiewicz.com.pl header.i=@juszkiewicz.com.pl header.b=jmEONay1; dkim=pass (2048-bit key) header.d=juszkiewicz.com.pl header.i=@juszkiewicz.com.pl header.b=q6yWtIK0; arc=none smtp.client-ip=185.243.53.191
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=juszkiewicz.com.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=juszkiewicz.com.pl
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=juszkiewicz.com.pl;
-	s=mail; t=1740405986;
-	bh=Rrh8Qdukg1Q9sg3ZBF4IlAc2JjQo/OBav10chUu9xTM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jmEONay1YjesVmD43PDrADy6n0HTW47o9x/t2XoS4fWW1zGbhByHn22DUKQK94k3Z
-	 grozc7DqlfBRUrY4nfTMcPJSf3onQTZfmkrSDSIXbIlsxOik88OeM8V5q6R97aTP6/
-	 KM8Jp221QRGMYKWF5nVYzUD2kswWG7qAIEV5hPtz8YwYVQ8jI+Pg82qwnU8Ijf/dUw
-	 I60JUZl/OaHZ+NKK1ms9wy514tv3c0i98UwrRqvUTBzuHCdU1XHpjD/6+VbLokH7ps
-	 xeY8zPvO/7qalHjAVzy1xansu1NrGrP7Panrqoikstya4xlmaVbtnUALhozrpefRid
-	 Sw80RGdW3Q2iA==
-Received: from utena.juszkiewicz.com.pl (utena.juszkiewicz.com.pl [158.101.208.177])
-	by haruka.juszkiewicz.com.pl (Postfix) with ESMTPSA id C9FBB22AA6;
-	Mon, 24 Feb 2025 15:06:26 +0100 (CET)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 87B9442007;
-	Mon, 24 Feb 2025 15:06:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=juszkiewicz.com.pl;
-	s=mail; t=1740405985;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PcZ9xPvGi8ims+c2/a8qp2K7FN14062QE/zaFsTfD44=;
-	b=q6yWtIK0uB1F4ZZabwBCXXsjWOOxOlW2t+fe5bRDcn+aEtpmpYzdN9GOra+KUrMNU4m+dj
-	G/2r1WlUJ3bnZTWdKLmuOwEva3zTlbKW94+y102nG4cujngUUMe1DeXF2zSFsh3i9vJHF8
-	Q7IAOd+GezO7T1OhRYFnPbmPaHHYaYCMPuZUpniC6QmIjbYkC/eugwRz3NVsf6jTcijiJ8
-	VCXx9bpSbythjTjNBO7tZ6zLS3CCZ5rqoyX+KXRIZcc5SHmLcNCiKV5aatu7RjoeBMBnH/
-	bod68heInTNHMp57SExUN/MBLBAhxDgesmqCoHBiIUoiY9W8z9hEGcq0pONU0Q==
-Message-ID: <7f673cea-8d85-404a-b380-4282c0e3c0ad@juszkiewicz.com.pl>
-Date: Mon, 24 Feb 2025 15:06:19 +0100
+	 In-Reply-To:Content-Type; b=Grv1GwExwfaONi5Lll3i95gFlyyZbxGifg+jteCmQrNiJ83tOuTmAvfY/etZHr9arE8+V/8Vkn4bxRvz6Io4i2zfn+mqk51m3RzklDkw4KeFHaMq61HyaJoZgHami0RsTFoVU+zWZhM8M6Ibe5J9EgSApNi73m5MelzRcOg5dLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fT8RpreA; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5dbf65c0c4fso988020a12.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 06:11:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740406301; x=1741011101; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=tj2sqwsCfxIYq4nA2l8UMD4EuPpL9EKrx69cvbhlRfw=;
+        b=fT8RpreAuZbxq5v08FwaGq97QeCRMQa/6ew4GAxmsMkBAxn7oUtvS8031et7apnN4D
+         AlDM87wUDYb2xywnC2RDKSGEU0pvyXG+26maNdLEEs0GHu+9s3TCFREtLRAhdtCd8N0y
+         zju9B0YrI/pRKFndpbP+h5cZBh0p3Ntu/LTXUWh+zs29E2QLtZzfu5jur7hcpbhiskJM
+         HMhJnz2UPeeSl0H6+YOoT1VGBB+hpru8pi6t35Ri9vel4k52bUZ2w/qZ5xWVhmHjV8Ue
+         Ffbpo+rzGvFU5FlI21Ds/vg+GtAtUQnc2cfZwzggdS09XB0xciEUTmAnXkUILf2wWdhp
+         UVFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740406301; x=1741011101;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tj2sqwsCfxIYq4nA2l8UMD4EuPpL9EKrx69cvbhlRfw=;
+        b=Urx5b66CU2BbZ+h2DtiI6+sskQrOaS3msV7ajMcwHbnnZKpWDPePW5hxZFy42CpOzo
+         I4aicYiFbNyPtdpI28ricvvizt8N65WInD/NK886nSMfbGkLsl+XgWMzLwNcPsMzZnJA
+         8RZJuQbL+vUjloSptRI9YY6mKS3Iwp4U2Vac9fjBkGx59VDPX78fyzgfXsg1YQjliJwT
+         mOtioQlSGiL6AwBWFxOQ15nJTZBIXTsONeWv7mCcrH0uCbXCbjadGfsn24I9U/l1nTR1
+         P8a/M7wW9R8C+7q6MTjCiu0o8uoNG1u/uzC/+DTLW2AFj+onfAqpOyFJ16eRowEd6H2E
+         U09w==
+X-Forwarded-Encrypted: i=1; AJvYcCV41SrFUjHsNaZSYUlWjAqx2+mdAVgBTZjWHauvQ41d18bKf8rGWwyZ8+oapoSrIOMo7FbNS+kmdpWZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsdXDJTaT2WI2Ky6wJW60Nzm3docvVDh9iuo0nxECRhhzlhES0
+	VEC3a23sDEsnmfOGuP2sIeT8sNqTA++bctayVffMQf/7nrH9KxAAymqDr75N1Tc=
+X-Gm-Gg: ASbGncs+LNvuCgEN4O30zonFj+cOch42s3TNCnvFXMNb7hWajfMljy3Ke3VsYoZhg/o
+	KIkJnvaH1ym0lSLEMaCbtRjbKXrB6P51xfXZf0kxqe2dNzxFVTXDbts9lzxVxcBrZJMdyqgcG+3
+	kj62h4icL+rjYFMGJMJiu1Thj0m0uXptIq1s7CdjDgeoXvo+qtphqPVNUVhAdFTRjyZTm78THv7
+	WUYXZzMEHiuOY4s/rphprFNGCS+NEtFSkVp9t05xGmp93g0ZjmaN0+UBKgjBNK4b7IFRTpb7CF+
+	1K1AKHI2dvgVgNBSTNdMSaBTDX8GSU6G3g1+SYBeP25ElKt0eBj7D4DQ+N7mef5FTKQLPrioAt0
+	SUQQVsA==
+X-Google-Smtp-Source: AGHT+IHqs0TVtOtas+dgRcBf+qPxZBQ3/BFU8Wz58uv4dNBDJj53Zw6A2zCO92n5oqWFjvfoiZOOAA==
+X-Received: by 2002:a17:907:3d8e:b0:ab3:2719:ca30 with SMTP id a640c23a62f3a-abc09bcce60mr556319766b.10.1740406301374;
+        Mon, 24 Feb 2025 06:11:41 -0800 (PST)
+Received: from [192.168.0.104] (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abec8c1226dsm50073166b.17.2025.02.24.06.11.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Feb 2025 06:11:40 -0800 (PST)
+Message-ID: <a2e0acea-b3be-4868-b9ef-36e151955140@linaro.org>
+Date: Mon, 24 Feb 2025 15:11:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,75 +83,106 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] arm64: dts: cix: add initial CIX P1(SKY1) dts support
-To: Peter Chen <peter.chen@cixtech.com>
-Cc: "arnd@arndb.de" <arnd@arndb.de>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- cix-kernel-upstream <cix-kernel-upstream@cixtech.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Fugang Duan <fugang.duan@cixtech.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "will@kernel.org" <will@kernel.org>
-References: <20250220084020.628704-7-peter.chen@cixtech.com>
- <068655e7-2ad7-4497-aca7-4100ad478d99@juszkiewicz.com.pl>
- <Z7xZwGTIKgj9_zNZ@nchen-desktop>
-From: Marcin Juszkiewicz <marcin@juszkiewicz.com.pl>
-Content-Language: pl-PL, en-GB
-In-Reply-To: <Z7xZwGTIKgj9_zNZ@nchen-desktop>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Subject: Re: [PATCH v6 1/5] dt-bindings: nvmem: Add compatible for IPQ5018
+To: George Moussalem <george.moussalem@outlook.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, amitk@kernel.org, thara.gopinath@gmail.com,
+ robh@kernel.org, krzk+dt@kernel.org, quic_srichara@quicinc.com
+References: <20250224061224.3342-1-george.moussalem@outlook.com>
+ <DS7PR19MB8883591F0D2E21E62025D2D69DC02@DS7PR19MB8883.namprd19.prod.outlook.com>
+ <2fcb52a3-7ef2-465f-b460-2f7b565a188e@kernel.org>
+ <zygiknq3pldkcdonekzamn2uprnjyc5dip57i75p7uahftekxr@2lqgo3wa6zhf>
+ <739acd33-9ce8-40db-a219-26b8ca241d73@kernel.org>
+ <DS7PR19MB888339C2474E520C495ED62B9DC02@DS7PR19MB8883.namprd19.prod.outlook.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <DS7PR19MB888339C2474E520C495ED62B9DC02@DS7PR19MB8883.namprd19.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-W dniu 24.02.2025 o 12:36, Peter Chen pisze:
-> On 25-02-23 04:05:10, Marcin Juszkiewicz wrote:
->>
->>> diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
->>> new file mode 100644
->>> index 000000000000..d98735f782e0
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/cix/sky1.dtsi
->>> @@ -0,0 +1,264 @@
->>> +// SPDX-License-Identifier: BSD-3-Clause
->>> +/*
->>> + * Copyright 2025 Cix Technology Group Co., Ltd.
->>> + *
->>> + */
->>> +
->>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->>
->> [..]
->>
->>> +     arch_timer: timer {
->>> +             compatible = "arm,armv8-timer";
->>> +             interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
->>> +                          <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
->>> +                          <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
->>> +                          <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
->>> +             clock-frequency = <1000000000>;
->>> +             interrupt-parent = <&gic>;
->>> +             arm,no-tick-in-suspend;
->>> +     };
->>
->> This is not Arm v8.0 SoC so where is non-secure EL2 virtual timer?
+On 24/02/2025 14:55, George Moussalem wrote:
 > 
-> It is the Arm v9 SoC and back compatible with Arm v8.
+> On 2/24/25 17:49, Krzysztof Kozlowski wrote:
+> 
+>> On 24/02/2025 14:42, Dmitry Baryshkov wrote:
+>>> On Mon, Feb 24, 2025 at 10:19:35AM +0100, Krzysztof Kozlowski wrote:
+>>>> On 24/02/2025 07:12, George Moussalem wrote:
+>>>>> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>>>>
+>>>>> Document the QFPROM block found on IPQ5018
+>>>>>
+>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>>>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+>>>> You can send the patches to yourself and see whether they are properly
+>>>> threaded.
+>>> I don't think outlook world understands the concept of threading.
+> 
+> using git send-email from an @outlook.com address. But I've figured out the issue:
+> git send-email --thread
+> this sets In-reply-to and References tags
+> 
+>>
+>> True, but note that outlook.com is just provider and you can use
+>> whatever email client with it. mutt/neomutt, Thunderbird, claws, Kmail etc.
 
-Arm SoC has several timer interrupts:
+I meant use these to check if it works.
 
-PPI 10: Non-secure EL2 physical timer interrupt
-PPI 11: Virtual timer interrupt
-PPI 12: Non-secure EL2 virtual timer
-PPI 13: Secure physical timer interrupt
-PPI 14: Non-secure physical timer interrupt
+> 
+> correct, not sending from outlook, but git send-email. Was missing the --thread option
 
-You mention 10, 11, 13, 14 only like your SoC would be plain old Arm 
-v8.0 one (Cortex-A53/A72).
 
-Sky1 (CP/CA/CS8180) is Arm v9 so should also list PPI 12 which came with 
-VHE (Virtualization host extensions) which is mandatory for each Arm cpu 
-v8.1 or above (and is implemented in A520/A720 cores).
+That's odd, git send-email automatically threads and provides proper
+reference. Never ever had to use it... because *it is the default* or
+you did not create patches standard way, but then this should be fixed.
+
+
+Best regards,
+Krzysztof
 
