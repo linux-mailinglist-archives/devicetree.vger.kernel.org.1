@@ -1,40 +1,79 @@
-Return-Path: <devicetree+bounces-150287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 890EFA41A4E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:10:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB1E6A41A60
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:11:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 663FE18858E1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 10:08:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 232B3188AB1E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 10:10:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A031C84D8;
-	Mon, 24 Feb 2025 10:08:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC8624A048;
+	Mon, 24 Feb 2025 10:09:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="UXveu3sV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCAFD288DA;
-	Mon, 24 Feb 2025 10:08:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E493288DA
+	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 10:09:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740391704; cv=none; b=n2I6XQCD1YGjV5TBiSCYygd4gRRn7dAkOhkjJeYpdCZB1LXaPyQflcePoEn9eg/H95N/A4oDkDzeH71fC3jtGePh2G9ZeKEl+DGUO9ENbhxzm7Yhe9WscFfkN3HMMjz6hFxoOYrkP8QO2ll5d8V+XLvRkd93+h+X14AoGL0WbGY=
+	t=1740391790; cv=none; b=s+zWhWjLn+97fTASYMi2Mk9fKr+FzV0ICokRH47Eo/nT0Gik0GPPY6U6Y2W/lts2tllX228CqmWj41lFK9E35EePYOx8EytR9yWU6DTDBbeAxcsCSpNG+qJ5a/Q/CGUtNTkD6M9j/htctoCpa7t4vXM/VavdigkE97Of1P10o9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740391704; c=relaxed/simple;
-	bh=fespLaFMTMql39LCqWfuCJOVabzoi1y/N9PMgXCapXE=;
+	s=arc-20240116; t=1740391790; c=relaxed/simple;
+	bh=onsgqZAXMYjXcbxCGiWbRtaJ+BeYoCF9p0aj3MGF+9s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FIlrxOuB/muEpjjCbWsp//4NkIlrjAZgRNu3rnQw6ayYS6+fEf6/GyKX9XcTfoUP/DaaqTTd/YYHo0BzZx7e6fnoe+N8/o373Dl0ZZvlPha4v1W/DJINEI7KFOdca0GSMFEyQC4puwx+aBO0oebzIWSCTpUx7hCHlUDc/oQldto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 883F51E7D;
-	Mon, 24 Feb 2025 02:08:38 -0800 (PST)
-Received: from [192.168.7.252] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 20F143F673;
-	Mon, 24 Feb 2025 02:08:20 -0800 (PST)
-Message-ID: <58ee2a8d-d3c1-4bc2-92dd-6568f645b01f@arm.com>
-Date: Mon, 24 Feb 2025 10:08:18 +0000
+	 In-Reply-To:Content-Type; b=Gx0cEpthXWUO6/aV0WEzJaCAgBYj2LLG+WQ7D/mk6wojzN1Dl5PlFCYY6/EFpIKHgMme3qYgjFwcQDA6YvLZWpw8+cluf39wjFju8zQJnPob150iiHvIhcLlhUNaONe/FidXYJa8jsitm+evvlxFykHjmWGJY7Mud8A7+9OLjhk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=UXveu3sV; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2fc0d44a876so6641556a91.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 02:09:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1740391787; x=1740996587; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tzuuWbIPCWD9clddarDhLCMxJJqBds3nJvxITaDNJ0A=;
+        b=UXveu3sVsiHpzREDS/fGZ/XL83zN6Q69l17pgLSFSM6Y7N6iFH0uQ8Q9pzPrpKwVUK
+         ew6lUvPupZDkSovCW/JQJc93QHqVsYnLUtrWvAO0+PpbKppGRsxhujR8aQsa6Np/jhfF
+         8V7sFYf8cNT29AWbISfmNKOrOEl+9WJCz7kXz+fZtAgrCEEl3G745YUklFpRLXaMs0Bf
+         JXdxrkf+LcXwaopO2KHfp3ruzkHPROQvI3frpwp5uIna90+5XNSFFnTEcMCumLH6tiXb
+         x1drF6mevY4vfCoGfS8hcorcyo45b0aN/XlSzycVCBrtfgDlS5plv76jVIftj6PSjaSm
+         0zDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740391787; x=1740996587;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tzuuWbIPCWD9clddarDhLCMxJJqBds3nJvxITaDNJ0A=;
+        b=ViDEU4j1oTdVNGYe8VcjxSVJxBRYGt9EFmMBsvMxLMzZ+ymrU4sDBAMD2JfDAMIWGc
+         OyBAemgFp/oTRUODG9eHmvwiETqsjekVsFz2HGMTAsahl7NtF2iyiJwIm1O3rxYaE5jT
+         ixfQfJqbblz+i/0+Y7oQX3LiyY8JBxvmYqjXJARW2Kjh4nWQsLNSj0txwRYNKUp0QghS
+         lo5wkMO8gzLjdcKH2T3wcgv5Wltj9gI6WRYm++fXRsaWjxZoNRtGB++btLDdov/nJU4F
+         43fKGd8zNnA4tZn2e41WJzl8bA9F/if3KWsjGH3fhwi8ZxQSGehucyD+dviiyPwqoKUQ
+         x7ng==
+X-Forwarded-Encrypted: i=1; AJvYcCW4Sg2jPcI+fKpP82NnFMWyaMoBEuLKJV8iQgrMTI/Cp8qbP+S+BDexSQnDAoAUOw6ukP+ELWQdrFB0@vger.kernel.org
+X-Gm-Message-State: AOJu0YybZTO9J+esN2tRoyn0wX0hFIj6Ripj6I9K8zlo1q0ZgcdVlwJ0
+	/FifUMOCGs3LwSDAbsYqNwD5l759MOhnFlQqEyC2TVhpe1UNf8kNM0zgmIFKzQ==
+X-Gm-Gg: ASbGncuFJJEYArydlPNjqSneHTvjAEPPw4iPoz1DeQpQMzobts9lsZCF6SN01N1JdcK
+	gnnyizeNfbBmsHCYKQWzQsEhhUGBWolpLfHwZpm6mar9dnT11cGLQe1XkC3uHu+OkzlGHiERxfD
+	KGN7bXpcllCjqwRFbSqThGLKN+F00EZWIiqZJpt1MjMeLjoYacBS/wZr3ulVmBcu/THWBvn0dQi
+	ueFJhpMX99ecz/pGgzivZQJ8oJxQeglLze//6kmvs9YzdWX1g4vdj6hu8ac8QUd8S85Uk1e34GR
+	/hTFCri0ZedcsjTsXMP/jYL1SV8eQURS8g==
+X-Google-Smtp-Source: AGHT+IFE4qPU5r/sYI/18fNQBufutCp3kvlLxt4qVEHc7LdtGYhLZ8zXj+IvLCmKDtM8j1R4H64bTw==
+X-Received: by 2002:a17:90b:53cc:b0:2f9:cf97:56ac with SMTP id 98e67ed59e1d1-2fce75eecf5mr25548742a91.0.1740391787513;
+        Mon, 24 Feb 2025 02:09:47 -0800 (PST)
+Received: from [172.16.119.211] ([103.15.228.94])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fceb05109dsm6108055a91.15.2025.02.24.02.09.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Feb 2025 02:09:46 -0800 (PST)
+Message-ID: <fed58d7b-d9af-402d-a215-a7e620239728@beagleboard.org>
+Date: Mon, 24 Feb 2025 15:39:41 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,147 +81,113 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 00/10] arm64: dts: Add Arm Morello support
-To: Mark Rutland <mark.rutland@arm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Sudeep Holla <sudeep.holla@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Russell King <linux@armlinux.org.uk>, Will Deacon <will@kernel.org>,
- Jessica Clarke <jrtc27@jrtc27.com>
-References: <20250221180349.1413089-1-vincenzo.frascino@arm.com>
- <Z7jL5wBUJNjOlg4r@J2N7QTR9R3.cambridge.arm.com>
-Content-Language: en-GB
-From: Vincenzo Frascino <vincenzo.frascino@arm.com>
-In-Reply-To: <Z7jL5wBUJNjOlg4r@J2N7QTR9R3.cambridge.arm.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [Question] Status of user-space dynamic overlays API
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: xypron.glpk@gmx.de, Jason Kridner <jkridner@beagleboard.org>,
+ Deepak Khatri <lorforlinux@beagleboard.org>, d-gole@ti.com,
+ Robert Nelson <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ David Gibson <david@gibson.dropbear.id.au>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Pantelis Antoniou <pantelis.antoniou@gmail.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>
+References: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
+ <CAMuHMdUhw6q1DAOBJwG5FJUs_QHj3hZMD3damOo2uLZQgS9e7A@mail.gmail.com>
+Content-Language: en-US
+From: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <CAMuHMdUhw6q1DAOBJwG5FJUs_QHj3hZMD3damOo2uLZQgS9e7A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hello Mark,
+On 2/24/25 14:07, Geert Uytterhoeven wrote:
 
-On 21/02/2025 18:54, Mark Rutland wrote:
-> Hi Vincenzo,
-> 
-> On Fri, Feb 21, 2025 at 06:03:39PM +0000, Vincenzo Frascino wrote:
->> The Morello architecture is an experimental extension to Armv8.2-A,
->> which extends the AArch64 state with the principles proposed in
->> version 7 of the Capability Hardware Enhanced RISC Instructions
->> (CHERI) ISA [1].
-> 
-> None of the CHERI stuff is supported upstream, so from upstream's PoV
-> this is a low-volume dev-board/SoC with an experimental ARMv8.2-A CPU.
+> Hi Ayush,
 >
+> On Sat, 22 Feb 2025 at 21:14, Ayush Singh <ayush@beagleboard.org> wrote:
+>> # Challenges
+>>
+>> ## Security
+>>
+>> The concerns regarding security seemed to show up in the other
+>> proposals. There was a proposal to have a devicetree property to
+>> allow/deny the application of overlays in some nodes, with default being
+>> deny. Was it insufficient?
+> This is the most important issue: using DT overlays, you can change
+> about anything.  There is no protection yet to limit this to e.g. the
+> expansion connectors on your board.
+> This is what the various WIP "connector" abstractions are trying
+> to solve.
 
-Agreed, I have no plans to upstream Morello support beyond the device tree.
+Thanks for clarifying. However, as I mentioned above, there are usecases 
+for dynamic overlays outside of connectors. Specifically, for the 
+usecase of connecting random sensors to board pins. I do agree that any 
+fairly well specified connector should probably have it's own drivers 
+rather than using a generic userspace API.
 
->> This series adds dts support for the Arm Morello System Development
->> Platform.
-> 
-> Do we actually need the dts for this board?
-> 
-> I have one on my desk; it boots vanilla Debian 12 via UEFI + ACPI just
-> fine, with the Debian 6.1.0-13-arm64 kernel.
-> 
-> Is there something that we can only do with the DT? i.e. some
-> functionality that isn't exposed via ACPI?
-> 
-> How do you expect this DT to be used?
-> 
+Would it be enough to use `aliases` to specify the nodes where an 
+overlay can be applied as I have described here [0]. To further lock 
+down things, it might be possible to allow introducing indirection or 
+scoping nodes of sort. Here is an example:
 
-There are functionalities that are not exposed via ACPI, e.g. gpu, dpu, i2c for
-the phy, etc. My aim to have upstream support for all the hardware exposed by
-the platform.
+\ {
 
-Note: This series contains only the basic infrastructure, the plan is add
-progressively more features in the future.
+aliases {
 
-Vincenzo
+export_node0 = &spi0_scoped;
 
-> Mark.
-> 
->>
->> [1] https://www.morello-project.org/
->>
->> To simplify the testing a linux tree rebased on 6.14-rc4 is accessible
->> at [2].
->>
->> [2] https://codeberg.org/vincenzo/linux/src/branch/morello/dts/v6
->>
->> Cc: Linus Walleij <linus.walleij@linaro.org>
->> Cc: Rob Herring <robh@kernel.org>
->> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->> Cc: Conor Dooley <conor+dt@kernel.org>
->> Cc: Liviu Dudau <liviu.dudau@arm.com>
->> Cc: Sudeep Holla <sudeep.holla@arm.com>
->> Cc: Lorenzo Pieralisi <lpieralisi@kernel.org> 
->> Cc: Russell King <linux@armlinux.org.uk>
->> Cc: Will Deacon <will@kernel.org>
->> Cc: Mark Rutland <mark.rutland@arm.com>
->> Cc: Jessica Clarke <jrtc27@jrtc27.com>
->> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
->>
->> Changes
->> =======
->> v7:
->>   - Rebased on 6.14-rc4.
->>   - Added review info.
->> v6:
->>   - Introduce arm,morello.yml.
->>   - Split pmu patch.
->>   - Address review comments.
->> v5:
->>   - Add support for fvp.
->>   - Add support for pmu.
->>   - Address review comments.
->>   - Rebase on 6.14-rc1.
->> v4:
->>   - Add cache information.
->>   - Address review comments.
->> v3:
->>   - Address review comments.
->>   - Rebase on 6.13-rc5.
->> v2:
->>   - Addressed review comments.
->>   - Rebased on 6.13-rc4.
->>   - Renamed arm,morello to arm,morello-sdp for clarity.
->>
->> Vincenzo Frascino (10):
->>   arm64: Kconfig: Update description for CONFIG_ARCH_VEXPRESS
->>   dt-bindings: arm: Add Morello compatibility
->>   dt-bindings: arm: Add Morello fvp compatibility
->>   dt-bindings: arm: Add Rainier compatibility
->>   dt-bindings: arm-pmu: Add support for ARM Rainier PMU
->>   perf: arm_pmuv3: Add support for ARM Rainier PMU
->>   arm64: dts: morello: Add support for common functionalities
->>   arm64: dts: morello: Add support for soc dts
->>   arm64: dts: morello: Add support for fvp dts
->>   MAINTAINERS: Add Vincenzo Frascino as Arm Morello Maintainer
->>
->>  .../devicetree/bindings/arm/arm,morello.yaml  |  35 ++
->>  .../devicetree/bindings/arm/cpus.yaml         |   1 +
->>  .../devicetree/bindings/arm/pmu.yaml          |   1 +
->>  MAINTAINERS                                   |   7 +
->>  arch/arm64/Kconfig.platforms                  |   5 +-
->>  arch/arm64/boot/dts/arm/Makefile              |   1 +
->>  arch/arm64/boot/dts/arm/morello-fvp.dts       |  77 +++++
->>  arch/arm64/boot/dts/arm/morello-sdp.dts       | 157 +++++++++
->>  arch/arm64/boot/dts/arm/morello.dtsi          | 323 ++++++++++++++++++
->>  drivers/perf/arm_pmuv3.c                      |   2 +
->>  10 files changed, 606 insertions(+), 3 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/arm/arm,morello.yaml
->>  create mode 100644 arch/arm64/boot/dts/arm/morello-fvp.dts
->>  create mode 100644 arch/arm64/boot/dts/arm/morello-sdp.dts
->>  create mode 100644 arch/arm64/boot/dts/arm/morello.dtsi
->>
->> -- 
->> 2.43.0
->>
+};
 
--- 
-Regards,
-Vincenzo
+};
+
+&spi0 {
+
+spi0_scoped {};
+
+// Stuff already connected internally
+
+};
+
+Any children of `spi0_scoped` should be treated as devices directly 
+connected to `spi0` but should provided isolation for any changes that 
+userspace overlays can make.
+
+>> ## Memory Leaks
+>>
+>> Currently, updating/removing properties leaks memory. Was it one of the
+>> reasons for the rejection of previous proposals?
+> IMO this is a minor issue. I am sure this can be improved upon.  We just
+> need some way to keep track of which properties are part of the initial
+> FDT (and thus can't be freed), and which were allocated dynamically.
+>
+>> [0]:
+>> https://lore.kernel.org/all/1417605808-23327-1-git-send-email-pantelis.antoniou@konsulko.com/#t
+> FTR, I do keep this up to date:
+> https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/overlays
+
+Thanks, will check the patches.
+
+Is there a list or mailing thread documenting what would be needed to 
+move this effort forward. I would love to help in any way possible.
+
+> Gr{oetje,eeting}s,
+>
+>                          Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                  -- Linus Torvalds
+
+
+[0]: 
+https://lore.kernel.org/all/d5bed265-1dbd-44d1-8287-8ca993624b79@beagleboard.org/
+
+
+Best Regards,
+
+Ayush Singh
 
 
