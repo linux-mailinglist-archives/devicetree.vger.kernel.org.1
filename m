@@ -1,98 +1,53 @@
-Return-Path: <devicetree+bounces-150105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CA9AA41339
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 03:12:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BC4DA412DD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 02:56:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E95A21893875
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 02:12:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8EFB7A1A72
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 01:55:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 006C1198842;
-	Mon, 24 Feb 2025 02:12:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884921990B7;
+	Mon, 24 Feb 2025 01:56:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="1iP7C4dP";
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="1iP7C4dP"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="vUWC3Dgv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97BCFEED6;
-	Mon, 24 Feb 2025 02:12:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A5F1802;
+	Mon, 24 Feb 2025 01:56:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740363159; cv=none; b=bFg2vzsMPaLfzauOkHB5FDKL4IsydTW8kxBkJ3+Kbx+xT+juPkAt/tSpcLBGpy2fLKeH8QIu+53FU+ikYU18brxJ/8ijxXoQZK82PWJH93YvHEray9AnPxTsnsYZEC1mBCafHGBrVwsSGCtChy6z8tffF96goqer+qUaZVhT2Z0=
+	t=1740362189; cv=none; b=cLBd0nPaeO+q85pDO3z94i11C9AOAApeDMQBlyefh8FTP0SD6pKS0H1o7vV7x/bqpS1X5iCWIBajd4zn8ughaPxgG7VKvB2fjS2DlCf3f3ZrxR1e/GObiw8/+7K2scGuDtjYSYzIm68C8xUeaRVPpMuY7kfXU7xrJfxSgENZJd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740363159; c=relaxed/simple;
-	bh=rxrn8+mXf3oIIANnvwxnu4UhXSDU9zD/XTyconO2D4w=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S/NnKQmKUdQT+B9oaAeGpnL91OTXA0ZVeVodHqSnSOFHJeiL8mfbvBlgyHr2KoDDmnCfXYx5YXdZIeaiA/AM4QnU+i247bcLliMNlInTnQ7nGcyebUiHEArtreKOB8qGMxIee43yJ0YW5d0WqOTnRYwkQaRPHgxvjFbsKV9jnYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=1iP7C4dP; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=1iP7C4dP; arc=none smtp.client-ip=220.130.44.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1740363153;
-	bh=O4XcWHCpu3h5aG5qDaO09ZjwT9M3Yei0zyY4/p0jwJk=; l=1858;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=1iP7C4dPzmb7E65xMTxqUtTvbhgGeugBVpLObDu8L+USH+xxGCPqex4MRXUY8GsJK
-	 g89kf4GuX26r/gukAvox7hpgUIWBHxtM76lrDqHNVEIvdRgOEv3YpiqOX8UjtPVIOf
-	 oalHVbKfUcw05JHBXifueBVb0iqvrou8X6G1rwbJPTPDow4IX2t5bhwKufCQr+QknE
-	 7Gf7ZvohlAwxlf5qFxekUFUVEPnmFC5MqHi24xHRWnyaaUQftXSD44QHJ3/uiJBqcX
-	 NlWJjEqrJCGfmr0PuTo3n/EmYaZI2U+Q4W6KbxBEGYoUYzyTFM/j2wRLmInsX8Zs6D
-	 OpZwFwUsiMk4Q==
-Received: from 192.168.8.21
-	by mg.richtek.com with MailGates ESMTP Server V3.0(1128077:0:AUTH_RELAY)
-	(envelope-from <prvs=114923349E=cy_huang@richtek.com>); Mon, 24 Feb 2025 10:12:33 +0800 (CST)
-X-MailGates: (compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1740363153;
-	bh=O4XcWHCpu3h5aG5qDaO09ZjwT9M3Yei0zyY4/p0jwJk=; l=1858;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=1iP7C4dPzmb7E65xMTxqUtTvbhgGeugBVpLObDu8L+USH+xxGCPqex4MRXUY8GsJK
-	 g89kf4GuX26r/gukAvox7hpgUIWBHxtM76lrDqHNVEIvdRgOEv3YpiqOX8UjtPVIOf
-	 oalHVbKfUcw05JHBXifueBVb0iqvrou8X6G1rwbJPTPDow4IX2t5bhwKufCQr+QknE
-	 7Gf7ZvohlAwxlf5qFxekUFUVEPnmFC5MqHi24xHRWnyaaUQftXSD44QHJ3/uiJBqcX
-	 NlWJjEqrJCGfmr0PuTo3n/EmYaZI2U+Q4W6KbxBEGYoUYzyTFM/j2wRLmInsX8Zs6D
-	 OpZwFwUsiMk4Q==
-Received: from 192.168.10.46
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(3140694:0:AUTH_RELAY)
-	(envelope-from <cy_huang@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Mon, 24 Feb 2025 09:53:29 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 24 Feb
- 2025 09:53:28 +0800
-Received: from git-send.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
- Transport; Mon, 24 Feb 2025 09:53:28 +0800
-Date: Mon, 24 Feb 2025 09:54:26 +0800
-From: ChiYuan Huang <cy_huang@richtek.com>
-To: Macpaul Lin =?utf-8?B?KOael+aZuuaWjCk=?= <Macpaul.Lin@mediatek.com>
-CC: "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "robh@kernel.org"
-	<robh@kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	Alexandre Mergnat <amergnat@baylibre.com>, "fparent@baylibre.com"
-	<fparent@baylibre.com>, Bear Wang =?utf-8?B?KOiQqeWOn+aDn+W+tyk=?=
-	<bear.wang@mediatek.com>, "linux-usb@vger.kernel.org"
-	<linux-usb@vger.kernel.org>, Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, "macpaul@gmail.com"
-	<macpaul@gmail.com>, Pablo Sun =?utf-8?B?KOWtq+avk+e/lCk=?=
-	<pablo.sun@mediatek.com>, "simon.sun@yunjingtech.com"
-	<simon.sun@yunjingtech.com>, Yow-shin Liou =?utf-8?B?KOWKieelkOeCmCk=?=
-	<yow-shin.liou@mediatek.com>, Chris-qj Chen =?utf-8?B?KOmZs+Wlh+mAsik=?=
-	<Chris-qj.Chen@mediatek.com>
-Subject: Re: [PATCH v4 1/2] arm64: dts: mediatek: mt8395-genio-1200-evk: add
- support for TCPC port
-Message-ID: <Z7vRUmETQaYRbEyZ@git-send.richtek.com>
-References: <20250220143354.2532448-1-macpaul.lin@mediatek.com>
- <cb392432-e452-4460-ace6-54b3649aed52@collabora.com>
- <f09f880b7f9b642140109f17ed3f89aa44195b99.camel@mediatek.com>
+	s=arc-20240116; t=1740362189; c=relaxed/simple;
+	bh=39Uf86IT8UF4N2Vx5vcprNQTR3BbrL/jvdHL965ABuc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=TS0mGr6lcZv09CdlsqaCZ0xBzC8MhYo3xkFEIlk27ns4pjPYQt7mMQ+ZQoPcjSZIZfaIo/PAOVIULxEapoKm45JXFHz1ZiKwU5wgALvv7G6/bHqxgo7KlRbCVjlDyPWkBUP3nG/McKdKZRadMYHRhlJ2wQ+6nOktl1QD0xMLMR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=vUWC3Dgv; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from [192.168.34.162] (254C2546.nat.pool.telekom.hu [37.76.37.70])
+	by mail.mainlining.org (Postfix) with ESMTPSA id E0D92BBAA8;
+	Mon, 24 Feb 2025 01:56:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1740362183;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=EeWF7qvyGL3cKqaH36H4ZYKJfxDKcwMXmA2Q9/6WF7o=;
+	b=vUWC3Dgvz/Qcmo7z5YOqSE1Px0lihfOQEyxwThU7Cyyg+EpT6I9/12w8DAy3wLIxnIlByT
+	dEAn3vUHyUxzxqI0L4Cpnw9GKulPB6eV0kSXyJ0T1Oqyt4vLQXXcGqQjKCCCKqpJmlpmRW
+	4sex6Bugyomo629RS2SKA9/+x1H2q235gO6+MbXVO7ncHD/UFWqI0Ntcx15eWUaPOLIJ4j
+	ocaZO3MX80T6egu07ywBpGty1siY4zbT6sBXYZZPyAdOZwFpRkqw3kcEHwVNARz+wSEn5Z
+	3RMqKrAQzeXHtY4ohwUvfDG6msepI7u5v1UbBYhfCGaWJVHyxSNpHLr8IjnUVQ==
+From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH v3 0/8] Initial support of MSM8937 and Xiaomi Redmi 3S
+Date: Mon, 24 Feb 2025 02:56:15 +0100
+Message-Id: <20250224-msm8937-v3-0-dad7c182cccb@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,51 +55,111 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f09f880b7f9b642140109f17ed3f89aa44195b99.camel@mediatek.com>
+X-B4-Tracking: v=1; b=H4sIAL/Ru2cC/2WMywqDMBBFf0Vm3ZRkQo3pqv9RurBm1IEaJSmhR
+ fz3RqEP6PJc7jkzRApMEY7FDIESRx59Br0roOlr35FglxlQ4kGikmKIQ2W1EYgVtdI1mhoL+T0
+ Favmxlc6XzD3H+xieWzipdX031KeRlJDCODTkStMaWZ2Gmv2NPftuP4YO1lDCHxn1V8YsX601e
+ Sw1Of0nL8vyArnkN8XgAAAA
+X-Change-ID: 20250210-msm8937-228ef0dc3ec9
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, 
+ =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
+ Linus Walleij <linus.walleij@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
+ Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, iommu@lists.linux.dev, 
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
+ Daniil Titov <daniilt971@gmail.com>, Dang Huynh <danct12@riseup.net>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Adam Skladowski <a39.skl@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740362181; l=2642;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=39Uf86IT8UF4N2Vx5vcprNQTR3BbrL/jvdHL965ABuc=;
+ b=DGnjk8uWs3nhnJlH5Lm9Ib3OhsX7hivrg8dhP+ylonwxTUz9rpRv0ZMBprDyQYkpcBnRYbInp
+ aVHI0g3q0b0C5X4+XvdwlSByVYHddozxk3iuzr08JpnLubW3HzP6veA
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
 
-On Fri, Feb 21, 2025 at 11:39:09AM +0000, Macpaul Lin (林智斌) wrote:
-> On Thu, 2025-02-20 at 16:58 +0100, AngeloGioacchino Del Regno wrote:
-> > 
-> > 
-> 
-> [snip]
-> 
-> > > +             tcpc {
-> > > +                     compatible = "mediatek,mt6360-tcpc";
-> > > +                     interrupts-extended = <&pio 17
-> > > IRQ_TYPE_LEVEL_LOW>;
-> > > +                     interrupt-names = "PD_IRQB";
-> > > +
-> > > +                     connector {
-> > > +                             compatible = "usb-c-connector";
-> > > +                             label = "USB-C";
-> > > +                             data-role = "dual";
-> > > +                             op-sink-microwatt = <10000000>;
-> > > +                             power-role = "dual";
-> > > +                             try-power-role = "sink";
-> > 
-> > Would be appreciated if you could also complete the node by adding
-> > the pd-revision
-> > property, enabling full USBC Power Delivery for the MT6360 PMIC.
-> > 
-> 
-> Well, I have no idea about the pd-revision of MT6360.
-> I could found MT6360 supports PD 3.0 according to the datasheet,
-> however, I have no idea about the other fields like major and minor
-> values. Dear ChiYuan, could you help to provide the value of pd-
-> revision? The property has been defined in 
-> Documentation/devicetree/bindings/connector/usb-connector.yaml.
-> 
-Hi, Macpaul:
+This patch series add initial support for MSM8937 SoC
+and Xiaomi Redmi 3S (land).
 
-You can specify the version information to 3.1 version 1.6.
-Just add the below property into the 'connector' node.
+The series is extending the MSM8917 gcc and pinctrl drivers
+because they are sibling SoCs.
+MSM8937 have 4 more A53 cores and have one more dsi port then
+MSM8917.
+It implements little-big architecture and uses Adreno 505.
 
-pd-revision = /bits/ 8 <0x03 0x01 0x01 0x06>;
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+---
+Changes in v3:
+- Fix qcom,gcc-msm8937 dtbinding example 
+- Link to v2: https://lore.kernel.org/r/20250223-msm8937-v2-0-b99722363ed3@mainlining.org
 
-Regards,
-ChiYuan
-......
+Changes in v2:
+- drop applied patches
+- drop gcc schema commits infavor of a new schema for gcc-msm8937
+- document always on clock for adreno 505/506/510
+- msm8937:
+  - set cache size
+  - rename cpu labels
+  - fix style issues addressed by review
+- msm8937-xiaom-land:
+  - remove unused serial0 alias
+  - remove regulator-always-on from pm8937_l6
+  - add blue indicator led for aw2013
+- Link to v1: https://lore.kernel.org/r/20250211-msm8937-v1-0-7d27ed67f708@mainlining.org
+
+---
+Adam Skladowski (1):
+      dt-bindings: drm/msm/gpu: Document AON clock for A505/A506/A510
+
+Barnabás Czémán (4):
+      dt-bindings: clock: qcom: Add MSM8937 Global Clock Controller
+      dt-bindings: iommu: qcom,iommu: Add MSM8937 IOMMU to SMMUv1 compatibles
+      dt-bindings: arm: qcom: Add Xiaomi Redmi 3S
+      arm64: dts: qcom: Add Xiaomi Redmi 3S
+
+Dang Huynh (2):
+      pinctrl: qcom: msm8917: Add MSM8937 wsa_reset pin
+      arm64: dts: qcom: Add initial support for MSM8937
+
+Daniil Titov (1):
+      clk: qcom: gcc: Add support for Global Clock controller found on MSM8937
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    7 +
+ .../bindings/clock/qcom,gcc-msm8937.yaml           |   73 +
+ .../devicetree/bindings/display/msm/gpu.yaml       |    6 +-
+ .../devicetree/bindings/iommu/qcom,iommu.yaml      |    1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ arch/arm64/boot/dts/qcom/msm8937-xiaomi-land.dts   |  408 ++++
+ arch/arm64/boot/dts/qcom/msm8937.dtsi              | 2149 ++++++++++++++++++++
+ drivers/clk/qcom/Kconfig                           |    6 +-
+ drivers/clk/qcom/gcc-msm8917.c                     |  617 +++++-
+ drivers/pinctrl/qcom/Kconfig.msm                   |    4 +-
+ drivers/pinctrl/qcom/pinctrl-msm8917.c             |    8 +-
+ include/dt-bindings/clock/qcom,gcc-msm8917.h       |   17 +
+ 12 files changed, 3285 insertions(+), 12 deletions(-)
+---
+base-commit: d4b0fd87ff0d4338b259dc79b2b3c6f7e70e8afa
+change-id: 20250210-msm8937-228ef0dc3ec9
+
+Best regards,
+-- 
+Barnabás Czémán <barnabas.czeman@mainlining.org>
+
 
