@@ -1,41 +1,55 @@
-Return-Path: <devicetree+bounces-150236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3175A417D6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:52:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE777A417DC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:55:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 964E216FEDF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:52:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00FEA3B1682
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B8AF242921;
-	Mon, 24 Feb 2025 08:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2273823CEF8;
+	Mon, 24 Feb 2025 08:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="PpTe76hO"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IOM2g64P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m32102.qiye.163.com (mail-m32102.qiye.163.com [220.197.32.102])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AD0824291B;
-	Mon, 24 Feb 2025 08:52:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.102
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B89918A6D5;
+	Mon, 24 Feb 2025 08:54:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740387141; cv=none; b=K0s5KW/ykXzXU1yglh1Y5eIcFEFyD67rueOV4IhM52/f0cIK4Q4w64ajhST8dKw/gOInH27w8CAoMbfjQK6t5nQ6YAb077NxcWUsDrN4LHfrQp479rAEJAViNGPbr553y6Hx8nozyOpqtb4Neww/pVklarwHs/0R6PEae6wYldI=
+	t=1740387252; cv=none; b=jLc28DxQTO5Hp88sOqCUDsRmTzsqFTv8zuXMBYiydoMHapic1NrkL0r5LAlAaRgtx9enMPDuBDskwfqUnecXbeiy3CEARtrM0wAkbpGntspmNf9fIyeNVxOgNvRAAPmcbpowF1bbRd/ERuJE1McMjXUPfGx7mBpCzTlj/Ozi8GM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740387141; c=relaxed/simple;
-	bh=XUbjs4D7fQffAexiFbZyi3CRHGqUr80ymObuMcPyshU=;
+	s=arc-20240116; t=1740387252; c=relaxed/simple;
+	bh=6bOy9KlYLQyrPSIjTKd8+I20FV1jUat1LPHJT2fj0CA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GNusO4MopIzhJmWue6YAkrgR5+J1Kh/+aCsTWkqXysTazE0uXGyp5hgH+POjxaXv5AoIgPCUzpjsSXFQRq3ogXYhB3eRSa+jvhg4I7acmuFmxaGn4o5LbEU+ZJFFc6kxCx9CqnApQCIjwIV6aBAIsSP0T5EdFxMfvezeXGyf/8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=PpTe76hO; arc=none smtp.client-ip=220.197.32.102
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [192.168.60.65] (unknown [103.29.142.67])
-	by smtp.qiye.163.com (Hmail) with ESMTP id bfe919b3;
-	Mon, 24 Feb 2025 16:52:13 +0800 (GMT+08:00)
-Message-ID: <23c84fd5-83f4-46b3-a247-56e4a2c06d1d@rock-chips.com>
-Date: Mon, 24 Feb 2025 16:52:12 +0800
+	 In-Reply-To:Content-Type; b=DFCBrKF7NvAatDjff/KFB3/2iF+3GBrDwUg5ZGwHMvZ0BvNupl0yjBo7nvXl5tvH1S04bRX8RGB9YSqvragvGzrJby7oOuGhgauZr0K+TMVjwi6+G34CH3BuzWvtdOvGNpaNaBFgKlG6dobaVGUka86vcZeYE/aib9C8FeosJic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IOM2g64P; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1740387248;
+	bh=6bOy9KlYLQyrPSIjTKd8+I20FV1jUat1LPHJT2fj0CA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IOM2g64PkCwY3bMfCSfg7CSfBu84lFzLss4S42gqmJlCwkEhycqrjpG30bm248nDv
+	 N2eBYf/mT745k7zVqwGMRyDXwGEw5CCSPpFa7Wt1+0gV85jkKdhZD/KWJR8FZwkYCi
+	 nRwbtChVaYQXkMCggjYwZDLUYgdTGozDnrxe1cjfFzW4UzpRh7BzcF2fK9XIC5m0Mz
+	 ZlMM7E11sm5//N0lJl4+Jpmfv0vqLQXKZd7S3JX/Jk3pIuD/hDI9S284Sz+fdtBQJG
+	 hTWr6ZUQwsj61oViQd+y2+7kyCwwWBpUTWRunsaonBSuiXM+BKmDH1QwJNQopQ5mUP
+	 GVuMcIR0KIA6A==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6949E17E001F;
+	Mon, 24 Feb 2025 09:54:07 +0100 (CET)
+Message-ID: <5d10f630-57a4-427d-a14e-e4058d4fdffe@collabora.com>
+Date: Mon, 24 Feb 2025 09:54:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,104 +57,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: clock: add rk3562 cru bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
- Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20241224092310.3814460-1-kever.yang@rock-chips.com>
- <krrqtjllx6akrurefbtuhgxw6bwmkiro5rtvdexoevjyufm2uz@r5biw7kbttyr>
+Subject: Re: [PATCH v4 1/2] arm64: dts: mediatek: mt8395-genio-1200-evk: add
+ support for TCPC port
+To: ChiYuan Huang <cy_huang@richtek.com>,
+ =?UTF-8?B?TWFjcGF1bCBMaW4gKOael+aZuuaWjCk=?= <Macpaul.Lin@mediatek.com>
+Cc: "linux-mediatek@lists.infradead.org"
+ <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ Alexandre Mergnat <amergnat@baylibre.com>,
+ "fparent@baylibre.com" <fparent@baylibre.com>,
+ =?UTF-8?B?QmVhciBXYW5nICjokKnljp/mg5/lvrcp?= <bear.wang@mediatek.com>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ "macpaul@gmail.com" <macpaul@gmail.com>,
+ =?UTF-8?B?UGFibG8gU3VuICjlravmr5Pnv5Qp?= <pablo.sun@mediatek.com>,
+ "simon.sun@yunjingtech.com" <simon.sun@yunjingtech.com>,
+ =?UTF-8?B?WW93LXNoaW4gTGlvdSAo5YqJ56WQ54KYKQ==?=
+ <yow-shin.liou@mediatek.com>,
+ =?UTF-8?B?Q2hyaXMtcWogQ2hlbiAo6Zmz5aWH6YCyKQ==?= <Chris-qj.Chen@mediatek.com>
+References: <20250220143354.2532448-1-macpaul.lin@mediatek.com>
+ <cb392432-e452-4460-ace6-54b3649aed52@collabora.com>
+ <f09f880b7f9b642140109f17ed3f89aa44195b99.camel@mediatek.com>
+ <Z7vRUmETQaYRbEyZ@git-send.richtek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Kever Yang <kever.yang@rock-chips.com>
-In-Reply-To: <krrqtjllx6akrurefbtuhgxw6bwmkiro5rtvdexoevjyufm2uz@r5biw7kbttyr>
+In-Reply-To: <Z7vRUmETQaYRbEyZ@git-send.richtek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaThgeVh9OGktDHh9NSh9LSlYVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKS0hVSUJVSk9JVU1MWVdZFhoPEhUdFFlBWU9LSFVKS0lCQ0NMVUpLS1
-	VLWQY+
-X-HM-Tid: 0a95372829e503afkunmbfe919b3
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NSo6KQw5NjIUGRMeHQ5CCBEP
-	EiMKCgxVSlVKTE9LSENMSkhOTEJJVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlKS0hVSUJVSk9JVU1MWVdZCAFZQUpNT0s3Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=PpTe76hOHpGk0srvgTU0V496WB4QNRT16SyUTn3RovpGoBOgTamAQyJdyZ9toeKiU54XiNCMokCsB49WToThltFD51fK/JpVz+l7gvApnkmIk9Sa+5mI5YZHT4Ia9oRoVVDjyPoqbW/xiMS5xWNsf9kUucbzusnm/W+YIBC1iDc=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=wkj5uNlX0tJSQD/Cdm3vu3AtdbrZyweYKQfMb+Q0YnQ=;
-	h=date:mime-version:subject:message-id:from;
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
-
-On 2024/12/27 16:25, Krzysztof Kozlowski wrote:
-> On Tue, Dec 24, 2024 at 05:23:08PM +0800, Kever Yang wrote:
->> Document the device tree bindings of the rockchip rk3562 SoC
->> clock and reset unit.
+Il 24/02/25 02:54, ChiYuan Huang ha scritto:
+> On Fri, Feb 21, 2025 at 11:39:09AM +0000, Macpaul Lin (林智斌) wrote:
+>> On Thu, 2025-02-20 at 16:58 +0100, AngeloGioacchino Del Regno wrote:
+>>>
+>>>
 >>
->> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
->> ---
-> A nit, subject: drop second/last, redundant "bindings". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
->
->
-> s/rk3562/Rocchip RK3562/
-> or whatever your proper name is (and use proper capitalized parts of
-> products)
-Will update.
->
->> +properties:
->> +  compatible:
->> +    const: rockchip,rk3562-cru
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#clock-cells":
->> +    const: 1
->> +
->> +  "#reset-cells":
->> +    const: 1
->> +
->> +  clocks:
->> +    maxItems: 2
->
-> Why clocks are not required?
-The cru is the clock-controller, which is always on module in SoC,
-so we don't need to enable "clock" for this clock-controller.
+>> [snip]
+>>
+>>>> +             tcpc {
+>>>> +                     compatible = "mediatek,mt6360-tcpc";
+>>>> +                     interrupts-extended = <&pio 17
+>>>> IRQ_TYPE_LEVEL_LOW>;
+>>>> +                     interrupt-names = "PD_IRQB";
+>>>> +
+>>>> +                     connector {
+>>>> +                             compatible = "usb-c-connector";
+>>>> +                             label = "USB-C";
+>>>> +                             data-role = "dual";
+>>>> +                             op-sink-microwatt = <10000000>;
+>>>> +                             power-role = "dual";
+>>>> +                             try-power-role = "sink";
+>>>
+>>> Would be appreciated if you could also complete the node by adding
+>>> the pd-revision
+>>> property, enabling full USBC Power Delivery for the MT6360 PMIC.
+>>>
+>>
+>> Well, I have no idea about the pd-revision of MT6360.
+>> I could found MT6360 supports PD 3.0 according to the datasheet,
+>> however, I have no idea about the other fields like major and minor
+>> values. Dear ChiYuan, could you help to provide the value of pd-
+>> revision? The property has been defined in
+>> Documentation/devicetree/bindings/connector/usb-connector.yaml.
+>>
+> Hi, Macpaul:
+> 
+> You can specify the version information to 3.1 version 1.6.
+> Just add the below property into the 'connector' node.
+> 
+> pd-revision = /bits/ 8 <0x03 0x01 0x01 0x06>;
+> 
+> Regards,
+> ChiYuan
 
-Thanks,
-- Kever
->
->> +
->> +  clock-names:
->> +    items:
->> +      - const: xin24m
->> +      - const: xin32k
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - "#clock-cells"
->> +  - "#reset-cells"
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    clock-controller@ff100000 {
->> +      compatible = "rockchip,rk3562-cru";
->> +      reg = <0xff100000 0x40000>;
->> +      #clock-cells = <1>;
->> +      #reset-cells = <1>;
-> Why clocks are not here?
->
-> Best regards,
-> Krzysztof
->
->
+Thanks ChiYuan, that's great to know.
+
+With this - all boards relying on MT6360 can charge use the full set of supported
+USB Power Delivery capabilities (that, since the PD revision is specific to the
+MT6360 TCPC, and not board specific!).
+
+Macpaul, please add the pd-revision as suggested, and for v6, please add my:
+
+Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Cheers!
+Angelo
+
+
+
 
