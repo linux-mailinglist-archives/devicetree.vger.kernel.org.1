@@ -1,134 +1,138 @@
-Return-Path: <devicetree+bounces-150220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 352A8A4178C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:39:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C3B0A41794
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:40:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6C30188B12F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:38:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA96B3AEAC7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:39:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1343A18FC9F;
-	Mon, 24 Feb 2025 08:38:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D51431DBB03;
+	Mon, 24 Feb 2025 08:39:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZoQm54JD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D301F5FA
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 08:38:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6012A19924D;
+	Mon, 24 Feb 2025 08:39:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740386293; cv=none; b=Rqtt5i+KXpXkoJbRXbjCFW8QAkDVUYYUNjMif9sMoHBrmiEDnxslBI/bqIeoNaafP0cjyeBaeROvtZd+Qimj7R/Ra9sBga7fg4wkNDJxTcrifRuk+EfreYfrFLjuBKwl3Ny6RXi3mFQYocjwMjSSRyMoTZKxPkxeu1tRq3Kdnts=
+	t=1740386385; cv=none; b=XQnW8XvK9yGEg1f3vb/terddleKxVuZ7xCk9P1hdwuqES62HUOX3Z25BEA4KK4segr3qmub629gaXVrgtW3zcfDu4rDgtmZfMFrsp9LpejFLkBlOOdjFv/JBcGJyDFHWLzenMdlpGOv1sws2RRzZYAH/PQlysQTFm+NHWrWuCnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740386293; c=relaxed/simple;
-	bh=s3qRADzvs0c2X4J9bkpCMbHVSUb4ovbVntggeBnFAHE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Lk14d94BMIssJLYFHomh3aPWi7EdiO4tCzmWJtue8uGbQ3JIwytdcDwCXVlmRWfqrB1aUSM6ZJO4IGyg3/pMpSa+NxfzxLoWh/UnQG9317FwYgsIxDTUZ70DPbmAvkN60k+q5qc/KSUNhMVqVQSOKj7sR0zWIVbtS0/Bbj09U+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1740386385; c=relaxed/simple;
+	bh=LJXNlb8VuJl69ju1cbQ8GeEKDu056jhl3Fkj+aCWgVo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=TXnARgjZRBVFi3288heHzwricTisWQZGuBHGpBiYI1gC8j276x8bHw+xu/sl788a2Gqi0DX1ZFJ7IITnwYUWrF/na8rnARFCJfM+hi8oJ322iJdb0j3z/R1W+wIvOHQSxtGn7ooqMLvE9tk3z/yODR520WUXq7lmqHYZmRgKCaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZoQm54JD; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4bfb4853a5dso1065239137.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 00:38:10 -0800 (PST)
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-220dc3831e3so78355825ad.0;
+        Mon, 24 Feb 2025 00:39:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740386383; x=1740991183; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zgImrHd0RRBAL4u0fyRPwzKU4+tbk6UR0vRrSIGp7oo=;
+        b=ZoQm54JDfKDWZ8XHpCkksr3WaLfHZhizWs9bw3LydT1pmoUZP/TaPN39AFXd5Ojkfp
+         dJyAb7UEo42O/6stMVTcMERAJEDsOXLH6re6u+YRsfUksVlI8PNACcmFxtgTQxIqLbK0
+         Dgo13g719t9oHiUlKDyabrF2ZkCLIVKMsO/Pcspmy+8LnKZEdyGkg7ZUERzSF1aOPeyK
+         IcbS1pgNq+vLWh8BOKUDjXsGSorMqQI7HxKjRDo+wsfn3NfWpxNoFMpwsGO/33S/Mj4i
+         EqOBYbnJYfuZE7IJEUmp0gahC00CrrmCH9YBsG0n+bS1c4nzJ/4ge+akdSEPjTpTT+ko
+         mefg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740386289; x=1740991089;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1740386383; x=1740991183;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UJa6lYnA6aSipEoT/ymsT0VYmK3VyJhzGLMqo39otNk=;
-        b=P1moDagmMsLPKKFLs3+gMQRL3Q+ySHQ+CxElXFJLlrt4WDVBixw5BgIvPp1FYQ47+G
-         Khza+moHkUrSuIkmrJfzQIv6LyMgtqRnpm1rpbiQ7UObA+h9jUaptLUSaqiNwoyab+C/
-         wU8FiQgmgz5SzthAPCC3+a3drs62pvcVbh5Oqw7C4M65gsAfeyqQ/gynR8NXepm1y4H+
-         L50PUY8RlqQ7Key7Fnj5NlWA2l5Xs32MInkjZfyXgsLyjxk+rdin6zw8A3QPqUvFoG6h
-         3decli746qQPFJj+zAcGntmBWHTGPH8lN9xM9F7n8L3QVe/QGBNP5FBemKr4aFwFEvCA
-         LIlw==
-X-Forwarded-Encrypted: i=1; AJvYcCVRqswpFdx8Bj/wGgpyi9qmeSwPpa05//iJOy/AObhgPsKvN0vuL9H0T8l0pcCvXqrsArHVheYite4X@vger.kernel.org
-X-Gm-Message-State: AOJu0YyA3e+kg9hMPYXiRS+uqC27Haz3nUqMX1yGlnW+KdHNYInOAX2U
-	osEdXaj4G74r9XQU/WgXVf9iVTLHDY4xMkLu9M3PBv7gQ1MM/FWBZ+y6aA8h
-X-Gm-Gg: ASbGncsvK1qkJRuRBaEj12V/h55McA3/+6N0uJS7kkDyfjCRP6I4pWlKhoJZ7iQfKgO
-	IAsVeD+yD3O67RO76Uh0umn4FST9Lj60Y5Ytkut4H0f9Gkl76ili/P8mwCArygYArTr1cIVnjl4
-	SHHYHhIFkU6ShMqawk4PuTGuqQCLj8gpgIoi1bBgOz/bV6c3oLmvg1z4vIsY77IvOapfZ3M2Fav
-	QV2v9hSnNWHoXangTNUbVVGmeRt8U7AvdmmuEDwlEjrrIye6pYmLD0/GgdwvL2fF4J+PTfYMAOZ
-	ryQsU30zpLmFcUA1RvynGg9irauyChnHPuHZoulyI/YjXwTa7p7hlPFqCEDqKrra
-X-Google-Smtp-Source: AGHT+IFKZxzxXrE9z2U2gsxULdKCaHK5q8wfy/74v02oOwrs4s+1ZltU84vEVg582mNBFv2HLLNwiw==
-X-Received: by 2002:a05:6102:2acd:b0:4bb:dc3c:1b42 with SMTP id ada2fe7eead31-4bfc0060483mr6042967137.12.1740386289106;
-        Mon, 24 Feb 2025 00:38:09 -0800 (PST)
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4bc68dd766bsm4112918137.20.2025.02.24.00.38.08
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Feb 2025 00:38:08 -0800 (PST)
-Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4bfb4853a5dso1065225137.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 00:38:08 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX52ExU1AC6yMsplHWdxKkfc5Zt36uiSegY7ycq7r+VfZ04QRutNbBCWsygs7ie0+fujI74gOoM7vrK@vger.kernel.org
-X-Received: by 2002:a05:6102:1626:b0:4bb:e8c5:b164 with SMTP id
- ada2fe7eead31-4bfc001ef24mr5774705137.7.1740386288375; Mon, 24 Feb 2025
- 00:38:08 -0800 (PST)
+        bh=zgImrHd0RRBAL4u0fyRPwzKU4+tbk6UR0vRrSIGp7oo=;
+        b=fm8GXRx4wu0XCGuehl7WrIWvz2EJlPFa21ydvRGQjU7KZmpgFCaJwujm94CWHYR2mc
+         HdApwAUBzqspOW7pFk1U4N0IHlfZ+qzrhPRhZN0BcyZxgDCXnAhPrsHxFZo2tZa/wR93
+         M8oIOsD2MuVqCgM2I33oOD2mNH90IqxNlrX8p8KAxvgEoTT6MpGS7+BqffceW63e3FB0
+         8RVOCwsN9LRFMnI+rEpR9ibXtlYZSY3GehMVGwAai2fLDNvLEYzwBdxF/Q9pBDreALCd
+         EJMdpZTTkygx+F1y9OTYKfjmaW1A4zKVMm51uYTDVTV5ZNUwCKc1K95FXzag3ZaE2cAQ
+         6h/w==
+X-Forwarded-Encrypted: i=1; AJvYcCVM0ICjClwVgVDeOy+Klq0saVGfa2gLz/Y38qNIR3XmbVBS2UUYNyR2RoxPhUMGOLCyR3vzRpa1GX0y@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywd7Q+J1Ekjvwbolfx2/MOVciGoAPBeTR7iBRlPQhNEtegF578r
+	IdY1c5TD+XQXhJ3gF9h+lw1JGrLhFXoz5/C0zGOaJoQLMTbyqHYZ
+X-Gm-Gg: ASbGncug6oMzXpGv33QkuT61yVUpfwQ0S3GGTcJHIksottwQPZYhcNlC+tfLXj8Fwcm
+	BSkoo4NwikUGIp7ybHalujWs2OjhECx41PHbMBHgtfiPWe5Q64K0961VE2XC95QPNiVXQGc3pqR
+	b90lGrI7KF4F8JmC0b459ZnHyxPigJebTuc5+HtSDlY/v/gphi1SZ74Gjhi9djPJatHKwrf0qBP
+	ZMNLJcOtkzTlPaqNcG+GTFwbSwdldiP9ecqpaGlFCr8U7yHtjdVseCPr7OupABqWnD6UG/EOCcd
+	TMX95Ya9ArcMiIDNj5EIpAJ3z7gu01zADQL7
+X-Google-Smtp-Source: AGHT+IEcb6Vmiu6r39Ib6PZeI+7bMy0EHmy7fhM6DiJP4D28MgnS5rIX2n3fCefV4ha1sPe28cT4dQ==
+X-Received: by 2002:a05:6a21:6e47:b0:1ee:76fb:8eb7 with SMTP id adf61e73a8af0-1eef3cbe982mr20076936637.10.1740386383559;
+        Mon, 24 Feb 2025 00:39:43 -0800 (PST)
+Received: from cs20-buildserver.lan ([2403:c300:cd02:bc36:2e0:4cff:fe68:863])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7327590ff12sm14634793b3a.115.2025.02.24.00.39.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Feb 2025 00:39:43 -0800 (PST)
+From: Stanley Chu <stanley.chuys@gmail.com>
+X-Google-Original-From: Stanley Chu <yschu@nuvoton.com>
+To: frank.li@nxp.com,
+	miquel.raynal@bootlin.com,
+	alexandre.belloni@bootlin.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-i3c@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	tomer.maimon@nuvoton.com,
+	kwliu@nuvoton.com,
+	yschu@nuvoton.com
+Subject: [PATCH v4 0/5] Add support for Nuvoton npcm845 i3c controller
+Date: Mon, 24 Feb 2025 16:39:03 +0800
+Message-Id: <20250224083908.1880383-1-yschu@nuvoton.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
-In-Reply-To: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 24 Feb 2025 09:37:56 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUhw6q1DAOBJwG5FJUs_QHj3hZMD3damOo2uLZQgS9e7A@mail.gmail.com>
-X-Gm-Features: AWEUYZk8XlBkFLeqdreU9-U4BWw6DmcPNCGXGgjAFwX-gPVIUFnWPcfjhGX3GMw
-Message-ID: <CAMuHMdUhw6q1DAOBJwG5FJUs_QHj3hZMD3damOo2uLZQgS9e7A@mail.gmail.com>
-Subject: Re: [Question] Status of user-space dynamic overlays API
-To: Ayush Singh <ayush@beagleboard.org>
-Cc: xypron.glpk@gmx.de, Jason Kridner <jkridner@beagleboard.org>, 
-	Deepak Khatri <lorforlinux@beagleboard.org>, d-gole@ti.com, 
-	Robert Nelson <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, David Gibson <david@gibson.dropbear.id.au>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Pantelis Antoniou <pantelis.antoniou@gmail.com>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Ayush,
+This patchset adds support for the Nuvoton npcm845
+Board Management controller (BMC) SoC family.
 
-On Sat, 22 Feb 2025 at 21:14, Ayush Singh <ayush@beagleboard.org> wrote:
-> # Challenges
->
-> ## Security
->
-> The concerns regarding security seemed to show up in the other
-> proposals. There was a proposal to have a devicetree property to
-> allow/deny the application of overlays in some nodes, with default being
-> deny. Was it insufficient?
-
-This is the most important issue: using DT overlays, you can change
-about anything.  There is no protection yet to limit this to e.g. the
-expansion connectors on your board.
-This is what the various WIP "connector" abstractions are trying
-to solve.
-
-> ## Memory Leaks
->
-> Currently, updating/removing properties leaks memory. Was it one of the
-> reasons for the rejection of previous proposals?
-
-IMO this is a minor issue. I am sure this can be improved upon.  We just
-need some way to keep track of which properties are part of the initial
-FDT (and thus can't be freed), and which were allocated dynamically.
-
-> [0]:
-> https://lore.kernel.org/all/1417605808-23327-1-git-send-email-pantelis.antoniou@konsulko.com/#t
-
-FTR, I do keep this up to date:
-https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/overlays
-
-Gr{oetje,eeting}s,
-
-                        Geert
+The Nuvoton npcm845 uses the same Silvico IP but an older version.
+This patchset adds fixes for the npcm845 specific hardware issues.
 
 --
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+v4:
+ - Fix kernel test robot build warning.
+ - Add SVC_I3C_QUIRK_DAA_CORRUPT fix
+--
+v3:
+ - Add more description in dt-binging commit message
+ - Add the svc_i3c_drvdata structure in struct svc_i3c_master
+ - Improve the do_daa
+---
+v2:
+ - Add a new compatible string in dt-binding doc.
+ - Add driver data for npcm845 to address the quirks.
+ - Modify svc_i3c_master_write to be reused by SVC_I3C_QUIRK_FIFO_EMPTY fix.
+ - Fix typo of SVC_I3C_QUIRK_FALSE_SLVSTART fix.
+ - Remove the code changes in svc_i3c_master_do_daa_locked, will add it in
+   another patch series for common improvement.
+---
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Stanley Chu (5):
+  dt-bindings: i3c: silvaco: Add npcm845 compatible string
+  i3c: master: svc: Add support for Nuvoton npcm845 i3c
+  i3c: master: svc: Fix npcm845 FIFO empty issue
+  i3c: master: svc: Fix npcm845 invalid slvstart event
+  i3c: master: svc: Fix npcm845 DAA process corruption
+
+ .../bindings/i3c/silvaco,i3c-master.yaml      |   4 +-
+ drivers/i3c/master/svc-i3c-master.c           | 115 ++++++++++++++++--
+ 2 files changed, 105 insertions(+), 14 deletions(-)
+
+-- 
+2.34.1
+
 
