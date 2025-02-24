@@ -1,120 +1,117 @@
-Return-Path: <devicetree+bounces-150366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 227E0A41E0F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:01:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41F02A41E27
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:02:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C59E1748A5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:55:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 667041891E49
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:57:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A003219304;
-	Mon, 24 Feb 2025 11:43:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Z2iuPqeS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72FA424EF87;
+	Mon, 24 Feb 2025 11:47:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BC3323371C
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 11:43:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14BE624EF69;
+	Mon, 24 Feb 2025 11:47:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740397421; cv=none; b=Y0ckmy3wkkegcCwptn/Z8xzUkhK1yMA24/pCdiCJI8BaI2KTDhhay76/MVOsjBgRUQVvU3cixEj7iIFB2rAiYz4wucq7BZSmw30eI2xE3Mj8HfUmWKvV16wfCk5boVpTL8qqy7yYKuxL/mjHeBXHv1g0nT9peF+yeGrImDysrm0=
+	t=1740397626; cv=none; b=QyNMXIJIVa/dMrZRgcaJ92ebxioSddsD8cZ1SXK1IF9zlnKrEDJ3QWXHtUClUPtl1geijZNJy9/8Fqckb5p+9DHPdeahTu6NW7mi+GmvyYPgYKR9NMk3g43rl0AjUqvmlxofDWSP1gTeHA6JBOFiU0NMm3z5BUlfQR8tYkcdVMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740397421; c=relaxed/simple;
-	bh=zJgi9c8h4NJMSk2MLLGhWM7ccjAIjfSWRwcx5sglEFk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Wco8mjkhq+e7E0Capd4V8zFPkyjUP28vCU23FzDZTmXB7eYK/gY2WCLtdQFuDGG9NIxo8Nb/Ol/HgYxgjQTq5yMSKmCZI8q0GgqLS4tlWWgJV0GGz/gR8jUhcB9etfaXuy0xCKMaPvd9Xn8GHhIn9GTztEZmNLKYeVIofsmz4Xg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Z2iuPqeS; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-abec8b750ebso25627866b.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 03:43:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1740397418; x=1741002218; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=D6Mlr0wbAMCOEN0+YLkpDA5vstdeAdhSzTHRytWnpTE=;
-        b=Z2iuPqeSdG/EFquWVQGLu+nIJnwgwVJQRoUy5COipibk12la2JwLuaiH0bLUqlp/8U
-         Cljlqk6JAnzECRIX1ZGt0aaucvHzP+TJQCTGlGvTi+XOi+EFXTo/jspv0d70HdWokGCb
-         zyrPz8dOf1IWXfcKIgkLu3O4voiEOJoUUzezt+wmgTdn3GkQ2zAM+uSAX3dBzrXTaHJZ
-         Vp/9G4LoNx67BSEH8lolHUvmExhyflslVs+uzCEgBp9/ighGuolzRoVwfPOtzVbZ+udd
-         RmUrm0VYLG6jGvqCRcBaw/71DJTSkm9F5avErSmSktWmnrJkQlS+sfM+E1Bg8jG/oL33
-         Jizw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740397418; x=1741002218;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D6Mlr0wbAMCOEN0+YLkpDA5vstdeAdhSzTHRytWnpTE=;
-        b=QCTlNBeWzj1n080AmQdperS9QPy07Sl7ebYK6tUVZMJLI/86ODKdgk6RLPgg/HcatG
-         Z/TCuoksBfIAZosmyIxj51/SmQZvOKQA5SSzRxvbSkku5GD66zubCvFUeHXaocLm71X2
-         TS2N8VyIpS42np/fgjGSw12AetyRWPAoKQqK+P3aP7ZOsvsYhNQFFT/kbNgJsGqMmT+b
-         OttYz8t3eTaz36lo/urxHhGSofqxuFOINkzKB3FaTrhzc64agzJBVtB+3X3CGA3DsNz/
-         G1d65HQhciKv9c6YZcciWgRVwVt0M4YjnBF36fxlAcBUxs08YUa0ccrswSC53ARnKdKT
-         ygig==
-X-Gm-Message-State: AOJu0Yyx7aGXTXGCMBALalkWEyExHw7rsSMdmD6ErbbOQRHjH3bkh2+H
-	8734rfN/5BgFeF1plktnISrY/Px3/txuKDJeQWjUK5lPbcZLtYAK4il5WkBnIIc=
-X-Gm-Gg: ASbGnctAfmZfEKSoTI/8ZjEvhLnb1QLaGYPuSrqfD4+9Df2sXh3zDwqsLOzn+MGPGQN
-	Aqllbmtn3C7YzIa0N6KFBlq1Izfgu2EKhbHHeQ39oXrAXx8VDz55dg/TXOAi49qH0vYrLh7+Kgm
-	E24+31/JIqoNH3tBtVVa2Ep+1QTPW3L33u1Gz1/k6hzju9jcXegM2mPtn9gyjLiwJHhC0jQKkUH
-	l1dy31JVfBDf3RdPSs35qyo+tNuxKRSt5EvSdDKV//XwrCTMCzWWjGj2gLNx7iB6ygrSjn36LpX
-	lJ++QTgxscxhSRALojpX2Rspx4eldkRqrA==
-X-Google-Smtp-Source: AGHT+IF5iaBYNZgpTldExBVQhpm8bwV77vFMEYcbfb9p2terRRNut6cbNBxpAfkhBHP6mSJK7U7EiQ==
-X-Received: by 2002:a17:907:7e93:b0:abb:6b1a:7b22 with SMTP id a640c23a62f3a-abc0da3b46fmr1334031166b.29.1740397417602;
-        Mon, 24 Feb 2025 03:43:37 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.25])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abb8ab30726sm1658222166b.153.2025.02.24.03.43.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Feb 2025 03:43:37 -0800 (PST)
-Message-ID: <2ef91384-53a0-4eeb-8eee-3f704416f299@tuxon.dev>
-Date: Mon, 24 Feb 2025 13:43:34 +0200
+	s=arc-20240116; t=1740397626; c=relaxed/simple;
+	bh=ZFclqke8ZUlQE4gwyCnHc4Wc6HXOb7AO198d6seDxnQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XihxOEGM9Kkw1NvPa25gBJQRlkc06x13N9Lrk8F06Ev0I3sOSt37iEPQ7zQ4VCN9W9jmZdKunotKpler5mHHrVqUIlbLgTulpIpH2P4o8hlVSExwzblXB/nzAH1p46L1V9a+aqLuk2s8wj+qNIFZkgwwFx1mTCIFoJxSICDHu+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C87211756;
+	Mon, 24 Feb 2025 03:47:19 -0800 (PST)
+Received: from e119884-lin.cambridge.arm.com (e119884-lin.cambridge.arm.com [10.1.196.72])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 74C5F3F6A8;
+	Mon, 24 Feb 2025 03:47:01 -0800 (PST)
+From: Vincenzo Frascino <vincenzo.frascino@arm.com>
+To: linux-sound@vger.kernel.org
+Cc: Vincenzo Frascino <vincenzo.frascino@arm.com>,
+	Maruthi Srinivas Bayyavarapu <maruthi.srinivas.bayyavarapu@xilinx.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/4] xlnx: dt-bindings: Convert to json-schema
+Date: Mon, 24 Feb 2025 11:46:44 +0000
+Message-ID: <20250224114648.1606184-1-vincenzo.frascino@arm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/8] ARM: dts: microchip: sama7d65: Add watchdog for
- sama7d65
-To: Ryan.Wanner@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, vkoul@kernel.org, wim@linux-watchdog.org,
- linux@roeck-us.net
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-watchdog@vger.kernel.org
-References: <cover.1739555984.git.Ryan.Wanner@microchip.com>
- <05431cf86beb742a9a53336c4ec792be8bde14e2.1739555984.git.Ryan.Wanner@microchip.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <05431cf86beb742a9a53336c4ec792be8bde14e2.1739555984.git.Ryan.Wanner@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi, Ryan,
+This series converts the folling Xilinx device tree binding documentation:
+ - xlnx,i2s
+ - xlnx,audio-formatter
+ - xlnx,spdif
+to json-schema.
 
-On 14.02.2025 20:08, Ryan.Wanner@microchip.com wrote:
-> +		ps_wdt: watchdog@e001d180 {
-> +			compatible = "microchip,sama7d65-wdt", "microchip,sama7g5-wdt";
-> +			reg = <0xe001d000 0x30>;
+To simplify the testing a linux tree rebased on 6.13-rc4 is accessible
+at [1].
 
-The node address and the one specified in reg don't match.
-I will skip applying this.
+[1] https://codeberg.org/vincenzo/linux/src/branch/xlnx/dt-bindings/v4
 
-Also, please sort the nodes by their addresses.
+Note: These bindings are required for future work on the ARM Morello
+Platforms device tree.
 
-Thank you,
-Claudiu
+Cc: Maruthi Srinivas Bayyavarapu <maruthi.srinivas.bayyavarapu@xilinx.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
 
-> +			interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk32k 0>;
-> +		};
-> +
+Changes
+=======
+v3:
+  - Address an issue with the MAINTAINERS file reported by the kernel
+    test robot. 
+v2:
+  - Address review comments.
+  - Rebase on 6.14-rc4.
+
+Vincenzo Frascino (4):
+  ASoC: dt-bindings: xlnx,i2s: Convert to json-schema
+  ASoC: dt-bindings: xlnx,audio-formatter: Convert to json-schema
+  ASoC: dt-bindings: xlnx,spdif: Convert to json-schema
+  MAINTAINERS: Add Vincenzo Frascino as Xilinx Sound Driver Maintainer
+
+ .../bindings/sound/xlnx,audio-formatter.txt   | 29 ------
+ .../bindings/sound/xlnx,audio-formatter.yaml  | 76 +++++++++++++++
+ .../devicetree/bindings/sound/xlnx,i2s.txt    | 28 ------
+ .../devicetree/bindings/sound/xlnx,i2s.yaml   | 68 ++++++++++++++
+ .../devicetree/bindings/sound/xlnx,spdif.txt  | 28 ------
+ .../devicetree/bindings/sound/xlnx,spdif.yaml | 92 +++++++++++++++++++
+ MAINTAINERS                                   |  8 ++
+ 7 files changed, 244 insertions(+), 85 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/xlnx,audio-formatter.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/xlnx,audio-formatter.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/xlnx,i2s.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/xlnx,spdif.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/xlnx,spdif.yaml
+
+-- 
+2.43.0
 
 
