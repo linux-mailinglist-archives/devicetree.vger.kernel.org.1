@@ -1,151 +1,131 @@
-Return-Path: <devicetree+bounces-150286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA0DA41A58
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:11:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 676E6A419FE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:02:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61D7317CCA4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 10:07:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C9911783E0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 10:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4DBA2505CA;
-	Mon, 24 Feb 2025 10:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9912224C67B;
+	Mon, 24 Feb 2025 09:58:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P5Pc+1tm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GrxCeiNS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C40C24BBEF;
-	Mon, 24 Feb 2025 10:05:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4F1324C673;
+	Mon, 24 Feb 2025 09:58:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740391527; cv=none; b=uoQMcVII+kGCxjgL7x+VoAZqLbvUL7YwTo/1NIQEzG1OonAfRy6QshXcwMx4PYk4x7PewhaEpybHjXtu+ptfkhk3k5NDath2kbiifTWweXp91plUTYFgkZO6yZ1u1P1gyH6qJmdJoyYk/e1B+3+Evf3Wltyoq1wNJMP6SSQeVi4=
+	t=1740391138; cv=none; b=jJYjrlIVWi2RQSA+3yA5touQyuE4Rv+MbEcB7uzx7TwUydoPJhHL7CGy6xtIJdyRG9LopAprfV3hHNIPqB86Q4icV0wMIOy7DhSSjznm/s1rv3V/UgEYXEONdcJ4o7AO+YbLOlCX7SmrDfsOQmtZ3CxrtYxd6LMYtZE62fXXZYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740391527; c=relaxed/simple;
-	bh=wEPIfbmOGYU8PFcnIOPk2XbR2HBdhU31GqS8u7rbNnU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=meZAdy0uMjS+OuGZ5ELVpO8lBg4KC5KsT6PT/2erobMSJsApFvukPQNcESMF3OmF1E6/eEZg6x4ik2zgtCGXlEPAYymp+Xz7OOLHhXzN+OsxMJkYjnf4dq0rFzL690QYvq5nzWw2NLiPYPic9e2FIhbw9Pv/iRc5jDR78n2EfbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P5Pc+1tm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 881C1C4CED6;
-	Mon, 24 Feb 2025 10:05:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740391527;
-	bh=wEPIfbmOGYU8PFcnIOPk2XbR2HBdhU31GqS8u7rbNnU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=P5Pc+1tmhpkcRZCCeN11NsfalT6DwwEIx2gIyIrWPAeoRIBi2eurs9bxsWgiJ87eX
-	 OVSKflTtnS5ZGxn+6TR7ibhqEe2h337VuaeQ3WzEhoKbvv+8sPSQ6JYezBtZK/1Yda
-	 CicWrE0UKmdulEgb8TNqdjuA7ZGzLy7EHRzSPn7/lY3hd7ukOxVHKvdqY20aqw51kN
-	 4TKQeXN9ysstGViRPBQh+ljrdBWGjlifPXl5K3KuU43t0d/BO0BLgpmNgIpTJzGhpp
-	 GiuO60mVLEpEHeKbc16uSt7U4OWBaGunMfgB1nZSmiJ3BhFUrzfvDDVz3slPQZj/V4
-	 K4CZvSz3lEBCA==
-Date: Mon, 24 Feb 2025 11:05:24 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Ryder Lee <ryder.lee@mediatek.com>,
-	Jianjun Wang <jianjun.wang@mediatek.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Subject: Re: [PATCH v3 2/2] PCI: mediatek-gen3: Configure PBUS_CSR registers
- for EN7581 SoC
-Message-ID: <Z7xEZPpWLQjTMnIz@lore-desk>
-References: <20250222-en7581-pcie-pbus-csr-v3-0-e0cca1f4d394@kernel.org>
- <20250222-en7581-pcie-pbus-csr-v3-2-e0cca1f4d394@kernel.org>
- <20250224055216.o23dzwimrghbr2ow@thinkpad>
+	s=arc-20240116; t=1740391138; c=relaxed/simple;
+	bh=fX2FejRKLHmTf189qkb5nrdkHYro4O5UcpVBV7OFrbk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=L1crYOGguiLgsoRXoXtqthcJ/fh9EMc/Z41JxkahDP0vuoVVDX9AxzGZPZRcrXVvbIx4JRPC8dARhH6ATcOZo9H7ocrJwujoGrGL1Vy3zzpri7B2eZFJVDcIYkXAvfvvqijAGHvRu5eNjL6hgOA7K4bnJbxEvnzSwd3jH0c4Qd8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GrxCeiNS; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aaf3c3c104fso712954266b.1;
+        Mon, 24 Feb 2025 01:58:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740391134; x=1740995934; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YlyuCvvFDo2128e2teHgyAWHlRy7aBFZ5OZbDHsqsLE=;
+        b=GrxCeiNSO0J9qkGWsJpUVqc+uAbLjlW18gfdl7LWunVLyDw0h+Ts9S9vl4mH7bw7nH
+         Do050fgNuXC4RixwQBcnYy9NsiMgdMexPL/K1qKAk+9E8JFt8wrqQalVxT6f+2BmbV6h
+         Q99Z2lRstYHf10AggugiMmTXs+Rg2RpMMWsXrb++zJPvto7oALVf1OYv6QY5AWFtdcAz
+         ncI5bXRaJEZfANUYT9en3HQ0azrLJgTmx4oeIEbj/wwGWfrs2zZYPJnvN0aOi2suqjm5
+         wLRyeO1Lq6dmd570kSGeklhIGyM0zL9gJlifzX3OzsONUMxfbIcJxlV7IkuFWYRfaP2s
+         J+GA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740391134; x=1740995934;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YlyuCvvFDo2128e2teHgyAWHlRy7aBFZ5OZbDHsqsLE=;
+        b=Lhh8t8HNzfMtC5vt5y4ehKvxkI/6ERuuKFPiUJG4pXVyIPuPodkbv2ec1CPuya91qO
+         DN8ggoqIh8M1OrrGzF3CF+CLboXvreBTOexn4NQGsSc7uDY3E/pNNzfZm8vacWMA0zYD
+         sKJJJsfG47AJRaTsuo/wV7DxMLKp6+U/IknVogbDxqqnA/uYBm8eYaq8WNuszNqLjW3m
+         G/l4XF8d78zkeU4i2DbAzYGPPv3+E0epOnDVvoP3BKVoBIond6hobCfztvEtKxSKkH7s
+         Sc3gK3cOQR27dKISlhvxcDnY+5enDfBPegn+wmHw9ZtycFVC2PFhMpqeoZYS/OvHBMaF
+         bBwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUvFnH8cxezn8LTrJq0e4HhnUUHFk4ATsmN07Y2bpA8IGBVcXpOQkZCZPZk9rCJANd1lw7zOzWLBt1n82hw@vger.kernel.org, AJvYcCXwFiu6xWUYGdVBG75qb8hAwZPHJFjSiR7BfsplDMDXDl2AtGIrP57bO8MkWQZaUR9IuMaSbuLX3uSF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4XcUlAvMPsya8zplEb/cITuTVgm4vWaEFmiVP5VWsWXVPtjDh
+	dP5birX7otB2xEcKEngAGkpGbzpFA6Gfv9UTo+vXFaK4OLXxKau/
+X-Gm-Gg: ASbGncsZ30PcIB7eT4X6gHIial8R42E3rtOqcHDvXKCyBPOTUWHmDBDBjJ8s29KOJd1
+	cc++FvKuwPCDEf3oIuMRGA+f8gQqzSpuZvNxYm5INko+gce/UNq0EicZzY0eJ1HkbodLhjtN5ak
+	TV6EqDHvSyvjN7xcj+0MLZjDMV2KyIXWBo+gpGOlIN90oWO9AydvieLR0DMIBaSVFEhIosXhdbt
+	b2IMml/OK4YqOyxiqBPx+TUG+krdShJ6tkzYTg9GvzBASBhpM2k+v8HnbQepM1+xYIID5XYyv4R
+	a/e+a2yxKgB3RS8GbB8cmxbnKl28wZPawpU8ImR0UcrSGgRhX4s=
+X-Google-Smtp-Source: AGHT+IE4DISpsiKgYOL3EFZd4l0OSdPpTIlMEud2TUQe2sSiVQY+CihGdqfWOxw12evc/bJo4FFOAA==
+X-Received: by 2002:a17:906:31cf:b0:ab6:ef33:402 with SMTP id a640c23a62f3a-abc0d9e4ef5mr1108032166b.18.1740391133934;
+        Mon, 24 Feb 2025 01:58:53 -0800 (PST)
+Received: from [192.168.5.199] ([92.120.5.6])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abbbbc95288sm1255333966b.158.2025.02.24.01.58.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Feb 2025 01:58:53 -0800 (PST)
+Message-ID: <a62ab860-5e0e-4ebc-af1f-6fb7ac621e2b@gmail.com>
+Date: Mon, 24 Feb 2025 12:07:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9HSvn9LCGzDjJLIz"
-Content-Disposition: inline
-In-Reply-To: <20250224055216.o23dzwimrghbr2ow@thinkpad>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] bus: add driver for IMX AIPSTZ bridge
+Content-Language: en-GB
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang
+ <shengjiu.wang@nxp.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, imx@lists.linux.dev
+References: <20250221191909.31874-1-laurentiumihalcea111@gmail.com>
+ <20250221191909.31874-4-laurentiumihalcea111@gmail.com>
+ <20250224075538.7oetjzllqqr2mlnt@pengutronix.de>
+From: Mihalcea Laurentiu <laurentiumihalcea111@gmail.com>
+In-Reply-To: <20250224075538.7oetjzllqqr2mlnt@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
---9HSvn9LCGzDjJLIz
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 24.02.2025 09:55, Marco Felsch wrote:
+> Hi Laurentiu,
+>
+> thanks for your patch.
+>
+> On 25-02-21, Laurentiu Mihalcea wrote:
+>> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>>
+>> The secure AHB to IP Slave (AIPSTZ) bus bridge provides access control
+>> configurations meant to restrict access to certain peripherals.
+>> Some of the configurations include:
+>>
+>> 	1) Marking masters as trusted for R/W. Based on this
+>> 	(and the configuration of the accessed peripheral), the bridge
+>> 	may choose to abort the R/W transactions issued by certain
+>> 	masters.
+> Setting these bits requires very often that the core is running at EL3
+> (e.g. secure-monitor) which is not the case for Linux. Can you please
+> provide more information how Linux can set these bits?
+>
+> Regards,
+>   Marco
 
-> On Sat, Feb 22, 2025 at 11:43:45AM +0100, Lorenzo Bianconi wrote:
 
-[...]
+In this particular case, as far as I was able to understand, NS EL1 has enough
 
-> > +
-> > +	entry =3D resource_list_first_type(&host->windows, IORESOURCE_MEM);
-> > +	if (!entry)
-> > +		return -EINVAL;
->=20
-> -ENODEV or -ENOMEM
+privilege to program this IP. This is why Linux can do it.
 
-ack, I will fix it in v4
-
->=20
-> > +
-> > +	addr =3D entry->res->start - entry->offset;
-> > +	err =3D regmap_write(pbus_regmap, args[0], lower_32_bits(addr));
-> > +	if (err)
->=20
-> MMIO write is not supposed to fail.
-
-ack, I will fix it in v4
-
->=20
-> > +		return err;
-> > +
-> > +	size =3D lower_32_bits(resource_size(entry->res));
-> > +	mask =3D size ? GENMASK(31, __fls(size)) : 0;
->=20
-> Size of MEM region could be 0?
-
-I added this check since we consider just lower_32_bits().
-Do you think we should remove it?
-
->=20
-> > +	err =3D regmap_write(pbus_regmap, args[1], mask);
-> > +	if (err)
->=20
-> MMIO write is not supposed to fail.
-
-ack, I will fix it in v4
-
-BTW I will remove your Reviwed-by tag since the patch has changed
-with respect to the one you added it. Please let me know if you
-prepfer to keep it.
-
-Regards,
-Lorenzo
-
->=20
-> - Mani
->=20
-> --=20
-> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
-=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
-=E0=AF=8D
-
---9HSvn9LCGzDjJLIz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ7xEZAAKCRA6cBh0uS2t
-rDHbAQCOVe744bx7qYVotAU7cnjssZp8JuF9Yjujz5rxPDkOmQEAiu1GLPn0lTz9
-yCYh9rg8gckaHCPDrNtWImF2kRicoQ8=
-=UbPO
------END PGP SIGNATURE-----
-
---9HSvn9LCGzDjJLIz--
 
