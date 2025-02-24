@@ -1,373 +1,175 @@
-Return-Path: <devicetree+bounces-150359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFA69A41DBD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 12:54:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF81A41E00
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 12:59:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 952013AA7BD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:47:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3217E7A376D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:51:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4873F264A66;
-	Mon, 24 Feb 2025 11:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F9425EFBA;
+	Mon, 24 Feb 2025 11:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VxxYCgAI"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="S2h0bWvG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2016325C702;
-	Mon, 24 Feb 2025 11:26:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E3F23F419;
+	Mon, 24 Feb 2025 11:36:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740396388; cv=none; b=ZZwQrQ0BJugwmp8y048E6HCKJsm8nKLTeE8taC+2J2Iiqmpn3D5yM024ugVmQNdO40AAi0dFDE5YLCHHBL2qpMfocMnTTOwKSCEwX7w5lu0mTIj4zJ9iEhOKNkmSPm9lYWb1+FNFAsiT7jSFuTVEacD+B/t6xE54z73ETaxhaf4=
+	t=1740396997; cv=none; b=IgyNdoXk8f2ii4vqkLq4OH/2UWRhY7QZa0tCLJzbblwnHTkmkraiuUDtKbbKTO1RBRSJxHts9lEJ7eKIAOPnNIc4RAsOcZfiZBp25bZAW5r3dlUXKLILuD+uEXLopjzUh2vVgtVo1iC30rKGQqNpJsZJ+VCktPxn0XidvLYRPYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740396388; c=relaxed/simple;
-	bh=9Ovgg2hK7O67kf313UGjPJJvkXdwSOKC5ryQAmMCvdc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qwSjDKAASMP3H2GLdpWB1EMkJ/n9MBFNSlQLiyIte2Ph3S1ZV8Bl31uxOQkB9aRP4hiL+dRe0Y5c47P6MfkQ5T7BY/8GrqVPZJwRivYgwGqyIO5Gc7FQCLrAnR5S/4t4hxIcRj6BPsR4kmov7vPbO43rqrETHW5UtBzS9LB7ri0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VxxYCgAI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A11BEC4CED6;
-	Mon, 24 Feb 2025 11:26:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740396388;
-	bh=9Ovgg2hK7O67kf313UGjPJJvkXdwSOKC5ryQAmMCvdc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=VxxYCgAICWvmKMEVvDVXOiaZ9ACB/FwErxemA+3rV/eb5a9KDwLYnz0+o4hl8mW1b
-	 xtCtFS22rSvJNpWsBlNnoShh1hCHYAYc+v8GekCrzbgi6/mTww0Fw2rYJlZ3/xxuC0
-	 iYdUe995nkLFZIb8oa2+Wwy7JHv8/0oSnWE0GPK/l0QG6Yp8u//nyqzUoe9q/0xnl5
-	 4eSVKUH57SSjlqnLHiE9Zp6zPSpA/ZNfQl9+kFxI6GiZLdF+Sfi/2mZZ3GJ3Khfqs7
-	 Aj05v9V6EFzOuv+wpm7Q0yBMop9jKEzX/lXgD+g04nolALEPv2K8sY1JLVr9ZeVsKQ
-	 ctNdENx5nHncQ==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Mon, 24 Feb 2025 12:25:35 +0100
-Subject: [PATCH net-next v7 15/15] net: airoha: Introduce PPE debugfs
- support
+	s=arc-20240116; t=1740396997; c=relaxed/simple;
+	bh=PSYe6R/xPBasga876FmS8mHT9Zoo5UeLL8SBdjJXyYU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=me+EdXZhcikssWO2ffEGlnZ9OGrP19PKcXP6N+dto+850GYIjM+EmwVU8eFskhIX0APhu5PB9ZJAqeHD2/0xfwdsFfZ8aBeGYKckVApWflQ1Tgd5ybKudHgl9tKW5Jb+/USCAn8JC+Ixw744IIlA23N2PbLix96NV+IfR44k8y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=S2h0bWvG; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1740396992;
+	bh=PSYe6R/xPBasga876FmS8mHT9Zoo5UeLL8SBdjJXyYU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=S2h0bWvGZ/wrr74QxKpyYx3qf9WQ0JxBIUIjM4IGAT16YoVeJKx1K4amOuK76OY8o
+	 0R6eNuYkJ3ceb2AQZObzCrHaxfifC9fX9LBuHqEOQbwJxdks9F9siUe9k0qFloe+C7
+	 uF3KlDYg3LvWBCNuRgxDfHblWLHi5JCe7B095xMkFnO8xz2u7wxjYxpcyX64pCu/fI
+	 OidgFXAVvWuyE2CnaBc9j1s8nwYW1sbhRhZKwvgjmc0ZHNYa8zycnvM2rogw46y9gh
+	 nd4QIhnLaSMccsOwjs7RRqk/keKhQI4h7jiAy7QtCib6a+/Rct5zI1AvmIWlSVDaej
+	 biIXz6p58xOCw==
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: bbrezillon)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id AD4FD17E019E;
+	Mon, 24 Feb 2025 12:36:31 +0100 (CET)
+Date: Mon, 24 Feb 2025 12:36:28 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Nicolas Dufresne <nicolas@ndufresne.ca>, Florent Tomasin
+ <florent.tomasin@arm.com>, Vinod Koul <vkoul@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Steven Price <steven.price@arm.com>, Liviu Dudau
+ <liviu.dudau@arm.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>, Benjamin
+ Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey
+ <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, "T . J .
+ Mercier" <tjmercier@google.com>, Christian =?UTF-8?B?S8O2bmln?=
+ <christian.koenig@amd.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Yong
+ Wu <yong.wu@mediatek.com>, dmaengine@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, nd@arm.com, Akash Goel
+ <akash.goel@arm.com>
+Subject: Re: [RFC PATCH 0/5] drm/panthor: Protected mode support for Mali
+ CSF GPUs
+Message-ID: <20250224123628.52d43b84@collabora.com>
+In-Reply-To: <20250220-strict-cobalt-albatross-6f742e@houat>
+References: <3ykaewmjjwkp3y2f3gf5jvqketicd4p2xqyajqtfnsxci36qlm@twidtyj2kgbw>
+	<1a73c3acee34a86010ecd25d76958bca4f16d164.camel@ndufresne.ca>
+	<ppznh3xnfuqrozhrc7juyi3enxc4v3meu4wadkwwzecj7oxex7@moln2fiibbxo>
+	<9d0e381758c0e83882b57102fb09c5d3a36fbf57.camel@ndufresne.ca>
+	<1f436caa-1c27-4bbd-9b43-a94dad0d89d0@arm.com>
+	<20250205-amorphous-nano-agouti-b5baba@houat>
+	<2085fb785095dc5abdac2352adfb3e1e1c8ae549.camel@ndufresne.ca>
+	<20250207160253.42551fb1@collabora.com>
+	<20250211-robust-lush-skink-0dcc5b@houat>
+	<20250211153223.2fef2316@collabora.com>
+	<20250220-strict-cobalt-albatross-6f742e@houat>
+Organization: Collabora
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250224-airoha-en7581-flowtable-offload-v7-15-b4a22ad8364e@kernel.org>
-References: <20250224-airoha-en7581-flowtable-offload-v7-0-b4a22ad8364e@kernel.org>
-In-Reply-To: <20250224-airoha-en7581-flowtable-offload-v7-0-b4a22ad8364e@kernel.org>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>, 
- "Chester A. Unal" <chester.a.unal@arinc9.com>, 
- Daniel Golle <daniel@makrotopia.org>, DENG Qingfang <dqfext@gmail.com>, 
- Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>
-Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- upstream@airoha.com
-X-Mailer: b4 0.14.2
 
-Similar to PPE support for Mediatek devices, introduce PPE debugfs
-in order to dump binded and unbinded flows.
+Hi Maxime,
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/net/ethernet/airoha/Makefile             |   1 +
- drivers/net/ethernet/airoha/airoha_eth.h         |  14 ++
- drivers/net/ethernet/airoha/airoha_ppe.c         |  17 ++-
- drivers/net/ethernet/airoha/airoha_ppe_debugfs.c | 181 +++++++++++++++++++++++
- 4 files changed, 209 insertions(+), 4 deletions(-)
+On Thu, 20 Feb 2025 14:32:14 +0100
+Maxime Ripard <mripard@kernel.org> wrote:
 
-diff --git a/drivers/net/ethernet/airoha/Makefile b/drivers/net/ethernet/airoha/Makefile
-index 6deff2f16229a7638be0737caa06282ba63183a4..94468053e34bef8fd155760e13745a8663592f4a 100644
---- a/drivers/net/ethernet/airoha/Makefile
-+++ b/drivers/net/ethernet/airoha/Makefile
-@@ -5,4 +5,5 @@
- 
- obj-$(CONFIG_NET_AIROHA) += airoha-eth.o
- airoha-eth-y := airoha_eth.o airoha_ppe.o
-+airoha-eth-$(CONFIG_DEBUG_FS) += airoha_ppe_debugfs.o
- obj-$(CONFIG_NET_AIROHA_NPU) += airoha_npu.o
-diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/ethernet/airoha/airoha_eth.h
-index 064941348bd91f1115082bf5e7734f34007953f8..18b5fed7ff286b813b260fae121892f44eb1cf8c 100644
---- a/drivers/net/ethernet/airoha/airoha_eth.h
-+++ b/drivers/net/ethernet/airoha/airoha_eth.h
-@@ -7,6 +7,7 @@
- #ifndef AIROHA_ETH_H
- #define AIROHA_ETH_H
- 
-+#include <linux/debugfs.h>
- #include <linux/etherdevice.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
-@@ -482,6 +483,8 @@ struct airoha_ppe {
- 
- 	struct hlist_head *foe_flow;
- 	u16 foe_check_time[PPE_NUM_ENTRIES];
-+
-+	struct dentry *debugfs_dir;
- };
- 
- struct airoha_eth {
-@@ -535,5 +538,16 @@ int airoha_ppe_setup_tc_block_cb(enum tc_setup_type type, void *type_data,
- 				 void *cb_priv);
- int airoha_ppe_init(struct airoha_eth *eth);
- void airoha_ppe_deinit(struct airoha_eth *eth);
-+struct airoha_foe_entry *airoha_ppe_foe_get_entry(struct airoha_ppe *ppe,
-+						  u32 hash);
-+
-+#if CONFIG_DEBUG_FS
-+int airoha_ppe_debugfs_init(struct airoha_ppe *ppe);
-+#else
-+static inline int airoha_ppe_debugfs_init(struct airoha_ppe *ppe)
-+{
-+	return 0;
-+}
-+#endif
- 
- #endif /* AIROHA_ETH_H */
-diff --git a/drivers/net/ethernet/airoha/airoha_ppe.c b/drivers/net/ethernet/airoha/airoha_ppe.c
-index 846abd2b497141a47171f7a3b7e0f520dc6499ed..3beae83ec56fe6fa35ded53d8a1cf7c13a770ede 100644
---- a/drivers/net/ethernet/airoha/airoha_ppe.c
-+++ b/drivers/net/ethernet/airoha/airoha_ppe.c
-@@ -377,8 +377,8 @@ static u32 airoha_ppe_foe_get_entry_hash(struct airoha_foe_entry *hwe)
- 	return hash;
- }
- 
--static struct airoha_foe_entry *
--airoha_ppe_foe_get_entry(struct airoha_ppe *ppe, u32 hash)
-+struct airoha_foe_entry *airoha_ppe_foe_get_entry(struct airoha_ppe *ppe,
-+						  u32 hash)
- {
- 	if (hash < PPE_SRAM_NUM_ENTRIES) {
- 		u32 *hwe = ppe->foe + hash * sizeof(struct airoha_foe_entry);
-@@ -861,7 +861,7 @@ void airoha_ppe_check_skb(struct airoha_ppe *ppe, u16 hash)
- int airoha_ppe_init(struct airoha_eth *eth)
- {
- 	struct airoha_ppe *ppe;
--	int foe_size;
-+	int foe_size, err;
- 
- 	ppe = devm_kzalloc(eth->dev, sizeof(*ppe), GFP_KERNEL);
- 	if (!ppe)
-@@ -882,7 +882,15 @@ int airoha_ppe_init(struct airoha_eth *eth)
- 	if (!ppe->foe_flow)
- 		return -ENOMEM;
- 
--	return rhashtable_init(&eth->flow_table, &airoha_flow_table_params);
-+	err = rhashtable_init(&eth->flow_table, &airoha_flow_table_params);
-+	if (err)
-+		return err;
-+
-+	err = airoha_ppe_debugfs_init(ppe);
-+	if (err)
-+		rhashtable_destroy(&eth->flow_table);
-+
-+	return err;
- }
- 
- void airoha_ppe_deinit(struct airoha_eth *eth)
-@@ -898,4 +906,5 @@ void airoha_ppe_deinit(struct airoha_eth *eth)
- 	rcu_read_unlock();
- 
- 	rhashtable_destroy(&eth->flow_table);
-+	debugfs_remove(eth->ppe->debugfs_dir);
- }
-diff --git a/drivers/net/ethernet/airoha/airoha_ppe_debugfs.c b/drivers/net/ethernet/airoha/airoha_ppe_debugfs.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..0216d0d5e52b995f9ac956892a3cc105aa896c19
---- /dev/null
-+++ b/drivers/net/ethernet/airoha/airoha_ppe_debugfs.c
-@@ -0,0 +1,181 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2025 AIROHA Inc
-+ * Author: Lorenzo Bianconi <lorenzo@kernel.org>
-+ */
-+
-+#include "airoha_eth.h"
-+
-+static void airoha_debugfs_ppe_print_tuple(struct seq_file *m,
-+					   void *src_addr, void *dest_addr,
-+					   u16 *src_port, u16 *dest_port,
-+					   bool ipv6)
-+{
-+	__be32 n_addr[IPV6_ADDR_WORDS];
-+
-+	if (ipv6) {
-+		ipv6_addr_cpu_to_be32(n_addr, src_addr);
-+		seq_printf(m, "%pI6", n_addr);
-+	} else {
-+		seq_printf(m, "%pI4h", src_addr);
-+	}
-+	if (src_port)
-+		seq_printf(m, ":%d", *src_port);
-+
-+	seq_puts(m, "->");
-+
-+	if (ipv6) {
-+		ipv6_addr_cpu_to_be32(n_addr, dest_addr);
-+		seq_printf(m, "%pI6", n_addr);
-+	} else {
-+		seq_printf(m, "%pI4h", dest_addr);
-+	}
-+	if (dest_port)
-+		seq_printf(m, ":%d", *dest_port);
-+}
-+
-+static int airoha_ppe_debugfs_foe_show(struct seq_file *m, void *private,
-+				       bool bind)
-+{
-+	static const char *const ppe_type_str[] = {
-+		[PPE_PKT_TYPE_IPV4_HNAPT] = "IPv4 5T",
-+		[PPE_PKT_TYPE_IPV4_ROUTE] = "IPv4 3T",
-+		[PPE_PKT_TYPE_BRIDGE] = "L2B",
-+		[PPE_PKT_TYPE_IPV4_DSLITE] = "DS-LITE",
-+		[PPE_PKT_TYPE_IPV6_ROUTE_3T] = "IPv6 3T",
-+		[PPE_PKT_TYPE_IPV6_ROUTE_5T] = "IPv6 5T",
-+		[PPE_PKT_TYPE_IPV6_6RD] = "6RD",
-+	};
-+	static const char *const ppe_state_str[] = {
-+		[AIROHA_FOE_STATE_INVALID] = "INV",
-+		[AIROHA_FOE_STATE_UNBIND] = "UNB",
-+		[AIROHA_FOE_STATE_BIND] = "BND",
-+		[AIROHA_FOE_STATE_FIN] = "FIN",
-+	};
-+	struct airoha_ppe *ppe = m->private;
-+	int i;
-+
-+	for (i = 0; i < PPE_NUM_ENTRIES; i++) {
-+		const char *state_str, *type_str = "UNKNOWN";
-+		void *src_addr = NULL, *dest_addr = NULL;
-+		u16 *src_port = NULL, *dest_port = NULL;
-+		struct airoha_foe_mac_info_common *l2;
-+		unsigned char h_source[ETH_ALEN] = {};
-+		unsigned char h_dest[ETH_ALEN];
-+		struct airoha_foe_entry *hwe;
-+		u32 type, state, ib2, data;
-+		bool ipv6 = false;
-+
-+		hwe = airoha_ppe_foe_get_entry(ppe, i);
-+		if (!hwe)
-+			continue;
-+
-+		state = FIELD_GET(AIROHA_FOE_IB1_STATE, hwe->ib1);
-+		if (!state)
-+			continue;
-+
-+		if (bind && state != AIROHA_FOE_STATE_BIND)
-+			continue;
-+
-+		state_str = ppe_state_str[state % ARRAY_SIZE(ppe_state_str)];
-+		type = FIELD_GET(AIROHA_FOE_IB1_PACKET_TYPE, hwe->ib1);
-+		if (type < ARRAY_SIZE(ppe_type_str) && ppe_type_str[type])
-+			type_str = ppe_type_str[type];
-+
-+		seq_printf(m, "%05x %s %7s", i, state_str, type_str);
-+
-+		switch (type) {
-+		case PPE_PKT_TYPE_IPV4_HNAPT:
-+		case PPE_PKT_TYPE_IPV4_DSLITE:
-+			src_port = &hwe->ipv4.orig_tuple.src_port;
-+			dest_port = &hwe->ipv4.orig_tuple.dest_port;
-+			fallthrough;
-+		case PPE_PKT_TYPE_IPV4_ROUTE:
-+			src_addr = &hwe->ipv4.orig_tuple.src_ip;
-+			dest_addr = &hwe->ipv4.orig_tuple.dest_ip;
-+			break;
-+		case PPE_PKT_TYPE_IPV6_ROUTE_5T:
-+			src_port = &hwe->ipv6.src_port;
-+			dest_port = &hwe->ipv6.dest_port;
-+			fallthrough;
-+		case PPE_PKT_TYPE_IPV6_ROUTE_3T:
-+		case PPE_PKT_TYPE_IPV6_6RD:
-+			src_addr = &hwe->ipv6.src_ip;
-+			dest_addr = &hwe->ipv6.dest_ip;
-+			ipv6 = true;
-+			break;
-+		default:
-+			break;
-+		}
-+
-+		if (src_addr && dest_addr) {
-+			seq_puts(m, " orig=");
-+			airoha_debugfs_ppe_print_tuple(m, src_addr, dest_addr,
-+						       src_port, dest_port, ipv6);
-+		}
-+
-+		switch (type) {
-+		case PPE_PKT_TYPE_IPV4_HNAPT:
-+		case PPE_PKT_TYPE_IPV4_DSLITE:
-+			src_port = &hwe->ipv4.new_tuple.src_port;
-+			dest_port = &hwe->ipv4.new_tuple.dest_port;
-+			fallthrough;
-+		case PPE_PKT_TYPE_IPV4_ROUTE:
-+			src_addr = &hwe->ipv4.new_tuple.src_ip;
-+			dest_addr = &hwe->ipv4.new_tuple.dest_ip;
-+			seq_puts(m, " new=");
-+			airoha_debugfs_ppe_print_tuple(m, src_addr, dest_addr,
-+						       src_port, dest_port,
-+						       ipv6);
-+			break;
-+		default:
-+			break;
-+		}
-+
-+		if (type >= PPE_PKT_TYPE_IPV6_ROUTE_3T) {
-+			data = hwe->ipv6.data;
-+			ib2 = hwe->ipv6.ib2;
-+			l2 = &hwe->ipv6.l2;
-+		} else {
-+			data = hwe->ipv4.data;
-+			ib2 = hwe->ipv4.ib2;
-+			l2 = &hwe->ipv4.l2.common;
-+			*((__be16 *)&h_source[4]) =
-+				cpu_to_be16(hwe->ipv4.l2.src_mac_lo);
-+		}
-+
-+		*((__be32 *)h_dest) = cpu_to_be32(l2->dest_mac_hi);
-+		*((__be16 *)&h_dest[4]) = cpu_to_be16(l2->dest_mac_lo);
-+		*((__be32 *)h_source) = cpu_to_be32(l2->src_mac_hi);
-+
-+		seq_printf(m, " eth=%pM->%pM etype=%04x data=%08x"
-+			      " vlan=%d,%d ib1=%08x ib2=%08x\n",
-+			   h_source, h_dest, l2->etype, data,
-+			   l2->vlan1, l2->vlan2, hwe->ib1, ib2);
-+	}
-+
-+	return 0;
-+}
-+
-+static int airoha_ppe_debugfs_foe_all_show(struct seq_file *m, void *private)
-+{
-+	return airoha_ppe_debugfs_foe_show(m, private, false);
-+}
-+DEFINE_SHOW_ATTRIBUTE(airoha_ppe_debugfs_foe_all);
-+
-+static int airoha_ppe_debugfs_foe_bind_show(struct seq_file *m, void *private)
-+{
-+	return airoha_ppe_debugfs_foe_show(m, private, true);
-+}
-+DEFINE_SHOW_ATTRIBUTE(airoha_ppe_debugfs_foe_bind);
-+
-+int airoha_ppe_debugfs_init(struct airoha_ppe *ppe)
-+{
-+	ppe->debugfs_dir = debugfs_create_dir("ppe", NULL);
-+	debugfs_create_file("entries", 0444, ppe->debugfs_dir, ppe,
-+			    &airoha_ppe_debugfs_foe_all_fops);
-+	debugfs_create_file("bind", 0444, ppe->debugfs_dir, ppe,
-+			    &airoha_ppe_debugfs_foe_bind_fops);
-+
-+	return 0;
-+}
+> > > > This approach has two downsides though:
+> > > > 
+> > > > 1. We have no way of checking that the memory we're passed is actually
+> > > > suitable for FW execution in a protected context. If we're passed
+> > > > random memory, this will likely hang the platform as soon as we enter
+> > > > protected mode.    
+> > > 
+> > > It's a current limitation of dma-buf in general, and you'd have the same
+> > > issue right now if someone imports a buffer, or misconfigure the heap
+> > > for a !protected heap.
+> > > 
+> > > I'd really like to have some way to store some metadata in dma_buf, if
+> > > only to tell that the buffer is protected.  
+> > 
+> > The dma_buf has a pointer to its ops, so it should be relatively easy
+> > to add an is_dma_buf_coming_from_this_heap() helper. Of course this
+> > implies linking the consumer driver to the heap it's supposed to take
+> > protected buffers from, which is basically the thing being discussed
+> > here :-).  
+> 
+> I'm not sure looking at the ops would be enough. Like, you can compare
+> that the buffer you allocated come from the heap you got from the DT,
+> but if that heap doesn't allocate protected buffers, you're screwed and
+> you have no way to tell.
 
--- 
-2.48.1
+If heap names are unique, the name of the heap should somehow guarantee
+the protected/restricted nature of buffers allocated from this heap
+though. So, from a user perspective, all you have to do is check that
+the buffers you import come from this particular heap you've been
+pointed to. Where we get the heap name from (DT or module param
+passed through a whitelist of protected heap names?) is an
+implementation detail.
 
+> 
+> It also falls apart if we have a heap driver with multiple instances,
+> which is pretty likely if we ever merge the carveout heap driver.
+
+What I meant here is that checking that a buffer comes from a
+particular heap is something the heap driver itself can easily do. It
+can be a mix of ops+name check (or ops+property check) if there's
+multiple heaps instantiated by a single driver, of course.
+
+I guess the other option would be to have a protected property at the
+dma_buf level so we don't have to go all the way back to the dma_heap
+to figure it out.
+
+> 
+> > > 
+> > > I suspect you'd also need that if you do things like do protected video
+> > > playback through a codec, get a protected frame, and want to import that
+> > > into the GPU. Depending on how you allocate it, either the codec or the
+> > > GPU or both will want to make sure it's protected.  
+> > 
+> > If it's all allocated from a central "protected" heap (even if that
+> > goes through the driver calling the dma_heap_alloc_buffer()), it
+> > shouldn't be an issue.  
+> 
+> Right, assuming we have a way to identify the heap the buffer was
+> allocated from somehow. This kind of assumes that you only ever get one
+> source of protected memory, and you'd never allocate a protected buffer
+> from a different one in the codec driver for example.
+
+Yes, and that's why having the ability to check that a buffer comes
+from a particular heap is key. I mean, we don't necessarily have to
+restrict things to a single heap, it can be a whitelist of heaps we know
+provide protected buffers if we see a value in having multiple
+protected heaps coexisting on a single platform.
+
+Regards,
+
+Boris
 
