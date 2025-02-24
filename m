@@ -1,2065 +1,358 @@
-Return-Path: <devicetree+bounces-150145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75B89A4156B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 07:34:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64A98A4156F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 07:35:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5E6F3B4F0E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 06:33:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 495E21729A5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 06:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69DEF1AC44D;
-	Mon, 24 Feb 2025 06:33:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E16B81DB34E;
+	Mon, 24 Feb 2025 06:35:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ex4eG62V"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="UERUdkLk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2079.outbound.protection.outlook.com [40.107.96.79])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9617C1B21BF;
-	Mon, 24 Feb 2025 06:33:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740378835; cv=none; b=YwNCNBnMbc1G4qwAlp5+R66BbBnFTIxSZPnMfRb7104CGDEKB1ixQVrF8hDHfBHcTozdhLDHjDpSqEU6yRkzrFcSVrePFNCHw0EJRnd3qy4ikiVl0y1l/w+SEnTrwPdVIT+5mm9h8YKpBY+ASgredn+ZyLenvqpbYUUJQe+syWc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740378835; c=relaxed/simple;
-	bh=GEFwSPlPixENC+G5sW3WW/+wvvr25VnL4tFwgs5DmgY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gGDLWEt50PrF+vj4MtJe1/X5cqBlqyT7Q0/lrhckUl+rRysuk6gAPoxuKZd02jPTb1Ki5dU+5wgSnX2sOfxGExpdhhL4muttQXp3Xpo2l26xwvjm9zTSF8wjVAfLPl1Irtr+PiNu1qD5deEKkjSGHRT+SU2yfFXz78NhLXpyRWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ex4eG62V; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51NNd37G029677;
-	Mon, 24 Feb 2025 06:33:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=2WGdi65WtqVmb/vJnJyeGYclUxdqKDsUWhv
-	06SOnrts=; b=ex4eG62Vg3J8CCPQbCQRpvBSzxm4VDoFJwAhyrMcZBK7GheDD9P
-	e4uq1EEOVwVj451cIzyiTPqaue5rMaAR7g0FN+rK4soQRlqT3SV/F6oXCEsqZERK
-	/OZB3n7ct4teOKsLnBLfBvflFV/++IwOVp7g/o5ONUlPhqAG2V7E9RxtR5CGXhhO
-	t/tiU6FWP0YjyGT/hYCyPsYAwoZiCad3vdHuI4NwegXbATxmvsRwqzZUiUcO6OvF
-	m/M1S6uP8iXfBb1oi+ZotqgerB680Pc+veF2bxFq59gqolryUOpEiN4gAZgmOmrr
-	H/WTuNAQoJLadHF0H+QylXeL7ufVDMXJbng==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44y5k63wm8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Feb 2025 06:33:44 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 51O6XeSe018067;
-	Mon, 24 Feb 2025 06:33:40 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 44y7nkgxq4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Feb 2025 06:33:40 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 51O6XeRg018061;
-	Mon, 24 Feb 2025 06:33:40 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.97.252])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 51O6XenK018059
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Feb 2025 06:33:40 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4047106)
-	id B7F41516; Mon, 24 Feb 2025 12:03:39 +0530 (+0530)
-From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com,
-        Viken Dadhaniya <quic_vdadhani@quicinc.com>
-Subject: [PATCH v4 RESEND] arm64: dts: qcom: qcs8300: Add QUPv3 configuration
-Date: Mon, 24 Feb 2025 12:03:38 +0530
-Message-Id: <20250224063338.27306-1-quic_vdadhani@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2058C1C6FEB;
+	Mon, 24 Feb 2025 06:35:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.96.79
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740378908; cv=fail; b=qI7HDmmZVgGWT9CzyK2EqGhfeqAJI7XktCp6rhk3PKBJeYj79aasVL66gY+h9lXPWeS6FQujCN761JrskoxfeP9LcPSGG2gkH9Pqrg0hHCo/oOu9pR/D2BWxBHeShm29dOMFyPUhbNnJ6qz+I4E4p3ijsmyPzpZU2awIdmvjDng=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740378908; c=relaxed/simple;
+	bh=o0e5CR89cKynyePxnRUnIYUU7Ow5mNkSxN2D9pE6Ln4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=cXTJITY7a6Ty08nh+U/Ise3SdUVb+q5meeTQEfIci2QB3gTDbsvwtVBtI1R1JJgLjbj9VpVs/uN17u6aG7jccfAfyN1MEiu7+oPs2b/vCdRmt+O52RRhAXEeHpXEqGSrAJRGp2YwPTWr0GBDYDqtmmwwkCA6m5tB4bCZHuZ3bxU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=UERUdkLk; arc=fail smtp.client-ip=40.107.96.79
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QWDA0F+U+PMQ6XGszTD4MB2GKctcee3KdO7QpmtDnMVOKtR4Cv+5lC70g54Pf2BlUp8ZK1phC+UDuFmWt6ZZIrylPcZkoi4oV4L6/Kej1tMWTtRotxNgDuJpz+xY1soGK8yzEfGkfjOLeuIaMLWB7JS84Qc2QFpbfWnnHtREANNpTEPyTedfA7a9pyDA9akGkQD++ZOFfWpl5HX76Rfn1+fl3R098NBkyQyMsHFIkvdWW4yZJsi4RPVimLr26Bqpza/z5MXKxNEdhk7RyvAcVtd08JKPrF15kVaHQdkrKlNBIVE6ONdY/1/CtYif7Ob5H9gkqZSlQWxSbN8sSvr6vA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HqHbeSl8cwKwLOJlPkorlZ6nNaVqez1NC6VPod1i9v0=;
+ b=Xkf7Vo+Dntb3mmVzj3rsazSOr6SFbUqo53cRsunkZ8BJfbd5ZMIug6eR+XQOJb1164ibuYUJI+dBkGBNOrq3qoeC+QlAm3I/hoQzq6wU3PeMDtN/mRA2Fe6JYxy+bqK7RcOR8Bo4nxD/Algr+PH8l870AK/58RcbFDbyPEejt5AyiFzZjGysY1v9KsDw5qJBQb4m1VxWKITw8vqs85YaV3/z2MIOVlUFq4qaWyuLT7q6jAD0VujUia0PtpsakS7EDCZRGdarBSnU14DZ9cUCjB8p7wn1oT7/tQ6K8fjqtpfvieEo9ZwesyggL80y/hAklg1d9UDA1hIxCEu5BZBoVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HqHbeSl8cwKwLOJlPkorlZ6nNaVqez1NC6VPod1i9v0=;
+ b=UERUdkLk4CavDfznhM6C6a4Aqttb7SqYzcsqP+lKF9A+HAkqE6bIX5hF7DLYGxcwpR7UbNZYKUEQNMLHVWlWXiE7qDgJcqN3JdRjZwipAuELGAHvpUALK50agEwdPsyy7+N1GqPnZGTtCBGdmi+buGBYPMuScTCrQgLJtaNJq64=
+Received: from SN7PR12MB7201.namprd12.prod.outlook.com (2603:10b6:806:2a8::22)
+ by DS0PR12MB7971.namprd12.prod.outlook.com (2603:10b6:8:14e::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.20; Mon, 24 Feb
+ 2025 06:35:00 +0000
+Received: from SN7PR12MB7201.namprd12.prod.outlook.com
+ ([fe80::b25:4657:e9:cbc3]) by SN7PR12MB7201.namprd12.prod.outlook.com
+ ([fe80::b25:4657:e9:cbc3%3]) with mapi id 15.20.8466.015; Mon, 24 Feb 2025
+ 06:35:00 +0000
+From: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
+To: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>,
+	"bhelgaas@google.com" <bhelgaas@google.com>, "lpieralisi@kernel.org"
+	<lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>,
+	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
+CC: "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Simek,
+ Michal" <michal.simek@amd.com>, "Gogada, Bharat Kumar"
+	<bharat.kumar.gogada@amd.com>
+Subject: RE: [PATCH v3 2/2] PCI: xilinx-cpm: Add support for Versal Net CPM5NC
+ Root Port controller
+Thread-Topic: [PATCH v3 2/2] PCI: xilinx-cpm: Add support for Versal Net
+ CPM5NC Root Port controller
+Thread-Index: AQHbgQ2AaHkh28uBDkKj7of8FdlNDrNWCiuQ
+Date: Mon, 24 Feb 2025 06:35:00 +0000
+Message-ID:
+ <SN7PR12MB720170AD6430415A10A3F0118BC02@SN7PR12MB7201.namprd12.prod.outlook.com>
+References: <20250217072713.635643-1-thippeswamy.havalige@amd.com>
+ <20250217072713.635643-3-thippeswamy.havalige@amd.com>
+In-Reply-To: <20250217072713.635643-3-thippeswamy.havalige@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=7455fd6f-61d9-4b17-8eda-de78d2b13d5b;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-02-24T06:34:21Z;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Tag=10,
+ 3, 0, 1;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN7PR12MB7201:EE_|DS0PR12MB7971:EE_
+x-ms-office365-filtering-correlation-id: 5798617b-61fb-4f1c-4d35-08dd549d5d0e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|376014|1800799024|7416014|38070700018|7053199007;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?9ueAU/8pisAf7WOnGA35TkUMWoWZHcQPR44Y1r2uZ+TaMxFJa0DKUSNnuhGc?=
+ =?us-ascii?Q?VYkOC0OSKIKiiRvgoV3glagNvhMhbEClytkiWeaRQAiLNo8BQHvvrx83+zNO?=
+ =?us-ascii?Q?zlK6i7QUlGA9OUs/m6OGiTs7sD+MuF9sbMJQl/b+eb7P8voIWbNjv9MXzdzb?=
+ =?us-ascii?Q?jhnvK+tl2u8aNQB7A1kpU/0kuvSVHEFmyj3aElwTtxnVBv5FTKmKB/IRBLnm?=
+ =?us-ascii?Q?IwtDg0/Pb+QH7+JN/jVujds/sQUg/jUH+uNwl29wxycEDiNnb7eMzt/oQ3Vs?=
+ =?us-ascii?Q?sl0loXm1PLXAwv2utNIR79/Xc4oV6m+tLEl5E+UqFXX0nxrd5IxBbVE+SDQC?=
+ =?us-ascii?Q?tttNonsTsW6hOIcQ1gSKOJPIl+nmxWn9Jqvl/7rSFbYtM9d+SCAczY5RO4kC?=
+ =?us-ascii?Q?aqQ1BlsUrSDvgKpl7mjNmZt8ZGpQAnlzaYLSVsyOOL3GK2OQW9OwCXN1+lpn?=
+ =?us-ascii?Q?j3q7cez1CGtECUT4KHnmPvXrAdPERg+yC+FsItq/UWQxtxQl14jSgOElqKuc?=
+ =?us-ascii?Q?ADGylzgCy1G+pOGskL20QMfdqWyRpS+sZhiW00Uwlg+sd1jGiH8vsm770Xr9?=
+ =?us-ascii?Q?Svu6QCwUABKSH6jroCUNILe8ryCyCfmNUuB6m+00tycSiiaoPf2b7IUgKQP5?=
+ =?us-ascii?Q?AekWSMKsoHpC1lVogABkUgSKSstCtTQTdeewwg0WIvdyBPB/mc7opcF7K/k0?=
+ =?us-ascii?Q?jvhB104qcxKkIMNBEBJ5rxzioG2KcUV9OFXpckSIeqH+WFuQh7kwAoxnUcY5?=
+ =?us-ascii?Q?peJvGt16SSA3TW1urwbwRMWzcEP5DYppo2o6sON75Xv7xBEDGDmd1YpeQbN5?=
+ =?us-ascii?Q?Pla+pDuCcEIO8yYOm/UQhZ/A0dSNehsYIlbtSysaBlaBRWQD5f+yDaGIfsPF?=
+ =?us-ascii?Q?79cErBWOn0AJbaqEv9XYLNg2UcZ3MXfpkafOSvkocnQ4EYd57WNP6zCtvwhG?=
+ =?us-ascii?Q?sWxygBwe5ldGFrLYt0MfYHQ9dlu7ONp92Gx+N5dAUY9KXJQXPMYevbqlcvmc?=
+ =?us-ascii?Q?DnuNGM3oyXqyC/c+kst+kZnN6tOjb15pNIS66JEw6Lo2g94F+0wFboRp1Js5?=
+ =?us-ascii?Q?El2MsKpcFJvT6UuAKJlLp/xJBQbsr6dwUuojee1UBen/gfRypw8RpUKCa5AT?=
+ =?us-ascii?Q?pvt8C2ob2CUkQcfGAQ21+SInorELl7PJD3wLfhoLFgNK1H2bpCM9Bz+hq4qG?=
+ =?us-ascii?Q?JRSgv6T/YlQovgSROrN7lOxFH5gjo8aSufL38xkpoeBHiT6dc5n4JQj95gNY?=
+ =?us-ascii?Q?VVxW1lF+dLK3uXvi4T/PfEZOW1Efre0taLMSLvx5fuyaJ+91GHRkRbmN7WL3?=
+ =?us-ascii?Q?KNPQRsMpZtBfwXpSjD5YmRA95umjRd7+im7peXz4SHJmL32XidItiJqyUWUG?=
+ =?us-ascii?Q?vqGvM5pXvGp1ubZyGgJQrJio3Sk2tVOsRqzuPzeMjCw54c3gH7BDIiom0DCr?=
+ =?us-ascii?Q?JKx6OFOg5lr1SqtZ8i58gOmbjLItmEGF?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR12MB7201.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(7416014)(38070700018)(7053199007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?bzWSHA6fG9zk2J6Yf8mLl0qd6I5bqrqrGThJmieYcyzsSA9PziD5qjq1pCX7?=
+ =?us-ascii?Q?cr/kZEPAIHR9DWjnpKGTY2QUW9UInCwUqJPcnAR+kFwjzQ9/S8+4d+E4tIJe?=
+ =?us-ascii?Q?ae1qcSIGLC8wXtS0yyiTTpGBGfD1nE0W54X0SdDQBxdosX8mLfs46QqepThi?=
+ =?us-ascii?Q?pbO+mdf9v+lbW7tsTkubmfGNODXhNnpHvU+XGVmBJDUbEuHP7D1DgrPWvgDK?=
+ =?us-ascii?Q?nFdbQOyxmg4pG/RG8KmCLcRqx4hS35UroPCOKUl9Xm7ZOIj0kd/79n6/nBH4?=
+ =?us-ascii?Q?A2q7wTz6XoBosAgHjgV6xj6cIahZKeD0JoTuxWY3Nj9rTuBnWtMFGFNzpPsu?=
+ =?us-ascii?Q?H8Doq53qReEKfjL1m5Uv/wqV4llPl6dIM8yti3AJTUENyuRrHzWrof1EhhWO?=
+ =?us-ascii?Q?DJ9V5J3e3+wtEC1FNFuQSkaggpyinYqRExQx4bKUh/xHB412s7f8glYLJ/6Q?=
+ =?us-ascii?Q?a3iw1NFf3gah212N4j1wzrEOpQHmJ78q1HyFM+WyQ5ZinP5s9bP0OlTJfO0Q?=
+ =?us-ascii?Q?52AJNaOY2cXuTuU4aprdRtq1TKCg4qmWHGBxjvRBslzAI7+EdoXvbo5ictSa?=
+ =?us-ascii?Q?VOWKO5elAKcZANzsSh231ws7FLrMvQDgdSP7jJaUcm5LfdEu8ZX5+3GreXgB?=
+ =?us-ascii?Q?oLXk9Llr/0GH5fl3KXqiOPE//UEpwmH8npzfAKf3uTmsdjjgkPQdt5C0FHjo?=
+ =?us-ascii?Q?DLFPxYdU4X+DbBfQSa/p/q2Q8W91/ashZnpfq7PJNdSJWhVkZ9vlEM0HGlNi?=
+ =?us-ascii?Q?Gn3npXkJ49RUoH8GsYNUa1sb5DCXdwbWPswIhOYvMgImjRBthSyyPhzjCYna?=
+ =?us-ascii?Q?65PQmi6KNwsW7T+OW01QRYcBytYJV1K7wFCA1NbVg+NtrxkKh0sUzMXtNQYS?=
+ =?us-ascii?Q?9g3Y0Fs4SsWj6XHVQTXbEmqq5i9ExLk/p7FjnkxqOoir72TBzwQYAydMsk+Y?=
+ =?us-ascii?Q?sKhzlbQSx9PXjZkd6fw4T8VtRaaZBpiA/CG/1hSiIh3RpbhADCM0N7lTuZGV?=
+ =?us-ascii?Q?JVJ0swaw2q8HGVi0geXXAszolVc9AuH1csR4Q9KqjY+9uUUcC3HiEkqeMJ7E?=
+ =?us-ascii?Q?DucpUREOlUsphUYCuxSvQ+NqVZRfjcJXBmvm/tFYBQOq3uJA/G6sYSpDA/g/?=
+ =?us-ascii?Q?/2jFJB3uZhpwfFCpUFnd49W/S1bRkEqQJ+Egv/RKt+3iyOx0RCDNOtkCJGf9?=
+ =?us-ascii?Q?+VvQjec0pu6W8soGqvxRnePH9EnQSCPvLLRFszRs/lfbYr20ArESH1hZL1+t?=
+ =?us-ascii?Q?pm7jmICFW5RCIBxp8bvzBi2BVDskw7dQtNeDKhnRBeFVSCr9RTKwN2pe8Abd?=
+ =?us-ascii?Q?Y2ZkDOX6OzyTHkqgQVWdqZRZMXx+QIS8+w02e8WYK6QDXuUVpkZLzUzVAsEI?=
+ =?us-ascii?Q?PyP8sSXUto7IJYCL989g5JTn6Og5Yndmj4iWfSmjv9/DBYXdaJEndeXXmGdC?=
+ =?us-ascii?Q?6bkpCMSPBEgLKr2H2A0kG7e4OglUhzJj1EPmOmaM+z1PavxxPA+qwciYTxw8?=
+ =?us-ascii?Q?t7xgQ+IzS29ar+Ncp6FiFNT60MYx0p+7vtUytFKy6L23oa346a19MnEM+EDY?=
+ =?us-ascii?Q?qgcOmPHzazmN/1v3+Oo=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: lyivbaIFxIuqTnnSX2GJ4IBbEUAfteGH
-X-Proofpoint-GUID: lyivbaIFxIuqTnnSX2GJ4IBbEUAfteGH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-24_02,2025-02-20_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- bulkscore=0 spamscore=0 phishscore=0 clxscore=1015 impostorscore=0
- mlxlogscore=999 suspectscore=0 priorityscore=1501 mlxscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502240046
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB7201.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5798617b-61fb-4f1c-4d35-08dd549d5d0e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Feb 2025 06:35:00.4066
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: B5qSaDKyoD7judPys/7uFbA6YUk9v2UqlwK0X+4ZKqWE8JqcKA3BRGlBypGuz4sxumuXBKuLG/9m2lsLcbR98g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7971
 
-Add DT support for QUPV3 Serial Engines.
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
----
-v3 -> v4:
+Hi Manivannan Sadhasivam,
 
-- Drop buses aliases from SOC DTSI.
+Could you please provide an update on this patch.
 
-v3 Link: https://lore.kernel.org/linux-devicetree/20250124150439.482422-1-quic_vdadhani@quicinc.com/
+Regards,
+Thippeswamy H
 
-v2 -> v3:
-
-- Remove build dependencies list.
-- Rebase the patch.
-
-v2 Link: https://lore.kernel.org/linux-kernel/20241112172337.3120801-1-quic_vdadhani@quicinc.com/
-
-v1 -> v2:
-
-- Correct gpi dma node name and compatible strings
-- Use QCOM_ICC_TAG_ALWAYS flag in interconnect property.
-- Update build dependency list.
-
-v1 Link: https://lore.kernel.org/linux-devicetree/20241009091150.32354-1-quic_vdadhani@quicinc.com/
----
----
- arch/arm64/boot/dts/qcom/qcs8300.dtsi | 1882 ++++++++++++++++++++++++-
- 1 file changed, 1874 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index 4a057f7c0d9f..fd3bfa675fae 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/clock/qcom,sa8775p-dispcc.h>
- #include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
- #include <dt-bindings/clock/qcom,sa8775p-videocc.h>
-+#include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/firmware/qcom,scm.h>
- #include <dt-bindings/interconnect/qcom,icc.h>
- #include <dt-bindings/interconnect/qcom,qcs8300-rpmh.h>
-@@ -351,6 +352,15 @@ mc_virt: interconnect-1 {
- 		qcom,bcm-voters = <&apps_bcm_voter>;
- 	};
- 
-+	qup_opp_table: opp-table-qup {
-+		compatible = "operating-points-v2";
-+
-+		opp-120000000 {
-+			opp-hz = /bits/ 64 <120000000>;
-+			required-opps = <&rpmhpd_opp_svs_l1>;
-+		};
-+	};
-+
- 	pmu-a55 {
- 		compatible = "arm,cortex-a55-pmu";
- 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-@@ -627,6 +637,29 @@ qfprom: efuse@784000 {
- 			#size-cells = <1>;
- 		};
- 
-+		gpi_dma0: dma-controller@900000 {
-+			compatible = "qcom,qcs8300-gpi-dma", "qcom,sm6350-gpi-dma";
-+			reg = <0x0 0x900000 0x0 0x60000>;
-+			#dma-cells = <3>;
-+			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
-+			iommus = <&apps_smmu 0x416 0x0>;
-+			dma-channels = <12>;
-+			dma-channel-mask = <0xfff>;
-+			dma-coherent;
-+			status = "disabled";
-+		};
-+
- 		qupv3_id_0: geniqup@9c0000 {
- 			compatible = "qcom,geni-se-qup";
- 			reg = <0x0 0x9c0000 0x0 0x2000>;
-@@ -637,22 +670,1236 @@ qupv3_id_0: geniqup@9c0000 {
- 				      "s-ahb";
- 			#address-cells = <2>;
- 			#size-cells = <2>;
-+			iommus = <&apps_smmu 0x403 0x0>;
-+			dma-coherent;
- 			status = "disabled";
- 
-+			i2c0: i2c@980000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0x980000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c0_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 550 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma0 0 0 QCOM_GPI_I2C>,
-+				       <&gpi_dma0 1 0 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi0: spi@980000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0x980000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi0_data_clk>, <&qup_spi0_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 550 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma0 0 0 QCOM_GPI_SPI>,
-+				       <&gpi_dma0 1 0 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart0: serial@980000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0x980000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart0_cts>, <&qup_uart0_rts>,
-+					    <&qup_uart0_tx>, <&qup_uart0_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 550 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
-+			i2c1: i2c@984000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0x984000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c1_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 551 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma0 0 1 QCOM_GPI_I2C>,
-+				       <&gpi_dma0 1 1 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi1: spi@984000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0x984000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi1_data_clk>, <&qup_spi1_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 551 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma0 0 1 QCOM_GPI_SPI>,
-+				       <&gpi_dma0 1 1 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart1: serial@984000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0x984000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart1_cts>, <&qup_uart1_rts>,
-+					    <&qup_uart1_tx>, <&qup_uart1_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 551 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects =	<&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
-+			i2c2: i2c@988000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0x988000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c2_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma0 0 2 QCOM_GPI_I2C>,
-+				       <&gpi_dma0 1 2 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi2: spi@988000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0x988000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi2_data_clk>, <&qup_spi2_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma0 0 2 QCOM_GPI_SPI>,
-+				       <&gpi_dma0 1 2 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart2: serial@988000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0x988000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart2_cts>, <&qup_uart2_rts>,
-+					    <&qup_uart2_tx>, <&qup_uart2_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
-+			i2c3: i2c@98c000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0x98c000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c3_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma0 0 3 QCOM_GPI_I2C>,
-+				       <&gpi_dma0 1 3 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi3: spi@98c000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0x98c000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi3_data_clk>, <&qup_spi3_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma0 0 3 QCOM_GPI_SPI>,
-+				       <&gpi_dma0 1 3 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart3: serial@98c000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0x98c000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart3_cts>, <&qup_uart3_rts>,
-+					    <&qup_uart3_tx>, <&qup_uart3_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
-+			i2c4: i2c@990000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0x990000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c4_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects =	<&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma0 0 4 QCOM_GPI_I2C>,
-+				       <&gpi_dma0 1 4 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi4: spi@990000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0x990000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi4_data_clk>, <&qup_spi4_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma0 0 4 QCOM_GPI_SPI>,
-+				       <&gpi_dma0 1 4 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart4: serial@990000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0x990000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart4_cts>, <&qup_uart4_rts>,
-+					    <&qup_uart4_tx>, <&qup_uart4_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
-+			i2c5: i2c@994000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0x994000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c5_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects =	<&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma0 0 5 QCOM_GPI_I2C>,
-+				       <&gpi_dma0 1 5 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi5: spi@994000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0x994000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi5_data_clk>, <&qup_spi5_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma0 0 5 QCOM_GPI_SPI>,
-+				       <&gpi_dma0 1 5 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart5: serial@994000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0x994000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart5_cts>, <&qup_uart5_rts>,
-+					    <&qup_uart5_tx>, <&qup_uart5_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
-+			i2c6: i2c@998000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0x998000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S6_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c6_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects =	<&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma0 0 6 QCOM_GPI_I2C>,
-+				       <&gpi_dma0 1 6 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi6: spi@998000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0x998000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S6_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi6_data_clk>, <&qup_spi6_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma0 0 6 QCOM_GPI_SPI>,
-+				       <&gpi_dma0 1 6 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart6: serial@998000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0x998000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S6_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart6_cts>, <&qup_uart6_rts>,
-+					    <&qup_uart6_tx>, <&qup_uart6_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
- 			uart7: serial@99c000 {
- 				compatible = "qcom,geni-debug-uart";
- 				reg = <0x0 0x0099c000 0x0 0x4000>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S7_CLK>;
- 				clock-names = "se";
--				pinctrl-0 = <&qup_uart7_default>;
-+				pinctrl-0 = <&qup_uart7_tx>, <&qup_uart7_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+		};
-+
-+		gpi_dma1: dma-controller@a00000 {
-+			compatible = "qcom,qcs8300-gpi-dma", "qcom,sm6350-gpi-dma";
-+			reg = <0x0 0xa00000 0x0 0x60000>;
-+			#dma-cells = <3>;
-+			interrupts = <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 281 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 294 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 295 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 296 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH>;
-+			iommus = <&apps_smmu 0x456 0x0>;
-+			dma-channels = <12>;
-+			dma-channel-mask = <0xfff>;
-+			dma-coherent;
-+			status = "disabled";
-+		};
-+
-+		qupv3_id_1: geniqup@ac0000 {
-+			compatible = "qcom,geni-se-qup";
-+			reg = <0x0 0xac0000 0x0 0x2000>;
-+			ranges;
-+			clocks = <&gcc GCC_QUPV3_WRAP_1_M_AHB_CLK>,
-+				 <&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
-+			clock-names = "m-ahb",
-+				      "s-ahb";
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			iommus = <&apps_smmu 0x443 0x0>;
-+			dma-coherent;
-+			status = "disabled";
-+
-+			i2c8: i2c@a80000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0xa80000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c8_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma1 0 0 QCOM_GPI_I2C>,
-+				       <&gpi_dma1 1 0 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi8: spi@a80000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0xa80000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi8_data_clk>, <&qup_spi8_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma1 0 0 QCOM_GPI_SPI>,
-+				       <&gpi_dma1 1 0 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart8: serial@a80000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0xa80000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart8_cts>, <&qup_uart8_rts>,
-+					    <&qup_uart8_tx>, <&qup_uart8_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
-+			i2c9: i2c@a84000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0xa84000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c9_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma1 0 1 QCOM_GPI_I2C>,
-+				       <&gpi_dma1 1 1 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi9: spi@a84000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0xa84000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi9_data_clk>, <&qup_spi9_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma1 0 1 QCOM_GPI_SPI>,
-+				       <&gpi_dma1 1 1 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart9: serial@a84000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0xa84000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart9_cts>, <&qup_uart9_rts>,
-+					    <&qup_uart9_tx>, <&qup_uart9_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
-+			i2c10: i2c@a88000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0xa88000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c10_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma1 0 2 QCOM_GPI_I2C>,
-+				       <&gpi_dma1 1 2 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi10: spi@a88000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0xa88000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi10_data_clk>, <&qup_spi10_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma1 0 2 QCOM_GPI_SPI>,
-+				       <&gpi_dma1 1 2 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart10: serial@a88000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0xa88000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart10_cts>, <&qup_uart10_rts>,
-+					    <&qup_uart10_tx>, <&qup_uart10_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
-+			i2c11: i2c@a8c000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0xa8c000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c11_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma1 0 3 QCOM_GPI_I2C>,
-+				       <&gpi_dma1 1 3 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart11: serial@a8c000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0xa8c000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart11_tx>, <&qup_uart11_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
-+			i2c12: i2c@a90000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0xa90000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c12_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma1 0 4 QCOM_GPI_I2C>,
-+				       <&gpi_dma1 1 4 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi12: spi@a90000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0xa90000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi12_data_clk>, <&qup_spi12_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma1 0 4 QCOM_GPI_SPI>,
-+				       <&gpi_dma1 1 4 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart12: serial@a90000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0xa90000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart12_cts>, <&qup_uart12_rts>,
-+					    <&qup_uart12_tx>, <&qup_uart12_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
-+			i2c13: i2c@a94000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0xa94000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c13_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma1 0 5 QCOM_GPI_I2C>,
-+				       <&gpi_dma1 1 5 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi13: spi@a94000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0xa94000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi13_data_clk>, <&qup_spi13_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma1 0 5 QCOM_GPI_SPI>,
-+				       <&gpi_dma1 1 5 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart13: serial@a94000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0xa94000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart13_cts>, <&qup_uart13_rts>,
-+					    <&qup_uart13_tx>, <&qup_uart13_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
-+			i2c14: i2c@a98000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0xa98000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S6_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c14_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 835 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma1 0 6 QCOM_GPI_I2C>,
-+				       <&gpi_dma1 1 6 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi14: spi@a98000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0xa98000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S6_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi14_data_clk>, <&qup_spi14_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 835 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma1 0 6 QCOM_GPI_SPI>,
-+				       <&gpi_dma1 1 6 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart14: serial@a98000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0xa98000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S6_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart14_cts>, <&qup_uart14_rts>,
-+					    <&qup_uart14_tx>, <&qup_uart14_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 835 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+
-+			i2c15: i2c@a9c000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0xa9c000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S7_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c15_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma1 0 7 QCOM_GPI_I2C>,
-+				       <&gpi_dma1 1 7 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi15: spi@a9c000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0xa9c000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S7_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi15_data_clk>, <&qup_spi15_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma1 0 7 QCOM_GPI_SPI>,
-+				       <&gpi_dma1 1 7 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart15: serial@a9c000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0xa9c000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S7_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart15_cts>, <&qup_uart15_rts>,
-+					    <&qup_uart15_tx>, <&qup_uart15_rx>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				status = "disabled";
-+			};
-+		};
-+
-+		gpi_dma3: dma-controller@b00000 {
-+			compatible = "qcom,qcs8300-gpi-dma", "qcom,sm6350-gpi-dma";
-+			reg = <0x0 0xb00000 0x0 0x60000>;
-+			#dma-cells = <3>;
-+			interrupts = <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 527 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 528 IRQ_TYPE_LEVEL_HIGH>;
-+			iommus = <&apps_smmu 0x56 0x0>;
-+			dma-channels = <4>;
-+			dma-channel-mask = <0xf>;
-+			dma-coherent;
-+			status = "disabled";
-+		};
-+
-+		qupv3_id_3: geniqup@bc0000 {
-+			compatible = "qcom,geni-se-qup";
-+			reg = <0x0 0xbc0000 0x0 0x2000>;
-+			ranges;
-+			clocks = <&gcc GCC_QUPV3_WRAP_3_M_AHB_CLK>,
-+				 <&gcc GCC_QUPV3_WRAP_3_S_AHB_CLK>;
-+			clock-names = "m-ahb",
-+				      "s-ahb";
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			iommus = <&apps_smmu 0x43 0x0>;
-+			dma-coherent;
-+			status = "disabled";
-+
-+			i2c16: i2c@b80000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0x0 0xb80000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP3_S0_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c16_data_clk>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 830 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_3 QCOM_ICC_TAG_ALWAYS>,
-+						<&aggre2_noc MASTER_QUP_3 QCOM_ICC_TAG_ALWAYS
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config",
-+						     "qup-memory";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
-+				dmas = <&gpi_dma3 0 0 QCOM_GPI_I2C>,
-+				       <&gpi_dma3 1 0 QCOM_GPI_I2C>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			spi16: spi@b80000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0x0 0xb80000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP3_S0_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_spi16_data_clk>, <&qup_spi16_cs>;
-+				pinctrl-names = "default";
-+				interrupts = <GIC_SPI 830 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+						 &config_noc SLAVE_QUP_3 QCOM_ICC_TAG_ALWAYS>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
-+				dmas = <&gpi_dma3 0 0 QCOM_GPI_SPI>,
-+				       <&gpi_dma3 1 0 QCOM_GPI_SPI>;
-+				dma-names = "tx",
-+					    "rx";
-+				status = "disabled";
-+			};
-+
-+			uart16: serial@b80000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0xb80000 0x0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_WRAP3_S0_CLK>;
-+				clock-names = "se";
-+				pinctrl-0 = <&qup_uart16_cts>, <&qup_uart16_rts>,
-+					    <&qup_uart16_tx>, <&qup_uart16_rx>;
- 				pinctrl-names = "default";
--				interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
--				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
--						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
-+				interrupts = <GIC_SPI 830 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS
-+						 &clk_virt SLAVE_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+						 &config_noc SLAVE_QUP_3 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
- 						     "qup-config";
-+				power-domains = <&rpmhpd RPMHPD_CX>;
-+				operating-points-v2 = <&qup_opp_table>;
- 				status = "disabled";
- 			};
- 		};
-@@ -3038,11 +4285,630 @@ tlmm: pinctrl@f100000 {
- 			#interrupt-cells = <2>;
- 			wakeup-parent = <&pdc>;
- 
--			qup_uart7_default: qup-uart7-state {
--				/* TX, RX */
--				pins = "gpio43", "gpio44";
-+			qup_i2c0_data_clk: qup-i2c0-data-clk-state {
-+				pins = "gpio17", "gpio18";
-+				function = "qup0_se0";
-+			};
-+
-+			qup_i2c1_data_clk: qup-i2c1-data-clk-state {
-+				pins = "gpio19", "gpio20";
-+				function = "qup0_se1";
-+			};
-+
-+			qup_i2c2_data_clk: qup-i2c2-data-clk-state {
-+				pins = "gpio33", "gpio34";
-+				function = "qup0_se2";
-+			};
-+
-+			qup_i2c3_data_clk: qup-i2c3-data-clk-state {
-+				pins = "gpio25", "gpio26";
-+				function = "qup0_se3";
-+			};
-+
-+			qup_i2c4_data_clk: qup-i2c4-data-clk-state {
-+				pins = "gpio29", "gpio30";
-+				function = "qup0_se4";
-+			};
-+
-+			qup_i2c5_data_clk: qup-i2c5-data-clk-state {
-+				pins = "gpio21", "gpio22";
-+				function = "qup0_se5";
-+			};
-+
-+			qup_i2c6_data_clk: qup-i2c6-data-clk-state {
-+				pins = "gpio80", "gpio81";
-+				function = "qup0_se6";
-+			};
-+
-+			qup_i2c8_data_clk: qup-i2c8-data-clk-state {
-+				pins = "gpio37", "gpio38";
-+				function = "qup1_se0";
-+			};
-+
-+			qup_i2c9_data_clk: qup-i2c9-data-clk-state {
-+				pins = "gpio39", "gpio40";
-+				function = "qup1_se1";
-+			};
-+
-+			qup_i2c10_data_clk: qup-i2c10-data-clk-state {
-+				pins = "gpio84", "gpio85";
-+				function = "qup1_se2";
-+			};
-+
-+			qup_i2c11_data_clk: qup-i2c11-data-clk-state {
-+				pins = "gpio41", "gpio42";
-+				function = "qup1_se3";
-+			};
-+
-+			qup_i2c12_data_clk: qup-i2c12-data-clk-state {
-+				pins = "gpio45", "gpio46";
-+				function = "qup1_se4";
-+			};
-+
-+			qup_i2c13_data_clk: qup-i2c13-data-clk-state {
-+				pins = "gpio49", "gpio50";
-+				function = "qup1_se5";
-+			};
-+
-+			qup_i2c14_data_clk: qup-i2c14-data-clk-state {
-+				pins = "gpio89", "gpio90";
-+				function = "qup1_se6";
-+			};
-+
-+			qup_i2c15_data_clk: qup-i2c15-data-clk-state {
-+				pins = "gpio91", "gpio92";
-+				function = "qup1_se7";
-+			};
-+
-+			qup_i2c16_data_clk: qup-i2c16-data-clk-state {
-+				pins = "gpio10", "gpio11";
-+				function = "qup2_se0";
-+			};
-+
-+			qup_spi0_data_clk: qup-spi0-data-clk-state {
-+				pins = "gpio17", "gpio18", "gpio19";
-+				function = "qup0_se0";
-+			};
-+
-+			qup_spi0_cs: qup-spi0-cs-state {
-+				pins = "gpio20";
-+				function = "qup0_se0";
-+			};
-+
-+			qup_spi0_cs_gpio: qup-spi0-cs-gpio-state {
-+				pins = "gpio20";
-+				function = "gpio";
-+			};
-+
-+			qup_spi1_data_clk: qup-spi1-data-clk-state {
-+				pins = "gpio19", "gpio20", "gpio17";
-+				function = "qup0_se1";
-+			};
-+
-+			qup_spi1_cs: qup-spi1-cs-state {
-+				pins = "gpio18";
-+				function = "qup0_se1";
-+			};
-+
-+			qup_spi1_cs_gpio: qup-spi1-cs-gpio-state {
-+				pins = "gpio18";
-+				function = "gpio";
-+			};
-+
-+			qup_spi2_data_clk: qup-spi2-data-clk-state {
-+				pins = "gpio33", "gpio34", "gpio35";
-+				function = "qup0_se2";
-+			};
-+
-+			qup_spi2_cs: qup-spi2-cs-state {
-+				pins = "gpio36";
-+				function = "qup0_se2";
-+			};
-+
-+			qup_spi2_cs_gpio: qup-spi2-cs-gpio-state {
-+				pins = "gpio36";
-+				function = "gpio";
-+			};
-+
-+			qup_spi3_data_clk: qup-spi3-data-clk-state {
-+				pins = "gpio25", "gpio26", "gpio27";
-+				function = "qup0_se3";
-+			};
-+
-+			qup_spi3_cs: qup-spi3-cs-state {
-+				pins = "gpio28";
-+				function = "qup0_se3";
-+			};
-+
-+			qup_spi3_cs_gpio: qup-spi3-cs-gpio-state {
-+				pins = "gpio28";
-+				function = "gpio";
-+			};
-+
-+			qup_spi4_data_clk: qup-spi4-data-clk-state {
-+				pins = "gpio29", "gpio30", "gpio31";
-+				function = "qup0_se4";
-+			};
-+
-+			qup_spi4_cs: qup-spi4-cs-state {
-+				pins = "gpio32";
-+				function = "qup0_se4";
-+			};
-+
-+			qup_spi4_cs_gpio: qup-spi4-cs-gpio-state {
-+				pins = "gpio32";
-+				function = "gpio";
-+			};
-+
-+			qup_spi5_data_clk: qup-spi5-data-clk-state {
-+				pins = "gpio21", "gpio22", "gpio23";
-+				function = "qup0_se5";
-+			};
-+
-+			qup_spi5_cs: qup-spi5-cs-state {
-+				pins = "gpio24";
-+				function = "qup0_se5";
-+			};
-+
-+			qup_spi5_cs_gpio: qup-spi5-cs-gpio-state {
-+				pins = "gpio24";
-+				function = "gpio";
-+			};
-+
-+			qup_spi6_data_clk: qup-spi6-data-clk-state {
-+				pins = "gpio80", "gpio81", "gpio82";
-+				function = "qup0_se6";
-+			};
-+
-+			qup_spi6_cs: qup-spi6-cs-state {
-+				pins = "gpio83";
-+				function = "qup0_se6";
-+			};
-+
-+			qup_spi6_cs_gpio: qup-spi6-cs-gpio-state {
-+				pins = "gpio83";
-+				function = "gpio";
-+			};
-+
-+			qup_spi8_data_clk: qup-spi8-data-clk-state {
-+				pins = "gpio37", "gpio38", "gpio39";
-+				function = "qup1_se0";
-+			};
-+
-+			qup_spi8_cs: qup-spi8-cs-state {
-+				pins = "gpio40";
-+				function = "qup1_se0";
-+			};
-+
-+			qup_spi8_cs_gpio: qup-spi8-cs-gpio-state {
-+				pins = "gpio40";
-+				function = "gpio";
-+			};
-+
-+			qup_spi9_data_clk: qup-spi9-data-clk-state {
-+				pins = "gpio39", "gpio40", "gpio37";
-+				function = "qup1_se1";
-+			};
-+
-+			qup_spi9_cs: qup-spi9-cs-state {
-+				pins = "gpio38";
-+				function = "qup1_se1";
-+			};
-+
-+			qup_spi9_cs_gpio: qup-spi9-cs-gpio-state {
-+				pins = "gpio38";
-+				function = "gpio";
-+			};
-+
-+			qup_spi10_data_clk: qup-spi10-data-clk-state {
-+				pins = "gpio84", "gpio85", "gpio86";
-+				function = "qup1_se2";
-+			};
-+
-+			qup_spi10_cs: qup-spi10-cs-state {
-+				pins = "gpio87";
-+				function = "qup1_se2";
-+			};
-+
-+			qup_spi10_cs_gpio: qup-spi10-cs-gpio-state {
-+				pins = "gpio87";
-+				function = "gpio";
-+			};
-+
-+			qup_spi12_data_clk: qup-spi12-data-clk-state {
-+				pins = "gpio45", "gpio46", "gpio47";
-+				function = "qup1_se4";
-+			};
-+
-+			qup_spi12_cs: qup-spi12-cs-state {
-+				pins = "gpio48";
-+				function = "qup1_se4";
-+			};
-+
-+			qup_spi12_cs_gpio: qup-spi12-cs-gpio-state {
-+				pins = "gpio48";
-+				function = "gpio";
-+			};
-+
-+			qup_spi13_data_clk: qup-spi13-data-clk-state {
-+				pins = "gpio49", "gpio50", "gpio51";
-+				function = "qup1_se5";
-+			};
-+
-+			qup_spi13_cs: qup-spi13-cs-state {
-+				pins = "gpio52";
-+				function = "qup1_se5";
-+			};
-+
-+			qup_spi13_cs_gpio: qup-spi13-cs-gpio-state {
-+				pins = "gpio52";
-+				function = "gpio";
-+			};
-+
-+			qup_spi14_data_clk: qup-spi14-data-clk-state {
-+				pins = "gpio89", "gpio90", "gpio91";
-+				function = "qup1_se6";
-+			};
-+
-+			qup_spi14_cs: qup-spi14-cs-state {
-+				pins = "gpio92";
-+				function = "qup1_se6";
-+			};
-+
-+			qup_spi14_cs_gpio: qup-spi14-cs-gpio-state {
-+				pins = "gpio92";
-+				function = "gpio";
-+			};
-+
-+			qup_spi15_data_clk: qup-spi15-data-clk-state {
-+				pins = "gpio91", "gpio92", "gpio89";
-+				function = "qup1_se7";
-+			};
-+
-+			qup_spi15_cs: qup-spi15-cs-state {
-+				pins = "gpio90";
-+				function = "qup1_se7";
-+			};
-+
-+			qup_spi15_cs_gpio: qup-spi15-cs-gpio-state {
-+				pins = "gpio90";
-+				function = "gpio";
-+			};
-+
-+			qup_spi16_data_clk: qup-spi16-data-clk-state {
-+				pins = "gpio10", "gpio11", "gpio12";
-+				function = "qup2_se0";
-+			};
-+
-+			qup_spi16_cs: qup-spi16-cs-state {
-+				pins = "gpio13";
-+				function = "qup2_se0";
-+			};
-+
-+			qup_spi16_cs_gpio: qup-spi16-cs-gpio-state {
-+				pins = "gpio13";
-+				function = "gpio";
-+			};
-+
-+			qup_uart0_cts: qup-uart0-cts-state {
-+				pins = "gpio17";
-+				function = "qup0_se0";
-+			};
-+
-+			qup_uart0_rts: qup-uart0-rts-state {
-+				pins = "gpio18";
-+				function = "qup0_se0";
-+			};
-+
-+			qup_uart0_tx: qup-uart0-tx-state {
-+				pins = "gpio19";
-+				function = "qup0_se0";
-+			};
-+
-+			qup_uart0_rx: qup-uart0-rx-state {
-+				pins = "gpio20";
-+				function = "qup0_se0";
-+			};
-+
-+			qup_uart1_cts: qup-uart1-cts-state {
-+				pins = "gpio19";
-+				function = "qup0_se1";
-+			};
-+
-+			qup_uart1_rts: qup-uart1-rts-state {
-+				pins = "gpio20";
-+				function = "qup0_se1";
-+			};
-+
-+			qup_uart1_tx: qup-uart1-tx-state {
-+				pins = "gpio17";
-+				function = "qup0_se1";
-+			};
-+
-+			qup_uart1_rx: qup-uart1-rx-state {
-+				pins = "gpio18";
-+				function = "qup0_se1";
-+			};
-+
-+			qup_uart2_cts: qup-uart2-cts-state {
-+				pins = "gpio33";
-+				function = "qup0_se2";
-+			};
-+
-+			qup_uart2_rts: qup-uart2-rts-state {
-+				pins = "gpio34";
-+				function = "qup0_se2";
-+			};
-+
-+			qup_uart2_tx: qup-uart2-tx-state {
-+				pins = "gpio35";
-+				function = "qup0_se2";
-+			};
-+
-+			qup_uart2_rx: qup-uart2-rx-state {
-+				pins = "gpio36";
-+				function = "qup0_se2";
-+			};
-+
-+			qup_uart3_cts: qup-uart3-cts-state {
-+				pins = "gpio25";
-+				function = "qup0_se3";
-+			};
-+
-+			qup_uart3_rts: qup-uart3-rts-state {
-+				pins = "gpio26";
-+				function = "qup0_se3";
-+			};
-+
-+			qup_uart3_tx: qup-uart3-tx-state {
-+				pins = "gpio27";
-+				function = "qup0_se3";
-+			};
-+
-+			qup_uart3_rx: qup-uart3-rx-state {
-+				pins = "gpio28";
-+				function = "qup0_se3";
-+			};
-+
-+			qup_uart4_cts: qup-uart4-cts-state {
-+				pins = "gpio29";
-+				function = "qup0_se4";
-+			};
-+
-+			qup_uart4_rts: qup-uart4-rts-state {
-+				pins = "gpio30";
-+				function = "qup0_se4";
-+			};
-+
-+			qup_uart4_tx: qup-uart4-tx-state {
-+				pins = "gpio31";
-+				function = "qup0_se4";
-+			};
-+
-+			qup_uart4_rx: qup-uart4-rx-state {
-+				pins = "gpio32";
-+				function = "qup0_se4";
-+			};
-+
-+			qup_uart5_cts: qup-uart5-cts-state {
-+				pins = "gpio21";
-+				function = "qup0_se5";
-+			};
-+
-+			qup_uart5_rts: qup-uart5-rts-state {
-+				pins = "gpio22";
-+				function = "qup0_se5";
-+			};
-+
-+			qup_uart5_tx: qup-uart5-tx-state {
-+				pins = "gpio23";
-+				function = "qup0_se5";
-+			};
-+
-+			qup_uart5_rx: qup-uart5-rx-state {
-+				pins = "gpio23";
-+				function = "qup0_se5";
-+			};
-+
-+			qup_uart6_cts: qup-uart6-cts-state {
-+				pins = "gpio80";
-+				function = "qup0_se6";
-+			};
-+
-+			qup_uart6_rts: qup-uart6-rts-state {
-+				pins = "gpio81";
-+				function = "qup0_se6";
-+			};
-+
-+			qup_uart6_tx: qup-uart6-tx-state {
-+				pins = "gpio82";
-+				function = "qup0_se6";
-+			};
-+
-+			qup_uart6_rx: qup-uart6-rx-state {
-+				pins = "gpio83";
-+				function = "qup0_se6";
-+			};
-+
-+			qup_uart7_tx: qup-uart7-tx-state {
-+				pins = "gpio43";
-+				function = "qup0_se7";
-+			};
-+
-+			qup_uart7_rx: qup-uart7-rx-state {
-+				pins = "gpio44";
- 				function = "qup0_se7";
- 			};
-+
-+			qup_uart8_cts: qup-uart8-cts-state {
-+				pins = "gpio37";
-+				function = "qup1_se0";
-+			};
-+
-+			qup_uart8_rts: qup-uart8-rts-state {
-+				pins = "gpio38";
-+				function = "qup1_se0";
-+			};
-+
-+			qup_uart8_tx: qup-uart8-tx-state {
-+				pins = "gpio39";
-+				function = "qup1_se0";
-+			};
-+
-+			qup_uart8_rx: qup-uart8-rx-state {
-+				pins = "gpio40";
-+				function = "qup1_se0";
-+			};
-+
-+			qup_uart9_cts: qup-uart9-cts-state {
-+				pins = "gpio39";
-+				function = "qup1_se1";
-+			};
-+
-+			qup_uart9_rts: qup-uart9-rts-state {
-+				pins = "gpio40";
-+				function = "qup1_se1";
-+			};
-+
-+			qup_uart9_tx: qup-uart9-tx-state {
-+				pins = "gpio37";
-+				function = "qup1_se1";
-+			};
-+
-+			qup_uart9_rx: qup-uart9-rx-state {
-+				pins = "gpio38";
-+				function = "qup1_se1";
-+			};
-+
-+			qup_uart10_cts: qup-uart10-cts-state {
-+				pins = "gpio84";
-+				function = "qup1_se2";
-+			};
-+
-+			qup_uart10_rts: qup-uart10-rts-state {
-+				pins = "gpio84";
-+				function = "qup1_se2";
-+			};
-+
-+			qup_uart10_tx: qup-uart10-tx-state {
-+				pins = "gpio85";
-+				function = "qup1_se2";
-+			};
-+
-+			qup_uart10_rx: qup-uart10-rx-state {
-+				pins = "gpio87";
-+				function = "qup1_se2";
-+			};
-+
-+			qup_uart11_tx: qup-uart11-tx-state {
-+				pins = "gpio41";
-+				function = "qup1_se3";
-+			};
-+
-+			qup_uart11_rx: qup-uart11-rx-state {
-+				pins = "gpio42";
-+				function = "qup1_se3";
-+			};
-+
-+			qup_uart12_cts: qup-uart12-cts-state {
-+				pins = "gpio45";
-+				function = "qup1_se4";
-+			};
-+
-+			qup_uart12_rts: qup-uart12-rts-state {
-+				pins = "gpio46";
-+				function = "qup1_se4";
-+			};
-+
-+			qup_uart12_tx: qup-uart12-tx-state {
-+				pins = "gpio47";
-+				function = "qup1_se4";
-+			};
-+
-+			qup_uart12_rx: qup-uart12-rx-state {
-+				pins = "gpio48";
-+				function = "qup1_se4";
-+			};
-+
-+			qup_uart13_cts: qup-uart13-cts-state {
-+				pins = "gpio49";
-+				function = "qup1_se5";
-+			};
-+
-+			qup_uart13_rts: qup-uart13-rts-state {
-+				pins = "gpio50";
-+				function = "qup1_se5";
-+			};
-+
-+			qup_uart13_tx: qup-uart13-tx-state {
-+				pins = "gpio51";
-+				function = "qup1_se5";
-+			};
-+
-+			qup_uart13_rx: qup-uart13-rx-state {
-+				pins = "gpio52";
-+				function = "qup1_se5";
-+			};
-+
-+			qup_uart14_cts: qup-uart14-cts-state {
-+				pins = "gpio89";
-+				function = "qup1_se6";
-+			};
-+
-+			qup_uart14_rts: qup-uart14-rts-state {
-+				pins = "gpio90";
-+				function = "qup1_se6";
-+			};
-+
-+			qup_uart14_tx: qup-uart14-tx-state {
-+				pins = "gpio91";
-+				function = "qup1_se6";
-+			};
-+
-+			qup_uart14_rx: qup-uart14-rx-state {
-+				pins = "gpio92";
-+				function = "qup1_se6";
-+			};
-+
-+			qup_uart15_cts: qup-uart15-cts-state {
-+				pins = "gpio91";
-+				function = "qup1_se7";
-+			};
-+
-+			qup_uart15_rts: qup-uart15-rts-state {
-+				pins = "gpio92";
-+				function = "qup1_se7";
-+			};
-+
-+			qup_uart15_tx: qup-uart15-tx-state {
-+				pins = "gpio89";
-+				function = "qup1_se7";
-+			};
-+
-+			qup_uart15_rx: qup-uart15-rx-state {
-+				pins = "gpio90";
-+				function = "qup1_se7";
-+			};
-+
-+			qup_uart16_cts: qup-uart16-cts-state {
-+				pins = "gpio10";
-+				function = "qup2_se0";
-+			};
-+
-+			qup_uart16_rts: qup-uart16-rts-state {
-+				pins = "gpio11";
-+				function = "qup2_se0";
-+			};
-+
-+			qup_uart16_tx: qup-uart16-tx-state {
-+				pins = "gpio12";
-+				function = "qup2_se0";
-+			};
-+
-+			qup_uart16_rx: qup-uart16-rx-state {
-+				pins = "gpio13";
-+				function = "qup2_se0";
-+			};
- 		};
- 
- 		sram: sram@146d8000 {
--- 
-2.34.1
+> -----Original Message-----
+> From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> Sent: Monday, February 17, 2025 12:57 PM
+> To: bhelgaas@google.com; lpieralisi@kernel.org; kw@linux.com;
+> manivannan.sadhasivam@linaro.org; robh@kernel.org; krzk+dt@kernel.org;
+> conor+dt@kernel.org
+> Cc: linux-pci@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; Simek, Michal <michal.simek@amd.com>; Gogada,
+> Bharat Kumar <bharat.kumar.gogada@amd.com>; Havalige, Thippeswamy
+> <thippeswamy.havalige@amd.com>
+> Subject: [PATCH v3 2/2] PCI: xilinx-cpm: Add support for Versal Net CPM5N=
+C
+> Root Port controller
+>
+> The Versal Net ACAP (Adaptive Compute Acceleration Platform) devices
+> incorporate the Coherency and PCIe Gen5 Module, specifically the
+> Next-Generation Compact Module (CPM5NC).
+>
+> The integrated CPM5NC block, along with the built-in bridge, can function
+> as a PCIe Root Port & supports the PCIe Gen5 protocol with data transfer
+> rates of up to 32 GT/s, capable of supporting up to a x16 lane-width
+> configuration.
+>
+> Bridge errors are managed using a specific interrupt line designed for
+> CPM5N. Intx interrupt support is not available.
+>
+> Currently in this commit platform specific Bridge errors support is not
+> added.
+>
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> ---
+> Changes in v2:
+> - Update commit message.
+> ---
+>  drivers/pci/controller/pcie-xilinx-cpm.c | 48 ++++++++++++++++--------
+>  1 file changed, 32 insertions(+), 16 deletions(-)
+>
+> diff --git a/drivers/pci/controller/pcie-xilinx-cpm.c
+> b/drivers/pci/controller/pcie-xilinx-cpm.c
+> index 81e8bfae53d0..9b241c665f0a 100644
+> --- a/drivers/pci/controller/pcie-xilinx-cpm.c
+> +++ b/drivers/pci/controller/pcie-xilinx-cpm.c
+> @@ -84,6 +84,7 @@ enum xilinx_cpm_version {
+>       CPM,
+>       CPM5,
+>       CPM5_HOST1,
+> +     CPM5NC_HOST,
+>  };
+>
+>  /**
+> @@ -478,6 +479,9 @@ static void xilinx_cpm_pcie_init_port(struct
+> xilinx_cpm_pcie *port)
+>  {
+>       const struct xilinx_cpm_variant *variant =3D port->variant;
+>
+> +     if (variant->version !=3D CPM5NC_HOST)
+> +             return;
+> +
+>       if (cpm_pcie_link_up(port))
+>               dev_info(port->dev, "PCIe Link is UP\n");
+>       else
+> @@ -493,18 +497,16 @@ static void xilinx_cpm_pcie_init_port(struct
+> xilinx_cpm_pcie *port)
+>                  XILINX_CPM_PCIE_REG_IDR);
+>
+>       /*
+> -      * XILINX_CPM_PCIE_MISC_IR_ENABLE register is mapped to
+> -      * CPM SLCR block.
+> +      * XILINX_CPM_PCIE_MISC_IR_ENABLE register is mapped to CPM
+> SLCR block.
+>        */
+>       writel(variant->ir_misc_value,
+>              port->cpm_base + XILINX_CPM_PCIE_MISC_IR_ENABLE);
+>
+> -     if (variant->ir_enable) {
+> +     if (variant->ir_enable)
+>               writel(XILINX_CPM_PCIE_IR_LOCAL,
+>                      port->cpm_base + variant->ir_enable);
+> -     }
+>
+> -     /* Set Bridge enable bit */
+> +             /* Set Bridge enable bit */
+>       pcie_write(port, pcie_read(port, XILINX_CPM_PCIE_REG_RPSC) |
+>                  XILINX_CPM_PCIE_REG_RPSC_BEN,
+>                  XILINX_CPM_PCIE_REG_RPSC);
+> @@ -578,16 +580,18 @@ static int xilinx_cpm_pcie_probe(struct
+> platform_device *pdev)
+>
+>       port->dev =3D dev;
+>
+> -     err =3D xilinx_cpm_pcie_init_irq_domain(port);
+> -     if (err)
+> -             return err;
+> +     port->variant =3D of_device_get_match_data(dev);
+> +
+> +     if (port->variant->version !=3D CPM5NC_HOST) {
+> +             err =3D xilinx_cpm_pcie_init_irq_domain(port);
+> +             if (err)
+> +                     return err;
+> +     }
+>
+>       bus =3D resource_list_first_type(&bridge->windows,
+> IORESOURCE_BUS);
+>       if (!bus)
+>               return -ENODEV;
+>
+> -     port->variant =3D of_device_get_match_data(dev);
+> -
+>       err =3D xilinx_cpm_pcie_parse_dt(port, bus->res);
+>       if (err) {
+>               dev_err(dev, "Parsing DT failed\n");
+> @@ -596,10 +600,12 @@ static int xilinx_cpm_pcie_probe(struct
+> platform_device *pdev)
+>
+>       xilinx_cpm_pcie_init_port(port);
+>
+> -     err =3D xilinx_cpm_setup_irq(port);
+> -     if (err) {
+> -             dev_err(dev, "Failed to set up interrupts\n");
+> -             goto err_setup_irq;
+> +     if (port->variant->version !=3D CPM5NC_HOST) {
+> +             err =3D xilinx_cpm_setup_irq(port);
+> +             if (err) {
+> +                     dev_err(dev, "Failed to set up interrupts\n");
+> +                     goto err_setup_irq;
+> +             }
+>       }
+>
+>       bridge->sysdata =3D port->cfg;
+> @@ -612,11 +618,13 @@ static int xilinx_cpm_pcie_probe(struct
+> platform_device *pdev)
+>       return 0;
+>
+>  err_host_bridge:
+> -     xilinx_cpm_free_interrupts(port);
+> +     if (port->variant->version !=3D CPM5NC_HOST)
+> +             xilinx_cpm_free_interrupts(port);
+>  err_setup_irq:
+>       pci_ecam_free(port->cfg);
+>  err_parse_dt:
+> -     xilinx_cpm_free_irq_domains(port);
+> +     if (port->variant->version !=3D CPM5NC_HOST)
+> +             xilinx_cpm_free_irq_domains(port);
+>       return err;
+>  }
+>
+> @@ -639,6 +647,10 @@ static const struct xilinx_cpm_variant cpm5_host1 =
+=3D
+> {
+>       .ir_enable =3D XILINX_CPM_PCIE1_IR_ENABLE,
+>  };
+>
+> +static const struct xilinx_cpm_variant cpm5n_host =3D {
+> +     .version =3D CPM5NC_HOST,
+> +};
+> +
+>  static const struct of_device_id xilinx_cpm_pcie_of_match[] =3D {
+>       {
+>               .compatible =3D "xlnx,versal-cpm-host-1.00",
+> @@ -652,6 +664,10 @@ static const struct of_device_id
+> xilinx_cpm_pcie_of_match[] =3D {
+>               .compatible =3D "xlnx,versal-cpm5-host1",
+>               .data =3D &cpm5_host1,
+>       },
+> +     {
+> +             .compatible =3D "xlnx,versal-cpm5nc-host",
+> +             .data =3D &cpm5n_host,
+> +     },
+>       {}
+>  };
+>
+> --
+> 2.43.0
 
 
