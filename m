@@ -1,94 +1,89 @@
-Return-Path: <devicetree+bounces-150342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 262BCA41D7F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 12:49:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CCE9A41D8C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 12:50:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 152C1177855
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:44:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FF991684CF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:45:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C22742571D2;
-	Mon, 24 Feb 2025 11:22:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38C2825B67D;
+	Mon, 24 Feb 2025 11:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="qRLGvMGb";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Z9I5swiA"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="EatrLcDw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FE092571CA;
-	Mon, 24 Feb 2025 11:22:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741EE25B67B
+	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 11:24:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740396123; cv=none; b=FtFNeIIFRM+23O/udnWUrKAsHm8BctihMEFylfSxJmBPDluic9eQtAI1kQRMeNrpvsg9FVkmyvlsUYQR6DfzKZWDMS4G2aJkhWrwDYy0JHKlqkowL0/ZCVj6Mso65k/JEKEFR2BIUWIitnwY3bzV9rOHx64TZROBMtDRHtVndQU=
+	t=1740396255; cv=none; b=Eqoj+XOuAfImJnGeR2q5fbLYEGEUiB0WqD4XVo+gRaymOjLJJVYaNSNcxsUYEQvicXMFv+4FhKvdtNbQspc5uYNj5tBZuuNJb4QddzktoTxaew6Kj4Blh64TI5tQDNEjPuTLzGklk8Y3H5ZGTF4gl8mAc9908EJ7bqD1EJPeRdw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740396123; c=relaxed/simple;
-	bh=K9iWP4FjB4bvOCppsx5VPXEmIJ7JQcPwHRmuccPVLdM=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=q8TYMguoIaYSza+eE2lgcnsHUFDw/rCyvTmZKqMSVNkX205Jj7XnQ/OTkNqk5li0hqd4FETWttCmx08QtHOCqh3u6Ik+qycpE8uzOec4b7FtZdffEqGDC7Xs1qqkHN06ZyBJcNKLIv1hczFWgBBHlDa9XLhsR2clMuR7F65OE/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=qRLGvMGb; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=Z9I5swiA; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1740396119;
+	s=arc-20240116; t=1740396255; c=relaxed/simple;
+	bh=WU1/avcFF/5hPNA5Ng59Nff/2rwQsdLRmzcqYZIAkgk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=E1aLOtTEXgIn4Wp6rf9oUWgh1IlO+qiVuev7ywd80F2oZByc1mmsKznKKOTQc/HBORhc1bw3kVZSn6mp2xVtqhULCbmV3YdbeFb/MkCOD72Jx5hAE9u1SgoL4NIYSbRh6KaqW6XO55ALL4kpXtq/yYuoVNftl/ndS3615gZKwSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=EatrLcDw; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 984B143217;
+	Mon, 24 Feb 2025 11:24:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1740396250;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=vEKIKRdpA2IuURdWpoDhDR4OR8ZsWof+GEE24oN5KD8=;
-	b=qRLGvMGbPAqlHPiU0Uk91qFQREXPmalqm9alZAeWs4EjpCbxSsSyUgtmkJRbttkcNHBabm
-	7PfFhztVhq7towQrt3I+vHYG1p3Hp+elPAzPY47l//ojv2M8bK08R7vPyRSP+gWCWlRnFv
-	eKgNtb0dZbZph/T3GafiDSILrviOHK96Lbh405MozYsR/OVETQUMDrARyW+FBWOVq9iMwd
-	GtsOLYgxR1AtpgYvb1FDnH8C6xdeP3osiwxUtmH3Bfxc8m1HVJnabjI0LgobSrXsMfEBC9
-	zRy/Dh89EwJ9fmh0PzpTofwU1mugkd2UjNHMrwYlUKHNWoxGvaGbfwC7ACz6UQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1740396119;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vEKIKRdpA2IuURdWpoDhDR4OR8ZsWof+GEE24oN5KD8=;
-	b=Z9I5swiAf+lLt0MADWzW+RN+GZN6mqNR9e+2VLTrD9gYOVStzyf99TKf57DrRw+zc9ttki
-	gVRj1bLbjz8aA6BQ==
-To: Biju Das <biju.das.jz@bp.renesas.com>, Biju Das
- <biju.das.jz@bp.renesas.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
- <magnus.damm@gmail.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- "biju.das.au" <biju.das.au@gmail.com>
-Subject: RE: [PATCH v5 00/12] Add Support for RZ/G3E ICU
-In-Reply-To: <TY3PR01MB11346EAE435572E11B276BE1C86C02@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20250212111231.143277-1-biju.das.jz@bp.renesas.com>
- <TY3PR01MB11346EAE435572E11B276BE1C86C02@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Date: Mon, 24 Feb 2025 12:21:59 +0100
-Message-ID: <87y0xvfuzs.ffs@tglx>
+	bh=WU1/avcFF/5hPNA5Ng59Nff/2rwQsdLRmzcqYZIAkgk=;
+	b=EatrLcDwmMBDKKNLPZ3t5BB75C+nbxHsyRXRuW39kKhKpkJeYpxp1jCcmCWEEOMlXE81Bb
+	Mbz1/zASYug/8mu+W/MFjIsNQLs6tLCNkTu6Wdstoo9WNmItcY9Drmy5vbR+cMH2MEWnZF
+	BjgFCEyGjjBtYFic9q58biDHQjibFXcrH3GPM/ahuwO49pHbkt+lKEbOmkwW4Pe3W0L24L
+	YIPH748OAj2ULi1LJ2L7eczBUYaeRWo1dYJ2D3sXCCDZAnAqGfCAKKjRICwNY7xPmTdOsD
+	yLxRQhnT66VBpY/3W9DY+n8n725vStU3mUWCLCh+zYxGCDek6FLy4tecojABCg==
+Date: Mon, 24 Feb 2025 12:24:06 +0100
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: xypron.glpk@gmx.de, Jason Kridner <jkridner@beagleboard.org>, Deepak
+ Khatri <lorforlinux@beagleboard.org>, d-gole@ti.com, Robert Nelson
+ <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>, Geert
+ Uytterhoeven <geert@linux-m68k.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, David Gibson <david@gibson.dropbear.id.au>,
+ Pantelis Antoniou <pantelis.antoniou@gmail.com>, "open list:OPEN FIRMWARE
+ AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+ =?UTF-8?B?SGVydsOp?= Codina <herve.codina@bootlin.com>
+Subject: Re: [Question] Status of user-space dynamic overlays API
+Message-ID: <20250224122406.08b150a1@booty>
+In-Reply-To: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
+References: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdejkeeihecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepnfhutggrucevvghrvghsohhlihcuoehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefhteduuefgheehleeihfejjeduvdeltddutddtveeltdfhheeguefgteehkefgffenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvpdhhvghlohepsghoohhthidpmhgrihhlfhhrohhmpehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedufedprhgtphhtthhopegrhihushhhsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepgiihphhrohhnrdhglhhpkhesghhmgidruggvpdhrtghpthhtohepjhhkrhhiughnvghrsegsvggrghhlvggsohgrrhgurdhor
+ hhgpdhrtghpthhtoheplhhorhhfohhrlhhinhhugiessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopeguqdhgohhlvgesthhirdgtohhmpdhrtghpthhtoheprhhosggvrhhttghnvghlshhonhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopegrfhgusehtihdrtghomhdprhgtphhtthhopehgvggvrhhtsehlihhnuhigqdhmieekkhdrohhrgh
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-On Mon, Feb 24 2025 at 10:48, Biju Das wrote:
-> Gentle ping. Should I rebase to [1] and resend.
-> Please let me know.
->
-> [1] https://lore.kernel.org/all/20250220150110.738619-5-fabrizio.castro.jz@renesas.com/
+Hello,
 
-Yes. I've marked this series obsolete due to the discussion about patch
-10.
++Cc: Herv=C3=A9
 
-Please rebase on top of tip irq/drivers.
+Luca
 
-Thanks,
-
-        tglx
-
-
+--=20
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
