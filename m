@@ -1,55 +1,41 @@
-Return-Path: <devicetree+bounces-150235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CFC0A417CD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:51:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3175A417D6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:52:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01FE83B2ACF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:50:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 964E216FEDF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8267241689;
-	Mon, 24 Feb 2025 08:50:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B8AF242921;
+	Mon, 24 Feb 2025 08:52:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oHtW+b+y"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="PpTe76hO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail-m32102.qiye.163.com (mail-m32102.qiye.163.com [220.197.32.102])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D342523C393;
-	Mon, 24 Feb 2025 08:50:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AD0824291B;
+	Mon, 24 Feb 2025 08:52:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.102
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740387025; cv=none; b=jbRfuY/Uf4wT2ljnqwzM9jZJbqOEYqVAa7oknkxN8vw7HSMX1NJvXdRIBGsYklYnJE3vFViTO6KCfj3f5Y4mALe8RVzfrSJwmuMp4j9/ka7M+xybxlzIz9ti74dXiowhXIKxS+ZtiiTZda5AQMWzQR353/EMq0UaYSnffGZ31ZY=
+	t=1740387141; cv=none; b=K0s5KW/ykXzXU1yglh1Y5eIcFEFyD67rueOV4IhM52/f0cIK4Q4w64ajhST8dKw/gOInH27w8CAoMbfjQK6t5nQ6YAb077NxcWUsDrN4LHfrQp479rAEJAViNGPbr553y6Hx8nozyOpqtb4Neww/pVklarwHs/0R6PEae6wYldI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740387025; c=relaxed/simple;
-	bh=ImnSkDvCyNzWrsxhRq8yrR/K/8hCkVqMMnOSMPJSgKI=;
+	s=arc-20240116; t=1740387141; c=relaxed/simple;
+	bh=XUbjs4D7fQffAexiFbZyi3CRHGqUr80ymObuMcPyshU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YEjNGPmo0438NlT0Qtzp/Aqgiy8nZ2KXvnkelB0s1e502qPDxUS39daIcsysRzZS5kZDa9V8YLYWmjkNzkt3ny8eprxlbtnUq0+GK53waXdqLrakinH5hxW1dSm9V9tDFQwMvfL2uGqF9p2SJm8eskR8HSBMvldU4Rt1Tnhd8vE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oHtW+b+y; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740387022;
-	bh=ImnSkDvCyNzWrsxhRq8yrR/K/8hCkVqMMnOSMPJSgKI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oHtW+b+yNkL+q1CHUWFn0ieZHUza/61O+G4CcpW1+kGwZUKbRuylTrG1l/CQl9Y4n
-	 EAbSEPdPGp2XDLmJLGbPR1NO2Y48alxQ6QJVFPqfTosGHpp2AckGElZBRbg4UBAfiJ
-	 2CqRV8RmGsLlv8gxKaydQvvJeeNMvKo2FFIGEVK7xZbmO0RfotU/MvW8fbUlhf0PXq
-	 jaAYtMim1zopKUeYWiwlMh06TwY76HEwRytSBH5koZu4XL3uD8d+1E3Jm4WiAz/Bdd
-	 wFNwzuI+pNaQUKIjIT6TVgRUeFJQxOu0Wp0IfkKMGwGI9NPP2F06SFjj/+SyTqZC1c
-	 RtoPpVsL5w/zA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5727617E001F;
-	Mon, 24 Feb 2025 09:50:21 +0100 (CET)
-Message-ID: <b37788f6-7aa6-46c6-993c-fa30fcaba4c9@collabora.com>
-Date: Mon, 24 Feb 2025 09:50:20 +0100
+	 In-Reply-To:Content-Type; b=GNusO4MopIzhJmWue6YAkrgR5+J1Kh/+aCsTWkqXysTazE0uXGyp5hgH+POjxaXv5AoIgPCUzpjsSXFQRq3ogXYhB3eRSa+jvhg4I7acmuFmxaGn4o5LbEU+ZJFFc6kxCx9CqnApQCIjwIV6aBAIsSP0T5EdFxMfvezeXGyf/8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=PpTe76hO; arc=none smtp.client-ip=220.197.32.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [192.168.60.65] (unknown [103.29.142.67])
+	by smtp.qiye.163.com (Hmail) with ESMTP id bfe919b3;
+	Mon, 24 Feb 2025 16:52:13 +0800 (GMT+08:00)
+Message-ID: <23c84fd5-83f4-46b3-a247-56e4a2c06d1d@rock-chips.com>
+Date: Mon, 24 Feb 2025 16:52:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,78 +43,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] MediaTek MT8188 MTU3 USB and Genio 510/700 TypeC
-To: =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>
-Cc: =?UTF-8?B?UGFibG8gU3VuICjlravmr5Pnv5Qp?= <pablo.sun@mediatek.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "kernel@collabora.com" <kernel@collabora.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-References: <20250220105514.43107-1-angelogioacchino.delregno@collabora.com>
- <790ebe87fdaa8d785813a46269036562c405fb01.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: add rk3562 cru bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20241224092310.3814460-1-kever.yang@rock-chips.com>
+ <krrqtjllx6akrurefbtuhgxw6bwmkiro5rtvdexoevjyufm2uz@r5biw7kbttyr>
 Content-Language: en-US
-In-Reply-To: <790ebe87fdaa8d785813a46269036562c405fb01.camel@mediatek.com>
+From: Kever Yang <kever.yang@rock-chips.com>
+In-Reply-To: <krrqtjllx6akrurefbtuhgxw6bwmkiro5rtvdexoevjyufm2uz@r5biw7kbttyr>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaThgeVh9OGktDHh9NSh9LSlYVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlKS0hVSUJVSk9JVU1MWVdZFhoPEhUdFFlBWU9LSFVKS0lCQ0NMVUpLS1
+	VLWQY+
+X-HM-Tid: 0a95372829e503afkunmbfe919b3
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NSo6KQw5NjIUGRMeHQ5CCBEP
+	EiMKCgxVSlVKTE9LSENMSkhOTEJJVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlKS0hVSUJVSk9JVU1MWVdZCAFZQUpNT0s3Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=PpTe76hOHpGk0srvgTU0V496WB4QNRT16SyUTn3RovpGoBOgTamAQyJdyZ9toeKiU54XiNCMokCsB49WToThltFD51fK/JpVz+l7gvApnkmIk9Sa+5mI5YZHT4Ia9oRoVVDjyPoqbW/xiMS5xWNsf9kUucbzusnm/W+YIBC1iDc=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=wkj5uNlX0tJSQD/Cdm3vu3AtdbrZyweYKQfMb+Q0YnQ=;
+	h=date:mime-version:subject:message-id:from;
 
-Il 22/02/25 09:45, Chunfeng Yun (云春峰) ha scritto:
-> Hi Angelo
-> On Thu, 2025-02-20 at 11:55 +0100, AngeloGioacchino Del Regno wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
+Hi Krzysztof,
+
+On 2024/12/27 16:25, Krzysztof Kozlowski wrote:
+> On Tue, Dec 24, 2024 at 05:23:08PM +0800, Kever Yang wrote:
+>> Document the device tree bindings of the rockchip rk3562 SoC
+>> clock and reset unit.
 >>
->>
->> This series adds MTU3 nodes to the MT8188 base devicetree, fixes the
->> Geralt Chromebooks to use it, and adds support for all of the USB
->> ports, including TypeC Power Delivery, Alternate Modes, etc, found
->> on the MediaTek Genio 510 and Genio 700 Evaluation Kits.
->>
->> This also adds the missing SuperSpeed port to the mtk-xhci binding.
->>
->> AngeloGioacchino Del Regno (3):
->>    dt-bindings: usb: mediatek,mtk-xhci: Add port for SuperSpeed EP
->>    arm64: dts: mediatek: mt8188: Add MTU3 nodes and correctly describe
->>      USB
->>    arm64: dts: mediatek: mt8390-genio-700: Add USB, TypeC Controller,
->> MUX
->>
->>   .../bindings/usb/mediatek,mtk-xhci.yaml       |   4 +
->>   .../boot/dts/mediatek/mt8188-geralt.dtsi      |  18 +++
->>   arch/arm64/boot/dts/mediatek/mt8188.dtsi      | 121 +++++++++-----
->>   .../dts/mediatek/mt8390-genio-common.dtsi     | 151
->> +++++++++++++++++-
->>   4 files changed, 251 insertions(+), 43 deletions(-)
-> Do these patch have also changed the chromebook's dts?
+>> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+>> ---
+> A nit, subject: drop second/last, redundant "bindings". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+>
+>
+> s/rk3562/Rocchip RK3562/
+> or whatever your proper name is (and use proper capitalized parts of
+> products)
+Will update.
+>
+>> +properties:
+>> +  compatible:
+>> +    const: rockchip,rk3562-cru
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  "#clock-cells":
+>> +    const: 1
+>> +
+>> +  "#reset-cells":
+>> +    const: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 2
+>
+> Why clocks are not required?
+The cru is the clock-controller, which is always on module in SoC,
+so we don't need to enable "clock" for this clock-controller.
 
-Yes
-
-> 
-> if changed it, do test it on chromebook?
-
-Yes, and there's no need to hide the MTU3 hardware on Chromebooks,
-as I already mentioned multiple times.
-
-Just lock it to host mode and it's always fine :-)
-
-Cheers,
-Angelo
-
-> 
-> Thanks
-> 
-> 
->>
->> --
->> 2.48.1
->>
-
+Thanks,
+- Kever
+>
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: xin24m
+>> +      - const: xin32k
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - "#clock-cells"
+>> +  - "#reset-cells"
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    clock-controller@ff100000 {
+>> +      compatible = "rockchip,rk3562-cru";
+>> +      reg = <0xff100000 0x40000>;
+>> +      #clock-cells = <1>;
+>> +      #reset-cells = <1>;
+> Why clocks are not here?
+>
+> Best regards,
+> Krzysztof
+>
+>
 
