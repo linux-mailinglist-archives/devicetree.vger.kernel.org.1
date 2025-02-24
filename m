@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-150298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF84A41A8B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:16:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFFC6A41AA7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:19:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F41EE188FD4A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 10:15:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 066AC174DC5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 10:18:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96902505A3;
-	Mon, 24 Feb 2025 10:15:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FE042505A2;
+	Mon, 24 Feb 2025 10:16:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R6VXbhAr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gMUAfhyD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46B724FC1A;
-	Mon, 24 Feb 2025 10:15:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA8AD2500B6;
+	Mon, 24 Feb 2025 10:16:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740392129; cv=none; b=IH+oGesl/uNnHCPapmuzkH2lcBMx7USA+v7lFLxgwzZYjBYd0VUMqej+P+mCeOalmcmEgxIjAK0lmVBshG+PvdYYg5zCDhr9lnCzuFoMKudMgfdBUlxmrgf1FCcqB/DH1SZr/l9vAoxYI8L94R2FnFJhBHf0feoN2/ez4dpbiYk=
+	t=1740392173; cv=none; b=fgkXCkcziorGqOYczK77UJ2CrG0AItFTUTukYqbB6bjzjUpgLUliRLrnREaXLPKoDTcdUOWoTUR4z2K72s2yIPYt6rvCejzeClEq2/0u/89Im5mbc14jKFWi63JPCnIqhh+aO9/s3qACkE8GjCkeKT8lMzz6NXlQ7k0zz0gFtVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740392129; c=relaxed/simple;
-	bh=nhdDyfK9oxoqYCHrduTPMT827OPl9ykkco5bv7xZgSA=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
-	 In-Reply-To:Content-Type; b=UQJhENKQ+3pkcZoClNpATYN2UZox4xpeuTipw+kwQbXDfh+lukhIYd5zPaKpoHhf7JmqMtnuFgzeXT/5SI3a/fwZJ8sjXW0jxNeu3wvXA8xElqU0nNewNQU9oB8Po7FxhJ37mkDj8XZhlQj5CtflLhp6ZVDAnLGnmpbCGV9Rav4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R6VXbhAr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98C60C4CEE6;
-	Mon, 24 Feb 2025 10:15:25 +0000 (UTC)
+	s=arc-20240116; t=1740392173; c=relaxed/simple;
+	bh=BsGtWz0IG5nQlG6RO+zR/OcwC6SnVn6enaFktkoWFI8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TYHK+kFEADrBwnJUe/CwGwys0lOocJCTHnpQJjpNj9R3ZT313+nmjhOmLsJ4yEGyDmWuJs3XRVmkp7zxk7CNlHdVr1mCGyw1ZmiNKvLi9pDlg2dFlcQX+emqEwMCveU59/YE6XDO65iDs+LblxlPDxCSQS0S99bkTxOelteAY00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gMUAfhyD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D61DC4CED6;
+	Mon, 24 Feb 2025 10:16:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740392129;
-	bh=nhdDyfK9oxoqYCHrduTPMT827OPl9ykkco5bv7xZgSA=;
-	h=Date:Subject:From:To:References:In-Reply-To:From;
-	b=R6VXbhArAIL0nOd/yzjC2LPNaSBbJVh1MqyuEm2Td41KdiWTRmLdfz5jIaAYerCb9
-	 v/mSewLO0bPVocrhhm1aJmH1OHW2vInZTnvK0O1NOzDmNX85C/6/eYyOi4xiLpq5ZU
-	 02Cc/N9DTkm2xyiN0UbkjPPit3lnwQWk9iVn9O19STk22WRTu8QXh+MrjBHIYBPzCh
-	 GVQgvokZ17V3vLBFo4kAO8A/g0q53cY68Jt40b2nOJkKihS1bWVzRQFYEOPJ1h7BKj
-	 tDY9mWasrp5ghGJp7hELvIJA6s2IXPVtq2TuThQDtheBiVnbP0ZtgUCCl/xS3jrK2A
-	 OPHLUNggY4RQA==
-Message-ID: <d5d90f03-3db8-4f90-baad-0be4f3d3e0ea@kernel.org>
-Date: Mon, 24 Feb 2025 11:15:23 +0100
+	s=k20201202; t=1740392172;
+	bh=BsGtWz0IG5nQlG6RO+zR/OcwC6SnVn6enaFktkoWFI8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gMUAfhyDybkQnrjttfvCIZ1Si3fy0SDiyeld1Qs96thBLxPTY84SaW2dgFCnT2lnc
+	 OMRSZNT+DvJ5d6L9XRx1YxKZu1jF1rI2qQtvdwCXqWf8UPwiEdLGVjQVWAlN3yWHAY
+	 W1Oj0eu5XDwJuQWmZ9FElm2/DgxIdoKFWsaB7prNZE8/WRp4Ax5IrB9lAip7Jho5O1
+	 6T8S34n3FbT1CmGrb0mpM7jfigNTLYSUdz/jy3ZDvVe4HYRcfXVVOId3HD+9OI2vBt
+	 gGYK7o5eWUmc4Xn8zSLGHXAOpdSLwfZHTuzfa/TjA4D5mlP5FeEzI+HdZDxg8JHwSK
+	 WiZ143hzoPTqw==
+Message-ID: <1cd7221e-661d-44be-8392-c8e89756359c@kernel.org>
+Date: Mon, 24 Feb 2025 11:16:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/3] reset: aspeed: register AST2700 reset auxiliary
- bus device
+Subject: Re: [PATCH v6 0/5] Add support for IPQ5018 tsens
+To: George Moussalem <george.moussalem@outlook.com>
+Cc: amitk@kernel.org, devicetree@vger.kernel.org,
+ dmitry.baryshkov@linaro.org, krzk+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ quic_srichara@quicinc.com, robh@kernel.org, thara.gopinath@gmail.com
+References: <ca812748-8ec2-41f3-8272-5e774f764493@kernel.org>
+ <DS7PR19MB88832437987FE85662A878149DC02@DS7PR19MB8883.namprd19.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ryan Chen <ryan_chen@aspeedtech.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250224095506.2047064-1-ryan_chen@aspeedtech.com>
- <20250224095506.2047064-3-ryan_chen@aspeedtech.com>
- <71cf8012-3b77-43de-b8ac-54c84a97f9d3@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -108,72 +103,14 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <71cf8012-3b77-43de-b8ac-54c84a97f9d3@kernel.org>
+In-Reply-To: <DS7PR19MB88832437987FE85662A878149DC02@DS7PR19MB8883.namprd19.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/02/2025 11:12, Krzysztof Kozlowski wrote:
-> On 24/02/2025 10:55, Ryan Chen wrote:
->> +
->> +static void aspeed_reset_unregister_adev(void *_adev)
->> +{
->> +	struct auxiliary_device *adev = _adev;
->> +
->> +	auxiliary_device_delete(adev);
->> +	auxiliary_device_uninit(adev);
->> +}
->> +
->> +static void aspeed_reset_adev_release(struct device *dev)
->> +{
->> +	struct auxiliary_device *adev = to_auxiliary_dev(dev);
->> +
->> +	kfree(adev);
->> +}
->> +
-> 
-> Every exported function *must* have kerneldoc.
-> 
->> +int aspeed_reset_controller_register(struct device *clk_dev, void __iomem *base,
->> +				     const char *adev_name)
->> +{
->> +	struct auxiliary_device *adev;
->> +	int ret;
->> +
->> +	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
->> +	if (!adev)
->> +		return -ENOMEM;
->> +
->> +	adev->name = adev_name;
->> +	adev->dev.parent = clk_dev;
->> +	adev->dev.release = aspeed_reset_adev_release;
->> +	adev->id = 666u;
->> +
->> +	ret = auxiliary_device_init(adev);
->> +	if (ret) {
->> +		kfree(adev);
->> +		return ret;
->> +	}
->> +
->> +	ret = auxiliary_device_add(adev);
->> +	if (ret) {
->> +		auxiliary_device_uninit(adev);
->> +		return ret;
->> +	}
->> +
->> +	adev->dev.platform_data = (__force void *)base;
->> +
->> +	return devm_add_action_or_reset(clk_dev, aspeed_reset_unregister_adev, adev);
->> +}
->> +EXPORT_SYMBOL_GPL(aspeed_reset_controller_register);
-> 
-> No, you cannot export functions without users. There is no single user
-> of this, so this is not justified at all.
-My mistake, I missed patch #3 which uses it.
-
-I don't get why do you need to export this in the first place, instead
-of putting it in the clock driver, as usually expected. Handling child
-creation is logically the task of the device having children, the
-parent. Not the child.
+On 24/02/2025 11:14, George Moussalem wrote:
+> Thanks Krzysztof, circling back to acknowledge the feedback.
+> Missed it, but will add the reasoning in the next version.
+Respond inline, I have no clue what is this about.
 
 Best regards,
 Krzysztof
