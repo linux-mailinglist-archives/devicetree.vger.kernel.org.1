@@ -1,136 +1,109 @@
-Return-Path: <devicetree+bounces-150622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CA8EA42E26
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 21:41:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2F14A42E2D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 21:43:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A67DD178C73
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 20:41:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23EC83B3337
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 20:43:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A2C263F47;
-	Mon, 24 Feb 2025 20:40:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A02245021;
+	Mon, 24 Feb 2025 20:43:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Tqk8r2kq"
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="YYI93cJ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 024D7263C85
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 20:40:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA3A91FDE0B;
+	Mon, 24 Feb 2025 20:43:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740429640; cv=none; b=eYcTENTlAey2GARrGccq76l6/kxwDN4fuuajahtw1yROjjjcwDSYKEJfmhu4ULiHCxpLODAt3ahZdqJ64U16Qef2q+oABR01CsHI8FwPTEVIWsZZReZmyuJTwT3ZtSxTdhJzKjbO398q0x5N9wN1UJ+6lJEOWfeH5fHrjQcCyXM=
+	t=1740429832; cv=none; b=bz/00qfqrYcJKcaqMgJHfxdQyct5ETMvlyhMaBjKHZfoTlYzBK0cTuw0B5VN7RGIFZOLafibhb5WcMVooMknJ869If/VrisIDkYTUj4nO7Rq+vcD6HrxtswnDR4M6q7pTul5y2u4VfczLW4Hthhn7inRqZ4c5FQVWQso1hbJH9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740429640; c=relaxed/simple;
-	bh=2JAfmGq7aKOMSiVHUMfet7tjY8bVdpLdNw5aO98U4n4=;
+	s=arc-20240116; t=1740429832; c=relaxed/simple;
+	bh=rvbdOy4fuBrSGEQQD49/68Vtl1Atgp4vEU7Tw+AbOCI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XaDeRnBDzyRJmD93Pukq0qGotUHOeJdW4KhLFa0R5JFSYpDs/Rblhulf8hqCpxNcnf7F8bytNuyz77nOmCKozdJ57GZCcBI1/PUV71h0rOjFeVPBoTMsc2TBsPbWt51JLa0ISmsL+EufsuZqwSRFhxVGDY49WNWD5TUME5TkSpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Tqk8r2kq; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51OKOL8D012662
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 20:40:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LeKHeVU0gqgwZtzGvrUUdyF7xwqARLQ9fhBAX+BRm4A=; b=Tqk8r2kqZ/2fADkQ
-	LF8+bIpAZ1mNZacqmRwVMd4CovQGZsrJEXOp7raxsYcw7u/o5W0K9ivR/slRCkNn
-	6EFs2QO4lyfQhnXfRMiui+abKa+OCcuWBAybgfZHP2KbxXVthTi/UYM2RdQjPcJR
-	ANsO/DioM8tbSWTUXHEooPzXr/nIdWwCKHEP8Y+QRlVTePzTEeXTRXbf/8uqP5xZ
-	btRq30be0N9BZzszKDy+7sS9LMImuiIsvB/hrkkn6HjG821qExWekLhSaebmooW2
-	V1wTlyLk94xwfsxX5KRDxXmGqtfQaMX3nFI9EZeVdcTGQYVdAp3Gd6/Ukg1TzSFB
-	GDML5Q==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44y65xxfba-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 20:40:37 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c0b3b95ad5so45637485a.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 12:40:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740429637; x=1741034437;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LeKHeVU0gqgwZtzGvrUUdyF7xwqARLQ9fhBAX+BRm4A=;
-        b=sgmSs0NP1pVhcSEco4wGir9YkvSI0ujFb+P8f0ptQOIYwezlvTOCAngSEiZcGs8s+E
-         msrdZXcB1gZwQNlxTuR3HOksZJm5gblqT6bFU5WWmJCgrQkawbmL+tnrhQFsaXsAQABa
-         woPnb2cBSIjrb4xkyDt0kvN5MpSMzqd28fNhKsP8FaTA3UwoKOKvnJFr3HLywm6vtr5r
-         1EbzvkbNB9l0ePoGr/Sg0XE56tBywUZJ2JGTMb/i+jFV9Lsmj89vekKQyurKE084DTQ3
-         U6WhPL2LCt8jfrwDm/UYTsxf/PW030Swvndi0lFvbwwn2XyfG80vVf97v0VFqXrwHKkL
-         d3hQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWiE/py3OFPURsqn9ytTxgVEjcjYK/16H438AMifcVPqwHQpGjY8uupv5B5ub3Qtg85O1Ve4ttfwUID@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvrkbXuBGL43gbsMS/p+4DgDfzsePfNR8vc/ILh1XZI4huD9Lg
-	SIWNJ+QsjRMXilRmpMFOcShZtwOpXgZbacYlDEaXHv0ardNizXnMZxqLmT3RdNL8IrxjDEl75Yf
-	QLnPe91J3HAKtKxzZJZijrMyT4IdwwevU5nnyhMm9dyCaxUuTd6j5eDaO9Mj5
-X-Gm-Gg: ASbGncvEJX+5WWfUkBZI85woArNsxQ6JgW0HgvJ1dSnpcF7AbcldziT6AV7D0OjWnjk
-	Ba9GTw7YNWd4YTYwX58HpvxiENMxqt/nxRBvV/5dOskqF9FCt7apvMsNKno9UQzNRcuy4D+Z/cw
-	g9glQlXlbpIvpCGXhI+y6kSa+0Sb7OF4INJloVRlTjGoXtq/Om7dbBfqGx3UGaKy/fopQDRHSVT
-	yhO8DXHFBF8vf89TxHO/6eo6VUIIXlp/wU7wo386ASRQ5opqRhlj6dEdLHMKBho93Eig4QCnCoP
-	3rQTEZJeT4fJFaEdjhg8IRH7G4w2rADWwMTfgZTikHXCYBAra+ES2pk4mG3VOsfU1pAJpA==
-X-Received: by 2002:a05:620a:40ca:b0:7b6:6765:4ca2 with SMTP id af79cd13be357-7c0cef6ad7bmr689942085a.13.1740429636862;
-        Mon, 24 Feb 2025 12:40:36 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEHiyacVdY2d1KyqCuEj2rvZuI/7zz0a/7U/qgSJNcAIU9bSzs2ZJ5TY1GOauzhs96tNTcDyw==
-X-Received: by 2002:a05:620a:40ca:b0:7b6:6765:4ca2 with SMTP id af79cd13be357-7c0cef6ad7bmr689939485a.13.1740429636450;
-        Mon, 24 Feb 2025 12:40:36 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e460ff861esm123184a12.49.2025.02.24.12.40.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Feb 2025 12:40:35 -0800 (PST)
-Message-ID: <885fb0b5-fbd7-488a-8bf3-5a2d9368a7a0@oss.qualcomm.com>
-Date: Mon, 24 Feb 2025 21:40:32 +0100
+	 In-Reply-To:Content-Type; b=Wzt3uFx2eOlUQwnMNMzXG/vjpjyHDLUcvhoPe4eUYJzbuEnzO66shLGzOFUmUXxHcfz0QwlVpdXjqTGgcyTEBe+zwbC6xSNRg7OwRIFOgFnw20YfOxFoDCi0L9G/DdKB1ZWy7UKXHGf2IfkSiaB8lB6CpBc5OkFZ+hHwHD+ongs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=YYI93cJ3; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
+	t=1740429829; bh=rvbdOy4fuBrSGEQQD49/68Vtl1Atgp4vEU7Tw+AbOCI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=YYI93cJ3ML0XkkKoLoj3AWEbpPS699twI8GgjcLm0DYhFueIEuLdXkYna2TiWCva0
+	 ta2n/67t+jgVoJ5PG1FveqmZljuqL8zaJckecN5RXKbqdZF2/UEEJbyfKTNAlwKuFB
+	 OV9ljQUkGin3f9XLWsJ9hOx81lYm896wCruEUbIg=
+Message-ID: <82a9d623-2033-4d7f-93b8-67007b46be79@lucaweiss.eu>
+Date: Mon, 24 Feb 2025 21:43:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: qcom: x1e80100-qcp: Add WiFi/BT pwrseq
-To: Stephan Gerhold <stephan.gerhold@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-References: <20250217-x1e80100-pwrseq-qcp-v3-1-a0525cc01666@linaro.org>
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: sdm632-fairphone-fp3: Add
+ firmware-name for adsp & wcnss
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250222-fp3-remoteprocs-firmware-v1-0-237ed21c334a@lucaweiss.eu>
+ <20250222-fp3-remoteprocs-firmware-v1-3-237ed21c334a@lucaweiss.eu>
+ <w4l5drhu6exq4jb7x2pisqtkz5ylare7ashsmjjqomv3yetjwj@z3wapq4rkk3u>
+ <6d1a95a1-0b84-4bc5-9cb0-3cc514d292a6@oss.qualcomm.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250217-x1e80100-pwrseq-qcp-v3-1-a0525cc01666@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From: Luca Weiss <luca@lucaweiss.eu>
+In-Reply-To: <6d1a95a1-0b84-4bc5-9cb0-3cc514d292a6@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: ZeJU8c73wqxwlTsUc7m0FcZ4rnpO0-Vg
-X-Proofpoint-ORIG-GUID: ZeJU8c73wqxwlTsUc7m0FcZ4rnpO0-Vg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-24_10,2025-02-24_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- bulkscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0 malwarescore=0
- priorityscore=1501 adultscore=0 mlxlogscore=999 impostorscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502240132
 
-On 17.02.2025 6:55 PM, Stephan Gerhold wrote:
-> Add the WiFi/BT nodes for QCP and describe the regulators for the WCN7850
-> combo chip using the new power sequencing bindings. All voltages are
-> derived from chained fixed regulators controlled using a single GPIO.
+On 24-02-2025 9:27 p.m., Konrad Dybcio wrote:
+> On 24.02.2025 1:17 AM, Dmitry Baryshkov wrote:
+>> On Sat, Feb 22, 2025 at 02:00:49PM +0100, Luca Weiss wrote:
+>>> Set the paths where the device-specific firmware can be found for this
+>>> device.
+>>>
+>>> Fairphone 3 was shipped with secure-boot off so any testkey-signed
+>>> firmware is accepted.
+>>>
+>>> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts | 7 +++++++
+>>>   1 file changed, 7 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts b/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
+>>> index 08ffe77d762c3a97f470efbfb5064282fe2090da..5611209dbfa41d7834af7903535ed3e05604ba63 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
+>>> @@ -82,6 +82,8 @@ nfc@28 {
+>>>   };
+>>>   
+>>>   &lpass {
+>>> +	firmware-name = "qcom/msm8953/fairphone/fp3/adsp.mbn";
+>>
+>> If any firmware is okay, wouldn't it be better to use
+>> "qcom/msm8953/foo.mbn" ? This way if we get any of the firmware (yeah,
+>> I'm a dreamer), then FB3 can pick it up.
 > 
-> The same setup also works for CRD (and likely most of the other X1E80100
-> laptops). However, unlike the QCP they use soldered or removable M.2 cards
-> supplied by a single 3.3V fixed regulator. The other necessary voltages are
-> then derived inside the M.2 card. Describing this properly requires
-> new bindings, so this commit only adds QCP for now.
+> No, the fw may have board/wiring differences encoded inside it
+
+Second that, while I don't have access to the AMSS sources for this 
+device, I'm sure there's at least some board-specific config in these 
+images, and I'd rather not boot up some ADSP or modem firmware compiled 
+for some Dragonboard or equivalent.
+
+Regards
+Luca
+
 > 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> ---
+> Konrad
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
 
