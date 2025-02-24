@@ -1,145 +1,169 @@
-Return-Path: <devicetree+bounces-150495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66825A426D9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 16:50:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A483DA42703
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 16:56:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FF9916806E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 15:45:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E29071889EE4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 15:50:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1CFC25EFAB;
-	Mon, 24 Feb 2025 15:45:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40D0926138C;
+	Mon, 24 Feb 2025 15:50:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wA3C80XP"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="By2E8A8q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2075.outbound.protection.outlook.com [40.107.95.75])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF04E25EF8B
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 15:45:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740411932; cv=none; b=QnTLMNa24h5c6UBXaTNDEXzlbYh5HPQbsfRNk9lChR848na+c7rAkNlatz2Ywe51uvv8s6KPuStqhv5d+Rp6NLu8+ue6i68Yshb+0a9SqNifBlwuiuHUg7ceyGpu6O2ujpJH82ryDj+z4X5ETvdaaR7+deOIICIFllW7VDbDPp8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740411932; c=relaxed/simple;
-	bh=2mTtDZAkc00WaJmrF+GsEd2qg3IRRa89CS9NdfbbNJY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YleGa0F+ntaEiHp7GwHmsknglKjdcu1GdX+1VmfyHf9gUOE0LO1XuHMVAm2XUYmszeAI3MTa1qjSUv4Jcga3u4PupJV9ktkPvKwZtiYczIVn7yFCV5vXjwrjnDCIcw2EXEVA8JPycBFeCwc/WaU+63EbBXL3FtqWnLCEDVEwAgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wA3C80XP; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-54298ec925bso6576596e87.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 07:45:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740411929; x=1741016729; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wOiNvYc++Zm34fMpFoIDUhcKtWpkYIPTfUzhG4djg7M=;
-        b=wA3C80XP1CIPLPSCpBl7N8OLpilRCL/nkj1Vdh0WGEc2v3TV0Znna/nAgENu2S9Zo2
-         DXNC3gFUT0rf4Eh/YMykLd4+OyBEFqCSfVISvUEPXWGMr0PIF+N9GSFNz90FOz/NJL1s
-         yIKpatb/+AVaxBq+GYZkdM7lP52lnYbY2asbNfoC+GIouqQ67g+AL8i95jGvdIJlWmCE
-         S6ammNNwAaaiG3p/0I1Maq0M0ARS4V/DR7ETMNnuMYno+UqR6WZSZ4InnYy6k4HHux/W
-         NSl7rUW23cl0C7Wn6gjHGlY+C+jlqlzS9/n0getk0zz8l066YR2FtBEwPye8XlE9rlwV
-         3sDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740411929; x=1741016729;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wOiNvYc++Zm34fMpFoIDUhcKtWpkYIPTfUzhG4djg7M=;
-        b=O0UbJWo5vY7dKf7XHbu3/tp5w1IvSz19CPxNkPry8Sb1+GuniaFgkaMnEM4m4+qnJc
-         8rppcFD++tu24MWqCBfWZp31+GDiMdi96GOW6pHcgY5rTyYve8GxMG+Uh0UQJK78VRcB
-         g7EqWBLb+n8ZldcqjRHA2v0s2tTlqv92RgL1M1iRDse+sZIKrcuepaJ561GCXLvw8BDr
-         9J/KFymfgBzGqw67sn3PNCk8CuYxWzyUFRDv3GMtWK0WKJXCyuP+NU26PS4Wy8MKWynj
-         Xd9U1dV46Cre2OyqnL1FGZ7oe0yqsFeZnChxaVMn8uBlTIkpk8mjJ7hgyWt5Up0R2EnE
-         d+6A==
-X-Forwarded-Encrypted: i=1; AJvYcCU8Do9XxLiBxgaSn82L08xux81XfAnt1dRc/mMMZquSygSkOGpT2doWyPPh5GKfVK+XjZQGzdT8Rov2@vger.kernel.org
-X-Gm-Message-State: AOJu0YxI2+QAkltN2OKr3Rn/p+QvspGC1QSQIBHiGvnnhUOyTrxxbz+v
-	BUdaPXp0LNzmoL2JQx2DZN9fC82XBTu2vpFD+R8490KlBY+8X/PDigy6JJENQn0=
-X-Gm-Gg: ASbGncukInp7UjEmjpgkYbvAV7XyaMEVLJ+IVy0Ni7W6GBoGHLFYjbnAXpu6paqfhq7
-	6dJAm8mlabNEzad1vlBpJmeVfVVllxecOFMrFlGywipXGWLmeXbLv72E8eSqQ2mbJZg5x9B6u8H
-	u/2Nm4JtuIVR/90EBqp4L6lKFxD5TdkB553oIXJMrs4kFB/+GH/FO+ddhldI5PotPykvp+QpVRh
-	8pld0Owv1evUm+TVO7wxagHPR7A1ovdC3vpXhKnrrOZEaHxI1UpqtlqlY1hzZ46TUKx6Zh3Lq0L
-	TaqeBjq8tiiNM+W4nJhNdpsCJfK96XkALZT6NhJaVruh8YQ5JlVJliYbwsSgXrG/iik6PJ8J+PN
-	yOeii8w==
-X-Google-Smtp-Source: AGHT+IGwY3q58ljOK6c0ToO8Ip0U2GajA279X5o7qJCOYPYRMwKT1ywz49vgLpLFCtOjKmpLe+ox1g==
-X-Received: by 2002:a05:6512:308b:b0:540:1b07:e033 with SMTP id 2adb3069b0e04-54838f79748mr5921069e87.45.1740411928851;
-        Mon, 24 Feb 2025 07:45:28 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54619e7bc2esm2609050e87.244.2025.02.24.07.45.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Feb 2025 07:45:27 -0800 (PST)
-Date: Mon, 24 Feb 2025 17:45:25 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: George Moussalem <george.moussalem@outlook.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, amitk@kernel.org, 
-	thara.gopinath@gmail.com, robh@kernel.org, krzk+dt@kernel.org, quic_srichara@quicinc.com, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v6 1/5] dt-bindings: nvmem: Add compatible for IPQ5018
-Message-ID: <3lmf24l3retmjcbmzkn7ezqxd7no2dbuwm2apy5vlwgaq7ipnh@ggscdxkgirke>
-References: <20250224061224.3342-1-george.moussalem@outlook.com>
- <DS7PR19MB8883591F0D2E21E62025D2D69DC02@DS7PR19MB8883.namprd19.prod.outlook.com>
- <2fcb52a3-7ef2-465f-b460-2f7b565a188e@kernel.org>
- <zygiknq3pldkcdonekzamn2uprnjyc5dip57i75p7uahftekxr@2lqgo3wa6zhf>
- <739acd33-9ce8-40db-a219-26b8ca241d73@kernel.org>
- <DS7PR19MB88839DD16140E0C883257D679DC02@DS7PR19MB8883.namprd19.prod.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C89156F44;
+	Mon, 24 Feb 2025 15:50:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.95.75
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740412243; cv=fail; b=ZZNYhyGD7JTu+2XemtFhbRYJURbe7KrOF6woSxj1+nJsaU9c8ytxo8VYFF546DDeAFV+jDEUiCnlVh5JpUqPAuxBa4Jy1JZ/wpjO85srhMdKO8CdRo0/HNRpNuUVHMrVYfodeU4tOYuAIlgD6YuBPW3GPGR52pzLrtKawzBF2VY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740412243; c=relaxed/simple;
+	bh=YuaqAC024s4cW+CYJkFeg8/igmczIBJZELtgKUeFtgE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DS7yu5dK2H7nHEweh+mJJZxA/wUhVvNUINztW5MNgN+nSqEXehREeYk/hwZmSUYl/TWHhPMx5okphkDxMmYfu2iWIsnpoFP2VA/Qx8WsY5HS8vE/I4daiRiQvm+faHd8GCbnviXHWrQabCNkkeHmTZ3l1hIzT7in8List01BJyM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=By2E8A8q; arc=fail smtp.client-ip=40.107.95.75
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bebqjdVAOSne6OZdZVV2J6hk/T14gW/FEduKQv8WMfOMmLAMe5KHO490isfhewBoEKPDXiEQAgpxe/BYMbANTn2RMm5Jt3tL4G0dSGfRg5NHL/pwgbjLEOt+J+x9+LH1z/gnJIV+gM+ETOh5vPtYy+f3uLbPI1cRPClJVN6r2vs373Q6Elbasa3cc8LPY8s+IvWxMDCl2uIPdlUKD0J8IhVz2r5/T0qPHH0wB5Kkl0PnefSmIeKEhJfaQqW1vL9ZCCD9B8t5JmkEeCdvaU0XWoUwiAVMsirFokveU/q92tIOYOtlsPM9s92XyOWJKSy4Rym4n92pqRbaxTQWVbT0aA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jiTQgyrIUbk8KmC0fqbZmUAXxg13wxaLNn3sG0etunA=;
+ b=mHrxQE9Iv7AByTx8AGB2Oz3zBC4H6ScYi22WizqjqIAwBU33SRZH/XHR7qZwBLRm0HUTRNQb99CCR+3R+221Q8KbSzXsiGbv6zXZ9IlN0p5aF6RZxq7gh1BApswkW6V0zmVmStflFHcDklN0dKWHALWUbv/Id29dL2O1CXKt7GL5lCECFSN3CIlAqvCkyAjMEfQq8O3w4VQyczfVppxywHV1JZotFgq5Y+a9O/mNBUbCexO6gnbnZFqZIMz120LF7zAz9jVF6o+c2O8ms/m8zQcP1Qbuke6jtG3CRX6Dcm5QS/G8ADXiR0n4bGasc03DKAdIZPC00JpecSiJiiIy7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jiTQgyrIUbk8KmC0fqbZmUAXxg13wxaLNn3sG0etunA=;
+ b=By2E8A8qY7+qOeCRsIc5UHCz2vrtinU0mGO8y3/lzEod76aoNMjArm1gK6gsErXaFn2L8u8QxqZk/52yG3NHoB+toBDoILPertatueO8FSf4wBJZgmhm8QursbiAo4CK8s9nBOThOu+PGQMsZrsp+s16OWB8H4fVvDL+zUViik8=
+Received: from MW4PR04CA0244.namprd04.prod.outlook.com (2603:10b6:303:88::9)
+ by DS0PR12MB8020.namprd12.prod.outlook.com (2603:10b6:8:14f::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.20; Mon, 24 Feb
+ 2025 15:50:32 +0000
+Received: from SJ5PEPF000001F7.namprd05.prod.outlook.com
+ (2603:10b6:303:88:cafe::15) by MW4PR04CA0244.outlook.office365.com
+ (2603:10b6:303:88::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.20 via Frontend Transport; Mon,
+ 24 Feb 2025 15:50:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ5PEPF000001F7.mail.protection.outlook.com (10.167.242.75) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8489.16 via Frontend Transport; Mon, 24 Feb 2025 15:50:31 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 24 Feb
+ 2025 09:50:30 -0600
+Received: from xhdthippesw40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Mon, 24 Feb 2025 09:50:27 -0600
+From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+	<manivannan.sadhasivam@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <michal.simek@amd.com>,
+	<bharat.kumar.gogada@amd.com>, Thippeswamy Havalige
+	<thippeswamy.havalige@amd.com>
+Subject: [PATCH v5 0/3] Add support for Versal Net CPM5N Root Port controller
+Date: Mon, 24 Feb 2025 21:20:21 +0530
+Message-ID: <20250224155025.782179-1-thippeswamy.havalige@amd.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DS7PR19MB88839DD16140E0C883257D679DC02@DS7PR19MB8883.namprd19.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: thippeswamy.havalige@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F7:EE_|DS0PR12MB8020:EE_
+X-MS-Office365-Filtering-Correlation-Id: 43bb7e4b-9770-4381-e93c-08dd54eaf818
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|7416014|36860700013|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?oDiueU1soCt0F5hRLK0JzsvEMRuB+TQY9zw8FneunhLPbrEku1c+oAt8nt9n?=
+ =?us-ascii?Q?r4I4RS8YqTsWJpEcDioa2H8jMBEqSZJFxGP4JamaSNZKuZfRe2kqBj1bM+xd?=
+ =?us-ascii?Q?GTKlGJMTWW/iA6RllFyPY0L2ZfhA4FAwTbZVLRhBD4nyvDfHWU8lz5uaxejy?=
+ =?us-ascii?Q?IWUiGZohpW5ajF3CTd+KVdaL6gHEHZVrslC8hsXwhFH3B5ZEl3tsBFVtFOb2?=
+ =?us-ascii?Q?P3SbxezM4SJwV1d8YeGCXSng1w14jWdL+Dd1eZ9vv9IkiVztx1g6lmaiKz/M?=
+ =?us-ascii?Q?0adTFS7If0+KXKU+fmju8w0ZyjUs8kFtpRr5Zk+dUeCfKyW9ZRRZxE11IvaK?=
+ =?us-ascii?Q?JNmmlTyzQPEnWd+bHlHbASBHus23Nqt7VesaQjdniCWyLIXGmS9cdBUQOmg/?=
+ =?us-ascii?Q?Pe8kE9vtAlFWH/x4w95hyX+f7WPglDycgJWk4WKtU20NNd3tMEcRHgw1cseu?=
+ =?us-ascii?Q?0yUFFBbuQx4Kn/I4Ib1arxpFIeHOWpfjuPhsBla1qEEfzzoBkI2jkhQwtZjs?=
+ =?us-ascii?Q?5oqJTyZ10O39qsKlakCT2neyfLVNu5Sy4PK1m0psGKsmSfy2unW6WXjOLrAJ?=
+ =?us-ascii?Q?w0rUguK4CefaNCpBwOZ8uw8KnXZRQLAj55hgNJDnG6g6rOB7MqbZ1HRSFbCN?=
+ =?us-ascii?Q?YtoywjXyBbqtJooTW2REQ0lEZ95BlspJlGE9Awyd8TgSQxo92y22io8bcG5B?=
+ =?us-ascii?Q?FumLADhDL79yVMK8Q79OidBBXMRnMmaQ0StY7tc2lObZ5rnFKZgsFhu2BqK4?=
+ =?us-ascii?Q?gP+S93aoPDG4S2vCauRAIMEepZ+XRDZdeDJAgzmuRs5Gh5HXQwXM8PaHOkWr?=
+ =?us-ascii?Q?zQa4dDCrA5kld8Si7FMY8mi2UXUbU4de95pi/3MjSKYGDDZHuFpLwr6pdHLW?=
+ =?us-ascii?Q?OAS/OrmB36MyhfPIEfsdz6l5Z6DodaMAC2AZc1MvXNUHk/1ffQPJNwLKgRoi?=
+ =?us-ascii?Q?lv7yPhW7BKmD+0RW5TnGov6NMvgWEuFvX3Z4r3ZrW6wXPMacb9Ctn9hfpNLi?=
+ =?us-ascii?Q?5iR8iqtAvwr0TlGpjpKWPDGVMMY0g795/YV7s04sxd/oAZq8Paz2G2iqKUcS?=
+ =?us-ascii?Q?0ohCKP9rZyvfGVmnxSIHVbPuadnJpXQtghJMSrulBywFiMZOnoGOP6+Dw+Gz?=
+ =?us-ascii?Q?cGBlgx6OOYbMkZWARAXTNqSA9Lq2qL1zX3/Aj9ilqEHr6j0vJszeF6wJXXDz?=
+ =?us-ascii?Q?v6SiKhyz3iaIHAQLCxfIkjnbiImfwfLNuMgAA8IAYGaYyQHNpM/w/1Pzqty1?=
+ =?us-ascii?Q?AmK2lGJ0svcf2pRNKtg1VI/1r62uoY84cbnfMMcFlH2PA1HP7yXulUUi3DKL?=
+ =?us-ascii?Q?a40rk1EwSbEC/QLggX9EQk5SvgJyYw53XXwx8/0DM7gyQ7+XOpFNUAFgu80O?=
+ =?us-ascii?Q?4xEC6TWJibt77PfH6Wo9D1vNd6luM7CJWNrI2Gc6f/wqQVHRPM6ScDDwJY63?=
+ =?us-ascii?Q?2VSewzu5kH7UCH2fYBwbtJnHkrTjBpF2DZQPWsNBOOLn3pKgPyQrQtHEQuvt?=
+ =?us-ascii?Q?PzaWvVzzfMvmSEY=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(7416014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2025 15:50:31.6222
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43bb7e4b-9770-4381-e93c-08dd54eaf818
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ5PEPF000001F7.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8020
 
-On Mon, Feb 24, 2025 at 05:58:39PM +0400, George Moussalem wrote:
-> On 2/24/25 17:49, Krzysztof Kozlowski wrote:
-> 
-> > On 24/02/2025 14:42, Dmitry Baryshkov wrote:
-> >> On Mon, Feb 24, 2025 at 10:19:35AM +0100, Krzysztof Kozlowski wrote:
-> >>> On 24/02/2025 07:12, George Moussalem wrote:
-> >>>> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> >>>>
-> >>>> Document the QFPROM block found on IPQ5018
-> >>>>
-> >>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> >>>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
-> >>> You can send the patches to yourself and see whether they are properly
-> >>> threaded.
-> >> I don't think outlook world understands the concept of threading.
-> 
-> using git send-email from an @outlook.com address. But I've figured out the issue:
-> git send-email --thread
-> this sets In-reply-to and References tags
+Add support for Versal Net CPM5NC Root Port controller 0.
 
-It does that by default. The usual way is to have your cover letter as
-0000-foo-bar.patch and then use git send-email 00*. This way it picks up
-the cover letter as the first patch and everything else goes as reponses
-to it.
+The Versal-Net ACAP devices include CCIX-PCIe Module (CPM). The integrated
+block for CPM5NC along with the integrated bridge can function as PCIe Root
+Port.
 
-OR you can use a tool which does that for you. We usually recommend b4
-tool, it wraps ardoung git-send-email and it can help a lot.
+Bridge error in Versal-Net CPM5NC are handled using Versal-Net CPM5N
+specific interrupt line & there is no support for legacy interrupts.
 
-> 
-> > True, but note that outlook.com is just provider and you can use
-> > whatever email client with it. mutt/neomutt, Thunderbird, claws, Kmail etc.
-> 
-> correct, not sending from outlook, but git send-email. Was missing the --thread option
-> 
-> > Best regards,
-> > Krzysztof
-> 
-> Best regards,
-> George
-> 
+Thippeswamy Havalige (3):
+  PCI: xilinx-cpm: Fix IRQ domain leak in error path of probe.
+  dt-bindings: PCI: xilinx-cpm: Add compatible string for CPM5NC Versal
+    Net host
+  PCI: xilinx-cpm: Add support for Versal Net CPM5NC Root Port
+    controller
+
+ .../bindings/pci/xilinx-versal-cpm.yaml       |  1 +
+ drivers/pci/controller/pcie-xilinx-cpm.c      | 44 ++++++++++++++-----
+ 2 files changed, 33 insertions(+), 12 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.43.0
+
 
