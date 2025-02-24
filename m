@@ -1,333 +1,144 @@
-Return-Path: <devicetree+bounces-150526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 928DBA42960
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 18:21:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E338A42957
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 18:20:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E23271694B8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 17:19:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97C7A18853BE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 17:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5644264A7E;
-	Mon, 24 Feb 2025 17:19:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4460B263F4A;
+	Mon, 24 Feb 2025 17:19:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cC+BihlW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oj/5A4d6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E53872627E6;
-	Mon, 24 Feb 2025 17:19:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16762263F26;
+	Mon, 24 Feb 2025 17:19:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740417564; cv=none; b=RzX7u9+ofEwvQhBIQPeOD7o1mVwFMe9OLSOGinQbUAHDX+bRT9K+7BpDBuqQaPMW/SsL4Y7GLiE8uWrPp5PNqryc42HiQ2wm5/EJF9l1dC2pDwrI+G+95RPZQFDjazDTS4IbnBWLRuuEis+iL/YJEakcB4uqgNF8bJ0G3zCs1i0=
+	t=1740417563; cv=none; b=nORxHtFTlkDMAWtl4D7iNNJIA5yqfcPaF+aCTsiP5Fh7eOBUZd0mQC2ukYCxuQLwwqX7ewtYoLSINI+acT2tkUb+KTS2dgtxHza9M0LuR3YgFYerCoXUm43JD3vZfrMd7jtv4xVFPXWU6rLb6iLZM3KlD46+X9PfCVXFUYcPtaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740417564; c=relaxed/simple;
-	bh=slnkLAfN12/Np+ptADfWMEbKgBaAPa6Sx390iWCcpdc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=R7YomL74Kx3zSpY90vcdOLNUoifIgkqotRtuU2oZWSoPJB29Ro22P7QCTpBz4vBji2X9qtpZbEloRqm0YD48sUoMxx1ubvS/OZkSxcKYiz0R4TD1zhDPrUo0rLMPnNUmTSdRTHMr5d9OVZDUS/1MnEkoinvUngNPRGYy9uB39eY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cC+BihlW; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51O9hKwO011982;
-	Mon, 24 Feb 2025 17:18:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vxStInqxSZjfmhVt7qTltEQSTHXaQIqUY2en8tjE1Kw=; b=cC+BihlWSKMs9JSt
-	dOmM/ogUNbC8dL3gkNaIIE6VRDKIWvOJxnA0PwRtMI6wnTSAgkwU8THANt3Ofrsc
-	3gw5gN30nghP2pex+sXgNYx5ABv4KRoXEdDRAQJU4FHWKy/lL1gty6YuB6Jg6d84
-	IyhhazIgixWQUJrlPrqS61nsA6dGyg8njbYSoqtjnkn2U+XEAg6qGhIazopg5o7C
-	5JBOZv6IQ8THyiKQ755JNhJLE7w5fOFhdYwXu3OzHOGFs6zR8OpP4TJzV4or5WOv
-	66f0cfgmgYxNT/7jlcTTWNWeWmAfWfqbXGF7sBwVPaRDzica++jkpkf3RlWZ64LJ
-	C4JuDA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44y6y6ny5f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Feb 2025 17:18:46 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51OHIjSm006405
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Feb 2025 17:18:45 GMT
-Received: from hu-janathot-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 24 Feb 2025 09:18:41 -0800
-From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <quic_mohamull@quicinc.com>, <quic_janathot@quicinc.com>,
-        <quic_hbandi@quicinc.com>, <quic_anubhavg@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v11 1/1] arm64: dts: qcom: qcs6490-rb3gen2: add and enable BT node
-Date: Mon, 24 Feb 2025 22:47:37 +0530
-Message-ID: <20250224171737.2522834-2-quic_janathot@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250224171737.2522834-1-quic_janathot@quicinc.com>
-References: <20250224171737.2522834-1-quic_janathot@quicinc.com>
+	s=arc-20240116; t=1740417563; c=relaxed/simple;
+	bh=DqLA3R9+ncfGcr/YJS6lhTf2TaveCWhzLJel4MYNo6I=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=K/QVkVf7vaOBt93/nMmZuvE9H5OnyGgJl6loaUkpw3A1PHw7syCDxFea95JKSuaNPh8vslGQEjd3Uuy2mW3+EFeK18+/DTjC22svL8Yr73VnShMdhOzEaIMWYPeLhfEw3mm9oO8q8wjoaN+DjB92s1gEscOM6IuuFPqPywjE8eU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oj/5A4d6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F9ADC4CEEB;
+	Mon, 24 Feb 2025 17:19:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740417561;
+	bh=DqLA3R9+ncfGcr/YJS6lhTf2TaveCWhzLJel4MYNo6I=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=oj/5A4d6B52s9netUSHzaXDHUKauk4ZcSJNpUdrGaxvCn3ezRAPD/QQgUpzHjFm8X
+	 f7h1I9h9c3piFl0NU62S/i0PL1ErNr0MKeaC8ADaF9VbT15kotJwl2t1to39SP/jNY
+	 bn6N5EXWAA6d4cigSjRIPgSOPtnVRmnW0FQW+ll+UHHHNeTMG+4MqDGCwTtMi2DBse
+	 rDBqxn9i1tPyVu5UKn3YYJZ8rfMJh43d0JGdXGi2CQgxm9yBtkmwVImJhhLQkNyTrs
+	 OK26oVeHXewjJaBw/jQElWNnnMCC2kMkmRT+p6ckzKEzWk0MfYEWWZUnXrPVb1YDxM
+	 UC96q7730INBA==
+Date: Mon, 24 Feb 2025 11:19:19 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: PNh3c0d-U-7q8sy4k-NTK28PSItD9wJS
-X-Proofpoint-GUID: PNh3c0d-U-7q8sy4k-NTK28PSItD9wJS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-24_08,2025-02-24_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
- malwarescore=0 phishscore=0 adultscore=0 lowpriorityscore=0
- mlxlogscore=999 impostorscore=0 priorityscore=1501 bulkscore=0 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502240116
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, 
+ Takashi Iwai <tiwai@suse.com>, 
+ Francesco Dolcini <francesco.dolcini@toradex.com>, 
+ Ernest Van Hoecke <ernest.vanhoecke@toradex.com>, 
+ patches@opensource.cirrus.com, Saravana Kannan <saravanak@google.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-sound@vger.kernel.org, 
+ Jaroslav Kysela <perex@perex.cz>, 
+ Charles Keepax <ckeepax@opensource.cirrus.com>, devicetree@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>
+To: Francesco Dolcini <francesco@dolcini.it>
+In-Reply-To: <20250224155500.52462-4-francesco@dolcini.it>
+References: <20250224155500.52462-1-francesco@dolcini.it>
+ <20250224155500.52462-4-francesco@dolcini.it>
+Message-Id: <174041755964.3547413.4477664481191696884.robh@kernel.org>
+Subject: Re: [PATCH v2 3/5] ASoC: dt-bindings: wm8904: Add DMIC, GPIO, MIC
+ and EQ support
 
-Add the PMU node for WCN6750 present on the qcs6490-rb3gen
-board and assign its power outputs to the Bluetooth module.
 
-In WCN6750 module sw_ctrl and wifi-enable pins are handled
-in the wifi controller firmware. Therefore, it is not required
-to have those pins' entries in the PMU node.
+On Mon, 24 Feb 2025 16:54:58 +0100, Francesco Dolcini wrote:
+> From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
+> 
+> Add two properties to select the IN1L/DMICDAT1 and IN2R/DMICDAT2
+> functionality:
+> - wlf,in1l-as-dmicdat1
+> - wlf,in1r-as-dmicdat2
+> 
+> Add a property to describe the GPIO configuration registers, that can be
+> used to set the four multifunction pins:
+> - wlf,gpio-cfg
+> 
+> Add a property to describe the mic bias control registers:
+> - wlf,mic-cfg
+> 
+> Add two properties to describe the Dynamic Range Controller (DRC),
+> allowing multiple named configurations where each config sets the 4 DRC
+> registers (R40-R43):
+> - wlf,drc-cfg-regs
+> - wlf,drc-cfg-names
+> 
+> Add three properties to describe the equalizer (ReTune Mobile), allowing
+> multiple named configurations (associated with a samplerate) that set
+> the 24 (R134-R157) EQ registers:
+> - wlf,retune-mobile-cfg-regs
+> - wlf,retune-mobile-cfg-names
+> - wlf,retune-mobile-cfg-rates
+> 
+> Datasheet: https://statics.cirrus.com/pubs/proDatasheet/WM8904_Rev4.1.pdf
+> Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> ---
+> v2: Added an example of how to use the ReTune Mobile config properties
+> v1: https://lore.kernel.org/lkml/20250206163152.423199-4-francesco@dolcini.it/
+> ---
+>  .../devicetree/bindings/sound/wlf,wm8904.yaml | 106 ++++++++++++++++++
+>  1 file changed, 106 insertions(+)
+> 
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 171 ++++++++++++++++++-
- 1 file changed, 170 insertions(+), 1 deletion(-)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index 7a36c90ad4ec..de03770e0b90 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: BSD-3-Clause
- /*
-- * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- /dts-v1/;
-@@ -34,6 +34,7 @@ / {
- 
- 	aliases {
- 		serial0 = &uart5;
-+		serial1 = &uart7;
- 	};
- 
- 	chosen {
-@@ -218,6 +219,63 @@ vph_pwr: vph-pwr-regulator {
- 		regulator-min-microvolt = <3700000>;
- 		regulator-max-microvolt = <3700000>;
- 	};
-+
-+	wcn6750-pmu {
-+		compatible = "qcom,wcn6750-pmu";
-+		pinctrl-0 = <&bt_en>;
-+		pinctrl-names = "default";
-+		vddaon-supply = <&vreg_s7b_0p972>;
-+		vddasd-supply = <&vreg_l11c_2p8>;
-+		vddpmu-supply = <&vreg_s7b_0p972>;
-+		vddrfa0p8-supply = <&vreg_s7b_0p972>;
-+		vddrfa1p2-supply = <&vreg_s8b_1p272>;
-+		vddrfa1p7-supply = <&vreg_s1b_1p872>;
-+		vddrfa2p2-supply = <&vreg_s1c_2p19>;
-+
-+		bt-enable-gpios = <&tlmm 85 GPIO_ACTIVE_HIGH>;
-+
-+		regulators {
-+			vreg_pmu_rfa_cmn: ldo0 {
-+				regulator-name = "vreg_pmu_rfa_cmn";
-+			};
-+
-+			vreg_pmu_aon_0p59: ldo1 {
-+				regulator-name = "vreg_pmu_aon_0p59";
-+			};
-+
-+			vreg_pmu_wlcx_0p8: ldo2 {
-+				regulator-name = "vreg_pmu_wlcx_0p8";
-+			};
-+
-+			vreg_pmu_wlmx_0p85: ldo3 {
-+				regulator-name = "vreg_pmu_wlmx_0p85";
-+			};
-+
-+			vreg_pmu_btcmx_0p85: ldo4 {
-+				regulator-name = "vreg_pmu_btcmx_0p85";
-+			};
-+
-+			vreg_pmu_rfa_0p8: ldo5 {
-+				regulator-name = "vreg_pmu_rfa_0p8";
-+			};
-+
-+			vreg_pmu_rfa_1p2: ldo6 {
-+				regulator-name = "vreg_pmu_rfa_1p2";
-+			};
-+
-+			vreg_pmu_rfa_1p7: ldo7 {
-+				regulator-name = "vreg_pmu_rfa_1p7";
-+			};
-+
-+			vreg_pmu_pcie_0p9: ldo8 {
-+				regulator-name = "vreg_pmu_pcie_0p9";
-+			};
-+
-+			vreg_pmu_pcie_1p8: ldo9 {
-+				regulator-name = "vreg_pmu_pcie_1p8";
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -799,6 +857,39 @@ &pon_resin {
- 	status = "okay";
- };
- 
-+&qup_uart7_cts {
-+	/*
-+	 * Configure a bias-bus-hold on CTS to lower power
-+	 * usage when Bluetooth is turned off. Bus hold will
-+	 * maintain a low power state regardless of whether
-+	 * the Bluetooth module drives the pin in either
-+	 * direction or leaves the pin fully unpowered.
-+	 */
-+	bias-bus-hold;
-+};
-+
-+&qup_uart7_rts {
-+	/* We'll drive RTS, so no pull */
-+	drive-strength = <2>;
-+	bias-disable;
-+};
-+
-+&qup_uart7_rx {
-+	/*
-+	 * Configure a pull-up on RX. This is needed to avoid
-+	 * garbage data when the TX pin of the Bluetooth module is
-+	 * in tri-state (module powered off or not driving the
-+	 * signal yet).
-+	 */
-+	bias-pull-up;
-+};
-+
-+&qup_uart7_tx {
-+	/* We'll drive TX, so no pull */
-+	drive-strength = <2>;
-+	bias-disable;
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-@@ -842,12 +933,90 @@ &sdhc_2 {
- &tlmm {
- 	gpio-reserved-ranges = <32 2>, /* ADSP */
- 			       <48 4>; /* NFC */
-+
-+	bt_en: bt-en-state {
-+		pins = "gpio85";
-+		function = "gpio";
-+		output-low;
-+		bias-disable;
-+	};
-+
-+	qup_uart7_sleep_cts: qup-uart7-sleep-cts-state {
-+		pins = "gpio28";
-+		function = "gpio";
-+		/*
-+		 * Configure a bias-bus-hold on CTS to lower power
-+		 * usage when Bluetooth is turned off. Bus hold will
-+		 * maintain a low power state regardless of whether
-+		 * the Bluetooth module drives the pin in either
-+		 * direction or leaves the pin fully unpowered.
-+		 */
-+		bias-bus-hold;
-+	};
-+
-+	qup_uart7_sleep_rts: qup-uart7-sleep-rts-state {
-+		pins = "gpio29";
-+		function = "gpio";
-+		/*
-+		 * Configure pull-down on RTS. As RTS is active low
-+		 * signal, pull it low to indicate the BT SoC that it
-+		 * can wakeup the system anytime from suspend state by
-+		 * pulling RX low (by sending wakeup bytes).
-+		 */
-+		bias-pull-down;
-+	};
-+
-+	qup_uart7_sleep_rx: qup-uart7-sleep-rx-state {
-+		pins = "gpio31";
-+		function = "gpio";
-+		/*
-+		 * Configure a pull-up on RX. This is needed to avoid
-+		 * garbage data when the TX pin of the Bluetooth module
-+		 * is floating which may cause spurious wakeups.
-+		 */
-+		bias-pull-up;
-+	};
-+
-+	qup_uart7_sleep_tx: qup-uart7-sleep-tx-state {
-+		pins = "gpio30";
-+		function = "gpio";
-+		/*
-+		 * Configure pull-up on TX when it isn't actively driven
-+		 * to prevent BT SoC from receiving garbage during sleep.
-+		 */
-+		bias-pull-up;
-+	};
- };
- 
- &uart5 {
- 	status = "okay";
- };
- 
-+&uart7 {
-+	/delete-property/ interrupts;
-+	interrupts-extended = <&intc GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>,
-+			      <&tlmm 31 IRQ_TYPE_EDGE_FALLING>;
-+	pinctrl-1 = <&qup_uart7_sleep_cts>,
-+		    <&qup_uart7_sleep_rts>,
-+		    <&qup_uart7_sleep_tx>,
-+		    <&qup_uart7_sleep_rx>;
-+	pinctrl-names = "default",
-+			"sleep";
-+
-+	status = "okay";
-+
-+	bluetooth: bluetooth {
-+		compatible = "qcom,wcn6750-bt";
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		max-speed = <3200000>;
-+	};
-+};
-+
- &usb_1 {
- 	status = "okay";
- };
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/sound/wlf,wm8904.yaml:167:111: [warning] line too long (154 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/sound/wlf,wm8904.yaml:172:111: [warning] line too long (154 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/sound/wlf,wm8904.yaml:177:111: [warning] line too long (154 > 110 characters) (line-length)
+
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/sound/wlf,wm8904.example.dts:52.17-18 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/sound/wlf,wm8904.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1511: dt_binding_check] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250224155500.52462-4-francesco@dolcini.it
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
