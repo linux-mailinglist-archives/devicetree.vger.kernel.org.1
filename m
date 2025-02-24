@@ -1,119 +1,134 @@
-Return-Path: <devicetree+bounces-150474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CBBAA4252C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 16:05:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38738A425B6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 16:12:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4D68442DD4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 14:57:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48B77425D08
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 15:00:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB2271514CC;
-	Mon, 24 Feb 2025 14:56:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2286817B50B;
+	Mon, 24 Feb 2025 15:00:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CSoNhnvU"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="JSJCrmdd";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="KBJvqddd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E06CF14012;
-	Mon, 24 Feb 2025 14:56:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D50F38DD8;
+	Mon, 24 Feb 2025 15:00:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740409000; cv=none; b=jpNh2reSVZt4XWBkVXxm0791osFbUv5UFc1uq0eHzLG+SDwxHLQP64L0uT9xn+crIeXrWpAdupYg1eTeEZOMixyFa3XGn/+vo0rPz35QCah2u2bG0ev5unRh/2jfbPRFxAfltEocaGAA7AiizCvHLcU8JGQlmmuO64FxuXC/udE=
+	t=1740409230; cv=none; b=EFO8ZbGo9wY25Qgxow872XPlhn1Gw+qtXt8PXp+1N1nfPnH9+g4mzgP2qgGdjUAiG6rRoBwNoHCtBAy6W9jiHrTjRNj87mKKiB/XGh+7gzBfYQfbzq9s1HTyHeJgRIfvY1j1bfCn4hTx8mHGr2tVVQCIKZ7K4APwc3Nk6PPslsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740409000; c=relaxed/simple;
-	bh=kLvQSsfByF9witrbdeJo0ttxnE3VKPGq/3+vWTmXkgc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QyV/MTlKscOh7/rc9HBaDsFnN67dQkIsB93DhZKm5MR5q9c9xkwH5oo9crVH188mCDrhnKe/hGgBzEAEJM7IeOJCxf7VKdqrbQW4A2XFoSItJNobmir3xRHI4FOG7lwmlvgxL3OmBmpNvXXwMLZs8RUI/eRoYDizXfS7sg3tKME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CSoNhnvU; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740408998; x=1771944998;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kLvQSsfByF9witrbdeJo0ttxnE3VKPGq/3+vWTmXkgc=;
-  b=CSoNhnvUb1j1QlIAvBfxwdTIOvrwBTvIUMNnC+0w8R90QA4jqd5d9I0M
-   rd9rxCdorz9sR+u7gWmLg+v1g5DZvKmmkOYcMdb2i4tV/dSi/OzbdnPo1
-   Lwjj2j9V0AS7Qh68rHgryHd8KyKBXiAZL592zI7B3Volid7gISA2XZbQq
-   7vuLO9h1s35pGJj7ZwTyginUkHTeaMrWEOtVFyMkJkQDh+jdNsyNrN4XX
-   tGLJTYDZ2S8emYFt9JNHcJw8rQT9VB5x/KZqEp75TKFi70y0edl3kzqxn
-   59wnWwFng7UOzOjrTJtRDPyYD2Mxynpes6pzs1+KakwfxmkuVS8bFc4lx
-   A==;
-X-CSE-ConnectionGUID: TXIqK2//Reac3NoHEfBRrQ==
-X-CSE-MsgGUID: 1GaGmBL3TM2HETfj+uHwlg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="40353110"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; 
-   d="scan'208";a="40353110"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2025 06:56:37 -0800
-X-CSE-ConnectionGUID: xQ/AlRxeSYueNaOP2pPq3w==
-X-CSE-MsgGUID: xlXwXB39RReif3MX5BGDRQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; 
-   d="scan'208";a="115873701"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by fmviesa006.fm.intel.com with ESMTP; 24 Feb 2025 06:56:29 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tmZsh-0008eZ-1E;
-	Mon, 24 Feb 2025 14:56:27 +0000
-Date: Mon, 24 Feb 2025 22:56:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andy Yan <andyshrk@163.com>, heiko@sntech.de
-Cc: oe-kbuild-all@lists.linux.dev, hjc@rock-chips.com, mripard@kernel.org,
-	cristian.ciocaltea@collabora.com, neil.armstrong@linaro.org,
-	yubing.zhang@rock-chips.com, krzk+dt@kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, robh@kernel.org,
-	sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH 3/6] drm/rockchip: Add RK3588 DPTX output support
-Message-ID: <202502242201.3fE7QpMy-lkp@intel.com>
-References: <20250223113036.74252-4-andyshrk@163.com>
+	s=arc-20240116; t=1740409230; c=relaxed/simple;
+	bh=Hxa8pbq3jaNkyuqDkj4YzOOvo8feC1TgyuBllE+WYYk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Uj3qaVihYS8gDeDAaDHTI/AWWlGgZh5RR7gofFsBIvF0uZlU3/JiBkSZ9Sy+G3LvPt5VPNAqDdKfAryJgdqn5jRNAI0a9EJ3m50pZPu1k+dDU8ryWO5sfQakauvN0ejBh96AtSerOmV7/IP0XDpreOaYYBBUcLfTueD5//lQcXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=JSJCrmdd; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=KBJvqddd reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1740409227; x=1771945227;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=T6W5ZMpXaDdvfRap/6NIAL55MOOCeVq3QJ0xPOvFRkQ=;
+  b=JSJCrmddb1ewxEIwrA0Y7GpOSgYsDmQxEIGoWSQcjDEZ/0rfAo0ehXe0
+   z1Tw5yst9qVn4uU808eU5hYJe1cZOeByHS7zRj1uzEp6UJJ+uiaRi0Mwb
+   dvh4Qog+ETvOXyvxVim/g5KUbBZZpPrhndmHHgKPhzwMI5g07OG0Xbp8Z
+   gdYuBrvD9O8ut7WYHJMZo7o5Y2GzRGIcRfzscFejKI31IcqTieqSwgKve
+   l0E6otPcDRaBwnmhpXOzPG0v/VDHrGrHm86EPBuW1yii7XjA34LLMdHwl
+   KpkLGzXq0oA85M0WVGUH22Odjo0eSI3lCJoEQuywfBMLiYJmoqhtg7cvV
+   Q==;
+X-CSE-ConnectionGUID: lvFkyRSJSjyP0h7uqar+0g==
+X-CSE-MsgGUID: fM+2bR44QEOqxtSh2K96uQ==
+X-IronPort-AV: E=Sophos;i="6.13,309,1732575600"; 
+   d="scan'208";a="42043004"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 24 Feb 2025 16:00:24 +0100
+X-CheckPoint: {67BC8988-21-C21CC984-D1047F1F}
+X-MAIL-CPID: C40F4806809927EB72D8AB495A33CC91_5
+X-Control-Analysis: str=0001.0A002117.67BC8987.00BB,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A61D016798B;
+	Mon, 24 Feb 2025 16:00:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1740409220;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=T6W5ZMpXaDdvfRap/6NIAL55MOOCeVq3QJ0xPOvFRkQ=;
+	b=KBJvqddd7Fo+MyVSzXw/Tg1rWwnj/aVyFzMT45gg9ZcLAMoxBoEzuPGyESCuNI3SsyYyVJ
+	cOIqIrzIVVpHNnH6PTq1iH7gF4u0fbWapn7sbxIP8qabLDZbZ3zBAeH6NPYAOCo02NlfwA
+	zQau4MhcsDYUx8fXYNpmMqsMvGeuu6W/BTtbOa/+oFtKYwPQCH/u9Uz6ARQpGoNmoq99sw
+	aDPAave9zUomXQi7VAUPj8CBDnqJRKIeJRjNHMX3eN7MjcVVX2erH0ruIjMt4t4dknKmpI
+	LA4RjQ84x8NBhTW5MJpuj71d1JCiro1jC6zprU0ty/5jHm/t8IFUVb7pYsDAdA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+	linux@ew.tq-group.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Alexander Stein <alexander.stein@ew.tq-group.com>
+Subject: [PATCH v2 1/2] arm64: dts: imx8mp-tqma8mpql-mba8mpxl: change sound card model name
+Date: Mon, 24 Feb 2025 16:00:14 +0100
+Message-ID: <20250224150016.499055-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250223113036.74252-4-andyshrk@163.com>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Andy,
+From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
 
-kernel test robot noticed the following build errors:
+The card name for ALSA is generated from the model name string and
+is limited to 16 characters. Use a shorter name to prevent cutting the
+name.
 
-[auto build test ERROR on linus/master]
-[also build test ERROR on v6.14-rc4]
-[cannot apply to rockchip/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Since nearly all starter kit mainboards for i.MX based SoM by TQ-Systems
+use the same codec with the same routing on board it is a good idea to
+use the same model name for the sound card. This allows sharing a default
+asound.conf in BSP over all the kits.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Yan/dt-bindings-display-rockchip-Add-schema-for-RK3588-DPTX-Controller/20250223-193323
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20250223113036.74252-4-andyshrk%40163.com
-patch subject: [PATCH 3/6] drm/rockchip: Add RK3588 DPTX output support
-config: sparc-allmodconfig (https://download.01.org/0day-ci/archive/20250224/202502242201.3fE7QpMy-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250224/202502242201.3fE7QpMy-lkp@intel.com/reproduce)
+Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Changes in v2:
+* Rebased to next-20240224
+* Remove dependency on local patch
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502242201.3fE7QpMy-lkp@intel.com/
+ arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "dw_dp_bind" [drivers/gpu/drm/rockchip/rockchipdrm.ko] undefined!
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+index ae64731266f35..23c612e80dd38 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+@@ -234,7 +234,7 @@ linux,cma {
+ 
+ 	sound {
+ 		compatible = "fsl,imx-audio-tlv320aic32x4";
+-		model = "tq-tlv320aic32x";
++		model = "tqm-tlv320aic32";
+ 		audio-cpu = <&sai3>;
+ 		audio-codec = <&tlv320aic3x04>;
+ 	};
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
