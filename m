@@ -1,176 +1,98 @@
-Return-Path: <devicetree+bounces-150580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4139A42B98
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 19:36:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC9F5A42B9E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 19:36:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AE6B18999B7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 18:35:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF108188B069
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 18:36:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2282266563;
-	Mon, 24 Feb 2025 18:35:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QO/8n+in"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69C1B26618D;
+	Mon, 24 Feb 2025 18:36:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D392226618D;
-	Mon, 24 Feb 2025 18:35:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B099B1C5F27;
+	Mon, 24 Feb 2025 18:36:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740422107; cv=none; b=ZF333MehNBvt3uCE52z4YMHJzb0cpd9j44E4lGDACMNkLoKoOH4hkoSL/3/cTZDq5KhIKRY9tbDVBcamMeb6726HtzwFxOvm1IBE4CX7gTX7QRW5GUG2tvMF6ir7TTZmfwh8PKwir22+k7FbPfAUrklCpNIiUn33n+Y9UWhfrZw=
+	t=1740422185; cv=none; b=oXVfi5VrpO06NP4Guq3fc22xZZ242+yXkkAWzKg0vbukLxe+f67xOPJC4cGHV09cMf+3K5BpfHR8w9F3HgaHmY7sH+t7BP5gEseLjhEjBdj57FsV1SRjNlvLpuOP1jgMNcwz+87jvIBZP3KEFn4n852Kb7y4MCt6nzS+dQn5v4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740422107; c=relaxed/simple;
-	bh=v5dvf50xGfv6+dkwMCERzgymEzJAyEQQxvpFgU80674=;
+	s=arc-20240116; t=1740422185; c=relaxed/simple;
+	bh=gwd0kHHM6yEt5vGNuet2cFmwY7fgQBCNxAjsE9uoDxw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Tc1/DOhQsivPnqsUrqW3hkEKSFoLHhTL1DVgFmd6E5rLdhIDEYcs08kHTXUOlcqbRXlkVwJA3r0Mxgj/J5VNJuJ4AI855NrzT0r8DFqchUvLNxE1cCFDddR0981l64/iElVEnaYtcp6tsrKWOErSlBU3VvFfx1ZBScZtMoofHX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QO/8n+in; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	 Content-Type:Content-Disposition:In-Reply-To; b=g1VocN7UZF++z4yc22VPNLouSncjHE0SXXB0TnVB/hjJ+rvFWW6NNvPGxs0toSF3pTJB7OxzLothfaxhBqc+CFHy7lhGoPHrZDaSDBjAZj9BuqRzFa1Hiqwz6TR3df8mdSXE+ID1rr567qX8QjgEKItyQPu2W7BlDJL51ZFdO0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-30613802a6bso49680241fa.1;
-        Mon, 24 Feb 2025 10:35:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740422104; x=1741026904; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wB6e0LbXYe7xZo2cDjAU++WyYsDziZwYbdBjD9+h5AA=;
-        b=QO/8n+inUl9ySdu0g07PDx5CHZEDl0fdEy1iI6KpieH17wJmEPOaY66xqTExa3X2+7
-         G64RUOAV58SEAH+HGr7uHCYFTYPNrXR3R5Ih9J445sreMKjRsX/OHQ8lUccVIjhuZXra
-         9AbeiANDwKT/830PMhrQC0QM+gCp0ZaC2/Ndt4mA4/cc4Syg70+gi3XEj6ATmJt+wcRS
-         k+a2afV4GO21EdVcF4SAZuJzReG67/g5vY9BHRs76DQ1TwH9LUDUII9yoqG5JWWZ2V53
-         iJ6/q9IHP3qtbvH0rkIiKk8kOSioEW22ukA2PNaPpPnp1JluztPQkhAYTMRhJYcuT4SH
-         BV/Q==
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-220ecbdb4c2so16674285ad.3;
+        Mon, 24 Feb 2025 10:36:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740422104; x=1741026904;
+        d=1e100.net; s=20230601; t=1740422183; x=1741026983;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wB6e0LbXYe7xZo2cDjAU++WyYsDziZwYbdBjD9+h5AA=;
-        b=BuI8NQf4WBF36RQLARBT2OqJsQWzfABigquI6cNwyRMGB0eNLj/MQEXC281JMOkbKH
-         bgPHOLjIFxZqpIiTjz/XIoyDGg0Fd3G1j+0nWlKDZcqPdq//oej3/lpdYd/rO4jptJ1n
-         JrGlD+ptdiCphb6paEYJD6X8OE4MTSQbXcTEwJihWSlWR68uJ2qycoESKcQrZqLqyTf+
-         3GbMOh9VE3+Lm/F7GqQGdVsvhkUM60BQk/sYFMuw8S5Tls/HcGmSTYfKJN2vq4lfBo5k
-         wjCgk7taPrHSA60Y3f2x+tRWakvwZy1SUpeMg/cFNAP9Zh+CEihi5K8EcFHQyY7pnH0c
-         eQqA==
-X-Forwarded-Encrypted: i=1; AJvYcCVJDJnIPyty0WAKV5wt3BcnusKRxYCoo+uobVPYS4YyZCnHWR1f2mgsaaURRcBr0Lkg5Em3/D9LxHxDsw==@vger.kernel.org, AJvYcCWGrcn+5JyBWbskjkrHdVgM0wLAOlgBPmxXmwV25RFDck4b+t2FJgvOHP6F7d+SLXpi1jNErEtnvck3eQiq@vger.kernel.org, AJvYcCX9+FTTSl3J/V1ZYgvmmYGVWa2Dhil5V/VX7yeK5CtWaDkxGTPLJUbsUhTEWLU9emxnwk0F1kTo0l1e@vger.kernel.org, AJvYcCXUoCRmqntoplBsQc8f3NzVHh/EQhrs4Ogz0FFCFjIaheQgdKTByE5Y4PJy4DRkZ2rzyhAsh7Sbsk6U@vger.kernel.org, AJvYcCXtsB+oAzH/HBMHaaGaVxrMKM8MNFDtLDRBkyowVNuq+buiQASiXih/m7QIC+PhKG/lq31U8FK0pC+JrlRHDmfH5Dc=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQotHK19LJLqvSOlp/2C3sHsBjYH5IVN3sULdfI5AJhzsD2waF
-	MseBfMArCoVe2p95U4SvKiMP3iIp4MUb5kjNk0sigdjvL3dJrSAJ
-X-Gm-Gg: ASbGnctaxpWm14uwml27yYiM+vbj+TUMOf/g8wLYajQPP5tUdvUYmmwa6O4aAvaehHb
-	JoJ/DMrM4kZjD360ZA/D20LbvAXQ+mrUpaL79ozhQxk5+ANppeD4NkGKSnIsbVj0rd0nsPewNdB
-	C7QdTnzF5gTz2ZaMSQv30PM+SKQmz1TwJNBlCSiJtI7Cal5zTa83p/2yjZRqxyca1yD0CS8Wj7I
-	v/yJvT7/N7wcudPLKWYWcK5PxJp9ODLXPtZKxnexvIg4GO4ZhKS/5r8c9WEzIde7hHU2wvpfMxX
-	Fh9FadyYtgZvVsuz8iYo2ij5JEGehE4X
-X-Google-Smtp-Source: AGHT+IFs7Y+fPcBuO8FWsGzVtgW29xKLHKqg2RgdPdKlbhb4D5IMevpKDqe0ksSM6DR2potkoMrNfA==
-X-Received: by 2002:a2e:81d2:0:b0:2fb:cc0:2a05 with SMTP id 38308e7fff4ca-30a80cba36dmr1382731fa.37.1740422103756;
-        Mon, 24 Feb 2025 10:35:03 -0800 (PST)
-Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30a819e0c3esm52791fa.7.2025.02.24.10.35.01
+        bh=C+iuRvEJQMhX8pBK/9EUfHF9HLzVHhSe33fGhQO8PJQ=;
+        b=bE4zPcWmJKboizyPkonldfAlJtWQotrjBapq9SzkCWRhH1UXmoW4t4JUakvSwWERaD
+         a8fqYFEUaW17INJdL/DhYHwRq63R4Tn5guv4vz85DQrD+Rbm4PABVpR1UWMXNW8iqsC7
+         v/+6cqkDnEOSierDGd2h4p26nzuTiBL5vit20PTNYoc5bmzKw8E9bn8usvvtpRFAFsPr
+         +mokK3TkELVgYG3xPqVN7HTuKOOCtShoA6mUAqlGEzx1RLfLgc72zdOyDtfUjBGI5DmF
+         ui2+AH1o2dLqRmVJPczNROshvGPPZoyqHmpLwjlQuhHKHPXXTz18ymYl6qShBihwwZ1O
+         z7VQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUyzEwC02Yo9uCQWr9dklBTIYKuC5gebWpKiP4lClNQ4mi/2mxlIZ5lmXgzytH2pLrkj9nyUVq2yL0h@vger.kernel.org, AJvYcCXQ8FSPBvBBLSXe2DUzTo97dHWN1/Y4aPWUTZTVHCjlJ162RYU4uacDo50umBQp8o8k8HGtRdTSxRjfhWq0wg==@vger.kernel.org, AJvYcCXYa7qHfQwxIYmMKnFN4mlEVOHddHDpJ4rQjfAk0LGGQcpFXjfyzM0na2dHu5FsreHkjjCzdAQWyOAURwcw@vger.kernel.org, AJvYcCXtZhSFwM5ONMqV81xXa7ZYAQdLYA15yUQMOwBDlSnr8WeuLGL4iozDmncz6a7m2c3N9Lg2ONnbEQuJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzw0v7jj9wVu4VI2jfOY23bHQGOsbFEb08t1/HJIWG9mrFL2goq
+	GNEP3AV/EjNLd4cKdkDjKYu7fGrRms7eR5/8ONZdOG1P004GEROK
+X-Gm-Gg: ASbGncuoINBuyGA0in9irvLUESmVS/bN/vkYzO8VAZYkM4qXRdWwExjFbE5r0QTrMAr
+	QS9eCjON2b1AgR9Bl8QhbjNylFYuVdTqlpWuNwvPfOBqAAFdBtHuz3UJ7oDSKEXOYH5snJ/du4P
+	uy0VfCho9f1wEhsMAkcByIIyCIOhnH+pq6wAtEyCxviAxWAJkdH8IlRybFlYKRcv2HvvTgT04bW
+	qwVm/a81su5LaOr/8v4B34jeQ1PLsUqoEic9G27a26gJcfk8Cf2IXvfknmSxwK5RHeBv/nZkO2b
+	muYtp4IvjCtK7KhPfqJI1vfziTYf8cbPeCcRBK/aTBYZTnG7xDJQGB4/6nEC
+X-Google-Smtp-Source: AGHT+IEplwsgnmJ40zGdd/jX9QmYaLpnH8VA9Jb9MgTmdt+M/WwD/lXDTq1aQNf0I+xwkJjllFIPBg==
+X-Received: by 2002:a17:902:d485:b0:221:87a2:ff9c with SMTP id d9443c01a7336-221a11ab572mr213110675ad.52.1740422182715;
+        Mon, 24 Feb 2025 10:36:22 -0800 (PST)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-220d5349226sm184951505ad.24.2025.02.24.10.36.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Feb 2025 10:35:02 -0800 (PST)
-Date: Mon, 24 Feb 2025 20:34:58 +0200
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+        Mon, 24 Feb 2025 10:36:22 -0800 (PST)
+Date: Tue, 25 Feb 2025 03:36:20 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Guillaume Stols <gstols@baylibre.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Matteo Martelli <matteomartelli3@gmail.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: [PATCH v4 10/10] MAINTAINERS: Add ROHM BD79124 ADC/GPO
-Message-ID: <3d7ebd442adbba2719c6028308571995ec10f468.1740421249.git.mazziesaccount@gmail.com>
-References: <cover.1740421248.git.mazziesaccount@gmail.com>
+	Mrinmay Sarkar <quic_msarkar@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/8] PCI: qcom-ep: add support for using the EP on
+ SAR2130P and SM8450
+Message-ID: <20250224183620.GA2064156@rocinante>
+References: <20250221-sar2130p-pci-v3-0-61a0fdfb75b4@linaro.org>
+ <20250222143657.GA3735810@rocinante>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="SgT7ql4cmjy8U+5H"
-Content-Disposition: inline
-In-Reply-To: <cover.1740421248.git.mazziesaccount@gmail.com>
-
-
---SgT7ql4cmjy8U+5H
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250222143657.GA3735810@rocinante>
 
-Add undersigned as a maintainer for the ROHM BD79124 ADC/GPO driver.
+> > Update the incomplete SM8450 support and bring in SAR2130P support for
+> > the PCIe1 controller to be used in EP mode.
+> 
+> Applied to controller/qcom, thank you!
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
----
-Revision history:
-RFC v1 =3D> v2:
- - Drop MFD and pinmux drivers
----
- MAINTAINERS | 5 +++++
- 1 file changed, 5 insertions(+)
+I updated the branch with "Reviewed-by" tags from Mani.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c1821fa8099b..b116a497d905 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20533,6 +20533,11 @@ S:	Supported
- F:	drivers/power/supply/bd99954-charger.c
- F:	drivers/power/supply/bd99954-charger.h
-=20
-+ROHM BD79124 ADC / GPO IC
-+M:	Matti Vaittinen <mazziesaccount@gmail.com>
-+S:	Supported
-+F:	drivers/iio/adc/rohm-bd79124.c
-+
- ROHM BH1745 COLOUR SENSOR
- M:	Mudit Sharma <muditsharma.info@gmail.com>
- L:	linux-iio@vger.kernel.org
---=20
-2.48.1
-
-
---SgT7ql4cmjy8U+5H
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAme8u9IACgkQeFA3/03a
-ocUZ1Qf/T7ozsozyLKeP4mSUdzZsJgJMWnZtn+6t74wkU985+m34/PssYsyOgyn+
-Z7JbMjLgd6UQxIoSFaswLl+lNarmqyDACVdrYY4MBivHyFsoPlheMNal5+9IKbpK
-rklDqPdlKPuBH31oEX9gi4UpZqiZ/xSpJSR34czNzWgfD1E1PnjC/dCjs75zRUqr
-ZlrC9O+eTKjOU36Au17YE+uIZenzVv0Xb7dFpkFr7GwiuX4q7TpmAgodk3AqfoXq
-MWa3zS6UgTWRfk7uC2rGaq6CVDnPkf9ozF2ePIJyP0FkKQab+qiYOcJmqBo25cPU
-rNO7SQR0wwART+pZH+q6w+G4ARMURg==
-=LnpL
------END PGP SIGNATURE-----
-
---SgT7ql4cmjy8U+5H--
+	Krzysztof
 
