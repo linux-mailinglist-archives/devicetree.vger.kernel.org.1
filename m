@@ -1,155 +1,130 @@
-Return-Path: <devicetree+bounces-150237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE777A417DC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:55:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 535A0A417E4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:55:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00FEA3B1682
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:54:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C61371717BE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:55:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2273823CEF8;
-	Mon, 24 Feb 2025 08:54:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IOM2g64P"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BB7123C8CF;
+	Mon, 24 Feb 2025 08:55:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B89918A6D5;
-	Mon, 24 Feb 2025 08:54:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE7AB24291A
+	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 08:55:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740387252; cv=none; b=jLc28DxQTO5Hp88sOqCUDsRmTzsqFTv8zuXMBYiydoMHapic1NrkL0r5LAlAaRgtx9enMPDuBDskwfqUnecXbeiy3CEARtrM0wAkbpGntspmNf9fIyeNVxOgNvRAAPmcbpowF1bbRd/ERuJE1McMjXUPfGx7mBpCzTlj/Ozi8GM=
+	t=1740387314; cv=none; b=A6hFwYk0lZG75LSrxjPCRz9QUo4DeyTWvnXGL/4ELRj7K0zMOtHkCiRxnlDBIHZKQyA+5OsYDtuH4uZgH5vrGN2MmwrFfotD3ULBRDfCHFNJOnIRjxAuPdJaGIIGHox/5xWuuO9fZ0v8SGXab68CZSgI0Bl1ERNhVkUe/w9f7lQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740387252; c=relaxed/simple;
-	bh=6bOy9KlYLQyrPSIjTKd8+I20FV1jUat1LPHJT2fj0CA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DFCBrKF7NvAatDjff/KFB3/2iF+3GBrDwUg5ZGwHMvZ0BvNupl0yjBo7nvXl5tvH1S04bRX8RGB9YSqvragvGzrJby7oOuGhgauZr0K+TMVjwi6+G34CH3BuzWvtdOvGNpaNaBFgKlG6dobaVGUka86vcZeYE/aib9C8FeosJic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IOM2g64P; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740387248;
-	bh=6bOy9KlYLQyrPSIjTKd8+I20FV1jUat1LPHJT2fj0CA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IOM2g64PkCwY3bMfCSfg7CSfBu84lFzLss4S42gqmJlCwkEhycqrjpG30bm248nDv
-	 N2eBYf/mT745k7zVqwGMRyDXwGEw5CCSPpFa7Wt1+0gV85jkKdhZD/KWJR8FZwkYCi
-	 nRwbtChVaYQXkMCggjYwZDLUYgdTGozDnrxe1cjfFzW4UzpRh7BzcF2fK9XIC5m0Mz
-	 ZlMM7E11sm5//N0lJl4+Jpmfv0vqLQXKZd7S3JX/Jk3pIuD/hDI9S284Sz+fdtBQJG
-	 hTWr6ZUQwsj61oViQd+y2+7kyCwwWBpUTWRunsaonBSuiXM+BKmDH1QwJNQopQ5mUP
-	 GVuMcIR0KIA6A==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6949E17E001F;
-	Mon, 24 Feb 2025 09:54:07 +0100 (CET)
-Message-ID: <5d10f630-57a4-427d-a14e-e4058d4fdffe@collabora.com>
-Date: Mon, 24 Feb 2025 09:54:06 +0100
+	s=arc-20240116; t=1740387314; c=relaxed/simple;
+	bh=iaGyetzTOk9x8DCAlSGjmQ5hMyYgroRh/gV8kYtnW8M=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Za9Cn0Dz8DJ3AyXhl03vgd5atMXrmNme/GGdI7y8nWV1PqS3A8vD0lfczfq+cd6JQH85HZB5rvrnbqcYNH0n1SQKB+ovi5WXRQOpnCXl7VnP9wxK/b4pmI+mNKVTJ4IQ9q7+3IUaRsNtOOweWfDdxpCgmRB1HJFyIlnx4LZkkR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tmUEV-00031V-Cf; Mon, 24 Feb 2025 09:54:35 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tmUES-002Yzx-16;
+	Mon, 24 Feb 2025 09:54:32 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tmUEN-000201-0o;
+	Mon, 24 Feb 2025 09:54:27 +0100
+Message-ID: <ee0f5b583aadb42e7557e1afc49c5b9af594d2c3.camel@pengutronix.de>
+Subject: Re: [PATCH v16 2/3] i2c: aspeed: support AST2600 i2c new register
+ mode driver
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Ryan Chen <ryan_chen@aspeedtech.com>, benh@kernel.crashing.org, 
+ joel@jms.id.au, andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+  conor+dt@kernel.org, andrew@codeconstruct.com.au, 
+ andriy.shevchenko@linux.intel.com, linux-i2c@vger.kernel.org, 
+ openbmc@lists.ozlabs.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org
+Date: Mon, 24 Feb 2025 09:54:27 +0100
+In-Reply-To: <20250224055936.1804279-3-ryan_chen@aspeedtech.com>
+References: <20250224055936.1804279-1-ryan_chen@aspeedtech.com>
+	 <20250224055936.1804279-3-ryan_chen@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] arm64: dts: mediatek: mt8395-genio-1200-evk: add
- support for TCPC port
-To: ChiYuan Huang <cy_huang@richtek.com>,
- =?UTF-8?B?TWFjcGF1bCBMaW4gKOael+aZuuaWjCk=?= <Macpaul.Lin@mediatek.com>
-Cc: "linux-mediatek@lists.infradead.org"
- <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- Alexandre Mergnat <amergnat@baylibre.com>,
- "fparent@baylibre.com" <fparent@baylibre.com>,
- =?UTF-8?B?QmVhciBXYW5nICjokKnljp/mg5/lvrcp?= <bear.wang@mediatek.com>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "macpaul@gmail.com" <macpaul@gmail.com>,
- =?UTF-8?B?UGFibG8gU3VuICjlravmr5Pnv5Qp?= <pablo.sun@mediatek.com>,
- "simon.sun@yunjingtech.com" <simon.sun@yunjingtech.com>,
- =?UTF-8?B?WW93LXNoaW4gTGlvdSAo5YqJ56WQ54KYKQ==?=
- <yow-shin.liou@mediatek.com>,
- =?UTF-8?B?Q2hyaXMtcWogQ2hlbiAo6Zmz5aWH6YCyKQ==?= <Chris-qj.Chen@mediatek.com>
-References: <20250220143354.2532448-1-macpaul.lin@mediatek.com>
- <cb392432-e452-4460-ace6-54b3649aed52@collabora.com>
- <f09f880b7f9b642140109f17ed3f89aa44195b99.camel@mediatek.com>
- <Z7vRUmETQaYRbEyZ@git-send.richtek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <Z7vRUmETQaYRbEyZ@git-send.richtek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Il 24/02/25 02:54, ChiYuan Huang ha scritto:
-> On Fri, Feb 21, 2025 at 11:39:09AM +0000, Macpaul Lin (林智斌) wrote:
->> On Thu, 2025-02-20 at 16:58 +0100, AngeloGioacchino Del Regno wrote:
->>>
->>>
->>
->> [snip]
->>
->>>> +             tcpc {
->>>> +                     compatible = "mediatek,mt6360-tcpc";
->>>> +                     interrupts-extended = <&pio 17
->>>> IRQ_TYPE_LEVEL_LOW>;
->>>> +                     interrupt-names = "PD_IRQB";
->>>> +
->>>> +                     connector {
->>>> +                             compatible = "usb-c-connector";
->>>> +                             label = "USB-C";
->>>> +                             data-role = "dual";
->>>> +                             op-sink-microwatt = <10000000>;
->>>> +                             power-role = "dual";
->>>> +                             try-power-role = "sink";
->>>
->>> Would be appreciated if you could also complete the node by adding
->>> the pd-revision
->>> property, enabling full USBC Power Delivery for the MT6360 PMIC.
->>>
->>
->> Well, I have no idea about the pd-revision of MT6360.
->> I could found MT6360 supports PD 3.0 according to the datasheet,
->> however, I have no idea about the other fields like major and minor
->> values. Dear ChiYuan, could you help to provide the value of pd-
->> revision? The property has been defined in
->> Documentation/devicetree/bindings/connector/usb-connector.yaml.
->>
-> Hi, Macpaul:
-> 
-> You can specify the version information to 3.1 version 1.6.
-> Just add the below property into the 'connector' node.
-> 
-> pd-revision = /bits/ 8 <0x03 0x01 0x01 0x06>;
-> 
-> Regards,
-> ChiYuan
+On Mo, 2025-02-24 at 13:59 +0800, Ryan Chen wrote:
+> Add i2c new register mode driver to support AST2600 i2c
+> new register mode. AST2600 i2c controller have legacy and
+> new register mode. The new register mode have global register
+> support 4 base clock for scl clock selection, and new clock
+> divider mode. The new register mode have separate register
+> set to control i2c controller and target. This patch is for i2c
+> controller mode driver.
+>=20
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
+>  drivers/i2c/busses/Kconfig       |   11 +
+>  drivers/i2c/busses/Makefile      |    1 +
+>  drivers/i2c/busses/i2c-ast2600.c | 1036 ++++++++++++++++++++++++++++++
+>  3 files changed, 1048 insertions(+)
+>  create mode 100644 drivers/i2c/busses/i2c-ast2600.c
+>=20
+[...]
+> diff --git a/drivers/i2c/busses/i2c-ast2600.c b/drivers/i2c/busses/i2c-as=
+t2600.c
+> new file mode 100644
+> index 000000000000..bfac507693dd
+> --- /dev/null
+> +++ b/drivers/i2c/busses/i2c-ast2600.c
+> @@ -0,0 +1,1036 @@
+[...]
+> +static int ast2600_i2c_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct ast2600_i2c_bus *i2c_bus;
+> +	struct resource *res;
+> +	u32 global_ctrl;
+> +	int ret;
+> +
+> +	i2c_bus =3D devm_kzalloc(dev, sizeof(*i2c_bus), GFP_KERNEL);
+> +	if (!i2c_bus)
+> +		return -ENOMEM;
+> +
+> +	i2c_bus->reg_base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(i2c_bus->reg_base))
+> +		return PTR_ERR(i2c_bus->reg_base);
+> +
+> +	i2c_bus->rst =3D devm_reset_control_get_shared(dev, NULL);
+> +	if (IS_ERR(i2c_bus->rst))
+> +		return dev_err_probe(dev, PTR_ERR(i2c_bus->rst), "Missing reset ctrl\n=
+");
+> +
+> +	reset_control_deassert(i2c_bus->rst);
 
-Thanks ChiYuan, that's great to know.
+No reset_control_assert() in the error paths below? You could get that
+and simplify this by using devm_reset_control_get_shared_deasserted().
 
-With this - all boards relying on MT6360 can charge use the full set of supported
-USB Power Delivery capabilities (that, since the PD revision is specific to the
-MT6360 TCPC, and not board specific!).
-
-Macpaul, please add the pd-revision as suggested, and for v6, please add my:
-
-Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-Cheers!
-Angelo
-
-
-
+regards
+Philipp
 
