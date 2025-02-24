@@ -1,393 +1,310 @@
-Return-Path: <devicetree+bounces-150338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EC05A41C28
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 12:13:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03604A41C2E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 12:14:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8B3E3AAA52
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:13:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CBAC3AAED2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:14:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E9C2594BD;
-	Mon, 24 Feb 2025 11:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37A525A2A2;
+	Mon, 24 Feb 2025 11:14:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ua8Wk/NR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="G1jhEIDp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 841D51FC0F8;
-	Mon, 24 Feb 2025 11:13:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFBB72F50;
+	Mon, 24 Feb 2025 11:14:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740395611; cv=none; b=Z7AIY8uVUCxm9fu7Xut6ITuyGahdwJv3CX4Sda+H9vUJ+YB+HC0WQ3rB1iWfU6phZZZ0u7UekUr/i0JSNhN1dr/gKy+bf4PIoA1ztwwXkFNQGYbOsJKftv3hNCYDmDc9gu+ZURixC/R2mHO581Ed3kS7OujwSEs0oZyZziW0uMw=
+	t=1740395693; cv=none; b=Z+6bgT7+bnfXcaB9TTicI/vzP1ImLeozuBgHLuUsPaUhHtp07ixwxNfZstNnol8Jj6xqxivo+hWOesOBn+DSHsJXoz8UMvoJU4c8Z14rzDEgHtDdnRM+cYnq3eqjGUekQjpdGPWfvJl3sDbGspNYs5q1HyF5qVpbsY0VtIMovzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740395611; c=relaxed/simple;
-	bh=dX8CvM/aLPRaw4WFxsMn8aCteHjX8ekf7fFoUzxCihU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gFNc7o4NPqUqEGPaj63oalkQO9KXwj2zR9leUul5UMscHO4IysY1Kc2Iil86oImm81aseBY63xueywQ+1JtkGT7rYqGL/C/JTIh9J+ei5r1ydKoRyAJlBXUEiK1mYn3qA9Vv+sdvKNOuOh7YX1rwCJ3N8bAWr7iLirnlvVMEwG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ua8Wk/NR; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51OBDKoV1474055
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Mon, 24 Feb 2025 05:13:20 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1740395600;
-	bh=pQtZo3SIK3aiD8TRehAeANMVimCRRJt+Bvhzi2hA2mM=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=ua8Wk/NRiGgeBPEOM82LjZqeFMYIkTYzMn4r/i90Kgn5WMgIIJxzjuuaCktiQ7Ae1
-	 mG17TwDO5/Ts+Iv9KNJ4bC55YYs+KD0OmYiVXy2Y1Yrlwsm2Q5ZhYoEc3um2B1nS8V
-	 EXu81y39jM8AW6Jb7kwNbC12Ddp8JcXArjPCS1i0=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51OBDKLI018308;
-	Mon, 24 Feb 2025 05:13:20 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 24
- Feb 2025 05:13:19 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 24 Feb 2025 05:13:20 -0600
-Received: from localhost (lcpd911.dhcp.ti.com [172.24.227.226])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51OBDJZT019271;
-	Mon, 24 Feb 2025 05:13:19 -0600
-Date: Mon, 24 Feb 2025 16:43:18 +0530
-From: Dhruva Gole <d-gole@ti.com>
-To: Robert Nelson <robertcnelson@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Andrew Davis
-	<afd@ti.com>, Roger Quadros <rogerq@kernel.org>,
-        Siddharth Vadapalli
-	<s-vadapalli@ti.com>, Judith Mendez <jm@ti.com>,
-        Andrei Aldea
-	<a-aldea@ti.com>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Deepak Khatri
-	<lorforlinux@beagleboard.org>,
-        Ayush Singh <ayush@beagleboard.org>
-Subject: Re: [PATCH 2/2] arm64: dts: ti: Add k3-am62-pocketbeagle2
-Message-ID: <20250224111318.3wlbhpm7pggsbqdb@lcpd911>
-References: <20250211181839.1575497-1-robertcnelson@gmail.com>
- <20250211181839.1575497-2-robertcnelson@gmail.com>
+	s=arc-20240116; t=1740395693; c=relaxed/simple;
+	bh=7XVfpivs/508FDgM+M0v2yslKB76t3gtztOCiUHCwUA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=m0E6VoaclHIUw9tBy1qlNFDQb4z9RdlfBBcthRuuVcQ70BtWgfhUZTBH/5NMigEYjhn5HpeOkkDW/r2rtJ+SK3a3OY2KFrce2P5rHCrUN/FSPZAG+xXDAX0Jt/I0Cto4K4BwcruU/5Tcekk9l3Mb58jUNj9LKQET0HrkXzy2Y4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=G1jhEIDp; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51O9SSmu003510;
+	Mon, 24 Feb 2025 11:14:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=runldPnSECGMYe8Cfktypq
+	hB7KpomuFwreQAJakO/HQ=; b=G1jhEIDpL9o9VviGBKj5Qri5BPvM7DZXXEXcCR
+	eXJmj3PXCvAEBdQWv6ir5GXbuHruTg6q5dK1NUvDFep+FG3lCXD2GCYhzkKMyUh9
+	G+2th3hBWZkzurl6RFDl0M6X7QaeS5WYvrgcyegyA+gfk/JcFlhhfX7KPeoAb56z
+	lq25wEClxKGcTxL0GMfVoRhu+mPHOhzas8BhX29PSMu+Rv5HOfHZ6wqosr7wZxYk
+	US5u0Ekbi2UzLsHpRp8R/WPvBn71DLu0RJjZd1rlXzZnDRtjmwuditCYLRivlc0f
+	QFSLYzCDPlR1AJsCtGlSHL/GzqV3W39iznKM5Wa+vKcEcQ4A==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44y7rjvr3f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Feb 2025 11:14:32 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51OBEWa1003048
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Feb 2025 11:14:32 GMT
+Received: from hu-mdalam-blr.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 24 Feb 2025 03:14:28 -0800
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+To: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
+        <vigneshr@ti.com>, <quic_mdalam@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mtd@lists.infradead.org>
+Subject: [PATCH v15 0/2] Add QPIC SPI NAND driver
+Date: Mon, 24 Feb 2025 16:44:12 +0530
+Message-ID: <20250224111414.2809669-1-quic_mdalam@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250211181839.1575497-2-robertcnelson@gmail.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: R3xmSlKntb05B97PM4FHqhwQIpbUgwch
+X-Proofpoint-ORIG-GUID: R3xmSlKntb05B97PM4FHqhwQIpbUgwch
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-24_04,2025-02-24_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
+ phishscore=0 impostorscore=0 malwarescore=0 adultscore=0 spamscore=0
+ priorityscore=1501 mlxlogscore=920 lowpriorityscore=0 suspectscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502240082
 
-On Feb 11, 2025 at 12:18:39 -0600, Robert Nelson wrote:
-> BeagleBoard.org PocketBeagle 2 is an upgraded version of the popular
-> PocketBeagle.  It is based on Texas Instruments AM6232 SoC. Its dual
-> A53 cores can provide higher performance than classic PocketBeagle.
+v15:
+ * Skipping the following patches
+	Merged:-
+		mtd: rawnand: qcom: cleanup qcom_nandc driver
+		mtd: rawnand: qcom: Add qcom prefix to common api
+		mtd: nand: Add qpic_common API file
+		mtd: rawnand: qcom: use FIELD_PREP and GENMASK
 
-You can say that classic PB was based on AM335 just for more context,
-else it's not clear what the upgrade is w.r.t..
+	Will post a new series per review feedback:-
+		arm64: dts: qcom: ipq9574: Add SPI nand support
+		arm64: dts: qcom: ipq9574: Remove eMMC node
 
-> The new design comes with pre-soldered headers, a 3-pin JST-SH 1.00mm
-> UART debug port, a USB-C port, Texas Instruments MSPM0L1105 Cortex-M0+
-> MCU for ADC, 512MB RAM, and a LiPo Battery charger.
-> 
-> https://www.beagleboard.org/boards/pocketbeagle-2
-> https://openbeagle.org/pocketbeagle/pocketbeagle-
-> 
-> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: Vignesh Raghavendra <vigneshr@ti.com>
-> CC: Nishanth Menon <nm@ti.com>
-> CC: Andrew Davis <afd@ti.com>
-> CC: Roger Quadros <rogerq@kernel.org>
-> CC: Siddharth Vadapalli <s-vadapalli@ti.com>
-> CC: Judith Mendez <jm@ti.com>
-> CC: Andrei Aldea <a-aldea@ti.com>
-> CC: Jason Kridner <jkridner@beagleboard.org>
-> CC: Deepak Khatri <lorforlinux@beagleboard.org>
-> CC: Ayush Singh <ayush@beagleboard.org>
-> ---
->  arch/arm64/boot/dts/ti/Makefile               |   1 +
->  .../boot/dts/ti/k3-am62-pocketbeagle2.dts     | 520 ++++++++++++++++++
->  2 files changed, 521 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 8a4bdf87e2d4..46b9a667bda4 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -27,6 +27,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-yavia.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am62x-phyboard-lyra-gpio-fan.dtbo
->  dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk-nand.dtbo
-> +dtb-$(CONFIG_ARCH_K3) += k3-am62-pocketbeagle2.dtb
->  
->  # Boards with AM62Ax SoC
->  dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts b/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
-> new file mode 100644
-> index 000000000000..ef79bd0bf238
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
-> @@ -0,0 +1,520 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +/*
-> + * https://www.beagleboard.org/boards/pocketbeagle-2
-> + *
-> + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-> + * Copyright (C) 2024 Robert Nelson, BeagleBoard.org Foundation
+ * Separate return value and 'cmd' value in qcom_spi_cmd_mapping() to
+   avoid 'cmd' with MSB set as failure.
 
-Nit: Please update copyrights.
+v14:
+ * Updated commit message
+ * Fix spelling mistake
+ * Remove "inline" from multiple APIs from qcom_nandc.c file
+ * Move '|' in qcom_param_page_type_exec() APIs at the end of line
 
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include "k3-am625.dtsi"
+v13:
+ * Added Reviewed-by tag 
+ * Added MODULE_DESCRIPTION() macro
+ * Added 2024 Qualcomm Innovation Center Copyright
+ * Changed return type of qcom_spi_cmd_mapping() from u32 to
+   int to fix the kernel test bot warning
+ * Changed type of variable cmd in qcom_spi_write_page() from u32
+   to int
+ * Removed unused variable s_op from qcom_spi_write_page()
+ * Updated return value variable type from u32 to int in
+   qcom_spi_send_cmdaddr()
 
-Any particular reason we can't inherit from k3-am62x-sk-common.dtsi like
-the SK and LP-SK DTS do?
+v12:
+ * Added EXPORT_SYMBOL() macro for all the api in qpic_common.c
+ * Added MODULE_LICENSE() macro in qpic_common.c to build
+   qpic_common.c as module as well
+ * Removed bool type for CONFIG_MTD_NAND_QCOM to fix build error
+   reported by kernel test bot
+ * Added obj-$(CONFIG_MTD_NAND_QCOM) += qpic_common.o condition
+   in Makefile to build qpic_common.c as built-in or as module
+   based on CONFIG_MTD_NAND_QCOM
+ * Added Reviewed-by tag
+ * Added obj-$(CONFIG_SPI_QPIC_SNAND) += qpic_common.o in Makefile
+   to build qpic_common.c based on CONFIG_SPI_QPIC_SNAND
+ * Updated commit header and commit message
+ * Removed sdhci node from rdp433.dts file 
 
-Also, you're calling out in the commit message that this is based on
-AM6232 - which has only 2 cores right? Do we not want to delete the
-additional 2 cores from the AM625 DT which has 4 cores?
+v11:
+ * Dropped Reviewed-by tag
+ * Added soc based compatible "qcom,ipq9574-snand"
+ * fixed build error reported by kernel test bot by
+   changing statement "depends on MTD" to "select MTD"
+   in drivers/spi/Kconfig file
 
-> +
-> +/ {
-> +	compatible = "beagle,am62-pocketbeagle2", "ti,am625";
-> +	model = "BeagleBoard.org PocketBeagle2";
-> +
-> +	aliases {
-> +		serial0 = &wkup_uart0;
-> +		serial1 = &main_uart1;
-> +		serial2 = &main_uart6;
-> +		serial3 = &main_uart3;
-> +		serial4 = &main_uart4;
-> +		serial5 = &main_uart5;
-> +		serial6 = &main_uart2;
-> +		serial7 = &main_uart0;
-> +		mmc0 = &sdhci0;
-> +		mmc1 = &sdhci1;
-> +		usb0 = &usb0;
-> +		usb1 = &usb1;
-> +		i2c0 = &main_i2c0;
-> +		i2c1 = &wkup_i2c0;
-> +		i2c2 = &main_i2c2;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &main_uart6;
-> +	};
-> +
-> +	memory@80000000 {
-> +		/* 512MB RAM */
-> +		reg = <0x00000000 0x80000000 0x00000000 0x20000000>;
-> +		device_type = "memory";
-> +		bootph-pre-ram;
-> +	};
-> +
-> +	reserved_memory: reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
+v10:
+ * Fixed compilation warnings reported by kernel test robot
+ * Added depends on CONFIG_MTD for qpic-spi nand driver
+ * Removed extra bracket from statement if (i == (num_cw - 1))
+   in qcom_spi_program_raw() api.
 
-Let's try to follow [1] here and elsewhere
-[1] https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
+v9:
+ * Fixed all the compilation warning reported by
+   kernel test robot
+  * Changed type of cmd1, vld to u32 from __le32 in qcom_nand_controller
+   structure
+ * Changed type of cfg0, cfg1, cfg0_raw, cfg1_raw, clrflashstatus,
+   ecc_buf_cfg, ecc_bch_cfg, clrreadstatus to u32 in qcom_nand_host
+   structure
+ * In nandc_set_read_loc_first() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In nandc_set_read_loc_last() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * Changed data type of cw_offset, read_size, is_last_read_loc to
+   u32 in nandc_set_read_loc() api to fix compilation warning reported
+   by kernel test bot
+ * In set_address() api added cpu_to_le32() macro to fix compilation
+   warning reported by kernel test bot
+ * In update_rw_regs() api added cpu_to_le32() macro to fix compilation
+   warning reported by kernel test bot
+ * In qcom_op_cmd_mapping() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In qcom_read_status_exec() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In qcom_read_id_type_exec() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In qcom_misc_cmd_type_exec() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In qcom_param_page_type_exec() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot   
+ * In update_rw_regs() api added cpu_to_le32() macro to fix compilation
+   issue reported by kernel test bot
+ * In qcom_param_page_type_exec() api added cpu_to_le32() macro to fix
+   compilation issue reported by kernel test bot
+ * Changed data type of addr1, addr2, cmd, to __le32 in qpic_spi_nand
+   structure
+ * In qcom_spi_set_read_loc_first() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_set_read_loc_last() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_init() api added cpu_to_le32() macro to fix compilation
+   warning
+ * In qcom_spi_ecc_init_ctx_pipelined() api removed unused variables
+   reqs, user, step_size, strength and added cpu_to_le32() macro as well
+   to fix compilation warning
+ * In qcom_spi_read_last_cw() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_check_error() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_read_page_ecc() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_read_page_oob() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_program_raw() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_program_ecc() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_program_oob() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_send_cmdaddr() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_io_op() api added cpu_to_le32() macro to fix compilation
+    warning
+v8:
+ * Fixed compilation warning reported by kernel test robot
+ * Added "chip" description in nandc_set_read_loc_first()
+ * Added "chip" description" in nandc_set_read_loc_last()
+ * Changed data type of read_location0, read_location1,
+   read_location2, read_location3, addr0, addr1, cmd, cfg0,
+   cfg1, ecc_bch_cfg, ecc_buf_cfg, clrflashstatus, clrreadstatus,
+   orig_cmd1, orig_vld to __le32 to fix compilation warning.
+ * Included bitfield.h header file in spi-qpic-snand.c to
+   fix compilation warning
+ * Removed unused variable "steps" variable from 
+   qcom_spi_ecc_init_ctx_pipelined()
 
-> +
-> +		secure_tfa_ddr: tfa@9e780000 {
-> +			reg = <0x00 0x9e780000 0x00 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		secure_ddr: optee@9e800000 {
-> +			reg = <0x00 0x9e800000 0x00 0x01800000>;
-> +			no-map;
-> +		};
-> +
-> +		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9db00000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x9db00000 0x00 0xc00000>;
-> +			no-map;
-> +		};
+v7:
+ * Added read_oob() and write_oob() api
+ * Added FIELD_PREP() in spi init
+ * Made CONFIG_SPI_QPIC_SNAND and CONFIG_MTD_NAND_QCOM
+   as bool type
+ * Removed offset 0 in oob_ecc() layout
+ * Handled multiple error condition
 
-Nothing for OPTEE/ M4/ etc...?
-CMA?
-Just trying to compare against sk-common... I understand the DDR is
-smaller but we can't just ignore OPTEE / shared DMA pool right?
+v6:
+ * Added FIELD_PREP() and GENMASK() macro
+ * Added qpic_spi_nand{..} structure for
+   spi nand related variables
+ * Made qpic_common.c selectable based on
+   either CONFIG_MTD_NAND_QCOM or CONFIG_SPI_QPIC_SNAND
+ * Removed rawnand.h from qpic-common.h 
+ * Removed partitions.h and rawnand.h form spi-qpic-snand.c
+ * Added qcom_nand_unalloc() in remove()
 
-> +	};
-> +
-> +	vsys_5v0: regulator-1 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsys_5v0";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		bootph-all;
-> +	};
-> +
-> +	vdd_3v3: regulator-2 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd_3v3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vsys_5v0>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		bootph-all;
-> +	};
-> +
-> +	vdd_mmc1: regulator-3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd_mmc1";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vdd_3v3_sd_pins_default>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +		vin-supply = <&vdd_3v3>;
-> +		gpio = <&main_gpio0 0 GPIO_ACTIVE_HIGH>;
-> +		bootph-all;
-> +	};
-> +
-> +	vdd_sd_dv: regulator-4 {
-> +		compatible = "regulator-gpio";
-> +		regulator-name = "sd_hs200_switch";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		vin-supply = <&vdd_3v3>;
-> +		gpios = <&main_gpio1 49 GPIO_ACTIVE_HIGH>;
-> +		states = <1800000 0x0>,
-> +			 <3300000 0x1>;
-> +		bootph-all;
-> +	};
-> +
-> +	adc_vref: regulator-5 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "default";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	leds {
-> +		bootph-all;
+v5:
+ * Fixes nandbiterr issue
+ * Added raw_read() and raw_write() API
+ * Added qcom_ prefix to all the common API
+ * Removed register indirection
+ * Following tests for SPI-NAND devices passed
 
-Is this needed? child nodes seem to have bootph-all already right?
+   - mtd_oobtest
+   - mtd_pagetest
+   - mtd_readtest
+   - mtd_speedtest
+   - mtd_stresstest
+   - mtd_subpagetest
+   - mtd_nandbiterrs
+   - nandtest
+   - nanddump
+   - nandwrite
+   - nandbiterr -i
+   - mtd erase
+   - mtd write
+   - dd
+   - hexddump
 
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&led_pins_default>;
-> +
-> +		led-1 {
-> +			bootph-all;
-> +			gpios = <&main_gpio0 6 GPIO_ACTIVE_HIGH>;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			linux,default-trigger = "heartbeat";
-> +			function = LED_FUNCTION_HEARTBEAT;
-> +			default-state = "on";
-> +		};
-> +
-> +		led-2 {
-> +			bootph-all;
-> +			gpios = <&main_gpio0 5 GPIO_ACTIVE_HIGH>;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			function = LED_FUNCTION_DISK_ACTIVITY;
-> +			linux,default-trigger = "mmc1";
-> +		};
-> +
-> +		led-3 {
-> +			bootph-all;
-> +			gpios = <&main_gpio0 4 GPIO_ACTIVE_HIGH>;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +		};
-> +
-> +		led-4 {
-> +			bootph-all;
-> +			gpios = <&main_gpio0 3 GPIO_ACTIVE_HIGH>;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			function = LED_FUNCTION_INDICATOR;
-> +			default-state = "off";
-> +		};
-> +	};
-> +};
-[....]
-> +
-> +&wkup_uart0 {
-> +	/* WKUP UART0 is used by Device Manager firmware */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&wkup_uart0_pins_default>;
-> +	bootph-all;
-> +	status = "reserved";
-> +};
+v4:
+ * In this patch series fixes kernel doc for all the cmmon api
+ * Also fixes dm-binding commit message
+ * Fix qpic_common.c compilation based on config
 
-See things like these you get for free from k3-am62x-sk-common.dtsi ;)
+v3:
+ * In this patch series fixes multiple things like
+   added clock-name, added _alloc_controller api instead
+   of alloc_master, made common apis more generic etc.
 
-> +
-> +&wkup_i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&wkup_i2c0_pins_default>;
-> +	clock-frequency = <100000>;
-> +	bootph-all;
+ * Addressed all the comment from v2 patch series
 
-Child nodes have bootph, no need for their parents to repeat it unless
-you've a good cause.
+v2:
+ * https://lore.kernel.org/linux-arm-msm/20240215134856.1313239-1-quic_mdalam@quicinc.com/
+ * In this series of patches we have added basic working QPIC SPI NAND
+   driver with READ, WRITE, ERASE etc functionality
 
-> +	status = "okay";
-> +
-> +	tps65219: pmic@30 {
-> +		compatible = "ti,tps65219";
-> +		reg = <0x30>;
-> +		buck1-supply = <&vsys_5v0>;
-> +		buck2-supply = <&vsys_5v0>;
-> +		buck3-supply = <&vsys_5v0>;
-> +		ldo1-supply = <&vdd_3v3>;
-> +		ldo2-supply = <&buck2_reg>;
-> +		ldo3-supply = <&vdd_3v3>;
-> +		ldo4-supply = <&vdd_3v3>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pmic_irq_pins_default>;
-> +		interrupt-parent = <&gic500>;
-> +		interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <1>;
-> +
-> +		bootph-all;
-> +		system-power-controller;
-> +		ti,power-button;
-[...]
+ * Addressed all the comments given in RFC [v1] patch
 
-Overall I think the DT needs a bit of revisiting of which nodes to reuse
-from common-DT and what all to delete/ trim. Revisit all the bootph
-properties and remove the redundant one's...
+v1:
+ * https://lore.kernel.org/linux-arm-msm/20231031120307.1600689-1-quic_mdalam@quicinc.com/
 
+
+Md Sadre Alam (2):
+  spi: dt-bindings: Introduce qcom,spi-qpic-snand
+  spi: spi-qpic: add driver for QCOM SPI NAND flash Interface
+
+ .../bindings/spi/qcom,spi-qpic-snand.yaml     |   83 +
+ drivers/mtd/nand/Makefile                     |    4 +
+ drivers/spi/Kconfig                           |    9 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-qpic-snand.c                  | 1631 +++++++++++++++++
+ include/linux/mtd/nand-qpic-common.h          |    7 +
+ 6 files changed, 1735 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+ create mode 100644 drivers/spi/spi-qpic-snand.c
+
+
+base-commit: d4b0fd87ff0d4338b259dc79b2b3c6f7e70e8afa
 -- 
-Best regards,
-Dhruva Gole
-Texas Instruments Incorporated
+2.34.1
+
 
