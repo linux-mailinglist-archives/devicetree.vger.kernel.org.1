@@ -1,83 +1,281 @@
-Return-Path: <devicetree+bounces-150608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6CABA42D77
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 21:12:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE894A42DCA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 21:29:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D96017A281B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 20:11:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB3683B2002
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 20:29:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD2F20A5CA;
-	Mon, 24 Feb 2025 20:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5C5D23A98E;
+	Mon, 24 Feb 2025 20:29:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g0Si20nY"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="r1LWAxau"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-23.smtpout.orange.fr [80.12.242.23])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C1426AFB;
-	Mon, 24 Feb 2025 20:12:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7E0926AFB;
+	Mon, 24 Feb 2025 20:29:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.23
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740427950; cv=none; b=fVn8MwD320AdgFvyskLGFuPoUHO+NZAifSr3gwTgcIxSIP7lNZTjNivvuLsN8uhxXKmKrdWwKddqBhqc//UFX5wKMH6p64fPD9GZsDvAqQ5fC5iAsmRoG+iDdepjXbvzbOb8hPpdyLcmnzp03hQ7pMp0n/Yuh3C65DF4Ha5Ni2E=
+	t=1740428976; cv=none; b=GSDZxMYFUcZIVUSAGkNXW+jeFPSAIaJgdRgCgCJeqrtmaG+utyqXIvrh9k/efNtQDNEOcSaDqu/ZQUb1POJeP+YiOAqA9hPJW6anD+2ypNmYoF5evGtoKkTYiC6E4lv1UrLNbIhMB47UTLosBMLeyPx1tJlp8MCAN06jMxUhm78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740427950; c=relaxed/simple;
-	bh=vhG+HEasHzMxre261xTYgK10+Xv2D89jkt4h3vpSTV0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cl+Lo7yj9fe0pI6kFKq13aHU+FCNXvnplUrvlBbmZ8SiqcrW3/A8xqkivlPGbvQYEcYTRWdDcLglHpBgVQS0LvtSYknmaXYkky9FSXjHPTJ5WTa+jHgnGgViM61FOA+ESNma8O7TQCuJs1FG+M4GgJjdjSXOAo3dp1Hilgxi8+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g0Si20nY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16374C4CED6;
-	Mon, 24 Feb 2025 20:12:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740427950;
-	bh=vhG+HEasHzMxre261xTYgK10+Xv2D89jkt4h3vpSTV0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=g0Si20nY+6A80eQzQThaCxJF1KRv9EE6K5eoOiJ/YVQzAoihlck3mIRNvbBJn58yk
-	 0DbrxRfENHiGiGu3fFRvdyKVIe8s1TjGMRgvtHjf36eqcFbbv9Kwbs175OsE2F8xJQ
-	 U5JAAOcTiKaANW8osRz2rguDEtKHRD1JIXF80mu/CKjScMBQSs6xhi0RrHDUfe3nLN
-	 BIZ2165DKm0FSN4DJfEg8RH6IwCv5bwMbbySl3Oh2y2kFbpSA29ZnpbFpBrClt57zO
-	 tW83Y36HnC5+PFhVRXNlPMHIaxOy71Br1+LaghvDaUWAXRRpyY2AkaXUuQxDQq0DAq
-	 smbiz6ECVXB+w==
-Date: Mon, 24 Feb 2025 14:12:28 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Abhinaba Rakshit <quic_arakshit@quicinc.com>
-Cc: linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Thara Gopinath <thara.gopinath@gmail.com>,
-	devicetree@vger.kernel.org,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: qcom-qce: document QCS615
- crypto engine
-Message-ID: <174042794804.4025396.5123328603450719787.robh@kernel.org>
-References: <20250224-enable-qce-for-qcs615-v1-0-e7c665347eef@quicinc.com>
- <20250224-enable-qce-for-qcs615-v1-1-e7c665347eef@quicinc.com>
+	s=arc-20240116; t=1740428976; c=relaxed/simple;
+	bh=0+5ylH1RpEMxad2fU57+zr3KWtLmylDPnzNe+ClA5vo=;
+	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
+	 In-Reply-To:Content-Type; b=nm7TNtxBmO8mX18YfDNEJMJNEPjNRPmt0q/FxtMvQ29z6wpFL+kh4UhDb5k+6uNHdPalIPGrVmYr+VR4Jc2NgKY3nSbJ639jnaIh0f4UmwYOmSzD/2qTf+SmQFhLD4JHLkv3Snj4JUTCaTvkaMwsRi6po3nL8uy5qQaYRZhWHOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=r1LWAxau; arc=none smtp.client-ip=80.12.242.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id mevztE6C3KGvrmew2tsEVG; Mon, 24 Feb 2025 21:20:16 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1740428416;
+	bh=zXvGjak3HqVlV81qtbZ7PYjHL81uIlDbJz0ggojYpY8=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To;
+	b=r1LWAxauFhYfUxEL9mkYC5X/vQmAnYURZZy2xWKN49VQZxmw42GDRGUkn5aD8Khot
+	 BF/3RfdCIurvlhZGfoX4qZhMQiUyyGAB3zDWXaK3bFQR3WYQeQgnMyo2PwYk+Hw5zf
+	 sAdUm8CcFVNDPGPetowSfkypjllAD3/BZco9yblhm7j82m3yrDj4iMDtbfePj0ezy1
+	 EoCGzg2geQKtcBZuyXXXqzO6c2LtWjzdj5twfKbo5GGLWP7xJArGEpjywtyWwDlGTF
+	 GVGTd9QTJDdvgMHegqpgrbXw07rhegTDNJ2AQLmXPgq8RGIB2ILVlYLAyzXg+HjxO8
+	 ferPrBGilLmMw==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Mon, 24 Feb 2025 21:20:16 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <614644f9-71f7-41af-af90-7ae892581646@wanadoo.fr>
+Date: Mon, 24 Feb 2025 21:20:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250224-enable-qce-for-qcs615-v1-1-e7c665347eef@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/6] mfd: max77759: add Maxim MAX77759 core mfd driver
+References: <20250224-max77759-mfd-v1-0-2bff36f9d055@linaro.org>
+ <20250224-max77759-mfd-v1-4-2bff36f9d055@linaro.org>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: brgl@bgdev.pl, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ gustavoars@kernel.org, kees@kernel.org, kernel-team@android.com,
+ krzk+dt@kernel.org, lee@kernel.org, linus.walleij@linaro.org,
+ linux-gpio@vger.kernel.org, linux-hardening@vger.kernel.org,
+ linux-kernel@vger.kernel.org, peter.griffin@linaro.org, robh@kernel.org,
+ srinivas.kandagatla@linaro.org, tudor.ambarus@linaro.org,
+ willmcvicker@google.com
+In-Reply-To: <20250224-max77759-mfd-v1-4-2bff36f9d055@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
-On Mon, 24 Feb 2025 15:34:10 +0530, Abhinaba Rakshit wrote:
-> Document the crypto engine on the QCS615 platform.
+Le 24/02/2025 à 11:28, André Draszik a écrit :
+> The Maxim MAX77759 is a companion Power Management IC for USB Type-C
+> applications with Battery Charger, Fuel Gauge, temperature sensors, USB
+> Type-C Port Controller (TCPC), NVMEM, and additional GPIO interfaces.
 > 
-> Signed-off-by: Abhinaba Rakshit <quic_arakshit@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Fuel Gauge and TCPC have separate and independent I2C addresses,
+> register maps, and interrupt lines and are therefore excluded from the
+> MFD core device driver here.
 > 
+> The GPIO and NVMEM interfaces are accessed via specific commands to the
+> built-in microprocessor. This driver implements an API that client
+> drivers can use for accessing those.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Hi,
+
+...
+
+> +int max77759_maxq_command(struct max77759_mfd *max77759_mfd,
+> +			  const struct max77759_maxq_command *cmd,
+> +			  struct max77759_maxq_response *rsp)
+> +{
+> +	DEFINE_FLEX(struct max77759_maxq_response, _rsp, rsp, length, 1);
+> +	int ret;
+> +	static const unsigned int timeout_ms = 200;
+> +
+> +	if (cmd->length > MAX77759_MAXQ_REG_AP_MESSAGESZ_MAX)
+> +		return -EINVAL;
+> +
+> +	/* rsp is allowed to be NULL. In that case we do need a temporary. */
+> +	if (!rsp)
+> +		rsp = _rsp;
+> +
+> +	BUILD_BUG_ON(MAX77759_MAXQ_OPCODE_MAXLENGTH
+> +		     != MAX77759_MAXQ_REG_AP_MESSAGESZ_MAX);
+> +	if (!rsp->length || rsp->length > MAX77759_MAXQ_REG_AP_MESSAGESZ_MAX)
+> +		return -EINVAL;
+> +
+> +	guard(mutex)(&max77759_mfd->maxq_lock);
+> +
+> +	reinit_completion(&max77759_mfd->cmd_done);
+> +
+> +	/* write the opcode and data */
+> +	ret = regmap_bulk_write(max77759_mfd->regmap_maxq,
+> +				MAX77759_MAXQ_REG_AP_DATAOUT0, cmd->cmd,
+> +				cmd->length);
+> +	if (!ret && cmd->length < MAX77759_MAXQ_REG_AP_MESSAGESZ_MAX) {
+> +		/* writing the last byte triggers MaxQ */
+> +		ret = regmap_write(max77759_mfd->regmap_maxq,
+> +				   MAX77759_MAXQ_REG_AP_DATAOUT32, 0);
+> +	}
+> +	if (ret)
+> +		dev_warn(regmap_get_device(max77759_mfd->regmap_maxq),
+
+Maybe regmap_get_device(max77759_mfd->regmap_maxq) could be assigned to 
+a variable to simplify its usage?
+
+> +			 "write data failed: %d\n", ret);
+> +	if (ret)
+> +		return ret;
+
+Merge with the if (ret) just above? (as done a few lines below)
+
+> +
+> +	/* wait for response from MaxQ */
+> +	if (!wait_for_completion_timeout(&max77759_mfd->cmd_done,
+> +					 usecs_to_jiffies(timeout_ms))) {
+> +		dev_err(regmap_get_device(max77759_mfd->regmap_maxq),
+> +			"timed out waiting for data\n");
+> +		return -ETIMEDOUT;
+> +	}
+> +
+> +	ret = regmap_bulk_read(max77759_mfd->regmap_maxq,
+> +			       MAX77759_MAXQ_REG_AP_DATAIN0,
+> +			       rsp->rsp, rsp->length);
+> +	if (ret) {
+> +		dev_warn(regmap_get_device(max77759_mfd->regmap_maxq),
+> +			 "read data failed: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/*
+> +	 * As per the protocol, the first byte of the reply will match the
+> +	 * request.
+> +	 */
+> +	if (rsp->rsp[0] != cmd->cmd[0]) {
+> +		dev_warn(regmap_get_device(max77759_mfd->regmap_maxq),
+> +			 "unexpected opcode response for %#.2x: %*ph\n",
+> +			 cmd->cmd[0], (int)rsp->length, rsp->rsp);
+> +		return -EIO;
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int max77759_probe(struct i2c_client *client)
+> +{
+> +	struct regmap *regmap_top;
+> +	unsigned int pmic_id;
+> +	int ret;
+> +	struct irq_data *irq_data;
+> +	struct max77759_mfd *max77759_mfd;
+> +	unsigned long irq_flags;
+> +	struct regmap_irq_chip_data *irq_chip_data_pmic;
+> +
+> +	regmap_top = devm_regmap_init_i2c(client, &max77759_regmap_config_top);
+> +	if (IS_ERR(regmap_top))
+> +		return dev_err_probe(&client->dev, PTR_ERR(regmap_top),
+> +				     "regmap init failed\n");
+> +
+> +	ret = regmap_read(regmap_top, MAX77759_PMIC_REG_PMIC_ID, &pmic_id);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret,
+> +				     "Unable to read Device ID\n");
+> +
+> +	if (pmic_id != MAX77759_PMIC_REG_PMIC_ID_MAX77759)
+> +		return dev_err_probe(&client->dev, -ENODEV,
+> +				     "Unsupported Device ID %#.2x (%d)\n",
+> +				     pmic_id, pmic_id);
+> +
+> +	irq_data = irq_get_irq_data(client->irq);
+> +	if (!irq_data)
+> +		return dev_err_probe(&client->dev, -EINVAL,
+> +				     "Invalid IRQ: %d\n", client->irq);
+> +
+> +	max77759_mfd = devm_kzalloc(&client->dev, sizeof(*max77759_mfd),
+> +				    GFP_KERNEL);
+> +	if (!max77759_mfd)
+> +		return -ENOMEM;
+> +
+> +	max77759_mfd->regmap_top = regmap_top;
+> +	devm_mutex_init(&client->dev, &max77759_mfd->maxq_lock);
+
+Error handling?
+
+> +
+> +	i2c_set_clientdata(client, max77759_mfd);
+
+Harmless, but is it needed? (there is no i2c_get_clientdata() in the flile)
+
+> +
+> +	for (int i = 0; i < ARRAY_SIZE(max77759_i2c_subdevs); ++i) {
+
+Unusual. Maybe declare 'i' at the beginning of the function?
+
+> +		ret = max77759_create_i2c_subdev(client,
+> +						 max77759_mfd,
+> +						 &max77759_i2c_subdevs[i]);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	irq_flags = IRQF_ONESHOT | IRQF_SHARED;
+> +	irq_flags |= irqd_get_trigger_type(irq_data);
+> +
+> +	ret = devm_regmap_add_irq_chip(&client->dev, max77759_mfd->regmap_top,
+> +				       client->irq, irq_flags, 0,
+> +				       &max77759_pmic_irq_chip,
+> +				       &irq_chip_data_pmic);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret,
+> +				     "Failed to add IRQ chip\n");
+> +
+> +	/* INTSRC - MaxQ & children */
+> +	ret = max77759_add_chained_maxq(client, max77759_mfd,
+> +					irq_chip_data_pmic);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* INTSRC - topsys & children */
+> +	ret = max77759_add_chained_topsys(client, max77759_mfd,
+> +					  irq_chip_data_pmic);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* INTSRC - charger & children */
+> +	ret = max77759_add_chained_charger(client, max77759_mfd,
+> +					   irq_chip_data_pmic);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_AUTO,
+> +				    max77759_cells, ARRAY_SIZE(max77759_cells),
+> +				    NULL, 0,
+> +				    regmap_irq_get_domain(irq_chip_data_pmic));
+> +}
+> +
+> +static const struct i2c_device_id max77759_i2c_id[] = {
+> +	{ "max77759", 0 },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, max77759_i2c_id);
+> +
+> +static const struct of_device_id max77759_of_id[] = {
+> +	{ .compatible = "maxim,max77759", },
+> +	{},
+
+Unneeded trailing comma after a terminator.
+Maybe { }  to match the style used in max77759_i2c_id?
+
+> +};
+> +MODULE_DEVICE_TABLE(of, max77759_of_id);
 
 
