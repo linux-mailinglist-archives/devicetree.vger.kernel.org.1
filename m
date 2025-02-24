@@ -1,355 +1,424 @@
-Return-Path: <devicetree+bounces-150138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D6CFA41532
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 07:13:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE3FA4153C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 07:15:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67AE2188E5BB
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 06:13:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDB51189047A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 06:14:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ADEE1C8632;
-	Mon, 24 Feb 2025 06:13:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69F011C84C6;
+	Mon, 24 Feb 2025 06:14:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="dPq/3yLO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LDDKzqcC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11olkn2072.outbound.protection.outlook.com [40.92.19.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8C721C6FE5;
-	Mon, 24 Feb 2025 06:13:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.19.72
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740377592; cv=fail; b=kQJPBp+xdg+ulYr+tDNGWViv8dT8P8vUQD/SrA5gDwtVn4yDyBeNw7CTLFmIHr9itFMhLwL7V8V7UE21Eg91KLGpk1XV02fRCjqgCpZYVU+g+cOyJgRmHVXQeTv3yAl2hB3CFMZxz7LIQ8LGo7ZQntpaNLxKswyEmtP9gX0QKPg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740377592; c=relaxed/simple;
-	bh=ppT0eVV3GiEqywvKxT4h6a+kZQUoHGIBNyc6o2VeDD4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=oGJVM4P5ogBMwNUqn3hbQHxstgKtcv40fF9EUcEiiyK9aeHNX5J7GmVnEy+nT0HubKytRn4aAAKzAL4PK/yfmRtyMo2qdfo1H9rqcVkjdaHcnOXvSYuZR2pY5kU/FhEznLSrn+UE63CsKzKfHA0VfIgJR9ceWA85vf9tGPYaI+E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=dPq/3yLO; arc=fail smtp.client-ip=40.92.19.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=u6On/fcoRX+ol0TVtxI42jlJNRZbJPrllccmhYomyowqzlDOeGyBrq0ubEH7beWs6YhnF3K6gIJ8TQDaAGBUP3sBLG8sqJUGg8kLdEjVktYdD6hwP5c6MW7kkcfB/2KUJtZqXsWHjeGUJXF3Cx0I5fSAvmEOOYMfltBxNuiR8smIYYbQtuwtdaaSbpVSuyT1yhfXvuA0JAk8uPs29hpu51UT4EcNae1ooe+PjNivz+4ilKa2sMtG1hkE2OaFIRw2Jbb1OmCbMw3QZ5a2q/7IktNDMiFWswKE9OCMiCcxmFWfhi3NqcDhVNz0li93ZlXzPlVfeIibuPN5b2U+YeFx7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P3q35Y5tAw2XBoubkQYCuTrUDorBQzx0Jkmaum1pDt0=;
- b=L7yy4haXT7uyBom+qpnYefSfAJFgj2f6w8FxHfj6kpnB6L7uZ5MfQpXX8hCfASoSapVrV7qOeY9TUHqCzcz/6M8kjT7Jj26j5jvIQrNwAjzs5ZONIQWbLowYVfKGnin0dCGYw0x2LA0kbVBezbUeC4SztYjVL/VByeEszrEwHrMsYH82kxzPqJsijeAJbcZ3CPZErjSaPejznNHlEM+38L+xOrGj6yc04vx/oAal32AfO0GRjwySX4RxjoYMxkgyFLfbSxqFNAj7UNiaVdwbG2ljKNBfdW/7Ur1YiCg/I2tCHxyrhqMucVD23H7zLrNHSV5M9yDAPSvfidY/VNu6dw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P3q35Y5tAw2XBoubkQYCuTrUDorBQzx0Jkmaum1pDt0=;
- b=dPq/3yLOv1jP2lJcO3bm8/qLiukPaIP6Mr1gsS01E3UgIhVDvS1q/fdCHrp9Ct6Sto+lZUBfXxYIdBFVkf2MI3f/t8UUJ9TOZp67oiWLFHecfPnDwclDxAzsiaTAQtz2rvKJgQT0apVKA0BqGyvWza1QyCGR5EDs79MIdtyS6ccvl2xwquKDInJsIbTVPYamnJnD7v1y50RbPdhmuhCDta9d2T8E8CVUdlEhR+wASqacbDss87mEbToNdl7klftT7qWfkJBK/lBI3bxq02hqCevzne2wZpxHyrG3y7mILGm22eOrTvHtcBgXm9TSm/2oHIHnx2RgLkx/49t8/ySu3Q==
-Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
- by CY8PR19MB7179.namprd19.prod.outlook.com (2603:10b6:930:92::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.19; Mon, 24 Feb
- 2025 06:13:09 +0000
-Received: from DS7PR19MB8883.namprd19.prod.outlook.com
- ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
- ([fe80::e0c2:5b31:534:4305%6]) with mapi id 15.20.8466.016; Mon, 24 Feb 2025
- 06:13:09 +0000
-From: George Moussalem <george.moussalem@outlook.com>
-To: linux-arm-msm@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	amitk@kernel.org,
-	thara.gopinath@gmail.com,
-	dmitry.baryshkov@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	quic_srichara@quicinc.com
-Cc: George Moussalem <george.moussalem@outlook.com>
-Subject: [PATCH v6 5/5] arm64: dts: qcom: ipq5018: Add tsens node
-Date: Mon, 24 Feb 2025 10:12:24 +0400
-Message-ID:
- <DS7PR19MB8883F741184F7A82D25CA4719DC02@DS7PR19MB8883.namprd19.prod.outlook.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250224061224.3342-1-george.moussalem@outlook.com>
-References: <20250224061224.3342-1-george.moussalem@outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: DXXP273CA0014.AREP273.PROD.OUTLOOK.COM
- (2603:1086:300:2::26) To DS7PR19MB8883.namprd19.prod.outlook.com
- (2603:10b6:8:253::16)
-X-Microsoft-Original-Message-ID:
- <20250224061224.3342-6-george.moussalem@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 273A21C84A6;
+	Mon, 24 Feb 2025 06:14:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740377671; cv=none; b=ug4ToMltExQLFVhLvTOzpDqmvDETl/zV5FZTbMNHVbqw36dWo7JebjMqdzD/BTz7sRZ+WLwnp60u8LOkVUsKU/pTvVhtuOuPzVWfDImpZ8X62LODeRwpYZ64+OaVx61tSuzoZ/UTsjYyEMjKfwc/Xr5KVT2jyKjSOuLZcC6TGc4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740377671; c=relaxed/simple;
+	bh=z/+pBy5i56eYqVj5wXJDut4aMv6hSqnkB+BARdoJFPk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GaMVtYjIuAo5bOuuz5E5pMnPj/COzrItDB68T+mlzzIiQAuf9+GC2V4LlXoxPgwV7dXsGScsrFKI9n7+VXbt5tKV8eUW3bnJn0TDziEaj8TfR593ufZ+8CTPI2GFV0JHPKaLxFQJxJeE5Eq02GcXiGyjOOE/YvOv9KkYWk37B6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LDDKzqcC; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-30738a717ffso30696821fa.0;
+        Sun, 23 Feb 2025 22:14:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740377667; x=1740982467; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=D2/AhRT8DSfW/iFYbzjPys2wAflxjAkPB3hNCVPgcpU=;
+        b=LDDKzqcCUxku3gGi/9IcZXKsms5Fbq3p94/ewTkrONkDCjKyWCSTiRQYWWtyny3BNl
+         QDTuA5iMgQG7QlLc2y4Q12ju+dKhaOV5J7nugNkcrhT1s6uj2iwJ9BbKLu3hoccvp1rw
+         9LEv8ARKQYThp9oEqezHastc8fE9sGoLga6maiuvdiNYv1Q69NFtIdsMACyTKGAPJWmN
+         bAmQsEhgV9CzRtnKzg3Lq02Nc24DlwFdzIsbTBlwyo8RNwAJLcqflC+I8FEXhaF9vl2e
+         AnTtCxd/Gq8BqWHHWtfx9Lgw0nn1rk2kqBG5PXQqk/Mbp2vUZPb1GSiRpx4VAiVn4ajZ
+         JPQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740377667; x=1740982467;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=D2/AhRT8DSfW/iFYbzjPys2wAflxjAkPB3hNCVPgcpU=;
+        b=KbDKorLvp0kAk6nyOGDaoOFzS8ivpv28Rwaloc3J2d60/fF0jINx9aYp/mnzMpZh5a
+         I2LOQCCfI2uCdMbUK/a6FQzI2Fi1KAIiuAgU1VVcCjv8OnnMV2Ie5EqIjE34vlRQFegd
+         e9Cf6NGB8KhCSQCutGXpEdy3hZJJo6vy47Zn2Qdp1nN9TJKdesMsd0QsbjeIfv0sWW0B
+         PFONPrGP/PavYsEqfZlhUWmVnEd/iRRFl8rNEKb8BGnkzRwjkLQDg3QD089UH6lZoZo/
+         yKdCtJR0U2VyTTVJGKIIXT1o18e+bDmwDoW6LTuf3En8b/hM246XAxq5nu/fgKLF7wCf
+         XiYA==
+X-Forwarded-Encrypted: i=1; AJvYcCW/pbEFx9CUpDud22ZZ2JSOQSOdwsK/eirQOaTTOP/zEy/wdKg8KF/iiLmqhOnOERLFN0nc3ORetuo7yAEs@vger.kernel.org, AJvYcCWPwtXdDxuVYyHpiE4+DoLDm2dMaDPEexcULHSf7YwOg2Z/7mXxSLdikDdDn/wpUoy8AD+whC8L+nKWzpcCBUIgH1E=@vger.kernel.org, AJvYcCWpa/9oiwQD3ScvOoFMgOZIczpH/x/MFwCZ5HUxBDYJDAZApjQnXTQOpdOeq0DZKL7ha0fJfVS3Feo9@vger.kernel.org, AJvYcCWtNYjKogV2d3f7vPeMnJ047eCzuRNGJIgq7U9+J/NhJnqf+wWTeh5OAZCHSlTGMyvEpIYHzXqvGJub@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwUz32bRoQYlnwu162sUdAluZihjZrQlHaXtin2JqogPU2oqa6
+	OzydWXe2MB79+itfAWW+pL6SyRtFsJW09Ot6cztRBvP1XrSUan1x
+X-Gm-Gg: ASbGnctu674I+Kby/OiB6svAYcOv6u34mkJuN+8KxtmME8WLBXhZyMKH0m+f9spQ1kD
+	LoOhXLa2Z1+2/OLwykn3yWhUCu6Ro3V3jGcD52V+eh/4mBwDnym9dDNM1EzO7685RNoqRN6Gtn/
+	zKANI76iNbWdWoYviHxSeMMjQ1SizzLhQL2LcQuZOZwvCtjtvAw7/fy6CGbQgmKXf1UGFqq/eay
+	SXNzuLgIHtc6mvdlUUIU6VKIFsEPUMSjckG2KcpecpiNrE5+d/jHEOOLqd8hXAODOJ77MIRy141
+	QhrOO28CCCN9hd6tJSRLXzf15Nq0BTSv/xyYhq7INwtJSb7yEU5xTaCSM1uIIkyjOzNsmAd220g
+	cT7Cqorg=
+X-Google-Smtp-Source: AGHT+IE1bH5ugP5EuU0A9TbSNJydsntvckZB+spkMOEnBoSmkrWPCYe7ceeqNv2veChVyIT0h6M1mw==
+X-Received: by 2002:a05:6512:3b06:b0:545:2e85:c152 with SMTP id 2adb3069b0e04-54838f4c9d8mr5459799e87.34.1740377666817;
+        Sun, 23 Feb 2025 22:14:26 -0800 (PST)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5452e4b08dasm2904602e87.87.2025.02.23.22.14.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Feb 2025 22:14:26 -0800 (PST)
+Message-ID: <125ab96e-1e92-4022-95fe-324cd47ce1d9@gmail.com>
+Date: Mon, 24 Feb 2025 08:14:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|CY8PR19MB7179:EE_
-X-MS-Office365-Filtering-Correlation-Id: d324d0e2-3cf6-407d-02f4-08dd549a4f12
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|5072599009|19110799003|13031999003|461199028|7092599003|15080799006|8060799006|440099028|3412199025|41001999003|1710799026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?5AeS8rzoUQR1tW7mHT0QgCNwepk3rduqiubkaK5OCDygnxvHGwhaPHlM1X5P?=
- =?us-ascii?Q?xaiVLao0JsmQ4K3kfSDQf+CTfzm+84wB+jIzrxpBhMb1roGTnbl3k00HzPYX?=
- =?us-ascii?Q?RPYt7uOnPmwwrdoYyIBKIv5C4Waewq/9q/DGTGPGATQWuD1NzYeXDPjzVfL8?=
- =?us-ascii?Q?GA03Ylh2w2zPKBiEb41hJW93G5zQ4Kh0JQantrkcVpW9DqUrIAwRZHSRtzvc?=
- =?us-ascii?Q?HmhjuawAI5+H/mm5RJBgCVg/ZKJfNiJ3Z0B4cXgZ+b+1jB3OgL7GKm6HUDti?=
- =?us-ascii?Q?Q27BrSI8l+r6cGlCoPP8lf79Fc0rhp0ZqD6rhfFE3kigUh6YryC7LHFdpkna?=
- =?us-ascii?Q?sq7DK19v5ozlPK5MLL47IMp+NcVUxGu2AIFEUBa5j4CAOloxF7GxqHZ82rGQ?=
- =?us-ascii?Q?Ia1357XYw+OsHz6pq9Y4X5xesuEcYmzeYX2C+HBIhPLYkThbvL+bBe3rejAh?=
- =?us-ascii?Q?YBDZ4tdssx7kIcnSg+EpRBtrJMi0vPTxbeuUk4aTqRCBR0DSIU++XTtOk/S/?=
- =?us-ascii?Q?WViUXtXH7wEQvPQtrqcsoR3MJ9ydG2hXXsBOWtaaGWrNYpOKrb3JxGMr4BVK?=
- =?us-ascii?Q?njOau13SZjZ4FeAy2c7AH7vtTZj2NIvrKzdWn8lag1lSYxOe48uCYGGs3Iuk?=
- =?us-ascii?Q?8aBu/bwjAfncU/cuAerDSFR21GiZFBW9tmvbC1PnpvXHLpZ2rKTpke+bZ1Uf?=
- =?us-ascii?Q?ixss5pOlePjH/KEue2qnVFaqT+ROoQkPcgNZRi3MNFHr0qbsi9vkytjvfsH0?=
- =?us-ascii?Q?P056b1t8H3Apjak02vWceY8pU+03kSrW2knVt2HCRybiPDqfnOx1hVtbeh7S?=
- =?us-ascii?Q?aWmfOV6lZZbno5GzdoObyBACBL4sjFu/+fYJbQZosMCsQvBqa6yFUUR0gTMz?=
- =?us-ascii?Q?HuspIdIs7xGO8LPocZyP5gJG5oj+HOJ+h6aZQOFWJbkAZqSjSENIHiz4Mhst?=
- =?us-ascii?Q?5Go+Doe6iwsHoqluFSq/ovhyRztTPHa9wEsxPfZma2nVr2YkKIPmCpYCWA92?=
- =?us-ascii?Q?cUmLhaux7UZN3KbPHYKbTrzSsLn2FI7XV9q9v30/odnQAOTkZQ9ceLrQ9zIo?=
- =?us-ascii?Q?HUlwfGopP7gmy9eMumQ2vs551nPh5NU8pwrL1wgy0AumeH/sYZJdc+unZXB/?=
- =?us-ascii?Q?H1yYhuZl7nNDgOkJk7BWOJHnXSS9sv8lkkqXTrJpOh9OWst1qhss2vY=3D?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?6D0G0JLBntNxhxXJcjQn5FMmXR4/QZ1Yk7lm2hCuaAADEh2Uj9b8GoG5W/0X?=
- =?us-ascii?Q?BtlYGW4Sfki/EVst9PqCihr48BRf52zYZsff7BYBypYpU1pQTmF+vENC3pok?=
- =?us-ascii?Q?MfTzt2/oJLgN83PBOuEMiJBqfbLTAyL+J0K7HZvEuUOhiSahvbHKgNJXN/54?=
- =?us-ascii?Q?Hnn9niIZDMKx96MB2JYRqn5RHHRCsMCdN82KQUcxYlznD0trEWRlReWtKDut?=
- =?us-ascii?Q?+Pbt0/y4hrzoPuTFitiaEoDXhf7CL8nVsn2Fl/hUmxcNedinIk2ox/wZRQSW?=
- =?us-ascii?Q?jrLaNVenJU0t+T49A4PJyLUvWVR54QTCe8Ysd7fHWpYb+VxjzGR/ug6yjWyQ?=
- =?us-ascii?Q?lfeUiOAJLWzb9brMTqyL247eFuGGHqm3c2E0neMk03RwKzaunM7jh6IjudUD?=
- =?us-ascii?Q?KAfzRdwYAKFeMM3aGICwXVjdakmUW/RaGb/d4aM81R92CgzEH6LyoWDSPfl+?=
- =?us-ascii?Q?9B+lD/9cDroNSuBzAO4elPsRE6+YdZiSYwjX1ZFXxy6HGNPX8vvjycj3PWtg?=
- =?us-ascii?Q?9641j4rNwPrIBDuj5I1E8x32eEmQUm/e1sLpq6fmxUw/rIhogVV7bN+E7JXQ?=
- =?us-ascii?Q?8tL8B32lbHRfyW8Mmmfwn5+LlxqDJFBvaWcTzGMQUF6TzQ8YkKgIil4GtO7k?=
- =?us-ascii?Q?YOpSCz9KfJux58LdEwyZcNtbpQEhSDEA5Z/b+k1uJNtjnmNHEG+0AFkcq8Ki?=
- =?us-ascii?Q?GvSHM54gJzalmEQzlSZeADmvBJX6gxvSKV7r0Xl5cPPufB7d/2BNCSayS7x6?=
- =?us-ascii?Q?defIlFmE70jyipHbMFLDPNzLpPxxrB6NCTwkMBMBAFEkWUrww8cuFqdqqu59?=
- =?us-ascii?Q?byRdIdKss5dFcco5FI7QwGdAslLMbH8FVB4JKDk610ph8uxyAn47o9BHgo9B?=
- =?us-ascii?Q?9P0R3/UdRSuVKIIhWYF0PF6w3hr9HfLQSSHxTz8qsSR2/ipJr95QIkqaJ4Bu?=
- =?us-ascii?Q?lDnGOhjJymPpBywINdrSYq4dGGa1OIh1+dcHUKQoIWmuwq0xWMkyp9hk1KlR?=
- =?us-ascii?Q?u1z/1jvSixm6SzlITYoq9hZc7kCj197VdA9RAAwte2KVigCK+nOlGsrcqdc7?=
- =?us-ascii?Q?AfLSskDr2U4a7zB5tAinpjMae/6l1zNNH03P5X92fSr/8+yp2UrxDb/wsBt/?=
- =?us-ascii?Q?BtUgqZukeQMFpafwaZnfPFtADeD+1boy+s+Xnv2ZtvFTEBCxzL1tjdBk1uRI?=
- =?us-ascii?Q?cRGoNeXkwXSM7jRHfgbbd7EBkzaTImh/e3eC/eOwF44ShUrIwPby5p4uDgif?=
- =?us-ascii?Q?nycnX//7ju03g/PJtNfh?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d324d0e2-3cf6-407d-02f4-08dd549a4f12
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2025 06:13:09.1469
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR19MB7179
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/9] iio: adc: Support ROHM BD79124 ADC
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa <nuno.sa@analog.com>,
+ David Lechner <dlechner@baylibre.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ Linus Walleij <linus.walleij@linaro.org>
+References: <cover.1739967040.git.mazziesaccount@gmail.com>
+ <67b7713724d7591f6321a8f5dfef8cd711f38d34.1739967040.git.mazziesaccount@gmail.com>
+ <20250223162807.41960b6b@jic23-huawei>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20250223162807.41960b6b@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+On 23/02/2025 18:28, Jonathan Cameron wrote:
+> On Wed, 19 Feb 2025 14:30:43 +0200
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> The ROHM BD79124 is a 12-bit, 8-channel, SAR ADC. The ADC supports
+>> an automatic measurement mode, with an alarm interrupt for out-of-window
+>> measurements. The window is configurable for each channel.
+>>
+>> The I2C protocol for manual start of the measurement and data reading is
+>> somewhat peculiar. It requires the master to do clock stretching after
+>> sending the I2C slave-address until the slave has captured the data.
+>> Needless to say this is not well suopported by the I2C controllers.
+>>
+>> Thus the driver does not support the BD79124's manual measurement mode
+>> but implements the measurements using automatic measurement mode relying
+>> on the BD79124's ability of storing latest measurements into register.
+>>
+>> The driver does also support configuring the threshold events for
+>> detecting the out-of-window events.
+>>
+>> The BD79124 keeps asserting IRQ for as long as the measured voltage is
+>> out of the configured window. Thus the driver masks the received event
+>> for a fixed duration (1 second) when an event is handled. This prevents
+>> the user-space from choking on the events
+>>
+>> The ADC input pins can be also configured as general purpose outputs.
+>> Those pins which don't have corresponding ADC channel node in the
+>> device-tree will be controllable as GPO.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>
+> Hi Matti,
+> 
+> Some fairly superficial review follows. I'm travelling for next few weeks
+> so not sure when I'll get time to take a more thorough look.
 
-IPQ5018 has tsens V1.0 IP with 5 sensors, though 4 are in use.
-There is no RPM, so tsens has to be manually enabled. Adding the tsens
-and nvmem nodes and adding 4 thermal sensors (zones). With the
-critical temperature being 120'C and action is to reboot.
+Yeah, unfortunately people are allowed to have other life beyond the 
+ROHM drivers :D
+Enjoy your journey(s) ;)
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- arch/arm64/boot/dts/qcom/ipq5018.dtsi | 169 ++++++++++++++++++++++++++
- 1 file changed, 169 insertions(+)
+...
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-index 8914f2ef0bc4..91c062cce903 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-@@ -147,6 +147,117 @@ usbphy0: phy@5b000 {
- 			status = "disabled";
- 		};
- 
-+		qfprom: qfprom@a0000 {
-+			compatible = "qcom,ipq5018-qfprom", "qcom,qfprom";
-+			reg = <0x000a0000 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			tsens_mode: mode@249 {
-+				reg = <0x249 0x1>;
-+				bits = <0 3>;
-+			};
-+
-+			tsens_base1: base1@249 {
-+				reg = <0x249 0x2>;
-+				bits = <3 8>;
-+			};
-+
-+			tsens_base2: base2@24a {
-+				reg = <0x24a 0x2>;
-+				bits = <3 8>;
-+			};
-+
-+			tsens_s0_p1: s0-p1@24b {
-+				reg = <0x24b 0x2>;
-+				bits = <2 6>;
-+			};
-+
-+			tsens_s0_p2: s0-p2@24c {
-+				reg = <0x24c 0x1>;
-+				bits = <1 6>;
-+			};
-+
-+			tsens_s1_p1: s1-p1@24c {
-+				reg = <0x24c 0x2>;
-+				bits = <7 6>;
-+			};
-+
-+			tsens_s1_p2: s1-p2@24d {
-+				reg = <0x24d 0x2>;
-+				bits = <5 6>;
-+			};
-+
-+			tsens_s2_p1: s2-p1@24e {
-+				reg = <0x24e 0x2>;
-+				bits = <3 6>;
-+			};
-+
-+			tsens_s2_p2: s2-p2@24f {
-+				reg = <0x24f 0x1>;
-+				bits = <1 6>;
-+			};
-+
-+			tsens_s3_p1: s3-p1@24f {
-+				reg = <0x24f 0x2>;
-+				bits = <7 6>;
-+			};
-+
-+			tsens_s3_p2: s3-p2@250 {
-+				reg = <0x250 0x2>;
-+				bits = <5 6>;
-+			};
-+
-+			tsens_s4_p1: s4-p1@251 {
-+				reg = <0x251 0x2>;
-+				bits = <3 6>;
-+			};
-+
-+			tsens_s4_p2: s4-p2@254 {
-+				reg = <0x254 0x1>;
-+				bits = <0 6>;
-+			};
-+		};
-+
-+		tsens: thermal-sensor@4a9000 {
-+			compatible = "qcom,ipq5018-tsens";
-+			reg = <0x004a9000 0x1000>, /* TM */
-+			      <0x004a8000 0x1000>; /* SROT */
-+
-+			nvmem-cells = <&tsens_mode>,
-+				      <&tsens_base1>,
-+				      <&tsens_base2>,
-+				      <&tsens_s0_p1>,
-+				      <&tsens_s0_p2>,
-+				      <&tsens_s1_p1>,
-+				      <&tsens_s1_p2>,
-+				      <&tsens_s2_p1>,
-+				      <&tsens_s2_p2>,
-+				      <&tsens_s3_p1>,
-+				      <&tsens_s3_p2>,
-+				      <&tsens_s4_p1>,
-+				      <&tsens_s4_p2>;
-+
-+			nvmem-cell-names = "mode",
-+					   "base1",
-+					   "base2",
-+					   "s0_p1",
-+					   "s0_p2",
-+					   "s1_p1",
-+					   "s1_p2",
-+					   "s2_p1",
-+					   "s2_p2",
-+					   "s3_p1",
-+					   "s3_p2",
-+					   "s4_p1",
-+					   "s4_p2";
-+
-+			interrupts = <GIC_SPI 184 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "uplow";
-+			#qcom,sensors = <5>;
-+			#thermal-sensor-cells = <1>;
-+		};
-+
- 		tlmm: pinctrl@1000000 {
- 			compatible = "qcom,ipq5018-tlmm";
- 			reg = <0x01000000 0x300000>;
-@@ -389,6 +500,64 @@ frame@b128000 {
- 		};
- 	};
- 
-+	thermal-zones {
-+		cpu-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 2>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <120000>;
-+					hysteresis = <2>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		gephy-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 4>;
-+
-+			trips {
-+				gephy-critical {
-+					temperature = <120000>;
-+					hysteresis = <2>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		top-glue-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 3>;
-+
-+			trips {
-+				top_glue-critical {
-+					temperature = <120000>;
-+					hysteresis = <2>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		ubi32-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 1>;
-+
-+			trips {
-+				ubi32-critical {
-+					temperature = <120000>;
-+					hysteresis = <2>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--- 
-2.39.5
+>> +
+>> +static int bd79124_event_ratelimit_hi(struct bd79124_data *data,
+>> +				      unsigned int channel)
+>> +{
+>> +	int reg, limit;
+>> +
+>> +	guard(mutex)(&data->mutex);
+>> +	data->alarm_suppressed[channel] |= BIT(IIO_EV_DIR_RISING);
+>> +
+>> +	reg = BD79124_GET_HIGH_LIMIT_REG(channel);
+>> +	limit = BD79124_HIGH_LIMIT_MAX;
+>> +
+>> +	return __bd79124_event_ratelimit(data, reg, limit);
+> 
+> As below.
+> 
+>> +}
+>> +
+>> +static int bd79124_event_ratelimit_lo(struct bd79124_data *data,
+>> +				      unsigned int channel)
+>> +{
+>> +	int reg, limit;
+>> +
+>> +	guard(mutex)(&data->mutex);
+>> +	data->alarm_suppressed[channel] |= BIT(IIO_EV_DIR_FALLING);
+>> +
+>> +	reg = BD79124_GET_LOW_LIMIT_REG(channel);
+>> +	limit = BD79124_LOW_LIMIT_MIN;
+>> +
+>> +	return __bd79124_event_ratelimit(data, reg, limit);
+> 
+> I'd put reg and limit inline.  Local variables don't add much as
+> their meaning is obvious anyway from what you put in them.
 
+I can do this. The main purpose of those variables was to keep the 
+function calls easier to read (on my limited monitor).
+
+>> +}
+>> +
+
+...
+
+>> +
+>> +static int bd79124_chan_init(struct bd79124_data *data, int channel)
+>> +{
+>> +	struct bd79124_reg_init inits[] = {
+>> +		{ .reg = BD79124_GET_HIGH_LIMIT_REG(channel), .val = 4095 },
+>> +		{ .reg = BD79124_GET_LOW_LIMIT_REG(channel), .val = 0 },
+>> +	};
+>> +	int i, ret;
+>> +
+>> +	for (i = 0; i < ARRAY_SIZE(inits); i++) {
+>> +		ret = regmap_write(data->map, inits[i].reg, inits[i].val);
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+> 
+> This is shorter as straight line code rather than a loop. I'd unwind
+> it.  Fine to bring in a loop 'setter' like this once the benefit is
+> significant.
+
+I suppose you're right. I think loops like this born out of a habit :)
+
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static bool bd79124_is_in_array(int *arr, int num_items, int val)
+>> +{
+>> +	int i;
+>> +
+>> +	for (i = 0; i < num_items; i++)
+>> +		if (arr[i] == val)
+>> +			return true;
+>> +
+>> +	return false;
+>> +}
+>> +
+>> +static int bd79124_mux_init(struct bd79124_data *data)
+>> +{
+>> +	int adc_chans[BD79124_MAX_NUM_CHANNELS];
+>> +	int num_adc, chan, regval = 0;
+>> +
+>> +	num_adc = iio_adc_device_channels_by_property(data->dev, &adc_chans[0],
+>> +						      BD79124_MAX_NUM_CHANNELS,
+>> +						      &expected_props);
+>> +	if (num_adc < 0)
+>> +		return num_adc;
+>> +
+>> +	/*
+>> +	 * Set a mux register bit for each pin which is free to be used as
+>> +	 * a GPO.
+> For this I would search the simpler iio_chan_spec array rather than passing
+> properties again.
+
+I kind of agree. I did it like this because I thought that the 
+'iio_adc_device_channels_by_property()' might be useful for other 
+callers as well. And, if we had 'iio_adc_device_channels_by_property()' 
+- then the code in this driver file becomes simple (as seen here). After 
+I looked at the couple of other drivers I didn't easily spot any other 
+driver needing the 'iio_adc_device_channels_by_property()' - so I 
+suppose it is simpler to drop it and loop through the 'iio_chan_spec' as 
+you suggest.
+
+  Just look for gaps.  Or do it in the top level probe()
+> function and build a bitmap of which channels are ADC ones from the iio_chan_spec
+> array and pass that down here.
+> 
+>> +	 */
+>> +	for (chan = 0; chan < BD79124_MAX_NUM_CHANNELS; chan++)
+>> +		if (!bd79124_is_in_array(&adc_chans[0], num_adc, chan))
+>> +			regval |= BIT(chan);
+>> +
+>> +	return regmap_write(data->map, BD79124_REG_PINCFG, regval);
+>> +}
+>> +
+>> +static int bd79124_hw_init(struct bd79124_data *data)
+>> +{
+>> +	int ret, regval, i;
+>> +
+>> +	ret = bd79124_mux_init(data);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	for (i = 0; i < BD79124_MAX_NUM_CHANNELS; i++) {
+>> +		ret = bd79124_chan_init(data, i);
+>> +		if (ret)
+>> +			return ret;
+>> +		data->alarm_r_limit[i] = 4095;
+>> +	}
+>> +	/* Stop auto sequencer */
+>> +	ret = regmap_clear_bits(data->map, BD79124_REG_SEQUENCE_CFG,
+>> +				BD79124_MASK_SEQ_START);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* Enable writing the measured values to the regsters */
+>> +	ret = regmap_set_bits(data->map, BD79124_REG_GEN_CFG,
+>> +			      BD79124_MASK_STATS_EN);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* Set no channels to be auto-measured */
+>> +	ret = regmap_write(data->map, BD79124_REG_AUTO_CHANNELS, 0x0);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* Set no channels to be manually measured */
+>> +	ret = regmap_write(data->map, BD79124_REG_MANUAL_CHANNELS, 0x0);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* Set the measurement interval to 0.75 mS */
+>> +	regval = FIELD_PREP(BD79124_MASK_AUTO_INTERVAL, BD79124_INTERVAL_075);
+>> +	ret = regmap_update_bits(data->map, BD79124_REG_OPMODE_CFG,
+>> +			BD79124_MASK_AUTO_INTERVAL, regval);
+> 
+> Where it doesn't make any other difference, align after (
+> 
+> If you are going shorter, single tab only.
+
+Single tab only? You mean like:
+
+ret = regmap_update_bits(data->map, BD79124_REG_OPMODE_CFG,
+	BD79124_MASK_AUTO_INTERVAL, regval);
+
+Do you prefer that even if the variable holding the return value was 
+longer than 8 chars? To me it looks odd if arguments on the next line 
+begin earlier than the function on previous line:
+
+longvariable = regmap_update_bits(data->map, BD79124_REG_OPMODE_CFG,
+	BD79124_MASK_AUTO_INTERVAL, regval);
+
+(Just ensuring I understood your preference).
+
+> 
+> 
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* Sequencer mode to auto */
+>> +	ret = regmap_set_bits(data->map, BD79124_REG_SEQUENCE_CFG,
+>> +			      BD79124_MASK_SEQ_SEQ);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* Don't start the measurement */
+>> +	regval = FIELD_PREP(BD79124_MASK_CONV_MODE, BD79124_CONV_MODE_MANSEQ);
+> What is this for?
+
+Thank's for pointing it out! It is supposed to be used in call below. 
+The code works as it is just because the BD79124_CONV_MODE_MANSEQ 
+happens to be '0', but it's still better to use FIELD_PREP() for the 
+consistency. Below should change from:
+
+>> +	return regmap_update_bits(data->map, BD79124_REG_OPMODE_CFG,
+>> +			BD79124_MASK_CONV_MODE, BD79124_CONV_MODE_MANSEQ);
+>> +
+to:
+
+	return regmap_update_bits(data->map, BD79124_REG_OPMODE_CFG,
+				  BD79124_MASK_CONV_MODE, regval);
+
+Good catch, thanks! :)
+
+>> +}
+>> +
+>> +static int bd79124_probe(struct i2c_client *i2c)
+>> +{
+>> +	struct bd79124_data *data;
+>> +	struct iio_dev *iio_dev;
+>> +	const struct iio_chan_spec *template;
+>> +	struct iio_chan_spec *cs;
+>> +	struct device *dev = &i2c->dev;
+>> +	int ret;
+>> +
+>> +	iio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+>> +	if (!iio_dev)
+>> +		return -ENOMEM;
+>> +
+>> +	data = iio_priv(iio_dev);
+>> +	data->dev = dev;
+>> +	data->map = devm_regmap_init_i2c(i2c, &bd79124_regmap);
+>> +	if (IS_ERR(data->map))
+>> +		return dev_err_probe(dev, PTR_ERR(data->map),
+>> +				     "Failed to initialize Regmap\n");
+>> +
+>> +	ret = devm_regulator_get_enable_read_voltage(dev, "vdd");
+>> +	if (ret < 0)
+>> +		return dev_err_probe(dev, ret, "Failed to get the Vdd\n");
+>> +
+>> +	data->vmax = ret;
+>> +
+>> +	ret = devm_regulator_get_enable(dev, "iovdd");
+>> +	if (ret < 0)
+>> +		return dev_err_probe(dev, ret, "Failed to enable I/O voltage\n");
+>> +
+>> +	ret = devm_delayed_work_autocancel(dev, &data->alm_enable_work,
+>> +					   bd79124_alm_enable_worker);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	if (i2c->irq) {
+>> +		template = &bd79124_chan_template;
+>> +	} else {
+>> +		template = &bd79124_chan_template_noirq;
+>> +		dev_dbg(dev, "No IRQ found, events disabled\n");
+>> +	}
+>> +	ret = devm_iio_adc_device_alloc_chaninfo(dev, template, &cs,
+>> +						 &expected_props);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	iio_dev->channels = cs;
+>> +	iio_dev->num_channels = ret;
+>> +	iio_dev->info = &bd79124_info;
+>> +	iio_dev->name = "bd79124";
+>> +	iio_dev->modes = INDIO_DIRECT_MODE;
+>> +
+>> +	data->gc = bd79124gpo_chip;
+>> +	data->gc.parent = dev;
+>> +
+>> +	mutex_init(&data->mutex);
+> 
+> Whilst it doesn't bring huge advantage, now we have devm_mutex_init()
+> it seems reasonable to use it and maybe catch a use after free for the lock.
+
+Ah, indeed. It's a good to learn to 'habitually' use devm_mutex_init().
+
+Yours,
+	-- Matti
 
