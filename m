@@ -1,120 +1,187 @@
-Return-Path: <devicetree+bounces-150601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12C10A42D4C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 21:03:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34019A42D55
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 21:06:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57A553AB640
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 20:03:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F6B07A3612
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 20:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00BF61D95B3;
-	Mon, 24 Feb 2025 20:03:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0AA72063D2;
+	Mon, 24 Feb 2025 20:06:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qreTVj6N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fTxJYGAH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB2CE3B2A0;
-	Mon, 24 Feb 2025 20:03:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AFBAEEA9;
+	Mon, 24 Feb 2025 20:06:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740427429; cv=none; b=hgrnAFg+LoC2wfqcPEdmjlblHo+37J2vMZimTTmCmwNWT/PeuHh2IhQAtM0TZDfkGxTiDC5hUl5Zmifd5fbgfS54bNj+iHHd6j8F8h/KbZ7IlT2KiVvexTNrIZaXY3ZS8v3paTtOBd2ZJDBekr6dO9WkhqQjQvPpKBFXucVchMg=
+	t=1740427570; cv=none; b=coYHiwXvFv1BlPfRGQ/3iskofl/7n9G72el+QtQxGis+8jQ4lYi5X9iAB7po74VE/3o22u7toDFjnVrGya5UVDTGB4fXengOl9a3wY1md9HGl8gglegEJdOCJaVmiDy3rI8F6xfLpDBMdmjYDaV6YRjC7UGZboU4PlOxQyw8zto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740427429; c=relaxed/simple;
-	bh=q+d7nm16qN8obUZdl22kTIu5V70Mi/RYYzCCy6bqBeI=;
+	s=arc-20240116; t=1740427570; c=relaxed/simple;
+	bh=stM2IVR3b2kvR088SM8/A8kfusx7eVUGjEIOksI9LxM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tMlHCbpZUmid/Q4WT4BKniUpFj5MZ3EsOqIGxEVuR5Wfg7Pkf2euNlLFG3GomIWukMulUwbJlEooBXKUBYRkBaEgLV7jqNPxuklUpydShU6hmG31+cdJPOE7y7XwyxHvVn7eXkGLW8pXcMyX5B84GAUH8ZvEEiwSXSxFLMNi0t4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qreTVj6N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FD12C4CED6;
-	Mon, 24 Feb 2025 20:03:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=M21jG8gZOXq8JJhmHZ4ZS8oWunWejGi9F3Zx38wYVJXvfEPxfGONC/7PUEnsf/r1Zj5ngQiXcD3adcCxp6oBbnF4ZWxC2iivEd55K4I4CXLpLdsb8rK/MzC7S1ovmUpS1s4t8o5JnIP4TUfZTqWtRCipif7wpn4Hqbb5ndi0Byg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fTxJYGAH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF2CAC4CED6;
+	Mon, 24 Feb 2025 20:06:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740427429;
-	bh=q+d7nm16qN8obUZdl22kTIu5V70Mi/RYYzCCy6bqBeI=;
+	s=k20201202; t=1740427570;
+	bh=stM2IVR3b2kvR088SM8/A8kfusx7eVUGjEIOksI9LxM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qreTVj6NyKUm6lrRKJbd3QXAxIqqOAJWW8G16C5zFxWhZCQDN1BM6OAGYPLK8+CyZ
-	 1FRGrGG5N7qqtX5xzjmsQYb8/ojIngs7HVgz2F6fXoXPi0coG24ncjg578qVp1tL6V
-	 CTsoZeST5a0x5h1xMyu0fuWWkWEkOVvIpp9G9PaHC2W3yNb8M4ibhsIUNMKB5dojV4
-	 kmpAIrzQk1gIPOzxo1dJ7Pkv4QD1dpfdlV/bNRrqNEEHL5Kd+g3HFabCw85n+SVN0q
-	 sIX/kHXEUh1r4I/KgO/yF9HVqbfplwRbkd+TsnyVKxb+IupTJ0hZjpXP1SlA2uRG7l
-	 pefph794JXEvA==
-Date: Mon, 24 Feb 2025 14:03:47 -0600
+	b=fTxJYGAHV6FCp80DxZ0l0De/AoUhpsBvWAIfLfrdXZ80o3hrfPZJcAVurzbA8BNSE
+	 ASaGSNB347y5MyVhE+qziw0Ce1PMKxGyGf/2RcUzQwZuKkKrPnC1FWrk5kCtXJ4B32
+	 EEmrUZ1DwdjL4ABOXWIy1G8XsVVIHMU7oiLYdBYcfIsJe8OgeR01gjkkyrMYbQMjrQ
+	 1A2EZ8pjVSfvY8vlXok+kOgJGBJTLJ8knBy9aqg7pxs8LY/azao9rfsT7RG9v+VBCw
+	 hcxR6nQ8GJYBFQn8qTxlh5RZ3DeoF4fX86xb4wlOxj3g2MkPC7b40S5aSc2mYAGnLb
+	 1lcWhvij8UAGQ==
+Date: Mon, 24 Feb 2025 14:06:08 -0600
 From: Rob Herring <robh@kernel.org>
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, mripard@kernel.org,
-	cristian.ciocaltea@collabora.com, neil.armstrong@linaro.org,
-	yubing.zhang@rock-chips.com, krzk+dt@kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, sebastian.reichel@collabora.com,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH 1/6] dt-bindings: display: rockchip: Add schema for
- RK3588 DPTX Controller
-Message-ID: <20250224200347.GA4011821-robh@kernel.org>
-References: <20250223113036.74252-1-andyshrk@163.com>
- <20250223113036.74252-2-andyshrk@163.com>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Jesse Taube <mr.bossman075@gmail.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH v6 1/4] dt-bindings: gpio: spacemit: add support for K1
+ SoC
+Message-ID: <20250224200608.GA4014994-robh@kernel.org>
+References: <20250223-03-k1-gpio-v6-0-db2e4adeef1c@gentoo.org>
+ <20250223-03-k1-gpio-v6-1-db2e4adeef1c@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250223113036.74252-2-andyshrk@163.com>
+In-Reply-To: <20250223-03-k1-gpio-v6-1-db2e4adeef1c@gentoo.org>
 
-On Sun, Feb 23, 2025 at 07:30:24PM +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
+On Sun, Feb 23, 2025 at 07:49:32PM +0800, Yixun Lan wrote:
+> The GPIO controller of K1 support basic functions as input/output,
+> all pins can be used as interrupt which route to one IRQ line,
+> trigger type can be select between rising edge, falling edge, or both.
+> There are four GPIO banks, each consisting of 32 pins.
 > 
-> The Rockchip RK3588 SoC integrates the Synopsys DesignWare DPTX
-> controller. And this DPTX controller need share a USBDP PHY with
-> the USB 3.0 OTG controller during operation.
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> 
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
 > ---
+>  .../devicetree/bindings/gpio/spacemit,k1-gpio.yaml | 81 ++++++++++++++++++++++
+>  1 file changed, 81 insertions(+)
 > 
->  .../display/rockchip/rockchip,dw-dp.yaml      | 150 ++++++++++++++++++
->  1 file changed, 150 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
+> diff --git a/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml b/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml
 > new file mode 100644
-> index 000000000000..b48af8c3e68b
+> index 0000000000000000000000000000000000000000..017165d325565a6868700a9ac8298b61dffcfef4
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
-> @@ -0,0 +1,150 @@
+> +++ b/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml
+> @@ -0,0 +1,81 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-dp.yaml#
+> +$id: http://devicetree.org/schemas/gpio/spacemit,k1-gpio.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Rockchip DW DisplayPort Transmitter
+> +title: SpacemiT K1 GPIO controller
 > +
 > +maintainers:
-> +  - Andy Yan <andy.yan@rock-chips.com>
+> +  - Yixun Lan <dlan@gentoo.org>
 > +
-> +description: |
-> +  The Rockchip RK3588 SoC integrates the Synopsys DesignWare DPTX controller
-> +  which is compliant with the DisplayPort Specification Version 1.4 with the
-> +  following features:
+> +description:
+> +  The controller's registers are organized as sets of eight 32-bit
+> +  registers with each set of port controlling 32 pins.  A single
+> +  interrupt line is shared for all of the pins by the controller.
 > +
-> +  * DisplayPort 1.4a
-> +  * Main Link: 1/2/4 lanes
-> +  * Main Link Support 1.62Gbps, 2.7Gbps, 5.4Gbps and 8.1Gbps
-> +  * AUX channel 1Mbps
-> +  * Single Stream Transport(SST)
-> +  * Multistream Transport (MST)
-> +  *Type-C support (alternate mode)
+> +properties:
+> +  $nodename:
+> +    pattern: "^gpio@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    const: spacemit,k1-gpio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 3
+> +    description:
+> +      The first two cells are the GPIO bank index and offset inside the bank,
+> +      the third cell should specify GPIO flag.
+> +
+> +  gpio-ranges: true
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 3
+> +    description:
+> +      The first two cells are the GPIO bank index and offset inside the bank,
+> +      the third cell should specify interrupt flag. The controller does not
+> +      support level interrupts, so flags of IRQ_TYPE_LEVEL_HIGH, IRQ_TYPE_LEVEL_LOW
+> +      should not be used. Refer <dt-bindings/interrupt-controller/irq.h> for valid flags.
 
-???   ^
+Wrap lines at 80 chars.
 
-Otherwise,
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - gpio-controller
+> +  - "#gpio-cells"
+> +  - interrupts
+> +  - interrupt-controller
+> +  - "#interrupt-cells"
+> +  - gpio-ranges
+> +
+> +additionalProperties: false
+> +
+> +dependencies:
+> +  interrupt-controller: [ interrupts ]
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+You made 'interrupts' always required, so this is redundant.
+
+> +
+> +examples:
+> +  - |
+> +    gpio: gpio@d4019000 {
+
+Drop unused labels.
+
+> +      compatible = "spacemit,k1-gpio";
+> +      reg = <0xd4019000 0x800>;
+> +      gpio-controller;
+> +      #gpio-cells = <3>;
+> +      interrupts = <58>;
+> +      interrupt-controller;
+> +      interrupt-parent = <&plic>;
+> +      #interrupt-cells = <3>;
+> +      gpio-ranges = <&pinctrl 0 0 0 32>,
+> +                    <&pinctrl 1 0 32 32>,
+> +                    <&pinctrl 2 0 64 32>,
+> +                    <&pinctrl 3 0 96 32>;
+> +    };
+> +...
+> 
+> -- 
+> 2.48.1
+> 
 
