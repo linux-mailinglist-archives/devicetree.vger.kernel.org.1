@@ -1,157 +1,150 @@
-Return-Path: <devicetree+bounces-150414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0AABA42093
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 14:28:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B6F2A420B5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 14:34:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 208ED3B0F5D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:25:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC45D3B15FC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:29:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0497823BCF1;
-	Mon, 24 Feb 2025 13:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD8C248862;
+	Mon, 24 Feb 2025 13:29:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Gv2efhFy"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RpHl9/nE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C28A221F12;
-	Mon, 24 Feb 2025 13:25:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 643F424E4CF
+	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 13:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740403515; cv=none; b=pRL4N44pjNUkdiuEeepg821f97eyCLahtbsJ8HtdrmvlrQyayKCouN/0v2zwE9DU4tFJqp59bs7osVsYyb6cR6r5L4SUFa9fc9ZkMsnLM7Ds4LDRcZ+r2MB5BasValXliwNp4b22PyZMQp64ZrieFT3qnyID39T7pOu4XtQNvCw=
+	t=1740403753; cv=none; b=FgoTa3P626hI8+i11chgvPwRklyLa86TfyJjtJD23/MC3KXeKeXI317V634tEBT6LAE84KznhrbF6ib+TpWTT6ga8m2UPYp+myzHQtUPCwhnwHdC4GKOp/UcEWpRA0wdgDrEKkxpqbpC/86U5G6Y1Y5rjqrjb79As3GrAXzZ50Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740403515; c=relaxed/simple;
-	bh=ximZJ42CHdbASaltwg2nH8bR186SAp7QNha5PpOD/UM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sIgl2as0DJ9s18peiN33/+C/t3KMwISWatm03ButMwKBVByWCj93AqaOEb9oFGzJSRdyzqEMnFeDrhdEEvFcVZpHa7MDhEdtFppeIxW7+0hEDq5talYPfgOmkeG90XIZmaQAOf7OG+L+AckmnZ8W8OWY2+RbAShwlFKTSQWmAMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Gv2efhFy; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51O9K8KL025225;
-	Mon, 24 Feb 2025 13:25:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ukFyx5KoGDa7IkNJf3I2JvC5n29tBOfoCIP4Dm8p/TY=; b=Gv2efhFynPSXV4r/
-	QVdeFXmzVtAL/8Ofn4sEeTmMg7SZjCZtS4sIsccJ8Xr6/qNT30A7rGj7X7bLxRR0
-	9wl2VpR4HnsXu1CETEztaBoGC2zJLsVZCJbYBXTmweAf1uklDyXLCqRQiRNPWzNW
-	1PmhPDxjwdOtiPxi5AtXOQvR+0LJSXNYlLaAWTeSFRBr5ylOkPFhAUQxQ4026DSw
-	c9KvcPR02mLYEGFu7h4UpxXI8ZXKTELD+YM3Wl9ekS0UA+j3b2dfNWTiiyscwlYL
-	A7x1RzMBkFqgFN6UVF0J9gCmEEu9cLZGvJaQeAuOiQ+9lEwT+89ual5PrzPzLlXj
-	em0m9g==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44y7v9d5vh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Feb 2025 13:25:10 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51ODP9nW025330
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Feb 2025 13:25:09 GMT
-Received: from [10.216.19.8] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 24 Feb
- 2025 05:25:05 -0800
-Message-ID: <428a1384-bc06-4952-a117-d57f5ab6446c@quicinc.com>
-Date: Mon, 24 Feb 2025 18:55:02 +0530
+	s=arc-20240116; t=1740403753; c=relaxed/simple;
+	bh=OJX1F5kIOX4ZD/Fnm0Dk1ZhHGBfscwUfYILDk4C4xQU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ed66CaAUn0FRZn9NWQEqq3l9hGMjHh6qaalYUD8/Dq/NauLt0bC6vY4lcRqg24VKk9y4LBFrGbz3UwVCYH9bzYMNiUweEjEpkGqAnCav/LnWM88MKNLEaB2eJey1XE5WxcEXZKghwCavlXlNdKTzoItXJvLqzz9ZQnRUkBFH+Fc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RpHl9/nE; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 39015442EB;
+	Mon, 24 Feb 2025 13:29:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1740403743;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wr7WdMqKo3Wyla0cIhPvh6/Jn9V+1lHAZH3itN1Ngxc=;
+	b=RpHl9/nEnJBXWE8Unf5xaDIHyXq/GAVP8JX/RCf6A9Oz7HaOP9SkC38RqT/K2n68rnlXTA
+	EuiVSDzXEBSDRFbYj//dNmbV6No11P8REapikhkuLPoc2H00Vh+oesES/2zpMlJYXchhiG
+	IrhjE2SjugNbJo81HCge6FH9aMFYW9FaXXnFYCsPEi/aXw+AtbJHahkLKNAZUpI7Y4K0RL
+	n/yLQ0MCePCScqKsYPYi71rRPKhDx1d4wvjd3NFJ3re7VjrOQcQQ4tTgmCiTvjFwFg6xe3
+	MkvgFyykYFwZXlcmbprDsioi1V7peYeHrfpb7HTjM1J49VWOEhqBowQEL9ZyMA==
+Date: Mon, 24 Feb 2025 14:29:00 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, xypron.glpk@gmx.de, Jason
+ Kridner <jkridner@beagleboard.org>, Deepak Khatri
+ <lorforlinux@beagleboard.org>, d-gole@ti.com, Robert Nelson
+ <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, David Gibson
+ <david@gibson.dropbear.id.au>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Pantelis Antoniou <pantelis.antoniou@gmail.com>, "open list:OPEN FIRMWARE
+ AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+Subject: Re: [Question] Status of user-space dynamic overlays API
+Message-ID: <20250224142900.0dde56a4@bootlin.com>
+In-Reply-To: <fed58d7b-d9af-402d-a215-a7e620239728@beagleboard.org>
+References: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
+	<CAMuHMdUhw6q1DAOBJwG5FJUs_QHj3hZMD3damOo2uLZQgS9e7A@mail.gmail.com>
+	<fed58d7b-d9af-402d-a215-a7e620239728@beagleboard.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] dt-bindings: qcom: geni-se: Rename qcom,geni-se.yaml
- to qcom,geni-se-qup.yaml
-To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <quic_msavaliy@quicinc.com>, <quic_anupkulk@quicinc.com>
-References: <20250221085439.235821-1-quic_vdadhani@quicinc.com>
- <49fc59ed-9d09-46bd-9ca6-99d3445221f7@kernel.org>
- <f3349d2a-7eba-4865-9b58-0b2e7e57cc92@quicinc.com>
- <ed8f7aee-e5be-453c-b324-e59e90ecee77@kernel.org>
-Content-Language: en-US
-From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-In-Reply-To: <ed8f7aee-e5be-453c-b324-e59e90ecee77@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mWPOb30yKBTplRRTEs02xQ7ehA3IxOco
-X-Proofpoint-ORIG-GUID: mWPOb30yKBTplRRTEs02xQ7ehA3IxOco
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-24_05,2025-02-24_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 impostorscore=0 bulkscore=0 malwarescore=0 phishscore=0
- spamscore=0 suspectscore=0 mlxscore=0 mlxlogscore=441 lowpriorityscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502240097
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdejkeeludcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedvhfeljedtfedtjeevffegtddutdeghfettdduhfeuhfdttdffieeuiefgvdfhvdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedufedprhgtphhtthhopegrhihushhhsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepghgvvghrtheslhhinhhugidqmheikehkrdhorhhgpdhrtghpthhtohepgiihphhrohhnrdhglhhpkhesghhmgidruggvpdhrtghpthhtohepjhhkrhhiughnvghrsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtoheplhhorhhfohhrlhhinhhug
+ iessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopeguqdhgohhlvgesthhirdgtohhmpdhrtghpthhtoheprhhosggvrhhttghnvghlshhonhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopegrfhgusehtihdrtghomh
+X-GND-Sasl: herve.codina@bootlin.com
 
+Hi Ajush,
 
+On Mon, 24 Feb 2025 15:39:41 +0530
+Ayush Singh <ayush@beagleboard.org> wrote:
 
-On 2/24/2025 3:48 PM, Krzysztof Kozlowski wrote:
-> On 24/02/2025 09:47, Viken Dadhaniya wrote:
->>
->>
->> On 2/21/2025 5:05 PM, Krzysztof Kozlowski wrote:
->>> On 21/02/2025 09:54, Viken Dadhaniya wrote:
->>>> The qcom,geni-se.yaml file describes the Qualcomm Universal Peripheral
->>>> (QUP) wrapper and the common entities required by QUP to run any Serial
->>>> Engine (SE) as I2C, SPI, UART, or I3C protocol.
->>>>
->>>> Rename qcom,geni-se.yaml to qcom,geni-se-qup.yaml to better reflect its
->>>> association with QUP (Qualcomm Universal Peripheral) and the compatible
->>>> string.
->>>>
->>>> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
->>>> ---
->>>>    .../soc/qcom/{qcom,geni-se.yaml => qcom,geni-se-qup.yaml}       | 2 +-
->>>>    1 file changed, 1 insertion(+), 1 deletion(-)
->>>>    rename Documentation/devicetree/bindings/soc/qcom/{qcom,geni-se.yaml => qcom,geni-se-qup.yaml} (98%)
->>>>
->>>
->>> That's just churn for no real gain. Not even tested churn.
->>
->> That's just churn for no real gain.
->>
->> We made this change based on below plan, we think this will be helpful.
->>
->> 1. Rename qcom,geni-se.yaml to qcom,geni-se-qup.yaml. Reason at 2 below.
+> On 2/24/25 14:07, Geert Uytterhoeven wrote:
 > 
-> There is no reason 2 at this point. You split your patchsets
-> incorrectly. At this point this is churn, without gain. No users of this
-> rename, no benefits.
+> > Hi Ayush,
+> >
+> > On Sat, 22 Feb 2025 at 21:14, Ayush Singh <ayush@beagleboard.org> wrote:  
+> >> # Challenges
+> >>
+> >> ## Security
+> >>
+> >> The concerns regarding security seemed to show up in the other
+> >> proposals. There was a proposal to have a devicetree property to
+> >> allow/deny the application of overlays in some nodes, with default being
+> >> deny. Was it insufficient?  
+> > This is the most important issue: using DT overlays, you can change
+> > about anything.  There is no protection yet to limit this to e.g. the
+> > expansion connectors on your board.
+> > This is what the various WIP "connector" abstractions are trying
+> > to solve.  
 > 
->> 2. Create qcom,geni-se.yaml with shared properties for SE-protocol (spi,
->> i2c, uart) nodes. This will be helpful for the shared schema in the
->> ongoing changes
+> Thanks for clarifying. However, as I mentioned above, there are usecases 
+> for dynamic overlays outside of connectors. Specifically, for the 
+> usecase of connecting random sensors to board pins. I do agree that any 
+> fairly well specified connector should probably have it's own drivers 
+> rather than using a generic userspace API.
 > 
-> Then post it, instead of sending something which makes no sense on its own.
-
-Should I include this change in v3 of the following serial patch?
-
-https://lore.kernel.org/linux-arm-msm/f090d637-1ef1-4967-b5bc-6bfce3d7130e@kernel.org/T/
-
-I hope the approach below is fine for you:
-
-1. Rename qcom,geni-se.yaml to qcom,geni-se-qup.yaml.
-2. Create qcom,geni-se.yaml with shared properties for SE-protocol (i2c, 
-spi, uart) nodes.
-
-if there is anything wrong or missing any validation, please let me know 
-so before next patch i can correct my self.
-
+> Would it be enough to use `aliases` to specify the nodes where an 
+> overlay can be applied as I have described here [0]. To further lock 
+> down things, it might be possible to allow introducing indirection or 
+> scoping nodes of sort. Here is an example:
 > 
+> \ {
 > 
-> Best regards,
-> Krzysztof
+> aliases {
+> 
+> export_node0 = &spi0_scoped;
+> 
+> };
+> 
+> };
+> 
+> &spi0 {
+> 
+> spi0_scoped {};
+> 
+> // Stuff already connected internally
+> 
+> };
+> 
+> Any children of `spi0_scoped` should be treated as devices directly 
+> connected to `spi0` but should provided isolation for any changes that 
+> userspace overlays can make.
+
+For i2c bus, I introduced i2c bus extension feature.
+  https://lore.kernel.org/all/20250205173918.600037-1-herve.codina@bootlin.com/
+
+The series didn't received any feedback from i2c maintainer yet but I hope
+to have soon.
+
+The approach proposed the series could be adapted on spi busses too.
+
+Do you think the bus extension approach could be used in your use cases ?
+
+Best regards,
+Hervé
 
