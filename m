@@ -1,336 +1,307 @@
-Return-Path: <devicetree+bounces-150515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E430A427B6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 17:21:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59ACAA427D5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 17:24:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 581B816D05A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 16:20:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F300016A00D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 16:23:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6B53263C95;
-	Mon, 24 Feb 2025 16:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7E0F2561DD;
+	Mon, 24 Feb 2025 16:23:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="NP7fB6XR"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ReCAmaSr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013009.outbound.protection.outlook.com [52.101.67.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6BDC2580E7
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 16:20:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740414027; cv=none; b=dlmZQA8QhJFB9Ten6m3EZIWgonSZOnLWMwKD5j+LUmgGBoVjzNth96KANlwav1rmZ6EKD9Ka2vShMoPwZG+Cz1jEYRubJI6gVxEmKqDIrKLNXELV9zX+h9KigdDJIL2mfX8a5vpRDDzEFAee8fxEXuhdj/ZFIyX7rSoXqDaUICA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740414027; c=relaxed/simple;
-	bh=HOFhS+gsTTizkhOxEXwbo9veBSeS4vXwkzNTcSGkVIM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YpHft4r7Sk3w7ygQon/QmEVVCzpaX60/NGb3pXvKfgLsAkwrbpYMFlFyw/3d5JpnffN41WrmDz0ZpQ9vFo7ZMZQMh+6kNg2wA9ngkCMHtQcYWbo3XWO5kXAD4LkBiEaS8+QAov49PT3tQ1QXQJBdGvzYM5KSd6kof6+NipK1Ifc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=NP7fB6XR; arc=none smtp.client-ip=209.85.210.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-72732ef2d9cso2597412a34.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 08:20:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1740414025; x=1741018825; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NRHASzoS8B0V0Tmm5gNKYMeZ4qTMY1SwnDt+h3HpNgM=;
-        b=NP7fB6XRRhYBZUsBgD+WAhDAR4jhASpyv2P5oU50F7fmHA3RVIz9eng8Ux6kcrKKD/
-         E3Ypq5uYn7HU0eCsYd2j+tD8BzPJCPRwoPI4gc8qL1r831O/b8gncEeR9utuFqW8P18F
-         B1EhbQ4lrnk9VCL2y8IC+NWeusB3dSXLqTYWoNw06bgbvUYEFi2tJmxgEgJttMf8rauf
-         a3VH1zz0GWl+z7E02X58OlS8wJZC9pntOSvr1vp/UOpkrA/9LZB5jFGVuLKVXV7X6tYz
-         /t+BCB1YkvyOWz6ZtpmYv5ggwa9sUEAEqu475kxt0PvRPqAuTp/W94cp8E9UsBDVGLgY
-         fwGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740414025; x=1741018825;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NRHASzoS8B0V0Tmm5gNKYMeZ4qTMY1SwnDt+h3HpNgM=;
-        b=Q87d4/iXGEMtcYcb5ox68oqpsMemKtL0aiLCNeRrH8tc15KN5l0ut/YdQQXfSOYDiS
-         7hDC/wT0x6fplH5uuicgIPQbU7gzLCmv0vJSqlVszhC2d/K/42P0BGnMiXUh818WkWVA
-         5v9EGhSUFREorAH071P7VR8oDGBoluOpao68V9G+8W+XpAkzB7ZrkmOxB9GURj88zAcF
-         ueOk4qI8pIQPMgDJBi2yDEUxBw4TzMHXc3AOGwu8eDYovaUGn9WEx3kxmqS4kyC9g95f
-         vsSPiMosnDVPwcDiJb2EuXpjbSLeQqUvrWzgFSC8YiB7VUvJ6SjzDDbgYymAc7UAoVBA
-         McNg==
-X-Forwarded-Encrypted: i=1; AJvYcCUb8oevy8W/Pi9cdk/du/e/vosVHriV4W20d7cW/GGtHA9e8uHI8NWLU7KqdTzUH5w94QV9+uFlwxkC@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIXHS66LanjiEacOtevZz13HY3f7BWxpm4fK3B/Ys3HBjhVU+1
-	fkS5+UePjg597ofDmp+t8yBqEpTyNQl6WnrTTaX2xmtehCWv54pwXfLMDich/3A=
-X-Gm-Gg: ASbGncsyEpZ9NM4RYwJv8NlMcGJB/4rUoKKWvtthJ2y0yr6KgT+W6gdfuszO6nPHiYo
-	c5X4a6CZKxkE7DZA8BPaj4BokydlCmrBSs00jOrcCdLu4EVB9WkOlc4j8FNopztYMcyvMbCYyW3
-	rj0SS//pRHxB1KiQQRY9fuY1v91Qf+flomOw1wo//SZrLFvWd5QIAJx6nYcNYyCByvfN6D4fac3
-	fJyKKCHxbZLIyfc4lsjHKIgDjk6OnZiSgt//j8Uc34osyzMo91CkABm2gyLsX+dPXUBfO2M4H1t
-	X8pMlxoGOG2+i2IxK3oKTtm8hysUZDiEOA+3nFFqxGrBpl+57GbnVpgh5hGyup+QsA==
-X-Google-Smtp-Source: AGHT+IE6NCHf6XkzksgLtKxsYqizETbcAOrwL653/44Y8ua1Yg3RXdn0ZLinr6iybMw8EYmi8x8h9Q==
-X-Received: by 2002:a05:6830:648e:b0:727:2fa8:c0e9 with SMTP id 46e09a7af769-7274bf9acb3mr9615704a34.2.1740414024890;
-        Mon, 24 Feb 2025 08:20:24 -0800 (PST)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-727378237e4sm2656892a34.47.2025.02.24.08.20.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Feb 2025 08:20:24 -0800 (PST)
-Message-ID: <e66a3ac6-f997-4270-9e71-b3d7c26d63f2@riscstar.com>
-Date: Mon, 24 Feb 2025 10:20:22 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA74318B46C;
+	Mon, 24 Feb 2025 16:23:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.9
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740414237; cv=fail; b=IKgBH+MsyXrBBtuPIq1fyusrh2kNuKS32bPfchc0uorNKskWrDJCcvf9EkLS2t0RYIQ/ipkT+WwWH7HzQKwxMX4QSB4+0nohbgMxBMgQaXV86JjSEXZkjIuNACGM0nf9SnuWQe6V8RlqfCKM6Hrf1QZjEYaA0cLJJzPwwZB+W44=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740414237; c=relaxed/simple;
+	bh=YZ/k11m6AlHTT1Xau3Dx4HBykEks/6ZEgPJZWzNg0Po=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=Y6nupOHLJRbEmIpmUqK+UZUdnkM8B56ib6gADVA6DYNRruLw8WvnHNY0wwmqR6E31YH9xo2j/S6nbGDwK9eFhJfdbvZeor8lHUyTwtGErVbeRbiY/HRAgf3yxA4b3iLhaLIKpP3c7nRylkbhOH8VLB/Ijd2jqzeV7s69oQvew4Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ReCAmaSr; arc=fail smtp.client-ip=52.101.67.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Uw1ZVnaiQKmi9JvWOJIlSabhPpxkWU6o6dNPjicsa4640hpDquJlC5DvmsdfmZrtWMAt7PTVyK0ddzo77kn6GC9T4mWg0MRyVK0FuUmaVtlo1XrKCX/i8ZgoGmUKQmSzPABEnWcCAX0oNeQaMiWdo/1fVIqqJy4UorCKoFktF4N/0dWSjVdTEqITrBQEt33A7Lod5oxexnNw1MmkIg8Whp25ZmDskY3q4Y3/tKMgUuYOs3M/JWLRhnQIc6fqnY5pzXyH5qGo7RsSqZFRf9fwog3E39cThDZem2F5HZpbsakb5JVkv4cb5CSKHtf8jcYQ01BnUejZqjNL9UQHDuDbLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/B6K4P9b3AHHmbKFocfkfCu6qyTh6jNgpNN6ycLXq3U=;
+ b=IlZ2MGajPMVIcoKOp/Dok8pNNWjctzEMkCTgJswclqecMOnwHSdN5ugKndGu1NxKJPm9s+RPwgVPEOPp0YnqetfbVpxKbq8dwSwz6+oHxp0bMmMlvii/wkRVGsTGIl6oZ1rJhVLh/oxwx4hfev81kbc2IHW3Bp9uBNA3XwbkC3X8enut73K2QT7ooNnnAn3t/8y9sEZrWrewGdW3rAV5ITzPl8yslY5bAjzYQEFWQCRUR3H4KhHCBqAl9ubRTZBd2Ogho3dcA7BPZ6KqStjvwtOHDfr371iIhxN5JEl/5XbDck28+JUKHRwYOoGf2xnXGIsRWclIaBNIRNgHhWTw6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/B6K4P9b3AHHmbKFocfkfCu6qyTh6jNgpNN6ycLXq3U=;
+ b=ReCAmaSrO0TMplKRlIFaDKzIs8b3437Y7Zf1bzxYEhsa2p4BStW41yqc2aLqHscvGT1iYTrVuse/zgywe6393B/A3qpRdTBr/npltbTItWc4IXE6ad7V+MYqr3cSMKld475RyoclicKcKYubvmV/GO8rZmNjfJpK5hUnq/4zdqpaWLAMv0Kq9qnMaxM47sDDLP9RAUpwHX+Ql0hYXOkzqJop5RlxxLRDynw1mA6kD4f7hQuM4Iz+TsKih9wku0l1aOQsVeeKWxG+W+IHqgqKgAlfk01LykZXF8biN8450OUldm7wLQY4qKPN1iv222gfc6EOqBtbLse82hQYWDglTg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DB9PR04MB9914.eurprd04.prod.outlook.com (2603:10a6:10:4c1::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.16; Mon, 24 Feb
+ 2025 16:23:52 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8466.016; Mon, 24 Feb 2025
+ 16:23:52 +0000
+Date: Mon, 24 Feb 2025 11:23:43 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Stanley Chu <stanley.chuys@gmail.com>
+Cc: miquel.raynal@bootlin.com, alexandre.belloni@bootlin.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, tomer.maimon@nuvoton.com,
+	kwliu@nuvoton.com, yschu@nuvoton.com
+Subject: Re: [PATCH v4 2/5] i3c: master: svc: Add support for Nuvoton npcm845
+ i3c
+Message-ID: <Z7ydDyr+/tF8uC6H@lizhi-Precision-Tower-5810>
+References: <20250224083908.1880383-1-yschu@nuvoton.com>
+ <20250224083908.1880383-3-yschu@nuvoton.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250224083908.1880383-3-yschu@nuvoton.com>
+X-ClientProxiedBy: BY5PR03CA0012.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::22) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 4/5] clk: bcm21664: Add matching bus clocks for
- peripheral clocks
-To: Artur Weber <aweber.kernel@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Alex Elder <elder@kernel.org>, Stanislav Jakubek
- <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20250216-kona-bus-clock-v1-0-e8779d77a6f2@gmail.com>
- <20250216-kona-bus-clock-v1-4-e8779d77a6f2@gmail.com>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250216-kona-bus-clock-v1-4-e8779d77a6f2@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB9PR04MB9914:EE_
+X-MS-Office365-Filtering-Correlation-Id: d6a3bf8f-69da-48db-f555-08dd54efa05c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|7416014|52116014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?K2/GGg3O2TSNKmhk/TjW4NlsNjdaw6dGsPYpN17hNTs2O3mNq3OyfZj36lt8?=
+ =?us-ascii?Q?lvnZ7Vfitjl6HHIHaJZfCKox190sXLUcekRx7N9KB8V+UTMQDsrVVHF6X8r6?=
+ =?us-ascii?Q?uHH84AJAwp+ROWH9QLeTD6i/eLnOexjcDChtP2u1A3bTbtPHbCWXs4mPtbnO?=
+ =?us-ascii?Q?9okXGBY0k3EmTGOohMF6BhPa4x72vp+K3ZAKLA0QU/tpvPqSe2sYtjNMST+u?=
+ =?us-ascii?Q?G8X6o5+tpYQlLLzuM5wGBr+3l89bcouf+nirIu3/dqsWXEMXLqNz5EApJ7Eu?=
+ =?us-ascii?Q?hNRWFNkZ7fT8IVjE956uq2FySwcpx7AA5eKSxZIjRgfwp2ySdniqhBdsGUeZ?=
+ =?us-ascii?Q?0eJvGmG3Zn7A1TVRngPSNzcp8dBZz4rvMbQp8oME64Q9eKx90lHuuA73YQKF?=
+ =?us-ascii?Q?YcK2JV2tTprRFpPwQ7orQBfVtVIUVqu1BQNBYMqQhN4JylfO3QH0usA681oS?=
+ =?us-ascii?Q?z+JsEGg5ynAfvfdl4KGZwYkjmvZsxBPXL2ke5T4Eat0L8kZgwCneIy/2PxxV?=
+ =?us-ascii?Q?gpGOS1anQ5JeOhRu5EciLZkSYBec2X5at3CXhcSEzSOmFXdS/l/YDr5cF9aP?=
+ =?us-ascii?Q?HMutmBID5etRmmVL97HTd1CqOELaQ4gZlEmCxuEkbwMQVLSFcd9T2d8it7ry?=
+ =?us-ascii?Q?+QjlgKmcB1uSUJD32CLN86oUsmUv5OkBBORnGlwtsTg4KDU2ZamROoX5NiO2?=
+ =?us-ascii?Q?Yxq8a0Rdd30FQpTTktbTCq1f5tbGzXu7vLgy3PmcvgCk5hgs334/qXRY5FeA?=
+ =?us-ascii?Q?hDdErSmQ2ykgH3e/2krY4mppjwkZT3BBctTssRqD7JkEDQ4PUC7nXgkAQoV1?=
+ =?us-ascii?Q?mdq7CtrXARy1Xw1C3zSy0z82R9XpPhOLqrGPlchka4PZeJHcVraO0Db19fwB?=
+ =?us-ascii?Q?FElseAsvftHOJzFgpjDjiOYe9mDn/bfwyPGNFPEqE35DsnCnHRB10W5JrB5h?=
+ =?us-ascii?Q?fL1mz7ekit15buq1ANhPhvIFTpMAndr0uRHNucN71+7SqPW/Ggk6yNnDbcus?=
+ =?us-ascii?Q?qe2X6wfX/qCpmPpbj93EKf7Sr5njm1x/NzXv2MXHFLehPK3R00k7G/osPZ9r?=
+ =?us-ascii?Q?uppyDOsidMW3XaPHd0hP86g/9S64SUP1F3x5OEQT4clR8kCwlvMLGpC0SO+3?=
+ =?us-ascii?Q?MxJoRGwHeZxSQIwJkpwFQE9BMfGQQdNa6k6U3wEJxNYzPuW/LgjKlWRyEzXf?=
+ =?us-ascii?Q?eVvUKtSLqBTahBF06gcPY/lhuAZUGJyNZ9fueMjX9g1Ovik4dN6Yr4E/JC8J?=
+ =?us-ascii?Q?KO61iH4lXZRGIcjx8LSpWdyOXPZWdJhHZ7nxtI6mF33E0ebW3jSt4nYVAleb?=
+ =?us-ascii?Q?4kutoFkZopT4f+4rtWA/QmlBLIgmgGZLAIe+U35IvO34pZT0pBwPkxPUi3u9?=
+ =?us-ascii?Q?rflDjEFe/SRQfRQWhjU7BbnK1aUXTwCvLfq5kXElcIiiXbFzkJ2OE66AeUk1?=
+ =?us-ascii?Q?XyVzuFbMDFOjjqay5xLcjfwMneARoNGZ?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?NANx6S9YeCzfupWq1TM3piD8L36aQhdYFAhZVbtFVq4THp2wUrlpY1RXO3aq?=
+ =?us-ascii?Q?mGSq3ip0w3Jhfqakrkr/jxccjDWfGH7FoF0DOqF29RfajZhnsmoi1N2Xsm7h?=
+ =?us-ascii?Q?Jh+xzVx2VKHfSZ+elNpOjPp9MDr3DQlYdkr6iKLI1wvJJ+c1genqBZ4iMbxO?=
+ =?us-ascii?Q?Jwqpyn+REeVbyk3+xZLdbLr3SprLL0Hjrb1ocoYMpOdu+Ckt5mKH3w12htyj?=
+ =?us-ascii?Q?WVxZAOW3i8ynjLUI5249CilhXT7fkVHFNaATMKJ7miuL+8gQmQBQszA4akOW?=
+ =?us-ascii?Q?zfzkJXidakd5NEWC0PsB22zXio+kzfsS1VBF8jEJ3vVSwXwgx4z5l38YSzDT?=
+ =?us-ascii?Q?FOxhzJdYLrMbcqX3FtpRwOF/reZ44eASNKwmS9W7RKkegLmZy/BwS0gXwS/+?=
+ =?us-ascii?Q?gTv+Ki8Or7cOUmU+BBSacbhftYB+XUiP/YXf8jH4Jxkb17dW6p6z3XgrzP3L?=
+ =?us-ascii?Q?9bxnf72dh6bhA06gtCPhiY3rGcvg2iiusFnZQUliA/d2GBgjXMhSY+T2pA+A?=
+ =?us-ascii?Q?61u3qIfw6cl5rcXJeLqf0aPUHjOrRyEH650omsk2J9Mvj7BKZA723z3Zcgy8?=
+ =?us-ascii?Q?2GKC1WQhGuCpnmbwsPigQ/nXj7dA73HNLgbd+fqndzwqtVxu7PHUTuKmIZRf?=
+ =?us-ascii?Q?/4/V9Z+xeUrIB+bDAVB+SpmpAGY85ik0yWw1w0EEZawY3iW0vUhTvo+S1tiT?=
+ =?us-ascii?Q?bYLDZlLez0dQ/h0i5ko4E+alAVZvHV7UxF+PrBlB5Z59C7QrWdtmfnlblm0E?=
+ =?us-ascii?Q?1wEmQ8wqbN+S9vhWE+fdAPME7hk8bb6UFZ+c2V0kB8KgUtXyVRDq21dZh1M0?=
+ =?us-ascii?Q?syWlaD/m63g0MVCd9QUDQUgNs7hk34l9ty1DGrb56rc0yLKVB5ax4TTteuSh?=
+ =?us-ascii?Q?C3E4j4lPqiWAhSV28N/Kbfmx6oLTPXkcgQIcNTV+UXSuH9yx0HXkvZmfcG0L?=
+ =?us-ascii?Q?vAlrutTcakFNAx4B+TSTERzymPwCUDUT/zxKFCweKkFBJxgUa0Za6/73x+Vt?=
+ =?us-ascii?Q?4B6EgUYCHT13E2CojzwM8EeZqn2NNEqKHCFwVew+nQxvqsKQh9qqRcCQK6+B?=
+ =?us-ascii?Q?bbS/xSHJy3aVeXRNujm2MEAIf4dvxIIQDp6eaq83AxJL9t4rCVllNp/iPd6Q?=
+ =?us-ascii?Q?7v0f90Y98824pa6FBQ//r5c3HteOP1zx9IxLCg8xoTRr8ZIIlulE5RUOIgrk?=
+ =?us-ascii?Q?V+DvmpjMAX2ePREZaSxuBVlBCHwl2KWmAOaWr1ZaV9p13q3bDkn3kSHBIhEV?=
+ =?us-ascii?Q?4iqKPpbQZAYFRP+y+SeDpiZylwyLXa2LRlJiLjmeyCI1sJGDrRlWgHUsMhEy?=
+ =?us-ascii?Q?ybr0g5PtyhV67IC8sc/w7pHNgz8MRwyXntkrhpeUk/0n1VUVhONIwM4cuQdZ?=
+ =?us-ascii?Q?bDTEy4yflYV0b3mxW1Ub0HVEK+1AMZS0S9386ZOPkl9CyA7FKDw1BG1LnoNO?=
+ =?us-ascii?Q?TfdXb6bx/fbB0KqkrmgCMp4vHWcKqXxQqvCoZfZo5X00STiH8YmXVSTXqPKS?=
+ =?us-ascii?Q?xzXPMD67xm+Z2sq1pscSjQhBVe2otBdpIivdfKUFsx1jSG/jnTbPJgDkHsue?=
+ =?us-ascii?Q?1Fs1g/7WI2zxnpd1Pbht6yhzkEdAUpcbdE/KuL3f?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6a3bf8f-69da-48db-f555-08dd54efa05c
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2025 16:23:52.3329
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pL4/uIC8omrAAedDE4RaqDtDNe3wMpAb7zq0vVC71keDmyrIcyawVE84Wmocs6feiHTY6V/wzCjOPjRy6O5bKQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9914
 
-On 2/16/25 10:12 AM, Artur Weber wrote:
-> Now that bus clock support has been implemented into the Broadcom Kona
-> clock driver, add bus clocks corresponding to HUB_TIMER, SDIO, UART and
-> BSC, as well as the USB OTG bus clock.
-> 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+On Mon, Feb 24, 2025 at 04:39:05PM +0800, Stanley Chu wrote:
+> From: Stanley Chu <yschu@nuvoton.com>
+>
+> Nuvoton npcm845 SoC uses the same Silvico IP but an older version.
+> Add quirks to address the npcm845 specific issues.
 
-Other than the comment about the header from Rob, this looks
-good to me.
+It'd better list issue here.
 
-Reviewed-by: Alex Elder <elder@riscstar.com>
-	
+>
+> Signed-off-by: Stanley Chu <yschu@nuvoton.com>
 > ---
->   drivers/clk/bcm/clk-bcm21664.c       | 107 +++++++++++++++++++++++++++++++----
->   include/dt-bindings/clock/bcm21664.h |  19 ++++++-
->   2 files changed, 111 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/clk/bcm/clk-bcm21664.c b/drivers/clk/bcm/clk-bcm21664.c
-> index 520c3aeb4ea9c4a431512c0909f9545c1761d17a..c9d15bde1d49c345c160880f72c96aea94dd9f55 100644
-> --- a/drivers/clk/bcm/clk-bcm21664.c
-> +++ b/drivers/clk/bcm/clk-bcm21664.c
-> @@ -39,6 +39,11 @@ static struct peri_clk_data hub_timer_data = {
->   	.trig		= TRIGGER(0x0a40, 4),
->   };
->   
-> +static struct bus_clk_data hub_timer_apb_data = {
-> +	.gate		= HW_SW_GATE(0x0414, 18, 3, 2),
-> +	.hyst		= HYST(0x0414, 10, 11),
+>  drivers/i3c/master/svc-i3c-master.c | 56 +++++++++++++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>
+> diff --git a/drivers/i3c/master/svc-i3c-master.c b/drivers/i3c/master/svc-i3c-master.c
+> index d6057d8c7dec..8834f87a4767 100644
+> --- a/drivers/i3c/master/svc-i3c-master.c
+> +++ b/drivers/i3c/master/svc-i3c-master.c
+> @@ -32,6 +32,7 @@
+>  #define   SVC_I3C_MCONFIG_ODBAUD(x) FIELD_PREP(GENMASK(23, 16), (x))
+>  #define   SVC_I3C_MCONFIG_ODHPP(x) FIELD_PREP(BIT(24), (x))
+>  #define   SVC_I3C_MCONFIG_SKEW(x) FIELD_PREP(GENMASK(27, 25), (x))
+> +#define   SVC_I3C_MCONFIG_SKEW_MASK GENMASK(27, 25)
+>  #define   SVC_I3C_MCONFIG_I2CBAUD(x) FIELD_PREP(GENMASK(31, 28), (x))
+>
+>  #define SVC_I3C_MCTRL        0x084
+> @@ -133,6 +134,32 @@
+>  #define SVC_I3C_EVENT_IBI	GENMASK(7, 0)
+>  #define SVC_I3C_EVENT_HOTJOIN	BIT(31)
+>
+> +/*
+> + * SVC_I3C_QUIRK_FIFO_EMPTY:
+> + * I3C HW stalls the write transfer if the transmit FIFO becomes empty,
+> + * when new data is written to FIFO, I3C HW resumes the transfer but
+> + * the first transmitted data bit may have the wrong value.
+> + * Workaround:
+> + * Fill the FIFO in advance to prevent FIFO from becoming empty.
+> + */
+> +#define SVC_I3C_QUIRK_FIFO_EMPTY	BIT(0)
+> +/*
+> + * SVC_I3C_QUIRK_FLASE_SLVSTART:
+> + * I3C HW may generate an invalid SlvStart event when emitting a STOP.
+> + * If it is a true SlvStart, the MSTATUS state is SLVREQ.
+> + */
+> +#define SVC_I3C_QUIRK_FALSE_SLVSTART	BIT(1)
+> +/*
+> + * SVC_I3C_QUIRK_DAA_CORRUPT:
+> + * When MCONFIG.SKEW=0 and MCONFIG.ODHPP=0, the ENTDAA transaction gets
+> + * corrupted and results in a no repeated-start condition at the end of
+> + * address assignment.
+> + * Workaround:
+> + * Set MCONFIG.SKEW to 1 before initiating the DAA process. After the DAA
+> + * process is completed, return MCONFIG.SKEW to its previous value.
+> + */
+> +#define SVC_I3C_QUIRK_DAA_CORRUPT	BIT(2)
+> +
+>  struct svc_i3c_cmd {
+>  	u8 addr;
+>  	bool rnw;
+> @@ -158,6 +185,10 @@ struct svc_i3c_regs_save {
+>  	u32 mdynaddr;
+>  };
+>
+> +struct svc_i3c_drvdata {
+> +	u32 quirks;
 > +};
 > +
->   static struct ccu_data aon_ccu_data = {
->   	BCM21664_CCU_COMMON(aon, AON),
->   	.policy		= {
-> @@ -47,7 +52,9 @@ static struct ccu_data aon_ccu_data = {
->   	},
->   	.kona_clks	= {
->   		[BCM21664_AON_CCU_HUB_TIMER] =
-> -			KONA_CLK(aon, hub_timer, peri),
-> +			KONA_CLK_PREREQ(aon, hub_timer, peri, hub_timer_apb),
-> +		[BCM21664_AON_CCU_HUB_TIMER_APB] =
-> +			KONA_CLK(aon, hub_timer_apb, bus),
->   		[BCM21664_AON_CCU_CLOCK_COUNT] = LAST_KONA_CLK,
->   	},
->   };
-> @@ -122,6 +129,26 @@ static struct peri_clk_data sdio4_sleep_data = {
->   	.gate		= HW_SW_GATE(0x0360, 18, 2, 3),
->   };
->   
-> +static struct bus_clk_data sdio1_ahb_data = {
-> +	.gate		= HW_SW_GATE(0x0358, 16, 0, 1),
+>  /**
+>   * struct svc_i3c_master - Silvaco I3C Master structure
+>   * @base: I3C master controller
+> @@ -183,6 +214,7 @@ struct svc_i3c_regs_save {
+>   * @ibi.tbq_slot: To be queued IBI slot
+>   * @ibi.lock: IBI lock
+>   * @lock: Transfer lock, protect between IBI work thread and callbacks from master
+> + * @drvdata: Driver data
+>   * @enabled_events: Bit masks for enable events (IBI, HotJoin).
+>   * @mctrl_config: Configuration value in SVC_I3C_MCTRL for setting speed back.
+>   */
+> @@ -214,6 +246,7 @@ struct svc_i3c_master {
+>  		spinlock_t lock;
+>  	} ibi;
+>  	struct mutex lock;
+> +	const struct svc_i3c_drvdata *drvdata;
+>  	u32 enabled_events;
+>  	u32 mctrl_config;
+>  };
+> @@ -230,6 +263,27 @@ struct svc_i3c_i2c_dev_data {
+>  	struct i3c_generic_ibi_pool *ibi_pool;
+>  };
+>
+> +const struct svc_i3c_drvdata npcm845_drvdata = {
+> +	.quirks = SVC_I3C_QUIRK_FIFO_EMPTY | SVC_I3C_QUIRK_FALSE_SLVSTART
+> +		| SVC_I3C_QUIRK_DAA_CORRUPT,
 > +};
 > +
-> +static struct bus_clk_data sdio2_ahb_data = {
-> +	.gate		= HW_SW_GATE(0x035c, 16, 0, 1),
-> +};
-> +
-> +static struct bus_clk_data sdio3_ahb_data = {
-> +	.gate		= HW_SW_GATE(0x0364, 16, 0, 1),
-> +};
-> +
-> +static struct bus_clk_data sdio4_ahb_data = {
-> +	.gate		= HW_SW_GATE(0x0360, 16, 0, 1),
-> +};
-> +
-> +static struct bus_clk_data usb_otg_ahb_data = {
-> +	.gate		= HW_SW_GATE(0x0348, 16, 0, 1),
-> +};
-> +
->   static struct ccu_data master_ccu_data = {
->   	BCM21664_CCU_COMMON(master, MASTER),
->   	.policy		= {
-> @@ -130,13 +157,13 @@ static struct ccu_data master_ccu_data = {
->   	},
->   	.kona_clks	= {
->   		[BCM21664_MASTER_CCU_SDIO1] =
-> -			KONA_CLK(master, sdio1, peri),
-> +			KONA_CLK_PREREQ(master, sdio1, peri, sdio1_ahb),
->   		[BCM21664_MASTER_CCU_SDIO2] =
-> -			KONA_CLK(master, sdio2, peri),
-> +			KONA_CLK_PREREQ(master, sdio2, peri, sdio2_ahb),
->   		[BCM21664_MASTER_CCU_SDIO3] =
-> -			KONA_CLK(master, sdio3, peri),
-> +			KONA_CLK_PREREQ(master, sdio3, peri, sdio3_ahb),
->   		[BCM21664_MASTER_CCU_SDIO4] =
-> -			KONA_CLK(master, sdio4, peri),
-> +			KONA_CLK_PREREQ(master, sdio4, peri, sdio4_ahb),
->   		[BCM21664_MASTER_CCU_SDIO1_SLEEP] =
->   			KONA_CLK(master, sdio1_sleep, peri),
->   		[BCM21664_MASTER_CCU_SDIO2_SLEEP] =
-> @@ -145,6 +172,16 @@ static struct ccu_data master_ccu_data = {
->   			KONA_CLK(master, sdio3_sleep, peri),
->   		[BCM21664_MASTER_CCU_SDIO4_SLEEP] =
->   			KONA_CLK(master, sdio4_sleep, peri),
-> +		[BCM21664_MASTER_CCU_SDIO1_AHB] =
-> +			KONA_CLK(master, sdio1_ahb, bus),
-> +		[BCM21664_MASTER_CCU_SDIO2_AHB] =
-> +			KONA_CLK(master, sdio2_ahb, bus),
-> +		[BCM21664_MASTER_CCU_SDIO3_AHB] =
-> +			KONA_CLK(master, sdio3_ahb, bus),
-> +		[BCM21664_MASTER_CCU_SDIO4_AHB] =
-> +			KONA_CLK(master, sdio4_ahb, bus),
-> +		[BCM21664_MASTER_CCU_USB_OTG_AHB] =
-> +			KONA_CLK(master, usb_otg_ahb, bus),
->   		[BCM21664_MASTER_CCU_CLOCK_COUNT] = LAST_KONA_CLK,
->   	},
->   };
-> @@ -225,6 +262,38 @@ static struct peri_clk_data bsc4_data = {
->   	.trig		= TRIGGER(0x0afc, 19),
->   };
->   
-> +static struct bus_clk_data uartb_apb_data = {
-> +	.gate		= HW_SW_GATE_AUTO(0x0400, 16, 0, 1),
-> +};
-> +
-> +static struct bus_clk_data uartb2_apb_data = {
-> +	.gate		= HW_SW_GATE_AUTO(0x0404, 16, 0, 1),
-> +};
-> +
-> +static struct bus_clk_data uartb3_apb_data = {
-> +	.gate		= HW_SW_GATE_AUTO(0x0408, 16, 0, 1),
-> +};
-> +
-> +static struct bus_clk_data bsc1_apb_data = {
-> +	.gate		= HW_SW_GATE_AUTO(0x0458, 16, 0, 1),
-> +	.hyst		= HYST(0x0458, 8, 9),
-> +};
-> +
-> +static struct bus_clk_data bsc2_apb_data = {
-> +	.gate		= HW_SW_GATE_AUTO(0x045c, 16, 0, 1),
-> +	.hyst		= HYST(0x045c, 8, 9),
-> +};
-> +
-> +static struct bus_clk_data bsc3_apb_data = {
-> +	.gate		= HW_SW_GATE_AUTO(0x0470, 16, 0, 1),
-> +	.hyst		= HYST(0x0470, 8, 9),
-> +};
-> +
-> +static struct bus_clk_data bsc4_apb_data = {
-> +	.gate		= HW_SW_GATE_AUTO(0x0474, 16, 0, 1),
-> +	.hyst		= HYST(0x0474, 8, 9),
-> +};
-> +
->   static struct ccu_data slave_ccu_data = {
->   	BCM21664_CCU_COMMON(slave, SLAVE),
->          .policy		= {
-> @@ -233,19 +302,33 @@ static struct ccu_data slave_ccu_data = {
->   	},
->   	.kona_clks	= {
->   		[BCM21664_SLAVE_CCU_UARTB] =
-> -			KONA_CLK(slave, uartb, peri),
-> +			KONA_CLK_PREREQ(slave, uartb, peri, uartb_apb),
->   		[BCM21664_SLAVE_CCU_UARTB2] =
-> -			KONA_CLK(slave, uartb2, peri),
-> +			KONA_CLK_PREREQ(slave, uartb2, peri, uartb2_apb),
->   		[BCM21664_SLAVE_CCU_UARTB3] =
-> -			KONA_CLK(slave, uartb3, peri),
-> +			KONA_CLK_PREREQ(slave, uartb3, peri, uartb3_apb),
->   		[BCM21664_SLAVE_CCU_BSC1] =
-> -			KONA_CLK(slave, bsc1, peri),
-> +			KONA_CLK_PREREQ(slave, bsc1, peri, bsc1_apb),
->   		[BCM21664_SLAVE_CCU_BSC2] =
-> -			KONA_CLK(slave, bsc2, peri),
-> +			KONA_CLK_PREREQ(slave, bsc2, peri, bsc2_apb),
->   		[BCM21664_SLAVE_CCU_BSC3] =
-> -			KONA_CLK(slave, bsc3, peri),
-> +			KONA_CLK_PREREQ(slave, bsc3, peri, bsc3_apb),
->   		[BCM21664_SLAVE_CCU_BSC4] =
-> -			KONA_CLK(slave, bsc4, peri),
-> +			KONA_CLK_PREREQ(slave, bsc4, peri, bsc4_apb),
-> +		[BCM21664_SLAVE_CCU_UARTB_APB] =
-> +			KONA_CLK(slave, uartb_apb, bus),
-> +		[BCM21664_SLAVE_CCU_UARTB2_APB] =
-> +			KONA_CLK(slave, uartb2_apb, bus),
-> +		[BCM21664_SLAVE_CCU_UARTB3_APB] =
-> +			KONA_CLK(slave, uartb3_apb, bus),
-> +		[BCM21664_SLAVE_CCU_BSC1_APB] =
-> +			KONA_CLK(slave, bsc1_apb, bus),
-> +		[BCM21664_SLAVE_CCU_BSC2_APB] =
-> +			KONA_CLK(slave, bsc2_apb, bus),
-> +		[BCM21664_SLAVE_CCU_BSC3_APB] =
-> +			KONA_CLK(slave, bsc3_apb, bus),
-> +		[BCM21664_SLAVE_CCU_BSC4_APB] =
-> +			KONA_CLK(slave, bsc4_apb, bus),
->   		[BCM21664_SLAVE_CCU_CLOCK_COUNT] = LAST_KONA_CLK,
->   	},
->   };
-> diff --git a/include/dt-bindings/clock/bcm21664.h b/include/dt-bindings/clock/bcm21664.h
-> index 7c7492742f3d4ca439236f2f352e432989409570..8d3e3796c72b02eace84dfb90d6264dee0297a33 100644
-> --- a/include/dt-bindings/clock/bcm21664.h
-> +++ b/include/dt-bindings/clock/bcm21664.h
-> @@ -26,7 +26,8 @@
->   /* aon CCU clock ids */
->   
->   #define BCM21664_AON_CCU_HUB_TIMER		0
-> -#define BCM21664_AON_CCU_CLOCK_COUNT		1
-> +#define BCM21664_AON_CCU_HUB_TIMER_APB		1
-> +#define BCM21664_AON_CCU_CLOCK_COUNT		2
->   
->   /* master CCU clock ids */
->   
-> @@ -38,7 +39,12 @@
->   #define BCM21664_MASTER_CCU_SDIO2_SLEEP		5
->   #define BCM21664_MASTER_CCU_SDIO3_SLEEP		6
->   #define BCM21664_MASTER_CCU_SDIO4_SLEEP		7
-> -#define BCM21664_MASTER_CCU_CLOCK_COUNT		8
-> +#define BCM21664_MASTER_CCU_SDIO1_AHB		8
-> +#define BCM21664_MASTER_CCU_SDIO2_AHB		9
-> +#define BCM21664_MASTER_CCU_SDIO3_AHB		10
-> +#define BCM21664_MASTER_CCU_SDIO4_AHB		11
-> +#define BCM21664_MASTER_CCU_USB_OTG_AHB		12
-> +#define BCM21664_MASTER_CCU_CLOCK_COUNT		13
->   
->   /* slave CCU clock ids */
->   
-> @@ -49,6 +55,13 @@
->   #define BCM21664_SLAVE_CCU_BSC2			4
->   #define BCM21664_SLAVE_CCU_BSC3			5
->   #define BCM21664_SLAVE_CCU_BSC4			6
-> -#define BCM21664_SLAVE_CCU_CLOCK_COUNT		7
-> +#define BCM21664_SLAVE_CCU_BSC1_APB		7
-> +#define BCM21664_SLAVE_CCU_BSC2_APB		8
-> +#define BCM21664_SLAVE_CCU_BSC3_APB		9
-> +#define BCM21664_SLAVE_CCU_BSC4_APB		10
-> +#define BCM21664_SLAVE_CCU_UARTB_APB		11
-> +#define BCM21664_SLAVE_CCU_UARTB2_APB		12
-> +#define BCM21664_SLAVE_CCU_UARTB3_APB		13
-> +#define BCM21664_SLAVE_CCU_CLOCK_COUNT		14
->   
->   #endif /* _CLOCK_BCM21664_H */
-> 
+> +static bool svc_has_quirk(struct svc_i3c_master *master, u32 quirk)
+> +{
+> +	if (!master->drvdata)
+> +		return false;
 
+You's better add drvdata for exist one to keep consistent for all compatibe
+string.
+
+> +
+> +	if ((master->drvdata->quirks & quirk) == SVC_I3C_QUIRK_DAA_CORRUPT) {
+> +		if (master->mctrl_config &
+> +		    (SVC_I3C_MCONFIG_SKEW_MASK | SVC_I3C_MCONFIG_ODHPP(1)))
+> +			return false;
+
+This helper function should only check quirk, you addtional check for
+mctrl_config, which exceed this function scope.  Or you add new helper
+funciton check daa_corrupt only, such as  svs_has_daa_corrupt() ?
+
+> +		else
+> +			return true;
+> +	}
+> +
+> +	return (master->drvdata->quirks & quirk);
+> +}
+> +
+>  static inline bool is_events_enabled(struct svc_i3c_master *master, u32 mask)
+>  {
+>  	return !!(master->enabled_events & mask);
+> @@ -1868,6 +1922,7 @@ static int svc_i3c_master_probe(struct platform_device *pdev)
+>  	}
+>
+>  	platform_set_drvdata(pdev, master);
+> +	master->drvdata = of_device_get_match_data(dev);
+>
+>  	pm_runtime_set_autosuspend_delay(&pdev->dev, SVC_I3C_PM_TIMEOUT_MS);
+>  	pm_runtime_use_autosuspend(&pdev->dev);
+> @@ -1960,6 +2015,7 @@ static const struct dev_pm_ops svc_i3c_pm_ops = {
+>
+>  static const struct of_device_id svc_i3c_master_of_match_tbl[] = {
+>  	{ .compatible = "silvaco,i3c-master-v1"},
+
+silcaco_default_drvdata = {};
+	.compatible = &silcaco_default_drvdata;
+
+
+> +	{ .compatible = "nuvoton,npcm845-i3c", .data = &npcm845_drvdata },
+>  	{ /* sentinel */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, svc_i3c_master_of_match_tbl);
+> --
+> 2.34.1
+>
 
