@@ -1,280 +1,148 @@
-Return-Path: <devicetree+bounces-150121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B680FA414C3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 06:34:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2A19A414D4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 06:40:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9526E16E2C2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 05:34:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EF9F3B284D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 05:40:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E4086324;
-	Mon, 24 Feb 2025 05:34:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C079D1A76AC;
+	Mon, 24 Feb 2025 05:40:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BK1EBv8n"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IEN2nJLJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 643A14A1D;
-	Mon, 24 Feb 2025 05:34:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDEE73C14;
+	Mon, 24 Feb 2025 05:40:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740375254; cv=none; b=ZgdfJl1u2xE++OWjBUL0/ddN8ItDo2x7NdfxhzEGamavTIqU9pcO0xgrxYu5O49gdfBHjMyu7sjW7IgOhxhu77+K/98nUTN/h6wVar7gFlKetIphES3UlY/3zEYGs6hZ1vwrkVAfKTIOiuC5UAUYetxOk2SI9m2X40yyymI2Lh0=
+	t=1740375610; cv=none; b=R6u8HuxVOw1aOVQrum6MzofIKVsOOeC4IbwWZQ/jwjO5Sdf6XRPBiVkswYSX1G7XsKK6jbXSDKBQDcqw0d430+VPlMZulVs5nAdBKZCTj9d7aiLosxyh1w5l0aQtoByBY3XUfaJZyuQEb5MYCjPMYMqiMQJdADTjrmF8WPUyrww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740375254; c=relaxed/simple;
-	bh=o0mNt8DLxtw07fV1+vosL8V0dTtj2M4jY53u1buWuVQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DFwP85BgQAbgiMvxwTvEiA8vV2mzoK4Q3LxWXCmmxoqkRZAsCQNp7mFuyjujba8NOzWtupOYXoAota2BitusLzLBiuIUW3S4eou0qcD6DEaM6uqYE22Dcgz1rKb8h0Jwifqj/6/aAF+iPaTXOxvnjxI8Ji83nHlvNbjcUARubU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BK1EBv8n; arc=none smtp.client-ip=209.85.128.49
+	s=arc-20240116; t=1740375610; c=relaxed/simple;
+	bh=ykTMvo5vM3ocHCW3+XjjML8AL9Bu7U93zqzCE7rZaq8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ufkSxPKRvIQ5K5lxyQ9vjsBlx+Td40mK03pP1KmWuEDJQDloke94eCpXvzfFqjCiCIf9y1oeogCtw/QxHXM4KggbFZOrhxEVLRIffdiZSZrKh2Po45r4b279Fmf0wELulvoHa8O/x+E7GcfofpbeTl7sbwdioemfXxlEGRVJr6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IEN2nJLJ; arc=none smtp.client-ip=209.85.208.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4399deda38cso23251495e9.1;
-        Sun, 23 Feb 2025 21:34:12 -0800 (PST)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-30795988ebeso40671731fa.3;
+        Sun, 23 Feb 2025 21:40:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740375250; x=1740980050; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hovVMzLzvLv50Bh+e9VDe4ZEqsDfzzqLzPF1Hj3K1cE=;
-        b=BK1EBv8nmWcdHJD/TXJpd8nN6UI2Ak7RPkD/3FTWnCyTy92JCcWl4DsPytbz5J4p7k
-         +STUsxMFSd0HtXgEfBK1jcA/NIPX8ueLbfsTaXxEFbM2ex0qULq69EufhDTHekWiPx9l
-         d6BmHXfru5GL50/5IGnxre9p+tGChC4UAQNHG62AagP79h4NjkD+qL91AtwFsn2NTL1L
-         BUnFz4rzW0e1YtU07FlMNP1EYGfE41ek5lnNvq6aM6tUpe3CFT3Sdr8Yc+EWAII9gaUi
-         RL9zkcT3h0fyu/ieDJIHdG9QYL4n2FrHN7sEcgwjsYuCNSFTL/VhMbKb5LJ72n6gZlEI
-         XbGA==
+        d=gmail.com; s=20230601; t=1740375607; x=1740980407; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pki/JYWmmXNym2xztTz0HjhIt5MhQfFEcSVfA7kjWRY=;
+        b=IEN2nJLJqbvyKHrUNiKaJuY7cgZ6tN8mepVWvgBc1gB8W85VCaC6ATafQLB4Dg7CU8
+         YZu9AoAQ34u8zzMYlSf+wtmt9aDtmVh8V0NrgmEW7Fnqr69B3B5cVU0glicO6riupEnP
+         TTQoGavTCmx++R/KEAC4wvwtwnj8OwdliP6nSreqHXtchk3vlhXExXBIe3mx3z3KAV+l
+         /roRg33C2ZonAxI2PC29T7AnxsvPYvIsh/YGVzoXIojnBpIIQ5Z2WJ1k/pW1VzQK8saN
+         FQLLfKVmfLgiiZF9G8IzznTPT0OLuDJPUAWgRMtHWSG9ENudp+KHz1ZjaHvI7r+KhATE
+         owtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740375250; x=1740980050;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hovVMzLzvLv50Bh+e9VDe4ZEqsDfzzqLzPF1Hj3K1cE=;
-        b=SG3OgCvuOAjVsPf4Wg86gSFrHJi0QVcMD/EgQ9V7K1lG55KtnyLMGIqvl/1E6k8hM5
-         cE6AtmspPL/JZ8lJuKoGs6076FsehofqQQhbMTsPxBJeKn73sr171i3ZwJSrJzvNzR8c
-         bWQO0JBxI0nIHUTNeYRaAzFxFB5yXYyOjfhYBSDgOScMcNREDY/2GrXnHQrE6AVvo38s
-         1ILo3i2+qZVx84TDedrUq7rAygRtxRsmlHfiv5T0pK/sLGY0ke7b1dsEIWOo+low+8WY
-         CZxvYfB9XLzzjE3SzMQsC0wgIZuS0jjlCnurF74n9cVtmt4KSnZ/Svhwjdgfd3PZnMKi
-         Cj+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUiXR0xlWbEnWg3bQCDzOWXjdYsiA4aBUU5OUC+/cMhldI0W5XZ/b17HqDgQxDAfthd4++TC9FzggAYPMRN@vger.kernel.org, AJvYcCVnvGbgPSWtU+i8eTeipB9Vn+fwO4ytYyWdrx0FF5ODKlpDBxyPpaNlYXbKLij29MEHQvO7qJ7I307Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVT/aP/J/qTKkkr5w8WnalObBUiwcsbTpVHlYqZYLFXlsDh/kE
-	C+oUYJjgggVuTdKbyFyL4ZI02z6cFnNAZ1vE5YqcU6h7RmRIkO93EKRngg==
-X-Gm-Gg: ASbGncupEvGlufOOLvky9Fdv/sZXSZoNcHEjG+s1OkRwEyq0KmicZ0hnpTP774okY4U
-	8OBN+dKroyNowKAqcykhBiyywt67NQtD6aL5KW3j0SUWJ7DWIBgZcDlA4Idg7+wXcC2iPSPqoUA
-	/DmfZELOvoFsiWU94Rm6QAepHkXGCNma6xgMob4tuYrHskalAmEia1bgZ0J9/HiTsoe9wS9IQ08
-	sSrXLcvT0nWc8hm8ulUZxzQhIJYse/a0/30x6V26KiwbHsPiqYQArQipJqunMdp80zRNVmHZDAe
-	v5EknePVd858xUCYpNgcWEkH+gE4+PtCUJJFyVj2oCUP0bYMNyuJh/5f5D/bKNP0TAWl2MHlgi4
-	nFjFKLYgnEQIeVVOu
-X-Google-Smtp-Source: AGHT+IEQTu/rmtnoSlqIIUihb2tMIDfl2UQ8f9IYf/tsrTRuzsDJxc+1QdJsEUMs77i493Pzo2FwgQ==
-X-Received: by 2002:a05:600c:3513:b0:439:8a8c:d3d8 with SMTP id 5b1f17b1804b1-439ae21d3e1mr85818965e9.29.1740375250069;
-        Sun, 23 Feb 2025 21:34:10 -0800 (PST)
-Received: from localhost.localdomain (249.red-88-10-54.dynamicip.rima-tde.net. [88.10.54.249])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-439b02ce735sm95101525e9.3.2025.02.23.21.34.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Feb 2025 21:34:09 -0800 (PST)
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To: linux-mips@vger.kernel.org
-Cc: tsbogend@alpha.franken.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	harveyhuntnexus@gmail.com,
-	devicetree@vger.kernel.org,
-	yangshiji66@outlook.com,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4] mips: dts: ralink: mt7628a: update system controller node and its consumers
-Date: Mon, 24 Feb 2025 06:34:11 +0100
-Message-Id: <20250224053411.924015-1-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        d=1e100.net; s=20230601; t=1740375607; x=1740980407;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pki/JYWmmXNym2xztTz0HjhIt5MhQfFEcSVfA7kjWRY=;
+        b=W/6DVFviUQ2iF2OS0/FFp5tw+rQjzPfe4rFD2qoc+Wdqt5cRO7vdGwLNATItjp62S6
+         EOg4TLcdsUEcQFlcvnsEGwRUeLTrCpMjwTgq6SI6Jh5e9nhGenCnZQ+0QfMMVKw1+Dt6
+         I2OKdh2rEssSSB3eICm396nkmj0Ez/3geKPEdtsHb65+CDQRsAm+wVQcEpD4WSL7Dj6l
+         zLqSlu1hkynub7H+ETpKeHFo7DsiLWgv01RPMbXYezksMF7BOBXBhFF7Jyw7kbD7rQrW
+         rdCobowWilr8mHkyPqpckVCyUDfbN0ScZJqgxQ0GLuY0CEJoridTyrdRXBDZE1LW8SqE
+         F8XA==
+X-Forwarded-Encrypted: i=1; AJvYcCV5fjr4zmAc54paGy3r2uJYm/FVJem5kRlt8L4GYwSQn0s1VvGmVmKe9N7CbPhInzXw09Pbs/pROELa@vger.kernel.org, AJvYcCVVB24RMAJztiZjg63kwjiiSn2wo2q2dmd/g+IXv6bUnSmWY5ZWBJ2jBxcUmBpBGQu6HqUEpSNd4IDY@vger.kernel.org, AJvYcCVxgmMVWYQJQqGB0lh70ARK5OzOxVLjrGl/VPkXAUBh+oL5M2Wd9u62Ew+jQGVqRic6q9WqWDT0nUpzm7c001yfSdA=@vger.kernel.org, AJvYcCWXZh8E3vg+Eor+CdjrnpE0F1jkwO5sR74wioaja3x6WWq5APcEtak6FB7PEqapMnRG5+4472CXOMNa7Qik@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw159dO7vs26yyqRp41MrykqF8p/sgzP2cKgZ8ORp5fVtSiGUVD
+	M5pUGAbmfjffKchkGD+RGq3LsGgcpRmxNYBXkoxBmphEGNnQsjBi
+X-Gm-Gg: ASbGnctkk3m3MJJRlNs7P4jS+Z5G8OSCmWT3W8/jGAUNlAlrMMT9hG/1xeneuLROPd8
+	dXfPcHh2XpBJTw0LCzc7XVmDkE2FCE69hqivY9woWRKOOAWdXKQJPmVM4pLkDuUAHftEtllwpa8
+	zGus1EPXKF+dYYJL78cRZlwQBbEKUOeTeFjEh6EwxHTcW8qW8mYmqGY71feRDPffJDh5D4YGQ5m
+	lALTAKP3za+H5PGCmUbv39yidt0pWg0fuH5Z9gkRyL7DPdfIV/ixluZyoy593ER54jaGaHua1Ha
+	mcOT2zuBsqNj7NbsJI5CGr91ONc0ubfj1yq5nq6Cs8J4asuyvwn2S4FnegkPn2VhmnsONmUVJu+
+	jlA+atQE=
+X-Google-Smtp-Source: AGHT+IFYZsWHIGkUkgzUKAjiHsIv/QlXdd4k8rwaFgyu16UEoKiHj3ay571mZ+VYAfS3uE3xpBBTaw==
+X-Received: by 2002:a2e:8ed6:0:b0:309:2012:cc59 with SMTP id 38308e7fff4ca-30a599a6943mr41956421fa.26.1740375606698;
+        Sun, 23 Feb 2025 21:40:06 -0800 (PST)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30917da0e64sm34665291fa.88.2025.02.23.21.40.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Feb 2025 21:40:04 -0800 (PST)
+Message-ID: <24609799-636d-4e8f-8406-f83b5db08f90@gmail.com>
+Date: Mon, 24 Feb 2025 07:40:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 6/9] iio: adc: rzg2l_adc: Use adc-helpers
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa <nuno.sa@analog.com>,
+ David Lechner <dlechner@baylibre.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+References: <cover.1739967040.git.mazziesaccount@gmail.com>
+ <25c5d22f6f0cbd1355eee2e9d9103c3ee71cebdc.1739967040.git.mazziesaccount@gmail.com>
+ <20250223163018.2c0290e8@jic23-huawei>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20250223163018.2c0290e8@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Current MT7628A device tree file system controller node is wrong since it is
-not matching bindings. Hence, update it to match current bindings updating
-it also to use new introduced clock constants.
+On 23/02/2025 18:30, Jonathan Cameron wrote:
+> On Wed, 19 Feb 2025 14:31:38 +0200
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> The new devm_iio_adc_device_alloc_chaninfo() -helper is intended to help
+>> drivers avoid open-coding the for_each_node -loop for getting the
+>> channel IDs. The helper provides standard way to detect the ADC channel
+>> nodes (by the node name), and a standard way to convert the "reg",
+>> "diff-channels", "single-channel" and the "common-mode-channel" to
+>> channel identification numbers used in the struct iio_chan_spec.
+>> Furthermore, the helper checks the ID is in range of 0 ... num-channels.
+>>
+>> The original driver treated all found child nodes as channel nodes. The
+>> new helper requires channel nodes to be named channel[@N]. This should
+>> help avoid problems with devices which may contain also other but ADC
+>> child nodes. Quick grep from arch/* with the rzg2l_adc's compatible
+>> string didn't reveal any in-tree .dts with channel nodes named
+>> othervice. Also, same grep shows all the .dts seem to have channel IDs
+>> between 0..num of channels.
+>>
+>> Use the new helper.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> 
+> I should have read on.  Definitely more convincing with these usecases.
+> however drag them to start of series.  Better to add infrastructure
+> so some use and then on to your new driver.
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
-Hi Thomas,
+Ok. I'll reorder the series.
 
-This is the missing patch to be applied in the series [0] because of some
-build errors.
+I'll drop the differential channels support in v4 - and thus also the 
+expected property types parameters - which will simplify this and other 
+callers.
 
-Changes in v4:
-- update syntax in mail file from /include/ to #include.
-- Fix build errors in 'usb-phy' node.
+Thanks for taking a look at this!
 
-Thanks a lot.
-
-Best regards,
-    Sergio Paracuellos
-
-[0]: https://lore.kernel.org/linux-mips/CAMhs-H-8N766PMZMwmV8B3e=65pPZHA4ntnRWDMoqR-U_xULfA@mail.gmail.com/T/#mab23157e03609456bb59d3b5dfc71fe16359a419
-
- .../ralink/gardena_smart_gateway_mt7688.dts   |  2 +-
- arch/mips/boot/dts/ralink/mt7628a.dtsi        | 40 ++++++++++++-------
- arch/mips/boot/dts/ralink/omega2p.dts         |  2 +-
- 3 files changed, 27 insertions(+), 17 deletions(-)
-
-diff --git a/arch/mips/boot/dts/ralink/gardena_smart_gateway_mt7688.dts b/arch/mips/boot/dts/ralink/gardena_smart_gateway_mt7688.dts
-index 18107ca0a06b..7743d014631a 100644
---- a/arch/mips/boot/dts/ralink/gardena_smart_gateway_mt7688.dts
-+++ b/arch/mips/boot/dts/ralink/gardena_smart_gateway_mt7688.dts
-@@ -5,7 +5,7 @@
- 
- /dts-v1/;
- 
--/include/ "mt7628a.dtsi"
-+#include "mt7628a.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-diff --git a/arch/mips/boot/dts/ralink/mt7628a.dtsi b/arch/mips/boot/dts/ralink/mt7628a.dtsi
-index 45a15e005cc4..0212700c4fb4 100644
---- a/arch/mips/boot/dts/ralink/mt7628a.dtsi
-+++ b/arch/mips/boot/dts/ralink/mt7628a.dtsi
-@@ -1,4 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
-+#include <dt-bindings/clock/mediatek,mtmips-sysc.h>
- 
- / {
- 	#address-cells = <1>;
-@@ -16,11 +17,6 @@ cpu@0 {
- 		};
- 	};
- 
--	resetc: reset-controller {
--		compatible = "ralink,rt2880-reset";
--		#reset-cells = <1>;
--	};
--
- 	cpuintc: interrupt-controller {
- 		#address-cells = <0>;
- 		#interrupt-cells = <1>;
-@@ -36,9 +32,11 @@ palmbus@10000000 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 
--		sysc: system-controller@0 {
--			compatible = "ralink,mt7620a-sysc", "syscon";
-+		sysc: syscon@0 {
-+			compatible = "ralink,mt7628-sysc", "syscon";
- 			reg = <0x0 0x60>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
- 		};
- 
- 		pinmux: pinmux@60 {
-@@ -138,7 +136,7 @@ watchdog: watchdog@100 {
- 			compatible = "mediatek,mt7621-wdt";
- 			reg = <0x100 0x30>;
- 
--			resets = <&resetc 8>;
-+			resets = <&sysc 8>;
- 			reset-names = "wdt";
- 
- 			interrupt-parent = <&intc>;
-@@ -154,7 +152,7 @@ intc: interrupt-controller@200 {
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
- 
--			resets = <&resetc 9>;
-+			resets = <&sysc 9>;
- 			reset-names = "intc";
- 
- 			interrupt-parent = <&cpuintc>;
-@@ -190,7 +188,9 @@ spi: spi@b00 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinmux_spi_spi>;
- 
--			resets = <&resetc 18>;
-+			clocks = <&sysc MT76X8_CLK_SPI1>;
-+
-+			resets = <&sysc 18>;
- 			reset-names = "spi";
- 
- 			#address-cells = <1>;
-@@ -206,7 +206,9 @@ i2c: i2c@900 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinmux_i2c_i2c>;
- 
--			resets = <&resetc 16>;
-+			clocks = <&sysc MT76X8_CLK_I2C>;
-+
-+			resets = <&sysc 16>;
- 			reset-names = "i2c";
- 
- 			#address-cells = <1>;
-@@ -222,7 +224,9 @@ uart0: uartlite@c00 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinmux_uart0_uart>;
- 
--			resets = <&resetc 12>;
-+			clocks = <&sysc MT76X8_CLK_UART0>;
-+
-+			resets = <&sysc 12>;
- 			reset-names = "uart0";
- 
- 			interrupt-parent = <&intc>;
-@@ -238,7 +242,9 @@ uart1: uart1@d00 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinmux_uart1_uart>;
- 
--			resets = <&resetc 19>;
-+			clocks = <&sysc MT76X8_CLK_UART1>;
-+
-+			resets = <&sysc 19>;
- 			reset-names = "uart1";
- 
- 			interrupt-parent = <&intc>;
-@@ -254,7 +260,9 @@ uart2: uart2@e00 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinmux_uart2_uart>;
- 
--			resets = <&resetc 20>;
-+			clocks = <&sysc MT76X8_CLK_UART2>;
-+
-+			resets = <&sysc 20>;
- 			reset-names = "uart2";
- 
- 			interrupt-parent = <&intc>;
-@@ -271,7 +279,7 @@ usb_phy: usb-phy@10120000 {
- 		#phy-cells = <0>;
- 
- 		ralink,sysctl = <&sysc>;
--		resets = <&resetc 22 &resetc 25>;
-+		resets = <&sysc 22 &sysc 25>;
- 		reset-names = "host", "device";
- 	};
- 
-@@ -290,6 +298,8 @@ wmac: wmac@10300000 {
- 		compatible = "mediatek,mt7628-wmac";
- 		reg = <0x10300000 0x100000>;
- 
-+		clocks = <&sysc MT76X8_CLK_WMAC>;
-+
- 		interrupt-parent = <&cpuintc>;
- 		interrupts = <6>;
- 
-diff --git a/arch/mips/boot/dts/ralink/omega2p.dts b/arch/mips/boot/dts/ralink/omega2p.dts
-index 5884fd48f59a..51a40ab6df2b 100644
---- a/arch/mips/boot/dts/ralink/omega2p.dts
-+++ b/arch/mips/boot/dts/ralink/omega2p.dts
-@@ -1,6 +1,6 @@
- /dts-v1/;
- 
--/include/ "mt7628a.dtsi"
-+#include "mt7628a.dtsi"
- 
- / {
- 	compatible = "onion,omega2+", "ralink,mt7688a-soc", "ralink,mt7628a-soc";
--- 
-2.25.1
-
+Yours,
+	-- Matti
 
