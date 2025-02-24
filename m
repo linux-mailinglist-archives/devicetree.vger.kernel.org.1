@@ -1,260 +1,352 @@
-Return-Path: <devicetree+bounces-150319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70CAFA41B94
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:49:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02ECAA41BA6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:51:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 002C61893106
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 10:49:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EEDA1892270
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 10:51:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5103E257AF4;
-	Mon, 24 Feb 2025 10:48:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3DE24F587;
+	Mon, 24 Feb 2025 10:50:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="VgxJjE+j"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="OLLnySqy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011018.outbound.protection.outlook.com [52.101.125.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95E7124502C;
-	Mon, 24 Feb 2025 10:48:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.18
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740394136; cv=fail; b=EW9/0Oke3n6iTckVBbks/l2alN6xwGcXuAsHu7YO1Vp2TP/ZGSyH46IX9IWUtYIdpodSlKFsBfdpOlC4E672dRsPqqg2+redKkkndbbquxMobx61v7nwQbtvxjVNXqBOWE1oe4lPZ07Rf6gB9na4redB3unNT2fED2ciSPKykLY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740394136; c=relaxed/simple;
-	bh=FsLXO3CJjK0j+j4ZYRVlbfIxQkpbdyW6Coaaxp79p0I=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=EuJGF5Pre2VoD5HY07UkFFKFaeUvbTienqQEMZS38QRuNfUHAdoDws0uqZujpcor1AgZaOTHVcqAjgRGFe+5T13yFrJ6WNs6R7LdTiHw5/MRK2aVNL5C8xK+6gliHgoXZfBN94WrY1jg1sYD3dHUdlbSpSLJG9QZc4Jz4X0gi54=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=VgxJjE+j; arc=fail smtp.client-ip=52.101.125.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BuyPMdpOAPWvLv9uF/SbEyAhAw7GX1e/bZphhtlNfhHUUsZz8f3GH3iQNQg53ZrlUKj0lc5pjjYYuYKl4W3FMif8jsi5unxcA7/4SDMI47lyqn+7ADLC0Ebc8B8Ncdt1XDSuSR8dphMNhVT3WeWpGl/v7g9800Uy9JGsuOCrRHap3K+3By3vch9WbOL/6qywN0dZbNB2CIemJPJX6+otWvUgpyhHaA5OdMw5dN7gZBbBTF7ImAoxbzBjbrgfsKY+lVwdSS5MhZE+ITT49zTJ2MSJj/ks+lg73EHcUD4W2CSFsaGCFobGX8D3nCHevEyhAnkY+xaVSKBRpQEvIfO+vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pmSi6f7XMF3s8x9nc5AWySm5yshWOAVm6vnq/brX7sY=;
- b=Jf8Uep4Gj09seEabUIEKdEzTy7U9m80xil9J+HPtqfOnNoF/IBQB47tbs/56K2Gvf4UnjEW7cezDDXwMk/4vEHmG9ntPo30uf5QAOsr5IfBKh4AIZHUBdczVt58aJ0ILAnuf+1ma7aD7x5R6GRsqWa2may+FW5Gz+lZHdxmZBWfrb/fxyEFyw76jecveMe4+JzXsz/oV8LqOgb9XZ/rng/cllDnE5oYzwZj3urWjEP70c3+mNkHGUVgKoKDqY67R24S+Lyo5H8Stis/lSDOc5Or0dkx/smfYc0M2MTwCKc7U9Gtd1Q6RqrYy2HrbD2Mg5m6/LuW4tJLMdXDBXXVU2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pmSi6f7XMF3s8x9nc5AWySm5yshWOAVm6vnq/brX7sY=;
- b=VgxJjE+jhgAxm8/hdaGaf87TwT+1iwt0ZaQGM/tZLrjaQEppchv8JSDSmg0hveDbN8AQS/b3P9aFHVIKaHKF3adFWRqG/Ks1hRnvGPUNEdYcepFJ6kuIPXKAYX/MMqSXIYcwy3HDasELYsoqsFM56te0elJAYF+Q2g5Ih9zkdU0=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by TYYPR01MB12868.jpnprd01.prod.outlook.com (2603:1096:405:15a::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.20; Mon, 24 Feb
- 2025 10:48:47 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%5]) with mapi id 15.20.8466.016; Mon, 24 Feb 2025
- 10:48:47 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>, Thomas Gleixner
-	<tglx@linutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
-	<magnus.damm@gmail.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
-	<biju.das.au@gmail.com>
-Subject: RE: [PATCH v5 00/12] Add Support for RZ/G3E ICU
-Thread-Topic: [PATCH v5 00/12] Add Support for RZ/G3E ICU
-Thread-Index: AQHbfT8H8+fmJsxiyUCs5uVi/kg0nbNWWHSA
-Date: Mon, 24 Feb 2025 10:48:47 +0000
-Message-ID:
- <TY3PR01MB11346EAE435572E11B276BE1C86C02@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20250212111231.143277-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250212111231.143277-1-biju.das.jz@bp.renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYYPR01MB12868:EE_
-x-ms-office365-filtering-correlation-id: 9e19baa0-d205-4836-ec19-08dd54c0d131
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|1800799024|376014|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?lNmqe1r2C4bXhHg7mzeTiLcj+xo2ZH93lzb8wFcnob80DKW3LuJzvBnLS1Ce?=
- =?us-ascii?Q?YGRQ3c03SCvYyKs1bjf1VmeFMeVyODBODs3aBs8TWeawNIIlV/JLVjITiSxP?=
- =?us-ascii?Q?RuizpSZA+3IKGyZQZEEa9Rxz/bnt2RjxzhUC9yaGxcCgNH/ixxxAfNCUJw9W?=
- =?us-ascii?Q?AYLbVpDiOia0ZrPxmrekGAWVVcvX3AOE8S/JDVcHEGmtopLLCKUkq8ekreyd?=
- =?us-ascii?Q?C1F7f9h9laO1P3ITOHqiuRUyqE/vrLCi/M6iD7nv6VwhpwaCt/H66bRd6LKE?=
- =?us-ascii?Q?PO9RCqRJurMK8h+b7P9hApfvA4P3uC6uaRArIaxNiCtUleRgtFsOoOxVh6JT?=
- =?us-ascii?Q?ZhC7O4IVhx4JWM01Mwn1WIrC5aK0b3oB7fEIW+6FueeN3feJ+18OdHNYBETM?=
- =?us-ascii?Q?hDGdeCy2OqBAYyyETqxwSMjHJGC0Oejv/LIyRcxJkTivmey8rcO0StAGmCJp?=
- =?us-ascii?Q?H8P0cHZQHw9soUyFY46ffRA6N9BiGuzQimXB8OMKIJMRTCmSwC8oc9ilMcH1?=
- =?us-ascii?Q?3nLXcNSwO3UmGF55UIv5DyLgnYSBKo5yfN5PyEIsTe7iTUeZMokwmz2rMwFB?=
- =?us-ascii?Q?AlO8ynIPcPb1iBise4+xXt1dK6hgzadYg9WZ70+c2CuXMwqZolSUTnfFQBl2?=
- =?us-ascii?Q?yiJiSytl7J0TWjN4wdBeY7nxkhmxOoyf+uSX+sqGNkXrI1XYmA9nz0NjNklL?=
- =?us-ascii?Q?78gi7IKVoPguvPc1KLrSfJzMplEz2W8CN+e1f1ZUP9SyYc0KAjrkoMKdao7u?=
- =?us-ascii?Q?EPS7FC0XF+Bt72OmRPOuMnEqHRTSxWJrOVlMgHH9qO77rNF6Gx9/ihNJB0/k?=
- =?us-ascii?Q?m6lEUegfNevPJvOPcO0O0DsyqluXP4HtohgT8QmU0ScCqpdcKMcpRvz9AFtP?=
- =?us-ascii?Q?CelbtwGdBVaRVhz0QqNtzkQXMU8H46OyD+xxkr49yQRkHHlCZ+4+qlrI8reH?=
- =?us-ascii?Q?3zNYTvm8Lotucoja5/SwkMMSRC8JibPrat/XZzrmaBl2JfyBulv1x0sNWGLs?=
- =?us-ascii?Q?hiuyz1mLqGtqXYujYJO7m64/2MnsYaCgU7o7lmFqMGIkT8r5GV/OtMj/cDhi?=
- =?us-ascii?Q?h1n4p8x9t9bCtaWirC0e8IjIhMRcCAw/CsGW8p0jOdYJHG+0Hd3UihYN3Cje?=
- =?us-ascii?Q?BoSl5UeY8HIpPPJqmn1CcZ7wYZtUUjIIETsRrsa9rKaetyvVI21HSiHhmdUl?=
- =?us-ascii?Q?XTWoPAq+oUOSsPHZNRM28pyn+qLHxYVYBWhS5QkbJxpLuxzK1MzwQFfIYdbA?=
- =?us-ascii?Q?92uOAkmDTWTotFEfo5ZHaOCmfANWkJ1Dh6C82qYl3eIfhu9Pjpqwn/Rhon25?=
- =?us-ascii?Q?TGTKRCgNpVTbs1AY2n7IfoKaRp0tHr6HsG7zjaWoZYXydsVwdUlsyum8lnrM?=
- =?us-ascii?Q?YodJXNxyb5nwBDKfoysHQ/CQg9s2k47beVlFx+ULbrNQ81aKt1VZMTc3SrDv?=
- =?us-ascii?Q?KjMtIsGIi7qxGQN2Hi3LHsPK3WcH09lI?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?MzzbHkrHOx2kIi6ijjsCohUUyGGNqRS1U4njLn27WH+MWRW2BMLjGUbwNbVr?=
- =?us-ascii?Q?7UW5cgsoHvEZHmB54q7tSP8fWGSCS19WJdT8k2/+SfOmFjF+oYmngcINNINv?=
- =?us-ascii?Q?q4hCklUpRisAZPxssC/6sYn1zkcN79ZiiDmH9apF7uIxi4w8DlGO2+5dKSMT?=
- =?us-ascii?Q?FuHACUR5ppvNEipp6K0p9wxJMK+31TnOs8ACV4F+9QjUQTVzWSAvleZBqT4Z?=
- =?us-ascii?Q?jrBRL/kThffeewYyt3wtJgsK0EnF1HBdUH6tIERCN/XWmKOWkd2JguFcmkTV?=
- =?us-ascii?Q?8OI8caDbW56X6odTX+WcBjS/JQRzwaYui78MVYftpweYM+4fn0kN6MdT14jM?=
- =?us-ascii?Q?IArfbJQbN73MJkjeP2ZvNbEli5zOO5zfhM3XLZ+OD6/qwSVuNmvuWwXpnUpz?=
- =?us-ascii?Q?k31ahBEUnyI2Rkd5rezoYKj9MjG+z2O84JpQE4hgGEfnuCmnGvjAEPFCTAUq?=
- =?us-ascii?Q?28Qfu7A50+gPkzm4qwOntfNA+Fe3hKZ5vqiLVRHuXVly8kn+sxUKW1+bp5eA?=
- =?us-ascii?Q?bsshxTnjSmrn7BILK6h8lanAeuZ2vNk7raxQbLCV7ZraJG2dTpctDXQBubgN?=
- =?us-ascii?Q?EVxfImX3V+WlPdJluBOCnG3lrBhGKQxLbwZgJRqMydBxh5nt6Faz3vUvT4bN?=
- =?us-ascii?Q?FTHNxZ4gOZ93mZQ0r/I4sdivsB//KxCSvVeSl0MXwPPPc8dJ0+J4/GcUw2G4?=
- =?us-ascii?Q?mvrgZSs1xvDJd7LYieWcRWpH3seiwxplj/Fpj5aDVn1txb1Bo3RAe4/CwS7J?=
- =?us-ascii?Q?PZRu6NQGt+ACiAtov1RjplOg84vieWUg62r2sfbkbk8duA4apRQx6uY4Ntcf?=
- =?us-ascii?Q?mqysw4KD1lAGZx94UuENr3uKwmf4D5MoB0Pb+ONHUDFUXuChu8Nsb4xFSttg?=
- =?us-ascii?Q?Nx66DqYbXjDK/ExVT4UsEypwWs8tRHVaihQB241Wjd2whugA+TXqW9QqwSdF?=
- =?us-ascii?Q?L8q4WB9c3CO4nBJF9RE4Slks02SoSJ1HCyEVgpZB/52bP1fuj3T+Qu72hJ4s?=
- =?us-ascii?Q?CozBP0zjUGfEFY6s3fA5q+ru+irf0bQyzqCxshV21DZ3YxPWRtiPIXd806rV?=
- =?us-ascii?Q?sn1GmijfOVpePFyBfPV9JIVmM/DfWoSjxmYeyinM4mZh6bC03Ypcd2kkW2DR?=
- =?us-ascii?Q?o7txY8dyXHMz1SB60M3qo6d8FL5/3caaY3hvK0lxWkiQZlNHo7a5kqhhO6ES?=
- =?us-ascii?Q?mlOPxboRtiQJb4QaubnyxfYVCGydL+iJxdTbNWdX7qFtCp9YyMDzrfwlR3Hd?=
- =?us-ascii?Q?hrnQRVBvCtesO4AqC6c3r3vkgTrxcaRSJK8QN+f0MTthOulMIVptUAf4ikOs?=
- =?us-ascii?Q?lhD0F4wxXx/+pzg+hkEJ/1LZJ7/JyowP8+DpSJ2MpHJmKR8gJbxdl48VnMO8?=
- =?us-ascii?Q?KNRYAl8WxMIIr1swPqz30rEl+J4UNlElXmOTLvfuqv+8PYU7zOeYWICYOVnl?=
- =?us-ascii?Q?RUhPrvZ9O+CnmkSQZJe8F6gnwRsew/C2I9t/PSeYBfvoGacHk4SUfRq7DuoV?=
- =?us-ascii?Q?qbZqYZjudtPZdSNkNfYbQWw44p1JXwEsIB9r98/qppyq7gL0gzIW5hSgSbgb?=
- =?us-ascii?Q?nJOk3BB9xhPAt6VdGknBT3RwYB9oUFGu1kiXmj9eqrB1Bq+Maz7gS9mp9om5?=
- =?us-ascii?Q?Yw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07D5B24502C
+	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 10:50:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740394256; cv=none; b=FlQmt5yxu2ZcRrsKQo/CR5ruX72eTWluoeq77uGqmyLnBwJj9/XjS2N/WfCNG+n9e11WsCAyRtEzK4I/m5YOW9Iih5bVmVoyOTLPf8CFRC8b38IUtwzD/OYc0Yqhe763LY5xOUENIeagDQAFUh5adq13E4MbJcNeqhA8EJwbap4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740394256; c=relaxed/simple;
+	bh=LdrLPe3NM9nT1PR1y7v3JkWuBK/3OAgCKHXOQ92A5WI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MICupLeT/ZfsYikcrKKV4aFrVoohzhmQRs8YN9uFa0Or41X+4rned0L+tGsIapXBSyM1Asz18W0A96iP3ypIP4x/gnQy8F3+Uy4kdAeGIDwNgc3QIIO5bLMsuLJ4f4Cj8ZlD6hikTNz1QJqUHEGJTyaobUEIlelCROXWkz1ulCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=OLLnySqy; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-30761be8fa7so39408301fa.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 02:50:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1740394253; x=1740999053; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=33I10h+7nHN9WWkfMc3v+GlsOaYaEyXk/K9NAesnYxA=;
+        b=OLLnySqy9ccY2d883J0buLGExcyzAiaNYuKE7ZMyTbN4sXD6cEUMrQK1JGjFlPSL6T
+         xqApaZ9hTeiRES74dHNLtkhm94VolV5pLg42fRJCXn2ZBLqr/lOkrQZnpyBb90ChnKwd
+         gzm8goNMZ/FptKIkYXwVazoj4+JsOEsng4t6Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740394253; x=1740999053;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=33I10h+7nHN9WWkfMc3v+GlsOaYaEyXk/K9NAesnYxA=;
+        b=HHy9e75jlsTxxJ8KG59LZVAx8sVkf3EPPMM7672P1sqGjF7MkmsWTIYUj4WR0sIyFc
+         Vw6jAHxk6jfXDJx9AsfV6DP7Mh+v/R0KRR6NLbOZ+UuwDz9CImK6Z76OsTPP49leZnJA
+         OmxdO4UTrwcpB5yywRVHBQM6vWsLNoJBDSMDARXaP5cRpXbqgzw8iLRRPmhE0uw/eeJs
+         H5Wg8d2vG9MV0GSIGkgjDno+nr0r9rwALjDmjxfKttb7Hf1lWGpic4spofjkmjsuAUeN
+         GpuG2qreCQAKaSkzDh+2tZDwHunDDPl3MndSY67NvrqgkY+GJLw7M3PrTsVvCrgcKXka
+         yEmA==
+X-Forwarded-Encrypted: i=1; AJvYcCVl9AWLZvBLCG4BMTePiteRVx+gdPUd8QAgx4KWeXsY84SrXb7aIWLWeKEDbxmSXk3CyIAhJHSOEa+i@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYMqlgVaKzsRFyrqZ6IHQqx0+7P5u66ttvos+4Xn3Di4wKabWM
+	AMM27cVjVuvWq+dPw79ePcQTYBV4p/Uzd9QklH/cn6wdczMrqhBzdTeJ5obzlplA+3M6MLJCmdI
+	4/2xeVz/S9LQVXalA/uMxBkP5QkMfo4n1D21+
+X-Gm-Gg: ASbGnctiusPnwmBeVhkJ7Obwo6qy5RgrEj2+cVu13+AzQKwlGTVUDvdvSSDVlFVy9r+
+	NcHHj/MMu8Csko2PD0/LOGeeueYUOAb7hyhDQCY5Yhbno8FQwUREjIlh+h5195/Z6PgOHpuZG+B
+	0537KGJnNIlN0djXiEYAiexxODZhF2Z6ohLU0=
+X-Google-Smtp-Source: AGHT+IHNRMFdVG+U7OWDssiE+FdC7MFPSlPh3k/wUhdWTrMt1I2HXTRNphSxg61+hQ7uwUEjQWDTi1xNW22wWxWU8i0=
+X-Received: by 2002:a2e:8197:0:b0:308:f3f7:49bc with SMTP id
+ 38308e7fff4ca-30a59895e21mr41620201fa.16.1740394253010; Mon, 24 Feb 2025
+ 02:50:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e19baa0-d205-4836-ec19-08dd54c0d131
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Feb 2025 10:48:47.6495
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: MVnBMuM7ZvfVQVnWtZKBTfoLV1ps7o7g00nLkuj/bcLJIr7NNSawd8u40Wgg4MRg8RWXqSLqf5aqpOM5t2gayyvyEm4DZ8gOD6Zn18Yf6Y0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB12868
+References: <20250220110948.45596-1-angelogioacchino.delregno@collabora.com> <20250220110948.45596-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250220110948.45596-2-angelogioacchino.delregno@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Mon, 24 Feb 2025 18:50:41 +0800
+X-Gm-Features: AWEUYZm0UHtGw-8b7DN3edPwKb-1ZcVXmj8EE7bXKkQWur4lNuL40yg5sa6u8YU
+Message-ID: <CAGXv+5EBiYwjNeocGh0ZjWi5mzOZr_CfS6H+7au5vgQgeigUfg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/4] arm64: dts: mediatek: mt8188: Add base display
+ controller graph
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, matthias.bgg@gmail.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	kernel@collabora.com, pablo.sun@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Thomas,
+On Thu, Feb 20, 2025 at 7:13=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> The display related IPs in MT8188 are flexible and support being
+> interconnected with different instances of DDP IPs and/or with
+> different DDP IPs, forming a full Display Data Path that ends
+> with an actual display output, which is board specific.
+>
+> Add a common graph in the main mt8188.dtsi devicetree, which is
+> shared between all of the currently supported boards.
+> All boards featuring any display functionality will extend this
+> common graph to hook the display controller of the SoC to their
+> specific output port(s).
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
 
-> -----Original Message-----
-> From: Biju Das <biju.das.jz@bp.renesas.com>
-> Sent: 12 February 2025 11:12
-> Subject: [PATCH v5 00/12] Add Support for RZ/G3E ICU
->=20
-> The ICU block on the RZ/G3E SoC is almost identical to the one found on t=
-he RZ/V2H SoC, with the
-> following differences:
->  - The TINT register base offset is 0x800 instead of zero.
->  - The number of supported GPIO interrupts for TINT selection is 141
->    instead of 86.
->  - The pin index and TINT selection index are not in the 1:1 map
->  - The number of TSSR registers is 16 instead of 8
->  - Each TSSR register can program 2 TINTs instead of 4 TINTs
->=20
-> Add support for the RZ/G3E ICU driver.
->=20
-> Note:
->   The SoC dtsi patch is dropped from series as it is queued for
->   renesas-devel.
->=20
-> v4->v5:
->  * Collected tags from Geert.
->  * Added a new patch for fixing wrong variable usage in
->    rzv2h_tint_set_type().
->  * Shortened tssr calculation in rzv2h_tint_irq_endisable().
->  * Added tssr_shift_factor variable for optimizing the calculation
->    in rzv2h_tint_set_type().
->  * Dropped unnecessary parenthesis for calculating tssr in
->    rzv2h_tint_set_type().
-> v3->v4:
->  * Updated typo in commit description register offset->register
->    base offset.
->  * Update typo 15->16 for the number of TSSR registers in RZ/G3E
->  * Collected tags.
->  * Fixed the typo varable->variable.
->  * Started using field_width to handle the SoC differences ad dropped the
->    variables tien, tssel_mask,tssel_shift and tssr_k.
->  * Dropped RZG3E_* macros from SoC dtsi.
-> v2->v3:
->  * Added a new patch for cleanup using devm_add_action_or_reset() for
->    calling put_device() in error path of rzv2h_icu_init() to simplify
->    the code by using recently added devm_*helpers.
->  * Replaced 'goto put_dev' by 'return xxx' as put_dev() called by
->    devm_add_action_or_reset()
-> v1->v2:
->  * Collected tags
->  * Split the simplification patch into two.
->  * Updated commit header and description for patch#4.
->  * Replaced devm_reset_control_get_optional_exclusive_deasserted()->
->    devm_reset_control_get_exclusive_deasserted().
->  * Moved simplification using devm_pm_runtime_enable() to patch#5.
->  * Aligned kernel doc, struct members and struct initializers in
->    a tabular fashion.
->  * Renamed the macro ICU_PB5_TINT->ICU_RZV2H_TSSEL_MAX_VAL.
->  * Replaced hexa decimal constant with ICU_RZV2H_TSSEL_MAX_VAL in struct
->    rzv2h_hw_params.
->  * Introduced ICU_RZG3E_{TSSEL_MAX_VAL,TINT_OFFSET} macros and used these
->    macros in struct rzv2h_hw_params rather than using the hex constants.
->=20
-> Biju Das (12):
->   dt-bindings: interrupt-controller: renesas,rzv2h-icu: Document RZ/G3E
->     SoC
->   irqchip/renesas-rzv2h: Fix wrong variable usage in
->     rzv2h_tint_set_type()
->   irqchip/renesas-rzv2h: Drop irqchip from struct rzv2h_icu_priv
->   irqchip/renesas-rzv2h: Simplify rzv2h_icu_init()
->   irqchip/renesas-rzv2h: Use
->     devm_reset_control_get_exclusive_deasserted()
->   irqchip/renesas-rzv2h: Use devm_pm_runtime_enable()
->   irqchip/renesas-rzv2h: Add struct rzv2h_hw_info with t_offs variable
->   irqchip/renesas-rzv2h: Add max_tssel variable to struct rzv2h_hw_info
->   irqchip/renesas-rzv2h: Add field_width variable to struct
->     rzv2h_hw_info
->   irqchip/renesas-rzv2h: Drop TSSR_TIEN macro
->   irqchip/renesas-rzv2h: Drop macros ICU_TSSR_TSSEL_{MASK,PREP}
->   irqchip/renesas-rzv2h: Add RZ/G3E support
->=20
->  .../renesas,rzv2h-icu.yaml                    |   6 +-
->  drivers/irqchip/irq-renesas-rzv2h.c           | 189 ++++++++++++------
->  2 files changed, 133 insertions(+), 62 deletions(-)
->=20
+Tested-by: Chen-Yu Tsai <wenst@chromium.org> # On MT8188 Ciri (int. and ext=
+.)
 
-Gentle ping. Should I rebase to [1] and resend.
-Please let me know.
-
-[1] https://lore.kernel.org/all/20250220150110.738619-5-fabrizio.castro.jz@=
-renesas.com/
-
-Cheers,
-Biju
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8188.dtsi | 140 +++++++++++++++++++++++
+>  1 file changed, 140 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8188.dtsi
+> index c226998b7e47..4437b1820f26 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> @@ -2868,6 +2868,23 @@ ovl0: ovl@1c000000 {
+>                         iommus =3D <&vdo_iommu M4U_PORT_L0_DISP_OVL0_RDMA=
+0>;
+>                         power-domains =3D <&spm MT8188_POWER_DOMAIN_VDOSY=
+S0>;
+>                         mediatek,gce-client-reg =3D <&gce0 SUBSYS_1c00XXX=
+X 0x0000 0x1000>;
+> +
+> +                       ports {
+> +                               #address-cells =3D <1>;
+> +                               #size-cells =3D <0>;
+> +
+> +                               port@0 {
+> +                                       reg =3D <0>;
+> +                                       ovl0_in: endpoint { };
+> +                               };
+> +
+> +                               port@1 {
+> +                                       reg =3D <1>;
+> +                                       ovl0_out: endpoint {
+> +                                               remote-endpoint =3D <&rdm=
+a0_in>;
+> +                                       };
+> +                               };
+> +                       };
+>                 };
+>
+>                 rdma0: rdma@1c002000 {
+> @@ -2878,6 +2895,25 @@ rdma0: rdma@1c002000 {
+>                         iommus =3D <&vdo_iommu M4U_PORT_L1_DISP_RDMA0>;
+>                         power-domains =3D <&spm MT8188_POWER_DOMAIN_VDOSY=
+S0>;
+>                         mediatek,gce-client-reg =3D <&gce0 SUBSYS_1c00XXX=
+X 0x2000 0x1000>;
+> +
+> +                       ports {
+> +                               #address-cells =3D <1>;
+> +                               #size-cells =3D <0>;
+> +
+> +                               port@0 {
+> +                                       reg =3D <0>;
+> +                                       rdma0_in: endpoint {
+> +                                               remote-endpoint =3D <&ovl=
+0_out>;
+> +                                       };
+> +                               };
+> +
+> +                               port@1 {
+> +                                       reg =3D <1>;
+> +                                       rdma0_out: endpoint {
+> +                                               remote-endpoint =3D <&col=
+or0_in>;
+> +                                       };
+> +                               };
+> +                       };
+>                 };
+>
+>                 color0: color@1c003000 {
+> @@ -2887,6 +2923,25 @@ color0: color@1c003000 {
+>                         interrupts =3D <GIC_SPI 639 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+>                         power-domains =3D <&spm MT8188_POWER_DOMAIN_VDOSY=
+S0>;
+>                         mediatek,gce-client-reg =3D <&gce0 SUBSYS_1c00XXX=
+X 0x3000 0x1000>;
+> +
+> +                       ports {
+> +                               #address-cells =3D <1>;
+> +                               #size-cells =3D <0>;
+> +
+> +                               port@0 {
+> +                                       reg =3D <0>;
+> +                                       color0_in: endpoint {
+> +                                               remote-endpoint =3D <&rdm=
+a0_out>;
+> +                                       };
+> +                               };
+> +
+> +                               port@1 {
+> +                                       reg =3D <1>;
+> +                                       color0_out: endpoint {
+> +                                               remote-endpoint =3D <&cco=
+rr0_in>;
+> +                                       };
+> +                               };
+> +                       };
+>                 };
+>
+>                 ccorr0: ccorr@1c004000 {
+> @@ -2896,6 +2951,25 @@ ccorr0: ccorr@1c004000 {
+>                         interrupts =3D <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+>                         power-domains =3D <&spm MT8188_POWER_DOMAIN_VDOSY=
+S0>;
+>                         mediatek,gce-client-reg =3D <&gce0 SUBSYS_1c00XXX=
+X 0x4000 0x1000>;
+> +
+> +                       ports {
+> +                               #address-cells =3D <1>;
+> +                               #size-cells =3D <0>;
+> +
+> +                               port@0 {
+> +                                       reg =3D <0>;
+> +                                       ccorr0_in: endpoint {
+> +                                               remote-endpoint =3D <&col=
+or0_out>;
+> +                                       };
+> +                               };
+> +
+> +                               port@1 {
+> +                                       reg =3D <1>;
+> +                                       ccorr0_out: endpoint {
+> +                                               remote-endpoint =3D <&aal=
+0_in>;
+> +                                       };
+> +                               };
+> +                       };
+>                 };
+>
+>                 aal0: aal@1c005000 {
+> @@ -2905,6 +2979,25 @@ aal0: aal@1c005000 {
+>                         interrupts =3D <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+>                         power-domains =3D <&spm MT8188_POWER_DOMAIN_VDOSY=
+S0>;
+>                         mediatek,gce-client-reg =3D <&gce0 SUBSYS_1c00XXX=
+X 0x5000 0x1000>;
+> +
+> +                       ports {
+> +                               #address-cells =3D <1>;
+> +                               #size-cells =3D <0>;
+> +
+> +                               port@0 {
+> +                                       reg =3D <0>;
+> +                                       aal0_in: endpoint {
+> +                                               remote-endpoint =3D <&cco=
+rr0_out>;
+> +                                       };
+> +                               };
+> +
+> +                               port@1 {
+> +                                       reg =3D <1>;
+> +                                       aal0_out: endpoint {
+> +                                               remote-endpoint =3D <&gam=
+ma0_in>;
+> +                                       };
+> +                               };
+> +                       };
+>                 };
+>
+>                 gamma0: gamma@1c006000 {
+> @@ -2914,6 +3007,23 @@ gamma0: gamma@1c006000 {
+>                         interrupts =3D <GIC_SPI 642 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+>                         power-domains =3D <&spm MT8188_POWER_DOMAIN_VDOSY=
+S0>;
+>                         mediatek,gce-client-reg =3D <&gce0 SUBSYS_1c00XXX=
+X 0x6000 0x1000>;
+> +
+> +                       ports {
+> +                               #address-cells =3D <1>;
+> +                               #size-cells =3D <0>;
+> +
+> +                               port@0 {
+> +                                       reg =3D <0>;
+> +                                       gamma0_in: endpoint {
+> +                                               remote-endpoint =3D <&aal=
+0_out>;
+> +                                       };
+> +                               };
+> +
+> +                               port@1 {
+> +                                       reg =3D <1>;
+> +                                       gamma0_out: endpoint { };
+> +                               };
+> +                       };
+>                 };
+>
+>                 dither0: dither@1c007000 {
+> @@ -2923,6 +3033,21 @@ dither0: dither@1c007000 {
+>                         interrupts =3D <GIC_SPI 643 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+>                         power-domains =3D <&spm MT8188_POWER_DOMAIN_VDOSY=
+S0>;
+>                         mediatek,gce-client-reg =3D <&gce0 SUBSYS_1c00XXX=
+X 0x7000 0x1000>;
+> +
+> +                       ports {
+> +                               #address-cells =3D <1>;
+> +                               #size-cells =3D <0>;
+> +
+> +                               port@0 {
+> +                                       reg =3D <0>;
+> +                                       dither0_in: endpoint { };
+> +                               };
+> +
+> +                               port@1 {
+> +                                       reg =3D <1>;
+> +                                       dither0_out: endpoint { };
+> +                               };
+> +                       };
+>                 };
+>
+>                 disp_dsi0: dsi@1c008000 {
+> @@ -3005,6 +3130,21 @@ postmask0: postmask@1c01a000 {
+>                         interrupts =3D <GIC_SPI 661 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+>                         power-domains =3D <&spm MT8188_POWER_DOMAIN_VDOSY=
+S0>;
+>                         mediatek,gce-client-reg =3D <&gce0 SUBSYS_1c01XXX=
+X 0xa000 0x1000>;
+> +
+> +                       ports {
+> +                               #address-cells =3D <1>;
+> +                               #size-cells =3D <0>;
+> +
+> +                               port@0 {
+> +                                       reg =3D <0>;
+> +                                       postmask0_in: endpoint { };
+> +                               };
+> +
+> +                               port@1 {
+> +                                       reg =3D <1>;
+> +                                       postmask0_out: endpoint { };
+> +                               };
+> +                       };
+>                 };
+>
+>                 vdosys0: syscon@1c01d000 {
+> --
+> 2.48.1
+>
+>
 
