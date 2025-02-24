@@ -1,292 +1,383 @@
-Return-Path: <devicetree+bounces-150507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8411FA42714
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 16:58:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5670A42728
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 17:00:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0BEF165BE1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 15:56:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A646164222
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 15:58:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E388262D0F;
-	Mon, 24 Feb 2025 15:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EC67260A52;
+	Mon, 24 Feb 2025 15:58:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="NXKaI++C"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hsfx8ccN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013003.outbound.protection.outlook.com [40.107.159.3])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4552C2627E2;
-	Mon, 24 Feb 2025 15:55:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740412521; cv=none; b=a1bJ5/iF9xBhQHdW1rSdmrwXUYnmBL72PSoale4ohrTcH6TdzgIXsir8ej5TcZS4Qba3mQ5EgbiF8jhvwwCSnZNUG0Qc0WIgjhwTEef7Sl1RdBqaabF6POFFjmHPW7yEgY2uPZ2h0dV0+r5W2aPFPV4hJY5OcG2T5cchLxM+MNU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740412521; c=relaxed/simple;
-	bh=dcG5/d7YsNTu2b54KQ6wCfzUCDNwYHtoap6j4u7RGNY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=dvV0qo5w9XQpta/Mlcgby0bQ6DMufjMzyPv0bWt/pXMJmHdY/E7+esnMg7p1iYncaAb3C/LuF8idWrJXeDqaMdAtIgQ8QX20PFXTwQyFy12LwckaC2MxQZX/mkyJcH+3L9thpSgqWG+z3GLyLXeLWZmrUn0ieXgxjz9HquTLihA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=NXKaI++C; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 7A87A1FBA2;
-	Mon, 24 Feb 2025 16:55:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1740412509;
-	bh=hFbONcKyhjUHboYxM0ZaY3VOZ5oAiMtjcU/h4VEveuI=; h=From:To:Subject;
-	b=NXKaI++CDjuzppw/qLDI4RS2ZefxoOrXHPg7Zsmj+hCsuIMCEfYUYov3IMIkh7VQJ
-	 wBS5QfLaM/lXg3Mb7QosEMqJsK2q05E9pjYZ2HZYhJzSnoHg9CH6k67ELyjCe6dc7A
-	 pRSt/1oaPwHPQrn8onbcPzu5yAcjEv2QqCtPrdoHx/+EfjzgKrT2Hf9rUw6jmM5y/A
-	 3UZygtzTwAh+6UU+4RBu7L2vdMNRFUI6T0QxRqaCki3/jGQhUHMkruA7/c3Bx/awmq
-	 TNo2PYBHgVaX+KDeuGWew470q667hH/obzMbTV6ZTsxz5ak5buOLSEeN7CMblmtrEx
-	 WaKzOPBH289Yg==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	patches@opensource.cirrus.com
-Cc: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	ckeepax@opensource.cirrus.com
-Subject: [PATCH v2 5/5] ASoC: wm8904: add DMIC support
-Date: Mon, 24 Feb 2025 16:55:00 +0100
-Message-Id: <20250224155500.52462-6-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250224155500.52462-1-francesco@dolcini.it>
-References: <20250224155500.52462-1-francesco@dolcini.it>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F1F6248897;
+	Mon, 24 Feb 2025 15:58:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.3
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740412715; cv=fail; b=PMSywKUy9V4KzTgA1Z1uR1zzXfmfCo5qkMT6wzXpVWFlns6a7l37Ybw4OWpBUIY9FsSg3/TX8sbUzV4QzPH92ULD0qlWHZ0K0wKKIHZtj7m222rsKRg8/W1KsM4NbH8dGSQ4wapQsWzGXt86rvOyPaATYbCahE1n5CmlUx5pJRM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740412715; c=relaxed/simple;
+	bh=9AVZ3hqnqFrb4f6A2Wm76qyGzMlAkC1EvLPYVnVbkzE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=nHeu0cpKiTy8FkmwRhJOqDS2QFGokrucZSkeL8mLJuxDaoD6lkjlPNiXGif3AA0nGqj+Y7yn0ku98E0SKCpp3Y/Heh7gzdpiSGYKaLrMTv6o+5eiDumSgG6+5j7dX6ErZyC7Hcjo65mI+tZchqZDuQ/UHofiby9ahHejgit6bkI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hsfx8ccN; arc=fail smtp.client-ip=40.107.159.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NS5uoLOm/93VoihTQ3sczM2HrbkapLefHsLN13dGwop1A4pWuKHTaESUXFVspoqGcn9/c2eozz5uXGqTrFZ+p0wWjjP2ZDERcHpH9zzv9IAbPK6NmasD4Rwz7Ba3D4m6jDI/guTFwxZs/qrQBsTq4xfnmylPo2T2KxxSpFLZBLMxpjBbiUEdwyLRuztpkHcPzcsyZUytyDemLYfiC5Akhw/Vdr8c8naAoYJYq4ztE5DTcpUH1N9H612HYxr3p7SLVoVuDNV6CCROMMQclNliXelFag3YBbN8uzQvFdDllqCrROv6OI7LFMA9utiqAhffjp+EyX6EP6LmILDvDktL5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pevezh8nS0j4b6Qku2xY7DABGSFHCB4eMmROdjDA9sg=;
+ b=JS2ej7d/wHHhKuEXGP4GSl916QuMhT+aLzDpiGUpSjtgMxOmMqYtQLYy9ibDIUNf/chdd2Ug65qzaVihTvrLE2qUeFkxPCQjsUkqoVQ4S5If2NrB/juFJ5c3cowVksr0HWfdgOC3F949lraa0T5OXDTAIXErI8iT6JfEIhum50/yWbCsW173z7pU07OI9nEg4m2mn35RtNqXcOfyeLKN+r1AHB0FhKhKxL7+CR69UQtefoPQ9hxWeusrNnWodXEKR112ncIgMCtju1psxh/fYmXyBl2l4YlbYkuOLAt56Kmqp1p+IDVSVeRuPgkpUh/hM/Is2opv9TXMjkEyyo/Dgg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pevezh8nS0j4b6Qku2xY7DABGSFHCB4eMmROdjDA9sg=;
+ b=hsfx8ccNrtozmSn7APNt1a8JEKmAmHb8L8B/dHY2oMBCkDuF3eyFkznlTeX233g1S+bVgSC2QxI+39m0AzTD3Qo/8HoiKi0aceyzX5jXKx+ZRwvf2Ee5y/0Fuv49j6bafsWrxItQpPCxyI8J0AFP9ZQSkH384Vp/+GiCJYX84X7vVSVfpqlgbXDWleNT6+wr4Vn7Btdk3TgTQB6lH+e0LbgoXLS6HYLtBtQWPLWm3iMdbtAjVJGtm4fVvUbWKG5GDVvOWEpTM+qVNxv/3Lrp+VPxm5cu8W30tLJdqagN/DMuH813lVm8w/pVDFp7mbfTMuxFScG5xEZaXEViF5SDFA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by GVXPR04MB10490.eurprd04.prod.outlook.com (2603:10a6:150:1e2::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.19; Mon, 24 Feb
+ 2025 15:58:28 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8466.016; Mon, 24 Feb 2025
+ 15:58:27 +0000
+Date: Mon, 24 Feb 2025 10:58:18 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, peter.chen@kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, jun.li@nxp.com
+Subject: Re: [PATCH 3/6] usb: chipidea: imx: add wakeup interrupt handling
+Message-ID: <Z7yXGgrX6FVQjy2M@lizhi-Precision-Tower-5810>
+References: <20250219093104.2589449-1-xu.yang_2@nxp.com>
+ <20250219093104.2589449-4-xu.yang_2@nxp.com>
+ <Z7Y+gqu75xJyjy6n@lizhi-Precision-Tower-5810>
+ <20250221032348.sncjhnldj6ecgeou@hippo>
+ <Z7iabsMl4ilQqrXN@lizhi-Precision-Tower-5810>
+ <20250224110751.7666zcafbyakvfb2@hippo>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250224110751.7666zcafbyakvfb2@hippo>
+X-ClientProxiedBy: BYAPR05CA0020.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::33) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB10490:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6d900caa-7b69-40b4-5af6-08dd54ec1394
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|376014|1800799024|7416014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?j+JrOjZ/P05jP2pEw09O/8fiy8xyUBX5titnlHe+Qq3IU4cS4bsp4/tq/NMF?=
+ =?us-ascii?Q?Um/HU2OGoqeR6tySgT11WLgHPULVSYGXV7jutaWNPcq5TpwHK+pwepn2KGQA?=
+ =?us-ascii?Q?E+CKkfz5zdjP/QFMWIRa0JV/pz7kRu4WYJ6DPU/ybXb5zo6STveXlqffazsT?=
+ =?us-ascii?Q?1Yekmz6PLxt21MM8LroLYEtqtCOhJi5T1A4lF5eLeW9rnSKpTja132TfP6PC?=
+ =?us-ascii?Q?DuIjsJUyUpZm4tzpuYU/BdhZnoIXcW1ct4x3GKvE2xKl1RcpmnwYQNM2uVpz?=
+ =?us-ascii?Q?IseB4IbaFKnCizvKB8um76HQ1anIFUSOBAFL4rYbyk6hfEgzzhOj79s36V93?=
+ =?us-ascii?Q?i/xc4yVmQSfDLAcgWgz0r4vBdw5z0LkKO33sfHhS4HF8T4fe9/CZs9MQkdy9?=
+ =?us-ascii?Q?jyCdTLNycrVDunDLT2yzi0ML54fXtnKTYsThM37YqFnnRN8PcmTNM7nimTeV?=
+ =?us-ascii?Q?W9RQBqnrFQpxCxLXnC7q0/KcGcc6I5BF1cTKptFWoTat4/P1PM8mrDcu38It?=
+ =?us-ascii?Q?Yggxqyt16ggGsuNZkXjlqLNgjFME5dxPUE4NGWxjmWTPbMBLC9j1Gs/5tyGr?=
+ =?us-ascii?Q?7AMrAnC5/7+l0x7c7RPIAhKeHOPY1YVMT974GnBoogqxm11PlNLABMvkri6x?=
+ =?us-ascii?Q?+wI9/BcvQKnGr9+/gw5am7qlYcdjyqBxbDBQOpVJmCtr7395jmYBidecRFEw?=
+ =?us-ascii?Q?rnqYU/HBd9Ud1GQuRswMnzsMzA34h9QX+kFIFzKYSRWfZKZcj/5SDORAiPp2?=
+ =?us-ascii?Q?kySZOGEk1nJZ+UzY7tqGByc+Lb4UUo4g2ylgJLYR4iwRVJbEG+vJ+7Q8cqXT?=
+ =?us-ascii?Q?293tS0Q/2heEOojs26FJdDZLlqQ9bT+oJNM/GYb0dy8a8fmwE0rpVjMTpxRq?=
+ =?us-ascii?Q?ExR3BpiA3BvaPF2A326FOvKZ2h5qDnhbEljvCNZCJk5i2vPXXZGUjw+1bl5E?=
+ =?us-ascii?Q?C0ulBiQMTyVCbqbszA/wqU/DfhTXtgAKVT1A+hL9LudsFybm3K/lPYfI91+d?=
+ =?us-ascii?Q?XH1Y0GXaEiZC8pFDGl87XvNK/L5aN24k3KXsEeIK+x3ba098t4HuPfalbmcZ?=
+ =?us-ascii?Q?mIELOmHawYIY4qpCfPrCyEMMl4TG0W+GlmK3LY3pqhA5ivURCBFUisEMq/5A?=
+ =?us-ascii?Q?kkoZ0KeJ/iRfK/+xg6mW8Q7rb6+Yz6odl7bd4AbXxEmRmkgibLW2eolin+uI?=
+ =?us-ascii?Q?bkMmGnn/hhEMZDduCaBlP7KWvSQVl7lwguJuegzayz0eOCl3qx6e35vlNaKH?=
+ =?us-ascii?Q?bKMlQ+PUMWFOisimNLSxMjXgucXD9G21zt1Zrajvyldzncmo0A0Yy12fWSxQ?=
+ =?us-ascii?Q?fV2Jj216kMsHNXvlyvo5DOvEQO2As+vXnevwUhPcjTXJqzr8/P+aJgxdFOPq?=
+ =?us-ascii?Q?2/uSsEZ3rWPWOB2Jb7vYgghUVrSKVIk4XlclhWaEK6ARkkG2k86k2S8/ZXeM?=
+ =?us-ascii?Q?bMdw9QvpI3mbvGZW/2SA8Sf/Rpaz4F9Z?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(1800799024)(7416014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?S9931e5joU3sCRJovvsSohAVZvaYHg78DIp/ocesIJeRvob+Zg0TLxnmiWia?=
+ =?us-ascii?Q?5O9HZj9hr0YG9jXbMWJsvW/Jc/Weryzx9B7zN8UdKa+5E8d6m+1pzEK3rcAT?=
+ =?us-ascii?Q?uT+nOeqlwob3UIc9ooq0uCNjNvwTC6kId0TCKwxJjbHyYZNOchVojsaJy7ET?=
+ =?us-ascii?Q?Fst98BmoaLuRP04xPHO87v5lkVDPi5bm/gMfgKfPx3ebqbygi/TFUP9Vn454?=
+ =?us-ascii?Q?SYzRT8Acheu7aEUYyDMk5Ui+55wFYBaSQR/sgMxymkdWZIAsZh4fLzzE5ApQ?=
+ =?us-ascii?Q?65m0uT57PjrEjX0Sbe+CvnRIwnlbuqBH44ffpLNjSW4yNJ+6n07hI1yPNBg4?=
+ =?us-ascii?Q?1q4GU5+D+DFlptyWtKhz9RiymOK8HD8mH+vXUA6hSrkNXuXoZ5YARShfMSb9?=
+ =?us-ascii?Q?ybioFsxwOetUBTaHu2TcQE+Wcskwm+lbXMS7y6uob5FG8chY6Uo3Ig6/G6ne?=
+ =?us-ascii?Q?tnWA92JntVG7rnbHHw7iQmqJydtAgaHUPYrJrFRiu6Lj72lMWwtw1hCpyraZ?=
+ =?us-ascii?Q?ykDjgybO9FiyNXNyE4dA+SqYHwgi5bNTvfSKrar2WwYnfzbmC2Gw+5qHtjY9?=
+ =?us-ascii?Q?eDeosaz9rTxxxjbGBh1zoCK7+xMNgaiz6h0kEe9Eac6uOnUJuxXEEIdfPW8C?=
+ =?us-ascii?Q?LIE5HuAF8dIOFwGs4r20pVtgN4t8zxllksWlGmSQUNAnGtihmsYMjRSyJFz/?=
+ =?us-ascii?Q?DgG4QoLkeQOMaj11OnmUjaZ5HIUI86RNdpR4+GzJRHs2dEZ4DcZAWn2uLn4k?=
+ =?us-ascii?Q?HB2ia/4+12ViP0BfUCfSJyOshP6eJkSUmQ4VA0yKQkhP+exN/fWBFKUW8YMv?=
+ =?us-ascii?Q?tpMUGwy8b+m69/5RuSUSkFeh/oML9VxVMZDMeNllyXhxqEdSHTIU5y7zb9yI?=
+ =?us-ascii?Q?Lty8Pf5IfC/iAM4SqIbl5BY8cXgDvwnQTe/kthzUCuh3QDLzDfhCKTiDw0z+?=
+ =?us-ascii?Q?Ulxoc3Ce8PZM5TB2N0fTXXmSx+5C8/mp8Ia0pkSWuDhF+YuGfbiCITjMvvhG?=
+ =?us-ascii?Q?spQHELerTWrLd8/Cjlt/7/QIJ3J2dc9JhQWeOpsMcV29q+yS90MEyGQVdXiS?=
+ =?us-ascii?Q?aoZQevGj9YtfLUJQteFOUuA+vlIg6xdxgAwPdAdFtY+phmu9oYiK1J+rEvFp?=
+ =?us-ascii?Q?cGiHCAuPX0bvDznf9sJF51bIfyn9z5M4BxTwXwmwFyA6X/8e+XTBvYOiI2Cy?=
+ =?us-ascii?Q?Ks2Vo9Xpgel2kWlhhAIaoEuaEqaLZbjWxJqh+9bQJgd2yowoYw1G6v/RuVV1?=
+ =?us-ascii?Q?EnS2k5/wLPZhQSPZvml07zZCdM/F+NfixrV93itZbQSavnTYuub8tiM9rI0h?=
+ =?us-ascii?Q?4fCEDAeLwXXxS5uvhHb/2V9YVwglpM7LLvVjOTZUYfcQTpH3/xTGI5rfhN34?=
+ =?us-ascii?Q?f7Y3d46AYs/nRceTsyvzw3LHNVatqMwhfGA34gp1G8MMPJoGYqlz9p0HrB+c?=
+ =?us-ascii?Q?7bwXKD186uowgYFMNDpjN4roGN0B1/48LTb/sWDV6KYmJzDOVfHJLPbXidLh?=
+ =?us-ascii?Q?UcfE5NUpNZw5aHe8U6Htus7qIEktS/IW2s8DpU9qO7LyYgnteZ8dm0xAiQzE?=
+ =?us-ascii?Q?F7hSB6TstVr2kXwuYwE=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d900caa-7b69-40b4-5af6-08dd54ec1394
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2025 15:58:27.5925
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: A/KGX1vstRE+N9Bcyl9Nfwa1CB7UU5E27FU5Kg/ytCH3ru2kRnYpCAgamM54WflPU7N01b+s3e7g3MpvcfhvNQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10490
 
-From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
+On Mon, Feb 24, 2025 at 07:07:51PM +0800, Xu Yang wrote:
+> On Fri, Feb 21, 2025 at 10:23:26AM -0500, Frank Li wrote:
+> > On Fri, Feb 21, 2025 at 11:23:48AM +0800, Xu Yang wrote:
+> > > On Wed, Feb 19, 2025 at 03:26:42PM -0500, Frank Li wrote:
+> > > > On Wed, Feb 19, 2025 at 05:31:01PM +0800, Xu Yang wrote:
+> > > > > In previous imx platform, normal USB controller interrupt and wakeup
+> > > > > interrupt are bound to one irq line. However, it changes on latest
+> > > > > i.MX95 platform since it has a dedicated irq line for wakeup interrupt.
+> > > > > This will add wakup interrupt handling for i.MX95 to support various
+> > > > > wakeup events.
+> > > > >
+> > > > > Reviewed-by: Jun Li <jun.li@nxp.com>
+> > > > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> > > > > ---
+> > > > >  drivers/usb/chipidea/ci_hdrc_imx.c | 42 ++++++++++++++++++++++++++++++
+> > > > >  1 file changed, 42 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/usb/chipidea/ci_hdrc_imx.c b/drivers/usb/chipidea/ci_hdrc_imx.c
+> > > > > index 1a7fc638213e..5779568ebcf6 100644
+> > > > > --- a/drivers/usb/chipidea/ci_hdrc_imx.c
+> > > > > +++ b/drivers/usb/chipidea/ci_hdrc_imx.c
+> > > > > @@ -98,9 +98,12 @@ struct ci_hdrc_imx_data {
+> > > > >  	struct clk *clk;
+> > > > >  	struct clk *clk_wakeup;
+> > > > >  	struct imx_usbmisc_data *usbmisc_data;
+> > > > > +	/* wakeup interrupt*/
+> > > > > +	int irq;
+> > > >
+> > > > use "wakeup_irq" to avoid confuse with normal controller irq?
+> > >
+> > > It doesn't matter. It can't be confused since the driver is different. The
+> > > controller driver is core.c. This glue driver is ci_hdrc_imx.c.
+> > >
+> > > >
+> > > > >  	bool supports_runtime_pm;
+> > > > >  	bool override_phy_control;
+> > > > >  	bool in_lpm;
+> > > > > +	bool wakeup_pending;
+> > > > >  	struct pinctrl *pinctrl;
+> > > > >  	struct pinctrl_state *pinctrl_hsic_active;
+> > > > >  	struct regulator *hsic_pad_regulator;
+> > > > > @@ -336,6 +339,24 @@ static int ci_hdrc_imx_notify_event(struct ci_hdrc *ci, unsigned int event)
+> > > > >  	return ret;
+> > > > >  }
+> > > > >
+> > > > > +static irqreturn_t ci_wakeup_irq_handler(int irq, void *data)
+> > > > > +{
+> > > > > +	struct ci_hdrc_imx_data *imx_data = data;
+> > > > > +
+> > > > > +	if (imx_data->in_lpm) {
+> > > > > +		if (imx_data->wakeup_pending)
+> > > > > +			return IRQ_HANDLED;
+> > > > > +
+> > > > > +		disable_irq_nosync(irq);
+> > > > > +		imx_data->wakeup_pending = true;
+> > > > > +		pm_runtime_resume(&imx_data->ci_pdev->dev);
+> > > >
+> > > > Not sure why need pm_runtime_resume here? There are not access register
+> > > > here.
+> > >
+> > > It's needed for runtime resume case.
+> > > When wakeup event happens, wakeup irq will be triggered. To let controller
+> > > resume back, we need enable USB controller clock to trigger controller
+> > > irq. So we call pm_runtime_resume() to resume controller's parent back
+> > > and the parent device will enable clocks.
+> >
+> > Please add comment here. why need in_lpm if we can make sure irq only
+> > enable during suspend/resume pharse?
+>
+> I have checked again, in_lpm checking is not needed. I will remove the
+> if condition later.
+>
+> >
+> > >
+> > > >
+> > > > > +
+> > > > > +		return IRQ_HANDLED;
+> > > > > +	}
+> > > > > +
+> > > > > +	return IRQ_NONE;
+> > > > > +}
+> > > > > +
+> > > > >  static int ci_hdrc_imx_probe(struct platform_device *pdev)
+> > > > >  {
+> > > > >  	struct ci_hdrc_imx_data *data;
+> > > > > @@ -476,6 +497,15 @@ static int ci_hdrc_imx_probe(struct platform_device *pdev)
+> > > > >  	if (pdata.flags & CI_HDRC_SUPPORTS_RUNTIME_PM)
+> > > > >  		data->supports_runtime_pm = true;
+> > > > >
+> > > > > +	data->irq = platform_get_irq_optional(pdev, 1);
+> > > > > +	if (data->irq > 0) {
+> > > > > +		ret = devm_request_threaded_irq(dev, data->irq,
+> > > > > +				NULL, ci_wakeup_irq_handler,
+> > > > > +				IRQF_ONESHOT, pdata.name, data);
+> > > > > +		if (ret)
+> > > > > +			goto err_clk;
+> > > > > +	}
+> > > > > +
+> > > > >  	ret = imx_usbmisc_init(data->usbmisc_data);
+> > > > >  	if (ret) {
+> > > > >  		dev_err(dev, "usbmisc init failed, ret=%d\n", ret);
+> > > > > @@ -621,6 +651,11 @@ static int imx_controller_resume(struct device *dev,
+> > > > >  		goto clk_disable;
+> > > > >  	}
+> > > > >
+> > > > > +	if (data->wakeup_pending) {
+> > > > > +		data->wakeup_pending = false;
+> > > > > +		enable_irq(data->irq);
+> > > > > +	}
+> > > > > +
+> > > > >  	return 0;
+> > > > >
+> > > > >  clk_disable:
+> > > > > @@ -643,6 +678,10 @@ static int ci_hdrc_imx_suspend(struct device *dev)
+> > > > >  		return ret;
+> > > > >
+> > > > >  	pinctrl_pm_select_sleep_state(dev);
+> > > > > +
+> > > > > +	if (device_may_wakeup(dev))
+> > > > > +		enable_irq_wake(data->irq);
+> > > > > +
+> > > > >  	return ret;
+> > > > >  }
+> > > > >
+> > > > > @@ -651,6 +690,9 @@ static int ci_hdrc_imx_resume(struct device *dev)
+> > > > >  	struct ci_hdrc_imx_data *data = dev_get_drvdata(dev);
+> > > > >  	int ret;
+> > > > >
+> > > > > +	if (device_may_wakeup(dev))
+> > > > > +		disable_irq_wake(data->irq);
+> > > > > +
+> > > >
+> > > > Look like only want enable wakeup irq between suspend and resume. There are
+> > > > some questions to understand hehavor.
+> > > >
+> > > > 1 driver probe --> 2. hdrc suspend -->3 hdrc resume --> 4 controller resume
+> > > >
+> > > > 1--2,  look like wakeup irq is enabled. maybe controller have some bit to
+> > > > disable issue wakeup irq, otherwise flood irq will happen because you check
+> > > > lpm in irq handler.
+> > >
+> > > It's not true.
+> > >
+> > > We has a bit WAKE_ENABLE to enable/disable wakeup irq. This bit will only be
+> > > enabled when do suspend() and disabled when do resume(). So before suspend()
+> > > called, the wakeup irq can't be triggered. No flood irq too.
+> > >
+> > > >
+> > > > after 2. wakeup irq enable,  if wakeup irq happen, system resume.
+> > > > ci_hdrc_imx_resume() only clear a flags, not any sync problem.
+> > > >
+> > > > But sequence imx_controller_resume() and ci_wakeup_irq_handler() may not
+> > > > guaranteed.
+> > > >
+> > > > If ci_wakeup_irq_handler() call first, ci_wakeup_irq_handler() disable
+> > > > itself. imx_controller_resume() will enable wakeup irq, which will be same
+> > > > state 1--2. but if imx_controller_resume() run firstly,
+> > >
+> > > It's not true too. Because WAKE_ENABLE is disabled after resume().
+> > >
+> > > > ci_wakeup_irq_handler() will disable wakeup irq, which difference state
+> > > > with 1--2.
+> > > >
+> > > > If there are a bit(WAKEUP_EN) in controller can control wakeup irq
+> > > > enable/disable,
+> > >
+> > > Yes, WAKE_ENABLE bit. It's already used:
+> > >
+> > > ci_hdrc_imx_suspend()
+> > >   imx_controller_suspend() -> enable WAKE_ENABLE
+> > >
+> > > ci_hdrc_imx_resume()
+> > >   imx_controller_resume() -> disable WAKE_ENABLE
+> >
+> > Okay,
+> >
+> > I think wakeup_pending is not neccesary. ci_wakeup_irq_handler() can
+> > simple disable WAKE_ENABLE.
+>
+> Right, wakeup_pending can be removed. However, it's not that simple to
+> control WAKE_ENABLE in ci_hdrc_imx.c due to imx_controller_susepnd/resume()
+> do more things expect enable/disable WAKE_ENABLE bit. And usbmisc.c doesn't
+> export a function to directly control WAKE_ENABLE. Therefore, I still need
+> to use enable/disable_irq() for simplicity.
+>
+> Due to this wakeup irq is only used in suspend case, I would like to add
+> IRQF_NO_AUTOEN flag to request_threaded_irq(), then enable irq in
+> ci_hdrc_imx_suspend() and disable irq in ci_hdrc_imx_resume().
+>
+> For example:
+>
+> ci_wakeup_irq_handler()
+> {
+> 	disable_irq_nosync(data->irq);
+> 	...
+> }
+>
+> ci_hdrc_imx_suspend()
+> {
+> 	...
+> 	enable_irq(data->irq);
+> }
+>
+> ci_hdrc_imx_resume()
+> {
+> 	if (irq disabled)
+> 		disable_irq_nosync(data->irq);
+> 	...
+> }
+>
+> Do you think if it's feasible and better than current patch?
 
-The WM8904 codec supports both ADC and DMIC inputs.
+look better. Does ci_wakeup_irq_handler() always happen before
+ci_hdrc_imx_resume()?
 
-Get input pin functionality from the platform data and add the necessary
-controls depending on the possible additional routing.
+Frank
 
-The ADC and DMIC share the IN1L/DMICDAT1 and IN1R/DMICDAT2 pins.
-
-This leads to a few scenarios requiring different DAPM routing:
-- When both are connected to an analog input, only the ADC is used.
-- When one line is a DMIC and the other an analog input, the DMIC source
-  is set from the platform data and a mux is added to select whether to
-  use the ADC or DMIC.
-- When both are connected to a DMIC, another mux is added to this to
-  select the DMIC source. Note that we still need to be able to select
-  the ADC system for use with the IN2L, IN2R, IN3L and IN3R pins.
-
-Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
-v2: DAPM routes have been reworked, please see the commit message body.
-    The previous approach forgot that the ADC is still needed for the
-    IN2L/R and IN3L/R pins, and did not properly disconnect the PGAs
-    from the ADC when only the DMIC was in use.
-v1: https://lore.kernel.org/lkml/20250206163152.423199-6-francesco@dolcini.it/
-
-Cc: ckeepax@opensource.cirrus.com
----
- sound/soc/codecs/wm8904.c | 125 ++++++++++++++++++++++++++++++++++++--
- 1 file changed, 120 insertions(+), 5 deletions(-)
-
-diff --git a/sound/soc/codecs/wm8904.c b/sound/soc/codecs/wm8904.c
-index 83cf59f6e879..ed717140ec76 100644
---- a/sound/soc/codecs/wm8904.c
-+++ b/sound/soc/codecs/wm8904.c
-@@ -844,6 +844,26 @@ static int out_pga_event(struct snd_soc_dapm_widget *w,
- 	return 0;
- }
- 
-+static const char * const dmic_text[] = {
-+	"DMIC1", "DMIC2"
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(dmic_enum, WM8904_DIGITAL_MICROPHONE_0,
-+			    WM8904_DMIC_SRC_SHIFT, dmic_text);
-+
-+static const struct snd_kcontrol_new dmic_mux =
-+	SOC_DAPM_ENUM("DMIC Mux", dmic_enum);
-+
-+static const char * const cin_text[] = {
-+	"ADC", "DMIC"
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(cin_enum, WM8904_DIGITAL_MICROPHONE_0,
-+			    WM8904_DMIC_ENA_SHIFT, cin_text);
-+
-+static const struct snd_kcontrol_new cin_mux =
-+	SOC_DAPM_ENUM("Capture Input", cin_enum);
-+
- static const char *input_mode_text[] = {
- 	"Single-Ended", "Differential Line", "Differential Mic"
- };
-@@ -963,6 +983,15 @@ SND_SOC_DAPM_AIF_OUT("AIFOUTL", "Capture", 0, SND_SOC_NOPM, 0, 0),
- SND_SOC_DAPM_AIF_OUT("AIFOUTR", "Capture", 1, SND_SOC_NOPM, 0, 0),
- };
- 
-+static const struct snd_soc_dapm_widget wm8904_dmic_dapm_widgets[] = {
-+SND_SOC_DAPM_MUX("DMIC Mux", SND_SOC_NOPM, 0, 0, &dmic_mux),
-+};
-+
-+static const struct snd_soc_dapm_widget wm8904_cin_dapm_widgets[] = {
-+SND_SOC_DAPM_MUX("Left Capture Input", SND_SOC_NOPM, 0, 0, &cin_mux),
-+SND_SOC_DAPM_MUX("Right Capture Input", SND_SOC_NOPM, 0, 0, &cin_mux),
-+};
-+
- static const struct snd_soc_dapm_widget wm8904_dac_dapm_widgets[] = {
- SND_SOC_DAPM_AIF_IN("AIFINL", "Playback", 0, SND_SOC_NOPM, 0, 0),
- SND_SOC_DAPM_AIF_IN("AIFINR", "Playback", 1, SND_SOC_NOPM, 0, 0),
-@@ -1101,12 +1130,45 @@ static const struct snd_soc_dapm_route adc_intercon[] = {
- 	{ "AIFOUTR", NULL, "AIFOUTR Mux" },
- 
- 	{ "ADCL", NULL, "CLK_DSP" },
--	{ "ADCL", NULL, "Left Capture PGA" },
--
- 	{ "ADCR", NULL, "CLK_DSP" },
-+};
-+
-+/* No DMICs, always connect PGAs */
-+static const struct snd_soc_dapm_route cin_nodmic_con[] = {
-+	{ "ADCL", NULL, "Left Capture PGA" },
- 	{ "ADCR", NULL, "Right Capture PGA" },
- };
- 
-+/* DMIC system in use: mux between ADC and DMICDAT1, 2 or both */
-+static const struct snd_soc_dapm_route cin_adc_dmic_con[] = {
-+	{ "Left Capture Input", "ADC", "Left Capture PGA" },
-+	{ "Right Capture Input", "ADC", "Right Capture PGA" },
-+
-+	{ "ADCL", NULL, "Left Capture Input" },
-+	{ "ADCR", NULL, "Right Capture Input" },
-+};
-+
-+/*  IN1L as DMICDAT1 */
-+static const struct snd_soc_dapm_route cin_dmic1_con[] = {
-+	{ "Left Capture Input", "DMIC", "IN1L" },
-+	{ "Right Capture Input", "DMIC", "IN1L" },
-+};
-+
-+/* IN1R as DMICDAT2 */
-+static const struct snd_soc_dapm_route cin_dmic2_con[] = {
-+	{ "Left Capture Input", "DMIC", "IN1R" },
-+	{ "Right Capture Input", "DMIC", "IN1R" },
-+};
-+
-+/* DMICDAT1 and DMICDAT2: mux between them, ADC still used for IN2 and IN3 */
-+static const struct snd_soc_dapm_route cin_2dmics_con[] = {
-+	{ "DMIC Mux", "DMIC1", "IN1L" },
-+	{ "DMIC Mux", "DMIC2", "IN1R" },
-+
-+	{ "Left Capture Input", "DMIC", "DMIC Mux" },
-+	{ "Right Capture Input", "DMIC", "DMIC Mux" },
-+};
-+
- static const struct snd_soc_dapm_route dac_intercon[] = {
- 	{ "DACL Mux", "Left", "AIFINL" },
- 	{ "DACL Mux", "Right", "AIFINR" },
-@@ -2050,18 +2112,70 @@ static void wm8904_handle_retune_mobile_pdata(struct snd_soc_component *componen
- 			"Failed to add ReTune Mobile control: %d\n", ret);
- }
- 
-+static void wm8904_handle_dmic_pdata(struct snd_soc_component *component)
-+{
-+	struct snd_soc_dapm_context *dapm = snd_soc_component_get_dapm(component);
-+	struct wm8904_priv *wm8904 = snd_soc_component_get_drvdata(component);
-+	struct wm8904_pdata *pdata = wm8904->pdata;
-+	unsigned int dmic_src;
-+
-+	if (!pdata->in1l_as_dmicdat1 && !pdata->in1r_as_dmicdat2) {
-+		snd_soc_dapm_add_routes(dapm, cin_nodmic_con,
-+					ARRAY_SIZE(cin_nodmic_con));
-+		snd_soc_component_update_bits(component, WM8904_DIGITAL_MICROPHONE_0,
-+					      WM8904_DMIC_ENA_MASK, 0);
-+		return;
-+	}
-+
-+	/* Need a control and routing to switch between DMIC and ADC */
-+	snd_soc_dapm_new_controls(dapm, wm8904_cin_dapm_widgets,
-+				  ARRAY_SIZE(wm8904_cin_dapm_widgets));
-+	snd_soc_dapm_add_routes(dapm, cin_adc_dmic_con,
-+				ARRAY_SIZE(cin_adc_dmic_con));
-+
-+	if (pdata->in1l_as_dmicdat1 && pdata->in1r_as_dmicdat2) {
-+		/* Need a control and routing to mux between DMICDAT1 and 2 */
-+		dev_dbg(component->dev, "DMICDAT1 and DMICDAT2 in use\n");
-+		snd_soc_dapm_new_controls(dapm, wm8904_dmic_dapm_widgets,
-+					  ARRAY_SIZE(wm8904_dmic_dapm_widgets));
-+		snd_soc_dapm_add_routes(dapm, cin_2dmics_con,
-+					ARRAY_SIZE(cin_2dmics_con));
-+		return;
-+	}
-+
-+	/* Either DMICDAT1 or DMICDAT2 is in use, not both */
-+	if (pdata->in1l_as_dmicdat1) {
-+		dmic_src = 0;
-+		snd_soc_dapm_add_routes(dapm, cin_dmic1_con,
-+					ARRAY_SIZE(cin_dmic1_con));
-+	} else {
-+		dmic_src = 1;
-+		snd_soc_dapm_add_routes(dapm, cin_dmic2_con,
-+					ARRAY_SIZE(cin_dmic2_con));
-+	}
-+	dev_dbg(component->dev, "DMIC_SRC (0 or 1): %d\n", dmic_src);
-+	snd_soc_component_update_bits(component, WM8904_DIGITAL_MICROPHONE_0,
-+				      WM8904_DMIC_SRC_MASK,
-+				      dmic_src << WM8904_DMIC_SRC_SHIFT);
-+}
-+
- static void wm8904_handle_pdata(struct snd_soc_component *component)
- {
-+	struct snd_soc_dapm_context *dapm = snd_soc_component_get_dapm(component);
- 	struct wm8904_priv *wm8904 = snd_soc_component_get_drvdata(component);
- 	struct wm8904_pdata *pdata = wm8904->pdata;
- 	int ret, i;
- 
- 	if (!pdata) {
-+		snd_soc_dapm_add_routes(dapm, cin_nodmic_con,
-+					ARRAY_SIZE(cin_nodmic_con));
- 		snd_soc_add_component_controls(component, wm8904_eq_controls,
--				     ARRAY_SIZE(wm8904_eq_controls));
-+					       ARRAY_SIZE(wm8904_eq_controls));
- 		return;
- 	}
- 
-+	wm8904_handle_dmic_pdata(component);
-+
- 	dev_dbg(component->dev, "%d DRC configurations\n", pdata->num_drc_cfgs);
- 
- 	if (pdata->num_drc_cfgs) {
-@@ -2117,10 +2231,11 @@ static int wm8904_probe(struct snd_soc_component *component)
- 		return -EINVAL;
- 	}
- 
--	wm8904_handle_pdata(component);
--
- 	wm8904_add_widgets(component);
- 
-+	/* This can add dependent widgets, so it is done after add_widgets */
-+	wm8904_handle_pdata(component);
-+
- 	return 0;
- }
- 
--- 
-2.39.5
-
+>
+> Thanks,
+> Xu Yang
 
