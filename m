@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-150530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBDFDA429B9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 18:30:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B3ACA429CC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 18:32:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10B7C188998D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 17:28:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F5E917F7C1
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 17:30:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C36A265CD9;
-	Mon, 24 Feb 2025 17:27:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99BCA26560F;
+	Mon, 24 Feb 2025 17:29:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EBTc5lYQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l9jOf27s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D2001537C8;
-	Mon, 24 Feb 2025 17:27:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 719C0264A6E;
+	Mon, 24 Feb 2025 17:29:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740418055; cv=none; b=rCfrPkT8Ru/+/j8CHMjrzUe+eyJJ7zPZfYcUNLzNiSBwNUEAfpYBFqiPbYqg2PlRJL0rgRoSKBWHfgAKGg/DD8TfZbOJUBwX9eaWBQCNSo+lgtOkWfXVhlB7cvGdzJi8x5g2ltBH8zIY7i36WvlMCIhuw3LplgFqNMcrmQ5FDWI=
+	t=1740418172; cv=none; b=sr69X25hTOj1k176/QtiIoJJG2ZGCJ1vx9wFlI/Gj1Ws06wikJ2OBlkT/XzcQJe1Far8/ztDOQcE/ZeAdEtm0Th1q0joaGz+Sv7O/IIRHZIRVuVCBJGuIJmsnnim3BIB3Ih92XzMsGwApSY4JgSHPVmxjNFfwseh5HTFbx8WEqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740418055; c=relaxed/simple;
-	bh=G0hV6F5emoBjP6Cj6DWH8LiN2FaXariNip3s524lSAc=;
+	s=arc-20240116; t=1740418172; c=relaxed/simple;
+	bh=ZE/NEtbynjcPPwiQn6F5zBRoR3rxw4L9qULJd2Dyna4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o/prmxc393PL8Bae8HPiaQ/VK/wwpIlwkgyeZuiQzofKlZP/MY0PQVF2Mhf6FT0VGDh75ZuEoh64O7Q+3AmvzJPChvMCW9zhoxq1HypIVafqRBAyi76Hizf4wVdenwRlDpCp6MZX+IqHamNXbsJdeXNpVFezVM428dTVjTXmVcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EBTc5lYQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 638B9C4CED6;
-	Mon, 24 Feb 2025 17:27:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AaqC26xFhaSCgQRiJvr1uHeMJTxjSaJAkm9rKafvaO9rL2jxYXlRJiLm8AH5VbRXKiV/YqAl49dEJUNwReKKPhvPJJcNIX12FoSCwYZmjZNwKAIgBWxuSfzqgs51sHN9KHD01MIx9wywNTV9+J2B0bVXYohkjriM0lhjJQZIvMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l9jOf27s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23093C4CED6;
+	Mon, 24 Feb 2025 17:29:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740418054;
-	bh=G0hV6F5emoBjP6Cj6DWH8LiN2FaXariNip3s524lSAc=;
+	s=k20201202; t=1740418172;
+	bh=ZE/NEtbynjcPPwiQn6F5zBRoR3rxw4L9qULJd2Dyna4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EBTc5lYQbTzRWGQ5P3GfXxR+yM0X3GlUVwxWdvnnQlQl3aKDDy6fz428q3jSwjxK8
-	 dsHkT3/b2G7FP27CuVqAr6l/L8Sp4fIW05ZYp7JlABPWeR8Y6ojzCC8SK2L8AeXBW0
-	 qDrOCh5ks/m9DztuRrVl8OyaBnZeMAc2xUrJxbSPxWJ+VCY+aeKVRGBuaz5UtOx8D8
-	 c1mMBgRejvA1uij7mJJWU2idox2M/hpjxcsDAXbKg6qvjVvlppGmjPhdIda3fvDGkm
-	 F7NN96Tnqe8isXyZMGefrD2Pu4lmWvcKBO/g/ZnwG602Jg4WYuO1JvYtLbf/7scSzX
-	 to+0Zyqm2yxKQ==
-Date: Mon, 24 Feb 2025 11:27:32 -0600
+	b=l9jOf27sh5BxkMJnzTSGKLkK3hX9UoVHBuhMfVa85W0SbmoxIouYZh/1xTg46QW0t
+	 3kQYJhAXzTvFqFUUH/w4Dl/4IcPbiBoZXNPU53neJDI6FDevXvA3TJUPhjd4Lw9mkA
+	 ZbdJmESM+8VETxkughSaDzHfMqZurlcKcG+3brIhAwzaTI7Yn1GNEWeOL+mfc7i5hH
+	 0qOwgOz4wKxs6xFNSPwb7aghuEaIAOf8hZoWFu+nSvHC3qbZxAv+uh29erCRd6IIjy
+	 t+Tyr6EYF2HRENtHVzp3pDlQTiWQkdQSuX1TAFBaAIPBsM17mFHwIK7mg6IiVS2nm/
+	 OJD6Idl/Y5lxg==
+Date: Mon, 24 Feb 2025 11:29:30 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: devicetree@vger.kernel.org, biju.das.jz@bp.renesas.com,
-	prabhakar.mahadev-lad.rj@bp.renesas.com,
-	linux-kernel@vger.kernel.org, tomm.merciai@gmail.com,
-	linux-renesas-soc@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
+To: Vincenzo Frascino <vincenzo.frascino@arm.com>
+Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	linux-media@vger.kernel.org
-Subject: Re: [PATCH v2 03/18] media: dt-bindings: renesas,rzg2l-cru: Document
- Renesas RZ/G3E SoC
-Message-ID: <174041805249.3557955.16934017711809968171.robh@kernel.org>
-References: <20250221155532.576759-1-tommaso.merciai.xr@bp.renesas.com>
- <20250221155532.576759-4-tommaso.merciai.xr@bp.renesas.com>
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Liviu Dudau <liviu.dudau@arm.com>, Will Deacon <will@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+	Jessica Clarke <jrtc27@jrtc27.com>,
+	Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v7 03/10] dt-bindings: arm: Add Morello fvp compatibility
+Message-ID: <174041816976.3560154.3926708156600957732.robh@kernel.org>
+References: <20250221180349.1413089-1-vincenzo.frascino@arm.com>
+ <20250221180349.1413089-4-vincenzo.frascino@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,31 +66,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250221155532.576759-4-tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <20250221180349.1413089-4-vincenzo.frascino@arm.com>
 
 
-On Fri, 21 Feb 2025 16:55:17 +0100, Tommaso Merciai wrote:
-> The CRU block found on the Renesas RZ/G3E ("R9A09G047") SoC has five
-> interrupts:
+On Fri, 21 Feb 2025 18:03:42 +0000, Vincenzo Frascino wrote:
+> Add compatibility to Arm Morello Fixed Virtual Platform.
 > 
->  - image_conv:    image_conv irq
->  - axi_mst_err:   AXI master error level irq
->  - vd_addr_wend:  Video data AXI master addr 0 write end irq
->  - sd_addr_wend:  Statistics data AXI master addr 0 write end irq
->  - vsd_addr_wend: Video statistics data AXI master addr 0 write end irq
-> 
-> This IP has only one input port 'port@1' similar to the RZ/G2UL CRU.
-> 
-> Document the CRU block found on the Renesas RZ/G3E ("R9A09G047") SoC.
-> 
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
 > ---
-> Changes since v1:
->  - Use oneOf for interrupts and interrupt-names
->  - Handle interrupts and interrupt names base on soc variants.
-> 
->  .../bindings/media/renesas,rzg2l-cru.yaml     | 65 +++++++++++++++----
->  1 file changed, 54 insertions(+), 11 deletions(-)
+>  Documentation/devicetree/bindings/arm/arm,morello.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
