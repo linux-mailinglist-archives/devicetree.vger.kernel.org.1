@@ -1,190 +1,128 @@
-Return-Path: <devicetree+bounces-150546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35EC5A42A86
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 19:00:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 450B0A42AD6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 19:15:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E305173922
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 18:00:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82EB53B083D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 18:15:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE062264A75;
-	Mon, 24 Feb 2025 18:00:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E54A62661B3;
+	Mon, 24 Feb 2025 18:14:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="hZxP1mkO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EF7D2641CD
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 18:00:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21245265CDD;
+	Mon, 24 Feb 2025 18:14:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740420034; cv=none; b=Y2ArtyNBNL+dMTK2GPwTh13ka2mlwXjOPSYLTXDxH72Ryoso+WATbtNnrOvjphsMGnznLtN/WBn4rQbNGRzm2BdRbsnfwuFH8rsY2FZY4eEh3D29Q+kxc+5TAVR6adzuZUUU6VmUOCZ9rF/8JZASOG/dOyY6JxZb+UhE0/yQ4yM=
+	t=1740420842; cv=none; b=l92Y+TlPVw+iGrnaq5Jyt6bFaLY47Idmj/Xz3nmFcazxXKsFDRruyuCkvtmvESo0bPAx8Pjiqzs3UL25e9G5CJrfazlYDJjPu9wcQM3CFAYQbu/OU9vh5zkiwsPH8JmMYejvD7nVKar/NS3l1RjMg4a9zyoMi7/kKZE05iupptY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740420034; c=relaxed/simple;
-	bh=dgloKXcKVpSKtrf/dWe0ySsZ0JgzxCev0zt2s1Bd8jc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o6TmyPt1RXXOJ319/y3A7UpshCewIx0sDzUUBvwTHJIVagh+Qkgis1Qt8A/jJY7Pn69qMG9k6Nx5MM/e3lqabTliXUyKrtZz8aZKL5k959HsuYI2oM99Q1eQq936b0udK65RHpDuEFKAtepMa6cT2g4OuYL5T5e2BkcRZHBGjso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EF246152B;
-	Mon, 24 Feb 2025 10:00:47 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 46D223F5A1;
-	Mon, 24 Feb 2025 10:00:29 -0800 (PST)
-Date: Mon, 24 Feb 2025 18:00:25 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Chris Morgan <macroalpha82@gmail.com>, Hironori KIKUCHI
- <kikuchan98@gmail.com>, Philippe Simons <simons.philippe@gmail.com>,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/8] arm64: dts: allwinner: h616: add display engine,
- bus and mixer nodes
-Message-ID: <20250224180025.4eb33c3f@donnerap.manchester.arm.com>
-In-Reply-To: <20250216092827.15444-3-ryan@testtoast.com>
-References: <20250216092827.15444-1-ryan@testtoast.com>
-	<20250216092827.15444-3-ryan@testtoast.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1740420842; c=relaxed/simple;
+	bh=ArKolMzeETjUwmKW4te7NXG/s9X7oIkM4cETyiPZUQk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LabYs3x90+pkwT7XiKzb6K4wrMrAKe2tuwx3OSgu09ZXvWm4kGOTTi2sVcNKQAS1sL2EZyyZ5f5s1mKSev6h08srYpZFSPfTHWATmffSQeAfypue8zDxJA1wxG2r9H4fJmm4fKA7JJOS49TBCxhRjsGHTHhFM5hHteEXFLjFgko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=hZxP1mkO; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51OEnHnD025112;
+	Mon, 24 Feb 2025 19:13:50 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=caTOVoBOyF0MRwCSZLjQta
+	/N2cLC0otSKq3vfvnJa1k=; b=hZxP1mkOfRngm5RL60oLFe+P5QXMX3xTexdEVl
+	r2x+eIpTbr7WghKVqnotLaXzBtP6Rwc0rK2iaYAzfTPvP/1N2WjcCvTxOKxYiY7G
+	XkHVYMbIj5x8BRGk4Vx3RFTNHG0geClTz3Nwtbt8CWV5BuMxEQN9/Nv8Ae07hbEQ
+	bgVCLpfVaZC/MAQT8ofiOJ4hdIY8UdeT9pT8F/uOoYja0yCiSU4rrSZCLleGdNLj
+	2RMUTlYrTbogHnZlDnzp6RNWXKFkxIyh8Qf08PY7THwYRdpW7pHUWfMTCCsDMqDu
+	ofjozVhCqDtpQYr6YLbNy1l5kzi1u5kq687RXGSbjaH6HSIg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 44y6bh0hwq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Feb 2025 19:13:50 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8D8B440046;
+	Mon, 24 Feb 2025 19:12:25 +0100 (CET)
+Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C9221544742;
+	Mon, 24 Feb 2025 19:02:29 +0100 (CET)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
+ (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 24 Feb
+ 2025 19:02:29 +0100
+Received: from localhost (10.252.23.75) by SAFDAG1NODE1.st.com (10.75.90.17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 24 Feb
+ 2025 19:02:29 +0100
+From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+To: <lee@kernel.org>, <ukleinek@kernel.org>, <alexandre.torgue@foss.st.com>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <wbg@kernel.org>, <jic23@kernel.org>, <daniel.lezcano@linaro.org>,
+        <tglx@linutronix.de>
+CC: <catalin.marinas@arm.com>, <will@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <olivier.moysan@foss.st.com>, <fabrice.gasnier@foss.st.com>
+Subject: [PATCH 0/8] Add STM32MP25 LPTIM support: MFD, PWM, IIO, counter, clocksource
+Date: Mon, 24 Feb 2025 19:01:42 +0100
+Message-ID: <20250224180150.3689638-1-fabrice.gasnier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-24_09,2025-02-24_02,2024-11-22_01
 
-On Sun, 16 Feb 2025 22:27:09 +1300
-Ryan Walklin <ryan@testtoast.com> wrote:
+This series adds support for STM32MP25 to MFD PWM, IIO, counter and
+clocksource low-power timer (LPTIM) drivers.
+This new variant is managed by using a new DT compatible string.
+It comes with a slightly updated register set, some new features and new
+interconnect signals inside the SoC.
+Same feature list as on STM32MP1x is supported currently.
+The device tree files add all instances in stm32mp251 dtsi file.
 
-Hi,
+Fabrice Gasnier (6):
+  dt-bindings: mfd: stm32-lptimer: add support for stm32mp25
+  mfd: stm32-lptimer: add support for stm32mp25
+  pwm: stm32-lp: add support for stm32mp25
+  counter: stm32-lptimer-cnt: add support for stm32mp25
+  arm64: defconfig: enable STM32 LP timers drivers
+  arm64: dts: st: add low-power timer nodes on stm32mp251
 
-> From: Jernej Skrabec <jernej.skrabec@gmail.com>
-> 
-> The Allwinner H616 and variants (H618, H700 and T507) have a new display
-> engine variant (DE33). Support has been added to the existing DE2/DE3
-> sun4i driver in a previous patch series (x). The variant is selected via
-> the appropriate mixer device tree compatible string.
-> 
-> Add the respective device-tree nodes for the DE, bus, clock and mixer to
-> the H616 DTSI, and the matching SRAM section for the DE.
-> 
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> ---
->  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> index cdce3dcb8ec02..ab8b70ce7df89 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> @@ -94,6 +94,12 @@ l2_cache: l2-cache {
->  		};
->  	};
->  
-> +	de: display-engine {
-> +		compatible = "allwinner,sun50i-h6-display-engine";
+Olivier Moysan (1):
+  iio: trigger: stm32-lptimer: add support for stm32mp25
 
-That should either be sun50i-h616-display-engine, or it should use a
-fallback. IIUC this "device" is just something more or less artificial
-that ties things together? I don't see any differences between the
-latest SoCs in the driver, but still we seem to use a separate compatible
-for every SoC there, which I guess is intentional?
+Patrick Delaunay (1):
+  clocksource: stm32-lptimer: add stm32mp25 support
 
-> +		allwinner,pipelines = <&mixer0>;
-> +		status = "disabled";
-> +	};
-> +
->  	reserved-memory {
->  		#address-cells = <2>;
->  		#size-cells = <2>;
-> @@ -150,6 +156,51 @@ soc {
->  		#size-cells = <1>;
->  		ranges = <0x0 0x0 0x0 0x40000000>;
->  
-> +		bus: bus@1000000 {
-> +			compatible = "allwinner,sun50i-h616-de33",
-> +				     "allwinner,sun50i-a64-de2";
-> +			reg = <0x1000000 0x400000>;
-> +			allwinner,sram = <&de3_sram 1>;
+ .../bindings/mfd/st,stm32-lptimer.yaml        |  23 +-
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        | 177 ++++++++++++++
+ arch/arm64/configs/defconfig                  |   5 +
+ drivers/clocksource/timer-stm32-lp.c          |   1 +
+ drivers/counter/stm32-lptimer-cnt.c           |   1 +
+ drivers/iio/trigger/stm32-lptimer-trigger.c   | 109 +++++++--
+ drivers/mfd/stm32-lptimer.c                   |  30 ++-
+ drivers/pwm/pwm-stm32-lp.c                    | 220 +++++++++++++++---
+ include/linux/iio/timer/stm32-lptim-trigger.h |   9 +
+ include/linux/mfd/stm32-lptimer.h             |  32 ++-
+ 10 files changed, 554 insertions(+), 53 deletions(-)
 
-Should this label be de33_sram?
-
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0 0x1000000 0x400000>;
-> +
-> +			display_clocks: clock@8000 {
-> +				compatible = "allwinner,sun50i-h616-de33-clk";
-> +				reg = <0x8000 0x100>;
-> +				clocks = <&ccu CLK_DE>, <&ccu CLK_BUS_DE>;
-> +				clock-names = "mod", "bus";
-> +				resets = <&ccu RST_BUS_DE>;
-> +				#clock-cells = <1>;
-> +				#reset-cells = <1>;
-> +			};
-> +
-> +			mixer0: mixer@100000 {
-> +				compatible = "allwinner,sun50i-h616-de33-mixer-0";
-> +				reg = <0x100000 0x100000>,
-> +				      <0x8100 0x40>,
-> +				      <0x280000 0x20000>;
-
-As mentioned in the binding patch, I think having reg-names here would
-help to make it clearer what those regions are for.
-
-> +				clocks = <&display_clocks CLK_BUS_MIXER0>,
-> +					 <&display_clocks CLK_MIXER0>;
-> +				clock-names = "bus", "mod";
-> +				resets = <&display_clocks RST_MIXER0>;
-> +				iommus = <&iommu 0>;
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					mixer0_out: port@1 {
-> +						reg = <1>;
-> +
-> +						mixer0_out_tcon_top_mixer0: endpoint {
-> +							remote-endpoint = <&tcon_top_mixer0_in_mixer0>;
-> +						};
-> +					};
-> +				};
-> +			};
-> +		};
-> +
->  		crypto: crypto@1904000 {
->  			compatible = "allwinner,sun50i-h616-crypto";
->  			reg = <0x01904000 0x800>;
-> @@ -173,6 +224,11 @@ sram_c: sram@28000 {
->  				#address-cells = <1>;
->  				#size-cells = <1>;
->  				ranges = <0 0x00028000 0x30000>;
-> +
-> +				de3_sram: sram-section@0 {
-
-de33_sram?
-
-> +					compatible = "allwinner,sun50i-a64-sram-c";
-
-I think we need a new compatible, with the A64 as a fallback. The H6 seems
-to do this as well.
-
-Cheers,
-Andre
-
-> +					reg = <0x0000 0x1e000>;
-> +				};
->  			};
->  		};
->  
+-- 
+2.25.1
 
 
