@@ -1,55 +1,63 @@
-Return-Path: <devicetree+bounces-150231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFB07A417B3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:45:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 466E9A417C0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:48:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61EFE3B2724
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:43:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EC03167CEA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFF2E21CC58;
-	Mon, 24 Feb 2025 08:43:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A3A123C8A5;
+	Mon, 24 Feb 2025 08:48:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lfEQ/0p5"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kKW0J4Cu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB65D21CA1F;
-	Mon, 24 Feb 2025 08:43:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF6FF23C393;
+	Mon, 24 Feb 2025 08:48:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740386588; cv=none; b=Qeay6TTZXAScJ+KSdTcPWdFBzaVUAYQWTciaZofQYuAvIJpKOoamRbO6NeV8sQMeZt+FXt38oSA6WcoZOokLk4hWaEKyEPo0JTtBkFOTVuH0KXEb5Lem6HojJsqpUgLS4V1ySpPKhj4r2zGHfyJC/udzrGu3Uk4z+udoE5D49mU=
+	t=1740386882; cv=none; b=kcihlGtYl/qdfRl0OkCM4xnGV8F96TcXJpS1aS36oe4o9D/AheuuxQM24bQQf7SRY5WeGHbyW6qvAbk5uWsr6BIgqP6Eqr50NnKNUJjX00RNrBtFoyfvvV2/4VTbF188Y11FCoiupS350neBN4ODB1knk1sHcafgJVY2TQCpAAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740386588; c=relaxed/simple;
-	bh=SozSg9dc1TXOA0tDS6ZfB+gsRaqvUCgzO1QzpaBKudo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TR7H2Ayh+56QMWAkUhmuOM6B3BJ/bDwkmp/x8xSb1XhortR9pLRPGSk4pBeUyZIDN17D+khNfdLeRoaU19XYJVspzyBRcZ8j6QyMGuTG6OvRkZrezAvLi30RT2Nwcle/bzEYjKQb2MYe7geSPhuSgvvT0uNhqWUXIGD6d6s4uXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=lfEQ/0p5; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740386585;
-	bh=SozSg9dc1TXOA0tDS6ZfB+gsRaqvUCgzO1QzpaBKudo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lfEQ/0p5DwuSRVgPtxscSm6UyJaA19pSK0T7kj4PDjI1oCFlDLKiCklRvCYSX95Z7
-	 i9DaHLl48ZWUIATV1XzgL21XL7s76EZ4dLzJMQYdQdrHOO00qfCNPUrXJJAz9gFnwL
-	 XGxdjosE+2LbfSKZMT8hNUxsStdwLOKORt025a80DXpPRo88Z5VakYejOJ8wlzU83c
-	 AetXlnVOguLFcJrmYOGCNy9PAVq1AG7PA1wv2ClUhhIE3lBSVoAK97z123f5LYJ2Ef
-	 QC90IhwY5kw5+3ICo39YwYK15qmYFSijd8mJ9+6EYDx2XE+/NdTVxaR8dxlnoL4yAs
-	 5W7/Cb7BzEaoQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9AD2F17E0187;
-	Mon, 24 Feb 2025 09:43:04 +0100 (CET)
-Message-ID: <9225a454-f76a-46af-9a90-e0a074c3e268@collabora.com>
-Date: Mon, 24 Feb 2025 09:43:03 +0100
+	s=arc-20240116; t=1740386882; c=relaxed/simple;
+	bh=pDTOGwORtLPgQhFUOH/4VYNkvXuKFRWo1tnwWehTIwc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=d4F5ZqIsU+P/ZtW8LXe90GfXGUYQ/5sf00ZQ8tIuLi/BHv6ipzp07yR66BEIA0a5DZEzWZlggpgqeFRSpzo0lG4LrKH/AVb8tIuP1/QcOP3u1wLQg36p8FB7/nQmwhc0EOM9VGmad6NB5mTO10HYjtYN3GpM1PBD/oLmS72mBXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kKW0J4Cu; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51NNIEDD012818;
+	Mon, 24 Feb 2025 08:47:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	w0b1xqWe4sX2E8x1lbqQchpiv1HmY+V+Mse1J6myL14=; b=kKW0J4Cu/+Ynzbvk
+	aHj5utqKjJb8dODTZoI/2uqnWHh9Zjc3FDHmDcnOPmMoaaAY97cyuxjWM3Cbppps
+	NUiKliLQ76dfjX54jZ4k3XLtVKlH5TAEcyGh7kTmE4dRQrwNlSqKU1ZxgYAzQOg7
+	M1MjZNs+yzpSX/+L9rRipiuK6UycmXsr7BndFQuHUZqG9QtXZKgCw2e9jenPNrEv
+	0XiyMB0io9Q6UDDFnL1dIJzUoXLe6nyDLk2Yj5VrO1Q3tgEpqITy7SaJn9CspDQC
+	BgJOX/eaR2lW3tUbsackkMcrJ2FkChukj6qtDaywVKl01XaEXWOx4ftfuct7hUSY
+	i1xMcA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44y7v9c2nn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Feb 2025 08:47:56 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51O8luL7014916
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Feb 2025 08:47:56 GMT
+Received: from [10.216.5.175] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 24 Feb
+ 2025 00:47:52 -0800
+Message-ID: <f3349d2a-7eba-4865-9b58-0b2e7e57cc92@quicinc.com>
+Date: Mon, 24 Feb 2025 14:17:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,29 +65,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8390-genio-common: Fix duplicated
- regulator name
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20250221-fix-mtk8390-genio-common-dup-regulator-name-v1-1-92f7b9f7a414@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v1] dt-bindings: qcom: geni-se: Rename qcom,geni-se.yaml
+ to qcom,geni-se-qup.yaml
+To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <quic_msavaliy@quicinc.com>, <quic_anupkulk@quicinc.com>
+References: <20250221085439.235821-1-quic_vdadhani@quicinc.com>
+ <49fc59ed-9d09-46bd-9ca6-99d3445221f7@kernel.org>
 Content-Language: en-US
-In-Reply-To: <20250221-fix-mtk8390-genio-common-dup-regulator-name-v1-1-92f7b9f7a414@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+In-Reply-To: <49fc59ed-9d09-46bd-9ca6-99d3445221f7@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: exGbrHwgtzBIhAIOgGKdavBjV23LUldw
+X-Proofpoint-ORIG-GUID: exGbrHwgtzBIhAIOgGKdavBjV23LUldw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-24_03,2025-02-20_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 impostorscore=0 bulkscore=0 malwarescore=0 phishscore=0
+ spamscore=0 suspectscore=0 mlxscore=0 mlxlogscore=878 lowpriorityscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502240064
 
-Il 21/02/25 09:49, Louis-Alexis Eyraud ha scritto:
-> usb_p2_vbus regulator has the same regulator-name property value as
-> sdio_fixed_3v3, so change it to avoid this.
+
+
+On 2/21/2025 5:05 PM, Krzysztof Kozlowski wrote:
+> On 21/02/2025 09:54, Viken Dadhaniya wrote:
+>> The qcom,geni-se.yaml file describes the Qualcomm Universal Peripheral
+>> (QUP) wrapper and the common entities required by QUP to run any Serial
+>> Engine (SE) as I2C, SPI, UART, or I3C protocol.
+>>
+>> Rename qcom,geni-se.yaml to qcom,geni-se-qup.yaml to better reflect its
+>> association with QUP (Qualcomm Universal Peripheral) and the compatible
+>> string.
+>>
+>> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+>> ---
+>>   .../soc/qcom/{qcom,geni-se.yaml => qcom,geni-se-qup.yaml}       | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>   rename Documentation/devicetree/bindings/soc/qcom/{qcom,geni-se.yaml => qcom,geni-se-qup.yaml} (98%)
+>>
 > 
-> Fixes: a4fd1943bf9b ("arm64: dts: mediatek: mt8390-genio-700-evk: update regulator names")
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> That's just churn for no real gain. Not even tested churn.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+That's just churn for no real gain.
 
+We made this change based on below plan, we think this will be helpful.
+
+1. Rename qcom,geni-se.yaml to qcom,geni-se-qup.yaml. Reason at 2 below.
+2. Create qcom,geni-se.yaml with shared properties for SE-protocol (spi, 
+i2c, uart) nodes. This will be helpful for the shared schema in the 
+ongoing changes 
+https://lore.kernel.org/linux-arm-msm/f090d637-1ef1-4967-b5bc-6bfce3d7130e@kernel.org/T/.
+
+Not even tested churn.
+
+Sorry, we realized other SPI drivers also needs to be adjusted too. We 
+have validated dt_binding_check for i2c, spi, uart, and geni-se YAML 
+files but missed checking make refcheckdocs.
+
+Please let us know if any command/step is missing in further validation, 
+that will help us.
+
+> 
+> Best regards,
+> Krzysztof
 
