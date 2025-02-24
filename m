@@ -1,141 +1,139 @@
-Return-Path: <devicetree+bounces-150254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B30EA418C4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 10:23:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70B7BA418D4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 10:24:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E2643B91B1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:19:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B8D01885B3A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:19:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9A042505C8;
-	Mon, 24 Feb 2025 09:13:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4499C25333F;
+	Mon, 24 Feb 2025 09:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="ZCY8mIwq";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="sY9nQ0Vw"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="C2Fa0Csg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A905D2505C2
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 09:13:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A82F2505C1;
+	Mon, 24 Feb 2025 09:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740388404; cv=none; b=pj2RbZicsU5QGG1+vWQms75+zY3vXv+m+jUxp+NuxZalbufSfbIDBw0fjzkrha6ge4NctUkAHoMNyHJnQhMsAEEMImS8J/Uqhm5oqQ4QLwm8fmSBGYGOFVLsub68MhDbBkMFn2DKFa/ZiwZj6YK4X+Go992nxLutgWTL8OMmGVU=
+	t=1740388480; cv=none; b=TM4GmCKT3KZ2QPT56uCIV03ETTsfYsPA2vvEx5p7fWgXJIk+Xu252BYB5Nu/zFmK/bEG/2ji28WZ4fXjYs2KIU69OvyTA1HsUvUWIubfCWkWXhkGssjXingVpDFnsLaZ/BFbW0wmIRgiKZoqtWLKtqxVhRNFR6ijKxoSam4TTxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740388404; c=relaxed/simple;
-	bh=60cIs+DIXYdchH9pACueuahPmqmy3pt+hqSU+4rhSgY=;
+	s=arc-20240116; t=1740388480; c=relaxed/simple;
+	bh=xTzt/V7CzY1hpEI3Om7LRDujb1rhEg9ix3VdzeV16hk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dJwpcPHj8785IxqpcSdf/BOfroyTuvMHNRsb8ucUvVBxEIy0teD9mQvAyhy7l/aWT5bO+jgYcxw/K9cEb/viNP8rO/CCgq+qjCo/pApSmLB3Ah3BagJPXyShA7CSSkzHlxZva3yjYVcnJx9yr+7oyXRgI8FmKkYrlSjVHFjZ32c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=ZCY8mIwq; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=sY9nQ0Vw reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1740388400; x=1771924400;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=AjylcePXrVUnF6ZSzcm/lAR7+n7JhJ5A0QnbNiuRMSg=;
-  b=ZCY8mIwq4ejqj4sdi2mr/FDNaFRrQ2WNWYkhqmbeCrh/hx9sn1WPBqIw
-   3JRNanlF0utU8bJKJkjOCTlbBhJrMxuhr92VdfnU88oJ7m6kHk8pustYY
-   DavkMujrk52YCPIlIxO3kzMFbBE2/+9el7IjPcrsHDWhkF/i/wyXTPUcO
-   05r4uQu1MDgcjS4Nrtp2mStR9quMrjaIfbN6rpXWhXAWetZ/9pdMzCICS
-   KA9lcftuITSCPfDurYCymTg7VH9UNwui7OAZsFZaHA9HI1h8wxiyXgmAP
-   6VDOK5+BXOnkRJrLcyOEIbj8asEaBcnUcnbqZ7QttByVsA/1LCVMTynEf
-   g==;
-X-CSE-ConnectionGUID: wmngbpdqQX6ZkS3h2ZUSfQ==
-X-CSE-MsgGUID: zx5xB7opSoqf208iCoSzfw==
-X-IronPort-AV: E=Sophos;i="6.13,309,1732575600"; 
-   d="scan'208";a="42032430"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 24 Feb 2025 10:13:11 +0100
-X-CheckPoint: {67BC3827-E-B8541F8F-E50F9B0E}
-X-MAIL-CPID: 01CE408A85210DB28F086B4BC67B11FE_2
-X-Control-Analysis: str=0001.0A002114.67BC3827.0039,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 69C04166011;
-	Mon, 24 Feb 2025 10:13:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1740388387;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=AjylcePXrVUnF6ZSzcm/lAR7+n7JhJ5A0QnbNiuRMSg=;
-	b=sY9nQ0VwRxGqUaoFjGRj6FzsosJtQC16bPK16Ap9UL9cM8M8UnE8gZpdRZehylkaXF+Zmj
-	Wi8jm8/SXD2CtEALuHfqxEAXxm2liYsbu92O8vzfEdDvUJQNQ4HMJeWnU/DQTCT/hp5tXu
-	Gfe3/rD+RUur5byTub/NTrriVjI5OKwmMTFI4L0tsmMYiZGzdZ4hJiOqcaum4Su0L0Xvpm
-	YAkQixnZQYO+6F0/iXHzhtpQn34GFHr+GN1KkNOiqlMDLQOy76taIvFT1emdkWMbJDieoE
-	b+hFvSdyGmort3xMhaoAdna3igoWUohVTZXyNJHEthLwrtxA5whI8b2FmiWGAg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- Fabio Estevam <festevam@denx.de>, Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH] ARM: dts: imx53-mba53: Fix the PCA9554 compatible
-Date: Mon, 24 Feb 2025 10:13:05 +0100
-Message-ID: <12615755.O9o76ZdvQC@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250220133153.2380248-1-festevam@gmail.com>
-References: <20250220133153.2380248-1-festevam@gmail.com>
+	 MIME-Version:Content-Type; b=qrCcI3+CKRNvCElcIuh43QMXsn8J72Q//OXuytAk6WCIAER+GoutSIKEF8SfYJ+LqxMGgNJ5BWbES/JBhUECAPhYA8bNjbZxk54kjFHriiTF/kRJ7nVOGAs2BUD+KoGYbQ+no3lJKQvkD0FcEcDJfOkL+aZbvI1b2ciSYHe0ivw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=C2Fa0Csg; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=XWEADniHRGWcnzqbekRTv6/vtyL/MFZqYvazyCcPL/Y=; b=C2Fa0CsgkZ2/azdEMvlOzuYSf7
+	k3nUPkbtzi80jhqlddLODTZArqrjOaDbkhu6v27OfN1fu15qYrE1R7QEaDmBLvJTpwOZuImxSCdlv
+	PT7OHUIEehio+7EhaWCLkC5l2t1hnzwI3nK3xiD5mN1WzY9Ka+RgqS0uWK29Azt0pT4VxziiuCJYS
+	3+2l23UyPbiwiiGCJJ2j0ecmxMejx0hIixnJwUe4ao8qPsil05p4lQCEFfZyV9tyVszURLYogUaFm
+	F4EZIRXEQXn/DnoDqOooXtpsFYdHDBnzKB+LhJ2uBs5gGKOt+rhPaMwyRhRKK9AWlvUvhOiODeSmY
+	AsSi5PrQ==;
+Received: from i53875a0d.versanet.de ([83.135.90.13] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tmUXo-0006wL-ID; Mon, 24 Feb 2025 10:14:32 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Kever Yang <kever.yang@rock-chips.com>
+Cc: linux-rockchip@lists.infradead.org,
+ Finley Xiao <finley.xiao@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: clock,
+ reset: rockchip: Add support for rk3562
+Date: Mon, 24 Feb 2025 10:14:31 +0100
+Message-ID: <2920539.yaVYbkx8dN@diego>
+In-Reply-To: <28dcac28-9060-4f65-8167-64f6a0e4532d@rock-chips.com>
+References:
+ <20241224092310.3814460-1-kever.yang@rock-chips.com>
+ <z7jb32foci6bamqqddkkp34hazi2itp6uclarsoi5pkrgso2go@bxflagkaciq6>
+ <28dcac28-9060-4f65-8167-64f6a0e4532d@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-Am Donnerstag, 20. Februar 2025, 14:31:53 CET schrieb Fabio Estevam:
-> ********************
-> Achtung externe E-Mail: =D6ffnen Sie Anh=E4nge und Links nur, wenn Sie wi=
-ssen, dass diese aus einer sicheren Quelle stammen und sicher sind. Leiten =
-Sie die E-Mail im Zweifelsfall zur Pr=FCfung an den IT-Helpdesk weiter.
-> Attention external email: Open attachments and links only if you know tha=
-t they are from a secure source and are safe. In doubt forward the email to=
- the IT-Helpdesk to check it.
-> ********************
->=20
-> From: Fabio Estevam <festevam@denx.de>
->=20
-> gpio-pca95xx.yaml documents 'nxp,pca9554', so use this compatible
-> to fix the following dt-schema warning:
->=20
-> failed to match any schema with compatible: ['pca9554']
->=20
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+Am Montag, 24. Februar 2025, 09:47:40 MEZ schrieb Kever Yang:
+> Hi Krzysztof,
+> 
+> On 2024/12/27 16:28, Krzysztof Kozlowski wrote:
+> > On Tue, Dec 24, 2024 at 05:23:09PM +0800, Kever Yang wrote:
+> >> From: Finley Xiao <finley.xiao@rock-chips.com>
+> >>
+> >> Add the dt-bindings header for the rk3562, that gets shared between
+> >> the clock controller and the clock references in the dts.
+> >> Add softreset ID for rk3562.
+> >>
+> >> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> >> Signed-off-by: Liang Chen <cl@rock-chips.com>
+> >> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> >> ---
+> >>
+> >> Changes in v2:
+> >> - rename the file to rockchip,rk3562-cru.h
+> >> - remove CLK_NR_CLKS
+> >> - add new file for reset ID
+> >> - update to use dual license
+> >>
+> >>   .../dt-bindings/clock/rockchip,rk3562-cru.h   | 377 ++++++++++++++++++
+> >>   .../dt-bindings/reset/rockchip,rk3562-cru.h   | 360 +++++++++++++++++
+> >
+> > No, that's not a separate patch. Headers *ALWAYS* go with the bindings
+> > patch.
+> Will fix.
+> >>   2 files changed, 737 insertions(+)
+> >>   create mode 100644 include/dt-bindings/clock/rockchip,rk3562-cru.h
+> >>   create mode 100644 include/dt-bindings/reset/rockchip,rk3562-cru.h
+> >>
+> >> diff --git a/include/dt-bindings/clock/rockchip,rk3562-cru.h b/include/dt-bindings/clock/rockchip,rk3562-cru.h
+> >> new file mode 100644
+> >> index 000000000000..ad07ad3a12ad
+> >> --- /dev/null
+> >> +++ b/include/dt-bindings/clock/rockchip,rk3562-cru.h
+> >> @@ -0,0 +1,377 @@
+> >> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> > Why not using license requested by checkpatch?
+> 
+> The checkpatch does not report error/warning for this license, and this 
+> is the same as many other SoCs.
+> 
+> Which license is recommend in the header file?
 
-Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+I suppose
 
-> ---
->  arch/arm/boot/dts/nxp/imx/imx53-mba53.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx53-mba53.dts b/arch/arm/boot/dt=
-s/nxp/imx/imx53-mba53.dts
-> index c14eb7280f09..3cdb87ac1d7c 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx53-mba53.dts
-> +++ b/arch/arm/boot/dts/nxp/imx/imx53-mba53.dts
-> @@ -162,7 +162,7 @@ codec: sgtl5000@a {
->  	};
-> =20
->  	expander: pca9554@20 {
-> -		compatible =3D "pca9554";
-> +		compatible =3D "nxp,pca9554";
->  		reg =3D <0x20>;
->  		interrupts =3D <109>;
->  		#gpio-cells =3D <2>;
->=20
+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+
+According to [0] "GPL-2.0" and "GPL-2.0-only" are equivalent, but I guess
+"GPL-2.0-only" simply makes the "only" part more visible.
 
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Heiko
+
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/LICENSES/preferred/GPL-2.0
+
 
 
 
