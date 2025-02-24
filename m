@@ -1,121 +1,117 @@
-Return-Path: <devicetree+bounces-150118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C723A4144E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 04:46:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C900CA41476
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 05:20:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC3621894AF7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 03:46:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADFEC16C5C9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 04:20:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDADF1DF971;
-	Mon, 24 Feb 2025 03:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090FC1A0BCD;
+	Mon, 24 Feb 2025 04:20:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RkR+ERFx"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="SIGYI9pD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892271DE4D3;
-	Mon, 24 Feb 2025 03:45:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740368747; cv=none; b=lYbIURcFIdXDWiTEKMEIJcVruvTEIyxXLjPnKyQYmqaQn54jmyYMV35keusWchjGMTyhPsKZQZVzHRPlxOWIzzAUvZtn3aBXmfaotr7J0WPLBdhJwbIMyzvR8UD0v9ptO50WwS+svDJpeq9S5QUiJr8Piefw8Zf+QbQdn2tPb20=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740368747; c=relaxed/simple;
-	bh=6a0qjdqlzvGzQVstllexhGYhGqe+l900EvniR1D7J4g=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=MZlduORlIkAWXAsNBymZ6D2T3jU5lglU/az/H05lgGt1MdTR9Bb08E8fT9FfgSV8fCS/I8B0fz8WtaaHdarD8l1e7+/vTnJ9Wwx5/fcSLV111NU0u/LyvFOm0AQ7ZDXn8shaYrYxPxmeLTQ/5qrU4CNCFr+asZFMXYjtgqLxQ7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RkR+ERFx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D322C4CEE8;
-	Mon, 24 Feb 2025 03:45:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740368747;
-	bh=6a0qjdqlzvGzQVstllexhGYhGqe+l900EvniR1D7J4g=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=RkR+ERFxNZmnBs2BeeB0SYJ1Z1A24/AlraglZB+UaMuqntfYU2Uar+pP3y+iob1ik
-	 TNPWnR06qmZut+a++1LJvHnNlxVYnMpOVMW9GcXLteZjsedOkqhVuGF8kwBC7iaY/c
-	 as3BPFNKnYsVyVKU8N6W1NyTISlx4tVvaSjiOSlE+enNGXks/RxQAEyel1MzddQVt3
-	 2XeYg4SuIp6ZseOLWkUXVfjtdQfuJ4f36xltML4JACN2cWtMDp8VlxjSlGJHrAWObq
-	 aoCp8FztTrFLZzeKus2vDfG1t0hC/UY5IfvD+T08OTK0m44Sajjf+y6CkJtwxBpVAd
-	 l12y9aAZjgAbQ==
-Date: Sun, 23 Feb 2025 21:45:46 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14BA326AF3;
+	Mon, 24 Feb 2025 04:19:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740370801; cv=pass; b=qfMyVQsam6z3dRVHwdViWRMUABGsyF8ae0P95AQJ9LSF8OmZ7kuksxCOszbRhMSmQB9B9/kpBej4/yY5qGTXOgk+jwDmzbChXM0VcAL/x8zbBU4MmZjhoMA/W4GoR82CWqcIjLbzKLaSJut6FmBvpp5tMp9YYLInNdKtQGaD9jA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740370801; c=relaxed/simple;
+	bh=KvpBrS6TIBDeYs2gxcmcsV16S5YmNRzk55EH1IGQkhU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FB3Ip8l18T4vpJpM4TAlOBtpVqs9++dqd99NBIqWlZ7quEgNnf6Auepz/UqaodkS8gy2XG7Hr7ehLraLSB7BVMR53rGmA23ctpCDsLeDiTuI+6ThEHBzAx56GerNypOXj1Vcx6OCq1tQBhk++1bNM7ZavaVJnxG80MbCtpGeZ78=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=SIGYI9pD; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1740370749; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=UAjNen4dEW6JnpcOC6Mf+YxMzDXzamt+sZO0B9Iti4aVH1WNB5ZcTB44337CtWL2LIUtTFvLK5KZ0mDpO9BEa267QSFAiBXcpL6ncpNDypzxKZvdX//MKJTBi3v6FyNG7mxiAYdsG41iFK6zw7Ss1F6pLGmsUqbMD+EDpxoFGD0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1740370749; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=4ZkwbmlJtwopSPqeSfMDIV4RYNmzpFeckq4z8tSdpLw=; 
+	b=hUIrcAJnWTgpPTuMAdSRUkcITbI8xW5Ra1m0CC/9Zctelb8pi06iIdWoSSpKrV5P+lhK5AScmqWJAOYes1vceEOTuGz1t0HJ2gjm0ICKiM92bH7bxW6iam3u2Eh8VkBZpG9qlZljTH8GxRlk6TrtybUvF4IYOjIpEriRnkK59VI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
+	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740370749;
+	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=4ZkwbmlJtwopSPqeSfMDIV4RYNmzpFeckq4z8tSdpLw=;
+	b=SIGYI9pDbacW3G3kg7IVvLcHNtQD8eaLBfcZg1WT1AzVN22iYS5X+dtLvvt2rEOK
+	mFxj1Jz5DZIt+EWl61cHYwZLOMrBVCIgs/wC+1ZNjvGD6ewpmFpjc4Jhkc6xQebDUdj
+	h3tBMqnLfqV3vaYp2Ve7I3NNmJkoIkH4m7BHRFy4=
+Received: by mx.zohomail.com with SMTPS id 1740370748102832.3357248261832;
+	Sun, 23 Feb 2025 20:19:08 -0800 (PST)
+Message-ID: <d13f13ac-1501-4427-b6d3-ee161eeb932a@collabora.com>
+Date: Mon, 24 Feb 2025 07:19:01 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Lee Jones <lee@kernel.org>, 
- linux-gpio@vger.kernel.org, Joerg Roedel <joro@8bytes.org>, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- dri-devel@lists.freedesktop.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, linux-kernel@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
- Maxime Ripard <mripard@kernel.org>, linux-clk@vger.kernel.org, 
- freedreno@lists.freedesktop.org, Stephan Gerhold <stephan@gerhold.net>, 
- Thomas Zimmermann <tzimmermann@suse.de>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
- Stephen Boyd <sboyd@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
- Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org, 
- David Airlie <airlied@gmail.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Rob Clark <robdclark@gmail.com>, iommu@lists.linux.dev, 
- devicetree@vger.kernel.org
-To: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-In-Reply-To: <20250224-msm8937-v3-7-dad7c182cccb@mainlining.org>
-References: <20250224-msm8937-v3-0-dad7c182cccb@mainlining.org>
- <20250224-msm8937-v3-7-dad7c182cccb@mainlining.org>
-Message-Id: <174036874208.769324.12190196634420728570.robh@kernel.org>
-Subject: Re: [PATCH v3 7/8] dt-bindings: arm: qcom: Add Xiaomi Redmi 3S
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 4/6] media: platform: synopsys: Add support for HDMI
+ input driver
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Shreeya Patel <shreeya.patel@collabora.com>, Heiko Stuebner
+ <heiko@sntech.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Hans Verkuil <hverkuil@xs4all.nl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: kernel@collabora.com, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Tim Surber <me@timsurber.de>
+References: <20250223173019.303518-1-dmitry.osipenko@collabora.com>
+ <20250223173019.303518-5-dmitry.osipenko@collabora.com>
+ <88b02c37-6741-459b-b966-d6d58d1f9b6f@wanadoo.fr>
+ <c30a291b-c81b-4da1-a0ae-270d323b28e3@collabora.com>
+ <bc1f5334-b0fb-4e81-979d-feb17886ac40@wanadoo.fr>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Content-Language: en-US
+In-Reply-To: <bc1f5334-b0fb-4e81-979d-feb17886ac40@wanadoo.fr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-
-On Mon, 24 Feb 2025 02:56:22 +0100, Barnabás Czémán wrote:
-> Document Xiaomi Redmi 3S (land).
-> Add qcom,msm8937 for msm-id, board-id allow-list.
+On 2/24/25 00:11, Christophe JAILLET wrote:
+>>>
+>>>> +    ret = cec_register_adapter(cec->adap, cec->dev);
+>>>> +    if (ret < 0) {
+>>>> +        dev_err(cec->dev, "cec register adapter failed\n");
+>>>> +        cec_unregister_adapter(cec->adap);
+>>>
+>>> Is it needed to call cec_unregister_adapter() when
+>>> cec_register_adapter() fails?
+>>
+>> Yes, it's confusing, but unregister is needed to free the adapter
+>> properly, it's prepared to do it. Thanks for the review.
+>>
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+> I don't know this API, so you'll get the last word, but
+> cec_unregister_adapter() does not seem to do that many things in such a
+> case, unless I miss something. See [1].
 > 
+> CJ
+> 
+> [1]: https://elixir.bootlin.com/linux/v6.14-rc3/source/drivers/media/
+> cec/core/cec-core.c#L370
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On a second look, apparently you're right and
+cec_notifier_cec_adap_unregister() should be used there.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250224-msm8937-v3-7-dad7c182cccb@mainlining.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+Best regards,
+Dmitry
 
