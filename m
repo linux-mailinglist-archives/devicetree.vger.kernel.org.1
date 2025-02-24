@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-150179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D35CA416B9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:57:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE92A416D7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:03:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D07A4188C3BB
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 07:57:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A1453A23DE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:03:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15EFB24060C;
-	Mon, 24 Feb 2025 07:57:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65A9F18CBE8;
+	Mon, 24 Feb 2025 08:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uEawLfnH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YXswBPsv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D728A1898ED;
-	Mon, 24 Feb 2025 07:57:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36A3E27453;
+	Mon, 24 Feb 2025 08:03:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740383862; cv=none; b=dJJJr1PmOxlbooRdFXRbMnFreN+TewV0nvYaDryGySl1QgKPAgGuFOmYBEgHV+rzXrX6FwPkJIM7X3MYnFGbR96kclUp4h7239F8QiIoPL/uTpE8Y4cQxW9OEmtpCvZru6L4vekHPbBCOIqGQb4OC3EbvMrRVJHQe2miViewoIQ=
+	t=1740384210; cv=none; b=kXKYu3YI5ItCxWEvet6op+84TwfYisiNZs0REt80fyGhzYOKyP9d1tVSCnSmZICDNlxBWgMgPJZBVxkfOCQ2tClavNr0eNyfjqMDBNiJQ5LZcWOqCiGU3YmDDKgtJ3wC/MBzdxpSdgXN1ZdqILOdV8jnU6K4gX05dbAlwzca+4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740383862; c=relaxed/simple;
-	bh=xjtGRKkld7/ydj8yliJQ0o5T5/qlMxtKbXMn/fRvbdw=;
+	s=arc-20240116; t=1740384210; c=relaxed/simple;
+	bh=lyl7yOsITqFAN2zpiCH4jCToxIG3Esxeql0s20ft9LM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G+IM9oIO/YXP5KOOAdZEisoH+iowSJiFrEMmgNGZy0EsV1sFCiVM+rB9zOhIoIMHgcZWHz0Gy2CdqXKFTSo4qV4C/r4iDfqYW4tKC6b5Z4nEtWbJ7pSEOmcyquc1UN35kko3E1PCX75QLT0YYBGb86oyI3JZUCVF3cuWzqogtIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uEawLfnH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0160DC4CEE6;
-	Mon, 24 Feb 2025 07:57:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bdO8UJlawhP17zKUfSbjax8+Tc9bowupWdX8y03kIrJcvu+6ecXLHnyhxOAlKgzCAOHu2yjSoPN21ut1lYVre3WfJJNbOc4WT4JCCTn+exu2UeVRhj3SZg4ivJd+VeAydV/Uu1myK9x08t/EJq2/oafaIvnLidKV1qJOluEBaQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YXswBPsv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CA60C4CED6;
+	Mon, 24 Feb 2025 08:03:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740383861;
-	bh=xjtGRKkld7/ydj8yliJQ0o5T5/qlMxtKbXMn/fRvbdw=;
+	s=k20201202; t=1740384209;
+	bh=lyl7yOsITqFAN2zpiCH4jCToxIG3Esxeql0s20ft9LM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uEawLfnHWtC9vzMuDjqURQev/lEDQIVftTnCLObR0yBsCjRPjpNszlY3/vpy4Zctw
-	 g4MDCTzV0AZ/r4/cpNhLIZ6eAD7yy4TNXLsWGaV4RjI117LM8mT1wHJfY3o9jtQGfR
-	 x+nVwWhH7n/fP/1q5hD/KfFSPWXr2lkcE97PPmB0Cg/gIQAyMZU32SJEczytd3xZ4O
-	 kk2FyKl/TNErloYF5HGf29Gm8qAKcVyX3IAPWSLdN4rACcfajdhlhTVp+ysELAaGMX
-	 JqUI3fg1YtvMpA3GqiqbRm3XlxNmlZ/faq/XTn3wqT13LpgkBY9Ix6p67A9LWkMpM6
-	 DBHY9WwCIR8rg==
-Message-ID: <144202cc-057c-4a7d-852a-27e979284dd2@kernel.org>
-Date: Mon, 24 Feb 2025 08:57:34 +0100
+	b=YXswBPsv0nFSIH6XdR0tRPEbstCig8mMX+JHPohnyiDLRc1KKy02v4yQ3un4f0/Zw
+	 heKDdYGxCwIoVQerJuJ/pgsGCdquT773zJk/mu2RZ54dfNpkcVAwSbCmy7qEXZTbji
+	 dbvA9uTW7d3N8IbkhzUavMIEQnsEVPu0M2Z4fuDuwb//OObhxBYdfmTwwtW1JLx4lI
+	 mOOevh9smpsyQmLqOTwJmrSFYeTSA5j1SPtw65ubu+YMFVwWGSDmO4oUtxK9NStTNA
+	 7axfEVBUx/9hRCh1ps0ob0vma7pzNZemMEIAnESwiMrjQpY8VVQMpmb7Fbq1ngMws+
+	 NOO3BecQy30UQ==
+Message-ID: <b905192e-6cbe-4d84-b31e-f14b47c3a698@kernel.org>
+Date: Mon, 24 Feb 2025 09:03:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 3/3] PCI: amd-mdb: Add AMD MDB Root Port driver
-To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>, bhelgaas@google.com,
- lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, michal.simek@amd.com,
- bharat.kumar.gogada@amd.com, jingoohan1@gmail.com
-References: <20250224073117.767210-1-thippeswamy.havalige@amd.com>
- <20250224073117.767210-4-thippeswamy.havalige@amd.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: imx8mm: Add pinctrl config definitions
+To: Maud Spierings | GOcontroll <maudspierings@gocontroll.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250218-pinctrl_defines-v2-0-c554cad0e1d2@gocontroll.com>
+ <20250218-pinctrl_defines-v2-1-c554cad0e1d2@gocontroll.com>
+ <20250223-messy-silent-tuatara-68f2e7@krzk-bin>
+ <PA4PR04MB76309B97A0044049F5841C8AC5C02@PA4PR04MB7630.eurprd04.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,27 +111,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250224073117.767210-4-thippeswamy.havalige@amd.com>
+In-Reply-To: <PA4PR04MB76309B97A0044049F5841C8AC5C02@PA4PR04MB7630.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 24/02/2025 08:31, Thippeswamy Havalige wrote:
-> Add support for AMD MDB (Multimedia DMA Bridge) IP core as Root Port.
+On 24/02/2025 08:39, Maud Spierings | GOcontroll wrote:
+> From: Krzysztof Kozlowski <krzk@kernel.org>
+> Sent: Sunday, February 23, 2025 11:27 AM
+>  
+>> On Tue, Feb 18, 2025 at 09:39:16AM +0100, Maud Spierings wrote:
+>>> Currently to configure each IOMUXC_SW_PAD_CTL_PAD the raw value of this
+>>> register is written in the dts, these values are not obvious. Add defines
+>>> which describe the fields of this register which can be or-ed together to
+>>> produce readable settings.
+>>>
+>>> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+>>> ---
+>>>   arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h | 27 ++++++++++++++++++++++++++
+>>>   1 file changed, 27 insertions(+)
+>>>
 > 
-> The Versal2 devices include MDB Module. The integrated block for MDB along
-> with the integrated bridge can function as PCIe Root Port controller at
-> Gen5 32-Gb/s operation per lane.
+>> Why are you adding defines which have no users? This is just dead code.
 > 
-> Bridge supports error and legacy interrupts and are handled using platform
-> specific interrupt line in Versal2.
+> I will be sending more patches in the near future that will use these bindings, the total stack of patches is starting to grow though so I'm trying to spread it out in multiple easy to manage bits.
+> It is also a bit of a test if I can continue using these defines as I plan, or if that will not be accepted and I should instead revert to using raw hex values.
+
+Please wrap your replies.
+
 > 
-> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes:
-> | https://lore.kernel.org/oe-kbuild-all/202502191741.xrVmEAG4-lkp@intel.
-> | com/
-Tags never start with | and are not wrapped. But anyway, robot did not
-report this patch. Drop these.
+> If this is a problem then I will keep it in the larger patchset that is to come.
+
+Defines without users is dead code. It's not even easy to validate if
+they make any sense without seeing how they are used.
 
 Best regards,
 Krzysztof
