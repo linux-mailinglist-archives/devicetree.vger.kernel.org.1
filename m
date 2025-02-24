@@ -1,145 +1,144 @@
-Return-Path: <devicetree+bounces-150471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A82C0A423FC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 15:51:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B109A4234A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 15:39:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CA9A3B004A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 14:38:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECC9B1895CBC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 14:37:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF9C218A95E;
-	Mon, 24 Feb 2025 14:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A31118F2DF;
+	Mon, 24 Feb 2025 14:33:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HMR9ZyF5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FJi61wtk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 825532629F;
-	Mon, 24 Feb 2025 14:36:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2C691537AC;
+	Mon, 24 Feb 2025 14:33:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740407819; cv=none; b=DMCHXKXmgcUC0fgs2hyyGmJJiCml1inyHAh1XXqWDyynrDVoVfdPKYmYrbb0UJflGFtdy+B8p3rl8Wi15Fvv07LpN3XbTz5dBQRqrb1hN4ts6yjrm/JykVKFkJs706FocPkLUToQF9CULAgaaY2qBhWKMDcSj5oKSTvxLrLA25w=
+	t=1740407599; cv=none; b=ALJJIbBgN95JwCmJhY7Qm3H0SzXi8uWEZHaDdubnQLGORCVKqV70R5kAl9lYsRQS7sUrjSPtCSwqzOpZ02s8d2o9Kz/u9ciZM2j8NnMRvHewEhQ0/nkGRodGbwKUQSfX+HGs/OTPpLEhMaVfVzPbiWqCmbaVxd7PTwuKW4pu7LA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740407819; c=relaxed/simple;
-	bh=ZPkqFHkfpEEXBvv/JiiAXJD73VY1MQPjnfI68AzNmMg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g7AMyIuI5fRanzd7OIL+A/VQ94kmsJ9JyZX9S0reG8ia6odXxQiJw1N9kUKcnE8XiY8pv317dnmwGTfvrZuX7zEmYr16kfN4yGaKc7eFY2yoeh5wNwgVwsUr3Vu9gKuvtw08a1I9XAoRaFnoYPARXVCBFvgI05zLveINtf6FeD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HMR9ZyF5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C36ADC4CEE6;
-	Mon, 24 Feb 2025 14:36:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740407819;
-	bh=ZPkqFHkfpEEXBvv/JiiAXJD73VY1MQPjnfI68AzNmMg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HMR9ZyF51+gCTr5O6+tVcp768/JhJHldAdQMuQdHABvUY7CdUug/Ab1wT3ObgQGAC
-	 7NzdY7UbKVP+eM8BgNncEZMMwXw3Wso7TJk0q2VyeryHtrjfnrTE2e5UNcbDKvPLhE
-	 5rK+17rtGXNWyA/lMLkVwP2uxrzQbGpoqpM86P+xp+fCHrb56wfT+YG6s+mEWHlMq7
-	 +kkYVhJASr3nwSzp8WJx6sGZ3GtEKDCIWteAIxOWx0XP2wkAbG4nWMVBfM/fSU2Vi1
-	 69Xel5I0sX2/L5q0XRAaPHw5kaC8vo10XnIAcPaeS8jvBssTAmWVUTy3s4cxy0sDjX
-	 NCx7zo+hSuMbw==
-Date: Mon, 24 Feb 2025 16:36:38 +0200
-From: Mike Rapoport <rppt@kernel.org>
-To: Wei Yang <richard.weiyang@gmail.com>
-Cc: linux-kernel@vger.kernel.org, Alexander Graf <graf@amazon.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Andy Lutomirski <luto@kernel.org>,
-	Anthony Yznaga <anthony.yznaga@oracle.com>,
-	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Eric Biederman <ebiederm@xmission.com>,
-	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Paolo Bonzini <pbonzini@redhat.com>,
-	Pasha Tatashin <pasha.tatashin@soleen.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Pratyush Yadav <ptyadav@amazon.de>,
-	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Tom Lendacky <thomas.lendacky@amd.com>,
-	Usama Arif <usama.arif@bytedance.com>,
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v4 12/14] x86: Add KHO support
-Message-ID: <Z7yD9g1AgtUUfKr0@kernel.org>
-References: <20250206132754.2596694-1-rppt@kernel.org>
- <20250206132754.2596694-13-rppt@kernel.org>
- <20250224071355.xsl2dbupda4dhfzl@master>
+	s=arc-20240116; t=1740407599; c=relaxed/simple;
+	bh=wDbiPtUfE3pBD2ibGHCUp1eNQeURYMrRbZBQxQgN6Ek=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aRiMoWKXgubt8zQV4uHUQK5mTkQEZyubz2ZNqsVAB8TwY6AvLjzOdv6mqALEknSpyS4AFPsTUYWMkRVc7tZLiRevA48/NsMWHK+0w1O9z/p3CLbtBOo4nK4zT4W2stsBRYP7L2J+bT3199pKibWeG8r3GONZ5Tspb/EWBiV7aAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FJi61wtk; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5df07041c24so6599481a12.0;
+        Mon, 24 Feb 2025 06:33:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740407596; x=1741012396; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=35t1hJFOdpa+T0AaHCGkVAi9es9mhFSUPTxVJx4I/9w=;
+        b=FJi61wtkedOmV4HEOK7e2YvQFhSlur5GH0VGy7i/hburgQa4OXk8ji4MavVwe9mQq6
+         qi5IZcKci0aavGMD2ZZUZ8LAVP143hM6S44bVltFvG6A8/pK8FmSFJq/qNwmIDkKJ3BP
+         PlYtJDxQYF3PLMIImcZuRCMTse6+4yZEBH5UxWD1ykpnUdsLNllGuX5+TxqHXcvGLQ4G
+         EyTXJjmL5oo6YRupzgn7kJZnaCuM2nD/yFxJ50FQjSACtdtfg6T2lCADPyBvMp0feCr+
+         WlxyE0A13nrczic2YiBUXS3vUJW/FziPeO1xCjtFch/4cmxld8SadFkoeyKHBsuayG7z
+         ZnOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740407596; x=1741012396;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=35t1hJFOdpa+T0AaHCGkVAi9es9mhFSUPTxVJx4I/9w=;
+        b=hq2GRnbpdas0ytHNEQiBgmXj2W+Exbqxlh7DSsvUKzPp/uwvdcgSrLUAMr3YG/wkEr
+         61MuUugkop058PurZHmsNDKdtE0P52tyS/rY03gsg5GoC08NuvP9z4BL1//zgRWnKh4h
+         R4MXIkzzyTVcNGhVd1e0mHX2Dye+MQIJQh6SkwsZcd0T9wRTNrMuoX9sw8Mfdd1HViQ5
+         1hDpfZceewhPzYizC0gUAOFeromz102aJuPoq7oCVRXvgo74AeBGuMyuQjUn2FebBQQs
+         gBa6K7Sjv3IFyzp+tuHyYeQ0SIfphp4VKpUdc5wWEpW7MUjMn+hYdoKJbW92+EPcF6N3
+         tvcw==
+X-Forwarded-Encrypted: i=1; AJvYcCUpYKxOoet6t6qbzV57Rir3J5MQEmGykDXgjrF2PculY22GzhhSVXBGadunty2ze0ZRyB65JyXmeMlL@vger.kernel.org, AJvYcCVsdOaQJFWawiVcGP3pxzqOsm+cim5peB/wHKQa7BI3ONyRc3cJ6WHjiP/FC2HokpcWNyu3kp31kJeLyOfG@vger.kernel.org, AJvYcCW989/cm+xPpYocB88fvxI/9cNNMedLOTBcL6VftzWDMQ8SBtPX0alUYUKb9TB+JGD6oDYerJLgiMm1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwK3CEYumjTSNzVjEsu/g61FM/0GxE81tl+uE8doF2Qm68JTYhG
+	mKGi6WUJhJV3dKpZOTJCZtrcSBLaU7R6aWEQHFnxZaCKuvzBxISS
+X-Gm-Gg: ASbGncuQOyEZRYW+ovsQ1hfNO2nW9RHayygwE66H1Ae9n1LEA2rqNxU3OSHWFCrS17W
+	pT/55PHLadaUtT/HTkleqhb/KlHQtY6M/e308IfZ10sZ9TsA6+qG7uaaONcXizMiG77AmKMTz9f
+	XpF7pxW/lVF+vCRbMwI2taMHKa0Z7WBjrHm1TiWlsW4rS0e/0HShiXA5YPpxvhkRbCKklNdh4tJ
+	TFQ0uZe2NOBnipV+eIfalVp/+PKkg7K9GzYxmDUjTJvp/0Ah8K5MwO/8rMJyqNEMNoA6uvmQl7/
+	51ULpUujlRTNBIRIuQ8qzil9x/vzaWq96bS7vkwfOHh62ZkmJJg=
+X-Google-Smtp-Source: AGHT+IEpuzX6lyN2J9M4/ZBYAmLlIpNrQmbES6PeBLBJOGfxNsj0XhIs5KAuBO9sPVp0JF08jFkowg==
+X-Received: by 2002:a05:6402:13c8:b0:5de:d803:31f3 with SMTP id 4fb4d7f45d1cf-5e0b7222fa2mr10839330a12.21.1740407595653;
+        Mon, 24 Feb 2025 06:33:15 -0800 (PST)
+Received: from [192.168.5.199] ([92.120.5.6])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dece2721d9sm18891253a12.56.2025.02.24.06.33.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Feb 2025 06:33:14 -0800 (PST)
+Message-ID: <36451a88-bfc6-4402-8e16-890d524a9368@gmail.com>
+Date: Mon, 24 Feb 2025 16:42:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250224071355.xsl2dbupda4dhfzl@master>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] arm64: dts: imx8mp: change AUDIO_AXI_CLK_ROOT
+ freq. to 800MHz
+Content-Language: en-GB
+To: Adam Ford <aford173@gmail.com>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Marek Vasut <marex@denx.de>,
+ Stephen Boyd <sboyd@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, linux-clk@vger.kernel.org,
+ imx@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Lucas Stach <l.stach@pengutronix.de>
+References: <20250221190929.31469-1-laurentiumihalcea111@gmail.com>
+ <20250221190929.31469-5-laurentiumihalcea111@gmail.com>
+ <CAHCN7xL=QZHs5sD7Ja7pBOcXM8cWVQYe270EizDFN--CH_5+zQ@mail.gmail.com>
+From: Mihalcea Laurentiu <laurentiumihalcea111@gmail.com>
+In-Reply-To: <CAHCN7xL=QZHs5sD7Ja7pBOcXM8cWVQYe270EizDFN--CH_5+zQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Feb 24, 2025 at 07:13:55AM +0000, Wei Yang wrote:
-> On Thu, Feb 06, 2025 at 03:27:52PM +0200, Mike Rapoport wrote:
-> >From: Alexander Graf <graf@amazon.com>
-> [...]
-> >diff --git a/arch/x86/kernel/e820.c b/arch/x86/kernel/e820.c
-> >index 82b96ed9890a..0b81cd70b02a 100644
-> >--- a/arch/x86/kernel/e820.c
-> >+++ b/arch/x86/kernel/e820.c
-> >@@ -1329,6 +1329,24 @@ void __init e820__memblock_setup(void)
-> > 		memblock_add(entry->addr, entry->size);
-> > 	}
-> > 
-> >+	/*
-> >+	 * At this point with KHO we only allocate from scratch memory.
-> >+	 * At the same time, we configure memblock to only allow
-> >+	 * allocations from memory below ISA_END_ADDRESS which is not
-> >+	 * a natural scratch region, because Linux ignores memory below
-> >+	 * ISA_END_ADDRESS at runtime. Beside very few (if any) early
-> >+	 * allocations, we must allocate real-mode trapoline below
-> >+	 * ISA_END_ADDRESS.
-> >+	 *
-> >+	 * To make sure that we can actually perform allocations during
-> >+	 * this phase, let's mark memory below ISA_END_ADDRESS as scratch
-> >+	 * so we can allocate from there in a scratch-only world.
-> >+	 *
-> >+	 * After real mode trampoline is allocated, we clear scratch
-> >+	 * marking from the memory below ISA_END_ADDRESS
-> >+	 */
-> >+	memblock_mark_kho_scratch(0, ISA_END_ADDRESS);
-> >+
-> 
-> At the beginning of e820__memblock_setup() we call memblock_allow_resize(),
-> which means during adding memory region it could double the array. And the
-> memory used here is from some region just added.
 
-There are large KHO scratch areas that will be used for most allocations.
-Marking the memory below ISA_END_ADDRESS as KHO scratch is required to
-satisfy allocations that explicitly limit the allocation to ISA_END_ADDRESS,
-e.g the real time trampoline.
- 
-> But with KHO, I am afraid it would fail?
-> 
-> > 	/* Throw away partial pages: */
-> > 	memblock_trim_memory(PAGE_SIZE);
-> > 
-> 
-> -- 
-> Wei Yang
-> Help you, Help me
+On 21.02.2025 21:37, Adam Ford wrote:
+> On Fri, Feb 21, 2025 at 1:11 PM Laurentiu Mihalcea
+> <laurentiumihalcea111@gmail.com> wrote:
+>> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>>
+>> AUDIO_AXI_CLK_ROOT can't run at currently requested 600MHz w/ its parent
+>> SYS_PLL1 configured at 800MHz. Configure it to run at 800MHz as some
+>> applications running on the DSP expect the core to run at this frequency
+>> anyways. This change also affects the AUDIOMIX NoC.
+> Unless I am missing something, the i.MX 8M Plus Applications Processor
+> Datasheet (rev 2.1)  has a table of frequencies, and
+> AUDIO_AXI_CLK_ROOT is shown to be 600MHz nominal and 800MHz for
+> overdrive.  I agree that it's likely not running at 600MHz now, but
+> 800MHz may be out of spec for people who are using the nominal voltage
+> instead of the overdrive, since overdrive requires higher voltages
+> than the nominal.
+>
+> adam
 
--- 
-Sincerely yours,
-Mike.
+
+You're right, this would not work if someone was using
+
+nominal voltage. Do you have an upstream board in mind/usecase which
+
+works with nominal voltage instead of overdrive? As far as I understood from
+
+Lucas's patch ([1]) there's no upstream board using nominal voltage?
+
+
+CC-ing Lucas on this as his patch ([1]) is similar to this in that they're both
+
+trying to use overdrive clock frequencies in the DTSI and I'd very much like
+
+to have some sort of consistency in the DTSI if possible.
+
+
+
+[1]: https://lore.kernel.org/imx/20250204182737.3361431-1-l.stach@pengutronix.de/
+
 
