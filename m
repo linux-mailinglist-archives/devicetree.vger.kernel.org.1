@@ -1,99 +1,169 @@
-Return-Path: <devicetree+bounces-150625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0F23A42E34
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 21:45:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70935A42E56
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 21:53:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB23C1778B6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 20:45:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B9F8176951
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 20:53:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9B1F204F92;
-	Mon, 24 Feb 2025 20:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07ABE25A34D;
+	Mon, 24 Feb 2025 20:53:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X4PuSmUd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="foY8LVKe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC14618A6BD;
-	Mon, 24 Feb 2025 20:45:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EF1A25C6E1;
+	Mon, 24 Feb 2025 20:53:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740429920; cv=none; b=PofCIGiTNOl6VuOI/tAzMqjvo8F4QUtuhQ7+D5tVbCAS4A1ssohHXLggZCzfscv1rasIsgodGLMD6Nw48SvRjqfb2Ah8oWi5jcvhv9Q1qTyC7ksZOW+cpdoKUybBUNVZv5jKzbYDKdCDln4lQ3aDeOuc/GrmtHxvF2pLqrEEL9k=
+	t=1740430415; cv=none; b=g+B3nPDA32uCcCcw8hWy2bthYsAncDmqiZJDWNEhcDXxaTeeX55KjH8pvAX106ckvBLu80CXkt1rvriWZ7TA5Wv+11XTtyn3oGxoeArsyjGtfxWUuT3y/YLFwAeCGPxmfnmyWIMsE2DavzpXERegRuT3Ayd6sU2SSOKKMsbKl3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740429920; c=relaxed/simple;
-	bh=QgksAgFLJVabfIFwX75z/Nx5a6DuAlpc5gJA1Ykv2Ec=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cVE6kmTMR7gAyr98rL75Mvn59QTsImL5Zs5+kb5sAac08cQS0O7qi+8kuKV8DEnikHpkXYAajZQHB55zWONIyitQk5KrUbGAdVwAcjSuxiKVvBtm7uCKetBsWJv8RevSMEAWygiUE069k4Gb3Dxqip1gPwrjk1QyW+WeFymCe2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X4PuSmUd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D491C4CED6;
-	Mon, 24 Feb 2025 20:45:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740429920;
-	bh=QgksAgFLJVabfIFwX75z/Nx5a6DuAlpc5gJA1Ykv2Ec=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X4PuSmUd5e6xEQZv/m92TzrDuWVhYUGj5Z/fSbN9X3NjRGO4vd2/oE/ErwnO3/pCu
-	 wrW8DU37q0JZkRZ+kBVC5s1Fuji5ufLY5GKxKuyL+ENKJg96Ifn7uOcss5PyHj8VD7
-	 cEVG7FP+A8aqDBWBjORYcaYatL0k8S0az8QjfFaFF02iFbmoeU5I07+ToJjGd9uxzn
-	 LylpT+opFNf8oftDndf6VXgtMXk/7V9zOCTTvsICrYhZJNErObLlRWhd3Q8WUFpWOa
-	 rqy7+C7u718DposJaPRNyxvartvPH8K/PMoqZf74GKiTjutyzwnB0hhXrcfn6+PD7R
-	 EKun7ZzeFI+Ow==
-Date: Mon, 24 Feb 2025 14:45:18 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Maud Spierings <maudspierings@gocontroll.com>
-Cc: dri-devel@lists.freedesktop.org, Liu Ying <victor.liu@nxp.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>,
-	David Airlie <airlied@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH 06/14] arm64: dts: imx8mp: Add pinctrl config definitions
-Message-ID: <174042991798.4062591.16695660457830350664.robh@kernel.org>
-References: <20250224-initial_display-v1-0-5ccbbf613543@gocontroll.com>
- <20250224-initial_display-v1-6-5ccbbf613543@gocontroll.com>
+	s=arc-20240116; t=1740430415; c=relaxed/simple;
+	bh=uZyQHPDnonWQZDQ1SEf6e6QMou1qYC6LzN4cHLq76kA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bNjYDKTFOPs2wIBtlhvjKFEL31KNYxbFWy6o07LzNne6mdQxxdAT0rUdrMbsaP7WOu4KSKV3SDofdXQV9zvpEKygnA3JKO5RRsTj7FcvLIZdDfjBB/jv6j8GQp+5cPN9TTIvvX1br9k/3Z3ndr3F2Nufc+yaDZKBeg3X+Wf9My8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=foY8LVKe; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-30795988ebeso50361501fa.3;
+        Mon, 24 Feb 2025 12:53:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740430412; x=1741035212; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VLKxgOzGNXH6/e7tjAoJ0ON1VeUWEbBjNUFSuEbog74=;
+        b=foY8LVKeKm6sAwESvbKBeCJpwDArGlrdZPP5ta4qhFAG/PHchA92t6gUHbkOtb6Hk1
+         NluZ65e0/STPGQ1WI0F5FHrCmIQHORPtE3/jf/Y77v4hLRQahhK1ATvJACJ4mmu53AU+
+         IucWpiOzWZn/NS0Whbr8W2FXUuwUlok6ZBueWCAk2twuMgHDtkoaeQEpTEfg04NTI1hM
+         uN4jLlH6xiRrDyK8LR/js0miP1VZjDjHcTlacAfP6ItqZS4hmkZDR8F/NKLXHnQciLcE
+         OboV88pGYQ7OdljSvDGcwQJ5YQasTewNOEyOGcb7eZfHPU8WvqzDM+IAold9fuFHOHJU
+         9IjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740430412; x=1741035212;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VLKxgOzGNXH6/e7tjAoJ0ON1VeUWEbBjNUFSuEbog74=;
+        b=ohAcL2I3iblM/ppLSGKqCOjZ7vRODaG8i8Q2HQOwew8zrgPxTaGlLNQZM82JqOFAjT
+         EcmYVOT6JtOyR+hykNT5FGf6ND2cnkW9hxNU9CXTyA+dtP8jGSeTR7ZLgjn3Gx2gA8Mu
+         2j2a4nZV93oMNK4FNAoaRK2MBIXXuQKnb6pzPu/RlX2CLjjQJlMGtphlo6o4R81x9qXg
+         EQvHuuANuMCLCTpj8dOORKnt31muFbg53f6RV9pf3LI5Rj2J/b7jGDzifZpWilzA4QCp
+         y3NQrOYcue5wpFs5OwvEYh+V+YnaB279XL9wFZ3wZXHVNm4DIIP4ooDs/LGUW98+PJRx
+         Ed/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUdMbOyQ+cj7lTM5ZqSXedjE6Q6aI5qOuVZqmvzS6omJOpTVd70BYjja1gt+zaf39Lj2IQIBDVvJ/rt@vger.kernel.org, AJvYcCVxRNzu2znJhny/OoYKB+ouIUOmFup7BwkbTzLR4GjetGrCL+I9pVsuvAdMtWigI91PDrdXFuH0if16Jww9@vger.kernel.org, AJvYcCXeh2OPRLIkdfW2JW4SIyWosAs2rABSuFEL5VAU32zC98Ia4UvjALsiSuU0Ej7IVhmJ7lB/1T9KmHmU7sQTxg==@vger.kernel.org, AJvYcCXkVduzsFcu+eSrmPX5DfxMt8fJCzKPU426FnsHHDIi9vJ7MGs8+5no8btSgFnqv0OQ/QvTYXLJPWXQC4TZXvsP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8Ws+uH8BqreDBl4oTeh71Umo9IojLTvQlJ5KhbXJqIQDbOt41
+	AmZpEYpDeC3sPwmw8+08dhFiB/0yJsMVvNURkAOVejNaMhgI3toN2LaQ8fmpeEkOPp7Ds9tcMVg
+	RFoKMXXSj1PLv5USunPgC+1uCEAGbMmw8EoYRvQ==
+X-Gm-Gg: ASbGncvZXtDNWrLgpU05AWGGrwUrq2ijTWcigGElZm/HoGs7xezYbxQo11V77+fr0Om
+	1fFnJDkKhSrgtGV8bPhujD4rnpVCZgLWee3q8IyaOeTuu5uq2j1qAQyyKl3KoSundBMWO8wQ7bs
+	h2nxeHFQ==
+X-Google-Smtp-Source: AGHT+IEf3bVx23OWBARjkI8H1RLewElDpkAnGSVB0hLm64N4Ek8MKkyGLm7MI0cb0+QKlYgijWwscg5NcyVoDVHNSxA=
+X-Received: by 2002:a2e:a413:0:b0:308:f39c:96b3 with SMTP id
+ 38308e7fff4ca-30a80c9944dmr2379071fa.30.1740430411781; Mon, 24 Feb 2025
+ 12:53:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250224-initial_display-v1-6-5ccbbf613543@gocontroll.com>
+References: <20250207-rb1-bt-v4-0-d810fc8c94a9@linaro.org> <3s36j75eoqszm5hiftia543h2a6nxaa74wubrr6nq4akzq4hta@wyuwa5onjauz>
+In-Reply-To: <3s36j75eoqszm5hiftia543h2a6nxaa74wubrr6nq4akzq4hta@wyuwa5onjauz>
+From: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Date: Mon, 24 Feb 2025 15:53:18 -0500
+X-Gm-Features: AWEUYZkha0uiyECkrWx3ELuzdjA3i59S1y_7pjEW1mQg4U_t9hN_M4Z6JYV6X_E
+Message-ID: <CABBYNZ+mKZV6qwCcECueBfRy4_XBw5LD0TnKs4Dzdpr7eYjL_A@mail.gmail.com>
+Subject: Re: [PATCH v4 0/6] Bluetooth: qca: add Qualcomm WCN3950 BT/WiFi chip support
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Marcel Holtmann <marcel@holtmann.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Dmitry,
+
+On Fri, Feb 21, 2025 at 8:06=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Fri, Feb 07, 2025 at 10:41:14PM +0200, Dmitry Baryshkov wrote:
+> > Qualcomm Robotics RB1 platform uses a new member of the WCN39xx family
+> > of BT/WiFi chips. Add support for this member of the family and enable
+> > it to be used on the RB1 board.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> > Changes in v4:
+> > - Added empty line before status property (Konrad)
+> > - Reword Bluetooth commit message to follow linux-firmware changes
+> >   (cmnv13t.bin and cmnv13s.bin were merged).
+> > - Link to v3: https://lore.kernel.org/r/20250202-rb1-bt-v3-0-6797a4467c=
+ed@linaro.org
+> >
+> > Changes in v3:
+> > - Mention new firmware files.
+> > - Link to v2: https://lore.kernel.org/r/20250201-rb1-bt-v2-0-fd44011749=
+bb@linaro.org
+> >
+> > Changes in v2:
+> > - Corrected QUP interconnects (Konrad)
+> > - Added /delete-property/ interrupts and an empty line before status
+> >   (Konrad)
+> > - Enabled downloading of different NVMs as required for v1.3 of the chi=
+p.
+> > - Link to v1: https://lore.kernel.org/r/20250201-rb1-bt-v1-0-ae896c4923=
+d8@linaro.org
+> >
+> > ---
+> > Dmitry Baryshkov (6):
+> >       dt-bindings: net: bluetooth: qualcomm: document WCN3950
+> >       Bluetooth: qca: simplify WCN399x NVM loading
+> >       Bluetooth: qca: add WCN3950 support
+>
+> Gracious ping, these patches have been sent two weeks ago.
+
+Looks like it doesn't apply cleanly to bluetooth-next anymore, please
+rebase/resend.
+
+> >       arm64: dts: qcom: qcm2290: fix (some) of QUP interconnects
+> >       arm64: dts: qcom: qcm2290: add UART3 device
+> >       arm64: dts: qcom: qrb2210-rb1: add Bluetooth support
+> >
+> >  .../bindings/net/bluetooth/qualcomm-bluetooth.yaml |  2 +
+> >  arch/arm64/boot/dts/qcom/qcm2290.dtsi              | 31 +++++---
+> >  arch/arm64/boot/dts/qcom/qrb2210-rb1.dts           | 83 ++++++++++++++=
+++++++++
+> >  drivers/bluetooth/btqca.c                          | 27 +++++--
+> >  drivers/bluetooth/btqca.h                          |  4 ++
+> >  drivers/bluetooth/hci_qca.c                        | 25 +++++++
+> >  6 files changed, 157 insertions(+), 15 deletions(-)
+> > ---
+> > base-commit: a1d1e1f2fae5fcb5f2e43b81afa9596c606e683d
+> > change-id: 20250201-rb1-bt-cec7a314991d
+> >
+> > Best regards,
+> > --
+> > Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >
+>
+> --
+> With best wishes
+> Dmitry
 
 
-On Mon, 24 Feb 2025 14:50:56 +0100, Maud Spierings wrote:
-> Currently to configure each IOMUXC_SW_PAD_CTL_PAD the raw value of this
-> register is written in the dts, these values are not obvious. Add defines
-> which describe the fields of this register which can be or-ed together to
-> produce readable settings.
-> 
-> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
-> 
-> ---
-> This patch has already been sent in a different group of patches: [1]
-> It was requested there to submit it along with a user, this series also
-> includes some users for it.
-> 
-> [1]: https://lore.kernel.org/all/20250218-pinctrl_defines-v2-2-c554cad0e1d2@gocontroll.com/
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h | 27 ++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
-> 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+--=20
+Luiz Augusto von Dentz
 
