@@ -1,92 +1,150 @@
-Return-Path: <devicetree+bounces-150544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 935EEA42A58
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 18:52:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 486DCA42A7B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 18:57:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC86F3A9134
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 17:52:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E0863AAC7A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 17:56:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E70B4263F4C;
-	Mon, 24 Feb 2025 17:52:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 896F1264A60;
+	Mon, 24 Feb 2025 17:56:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DFC72747B;
-	Mon, 24 Feb 2025 17:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ECBE2627E1;
+	Mon, 24 Feb 2025 17:56:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740419526; cv=none; b=gYszYC7CNCrdpSFysZbPennm2U6OQRHdF/EyOTnKCcjbTel9rYqZ0q/hb4lg+GxzzQ8/cPsR/V1E09mvN4U3O9anZ/T6U700BOW+FHpGkBQSzxSfc22U1sWZ9/v44UOQw9Qbe1H/ts5tfTubFwOMety9xefpJhucvJFLvzkm/5Q=
+	t=1740419812; cv=none; b=YCvzjyP06BsOAwrwYv4wYVRvdR9PH+d5TUQpKgJecKU37jKgwQbSrzEAzqgi+WYjNDl5ZLJCDH2TRu3TEWP2HcxW3aX+krFpSvPj1Fao/M6qsc85wAQUVBXTAf9hhnCU2Z2qxVgD87HeUVVOZSrgQTTdPkk3kDgTeC0DoirmG78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740419526; c=relaxed/simple;
-	bh=7VMLRKHe1KUj4HIfeSAiBxtcoR3pZWGNmk4jKWpibAo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UoVpNflrV/dmShkP/UaJ5Phrk19R4A8TiqCHxy+1rhBpgU8eJv3AHdUbp4xcSDZfpUMvRY6b//kWbZCCRArXrWIHn7B+4Q6Pc6iN8LxMlTtFcuVusG1wjmr5nN2hH8TrxeFS9f5nK+blGmZsf9o9LtR4gH52uZWoMXN25jvWo9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.55.252])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 642993430C5;
-	Mon, 24 Feb 2025 17:52:04 +0000 (UTC)
-Date: Mon, 24 Feb 2025 17:52:00 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH RTF 0/2] gpiolib: of: Handle threecell gpios
-Message-ID: <20250224175200-GYA42001@gentoo>
-References: <20250218-gpio-ranges-fourcell-v1-0-b1f3db6c8036@linaro.org>
+	s=arc-20240116; t=1740419812; c=relaxed/simple;
+	bh=laLlXfTqdTi8U2cQjpNZyAGYUeq8S9FFniC6nm3tRK4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=q6YVwVPBPZAttrd3rrfv0VVLJIEoevajOXxaVGB/+Ph1tA3S9ty7EtHMhM6Ci2sG5xQQCahGy/c+5QN3mgi1riK2zWK91+KqMpKfbek5RYn6YABRlFh5MFaVP4H/HgC+PNJFo+sI0o+3rY4KxG08F6CSB6OuCsah5AHZ3TSzXvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7991B152B;
+	Mon, 24 Feb 2025 09:57:06 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4D9C63F5A1;
+	Mon, 24 Feb 2025 09:56:46 -0800 (PST)
+Date: Mon, 24 Feb 2025 17:56:42 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter
+ <daniel@ffwll.ch>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Chris
+ Morgan <macroalpha82@gmail.com>, Hironori KIKUCHI <kikuchan98@gmail.com>,
+ Philippe Simons <simons.philippe@gmail.com>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org, Conor Dooley
+ <conor.dooley@microchip.com>
+Subject: Re: [PATCH v7 22/27] dt-bindings: allwinner: add H616 DE33 mixer
+ binding
+Message-ID: <20250224175642.170c124e@donnerap.manchester.arm.com>
+In-Reply-To: <20250216183710.8443-23-ryan@testtoast.com>
+References: <20250216183710.8443-3-ryan@testtoast.com>
+	<20250216183710.8443-23-ryan@testtoast.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250218-gpio-ranges-fourcell-v1-0-b1f3db6c8036@linaro.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Mon, 17 Feb 2025 07:36:22 +1300
+Ryan Walklin <ryan@testtoast.com> wrote:
 
-On 11:28 Tue 18 Feb     , Linus Walleij wrote:
-> This adds some code in the gpiolib OF core to deal with
-> several gpio chip instances per OF node.
+Hi,
+
+> The Allwinner H616 and variants have a new display engine revision
+> (DE33).
 > 
-> The change was prompted by the need of the Spacemit GPIO
-> controller.
+> The mixer configuration registers are significantly different to the DE3
+> and DE2 revisions, being split into separate top and display blocks,
+> therefore a fallback for the mixer compatible is not provided.
 > 
-
-Tested-by: Yixun Lan <dlan@gentoo.org>
-
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Add a display engine mixer binding for the DE33.
+> 
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+> 
 > ---
-> Linus Walleij (2):
->       gpiolib: of: Use local variables
->       gpiolib: of: Handle threecell GPIO chips
+> Changelog v2..v3:
+> - Separate content into three patches for three separate subsystems
 > 
->  drivers/gpio/gpiolib-of.c   | 126 ++++++++++++++++++++++++++++++++++++--------
->  include/linux/gpio/driver.h |  24 ++++++++-
->  2 files changed, 126 insertions(+), 24 deletions(-)
+> Changelog v5..v6:
+> - increase reg maxItems to 3 and add conditional for h616-de33
 > ---
-> base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
-> change-id: 20250217-gpio-ranges-fourcell-85888ad219da
+>  .../allwinner,sun8i-a83t-de2-mixer.yaml       | 21 ++++++++++++++++++-
+>  1 file changed, 20 insertions(+), 1 deletion(-)
 > 
-> Best regards,
-> -- 
-> Linus Walleij <linus.walleij@linaro.org>
-> 
+> diff --git a/Documentation/devicetree/bindings/display/allwinner,sun8i-a83t-de2-mixer.yaml b/Documentation/devicetree/bindings/display/allwinner,sun8i-a83t-de2-mixer.yaml
+> index b75c1ec686ad2..274f5e6327333 100644
+> --- a/Documentation/devicetree/bindings/display/allwinner,sun8i-a83t-de2-mixer.yaml
+> +++ b/Documentation/devicetree/bindings/display/allwinner,sun8i-a83t-de2-mixer.yaml
+> @@ -24,9 +24,11 @@ properties:
+>        - allwinner,sun50i-a64-de2-mixer-0
+>        - allwinner,sun50i-a64-de2-mixer-1
+>        - allwinner,sun50i-h6-de3-mixer-0
+> +      - allwinner,sun50i-h616-de33-mixer-0
+>  
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 3
 
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+What are those three regions? I wonder if we should have reg-names here,
+to fix the order, and to document them on the way?
+
+>  
+>    clocks:
+>      items:
+> @@ -61,6 +63,23 @@ properties:
+>      required:
+>        - port@1
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - allwinner,sun50i-h616-de33-mixer-0
+> +
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 3
+
+Should we override minItems here as well? I guess any driver would need
+all three region to work?
+
+Cheers,
+Andre
+
+> +
+> +    else:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+
 
