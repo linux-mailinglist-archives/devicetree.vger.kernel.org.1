@@ -1,79 +1,48 @@
-Return-Path: <devicetree+bounces-150589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A44CA42C5C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 20:09:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01106A42C93
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 20:18:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E51823A6826
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 19:08:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AFEEA7A7BBB
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 19:17:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 329B71EA7E9;
-	Mon, 24 Feb 2025 19:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56F1C1FC7E4;
+	Mon, 24 Feb 2025 19:18:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hJWhvfWx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lIVBXxV9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D6D1DB34E;
-	Mon, 24 Feb 2025 19:08:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27FF41DDA18;
+	Mon, 24 Feb 2025 19:18:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740424099; cv=none; b=d61mXzRwplYJhvpG3fzcpIVoGAVf+ANvEuciAsSRbCy5TVb4pTTsldlPXvwsgR656aDRyvIGrlwMT+eL1mWArebfoSp/fE8SL0iZLNaMh4SvbrY/xIGzMdJ76frRNRJO0b/lzb+d0rgwRhjuB0cczyac2oRs66MoANojZyr2Hbc=
+	t=1740424708; cv=none; b=CSISbyaLz15doR0Q5Suc9VhxhpdbjicD62PwLOXjonKxdyXifPGu4E1ldV82ovnlg3K6/6rAAuW42gMqJpvITJTFTxebTPbRnGGnuS2Ow4E+dVOHGKMS6hMBnh6AG9c8U0hLVdZgqSzQBWz/uLEVVn7fDddqMnMSGvSUZFUzVwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740424099; c=relaxed/simple;
-	bh=YgKHn0SXS01Q9qbQJ2WsiYEUqdwLjv45aY/6JKyfLuI=;
+	s=arc-20240116; t=1740424708; c=relaxed/simple;
+	bh=Y7LpKdOZpE6vLuGaoob7TtO0b8fwsQMhZuGERwiToe8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cVrCI9ky71s7NjqXml44q5aupfyodLm5O10GPWoP+oJso+V7ok889dYuMxbe8yMdPc0eTJDNvzBu5nvUQ+MnnYnUrK96cVqlB3dAODnQozT93XTfX45qS8PabQLmhVIuwUmX6GR+hqTuTrgWN0PdVzppPzM2nP3AV4B8CXfegJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hJWhvfWx; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4394a0c65fcso48502625e9.1;
-        Mon, 24 Feb 2025 11:08:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740424095; x=1741028895; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pU5W+dP5hQjBmGloMvFYYbU1gFy16R79+oo7OXi+20M=;
-        b=hJWhvfWxlnxznJtcr4uuPT40zY/Q7fOsHkbksevKBV2PfMKgBWYQPo/5uy/Xghw4B6
-         IpoxN9vTb/K5MJgaGvMUSJk6ugl72lQeJwn/iCtqbR3lga7G8lfRciNhsoTVmxIoZveO
-         sQGKFoMk9l0qdHZgXX7/ukhx1bjlzs3LC6sgRiqbtDuVkJNp5JubZRVCAxYYKrHN0XrU
-         Z2PJWB+SP++WV6G0CBYW3gGsvb2qSDo5A2sSUaZaohz3tw9XmLGTLtaWmhoG/SUCgw6U
-         0LDinuTVoJZYR4UtsEhRW1qCesGbYCaOrXNu/EJINrM2k+Re3SNNIOmNJv5N1EDNCji0
-         vLYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740424095; x=1741028895;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pU5W+dP5hQjBmGloMvFYYbU1gFy16R79+oo7OXi+20M=;
-        b=oD9p5Px+QZx7wzgzm19n7Zfadgsa2VeXGSnfUpSvDqagX4yMDV0hf+NaRCTegmUiUn
-         JxckfWNXSYIHFTCWUcGM2dGj4Y+bQMW0e2efnAZrJBKtNJAb0hMUwJSGq96tmYGzGqaq
-         ++hQGLJo1k/1FN8BLtSHs8MQ5Sz7NnUTmK7DcBaEOOvavVcRhBg3LoZry0KiUadYr2KW
-         S182qQ3jOqrnfTU9QkyGmcvpaAN965TifsyaLyjLeVzd3hLsUVBPE9JDJs/WhBJimaB/
-         /qY6ZjqcDK7hOi9Gep+LgOsGbOZ2Mqt6OgW9t8DMZoADJi6ABl7se4r7yg3vv/fimOLg
-         HiDA==
-X-Forwarded-Encrypted: i=1; AJvYcCVFb7sKtjlM03Xzw0ousqBBCKy+gwLv626AzadM8jqJUABwuFAPfVxo9zuBUBIzpbDrsmDQJsTbnaP1hKNs@vger.kernel.org, AJvYcCVK4Lcv+OdUFyBUezP6HGnQbVjkUJFHIfovqOYXYwx/UfVHTmvPYpO2Yc1L+geA53AtoI4LPnMcvl4+8LY=@vger.kernel.org, AJvYcCWSOscIDPOTwJI1U1eIGOAeUFY+2T039hw1+lIVSxU+ItANpvmD2Umn4fUZfX9hvgB3Tag2Pc6DPIhq@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZEDbEB8Tum1nZvBbP6S/yJEMZ2v3nGbiPpZ8v+T5isH4dUBN+
-	uJUtCRnv9lYAp/M/tLWNIFOgSeamQh/hdZZI3zLrgs9fl8MfXiL2
-X-Gm-Gg: ASbGnctwJ3Xzi5G2YF09lJyaPs3BIjdWd/fe5siiNMsjciCiVjRGmdCE1ZSg1DHVuvi
-	Eqj46OmfcMvy3VBfpPYrjm6RNT0GyylQkk9xunKGQPz+PRuZQbbK7T+wSd3BNQFYVYOYKO3++4C
-	tf+wZ/qATkDxdeheptDcf57D37sYWWWfPviTFiqWc/Tv63GIeGU4e6AxTj1gnQdeP4WOY0S+0wR
-	ECsFlNGqCUbP8ZI2BZTSNgW0oQ3Zb61lfVDeMjEGthOF8MhR2S6FSLeKxaTYoCvwZs1ofE3v2f1
-	wAIidgM/FWQwiOmbmePNwyp/kNqiIglxeAYbrUoeKy7u1Un5Ugl93lI=
-X-Google-Smtp-Source: AGHT+IFMZpSkj8mOeTbZpxScUGNxroU6s1DGkIhvD1LVcsUzWU2LZzSOcO2UmaPQci+OsYqbI2Wf4Q==
-X-Received: by 2002:a05:6000:154b:b0:38d:d666:5457 with SMTP id ffacd0b85a97d-390cc631b04mr259493f8f.42.1740424094433;
-        Mon, 24 Feb 2025 11:08:14 -0800 (PST)
-Received: from [192.168.1.143] ([82.79.237.175])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abed1d552e7sm8482966b.48.2025.02.24.11.08.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Feb 2025 11:08:13 -0800 (PST)
-Message-ID: <36ca7549-aee7-4f14-9311-77978a42362a@gmail.com>
-Date: Mon, 24 Feb 2025 21:17:03 +0200
+	 In-Reply-To:Content-Type; b=MgUaywZPRDv/FhCXMy6kaxQVLwETbul+y+/ViTZOncpHSTL8SaHL1b2QzmwVzhWLiNA6iKzqBYtKJNXvBbKXiuqf8zyZ6kMIJ70eO9FQ76CG2+NXFCC9PxicDlBRu0UXwSqDquizB+qYWQOxIpEb8Z8x/DyAdSzQh46EugryJCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lIVBXxV9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35981C4CED6;
+	Mon, 24 Feb 2025 19:18:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740424707;
+	bh=Y7LpKdOZpE6vLuGaoob7TtO0b8fwsQMhZuGERwiToe8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=lIVBXxV9Vr8fpN8d7EzfFCqg+1ixKLFdoos1C2lyayMOfz/qN7m5kR5ZF6Dh7Oozl
+	 cpDysEnHbgtw7rd5juOfy7iXDA7gd/pExNUyjKhr3f0ril5zXBP96iHImhy/XwaCzg
+	 YOxCtImsvQ0D6HURsgQoRYphvvDW21xe9WATkYlelaXit4NAXkeqmu/CWr37M44RKJ
+	 V3XI+xph+m3MVdHvG4+gLSr3B3xr2+qjhoDaFLTg9RDFHdke/NnxBpUuhbnP5+tbem
+	 Gs0V/UFvmzAFCjDrKChOjlk55zAURyS+qdJsJkKGHpKNTtE84zllENyRqaTnrYtiMw
+	 sU3okbZqwf0Pg==
+Message-ID: <07634537-0750-4616-9c88-800d1672dcfc@kernel.org>
+Date: Mon, 24 Feb 2025 20:18:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,96 +50,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] arm64: dts: imx: add imx95 dts for sof
-Content-Language: en-GB
-To: Frank Li <Frank.li@nxp.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250211225808.3050-1-laurentiumihalcea111@gmail.com>
- <20250211225808.3050-4-laurentiumihalcea111@gmail.com>
- <Z6vcBvs4xGQ+pGCJ@lizhi-Precision-Tower-5810>
-From: Mihalcea Laurentiu <laurentiumihalcea111@gmail.com>
-In-Reply-To: <Z6vcBvs4xGQ+pGCJ@lizhi-Precision-Tower-5810>
+Subject: Re: [PATCH v2 2/3] mfd: sec: add support for S2MPU05 PMIC
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250219-exynos7870-pmic-regulators-v2-0-1ea86fb332f7@disroot.org>
+ <20250219-exynos7870-pmic-regulators-v2-2-1ea86fb332f7@disroot.org>
+ <20250223-outrageous-bizarre-hedgehog-8a3bbd@krzk-bin>
+ <11387d3d0478d7fa1899ee3d0409541b@disroot.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <11387d3d0478d7fa1899ee3d0409541b@disroot.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-
-On 12.02.2025 01:23, Frank Li wrote:
-> On Tue, Feb 11, 2025 at 05:58:08PM -0500, Laurentiu Mihalcea wrote:
->> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+On 24/02/2025 18:37, Kaustabh Chakraborty wrote:
+> On 2025-02-23 16:10, Krzysztof Kozlowski wrote:
+>> Please run scripts/checkpatch.pl and fix reported warnings. After that,
+>> run also 'scripts/checkpatch.pl --strict' and (probably) fix more
+>> warnings. Some warnings can be ignored, especially from --strict run,
+>> but the code here looks like it needs a fix. Feel free to get in touch
+>> if the warning is not clear.
 >>
->> Add imx95 DTS for SOF usage.
->>
->> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->> ---
->>  arch/arm64/boot/dts/freescale/Makefile        |  1 +
->>  .../dts/freescale/imx95-19x19-evk-sof.dts     | 85 +++++++++++++++++++
->>  2 files changed, 86 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
->>
->> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
->> index 839432153cc7..27f64e333e4b 100644
->> --- a/arch/arm64/boot/dts/freescale/Makefile
->> +++ b/arch/arm64/boot/dts/freescale/Makefile
->> @@ -282,6 +282,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
->>  dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
->>  dtb-$(CONFIG_ARCH_MXC) += imx93-var-som-symphony.dtb
->>  dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk.dtb
->> +dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-sof.dtb
-> look like should use dt overlay ?
+>> Missing bindings.
+> 
+> Bindings have been applied in v1.
+
+Heh, I see email from Lee now but mainline does not have them, next from
+19th Feb neither.
+
+BTW, what happened with all the review tags? Nothing in cover letter nor
+changelog explains dropping reviews.
+
+> 
+>> BTW, don't combine independent patches from different subsystems into
+>> one patchset. It's not helping anyone especially without explaining
+>> dependencies/merging in the cover letter or here in changelog.
+> 
+> Alright I'm a bit lost here. The binding patch (the one you enquired
+> for above) referenced the regulator bindings, whereas the regulator
+> driver is including the S2MU005 PMIC header which defines the
+> register addresses, etc.
+
+You have entire cover letter to explain dependencies and merging... If
+you target specific subsystem - write.
+
+> 
+> So it seems like patches from both subsystems are inter-dependent
+> on each other, and hence both are put together in a single series.
+> 
+> What should I do then? Should I explicitly mention this in the cover
+> letter? Or split into two? Or...?
 
 
-can you pls explain why you'd see this as an overlay?
-
-(snip)
-
->> +
->> +	sof-sound-wm8962 {
->> +		compatible = "audio-graph-card2";
->> +		links = <&cpu>;
->> +		label = "wm8962-audio";
->> +		hp-det-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_hp>;
->> +		widgets =
->> +			"Headphone", "Headphones",
->> +			"Microphone", "Headset Mic";
-> Generally, align to  =
-> 	widgets = "Headphone", "Headphones",
-> 		  "Microphone", "Headset Mic";
-
-
-sure
-
-
->> +		routing =
->> +			"Headphones", "HPOUTL",
->> +			"Headphones", "HPOUTR",
->> +			"Headset Mic", "MICBIAS",
->> +			"IN3R", "Headset Mic",
->> +			"IN1R", "Headset Mic";
->> +	};
->> +
->> +	sound-wm8962 {
->> +		status = "disabled";
->> +	};
->> +
->> +};
->> +
->> +&edma2 {
->> +	dma-channel-mask = <0xc0000000>, <0x0>;
->> +};
-> Not sure why need mask edma2's some channel, can you add comments for it
->
-> Frank
-
-
-sure, can add comment in commit msg
-
+Best regards,
+Krzysztof
 
