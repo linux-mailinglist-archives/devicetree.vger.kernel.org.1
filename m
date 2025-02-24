@@ -1,354 +1,119 @@
-Return-Path: <devicetree+bounces-150473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68576A4243E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 15:54:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CBBAA4252C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 16:05:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72AD416716B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 14:44:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4D68442DD4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 14:57:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF1E7175D48;
-	Mon, 24 Feb 2025 14:43:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB2271514CC;
+	Mon, 24 Feb 2025 14:56:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="cJryqr0B"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CSoNhnvU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB631192D97
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 14:43:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E06CF14012;
+	Mon, 24 Feb 2025 14:56:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740408188; cv=none; b=g4GvY8aSgT7n/J+PixB+KyibfnOC6KKXDo+suSubpOw37tP77mJpsLxx2jxHSPCOAizC5vau/92wUoOTzzzcya3Tgr5FZZr3BrNUa1GpjUX8JwR9u1pjsLiz2N3Lwa64Cyzlu+xq713i1ygyYoSRS++JAsKBqv7TydJ2B/I5CFI=
+	t=1740409000; cv=none; b=jpNh2reSVZt4XWBkVXxm0791osFbUv5UFc1uq0eHzLG+SDwxHLQP64L0uT9xn+crIeXrWpAdupYg1eTeEZOMixyFa3XGn/+vo0rPz35QCah2u2bG0ev5unRh/2jfbPRFxAfltEocaGAA7AiizCvHLcU8JGQlmmuO64FxuXC/udE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740408188; c=relaxed/simple;
-	bh=lrBQFBxDpVbTC3JFS/HVrtROllRzDr8ShdfLQOg6bwc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g9cCsGn3rXvmjCY2D4OnvCYlFi9991CUp2MPREtJTNY8vpAil56zyeM+rR2xmF1zDSmWdV6UmKTIGNhsNOGBnBAbsXnDwBrk3nB6/PQd1Zq5MAsFdPt3Z3Zg4T0l6tziMJduxRao4DSM14E4N5673kQUmn5FEXtitpy6XB+oZwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=cJryqr0B; arc=none smtp.client-ip=209.85.219.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-6dd01781b56so54881576d6.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 06:43:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1740408186; x=1741012986; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tLop5NeRWIUcnCB3Js3hWryNfIiaum3LJoPnNZfFKTo=;
-        b=cJryqr0BsV4DLrGN6qXGFqfuwUdH+NlI5VKkqC1gP1UIJN2DZnla3IFyZI328DtJdf
-         O/twMPH3E2EzruzpBG9l5Wqxvd0NjyatR1Sl6eXj2H4wZKqZNKl5Z+ZQmivPIESXmp4x
-         1vRHVcdslwN7+4CXjyZwiepFoaE6am1Q1yhtFGzzyjFvXz3BzHh+Sn8pMno3nalKz7Pg
-         RboCVVvSXZJuJDhcehVLyYnwE99vNDlLrodX00ey6Y2MCFSs4xfavgNEnHI7Zzgfvj/Q
-         8OtzvUDU+9fS7W4pG5XrdiKAEQ4aB8yHtkMUbWQ7OgUSqLdFvNImwTi3mPlwewmChJup
-         tz0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740408186; x=1741012986;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tLop5NeRWIUcnCB3Js3hWryNfIiaum3LJoPnNZfFKTo=;
-        b=BXtTDe303Xd+kRSO8e4j9un66CWpCwJ5l1xFQMu8Bni9g/6g5Rc2PJku60EIV1eGoV
-         z8W/HxuAqIfPssX1zLSJ4o+9Dfgy1ArwBsfQFKR5jqGxc5Qdx6MsLqt3s0WgrPRPXgut
-         tTixczeMDZp6gm77RYQpifIe2+ZyMB3+n4wlmfzdbcyE0sKUbLNGO/muyh1kK4s0YZs7
-         XQZVyd33NDbVAjMWBcsrTV68a4ev/SN0BgYCMOxvqLrFXIV1uUZ/OLudGsNikR6L0k4c
-         Y93O/nses6suqbA8Hmh3WmMVD/EJ8NAb9+mIRdN5eHYIIOfJz74dAbJPQgPY/yDGh51+
-         Elog==
-X-Gm-Message-State: AOJu0YzqJN5ybrD2GXNtSEzZaoHgC1i50UxkIGbyPIAKdVklY3bo131y
-	awoZ4X7GwNItWcp65T4ELkLRqGffhauWk0/v9NF/+2y587s01WyO4J+Margx07c=
-X-Gm-Gg: ASbGncv5boPFZyNygEvh7bPOVuIfpi/Bp2vvhd3nWDiSWaMQbjU95YLosrxI5P+rDv4
-	nZzHrHO5xLW19TRA0qi3uJmVpSsCigEpnOW/fHz2ueV5VpxOSOkcIg3h1FvXEitwWvbUW0rbIhQ
-	jPEBo94N68c5A0jy9hMwI+XTaSK60KEbZLIfXglUqlAfKDx6brn1VF9mBFfY+OcPw3F5oSaA69N
-	pm4o4L3bfjApn6qMDYIKHj5al+nsMUfjEkbehrssd2EAUwWdf94PianJm7QP7AjXtKDgrzCvrKE
-	YMrDM93SOyUE/WdxUnPiA1g4l7EgrKNzvOx9l6pKqQFMxKrJu90jgNLgNsCqjoDzoA==
-X-Google-Smtp-Source: AGHT+IEIY9d9/Gd3x6EwQKngzXdvqK6ZGlzw9x0KDsK2WFPvev0nb/3QA6RQFxaBIRFmlFsQaFohdA==
-X-Received: by 2002:a05:6214:daa:b0:6e4:2dcb:33c8 with SMTP id 6a1803df08f44-6e6ae967928mr128257536d6.29.1740408185646;
-        Mon, 24 Feb 2025 06:43:05 -0800 (PST)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e65d7a40b2sm134040816d6.58.2025.02.24.06.43.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Feb 2025 06:43:05 -0800 (PST)
-Message-ID: <4d99f492-191a-450f-8564-31bfab90c5b8@riscstar.com>
-Date: Mon, 24 Feb 2025 08:43:04 -0600
+	s=arc-20240116; t=1740409000; c=relaxed/simple;
+	bh=kLvQSsfByF9witrbdeJo0ttxnE3VKPGq/3+vWTmXkgc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QyV/MTlKscOh7/rc9HBaDsFnN67dQkIsB93DhZKm5MR5q9c9xkwH5oo9crVH188mCDrhnKe/hGgBzEAEJM7IeOJCxf7VKdqrbQW4A2XFoSItJNobmir3xRHI4FOG7lwmlvgxL3OmBmpNvXXwMLZs8RUI/eRoYDizXfS7sg3tKME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CSoNhnvU; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1740408998; x=1771944998;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kLvQSsfByF9witrbdeJo0ttxnE3VKPGq/3+vWTmXkgc=;
+  b=CSoNhnvUb1j1QlIAvBfxwdTIOvrwBTvIUMNnC+0w8R90QA4jqd5d9I0M
+   rd9rxCdorz9sR+u7gWmLg+v1g5DZvKmmkOYcMdb2i4tV/dSi/OzbdnPo1
+   Lwjj2j9V0AS7Qh68rHgryHd8KyKBXiAZL592zI7B3Volid7gISA2XZbQq
+   7vuLO9h1s35pGJj7ZwTyginUkHTeaMrWEOtVFyMkJkQDh+jdNsyNrN4XX
+   tGLJTYDZ2S8emYFt9JNHcJw8rQT9VB5x/KZqEp75TKFi70y0edl3kzqxn
+   59wnWwFng7UOzOjrTJtRDPyYD2Mxynpes6pzs1+KakwfxmkuVS8bFc4lx
+   A==;
+X-CSE-ConnectionGUID: TXIqK2//Reac3NoHEfBRrQ==
+X-CSE-MsgGUID: 1GaGmBL3TM2HETfj+uHwlg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="40353110"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; 
+   d="scan'208";a="40353110"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2025 06:56:37 -0800
+X-CSE-ConnectionGUID: xQ/AlRxeSYueNaOP2pPq3w==
+X-CSE-MsgGUID: xlXwXB39RReif3MX5BGDRQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; 
+   d="scan'208";a="115873701"
+Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
+  by fmviesa006.fm.intel.com with ESMTP; 24 Feb 2025 06:56:29 -0800
+Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tmZsh-0008eZ-1E;
+	Mon, 24 Feb 2025 14:56:27 +0000
+Date: Mon, 24 Feb 2025 22:56:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andy Yan <andyshrk@163.com>, heiko@sntech.de
+Cc: oe-kbuild-all@lists.linux.dev, hjc@rock-chips.com, mripard@kernel.org,
+	cristian.ciocaltea@collabora.com, neil.armstrong@linaro.org,
+	yubing.zhang@rock-chips.com, krzk+dt@kernel.org,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, robh@kernel.org,
+	sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH 3/6] drm/rockchip: Add RK3588 DPTX output support
+Message-ID: <202502242201.3fE7QpMy-lkp@intel.com>
+References: <20250223113036.74252-4-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RTF 2/2] gpiolib: of: Handle threecell GPIO chips
-To: Linus Walleij <linus.walleij@linaro.org>, Yixun Lan <dlan@gentoo.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20250218-gpio-ranges-fourcell-v1-0-b1f3db6c8036@linaro.org>
- <20250218-gpio-ranges-fourcell-v1-2-b1f3db6c8036@linaro.org>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250218-gpio-ranges-fourcell-v1-2-b1f3db6c8036@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250223113036.74252-4-andyshrk@163.com>
 
-On 2/18/25 4:28 AM, Linus Walleij wrote:
-> When describing GPIO controllers in the device tree, the ambition
-> of device tree to describe the hardware may require a three-cell
-> scheme:
-> 
-> gpios = <&gpio instance offset flags>;
-> 
-> This implements support for this scheme in the gpiolib OF core.
-> 
-> Drivers that want to handle multiple gpiochip instances from one
-> OF node need to implement a callback similar to this to
-> determine if a certain gpio chip is a pointer to the right
-> instance (pseudo-code):
-> 
-> struct my_gpio {
->      struct gpio_chip gcs[MAX_CHIPS];
-> };
-> 
-> static bool my_of_node_instance_match(struct gpio_chip *gc
->                                        unsigned int instance)
-> {
->      struct my_gpio *mg = gpiochip_get_data(gc);
-> 
->      if (instance >= MAX_CHIPS)
->          return false;
->      return (gc == &mg->gcs[instance];
+Hi Andy,
 
-This is pseudocode, but either "(" not needed, or ")" missing.
+kernel test robot noticed the following build errors:
 
-> }
-> 
-> probe() {
->      struct my_gpio *mg;
->      struct gpio_chip *gc;
->      int i, ret;
-> 
->      for (i = 0; i++; i < MAX_CHIPS) {
->          gc = &mg->gcs[i];
->          /* This tells gpiolib we have several instances per node */
->          gc->of_gpio_n_cells = 3;
-> 	gc->of_node_instance_match = my_of_node_instance_match;
->          gc->base = -1;
->          ...
-> 
->          ret = devm_gpiochip_add_data(dev, gc, mg);
->          if (ret)
->              return ret;
->      }
-> }
-> 
-> Rename the "simple" of_xlate function to "twocell" which is closer
-> to what it actually does.
-> 
-> In the device tree bindings, the provide node needs
-> to specify #gpio-cells = <3>; where the first cell is the instance
-> number:
-> 
-> gpios = <&gpio instance offset flags>;
-> 
-> Conversely ranges need to have four cells:
-> 
-> gpio-ranges = <&pinctrl instance gpio_offset pin_offset count>;
+[auto build test ERROR on linus/master]
+[also build test ERROR on v6.14-rc4]
+[cannot apply to rockchip/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I haven't looked for it, but is a DT binding update forthcoming?
+url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Yan/dt-bindings-display-rockchip-Add-schema-for-RK3588-DPTX-Controller/20250223-193323
+base:   linus/master
+patch link:    https://lore.kernel.org/r/20250223113036.74252-4-andyshrk%40163.com
+patch subject: [PATCH 3/6] drm/rockchip: Add RK3588 DPTX output support
+config: sparc-allmodconfig (https://download.01.org/0day-ci/archive/20250224/202502242201.3fE7QpMy-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250224/202502242201.3fE7QpMy-lkp@intel.com/reproduce)
 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502242201.3fE7QpMy-lkp@intel.com/
 
-This looks good.
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-Reviewed-by: Alex Elder <elder@riscstar.com>
+>> ERROR: modpost: "dw_dp_bind" [drivers/gpu/drm/rockchip/rockchipdrm.ko] undefined!
 
-> ---
->   drivers/gpio/gpiolib-of.c   | 93 ++++++++++++++++++++++++++++++++++++++++-----
->   include/linux/gpio/driver.h | 24 +++++++++++-
->   2 files changed, 106 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
-> index 86405218f4e2ddc951a1a9d168e886400652bf60..614590a5bcd10e5605ecb66ebd956250e4ea1fd8 100644
-> --- a/drivers/gpio/gpiolib-of.c
-> +++ b/drivers/gpio/gpiolib-of.c
-> @@ -929,7 +929,7 @@ struct notifier_block gpio_of_notifier = {
->   #endif /* CONFIG_OF_DYNAMIC */
->   
->   /**
-> - * of_gpio_simple_xlate - translate gpiospec to the GPIO number and flags
-> + * of_gpio_twocell_xlate - translate twocell gpiospec to the GPIO number and flags
->    * @gc:		pointer to the gpio_chip structure
->    * @gpiospec:	GPIO specifier as found in the device tree
->    * @flags:	a flags pointer to fill in
-> @@ -941,9 +941,9 @@ struct notifier_block gpio_of_notifier = {
->    * Returns:
->    * GPIO number (>= 0) on success, negative errno on failure.
->    */
-> -static int of_gpio_simple_xlate(struct gpio_chip *gc,
-> -				const struct of_phandle_args *gpiospec,
-> -				u32 *flags)
-> +static int of_gpio_twocell_xlate(struct gpio_chip *gc,
-> +				 const struct of_phandle_args *gpiospec,
-> +				 u32 *flags)
->   {
->   	/*
->   	 * We're discouraging gpio_cells < 2, since that way you'll have to
-> @@ -968,6 +968,49 @@ static int of_gpio_simple_xlate(struct gpio_chip *gc,
->   	return gpiospec->args[0];
->   }
->   
-> +/**
-> + * of_gpio_threecell_xlate - translate threecell gpiospec to the GPIO number and flags
-> + * @gc:		pointer to the gpio_chip structure
-> + * @gpiospec:	GPIO specifier as found in the device tree
-> + * @flags:	a flags pointer to fill in
-> + *
-> + * This is simple translation function, suitable for the most 1:n mapped
-> + * GPIO chips, i.e. several GPIO chip instances from one device tree node.
-> + * In this case the following binding is implied:
-> + *
-> + * foo-gpios = <&gpio instance offset flags>;
-> + *
-> + * Returns:
-> + * GPIO number (>= 0) on success, negative errno on failure.
-> + */
-> +static int of_gpio_threecell_xlate(struct gpio_chip *gc,
-> +				   const struct of_phandle_args *gpiospec,
-> +				   u32 *flags)
-> +{
-> +	if (gc->of_gpio_n_cells != 3) {
-> +		WARN_ON(1);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (WARN_ON(gpiospec->args_count != 3))
-> +		return -EINVAL;
-> +
-> +	/*
-> +	 * Check chip instance number, the driver responds with true if
-> +	 * this is the chip we are looking for.
-> +	 */
-> +	if (!gc->of_node_instance_match(gc, gpiospec->args[0]))
-> +		return -EINVAL;
-> +
-> +	if (gpiospec->args[1] >= gc->ngpio)
-> +		return -EINVAL;
-> +
-> +	if (flags)
-> +		*flags = gpiospec->args[2];
-> +
-> +	return gpiospec->args[1];
-> +}
-> +
->   #if IS_ENABLED(CONFIG_OF_GPIO_MM_GPIOCHIP)
->   #include <linux/gpio/legacy-of-mm-gpiochip.h>
->   /**
-> @@ -1068,7 +1111,15 @@ static int of_gpiochip_add_pin_range(struct gpio_chip *chip)
->   	has_group_names = of_property_present(np, group_names_propname);
->   
->   	for (;; index++) {
-> -		ret = of_parse_phandle_with_fixed_args(np, "gpio-ranges", 3,
-> +		/*
-> +		 * Ordinary phandles contain 2-3 cells:
-> +		 * gpios = <&gpio [instance] offset flags>;
-> +		 * Ranges always contain one more cell:
-> +		 * gpio-ranges <&pinctrl [gpio_instance] gpio_offet pin_offet count>;
-> +		 * This is why we parse chip->of_gpio_n_cells + 1 cells
-> +		 */
-> +		ret = of_parse_phandle_with_fixed_args(np, "gpio-ranges",
-> +				chip->of_gpio_n_cells + 1,
->   				index, &pinspec);
->   		if (ret)
->   			break;
-> @@ -1078,9 +1129,25 @@ static int of_gpiochip_add_pin_range(struct gpio_chip *chip)
->   		if (!pctldev)
->   			return -EPROBE_DEFER;
->   
-> -		offset = pinspec.args[0];
-> -		pin = pinspec.args[1];
-> -		count = pinspec.args[2];
-> +		if (chip->of_gpio_n_cells == 3) {
-> +			/* First cell is the gpiochip instance number */
-> +			offset = pinspec.args[1];
-> +			pin = pinspec.args[2];
-> +			count = pinspec.args[3];
-> +		} else {
-> +			offset = pinspec.args[0];
-> +			pin = pinspec.args[1];
-> +			count = pinspec.args[2];
-> +		}
-> +
-> +		/*
-> +		 * With multiple GPIO chips per node, check that this chip is the
-> +		 * right instance.
-> +		 */
-> +		if (chip->of_node_instance_match &&
-> +		    (chip->of_gpio_n_cells == 3) &&
-> +		    !chip->of_node_instance_match(chip, pinspec.args[0]))
-> +			continue;
->   
->   		/* Ignore ranges outside of this GPIO chip */
->   		if (offset >= (chip->offset + chip->ngpio))
-> @@ -1170,8 +1237,14 @@ int of_gpiochip_add(struct gpio_chip *chip)
->   		return 0;
->   
->   	if (!chip->of_xlate) {
-> -		chip->of_gpio_n_cells = 2;
-> -		chip->of_xlate = of_gpio_simple_xlate;
-> +		if (chip->of_gpio_n_cells == 3) {
-> +			if (!chip->of_node_instance_match)
-> +				return -EINVAL;
-> +			chip->of_xlate = of_gpio_threecell_xlate;
-> +		} else {
-> +			chip->of_gpio_n_cells = 2;
-> +			chip->of_xlate = of_gpio_twocell_xlate;
-> +		}
->   	}
->   
->   	if (chip->of_gpio_n_cells > MAX_PHANDLE_ARGS)
-> diff --git a/include/linux/gpio/driver.h b/include/linux/gpio/driver.h
-> index 2dd7cb9cc270a68ddedbcdd5d44e0d0f88dfa785..70a361f6aba06d4a11e5ca913ec79411d7a11b3c 100644
-> --- a/include/linux/gpio/driver.h
-> +++ b/include/linux/gpio/driver.h
-> @@ -516,10 +516,32 @@ struct gpio_chip {
->   	/**
->   	 * @of_gpio_n_cells:
->   	 *
-> -	 * Number of cells used to form the GPIO specifier.
-> +	 * Number of cells used to form the GPIO specifier. The standard i 2
-
-s/standard i /standard is /
-
-> +	 * cells:
-> +	 *
-> +	 * gpios = <&gpio offset flags>;
-> +	 *
-> +	 * some complex GPIO controllers instantiate more than one chip per
-> +	 * device tree node and have 3 cells:
-> +	 *
-> +	 * gpios = <&gpio instance offset flags>;
-> +	 *
-> +	 * Legacy GPIO controllers may even have 1 cell:
-> +	 *
-> +	 * gpios = <&gpio offset>;
->   	 */
->   	unsigned int of_gpio_n_cells;
->   
-> +	/**
-> +	 * of_node_instance_match:
-> +	 *
-> +	 * Determine if a chip is the right instance. Must be implemented by
-> +	 * any driver using more than one gpio_chip per device tree node.
-> +	 * Returns true if gc is the instance indicated by i (which is the
-> +	 * first cell in the phandles for GPIO lines and gpio-ranges).
-> +	 */
-> +	bool (*of_node_instance_match)(struct gpio_chip *gc, unsigned int i);
-> +
->   	/**
->   	 * @of_xlate:
->   	 *
-> 
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
