@@ -1,174 +1,281 @@
-Return-Path: <devicetree+bounces-150335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B3DA41C06
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 12:04:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 388D5A41C0C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 12:05:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A4D07A38DB
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:03:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D5583BA526
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:03:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 310A52586CD;
-	Mon, 24 Feb 2025 11:02:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 357F825A625;
+	Mon, 24 Feb 2025 11:02:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jNPKYatd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hvW5AOCG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF86F2586C8;
-	Mon, 24 Feb 2025 11:02:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1CF725A342;
+	Mon, 24 Feb 2025 11:02:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740394956; cv=none; b=aZeZcsoBMqE1Ayzxpk73EtjZUmSDklnqziQCMHWMHIMC0GUxS+KpiWL76nWLTzKnw2XG3LRyjvr+zE0NK4uuOLSDGo5Hw2LRoANf4dXFHWcwIr35IbpZC46ZiY0uyzlm55gKaI0qk2IkgWrglsN+XvjWZQNGq+hP5SHyMQ9/90s=
+	t=1740394939; cv=none; b=LEfn654J4hQMAOB006nw3QU/KmYMYQSFuRFIq4wl9WudnIwWLnLF7FLqKhyT6qaZkveYXADe1piaOXfMfiPNH26COBCY+KqhNTf8EXzddOcfutoeAyMExwCq/MoL+W0EtHOrrUzolAl4XS3FcNWRbE6QpJZCZB74wLxsl8HFusk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740394956; c=relaxed/simple;
-	bh=4h5Vn63f6Fe+g51YvuC9s4LnHdlrSh7w3OTHz6xuoCQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=S6zvFlWi5BRHwCsbSSE/l9K2UdChh4zgvAtmwy2D/6BojCMKMxZChZy/3f1N1nPGGJsYYlm/Dec6BAXHQUiAF+1BPxuXiXD5Xvfw5cjdgjwkxT0RFuEQ3XmruTmzmzI4w1p1kRZcAtEUbBx0hC2gxEf6/Yo40HbPGPaVGcNomIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jNPKYatd; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6145B441B0;
-	Mon, 24 Feb 2025 11:02:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1740394951;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YlMYiWhNWjllG+4m2VbMgy0URpmB5UKN6+mVfUuELF4=;
-	b=jNPKYatdKYpX0w8cf1KMzvCyrMN2jGJjZW20cKTgfAZXnYnbSg8juSaOz2mATMrwIuGO5t
-	StH/bCTj3skEjD6go/TDhCzm48sElq9Zt87aCZGBuEQs6rbG+G2ZMrXAm3I30RHy1hRmXB
-	KE9Wv2aXceEmLGMnaFGEZomY3BABKdXPw3/7a0BSGa0bTw1bHn3fEN7t5AE1NnDFWN2H6C
-	Yh496qsvn4uBHEbJwLBacumVEhQ3fQfR7SngbNb2LrfjDFbCswGLP/0Wi0gFbu6RAdooSl
-	h4jbfmFzTj8cEucPRzZqN2sVMyc+QMqkE7vcU7vjk12DZUt86QI14O+AaHiNQg==
-Date: Mon, 24 Feb 2025 12:02:28 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Donald Hunter
- <donald.hunter@gmail.com>, Rob Herring <robh@kernel.org>, Andrew Lunn
- <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
- Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
- Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 02/12] net: pse-pd: Add support for
- reporting events
-Message-ID: <20250224120228.62531319@kmaincent-XPS-13-7390>
-In-Reply-To: <Z7g-WYQNpVp5w7my@pengutronix.de>
-References: <20250218-feature_poe_port_prio-v5-0-3da486e5fd64@bootlin.com>
-	<20250218-feature_poe_port_prio-v5-2-3da486e5fd64@bootlin.com>
-	<Z7g-WYQNpVp5w7my@pengutronix.de>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1740394939; c=relaxed/simple;
+	bh=NyQODyQ8uWj89RAb9qkVk3Y8Kgaz3t5HvTOO1C1MGyk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=mBP5NoG8/Gg1bxbHnipuDUpluxKhy2p4r1/Q/68XsI/iG7F+QPaAS/D3bxamlNs2lRn53Uif8YKpWkcNDPy9Syz2yTPwirB7By4h3Mv57RC2zYjL8DaumihzB9xKiNy1T+JUdu05vsOc6/Sd+g8quaOyMa969SIM5JPOCCMAmAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hvW5AOCG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 75A52C4CEEF;
+	Mon, 24 Feb 2025 11:02:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740394938;
+	bh=NyQODyQ8uWj89RAb9qkVk3Y8Kgaz3t5HvTOO1C1MGyk=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=hvW5AOCGB/2b6lmatkQuZRKoMhc/KGlidMIMmBsJ/4SSSNmyEE6myrEqkaepnvBx3
+	 zZ4Hd7LSE1FkQ329vAWsPE3bO6l8AJMVrX1wjjsMu1Aqxf/0vIW7IFAs1Z8798+g6w
+	 XFR9Y6oCHtMVB/yPJRmT+hnZUSUrGifjT9tqmrQeRBZE1nRlPgGhPtzlKpLpNLgvzN
+	 6u8yZgvodcnzo5u5aIyS84VDTOgMIqf/zI+Ldj+JFB6eOMZcepKRkoI3ymPiVohDfr
+	 Z5bfFW+bI58oAvRS2N58lVBXkErP42cVZ8bR76sfRbffFD9KjYVRwO/ORGP9exiVf2
+	 +xY2lHB1sW2Jw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69EC7C021B5;
+	Mon, 24 Feb 2025 11:02:18 +0000 (UTC)
+From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
+Date: Mon, 24 Feb 2025 12:02:18 +0100
+Subject: [PATCH v8 3/5] drm: panel: Add a panel driver for the Summit
+ display
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdejkeeitdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqfedtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefhjeevfeeggeeghffgudfhhedvvedvueekleevjeduvddutefhvddugedtfeeludenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvgedprhgtphhtthhopehordhrvghmphgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepkhhus
- ggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheptghorhgsvghtsehlfihnrdhnvghtpdhrtghpthhtohepughonhgrlhgurdhhuhhnthgvrhesghhmrghilhdrtghomh
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250224-adpdrm-v8-3-cccf96710f0f@gmail.com>
+References: <20250224-adpdrm-v8-0-cccf96710f0f@gmail.com>
+In-Reply-To: <20250224-adpdrm-v8-0-cccf96710f0f@gmail.com>
+To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev, 
+ Janne Grunau <j@jannau.net>
+Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Alyssa Ross <hi@alyssa.is>, Sasha Finkelstein <fnkl.kernel@gmail.com>, 
+ Nick Chan <towinchenmi@gmail.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Neal Gompa <neal@gompa.dev>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740394936; l=6135;
+ i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
+ bh=mrq63iLVH9ppuvIWH/dsq2AVK1CS/dEIvxQfxlEoXcc=;
+ b=te5awoQ/Qbp+HfKFyx12SRN8sQB+icInu+/9sUpDVolWQDQypVvpH25A0uChfMsW7gmmDlCTK
+ MC5ufSl+cabBYn0RnsPs3PJBKCdKTLCU0Y3Pr9MyXh8y1nAt0cdCCFV
+X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
+ pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
+X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
+ auth_id=283
+X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Reply-To: fnkl.kernel@gmail.com
 
-Hello Oleksij,
+From: Sasha Finkelstein <fnkl.kernel@gmail.com>
 
-On Fri, 21 Feb 2025 09:50:33 +0100
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+This is the display panel used for the touchbar on laptops that have it.
 
-> Hi Kory,
->=20
-> On Tue, Feb 18, 2025 at 05:19:06PM +0100, Kory Maincent wrote:
-> > From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-> >=20
-> > Add support for devm_pse_irq_helper() to register PSE interrupts. This =
-aims
-> > to report events such as over-current or over-temperature conditions
-> > similarly to how the regulator API handles them but using a specific PSE
-> > ethtool netlink socket. =20
->=20
-> Thank you for your work. Here some comments.
->=20
-> ...
->=20
-> > --- a/drivers/net/mdio/fwnode_mdio.c
-> > +++ b/drivers/net/mdio/fwnode_mdio.c
-> > @@ -18,7 +18,8 @@ MODULE_LICENSE("GPL");
-> >  MODULE_DESCRIPTION("FWNODE MDIO bus (Ethernet PHY) accessors");
-> > =20
-> >  static struct pse_control *
-> > -fwnode_find_pse_control(struct fwnode_handle *fwnode)
-> > +fwnode_find_pse_control(struct fwnode_handle *fwnode,
-> > +			struct phy_device *phydev)
-> >  { =20
->=20
-> This change seems to be not directly related to the commit message.
-> Is it the preparation for the multi-phy support?
+Co-developed-by: Nick Chan <towinchenmi@gmail.com>
+Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Neal Gompa <neal@gompa.dev>
+Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+---
+ drivers/gpu/drm/panel/Kconfig        |   9 +++
+ drivers/gpu/drm/panel/Makefile       |   1 +
+ drivers/gpu/drm/panel/panel-summit.c | 132 +++++++++++++++++++++++++++++++++++
+ 3 files changed, 142 insertions(+)
 
-I need to save the phy_device related to PSE control to use the right netwo=
-rk
-interface for the ethtool notification. (ethnl_pse_send_ntf())
-Indeed I have not described this in the commit message.
+diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+index d7469c565d1db8b8e974dd6c45d03d9352d99d63..5085a82e4bc695e85cabbc3200859bbe10cb0f91 100644
+--- a/drivers/gpu/drm/panel/Kconfig
++++ b/drivers/gpu/drm/panel/Kconfig
+@@ -925,6 +925,15 @@ config DRM_PANEL_SIMPLE
+ 	  that it can be automatically turned off when the panel goes into a
+ 	  low power state.
+ 
++config DRM_PANEL_SUMMIT
++	tristate "Apple Summit display panel"
++	depends on OF
++	depends on DRM_MIPI_DSI
++	depends on BACKLIGHT_CLASS_DEVICE
++	help
++	  Say Y if you want to enable support for the "Summit" display panel
++	  used as a touchbar on certain Apple laptops.
++
+ config DRM_PANEL_SYNAPTICS_R63353
+ 	tristate "Synaptics R63353-based panels"
+ 	depends on OF
+diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+index 7dcf72646cacff11bab90c78e3b8b1f357e5f14a..10ac2e850f5cd6d6546439de75483466e4015d1a 100644
+--- a/drivers/gpu/drm/panel/Makefile
++++ b/drivers/gpu/drm/panel/Makefile
+@@ -89,6 +89,7 @@ obj-$(CONFIG_DRM_PANEL_SHARP_LS060T1SX01) += panel-sharp-ls060t1sx01.o
+ obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7701) += panel-sitronix-st7701.o
+ obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) += panel-sitronix-st7703.o
+ obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) += panel-sitronix-st7789v.o
++obj-$(CONFIG_DRM_PANEL_SUMMIT) += panel-summit.o
+ obj-$(CONFIG_DRM_PANEL_SYNAPTICS_R63353) += panel-synaptics-r63353.o
+ obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) += panel-sony-acx565akm.o
+ obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) += panel-sony-td4353-jdi.o
+diff --git a/drivers/gpu/drm/panel/panel-summit.c b/drivers/gpu/drm/panel/panel-summit.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..e780faee18570c9970d381b3f7c65b95665469cd
+--- /dev/null
++++ b/drivers/gpu/drm/panel/panel-summit.c
+@@ -0,0 +1,132 @@
++// SPDX-License-Identifier: GPL-2.0-only
++
++#include <linux/backlight.h>
++#include <drm/drm_device.h>
++#include <drm/drm_mipi_dsi.h>
++#include <drm/drm_mode.h>
++#include <drm/drm_modes.h>
++#include <drm/drm_panel.h>
++#include <drm/drm_probe_helper.h>
++#include <video/mipi_display.h>
++
++struct summit_data {
++	struct mipi_dsi_device *dsi;
++	struct backlight_device *bl;
++	struct drm_panel panel;
++};
++
++static int summit_set_brightness(struct device *dev)
++{
++	struct summit_data *s_data = dev_get_drvdata(dev);
++	int level = backlight_get_brightness(s_data->bl);
++
++	return mipi_dsi_dcs_set_display_brightness(s_data->dsi, level);
++}
++
++static int summit_bl_update_status(struct backlight_device *dev)
++{
++	return summit_set_brightness(&dev->dev);
++}
++
++static const struct backlight_ops summit_bl_ops = {
++	.update_status	= summit_bl_update_status,
++};
++
++static struct drm_display_mode summit_mode = {
++	.vdisplay = 2008,
++	.hdisplay = 60,
++	.hsync_start = 60 + 8,
++	.hsync_end = 60 + 8 + 80,
++	.htotal = 60 + 8 + 80 + 40,
++	.vsync_start = 2008 + 1,
++	.vsync_end = 2008 + 1 + 15,
++	.vtotal = 2008 + 1 + 15 + 6,
++	.clock = ((60 + 8 + 80 + 40) * (2008 + 1 + 15 + 6) * 60) / 1000,
++	.type = DRM_MODE_TYPE_DRIVER,
++	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_NVSYNC,
++};
++
++static int summit_get_modes(struct drm_panel *panel,
++			    struct drm_connector *connector)
++{
++	connector->display_info.non_desktop = true;
++	drm_object_property_set_value(&connector->base,
++				      connector->dev->mode_config.non_desktop_property,
++				      connector->display_info.non_desktop);
++
++	return drm_connector_helper_get_modes_fixed(connector, &summit_mode);
++}
++
++static const struct drm_panel_funcs summit_panel_funcs = {
++	.get_modes = summit_get_modes,
++};
++
++static int summit_probe(struct mipi_dsi_device *dsi)
++{
++	struct backlight_properties props = { 0 };
++	struct device *dev = &dsi->dev;
++	struct summit_data *s_data;
++	int ret;
++
++	s_data = devm_kzalloc(dev, sizeof(*s_data), GFP_KERNEL);
++	if (!s_data)
++		return -ENOMEM;
++
++	mipi_dsi_set_drvdata(dsi, s_data);
++	s_data->dsi = dsi;
++
++	ret = device_property_read_u32(dev, "max-brightness", &props.max_brightness);
++	if (ret)
++		return ret;
++	props.type = BACKLIGHT_RAW;
++
++	s_data->bl = devm_backlight_device_register(dev, dev_name(dev),
++						    dev, s_data, &summit_bl_ops, &props);
++	if (IS_ERR(s_data->bl))
++		return PTR_ERR(s_data->bl);
++
++	drm_panel_init(&s_data->panel, dev, &summit_panel_funcs,
++		       DRM_MODE_CONNECTOR_DSI);
++	drm_panel_add(&s_data->panel);
++
++	return mipi_dsi_attach(dsi);
++}
++
++static void summit_remove(struct mipi_dsi_device *dsi)
++{
++	struct summit_data *s_data = mipi_dsi_get_drvdata(dsi);
++
++	mipi_dsi_detach(dsi);
++	drm_panel_remove(&s_data->panel);
++}
++
++static int summit_suspend(struct device *dev)
++{
++	struct summit_data *s_data = dev_get_drvdata(dev);
++
++	return mipi_dsi_dcs_set_display_brightness(s_data->dsi, 0);
++}
++
++static DEFINE_SIMPLE_DEV_PM_OPS(summit_pm_ops, summit_suspend,
++				summit_set_brightness);
++
++static const struct of_device_id summit_of_match[] = {
++	{ .compatible = "apple,summit" },
++	{},
++};
++
++MODULE_DEVICE_TABLE(of, summit_of_match);
++
++static struct mipi_dsi_driver summit_driver = {
++	.probe = summit_probe,
++	.remove = summit_remove,
++	.driver = {
++		.name = "panel-summit",
++		.of_match_table = summit_of_match,
++		.pm = pm_sleep_ptr(&summit_pm_ops),
++	},
++};
++module_mipi_dsi_driver(summit_driver);
++
++MODULE_DESCRIPTION("Summit Display Panel Driver");
++MODULE_LICENSE("GPL");
 
-> ...
->=20
-> > +/**
-> > + * pse_to_regulator_notifs - Convert PSE notifications to Regulator
-> > + *			     notifications
-> > + * @notifs: PSE notifications
-> > + *
-> > + * Return: Regulator notifications
-> > + */
-> > +static unsigned long pse_to_regulator_notifs(unsigned long notifs) =20
->=20
-> I prefer converting it the other way around to make it reusable for
-> plain regulator-based PSEs. For example, the podl-pse-regulator driver
-> won=E2=80=99t have its own interrupt handler but will instead use
-> devm_regulator_register_notifier().
+-- 
+2.48.1
 
-The driver PIs part send PSE notifications which will be converted to regul=
-ator
-events from the core. It is posting events.
-If you use devm_regulator_register_notifier() you will registers a listener=
- for
-the regulator events. It is two distinct things.
 
-> Even full-fledged PSE controllers like the PD692x0 are just one part of
-> a larger chain of regulators. An overcurrent event may originate from a
-> downstream regulator that is not part of the PD692x0 itself. In this
-> case, we need to process the event from the downstream regulator,
-> convert it into an ethtool event, and forward it to the user.
-
-If you want to do something in case of downstream regulator events you will=
- deal
-with regulator events not PSE events. I think you want to disable PIs in ca=
-se of
-event like downstream regulator over current.
-What policy should we use? Should we disable all the PIs or only disabled t=
-he
-low priority like the budget evaluation strategy of this series? As it is o=
-ver
-current event not related to budget we don't know how many PIs we should
-disable.
-
-Still as said before it is a distinct development that could be tackled lat=
-er.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
 
