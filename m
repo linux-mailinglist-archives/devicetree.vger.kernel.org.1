@@ -1,195 +1,208 @@
-Return-Path: <devicetree+bounces-150125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77BE3A414EF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 06:52:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34889A414F5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 06:58:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDC5518891D8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 05:52:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E5BF188C51F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 05:58:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B421CAA62;
-	Mon, 24 Feb 2025 05:52:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FBAE1B0F2C;
+	Mon, 24 Feb 2025 05:58:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RPOCCvHC"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="1iZq4aeM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28B61448E3
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 05:52:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ED301ACEA7
+	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 05:58:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740376344; cv=none; b=cDZAXMX/+u8rvjs82I5y6hRPpZVQ2PoKNiw4W5cVp32Vza37E8WEoBTFiDVkDRYVJ+ZfDqp4EUOCNUKHpWuSWoQ12l+0me44trjCKBVnJx/O4qb+QmMYPi6EVa6yFqRCfxLbJ21t3YtHoUKqYp38dGlH6glFDQwzaNuJKiaIjI0=
+	t=1740376698; cv=none; b=mwMgnwRgEoBDC0IAl90iI+sKlGepP/ywTdc0M4hL/NtT/Gfqtdj/xYxIlTWAV7JVsm604LNZkOIn0bfMuEqxJNan5zxNdUzZ5vVMB9xsf+lq2sgw3j4qAvAqGsW1gfH+wdnZmyDM6qgP4fRXsF5WpigEo+jBAJxhOlLpKcmUfY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740376344; c=relaxed/simple;
-	bh=z/ovU3nCV1OoHF37nW8XJ/TI/72Wl3CaicUIDjd0OOo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ikvh2nHPEA2Eyd5N0cW9Bg3OzEDyJZx7ggCXvrm16cc2o4/7c+h7/9facx/UMvzwFwiR2Kxqhh1begL1fWjkicBpq5MKZl/c4T4Gt02R7EwY2AbXvPryKQ+BteqnUgkXaaMDcvE7y5/9OwfGTN5cry00vV8EhkBa25PEXNJpEI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RPOCCvHC; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-22113560c57so79462595ad.2
-        for <devicetree@vger.kernel.org>; Sun, 23 Feb 2025 21:52:22 -0800 (PST)
+	s=arc-20240116; t=1740376698; c=relaxed/simple;
+	bh=97ksH0fUVH2wv4Gj2acS/TXU6Ml2sTixkcc5ZeWTONs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sMySN6d81F7AjUpnENNX4vmo5uwfYP2edYTXXJbkw8ouVth4haE8+H6LMC7zjlpz0kZEDjNFyA4MDTvEWTa28bEhn8hm81DJQkJzvgqQl8tUt+R+vQAnERzoPuP49BJAejlOAVWwNk+QiACINCkJ5S/At/P3g1IiSMr9xNIkSeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=1iZq4aeM; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-220d28c215eso59292845ad.1
+        for <devicetree@vger.kernel.org>; Sun, 23 Feb 2025 21:58:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740376342; x=1740981142; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=KMGZVixZMsM1QUrt21MIcd+lH0Pr9ebQZcDM8qRaS2Y=;
-        b=RPOCCvHCvS2gauU7yf5nrMWOdOrz+REHjFTwRd3bGwxMLZVUUZFEYuBuN9baXRxa8v
-         lwOYNyxG1KRk+StIJxXPYAWMs4V2yNmDfBy/wXFhKNnS51RzbzyB+UstaZQMbZ0cOG9c
-         MlUPu/f181b8TFs3ZS2qUFEy54Ts88g1OW3WfpJCVRh/CdiIOCaQoXh1DMBDxp7fZU7a
-         xlnQv7gnqUxsVk7YfTk+G068fW9Mp3Cgyo28IHtDguutxcT4HgjUxTt8y23FFknX7+1A
-         ku3AW5CthssYXH4w3ELu5hQVF4QpoJniiMrxi7W9Gjz+SeZ0ORKY1CouWtAzluZFbGvB
-         Q5NA==
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1740376695; x=1740981495; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lisuN7IM8Xj4mzWfcv7nbSaDXgyJECrIkFkafy2PwLE=;
+        b=1iZq4aeM32K/JWw2bh+pnEhbuZb+t7n7Fyg788oR1qfhpU3HvVQRlzpmcjH49Jth+h
+         OzldAz2i262Ty6tC2fUAsibpe6fh2tpgsT8iVrgXiGy9WkF6EY3sE+wW+8mEwmM+BZ7U
+         HqIdCFRVfmxnHGyAGVf6/ifosFZyg5i2aUlwyoxDB70qpzhNnLiakZnxV4B9Xb/i2Qn6
+         8Z5oWO7BGIergM8J1Wro5DdwbhaF65CZ36ZQYicbfRvBaRj53zXu3VoNP/pvwCsj7YOs
+         Ky0CZByhrexq3wyZmyhYhPmBFLSPRPgC4Qm0V4RIYa4r65rAGIuqH/M7suWYtA5a8RzK
+         tHZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740376342; x=1740981142;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1740376695; x=1740981495;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KMGZVixZMsM1QUrt21MIcd+lH0Pr9ebQZcDM8qRaS2Y=;
-        b=IaJ0R9F8t6V/Ooivjr/8GEVwAvFgEikujh4WCK2MaWK8B6oveb3X7w/IL0Z6ZLBAkd
-         3m2/m72nmUHsaj20ABe38qceFB1mJMlFuWH3ZuVfFXATGRovTRkuFlOHS8Ufvv+lK/GE
-         9TXvrTwK03m8NgSCrR3UWYtD8zCWz8GMUdtGpxYoMLSTqImhFwYKSYrS6PzMsYrXMUac
-         Wz02d+rnOwrkjbPLDNlAfruFtZHO4r6Wv0/d8estsWZIWTyQIG0fxymUasZMEdqZltaP
-         D5dQOYnGRXi2KTA7ekJ4sNYOOuXiG6ZPYljgnjZADpqLOty6DQyo97Iow8Zf+/UvjkcM
-         CG/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXsi6IH6JU2pl6Xfqo8BZLZK3Km6kGgbj19nD88yG8FMGDhomSdlabVKHRskQWDe08/p1KPGjfhJxJy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgmB1RG8F3wH7PoBOaoKoWt6+mSUvBHk2o2slh/SzcqjwgKr6L
-	kheW92TNs4newobo2MfkEeaNKasYuX4/enaV7ghbE/GQnsPOMQSKC7fu/dox1w==
-X-Gm-Gg: ASbGnctEG7nIOx78/wHuUSZpO0wwHhiNq3v1yr8W4orGRb0wCbfI5qKr9xbh/DSH5NF
-	ofFFvQaYwOpBoF1cuqqfIEX0nXrEWXEQjWA5F90IUWg5VSvpF2OYgIMoeeADMOMqPLO0+jL9BtS
-	QAYfvL1bvxq/imDZhn+uncLjZ/r0oXGeVWdbp6/F6XjvDH1wHXt7kRlYTFV/NJ3o2lk9dBufyQd
-	pNhb/MxUxF+fv4hadehWOtl2/qEMwR4oXRIm+StTuwTaN5JdsijYsvfP/ThRm2errjoNoez52bF
-	lp/WKD/kTc2LEBcqi7EYsXRP1Z0+tgx7/oyW
-X-Google-Smtp-Source: AGHT+IE2ru4PtjCsPp2tarf/l/cdfK16EG3Qcx2wKj6eAZLOtqSbVpSz/KOi9yvw/uq2s9+oluXICA==
-X-Received: by 2002:a05:6a20:9186:b0:1ee:d8c8:4b7f with SMTP id adf61e73a8af0-1eef530072dmr19652797637.25.1740376341985;
-        Sun, 23 Feb 2025 21:52:21 -0800 (PST)
-Received: from thinkpad ([36.255.17.162])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-adb5870cba6sm18479524a12.42.2025.02.23.21.52.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Feb 2025 21:52:21 -0800 (PST)
-Date: Mon, 24 Feb 2025 11:22:16 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Ryder Lee <ryder.lee@mediatek.com>,
-	Jianjun Wang <jianjun.wang@mediatek.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Subject: Re: [PATCH v3 2/2] PCI: mediatek-gen3: Configure PBUS_CSR registers
- for EN7581 SoC
-Message-ID: <20250224055216.o23dzwimrghbr2ow@thinkpad>
-References: <20250222-en7581-pcie-pbus-csr-v3-0-e0cca1f4d394@kernel.org>
- <20250222-en7581-pcie-pbus-csr-v3-2-e0cca1f4d394@kernel.org>
+        bh=lisuN7IM8Xj4mzWfcv7nbSaDXgyJECrIkFkafy2PwLE=;
+        b=N7m1IFMbI/pz7cO/F3Z/fucACngjLPn5Mo3JiBGXGEiR2vzLHQbzU46or6zeVxsBcG
+         9a4NVCgZuNU0Z2ZnX9/SrvYeE84Sw2AcL3Adj6EiPwM7+ZKaazXUHH+wJPI1lQazPEho
+         2ITwbp3MymDSAiqKq31SmDxw6Toxskpy05NrKhS5cQ7k3dN28kJ4VVUm6NXXTuNqF/Sx
+         RX1ETcEJ0w/adApPhGF1guOkYN5btSwfCK/M6unkRYgGsN69pR2vo9MOx2eI1E7xXH09
+         2nvfki4sn6PPDKnVtyzPTvhyNxVShWWQll8zlgx2UvJMYEewsyUlLAr+K08na4k3JwtJ
+         07fg==
+X-Gm-Message-State: AOJu0YwbIkyX/IN1YY72scardF1tDEDiiUakDHVcF6VAT1L6SWDz63uT
+	uHgWhY80TYS/7lrdysi2TvrBXFQxMY4efvGoqP3ZjJ5AM+cghDsFGjSp2K39VnTH+WeDYO6xR+Y
+	=
+X-Gm-Gg: ASbGncvBSARlJHcTpcLNZuQk2rrA4gD9+VC25Y87oLoo3p2qtc5xQsw23vMXU4wAE6A
+	Lu2LcuosX/g2TClVRUQSsLGTrEpMuWRqXnvEbsJngA6i5Ig3ncxKmricXqceLl0s0b7XajqU3GR
+	QTv3YFALtZj8n64soN7uQ8gblSuDb+zLscdcJVE+n4k/SpWwds3OrB4t7CuXc4RyEPQhVK08DZV
+	l3fjPXvsY92QRySbVevvuidU1beOaXUAJleIx1zRqXxnHQsWE7OIxyapZf+mu1tMpNtCIZi/3jU
+	zCMYcGqwxFxjuVW2bYepkHNGzCU3AG7wSA==
+X-Google-Smtp-Source: AGHT+IE9by00nL0QZfW9htj5Ee/NnjieAF+19RJzh/LgzzZL8HnrvFaZeaEHHbO8oUI/cEILk81Q4A==
+X-Received: by 2002:a05:6a00:1392:b0:732:5a8f:f51a with SMTP id d2e1a72fcca58-73426cb1e67mr25687471b3a.8.1740376694525;
+        Sun, 23 Feb 2025 21:58:14 -0800 (PST)
+Received: from [172.16.119.211] ([103.15.228.94])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73468a98319sm762918b3a.44.2025.02.23.21.58.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Feb 2025 21:58:13 -0800 (PST)
+Message-ID: <d5bed265-1dbd-44d1-8287-8ca993624b79@beagleboard.org>
+Date: Mon, 24 Feb 2025 11:28:07 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Question] Status of user-space dynamic overlays API
+To: Heinrich Schuchardt <xypron.glpk@gmx.de>,
+ Jason Kridner <jkridner@beagleboard.org>,
+ Deepak Khatri <lorforlinux@beagleboard.org>, d-gole@ti.com,
+ Robert Nelson <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ David Gibson <david@gibson.dropbear.id.au>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Pantelis Antoniou <pantelis.antoniou@gmail.com>
+Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>
+References: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
+ <2FB1BF12-E30C-4D99-8F71-2B28CEB16478@gmx.de>
+Content-Language: en-US
+From: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <2FB1BF12-E30C-4D99-8F71-2B28CEB16478@gmx.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250222-en7581-pcie-pbus-csr-v3-2-e0cca1f4d394@kernel.org>
 
-On Sat, Feb 22, 2025 at 11:43:45AM +0100, Lorenzo Bianconi wrote:
-> Configure PBus base address and address mask to allow the hw
-> to detect if a given address is accessible on PCIe controller.
-> 
-> Fixes: f6ab898356dd ("PCI: mediatek-gen3: Add Airoha EN7581 support")
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  drivers/pci/controller/pcie-mediatek-gen3.c | 34 ++++++++++++++++++++++++++++-
->  1 file changed, 33 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
-> index 0f64e76e2111468e6a453889ead7fbc75804faf7..51103b7624c09ca957c22a25536dc9da25428e48 100644
-> --- a/drivers/pci/controller/pcie-mediatek-gen3.c
-> +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-> @@ -15,6 +15,7 @@
->  #include <linux/irqchip/chained_irq.h>
->  #include <linux/irqdomain.h>
->  #include <linux/kernel.h>
-> +#include <linux/mfd/syscon.h>
->  #include <linux/module.h>
->  #include <linux/msi.h>
->  #include <linux/of_device.h>
-> @@ -24,6 +25,7 @@
->  #include <linux/platform_device.h>
->  #include <linux/pm_domain.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
->  #include <linux/reset.h>
->  
->  #include "../pci.h"
-> @@ -930,9 +932,13 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie *pcie)
->  
->  static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
->  {
-> +	struct pci_host_bridge *host = pci_host_bridge_from_priv(pcie);
->  	struct device *dev = pcie->dev;
-> +	struct resource_entry *entry;
-> +	u32 val, args[2], size, mask;
-> +	struct regmap *pbus_regmap;
-> +	resource_size_t addr;
->  	int err;
-> -	u32 val;
->  
->  	/*
->  	 * The controller may have been left out of reset by the bootloader
-> @@ -944,6 +950,32 @@ static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
->  	/* Wait for the time needed to complete the reset lines assert. */
->  	msleep(PCIE_EN7581_RESET_TIME_MS);
->  
-> +	/*
-> +	 * Configure PBus base address and base address mask to allow the
-> +	 * hw to detect if a given address is accessible on PCIe controller.
-> +	 */
-> +	pbus_regmap = syscon_regmap_lookup_by_phandle_args(dev->of_node,
-> +							   "mediatek,pbus-csr",
-> +							   ARRAY_SIZE(args),
-> +							   args);
-> +	if (IS_ERR(pbus_regmap))
-> +		return PTR_ERR(pbus_regmap);
-> +
-> +	entry = resource_list_first_type(&host->windows, IORESOURCE_MEM);
-> +	if (!entry)
-> +		return -EINVAL;
+On 2/23/25 02:01, Heinrich Schuchardt wrote:
 
--ENODEV or -ENOMEM
+> Am 22. Februar 2025 21:13:56 MEZ schrieb Ayush Singh <ayush@beagleboard.org>:
+>> Hello everyone.
+>>
+>> I have been looking at ways to do runtime devicetree overlay application, and was just wondering what the current status of the different proposals [0], [1] were. They seem to be quite old and I think they were already rejected, but due to all the broken links, I am not really sure about the exact reasons. Also, maybe we now have the solutions to some the blockers at the time.
+>>
+>>
+>> Let me fist go over some of the use cases where I think dynamic devicetree overlays can be useful. I am mostly interested in their use in single board computers like PocketBeagle 2 [2], Raspberry Pi [3], etc.
+>>
+>>
+>> # Uses
+>>
+>> ## Dynamic Pin muxing
+>>
+>> A lot of SBC's aimed for creating hardware projects expose headers, where each pin can be used for multiple things like GPIO, I2C, PWM, etc, depending on the pinmux. I think Raspberry Pi has it's own solution to do userspace pinmux, but if userspace devicetree application was a thing, it could probably be used for this. Additionally, being able to use dynamic devicetree overlays for pin muxing would allow much easier transition to use proper device trees during production.
+>>
+>>
+>> ## Dynamic Sensors/Devices
+>>
+>> Using devices such as sensors, external ADCs, EEPROMs, etc are also a common usecase in SBC's. A lot of current solutions seem to be designed around using user-space drivers in such cases. This is a bit of a shame since Linux kernel already has drivers for a lot of these drivers, and they are probably going to be of higher quality than most user space drivers.
+>>
+>>
+>> # Challenges
+>>
+>> ## Security
+>>
+>> The concerns regarding security seemed to show up in the other proposals. There was a proposal to have a devicetree property to allow/deny the application of overlays in some nodes, with default being deny. Was it insufficient?
+>>
+>>
+>> ## Memory Leaks
+>>
+>> Currently, updating/removing properties leaks memory. Was it one of the reasons for the rejection of previous proposals?
+>>
+>>
+>> Maybe kernel already has some solutions more suited to my usecase that I am unware of?
+>>
+>>
+>> [0]: https://lore.kernel.org/all/1417605808-23327-1-git-send-email-pantelis.antoniou@konsulko.com/#t
+>>
+>> [1]: https://lore.kernel.org/all/20161220190455.25115-1-xypron.glpk@gmx.de/
+>>
+>> [2]: https://www.beagleboard.org/boards/pocketbeagle-2
+>>
+>> [3]: https://www.raspberrypi.com/
+>>
+>>
+>> Best Regards,
+>>
+>> Ayush Singh
+>>
+> Hello Ayush,
+>
+> On [1] I gave up when I got the impression that the maintainers only wanted to further their own companies interest and did not show openness for a globally usable functionality.
+>
+> Best regards
+>
+> Heinrich
+>
 
-> +
-> +	addr = entry->res->start - entry->offset;
-> +	err = regmap_write(pbus_regmap, args[0], lower_32_bits(addr));
-> +	if (err)
+I am thinking about an implementation more in line with your sysfs 
+proposal [0]. Maybe I should send an RFC to get more replies but here is 
+what I was thinking of:
 
-MMIO write is not supposed to fail.
 
-> +		return err;
-> +
-> +	size = lower_32_bits(resource_size(entry->res));
-> +	mask = size ? GENMASK(31, __fls(size)) : 0;
+Having a property in `aliases` such as `export_node{num}` to explicitly 
+export nodes which support overlay application. The `of_sysfs` module 
+will create sysfs entries for each of exported nodes.
 
-Size of MEM region could be 0?
 
-> +	err = regmap_write(pbus_regmap, args[1], mask);
-> +	if (err)
+The same files as [0] will be provided for each node:
 
-MMIO write is not supposed to fail.
+load:   This is a write only file. Data written to it is interpreted as 
+devicetree blob, and applied using `of_overlay_fdt_apply()` to the 
+target node.
 
-- Mani
+loaded: This is a read only file.
+         It provides the count of loaded overlays as a decimal
+         number.
 
--- 
-மணிவண்ணன் சதாசிவம்
+unload: This is a write only file.
+         If a positive number n is wrtten to this file the n
+         most recent overlays are destroyed.
+         If a negative number is written to this file all
+         overlays are destroyed.
+
+
+Since any nodes that can have dynamic overlays applied need to be 
+explicitly enabled in base devicetree, I think this should help with 
+some security concerns.
+
+I am a bit unsure if I would need to create a new device for each of the 
+exported node or just create kobject for each node directly (since the 
+sysfs entries should probably be under 
+`/sys/firmware/overlays/export_node{num}` rather than `/sys/devices`).
+
+
+[0]: https://lore.kernel.org/all/20161220190455.25115-1-xypron.glpk@gmx.de/
+
+
+Best Regards,
+
+Ayush Singh
+
 
