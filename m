@@ -1,169 +1,163 @@
-Return-Path: <devicetree+bounces-150586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C2D1A42C24
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 19:59:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18D31A42C39
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 20:01:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 777493AA866
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 18:58:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BF681892E1A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 19:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCFA2266B4A;
-	Mon, 24 Feb 2025 18:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B95C266EE7;
+	Mon, 24 Feb 2025 18:59:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e0PnSkU3"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HkfYIwBX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4C10266196;
-	Mon, 24 Feb 2025 18:58:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC69B266B77;
+	Mon, 24 Feb 2025 18:59:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740423496; cv=none; b=DBC9mAoMj/Ycno1pF5LkxsjEA5ZBOe4gP4FRSfCcdx8O/SdN5LLPyVwD8pmUTjf7pC+SE4Tf3GJcfmyQ6ZoDKwc8sTrJOUQPNHpUxIMYKp+F80hlWbOhOTd7sZd0a1EcOArSF+jr8LgTjS065R3zmBucOO2k6Z9bOth6pmniXZw=
+	t=1740423574; cv=none; b=LSQrcV5q5ynX7EERCB+MY0mA7H2T52P+Q09R3AyI7233F7+cMsh3Qf1zv8Sw+a6n2ByWOZ7xuNK7dKcJ/poxzWnnsckq0XXLNAnsVzRXBO9RkiwNW4EuscYrPdmoljSiC97+DSjVzGykdL31nVw225iYvDcVFj/iZAa0w30op8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740423496; c=relaxed/simple;
-	bh=MGqd6UyFbLEvXbwx8sco4jvnELmzS1EXFIH5OYWVOaU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UNZ8pgQSAwtggK8geCCJBNNeykq6uubtSGeyJNIK00IVYc11cb0JDQQZMaSp1T/wPa3XEny4bwsgh/p1/COW/n6ZmwgU6VCIrgUOatVfpbTz8lUFLwG2S2fSeZVAhSkkThBUeSRZjrVO353/x06bJbYUYsMDZ+x1+vHnQgSq46c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e0PnSkU3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D59C1C4CEE7;
-	Mon, 24 Feb 2025 18:58:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740423496;
-	bh=MGqd6UyFbLEvXbwx8sco4jvnELmzS1EXFIH5OYWVOaU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e0PnSkU3scMtWm3Ig7P0MxfH7yjicqDahqLvSnu4/g4uB6UONsvqBE+4PTfpxkDf6
-	 Zyg2ueuZlmzz3eBdsNqcXSykRUP3rOJmVWxz1LVNqUixqdoA3Ecvb61VscmJ+iGINM
-	 Jr0rwteU/qRa3roO7Y3tnLhDPg59GDkpvZHBkqpWhnxaXQ+uYdLNULjooZclcnb1L1
-	 MZwBu3I7nip9THXJRyXEc+BWG0q0KifPPVitL7s5nc6/ZrVN4UoF+9dgljkxwj1en7
-	 sP+mLOAlpGGZbB6EHBEBR7ZS1tAcqsbAXnaf5bDsO9QcRSOFyXZtfUOCo3zG1UXqTV
-	 B8bDZkhas+ESQ==
-Date: Mon, 24 Feb 2025 18:58:10 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Lukasz Majewski <lukma@denx.de>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof@spud.smtp.subspace.kernel.org,
-	Kozlowski@spud.smtp.subspace.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>, Aradhya Bhatia <a-bhatia1@ti.com>,
-	rafal@milecki.pl, devicetree@vger.kernel.org,
-	Guenter Roeck <linux@roeck-us.net>,
-	Noah Wang <noahwang.wang@outlook.com>, linux-kernel@vger.kernel.org,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Alex Vdovydchenko <xzeol@yahoo.com>,
-	Grant Peltier <grantpeltier93@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH 2/2] dt-bindings: trivial-devices: Document SPI
- measurement on LWE boards
-Message-ID: <20250224-crux-tabasco-4107deee169e@spud>
-References: <20250221155418.1167670-1-lukma@denx.de>
- <20250221155418.1167670-2-lukma@denx.de>
- <20250221-scuba-rematch-ada1a9b750b1@spud>
- <20250221215659.61ecc523@wsk>
+	s=arc-20240116; t=1740423574; c=relaxed/simple;
+	bh=AwdzRDLRxrAa+DwJG43Ykw1x+ugkSQyavOnKvWa1C38=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GNqqG39VkzC908ck1MmsYAJvypXSCSGb2RWznGPh/5qCzEDTzROT1p23U4M1VLwaFJFqyNuSJgiSJ26kOM0FpK+8RQD2DakdP0TM+weN5VvwBrsbxu1+j7cek8gHlNLsWPQuPxSv6a8iXtFRovZgr3Axh0O8bJI806GdW3lGT7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HkfYIwBX; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51ODDTv8012179;
+	Mon, 24 Feb 2025 18:59:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	iB0zlCvg2FIP9w2eDttuFf7K9oZ36VP0mfOhuZax8HM=; b=HkfYIwBXEayVKY4J
+	2GZR5DFPbd41G1OPmUnkjFv+oZ5zNYBzt+Ei5l7+XIWpFJJerfXCHRzeENlw2573
+	0sC95EqVa8j0M+2iLbz2++lYwl9dTfPOVkCqyi8YQBmlx2jI375wsTKM1QehsCqH
+	Olg1Xalpab8P8i5VW3poSh+iir0DCGIRyYFurcZ5sHktuDpKouu2cb1dCSz102Ix
+	SoAzhOdfFiApkAArJlovBnBpzWDauCba3sORRUvtZA8ROU7DQvmFWdTFC6ykE2RO
+	AI6FIJNwoc/7OsHvjpBMAKIKGG4hNKHEq5Qnkm3UcOYu+3GvJe26BkcHrUKWq/sr
+	iXoaTA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 450kqg2ekc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Feb 2025 18:59:08 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51OIx8uR017973
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Feb 2025 18:59:08 GMT
+Received: from [10.110.85.197] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 24 Feb
+ 2025 10:59:06 -0800
+Message-ID: <4e82404a-0ea5-4641-829a-bba666edd352@quicinc.com>
+Date: Mon, 24 Feb 2025 10:59:06 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HqBwAz7wwaok1LZr"
-Content-Disposition: inline
-In-Reply-To: <20250221215659.61ecc523@wsk>
-
-
---HqBwAz7wwaok1LZr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Feb 21, 2025 at 09:56:59PM +0100, Lukasz Majewski wrote:
-> Hi Conor,
->=20
-> > On Fri, Feb 21, 2025 at 04:54:18PM +0100, Lukasz Majewski wrote:
-> > > The measurement device on Liebherr's (LWE) boards is used to monitor
-> > > the overall state of the device. It does have SPI interface to
-> > > communicate with Linux host via spidev driver. Document the SPI DT
-> > > binding as trivial SPI device.
-> > >=20
-> > > Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> > > ---
-> > >  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml
-> > > b/Documentation/devicetree/bindings/trivial-devices.yaml index
-> > > fadbd3c041c8..5d736a9792c2 100644 ---
-> > > a/Documentation/devicetree/bindings/trivial-devices.yaml +++
-> > > b/Documentation/devicetree/bindings/trivial-devices.yaml @@ -161,6
-> > > +161,8 @@ properties:
-> > >            - jedec,spd5118
-> > >              # Linear Technology LTC2488
-> > >            - lineartechnology,ltc2488
-> > > +            # Liebherr on-board measurement SPI device
-> > > +          - lwe,btt =20
-                          ^^
-Are these two trailing spaces an artefact of the mail?
-
-> >=20
-> > How does "btt" translate to what the device actually is? Seems kinda
-> > random!
->=20
-> Btt is a family of devices (bttc, btt3, xea) - to control heavy duty
-> machines.
->=20
-> That was the original codename - conceived probably 30+ years ago.
-
-If there's 3 different devices, how come there aren't 3 compatibles, 1
-for each?
-
->=20
-> > Also, where is patch 3, adding the lwe,btt to the spidev driver so
-> > that it will probe?
->=20
-> I've posted it to Mark Brown (and also linux-spi ML) for review.
->=20
-> >=20
-> > Cheers,
-> > Conor.
-> >=20
-> > >              # 5 Bit Programmable, Pulse-Width Modulator
-> > >            - maxim,ds1050
-> > >              # 10 kOhm digital potentiometer with I2C interface
-> > > --=20
-> > > 2.39.5
-> > >  =20
->=20
->=20
->=20
->=20
-> Best regards,
->=20
-> Lukasz Majewski
->=20
-> --
->=20
-> DENX Software Engineering GmbH,      Managing Director: Erika Unter
-> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-> Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 05/16] dt-bindings: display/msm: dp-controller: Add
+ SM8750
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        "Marijn
+ Suijten" <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Jonathan Marek
+	<jonathan@marek.ca>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Srini
+ Kandagatla" <srinivas.kandagatla@linaro.org>
+References: <20250217-b4-sm8750-display-v2-0-d201dcdda6a4@linaro.org>
+ <20250217-b4-sm8750-display-v2-5-d201dcdda6a4@linaro.org>
+ <aqpuik4zitdfuk4pahn4wyzxdvxldy4dcqjs3mhr6fqtxpoxhf@ssfzzbfce2nu>
+ <2dfe466c-ad94-4683-a2e9-a49e77a61f4f@linaro.org>
+ <h2shpen65r7v4in54avsez7qtlwojbt2cthyomqrsgs5ewprwb@bn53suqrzkac>
+Content-Language: en-US
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <h2shpen65r7v4in54avsez7qtlwojbt2cthyomqrsgs5ewprwb@bn53suqrzkac>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: vYKClvgaWABcBprHm3ba0mVLaY9iAKAI
+X-Proofpoint-ORIG-GUID: vYKClvgaWABcBprHm3ba0mVLaY9iAKAI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-24_09,2025-02-24_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 lowpriorityscore=0 malwarescore=0 priorityscore=1501
+ bulkscore=0 mlxscore=0 spamscore=0 clxscore=1011 mlxlogscore=894
+ adultscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502240123
 
 
 
---HqBwAz7wwaok1LZr
-Content-Type: application/pgp-signature; name="signature.asc"
+On 2/19/2025 9:08 AM, Dmitry Baryshkov wrote:
+> On Wed, Feb 19, 2025 at 06:02:20PM +0100, Krzysztof Kozlowski wrote:
+>> On 17/02/2025 19:58, Dmitry Baryshkov wrote:
+>>> On Mon, Feb 17, 2025 at 05:41:26PM +0100, Krzysztof Kozlowski wrote:
+>>>> Add DisplayPort controller for Qualcomm SM8750 SoC which so far looks
+>>>> fully compatible with earlier SM8650 variant.
+>>>
+>>> As that became a question for QCS8300, does SM8750 also support exactly
+>>> two MST streams?
+>>
+>> v1.5 of DP (starting from SA8775p , then SM8650 and SM8750) support 4x
+>> MST for DPTX0 and 2x MST for DPTX1.
+>>
+>> The DP in SM8650 and SM8750 are identical, according to datasheet (v1.5.1).
+> 
+> Hmm. This also means that QCS8300 is compatible with SM8650. I'll let
+> Abhinav comment here.
+> 
 
------BEGIN PGP SIGNATURE-----
+DP version by itself is not a good measure of whether the controller can 
+support 4 streams or not.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7zBQgAKCRB4tDGHoIJi
-0vRwAP9N0fVaExnFQCdcKbeMh1BzembuidqTArcQ2Pm/BAWWyAD/cgx5piCsNnfV
-1cW1MPvVluWZo6LhaZZwiCnXPAnRqwM=
-=3caU
------END PGP SIGNATURE-----
+Firstly, sm8650/sm8750 do not have a DPTX1 so we are only discussing 
+about DP TX0.
 
---HqBwAz7wwaok1LZr--
+Coming to the QCS8300 Vs sm8650/sm8750, even though the DP controller 
+version is the same, there is no HW support for more than 2 streams on 
+sm8650/sm8750 because there are no INTF blocks to drive 4 streams.
+
+On sm8650/sm8750, only INTF_0 and INTF_3 can be used for DP. Hence 2 
+streams.
+
+Whereas on Monaco, we have INTF_0, INTF_3, INTF_6 and INTF_7 capable of 
+driving DP. Hence 4 streams.
+
+Let me know if there are more questions.
+
+Thanks
+
+Abhinav
+
+
 
