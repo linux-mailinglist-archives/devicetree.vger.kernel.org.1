@@ -1,135 +1,212 @@
-Return-Path: <devicetree+bounces-150478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94DD2A42557
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 16:08:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C18D9A425E1
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 16:15:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B387D7A5228
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 15:01:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0E443B931D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 15:06:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDED7192D9D;
-	Mon, 24 Feb 2025 15:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A7D4155308;
+	Mon, 24 Feb 2025 15:06:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="YeMchzhu";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Yhkf86Hy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="muGMUS3N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 995EE192D97;
-	Mon, 24 Feb 2025 15:01:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FCF32837B;
+	Mon, 24 Feb 2025 15:06:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740409316; cv=none; b=fDKtlvpeMYOEihGug2SBGU/t9o2geuRvQMBTjkJIsQevCuLZfjl+GtuVXiTpHhvhCX4RO+XbK+U3pejgiuZACq1IzhTtSZqccJpZ2gohmH0E9IHsf19ZsmyCES26aZYogaEAUMCOOisf6/pwnDCQPG/OtaFeS+hMSTshrHQtC8E=
+	t=1740409607; cv=none; b=S9yZvLgKv/pgY0TbdpWcO012RiXXi/3WCR/Qu0O0peXiqdJpRRMMvgoOwDb6yd4uZ3P5CF+lUxgB3TQjv5jzxB/v9WXy7wcAVI9akOaDww+TFASo19T/7yrLETtnyvcggRNeeck1wGUXRx5qmQT752BwvWn01Isxmnm/eiwNN2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740409316; c=relaxed/simple;
-	bh=0vgPCjuI1eJZYbLDfgbr1Uw7fIRlLSv275jSMkiMWms=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IXV6o4fBxdpLaZ+xmFSlExhxMbbdOyhBRxdaq3R62FvyVZVh/bAg5Yyiw8Q28sEJ36YClA9EYGF7VoS1Xb3iwUEKUjirYx4GTjRzd4m6MYCQ5Rgu802IWURa+VofV23F8xGK6tlqHQG92V92BWAoHveHQCBULDU26835YLunZOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=YeMchzhu; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Yhkf86Hy reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1740409315; x=1771945315;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=0vgPCjuI1eJZYbLDfgbr1Uw7fIRlLSv275jSMkiMWms=;
-  b=YeMchzhuFwDuPMJl4WEVtYcpo2x5ew434u67pshPlmJ/vn8AtkMzR/zJ
-   nKedlKQ/IMe055FqqK3YXtPqWX8oMHaOwaf2duK7FsPr6qG/W0hIHFsK/
-   TXN+dlJ4QwdRKGi7WNcRYPmNpNzfmYn64NmiOSj6fCy1Ies0nT9czWoe5
-   um3sb35dBz9lfmDLCPcNuTsKa5An2EfFMt5jFPjoxLNLwY2Gga4N7Bh+c
-   tKfghsa05lac/6S+t8OUUAghNb3cpnXHl7oA8q9T4d6sEsxvm7wOGgNQa
-   g4lcoA7A29kdur+nXpnFCl+IAO3Iun1k4rgBNtFR2DioAO4rxIUym3rJS
-   g==;
-X-CSE-ConnectionGUID: 5dJT9lkORb2bXGaN9wqrRQ==
-X-CSE-MsgGUID: 3M5nagRHQgO5oBudA1DgGQ==
-X-IronPort-AV: E=Sophos;i="6.13,309,1732575600"; 
-   d="scan'208";a="42043119"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 24 Feb 2025 16:01:52 +0100
-X-CheckPoint: {67BC89E0-16-6E0A4539-DBC44C3A}
-X-MAIL-CPID: DF92074B598E4880E8D6D2A2DC4D7C0A_1
-X-Control-Analysis: str=0001.0A00211E.67BC89DF.0016,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 69A1416798B;
-	Mon, 24 Feb 2025 16:01:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1740409308;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0vgPCjuI1eJZYbLDfgbr1Uw7fIRlLSv275jSMkiMWms=;
-	b=Yhkf86HymiAEhVU5Mhl2xNo9I/xdvDYPOkBZ4PLhphiNHfstietFbhe4efwDFjXVTm1rRS
-	cP1Rsi3BPwN2UiOdkcvd2nJOLAqgxnFiDOlxkTha5kWUSUSqcezqeYQVt9og3zj7WG+yO7
-	fLI442EWMXjTKkyZfqWINo1/moo66uUHgqEMdjk1/vKz3wd9I9AXca+jtZhrbJdWd5fCij
-	My3WeokGvW/Qrlo2L1Uj8kESlWqB+XK4wnj5iD40639KTwMPr6d2UtBhLYJhTF7+fTInRO
-	XwgfNHNxuXqsm1e670IIOADYQ3aQV+/U8zee74frAx8elptzxeJfNDh7zLc1+g==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Shawn Guo <shawnguo2@yeah.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Markus Niebel <Markus.Niebel@ew.tq-group.com>, linux@ew.tq-group.com,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/5] arm64: dts: mba8mx: change sound card model name
-Date: Mon, 24 Feb 2025 16:01:46 +0100
-Message-ID: <6132446.lOV4Wx5bFT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <Z7mUU/Rgj3Gx7g9E@dragon>
-References:
- <20250120132503.556547-1-alexander.stein@ew.tq-group.com>
- <20250120132503.556547-5-alexander.stein@ew.tq-group.com>
- <Z7mUU/Rgj3Gx7g9E@dragon>
+	s=arc-20240116; t=1740409607; c=relaxed/simple;
+	bh=WhLrnvT/vsmJ4XaZG6h/I7B5d0//boKEBZZvxXFIVmg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a43eBDdsz/B7K43RU6oeS3lpmnRcC8SfpTrkH726CaWAGxg15VEL5vTKL/CDmWBiOEdl4eRj+QeRfKAP7zntU3++oISqdV6GZyHakQLZsq0fYKXdfmxUgVTepjp01xkhK5fH2QbxzE0kZD/ocESE5O5EyaNwNdT57JrZN3yPPG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=muGMUS3N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90282C4CED6;
+	Mon, 24 Feb 2025 15:06:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740409606;
+	bh=WhLrnvT/vsmJ4XaZG6h/I7B5d0//boKEBZZvxXFIVmg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=muGMUS3NJF2CC5UKvyULzw2qmp/DAsCdyb6NZQnmDriT2tcIGzj/zEeZWhRQJz77f
+	 keQvzV8kMUdRRFQ4FaS4nsVRVLHgFEMQb/icDx7UgKn2C+28caLVsx9CBMeZf8vwoB
+	 9YsBwue7m7kcJnAV80NlmLf3V/BITF138JZ9DvThbW+d7i8EnWEls8uY1+MOi1u/WU
+	 k3bwQmNbSituCgKEUuV000LMredBagi3YQNo6je0H/I985yzAbhLZ2h0UObWiFmEpf
+	 PvdbG8ZZoaUqnvpCBvE06IHqH5/m22DRYC+XUUjlahYncAAbLEfLlBgnZ+HVbX6kKo
+	 1zgtkOuO9igpA==
+Date: Mon, 24 Feb 2025 09:06:45 -0600
+From: Rob Herring <robh@kernel.org>
+To: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, broonie@kernel.org,
+	conor@kernel.org, Jean Delvare <jdelvare@suse.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: ir38060: Move & update dt
+ binding
+Message-ID: <20250224150645.GA2786847-robh@kernel.org>
+References: <20250221213837.1594057-1-naresh.solanki@9elements.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250221213837.1594057-1-naresh.solanki@9elements.com>
 
-Hi Shawn,
+On Sat, Feb 22, 2025 at 03:08:34AM +0530, Naresh Solanki wrote:
+> Move dt binding under hwmon/pmbus & align accordingly.
+> 
+> Previously the DT binding was invalid & wouldn't work with pmbus driver.
+> Pmbus driver expects a regulator node & hence added the same.
 
-Am Samstag, 22. Februar 2025, 10:09:39 CET schrieb Shawn Guo:
-> On Mon, Jan 20, 2025 at 02:25:02PM +0100, Alexander Stein wrote:
-> > From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-> >=20
-> > The card name for ALSA is generated from the model name string and
-> > is limited to 16 characters. Use a shorter name to prevent cutting the
-> > name.
-> >=20
-> > Since nearly all starter kit mainboards for i.MX based SoM by TQ-Systems
-> > use the same codec with the same routing on board it is a good idea to
-> > use the same mode name for the sound card. This allows sharing a default
-> > asound.conf in BSP over all the kits.
-> >=20
-> > Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->=20
-> I may have missed some prerequisite ones, but #4 and #5 do not apply for
-> me.
+This still doesn't really capture the previous discussion. With this, my 
+response is still 'fix the driver'. It seems there is something about 
+this is a common driver...
 
-Thanks for pointing out. A local commit was silently introduced as dependen=
-cy.
-I removed it and pushed a v2 while also fixing a typo in the commit message
-'mode' -> 'model'
-
-Thanks
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+> 
+> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> ---
+> Changes in V2:
+> 1. Update commit message
+> ---
+>  .../hwmon/pmbus/infineon,ir38060.yaml         | 61 +++++++++++++++++++
+>  .../bindings/regulator/infineon,ir38060.yaml  | 45 --------------
+>  2 files changed, 61 insertions(+), 45 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml
+> new file mode 100644
+> index 000000000000..e1f683846a54
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,ir38060.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,ir38060.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Infineon Buck Regulators with PMBUS interfaces
+> +
+> +maintainers:
+> +  - Not Me.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - infineon,ir38060
+> +      - infineon,ir38064
+> +      - infineon,ir38164
+> +      - infineon,ir38263
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  regulators:
+> +    type: object
+> +    description:
+> +      list of regulators provided by this controller.
+> +
+> +    properties:
+> +      vout:
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        type: object
+> +
+> +        unevaluatedProperties: false
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        regulator@34 {
+> +            compatible = "infineon,ir38060";
+> +            reg = <0x34>;
+> +
+> +            regulators {
+> +                vout {
+> +                    regulator-name = "p5v_aux";
+> +                    regulator-min-microvolt = <437500>;
+> +                    regulator-max-microvolt = <1387500>;
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml b/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
+> deleted file mode 100644
+> index e6ffbc2a2298..000000000000
+> --- a/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
+> +++ /dev/null
+> @@ -1,45 +0,0 @@
+> -# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> -%YAML 1.2
+> ----
+> -$id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
+> -$schema: http://devicetree.org/meta-schemas/core.yaml#
+> -
+> -title: Infineon Buck Regulators with PMBUS interfaces
+> -
+> -maintainers:
+> -  - Not Me.
+> -
+> -allOf:
+> -  - $ref: regulator.yaml#
+> -
+> -properties:
+> -  compatible:
+> -    enum:
+> -      - infineon,ir38060
+> -      - infineon,ir38064
+> -      - infineon,ir38164
+> -      - infineon,ir38263
+> -
+> -  reg:
+> -    maxItems: 1
+> -
+> -required:
+> -  - compatible
+> -  - reg
+> -
+> -unevaluatedProperties: false
+> -
+> -examples:
+> -  - |
+> -    i2c {
+> -      #address-cells = <1>;
+> -      #size-cells = <0>;
+> -
+> -      regulator@34 {
+> -        compatible = "infineon,ir38060";
+> -        reg = <0x34>;
+> -
+> -        regulator-min-microvolt = <437500>;
+> -        regulator-max-microvolt = <1387500>;
+> -      };
+> -    };
+> 
+> base-commit: 8df0f002827e18632dcd986f7546c1abf1953a6f
+> -- 
+> 2.42.0
+> 
 
