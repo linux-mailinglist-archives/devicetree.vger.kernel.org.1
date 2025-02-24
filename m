@@ -1,270 +1,134 @@
-Return-Path: <devicetree+bounces-150219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEBADA41780
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:38:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 352A8A4178C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:39:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC29D188FBA6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:38:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6C30188B12F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:38:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9314A1DEFE8;
-	Mon, 24 Feb 2025 08:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1343A18FC9F;
+	Mon, 24 Feb 2025 08:38:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C48E5198845
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 08:37:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D301F5FA
+	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 08:38:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740386225; cv=none; b=vAdgGjmY2ZirnIjaDJCpmx7K+8E+5cWlOKZZ913Eu0VYQN2G/ueHMJp4A//9vUgJO+mGnIC8ihjYnZQdW7/Y7nMsNo8NM+YeJgLq4DvcqbkZFg5pCwfIvo2pbqZN1ub95RkeS5GjSiMfnHf25K2z1lu97EU9M0Nwd7xgqp5j8Yk=
+	t=1740386293; cv=none; b=Rqtt5i+KXpXkoJbRXbjCFW8QAkDVUYYUNjMif9sMoHBrmiEDnxslBI/bqIeoNaafP0cjyeBaeROvtZd+Qimj7R/Ra9sBga7fg4wkNDJxTcrifRuk+EfreYfrFLjuBKwl3Ny6RXi3mFQYocjwMjSSRyMoTZKxPkxeu1tRq3Kdnts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740386225; c=relaxed/simple;
-	bh=SYAz3IP3oRsZ4UkPKmmjhNOw+B4w+2N+1RV+6ry4vwE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kD/1BKMXQsXDSWUZLTbTJPVUJ1r2sRqEfSfteLkMH+gAbZf24wvgJJbPTK8NMUKKl7qRYSIB5bA+ZG8cdf0lr4TWROAs3P+HV4iF/iRJLbf7+eViU8EwYCVSeTWcj7VJvxf+ug56WF5UJuoBnarA1oL4wK69PeZ9f/XZ9K+ABVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id A85472118E;
-	Mon, 24 Feb 2025 08:36:39 +0000 (UTC)
-Authentication-Results: smtp-out1.suse.de;
-	none
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5641113929;
-	Mon, 24 Feb 2025 08:36:38 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id AJO0EpYvvGeJVAAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Mon, 24 Feb 2025 08:36:38 +0000
-From: Stanimir Varbanov <svarbanov@suse.de>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-pci@vger.kernel.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Jim Quinlan <jim2101024@gmail.com>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	kw@linux.com,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Stanimir Varbanov <svarbanov@suse.de>,
-	Jim Quinlan <james.quinlan@broadcom.com>,
-	"Ivan T. Ivanov" <iivanov@suse.de>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Subject: [PATCH v6 7/7] PCI: brcmstb: Add BCM2712 support
-Date: Mon, 24 Feb 2025 10:35:59 +0200
-Message-ID: <20250224083559.47645-8-svarbanov@suse.de>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250224083559.47645-1-svarbanov@suse.de>
-References: <20250224083559.47645-1-svarbanov@suse.de>
+	s=arc-20240116; t=1740386293; c=relaxed/simple;
+	bh=s3qRADzvs0c2X4J9bkpCMbHVSUb4ovbVntggeBnFAHE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Lk14d94BMIssJLYFHomh3aPWi7EdiO4tCzmWJtue8uGbQ3JIwytdcDwCXVlmRWfqrB1aUSM6ZJO4IGyg3/pMpSa+NxfzxLoWh/UnQG9317FwYgsIxDTUZ70DPbmAvkN60k+q5qc/KSUNhMVqVQSOKj7sR0zWIVbtS0/Bbj09U+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4bfb4853a5dso1065239137.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 00:38:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740386289; x=1740991089;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UJa6lYnA6aSipEoT/ymsT0VYmK3VyJhzGLMqo39otNk=;
+        b=P1moDagmMsLPKKFLs3+gMQRL3Q+ySHQ+CxElXFJLlrt4WDVBixw5BgIvPp1FYQ47+G
+         Khza+moHkUrSuIkmrJfzQIv6LyMgtqRnpm1rpbiQ7UObA+h9jUaptLUSaqiNwoyab+C/
+         wU8FiQgmgz5SzthAPCC3+a3drs62pvcVbh5Oqw7C4M65gsAfeyqQ/gynR8NXepm1y4H+
+         L50PUY8RlqQ7Key7Fnj5NlWA2l5Xs32MInkjZfyXgsLyjxk+rdin6zw8A3QPqUvFoG6h
+         3decli746qQPFJj+zAcGntmBWHTGPH8lN9xM9F7n8L3QVe/QGBNP5FBemKr4aFwFEvCA
+         LIlw==
+X-Forwarded-Encrypted: i=1; AJvYcCVRqswpFdx8Bj/wGgpyi9qmeSwPpa05//iJOy/AObhgPsKvN0vuL9H0T8l0pcCvXqrsArHVheYite4X@vger.kernel.org
+X-Gm-Message-State: AOJu0YyA3e+kg9hMPYXiRS+uqC27Haz3nUqMX1yGlnW+KdHNYInOAX2U
+	osEdXaj4G74r9XQU/WgXVf9iVTLHDY4xMkLu9M3PBv7gQ1MM/FWBZ+y6aA8h
+X-Gm-Gg: ASbGncsvK1qkJRuRBaEj12V/h55McA3/+6N0uJS7kkDyfjCRP6I4pWlKhoJZ7iQfKgO
+	IAsVeD+yD3O67RO76Uh0umn4FST9Lj60Y5Ytkut4H0f9Gkl76ili/P8mwCArygYArTr1cIVnjl4
+	SHHYHhIFkU6ShMqawk4PuTGuqQCLj8gpgIoi1bBgOz/bV6c3oLmvg1z4vIsY77IvOapfZ3M2Fav
+	QV2v9hSnNWHoXangTNUbVVGmeRt8U7AvdmmuEDwlEjrrIye6pYmLD0/GgdwvL2fF4J+PTfYMAOZ
+	ryQsU30zpLmFcUA1RvynGg9irauyChnHPuHZoulyI/YjXwTa7p7hlPFqCEDqKrra
+X-Google-Smtp-Source: AGHT+IFKZxzxXrE9z2U2gsxULdKCaHK5q8wfy/74v02oOwrs4s+1ZltU84vEVg582mNBFv2HLLNwiw==
+X-Received: by 2002:a05:6102:2acd:b0:4bb:dc3c:1b42 with SMTP id ada2fe7eead31-4bfc0060483mr6042967137.12.1740386289106;
+        Mon, 24 Feb 2025 00:38:09 -0800 (PST)
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4bc68dd766bsm4112918137.20.2025.02.24.00.38.08
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Feb 2025 00:38:08 -0800 (PST)
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4bfb4853a5dso1065225137.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 00:38:08 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX52ExU1AC6yMsplHWdxKkfc5Zt36uiSegY7ycq7r+VfZ04QRutNbBCWsygs7ie0+fujI74gOoM7vrK@vger.kernel.org
+X-Received: by 2002:a05:6102:1626:b0:4bb:e8c5:b164 with SMTP id
+ ada2fe7eead31-4bfc001ef24mr5774705137.7.1740386288375; Mon, 24 Feb 2025
+ 00:38:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Pre-Result: action=no action;
-	module=replies;
-	Message is reply to one we originated
-X-Spam-Level: 
-X-Spamd-Result: default: False [-4.00 / 50.00];
-	REPLY(-4.00)[];
-	TAGGED_RCPT(0.00)[dt]
-X-Spam-Score: -4.00
-X-Spam-Flag: NO
-X-Rspamd-Queue-Id: A85472118E
-X-Rspamd-Pre-Result: action=no action;
-	module=replies;
-	Message is reply to one we originated
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+References: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
+In-Reply-To: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 24 Feb 2025 09:37:56 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUhw6q1DAOBJwG5FJUs_QHj3hZMD3damOo2uLZQgS9e7A@mail.gmail.com>
+X-Gm-Features: AWEUYZk8XlBkFLeqdreU9-U4BWw6DmcPNCGXGgjAFwX-gPVIUFnWPcfjhGX3GMw
+Message-ID: <CAMuHMdUhw6q1DAOBJwG5FJUs_QHj3hZMD3damOo2uLZQgS9e7A@mail.gmail.com>
+Subject: Re: [Question] Status of user-space dynamic overlays API
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: xypron.glpk@gmx.de, Jason Kridner <jkridner@beagleboard.org>, 
+	Deepak Khatri <lorforlinux@beagleboard.org>, d-gole@ti.com, 
+	Robert Nelson <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, David Gibson <david@gibson.dropbear.id.au>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Pantelis Antoniou <pantelis.antoniou@gmail.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Add a bare minimum amount of changes in order to support PCIe Root
-Complex hardware IP found on RPi5. The PCIe controller on BCM2712
-is based on BCM7712 and as such it inherits register offsets, PERST#
-assertion, bridge_reset ops, and inbound windows count.
+Hi Ayush,
 
-Although, the implementation for BCM2712 needs a workaround related to
-the control of the bridge_reset where turning off of the Root Port must
-not shutdown the bridge_reset and this must be avoided. To implement
-this workaround a quirks field is introduced in pcie_cfg_data struct.
+On Sat, 22 Feb 2025 at 21:14, Ayush Singh <ayush@beagleboard.org> wrote:
+> # Challenges
+>
+> ## Security
+>
+> The concerns regarding security seemed to show up in the other
+> proposals. There was a proposal to have a devicetree property to
+> allow/deny the application of overlays in some nodes, with default being
+> deny. Was it insufficient?
 
-Also, it needs adjustment of PHY PLL setup to use a 54MHz input refclk.
-The default input reference clock for the PHY PLL is 100Mhz, except for
-some devices where it is 54Mhz like BCM2712C1 and BCM2712D0.
+This is the most important issue: using DT overlays, you can change
+about anything.  There is no protection yet to limit this to e.g. the
+expansion connectors on your board.
+This is what the various WIP "connector" abstractions are trying
+to solve.
 
-To implement those adjustments introduce a new .post_setup op in
-pcie_cfg_data and call it at the end of brcm_pcie_setup function.
+> ## Memory Leaks
+>
+> Currently, updating/removing properties leaks memory. Was it one of the
+> reasons for the rejection of previous proposals?
 
-The BCM2712 .post_setup callback implements the required MDIO writes
-that switch the PLL refclk and also change PHY PM clock period.
+IMO this is a minor issue. I am sure this can be improved upon.  We just
+need some way to keep track of which properties are part of the initial
+FDT (and thus can't be freed), and which were allocated dynamically.
 
-Without this RPi5 PCIex1 is unable to enumerate endpoint devices on
-the expansion connector.
+> [0]:
+> https://lore.kernel.org/all/1417605808-23327-1-git-send-email-pantelis.antoniou@konsulko.com/#t
 
-Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
-Reviewed-by: Jim Quinlan <james.quinlan@broadcom.com>
-Tested-by: Ivan T. Ivanov <iivanov@suse.de>
-Signed-off-by: Krzysztof Wilczyński <kwilczynski@kernel.org>
----
- drivers/pci/controller/pcie-brcmstb.c | 69 ++++++++++++++++++++++++++-
- 1 file changed, 67 insertions(+), 2 deletions(-)
+FTR, I do keep this up to date:
+https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/overlays
 
-diff --git a/drivers/pci/controller/pcie-brcmstb.c b/drivers/pci/controller/pcie-brcmstb.c
-index 4c5fff1919ba..744fe1a4cf9c 100644
---- a/drivers/pci/controller/pcie-brcmstb.c
-+++ b/drivers/pci/controller/pcie-brcmstb.c
-@@ -55,6 +55,10 @@
- #define PCIE_RC_DL_MDIO_WR_DATA				0x1104
- #define PCIE_RC_DL_MDIO_RD_DATA				0x1108
- 
-+#define PCIE_RC_PL_PHY_CTL_15				0x184c
-+#define  PCIE_RC_PL_PHY_CTL_15_DIS_PLL_PD_MASK		0x400000
-+#define  PCIE_RC_PL_PHY_CTL_15_PM_CLK_PERIOD_MASK	0xff
-+
- #define PCIE_MISC_MISC_CTRL				0x4008
- #define  PCIE_MISC_MISC_CTRL_PCIE_RCB_64B_MODE_MASK	0x80
- #define  PCIE_MISC_MISC_CTRL_PCIE_RCB_MPS_MODE_MASK	0x400
-@@ -234,13 +238,24 @@ struct inbound_win {
- 	u64 cpu_addr;
- };
- 
-+/*
-+ * The RESCAL block is tied to PCIe controller #1, regardless of the number of
-+ * controllers, and turning off PCIe controller #1 prevents access to the RESCAL
-+ * register blocks, therefore no other controller can access this register
-+ * space, and depending upon the bus fabric we may get a timeout (UBUS/GISB),
-+ * or a hang (AXI).
-+ */
-+#define CFG_QUIRK_AVOID_BRIDGE_SHUTDOWN		BIT(0)
-+
- struct pcie_cfg_data {
- 	const int *offsets;
- 	const enum pcie_soc_base soc_base;
- 	const bool has_phy;
-+	const u32 quirks;
- 	u8 num_inbound_wins;
- 	int (*perst_set)(struct brcm_pcie *pcie, u32 val);
- 	int (*bridge_sw_init_set)(struct brcm_pcie *pcie, u32 val);
-+	int (*post_setup)(struct brcm_pcie *pcie);
- };
- 
- struct subdev_regulators {
-@@ -816,6 +831,38 @@ static int brcm_pcie_perst_set_generic(struct brcm_pcie *pcie, u32 val)
- 	return 0;
- }
- 
-+static int brcm_pcie_post_setup_bcm2712(struct brcm_pcie *pcie)
-+{
-+	const u16 data[] = { 0x50b9, 0xbda1, 0x0094, 0x97b4, 0x5030, 0x5030, 0x0007 };
-+	const u8 regs[] = { 0x16, 0x17, 0x18, 0x19, 0x1b, 0x1c, 0x1e };
-+	int ret, i;
-+	u32 tmp;
-+
-+	/* Allow a 54MHz (xosc) refclk source */
-+	ret = brcm_pcie_mdio_write(pcie->base, MDIO_PORT0, SET_ADDR_OFFSET, 0x1600);
-+	if (ret < 0)
-+		return ret;
-+
-+	for (i = 0; i < ARRAY_SIZE(regs); i++) {
-+		ret = brcm_pcie_mdio_write(pcie->base, MDIO_PORT0, regs[i], data[i]);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	usleep_range(100, 200);
-+
-+	/*
-+	 * Set L1SS sub-state timers to avoid lengthy state transitions,
-+	 * PM clock period is 18.52ns (1/54MHz, round down).
-+	 */
-+	tmp = readl(pcie->base + PCIE_RC_PL_PHY_CTL_15);
-+	tmp &= ~PCIE_RC_PL_PHY_CTL_15_PM_CLK_PERIOD_MASK;
-+	tmp |= 0x12;
-+	writel(tmp, pcie->base + PCIE_RC_PL_PHY_CTL_15);
-+
-+	return 0;
-+}
-+
- static void add_inbound_win(struct inbound_win *b, u8 *count, u64 size,
- 			    u64 cpu_addr, u64 pci_offset)
- {
-@@ -1179,6 +1226,12 @@ static int brcm_pcie_setup(struct brcm_pcie *pcie)
- 		PCIE_RC_CFG_VENDOR_VENDOR_SPECIFIC_REG1_ENDIAN_MODE_BAR2_MASK);
- 	writel(tmp, base + PCIE_RC_CFG_VENDOR_VENDOR_SPECIFIC_REG1);
- 
-+	if (pcie->cfg->post_setup) {
-+		ret = pcie->cfg->post_setup(pcie);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
- 	return 0;
- }
- 
-@@ -1488,8 +1541,9 @@ static int brcm_pcie_turn_off(struct brcm_pcie *pcie)
- 	u32p_replace_bits(&tmp, 1, PCIE_MISC_HARD_PCIE_HARD_DEBUG_SERDES_IDDQ_MASK);
- 	writel(tmp, base + HARD_DEBUG(pcie));
- 
--	/* Shutdown PCIe bridge */
--	ret = pcie->cfg->bridge_sw_init_set(pcie, 1);
-+	if (!(pcie->cfg->quirks & CFG_QUIRK_AVOID_BRIDGE_SHUTDOWN))
-+		/* Shutdown PCIe bridge */
-+		ret = pcie->cfg->bridge_sw_init_set(pcie, 1);
- 
- 	return ret;
- }
-@@ -1699,6 +1753,16 @@ static const struct pcie_cfg_data bcm2711_cfg = {
- 	.num_inbound_wins = 3,
- };
- 
-+static const struct pcie_cfg_data bcm2712_cfg = {
-+	.offsets	= pcie_offsets_bcm7712,
-+	.soc_base	= BCM7712,
-+	.perst_set	= brcm_pcie_perst_set_7278,
-+	.bridge_sw_init_set = brcm_pcie_bridge_sw_init_set_generic,
-+	.post_setup	= brcm_pcie_post_setup_bcm2712,
-+	.quirks		= CFG_QUIRK_AVOID_BRIDGE_SHUTDOWN,
-+	.num_inbound_wins = 10,
-+};
-+
- static const struct pcie_cfg_data bcm4908_cfg = {
- 	.offsets	= pcie_offsets,
- 	.soc_base	= BCM4908,
-@@ -1750,6 +1814,7 @@ static const struct pcie_cfg_data bcm7712_cfg = {
- 
- static const struct of_device_id brcm_pcie_match[] = {
- 	{ .compatible = "brcm,bcm2711-pcie", .data = &bcm2711_cfg },
-+	{ .compatible = "brcm,bcm2712-pcie", .data = &bcm2712_cfg },
- 	{ .compatible = "brcm,bcm4908-pcie", .data = &bcm4908_cfg },
- 	{ .compatible = "brcm,bcm7211-pcie", .data = &generic_cfg },
- 	{ .compatible = "brcm,bcm7216-pcie", .data = &bcm7216_cfg },
--- 
-2.47.0
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
