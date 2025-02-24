@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-150203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF777A4173A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:24:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3987BA4174B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 09:26:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A99DE3B458F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:23:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30A7B16A225
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:26:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FA5717BEC5;
-	Mon, 24 Feb 2025 08:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932521802AB;
+	Mon, 24 Feb 2025 08:26:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PuMnDsYo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TMrSs3GZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D818C11;
-	Mon, 24 Feb 2025 08:23:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 681FA1EB3E;
+	Mon, 24 Feb 2025 08:26:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740385425; cv=none; b=HawKuDlvXucHY2Lm8KrsXOSG2J8zoRJQUhc7uxuOgnXOeYy4eS8BuAYqtKRmrkul5mN/RzLNJ98dtEPPdmmSrT9I9XBTZ0+jwYGJmKFfLcfvZ5m6IPmr20Yn0MhpVEQavtH18Ru35eBkZuJDjG9JYSxyAEZQKWxcmqpRmKmJM9I=
+	t=1740385599; cv=none; b=boh38F6flFjsHOCEXSSf3mjerH+CW1R1V6Qo3BrzsTOQW2Bt3tSKi2pjr7XsFhUq6M7Q6zqI+fnNfzeARX01N5S8E4U78qajcZH5C3ccTPoYKKDW/Usz0A6PtYle/xT2WuuUBBTMK6rdgFPpz4M+0Dv+llElk33yKGSamk4K2Hs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740385425; c=relaxed/simple;
-	bh=P8Wr7RQijEqPeB9TFh7hBcVO/bNtGpwHnfXXy/LJowY=;
+	s=arc-20240116; t=1740385599; c=relaxed/simple;
+	bh=A6eYd0ZNJiH0U96rIxU40Zocx4BmkNKzj1tkXN/ULnU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KR2AZDIVWyClNN4daAq2OAZxTYhJ7pxC8dgtmATrPH2iDK31hl4IwxuZ9ekMLnuvr7scCLvcXeULdGpjixoRXvIq4IoDAbWmfufpe3DwHENjNzWkQe58QU5f6OTC/EtQuyoCq40zJ62ZmXszCGqV96pICQ1Lq8qYQRpJO0YpS8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PuMnDsYo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4B6EC4CED6;
-	Mon, 24 Feb 2025 08:23:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=XRV7f4YV4mm4hovcoQldRT+U+PwrM0ndMx56OAKN4HT6MLNIcsJ+MIkMjh0BnX2YCc/aQAPZCJ/a2/N2zteE4RSr8zvdh2QdcXk74COZTUBUEvONKeu2bOajWDJGD0+YvdVY9M+OFoa8WrDHJoUw7/QheEv4espYEnGkjvuv408=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TMrSs3GZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC565C4CED6;
+	Mon, 24 Feb 2025 08:26:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740385425;
-	bh=P8Wr7RQijEqPeB9TFh7hBcVO/bNtGpwHnfXXy/LJowY=;
+	s=k20201202; t=1740385598;
+	bh=A6eYd0ZNJiH0U96rIxU40Zocx4BmkNKzj1tkXN/ULnU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PuMnDsYo8upUNoWaa1m/tt0Eyf3VRtomLi2uyoco1nLCKtCUm5J5MohheXBkuPxzx
-	 NJyBolNdFHTvSRvdzZVI6HVqu0b/QrX8KxpRXYks9gw9FEESwLVnzYdO/1Z0xIczvL
-	 MBGq1y3IZfSq2rzL0kbo1FH1OTi6QpOD6keB6JCSENrRuHNj0PVqGuP4SAik+gpKEK
-	 JDb3m0ZXvFzjc6v0b1Szgjbb1aYIvqYTqZTKcKZWYRgZVOzxt238fVpzclNQlMG41V
-	 HEXIkGUC3UisxPDSYxe0QLXf5FUl1TZoPnbKJ2LUZPCWpm700t45xNAcaAX57/vLz4
-	 lFMBZYQaj0nIQ==
-Message-ID: <7084415c-63f8-429d-999a-ed84c4586e26@kernel.org>
-Date: Mon, 24 Feb 2025 09:23:40 +0100
+	b=TMrSs3GZpY9XHemkM67oFcNS/QKTxMttd+UqCcEEVNmMEtrCr8VlYRbwv0VaIvPN5
+	 +5YBXQTgnPjoY3p2XQ28oEiBnNdUdkxm3LWmBkIruKuDWjslTQDs/AlK4ejTXtGz5f
+	 D8/F74VcH3v58qB2X3U/0KeJPr4uZe8uWltiqnOV5UBIKOFtZ2LGkmDZ/9mXCm7q8Y
+	 UwmeXQmhwSKxXhDmR4E21EZOR0MgEjCjku09ShTmN2qfsufPz8/6+SXO5vTnqXEW+l
+	 W+HW6N5BikTllpMAoJ87bHgHv0gaUl9ulKs7GyL9wtBeHNbvNyVatu1i1Qd8zgCn/z
+	 dW9iHbeCIr0dg==
+Message-ID: <79809c37-84d4-42d6-ab93-9a9d29c687bf@kernel.org>
+Date: Mon, 24 Feb 2025 09:26:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: power: supply: Document Maxim MAX8971
- charger
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: mediatek-gen3: Add
+ mediatek,pbus-csr phandle array property
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Ryder Lee <ryder.lee@mediatek.com>,
+ Jianjun Wang <jianjun.wang@mediatek.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250221095943.57297-1-clamor95@gmail.com>
- <20250221095943.57297-2-clamor95@gmail.com>
- <20250223-daft-amethyst-pogona-e9edcc@krzk-bin>
- <CAPVz0n0-6ea0mzWig-gPx+8fuPgM7iWkZpnpMnp-9+Lq5oCdDw@mail.gmail.com>
- <2b0500e7-70e2-4bfe-ae72-ebab0f060eeb@kernel.org>
- <CAPVz0n2CMzU1bqV_jiTw+VgLUSB-CdEwF6uPS7aJzaPN+eGhmg@mail.gmail.com>
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>
+References: <20250222-en7581-pcie-pbus-csr-v3-0-e0cca1f4d394@kernel.org>
+ <20250222-en7581-pcie-pbus-csr-v3-1-e0cca1f4d394@kernel.org>
+ <20250223-hulking-goldfish-of-symmetry-cbfed4@krzk-bin>
+ <Z7slEJgCQMqp_I6p@lore-desk>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,142 +114,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAPVz0n2CMzU1bqV_jiTw+VgLUSB-CdEwF6uPS7aJzaPN+eGhmg@mail.gmail.com>
+In-Reply-To: <Z7slEJgCQMqp_I6p@lore-desk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/02/2025 15:28, Svyatoslav Ryhel wrote:
->>>>> +  extcon:
->>>>> +    description:
->>>>> +      Special device used to detect type of plug.
->>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>>
->>>> You rather miss proper connector or ports. Which device pins are
->>>> describbed here?
->>>>
+On 23/02/2025 14:39, Lorenzo Bianconi wrote:
+>> On Sat, Feb 22, 2025 at 11:43:44AM +0100, Lorenzo Bianconi wrote:
+>>> Introduce the mediatek,pbus-csr property for the pbus-csr syscon node
+>>> available on EN7581 SoC. The airoha pbus-csr block provides a configuration
+>>> interface for the PBUS controller used to detect if a given address is
+>>> accessible on PCIe controller.
 >>>
->>> This is an optional phandle to extcon, which can detect plug type. If
+>>> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+>>> ---
+>>>  .../devicetree/bindings/pci/mediatek-pcie-gen3.yaml     | 17 +++++++++++++++++
+>>>  1 file changed, 17 insertions(+)
+>>>
 >>
->> I know what is this, you just wrote. extcon property is not allowed anymore.
+>> You got review tag, so if you decided to skip it, this should be
+>> mentioned why.
 >>
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> There is no helper for obtaining extcon via graph endpoint I am aware
-> of. Can you provide an example of graph parsing extcon helper?
+> Since I modified the patch with respect to the previous version, I was thinking
 
-Most of recent drivers have the same problem and they solved it somehow
-without introducing 'extcon' property.
+I know
 
-> 
->>> extcon is provided, charger then can change its setup to better
->>> provide supply to the battery. If no extcon is provided, device itself
->>> can detect only the fact of charger without details about type.
->>
->>
->>>
->>>>
->>>>> +
->>>>> +  maxim,fcharge-current-limit-microamp:
->>>>> +    description:
->>>>> +      Fast-Charge current limit
->>>>> +    minimum: 250000
->>>>> +    default: 500000
->>>>> +    maximum: 1550000
->>>>> +
->>>>> +  maxim,fcharge-timer-hours:
->>>>> +    description: |
->>>>> +      Fast-Charge timer in hours. Setting this value 3 and lower or 11 and
->>>>> +      higher will disable Fast-Charge timer.
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>> +    default: 5
->>>>> +
->>>>> +  maxim,fcharge-rst-threshold-high:
->>>>> +    description:
->>>>> +      Set Fast-Charge reset threshold to -100 mV
->>>>> +    type: boolean
->>>>> +
->>>>> +  maxim,in-current-limit-microamp:
->>>>> +    description:
->>>>> +      Input current limit
->>>>> +    minimum: 100000
->>>>> +    default: 500000
->>>>> +    maximum: 1500000
->>>>> +
->>>>> +  maxim,topoff-timer-minutes:
->>>>> +    description:
->>>>> +      Top-Off timer minutes
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>> +    enum: [0, 10, 20, 30, 40, 50, 60, 70]
->>>>> +    default: 30
->>>>> +
->>>>> +  maxim,topoff-current-threshold-microamp:
->>>>> +    description:
->>>>> +      Top-Off current threshold
->>>>> +    enum: [50000, 100000, 150000, 200000]
->>>>> +    default: 50000
->>>>> +
->>>>> +  maxim,fcharge-usb-current-limit-microamp:
->>>>> +    description:
->>>>> +      Fast-Charge USB current limit
->>>>> +    minimum: 100000
->>>>> +    default: 500000
->>>>> +    maximum: 1500000
->>>>> +
->>>>> +  maxim,fcharge-ac-current-limit-microamp:
->>>>> +    description:
->>>>> +      Fast-Charge AC current limit
->>>>> +    minimum: 100000
->>>>> +    default: 500000
->>>>> +    maximum: 1500000
->>>>> +
->>>>> +  maxim,usb-in-current-limit-microamp:
->>>>> +    description:
->>>>> +      USB Input current limit
->>>>> +    minimum: 100000
->>>>> +    default: 500000
->>>>> +    maximum: 1500000
->>>>> +
->>>>> +  maxim,ac-in-current-limit-microamp:
->>>>> +    description:
->>>>> +      AC Input current limit
->>>>> +    minimum: 100000
->>>>> +    default: 500000
->>>>> +    maximum: 1500000
->>>>
->>>> For all or most of these you miss monitored batter.
->>>>
->>>
->>> This is a charger, it does not monitor battery. There is a fuel gauge
->>> for that or a battery monitor.
->>>
->> What does charger charge? Battery or something else?
->>
-> 
-> Anything it is linked to. Moreover ref to power supply is not needed
+> you want to review it again before applying the Reviewed-by tag. Added it now.
+That was not my comment. I commented that you must explicitly say that
+you dropped someone's tag.
 
-Not true. I opened datasheet and it clearly says:
-"1-Cell Li+ charger".
+And docs clearly ask for that:
 
-It cannot charge other things properly, so it cannot charge "anything".
-It only charges batteries.
-
-"The MAX8971 is a compact, high-frequency, high-effi-
-ciency switch-mode charger for a one-cell lithium-ion (Li+)
-battery. "
-
-> since properties from there are not relevant to this driver.
-
-We talk about hardware here.
-
-> monitored-battery refers to a simple battery cell, which has nothing
-> to do with charger and power-supplies is irrelevant since this device
-
-battery cell has everything to do with charger because it describes the
-characteristic of what device you are charging: e.g. maximum input
-current or top-off currents, which you define here as well.
-
-You are duplicating some properties and adding some which are not DT at
-all (all timers). Look how other devices do it.
-
+"Usually removal of someone's Tested-by or Reviewed-by tags should be
+mentioned in the patch changelog (after the '---' separator)."
 
 Best regards,
 Krzysztof
