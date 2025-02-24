@@ -1,125 +1,118 @@
-Return-Path: <devicetree+bounces-150409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89805A42028
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 14:15:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AFD3A4204F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 14:17:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 188F1170EF1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:15:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BF70188F0B8
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:17:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68FE8248877;
-	Mon, 24 Feb 2025 13:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B191A3165;
+	Mon, 24 Feb 2025 13:17:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A+Ogy8EU"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fxmtDWxV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778DA23BD0B
-	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 13:14:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 938D5195;
+	Mon, 24 Feb 2025 13:17:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740402892; cv=none; b=meDIT4qyVYQDFwPeJBXy2XsmFDYahtaJ4v4M4NRfOk4N3hLKvNHhtV0nmXQPExn3xHs4aA7wq7ZRSwGuIAIR6sgtW5kblZS0ZQFCmn10DDOeMS2jM4i2Iwwqz1HyY24kDj3oJCk+2rL7lgawUTnP5Dis3kw+ORxkvEj4uLaPk2s=
+	t=1740403043; cv=none; b=LETJ4Vu8ZGvAeENQC9qyzdUxUhbvjzKKYCOWccunNji74teKWJ8cKdFn/TdzJ0NeDoLb42OJfyaaCaAkdgXMHQ65t7YgP+GhoKYA4uk37YpnIvuk8RGrd6rTBmzmGZwy2rdqIZ9OOmjJUHWxVreA6akJPnLUh+PRiHcHe25mYKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740402892; c=relaxed/simple;
-	bh=bLLZFvEQ2mcyD7duh47ZwGoHjIPEzHkxh/Sc0z24Kyk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Ied1XWvLo2DDa5UgHF4FxEuEcalOucwHQhqKbDFJj8BvPDUFCVjpaKvAic/D7lsAvYGRKXfpAltmGAgcQlGmvWLxiLe5btplzBMNEDGShWpSe0BnHqsahlz5XOCDl3NYQQztsZdAEpmoFasXnTCC8OBy4iaNGhSoTpgEMakebxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A+Ogy8EU; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-38f2f748128so1963194f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 05:14:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740402889; x=1741007689; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=bLLZFvEQ2mcyD7duh47ZwGoHjIPEzHkxh/Sc0z24Kyk=;
-        b=A+Ogy8EUQE8JKzQGGQ8yzHdOe/0MnX5du9SpvG1kacFoiGmm70s+MBXnYjNR7GojN/
-         kiVDAZ93+M7Uc5FBhSfCfn55OBf7aiz33XEFm2YcMZN3lpxBF5EF8DlahS1ZiAoZoLfg
-         eO0TS4s70buKHwUncBL/oTMH59bIo+x/UByxX6lkvv0Y01gtvpuUXVWcMBnGWW18unaU
-         TlqnFAggM/4JTQnF4kDteIORunGNTSjv2g756BZN2cbC15QUFcDnkvPRCUx3czvRvm/o
-         UJxhbvgc3s0EKj/exnfYM6T/Gb7trNl3SVeK/xLs0hHSbVkVW7ArGs124A7eeFPVvCO2
-         cTug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740402889; x=1741007689;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bLLZFvEQ2mcyD7duh47ZwGoHjIPEzHkxh/Sc0z24Kyk=;
-        b=UrfTpdkM/MWVPQN17ASGGY15Ve2VRyQpdVdtdGhEFS9HCwUAOk3ArNbGQFucdr5ssn
-         W4etRco9WtJKLuCVvBFdEYkYUi8Wpc9021jZKXicGz99AmhGcxx54q9u7k5+erESfEO/
-         WScP/0AHdbxxxBkKz6zVadqu918Ma3qcHIwsp0foLADtTiDFYWnA0BBkLm2i26MvM91n
-         9Mab06Y5i22erjd5P3TE5/ou8/VwISCNZvAaq2Tfe3xYBX2bazE+1hIWCFDNkicqn/uB
-         rkUNCjQc0htCXxnYRXgD5nHcbbimGt463KLKvCk/+PXVPZMfv8lXiIbGBTen9WKpZwCv
-         7IdA==
-X-Forwarded-Encrypted: i=1; AJvYcCUunapncRVcKvkummk94nT2xCaBJn3SPQamz0/UQK1/LnzWZcf+Tjrqm9WuLv7ysX3nM+d7aqPwLeO8@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNmk4MxNVtPi09dqEAA8zfO0hLCUJt6bpyYM0GIoyJ9cSKNK0I
-	sR+87OZb2q/BBovpM4mMjxTIUwfB7MYkM0NCajGJHWlkHhB04coW9foY0I642Zw=
-X-Gm-Gg: ASbGncs3MVXymsHs6hkEonoi8FcI15KXXI0+lsIlElrlkJ5C8/tm6lAjBnJzS0gPDzQ
-	I6LR8ZyLCKktTOrTbqGCOztsAWUsa7/lpz3tN1aSykEK6E6/pmW20fqkR4ts85ix9zqAj/bzUlr
-	OaaJfNdqvXXjIrl1suv3l+Uvy05T4sRZYfY5vZGQB30nX+tl4P5p2T5AqEoS/qmunfau3v9Y9Ym
-	AzyoU1bYZuKvF113a4P5rC0FtW2PCHkju1rUeuiWSS9k8I5gmS5JkDxXsWN4K/ePuHNwWwP3Zxd
-	IVMX+QLSsmalFzDJqLB5siRcredEgw==
-X-Google-Smtp-Source: AGHT+IE62+bU4+ul+YKhx4/yDKxUqcbC0QHBkW4DOt4UrwyrOCzCT+b1QBYFtOue4gs6rL65DxMppQ==
-X-Received: by 2002:a5d:47a3:0:b0:38e:c2de:70d4 with SMTP id ffacd0b85a97d-38f6f0959bamr11119239f8f.42.1740402888772;
-        Mon, 24 Feb 2025 05:14:48 -0800 (PST)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258b4158sm31190873f8f.3.2025.02.24.05.14.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Feb 2025 05:14:48 -0800 (PST)
-Message-ID: <b2c8c4757d30b808e3ce800daf6078df6a7a5bcd.camel@linaro.org>
-Subject: Re: [PATCH 1/6] dt-bindings: mfd: add max77759 binding
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley	 <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Srinivas Kandagatla
- <srinivas.kandagatla@linaro.org>, Kees Cook	 <kees@kernel.org>, "Gustavo A.
- R. Silva" <gustavoars@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus
-	 <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
-	kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-hardening@vger.kernel.org
-Date: Mon, 24 Feb 2025 13:14:47 +0000
-In-Reply-To: <288a69e2-0618-4dce-a96d-646daeb6ca70@kernel.org>
-References: <20250224-max77759-mfd-v1-0-2bff36f9d055@linaro.org>
-	 <20250224-max77759-mfd-v1-1-2bff36f9d055@linaro.org>
-	 <288a69e2-0618-4dce-a96d-646daeb6ca70@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.53.2-1 
+	s=arc-20240116; t=1740403043; c=relaxed/simple;
+	bh=iJujQgrFpeR89LdUfnOUutmKKbuFiKdlZWu5H+P8p/0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aiSaz5A7rqkLzoQBLlOwJdSTRHhv3rANzxryEhzQSFKy+P+V4Bsgf/rRBNSlkqJiKNKdl5z54SRa3tQTIL83q2fPWC8PQk2SFE4hhhiVzGR3Zpy2orVZ93Knu5WgtiRORNF62/6L45b1ilrytUAGzDJzKCNcoNx8p47KDvtrtzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fxmtDWxV; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4A6D941C15;
+	Mon, 24 Feb 2025 13:17:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1740403038;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ksTMumsP+uok8AykLK2ZoU0DRsvBnKMfzttvPsXkX04=;
+	b=fxmtDWxVENVonUC0M6cX011xhIvC7sD7bgnqfraUtHc94+VeM1D9puG3DYiF9td+Qom/bj
+	5svpFk+lUN6BTRzWiysDJn9zjQa4DCzQwMihqQXoaVj50V43KjoQ9W/Xw07BUctlWNg4Jc
+	F3E7O1unVUsoGW7/XUmeFK7zhHMsZoDKMV31hO+Dcr/m34eD9TLyb1us+61Zq7d7750IQQ
+	4wUi7kEht2uBnBeQkW7qSwBxgaR8OSz3owt1/b7uoXumL99XMKYsZtXee50rCacwx4EC5H
+	J42tqD4W+z/j1hzQtw5JrktRBkYxAirE/q1T+Ny1rOi8/WOCoLEpCfExNlBcNA==
+Date: Mon, 24 Feb 2025 14:17:16 +0100
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Kory Maincent <kory.maincent@bootlin.com>, Andrew Lunn <andrew@lunn.ch>,
+ Oleksij Rempel <o.rempel@pengutronix.de>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet
+ <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, Rob Herring
+ <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, Simon Horman
+ <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
+ Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v5 09/12] net: pse-pd: pd692x0: Add support for
+ controller and manager power supplies
+Message-ID: <20250224141716.01751dc4@fedora>
+In-Reply-To: <Z7xqz-Z5UhqBQXnc@shell.armlinux.org.uk>
+References: <20250218-feature_poe_port_prio-v5-0-3da486e5fd64@bootlin.com>
+	<20250218-feature_poe_port_prio-v5-9-3da486e5fd64@bootlin.com>
+	<20250224134222.358b28d8@fedora>
+	<Z7xqz-Z5UhqBQXnc@shell.armlinux.org.uk>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdejkeekkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthejredtredtvdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegveeltddvveeuhefhvefhlefhkeevfedtgfeiudefffeiledttdfgfeeuhfeukeenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepfhgvughorhgrpdhmrghilhhfrhhomhepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdegpdhrtghpthhtoheplhhinhhugiesrghrmhhlihhnuhigrdhorhhgrdhukhdprhgtphhtthhopehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepohdrrhgvmhhpvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnv
+ ghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomh
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
-On Mon, 2025-02-24 at 14:07 +0100, Krzysztof Kozlowski wrote:
-> On 24/02/2025 11:28, Andr=C3=A9 Draszik wrote:
-> > +=C2=A0 gpio-controller: true
-> > +
-> > +=C2=A0 "#gpio-cells":
-> > +=C2=A0=C2=A0=C2=A0 const: 2
-> > +
-> > +=C2=A0 gpio:
-> > +=C2=A0=C2=A0=C2=A0 $ref: /schemas/gpio/maxim,max77759-gpio.yaml
->=20
-> There is no such file at this moment, so this is not bisectable. What's
-> more, even if you fix it, you will have dependency which you *must*
-> always clearly express in patch changelog or *top* (the first people
-> see) of cover letter.
+On Mon, 24 Feb 2025 12:49:19 +0000
+"Russell King (Oracle)" <linux@armlinux.org.uk> wrote:
 
-Thanks Krzysztof. You're right of course.
-I'll fix the dependency issues in the next version
+> On Mon, Feb 24, 2025 at 01:42:22PM +0100, Maxime Chevallier wrote:
+> > On Tue, 18 Feb 2025 17:19:13 +0100
+> > Kory Maincent <kory.maincent@bootlin.com> wrote:  
+> > > diff --git a/drivers/net/pse-pd/pd692x0.c b/drivers/net/pse-pd/pd692x0.c
+> > > index 44ded2aa6fca..c9fa60b314ce 100644
+> > > --- a/drivers/net/pse-pd/pd692x0.c
+> > > +++ b/drivers/net/pse-pd/pd692x0.c
+> > > @@ -976,8 +976,10 @@ pd692x0_register_managers_regulator(struct pd692x0_priv *priv,
+> > >  	reg_name_len = strlen(dev_name(dev)) + 23;
+> > >  
+> > >  	for (i = 0; i < nmanagers; i++) {
+> > > +		static const char * const regulators[] = { "vaux5", "vaux3p3" };  
+> > 
+> > Looks like the 'static' is not needed here :)  
+> 
+> Have you checked the compiler output before saying that?
 
-Cheers,
-Andre'
+No I have not
 
+> I've seen plenty of instances where "static" should be there but isn't,
+> leading to the compiler generating inline code to create the
+> array/struct on the stack.
+
+Makes sense then, so it should be good here.
+
+Thanks,
+
+Maxime
 
