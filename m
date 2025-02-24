@@ -1,283 +1,135 @@
-Return-Path: <devicetree+bounces-150375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 072B5A41E4A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:05:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D1BA41E69
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 13:08:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1AE997A9B08
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 11:58:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2C90188FF5D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 12:04:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7728256C96;
-	Mon, 24 Feb 2025 11:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E079B20ADF8;
+	Mon, 24 Feb 2025 12:03:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="PxbeCiXP"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="s8B48YN6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246D2158870;
-	Mon, 24 Feb 2025 11:50:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C1C62571A0;
+	Mon, 24 Feb 2025 12:03:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740397809; cv=none; b=GVm8cyaJ6cwqNKlcrRGBh/PqcyEvDyX5t8k1sEGaLhD9oksKTmAVLnJnx0X/KMVJgF94Y2PFgmO+g1g3whEWAibCYWw+7MVNA6cwsio1vZOPYK3krkXZ/n4ISTjy9YTrVgIAGISJn2ZCgj3wkZBAbPRLjYFd4vH6FuMI+Lf5huA=
+	t=1740398608; cv=none; b=hewNhkotvEol4+i38H7Qv9mU5izbBVp6ISHMldi3p2ewryXzxCJHMHChw68i7VPWk2Abl0jltB9uPe4HLiOZ58OC2eYWyT3OsPhM+bR9fhbE5HloikXC2dmEBc3zklGIqB++0SewliimR1t/OJ2hRxNvaPNAMnPNav5KmjUyUMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740397809; c=relaxed/simple;
-	bh=PSWqmG5uRw23IQ/mMzq14qL5ztMdUMVj9Gatu+r66gE=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=so67LLDZXTOYIVMwtcMm4SXQB1w5I/xG8UJ5X6YRkpL34WhDHG75dzmYtlLe9hmtUBqU2j1Fb3AczPpDFaverFC0/3x1IVAXXoCWhLg1VbBIAnxP6tU+h0wYU3KB/zXRuWD4qYdvBv5fQ2qci4zD30e0p/EvsLOfDrM2mwJKlSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=PxbeCiXP; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 7a6a3840f2a511efaae1fd9735fae912-20250224
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=1yXoVn4d41rL3z4hjc5R72fder7LjdF+dcCF5p2tEkw=;
-	b=PxbeCiXPMQuB0+w5zWALDbCctmV/PpoPrs9vqW2N/I3kulIjpnx+TehEwMhjJJeHcv8BAerOaNpMSLPbDMIo7KNd1i0y7Ag1goqoQnVrjdX4FLNvl+hrO3wv8/6258GTenJhtM0tZUcgHHFaEW+3QFKVUvXU0xwjR6yijk/kC5Q=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:b17fa284-d12b-4c4f-b479-d4fa89ac5dfe,IP:0,U
-	RL:0,TC:0,Content:0,EDM:-25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:60aa074,CLOUDID:637244dc-d480-4873-806f-0f365159227b,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:1|19,IP:
-	nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,L
-	ES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 7a6a3840f2a511efaae1fd9735fae912-20250224
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1041160626; Mon, 24 Feb 2025 19:50:00 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Mon, 24 Feb 2025 19:49:59 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Mon, 24 Feb 2025 19:49:59 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: ChiYuan Huang <cy_huang@richtek.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Alexandre Mergnat
-	<amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<linux-usb@vger.kernel.org>, Chris-qj chen <chris-qj.chen@mediatek.com>,
-	Fabien Parent <fparent@baylibre.com>, Yow-Shin Liou
-	<yow-shin.liou@mediatek.com>, Simon Sun <simon.sun@yunjingtech.com>
-Subject: [PATCH v6] arm64: dts: mediatek: mt8395-genio-1200-evk: add support for TCPC port
-Date: Mon, 24 Feb 2025 19:49:34 +0800
-Message-ID: <20250224114934.3583191-1-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1740398608; c=relaxed/simple;
+	bh=7h5ryNxk757OKWlLFcNWOYukboylFtUCaUa59b6WtpM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bK7V41rqxKChzKP5F/rfaoycvpZSw8XY9R+GaKA3OsQKX67wNSdw7ZvHHLXhJqv8k9n7svVk4EOZ5Kk9mGTZ6DYxVR8ja4DR8VRve0n3Yp9yRZogBbmHZZnNQzGPdvLe8WAR9x72c3iHWcZguf/mj0LMkDei1nDKxief9GBff68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=s8B48YN6; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51OC3HQw884652
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 24 Feb 2025 06:03:17 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1740398597;
+	bh=5raQfcZhDMhumdfr8jxuCUsBCb/cAX6lrocettlzYYo=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=s8B48YN6RXbPyYcRP3wjIDrfdeyLzL/aICw32+tMLtDI7d+3xRXAMeeM0d0NcdXRl
+	 YhaRDfeDpYzbsne2U1IOxxWSW3qxm0IEu7HeayWBnEcNA0cPkQ6T41QKBbO2Dp8LOC
+	 U5+BDYi+wNCITyJankazxTQ5wpe0W9Yyqv85X46w=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51OC3HNE006194
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 24 Feb 2025 06:03:17 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 24
+ Feb 2025 06:03:16 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 24 Feb 2025 06:03:16 -0600
+Received: from [172.24.227.245] (uda0132425.dhcp.ti.com [172.24.227.245])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51OC3BEA070806;
+	Mon, 24 Feb 2025 06:03:12 -0600
+Message-ID: <0d871153-e4dd-42d1-aafa-b6ed1e4e5a10@ti.com>
+Date: Mon, 24 Feb 2025 17:33:11 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: ti: Add k3-am62-pocketbeagle2
+To: Robert Nelson <robertcnelson@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Andrew Davis
+	<afd@ti.com>, Roger Quadros <rogerq@kernel.org>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>, Judith Mendez <jm@ti.com>,
+        Andrei Aldea
+	<a-aldea@ti.com>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Deepak Khatri
+	<lorforlinux@beagleboard.org>,
+        Ayush Singh <ayush@beagleboard.org>
+References: <20250211181839.1575497-1-robertcnelson@gmail.com>
+ <20250211181839.1575497-2-robertcnelson@gmail.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+Content-Language: en-US
+In-Reply-To: <20250211181839.1575497-2-robertcnelson@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Fabien Parent <fparent@baylibre.com>
+Hi
 
-Enable USB Type-C support on MediaTek MT8395 Genio 1200 EVK by adding
-configuration for TCPC Port, USB-C connector, MUX IT5205 and related
-settings.
+On 11/02/25 23:48, Robert Nelson wrote:
+> BeagleBoard.org PocketBeagle 2 is an upgraded version of the popular
+> PocketBeagle.  It is based on Texas Instruments AM6232 SoC. Its dual
+> A53 cores can provide higher performance than classic PocketBeagle.
+> The new design comes with pre-soldered headers, a 3-pin JST-SH 1.00mm
+> UART debug port, a USB-C port, Texas Instruments MSPM0L1105 Cortex-M0+
+> MCU for ADC, 512MB RAM, and a LiPo Battery charger.
+> 
+> https://www.beagleboard.org/boards/pocketbeagle-2
+> https://openbeagle.org/pocketbeagle/pocketbeagle-
+> 
+> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+> CC: Rob Herring <robh@kernel.org>
+> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> CC: Conor Dooley <conor+dt@kernel.org>
+> CC: Vignesh Raghavendra <vigneshr@ti.com>
+> CC: Nishanth Menon <nm@ti.com>
+> CC: Andrew Davis <afd@ti.com>
+> CC: Roger Quadros <rogerq@kernel.org>
+> CC: Siddharth Vadapalli <s-vadapalli@ti.com>
+> CC: Judith Mendez <jm@ti.com>
+> CC: Andrei Aldea <a-aldea@ti.com>
+> CC: Jason Kridner <jkridner@beagleboard.org>
+> CC: Deepak Khatri <lorforlinux@beagleboard.org>
+> CC: Ayush Singh <ayush@beagleboard.org>
 
-Configure dual role switch capability, set up PD (Power Delivery) profiles,
-and establish endpoints for SS (SuperSpeed) and HS (HighSpeed) USB.
 
-Update pinctrl configurations for U3 P0 VBus default pins and set dr_mode
-to "otg" for OTG (On-The-Go) mode operation.
+Please run make dtbs_check and fix the reported issues. Eg.:
 
-Add ITE IT5205 (TYPEC MUX) under I2C2 bus and configure its properties;
-also add references and configurations to 'typec-mux' node.
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
-Signed-off-by: Yow-Shin Liou <yow-shin.liou@mediatek.com>
-Signed-off-by: Simon Sun <simon.sun@yunjingtech.com>
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../dts/mediatek/mt8395-genio-1200-evk.dts    | 102 ++++++++++++++++++
- 1 file changed, 102 insertions(+)
++arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts: /bus@f0000/pinctrl@f4000/main_i2c2-default-pins: Character '_' not recommended in node name
 
-Changes for v2:
- - Drop the no need '1/2' DT Schema update patch in the 1st version.  
- - Fix indent for 'ports' node, it should under the 'connector' node.
- - Correct the index for 'port@0' and 'port@1' node.
+[...]
 
-Changes for v3:
- - Correct the order between new added nodes.
-
-Changes for v4:
- - Reorder for property 'op-sink-microwatt'.
- - Fix indentation for 'source-pdos' and 'sink-pdos' nodes.
- - Correct node 'pin-cmd-dat' with 'pins-vbus'.
- - Add both Highspeed and Superspeed ports to ssusb0 port.
- - Set 'role-switch-default-mode' = "peripheral" for ssusb0 port.
- - Rename endpoint of USB data port to 'mtu3_hs0_role_sw' and
-   'mtu3_ss0_role_sw'.
- - Drop it5205fn phandle for node typec-mux@48.
- - Reorder properties of typec-mux@48
- - Add "Reviewed-by:" tag. Thanks!
-
-Changes for v5:
- - Squash two patches into one patch and refine commit messages:
-   suggested by reviewer.
- - Drop 'role-switch-default-mode'
- - Add altmodes settings
- - Drop 'Reviewed-by:' tag since the two sub patches has been combined
-   into a new patch.
-
-Changes for v6:
- - Add 'pd-revision' property to 'connector', thanks ChiYuan Huang's help!.
- - Add 'Reviewed-by' tag. Thanks!
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-index 5950194c9ccb..f02c32def593 100644
---- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-@@ -229,6 +229,21 @@ &i2c2 {
- 	pinctrl-0 = <&i2c2_pins>;
- 	pinctrl-names = "default";
- 	status = "okay";
-+
-+	typec-mux@48 {
-+		compatible = "ite,it5205";
-+		reg = <0x48>;
-+		vcc-supply = <&mt6359_vibr_ldo_reg>;
-+		mode-switch;
-+		orientation-switch;
-+		status = "okay";
-+
-+		port {
-+			it5205_sbu_ep: endpoint {
-+				remote-endpoint = <&mt6360_ssusb_sbu_ep>;
-+			};
-+		};
-+	};
- };
- 
- &i2c6 {
-@@ -335,6 +350,63 @@ mt6360_ldo7: ldo7 {
- 				regulator-always-on;
- 			};
- 		};
-+
-+		tcpc {
-+			compatible = "mediatek,mt6360-tcpc";
-+			interrupts-extended = <&pio 17 IRQ_TYPE_LEVEL_LOW>;
-+			interrupt-names = "PD_IRQB";
-+
-+			connector {
-+				compatible = "usb-c-connector";
-+				label = "USB-C";
-+				data-role = "dual";
-+				op-sink-microwatt = <10000000>;
-+				power-role = "dual";
-+				try-power-role = "sink";
-+
-+				source-pdos = <PDO_FIXED(5000, 1000,
-+							 PDO_FIXED_DUAL_ROLE |
-+							 PDO_FIXED_DATA_SWAP)>;
-+				sink-pdos = <PDO_FIXED(5000, 2000,
-+						       PDO_FIXED_DUAL_ROLE |
-+						       PDO_FIXED_DATA_SWAP)>;
-+
-+				pd-revision = /bits/ 8 <0x03 0x01 0x01 0x06>;
-+
-+				altmodes {
-+					displayport {
-+						svid = /bits/ 16 <0xff01>;
-+						vdo = <0x00001c46>;
-+					};
-+				};
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						typec_con_hs: endpoint {
-+							remote-endpoint = <&mtu3_hs0_role_sw>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						typec_con_ss: endpoint {
-+							remote-endpoint = <&mtu3_ss0_role_sw>;
-+						};
-+					};
-+
-+					port@2 {
-+						reg = <2>;
-+						mt6360_ssusb_sbu_ep: endpoint {
-+							remote-endpoint = <&it5205_sbu_ep>;
-+						};
-+					};
-+				};
-+			};
-+		};
- 	};
- };
- 
-@@ -770,6 +842,13 @@ pins-reset {
- 		};
- 	};
- 
-+	u3_p0_vbus: u3-p0-vbus-default-pins {
-+		pins-vbus {
-+			pinmux = <PINMUX_GPIO63__FUNC_VBUSVALID>;
-+			input-enable;
-+		};
-+	};
-+
- 	uart0_pins: uart0-pins {
- 		pins {
- 			pinmux = <PINMUX_GPIO98__FUNC_UTXD0>,
-@@ -898,8 +977,31 @@ &ufsphy {
- };
- 
- &ssusb0 {
-+	dr_mode = "otg";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&u3_p0_vbus>;
-+	usb-role-switch;
- 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
- 	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			mtu3_hs0_role_sw: endpoint {
-+				remote-endpoint = <&typec_con_hs>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			mtu3_ss0_role_sw: endpoint {
-+				remote-endpoint = <&typec_con_ss>;
-+			};
-+		};
-+	};
- };
- 
- &ssusb2 {
--- 
-2.45.2
+> ----- 
+Regards
+Vignesh
+https://ti.com/opensource
 
 
