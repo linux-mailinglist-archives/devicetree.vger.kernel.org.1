@@ -1,204 +1,127 @@
-Return-Path: <devicetree+bounces-150165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8FE2A4162C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:24:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48C29A4163D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 08:28:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDE6C3AB9F4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 07:24:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD21D188F833
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 07:28:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381DA1DB34C;
-	Mon, 24 Feb 2025 07:24:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC37223F262;
+	Mon, 24 Feb 2025 07:28:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BI3RgGvQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l3H3fs4d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 598A24414;
-	Mon, 24 Feb 2025 07:24:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 187921E5B77;
+	Mon, 24 Feb 2025 07:28:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740381852; cv=none; b=cr/Kq3ih4FueFnmKFB+NobwUfX7O4l2PTef4DvehYSWmHfd28xpiRrJB3JfGkW4vwQCVCZl0JPCTOdtGV3kkBoJOy5GEVYaujysMMuNPFQQlIdWK64XHDGB6Q1e+0yav15f7rhlppuyqwq317bdyER1E7vNOF6SJov0JPE2Sn6U=
+	t=1740382128; cv=none; b=kVmVyzXul1M7USjH1Ccn1/5SpN4NLNnoy8/SlBy71Kvr+UsdbSoxLLclkxMEiawRlvPXLfcPBdYCeyp3untRlXXI+Vz626FXMCAcyiPY89/26kjrHTUPwbhDtW/pevPir4e3eLmmnh9FPrF1YKefZsjr+KBr8EevH82ICIltjyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740381852; c=relaxed/simple;
-	bh=HcKu4yIRHuwzIxCrUkvvi908VVOmFvkI+QsjzNjrqaE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Epe7kFR/6jmfjrgkb/5DE+EoHS6yndpD1J3e5M3BQlliPNDf7UlKwVOsZP0GgnjUWVInoG48i9kXmk0JT7I+AQJBX4Idn2szRbxBKOJJ3onVaFt9koRjs6iGBzu065d8SX8Hj3ZiifqIMxMXO+aNtaZ5NVnfgouRwLu0wAcsLjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BI3RgGvQ; arc=none smtp.client-ip=209.85.221.52
+	s=arc-20240116; t=1740382128; c=relaxed/simple;
+	bh=4QdLZbLyUQlmED6vmxcN+VQ92PGbQL9gjs3A5m+3Or4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QwDuZfgAfW3E9d6R5gRIYw5lfGtxSFNaEzX227aydhRvMaiN+BrnNBbWSWOH92sMb1QYp1TSvhd3GknU/PcIaEqW2TTWwI1SEpuGTHYfOIMGLOkB7RDTHz7mYTEMzAD6yymglLtfL2w1ErGjO7Rn4GRKRRWaP998HusjIrWD/SQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l3H3fs4d; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-38f2f391864so2205274f8f.3;
-        Sun, 23 Feb 2025 23:24:10 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4394345e4d5so25564735e9.0;
+        Sun, 23 Feb 2025 23:28:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740381848; x=1740986648; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WttiCaJQvwomhQd1EI/0udfL207Jhy9knOnlIAkEOdg=;
-        b=BI3RgGvQcP9ZK8F3ggmELg/cejbY4tKdqiYQz76g+Ia6RGpj88UAVFjeecRvCSQoBC
-         ZQiB2qJ5izx0l/h9I4IUCahaUpnF+ZRDnuF9Q9Q1cgu3IF1mlugtfRfZ6ELr5oplOsIV
-         /l9ygXJVzwYAKQZ9PduhZbpHmonkNxlnogI4AJ27ithRqJSI63KnqpgTWvQYc/YYASUp
-         rnquKQl3ssYH6sAxl1K6HIu/b+ED6Q4ptnVShoOMJd49hXaEraSyI939EDasTeZfcs4/
-         LmnFS9Q9/tgGqxr369p/7dWmH2Th/hTxHMuwOuR93R1vhT7mHWbPKGHmnB1GXJnrSDvU
-         BFJw==
+        d=gmail.com; s=20230601; t=1740382124; x=1740986924; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=H/J1eHs/QwfmQDOJAETe758QiGCVwHhph27kBts3wDI=;
+        b=l3H3fs4dkgMOfNfG9J08YqLImA3XGm3/5jA6w8VWPLOxykaIjQE5YT81V+TuTMmFm3
+         pVWkgPpFFLNPXS6q/lGCN113xkgMKVYqs679xFR/+/9uYrKUXUIeVVd9FmSCmOs8eKjG
+         EYdMiGY2R7YJJLuSDmrD1f1Tx485h+00isPnr2MQz4Itgdt2sfIYMG4yGqxnCmYJqyZT
+         4vLJ5p+/ftdsIzP0lTqtLawiKc+5yYEZp17VALtPFopSlrkUTvGEtUZAFQmnC2SeCDO+
+         xOwCyX1IRiX7dBS7AMJ2z/i2G5EWgGw4ab5k5EzbhlDRLt9gy6dVwKuL8+Aa7+6gslGr
+         KKzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740381848; x=1740986648;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WttiCaJQvwomhQd1EI/0udfL207Jhy9knOnlIAkEOdg=;
-        b=IiqSiU/rAg42W6DkvDyLMlsHf9geyjbVHEwsyUaraF8/U3R+DiTk13g+kX9hpSRmoQ
-         GJkBaoUYPftG5t8steFs9mf6Q26V9TNFWWvOeoz2YJIvsgKbztvZPl7z8TGPLgUM76Y8
-         HLphPm6z1TiN6kOltnnpPDXkj2hsjKsRCL/QP+Xh8RxH34duFapwbfxiqp2pHZcCjBTp
-         a/F4V8f0DeRS3zTIjYQo1GM2SUP0MLluNgsdNMIRVs+t6dr31kfKr5YxyuBWlR8DS5hK
-         8R6wZEaaIQvBkZ2ZWKdp34JCNaiZyypxbIwuaeXeIE/5j9rsSFGHeOw6OFDBp7uwCZgI
-         ceqg==
-X-Forwarded-Encrypted: i=1; AJvYcCW/GDdJEmw8SrjS5QvA+zrJrSPdk0GdIy9OIkOWsaMk92OLn7Cw98P1taMFkteB9RRa5isDo36JsUzr@vger.kernel.org, AJvYcCWNs/Tj5Wbr661EiFmewLmHCGZNUiedQe121SlHrj8GMM0+g6XDhhMNBiFRXHWg+Nth+PIhEfGIkgxorTNz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFFQps6SqGyPwXkMfcHiIjGM/JuMyrieHPsyJqbWZx5Pb/7BGK
-	ju/NXfwkKpuUSPVMtAyfSvmN+WABuFex0ZfKDJf0ZMeETiG3JHg1J4bw0/2nLqNPToEkkl8+fi7
-	QZkx4ynAf6yKh9QXMG43ADsheI6c=
-X-Gm-Gg: ASbGncsrAint3+Pc8PlRQloUEgNMZmmrPyz4f6AEPmKF6NWd/P+4t1WFKfHaVY2EYTy
-	dP4TdKhVg2sqscgG+kPnDMD8iA3vq3BzWaU1ixvgvDk5cAUspyWF9M1dw0vtvc8J1KlsbWCTJgM
-	aEw3L22Bm4
-X-Google-Smtp-Source: AGHT+IHmuylp5CwLVA1IYwFWOeYvtiMnpzSvI/RJzNxXxIyoWRaTdnpaf8jYgz8j+JBsOyYGE4ztNWyFe7oWQUCwews=
-X-Received: by 2002:a05:6000:4014:b0:38f:452f:9fa9 with SMTP id
- ffacd0b85a97d-38f7d1ff2b0mr4710935f8f.2.1740381848433; Sun, 23 Feb 2025
- 23:24:08 -0800 (PST)
+        d=1e100.net; s=20230601; t=1740382124; x=1740986924;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=H/J1eHs/QwfmQDOJAETe758QiGCVwHhph27kBts3wDI=;
+        b=wj/L37wSJIc0QfbZ7HAVqhzI7NT8ueCvTHsY8C58uQrJ1gUiwnGfzkluhHKQpjd02w
+         MWD//ryiBlkn3IGfuIpcX0SHOqZdZcio5omjue224ef9M9DZ0ox4MjVx5rWRrza2AxaX
+         UNdMvtrZcG3Y/DVpD/M+fQQWY8N8O/rueWOhpPzfE86dyVPHxcpXy5ROVnqdqvqKiLX5
+         m2iRIhonCo6942Mb702kAAIzAfRuyf9138ulJ3CSfNl0umv+SXrKqiGZZuVyHjfewrh1
+         AmADXasTrWEOYgiSAQ//t5uyGT4UwFLUfTDJa5QPtwr4/futmSswi5cxs8s0DVEgqfUl
+         Ai4w==
+X-Forwarded-Encrypted: i=1; AJvYcCVWoIzULM09tfImkQK1xp8S1It5l5nApnjwe4ebfbxNAaA0IrT+2sD+DVeXsCeV8BREx8xSUWq06hBnSI/QlQwPPFU=@vger.kernel.org, AJvYcCVctWPOp6n0CjNceekUWJf6o0N5nCtU3h2m5ejqCDnFR/SFijJDZ0cKwTMq7wtA3Nk8Mxv8JtfMvXk2M4db@vger.kernel.org, AJvYcCXkDDJa1jp13lZ5qeJWkye5wyaowkNpzT/j6ijqc9O9eCjVch9DTUderYmO6r0XXXtNwXUwsx4dONCi@vger.kernel.org, AJvYcCXnUs/sMBn1wOr8miE9shRif12HrZOcH52sARZRsxn3KiQ604qXLqS9cKkKUCJ1UHTeELmgapCnMsrvVab0+w==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw18ycbNRqB+6URCCyATGX3VfxfizUMXmERlDF4jjysucmbXRar
+	g1kO0UTczaZ35v26tVa/fL6VWIQvHR7pQ9JYPQyBRSe14sw78vru
+X-Gm-Gg: ASbGnct0YOxm0k5fEbKZNaBw1lYm9oAqAUCMSC5LbtICf2GjiPLSZ9yV2SmvudGIEF6
+	C4Gbv4kQZsL4RMdRXbKz1lDeOKAFJK5jst2EuAQl1h3B5KXKkGuutu3eYvbcaXchdz4jpvwWrzH
+	qUA/BhIH0Wz1Gk9+pr+e6JbftPjeSKHRO5Pc/Ot+fR5DwkxC8ozqglwt25/iKKa1fqWZsUNMeSs
+	Z1lCdV0heNkxSQaeFJo9hJSlQh7shudZtPhEXj64hMrkSFMxu3FQZZ8GfW+dHEDVSLs+vBmX7jw
+	7Js3c0F3bwMzpMJANuf0r2xQEOWo6GTTZKnNStgk
+X-Google-Smtp-Source: AGHT+IE5cw7vshlFbcyfY+g/VDogOlT1fxKWnLlplcjX26Jv+6luh/NyTC1ES3BHLcR0L8M4kDEHug==
+X-Received: by 2002:a5d:47c3:0:b0:38f:4176:7c25 with SMTP id ffacd0b85a97d-38f70772b51mr8659416f8f.2.1740382124196;
+        Sun, 23 Feb 2025 23:28:44 -0800 (PST)
+Received: from [192.168.43.21] ([77.85.230.22])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f259d58f3sm30734172f8f.73.2025.02.23.23.28.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Feb 2025 23:28:43 -0800 (PST)
+Message-ID: <3616b414-ba57-4625-aa35-20d3dff61cc5@gmail.com>
+Date: Mon, 24 Feb 2025 09:28:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250223153244.149102-1-clamor95@gmail.com> <20250223153244.149102-3-clamor95@gmail.com>
- <hz6amgqdmvr6tow5k3gj6n2bnaayejrdv6yhj6sjzs7v3dbjbv@3dcm45ydkkd3>
-In-Reply-To: <hz6amgqdmvr6tow5k3gj6n2bnaayejrdv6yhj6sjzs7v3dbjbv@3dcm45ydkkd3>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Mon, 24 Feb 2025 09:23:57 +0200
-X-Gm-Features: AWEUYZktBbGH02zZg4r3HvOntXY1RXWZ2G2bHw8JfAZ9BZfYMA_8iSUtK4-0qsU
-Message-ID: <CAPVz0n0w6fNCkWzAD5qGUeeF3nEY-irvSQPxoB+AOvvKtx4XEQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] drm: bridge: Add support for Solomon SSD2825
- RGB/DSI bridge
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/8] phy: phy-snps-eusb2: make reset control optional
+Content-Language: en-US
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Abel Vesa <abel.vesa@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250223122227.725233-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250223122227.725233-7-ivo.ivanov.ivanov1@gmail.com>
+ <rcny5iaxs6gr6vcxmjep6hwtkt2fvtgzhbxlpu3ax6vj7maure@n5bg5y74vwc7>
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <rcny5iaxs6gr6vcxmjep6hwtkt2fvtgzhbxlpu3ax6vj7maure@n5bg5y74vwc7>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-=D0=BF=D0=BD, 24 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 04:10 Dmit=
-ry Baryshkov <dmitry.baryshkov@linaro.org> =D0=BF=D0=B8=D1=88=D0=B5:
+On 2/24/25 01:48, Dmitry Baryshkov wrote:
+> On Sun, Feb 23, 2025 at 02:22:25PM +0200, Ivaylo Ivanov wrote:
+>> Some SoCs don't provide explicit reset lines, so make them optional.
+> Is there an external reset or some other signal?
+
+Well..  There probably are on a hardware level, but there's no interface
+that exposes them to the kernel.. as far as I've seen. Resets are usually
+managed via the blocks' registers. I can't say with certainty because I
+don't have access to TRMs.
+
+I can reword this commit message to make that clear.
+
+Best regards,
+Ivaylo
+
 >
-> On Sun, Feb 23, 2025 at 05:32:44PM +0200, Svyatoslav Ryhel wrote:
-> > SSD2825 is a cost-effective MIPI Bridge Chip solution targeting mainly
-> > smartphones. It can convert 24bit RGB interface into 4-lane MIPI-DSI
-> > interface to drive display modules of up to 800 x 1366, while supportin=
-g
-> > AMOLED, a-si LCD or LTPS panel technologies for smartphone applications=
-.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  drivers/gpu/drm/bridge/Kconfig   |  13 +
-> >  drivers/gpu/drm/bridge/Makefile  |   1 +
-> >  drivers/gpu/drm/bridge/ssd2825.c | 821 +++++++++++++++++++++++++++++++
-> >  3 files changed, 835 insertions(+)
-> >  create mode 100644 drivers/gpu/drm/bridge/ssd2825.c
-> >
->
-> > +
-> > +     if (buf =3D=3D MIPI_DCS_SET_DISPLAY_ON) {
-> > +             /*
-> > +              * NOTE! This is here since it cannot be called in bridge=
- enable because
-> > +              * bridge pre enable and bridge enable have no gap in bet=
-ween.
-> > +              *
-> > +              * Existing framework bridge-panel seq is:
-> > +              *      panel_prepare > bridge_pre_enable > bridge_enable=
- > panel_enable
-> > +              *
-> > +              * Using prepare_prev_first was tested, but it switches s=
-eq like this:
-> > +              *      bridge_pre_enable > panel_prepare > bridge_enable=
- > panel_enable
-> > +              *
-> > +              * This will not work since panel hw MUST be prepared bef=
-ore bridge is
-> > +              * configured. Correct seq should be:
-> > +              *      panel_prepare > bridge_pre_enable > panel_enable =
-> bridge_enable
-> > +              *
-> > +              * Last two functions are swapped related to existing fra=
-mework. I am not
-> > +              * aware about method which allows that.
-> > +              *
-> > +              * Once there will be such method/flag, code below should=
- be moved into
-> > +              * bridge_enable since it is basically a bridge configura=
-tion completing
-> > +              * after initial panel DSI sequence is completed.
->
-> Will bridge_pre_enable -> panel_prepare (including
-> MIPI_DCS_SET_DISPLAY_ON) -> bridge_enable work?
->
-> The rest looks good to me.
+>> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>> ---
+>>  drivers/phy/phy-snps-eusb2.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 >
 
-I wish. I have tested that configuration already and panel did not
-work. Problem here is that panel must be enabled before bridge.
-Correct sequence should be:
-
-Panel is enabled (power seq, reset, etc.) > bridge is enabled (power
-seq, reset, initial configuration) > panel sends init DSI seq > bridge
-completes setup with code below.
-
-Basically this part of transfer should be called after last DSI
-command is sent, but ATM I see no valid solution to this issue apart
-this quirk (keep in mind that panel must be enabled before bridge so
-drm_panel.prepare_prev_first will not work).
-
-The most appropriate solution would be addition of atomic_post_enable
-call just after panel or next bridge enable, this would ensure that
-cases with bridge like I have could be properly configured. Though, I
-really do not want to touch framework, since it never ended up well.
-Or, alternatively, a flag for a bridge which can swap bridge enable
-and panel enable, like drm_panel.prepare_prev_first does for
-pre_enable and prepare.
-
-
-> > +              */
-> > +             config =3D SSD2825_CONF_REG_HS | SSD2825_CONF_REG_DCS |
-> > +                      SSD2825_CONF_REG_ECD | SSD2825_CONF_REG_EOT;
-> > +
-> > +             if (dsi_dev->mode_flags & MIPI_DSI_MODE_VIDEO)
-> > +                     config |=3D SSD2825_CONF_REG_VEN;
-> > +
-> > +             if (dsi_dev->mode_flags & MIPI_DSI_MODE_NO_EOT_PACKET)
-> > +                     config &=3D ~SSD2825_CONF_REG_EOT;
-> > +
-> > +             /* Complete configuration after DSI commands were sent */
-> > +             ssd2825_write_reg(priv, SSD2825_CONFIGURATION_REG, config=
-);
-> > +             ssd2825_write_reg(priv, SSD2825_PLL_CTRL_REG, 0x0001);
-> > +             ssd2825_write_reg(priv, SSD2825_VC_CTRL_REG, 0x0000);
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> >
->
-> --
-> With best wishes
-> Dmitry
 
