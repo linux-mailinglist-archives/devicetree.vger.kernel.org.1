@@ -1,84 +1,166 @@
-Return-Path: <devicetree+bounces-150631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AEA8A42EFC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 22:24:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42524A42F07
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 22:28:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03CB016934A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 21:24:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 730AA7A5451
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2025 21:27:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91DE41DB365;
-	Mon, 24 Feb 2025 21:24:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37A71DDC18;
+	Mon, 24 Feb 2025 21:28:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QaeYlsBd"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="GV0bpMsq";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="6KZfci/H";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="eDL/v6Wx";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="rRv9u7fE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64DF01D6DB9;
-	Mon, 24 Feb 2025 21:24:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D153F1917D0
+	for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 21:28:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740432267; cv=none; b=gJ0eDD25Q1MgP0PPKiFeOKBJ9X0cawEG9r/jrN9vjhYV4Jy8zEk3tvHpyBRryC3pAybh4qmC22qNLch53xAjTo4WGyoo57FOTD84reO7aTSGOxI1UmfqnVZR3XG7VYnpu3uX/50ufQ95w3pyzF/Mvr4POVwL2JHmJY6tFtsXLiw=
+	t=1740432502; cv=none; b=R9MxSHgTO1vgJyVOLp64Q+FilunYFECR8LiVzfjnCNAdL3IkNK6pqlTqsynm8m7IjQ1NyuZj4oaKN/AH3W3DG0kA/65prGJYy57iq18ExC4r7wKW2YgxShhO9pWV4u+FhNuQQuYLsMpRbz5xGCLRZ6w93pQBSNImyAkgP7Tid0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740432267; c=relaxed/simple;
-	bh=OH9HRn20JiKKaAGSLEL4MYnRi8OT3aRzUFDVE/OJuug=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZmMyXLyHksOEu4B29Nek1CbamyF4G+h0CTt/Jck89SklTOkX5opvqRI7dM68omiN2ZB8KGyOpfG4B12bKIRSG9chp/Jq/j03WgH+oW3iiq+GOID2IKJO7vuP+BQtgPYRGxMPcd7xwHrbR9sLPBN24bs9mT6MYO6816nIuixLRJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QaeYlsBd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C99DC4CED6;
-	Mon, 24 Feb 2025 21:24:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740432266;
-	bh=OH9HRn20JiKKaAGSLEL4MYnRi8OT3aRzUFDVE/OJuug=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QaeYlsBdL/4Fb5unmU8HsyjnGf8zkxlmb4nv2ssrjKIp4Y3tGfs25mWqiFyRaPhg5
-	 yyPJ0/RMETv+HhXDUiEQpEarCuhfMYLCjI8rixNWZrYL5zh5bWiuSEhyb+lQXKZ4Dg
-	 3QETmDTebYntHZOC/ARZowJRnBo7ezfOeE9h13nVoZDzfYXxYxCtdYg3zcDBomyfJX
-	 19luIYfne+3yz3/XAvcO0/9X3xaQwMloB5G9m3RdJWAcb7EebcXnUW5hDpNNoqQymZ
-	 /DrqLIpwKayCvt0f4FoW1eRX5bum6eESBqggFN/RofXgWqxPPJX027IgDmXWunSxja
-	 Az2qKUGIqzCoQ==
-Date: Mon, 24 Feb 2025 15:24:25 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Vincenzo Frascino <vincenzo.frascino@arm.com>
-Cc: Maruthi Srinivas Bayyavarapu <maruthi.srinivas.bayyavarapu@xilinx.com>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH v4 1/4] ASoC: dt-bindings: xlnx,i2s: Convert to
- json-schema
-Message-ID: <174043226450.4106940.4348756285400472131.robh@kernel.org>
-References: <20250224182548.2715896-1-vincenzo.frascino@arm.com>
- <20250224182548.2715896-2-vincenzo.frascino@arm.com>
+	s=arc-20240116; t=1740432502; c=relaxed/simple;
+	bh=GL21N69H/P/6mdUx2zjbZ2ak9oshViQynEjDaJrrehc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S2MiNPQJWWLLywFpwS1d1HqSLCPl/+KtJOzyOahl48nkJMCwM/jZ35Mbez0JrOpnNqFSrqLBlkvk0FfWWLPAFYu94r/9UYoUB676v/6BkzBeVdvQV7SoF6/qcI7lz2C9Q3W/opG3X782H+gqepL+VTXmBpKVffGTE/Y1NmjNQlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=GV0bpMsq; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=6KZfci/H; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=eDL/v6Wx; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=rRv9u7fE; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id C92E21F44E;
+	Mon, 24 Feb 2025 21:28:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1740432498; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Qvgm+D28JDvejs53Z18fdULzcHEuXR6KF6+ladTokSM=;
+	b=GV0bpMsq5UQbZviMXq9ntFQ+U1cxHTSutltlQ+ufcM8iRz+33IGwOHXO0h8IZJEDtJKYyC
+	ceP1NQKsiWMyktJ1NPhtPBWrSAqtyCJlyevg6zQ2vdyF7WIIdQi/MZr0iqhztTKjVPUGv+
+	WcmD6dpRkOPS0CE5GS+gM1EQxFSUAFk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1740432498;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Qvgm+D28JDvejs53Z18fdULzcHEuXR6KF6+ladTokSM=;
+	b=6KZfci/Hi52jZd1i5JMzlEubUQzzNg/QE1zE6kvBvkUu+8JBPN43jH7/WGhFWL8tsSYY8G
+	NYdC6I2iKFomd9CA==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1740432497; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Qvgm+D28JDvejs53Z18fdULzcHEuXR6KF6+ladTokSM=;
+	b=eDL/v6Wx+hy0B2WiyaN66MzTiRU0RC4aeVtES+O0PMrzRO2Eu6UcFf+U1STZGxmFCYZkjm
+	HjDgR+xZ1VAgix1LHTjXURDdjovyY0U6KxtcdezQMAGaIecnfO1pruZfgXpTXJ7sF/iOIa
+	Rw8yyeUVKaFUu1LoK/vyVCURcbMfDSw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1740432497;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Qvgm+D28JDvejs53Z18fdULzcHEuXR6KF6+ladTokSM=;
+	b=rRv9u7fEBGAkK0D81JkV2U5IBsqrmDp5Zbtb3+mwxC5jQov2DAstrgDmR7RGavmTEOglfI
+	HwIgqZvOHsxwYYBA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B426013332;
+	Mon, 24 Feb 2025 21:28:16 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id 0uQmKXDkvGeoSQAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Mon, 24 Feb 2025 21:28:16 +0000
+Message-ID: <7219082a-6a84-4681-ad9e-6f76aba08966@suse.de>
+Date: Mon, 24 Feb 2025 23:28:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250224182548.2715896-2-vincenzo.frascino@arm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/7] Add PCIe support for bcm2712
+To: =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Stanimir Varbanov <svarbanov@suse.de>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ linux-pci@vger.kernel.org,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Thomas Gleixner
+ <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Jim Quinlan <jim2101024@gmail.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Andrea della Porta <andrea.porta@suse.com>,
+ Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
+ <jonathan@raspberrypi.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>
+References: <20250224083559.47645-1-svarbanov@suse.de>
+ <20250224192215.GC2064156@rocinante>
+Content-Language: en-US
+From: Stanimir Varbanov <svarbanov@suse.de>
+In-Reply-To: <20250224192215.GC2064156@rocinante>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Level: 
+X-Spamd-Result: default: False [-2.80 / 50.00];
+	BAYES_HAM(-3.00)[99.99%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-0.992];
+	MIME_GOOD(-0.10)[text/plain];
+	RCVD_TLS_ALL(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	ARC_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,broadcom.com,linutronix.de,kernel.org,gmail.com,google.com,pengutronix.de,suse.com,raspberrypi.com];
+	TO_DN_SOME(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,imap1.dmz-prg2.suse.org:helo]
+X-Spam-Score: -2.80
+X-Spam-Flag: NO
 
 
-On Mon, 24 Feb 2025 18:25:45 +0000, Vincenzo Frascino wrote:
-> Convert the Xilinx I2S device tree binding documentation to json-schema.
+
+On 2/24/25 9:22 PM, Krzysztof Wilczyński wrote:
+> Hello,
 > 
-> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
-> ---
->  .../devicetree/bindings/sound/xlnx,i2s.txt    | 28 --------
->  .../devicetree/bindings/sound/xlnx,i2s.yaml   | 65 +++++++++++++++++++
->  2 files changed, 65 insertions(+), 28 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/xlnx,i2s.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
+>> Hello, v6 is re-based version of controller/brcmstb branch of pci tree.
 > 
+> Applied to controller/brcmstb, thank you!
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Thank you, Krzysztof!
+
+~Stan
 
 
