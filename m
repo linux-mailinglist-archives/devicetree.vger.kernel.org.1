@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-150736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D753AA43714
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:12:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CFBBA4376B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:21:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 475021884EC6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 08:12:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D00EA7A579D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 08:19:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8027025A321;
-	Tue, 25 Feb 2025 08:12:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C119266577;
+	Tue, 25 Feb 2025 08:17:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JAx80sKm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nolsGwql"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54849188735;
-	Tue, 25 Feb 2025 08:12:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E5A925EF82;
+	Tue, 25 Feb 2025 08:17:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740471167; cv=none; b=M+q7nksvYioet08F0Jn3qcvGbrba+3gxCdm4xr+0s+Cw0aqsYnQAQokYWjhaot6Aih+lA4mjaLgfwkThGOeY/GpmXGI2TZgCibP2IN19wtiEVOmI0vftNunFufVJNKnB4XFlXq2YVrdBPUeq9qB3DCxRyQtBVxshMDcCa0TpnSg=
+	t=1740471454; cv=none; b=stM9vcgWw2ih2hSTXRK4P000ERqcHe3J/rMubwKs9ZOYvygmOcnwp6aqGYV8hCrvuUYgVFdDyB77Ai7chIJEoTrrQvMpnXPKcyy1jIRILE/Oj0nkhmBWwmLXJRNEQH7LpMfukAxgVipQOFEPfA+p4IbvDl9KXi9YDjvfUPGhug4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740471167; c=relaxed/simple;
-	bh=oioRiYJ4Vklv26htgRct3bcjim0IxVAPfn5+RAjq134=;
+	s=arc-20240116; t=1740471454; c=relaxed/simple;
+	bh=HZO2f8Ky8dbSMzYbONAVILHhqJE44ad//F2VLMyxgfA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kXUaXK1om2tQLvEiTb1ev69vyvJp6WbIcAnGAfi8PhhMfC58gX8ZMbCREchRWY4jd+N8urkpQ10x0Z2fEqq1SR4d0qgccpjZ8N6GUUpzeNAiX2z6rM7sHfCdIOz4sX4iyRANvUjQ19qFH3IyAhO2bH+K7wCgLcFeI0HEuvZKGkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JAx80sKm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0B5CC4CEDD;
-	Tue, 25 Feb 2025 08:12:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=sUp7DcjZtQQWOAasgYWFgrKR7I9yMrjQQbE+zOgpOD1OiJ0cn5wZIDl4buRlGK4FY3VCZO5wttbnHzv7jIKTlWV2t5NzfmVms+AiYcd5m6Qa/IhTcuWvylARJvpAOsWPbwOFKzqQRTfOD4iG7IQkWacdr6fNTZIW9JP9+8fWpI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nolsGwql; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4813CC4CEDD;
+	Tue, 25 Feb 2025 08:17:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740471166;
-	bh=oioRiYJ4Vklv26htgRct3bcjim0IxVAPfn5+RAjq134=;
+	s=k20201202; t=1740471453;
+	bh=HZO2f8Ky8dbSMzYbONAVILHhqJE44ad//F2VLMyxgfA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JAx80sKmURHXMO/iKSZ8noI01xNOTfd6lFxs9HTKtARO63J8IVtkQ7sYCKoFmXxy3
-	 0r8Y0Tu8L26Ira5juZEj3BHwDyvS9zsAkxI7R8Oo3sZQrIVvgwstyRDJOK13WBJxK0
-	 6J1X5MKUxxhnMMVtDNWvSwcWWroQceQO/U69IwlCSsoteqjbHZ3bKISFFVpJ+14uuN
-	 pTVayOtn09tbBoeV6YPwiEFJd/SR/OmXKXK6WGpei8aAuPxTHd8OWfQKomJRDaW+zj
-	 jWzbsutYT5znbD3weF74k/d2HtwQop/veq9IqXtKzi1OSnup4tLShBxQksVOHzUh6E
-	 KiFbjtVBnkt/w==
-Message-ID: <976a2029-c0c0-4093-a3cd-71e1524db032@kernel.org>
-Date: Tue, 25 Feb 2025 09:12:40 +0100
+	b=nolsGwqlaPU7Jwuy92yZhxfiJt/GY3cD0xehdjOIPGGeBVA1LsKP87FdQue+dMu+Q
+	 gf7O/PXOKDXrT3YVpIs6GyE0iYDXkEWZq+9VAqlttpsRf/6k6dmq4BqaoiDPLmrPwL
+	 rmfnzvjrcDfQXRhYRN9Hdzhi42UBsmj4ITEKEV/Y8iLVKZGAokNXnZYuY5jNOGsEeq
+	 SgkT7rS+ei5h1lTJMnhwv1SUt9B/nwyl0MZnZXdnHFBIZqAj3xG0ppetreHwVEl6Xg
+	 reggk7DCDYJKUzjBcNZ9SfZUFoxbA6dBDyH1HkLgiRTPpLGNB/gmkKPpFu02IeFiwy
+	 GK4/WUHEsuSNQ==
+Message-ID: <0dd44da7-b3e3-4639-9acb-a296cba03b68@kernel.org>
+Date: Tue, 25 Feb 2025 09:17:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] dt-bindings: soc: spacemit: Add spacemit,k1-syscon
-To: Haylen Chu <heylenay@4d2.org>, Alex Elder <elder@riscstar.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Haylen Chu <heylenay@outlook.com>,
- Yixun Lan <dlan@gentoo.org>, linux-riscv@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>,
- Chen Wang <unicornxdotw@foxmail.com>, Jisheng Zhang <jszhang@kernel.org>,
- Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
- Guodong Xu <guodong@riscstar.com>
-References: <aw2vqnz5vcccqqvrrhz5tgawj7fnzzg3tds7nnepuorit37a7r@jcj3wrs7d73h>
- <Z6rdBhQ7s2ReOgBL@ketchup> <19e5129b-8423-4660-8e4f-8b898214d275@kernel.org>
- <Z63T_EDvXiuRQbvb@ketchup> <2ab715bd-e26c-41bb-ac64-baa864d90414@kernel.org>
- <Z7BTVu10EKHMqOnJ@ketchup>
- <7c697e9a-d6d9-4672-9738-93ce3a71beb6@riscstar.com>
- <4f7bf109-bf18-42be-971c-5d5edd9595b5@kernel.org> <Z7mrdrACFp3m-7sy@ketchup>
- <6ea8ac17-42c8-46fa-b970-77ba89de66c4@kernel.org> <Z7xHRAFE4-QEA6PO@ketchup>
+Subject: Re: [PATCH V1 2/2] ASoC: codecs: Add aw88166 amplifier driver
+To: wangweidong.a@awinic.com
+Cc: broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ ivprusov@salutedevices.com, jack.yu@realtek.com, krzk+dt@kernel.org,
+ lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+ linux-sound@vger.kernel.org, nuno.sa@analog.com,
+ paulha@opensource.cirrus.com, perex@perex.cz, quic_pkumpatl@quicinc.com,
+ rf@opensource.cirrus.com, robh@kernel.org, tiwai@suse.com,
+ yijiangtao@awinic.com, zhoubinbin@loongson.cn
+References: <20250223-vigilant-cooperative-snake-2d810b@krzk-bin>
+ <20250225074214.29902-1-wangweidong.a@awinic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,148 +106,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Z7xHRAFE4-QEA6PO@ketchup>
+In-Reply-To: <20250225074214.29902-1-wangweidong.a@awinic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/02/2025 11:17, Haylen Chu wrote:
-> On Sat, Feb 22, 2025 at 12:50:13PM +0100, Krzysztof Kozlowski wrote:
->> On 22/02/2025 11:48, Haylen Chu wrote:
->>> On Sat, Feb 22, 2025 at 10:59:09AM +0100, Krzysztof Kozlowski wrote:
->>>> On 22/02/2025 00:40, Alex Elder wrote:
->>>>> I have a general proposal on how to represent this, but I'd
->>>>> like to know whether it makes sense.  It might be what Krzysztof
->>>>> is suggesting, but in any case, I hope this representation would
->>>>> work, because it could simplify the code, and compartmentalizes
->>>>> things.
->>>>>
->>>>> Part of what motivates this is that I've been looking at the
->>>>> downstream reset code this week.  It contains a large number of
->>>>> register offset definitions identical to what's used for the
->>>>> clock driver.  The reset driver uses exactly the same registers
->>>>> as the clock driver does.  Downstream they are separate drivers,
->>>>> but the clock driver exports a shared spinlock for both drivers
->>>>> to use.
->>>>>
->>>>> These really need to be incorporated into the same driver for
->>>>> upstream.
->>>>
->>>> Why? First, it is not related to the topic here at all. You can design
->>>> drivers as you wish and still nothing to do with discussion about binding.
->>>> Second, different subsystems justify different drivers and Linux handles
->>>> this well already. No need for custom spinlock - regmap already does it.
->>>>
->>>>
->>>>>
->>>>> The clock code defines four distinct "units" (a term I'll use
->>>>> from here on; there might be a better name):
->>>>>    MPMU  Main Power Management Unit
->>>>>    APMU  Application Power Management Unit
->>>>>    APBC  APB Clock
->>>>>    APBS  APB Spare
->>>>>
->>>>> The reset code defines some of those, but doesn't use APBS.
->>>>> It also defines three more:
->>>>>    APBC2 Another APB Clock
->>>>>    RCPU  Real-time CPU?
->>>>>    RCPU2 Another Real-time CPU
->>>>>
->>>>> Each of these "units" has a distinct I/O memory region that
->>>>> contains registers that manage the clocks and reset signals.
->>>>
->>>> So there are children - mpmu, apmu, apbclock, apbspare, apbclock2, rcpu
->>>> 1+2? But previous statements were saying these are intermixed?
->>>>
->>>> " I'll make APMU/MPMU act as a whole device"
->>>
->>> My reply seems somehow misleading. The statement means I will merge the
->>> children with the syscon into one devicetree node, which applies for
->>> both APMU and MPMU. I wasn't going to say that APMU and MPMU are
->>> intermixed.
->>>
->>> As Alex said, all these units have their own distinct and separate MMIO
->>> regions.
->>>
->>>>>
->>>>> I suggest a single "k1-clocks" device be created, which has
->>>>
->>>> For four devices? Or for one device?
->>>
->>> By Alex's example, I think he means a device node taking all these
->>> distinct MMIO regions as resource.
->>
->>
->> You still do not answer about the hardware: how many devices is there?
+On 25/02/2025 08:42, wangweidong.a@awinic.com wrote:
+> Thank you very much for your review
 > 
-> In my understanding, the series covers four devices, APBC, APMU, MPMU
-> and APBS, each comes with its separate MMIO region and is clearly
-> described in the datasheet. I stated this in the later part of the
-> reply,
-
-Ack
-
+> On Fri, Feb 23, 2025 at 12:46:14 +0100, krzk@kernel.org wrote:
+>> On Fri, Feb 21, 2025 at 06:26:23PM +0800, wangweidong.a@awinic.com wrote:
+>>> +
+>>> +static void aw88166_hw_reset(struct aw88166 *aw88166)
+>>> +{
+>>> +	if (aw88166->reset_gpio) {
+>>> +		gpiod_set_value_cansleep(aw88166->reset_gpio, 1);
+>>> +		usleep_range(AW88166_1000_US, AW88166_1000_US + 10);
+>>> +		gpiod_set_value_cansleep(aw88166->reset_gpio, 0);
+>>> +		usleep_range(AW88166_1000_US, AW88166_1000_US + 10);
+>>> +		gpiod_set_value_cansleep(aw88166->reset_gpio, 1);
 > 
->>> For APBC, MPMU, APBS and APMU, I'm pretty
->>> sure they're standalone blocks with distinct and separate MMIO regions,
->>> this could be confirmed by the address mapping[1].
+>> Why do you keep reset as active after reset? How is it suppose to work?
 > 
-> Thus I don't agree on Alex's solution, since it creates fake devices not
-> mentioned by the datasheet (spacemit,k1-clocks and all its children in
-> the example devicetree).
+> The gpio port of the AW88166 is reset when it is low.
 
-Ack
+The value here is not value on the pin, but logical value for Linux. 1
+means make it active.
 
-> 
->>>
->>> 	clock {
->>> 		compatible = "spacemit,k1-clocks";
->>>
->>> 		reg = <0x0 0xc0880000 0x0 0x2050>,
->>> 		      <0x0 0xc0888000 0x0 0x30>,
->>> 		      <0x0 0xd4015000 0x0 0x1000>,
->>> 		      <0x0 0xd4050000 0x0 0x209c>,
->>> 		      <0x0 0xd4090000 0x0 0x1000>,
->>> 		      <0x0 0xd4282800 0x0 0x400>,
->>> 		      <0x0 0xf0610000 0x0 0x20>;
->>> 		reg-names = "rcpu",
->>> 			    "rcpu2",
->>> 			    "apbc",
->>> 			    "mpmu",
->>> 			    "apbs",
->>> 			    "apmu",
->>> 			    "apbc2";
->>>
->>> 		/* ... */
->>> 	};
->>>
->>>> No, it's again going to wrong direction. I already said:
->>>>
->>>> "You need to define what is the device here. Don't create fake nodes ust
->>>> for your drivers. If registers are interleaved and manual says "this is
->>>> block APMU/MPMU" then you have one device, so one node with 'reg'."
->>>>
->>>> So what is the device here? Can you people actually answer?
->>>>
->>>
->>> I'm not sure about the apbc2, rcpu and rcpu2 regions; they aren't
->>> related to the thread, either. For APBC, MPMU, APBS and APMU, I'm pretty
->>> sure they're standalone blocks with distinct and separate MMIO regions,
->>> this could be confirmed by the address mapping[1].
->>
->> They were brought here to discuss for some reason. Long discussions,
->> long emails, unrelated topics like hardware or different devices - all
->> this is not making it easier for me to understand.
->>
->> Best regards,
->> Krzysztof
-> 
-> By the way, I made a summary on the hardware covered by this series in
-> one of my earlier reply[1]. Could you please comment further on my
-> proposal[2] according it, or pointing out anything that's unclear or
-> missing? It will be helpful for things to improve.
+> So it's working now, I will modify it as follows:
 
-Thanks, it looks good.
-
+Really? Your DTS example has ACTIVE_LOW, so with combination of above it
+cannot work. Unless this is wrong or your DTS is wrong or this is not
+reset but "enable" pin etc.
 
 
 Best regards,
