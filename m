@@ -1,162 +1,164 @@
-Return-Path: <devicetree+bounces-151230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D245A4500E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 23:29:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C05DA45037
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 23:32:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81AC81898E25
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 22:28:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 089B718943FA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 22:32:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8382E21D59A;
-	Tue, 25 Feb 2025 22:25:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52D12218AC8;
+	Tue, 25 Feb 2025 22:30:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="GmOF2vVu"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="V/G2h6y6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D830F21D3E2;
-	Tue, 25 Feb 2025 22:25:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B21801EDA19
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 22:30:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740522327; cv=none; b=d5Mte+cQAZY9R8EAki3CjTCrtuoOpa1Yupcxn1Ez0SWFzeaxlTAoh8bWoTDGYKoD4cQJ4vBOXde8ItdAGfN1flnFtPO/UCTl0wdL11C7mOx2tA/8JYE4AjGAlAu72oMVbXEbJEzWh5GRVrUHKfdyFZqCb4vEyJFQLVahftbrZQU=
+	t=1740522643; cv=none; b=JSwf8YQ5pNTYiA4zzNftNcqcydXIvKnx2NdsABj5PVtz4sn20VvdQjGu2Jk9mTYNDZCI83/Fmy31187AVin/brgOYqSQRCl2ra5fLucHVwsakWuCBok5wm5Eu79uj4TdF24tCq/FHIgV4fY4IsAW1Vi7Bqvh+GnXF7k2aYdyljs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740522327; c=relaxed/simple;
-	bh=t5XHU8FuzTxYJsQJ0aplVsiqJvj2QQrZy+BDGGLfJeY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VYfC3F3K9wMOXY+843JE3lM826/fK5k29FP2oU2FiETg9DhsXFk4z85Bcx5ES/x6OqilSfsBGpak2nfDe2/GNj3OUydrU9WGnEcgWn+xCyQxMaCTUb2lt/h9DxB0Le0boL7cFRHNdB7QDK3axMZMcDmALZcAqKpoxuFcEOeTbyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=GmOF2vVu; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [10.137.184.60] (unknown [131.107.160.188])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 1BF1D203CDFE;
-	Tue, 25 Feb 2025 14:25:25 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 1BF1D203CDFE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1740522325;
-	bh=4snbY5kKjPs+fqnW4bDVzUWCVcYb+NMujdrOx1UsTIo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GmOF2vVuCkJZ1DfUd1ljj8/fusb2yUMbDy2WmYxFrMMfaTTzbAqkWEUBwLUg55zpF
-	 Eal2Uv7psJ6AMd7GHQIuT0F5bT24oqPS+VN9NVDy5j/15vSuizsFBxdX1p+w7B0n5d
-	 f2jfhVcFODVbMweP0SK+AakuXEGuKdQiYOukQldU=
-Message-ID: <a96f9469-a22e-43e7-825d-f67ef550898f@linux.microsoft.com>
-Date: Tue, 25 Feb 2025 14:25:24 -0800
+	s=arc-20240116; t=1740522643; c=relaxed/simple;
+	bh=oxaCiQCmqeAS1epekehXbElGJ+m3X0CqMo4HcDIs+cU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NQGaOjjYOlAivg4g1iN2eftJGIBWGQ7Ddi2+djL+p8lQNjMZRZjTo0k5kR6zSI41kfLz4i1tziuP3eHt2PP1VviefULQsFdXzKICE5BO1Nn6Z4V7vDiH2UANRlT/lh3uirAijHuBoLWyzGvwebgL5NR7fkOgi3WXgP3lZRNtXKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=V/G2h6y6; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-22113560c57so39535935ad.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 14:30:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1740522640; x=1741127440; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CxPMcTd9qCEBN074ty2w+VRI4Bnqdaah0BYjoLFwE7k=;
+        b=V/G2h6y6WpI9gq82abt50L/6j2hctNFDFTZRmxxfcq/BO+GOZB5XK9hd/wDJKyw68/
+         MuyHdGZHGdBkNQ0nx0kGZ3EkLIj2dw1MoR7Xdsux5FoWwCUhT0m320Vjrn7CYMPLT9NV
+         a1ljDIF3nG9wEYDOh6yxsFIDs50T8Tge7ncfI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740522640; x=1741127440;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CxPMcTd9qCEBN074ty2w+VRI4Bnqdaah0BYjoLFwE7k=;
+        b=rADDkcmqBihvaoRWpsEP5U94m3X+EaAXlmyYXiNNox64YQ18i9xnt83FaLIEIo6SJq
+         HZ5apNjGP437Ws4OEJ3GYKYoq2ObYiXsMzylHh+j++VPJWXmSbp+KwK/5AJA++RBSl46
+         vZnakjFYfIzE+yh7e5jA62QnNDKubeUPrTc5fXfjUkcuJvDXKJuBnPuxKM/oQPIG2yT4
+         anP1iL5rfaLKrsT2KvFDXGMTKW8+GEJcoezeHkPWljCNKZ4to4VaLRnI8seNdYO59wrM
+         YP1pOEvLxf/plcLVuGeKuYHxqVqSU5LEnynarAysFPeVekf9CdiNbppXnwWDm2aB4dkh
+         lnPg==
+X-Forwarded-Encrypted: i=1; AJvYcCUDE3Sde+HXuob/AJSht0WH30Hap3M5D9rKv0SZDE6hCrowwGz1ARGEkiKZFcLqOW5pDnEOg4XrfkeW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZnW4HmZVkKj1EPXNXMINVCKjtg6A6dJZ5hXyEqyEIFnZrpPJL
+	bOeVgImeNKKDseQIpYB2DjG6e/p3uw+0yX9hVdLzwm5nv4WTtuKhmqjmqFvULg==
+X-Gm-Gg: ASbGnctO2Wt+quhL+aBAgkzQUIpndU+q9MBKCPfATZEpowFi8M++3e5i+T24uKZKi9O
+	EGwbijXISnA3tS/cfQ4vk5axMpAorh7Dc0KUYvrB/vdFMtdLelB6vFPemYsvI3woNOmLwNQ2bRJ
+	RVkQenxFKRxPUOGZ62DkO7OYguuyaMDLadocWTHVA3F4G5M37H7/iJ5zfAzGHeEf+vaMsQC2ytW
+	iWu4nB1sHt3Ggb2Zx0gqcjj+ynxS4kjtrQOoFJ9GKcyCjusSVxjk2m5SkqK9meIR0Y36YCzkhk4
+	eZvtmOBczQ4aKsCoi/RxlmV7iipncaCeO9sMeM5A6qHgv+qyTrpZadvysSa8jAhMtw==
+X-Google-Smtp-Source: AGHT+IGfycDzz2jrkUoYR/BFevUgFFIrZzQind7dUvVF1+Ua3fNlMG4d7Bly/f+2404A/5GyvlX3Qw==
+X-Received: by 2002:a17:902:f64c:b0:21f:49f2:e33f with SMTP id d9443c01a7336-221a0ed7885mr305363575ad.21.1740522639971;
+        Tue, 25 Feb 2025 14:30:39 -0800 (PST)
+Received: from localhost (222.246.125.34.bc.googleusercontent.com. [34.125.246.222])
+        by smtp.gmail.com with UTF8SMTPSA id 41be03b00d2f7-aeda7c9079dsm1949830a12.23.2025.02.25.14.30.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Feb 2025 14:30:39 -0800 (PST)
+From: Stephen Boyd <swboyd@chromium.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	patches@lists.linux.dev,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	devicetree@vger.kernel.org,
+	chrome-platform@lists.linux.dev,
+	Pin-yen Lin <treapking@chromium.org>,
+	cros-qcom-dts-watchers@chromium.org
+Subject: [PATCH v5 0/2] arm64: dts: qcom: sc7180-trogdor: Wire up USB
+Date: Tue, 25 Feb 2025 14:30:35 -0800
+Message-ID: <20250225223038.879614-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.48.1.658.g4767266eb4-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH hyperv-next v4 1/6] arm64: hyperv: Use SMCCC to detect
- hypervisor presence
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: benhill@microsoft.com, bperkins@microsoft.com, sunilmut@microsoft.com,
- bhelgaas@google.com, Borislav Petkov <bp@alien8.de>,
- Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
- <conor+dt@kernel.org>, Dave Hansen <dave.hansen@linux.intel.com>,
- Dexuan Cui <decui@microsoft.com>, Haiyang Zhang <haiyangz@microsoft.com>,
- "H. Peter Anvin" <hpa@zytor.com>, krzk+dt@kernel.org,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- "K. Y. Srinivasan" <kys@microsoft.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Ingo Molnar <mingo@redhat.com>, Rob Herring <robh@kernel.org>,
- ssengar@linux.microsoft.com, Thomas Gleixner <tglx@linutronix.de>,
- Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>,
- devicetree@vger.kernel.org, Linux-Arch <linux-arch@vger.kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org
-References: <20250212014321.1108840-1-romank@linux.microsoft.com>
- <20250212014321.1108840-2-romank@linux.microsoft.com>
- <1b14e3de-4d3e-420c-819c-31ffb2d448bd@app.fastmail.com>
- <593c22ca-6544-423d-84ee-7a06c6b8b5b9@linux.microsoft.com>
- <97887849-faa8-429b-862b-daf6faf89481@app.fastmail.com>
- <6e4685fe-68e9-43bd-96c5-b871edb1b971@linux.microsoft.com>
- <14a199d8-1cf3-49bc-8e0d-92d9c8407b4f@linux.microsoft.com>
- <55b65ba6-4abe-478c-a173-4622c30ddd7b@app.fastmail.com>
-Content-Language: en-US
-From: Roman Kisel <romank@linux.microsoft.com>
-In-Reply-To: <55b65ba6-4abe-478c-a173-4622c30ddd7b@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+
+Wiring up the USB hub to the connectors allows us to gain the proper
+'connect_type' and 'removable' values in sysfs for the USB devices on
+sc7180 trogdor devices. These two patches are split off of a larger
+series[1] so they can land faster and because we've come to the
+conclusion that the DisplayPort path is going to connect to the
+cros-ec-typec node, not the usb-c-connector node.
+
+The first patch adds the pogo pin binding to describe the detachable
+keyboards found on some trogdor devices (actually strongbad). The second
+patch is the dts changes required to wire up all the USB stuff. This is
+sufficient to set the sysfs properties for USB devices so that the
+builtin USB webcam is considered "fixed" or hard-wired while devices
+plugged into the connectors or the keyboard are considered "removable"
+or hotpluggable.
+
+Changes from v4 https://lore.kernel.org/r/20250221233120.3596158-1-swboyd@chromium.org
+ * Add newline after property before child node
+ * Pick up ack from Konrad
+
+Changes from v3 https://lore.kernel.org/r/20250210225714.1073618-1-swboyd@chromium.org
+ * Consistent quotes in binding
+ * Drop unused labels on hub ports
+
+Changes from v2 https://lore.kernel.org/r/20250205233016.1600517-1-swboyd@chromium.org
+ * Make binding specific to keyboard and move to usb/
+ * Update dts to reflect new compatible string for pogo pin keyboard
+
+Changes from v1 https://lore.kernel.org/r/20240210070934.2549994-1-swboyd@chromium.org
+ * Split out of larger series
+ * Added description to DT binding
+ * Removed DP part of dts changes
+
+[1] https://lore.kernel.org/r/20240210070934.2549994-1-swboyd@chromium.org
+
+Cc: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Benson Leung <bleung@chromium.org>
+Cc: <devicetree@vger.kernel.org>
+Cc: <chrome-platform@lists.linux.dev>
+Cc: Pin-yen Lin <treapking@chromium.org>
+Cc: <cros-qcom-dts-watchers@chromium.org>
+
+Stephen Boyd (2):
+  dt-bindings: usb: Add binding for ChromeOS Pogo pin keyboard connector
+  arm64: dts: qcom: sc7180-trogdor: Wire up USB to usb-c-connectors
+
+ .../usb/google,usb-pogo-keyboard.yaml         |  68 ++++++++++
+ .../dts/qcom/sc7180-trogdor-clamshell.dtsi    |  21 +++
+ .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  47 +++++++
+ .../dts/qcom/sc7180-trogdor-detachable.dtsi   |  16 +++
+ .../dts/qcom/sc7180-trogdor-homestar.dtsi     |  47 +++++++
+ .../dts/qcom/sc7180-trogdor-kingoftown.dts    |  55 ++++++++
+ .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |  55 ++++++++
+ .../boot/dts/qcom/sc7180-trogdor-pazquel.dtsi |  55 ++++++++
+ .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |  44 +++++++
+ .../qcom/sc7180-trogdor-quackingstick.dtsi    |  31 +++++
+ .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |  57 ++++++++-
+ .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  |  47 +++++++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 121 ++++++++++++++++++
+ 13 files changed, 662 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/google,usb-pogo-keyboard.yaml
 
 
-
-On 2/24/2025 11:24 PM, Arnd Bergmann wrote:
-> On Tue, Feb 25, 2025, at 00:22, Roman Kisel wrote:
->> Hi Arnd,
-
-[...]
-
-> If you want to declare a uuid here, I think you should remove the
-> ARM_SMCCC_VENDOR_HYP_UID_HYPERV_REG_{0,1,2,3} macros and just
-> have UUID in normal UUID_INIT() notation as we do for
-> other UUIDs.
-
-I'd gladly stick to that provided I have your support of touching
-KVM's code! As the SMCCC document states, there shall be an UUID,
-and in the kernel, there would be
-
-#define ARM_SMCCC_VENDOR_KVM_UID UUID_INIT(.......)
-#define ARM_SMCCC_VENDOR_HYP_UID UUID_INIT(.......)
-
-Hence, the ARM_SMCCC_VENDOR_HYP_UID_*_REG_{0,1,2,3} can be removed as
-you're suggesting.
-
-That looks enticing enough semantically as though we're building layers
-from the SMCCC spec down to the "on-wire format" -- the only part that
-needs "deserializing" the UUID from `struct arm_smccc_res` the
-hypervisor returns.
-
-To add to that, anyone who wishes to implement a hypervisor for arm64
-will have to use some RFC 9562-compliant UUID generating facility. Thus,
-the UUID predates these 4 dwords. Using UUIDs in the kernel code will
-relieve of the chore of figuring out the 4 dwords from the UUID.
-
-Also, for the Gunyah folks will be pretty easy to use this infra:
-define the UUID in the header (1 line), call the new function (1 line),
-done.
-
-> 
-> If you want to keep the four 32-bit values and pass them into
-> arm_smccc_hyp_present() directly, I think that is also fine,
-> but in that case, I would try to avoid calling it a UUID.
-
-IMO, that approach provides a simplicity where anyone can see if the
-code is wrong from a quick glance: just compare 4 dwords. The fact that
-the 4 dwords form an UUID is bypassed though (as it is in the existing
-code). Somehow feels not spec-accurate imo. Also when I remove the UID
-part from the names, I'm going to have a rather weak justification as
-to why this is a benefit.
-
-Likely, there are two levels of improvement here:
-
-1. Just refactor the common parts out and have
-    `bool arm_smccc_hyp_present(u32 reg0, u32 reg1, u32 reg2, u32 reg2);`
-
-2. Introduce the UUID usage throughout and have a spec-accurate
-    prototype of
-    `bool arm_smccc_hyp_present(const uuid_t *hyp_uuid);`
-
-and would be great to go for the second one :)
-
-> 
-> How are the kvm and hyperv values specified originally?
->>From the SMCCC document it seems like they are meant to be
-> UUIDs, so I would expect them to be in canonical form rather
-> than the smccc return values, but I could not find a document
-> for them.
-
-For hyperv case, `uuidgen` produced the UUID and that is used.
-Likely the same for kvm.
-
-> 
->       Arnd
-
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
 -- 
-Thank you,
-Roman
+https://chromeos.dev
 
 
