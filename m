@@ -1,104 +1,104 @@
-Return-Path: <devicetree+bounces-151140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DBAEA448D2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:49:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CA7EA4492E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:59:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A1A2189B1B5
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:47:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D90C5866F40
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:52:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F3E199FC9;
-	Tue, 25 Feb 2025 17:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFD2D19A298;
+	Tue, 25 Feb 2025 17:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nN957pH2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VFzZAOVB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FDED19992C;
-	Tue, 25 Feb 2025 17:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C800156F3A;
+	Tue, 25 Feb 2025 17:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740505627; cv=none; b=lTrq43o2mUUuc7OUBqHuiH9ePphIpXFBaAPRNhEm2yhAG1+58P/jena6QV8ijM6VVk7JlBM6QVe2/fBZtWYY7R4wcQ3xOt3idsV2R4saeXU7L2TZLi5ETkO60X/lsTvuLca8iCDlGjCEoo7Kjq/NS4efODgi5wn8BoNOph5qJY8=
+	t=1740505964; cv=none; b=U5vV1bU1/RuLWM5npAFhQyYm2D+i87AL6dafSrY3cRrU7cZ+QupPUoPx20cwH91/ZB9xxTDEiqR1Fhc5QnzS/9WpNkgHXNoJHumBU699NjmmGL2kkYGOO80h4vz8wYuluRTg80aUovS6EAG/Y+YrVF5iIqOdtoMWoulTPwiHcW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740505627; c=relaxed/simple;
-	bh=yJ9AFWppODyVrEr9uR6wXcH0kti09dQZ8V0up06BTsY=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=ROr4kCkh24/R418sCVyZrY4Y0UsyS88UL6aaCGwU8MmvwGLi76SEOLUvVWDeHXhCYVgzHIt4Tl/tZuVujcfD/I8Z1tJRI9Q4C0pHJ78wO5i2vXZo8Vsl8Us1DHsUj0ZOiQrStd5C7GiSp0wY9HWdM7RuC1WJq6IWmRxQRup4RZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nN957pH2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D6EFC4CEDD;
-	Tue, 25 Feb 2025 17:47:06 +0000 (UTC)
+	s=arc-20240116; t=1740505964; c=relaxed/simple;
+	bh=w0EkbHkGHBYElQYWfADsG+yNVibDYgCQClR6E5omnNM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dX4ge9Nv3YjZ5MlHKJPbE0pfy97sk82ZTT9xUFIy16041r8lE38v9q9kXetDa/ZTmwIjVgY5Zkd4VTN9A6k/5oCLcCh2zKE0Zgg/GUTE3N63QWHd7I+D98eZdlViX3vTJSFgsvURxa2pv8Qbl6R8nXod7rf7aC+xQ9bNTGl0Nek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VFzZAOVB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59DBBC4CEE7;
+	Tue, 25 Feb 2025 17:52:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740505626;
-	bh=yJ9AFWppODyVrEr9uR6wXcH0kti09dQZ8V0up06BTsY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=nN957pH2SprSYJYtzecqNvmYr1xfpKShwYCQ2XRLS6+UM4JCpBi0befIteGe+92se
-	 ctjouRWIqnpO9MFEpR8MBFtFRSoIXzG9DSWngiNb8OIhatYB0SYCAspA61xY5GxO9e
-	 CPG3Et/RWGbCY2LaLcANCkNojaxC/vbmPToWYzcruc9RR6eHqPsp1BDZD+otkeM4Al
-	 43tXKWg9COmTRrn+OgoK1iGCOsSBVKbNmvaVqhreyxg2T2o5/4uqEXgxdK+GYKWF1r
-	 0V30/Gezrav9lTAiCAVZjiTAEMzz/ea0d6PHMz3HF1wBiHMnC03JFLnNargzkrrf7X
-	 O40w2GbccO4pg==
-Date: Tue, 25 Feb 2025 11:47:05 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.li@nxp.com>,
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux@ew.tq-group.com
-Subject: Re: [PATCH 3/3] arm64: dts: mba8xx: Remove invalid propert
-Message-ID: <20250225174705.GA511096@bhelgaas>
+	s=k20201202; t=1740505964;
+	bh=w0EkbHkGHBYElQYWfADsG+yNVibDYgCQClR6E5omnNM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=VFzZAOVB1a78DBjHDtOtuMrJTGr8jVuKit5KqKgfyh/fX73Y6Is0do1MFFrz+Jemp
+	 Lbhlg7xS6yHIZaTOWiszvYatZeN/iv+ogT1Za46h/vkopmjCPLm5TwsWwEC80+Kt07
+	 A2YDXuIPr6QRVYzYIUlUVeZADuuoe/qm/7R47h6ErvqrkGpSsmCqggvlOE/uz7f8zz
+	 peh/7+xGpi7QJ/r4uV9nNEC+HJHbHk6OThzJxJrC/S4+QyoUX2cChMnnIOXLrUZe49
+	 1NjBsFrGwjtJxyM4ounylZapEAZfSXeiQ/IIMS6S+yDeBzA19sVB5M3X7cEVJvyy5p
+	 eYbjFj/YbZxNg==
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5e04064af07so9230833a12.0;
+        Tue, 25 Feb 2025 09:52:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV8eYc5sR/gFaVIk+9oCiwZ3Gs3qQIhSbmZN3cXW3pNlpRxJmRikGhspPyuCSgZjcqsOA4R+hFdmKJD@vger.kernel.org, AJvYcCVVP2runIw3YrhzgGEasoPeD1tnjJ5SpIJxaP3OmoNyMCqQMKe/1BO+UktAYMGKuRc9BYrsMvonFygk6Hg=@vger.kernel.org, AJvYcCVqsuHg5mqRDKfhS+VvfRxozmLs+Ovq4GkW5Az3bWZZAfkMNVLgnW/uV+m+x7AKUrBaJBiT69wcVLQ2+ki8@vger.kernel.org, AJvYcCWX+almcJFNsA4PquVXwmpJUqsPiMvAcLd7VUAKizYuFYioAiAkGBkzs+w67COdun0bAMXbVo/tO8p6@vger.kernel.org, AJvYcCXc1HEujqh8hCzedc+KPpz1BAyCcQdgGyVTxnilKsoJ2DEfhf2nY1UuofG/1Io823t4pJdp9epB4LE=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy++dwbSqQS47iDgUqmAc2EWhfeiDq8jQUpvKYZAJ4oEH1mHKw5
+	TW/tWpulKoHKvXceA6MiwgjdLl2YXnostCDlN2uuNcJuUI9x4ZyXHc2SpeySqImuWORASxNp0i1
+	8jJHPoIE/l+k+6oLOAHOhf+XIdA==
+X-Google-Smtp-Source: AGHT+IF6yxHJA3YSV+Mc7KCSIMedD8jUXEbB4xXTDLc0/UNGPOBcZs5+0oQlFOlVb1ificfP0x+i/oVnnr4HgeYGyas=
+X-Received: by 2002:a05:6402:440b:b0:5de:aa54:dc30 with SMTP id
+ 4fb4d7f45d1cf-5e444481387mr4585735a12.5.1740505962886; Tue, 25 Feb 2025
+ 09:52:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250225102726.654070-4-alexander.stein@ew.tq-group.com>
+References: <20241226050205.30241-1-val@packett.cool> <20241226050205.30241-5-val@packett.cool>
+ <173920541986.1887800.1972669785800121190.b4-ty@kernel.org>
+In-Reply-To: <173920541986.1887800.1972669785800121190.b4-ty@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 25 Feb 2025 11:52:31 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+PPYeFxr=utwZLemUVCzk5iabtMckOJmNy1-LO39cqeQ@mail.gmail.com>
+X-Gm-Features: AQ5f1Jq1Iz82X3jYxZcNLZTXQB24STg7TFTfP3ZcCT_Tig0_TFrubDNC8pk8KUg
+Message-ID: <CAL_Jsq+PPYeFxr=utwZLemUVCzk5iabtMckOJmNy1-LO39cqeQ@mail.gmail.com>
+Subject: Re: (subset) [PATCH 4/9] mfd: mt6397: Add support for MT6392 pmic
+To: Lee Jones <lee@kernel.org>
+Cc: Val Packett <val@packett.cool>, Fabien Parent <parent.f@gmail.com>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>, 
+	Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Eddie Huang <eddie.huang@mediatek.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>, Yassine Oudjana <y.oudjana@protonmail.com>, 
+	Chen Zhong <chen.zhong@mediatek.com>, linux-input@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Subject line could include 'disable-gpio'
+On Mon, Feb 10, 2025 at 10:37=E2=80=AFAM Lee Jones <lee@kernel.org> wrote:
+>
+> On Thu, 26 Dec 2024 01:58:04 -0300, Val Packett wrote:
+> > Update the MT6397 MFD driver to support the MT6392 PMIC.
+> >
+> >
+>
+> Applied, thanks!
+>
+> [4/9] mfd: mt6397: Add support for MT6392 pmic
+>       commit: 896b1eb4ca771b37ea50feb4d90a78dd4e9cb388
 
-And s/propert/property/
+This should be dropped. Missing the sender's S-o-b and the rest of the
+series has issues still.
 
-On Tue, Feb 25, 2025 at 11:27:23AM +0100, Alexander Stein wrote:
-> disable-gpio is an (old) downstream kernel property, which slipped into
-> DT. Remove it.
 
-I guess the implication is that the driver has never used this.
-
-> Fixes: c01a26b8897a ("arm64: dts: mba8xx: Add PCIe support")
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  arch/arm64/boot/dts/freescale/mba8xx.dtsi | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/mba8xx.dtsi b/arch/arm64/boot/dts/freescale/mba8xx.dtsi
-> index 117f657283191..c4b5663949ade 100644
-> --- a/arch/arm64/boot/dts/freescale/mba8xx.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/mba8xx.dtsi
-> @@ -328,7 +328,6 @@ &pcieb {
->  	pinctrl-0 = <&pinctrl_pcieb>;
->  	pinctrl-names = "default";
->  	reset-gpios = <&lsio_gpio4 0 GPIO_ACTIVE_LOW>;
-> -	disable-gpio = <&expander 7 GPIO_ACTIVE_LOW>;
->  	vpcie-supply = <&reg_pcie_1v5>;
->  	status = "okay";
->  };
-> -- 
-> 2.43.0
-> 
+Rob
 
