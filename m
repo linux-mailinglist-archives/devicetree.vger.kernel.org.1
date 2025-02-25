@@ -1,318 +1,108 @@
-Return-Path: <devicetree+bounces-151026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A943AA4430C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:39:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 108B7A44339
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:43:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D22527ABB85
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:38:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B375176596
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:41:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E84328136E;
-	Tue, 25 Feb 2025 14:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4159E26A1BB;
+	Tue, 25 Feb 2025 14:38:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g9cfEavy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rYladAF9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D77280A3C;
-	Tue, 25 Feb 2025 14:35:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16F8F269B01;
+	Tue, 25 Feb 2025 14:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740494146; cv=none; b=nOUALQhl+WPjjp3Z2nySajLQzcNG7MIT6+s3X7tFjD0eNLvECbL8KeosIDD7Fow87pvSeoA0itreqOAH9m7d4eY6PkSt65ItFnjlU/n/6xPLcasYs7pc0LjnrtHd47fWmoWF3j1pfi5gMH8plQt6uP7IN1B2usZdiseC0JrTLGo=
+	t=1740494327; cv=none; b=ARfHKOmySnkeFCsn2Ej+1YZPkRdH6LfDUE3dSY2Uc3X163X44a5cBHI9lfPQ9sIQIryXB8aCHspXcl+IP6fyAM8/AugqiKU6icBtnxnmGcXd+T2Ph17Kl2kecudvrEUCaTJJYrWkJYQyWSRtwvcqlkjp/LFBJMvrXOxWZVqoxO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740494146; c=relaxed/simple;
-	bh=1H7MdT6mMQiUjhyWBH1uZOE8TzloP7WhAjZorv9CmIg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kOW4CJM2WGPB82Zxu1F1jk4EgMxCg5jBvQa1zMmAMNGOVf64ZXpagHcVI6/hYjUXh5tVf4nSm76zZAaiyykq50F0aMenzyRg/e3MFoD8B3W36UaCbEh3gVeYen3tMx2hspz98aKyiFqfQYAjRZo2/lNB69aoqd6dwsXYa6zEAbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g9cfEavy; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e0813bd105so9576637a12.1;
-        Tue, 25 Feb 2025 06:35:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740494143; x=1741098943; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jLEyIzG3/GbPqkp53dwIyFCDwWk8dVDyrwEE22fxPk8=;
-        b=g9cfEavylwFTuYd47BwRQNsYW7QNTWoFANdSCM7d8ilJzXyK3AHzT1XZZ80jeDdA6p
-         FeR7MnxRLfsxVQMieIZYokh1SAP8BRs9I40jZkiHmikATEl76KGpvnNKEFDJBgDSCiiV
-         u8+dbooVzg7Pg0WqBQ1g4/A9NWYHRUrgpLIkwHTQYtFI49KjLLlxP1deNu2KIXsOP89l
-         1D0aey/XrMfpQDjhCLXMhY0unlJbSfx6wOqQFt9v0jo9amRoYF2vcouwKwE6Xmm7oDJ1
-         Uz6PBV6oaTXl0pD+5c/MLfS3nfCLDWhzmXL5wmn74vy8343T1mrRudrll//DnXxyO4A+
-         PTAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740494143; x=1741098943;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jLEyIzG3/GbPqkp53dwIyFCDwWk8dVDyrwEE22fxPk8=;
-        b=T7r2J0Zk4qUFfYgTD9yScDoBJQQ82LrQw6tA1AOP8VPgimWBnVn/7jNqHMJg0xAL0X
-         Ns4k6JhBkoa8RXnf/6whLbDV74/PI5vXqJGReD+w3W5PQZhdSzcliVmZ+FLYWw/fQNHk
-         soO4ahDo5yz66Ehas66HohU6utpcqPlxg6C6+S+CPOPX8iHQYU2lHDvR9qMeAu/v7ucd
-         fI62ni//E3v1jP4NM0g+ruZfPXBAYR3QTQdBgImfJbkkQC+us3hs4Q4Ak96QCyLnWe4G
-         q2tE5ZVke9JzftDrDiqip77mMhtSMBuCm37dobUdgzT/20IeaATnaCxwDKz6LyKZaW2Z
-         6FCg==
-X-Forwarded-Encrypted: i=1; AJvYcCU+/x1D+YuIcXrHJ9Kl7AK6kqkXhMtRP2Nue5Orq5b4uJtpaFUiUTGnAeuE/3S3KD4tw8JBIdXT92iP@vger.kernel.org, AJvYcCUr1EfCyoYE343PakFzNsUCvbycLRRQJ7HRB9HZ/J6yYtTEAAJASKtXN2k3qcQDx5M0kmumVd1+BmMi@vger.kernel.org, AJvYcCVf36izOQ8sIU9A2KAVg9uLFIHn34pYnszWtQkDzcaJM3i/eOQOPjvjljSpkeFWwMCR8LLzroE+hsuf0Js=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOXV0F5Q3gxX4PEIMb9Ts0cAG00vUGfZ1ANQfNKICT1lJDu1xw
-	gAS64SO7G+ED6d8OsawhfdAw8H3z351riNQeHv4R/RnVZ7u6is/D
-X-Gm-Gg: ASbGncs5czSXVfYVBSoozz8xYOtt/75HzOUVg08WClV/+sVCiByIGtSy+s7XWHS9oCp
-	tixEvGHk1sCumCgIEE87jV2/quKbDRWyjEZodbs77D88VJao5XkERXs28I8h4Ntq3OjhB2XSeM+
-	x5xW1xk0DtoRA9BsyoeLxAkzdUaiRKfBMuQ7mK6YmgcJuPT1QRfGHzLhJewta1wKbwwjQf1BHSY
-	8Ky6wTUbvhICzI4QMc9cBehaOUkLmgbVDPpxbTO/9I96jzziaZrFnF5N0e55n+CNDpW6qIpWstH
-	nhzteiKEMNyYrvLqng==
-X-Google-Smtp-Source: AGHT+IFl0cZIOkE81oRwPtB+GR3FY4GCN3GsY2RzZLaHy3k7F0hzvM0Cqu4NVQ+zm2K3M6nay8al2Q==
-X-Received: by 2002:a05:6402:2548:b0:5db:e7eb:1b34 with SMTP id 4fb4d7f45d1cf-5e0b70f07d4mr18208590a12.13.1740494142418;
-        Tue, 25 Feb 2025 06:35:42 -0800 (PST)
-Received: from xeon.. ([188.163.112.51])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e460ff8629sm1298750a12.59.2025.02.25.06.35.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2025 06:35:42 -0800 (PST)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Peter De Schrijver <pdeschrijver@nvidia.com>,
-	Prashant Gaikwad <pgaikwad@nvidia.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Georgi Djakov <djakov@kernel.org>,
-	Dmitry Osipenko <digetx@gmail.com>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: [PATCH v1 9/9] ARM: tegra: Add EMC OPP and ICC properties to Tegra114 EMC and ACTMON device-tree nodes
-Date: Tue, 25 Feb 2025 16:35:01 +0200
-Message-ID: <20250225143501.68966-10-clamor95@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250225143501.68966-1-clamor95@gmail.com>
-References: <20250225143501.68966-1-clamor95@gmail.com>
+	s=arc-20240116; t=1740494327; c=relaxed/simple;
+	bh=Rz8PyDQA7tXQDOwd3OcOnJOQh/8GiQQJF7d9jpHgyAA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KOC7tvUkrsc7aed5sSLhtdX/LfPEcIQf6Ygi4MBgTFh+LpMwfqQmE8i3YddPoFFyKnSgNt45QSYbiIwYJWLT+kaFfKgKTj8M0j80gc9NgXu9Is0wscgaKLfvdOJuHuUbGRLe3eoJTzq2DL5ktAZQ/W75qHCEwTPSIi95WXsA4aw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rYladAF9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51061C4CEDD;
+	Tue, 25 Feb 2025 14:38:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740494326;
+	bh=Rz8PyDQA7tXQDOwd3OcOnJOQh/8GiQQJF7d9jpHgyAA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rYladAF9gO1vtePJOw2dqv8gzam05iG1iItdHJGdTrhVI12hyWIiqopep7rg/CQUg
+	 kNN8DI66uDg+rHaCYD5cVMMEyl33RnDMnT+oz8cR7QBRgkerJ2PPWWGUoIPcP3s58q
+	 GpPAJ/jmSWjDWLN3v2Mf+wdfKUefQbKn76f53YH/4oVFhQ6fd/tcayyjTpRTaKFMsE
+	 4LKNs+5L77UTMV/AjXsZQbG1t3Xc71wUbmGCwlLuA/QQVr1KOiGjYJCT430a9XZmJu
+	 TZ1o8uULZHiBrIQWBy1VrF3+dm2Q3J+gYptx2PjIYj7DakL1UG8Q18coas5vLxOau2
+	 gkOgPfx1iF98Q==
+Date: Tue, 25 Feb 2025 08:38:44 -0600
+From: Rob Herring <robh@kernel.org>
+To: Zijun Hu <zijun_hu@icloud.com>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
+Subject: Re: [PATCH 3/5] of: Correct property name comparison in
+ __of_add_property()
+Message-ID: <20250225143844.GA2279028-robh@kernel.org>
+References: <20250224-of_bugfix-v1-0-03640ae8c3a6@quicinc.com>
+ <20250224-of_bugfix-v1-3-03640ae8c3a6@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250224-of_bugfix-v1-3-03640ae8c3a6@quicinc.com>
 
-Add EMC OPP tables and interconnect paths that will be used for
-dynamic memory bandwidth scaling based on memory utilization statistics.
+On Mon, Feb 24, 2025 at 10:27:59PM +0800, Zijun Hu wrote:
+> From: Zijun Hu <quic_zijuhu@quicinc.com>
+> 
+> __of_add_property() compares property name by strcmp(), and that is
+> improper for SPARC which wants strcasecmp().
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- .../dts/nvidia/tegra114-peripherals-opp.dtsi  | 151 ++++++++++++++++++
- arch/arm/boot/dts/nvidia/tegra114.dtsi        |   9 ++
- 2 files changed, 160 insertions(+)
- create mode 100644 arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi
+Except that 'name' is the nodename (usually, with a few rare 
+exceptions). Sparc node names are case sensitive, so strcmp was correct. 
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi b/arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi
-new file mode 100644
-index 000000000000..1a0e68f22039
---- /dev/null
-+++ b/arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi
-@@ -0,0 +1,151 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/ {
-+	emc_icc_dvfs_opp_table: opp-table-emc {
-+		compatible = "operating-points-v2";
-+
-+		opp-12750000-900 {
-+			opp-microvolt = <900000 900000 1390000>;
-+			opp-hz = /bits/ 64 <12750000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-20400000-900 {
-+			opp-microvolt = <900000 900000 1390000>;
-+			opp-hz = /bits/ 64 <20400000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-40800000-900 {
-+			opp-microvolt = <900000 900000 1390000>;
-+			opp-hz = /bits/ 64 <40800000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-68000000-900 {
-+			opp-microvolt = <900000 900000 1390000>;
-+			opp-hz = /bits/ 64 <68000000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-102000000-900 {
-+			opp-microvolt = <900000 900000 1390000>;
-+			opp-hz = /bits/ 64 <102000000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-204000000-900 {
-+			opp-microvolt = <900000 900000 1390000>;
-+			opp-hz = /bits/ 64 <204000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-suspend;
-+		};
-+
-+		opp-312000000-1000 {
-+			opp-microvolt = <1000000 1000000 1390000>;
-+			opp-hz = /bits/ 64 <312000000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-408000000-1000 {
-+			opp-microvolt = <1000000 1000000 1390000>;
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-528000000-1050 {
-+			opp-microvolt = <1050000 1050000 1390000>;
-+			opp-hz = /bits/ 64 <528000000>;
-+			opp-supported-hw = <0x000E>;
-+		};
-+
-+		opp-528000000-1100 {
-+			opp-microvolt = <1100000 1100000 1390000>;
-+			opp-hz = /bits/ 64 <528000000>;
-+			opp-supported-hw = <0x0001>;
-+		};
-+
-+		opp-624000000-1100 {
-+			opp-microvolt = <1100000 1100000 1390000>;
-+			opp-hz = /bits/ 64 <624000000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-792000000-1100 {
-+			opp-microvolt = <1100000 1100000 1390000>;
-+			opp-hz = /bits/ 64 <792000000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+	};
-+
-+	emc_bw_dfs_opp_table: opp-table-actmon {
-+		compatible = "operating-points-v2";
-+
-+		opp-12750000 {
-+			opp-hz = /bits/ 64 <12750000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <204000>;
-+		};
-+
-+		opp-20400000 {
-+			opp-hz = /bits/ 64 <20400000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <326400>;
-+		};
-+
-+		opp-40800000 {
-+			opp-hz = /bits/ 64 <40800000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <652800>;
-+		};
-+
-+		opp-68000000 {
-+			opp-hz = /bits/ 64 <68000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <1088000>;
-+		};
-+
-+		opp-102000000 {
-+			opp-hz = /bits/ 64 <102000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <1632000>;
-+		};
-+
-+		opp-204000000 {
-+			opp-hz = /bits/ 64 <204000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <3264000>;
-+			opp-suspend;
-+		};
-+
-+		opp-312000000 {
-+			opp-hz = /bits/ 64 <312000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <4992000>;
-+		};
-+
-+		opp-408000000 {
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <6528000>;
-+		};
-+
-+		opp-528000000 {
-+			opp-hz = /bits/ 64 <528000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <8448000>;
-+		};
-+
-+		opp-624000000 {
-+			opp-hz = /bits/ 64 <624000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <9984000>;
-+		};
-+
-+		opp-792000000 {
-+			opp-hz = /bits/ 64 <792000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <12672000>;
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/nvidia/tegra114.dtsi b/arch/arm/boot/dts/nvidia/tegra114.dtsi
-index caf6024d6413..341ec0962460 100644
---- a/arch/arm/boot/dts/nvidia/tegra114.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra114.dtsi
-@@ -6,6 +6,8 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/soc/tegra-pmc.h>
- 
-+#include "tegra114-peripherals-opp.dtsi"
-+
- / {
- 	compatible = "nvidia,tegra114";
- 	interrupt-parent = <&lic>;
-@@ -257,6 +259,9 @@ actmon: actmon@6000c800 {
- 		clock-names = "actmon", "emc";
- 		resets = <&tegra_car TEGRA114_CLK_ACTMON>;
- 		reset-names = "actmon";
-+		operating-points-v2 = <&emc_bw_dfs_opp_table>;
-+		interconnects = <&mc TEGRA114_MC_MPCORER &emc>;
-+		interconnect-names = "cpu-read";
- 	};
- 
- 	gpio: gpio@6000d000 {
-@@ -588,6 +593,7 @@ mc: memory-controller@70019000 {
- 
- 		#reset-cells = <1>;
- 		#iommu-cells = <1>;
-+		#interconnect-cells = <1>;
- 	};
- 
- 	emc: external-memory-controller@7001b000 {
-@@ -598,6 +604,9 @@ emc: external-memory-controller@7001b000 {
- 		clock-names = "emc";
- 
- 		nvidia,memory-controller = <&mc>;
-+		operating-points-v2 = <&emc_icc_dvfs_opp_table>;
-+
-+		#interconnect-cells = <0>;
- 	};
- 
- 	ahub@70080000 {
--- 
-2.43.0
+My hope is to get rid of case insensitive comparisions, so if nothing 
+cares that we're doing a case sensitive comparision, I want to keep 
+that. 
 
+I also want to get rid of storing both 'name' as a property and 
+device_node.name. The name property is an ABI issue though if no one is 
+looking, then it's not an ABI issue. Also, we should be able to generate 
+device_node.name from device_node.full_name. There's still a bunch of 
+direct users of device_node.name which have to be fixed. Mostly in clock 
+drivers from what I remember.
+
+> Fix by using dedicated property name comparison macro of_prop_cmp().
+> 
+> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
+> ---
+>  drivers/of/base.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index 001ff6ce4abf85c07f13649d5a9f691f549a8ccc..c810014957e81171675b63f25eaabe391cc903e4 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -1651,7 +1651,7 @@ int __of_add_property(struct device_node *np, struct property *prop)
+>  	prop->next = NULL;
+>  	next = &np->properties;
+>  	while (*next) {
+> -		if (strcmp(prop->name, (*next)->name) == 0) {
+> +		if (of_prop_cmp(prop->name, (*next)->name) == 0) {
+>  			/* duplicate ! don't insert it */
+>  			rc = -EEXIST;
+>  			goto out_unlock;
+> 
+> -- 
+> 2.34.1
+> 
 
