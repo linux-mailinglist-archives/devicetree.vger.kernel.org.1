@@ -1,108 +1,114 @@
-Return-Path: <devicetree+bounces-151006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A37AA442B0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:28:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39C2CA442AC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:27:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BEFC18844FE
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:24:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59F2D3A1CB4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:25:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A672698A8;
-	Tue, 25 Feb 2025 14:24:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F38D269CE0;
+	Tue, 25 Feb 2025 14:26:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A6c6N6Yn"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="Z1X26bi7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C723626770B;
-	Tue, 25 Feb 2025 14:24:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB1A126C18;
+	Tue, 25 Feb 2025 14:26:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740493479; cv=none; b=jlNrmwO6zx991GEv4/2vQdfa/6469sWT/tHUEVCp1kvSi/N/vLjBbeIx0WEtrs9ugrRkoSQiaZK4ja4/vJRB8unIecjs+tsOevaRUngO8udrZcsp/jP0KTsUonZhLGthRRPi7q/iu16Cu6GV3SmZgbD6TkjoUX+SWrDFwZ4JyxM=
+	t=1740493565; cv=none; b=mOGDfmiMAa0jrFSORDM4Glp584scycujEsIrlfz6LZFZYB26S5JXbIPGw22ok1wWTA0zVheZHoj87lHJ75xsgbJjPAW0+eaXZr4/FztIUYeQyCaRtVZwNvTR73sqFdh7vK5NDTysSI2ZEFshs2ae/6xTWudTunCOuZf4pCfMGm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740493479; c=relaxed/simple;
-	bh=Tc/+WyJ8Iu+Vv+jAgKujCKC+Po6J5sopxIY2TPW8Xjc=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=eImSM3EnTFbYeyijhUCsm3LWqV9+2jkTODO5iEzviaGPLFD1GWfRh7TmYXP/RLKNJ8TsDJf6y/0j56WZ/HqEU1kyTeC0xm9cQWd9ooOb1bacNqwtjkMOdx8/2wc7Vlt9modXDsCeEmLURKiD9m6ljLbRvcE1F+zGytEb2FQOKr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A6c6N6Yn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C99CC4CEDD;
-	Tue, 25 Feb 2025 14:24:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740493479;
-	bh=Tc/+WyJ8Iu+Vv+jAgKujCKC+Po6J5sopxIY2TPW8Xjc=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=A6c6N6Yn7j53oak37Og95xt1rMTVpfmjwcHxJfJ43MK8NIMZh5JwLQXaN8RnwLT3R
-	 nzvYY6s5w9mfB1n7oypQDTYcdau2q6QVY97RcU57DQf5MAWDMjaBd4Z6noqZlVCzZg
-	 IYTsbhIloDhv2JjfrlfncWupCp6K2tQvw5lGkZ7zCl1m1MlDLOspXXoZrOMXwwKEQq
-	 v0GXdbNBY1vwedcQzhejheZB+adUQzneLBCVH3LOsjiPOj/SznCDjtj1R7+TZePlaa
-	 upPZSNfu3RvPRVuj0g7EQwYYHuaixfpuCNGPiCM6BTiPHYNbay6Td1sbCF34aPENi7
-	 9Vwq8goStZtpg==
-Date: Tue, 25 Feb 2025 08:24:37 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1740493565; c=relaxed/simple;
+	bh=362uBNCJSL6/D4zf+C/aqFC5d3W5hFLgF8NaryGLpW4=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=a272LvG0xyLMzt4f4cT/vmpZ0EDKdsZZeWNpNXoPXIquGjKRw6w7IufFAQp54OmsRqxSWLnAMaYdRgO4V7UPz/LVTgaxfxCGLL1YKkrNc+bS5+sgYSnrliY0W7/cWto83KlmILfSKNfXGwtiMJLtuAGLwm4maWhQBfZZzvrDEtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=Z1X26bi7; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: krzk+dt@kernel.org, quic_jesszhan@quicinc.com, rfoss@kernel.org, 
- jernej.skrabec@gmail.com, conor+dt@kernel.org, robh+dt@kernel.org, 
- jonas@kwiboo.se, linux-arm-msm@vger.kernel.org, 
- Laurent.pinchart@ideasonboard.com, quic_vproddut@quicinc.com, 
- neil.armstrong@linaro.org, konradybcio@kernel.org, andrzej.hajda@intel.com, 
- linux-kernel@vger.kernel.org, quic_rajeevny@quicinc.com, 
- freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- marijn.suijten@somainline.org, andersson@kernel.org, 
- dmitry.baryshkov@linaro.org, robdclark@gmail.com, quic_abhinavk@quicinc.com, 
- sean@poorly.run, devicetree@vger.kernel.org
-To: Ayushi Makhija <quic_amakhija@quicinc.com>
-In-Reply-To: <20250225121824.3869719-4-quic_amakhija@quicinc.com>
-References: <20250225121824.3869719-1-quic_amakhija@quicinc.com>
- <20250225121824.3869719-4-quic_amakhija@quicinc.com>
-Message-Id: <174049347715.2313013.4695405671704163724.robh@kernel.org>
-Subject: Re: [PATCH 03/11] dt-bindings: display: msm: document DSI
- controller and phy on SA8775P
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1740493553;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=WyyxfZ8er5WqZOvIZ6mxo74JK7+5Nk5jVOc6g/QyEzY=;
+	b=Z1X26bi7ygLBS3+YP89D2JR7/QWR7eXXN3q1RGtCQ3+EEEyHxoYQpXbp52wPDrgNXaWacW
+	Ounh1eXsGBBwxBLd/7Di5n93VbT9HhQvf9jl6Vim2qNKGD88nD/ML295fQfTRkhorE6Uh1
+	y9/DreYBRT9Ekl/916EWFharGXpsOWZAg8lKC7+bIk95ZpLm9A2QquEqUmFbsIvtuqNN1C
+	4ZcGeWx8hn/TuKWiLzmG9cjzglaqrwc+FI0Mp947mgR3+gwUWye4wIzhBT3xLoaC/9pm3l
+	jLiZSSPJRpbr5cs+7oCYYjNE6rHgNRvYE+JeSFarEusZ3TABB7gKfJhq1GWuSg==
+Date: Tue, 25 Feb 2025 15:25:52 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Justin Klaassen <justin@tidylabs.net>
+Cc: Tianling Shen <cnsztl@gmail.com>, Kever Yang
+ <kever.yang@rock-chips.com>, Johan Jonker <jbx6244@gmail.com>, Heiko
+ Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: fix u2phy1_host status for NanoPi
+ R4S
+In-Reply-To: <20250224170925.39126-1-justin@tidylabs.net>
+References: <20250224170925.39126-1-justin@tidylabs.net>
+Message-ID: <48c705e65cc8e8d4716b41a4a87170e3@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
+Hello Justin,
 
-On Tue, 25 Feb 2025 17:48:16 +0530, Ayushi Makhija wrote:
-> Document DSI controller and phy on SA8775P platform.
+Thanks for the patch!  Please, see a few comments below.
+
+On 2025-02-24 18:09, Justin Klaassen wrote:
+> The u2phy1_host should always have the same status as usb_host1_ehci,
+> otherwise the ehci driver may be initialized for a disabled usb port.
 > 
-> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+> Signed-off-by: Justin Klaassen <justin@tidylabs.net>
 > ---
->  .../display/msm/qcom,sa8775p-mdss.yaml        | 170 ++++++++++++++++++
->  1 file changed, 170 insertions(+)
+>  arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi
+> b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi
+> index b1c9bd0e63ef..8d94d9f91a5c 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi
+> @@ -115,7 +115,7 @@ &u2phy0_host {
+>  };
+> 
+>  &u2phy1_host {
+> -	status = "disabled";
+> +	phy-supply = <&vdd_5v>;
+>  };
+> 
+>  &uart0 {
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Indeed, the rk3399-nanopi4.dtsi file, which rk3399-nanopi-r4s.dtsi
+extends, enables u2phy1_host, usb_host1_ehci and usb_host1_ohci,
+so disabling u2phy1_host in rk3399-nanopi-r4s.dtsi makes no sense.
 
-yamllint warnings/errors:
+After checking the NanoPi R4S schematic, I can confirm that the
+phy-supply references the right regulator.  There are some strange
+things in the schematic, but they're unrelated to this patch.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml: ^dsi@[0-9a-f]+$: Missing additionalProperties/unevaluatedProperties constraint
+However, there should be a v2 of this patch with the proper Fixes
+and CC: stable tags, so this bugfix also gets propagated into the
+long-term kernels.  Please, feel free to also include
 
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml: ^phy@[0-9a-f]+$: Missing additionalProperties/unevaluatedProperties constraint
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250225121824.3869719-4-quic_amakhija@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
 
