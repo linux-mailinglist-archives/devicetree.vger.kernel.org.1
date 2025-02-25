@@ -1,78 +1,79 @@
-Return-Path: <devicetree+bounces-151082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D8DFA445CE
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:19:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15AC6A445D0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:19:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 772313AAC29
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:15:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69C6E3AB2A7
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:15:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36878188736;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E38CF18E054;
 	Tue, 25 Feb 2025 16:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o4EsVQ+K"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p6GXzx9i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A858154C0B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0290518DB3B
 	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 16:15:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740500152; cv=none; b=DVFIbbWRQLcvCeZiXOMkbrFPaoNjq56/JVsqXjGn2fb92qZsVcxTc9ERPlk5erNRZYY9AL1sR3cB1UCrTZeXJXAp+LAA0YrHTXhAE9PpNTGOTcyI64RwhGt6ZEbAyM1UIrQ8lbryQz/MaIixpi/apFe4VBflR+urqStnsIWHARU=
+	t=1740500152; cv=none; b=gImNF9hIScnsuiKhoJU08rCdkphYGKc7p2jf2+q87w9x5Cm0oOaCCj79PXecCPDNb6f2My0uOKwxeFv3qjMTW97EEayCs0tqGDvflutFJBCgRB7dap3/t7dPTvE+RV1rHL95t31DogIRnOxEwpWHPeYR4X6kpnkZvm7H5HY9L1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1740500152; c=relaxed/simple;
-	bh=qiRG4jZ6oRGcl3fPvlgBnVduisLVRerw1nnxQkq92fk=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FpmW/i87ggwecemD8in9OMVTwPuvs8g6GYsKW8/e2QlP3y5FuzRMxzKakolwO6A7APUwUJ/cTPIFYwrwuWUcywdcSbDUaDIpxZXdtp/LqZoJs/iPu6+8G9v5+09NA2eoFgGLpdiFkDuRXA2P87XSP/SujXqQwFu6kuN6U6Zo+7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o4EsVQ+K; arc=none smtp.client-ip=209.85.167.45
+	bh=JnkVoJVEvt9wSbfZJwKuTmFUsqCBtk0hMWljeyVPBxA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=teAE8k4bkPJi6c5PrWNZ1jEILGSJ+htcEkggp5xvDemTYVPQ+KCe0LpezxY2Mp/y/LHuX3SbjU3jSyRU5xbLJKuLp9sm7On8n2/P4tYwfuo8Ua6FddL2xPXjyGr0d1H6iPUaq4DZlwLWcL1z6pzisaHZSkTNEAjwLi7qtDg7y/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p6GXzx9i; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5454f00fc8dso5416320e87.0
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5452efeb87aso5819809e87.3
         for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 08:15:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740500148; x=1741104948; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z6QV46TQbbowuZaidKwQKybXS8KlFzTUfykk67zDNY8=;
-        b=o4EsVQ+Kdx2rVS1vTH8ULPhnT73KzX0nbtevOuOL5pUrU6JZyH13vTINYrVaJ51jnv
-         G7cU5gAcNYskSUJlHv6HJfGdhYn9urr9yJFqT0i47mxXy4zCylXbonpRcWuWHiczx7RJ
-         lxUkLyfgopEKnCe980y4zlQuQSxuKHKlsrh5NyON2rYaeGxFBtObCeIrZp+NMa59VYPJ
-         U2ml8EZeLKrnHA6nl0o6uRHhY3GHPz9S+3fVowNnDkVktgwVjiO04+aTzyrkyNMfpKvM
-         nCCcvlylWiBMdgCzbIh1zjsWCyFDs4DfrZ8Ojr1Z6WCK5Cz33Tg5Ca1afTFhKjtrmis+
-         70Ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740500148; x=1741104948;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1740500149; x=1741104949; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Z6QV46TQbbowuZaidKwQKybXS8KlFzTUfykk67zDNY8=;
-        b=XOg8bT7z8ei7v5hYHLSbWE0GmCslfJtN+bCLi6i5gZpNYLiQALZoV7nGldneV3Hdf+
-         gBZmO3OKqYxHKpuvEpoOnST/1rm9dyKz/T35ag4TxLHW+aBVuKj467U3M6qRiJ/lsrpz
-         ucqFHX98/Vu2aS096EjtAoOTTvJhS6r9nBr2QZRv4ecPMw1a8Fg/mjcYKsDXrlYYhtO0
-         yCiM8rIj+BKNoVKRXSTsurLKAjxKnjXHwDlkKxev/EcGwKkqiaNzwwSpvN8rj2yIxyFm
-         YhyZ/87kwc4XAN8/R0qgDO5UOCWPULxxIZp+BvYoHJKyfFnH+ULVCuL8aJ5ky5uV8Gni
-         31cQ==
-X-Gm-Message-State: AOJu0YzQNwlIk+cdA6oYfAA0BLbEinjQItzht/ZKFZuQxKv8REwexSG5
-	Yh96owqyAt6FGPbgbf+3+RlR8+uCG8fCUJ5ybI5wFWzXERkezhR/DkY/n1+8eGI=
-X-Gm-Gg: ASbGncsnCC25eiF85tDEJ+KvXDPcS1hMU7tdRaL3JOF25zVmGqelSh+yxJSANDC6s8t
-	Tfv67L5eKJ5z+pw3Y9xn6zUyQVioCxhZ9HfOsVzHv+u/uS3gKltbO/ko58y9cXQZOfyNHhkPVgj
-	TFCmueHfWVZTn6MGNd4P7hVD6byxLkusnbK19xB5LrAxs3ZRmfmLJJXKl7bg2R8W5AIPPGgjWUC
-	rsh3scOx37iXn8TwjOCHeoBb1asf2KrO/FLEQnXlNIKMwIa2llcYhFxwrEJqMbtMPfOhDSzIVH9
-	1545/3iWkPmkTmIHoicp7UTireF+Ck+t5jz7
-X-Google-Smtp-Source: AGHT+IFn5GUKE31nP7tgT7niJ4SWR4mxLNvOZVrLeT7oIthbVOOg0Ui1M0Y4d9f4fXVVzIRrZZQBmw==
-X-Received: by 2002:a05:6512:304c:b0:545:721:b7d1 with SMTP id 2adb3069b0e04-54838eefe80mr8602073e87.15.1740500148372;
-        Tue, 25 Feb 2025 08:15:48 -0800 (PST)
+        bh=MeJ7a/9Q7Y4DFP2keHrgY23a3sacV+V2x1QKfVZGDtA=;
+        b=p6GXzx9iYpSnjmUdXqZGTmVqpQBLTDDHDRLpx/LJdX1CQQOp3ELAcCbqz5eOu9LmgK
+         p+exlB1R6hdD9a/Jfln+V/TABntrAOb1ytmIUgRwt/gTSpcOeL9EKwkHRRdMcIkvaA3U
+         mQSRjROKc4/uVdMvGu1DpS7S1vjiDHC4VpCfu9lgSiolelARDyEw+RHy5WzVQZBoc6ln
+         COkcnV25N9gMwggT0TqRASpl3f5co55QC1DnJ3jiGcGIeG3Nz61UvUEN4QjyzeQPuIor
+         U7P8ys7O4hrn0udS0cDqZBCb7m4D4skG6tmNYlKDxEMWkIj7LzsxaIutvHqmsN5emGMV
+         KsbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740500149; x=1741104949;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MeJ7a/9Q7Y4DFP2keHrgY23a3sacV+V2x1QKfVZGDtA=;
+        b=S+RCXxSgzi7mqwtyX97F48DPLySr2AI5QdBarlo2n7iTVx5pSsHQdKjNPBqMScZ7Pq
+         qaCmJ59ERpWobWIi9B/gRrpW/JC5NLNSduQRdFp4AdwEVCNy9tAd4SKhw+QaLcqBoAjU
+         FOEU8GKEZYcWqZF07XGJwULsajxlkQ/eOQ8w8M/ToTSZ8Td1z+xEwM9lQ3O47HBO+jgZ
+         2By5oDzOqI/Ll+njhDf54YSAGo8ECM14O9SQkkSpdqTTwtoH4cyeyd4lf63Lv/vCmGE+
+         +yUVj5NjP+5zIAH+Y3LmFa92NRWarCaooLL79EeCfM4peLPszaiGJq/pSZrm9s0HqWdm
+         Zetw==
+X-Gm-Message-State: AOJu0Yw2qcfHIMeDZ8+W9klJJCuwvCoysZ7nZp7PO11UjVGtZXuvh6Z1
+	NLaI4JgucLeCu2XaJxQD3u5BJGyp0swosaf61fI5j+HFXJdYQnTgU7hXmwpJMKw=
+X-Gm-Gg: ASbGncsoQWtYHIX7FCLNrdu+2snbctOFc9hU2aKhAUaNiCNQZDsPUoQhxLHUvt5UyBJ
+	qZHVHUsmVl3mJGpYMXfWb8zUNMBWjRHg3tPVSYnlLKXGitYW+eGyEL5hJLCs7TtGkKim1+P3euc
+	ohHYJvynsGzurlQqHs07bWrVUdizngfSp+3WU43iITpbWL2LUUf0kSoojlIMGo6xUi8eYLj+Na+
+	mBXVwgs7WV6tRiTOXOlsHG4PKE0QlD/OKjlgkQLK/nEfmo77y30KnAgtCj3KHkWUBXy9+A46zck
+	17FFyrGnwiCqszOwtZKlvuEIt7dc0Lq6ns2J
+X-Google-Smtp-Source: AGHT+IHDFqFy5T5AX9GqngoqEJ/mxO1vDf4PSBGFifn5ldQ4LUId8AmEPiotb+ECWFs58w0ck8wnLw==
+X-Received: by 2002:a05:6512:3b97:b0:545:d70:1d1c with SMTP id 2adb3069b0e04-54838ee2993mr8619007e87.11.1740500149027;
+        Tue, 25 Feb 2025 08:15:49 -0800 (PST)
 Received: from [192.168.1.140] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-548514f512dsm212587e87.178.2025.02.25.08.15.47
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-548514f512dsm212587e87.178.2025.02.25.08.15.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Tue, 25 Feb 2025 08:15:48 -0800 (PST)
 From: Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH v2 0/2] gpiolib: of: Handle threecell gpios
-Date: Tue, 25 Feb 2025 17:15:45 +0100
-Message-Id: <20250225-gpio-ranges-fourcell-v2-0-8da9998fa976@linaro.org>
+Date: Tue, 25 Feb 2025 17:15:46 +0100
+Subject: [PATCH v2 1/2] gpiolib: of: Use local variables
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,11 +82,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIALHsvWcC/22NwQqDMBBEf0X23C1JRJv21P8oHmISdUGMbNrQI
- vn3RqG3Ht8M82aD6Jl8hFu1AftEkcJSQJ0qsJNZRo/kCoMSqhFKXnBcKSDvTcQhvNj6eUbdaK2
- NU/LqDJTpyn6g96F9dIUnis/An+MlyT39CfV/YZIosJdD7frWalG395kWw+EceIQu5/wFyb0vx
- LkAAAA=
-X-Change-ID: 20250217-gpio-ranges-fourcell-85888ad219da
+Message-Id: <20250225-gpio-ranges-fourcell-v2-1-8da9998fa976@linaro.org>
+References: <20250225-gpio-ranges-fourcell-v2-0-8da9998fa976@linaro.org>
+In-Reply-To: <20250225-gpio-ranges-fourcell-v2-0-8da9998fa976@linaro.org>
 To: Yixun Lan <dlan@gentoo.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
@@ -93,35 +92,103 @@ Cc: devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
  Linus Walleij <linus.walleij@linaro.org>, Alex Elder <elder@riscstar.com>
 X-Mailer: b4 0.14.2
 
-This adds some code in the gpiolib OF core to deal with
-several gpio chip instances per OF node.
+Instead of modifying the contents of the array of values read
+in from a phandle, use local variables to store the values.
+This makes the code easier to read and the array immutable.
 
-The change was prompted by the need of the Spacemit GPIO
-controller.
-
+Reviewed-by: Alex Elder <elder@riscstar.com>
+Tested-by: Yixun Lan <dlan@gentoo.org>
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-Changes in v2:
-- Fix a speling error in first patch.
-- Fix coding errors and documentation errors in second patch.
-- Collected review tags.
-- Drop RFT tag, this is for applying.
-- Link to v1: https://lore.kernel.org/r/20250218-gpio-ranges-fourcell-v1-0-b1f3db6c8036@linaro.org
+ drivers/gpio/gpiolib-of.c | 39 +++++++++++++++++++++++----------------
+ 1 file changed, 23 insertions(+), 16 deletions(-)
 
----
-Linus Walleij (2):
-      gpiolib: of: Use local variables
-      gpiolib: of: Handle threecell GPIO chips
+diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
+index 2e537ee979f3e2b6e8d5f86f3e121a66f2a8e083..86405218f4e2ddc951a1a9d168e886400652bf60 100644
+--- a/drivers/gpio/gpiolib-of.c
++++ b/drivers/gpio/gpiolib-of.c
+@@ -1057,6 +1057,9 @@ static int of_gpiochip_add_pin_range(struct gpio_chip *chip)
+ 	const char *name;
+ 	static const char group_names_propname[] = "gpio-ranges-group-names";
+ 	bool has_group_names;
++	int offset; /* Offset of the first GPIO line on the chip */
++	int pin; /* Pin base number in the range */
++	int count; /* Number of pins/GPIO lines to map */
+ 
+ 	np = dev_of_node(&chip->gpiodev->dev);
+ 	if (!np)
+@@ -1075,13 +1078,17 @@ static int of_gpiochip_add_pin_range(struct gpio_chip *chip)
+ 		if (!pctldev)
+ 			return -EPROBE_DEFER;
+ 
++		offset = pinspec.args[0];
++		pin = pinspec.args[1];
++		count = pinspec.args[2];
++
+ 		/* Ignore ranges outside of this GPIO chip */
+-		if (pinspec.args[0] >= (chip->offset + chip->ngpio))
++		if (offset >= (chip->offset + chip->ngpio))
+ 			continue;
+-		if (pinspec.args[0] + pinspec.args[2] <= chip->offset)
++		if (offset + count <= chip->offset)
+ 			continue;
+ 
+-		if (pinspec.args[2]) {
++		if (count) {
+ 			/* npins != 0: linear range */
+ 			if (has_group_names) {
+ 				of_property_read_string_index(np,
+@@ -1095,27 +1102,27 @@ static int of_gpiochip_add_pin_range(struct gpio_chip *chip)
+ 			}
+ 
+ 			/* Trim the range to fit this GPIO chip */
+-			if (chip->offset > pinspec.args[0]) {
+-				trim = chip->offset - pinspec.args[0];
+-				pinspec.args[2] -= trim;
+-				pinspec.args[1] += trim;
+-				pinspec.args[0] = 0;
++			if (chip->offset > offset) {
++				trim = chip->offset - offset;
++				count -= trim;
++				pin += trim;
++				offset = 0;
+ 			} else {
+-				pinspec.args[0] -= chip->offset;
++				offset -= chip->offset;
+ 			}
+-			if ((pinspec.args[0] + pinspec.args[2]) > chip->ngpio)
+-				pinspec.args[2] = chip->ngpio - pinspec.args[0];
++			if ((offset + count) > chip->ngpio)
++				count = chip->ngpio - offset;
+ 
+ 			ret = gpiochip_add_pin_range(chip,
+ 					pinctrl_dev_get_devname(pctldev),
+-					pinspec.args[0],
+-					pinspec.args[1],
+-					pinspec.args[2]);
++					offset,
++					pin,
++					count);
+ 			if (ret)
+ 				return ret;
+ 		} else {
+ 			/* npins == 0: special range */
+-			if (pinspec.args[1]) {
++			if (pin) {
+ 				pr_err("%pOF: Illegal gpio-range format.\n",
+ 					np);
+ 				break;
+@@ -1140,7 +1147,7 @@ static int of_gpiochip_add_pin_range(struct gpio_chip *chip)
+ 			}
+ 
+ 			ret = gpiochip_add_pingroup_range(chip, pctldev,
+-						pinspec.args[0], name);
++						offset, name);
+ 			if (ret)
+ 				return ret;
+ 		}
 
- drivers/gpio/gpiolib-of.c   | 126 ++++++++++++++++++++++++++++++++++++--------
- include/linux/gpio/driver.h |  24 ++++++++-
- 2 files changed, 126 insertions(+), 24 deletions(-)
----
-base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
-change-id: 20250217-gpio-ranges-fourcell-85888ad219da
-
-Best regards,
 -- 
-Linus Walleij <linus.walleij@linaro.org>
+2.48.1
 
 
