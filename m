@@ -1,93 +1,115 @@
-Return-Path: <devicetree+bounces-151048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D62CDA44450
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:27:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1266BA44454
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:27:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97ACA19C4372
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:26:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 577BB3AE9EB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:27:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49B9526E178;
-	Tue, 25 Feb 2025 15:26:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1372426BDBC;
+	Tue, 25 Feb 2025 15:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="i6CM1f7C"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A2l4OVYo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ci74p00im-qukt09082501.me.com (ci74p00im-qukt09082501.me.com [17.57.156.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDCBF26E623
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 15:25:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.57.156.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C8FF26BDA3
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 15:27:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740497160; cv=none; b=FYwWAAQ185AgZ26h4hyB8aZlVN//Z6lum0NDAgoHO0GbtDqTyvb9AzguaH5FQC91P3uzaxE5HHyM250VpaO7KlaOe2PIIvvvE/gogjMOZQ7QNNS0XwG2BOlzOadPjoSwzxmURw9XbeEkcaDNpdZ0FwGKETYrqoPx22tZQDV6R4M=
+	t=1740497223; cv=none; b=bj6puy0bG9ZrvIF+3jWHkoZ1hOQCUDPrQMZFQRU1zFq7Y4y1c0JNhyjXUNA2SgrdQT3Ccn7t71ReOFnRfgeTPb8jso48sLsue2x51h3YH7Ufzo4LV3Cw6Ru9F6gr2GRn7UsRgJ1siEagYtQkhDtpG+M0FBIQrWiJb7/LsPA33Jk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740497160; c=relaxed/simple;
-	bh=KLXVLS/xU4hxsPlFm59a4PAwo4LYu7uFun0ESUdBPz8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Kcsdqc5g1VGd1ef/l2sEhRU/N/Cqxz/QZxKu5T+F9c+69kFZJyBRuiaWASvJ1Y4LlGNi+gbSjR9oCRueyvCLvGDD26m/GD2WQsNguL6Gj9ipMq4Hm/z8q6NBrSI0gwfg2SJUn2t6DrzBPi54JO5VOdzhwBJ3GeEUhfX2jnAL2uI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=i6CM1f7C; arc=none smtp.client-ip=17.57.156.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; bh=KLXVLS/xU4hxsPlFm59a4PAwo4LYu7uFun0ESUdBPz8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:x-icloud-hme;
-	b=i6CM1f7CdRYAS2msIKYrMwj1Jw4MFdOt4XXiwIr/I+U4fjVBdF5Rdjr3JpymHhV31
-	 oimzmLYFU/uX06Dzsf67TyGefd0gmbncfwuK2xDqlGxa5fFPm5naaEP6m1oDyPM8zU
-	 VcZbgeHpmmhBV5zRFi9KAmzgbHZyumAjNzHmeyhsVKmUy9tyvOC4ryGFUnwOZ554P3
-	 TNuWdvgcYdgnzh3htg+61LLNuEB1yA3U/UQspeIcDSedRUkhcbY2XFF5p+vpvy7z6C
-	 VnsRcbxivhH5UP4fdqKGV15mR05FAoH/mNJIMnB981JEdJNc2MNcKUhFp7mplpREjv
-	 gMSb0aDAf/YJQ==
-Received: from [192.168.1.26] (ci77p00im-dlb-asmtp-mailmevip.me.com [17.57.156.26])
-	by ci74p00im-qukt09082501.me.com (Postfix) with ESMTPSA id D486C4AA01E3;
-	Tue, 25 Feb 2025 15:25:54 +0000 (UTC)
-Message-ID: <8c51e02c-c262-4db8-b0fe-30462005f1c5@icloud.com>
-Date: Tue, 25 Feb 2025 23:25:49 +0800
+	s=arc-20240116; t=1740497223; c=relaxed/simple;
+	bh=+sM8RqSivE/xijYBrIrwfNgjHaRkEy1XyNdDEacWwgY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jZjBSPXIHQk9FJeTlwKvlOA0QmUrF5e74XlmTZgl5ogqIY3yejdBT7cuYleZ+judsrza0CsoXk+lW7xtSAfgQY4Xa0N4+VfDTRTmHprcqntgGQXm6Wisq5ZTKgLZoiGEuXdBPdtMAIiDYIPDXr1cUAVjLDIKGJsxTeNJInmQ/J4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A2l4OVYo; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-30a3092a9ebso65460821fa.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 07:27:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740497219; x=1741102019; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+sM8RqSivE/xijYBrIrwfNgjHaRkEy1XyNdDEacWwgY=;
+        b=A2l4OVYoc7zusWYHJdj4ycyb0/uP+s5viX0qcm7V1rNBcfO895CX7mZHgCv76AY2LB
+         Y7e1JIYrJFIgMDu23yYnKCGRqojD8e/PPeOaelDPDcfs7Xmb9WDBefcp1FMXdTXs71/v
+         e7iMKQWJ9Rn7dwjGOYf0E1kBJGSx04YHdJgg4Ssslliv2/MKNT6nnJB696x8CaEAdkE6
+         T1FnmYQPQrkzMMG6rQDOYFAEuKwoIZ5f3uqoYetnCXDAptuVJguVRr5xa8PJNmY4a47Q
+         7X9jKUOLJblPFtbRUSuFQ9aFglJWPVCxzlNJt8VNdMmUoiWlJtjHgUTdf9ED4YT48BX/
+         7TYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740497219; x=1741102019;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+sM8RqSivE/xijYBrIrwfNgjHaRkEy1XyNdDEacWwgY=;
+        b=WrWHy9u8uPeZhBqKNJyNPXd3P2U9ivy/ndRBvUw2JtkIs2bUPGkZ8PJMbEEhem1fAU
+         9c5dinDDLg62kwo23ooceXwQTC+Z+EUEBlTO3faIqw06Hj4qx5wUbiT9DVRry/2NFcuH
+         tz5Tgp87vyKWOQ0UIwLBOb4J8g5OdxQa9th7epRCVPwTa/7Uefa4YT5h6kcOpbWpD2lD
+         rtfdVCrOVu8648BCOYTQpzJw3K+9Onny0LQG3QjEgsq7y8u8+gRTt4G8kt1VR49Tl/6t
+         zkc52B9KifbWOh+bJ4Dk/aX834GjmtsNc2hZ081Xvrf46PFCbzop5/m7/BtxVPP1BbWp
+         kEKg==
+X-Gm-Message-State: AOJu0YwRqMSpNQbkajM9OTBwL/QjWp5q/Nc4XC0Z71yclgyKwTXwQWc4
+	qkhT5ielZkwS0nI/xnEqzvmGJ3VMeTHots+3QTrIe1Ri8UEVkdD6255XiuBFHpf7NgbeWmEKySl
+	8rJXwS6jq6/lbuePVLS259XEF5R3CEik4PFvlhQ==
+X-Gm-Gg: ASbGncsESYqiovjZ2cASwAniwkpuupGUqXcb1nH/WJHANVJ1lCfbyKb64T03G+NC+fu
+	rLIRC1utSus1dkdZ5ZU4G67gyiCTZTYHS0h+XAcKwPzvPYZuQMerjzWFSjBIjqtrI7ceWXfa/B8
+	uB1F8jPmU=
+X-Google-Smtp-Source: AGHT+IHg7AciF0bOLP9nYBodRe65E+R68WKpeOCG+glocpt21vjNyZNITKVO4J/tYQr2I8UXgNxYdWfVSbUB/YTUxlo=
+X-Received: by 2002:a05:6512:12c4:b0:546:3136:f03d with SMTP id
+ 2adb3069b0e04-5483925996emr6834200e87.35.1740497219178; Tue, 25 Feb 2025
+ 07:26:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] of: Do not change property state under
- __of_add_property() failure
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
-References: <20250224-of_bugfix-v1-0-03640ae8c3a6@quicinc.com>
- <20250224-of_bugfix-v1-4-03640ae8c3a6@quicinc.com>
- <20250225144108.GB2279028-robh@kernel.org>
-Content-Language: en-US
-From: Zijun Hu <zijun_hu@icloud.com>
-In-Reply-To: <20250225144108.GB2279028-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: LYKRc1L5sPXYhq8OytkK3Uyp_dVSRYSG
-X-Proofpoint-ORIG-GUID: LYKRc1L5sPXYhq8OytkK3Uyp_dVSRYSG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-25_04,2025-02-25_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=698 clxscore=1015
- adultscore=0 malwarescore=0 spamscore=0 phishscore=0 bulkscore=0
- mlxscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2502250102
+References: <20250220180427.3382482-1-vincenzo.frascino@arm.com> <20250220180427.3382482-3-vincenzo.frascino@arm.com>
+In-Reply-To: <20250220180427.3382482-3-vincenzo.frascino@arm.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 25 Feb 2025 16:26:48 +0100
+X-Gm-Features: AWEUYZn8W5PQymPGlQZ6IJQCW62-Rmi8JGi0gK42ubUEcFMkmTbqO5GmXG6Hy4g
+Message-ID: <CACRpkdZzUpgFvuYRGUwnNxonQ_TM2DOsAh5188qJ=g81v-asiA@mail.gmail.com>
+Subject: Re: [PATCH v6 02/10] dt-bindings: arm: Add Morello compatibility
+To: Vincenzo Frascino <vincenzo.frascino@arm.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Jessica Clarke <jrtc27@jrtc27.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2025/2/25 22:41, Rob Herring wrote:
-> On Mon, Feb 24, 2025 at 10:28:00PM +0800, Zijun Hu wrote:
->> From: Zijun Hu <quic_zijuhu@quicinc.com>
->>
->> Do not remove the property from list @np->deadprops if
->> __of_add_property() encounters -EEXIST failure.
-> A property can never be on both np->deadprops and np->props.
+On Thu, Feb 20, 2025 at 7:04=E2=80=AFPM Vincenzo Frascino
+<vincenzo.frascino@arm.com> wrote:
 
-i made this patch based on convention that
+> Add compatibility to Arm Morello System Development Platform.
+>
+> Note: Morello is at the same time the name of an Architecture [1], an SoC
+> [2] and a Board [2].
+> To distinguish in between Architecture/SoC and Board we refer to the firs=
+t
+> as arm,morello and to the second as arm,morello-sdp.
+>
+> [1] https://developer.arm.com/Architectures/Morello
+> [2] https://www.morello-project.org/
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
 
-partial task which has been done successfully needs to be undid if fails
-to do the remaining task.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-It is okay to drop this patch based on condition you mentioned.
-thank you. (^^)(^^)
+Yours,
+Linus Walleij
 
