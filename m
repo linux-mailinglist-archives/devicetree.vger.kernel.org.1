@@ -1,260 +1,206 @@
-Return-Path: <devicetree+bounces-150841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A80DA43AE0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:10:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1DB4A43B05
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:14:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 958D2189DFB6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:08:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E0E516738B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:08:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621CA267733;
-	Tue, 25 Feb 2025 10:04:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD9CA260A32;
+	Tue, 25 Feb 2025 10:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yc5xdvny"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mL7oyq2O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF3D6264A96
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 10:04:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DE941519A5;
+	Tue, 25 Feb 2025 10:06:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740477844; cv=none; b=FiEFjEz5TlbJrulW1avlVzUbwqTlnuAIBOISroSeIZ1kDJHY9Nk6+ePJvl/w2xDjIjM/1T+K49tr1OlJnUr/xY4DFTwsAmhQD1vSIoi4cGPortmflhLSdIgET3mD6vPNYodN0vyTsG3Z/ggATkoB+Lh0TAclgnl1G3G+Tjqlt7A=
+	t=1740478013; cv=none; b=e7nmUayazoYncU5vJ58hD4Ce3CwAZfKWSjRwdBn5A8eP75i4ETv2CCjkcPcwca1jFeqj6/4JOovz9qIf5+lgzODiRnYumhAnzXA/1TUGsw7ZAvSy0ticzUc8NlDHGmNNQ3KcWHIxSynLwVdeBMUnIhEe4ESWKBTj6PcP+JdAFXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740477844; c=relaxed/simple;
-	bh=MeAuG9g0kh7yx/0OZj4iGOOodxJ7zXEytAEU21VeZYE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=e1tDTCGyjjKvN9vyAwqArYd6EnpwjIA93WP8evAsCR2rjkj1zkbRXCo/hhTP2Ozl8Xb9IIVDUVRRQtl4LGDfIWcKmlgbUuXjTNGaqks2Paa8H9r/y7YSlHkPrf0CHKvgUwGZ3BqxO1WFtwxV8uN/9Na8GrxWlCzL2ZjbImu0mQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yc5xdvny; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-438a3216fc2so51023825e9.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 02:04:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740477840; x=1741082640; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=axza/MmVyz9C3Qr4EfZALEXBydNniRgAQb/zT/Fw//c=;
-        b=Yc5xdvnynYOFehMlYEbyPduYUPy+4T/9YVdQzoXh6kA1T4tztDNqJqCQDhdjVHf2nR
-         UwXd329ileQ4pluIbuQ/TfyXi4BRFiYbeJdQsaFD5FSFCkcDuH3UqR5wb33VASJy6O8S
-         0pNFmgVhjoJsY70w9RlUdd/mEP4BZyPsYJMCctBREF8jxG5XLpCsg94R8M6af9HdwHV2
-         zSW3XV8g6Yo7Uk/FNdpMilz1YoyfWLIuoet4OPwlisSY5aLOhOb03N54C1mkZw1cjley
-         fCGedM0doQww6E1gg+Yp2puwlSM17bMYwirk+u1/tCH2EBRLWDvrzCxiW8R483U+x6UC
-         Dncg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740477840; x=1741082640;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=axza/MmVyz9C3Qr4EfZALEXBydNniRgAQb/zT/Fw//c=;
-        b=TlVQ1aHC+T878gYrFvLFzL5Nh58oL+1jcacYRwy+oVYy3iFAjlZ825nODe4/GltXhB
-         U7aVbVeLZhcgOb9dt9tsCfPJEE4bOsMPDLkuvj0uILVc10x6+8775tZkuiDdlj3/tUZz
-         dHyGGmjvyKSFpgptoZ8py2xX3emZY+5550X0DjPZOaqXxLV5hgh5LhgnKnFEKC5IhpF9
-         Z2F8P6JestqlDtTQ/CKRh7Piox77+Ue1gy/1Ihi+0n6rr8dDEsDs29tOtIyw8gi5zRDa
-         HeP6mJZbnx0c0U6FXPA2ReYDhCk8tQFW6YePrEE91xfqK3uXgDCMSnitEmj5bMxL2OcQ
-         hd4A==
-X-Forwarded-Encrypted: i=1; AJvYcCUVoj2/PdS41Ux+TGcPZhMpaX0fKivSdFmJwZyAPbRvr0sDWiJufZh84VNXKHaArMsKfmcpM2+ZhK02@vger.kernel.org
-X-Gm-Message-State: AOJu0YzL5V4SndwsuAxV1+VNT9s/lFOtj1clDpaJAzHGZiPKpZfRjVcm
-	mvTjThgrL9Q/5bt89RLjao5TwGNAwIVs8Y4GZQai98wtnj5x+IEn4Wlz0n2+QgOe9y+SBIUl9+i
-	i
-X-Gm-Gg: ASbGncvgLeLlsfOS2GnO6Fl6tIMUNCqecpWufjZu1Jr6FSdgDd27CUScj0feAzMDtRU
-	gMcn6Skkk398gRctLmLvlhyg7hVV6wyWg8WjBRqI/DfMEDinrq4/pIgkLtapfw6Bamub5dukzFU
-	Vz4P8aQuu+tnu6Wv9DSQVb+Avp4dnJMFKj5c6nwhdfur0xd5CgXhBBiCYmMGv/Nu71xXsG9bA62
-	YvupQNgbLTKihvYAjQUJpD1uthIYvnh6n30pgIPX330RyZB6W9E8JSng+fUM0Ud4afpF4Cx5nph
-	XUaxcnQDIXe3WR66umetFIQI1CAZsvfgkEXa
-X-Google-Smtp-Source: AGHT+IGbYDSR1aneEBaaWRfneGWy3uPGaqNxDg0oPyEDexsQdOgx1q2Z1nza9eKKEQmTMqZE0suHSg==
-X-Received: by 2002:a05:600c:1e15:b0:439:9cbc:7753 with SMTP id 5b1f17b1804b1-439b03246d2mr140863025e9.10.1740477840041;
-        Tue, 25 Feb 2025 02:04:00 -0800 (PST)
-Received: from [192.168.1.100] ([37.167.173.6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390cd86cc6asm1769294f8f.35.2025.02.25.02.03.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Feb 2025 02:03:59 -0800 (PST)
-Message-ID: <48f339f5-09f8-4498-83f2-4e2d773c3e23@linaro.org>
-Date: Tue, 25 Feb 2025 11:03:57 +0100
+	s=arc-20240116; t=1740478013; c=relaxed/simple;
+	bh=BdXYIMubP68iO4yl2tcuwaKsQURZC7iC1Rei84h8/PY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mmpVhgB5HkprHGIdkoUZQnoTbjOIHb86p6EgDiu9woaXkmb64VEWw/Y+onaL9u6En3IbFi1MdubYJFGBaDcD7ROVCxl2U/MvYnMmjccgxI3qBbwtaT5l/MdX6fToAJZAFhbfoGeACJoVrGNnW2h1UmxzQ22fzqPf+EJ6lb+vU98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mL7oyq2O; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51P8dnNP013317;
+	Tue, 25 Feb 2025 10:06:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3eaFx6OR3vSlzAH+D+Vm5WEpKwhhMdM90BqPI5fV0kY=; b=mL7oyq2Ox96LAXZg
+	b2hN0qzx5F4h+zJ7TvDePRD+z04H3vy1DStOWRGvnkzWKAK557wKZx4YwTnopbwB
+	9hzBIH/PfzEM/8FNmOjzBkMED1jeTSIKFDA7v8PSewG998K9ffzcvu1A9pRmta91
+	SbmmGfht5kncrON9l3tyAtgSzGe6OKepHynpSly4genojRbOUW8L1JZqVcvXHc8T
+	ek82DGi56j9cUwvugULdlGJVo1PFHJjGZLu91TOilfPfud583x7vp33UrP5Hj6YI
+	pxgxpxPmnmtPGDuk6agoB1mPs7PP2SiMlbhN7RE5MyT5sM16yfBBao7l6BSlwDHn
+	g/f8NA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44y5wgrhus-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Feb 2025 10:06:23 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51PA6LlS009496
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Feb 2025 10:06:21 GMT
+Received: from [10.216.17.28] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 25 Feb
+ 2025 02:06:14 -0800
+Message-ID: <29809286-cc04-fbc4-60bd-460821c4bc72@quicinc.com>
+Date: Tue, 25 Feb 2025 15:36:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/4] media: platform: qcom/iris: add reset_controller &
- power_off_controller to vpu_ops
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250225-topic-sm8x50-iris-v10-v1-0-128ef05d9665@linaro.org>
- <20250225-topic-sm8x50-iris-v10-v1-2-128ef05d9665@linaro.org>
- <ityd34gfiyt6fvyuopnh3bi3edc5t2ubop4i72d54xyhhz3ixf@n6rnt5mwgw4b>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <ityd34gfiyt6fvyuopnh3bi3edc5t2ubop4i72d54xyhhz3ixf@n6rnt5mwgw4b>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v4 07/10] PCI: PCI: Add pcie_is_link_active() to determine
+ if the PCIe link is active
+Content-Language: en-US
+To: Lukas Wunner <lukas@wunner.de>,
+        Krishna Chaitanya Chundru
+	<krishna.chundru@oss.qualcomm.com>
+CC: Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi
+	<lpieralisi@kernel.org>,
+        Krzysztof Wilczy??ski <kw@linux.com>,
+        "Manivannan
+ Sadhasivam" <manivannan.sadhasivam@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        Jingoo Han
+	<jingoohan1@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, <quic_vbadigan@quicnic.com>,
+        <amitk@kernel.org>, <dmitry.baryshkov@linaro.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <jorge.ramirez@oss.qualcomm.com>
+References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
+ <20250225-qps615_v4_1-v4-7-e08633a7bdf8@oss.qualcomm.com>
+ <Z72TRBvpzizcgm9S@wunner.de>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <Z72TRBvpzizcgm9S@wunner.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Y_GkRtIcYlsQfTa9XnF0htPFgpJHWRAM
+X-Proofpoint-ORIG-GUID: Y_GkRtIcYlsQfTa9XnF0htPFgpJHWRAM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-25_03,2025-02-24_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 suspectscore=0 lowpriorityscore=0 bulkscore=0
+ clxscore=1011 adultscore=0 phishscore=0 mlxlogscore=999 spamscore=0
+ mlxscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502250070
 
-On 25/02/2025 11:02, Dmitry Baryshkov wrote:
-> On Tue, Feb 25, 2025 at 10:05:10AM +0100, Neil Armstrong wrote:
->> In order to support the SM8650 iris33 hardware, we need to provide specific
->> reset and constoller power off sequences via the vpu_ops callbacks.
->>
->> Add those callbacks, and use the current helpers for currently supported
->> platforms.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/media/platform/qcom/iris/iris_vpu2.c       |  2 ++
->>   drivers/media/platform/qcom/iris/iris_vpu3.c       |  2 ++
->>   drivers/media/platform/qcom/iris/iris_vpu_common.c | 14 ++++++++++----
->>   drivers/media/platform/qcom/iris/iris_vpu_common.h |  4 ++++
->>   4 files changed, 18 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/media/platform/qcom/iris/iris_vpu2.c b/drivers/media/platform/qcom/iris/iris_vpu2.c
->> index 8f502aed43ce2fa6a272a2ce14ff1ca54d3e63a2..093e2068ec35e902f6c7bb3a487a679f9eada39a 100644
->> --- a/drivers/media/platform/qcom/iris/iris_vpu2.c
->> +++ b/drivers/media/platform/qcom/iris/iris_vpu2.c
->> @@ -33,6 +33,8 @@ static u64 iris_vpu2_calc_freq(struct iris_inst *inst, size_t data_size)
->>   }
->>   
->>   const struct vpu_ops iris_vpu2_ops = {
->> +	.reset_controller = iris_vpu_reset_controller,
->>   	.power_off_hw = iris_vpu_power_off_hw,
->> +	.power_off_controller = iris_vpu_power_off_controller,
->>   	.calc_freq = iris_vpu2_calc_freq,
->>   };
->> diff --git a/drivers/media/platform/qcom/iris/iris_vpu3.c b/drivers/media/platform/qcom/iris/iris_vpu3.c
->> index b484638e6105a69319232f667ee7ae95e3853698..95f362633c95b101ecfda6480c4c0b73416bd00c 100644
->> --- a/drivers/media/platform/qcom/iris/iris_vpu3.c
->> +++ b/drivers/media/platform/qcom/iris/iris_vpu3.c
->> @@ -117,6 +117,8 @@ static u64 iris_vpu3_calculate_frequency(struct iris_inst *inst, size_t data_siz
->>   }
->>   
->>   const struct vpu_ops iris_vpu3_ops = {
->> +	.reset_controller = iris_vpu_reset_controller,
->>   	.power_off_hw = iris_vpu3_power_off_hardware,
->> +	.power_off_controller = iris_vpu_power_off_controller,
->>   	.calc_freq = iris_vpu3_calculate_frequency,
->>   };
->> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.c b/drivers/media/platform/qcom/iris/iris_vpu_common.c
->> index fe9896d66848cdcd8c67bd45bbf3b6ce4a01ab10..ec8b10d836d0993bcd722a2bafbb577b85f41fc9 100644
->> --- a/drivers/media/platform/qcom/iris/iris_vpu_common.c
->> +++ b/drivers/media/platform/qcom/iris/iris_vpu_common.c
->> @@ -211,7 +211,7 @@ int iris_vpu_prepare_pc(struct iris_core *core)
->>   	return -EAGAIN;
->>   }
->>   
->> -static int iris_vpu_power_off_controller(struct iris_core *core)
->> +int iris_vpu_power_off_controller(struct iris_core *core)
+
+
+On 2/25/2025 3:24 PM, Lukas Wunner wrote:
+> On Tue, Feb 25, 2025 at 03:04:04PM +0530, Krishna Chaitanya Chundru wrote:
+>> Introduce a common API to check if the PCIe link is active, replacing
+>> duplicate code in multiple locations.
+> [...]
+>> --- a/drivers/pci/hotplug/pciehp_hpc.c
+>> +++ b/drivers/pci/hotplug/pciehp_hpc.c
+>> @@ -234,18 +234,7 @@ static void pcie_write_cmd_nowait(struct controller *ctrl, u16 cmd, u16 mask)
+>>    */
+>>   int pciehp_check_link_active(struct controller *ctrl)
 >>   {
->>   	u32 val = 0;
->>   	int ret;
->> @@ -264,23 +264,29 @@ void iris_vpu_power_off(struct iris_core *core)
->>   {
->>   	dev_pm_opp_set_rate(core->dev, 0);
->>   	core->iris_platform_data->vpu_ops->power_off_hw(core);
->> -	iris_vpu_power_off_controller(core);
->> +	core->iris_platform_data->vpu_ops->power_off_controller(core);
->>   	iris_unset_icc_bw(core);
->>   
->>   	if (!iris_vpu_watchdog(core, core->intr_status))
->>   		disable_irq_nosync(core->irq);
+>> -	struct pci_dev *pdev = ctrl_dev(ctrl);
+>> -	u16 lnk_status;
+>> -	int ret;
+>> -
+>> -	ret = pcie_capability_read_word(pdev, PCI_EXP_LNKSTA, &lnk_status);
+>> -	if (ret == PCIBIOS_DEVICE_NOT_FOUND || PCI_POSSIBLE_ERROR(lnk_status))
+>> -		return -ENODEV;
+>> -
+>> -	ret = !!(lnk_status & PCI_EXP_LNKSTA_DLLLA);
+>> -	ctrl_dbg(ctrl, "%s: lnk_status = %x\n", __func__, lnk_status);
+>> -
+>> -	return ret;
+>> +	return pcie_is_link_active(ctrl_dev(ctrl));
 >>   }
->>   
->> -static int iris_vpu_power_on_controller(struct iris_core *core)
->> +int iris_vpu_reset_controller(struct iris_core *core)
 > 
-> If these functions are platform-specific, please rename them
-> accordingly, like iris_vpu2_3_foo() or just iris_vpu2_foo().
-
-They are not, this is the whole point.
-
-Neil
-
+> Please replace all call sites of pciehp_check_link_active() with a call
+> to the new function.
 > 
+> 
+ack
+>> --- a/drivers/pci/pci.c
+>> +++ b/drivers/pci/pci.c
+>> @@ -4923,8 +4922,7 @@ int pci_bridge_wait_for_secondary_bus(struct pci_dev *dev, char *reset_type)
+>>   		if (!dev->link_active_reporting)
+>>   			return -ENOTTY;
+>>   
+>> -		pcie_capability_read_word(dev, PCI_EXP_LNKSTA, &status);
+>> -		if (!(status & PCI_EXP_LNKSTA_DLLLA))
+>> +		if (pcie_is_link_active(dev))
+>>   			return -ENOTTY;
+> 
+> Missing negation.
+> 
+> 
+ack
+>> +/**
+>> + * pcie_is_link_active() - Checks if the link is active or not
+>> + * @pdev: PCI device to query
+>> + *
+>> + * Check whether the link is active or not.
+>> + *
+>> + * If the config read returns error then return -ENODEV.
+>> + */
+>> +int pcie_is_link_active(struct pci_dev *pdev)
+> 
+> Why not return bool?
+> 
+pciehp_check_link_active is expecting int to make sure this new function
+not disturbing the hotplug driver I added return type as int, I can 
+change it to bool if it fine with hotplug drivers.
+> I don't quite like the function name because in English the correct word
+> order is subject - predicate - object, i.e. pcie_link_is_active() or
+> even shorter, pcie_link_active().
+> 
+ack
+> 
+>> @@ -2094,6 +2095,10 @@ pci_alloc_irq_vectors(struct pci_dev *dev, unsigned int min_vecs,
 >>   {
->>   	u32 rst_tbl_size = core->iris_platform_data->clk_rst_tbl_size;
+>>   	return -ENOSPC;
+>>   }
 >> +
->> +	return reset_control_bulk_reset(rst_tbl_size, core->resets);
->> +}
+>> +static inline int pcie_is_link_active(struct pci_dev *dev)
+>> +{ return -ENODEV; }
 >> +
->> +static int iris_vpu_power_on_controller(struct iris_core *core)
->> +{
->>   	int ret;
->>   
->>   	ret = iris_enable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
->>   	if (ret)
->>   		return ret;
->>   
->> -	ret = reset_control_bulk_reset(rst_tbl_size, core->resets);
->> +	ret = core->iris_platform_data->vpu_ops->reset_controller(core);
->>   	if (ret)
->>   		goto err_disable_power;
->>   
->> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.h b/drivers/media/platform/qcom/iris/iris_vpu_common.h
->> index 63fa1fa5a4989e48aebdb6c7619c140000c0b44c..c948d8b5aee87ccf1fd53c5518a27294232d8fb8 100644
->> --- a/drivers/media/platform/qcom/iris/iris_vpu_common.h
->> +++ b/drivers/media/platform/qcom/iris/iris_vpu_common.h
->> @@ -12,7 +12,9 @@ extern const struct vpu_ops iris_vpu2_ops;
->>   extern const struct vpu_ops iris_vpu3_ops;
->>   
->>   struct vpu_ops {
->> +	int (*reset_controller)(struct iris_core *core);
->>   	void (*power_off_hw)(struct iris_core *core);
->> +	int (*power_off_controller)(struct iris_core *core);
->>   	u64 (*calc_freq)(struct iris_inst *inst, size_t data_size);
->>   };
->>   
->> @@ -21,7 +23,9 @@ void iris_vpu_raise_interrupt(struct iris_core *core);
->>   void iris_vpu_clear_interrupt(struct iris_core *core);
->>   int iris_vpu_watchdog(struct iris_core *core, u32 intr_status);
->>   int iris_vpu_prepare_pc(struct iris_core *core);
->> +int iris_vpu_reset_controller(struct iris_core *core);
->>   int iris_vpu_power_on(struct iris_core *core);
->> +int iris_vpu_power_off_controller(struct iris_core *core);
->>   void iris_vpu_power_off_hw(struct iris_core *core);
->>   void iris_vpu_power_off(struct iris_core *core);
->>   
->>
->> -- 
->> 2.34.1
->>
+>>   #endif /* CONFIG_PCI */
 > 
+> Is the empty inline really necessary?  What breaks if you leave it out?
+> 
+ack I will remove it.
 
+- Krishna Chaitanya.
+> Thanks,
+> 
+> Lukas
 
