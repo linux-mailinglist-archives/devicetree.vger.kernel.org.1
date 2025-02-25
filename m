@@ -1,191 +1,139 @@
-Return-Path: <devicetree+bounces-150796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52338A43907
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:15:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38125A43948
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:22:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A64417E3C0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:12:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55C4E441556
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:16:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801FC260A58;
-	Tue, 25 Feb 2025 09:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39AFC2661B3;
+	Tue, 25 Feb 2025 09:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FI0EFlj/"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="1xsRNF2J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C51A25E453
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 09:08:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 906DB265CDD;
+	Tue, 25 Feb 2025 09:15:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740474500; cv=none; b=FYRzU7pAW+b7ZOpJlNSpM5OxNakCM89Nt90/8rgCwEJklz06gtUeO+/H5RCeZxBkSXLvkwqdmFUmzP7dzLq5b6bmU/wMUgFRHc0XnjIoGvJvZ4A9niJ+DOuvMoAiao3faMlBWl/9dbIa4r2RdRiT4D5P2/JGxPZ2V3kxjc55DFo=
+	t=1740474924; cv=none; b=FM+aH3Jmr9Wc8NZH+IK1MUBSNQ06LMww7hnvVVQjZ17WyHZDdN0xsIiv+wJg67isva5MSm5A7MMQbPJJLIeXlUGDrhfbmr6B5tR9+jLU9AMruRunx1CVmamFA/I9vSNs9RR/AvZZPeQ1aGEoWtE8UO4NtdozgqXa0Xx7qVwoP9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740474500; c=relaxed/simple;
-	bh=Rt19i2+WPrjhMWw0L7ggO+RczbXHL+wWVPfQJj2MLi0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ehhaAJvdP0Zi4mJafAjBwqRLzcO4dPUlcXkFR4gPejZVODKjufkfyNfVPGrCKdVZWMoANbyKc3OSGkFAKqTXiEm+IjU1+zUwSCptnxIBlZGZ+JvslIipCfKLSgac1wUMN0qyImCZS7HhCx7uqECMhVU6NK4qUC8vsd3JKwdqrdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=FI0EFlj/; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740474496;
-	bh=Rt19i2+WPrjhMWw0L7ggO+RczbXHL+wWVPfQJj2MLi0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FI0EFlj/DR6juAC8nxHr1jZWYOEnevyDTD5na0IxQCrUVQ7qXDy1sFxoKOEn+WyMn
-	 QtB6pnmsMSFQM/eKLdZiruSvlyhgRhtaDen2iTW2HihNaE20nfMQy7ujX1aH0pbZKL
-	 lfBBCGNn6iq+ADOBciGLXU2jvCfrw5gziqG40xVBdF32OPaMH0omkx7WNGv83p0S3q
-	 BVPlKL72RwAZlHRoES1vdwXzxFQbbQEGlCgRaNFcUii60wQVwAm+SXJvsMs9MKvMh0
-	 0c/A8dmdqR5WC6nuvraTygQqIiu2TqSc6Y1I1HsdUt7iAj4PNp2O5aeN8td1M9vbjO
-	 1Ycmm3lHTWZCQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 741A517E0866;
-	Tue, 25 Feb 2025 10:08:16 +0100 (CET)
-Message-ID: <9ba03e42-71a3-4443-be16-7ba82f76fa40@collabora.com>
-Date: Tue, 25 Feb 2025 10:08:15 +0100
+	s=arc-20240116; t=1740474924; c=relaxed/simple;
+	bh=7WcjelV31lrY8G6I07VmlKtcD76/c/2s50z0eMD/3vo=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=QeJKV4UH8zl1TlLzbEiK/hHrlWgHmRA4MJVjDZQekAEvXyuMtcAG52Vom3f68TAHqpQfOi1FyZaqYHNorgMmOoKj0ll5yh7kPOqt7dwS++O6Fwmkyr3SfF3dCY4G6EQZdSBGUiVmJlGIu/OE/DuLCCrWH4NSYAr45sACkQ3+aRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=1xsRNF2J; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51P68E9B032103;
+	Tue, 25 Feb 2025 04:15:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=NdbmMSBSFj7Txm2ujfxK89J7NWZ
+	VgZ9A3lxLDEClkFY=; b=1xsRNF2JFLOLieWIgGvkjJkufSZQYPtlHo5l+RdEUNb
+	cKWIRSwwLIVTyw9alEKqLEqi2qC5XQCpEyuYeVgPUmrH9hMUjY+IZDjo3MuOjeRO
+	3cv/VM+A6pVj0I+PHj9qedrYkKXmiKAualalNW38McC6T71E7+TAPzkWpw1747Mx
+	jrrp/eHTZtN/0+mbYfvlvsbiOxkcb+PpJ1Lw61NieJN/uii3Axt9EhP0BhNKyumA
+	mbI25p0s7eMnL37ldbrhWc4uk47p0R/ezqhTKR3yURZGyhEriLEmBwxZMBYd8jbQ
+	GP/xJtb7jiwo5MpAUAdDWZnP4D5jDcadTCBktZcNwaA==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 44yccanu28-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Feb 2025 04:15:08 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 51P9F7x7003897
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 25 Feb 2025 04:15:07 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 25 Feb
+ 2025 04:15:07 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 25 Feb 2025 04:15:07 -0500
+Received: from ATORRENO-L02.ad.analog.com (ATORRENO-L02.ad.analog.com [10.116.45.25])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 51P9Eof8011564;
+	Tue, 25 Feb 2025 04:14:53 -0500
+From: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+Subject: [PATCH 0/2] Add support for ADP5055 triple buck regulator.
+Date: Tue, 25 Feb 2025 17:08:32 +0800
+Message-ID: <20250225-upstream-adp5055-v1-0-a5a7f8e46986@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] arm64: dts: airoha: en7581: Add more nodes to
- EN7581 SoC evaluation board
-To: Lorenzo Bianconi <lorenzo@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Christian Marangi <ansuelsmth@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20250221-en7581-dts-spi-pinctrl-v3-0-4719e2d01555@kernel.org>
- <20250221-en7581-dts-spi-pinctrl-v3-1-4719e2d01555@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250221-en7581-dts-spi-pinctrl-v3-1-4719e2d01555@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJCIvWcC/x2MQQ5AMBAAvyJ71qQ2VvAVcShd7EE1LSJp/F3jN
+ JnDTILIQThCXyQIfEuUw2WpygLmzbiVldjsgBpJI5K6fDwDm10Z60kTZU7cYINL19aQMx94ked
+ fDuP7flGHlwdiAAAA
+X-Change-ID: 20250225-upstream-adp5055-adbe6262f984
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Alexis
+ Czezar Torreno <alexisczezar.torreno@analog.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740474891; l=1217;
+ i=alexisczezar.torreno@analog.com; s=20250213; h=from:subject:message-id;
+ bh=7WcjelV31lrY8G6I07VmlKtcD76/c/2s50z0eMD/3vo=;
+ b=naQrGPODQ4Bge+/jRmNft5q8qlTsAtkBTUwXLov1NZGkOKIHuAkLYSrSGYjGCELSOEJsTn5xl
+ 1glTV3rSiR6DFnsXSgJCYXfRxIge85l4gZvNos6K9ztHvOwk4/Fzhr+
+X-Developer-Key: i=alexisczezar.torreno@analog.com; a=ed25519;
+ pk=XpXmJnRjnsKdDil6YpOlj9+44S+XYXVFnxvkbmaZ+10=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: F0JV4oo9XMbONpf_yyXvwkPgqzluIzCh
+X-Authority-Analysis: v=2.4 cv=SPa4VPvH c=1 sm=1 tr=0 ts=67bd8a1c cx=c_pps a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17 a=IkcTkHD0fZMA:10 a=T2h4t0Lz3GQA:10 a=gAnH3GRIAAAA:8 a=pX8K7AMcFWmkIJv9s54A:9 a=QEXdDO2ut3YA:10
+ a=oVHKYsEdi7-vN-J5QA_j:22
+X-Proofpoint-ORIG-GUID: F0JV4oo9XMbONpf_yyXvwkPgqzluIzCh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-25_03,2025-02-24_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=983
+ spamscore=0 impostorscore=0 clxscore=1011 bulkscore=0 priorityscore=1501
+ lowpriorityscore=0 adultscore=0 malwarescore=0 suspectscore=0 mlxscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2502250063
 
-Il 21/02/25 09:01, Lorenzo Bianconi ha scritto:
-> Introduce the following nodes to EN7581 SoC and EN7581 evaluation board:
-> - rng controller
-> - pinctrl
-> - i2c controllers
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+Introduce a regulator driver support for ADP5055. The device combines 3
+high performance buck regulators in a 43-termminal land grid array
+package. The device enables direct connection to high input voltages up
+to 18V with no preregulator. Channel 1 and 2 deliver a programmable
+output current of 3.5A or 7.5A or provide a single output with up to 14A
+in parallel operation. Channel 3 has a programmable output current of
+1.5A or 3A.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+---
+Alexis Czezar Torreno (2):
+      dt-bindings: regulator: add adi,adp5055-regulator
+      regulator: adp5055: Add driver for adp5055
 
-> ---
->   arch/arm64/boot/dts/airoha/en7581-evb.dts |  4 +++
->   arch/arm64/boot/dts/airoha/en7581.dtsi    | 60 +++++++++++++++++++++++++++++++
->   2 files changed, 64 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/airoha/en7581-evb.dts b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> index a4cdcadd1ae547cfc79553208f991767602705fd..d53b72d18242e3cee8b37c7b1b719d662fd6db8d 100644
-> --- a/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> +++ b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> @@ -64,3 +64,7 @@ reserved_bmt@7e00000 {
->   		};
->   	};
->   };
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
-> index dbd296b049f99721186ab435d6e6b8dff73b73af..9a419796594d3a99e1187dcca622469bf5a888c3 100644
-> --- a/arch/arm64/boot/dts/airoha/en7581.dtsi
-> +++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-> @@ -3,6 +3,7 @@
->   #include <dt-bindings/interrupt-controller/irq.h>
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/clock/en7523-clk.h>
-> +#include <dt-bindings/reset/airoha,en7581-reset.h>
->   
->   / {
->   	interrupt-parent = <&gic>;
-> @@ -123,6 +124,12 @@ timer {
->   			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
->   	};
->   
-> +	clk20m: clock-20000000 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <20000000>;
-> +	};
-> +
->   	soc {
->   		compatible = "simple-bus";
->   		#address-cells = <2>;
-> @@ -181,5 +188,58 @@ uart1: serial@1fbf0000 {
->   			interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
->   			clock-frequency = <1843200>;
->   		};
-> +
-> +		rng@1faa1000 {
-> +			compatible = "airoha,en7581-trng";
-> +			reg = <0x0 0x1faa1000 0x0 0xc04>;
-> +			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		system-controller@1fbf0200 {
-> +			compatible = "airoha,en7581-gpio-sysctl", "syscon",
-> +				     "simple-mfd";
-> +			reg = <0x0 0x1fbf0200 0x0 0xc0>;
-> +
-> +			en7581_pinctrl: pinctrl {
-> +				compatible = "airoha,en7581-pinctrl";
-> +
-> +				interrupt-parent = <&gic>;
-> +				interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +			};
-> +		};
-> +
-> +		i2c0: i2c@1fbf8000 {
-> +			compatible = "mediatek,mt7621-i2c";
-> +			reg = <0x0 0x1fbf8000 0x0 0x100>;
-> +
-> +			resets = <&scuclk EN7581_I2C2_RST>;
-> +
-> +			clocks = <&clk20m>;
-> +			clock-frequency = <100000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c1: i2c@1fbf8100 {
-> +			compatible = "mediatek,mt7621-i2c";
-> +			reg = <0x0 0x1fbf8100 0x0 0x100>;
-> +
-> +			resets = <&scuclk EN7581_I2C_MASTER_RST>;
-> +
-> +			clocks = <&clk20m>;
-> +			clock-frequency = <100000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			status = "disabled";
-> +		};
->   	};
->   };
-> 
+ .../bindings/regulator/adi,adp5055-regulator.yaml  | 214 +++++++++
+ MAINTAINERS                                        |   7 +
+ drivers/regulator/Kconfig                          |  11 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/adp5055-regulator.c              | 490 +++++++++++++++++++++
+ 5 files changed, 723 insertions(+)
+---
+base-commit: 7fef39f0e82ff02282797d9ae2589b39b16ab614
+change-id: 20250225-upstream-adp5055-adbe6262f984
 
-
+Best regards,
+-- 
+Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
 
 
