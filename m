@@ -1,69 +1,50 @@
-Return-Path: <devicetree+bounces-151090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F4B0A445F9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:26:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38FCDA443E3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:06:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6645216D855
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:24:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2D447A972B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:04:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84908192D83;
-	Tue, 25 Feb 2025 16:23:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38C5726B0AB;
+	Tue, 25 Feb 2025 15:05:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="VAucme6b"
+	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="ESMyZAlv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from pv50p00im-ztdg10011301.me.com (pv50p00im-ztdg10011301.me.com [17.58.6.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4F0C18DB2C;
-	Tue, 25 Feb 2025 16:23:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44F9268692
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 15:05:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.40
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740500620; cv=none; b=k7ykf04GdYHAUlIuLkQ6NXMhrV49m6dqjsCboRcl38vydwBbgaNJrjyR4tATVQDF31/R1xVpLvkcjADg7IwU6VmCFpvwxC9sPW7UkKP7fCX6KpPnRK2IhKGGaIeOMiuzDOyOjituTeEjtSpsQTP1tldCXQWbpVOIm34NeQc7ISY=
+	t=1740495906; cv=none; b=Acr4pGduA93zp9e+/qX51F+kE2WZ464DiWT0wT2zOmsPdzK7SpkTuJ3ZFL60UxsehQfF0QkbtAG+YoqEBNCBGBhvjciwzFxJJjG5ZZqJyZvfo4QCXXf7PVfhWA4+L2XghUr15FLbdOpVYmXwbRqe7wraW83duYEi6T8zSnfbUd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740500620; c=relaxed/simple;
-	bh=5araWQ0s2WBnyVth0FZ5AloNSO2WyifLLBTHMeBvnYw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SbcEtviJdCgzca2m+y7crtq3Zm05B+bM1SF3BoK4TwvX+OL+jahy81WDgeynzH2WRmijtz/Y9JbToN/+PWxNMgJWH7R86ADZbHYNpZK6iF/x5YMF7vkZDyyT2JAVrVoE6fby9PbM5tiS3F14mTv5TFltgnfgouroPfpJOb3jFw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=VAucme6b; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51PF69IC022886;
-	Tue, 25 Feb 2025 17:23:27 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	PXz/daQoPl9vRa9N4mM+seFELokRLIOzCneeJp1maXM=; b=VAucme6bAbNWdggq
-	b0PvGfNYPnsbc2ydRLnri3S16Bo1Fx9tWERsEoZ49Fd+yVHacE22cDmcv8tUCtRd
-	AxXho4yG7VSaMv84JB5yspb3Pf+ErNOL7hMkA20VnqEwGtHf5Xq6Wz5oFM/UhO8Z
-	iCCNX27M6wR83ph58WaV54kbx5cFN4aIC7EG350RuuGX9ksPpAoRISe2R4CBbOlx
-	GJzs66XcVVsuvOn9pnlKrKms4FLsy3r7tIWhYh0UloJqermZbkGZ2ExwJyEH3jCy
-	jPOf5nOPUjlYZMEtKTFziwd/BDXkyMhbpfK8H7TI7U/BIzfbzK2HAHU4Imgz6j4F
-	NucuTg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4512sp4kbf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Feb 2025 17:23:27 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 0290540074;
-	Tue, 25 Feb 2025 17:22:19 +0100 (CET)
-Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EBEE141878C;
-	Tue, 25 Feb 2025 15:58:48 +0100 (CET)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE4.st.com
- (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 25 Feb
- 2025 15:58:48 +0100
-Received: from [10.48.86.222] (10.48.86.222) by SAFDAG1NODE1.st.com
- (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 25 Feb
- 2025 15:58:47 +0100
-Message-ID: <4ffc3fe3-78ab-43b2-b0d5-8f9cb545f9c5@foss.st.com>
-Date: Tue, 25 Feb 2025 15:58:47 +0100
+	s=arc-20240116; t=1740495906; c=relaxed/simple;
+	bh=OqIUwNrI2NRVYapWjZN4ov2VJL8MMbFqYHRE3TL8lps=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KSEFodt98BGm0dnl0dUvMcgfnOqSYE6oBmWu0Ikq8/JuUMuTXXbfI6o0m77gIjDVuO/LQcP1QRbQHh2bwvxNoGe+GW6meqt3jmnOzJyswnn3Bb5TCOsjk9HsmhZpW6kngRZ+luYTydSrzGCtOp/clkarVTO1QwHdwchv1/h2PZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=ESMyZAlv; arc=none smtp.client-ip=17.58.6.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
+	s=1a1hai; bh=q87VqXrF2/CmhKNXioWRVSBysK57pH279yUQysqPB0k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:x-icloud-hme;
+	b=ESMyZAlvgvWfdOYJZRFBB97U30piSmDiH0/KmQJ0XSHfol0Xb1WzIdOEjTP7eggeX
+	 47DDRfGAtpIe97KSZgtbUr/5IziZx3MItS22LCIcbLptFq8PPNKTn9ZS5xrifGhHh7
+	 GbN+R4cXAlRItzoPoUjfR/Zf9QVmQN/kY5xLgm38ySpVLWtRaqnRCCJAxutThHOxTv
+	 zHyJJ39O3qGxGskuGj3kWCDgXMxlE3znp92g6AWv+gBbZ7zLe5b0FZAnSTfoe0ilKk
+	 GXKnqzh6ISHo25oz/1qJI7lsJ3AV6GdOVYeuFeRUqT+q1SRzvAgEJMR6yU4oYPs2be
+	 YrybiI1z9Lj5g==
+Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
+	by pv50p00im-ztdg10011301.me.com (Postfix) with ESMTPSA id EC8DE1804BF;
+	Tue, 25 Feb 2025 15:04:59 +0000 (UTC)
+Message-ID: <e6faab90-b4f3-4c73-b486-2e44d15d22a2@icloud.com>
+Date: Tue, 25 Feb 2025 23:04:55 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,70 +52,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/8] counter: stm32-lptimer-cnt: add support for stm32mp25
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <lee@kernel.org>, <ukleinek@kernel.org>, <alexandre.torgue@foss.st.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <wbg@kernel.org>, <jic23@kernel.org>, <daniel.lezcano@linaro.org>,
-        <tglx@linutronix.de>, <catalin.marinas@arm.com>, <will@kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <olivier.moysan@foss.st.com>
-References: <20250224180150.3689638-1-fabrice.gasnier@foss.st.com>
- <20250224180150.3689638-7-fabrice.gasnier@foss.st.com>
- <20250225-pelican-of-pleasurable-might-e9a7e8@krzk-bin>
+Subject: Re: [PATCH 3/5] of: Correct property name comparison in
+ __of_add_property()
+To: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
+References: <20250224-of_bugfix-v1-0-03640ae8c3a6@quicinc.com>
+ <20250224-of_bugfix-v1-3-03640ae8c3a6@quicinc.com>
+ <20250225143844.GA2279028-robh@kernel.org>
 Content-Language: en-US
-From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-In-Reply-To: <20250225-pelican-of-pleasurable-might-e9a7e8@krzk-bin>
-Content-Type: text/plain; charset="UTF-8"
+From: Zijun Hu <zijun_hu@icloud.com>
+In-Reply-To: <20250225143844.GA2279028-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SAFDAG1NODE1.st.com
- (10.75.90.17)
+X-Proofpoint-GUID: --H0-2Ohtd1z-A1QUBh5rO5UZOF2IauI
+X-Proofpoint-ORIG-GUID: --H0-2Ohtd1z-A1QUBh5rO5UZOF2IauI
 X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-25_05,2025-02-25_03,2024-11-22_01
+ engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-25_04,2025-02-25_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=628 malwarescore=0
+ suspectscore=0 mlxscore=0 spamscore=0 phishscore=0 clxscore=1015
+ adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2502250101
 
-On 2/25/25 13:02, Krzysztof Kozlowski wrote:
-> On Mon, Feb 24, 2025 at 07:01:48PM +0100, Fabrice Gasnier wrote:
->> Add support for STM32MP25 SoC. Use newly introduced compatible to handle
->> this new HW variant, even if no major change is expected on the counter
->> driver.
+On 2025/2/25 22:38, Rob Herring wrote:
+> On Mon, Feb 24, 2025 at 10:27:59PM +0800, Zijun Hu wrote:
+>> From: Zijun Hu <quic_zijuhu@quicinc.com>
 >>
->> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
->> ---
->>  drivers/counter/stm32-lptimer-cnt.c | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/counter/stm32-lptimer-cnt.c b/drivers/counter/stm32-lptimer-cnt.c
->> index b249c8647639..a5dce017c37b 100644
->> --- a/drivers/counter/stm32-lptimer-cnt.c
->> +++ b/drivers/counter/stm32-lptimer-cnt.c
->> @@ -508,6 +508,7 @@ static SIMPLE_DEV_PM_OPS(stm32_lptim_cnt_pm_ops, stm32_lptim_cnt_suspend,
->>  
->>  static const struct of_device_id stm32_lptim_cnt_of_match[] = {
->>  	{ .compatible = "st,stm32-lptimer-counter", },
->> +	{ .compatible = "st,stm32mp25-lptimer-counter", },
-> 
-> So fully compatible? Why this change then?
+>> __of_add_property() compares property name by strcmp(), and that is
+>> improper for SPARC which wants strcasecmp().
+> Except that 'name' is the nodename (usually, with a few rare 
+> exceptions). Sparc node names are case sensitive, so strcmp was correct. 
 
-Hi Krzysztof,
+Here, it is property's name and NOT node's name.
 
-I should have mentioned it in the commit message:
+arch/sparc/include/asm/prom.h:
 
-Currently, same feature list as on STM32MP1x is supported.
-New capture input stage is now available in the hardware. It's not added
-yet to the driver.
+#define of_compat_cmp(s1, s2, l) strncmp((s1), (s2), (l))
+#define of_prop_cmp(s1, s2)	strcasecmp((s1), (s2)) //SPARC HERE
+#define of_node_cmp(s1, s2)	strcmp((s1), (s2))
 
-The Low Power Timer (LPTIM) hardware isn't fully backward compatible,
-hence add a new compatible to properly support it.
 
-Best regards,
-Fabrice
+include/linux/of.h:
+/* Default string compare functions, Allow arch asm/prom.h to override */
+#if !defined(of_compat_cmp)
+#define of_compat_cmp(s1, s2, l) strcasecmp((s1), (s2))
+#define of_prop_cmp(s1, s2)	strcmp((s1), (s2))      // others HERE
+#define of_node_cmp(s1, s2)	strcasecmp((s1), (s2))
+#endif
 
-> 
-> Best regards,
-> Krzysztof
-> 
+actually, later __of_update_property() and __of_find_property() use
+of_prop_cmp() instead of strcmp() to compare property name.
+
+perhaps, compatible and node name also have similar issues in current
+OF codes.
+
 
