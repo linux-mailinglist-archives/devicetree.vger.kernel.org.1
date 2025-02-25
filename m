@@ -1,118 +1,142 @@
-Return-Path: <devicetree+bounces-150986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A034BA44128
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:45:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC3CAA4411A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:42:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 324D03B1985
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:42:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19A9118980D5
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:40:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6561C269837;
-	Tue, 25 Feb 2025 13:43:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B24C3269831;
+	Tue, 25 Feb 2025 13:40:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gPVryRjn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gr2KeRKs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9676310A1F;
-	Tue, 25 Feb 2025 13:43:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 380DE25EF8A;
+	Tue, 25 Feb 2025 13:40:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740490984; cv=none; b=c5M50qyPLBzS+6X8NWYyCpYW/RQYTXMvZzzBs1MoG0ov3GF+1lCEMe0Ng1M8hBoTaL+vu3i7WEEHlS4ci0+Wd3+Qr4DVo8AgPyM98TPZkZZJ9Ho3Bsfyi137qhh1qzvVBZXN3qS9xBVFlyty9KyQpBSR1954wcRsEvkjP7lf1GY=
+	t=1740490824; cv=none; b=OpUnYkcCwYfeiMST7mr0AAwwFKaNKvaF0M+qVHxYJaEWk9d0r041ueGDELbaznRj3U1JYMgKl2wSh9PBaYV1u/MpngLa7goBs1g08lG+ntsa8txhrTsw27K7w8ayxE5wV3TxaBslb4bB89k8r0BOuTbFKebs1YIIy7CCjrQk9do=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740490984; c=relaxed/simple;
-	bh=OVlSr9TTVKbfm0Bm43NuK4bn/qbhZ1XT6FUhxrm7yfM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DxNzLtdO73XUHKTTamM+iXwc0O+CuYiPS5wxUFmUJNyAZkjxjgEqt+Ze1wcLb/p5Q3flXDT3EDC4otDbRpDkt7S3YAJD9owwW5gtLyp9qwjSLxatvsye3zHcq8bONB4dZi9qlAqZkH0IuRu6IEIK/IQmoP1lJRoNojEwZFMjyeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gPVryRjn; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740490982; x=1772026982;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=OVlSr9TTVKbfm0Bm43NuK4bn/qbhZ1XT6FUhxrm7yfM=;
-  b=gPVryRjnCHZ2JB8CWb9fW/8uqexcqX/lgKhJRhjE/nPSBOIYqWyT1nhV
-   xt0JXbYgr2ZkGGvFJPjtp8smMU/28bqqQ2kDx5jyJMvWQYx/CmzjM9uhR
-   Qb4NR5zDtxKmLB3o4rJpZeIaFghKsscPKRD7YrK1t8rWZCLlLlOVYMYd0
-   hVEv4mR7Z6gvJfFX6kEkWG6+04PFCehWoDFO8fyebDF95qeQVvDkQ3r2Y
-   fV+XjY70uYSrUNeXPgQ/qq7CJC0WSSAOf6Ief70c1Px0DJXfQ9Z3ZJbru
-   NqLq6knqrfvm2G4MKJoyEzmKayqEacTeloSXTb6V9X+5MDPuc8+5Tgaa4
-   Q==;
-X-CSE-ConnectionGUID: lO1gEWivQXK6RfciHnlhTw==
-X-CSE-MsgGUID: zTunTWbqRP6OYDCzeiY1sQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="40481740"
-X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; 
-   d="scan'208";a="40481740"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2025 05:43:01 -0800
-X-CSE-ConnectionGUID: CArEIRulTeSH62qTCm6yDA==
-X-CSE-MsgGUID: D2wzeHMyQbuik53TiYByuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; 
-   d="scan'208";a="116409321"
-Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
-  by fmviesa007.fm.intel.com with ESMTP; 25 Feb 2025 05:42:59 -0800
-From: niravkumar.l.rabara@intel.com
-To: Dinh Nguyen <dinguyen@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	niravkumar.l.rabara@intel.com,
-	nirav.rabara@altera.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH RESEND v2] arm64: dts: socfpga: agilex: Add dma channel id for spi
-Date: Tue, 25 Feb 2025 21:39:19 +0800
-Message-Id: <20250225133919.4128252-1-niravkumar.l.rabara@intel.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1740490824; c=relaxed/simple;
+	bh=ZHfwPlIcEqwwyokGZO5UWjLSpzt2Pib8HNJGFAPJi3w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PJl6hefw3ufbAB7oj5end05MdhcTy0dQENBNUUIZQen9eyOSbKbWCoh5BlIPFzSwe09hxtsdNQEUG6jSjmNrsEhteB4Ea+R+Zg0feAEiRWoZkxIY636gKzfRQkla/C/BQVdBElnmAy/p9WXrVgJbmT7Q7ae7DsJSAcVFiJG2cv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gr2KeRKs; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-220c92c857aso94659335ad.0;
+        Tue, 25 Feb 2025 05:40:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740490822; x=1741095622; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=btIzpaiXBm39xMpzgFyr6PPx6n79OgifTZ30SVyZSrU=;
+        b=gr2KeRKspfEAm9ZC9v0SaxGrUAibKYMYD4TdjYbIBtZ4h0oIBT3qLvKvbFd+FgY9KQ
+         yaex0aNCSYKV2KE1NHTf/ITW5by8g0ggTY6GbBb3/V2AL6O5+v3TW04TcwRWAb8IAPzN
+         fE9toXEsl6lXarLtpe2slrerEh/OXt9+MK/sIQeFpt+nqEAabmrJDSEvVofEOUVrLwTQ
+         dHfMKqDh1inD+t/l1iUEH95XW+tUgEFKy9t55V2wUgJbzeewvVvHUroFY+GucgzhgxbA
+         Ny/xuiY1oF4cyOH58wPIEXE3xF0GeE+ksKCkwWaoyDM/+kP6RrSx2BNvaGiuqd6l45/C
+         rzBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740490822; x=1741095622;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=btIzpaiXBm39xMpzgFyr6PPx6n79OgifTZ30SVyZSrU=;
+        b=Wp/RnX44uH4Er75gPQnVBIoI8fYuFhDCA2XIHg3nULbTcNPPPpt29TucIILL1jo3oS
+         d8FAQ5Z6UyyW0KGGzoL+FYQKWd3vFG0ZDS0tvNHkFzkYWtQO3hK7avmFb5F8SYT7OLvs
+         emexeJ9ETiHBvNgGLOFtpx15BX4SSrZfhJrSOMIAKCCEd4TNsusK5838wh62PqH/Ew0c
+         7oslPzueX6hONtwXHxzC+pOL6vhVA1OW9WnZBrxk6WEIr/kv/NnDvCV40na2OS1b3T0q
+         LhyXKbyITnEl9Xr3SsEaTeSDnDj53J/82LCXcUgqpn23fhAcrcgyZSIkvEbf911he3/h
+         YB5A==
+X-Forwarded-Encrypted: i=1; AJvYcCUktf77P8IIR+4TS6RhriIwCIMWHTDZ7aJFFtn1WWfWZtG/Q8yGnrofC+WtUIfuR6nprGYGrTSHn+G7@vger.kernel.org, AJvYcCWVoZAQtZHENVVmTRE+oJWhuGPOiiXpHEhNA4EFVUcaE/47d5SIjW3dRYt1mdynrtNSjhFIc4RsIKB/qp4sq3akNA==@vger.kernel.org, AJvYcCWtxSFP6dc+9pjWLrqjLrGFWRgRHz6Y+hJQKNX3lID8Hm0c8RPID4++wBFuL2DzdW7h7GXMQz4mcR7ySobP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTUs9mBqXjn40R+9bCvJGrzlGvPqDIB6aYqr/zOMxzTykMDChD
+	pVbVxSJUu4aFU4geztwQ9mEHU+oHdyi1o/QJ/UBtY3YxO9Q2UCc4PtOA4WGOD3EkdIgpa1er5Qa
+	5ca6egYwiotsIzYo2VO1wJbBxLhU=
+X-Gm-Gg: ASbGnct/KsFrMkHe9Vr+9Le0b/8MZ3oT4WQYQUq63ONic2eWCrnD4017fdUHDC00ufZ
+	zr4CXhc7EWW2TsDNeyKmeENfWjH1VAPobFY55F1fzrZ2wpyMuCXlQ4fXzDkrWO3I3msyDdf0NKs
+	kB/hPx
+X-Google-Smtp-Source: AGHT+IEqvx+vLUoWU+bH7g7MTRR7upTwyq8plc/LIRpW15G1pS1TD1Y8exEPj6fQZzzsjKBHvHSHg/l/PmukuoidDeo=
+X-Received: by 2002:a17:902:d4cf:b0:21f:6546:9adc with SMTP id
+ d9443c01a7336-2218c3f4333mr351935475ad.13.1740490822321; Tue, 25 Feb 2025
+ 05:40:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250225102005.408773-1-daniel.baluta@nxp.com>
+ <20250225102005.408773-3-daniel.baluta@nxp.com> <78e60d723c27b7fa0f03bc6a74f6ad37d6508734.camel@pengutronix.de>
+In-Reply-To: <78e60d723c27b7fa0f03bc6a74f6ad37d6508734.camel@pengutronix.de>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Tue, 25 Feb 2025 15:41:58 +0200
+X-Gm-Features: AWEUYZkKeH8Ee9X0dKf1ks0eIJRo2-c4LR6sVRs9-5VD4M6vPScOpUqA3j5lyUI
+Message-ID: <CAEnQRZBL+r2-CRDszK54SD_8E9=1QRKRj3_YDHsM7YetKMcs_w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/8] dt-bindings: dsp: fsl,dsp: Add resets property
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>, robh@kernel.org, krzk+dt@kernel.org, 
+	shawnguo@kernel.org, mathieu.poirier@linaro.org, conor+dt@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-remoteproc@vger.kernel.org, 
+	andersson@kernel.org, Frank.Li@nxp.com, peng.fan@nxp.com, 
+	laurentiu.mihalcea@nxp.com, iuliana.prodan@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+Hello Philipp,
 
-Add DMA channel ids for spi0 and spi1 nodes in device tree.
+Thanks for your comments!
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
----
- arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+> The DAP core reset is mentioned in the commit message. Why is it
+> missing here? After reading the discussion in [1], I'd expect both the
+> stall and the (core) reset signal to be documented, something like:
 
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-index 1235ba5a9865..616259447c6f 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-@@ -457,6 +457,8 @@ spi0: spi@ffda4000 {
- 			reg-io-width = <4>;
- 			num-cs = <4>;
- 			clocks = <&clkmgr AGILEX_L4_MAIN_CLK>;
-+			dmas = <&pdma 16>, <&pdma 17>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
-@@ -471,6 +473,8 @@ spi1: spi@ffda5000 {
- 			reg-io-width = <4>;
- 			num-cs = <4>;
- 			clocks = <&clkmgr AGILEX_L4_MAIN_CLK>;
-+			dmas = <&pdma 20>, <&pdma 21>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
--- 
-2.25.1
+There is no reset controller driver for DAP area yet. We manipulate
+the bits directly by
+remapping the DAP address space inside remoteproc driver.
 
+See for example: drivers/remoteproc/imx_dsp_rproc.c
+
+/* Reset function for DSP on i.MX8MP */
+static int imx8mp_dsp_reset(struct imx_dsp_rproc *priv)
+{
+=C2=BB       void __iomem *dap =3D ioremap_wc(IMX8M_DAP_DEBUG,
+IMX8M_DAP_DEBUG_SIZE);
+=C2=BB       int pwrctl;
+
+=C2=BB       /* Put DSP into reset and stall */
+=C2=BB       pwrctl =3D readl(dap + IMX8M_DAP_PWRCTL);
+=C2=BB       pwrctl |=3D IMX8M_PWRCTL_CORERESET;
+=C2=BB       writel(pwrctl, dap + IMX8M_DAP_PWRCTL);
+
+
+If we agree that this is the right way to go, the next step would be
+to create a new reset
+controller driver for DAP area.
+
+I want to keep this as a follow up patch in order to not compilate
+this patch series even more.
+
+<snip>
+
+> >        memory-region =3D <&dsp_vdev0buffer>, <&dsp_vdev0vring0>,
+> >                        <&dsp_vdev0vring1>, <&dsp_reserved>;
+> > -      fsl,dsp-ctrl =3D <&audio_blk_ctrl>;
+>
+> Is there nothing else in this range that will have to be controlled by
+> the DSP driver in the future, such as the IMPWIRE register or the
+> XOCDMODE[OCDHALTONRESET] bit?
+
+We are internally running SOF for couple of years now and we didn't
+need any of these bits.
 
