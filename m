@@ -1,164 +1,128 @@
-Return-Path: <devicetree+bounces-150717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CD8FA43648
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 08:41:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E754A437E6
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:44:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6BB81775B4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 07:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8348E162E8F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 08:44:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 958681DB15B;
-	Tue, 25 Feb 2025 07:40:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DyCwUZXi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03AF9260A43;
+	Tue, 25 Feb 2025 08:43:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out28-221.mail.aliyun.com (out28-221.mail.aliyun.com [115.124.28.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 666382571DA;
-	Tue, 25 Feb 2025 07:40:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E3A25A326;
+	Tue, 25 Feb 2025 08:43:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740469257; cv=none; b=q4GAjwJtBHs9AGqSTbtAXoXptCDwOPMRexeOD8zroKrX5dF6GD09k9sV0JTif3m999rq3I9w1ku4fwln8cdM+PCsrUU+k4MIlOdKdRR4KVm+OuLwDghRzfnxn+gHdC0A1ci/qVohwL1hWfaaqE9EHkHRMD8BSFVRq5TjOM4WdnM=
+	t=1740473034; cv=none; b=Es23f16/ZZkszP0qqpteGjsiiIqFZSRfnIkM5zGrlRSfdXnT8gTd8qYhKhlDtYII0FhLhbXpN8ND+0sEytr0IdMJVRHjbC4nrQcLGcA7BHKtQK8szIK+TWr5pLbygVkTjIHzYMqJgZwMxVIhF7BdxjmwKJJIwKvRJFbSQVskeac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740469257; c=relaxed/simple;
-	bh=ieVX5d6YbG4CbbEuq39MSmzMjPRvSdy5tV/uQ7x4Blc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a1iDM4cQEFv5ByYp0DowzjY3VQKIVJvaVRXl7DHslX0dO7X3N5Rknic1MYNZbIMlqpcSfV/c2EJooMqb5MhrYoPV/oEGSe7ozvRtPdhGt71suK/khsnhUld5Ewa6/QcDlJ7dJwJfp7sTA3WNQ9qWoe1gMNF5ZBBExDn65Mb9Z9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DyCwUZXi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E466FC4CEDD;
-	Tue, 25 Feb 2025 07:40:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740469256;
-	bh=ieVX5d6YbG4CbbEuq39MSmzMjPRvSdy5tV/uQ7x4Blc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DyCwUZXionE7MxaCDSn4U72FlesRhQrFrGpuMkiOxiKqybMwty65HMnnUQtV0dWsq
-	 x7yf1ePenepDvJ7E87xmvqClkzk8+fAfDEKxnIAi7R5KdEWrq/HbBGK6/m824N9Aac
-	 l/wqdDYxYnTxZuXavRvIjBWLEcQoGK0tFSLRdgKP4cC/B9wTs4vNJBGhVFg/YUZjBa
-	 DyGpLBRzZb6r41IoQvdNrSFndL/1MSZxBxXbqTMC8G/XX8sPECLY2vNOeYn9agTBnv
-	 XprvoyMTyo3iA3MRoUHy8tQHkZD1ybG+SlCOHiI+8kBb9UqYcJF8jATpbmYw4ARQPa
-	 aHoMQW26rsx9w==
-Date: Tue, 25 Feb 2025 09:40:37 +0200
-From: Mike Rapoport <rppt@kernel.org>
-To: Wei Yang <richard.weiyang@gmail.com>
-Cc: linux-kernel@vger.kernel.org, Alexander Graf <graf@amazon.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Andy Lutomirski <luto@kernel.org>,
-	Anthony Yznaga <anthony.yznaga@oracle.com>,
-	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Eric Biederman <ebiederm@xmission.com>,
-	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Paolo Bonzini <pbonzini@redhat.com>,
-	Pasha Tatashin <pasha.tatashin@soleen.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Pratyush Yadav <ptyadav@amazon.de>,
-	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Tom Lendacky <thomas.lendacky@amd.com>,
-	Usama Arif <usama.arif@bytedance.com>,
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v4 01/14] mm/mm_init: rename init_reserved_page to
- init_deferred_page
-Message-ID: <Z71z9fO6tE5Px8rT@kernel.org>
-References: <20250206132754.2596694-1-rppt@kernel.org>
- <20250206132754.2596694-2-rppt@kernel.org>
- <20250218145904.x57chhz3whvckzu3@master>
- <Z7WEktyNoCPylytL@kernel.org>
- <20250220083601.4p6ehmfhyvs5q5io@master>
+	s=arc-20240116; t=1740473034; c=relaxed/simple;
+	bh=8yUlIoEzbCjT7IopLPQVynw1cUw5sKDknmbbjhGd4PI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=klTqIm+xJNFzAI0Ty2fhNpVU/3hG0wwMPUzktmmhKiBStTz9/8Nve/ewBkfLw7DYCjQD/h3i1xbQGuFxWNOrw5HxTR1DfSN+CO6xDUuPC92HeV68d4iPYdHRTQEU8apvqhWeg5etKvHpi+PrVavi4LVLWD6J2c9T6bGy4a/X53g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=115.124.28.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.bcH-6Kr_1740469334 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Tue, 25 Feb 2025 15:42:20 +0800
+From: wangweidong.a@awinic.com
+To: krzk@kernel.org
+Cc: broonie@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	ivprusov@salutedevices.com,
+	jack.yu@realtek.com,
+	krzk+dt@kernel.org,
+	lgirdwood@gmail.com,
+	linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	nuno.sa@analog.com,
+	paulha@opensource.cirrus.com,
+	perex@perex.cz,
+	quic_pkumpatl@quicinc.com,
+	rf@opensource.cirrus.com,
+	robh@kernel.org,
+	tiwai@suse.com,
+	wangweidong.a@awinic.com,
+	yijiangtao@awinic.com,
+	zhoubinbin@loongson.cn
+Subject: Re: [PATCH V1 2/2] ASoC: codecs: Add aw88166 amplifier driver
+Date: Tue, 25 Feb 2025 15:42:14 +0800
+Message-ID: <20250225074214.29902-1-wangweidong.a@awinic.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20250223-vigilant-cooperative-snake-2d810b@krzk-bin>
+References: <20250223-vigilant-cooperative-snake-2d810b@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250220083601.4p6ehmfhyvs5q5io@master>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Feb 20, 2025 at 08:36:01AM +0000, Wei Yang wrote:
-> On Wed, Feb 19, 2025 at 09:13:22AM +0200, Mike Rapoport wrote:
-> >Hi,
-> >
-> >On Tue, Feb 18, 2025 at 02:59:04PM +0000, Wei Yang wrote:
-> >> On Thu, Feb 06, 2025 at 03:27:41PM +0200, Mike Rapoport wrote:
-> >> >From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-> >> >
-> >> >When CONFIG_DEFERRED_STRUCT_PAGE_INIT is enabled, init_reserved_page()
-> >> >function performs initialization of a struct page that would have been
-> >> >deferred normally.
-> >> >
-> >> >Rename it to init_deferred_page() to better reflect what the function does.
-> >> 
-> >> Would it be confused with deferred_init_pages()?
-> >
-> >Why? It initializes a single page, deferred_init_pages() initializes many.
-> >
-> 
-> See below.
-> 
-> >> And it still calls __init_reserved_page_zone(), even we __SetPageReserved()
-> >> after it. Current logic looks not clear.
-> >
-> >There's no __init_reserved_page_zone(). Currently init_reserved_page()
-> >detects the zone of the page and calls __init_single_page(), so essentially
-> >it initializes one struct page.
-> >
-> >And we __SetPageReserved() in reserve_bootmem_region() after call to
-> >init_reseved_page() because pages there are indeed reserved.
-> > 
-> 
-> Hmm... I am not sure we are looking at the same code.
+Thank you very much for your review
 
-By "currently" I meant the Linus tree.
+On Fri, Feb 23, 2025 at 12:46:14 +0100, krzk@kernel.org wrote:
+> On Fri, Feb 21, 2025 at 06:26:23PM +0800, wangweidong.a@awinic.com wrote:
+>> +
+>> +static void aw88166_hw_reset(struct aw88166 *aw88166)
+>> +{
+>> +	if (aw88166->reset_gpio) {
+>> +		gpiod_set_value_cansleep(aw88166->reset_gpio, 1);
+>> +		usleep_range(AW88166_1000_US, AW88166_1000_US + 10);
+>> +		gpiod_set_value_cansleep(aw88166->reset_gpio, 0);
+>> +		usleep_range(AW88166_1000_US, AW88166_1000_US + 10);
+>> +		gpiod_set_value_cansleep(aw88166->reset_gpio, 1);
 
-> I take a look at current
-> mm-unstable, this patch set is not included.  So I am looking at previous
-> version with this last commit:
-> 
->   8bf30f9d23eb 2025-02-06 Documentation: KHO: add memblock bindings
-> 
-> Here is what I see for init_deferred_page()'s definition:
-> 
-> init_deferred_page()
->   __init_deferred_page()
->     __init_reserved_page_zone()   <--- I do see this function, it is removed?
->       __init_single_page()
-> 
-> What I want to say is __init_deferred_page() calls
-> __init_reserved_page_zone(). This sounds imply a deferred page is always
-> reserved page. But we know it is not.  deferred_init_pages() initialize the
-> pages are not reserved one. Or we want to have this context in
-> __init_deferred_page()?
+> Why do you keep reset as active after reset? How is it suppose to work?
 
-In mm-unstable the code is slightly reorganized, but in the end it still
-initializes a deferred page. It's just only called for reserved page, but
-the initialization itself does not presume that the page is reserved.
+The gpio port of the AW88166 is reset when it is low.
+So it's working now, I will modify it as follows:
+if (aw88166->reset_gpio) {
+	gpiod_set_value_cansleep(aw88166->reset_gpio, 0);
+	usleep_range(AW88166_1000_US, AW88166_1000_US + 10);
+	gpiod_set_value_cansleep(aw88166->reset_gpio, 1);
+	usleep_range(AW88166_1000_US, AW88166_1000_US + 10);
+}
 
-So both functions are misnamed here,  __init_reserved_page_zone() and
-init_reserved_page().
+>> +static int aw88166_i2c_probe(struct i2c_client *i2c)
+>> +{
+>> +	struct aw88166 *aw88166;
+>> +	int ret;
+>> +
+>> +	if (!i2c_check_functionality(i2c->adapter, I2C_FUNC_I2C))
+>> +		return dev_err_probe(&i2c->dev, -ENXIO, "check_functionality failed\n");
+>> +
+>> +	aw88166 = devm_kzalloc(&i2c->dev, sizeof(*aw88166), GFP_KERNEL);
+>> +	if (!aw88166)
+>> +		return -ENOMEM;
+>> +
+>> +	mutex_init(&aw88166->lock);
+>> +
+>> +	i2c_set_clientdata(i2c, aw88166);
+>> +
+>> +	aw88166->reset_gpio = devm_gpiod_get_optional(&i2c->dev, "reset", GPIOD_OUT_LOW);
 
-> -- 
-> Wei Yang
-> Help you, Help me
 
--- 
-Sincerely yours,
-Mike.
+> So here reset is low...
+
+
+>> +	if (IS_ERR(aw88166->reset_gpio))
+>> +		return dev_err_probe(&i2c->dev, PTR_ERR(aw88166->reset_gpio),
+>> +							"reset gpio not defined\n");
+>> +	aw88166_hw_reset(aw88166);
+
+> and here is high afterwards?
+
+Yes, low indicates reset state, high indicates working state
+
+Best regards,
+Weidong Wang
 
