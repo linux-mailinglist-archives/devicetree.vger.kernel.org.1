@@ -1,122 +1,199 @@
-Return-Path: <devicetree+bounces-150923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C5E1A43EE4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:10:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5681A43EF9
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:14:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E01977AB523
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:06:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A2A8424DBB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:09:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A59A0267B9C;
-	Tue, 25 Feb 2025 12:07:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3149267F79;
+	Tue, 25 Feb 2025 12:09:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UmbTRmkY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A413267B1A;
-	Tue, 25 Feb 2025 12:07:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47640267F48
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 12:09:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740485243; cv=none; b=G0eIXlXCal/4tOARTJWrjpNdoeLX1nwe+uC0XdsjcSOObE+TWJY+RbAD+pGSBnlGBWAtMBLg8lwuuEQ7bosOI3PnFzYA9W5KS2pY0nYiQdXWgAL5hYYrNPwF9y4s5GqKaxoVbJekQo/8W7sQ9Z3VWDv2W0A5sL9eY91HdX0oz14=
+	t=1740485351; cv=none; b=RVHwfMv/OL0LlebFkdgB1u8c7/c4ZKkQg7E8IXMW//YvDGUHv3q6lTq/2CfIPPutzQ53kXrf0Wg3yMFcBxfWdOZXjZhwbfEISYFwkS0oXBRWdTVgSkBDaPor9C00uhC4lspaQJjvWNSRXipISCPdshlvoYuFOFEUgcHtSkJIxfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740485243; c=relaxed/simple;
-	bh=BZgdWO7k4+OKLqpthfS5rJrQuQPttt/GmTiWB7L+cFI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fIVoUSIJLeUwBgUctgZwSOSZiFI8bovhKesnzGIDJg72WHvXsfs+WdfnpXKZpV4CSc5qNpXDflWcsK4d3pqyTvz8cO3O75gSO4nnI8n1epyc01HsuZQBldfrdqaUn5QMNrjwSGN/adgK7vOqbzJoOSmDFyzPOEfz9FMT1A/F95U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D8753152B;
-	Tue, 25 Feb 2025 04:07:37 -0800 (PST)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 135943F6A8;
-	Tue, 25 Feb 2025 04:07:18 -0800 (PST)
-Date: Tue, 25 Feb 2025 12:07:16 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Vincenzo Frascino <vincenzo.frascino@arm.com>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, Will Deacon <will@kernel.org>,
-	Jessica Clarke <jrtc27@jrtc27.com>
-Subject: Re: [PATCH v7 00/10] arm64: dts: Add Arm Morello support
-Message-ID: <Z72ydHCLxd-WGsJu@bogus>
-References: <20250221180349.1413089-1-vincenzo.frascino@arm.com>
- <Z7jL5wBUJNjOlg4r@J2N7QTR9R3.cambridge.arm.com>
- <58ee2a8d-d3c1-4bc2-92dd-6568f645b01f@arm.com>
+	s=arc-20240116; t=1740485351; c=relaxed/simple;
+	bh=iCgS3i4jeT3RTXkayVl0IK8NtFDsUCkuiJsYeX22TDw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qI59wPyNHcSUZRMI1SRNyAlS/mAQTFgtJrh5C9US9640k2mImy8Vwt6ZiKk1S2ywH/RxgBsj9Batrlub04QQ7scRiX75dwgxsLAZXvVME6TxP4IV5cL+RmoC7O8fbi8K/dMjjZyl4reZvSgMHHMqUuQB2CHb5Pj3FI8iuX6mlqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UmbTRmkY; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51P4EMbc002463
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 12:09:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	liyKdemlEyYUI2F9xPgM63joz99qtCmXbXh4OS9ua+Y=; b=UmbTRmkYHXtlT9Zk
+	8xuUn1hdDUvJ4/AQg1trwY5wG6DAyasQsbxW0P4K21hzEM3MpDB6546tmo7VDyaR
+	0olCwdxgmn2nV8/Iu00fica/xmJ0LqKAGQ8u8tiNCbpZ3ub2ITgQYA2x3dHfvo5T
+	/dGo4reJmOzi8xXpOy2GocJsuB/lSYjqmqCyLoNOfTAfCyfhUw81HuJGm303Dq88
+	LIIZVLi4hZYUps1pzHjWQXTWLSKUkAzG5zPHdnmbJ2ehzTRELNWqqPsnQg4UMnr+
+	4kO7dUkenU0kg0pefiU3zcWGGxuJ8myikoV3L/IQ64Ae/iaWZ3TpWPT0VqFGoxv3
+	NOp5lQ==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4516nm9bjs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 12:09:09 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6e65d6882a6so5462296d6.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 04:09:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740485348; x=1741090148;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=liyKdemlEyYUI2F9xPgM63joz99qtCmXbXh4OS9ua+Y=;
+        b=MVbiFRLAaokY97Ni+QLyqkMWp7csad6/0VM+oKYydy9qub54Wubz+Nw+47NNJr7p10
+         F8BfGP4vbuD0iWo5hWqi6UMLXSp68wo+zYzvkkiorIIzudeOGK+39jQJZngPiXXi1Mvx
+         KiCS+9N3ThMz3DD4J2AEqSn2XBzq7m4brDsNIZhHcuXq+Rchv1KWwYI4kJxJvcp3jE+h
+         Y6MPQN3ep0k/WPSLND9Nu/1kggSZytP5wMh1aKeN1TYLhBIeTk5JtrPc5YkoRn4dHZAR
+         2ql5LE6dTk5k0+21pAfFggbhQ8vU1ZxIIcDCMZZBmoLJanoIh+NO+gzM0pIXvpPZ0ry7
+         6lWw==
+X-Forwarded-Encrypted: i=1; AJvYcCWi2EdlVf2/Ofs1012VxtW0bKMa8R+6j7D3leYux0mT9nLE+IKCdhzd4m2R6ozusOYGqnC3nVPtWZfx@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywy924mYRdvzGIa79mAlHhB07QR73/zKw73KhHTE/ZK3IglgwBS
+	0EKuvx4x10Kc7BywKvx0/rd2BwfjKbKWEefg5atPuqYAeAkYqYFppv+Uv9Fci5iEgI2d1DkjZkr
+	Qrgk/h64ArsvY6Yhy359k3zGamDKAxF3LTSLL1+vQXv4XPM2tamNzvaOE1MJV
+X-Gm-Gg: ASbGncvXENslKBKr1X3pIfhojS8EXixjF7FAGWB+9cNgbAIIWG/6TI1V5wR7xWqHz3l
+	kFSe1vQnqcOprj1JpEi1RNvWkoCYrt/cIN+uwtGCIcdeimhrQJcJNJH28i+FVChxVOvZ+FeCH9C
+	N1asiKlM+pfqIjiBNB45EjVQns/QXfet60/ONS6WaKgL0CKSODrDayPALdsy5N3mBDw2yBS5v5t
+	7K6gv2KdW6UEnoh+s3awPTxFPA93r0UhZxeR207A2oTMqcDj8DR/KSDN4YJ0XQ+GIEqKYqy1YvE
+	GM3gGFvbjGXUGBdazx+UTG7DIz4MQOt0z/taegOhzXzqUDUJiyMik1JJYWDMjTgND1kmng==
+X-Received: by 2002:ad4:576a:0:b0:6d8:98a4:cc5c with SMTP id 6a1803df08f44-6e6ae5f3142mr86218746d6.0.1740485347823;
+        Tue, 25 Feb 2025 04:09:07 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEBcYh3OaD6A8QQEHJCnWXKawL33DJwmF++4szvw0YSegATx81D674T3VIyiwI6/jeN5Mgo4w==
+X-Received: by 2002:ad4:576a:0:b0:6d8:98a4:cc5c with SMTP id 6a1803df08f44-6e6ae5f3142mr86218666d6.0.1740485347469;
+        Tue, 25 Feb 2025 04:09:07 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abed2012175sm129900566b.118.2025.02.25.04.09.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Feb 2025 04:09:06 -0800 (PST)
+Message-ID: <d8ef7b67-a31f-4a49-8810-90dfebd2d8e1@oss.qualcomm.com>
+Date: Tue, 25 Feb 2025 13:09:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <58ee2a8d-d3c1-4bc2-92dd-6568f645b01f@arm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 08/10] PCI: pwrctrl: Add power control driver for
+ tc956x
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        chaitanya chundru <quic_krichai@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: quic_vbadigan@quicnic.com, amitk@kernel.org, dmitry.baryshkov@linaro.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        jorge.ramirez@oss.qualcomm.com,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
+ <20250225-qps615_v4_1-v4-8-e08633a7bdf8@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250225-qps615_v4_1-v4-8-e08633a7bdf8@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: jFbOM4FiJuRNcQid4dcAi256lsFlx7Ul
+X-Proofpoint-GUID: jFbOM4FiJuRNcQid4dcAi256lsFlx7Ul
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-25_04,2025-02-25_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ lowpriorityscore=0 mlxscore=0 phishscore=0 priorityscore=1501
+ impostorscore=0 suspectscore=0 adultscore=0 clxscore=1015 spamscore=0
+ malwarescore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2502100000 definitions=main-2502250084
 
-Hi Mark,
+On 25.02.2025 10:34 AM, Krishna Chaitanya Chundru wrote:
+> TC956x is a PCIe switch which has one upstream and three downstream
+> ports. To one of the downstream ports ethernet MAC is connected as endpoint
+> device. Other two downstream ports are supposed to connect to external
+> device. One Host can connect to TC956x by upstream port. TC956x switch
+> needs to be configured after powering on and before PCIe link was up.
+> 
+> The PCIe controller driver already enables link training at the host side
+> even before this driver probe happens, due to this when driver enables
+> power to the switch it participates in the link training and PCIe link
+> may come up before configuring the switch through i2c. Once the link is
+> up the configuration done through i2c will not have any affect.To prevent
+> the host from participating in link training, disable link training on the
+> host side to ensure the link does not come up before the switch is
+> configured via I2C.
+> 
+> Based up on dt property and type of the port, tc956x is configured
+> through i2c.
+> 
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
 
-Thanks for raising valid points/concerns.
 
-On Mon, Feb 24, 2025 at 10:08:18AM +0000, Vincenzo Frascino wrote:
-> Hello Mark,
->
-> On 21/02/2025 18:54, Mark Rutland wrote:
-> > Hi Vincenzo,
-> >
-> > On Fri, Feb 21, 2025 at 06:03:39PM +0000, Vincenzo Frascino wrote:
-> >> The Morello architecture is an experimental extension to Armv8.2-A,
-> >> which extends the AArch64 state with the principles proposed in
-> >> version 7 of the Capability Hardware Enhanced RISC Instructions
-> >> (CHERI) ISA [1].
-> >
-> > None of the CHERI stuff is supported upstream, so from upstream's PoV
-> > this is a low-volume dev-board/SoC with an experimental ARMv8.2-A CPU.
-> >
+> +struct tc956x_pwrctrl_cfg {
+> +	u32 l0s_delay;
+> +	u32 l1_delay;
+> +	u32 tx_amp;
+> +	u8 nfts[2]; /* GEN1 & GEN2*/
 
-I understand and agree with your concerns.
+GEN2 */
 
->
-> Agreed, I have no plans to upstream Morello support beyond the device tree.
->
-> >> This series adds dts support for the Arm Morello System Development
-> >> Platform.
-> >
-> > Do we actually need the dts for this board?
-> >
-> > I have one on my desk; it boots vanilla Debian 12 via UEFI + ACPI just
-> > fine, with the Debian 6.1.0-13-arm64 kernel.
-> >
-> > Is there something that we can only do with the DT? i.e. some
-> > functionality that isn't exposed via ACPI?
-> >
-> > How do you expect this DT to be used?
-> >
->
-> There are functionalities that are not exposed via ACPI, e.g. gpu, dpu, i2c for
-> the phy, etc. My aim to have upstream support for all the hardware exposed by
-> the platform.
->
+[...]
 
-Does this address some of your concerns ? I do understand some of these
-are not well addressed in ACPI and hence people use DT as an alternative.
+> +static int tc956x_pwrctrl_set_l0s_l1_entry_delay(struct tc956x_pwrctrl_ctx *ctx,
+> +						 enum tc956x_pwrctrl_ports port, bool is_l1, u32 ns)
+> +{
+> +	u32 rd_val, units;
+> +	int ret;
+> +
+> +	if (!ns)
+> +		return 0;
+> +
+> +	/* convert to units of 256ns */
+> +	units = ns / 256;
 
-> Note: This series contains only the basic infrastructure, the plan is add
-> progressively more features in the future.
->
+Should we round up here, so that values in 1 <= x < 256 give a delay
+value of 1 unit? Or maybe such values are never expected?
 
-I was thinking of queuing this in -next if all the bindings are acked.
-Let me know if you still have concerns and would like to avoid getting
-these merged. I will hold off then.
+[...]
 
---
-Regards,
-Sudeep
+> +static int tc956x_pwrctrl_set_tx_amplitude(struct tc956x_pwrctrl_ctx *ctx,
+> +					   enum tc956x_pwrctrl_ports port, u32 amp)
+> +{
+> +	int port_access;
+> +
+> +	if (amp < TC956X_TX_MARGIN_MIN_VAL)
+> +		return 0;
+> +
+> +	/*  txmargin = (Amp(uV) - 400000) / 3125 */
+
+double space
+
+> +	amp = (amp - TC956X_TX_MARGIN_MIN_VAL) / 3125;
+
+similarly here, is 0 an expected value for 1 <= x < 3125?
+
+Konrad
 
