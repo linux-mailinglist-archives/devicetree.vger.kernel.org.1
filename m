@@ -1,147 +1,81 @@
-Return-Path: <devicetree+bounces-151200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0025EA44BC1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:46:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 201BAA44BE2
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:58:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27D587ABF68
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:45:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F1BE4221E3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:57:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DCB31DC9BB;
-	Tue, 25 Feb 2025 19:46:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3891D20C022;
+	Tue, 25 Feb 2025 19:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sJCCk64y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tIcR9TLp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B0A15E90;
-	Tue, 25 Feb 2025 19:46:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 103273D984;
+	Tue, 25 Feb 2025 19:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740512763; cv=none; b=VZNVOEE5K5nXodzkrs+i+J6xXlJhgGaflRhwQ2cdh16N8wMBGyHvh1TACJgmh4TGKPvNBm0LwuwvGJ3+B6af2nyyoORa5eOPKpx1fef2wYXqUbWNFwhdzSPr+pIAr2jKeCD2VkX9m5hvdPUfkfRvux8w9f2hNsp6XjWZY3MGSOM=
+	t=1740513476; cv=none; b=hYgj7uqdzM1f8ckPMLagaCdnTStPxTdDXO2zenwEw7SawJXuzyWXAca/Gz3KlW680RST5XSSBoYfrDyofVGCcDWWogRTvM6+DEoGAvEtdyv/Q46QAffue4gr+jIkUSaky7UYpuI0ji1wGDfwxp/3JRR8C00/sASAlOepFzoeXDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740512763; c=relaxed/simple;
-	bh=3zn82jGPjopf3LLg6/Fmo76L2Z7LOsPw/bHR4evx9UY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=s2pCHH/lq5BjJN/DS7EZTWq5wpiZ++vS+zm4Ai1RyqMrg5z4InNQnCJ2J0g2UBx2G1Jyw/1CmkQymWFrFTtfFgBo0PotZrXpE4pY3L56MO9f58y9BfFg9ViuUBo0j4y/qd0TvcRK0PmuIkqqOc3FDZ17mm2dRo/In/y4xDassb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sJCCk64y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEE1FC4CEDD;
-	Tue, 25 Feb 2025 19:46:02 +0000 (UTC)
+	s=arc-20240116; t=1740513476; c=relaxed/simple;
+	bh=M2HdBmeejfzkByTk1zRaycFBY7nLElbSoSxzEZQP3rI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aO7Re/pc3OzJOD+1GfkXhjzmH7h9Ocr8xeS9XPclBCu3vbxK57zasoCW5bByQtqElzuy+hyGQc1DT1WjErJtvBhNLHPzNBDqgEJcY44COBuP4lFjk6esG4q1fFLougoHrlo23ZJOY8MbBy/wTQ7/q9d9v9b/Ewhh4DSQX7WcUQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tIcR9TLp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6916CC4CEDD;
+	Tue, 25 Feb 2025 19:57:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740512762;
-	bh=3zn82jGPjopf3LLg6/Fmo76L2Z7LOsPw/bHR4evx9UY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=sJCCk64ykHWyO/voBh20RMVpuwN/m+AkBlLK+IRqe2H+njPAdD438nfqILB0Ep3Sa
-	 RA4Jd2ZtJwopzpSzoR8VCoIVtST900Aa1UBtXCieelZiFQizaAP2MFdJZjSBMuLk52
-	 5bhU3pky4MSCQs+fwBCH5BCmoNAzRX6kEF7PsUsW5ofTYSfcGMbHda/rVsoL06jg7U
-	 6gfjs1FdFRMV1qK2/MjChLdq8Y7DqQRcr1ktKVsUlTxW9c94MMz5XBLGgybF657qrH
-	 6n40sD45gwS3SmQ6ao5peeNMnaGcVHZ/DBk4Q5HPLIQSrqRL81ZStJvqVzJ+CJzZpC
-	 E07TKJMG5cGTg==
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-aaeec07b705so1002824766b.2;
-        Tue, 25 Feb 2025 11:46:02 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUts+8tPvQSSCu6yuLKJ/kp7COYQSnVP+kpvA46/f4nWq7q6fAQUjEXnHqaC1dhrP4EUaQ+GXc0wSpW@vger.kernel.org, AJvYcCVGxLMDTgXhKn9TZ658/8C6XGWsRD1nZ0Oj97zzTRCVQmVkUsIEwe7Gm7AnSzmruK4exBA/1XsE+NZ7FA==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwD5jd1XKDddBg2ZcyDkAb7Lqr0grbcxZBFEE5JOPRwpTm9nA66
-	I0BriFPIVnLsaDifFT70Rf1hUE5m5U4DwJcqEI3ESd4KwkrQyXJtiCt12iOes4bk8T4kPysBLdj
-	nY7w+/qFpKV3fPpEPdr21va8M+g==
-X-Google-Smtp-Source: AGHT+IHK4t1drMRY1wsfVnmqsofjdhRnfZEXksr5Jxq1Y5dtmi9uC6/aT5L0zo4z7Lz/lFtXu0pggT4ltG6XlL4TCF4=
-X-Received: by 2002:a17:907:7f26:b0:aba:5f40:7f2e with SMTP id
- a640c23a62f3a-abc0de0de78mr2109325866b.45.1740512761272; Tue, 25 Feb 2025
- 11:46:01 -0800 (PST)
+	s=k20201202; t=1740513475;
+	bh=M2HdBmeejfzkByTk1zRaycFBY7nLElbSoSxzEZQP3rI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tIcR9TLp3OV5a0nXXIrMKzh7nC0qvfbG001b/v4Cp3s5+vtDs+Ie8RL534SO5JUqJ
+	 GLXYV9NWp3oHBL4rzcE9bTtoY79dCTLBv4h2InO+IwamEZdV5UZGA25PUvLEoO4L/X
+	 Dwkk4sSZWCj8+WfYiTSobFI3t62PNNBYDAZvcTUzcYWP8JEXPf4zDqvhioOF9NUG6Y
+	 7QBTROC29pIJSccmLK+mkXxnU3GrPepzO9B3cfIa+jHEkqcIt2J0nshh4EpAwbI3b6
+	 ldgltrITvQHLuphdRSwcxbLqnpSpucOwj7fKTe0+s14wMEDK+2icMqDW5vWKTuUxb0
+	 qXKFYEj5viuVA==
+Date: Tue, 25 Feb 2025 13:57:53 -0600
+From: Rob Herring <robh@kernel.org>
+To: Zijun Hu <zijun_hu@icloud.com>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
+Subject: Re: [PATCH 3/5] of: Correct property name comparison in
+ __of_add_property()
+Message-ID: <20250225195753.GA2907894-robh@kernel.org>
+References: <20250224-of_bugfix-v1-0-03640ae8c3a6@quicinc.com>
+ <20250224-of_bugfix-v1-3-03640ae8c3a6@quicinc.com>
+ <20250225143844.GA2279028-robh@kernel.org>
+ <e6faab90-b4f3-4c73-b486-2e44d15d22a2@icloud.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250225-gpio-ranges-fourcell-v3-0-860382ba4713@linaro.org> <20250225-gpio-ranges-fourcell-v3-2-860382ba4713@linaro.org>
-In-Reply-To: <20250225-gpio-ranges-fourcell-v3-2-860382ba4713@linaro.org>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 25 Feb 2025 13:45:49 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJEf4AUq-b2FMp8kCT9x0VuocMeZ92nt2QVoEe+m1eUpQ@mail.gmail.com>
-X-Gm-Features: AQ5f1JoGeJ1ojM6DcZ7DXKJvxjPuCL0Kw1v1y0oIQO6BvAVaPKRN0Y95VDOZnHo
-Message-ID: <CAL_JsqJEf4AUq-b2FMp8kCT9x0VuocMeZ92nt2QVoEe+m1eUpQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] gpiolib: of: Handle threecell GPIO chips
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Yixun Lan <dlan@gentoo.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Alex Elder <elder@riscstar.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e6faab90-b4f3-4c73-b486-2e44d15d22a2@icloud.com>
 
-On Tue, Feb 25, 2025 at 1:40=E2=80=AFPM Linus Walleij <linus.walleij@linaro=
-.org> wrote:
->
-> When describing GPIO controllers in the device tree, the ambition
-> of device tree to describe the hardware may require a three-cell
-> scheme:
->
-> gpios =3D <&gpio instance offset flags>;
->
-> This implements support for this scheme in the gpiolib OF core.
->
-> Drivers that want to handle multiple gpiochip instances from one
-> OF node need to implement a callback similar to this to
-> determine if a certain gpio chip is a pointer to the right
-> instance (pseudo-code):
->
-> struct my_gpio {
->     struct gpio_chip gcs[MAX_CHIPS];
-> };
->
-> static bool my_of_node_instance_match(struct gpio_chip *gc
->                                       unsigned int instance)
-> {
->     struct my_gpio *mg =3D gpiochip_get_data(gc);
->
->     if (instance >=3D MAX_CHIPS)
->         return false;
->     return (gc =3D=3D &mg->gcs[instance]);
-> }
->
-> probe() {
->     struct my_gpio *mg;
->     struct gpio_chip *gc;
->     int i, ret;
->
->     for (i =3D 0; i++; i < MAX_CHIPS) {
->         gc =3D &mg->gcs[i];
->         /* This tells gpiolib we have several instances per node */
->         gc->of_gpio_n_cells =3D 3;
->         gc->of_node_instance_match =3D my_of_node_instance_match;
->         gc->base =3D -1;
->         ...
->
->         ret =3D devm_gpiochip_add_data(dev, gc, mg);
->         if (ret)
->             return ret;
->     }
-> }
->
-> Rename the "simple" of_xlate function to "twocell" which is closer
-> to what it actually does.
->
-> In the device tree bindings, the provide node needs
-> to specify #gpio-cells =3D <3>; where the first cell is the instance
-> number:
->
-> gpios =3D <&gpio instance offset flags>;
->
-> Conversely ranges need to have four cells:
->
-> gpio-ranges =3D <&pinctrl instance gpio_offset pin_offset count>;
->
-> Reviewed-by: Alex Elder <elder@riscstar.com>
-> Tested-by: Yixun Lan <dlan@gentoo.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  drivers/gpio/gpiolib-of.c   | 95 +++++++++++++++++++++++++++++++++++++++=
-------
->  include/linux/gpio/driver.h | 24 +++++++++++-
->  2 files changed, 107 insertions(+), 12 deletions(-)
+On Tue, Feb 25, 2025 at 11:04:55PM +0800, Zijun Hu wrote:
+> On 2025/2/25 22:38, Rob Herring wrote:
+> > On Mon, Feb 24, 2025 at 10:27:59PM +0800, Zijun Hu wrote:
+> >> From: Zijun Hu <quic_zijuhu@quicinc.com>
+> >>
+> >> __of_add_property() compares property name by strcmp(), and that is
+> >> improper for SPARC which wants strcasecmp().
+> > Except that 'name' is the nodename (usually, with a few rare 
+> > exceptions). Sparc node names are case sensitive, so strcmp was correct. 
+> 
+> Here, it is property's name and NOT node's name.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Sigh, indeed... Applied.
+
+Rob
 
