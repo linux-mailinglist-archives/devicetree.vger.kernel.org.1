@@ -1,236 +1,149 @@
-Return-Path: <devicetree+bounces-151118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74551A44776
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:10:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B1D9A447FB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:28:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94FF31688AB
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:08:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 686D4883540
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:14:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C0B0191F6F;
-	Tue, 25 Feb 2025 17:08:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C78461A3154;
+	Tue, 25 Feb 2025 17:12:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="HYGpa7hR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AXhoR4mV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2068.outbound.protection.outlook.com [40.107.247.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 539C118DB10;
-	Tue, 25 Feb 2025 17:08:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.68
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740503303; cv=fail; b=Yz1p7R8eRNMtZex+8GswolwYXkerKLAif3MHCf6OE2xl84iq9VgP6/rYkYHJ1vuo76zvYTrhDRy9qSJFcX9BcLwV0TOUXb4kgNurQSSkvXIoLBNvRNVcPRl9R7Z5RMex8NEJIqm5KTSIRnj/DuBPQc/t5Pa3KcuOBpxCrm2npz0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740503303; c=relaxed/simple;
-	bh=99ZfC5hAPmu8W6QEU5oapLglhNMCwlKyYj92FBA7Oek=;
-	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=MQig4AVgbjZBwhheIRr2nbENHHq5Wgs6VrH6tYc/KTKet25m5sbyYeZkXhLQOAmiI+NtFHFUoSAQlsuxJd/nCXYa3T0hn9qMuE000yoxc5NpOPnxl69E1JMrNime1vLP/teU2vpkjwPbZdpLiZ9TEkmznGf9gVBpT5DOvEm5YN8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=HYGpa7hR; arc=fail smtp.client-ip=40.107.247.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fM+TTTrPQnXs0oYAcyWLQ7ZEhi4nX9t91dOQ/sFfej+g6ajaLfavNlvkV4T4SITlWJmCF/BJ15U50wqrZjWFodUbwFmsNpHwMJnoObrcBxEX6JKc20AaeNdmbiB/aVgjDF7V6RhUtQkHejlnFQ6UMkAzF0lXTg+tlcCCbOihKQSBFLy0hsfAIISV5XReaGo61Y+pAaZIfwJF4LJ/0ky6cWo5Mm6KCTXbJc+BWibRN5aNquVZrQ7vS8AEO0SYS7TGA0ZM89Q0V26mbN49s0jX2VKWJVrQoHJpfjGdoJx9R6G/vDbfxS0PRoInr+gSISmnwdbFZoZwOuSbU3SXChG6Ng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IyRcL0g1jRe+/iFg5sLskj4FCwUkTQfSPSOlEIXo7b8=;
- b=xOu7w3Iq1Rb/H+uokg7o1ZYpPATNsY4Ev0klXAhmll9RL/9YabNleID4CoeNVI0U3H4iGDUzwKQ3a1w5v5IMcJLlvX1Gwa4lQDK9369ibj9B0pnDHW4gIx4xFtQA8ArPDIrEbNoLyLPLSVJMpOPmOWq7y5OQajIm5FKZLECPl+QpQUdXbvwO+bSM6eWObMMR+w3hMq+XjHsO+aVlCDsCQk9q7Dlg4aWSXyhhC1W+D/YwHt883uzB7wmQBOeaelB8wkFSOxXz2ewkVM6pHpKbmiywGKSJHb3s2Au9iQG4wN0Y/wvf14dd8hQ6ODhy4RGuk/M7sAnw5sqHQagunmL/dA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IyRcL0g1jRe+/iFg5sLskj4FCwUkTQfSPSOlEIXo7b8=;
- b=HYGpa7hRBmJXh7PZB9sn1YValQqzgYL4Z+TF6jzbm/13I9DngdE+1ABG1AbzvLK4K1Phzh2nOr5Ro2tH3gR5eKtFiiaua7uloRjgSdl1KmhHrOczYCl1DcuRpXPvnBvYxnkd+BZF8rzgvXb4+kfmV1ddleA6FaOqdva2DFoiW0Fvplgvmg4iroapfteEYwmjoUewvJ2NROf80FPXhYvX16axE7/TMJZ4Az0pWmT0TWFJHpft/Qdd1iq5QPgza0HXMlWdkjJXx5irFRWy9q7JIGOPW62OD+cEiLv0vKzWS/pseM5rFkyX38uwlbQbXF5ghfqHPq+iPSVd4l99HJy5bQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DB9PR04MB9308.eurprd04.prod.outlook.com (2603:10a6:10:36c::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.20; Tue, 25 Feb
- 2025 17:08:18 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8466.016; Tue, 25 Feb 2025
- 17:08:18 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 1/1] arm64: dts: imx95: add ref clock for pcie nodes
-Date: Tue, 25 Feb 2025 12:08:02 -0500
-Message-Id: <20250225170802.2671972-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BYAPR08CA0025.namprd08.prod.outlook.com
- (2603:10b6:a03:100::38) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 004F41A23BD
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 17:12:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740503529; cv=none; b=LB1nspArW02nbymwORTuhZVLUIQ6o1sI3Y5gArYXetuvq3u3t/lSmCzSc9JPObsSPH658kzhg9w00bDlnJlfhKQImiM2Zc9mcJMizl+G9eXkC8PwU0b1PhV+y/2iFjZZXsm7HXMWS9XZK0C2gMoRIrTk/eVj2kJ18jIhKpC0JA8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740503529; c=relaxed/simple;
+	bh=2zg94zRdzEnHDUsDqBlnHbB5z/wxZTZgB3MXLtUgDE8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gYTNmIzMTvl1rFf+RvV9qh+cZYBqFFLX4ksFFFt4mycq19RmnNCVuQXNOyZpU4RVUZrKJ6Zm7a9eaL6hWVbwKfLnDPS7se4KuZ/PR+NphbkLelmR+EsBFmWhjNDz51ZvN7WLyIbRUUlWeTm71TkukEHoJUz/S8CIrg0j/H5wpGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AXhoR4mV; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5461f2ca386so5026251e87.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 09:12:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740503525; x=1741108325; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=W3VRt++PNXgAYze1wuBL06koGD/kVHXK+2ZFMicsw94=;
+        b=AXhoR4mV6ZoHDnjTxtV9x7kIR/keTuhGvOuiXAUdjZtWcWR8tIiF8iPmKeuzIcg15v
+         9zB25SWgA+AGuoiNlUxFXdfeGi189iu2VTnS6Jk4bf7SWeh7H0q+I8rA0wOAPLkFoEYN
+         woXIc1i20fxRDvPBVKI9gIErwqHeVvQxDzppsuj4p0UGA3LlRWH8U1xKuGrJDLXpKcWh
+         DTBokB2Uawvv7+BGQPqVTZXVoQIFSCEi6Tuh0nBQUiIde8Y/I+6sAYcFtuRThzZXQjYV
+         tB+nkl7DhbUYOBJ22xbQKdQad1Y3oK1Z2/qCroW8opC2bcRPXb+2itOIRaK/5bDLrF/7
+         Jo1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740503525; x=1741108325;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W3VRt++PNXgAYze1wuBL06koGD/kVHXK+2ZFMicsw94=;
+        b=hy2hsMB5dnCeCng6yiVmGKuU3vfBk8xDeTOxcXLXODjDp/GK3UxQ/QMIk0UvqBexmp
+         0tGpgUD30yYp5X9j0QX/7LmTIbREQMEmIogbmyxApgLIIrTyfB685OFW0+0NEq1nxmco
+         +iU08zUnpk/edCUIpwr27+JBiISZ4jZDP2Yrej1E8/ezzfhRdCHzJVSXkoohVsBCO2/k
+         LaXHrLguCfUIqjGxsvgVnmypFzvvgE+7neayZVGxKDdaqlJx+MVvUaJqorki9YPDBJUx
+         uE3AmZQ8e3uGWTd5C4OOblIHoHpUSLx7RkFfc0VaNdc8bJBnA6lM2UFZLIFnCFpGqXAz
+         c0BQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXhd7yY4rIu3CpbUabPtaco3tinDRQR3EqpJpyUnNfNSdV17wH4WE1YR1HVDJMpgrycMNWbbrMhJBRk@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkCLJE5K5i/cdt4EvKw6Gyy2NygWwDaea1h99fL0L0u+IMxgsM
+	/Dt86LfDcfA6mkFqP/kO0SnvzAhe2eac9nuso7JPpA1QCLQ5NlEWpZnxTIfMaqAvXLp1pJ7YSG9
+	L
+X-Gm-Gg: ASbGncv3Iksfb0Ne5njW/WxTOh6F1yxL8WlnGAOCzRSebYMjyP2fFfzIo8u/drpy8Hm
+	AFuieuyKq2j4TsKZFPC8d0juwGHJxFCAf6gMiXHxLMUGLHqAiGkAMr6w8sF9T5I9QSGc1Z+mIzB
+	P2U1TL+bRpqaZAGHxIyTUPGoXfUx5ylK93BeW5HoY56CYWgnFtwOUFGCU32FQ+Wh/3ygQtsC2ti
+	PvHVhCQSs/xShKMFHlGOi/ltVHXu2hFyuVC5NqKoJxDFVtE/DG8kr1rFr/KMPwJFIAz4nUIMmTE
+	4B0G9VLnLkwi7DhPfzHIpqXxPcjKilUNSeosLe0MHKUO0v48HpHlvZG4o4Dr+BJI70EOJB7vGWK
+	QVja7cA==
+X-Google-Smtp-Source: AGHT+IE6btY7yaSP+3y3DG+F1MNX01iR19BAywx69SlKvGbptKvY2IMq2suxBQapk7jTaUAQROgZ+Q==
+X-Received: by 2002:a05:6512:1309:b0:545:aa5:d455 with SMTP id 2adb3069b0e04-5483913f943mr8455012e87.15.1740503524979;
+        Tue, 25 Feb 2025 09:12:04 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-548514f4c98sm221415e87.185.2025.02.25.09.12.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Feb 2025 09:12:03 -0800 (PST)
+Date: Tue, 25 Feb 2025 19:12:01 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Jeff Johnson <jjohnson@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	ath12k@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-slim7x: Drop incorrect
+ qcom,ath12k-calibration-variant
+Message-ID: <ymjjzpzmlmpjv4biipfnpojybk7ifrbey26vutlnufixakcfh3@kyinst3ku5ap>
+References: <20250225093051.58406-1-krzysztof.kozlowski@linaro.org>
+ <sfhcmlz3x254fdowufeeuh4uiwxfgkphm4ch4laceivbrs3zir@qvqk6jxi6zhf>
+ <7b54e965-3395-4349-8ae7-51a28c759235@linaro.org>
+ <kce6gzso22fp3ze2wp43fvy4tv6yqkaijm72kh5qk34jwijk2l@3ifaiz5tgjvl>
+ <d93789c6-61d9-4761-98f5-aa3dbec14d82@linaro.org>
+ <21ad3381-4d65-4c68-892d-9f485bf13735@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB9PR04MB9308:EE_
-X-MS-Office365-Filtering-Correlation-Id: aba17cdf-3559-4012-fbc1-08dd55beffba
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|52116014|7416014|376014|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?x72NuTW8zlcDJRe/h7Rteoq0gTWlbUe1ViWeXtkM+GdlCcf3mIo7ixIqsBqa?=
- =?us-ascii?Q?zi3Jc42vrq6oa4Nzs2kKZSPvlj7qF96UeJ+4IPX2lk4j8XkRl0Qqpil2ldR0?=
- =?us-ascii?Q?YfQKO7fjvpF1e+i9tEE0pGhqTiKcgktDDwUB4upzKPjwzMayLFunLnKMw1H9?=
- =?us-ascii?Q?CoaAylnL7vAw3NQiAWz6Y3egWem+eL5Tbbzq3X1PT6I3XGpaoJU9C27KC3LN?=
- =?us-ascii?Q?z7eE3CCXNvaQTMSU0NtcpSR9aHkbw3EpJr+ohpwNEq1PSfCBDTdLw3LV90oQ?=
- =?us-ascii?Q?JD6u1JaZeSMpYCs6aYY2Xk14E5WdfNDwQbI+6K4MSxU8F9Ofke8i44yKClwp?=
- =?us-ascii?Q?9n3vRZOumM7sc/6/k2XQ/2jxrShq1RqavkERjD7l4W38JsNr/kKUJzXfk434?=
- =?us-ascii?Q?GZz5XjYQFHoFHSzhlBWkhEAmiucEmbYzyG1CorRdTb7cdyosKXmsdgfIRHIK?=
- =?us-ascii?Q?cwsZOCHAMVvQELkM2UyeqfEQYwMcmNVhNL5Tx1Wi638XdOXUiR0Pwba3oBzW?=
- =?us-ascii?Q?CBfE717DYmRfwze450CboT7GqE8Ibm1DDL5TyNVUOVdD2y/FN2FqNeAwRK/8?=
- =?us-ascii?Q?HPhsSmyeun0cmiT5YwqUjwchLAGEW8meqHgqNwOYlbGyDo3wznWBia7pCISf?=
- =?us-ascii?Q?4LTdqbiT7XcZBGx9lm4cfycOW+gvlWa1EOO7kHC6juiShh3ub9CQHBzq8Vnt?=
- =?us-ascii?Q?3UarIrJ/qQy9D8+bYPExx/3N079Y6H2g3pzT34LXcOac3XQQGpVwCRGFW+ZO?=
- =?us-ascii?Q?uIg2d5pNqNswItfjc2IixmF30blcO77CtxWqfsoWjhVUUVXqitmIw5eYFGYQ?=
- =?us-ascii?Q?JBBO4svoirNiM+xWULduCABsQgRxyxnn8e+DbLNaP94YVrnsINNgxWf6XdQG?=
- =?us-ascii?Q?f/pzsS5j6c11dkEYGyU3PEGkMjZm751aXl0JCDjdoniOZSonz5scDCO91FSK?=
- =?us-ascii?Q?L+epWju7Saf6fFbWHsVXdyq+hcjYGn6LesJrn2rS5vRgeXchnFeVXmIyG/5w?=
- =?us-ascii?Q?CDbw8rzwoCbOVktOibGHQkZru8te34dJBaz8driOf0XU6/bV1pRkZjWAI1iI?=
- =?us-ascii?Q?owRm5B5lo0GIHMNXvvo24xu2TrJxjB7iGOKtFQSCIP808d/Q2xcXIIQazSCR?=
- =?us-ascii?Q?Y2aCtJfjYGJNWsqBE6/UNsWxXJJ6PoM4+ZWFlDMtTA8Oy1S2HgDJj1pKgLPt?=
- =?us-ascii?Q?PCXJZ5iYz5Gji969uDvDCuI6llancQEgOvkpX83Tk0Xz8dcvFZo9LxgpqUOW?=
- =?us-ascii?Q?CBhJJeuN5BMICEDIafly0eooGITVxSXkolNJswe6Yfq5GhC8rKyLIKwitrfp?=
- =?us-ascii?Q?iFhXhTXgsOyNt9UG9asP8vdr9P5NEsy7VUJiq9nTxApFkOl6KsC80Ak3/UAp?=
- =?us-ascii?Q?9x6WjtYKnlkm+iiHJRlIT/Ev7/BKUp5bfJo7i2cfICjXmcGNRg=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(7416014)(376014)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?urwJiDWfTbvJ3HgWjgCsr9FcF14wbhleomOIzqs2UzNYRmmX6V0xSvOtaF0r?=
- =?us-ascii?Q?V7eHGbeJ2xH6XZsCm9O5EYbXYldyYU5beznxp/vHY8SUtkB9ATxjsMKEPZHq?=
- =?us-ascii?Q?4iHpyf79Y1KaHPa54uM6OzbJ7WeBP0oE0HWzXqAO8zTjWp1nEROQTl5Q84iB?=
- =?us-ascii?Q?Dzv6nWZlmh9hcuoHfRXO60qgd3+PDmfTAeqlbrn9j+ez4EOvYb7J8LiM72uI?=
- =?us-ascii?Q?FqvDiJ2/emNRg7xno+0YhPJ4XyT7L16UVHBOOn4CN2zhwmBgWXNG8Rdfx2w4?=
- =?us-ascii?Q?hmWgqKXi42viPvSCDTFztU4CO2WPSCmkpyOfWu+KFYtfmmzHHQzWHmc+1LLM?=
- =?us-ascii?Q?iJQSAQL9yxX3BxlXmpu13Kv4ItMcjW9jEbH74Of9b4xQhAPHunPvygNH1S6W?=
- =?us-ascii?Q?JAVbPfiqqD44z3PTeW1CfssOOcSJ4gT6W+8PvhJGk3sZJaiScd6wrcP+lOFp?=
- =?us-ascii?Q?seW1yuvuIq/S/jMNiPXvF1kLqFs2rY8111Bgj/0RFU84xARviM/6mlARjEw4?=
- =?us-ascii?Q?hSU4aDZ/Mkp1zw4sgubg40Ilpq+icY3vAMCLKhYn3lsyE6Re0wrxCbTPDC64?=
- =?us-ascii?Q?eoexIrLYlFoPJeTwUvWEcENCQYADvezuCROIJt77mpF+ZAAWjqDLV+xuaXAN?=
- =?us-ascii?Q?//J0IPgEfJ5cFu9+0Abf88/cjGw5XRk3FizRVKqXHb0DU2mi8gGJZw4er32i?=
- =?us-ascii?Q?CKewNLTUeD7U6klMHn8b2oH8Qlqjk+JV/pRK58VIsq+tmJgKP1roxzpuKrfm?=
- =?us-ascii?Q?HhFp8FLQcbgkjSV/7JfLtI1VeTxVGzUi0fYJzGsgrGOL7JCgkyiCCUYZDDY2?=
- =?us-ascii?Q?M1m0fKNwyfWCk8n7W5plniUkEZtrcXQ2gXjDMXexUYVXNu9YElnj89crf4um?=
- =?us-ascii?Q?zjVOgMEvnwFM3b/dyTHasPLaBkR5ARHVoT3dPzNxIKrFCzpHMFs75VRd06Kd?=
- =?us-ascii?Q?NUKuaucdyttVBeNiiaXbKxQjjPMlCl/TcANngrpWet4fwTWYdGdNP2vw+Og6?=
- =?us-ascii?Q?NVC2wvFcMN4kjfssCf40gTR/HrQCQQOPtnvtVmTh5VEmI/3xOm1yNmmV7TrH?=
- =?us-ascii?Q?0YGXJhr5AqbIPYoVH8rf+yZ5QDhVS+PPkx0Uh4gLqM7OthAfM8cbMk8jirxe?=
- =?us-ascii?Q?znLZBtauFkEyzywDK3g+GoeNgq2hXZKOPTXhhnkpXVY4ktPpX0zUVKMAv+ab?=
- =?us-ascii?Q?LncZcEDBMsdblfvNRCPrnjkjz8ektMvuuZOPlAfHg7wl6oh/a3ptFzjWQpTy?=
- =?us-ascii?Q?ODFInCb+mY7Gq5mXFSjVvVEfbfz+3OKOfcV3tXuXk+o64hL9hCgjlCNMUVT6?=
- =?us-ascii?Q?NDjdqYKnXqJOM+2Qr9x8epsfsTXHKY9jTf6e4u2CaVNPVAjsJth3r3YYGGCm?=
- =?us-ascii?Q?tftSWPLFVMZSprvyTu4UdJXlnBk7Tp43yfGe0usrKetAIK8gzT5pjdKInvLu?=
- =?us-ascii?Q?GWrB5JiDFlnwpLvK7ES7o835cY5uWP4IR9QFGGHYGiH66pwi0h0R5MNStrVH?=
- =?us-ascii?Q?Ocm3kmG8038LuB1jMUJVa9KUa1fPbEE6kgk/yPTYUfPj29WxIhLXWp6wkh99?=
- =?us-ascii?Q?N/erwzTEAU/YkRVcTdY=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aba17cdf-3559-4012-fbc1-08dd55beffba
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2025 17:08:18.2506
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yO5mzqMj/LMgh/Vnl/+/vXUv5qWLCyVDWTQapiY0cm11okfyjBFZP2hYRJh3mLTY+8U3VIuTn/kuBeWRlu3ZDA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9308
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <21ad3381-4d65-4c68-892d-9f485bf13735@oss.qualcomm.com>
 
-Add "ref" clock for i.MX95's pcie and fix below CHECK_DTBS warnings:
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c300000: clock-names: ['pcie', 'pcie_bus', 'pcie_phy', 'pcie_aux'] is too short
-	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml
+On Tue, Feb 25, 2025 at 08:44:57AM -0800, Jeff Johnson wrote:
+> On 2/25/2025 4:14 AM, Krzysztof Kozlowski wrote:
+> > On 25/02/2025 12:45, Dmitry Baryshkov wrote:
+> >> On Tue, Feb 25, 2025 at 11:22:25AM +0100, Krzysztof Kozlowski wrote:
+> >>> On 25/02/2025 10:50, Dmitry Baryshkov wrote:
+> >>>> On Tue, Feb 25, 2025 at 10:30:51AM +0100, Krzysztof Kozlowski wrote:
+> >>>>> There is no such property as qcom,ath12k-calibration-variant: neither in
+> >>>>> the bindings nor in the driver.  See dtbs_check:
+> >>>>>
+> >>>>>   x1e80100-lenovo-yoga-slim7x.dtb: wifi@0: 'qcom,ath12k-calibration-variant' does not match any of the regexes: 'pinctrl-[0-9]+'
+> >>>>>
+> >>>>
+> >>>> Adding Jeff and ath12k@ to the cc list. Is the driver able to find the
+> >>>> calibration variant in case it is not running on the ACPI system? I see
+> >>>> that it uses dmi_walk. Does it work in the non-ACPI case?
+> >>>
+> >>>
+> >>> But nothing parses such string as 'qcom,ath12k-calibration-variant' (see
+> >>> git grep), so how would driver use it?
+> >>
+> >> That's what I'm asking: is the property redundant or is it correct and
+> >> it is a driver that needs to be fixed?
+> > 
+> > I assume driver will need something like that property, but that's not a
+> > reason to accept incorrect one in DTS. One cannot add properties to DTS
+> > without bindings, so bypassing bindings review, and then claim "but my
+> > driver needs them". Send proper patches for driver first which will get
+> > a review.
+> 
+> We definitely need a calibration variant entry.
+> I've pinged the development team to get the driver patch.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-change from v2 - v3
-- fix typo 1000000
+I think we need a confirmation from sobody using Slim7x if the driver
+can read info from DMI or if it can not. In the end, DMI != ACPI.
 
-change from v1 - v2
-- rebase to dt/dt64
-- add clock 100mhz
----
- arch/arm64/boot/dts/freescale/imx95.dtsi | 25 ++++++++++++++++++++----
- 1 file changed, 21 insertions(+), 4 deletions(-)
+> 
+> I'm also verifying internally that there are no issues with your renaming
+> proposal: qcom,ath1*k-calibration-variant => qcom,calibration-variant
+> https://msgid.link/20250225-b-wifi-qcom-calibration-variant-v1-0-3b2aa3f89c53@linaro.org
+> 
+> /jeff
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-index 51625bc9154ec..9bb26b466a061 100644
---- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-@@ -291,6 +291,13 @@ sai5_mclk: clock-sai-mclk5 {
- 		clock-output-names = "sai5_mclk";
- 	};
- 
-+	clk_sys100m: clock-sys100m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+		clock-output-names = "clk_sys100m";
-+	};
-+
- 	osc_24m: clock-24m {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
-@@ -1595,6 +1602,14 @@ usb3_dwc3: usb@4c100000 {
- 			};
- 		};
- 
-+		hsio_blk_ctl: syscon@4c0100c0 {
-+			compatible = "nxp,imx95-hsio-blk-ctl", "syscon";
-+			reg = <0x0 0x4c0100c0 0x0 0x1>;
-+			#clock-cells = <1>;
-+			clocks = <&clk_sys100m>;
-+			power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
-+		};
-+
- 		usb3_phy: phy@4c1f0040 {
- 			compatible = "fsl,imx95-usb-phy", "fsl,imx8mp-usb-phy";
- 			reg = <0x0 0x4c1f0040 0x0 0x40>,
-@@ -1633,8 +1648,9 @@ pcie0: pcie@4c300000 {
- 			clocks = <&scmi_clk IMX95_CLK_HSIO>,
- 				 <&scmi_clk IMX95_CLK_HSIOPLL>,
- 				 <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
--				 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
--			clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
-+				 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>,
-+				 <&hsio_blk_ctl 0>;
-+			clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux", "ref";
- 			assigned-clocks =<&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
- 					 <&scmi_clk IMX95_CLK_HSIOPLL>,
- 					 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
-@@ -1706,8 +1722,9 @@ pcie1: pcie@4c380000 {
- 			clocks = <&scmi_clk IMX95_CLK_HSIO>,
- 				 <&scmi_clk IMX95_CLK_HSIOPLL>,
- 				 <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
--				 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
--			clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
-+				 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>,
-+				 <&hsio_blk_ctl 0>;
-+			clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux", "ref";
- 			assigned-clocks =<&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
- 					 <&scmi_clk IMX95_CLK_HSIOPLL>,
- 					 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
