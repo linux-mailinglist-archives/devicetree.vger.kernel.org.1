@@ -1,343 +1,243 @@
-Return-Path: <devicetree+bounces-151084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AFEEA445C0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:17:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB7A3A445CF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:19:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EF2016E9B0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:16:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0819169966
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:17:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE7718FDB9;
-	Tue, 25 Feb 2025 16:15:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AE6198A32;
+	Tue, 25 Feb 2025 16:16:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MkdD3On8"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Y5ffm5Te"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2041.outbound.protection.outlook.com [40.107.105.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 145D318E351
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 16:15:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740500155; cv=none; b=ZK+Fo8iCJMVi8OUOolNXAWXALW0B5U0C9FutR8kdrVZ/oi6qMYIL+o9h2ovOekU+jkW3r4olyrCxwckTZotJtjsC+HqYk4aqHlOvqP2sqnzNgZboQ833pu6323JT2/62WUGjyMgl/ptUnv+loKsMsMzLGW7+UThBGuZFSSSUdO4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740500155; c=relaxed/simple;
-	bh=cFjqZSWgJlOJwLn4F6U83WAoI/z6YKYlElwqcgUvs4g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=J7PiosfpudWv36ezdMs8x4FW/6ZAAUtPvBKHdku+zNBXvia6qXjRR0nzPEPc3GT8aGoRIHG6WJytAApb4LYWt/5szggyy4gzaanrZevvYgccwAH4L+4pkMVJr8RfKr193wNk151z6seYCWJkeN+aM1I4PcHonSybwFWbnGnFEa8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MkdD3On8; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-54605bfcc72so7674434e87.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 08:15:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740500151; x=1741104951; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6UhTIBltfgKBBmLidVKld5as0xmpbG/Fdm5sX7gsUgk=;
-        b=MkdD3On88mOUDVZwlHaLvAfwpV1EhzW0Cu/kw8MwEt2fuLOLp/2+6bWiKRAXWvKapE
-         MfN1C4jZpTKjdiIUeEAASjeEvbtoq7XH83hVIcSYyLl2rP/AxB6KA0tVBJcpBXtXc+AF
-         F6Vk19/hfMHUSqNNIcLi8sutDdlAy1udk4hIFfHMxIeoSxhdzgWajaE2t/eaJi0fw/Hp
-         l9XdW+XnWujvYXCcKRZiHU2PJq5HjElfB8cj6GshW+hxwstPHL5thwwJZD0wbmxCLYMx
-         18jooj0sW9+VjRpxtFfMr+ruimr1RcQ1+PeYMI4xSiFeOPQQ2VJIJ/8MEpHmCdrYrBV5
-         SpfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740500151; x=1741104951;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6UhTIBltfgKBBmLidVKld5as0xmpbG/Fdm5sX7gsUgk=;
-        b=kJ5vjq0sAgHDbb8U6lGvHRDfytlnmxNgfXNS/zOCexQrgVphHy9FxMT4nHJmSnL89C
-         Ry5+g+tRS2RXSHPIPZhU8uk6yqR5lKvsAOxe1GylAijprwbyL/27GpTWazHNKwWOgNpF
-         I5FME/SnZ3gj7sBBtV0Z4o9Rivgm3d1v6d1OdGmDMa/XAwvJX55sMFTgf/1RcTs2S5k+
-         Sb3uPhvN7oRD3B2vArcsfUwOMi3Kyd0x6LtX82ngkEIfJ4DlR52dmWpw8ROvwNyD72zX
-         OEYdZHX/kK/RtYqPegflLvnEjjspfFPp8JVjr3E5h93ukTyTx9gFUjJpKT3OnQIy8HTX
-         UFVw==
-X-Gm-Message-State: AOJu0YzfznwOvxigG3+Ff4gPdlSFckaRUgtE2TOSqbtYXrc9lKsHOwf9
-	OdCxarUjnBi1g6w7YNrkyd+7PEX1bY/PAo5FldwoQGsTiNcIwzFp+yPVoeoh4TU=
-X-Gm-Gg: ASbGncusc7A/MgDuzye1Xiz1heizDhXKNdt4iHKHv2CQ1w8a9CT38PjpHqSUKIaoVQa
-	xQedxuAF9aauW0YmnQWOcYLP1ESgRQ4dsY4i4KrtwRL4u+PPVwrV1kRumxW1OH/rN7MJ2r/RwxS
-	NW90+t55syotcSz2YmBjXyyuZXdcd1eZv4rQw+RmKNnGjTgiUXCkrp0+aBjnjSAuIcnO8cMjHU9
-	uyWgEjF96msIhUhvfBnoAbvnb34tZHhXbQM53mz85kqMGznVO3sfduQznh996srGZIEpoJuRD+C
-	7/6ZblG032xl2t8P8wLRdIZHFftqhKPguiT+
-X-Google-Smtp-Source: AGHT+IH2GZTZ5sYtMQgmbcB5c7PsJz6WQp2M0e9NQnvea+V6C0hr0c+xi8/ObRpH91rna4ZcewqJsw==
-X-Received: by 2002:a05:6512:1326:b0:542:2139:636a with SMTP id 2adb3069b0e04-54838c5e1fdmr6155328e87.7.1740500151057;
-        Tue, 25 Feb 2025 08:15:51 -0800 (PST)
-Received: from [192.168.1.140] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-548514f512dsm212587e87.178.2025.02.25.08.15.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2025 08:15:49 -0800 (PST)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 25 Feb 2025 17:15:47 +0100
-Subject: [PATCH v2 2/2] gpiolib: of: Handle threecell GPIO chips
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8540B18DB08;
+	Tue, 25 Feb 2025 16:16:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740500200; cv=fail; b=dxBFcLlY8mCBqshL2MMeKjcaFwjdUfiEZmOr4AsUOn8WzeEKrl3XnqDwD6Llik5pnGcSt2WUONQPwzvLFILnvRmqXA+XO1XXEaTd2+dDIE1AY9T/HGS+N+NtUanTziEI0FMXQWvmEbLYOB0vd7FpVDJEk/oitJA+64Bq6p2Pb68=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740500200; c=relaxed/simple;
+	bh=W8FOXJ0E0s8JLk9fBMgeOM8WdHNMCtsav6N3XJdREsQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=QuKNco6kgYYNK2ZCZxGjitTDDEuMm04LQE92lrriUxTLYGjcaLNJh5IkQLWux6pI/HY/6Izs7QNgFUvQA8S2WluqFBxxDBnCmK6uiVRsmFlpn6tJRWF48Jr7JWJbuswpQ7fbfqDTLDA6N2AjmBC4Pll70+4/fh+UOZjephb/eSo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Y5ffm5Te; arc=fail smtp.client-ip=40.107.105.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gCTk76ApnPhYbtYtQTt22IF83SbOA+dQCfAcC69Cu5yPHtWl1oVmQycUVmdj5sgVAhvF8cGyetG3RLl7GDNBFV5RuaTmbNtnJacLOq47p6u0w1UVTw4VlR+TFK5CDW898OOx1pLPAMZuNU3Zbtxqpi0W3NB4qzA217HLDNVW5agLU/4zEF8s1yRK62hLWQIEDU2RSJasbTKFMbitWTn4oQCsRkz2hvZ2ZiFfdSRvaTUZRV2f5EeMyXnpR2x06BcqE3kD8waRUoNriu28aYdwqH8GuqU4UYwiXl1IRfDiL4oc7Qm41thA89TW8hjGA9tjVgzxi8Zd8LaQuEdkExavOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wuUySwQp74eFsWRsJ+c1UTXHBnOCkKfksU9BQQAUb60=;
+ b=u6scy3Dl3nxMIxORWKvTsGcSyzAHHwVT198viUB+zkEXL3kh3yM8sFdztg7kXdOBXJ0DfhTcWMR8SxjwnemDtC1dk0McOdg2s9h4UyN6rYR7jNMkVux1RBay7h2LRMPB++EmFeOUjDBPV2ohjVg5FhNMSSG/SOC8yQjibSh6+jpMaT9UuAV37IaGvedcMFF4KKMqiZeFgjAbJURXZYGxpCarDeMqAP8BH0garjB9vEsI38qV0ztIKmuSplLRVLURngRVCjmPpDxSvOATAkB5FepuC2S+OvcsCQESpLzQ3NCOUQ/LDFbJZfUpuCNtKkdje/cytbV+68m0qCZtWgPHuQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wuUySwQp74eFsWRsJ+c1UTXHBnOCkKfksU9BQQAUb60=;
+ b=Y5ffm5Te5nwl4Z89zNPLF5o/VuvSrUrK9Ft5oakr4Y6hDwneQ8ItcOEmBTEpxjrKzd+ObyoWw7x/79W/yWWulIytkLloGyTrW7ITOL7zARKXI4cZaJXnl5AnqtaaGBPDdMD1/HnBPECOYmDMhvyLoKtOpcoU7lWPS6n9D3r8t57Cgk7coVj7HqeQ748+WyaZKAijzBBNqNMCRScXL4F/Ca8Fv0Nf4RD3KHq1YL0c3yczb5b4hhOSPEDRrQOOUl1mogCM5KECf2Dbue2ct3cT8JHE6P284CmC1KsAwUF1xJX3ehVl3CimLcZ4Ngg451l1YDV2E3qIBqajYrfB3tEUcw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS4PR04MB9550.eurprd04.prod.outlook.com (2603:10a6:20b:4f9::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.19; Tue, 25 Feb
+ 2025 16:16:35 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8466.016; Tue, 25 Feb 2025
+ 16:16:35 +0000
+Date: Tue, 25 Feb 2025 11:16:27 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Mihalcea Laurentiu <laurentiumihalcea111@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/5] arm64: dts: imx8mp: convert 'aips5' to 'aipstz5'
+Message-ID: <Z73s2/ZgyaXnAqnn@lizhi-Precision-Tower-5810>
+References: <20250221191909.31874-1-laurentiumihalcea111@gmail.com>
+ <20250221191909.31874-5-laurentiumihalcea111@gmail.com>
+ <Z7jahtO3bxjkMfnc@lizhi-Precision-Tower-5810>
+ <cd6a84cd-ff17-45df-becc-9bfc74522f73@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cd6a84cd-ff17-45df-becc-9bfc74522f73@gmail.com>
+X-ClientProxiedBy: SJ0PR05CA0120.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::35) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250225-gpio-ranges-fourcell-v2-2-8da9998fa976@linaro.org>
-References: <20250225-gpio-ranges-fourcell-v2-0-8da9998fa976@linaro.org>
-In-Reply-To: <20250225-gpio-ranges-fourcell-v2-0-8da9998fa976@linaro.org>
-To: Yixun Lan <dlan@gentoo.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
- Linus Walleij <linus.walleij@linaro.org>, Alex Elder <elder@riscstar.com>
-X-Mailer: b4 0.14.2
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS4PR04MB9550:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5faa93de-26ec-4e7e-5f53-08dd55b7c67d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|7416014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?BEOJojSKMxMqUmwwpwRiUQJmQpg11V16QRI2WWB4hSofAib9HO7ri6wOt/Cw?=
+ =?us-ascii?Q?hVocFYH167JLxPc/Y1XnwZF6MutydyODhY7altZBTeEBY63K81WZDmf+2qWD?=
+ =?us-ascii?Q?LiChyiKg+2nLx6GzZJ8SV7JdQbQHJG5R7ggccTkn6wXdmvJNQ3XjAjmMadNL?=
+ =?us-ascii?Q?Clsa2KM1JyutZ+A90Rs4uY62UO2ww+6ZybWRYnIdnwZIryAJuU2sf+OhQPdY?=
+ =?us-ascii?Q?+RsMMwie05G1VMGL9Ait1ZLir6NNjCb3wdoh/NeQm6GjXvuJbuhIe6T03pzD?=
+ =?us-ascii?Q?wetn27KT/JEro5RDPeq5PZwL0obosu0sIBYv6NrdM9daxpK8MdXsvCRkmyhK?=
+ =?us-ascii?Q?OhjfJnXpGdVHWJjz+Tt1deYyVZ/GWLFdSKDne7J7MN9miVd5Lsrr4pq32CDI?=
+ =?us-ascii?Q?wXYR4Ke2bGQH1gaPGj59B3Ni5JVQAkmPki8yCh3PvitVlrpOi1Xp1U8G8tmr?=
+ =?us-ascii?Q?9GI5FwOpAXkdaCCPu59Iv3T8uJ7/qVXMDHzoYO5J85Ih+5t/+7EaruK1H+8J?=
+ =?us-ascii?Q?eGxfU+ILYlDILsjEEhRfd3OaU4v9UkbI3QmMNJb6BMLYO6hWZTtX90pYcdRj?=
+ =?us-ascii?Q?vdErcETElklLUentkQrjxROcc5QeMYAgoXf+cBAf0x8YcD4bHaaVfhmCJbm5?=
+ =?us-ascii?Q?JrY+ah8c3NbFuZNo8RG5n+jdhHIHNZnghJfP0jDXOHK6bFXK3iOHko4eSmHG?=
+ =?us-ascii?Q?8QWDVz5xn3ODDujw3F4PprGieKE/mZmHgeRhuXI7FwyBQTJ+aiucfxO5IHc+?=
+ =?us-ascii?Q?U0ktCVFRyOwOb/+i6/FJS2sJxzQCEurmLTSZazlNsQsack4X9f2KaP+drsHt?=
+ =?us-ascii?Q?WT61BpxLIuiZnJD9dnQI4xOCrqFlyctjeNI7G4MXYyvF/oRcutmTrcCimqf8?=
+ =?us-ascii?Q?1wx1yxfj0KjX0XcDowRMY8mtZ5K+7leIAsPUEisNEsgqWQp/0gwXi2qJ75J2?=
+ =?us-ascii?Q?dZ6sstoccdoTPBCdXGLdud2BwkB8mz3AyD2f7LKGJo7pLkH59eqz08X6YidX?=
+ =?us-ascii?Q?V67fFvrqGbQbPSvPJ4VtGFLzb9xgyNjui8ZKYvQbT3qxeTsCgzD72vLZF3jp?=
+ =?us-ascii?Q?Ye8Oc39U5ugOdexGZIXu0l9X5Cu319E665ubNu9CUCCyJ+L7R7tdka8dEIqh?=
+ =?us-ascii?Q?JZ+FxiDjrJFGTlUjJxIS8KngCq89X78R5mRt94MXeuZVkrCpGvtX7CiFVlov?=
+ =?us-ascii?Q?Rdup9bBmR62ipQjK8rwYsj0pWxJ0m7sLn48Nl6yUXDH1X/NxAaFFlKULX+wn?=
+ =?us-ascii?Q?gNaRKKa43CCZps1ISMx2iL4EovE0ZR7LP5RvgfFPc1Us+UA1X0Xf+Te8Ker3?=
+ =?us-ascii?Q?ur8EKpt0G6/VVGR3RHQR9nqZM2Zng86EaXJrm7fIPHA3YSEeUhUPNbxarGMc?=
+ =?us-ascii?Q?oQTjv26KiAVjG9FRmNZiYgAKVTIKm4BHZ1cxUvpX9FJcmU5h/G+sYp4JMCr3?=
+ =?us-ascii?Q?Vuhs09xhv9lt7HukUZMAmPwyxxGjwaak?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?W1tyOJs6tw26Ut+f2rpRQeXfxfsoR7kGD6uW2ExRQTCoaNw6fwI0aq9htjAQ?=
+ =?us-ascii?Q?yWZROSz2vflj1zdtccxzjTKJUKxv8CbYxv+xelh4mB5VTFiBDQcuSmKD0I8l?=
+ =?us-ascii?Q?3+ee4nSLp5P8+XtKRWspMhrZAzCYqczYKIz6QB2st/WT1BdMyRR6HhMvvfHy?=
+ =?us-ascii?Q?sepDitn5Pfc6XMqIPx1+Rn4fgYVv+JpzQsQn6txLWoDNlVS81KerwBQN+Mtp?=
+ =?us-ascii?Q?kdtzz1nl8jlYIeD4gs1pxrn56vvDVFNIuql0peNvP+RvcokaouhkAfThDVaA?=
+ =?us-ascii?Q?NhJUwKMqMZO91ZBJd1GmCtsM3FMpOFvD8cjrgidPKg80DP1A5bQoeJz9jhrN?=
+ =?us-ascii?Q?peQLroIIySrHMt5P5uGrPSrBK3T/Wk1HsstjhUeR7jQPth1/3S2VgUmMYMgB?=
+ =?us-ascii?Q?z2/AGMfRRGUDBYw83Cviz6xwmnyRr3uMu+dFOPsLCt/Kb2sMFEQx0u6vRf4k?=
+ =?us-ascii?Q?+Vwu9NBhRLdOFwgHglc1sypUFtuyaHqEx505QTuMRf1AMXYtB7N8HZtNboDJ?=
+ =?us-ascii?Q?d/H1kEnQn7SjGi6UA/7lr0+qcIXvgkcYM8VxR881KD7sOdvP0jcCFTWL82Um?=
+ =?us-ascii?Q?UO49Uf1A4vX9XrVNiCg4CY6IDmhRJPbuwkzfQW1Th6b0/7pmI2N+7vJ1JVqA?=
+ =?us-ascii?Q?9N2+vE+64n4BxUkAOV9DKTbZggibr4h1KZuMGy8S1ummn4q/yn9oDV4p6ncv?=
+ =?us-ascii?Q?e/9jOLCLFpNgm+NGDDpuI21Mm2/+m4bjcFYd/Kj9YxqBrtdi1PbPktI5i988?=
+ =?us-ascii?Q?ONW0KQPvclDQNebtiQVCMJ0JY9eEIMPxrF+s2TozQ6mSBCDH8jL2BZIpLF6J?=
+ =?us-ascii?Q?29DDFQIJQd9TJsxWsRFW1unThliGQ3f/SGQyKwIDVt/Pion80jIetp0zYm0M?=
+ =?us-ascii?Q?y00Jdx1VMTErBBpfepOYIm7Wb2Dmr7cSK8ER4UyprEqOoUqeIb0fVmJPYJut?=
+ =?us-ascii?Q?8bWJVHPH48pMrOC1oIdW2qyahH8Au08clGGkeURzyCBF4jIOe/NiVkGWS/h3?=
+ =?us-ascii?Q?O2kLoqLE/RYzj12cfK/4V192ckbbDdB9gbHsfbYtUbeClP/tmERXoi78O95T?=
+ =?us-ascii?Q?3b6/OwkF2jm8QzaQVLHQ+JCH8ex8KpwLPliTVx7Ge/Ost0m4fpdUp7Q7LrX1?=
+ =?us-ascii?Q?xFyDvCLJ/ez+iG5K5dR9uNlMFsF3mXee3ZCCDbpQnUtcgU9IK0av7uQIaJRw?=
+ =?us-ascii?Q?RX5WBZ5Xi8vQdsqRVZFES1hV2GT6fs+ydGlfSpDv4IvHGtZ8EQR0mNcpIe5q?=
+ =?us-ascii?Q?YFC3aTH81bs9TqPfO79TJApJiNHNirLDzfyqp8RGRGDJed3jTvCboyzw3gg3?=
+ =?us-ascii?Q?FWJpPK9kt7snqr1dDUkmCfkAcN6cbfqlMVacEVfU9ZyqEqBAFrd1ZeHiOQyl?=
+ =?us-ascii?Q?aNGMTMeC/7xZggXW3i+CXXPFcS3UAD71i4y5Ryye2ReQSkB+Qp8PYZP0LEGU?=
+ =?us-ascii?Q?ZQGw9uaXSO294L2KEJvGMUmqFoywZjl3HLUJ2/u9OGqWzcZuo//4tEeZQLhQ?=
+ =?us-ascii?Q?fEmrvl9+j5/py3A1pN87/LusytuWLDE/yz/tXGNmeW+XAMn7V2JMBMHkoxOp?=
+ =?us-ascii?Q?jTnMX5w7F5l36ShNgkJuvrWZ3Yn5UctFfULMI9Tf?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5faa93de-26ec-4e7e-5f53-08dd55b7c67d
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2025 16:16:35.5186
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Zpu2hTExgR+zF7FPk1Kd13dSsJuksxRQOTe4FjVILWhmiU/dRhnlHSGr3WaS0ek3hr1ojPtR9YaJ6MLvujhtCw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9550
 
-When describing GPIO controllers in the device tree, the ambition
-of device tree to describe the hardware may require a three-cell
-scheme:
+On Tue, Feb 25, 2025 at 04:14:34PM +0200, Mihalcea Laurentiu wrote:
+>
+> On 21.02.2025 21:56, Frank Li wrote:
+> > On Fri, Feb 21, 2025 at 02:19:08PM -0500, Laurentiu Mihalcea wrote:
+> >> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> >>
+> >> AIPS5 is actually AIPSTZ5 as it offers some security-related
+> >> configurations. Since these configurations need to be applied before
+> >> accessing any of the peripherals on the bus, it's better to make AIPSTZ5
+> >> be their parent instead of keeping AIPS5 and adding a child node for
+> >> AIPSTZ5. Also, because of the security configurations, the address space
+> >> of the bus has to be changed to that of the configuration registers.
+> > The orginal 0x30c0_0000..0x31200000 include 0x30df0000, why not map only
+> > config address part in your drivers.
+> >
+> > Frank
+>
+>
+> Any concerns/anything wrong with current approach?
+>
+>
+> I find it a bit awkward to have the whole bus address space
+>
+> in the DT given that we're only interested in using the access
+>
+> controller register space.
+>
+>
+> I'm fine with the approach you suggested but I don't see a
+>
+> reason for using it?
 
-gpios = <&gpio instance offset flags>;
+After second through, reg should indicate only used space. The current
+method is good enough. Just need figure out KK's comment about 'simple-bus'
 
-This implements support for this scheme in the gpiolib OF core.
+Frank
 
-Drivers that want to handle multiple gpiochip instances from one
-OF node need to implement a callback similar to this to
-determine if a certain gpio chip is a pointer to the right
-instance (pseudo-code):
-
-struct my_gpio {
-    struct gpio_chip gcs[MAX_CHIPS];
-};
-
-static bool my_of_node_instance_match(struct gpio_chip *gc
-                                      unsigned int instance)
-{
-    struct my_gpio *mg = gpiochip_get_data(gc);
-
-    if (instance >= MAX_CHIPS)
-        return false;
-    return (gc == &mg->gcs[instance]);
-}
-
-probe() {
-    struct my_gpio *mg;
-    struct gpio_chip *gc;
-    int i, ret;
-
-    for (i = 0; i++; i < MAX_CHIPS) {
-        gc = &mg->gcs[i];
-        /* This tells gpiolib we have several instances per node */
-        gc->of_gpio_n_cells = 3;
-	gc->of_node_instance_match = my_of_node_instance_match;
-        gc->base = -1;
-        ...
-
-        ret = devm_gpiochip_add_data(dev, gc, mg);
-        if (ret)
-            return ret;
-    }
-}
-
-Rename the "simple" of_xlate function to "twocell" which is closer
-to what it actually does.
-
-In the device tree bindings, the provide node needs
-to specify #gpio-cells = <3>; where the first cell is the instance
-number:
-
-gpios = <&gpio instance offset flags>;
-
-Conversely ranges need to have four cells:
-
-gpio-ranges = <&pinctrl instance gpio_offset pin_offset count>;
-
-Reviewed-by: Alex Elder <elder@riscstar.com>
-Tested-by: Yixun Lan <dlan@gentoo.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- drivers/gpio/gpiolib-of.c   | 93 ++++++++++++++++++++++++++++++++++++++++-----
- include/linux/gpio/driver.h | 24 +++++++++++-
- 2 files changed, 106 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
-index 86405218f4e2ddc951a1a9d168e886400652bf60..614590a5bcd10e5605ecb66ebd956250e4ea1fd8 100644
---- a/drivers/gpio/gpiolib-of.c
-+++ b/drivers/gpio/gpiolib-of.c
-@@ -929,7 +929,7 @@ struct notifier_block gpio_of_notifier = {
- #endif /* CONFIG_OF_DYNAMIC */
- 
- /**
-- * of_gpio_simple_xlate - translate gpiospec to the GPIO number and flags
-+ * of_gpio_twocell_xlate - translate twocell gpiospec to the GPIO number and flags
-  * @gc:		pointer to the gpio_chip structure
-  * @gpiospec:	GPIO specifier as found in the device tree
-  * @flags:	a flags pointer to fill in
-@@ -941,9 +941,9 @@ struct notifier_block gpio_of_notifier = {
-  * Returns:
-  * GPIO number (>= 0) on success, negative errno on failure.
-  */
--static int of_gpio_simple_xlate(struct gpio_chip *gc,
--				const struct of_phandle_args *gpiospec,
--				u32 *flags)
-+static int of_gpio_twocell_xlate(struct gpio_chip *gc,
-+				 const struct of_phandle_args *gpiospec,
-+				 u32 *flags)
- {
- 	/*
- 	 * We're discouraging gpio_cells < 2, since that way you'll have to
-@@ -968,6 +968,49 @@ static int of_gpio_simple_xlate(struct gpio_chip *gc,
- 	return gpiospec->args[0];
- }
- 
-+/**
-+ * of_gpio_threecell_xlate - translate threecell gpiospec to the GPIO number and flags
-+ * @gc:		pointer to the gpio_chip structure
-+ * @gpiospec:	GPIO specifier as found in the device tree
-+ * @flags:	a flags pointer to fill in
-+ *
-+ * This is simple translation function, suitable for the most 1:n mapped
-+ * GPIO chips, i.e. several GPIO chip instances from one device tree node.
-+ * In this case the following binding is implied:
-+ *
-+ * foo-gpios = <&gpio instance offset flags>;
-+ *
-+ * Returns:
-+ * GPIO number (>= 0) on success, negative errno on failure.
-+ */
-+static int of_gpio_threecell_xlate(struct gpio_chip *gc,
-+				   const struct of_phandle_args *gpiospec,
-+				   u32 *flags)
-+{
-+	if (gc->of_gpio_n_cells != 3) {
-+		WARN_ON(1);
-+		return -EINVAL;
-+	}
-+
-+	if (WARN_ON(gpiospec->args_count != 3))
-+		return -EINVAL;
-+
-+	/*
-+	 * Check chip instance number, the driver responds with true if
-+	 * this is the chip we are looking for.
-+	 */
-+	if (!gc->of_node_instance_match(gc, gpiospec->args[0]))
-+		return -EINVAL;
-+
-+	if (gpiospec->args[1] >= gc->ngpio)
-+		return -EINVAL;
-+
-+	if (flags)
-+		*flags = gpiospec->args[2];
-+
-+	return gpiospec->args[1];
-+}
-+
- #if IS_ENABLED(CONFIG_OF_GPIO_MM_GPIOCHIP)
- #include <linux/gpio/legacy-of-mm-gpiochip.h>
- /**
-@@ -1068,7 +1111,15 @@ static int of_gpiochip_add_pin_range(struct gpio_chip *chip)
- 	has_group_names = of_property_present(np, group_names_propname);
- 
- 	for (;; index++) {
--		ret = of_parse_phandle_with_fixed_args(np, "gpio-ranges", 3,
-+		/*
-+		 * Ordinary phandles contain 2-3 cells:
-+		 * gpios = <&gpio [instance] offset flags>;
-+		 * Ranges always contain one more cell:
-+		 * gpio-ranges <&pinctrl [gpio_instance] gpio_offet pin_offet count>;
-+		 * This is why we parse chip->of_gpio_n_cells + 1 cells
-+		 */
-+		ret = of_parse_phandle_with_fixed_args(np, "gpio-ranges",
-+				chip->of_gpio_n_cells + 1,
- 				index, &pinspec);
- 		if (ret)
- 			break;
-@@ -1078,9 +1129,25 @@ static int of_gpiochip_add_pin_range(struct gpio_chip *chip)
- 		if (!pctldev)
- 			return -EPROBE_DEFER;
- 
--		offset = pinspec.args[0];
--		pin = pinspec.args[1];
--		count = pinspec.args[2];
-+		if (chip->of_gpio_n_cells == 3) {
-+			/* First cell is the gpiochip instance number */
-+			offset = pinspec.args[1];
-+			pin = pinspec.args[2];
-+			count = pinspec.args[3];
-+		} else {
-+			offset = pinspec.args[0];
-+			pin = pinspec.args[1];
-+			count = pinspec.args[2];
-+		}
-+
-+		/*
-+		 * With multiple GPIO chips per node, check that this chip is the
-+		 * right instance.
-+		 */
-+		if (chip->of_node_instance_match &&
-+		    (chip->of_gpio_n_cells == 3) &&
-+		    !chip->of_node_instance_match(chip, pinspec.args[0]))
-+			continue;
- 
- 		/* Ignore ranges outside of this GPIO chip */
- 		if (offset >= (chip->offset + chip->ngpio))
-@@ -1170,8 +1237,14 @@ int of_gpiochip_add(struct gpio_chip *chip)
- 		return 0;
- 
- 	if (!chip->of_xlate) {
--		chip->of_gpio_n_cells = 2;
--		chip->of_xlate = of_gpio_simple_xlate;
-+		if (chip->of_gpio_n_cells == 3) {
-+			if (!chip->of_node_instance_match)
-+				return -EINVAL;
-+			chip->of_xlate = of_gpio_threecell_xlate;
-+		} else {
-+			chip->of_gpio_n_cells = 2;
-+			chip->of_xlate = of_gpio_twocell_xlate;
-+		}
- 	}
- 
- 	if (chip->of_gpio_n_cells > MAX_PHANDLE_ARGS)
-diff --git a/include/linux/gpio/driver.h b/include/linux/gpio/driver.h
-index 2dd7cb9cc270a68ddedbcdd5d44e0d0f88dfa785..680217ef8d92d0a6161356cc556eb5456a00eeb9 100644
---- a/include/linux/gpio/driver.h
-+++ b/include/linux/gpio/driver.h
-@@ -516,10 +516,32 @@ struct gpio_chip {
- 	/**
- 	 * @of_gpio_n_cells:
- 	 *
--	 * Number of cells used to form the GPIO specifier.
-+	 * Number of cells used to form the GPIO specifier. The standard is 2
-+	 * cells:
-+	 *
-+	 * gpios = <&gpio offset flags>;
-+	 *
-+	 * some complex GPIO controllers instantiate more than one chip per
-+	 * device tree node and have 3 cells:
-+	 *
-+	 * gpios = <&gpio instance offset flags>;
-+	 *
-+	 * Legacy GPIO controllers may even have 1 cell:
-+	 *
-+	 * gpios = <&gpio offset>;
- 	 */
- 	unsigned int of_gpio_n_cells;
- 
-+	/**
-+	 * of_node_instance_match:
-+	 *
-+	 * Determine if a chip is the right instance. Must be implemented by
-+	 * any driver using more than one gpio_chip per device tree node.
-+	 * Returns true if gc is the instance indicated by i (which is the
-+	 * first cell in the phandles for GPIO lines and gpio-ranges).
-+	 */
-+	bool (*of_node_instance_match)(struct gpio_chip *gc, unsigned int i);
-+
- 	/**
- 	 * @of_xlate:
- 	 *
-
--- 
-2.48.1
-
+>
+>
+> >
+> >> Finally, since AIPSTZ5 belongs to the AUDIOMIX power domain, add the
+> >> missing 'power-domains' property. The domain needs to be powered on before
+> >> attempting to configure the security-related registers.
+> >>
+> >> The DT node name is not changed to avoid potential issues with DTs in
+> >> which this node is referenced.
+> >>
+> >> Co-developed-by: Daniel Baluta <daniel.baluta@nxp.com>
+> >> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> >> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> >> ---
+> >>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 8 +++++---
+> >>  1 file changed, 5 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> >> index e0d3b8cba221..a1d9b834d2da 100644
+> >> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> >> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> >> @@ -1399,11 +1399,13 @@ eqos: ethernet@30bf0000 {
+> >>  			};
+> >>  		};
+> >>
+> >> -		aips5: bus@30c00000 {
+> >> -			compatible = "fsl,aips-bus", "simple-bus";
+> >> -			reg = <0x30c00000 0x400000>;
+> >> +		aips5: bus@30df0000 {
+> >> +			compatible = "fsl,imx8mp-aipstz", "simple-bus";
+> >> +			reg = <0x30df0000 0x10000>;
+> >> +			power-domains = <&pgc_audio>;
+> >>  			#address-cells = <1>;
+> >>  			#size-cells = <1>;
+> >> +			#access-controller-cells = <0>;
+> >>  			ranges;
+> >>
+> >>  			spba-bus@30c00000 {
+> >> --
+> >> 2.34.1
+> >>
 
