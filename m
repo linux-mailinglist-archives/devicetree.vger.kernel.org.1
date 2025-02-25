@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-151000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4976A441DC
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:09:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 743EBA441C9
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:07:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41C2B19C1D50
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:06:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC5DA16C350
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:07:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE356267AF1;
-	Tue, 25 Feb 2025 14:06:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF632690D4;
+	Tue, 25 Feb 2025 14:07:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="awUFXT9N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GTDUof/c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 851961FC7D5;
-	Tue, 25 Feb 2025 14:06:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C2426869E;
+	Tue, 25 Feb 2025 14:07:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740492396; cv=none; b=sCZ9NfF7rfU8IsYDvfL8WSblkjtsd+1ileKEFUaL3huGK7LCr5z3vCH8XlogBtuaT7FUEDt2+PGh1lrp39V/lR/Uv9Q3IAPdc+GavLF54pd4R4a0zTnxiPIa17JQt/vSJd1h70TAnMG5/ZKshVWMuup8kyZEzq9zMysMOliGBzw=
+	t=1740492448; cv=none; b=dWN5qdz5ToOhC2FcsMnEMH48TAmAhfj21r2JVejEx/+hZmHCHqEG/UKTMDBop4x3iWICXXS3fK2T4ZepTST2FHqoMlF9uCXaFq67B91RWkQ6USQ+9AmN0z/aQRKtSGEWns/XRdslodNdugDD2VTwnsgVtUFtr5Qx1DxG8KAZ2EE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740492396; c=relaxed/simple;
-	bh=5p8g0jn/H6LJ5TXlZMtN4+RQEgxn/quDJzMY5IiihGU=;
+	s=arc-20240116; t=1740492448; c=relaxed/simple;
+	bh=ylog7V7NQEcge7nITuORIXXaH0MR5zF/yHX1ZMVs1U8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iB9skkrpPkMWrlH3XcnO9Nir2lt4IlI5Eo/X2HjNAurVK2FF+2IfW4VvP6oUpZq+KW7Dn4nII0uN0IMCChvvhBvo9Ja2YmJgnUESGiLJu+Sn6IPsYqvf5w5NX2UqEpfImEtyM7nq+hEf0ZFgwk8lC4EtOeKGHHYVNs6gFtlXONI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=awUFXT9N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60FBDC4CEDD;
-	Tue, 25 Feb 2025 14:06:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jj7MWGiVUxoDxN7bUlw899RmDi0av+IFA73QI5WCGwxQag93PNUj0LSC4I+42SWr6kLjBTOOFvPsI26LK7cJ55aioW7ddpUO8GI8o/TMnMguMYzn5fHd5HxOS+3gX0iBjGL+NdO/53pKoqW+KtFy+CpeKf+eLmHypFndGdDg2tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GTDUof/c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67E7FC4CEDD;
+	Tue, 25 Feb 2025 14:07:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740492396;
-	bh=5p8g0jn/H6LJ5TXlZMtN4+RQEgxn/quDJzMY5IiihGU=;
+	s=k20201202; t=1740492447;
+	bh=ylog7V7NQEcge7nITuORIXXaH0MR5zF/yHX1ZMVs1U8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=awUFXT9NLboiavoY9ijieTyGuvgKAA3TiyEDv8/DfJhkyznEwsPUCpb1DL/F56zOo
-	 O6yDJLgaaqF3WEYlBl8qvZud7rSBZ+e2UBUJFW5beaCemISY+WywEFNysjc15mfP2+
-	 Jvk7SAiUF/lYQLdyy7QjqzcQlm8xNhVGBas+h+/qmHQHOJ1+Sp8/G08tojI+VjnFCX
-	 3HwkD1Ez/c9Om7DFpAzDHHwU30fxH8sWN2McP8SifDRUTtma2NruqhEjaNK8bQ5+G9
-	 lWlIkWUIGK/tk6LuG+WovMUSKjDQNVSA7lgWsPafoMmUif6hP/alF8cKBltvSiIlEy
-	 FCHG5FYxZ9mbQ==
-Date: Tue, 25 Feb 2025 14:06:31 +0000
+	b=GTDUof/cZ6v9RgXqZgG6IiDyxfLNwL6zoUwmXt8LeRKlTyScKbrtN1+J/ECTOG3zw
+	 bSnP5iHVnptR4I3QV7uCIX6A1Rq6rQMn9oGi1OeA6hQKTtFxq2prI9Tf/mQmS2eMGF
+	 4+W2PgXJFuyaIDTUiB3e/wZtX5C7m1DpoWu+X4VGU7LszJO1F/NADWGbjvvgH4Xtgw
+	 5ljlQ5QZ0/4eIgXTjtlA2FMlAYNr9V5Cp6F2GhOa/EXADl8pxXlraGspFDFC3owjiX
+	 aLcVEr8L7SLGokBUJ9A7VSPK9BLuibt9BHp/++mQg4kMLCO23Br82nwrdeyLdcVNd+
+	 cmfSCgdKvqr9Q==
+Date: Tue, 25 Feb 2025 14:07:23 +0000
 From: Mark Brown <broonie@kernel.org>
 To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
 Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: add adi,adp5055-regulator
-Message-ID: <cf90cf64-202b-456c-9a9a-ba33d0e68961@sirena.org.uk>
+Subject: Re: [PATCH 2/2] regulator: adp5055: Add driver for adp5055
+Message-ID: <3905cff4-4e4f-4301-8aaf-70bd50126448@sirena.org.uk>
 References: <20250225-upstream-adp5055-v1-0-a5a7f8e46986@analog.com>
- <20250225-upstream-adp5055-v1-1-a5a7f8e46986@analog.com>
+ <20250225-upstream-adp5055-v1-2-a5a7f8e46986@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,64 +59,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="cwPN3DqgCIzTZZ2R"
+	protocol="application/pgp-signature"; boundary="jTB3LrYJ9ENBnqsY"
 Content-Disposition: inline
-In-Reply-To: <20250225-upstream-adp5055-v1-1-a5a7f8e46986@analog.com>
+In-Reply-To: <20250225-upstream-adp5055-v1-2-a5a7f8e46986@analog.com>
 X-Cookie: I'm not available for comment..
 
 
---cwPN3DqgCIzTZZ2R
+--jTB3LrYJ9ENBnqsY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Tue, Feb 25, 2025 at 05:08:33PM +0800, Alexis Czezar Torreno wrote:
+On Tue, Feb 25, 2025 at 05:08:34PM +0800, Alexis Czezar Torreno wrote:
 
-> +      adi,power-saving-mode:
-> +        description:
-> +          If present, enables power saving mode for
-> +          individual channels.
-> +        type: boolean
+> +	device_for_each_child_node_scoped(dev, child) {
+> +		ret = fwnode_property_read_u32(child, "reg", &i);
+> +		if (ret)
 
-We have standard mode operations, please implement those.
+Use of_parse_cb() to parse per-regulator properties.
 
-> +      adi,output-discharge-function:
-> +        description:
-> +          If present, enable output discharge functionality
-> +          for individual channels.
-> +        type: boolean
-
-set_active_discharge()
-
-> +      adi,disable-delay-us:
-> +        description:
-> +          Configures the disable delay for each channel. Dependent on Tset.
-> +        enum: [0, 5200, 10400, 15600, 20800, 26000, 31200, 36400]
-> +        default: 0
-> +
-> +      adi,enable-delay-us:
-> +        description:
-> +          Configures the disable delay for each channel. Dependent on Tset.
-> +        enum: [0, 2600, 5200, 7800, 10400, 13000, 15600, 18200]
-> +        default: 0
-
-This looks a lot like the driver should implemnt the enable_time()
-and/or set_ramp_delay() operations and use the constraints to configure
-this.
-
---cwPN3DqgCIzTZZ2R
+--jTB3LrYJ9ENBnqsY
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAme9zmYACgkQJNaLcl1U
-h9Barwf/fTcd5fyS9EAHbBYRAXg0QdNpGeZxnN+qwMc7wLEUl1KielZIfwTi1OuK
-SoxCfX1FwRRhWSXpCGcBqQd+fwKbYSY0Xqn2sYPqUr8NhPMxg5kpkD/dTSJ8biQY
-Mm1fv/5xZhdmwyJkFqWzVIUJpSsg6+9DZ9ctpIUfU1Z3EqrQIYFUQVlbzHFXQPi2
-lEADEeMYrgCLr0p2hV2lWLHu+6s6dfGSRhXOzKytEMjGpvW1vxBbTGKX9vyuLxgi
-IU/MGCXJZu+TfARUvnkq89cJZj+HkBy5t1LEnRJwCl1j1djpP8xtTzLVaFm80Trm
-MQIPbKOCgUOXWl7K+oPY25InBr2R3Q==
-=Awj7
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAme9zpoACgkQJNaLcl1U
+h9BU8gf/YjvkmrzPVLgHtogI4EMUneSBFqOsHcweayHTVmnvSguz5ATiriXqiQq1
+m95UyDAmvmjQ7VpmfGQDZwKbbrPU7Iws8RKAYHvQIK4X0okreDE+ubT4cmeY0TJ8
+4IaO1RLfcGFaStOvVy5T6lWrXWvo2vgBNooQ9dy346Ed9ZmBcj+lpuXGji7anlc3
+fpAl+INzTI/Ig8oE3Ab7wBTIt2wBLm6KmnuOqA2GgM8RjIt2Nk0mt0RyOXPCE/Lz
+wKjRlPR9MDX7rv2Etj0GPHOtbAU+6pd3ged1aY2WPTAUo3e0cYuW3zvOKTBMMlBj
+DyK1hRPA1swPYRORoV60UPnEPZEFIg==
+=mFoQ
 -----END PGP SIGNATURE-----
 
---cwPN3DqgCIzTZZ2R--
+--jTB3LrYJ9ENBnqsY--
 
