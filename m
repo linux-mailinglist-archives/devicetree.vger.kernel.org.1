@@ -1,120 +1,154 @@
-Return-Path: <devicetree+bounces-150907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29CD9A43E5A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:55:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0FDFA43E48
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:53:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 278B23AB0A8
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:52:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABB53188287E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC3DE267738;
-	Tue, 25 Feb 2025 11:52:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6F54267B64;
+	Tue, 25 Feb 2025 11:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fhhx23vt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="axOr7SQB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D35C719C54F
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 11:52:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA01B267B8B;
+	Tue, 25 Feb 2025 11:52:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740484329; cv=none; b=XFK/P84K4HPc8ijYwwQW+PJexxaRmtdcHNWMSCaT9V2D97oHA8aBjiHtk2qUUs8tw6Fo/Dn9G5CmXqBR2vEmqLqimZlid7pAjmvhrohw+bJcHnHBj4rrUiQaD8wqgSQpL6wnB4xiOPBhdbn+8IR+HmLm/nacQTA3NuNVS1Hq1AI=
+	t=1740484373; cv=none; b=poWIJSvVKy2TehaaHLsRIb0GfHPjoAYPdMMXLXnwfWpxIrcFmBwZk2+sL5I3dAfQ6l9VA5vDBl+aiF8OVZvLhQoMQ0a8ehoLBV9B8t6HZoHnZ9RCruTLE2s6Cz8crmG3DXdGsnuglQKlfWH+0TKjoPxf7monH/77rzv7QsTKKgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740484329; c=relaxed/simple;
-	bh=06Py7aJp14BHUIJAvzvlfHnZrSajm4jMw3RXc7l2ukA=;
+	s=arc-20240116; t=1740484373; c=relaxed/simple;
+	bh=hSHb3rOa9k5tsPmaPPeA5bikJl+Av+tcshX5VjzhvP4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZD7KNnxcrtibn6R1Td949XpGK8kkzT2ktlui1nzWjh3f5EdY8p5WLIfm8pf4IgZI9UsNgz3HbyQXp4qtcf4iKlZepUmM/yUBvAGr+A6ejWBU67QF6+WqqeSO9B0s+GlP8sp+7uvXX+8PSSxa/oO0BOKQNU3Tln9hsGqpLmPX9mA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Fhhx23vt; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54622e97753so5045836e87.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 03:52:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740484326; x=1741089126; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3wS9tak0NaNpAhLlFW6uyty61j0I79uv4Vz/GWJtmTk=;
-        b=Fhhx23vtDyhPWmr52coCHVGH3HTuXpIT+JMJoX+OyQ5JSQIqiLiGO5Ix+5otyrU9c4
-         R7kUTZ3HMznaOxWFuV3TUSXLHi8T5YVAm8mLz4aVEAwcapnLwZySY9wTbmHc3M8gZXAL
-         qnA/S4uFMWTii4KQayzWa0BXkVOzkx+ACKFJUyOR8fxUqvRU0VhrghE32Jod1YlL/MI2
-         BAXG4wssYVUL2DetcQ0eVbnU2XhdW3kzWywWEiB3nVr2AyEnM699J8s8PNhdrHbPCjBa
-         4LHAQZbHPrq12e1AdKRGqNUXmh+OXUCIn0MnoMzpS3V435udP07OXuhL4D0L1NegVeKA
-         DH+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740484326; x=1741089126;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3wS9tak0NaNpAhLlFW6uyty61j0I79uv4Vz/GWJtmTk=;
-        b=umT81aD/C5+tp5blRICAx+mfQvytjVdYQ5g2/OOQPqgSmrZsCT1NJD3uJSY1CkKRFC
-         uCHEDClMcdMKGhUdMDwgyqgDf8IZAxhFxzBbdjJTiwpUmJlJw2hSYAQ+kdintmdJ8yT5
-         UYl3yd36a87qIhGZH8CIVUbz05wnLMuoiC/uvYE4qH8Y3T7olY4OUyNPRQEhYJjimIh2
-         CaxpjQ22ZtqHozAA5lfMS9PmSEAH8aPJv6Yihju7jHSPvv5Woa1LTLYVTycZTDNuCgxR
-         pVB995OSq6xJ7I9y8093JS+5r9ow5wpa69TGVdrlZRfgAKSMf3RoKPwS8l5pkRoglUsI
-         O+lQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU0FwppZtzgISNslgf2Yq6OJupYHONDYSCWWmvGnSIQyrNsZYBZbetI+uAAZhPe8+AobvdFmCeXGsfH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/pif0S2q519nQD/DHzt2/C1fdq+Xc9m/vP2J8cz7+XI5/ugnu
-	iXClIPZkmnFelSHsj0C9vVetZ9OR1XrElvSyi87WI6J4VJvDkvHKmIms6G5RJkc=
-X-Gm-Gg: ASbGncsNBY59TibjiB/SR29nTLJoWhN7zkErmmFaLa/ZCgTrXJL12uTpBwIV+z77hM+
-	N6JxFBCJYCLny2e8P6D1hNHRtPxWu+7ybst+8F5GEyBKUN0qAjAonbEdNXr+AaWOkY0/Q9Pb4bm
-	SX2GLWU9mHB4gmc2BlmZPEG4q4DiV/hBi3z0oknNu+ZkEBWjsS7KwK4JvHQZOiev3p3SEgE6WHo
-	1JW7Rihtpqx/gLe+6ITokI7dkgTiLAzF1mglgPzRIb4ksRxXGlrOtWT3Dh2cSB3JWCMHRJpAz4r
-	YNMligWtP2YxjgfzsGFVWUJEQG0pAxOrDM9PXOF2S3eT7Z2I/YPOuQLU8qlUWPKytsSGYYXiUTp
-	06udW2w==
-X-Google-Smtp-Source: AGHT+IHaCOYYY1hFZ2o6pI3+gD73kquLWGQBBvEHfmt0Roiv69QaC0Cnq2VStk0d5J4mPbpT0ertdw==
-X-Received: by 2002:a05:6512:e88:b0:545:457:e588 with SMTP id 2adb3069b0e04-54838c5e762mr6148340e87.10.1740484325931;
-        Tue, 25 Feb 2025 03:52:05 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-548514fa1d7sm151829e87.238.2025.02.25.03.52.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2025 03:52:04 -0800 (PST)
-Date: Tue, 25 Feb 2025 13:52:02 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	chaitanya chundru <quic_krichai@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	Jingoo Han <jingoohan1@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicnic.com, 
-	amitk@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com
-Subject: Re: [PATCH v4 10/10] arm64: dts: qcom: sc7280: Add 'global'
- interrupt to the PCIe RC nodes
-Message-ID: <kkqydwutpaxzj6beqbdkmjanpzvvloqc3csm4ze2phoibmvmoy@asxc2ffipkgj>
-References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
- <20250225-qps615_v4_1-v4-10-e08633a7bdf8@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LsLABwmXe1J+yhMKrJc8f3Q5qutjXkpuhtyyADhtk12pCIeILZLy64GOD4UEFAgNOrWPdwTg1G4S9rbwIdFVvG9bVb9EBoIFJvQxtCnrcgXmjXmF0rxvY+E9r8MXeGgoq13hfm1yJ2VeiIxcCPBfeqNi3ANvuXvD3pQ76wLOKjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=axOr7SQB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 803AEC4CEDD;
+	Tue, 25 Feb 2025 11:52:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740484373;
+	bh=hSHb3rOa9k5tsPmaPPeA5bikJl+Av+tcshX5VjzhvP4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=axOr7SQBeGTA3q1VBqZiED6W6FPt3G7EHRdpdlPTJ0aengiP2RL4qJAdZWRpjahev
+	 cDz78xYjfg9QCWpj4+1wn4OPbZxS/oPm5lQvVulupYW2VrnWu9g0+hl1zvPCcEKwPQ
+	 GjQqtL0Wl1GPrV/BonDqWLaNdgTD+pl8eAhReFDmL5VD2aAJSHg4aKnwmao35N6n9h
+	 srvpA/g6CXOqMvbFoVB4cuSwEPPw3JCFxB8A8W23s/NxTasqq/ZWVVGLJddeeDW0iH
+	 2EMxexvwXOQr7cbFohPt+WksCavde2D181k0HtfIMi7HlNJY1s1ia5TziH+sey/x+B
+	 DfF36Ne7eCc5Q==
+Date: Tue, 25 Feb 2025 12:52:50 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Maud Spierings | GOcontroll <maudspierings@gocontroll.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, Liu Ying <victor.liu@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 05/14] dt-bindings: trivial-devices: add GOcontroll
+ Moduline IO modules
+Message-ID: <20250225-smart-industrious-groundhog-41deb2@krzk-bin>
+References: <20250224-initial_display-v1-0-5ccbbf613543@gocontroll.com>
+ <20250224-initial_display-v1-5-5ccbbf613543@gocontroll.com>
+ <20250224204428.GA4050751-robh@kernel.org>
+ <PA4PR04MB763009E88F6406CD84ACBD33C5C32@PA4PR04MB7630.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250225-qps615_v4_1-v4-10-e08633a7bdf8@oss.qualcomm.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <PA4PR04MB763009E88F6406CD84ACBD33C5C32@PA4PR04MB7630.eurprd04.prod.outlook.com>
 
-On Tue, Feb 25, 2025 at 03:04:07PM +0530, Krishna Chaitanya Chundru wrote:
-> Qcom PCIe RC controllers are capable of generating 'global' SPI interrupt
-> to the host CPUs. This interrupt can be used by the device driver to
-> identify events such as PCIe link specific events, safety events, etc...
-> 
-> Hence, add it to the PCIe RC node along with the existing MSI interrupts.
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
+On Tue, Feb 25, 2025 at 07:39:52AM +0000, Maud Spierings | GOcontroll wrote:
+> From:=C2=A0Rob Herring <robh@kernel.org>
+> Sent:=C2=A0Monday, February 24, 2025 9:44 PM
+> =C2=A0
+> >On Mon, Feb 24, 2025 at 02:50:55PM +0100, Maud Spierings wrote:
+> >> The main point of the Moduline series of embedded controllers is its
+> >> ecosystem of IO modules, these currently are operated through the spid=
+ev
+> >> interface. Ideally there will be a full dedicated driver in the future.
+> >>
+> >> Add the gocontroll moduline-module-slot device to enable the required
+> >> spidev interface.
+> >>
+> >> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+> >> ---
+> >>=C2=A0 Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+> >>=C2=A0 1 file changed, 2 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/=
+Documentation/devicetree/bindings/trivial-devices.yaml
+> >> index 8255bb590c0cc619d15b27dcbfd3aa85389c0a54..24ba810f91b73efdc615c7=
+fb46f771a300926f05 100644
+> >> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> >> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> >> @@ -107,6 +107,8 @@ properties:
+> >>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - fs=
+l,mpl3115
+> >>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 # MPR121: Proximity Capacitive Touch Sensor Controller
+> >>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - fs=
+l,mpr121
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # =
+GOcontroll Moduline module slot for spi based IO modules
+> >
+> >I couldn't find anything about SPI for GOcontroll Moduline. Can you
+> >point me to what this hardware looks like. Based on what I did find,
+> >this seems incomplete and not likely a trivial device.
+>=20
+> I'll give some more details, if there is a v2 of this patch I will also
+> add more information in the commit message.
+>=20
+> The module slots have a number of pins, a lot of them currently unused as
+> they have not found a function yet, this is very much still a developing
+> product. The currently used interfaces to the SoC are:
+> 1. SPI bus as a spidev to ease developing new modules and quickly
+> integrate them. This is the main communication interface for control and
+> firmware updates.
+> 2. A reset pin, this is/was driven with the gpio-led driver but I doubt
+> that would get accepted upstream so I intend to switch to the much better
+> suited libgpio.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+reset-gpios is not in trivial devices, so that's already a hint you
+cannot use this binding.
 
--- 
-With best wishes
-Dmitry
+> 3. An interrupt pin, this is currently only used in the firmware update
+> utility [2] to speed up the update process. Other communication is done at
+> a regular interval.
+>=20
+> What is unused:
+> 1. A potentially multi-master i2c bus between all the module slots and
+> the SoC
+> 2. An SMBus alert line is shared between the modules, but not the SoC.
+> 3. A shared line designated as a clock line, intended to in the future
+> aid with synchronizing modules to each other for time critical control.
+>=20
+> current software that is used to work with the modules can be found at
+> [2] and [3], one of them is a Node-RED module the other is a blockset for
+> Matlab/Simulink generated code.
+>=20
+> If you know a better way I could describe this in the devicetree then I
+
+You need dedicated binding where you describe entire device, entire
+hardware, not what your driver supports in current release.
+
+Best regards,
+Krzysztof
+
 
