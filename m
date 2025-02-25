@@ -1,99 +1,122 @@
-Return-Path: <devicetree+bounces-150926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D823A43EE1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:10:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5E1A43EE4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:10:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66E223ABBF2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:07:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E01977AB523
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:06:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80779267F79;
-	Tue, 25 Feb 2025 12:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A59A0267B9C;
+	Tue, 25 Feb 2025 12:07:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3DA1266F17
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 12:07:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A413267B1A;
+	Tue, 25 Feb 2025 12:07:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740485256; cv=none; b=FA9yXNwbcA1SuuUcCQgmj8qKEYEOc+H5k4YzNN/uthaLIeWpowfvqSMAp3BeAGS4sJvU6a2pW9666lGni6dMGU/9InLpC6BU48vL0Ij4m2Fh3Al4Gxg5Ds63RY+gygSrwT9grquaAKmnof3MUJljdG94guhX6f3mTT4+rPaL62M=
+	t=1740485243; cv=none; b=G0eIXlXCal/4tOARTJWrjpNdoeLX1nwe+uC0XdsjcSOObE+TWJY+RbAD+pGSBnlGBWAtMBLg8lwuuEQ7bosOI3PnFzYA9W5KS2pY0nYiQdXWgAL5hYYrNPwF9y4s5GqKaxoVbJekQo/8W7sQ9Z3VWDv2W0A5sL9eY91HdX0oz14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740485256; c=relaxed/simple;
-	bh=0bL9U0KMYQ+lYWZAHSgGZsMtAXkXaN2VDzC2OYsr/+o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=U/UhgHg+CeKK1WEDWvzLADpB/FP7Oxl0JExGHTMPJcfbs6ufOEsiue8Oa7Ay0TErQVHlI2GrHGE3wmKm9AAvThMYmrInvVa4kxycXav3MW3L3Tb0AcXnMWYsjFw1pNF0v5APdNZTjZOoyJfneVlzxw4V9Qe3i2az6vQWnBkeQbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.felsch@pengutronix.de>)
-	id 1tmtig-00055V-2R; Tue, 25 Feb 2025 13:07:26 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: "robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, Sascha Hauer" <s.hauer@pengutronix.de>
-Cc: kernel@pengutronix.de,
-	krzk@kernel.org,
-	aford173@gmail.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: imx8mm: fix micfil dmas settings
-Date: Tue, 25 Feb 2025 13:07:06 +0100
-Message-Id: <20250225120707.2658709-3-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250225120707.2658709-1-m.felsch@pengutronix.de>
-References: <20250225120707.2658709-1-m.felsch@pengutronix.de>
+	s=arc-20240116; t=1740485243; c=relaxed/simple;
+	bh=BZgdWO7k4+OKLqpthfS5rJrQuQPttt/GmTiWB7L+cFI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fIVoUSIJLeUwBgUctgZwSOSZiFI8bovhKesnzGIDJg72WHvXsfs+WdfnpXKZpV4CSc5qNpXDflWcsK4d3pqyTvz8cO3O75gSO4nnI8n1epyc01HsuZQBldfrdqaUn5QMNrjwSGN/adgK7vOqbzJoOSmDFyzPOEfz9FMT1A/F95U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D8753152B;
+	Tue, 25 Feb 2025 04:07:37 -0800 (PST)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 135943F6A8;
+	Tue, 25 Feb 2025 04:07:18 -0800 (PST)
+Date: Tue, 25 Feb 2025 12:07:16 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Vincenzo Frascino <vincenzo.frascino@arm.com>
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, Will Deacon <will@kernel.org>,
+	Jessica Clarke <jrtc27@jrtc27.com>
+Subject: Re: [PATCH v7 00/10] arm64: dts: Add Arm Morello support
+Message-ID: <Z72ydHCLxd-WGsJu@bogus>
+References: <20250221180349.1413089-1-vincenzo.frascino@arm.com>
+ <Z7jL5wBUJNjOlg4r@J2N7QTR9R3.cambridge.arm.com>
+ <58ee2a8d-d3c1-4bc2-92dd-6568f645b01f@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: m.felsch@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <58ee2a8d-d3c1-4bc2-92dd-6568f645b01f@arm.com>
 
-The third dma cell is used for priority information not to encode
-something else. The NXP downstream kernel use the third cell to encode
-more information:
+Hi Mark,
 
- - Bit31: sw_done feature enable/disable
- - Bit15~Bit8: selector
- - Bit7~Bit0: priority level
+Thanks for raising valid points/concerns.
 
-but this was never mainlined. Therefore drop the further information and
-just specify the priority which is 0.
+On Mon, Feb 24, 2025 at 10:08:18AM +0000, Vincenzo Frascino wrote:
+> Hello Mark,
+>
+> On 21/02/2025 18:54, Mark Rutland wrote:
+> > Hi Vincenzo,
+> >
+> > On Fri, Feb 21, 2025 at 06:03:39PM +0000, Vincenzo Frascino wrote:
+> >> The Morello architecture is an experimental extension to Armv8.2-A,
+> >> which extends the AArch64 state with the principles proposed in
+> >> version 7 of the Capability Hardware Enhanced RISC Instructions
+> >> (CHERI) ISA [1].
+> >
+> > None of the CHERI stuff is supported upstream, so from upstream's PoV
+> > this is a low-volume dev-board/SoC with an experimental ARMv8.2-A CPU.
+> >
 
-FTR: The sw_done feature was mainlined without making use of the
-devicetree.
+I understand and agree with your concerns.
 
-Fixes: 3bd0788c43d9 ("arm64: dts: imx8mm: Add support for micfil")
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> Agreed, I have no plans to upstream Morello support beyond the device tree.
+>
+> >> This series adds dts support for the Arm Morello System Development
+> >> Platform.
+> >
+> > Do we actually need the dts for this board?
+> >
+> > I have one on my desk; it boots vanilla Debian 12 via UEFI + ACPI just
+> > fine, with the Debian 6.1.0-13-arm64 kernel.
+> >
+> > Is there something that we can only do with the DT? i.e. some
+> > functionality that isn't exposed via ACPI?
+> >
+> > How do you expect this DT to be used?
+> >
+>
+> There are functionalities that are not exposed via ACPI, e.g. gpu, dpu, i2c for
+> the phy, etc. My aim to have upstream support for all the hardware exposed by
+> the platform.
+>
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 4de3bf22902b..88e6a75e6c86 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -397,7 +397,7 @@ micfil: audio-controller@30080000 {
- 						 <&clk IMX8MM_CLK_EXT3>;
- 					clock-names = "ipg_clk", "ipg_clk_app",
- 						      "pll8k", "pll11k", "clkext3";
--					dmas = <&sdma2 24 25 0x80000000>;
-+					dmas = <&sdma2 24 25 0>;
- 					dma-names = "rx";
- 					#sound-dai-cells = <0>;
- 					status = "disabled";
--- 
-2.39.5
+Does this address some of your concerns ? I do understand some of these
+are not well addressed in ACPI and hence people use DT as an alternative.
 
+> Note: This series contains only the basic infrastructure, the plan is add
+> progressively more features in the future.
+>
+
+I was thinking of queuing this in -next if all the bindings are acked.
+Let me know if you still have concerns and would like to avoid getting
+these merged. I will hold off then.
+
+--
+Regards,
+Sudeep
 
