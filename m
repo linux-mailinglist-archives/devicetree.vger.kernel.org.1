@@ -1,244 +1,167 @@
-Return-Path: <devicetree+bounces-150880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2864DA43C1F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:46:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 536DDA43C4A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:52:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 578F51889F80
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:45:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F329B1899028
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:52:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83253266EFA;
-	Tue, 25 Feb 2025 10:45:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5593B267385;
+	Tue, 25 Feb 2025 10:52:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="cFuUV6cm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FLwlHszc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE7A19C54F
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 10:44:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F4F1266B6A;
+	Tue, 25 Feb 2025 10:52:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740480301; cv=none; b=P2HqEGnXdw+jiW7QeEbzF9EZQL/+rGIetra8M7RjZbQ52QINhkRSsJWMp4fPr/K2HEoE0X13B7YqZQLJek7Jyg3Y/umqGLfKQZUYKPQ7pQ71xBD2uzkQfK/hSgFCN9ElMy9wTRGW1Cn/AZ+7L0xIFuxZ5D4Zbg22r4jZd9YsZ+w=
+	t=1740480734; cv=none; b=fe/qHK6M9c3FPv1QibixXBRJiX5YPz7E0CmnUC4Yx58MGf/06MEPbCiYZrdC6hfrHyj6KO+jfm2EtKr6n5MDAEEvdL4FTSIaacybjOinX+kRqnwfEgHQtIyxZIv6UJF1rG10jyguFP2ZEVWXvBIH/IKXCiJ3fMmkAlBCF33wnzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740480301; c=relaxed/simple;
-	bh=J6ud03xBUei5hve99chh9QBHJ7vCcnVOXXWngWIzsB4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=omlewauTanxzrzV6frmzaSj8pg/zsZNmf07XK5PNFEhGe8WJnIC7pYIvdqNSfBsHy9LRWrx051onVnSvbiWg2K6meY5yOmzPMUoZc8Y9arFbWuH/Mv0JIGaMDzesWOT2PATSA4Ry+CNHbF5eI37rsgZj6rWpLocMjqA+jKhuvws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=cFuUV6cm; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id 5C712240103
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 11:44:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1740480296; bh=J6ud03xBUei5hve99chh9QBHJ7vCcnVOXXWngWIzsB4=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:Content-Transfer-Encoding:From;
-	b=cFuUV6cmgHpdt2ZhN3Hb5NMGw8NXHw0r05Mqz6mdjb09YD7pt1QS4Sw9UJTwQFNyr
-	 9HqBKPyLjkgLY8bJIExqT1/0qPRS8y/vWOFMfsf+dvqb2Ugz9GrrFOc8FZkiefjmpt
-	 ABP/OuWKNcbkKiMzn4WcN16+S/EIxHDgZDg6+DjVn6Pyal56RT9Kula71WDSKCy/4l
-	 k3CS+3w8iKUuChFJN9HwPSbhXMiUw7nU4ua8snIisdO4lvxXPxMNsnSsOQI/BGseOk
-	 d0WVMAjFLxQwDTFt2LiMGw7B6wvJr7RXjVkFo16qSx8ccMzDtadBm10pj62lExIcwo
-	 G9VCXSZoBcj8A==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4Z2Dks6y7zz9rxN;
-	Tue, 25 Feb 2025 11:44:53 +0100 (CET)
-Date: Tue, 25 Feb 2025 10:44:53 +0000
-From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-To: Rob Herring <robh@kernel.org>
-Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: net: Convert fsl,gianfar to YAML
-Message-ID: <Z72fJSqng8od-5Z7@probook>
-References: <20250220-gianfar-yaml-v1-0-0ba97fd1ef92@posteo.net>
- <20250220-gianfar-yaml-v1-3-0ba97fd1ef92@posteo.net>
- <20250221233523.GA372501-robh@kernel.org>
+	s=arc-20240116; t=1740480734; c=relaxed/simple;
+	bh=uAXx1+xeAFyV+SUI7uXjsB9Thym7OEsMYo16qDBycS0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BszqI1TQoLpgLv3zOeg9vyPHyKTmP0EjTyhtfhhV2GXsEa4Dh0Pq5JA/y1GfIhPPOR5niZrLyLMD03TxHngkJqCUGP4wtfMLgxMOqL257EfwjGULccMVg6QYv0oC7iHz+eIlCaOVkwqJlOLtTck1M6lPzI5hVqsmduEmonbVaj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FLwlHszc; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-30613802a6bso56879301fa.1;
+        Tue, 25 Feb 2025 02:52:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740480731; x=1741085531; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Oh6sf/0cKXadcZmQR4PGzWs7fubxPpGtogL6k9WOu9g=;
+        b=FLwlHszcR8Qavp0VPqUWRm7Ru8MpsTKbIOWceB5zX5daQxEVC+yoQl0zJJlYQKP4Fv
+         6QXhrW36xb5iMGMq5Fm2kszYjpdtcCuIub075DsFijZq7erbf6rwaFt/pppSh3axjISu
+         UjyMTUoeB7y0P/XBidExfNF/Qn+R9T+Y0Xa1vp5e9ZM5u/V+edFo/MUAkwW6/WeTFri1
+         f6oZu8EeeDL/ZgFpThkYa7pjdqCgjlXwCmhH1JLPI0cHDbvYb9FOIXN5MKMZRcE8C+Sh
+         a6NGVs9H4r6pSXfnCJ8LxYItK2G5Ij+9XJCwmIjs1sQ5q0uo0/iq3Si2cTMb6QLi+j0G
+         /a6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740480731; x=1741085531;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Oh6sf/0cKXadcZmQR4PGzWs7fubxPpGtogL6k9WOu9g=;
+        b=LSmyq15lXFxn7bc5KEDlo2AfUuNfFJi2SXAdqfhvdRrh0S15onIGuqiFvLvM921KH2
+         2ZQlTuO/kLvsoNh21UVbfrdCf/3QtYvR86yer83+EaBXrg2tlr/CxmE3GOvhpnCJnJVy
+         YUmORjhRfpHUMO3CeEYf1BK04nLZH9TrPKlUVQ6Yr9ngHKHwi97mzZiJ1I67RuACZZmC
+         yMLqObq3dzYBBp+6LC9xmpTPhy70c4MKeIe2z7veXZXDjcOkpYm/SGA2O5GiT9A0mJBo
+         evwt4gaYklVaXHfu+YUJ4l7YBw+86ykoftAnVNnLInHX1gH3qsJ0EQ4m0j7/QwV5qP+t
+         geXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCViPh8xWJQKhxfLUxpALc5ehG88nD+oT/70MZLSK/Vtjwt4frKCercGuELW/vKpsrvi5HpF8uIVO1fp@vger.kernel.org, AJvYcCVzL1OW9V7EXtK1YubsKtMrUC7h5lbT5BAyn3keFL7ETam6Da/I9nf8DYDKtMAlhmMa9QAE3ruJW1wTww==@vger.kernel.org, AJvYcCWUbvcP1+taRi6gYm7WKhX9EY5woVV2AaYXswEA85OHcwPUBVv03vXS/NFTajJqul8xewrkYpZQQKAQwByY7BOYQiw=@vger.kernel.org, AJvYcCWc54GC2Eh6Y61nReGEczn+0SBKV9+dibnrXRWFWgZD7MjfA/dtzgysBKOVB2ofezTF4FxBR6MZimGOmK5w@vger.kernel.org, AJvYcCXU7RI+ZcFsI8kn3NYO6XtxIb4HgYU+/Gzcoor/SgQi1WbVlVRVid5gMAeflL8VrIjFt3exOztfdnJf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbDC5y1YFtQyn+RLQFXFCPQXI3230WA/QADhU/Q/kR/5pGz2vR
+	2l6uMWkc7gW+uUwnyQfE1nCGS7ZUSlyD5HhYeABCThGJMxiUCj0e
+X-Gm-Gg: ASbGncujbpzOIBgHidPrFY45YQdjDjjj4OsQf8x5Dz0JN/MXcPgXOiq0YiPnRpr4eds
+	sLgGwMaseHTDl7XNgxppyd8hflRYIY87B2pm3rNQKI9iSsDM9gdp2EszEcJ/laFi3lvNloD/1dM
+	g7NTLAeyDFXwHei8JoFbfcrf6AUYIodj3WHZDMrlrcZir49bn3gfqsPQuwc6SlI0xnDU+lsxvj5
+	R9qSDzMm6h79a3DSkQI0gkmcAOtX0M1DR070b29EegqH21TbVs+zeJgjTp3f60Z96YnUvXR8uTV
+	zrYWoiMfPCfkQbwcq/sU2U4Hr5PdC+unInQE2mY=
+X-Google-Smtp-Source: AGHT+IHos/L3fbLnhOLot3czcjTdpc0kSS3ue5NjEpFQm5GfsKczAy1WAOw0rIcb+pgC1rLfhfv55g==
+X-Received: by 2002:a2e:98da:0:b0:300:de99:fcc7 with SMTP id 38308e7fff4ca-30a80cb8079mr9573441fa.36.1740480730280;
+        Tue, 25 Feb 2025 02:52:10 -0800 (PST)
+Received: from [172.16.183.207] ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30a81ac3190sm1936591fa.80.2025.02.25.02.52.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Feb 2025 02:52:09 -0800 (PST)
+Message-ID: <f92724d5-e9b9-4cdd-8443-4866946d4568@gmail.com>
+Date: Tue, 25 Feb 2025 12:52:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250221233523.GA372501-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 02/10] property: Add
+ device_get_child_node_count_named()
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Daniel Scally <djrscally@gmail.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa <nuno.sa@analog.com>,
+ David Lechner <dlechner@baylibre.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Guillaume Stols <gstols@baylibre.com>,
+ Olivier Moysan <olivier.moysan@foss.st.com>,
+ Dumitru Ceclan <mitrutzceclan@gmail.com>,
+ Trevor Gamblin <tgamblin@baylibre.com>,
+ Matteo Martelli <matteomartelli3@gmail.com>,
+ Alisa-Dariana Roman <alisadariana@gmail.com>,
+ Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+References: <cover.1740421248.git.mazziesaccount@gmail.com>
+ <29ec24f1498392cafbecc0e0c0e23e1ce3289565.1740421248.git.mazziesaccount@gmail.com>
+ <Z72QAOA9xXbP16K-@kuha.fi.intel.com> <Z72Zp8tpnvlFGdQ_@smile.fi.intel.com>
+ <ad39b453-7e5b-49bd-a4fd-6a4988636130@gmail.com>
+ <Z72d7TzZ21WITW3f@smile.fi.intel.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <Z72d7TzZ21WITW3f@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Feb 21, 2025 at 05:35:23PM -0600, Rob Herring wrote:
-> On Thu, Feb 20, 2025 at 06:29:23PM +0100, J. Neuschäfer wrote:
-> > Add a binding for the "Gianfar" ethernet controller, also known as
-> > TSEC/eTSEC.
-> > 
-> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> > ---
-> >  .../devicetree/bindings/net/fsl,gianfar.yaml       | 242 +++++++++++++++++++++
-> >  .../devicetree/bindings/net/fsl-tsec-phy.txt       |  39 +---
-> >  2 files changed, 243 insertions(+), 38 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/fsl,gianfar.yaml b/Documentation/devicetree/bindings/net/fsl,gianfar.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..dc75ceb5dc6fdee8765bb17273f394d01cce0710
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/fsl,gianfar.yaml
-> > @@ -0,0 +1,242 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/fsl,gianfar.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Freescale Three-Speed Ethernet Controller (TSEC), "Gianfar"
-[...]
-> > +  "#address-cells": true
+On 25/02/2025 12:39, Andy Shevchenko wrote:
+> On Tue, Feb 25, 2025 at 12:29:31PM +0200, Matti Vaittinen wrote:
+>> On 25/02/2025 12:21, Andy Shevchenko wrote:
+>>> On Tue, Feb 25, 2025 at 11:40:16AM +0200, Heikki Krogerus wrote:
+>>>>> +/**
+>>>>> + * device_get_child_node_count_named - number of child nodes with given name
+>>>>> + *
+>>>>> + * Scan device's child nodes and find all the nodes with a specific name and
+>>>>> + * return the number of found nodes. Potential '@number' -ending for scanned
+>>>>> + * names is ignored. Eg,
+>>>>> + * device_get_child_node_count(dev, "channel");
+>>>>> + * would match all the nodes:
+>>>>> + * channel { }, channel@0 {}, channel@0xabba {}...
+>>>>> + *
+>>>>> + * @dev: Device to count the child nodes for
+
+...
+
+>>>> I did not check how many users are you proposing for this, but if
+>>>> there's only one, then IMO this should not be a global function yet.
+>>>> It just feels to special case to me. But let's see what the others
+>>>> think.
+>>>
+>>> The problem is that if somebody hides it, we might potentially see
+>>> a duplication in the future. So I _slightly_ prefer to publish and
+>>> then drop that after a few cycles if no users appear.
+>>
+>> After taking a very quick grep I spotted one other existing place where we
+>> might be able to do direct conversion to use this function.
+>>
+>> drivers/net/ethernet/freescale/gianfar.c
+>>
+>> That'd be 2 users.
 > 
-> enum: [ 1, 2 ]
-> 
-> because 3 is not valid here.
-> 
-> > +
-> > +  "#size-cells": true
-> 
-> enum: [ 1, 2 ]
-> 
-> because 0 is not valid here.
+> I haven't checked myself, I believe your judgement, but can you add a (rfc?)
+> patch at the end of this series to show that? With the luckily event of acking
+> by the network people we may have it already done.
 
-Good point.
+Sure. I can add a patch to gianfar when sending the v5 - if this new 
+function is not completely NACK'd before that :)
 
-> 
-> 
-> > +
-> > +  cell-index:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +
-> > +  interrupts:
-> > +    maxItems: 3
-> 
-> Based on the if/then schema, you need 'minItems' here if the min is not 3.
-> 
-> Really, move the descriptions here and make them work for the combined 
-> interrupt case (just a guess).
-
-The difference here (as previously documented in prose) is by device
-variant:
-
- for FEC:
-
-   - one combined interrupt
-
- for TSEC, eTSEC:
-
-   - transmit interrupt
-   - receive interrupt
-   - error interrupt
-
-Combining these cases might look like this, not sure if it's good:
-
-  interrupts:
-    minItems: 1
-    description:
-      items:
-        - Transmit interrupt or combined interrupt
-        - Receive interrupt
-        - Error interrupt
-
-> 
-> > +
-> > +  dma-coherent:
-> > +    type: boolean
-> 
-> dma-coherent: true
-
-Will do.
-
-
-> > +
-> > +  fsl,num_rx_queues:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Number of receive queues
-> 
-> Constraints? I assume there's at least more than 0.
-> 
-> > +
-> > +  fsl,num_tx_queues:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Number of transmit queues
-> 
-> Constraints?
-
-Good point, for both of these the only value I can find in use is 8,
-which corresponds to the number of queues documented in at least one
-hardware manual (MPC8548E).
-
-
-> > +  # eTSEC2 controller nodes have "queue group" subnodes and don't need a "reg"
-> > +  # property.
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: fsl,etsec2
-> > +    then:
-> > +      patternProperties:
-> > +        "^queue-group@[0-9a-f]+$":
-> > +          type: object
-> > +
-> > +          properties:
-> > +            "#address-cells": true
-> > +
-> > +            "#size-cells": true
-> 
-> These have no effect if there are not child nodes or a 'ranges' 
-> property.
-
-Ah, good point, these properties are used in existing DTs, but I see no
-reason to keep them. I'll remove them.
-
-> 
-> > +
-> > +            reg:
-> > +              maxItems: 1
-> > +
-> > +            interrupts:
-> > +              maxItems: 3
-> 
-> Need to define what each one is.
-
-Will do.
-
-
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    soc1 {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <1>;
-> 
-> You don't need the soc1 node.
-
-Ah, true.
-
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +    soc2 {
-> 
-> bus {
-
-Will rename.
-
-
-Thanks,
-J. Neuschäfer
+Yours,
+	-- Matti
 
