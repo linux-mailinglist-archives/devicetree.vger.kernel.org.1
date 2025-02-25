@@ -1,134 +1,339 @@
-Return-Path: <devicetree+bounces-150675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21FFCA4342E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 05:34:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD085A4347F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 06:15:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F068016776C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 04:34:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E77F189AF62
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 05:15:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50A8D195FEC;
-	Tue, 25 Feb 2025 04:34:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96ED42030A;
+	Tue, 25 Feb 2025 05:15:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="HphCKdV8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jloXX+Lt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 014A11519A6
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 04:34:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 870E41E487;
+	Tue, 25 Feb 2025 05:15:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740458084; cv=none; b=bWCvYB03FvPqdaZK4b14nCJdH3oonbvVYK/FEanzjX9ZlsRPo+MVG8flPDjFUeVtr0AhM1pxXG8yApsxxxO2P51/tUsREMq0olO+nJ9TpGb1vvv0Vz3xgbWOXzWsY9u2ThJAy7fkCGtwpy8T/axi1kn8c+sCGLU2N4c9RGF/BDY=
+	t=1740460510; cv=none; b=IBLn4ncbWsoP1caRM6O7fyhEiXeJbfXEk6sFLzRGHndQa7nSyvla85UApDFnOwfi7ytqN9UgPNzHx2egUKWwNGUnKuOaqmKzW2dIGk107F02QFJs2htG2kIR4U0i7LYLDma0dpYyRIrX9iSsA3yYCrPj7mcUPdDW/8drUM4qJhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740458084; c=relaxed/simple;
-	bh=hA7l65NXvsJflq/93AYWgxASOiOOSnSvYF4RagQIqR0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=FcrDCJCh2zwNI69AZpFb64HgZIQbl4qzNz0cvrW4k/wegzwaj82MIS11iam4Q4BXlTmKAptcFyv37hLPfYFWXEpiFsqzyiquSnEucvrd1xeWjY7rLu2xJftAhi9PRpLm9U+P++qrsZGYg9hR3BdfBUveCk2heCnUkRJJ7pgr7c4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=HphCKdV8; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1740458079;
-	bh=hA7l65NXvsJflq/93AYWgxASOiOOSnSvYF4RagQIqR0=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=HphCKdV8WVe19zcmS4c1BmTEEehUUuZWBdq10ExtlLzTKVdA0lajrHqa5rOydTwVE
-	 hIZ1/w5Lg+u2ijJ4XM7jMdfbqbCwxkCvmakmfBl7C5J4YYWrMiH/IZ5BRaDR/1PIVq
-	 cD0nnVTfIWs2Xch8/3stbNPnC8u1Yd1daCy/nTvzHXgboj7Sp9zrg2wf2TIOROxkz/
-	 p7tQeZsmxDv+/KxQojQMmaXo0zLGlI8lEE61DLKWlSLnVdoMehKy2OIbfElfvnMSmQ
-	 XL86iKutpkFQD5Nosp0gmMbyQ2jBJKVFdfKjEGWlyF5uXIvkoF+vUtxRinWm1TLJe6
-	 /dowIIidh8+TA==
-Received: from [IPv6:2405:6e00:2421:8fa3:333c:2fc8:332d:ddb4] (unknown [120.20.122.15])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 95D9370B52;
-	Tue, 25 Feb 2025 12:34:38 +0800 (AWST)
-Message-ID: <52f6f6fc93144b6bd93870e9ef054da19d809b05.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v2 0/3] ARM: dts: aspeed: Add Balcones system
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Eddie James <eajames@linux.ibm.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, krzk+dt@kernel.org, 
- devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
- conor+dt@kernel.org
-Date: Tue, 25 Feb 2025 15:04:37 +1030
-In-Reply-To: <174015998324.3469672.1009055817022487781.robh@kernel.org>
-References: <20250220205948.1777200-1-eajames@linux.ibm.com>
-	 <174015998324.3469672.1009055817022487781.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1740460510; c=relaxed/simple;
+	bh=h43w+yc+3wzFnuMcI9vF5WiKWf8fPyNQuYMhPAP9p00=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=A1mosbIEy3av8nozPT/IZqyhx+W8xU6JYzR+A+PmMX7muh5KUCuJ03jV8HvTqXR12yPVi7HlvpOFhChd6TikDJxZyJHTwsZrPKJnUAlzH7sOSUas7dyFJCveD6JqpVuLgpVm/gUE6CRxdhxi6Ce1rB4Y1et/poOx3Z3byQmXKAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jloXX+Lt; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51OKOkSu010111;
+	Tue, 25 Feb 2025 05:15:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	76hdxH/bI9qNoXx4UPst50578Vycjb82kL+GOcZN/5c=; b=jloXX+LtqRyDPd/j
+	Y6Qke0U880znEyy55aKwUyZZL55bWHBzZzyoVXJ7L2E49U1xw693WxQx24NYm2eP
+	LYN0GfCNcJNTysrqc3xj+EjjabuhLxssgK4ExoMaahO2OmOkWSvEyCXkwCeiDFmG
+	xBL1w3nqeQ7XpBIN8ICb04iZpASBHgTbshISZadQzhc6KcI9DmfpDsgZhZumU29H
+	Z+B0eQmXJgYO+nivTD2SAGeu0aiKjMxsoMh7blUHk7nRKsCxmOxXtjZCR3Bey3/7
+	bGE+kZ5S8nXr+dtP8zLTkpQ5uYlsQ14TOcW+QuDnxt+RbA5WZkQ/ulGKCF5sx/eN
+	ib4+Kg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44y6y6qhbb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Feb 2025 05:15:04 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51P5F3v1022423
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Feb 2025 05:15:03 GMT
+Received: from [10.219.0.139] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 24 Feb
+ 2025 21:14:59 -0800
+Message-ID: <14305d3c-f6c0-406e-a15b-c8031d20f96e@quicinc.com>
+Date: Tue, 25 Feb 2025 10:44:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 1/1] arm64: dts: qcom: qcs6490-rb3gen2: add and enable
+ BT node
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <quic_mohamull@quicinc.com>, <quic_hbandi@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@oss.qualcomm.com>
+References: <20250224171737.2522834-1-quic_janathot@quicinc.com>
+ <20250224171737.2522834-2-quic_janathot@quicinc.com>
+Content-Language: en-US
+From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+In-Reply-To: <20250224171737.2522834-2-quic_janathot@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GiKst79zdZufh5r7qvgJqWW9Mkdy2gxl
+X-Proofpoint-GUID: GiKst79zdZufh5r7qvgJqWW9Mkdy2gxl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-25_01,2025-02-24_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
+ malwarescore=0 phishscore=0 adultscore=0 lowpriorityscore=0
+ mlxlogscore=999 impostorscore=0 priorityscore=1501 bulkscore=0 mlxscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502250031
 
-On Fri, 2025-02-21 at 12:11 -0600, Rob Herring (Arm) wrote:
->=20
-> On Thu, 20 Feb 2025 14:59:45 -0600, Eddie James wrote:
-> > The Balcones system is similar to Bonnell but with a POWER11 processor.
-> >=20
-> > Changes since v1:
-> > =C2=A0- Add all the ucd9000 driver supported compatible strings
-> > =C2=A0- Fix node ordering in Balcones device tree
-> > =C2=A0- Improve commit message to explain addition of ibm-power11-dual.=
-dtsi
-> >=20
-> > Eddie James (3):
-> > =C2=A0 dt-bindings: arm: aspeed: add IBM Balcones board
-> > =C2=A0 dt-bindings: hwmon: ucd90320: Add additional compatible strings
-> > =C2=A0 ARM: dts: aspeed: Add Balcones system
-> >=20
-> > =C2=A0.../bindings/arm/aspeed/aspeed.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > =C2=A0.../bindings/hwmon/pmbus/ti,ucd90320.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0=C2=A0 6 +
-> > =C2=A0arch/arm/boot/dts/aspeed/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > =C2=A0.../dts/aspeed/aspeed-bmc-ibm-balcones.dts=C2=A0=C2=A0=C2=A0 | 59=
-4 +++++++++++++
-> > =C2=A0.../arm/boot/dts/aspeed/ibm-power11-dual.dtsi | 779 +++++++++++++=
-+++++
-> > =C2=A0.../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 769 +------------=
-----
-> > =C2=A06 files changed, 1383 insertions(+), 767 deletions(-)
-> > =C2=A0create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcon=
-es.dts
-> > =C2=A0create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-dual.dtsi
-> >=20
-> > --
-> > 2.43.5
-> >=20
-> >=20
-> >=20
->=20
->=20
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
->=20
 
-...
 
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: gpio@1e780000: 'usb=
--power-hog' does not match any of the regexes: 'pinctrl-[0-9]+'
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id: http://d=
-evicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
+On 2/24/2025 10:47 PM, Janaki Ramaiah Thota wrote:
+> Add the PMU node for WCN6750 present on the qcs6490-rb3gen
+> board and assign its power outputs to the Bluetooth module.
+> 
+> In WCN6750 module sw_ctrl and wifi-enable pins are handled
+> in the wifi controller firmware. Therefore, it is not required
+> to have those pins' entries in the PMU node.
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 171 ++++++++++++++++++-
+>   1 file changed, 170 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> index 7a36c90ad4ec..de03770e0b90 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> @@ -1,6 +1,6 @@
+>   // SPDX-License-Identifier: BSD-3-Clause
+>   /*
+> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>    */
+>   
+>   /dts-v1/;
+> @@ -34,6 +34,7 @@ / {
+>   
+>   	aliases {
+>   		serial0 = &uart5;
+> +		serial1 = &uart7;
+>   	};
+>   
+>   	chosen {
+> @@ -218,6 +219,63 @@ vph_pwr: vph-pwr-regulator {
+>   		regulator-min-microvolt = <3700000>;
+>   		regulator-max-microvolt = <3700000>;
+>   	};
+> +
+> +	wcn6750-pmu {
+> +		compatible = "qcom,wcn6750-pmu";
+> +		pinctrl-0 = <&bt_en>;
+> +		pinctrl-names = "default";
+> +		vddaon-supply = <&vreg_s7b_0p972>;
+> +		vddasd-supply = <&vreg_l11c_2p8>;
+> +		vddpmu-supply = <&vreg_s7b_0p972>;
+> +		vddrfa0p8-supply = <&vreg_s7b_0p972>;
+> +		vddrfa1p2-supply = <&vreg_s8b_1p272>;
+> +		vddrfa1p7-supply = <&vreg_s1b_1p872>;
+> +		vddrfa2p2-supply = <&vreg_s1c_2p19>;
+> +
+> +		bt-enable-gpios = <&tlmm 85 GPIO_ACTIVE_HIGH>;
+> +
+> +		regulators {
+> +			vreg_pmu_rfa_cmn: ldo0 {
+> +				regulator-name = "vreg_pmu_rfa_cmn";
+> +			};
+> +
+> +			vreg_pmu_aon_0p59: ldo1 {
+> +				regulator-name = "vreg_pmu_aon_0p59";
+> +			};
+> +
+> +			vreg_pmu_wlcx_0p8: ldo2 {
+> +				regulator-name = "vreg_pmu_wlcx_0p8";
+> +			};
+> +
+> +			vreg_pmu_wlmx_0p85: ldo3 {
+> +				regulator-name = "vreg_pmu_wlmx_0p85";
+> +			};
+> +
+> +			vreg_pmu_btcmx_0p85: ldo4 {
+> +				regulator-name = "vreg_pmu_btcmx_0p85";
+> +			};
+> +
+> +			vreg_pmu_rfa_0p8: ldo5 {
+> +				regulator-name = "vreg_pmu_rfa_0p8";
+> +			};
+> +
+> +			vreg_pmu_rfa_1p2: ldo6 {
+> +				regulator-name = "vreg_pmu_rfa_1p2";
+> +			};
+> +
+> +			vreg_pmu_rfa_1p7: ldo7 {
+> +				regulator-name = "vreg_pmu_rfa_1p7";
+> +			};
+> +
+> +			vreg_pmu_pcie_0p9: ldo8 {
+> +				regulator-name = "vreg_pmu_pcie_0p9";
+> +			};
+> +
+> +			vreg_pmu_pcie_1p8: ldo9 {
+> +				regulator-name = "vreg_pmu_pcie_1p8";
+> +			};
+> +		};
+> +	};
+>   };
+>   
+>   &apps_rsc {
+> @@ -799,6 +857,39 @@ &pon_resin {
+>   	status = "okay";
+>   };
+>   
+> +&qup_uart7_cts {
+> +	/*
+> +	 * Configure a bias-bus-hold on CTS to lower power
+> +	 * usage when Bluetooth is turned off. Bus hold will
+> +	 * maintain a low power state regardless of whether
+> +	 * the Bluetooth module drives the pin in either
+> +	 * direction or leaves the pin fully unpowered.
+> +	 */
+> +	bias-bus-hold;
+> +};
+> +
+> +&qup_uart7_rts {
+> +	/* We'll drive RTS, so no pull */
+> +	drive-strength = <2>;
+> +	bias-disable;
+> +};
+> +
+> +&qup_uart7_rx {
+> +	/*
+> +	 * Configure a pull-up on RX. This is needed to avoid
+> +	 * garbage data when the TX pin of the Bluetooth module is
+> +	 * in tri-state (module powered off or not driving the
+> +	 * signal yet).
+> +	 */
+> +	bias-pull-up;
+> +};
+> +
+> +&qup_uart7_tx {
+> +	/* We'll drive TX, so no pull */
+> +	drive-strength = <2>;
+> +	bias-disable;
+> +};
+> +
+>   &qupv3_id_0 {
+>   	status = "okay";
+>   };
+> @@ -842,12 +933,90 @@ &sdhc_2 {
+>   &tlmm {
+>   	gpio-reserved-ranges = <32 2>, /* ADSP */
+>   			       <48 4>; /* NFC */
+> +
+> +	bt_en: bt-en-state {
+> +		pins = "gpio85";
+> +		function = "gpio";
+> +		output-low;
+> +		bias-disable;
+> +	};
+> +
+> +	qup_uart7_sleep_cts: qup-uart7-sleep-cts-state {
+> +		pins = "gpio28";
+> +		function = "gpio";
+> +		/*
+> +		 * Configure a bias-bus-hold on CTS to lower power
+> +		 * usage when Bluetooth is turned off. Bus hold will
+> +		 * maintain a low power state regardless of whether
+> +		 * the Bluetooth module drives the pin in either
+> +		 * direction or leaves the pin fully unpowered.
+> +		 */
+> +		bias-bus-hold;
+> +	};
+> +
+> +	qup_uart7_sleep_rts: qup-uart7-sleep-rts-state {
+> +		pins = "gpio29";
+> +		function = "gpio";
+> +		/*
+> +		 * Configure pull-down on RTS. As RTS is active low
+> +		 * signal, pull it low to indicate the BT SoC that it
+> +		 * can wakeup the system anytime from suspend state by
+> +		 * pulling RX low (by sending wakeup bytes).
+> +		 */
+> +		bias-pull-down;
+> +	};
+> +
+> +	qup_uart7_sleep_rx: qup-uart7-sleep-rx-state {
+> +		pins = "gpio31";
+> +		function = "gpio";
+> +		/*
+> +		 * Configure a pull-up on RX. This is needed to avoid
+> +		 * garbage data when the TX pin of the Bluetooth module
+> +		 * is floating which may cause spurious wakeups.
+> +		 */
+> +		bias-pull-up;
+> +	};
+> +
+> +	qup_uart7_sleep_tx: qup-uart7-sleep-tx-state {
+> +		pins = "gpio30";
+> +		function = "gpio";
+> +		/*
+> +		 * Configure pull-up on TX when it isn't actively driven
+> +		 * to prevent BT SoC from receiving garbage during sleep.
+> +		 */
+> +		bias-pull-up;
+> +	};
+>   };
+>   
+>   &uart5 {
+>   	status = "okay";
+>   };
+>   
+> +&uart7 {
+> +	/delete-property/ interrupts;
+> +	interrupts-extended = <&intc GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>,
+> +			      <&tlmm 31 IRQ_TYPE_EDGE_FALLING>;
+> +	pinctrl-1 = <&qup_uart7_sleep_cts>,
+> +		    <&qup_uart7_sleep_rts>,
+> +		    <&qup_uart7_sleep_tx>,
+> +		    <&qup_uart7_sleep_rx>;
+> +	pinctrl-names = "default",
+> +			"sleep";
+> +
+> +	status = "okay";
+> +
+> +	bluetooth: bluetooth {
+> +		compatible = "qcom,wcn6750-bt";
+> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+> +		vddaon-supply = <&vreg_pmu_aon_0p59>;
+> +		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
+> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+> +		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
+> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+> +		max-speed = <3200000>;
+> +	};
+> +};
+> +
+>   &usb_1 {
+>   	status = "okay";
+>   };
 
-Ah, can you address this one?
+Please ignore this patch, will resend corrected patch.
 
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/bus@1e78a0=
-00/i2c@400/pwm@53: failed to match any schema with compatible: ['maxim,max3=
-1785a']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: pressure-sensor@76:=
- '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id: http://d=
-evicetree.org/schemas/trivial-devices.yaml#
-
-And these also?
-
-The rest looked like the usual noise.
-
-Andrew
+Thanks,
+Janakiram
 
