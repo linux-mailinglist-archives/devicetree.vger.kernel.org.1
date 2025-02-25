@@ -1,187 +1,167 @@
-Return-Path: <devicetree+bounces-150765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DBDDA4384E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:55:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64B89A437D4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:41:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 847941677D9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 08:55:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CCE017508C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 08:41:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B44B260A3C;
-	Tue, 25 Feb 2025 08:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99DD25E469;
+	Tue, 25 Feb 2025 08:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="WwmsGDcz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tPGaAN7T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49215.qiye.163.com (mail-m49215.qiye.163.com [45.254.49.215])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E2D262D05;
-	Tue, 25 Feb 2025 08:54:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.215
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C9A6170A26;
+	Tue, 25 Feb 2025 08:41:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740473666; cv=none; b=o4NL169eaUqYotwZliX1wG9GBZn+nVpo2S3TLP34K6oyPR+bqLgLLYj8qZfkhVMC35K8NO+m2utufPbhT1iAyq0KLCHO6zOK5Avq5AeApeTxq3ZL9jXVdZSuqdcItM8BIcaiHDhFmbZ7815y/4phm7GbbXd1kBzdGw1iQDg2HpE=
+	t=1740472880; cv=none; b=iJd31PkAxd1k+JRC8bjpupP+18ebzBLKEl0TgG0Aoexb8fRqhHuG5cFOGlHWF7tLXC4miLbQvd8O4osQGDyPjXdb0aT0vhrp/OS0Mo8Rc4MzoTiVUKSpZcmxWXHiUcoQ2ANfwZ0p99sJ+3OgzoRsTk3AS7prIWPXc6lw6Oo8dAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740473666; c=relaxed/simple;
-	bh=rxlDCNHlsFY5Fl/DxdROcp97mxpJR6HH6M5R8AMv1wg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SCSmklidbvpnllERpoLULXBph8qa0prgL5S3vL70wAxeMGA9umQf/p9I3DYfYsEFQPp2XgOiy7dkBLJz/BHNa4xc1cOgLrXyVqv08acRUaGowlBQrrU2hfpq24JPa2RwHpQMM93V4eTPcAeeLC5rbg5TZM18E8dsFItEx6EI5ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=WwmsGDcz; arc=none smtp.client-ip=45.254.49.215
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.67] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id c1f11c0c;
-	Tue, 25 Feb 2025 16:38:54 +0800 (GMT+08:00)
-Message-ID: <478b8972-07b9-483b-a3ef-bdea10c4e4cc@rock-chips.com>
-Date: Tue, 25 Feb 2025 16:38:54 +0800
+	s=arc-20240116; t=1740472880; c=relaxed/simple;
+	bh=vIQYdyOEzWu+41zMz1p5OCKUmlP+4f9CSqgxogleOFU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m2Ts/kmWYf3/cNE6oYyex/o3neiINXjt5pOHaEEMJ8NcX2CQp3YuvrkZw0ychOtY44qrdccZXFt1qiqnYxjxddXg5nR98P6PAvK9qDV0yu2WMuEDkjA+eKeo+n4c8FEGpSBrBL3arzOW16KBWMUNDAJILYqhwRhzX57cf1N/d/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tPGaAN7T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E35A7C4CEDD;
+	Tue, 25 Feb 2025 08:41:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740472880;
+	bh=vIQYdyOEzWu+41zMz1p5OCKUmlP+4f9CSqgxogleOFU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tPGaAN7Th6HycsZsaacoGSR8Dh0cuUxMZZBWi83PHwXsPLxStxPX493fz1Ak3+bDX
+	 lg8PgRxXJ45npe2td1IoNrj72tEvuWP99SJEev2chGJiPjIM7oX1Z9F3KZmFiqOCtN
+	 6kTIa26b4cquFXyMe/zEK5KXicpDMKw/UStlP+1RcqFJgmdPD0Z4guSJrmuj0v1tf5
+	 klOmsqt+286Frm4FhriFVmtcoiluXP+EDTgSCSdqdnFP9fRvN7FiPZNLU+o6dNSbdK
+	 FNjbfJseEoroqFVXzzB/MoDDSx3Sb05WNL6pTEyzjJC0hZuHIYtGq2qovxejg6b5yB
+	 5F5kkB+NfP1MQ==
+Date: Tue, 25 Feb 2025 09:41:17 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, patches@opensource.cirrus.com, 
+	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Francesco Dolcini <francesco.dolcini@toradex.com>, 
+	Charles Keepax <ckeepax@opensource.cirrus.com>
+Subject: Re: [PATCH v2 3/5] ASoC: dt-bindings: wm8904: Add DMIC, GPIO, MIC
+ and EQ support
+Message-ID: <20250225-delicate-tortoise-of-management-e43fa2@krzk-bin>
+References: <20250224155500.52462-1-francesco@dolcini.it>
+ <20250224155500.52462-4-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: PCI: dw: rockchip: Add rk3576 support
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Simon Xue <xxm@rock-chips.com>, Conor Dooley <conor+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- linux-pci@vger.kernel.org, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- linux-arm-kernel@lists.infradead.org
-References: <20250224074928.2005744-1-kever.yang@rock-chips.com>
- <20250224-gifted-piculet-of-amplitude-a91ecd@krzk-bin>
-Content-Language: en-US
-From: Kever Yang <kever.yang@rock-chips.com>
-In-Reply-To: <20250224-gifted-piculet-of-amplitude-a91ecd@krzk-bin>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQx0ZTVYZH0NJHRoYHR1ISkNWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a953c4253a003afkunmc1f11c0c
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OTI6ERw5EDIOHRYjHB9MLRUU
-	EB8aCRlVSlVKTE9LT0xJTEhNQ0pOVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFIT0xPNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=WwmsGDczbRBij3SrocnQVsTJaDABZZZ39b0m72Yb797JBiACL+JGw6Mh3E8ANIgWQy+mGdZx1HvDwxj7H+dVw9Oxh3vYiqupcihCxfuvIPmmjPRctB0IS4h3HQCttRJXe8NCQF9KVRQCS4Hotu39VTGVMsIUYNwyZoGzqFwsO40=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=ltPMBWdpitIAr/1lqIvGJ/KYikU2UivViANg4djpIMI=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250224155500.52462-4-francesco@dolcini.it>
 
-Hi Krzysztof,
+On Mon, Feb 24, 2025 at 04:54:58PM +0100, Francesco Dolcini wrote:
+> +  wlf,drc-cfg-regs:
+> +    $ref: /schemas/types.yaml#/definitions/uint16-array
+> +    description:
+> +      Default register values for R40/41/42/43 (DRC).
+> +      The list must be 4 times the length of wlf,drc-cfg-names.
+> +      If absent, DRC is disabled.
+> +
+> +  wlf,retune-mobile-cfg-names:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +    description:
+> +      List of strings for the available retune modes.
+> +      If absent, retune is disabled.
 
-     Thanks for your review.
+How is this retune supposed to be used? If by user-space I can easily
+imagine that static DTS configuration won't be enough, because you need
+to factor for example temperature or some other minor differences
+between same boards.
 
-On 2025/2/24 17:28, Krzysztof Kozlowski wrote:
-> On Mon, Feb 24, 2025 at 03:49:27PM +0800, Kever Yang wrote:
->> rk3576 is using DWC PCIe controller, with msi interrupt directly to GIC
->> instead of using GIC ITS, so
->> - no ITS support is required and the 'msi-map' is not required,
->> - a new 'msi' interrupt is needed.
->>
->> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
->> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->> ---
->>
->> Changes in v6:
->> - Fix make dt_binding_check and make CHECK_DTBS=y
->>
->> Changes in v5:
->> - Add constraints per device for interrupt-names due to the interrupt is
->> different from rk3588.
->>
->> Changes in v4:
->> - Fix wrong indentation in dt_binding_check report by Rob
->>
->> Changes in v3:
->> - Fix dtb check broken on rk3588
->> - Update commit message
->>
->> Changes in v2:
->> - remove required 'msi-map'
->> - add interrupt name 'msi'
->>
->>   .../bindings/pci/rockchip-dw-pcie-common.yaml | 41 ++++++++++++++++++-
->>   .../bindings/pci/rockchip-dw-pcie.yaml        | 19 ++++++---
->>   2 files changed, 52 insertions(+), 8 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
->> index cc9adfc7611c..e1ca8e2f35fe 100644
->> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
->> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
->> @@ -65,7 +65,11 @@ properties:
->>             tx_cpl_timeout, cor_err_sent, nf_err_sent, f_err_sent, cor_err_rx,
->>             nf_err_rx, f_err_rx, radm_qoverflow
->>         - description:
->> -          eDMA write channel 0 interrupt
->> +          If the matching interrupt name is "msi", then this is the combinded
->> +          MSI line interrupt, which is to support MSI interrupts output to GIC
->> +          controller via GIC SPI interrupt instead of GIC its interrupt.
->> +          If the matching interrupt name is "dma0", then this is the eDMA write
->> +          channel 0 interrupt.
->>         - description:
->>             eDMA write channel 1 interrupt
->>         - description:
->> @@ -81,7 +85,9 @@ properties:
->>         - const: msg
->>         - const: legacy
->>         - const: err
->> -      - const: dma0
->> +      - enum:
->> +          - msi
->> +          - dma0
->>         - const: dma1
->>         - const: dma2
->>         - const: dma3
->> @@ -123,4 +129,35 @@ required:
->>   
->>   additionalProperties: true
->>   
->> +anyOf:
-> There is never syntax like that. Where did you find it (so we can fix
-> it)?
->
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: rockchip,rk3576-pcie
-> This does not belong to common schema, but to device specific. I don't
-> see this compatible in this common schema at all.
+> +
+> +  wlf,retune-mobile-cfg-rates:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
 
-The common schema covers rockchip-dw-pcie.yaml and rockchip-dw-pcie-ep.yaml,
+Drop
 
-so I though I should add the if condition here.
+> +    description:
+> +      List of rates for the available retune modes.
 
+Use standard property suffixes - hz or whatever is matching here.
 
->
->> +    then:
->> +      properties:
-> interrupts:
->    minItems: 6
->    maxItems: 6
-Will add this back.
+> +      The list must be the same length as wlf,retune-mobile-cfg-names.
+> +      If absent, retune is disabled.
+> +
+> +  wlf,retune-mobile-cfg-regs:
+> +    $ref: /schemas/types.yaml#/definitions/uint16-array
+> +    description:
+> +      Default register values for R134/.../157 (EQ).
+> +      The list must be 24 times the length of wlf,retune-mobile-cfg-names.
+> +      If absent, retune is disabled.
+> +
+> +dependencies:
+> +  wlf,drc-cfg-names: [ 'wlf,drc-cfg-regs' ]
+> +  wlf,drc-cfg-regs: [ 'wlf,drc-cfg-names' ]
+> +
+> +  wlf,retune-mobile-cfg-names: [ 'wlf,retune-mobile-cfg-rates', 'wlf,retune-mobile-cfg-regs' ]
+> +  wlf,retune-mobile-cfg-regs: [ 'wlf,retune-mobile-cfg-names', 'wlf,retune-mobile-cfg-rates' ]
+> +  wlf,retune-mobile-cfg-rates: [ 'wlf,retune-mobile-cfg-names', 'wlf,retune-mobile-cfg-regs' ]
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -70,5 +138,43 @@ examples:
+>              DBVDD-supply = <&reg_1p8v>;
+>              DCVDD-supply = <&reg_1p8v>;
+>              MICVDD-supply = <&reg_1p8v>;
+> +
+> +            wlf,drc-cfg-names = "default", "peaklimiter", "tradition", "soft", "music";
+> +            wlf,drc-cfg-regs =
+> +                /* coded default: KNEE_IP = KNEE_OP = 0, HI_COMP = LO_COMP = 1  */
 
-Thanks,
-- Kever
->> +        interrupt-names:
->> +          items:
->> +            - const: sys
->> +            - const: pmc
->> +            - const: msg
->> +            - const: legacy
->> +            - const: err
-> Best regards,
-> Krzysztof
->
->
+Please follow DTS coding style - how you wrap, where to break lines.
+
+> +                /bits/ 16 <0x01af 0x3248 0x0000 0x0000>,
+> +                /* coded default: KNEE_IP = -24, KNEE_OP = -6, HI_COMP = 1/4, LO_COMP = 1 */
+> +                /bits/ 16 <0x04af 0x324b 0x0010 0x0408>,
+> +                /* coded default: KNEE_IP = -42, KNEE_OP = -3, HI_COMP = 0, LO_COMP = 1 */
+> +                /bits/ 16 <0x04af 0x324b 0x0028 0x0704>,
+> +                /* coded default: KNEE_IP = -45, KNEE_OP = -9, HI_COMP = 1/8, LO_COMP = 1 */
+> +                /bits/ 16 <0x04af 0x324b 0x0018 0x078c>,
+> +                /* coded default: KNEE_IP = -30, KNEE_OP = -10.5, HI_COMP = 1/4, LO_COMP = 1 */
+> +                /bits/ 16 <0x04af 0x324b 0x0010 0x050e>;
+> +
+> +            wlf,gpio-cfg = <
+
+There is almost never empty line after <
+
+> +                0x0018 /* GPIO1 => DMIC_CLK */
+> +                0xffff /* GPIO2 => don't touch */
+> +                0xffff /* GPIO3 => don't touch */
+> +                0xffff /* GPIO4 => don't touch */
+
+Not mentioning this looks really incorrect or incomplete. No ending of
+property.
+
+> +
+> +            wlf,retune-mobile-cfg-names = "bassboost", "bassboost", "treble";
+> +            wlf,retune-mobile-cfg-rates = <48000 44100 48000>;
+> +            wlf,retune-mobile-cfg-regs =
+> +                /* bassboost: EQ_ENA = 1, +6 dB @ 100 Hz, +3 dB @ 300 Hz, 0 dB @ 875, 2400, 6900 Hz */
+> +                /bits/ 16 <0x1 0x12 0xf 0xc 0xc 0xc>,
+> +                /* default values for ReTune Mobile registers 140-157 */
+> +                /bits/ 16 <0x0fca 0x0400 0x00d8 0x1eb5 0xf145 0x0bd5 0x0075 0x1c58 0xf3d3 0x0a54 0x0568 0x168e 0xf829 0x07ad 0x1103 0x0564 0x0559 0x4000>,
+
+See DTS coding style.
+
+Best regards,
+Krzysztof
+
 
