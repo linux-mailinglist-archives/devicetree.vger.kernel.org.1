@@ -1,227 +1,96 @@
-Return-Path: <devicetree+bounces-151046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C8FDA4440A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:12:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1933FA4443F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:24:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67BEF3ACBD0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:08:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE023170FAD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:24:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DBA626B080;
-	Tue, 25 Feb 2025 15:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76BE26B95B;
+	Tue, 25 Feb 2025 15:24:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="fpwfSYmb";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="P9DTov8v"
+	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="CIanoWiO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from ci74p00im-qukt09090101.me.com (ci74p00im-qukt09090101.me.com [17.57.156.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA89726A093;
-	Tue, 25 Feb 2025 15:08:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86E8026B2AD
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 15:24:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.57.156.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740496114; cv=none; b=UbFbpAXxovK9wukg1qIFi5trT7kgH9ZgD33i5mXDtLEJ+5t1YLZknbuuXsU3vv1fBxg7q4IuhXRU9K6M1+t3txPXEdEcUNTpgjAxlwsQnK7chc/JIgLww3GPggQATHAq3gDZ1iWPXItA029hAAuNan1JvfzNqILDS644fNo8nxc=
+	t=1740497059; cv=none; b=qcGzz9dPqGqNvCvnjdm0J0TwztdlfJN4BdlKDRU7I37jT2STUuUz/Ap0b/vjfu1+cBZ4rjZ5S5woOMRUZRLf4cB4XkWVpH0LLEQbUJ+1atG23HkgILxc8d3enlr8LwlFJk/1y0ZcJHSLC/apm/npsOYphuoiHH9E6pjvNo+rBcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740496114; c=relaxed/simple;
-	bh=Mc09/S3fGVi49IxpJn+6i1XyGTEZyCW41n3AVQAt/lg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i3q8H2gfVyUl1O6MN7o0G+pBHHgMNV6HAQj7+4IhKQ75fUU3tQfktFPKhA8/Nd/dLJh8cc+TPafv6YZjtwLF+yIU03wEt4F5CyiNjw3mrJ10N8DY7Pl11CQYDsCYRfX28/wLJvmH6ULZgGMSJ1OxOQINPpHb+eiA3UGi4BpnGHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=fpwfSYmb; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=P9DTov8v reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1740496110; x=1772032110;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=8OCdIQ+1x1cdbbT6miIAd2P9zxEWox7eNmbXTr+ysKY=;
-  b=fpwfSYmbj0J33C2nP/29PesegYwpxMvwQsenvvJ5YrunbL0tfu4QlFuI
-   hLjPwj6k/NAqwIJBLAppDzI3REPYX8O8GNkoc8psAxMbelph0EzGnnJ1f
-   oZsuvBFyoWDHU+VthQo/EwEo4kCHT6CMBoIKcRCAZl4OFMEd9yX0aUnq2
-   +gdk+WDtPbyzHVnSOwshiytIXb/I1Lbm+ctGdKhythmyrbm6GylvNwmL5
-   gb9bDzPiTdTMPmSVWLVB7kl22QwpHiJiOPXQIxy+f4ibvPtJZWo1KTVKN
-   x189g+q8XPh2xuhPUxD1lQ0ptbCTJjSm92fZUblV+SphvQ98BSrSG4tNh
-   w==;
-X-CSE-ConnectionGUID: 1GyThBsLQ4OceJgWl5whpQ==
-X-CSE-MsgGUID: FsBtDC9aQT2FMo0eJhVDew==
-X-IronPort-AV: E=Sophos;i="6.13,314,1732575600"; 
-   d="scan'208";a="42075805"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 25 Feb 2025 16:08:27 +0100
-X-CheckPoint: {67BDDCEB-D-B8541F8F-E50F9B0E}
-X-MAIL-CPID: 05053AFA6C7480CC67EA1FCBF7FF12EF_2
-X-Control-Analysis: str=0001.0A00211E.67BDDCEA.00A2,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 70C09161586;
-	Tue, 25 Feb 2025 16:08:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1740496102;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8OCdIQ+1x1cdbbT6miIAd2P9zxEWox7eNmbXTr+ysKY=;
-	b=P9DTov8vYZt7Blks1GbficO9L/ZMl57uv2ZEwzS02Bqr9ZWS8uyxoxYPxvou+t/b2Oh2jX
-	8KAfzObCZac4PfeKKPv4PAwAhjBc1ATBGLXxB3BWUxFZqqYmMBMziJPwk21hd/mN+bG/8v
-	KeE2X+eWeQDHa4U3HmD9W28OwLqXFYQ4reeZYuY2li9KtwwJknfvG+5Hxcab3h9YYD8639
-	QJSQa3uDCO6EGgd0lX06YXAlKb0+udsqaZKdtYlShKomBYFjJ8PjG4zgUAKBsCjxgMqdM8
-	dQ7YHsSmY6qlN+DmfaWD/i+X5kuZ3xrhWyj8lymgD9BwEP3+ua9bmOZazZpAjA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
- Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux@ew.tq-group.com, linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-Subject:
- Re: [PATCH v2 2/6] dt-bindings: soc: imx93-media-blk-ctrl: Add LDB subnode
- into schema and example
-Date: Tue, 25 Feb 2025 16:08:20 +0100
-Message-ID: <2215802.irdbgypaU6@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250225145254.GA2361434-robh@kernel.org>
-References:
- <20250224142831.485159-1-alexander.stein@ew.tq-group.com>
- <20250224142831.485159-3-alexander.stein@ew.tq-group.com>
- <20250225145254.GA2361434-robh@kernel.org>
+	s=arc-20240116; t=1740497059; c=relaxed/simple;
+	bh=KKCgr4XOuwhlA0iWbXJwU/5OQ3sqThFzQ7RQy/OTe44=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JMqyunXZoF36+1KIrwmlKq/UHKADY5hoFMS0nL5Zuuq4apbZFhoTHGjoF/oyoX2LYkFhN8GiEsBCxYnU4rKYqldti0Yca2VjZbmfqNLyeytudB8NX+1uiffbgMFnWGKF/t12eakjLUWFtgpFimWpBa+V6tSsfX4mqDwf3h+pPeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=CIanoWiO; arc=none smtp.client-ip=17.57.156.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
+	s=1a1hai; bh=KKCgr4XOuwhlA0iWbXJwU/5OQ3sqThFzQ7RQy/OTe44=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:x-icloud-hme;
+	b=CIanoWiO8J8PtwZ9J6YcNggtSK4U6hbju7kVkMu7k3fdtwWReomoyWbaJd4EuSCp4
+	 XDG+TLp7JEh3BXwLJt6JJJBNHGx58Hf0RprD+XB/G6QPsNsin1NdfNcjxq6yyay0ej
+	 CR7oiWzF6Qpb6azWRDUZji88f2o0tOe3xtukChB/Ho7V4KwWoHLsitXxHKzA3LbCCy
+	 +ppDDD7w9H03Z27giG3XLMokamkKLKt41XPI4/DhupYuICwmf3ruqV/La04E/bvCz7
+	 pZ9oZcQgSAbMN2zVqGfHoMhD3Kled8ppXjXNF2PztJ3Ml6ngkosV0vOcGJb6bvtR55
+	 uaVPLu3LkV4cw==
+Received: from [192.168.1.26] (ci77p00im-dlb-asmtp-mailmevip.me.com [17.57.156.26])
+	by ci74p00im-qukt09090101.me.com (Postfix) with ESMTPSA id 7D7CA35C05F0;
+	Tue, 25 Feb 2025 15:24:13 +0000 (UTC)
+Message-ID: <cd4ec50b-dadd-490b-ab15-078dcf4bb02a@icloud.com>
+Date: Tue, 25 Feb 2025 23:24:06 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] of: Do not change property state under
+ __of_add_property() failure
+To: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
+References: <20250224-of_bugfix-v1-0-03640ae8c3a6@quicinc.com>
+ <20250224-of_bugfix-v1-4-03640ae8c3a6@quicinc.com>
+ <20250225144108.GB2279028-robh@kernel.org>
+Content-Language: en-US
+From: Zijun Hu <zijun_hu@icloud.com>
+In-Reply-To: <20250225144108.GB2279028-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 7BBuBFw4b3gV4JIpSCjkpo_q-vHQT-Ln
+X-Proofpoint-GUID: 7BBuBFw4b3gV4JIpSCjkpo_q-vHQT-Ln
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-25_04,2025-02-25_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=706 mlxscore=0 adultscore=0
+ clxscore=1015 suspectscore=0 malwarescore=0 bulkscore=0 spamscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2502250102
 
-Am Dienstag, 25. Februar 2025, 15:52:54 CET schrieb Rob Herring:
-> ********************
-> Achtung externe E-Mail: =D6ffnen Sie Anh=E4nge und Links nur, wenn Sie wi=
-ssen, dass diese aus einer sicheren Quelle stammen und sicher sind. Leiten =
-Sie die E-Mail im Zweifelsfall zur Pr=FCfung an den IT-Helpdesk weiter.
-> Attention external email: Open attachments and links only if you know tha=
-t they are from a secure source and are safe. In doubt forward the email to=
- the IT-Helpdesk to check it.
-> ********************
->=20
-> On Mon, Feb 24, 2025 at 03:28:23PM +0100, Alexander Stein wrote:
-> > Document the LDB bridge subnode and add the subnode into the example.
-> > For the subnode to work, the block control must scan its subnodes and
-> > bind drivers to them, do not misuse either simple-bus or simple-mfd
-> > here.
-> >=20
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> >  .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     | 51 +++++++++++++++++++
-> >  1 file changed, 51 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-=
-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-b=
-lk-ctrl.yaml
-> > index b3554e7f9e76d..d914dea6ecbb5 100644
-> > --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctr=
-l.yaml
-> > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctr=
-l.yaml
-> > @@ -24,6 +24,14 @@ properties:
-> >    reg:
-> >      maxItems: 1
-> > =20
-> > +  ranges: true
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 1
-> > +
-> >    '#power-domain-cells':
-> >      const: 1
-> > =20
-> > @@ -46,9 +54,20 @@ properties:
-> >        - const: csi
-> >        - const: dsi
-> > =20
-> > +  bridge@20:
-> > +    type: object
-> > +    additionalProperties: true
-> > +    properties:
-> > +      compatible:
-> > +        contains:
-> > +          const: fsl,imx93-ldb
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > +  - ranges
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> >    - power-domains
-> >    - clocks
-> >    - clock-names
-> > @@ -77,4 +96,36 @@ examples:
-> >                 clock-names =3D "apb", "axi", "nic", "disp", "cam",
-> >                               "pxp", "lcdif", "isi", "csi", "dsi";
-> >        #power-domain-cells =3D <1>;
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <1>;
-> > +      ranges;
->=20
-> Given the address below is 0x20, this looks wrong unless the parent=20
-> address is 0.
+On 2025/2/25 22:41, Rob Herring wrote:
+> On Mon, Feb 24, 2025 at 10:28:00PM +0800, Zijun Hu wrote:
+>> From: Zijun Hu <quic_zijuhu@quicinc.com>
+>>
+>> Do not remove the property from list @np->deadprops if
+>> __of_add_property() encounters -EEXIST failure.
+> A property can never be on both np->deadprops and np->props.
 
-Thanks for pointing out. Because system-controller@4ac10000 is not
-a simple-bus I assume this needs explicit ranges, as you pointed out in
-your comment on Patch 4, no?
+i made this patch based on convention that
 
-Best regards,
-Alexander
-
-> > +
-> > +      bridge@20 {
-> > +          compatible =3D "fsl,imx93-ldb";
-> > +          reg =3D <0x20 0x4>, <0x24 0x4>;
-> > +          reg-names =3D "ldb", "lvds";
-> > +          clocks =3D <&clk IMX93_CLK_LVDS_GATE>;
-> > +          clock-names =3D "ldb";
-> > +
-> > +          ports {
-> > +              #address-cells =3D <1>;
-> > +              #size-cells =3D <0>;
-> > +
-> > +              port@0 {
-> > +                  reg =3D <0>;
-> > +
-> > +                  ldb_from_lcdif2: endpoint {
-> > +                      remote-endpoint =3D <&lcdif2_to_ldb>;
-> > +                  };
-> > +              };
-> > +
-> > +              port@1 {
-> > +                  reg =3D <1>;
-> > +
-> > +                  ldb_lvds: endpoint {
-> > +                      remote-endpoint =3D <&ldb_to_panel>;
-> > +                  };
-> > +              };
-> > +          };
-> > +        };
-> >      };
->=20
+This change is made base on convention that tasks which have
+been done successfully needs to be undid if fails to do the
+remaining task.
 
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+It is okay to drop this patch based on condition you mentioned.
 
-
+thank you. (^^)(^^)
 
