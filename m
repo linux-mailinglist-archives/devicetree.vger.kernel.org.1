@@ -1,110 +1,121 @@
-Return-Path: <devicetree+bounces-151219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15CF5A44E7A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 22:13:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBF3CA44E8A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 22:15:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A19B11621F8
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 21:13:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82C65189C865
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 21:15:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5333820D517;
-	Tue, 25 Feb 2025 21:13:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94F52212D83;
+	Tue, 25 Feb 2025 21:15:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="HV00NfTQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C37B1A2392;
-	Tue, 25 Feb 2025 21:12:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F574212B0D;
+	Tue, 25 Feb 2025 21:15:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740517982; cv=none; b=A58dLhdj2R1Wyc+ZOdRhUtPAELkIKQuzxXFDKu1htofSsIgtZi5tL6ZRVSn2HZOYq+MP1FTDQRcdZp2gIz6+Sb+r7ALLC1d6t8DagsAmmFlGgfLxXwY8US8FZl6Y9v7xMetnZ5V2D+UG+XQ43u6n44S63ys2Nu/qvDW9XgwWNq0=
+	t=1740518102; cv=none; b=eVvz0T9Tb7TMA0YO9HX/O0mag51UrQFvggcMH/TzWblsa847gJQRNgxk7nVg0WuiiSrgJ7GcE5n1of1iCLqJdm7aBMSIaL/miN8t2WqIUmxfy1eJ5g+u2F0E2wBTkFeL3tzQwWrRkgRvZyqbfGJmvpg0ddWX7cAcDVAd7eVoCwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740517982; c=relaxed/simple;
-	bh=sVVkhpICspFxR0YyUJyrPKfBpCWrQ+yeJh0RhrguVTs=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=jCjL03IiZt8pkajUMv3k+FhTz3dfcgdnp3AWybS/r3GbbNWL/ils6zYr3ExKKasf6jrowl0RS3MS1MSySjzWD+7J8ytxn0zNOCdqJ3KepKVFfC/oZH4lfztfXGQ87kn4DgPn8tZve5ogP6V5QdvIM4/1yiQ00Ibu1VQ/ysx4vXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
-Received: from [192.168.0.2] (ip5f5af513.dynamic.kabel-deutschland.de [95.90.245.19])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: pmenzel)
-	by mx.molgen.mpg.de (Postfix) with ESMTPSA id 9487361E646F9;
-	Tue, 25 Feb 2025 22:11:55 +0100 (CET)
-Message-ID: <a4066857-01e7-4172-b141-4c5f8bb3540b@molgen.mpg.de>
-Date: Tue, 25 Feb 2025 22:11:54 +0100
+	s=arc-20240116; t=1740518102; c=relaxed/simple;
+	bh=nR6hbYFkUCK7cDGEqRMA6HXEwebdg5p8Ni/y5RZ8urg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=O/jFqAfr5afpHSIO393yg6nqNmDSZvYXdsYpngllN1eEHwzlo20DHcEQO/khbu8FwjWE9vIlMOcOPhkIEuXcC3nmv0Y1+WC290+2XOtWgUOozL78SaqoP2SKS/HNHRTOmhgYjkDYypkQ2vbQaeW2YUpT8XERbO19pGBBiNBmA7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=HV00NfTQ; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
+	t=1740518093; bh=nR6hbYFkUCK7cDGEqRMA6HXEwebdg5p8Ni/y5RZ8urg=;
+	h=From:Subject:Date:To:Cc;
+	b=HV00NfTQJrtce6Kh8S2yuDRUVwmPdjUf/2qTRg4Hanqg9nhVS47ezJ8D+wezJhAYV
+	 LuewNpMdPj2N5m5Ztm7YG7rNBqc8kNssJt8qC1YLREvX3vKdsGW+0fy5cAOtV1INsj
+	 lp7kN5EqayamNHxumnPWjqJKVpRBnKGfzWe9rUxc=
+From: Luca Weiss <luca@lucaweiss.eu>
+Subject: [PATCH v2 0/4] Add display support for Fairphone 3 smartphone
+Date: Tue, 25 Feb 2025 22:14:28 +0100
+Message-Id: <20250225-fp3-display-v2-0-0b1f05915fae@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-Subject: Re: [PATCH v4 2/2] iio: adc: add support for Nuvoton NCT7201
-To: Eason Yang <j2anfernee@gmail.com>
-Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
- javier.carrasco.cruz@gmail.com, andriy.shevchenko@linux.intel.com,
- gstols@baylibre.com, olivier.moysan@foss.st.com, mitrutzceclan@gmail.com,
- tgamblin@baylibre.com, matteomartelli3@gmail.com,
- marcelo.schmitt@analog.com, alisadariana@gmail.com,
- joao.goncalves@toradex.com, thomas.bonnefille@bootlin.com,
- ramona.nechita@analog.com, herve.codina@bootlin.com,
- chanh@os.amperecomputing.com, kwliu@nuvoton.com, yhyang2@nuvoton.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20250221090918.1487689-1-j2anfernee@gmail.com>
- <20250221090918.1487689-3-j2anfernee@gmail.com>
-Content-Language: en-US
-In-Reply-To: <20250221090918.1487689-3-j2anfernee@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALQyvmcC/23MQQ6CMBCF4auQWVtDhxTFlfcwLGg7yCQESEeqh
+ PTuVtYu/5e8bwehwCRwK3YIFFl4nnLgqQA3dNOTFPvcgCWaEhFVv1TKsyxjtyl7aZytqoZqYyE
+ /lkA9fw7t0eYeWF5z2A486t/634lalco5f9VIum4M3sfVdW9ikTOt0KaUvuJrZIapAAAA
+X-Change-ID: 20250222-fp3-display-b79cb339e65b
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Luca Weiss <luca@lucaweiss.eu>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1333; i=luca@lucaweiss.eu;
+ h=from:subject:message-id; bh=nR6hbYFkUCK7cDGEqRMA6HXEwebdg5p8Ni/y5RZ8urg=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBnvjLArkbrqXjAPVx7+znIk3YYPUv79ruiJ0V6b
+ TX4iCQIZPKJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZ74ywAAKCRBy2EO4nU3X
+ VugzD/9O7r+tOdJPcuS2PL50nLO9kIANHsyzPjubgmIHTZYzi8WWmCeCutjLBicUZVBqoRBXw6m
+ lkJEUESiWUCGWRziJjn0HThCbh2RPESdAM6Yey5v9y+LZQMNrrs2RqqbCIwMEtFyTuDBwjZI4zi
+ Erj0ZTGOr8fynA5/Pno9zyo0r/VXjkEhkrUZfinI2Vya53ug3iww5vK/BntEC4YHTxboxUQLBGZ
+ k2tVybx1mNglwySxWWs+Sy4lKzMBuAqQdpM/wUgx11EW2CtbCCRe0xek/Dsuqn1caTDxc6NkSsF
+ qjdT7ZQjRXqAUgwjG4YQn8Cc69xaif8lz89MKSX66RB+yBaFVdrmBHj3qxDSNyFFfhEtLIf7FmE
+ nSdPEYuTI/iVajWjofAzJ5nLjNBEEPyYBHxWge5+KeWOfV7Lj2fxCdy6hDKrMbvHOHCBCkeXm72
+ F2VVFuXu6RGbOg7HkSjtX2bJ3DnYrRL6Eu6G1XscrWROhFk4+x1R5qPnu1YAdGrB4ESbK3CeQel
+ oSOKjqNnG6niahxbNzTIWv8kUj8Pd/Muy7v0J70TuoDiGqsYj8voy6QEKGhmEtkvpD3rvnigc33
+ p2VrUkyEUVaC/mUKeq26XKTU4aUe73NCebhaDKtc9yMnQIep5G+liKzkO7hUw3v1MlL/HFsOfJM
+ kK1vndaWpbQua7w==
+X-Developer-Key: i=luca@lucaweiss.eu; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
-Dear Eason,
+Add a driver for the HX83112B-based panel, and enable it on Fairphone 3
+to enable display output, and enable GPU as well.
 
+Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+---
+Changes in v2:
+- Change compatible to "djn,98-03057-6598b-i" based on other docs I
+  found
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20250222-fp3-display-v1-0-ccd812e16952@lucaweiss.eu
 
-Thank you for your patch.
+---
+Luca Weiss (4):
+      dt-bindings: vendor-prefixes: document Shenzhen DJN Optronics Technology
+      dt-bindings: display: panel: Add Himax HX83112B
+      drm/panel: Add driver for DJN HX83112B LCD panel
+      arm64: dts: qcom: sdm632-fairphone-fp3: Enable display and GPU
 
-Am 21.02.25 um 10:09 schrieb Eason Yang:
-> Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
-> 
-> NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up to
-> 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins for
-> independent alarm signals, and the all threshold values could be set for
+ .../bindings/display/panel/himax,hx83112b.yaml     |  75 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm64/boot/dts/qcom/msm8953.dtsi              |   2 +-
+ arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts  |  62 +++
+ drivers/gpu/drm/panel/Kconfig                      |  10 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-himax-hx83112b.c       | 430 +++++++++++++++++++++
+ 7 files changed, 581 insertions(+), 1 deletion(-)
+---
+base-commit: 197aed880d4de2127c80c389ec62601b7d837351
+change-id: 20250222-fp3-display-b79cb339e65b
 
-… and all the threshold values …
+Best regards,
+-- 
+Luca Weiss <luca@lucaweiss.eu>
 
-> system protection without any timing delay. It also supports reset input
-> RSTIN# to recover system from a fault condition.
-> 
-> Currently, only single-edge mode conversion and threshold events support.
-
-… are supported.
-
-It’d be great if you added a datasheet name and revision, and, if 
-publicly available, a URL.
-
-> Signed-off-by: Eason Yang <j2anfernee@gmail.com>
-> ---
->   MAINTAINERS               |   1 +
->   drivers/iio/adc/Kconfig   |  11 +
->   drivers/iio/adc/Makefile  |   1 +
->   drivers/iio/adc/nct7201.c | 487 ++++++++++++++++++++++++++++++++++++++
->   4 files changed, 500 insertions(+)
->   create mode 100644 drivers/iio/adc/nct7201.c
-
-[…]
-
-
-Kind regards,
-
-Paul
 
