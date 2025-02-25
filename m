@@ -1,167 +1,141 @@
-Return-Path: <devicetree+bounces-150992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DC30A44182
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:58:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85B79A4419F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:02:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 449861709C1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:57:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 574123B38DB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:58:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09949269CEB;
-	Tue, 25 Feb 2025 13:54:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UDls7+Wl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1783226BDBF;
+	Tue, 25 Feb 2025 13:55:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D556225EF8A;
-	Tue, 25 Feb 2025 13:54:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1695C26BD8A
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 13:55:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740491685; cv=none; b=ifnycI7ru+fspkt3+bPoxXzHY6lpcwc6wX8nW45Bq5HwzVePJKv7I1pc2c2e69bkqsWTaHX17HkKxzoMhmfaa8qxwzk134pkyIIbJPrR9eUQEMsuNjwN6B4RBZPAfq1DUfeJIKabpRwFXjvGWwePwu5ewEu0KodZ1BXZlh4Wh+0=
+	t=1740491725; cv=none; b=kAX2RR5m9zqKOb0B9RtNyfzSRP4YX/DEszD5Rm1ZyCqAlhdPP0/GuJyBuh6u9WCsnSWYzS5Joop3U8NvCAa5z0bj0i4wIuNDKx2V6BDxFWNJzJ28UHVnKwHUl9EK16sAMHvL4fm5Oy/Xpk8FyzIGh0tsi3rYo59BZH/PieHZGl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740491685; c=relaxed/simple;
-	bh=gS2xO6D8bUTJqMR0xbZMq+vAJRUEGZh4cXX1yn4mHGM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YDZOg5wF9jwwb/RmRndvYkoYZUtlurkjGBhW2vAnLlXQxCSuy3H+TLwIS1cHYZ2z3CHyv8spU6AEmpdlnDGgkWQ3zMXdu6Ralh6+UuGreQwCpUCqlNhrz7X7qwnYtdd60Dy7yRkaoJhqOBf7XO2SFsznQU7mXRD4vIhs2ELQXkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UDls7+Wl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA087C4CEDD;
-	Tue, 25 Feb 2025 13:54:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740491685;
-	bh=gS2xO6D8bUTJqMR0xbZMq+vAJRUEGZh4cXX1yn4mHGM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UDls7+WlVCqDVQs/pO7nZNzo+UnxZQTqr1cHoPGE67hHBlXU7uj/SvQa6/xzl/PzY
-	 fSfha2qJinHo7WG827jCwuB+loYlVaXiNa1cOmvl02UdmSFl6jYYauhT+wYsKcJ+n2
-	 Un7BQ80ugYzpTjhWJvDbua4P3fjRm10K/qaHh9+Mv/1DMezBNXZ6p+2DH07imkXR+r
-	 mpJ8urnBNVBf7bUuIhstNaNSpYMpdC/vyukHiWmBOLNtgUuL/TM5Lr6BvpReOcyAuN
-	 UB6ptUjFbhzYDrx8uKSRFrvDdRTBacVzD712jshNsfYtOmpyupudr1Y2hvL9B4XeMX
-	 UW+WyJ1B//hLA==
-Date: Tue, 25 Feb 2025 13:54:41 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] regulator: adp5055: Add driver for adp5055
-Message-ID: <a7f7d4dc-283a-40b9-bb1b-0bc8aceb99c1@sirena.org.uk>
-References: <20250225-upstream-adp5055-v1-0-a5a7f8e46986@analog.com>
- <20250225-upstream-adp5055-v1-2-a5a7f8e46986@analog.com>
+	s=arc-20240116; t=1740491725; c=relaxed/simple;
+	bh=VcJKrlbLSdRhpFre3KIRw2OrgXKAi3d9H2jhcUDLdk8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=VIGV3bDm4BqxXsfFP6xigRrx4zBwc0xR9xXXT61AHQOwYR8MENOfFrxkgmPjfhenWrTNzuc8Q6oaF5jlQv8rZlipPJAah3Cw/UWJ6h4pOW0g1pOdZb+behAoRNKeLEoyMGcSmdJ9JaPI+sTdBODFZdfQjM5pFNj4aryLTvpfJzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tmvP0-0003K8-TI; Tue, 25 Feb 2025 14:55:14 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tmvP0-002mjO-1D;
+	Tue, 25 Feb 2025 14:55:14 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tmvP0-0009vz-0s;
+	Tue, 25 Feb 2025 14:55:14 +0100
+Message-ID: <460ce86a847cb13e6e51cf0c89a65602e0080e67.camel@pengutronix.de>
+Subject: Re: [PATCH v3 2/8] dt-bindings: dsp: fsl,dsp: Add resets property
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Daniel Baluta <daniel.baluta@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>, robh@kernel.org,
+ krzk+dt@kernel.org,  shawnguo@kernel.org, mathieu.poirier@linaro.org,
+ conor+dt@kernel.org,  s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com,  linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-remoteproc@vger.kernel.org, 
+ andersson@kernel.org, Frank.Li@nxp.com, peng.fan@nxp.com, 
+ laurentiu.mihalcea@nxp.com, iuliana.prodan@nxp.com
+Date: Tue, 25 Feb 2025 14:55:14 +0100
+In-Reply-To: <CAEnQRZBL+r2-CRDszK54SD_8E9=1QRKRj3_YDHsM7YetKMcs_w@mail.gmail.com>
+References: <20250225102005.408773-1-daniel.baluta@nxp.com>
+	 <20250225102005.408773-3-daniel.baluta@nxp.com>
+	 <78e60d723c27b7fa0f03bc6a74f6ad37d6508734.camel@pengutronix.de>
+	 <CAEnQRZBL+r2-CRDszK54SD_8E9=1QRKRj3_YDHsM7YetKMcs_w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="JWMBj3vKa0cR7fF4"
-Content-Disposition: inline
-In-Reply-To: <20250225-upstream-adp5055-v1-2-a5a7f8e46986@analog.com>
-X-Cookie: I'm not available for comment..
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi Daniel,
 
---JWMBj3vKa0cR7fF4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Di, 2025-02-25 at 15:41 +0200, Daniel Baluta wrote:
+> Hello Philipp,
+>=20
+> Thanks for your comments!
+>=20
+> > The DAP core reset is mentioned in the commit message. Why is it
+> > missing here? After reading the discussion in [1], I'd expect both the
+> > stall and the (core) reset signal to be documented, something like:
+>=20
+> There is no reset controller driver for DAP area yet.
 
-On Tue, Feb 25, 2025 at 05:08:34PM +0800, Alexis Czezar Torreno wrote:
+This is about the device tree bindings, not the driver. Even if the
+driver maps DAP address space with a hard-coded address, ...
 
-> Add ADI ADP5055 driver support. The device consists
-> of 3 buck regulators able to connect to high input voltages of up to 18V
-> with no preregulators.
+> We manipulate the bits directly by remapping the DAP address space
+> inside remoteproc driver.
 
-There's a bunch of stuff here which should be using core features, I'll
-comment some of those on the DT binding patch.
+... which it should not, the bindings could already correctly describe
+the core reset.
 
-> +config REGULATOR_ADP5055
-> +	tristate "Analog Devices ADP5055 Triple Buck Regulator"
-> +	depends on I2C
-> +        select REGMAP_I2C
-> +	help
-> +	  This driver controls an Analog Devices ADP5055 with triple buck
-> +          regulators using an I2C interface.
+I'd just like to make sure that there will be no confusion about the
+stall "reset" signal, and adding a reset-names property would be an
+easy way to do it.
 
-The indentation for the select and the second line of the description is
-weird.
+> See for example: drivers/remoteproc/imx_dsp_rproc.c
+>=20
+> /* Reset function for DSP on i.MX8MP */
+> static int imx8mp_dsp_reset(struct imx_dsp_rproc *priv)
+> {
+> =C2=BB       void __iomem *dap =3D ioremap_wc(IMX8M_DAP_DEBUG,
+> IMX8M_DAP_DEBUG_SIZE);
+> =C2=BB       int pwrctl;
+>=20
+> =C2=BB       /* Put DSP into reset and stall */
+> =C2=BB       pwrctl =3D readl(dap + IMX8M_DAP_PWRCTL);
+> =C2=BB       pwrctl |=3D IMX8M_PWRCTL_CORERESET;
+> =C2=BB       writel(pwrctl, dap + IMX8M_DAP_PWRCTL);
+>=20
+>=20
+> If we agree that this is the right way to go, the next step would be
+> to create a new reset controller driver for DAP area.
+>
+> I want to keep this as a follow up patch in order to not compilate
+> this patch series even more.
 
-> @@ -0,0 +1,490 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Regulator driver for Analog Devices ADP5055
-> + *
-> + * Copyright (C) 2025 Analog Devices, Inc.
-> + */
+I have no issues with adding a reset driver for the DAP region and
+hooking it up to the DSP driver in a separate series, but the device
+tree bindings could be correct from the start.
 
-Please make the entire comment block a C++ one so things look more
-intentional.
+> > Is there nothing else in this range that will have to be controlled by
+> > the DSP driver in the future, such as the IMPWIRE register or the
+> > XOCDMODE[OCDHALTONRESET] bit?
+>=20
+> We are internally running SOF for couple of years now and we didn't
+> need any of these bits.
 
-> +static const struct regmap_range adp5055_reg_ranges[] = {
-> +	regmap_reg_range(0xD1, 0xE0),
-> +};
-> +
-> +static const struct regmap_access_table adp5055_write_ranges_table = {
-> +	.yes_ranges	= adp5055_reg_ranges,
-> +	.n_yes_ranges	= ARRAY_SIZE(adp5055_reg_ranges),
-> +};
-> +
-> +static const struct regmap_access_table adp5055_read_ranges_table = {
-> +	.yes_ranges	= adp5055_reg_ranges,
-> +	.n_yes_ranges	= ARRAY_SIZE(adp5055_reg_ranges),
-> +};
+Ok.
 
-The read and write ranges could just be one variable.
-
-> +static const struct regmap_config adp5055_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = 0xFF,
-
-max_register is set to 0xff but the largest read or write register is
-0xe0.  Might be worth considering adding cache support too, there's
-read/modify/write cycles here.
-
-> +	if (!adp5055->hw_en_array_gpios)
-> +		if (adp5055->hw_en_array_gpios->ndescs != ADP5055_NUM_CH)
-> +			return dev_err_probe(dev, adp5055->hw_en_array_gpios->ndescs,
-> +				     "Invalid amount of channels described\n");
-
-Are we sure that ndescs is going to be an error code?
-
-> +static int adp5055_en_func(struct regulator_dev *dev, int en_val)
-> +{
-> +	struct adp5055 *adp5055 = rdev_get_drvdata(dev);
-> +	int id;
-> +	int mask;
-> +
-> +	id = rdev_get_id(dev);
-> +	mask = BIT(id);
-> +
-> +	if (!adp5055->hw_en_array_gpios)
-> +		return regmap_update_bits(adp5055->regmap, ADP5055_CTRL_MODE1, mask, en_val);
-> +
-> +	gpiod_set_value_cansleep(adp5055->hw_en_array_gpios->desc[id], en_val);
-
-Just use the standard GPIO and regmap helpers for this.
-
---JWMBj3vKa0cR7fF4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAme9y6AACgkQJNaLcl1U
-h9CsOQf/RisYYkTZwKSbO9Hwzq+ULIBDwfdJw7yxR7M/dbHfxoKTiqEEVhg0W4P9
-k0pruUMPuh/lNE6xQTbUT0tAWT48q+IFPKLwUD+2S2LaU7A/9yMRo4O/vmrpFn4z
-vIBZ/yik6sisvBnAJiUXTEY8hbmwRC4fpZDEE5eCmX9gUadR79LlrfRMBfuOKaLe
-5KevWIFq1DoPrip9G/cnCffFj1eOYwjeWD1smR97JXO5lOTl4IE9+tX719FVdvK4
-r+i8cbb7cHmz+iFk3qkFgLNw0sIrCiDc/3aqC/Y43edSjhi/R/O0V6TWfTcRQpnY
-S30W4F0UPovHsUZTGHDb3/C6Vx/QDg==
-=uI3w
------END PGP SIGNATURE-----
-
---JWMBj3vKa0cR7fF4--
+regards
+Philipp
 
