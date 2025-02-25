@@ -1,92 +1,125 @@
-Return-Path: <devicetree+bounces-151189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80554A44B4B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:26:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C14FA44B2A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:18:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5A4D189F386
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:26:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DB121899966
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:19:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 054221FBEAE;
-	Tue, 25 Feb 2025 19:25:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="LUb93Xjt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F9F19DFA2;
+	Tue, 25 Feb 2025 19:18:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.166.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94403EC2
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 19:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.166.231
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A8E1EC2;
+	Tue, 25 Feb 2025 19:18:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740511506; cv=none; b=COhnKzBOsk+2juCyf/BKsNoosH1vnuCHv+NYt3aZO7KS5T4tddyD0OzLHffnzE0rv6qW4QtMigxP5XNFZOph2kPwUdDlP6lReN9TIT1rYRqrZl8QEu9pCW0imvLO6VY6HFL7zFJ2p0HJeQqhSr3CQnhHxaH7KwfTmH/IZywS4/U=
+	t=1740511135; cv=none; b=ZG4eOPG866U3KOBh4rYI/ujf2fnt2X83rcAdoUkHLbDsb8aG1ylCkO0OTlzZmOeu5tBaUYrsq/tBhoyeijMa41FQ22QnDFaitOkWwJAVYyK6hOwp6Usml4wOF57GekO9QqKydRBE87/OdsczBhtw9TZr+MTsBGctmYyGxxm5PPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740511506; c=relaxed/simple;
-	bh=LsAUNofXorXLRj5AB/bpcrLwxeeZplB7eZs0ofV2z2c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ooyl2xs7arKbInxQ4/2bcqsTqk/jKCfF3T+l57Bp4ULaZrkOR/A2tN9yLfx/TutYSuRLvh43bmvU1reVdXuP3O2hjUqUssTeVf0IQSsxwi8n9svAjOFAKruxmdXsOaHX4Qc52NyjKV4Te8AASutv0gOyIv8x4lSYGPcWI2YctMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=LUb93Xjt; arc=none smtp.client-ip=192.19.166.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id B596FC0005A7;
-	Tue, 25 Feb 2025 11:18:21 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com B596FC0005A7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1740511101;
-	bh=LsAUNofXorXLRj5AB/bpcrLwxeeZplB7eZs0ofV2z2c=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=LUb93Xjt/oc0FTDI+UQYI7HDL0zfXgn0lUrJ/0ZZlTx8aXivB0uAqS+tadcxe3ezJ
-	 CEcTSkV4LqWcvYRc+YrCGMkHzXM9VyrtOmZDHd/OeggP9vL1nyY2mu1F2GRad2vlpd
-	 +C00nK5YQeTqMkAO0q/U22cDM9z9GUYpXK3VStQY=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 8733B18041CCB8;
-	Tue, 25 Feb 2025 11:18:21 -0800 (PST)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: bcm-kernel-feedback-list@broadcom.com,
-	Stefan Wahren <wahrenst@gmx.net>,
+	s=arc-20240116; t=1740511135; c=relaxed/simple;
+	bh=+O/jLlBPENXadD95GrBWGZEENjjbBIHuh1VsORmZ0DU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GbcsvB3IE0JIdoihPHpFYtUGg4Wzx8mNjosccMkaPE3owsOTyQ3a/UXPFlflpXxVC9ixbIPZG9AZ4J5bJLlFoorhMeVQzHeYOJBQIP1p8r+rTj/zZyBljhS5R7dL5UPeOg2LFIZOXZ5Hceg1DKbTKzeXpbs6ngAPlKNROrxgCU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9E0E6152B;
+	Tue, 25 Feb 2025 11:19:09 -0800 (PST)
+Received: from bogus (unknown [10.57.37.210])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B6DB83F5A1;
+	Tue, 25 Feb 2025 11:18:49 -0800 (PST)
+Date: Tue, 25 Feb 2025 19:18:46 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Mark Rutland <mark.rutland@arm.com>
+Cc: Vincenzo Frascino <vincenzo.frascino@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Linus Walleij <linus.walleij@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Andrea della Porta <andrea.porta@suse.com>
-Subject: Re: [PATCH 1/2] ARM: dts: bcm2711: PL011 UARTs are actually r1p5
-Date: Tue, 25 Feb 2025 11:18:21 -0800
-Message-ID: <20250225191821.1059923-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250223125614.3592-2-wahrenst@gmx.net>
-References: <20250223125614.3592-1-wahrenst@gmx.net> <20250223125614.3592-2-wahrenst@gmx.net>
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, Will Deacon <will@kernel.org>,
+	Jessica Clarke <jrtc27@jrtc27.com>
+Subject: Re: [PATCH v7 00/10] arm64: dts: Add Arm Morello support
+Message-ID: <20250225191846.5zopbxloo4zuoxp5@bogus>
+References: <20250221180349.1413089-1-vincenzo.frascino@arm.com>
+ <Z7jL5wBUJNjOlg4r@J2N7QTR9R3.cambridge.arm.com>
+ <58ee2a8d-d3c1-4bc2-92dd-6568f645b01f@arm.com>
+ <Z72ydHCLxd-WGsJu@bogus>
+ <Z720J5kXEnj5sZn0@J2N7QTR9R3>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z720J5kXEnj5sZn0@J2N7QTR9R3>
 
-From: Florian Fainelli <f.fainelli@gmail.com>
-
-On Sun, 23 Feb 2025 13:56:13 +0100, Stefan Wahren <wahrenst@gmx.net> wrote:
-> From: Phil Elwell <phil@raspberrypi.com>
+On Tue, Feb 25, 2025 at 12:14:31PM +0000, Mark Rutland wrote:
+> Hi Sudeep,
 > 
-> The ARM PL011 UART instances in BCM2711 are r1p5 spec, which means they
-> have 32-entry FIFOs. The correct periphid value for this is 0x00341011.
-> Thanks to N Buchwitz for pointing this out.
+> On Tue, Feb 25, 2025 at 12:07:16PM +0000, Sudeep Holla wrote:
+> > On Mon, Feb 24, 2025 at 10:08:18AM +0000, Vincenzo Frascino wrote:
+> > > On 21/02/2025 18:54, Mark Rutland wrote:
+> > > > On Fri, Feb 21, 2025 at 06:03:39PM +0000, Vincenzo Frascino wrote:
+> > > >> This series adds dts support for the Arm Morello System Development
+> > > >> Platform.
+> > > >
+> > > > Do we actually need the dts for this board?
+> > > >
+> > > > I have one on my desk; it boots vanilla Debian 12 via UEFI + ACPI just
+> > > > fine, with the Debian 6.1.0-13-arm64 kernel.
+> > > >
+> > > > Is there something that we can only do with the DT? i.e. some
+> > > > functionality that isn't exposed via ACPI?
+> > > >
+> > > > How do you expect this DT to be used?
+> > >
+> > > There are functionalities that are not exposed via ACPI, e.g. gpu, dpu, i2c for
+> > > the phy, etc. My aim to have upstream support for all the hardware exposed by
+> > > the platform.
+> > 
+> > Does this address some of your concerns ? I do understand some of these
+> > are not well addressed in ACPI and hence people use DT as an alternative.
 > 
-> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-> ---
+> Yep; I'm happy with this so long as there's an actual functional reason
+> to have the DT, which it seems there is.
+> 
+> It would have been nice for that to be spelled out a bit clearer in the
+> cover / commit messages, but that's not important and doesn't need a
+> respin.
+>
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/fixes, thanks!
---
-Florian
+I can add that info in my pull request as it is very valid point. One needs
+to know why we are pushing DTS now after couple of years after the boards
+are available and why DT over ACPI which is shipped with the device.
+
+> > I was thinking of queuing this in -next if all the bindings are acked.
+> > Let me know if you still have concerns and would like to avoid getting
+> > these merged. I will hold off then.
+> 
+> No need to hold off.
+> 
+> Sorry for the confusion; I should have been clearer with my questions.
+> 
+
+No confusion as such, good to ask explicitly and get the motivation for
+this series captured on the list. Since I had gone through this motion
+even with N1SDP which for some reasons I don't know didn't appear on the
+list, I didn't ask it and implicitly assumed similar reasoning.
+
+So, it is good that you asked and got it answered for wider audience here.
+
+-- 
+Regards,
+Sudeep
 
