@@ -1,192 +1,151 @@
-Return-Path: <devicetree+bounces-150958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35632A43FE7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:01:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB0DAA43FF7
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:03:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 959373BF901
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:59:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88F073BE21E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:01:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFE76268FEC;
-	Tue, 25 Feb 2025 13:00:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D163D268FD8;
+	Tue, 25 Feb 2025 13:02:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VJriC2lM"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="YprGR3q4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD84F268FE4;
-	Tue, 25 Feb 2025 13:00:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 274072686B1;
+	Tue, 25 Feb 2025 13:02:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740488402; cv=none; b=OF9OPjtwppVS3SlbGvH9OWiqdhRbT0Hz8mvMpd7KrR5ofgD9rlbPSr1Z+c3892qKGqIpIMQeaq+++rqi6o5aSrulxs3nJxlzicZOuhDjDun9FSBPs0SKymnb2SbsTTSXTu0ltPUaGvPsaSchIokCfv2Rp3eIuDIvO/TDv6em2G0=
+	t=1740488527; cv=none; b=tDUvChzzzTDA6zfesB9K4p7QxT2xaebnPxT82o53V5BeAA+LdK88u94hAdyQ0byXoIxYToEGgtf8uPSEree6EpZXHa9jFfx59ClOe3vcVz0NdFUGfkv/H7tRib/8IlguU9dMHCva2Tm7H8+x1IMopCpOkoYaZEUdszLfS4WQync=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740488402; c=relaxed/simple;
-	bh=MIpWmATnHWUCuVfECKFeEj874VPeRJVVLzeFDtK35xw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YBVZlwgrjyVxLABaaVYsA1hsRvjtxsmuU1BNDb5Qs1XUtADMPAuLQYmlb40sqqpOaWXoNgeAuwB295oUYq+Vh7cFlhBmJ83fFx2mTaz2k90W9jAcQh2QFdHISD4Fy8j+yM1U7urY9TUoBPFZQK6gQ3Fxrkakmoxqs52GeBzkH6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VJriC2lM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3456CC4CEE6;
-	Tue, 25 Feb 2025 12:59:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740488402;
-	bh=MIpWmATnHWUCuVfECKFeEj874VPeRJVVLzeFDtK35xw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VJriC2lMNCLIQ1ThvHdLSX03oyJ8xu3BNNoJY1+o7W36I7HVPZm7yz8lwZImyBLyq
-	 ph/FhIVsZNGsuuF1uPpgtd+Gkp4j8nS05DIPh8OyV4DKVNEq0GmC/lAX+zZClCVUCy
-	 qTlQXltHhWnDfYERKPx0s3cXKzQuGw69nVu2rbGmudt83LSRKApK06P0HnouTcNN/2
-	 9bbwdKM4Oyy1QefprDjb5eN6hoaGcN4kptol8MxDWRzMgRFBvv7sabkWU4XPngZFJF
-	 p5qIQ8H6tix6Has227bgRCYuHsdM0R/nOAjOUTL/xF2Ew+Q/a5biZMGoRooysLFUHv
-	 OD7GgJWGvGtHQ==
-Message-ID: <1990c649-668e-4ae9-82b5-ed9931f41ec4@kernel.org>
-Date: Tue, 25 Feb 2025 13:59:56 +0100
+	s=arc-20240116; t=1740488527; c=relaxed/simple;
+	bh=eaO/axIomN57wbu9Q86ufLGH5usOhqRBBhwtKqX6/5M=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=W8bIp98IUkmMceykfoqyFf6lqW/s/iXJdaSpH/vAv8+a/zob8SJHGvdHWQy4Ds0hEu0UVtDykgI8evYyjbMKkzli/SkmRmNVfdDPiJrQhZt9Sihx9djcZEFhISbMLDHN7LTvpCn6auMfKXhQWeRXINnNjPjMPHjFB1BRD23vNFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=YprGR3q4; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51PANJwf032103;
+	Tue, 25 Feb 2025 08:01:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=jfvPMnHZRQjpKAtCzy7mGoWTnI0
+	VS3BVSEay4BZVuik=; b=YprGR3q4q+ldsQwP4ywGVcQfTcji4DjWQK45J08oe6j
+	4/5mGnXnMq8FtaSqakdJUNwA/ZCUtnPN8SI3J74Oy4Mq+5KqstQm6zWe+w2DIdE8
+	Go81/aMTQrgVms1QQ5gNwIPmC/h6IlWvmufeHeKJfvmzmagxcqU2hYe5Wqy6wi8D
+	KGJsO90dtLV9h2Ll7ZOfFlvOcmbDh7iBOf7mnxg87yNgBTXyC7OTApQwxCHGLnR4
+	eD12NgtiEzuRuj68SPQ9DL74gshjoL14xp6rpVSaMqA90KKwzA6kpD8vQBYYFSXv
+	UO2NnXqbJnJq30HD0wD6odfTsApnU5ZruYWScQiGlag==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 44yccapsvv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Feb 2025 08:01:50 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 51PD1m2W015492
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 25 Feb 2025 08:01:48 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 25 Feb
+ 2025 08:01:48 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 25 Feb 2025 08:01:48 -0500
+Received: from CENCARNA-L02.ad.analog.com (CENCARNA-L02.ad.analog.com [10.117.116.88])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 51PD1VXT020999;
+	Tue, 25 Feb 2025 08:01:34 -0500
+From: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+Subject: [PATCH v2 0/2] Add support for LT3074 low voltage linear regulator
+Date: Tue, 25 Feb 2025 21:01:12 +0800
+Message-ID: <20250225-upstream-lt3074-v2-0-18ad10ba542e@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/9] pinctrl: stm32: Introduce HDP driver
-To: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250225-hdp-upstream-v1-0-9d049c65330a@foss.st.com>
- <20250225-hdp-upstream-v1-3-9d049c65330a@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250225-hdp-upstream-v1-3-9d049c65330a@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABm/vWcC/3WNwQ7CIBAFf6XZsxhgkRpP/Q/TA9ZtS9JCA0g0D
+ f8u9u5xJnnzdogULEW4NTsEyjZa7yrIUwPDbNxEzD4rg+TywoVU7LXFFMisbEnIW8WERLwqqTT
+ xB9TVFmi076N47yvPNiYfPsdBFj/7v5UF46zVHEdUWiFSZ5xZ/HQe/Ap9KeUL8rJvVa8AAAA=
+X-Change-ID: 20250124-upstream-lt3074-123384246e0b
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+        Guenter
+ Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
+        Delphine CC
+ Chiu <Delphine_CC_Chiu@Wiwynn.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-hwmon@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>,
+        Cedric Encarnacion
+	<cedricjustine.encarnacion@analog.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740488492; l=1569;
+ i=cedricjustine.encarnacion@analog.com; s=20250124;
+ h=from:subject:message-id; bh=eaO/axIomN57wbu9Q86ufLGH5usOhqRBBhwtKqX6/5M=;
+ b=TFl578K45wZF5TKnxi8LIHWO+aj5kWahZKTRooxyAjFT7g4uuPHhAFalHHYfcNU6XZAQOFyaD
+ xOh5SLFfDBrDMfgxvi7fiyVTrJcjIb9nKLG5+z/RySGD+s7IUmo6619
+X-Developer-Key: i=cedricjustine.encarnacion@analog.com; a=ed25519;
+ pk=ZsngY3B4sfltPVR5j8+IO2Sr8Db8Ck+fVCs+Qta+Wlc=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: U2jK9sHfAJCRRVqBrxBkdWD9CcXeZMaX
+X-Authority-Analysis: v=2.4 cv=SPa4VPvH c=1 sm=1 tr=0 ts=67bdbf3e cx=c_pps a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17 a=IkcTkHD0fZMA:10 a=T2h4t0Lz3GQA:10 a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8 a=HTG6LfV_5ri_l7Ai_WkA:9 a=QEXdDO2ut3YA:10
+ a=oVHKYsEdi7-vN-J5QA_j:22
+X-Proofpoint-ORIG-GUID: U2jK9sHfAJCRRVqBrxBkdWD9CcXeZMaX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-25_04,2025-02-25_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
+ spamscore=0 impostorscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
+ lowpriorityscore=0 adultscore=0 malwarescore=0 suspectscore=0 mlxscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2502250090
 
-On 25/02/2025 09:48, Clément Le Goffic wrote:
-> This patch introduce the driver for the Hardware Debug Port available on
+Introduce hardware monitoring and regulator support for LT3074. The
+component is an ultrafast, ultralow noise 3A, 5.5V dropout linear
+regulator with a PMBus serial interface that allows telemetry for
+input/output voltage, output current, and die temperature. It has a
+single channel and requires a bias voltage which can be monitored via
+manufacturer-specific registers.
 
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+Signed-off-by: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+---
+Changes in v2:
+ * Separated dt-binding for LT3074.
+ * Added __maybe_unused attribute to of_device_id. This addresses kernel
+   test robot warning.
+ * Added entry to MAINTAINERS.
 
-> STM32MP platforms. The HDP allows the observation of internal SoC
-> signals by using multiplexers. Each HDP port can provide up to 16
-> internal signals (one of them can be software controlled as a GPO)
+- Link to v1: https://lore.kernel.org/r/20250124-upstream-lt3074-v1-0-7603f346433e@analog.com
 
+---
+Cedric Encarnacion (2):
+      dt-bindings: hwmon: pmbus: add lt3074
+      hwmon: (pmbus/lt3074): add support for lt3074
 
-
-....
-
-> +
-> +static int stm32_hdp_suspend(struct device *dev)
-> +{
-> +	struct stm32_hdp *hdp = dev_get_drvdata(dev);
-> +
-> +	hdp->gposet_conf = readl_relaxed(hdp->base + HDP_GPOSET);
-> +
-> +	pinctrl_pm_select_sleep_state(dev);
-> +
-> +	clk_disable_unprepare(hdp->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int stm32_hdp_resume(struct device *dev)
-> +{
-> +	struct stm32_hdp *hdp = dev_get_drvdata(dev);
-> +	int err;
-> +
-> +	err = clk_prepare_enable(hdp->clk);
-> +	if (err)
-> +		return dev_err_probe(hdp->dev, err, "Failed to prepare_enable clk");
-
-
-That's wrong, it is not a probe path.
-
-> +
-> +	writel_relaxed(HDP_CTRL_ENABLE, hdp->base + HDP_CTRL);
-> +	writel_relaxed(hdp->gposet_conf, hdp->base + HDP_GPOSET);
-> +	writel_relaxed(hdp->mux_conf, hdp->base + HDP_MUX);
-> +
-> +	pinctrl_pm_select_default_state(dev);
-> +
-> +	return 0;
-> +}
-> +
-> +DEFINE_SIMPLE_DEV_PM_OPS(stm32_hdp_pm_ops, stm32_hdp_suspend, stm32_hdp_resume);
-> +
-> +static struct platform_driver stm32_hdp_driver = {
-> +	.probe = stm32_hdp_probe,
-> +	.remove = stm32_hdp_remove,
-> +	.driver = {
-> +		.name = DRIVER_NAME,
-> +		.pm = pm_sleep_ptr(&stm32_hdp_pm_ops),
-> +		.of_match_table = stm32_hdp_of_match,
-> +	}
-> +};
-> +
-> +module_platform_driver(stm32_hdp_driver);
-> +
-> +MODULE_ALIAS("platform:" DRIVER_NAME);
-
-
-You should not need MODULE_ALIAS() in normal cases. If you need it,
-usually it means your device ID table is wrong (e.g. misses either
-entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
-for incomplete ID table.
-
-
-
+ .../bindings/hwmon/pmbus/adi,lt3074.yaml           |  64 +++++++++++
+ Documentation/hwmon/index.rst                      |   1 +
+ Documentation/hwmon/lt3074.rst                     |  72 ++++++++++++
+ MAINTAINERS                                        |   9 ++
+ drivers/hwmon/pmbus/Kconfig                        |  18 +++
+ drivers/hwmon/pmbus/Makefile                       |   1 +
+ drivers/hwmon/pmbus/lt3074.c                       | 122 +++++++++++++++++++++
+ 7 files changed, 287 insertions(+)
+---
+base-commit: 8df0f002827e18632dcd986f7546c1abf1953a6f
+change-id: 20250124-upstream-lt3074-123384246e0b
 
 Best regards,
-Krzysztof
+-- 
+Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+
 
