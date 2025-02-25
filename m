@@ -1,129 +1,199 @@
-Return-Path: <devicetree+bounces-151220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D01DA44E7D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 22:14:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62767A44EB1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 22:21:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE9F71898844
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 21:15:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E90F9171A02
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 21:20:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E49620E31E;
-	Tue, 25 Feb 2025 21:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 804A119F41B;
+	Tue, 25 Feb 2025 21:20:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="EIlwq+CF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oEfLsdZi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7705B1DD889
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 21:14:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D9A2AEE4;
+	Tue, 25 Feb 2025 21:20:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740518092; cv=none; b=eQnlj758CpDzOWR4JSI1a6XyQtMZ6JYZRr+36jZXXMi1y4Q/FFYwMyXwapcBye3QdCXRodvcDAJOiF54Cm0DitD84uqiE1G6t1OC78PYZEzciEmfjS5t2eHETPOG7nukcVrCDEU1AsZruH4rHl07hGSPlE1dAY35Lrd3qH8oHlw=
+	t=1740518400; cv=none; b=a1Y55sFQmUtvXqFrgl7WN+LJBJByz+OHUsPwH/i7dgb0Lrn5PVz0eGQxYSOuaKa5WF8cSW9GS2CrLhc812++9W3w01Q/fsqdghZkU3DsMa5t3OteMemIKBDJXOiRqiEFEJiqvIjThUKXy84MxRxMIspeNQbJiLRwBOvMdzKz16A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740518092; c=relaxed/simple;
-	bh=z/htcAKy8BejW6BaJDus/dUUa71EVLTzM8XjVA5Dt6U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jtjbpUCNIHOwhTIVEOwlPsGhm/b1ypX8fHJ3VGlcG38KTo0tvozme99xxvubLnHOXS3lmYMHqcgo3ZdjBEo7Bhmw1Jz/iaYMnfrhiTFPk3VgJbFaVkFXlWR6bfr14p6FfIDUCJKbXuOk/t4UtIuK37eRaRIc5gmePxk/Lc4Co4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=EIlwq+CF; arc=none smtp.client-ip=209.85.166.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3d03d2bd7d2so57985395ab.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 13:14:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1740518089; x=1741122889; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xh2s6sLjIXbWIAOmjMi7Yyx9NKVsC0mal+LFgBmzJUY=;
-        b=EIlwq+CFdz4mG+Xrh0uEGEZ54MGQdEFFbeVFENLfhrkpm6ZwY/nlaE0VtqAioJlvUa
-         21/pO1bYfmgkwAnyyEDn9bGhNLVf2qrdL0IxZnfIFNQffzXiml1XymG37H2RP3j2Z5bE
-         7xx8+sQcYCBP6C7YT/p/LvaUJMFU6KPeQu2JoGYNWZAoGOnCUFewtzlGUYDE6C5//tyo
-         ToImm8uFeOmwsdOJwGvD4J17L7g69K1ROU3mbNqJiFhoeFZHUun9bX5mRkGOPT5pq80h
-         UzAeZ2Uss1XrjNKymjEPRSQdxIp6AQ2cHgBCAJpuVR/e/uSU7uina2lb4AUff5RnWvNF
-         owBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740518089; x=1741122889;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xh2s6sLjIXbWIAOmjMi7Yyx9NKVsC0mal+LFgBmzJUY=;
-        b=Y+8Pt5DDZVvDMZfgllsL9gOrcOeUVrseIBzfROpoBfH2ggguGNv0VKdlgLo35p1xxq
-         wmjorwdiJe2pH5F0dD++ZF70kfbtdIcVlv4nCq8ijhiMIdyNy1e66BB/fLWzgXTxfgs+
-         M7qar3j7E5B0++/UEaD+aMADXmoM+z9Z1ZcgloRUVu5Du/NvUnyjfB3XxlI/Jv6oXAcb
-         eias8lqII/cPKieDD7fn2Ll96iYyCZX1r9FkiGYHHsWcIuRUci8YT2YDsMwQyF6wUv4j
-         NeQs9FHazjM1RqaPWNTs5oBk9d82BlXweaeO6gddJ7LDvKH8Tycw5xrL3L12jHTmh0NR
-         izog==
-X-Forwarded-Encrypted: i=1; AJvYcCVfEke2STrQgmK48sD1utTJui40hixN09idJLYh2rj7794Z8hnRIr9g7dYIJJFq1uCLz+ZzQ6OHZp/d@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBcpGMJdOWxVFllTIwsHmQQTVDeWgEM5DQ0AYEO3rPdIyHmx7H
-	Ha4bgnwww0lJd75KSw7CXG+6ECA09srhfR6F+myneYzkcum93bytKuTcXb1Hh0o=
-X-Gm-Gg: ASbGncsfWzBgtLUHqv0Tt4gIeX14Nn8UqwRvssqaQTrGVPCH0fo4x21l4YmGXjTJyqR
-	ESXpT9TqUX9rUrLMdgowMAOnIQ6YT9efK+HL+GFsNTaSVHXKMhvHSZZ472UiaKQTMj0W7Pcw5yy
-	Wah6ZTBxNtt2CbdhlVF6LrcIqF1VA1GM+aOMIZLDroX73rI8oRqqK+X65dDmr0mPKEn42x13TWV
-	sUlijiydBoxPbKWwsp/EInQtUHwbEpGudY/qRuJdBl2M2tijxixefz2wTyOYrjDye4+fH3mYDoV
-	8q33BChusyB8hA8beEChr6BnVRo7TvidqX9rLjGa7E1d8cHyJWf6XoOlGVlQq8HRTQ==
-X-Google-Smtp-Source: AGHT+IFYiGdbqXZivMiTUNph/SuErSNuziRQ4+AzafOTADCcFATdduAQ55CPRDAy/XVPlsW8jn+L5Q==
-X-Received: by 2002:a92:ca0f:0:b0:3d0:1fc4:edf0 with SMTP id e9e14a558f8ab-3d3048802e7mr47557345ab.15.1740518089508;
-        Tue, 25 Feb 2025 13:14:49 -0800 (PST)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3d361ca210bsm4894255ab.55.2025.02.25.13.14.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Feb 2025 13:14:48 -0800 (PST)
-Message-ID: <34666c12-d10d-49a1-8316-bdd18cf1319b@riscstar.com>
-Date: Tue, 25 Feb 2025 15:14:47 -0600
+	s=arc-20240116; t=1740518400; c=relaxed/simple;
+	bh=ghGqvv7GAFe1nH4x2u9vuYujrKPbpOccmWJvpRRHSB0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Q8ayB/pBHPjU6HAjrk0OJIEd64r3T/4aluFEVwRv1XQmz+kRPsarm2ysvBIJj1ngiLhdi4FgiO0+Y86bHuvNwkSUEsxxhpeqgaaEdX/IJnTwgxr6ju78AD6fnGFYB3QY8DRFoxFokphDIbt85jGUEefFBI1M+8emPnsGezLT0CM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oEfLsdZi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1CB9EC4CEDD;
+	Tue, 25 Feb 2025 21:20:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740518400;
+	bh=ghGqvv7GAFe1nH4x2u9vuYujrKPbpOccmWJvpRRHSB0=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=oEfLsdZidnIj7asGdSYT+SxvKF0L4dS9GdI91lLDxuTpfI9v9DUnVfXSE4Oz5ZPAd
+	 YB29VFmLy4Mz4ASTZqX0gYJ/OV3y7PzfEdXYNA0i9dxgk8P8Qy8/0w7Y0/XMrLY+vI
+	 JR7JiVxPJmGGxMhglc/tDiz1V5dB9Oexp/SvHn6aeRlJC7XvUGlwxcq5+sa/m9Z8Yd
+	 yc0vwG929D7/SIo90G+gOx7Jga1A2G584Tfeek0vUzr4sxXI/jq6L1RsoA6b+eyvTS
+	 YUNOrhAqeXT1DrCJmvCn3t8PWq3WHCo2enUNxP/L5OcnTsGQLFQLi5oYMVeAS5lYn3
+	 6XYT0dwRc0QDA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0D316C021B2;
+	Tue, 25 Feb 2025 21:20:00 +0000 (UTC)
+From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
+Date: Tue, 25 Feb 2025 22:19:54 +0100
+Subject: [PATCH] arm64: dts: apple: Add touchbar digitizer nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] dt-bindings: soc: spacemit: Add spacemit,k1-syscon
-To: Krzysztof Kozlowski <krzk@kernel.org>, Haylen Chu <heylenay@4d2.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Haylen Chu <heylenay@outlook.com>,
- Yixun Lan <dlan@gentoo.org>, linux-riscv@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>,
- Chen Wang <unicornxdotw@foxmail.com>, Jisheng Zhang <jszhang@kernel.org>,
- Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
- Guodong Xu <guodong@riscstar.com>
-References: <aw2vqnz5vcccqqvrrhz5tgawj7fnzzg3tds7nnepuorit37a7r@jcj3wrs7d73h>
- <Z6rdBhQ7s2ReOgBL@ketchup> <19e5129b-8423-4660-8e4f-8b898214d275@kernel.org>
- <Z63T_EDvXiuRQbvb@ketchup> <2ab715bd-e26c-41bb-ac64-baa864d90414@kernel.org>
- <Z7BTVu10EKHMqOnJ@ketchup>
- <7c697e9a-d6d9-4672-9738-93ce3a71beb6@riscstar.com>
- <4f7bf109-bf18-42be-971c-5d5edd9595b5@kernel.org> <Z7mrdrACFp3m-7sy@ketchup>
- <6ea8ac17-42c8-46fa-b970-77ba89de66c4@kernel.org> <Z7xHRAFE4-QEA6PO@ketchup>
- <976a2029-c0c0-4093-a3cd-71e1524db032@kernel.org>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <976a2029-c0c0-4093-a3cd-71e1524db032@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250225-z2-dts-v1-1-df101a7c17c8@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAPkzvmcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDIyNT3Soj3ZSSYt3URBMjQ+OUVJNEIyMloOKCotS0zAqwQdGxtbUANAL
+ YuFgAAAA=
+X-Change-ID: 20250225-z2-dts-ea4213de4a22
+To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>, 
+ Sasha Finkelstein <fnkl.kernel@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740518398; l=3677;
+ i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
+ bh=SeavfPLsBuaZJzKTxcJ2pMU97oNr50qsmltlLTUZBAI=;
+ b=IUfKp0rV+n8SLeaZzuhEz2/BzCOvdP8DpjHRR8/QFLEjh1S/nritzhjqCFiwTm60uKcGoQUhS
+ 9UVzH2t39tdApIBmwR7Ffe/bhkqbKOeo/4fAKbwTsfJ3q1LtGrjPK6y
+X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
+ pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
+X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
+ auth_id=283
+X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Reply-To: fnkl.kernel@gmail.com
 
-On 2/25/25 2:12 AM, Krzysztof Kozlowski wrote:
->>> They were brought here to discuss for some reason. Long discussions,
->>> long emails, unrelated topics like hardware or different devices - all
->>> this is not making it easier for me to understand.
->>>
->>> Best regards,
->>> Krzysztof
->> By the way, I made a summary on the hardware covered by this series in
->> one of my earlier reply[1]. Could you please comment further on my
->> proposal[2] according it, or pointing out anything that's unclear or
->> missing? It will be helpful for things to improve.
-> Thanks, it looks good.
+From: Sasha Finkelstein <fnkl.kernel@gmail.com>
 
-Sorry about my earlier message; I hadn't reviewed the discussion
-carefully enough, and what I said didn't help.  It seems like
-Haylen is on the right track now, and I'll wait for the next
-version of the series to comment again.
+Adds device tree entries for the touchbar digitizer
 
-					-Alex
+Co-developed-by: Janne Grunau <j@jannau.net>
+Signed-off-by: Janne Grunau <j@jannau.net>
+Reviewed-by: Neal Gompa <neal@gompa.dev>
+Acked-by: Sven Peter <sven@svenpeter.dev>
+Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+---
+ arch/arm64/boot/dts/apple/t8103-j293.dts | 27 +++++++++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8112-j493.dts | 23 +++++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8112.dtsi     |  2 +-
+ 3 files changed, 51 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/apple/t8103-j293.dts b/arch/arm64/boot/dts/apple/t8103-j293.dts
+index 56b0c67bfcda321b60c621de092643017693ff91..0a93d3891c23da8b8c77dce64001caacb69ee140 100644
+--- a/arch/arm64/boot/dts/apple/t8103-j293.dts
++++ b/arch/arm64/boot/dts/apple/t8103-j293.dts
+@@ -17,6 +17,14 @@ / {
+ 	compatible = "apple,j293", "apple,t8103", "apple,arm-platform";
+ 	model = "Apple MacBook Pro (13-inch, M1, 2020)";
+ 
++	/*
++	 * All of those are used by the bootloader to pass calibration
++	 * blobs and other device-specific properties
++	 */
++	aliases {
++		touchbar0 = &touchbar0;
++	};
++
+ 	led-controller {
+ 		compatible = "pwm-leds";
+ 		led-0 {
+@@ -49,3 +57,22 @@ &i2c4 {
+ &fpwm1 {
+ 	status = "okay";
+ };
++
++&spi0 {
++	cs-gpios = <&pinctrl_ap 109 GPIO_ACTIVE_LOW>;
++	status = "okay";
++
++	touchbar0: touchbar@0 {
++		compatible = "apple,j293-touchbar";
++		reg = <0>;
++		spi-max-frequency = <11500000>;
++		spi-cs-setup-delay-ns = <2000>;
++		spi-cs-hold-delay-ns = <2000>;
++		reset-gpios = <&pinctrl_ap 139 GPIO_ACTIVE_LOW>;
++		interrupts-extended = <&pinctrl_ap 194 IRQ_TYPE_EDGE_FALLING>;
++		firmware-name = "apple/dfrmtfw-j293.bin";
++		touchscreen-size-x = <23045>;
++		touchscreen-size-y = <640>;
++		touchscreen-inverted-y;
++	};
++};
+diff --git a/arch/arm64/boot/dts/apple/t8112-j493.dts b/arch/arm64/boot/dts/apple/t8112-j493.dts
+index 0ad908349f55406783942735a2e9dad54cda00ec..045bd0716cb7d20c1379ebc1e3ff7f4d0dddc179 100644
+--- a/arch/arm64/boot/dts/apple/t8112-j493.dts
++++ b/arch/arm64/boot/dts/apple/t8112-j493.dts
+@@ -17,8 +17,13 @@ / {
+ 	compatible = "apple,j493", "apple,t8112", "apple,arm-platform";
+ 	model = "Apple MacBook Pro (13-inch, M2, 2022)";
+ 
++	/*
++	 * All of those are used by the bootloader to pass calibration
++	 * blobs and other device-specific properties
++	 */
+ 	aliases {
+ 		bluetooth0 = &bluetooth0;
++		touchbar0 = &touchbar0;
+ 		wifi0 = &wifi0;
+ 	};
+ 
+@@ -67,3 +72,21 @@ &i2c4 {
+ &fpwm1 {
+ 	status = "okay";
+ };
++
++&spi3 {
++	status = "okay";
++
++	touchbar0: touchbar@0 {
++		compatible = "apple,j493-touchbar";
++		reg = <0>;
++		spi-max-frequency = <8000000>;
++		spi-cs-setup-delay-ns = <2000>;
++		spi-cs-hold-delay-ns = <2000>;
++		reset-gpios = <&pinctrl_ap 170 GPIO_ACTIVE_LOW>;
++		interrupts-extended = <&pinctrl_ap 174 IRQ_TYPE_EDGE_FALLING>;
++		firmware-name = "apple/dfrmtfw-j493.bin";
++		touchscreen-size-x = <23045>;
++		touchscreen-size-y = <640>;
++		touchscreen-inverted-y;
++	};
++};
+diff --git a/arch/arm64/boot/dts/apple/t8112.dtsi b/arch/arm64/boot/dts/apple/t8112.dtsi
+index 58d88f1ef92a32061765bd3b569fdae0255dcd7e..271986a7697f7033e96d11fb4ea6a50a467f0f2f 100644
+--- a/arch/arm64/boot/dts/apple/t8112.dtsi
++++ b/arch/arm64/boot/dts/apple/t8112.dtsi
+@@ -499,7 +499,7 @@ spi3: spi@23510c000 {
+ 			power-domains = <&ps_spi3>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+-			status = "disabled";
++			status = "disabled"; /* only used in J493 */
+ 		};
+ 
+ 		serial0: serial@235200000 {
+
+---
+base-commit: 3febe9de5ca5267618675650871a626d0901f8cb
+change-id: 20250225-z2-dts-ea4213de4a22
+
+
 
