@@ -1,139 +1,131 @@
-Return-Path: <devicetree+bounces-151044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED528A443D9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:05:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F340A445F3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:26:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF3543A2D03
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:59:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 616B41888C6A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:24:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4335921ABD7;
-	Tue, 25 Feb 2025 14:59:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77CD7191499;
+	Tue, 25 Feb 2025 16:23:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="VAtgprLN"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="OgoS/t3L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 732A221ABBA;
-	Tue, 25 Feb 2025 14:59:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740495584; cv=pass; b=hDje0YXDqbyDDzFnY5oqrEBuOYgqKdlgAihTDe3BbKcCsTmJUZ1tpUXCJuyAstQ6X9CxF+6woeZC5FOaeg02I7CBXn/FF3e9TnpJ4RkPtuoURM6eMpuOI6PS5AOY8OBSi198N/ZdDXQAGpk0t6LTv6TmykMmWzM0hSY+INotlJg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740495584; c=relaxed/simple;
-	bh=aZtAlWRb86fNzZyHG9U/Ch6tls1gOr4OGNqUXGklnQ4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iJkWLmsy1YqYiqIPLkMlYB7EEkf5dilV6PJhJ7A45GZSm2zaJUjI4aYfjwLSIGN8moj864v7W2G7z6T1lRAsgnPTL5ujwp+hOL+HEOdlZeA7pqumlAyPXguk5A6LghMYd09O3KT2+Iw0CIc+dVhgBG5xGjHWxc16Ncwu1djphuo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=VAtgprLN; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1740495509; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=mQbs+nNywvchZFCL9JymH2C8Mfwg6UtxLkIBKFfXH+OgT3Er9z92reIXwwZDlCaXzBFGSqFUCB99RUbDPDI/jH3WgyxTy4695bkfa6stVdnU5tJI0DQqp40daOjUrBm7+EtUQ3nTgFTVt+I2k4fZ4NVcdvFExsYLShEv9OZYZV0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1740495509; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=UPm7l3RiX1WuCB7tMXcd8twnqxK37m3RDu2nnogmkfY=; 
-	b=Z1XR4CWew3aD4t4Sl2nhyLbmcHwGn6emwSBsGnQO4/8UYJ4FvFwU/i0mQtXSRjC2zqlZvgUcmqM6KxF++fN8GPX/3fB0QueOEHTN8xQy/KcMO9+qDfo/VPaTs6w43L6R8BNnjGZbfA8KpgHrTuH/6H4kZvUtNffCy0svlZDWdkY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740495509;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=UPm7l3RiX1WuCB7tMXcd8twnqxK37m3RDu2nnogmkfY=;
-	b=VAtgprLNucRCs34k6jFRYcQYth7SSrgIubTX93w+NZ99KalCH1glGXW/gwR57Tvb
-	0xUz4CDDIKPg8yiKI5lCp8PLmGSnz7UYqMxGjLOaAnvcLRKb6TWugknX5lkX+zvm6K8
-	yMWQOyM3tOBj57i8GNs9LywGwbqDneKv9XS995cQ=
-Received: by mx.zohomail.com with SMTPS id 1740495506960426.84058732469487;
-	Tue, 25 Feb 2025 06:58:26 -0800 (PST)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>, linux-kernel@vger.kernel.org,
- Algea Cao <algea.cao@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- dri-devel@lists.freedesktop.org, Niklas Cassel <cassel@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, kernel@collabora.com,
- David Airlie <airlied@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Robert Foss <rfoss@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sugar Zhang <sugar.zhang@rock-chips.com>, linux-rockchip@lists.infradead.org,
- Chen-Yu Tsai <wens@csie.org>, FUKAUMI Naoki <naoki@radxa.com>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Johan Jonker <jbx6244@gmail.com>, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Alexey Charkov <alchark@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v7 0/3] Add HDMI audio on the rk3588 SoC
-Date: Tue, 25 Feb 2025 09:58:23 -0500
-Message-ID: <3337030.aeNJFYEL58@trenzalore>
-In-Reply-To: <8734g2sg4t.wl-kuninori.morimoto.gx@renesas.com>
-References:
- <20250217215641.372723-1-detlev.casanova@collabora.com>
- <87frk2sumw.wl-kuninori.morimoto.gx@renesas.com>
- <8734g2sg4t.wl-kuninori.morimoto.gx@renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A87C318DB2C;
+	Tue, 25 Feb 2025 16:23:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740500613; cv=none; b=ETZ0tJj4IYCM1tARj0sSq0rVya4MV69BnUTXpXjNZGUoswYcUVG42lh3PRsQlyYQM0Xp8HZY60VkuAwB+KobHO7Vel3N1oJtLUGhsrHz86+r58IacRb4KxblhwOvkK7mvcepo53H8Nbd0lHlYfG+33fHaNgVZz0T6HlGKIXr9o0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740500613; c=relaxed/simple;
+	bh=cnPoMKGqFJxRlkYXHJlYiIRk5oJDrfshV0R/SyXnwBg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GaeCbkPFpDvSJ4lCDximyvbC8yzG1UpOHVMabXNCpfwPW8Ku7TfSyJjllKezjdnNHokphAFTMkO/WrbeNUFalenYM+pfQA8TDDHn/jLuIHvRBpj8oFC6YdkJV5GInSR8VKEqoe+mrSG95DeQp4f9RnXfXj2EV4zjG+gxGMkKrIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=OgoS/t3L; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51PEsxG7025684;
+	Tue, 25 Feb 2025 17:23:07 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	wqgFWeoQivzhLETwW+Q6wbE8s0MXA+Zaes1DQ9N8L94=; b=OgoS/t3Lbxp32NRq
+	naIljPbKwZjr091WEhth+xRTbwEvzSk/tLAsR8GGUbCX4EJcw45zSGkWEMsSAPA+
+	0jtddvtuWP5j4x+EM/+zRbQ5H3tuh2T0m2tBFY5/xzcINPAj6K98NzjPP5CLF8Iz
+	hjkTAM9heRqObmD4CLkTJUjb742v4ghuIoHFn5Dzl4p/lwrYH+dSK75Z4Jmd8rK6
+	nSezAbmEvZT0YC6zTRBimbtDnvxlkax1p6AYWGCvDJhptSoGf+dsmLpHUrml1+Ca
+	/K9GKj0gTA/WfKroXfTL3MjXE3YVlagShG2IX+/6axek79yU12tzinLvjxW6W80b
+	zJImDA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4512spvjyq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Feb 2025 17:23:07 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2819E4006C;
+	Tue, 25 Feb 2025 17:21:53 +0100 (CET)
+Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3142E52CB63;
+	Tue, 25 Feb 2025 15:58:26 +0100 (CET)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
+ (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 25 Feb
+ 2025 15:58:26 +0100
+Received: from [10.48.86.222] (10.48.86.222) by SAFDAG1NODE1.st.com
+ (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 25 Feb
+ 2025 15:58:25 +0100
+Message-ID: <e309c016-4dcb-49e3-945e-54ddadfbddb8@foss.st.com>
+Date: Tue, 25 Feb 2025 15:58:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/8] pwm: stm32-lp: add support for stm32mp25
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <lee@kernel.org>, <ukleinek@kernel.org>, <alexandre.torgue@foss.st.com>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <wbg@kernel.org>, <jic23@kernel.org>, <daniel.lezcano@linaro.org>,
+        <tglx@linutronix.de>, <catalin.marinas@arm.com>, <will@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <olivier.moysan@foss.st.com>
+References: <20250224180150.3689638-1-fabrice.gasnier@foss.st.com>
+ <20250224180150.3689638-6-fabrice.gasnier@foss.st.com>
+ <20250225-psychedelic-iguana-of-education-d5fff7@krzk-bin>
+Content-Language: en-US
+From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+In-Reply-To: <20250225-psychedelic-iguana-of-education-d5fff7@krzk-bin>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-25_05,2025-02-25_03,2024-11-22_01
 
-Hi Morimoto-san,
 
-On Tuesday, 25 February 2025 01:16:50 EST Kuninori Morimoto wrote:
-> Hi Detlev, again
+
+On 2/25/25 13:04, Krzysztof Kozlowski wrote:
+> On Mon, Feb 24, 2025 at 07:01:47PM +0100, Fabrice Gasnier wrote:
+>>  	}
+>>  
+>>  	return pinctrl_pm_select_sleep_state(dev);
+>> @@ -246,6 +413,7 @@ static DEFINE_SIMPLE_DEV_PM_OPS(stm32_pwm_lp_pm_ops, stm32_pwm_lp_suspend,
+>>  
+>>  static const struct of_device_id stm32_pwm_lp_of_match[] = {
+>>  	{ .compatible = "st,stm32-pwm-lp", },
+>> +	{ .compatible = "st,stm32mp25-pwm-lp", },
 > 
-> > > Especially those commits:
-> > >       ASoC: audio-graph-card2: use __free(device_node) for device node
-> > >       ASoC: audio-graph-card: use __free(device_node) for device node
-> > >       ASoC: simple-card: use __free(device_node) for device node
-> > 
-> > I got same report from our test team. I'm now tring to solve it.
+> No driver data suggests device is backwards compatible. Commit msg
+> suggests not, so that's confusing.
+
+
+The LPTimer PWM driver takes benefit of the MFD parent driver to feed in
+data, e.g. 'num_cc_chans'. Number of channels is now variable, on
+STM32MP25 (e.g. not a single channel). But it can't be hard-coded as
+compatible data. (there's only 1 channel on earlier LP Timer hardware
+revision).
+
+The hardware controller is a bit different, hence the new compatible.
+
+Best regards,
+Fabrice
+
 > 
-> Unfortunately, I can't reproduce the issue on my environment,
-> but I guess I found the root cause. Does attached patch can solve
-> your issue ?
-
-From what I see, the error is not present anymore on linux 6.14-rc4. I tried 
-reverting your patch "ASoC: simple-card-utils.c: add missing dlc->of_node" 
-(dabbd325b25edb5cdd99c94391817202dd54b651) and the error reappears.
-
-On 6.14-rc3, any of your patches (dabbd325b25e, or the one you attached here) 
-will fix the issue and on 6.14-rc4, there is already a patch that fixes the 
-issue.
-
-Also, since dabbd325b25e, the node indeed should be kept while the driver is 
-used. So even though the issue reported here is fixed by another patch, both 
-are likely needed.
-
-That being said, I'm not sure I completely understand why that extra line fixes 
-the issue. Is the __free() attribute smart enough to know that the pointer has 
-been copied and not free it at the end of scope ?
-
-> I will officially post the patch to ML, but want to confirm it before it.
+> Best regards,
+> Krzysztof
 > 
-> Thank you for your help !!
-
-Thank you for looking into this too :)
-
-Detlev.
-
-
-
-
 
