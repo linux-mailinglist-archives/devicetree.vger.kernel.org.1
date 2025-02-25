@@ -1,60 +1,97 @@
-Return-Path: <devicetree+bounces-150867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C5A6A43BB1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:32:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B8E5A43BB8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:33:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 819E03ADA98
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:27:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E9FF3A8788
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:27:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA617266B4F;
-	Tue, 25 Feb 2025 10:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E614263F3A;
+	Tue, 25 Feb 2025 10:27:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="EGy/dRrY"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="IbUp1twy";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="ECM6yOco"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973187.qiye.163.com (mail-m1973187.qiye.163.com [220.197.31.87])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5285199931;
-	Tue, 25 Feb 2025 10:26:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92A9E8F4A;
+	Tue, 25 Feb 2025 10:27:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740479190; cv=none; b=PWmAxqwziyBwkbFXYX62rQXT1wibi2jWZ0opfgtY682DeIY8LzCPggmx5GpDoaysGZfCFBYpAMs/w9bWVkl9tKwMxX3ZDqmBdC/sllT+MAc/8oWtNukY5pTlzk7hWpIDLHUdACLj8HbyCX5gXdCcWxugDRJezbIQe3jGJ8N5lg4=
+	t=1740479267; cv=none; b=WRYNAJ75Z5dNiRFhCqagC4w4wqD5xt/Ru1T903YzZTCLZSnuJNrAwa5OGWrRL5voQ9I2BaNWY3Bqwugklz9KObUvFwgM+lEzc8gILa8ugRznxXQuyayNu9igzN7cT+KauvY5UgKV+SM+MlV3jjoU9MfKMS3AZseMyoXpKv8L35U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740479190; c=relaxed/simple;
-	bh=ihJ+vAOmF/aMeDW58PDX1PiYNkqIMr25l+fZvy5TVrA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=FSs7fF5jJUReIe8WcZMr6ECkiKqWngYvxC5yAG7HFFmItYwtWNqN22r8iW+wYqh7qmjbr8DgCl4xBxxkoXb+jCvponyRAiiRB8b4IMIIMVCZp6XJZOJyg5ucKeGvqP+1k5luYA62loKMlWKx97ocgSIccG7nZr8UuMpG9AxJPIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=EGy/dRrY; arc=none smtp.client-ip=220.197.31.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id c22892d4;
-	Tue, 25 Feb 2025 18:26:16 +0800 (GMT+08:00)
-From: Kever Yang <kever.yang@rock-chips.com>
-To: heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org,
-	Kever Yang <kever.yang@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Finley Xiao <finley.xiao@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
+	s=arc-20240116; t=1740479267; c=relaxed/simple;
+	bh=mVKpdeeiYw226WHLq44Om65ce+IGZK0AgVZF+3H5Gug=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=huX5cE67J3APZ4v1h4WmasxARA1ac4A6qAGbzTy7O6kd9LK340FA5hTJUc2UFuBu/Cp/L7phPuvilcZYPpdwaCUjuNIXtt8bNAsBvNnFSZpzpERDa7c6awSSOnABy35agCWf4LpE0sJ5IcbcHkjIZqQqlTbEWPdaAGYeA0pV0bA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=IbUp1twy; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=ECM6yOco reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1740479265; x=1772015265;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=JKIIrvyYA+gZm83nHFuNxA39LsjVxEX31VPSiey1bdc=;
+  b=IbUp1twyH0KVhgVogTmlRitHfH4yu+TelgroSNSUCO2lia6XIravFx+q
+   4qLY9AsAuinRtwLWpm84+FeBmzP3r/2cpb+MZ48OO0GroYvrGJ3LaRwOy
+   Ueh00x2i5ab4LmfKOj+8ZWEt3/0MhOo/aaCTIZ1KBqdDFRXuf0I3Bf/uO
+   JhlRLVwawJikabZZcKlL5Jd8kie4Hl2n80SMb0mycrl2Cz/a5l7HpQTsS
+   /0gGG7oBP/7tXRBNsvUPu2SV763et2gyM8Xj1Ufz+2Y46aw+TlofLAKeC
+   nmOGu24xsnkuIqasgpmTMdRNn3lJhNBQQOn5e50+LVJe39Inh93oNxKUL
+   g==;
+X-CSE-ConnectionGUID: AZdDBfoURgeNHgJKSZLLGw==
+X-CSE-MsgGUID: Za8JJxYISpCkzurMnjrrLQ==
+X-IronPort-AV: E=Sophos;i="6.13,314,1732575600"; 
+   d="scan'208";a="42067825"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 25 Feb 2025 11:27:42 +0100
+X-CheckPoint: {67BD9B1E-B-6E0A4539-DBC44C3A}
+X-MAIL-CPID: 187A32B327A701531B4B47B9AD6D0F89_1
+X-Control-Analysis: str=0001.0A00211A.67BD9B1D.0054,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 300FF168561;
+	Tue, 25 Feb 2025 11:27:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1740479257;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=JKIIrvyYA+gZm83nHFuNxA39LsjVxEX31VPSiey1bdc=;
+	b=ECM6yOcoQiugNIAhZWqDx1+0pPmHt8AANO568tWe2SIhwTRieaBOrjBjV7ABLZWCJQ++i6
+	v0OFfCtOas6+4iAhTaUb9tvU4ejks9tClTbMoOqw26TDG1wm3LqrKY7BlWd4TY2mho27NO
+	5ieBUKQh8Mn1ekyr7i42t/kINZz6oJFWv0EBgzsXZTjLNbadpG8aP+hKY8OcuzNMsPAjQM
+	0OdsvPIiytlqWP0jV81qvr/EMFGuwcYyHLbEokoYUEE+yQUuiEyS0h1L13a0xIKxATsvWu
+	zFFt9qHklfbSM738aE6kc6DK2ApvVOJ41HQGlSxTIbQgj672iF1SvqqFzoNn6A==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
 	Rob Herring <robh@kernel.org>,
-	Liang Chen <cl@rock-chips.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	linux-kernel@vger.kernel.org,
+	Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v7 2/2] arm64: dts: rockchip: Add rk3576 pcie nodes
-Date: Tue, 25 Feb 2025 18:26:11 +0800
-Message-Id: <20250225102611.2096462-2-kever.yang@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250225102611.2096462-1-kever.yang@rock-chips.com>
-References: <20250225102611.2096462-1-kever.yang@rock-chips.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Frank Li <Frank.li@nxp.com>
+Cc: linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@ew.tq-group.com
+Subject: [PATCH 0/3] imx8qxp: PCIe fixes
+Date: Tue, 25 Feb 2025 11:27:20 +0100
+Message-ID: <20250225102726.654070-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,161 +99,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0JIHVZMSkpPTkhIT0gZTkNWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a953ca49f4903afkunmc22892d4
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PBA6Mxw5EDIPFRZMSD85Mw0q
-	SUoKFAlVSlVKTE9LT0xCSkxMQ0NMVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFPQkxMNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=EGy/dRrY80vj82Tvyrn2DPHIFxLxBg4BVpU0q5iGos1VHJS3PjwEh/1jRM8IFKiYudemir50dsHU0kEvDI4evgpAJIPddLdhFKOn/kuD1G2bs6Dlv9guQb2liszvR4a3ahA7x3ewpbHDapeN3OR1BjRR1A64RhEu8LvV5QujXUU=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=/wGkIil3QoXz7AbdiUATvQCPYUHaF23rXlPjZE2ix3o=;
-	h=date:mime-version:subject:message-id:from;
+X-Last-TLS-Session-Version: TLSv1.3
 
-rk3576 has two pcie controllers, both are pcie2x1 work with
-naneng-combphy.
+Hi all,
 
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
----
+my series at [1] introduced some dtbs_check warnings for imx8qm based platforms,
+highlighted by Frank [2]. This series fixes the problem by updating the schema
+for allowing an optional DMA interrupt and adding the DMA interrupt for imx8qm.
+Also a non-upstream property is removed as well.
 
-Changes in v7:
-- re-order the properties.
+Best regards,
+Alexander
 
-Changes in v6: None
-Changes in v5: None
-Changes in v4: None
-Changes in v3:
-- Update the subject
+[1] https://lore.kernel.org/all/20250107140110.982215-1-alexander.stein@ew.tq-group.com/
+[2] https://lore.kernel.org/all/Z7yxDRO+ICPCu0I2@lizhi-Precision-Tower-5810/
 
-Changes in v2:
-- Update clock and reset names and sequence to pass DTB check
+Alexander Stein (3):
+  dt-bindings: PCI: fsl,imx6q-pcie: Add optional DMA interrupt
+  arm64: dts: imx8qm-ss-hsio: Wire up DMA IRQ for PCIe
+  arm64: dts: mba8xx: Remove invalid propert
 
- arch/arm64/boot/dts/rockchip/rk3576.dtsi | 108 +++++++++++++++++++++++
- 1 file changed, 108 insertions(+)
+ Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 4 ++++
+ arch/arm64/boot/dts/freescale/imx8qm-ss-hsio.dtsi         | 5 +++--
+ arch/arm64/boot/dts/freescale/mba8xx.dtsi                 | 1 -
+ 3 files changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index 4dde954043ef..79e24b2c3c60 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -1127,6 +1127,114 @@ qos_npu_m1ro: qos@27f22100 {
- 			reg = <0x0 0x27f22100 0x0 0x20>;
- 		};
- 
-+		pcie0: pcie@2a200000 {
-+			compatible = "rockchip,rk3576-pcie", "rockchip,rk3568-pcie";
-+			reg = <0x0 0x22000000 0x0 0x00400000>,
-+			      <0x0 0x2a200000 0x0 0x00010000>,
-+			      <0x0 0x20000000 0x0 0x00100000>;
-+			reg-names = "dbi", "apb", "config";
-+			bus-range = <0x0 0xf>;
-+			clocks = <&cru ACLK_PCIE0_MST>, <&cru ACLK_PCIE0_SLV>,
-+				 <&cru ACLK_PCIE0_DBI>, <&cru PCLK_PCIE0>,
-+				 <&cru CLK_PCIE0_AUX>;
-+			clock-names = "aclk_mst", "aclk_slv",
-+				      "aclk_dbi", "pclk",
-+				      "aux";
-+			device_type = "pci";
-+			interrupts = <GIC_SPI 281 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 278 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "sys", "pmc", "msg", "legacy", "err", "msi";
-+			#interrupt-cells = <1>;
-+			interrupt-map-mask = <0 0 0 7>;
-+			interrupt-map = <0 0 0 1 &pcie0_intc 0>,
-+					<0 0 0 2 &pcie0_intc 1>,
-+					<0 0 0 3 &pcie0_intc 2>,
-+					<0 0 0 4 &pcie0_intc 3>;
-+			linux,pci-domain = <0>;
-+			max-link-speed = <2>;
-+			num-ib-windows = <8>;
-+			num-viewport = <8>;
-+			num-ob-windows = <2>;
-+			num-lanes = <1>;
-+			phys = <&combphy0_ps PHY_TYPE_PCIE>;
-+			phy-names = "pcie-phy";
-+			power-domains = <&power RK3576_PD_PHP>;
-+			ranges = <0x01000000 0x0 0x20100000 0x0 0x20100000 0x0 0x00100000
-+				  0x02000000 0x0 0x20200000 0x0 0x20200000 0x0 0x00e00000
-+				  0x03000000 0x9 0x00000000 0x9 0x00000000 0x0 0x80000000>;
-+			resets = <&cru SRST_PCIE0_POWER_UP>, <&cru SRST_P_PCIE0>;
-+			reset-names = "pwr", "pipe";
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			status = "disabled";
-+
-+			pcie0_intc: legacy-interrupt-controller {
-+				interrupt-controller;
-+				#address-cells = <0>;
-+				#interrupt-cells = <1>;
-+				interrupt-parent = <&gic>;
-+				interrupts = <GIC_SPI 280 IRQ_TYPE_EDGE_RISING>;
-+			};
-+		};
-+
-+		pcie1: pcie@2a210000 {
-+			compatible = "rockchip,rk3576-pcie", "rockchip,rk3568-pcie";
-+			reg = <0x0 0x22400000 0x0 0x00400000>,
-+			      <0x0 0x2a210000 0x0 0x00010000>,
-+			      <0x0 0x21000000 0x0 0x00100000>;
-+			reg-names = "dbi", "apb", "config";
-+			bus-range = <0x20 0x2f>;
-+			clocks = <&cru ACLK_PCIE1_MST>, <&cru ACLK_PCIE1_SLV>,
-+				 <&cru ACLK_PCIE1_DBI>, <&cru PCLK_PCIE1>,
-+				 <&cru CLK_PCIE1_AUX>;
-+			clock-names = "aclk_mst", "aclk_slv",
-+				      "aclk_dbi", "pclk",
-+				      "aux";
-+			device_type = "pci";
-+			interrupts = <GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "sys", "pmc", "msg", "legacy", "err", "msi";
-+			#interrupt-cells = <1>;
-+			interrupt-map-mask = <0 0 0 7>;
-+			interrupt-map = <0 0 0 1 &pcie1_intc 0>,
-+					<0 0 0 2 &pcie1_intc 1>,
-+					<0 0 0 3 &pcie1_intc 2>,
-+					<0 0 0 4 &pcie1_intc 3>;
-+			linux,pci-domain = <0>;
-+			max-link-speed = <2>;
-+			num-ib-windows = <8>;
-+			num-viewport = <8>;
-+			num-ob-windows = <2>;
-+			num-lanes = <1>;
-+			phys = <&combphy1_psu PHY_TYPE_PCIE>;
-+			phy-names = "pcie-phy";
-+			power-domains = <&power RK3576_PD_SUBPHP>;
-+			ranges = <0x01000000 0x0 0x21100000 0x0 0x21100000 0x0 0x00100000
-+				  0x02000000 0x0 0x21200000 0x0 0x21200000 0x0 0x00e00000
-+				  0x03000000 0x9 0x80000000 0x9 0x80000000 0x0 0x80000000>;
-+			resets = <&cru SRST_PCIE1_POWER_UP>, <&cru SRST_P_PCIE1>;
-+			reset-names = "pwr", "pipe";
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			status = "disabled";
-+
-+			pcie1_intc: legacy-interrupt-controller {
-+				interrupt-controller;
-+				#address-cells = <0>;
-+				#interrupt-cells = <1>;
-+				interrupt-parent = <&gic>;
-+				interrupts = <GIC_SPI 266 IRQ_TYPE_EDGE_RISING>;
-+			};
-+		};
-+
- 		gmac0: ethernet@2a220000 {
- 			compatible = "rockchip,rk3576-gmac", "snps,dwmac-4.20a";
- 			reg = <0x0 0x2a220000 0x0 0x10000>;
 -- 
-2.25.1
+2.43.0
 
 
