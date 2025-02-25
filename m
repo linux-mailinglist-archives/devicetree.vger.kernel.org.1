@@ -1,182 +1,233 @@
-Return-Path: <devicetree+bounces-150877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55AECA43BFF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:43:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05274A43C0F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:44:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFE41188AC08
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:40:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4D7F1887820
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:41:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07430265CB2;
-	Tue, 25 Feb 2025 10:39:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45A9A265CB2;
+	Tue, 25 Feb 2025 10:41:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OfVEQ6Qe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iRNiBYxq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 577C9233714;
-	Tue, 25 Feb 2025 10:39:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63A5824BBE5
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 10:41:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740479995; cv=none; b=gsMJNrDhKvUma6wY3JbwrMVDrSSY+jqhHE0rW2g/BGHlyb7ZmRkG5Sdji1ZSbBdQhZGge/S0vDVWBnOGsYhRZPjsNgMt7D1QY97ACBMtcMcxsefXAkqNikZiSDNi72AZ5ZqIa1B4ArrwWtL9MUFd4CtaQFnc0J0XOiEsbq+fA7A=
+	t=1740480107; cv=none; b=KaBFrkNHPzkK448aK//J80xxRrExjUyoMTKxaCJoFnndbpALk3YLnDGuLpUuwzcLbqpq8raJuks6ul+uV9Bru6enWJamXBtB3a/yO7T34TR76vQAw2y/mjcLYu28PupQG83l0aknIhdvxbynZblipvYOV2Vpa5fy+1w5rWYBulw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740479995; c=relaxed/simple;
-	bh=WyqYTE7rMoOZSS+5Gkk3EOQ86ZSaUphQT2/6XSSeDUA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aoEnzLYAFnGpzG3nWLhun5wRqgBvI0fknaDLCQNfc9NlWUyRvwhoZxlUpHInmmpEkZSGyudUjjzDhz1ftvqkLcgpa+UilD2W2fOFYFR6vTfMpycYv8PuYYKHnSJAtOyDCe8LXPtbEdjqG2hdB4NJbvo809rS6pFkOF0I0PL2deg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OfVEQ6Qe; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740479994; x=1772015994;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WyqYTE7rMoOZSS+5Gkk3EOQ86ZSaUphQT2/6XSSeDUA=;
-  b=OfVEQ6QeLGCoHd4E0w/9HaoUdZKcq8LcQJOXIOmDl00Aqk+AwFkPR/aA
-   CyystChlhSQte2IXTUpqRxijqtJUzRiKYSrkj0hbsOIoElNSdFSdlsXjS
-   ddTYu8VY3sMHutjfY77LS/DtgrxhwuLbHeYwk8WBPdnzK6zLXCWoUnQNU
-   BkA+hdXFzzbkq4Cy2FCmbZUQWkMoiO0XIWcSCLYTNoHfDhYelw47cO6ZR
-   KVtzdstdUKLDEOLqvk+XtomIj3zscVO8X+/TpQrILd+A72PfO4g3+xsab
-   tU+ZqAGOXtPbT0cDKiZEqtLofkXbv3/fU5GBzmP05tnAa1KeeXRDIpbB6
-   w==;
-X-CSE-ConnectionGUID: BdCynxS0SWWzLYoWAncWdw==
-X-CSE-MsgGUID: 333icalsRWekj5bSMO+NJQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="58701581"
-X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; 
-   d="scan'208";a="58701581"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2025 02:39:53 -0800
-X-CSE-ConnectionGUID: YEFntbX8TteoUjNIRJ5PNw==
-X-CSE-MsgGUID: fVi37cX7QIWfmgGUTO0geA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; 
-   d="scan'208";a="139595621"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2025 02:39:45 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tmsLl-0000000ExcQ-3fHY;
-	Tue, 25 Feb 2025 12:39:41 +0200
-Date: Tue, 25 Feb 2025 12:39:41 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Guillaume Stols <gstols@baylibre.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Matteo Martelli <matteomartelli3@gmail.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v4 02/10] property: Add
- device_get_child_node_count_named()
-Message-ID: <Z72d7TzZ21WITW3f@smile.fi.intel.com>
-References: <cover.1740421248.git.mazziesaccount@gmail.com>
- <29ec24f1498392cafbecc0e0c0e23e1ce3289565.1740421248.git.mazziesaccount@gmail.com>
- <Z72QAOA9xXbP16K-@kuha.fi.intel.com>
- <Z72Zp8tpnvlFGdQ_@smile.fi.intel.com>
- <ad39b453-7e5b-49bd-a4fd-6a4988636130@gmail.com>
+	s=arc-20240116; t=1740480107; c=relaxed/simple;
+	bh=LsxEE7M5vloDRELpk9HA5CECnOlNHUPp+HJ2/qo4MbE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BzQps7WwUpmcdtdNcNHg8aUoo0TpnAeqoqEaTCKkXFC1zZNydwSZUtPzSIHkbCQWkno37fDGIoyDylNyiMRwUc+AET1JTYVqho2FbK2oxOC7VpSMQ8mHFYcoq8bzjKK835QoympEVWV5ZUQ+q2/EHmxGb6IXFM5l71JNAW4YZ3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iRNiBYxq; arc=none smtp.client-ip=209.85.219.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e549b0f8d57so4676689276.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 02:41:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740480104; x=1741084904; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=q4y1Yfwgg1zBnhWKLOimUYxF7Yvd8NEBzFT9QXdfO8s=;
+        b=iRNiBYxqXfk6Q5vhTFznlwhy4OJy75kkEEeKJ1o91jbth60I0hY4KJ39b0bUB8b131
+         bjBtbjXwDFJMymtB13v0ET+15rCHltRGIBZjXLSXds1ov7EDRl1xUmMvyc3UgWxm6Ixo
+         wltIJJ55zceY881q65nE9HSILrIW0iVY1QxSJB/LQKntgmqvqtdYolRk42kykIAVQnjg
+         7dfv7MumQynlPzJOK1OhMbRGylkCmVuc/8NWO7WOeJ1Jc/2LRmzW4ZtJoH70ZuHuSpEC
+         wgjIQrHlVdlvwxwoE6P6eCzkTsrCCxCVan55QBJZsYgRKTCpDVZIsDTgziRNx6uMjkwt
+         8DzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740480104; x=1741084904;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q4y1Yfwgg1zBnhWKLOimUYxF7Yvd8NEBzFT9QXdfO8s=;
+        b=WSWAKdHZGPDUHqZbfv4Z2F0dIHr7efvLB04+EnX4m8mbc9C41vUdN64Gzbz68uMSyO
+         pAS9TigrEwUD9h7B0Vk3LG0E53HQqsEc3fDZcN6pqpoUK3vh00FE3e8dtl2/0mHREQ0B
+         KzrxjwytAT7gyghe3K+p5D4Nnny0nhqbrAvCua83JcwjuHOSbLtHlm6FcT9b9QZoS25E
+         ICwCT5Qj7rjZsWXteHYJyQauglM2mse0Osjd1/2ioflI4qo/uj33EW7Wl4J9ZH58x/Yh
+         3Ad2c8Jf8Mx4PE/WCgu5tBr5IelG/6/EZrOpVK/DTwucpYPAzmXDTWFuTJcD9UYd5JSy
+         HRmg==
+X-Forwarded-Encrypted: i=1; AJvYcCXv+U2T19Dhd5LswXQgKx3KJ1jWNa5EwsmTqT1kq94bY68z1DduCrvY+2Nz9SMunIOBXZCGSl37IP6C@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrTur5KkF/k9v7H1yUM2sy6dkBI3uh9nZW/Sa6WAvOnsXa9QzV
+	FTuql39OkNgtcvUAuvlG27A6MtNohaZS5UTa+gDzg7DM4xbnDLIxvoF4h6TK2S9y4anm+Wbao1F
+	/mVwXpaNDziYAxTMLMNPTwdl5Sw/uqGA/mcTf/A==
+X-Gm-Gg: ASbGncth/04gaxYwe3qf5JjmJcjsETfo+uXOa8pf1kFTHo9DrfgEbnj2PR/rSSql7Nf
+	H8kqjKIjlXbvqr58kfFd2leHaJIny/UmgvvxUFUh4m9Wdmsmp0MS9V1KhXAnVNa6PhOEqIMMDxt
+	sJfgWikB0mQLYdnrXvmleqeVk38DVOOp143WjIfjU=
+X-Google-Smtp-Source: AGHT+IFbRxxziGj2BzihiiIefEKFP4pKXzoO+Cko44mojAOneSA8QBwjLVS1Ez08euV3nw7DvxPdvtN7Zs6HHuF3qYM=
+X-Received: by 2002:a05:6902:1b84:b0:e58:183e:90dc with SMTP id
+ 3f1490d57ef6-e5e245b50bemr12541057276.9.1740480104272; Tue, 25 Feb 2025
+ 02:41:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ad39b453-7e5b-49bd-a4fd-6a4988636130@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250225-topic-sm8x50-iris-v10-v1-0-128ef05d9665@linaro.org>
+ <20250225-topic-sm8x50-iris-v10-v1-2-128ef05d9665@linaro.org>
+ <ityd34gfiyt6fvyuopnh3bi3edc5t2ubop4i72d54xyhhz3ixf@n6rnt5mwgw4b> <48f339f5-09f8-4498-83f2-4e2d773c3e23@linaro.org>
+In-Reply-To: <48f339f5-09f8-4498-83f2-4e2d773c3e23@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 25 Feb 2025 12:41:33 +0200
+X-Gm-Features: AQ5f1Jriekv6M1hA_Dp90ykj4fW8Drko1aw5vHpw5Zq0PDRQZa3NMmowkqpMd4U
+Message-ID: <CAA8EJppFCF9Mf_LXr4EMV94rVw9qHJQFKtfXwuqTmtHQA=2gnA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] media: platform: qcom/iris: add reset_controller &
+ power_off_controller to vpu_ops
+To: neil.armstrong@linaro.org
+Cc: Vikash Garodia <quic_vgarodia@quicinc.com>, Dikshita Agarwal <quic_dikshita@quicinc.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-arm-msm@vger.kernel.org, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Feb 25, 2025 at 12:29:31PM +0200, Matti Vaittinen wrote:
-> On 25/02/2025 12:21, Andy Shevchenko wrote:
-> > On Tue, Feb 25, 2025 at 11:40:16AM +0200, Heikki Krogerus wrote:
-> > > > +/**
-> > > > + * device_get_child_node_count_named - number of child nodes with given name
-> > > > + *
-> > > > + * Scan device's child nodes and find all the nodes with a specific name and
-> > > > + * return the number of found nodes. Potential '@number' -ending for scanned
-> > > > + * names is ignored. Eg,
-> > > > + * device_get_child_node_count(dev, "channel");
-> > > > + * would match all the nodes:
-> > > > + * channel { }, channel@0 {}, channel@0xabba {}...
-> > > > + *
-> > > > + * @dev: Device to count the child nodes for
-> > 
-> > This has an inconsistent kernel doc structure in comparison to the rest in this
-> > file.
-> > 
-> > > > + * Return: the number of child nodes with a matching name for a given device.
-> > > > + */
-> > > > +unsigned int device_get_child_node_count_named(const struct device *dev,
-> > > > +					       const char *name)
-> > > > +{
-> > > > +	struct fwnode_handle *child;
-> > > > +	unsigned int count = 0;
-> > > > +
-> > > > +	device_for_each_child_node(dev, child)
-> > > > +		if (fwnode_name_eq(child, "channel"))
-> > > 
-> > > s/"channel"/name/ ?
-> > > 
-> > > > +			count++;
-> > > > +
-> > > > +	return count;
-> > > > +}
-> > > > +EXPORT_SYMBOL_GPL(device_get_child_node_count_named);
-> > > 
-> > > I did not check how many users are you proposing for this, but if
-> > > there's only one, then IMO this should not be a global function yet.
-> > > It just feels to special case to me. But let's see what the others
-> > > think.
-> > 
-> > The problem is that if somebody hides it, we might potentially see
-> > a duplication in the future. So I _slightly_ prefer to publish and
-> > then drop that after a few cycles if no users appear.
-> 
-> After taking a very quick grep I spotted one other existing place where we
-> might be able to do direct conversion to use this function.
-> 
-> drivers/net/ethernet/freescale/gianfar.c
-> 
-> That'd be 2 users.
+On Tue, 25 Feb 2025 at 12:04, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>
+> On 25/02/2025 11:02, Dmitry Baryshkov wrote:
+> > On Tue, Feb 25, 2025 at 10:05:10AM +0100, Neil Armstrong wrote:
+> >> In order to support the SM8650 iris33 hardware, we need to provide specific
+> >> reset and constoller power off sequences via the vpu_ops callbacks.
+> >>
+> >> Add those callbacks, and use the current helpers for currently supported
+> >> platforms.
+> >>
+> >> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> >> ---
+> >>   drivers/media/platform/qcom/iris/iris_vpu2.c       |  2 ++
+> >>   drivers/media/platform/qcom/iris/iris_vpu3.c       |  2 ++
+> >>   drivers/media/platform/qcom/iris/iris_vpu_common.c | 14 ++++++++++----
+> >>   drivers/media/platform/qcom/iris/iris_vpu_common.h |  4 ++++
+> >>   4 files changed, 18 insertions(+), 4 deletions(-)
+> >>
+> >> diff --git a/drivers/media/platform/qcom/iris/iris_vpu2.c b/drivers/media/platform/qcom/iris/iris_vpu2.c
+> >> index 8f502aed43ce2fa6a272a2ce14ff1ca54d3e63a2..093e2068ec35e902f6c7bb3a487a679f9eada39a 100644
+> >> --- a/drivers/media/platform/qcom/iris/iris_vpu2.c
+> >> +++ b/drivers/media/platform/qcom/iris/iris_vpu2.c
+> >> @@ -33,6 +33,8 @@ static u64 iris_vpu2_calc_freq(struct iris_inst *inst, size_t data_size)
+> >>   }
+> >>
+> >>   const struct vpu_ops iris_vpu2_ops = {
+> >> +    .reset_controller = iris_vpu_reset_controller,
+> >>      .power_off_hw = iris_vpu_power_off_hw,
+> >> +    .power_off_controller = iris_vpu_power_off_controller,
+> >>      .calc_freq = iris_vpu2_calc_freq,
+> >>   };
+> >> diff --git a/drivers/media/platform/qcom/iris/iris_vpu3.c b/drivers/media/platform/qcom/iris/iris_vpu3.c
+> >> index b484638e6105a69319232f667ee7ae95e3853698..95f362633c95b101ecfda6480c4c0b73416bd00c 100644
+> >> --- a/drivers/media/platform/qcom/iris/iris_vpu3.c
+> >> +++ b/drivers/media/platform/qcom/iris/iris_vpu3.c
+> >> @@ -117,6 +117,8 @@ static u64 iris_vpu3_calculate_frequency(struct iris_inst *inst, size_t data_siz
+> >>   }
+> >>
+> >>   const struct vpu_ops iris_vpu3_ops = {
+> >> +    .reset_controller = iris_vpu_reset_controller,
+> >>      .power_off_hw = iris_vpu3_power_off_hardware,
+> >> +    .power_off_controller = iris_vpu_power_off_controller,
+> >>      .calc_freq = iris_vpu3_calculate_frequency,
+> >>   };
+> >> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.c b/drivers/media/platform/qcom/iris/iris_vpu_common.c
+> >> index fe9896d66848cdcd8c67bd45bbf3b6ce4a01ab10..ec8b10d836d0993bcd722a2bafbb577b85f41fc9 100644
+> >> --- a/drivers/media/platform/qcom/iris/iris_vpu_common.c
+> >> +++ b/drivers/media/platform/qcom/iris/iris_vpu_common.c
+> >> @@ -211,7 +211,7 @@ int iris_vpu_prepare_pc(struct iris_core *core)
+> >>      return -EAGAIN;
+> >>   }
+> >>
+> >> -static int iris_vpu_power_off_controller(struct iris_core *core)
+> >> +int iris_vpu_power_off_controller(struct iris_core *core)
+> >>   {
+> >>      u32 val = 0;
+> >>      int ret;
+> >> @@ -264,23 +264,29 @@ void iris_vpu_power_off(struct iris_core *core)
+> >>   {
+> >>      dev_pm_opp_set_rate(core->dev, 0);
+> >>      core->iris_platform_data->vpu_ops->power_off_hw(core);
+> >> -    iris_vpu_power_off_controller(core);
+> >> +    core->iris_platform_data->vpu_ops->power_off_controller(core);
+> >>      iris_unset_icc_bw(core);
+> >>
+> >>      if (!iris_vpu_watchdog(core, core->intr_status))
+> >>              disable_irq_nosync(core->irq);
+> >>   }
+> >>
+> >> -static int iris_vpu_power_on_controller(struct iris_core *core)
+> >> +int iris_vpu_reset_controller(struct iris_core *core)
+> >
+> > If these functions are platform-specific, please rename them
+> > accordingly, like iris_vpu2_3_foo() or just iris_vpu2_foo().
+>
+> They are not, this is the whole point.
 
-I haven't checked myself, I believe your judgement, but can you add a (rfc?)
-patch at the end of this series to show that? With the luckily event of acking
-by the network people we may have it already done.
+I think they are, you are adding them to the platform-specific ops. In
+the end, they are not applicable to 3.3.
 
-> While I looked at it, it seems that a 'device_for_each_named_child_node()'
-> -construct would have a few users.
+>
+> Neil
+>
+> >
+> >>   {
+> >>      u32 rst_tbl_size = core->iris_platform_data->clk_rst_tbl_size;
+> >> +
+> >> +    return reset_control_bulk_reset(rst_tbl_size, core->resets);
+> >> +}
+> >> +
+> >> +static int iris_vpu_power_on_controller(struct iris_core *core)
+> >> +{
+> >>      int ret;
+> >>
+> >>      ret = iris_enable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
+> >>      if (ret)
+> >>              return ret;
+> >>
+> >> -    ret = reset_control_bulk_reset(rst_tbl_size, core->resets);
+> >> +    ret = core->iris_platform_data->vpu_ops->reset_controller(core);
+> >>      if (ret)
+> >>              goto err_disable_power;
+> >>
+> >> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.h b/drivers/media/platform/qcom/iris/iris_vpu_common.h
+> >> index 63fa1fa5a4989e48aebdb6c7619c140000c0b44c..c948d8b5aee87ccf1fd53c5518a27294232d8fb8 100644
+> >> --- a/drivers/media/platform/qcom/iris/iris_vpu_common.h
+> >> +++ b/drivers/media/platform/qcom/iris/iris_vpu_common.h
+> >> @@ -12,7 +12,9 @@ extern const struct vpu_ops iris_vpu2_ops;
+> >>   extern const struct vpu_ops iris_vpu3_ops;
+> >>
+> >>   struct vpu_ops {
+> >> +    int (*reset_controller)(struct iris_core *core);
+> >>      void (*power_off_hw)(struct iris_core *core);
+> >> +    int (*power_off_controller)(struct iris_core *core);
+> >>      u64 (*calc_freq)(struct iris_inst *inst, size_t data_size);
+> >>   };
+> >>
+> >> @@ -21,7 +23,9 @@ void iris_vpu_raise_interrupt(struct iris_core *core);
+> >>   void iris_vpu_clear_interrupt(struct iris_core *core);
+> >>   int iris_vpu_watchdog(struct iris_core *core, u32 intr_status);
+> >>   int iris_vpu_prepare_pc(struct iris_core *core);
+> >> +int iris_vpu_reset_controller(struct iris_core *core);
+> >>   int iris_vpu_power_on(struct iris_core *core);
+> >> +int iris_vpu_power_off_controller(struct iris_core *core);
+> >>   void iris_vpu_power_off_hw(struct iris_core *core);
+> >>   void iris_vpu_power_off(struct iris_core *core);
+> >>
+> >>
+> >> --
+> >> 2.34.1
+> >>
+> >
+>
+
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+With best wishes
+Dmitry
 
