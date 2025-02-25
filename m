@@ -1,182 +1,108 @@
-Return-Path: <devicetree+bounces-151005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 515ECA44274
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:21:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A37AA442B0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:28:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1EAFE7A64A1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:20:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BEFC18844FE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:24:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF69526BDA9;
-	Tue, 25 Feb 2025 14:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A672698A8;
+	Tue, 25 Feb 2025 14:24:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tB6gpsOp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A6c6N6Yn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 850CF26B0B6;
-	Tue, 25 Feb 2025 14:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C723626770B;
+	Tue, 25 Feb 2025 14:24:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740493246; cv=none; b=nGPyXPo1vgV7R12MrcrwVjQPhHwkYW+wmUw4vOtK4KWqBT+D1Uc1LS+Q+8PyRDm6p++9ZZplFGjgp1vwkU7XSaixkgXZ6y/0laXzelqAJ79Twh8BqtllrhCJGwo8wK3Znh/CXfW5zOhMQvnXmnxnL3S/U4o87v9ZH7vPPWRYdUg=
+	t=1740493479; cv=none; b=jlNrmwO6zx991GEv4/2vQdfa/6469sWT/tHUEVCp1kvSi/N/vLjBbeIx0WEtrs9ugrRkoSQiaZK4ja4/vJRB8unIecjs+tsOevaRUngO8udrZcsp/jP0KTsUonZhLGthRRPi7q/iu16Cu6GV3SmZgbD6TkjoUX+SWrDFwZ4JyxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740493246; c=relaxed/simple;
-	bh=eDBxPB2ey6CEl5Fn4xbiSGUKr6VohrZZtt7brOucJf4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R7YgSu23OeSXrgEYmBTcusfSWxKCw/H/ikJWFaAvdkbp33iLRffeUm1VXMWbEZhVOvsjXo8LsamRbKBdUGE7cLWRAPkvgndSAQDRcmsR0CzjzqU//4o8gtAulv3vYHQvdTgIN7xEF9zRUfsm+MLYcF9O8VOFKZ9Rb7UzzCNIBSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tB6gpsOp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5AC2C4CEDD;
-	Tue, 25 Feb 2025 14:20:45 +0000 (UTC)
+	s=arc-20240116; t=1740493479; c=relaxed/simple;
+	bh=Tc/+WyJ8Iu+Vv+jAgKujCKC+Po6J5sopxIY2TPW8Xjc=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=eImSM3EnTFbYeyijhUCsm3LWqV9+2jkTODO5iEzviaGPLFD1GWfRh7TmYXP/RLKNJ8TsDJf6y/0j56WZ/HqEU1kyTeC0xm9cQWd9ooOb1bacNqwtjkMOdx8/2wc7Vlt9modXDsCeEmLURKiD9m6ljLbRvcE1F+zGytEb2FQOKr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A6c6N6Yn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C99CC4CEDD;
+	Tue, 25 Feb 2025 14:24:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740493246;
-	bh=eDBxPB2ey6CEl5Fn4xbiSGUKr6VohrZZtt7brOucJf4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tB6gpsOpZKp5aTOboDdyxR0i9eLXFNrNmyJ2DQAcxZG7y0ROWfd86e0ofq4/C3GmW
-	 EoCE+8hsHyQGRO/TQXvZQdoSp9FTZkRL/VMEmLJjvofLyy3tzlQwy+CQJ45ZX/HxYM
-	 qYoEvZyo6xCSG6gT0xlwTda3Y6XBPkTinf/6qbuTQCzHwPgfynS90twSPxcsBZI+Pq
-	 G09SKxwrVNnJdcStCTcZBUYGHwHDk6SFEZsdeEasBb73x2fyoBXbk5v6ca2PkcAj0N
-	 pwBFnmEMnFTVvBKPYPiKIQUcq9Fi8M1eepSTS3PR0XBqAycnnW8jxPdnfYbo13+5WQ
-	 b0QY4QMg0kaAw==
-Date: Tue, 25 Feb 2025 08:20:43 -0600
-From: Rob Herring <robh@kernel.org>
-To: Maud Spierings | GOcontroll <maudspierings@gocontroll.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>, Liu Ying <victor.liu@nxp.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 05/14] dt-bindings: trivial-devices: add GOcontroll
- Moduline IO modules
-Message-ID: <20250225142043.GA2173114-robh@kernel.org>
-References: <20250224-initial_display-v1-0-5ccbbf613543@gocontroll.com>
- <20250224-initial_display-v1-5-5ccbbf613543@gocontroll.com>
- <20250224204428.GA4050751-robh@kernel.org>
- <PA4PR04MB763009E88F6406CD84ACBD33C5C32@PA4PR04MB7630.eurprd04.prod.outlook.com>
- <20250225-smart-industrious-groundhog-41deb2@krzk-bin>
- <PA4PR04MB76306D77C93FF2C51524BD95C5C32@PA4PR04MB7630.eurprd04.prod.outlook.com>
+	s=k20201202; t=1740493479;
+	bh=Tc/+WyJ8Iu+Vv+jAgKujCKC+Po6J5sopxIY2TPW8Xjc=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=A6c6N6Yn7j53oak37Og95xt1rMTVpfmjwcHxJfJ43MK8NIMZh5JwLQXaN8RnwLT3R
+	 nzvYY6s5w9mfB1n7oypQDTYcdau2q6QVY97RcU57DQf5MAWDMjaBd4Z6noqZlVCzZg
+	 IYTsbhIloDhv2JjfrlfncWupCp6K2tQvw5lGkZ7zCl1m1MlDLOspXXoZrOMXwwKEQq
+	 v0GXdbNBY1vwedcQzhejheZB+adUQzneLBCVH3LOsjiPOj/SznCDjtj1R7+TZePlaa
+	 upPZSNfu3RvPRVuj0g7EQwYYHuaixfpuCNGPiCM6BTiPHYNbay6Td1sbCF34aPENi7
+	 9Vwq8goStZtpg==
+Date: Tue, 25 Feb 2025 08:24:37 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <PA4PR04MB76306D77C93FF2C51524BD95C5C32@PA4PR04MB7630.eurprd04.prod.outlook.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: krzk+dt@kernel.org, quic_jesszhan@quicinc.com, rfoss@kernel.org, 
+ jernej.skrabec@gmail.com, conor+dt@kernel.org, robh+dt@kernel.org, 
+ jonas@kwiboo.se, linux-arm-msm@vger.kernel.org, 
+ Laurent.pinchart@ideasonboard.com, quic_vproddut@quicinc.com, 
+ neil.armstrong@linaro.org, konradybcio@kernel.org, andrzej.hajda@intel.com, 
+ linux-kernel@vger.kernel.org, quic_rajeevny@quicinc.com, 
+ freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ marijn.suijten@somainline.org, andersson@kernel.org, 
+ dmitry.baryshkov@linaro.org, robdclark@gmail.com, quic_abhinavk@quicinc.com, 
+ sean@poorly.run, devicetree@vger.kernel.org
+To: Ayushi Makhija <quic_amakhija@quicinc.com>
+In-Reply-To: <20250225121824.3869719-4-quic_amakhija@quicinc.com>
+References: <20250225121824.3869719-1-quic_amakhija@quicinc.com>
+ <20250225121824.3869719-4-quic_amakhija@quicinc.com>
+Message-Id: <174049347715.2313013.4695405671704163724.robh@kernel.org>
+Subject: Re: [PATCH 03/11] dt-bindings: display: msm: document DSI
+ controller and phy on SA8775P
 
-On Tue, Feb 25, 2025 at 12:24:09PM +0000, Maud Spierings | GOcontroll wrote:
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: Tuesday, February 25, 2025 12:52 PM
->  
-> >On Tue, Feb 25, 2025 at 07:39:52AM +0000, Maud Spierings | GOcontroll wrote:
-> >> From: Rob Herring <robh@kernel.org>
-> >> Sent: Monday, February 24, 2025 9:44 PM
-> >>  
-> >> >On Mon, Feb 24, 2025 at 02:50:55PM +0100, Maud Spierings wrote:
-> >> >> The main point of the Moduline series of embedded controllers is its
-> >> >> ecosystem of IO modules, these currently are operated through the spidev
-> >> >> interface. Ideally there will be a full dedicated driver in the future.
-> >> >>
-> >> >> Add the gocontroll moduline-module-slot device to enable the required
-> >> >> spidev interface.
-> >> >>
-> >> >> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
-> >> >> ---
-> >> >>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
-> >> >>  1 file changed, 2 insertions(+)
-> >> >>
-> >> >> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> >> >> index 8255bb590c0cc619d15b27dcbfd3aa85389c0a54..24ba810f91b73efdc615c7fb46f771a300926f05 100644
-> >> >> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> >> >> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> >> >> @@ -107,6 +107,8 @@ properties:
-> >> >>            - fsl,mpl3115
-> >> >>              # MPR121: Proximity Capacitive Touch Sensor Controller
-> >> >>            - fsl,mpr121
-> >> >> +            # GOcontroll Moduline module slot for spi based IO modules
-> >> >
-> >> >I couldn't find anything about SPI for GOcontroll Moduline. Can you
-> >> >point me to what this hardware looks like. Based on what I did find,
-> >> >this seems incomplete and not likely a trivial device.
-> >>
-> >> I'll give some more details, if there is a v2 of this patch I will also
-> >> add more information in the commit message.
-> >>
-> >> The module slots have a number of pins, a lot of them currently unused as
-> >> they have not found a function yet, this is very much still a developing
-> >> product. The currently used interfaces to the SoC are:
-> >> 1. SPI bus as a spidev to ease developing new modules and quickly
-> >> integrate them. This is the main communication interface for control and
-> >> firmware updates.
-> >> 2. A reset pin, this is/was driven with the gpio-led driver but I doubt
-> >> that would get accepted upstream so I intend to switch to the much better
-> >> suited libgpio.
-> >
-> >reset-gpios is not in trivial devices, so that's already a hint you
-> >cannot use this binding.
-> >
-> >> 3. An interrupt pin, this is currently only used in the firmware update
-> >> utility [2] to speed up the update process. Other communication is done at
-> >> a regular interval.
-> >>
-> >> What is unused:
-> >> 1. A potentially multi-master i2c bus between all the module slots and
-> >> the SoC
-> >> 2. An SMBus alert line is shared between the modules, but not the SoC.
-> >> 3. A shared line designated as a clock line, intended to in the future
-> >> aid with synchronizing modules to each other for time critical control.
-> >>
-> >> current software that is used to work with the modules can be found at
-> >> [2] and [3], one of them is a Node-RED module the other is a blockset for
-> >> Matlab/Simulink generated code.
-> >>
-> >> If you know a better way I could describe this in the devicetree then I
-> >
-> >You need dedicated binding where you describe entire device, entire
-> >hardware, not what your driver supports in current release.
-> 
-> I see now that I also forgot the patch that adds this compatible to the
-> spidev driver. Didn't check for the spidevs in testing I guess.
-> 
-> Could I write bindings for this device, and then add the compatible to the
-> spidev driver for now? So it probes that driver, and then later when there
-> is a driver remove the compatible there and keep it only in the purpose
-> built driver?
-> 
-> So I'll write gocontroll,moduline-module-slot.yaml, don't quite know where
-> that would go. Define all these attributes in there and then add the 
-> compatible to drivers/spi/spidev.c
-> 
-> Is that okay?
 
-Yes. Bindings are forever, but drivers change. ;)
+On Tue, 25 Feb 2025 17:48:16 +0530, Ayushi Makhija wrote:
+> Document DSI controller and phy on SA8775P platform.
+> 
+> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+> ---
+>  .../display/msm/qcom,sa8775p-mdss.yaml        | 170 ++++++++++++++++++
+>  1 file changed, 170 insertions(+)
+> 
 
-Perhaps put it in connector/ as this looks a bit like a connector. Do 
-you envision DT overlays for the IO modules? Or modules don't have 
-sub-devices you need to describe? There's some effort to on connector 
-bindings (for mikrobus in particular) in order to de-couple host 
-buses/signals from the modules (i.e. so a DT overlay can be applied to 
-any DT defining the connector).
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Rob
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml: ^dsi@[0-9a-f]+$: Missing additionalProperties/unevaluatedProperties constraint
+
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml: ^phy@[0-9a-f]+$: Missing additionalProperties/unevaluatedProperties constraint
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250225121824.3869719-4-quic_amakhija@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
