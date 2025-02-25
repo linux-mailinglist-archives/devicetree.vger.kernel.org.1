@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-150972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C11A44083
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:19:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43FC7A4409C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:24:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DB57440FBA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:14:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFCA418998DD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:19:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99E1626983E;
-	Tue, 25 Feb 2025 13:13:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14DD026981A;
+	Tue, 25 Feb 2025 13:19:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PL071skN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p4PBw0d/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B2B826982F;
-	Tue, 25 Feb 2025 13:13:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9120268FCD;
+	Tue, 25 Feb 2025 13:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740489235; cv=none; b=GyhQtwJevVDULCJGDSKTBSbTLBlD0tYzxPEcjROkzoastOPmX/lLziPGbFY4MMJhFowQZUr4nZAL72T5srwI72CP4d4CnBzNjFp9f9NUafC0V7a5dzKdwSDI1qQgc7IyPGC0Eqox/Jl4/hDdkjttqlUXVNwl05Q3q4QJhOqH6fc=
+	t=1740489586; cv=none; b=e2gYlmKMndJLLUCE7nvFWKsGM78h+rlwwxBenYU3UD/6j87I31jq68lBog32VpETOQrYX2xJ+3Ed03dBcD2N10z2uIk/AinoY0bFMA8eTMGO92/1sk/FfT8ToNhWqzFKTpuLE5VqPYai9xU1HOKJpzCNyBMm1Sz839bjAM7K80M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740489235; c=relaxed/simple;
-	bh=DGNBCAm2Bb+g82225Nn5nxVsAmT5j6wYmXnlyqkoNZk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=mIR6u9xaw5PYzx0s7icEUQVVaZ8m05d8gm2tv97JrWXTER/FJx+ee+0WDjN2ZqGYtNG7At129wI1GRccsoOcykaAbiC8tZtfb70FxSh1okn/hFxHBRCKbXapnrGPgEACPGDdiZwMj6VV6/rYnwY8UY2QysRe0GzU4fscuKMvn3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PL071skN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DE82C4CEDD;
-	Tue, 25 Feb 2025 13:13:50 +0000 (UTC)
+	s=arc-20240116; t=1740489586; c=relaxed/simple;
+	bh=deSLD/gPt4DI1pHU47+GbidVI8FywOV4er0EB+pAQE0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BO32E7zqT7N1NgFeVNx2g23oRsUv4GW6Xjf4CSbaySxCpATrmyOMoiQWEcbTOAVFrRyR5EdPLF3luh2oiJAsu0qLu6fMVReuvx0RuLybvCAzrmkPyHsbJzE6SeUopbIo4Icb0XPuiezmljQ8V9QwydHudAjHorjy4xRA97PhJ7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p4PBw0d/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73050C4CEDD;
+	Tue, 25 Feb 2025 13:19:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740489234;
-	bh=DGNBCAm2Bb+g82225Nn5nxVsAmT5j6wYmXnlyqkoNZk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=PL071skNzUMHIjpJ4IgSnCe6G1rGpbFGvVtBnLiV8bUuMOHEAVafTbHGUy9/1YsD4
-	 jc3990mUZnfv0Be5thjANFysWpneqy7gM2SEDYNRuMvw0beBOxRosL6YDKhk9d8Tna
-	 KEudHQln+jDL82X6QqnUV+dlNwf/JmYfXwb4BSEeKvdXAvJbAQz8wsLGUsohlw20hg
-	 u3+DWJB5T2/HHoyD5+Gxt5vyzwKpJMT0pQxqoESiLPzXeK2DpBBTo0yCI2cOdtzmPO
-	 uAH6EdHW2fig+x2JmoiVnCAoh+ZMj+Q4zUl6V/cUACoYEmvo/bWxmoi2FUqH5xNbGq
-	 wn68QzeOHC+gg==
-Message-ID: <c4727195-757a-4624-8580-78e5c32e9290@kernel.org>
-Date: Tue, 25 Feb 2025 14:13:48 +0100
+	s=k20201202; t=1740489585;
+	bh=deSLD/gPt4DI1pHU47+GbidVI8FywOV4er0EB+pAQE0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=p4PBw0d/Tgy2PBgmBR09KPF8UAaXU6bdAIGsHPLeOx/NOlwoCNvqKUyAx1JbPR/bE
+	 H+YuSh6K2d+a8sahPDXh4TmbrP7L2VTwj6Aik2MBd8yPRMU2YpeE57BXvdjdomZFRI
+	 AsH3AyaArSSJIqtPL9Oz/5zqkS2S5Pv2iLCvimH+/ii4CvfvMnh2XWPuzDqxtdGOGj
+	 FJMmp1ToBMggUAdt7b1XOyyldHjd+aTJI6AbgBVSNqKEr0SlmkUjEHYbeWu/+Fkcj5
+	 tywz5nB8E4hqaujoEQcznIxnqMo36jayFnhaIpKGVs0hf6jqLXSEoDOlD3/1+tFvrm
+	 mnCM2cOoFOJnw==
+Message-ID: <e508f58f-70cc-4c6a-a6e1-2f046d54d1c3@kernel.org>
+Date: Tue, 25 Feb 2025 14:19:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/3] dt-binding: clock: ast2700: modify soc0/1 clock
- define
-To: Ryan Chen <ryan_chen@aspeedtech.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250224095506.2047064-1-ryan_chen@aspeedtech.com>
- <20250224095506.2047064-2-ryan_chen@aspeedtech.com>
- <f810b8a2-4261-4b68-b59b-4efa0219b5db@kernel.org>
- <OS8PR06MB7541D685A626D300AC730A5BF2C32@OS8PR06MB7541.apcprd06.prod.outlook.com>
- <2b64a9d7-7048-4842-9cc1-fe23f5abdd00@kernel.org>
- <OS8PR06MB75411AE082C9630314966F2AF2C32@OS8PR06MB7541.apcprd06.prod.outlook.com>
-Content-Language: en-US
+Subject: Re: [PATCH v1] dt-bindings: qcom: geni-se: Rename qcom,geni-se.yaml
+ to qcom,geni-se-qup.yaml
+To: Viken Dadhaniya <quic_vdadhani@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com
+References: <20250221085439.235821-1-quic_vdadhani@quicinc.com>
+ <49fc59ed-9d09-46bd-9ca6-99d3445221f7@kernel.org>
+ <f3349d2a-7eba-4865-9b58-0b2e7e57cc92@quicinc.com>
+ <ed8f7aee-e5be-453c-b324-e59e90ecee77@kernel.org>
+ <428a1384-bc06-4952-a117-d57f5ab6446c@quicinc.com>
+ <03587630-9378-4b67-822a-563379c06655@kernel.org>
+ <a65344c8-9b1d-44b1-923a-3840298d19d1@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -115,85 +109,88 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <OS8PR06MB75411AE082C9630314966F2AF2C32@OS8PR06MB7541.apcprd06.prod.outlook.com>
+In-Reply-To: <a65344c8-9b1d-44b1-923a-3840298d19d1@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/02/2025 10:49, Ryan Chen wrote:
->>>> Subject: Re: [PATCH v9 1/3] dt-binding: clock: ast2700: modify soc0/1
->>>> clock define
->>>>
->>>> On 24/02/2025 10:55, Ryan Chen wrote:
->>>>> -remove redundant SOC0_CLK_UART_DIV13:
->>>>> SOC0_CLK_UART_DIV13 is not use at clk-ast2700.c, the clock source
->>>>> tree is uart clk src -> uart_div_table -> uart clk.
+On 25/02/2025 10:33, Viken Dadhaniya wrote:
+> 
+> 
+> On 2/24/2025 6:59 PM, Krzysztof Kozlowski wrote:
+>> On 24/02/2025 14:25, Viken Dadhaniya wrote:
+>>>
+>>>
+>>> On 2/24/2025 3:48 PM, Krzysztof Kozlowski wrote:
+>>>> On 24/02/2025 09:47, Viken Dadhaniya wrote:
 >>>>>
->>>>> -Change SOC0_CLK_HPLL_DIV_AHB to SOC0_CLK_AHBMUX:
->>>>> modify clock tree implement.
->>>>> older CLK_AHB use mpll_div_ahb/hpll_div_ahb to be ahb clock source.
->>>>> mpll->mpll_div_ahb
->>>>>                   -> clk_ahb
->>>>> hpll->hpll_div_ahb
+>>>>>
+>>>>> On 2/21/2025 5:05 PM, Krzysztof Kozlowski wrote:
+>>>>>> On 21/02/2025 09:54, Viken Dadhaniya wrote:
+>>>>>>> The qcom,geni-se.yaml file describes the Qualcomm Universal Peripheral
+>>>>>>> (QUP) wrapper and the common entities required by QUP to run any Serial
+>>>>>>> Engine (SE) as I2C, SPI, UART, or I3C protocol.
+>>>>>>>
+>>>>>>> Rename qcom,geni-se.yaml to qcom,geni-se-qup.yaml to better reflect its
+>>>>>>> association with QUP (Qualcomm Universal Peripheral) and the compatible
+>>>>>>> string.
+>>>>>>>
+>>>>>>> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+>>>>>>> ---
+>>>>>>>     .../soc/qcom/{qcom,geni-se.yaml => qcom,geni-se-qup.yaml}       | 2 +-
+>>>>>>>     1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>>>>     rename Documentation/devicetree/bindings/soc/qcom/{qcom,geni-se.yaml => qcom,geni-se-qup.yaml} (98%)
+>>>>>>>
+>>>>>>
+>>>>>> That's just churn for no real gain. Not even tested churn.
+>>>>>
+>>>>> That's just churn for no real gain.
+>>>>>
+>>>>> We made this change based on below plan, we think this will be helpful.
+>>>>>
+>>>>> 1. Rename qcom,geni-se.yaml to qcom,geni-se-qup.yaml. Reason at 2 below.
 >>>>
+>>>> There is no reason 2 at this point. You split your patchsets
+>>>> incorrectly. At this point this is churn, without gain. No users of this
+>>>> rename, no benefits.
 >>>>
->>>> I can barely understand it and from the pieces I got, it does not
->>>> explain need for ABI break.
+>>>>> 2. Create qcom,geni-se.yaml with shared properties for SE-protocol (spi,
+>>>>> i2c, uart) nodes. This will be helpful for the shared schema in the
+>>>>> ongoing changes
 >>>>
+>>>> Then post it, instead of sending something which makes no sense on its own.
 >>>
->>> #1. SCU0_CLK_UART_DIV13 is redundant, it does not impact ABI break
+>>> Should I include this change in v3 of the following serial patch?
+>>>
+>>> https://lore.kernel.org/linux-arm-msm/f090d637-1ef1-4967-b5bc-6bfce3d7130e@kernel.org/T/
+>>>
+>>> I hope the approach below is fine for you:
+>>>
+>>> 1. Rename qcom,geni-se.yaml to qcom,geni-se-qup.yaml.
 >>
->> You did not explain how it does not impact. Clock was exported, there was a
->> user and now there is no clock. User stops working. ABI break.
+>> I still do not see any need nor justification for above.
+>>
+>>> 2. Create qcom,geni-se.yaml with shared properties for SE-protocol (i2c,
+>>> spi, uart) nodes.
+>>
+>> Look how other common qcom schemas are named :/
 >>
 > 
-> Sorry, SCU0_CLK_UART_DIV13 was defined, but was never referenced in any upstream device trees.
+> Yes, but we need to get agreement on whether we can create it or not. I 
+
+That's not how upstream works.
+https://www.goodreads.com/quotes/437173-talk-is-cheap-show-me-the-code
+
+I don't have time to discuss imaginary future work which might happen or
+might not. Send complete work.
 
 
-That's incomplete definition of ABI
-
-> Since there is no in-tree usage of `SCU0_CLK_UART_DIV13`, its removal does not cause an ABI break.
-
-
-You ignored out of tree users. Please read carefully ABI docs.
-
-
+> found a few commonly used files:
 > 
->>> #2. Change SOC0_CLK_HPLL_DIV_AHB to SOC0_CLK_AHBMUX Older
->> implement
->>> where `mpll_div_ahb` and `hpll_div_ahb` were **hardcoded dividers** for
->> AHB.
->>> In **the new approach (v8)**, I refactored the clock tree to clock tree.
->>
->> I still cannot parse sentences like "refactoring A to A". It's meaningless to me.
->>
->>> It should be ABI-safe change
->>
->> No, you do not understand the ABI. You removed a clock ID, that's the ABI
->> change.
->>
->> Otherwise explain how this is not changing ABI.
->>
->>
->>>
->>> Or you want to keep original SOC0_CLK_HPLL_DIV_AHB define and then add
->> SOC0_CLK_AHBMUX.
->>> To be 1st patch, then 2n patch remove redundant
->> SOC0_CLK_HPLL_DIV_AHB?
->>
->> If you break the ABI you need to clearly explain why. We have long
->> conversations and you still did not say why.
->>
-> Sorry, my point will be following steps to avoid potential ABI issues, 
-> I can modify the patch series as follows:
-> 1. **Patch 1:** Add `SOC0_CLK_AHBMUX` without removing `SOC0_CLK_HPLL_DIV_AHB`.
-> 2. **Patch 2:** Finally remove `SOC0_CLK_HPLL_DIV_AHB`.
+> - /pci/qcom,pcie-common.yaml
+> - /pinctrl/qcom,tlmm-common.yaml
 
-
-I do not understand what changed here. You remove exported clock which
-is ABI, so how is this answering my question.
-
-You keep dodging my questions. Here I asked "why". I do not see any
-answer why.
+so common suffix - geni-se-common... or geni-se-qup-props to mimic
+peripheral properties.
 
 Best regards,
 Krzysztof
