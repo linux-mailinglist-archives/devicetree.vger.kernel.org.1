@@ -1,238 +1,324 @@
-Return-Path: <devicetree+bounces-150663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5515A432F0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 03:20:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8A67A43345
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 03:47:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 282EF1893138
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 02:20:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12222189B5CF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 02:47:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B4771747;
-	Tue, 25 Feb 2025 02:20:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E73402BD1B;
+	Tue, 25 Feb 2025 02:46:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="QFywBCwG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dL1rKnIX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sg2apc01on2139.outbound.protection.outlook.com [40.107.215.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D4FB1CAB3;
-	Tue, 25 Feb 2025 02:20:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.139
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740450036; cv=fail; b=mnoHgSaYHM8yBo+dP9e4/uNWS+6hNKafU3RY70PCBBMvQapMPz62EhwZzdd6hPZxiHoeQ17hOBFT/ayBBt4hYK4kN8SnX5Z+0ioozts2Z7LoqtQb8Atp+aQw5bjvvhtFWpiqpw2Mtgk6m/bkSslThh2ATUsYnsnJRiN1l4Qw37c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740450036; c=relaxed/simple;
-	bh=yzJ3iClFvILCnOxYAiHuxuyy30BWs3SNFhxPNsPjHFQ=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=iEbGVRZbm7sg5nSLe+mOh0YbDxw50O9gseg+qoXBt/SIKYnne20kSfKAD/ESzyEf3JzmQscySMVvRfRQVS//VelIpoz4BWDe8tSNTRgU5tpu12pWHzKGptv22Oje8SulutxLRj8Jby6Zvd4PwxEx7sdsUGEiuH6u08D9zBOTvmk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=QFywBCwG; arc=fail smtp.client-ip=40.107.215.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=REAwoqTjUMD9QDHf0r0hkX6iKuP+jLaU7cmBBxNdRFu426iKFe+zcyxpQIv201kycEktkUsb8m44U11CAgaDV/OEVSTrFbVuw7UtitEJcP7bxqAYS8KALjIASygTYO5tvOwLn5T3cl7EUpa+/seCEo0grvIwdJkUl7a0jqs7esYoORu5J0lzul2bMfoQ46jJzr4o6C96gUMBc2okHPEkpby3IQ1z7EK3EVRoSUysm7X60wZsq6ouf86bRgwjjwFn7nVdZfHLP4nr3dRaEtFm/wVS7cI/d4kIjDevlyiZOuyTYBt1XdIbeDGOJAD1ymrQi3LVGrUjEecyYUo+72ktcw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yzJ3iClFvILCnOxYAiHuxuyy30BWs3SNFhxPNsPjHFQ=;
- b=kSlT7CHYkeJUaY2a3/qG/v4ifFChCUpvAqG/h4yI1efUDRZHdmlyFYXINy967YtUpBSW4hOeh9ECZV4ILeNkL0as1ly6pftUcIHt+u22Fw+hoym6aAzL228DDOUT5eEEWgQCtr3WkJXJCcTR13Gd81yOEVCnRN21g3LjuIWl10udgE+nCeFupCHGOOybL/WzIyHDA5bjpG+AJY0atsF8QpBVIbkbxn6q3aEXyiYRUewkFGji0RocOqmOnbMVnUYB182V1VOwjAEOTPnqPawbnuGh0vOw7JWjh0UljKVUiTYNsEr4PFkx+aPJxFaccXAmmpojOSFYYFsaepgcWJV15Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yzJ3iClFvILCnOxYAiHuxuyy30BWs3SNFhxPNsPjHFQ=;
- b=QFywBCwGKzgSSXwOxkQoUSv5ZvXfMtPprdrLTrJVhXz6QBudbVde04xipTlCAvvqVbWh3YVJmD0ka67uTOlTx7mX0azqF+O8Q6q7kGbioBm4QZvQIMGETW/rRubFthRKdMvX2ABem+1lcGjOKVRNnL/HQ88l7n5fXhlvMx34RzUJAvhy9B39lWOWKGFxOIj2ROHLWqhDt3SvckVPGVOfby9Ipw6YsHLjunUWumZdzG+USX2/oOd3SDcO+drvlAkFOtufgpkumSaF8djqzIXhpWAB+IeLWGs5OPYRjlBb4H6hl8oPiWvBSEnbqR27y82z4ahQU00NQ4TqJYinS/3vlA==
-Received: from OS8PR06MB7541.apcprd06.prod.outlook.com (2603:1096:604:2b1::11)
- by SEZPR06MB5174.apcprd06.prod.outlook.com (2603:1096:101:70::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.12; Tue, 25 Feb
- 2025 02:20:25 +0000
-Received: from OS8PR06MB7541.apcprd06.prod.outlook.com
- ([fe80::9f51:f68d:b2db:da11]) by OS8PR06MB7541.apcprd06.prod.outlook.com
- ([fe80::9f51:f68d:b2db:da11%7]) with mapi id 15.20.8466.016; Tue, 25 Feb 2025
- 02:20:25 +0000
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Krzysztof Kozlowski
-	<krzk@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
-	<sboyd@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
-	<andrew@aj.id.au>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v9 2/3] reset: aspeed: register AST2700 reset auxiliary
- bus device
-Thread-Topic: [PATCH v9 2/3] reset: aspeed: register AST2700 reset auxiliary
- bus device
-Thread-Index: AQHbhqIysbDNMgzGf0K86faa5MrsmbNWO+CAgAAA44CAAGf+gIAApJmQ
-Date: Tue, 25 Feb 2025 02:20:25 +0000
-Message-ID:
- <OS8PR06MB7541E77E1EA78D658E5444A6F2C32@OS8PR06MB7541.apcprd06.prod.outlook.com>
-References: <20250224095506.2047064-1-ryan_chen@aspeedtech.com>
-	 <20250224095506.2047064-3-ryan_chen@aspeedtech.com>
-	 <71cf8012-3b77-43de-b8ac-54c84a97f9d3@kernel.org>
-	 <d5d90f03-3db8-4f90-baad-0be4f3d3e0ea@kernel.org>
- <b00aef9582e223a5770cebc714ad65168eab744b.camel@pengutronix.de>
-In-Reply-To: <b00aef9582e223a5770cebc714ad65168eab744b.camel@pengutronix.de>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS8PR06MB7541:EE_|SEZPR06MB5174:EE_
-x-ms-office365-filtering-correlation-id: e1314db8-5104-40b1-979d-08dd5542f6f3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700018|921020;
-x-microsoft-antispam-message-info:
- =?utf-8?B?dlM2U0tpVzh3ZnE4WUVvL3ptbkN3VmNvdXB2NU5peVJiVnZDdUtxZGNlbHgz?=
- =?utf-8?B?K0kzY3kvQXJEODI2RXU0akNEV21Sa2NMRjhwanZybTZnME5rREN0ZFNlL2pa?=
- =?utf-8?B?cWJYZ1B3bzFBbGo4N3daWWNiaEwxaHNsVjhkd0JRU3JsdGFaWnNNZ2p2R3FD?=
- =?utf-8?B?OU05WjA4SVBXL0lLZllCZlpieUtLVDdSYUpRYTdRYVRXODJWemdqUFZKWlFv?=
- =?utf-8?B?U1AzZXhkZU9rNVBWTlV3VWt6OEFHNmdEZVVQRWp1N2J1amJ5bDhUVzUwRnk2?=
- =?utf-8?B?K0hxYWxIMzlvREVnWHBtWCtKQ0VtNnkwTUYyRXJTSk14WHI1cUVaWnhDWWMx?=
- =?utf-8?B?UWpXa1F0S1diWlM0Rm40Z3RHOGkxQjdpdFRYZ1hSMXluU3V1bUtsZVJzWmpP?=
- =?utf-8?B?d0VDVmw0V0MvZnNQZU9WMmt1bitmYnBpbGdCZ0xwRWdNUGN0aG0vSVcrKy9Z?=
- =?utf-8?B?N2NSVlNibXIwa3dqSGRMb21tYW8rTkVwTmQrQ3N6cldKcWJLbThYa1ZxYm85?=
- =?utf-8?B?QmkvMGpkSEMwNDczMFdVOC9pQUtKNzdBNzJHdENFNXZjSVFkbkMwdXVBc0tN?=
- =?utf-8?B?NG55YU0rWkJkTXRreXpZVFFhSW9ocXc4ZkFnVDNkNVdyV3VGbitkcEdxOG1W?=
- =?utf-8?B?QnFYRmdiREJXK0hJVFFnTHo2dkhDRmYvT25JN0ZKQXhZN0ZPeXpKbjltUjZT?=
- =?utf-8?B?bE1EdnAxNkJoUFliVklOQ1N4Wng3eE13UDBhSHMzc2x2RHNvMFA2NC9HMUlv?=
- =?utf-8?B?d1NrTVVYYlpUSUJNZXh3eFJxb0hFZzhlU1dic0lWT1RRRW1FY2NGZ0ZtSXl2?=
- =?utf-8?B?ZEJxbGptNnNrZEVBdUFZRWtHc2ZMV1J0OWlkUjVFQ1lBZDVRS09yR0RnNXNa?=
- =?utf-8?B?WFhRM3l5aHdRaDkvYTllNWNNUXIxbmNvc3lNYTBQTDQzOUJmYVUzMEV3MnNM?=
- =?utf-8?B?UUZLbzN2N1BLQVRXTTlaMUJtTXBHdVZtZFZlZzhDVkRuVEpXbWdSWENMYklr?=
- =?utf-8?B?QzlhSnBPVXcwT1MvUHY2UWZEekliKy9CVENMT1RhNVlLSDh0bjB6ZWxmTHhm?=
- =?utf-8?B?YS9FT0szYmUrV0FFK1V0YS9NTVY0TWVvblBUVDYzSDFSQTdNNDZCL0JMMlFM?=
- =?utf-8?B?eFJSekFGOUl2RE5MVkorWWpsTkRqajlrOUQrQWdLWXo1MHZyOCtzbHE5U0Rs?=
- =?utf-8?B?cXhNb0tIYmZnc3dWSC9hV2d3a0srOVhxUFNEZW16V2JYVmI4bEdXczdXSGp4?=
- =?utf-8?B?QmY2eWN1cW9zbHc0eUd5dTRRZ092clBiZnpJYU9LVjNJcWFBTlZFOG9VOEty?=
- =?utf-8?B?anNabzhOUGdiUXJJNExQVzNYYTlQZ3pBSmMra21qQ2pOQi9jM2lxUlhyZ3lh?=
- =?utf-8?B?NitBVEE1a1ZPTTZUdHo0VS8za1NiTlpsd1FnRnFhMng3S1BSUVp3YU5VSkdF?=
- =?utf-8?B?ZDRleEd2QmRVNVRsOHpYNU9xbTE0Zk5VMUpvKzdGcjVmY2UyaHVnc2FtL3Jy?=
- =?utf-8?B?R0lNKzJTOFUxVUhpSXBCVG8vNVM0UkxJaHRXWWk5emRjU0dRSDRqekVoRzFv?=
- =?utf-8?B?ZW5xdU1kU1UzNUM0c2liUjErdmR1cVdIVHNSWWM2ZHdjQ2pKWkNXQWFOU1RN?=
- =?utf-8?B?ZHhONzkva0owU2l0dUNsUDcxZUxuM0tnVDIyU3BlVDZWazcvQXFDSFVsNWlr?=
- =?utf-8?B?dnhYUHpkVDU0K09NbXBaNjlOaitGRXZaenBmR1RLY1RhY3JiamVpSUFFRXBv?=
- =?utf-8?B?L0RPTjB1U1FzcVhOWExvU0Z4dHdnaHRFbWw2S1duMzBKYW9VN2lnWWdsNHJ3?=
- =?utf-8?B?a2k0bUtVZmJoL2JBSVlRdnRFTVA3SnZ1c0xrcFpsemt6Skl2bkExK0V5eEYw?=
- =?utf-8?B?eE1BaVVzRmJHNnBtdFpQVnJqdmVIVlA3THlsUlBhd1FNQklwMFY1UVhpblFo?=
- =?utf-8?B?RTF2bklBK0dtMzloaXVwMGJDZWFoYndpK21HV2hDdEdMVElaNUNyVHVhZTYr?=
- =?utf-8?B?cmJ3TUF2d1ZRPT0=?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS8PR06MB7541.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700018)(921020);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?cFk1ZXVqMTA3SDQrQkJ1bXJpeTlnSUt6MVVCeE0ySzQzSVJ3RkhCY0d6bnJU?=
- =?utf-8?B?eG5BL2x6bWJrbmZOakV5NC8rd1NQWWExYnZQUkFIa25FS2lZUUtmNThNWktU?=
- =?utf-8?B?WldZKzkyM0h6aXFEaW43K1hxbCtGWWFzSXRkRTNHcTNybW5pcGJHVDZWeXZz?=
- =?utf-8?B?U2dEdnArSXhveFlmK25PcFIweDlzRkR0YnR0Rk9iNS9ZNzJnOE9yczM5WXho?=
- =?utf-8?B?Q3hWbTBzYXFkQ3lST0FLUXM2cWVHRStkL3M4Y3RMbFREdkJHbmcyQzg1T2Y0?=
- =?utf-8?B?UitVWlIxOXc5VWVwZzR4UUdNVHZ5OUNldTJYckhLclpJSUd5TUdzWFFTNzJm?=
- =?utf-8?B?bVNKdHpwQjdsZ1o4NmlWbGdmMERtZEp0SjFEaFZUQ2VaRVdMeEtuaGpyeWlj?=
- =?utf-8?B?alhmcHZiSXV5Q2M0QVhQMUswY3JGMW93WFFiN3VPRzJWdHZoWC9VanBLTzk3?=
- =?utf-8?B?aE9lOFZWQXQ4cmVLZGsxVnlrV3duOUQzdmQ5RVRkT3dNTWxMdEZCdFNhQUNn?=
- =?utf-8?B?OS9SOS9PWnNSMzl0bEJ4cStDbXhXVDhuaFRGS2R1UmlBYWdEK1pTZDFaT3Bt?=
- =?utf-8?B?V3VPUjdkSEw4OU14SytqanZGZndLbzVaVlZDNDk3UzdqWC9NUUQxMHlkRzM3?=
- =?utf-8?B?emtzUmJvbUFEQS8yUWczUUxzRWQybTlpNTlkYVVadllPdnprc2VldnRwVHBR?=
- =?utf-8?B?b0Y2aGpuUllnQW5hdGNBNUc3QjFhVjlCZmFtMks4eDBmMVIrRWpTOUg1YzRR?=
- =?utf-8?B?cGx1a1UrSjd2cXN3OENZU2hYM1FqcHc0RmRMVU5mQ1l5OTNUbVRNSlJ3eTZn?=
- =?utf-8?B?SGpaZUVJUVRpRldWTU42QjYvUjFKdVpIVE5qVjhSYUp6dkVlOVRGaUtmdnoy?=
- =?utf-8?B?blpPc0M4OU1DWVFYbHBqUDdSV0xzRm9aSnJnbkM5bGM4bW5WdTJ4VmRkR2s1?=
- =?utf-8?B?emdKU1d2NTMzQklObGFOU3NuVnVWOFVDbkRVY1k0b1ZaZTJOOXc0dGMzTDlT?=
- =?utf-8?B?aTJBeWRqYlEya3NDSVl1TFR3eGcyZnRRKzcxQjFRUEtvSXJyazZPK2VxN2FW?=
- =?utf-8?B?SUp2Z3B0OFV6K0tLS1FFdC9wdExMOERWcHdVMEY5bnFFbzFlaWJOOE1iWmI2?=
- =?utf-8?B?LzRnY1Q4NkpnVUR3MVR0b0Z3OXF4OVhvWGFWS2ZxeXdGQ2JNYVB6djNDeTV2?=
- =?utf-8?B?bWxOeklnZVI5dE83Q1NGMm0xRVNoRlNvMVIrWGsxODhiQU5xbWlwZFdUWEF4?=
- =?utf-8?B?a1lwZDFrMmZiQlBpNy9CUTl5NUtrOEVUeGRnQjJ3UDdpdlR5Vk1rbURyQm05?=
- =?utf-8?B?RUZzY2RFWXVVbkwrSW1BamZzV3lpYzJCSVFoaVFNZlNUV3BnaGpBRGtDaW5W?=
- =?utf-8?B?MlNtYlZQRVhzS2xlcFQ1M1A5UFNNeTl4d2Znd1U1ay8weGNGNkcyLzJHQ1E0?=
- =?utf-8?B?b2pvcjJaQWloakNZVzZ4ODlna1NuZmhzZmpUdTM0WitoUGk3OE5hWmNzSEpN?=
- =?utf-8?B?UGdNMjlYUVFnVldXS2c4OTBOc29TbXJVQkpPZU43OThNR084K1U0ek1KTEly?=
- =?utf-8?B?bk9lSkxMNUp6VnJoUTIxeWlNUFI3ekpRVFRiTnRtQk5uUWEvTnJRR3NGd0FB?=
- =?utf-8?B?U1Qxck1xZnFkRUZXVVRZa2NCNnlqZVg4YXpacmdRQm9rWTl3cE5kc1Jidmg2?=
- =?utf-8?B?QU8xZ2ZkaGFDRmtWRWczaWhzWmpLQlNHeTRoVHAzL2kwMEVUZ1VLV3FCTXVa?=
- =?utf-8?B?dklQbTJNMFlOeUxES2g4aGRKbmh6SGY2MzJKN0dnUTM5NW9BdDBvUW1kMVpk?=
- =?utf-8?B?NEFWZEUyekFLM1o4bTUvWXMyTDFqSEFobTl0dHBpOVp4RVN5OVFjaWdLWGRx?=
- =?utf-8?B?bjZhSDlDZk5FeGFPNktoZjlCTDhNdmVJWkpLVDQ4aXpoS0dzMEgyeVFWMVR1?=
- =?utf-8?B?aVprbTdReEs1YlRPalFzQWdrLzhGYWRpNmFmTStzMDRvc1d2U00yVWN2dmRi?=
- =?utf-8?B?aHo4QnNDV2k2NGxNVldrTVBUdjU3ZXY1dWJTWVo1ekhRek5PNG5DVnpzY29C?=
- =?utf-8?B?cW5pdEZFcVpPdDhpTFBES3hscGdSTTJseWFPT0NBMmIyQy9rMnp3MEtpbUVJ?=
- =?utf-8?Q?fPVQudWCb55w/sceAnlqTzW65?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08D5628DA1;
+	Tue, 25 Feb 2025 02:46:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740451616; cv=none; b=K6ftZYCoVxWkPBp/xgBBv1b80Th7lerJmGMY99fKmShQ5gFv3D55U+5m7Sq7tz9xseYsBGSii6e8O5eg6i2PCzXlfmZrFlxXWGhfMnefLScUl+0eWE/Q1xU8j8Tpe4X5GPjMhmXnmU0Up7KK3ER5mWpruIuWi+6ztns+Gsrzmco=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740451616; c=relaxed/simple;
+	bh=9sjMRPauckJrui2CkfrQ3cYi2VYBntbBubLUjwdMQjE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QefgHbuXaKLNIpuHkAskcAoxXmR4udcMlnVNdCAv3m+t3BaZjCvNa3NA3y+WVaP/R9XIBDXNShN9YH7FkrZePZoUzBMJXVaAdVajbjkrr3HQMAmm8IgaObLLSYPIa7UoerKXjShWJE6B5N3Qyjje2mrKAWNvB4cAaUITOktnV/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dL1rKnIX; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-220c665ef4cso88629705ad.3;
+        Mon, 24 Feb 2025 18:46:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740451613; x=1741056413; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BmIWyDzbi7XG4PWOrNU7Jp5a97tuft4JsdTFHE1ZFT4=;
+        b=dL1rKnIXD6Vhlp6rFkqPvnWaXp8QQXbgrYrTDr2I8Xm+tG06t8Hi84a/3Sv4HIq7Rc
+         Dk0etgPwtkYxVYROVyL1+aZAA130TeHi7z5ACh/LNHvMQbkueQrW7vv498aMDV68B66e
+         ZuQR+XQzeHqjeQVshWdM/QEu3YZU72PeZHZQAbRSymL2xpd9JgWusIqysGBkc8rLECur
+         5mZ52d+XCRipG0E3Eszvf3gcCELv+6VuilXP3dmi8LbxBNZ28RTechAsyEhG62/qWJ2h
+         ALE9bfQ0q4bovK1KSI0a3dwHmwzyK9fyHsfLI/idVHdyCJHttQSEsWY85DGAElX+i2CA
+         WxHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740451613; x=1741056413;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BmIWyDzbi7XG4PWOrNU7Jp5a97tuft4JsdTFHE1ZFT4=;
+        b=qPolEimF7e7W9trSU3oeT8w+6e57Tz3bP6k8IUwayN1kpDfFhoDgVXBbg6Aplwxs2e
+         pTwroGY6J1nsDD5XEbZhSlFKLM06gDPm0FGAvVkmC+P2kZVd2/nyVVROPGf33OvW/UHO
+         N2ZS3hPU2T8KbM8q5kAhLoW2JPhKfV54x/FJfYCeVwKfCrLAOuw1mVae8GUvoQyxFmW1
+         Z3QEVqN5eWbeXaSSVXWg/VHsH7oYNuUWZq73jZQCniBiV9glnQZ3rXxemwYB0cOkUj3m
+         pUhFOzsWAdnPK2yfIGOgXEDvFS44ySDePtvAUCfEDwzyzaqPlhWJDPs56OYXqkqMeeUY
+         I70A==
+X-Forwarded-Encrypted: i=1; AJvYcCWCmo3b9qSz1NU4J/0/4fNYYEPOF+qeD6iJQFfBwpv4tdSVwBcVSbv2+7/rnFlxOvzeZcri27viPbn8ZyxX@vger.kernel.org, AJvYcCWGH1dXM93h97nR5/mUNN19n2LXo2PKpxrmEhuXdsW01FE3gUzNy9G993wS9DZAQFqrd5dZqJhYqPq7@vger.kernel.org, AJvYcCWhlpb+IaH3C8Jin0YAfHydJAEhXu8/LDwSsV/O6n29RHlWQEL1d37CWw6l1y0NdYfYAww0LQgsVYwS@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMObwc68SAdCPmopw/iHaY2sM6Csx57cRjW+VJm6feF0YJF+vl
+	zrHjetd4I2Xh8tyfP7JSu/yHQQwIkI0CboASF/eMMAV1jJtZJ2kn
+X-Gm-Gg: ASbGncs4U47eLzIFE2Z5Ugkw/4ecdop9TgCy5M8G+hewPVF0ZuNKf2HB1VKatGDYUTM
+	PC9gqcFp6h5n7p/jE9WzwS3L3M+R7ifanY9ZoluBBrkqrd+ckkVIwObPdr0LEuCy1uXiVo/lea+
+	2r+Z2EgVLF6rETMK6v2FtRfzjhnOXk+cpJZnmuFnCbBDSgP1jWvPDELKskSJ8eYN/xr7V628VtZ
+	vOqMFF3LoK2HV2hEeAQnOgBRN/sitDzEqZ8snn/LPmXDmAvUb0KKlyOGNlcfBBknd5yMHnJiZs3
+	G5oCgwzDkZofp6RksYKUrEA=
+X-Google-Smtp-Source: AGHT+IG62mV9bUNCTrCikvFZ49tzCfx9NyDU8cgaFnBUFHLGXzqnYJ/ncZN2tiei9ufed4SF/bBPXw==
+X-Received: by 2002:a17:903:41d2:b0:21f:33:ad2 with SMTP id d9443c01a7336-221a003892emr229965215ad.52.1740451613128;
+        Mon, 24 Feb 2025 18:46:53 -0800 (PST)
+Received: from localhost ([111.34.70.129])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2230a00ab6bsm3279565ad.58.2025.02.24.18.46.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Feb 2025 18:46:52 -0800 (PST)
+Date: Tue, 25 Feb 2025 10:46:49 +0800
+From: Longbin Li <looong.bin@gmail.com>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	looong.bin@gmail.com
+Subject: Re: [PATCH 2/3] spi: sophgo: add Sophgo SPI NOR controller driver
+Message-ID: <6sjygqay4kpwupau7gx5uulo4t32c3rn5kiktqxp6t2phi45ly@elsqfqzpnumz>
+References: <20250224101213.26003-1-looong.bin@gmail.com>
+ <20250224101213.26003-3-looong.bin@gmail.com>
+ <20250224132115-GYA41655@gentoo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS8PR06MB7541.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e1314db8-5104-40b1-979d-08dd5542f6f3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Feb 2025 02:20:25.5504
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: UbbdNG/aRv8PtS0BeugGe1kLtE1MnNzpk66/bPf2zw2P0Vp+/3ATathrt8F22OTwZa1i+C6jop6aKuhr7GMXhYxrbcIRzI9WBumnnI0HSXs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB5174
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250224132115-GYA41655@gentoo>
 
-PiBTdWJqZWN0OiBSZTogW1BBVENIIHY5IDIvM10gcmVzZXQ6IGFzcGVlZDogcmVnaXN0ZXIgQVNU
-MjcwMCByZXNldCBhdXhpbGlhcnkgYnVzDQo+IGRldmljZQ0KPiANCj4gT24gTW8sIDIwMjUtMDIt
-MjQgYXQgMTE6MTUgKzAxMDAsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+ID4gT24gMjQv
-MDIvMjAyNSAxMToxMiwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gPiA+IE9uIDI0LzAy
-LzIwMjUgMTA6NTUsIFJ5YW4gQ2hlbiB3cm90ZToNCj4gPiA+ID4gKw0KPiA+ID4gPiArc3RhdGlj
-IHZvaWQgYXNwZWVkX3Jlc2V0X3VucmVnaXN0ZXJfYWRldih2b2lkICpfYWRldikgew0KPiA+ID4g
-PiArCXN0cnVjdCBhdXhpbGlhcnlfZGV2aWNlICphZGV2ID0gX2FkZXY7DQo+ID4gPiA+ICsNCj4g
-PiA+ID4gKwlhdXhpbGlhcnlfZGV2aWNlX2RlbGV0ZShhZGV2KTsNCj4gPiA+ID4gKwlhdXhpbGlh
-cnlfZGV2aWNlX3VuaW5pdChhZGV2KTsNCj4gPiA+ID4gK30NCj4gPiA+ID4gKw0KPiA+ID4gPiAr
-c3RhdGljIHZvaWQgYXNwZWVkX3Jlc2V0X2FkZXZfcmVsZWFzZShzdHJ1Y3QgZGV2aWNlICpkZXYp
-IHsNCj4gPiA+ID4gKwlzdHJ1Y3QgYXV4aWxpYXJ5X2RldmljZSAqYWRldiA9IHRvX2F1eGlsaWFy
-eV9kZXYoZGV2KTsNCj4gPiA+ID4gKw0KPiA+ID4gPiArCWtmcmVlKGFkZXYpOw0KPiA+ID4gPiAr
-fQ0KPiA+ID4gPiArDQo+ID4gPg0KPiA+ID4gRXZlcnkgZXhwb3J0ZWQgZnVuY3Rpb24gKm11c3Qq
-IGhhdmUga2VybmVsZG9jLg0KPiA+ID4NCj4gPiA+ID4gK2ludCBhc3BlZWRfcmVzZXRfY29udHJv
-bGxlcl9yZWdpc3RlcihzdHJ1Y3QgZGV2aWNlICpjbGtfZGV2LCB2b2lkDQo+IF9faW9tZW0gKmJh
-c2UsDQo+ID4gPiA+ICsJCQkJICAgICBjb25zdCBjaGFyICphZGV2X25hbWUpDQo+ID4gPiA+ICt7
-DQo+ID4gPiA+ICsJc3RydWN0IGF1eGlsaWFyeV9kZXZpY2UgKmFkZXY7DQo+ID4gPiA+ICsJaW50
-IHJldDsNCj4gPiA+ID4gKw0KPiA+ID4gPiArCWFkZXYgPSBremFsbG9jKHNpemVvZigqYWRldiks
-IEdGUF9LRVJORUwpOw0KPiA+ID4gPiArCWlmICghYWRldikNCj4gPiA+ID4gKwkJcmV0dXJuIC1F
-Tk9NRU07DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwlhZGV2LT5uYW1lID0gYWRldl9uYW1lOw0KPiA+
-ID4gPiArCWFkZXYtPmRldi5wYXJlbnQgPSBjbGtfZGV2Ow0KPiA+ID4gPiArCWFkZXYtPmRldi5y
-ZWxlYXNlID0gYXNwZWVkX3Jlc2V0X2FkZXZfcmVsZWFzZTsNCj4gPiA+ID4gKwlhZGV2LT5pZCA9
-IDY2NnU7DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwlyZXQgPSBhdXhpbGlhcnlfZGV2aWNlX2luaXQo
-YWRldik7DQo+ID4gPiA+ICsJaWYgKHJldCkgew0KPiA+ID4gPiArCQlrZnJlZShhZGV2KTsNCj4g
-PiA+ID4gKwkJcmV0dXJuIHJldDsNCj4gPiA+ID4gKwl9DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwly
-ZXQgPSBhdXhpbGlhcnlfZGV2aWNlX2FkZChhZGV2KTsNCj4gPiA+ID4gKwlpZiAocmV0KSB7DQo+
-ID4gPiA+ICsJCWF1eGlsaWFyeV9kZXZpY2VfdW5pbml0KGFkZXYpOw0KPiA+ID4gPiArCQlyZXR1
-cm4gcmV0Ow0KPiA+ID4gPiArCX0NCj4gPiA+ID4gKw0KPiA+ID4gPiArCWFkZXYtPmRldi5wbGF0
-Zm9ybV9kYXRhID0gKF9fZm9yY2Ugdm9pZCAqKWJhc2U7DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwly
-ZXR1cm4gZGV2bV9hZGRfYWN0aW9uX29yX3Jlc2V0KGNsa19kZXYsDQo+ID4gPiA+ICthc3BlZWRf
-cmVzZXRfdW5yZWdpc3Rlcl9hZGV2LCBhZGV2KTsgfQ0KPiA+ID4gPiArRVhQT1JUX1NZTUJPTF9H
-UEwoYXNwZWVkX3Jlc2V0X2NvbnRyb2xsZXJfcmVnaXN0ZXIpOw0KPiA+ID4NCj4gPiA+IE5vLCB5
-b3UgY2Fubm90IGV4cG9ydCBmdW5jdGlvbnMgd2l0aG91dCB1c2Vycy4gVGhlcmUgaXMgbm8gc2lu
-Z2xlDQo+ID4gPiB1c2VyIG9mIHRoaXMsIHNvIHRoaXMgaXMgbm90IGp1c3RpZmllZCBhdCBhbGwu
-DQo+ID4gTXkgbWlzdGFrZSwgSSBtaXNzZWQgcGF0Y2ggIzMgd2hpY2ggdXNlcyBpdC4NCj4gPg0K
-PiA+IEkgZG9uJ3QgZ2V0IHdoeSBkbyB5b3UgbmVlZCB0byBleHBvcnQgdGhpcyBpbiB0aGUgZmly
-c3QgcGxhY2UsIGluc3RlYWQNCj4gPiBvZiBwdXR0aW5nIGl0IGluIHRoZSBjbG9jayBkcml2ZXIs
-IGFzIHVzdWFsbHkgZXhwZWN0ZWQuIEhhbmRsaW5nIGNoaWxkDQo+ID4gY3JlYXRpb24gaXMgbG9n
-aWNhbGx5IHRoZSB0YXNrIG9mIHRoZSBkZXZpY2UgaGF2aW5nIGNoaWxkcmVuLCB0aGUNCj4gPiBw
-YXJlbnQuIE5vdCB0aGUgY2hpbGQuDQo+IA0KPiBBbHNvLCBjb25zaWRlciBiYXNpbmcgdGhpcyBv
-biB0b3Agb2Y6DQo+IA0KPiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNTAyMTgtYXV4
-LWRldmljZS1jcmVhdGUtaGVscGVyLXY0LTAtYzNkN2RmZGVhDQo+IDJlNkBiYXlsaWJyZS5jb20v
-DQoNCkhlbGxvLCBCYXNlIG9uIHRoaXMgc2VyaWVzLCBJIHdpbGwgdXNlIGFkZXYgPSBkZXZtX2F1
-eGlsaWFyeV9kZXZpY2VfY3JlYXRlIGluc3RlYWQgYWRkZXZfYWxsb2MsIGFkZXZfcmVsZWFzLg0K
-QnV0IGl0IHN0aWxsIGhhdmUgRVhQT1JUX1NZTUJPTF9HUEwoYXNwZWVkX3Jlc2V0X2NvbnRyb2xs
-ZXJfcmVnaXN0ZXIpOw0KQW0gSSByaWdodD8NCg0KPiByZWdhcmRzDQo+IFBoaWxpcHANCg==
+On Mon, Feb 24, 2025 at 01:21:15PM +0000, Yixun Lan wrote:
+> Hi Longbin:
+> 
+> On 18:12 Mon 24 Feb     , Longbin Li wrote:
+> > Add support for Sophgo SPI NOR controller in Sophgo SoC.
+> > 
+> > Signed-off-by: Longbin Li <looong.bin@gmail.com>
+> > ---
+> >  drivers/spi/Kconfig          |   9 +
+> >  drivers/spi/Makefile         |   1 +
+> >  drivers/spi/spi-sophgo-nor.c | 501 +++++++++++++++++++++++++++++++++++
+> >  3 files changed, 511 insertions(+)
+> >  create mode 100644 drivers/spi/spi-sophgo-nor.c
+> > 
+> > diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+> > index ea8a31032927..6b6d7b348485 100644
+> > --- a/drivers/spi/Kconfig
+> > +++ b/drivers/spi/Kconfig
+> > @@ -1021,6 +1021,15 @@ config SPI_SN_F_OSPI
+> >  	  for connecting an SPI Flash memory over up to 8-bit wide bus.
+> >  	  It supports indirect access mode only.
+> > 
+> > +config SPI_SOPHGO_NOR
+> > +	tristate "Sophgo SPI NOR Controller"
+> > +	depends on ARCH_SOPHGO || COMPILE_TEST
+> > +	help
+> > +	  This enables support for the Sophgo SPI NOR controller,
+> > +	  which supports Dual/Qual read and write operations while
+> > +	  also supporting 3Byte address devices and 4Byte address
+> > +	  devices.
+> > +
+> >  config SPI_SPRD
+> >  	tristate "Spreadtrum SPI controller"
+> >  	depends on ARCH_SPRD || COMPILE_TEST
+> > diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
+> > index 9db7554c1864..9ded1de4b2fd 100644
+> > --- a/drivers/spi/Makefile
+> > +++ b/drivers/spi/Makefile
+> > @@ -134,6 +134,7 @@ obj-$(CONFIG_SPI_SH_SCI)		+= spi-sh-sci.o
+> >  obj-$(CONFIG_SPI_SIFIVE)		+= spi-sifive.o
+> >  obj-$(CONFIG_SPI_SLAVE_MT27XX)          += spi-slave-mt27xx.o
+> >  obj-$(CONFIG_SPI_SN_F_OSPI)		+= spi-sn-f-ospi.o
+> > +obj-$(CONFIG_SPI_SOPHGO_NOR)	+= spi-sophgo-nor.o
+> >  obj-$(CONFIG_SPI_SPRD)			+= spi-sprd.o
+> >  obj-$(CONFIG_SPI_SPRD_ADI)		+= spi-sprd-adi.o
+> >  obj-$(CONFIG_SPI_STM32) 		+= spi-stm32.o
+> > diff --git a/drivers/spi/spi-sophgo-nor.c b/drivers/spi/spi-sophgo-nor.c
+> > new file mode 100644
+> > index 000000000000..1139deeac327
+> > --- /dev/null
+> > +++ b/drivers/spi/spi-sophgo-nor.c
+> > @@ -0,0 +1,501 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Sophgo SPI NOR controller driver
+> > + *
+> > + * Copyright (c) 2025 Longbin Li <looong.bin@gmail.com>
+> > + */
+> > +
+> > [...]
+> > +struct sophgo_spifmc {
+> > +	struct spi_controller *ctrl;
+> > +	void __iomem *io_base;
+> > +	struct device *dev;
+> > +	struct mutex lock;
+> it will be great to document the lock
+
+Thanks, but I don't think the function of this lock is complicated,
+adding comments may be useless.
+
+> > +	struct clk *clk;
+> > +};
+> > +
+> > +static int sophgo_spifmc_wait_int(struct sophgo_spifmc *spifmc, u8 int_type)
+> > +{
+> > +	u32 stat;
+> > +
+> > +	return readl_poll_timeout(spifmc->io_base + SPIFMC_INT_STS, stat,
+> > +				  (stat & int_type), 0, 1000000);
+> > +}
+> > +
+> > +
+> > [...]
+> > +static ssize_t sophgo_spifmc_trans_reg(struct sophgo_spifmc *spifmc,
+> > +				       const struct spi_mem_op *op)
+> > +{
+> > +	const u8 *dout = NULL;
+> > +	u8 *din = NULL;
+> > +	size_t len = op->data.nbytes;
+> > +	u32 reg;
+> > +	int ret;
+> > +	int i;
+> squash them which save one line:
+> 	int i, ret;
+> 
+
+Thanks, I will modify it.
+
+> > +
+> > +	if (op->data.dir == SPI_MEM_DATA_IN)
+> > +		din = op->data.buf.in;
+> > +	else
+> > +		dout = op->data.buf.out;
+> > +
+> > +	reg = sophgo_spifmc_init_reg(spifmc);
+> > +	reg |= SPIFMC_TRAN_CSR_FIFO_TRG_LVL_1_BYTE;
+> > +	reg |= SPIFMC_TRAN_CSR_WITH_CMD;
+> > +
+> > +	if (din) {
+> > +		reg |= SPIFMC_TRAN_CSR_BUS_WIDTH_1_BIT;
+> > +		reg |= SPIFMC_TRAN_CSR_TRAN_MODE_RX;
+> > +		reg |= SPIFMC_TRAN_CSR_TRAN_MODE_TX;
+> > +
+> > +		writel(SPIFMC_OPT_DISABLE_FIFO_FLUSH, spifmc->io_base + SPIFMC_OPT);
+> > +	} else {
+> > +		/*
+> > +		 * If write values to the Status Register,
+> > +		 * configure TRAN_CSR register as the same as
+> > +		 * sophgo_spifmc_read_reg.
+> > +		 */
+> > +		if (op->cmd.opcode == 0x01) {
+> > +			reg |= SPIFMC_TRAN_CSR_TRAN_MODE_RX;
+> > +			reg |= SPIFMC_TRAN_CSR_TRAN_MODE_TX;
+> > +			writel(len, spifmc->io_base + SPIFMC_TRAN_NUM);
+> > +		}
+> > +	}
+> > +
+> > +
+> > [...]
+> > +static const struct spi_controller_mem_ops sophgo_spifmc_mem_ops = {
+> > +	.exec_op = sophgo_spifmc_exec_op,
+> > +};
+> > +
+> > +static void sophgo_spifmc_init(struct sophgo_spifmc *spifmc)
+> > +{
+> > +	u32 tran_csr;
+> > +	u32 reg;
+> > +
+> > +	writel(0, spifmc->io_base + SPIFMC_DMMR);
+> > +
+> > +	reg = readl(spifmc->io_base + SPIFMC_CTRL);
+> > +	reg |= SPIFMC_CTRL_SRST;
+> ..
+> > +	reg &= ~((1 << 11) - 1);
+> so this is a mask? use macro to define, instead of using magic number
+
+Yes, this is a mask to init SPI Clock Divider, I will add a macro, thanks.
+
+> > +	reg |= 1;
+> > +	writel(reg, spifmc->io_base + SPIFMC_CTRL);
+> > +
+> > +	writel(0, spifmc->io_base + SPIFMC_CE_CTRL);
+> > +
+> > +	tran_csr = readl(spifmc->io_base + SPIFMC_TRAN_CSR);
+> > +	tran_csr |= (0 << SPIFMC_TRAN_CSR_ADDR_BYTES_SHIFT);
+> > +	tran_csr |= SPIFMC_TRAN_CSR_FIFO_TRG_LVL_4_BYTE;
+> > +	tran_csr |= SPIFMC_TRAN_CSR_WITH_CMD;
+> > +	writel(tran_csr, spifmc->io_base + SPIFMC_TRAN_CSR);
+> > +}
+> > +
+> > +static int sophgo_spifmc_probe(struct platform_device *pdev)
+> > +{
+> > +	struct spi_controller *ctrl;
+> > +	struct sophgo_spifmc *spifmc;
+> > +	void __iomem *base;
+> > +	int ret;
+> > +
+> > +	ctrl = devm_spi_alloc_host(&pdev->dev, sizeof(*spifmc));
+> > +	if (!ctrl)
+> > +		return -ENOMEM;
+> > +
+> > +	spifmc = spi_controller_get_devdata(ctrl);
+> > +	dev_set_drvdata(&pdev->dev, ctrl);
+> > +
+> ..
+> > +	spifmc->clk = devm_clk_get(&pdev->dev, NULL);
+> > +	if (IS_ERR(spifmc->clk)) {
+> > +		dev_err(&pdev->dev, "AHB clock not found.\n");
+> > +		return PTR_ERR(spifmc->clk);
+> > +	}
+> > +
+> > +	ret = clk_prepare_enable(spifmc->clk);
+> > +	if (ret) {
+> > +		dev_err(&pdev->dev, "Unable to enable AHB clock.\n");
+> > +		return ret;
+> > +	}
+> you can combine above with devm_clk_get_enabled(), and simplify 
+> return routine by using "return dev_err_probe(..)"
+> 
+
+Thanks, I will modify it.
+
+> > +
+> > +	spifmc->dev = &pdev->dev;
+> > +	spifmc->ctrl = ctrl;
+> > +
+> > +	spifmc->io_base = devm_platform_ioremap_resource(pdev, 0);
+> > +	if (IS_ERR(base))
+> > +		return PTR_ERR(base);
+> > +
+> > +	ctrl->num_chipselect = 1;
+> > +	ctrl->dev.of_node = pdev->dev.of_node;
+> > +	ctrl->bits_per_word_mask = SPI_BPW_MASK(8);
+> > +	ctrl->auto_runtime_pm = false;
+> > +	ctrl->mem_ops = &sophgo_spifmc_mem_ops;
+> > +	ctrl->mode_bits = SPI_RX_DUAL | SPI_TX_DUAL | SPI_RX_QUAD | SPI_TX_QUAD;
+> > +
+> > +	mutex_init(&spifmc->lock);
+> strictly, you still need to do error handler, e.g, destroy mutex if probe fail
+
+Thanks, I will add it.
+
+> > +
+> > +	sophgo_spifmc_init(spifmc);
+> > +	sophgo_spifmc_init_reg(spifmc);
+> > +
+> > +	return devm_spi_register_controller(&pdev->dev, ctrl);
+> > +}
+> > +
+> > [...]
+> 
+> -- 
+> Yixun Lan (dlan)
+> Gentoo Linux Developer
+> GPG Key ID AABEFD55
 
