@@ -1,183 +1,142 @@
-Return-Path: <devicetree+bounces-151209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FB4EA44DB1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 21:37:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 072EFA44DA5
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 21:36:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40474171DA2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:34:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C13D919C75F3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:35:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEF5F221549;
-	Tue, 25 Feb 2025 20:29:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C5DC214A97;
+	Tue, 25 Feb 2025 20:32:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="DIzpj0s9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4671C221540
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 20:29:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F34DD214817;
+	Tue, 25 Feb 2025 20:32:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740515378; cv=none; b=KK0yMqn5p/lg4SC07TZzIWKqM4t3ZmvqNtQKqWskvoukwE5J2Dvp24W75RMWiToFbAdkFRHSSSsK0LR1rmLv32D1Ig2H70VGvRB07b85B/lK4M/QqAGC397+oqeTFNvF6STsFxXEyUrb3DyrxVnAYCZHmsMegIYBByw1/UWujCI=
+	t=1740515557; cv=none; b=TzxvbbJ0Hto5PCtlh0NLznHUNFxvalGolc/4UJYQJpYS0ACzUoueg8ecMRIeosU4McFWDJl73Uouc7zTNsvBOWVH+wRU2c5LslyW5BgCnCB5yI8/Vd/fy94SPwf8Pr/yXQ0uCsbEyt7pEFR/hQ8RUXMg+jfQgGn8e+/cmYn3Lb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740515378; c=relaxed/simple;
-	bh=wFQ41lsmj13psuBC2ya1xEADvNt4FAs3TaaprU7t4Dw=;
+	s=arc-20240116; t=1740515557; c=relaxed/simple;
+	bh=wckgz3tdenQ9ZtBQpHOi8VCnc+yy0A2dSk2aV0Zjeqw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UOrNXg+19zvcxpf/P/eoQhDDdKpZFDVuJgNmSgjXBQ2riKvkeE/WPtRQBhppQRVeGpQZskwX2GJr+Wytem9opo+XPcPYlk1N0KJGcaKKwOSkksttc6GxqUD1lvz1wyG+UN0fH5DzctEA2D2inVe0ZoYS68ecTn9M3tUOheLRkWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tn1YL-0004PK-Uh; Tue, 25 Feb 2025 21:29:17 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tn1YL-002pgi-1j;
-	Tue, 25 Feb 2025 21:29:17 +0100
-Received: from pengutronix.de (p5b164285.dip0.t-ipconnect.de [91.22.66.133])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 1E0533CBC87;
-	Tue, 25 Feb 2025 20:29:17 +0000 (UTC)
-Date: Tue, 25 Feb 2025 21:29:16 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Chester Lin <chester62515@gmail.com>, 
-	Matthias Brugger <mbrugger@suse.com>, Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev, 
-	Enric Balletbo <eballetb@redhat.com>, linux-arm-kernel@lists.infradead.org, 
-	Christophe Lizzi <clizzi@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-kernel@vger.kernel.org, Alberto Ruiz <aruizrui@redhat.com>, NXP S32 Linux <s32@nxp.com>, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: s32g: add FlexCAN[0..3] support for s32g2
- and s32g3
-Message-ID: <20250225-private-savvy-caracal-3e7f47-mkl@pengutronix.de>
-References: <20250224134016.3921196-1-ciprianmarian.costea@oss.nxp.com>
- <174051414934.2971045.13322665811292325537.robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fV3duAC8f+oE2pN+7N17ksMYR48Hl176JmG0OmcBkHpm1DQbKOiCIvGJ/3bhSQOzOKatxwc6r1CDbNi1xePgHK9oj8amdNLK25rnh5RwcapCHYyWqYgMiiYlbp07MBgRKOSGSx5bFpAb92V+jxSk6PFiod5oWlhlOSEPfAlAKRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=DIzpj0s9; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 16745A30;
+	Tue, 25 Feb 2025 21:31:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1740515460;
+	bh=wckgz3tdenQ9ZtBQpHOi8VCnc+yy0A2dSk2aV0Zjeqw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DIzpj0s9msFhLOz+8bA185w8lDAvF6MScXRRMWToJGq11vaWb1/54GtxQCAOvXrqh
+	 RH6/pHRixNuKKM/vbBSymDEELXmkO1a88QHytPB+UlaV4YbeEwZQoZj2FNj2j1mVBb
+	 ZPMjQ1V5Q3I6kuMK4oLbVo7miOEkNBd2u6vXcsaE=
+Date: Tue, 25 Feb 2025 22:32:08 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	soc@lists.linux.dev, workflows@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH 1/2] docs: dt: submitting-patches: Document sending DTS
+ patches
+Message-ID: <20250225203208.GG18866@pendragon.ideasonboard.com>
+References: <20250225184822.213296-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hyjls6qa3nf4o47i"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <174051414934.2971045.13322665811292325537.robh@kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20250225184822.213296-1-krzysztof.kozlowski@linaro.org>
 
+Hi Krzysztof,
 
---hyjls6qa3nf4o47i
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] arm64: dts: s32g: add FlexCAN[0..3] support for s32g2
- and s32g3
-MIME-Version: 1.0
+On Tue, Feb 25, 2025 at 07:48:21PM +0100, Krzysztof Kozlowski wrote:
+> Document two rules already widely used and enforced by DT maintainers
+> and SoC platform maintainers:
+> 
+> 1. DTS patches should be placed at the end of driver patchset to
+>    indicate no dependencies of driver code on DTS.
+> 
+> 2. DTS patches should be applied via SoC platform maintainers, because
+>    it is a driver-independent hardware description.  However some
+>    driver maintainers are reluctant to pick up portions of patchsets and
+>    prefer to take entire set at once.  For such cases, the DTS portion
+>    should be split into separate patchset, so it will not end up in the
+>    driver subsystem integration tree.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On 25.02.2025 14:12:30, Rob Herring (Arm) wrote:
->=20
-> On Mon, 24 Feb 2025 15:40:16 +0200, Ciprian Costea wrote:
-> > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> >=20
-> > Add FlexCAN[0..3] for S32G2 and S32G3 SoCs.
-> >=20
-> > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/s32g2.dtsi      | 52 ++++++++++++++
-> >  arch/arm64/boot/dts/freescale/s32g3.dtsi      | 56 +++++++++++++++
-> >  .../boot/dts/freescale/s32gxxxa-evb.dtsi      | 72 +++++++++++++++++++
-> >  .../boot/dts/freescale/s32gxxxa-rdb.dtsi      | 48 +++++++++++++
-> >  4 files changed, 228 insertions(+)
-> >=20
->=20
->=20
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
+This matches my understanding of the current (and best) practices, so
 
-The dt-bindings patch that documents support for the S32G2/S32G3 is in
-net-next/main: 51723790b718 ("dt-bindings: can: fsl,flexcan: add
-S32G2/S32G3 SoC support")
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-> New warnings running 'make CHECK_DTBS=3Dy for arch/arm64/boot/dts/freesca=
-le/' for 20250224134016.3921196-1-ciprianmarian.costea@oss.nxp.com:
->=20
-> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@401b4000: fai=
-led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
-lexcan']
-> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@401b4000: fai=
-led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
-lexcan']
-> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@401be000: fai=
-led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
-lexcan']
-> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@401be000: fai=
-led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
-lexcan']
-> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@402a8000: fai=
-led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
-lexcan']
-> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@402a8000: fai=
-led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
-lexcan']
-> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@402b2000: fai=
-led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
-lexcan']
-> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@402b2000: fai=
-led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
-lexcan']
-> arch/arm64/boot/dts/freescale/s32g274a-evb.dtb: /soc@0/can@401b4000: fail=
-ed to match any schema with compatible: ['nxp,s32g2-flexcan']
-> arch/arm64/boot/dts/freescale/s32g274a-evb.dtb: /soc@0/can@401be000: fail=
-ed to match any schema with compatible: ['nxp,s32g2-flexcan']
-> arch/arm64/boot/dts/freescale/s32g274a-evb.dtb: /soc@0/can@402a8000: fail=
-ed to match any schema with compatible: ['nxp,s32g2-flexcan']
-> arch/arm64/boot/dts/freescale/s32g274a-evb.dtb: /soc@0/can@402b2000: fail=
-ed to match any schema with compatible: ['nxp,s32g2-flexcan']
-> arch/arm64/boot/dts/freescale/s32g274a-rdb2.dtb: /soc@0/can@401b4000: fai=
-led to match any schema with compatible: ['nxp,s32g2-flexcan']
-> arch/arm64/boot/dts/freescale/s32g274a-rdb2.dtb: /soc@0/can@401be000: fai=
-led to match any schema with compatible: ['nxp,s32g2-flexcan']
-> arch/arm64/boot/dts/freescale/s32g274a-rdb2.dtb: /soc@0/can@402a8000: fai=
-led to match any schema with compatible: ['nxp,s32g2-flexcan']
-> arch/arm64/boot/dts/freescale/s32g274a-rdb2.dtb: /soc@0/can@402b2000: fai=
-led to match any schema with compatible: ['nxp,s32g2-flexcan']
+> ---
+>  .../bindings/submitting-patches.rst           | 19 +++++++++++++++++--
+>  1 file changed, 17 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
+> index a64f21a5f299..f3e23e69a638 100644
+> --- a/Documentation/devicetree/bindings/submitting-patches.rst
+> +++ b/Documentation/devicetree/bindings/submitting-patches.rst
+> @@ -54,11 +54,22 @@ I. For patch submitters
+>       followed as of commit bff5da4335256513497cc8c79f9a9d1665e09864
+>       ("checkpatch: add DT compatible string documentation checks"). ]
+>  
+> -  7) If a documented compatible string is not yet matched by the
+> +  7) DTS is treated in general as driver-independent hardware description, thus
+> +     any DTS patches, regardless whether using existing or new bindings, should
+> +     be placed at the end of patchset to indicate no dependency of drivers on
+> +     the DTS.  DTS will be anyway applied through separate tree or branch, so
+> +     different order would indicate the serie is non-bisectable.
+> +
+> +     If a driver subsystem maintainer prefers to apply entire set, instead of
+> +     their relevant portion of patchset, please split the DTS patches into
+> +     separate patchset with a reference in changelog or cover letter to the
+> +     bindings submission on the mailing list.
+> +
+> +  8) If a documented compatible string is not yet matched by the
+>       driver, the documentation should also include a compatible
+>       string that is matched by the driver.
+>  
+> -  8) Bindings are actively used by multiple projects other than the Linux
+> +  9) Bindings are actively used by multiple projects other than the Linux
+>       Kernel, extra care and consideration may need to be taken when making changes
+>       to existing bindings.
+>  
+> @@ -79,6 +90,10 @@ II. For kernel maintainers
+>    3) For a series going though multiple trees, the binding patch should be
+>       kept with the driver using the binding.
+>  
+> +  4) The DTS files should however never be applied via driver subsystem tree,
+> +     but always via platform SoC trees on dedicated branches (see also
+> +     Documentation/process/maintainer-soc.rst).
+> +
+>  III. Notes
+>  ==========
+>  
+> -- 
+> 2.43.0
+> 
+> 
 
-Marc
+-- 
+Regards,
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---hyjls6qa3nf4o47i
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAme+KBkACgkQDHRl3/mQ
-kZxdrwf+JXiYSAtNXsvcQpYo6OfO9ld3hbOKggakubUaLFftujJA/9iNVFaUgqHg
-1m1/pAgYThwS+zVAVPn8w7zgfznQj5iF45qigUAugkGANBrPwvcr4YBYqrATQTpq
-WHsWnaz5A8Emg9AC9kmg7nfFDM6uMR7SEWXwlvp3YXUzqC5Ujh2scrKg9nh/NUNj
-BIDoOyWb0YrNyJoPfVd7ooG6GnMxmg6oPqWr7xIRwR+FkJVFwEtcBmPk71Xk9foX
-yXLZlC92qTwQBn/0pgj/q/8XyX8UuGgL28Wfo2bg2q67iPqc/yQdi6QW/C+OMRuG
-qJmoE2guvBD9ho/u4NtPJ307RtGZqQ==
-=dAC0
------END PGP SIGNATURE-----
-
---hyjls6qa3nf4o47i--
+Laurent Pinchart
 
