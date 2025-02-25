@@ -1,163 +1,166 @@
-Return-Path: <devicetree+bounces-150969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E39BBA4405C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:15:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8249A4406A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:17:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B31501685DB
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:11:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC8E43A9EAD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:12:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4652690C8;
-	Tue, 25 Feb 2025 13:11:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Q7QgPDQg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 395AB2690F2;
+	Tue, 25 Feb 2025 13:12:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E1B2676E0
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 13:11:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE2C268FCE
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 13:12:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740489083; cv=none; b=BuJSw8cngGM+7sFKJT7HmSZFwSKFkhv37beLIgf2R9l5ved98p3GEKNF+HN1EDmAxFCPjJqy5AgjRQ8UCBgaq8sviJZzeHLAzNB+fsb2I400jbFhdFymIqMtXQzrQOyCu24vXIdW3se6nFejJ4ffgcK4cS1szhq4o1EhdCZhSLk=
+	t=1740489134; cv=none; b=Bn84tDWCVXNmNPZKmphk9mmnjIjv8jxzUyujQ6ALEDlDB5t2WqhZKt3QH8WEeXaeZlVpyGXucJ5lkJfSYjC+NJCESwlIAxCQvbMQ2pxJwzb65amGuywc3c3p42i9YEkKjE7mZuxhlk8eEpf6tH6OAcnf15swBO0MmQQEeoqS96A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740489083; c=relaxed/simple;
-	bh=7FuRH89tDCOSNH1jKBMPZKH3DWaM3tBKPCcUh0VE6As=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uemScaBpUU2v8HzF06MqjXgqVP/4bdXjYaVgH3ltCVIyZMFCJQfAEkOsZ7ydMLqH8+QtHVmlSzRroP2L/JTFAOJ+hfo+pFi9EkGg6ImPPSR+ueIVE5Z7uKDGXRi1PYb/b70yTKlKmFt24pwodFZul7FUOPk2reTmKazcCjZBBFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Q7QgPDQg; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51PCbKR0012716
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 13:11:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uuwVfqXUmGXRoU+kSMckG71FjFzg8qfTg24k4ONKjKE=; b=Q7QgPDQgDt0t1CeK
-	ncM6P5dXSfVXjSbuTvW5j326SSv+P5RtKcgmfvrWC7mlW+rNYU8oiZMqIhyzCQ1b
-	S57rKzVVpRE9S6vUu/vufoSH9/1ar7WOjCP1r87uhhMFOAACB6vm51/Sxdxfzbgn
-	S6gE6GjCeacByhW8T85L1FsMHwBadCeruDJMirLF0IseQAzcXpAdqRMnZBXpaaKT
-	tSS612lp898nrWFnjLMlIpqKLWvnuJsvNgzait4f4KDVJr/6nbcAnl2rgtTENaJe
-	SfcME86DQwJ3qsND+ywAmeutEH8InBpkfZ2uhkNUbRR5kmXwsPONCfhDMq6IWAYQ
-	f51syg==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 451e1982p8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 13:11:20 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-471ed6f95d2so7502991cf.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 05:11:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740489079; x=1741093879;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uuwVfqXUmGXRoU+kSMckG71FjFzg8qfTg24k4ONKjKE=;
-        b=uaA4RGJnNcZ0RYwYiUClLZ4jMDXJreXHKskNn/OWyMr6K7sLC8lVO8MO/POPrjOt2s
-         q5gMScX3cFjtgvhXRFRv4o49FDUzIQ+R25MkPpq8rdVEfG65QIt8bkhVKqew8r3EbBD0
-         +QPIxhESayjqnTIcWDrlxLof97i9ISd8rVugpvwMwN9e37q+e4HrqRE5fgUIn4UNr6N0
-         X9CifrqNM7oS1xj/delw/NiIddneXQVT5lC3QhF1Jwx8Utjyn6q1ZzMNOUA9FOlu+P/Y
-         cvJ4KE/BRFvFWSnNLnhLC8DyIEjsTRVxrrK3ytNDATHjGULfQBc7TOd2ovka/GaiGmGt
-         aH3g==
-X-Forwarded-Encrypted: i=1; AJvYcCWzbRTO7XU21T8QaKCAADfUJcOupLs5ebf0y5I3xhvBGGR9Ij5y8zsDyCtcqKyjeYCrogCkF2aFR/OS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw79AavF+ruZB1ExwAaY+NFKP1ad8Ddr13DvVqNc+dZWrkV2o25
-	x2n5JdXcL3B2XHdPioj2nlfTdrCH+pIsNTr0SYWBP0TX2PBnnwRLzoUgUZoOlVRFT+fXvPSD70A
-	snIodkQIf6xEg2wwOP4v6drCyFCW9VDNW8hhs6B7SAK+7HLmb+D71EvvS5jTa
-X-Gm-Gg: ASbGnctPmZcz6z6JuuVsbSLI8sdlZUZm4IpC00XJxmd6mj+hf03ErSjy5nMcPNJ9wAo
-	bwpdEKk7BFus2gg7ZLYhAAPbPotAeGiMmxHy2lCCqaDtk5lOf7b0+FqpDtJUqhOCCy8QQ0pmAoq
-	qkfXudPs2f5UoFMZ/ULNE3QostbSvlpmY7BASTRKQzMTPlFZVb5XFiADeLxwl/Ix2H7KdzWYALo
-	e1yZFqNlj13tXQ3dNMQitILPvDPk6T91QPmZVhAqfl/eolt53yu6QKriuYgK5MtVvhfs9Ef6uau
-	bbrXpOIjz7bVDcuj4f4CWsWOHY2YLFTHtPUUmyZrmoS6Sgtxo/R0f8zVeDYZg5zCO9R98A==
-X-Received: by 2002:ac8:5a43:0:b0:472:14b8:ee01 with SMTP id d75a77b69052e-472228d7e30mr71677741cf.6.1740489079607;
-        Tue, 25 Feb 2025 05:11:19 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IErDUxqjVZVeKivo2X+WzYQGTk3m9wBnXFgnKFF8mPGrQ+En9HUm/GLFcoa+lNQennqXJ70qw==
-X-Received: by 2002:ac8:5a43:0:b0:472:14b8:ee01 with SMTP id d75a77b69052e-472228d7e30mr71677541cf.6.1740489079098;
-        Tue, 25 Feb 2025 05:11:19 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abee36dddecsm37813166b.61.2025.02.25.05.11.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Feb 2025 05:11:18 -0800 (PST)
-Message-ID: <3b91b340-2d01-4685-bb73-818924c4ec29@oss.qualcomm.com>
-Date: Tue, 25 Feb 2025 14:11:15 +0100
+	s=arc-20240116; t=1740489134; c=relaxed/simple;
+	bh=+OuOvkEeuzB7LAlg9x4s/xUKhlq/4QtpAbBFb8doADA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=lUfHx7dBM7HmMvkHT4XQ0Oqxs6L0qqdbD0jvGEvOaYarOlHGKPvxJ0AnhYDBrZaFpghD5ghte1NhlfnTbvBooK/TJJNDUlH1Bqu8vVMAnbW2aNi/Zk2mOkLm9lB4rMYLQaPc6BGLwWahXTKN8FChi/AQ27re7kW3FlU2aF4DQCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tmujE-0005WL-BO; Tue, 25 Feb 2025 14:12:04 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tmujD-002mM0-2S;
+	Tue, 25 Feb 2025 14:12:03 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tmujD-0008y2-29;
+	Tue, 25 Feb 2025 14:12:03 +0100
+Message-ID: <78e60d723c27b7fa0f03bc6a74f6ad37d6508734.camel@pengutronix.de>
+Subject: Re: [PATCH v3 2/8] dt-bindings: dsp: fsl,dsp: Add resets property
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Daniel Baluta <daniel.baluta@nxp.com>, robh@kernel.org,
+ krzk+dt@kernel.org,  shawnguo@kernel.org, mathieu.poirier@linaro.org
+Cc: conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+ festevam@gmail.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,  imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,  linux-remoteproc@vger.kernel.org,
+ andersson@kernel.org, Frank.Li@nxp.com,  peng.fan@nxp.com,
+ laurentiu.mihalcea@nxp.com, iuliana.prodan@nxp.com
+Date: Tue, 25 Feb 2025 14:12:03 +0100
+In-Reply-To: <20250225102005.408773-3-daniel.baluta@nxp.com>
+References: <20250225102005.408773-1-daniel.baluta@nxp.com>
+	 <20250225102005.408773-3-daniel.baluta@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/11] arm64: dts: qcom: sa8775p-ride: enable Display
- serial interface
-To: Ayushi Makhija <quic_amakhija@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: robdclark@gmail.com, dmitry.baryshkov@linaro.org, sean@poorly.run,
-        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
-        conor+dt@kernel.org, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, rfoss@kernel.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
-        quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
-        quic_jesszhan@quicinc.com
-References: <20250225121824.3869719-1-quic_amakhija@quicinc.com>
- <20250225121824.3869719-9-quic_amakhija@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250225121824.3869719-9-quic_amakhija@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: -NumQjxkfPdAwJlEEynf58p-qE3qSByI
-X-Proofpoint-ORIG-GUID: -NumQjxkfPdAwJlEEynf58p-qE3qSByI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-25_04,2025-02-25_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- priorityscore=1501 mlxlogscore=999 bulkscore=0 impostorscore=0
- lowpriorityscore=0 phishscore=0 mlxscore=0 malwarescore=0 adultscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502250091
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 25.02.2025 1:18 PM, Ayushi Makhija wrote:
-> Enable both DSI to DP bridge ports on SA8775P Ride plaftrom.
-> 
-> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+On Di, 2025-02-25 at 12:19 +0200, Daniel Baluta wrote:
+> Assert and deassert functionality of the DSP found on i.MX8MP is
+> realized by combining control bits from two modules: Audio Block
+> Control and Debug Access Port.
+>=20
+> Audio block control bits are used to for Run/Stall the DSP core
+> while the DAP bits are used for software reset the core.
+>=20
+> The original plan was to use fsl,dsp-ctrl property and to refer the
+> audiomix bits via syscon interface. This proposal received NACK from
+> community we shouldn't abuse the syscon interface [1].
+>=20
+> So remove fsl,dsp-ctrl property for i.MX8MP and use reset control
+> interface instead.
+>=20
+> [1] https://patchwork.kernel.org/project/imx/patch/20250212085222.107102-=
+6-daniel.baluta@nxp.com/
+>=20
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 66 +++++++++++++++++++++-
->  1 file changed, 64 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> index 151f66512303..02d8a9c2c909 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> @@ -128,6 +128,30 @@ dp1_connector_in: endpoint {
->  			};
->  		};
->  	};
+>  .../devicetree/bindings/dsp/fsl,dsp.yaml         | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documen=
+tation/devicetree/bindings/dsp/fsl,dsp.yaml
+> index ab93ffd3d2e5..b3550c9d12e7 100644
+> --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> @@ -82,6 +82,9 @@ properties:
+>      description:
+>        Phandle to syscon block which provide access for processor enablem=
+ent
+> =20
+> +  resets:
+> +    maxItems: 1
+
+The DAP core reset is mentioned in the commit message. Why is it
+missing here? After reading the discussion in [1], I'd expect both the
+stall and the (core) reset signal to be documented, something like:
+
+  resets:
+    maxItems: 2
+
+  reset-names:
+    items:
+      - const: core
+      - const: stall
+
 > +
-> +	dsi0-connector {
-> +		compatible = "dp-connector";
-> +		label = "DSI0";
+>  required:
+>    - compatible
+>    - reg
+> @@ -164,6 +167,16 @@ allOf:
+>              - const: txdb1
+>              - const: rxdb0
+>              - const: rxdb1
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8mp-dsp
+> +              - fsl,imx8mp-hifi4
+> +    then:
+> +      required:
+> +        - resets
+> =20
+>  additionalProperties: false
+> =20
+> @@ -186,6 +199,7 @@ examples:
+>      };
+>    - |
+>      #include <dt-bindings/clock/imx8mp-clock.h>
+> +    #include <dt-bindings/reset/imx8mp-reset-audiomix.h>
+>      dsp_reserved: dsp@92400000 {
+>        reg =3D <0x92400000 0x1000000>;
+>        no-map;
+> @@ -220,5 +234,5 @@ examples:
+>                 <&mu2 3 0>;
+>        memory-region =3D <&dsp_vdev0buffer>, <&dsp_vdev0vring0>,
+>                        <&dsp_vdev0vring1>, <&dsp_reserved>;
+> -      fsl,dsp-ctrl =3D <&audio_blk_ctrl>;
 
-DP0
+Is there nothing else in this range that will have to be controlled by
+the DSP driver in the future, such as the IMPWIRE register or the
+XOCDMODE[OCDHALTONRESET] bit?
 
-> +		type = "full-size";
-> +
-> +		port {
-> +			dsi0_connector_in: endpoint {
-> +				remote-endpoint = <&anx7625_1_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	dsi1-connector {
-> +		compatible = "dp-connector";
-> +		label = "DSI1";
-
-DP1
-
-Konrad
+regards
+Philipp
 
