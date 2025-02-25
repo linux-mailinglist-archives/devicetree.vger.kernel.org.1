@@ -1,122 +1,173 @@
-Return-Path: <devicetree+bounces-150807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9707A43988
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:32:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D80AAA43991
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:34:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26E66189915D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:31:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 133F03A6764
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:33:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6255E25A2D4;
-	Tue, 25 Feb 2025 09:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3EC625A326;
+	Tue, 25 Feb 2025 09:34:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R2eIzvDa"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cM/ZXNMB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E7C1FE465
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 09:30:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 946702770B;
+	Tue, 25 Feb 2025 09:34:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740475857; cv=none; b=f9nZLtIPzJUgymnfcrSy45nqBMSGRZ1gXtvKbR51UDiiLVNuiWiu/I0Ny+j8TVwlrmqW0GlEZsal5xl3PwCeMl5GuCdHuO3+tD2+jVC8rLlL+V6J3XJwfL9h2zWL3aIQJdgiyMF/WfxUFNVOLz4McMRvGAWgwgBttSrn1QjiFqk=
+	t=1740476042; cv=none; b=m+EQV8fTLWVBoR8MbQY6yD8B3ICwCeDSDyybGOZFyrbLUMnZzIK71K/U8OjCNRRr4EY5T2ej8czhr1v7c1mRfNs1rpiWpnKQ2aoJtWWFEx+qkFDCrA080ftRcUnTwAucPeQPMfITTRgZPE1hSl7XEpQeKR707YQB38YaJTx41gk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740475857; c=relaxed/simple;
-	bh=Tu0wrCNQbs7SeX2KXHKzypxoD8BKPLt0X1AhllqWK/E=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TaGjucKHVawPUy8/bev3ymZLgRbPAGME09wXgNUMftnM4xTT40JhM5E8i6kVLoiKDthKSwiJRY+nJSdyBXqGQS6o47937g3B6Mt4v5SnVqvWQ217k9yw43WyWxQsAJ5Z+oOxcnXDMr3WqHxOf+CpwhFMM+ivUTeVoOsx3q5bT8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=R2eIzvDa; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5e02e77ea3cso953436a12.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 01:30:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740475854; x=1741080654; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9eYtHkeTugcicE4QpN0FwS9XxN6NIPRCZ3nNLtCSc8A=;
-        b=R2eIzvDawNwhMmOwGl7CPSWCXGgzfPWMx698K9O2bxXVCO3wefvNZgSQ/7KFLe9QGA
-         dFQzDOjsWlx2HIE43V7a9yuTgqzq+1L1d5yq5GLR46NrvHijBVslnNAJFwFC+21s5sAu
-         GfRTP17zn75+VbFHsoG+3OaVjxgewiMANEKmeXB/PJ5EmDXes1wlzN1I6o4tQe092cjR
-         aqZfSiMXMrIxTI0n+Zf9R0lrvHM7Mok3c4n6nvUNQDs3yAItlhsgzFMjhOiPKjh7Q/qg
-         2Wz3YOyjCjcNXdu8Yp47NlywFMVH7KYe7wV0HrhucTybQ03ksL2Q4Lkzas0f1sX4PRoR
-         c83A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740475854; x=1741080654;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9eYtHkeTugcicE4QpN0FwS9XxN6NIPRCZ3nNLtCSc8A=;
-        b=krcFH6FxW+vmvmTDd8NMLwNKyGHRd5yl9yau/CeFDOGLPec2+J0pAH5Jb11iE75+5h
-         yKJkXev/gLgJUwvCVOcNfBvemBmdOwAnCiKEzt+5VzkfCwl0ygO/rlIY4HqSvhfUpUNY
-         BCH+L2RWBrb6U2804lpFY24V6HEbDmGfagozGHSDTDkx/bjDj7RTCRlBOmaFU0cl5L4l
-         2T0edAlCXf4h+L3nnZfWvDt7NVFANsBUxRT0XB3j/p6iukNzsqx6A0XtJe2s3nEIqVi0
-         pu9kd/oTc52DTylBquNW1KZqgxwgY4t08o3AOvlSV3BSwEbL5lI18IDCIeBtH8hLPbSA
-         PfxA==
-X-Forwarded-Encrypted: i=1; AJvYcCXIp9dKHtaCSjCaWFQmfawxTZL3MiutFlipStdJtERpE4zNN9n5vZ1Usx9+ZQYdPQQgPlFfqwvtllsK@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLKe+FK6eH+sPHwg3JawJ6r6CMqz3iX0Zr5RXY5lnpMdkhecQy
-	dF3sjlUNo2F0oO+ndMsY7UNCq8yCep07vHggwOOmPoUSFSTHi47JbNyJ37MvjSQ=
-X-Gm-Gg: ASbGnctNCDjasRz4+eulgbRyP5TEg/6o2S0jLWbx1GsW0ZbC/hwE2LIv2atr/g4Aesb
-	Zkgj95Fo1AMiBJK8P6Q4hVTvN3MAQI+U7niA1lZ8gA18SicW3dlRDHnVpnTj9+mYmQKW50nG31G
-	tA8oDhT4WVCuT0YEVbN98J7FTvIo8KGh0u95l0qfNs+7hXxAJgeb6121PdYB6Cb4rzTkAFVKBnq
-	wldULnozZKCurCCYA8W8z4qKazqVvENi3/Ocx/R35uMXP3OAzfCNkk6Pe1WRxIqpwMYwhlDp4Jk
-	ZWndt8kpe+Ebi8BnCOXwv3LK5C5fTlArBtA7Gtv9YKtqpc5hS6G4vYfokMU9rW9Z9jPYeahmyKQ
-	=
-X-Google-Smtp-Source: AGHT+IEAXazWhifLPGaLDMrdqG1jBglNulFz4jD8p8GTVNKHnMYVgFnc4WJYXJthmOdHQz5hCElo8Q==
-X-Received: by 2002:a05:6402:50ce:b0:5dc:882f:74b1 with SMTP id 4fb4d7f45d1cf-5e0b70e2e62mr5718546a12.3.1740475853940;
-        Tue, 25 Feb 2025 01:30:53 -0800 (PST)
-Received: from krzk-bin.. (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e459b4b67csm949490a12.11.2025.02.25.01.30.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2025 01:30:53 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: x1e80100-slim7x: Drop incorrect qcom,ath12k-calibration-variant
-Date: Tue, 25 Feb 2025 10:30:51 +0100
-Message-ID: <20250225093051.58406-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1740476042; c=relaxed/simple;
+	bh=/stTIDxMqHc1FXn+Wh5UpPU0PBPXg5nI3eXKPIQWeOQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lgi21aQsgvJUI8BaVkmdJLS/lYxk1ZhCkem6bm1F9+a23tGd2uEFDZQJwdbVS7joBkISu5RIn10L1tEcyW9on8c7SGNyZxHrzZXgNgwEZJT4sb2kg3j067do8FMyB6dOIu8JHrxSIZUeQFHZStKd7V8Sk/VI+NZwwVd8CmrPH2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cM/ZXNMB; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51P8g32i031174;
+	Tue, 25 Feb 2025 09:33:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	pdUgwhMw9hnooJtDumdrlU2O+IJtot+aKDtD/CiEjbE=; b=cM/ZXNMBzD6FgA+D
+	8iJOqCidGQgPC01JOEF7ZKYoMZsG4F5zRfejTNdMrYGFxmJGZ3xD9ouOHJjPovZ2
+	0JQ8r5/m+08xuT9LfHLIwVVkwbOiP/FXvjHr4RlsohBcWtBAiZDJbcxW6U2EnZ+p
+	6B5KQy9E36eBeGYta9JALNcK6wgabRdRvl7XJ9IlWZOvzjeAng00K1exBV4RWXsi
+	L6GGYR3gtcsJwiziTLSFjftfpVXCt7bt89QaWwQakBlR6d8Xc1eSHblgBhrb3qsh
+	hZkfV03V6GSJa5LVsmL7DzkJ2+ycrFZrM+f1KHbfkG0Bg6dw/XiupEXTGVw/aWuo
+	H3Razg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44y6nu0bq2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Feb 2025 09:33:55 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51P9XsNT003037
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Feb 2025 09:33:54 GMT
+Received: from [10.218.25.86] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 25 Feb
+ 2025 01:33:49 -0800
+Message-ID: <a65344c8-9b1d-44b1-923a-3840298d19d1@quicinc.com>
+Date: Tue, 25 Feb 2025 15:03:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] dt-bindings: qcom: geni-se: Rename qcom,geni-se.yaml
+ to qcom,geni-se-qup.yaml
+To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <quic_msavaliy@quicinc.com>, <quic_anupkulk@quicinc.com>
+References: <20250221085439.235821-1-quic_vdadhani@quicinc.com>
+ <49fc59ed-9d09-46bd-9ca6-99d3445221f7@kernel.org>
+ <f3349d2a-7eba-4865-9b58-0b2e7e57cc92@quicinc.com>
+ <ed8f7aee-e5be-453c-b324-e59e90ecee77@kernel.org>
+ <428a1384-bc06-4952-a117-d57f5ab6446c@quicinc.com>
+ <03587630-9378-4b67-822a-563379c06655@kernel.org>
+Content-Language: en-US
+From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+In-Reply-To: <03587630-9378-4b67-822a-563379c06655@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: DiCXkfxvdX7jQEktvI4132c8TyScNrd0
+X-Proofpoint-GUID: DiCXkfxvdX7jQEktvI4132c8TyScNrd0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-25_03,2025-02-24_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=408 malwarescore=0 impostorscore=0 phishscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 bulkscore=0 mlxscore=0
+ priorityscore=1501 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2502100000 definitions=main-2502250066
 
-There is no such property as qcom,ath12k-calibration-variant: neither in
-the bindings nor in the driver.  See dtbs_check:
 
-  x1e80100-lenovo-yoga-slim7x.dtb: wifi@0: 'qcom,ath12k-calibration-variant' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts | 2 --
- 1 file changed, 2 deletions(-)
+On 2/24/2025 6:59 PM, Krzysztof Kozlowski wrote:
+> On 24/02/2025 14:25, Viken Dadhaniya wrote:
+>>
+>>
+>> On 2/24/2025 3:48 PM, Krzysztof Kozlowski wrote:
+>>> On 24/02/2025 09:47, Viken Dadhaniya wrote:
+>>>>
+>>>>
+>>>> On 2/21/2025 5:05 PM, Krzysztof Kozlowski wrote:
+>>>>> On 21/02/2025 09:54, Viken Dadhaniya wrote:
+>>>>>> The qcom,geni-se.yaml file describes the Qualcomm Universal Peripheral
+>>>>>> (QUP) wrapper and the common entities required by QUP to run any Serial
+>>>>>> Engine (SE) as I2C, SPI, UART, or I3C protocol.
+>>>>>>
+>>>>>> Rename qcom,geni-se.yaml to qcom,geni-se-qup.yaml to better reflect its
+>>>>>> association with QUP (Qualcomm Universal Peripheral) and the compatible
+>>>>>> string.
+>>>>>>
+>>>>>> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+>>>>>> ---
+>>>>>>     .../soc/qcom/{qcom,geni-se.yaml => qcom,geni-se-qup.yaml}       | 2 +-
+>>>>>>     1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>>>     rename Documentation/devicetree/bindings/soc/qcom/{qcom,geni-se.yaml => qcom,geni-se-qup.yaml} (98%)
+>>>>>>
+>>>>>
+>>>>> That's just churn for no real gain. Not even tested churn.
+>>>>
+>>>> That's just churn for no real gain.
+>>>>
+>>>> We made this change based on below plan, we think this will be helpful.
+>>>>
+>>>> 1. Rename qcom,geni-se.yaml to qcom,geni-se-qup.yaml. Reason at 2 below.
+>>>
+>>> There is no reason 2 at this point. You split your patchsets
+>>> incorrectly. At this point this is churn, without gain. No users of this
+>>> rename, no benefits.
+>>>
+>>>> 2. Create qcom,geni-se.yaml with shared properties for SE-protocol (spi,
+>>>> i2c, uart) nodes. This will be helpful for the shared schema in the
+>>>> ongoing changes
+>>>
+>>> Then post it, instead of sending something which makes no sense on its own.
+>>
+>> Should I include this change in v3 of the following serial patch?
+>>
+>> https://lore.kernel.org/linux-arm-msm/f090d637-1ef1-4967-b5bc-6bfce3d7130e@kernel.org/T/
+>>
+>> I hope the approach below is fine for you:
+>>
+>> 1. Rename qcom,geni-se.yaml to qcom,geni-se-qup.yaml.
+> 
+> I still do not see any need nor justification for above.
+> 
+>> 2. Create qcom,geni-se.yaml with shared properties for SE-protocol (i2c,
+>> spi, uart) nodes.
+> 
+> Look how other common qcom schemas are named :/
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-index a3d53f2ba2c3..9aff5a1f044d 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-@@ -674,8 +674,6 @@ &pcie4_port0 {
- 	wifi@0 {
- 		compatible = "pci17cb,1107";
- 		reg = <0x10000 0x0 0x0 0x0 0x0>;
--
--		qcom,ath12k-calibration-variant = "LES790";
- 	};
- };
- 
--- 
-2.43.0
+Yes, but we need to get agreement on whether we can create it or not. I 
+found a few commonly used files:
 
+- /pci/qcom,pcie-common.yaml
+- /pinctrl/qcom,tlmm-common.yaml
+
+Would it be wise to name it /soc/qcom/qcom,qup-common.yaml?
+
+> 
+> Best regards,
+> Krzysztof
 
