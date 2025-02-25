@@ -1,79 +1,111 @@
-Return-Path: <devicetree+bounces-151038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9BEDA44365
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:48:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A498DA4438E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:53:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66B8D7A25C1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:45:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E8803B8BDC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:46:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE0126E621;
-	Tue, 25 Feb 2025 14:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7D221ABB4;
+	Tue, 25 Feb 2025 14:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="skYlwuuw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JBngrPUB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1108E256C76;
-	Tue, 25 Feb 2025 14:44:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFACA21ABAE;
+	Tue, 25 Feb 2025 14:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740494686; cv=none; b=ImKEmT9JLIrGKWMnEbTrO/gf6Q2pFUDbUPyMLzOP/bQb6EwnhE518TDLV/SVchgzquWZV6UgKCr09VrMszqN3oir6pu6Fojj0DvixXrFXgvcTwXHaD0OhhM+qPEeOiXcmF3moQC5CvrpiNFE6PevOj8IKVUwgAqbO+zwTU0RPiA=
+	t=1740494785; cv=none; b=O5bG7fr9fKImlCwZ3SbY39EC9rplffrBKE1Ew2tm0TDmZOZHH5Qof+a8OfFVvik1DIzc+mECNei6ahDCQ7TUIOgz2K9mjURBkuBzc0aupoHH9uESwTQ6FjsWNJLSeE7ffayazh+TPY6zps73wxCz8EDJlhVdmYdL5PjndQHShqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740494686; c=relaxed/simple;
-	bh=/3ml7Kskfcfy5qsd1jZUgWGxSJHDFLyVZ2qAdRQNTPg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CMAwMBrYfri2Z+e6mP1TBb+KEd5D9e6k00eHmDXxZ9C3bE1SdanZLKfZHmQTgjj2GBra+CeD9XoF3r0oa0YqrjeU6Z2Ot5N9W/c4piQatTvHtSOz7KHCf2kfl5f7I9y19cSYgX2osMoB81l1g8TP6iSl63vMWpDWp7mGOEBvvac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=skYlwuuw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F895C4CEDD;
-	Tue, 25 Feb 2025 14:44:45 +0000 (UTC)
+	s=arc-20240116; t=1740494785; c=relaxed/simple;
+	bh=6ZThMx3yk5s32UwJseFaT+0LfZxbEk9CwJs9at/sz4o=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=IMuiCl4nDQaRjOTlfK8axG0w8mJg6fTZjOO8eeqUQpdP/I5G5gl4BQhIinRDvMF7sIgQ1tqylBFzy7XUvGw8B5kcXjcEKXK5Vmm/5uIa6KdXwJbrSIS5D/hVdCEYu5A05OBizU3CsnBDIPvLtVGFRKJonB0PhEA+q/ZyP2M8c2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JBngrPUB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8A07C4CEDD;
+	Tue, 25 Feb 2025 14:46:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740494685;
-	bh=/3ml7Kskfcfy5qsd1jZUgWGxSJHDFLyVZ2qAdRQNTPg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=skYlwuuwTZ7IuY9AUBFLIZJCK5nYah+iJDn7/KwZQoFwkK6U93EhfQJTFk94hQaYW
-	 SkmdZG9T4EdIFQXvePcgCfmrDN88DrkyfbJQYCyF7AEOj/fvbhvLKK5lKbuFba4PG3
-	 HJlJhzZZLoqs/wxFdAMM9SZO8j9F2/1xMaOxQLhOvbny+Ru3amdgQr38yyYOJ8yfzx
-	 4dB1soNIp8qwtoG6vq5jccdAc5HRFx/uHBAbbizG4ZkujDRzPoBSDqJr97YTifckOj
-	 08UNBo3YRkTmf71hPg5ek6dY3Q8UyP8fkzEmMVqPOAAhmVHS1GT3Wrerui+QCFT6z1
-	 qcia2xcR/lWHg==
-Date: Tue, 25 Feb 2025 08:44:43 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Zijun Hu <zijun_hu@icloud.com>
-Cc: linux-kernel@vger.kernel.org, Saravana Kannan <saravanak@google.com>,
-	Zijun Hu <quic_zijuhu@quicinc.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 5/5] of/platform: Do not use of_get_property() to test
- property presence
-Message-ID: <174049466882.2361149.14230010976182522638.robh@kernel.org>
-References: <20250224-of_bugfix-v1-0-03640ae8c3a6@quicinc.com>
- <20250224-of_bugfix-v1-5-03640ae8c3a6@quicinc.com>
+	s=k20201202; t=1740494785;
+	bh=6ZThMx3yk5s32UwJseFaT+0LfZxbEk9CwJs9at/sz4o=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=JBngrPUB7/i1+yjFpBp9I9OvqFFITb4P6hFYqyz+5W3iuG/l83/RgnZFIQroM4OrC
+	 YaKdAQ8NMAL01KLJKlB93BVlGXMIFs8RiE8uxS2iJ01lILFP3WCMwnnqRRf+MGqxWt
+	 0U8nRcEY0hNM5MIuxYghPIraxG6uFjF0jL/2VkW7PDXgCwsFxE7JbqEGL+FqUfQvMT
+	 o7z0blAKwjG+kEN08spkJTBd6roI64NzBumphKDGBkvIHn1Gjl2vVFE6svS3q915xH
+	 HPftpzYJtBQoSTGGYNnGKtq8R8lwuM3m/VH7vyxidZOLNRhW8/r9UfTjBOwNdjeRFu
+	 pg6bRqLdMN6+A==
+From: Mark Brown <broonie@kernel.org>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, 
+ Elaine Zhang <zhangqing@rock-chips.com>, 
+ =?utf-8?q?Adri=C3=A1n_Mart=C3=ADnez_Larumbe?= <adrian.larumbe@collabora.com>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, 
+ Peter Geis <pgwipeout@gmail.com>, Tomeu Vizoso <tomeu@tomeuvizoso.net>, 
+ Vignesh Raman <vignesh.raman@collabora.com>, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20250220-rk3588-gpu-pwr-domain-regulator-v6-0-a4f9c24e5b81@kernel.org>
+References: <20250220-rk3588-gpu-pwr-domain-regulator-v6-0-a4f9c24e5b81@kernel.org>
+Subject: Re: (subset) [PATCH v6 0/8] Fix RK3588 power domain problems
+Message-Id: <174049478169.62098.16182863254035343977.b4-ty@kernel.org>
+Date: Tue, 25 Feb 2025 14:46:21 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250224-of_bugfix-v1-5-03640ae8c3a6@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-1b0d6
 
+On Thu, 20 Feb 2025 19:58:03 +0100, Sebastian Reichel wrote:
+> I got a report, that the Linux kernel crashes on Rock 5B when the panthor
+> driver is loaded late after booting. The crash starts with the following
+> shortened error print:
+> 
+> rockchip-pm-domain fd8d8000.power-management:power-controller: failed to set domain 'gpu', val=0
+> rockchip-pm-domain fd8d8000.power-management:power-controller: failed to get ack on domain 'gpu', val=0xa9fff
+> SError Interrupt on CPU4, code 0x00000000be000411 -- SError
+> 
+> [...]
 
-On Mon, 24 Feb 2025 22:28:01 +0800, Zijun Hu wrote:
-> From: Zijun Hu <quic_zijuhu@quicinc.com>
-> 
-> Use of_property_present() instead of of_get_property() to test property
-> 'compatible' presence in of_platform_bus_create().
-> 
-> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
-> ---
->  drivers/of/platform.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Applied to
 
-Applied, thanks!
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+
+Thanks!
+
+[1/8] regulator: Add (devm_)of_regulator_get()
+      commit: 0dffacbbf8d044456d50c893adb9499775c489f4
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
