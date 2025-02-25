@@ -1,57 +1,55 @@
-Return-Path: <devicetree+bounces-151036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85AEEA4436A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:48:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C56A1A44385
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:52:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D7F54208D1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:45:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE4DE86452D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:45:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E9821ABD2;
-	Tue, 25 Feb 2025 14:42:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 213FC26A1BB;
+	Tue, 25 Feb 2025 14:44:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uobK+4u+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ofxdzDoy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E31A521ABCC;
-	Tue, 25 Feb 2025 14:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBFEB21ABA7;
+	Tue, 25 Feb 2025 14:44:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740494576; cv=none; b=dchoHlsUg1XXLS8uXDsGPZGtmQLgCT2Md3q5xNdPTU/CEbB9gXGMCJYtPWsIHWiS3gPjwPjjqVqjlJTSffIjYOS69FvH/pCtOMKs0Tt9/6D2OGLoJ08TrCvJ05gfzv8yNEa5JFX/J7htQ/4sbe7xyDts07ExvYIPxDhm/bYONJg=
+	t=1740494676; cv=none; b=CK/2f0bp+ilMS50BecrA/9dS0uXgSRgDeDZXkdzLoEmBi0hd+zD17YBEM0LlI7blSq0w1glJNsUaVsew+gO2TBCLzQQh7u/2L+KMUBijT116SdYn3yODBi57++ZMuKe/aubOMPPoQwhf4SE0a7TibX5WOsBM3JbtrTR4ih+13mw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740494576; c=relaxed/simple;
-	bh=+Rrz6dKLybJ666Hl5ZyN6uqa+5HptLGCNy0acRXjVb8=;
+	s=arc-20240116; t=1740494676; c=relaxed/simple;
+	bh=piWag+aE73hC+BAhq7Xjluh+9mTw+B1F5W4G3Q988hA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V52vO1dL5A05UqCElRK3LhenSDobr+oZlrnRqpd1Y/uc6C0wRaz8ZQ6iNPmkifkXHt6e+jDzCzj7gbV0KzFlKY9Ut9xl5/YTCiTSEQpEjpNALuwn89kEDWuSqes6JxkniUvjwQpDZRrLr4lLAZq9pW0omVVnYa/mxLQRBSVtpJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uobK+4u+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CEF1C4CEDD;
-	Tue, 25 Feb 2025 14:42:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DdULLm/bRgnd0NUveDageQhR8N5geXd/VvvoVWmuRIiGPaFAdkBErLd7eyZmp0GDgtpqC1sPFsJim7KFpCasuMk06Z++3k4vC1LR21/m4Vtvyk2PXrz+ny3NGUuzN9w52PGBDLkybAUzPCSwzfMWfetu/45QXEtzH6n0z7SW4DI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ofxdzDoy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C1EFC4CEDD;
+	Tue, 25 Feb 2025 14:44:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740494575;
-	bh=+Rrz6dKLybJ666Hl5ZyN6uqa+5HptLGCNy0acRXjVb8=;
+	s=k20201202; t=1740494675;
+	bh=piWag+aE73hC+BAhq7Xjluh+9mTw+B1F5W4G3Q988hA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uobK+4u+kcrDBl9pDK/oh11ozIVZknTD64VJOaNxKNg12MY8iAC3cDUvGvDWhdZIm
-	 wq9HkF9G59LOVZDfaWCwcm1L4q83C18tzMuUeBznriJF1wHrdvO4h+n0qnGSi9t9ro
-	 Adqbayr3luCD0/iScdgaNkANPZNm/i14qZIamc8tYNRTOrJZcRI6pjXNqQcxnsdX9u
-	 YXm2KLcZ8glUpuwmq1SSJQgazwcZPbmhYdZSCwg2rqDMr1mfk+Shum5X5ZsSPT36r1
-	 AK4zELDqgq0/39zn0fGdEkgDxjI0fHoW8UqCWqTVQ/WOy2pTDKiQm10PiVcOHy0CPx
-	 adx+e6fdWr0cQ==
-Date: Tue, 25 Feb 2025 08:42:53 -0600
+	b=ofxdzDoyNGd20I9eHrr6IZMMhU/f3hyVyhvB0L6O0TndcKqqvQMyGdacmHVGTC4jo
+	 /fQ00av2FHYh4HwWpdzJfem0x1QoChMrJ/KfYfyAXHOEn276Pa+4IxJxvuDM+V204T
+	 dzUwFTyCT93MpuPk71RHkg2lhfA70asSq7PO5MUmM/NMRjbL1TurzvLxVybsV6Gs4K
+	 4/Y/rN3eYbXZzGYZluSbIOq0rtq7vRBaUB9kAyQ9zgJYcA7AiOAq+iXe4EyLuRRhAP
+	 73Kp3bTEk0YwBRhURqGaxvA6D+BP2fCFWtdt6OoI+1do6sJlVJIR2lZhdbobb9q7xf
+	 C/Y35MrY1Dk1Q==
+Date: Tue, 25 Feb 2025 08:44:33 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Zijun Hu <zijun_hu@icloud.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Zijun Hu <quic_zijuhu@quicinc.com>,
-	Saravana Kannan <saravanak@google.com>
-Subject: Re: [PATCH 1/5] of: Compare property names by of_prop_cmp() in
- of_alias_scan()
-Message-ID: <174049456365.2357875.2320414832055737654.robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Saravana Kannan <saravanak@google.com>,
+	Zijun Hu <quic_zijuhu@quicinc.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/5] of: Introduce and apply private is_pseudo_property()
+Message-ID: <174049458073.2358434.7158444780792381835.robh@kernel.org>
 References: <20250224-of_bugfix-v1-0-03640ae8c3a6@quicinc.com>
- <20250224-of_bugfix-v1-1-03640ae8c3a6@quicinc.com>
+ <20250224-of_bugfix-v1-2-03640ae8c3a6@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,24 +58,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250224-of_bugfix-v1-1-03640ae8c3a6@quicinc.com>
+In-Reply-To: <20250224-of_bugfix-v1-2-03640ae8c3a6@quicinc.com>
 
 
-On Mon, 24 Feb 2025 22:27:57 +0800, Zijun Hu wrote:
+On Mon, 24 Feb 2025 22:27:58 +0800, Zijun Hu wrote:
 > From: Zijun Hu <quic_zijuhu@quicinc.com>
 > 
-> For these pseudo property names 'name', 'phandle' and 'linux,phandle':
+> There are several places which check if a property name is one of
+> 'name'|'phandle'|'linux,phandle'.
 > 
-> Use dedicated property name comparison macro of_prop_cmp() instead of
-> strcmp() in of_alias_scan() to:
-> 
-> - Make property name comparison consistent.
-> - Prepare for introducing private is_pseudo_property() later.
+> Introduce and apply private is_pseudo_property() for the check.
 > 
 > Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
 > ---
->  drivers/of/base.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  drivers/of/base.c       | 4 +---
+>  drivers/of/of_private.h | 7 +++++++
+>  drivers/of/overlay.c    | 4 +---
+>  drivers/of/resolver.c   | 4 +---
+>  4 files changed, 10 insertions(+), 9 deletions(-)
 > 
 
 Applied, thanks!
