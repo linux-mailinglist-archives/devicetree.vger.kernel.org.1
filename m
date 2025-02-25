@@ -1,215 +1,116 @@
-Return-Path: <devicetree+bounces-151136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2B41A448B4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:45:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F04A6A448C9
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:47:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D6B1188C6EA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:42:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FE1C16A700
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:42:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 520AF18DF80;
-	Tue, 25 Feb 2025 17:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092F519DF7D;
+	Tue, 25 Feb 2025 17:42:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iJVbb/3F"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lskBRkid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B21516A95B;
-	Tue, 25 Feb 2025 17:41:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CAC019CC34
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 17:41:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740505315; cv=none; b=NwSD1qVIXW8yIsilTm3ft6/OwZK3Lk+FoZPTmffuQHFJ+2g4HbjxUQtXQKu3Vc92nR/TqKohAMGLtYTjRuERvwyG+nUq/nq9P10rSbgyP8RI3+UG5Byzn1w4lAX5BFVZiWr7IVIlYxsxEEtWiT+cHhnsy84HpkdAyeRZFakclxk=
+	t=1740505320; cv=none; b=SzYgkrCuRmTZ9vZAuV01eEknNYfGDqoBlGQ7gpzbGOGrEwvnvYLgc8TuxtPDpQcfmjQ6oA4RpzbkaRvNfwKCmxzA8iSiMQE/zFSBNMtKEQVCSAKYXQyB88mCioO0joNiWdla6c9OijMypxYATDk8MprShwGa9X7+AkuluEdAh8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740505315; c=relaxed/simple;
-	bh=nqyQyTAbYndnzQJ+HYlkTqXiothFTkm6xScY3NPcIJ0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RBugVNc3EswKpOVrPQ+rRxQhQ2F6bi14Ygs3OgL10M/tTh2WaQII3eT0CvUDF0vNN++PL8ElMAEJcoaSqx+dHHsr+2+jjl6HFz7PqnJbR6Nuuw9U6gKosEsh+oEu0qpB2O76ckzdS3rv9JNngaTFu/JDnbUc8/+e+3+OCa6J7PI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iJVbb/3F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 354B0C4CEDD;
-	Tue, 25 Feb 2025 17:41:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740505313;
-	bh=nqyQyTAbYndnzQJ+HYlkTqXiothFTkm6xScY3NPcIJ0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iJVbb/3FvArjT8/eqR7UURPb4vTE/qvD8VBfPQne8uOxYe/DW2Cw9VKv4qd8qOVL3
-	 hZtazKHPHh3W/sIKR1BiW+yR+4WzGy4vYXWFYaUSvbKnkc4F5/a7THoxWntaneWoXX
-	 laeJ1PgmnNO1NvUaik3UBcYaaPJYenouBzxz0ZZrWopxBMnbYom6V+jACRB+/yTJQm
-	 B9S72t7JaH7zL1B8qShw/BzXOYCWLvWaOiYHDXwG6+62CSYQRqBmeoVRXJnTBi/ciF
-	 NRDnQ36NHtLEB/H30ByXr4lbYmGsrdams0WhjWJtlw9Vfw5wrwBBIx/9Tq2Zp6tDIQ
-	 ebdXw5f/ZhfKg==
-Message-ID: <b687b44b-013e-44b0-b97f-9f7ee2c2a62f@kernel.org>
-Date: Tue, 25 Feb 2025 18:41:47 +0100
+	s=arc-20240116; t=1740505320; c=relaxed/simple;
+	bh=70HK7HBG2n7VP/Z60nAkf4u8jZifgdcTpHsjW7quBFg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jOD3h6kfEpW7bNOQSw2K6GCbuXWtwfbEOo0hhC9kqA9FE1WjZaMz05aGURndulcUDDIO4fGLXC3yU5EvEF4ztPhVfcrHhwFfKNFm3QekU6RqFK52PtNKGXd/7Oni6XYG9HtvfQfu/oUHj/4ZcpMB7PShIzgKFcbaisL7Z3C0IkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lskBRkid; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-30737db1aa9so57410601fa.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 09:41:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740505317; x=1741110117; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=hGyWaQIzn0tRIGg7LsrZt14gQY4q2FyEI8TrfL/lzng=;
+        b=lskBRkidox4vBKQO/WemNZw4InkdhTbjvYSuTviij8WzW0Kep96MrQfQNcpBx5oMx/
+         dhXo1LHQG8oFk60VZk04Twh/UlXy7E8vozcb0GRmsbLbF5fvgroPYBHK/SvDxxNma2nW
+         RawP8cBhRu19xrv5iCdxIeCpVHexItJ5Amqozg+eICFbhl4UMqrGJkzt+imYp1kwgkJS
+         AYQD/I7mBbl3HhVlMlb/x5GNr2ibJ5F/XnyfqE2PEjbP2KH4/Iz1qmrOaM2zuQ93vzXl
+         O149qSw7jzFNzzeW8Ef1tgcL/PyJLnIlDtkCW1zfiWuWAB4IlYzzMG8VXcld2dSpgqG1
+         Fi5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740505317; x=1741110117;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hGyWaQIzn0tRIGg7LsrZt14gQY4q2FyEI8TrfL/lzng=;
+        b=ldhjbHIZpmXmb6D4jyVffp+Ol7qx8Kr6clU1WjeUP10/GyF0TCgd+ZnJO6QEM+7Yzf
+         TXTEaiq7HTDlT3rOWZd5yMychrQofyhI0bfUDqO5F/k0TMwdlm5hul4F8ECRvHpbc2e9
+         zZzSODiM3sHvprkbb9D3+uchqRLAIq5mWMea7KmMHyw0pzpd+VEoiT2ShzgUwhwyzdzG
+         aOGq72/rO5IBuNJNEyzeI0yqGuCaNhCc1IdNKonQ0EZvY+4QCqJQggFBAHJp+ThPZSvk
+         rsZESVcBQFMPHW1hO5bguUe9PZf7dBHnV+UuRl2rPWGPiuDUrpcr58oBdW+4+2KzDpBe
+         KH5g==
+X-Forwarded-Encrypted: i=1; AJvYcCW6AmeLI0rZ/mqOY+Xdy7YPJExEojcZ32yoWOc72T6Q7Yh2jwoWDjxMyRLmUjZQCGeRXSZQcRKz+sFg@vger.kernel.org
+X-Gm-Message-State: AOJu0YyA4v6Sy0t8xgZissoXsnn8lHMYX9S9nxKJ892IxoYkYCXa5nqV
+	fx2hM6ynRyIrdJ1xSsPk9wfR/takTBZzpW7ZayuO++dCsNTTiv8cnf49hY9MXlkz5J+JZrvJCKk
+	Z
+X-Gm-Gg: ASbGncsMsnhblgEKUEZzo8QtVbZ2fDOIVS0grH6NYELxNiFjOQfSN6Evw5xbtInvXFC
+	9qgMQVc2vKlzX4TC/P80sU8sqFS5ERqh66LaUzgKvDiF+DwPKtlC6e/jXZVYHyIHFu0k1jQgMwi
+	AUQp2DbNC6xJH26yQrS5pQONkQtunj+ME4be5/XqG2QTyDUwTnzJ3KGn9PIlE2i2OJQkOK0Joeu
+	Z7Wz6IIGCXa91xkVIRO89GLxQnQP5YEFxSX3aMDzoiSb4Vqr5gFuH+UxxRZbJ13MSg9DKDWL+3c
+	DyAXNDR7rhpuu7JpPuUlZ7hdZbnP6WNePoor+Mxb6pqUplD2Qc5v1spDZZvhMAlayfyl8z9sQwy
+	d0sM6vA==
+X-Google-Smtp-Source: AGHT+IHEne9NXWRmeaKHFaxNKBm56TZDZJt9JjVGVe+iGN7IpuMXMithW5dQI52NU795ttOePGE2zg==
+X-Received: by 2002:a2e:9f47:0:b0:30a:45af:c18d with SMTP id 38308e7fff4ca-30b792d7e3cmr4328091fa.25.1740505317050;
+        Tue, 25 Feb 2025 09:41:57 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30a81ac3151sm2797611fa.68.2025.02.25.09.41.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Feb 2025 09:41:55 -0800 (PST)
+Date: Tue, 25 Feb 2025 19:41:53 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Ayushi Makhija <quic_amakhija@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	robdclark@gmail.com, sean@poorly.run, marijn.suijten@somainline.org, 
+	andersson@kernel.org, robh@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org, 
+	konradybcio@kernel.org, conor+dt@kernel.org, andrzej.hajda@intel.com, 
+	neil.armstrong@linaro.org, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, 
+	jonas@kwiboo.se, jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com, 
+	quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com, quic_jesszhan@quicinc.com
+Subject: Re: [PATCH 07/11] arm64: dts: qcom: sa8775p-ride: add anx7625 DSI to
+ DP bridge nodes
+Message-ID: <2jsornaajavpg6srqzjuwvzt4usvmzmwqdbzw2bydgxisfsrdy@csujibqx2zi3>
+References: <20250225121824.3869719-1-quic_amakhija@quicinc.com>
+ <20250225121824.3869719-8-quic_amakhija@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 6/9] dt-bindings: memory: Document Tegra114 External
- Memory Controller
-To: Svyatoslav Ryhel <clamor95@gmail.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Peter De Schrijver <pdeschrijver@nvidia.com>,
- Prashant Gaikwad <pgaikwad@nvidia.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- Georgi Djakov <djakov@kernel.org>, Dmitry Osipenko <digetx@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20250225143501.68966-1-clamor95@gmail.com>
- <20250225143501.68966-7-clamor95@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250225143501.68966-7-clamor95@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250225121824.3869719-8-quic_amakhija@quicinc.com>
 
-On 25/02/2025 15:34, Svyatoslav Ryhel wrote:
-> +
-> +properties:
-> +  compatible:
-> +    const: nvidia,tegra114-emc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: emc
+On Tue, Feb 25, 2025 at 05:48:20PM +0530, Ayushi Makhija wrote:
+> Add anx7625 DSI to DP bridge device nodes.
+> 
+> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 136 ++++++++++++++++++++-
+>  1 file changed, 135 insertions(+), 1 deletion(-)
+> 
 
-Drop clock-names
+Missing dp-connector devices. Please add them together with the bridges.
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#interconnect-cells":
-> +    const: 0
-> +
-> +  nvidia,memory-controller:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      phandle of the memory controller node
-
-For what? Your description copies property name and schema, which makes
-it useless. Say something not obvious - why this is needed here, what
-its purpose is. Do not repeat schema nor property name.
-
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +    description:
-> +      Phandle of the SoC "core" power domain.
-
-Drop description, redundant.
-
-> +
-> +  operating-points-v2:
-> +    description:
-> +      Should contain freqs and voltages and opp-supported-hw property, which is
-> +      a bitfield indicating SoC speedo ID mask.
-> +
-> +patternProperties:
-> +  "^emc-timings-[0-9]+$":
-> +    type: object
-> +    additionalProperties: false
-> +    properties:
-> +      nvidia,ram-code:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          value of the RAM_CODE field in the PMC_STRAPPING_OPT_A register that
-> +          this timing set is used for
-> +
-> +    patternProperties:
-> +      "^timing-[0-9]+$":
-> +        type: object
-> +        properties:
-> +          clock-frequency:
-> +            description:
-> +              external memory clock rate in Hz
-> +            minimum: 1000000
-> +            maximum: 1000000000
-> +
-> +          nvidia,emc-auto-cal-config:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description:
-> +              value of the EMC_AUTO_CAL_CONFIG register for this set of timings
-> +
-> +          nvidia,emc-auto-cal-config2:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description:
-> +              value of the EMC_AUTO_CAL_CONFIG2 register for this set of timings
-> +
-> +          nvidia,emc-auto-cal-config3:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description:
-> +              value of the EMC_AUTO_CAL_CONFIG3 register for this set of timings
-> +
-> +          nvidia,emc-auto-cal-interval:
-> +            description:
-> +              pad calibration interval in microseconds
-
-User proper unit suffix
-
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-
-Drop
-
-> +            minimum: 0
-> +            maximum: 2097151
-> +
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
