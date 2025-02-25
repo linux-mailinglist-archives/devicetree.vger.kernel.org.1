@@ -1,97 +1,143 @@
-Return-Path: <devicetree+bounces-150915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4DF7A43EC0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:07:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 589FAA43EAB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:04:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3242A42407D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:00:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F9CD19C0DCC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:02:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85BC0267B14;
-	Tue, 25 Feb 2025 12:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1133B267F57;
+	Tue, 25 Feb 2025 12:02:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oCgI0O+A"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OqTu4tCY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5263A1FC7ED;
-	Tue, 25 Feb 2025 12:00:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D3B829CF0;
+	Tue, 25 Feb 2025 12:02:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740484818; cv=none; b=XOXXrdYI8Qm/Q4PS7ybSOf5utdiYdOe6/BA7iaVVaRzSbIVxMoLWEoU8v1B32By4yCHauBiRl3a8D3jEj5EohJrQ3A/e4usYQZqiPJU0soT/PGkGr5wsg09GBY2Tp1v1eqj3V+D+bnC+Rq504jgQf+gyh7cVzXQ6ev1dHV07fQc=
+	t=1740484940; cv=none; b=Qc3DPi+YwLWDvL8D1859IwHZMdjQbPP5VjUZhD6fWWShrlj2IxCPMtVgqb1iXGkebCGKw0H8Lg1LLe2Eq3oPyXHFns9pxYEJjOyYLLBc7yUsBNi2Chsj7IzqTcpBOGtrdkS6qNU4GfzIGYPpmM8NFQf7c75SnAvx0Lw7qwc6okI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740484818; c=relaxed/simple;
-	bh=zK/7OWHlisi7f+Mu3OhLXwcUr3ILVz4O5JpSU16Ic/w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tHeI1SjhunOf/xyqORIYXB8JSK4+59Y2ojd25NUixWzXdYwooWK3RMDn2b5dVKvwdI0DRMAxLlym2exCY3lD3PEux+ufiEevQuFm06Prwe/nMw+VtGpUywLt0oUkX1X8nHqq8H4aaVVYmBQpgEzlN9JAKOHsUA1R26xPPdyPb9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oCgI0O+A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11974C4CEDD;
-	Tue, 25 Feb 2025 12:00:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740484817;
-	bh=zK/7OWHlisi7f+Mu3OhLXwcUr3ILVz4O5JpSU16Ic/w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oCgI0O+AW1ufry6XCxhLZnBkO/EIRWBB9+fpXUvOoB2Og05FcNmNF6XsmNZAITIJZ
-	 IthKvYlg4qNweF2PF4+CEB5YnBgjJS/x0WrBc09DkHfeuwtV8piSExb4CuzuAhqA6s
-	 BlqEbi3dTM4B/0g8F8qqM/UoXp9cjyDDJCyctexQV3P0AUlDQAo59UcJiR1LA92GUE
-	 isP9t1+26z50TFacj3QTYLD95vbEp3OrQbf6qiIIUvyM6tIb2rqWCJa5yRFZuSNQgg
-	 MYJpM8DrGg7spkhykh3AhAZXDbslZ3csNxTKimUk/GCojokiG9ifHBIm3B8FJ6YynK
-	 DnG0GCOY4d4gg==
-Date: Tue, 25 Feb 2025 13:00:14 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc: lee@kernel.org, ukleinek@kernel.org, alexandre.torgue@foss.st.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wbg@kernel.org, 
-	jic23@kernel.org, daniel.lezcano@linaro.org, tglx@linutronix.de, 
-	catalin.marinas@arm.com, will@kernel.org, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	olivier.moysan@foss.st.com
-Subject: Re: [PATCH 7/8] arm64: defconfig: enable STM32 LP timers drivers
-Message-ID: <20250225-vague-tuscan-shark-ebec44@krzk-bin>
-References: <20250224180150.3689638-1-fabrice.gasnier@foss.st.com>
- <20250224180150.3689638-8-fabrice.gasnier@foss.st.com>
- <f76a3a6c-795e-4fc8-905f-4655115ea99d@kernel.org>
- <696ac9eb-f223-4993-b288-b6c3e07f4ed7@foss.st.com>
+	s=arc-20240116; t=1740484940; c=relaxed/simple;
+	bh=Kl+qJRggA+1kKloQ/cuS+SjssOJK2i0412pDJnUb7oE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qlrMRRo2tvnvMcNELw33z2Fx76JVNrWWXe/H+37Qm7/tOU5fei0ykH5hNnFDoc8nE26rmh7c6OnzdAaJTSuLchCdBXLK4bWQico6JcnXxA78oOI8E6hIVDgfiu23PCzF3fc2NeH37UP17Hq0ePekrOKIUzP7lEiUkllGkNi+/0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OqTu4tCY; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-38f29a1a93bso4346078f8f.1;
+        Tue, 25 Feb 2025 04:02:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740484936; x=1741089736; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+9CPivFaP7s8yYZJY+7sb+ThsoYL7A75p/3P2VihSgE=;
+        b=OqTu4tCYDuCUTgJZOVSSUhSwp4etuWlFVIfjMrx+e44g/LXYwFNgkNEowt36R6567n
+         zs6bCQLh3k/c42hIe8CWsFKtMS0niNcIC73Ppe/f4+Nq80F+OG96t5Ou4NXXIoTgCZyE
+         u8OjbtF1QchCLawgVm1T7GWj4PlBGGlbrxnOUM5/36kj0hOapdCRbx+eKPkRxikbwBlt
+         kFcKnHU3/JWu5gQ3R8ZBNqaVs65unpd+iD561dKF9kcho2iJ7uZvb5sUL4Ek1QOKHp1C
+         JmQDyA6Gg+zYuNSmQaw3EjfIbHrvPsAENCQ5LP5VB7WNs24uBL7ADyMObCxCOuUfbt9Q
+         XBew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740484936; x=1741089736;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+9CPivFaP7s8yYZJY+7sb+ThsoYL7A75p/3P2VihSgE=;
+        b=Bb1vxKjD+NTMS8CnlSZfyLR7lEiavmrmsv3jr/txlm3b5uQUjQQwCDlCNfqftfBNyt
+         NzoNYYDfZViNV6oZ43u6eQh0VxtbLcMlzmT3yOxJpIJVVSMF+cGm9rizMVf1/tnJjTU8
+         basnHHu7altYCJpLL97lH2K8yCU2FLR4PMxywHjih44M1oFI7fb7XFJqRDxJs+jYl6zr
+         LC7VHS8xFSdYCfIM555HtYIwjAvhI9i81qBF7YhcDfTXUC81WQu5mmgeRsn8jC7U76ME
+         VK8GpNFNBKty7VWdQj9v8yCDfe2CZczmH4rJHetWUT+KeXvtoFfF3XOXFhiI/TcM9nCy
+         tmAw==
+X-Forwarded-Encrypted: i=1; AJvYcCW1tlY+JGhQlGsn79aUwp+hNBO3tTgc4FzrGRyzTzBUGTntOnfm/qdaXyJkI/5PKKc9I3qVAE0czx9ITEmO@vger.kernel.org, AJvYcCWV4c8upSdZwrkDYyxCqzIpfkQ4Vjf32bwZNWOYp35YT7l4wu1lRx6b+zym49H3TTBre9cqAnjVaz0V@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNjZzx2I7fmBWJ+uT+XSLfkX7KqLwDbzmKa1D9UrNT75BpYdiF
+	sIsvQF16cH4zBVcvCUkxpFK05tNZhtb0XbZpw4Xc3jrEXeEnZXX5bWR56dCDpUW9pI4aoWA5s6B
+	rMj7NTorhg8vx2779Zm78hEMcHzg=
+X-Gm-Gg: ASbGnct4+7zPDLRhmR+SfDcZX12TgLQwAzmZGk/jChJ314JnumqDqHGDTzo+Q9vjcfJ
+	B+6YlWtPx6RAt2U6aHhYVGYQlXbvNkf6tKg93YmDNKYKnKNloSt6j71LX8eQ/fMGyBxZZBK4UoG
+	fcgEugOGqs
+X-Google-Smtp-Source: AGHT+IHovLsSDlGsjXOzdOi3XJgV2ZoGBF7JDLcQsA7MCDsWNsbn+uTtfMOLk9ExL8/K8w4JtH77uyCbj5LQKa5LKkg=
+X-Received: by 2002:a05:6000:1a8a:b0:38d:d5af:29af with SMTP id
+ ffacd0b85a97d-38f6f0d1ddfmr11857129f8f.49.1740484936293; Tue, 25 Feb 2025
+ 04:02:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <696ac9eb-f223-4993-b288-b6c3e07f4ed7@foss.st.com>
+References: <20250225083344.13195-1-clamor95@gmail.com> <20250225083344.13195-4-clamor95@gmail.com>
+ <lkfxsq3daspjxdw43dofch3nulprpmg4soxsgflsypu3kem4ok@utt6rfdtbg7j>
+In-Reply-To: <lkfxsq3daspjxdw43dofch3nulprpmg4soxsgflsypu3kem4ok@utt6rfdtbg7j>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Tue, 25 Feb 2025 14:02:04 +0200
+X-Gm-Features: AQ5f1Jom4uPLrGTDkdpnTwd36vkgtR0yhjPU5X9ii3Faj6MxYp_0WM0zWEbVF9c
+Message-ID: <CAPVz0n3Jc5GE5szjPGJXJNjKVfynvqmzSuZLba5XbLPtcycjwQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] drm/bridge: simple-bridge: Add support for MStar TSUMU88ADT3-LF-1
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxim Schwalm <maxim.schwalm@gmail.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 25, 2025 at 09:43:58AM +0100, Fabrice Gasnier wrote:
-> On 2/25/25 08:48, Krzysztof Kozlowski wrote:
-> > On 24/02/2025 19:01, Fabrice Gasnier wrote:
-> >> Enable the STM32 timer drivers: MFD, counter, PWM and trigger as modules.
-> >> Clocksource is a bool, hence set to y. These drivers can be used on
-> >> STM32MP25.
-> > 
-> > 
-> > Which upstream board? If you do not have upstream board, the defconfig
-> > is pointless for us. It's not defconfig for your downstream forks.
-> 
-> Hi Krzysztof,
-> 
-> It's going to be used on stm32mp257f-dk and stm32mp257f-ev1 boards.
+=D0=B2=D1=82, 25 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 13:57 Dmit=
+ry Baryshkov <dmitry.baryshkov@linaro.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Tue, Feb 25, 2025 at 10:33:44AM +0200, Svyatoslav Ryhel wrote:
+> > From: Maxim Schwalm <maxim.schwalm@gmail.com>
+> >
+> > A simple HDMI bridge used in ASUS Transformer AiO P1801-T.
+> >
+> > Signed-off-by: Maxim Schwalm <maxim.schwalm@gmail.com>
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > Reviewed-by: Robert Foss <rfoss@kernel.org>
+> > ---
+> >  drivers/gpu/drm/bridge/simple-bridge.c | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/bridge/simple-bridge.c b/drivers/gpu/drm/b=
+ridge/simple-bridge.c
+> > index ab0b0e36e97a..c0f1f7baaa37 100644
+> > --- a/drivers/gpu/drm/bridge/simple-bridge.c
+> > +++ b/drivers/gpu/drm/bridge/simple-bridge.c
+> > @@ -277,6 +277,11 @@ static const struct of_device_id simple_bridge_mat=
+ch[] =3D {
+> >                       .timings =3D &ti_ths8134_bridge_timings,
+> >                       .connector_type =3D DRM_MODE_CONNECTOR_VGA,
+> >               },
+> > +     }, {
+> > +             .compatible =3D "mstar,tsumu88adt3-lf-1",
+> > +             .data =3D &(const struct simple_bridge_info) {
+> > +                     .connector_type =3D DRM_MODE_CONNECTOR_HDMIA,
+> > +             },
+>
+> This entry should also come between adi,adv7123 and ti,opa362.
+>
 
-The defconfig commit should mention which upstream products use it.
+Original list in the driver is not sorted alphabetically.
 
-> I can add the relevant DT for the(se) board(s) in next revision.
-
-Does this mean there are no upstream users of this? Then this defconfig
-change is no-op. We do not add enable things in defconfig just because
-there is some downstream/fork using something. Defconfig is for our
-(upstream) boards.
-
-Best regards,
-Krzysztof
-
+> >       },
+> >       {},
+> >  };
+> > --
+> > 2.43.0
+> >
+>
+> --
+> With best wishes
+> Dmitry
 
