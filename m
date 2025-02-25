@@ -1,108 +1,123 @@
-Return-Path: <devicetree+bounces-151112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00962A4475A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:06:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A74C3A44764
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:07:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BB94178BD7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:05:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8BCB1887996
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:06:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C88D3197558;
-	Tue, 25 Feb 2025 17:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89D1817FAC2;
+	Tue, 25 Feb 2025 17:06:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tidylabs.net header.i=@tidylabs.net header.b="My/Ik8yQ";
-	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="v2j+qGVg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wsa7kM0S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D77918DB10
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 17:04:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B8421547E3;
+	Tue, 25 Feb 2025 17:06:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740503097; cv=none; b=s2Toy3qtgGjzN7F+nUm07gEn1FEw5OryKuIIbLez252dd+OQL1Oei+3SQl23CxoSatf8oGx106VfNZ6Jlwi6NJZ7MIH5m6rdVSxgj4MTRjDTTUK4U3iVJwS7ALv0QO/MCcPV3czi1xSOjdFpDMs2R7qX6XugJDVmE6el9K0SLBU=
+	t=1740503170; cv=none; b=N0dPaiGV7PMj8CeN8vLfidaOlbPn4NMqKZ2EWYDRELzzmqIsmkCCVF37dpj7kGyP1G2CHbh0XRQdkFvgRFQuDCZnvE6gFgyI8mW5YkbWbEcchalfGTNClwcmWhSyux4srBSis4OzvPcXKR+cv2Yyj7IRAeF3hH4Msyp8LRxv5y0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740503097; c=relaxed/simple;
-	bh=DNXWRytIBbFeyPrIFkAaBq4o0JbNSGPn9DG6QfsZ6tE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MqaAd0f4c0XfqX94QM2MvYGDGUmL+VAtEqoQsxRC/0emxZ8E3kbeFE/KsK27pzzBzfqvhycO1rySY3ajmqqbXc2G+94aiLb8hWozdMQuxCWbdD4vpKKpweLCe41SYZPFDyBaQldGkfA1sRz+nKZz/8/YMhZjGL+NJ8oYnng1Sy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=tidylabs.net; spf=pass smtp.mailfrom=tidylabs.net; dkim=pass (2048-bit key) header.d=tidylabs.net header.i=@tidylabs.net header.b=My/Ik8yQ; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=v2j+qGVg; arc=none smtp.client-ip=34.202.193.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=tidylabs.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tidylabs.net
-DKIM-Signature: a=rsa-sha256; b=My/Ik8yQXNApV1SCoUvMv/++qdBQ8pG74OekpLZgHMUC2V6KGYr7n+RXw8f9YulbQoIer0bWzY3zdFfJoGYplwqTPwzY4AStkYxHa1jLoy8NBOPpPLg+WV2EhqhRUYE5R+im1U7PK7W9QrTZyxlt8OXrv+Jht1n4IlGt65cCazMxgfZdnDLJmm0cMboMztI89zXmf5VW2ItrnnJC0pblrCWWUuCA1GOWTd/Bd4Wlyf0o1Hqe34ROXaFejQdDjTCFzdaft/MP7DURmLJqBMd6iy49F7knj1RO7K/Z4Pi5qDDoZSApJfIXLR5y7UUT3zKP5p9ycmv2wxawE9/VwrqNqw==; s=purelymail2; d=tidylabs.net; v=1; bh=DNXWRytIBbFeyPrIFkAaBq4o0JbNSGPn9DG6QfsZ6tE=; h=Received:From:To:Subject:Date;
-DKIM-Signature: a=rsa-sha256; b=v2j+qGVgbCn4uxsEoPb+dkK1Eg89ymYijpb+93nCXlovjwyJ4TUQFDZOIxS4m9cmpSXKLKqeYGKglZSJwyf7nasa+QHw2ojpNbgRDfGCld3dLsQYcKIpOibih4K8lKIMVhIFAFYYaI2c51scKP5WJOKy51O6zgbzsnHSekWBvFC/wecleZF/I1pT+Z8SiB3T5pUOjtRQ2oKzvAXPLIRh84aUVvCyWL0dyZvMNsvNqXA3Kp0HO6pNGWflDt076pUAO8B9MQNkPSOI6wXDcc3S7VFA2mpIIF+QDHh40VnMyG64lxBPuQXsH7Iy1Tdjeg4057gy979ZmAl81bL8flGY2A==; s=purelymail2; d=purelymail.com; v=1; bh=DNXWRytIBbFeyPrIFkAaBq4o0JbNSGPn9DG6QfsZ6tE=; h=Feedback-ID:Received:From:To:Subject:Date;
-Feedback-ID: 81901:11097:null:purelymail
-X-Pm-Original-To: devicetree@vger.kernel.org
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 594455725;
-          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Tue, 25 Feb 2025 17:04:31 +0000 (UTC)
-From: Justin Klaassen <justin@tidylabs.net>
-To: Tianling Shen <cnsztl@gmail.com>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>
+	s=arc-20240116; t=1740503170; c=relaxed/simple;
+	bh=bpxL3B7mFZ8T1gpT6geSdExB3J0o22Gfa+Yiler7EOM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=l2yWN61gwWvHDfpl3uJnkBBmLnz9Sl2TCGsaugMOOjLMSO5rkyitGc5O0ALotYLhT4ydhoqTc/FyV7LevJQMeHvAVUPBDQmb9beahpYo7kgSlIko/6QCPZsk3AbRFVvRx2QApAQ5Q10avQ4pOG/8n3xLIHBwEEraZDxmsteaJZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wsa7kM0S; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2211cd4463cso120229245ad.2;
+        Tue, 25 Feb 2025 09:06:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740503168; x=1741107968; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bpxL3B7mFZ8T1gpT6geSdExB3J0o22Gfa+Yiler7EOM=;
+        b=Wsa7kM0SXVUPlaFyrl+1M2gSWxE+93VurzC4Xsqp65qIdnIbRtir8bMo6qrrY/6bkH
+         g0nagPF21ynsi4rdJIvpp5e/2BSOCS5UNpNHzTGaus+FkXKttQRjIdtR595dmC5EkUGb
+         F1Iyc5lDoUww0X6zej77/7jDLmOWg0E79ynExy7t55K7tgtyaXWbCnqme3asUxTwV0FT
+         QT8Nh1yS9y86djDqlhWovOVXKslRbmeuMJ/ya3mALAHdotBEoJgP9F3tHKAnPIc/rLNK
+         4RXnPgmHjdvS2Iamh2HI0/qST1klhXVK6TcLVvyu3eRBX3ewJY0yFRgzGRGcEReKGC50
+         laZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740503168; x=1741107968;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bpxL3B7mFZ8T1gpT6geSdExB3J0o22Gfa+Yiler7EOM=;
+        b=bg2iV5TP//KY5ldHi70SHaGJJpQivHjvGaQwdUIHiRAfIB7N89VBZR5WSjizcFmKlk
+         I0CsaeL+USnkYQYvJGMY70nAOQ3QYjgr9+2Aa+K48ClIvElik8rfJtI3x3aRQ0CBqrfR
+         sFMR623niwxbj5ZD8wbdHEn0ky6u6zYk4KIpvDlHRl4vMaq6UYtGRtMTeVskHlVPQ4oM
+         YP5FUTKD03GCxzZiAg1cdfC/ZIhOagvpEY8c1cD6noTPEddpQ/3fA1+urGV4gynXYkeL
+         oIdbaGfESkBYztoB5cHmQrHn64NWEjitBApbSgUsqxC5MSbT4Z2L9VArvoP9ukKVhhUV
+         SQzw==
+X-Forwarded-Encrypted: i=1; AJvYcCVq64IE5YKDfabjtlDFrVIpEYfhku/xgI5MhawnRsW8LTy5MiWNAj0jA8c/XrUqoLOR6vOk8dmSJIDRNw==@vger.kernel.org, AJvYcCWsK4mMomVnyHmaD8GCwrf74SuZWEI8t8YIObH1uz7iFKeEEdn8YEwBl5CwtLLOBE7GLwextYlS75l2ilw=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+vdkLmpPTXIN6wRS9kQ01eoC5QQMxm077u8cSN2FyFhWo+YlJ
+	nwbHoDfWIIoHSMomQ979cZTLUPwOMtErC32Fa+Ugg39Avf+tTiP5qyBbbSId
+X-Gm-Gg: ASbGncsC5YlwToS/3aa+lFXDDjjUY+MY59Chleq2BroWFQadvYX94xn/HfOnqjY8kbm
+	SJkepr5aZK6cJo7iM5y/QNU9PQKhdZzICqmseIFOQt9r36WFONXFPwLsVj0lw5CN2b5l1+v3B5u
+	vk0uE9hDqh315gRdctqehwmEiSM1NzKzqTy01t5gBOunZZfDOc1/NeICS1KG9CFssQoJ9nyPA/p
+	xkkQSAe/4Qch+jx2dnAq3ysuft0jTDEPdhElN/g9t48lYo3k0HKbAP5kXFSrtzhAa9bZMfZ1o6N
+	q8dQ1sssVlWGuXBDmfm/hDOJ7nIJMHUOXijqzkI1Kd+z1DE=
+X-Google-Smtp-Source: AGHT+IFv9YuL/fzfRISpsvngTs+AOHJv036o9wJ92ZFpW3rksechl/oac0mMWei93fa2C8ODk7J6Xg==
+X-Received: by 2002:a05:6a00:8c3:b0:730:94e5:1ea2 with SMTP id d2e1a72fcca58-734790a2709mr5892899b3a.4.1740503168229;
+        Tue, 25 Feb 2025 09:06:08 -0800 (PST)
+Received: from DESKTOP-P76LG1N.localdomain ([14.162.192.11])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7347a6abb63sm1759887b3a.9.2025.02.25.09.06.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Feb 2025 09:06:07 -0800 (PST)
+From: Nam Tran <trannamatk@gmail.com>
+To: pavel@kernel.org,
+	lee@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org
 Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
+	linux-leds@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Justin Klaassen <justin@tidylabs.net>,
-	stable@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: rockchip: fix u2phy1_host status for NanoPi R4S
-Date: Tue, 25 Feb 2025 17:03:58 +0000
-Message-ID: <20250225170420.3898-1-justin@tidylabs.net>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <48c705e65cc8e8d4716b41a4a87170e3@manjaro.org>
-References: <48c705e65cc8e8d4716b41a4a87170e3@manjaro.org>
+	Nam Tran <trannamatk@gmail.com>
+Subject: [PATCH v1 0/2] leds: add new LED driver for TI LP5812
+Date: Wed, 26 Feb 2025 00:05:59 +0700
+Message-Id: <20250225170601.21334-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by Purelymail
-Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-The u2phy1_host should always have the same status as usb_host1_ehci
-and usb_host1_ohci, otherwise the EHCI and OHCI drivers may be
-initialized for a disabled usb port.
+From: Nam Tran <trannamatk@gmail.com>
+To: Pavel Machek <pavel@kernel.org>, Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 
-Per the NanoPi R4S schematic, the phy-supply for u2phy1_host is set to
-the vdd_5v regulator.
+This patch series adds support for the Texas Instruments LP5812 LED driver.
+Patch 1 adds the Device Tree (DT) bindings documentation.
+Patch 2 introduces the core driver implementation.
 
-Fixes: db792e9adbf8 ("rockchip: rk3399: Add support for FriendlyARM NanoPi =
-R4S")
-Cc: stable@vger.kernel.org
-Signed-off-by: Justin Klaassen <justin@tidylabs.net>
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+The LP5812 is an I2C-controlled LED driver capable of driving up to 4 LEDs with independent brightness control and pattern programming.
+This driver provides support through the Linux LED framework and includes device tree bindings for proper integration.
+
+This driver has been tested on Raspberry Pi 4 B using kernel version 6.14.0.
+
+I kindly request feedback from the community to ensure that this driver adheres to the Linux LED subsystem standards.
+
+Thank you for your consideration.
+
+Best regards,
+Nam
+
 ---
-v1 -> v2: Updated commit message, added Fixes: and Cc: stable tags
 
- arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v2:
+- Renamed DT bindings file from `leds-lp5812.yaml` to `ti,lp5812.yaml`.
+- Added LP5812 device tree node to `bcm2711-rpi-4b.dts` for Raspberry Pi 4B.
+- Updated core driver implementation to fix build errors in kernel version 6.14.0-rc4. (The v1 patch was only compatible with kernel version 6.1.93)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi b/arch/arm=
-64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi
-index b1c9bd0e63ef..8d94d9f91a5c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi
-@@ -115,7 +115,7 @@ &u2phy0_host {
- };
-=20
- &u2phy1_host {
--=09status =3D "disabled";
-+=09phy-supply =3D <&vdd_5v>;
- };
-=20
- &uart0 {
---=20
-2.47.1
-
+Signed-off-by: Nam Tran <trannamatk@gmail.com>
 
