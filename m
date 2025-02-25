@@ -1,89 +1,89 @@
-Return-Path: <devicetree+bounces-150810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFB9BA43998
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:34:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03CE2A439A0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:35:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C1843A7D46
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:34:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3B79174E9B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:35:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB55826137E;
-	Tue, 25 Feb 2025 09:34:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C95A263898;
+	Tue, 25 Feb 2025 09:34:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IwL/Tehi"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="D8a0RB3r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C412627E9
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 09:34:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C75CC262D20
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 09:34:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740476078; cv=none; b=RKiZfM6VgFBc+uXkD3tXErmXWQ/C/PMdCWGtUP1nspznT7tvoISVleD3Qu2UOLJ2PC/LPkEltoBMOeZCikhoBM7ApEw9ENTioDlbsEf1ROn+y8iqFCOwarAM8XX3CeANPqoHbsAYBNP4/coGkkTgWv3dob2Qx6mN5qtcjZQEN8M=
+	t=1740476084; cv=none; b=U57o3PLr5kux5Iwz4mm41zfqznq9qI5PzuU909aOfOBlbghv1gUt53GcuC4M7dfA2jscP8Im0opGJZVOUBAAQwzplZozLdxvL3FmrhmVjDhxTa2bwk4rXKG86YNT+IVxoV+o7IaGOsnD2oJFAdEpsSJa3iiv05pSRSL3S5A3ksQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740476078; c=relaxed/simple;
-	bh=VMaieC3p7d7h+BKd20qmksO2FRNzpQZ5H7nxfFEYOIs=;
+	s=arc-20240116; t=1740476084; c=relaxed/simple;
+	bh=HkGQp4f5hZyVT3mZhk8V9rDY2/ZkK33BHDhuHHrUTW8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZjMCLcFCYaAz8J3S9rH4dm4mSBSUfXk6y1nzRiDvuVbCIKkB42pJebEHE+75ZlkLQ2LdBHrPwk9h+rkHYhQEsuOY3zXejwUuPx5w8PuJMt00GqDYg6AwSAHM8Qd58WCzvaCgT7IK7srSu+JbHLYZzn232zbkXXG4Yz+Fj31pak4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IwL/Tehi; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:To:Cc; b=l3byaUFa5ccYjZAIbFijdYSiTmEYxqnZwKdlfJcsdUesGaGzilWhVUAiJOQRgF0M2rSmzT4Kq92TYYWB86DW6z0S8Zc+zygFektdwA0uZ3w5gGRSeYTgFEl1Wdm/PvxJL/b/1x1X6FVKHKTxIsxmaMfVS/RLiaUOmWc0kOTjwto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=D8a0RB3r; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51P8P2X7004984
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 09:34:36 GMT
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51P8BGwI020173
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 09:34:42 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XsE5WvYbRTtHjWkWh0b8hh2A7z6b+pDn2VzrFovXRtY=; b=IwL/TehiJt6ARZuo
-	Lb2dSAuX0wa1UEXr1/ds4U/0OLDjatl3I+X3xqfPk4QVzmc7cOt5KiFB1lUUhcnP
-	mk9FtHJcbQidYH8shPKXKSrY1L9kDI/j9uv1WhDMukA6wGj4SR4R+2ZEd4SEBqbo
-	VE2uI1PlYe77fRKoNnCkYG5PgQpGHYAD/DNR/97pClKkQgtghJdnp2JHx/yAxYbi
-	OTcgLn5uBsTcT/DracVte1crgTJMfE/ROOBcfG0FLcrub6lHDPH4mUX36s7tP2OR
-	zz5i/n5VgaiLMGE93uYZkfowkgJ2tnOHT5vK314m/7JHoR1GhSWAcVnEf0e71IFT
-	xanhKQ==
+	Cdyl6Kdke6YaeFojQXtf30VB8RI5y+oayrn/e2SqI6Y=; b=D8a0RB3r7zIiX+vO
+	P22hM0d56Y79FwngHhr5l3MdaRqNiCG9Xq6hVKbmwfaXpwGFXsqFsyIgKMItAvva
+	o+HtoO/IbkneTgwRxa/ji++FcBP/QKNM3EpRG0DgjHal2gknaecY1e474deYsVld
+	0jQ8SSJdvTVC9fRONNpTTLO/dklf7hpXSMTRf7fHjBTTZW+0tbVuhQQ/gM0ep/Cp
+	oT71dscAGf6+TOln94yw2qkvnAE24NmNn+BdFfHhVQSRaBZOAu2JwdHPgi/YijhJ
+	sEKggxgW35Y5SaBjZfp2fl8uPtHGJ7/uB/K+lvoJTzsqZOHQO1KJ3EoSiJs2JGZZ
+	O9RJNQ==
 Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 450m3dcc6q-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44y6t2r76p-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 09:34:36 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-2fc43be27f8so18205265a91.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 01:34:36 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 09:34:42 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-2f816a85facso11299026a91.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 01:34:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740476075; x=1741080875;
+        d=1e100.net; s=20230601; t=1740476081; x=1741080881;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XsE5WvYbRTtHjWkWh0b8hh2A7z6b+pDn2VzrFovXRtY=;
-        b=XIfyHkwRfEyYUrgoX3tOIW3HP4pr1Yj7Q/7h2ybIrz5tVMB3pKApbDyTyapsZ2KTM6
-         m2GIR6fjMG2h0veF+wS3R9vLcy9gUSCd3Lo7q3osy9hyWBLkiTyZ1ccukpF1Lil/+HBu
-         opY3HhLMaSAm8AGAUapEncpFLCbM/hNWPCJQme8VIdMyJshKU3ilPGVjykD7jULmnTC9
-         8On7btYJQ3BjpwdAmJl1AiLzZEM1vZGplUSRAYInVfBzNnT0HGJOYgotXQWZNAopUOW1
-         MHRPnQr+ZQFW+i7eSJ7b2vjSUDkMusCE5nFQgVlMcHwUjLCQd0I3ifC5xY/zFmVji7T0
-         JNDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVSkpmTCwtpY9F5DFzAS1Nb6qg8yZhNiJ77SXKM02SUhOq7QMQlDWxptjEs+ggG+kg5BKnvqNAHMLzi@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywwu8uX9lPZCapRl0+Zh19/N/Z5LFYWJDek0h3amBcoC2b1bKas
-	gmI8VS9h5hKFBhANzvTgViiIrIAaDwN+YrtHb32cQw0n4QazbQw5wYYhdZh8RsIsXGV1gVYDKTn
-	Lnz1rLyi+gR7bG8c6sCZyOx2dObiwBAfxg2Py+x+3MCqCytosHWLcjen/HaWN
-X-Gm-Gg: ASbGncsi4TnH1aTQGx0GV3G1D1fQL6C+UHx12jyYwDn8xLjlIq+E4Ir0gGz+lfJmGY6
-	JlI+x3KZ9ByTBIQylg2Ohv6MKvLfiojy3njgxSBR8HYPI8qRcV3g5n0jzrfO5iyfequP68JeyXS
-	gFlDSsMI1HH+CJwLEXMV/KNS0sI32sc3SWxO31/VkYWU63TGvPRcsfVu1Ok7ktz5hIj4O749/+h
-	TjJNtRrBk3mtkgT8cXLYHPsGUEjlLS/5KuVtLxVFpj4Pt6fUakwFWMgZ5bgFVgo2Zcq2B6CJuRY
-	oL5wTzFZRG/lhZI9UwvbSUA8lrtVx5eVg5clSKdEFXuF7SxYQZ0=
-X-Received: by 2002:a17:90b:38c3:b0:2f2:a664:df1a with SMTP id 98e67ed59e1d1-2fce779ffaemr29343154a91.2.1740476075259;
-        Tue, 25 Feb 2025 01:34:35 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE2B59jUe1Exesv/ylkZfCZktr0zWjqiDai3G8L/s1PyuX+VDChVsAlOE8MCqL5yJAHAxFlGQ==
-X-Received: by 2002:a17:90b:38c3:b0:2f2:a664:df1a with SMTP id 98e67ed59e1d1-2fce779ffaemr29343108a91.2.1740476074810;
-        Tue, 25 Feb 2025 01:34:34 -0800 (PST)
+        bh=Cdyl6Kdke6YaeFojQXtf30VB8RI5y+oayrn/e2SqI6Y=;
+        b=a7hkFRxl9GrFHxKUHG2j/OAuoBcF0ZszyNLH6zKo4oK3XoqdBtzmafDaeafZK/PYL5
+         YGqG6Roo53hpiTMgv0X5agHm2ZKx3CGecYv766UY86S3BrF2hRcs+ZnVyE0P8ZreOwR9
+         XcOxfKR7uBKtHsYPy8dGYcTSjPP7mbstulJgDNpRjlq8k67sD+BOppVWZ4eBOD6is11x
+         q2PVOiPzXtFJy2+Ng3NQDP/xyGArDJp1Unv/ADFB+t+NVRo4V68xDg+58sGM0kW3SR02
+         go0wLAn2IkCgqG2ZQCrd4Lst/ROz6eNIRaliC3LqVratuVV27KEZ2jcJblPx8jY1FHto
+         4+JA==
+X-Forwarded-Encrypted: i=1; AJvYcCVWFAh/Kbmbj5Fv0SIYtEPb9MT9eZBZJeVY6E4zeeuRsh/UIONK7FdJZdTfzoF54mXNgHoP516BMi0p@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPwiyWaE2zQXuP39EcDcO1JAOjuzl74kyK8uPUolMsi05Leq+j
+	2bP8qFmMt2qYOdLTtvb+Y6VgyUERRqgLejlp9rnXFCrlcc1ra7RBTmdzJboR2IxJ8nPZAydvhY8
+	fKRUOl4ClFEVhVp9d0ilTnMp/YcnCNipM4bTezd3WyTcDRVktnkRYZjdvhE61
+X-Gm-Gg: ASbGncvDVhS//ZEm5mY6n4rwRqNe8Z2+v0v9oKI3EI+7HDQycGZe90eBTX6Bkp3U3n/
+	6lUaVMnsbTRBopraVyLz3onMPex6ZRGcza66dhsJMYclrkfq3muJAxtZ6BGuSAQOfS+pS6cN2pj
+	b3055k28KNLYE8wIhINMH9wP3/3pvu7K90g7MLhTqOr1pnbbmodZePHUL8ln/sjFuvnaxij8Naw
+	uY33wDODFL70K2NGaTUZPbYcOMRq3NVZLvuqA25M1IJcfMWcqiQwnHWcjdJ+o5yucJUCUlVRyDw
+	gY84mrQM66pXWhiWrSYZv3soiKdr5+f4JFOI28wwhos+zAjSSh0=
+X-Received: by 2002:a17:90b:2e8c:b0:2ee:d024:e4e2 with SMTP id 98e67ed59e1d1-2fce868cc3bmr29003218a91.7.1740476081282;
+        Tue, 25 Feb 2025 01:34:41 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEGr5dYTc2AoXKciY6yWDKYzrILdl2vJlc/XmwUCQsBft75O5wJyu8qmlUhamieBoEO53lW4w==
+X-Received: by 2002:a17:90b:2e8c:b0:2ee:d024:e4e2 with SMTP id 98e67ed59e1d1-2fce868cc3bmr29003190a91.7.1740476080871;
+        Tue, 25 Feb 2025 01:34:40 -0800 (PST)
 Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fe6a3dec52sm1080770a91.20.2025.02.25.01.34.29
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fe6a3dec52sm1080770a91.20.2025.02.25.01.34.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2025 01:34:34 -0800 (PST)
+        Tue, 25 Feb 2025 01:34:40 -0800 (PST)
 From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Tue, 25 Feb 2025 15:03:58 +0530
-Subject: [PATCH v4 01/10] dt-bindings: PCI: Add binding for Toshiba TC956x
- PCIe switch
+Date: Tue, 25 Feb 2025 15:03:59 +0530
+Subject: [PATCH v4 02/10] arm64: dts: qcom: qcs6490-rb3gen2: Add TC956x
+ PCIe switch node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,7 +92,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250225-qps615_v4_1-v4-1-e08633a7bdf8@oss.qualcomm.com>
+Message-Id: <20250225-qps615_v4_1-v4-2-e08633a7bdf8@oss.qualcomm.com>
 References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
 In-Reply-To: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
 To: Bjorn Helgaas <bhelgaas@google.com>,
@@ -113,220 +113,193 @@ Cc: quic_vbadigan@quicnic.com, amitk@kernel.org, dmitry.baryshkov@linaro.org,
         jorge.ramirez@oss.qualcomm.com,
         Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1740476062; l=5709;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740476062; l=4401;
  i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=brkFgGbvu8Si1vNLuH/EyodmI+pPyxs89QuPsEBMO1M=;
- b=8VJIODrxDNySrUb8DA3brne3D67GwyM9bxMEYuBbY/IBld+zlE7Q3K59qObaWFZ78uPgyN+zR
- yjnkB/X8NU/D9ploAU1/XjeUiKoEQdlY9d7mdqAagOnOI4o9YZUgREw
+ bh=HkGQp4f5hZyVT3mZhk8V9rDY2/ZkK33BHDhuHHrUTW8=;
+ b=BHVLAnv7hiU61nR3ANxetqjSkTrZ6HoEYepvQt/giU0Nr3mEMACl/9nBOX6Sl2G/ZJ1qQXmue
+ TwGPNgbYCDVAly1AM2MmUf3tpIrE2JpFaVOI/H/dBqAzcwVRe9Bvlfo
 X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
  pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Proofpoint-GUID: UeBf1NNgSW26oWR0xFrs8i5drguVMSgK
-X-Proofpoint-ORIG-GUID: UeBf1NNgSW26oWR0xFrs8i5drguVMSgK
+X-Proofpoint-ORIG-GUID: z0zndlr6SwqdHpsk1EiynAcJ1UsYRPPs
+X-Proofpoint-GUID: z0zndlr6SwqdHpsk1EiynAcJ1UsYRPPs
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-02-25_03,2025-02-24_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- bulkscore=0 impostorscore=0 phishscore=0 mlxscore=0 mlxlogscore=999
- clxscore=1015 malwarescore=0 lowpriorityscore=0 adultscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
+ spamscore=0 priorityscore=1501 mlxscore=0 phishscore=0 malwarescore=0
+ adultscore=0 bulkscore=0 lowpriorityscore=0 impostorscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.19.0-2502100000 definitions=main-2502250066
 
-From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Add a node for the TC956x PCIe switch, which has three downstream ports.
+Two embedded Ethernet devices are present on one of the downstream ports.
 
-Add a device tree binding for the Toshiba TC956x PCIe switch, which
-provides an Ethernet MAC integrated to the 3rd downstream port and two
-downstream PCIe ports.
+Power to the TC956x is supplied through two LDO regulators, controlled by
+two GPIOs, which are added as fixed regulators. Configure the TC956x
+through I2C.
 
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- .../devicetree/bindings/pci/toshiba,tc956x.yaml    | 178 +++++++++++++++++++++
- 1 file changed, 178 insertions(+)
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 116 +++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi         |   2 +-
+ 2 files changed, 117 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/pci/toshiba,tc956x.yaml b/Documentation/devicetree/bindings/pci/toshiba,tc956x.yaml
-new file mode 100644
-index 000000000000..ffed23004f0d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/toshiba,tc956x.yaml
-@@ -0,0 +1,178 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/toshiba,tc956x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+index 7a36c90ad4ec..13dbb24a3179 100644
+--- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+@@ -218,6 +218,31 @@ vph_pwr: vph-pwr-regulator {
+ 		regulator-min-microvolt = <3700000>;
+ 		regulator-max-microvolt = <3700000>;
+ 	};
 +
-+title: Toshiba TC956x PCIe switch
++	vdd_ntn_0p9: regulator-vdd-ntn-0p9 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDD_NTN_0P9";
++		gpio = <&pm8350c_gpios 2 GPIO_ACTIVE_HIGH>;
++		regulator-min-microvolt = <899400>;
++		regulator-max-microvolt = <899400>;
++		enable-active-high;
++		pinctrl-0 = <&ntn_0p9_en>;
++		pinctrl-names = "default";
++		regulator-enable-ramp-delay = <4300>;
++	};
 +
-+maintainers:
-+  - Krishna chaitanya chundru <quic_krichai@quicinc.com>
++	vdd_ntn_1p8: regulator-vdd-ntn-1p8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDD_NTN_1P8";
++		gpio = <&pm8350c_gpios 3 GPIO_ACTIVE_HIGH>;
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		enable-active-high;
++		pinctrl-0 = <&ntn_1p8_en>;
++		pinctrl-names = "default";
++		regulator-enable-ramp-delay = <10000>;
++	};
 +
-+description: |
-+  Toshiba TC956x PCIe switch has one upstream and three downstream
-+  ports. The 3rd downstream port has integrated endpoint device of
-+  Ethernet MAC. Other two downstream ports are supposed to connect
-+  to external device.
+ };
+ 
+ &apps_rsc {
+@@ -735,6 +760,75 @@ &pcie1_phy {
+ 	status = "okay";
+ };
+ 
++&pcie1_port {
++	pcie@0,0 {
++		compatible = "pci1179,0623", "pciclass,0604";
++		reg = <0x10000 0x0 0x0 0x0 0x0>;
++		#address-cells = <3>;
++		#size-cells = <2>;
 +
-+  The TC956x PCIe switch can be configured through I2C interface before
-+  PCIe link is established to change FTS, ASPM related entry delays,
-+  tx amplitude etc for better power efficiency and functionality.
++		device_type = "pci";
++		ranges;
++		bus-range = <0x2 0xff>;
 +
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - "pci1179,0623"
-+      - const: pciclass,0604
++		vddc-supply = <&vdd_ntn_0p9>;
++		vdd18-supply = <&vdd_ntn_1p8>;
++		vdd09-supply = <&vdd_ntn_0p9>;
++		vddio1-supply = <&vdd_ntn_1p8>;
++		vddio2-supply = <&vdd_ntn_1p8>;
++		vddio18-supply = <&vdd_ntn_1p8>;
 +
-+  reg:
-+    maxItems: 1
++		i2c-parent = <&i2c0 0x77>;
 +
-+  i2c-parent:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      A phandle to the parent I2C node and the slave address of the device
-+      used to do configure tc956x to change FTS, tx amplitude etc.
-+    items:
-+      - description: Phandle to the I2C controller node
-+      - description: I2C slave address
++		reset-gpios = <&pm8350c_gpios 1 GPIO_ACTIVE_LOW>;
 +
-+  vdd18-supply: true
++		pcie@1,0 {
++			reg = <0x20800 0x0 0x0 0x0 0x0>;
++			#address-cells = <3>;
++			#size-cells = <2>;
 +
-+  vdd09-supply: true
++			device_type = "pci";
++			ranges;
++			bus-range = <0x3 0xff>;
++		};
 +
-+  vddc-supply: true
++		pcie@2,0 {
++			reg = <0x21000 0x0 0x0 0x0 0x0>;
++			#address-cells = <3>;
++			#size-cells = <2>;
 +
-+  vddio1-supply: true
++			device_type = "pci";
++			ranges;
++			bus-range = <0x4 0xff>;
++		};
 +
-+  vddio2-supply: true
++		pcie@3,0 {
++			reg = <0x21800 0x0 0x0 0x0 0x0>;
++			#address-cells = <3>;
++			#size-cells = <2>;
++			device_type = "pci";
++			ranges;
++			bus-range = <0x5 0xff>;
 +
-+  vddio18-supply: true
++			pcie@0,0 {
++				reg = <0x50000 0x0 0x0 0x0 0x0>;
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
++				ranges;
++			};
 +
-+  reset-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO controlling the RESX# pin.
++			pcie@0,1 {
++				reg = <0x50100 0x0 0x0 0x0 0x0>;
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
++				ranges;
++			};
++		};
++	};
++};
 +
-+allOf:
-+  - $ref: "#/$defs/tc956x-node"
+ &pm7325_gpios {
+ 	kypd_vol_up_n: kypd-vol-up-n-state {
+ 		pins = "gpio6";
+@@ -839,6 +933,28 @@ &sdhc_2 {
+ 	status = "okay";
+ };
+ 
++&pm8350c_gpios {
++	ntn_0p9_en: ntn-0p9-en-state {
++		pins = "gpio2";
++		function = "normal";
 +
-+patternProperties:
-+  "^pcie@[1-3],0$":
-+    description:
-+      child nodes describing the internal downstream ports
-+      the tc956x switch.
-+    type: object
-+    $ref: "#/$defs/tc956x-node"
-+    unevaluatedProperties: false
++		bias-disable;
++		input-disable;
++		output-enable;
++		power-source = <0>;
++	};
 +
-+$defs:
-+  tc956x-node:
-+    type: object
++	ntn_1p8_en: ntn-1p8-en-state {
++		pins = "gpio3";
++		function = "normal";
 +
-+    properties:
-+      tc956x,tx-amplitude-microvolt:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description:
-+          Change Tx Margin setting for low power consumption.
++		bias-disable;
++		input-disable;
++		output-enable;
++		power-source = <0>;
++	};
++};
 +
-+      tc956x,no-dfe-support:
-+        type: boolean
-+        description:
-+          Disable DFE (Decision Feedback Equalizer), which mitigates
-+          intersymbol interference and some reflections caused by impedance mismatches.
-+
-+    allOf:
-+      - $ref: /schemas/pci/pci-pci-bridge.yaml#
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - vdd18-supply
-+  - vdd09-supply
-+  - vddc-supply
-+  - vddio1-supply
-+  - vddio2-supply
-+  - vddio18-supply
-+  - i2c-parent
-+  - reset-gpios
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    pcie {
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+
-+        pcie@0 {
-+            device_type = "pci";
-+            reg = <0x0 0x0 0x0 0x0 0x0>;
-+
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            ranges;
-+            bus-range = <0x01 0xff>;
-+
-+            pcie@0,0 {
-+                compatible = "pci1179,0623", "pciclass,0604";
-+
-+                reg = <0x10000 0x0 0x0 0x0 0x0>;
-+                device_type = "pci";
-+                #address-cells = <3>;
-+                #size-cells = <2>;
-+                ranges;
-+                bus-range = <0x02 0xff>;
-+
-+                i2c-parent = <&qup_i2c 0x77>;
-+
-+                vdd18-supply = <&vdd>;
-+                vdd09-supply = <&vdd>;
-+                vddc-supply = <&vdd>;
-+                vddio1-supply = <&vdd>;
-+                vddio2-supply = <&vdd>;
-+                vddio18-supply = <&vdd>;
-+
-+                reset-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
-+
-+                pcie@1,0 {
-+                    reg = <0x20800 0x0 0x0 0x0 0x0>;
-+                    #address-cells = <3>;
-+                    #size-cells = <2>;
-+                    device_type = "pci";
-+                    ranges;
-+                    bus-range = <0x03 0xff>;
-+
-+                    tc956x,no-dfe-support;
-+                };
-+
-+                pcie@2,0 {
-+                    reg = <0x21000 0x0 0x0 0x0 0x0>;
-+                    #address-cells = <3>;
-+                    #size-cells = <2>;
-+                    device_type = "pci";
-+                    ranges;
-+                    bus-range = <0x04 0xff>;
-+                };
-+
-+                pcie@3,0 {
-+                    reg = <0x21800 0x0 0x0 0x0 0x0>;
-+                    #address-cells = <3>;
-+                    #size-cells = <2>;
-+                    device_type = "pci";
-+                    ranges;
-+                    bus-range = <0x05 0xff>;
-+
-+                    tc956x,tx-amplitude-microvolt = <10>;
-+                    ethernet@0,0 {
-+                        reg = <0x50000 0x0 0x0 0x0 0x0>;
-+                    };
-+
-+                    ethernet@0,1 {
-+                        reg = <0x50100 0x0 0x0 0x0 0x0>;
-+                    };
-+                };
-+            };
-+        };
-+    };
+ &tlmm {
+ 	gpio-reserved-ranges = <32 2>, /* ADSP */
+ 			       <48 4>; /* NFC */
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 0f2caf36910b..b2e2b1f26731 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2284,7 +2284,7 @@ pcie1: pcie@1c08000 {
+ 
+ 			status = "disabled";
+ 
+-			pcie@0 {
++			pcie1_port: pcie@0 {
+ 				device_type = "pci";
+ 				reg = <0x0 0x0 0x0 0x0 0x0>;
+ 				bus-range = <0x01 0xff>;
 
 -- 
 2.34.1
