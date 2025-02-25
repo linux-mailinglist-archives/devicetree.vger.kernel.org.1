@@ -1,96 +1,173 @@
-Return-Path: <devicetree+bounces-151002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01E02A44201
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:11:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B82BA441C1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:06:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC7E8175DAC
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:08:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 536FE170937
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:06:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 585ED26BD98;
-	Tue, 25 Feb 2025 14:08:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDCBB26A0FF;
+	Tue, 25 Feb 2025 14:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hMt8Tiqy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dKWz4F6d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855EF2686B3;
-	Tue, 25 Feb 2025 14:08:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEFEE269CF5;
+	Tue, 25 Feb 2025 14:05:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740492482; cv=none; b=a+9SKpRChuT7GRsq7ccE85aiQgljUqb8T/PaIwi8P8d0RhntItReVyePOpUD40BaUtDjfvIelLAvHjmXteKOa6ldDsBC4qNgmvnDelvhbRsOgaM04XfNa7ApgENonzngeOxmpZrJFvSWC9KkE39RrybkJ02PqK0X/ZEz5iePgyY=
+	t=1740492343; cv=none; b=JNlnMjyE+h6+2Fo5RUziVWs1OKydFyazytqv9f+md+wQPTLM52g/khblKl1mrmqFouzxtXDSrEKC46aRLNwqYrOSLqmiR+tBjtn7ph+mO5b/z30ZCKjWuABJH9+r/bSrCblyuvG5wfdulqyColhxHB0vsocirzbYOtY8e7GkKUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740492482; c=relaxed/simple;
-	bh=OV9F9KqPwKQyiJmD+vFaweQLR+YT46dDjh77TsIN4zI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=oTuoYfHr1jb2ArMblQiI3TK5rbtl+SRiGtmhMxizbXFqi+OG5yqnuOvtJ5xeZq3ZIxq9IW7zkXKpEDjmQOSuKWNX9f6RpZv6qb0xamEeh3Tr+ANVjdEcBs+VQZSWk5oC3RdUu8lUgjCh8KhE69Ae6no3W5bcGBVp1GeOQEFXjOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hMt8Tiqy; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740492478;
-	bh=OV9F9KqPwKQyiJmD+vFaweQLR+YT46dDjh77TsIN4zI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=hMt8TiqyYmncuyjgIQjcxwYxCWnpKDcC+iLbY8xREGK5ksBPnGIm9BBUtn2GPh/h6
-	 0dmf4eY6wieIZR6Hx/0SzGeH7azbu8lD7hL+usIe8VMCY5LiJ809XHyBTENCNLI7Uh
-	 Gv7md7aiNzD7uehvg3K0stqu+uxr7IUTnmVDsPY+0AljivHEh7RyeB970XmngeYHbl
-	 aMRT3w3hT4uIQMQIiZgqAzbApIybx71eU8gBOvCHf+/cqVZUzqq091+64BsYEL6tVl
-	 2Esi2q/LastZwWcoqcL2gxAegAHK+y4W/OhSXPUP/4jkKQzKduse5/nTcs4HoTfKaE
-	 sqSbJasRTvWWg==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 16CF617E087E;
-	Tue, 25 Feb 2025 15:07:58 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: matthias.bgg@gmail.com, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- kernel@collabora.com, pablo.sun@mediatek.com
-In-Reply-To: <20250213112008.56394-1-angelogioacchino.delregno@collabora.com>
-References: <20250213112008.56394-1-angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v1 0/3] MediaTek MT8195/MT8395 Display Controller Graph
-Message-Id: <174049247800.77227.18410008304398234380.b4-ty@collabora.com>
-Date: Tue, 25 Feb 2025 15:07:58 +0100
+	s=arc-20240116; t=1740492343; c=relaxed/simple;
+	bh=kwghDFALfMvkIRmE1HPwrpB/0PzINC5FZ1kBkLfD77w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cQC34gRgR8o34ZFl6+FTSiL4mDDzNNakEWfJpAdoapv9MgqdIFeZc2qwXsJu/Z/+mzJ+EwZ0Y3mgmkfKWHAHDdDp1dDPV7iLlAlXvDSJPOofFb2940jNRucsfzQHslmCXMe/3KANVFjEInT/l/X6OozowHZ8/pNnH2Af1KLc3oM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dKWz4F6d; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5e04064af07so8747093a12.0;
+        Tue, 25 Feb 2025 06:05:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740492340; x=1741097140; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tPd/d1lS+e5D1SoZ8oB+qy8yBKc1e4tlJLwqgs9YB9g=;
+        b=dKWz4F6dk5lcJFaLBki+JN5UBVuaAQY1bcAQMbEHEjabOwHFF8PyJ4iVn+Yrda91Vr
+         9NAgHqKrPfpk511jRJNdFZCrwsFHAYMITy9WEkI0Xk59lxx43MNSmCvnfUdaQAH62OfZ
+         Yo2Yyx9OTL1UXnaOjasd3epKhrz4ZsfdfZ3HOb2mLmgMo+MQMLnO4c+GZcvindiSAyga
+         pJ2Qtf6mTdvD/3UeEZAVGgaLurjesTux5gj/CJpCn9PKcBwUZjC1wp5bN5BvCoKtqPFK
+         cQrlKFVhLwJk4Ywf21NbLRL7NAbCHXoCL+2AT1ic2Sx5izUVgYa4oh83Jktx8tnYRKGj
+         +AJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740492340; x=1741097140;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tPd/d1lS+e5D1SoZ8oB+qy8yBKc1e4tlJLwqgs9YB9g=;
+        b=mJXJgDpgVOxkQntWSIijd85kV8qT1edhNJLfiGwf9icD8p+m5+KQVfD/pQlGk/OMSh
+         nQTORtuWIiKLpaOqa517UTBXrob1XpB5wZ4KMXQ65ZwrC2sWFfI+OdrykUGml5YTxCFQ
+         GzGAGsP1dv4CWUU1zPhjI1OBXHNzfTzc7BMuXiqV0PCBVBe5eiFgro8NVfO4eS+gDSoW
+         IjY6VPhlpNe0icRMpRaCMYMWvLRq2e365gkW+dUFbe/UEob63xpfNhXhSPYfl8cSa4Zh
+         rYrt76yxuPE68r/Ot7c5E3EReStzpWO68YaqKvRTDMa50X0tNM5k9+6hkDkrpw0a28CC
+         lWIA==
+X-Forwarded-Encrypted: i=1; AJvYcCX/UhE2PykRkw8QfFgGU+isRRMso4EMtx74GzyVhugHKowsV6XbuiERD/Jz2QMK2TJ5yCE+0bMNpYRTLEZv@vger.kernel.org, AJvYcCXN60XqyjMR+hDGNJe2drnGi/5X+XlP3NxdubYXTezWB3JX65kjtWiLYH6qNwug/webVBaKWK+XrgZH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzz8l8v4D5OlVUvztb5hDGz7tkg8xqFwHlpc2niC0sWJ7wS3syU
+	LcKz0pDQvVDwdLbXhTopAA1qiXMfOTnuRtlzjRtw1WtdhvY6iEiMCYFnmVoF
+X-Gm-Gg: ASbGnctVWrk/7so07eUAIAPrgwkjsq9ikJxoE2hWv4qwDZ5qzmSPQkEbIRw83M5sjCW
+	3BkVRUbiuMyfrCelQAkF+8S3riG51Wdxvzvzs3bgI6K1fiNjHV7ryIfzgGFKMWKmMemLYo6SxW/
+	3osKtNdp6jg8XcoAnSPmmno0Ati8xdp9CQPo9MEK9fffcKeIolzj9a6t8l/sKpJIGV832AV9Qo0
+	h0Yn8rF9XYpSU/7MbmGZ/BxUIiMhOCJsG/7NEh06Px1R0R08ngsx0f/pTq+BMQFWQLFBofOsjG4
+	dCnWW75NNKT3iIoJYOQoSEZstp3Ag8W2yUdOC/soqbjjJfOfMI8=
+X-Google-Smtp-Source: AGHT+IEduCdNbL7IFjCYL/sa3Uw1eSpI/ch7S+DMg3yhWwQhhBhMD+Xp89Ze8+kev4lk/55fC5U9WQ==
+X-Received: by 2002:a05:6402:1e8c:b0:5de:3478:269b with SMTP id 4fb4d7f45d1cf-5e44ba3ff2emr3170354a12.32.1740492339723;
+        Tue, 25 Feb 2025 06:05:39 -0800 (PST)
+Received: from [192.168.6.238] ([92.120.5.7])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e45b716aadsm1258001a12.36.2025.02.25.06.05.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Feb 2025 06:05:39 -0800 (PST)
+Message-ID: <cd6a84cd-ff17-45df-becc-9bfc74522f73@gmail.com>
+Date: Tue, 25 Feb 2025 16:14:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] arm64: dts: imx8mp: convert 'aips5' to 'aipstz5'
+Content-Language: en-GB
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang
+ <shengjiu.wang@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250221191909.31874-1-laurentiumihalcea111@gmail.com>
+ <20250221191909.31874-5-laurentiumihalcea111@gmail.com>
+ <Z7jahtO3bxjkMfnc@lizhi-Precision-Tower-5810>
+From: Mihalcea Laurentiu <laurentiumihalcea111@gmail.com>
+In-Reply-To: <Z7jahtO3bxjkMfnc@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
-
-On Thu, 13 Feb 2025 12:20:05 +0100, AngeloGioacchino Del Regno wrote:
-> This series adds a full OF Graph for the Display Controller in the
-> MT8195 dtsi, and configures the MT8195 Cherry devices to use it.
-> 
-> This was mainly done to allow different display controller paths
-> for the Radxa NIO 12L board (compared to Chromebooks), and this
-> series contains a preconfiguration for the DSI0 pipeline.
-> 
-> [...]
-
-Applied to v6.14-next/dts64, thanks!
-
-[1/3] arm64: dts: mediatek: mt8195: Add base display controller graph
-      commit: f49708b18c7d5f3720499141eed326697afec3a9
-[2/3] arm64: mediatek: mt8195-cherry: Add graph for eDP and DP displays
-      commit: 44d18b4497b335b0e9044dbebd2a2371363a0d77
-[3/3] arm64: dts: mediatek: mt8395-nio-12l: Preconfigure DSI0 pipeline
-      commit: eb5a199a44f866d5de707f11d579b6517c060185
-
-Cheers,
-Angelo
 
 
+On 21.02.2025 21:56, Frank Li wrote:
+> On Fri, Feb 21, 2025 at 02:19:08PM -0500, Laurentiu Mihalcea wrote:
+>> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>>
+>> AIPS5 is actually AIPSTZ5 as it offers some security-related
+>> configurations. Since these configurations need to be applied before
+>> accessing any of the peripherals on the bus, it's better to make AIPSTZ5
+>> be their parent instead of keeping AIPS5 and adding a child node for
+>> AIPSTZ5. Also, because of the security configurations, the address space
+>> of the bus has to be changed to that of the configuration registers.
+> The orginal 0x30c0_0000..0x31200000 include 0x30df0000, why not map only
+> config address part in your drivers.
+>
+> Frank
+
+
+Any concerns/anything wrong with current approach?
+
+
+I find it a bit awkward to have the whole bus address space
+
+in the DT given that we're only interested in using the access
+
+controller register space.
+
+
+I'm fine with the approach you suggested but I don't see a
+
+reason for using it?
+
+
+>
+>> Finally, since AIPSTZ5 belongs to the AUDIOMIX power domain, add the
+>> missing 'power-domains' property. The domain needs to be powered on before
+>> attempting to configure the security-related registers.
+>>
+>> The DT node name is not changed to avoid potential issues with DTs in
+>> which this node is referenced.
+>>
+>> Co-developed-by: Daniel Baluta <daniel.baluta@nxp.com>
+>> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+>> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>> ---
+>>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 8 +++++---
+>>  1 file changed, 5 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>> index e0d3b8cba221..a1d9b834d2da 100644
+>> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>> @@ -1399,11 +1399,13 @@ eqos: ethernet@30bf0000 {
+>>  			};
+>>  		};
+>>
+>> -		aips5: bus@30c00000 {
+>> -			compatible = "fsl,aips-bus", "simple-bus";
+>> -			reg = <0x30c00000 0x400000>;
+>> +		aips5: bus@30df0000 {
+>> +			compatible = "fsl,imx8mp-aipstz", "simple-bus";
+>> +			reg = <0x30df0000 0x10000>;
+>> +			power-domains = <&pgc_audio>;
+>>  			#address-cells = <1>;
+>>  			#size-cells = <1>;
+>> +			#access-controller-cells = <0>;
+>>  			ranges;
+>>
+>>  			spba-bus@30c00000 {
+>> --
+>> 2.34.1
+>>
 
