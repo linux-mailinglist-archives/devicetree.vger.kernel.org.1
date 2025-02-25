@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-151178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF3BEA44AC7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:44:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AFC2A44AD9
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:48:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED4574231EE
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:44:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7469189CA9A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:48:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A58A1A0BF1;
-	Tue, 25 Feb 2025 18:44:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3512E19CD1E;
+	Tue, 25 Feb 2025 18:48:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="utn3/Uni"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S4gcDtfO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B0551922DD;
-	Tue, 25 Feb 2025 18:44:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F7A2197A67;
+	Tue, 25 Feb 2025 18:48:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740509058; cv=none; b=t8k2jm59PY58D5yS5MuaWo1N9yOV7G9tsUPPjLRffOlmJuESQ9C6S4LwxfTqmfdxuhQ1AzvG/XNwRRvE4HuK1XX4FS0STG6AcI+ER/YFoA02GTe+oVXgAbIp6iHHb594iDPD5fP00Rn8t6CFprQoytabattJ0tgBcA2HZbD+G8M=
+	t=1740509306; cv=none; b=FJSd1SS/PLnSpWK17Nz1GE9KhGMxAoZi6HqtU04NHocRcJQXwHbxstbs195XbbPONpxAtrF2mwr76UFjZ4xD49I0IkTlOQ4sxIm2KChGxrTwXF0K6mPJgQQzUJaCCKwHrFAEhaloqKH9lVzW1S/uavveLPXvG455WFIACm6R7JI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740509058; c=relaxed/simple;
-	bh=dn6VZ1CnV+ktWgFz95nA4nnuqJfQUAF2pAupsrhvR7Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aiHiTkWAb/8d/Iu3GsMbIsQIzobizljglt4T+ed7HHhhIr7KErSmh/FkCNUH5QRUMuGI3k9kCHUysJ17ijuzOJEHLe9RVlVQCmfwTQ/ju4EeFe/Du9d1IUqzwoQU/2rZDBUYSJXn1mJk8MGVGgy5D/NDbPGp01kne+sclnmcuWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=utn3/Uni; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30670C4CEDD;
-	Tue, 25 Feb 2025 18:44:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740509057;
-	bh=dn6VZ1CnV+ktWgFz95nA4nnuqJfQUAF2pAupsrhvR7Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=utn3/UniPOs0994n7y5/O26OSjzPWcTzbB448hKXUZQTOCzHCZnoJd/2dOM1eCz7u
-	 Gh48seRBbGwC+4FKBOyjkdE2VTxVf2ssfU0RtFMkwyH3taO/dZU+cZ3jcgLBcbhrtb
-	 q9Iw2ziAIITcffViIlyEIrrOepnofuuAKEelXl178cOSqG1WSlmwj4oJTUKaRCOGLi
-	 BwU5NQNt4u8uz9nPuyXPs3D6QwDIurV8cEdpuNtPPPS5zUciaRYaHFVV9ANwziO43d
-	 +AoWrrs0ETQr0IGAtP/kRK092GS+RcNJdiIGwIGclrM6xik6I3iEJH2SYfYh76xQLx
-	 wgChZOK864Ntw==
-Message-ID: <b150ef5e-08b3-4747-8fd3-7b60410513a1@kernel.org>
-Date: Tue, 25 Feb 2025 19:44:13 +0100
+	s=arc-20240116; t=1740509306; c=relaxed/simple;
+	bh=k8IVphafgPFQdg6tJ0lBrhgoq44ce4Pd2tJlvx6fDD0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Iy35gVaKcffhswlYjyvOB1cOyhePQiSCZzFZICXZW8H/n+O57h8cmXcUkPsH3KZBpmoltx7w9wr2MmKg4yQfj5Z8gpxvhMPlEGUarISYTLpMAfFoUfnf5BWN0fQ/AseDzcMgccm347cdQiyrSAhI6ZbLSecugdzDurWS6wOM1PI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S4gcDtfO; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-abb90f68f8cso1134178266b.3;
+        Tue, 25 Feb 2025 10:48:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740509302; x=1741114102; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=XKPdeJEIm5j9QWNBqcrVgnkGdH/Cc0RtDIhKeCC9ldQ=;
+        b=S4gcDtfO9i1fXLGqn9fePF08VfsUmUmNJEnMxkIUtiBJSEVgfd3ZtxF2kKsfyzHUBS
+         7C/O0BrMRdjhsDbPNRV9fGu89s97jKsGRGPoCO+H3zqsKEFgDSOnWBmkc7tL19SfZvld
+         d8C8YEFfxTiS1/y/C7FjW8xA12AjDTg8uMkSPNSwqAkU3kVgu6qDOLs+MJkhLHEf+hvX
+         YVcT4T8VY3s+3sHXnYloXxt1UiAicfc9ZftzjOfB0bSnrOk/ZbTOPNm2r6OdAodzWcr5
+         h3cPCjBnrjs2r+POCMs2/iXmn9/vypZ3SPpH1IF/rELm8+mjTDL4vzo4hDTJcDvQLYbE
+         6M4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740509302; x=1741114102;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XKPdeJEIm5j9QWNBqcrVgnkGdH/Cc0RtDIhKeCC9ldQ=;
+        b=V7Jaqnm35NsfrGsGuIOC9vUIpNTPC9/zQG9oz7hq7mrYdVnM0xQhnyq77TWI8WjI14
+         DzrG8k8f1QcWV6k4G6HxmCRi4T9fdfy+9pXoeb4oK6liRmTaBESyfnocP7vtr9THXcKV
+         NWxJ+qHWNoq1Z1U6sVSyH5/9RyppzR3KIpfI8AouhIJ4qUYNxLg3Gkp4EzARalsMU99r
+         YiV0TZoL8wBo2VRptggJXcHj6Mr9INSM+EZD861HgObZbss4g6tY1QnT4+iwwsuxCg/7
+         QCIxA3BUvrHlVXuaiGpaVX5IjEJU2UX5HacxYJYRtXL6HkPvHKB31v8Tz2O8tu8sQXQ2
+         sFcA==
+X-Forwarded-Encrypted: i=1; AJvYcCUz13LWrq3moAEDp2CPjVTnizeHxHi42mg1HWXs74XzSrMkB/yvVBi9v+hGDyT/K+wMggbS2oxFB8L03Oby@vger.kernel.org, AJvYcCXQvvEVk34zltnorf1t1EESBN+14v2NMyCEXCsnL9cdQFF5sVoADbHzpXDiZctqeXNK/n7ZwDB2qcXi@vger.kernel.org, AJvYcCXTwY0Eizhq+twNCWEJjYhAHZIdcpmcN/tLzFY+RIz3HUKjvyFiu3CMfa/LDUSXrqpD6FcRljHkWU05@vger.kernel.org
+X-Gm-Message-State: AOJu0YzY9fgPG5soZAZff85Iypt+EHR9jEiBv7uzKl0chwa05PzbBx3D
+	akVJxFNPinfCMqAFPHd/+XK/8nJB3sycEsnI4nL9FkY0fAowaGfL
+X-Gm-Gg: ASbGncsvaYGg3xeOF/POFAX0HvqJj1Vl7e6hEtBz/iQ0O7yinugYzGWLTdwgZLNLdAq
+	7b2xfY5FTYrvPwe4UolKyu6t2bI+vUUc0bCjBADsJZkH/MFF49MvvFOaKx8EFkaB/HnBrHJiUPW
+	zGzefdtTXqDBfHLFG7u/hH3GyUyyLQwDQ9uHL0RXvt9NKHrHYfoN9inJrb/OWFZVBlB72BcreYE
+	d7fjNPoSo50sul9tqiDSNG/FgJJVH2jPb0xLG0QdZzm6eBhGzUshPSn1CrZ6EUHxtnvPG/B+9yD
+	Zrb0+ZopbdJtq8jhpFt+sWWhkMywuDihSzp/VrI8YtcVVDQEgy9Cpwf6SLY2iAwB6e6px5z0PZs
+	y
+X-Google-Smtp-Source: AGHT+IHSjccqHYhEVYhXqYCUvC+f2bEC9jFMNeFPtwxhRaojPOSAbGXHZn71Dib+UeNS7hTmmNDCqw==
+X-Received: by 2002:a17:907:7fa1:b0:abb:9c8a:fbcd with SMTP id a640c23a62f3a-abed107b0e2mr500552266b.53.1740509302080;
+        Tue, 25 Feb 2025 10:48:22 -0800 (PST)
+Received: from [192.168.50.244] (83.8.202.192.ipv4.supernova.orange.pl. [83.8.202.192])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abed1da56b2sm183428866b.79.2025.02.25.10.48.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Feb 2025 10:48:21 -0800 (PST)
+Message-ID: <238b8798-1c6f-4f60-b30e-766142a09306@gmail.com>
+Date: Tue, 25 Feb 2025 19:48:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,95 +82,144 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] mfd: sec: add support for S2MPU05 PMIC
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250219-exynos7870-pmic-regulators-v2-0-1ea86fb332f7@disroot.org>
- <20250219-exynos7870-pmic-regulators-v2-2-1ea86fb332f7@disroot.org>
- <20250223-outrageous-bizarre-hedgehog-8a3bbd@krzk-bin>
- <11387d3d0478d7fa1899ee3d0409541b@disroot.org>
- <07634537-0750-4616-9c88-800d1672dcfc@kernel.org>
- <69c58c0ba04ad85f0ddd3f379bcb8390@disroot.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: Re: [PATCH RFC 3/5] clk: bcm281xx: implement prerequisite clocks
+To: Alex Elder <elder@riscstar.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Alex Elder <elder@kernel.org>, Stanislav Jakubek
+ <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20250216-kona-bus-clock-v1-0-e8779d77a6f2@gmail.com>
+ <20250216-kona-bus-clock-v1-3-e8779d77a6f2@gmail.com>
+ <d4aa25fb-2cc0-4b1a-a376-936e7e83233a@riscstar.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <69c58c0ba04ad85f0ddd3f379bcb8390@disroot.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <d4aa25fb-2cc0-4b1a-a376-936e7e83233a@riscstar.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 25/02/2025 19:14, Kaustabh Chakraborty wrote:
-> On 2025-02-25 00:48, Krzysztof Kozlowski wrote:
->> On 24/02/2025 18:37, Kaustabh Chakraborty wrote:
->>> On 2025-02-23 16:10, Krzysztof Kozlowski wrote:
->>>> Missing bindings.
->>>
->>> Bindings have been applied in v1.
+On 24.02.2025 17:20, Alex Elder wrote:
+> On 2/16/25 10:12 AM, Artur Weber wrote:
+>> From: Alex Elder <elder@kernel.org>
 >>
->> Heh, I see email from Lee now but mainline does not have them, next from
->> 19th Feb neither.
-> 
-> I see it in lee/mfd/for-mfd-next. [1]
-> 
+>> Allow a clock to specify a "prerequisite" clock, identified by its
+>> name.  The prerequisite clock must be prepared and enabled before a
+>> clock that depends on it is used.  In order to simplify locking, we
+>> require a clock and its prerequisite to be associated with the same
+>> CCU.  (We'll just trust--but not verify--that nobody defines a cycle
+>> of prerequisite clocks.)
 >>
->> BTW, what happened with all the review tags? Nothing in cover letter nor
->> changelog explains dropping reviews.
+>> Rework the KONA_CLK() macro, and define a new KONA_CLK_PREREQ()
+>> variant that allows a prerequisite clock to be specified.
+>>
+>> Signed-off-by: Alex Elder <elder@linaro.org>
+>> --- Artur: rebase on v6.13, move prereq prepare/unprepare to main
+>>      prepare/unprepare functions, use locking versions of clk_prepare
+>>      and clk_enable since the non-locking versions are no longer
+>>      public ---
+>> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 > 
-> Haven't explicitly mentioned dropping the tags, but I've changed the
-> macros a bit, among other things (which is mentioned in cover). I assume
-> that's the standard procedure.
+> I'm surprised there is no prepare function for the peripheral
+> clocks.
 
+Not sure I follow - there is a prepare function for peri clocks, the
+same one as for all Kona clocks - kona_clk_prepare. Though it only
+enables the prereq clock... I assume you mean "prepare function specific
+to peripheral clocks", in which case - what should a prepare function
+specifically for peripheral clocks do?
 
-No, it is highly nonstandard. You must mention dropping tags and
-submitting-patches explicitly asks for that.
+As I mentioned in the cover letter, clock initialization has to be done
+explicitly at clock init time, since it's required for later operations
+like setting the clock rate/parent that are done *before* the first call
+to the prepare function happens; otherwise we get errors like this:
 
-How would you feel if you provide feedback and other person just skips it?
+[    4.740000] [   T39] kona_peri_clk_set_parent: trigger failed for sdio1
+[    4.760000] [   T39] kona_peri_clk_set_rate: gating failure for sdio1
+[    5.650000] [   T36] kona_peri_clk_set_parent: trigger failed for sdio3
+[    5.670000] [   T36] kona_peri_clk_set_rate: gating failure for sdio3
 
+(I did consider moving the relevant clock initialization to a
+"clk_ops.init" function, but left it out of this patchset for brevity.
+Might consider actually doing that...)
 
-Best regards,
-Krzysztof
+> The prequisite clock should separate the prepare and the
+> enable functionality.  Right now you have kona_clk_prepare()
+> doing both.  Instead, a clock's prepare function should
+> prepare its prerequisite (if any).  Then its enable function
+> should enable its parent.
+
+I copied this behavior from the original patch; there the
+prereq_prepare function both prepared and enabled the relevant
+prerequisite clock. Indeed doing each step (prepare/enable/disable/
+unprepare) in the relevant functions would probably make more sense.
+
+> Should all the users of peripheral clocks just also be required
+> to specify the bus clocks as well?  I suppose that doesn't
+> encode the prerequisite property (bus comes before peripheral);
+> is that truly a requirement?
+
+I see a few problems with that:
+
+- Most drivers only take one clock - that clock is pretty much always
+   the peripheral clock (with the only exception being usb_otg_ahb which
+   is used for the USB OTG controller).
+- Even if they supported both clocks, they would likely just switch them
+   on/off at the same time as the equivalent peri clock.
+
+I mostly figured a clock dependency mechanism would work here since it's
+what the vendor kernel does - it allows for specifying a dependent clock
+and enables/disables it whenever the clock with the dependency is
+enabled/disabled.
+
+An alternative option would be to handle the dependency in the device
+tree, using "simple-pm-bus" nodes, either:
+
+- Wrapping around each node for a subdevice that uses a peripheral
+   clock. This is rather unwieldy since it means a lot of subnodes for
+   the most basic of peripherals (sdio1-4, uartb(2,3), etc.). (Also,
+   managing the "ranges" properties for all of these sub-busses would
+   get annoying unless we specify empty ranges, which according to the
+   bindings "is only appropriate if the child node is another 'simple-
+   bus' or similar."[1].)
+
+- Using the simple-bus nodes that the BCM2166x DTSI already uses, and
+   connecting the relevant bus clock for all the components to them,
+   and switching the compatible to "simple-pm-bus". It's less granular,
+   but is probably the most sensible option if we go the DT route.
+
+As for whether enabling a bus clock before a peripheral clock is
+required... I went ahead and tested it, and the results seem to hint
+that it's not.
+
+- I seem to remember that not having the bus clock initialized caused
+   some failures on peri clocks, but I can't reproduce this anymore.
+   Most likely I'm mistaking it for policy bit setup, which is required
+   for gating to work (I have another commit ready to add policy bits
+   to all BCM21664 clocks, which I'm planning to send after this
+   patchset). And besides, just initializing bus clocks after peri
+   clocks seems to work given that's how it's set up right now.
+
+- Also, it seems that all clocks defined with HW_SW_GATE are gated
+   on by default, and this state is never cleared afterwards, so all the
+   bus clocks I added in the BCM21664 bus clock commit are already
+   enabled at startup... after the peri clocks. And given that everything
+   works fine, it's probably OK.
+
+Now that I think about it - maybe it would be easier to just keep things
+the way they are; drop the prerequisite clock mechanism, let the
+driver enable bus clocks by default, then if we wanted to explicitly
+control the bus clocks, use the second DT approach I mentioned. If we
+ever want to squeeze every last bit of power savings or for any other
+potential benefit of keeping bus clocks off, we can revisit this
+mechanism later.
+
+Best regards
+Artur
+
+[1] https://github.com/devicetree-org/dt-schema/blob/ed9190d20f146d13e262cc9138506326f7d4da91/dtschema/schemas/simple-bus.yaml#L60-L69
 
