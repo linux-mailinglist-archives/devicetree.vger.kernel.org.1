@@ -1,167 +1,131 @@
-Return-Path: <devicetree+bounces-151146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 399DCA44968
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:04:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44E4EA4496F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:05:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40FAC3A44C0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:58:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E77263A7534
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:59:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3BE519A298;
-	Tue, 25 Feb 2025 17:58:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECA8119ADA2;
+	Tue, 25 Feb 2025 17:59:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DJATxHVj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qWkp5SfV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D1DB1891AA
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 17:58:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE2DC156F3A;
+	Tue, 25 Feb 2025 17:59:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740506310; cv=none; b=bSZvF7ltf7Rf1Uw4MZ2Bpc7K3L7WmWp3S+KlZaP9xbRhRZiIZP0O04xSh3PY+bUAHsKdpzS9sKdob7iHeC06TlISAyR+XVEcZ6QD8ow5+eY//naX2QqpFlMEMxyKd4GnJ4hVRv22UloXVV4UgppKT8aLlibP76hs2xAv/4RuYPA=
+	t=1740506361; cv=none; b=BT0sky72j8uUMuILMvjQYsVz/UCJ6oxHjrxf5VRw6xpZCGWiaWANJwPgIHo29Satn512IrmWUy08ZkSJs4triGK+9TIfY12HlD1k6lFCCVdSiWEcIacIVtxttN5vme0Vh6vgv8TE0FTAodtTrSMK2yNLKfZ/2UxauYetA5rrlpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740506310; c=relaxed/simple;
-	bh=MuemuIVSx7MSh9O/nBP6FH5Y+T4FTJXhoSvtuThWmHA=;
+	s=arc-20240116; t=1740506361; c=relaxed/simple;
+	bh=yBULEnieTf/nQ04VsVNsRxbU8OeMLTkbgocf2i5ZY0M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VVBesAJPi6zHmCNFE/CmWywgbUX7E/WkLaE6EvXpeIlcqM+HbfLyvEWSSf0Ukl3NZCVew/Z7SsVr+jGYi/h+J7ecyDGyxaUlrMJeo8W7vY7xagiIx36MNDrAYZdnaW6KW54QuKDufIxR08rI37L0ApepyEgL4nWvsIpDo4MvIYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DJATxHVj; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-54529e15643so41500e87.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 09:58:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740506307; x=1741111107; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1kr6d/FQy1Jy2g1Mw9U1HLC2PC/Dwa2yo10n3xo8EDY=;
-        b=DJATxHVjEoeXm/sAfvAG5zo/FX4CpMHfe+IXZ2c+2YJgOI7BcPe6JRm/4dR+B6Hi68
-         AQaBUclztLSmFDySy2GECdwXnQkO3n1sNRbEs06jUzGBEjGBezmKGSeV/DUoXbmSF1h/
-         wwnD89CnIP/iAx5UucL0YZV+KV7bKnk1s2ifolNv1SYGPPpw/MrWMTiYzu2Tmwdh1ml6
-         sE3rlreRLyEoUR1zYdldHop38PYbQitpRSCgRfpq42zUHcz32bEQ5Qm3izspNlxmABLv
-         bnF4Tw3vWSZltLQmnRspWzwgIHIipdDEo/quQp3jyHv9wGORBmlATmiIc03bB7BFWVxT
-         adYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740506307; x=1741111107;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1kr6d/FQy1Jy2g1Mw9U1HLC2PC/Dwa2yo10n3xo8EDY=;
-        b=nBqTdvOmNwyUs45475ksrGJN752es3BEsltQ41pkkloR7H0Fv+26H1A+e6bt7Y603G
-         5BElNVtNASRb9oQ3V+zDXJvSKEMk2Ccff7bEvkQG6ZWoRO6aWbsagkljOp5HgXPB7FEn
-         /wJij8HGSYoovQxg/cbiouU42vyhI8N/DQEe8jPekNicJgUZbCD1M9tfMFUmt05FMEZd
-         1WTdksyB57Lz156Yq0BBVrbw66cD3jiHLpjexDB+Mz4LFlshuTiD8jiRYEC+Y6Ax4Gy4
-         QjZRDyUTJDC+YRX3pJ/iOd0O67YT5tHnWQ1nJ/gtR+cInS6uwbdlt8O/N6UWGtrX9BdW
-         CjmA==
-X-Forwarded-Encrypted: i=1; AJvYcCWueHfihMgI39v/CEPHmSLdMs5v0xFfubTkx2ppshf6ahre+gsEy9NVqS6aB2pQl9/q7Nxc6oPoVLwI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgEGcW/fgxXNpaSVXeXg9vhBS27wHl1X8yfeDuwlZ7j3+CBso6
-	nriGm8moc8YUufvqwyxoETIU8LiKNFvKjArXR0D/qNI29F0yvpykoK+FsHjy8R0=
-X-Gm-Gg: ASbGncsSYgCymX4nnDqMEa2xNo76M0nPR+colHfNg+wIBZfHIZxTU6wDNlnKnX4udKb
-	QqlVfoZ0D0tCCVnxc9S6OeKrl8xUmRFszwQM7DG2/J9afjIP/gVS6gZLV1AowLuXRLTmYgn0nwG
-	H0UNHFXxSA3Hmig7QbEn+/Wd/dhmrlpn8AlQCY80ylXT6OrWLsu5MdWiKSL2k5q65CmmBveka6i
-	a9L4DYMTlfhemw2EwQ9STqxaI9H0/+1Uva3RyPnRqMM6i6cAiacIL5xc7KfJQv6AXS231/y1GwN
-	9OhzNffjV2QcCWzwIR0gP079N53RTBycHafORUDDjCmKaz+uFAnY0In3CW5tIozJe1Db6mZYx9r
-	cqZVL0g==
-X-Google-Smtp-Source: AGHT+IGkHEvgIIfbZAqOgHLpKus9PcVasPLlY5V6IFk/rGEQb+8IEPE9UGG2WuATzUd3x9e1FtOaEw==
-X-Received: by 2002:a05:6512:3ba1:b0:545:31d8:f384 with SMTP id 2adb3069b0e04-546e418d42emr8418369e87.10.1740506306966;
-        Tue, 25 Feb 2025 09:58:26 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-548514f4ce7sm230452e87.159.2025.02.25.09.58.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2025 09:58:26 -0800 (PST)
-Date: Tue, 25 Feb 2025 19:58:24 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Ayushi Makhija <quic_amakhija@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	robdclark@gmail.com, sean@poorly.run, marijn.suijten@somainline.org, 
-	andersson@kernel.org, robh@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org, 
-	konradybcio@kernel.org, conor+dt@kernel.org, andrzej.hajda@intel.com, 
-	neil.armstrong@linaro.org, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, 
-	jonas@kwiboo.se, jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com, 
-	quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com, quic_jesszhan@quicinc.com
-Subject: Re: [PATCH 10/11] drm/bridge: anx7625: update bridge_ops and sink
- detect logic
-Message-ID: <ne35ljkudi5jta2cby7fgjzqsd5sjpwcjpwhv6kmedq6nomho5@txynsflvtc6f>
-References: <20250225121824.3869719-1-quic_amakhija@quicinc.com>
- <20250225121824.3869719-11-quic_amakhija@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BCSo91Sn31P2jd5PRUDo4mi6INFyj9XuVxXMkHCUOY/ACv6AQjNAbxvPJhNqQM6yiFfTxpl0p9GA90SgiSPP9aLjrXS712kULwCsAaIxNW2PQckeaGAjUJCq7zuCvNvgiGBACzxYb7FVl2MAVBmO4XjwbVZolRv/DLfAlsP6LhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qWkp5SfV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C258C4CEE2;
+	Tue, 25 Feb 2025 17:59:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740506361;
+	bh=yBULEnieTf/nQ04VsVNsRxbU8OeMLTkbgocf2i5ZY0M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qWkp5SfVATCU6JXaCE4TayPuVL+eCHSYSxbJ3H1xQhC0vAS40u98f1WrKObFiVBgh
+	 yqVqMjhZ/YO18OlGgUp0l5NDa/hkbIklidIn82bUP2vJTvJp6yw+73Dh7bHNfqYjHN
+	 +ZQr73CANA2OvIk1XXw4dx2S4aewx69rt6eH3fnc9wALnp3bpQewmBdza28ubI06dG
+	 1dYTu+HfjsJ0i+/DbEsJBcrK1PTDJ/jtaWtpE34VPnAVeQ6EtNFG1BJ+KBYu3uGvnt
+	 MW7NV3+F74bLsP96vaa9QMsK8x6t2brZChzW3h0j/0Us4zQdbR1ruz1320aM+dyxlC
+	 EbdtbJ99OKDAQ==
+Date: Tue, 25 Feb 2025 17:59:15 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	=?iso-8859-1?Q?Adri=E1n_Mart=EDnez?= Larumbe <adrian.larumbe@collabora.com>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	Peter Geis <pgwipeout@gmail.com>,
+	Tomeu Vizoso <tomeu@tomeuvizoso.net>,
+	Vignesh Raman <vignesh.raman@collabora.com>,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/8] regulator: Add (devm_)of_regulator_get()
+Message-ID: <3360051d-1699-46cc-a4c9-0f379fcf8de0@sirena.org.uk>
+References: <20250220-rk3588-gpu-pwr-domain-regulator-v6-0-a4f9c24e5b81@kernel.org>
+ <20250220-rk3588-gpu-pwr-domain-regulator-v6-1-a4f9c24e5b81@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="6DahNsJj491Prgx/"
+Content-Disposition: inline
+In-Reply-To: <20250220-rk3588-gpu-pwr-domain-regulator-v6-1-a4f9c24e5b81@kernel.org>
+X-Cookie: I'm not available for comment..
+
+
+--6DahNsJj491Prgx/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250225121824.3869719-11-quic_amakhija@quicinc.com>
 
-On Tue, Feb 25, 2025 at 05:48:23PM +0530, Ayushi Makhija wrote:
-> The anx7625_link_bridge() checks if a device is a not a panel
-> bridge and add DRM_BRIDGE_OP_HPD and DRM_BRIDGE_OP_DETECT to
-> the bridge operations. However, on port 1 of the anx7625
-> bridge, any device added is always treated as a panel
-> bridge, preventing connector_detect function from being
-> called. To resolve this, instead of just checking if it is a
-> panel bridge, we should verify the type of panel bridge
-> whether it is a DisplayPort or eDP panel. If the panel
-> bridge is of the DisplayPort type, we should add
-> DRM_BRIDGE_OP_HPD or DRM_BRIDGE_OP_DETECT to the bridge
-> operations.
-> 
-> In the anx7625_sink_detect(), the device is checked to see
-> if it is a panel bridge, and it always sends a "connected"
-> status to the connector. When adding the DP port on port 1 of the
-> anx7625, it incorrectly treats it as a panel bridge and sends an
-> always "connected" status. Instead of checking the status on the
-> panel bridge, it's better to check the hpd_status for connectors
-> like DisplayPort. This way, it verifies the hpd_status variable
-> before sending the status to the connector.
-> 
-> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
-> ---
->  drivers/gpu/drm/bridge/analogix/anx7625.c | 10 ++++------
->  1 file changed, 4 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> index d2655bf46842..9b6303267924 100644
-> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> @@ -1814,9 +1814,6 @@ static enum drm_connector_status anx7625_sink_detect(struct anx7625_data *ctx)
->  
->  	DRM_DEV_DEBUG_DRIVER(dev, "sink detect\n");
->  
-> -	if (ctx->pdata.panel_bridge)
-> -		return connector_status_connected;
-> -
->  	return ctx->hpd_status ? connector_status_connected :
->  				     connector_status_disconnected;
->  }
-> @@ -2596,9 +2593,10 @@ static int anx7625_link_bridge(struct drm_dp_aux *aux)
->  	platform->bridge.of_node = dev->of_node;
->  	if (!anx7625_of_panel_on_aux_bus(dev))
->  		platform->bridge.ops |= DRM_BRIDGE_OP_EDID;
-> -	if (!platform->pdata.panel_bridge)
-> -		platform->bridge.ops |= DRM_BRIDGE_OP_HPD |
-> -					DRM_BRIDGE_OP_DETECT;
-> +	if (!platform->pdata.panel_bridge ||
-> +	    platform->pdata.panel_bridge->type == DRM_MODE_CONNECTOR_DisplayPort) {
+On Thu, Feb 20, 2025 at 07:58:04PM +0100, Sebastian Reichel wrote:
+> The Rockchip power-domain controller also plans to make use of
+> per-domain regulators similar to the MediaTek power-domain controller.
+> Since existing DTs are missing the regulator information, the kernel
+> should fallback to the automatically created dummy regulator if
+> necessary. Thus the version without the _optional suffix is needed.
 
-This is incorrect, because there can be other kinds of bridges in the DP
-chain. I think it's better to check for !eDP instead.
+The following changes since commit 0ad2507d5d93f39619fc42372c347d6006b64319:
 
-> +		platform->bridge.ops |= DRM_BRIDGE_OP_HPD | DRM_BRIDGE_OP_DETECT;
-> +	}
->  	platform->bridge.type = platform->pdata.panel_bridge ?
->  				    DRM_MODE_CONNECTOR_eDP :
->  				    DRM_MODE_CONNECTOR_DisplayPort;
-> -- 
-> 2.34.1
-> 
+  Linux 6.14-rc3 (2025-02-16 14:02:44 -0800)
 
--- 
-With best wishes
-Dmitry
+are available in the Git repository at:
+
+  https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git tags/regulator-devm-of-get
+
+for you to fetch changes up to 0dffacbbf8d044456d50c893adb9499775c489f4:
+
+  regulator: Add (devm_)of_regulator_get() (2025-02-24 15:26:08 +0000)
+
+----------------------------------------------------------------
+regulator: Add (devm_)of_regulator_get()
+
+This introduces devm_of_regulator_get without the _optional suffix, since
+that is more sensible for the Rockchip usecase.
+
+----------------------------------------------------------------
+Sebastian Reichel (1):
+      regulator: Add (devm_)of_regulator_get()
+
+ drivers/regulator/devres.c         | 17 +++++++++++++++++
+ drivers/regulator/of_regulator.c   | 21 +++++++++++++++++++++
+ include/linux/regulator/consumer.h |  6 ++++++
+ 3 files changed, 44 insertions(+)
+
+--6DahNsJj491Prgx/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAme+BPIACgkQJNaLcl1U
+h9A55wf/defOMhqJG1AXSmf7/jp/1X3vDIPMsTOOh0tDNUJtT8RdlyJ/1G15zthm
+Ox921lEC1kReTUTejPD2nPrh+9WGu66Fcsm9T61U1q6bAZeAMclhcM6guiw66nXp
+Dx7seGYTztQQY3PdtZmGK7jouFWjKA9f8CPEIENafSPzm6VMuQ50i/+snwRKcsKU
+aM8r9w6ordMdNXq1ZG8lb7Y+gQuwpBBQ2/yELkpoLg/ONyGeR2YikE9Vm5h8jXEE
+LpZh0x1iCwDVWgAJT+bE8g5u8IboaG8D8slK3sUb4f0VN9IiZSDcVOh9yKt4DZR5
+oSNOuTmiEVVNTswy+nw3QdpvMLDTbg==
+=rB2k
+-----END PGP SIGNATURE-----
+
+--6DahNsJj491Prgx/--
 
