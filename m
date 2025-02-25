@@ -1,60 +1,57 @@
-Return-Path: <devicetree+bounces-150921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF68A43EC4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:07:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 095C1A43ECE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:08:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D6FF189B699
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:04:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FFDC1886CA5
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:07:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB963267F5C;
-	Tue, 25 Feb 2025 12:04:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0721267B98;
+	Tue, 25 Feb 2025 12:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bZaGHlup"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fLPNIKyQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8608B267B98;
-	Tue, 25 Feb 2025 12:04:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84D43267738;
+	Tue, 25 Feb 2025 12:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740485060; cv=none; b=bDu9zS7PfguPmzqvAySDvkhwUrozWvfYq7NsGVKh/YE7O7WonntQr96DAb87YVvNH/9RpqZbueTjDBIG1tLCEyBK5RuX96T2yoaY7cqM3utr7PqlwgwhTVUBmEo6gKzf92CLoTPb9t1onqXZiS9zBSluJhmD1gKO9+WwBbV5+jc=
+	t=1740485211; cv=none; b=g5O0AAPpMGIbIvCbpsFS00ePwyM1Nj5z2kcvvti2C25krlI4mdBzNnkU3JHah2OCA/emuM4EehbP5K//58fakUoA6kMQEZM4p41JGIm54Aa3FnZ6BZu4j6LOY1ohP8Xaq4bObD+LuDsT2Le+FXI6LT6u7l+NU4jdj2dz/gySses=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740485060; c=relaxed/simple;
-	bh=DUVqD32OXugfWSlqDcu3F8T+9NzMtljQrPVD82q8AAQ=;
+	s=arc-20240116; t=1740485211; c=relaxed/simple;
+	bh=M9uKEUq8wn1OiK4A1Sr0SpwlETpU2D5rT6iicUMUS1Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f84/jzfAbPkLKTo2u4XUI6Y5ojMw9k0Gj416uSP05MCNhDEul5r7hUt/pIzyJ/bekqXJozH+xxIwuSXJJ+lvcSVO14w6omCtIRSA1/8g6wnPVG7gGL+Q4AJ61tvkSSYj1X1zlK4k4boHw45ZA6vu0zQwlrBvsTARxfTLEACZizA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bZaGHlup; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C04CC4CEDD;
-	Tue, 25 Feb 2025 12:04:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZTDyY65Fwfh+ZjbU4l1EqhqjEjuAaGy0uqZvVA/0aaq4LLWesRmNwYHwtAPZT9LKCEPkUH5mF8T4BxwdPHFXzvK8TA2ncXHjsmdPvK8zFja3eOrvvV1ML+k7tiWWNgsg5ctQPa99kVjtqzX8uA9zO1ElsPMlYwWHChmfScUk5Xg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fLPNIKyQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE59DC4CEDD;
+	Tue, 25 Feb 2025 12:06:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740485060;
-	bh=DUVqD32OXugfWSlqDcu3F8T+9NzMtljQrPVD82q8AAQ=;
+	s=k20201202; t=1740485211;
+	bh=M9uKEUq8wn1OiK4A1Sr0SpwlETpU2D5rT6iicUMUS1Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bZaGHlupbAt1P6YPlW0z2FHCs6uBsNeY7opWdS3UwkOP91znt7ISv0xL5CsKX9x47
-	 h4Aqg5PTuJb3Fx8NyEMf2VnUjAkjmIRDAWiCUZyyA5l3YtKGgCOpEwUeEvMz0KJ40G
-	 qc2sEITJjBmZSqeBbbMtYNjQcWBWzV/tuzA+iSixDqPBuyO/iJ8g7iPoID/Oq1i/HI
-	 s3+R2ycQIHpw5bsIae8Dd2kyUG/Qs3dbx5I66PhMjBq4cp7pkFKtR0IO5sUiC11oqu
-	 3HDKPNJiKx4Y6XcZPbn6pYNDiDjQSR35v1NcKTaoPToAPvcKJPD6hJ/nk7HtmJcRfe
-	 yaPEDE3Qy9+UQ==
-Date: Tue, 25 Feb 2025 13:04:17 +0100
+	b=fLPNIKyQnCzj28tki4yV9v+CUMXKJW+LhrPH/IGrA85Bn5ky46l80LYAIM6m1d/rM
+	 a8uYmQQSd5gLKQYy0dp9r6cuOr01gxQrF9R3a2bh6yEgoli8ajXK4c29euyGaLVCey
+	 Lw1NX7ADGj35VLWeLs2kY10+9vO+w0StzGefOnQP7D3Y7JhAGfxVe/CvpTXPmpyvfa
+	 +FmAozCrOXoLeUApjCkOGjX8dBLBLFRWA4gIyCp9mj4EBxz4fLnDaYljDasJNu5JMl
+	 GCVe9ZrTyj+cmPbxEfcmFfWYGeTjRmGrAIx4akqRIImn3Gtgpy2RyJAX8Sp2jpqK1G
+	 lhswYgpdvf4Kg==
+Date: Tue, 25 Feb 2025 13:06:48 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc: lee@kernel.org, ukleinek@kernel.org, alexandre.torgue@foss.st.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wbg@kernel.org, 
-	jic23@kernel.org, daniel.lezcano@linaro.org, tglx@linutronix.de, 
-	catalin.marinas@arm.com, will@kernel.org, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	olivier.moysan@foss.st.com
-Subject: Re: [PATCH 5/8] pwm: stm32-lp: add support for stm32mp25
-Message-ID: <20250225-psychedelic-iguana-of-education-d5fff7@krzk-bin>
-References: <20250224180150.3689638-1-fabrice.gasnier@foss.st.com>
- <20250224180150.3689638-6-fabrice.gasnier@foss.st.com>
+To: Leonardo Felipe Takao Hirata <leo.fthirata@gmail.com>
+Cc: tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, vz@mleia.com, 
+	Leonardo Felipe Takao Hirata <leofthirata@gmail.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	skhan@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
+ nxp,lpc3220-mic.txt to yaml format
+Message-ID: <20250225-lean-bronze-millipede-03edd9@krzk-bin>
+References: <20250224210432.94851-1-leofthirata@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,20 +60,119 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250224180150.3689638-6-fabrice.gasnier@foss.st.com>
+In-Reply-To: <20250224210432.94851-1-leofthirata@gmail.com>
 
-On Mon, Feb 24, 2025 at 07:01:47PM +0100, Fabrice Gasnier wrote:
->  	}
->  
->  	return pinctrl_pm_select_sleep_state(dev);
-> @@ -246,6 +413,7 @@ static DEFINE_SIMPLE_DEV_PM_OPS(stm32_pwm_lp_pm_ops, stm32_pwm_lp_suspend,
->  
->  static const struct of_device_id stm32_pwm_lp_of_match[] = {
->  	{ .compatible = "st,stm32-pwm-lp", },
-> +	{ .compatible = "st,stm32mp25-pwm-lp", },
+On Mon, Feb 24, 2025 at 06:04:30PM -0300, Leonardo Felipe Takao Hirata wrote:
+> Convert NXP LPC3220-MIC to DT schema.
+> 
+> Signed-off-by: Leonardo Felipe Takao Hirata <leofthirata@gmail.com>
 
-No driver data suggests device is backwards compatible. Commit msg
-suggests not, so that's confusing.
+SoB mismatch.
+
+Run checkpatch.
+
+> ---
+>  .../interrupt-controller/nxp,lpc3220-mic.txt  | 58 -------------
+>  .../interrupt-controller/nxp,lpc3220-mic.yaml | 86 +++++++++++++++++++
+>  2 files changed, 86 insertions(+), 58 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.yaml
+
+...
+
+> +title: NXP LPC32xx MIC, SIC1 and SIC2 Interrupt Controllers
+> +
+> +maintainers:
+> +  - Vladimir Zapolskiy <vz@mleia.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,lpc3220-mic
+> +      - nxp,lpc3220-sic
+> +
+> +  reg:
+> +    description:
+> +      Should contain IC registers location and length.
+
+Drop description
+
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +    description:
+> +      The number of cells to define an interrupt, should be 2.
+
+Don't repeat constraints in free form text. Drop.
+
+> +      The first cell is the IRQ number, the second cell is used to specify
+> +      one of the supported IRQ types.
+> +          IRQ_TYPE_EDGE_RISING = low-to-high edge triggered,
+> +          IRQ_TYPE_EDGE_FALLING = high-to-low edge triggered,
+> +          IRQ_TYPE_LEVEL_HIGH = active high level-sensitive,
+> +          IRQ_TYPE_LEVEL_LOW = active low level-sensitive.
+> +      Reset value is IRQ_TYPE_LEVEL_LOW.
+> +
+> +  interrupts:
+
+Need to list and describe the items.
+
+> +    description:
+> +      Empty for MIC interrupt controller, cascaded MIC hardware interrupts for
+> +      SIC1 and SIC2
+
+And then allOf:if:then restricting it per variant (interrupts: false).
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    mic: interrupt-controller@40008000 {
+> +      compatible = "nxp,lpc3220-mic";
+> +      reg = <0x40008000 0x4000>;
+> +      interrupt-controller;
+> +      #interrupt-cells = <2>;
+> +    };
+> +
+> +    sic1: interrupt-controller@4000c000 {
+> +      compatible = "nxp,lpc3220-sic";
+> +      reg = <0x4000c000 0x4000>;
+> +      interrupt-controller;
+> +      #interrupt-cells = <2>;
+> +      interrupt-parent = <&mic>;
+> +      interrupts = <0 IRQ_TYPE_LEVEL_LOW>,
+> +                  <30 IRQ_TYPE_LEVEL_LOW>;
+> +    };
+> +
+> +    sic2: interrupt-controller@40010000 {
+
+Drop, two examples are enough.
+
+> +      compatible = "nxp,lpc3220-sic";
+> +      reg = <0x40010000 0x4000>;
+> +      interrupt-controller;
+> +      #interrupt-cells = <2>;
+> +      interrupt-parent = <&mic>;
+> +      interrupts = <1 IRQ_TYPE_LEVEL_LOW>,
+> +                  <31 IRQ_TYPE_LEVEL_LOW>;
+> +    };
+> +
+> +    adc@40048000 {
+> +      compatible = "nxp,lpc3220-adc";
+
+Drop, not relevant.
 
 Best regards,
 Krzysztof
