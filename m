@@ -1,114 +1,137 @@
-Return-Path: <devicetree+bounces-151007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39C2CA442AC
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:27:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB415A442FD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:38:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59F2D3A1CB4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:25:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 029E91886C2E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:35:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F38D269CE0;
-	Tue, 25 Feb 2025 14:26:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539D026A091;
+	Tue, 25 Feb 2025 14:35:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="Z1X26bi7"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="mieflFWp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB1A126C18;
-	Tue, 25 Feb 2025 14:26:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21B962673BC;
+	Tue, 25 Feb 2025 14:35:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740493565; cv=none; b=mOGDfmiMAa0jrFSORDM4Glp584scycujEsIrlfz6LZFZYB26S5JXbIPGw22ok1wWTA0zVheZHoj87lHJ75xsgbJjPAW0+eaXZr4/FztIUYeQyCaRtVZwNvTR73sqFdh7vK5NDTysSI2ZEFshs2ae/6xTWudTunCOuZf4pCfMGm0=
+	t=1740494105; cv=none; b=nioc33AIN9I4GGKCgQlpPeHVlD634DnFqJuwX+BniKqti9Lofq48lbZiGYTn2F832lrbDJar8gIcb37sOoYSPvSF7NFuAGrtNDP9Rh7CRmuwhLn+r/oFftxOgVaG5OKyBcm/qXgoxcoMqAAxxpnY7OBG/U/8voW/L2pIXm+vKZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740493565; c=relaxed/simple;
-	bh=362uBNCJSL6/D4zf+C/aqFC5d3W5hFLgF8NaryGLpW4=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=a272LvG0xyLMzt4f4cT/vmpZ0EDKdsZZeWNpNXoPXIquGjKRw6w7IufFAQp54OmsRqxSWLnAMaYdRgO4V7UPz/LVTgaxfxCGLL1YKkrNc+bS5+sgYSnrliY0W7/cWto83KlmILfSKNfXGwtiMJLtuAGLwm4maWhQBfZZzvrDEtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=Z1X26bi7; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1740494105; c=relaxed/simple;
+	bh=rqlDudHnuYgq9wewNcojaTJbeYRPypypRFN8oxFuEys=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PzTTpU+tgm7qmz00v8Z10XPdztl/TdqdUEJZt0GdqPCAv2S1GQBRSGQik9UIqSjXm6pFX0Htxqnt889J/NpWoF/nf2JoxsFqGDLe2JcoBWiIdX5HADJjdpfsJkyg0TmWRCOF0LKn71lvQNppIv36h8bsIwE+OkkLs85mTO+OXFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=mieflFWp; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1740494101;
+	bh=rqlDudHnuYgq9wewNcojaTJbeYRPypypRFN8oxFuEys=;
+	h=From:Subject:Date:To:Cc:From;
+	b=mieflFWpfr41xUm3kcgFxounly6rCgJ9vy95rvSTvxSxGuyZImksH2Ck3cNtX7Itg
+	 I8MMTy/+7qkiMtnDKbUh92Jx5nZiGIvkJaG4O47Kz/+xYP9b60Hv6Epl32gbxmh069
+	 ykIri/kV9y5eBIf/gTPgUXi0kl6LNz2x0ewG9Hrt1xPA14ODF9JmvbRlNoKOSKzGNA
+	 8m8pr7l76ZkD41bpb+be72pfdIPs6QQcARVymDGVTG5Qaqgm29TitexDj9WuCw84h6
+	 OeS+gMihRBIY9UIUtHZWN4oPXgR1N5oolrAk+O6zEv30kqX6XOgDOlLlcL0vMDzYZT
+	 RKXODWXBcc6+Q==
+Received: from [192.168.0.47] (unknown [IPv6:2804:14c:1a9:53ee::1004])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id F277B17E0DB7;
+	Tue, 25 Feb 2025 15:34:56 +0100 (CET)
+From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Subject: [PATCH v2 0/8] Enable DMIC for Genio 700/510 EVK
+Date: Tue, 25 Feb 2025 11:33:46 -0300
+Message-Id: <20250225-genio700-dmic-v2-0-3076f5b50ef7@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1740493553;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WyyxfZ8er5WqZOvIZ6mxo74JK7+5Nk5jVOc6g/QyEzY=;
-	b=Z1X26bi7ygLBS3+YP89D2JR7/QWR7eXXN3q1RGtCQ3+EEEyHxoYQpXbp52wPDrgNXaWacW
-	Ounh1eXsGBBwxBLd/7Di5n93VbT9HhQvf9jl6Vim2qNKGD88nD/ML295fQfTRkhorE6Uh1
-	y9/DreYBRT9Ekl/916EWFharGXpsOWZAg8lKC7+bIk95ZpLm9A2QquEqUmFbsIvtuqNN1C
-	4ZcGeWx8hn/TuKWiLzmG9cjzglaqrwc+FI0Mp947mgR3+gwUWye4wIzhBT3xLoaC/9pm3l
-	jLiZSSPJRpbr5cs+7oCYYjNE6rHgNRvYE+JeSFarEusZ3TABB7gKfJhq1GWuSg==
-Date: Tue, 25 Feb 2025 15:25:52 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Justin Klaassen <justin@tidylabs.net>
-Cc: Tianling Shen <cnsztl@gmail.com>, Kever Yang
- <kever.yang@rock-chips.com>, Johan Jonker <jbx6244@gmail.com>, Heiko
- Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: fix u2phy1_host status for NanoPi
- R4S
-In-Reply-To: <20250224170925.39126-1-justin@tidylabs.net>
-References: <20250224170925.39126-1-justin@tidylabs.net>
-Message-ID: <48c705e65cc8e8d4716b41a4a87170e3@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAMrUvWcC/3XMQQqDMBCF4avIrJsyRoy2q96juIiTUQfUSFJCi
+ 3j3pu67/B+8b4fIQTjCvdghcJIofs2hLwXQZNeRlbjcoFHXqMtWjbyKbxCVW4SUI8N8c4SmaiF
+ /tsCDvE/v2eWeJL58+Jx8Kn/rPymVCpXpydSVswaH5kF+nm3vg72SX6A7juMLnKzYQK4AAAA=
+X-Change-ID: 20250218-genio700-dmic-dc6ee9dc0638
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Trevor Wu <trevor.wu@mediatek.com>
+Cc: kernel@collabora.com, linux-sound@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>, 
+ parkeryang <Parker.Yang@mediatek.com>, Zoran Zhan <zoran.zhan@mediatek.com>
+X-Mailer: b4 0.14.2
 
-Hello Justin,
+This series enables the dual digital microphones present on the Genio
+700 and 510 EVK boards.
 
-Thanks for the patch!  Please, see a few comments below.
+Patches 1 and 2 add some required clocks, patch 3 changes volatility
+handling of some registers to prevent issues, patch 3 adds the DMIC DAI
+driver for MT8188 and updates the AFE with its routes, patch 4 adds the
+DMIC backend and widget to the mt8188-6359 machine sound driver, patch 5
+adds the audio routes for the DMIC to the Devicetree, patch 6 adds
+DMIC_BE in the dt-binding and patch 6 assigns a wakeup-delay-ms to the
+DMIC DAI.
 
-On 2025-02-24 18:09, Justin Klaassen wrote:
-> The u2phy1_host should always have the same status as usb_host1_ehci,
-> otherwise the ehci driver may be initialized for a disabled usb port.
-> 
-> Signed-off-by: Justin Klaassen <justin@tidylabs.net>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi
-> index b1c9bd0e63ef..8d94d9f91a5c 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi
-> @@ -115,7 +115,7 @@ &u2phy0_host {
->  };
-> 
->  &u2phy1_host {
-> -	status = "disabled";
-> +	phy-supply = <&vdd_5v>;
->  };
-> 
->  &uart0 {
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+---
+Changes in v2:
+- Reordered clocks in patches 1 & 2
+- Split DMIC_GAINx_CUR volatile configuration into its own patch (3)
+- Squashed patch "ASoC: mediatek: mt8188: Support DMIC in AFE" into
+  "ASoC: mediatek: mt8188-mt6359: Add DMIC"
+- Patch 4 ("ASoC: mediatek: mt8188: Add support for DMIC"):
+  - Performed the many cleanups suggested on v1 for code style and
+    removing redundancy
+- Added patches 5 and 6 to add wakeup-delay-ms to the dmic
+- Link to v1: https://lore.kernel.org/r/20250218-genio700-dmic-v1-0-6bc653da60f7@collabora.com
 
-Indeed, the rk3399-nanopi4.dtsi file, which rk3399-nanopi-r4s.dtsi
-extends, enables u2phy1_host, usb_host1_ehci and usb_host1_ohci,
-so disabling u2phy1_host in rk3399-nanopi-r4s.dtsi makes no sense.
+---
+Nícolas F. R. A. Prado (7):
+      ASoC: mediatek: mt8188: Add audsys hires clocks
+      ASoC: mediatek: mt8188: Add reference for dmic clocks
+      ASoC: mediatek: mt8188: Treat DMIC_GAINx_CUR as non-volatile
+      ASoC: mediatek: mt8188-mt6359: Add DMIC support
+      arm64: dts: mediatek: mt8390-genio-common: Add routes for DMIC
+      ASoC: dt-bindings: mediatek,mt8188-mt6359: Add DMIC backend to dai-link
+      arm64: dts: mediatek: mt8390-genio-common: Add delay codec for DMIC
 
-After checking the NanoPi R4S schematic, I can confirm that the
-phy-supply references the right regulator.  There are some strange
-things in the schematic, but they're unrelated to this patch.
+parkeryang (1):
+      ASoC: mediatek: mt8188: Add support for DMIC
 
-However, there should be a v2 of this patch with the proper Fixes
-and CC: stable tags, so this bugfix also gets propagated into the
-long-term kernels.  Please, feel free to also include
+ .../bindings/sound/mediatek,mt8188-mt6359.yaml     |   1 +
+ .../boot/dts/mediatek/mt8390-genio-common.dtsi     |  21 +-
+ sound/soc/mediatek/mt8188/Makefile                 |   1 +
+ sound/soc/mediatek/mt8188/mt8188-afe-clk.c         |   8 +
+ sound/soc/mediatek/mt8188/mt8188-afe-clk.h         |   8 +
+ sound/soc/mediatek/mt8188/mt8188-afe-common.h      |   1 +
+ sound/soc/mediatek/mt8188/mt8188-afe-pcm.c         |  28 +-
+ sound/soc/mediatek/mt8188/mt8188-audsys-clk.c      |   4 +
+ sound/soc/mediatek/mt8188/mt8188-audsys-clkid.h    |   4 +
+ sound/soc/mediatek/mt8188/mt8188-dai-dmic.c        | 682 +++++++++++++++++++++
+ sound/soc/mediatek/mt8188/mt8188-mt6359.c          |  14 +
+ sound/soc/mediatek/mt8188/mt8188-reg.h             |  17 +-
+ 12 files changed, 782 insertions(+), 7 deletions(-)
+---
+base-commit: 253c82b3a2cec22bf9db65645f934fbe095899a3
+change-id: 20250218-genio700-dmic-dc6ee9dc0638
 
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+Best regards,
+-- 
+Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
 
