@@ -1,124 +1,127 @@
-Return-Path: <devicetree+bounces-150713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C558A435DB
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 07:59:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59500A435FE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 08:16:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43512176B5C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 06:58:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24FBA19C0570
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 07:15:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D432580D3;
-	Tue, 25 Feb 2025 06:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B721547C8;
+	Tue, 25 Feb 2025 07:15:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i0NaIEjx"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kf59STFB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2224F126C10;
-	Tue, 25 Feb 2025 06:58:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A34A214D2BB;
+	Tue, 25 Feb 2025 07:15:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740466712; cv=none; b=qNO5/7wXaNHmrPOaTY7c8QjVsztrRAQpt4jMSav9n0hXSKloxiD9xqTM1/7mrk5KK0HMy8qJKz0BVvn1UxM6//YRRIRfnTiV1c9yGGYFe9LbQ8//5yvbR4ioAGaC+jyC22CzM5xxw1By83ZxwBRMIYlEdC0fqm9MXCR9qW6jqmc=
+	t=1740467712; cv=none; b=BfLEjMExRPbfQuKLd59ONjpPt1TPvrqUaBHNsr4+AxW8gildEHeagbnW0hfrmMrJkzCAl5nhGNP+X4nuo02r7kb/w28OxAWJVLkiaEfuc6DuwMaOWMJiJP3HQdSVmYjEsBIqEwt0nr9yJJaqv4GtRylabjRJIiMNsXnXeHBUna4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740466712; c=relaxed/simple;
-	bh=7n1NEXEZX1x+SAMkNZ1zmOKpOrcQM8yKNkEbs+8t+sM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QjrnYywbhbZ+QWE/J1ujHOStnPuf/spA81pvjoYrGE4E4WBSBFziCI4EoPghF6FiwpDIIDJ0RHkOXbTraMu9+KNJGn5lGQxfG8XdZmErO/uNbVRHjvrNXLOxT6VfAOfF2kA058tPgaz1GSwJQ9F9nlAuD+3KuZZ1M49GUVqOCTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i0NaIEjx; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2210d92292eso5123145ad.1;
-        Mon, 24 Feb 2025 22:58:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740466710; x=1741071510; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZJ4IIBqtZ+7dg9GjIFDDWBbqrCmJeC0sJly4M0s0wws=;
-        b=i0NaIEjxUyQUzlcJ+LaAj0U11j6wuBaYYl2fLfPNwb7rHgsfSu0iFQ/vifpxxaG26O
-         tOCVKDRxWl6DEniYE/9Ab8tisNh2yeWnK+hINyRClcMh5E61irHNJZOVj8HHLbG09j6g
-         FFzIYHz2BuCj69txGXlCFvVlx5zgJQWD41c6t9LO69TEYYb5eiGeiO2nKFqZmF12Hg4q
-         7uIfISWdnKcOA6yKf3/urcHYyiFEt+u0OBGaH/22zMm9xxvBdINcLTE5O7Xj8J1VDtq+
-         YI0ZyEWk29dx4Sn87E1Xg0OHBqFSomU8XJXQjEu0GbRo0U+gmPcB8nvvElbxcMG+Zh4B
-         kLjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740466710; x=1741071510;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZJ4IIBqtZ+7dg9GjIFDDWBbqrCmJeC0sJly4M0s0wws=;
-        b=MVtn4gI9vKNh9Rkcmhz+lQVhsGaF8dvwcX9Q6DA1AgniIjQlEMB9IbP8CjmluXimg/
-         b4m95dClCLEgxADNpLR4BAENhmJ5oUpsZUvRx5b7zWgKz3g8rmMPs8uQVUP59Eqhw9A0
-         KPtXdVp5LjZ/m6Cpt/8VFQNsvkpaR1rf2zlvSA4HDZKl5Cb2/C8xtd/gJUvPB22IYOcM
-         IhBIDPsOheZ2L7xOfoBf5NRfaG3CSoxn1gA9qZvCyP+5xX7Vl4GUw/zEjdrtlTh3ebDj
-         8xl1Edk9TaYk+zoWdQLBhWnIUuC042KMx4HSGQOg1L7iwqrJojQnHBcXS9U7MrOYzS9N
-         VY7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUTfEvDJ+Q86lWXnfPU/AlyLbuZb2iHbW4UOa41dZyEuMIbVodP053u5/eOKfAAVb8tpOhlkgWAAkSh60Js@vger.kernel.org, AJvYcCUhVwB0ZGrGMeQstVieXzsuLZt/fpBuLM+WhY8EfVzpMvJhHfMtgZuP1KOba172seoRz99rnhOzeAVD/ZQ=@vger.kernel.org, AJvYcCVW9VYfYX1uCNqmGB/1JcQkueRSYtVARf44RWyna94jELxNfvpCnis4BQlBTBIlcllTxT+r5WP14sSu@vger.kernel.org
-X-Gm-Message-State: AOJu0YwoL45SJ0sahidzXbfpifUhV4+3pX++Vci3nkblufhtZpIGrQEy
-	xLGAvgKspYjcjLbyHCuBZjup6XwTjWJIL3/BOcWmYImQkg3wcdi9QBG91w==
-X-Gm-Gg: ASbGncso/SBNVLRJfhaCRPkKW4AUdAY6Uzd68KKLUMLgv0xRwtx9421gZ90Vkh1Ontl
-	HlqCCX/lHPBfHlHXr1Ve4t4uvLlxGQXeKzZE9f3s6SdDK2r/RBW8O4G4c+hJYGCLjlFsByBdXk6
-	ybOweZBbOjYvqY2MNuJ+bC1g3nTRt8fGlymZZC/vHy7m5REaeqoU1U2hZgUg0+7JOBBn40QlCSl
-	R84WpFiALg12DcIWCYu8vqoPcR1ZvSeVfnfBeo5QqMM4GbV3bSiwB/QraqJsxOd8hA287fmq6Dy
-	i5Tcn/2zTMQqB/dvZHo4qOpZ+2g=
-X-Google-Smtp-Source: AGHT+IFxMEkF4ozJ9A9pUzGjVLBrdC+gVqGS4GB5H2EERgj00pbgpPTyNSLvVsjQ8jlzx7M3xIDcTQ==
-X-Received: by 2002:a05:6a00:982:b0:731:737c:3224 with SMTP id d2e1a72fcca58-73426cab055mr25848353b3a.10.1740466710284;
-        Mon, 24 Feb 2025 22:58:30 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:464c:6229:2280:227e])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7347a6f8fc3sm786057b3a.50.2025.02.24.22.58.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Feb 2025 22:58:29 -0800 (PST)
-Date: Mon, 24 Feb 2025 22:58:27 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Manuel Traut <manuel.traut@mt.com>
-Cc: Markus Burri <markus.burri@mt.com>, linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marek.vasut@gmail.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 7/7] Input: matrix_keypad - detect change during scan
-Message-ID: <Z71qEyDVz22j_CvL@google.com>
-References: <20250110054906.354296-1-markus.burri@mt.com>
- <20250110054906.354296-8-markus.burri@mt.com>
- <Z7YNKl4ljWFQEa-u@mt.com>
+	s=arc-20240116; t=1740467712; c=relaxed/simple;
+	bh=LRD6OoMszjMiec2Df0s5N0O9u11A0kShWiGsRHii9Vw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=figAuYefziUrBuqYFIwxUTYE3BX5cRlZIP3Tf2L6cawM5Jvi3WAd88mzt+GhGPPZR6Tpy+XvTEY06aRfZN/xUmgFCvudTrtfTs00gTdwqwLu2kTOhYiZ4X9ygaaureIAcq5v+PjAFz7jm1KABkysdMO7tMvbAkr4kKJG3+2uB8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kf59STFB; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51OKOmHh017362;
+	Tue, 25 Feb 2025 07:15:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	RiLylepOzLfAIOw4jKJU+nrVaR7OZmn5yTHoeXsQJCg=; b=kf59STFB4/Ufka3f
+	WqTH9aP7ptFmLWdTTU/q+r2lTll6ZE/aUQkFmNSiRF/4X8ZXoW4t+pqP/O0X6gil
+	8Zp4/U53QKXoaKhMx1hZUwtPuk0SUNuBlTTO6Xe4I3d3tbYO7kv6GhD5eVQfDZk/
+	Kp/ueW3p+mi4lHEICdW2VqlI5MghXgE6YIasc55cz0OZ2805Lm5KqAtNfQhQ84Th
+	KQgLi27CeyFy0JPSX/fHR/Lbgw76qHWmpUVpnJAlCvgk3+1ilG0Ud+SnInqxPtT2
+	9Z9T92nnMPR8WTAt6vbTMVWGGifcnNHwf55wKVLAZxtsQGNz0+KxhCGjbenSRXOl
+	JJAyjQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44y5k681j4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Feb 2025 07:15:04 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51P7F3Rs008153
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Feb 2025 07:15:03 GMT
+Received: from [10.216.5.11] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 24 Feb
+ 2025 23:15:00 -0800
+Message-ID: <1989fdc2-453d-48f2-a89a-f0ab5bf582fb@quicinc.com>
+Date: Tue, 25 Feb 2025 12:44:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z7YNKl4ljWFQEa-u@mt.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/5] dt-bindings: net: wireless: describe the ath12k
+ wifi device IPQ5424
+To: Conor Dooley <conor@kernel.org>
+CC: <ath12k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        Kalle Valo
+	<kvalo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jeff Johnson
+	<jjohnson@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250130051838.1924079-1-quic_rajkbhag@quicinc.com>
+ <20250130051838.1924079-2-quic_rajkbhag@quicinc.com>
+ <20250130-divisible-chrome-3f9c5d1aff11@spud>
+Content-Language: en-US
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <20250130-divisible-chrome-3f9c5d1aff11@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: DaHTu8TE7Mh2Uzc3QpY7kpxbRvFl1S62
+X-Proofpoint-GUID: DaHTu8TE7Mh2Uzc3QpY7kpxbRvFl1S62
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-25_02,2025-02-24_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ bulkscore=0 spamscore=0 phishscore=0 clxscore=1011 impostorscore=0
+ mlxlogscore=999 suspectscore=0 priorityscore=1501 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502250047
 
-On Wed, Feb 19, 2025 at 05:56:10PM +0100, Manuel Traut wrote:
-> On Fri, Jan 10, 2025 at 06:49:06AM +0100, Markus Burri wrote:
-> > For a setup where the matrix keypad is connected over a slow interface
-> > (e.g. a gpio-expansion over i2c), the scan can take a longer time to read.
-> > 
-> > Interrupts need to be disabled during scan. And therefore changes in this
-> > period are not detected.
-> > To improve this situation, scan the matrix again if the row state changed
-> > during interrupts disabled.
-> > The rescan is repeated until no change is detected anymore.
-> 
-> This is a quirk for a bad hardware design. For 'good' hardware it adds
-> an additional read_row_state for no need. For even slower connected
-> GPIOs this will also not help much. However it is obvious that it will
-> be an improvement for some designs. 
-> 
-> Dmitry, would it make sense to make this configurable?
+On 1/31/2025 12:20 AM, Conor Dooley wrote:
+> On Thu, Jan 30, 2025 at 10:48:34AM +0530, Raj Kumar Bhagat wrote:
+>> Describe and add the device-tree bindings for the ATH12K AHB wifi device
+>> IPQ5424.
+>>
+>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+>> ---
+>>  .../net/wireless/qcom,ath12k-ahb.yaml         | 119 ++++++++++++++++++
+>>  1 file changed, 119 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+>> index bd953a028dc3..1d24389a0ab3 100644
+>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+>> @@ -18,6 +18,7 @@ properties:
+>>    compatible:
+>>      enum:
+>>        - qcom,ipq5332-wifi
+>> +      - qcom,ipq5424-wifi
+> Patch should end here, another example for something that doesn't have
+> different properties etc is pointless.
 
-What if we do not disable interrupts after the first one, but record
-the last interrupt time and rescan if it arrived after work handler
-started executing?
 
-Thanks.
-
--- 
-Dmitry
+Thanks, will update in next version.
 
