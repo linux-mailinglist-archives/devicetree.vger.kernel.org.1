@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-150843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C28F0A43AEC
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:12:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADBF3A43B12
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:16:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00B8419C14E1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:09:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F2A13A6078
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C713E263C9E;
-	Tue, 25 Feb 2025 10:07:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A40FE206F25;
+	Tue, 25 Feb 2025 10:12:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B+659pig"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="deb8yJ1n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF4D263C7C;
-	Tue, 25 Feb 2025 10:07:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D35562139A6
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 10:12:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740478064; cv=none; b=Vmq2hEm1GTDiBUWOepdsZdrK75vi+hLEXIrv4qO1C59EnMk7DlhHz5cidIQbEnDTMoTRCnn1j7ibgh8xqsn/Y6sEb0nDOO6L0FzFxs2W6+uqqoX0urdkyux8M6r13pOq+QWBMDpgvcHxLBvX8/Dx1gciY/xvVBfcWRv8jYZ9V/Q=
+	t=1740478335; cv=none; b=RuSgt06vHYaDzc2+LzFxPbIxwgOLAmB6g6UNJifeujpyKWivPvu3rfYbb6l2wJTWpkYC+ha99/7p3QefI1dKUA2NemScrBdWrAvh3OV/js1kK8DJuYr3OLCSO1Wsk8oXnLlqR9/RvO6+ko11rrzmbQl7BGFPhFPkNFfOz9OatUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740478064; c=relaxed/simple;
-	bh=YTqMj4ps1llscSuDb/2p+FJjVauDFbLTY2iu1MZb15U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bu0weg1qmANcnOtlBT7uhsFBEEkEmvDCdV6awaJALy8K/owPg4k2wSeHxhCr8O9xlsHEbtoDpjhti8QEvQi0+65jfPkxiNG6t7EZe8v2mzwM9F3HJTc6k3winkeBvCbUEpWXN1y7nqhMTSLuVPP5VgBG0fwx4lZZeiA9ZAYWSU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B+659pig; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-3098088c630so50618121fa.1;
-        Tue, 25 Feb 2025 02:07:42 -0800 (PST)
+	s=arc-20240116; t=1740478335; c=relaxed/simple;
+	bh=jknYPqon03pKQxhtUdgW1/5STA2v9rlofl1w8RizIa8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=QShF48S7aTRmhmCyihJHsxWAFtxVa9zhoo/hbzfmgYhIpvd9HwD8W2BJMCIDwIfVH5eU3dhDAX++gqHcqSddGTRVS5+heK7h6No3gF5+yWGflrzWEJoGvivy9mSDy2CFJUKznGuKVMWkAiCw7yFqI5SdDDCFc+W5wwQLCsqtcoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=deb8yJ1n; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-38f70170005so3210885f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 02:12:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740478061; x=1741082861; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lAEbqPgmBi60dC78J9e9TaRL3Bq8nEEXaJp+eattnt8=;
-        b=B+659pigkcKaGAcqZYaxlphQIvHwA+vMv/vgSHMs/OkmA4REnPXOh/HSfGCwrP643e
-         yXvAHCFLY53ESkVtj2pS8q5tHUNhEOz0/Xl2SzLuwFMcyoAIO9H9LEYUCBpuKhvq3i1/
-         INYfaYxPvXMy0t8Hu1DBvaSdhLGXtkvabSDdUwNo5zZ+ARGdntuPojCOGKkXN1G9Eqga
-         hMcgoL8bjzVHzBi6B/4QLRQYcMBynXIQ3oISq1bQcGt47yPxliz9ye3nkgXpAM2Bmudc
-         y7jYnJ1lzW9BddfdpppaL1XEsl5TvGUBMIK2aMBOg4botv9ijMd70eL+4qvMp4tqdZDm
-         3CaQ==
+        d=linaro.org; s=google; t=1740478332; x=1741083132; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J87ryWliyCl20sPUl5uI4YRMovXLiY9QCxqpI8NH9Gg=;
+        b=deb8yJ1nrV2j9DeOO6C9jX+0vecswf3h7oWu65+MHpzMtPiQHUXpSSk+2aXs5RndQP
+         XC0lw157fffePG04m+UbnEg/fbHi03K6ZCcem5K3bXuRUQoCFh7XVAiv1/oNQQUc9I+3
+         SoI+4jxBbSQQN1Sdxgaq2x41de8iKdgiSX6rXEV7cJWNkdJzFXkJ8dg0uEjMfKPY48oY
+         Fru1UU2HLKdM1MsQYiOaRUrWhmez8FPFv5YrR6Yj2d0RUCutLAIs676bBPM2h0AErOWt
+         Z9/4VVvpWjL6oRehyjJqhRs0Mc5rdE5oIxaYI6oIEuVldvuWKgG/e0zdcpwYyAG7poZM
+         dWIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740478061; x=1741082861;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lAEbqPgmBi60dC78J9e9TaRL3Bq8nEEXaJp+eattnt8=;
-        b=f+8wsbDU4163gXr2Ou33xEQbgCLxie1hBobJz+1QqfG3nVwR7auHL7Zv8xKKFH4odO
-         hgGfpwXa2fDiR5BWZpkljPGo7HF9VChwzuv//1M5OxqwYRAzz5Eb3pXSN+TvAvwXrEfu
-         MdVKWepbACj2L2zvYgEUr7W8gc8Yy3ndoRXQ3veiHiF/zzu/lBN8OAy5Zi9IfamZuTzW
-         wg0cu9xTRhHNmE/eczF2nbLq65AfeLqqtrcxjUCzAkAEJTNliNu9o2BM0awQ33ONUII8
-         eCW6Suah4kbpdAFrlrzLHyQI8C7c8Ihm/WOweuHtxmC2Q/7bRQ8FNuvGUyidbj5B3ubG
-         kHHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVegutySvs7ZMwAUmjigu53aRJ7a7FWZhlkksoidle9P9V7vZXR3jmFgBjnbZniPlryLoxcvm96hgO8@vger.kernel.org, AJvYcCVsv1nnd2byJUH81vyjiOCU1LoTBLQwStTm03sX09bGujfyBFk/TpSO786U5obYW4tE7pUxVXsgbBcwl4TTRu2/68w=@vger.kernel.org, AJvYcCW0kBesrTh212qJXJjbS8cvO5FKHBZ0EyK2y1WkrBHfks8wYwRb750O/5cN4T3vI8ahLr50CrJng7xsGg==@vger.kernel.org, AJvYcCXiyFqXxycxjuFLnuqRmcVsLNv86qTvQu2RUcWA34VRtVT2/TNQFvZ2BQf3gipazYhdHbICb1Red748@vger.kernel.org, AJvYcCXuEKEvpAMdllMOsm0nKN7cj+ms3MmE3U1XsyU04Ujp05TzDeh8c5C645hShI5Yu1oGEOZgTV/Y/Q0qWpvG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/kD06mV1RCY97r7GdddtKuavgL75kdCDBwJJRVDytgDaISuJS
-	lp64fCWtCy3mGhaJliAu+UA/McBX7yBCcaSzAqy70f4OwsHBxgNl
-X-Gm-Gg: ASbGncsmbiXNBMIYpEpkn8XEqWHcKLOnVWSoxIyFlzX5JVVjg8Ij+1Z9pFxHRbnLcKb
-	BLmK6FY7Xp97bADTWaj7clavF9B/UV1qPzAwdNCaWykwpJLUk5bOutEbzKCFZoev6I2GgqNhVIQ
-	YPZ4HX1lV2cIxaDd27YTOv+CIXJCQF0PbhqHpFnqzG8Vul3mkQaY4wBdn3A83aQ5SfrY9jtUE6L
-	qxmRRffeJ3/958SBtwJVyive9nVnejGCR3mhvMOS2jcGJ2rrArFrOKdqbeSexSuUlqsrvEJNK58
-	pwKdTmZcWcZRgx8E3xnl0PRjKr/Yt86yVtuteTE=
-X-Google-Smtp-Source: AGHT+IE9LtSoTYOkptRbtvW+Pr2kFGMFaZQ0FPl+alwBphqqI58uxcxrb6TXfUP19MarHnVygwrw5w==
-X-Received: by 2002:a05:6512:b8d:b0:545:2950:5360 with SMTP id 2adb3069b0e04-548510d7323mr856574e87.22.1740478060709;
-        Tue, 25 Feb 2025 02:07:40 -0800 (PST)
-Received: from [172.16.183.207] ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-548514f477esm130333e87.187.2025.02.25.02.07.38
+        d=1e100.net; s=20230601; t=1740478332; x=1741083132;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=J87ryWliyCl20sPUl5uI4YRMovXLiY9QCxqpI8NH9Gg=;
+        b=tbhTQN6vDgvDbSeBOOfD/tPrth9Z8ph9XYeK+moZB4gc7xOraU1PA7VBzVMOAuX15R
+         NML+BjrTGva3BSph84W/ucaokz84Pz1XW9lNqo+xlkcptojFqUfca1O3PhWv8L5/lJ+5
+         tgzw+9Zh3u5wQuph7qci0p30rl87iDOjp4g7v3PRhY48Dw+cI4vQCq4ZGSbPUPa/yS40
+         ZG4Jc5CKHzqmi9NABujh4knUgRDxeIG+p4Qv0GFMFMsxklnOM+hMU3dq5ongobQxXIlv
+         OMvfqg9EpgqQ/xcJqSjVgGargToRa6Wqe+oGAIYbU43VP5Me8M/lxGa94LLIUcFbNdrH
+         QbjA==
+X-Forwarded-Encrypted: i=1; AJvYcCVoV1k8Y3yElGvH7Ti8tBZHlwJ6sDNb3W7eP2x3naIWZ7GfQuIaJQzSyD1bkNLquihwbaV1w+TkdUjV@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAx9JSYyRUlc84hnnOCknEMumzwR2o8JVN1ZVIT0IJ2JdOstwG
+	HMG7albBSG99umgIptC4zeQetvkrN6q4Oew/LrF9U8FJ1Iaa5E5/CrggVeYe1Sw=
+X-Gm-Gg: ASbGncvfxLOrGzxkx4iJTTTuOQdh4p8d+QjcKAhgvB8Bljm0oVls+kEa7xL83UPGYOR
+	CVcX0opimm6oELi855G6dBYs0OYyA8N5M37BH4awJaN2a02szZtdTzXJlFvy4D1T7Q3CTYSQwlX
+	RdwzIfiI0mpKNNLpx3vQv9A+EiRUuHkWuRl7q+B99HC3l6nQ1Qs+B2/xY7F/Lq3oT6oMS9H/nUC
+	U1K5UZIjvdBPrPpLtEXN0AGqJFBICGcYzhftNK5Mn4+UdhAqBemfXemMYcarQnef+1qTKPCz4sD
+	zUUhPwXVLVGYMz0vMpazddLjD/+nc0wZniV9
+X-Google-Smtp-Source: AGHT+IFefAdtPk51kuJgca+3l0hqlaBwIJi7vLtk9BJJqZ29dtHXUUkn4YlJcKZwqu3ntht5bnF7kg==
+X-Received: by 2002:a5d:6d8c:0:b0:38f:2224:738e with SMTP id ffacd0b85a97d-38f6e7573ffmr13530472f8f.1.1740478332139;
+        Tue, 25 Feb 2025 02:12:12 -0800 (PST)
+Received: from [192.168.1.100] ([37.167.173.6])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390cd86cc26sm1799396f8f.30.2025.02.25.02.12.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Feb 2025 02:07:38 -0800 (PST)
-Message-ID: <c3cc7f2a-ea0c-42a0-940c-95735d008989@gmail.com>
-Date: Tue, 25 Feb 2025 12:07:37 +0200
+        Tue, 25 Feb 2025 02:12:11 -0800 (PST)
+Message-ID: <a1544b83-f5b1-4e9c-a5bf-83e7019d8f3b@linaro.org>
+Date: Tue, 25 Feb 2025 11:12:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,97 +83,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 02/10] property: Add
- device_get_child_node_count_named()
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 0/2] Rockchip W552793DBA-V10 panel support
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Daniel Scally <djrscally@gmail.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa <nuno.sa@analog.com>,
- David Lechner <dlechner@baylibre.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Guillaume Stols <gstols@baylibre.com>,
- Olivier Moysan <olivier.moysan@foss.st.com>,
- Dumitru Ceclan <mitrutzceclan@gmail.com>,
- Trevor Gamblin <tgamblin@baylibre.com>,
- Matteo Martelli <matteomartelli3@gmail.com>,
- Alisa-Dariana Roman <alisadariana@gmail.com>,
- Ramona Alexandra Nechita <ramona.nechita@analog.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev
-References: <cover.1740421248.git.mazziesaccount@gmail.com>
- <29ec24f1498392cafbecc0e0c0e23e1ce3289565.1740421248.git.mazziesaccount@gmail.com>
- <Z72QAOA9xXbP16K-@kuha.fi.intel.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <Z72QAOA9xXbP16K-@kuha.fi.intel.com>
+ Conor Dooley <conor+dt@kernel.org>, Andy Yan <andyshrk@163.com>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250207-raydium-rm67200-v2-0-1fdc927aae82@kernel.org>
+ <psmfw2znti3luu6pjyi5g22bgvylcb5lms22yakfkshnol4v4y@bhzvqjbgzhep>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <psmfw2znti3luu6pjyi5g22bgvylcb5lms22yakfkshnol4v4y@bhzvqjbgzhep>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/02/2025 11:40, Heikki Krogerus wrote:
+On 24/02/2025 18:07, Sebastian Reichel wrote:
 > Hi,
 > 
->> +/**
->> + * device_get_child_node_count_named - number of child nodes with given name
->> + *
->> + * Scan device's child nodes and find all the nodes with a specific name and
->> + * return the number of found nodes. Potential '@number' -ending for scanned
->> + * names is ignored. Eg,
->> + * device_get_child_node_count(dev, "channel");
->> + * would match all the nodes:
->> + * channel { }, channel@0 {}, channel@0xabba {}...
->> + *
->> + * @dev: Device to count the child nodes for
->> + *
->> + * Return: the number of child nodes with a matching name for a given device.
->> + */
->> +unsigned int device_get_child_node_count_named(const struct device *dev,
->> +					       const char *name)
->> +{
->> +	struct fwnode_handle *child;
->> +	unsigned int count = 0;
->> +
->> +	device_for_each_child_node(dev, child)
->> +		if (fwnode_name_eq(child, "channel"))
+> On Fri, Feb 07, 2025 at 05:21:46PM +0100, Sebastian Reichel wrote:
+>> This has been tested in combination with the series from Heiko Stübner
+>> enabling DSI support for the RK3588 [0] (DSI controller support has been
+>> merged already, only the PHY support is missing) on the RK3588 EVB1.
+>>
+>> [0] https://lore.kernel.org/linux-rockchip/20241203164934.1500616-1-heiko@sntech.de/
+>>
+>> Changes since PATCHv1:
+>>   * https://lore.kernel.org/all/20241210164333.121253-1-sebastian.reichel@collabora.com/
+>>   * move additionalProperties below required in the DT binding
+>>   * collect Reviewed-by from Krzysztof Kozlowski, Andy Yan and Jessica Zhang
+>>   * improve Kconfig help text
+>>
+>> Thanks for having a look.
 > 
-> s/"channel"/name/ ?
+> I believe this has all necessary Reviewed-by tags. Can somebody
+> merge it please? :)
 
-Thanks Heikki for spotting this brainfart! :)
+Can you fix the reported issues by Dmitry on patch 2 ?
+
+Thanks,
+Neil
 
 > 
->> +			count++;
->> +
->> +	return count;
->> +}
->> +EXPORT_SYMBOL_GPL(device_get_child_node_count_named);
+> Greetings,
 > 
-> I did not check how many users are you proposing for this, but if
-> there's only one, then IMO this should not be a global function yet.
+> -- Sebastian
 
-I have no strong opinion on this. It starts with just 1 user (IIO ADC 
-channel stuff), but I've a feeling there are other areas which do 
-look-up nodes by name. I suppose "channels" are looked-up in other areas 
-of IIO as well. Lookups are probably done outside the IIO as well. I 
-haven't audited this, but I wouldn't be surprized if at least LEDs (and 
-perhaps clks/regulators?) could find this useful too.
-
-> It just feels to special case to me. But let's see what the others
-> think.
-
-Yeah :) And thanks for spotting the "channel" -thing :)
-
-Yours,
-	-- Matti
 
