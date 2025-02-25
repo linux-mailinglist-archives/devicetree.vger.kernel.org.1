@@ -1,152 +1,124 @@
-Return-Path: <devicetree+bounces-150820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE08FA439F4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:42:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B195A43A29
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:49:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74153171E05
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:40:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65BF6189AA3A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:46:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BF7F261398;
-	Tue, 25 Feb 2025 09:40:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81005263895;
+	Tue, 25 Feb 2025 09:44:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Kmcl2aJp"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="TMBU329S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from mout.web.de (mout.web.de [212.227.17.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6054B13A88A;
-	Tue, 25 Feb 2025 09:40:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3CB8205AD5;
+	Tue, 25 Feb 2025 09:44:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740476430; cv=none; b=F1FOaOfxZlrKrfkVp5NJa3lkLK1p0IV52aU2UwdMCDsuLSOswM8qjq/kdHE/KFwIZRWMCxpe6k+E9eagApGhIgV/VkEvuL4VbC9WxVjagHywb48d3los+OBlwhENhpa5WElWWzTBSop9in1uwhUscwuValQ4YALVdz7mzv2D5G8=
+	t=1740476654; cv=none; b=piUUSOQF/gtxOjp1tgiRrS0jzokSiPz6YzW03OBAqQZNKdPSajkrXnO31pa3vbMATvvJk3y6hLosZhW6YJ8o401ho7pbW5VrcHzm4VGZwx9kqhxWFoD4vwL+XBx7R/OSJrxTbZkI59hLJV4qrlk3aeJXOEaIgZVuhAEXqxr10vc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740476430; c=relaxed/simple;
-	bh=9MeSK15KTX1GpVUkanLg3jxBL8S+QzQcHgh3wTNK8Oc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OiJ2RSz8lImVDxsEvPgyEAes+P69mvTL0GZjBa54YPbHfp9vVRsgXW7eGm1oLfrct+DC9C4vaQpROjdnBhHzzrO3SMirV1XSeQbqcCHCO/RKppsZqKKleC2/mJYKjR/gGCIwJzAi43j6nLDsYruuCfq09R5gx51adgxy37j4jBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Kmcl2aJp; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740476428; x=1772012428;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9MeSK15KTX1GpVUkanLg3jxBL8S+QzQcHgh3wTNK8Oc=;
-  b=Kmcl2aJpA8oTw4fmvSTARNwxKw4RfMtg8KiIzu5L8TjtN3NHhaVvOAeW
-   1aiWkdHYvukahe/cJQu59P6YYyE93Y4EjXZ95CQ2VPMaH1uIocrksq35T
-   yzlKkFg4aluazGEyai0pQ3miAtYH2gixnT6RiT2GryCaYYopBhQSWYiLV
-   uKGZECihTCtVbQwsj5VpNSFJO4M/yEfxh4f0GKDPpCMAAtK08kom+k6iE
-   HXNbN5RZoKfxumaif+gTSlrcHAHD0EL2ph1fxCb1/RQzpewlgvI3l9cuN
-   5c9bNQ06bRaXLIm6HJ/F2JIkq5wHtORhdODrh9QolAi0xWNfj044YghFB
-   A==;
-X-CSE-ConnectionGUID: foDcJOSLQem7Gatk7z0YIw==
-X-CSE-MsgGUID: 1Zeabzl8Qr++C9VHi4GlYA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="40510239"
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; 
-   d="scan'208";a="40510239"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2025 01:40:27 -0800
-X-CSE-ConnectionGUID: wuPiuA/zQd22MTq7/2Oa3Q==
-X-CSE-MsgGUID: 1/aed8HrRI+DCsOedLJWuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="117267075"
-Received: from kuha.fi.intel.com ([10.237.72.152])
-  by orviesa008.jf.intel.com with SMTP; 25 Feb 2025 01:40:18 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 25 Feb 2025 11:40:16 +0200
-Date: Tue, 25 Feb 2025 11:40:16 +0200
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Guillaume Stols <gstols@baylibre.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Matteo Martelli <matteomartelli3@gmail.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v4 02/10] property: Add
- device_get_child_node_count_named()
-Message-ID: <Z72QAOA9xXbP16K-@kuha.fi.intel.com>
-References: <cover.1740421248.git.mazziesaccount@gmail.com>
- <29ec24f1498392cafbecc0e0c0e23e1ce3289565.1740421248.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1740476654; c=relaxed/simple;
+	bh=lOltmn06J90I/0axpOwXLXvdQ0/mV2bzHdtnEi1ZVck=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=KYVOjKu/m2cp8NSrbbcNiKwriRmN5M/pZXCrPC+bdtEmw0p30HVOVA4+wg2ZgwH2Pwm0L2Nq3jJz4d/ugeV3Jz6heocHPZk+AWtvFz7dxiqZA16oQ+Rggx37UaOjgDPQg7RZJgwO+F1T0Gnq3VlAnrc/YQQF35hziaID2RTFBS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=TMBU329S; arc=none smtp.client-ip=212.227.17.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1740476630; x=1741081430; i=markus.elfring@web.de;
+	bh=BdBsoikDArtMACxKD42l+nB5saRhKzzF2Hz35s6CP7I=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=TMBU329StovrEMUWG50Upg8JF2Itah+rkWKweEeqL6p2JIodyQuQrhXUIkJ6nTQz
+	 peO+8OQRqZPRGzX0n5aISpIgTAt9RPMJ9hBvAMA+Z1bmVi8hIyJTpQB+Y5kAdZrFD
+	 W1e3nJ0Nw72X7nUIQFwnfledooO99hw54knKNM3oFEeIipn8fgQIBSmnCcQrSSIQZ
+	 9h/GzDHYTRoRtYtmIU7Qko5EMb+Smp1GDvodcXTcZdkCA6NeHbjlke+TK/D2Rrrj8
+	 qy9eBBwliWGk4lDT/ASi20IwQvyPZb6cMkJCbJ4BQqrO/A8oBTEPy4C175RF5nHcP
+	 rY3k0L9k9fWM28u3Qg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.29] ([94.31.70.36]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MAtsZ-1tbdDI3bRZ-000Hvk; Tue, 25
+ Feb 2025 10:43:49 +0100
+Message-ID: <29a06fff-1fa2-49bd-aa72-e1eff1634b84@web.de>
+Date: Tue, 25 Feb 2025 10:43:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <29ec24f1498392cafbecc0e0c0e23e1ce3289565.1740421248.git.mazziesaccount@gmail.com>
+User-Agent: Mozilla Thunderbird
+To: Stanley Chu <yschu@nuvoton.com>, linux-i3c@lists.infradead.org,
+ devicetree@vger.kernel.org, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, Conor Dooley <conor+dt@kernel.org>,
+ Frank Li <Frank.Li@nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Rob Herring <robh@kernel.org>
+Cc: Stanley Chu <stanley.chuys@gmail.com>, LKML
+ <linux-kernel@vger.kernel.org>, Joseph Liu <KWLIU@nuvoton.com>,
+ Tomer Maimon <tomer.maimon@nuvoton.com>
+References: <20250224083908.1880383-6-yschu@nuvoton.com>
+Subject: Re: [PATCH v4 5/5] i3c: master: svc: Fix npcm845 DAA process
+ corruption
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20250224083908.1880383-6-yschu@nuvoton.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:8K+PHopHu9xkXX4CIxgvLNYgOtnWctxbev8mDHHsVe/2m2wIAuf
+ tsD3AH0DKjTv7WxU14zgyXvcEt1U4Br1mE7dMWQcFhHbe6L6j4P9FGNDTg5oiqg0RheHj6p
+ ymw79Kx1pB0nnXywb51I+rYRMM5vQX69adKr5VPO8k4aqRhm4tjNxQXlykUc6NcQhDjXpYG
+ LMrn5nQoAEjDU2SNa+lSw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:bdZrR1bd6TI=;fnuK2XjYVMC+xafW5uRXPx8boiN
+ BvfHdCbWJ+1K7ad2spgBy16diKewrEly9+LTzuejA6tGut5kP5u3OF1PbJWdzk9iGSKey6CAc
+ GUdre2Wm1aPwtYlsLIwBavgXI15b0cIS9tN0utbLdJ/1Fo4gkWDo8SMNAlyjtNY4NCPLeKgZg
+ rSOGHj20hteykfF7SkXGzXF673MLYaAcUHoEro9QoAzZzGUgFo/jWth2clYExVE8bG8UBhqpu
+ XwTsCwG5wR9WrTZuxpzCljNoMqW0r5A2XZE2ibCdjd/JKAv0EnZFcsHnM8EaDuZ33e2LzsMuW
+ KvJQwXGdJoS/opSo/AsPLfnMQ1MPSAmGnBMToKE8vc2xajgOb9K5k2QSk4dgABD96renVpjau
+ gyCmScL0mfUirhZXyXupzIAiUQoUmSsl9h1Y+PS3h+CuUzVXUWl6Ay2BAqf1w3TBkjgGdCSj6
+ WjyyMBauXPXn5aZcuRuIXc98d7+Cj7Q8pOk/uOkOgRaxgCdNzWBcx2XIFwZSlsr+8DXPi4M2v
+ jovYonmxV78G0Iki9zny+M2Eep3UI1Ed0D5GDJj8jsQrkzL/bttHFvSAIY+w9tTunDCpTu6C4
+ 98meicmiqdXYb0EO2D3FzZRDXBdQpkzik3XhJTbDlD7MuJUfrTFksyJ6b9e4XqR/g6EeIXa9k
+ L8XkfinlaTdvUq59AkPQEuDzwlcUT++Wjt6EQGUhv69uqCguyHjWFfRQU5CXGRKkiaFV5gYbT
+ 5f8va6uWjinaqtNfsn8GhBJ7TscqlMQaHOmhf3usvMzPI3JVJBp3OfPHjJd6iq9K7Ov8x2iIm
+ mUW36raehf3SGpET2/Ju7xYqgPLLWghPfN5oQCDlnHUnZ5J+RPhMQ+OJ4iH2eOIrZzpA+9ymm
+ MDS2A1pf76c62JQmSTYH4DOd1XS8a+6YNxDe29qf1olJKF6Usp4KWufw1q3RYsmjFudKeP8NR
+ 87SrrSIO+rQeLonx35CHENqzpLltwNFYM8OkddQd29JQ5BXWfk7MBL4SS+2XLVOqDBZTqIdOT
+ 5emUfzYEeeQtisCCI2a0iSJH6tGyzZX/XR8OTa4ObajHuBieDhIol3xNSz3PJy0exoipyQGk0
+ HonwbW2lUtbgg4wLHg5fUqwoEj6jXGLN37RNKt0gwCApj+XuGPDrvSp7Q0snJ7AD5+14Y7Zcj
+ aXK8nb9+g5Hokb57WGMTlIUgH/nXEdniqUFIMMapcNPSXHZPwm0A5TXgJ+qbIdTZMmMEZrBJq
+ ay1iZ05VnstqwR2FC1ZUobssEEdHdXCUOjJW4iV2JSahdL+4jyE3ZfyWD5w8oN6VOCM0SR2Em
+ VRWaPjNVxEyWu77QrsOjZWlwsChDyMM75QzHgg6q85xR7DqKhY0MTSJlN1pp9qr0692tvk1jZ
+ V2LMCc4GzQVBvxDYPvzbloBLdhhqUf9t3Bk04+urjPLMt44cUpvKZmaHOWl4sTbSsvPSrqja9
+ cycxEtgkmSEQdpS9vRZgbocW3sS4=
 
-Hi,
+=E2=80=A6
+> +++ b/drivers/i3c/master/svc-i3c-master.c
+> @@ -1162,7 +1162,16 @@ static int svc_i3c_master_do_daa(struct i3c_maste=
+r_controller *m)
+>  	}
+>
+>  	spin_lock_irqsave(&master->xferqueue.lock, flags);
+=E2=80=A6
+>  	spin_unlock_irqrestore(&master->xferqueue.lock, flags);
+>
+>  	svc_i3c_master_clear_merrwarn(master);
+=E2=80=A6
 
-> +/**
-> + * device_get_child_node_count_named - number of child nodes with given name
-> + *
-> + * Scan device's child nodes and find all the nodes with a specific name and
-> + * return the number of found nodes. Potential '@number' -ending for scanned
-> + * names is ignored. Eg,
-> + * device_get_child_node_count(dev, "channel");
-> + * would match all the nodes:
-> + * channel { }, channel@0 {}, channel@0xabba {}...
-> + *
-> + * @dev: Device to count the child nodes for
-> + *
-> + * Return: the number of child nodes with a matching name for a given device.
-> + */
-> +unsigned int device_get_child_node_count_named(const struct device *dev,
-> +					       const char *name)
-> +{
-> +	struct fwnode_handle *child;
-> +	unsigned int count = 0;
-> +
-> +	device_for_each_child_node(dev, child)
-> +		if (fwnode_name_eq(child, "channel"))
+Under which circumstances would you become interested to apply a statement
+like =E2=80=9Cguard(spinlock_irqsave)(&master->xferqueue.lock);=E2=80=9D?
+https://elixir.bootlin.com/linux/v6.14-rc4/source/include/linux/spinlock.h=
+#L572
 
-s/"channel"/name/ ?
-
-> +			count++;
-> +
-> +	return count;
-> +}
-> +EXPORT_SYMBOL_GPL(device_get_child_node_count_named);
-
-I did not check how many users are you proposing for this, but if
-there's only one, then IMO this should not be a global function yet.
-It just feels to special case to me. But let's see what the others
-think.
-
-thanks,
-
--- 
-heikki
+Regards,
+Markus
 
