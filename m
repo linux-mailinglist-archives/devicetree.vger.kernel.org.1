@@ -1,131 +1,191 @@
-Return-Path: <devicetree+bounces-150949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28244A43FB3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:51:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 907A2A43FB9
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:54:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B55573ADE9D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:51:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D753178E8C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25BC12686AE;
-	Tue, 25 Feb 2025 12:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6D1B268FCC;
+	Tue, 25 Feb 2025 12:54:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="N3fqnP1A"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="mjILcAIk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28AE920F076
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 12:51:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109E5268C4A
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 12:54:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740487909; cv=none; b=TG8gnEpTe37XSYA9qUSXixBxEKeeUjm+YaZZpR8N3yiAMEzhuZ/L4hd/8JCP18c1jqECiQk0EBpjDGlNlopphHMpdNPuUDir672YR7Fmicf3iEPqqlrlO26Ljwu5GmqvUvqJsO0RzDTiH9xEoogMuRSzPwll4O5yyPDW85+g7Zg=
+	t=1740488077; cv=none; b=CsI1b1zZbg6mJIOLscqJV6sLTNNkC5LQRPgCDJTDwc6oTuBovJlEY0wI5iZbfwIuYiD04L3Hp39lC+E8EsC70wyV7AI1cktUL5ZMiLzDbe7sFxFlhV7fOcjRizeJYMO3EgVLYX+EfpqOqklSOIOIdKuUOuRKT/iFZZD9g0r9VNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740487909; c=relaxed/simple;
-	bh=qAdn74AM2lDhY895TRkOgxqgadKZ6yY5aB9zQuiKRWk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xf5SygmUOor9tUbWYd8ybbRYSZKulMUVamsWvJ3AopdhYwXSyhoLlZjMQOKDmFaX25uhWGRNREYI42xJiLGQ8CgivyjYsngd65q80sVgHcn4S1lRtZ6bMZKXNKWYIAbpYrAwgD87EaZ5DPQQLLqtzIqnYYh7eWf2KsKkwmBfOr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=N3fqnP1A; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740487905;
-	bh=qAdn74AM2lDhY895TRkOgxqgadKZ6yY5aB9zQuiKRWk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=N3fqnP1A91Pwh/37qfY91FmNkzrXy1pFCEdedry+ney7WVFo04hjr6aWUaGs3qnue
-	 Ozh+Z3hBpBUMxwnyDIiFI1qkr07tovoRo7FLKtW75no3QTXg9GAzUdHk2XjDMxlNdh
-	 nmTXT4uYlTp8VwYOWfRMbpHo1bfRpp4kSJVeHghKwgnlMYTfDX1CySUI5zoZoXsg7B
-	 qqKnQSyYB8FsxyZJhWYKed9/8XJS2tmRfAzaSH5Th8xUj7rKyyaky2mULAivfbCmod
-	 BPJTiiViwNyF0b2xIHQwTqrqYmXs3gKvG/5930W2YNttnTg7vgfyDRE0yqbFix+k3W
-	 sm8GqTcEZnZqg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id CE45717E09E7;
-	Tue, 25 Feb 2025 13:51:44 +0100 (CET)
-Message-ID: <ec6c3ade-cb08-46cf-b8e0-bcc64d3f7d78@collabora.com>
-Date: Tue, 25 Feb 2025 13:51:44 +0100
+	s=arc-20240116; t=1740488077; c=relaxed/simple;
+	bh=W8LIqF7kkH6cCLj3gN0Tz1ix7jTva4xQTCeEx72fA+w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=czr7i4QQgbLLMK1HYhtXXDjKt6Gs/++7dP/wr3Is4CZMajoOg6M2nd1v2nl/EtzO4FyeAS2mEWHmbKyWyW3S7LAcMsfmGoGijde6v7YWmaSI3aM94jkcRoNnTsGHr8KtPz44sYHJI2pl2Bet1yNM9m5zQPmAwtt/+9rRG4EKTvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=mjILcAIk; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 3B865240027
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 13:54:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1740488073; bh=W8LIqF7kkH6cCLj3gN0Tz1ix7jTva4xQTCeEx72fA+w=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=mjILcAIkXqzqNKdVJx8aNZciCsFDMgWk1hSEOtkfGbO6HFVdhu5Vy04vupoKrYvbv
+	 c6on3zliqSDojlPicjEIhjGdw22NRnh01nANE/3jRMwtf45rqgaGqjBEPbDvvOZQgg
+	 s4Jb6KbceFTD97AcdgGFKHeQkXDlrBbwG3iChrbmjhflZJIT8e5l8aV2shsyZ4sXKo
+	 6ofVmK+sYqzNywRiys2+yrDszLO59sxgwWTEXz+wqj0Y8Kj8BPrm6dHb8ttxz+aByz
+	 WtF5CLyU4itMYTueMHGswR3Km+h6T3R2kOXkZBOleO2kFLusG00NHpXaxrg6YwUFTp
+	 3ou6TTWtB7XpA==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4Z2HcG3WCTz9rxG;
+	Tue, 25 Feb 2025 13:54:21 +0100 (CET)
+Date: Tue, 25 Feb 2025 12:54:21 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Cc: Frank Li <Frank.li@nxp.com>, devicetree@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	Krzysztof Kozlowski <krzk@kernel.org>, imx@lists.linux.dev,
+	Scott Wood <oss@buserror.net>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
+	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-mtd@lists.infradead.org
+Subject: Re: [PATCH v2 05/12] dt-bindings: dma: Convert fsl,elo*-dma to YAML
+Message-ID: <Z729fRBNLAxdYD22@probook>
+References: <20250207-ppcyaml-v2-0-8137b0c42526@posteo.net>
+ <20250207-ppcyaml-v2-5-8137b0c42526@posteo.net>
+ <Z6pV4eauZj75+911@lizhi-Precision-Tower-5810>
+ <Z684nUnDX4Sb98rQ@probook>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: airoha: en7581: Enable spi controller for
- EN7581 evaluation board
-To: Lorenzo Bianconi <lorenzo@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20250225-en7581-snfi-probe-fix-v1-1-77e4769574e4@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250225-en7581-snfi-probe-fix-v1-1-77e4769574e4@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Z684nUnDX4Sb98rQ@probook>
 
-Il 25/02/25 13:47, Lorenzo Bianconi ha scritto:
-> Enable spi controller used for snand memory device for EN7581 SoC
-> evaluation board.
+On Fri, Feb 14, 2025 at 12:35:41PM +0000, J. Neuschäfer wrote:
+> On Mon, Feb 10, 2025 at 02:39:13PM -0500, Frank Li wrote:
+> > On Fri, Feb 07, 2025 at 10:30:22PM +0100, J. Neuschäfer via B4 Relay wrote:
+> > > From: "J. Neuschäfer" <j.ne@posteo.net>
+> > >
+> > > The devicetree bindings for Freescale DMA engines have so far existed as
+> > > a text file. This patch converts them to YAML, and specifies all the
+> > > compatible strings currently in use in arch/powerpc/boot/dts.
+> > >
+> > > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> > > ---
+[...]
+> > Need ref to dma-common.yaml?
 > 
-
-Please clarify the commit title:
-
-arm64: dts: airoha: en7581: Enable spi nand controller for EN7581 EVB
-
-After which...
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-Cheers,
-Angelo
-
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->   arch/arm64/boot/dts/airoha/en7581-evb.dts | 4 ++++
->   arch/arm64/boot/dts/airoha/en7581.dtsi    | 2 +-
->   2 files changed, 5 insertions(+), 1 deletion(-)
+> Sounds good, but I'm not sure what to do about the #dma-cells property,
+> which is required by dma-common.yaml.
 > 
-> diff --git a/arch/arm64/boot/dts/airoha/en7581-evb.dts b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> index d53b72d18242e3cee8b37c7b1b719d662fd6db8d..cc69f698c27b804953b1bb671e128d4401744bf5 100644
-> --- a/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> +++ b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> @@ -25,6 +25,10 @@ memory@80000000 {
->   	};
->   };
->   
-> +&snfi {
-> +	status = "okay";
-> +};
-> +
->   &spi_nand {
->   	partitions {
->   		compatible = "fixed-partitions";
-> diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
-> index 26b13694091735da7af977e42f8f546d7d5cb078..49c061d38d7860b3b416610723791a7a91edcb69 100644
-> --- a/arch/arm64/boot/dts/airoha/en7581.dtsi
-> +++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-> @@ -150,7 +150,7 @@ gic: interrupt-controller@9000000 {
->   			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
->   		};
->   
-> -		spi@1fa10000 {
-> +		snfi: spi@1fa10000 {
->   			compatible = "airoha,en7581-snand";
->   			reg = <0x0 0x1fa10000 0x0 0x140>,
->   			      <0x0 0x1fa11000 0x0 0x160>;
+> There aren't many examples of DMA channels being explicitly declared in
+> device trees. One example that I could find is the the xilinx_dma.txt
+> binding:
 > 
-> ---
-> base-commit: 0092294492fafe79a537915e486576a3d69c9a7c
-> change-id: 20250225-en7581-snfi-probe-fix-c325bedded9e
 > 
-> Best regards,
+> 	axi_vdma_0: axivdma@40030000 {
+> 		compatible = "xlnx,axi-vdma-1.00.a";
+> 		#dma_cells = <1>;
+> 		reg = < 0x40030000 0x10000 >;
+> 		dma-ranges = <0x00000000 0x00000000 0x40000000>;
+> 		xlnx,num-fstores = <0x8>;
+> 		xlnx,flush-fsync = <0x1>;
+> 		xlnx,addrwidth = <0x20>;
+> 		clocks = <&clk 0>, <&clk 1>, <&clk 2>, <&clk 3>, <&clk 4>;
+> 		clock-names = "s_axi_lite_aclk", "m_axi_mm2s_aclk", "m_axi_s2mm_aclk",
+> 			      "m_axis_mm2s_aclk", "s_axis_s2mm_aclk";
+> 		dma-channel@40030000 {
+> 			compatible = "xlnx,axi-vdma-mm2s-channel";
+> 			interrupts = < 0 54 4 >;
+> 			xlnx,datawidth = <0x40>;
+> 		};
+> 		dma-channel@40030030 {
+> 			compatible = "xlnx,axi-vdma-s2mm-channel";
+> 			interrupts = < 0 53 4 >;
+> 			xlnx,datawidth = <0x40>;
+> 		};
+> 	};
+> 
+> 	...
+> 
+> 	vdmatest_0: vdmatest@0 {
+> 		compatible ="xlnx,axi-vdma-test-1.00.a";
+> 		dmas = <&axi_vdma_0 0
+> 			&axi_vdma_0 1>;
+> 		dma-names = "vdma0", "vdma1";
+> 	};
+> 
+> It has #dma_cells (I'm sure #dma-cells was intended) on the controller.
+> 
+> 
+> Another example is in arch/powerpc/boot/dts/fsl/p1022si-post.dtsi:
+> 
+> 	dma@c300 {
+> 		dma00: dma-channel@0 {
+> 			compatible = "fsl,ssi-dma-channel";
+> 		};
+> 		dma01: dma-channel@80 {
+> 			compatible = "fsl,ssi-dma-channel";
+> 		};
+> 	};
+> 
+> 	...
+> 
+> 	ssi@15000 {
+> 		compatible = "fsl,mpc8610-ssi";
+> 		cell-index = <0>;
+> 		reg = <0x15000 0x100>;
+> 		interrupts = <75 2 0 0>;
+> 		fsl,playback-dma = <&dma00>;
+> 		fsl,capture-dma = <&dma01>;
+> 		fsl,fifo-depth = <15>;
+> 	};
+> 
+> 
+> There, the DMA channels are used directly and without additional
+> information (i.e. #dma-cells = <0>, althought it isn't specified).
+
+I had another look at dma-common.yaml and it explicitly requires
+#dma-cells to have a value of at least 1, so this second idea won't
+work.
 
 
+Best regards,
+J. Neuschäfer
 
