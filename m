@@ -1,147 +1,139 @@
-Return-Path: <devicetree+bounces-151088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAA01A44600
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:27:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED528A443D9
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:05:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4879E3B54C9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:22:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF3543A2D03
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:59:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B4C818C930;
-	Tue, 25 Feb 2025 16:22:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4335921ABD7;
+	Tue, 25 Feb 2025 14:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="OxOtEUAE"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="VAtgprLN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B7D18C93C;
-	Tue, 25 Feb 2025 16:22:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740500579; cv=none; b=ZqIPCFa9/0fBl7L4h/QuUsIqHmk/uVwj21TsmAnTmNl1L1d5j9Ga5jTCInetNqffNwvHp7DdT2euE/i33t0rCZp+ggdhbaz12j4g81Zep+Qg5Oi2xyu9Ycuflu/A8/olh1yUcOUp9dgze75qfKgwcqNtnRmF+Rpkbd5tCba8D/4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740500579; c=relaxed/simple;
-	bh=r4o5TBDQfp7XBMg94pkTeFm2ojET8kuPPGCZu0LaV14=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kukfv+ZDrFRkoUsKBOP/UZrc1TvZGw9OGhhDwVEOoN/bEVbsc+WhV3lLEY/rsYo4YIt53lZoJJy81BNa5kmSJp9h/1AS1Pra0CaodLdsH2LwLsXHXEaiRFqmgf/O2OxT1nuJ3idukEFdMXsMDobebHpZAc8gMCsNyQMlk5IPkXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=OxOtEUAE; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51PFCrWC016958;
-	Tue, 25 Feb 2025 17:22:30 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	5gxQFyJw5oEPlJrNAKF6ERcGuSNk0FxInJ0AAbQCAlg=; b=OxOtEUAEemJ7xmT+
-	SswcTnH0XnACl/+5vGnoJ91/aKrxA90SM9ZdHJqoMEaEudZ6bsOJwu3/FOree1r0
-	u1sILtXwawuzUyOXgy6Jc9aDmZ6KlMF99ul6mlrxWrDoN70HPnZgGdpmLaTDtyUT
-	Be5TL9/MWjIHuQwsgg36J5fqS1JNCfg55zZRsRzTEhA/o4B8OE9IauTObLlzdED/
-	0abBmAfOzmyTgTLs0wV0WbBMFaaWYlHD2p/BGylTlISso2/VYqTLrALQ0iBLKg/H
-	sNfysYZ7fk0TpBRr87LV27Iuy2hijSOzD07iIvkSIgSKxp3Ewg0n4p9dd3NKjTdB
-	lNE8Og==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4512sqvfhp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Feb 2025 17:22:30 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 88F5240046;
-	Tue, 25 Feb 2025 17:21:13 +0100 (CET)
-Received: from Webmail-eu.st.com (eqndag1node6.st.com [10.75.129.135])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2597C5C0CD7;
-	Tue, 25 Feb 2025 15:57:51 +0100 (CET)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE6.st.com
- (10.75.129.135) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 25 Feb
- 2025 15:57:50 +0100
-Received: from [10.48.86.222] (10.48.86.222) by SAFDAG1NODE1.st.com
- (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 25 Feb
- 2025 15:57:50 +0100
-Message-ID: <2df7bdd9-5072-4a9a-b142-1e1e3f20130c@foss.st.com>
-Date: Tue, 25 Feb 2025 15:57:49 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 732A221ABBA;
+	Tue, 25 Feb 2025 14:59:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740495584; cv=pass; b=hDje0YXDqbyDDzFnY5oqrEBuOYgqKdlgAihTDe3BbKcCsTmJUZ1tpUXCJuyAstQ6X9CxF+6woeZC5FOaeg02I7CBXn/FF3e9TnpJ4RkPtuoURM6eMpuOI6PS5AOY8OBSi198N/ZdDXQAGpk0t6LTv6TmykMmWzM0hSY+INotlJg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740495584; c=relaxed/simple;
+	bh=aZtAlWRb86fNzZyHG9U/Ch6tls1gOr4OGNqUXGklnQ4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iJkWLmsy1YqYiqIPLkMlYB7EEkf5dilV6PJhJ7A45GZSm2zaJUjI4aYfjwLSIGN8moj864v7W2G7z6T1lRAsgnPTL5ujwp+hOL+HEOdlZeA7pqumlAyPXguk5A6LghMYd09O3KT2+Iw0CIc+dVhgBG5xGjHWxc16Ncwu1djphuo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=VAtgprLN; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1740495509; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=mQbs+nNywvchZFCL9JymH2C8Mfwg6UtxLkIBKFfXH+OgT3Er9z92reIXwwZDlCaXzBFGSqFUCB99RUbDPDI/jH3WgyxTy4695bkfa6stVdnU5tJI0DQqp40daOjUrBm7+EtUQ3nTgFTVt+I2k4fZ4NVcdvFExsYLShEv9OZYZV0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1740495509; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=UPm7l3RiX1WuCB7tMXcd8twnqxK37m3RDu2nnogmkfY=; 
+	b=Z1XR4CWew3aD4t4Sl2nhyLbmcHwGn6emwSBsGnQO4/8UYJ4FvFwU/i0mQtXSRjC2zqlZvgUcmqM6KxF++fN8GPX/3fB0QueOEHTN8xQy/KcMO9+qDfo/VPaTs6w43L6R8BNnjGZbfA8KpgHrTuH/6H4kZvUtNffCy0svlZDWdkY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740495509;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=UPm7l3RiX1WuCB7tMXcd8twnqxK37m3RDu2nnogmkfY=;
+	b=VAtgprLNucRCs34k6jFRYcQYth7SSrgIubTX93w+NZ99KalCH1glGXW/gwR57Tvb
+	0xUz4CDDIKPg8yiKI5lCp8PLmGSnz7UYqMxGjLOaAnvcLRKb6TWugknX5lkX+zvm6K8
+	yMWQOyM3tOBj57i8GNs9LywGwbqDneKv9XS995cQ=
+Received: by mx.zohomail.com with SMTPS id 1740495506960426.84058732469487;
+	Tue, 25 Feb 2025 06:58:26 -0800 (PST)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>, linux-kernel@vger.kernel.org,
+ Algea Cao <algea.cao@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ dri-devel@lists.freedesktop.org, Niklas Cassel <cassel@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, kernel@collabora.com,
+ David Airlie <airlied@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sugar Zhang <sugar.zhang@rock-chips.com>, linux-rockchip@lists.infradead.org,
+ Chen-Yu Tsai <wens@csie.org>, FUKAUMI Naoki <naoki@radxa.com>,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Alexey Charkov <alchark@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v7 0/3] Add HDMI audio on the rk3588 SoC
+Date: Tue, 25 Feb 2025 09:58:23 -0500
+Message-ID: <3337030.aeNJFYEL58@trenzalore>
+In-Reply-To: <8734g2sg4t.wl-kuninori.morimoto.gx@renesas.com>
+References:
+ <20250217215641.372723-1-detlev.casanova@collabora.com>
+ <87frk2sumw.wl-kuninori.morimoto.gx@renesas.com>
+ <8734g2sg4t.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/8] clocksource: stm32-lptimer: add stm32mp25 support
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <lee@kernel.org>, <ukleinek@kernel.org>, <alexandre.torgue@foss.st.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <wbg@kernel.org>, <jic23@kernel.org>, <daniel.lezcano@linaro.org>,
-        <tglx@linutronix.de>, <catalin.marinas@arm.com>, <will@kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <olivier.moysan@foss.st.com>
-References: <20250224180150.3689638-1-fabrice.gasnier@foss.st.com>
- <20250224180150.3689638-5-fabrice.gasnier@foss.st.com>
- <20250225-purring-herring-of-reputation-1aed2f@krzk-bin>
-Content-Language: en-US
-From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-In-Reply-To: <20250225-purring-herring-of-reputation-1aed2f@krzk-bin>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-25_05,2025-02-25_03,2024-11-22_01
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
 
-On 2/25/25 13:02, Krzysztof Kozlowski wrote:
-> On Mon, Feb 24, 2025 at 07:01:46PM +0100, Fabrice Gasnier wrote:
->> From: Patrick Delaunay <patrick.delaunay@foss.st.com>
->>
->> Add the support of the new compatible for STM32MP25 SoC in driver, as
->> described in Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml
->> and used in arch/arm64/boot/dts/st/stm32mp251.dtsi.
->>
->> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
->> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
->> ---
->>  drivers/clocksource/timer-stm32-lp.c | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/clocksource/timer-stm32-lp.c b/drivers/clocksource/timer-stm32-lp.c
->> index a4c95161cb22..db055348e2cc 100644
->> --- a/drivers/clocksource/timer-stm32-lp.c
->> +++ b/drivers/clocksource/timer-stm32-lp.c
->> @@ -197,6 +197,7 @@ static int stm32_clkevent_lp_probe(struct platform_device *pdev)
->>  
->>  static const struct of_device_id stm32_clkevent_lp_of_match[] = {
->>  	{ .compatible = "st,stm32-lptimer-timer", },
->> +	{ .compatible = "st,stm32mp25-lptimer-timer", },
->>  	{},
+Hi Morimoto-san,
+
+On Tuesday, 25 February 2025 01:16:50 EST Kuninori Morimoto wrote:
+> Hi Detlev, again
 > 
-> Same question.
-
-Oops, I just figured out I have missed a change to this driver, to
-enable interrupts, in order to comply with the LPTimer spec, starting
-with STM32MP25.
-
-E.g. with earlier STM32MP13, STM32MP15 or even STM32H7:
-* The LPTIM_IER register must only be modified when the LPTIM is
-disabled (ENABLE bit reset to ‘0’)
-
-On STM32MP25:
-* The LPTIMx_DIER register must only be modified when the LPTIM is
-enabled (ENABLE bit set to 1)
-
-I'll add this as compatible data in next revision.
-
-Best regards,
-Fabrice
-
+> > > Especially those commits:
+> > >       ASoC: audio-graph-card2: use __free(device_node) for device node
+> > >       ASoC: audio-graph-card: use __free(device_node) for device node
+> > >       ASoC: simple-card: use __free(device_node) for device node
+> > 
+> > I got same report from our test team. I'm now tring to solve it.
 > 
-> Best regards,
-> Krzysztof
+> Unfortunately, I can't reproduce the issue on my environment,
+> but I guess I found the root cause. Does attached patch can solve
+> your issue ?
+
+From what I see, the error is not present anymore on linux 6.14-rc4. I tried 
+reverting your patch "ASoC: simple-card-utils.c: add missing dlc->of_node" 
+(dabbd325b25edb5cdd99c94391817202dd54b651) and the error reappears.
+
+On 6.14-rc3, any of your patches (dabbd325b25e, or the one you attached here) 
+will fix the issue and on 6.14-rc4, there is already a patch that fixes the 
+issue.
+
+Also, since dabbd325b25e, the node indeed should be kept while the driver is 
+used. So even though the issue reported here is fixed by another patch, both 
+are likely needed.
+
+That being said, I'm not sure I completely understand why that extra line fixes 
+the issue. Is the __free() attribute smart enough to know that the pointer has 
+been copied and not free it at the end of scope ?
+
+> I will officially post the patch to ML, but want to confirm it before it.
 > 
+> Thank you for your help !!
+
+Thank you for looking into this too :)
+
+Detlev.
+
+
+
+
 
