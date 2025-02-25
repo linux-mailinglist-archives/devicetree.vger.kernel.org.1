@@ -1,191 +1,155 @@
-Return-Path: <devicetree+bounces-150666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 115F1A43369
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 04:11:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6897DA43370
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 04:14:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59E18189E552
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 03:09:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55EBA17365C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 03:14:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF5691547CA;
-	Tue, 25 Feb 2025 03:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0C1F2206A4;
+	Tue, 25 Feb 2025 03:14:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YQ/PPfe5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hzn7An60"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9791151991;
-	Tue, 25 Feb 2025 03:09:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B822206A2
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 03:14:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740452958; cv=none; b=YBvnJbRpsMmd8Bb6vJ7gpiaD/lTfxO/hgeNzFrqRV2qqSpotHus4S4cLIKFFMHazSwy0aYCeUME05dr/w+AIgi3QBgJ0F/ZOrGg+6b4yOEDW3yJIWJ8Pw0IDmBCqH8nbn3xHgWa1h5uRB2N56uHHtd3AbRDBa8fLLCbkH5iijyI=
+	t=1740453290; cv=none; b=roOrrmurz2sFPjhSWgkxLEJOwb9rwhhA1ZHTsUJ66Qmv5XYNaiFg2JkkhBRJCnVqr6Mkgd6HMQ3UUU9U0WSptjisdq2wytk4EXnSrlctJ2p8giS5bmOCq1tmAkGo7xfzQOpfskARkf9BOwjzYFcAonEn0HNHtQ1yTZISgUmL8IE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740452958; c=relaxed/simple;
-	bh=yP4sJVz/+xRLnihlGpoNeTpJ4ncWPc1FCVMuukSKggY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gbYYdJ1Ff+l0kbAlV9RQGJwO3O9SLZZQcyUPwV7gnW9llZ8rAh5aipjbmS8OUSBEc5MbNWgfOmySTy49xXgpioAbnTjAINXv5r7dNfZ5MObUbdmdfX7EDmVOksLctzCRpNIk0fH6tcWt0Y5Dos5V80CzDMKYJiqnRvOqa7rozWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YQ/PPfe5; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-216513f8104so12240885ad.2;
-        Mon, 24 Feb 2025 19:09:16 -0800 (PST)
+	s=arc-20240116; t=1740453290; c=relaxed/simple;
+	bh=TphJlHkGQkegZ4mR6BB6NDXfabo6wFsuGSGu/WTHIlU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=j9NONqdKfl6OCmQE5PlYzeqta4xuA8Zrbul54sfYCA8Q+Zy0q7TnLiCMe+bbIKLfFGvdYih0Lwi5jA0zEBXyNtvjWWNm/r2odhvmudTPOe0PVpG4xAjG64a74o8lUPArSybhbrQfJydmkfmTuD6pgB4P2L0jR2JtmvLexyek4PQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Hzn7An60; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e46ebe19489so3664858276.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Feb 2025 19:14:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740452956; x=1741057756; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=elpjqOmNwpb5zLF3nxKBv/pF+35q6+L3HqlbKg46eQo=;
-        b=YQ/PPfe51VcPPY7lYwnuv2eEIT/EfBTBFYyihLnQuN0J9y3Yn66veQa/xbK8MwoGqF
-         nnVuBmtnHsdbJLynsyoUpYgM+cY0G1wp3X1T0Vuv329emLfVLoqhdYbVApd6cICEsJDg
-         okEsKCcyU9A98cXJvzTBBixobq+22Sg46ku5tvmJAKsvKxtElio8g1kBu7H91/6jReea
-         AxVC/9qlBj5KYR6K0U3z5g/K3xQnuf40P356y4eZqyaKTunyk6GO+7W1Du19NzFbO9Qn
-         yJqLB3HyZge7WpL3k8ilDce+hO5oDGc5sjahq/ET7/x8JFAc2lLK6Q2Hm+q1f3e9lv7o
-         yezA==
+        d=linaro.org; s=google; t=1740453288; x=1741058088; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=IQVbEzx9kvB0TrPeedrtx7i8ImP/tXHPwCaZo2eyYPM=;
+        b=Hzn7An609xryNLkibRfNmLwbAP3dY5kSBhYkFXZWh3dJNLdPNKM09AiHQC7ESCETSL
+         OyszX3dt9yIZkyW1qvsQHSQsUa+cSDEwd6ToZZtv1Soyw2xs/0Xz+BKF0VSyj9FQG2aG
+         eg58fs9lYbFUOiCkxj6Q/1/dURt9nXV8qv8bCTeWL/oTPdJVVuPqmUoLnjf6b/bx4TAH
+         MKgi5IED7rNKW6T7qoRQFjqc8B5o+xTdjlgeFOorGf+NC6vGANwBtv/ejKqZv4+bW4mx
+         y1mTrCkEIDVKX2x/Z9Bay2AUGZPUyY+qI55tZ2FGT6rq2v2t7b08la/NdR+0bJmrzVE5
+         59eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740452956; x=1741057756;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1740453288; x=1741058088;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=elpjqOmNwpb5zLF3nxKBv/pF+35q6+L3HqlbKg46eQo=;
-        b=l/hzA8IvtfZl88mk2PnhcVGlErsICkYdK/bqjAK/8NEp989K4b/BTkV2QGi/VkwdZr
-         2gx+fYm4FXo0CvdbRjZ+vrV5kqEOL8cdqmNmvEgMPz/BucjVvLUURFBTr7DvNtH5WGs/
-         J3rojTw6vgBR5qAZoYuLmtY3dId674LKGgNfSRcVNsWzNjfr7tMk/SLpjbq+vMFSHUdO
-         B/t6xOAGUpHy0tQJvjJNNxksidYU2lEB2IVZen6G4X03t3/He39Hv9uOifQ3qLYSW1fs
-         jX6fp5JlMD1n87wKHf0F/QGCQqKVwqxQNccaFljW60v3OTrulFjULULgTmwoyf7td9jf
-         NphQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU6NiDDTgCBgO0aJqkP/e9Lid1QcwrSSB2JTFQyuJvGv9vA33upCSOqw75/qQ68+UQbS+mQP09Qs7GY@vger.kernel.org, AJvYcCXffWqzLFv/AdHUqNycgryrJXKBUPjNnjAjoxZ8/FZAtP15c71MUW/whKAWV/YfUMSLFJEcRT/C4ZnB+kio@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8O/5Lk/PVHkQKu13UbElvnebgP74Ox5PU08Xi+39AjaXMbX/D
-	RybAsMuNT5UMQMMRRrecyYz6UiNs09rhO3BpkHsijzGtC1xqXYqM
-X-Gm-Gg: ASbGncud9ghE9F5m8B2gCiRgVIO60BbTzTUcjEzl9MgDOWPIXXV5S8qKg/NlQ12zACm
-	H3P2OthskheeMc8pKi9fy0fdrLpVpCjoId8dZGAtza8TzpCXipzbPCBZ+jz7BHholCQdQbv3Yyo
-	fViTCezPRORNmSTJJAsCEZfQVJc65lO8HE3R6SWbGisRe26aNR/24x+pWT8JuucquLRdiY60elk
-	8zvE0hA5oVRAVkQ8IxbDycK/ntQEgqzxWL+cUHlJnsa2/8v5Iae9FIpqnUBkGEzIeC/HydZWJEH
-	g/4QThZvgC/jS8/MjkhDyTs+SeMCtOk=
-X-Google-Smtp-Source: AGHT+IFDe2Sgq26vK2EiPZfc+NSBNuzC6A0u7dIPc3aRtjWh21i36Ss1MdvlgxEx1VMTHu4uwTgcIQ==
-X-Received: by 2002:a17:903:1c5:b0:220:bf1c:35da with SMTP id d9443c01a7336-2219ff72473mr96063675ad.7.1740452956032;
-        Mon, 24 Feb 2025 19:09:16 -0800 (PST)
-Received: from rock-5b.. ([221.220.131.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2230a0aea5fsm3405505ad.224.2025.02.24.19.09.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Feb 2025 19:09:15 -0800 (PST)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Jianfeng Liu <liujianfeng1994@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Stephen Rothwell <sfr@canb.auug.org.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: rockchip: add hdmi1 support to ROCK 5 ITX
-Date: Tue, 25 Feb 2025 11:08:48 +0800
-Message-ID: <20250225030904.2813023-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.43.0
+        bh=IQVbEzx9kvB0TrPeedrtx7i8ImP/tXHPwCaZo2eyYPM=;
+        b=vHgScxtlCK3GfP0TQv8XuKnhyfiooAJ4lfIufgCdkj6LW4KFP41EHTQ4m2sqHZJ2y8
+         hBwZdIHc7k9YKJRw1F/87blOKOQRHiSE05xrWA9XufbzjT9h3W0H6w5AYejT8tGb2HEX
+         gJTZXjkpBZO9LTuBddVGYGq6ka7swGYmBTyysYi05Enh+YMYJQ3mU/J20jljuwTU0nhi
+         sf+2VlQtBa9frH4Bh8h7AGENQxVu0UM0SOzlC+8QVusm4Su2CDuj3Du9xZUoOzmSPda1
+         JfMPJY1u4oyQ8ABqcmxa13M+6P+5DDgcRzHbkNldOJsEkVWrlIs9fRajK80qcFePsp6E
+         F0Rw==
+X-Forwarded-Encrypted: i=1; AJvYcCW3YiMcL4WEaJE1yPeKee7K+eXCNUJrDK61VH69bgvLjtAl3k6uWHx0nB28z75FihwIfpI2mkWYbzqd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yze6seqkis1MMCOqpMJa8WVbRZVg6Nk6b9ZxfAN0tm8T56mYQyj
+	zMScKL+ve9RVbQuw5q2q3qg9K1fHuVV7O96DfyXPo8803D7IrMalJN84dYTMbWJt0kR3uPjZRER
+	ZFO+2464d44ujY13v76KB7802iiaKeTmUI/RhgA==
+X-Gm-Gg: ASbGncuIb2mo0tfwxWzuy76mq4lpwkhQCt3ATmFdjzCyuxKQBKNLjQTULHoQI4t+iqu
+	zZfrseZiZyEdMOM+YaceV80a+uLl7gTINQhKkiM8DAGygXQqnxWZdlBtSt3GHZfLTAj2QO75osC
+	vs6/oO9wyN
+X-Google-Smtp-Source: AGHT+IHc41JPGJ088b37b3aIhRMn8lVQtQIt1tmL70qMB6qKKdFyKRe9bfOCM8ADQNOIRUFDSenHC0fF71QDngeKPHY=
+X-Received: by 2002:a05:6902:2e82:b0:e5d:d016:989e with SMTP id
+ 3f1490d57ef6-e5e246719d8mr13282250276.39.1740453287851; Mon, 24 Feb 2025
+ 19:14:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250217-b4-sm8750-display-v2-0-d201dcdda6a4@linaro.org>
+ <20250217-b4-sm8750-display-v2-5-d201dcdda6a4@linaro.org> <aqpuik4zitdfuk4pahn4wyzxdvxldy4dcqjs3mhr6fqtxpoxhf@ssfzzbfce2nu>
+ <2dfe466c-ad94-4683-a2e9-a49e77a61f4f@linaro.org> <h2shpen65r7v4in54avsez7qtlwojbt2cthyomqrsgs5ewprwb@bn53suqrzkac>
+ <4e82404a-0ea5-4641-829a-bba666edd352@quicinc.com>
+In-Reply-To: <4e82404a-0ea5-4641-829a-bba666edd352@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 25 Feb 2025 05:14:36 +0200
+X-Gm-Features: AWEUYZmkKWazMeNY444Pg0IY6jEqBfAoPZAv6AXrcyFb_NB6yz312AR5esudyLk
+Message-ID: <CAA8EJpoWEuqKkreUTu1gO-Pr=VFNNP_vBfNZpitJiJH728vjPA@mail.gmail.com>
+Subject: Re: [PATCH v2 05/16] dt-bindings: display/msm: dp-controller: Add SM8750
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Clark <robdclark@gmail.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krishna Manikandan <quic_mkrishn@quicinc.com>, Jonathan Marek <jonathan@marek.ca>, 
+	Kuogee Hsieh <quic_khsieh@quicinc.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Enable the HDMI port next to ethernet port.
+On Mon, 24 Feb 2025 at 20:59, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
+>
+>
+>
+> On 2/19/2025 9:08 AM, Dmitry Baryshkov wrote:
+> > On Wed, Feb 19, 2025 at 06:02:20PM +0100, Krzysztof Kozlowski wrote:
+> >> On 17/02/2025 19:58, Dmitry Baryshkov wrote:
+> >>> On Mon, Feb 17, 2025 at 05:41:26PM +0100, Krzysztof Kozlowski wrote:
+> >>>> Add DisplayPort controller for Qualcomm SM8750 SoC which so far looks
+> >>>> fully compatible with earlier SM8650 variant.
+> >>>
+> >>> As that became a question for QCS8300, does SM8750 also support exactly
+> >>> two MST streams?
+> >>
+> >> v1.5 of DP (starting from SA8775p , then SM8650 and SM8750) support 4x
+> >> MST for DPTX0 and 2x MST for DPTX1.
+> >>
+> >> The DP in SM8650 and SM8750 are identical, according to datasheet (v1.5.1).
+> >
+> > Hmm. This also means that QCS8300 is compatible with SM8650. I'll let
+> > Abhinav comment here.
+> >
+>
+> DP version by itself is not a good measure of whether the controller can
+> support 4 streams or not.
+>
+> Firstly, sm8650/sm8750 do not have a DPTX1 so we are only discussing
+> about DP TX0.
+>
+> Coming to the QCS8300 Vs sm8650/sm8750, even though the DP controller
+> version is the same, there is no HW support for more than 2 streams on
+> sm8650/sm8750 because there are no INTF blocks to drive 4 streams.
+>
+> On sm8650/sm8750, only INTF_0 and INTF_3 can be used for DP. Hence 2
+> streams.
+>
+> Whereas on Monaco, we have INTF_0, INTF_3, INTF_6 and INTF_7 capable of
 
-Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
----
+No idea what Monaco is, most likely it is some platform. Please use
+SoC names in public.
 
-Changes in v2:
-- Remove wrong port &hdptxphy_hdmi0
-- Link to v1: https://lore.kernel.org/all/20250215152550.3975614-1-liujianfeng1994@gmail.com/
+> driving DP. Hence 4 streams.
+>
+> Let me know if there are more questions.
 
- .../boot/dts/rockchip/rk3588-rock-5-itx.dts   | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
+How many stream clocks are present on those platforms? I'm asking
+because there is a small, but not non-existing difference between 'DPs
+are not completely compatible / the same' and 'DPs are fully
+compatible but different DPU blocks impose different restrictions on
+the number of MST streams'.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-index 6d68f70284e4..891c8afff160 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-@@ -11,6 +11,7 @@
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/rockchip.h>
- #include <dt-bindings/pwm/pwm.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
- #include "dt-bindings/usb/pd.h"
- #include "rk3588.dtsi"
- 
-@@ -89,6 +90,17 @@ fan0: pwm-fan {
- 		pwms = <&pwm14 0 10000 0>;
- 	};
- 
-+	hdmi1-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi1_con_in: endpoint {
-+				remote-endpoint = <&hdmi1_out_con>;
-+			};
-+		};
-+	};
-+
- 	/* M.2 E-KEY */
- 	sdio_pwrseq: sdio-pwrseq {
- 		compatible = "mmc-pwrseq-simple";
-@@ -261,6 +273,28 @@ &gpu {
- 	status = "okay";
- };
- 
-+&hdmi1 {
-+	pinctrl-0 = <&hdmim0_tx1_cec &hdmim0_tx1_hpd
-+		     &hdmim1_tx1_scl &hdmim1_tx1_sda>;
-+	status = "okay";
-+};
-+
-+&hdmi1_in {
-+	hdmi1_in_vp1: endpoint {
-+		remote-endpoint = <&vp1_out_hdmi1>;
-+	};
-+};
-+
-+&hdmi1_out {
-+	hdmi1_out_con: endpoint {
-+		remote-endpoint = <&hdmi1_con_in>;
-+	};
-+};
-+
-+&hdptxphy1 {
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0m2_xfer>;
-@@ -1209,3 +1243,18 @@ &usbdp_phy1 {
- 	rockchip,dp-lane-mux = <2 3>;
- 	status = "okay";
- };
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vp1 {
-+	vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
-+		remote-endpoint = <&hdmi1_in_vp1>;
-+	};
-+};
 -- 
-2.43.0
-
+With best wishes
+Dmitry
 
