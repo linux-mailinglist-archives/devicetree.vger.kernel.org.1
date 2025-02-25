@@ -1,227 +1,120 @@
-Return-Path: <devicetree+bounces-150906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E2D2A43E4A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:53:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29CD9A43E5A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:55:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 730CE422DF8
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:51:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 278B23AB0A8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:52:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91D952673B8;
-	Tue, 25 Feb 2025 11:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC3DE267738;
+	Tue, 25 Feb 2025 11:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tQkrJ5e7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fhhx23vt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4272627FC;
-	Tue, 25 Feb 2025 11:51:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D35C719C54F
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 11:52:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740484263; cv=none; b=H8UaAcAurcNMvimlMXFd2LOLMLX7JR0ZzqbklnUF+dGJPYdJwDalcLOBTVRySGGg2cvuh2jN6JHI+RDqG2JHegR2clQAwuHoXj6VsiLYihEaqpvFpNAwZ87/OtZ58wqaZSkFCnyuEjolH1tpjpe9EvgljCB0C19puMJSDr+jNdM=
+	t=1740484329; cv=none; b=XFK/P84K4HPc8ijYwwQW+PJexxaRmtdcHNWMSCaT9V2D97oHA8aBjiHtk2qUUs8tw6Fo/Dn9G5CmXqBR2vEmqLqimZlid7pAjmvhrohw+bJcHnHBj4rrUiQaD8wqgSQpL6wnB4xiOPBhdbn+8IR+HmLm/nacQTA3NuNVS1Hq1AI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740484263; c=relaxed/simple;
-	bh=ogiLCIWglDZSH/dycj8sau+uSLmEvEOeD9x4UqCzevs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=HW0dL5ydfSj3RkQgEhLg49yEwH59yTdLmVEV2QCbV4cIBpUdcNYvjBLo5fAH1qYnCg0OgSaTO08Ml5yJ+vQjtzpOcUaZErr6KJPCC5I8YsiKqEazJuUjuKyBhz6dVabRDpimrD+dRl4UXU+Mj5QNmCGP17/ewIVwpU+oC6jjFq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tQkrJ5e7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DFA63C4CEDD;
-	Tue, 25 Feb 2025 11:51:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740484262;
-	bh=ogiLCIWglDZSH/dycj8sau+uSLmEvEOeD9x4UqCzevs=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=tQkrJ5e7iblrc9o6AGGDf6pDP3o8ZMCtZvnqlLdWlYcpwWrtWhrL7fqJwBYTntote
-	 vSezvl9stBXvAJ/e+ugPpXhK8FUcBUzzBe0j8sNBh0w361m/PYzKzBMpqKin9HO2nc
-	 bMp0sI2Um2H5K4xWIO6SmZaMZ4AQXAy8iwsLjnE46US4xqnvSv4p3p8Faq9TDimxpM
-	 r/wPgoWQ2fjwTvufaa4eEkYkMLZePR7LvDApAhdYV0ltDRhcamSA4zAJO+UnXSQdN1
-	 NYd4qzkD5BpCe8czhpejXA9vLRYq3tNYQjddgttxCYhZKX63KSVrSQoK7J8uTJiyRy
-	 oAg4S/vSxwjsw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CC7FBC021BB;
-	Tue, 25 Feb 2025 11:51:02 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Tue, 25 Feb 2025 12:50:43 +0100
-Subject: [PATCH] dt-bindings: timer: Convert fsl,gtm to YAML
+	s=arc-20240116; t=1740484329; c=relaxed/simple;
+	bh=06Py7aJp14BHUIJAvzvlfHnZrSajm4jMw3RXc7l2ukA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZD7KNnxcrtibn6R1Td949XpGK8kkzT2ktlui1nzWjh3f5EdY8p5WLIfm8pf4IgZI9UsNgz3HbyQXp4qtcf4iKlZepUmM/yUBvAGr+A6ejWBU67QF6+WqqeSO9B0s+GlP8sp+7uvXX+8PSSxa/oO0BOKQNU3Tln9hsGqpLmPX9mA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Fhhx23vt; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54622e97753so5045836e87.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 03:52:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740484326; x=1741089126; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3wS9tak0NaNpAhLlFW6uyty61j0I79uv4Vz/GWJtmTk=;
+        b=Fhhx23vtDyhPWmr52coCHVGH3HTuXpIT+JMJoX+OyQ5JSQIqiLiGO5Ix+5otyrU9c4
+         R7kUTZ3HMznaOxWFuV3TUSXLHi8T5YVAm8mLz4aVEAwcapnLwZySY9wTbmHc3M8gZXAL
+         qnA/S4uFMWTii4KQayzWa0BXkVOzkx+ACKFJUyOR8fxUqvRU0VhrghE32Jod1YlL/MI2
+         BAXG4wssYVUL2DetcQ0eVbnU2XhdW3kzWywWEiB3nVr2AyEnM699J8s8PNhdrHbPCjBa
+         4LHAQZbHPrq12e1AdKRGqNUXmh+OXUCIn0MnoMzpS3V435udP07OXuhL4D0L1NegVeKA
+         DH+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740484326; x=1741089126;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3wS9tak0NaNpAhLlFW6uyty61j0I79uv4Vz/GWJtmTk=;
+        b=umT81aD/C5+tp5blRICAx+mfQvytjVdYQ5g2/OOQPqgSmrZsCT1NJD3uJSY1CkKRFC
+         uCHEDClMcdMKGhUdMDwgyqgDf8IZAxhFxzBbdjJTiwpUmJlJw2hSYAQ+kdintmdJ8yT5
+         UYl3yd36a87qIhGZH8CIVUbz05wnLMuoiC/uvYE4qH8Y3T7olY4OUyNPRQEhYJjimIh2
+         CaxpjQ22ZtqHozAA5lfMS9PmSEAH8aPJv6Yihju7jHSPvv5Woa1LTLYVTycZTDNuCgxR
+         pVB995OSq6xJ7I9y8093JS+5r9ow5wpa69TGVdrlZRfgAKSMf3RoKPwS8l5pkRoglUsI
+         O+lQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0FwppZtzgISNslgf2Yq6OJupYHONDYSCWWmvGnSIQyrNsZYBZbetI+uAAZhPe8+AobvdFmCeXGsfH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/pif0S2q519nQD/DHzt2/C1fdq+Xc9m/vP2J8cz7+XI5/ugnu
+	iXClIPZkmnFelSHsj0C9vVetZ9OR1XrElvSyi87WI6J4VJvDkvHKmIms6G5RJkc=
+X-Gm-Gg: ASbGncsNBY59TibjiB/SR29nTLJoWhN7zkErmmFaLa/ZCgTrXJL12uTpBwIV+z77hM+
+	N6JxFBCJYCLny2e8P6D1hNHRtPxWu+7ybst+8F5GEyBKUN0qAjAonbEdNXr+AaWOkY0/Q9Pb4bm
+	SX2GLWU9mHB4gmc2BlmZPEG4q4DiV/hBi3z0oknNu+ZkEBWjsS7KwK4JvHQZOiev3p3SEgE6WHo
+	1JW7Rihtpqx/gLe+6ITokI7dkgTiLAzF1mglgPzRIb4ksRxXGlrOtWT3Dh2cSB3JWCMHRJpAz4r
+	YNMligWtP2YxjgfzsGFVWUJEQG0pAxOrDM9PXOF2S3eT7Z2I/YPOuQLU8qlUWPKytsSGYYXiUTp
+	06udW2w==
+X-Google-Smtp-Source: AGHT+IHaCOYYY1hFZ2o6pI3+gD73kquLWGQBBvEHfmt0Roiv69QaC0Cnq2VStk0d5J4mPbpT0ertdw==
+X-Received: by 2002:a05:6512:e88:b0:545:457:e588 with SMTP id 2adb3069b0e04-54838c5e762mr6148340e87.10.1740484325931;
+        Tue, 25 Feb 2025 03:52:05 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-548514fa1d7sm151829e87.238.2025.02.25.03.52.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Feb 2025 03:52:04 -0800 (PST)
+Date: Tue, 25 Feb 2025 13:52:02 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	chaitanya chundru <quic_krichai@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+	Jingoo Han <jingoohan1@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicnic.com, 
+	amitk@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com
+Subject: Re: [PATCH v4 10/10] arm64: dts: qcom: sc7280: Add 'global'
+ interrupt to the PCIe RC nodes
+Message-ID: <kkqydwutpaxzj6beqbdkmjanpzvvloqc3csm4ze2phoibmvmoy@asxc2ffipkgj>
+References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
+ <20250225-qps615_v4_1-v4-10-e08633a7bdf8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250225-gtm-yaml-v1-1-de5da7299430@posteo.net>
-X-B4-Tracking: v=1; b=H4sIAJOuvWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDI0MD3fSSXN3KxNwc3SQTw0RLE3PTFIMkYyWg8oKi1LTMCrBR0bG1tQC
- 3qRAMWgAAAA==
-X-Change-ID: 20250210-gtm-yaml-b41a9475d0b3
-To: Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1740484262; l=4248;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=IJ2Pa/73xPD+G6Z1wxNgj8rNjWlTYDU/+mVzEQ1et/Q=;
- b=yeu7WB5KhuLu0yJuJmFG0VtBoDF5CMhRLBSJuFsg0b4GNU5rG2b0VN4XgOSIR/ccG4ZpMflSF
- /erfPHQ/nGAC4ijVrHlaEthKqFxgmPA/NPBMpA0x6jWAXvZTuZe7pOV
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250225-qps615_v4_1-v4-10-e08633a7bdf8@oss.qualcomm.com>
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+On Tue, Feb 25, 2025 at 03:04:07PM +0530, Krishna Chaitanya Chundru wrote:
+> Qcom PCIe RC controllers are capable of generating 'global' SPI interrupt
+> to the host CPUs. This interrupt can be used by the device driver to
+> identify events such as PCIe link specific events, safety events, etc...
+> 
+> Hence, add it to the PCIe RC node along with the existing MSI interrupts.
+> 
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
 
-Convert fsl,gtm.txt to YAML so that device trees using a Freescale
-General-purpose Timers Module can be properly validated.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
- .../devicetree/bindings/timer/fsl,gtm.txt          | 30 --------
- .../devicetree/bindings/timer/fsl,gtm.yaml         | 83 ++++++++++++++++++++++
- 2 files changed, 83 insertions(+), 30 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/timer/fsl,gtm.txt b/Documentation/devicetree/bindings/timer/fsl,gtm.txt
-deleted file mode 100644
-index fc1c571f74123d2293bf5c3af3197000d46a07ee..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/timer/fsl,gtm.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--* Freescale General-purpose Timers Module
--
--Required properties:
--  - compatible : should be
--    "fsl,<chip>-gtm", "fsl,gtm" for SOC GTMs
--    "fsl,<chip>-qe-gtm", "fsl,qe-gtm", "fsl,gtm" for QE GTMs
--    "fsl,<chip>-cpm2-gtm", "fsl,cpm2-gtm", "fsl,gtm" for CPM2 GTMs
--  - reg : should contain gtm registers location and length (0x40).
--  - interrupts : should contain four interrupts.
--  - clock-frequency : specifies the frequency driving the timer.
--
--Example:
--
--timer@500 {
--	compatible = "fsl,mpc8360-gtm", "fsl,gtm";
--	reg = <0x500 0x40>;
--	interrupts = <90 8 78 8 84 8 72 8>;
--	interrupt-parent = <&ipic>;
--	/* filled by u-boot */
--	clock-frequency = <0>;
--};
--
--timer@440 {
--	compatible = "fsl,mpc8360-qe-gtm", "fsl,qe-gtm", "fsl,gtm";
--	reg = <0x440 0x40>;
--	interrupts = <12 13 14 15>;
--	interrupt-parent = <&qeic>;
--	/* filled by u-boot */
--	clock-frequency = <0>;
--};
-diff --git a/Documentation/devicetree/bindings/timer/fsl,gtm.yaml b/Documentation/devicetree/bindings/timer/fsl,gtm.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..1f35f1ee0be2a947ad241f4ba0be391e7e0d0882
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/fsl,gtm.yaml
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/fsl,gtm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale General-purpose Timers Module
-+
-+maintainers:
-+  - J. Neuschäfer <j.ne@posteo.net>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      # for SoC GTMs
-+      - items:
-+          - enum:
-+              - fsl,mpc8308-gtm
-+              - fsl,mpc8313-gtm
-+              - fsl,mpc8315-gtm
-+              - fsl,mpc8360-gtm
-+          - const: fsl,gtm
-+
-+      # for QE GTMs
-+      - items:
-+          - enum:
-+              - fsl,mpc8360-qe-gtm
-+              - fsl,mpc8569-qe-gtm
-+          - const: fsl,qe-gtm
-+          - const: fsl,gtm
-+
-+      # for CPM2 GTMs (no known examples)
-+      - items:
-+          # - enum:
-+          #     - fsl,<chip>-cpm2-gtm
-+          - const: fsl,cpm2-gtm
-+          - const: fsl,gtm
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Interrupt for timer 1 (e.g. GTM1 or GTM5)
-+      - description: Interrupt for timer 2 (e.g. GTM2 or GTM6)
-+      - description: Interrupt for timer 3 (e.g. GTM3 or GTM7)
-+      - description: Interrupt for timer 4 (e.g. GTM4 or GTM8)
-+
-+  clock-frequency: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clock-frequency
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    timer@500 {
-+        compatible = "fsl,mpc8360-gtm", "fsl,gtm";
-+        reg = <0x500 0x40>;
-+        interrupts = <90 IRQ_TYPE_LEVEL_LOW>,
-+                     <78 IRQ_TYPE_LEVEL_LOW>,
-+                     <84 IRQ_TYPE_LEVEL_LOW>,
-+                     <72 IRQ_TYPE_LEVEL_LOW>;
-+        /* filled by u-boot */
-+        clock-frequency = <0>;
-+    };
-+
-+  - |
-+    timer@440 {
-+        compatible = "fsl,mpc8360-qe-gtm", "fsl,qe-gtm", "fsl,gtm";
-+        reg = <0x440 0x40>;
-+        interrupts = <12>, <13>, <14>, <15>;
-+        /* filled by u-boot */
-+        clock-frequency = <0>;
-+    };
-+
-+...
-
----
-base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
-change-id: 20250210-gtm-yaml-b41a9475d0b3
-
-Best regards,
 -- 
-J. Neuschäfer <j.ne@posteo.net>
-
-
+With best wishes
+Dmitry
 
