@@ -1,56 +1,70 @@
-Return-Path: <devicetree+bounces-151186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B2C1A44B13
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:09:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80554A44B4B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:26:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B38A3B3E07
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:08:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5A4D189F386
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:26:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E35C20D517;
-	Tue, 25 Feb 2025 19:08:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 054221FBEAE;
+	Tue, 25 Feb 2025 19:25:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="LUb93Xjt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E27C1CEAB2;
-	Tue, 25 Feb 2025 19:08:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.166.231])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94403EC2
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 19:25:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.166.231
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740510482; cv=none; b=lm3OcsYzE68LypdiWXjyqtlXENQyL0tWx8viHrFTNCRQhTdpZrSX6Nj5XtxhTqH0HrnoPpnBFG6XBgcqZG1giNN5S1R5EETbvlLG4mmnFzEsKKON8oJiJlIcdmStp2UmKaqzlZVgi/7MzIJsr7qQltVjzvHDbPlmzP69qZUMDWo=
+	t=1740511506; cv=none; b=COhnKzBOsk+2juCyf/BKsNoosH1vnuCHv+NYt3aZO7KS5T4tddyD0OzLHffnzE0rv6qW4QtMigxP5XNFZOph2kPwUdDlP6lReN9TIT1rYRqrZl8QEu9pCW0imvLO6VY6HFL7zFJ2p0HJeQqhSr3CQnhHxaH7KwfTmH/IZywS4/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740510482; c=relaxed/simple;
-	bh=8HFWOPfaQ6julYwmLt/9ypWpA6ib6AebIuo0sdAJ4YQ=;
+	s=arc-20240116; t=1740511506; c=relaxed/simple;
+	bh=LsAUNofXorXLRj5AB/bpcrLwxeeZplB7eZs0ofV2z2c=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UecimwBS/3oWbSd07RHmtNJmp8GBWLgtkNxrvqnGSUXa/Cu9feaKE4DAqqHz4vQXwGEvRdizxzrZXW+LcKSWJVPFKEONyrUcTMCt4EeYsyJN0uRh7K10jUofNfm94sbCdKJNKdSIa/G+Z+quh7EW3kBPPpthO80cqYGA6/GmDJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2A492152B;
-	Tue, 25 Feb 2025 11:08:16 -0800 (PST)
-Received: from e119884-lin.cambridge.arm.com (e119884-lin.cambridge.arm.com [10.1.196.72])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4EBDC3F5A1;
-	Tue, 25 Feb 2025 11:07:58 -0800 (PST)
-From: Vincenzo Frascino <vincenzo.frascino@arm.com>
-To: linux-sound@vger.kernel.org
-Cc: Vincenzo Frascino <vincenzo.frascino@arm.com>,
-	Maruthi Srinivas Bayyavarapu <maruthi.srinivas.bayyavarapu@xilinx.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
+	 MIME-Version; b=ooyl2xs7arKbInxQ4/2bcqsTqk/jKCfF3T+l57Bp4ULaZrkOR/A2tN9yLfx/TutYSuRLvh43bmvU1reVdXuP3O2hjUqUssTeVf0IQSsxwi8n9svAjOFAKruxmdXsOaHX4Qc52NyjKV4Te8AASutv0gOyIv8x4lSYGPcWI2YctMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=LUb93Xjt; arc=none smtp.client-ip=192.19.166.231
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id B596FC0005A7;
+	Tue, 25 Feb 2025 11:18:21 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com B596FC0005A7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1740511101;
+	bh=LsAUNofXorXLRj5AB/bpcrLwxeeZplB7eZs0ofV2z2c=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=LUb93Xjt/oc0FTDI+UQYI7HDL0zfXgn0lUrJ/0ZZlTx8aXivB0uAqS+tadcxe3ezJ
+	 CEcTSkV4LqWcvYRc+YrCGMkHzXM9VyrtOmZDHd/OeggP9vL1nyY2mu1F2GRad2vlpd
+	 +C00nK5YQeTqMkAO0q/U22cDM9z9GUYpXK3VStQY=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 8733B18041CCB8;
+	Tue, 25 Feb 2025 11:18:21 -0800 (PST)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: bcm-kernel-feedback-list@broadcom.com,
+	Stefan Wahren <wahrenst@gmx.net>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 4/4] MAINTAINERS: Add Vincenzo Frascino as Xilinx Sound Driver Maintainer
-Date: Tue, 25 Feb 2025 19:07:46 +0000
-Message-ID: <20250225190746.541587-5-vincenzo.frascino@arm.com>
+	Andrea della Porta <andrea.porta@suse.com>
+Subject: Re: [PATCH 1/2] ARM: dts: bcm2711: PL011 UARTs are actually r1p5
+Date: Tue, 25 Feb 2025 11:18:21 -0800
+Message-ID: <20250225191821.1059923-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250225190746.541587-1-vincenzo.frascino@arm.com>
-References: <20250225190746.541587-1-vincenzo.frascino@arm.com>
+In-Reply-To: <20250223125614.3592-2-wahrenst@gmx.net>
+References: <20250223125614.3592-1-wahrenst@gmx.net> <20250223125614.3592-2-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,34 +73,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add Vincenzo Frascino <vincenzo.frascino@arm.com> as Xilinx Sound Driver
-Maintainer.
+From: Florian Fainelli <f.fainelli@gmail.com>
 
-Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On Sun, 23 Feb 2025 13:56:13 +0100, Stefan Wahren <wahrenst@gmx.net> wrote:
+> From: Phil Elwell <phil@raspberrypi.com>
+> 
+> The ARM PL011 UART instances in BCM2711 are r1p5 spec, which means they
+> have 32-entry FIFOs. The correct periphid value for this is 0x00341011.
+> Thanks to N Buchwitz for pointing this out.
+> 
+> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+> ---
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index db9588b1065c..98c878b1aa05 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -26011,6 +26011,14 @@ S:	Maintained
- F:	drivers/pwm/pwm-xilinx.c
- F:	include/clocksource/timer-xilinx.h
- 
-+XILINX SOUND DRIVERS
-+M:	Vincenzo Frascino <vincenzo.frascino@arm.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
-+F:	Documentation/devicetree/bindings/sound/xlnx,audio-formatter.yaml
-+F:	Documentation/devicetree/bindings/sound/xlnx,spdif.yaml
-+F:	sound/soc/xilinx/*
-+
- XILINX SD-FEC IP CORES
- M:	Derek Kiernan <derek.kiernan@amd.com>
- M:	Dragan Cvetic <dragan.cvetic@amd.com>
--- 
-2.43.0
-
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/fixes, thanks!
+--
+Florian
 
