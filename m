@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-151068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1E0DA4455A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:04:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BA4EA44569
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:06:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E29D73B642F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:03:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1448189331D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:04:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73AEB186E2F;
-	Tue, 25 Feb 2025 16:03:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BF4718C034;
+	Tue, 25 Feb 2025 16:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="krCAssx/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dng9aAo4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8513315C14B
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 16:03:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AE3218C930
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 16:04:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740499428; cv=none; b=ntLc6e0rlmxjatX7dGfUlfyxpwUcc1HrGkxKzC0I1pnPaagvKHoCzKslO/wZy0hCC2UElAeKtpb1pk18UR8VaYq4iAwi4M1uYLYPIjsP0Tql1Y0tT5p2KAvr0uB+E3HY1JP/XwJ+T3Q+8o23WmuQHe8yL1n3a/kroi7qy5BNaH8=
+	t=1740499442; cv=none; b=RfytUnRO6r/0kethfEE+aE55ygMS7ERMQeghjUJFYXg2RbvPtoheWsWJOr++JlQELbd9dMaKer8G9jDqYHn0r8U/yKV0XXNcOKtp0Hqf6/g5ZMUl9fjKoFKzGtoUrXDoFQBoznFpAg999JeYn0N+nn1vYyS8JgbpISSTOzuynFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740499428; c=relaxed/simple;
-	bh=qR2JNB0YtgaNbh5AVqlZ4RITAUXIBdixqpacE0N/jLk=;
+	s=arc-20240116; t=1740499442; c=relaxed/simple;
+	bh=HAJZSDB7xuKscLHDG+yRyNMB2g3SgALZv2+HI4HLlBw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZhiOPoJ6da2ablsdReqbUwJxXcMCgLUKRnUGMnfEfA43HTxQvHpgTKCPxzacU0nM2pyXYITAFy55Holq4eggs14nTSowMbg8ofVyFVBnRsZ+dx1CqqkUyNudzyvoK6NaqB9sYweReEW8Pam7i+hThu8kxOSPlzfDExJb1Ha0S2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=krCAssx/; arc=none smtp.client-ip=209.85.208.177
+	 To:Cc:Content-Type; b=IiYWrTQue/42GHaQ92ss1rLDsxEj4BP01MWpH/r0vurexBsDUfKXCG8+HM8zGZsl/eG+21ZZ9zZNk0c3L2ee7IdvVuGw5yp1yjRSaX8xoLhdeGLEYBQLb8Ka9f0xTfY/ZcNeWxRe1s/T7xxpwlpzFiOI2B62PRkx4Rvux9yWDDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dng9aAo4; arc=none smtp.client-ip=209.85.208.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-30a303a656aso60675991fa.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 08:03:46 -0800 (PST)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-3072f8dc069so59535091fa.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 08:04:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740499424; x=1741104224; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1740499439; x=1741104239; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qR2JNB0YtgaNbh5AVqlZ4RITAUXIBdixqpacE0N/jLk=;
-        b=krCAssx/6iNXtjhMAx6SD/YZx+6jk0joE+41Ra/DLH/T/r+j0BcJ+9rr6C5qjL/4i3
-         HPysvZ70f8qfrWon/iqNYeTwJkz2RO795vPQ9shj3H2htYnbCjq1NHtWJ4hWv8SH2jl7
-         fq27LmFz1vC59DWpXxmq62seTxv12CYwpv/PUqdX1zN16F4Z0/aRvzn/Okhi68rQTQYQ
-         k/k4Ba6V2gohadCChH5U0uc7MON4RFTwEaoV2F1aOQdihFU3K3gNaifaxTYPotIxMrir
-         ja323fvnD+DMUF0x8tWDf+/o4P9BTEUSHljlt6E3CIiu/Fy537GPdEoE5duc842zH+X4
-         1JvQ==
+        bh=HAJZSDB7xuKscLHDG+yRyNMB2g3SgALZv2+HI4HLlBw=;
+        b=dng9aAo4J6yGm3r9pnM6qmzBu+/oLNUYGDIZNRWXqYw8X4RmbSshZXSTkd4bQ9xiLr
+         u40FwTkZaqXE3Jf4EjejH/SdsAEstyZ0hcYAjETELNc7DgHFG57rP3xbF+6BkO1U4W8+
+         3d+aeQrVRSVOWP2atcyMhjwbRYqVWkCKcds+Uu48NAKiR4AcMwkxbG5xdEIto1YcBvWb
+         GmZCa3kvWUPWTSpcF+l/cjI+a/ayfZ5mNHPv5HmfL5R7UkXZF7kNGXHRbFxUuwLOY15H
+         9mbRJ57ZjQ1TTltRNlSGC83HiSlEc2I4SSY3vxJxvVyzK1/RnGb7Sgu/7QRcpLAaMBng
+         Q31w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740499424; x=1741104224;
+        d=1e100.net; s=20230601; t=1740499439; x=1741104239;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qR2JNB0YtgaNbh5AVqlZ4RITAUXIBdixqpacE0N/jLk=;
-        b=anv75sGXxiNEwhKL1A4SR0OK0Csd2uxO4+s7nYkarb6qREj6aMEAN2keTLx/DNnaNw
-         HyuXJTW8tFC7/TR7AWe14RH7JUJYTCSJpK46Ane5gYuDzd7AMfZKBhRMDHZjHV0ti3IS
-         O2AmIOINaT7WNtXPodT7fUdf7g7fq76jTR5AWesockuV7+G0rNYp6JZVdtAW3Mv4QBaS
-         dWlBYQ21TRbL1ei8B+0+lWTmiQxTCG5rCnMdns3rIFPPRXhkOmwIMuKoAledev8cj2Xg
-         tPXRWpEmKR6JyrnOY1POyFklmZVe0IJWZOVpSyKgLcEcvm9XQW4nmm8Rv3W5aj/zZqIM
-         vdMQ==
-X-Gm-Message-State: AOJu0YyRp2Sn3tHvrsnvBiu/tAnmtVwtyTrOwI4XSV5RvLtjBsf9qsUu
-	u2vNDSAX6p7Zk7M2uSCBMswH7r5l+WV99e4auDO8ngOlXKxtJo7lpXs8UqTzlE3Ukffyp+jZLnI
-	IodntIYngCQ6zW4RFGez9F09rMxw+2kVYtBJcqQ==
-X-Gm-Gg: ASbGnctyRon5OUmH9ZE1n+dWoruciXdTOpd6vWAqlFkds/C8yfubMoViR6+AeElr9VL
-	vh5dRbQFGHIl+AvlpUjrWwTGqQY+dLKNAzs7P1HtvC4ka6uyuK3tIwDyEHxgFg5NXaMe7v96uBa
-	VHJVe3kLg=
-X-Google-Smtp-Source: AGHT+IFk/m7lVF7R7K4H5m7+dbhSnktSBcDmdUKKqlVUrI9Kn7thAe5jkuemGc5E1zKqYjYWf17ZEngP8oaLfuPEGKw=
-X-Received: by 2002:a2e:7218:0:b0:308:e956:662 with SMTP id
- 38308e7fff4ca-30a5b1a08d3mr64411471fa.17.1740499423031; Tue, 25 Feb 2025
- 08:03:43 -0800 (PST)
+        bh=HAJZSDB7xuKscLHDG+yRyNMB2g3SgALZv2+HI4HLlBw=;
+        b=VdL1rPFTOk7Ijt+TeaO2nGbHseHas8s4DgmVP/PTvNTruVALliPxXE74al0d+IHz2t
+         l5f0V4u0HvE83NoYGzZawKPF2ziSH+8C4F8bl5OpjZQRUgvXGRS7z2jcsoEkUPfyK3HS
+         y6BA6nSpNMI8w+uihkrR7l/rV2XmsGkR9NDQzjJmr34Prv/R0sW+HBmOCWiiaLEoi/EP
+         xEJJfOFptC/nlu5njYF1Vs50xHA5KSJM+nuVT/MkWHHjLk3RxyUJ4NzVV3j5aO3Y4kFE
+         bKZmz6f9U0O9a1umXSWXTT6Z7bcGC1sR9R3loYBaoE37PRIv1vxe0QxBncpPbHLcVpnO
+         enCQ==
+X-Gm-Message-State: AOJu0Yw2IVLZJJQedptHZP15SXdX8BXdtFkYyp0yfdzuN0UpJJVQ63mt
+	ObrHtI63eh9tRCaB14/gtOntV4ZrxScvieURLlma50Jcc2aya9aYMKC1x60u0FZdR7Vz9F1UFM4
+	vX8rqYq5oanORwwugPGqQLrujnSRgl4rLQbP/IA==
+X-Gm-Gg: ASbGncvYTR3uKOrJWj4H2AqaH8DJ6W5zziWBAKXcnQAX/ltCm1QeKGUjVQvR2iPy3cS
+	+ap0lLmPQFxELMKRTkKbtS8H7AdybuhHb1a6l3wOMaSl5aBcjP+ZsJL4RYbAKBdUPTxuYAvR/dk
+	wXCXsZsik=
+X-Google-Smtp-Source: AGHT+IFwIPTPAN8ZcBc15otKiSGh1Sts3zHIN5YyF4wUrmvTE+Iv+8sCecZDdml+angRjq277rXIbRl6UYAnxPy6Zeo=
+X-Received: by 2002:a2e:904e:0:b0:308:e8d3:7564 with SMTP id
+ 38308e7fff4ca-30b7915f5ccmr985601fa.10.1740499439306; Tue, 25 Feb 2025
+ 08:03:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250221180349.1413089-1-vincenzo.frascino@arm.com> <20250221180349.1413089-8-vincenzo.frascino@arm.com>
-In-Reply-To: <20250221180349.1413089-8-vincenzo.frascino@arm.com>
+References: <20250221180349.1413089-1-vincenzo.frascino@arm.com> <20250221180349.1413089-9-vincenzo.frascino@arm.com>
+In-Reply-To: <20250221180349.1413089-9-vincenzo.frascino@arm.com>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 25 Feb 2025 17:03:31 +0100
-X-Gm-Features: AWEUYZnIWuR60Y1CICJ6IBniRC28YSjUf8IJsjOxper9yUD4oZSXk7ZrSbIe5X0
-Message-ID: <CACRpkda0o=xGBsZkL+jLH=sGyZ-vHiuS3OTmOHhjMdezkUH77Q@mail.gmail.com>
-Subject: Re: [PATCH v7 07/10] arm64: dts: morello: Add support for common functionalities
+Date: Tue, 25 Feb 2025 17:03:48 +0100
+X-Gm-Features: AWEUYZn4d45FVOQcQnBxxxqs1Gqo7DdaaspoAnfO8hGKbCHJZAxez0cdfVz437M
+Message-ID: <CACRpkdaH_Ajz=604PeYctvUbTOo76YOSvWvrovPF9m=O-VES1A@mail.gmail.com>
+Subject: Re: [PATCH v7 08/10] arm64: dts: morello: Add support for soc dts
 To: Vincenzo Frascino <vincenzo.frascino@arm.com>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>, 
@@ -99,13 +99,7 @@ On Fri, Feb 21, 2025 at 7:04=E2=80=AFPM Vincenzo Frascino
 > version 7 of the Capability Hardware Enhanced RISC Instructions
 > (CHERI) ISA.
 >
-> The Morello Platform (soc) and the Fixed Virtual Platfom (fvp) share
-> some functionalities that have conveniently been included in
-> morello.dtsi to avoid duplication.
->
-> Introduce morello.dtsi.
->
-> Note: Morello fvp will be introduced with a future patch series.
+> Introduce Morello SoC dts.
 >
 > Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
 
