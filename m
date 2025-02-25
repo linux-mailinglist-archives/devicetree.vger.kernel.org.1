@@ -1,244 +1,216 @@
-Return-Path: <devicetree+bounces-151172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0530EA44AA8
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:38:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB4D2A44A95
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:36:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 258513AFBE7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:32:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70D5F3A5EE8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:30:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04E551C8602;
-	Tue, 25 Feb 2025 18:32:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC975192D84;
+	Tue, 25 Feb 2025 18:31:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="CD6/qC/g"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="acBmjohJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 169C6189B91;
-	Tue, 25 Feb 2025 18:32:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740508358; cv=pass; b=DIxFmW5lghZs69COflcvvZ3YHwGp89Qcp7wlsbwSuIwBhFd+qy7I7hZg1Hu0pTTH0NdlPUIj0dL7iBEflth7AV4/fsXo9liuz8pnZRe/Q79rsEePPPFqoNb0O99j7P8JLT38lP3BfYJEDgvBiuKGRuPbL2mMsK7mUjyRlKOM44s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740508358; c=relaxed/simple;
-	bh=s1ziSytSVmc8iAUI3o7CjEFR1GPcDl4EsLBgMcR8CUM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZaWzeZlYNbe43CSFlk/JKpIUcxM8CbpS6LWTVeOhyyw1EGlQH2UqDGNsABGcGVjtvB2nw4/JX4dpHr+bXJdgEluUgkfS/aZo9hCti+0rRbLlufy+ijW+thTfDPD6Bb6JJn66muWT252pZPa28KHccgxcO1mD5D00iAdnnwfYGp0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=CD6/qC/g; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1740508313; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=R9nEnNGPo0oD9MLw7R1+JIFHrIzq719p94wvtUq2uASjnGZKvoEKDTzg9s8fOIpYi23vhzgtnulY30N1NL4XGxXg/1ys8wZpmZ0anrmDgVsdL9jn48bnoKyOPdzxZZIfH649EuWKiZoO0OVhqIuNuCRBd+aS0LfbetIIArtJ+LY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1740508313; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=FAp90OZBq8uFu2M+L9vXUc0FUFCjHQCQSXx6G4QVIok=; 
-	b=gRgWVtK3Jbx6rqi5TFHOvmBC+q/wsmZn86J0fVOs5g6TeikdIP5nZ7pNQfEDloY0hZxjSDQlQIr/+BwBpfWECYiem5wS63aPDgQptWwBBVkxtF8MTH8DRYPpfx9YGH8+Nmx5WkfGLQRLgQqRdkySUUlfpxGTPNoqQoc/TNvReZA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
-	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740508313;
-	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=FAp90OZBq8uFu2M+L9vXUc0FUFCjHQCQSXx6G4QVIok=;
-	b=CD6/qC/gmNZ2P1/JaHDKCXWyz9fKGWXiiPoLuvlhSC2xCnATiTM0AAMeC+GdqYTd
-	HKB/V3KNWn+i1H5WSEf23UdNOWvVx34dnld6868yyfIs9VexjqY2rZUcHiShKtKXKmS
-	BcPw99K/wynhH84aKKLTBVmcdVcvh/FjD38oelog=
-Received: by mx.zohomail.com with SMTPS id 1740508311585403.1031952952543;
-	Tue, 25 Feb 2025 10:31:51 -0800 (PST)
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: Shreeya Patel <shreeya.patel@collabora.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	jose.abreu@synopsys.com,
-	nelson.costa@synopsys.com,
-	shawn.wen@rock-chips.com,
-	nicolas.dufresne@collabora.com,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: kernel@collabora.com,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Tim Surber <me@timsurber.de>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Subject: [PATCH v10 2/6] dt-bindings: media: Document bindings for HDMI RX Controller
-Date: Tue, 25 Feb 2025 21:30:54 +0300
-Message-ID: <20250225183058.607047-3-dmitry.osipenko@collabora.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250225183058.607047-1-dmitry.osipenko@collabora.com>
-References: <20250225183058.607047-1-dmitry.osipenko@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B239518C035;
+	Tue, 25 Feb 2025 18:31:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740508263; cv=none; b=m1wD40l+8cqaaJ1WSxRaPd91fLVJIRFLzaa9x/NaZehtu99szIDaJWn0WqX3gnG2UYuI4G7TsKLaONTMWDpDjoeJkRObUw6hmB0mi2udVrA3oNntaMSI+WxYIIiNdNcFtuPCMIZcdvh5AVMTpEXQcVMl0oU2jb8FEMqaQr5223I=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740508263; c=relaxed/simple;
+	bh=nmjNE2/5IDHBVbgl4kdcWs687grdd6MfsW3lMGDz4lU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nrDbYH2xCTIuGfjMHJNrKmsno1LvZM6HOaTg6B5jhXQ5JNzI+YHNWHU32xPGhgcNA6db8l8zmZ9JcYIQJCMyFX6em7tJ4B+Z4QIOAL0EeZrVXE4B8VM+fXIgdUOV5JDb+ZKekXnajv8ysvqtyrHRopUKM82ez9rRbA+ypGU9PSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=acBmjohJ; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2fc6272259cso9660928a91.0;
+        Tue, 25 Feb 2025 10:31:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740508261; x=1741113061; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=clbxucH2qa/HYexBlCEIH5MMYzU5Q2jGNyXDV7K5VTM=;
+        b=acBmjohJf8VsvngejxoLazEayJoK9UpleysTZ1/qTWpQvDz5DHE0ZYdChAJp6W6YjT
+         ymOm4wcWa4yzT1HL62TVvRw3R980Q5y/3rYdY+d4aRHsnQgPUhTZQtGvqa3GKsBLIOca
+         V/1dAD9Ucz3GWLNOjomSEGSNa8gfcL3AIUgQ+6MFPnpydFM+6pBLfDwjQ8qRztSqpil3
+         iZyHaAFuj/X8onExGUhCXAuxViaY0Q9nfUAlZzX64bn432dKk8Q/bU4u0ilVX504auHc
+         iPHhpj7ibkPHTv93ece/4YSONWj9hCKhoJ+G/ON9+yyeFQouyDb3Lhtzs2khhO3R4i8+
+         2cmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740508261; x=1741113061;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=clbxucH2qa/HYexBlCEIH5MMYzU5Q2jGNyXDV7K5VTM=;
+        b=CjA45YavYJxxdK6GNxPKIW78WOpvrSKt3mH7pC4jrM+TzxZN9B1ILafZlJNl9tbtTi
+         Yv8QkW90LSPgVbHQMHLYMiTJSws9s6BIzjbt6GX1VzQ6tyuGNOrwlJsCBi8wl/sX71nb
+         gDlt8I/hXpY4nF1BmrUOvCXKs2u8UVoTOWuscgCFW0mBAQrLKstJExVibJHeA2FiIqJD
+         KwLT4F4/obopDGK6+iYyUF/bOcPV2SRwZp78VSvBXv14+MsiUic8j+nmFn/odBOFrAqa
+         aVEJjXwfXl3EtpW/EA2EcF1ZDZ86c2zINAWBeShvkrsnvFEAOczznrYST2r4R6qHZdZ0
+         L72g==
+X-Forwarded-Encrypted: i=1; AJvYcCVBM+FT7iSUZcawqUrKIjncOzAdSsXT/8nXCknO9arHXhkgUfMdX7oIH0MkxID+CBklLbEfBC8kIApl@vger.kernel.org, AJvYcCVTJRxxQpYHiHtfHDPg95acgRep9KFQSxOUBZdCz7tbklQuYRqfCO0hOJPOmHvESY1tTaxWztHX5rzDfVdH@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjBJbM+FCs/28HkfE55pAW9YPCc27gLgDdq0WRluvpCs7gK/8Y
+	ATXlSsNt1NqGh3L/sbQhM3jOgNjs+gR6TK3afmGaTJdrSUoF1IMY
+X-Gm-Gg: ASbGncvJ5jWlmiEC6+uNbqZc21qff0oYZgjFnIDELZ2eu1QrmVEsxKUXCQpkW7zJlPl
+	HYOhYvRj3yKAaMOxzyAWOPuAhkx7VbFBnSwpB0bB8Zx7FX876g7p71uyVrUkBWrVCNEF8vfdbTY
+	pIAqbNUDinsiiw2XMPGorM2kp8RY+uouV5YXhmFRee/hgn8x73r6CrLYgFkiVEJRaz3juLlyHgN
+	Opes8LUSjUvGH2XcakK3guGyYdJvwqQM1DZ6U+Ue4xznU83fX5za9OgDBkdsVP1xC6Y3KBnzGFL
+	iuXz4vNcv7r+/qIJ8rZA9gBIAxkf+ELvBxmGeI3djEKE3P6F6V/1OUaPfB/qGR25V+00YVKito0
+	=
+X-Google-Smtp-Source: AGHT+IHs98MecKlAIN7pAThXOrkUh7E3AIRt/vYcixB4+zqZvpAdTtK8So0vPkRa7+Wpv2+CNmw02w==
+X-Received: by 2002:a17:90b:538f:b0:2f6:d266:f467 with SMTP id 98e67ed59e1d1-2fe68d061d4mr5465187a91.34.1740508260846;
+        Tue, 25 Feb 2025 10:31:00 -0800 (PST)
+Received: from ?IPV6:2804:14d:887:95a9:e1a5:e9d5:ba9a:df82? ([2804:14d:887:95a9:e1a5:e9d5:ba9a:df82])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fe6cf86486sm1952600a91.0.2025.02.25.10.30.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Feb 2025 10:31:00 -0800 (PST)
+Message-ID: <c3407b84-7698-4102-b600-c1a6701fe67f@gmail.com>
+Date: Tue, 25 Feb 2025 15:30:55 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
+ nxp,lpc3220-mic.txt to yaml format
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vz@mleia.com,
+ Leonardo Felipe Takao Hirata <leofthirata@gmail.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ skhan@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org
+References: <20250224210432.94851-1-leofthirata@gmail.com>
+ <20250225-lean-bronze-millipede-03edd9@krzk-bin>
+Content-Language: en-US
+From: Leonardo Felipe Takao Hirata <leo.fthirata@gmail.com>
+In-Reply-To: <20250225-lean-bronze-millipede-03edd9@krzk-bin>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Shreeya Patel <shreeya.patel@collabora.com>
+Hello Krzysztof,
 
-Document bindings for the Synopsys DesignWare HDMI RX Controller.
+On 25/02/2025 9:06 AM, Krzysztof Kozlowski wrote:
+> On Mon, Feb 24, 2025 at 06:04:30PM -0300, Leonardo Felipe Takao Hirata wrote:
+>> Convert NXP LPC3220-MIC to DT schema.
+>>
+>> Signed-off-by: Leonardo Felipe Takao Hirata <leofthirata@gmail.com>
+> SoB mismatch.
+>
+> Run checkpatch.
+>
+>> ---
+>>   .../interrupt-controller/nxp,lpc3220-mic.txt  | 58 -------------
+>>   .../interrupt-controller/nxp,lpc3220-mic.yaml | 86 +++++++++++++++++++
+>>   2 files changed, 86 insertions(+), 58 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.txt
+>>   create mode 100644 Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.yaml
+> ...
+>
+>> +title: NXP LPC32xx MIC, SIC1 and SIC2 Interrupt Controllers
+>> +
+>> +maintainers:
+>> +  - Vladimir Zapolskiy <vz@mleia.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - nxp,lpc3220-mic
+>> +      - nxp,lpc3220-sic
+>> +
+>> +  reg:
+>> +    description:
+>> +      Should contain IC registers location and length.
+> Drop description
+>
+>> +    maxItems: 1
+>> +
+>> +  interrupt-controller: true
+>> +
+>> +  '#interrupt-cells':
+>> +    const: 2
+>> +    description:
+>> +      The number of cells to define an interrupt, should be 2.
+> Don't repeat constraints in free form text. Drop.
+>
+>> +      The first cell is the IRQ number, the second cell is used to specify
+>> +      one of the supported IRQ types.
+>> +          IRQ_TYPE_EDGE_RISING = low-to-high edge triggered,
+>> +          IRQ_TYPE_EDGE_FALLING = high-to-low edge triggered,
+>> +          IRQ_TYPE_LEVEL_HIGH = active high level-sensitive,
+>> +          IRQ_TYPE_LEVEL_LOW = active low level-sensitive.
+>> +      Reset value is IRQ_TYPE_LEVEL_LOW.
+>> +
+>> +  interrupts:
+> Need to list and describe the items.
+>
+>> +    description:
+>> +      Empty for MIC interrupt controller, cascaded MIC hardware interrupts for
+>> +      SIC1 and SIC2
+> And then allOf:if:then restricting it per variant (interrupts: false).
+>
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupt-controller
+>> +  - '#interrupt-cells'
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +
+>> +    mic: interrupt-controller@40008000 {
+>> +      compatible = "nxp,lpc3220-mic";
+>> +      reg = <0x40008000 0x4000>;
+>> +      interrupt-controller;
+>> +      #interrupt-cells = <2>;
+>> +    };
+>> +
+>> +    sic1: interrupt-controller@4000c000 {
+>> +      compatible = "nxp,lpc3220-sic";
+>> +      reg = <0x4000c000 0x4000>;
+>> +      interrupt-controller;
+>> +      #interrupt-cells = <2>;
+>> +      interrupt-parent = <&mic>;
+>> +      interrupts = <0 IRQ_TYPE_LEVEL_LOW>,
+>> +                  <30 IRQ_TYPE_LEVEL_LOW>;
+>> +    };
+>> +
+>> +    sic2: interrupt-controller@40010000 {
+> Drop, two examples are enough.
+>
+>> +      compatible = "nxp,lpc3220-sic";
+>> +      reg = <0x40010000 0x4000>;
+>> +      interrupt-controller;
+>> +      #interrupt-cells = <2>;
+>> +      interrupt-parent = <&mic>;
+>> +      interrupts = <1 IRQ_TYPE_LEVEL_LOW>,
+>> +                  <31 IRQ_TYPE_LEVEL_LOW>;
+>> +    };
+>> +
+>> +    adc@40048000 {
+>> +      compatible = "nxp,lpc3220-adc";
+> Drop, not relevant.
+>
+> Best regards,
+> Krzysztof
+>
+Thanks for the feedback. The fixes will be in v2.
 
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
-Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
----
- .../bindings/media/snps,dw-hdmi-rx.yaml       | 132 ++++++++++++++++++
- 1 file changed, 132 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
-
-diff --git a/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
-new file mode 100644
-index 000000000000..510e94e9ca3a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
-@@ -0,0 +1,132 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Device Tree bindings for Synopsys DesignWare HDMI RX Controller
-+
-+---
-+$id: http://devicetree.org/schemas/media/snps,dw-hdmi-rx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Synopsys DesignWare HDMI RX Controller
-+
-+maintainers:
-+  - Shreeya Patel <shreeya.patel@collabora.com>
-+
-+description:
-+  Synopsys DesignWare HDMI Input Controller preset on RK3588 SoCs
-+  allowing devices to receive and decode high-resolution video streams
-+  from external sources like media players, cameras, laptops, etc.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: rockchip,rk3588-hdmirx-ctrler
-+      - const: snps,dw-hdmi-rx
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 3
-+
-+  interrupt-names:
-+    items:
-+      - const: cec
-+      - const: hdmi
-+      - const: dma
-+
-+  clocks:
-+    maxItems: 7
-+
-+  clock-names:
-+    items:
-+      - const: aclk
-+      - const: audio
-+      - const: cr_para
-+      - const: pclk
-+      - const: ref
-+      - const: hclk_s_hdmirx
-+      - const: hclk_vo1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 4
-+
-+  reset-names:
-+    items:
-+      - const: axi
-+      - const: apb
-+      - const: ref
-+      - const: biu
-+
-+  memory-region:
-+    maxItems: 1
-+
-+  hpd-gpios:
-+    description: GPIO specifier for HPD.
-+    maxItems: 1
-+
-+  rockchip,grf:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      The phandle of the syscon node for the general register file
-+      containing HDMIRX PHY status bits.
-+
-+  rockchip,vo1-grf:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      The phandle of the syscon node for the Video Output GRF register
-+      to enable EDID transfer through SDAIN and SCLIN.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+  - power-domains
-+  - resets
-+  - pinctrl-0
-+  - hpd-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/power/rk3588-power.h>
-+    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
-+    hdmi_receiver: hdmi-receiver@fdee0000 {
-+      compatible = "rockchip,rk3588-hdmirx-ctrler", "snps,dw-hdmi-rx";
-+      reg = <0xfdee0000 0x6000>;
-+      interrupts = <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH 0>,
-+                   <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH 0>,
-+                   <GIC_SPI 179 IRQ_TYPE_LEVEL_HIGH 0>;
-+      interrupt-names = "cec", "hdmi", "dma";
-+      clocks = <&cru ACLK_HDMIRX>,
-+               <&cru CLK_HDMIRX_AUD>,
-+               <&cru CLK_CR_PARA>,
-+               <&cru PCLK_HDMIRX>,
-+               <&cru CLK_HDMIRX_REF>,
-+               <&cru PCLK_S_HDMIRX>,
-+               <&cru HCLK_VO1>;
-+      clock-names = "aclk",
-+                    "audio",
-+                    "cr_para",
-+                    "pclk",
-+                    "ref",
-+                    "hclk_s_hdmirx",
-+                    "hclk_vo1";
-+      power-domains = <&power RK3588_PD_VO1>;
-+      resets = <&cru SRST_A_HDMIRX>, <&cru SRST_P_HDMIRX>,
-+               <&cru SRST_HDMIRX_REF>, <&cru SRST_A_HDMIRX_BIU>;
-+      reset-names = "axi", "apb", "ref", "biu";
-+      memory-region = <&hdmi_receiver_cma>;
-+      pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_5v_detection>;
-+      pinctrl-names = "default";
-+      hpd-gpios = <&gpio1 22 GPIO_ACTIVE_LOW>;
-+    };
--- 
-2.48.1
+Best regards,
+Leonardo Hirata
 
 
