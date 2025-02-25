@@ -1,206 +1,177 @@
-Return-Path: <devicetree+bounces-150842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1DB4A43B05
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:14:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C28F0A43AEC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:12:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E0E516738B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:08:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00B8419C14E1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:09:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD9CA260A32;
-	Tue, 25 Feb 2025 10:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C713E263C9E;
+	Tue, 25 Feb 2025 10:07:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mL7oyq2O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B+659pig"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DE941519A5;
-	Tue, 25 Feb 2025 10:06:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF4D263C7C;
+	Tue, 25 Feb 2025 10:07:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740478013; cv=none; b=e7nmUayazoYncU5vJ58hD4Ce3CwAZfKWSjRwdBn5A8eP75i4ETv2CCjkcPcwca1jFeqj6/4JOovz9qIf5+lgzODiRnYumhAnzXA/1TUGsw7ZAvSy0ticzUc8NlDHGmNNQ3KcWHIxSynLwVdeBMUnIhEe4ESWKBTj6PcP+JdAFXQ=
+	t=1740478064; cv=none; b=Vmq2hEm1GTDiBUWOepdsZdrK75vi+hLEXIrv4qO1C59EnMk7DlhHz5cidIQbEnDTMoTRCnn1j7ibgh8xqsn/Y6sEb0nDOO6L0FzFxs2W6+uqqoX0urdkyux8M6r13pOq+QWBMDpgvcHxLBvX8/Dx1gciY/xvVBfcWRv8jYZ9V/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740478013; c=relaxed/simple;
-	bh=BdXYIMubP68iO4yl2tcuwaKsQURZC7iC1Rei84h8/PY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mmpVhgB5HkprHGIdkoUZQnoTbjOIHb86p6EgDiu9woaXkmb64VEWw/Y+onaL9u6En3IbFi1MdubYJFGBaDcD7ROVCxl2U/MvYnMmjccgxI3qBbwtaT5l/MdX6fToAJZAFhbfoGeACJoVrGNnW2h1UmxzQ22fzqPf+EJ6lb+vU98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mL7oyq2O; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51P8dnNP013317;
-	Tue, 25 Feb 2025 10:06:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3eaFx6OR3vSlzAH+D+Vm5WEpKwhhMdM90BqPI5fV0kY=; b=mL7oyq2Ox96LAXZg
-	b2hN0qzx5F4h+zJ7TvDePRD+z04H3vy1DStOWRGvnkzWKAK557wKZx4YwTnopbwB
-	9hzBIH/PfzEM/8FNmOjzBkMED1jeTSIKFDA7v8PSewG998K9ffzcvu1A9pRmta91
-	SbmmGfht5kncrON9l3tyAtgSzGe6OKepHynpSly4genojRbOUW8L1JZqVcvXHc8T
-	ek82DGi56j9cUwvugULdlGJVo1PFHJjGZLu91TOilfPfud583x7vp33UrP5Hj6YI
-	pxgxpxPmnmtPGDuk6agoB1mPs7PP2SiMlbhN7RE5MyT5sM16yfBBao7l6BSlwDHn
-	g/f8NA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44y5wgrhus-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Feb 2025 10:06:23 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51PA6LlS009496
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Feb 2025 10:06:21 GMT
-Received: from [10.216.17.28] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 25 Feb
- 2025 02:06:14 -0800
-Message-ID: <29809286-cc04-fbc4-60bd-460821c4bc72@quicinc.com>
-Date: Tue, 25 Feb 2025 15:36:10 +0530
+	s=arc-20240116; t=1740478064; c=relaxed/simple;
+	bh=YTqMj4ps1llscSuDb/2p+FJjVauDFbLTY2iu1MZb15U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bu0weg1qmANcnOtlBT7uhsFBEEkEmvDCdV6awaJALy8K/owPg4k2wSeHxhCr8O9xlsHEbtoDpjhti8QEvQi0+65jfPkxiNG6t7EZe8v2mzwM9F3HJTc6k3winkeBvCbUEpWXN1y7nqhMTSLuVPP5VgBG0fwx4lZZeiA9ZAYWSU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B+659pig; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-3098088c630so50618121fa.1;
+        Tue, 25 Feb 2025 02:07:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740478061; x=1741082861; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lAEbqPgmBi60dC78J9e9TaRL3Bq8nEEXaJp+eattnt8=;
+        b=B+659pigkcKaGAcqZYaxlphQIvHwA+vMv/vgSHMs/OkmA4REnPXOh/HSfGCwrP643e
+         yXvAHCFLY53ESkVtj2pS8q5tHUNhEOz0/Xl2SzLuwFMcyoAIO9H9LEYUCBpuKhvq3i1/
+         INYfaYxPvXMy0t8Hu1DBvaSdhLGXtkvabSDdUwNo5zZ+ARGdntuPojCOGKkXN1G9Eqga
+         hMcgoL8bjzVHzBi6B/4QLRQYcMBynXIQ3oISq1bQcGt47yPxliz9ye3nkgXpAM2Bmudc
+         y7jYnJ1lzW9BddfdpppaL1XEsl5TvGUBMIK2aMBOg4botv9ijMd70eL+4qvMp4tqdZDm
+         3CaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740478061; x=1741082861;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lAEbqPgmBi60dC78J9e9TaRL3Bq8nEEXaJp+eattnt8=;
+        b=f+8wsbDU4163gXr2Ou33xEQbgCLxie1hBobJz+1QqfG3nVwR7auHL7Zv8xKKFH4odO
+         hgGfpwXa2fDiR5BWZpkljPGo7HF9VChwzuv//1M5OxqwYRAzz5Eb3pXSN+TvAvwXrEfu
+         MdVKWepbACj2L2zvYgEUr7W8gc8Yy3ndoRXQ3veiHiF/zzu/lBN8OAy5Zi9IfamZuTzW
+         wg0cu9xTRhHNmE/eczF2nbLq65AfeLqqtrcxjUCzAkAEJTNliNu9o2BM0awQ33ONUII8
+         eCW6Suah4kbpdAFrlrzLHyQI8C7c8Ihm/WOweuHtxmC2Q/7bRQ8FNuvGUyidbj5B3ubG
+         kHHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVegutySvs7ZMwAUmjigu53aRJ7a7FWZhlkksoidle9P9V7vZXR3jmFgBjnbZniPlryLoxcvm96hgO8@vger.kernel.org, AJvYcCVsv1nnd2byJUH81vyjiOCU1LoTBLQwStTm03sX09bGujfyBFk/TpSO786U5obYW4tE7pUxVXsgbBcwl4TTRu2/68w=@vger.kernel.org, AJvYcCW0kBesrTh212qJXJjbS8cvO5FKHBZ0EyK2y1WkrBHfks8wYwRb750O/5cN4T3vI8ahLr50CrJng7xsGg==@vger.kernel.org, AJvYcCXiyFqXxycxjuFLnuqRmcVsLNv86qTvQu2RUcWA34VRtVT2/TNQFvZ2BQf3gipazYhdHbICb1Red748@vger.kernel.org, AJvYcCXuEKEvpAMdllMOsm0nKN7cj+ms3MmE3U1XsyU04Ujp05TzDeh8c5C645hShI5Yu1oGEOZgTV/Y/Q0qWpvG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/kD06mV1RCY97r7GdddtKuavgL75kdCDBwJJRVDytgDaISuJS
+	lp64fCWtCy3mGhaJliAu+UA/McBX7yBCcaSzAqy70f4OwsHBxgNl
+X-Gm-Gg: ASbGncsmbiXNBMIYpEpkn8XEqWHcKLOnVWSoxIyFlzX5JVVjg8Ij+1Z9pFxHRbnLcKb
+	BLmK6FY7Xp97bADTWaj7clavF9B/UV1qPzAwdNCaWykwpJLUk5bOutEbzKCFZoev6I2GgqNhVIQ
+	YPZ4HX1lV2cIxaDd27YTOv+CIXJCQF0PbhqHpFnqzG8Vul3mkQaY4wBdn3A83aQ5SfrY9jtUE6L
+	qxmRRffeJ3/958SBtwJVyive9nVnejGCR3mhvMOS2jcGJ2rrArFrOKdqbeSexSuUlqsrvEJNK58
+	pwKdTmZcWcZRgx8E3xnl0PRjKr/Yt86yVtuteTE=
+X-Google-Smtp-Source: AGHT+IE9LtSoTYOkptRbtvW+Pr2kFGMFaZQ0FPl+alwBphqqI58uxcxrb6TXfUP19MarHnVygwrw5w==
+X-Received: by 2002:a05:6512:b8d:b0:545:2950:5360 with SMTP id 2adb3069b0e04-548510d7323mr856574e87.22.1740478060709;
+        Tue, 25 Feb 2025 02:07:40 -0800 (PST)
+Received: from [172.16.183.207] ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-548514f477esm130333e87.187.2025.02.25.02.07.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Feb 2025 02:07:38 -0800 (PST)
+Message-ID: <c3cc7f2a-ea0c-42a0-940c-95735d008989@gmail.com>
+Date: Tue, 25 Feb 2025 12:07:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v4 07/10] PCI: PCI: Add pcie_is_link_active() to determine
- if the PCIe link is active
-Content-Language: en-US
-To: Lukas Wunner <lukas@wunner.de>,
-        Krishna Chaitanya Chundru
-	<krishna.chundru@oss.qualcomm.com>
-CC: Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi
-	<lpieralisi@kernel.org>,
-        Krzysztof Wilczy??ski <kw@linux.com>,
-        "Manivannan
- Sadhasivam" <manivannan.sadhasivam@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>,
-        Jingoo Han
-	<jingoohan1@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, <quic_vbadigan@quicnic.com>,
-        <amitk@kernel.org>, <dmitry.baryshkov@linaro.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <jorge.ramirez@oss.qualcomm.com>
-References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
- <20250225-qps615_v4_1-v4-7-e08633a7bdf8@oss.qualcomm.com>
- <Z72TRBvpzizcgm9S@wunner.de>
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <Z72TRBvpzizcgm9S@wunner.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 02/10] property: Add
+ device_get_child_node_count_named()
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Daniel Scally <djrscally@gmail.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa <nuno.sa@analog.com>,
+ David Lechner <dlechner@baylibre.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Guillaume Stols <gstols@baylibre.com>,
+ Olivier Moysan <olivier.moysan@foss.st.com>,
+ Dumitru Ceclan <mitrutzceclan@gmail.com>,
+ Trevor Gamblin <tgamblin@baylibre.com>,
+ Matteo Martelli <matteomartelli3@gmail.com>,
+ Alisa-Dariana Roman <alisadariana@gmail.com>,
+ Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+References: <cover.1740421248.git.mazziesaccount@gmail.com>
+ <29ec24f1498392cafbecc0e0c0e23e1ce3289565.1740421248.git.mazziesaccount@gmail.com>
+ <Z72QAOA9xXbP16K-@kuha.fi.intel.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <Z72QAOA9xXbP16K-@kuha.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Y_GkRtIcYlsQfTa9XnF0htPFgpJHWRAM
-X-Proofpoint-ORIG-GUID: Y_GkRtIcYlsQfTa9XnF0htPFgpJHWRAM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-25_03,2025-02-24_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 suspectscore=0 lowpriorityscore=0 bulkscore=0
- clxscore=1011 adultscore=0 phishscore=0 mlxlogscore=999 spamscore=0
- mlxscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502250070
 
-
-
-On 2/25/2025 3:24 PM, Lukas Wunner wrote:
-> On Tue, Feb 25, 2025 at 03:04:04PM +0530, Krishna Chaitanya Chundru wrote:
->> Introduce a common API to check if the PCIe link is active, replacing
->> duplicate code in multiple locations.
-> [...]
->> --- a/drivers/pci/hotplug/pciehp_hpc.c
->> +++ b/drivers/pci/hotplug/pciehp_hpc.c
->> @@ -234,18 +234,7 @@ static void pcie_write_cmd_nowait(struct controller *ctrl, u16 cmd, u16 mask)
->>    */
->>   int pciehp_check_link_active(struct controller *ctrl)
->>   {
->> -	struct pci_dev *pdev = ctrl_dev(ctrl);
->> -	u16 lnk_status;
->> -	int ret;
->> -
->> -	ret = pcie_capability_read_word(pdev, PCI_EXP_LNKSTA, &lnk_status);
->> -	if (ret == PCIBIOS_DEVICE_NOT_FOUND || PCI_POSSIBLE_ERROR(lnk_status))
->> -		return -ENODEV;
->> -
->> -	ret = !!(lnk_status & PCI_EXP_LNKSTA_DLLLA);
->> -	ctrl_dbg(ctrl, "%s: lnk_status = %x\n", __func__, lnk_status);
->> -
->> -	return ret;
->> +	return pcie_is_link_active(ctrl_dev(ctrl));
->>   }
+On 25/02/2025 11:40, Heikki Krogerus wrote:
+> Hi,
 > 
-> Please replace all call sites of pciehp_check_link_active() with a call
-> to the new function.
-> 
-> 
-ack
->> --- a/drivers/pci/pci.c
->> +++ b/drivers/pci/pci.c
->> @@ -4923,8 +4922,7 @@ int pci_bridge_wait_for_secondary_bus(struct pci_dev *dev, char *reset_type)
->>   		if (!dev->link_active_reporting)
->>   			return -ENOTTY;
->>   
->> -		pcie_capability_read_word(dev, PCI_EXP_LNKSTA, &status);
->> -		if (!(status & PCI_EXP_LNKSTA_DLLLA))
->> +		if (pcie_is_link_active(dev))
->>   			return -ENOTTY;
-> 
-> Missing negation.
-> 
-> 
-ack
 >> +/**
->> + * pcie_is_link_active() - Checks if the link is active or not
->> + * @pdev: PCI device to query
+>> + * device_get_child_node_count_named - number of child nodes with given name
 >> + *
->> + * Check whether the link is active or not.
+>> + * Scan device's child nodes and find all the nodes with a specific name and
+>> + * return the number of found nodes. Potential '@number' -ending for scanned
+>> + * names is ignored. Eg,
+>> + * device_get_child_node_count(dev, "channel");
+>> + * would match all the nodes:
+>> + * channel { }, channel@0 {}, channel@0xabba {}...
 >> + *
->> + * If the config read returns error then return -ENODEV.
+>> + * @dev: Device to count the child nodes for
+>> + *
+>> + * Return: the number of child nodes with a matching name for a given device.
 >> + */
->> +int pcie_is_link_active(struct pci_dev *pdev)
-> 
-> Why not return bool?
-> 
-pciehp_check_link_active is expecting int to make sure this new function
-not disturbing the hotplug driver I added return type as int, I can 
-change it to bool if it fine with hotplug drivers.
-> I don't quite like the function name because in English the correct word
-> order is subject - predicate - object, i.e. pcie_link_is_active() or
-> even shorter, pcie_link_active().
-> 
-ack
-> 
->> @@ -2094,6 +2095,10 @@ pci_alloc_irq_vectors(struct pci_dev *dev, unsigned int min_vecs,
->>   {
->>   	return -ENOSPC;
->>   }
+>> +unsigned int device_get_child_node_count_named(const struct device *dev,
+>> +					       const char *name)
+>> +{
+>> +	struct fwnode_handle *child;
+>> +	unsigned int count = 0;
 >> +
->> +static inline int pcie_is_link_active(struct pci_dev *dev)
->> +{ return -ENODEV; }
->> +
->>   #endif /* CONFIG_PCI */
+>> +	device_for_each_child_node(dev, child)
+>> +		if (fwnode_name_eq(child, "channel"))
 > 
-> Is the empty inline really necessary?  What breaks if you leave it out?
-> 
-ack I will remove it.
+> s/"channel"/name/ ?
 
-- Krishna Chaitanya.
-> Thanks,
+Thanks Heikki for spotting this brainfart! :)
+
 > 
-> Lukas
+>> +			count++;
+>> +
+>> +	return count;
+>> +}
+>> +EXPORT_SYMBOL_GPL(device_get_child_node_count_named);
+> 
+> I did not check how many users are you proposing for this, but if
+> there's only one, then IMO this should not be a global function yet.
+
+I have no strong opinion on this. It starts with just 1 user (IIO ADC 
+channel stuff), but I've a feeling there are other areas which do 
+look-up nodes by name. I suppose "channels" are looked-up in other areas 
+of IIO as well. Lookups are probably done outside the IIO as well. I 
+haven't audited this, but I wouldn't be surprized if at least LEDs (and 
+perhaps clks/regulators?) could find this useful too.
+
+> It just feels to special case to me. But let's see what the others
+> think.
+
+Yeah :) And thanks for spotting the "channel" -thing :)
+
+Yours,
+	-- Matti
 
