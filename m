@@ -1,217 +1,117 @@
-Return-Path: <devicetree+bounces-150803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F59A43960
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:26:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1B5AA43965
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:26:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16C073BC349
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:20:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 424157A2D62
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 09:25:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EBC620C01B;
-	Tue, 25 Feb 2025 09:19:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C16625A2BE;
+	Tue, 25 Feb 2025 09:26:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VytEYfiR"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="azZPTycN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA1F6260A54;
-	Tue, 25 Feb 2025 09:19:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4644C80;
+	Tue, 25 Feb 2025 09:26:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740475196; cv=none; b=KT60vLOHcnB0y+m5v3EH/EMzOLiamzGh1lTy4/QDo6NhsYlJQLiZg0GvAmLJY85U4DouTLRDMTtRq7kyJ5xKUyfP8cLxfM4HthWP7D+3E/o6qIlws7AUqbw4Nn+7boG3BBDRs4DTsmfvhYJDwijH2ZUg6vTd2MRxJr1wZvrZMl0=
+	t=1740475571; cv=none; b=HRnx14dK6tAUJZwFn73Y37CLob8YvU4ZS3aZogOEAm/66kzq46JfKZIkRp6AmjJOAAZkNGlB6AmxAMwpb9u0ZRQIEG3JC7FN1SzlbU2Y6T0BV5AUzOcnZCgV9eIOwU9fukB1G5iXRb80E9ucFxAKfqDHy+zy2iqiik3PBwuLT1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740475196; c=relaxed/simple;
-	bh=mxjeNY/gI1DEE5UWt79KGSeGfVjKaB/ATptNamQXRwU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=UXSPD37G6LIXmxZZLfqFl3+3IcTcxQjUyrN4bh/fY98Wu58IB3wVbSwn11oElHsR43F8Ybo/dKwem47g4Njxuu2wqMB+B3J0G0xYNShrP+oNYlIrcjsIZ7Y3DilpluEy/CfdoRrtimjmjk6zScs7eHaiHdAx2Hfju+u9Tip/NyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VytEYfiR; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-222e8d07dc6so33347435ad.1;
-        Tue, 25 Feb 2025 01:19:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740475194; x=1741079994; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nj3QvJrkZQTbm/14d0IKWFHBOShY4xnuFmDq9qgKrl0=;
-        b=VytEYfiRHf6StH3SVyWkCqKqSuE9EuzJVKOn9+z+O2MJWo2CcXOBY+K1Emz5jQ8ND8
-         X7TwLCrZe88HhOcTdxnzGemQpUSQIlTzJ5lXpyJUmcjefq3iGw3S7cq+sNZvRVrIa/Xs
-         Zzttm43FZC2Dpt13UjV2TlGcQcOv5JRoJqU5rkqbewoejc61TkcSA5VTbDNUbYWVuUqF
-         4b2TFDKA+HjWYWqI0XIIfFJ5oOFPBnPZkVO1tzanhWXnTn7voXviJvcOlE4rIPcY2FGE
-         on8QWDPkTThmIndLdj70U9Jttt5AzxlVghWn1U240sWfWEfy6U4QGQXQAlw9RY+Wdrtb
-         /Wyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740475194; x=1741079994;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Nj3QvJrkZQTbm/14d0IKWFHBOShY4xnuFmDq9qgKrl0=;
-        b=xRxAanGUf5YZp6Qgs3nrY8WxVB6b76QICdjKrGo0v9G3qjzlvp+10W3PGL9PagiTaC
-         nAMp8IPJKDRDfpm8eNMg3WVJAl7oxWbUOlhKJxAGMpp1Otk9twzCgd6WYYGSZaLKQCm5
-         f6DSQNyCQ4PEi7KxnI6Syx+SuAsPYYQr6r8mZyFEtShO8SrHDAQJeEFjudjlv1qx7QTu
-         mfJmiTRGvUrZBMENSVY/i6jG9flbysI652tQwE1SZaiXDhoFSAKs0RefwHP/ETPb3/Nk
-         OeUGxwMvsWsOWS9TDmzwhcphOhyAdOq4RONr8GK1xGnXGUjsCj66Ga0K+lPGqH/JRkqs
-         D1iw==
-X-Forwarded-Encrypted: i=1; AJvYcCX8E3TaOPOvwxOiP1IB3QI5M7nl5OUUrRaUc4VQGSNilCAqGQLYxImwz0tIBgHaNbWsi6xmcuRN2eHP@vger.kernel.org, AJvYcCXNNrC72xRc8yUgLMSjd+pnv2+PMCFWygv83DOK9gmheb1pBXDrHhTJxjkvnFH7cG1W+R7a3Wkid9AN0kLU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVKqncetKOADVITlDxhTZADtO2Niu5yNWDBYvZ/7xsxtuFQl2Z
-	NtiXYO46DfrbLyuOOXmV7RUvNQmSrjPu5tLgSnaKAyK56CjZcHSG2Usku0yX5Og=
-X-Gm-Gg: ASbGnct2KXp4N2b8djb7fTwBCbht5qAl1c0JgCkdrfz+bORM3EliI5SOGKE+B2pp3yv
-	O+MG4bztH2cc+nxrDw6igusejIYwMc7IO6540gr7di9b650JYd05PxJaY2z7wwvtD2PCTiOA/UE
-	o8B3hB36ey7d6hm+Uq2IAMs0XgtJUIFyGiMdV8tDfOgTSwzpYq1ZqZghMhTzGi+MbvZi1kCycEM
-	gfAk5TxkSYw6VlEug8Ji1kqoyuIuqGfVTUFNBU70pTgrjJy4UaonvUM1k9hQI9RXZ1t6ZOvqTLl
-	F73LmvSLhhCA+M0k7gQ6t2BDkwI=
-X-Google-Smtp-Source: AGHT+IE9YBdCkNq/S4TjozYMNc2eD/oYxsI6+U8AdO2NGvsUJBfklT61ZkIl1cuk5oEXWFTnMRX1eg==
-X-Received: by 2002:a17:903:2ec6:b0:21f:6ce8:29df with SMTP id d9443c01a7336-2218c3cfab6mr358683895ad.3.1740475193891;
-        Tue, 25 Feb 2025 01:19:53 -0800 (PST)
-Received: from [127.0.1.1] ([2601:644:8501:1640:4148:75aa:e7ad:9664])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2230a000542sm9679975ad.17.2025.02.25.01.19.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2025 01:19:53 -0800 (PST)
-From: Rudraksha Gupta <guptarud@gmail.com>
-Date: Tue, 25 Feb 2025 01:19:44 -0800
-Subject: [PATCH] ARM: dts: qcom: msm8960: add tsens
+	s=arc-20240116; t=1740475571; c=relaxed/simple;
+	bh=oSSm2Bj/9pPO/bqZuCZ2bbaPFZ8yEX3jYdNJxrGtFNA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=e8Q/ja4jp9KkfP5rCR3UtwqCYs1JAN66YsXLV5PUYZxn6C1ibulg1M5oWqqxJ5G+yBIG01+81ZgT8KsIEouiHsC9GSba3NKaelsr3B59q+Ovz5bqhamyuCYoxWkb961szam/xoeCGTiWV3vXph0FweerQV3CWRISipf+ELPMabQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=azZPTycN; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3DC7C4328A;
+	Tue, 25 Feb 2025 09:25:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1740475560;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=mV3cehY1GxgAILAv178GKa2jcX2i7pQTnmswZvAfL+Q=;
+	b=azZPTycNcKWAmSO4gNOl0NlryS9eh6MsVogc/zDwfqc0OW4L0dAEy5ZmJyKlaweI5TR/ZF
+	ZaucNvgDspZFecCuyLhAjhOblAlCoGi1fBJ6qjFmwcdyRqb3Hb4M8uD2YDfS1e9det3hB9
+	xyWhvWxMt6oNO7KdBLViEq/A3BVVyUMbn+118bYrJsek8ev2j+HK8uuX67zTD/TOM/jrXj
+	PSg+i1Xc170Da1io8g294kAS92PjCGnlu/GBNW/91zxTFaCiZs7TswgwcXS+yNq8OsChVk
+	Oag40wzCNDuLy3kKZ4dro4HP1V/KxHgaAfaRhSaQhWbRKtzcEJAqc6iIh4TA0A==
+Date: Tue, 25 Feb 2025 10:25:58 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet
+ <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, Rob Herring
+ <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, Simon Horman
+ <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
+ Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
+ Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v5 06/12] net: pse-pd: Add support for budget
+ evaluation strategies
+Message-ID: <20250225102558.2cf3d8a5@kmaincent-XPS-13-7390>
+In-Reply-To: <20250224134522.1cc36aa3@kernel.org>
+References: <20250218-feature_poe_port_prio-v5-0-3da486e5fd64@bootlin.com>
+	<20250218-feature_poe_port_prio-v5-6-3da486e5fd64@bootlin.com>
+	<20250220165129.6f72f51a@kernel.org>
+	<20250224141037.1c79122b@kmaincent-XPS-13-7390>
+	<20250224134522.1cc36aa3@kernel.org>
+Organization: bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250225-expressatt-tsens-v1-1-024bee5f2047@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAC+LvWcC/x2MQQqAIBAAvxJ7TjBRk74SHSS32ouFKyGIf086D
- sNMBcZEyLAMFRK+xHTHDtM4wH75eKKg0BmUVEYqZQSWJyGzz1lkxshC2qCtcbM3TkPPuj6o/Mt
- 1a+0DrixKuWIAAAA=
-X-Change-ID: 20250225-expressatt-tsens-06d46587a584
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, wctrl <wctrl@proton.me>, 
- Rudraksha Gupta <guptarud@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1740475192; l=2826;
- i=guptarud@gmail.com; s=20250208; h=from:subject:message-id;
- bh=mxjeNY/gI1DEE5UWt79KGSeGfVjKaB/ATptNamQXRwU=;
- b=G8RELbz18xURPb3s3D2SAYZXoJ8dZZ8e1UejFDFquMrE8XFzPZ9SvLdkdq48f4c5n5aDGhRsm
- Vktv5b5qCWfCeCJ0pnaO8FNRqv8QJ7YFD8n4FvTsegWQll0pHzISbln
-X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
- pk=5lJNaiR/Bu7edToWFLriO5zXOrVqSQWrBKbAKwuEw04=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdekudefgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefguddtfeevtddugeevgfevtdfgvdfhtdeuleetffefffffhffgteekvdefudeiieenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvgedprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepohdrrhgvmhhpvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiiv
+ ghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheptghorhgsvghtsehlfihnrdhnvghtpdhrtghpthhtohepughonhgrlhgurdhhuhhnthgvrhesghhmrghilhdrtghomh
+X-GND-Sasl: kory.maincent@bootlin.com
 
-Copy tsens node from ap8064 and adjust some values
+On Mon, 24 Feb 2025 13:45:22 -0800
+Jakub Kicinski <kuba@kernel.org> wrote:
 
-Co-developed-by: wctrl <wctrl@proton.me>
-Signed-off-by: wctrl <wctrl@proton.me>
-Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
----
- arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 62 +++++++++++++++++++++++++++++++-
- 1 file changed, 61 insertions(+), 1 deletion(-)
+> On Mon, 24 Feb 2025 14:10:37 +0100 Kory Maincent wrote:
+> > > The "methods" can be mixed for ports in a single "domain" ?   =20
+> >=20
+> > No they can't for now. Even different PSE power domains within the same=
+ PSE
+> > controller. I will make it explicit. =20
+>=20
+> Sounds like the property is placed at the wrong level of the hierarchy,
+> then.
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-index 865fe7cc39511d7cb9ec5c4b12100404f77e2989..167953605447bfaa0d33b0e41b581220f86c72e6 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-@@ -52,6 +52,40 @@ memory@80000000 {
- 		reg = <0x80000000 0>;
- 	};
- 
-+	thermal-zones {
-+		cpu0-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+
-+			thermal-sensors = <&tsens 0>;
-+			coefficients = <1199 0>;
-+
-+			trips {
-+				cpu_alert0: trip0 {
-+					temperature = <60000>;
-+					hysteresis = <10000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		cpu1-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+
-+			thermal-sensors = <&tsens 1>;
-+			coefficients = <1132 0>;
-+
-+			trips {
-+				cpu_alert1: trip0 {
-+					temperature = <60000>;
-+					hysteresis = <10000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+	};
-+
- 	cpu-pmu {
- 		compatible = "qcom,krait-pmu";
- 		interrupts = <GIC_PPI 10 0x304>;
-@@ -115,6 +149,20 @@ timer@200a000 {
- 			cpu-offset = <0x80000>;
- 		};
- 
-+		qfprom: efuse@700000 {
-+			compatible = "qcom,qfprom";
-+			reg = <0x00700000 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			tsens_calib: calib@404 {
-+				reg = <0x404 0x10>;
-+			};
-+			tsens_backup: backup-calib@414 {
-+				reg = <0x414 0x10>;
-+			};
-+		};
-+
- 		msmgpio: pinctrl@800000 {
- 			compatible = "qcom,msm8960-pinctrl";
- 			gpio-controller;
-@@ -127,7 +175,7 @@ msmgpio: pinctrl@800000 {
- 		};
- 
- 		gcc: clock-controller@900000 {
--			compatible = "qcom,gcc-msm8960";
-+			compatible = "qcom,gcc-msm8960", "syscon";
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 			reg = <0x900000 0x4000>;
-@@ -135,6 +183,18 @@ gcc: clock-controller@900000 {
- 				 <&pxo_board>,
- 				 <&lcc PLL4>;
- 			clock-names = "cxo", "pxo", "pll4";
-+
-+			tsens: thermal-sensor {
-+				compatible = "qcom,msm8960-tsens";
-+
-+				nvmem-cells = <&tsens_calib>, <&tsens_backup>;
-+				nvmem-cell-names = "calib", "calib_backup";
-+				interrupts = <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-names = "uplow";
-+
-+				#qcom,sensors = <5>;
-+				#thermal-sensor-cells = <1>;
-+			};
- 		};
- 
- 		lcc: clock-controller@28000000 {
+When a PSE controller appears to be able to support mixed budget strategy a=
+nd
+could switch between them it will be better to have it set at the PSE power
+domain level. As the budget is per PSE power domain, its strategy should al=
+so
+be per PSE power domain.
+For now, it is simply not configurable and can't be mixed. It is hard-coded=
+ by
+the PSE driver.
 
----
-base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
-change-id: 20250225-expressatt-tsens-06d46587a584
-
-Best regards,
--- 
-Rudraksha Gupta <guptarud@gmail.com>
-
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
