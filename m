@@ -1,91 +1,102 @@
-Return-Path: <devicetree+bounces-151202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8A85A44BF8
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 21:06:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6386FA44C0C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 21:10:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E34F03A6570
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:06:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5897165DF8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:08:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE62C1A727D;
-	Tue, 25 Feb 2025 20:06:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BCA220DD75;
+	Tue, 25 Feb 2025 20:08:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Br5wrrkm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fKzlaEeo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6B1C39ACC;
-	Tue, 25 Feb 2025 20:06:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D041539ACC;
+	Tue, 25 Feb 2025 20:08:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740513980; cv=none; b=RLlBjZD/Wn5lgRHPamcFySQV0yxRXJj9j8XpmDQuh2m9M0EiF53l+cQq556S1JrHBccdHCJUKP3FC/U9kbQU6/jFtqvyfLjmv+4X4g7aCSyOPU4ud9Oih6jkfXz5B1zgVXf1OIb3KzYmsHvA2Ii5SppZMjELxWN40r6mfO4BGSo=
+	t=1740514086; cv=none; b=RcSupwAr73MSBR2/iDXPTsB2UwYTuLoFOla3KmeI69Adw4R3nKDd1VTvT58QsBiEBDvW5TmW+Wfgervke9BddcbwNBixVM4jfU2xyefHOatAOptxq2yGfNNrV0FhJ7zNqNJuZ9dNPAQp2G/GXOJt/QhHMPj7CYs+J6S6Gw0xfsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740513980; c=relaxed/simple;
-	bh=Ndza3OHFLer402GMFSu0ZpZLj/3G05f9pbRJc6S9tAo=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=s0DC/YvUeQ8mmH5r3feAfnFg22x1LvvCAOMAL0NPDKvqHJrgTwudzoZ5xfXL610Dyg6NaNZMRvkSF0Tu3E2QqG21iMXzLsXpqFzFoyAwhpTTIxneGMk3OG0c2kbRuWJQJ7xZQvmru9Yub7tQKLuMwDEntRFGNQvtnf3uqCmTNHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Br5wrrkm; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id B010325989;
-	Tue, 25 Feb 2025 21:06:15 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id w-jEkNpuVHmR; Tue, 25 Feb 2025 21:06:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1740513975; bh=Ndza3OHFLer402GMFSu0ZpZLj/3G05f9pbRJc6S9tAo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=Br5wrrkmUEOBCE3CrgehhOxKV4f8qkZ0giA3oJsqVKYdzyJNlGYD7FwrgBc7Flf1J
-	 9aMrD/8156W7MFZgVvoSsOAFmNdOMoS3XuSZKOra7ilT2g+28zEPXmHo7estiBkR5e
-	 XwCfhESuTVEz9LwiJ0lRZlMduNiLJ0egD+HCHyhI53V+s4yDbV/bNi7qOMH3Ahpbw2
-	 a7L7Q5GBuqDf5VLcalf8XQ7oKl+glClJa5YZoccEDHbBHpJawDmeL4cDNl4eHKJTGD
-	 r1W/FfJBqSDfcTlcnY/LWwi2fyYPrIkaL9/aNzqDwoYoDlhgMOsbhCjPaonC7srGtQ
-	 YcaNbUSh8h9og==
+	s=arc-20240116; t=1740514086; c=relaxed/simple;
+	bh=JHvTrakxRhdhuk+kBY06tb9Lr0ActVSa7Q4+RPH0pK4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IDV7Dygjvi1S+VeJWLcs+lFtSWKlkEzZ0Xsiu/RLWqJsWL7hwk8Hc0P7fBzE4SPpuFBsTylJUjym1cFYgd3IF1ZFnW15dLk6REulxpTpJTmXL9mcKQLG9IcvOqrTlN6syPaq2vq4iTAVwBw1620esg3UbTVH0xZyVI7sxDtQ/No=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fKzlaEeo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67CD0C4CEDD;
+	Tue, 25 Feb 2025 20:08:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740514086;
+	bh=JHvTrakxRhdhuk+kBY06tb9Lr0ActVSa7Q4+RPH0pK4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fKzlaEeoJRWop5oAYb/YCS8M3HQGqwjJwMv93yKTF+5ZGXcyYNs0jDb3SNTw2tE5J
+	 Y2ZVchmubya8cGdPdunn3Ce8SurKCWGHt/gqiUrr+4TYEEVqF8CWl8HQvLBMawu7yx
+	 rpOagGnIsYYfUx8KIPZbgV8XwUOGMqFV3Y0UB3dWZRxljWZ4wXQXHoVluPPmSaNA4C
+	 UvHnD0OexH1v/9kWeA+M6xRzcJMA8tZfAN3JDiMNFq/syCAaM8RS7tEmJA5uvpMlw5
+	 84wLguasfXtfSnVYJZwDwQ0MjBqzp5XPCyuLAIbZHkTFbJTfYI+Dae4eBG+y+YKwa5
+	 YFGCilE1PYtIA==
+Date: Tue, 25 Feb 2025 14:08:04 -0600
+From: Rob Herring <robh@kernel.org>
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, Frank Li <Frank.li@nxp.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>,
+	"open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>
+Subject: Re: [PATCH v2 05/10] dt-bindings: display/lvds-codec: add
+ ti,sn65lvds822
+Message-ID: <20250225200804.GA2947190-robh@kernel.org>
+References: <20250106-skov-dt-updates-v2-0-4504d3f00ecb@pengutronix.de>
+ <20250106-skov-dt-updates-v2-5-4504d3f00ecb@pengutronix.de>
+ <37d2a7bb-1c8c-4c33-a277-dc1a7448433b@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Wed, 26 Feb 2025 01:36:14 +0530
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones
- <lee@kernel.org>, linux-kernel@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, Kaustabh
- Chakraborty <kauschluss@disroot.org>
-Subject: Re: [PATCH v2 2/3] mfd: sec: add support for S2MPU05 PMIC
-In-Reply-To: <b150ef5e-08b3-4747-8fd3-7b60410513a1@kernel.org>
-References: <20250219-exynos7870-pmic-regulators-v2-0-1ea86fb332f7@disroot.org>
- <20250219-exynos7870-pmic-regulators-v2-2-1ea86fb332f7@disroot.org>
- <20250223-outrageous-bizarre-hedgehog-8a3bbd@krzk-bin>
- <11387d3d0478d7fa1899ee3d0409541b@disroot.org>
- <07634537-0750-4616-9c88-800d1672dcfc@kernel.org>
- <69c58c0ba04ad85f0ddd3f379bcb8390@disroot.org>
- <b150ef5e-08b3-4747-8fd3-7b60410513a1@kernel.org>
-Message-ID: <32c8a624fc44d048e90f556ab293d43d@disroot.org>
-X-Sender: kauschluss@disroot.org
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <37d2a7bb-1c8c-4c33-a277-dc1a7448433b@pengutronix.de>
 
-On 2025-02-26 00:14, Krzysztof Kozlowski wrote:
->>> BTW, what happened with all the review tags? Nothing in cover letter nor
->>> changelog explains dropping reviews.
->> 
->> Haven't explicitly mentioned dropping the tags, but I've changed the
->> macros a bit, among other things (which is mentioned in cover). I assume
->> that's the standard procedure.
+On Wed, Feb 19, 2025 at 02:26:52PM +0100, Ahmad Fatoum wrote:
+> Dear DRM bridge maintainers,
 > 
+> On 06.01.25 17:06, Ahmad Fatoum wrote:
+> > Add compatible strings for TI SN65LVDS822, a FlatLink LVDS receiver.
+> > 
+> > Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> > Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 > 
-> No, it is highly nonstandard. You must mention dropping tags and
-> submitting-patches explicitly asks for that.
+> Shawn has asked that the DT or display maintainers take this one patch
+> through their tree. He has already applied the remainder of the series.
+> 
+> Can you take a look? DT maintainers already acked it.
 
-Then I might've missed it, apologies. Will mention in changelog in v3.
+I've applied it.
+
+Rob
 
