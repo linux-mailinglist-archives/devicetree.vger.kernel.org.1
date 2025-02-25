@@ -1,187 +1,122 @@
-Return-Path: <devicetree+bounces-151190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37561A44B48
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:26:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 877E4A44B63
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:35:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3618F7A5C60
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:25:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CCE33B5740
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 19:32:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 711C81CEAB2;
-	Tue, 25 Feb 2025 19:26:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3231C1DA634;
+	Tue, 25 Feb 2025 19:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="gegX5Smw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mTrZE4Wu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013051.outbound.protection.outlook.com [40.107.159.51])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81BBB1A2567;
-	Tue, 25 Feb 2025 19:26:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740511574; cv=fail; b=Te2x3qEVClb1W849r9+RV8gRQe+53Rzf2kW0xY7i3fXwKqY39eQZflW+BE+QiG9solg5/xUFUOvjUVU1G/WG/0xhr+1VMivpXvxixKVMqJzrQpI4FlDBfh3jCyTRjKvhW4ib+Wj5D0rdPSvQ2iFbOyKHcik+kcaXv3/QjT2k0pA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740511574; c=relaxed/simple;
-	bh=5WFyyI0NllRGAo+rJDHY+Q5m97YxEg3XKFG3TPO3J7Q=;
-	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=dh9ygunMyr+iW6mVkOJM4wG9aVU6xivs/jgXoHw9DjDBz20efbaQKndHqQ8QL+wpgdIlzArOMgVhFhvrF0Vf19TWdp634wC2pe2FvvePnBZIBnFJ/wEQolcSmemTmotkIH27pbZHFwKTpl7iNFPUMwcLNFZWfKlmnYMBgd4sZKE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=gegX5Smw; arc=fail smtp.client-ip=40.107.159.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kewEfTl6qDQUVo2AulH1hYYHOrD6r2dse2pKEnild2q9/agmsnJQhCzS4MaoZ7O5X0BUvX5m4DcV2ZAen2f8yKo773sUo58+05FBOCuXv61WtQUftq/fD3IgNMP3ioKWwqMRxWmutE1VXUecQ9Q2YI+gE4yGdGHdQEoh/Bo0mDa/7hjgZGxn5OpBqDTj1UqT7YU2dOez34dJY15EARyv2TxiT/je9W8AuL0cap5p/cKIIbwdrxOg144flxjoO8XE+JQSIL707HaFZMnQTIrNIHXM34sSytJKHKZgdboSIGR4pIpI7sxzPWNmsqlvuFFPGOHxUB9YS+kcLcKxnDprdQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4R+xBHnzCZjZW3BWCqcH9jicmXAMCRJy503Na1AlqrM=;
- b=Mz3fHGscExB4jfBA1wy8/5BlQn5cO5QjmzOk6XKPgMmvrwxCaO3uY+3XMzDVh1HpH1fgp+0+2qbS9hVY8H+5o/zE88MZN/2ADN2v+CleWx+Gv8ZnjJquUvuw/3f7c7RGPE3CQXFG+ocUuVWMufYwNdYfyfd4+x812EJCFh5ykm6kvdKAVYT3EjlnHwGMpu7QZB/3oVzHNJBVSz4XODPcbPJVRA2fiOKJds3kdpAEqEhRHiyhqfFDqj1Z4lcBzea/L8Co3GNZ0yuOUNNITO2qPX0IRvm5SNaznHQYUXIqKwG2uhKh36y7mVrUteLxZGcQzFeLFsEIgdH+u6wt81lxtQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4R+xBHnzCZjZW3BWCqcH9jicmXAMCRJy503Na1AlqrM=;
- b=gegX5Smwd4hGQ8F4d816gyyOIOVzoIstreGH+BJUHLbrN+WzIk+FQbtomUWswy1oS+9BVG5MI53Df00MkN0jF6bgpbj68hXmb997p6Lxv2J0fuU+YDx4c59AbEwmGKF4qJvWLe3RhwW5UhfS+d63ufOu1gBYaIxHFkrQxHZZ6E9TPCohHLpmNUH094gjgUdK0AHs1R2itbuszAI2270kXP49NVt16Qmn6AOLimYC0NW95hwMjI1FFcpCXJAtgKvwwM8vYyJQ9esgRKoW63VtuWHBPSvZNMhKEK/BSHPy3lbsVKKocdE1MqKA3M8CIVjIpKw6CGZuEeg0Je8f1Xl5Wg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DB8PR04MB7177.eurprd04.prod.outlook.com (2603:10a6:10:127::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.21; Tue, 25 Feb
- 2025 19:26:09 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8466.016; Tue, 25 Feb 2025
- 19:26:09 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v1 1/1] arm64: dts: imx93: Add the 'fsl,ext-reset-output' property for wdog3
-Date: Tue, 25 Feb 2025 14:25:56 -0500
-Message-Id: <20250225192557.2914684-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0P220CA0002.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F28671B2182;
+	Tue, 25 Feb 2025 19:32:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740511966; cv=none; b=BW5XGfqM6ewyFlbFwcBsK7n5VH2CwKeL5JTvaErnUcz36IuD8CHmu9hIPUpZh8ge3II0BYebGYD35zYyLbPlN5iOXP6TGeMFLkhY6ZGdlq0gDKukFusiMAaAWlCqM0v9Mc5vTekurxR8grTnNEIPCwD/7I3zjiRMWoNNq51V6wQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740511966; c=relaxed/simple;
+	bh=EJ0p7kJP7tcBXTVtX2EQW5Eqt9I/PZY1PRXbITilg4Y=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=oF4ejbuA3lzc5VjAVk3kkm5nWvIgBOL46UC/Smi97ohi6JjvMKmlRH+VEfYVmoulEo/MNOfzhCihZWgMVjZVRKKJxXK9EBb5UwJMzjoAfjfVHQqRcrH/nXFN9qe0MN47wbL8O+gU8f9CtNORQzWmk6yNLx/2s6aJTL2hlMIglqA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mTrZE4Wu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52DDDC4CEE2;
+	Tue, 25 Feb 2025 19:32:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740511965;
+	bh=EJ0p7kJP7tcBXTVtX2EQW5Eqt9I/PZY1PRXbITilg4Y=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=mTrZE4WuJLivocdDlOAyUC2sQPoGHxDaCYT9NHKSq28BUTlAulfb4fehDp0FsRufS
+	 wN2GyPsPi6OmFzTc6Ee2sTqgm3ETtXKtEe6iEdhwM7NDGtfgbvQFp4cOJ8WNAcZfBT
+	 BFiGFR6ejC//8RQRWhkzVwv1JEOxWPjZq/K8aBcaurTcLTt+xmYzVyl5eL1Yx7gEG/
+	 d5hPZA2+vFU/+Mx2BzCzyS6yUNx0qvgMlmexsoD8ynAY+8glKvJmR/lCTKClqV9Lc+
+	 CyfjXuELUxxY24pzKEo5rik8bu9FfV+No86fQNUU58QoDTwOBhtCTXtmOZwL8WPsSy
+	 V5yFbpl2Z+/Iw==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Trevor Wu <trevor.wu@mediatek.com>, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Cc: kernel@collabora.com, linux-sound@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+ parkeryang <Parker.Yang@mediatek.com>, Zoran Zhan <zoran.zhan@mediatek.com>
+In-Reply-To: <20250225-genio700-dmic-v2-0-3076f5b50ef7@collabora.com>
+References: <20250225-genio700-dmic-v2-0-3076f5b50ef7@collabora.com>
+Subject: Re: (subset) [PATCH v2 0/8] Enable DMIC for Genio 700/510 EVK
+Message-Id: <174051196206.229034.7513749709146445847.b4-ty@kernel.org>
+Date: Tue, 25 Feb 2025 19:32:42 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB8PR04MB7177:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1502e40c-bbe8-4103-c422-08dd55d241f0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|366016|52116014|1800799024|376014|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?GzWoUwtmhk7542BSXlOnPbtf6HR9m+4sQUv2RQFfb7o6pba8uox7ThpS9Z1f?=
- =?us-ascii?Q?su1tcJ99ljQZNu+LSrjg3ejXlVA5+NV/tIoL8kpQa715jm7vLxtALDR9Txmu?=
- =?us-ascii?Q?QbUpkZqbrzPiU7WLaLsxoEolWRNsRyiB0s43pcHPMyS8obyctbwyf/dqfCel?=
- =?us-ascii?Q?JcOYywopfUnzUMjyNRjGAwls/o4mBWooSNNyz/av8Zr8XRjnvGrbnNXiDpon?=
- =?us-ascii?Q?BsEE9HtznieGh6/wIw3kbBt9mGC77MG5HRxqavXQw8nYlQpAYuVkQyEHc1mq?=
- =?us-ascii?Q?jF2tN7QIZWDRSsAlJ3P/TSH3Ey+QW4f1SBwJznH01Ei9S6W4ebeEvgwiKnTG?=
- =?us-ascii?Q?VwlrlA4XySNd9C3kDPacsqwVqJHvyqenq8HF6X/0Emh+xpgqwIUrTK5YlpuJ?=
- =?us-ascii?Q?sXSl4j+MKsuZ9GCHL5vDiMtCTp/l3cO8YyTZslD21BXlsOaRd52Y34hIlSy0?=
- =?us-ascii?Q?mVnuQF8DnP5ZE1SaEVyvXxXEsQahUJnhVA6KmCx47PP9mA6Bx1PzDEAgWFYt?=
- =?us-ascii?Q?zT6Yu+GZLJDhF1zXGNBJGu2H4AZmJ2CRiniIyUyDzWbe7T7xdmY3nwe7gitV?=
- =?us-ascii?Q?a1LLxChgTDum025TOU1Sf6P6rfEg4AJ5TTvqytVFY6BFmbGalf683u5WtHTN?=
- =?us-ascii?Q?O2sVzQ0OLGtS8A/QVoOKnwGW49Ab1dbYszTByiq8WT4IUHqds91mwu7BafQQ?=
- =?us-ascii?Q?957PvieW4YhvlA1KgcbH+VotIZKFJdQSqZYtWZLnEJRDzGYRzMTMZRr7MEAK?=
- =?us-ascii?Q?LuRBE4/54M1038H5JsEZ2E7/AKMCaPcZFNs8GUDatB6MnjpK033ulcVr8+yf?=
- =?us-ascii?Q?Np/b5r33fuc5Og/N6aATc8ytK5QTozadI+XGNuHAvmP+WBBe3f5KDGxiDsPf?=
- =?us-ascii?Q?m/txV5khEV4jCtayx/W7VbC25dGBIqCqy2nwMMt5MnFqC7bdJf/ox8/R/4EF?=
- =?us-ascii?Q?PRdDTxz4dCLUFUFFFBtPleCTVqOcpapBDp5uvF0OvdMD1ADy7CFs7CCu/CWU?=
- =?us-ascii?Q?DWL7krA9M5KDFA6XftMcN6T/jwljGM82rPfmXN9cSTG/o3nNv68xkyLAhLHU?=
- =?us-ascii?Q?RJO2E90pV/PfusB9fiIkF9e67dr4maqiK2tvgLK+SDp0g4FVg525g6uw4Kfo?=
- =?us-ascii?Q?R/q715T9pzne3CyUo0ok/9lthzLQNXZAbVJHdqsKDFRwxtZIuZNLMkUlTsnj?=
- =?us-ascii?Q?GDGZvFHi1b9SsYBxcKy1UZxdZUmMGk6Ln6mTua/Z4MMqYIdsFdkuS8Iud5SH?=
- =?us-ascii?Q?bIwVkAPaQT/uGITqkX6q2YP/D+uKJacswo+fq7Wx5CWE2RsJewAKXbR5VBMi?=
- =?us-ascii?Q?waTXYWmL34PTJemp9bXORbgmhrEu73jzTc93I3t4cR2EXUgRcQ1cXN0hbt+7?=
- =?us-ascii?Q?TP5WvZxWMZeKsYvxI1FeDB4IrIQjvHjD+DOmN0ugHfSgWtOO7yK4ndu1MGXg?=
- =?us-ascii?Q?fxnG1KqIart/W6T7Z/wVEkl0eTxNLXNtD4n03PGss7SIFMlfmf+9lA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(52116014)(1800799024)(376014)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?shWZizcKCkk/sQfKf4AsraPHvnuS0AJiCyVYX+g8rVJTlAnkY6rLhOZ3rIr8?=
- =?us-ascii?Q?hBE0pS/COXc6UfOT21fdl6c2Gne6jXhZQZg/YkRyfk1xHvIUO4GhEhnRLU0l?=
- =?us-ascii?Q?qblJYNoeFuN+nngNxle8/GCDrVjDqMTTGrGiK/S7q6EV82PuS79dPMdMqEjV?=
- =?us-ascii?Q?cNDhOFDi6YbpvmiN2PRk1NCKqx/JHN1UjVCd1PNXFuvXBvgOjQJb4dvzEpe6?=
- =?us-ascii?Q?LrstjHtJEhNawgO3pZvHPb1IGJoCxjXXeTB4YQFu+dK6E3VJb//ieAVD/qge?=
- =?us-ascii?Q?AorCODQinTl7N1ZASH0RuV3r/7gN5UlirGQHsVf5sOzoQLiAw2DU7wbd3gZz?=
- =?us-ascii?Q?LmvrJ91sQ9lnU/UM+wa++EHYS4NRLau/GLHdxIS9TbodRMhSuGJriHY+G/tr?=
- =?us-ascii?Q?rqBwdHn7SMf9fH6cLcLOIJZ3xQQJh+PNEmLBe0gHVricNKic5izVUAi2JxZq?=
- =?us-ascii?Q?xSMua437CLNHkbQy+NIRFillGQ7s9ugEk7RjHDT9R3Qd/QQXI0oglXkIanP7?=
- =?us-ascii?Q?+xr8k8b38kTIlM+rLRjuG3O7sPI88Ckx0kvkLXVA3V3oYPEBQawUx36wVmlc?=
- =?us-ascii?Q?Y0EkpWUKpuzmNYVxfxHKCU20tHXTzzro2afaBirkEQCm7LKgj3wYFSkoMFqn?=
- =?us-ascii?Q?leU+28qqE1PU4MnHrKmMWlxikfptLhQYozTk+PS/vkPIjvkAZYyGR2lI0xou?=
- =?us-ascii?Q?wFP0+vjwGaoxNa8nknrrv/a20Yj0Se4hEOuKigjpLhK9uvnSwbWl6GG1k6Yc?=
- =?us-ascii?Q?Es4bYyXp2jW8tXEylfwFwRB0GuMbZXOtMcY232UFf2pM/MxnVxwnPeNCbpsp?=
- =?us-ascii?Q?39nA+EIFGbRhj+at7wWjGDLuZk9u+I3FtUJG53wsQwVf6MSo48Lh4yFRgH2h?=
- =?us-ascii?Q?sEaeNClddY/1YPQAH7sJZnHQP43KdBti1R0RVs63IPdgit/Ac4gsC2ExoL2v?=
- =?us-ascii?Q?cp7bJU+UjKjAG3Isq6RhRYDxafApn+MF1OwgZjtHLzyRVc4Ia19a9mGsawoh?=
- =?us-ascii?Q?qzjzkw/XhXEs4aj7Ki0mOpIebZGatryEOcyNKoV2tixCvyoXzAb2VRA9YR2/?=
- =?us-ascii?Q?9RPGtOCxCZ/GA97U2owgh+p9XJ7G2SruDQwtB1ZJDEhXBMnHP+tmTHki2Q5j?=
- =?us-ascii?Q?4CVoq1AUWkCE28bzidVfgDM2ZrKGU/W0ZmPQPyU1b/TOCo0zR/q/bkQu0raO?=
- =?us-ascii?Q?lovigJL8rc53LM+z0Kkme8iONfyLA4RCxSU87BzbCKsyKR9Kcb/IH/NQZTPf?=
- =?us-ascii?Q?5+ksGMl4IYZcY7feq+p2P2rLnk1vAdTiLZG7wxheqFHMf+7jZ4MRHetB+3Xu?=
- =?us-ascii?Q?+FBne5Gk95J/hH88zfzPwy9464zPh9ifca6BtR/0OCF9I+XnAaYxZjdf03b/?=
- =?us-ascii?Q?G5qh5uQQxPPdjo3Oeqeahzly44+k4vWzC/oQTBeepamlmfHXjJSNGVR+lm5U?=
- =?us-ascii?Q?TXbgOJ8eQla8iwRiBDjhZFxUulWKLDess58Fpup0BIk1KJr/GpZs4YYlG3OA?=
- =?us-ascii?Q?N1XKXZ1wdfcU/0i66LmgT0sltEI1ryHZXRRqKGZzi2OTyksNRMoF2xy3bFte?=
- =?us-ascii?Q?yxvWjy8d6a7iqDPhpQTk5l1pgC3ZcmaeTiik3HGE?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1502e40c-bbe8-4103-c422-08dd55d241f0
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2025 19:26:09.7260
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rtRFruCzQc3e0plUegpv55JGRLibnwpCTWfgamRW4iPhA0LdwTA9eON3WPjdTfpm/a2jtryAm72U4sM/vok8Ig==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7177
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-1b0d6
 
-From: Jacky Bai <ping.bai@nxp.com>
+On Tue, 25 Feb 2025 11:33:46 -0300, Nícolas F. R. A. Prado wrote:
+> This series enables the dual digital microphones present on the Genio
+> 700 and 510 EVK boards.
+> 
+> Patches 1 and 2 add some required clocks, patch 3 changes volatility
+> handling of some registers to prevent issues, patch 3 adds the DMIC DAI
+> driver for MT8188 and updates the AFE with its routes, patch 4 adds the
+> DMIC backend and widget to the mt8188-6359 machine sound driver, patch 5
+> adds the audio routes for the DMIC to the Devicetree, patch 6 adds
+> DMIC_BE in the dt-binding and patch 6 assigns a wakeup-delay-ms to the
+> DMIC DAI.
+> 
+> [...]
 
-Add 'fsl,ext-reset-output' property for wdog3 to let it to trigger
-external reset through wdog_any pin.
+Applied to
 
-Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx93.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index 64cd0776b43d3..ddfd57cedff73 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -692,6 +692,7 @@ wdog3: watchdog@42490000 {
- 				interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_WDOG3_GATE>;
- 				timeout-sec = <40>;
-+				fsl,ext-reset-output;
- 				status = "disabled";
- 			};
- 
--- 
-2.34.1
+Thanks!
+
+[1/8] ASoC: mediatek: mt8188: Add audsys hires clocks
+      commit: ef6a24c79d5047c029577113af43eddd1d0f1bd2
+[2/8] ASoC: mediatek: mt8188: Add reference for dmic clocks
+      commit: bf1800073f4d55f08191b034c86b95881e99b6fd
+[3/8] ASoC: mediatek: mt8188: Treat DMIC_GAINx_CUR as non-volatile
+      commit: 7d87bde21c73731ddaf15e572020f80999c38ee3
+[4/8] ASoC: mediatek: mt8188: Add support for DMIC
+      commit: c1e42ec04197ac013d049dde40d9c72cf543b5f6
+[5/8] ASoC: mediatek: mt8188-mt6359: Add DMIC support
+      commit: 390ebb24b3c3a95e109c28e14c2ec9fe3f0f8aaa
+[7/8] ASoC: dt-bindings: mediatek,mt8188-mt6359: Add DMIC backend to dai-link
+      commit: f00b3056843d14754ac1bab2106cf5599680f115
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
