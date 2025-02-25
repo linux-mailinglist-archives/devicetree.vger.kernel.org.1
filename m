@@ -1,157 +1,122 @@
-Return-Path: <devicetree+bounces-150998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 454EBA441A4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:03:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4976A441DC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:09:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D6527ACDDC
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:00:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41C2B19C1D50
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:06:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A586826AA9E;
-	Tue, 25 Feb 2025 14:00:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE356267AF1;
+	Tue, 25 Feb 2025 14:06:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BnFEFeYs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="awUFXT9N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46AE326A0A4;
-	Tue, 25 Feb 2025 14:00:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 851961FC7D5;
+	Tue, 25 Feb 2025 14:06:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740492012; cv=none; b=teFmOvRnMjmkh470H2jkWcSNdIcO9mtfXdoJLYFK8fZglQLoD//kzQXB5GzMfDavAIZ3hJ2lJbwfc4uKIjjEaPU5MRc1eI3jrRQREHaskBtEdoMmIYOhwMvfalFqOwqpOyb/6+yNRvSTbHQyJtQaN45I+wwHgHHukReV1q24v9o=
+	t=1740492396; cv=none; b=sCZ9NfF7rfU8IsYDvfL8WSblkjtsd+1ileKEFUaL3huGK7LCr5z3vCH8XlogBtuaT7FUEDt2+PGh1lrp39V/lR/Uv9Q3IAPdc+GavLF54pd4R4a0zTnxiPIa17JQt/vSJd1h70TAnMG5/ZKshVWMuup8kyZEzq9zMysMOliGBzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740492012; c=relaxed/simple;
-	bh=z0NM4k/FSSDfqS2mjYdariSVt/ETmZ+fP+JtXH7aT5c=;
+	s=arc-20240116; t=1740492396; c=relaxed/simple;
+	bh=5p8g0jn/H6LJ5TXlZMtN4+RQEgxn/quDJzMY5IiihGU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j1C6hLOlHdfmtj7KtYo1bCKaRtMjxFOOrcSWzU27NtkQ5SMoIO7xfmXMai76pqDSd8TOo1K3kHC/2tCCE/B/P6HTOtq/IQkarssn8vLiuHw5Hhi4z5ux3xZFTDRSp1bYWK+qCyrV/NDeCkvV1o5mCJLBA/v2cpam6hX7W2OgwFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BnFEFeYs; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740492010; x=1772028010;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=z0NM4k/FSSDfqS2mjYdariSVt/ETmZ+fP+JtXH7aT5c=;
-  b=BnFEFeYs5WvgShhEO3zjeYqdiwPp8U1AL5wJ9Vwwyu4kGCrPqTGtP2t9
-   +n5wcvlmF9OdQKINQGmtXi/1ispDF2G6AcYelMFia1BULqpIyB9mj4VFW
-   6SpEeQIPnHj83pipWCZpF5unakpFfDFgMTGCH1VxYH/tJjHXPoS0C77w4
-   br9tsK/dUX7ivzRRxvsdAJ+GXCGsmvoLp5jh1+bNBKBdncRqGY8N6Me+v
-   1OdDEjOF661hSIlPuyywPJiDLiZ7jpnn478/UIJT7DFHL87lAPiJZm9xs
-   S3ByjzUAg7wkFqRYTd66qQcjmjj4hFgnnyDBSY7QZFfuH/BOejApO1bfF
-   g==;
-X-CSE-ConnectionGUID: SqwrGY74SfeYSku1DNJ6EA==
-X-CSE-MsgGUID: yotztxgiSOmvf8pldCj9bA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="41500373"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
-   d="scan'208";a="41500373"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2025 06:00:09 -0800
-X-CSE-ConnectionGUID: 5wdBO304QIGqIKmBnH0WxA==
-X-CSE-MsgGUID: o2kscnJVSLCiJ/DTQH/+dw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="120502479"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2025 06:00:02 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tmvTa-0000000F0fX-0FCE;
-	Tue, 25 Feb 2025 15:59:58 +0200
-Date: Tue, 25 Feb 2025 15:59:57 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=iB9skkrpPkMWrlH3XcnO9Nir2lt4IlI5Eo/X2HjNAurVK2FF+2IfW4VvP6oUpZq+KW7Dn4nII0uN0IMCChvvhBvo9Ja2YmJgnUESGiLJu+Sn6IPsYqvf5w5NX2UqEpfImEtyM7nq+hEf0ZFgwk8lC4EtOeKGHHYVNs6gFtlXONI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=awUFXT9N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60FBDC4CEDD;
+	Tue, 25 Feb 2025 14:06:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740492396;
+	bh=5p8g0jn/H6LJ5TXlZMtN4+RQEgxn/quDJzMY5IiihGU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=awUFXT9NLboiavoY9ijieTyGuvgKAA3TiyEDv8/DfJhkyznEwsPUCpb1DL/F56zOo
+	 O6yDJLgaaqF3WEYlBl8qvZud7rSBZ+e2UBUJFW5beaCemISY+WywEFNysjc15mfP2+
+	 Jvk7SAiUF/lYQLdyy7QjqzcQlm8xNhVGBas+h+/qmHQHOJ1+Sp8/G08tojI+VjnFCX
+	 3HwkD1Ez/c9Om7DFpAzDHHwU30fxH8sWN2McP8SifDRUTtma2NruqhEjaNK8bQ5+G9
+	 lWlIkWUIGK/tk6LuG+WovMUSKjDQNVSA7lgWsPafoMmUif6hP/alF8cKBltvSiIlEy
+	 FCHG5FYxZ9mbQ==
+Date: Tue, 25 Feb 2025 14:06:31 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Guillaume Stols <gstols@baylibre.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Matteo Martelli <matteomartelli3@gmail.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v4 02/10] property: Add
- device_get_child_node_count_named()
-Message-ID: <Z73M3Ua6u1FpgBEK@smile.fi.intel.com>
-References: <cover.1740421248.git.mazziesaccount@gmail.com>
- <29ec24f1498392cafbecc0e0c0e23e1ce3289565.1740421248.git.mazziesaccount@gmail.com>
- <Z72QAOA9xXbP16K-@kuha.fi.intel.com>
- <Z72Zp8tpnvlFGdQ_@smile.fi.intel.com>
- <ad39b453-7e5b-49bd-a4fd-6a4988636130@gmail.com>
- <Z72d7TzZ21WITW3f@smile.fi.intel.com>
- <893a3c45-537e-47ad-afbd-1e5d3b9abe2c@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: regulator: add adi,adp5055-regulator
+Message-ID: <cf90cf64-202b-456c-9a9a-ba33d0e68961@sirena.org.uk>
+References: <20250225-upstream-adp5055-v1-0-a5a7f8e46986@analog.com>
+ <20250225-upstream-adp5055-v1-1-a5a7f8e46986@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="cwPN3DqgCIzTZZ2R"
+Content-Disposition: inline
+In-Reply-To: <20250225-upstream-adp5055-v1-1-a5a7f8e46986@analog.com>
+X-Cookie: I'm not available for comment..
+
+
+--cwPN3DqgCIzTZZ2R
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <893a3c45-537e-47ad-afbd-1e5d3b9abe2c@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Tue, Feb 25, 2025 at 03:29:17PM +0200, Matti Vaittinen wrote:
-> On 25/02/2025 12:39, Andy Shevchenko wrote:
-> > On Tue, Feb 25, 2025 at 12:29:31PM +0200, Matti Vaittinen wrote:
-> > > On 25/02/2025 12:21, Andy Shevchenko wrote:
-> > > > On Tue, Feb 25, 2025 at 11:40:16AM +0200, Heikki Krogerus wrote:
+On Tue, Feb 25, 2025 at 05:08:33PM +0800, Alexis Czezar Torreno wrote:
 
-...
+> +      adi,power-saving-mode:
+> +        description:
+> +          If present, enables power saving mode for
+> +          individual channels.
+> +        type: boolean
 
-> > > > > 
-> > > > > I did not check how many users are you proposing for this, but if
-> > > > > there's only one, then IMO this should not be a global function yet.
-> > > > > It just feels to special case to me. But let's see what the others
-> > > > > think.
-> > > > 
-> > > > The problem is that if somebody hides it, we might potentially see
-> > > > a duplication in the future. So I _slightly_ prefer to publish and
-> > > > then drop that after a few cycles if no users appear.
-> > > 
-> > > After taking a very quick grep I spotted one other existing place where we
-> > > might be able to do direct conversion to use this function.
-> > > 
-> > > drivers/net/ethernet/freescale/gianfar.c
-> > > 
-> > > That'd be 2 users.
-> > 
-> > I haven't checked myself, I believe your judgement,
-> 
-> I took a better look and you obviously shouldn't believe :) The gianfar used
-> of_node instead of the fwnode. So, it'd be a single caller at starters.
+We have standard mode operations, please implement those.
 
-...which is the same as dev_of_node(), which means that you can use your
-function there.
+> +      adi,output-discharge-function:
+> +        description:
+> +          If present, enable output discharge functionality
+> +          for individual channels.
+> +        type: boolean
 
--- 
-With Best Regards,
-Andy Shevchenko
+set_active_discharge()
 
+> +      adi,disable-delay-us:
+> +        description:
+> +          Configures the disable delay for each channel. Dependent on Tset.
+> +        enum: [0, 5200, 10400, 15600, 20800, 26000, 31200, 36400]
+> +        default: 0
+> +
+> +      adi,enable-delay-us:
+> +        description:
+> +          Configures the disable delay for each channel. Dependent on Tset.
+> +        enum: [0, 2600, 5200, 7800, 10400, 13000, 15600, 18200]
+> +        default: 0
 
+This looks a lot like the driver should implemnt the enable_time()
+and/or set_ramp_delay() operations and use the constraints to configure
+this.
+
+--cwPN3DqgCIzTZZ2R
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAme9zmYACgkQJNaLcl1U
+h9Barwf/fTcd5fyS9EAHbBYRAXg0QdNpGeZxnN+qwMc7wLEUl1KielZIfwTi1OuK
+SoxCfX1FwRRhWSXpCGcBqQd+fwKbYSY0Xqn2sYPqUr8NhPMxg5kpkD/dTSJ8biQY
+Mm1fv/5xZhdmwyJkFqWzVIUJpSsg6+9DZ9ctpIUfU1Z3EqrQIYFUQVlbzHFXQPi2
+lEADEeMYrgCLr0p2hV2lWLHu+6s6dfGSRhXOzKytEMjGpvW1vxBbTGKX9vyuLxgi
+IU/MGCXJZu+TfARUvnkq89cJZj+HkBy5t1LEnRJwCl1j1djpP8xtTzLVaFm80Trm
+MQIPbKOCgUOXWl7K+oPY25InBr2R3Q==
+=Awj7
+-----END PGP SIGNATURE-----
+
+--cwPN3DqgCIzTZZ2R--
 
