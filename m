@@ -1,140 +1,168 @@
-Return-Path: <devicetree+bounces-151139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7DFEA448D0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:48:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FC98A448E4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 18:51:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE23618846C7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:46:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A992E16B40E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:47:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A165319992E;
-	Tue, 25 Feb 2025 17:46:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FD99199230;
+	Tue, 25 Feb 2025 17:47:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lWKuziEk"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="1vFnG4Z0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 242AA195B1A;
-	Tue, 25 Feb 2025 17:46:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76F991993B1
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 17:47:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740505589; cv=none; b=iqDI21pokskZDfos1dmnTpf3DgJZVPTC0j2wJ8zvQMR5J1mDIiCk2s9Gg66ZsF/ycud2/sQs9lOuMx9EcjTyOV7iDvx4seuUcdiVLCqm20CX7OR+QFV0TmqNfCPyMUe8qgAAQXNni2jq3W5Z7vTJidE6igapKGdsgMctoQEk1Hk=
+	t=1740505629; cv=none; b=MadEPey1gcQcNnqN8Cq0tP/o6pwdmsG3HgzObgqnH/VrG9gtZkyrACYfk2Up6WSNgzd2xBxurEA3BGfexTmBhZx2k70JhBEASVjrcXrWI4zHldwx6w3KqVW6mcKrCYsidWX96LFObywelssYFyofIrMmsjbsFh/V0gXGBjT1SL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740505589; c=relaxed/simple;
-	bh=T9Uc5cIVLJCyLoG2z4c0IrtijF1EOmJkeAs7MRk+yYU=;
+	s=arc-20240116; t=1740505629; c=relaxed/simple;
+	bh=MCWMSFV6nXivXnq09n2EPqxUtKNTa60LR94dGwUmokY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BUPVcyUpwhkB9jS0WOFXy8xh2QIBBEMDNWrbvGRn7UR9n2UDFk4mqIpZ+xj/wGRNEfn4jWEMO+kbQmCgjJodGoC1T1XYzTUnf7n09dz978SVMc3wzPkLzmgv2HGwYpiQBlkyzNWfUh/tLVlD/nOnzvy9FR6VBlr1o9d/ZJ0R/YE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lWKuziEk; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-22113560c57so35076005ad.2;
-        Tue, 25 Feb 2025 09:46:27 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nL+zliAK13EWBC1y0aQgFP0L76xvZ28SRM53rD/AYRoobDB/OYKU8sr8G/NcDS3OWFDFKG9Kei7pAbiqjYrntZF4otba/M7y5x/OaU2TqvA74D8Dg5O43PBkvFI9ObxHBFmXScUwtRGKPGmeRuA+3WcafT/MzJzQ8GTMxqTHEfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=1vFnG4Z0; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-22185cddbffso733805ad.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 09:47:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740505587; x=1741110387; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=aevd5kmXRWL3Op1OUxgvpmyGgeb4/9BTmn6NoAzhrl0=;
-        b=lWKuziEkF5Kz61iMJDI3rFNRykDP/3sK5zAuagX3Lbgve5cQgNas3cpUmeBBRmmzKF
-         lWKhlBMfPp38FMP7UK7072bh96j/hWl6QVF/cz0DIhCKudeXxQEB5Eo24/pf/O+p/6Xe
-         mlOKX9Ry0oTPfj/SuFv2gChsrJyCPYsPXZ1G97/LdAzl2Nz6faTPc3EjCBWCtcDbORjH
-         NAMH7srv+RiAVlLDi169INEOOrAOzvOvhfFpR8xBQM+h5fcSS1wRES3F3Ehl1pj5aArl
-         QeoBvIXlT+liGw4sWn/c+qIZ1KY8QzBhQlXvk6SMi0NDrktxCcCV8PQ45fU+sI2JqzDN
-         jsPA==
+        d=google.com; s=20230601; t=1740505627; x=1741110427; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=4Xd8E5UB+Vof823rP7txgr2JDe+GKD1zXqyWtuRc9C0=;
+        b=1vFnG4Z0vrm9UZtdLORdft+7gzW6Bfnu2Ux8qPxCA2HXMeo7Kd1TZarlqolABXmOa8
+         47CS3Rfch6q8+o1PlmFadWA0d7ueoQqQNL2hS3hL1IsrKPmc+R4tV/VS25+JJLEvqve7
+         Zh/vw6l0zRcCA+iqiw9GrmL/SQpUU/uqjKVbIfieTBb0CKeO2h2jDX/7BJKeVOWDDegM
+         +sYdJq5Dy1LCKdKqZQQEYC0QqBLUj3eDr+JyCxdD5HJ+px8QVDTigeJLpUaDABCByyQO
+         nIasOSYi71GyC9Q8ocIyG41bA/CXU3MknASVDxffUiElaTkDm5j3Fdbx5nYZ9oLb6lGh
+         rpBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740505587; x=1741110387;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aevd5kmXRWL3Op1OUxgvpmyGgeb4/9BTmn6NoAzhrl0=;
-        b=GJD2AHHJOaYSNPMWQs15nyf4WUwLksJXUKtbCIzIYR7QKNr3ebD8XG3wHSRD1eHE28
-         p4QBdwctxFat1Hhc0tkRWShxrHQo/mZvUaB7bubdIEWCP5c8hUnY9WbG4mxcsFQwGopp
-         6BulH2f9dT/2QE9CpN5k5OYkkOY7pnBSb2EA5jpfLTYTcSFRZmIWRvQhq0LqehWfCB5t
-         S31TTy9FNmdhfQiWsfux9VOsxT5w5Cz/Terf1gtr/3EKVB42hgfK8cmvlI1RxFSSzG+c
-         O9jAXOv34WwE82QVjqtUe67N2fA0myO70yiVcmHkJuay+BVmpIHyMFzGibxD3ZI0Fv2b
-         DXWg==
-X-Forwarded-Encrypted: i=1; AJvYcCUdJRtE/fx7Et2ypMFKga0rAr4nT56jbit/ns2xa5kOv2cFkl/01xHwYcDeO04l1EAxF9c80F/+WAfu@vger.kernel.org, AJvYcCVZGD/VB3Fd7RrSTPFXom6yoCu6TVwEZsKfvSd3kz9MxfZ77imTNNd60Jp+3+O0IOWimvgqnV74hv68G3I=@vger.kernel.org, AJvYcCXDkKrRV4neZSvoxgRK8VIZtOhoHPIV0AsLs0TvId1LfBYUkcufWoHSsoLEtL6PiGlOWX+5oli3hXkpV1Ux@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFzQvZJXAN4VPdLiuq7rAh4xAf9BFLw51c011LYTL45YZM3GIF
-	2o+1h+dp9uwlQbSWDxwiIIiMJLrojOA+jv2DtubxELRuZfN+NoM7LNarcQ==
-X-Gm-Gg: ASbGncsewC1gy4keOcuNtjD/wFNlJN+BeVwBDldzAExfklsBHekQtBVgcrA1YtBaAv9
-	ZhOl8Ka1Mi3X2SGge30YiMQ+/pFNCnQEonFx5j7pAqJ53aQLUc2jyZrZAJRJkSJK4ZaFM4V0vb1
-	u76B8vysc0k6golUsmroEYPWTFRVjXW/ZVoRznTtFcldPhXBzWjWLCTQlQDcTRfWdTN5DHXFPSk
-	7o3v9CrGNBj7wlFhQj1FR8pQGELUqd0YOPrfFyJLSgMvhUrAUy6tYR3CzXjQY/KZB1YsZX8SSHI
-	w8brymJjTU0r6kLDkPjvwiee7Xw=
-X-Google-Smtp-Source: AGHT+IHcKIXFrPDWMBW527uI5ELOW3/yCiTC6hzSRAPUDJ6fDBaYBazF6DCkDedelntRqSgnuilVsQ==
-X-Received: by 2002:a17:902:d485:b0:221:87a2:ff9c with SMTP id d9443c01a7336-221a11ab572mr271789545ad.52.1740505587218;
-        Tue, 25 Feb 2025 09:46:27 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:987e:29fc:176a:2ed5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fceb05f7bfsm8926847a91.24.2025.02.25.09.46.26
+        d=1e100.net; s=20230601; t=1740505627; x=1741110427;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4Xd8E5UB+Vof823rP7txgr2JDe+GKD1zXqyWtuRc9C0=;
+        b=IVtBZfJVq8ji9iZ33teytJ/7EMsqLmYnmZmKZ5TAb6FhbJhy+g6JLTzKK5aHm38gkF
+         oLpP1OHv+2+z6LPC7OaQhl4uRnMzCVcfAhnohJZA/GbOHteau8IZjqWlI8HfDHM8QYB9
+         wRtgdOR+i7rSRjdBFXJx+m8yOkbtrTtrgNTCXvpkmds1qURYXQovkia8giIS7PNxB6Wb
+         KCKuYWNR2cQwhV/hBRMiHAnwkoOXknBKTN5AX2f/ZFORqoXw+BI5YCUd0uzXPUyFrvtU
+         c54UbOPRvRAGUet3Y2FHtgp43wMsnccJDHT2cTZ3PAj/UPX5eoBo896CEvjWXqrbPIxj
+         CT+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUmdTLSfCTXnj+gChSvldVnZfqfpX18kgA7SgaF8iwTyibc2263YSf5HIqfTQJdv4FQZCNcdo9qDsOW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzypV5akQBHzjEzKRMaoloa6gVpw0todSJyGgQIwluBBH+5a15i
+	KeJGt2M6LEN2yyGjEX3s5+Dpw5ZdEOR0hytldLeGSEX52ZBgsdBaGcbnvUX4Vg==
+X-Gm-Gg: ASbGncug4L1dmIZMo88iWwc4r3FITHb2GiLsjdGxqicsiGapdbrPNZGZUTT3bK8qxoL
+	g0dqJH3UmukAzHnyIcPJunkz1tJlJ8K37H9p66WH+F34K0LtHZlIz9BTnIAHKKcE26qzSmOfDo8
+	S34F2nh0wXK1xqDU0RC9wVbHONqXreqrO3g8sv4aHj6P6B/NsDJf39pMVGPx04vhE+ExactiBtR
+	Nf3DvUNSWvfNFCcIX23V/AQWCIUaW4bwZEk8o3TQbAwVBXP9pIKYCx5ltttEAFVwUlrCDNl02uA
+	KalYO30S/muneeKXP37voExDdUJ6TGmRncmdavbSv4sBH2b6L+P96uvYYi0WAovtJQzUnS1p
+X-Google-Smtp-Source: AGHT+IGTeDFei68HewM3dx5h3RiuvvIIbvQKg40aSHvOB+DMfEC6ObIGktd+BXdT7pjqngdDsIJhig==
+X-Received: by 2002:a05:6a20:8409:b0:1ed:d780:feaf with SMTP id adf61e73a8af0-1eef3c8ed2emr30176078637.6.1740505626579;
+        Tue, 25 Feb 2025 09:47:06 -0800 (PST)
+Received: from google.com (198.103.247.35.bc.googleusercontent.com. [35.247.103.198])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-aedaa643b0fsm1412226a12.59.2025.02.25.09.47.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2025 09:46:26 -0800 (PST)
-Date: Tue, 25 Feb 2025 09:46:24 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Markus Burri <markus.burri@mt.com>
-Cc: Manuel Traut <manuel.traut@mt.com>, linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marek.vasut@gmail.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 7/7] Input: matrix_keypad - detect change during scan
-Message-ID: <Z74B8Gppk9YxdIxr@google.com>
-References: <20250110054906.354296-1-markus.burri@mt.com>
- <20250110054906.354296-8-markus.burri@mt.com>
- <Z7YNKl4ljWFQEa-u@mt.com>
- <Z71qEyDVz22j_CvL@google.com>
- <Z72EiqCv_pUZDRdV@Debian-VM-Markus.debian>
+        Tue, 25 Feb 2025 09:47:06 -0800 (PST)
+Date: Tue, 25 Feb 2025 09:46:54 -0800
+From: William McVicker <willmcvicker@google.com>
+To: Zijun Hu <quic_zijuhu@quicinc.com>
+Cc: Rob Herring <robh@kernel.org>, Zijun Hu <zijun_hu@icloud.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Grant Likely <grant.likely@secretlab.ca>,
+	Marc Zyngier <maz@kernel.org>,
+	Andreas Herrmann <andreas.herrmann@calxeda.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Mike Rapoport <rppt@kernel.org>,
+	Oreoluwa Babatunde <quic_obabatun@quicinc.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org, kernel-team@android.com
+Subject: Re: [PATCH v4 09/14] of: reserved-memory: Fix using wrong number of
+ cells to get property 'alignment'
+Message-ID: <Z74CDp6FNm9ih3Nf@google.com>
+References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
+ <20250109-of_core_fix-v4-9-db8a72415b8c@quicinc.com>
+ <20250113232551.GB1983895-robh@kernel.org>
+ <Z70aTw45KMqTUpBm@google.com>
+ <97ac58b1-e37c-4106-b32b-74e041d7db44@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Z72EiqCv_pUZDRdV@Debian-VM-Markus.debian>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <97ac58b1-e37c-4106-b32b-74e041d7db44@quicinc.com>
 
-On Tue, Feb 25, 2025 at 09:51:22AM +0100, Markus Burri wrote:
-> On Mon, Feb 24, 2025 at 10:58:27PM -0800, Dmitry Torokhov wrote:
-> > On Wed, Feb 19, 2025 at 05:56:10PM +0100, Manuel Traut wrote:
-> > > On Fri, Jan 10, 2025 at 06:49:06AM +0100, Markus Burri wrote:
-> > > > For a setup where the matrix keypad is connected over a slow interface
-> > > > (e.g. a gpio-expansion over i2c), the scan can take a longer time to read.
-> > > > 
-> > > > Interrupts need to be disabled during scan. And therefore changes in this
-> > > > period are not detected.
-> > > > To improve this situation, scan the matrix again if the row state changed
-> > > > during interrupts disabled.
-> > > > The rescan is repeated until no change is detected anymore.
-> > > 
-> > > This is a quirk for a bad hardware design. For 'good' hardware it adds
-> > > an additional read_row_state for no need. For even slower connected
-> > > GPIOs this will also not help much. However it is obvious that it will
-> > > be an improvement for some designs. 
-> > > 
-> > > Dmitry, would it make sense to make this configurable?
+On 02/25/2025, Zijun Hu wrote:
+> On 2/25/2025 9:18 AM, William McVicker wrote:
+> > Hi Zijun and Rob,
 > > 
-> > What if we do not disable interrupts after the first one, but record
-> > the last interrupt time and rescan if it arrived after work handler
-> > started executing?
+> > On 01/13/2025, Rob Herring wrote:
+> >> On Thu, Jan 09, 2025 at 09:27:00PM +0800, Zijun Hu wrote:
+> >>> From: Zijun Hu <quic_zijuhu@quicinc.com>
+> >>>
+> >>> According to DT spec, size of property 'alignment' is based on parent
+> >>> node’s #size-cells property.
+> >>>
+> >>> But __reserved_mem_alloc_size() wrongly uses @dt_root_addr_cells to get
+> >>> the property obviously.
+> >>>
+> >>> Fix by using @dt_root_size_cells instead of @dt_root_addr_cells.
+> >>
+> >> I wonder if changing this might break someone. It's been this way for 
+> >> a long time. It might be better to change the spec or just read 
+> >> 'alignment' as whatever size it happens to be (len / 4). It's not really 
+> >> the kernel's job to validate the DT. We should first have some 
+> >> validation in place to *know* if there are any current .dts files that 
+> >> would break. That would probably be easier to implement in dtc than 
+> >> dtschema. Cases of #address-cells != #size-cells should be pretty rare, 
+> >> but that was the default for OpenFirmware.
+> >>
+> >> As the alignment is the base address alignment, it can be argued that 
+> >> "#address-cells" makes more sense to use than "#size-cells". So maybe 
+> >> the spec was a copy-n-paste error.
 > > 
-> > Thanks.
+> > Yes, this breaks our Pixel downstream DT :( Also, the upstream Pixel 6 device
+> > tree has cases where #address-cells != #size-cells.
+> > 
 > 
-> I was also thinking about that.
-> If we do not disable interrupts we will get a lot of interrupts during scan.
-> The scanning process itself generate interrupts because of selecting the columns
-> and read row state. Therefore after scan we will not know if the interrupts are
-> caused by scanning or a change.
+> it seems upstream upstream Pixel 6 has no property 'alignment'
+> git grep alignment arch/arm64/boot/dts/exynos/google/
+> so it should not be broken.
 
-OK, then maybe we should keep re-submitting the work until we get to
-stable state? My objection is repeating the scan once does not really
-solve the issue....
+That's right. I was responding to Rob's statement about #address-cells !=
+#size-cells being pretty rare. And wanted to give credance to the idea that
+this change could possible break someone.
 
-Thanks.
+> 
+> > I would prefer to not have this change, but if that's not possible, could we
+> > not backport it to all the stable branches? That way we can just force new
+> > devices to fix this instead of existing devices on older LTS kernels?
+> > 
+> 
+> the fix have stable and fix tags. not sure if we can control its
+> backporting. the fix has been backported to 6.1/6.6/6.12/6.13 automatically.
 
--- 
-Dmitry
+Right, I think it's already backported to the LTS kernels, but if it breaks any
+in-tree users then we'd have to revert it. I just like Rob's idea to instead
+change the spec for obvious reasons :)
+
+Regards,
+Will
+
+<snip>
 
