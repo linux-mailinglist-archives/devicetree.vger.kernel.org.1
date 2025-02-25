@@ -1,118 +1,85 @@
-Return-Path: <devicetree+bounces-150946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1173A43F72
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:32:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D934A43F97
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 13:41:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E71971783D2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:32:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E86BB3BF8D3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 12:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53FC5268C50;
-	Tue, 25 Feb 2025 12:32:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E70526868A;
+	Tue, 25 Feb 2025 12:39:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U//oaj6w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SSJeqb1R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF4A2686A8;
-	Tue, 25 Feb 2025 12:32:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 669173A1DB;
+	Tue, 25 Feb 2025 12:39:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740486731; cv=none; b=Y+i7xeJsCiX/++CoPHJWCFRfMxabfrP1+j8aVLHC2ZOJtZVfgAhygp7HuZVx73UtPEZL2/HSDuVBpg68OQJGhLC3v70OXgEOMuUifemX2Q7WmRIQUn6llsN1fZTZYZFwSLxKUaNvoQPUydpqfC/5WDDDiizPhYjDKcRQG4jet64=
+	t=1740487191; cv=none; b=Z/psk/d5CptWMA7LPiBGnJJ5PbSAyrtp9U7uAHWnFhS+Zu2E+gi+yQqH2mCCB/VNQ6hCSnFl4jCC+Efg2OGYfsSQtGmENQM7LeCUCOZbgv3sEOC1nM9aw/N+GTbGRIiN+I8MV2xP13PVtYnFxH76dnp3v4RQdkqXNn6AoaLOFYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740486731; c=relaxed/simple;
-	bh=1pyD4SZ5Q/Lc9AqUwjBxII6k9+7yhxDr5m+K9ELoDbo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VE4ce1+xTag8NngqpnGBlwb1oBXwuMVT5NcgExm3r+092qJHTAOA07DCcQxc/CAX5wX/YWEDwQzmMUrOC6EcycwmtTngow3DoNpNpb7qyvPD2IlWPegPNb0DYQn6YWiciwUnMGR0oZeOvu2pvwkv4lJOP8mdM4MhXhgvHZAfiiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U//oaj6w; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2fcff77ff9bso6249760a91.0;
-        Tue, 25 Feb 2025 04:32:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740486729; x=1741091529; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7hQ9PSnky3hzUHJ3r5I6w65ox232hzZUXn+oYcw3lsM=;
-        b=U//oaj6whFaW1Y9WF2s+r9c12W1TMarw1dgqGToyjyAEadXNzQVrJIq1FP1gVUB4Y1
-         s0NjCbLWy+XZoVi2sd+ZYuLO8AbG5Z1egr50nAKIbd4CEePEwd104cLF5Tw9z7SaAG7n
-         mR9IxSIy63IevXJOPTTL/3id625o2TDfXQGJGUkzufBU9W94orx+Pv+Gb/DgmfaAdTLg
-         1MdmkeLYw3XGe/c/5n3bevrduoeIcgPk7HUXroK44rKisSA5eluGISYT8AGI0fFgtZH6
-         PWAkPFezVmg2+0fLIEMXyt+oX2GhRnIPHSYUVExzNHUcTaLkQ3XcV1VjVY1Bt33Sqdsf
-         gQlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740486729; x=1741091529;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7hQ9PSnky3hzUHJ3r5I6w65ox232hzZUXn+oYcw3lsM=;
-        b=xKltorvYcBqAh1Yvc+hazOp3hqiCmYPWM5CF2yt1xva0dxbLh2g/0L1d2ClZL7Gw0B
-         ZLrZULD30j7UmAvBb9LNepAGrpAsiVFXDgl17gWHhH0oAxlyxDMRxAR1cCY2k+gfMLGL
-         1UT4c6yC2yoIMNBjovLI4Nb8+WMCU9sndFaJDh6O6TZ06LcKCLZ2FXShUHPX6TGvE9k1
-         6zd8XfAy10pmy2g/iTEwy4VZfbh1iQuevFEs28hYRnX+/OfSLMhUulxKqa24czxRrcx/
-         24YkwbOrsL6og3RrH5MuSGvqsWnBLbU6TNbIxMApbCnFBWokRnb7T2RGWP6yz2NpMMZH
-         WYmg==
-X-Forwarded-Encrypted: i=1; AJvYcCVLUrh8F3OLec9OaQNlXDx6weaQMXzxv6OSfLRBaURVW4m/QVceKGCDTSbHZp3gUtQnYqNp4qXdAejoqMgG@vger.kernel.org, AJvYcCXmURMu4Fj/GbJAomrFrVGHl39JpgMPAF/YCwucn0A1qfE9fAcphJK4Gp6S4QB1/Ge36X9I9kSrXMbB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2eywYVnrFKwIQ+stC2vwIL9x8nZrBqrz2Rj+VkQeaqBRmKHaJ
-	xIwBzTuj0ew6urgwwVnG54+MDeJ7T2LXMrRefjcyo2oyRWUWaNRWEBz6SiUS3Cb2GgyYFizzMys
-	bmPxu2lbWL0NKnitdgsjdq3QdIVQ=
-X-Gm-Gg: ASbGncs78N1IKkSRyIt8OOSJhXi2BrdkNKy7jLw7owj1xtz91GzqVv2fPk4CQiXypdP
-	1fpp8zNAPNNa7aX0qOyuZFppJYJXiAyaPF7znDQyTEFX9ODtV0C+pEBcSBg7scBzmV2yhoDCoG8
-	kCvxtX
-X-Google-Smtp-Source: AGHT+IEhj54F35PZEsJYYrzaWJyBanI+coj2uAU8OTJp3NVm093Jk0fuCJf+AJB+0L8a6Juozj6iHZgPqCZQO9GBPqA=
-X-Received: by 2002:a17:90b:2751:b0:2ee:df70:1ff3 with SMTP id
- 98e67ed59e1d1-2fe68a312b8mr6037629a91.0.1740486729075; Tue, 25 Feb 2025
- 04:32:09 -0800 (PST)
+	s=arc-20240116; t=1740487191; c=relaxed/simple;
+	bh=ysdTSoy5+tQu1v8OXYYLwr1gFllUvzipKpvwf+BiQp4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=EYQaJerN/e8Zi0sJqAbwJExbp1Ph4mY44dzykdbU5daIRwRCOKo1MK0CzkvgOP81ka7Wkf7jsiE0JLV/TKyq2CMFblCC9tXsMr5Wy7QAQh3hfYmcJhhdlNsA3doK7gwsRcUplh6LbGJ+ypekQAH6RBjnKNtNA1joDlI19fcWTAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SSJeqb1R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F3D3C4CEDD;
+	Tue, 25 Feb 2025 12:39:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740487190;
+	bh=ysdTSoy5+tQu1v8OXYYLwr1gFllUvzipKpvwf+BiQp4=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=SSJeqb1Ro7U1paI/dFGI4o8yb/mJVt6N2bOYk0ERj/uqMi36Xf8tlqyShWlODGjcA
+	 svbKvfG7YSaqdFFlcHpDC8Dgu4Iqiek0jVEyGAr6SKmRPu3SoY+6rBK/0n8hbCuYRU
+	 x6rAjp5uwQ2DQAHXRk6gxYt2tfyklHFOUr6MxnCUSshQ3tcFK7bo9Y9HEDerFQTiaW
+	 p8Ycj/vycjyBADbjT1esAzFqf3R7nyPMpoU1gNL/I6v7FY7NvsYIVkq+annvYo5E61
+	 rO1OlC1Lpat9399d09gIrXdCAh2v2eUdrrUivkN0UUs0LJhZd8Se9sZYeJzND/3uO1
+	 p+GA38n/i2ySw==
+Message-ID: <80a7c6b5-2a58-4b0f-a856-87b9c3c03a83@kernel.org>
+Date: Tue, 25 Feb 2025 06:39:49 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250225120707.2658709-1-m.felsch@pengutronix.de>
-In-Reply-To: <20250225120707.2658709-1-m.felsch@pengutronix.de>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 25 Feb 2025 14:33:45 +0200
-X-Gm-Features: AWEUYZlyvb2cM0-5vtqGVculafUAJm4OWsTkAKrC0Tw7wQoPYmnk7k-oBG7QuOM
-Message-ID: <CAEnQRZAoPxFN1ce0MEY34KpJO=SS4n33ehABH4auxWTDq8_R8g@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: imx8mn: fix micfil dmas settings
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: "robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, Sascha Hauer" <s.hauer@pengutronix.de>, kernel@pengutronix.de, aford173@gmail.com, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Joy Zou <joy.zou@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: socfpga: agilex5: add qspi flash node
+To: niravkumar.l.rabara@intel.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, nirav.rabara@altera.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250205101153.1778622-1-niravkumar.l.rabara@intel.com>
+Content-Language: en-US
+From: Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20250205101153.1778622-1-niravkumar.l.rabara@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Feb 25, 2025 at 2:12=E2=80=AFPM Marco Felsch <m.felsch@pengutronix.=
-de> wrote:
+On 2/5/25 04:11, niravkumar.l.rabara@intel.com wrote:
+> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> 
+> Add Micron qspi nor flash node for Intel SoCFPGA Agilex5.
+> 
+> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> ---
+> 
+> changes in v2:
+>    * Removed unexpected properties to fix dts build warnings.
+> 
+> Link to v1:https://lore.kernel.org/all/20250108112834.2880709-1-niravkumar.l.rabara@intel.com/
+>   
+>   .../boot/dts/intel/socfpga_agilex5_socdk.dts  | 31 +++++++++++++++++++
+>   1 file changed, 31 insertions(+)
+> 
 >
-> The third dma cell is used for priority information not to encode
-> something else. The NXP downstream kernel use the third cell to encode
-> more information:
->
->  - Bit31: sw_done feature enable/disable
->  - Bit15~Bit8: selector
->  - Bit7~Bit0: priority level
->
-> but this was never mainlined. Therefore drop the further information and
-> just specify the priority which is 0.
->
-> FTR: The sw_done feature was mainlined without making use of the
-> devicetree.
->
-> Fixes: cca69ef6eba5 ("arm64: dts: imx8mn: Add support for micfil")
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 
-For all series:
+Applied!
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
-
-Marco I couldn't find the cover letter for this series so I add my R-b tag =
-here.
 
