@@ -1,110 +1,183 @@
-Return-Path: <devicetree+bounces-151208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81CA9A44C31
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 21:14:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FB4EA44DB1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 21:37:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C560816B588
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:14:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40474171DA2
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 20:34:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E430F213E7C;
-	Tue, 25 Feb 2025 20:12:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a+UcbtG+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEF5F221549;
+	Tue, 25 Feb 2025 20:29:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA55320FA9B;
-	Tue, 25 Feb 2025 20:12:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4671C221540
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 20:29:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740514360; cv=none; b=BU3Iae/vwD2fh7AuSiIKlxXZ+U4gmne+GB9iP5nfHHzq1MG2Xvcp0NCiECfJriFeHmw3IM0nVoIlADtLOmGv5gLacYXrkFC4pj3M+dXimTpLcsY4ckN8y8n8ZJm5XqoEZjQXGhguNjp2Z4miiWo/wLbXHBc5cdvqV+TQC46DvZM=
+	t=1740515378; cv=none; b=KK0yMqn5p/lg4SC07TZzIWKqM4t3ZmvqNtQKqWskvoukwE5J2Dvp24W75RMWiToFbAdkFRHSSSsK0LR1rmLv32D1Ig2H70VGvRB07b85B/lK4M/QqAGC397+oqeTFNvF6STsFxXEyUrb3DyrxVnAYCZHmsMegIYBByw1/UWujCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740514360; c=relaxed/simple;
-	bh=99LcRHzUVhrgbZQn5RRuqQo9LaDxdVmOTskG7IMROYA=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=JWEE9ylDUhy3JLp2EFJ1uye/vAnG3qRKFwWHSRDIZlwp9OegiRakoib4JLqphHDBOqLx8daRPhhiBm7ciW4fMwdw2z2mEjykU5JRhxG9XZTwLS1uv5wCmznovNKX1YTrwfk4RA0mAESoREPS5GRrUfCqFa29CajgxAvz5zTbnNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a+UcbtG+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18661C4CEDD;
-	Tue, 25 Feb 2025 20:12:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740514360;
-	bh=99LcRHzUVhrgbZQn5RRuqQo9LaDxdVmOTskG7IMROYA=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=a+UcbtG+Gwfj11Di6hdk4tsfTe23PqGFBi0vLamUZP0Teo/IQ/o1h9Io4E9T9/0u6
-	 i5G3nkKxrMsGIdqLYdlDQs1Znc0IikhWToUvLNiW+r9GYzGVNgwlg8dSsbxqgmrUyJ
-	 TIYNBjpO8r2Qxaa26p0bOm1U2FzeK2d9zDbBy1ZzjWxgtJzMKUytlLM0FZ0s5w1cUQ
-	 be0FlYvEdQCH0sWmFgeNxGVpPonyEXlCWKBO7N+3NUqVhkWsvjzg96u6xgpr8dKxb2
-	 AB0eHUTkAadAPozWrMPD2Vap+RCNLAOL3KGEbcahDEGe1d1jaCgR1Xr012YQ84g2rv
-	 CfM5gTDZqKwjg==
-Date: Tue, 25 Feb 2025 14:12:38 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1740515378; c=relaxed/simple;
+	bh=wFQ41lsmj13psuBC2ya1xEADvNt4FAs3TaaprU7t4Dw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UOrNXg+19zvcxpf/P/eoQhDDdKpZFDVuJgNmSgjXBQ2riKvkeE/WPtRQBhppQRVeGpQZskwX2GJr+Wytem9opo+XPcPYlk1N0KJGcaKKwOSkksttc6GxqUD1lvz1wyG+UN0fH5DzctEA2D2inVe0ZoYS68ecTn9M3tUOheLRkWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tn1YL-0004PK-Uh; Tue, 25 Feb 2025 21:29:17 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tn1YL-002pgi-1j;
+	Tue, 25 Feb 2025 21:29:17 +0100
+Received: from pengutronix.de (p5b164285.dip0.t-ipconnect.de [91.22.66.133])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 1E0533CBC87;
+	Tue, 25 Feb 2025 20:29:17 +0000 (UTC)
+Date: Tue, 25 Feb 2025 21:29:16 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Chester Lin <chester62515@gmail.com>, 
+	Matthias Brugger <mbrugger@suse.com>, Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev, 
+	Enric Balletbo <eballetb@redhat.com>, linux-arm-kernel@lists.infradead.org, 
+	Christophe Lizzi <clizzi@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, Alberto Ruiz <aruizrui@redhat.com>, NXP S32 Linux <s32@nxp.com>, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: s32g: add FlexCAN[0..3] support for s32g2
+ and s32g3
+Message-ID: <20250225-private-savvy-caracal-3e7f47-mkl@pengutronix.de>
+References: <20250224134016.3921196-1-ciprianmarian.costea@oss.nxp.com>
+ <174051414934.2971045.13322665811292325537.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: wctrl <wctrl@proton.me>, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-To: Rudraksha Gupta <guptarud@gmail.com>
-In-Reply-To: <20250225-expressatt-tsens-v1-1-024bee5f2047@gmail.com>
-References: <20250225-expressatt-tsens-v1-1-024bee5f2047@gmail.com>
-Message-Id: <174051415447.2972069.2313553732301465230.robh@kernel.org>
-Subject: Re: [PATCH] ARM: dts: qcom: msm8960: add tsens
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hyjls6qa3nf4o47i"
+Content-Disposition: inline
+In-Reply-To: <174051414934.2971045.13322665811292325537.robh@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
-On Tue, 25 Feb 2025 01:19:44 -0800, Rudraksha Gupta wrote:
-> Copy tsens node from ap8064 and adjust some values
-> 
-> Co-developed-by: wctrl <wctrl@proton.me>
-> Signed-off-by: wctrl <wctrl@proton.me>
-> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
-> ---
->  arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 62 +++++++++++++++++++++++++++++++-
->  1 file changed, 61 insertions(+), 1 deletion(-)
-> 
+--hyjls6qa3nf4o47i
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] arm64: dts: s32g: add FlexCAN[0..3] support for s32g2
+ and s32g3
+MIME-Version: 1.0
 
+On 25.02.2025 14:12:30, Rob Herring (Arm) wrote:
+>=20
+> On Mon, 24 Feb 2025 15:40:16 +0200, Ciprian Costea wrote:
+> > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> >=20
+> > Add FlexCAN[0..3] for S32G2 and S32G3 SoCs.
+> >=20
+> > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/s32g2.dtsi      | 52 ++++++++++++++
+> >  arch/arm64/boot/dts/freescale/s32g3.dtsi      | 56 +++++++++++++++
+> >  .../boot/dts/freescale/s32gxxxa-evb.dtsi      | 72 +++++++++++++++++++
+> >  .../boot/dts/freescale/s32gxxxa-rdb.dtsi      | 48 +++++++++++++
+> >  4 files changed, 228 insertions(+)
+> >=20
+>=20
+>=20
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+The dt-bindings patch that documents support for the S32G2/S32G3 is in
+net-next/main: 51723790b718 ("dt-bindings: can: fsl,flexcan: add
+S32G2/S32G3 SoC support")
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+> New warnings running 'make CHECK_DTBS=3Dy for arch/arm64/boot/dts/freesca=
+le/' for 20250224134016.3921196-1-ciprianmarian.costea@oss.nxp.com:
+>=20
+> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@401b4000: fai=
+led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
+lexcan']
+> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@401b4000: fai=
+led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
+lexcan']
+> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@401be000: fai=
+led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
+lexcan']
+> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@401be000: fai=
+led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
+lexcan']
+> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@402a8000: fai=
+led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
+lexcan']
+> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@402a8000: fai=
+led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
+lexcan']
+> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@402b2000: fai=
+led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
+lexcan']
+> arch/arm64/boot/dts/freescale/s32g399a-rdb3.dtb: /soc@0/can@402b2000: fai=
+led to match any schema with compatible: ['nxp,s32g3-flexcan', 'nxp,s32g2-f=
+lexcan']
+> arch/arm64/boot/dts/freescale/s32g274a-evb.dtb: /soc@0/can@401b4000: fail=
+ed to match any schema with compatible: ['nxp,s32g2-flexcan']
+> arch/arm64/boot/dts/freescale/s32g274a-evb.dtb: /soc@0/can@401be000: fail=
+ed to match any schema with compatible: ['nxp,s32g2-flexcan']
+> arch/arm64/boot/dts/freescale/s32g274a-evb.dtb: /soc@0/can@402a8000: fail=
+ed to match any schema with compatible: ['nxp,s32g2-flexcan']
+> arch/arm64/boot/dts/freescale/s32g274a-evb.dtb: /soc@0/can@402b2000: fail=
+ed to match any schema with compatible: ['nxp,s32g2-flexcan']
+> arch/arm64/boot/dts/freescale/s32g274a-rdb2.dtb: /soc@0/can@401b4000: fai=
+led to match any schema with compatible: ['nxp,s32g2-flexcan']
+> arch/arm64/boot/dts/freescale/s32g274a-rdb2.dtb: /soc@0/can@401be000: fai=
+led to match any schema with compatible: ['nxp,s32g2-flexcan']
+> arch/arm64/boot/dts/freescale/s32g274a-rdb2.dtb: /soc@0/can@402a8000: fai=
+led to match any schema with compatible: ['nxp,s32g2-flexcan']
+> arch/arm64/boot/dts/freescale/s32g274a-rdb2.dtb: /soc@0/can@402b2000: fai=
+led to match any schema with compatible: ['nxp,s32g2-flexcan']
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Marc
 
-  pip3 install dtschema --upgrade
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
+--hyjls6qa3nf4o47i
+Content-Type: application/pgp-signature; name="signature.asc"
 
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/qcom/' for 20250225-expressatt-tsens-v1-1-024bee5f2047@gmail.com:
+-----BEGIN PGP SIGNATURE-----
 
-arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dtb: efuse@700000: compatible:0: 'qcom,qfprom' is not one of ['qcom,apq8064-qfprom', 'qcom,apq8084-qfprom', 'qcom,ipq5332-qfprom', 'qcom,ipq6018-qfprom', 'qcom,ipq8064-qfprom', 'qcom,ipq8074-qfprom', 'qcom,ipq9574-qfprom', 'qcom,msm8226-qfprom', 'qcom,msm8916-qfprom', 'qcom,msm8974-qfprom', 'qcom,msm8976-qfprom', 'qcom,msm8996-qfprom', 'qcom,msm8998-qfprom', 'qcom,qcm2290-qfprom', 'qcom,qcs404-qfprom', 'qcom,sc7180-qfprom', 'qcom,sc7280-qfprom', 'qcom,sc8280xp-qfprom', 'qcom,sdm630-qfprom', 'qcom,sdm670-qfprom', 'qcom,sdm845-qfprom', 'qcom,sm6115-qfprom', 'qcom,sm6350-qfprom', 'qcom,sm6375-qfprom', 'qcom,sm8150-qfprom', 'qcom,sm8250-qfprom', 'qcom,sm8450-qfprom', 'qcom,sm8550-qfprom', 'qcom,sm8650-qfprom']
-	from schema $id: http://devicetree.org/schemas/nvmem/qcom,qfprom.yaml#
-arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dtb: efuse@700000: compatible: ['qcom,qfprom'] is too short
-	from schema $id: http://devicetree.org/schemas/nvmem/qcom,qfprom.yaml#
-arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dtb: efuse@700000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/nvmem/qcom,qfprom.yaml#
-arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dtb: efuse@700000: compatible:0: 'qcom,qfprom' is not one of ['qcom,apq8064-qfprom', 'qcom,apq8084-qfprom', 'qcom,ipq5332-qfprom', 'qcom,ipq6018-qfprom', 'qcom,ipq8064-qfprom', 'qcom,ipq8074-qfprom', 'qcom,ipq9574-qfprom', 'qcom,msm8226-qfprom', 'qcom,msm8916-qfprom', 'qcom,msm8974-qfprom', 'qcom,msm8976-qfprom', 'qcom,msm8996-qfprom', 'qcom,msm8998-qfprom', 'qcom,qcm2290-qfprom', 'qcom,qcs404-qfprom', 'qcom,sc7180-qfprom', 'qcom,sc7280-qfprom', 'qcom,sc8280xp-qfprom', 'qcom,sdm630-qfprom', 'qcom,sdm670-qfprom', 'qcom,sdm845-qfprom', 'qcom,sm6115-qfprom', 'qcom,sm6350-qfprom', 'qcom,sm6375-qfprom', 'qcom,sm8150-qfprom', 'qcom,sm8250-qfprom', 'qcom,sm8450-qfprom', 'qcom,sm8550-qfprom', 'qcom,sm8650-qfprom']
-	from schema $id: http://devicetree.org/schemas/nvmem/qcom,qfprom.yaml#
-arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dtb: efuse@700000: compatible: ['qcom,qfprom'] is too short
-	from schema $id: http://devicetree.org/schemas/nvmem/qcom,qfprom.yaml#
-arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dtb: efuse@700000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/nvmem/qcom,qfprom.yaml#
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAme+KBkACgkQDHRl3/mQ
+kZxdrwf+JXiYSAtNXsvcQpYo6OfO9ld3hbOKggakubUaLFftujJA/9iNVFaUgqHg
+1m1/pAgYThwS+zVAVPn8w7zgfznQj5iF45qigUAugkGANBrPwvcr4YBYqrATQTpq
+WHsWnaz5A8Emg9AC9kmg7nfFDM6uMR7SEWXwlvp3YXUzqC5Ujh2scrKg9nh/NUNj
+BIDoOyWb0YrNyJoPfVd7ooG6GnMxmg6oPqWr7xIRwR+FkJVFwEtcBmPk71Xk9foX
+yXLZlC92qTwQBn/0pgj/q/8XyX8UuGgL28Wfo2bg2q67iPqc/yQdi6QW/C+OMRuG
+qJmoE2guvBD9ho/u4NtPJ307RtGZqQ==
+=dAC0
+-----END PGP SIGNATURE-----
 
-
-
-
-
+--hyjls6qa3nf4o47i--
 
