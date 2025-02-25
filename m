@@ -1,130 +1,166 @@
-Return-Path: <devicetree+bounces-150859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03F2BA43B6D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:25:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8237EA43B78
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:26:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28B813A2EF5
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:22:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6381319C1F3D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:23:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54EF7265CAB;
-	Tue, 25 Feb 2025 10:20:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5D2E266F0F;
+	Tue, 25 Feb 2025 10:20:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FUFXCAYa"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="aNvQ+Dyp";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="AK68a+B8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77FE81C84B8
-	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 10:20:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FCB2266B77;
+	Tue, 25 Feb 2025 10:20:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740478842; cv=none; b=qAQNafSHdjHdyb+Zh0CCDziJEmO3XbYCB4fhpOFupNMrMCsh2hpA+W1Inl8QqYVSx3LqRE5VHYfNcTuaii70887PnnZuD00CpltwZessk5hZexjqq8OOovNTLpmqNlHwECwK/lhWnNEG66g6Kh4exSLMNSfxDGwjHqAxzXTEp8I=
+	t=1740478859; cv=none; b=Drbi3OFW951Oi9fMeHmKFZV6pdcrB7uyi70GovLnWaQUn/OlPZzMD7OV7p3OIZcIuPy/Z24SMvIPrBZ1llnZ8zTKajLEL6HJvaXEmfT2TkSv4va/RtCnfBnM8iQabUXOIrfkPwvN3a3fPXT2ZOWyor5MNIVSs4PFwTD3VADUSOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740478842; c=relaxed/simple;
-	bh=3gNOUzctXpsYMZme95M0wK8S8AMUTll3AeAdeanqip8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=d8AskXtXAjeb27OLH/yUfo07PX4kg+OkAdoulOsD8vAbFnXPN9y2knp05vKijff9pwKS8xBSgKlLT7Ilo24pw6sFNKeGak9JOiT4xfjovnwXx8PO/UUZcqO2QtQ7LewYhinrBPYjRreDKveLCmAdruLqq/Fb9iWaj4oO4JjjXwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FUFXCAYa; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ab7e08f56a0so97181966b.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 02:20:40 -0800 (PST)
+	s=arc-20240116; t=1740478859; c=relaxed/simple;
+	bh=NtRbsleVfFwIICidU/eQzWaR6wzhJYOG3kjsg+cvzBs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UTKHzEfa6blH49f7TgwSYBa29i6tSjbLWgCGy19s3wFzn/AYsAstzy9Mb/FWm8JUXjizAI94AwSYgr66yylGJDSd/Wt6AWSOSOxDvMN01CS87frmSS/SwD53oanLdgsRcPdxGt+PuEnIKsvR8+TIB72nwBEtoOHNppP4ZTAfaR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=aNvQ+Dyp; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=AK68a+B8 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740478839; x=1741083639; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aMAiIGxOhs/NRNnqxe1Q5w1Z2sjpATlomzVPp7WhyYE=;
-        b=FUFXCAYatArtXh0+NYN2nKxxLEcH13WbLIgXiNf/g4TiC4tRIGXJD3Tw9oVebktSUa
-         PabbevfRoIqoa13TlKs8ABOrtSZAmw86F96l8BfNOdsu4+3/yhjCr5PFnvVtvZ4W/Nl5
-         mUBiw+gz/XByG7GkIu8V6/n4COzM7lb7Sg6gqnHvU1Rb8M5g2pT/dX518E1r0Jg1+5Od
-         0iksDgZLkPWVGVOb+17xzmpxQwZz0oJUwBgF07qd6Hex822SWqdHpLUI0SSWO2gqSQiO
-         EJXOMtPm48X1Nnu+n3cxOZp4KBnjohmxSXP9IOVEneyKX/KfcTrG0jXW310aVbmPXe5N
-         hiJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740478839; x=1741083639;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aMAiIGxOhs/NRNnqxe1Q5w1Z2sjpATlomzVPp7WhyYE=;
-        b=GmBWW405JmDPa3mu/9aFib3Lq+VpZwpZLUqekJmpTk9LqfR9ElRwo1zB74MQagmEUg
-         QaRQkCofCeGW/EeOWaCNG9DRXjiQI0zVjSR/M6QlyFhWJ9sC3B/+N3LP2UU4ZuFwiaWu
-         gcuROsBPS23YTpyrv1aH/D3Lfl853/TvPryuddAZeO/uIRQltSkOvfogxXbhoFCM331m
-         YVghlDRdlmpip3D0yZXdAIrJVrQ+MewZwY3Vfdl24R9bF/0QzP/X5A+ZRqSwIJgOOWPG
-         x1gdYjEnK3gST+6Q2YQRa/N/aQAnAqEvvCAIhVzzjRLNdVZewIhQU4e3FmzaAH7Eu2OM
-         uRWA==
-X-Forwarded-Encrypted: i=1; AJvYcCXJqjY6ocvr0pMkbY7kbZMbC/DvNVSA4qhqBRfdYPOxwXsiQ87qG5TYDj8NXzb8KJvshOK3BVazjKUA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzekPJxmhCkn663DQ7vjRPobf/yH6TKQb0xOupIrWOx9RAbUFBM
-	EZG77G80eGENd2ysiiM40vrCGkHl6tliFxjnfxdclSgl6R6SCN06ubo4LqRKk9Y=
-X-Gm-Gg: ASbGncugji3/QmtiJ+wwXHAXpwmecOOcBD9GqJq5pkgeXv7DRFM7kuyCEk7fkGzIGBh
-	t9S0hGq2wqGPPugjEUUrH12c10QktlhAxoJtkJ1kLO5VjKT73RvwbfqjS4XiS1V4wjksApHHuXE
-	MwvF6fWYbsVE2k76Ph6Sq5rouZ8B+XYuJdQu5DBS7RQLHKgOiGZhM+ZC3If7zIP2m9IMnD7oC4k
-	Hg8aCPBSTuMRz/MWohdNp4qEqk4T/1SvuH/7FiTDSlp6yjMgQhe6/CrjiSYqq+Hlk0xqFDXRLPH
-	kwb5JWMmbJGU0/oWp0EEiXG8icXzIDrG5QSK67078fbRR5319y0sW/21O/ZZgKJKlqL2Cuft7fA
-	=
-X-Google-Smtp-Source: AGHT+IEZErkXFchQBHcjhpLOcz0ntlnRWjG+dqb6HL0cgbpdGQt3G9rUQQ9bKlCBwVV+K4XlTqA59A==
-X-Received: by 2002:a17:906:fb09:b0:abe:9c69:b71e with SMTP id a640c23a62f3a-abe9c69c1d6mr280644666b.3.1740478838702;
-        Tue, 25 Feb 2025 02:20:38 -0800 (PST)
-Received: from krzk-bin.. (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abed2010decsm116931666b.98.2025.02.25.02.20.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2025 02:20:38 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH RFC] arm64: dts: rockchip: Switch to undeprecated qcom,calibration-variant on RK3399
-Date: Tue, 25 Feb 2025 11:20:36 +0100
-Message-ID: <20250225102036.107913-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1740478857; x=1772014857;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=FT/bNjpK17AKmWrFmC1oGrmgU/J/4HzWEdIi1M3xvy8=;
+  b=aNvQ+DypfSIY4vYInglLvsX2qm+eZYaFgH91OgyPKsXAyDS2Z+CqJJdK
+   GAskVHsZ7jRTGnRK4fV9s7ydyfBY2meyUbvogRgJwL0vOCWfJBCQI4EKh
+   kcvzgW4Bzw8WpeAUZ22cswPXvz55gjrolZhE+7aoHkKp07+DQF4NK0Jld
+   CxMGDjRtZ8iS7ONa1uq1+7y8WAhcD+fKWYHnK3kZiEoCjoPdUvitYzlFR
+   qDyqieWtGWRxZ8lTKLukiU7H8Pb72Ww/aSEqGYhNmaqWlGLc9g+Yb1gI7
+   StD+y8Q2O6HlxN7cmcivRj7f3+KHKPGIvKBPqpjoRzbHkvYT9KGn+WIQI
+   w==;
+X-CSE-ConnectionGUID: QsBI+sINSrKWHQjBDBASWA==
+X-CSE-MsgGUID: 8aKwrTwDSxOsoUj5BI/pOA==
+X-IronPort-AV: E=Sophos;i="6.13,314,1732575600"; 
+   d="scan'208";a="42067570"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 25 Feb 2025 11:20:54 +0100
+X-CheckPoint: {67BD9986-1D-C21CC984-D1047F1F}
+X-MAIL-CPID: AD44FBA8F505BC75EA53E4781B804E6C_5
+X-Control-Analysis: str=0001.0A002106.67BD9985.00B4,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id ECCDB167B75;
+	Tue, 25 Feb 2025 11:20:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1740478850;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FT/bNjpK17AKmWrFmC1oGrmgU/J/4HzWEdIi1M3xvy8=;
+	b=AK68a+B89Qybuj8NoLI/VDdEZykmlp/1oKL3xVgpWnaPSQLDF/4bfjwx3jOdNiTXNnfTm6
+	rwDsQYJHUL+uRKBs205y7smpffcs0L8WqHok9lJDdp+HASeCDrWkhwb4Xt26CTVtD+nC/T
+	wTvnKkk+sFOD+l3UjlXYkfdwhNoot/GbX8gEBuxc6obYw7BJb0XAaCBJtCCQm8ZAhE1b4z
+	9jDrYinAxaIjYY3a28xXJjbDQDsAM8ufr+NJ5NUlIFWTzjTmxgPQsKMOqtUZFjStTysd9X
+	LPkyOL46ejvCr1E4Yc/IZzCuP6FshuBELfAUEyMRey4AOyBFKEy5CmHGZK/Wtw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux@ew.tq-group.com
+Subject: Re: [PATCH 1/5] arm64: dts: imx8-ss-hsio: Wire up DMA IRQ for PCIe
+Date: Tue, 25 Feb 2025 11:20:49 +0100
+Message-ID: <4962874.GXAFRqVoOG@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <Z7yxDRO+ICPCu0I2@lizhi-Precision-Tower-5810>
+References:
+ <20250107140110.982215-1-alexander.stein@ew.tq-group.com>
+ <Z36o31uhQuI5lcH7@lizhi-Precision-Tower-5810>
+ <Z7yxDRO+ICPCu0I2@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-The property qcom,ath10k-calibration-variant was deprecated in favor of
-recently introduced generic qcom,calibration-variant, common to all
-Qualcomm Atheros WiFi bindings.
+Hi Frank,
 
-Change will affect out of tree users, like other projects, of this DTS.
+Am Montag, 24. Februar 2025, 18:49:01 CET schrieb Frank Li:
+> On Wed, Jan 08, 2025 at 11:33:35AM -0500, Frank Li wrote:
+> > On Wed, Jan 08, 2025 at 10:58:18AM +0100, Alexander Stein wrote:
+> > > Hi Frank,
+> > >
+> > > Am Dienstag, 7. Januar 2025, 16:39:25 CET schrieb Frank Li:
+> > > > On Tue, Jan 07, 2025 at 03:01:06PM +0100, Alexander Stein wrote:
+> > > > > IRQ mapping is already present. Add the missing DMA interrupt.
+> > > >
+> > > > PCI host side have not use bridge's DMA yet although hardware suppo=
+rt it.
+> > >
+> > > So this is a driver limitation, right? So IMHO the device description=
+ is
+> > > independent from that and still correct, right?
+> >
+> > Yes, but dma register space may missed also. I suggest add later after
+> > EP side support merged, which can verify informaiton is correct.
+> >
+> > Anyway, I don't block this change.
+>=20
+>=20
+> Did you run DTB_CHECK? I found new warning was added
+>=20
+> /home/lizhi/source/linux-upstream-dts/arch/arm64/boot/dts/freescale/imx8d=
+x-colibri-aster.dtb: pcie@5f010000: interrupts: [[0, 102, 4], [0, 104, 4]] =
+is too long
+>         from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie=
+=2Eyaml#
+> /home/lizhi/source/linux-upstream-dts/arch/arm64/boot/dts/freescale/imx8d=
+x-colibri-aster.dtb: pcie@5f010000: interrupt-names: ['msi', 'dma'] is too =
+long
+>         from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie=
+=2Eyaml#
+> /home/lizhi/source/linux-upstream-dts/arch/arm64/boot/dts/freescale/imx8d=
+x-colibri-eval-v3.dtb: pcie@5f010000: interrupts: [[0, 102, 4], [0, 104, 4]=
+] is too long
+>         from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie=
+=2Eyaml#
+> /home/lizhi/source/linux-upstream-dts/arch/arm64/boot/dts/freescale/imx8d=
+x-colibri-eval-v3.dtb: pcie@5f010000: interrupt-names: ['msi', 'dma'] is to=
+o long
+>         from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie=
+=2Eyaml#
+> /home/lizhi/source/linux-upstream-dts/arch/arm64/boot/dts/freescale/imx8d=
+x-colibri-iris.dtb: pcie@5f010000: interrupts: [[0, 102, 4], [0, 104, 4]] i=
+s too long
+>         from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie=
+=2Eyaml#
+> /home/lizhi/source/linux-upstream-dts/arch/arm64/boot/dts/freescale/imx8d=
+x-colibri-iris.dtb: pcie@5f010000: interrupt-names: ['msi', 'dma'] is too l=
+ong
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I think I did, but I see the same warnings.
+I've prepared a series which addresses schema and imx8qm dtsi.
 
----
+Best regards
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-Dependency/RFC!
-
-RFC, because this should be merged release after driver support is
-merged:
-https://lore.kernel.org/linux-devicetree/20250225-b-wifi-qcom-calibration-variant-v1-0-3b2aa3f89c53@linaro.org/T/#t
----
- arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet-dumo.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet-dumo.dts b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet-dumo.dts
-index 9e4b12ed62cb..be3ae473e562 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet-dumo.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet-dumo.dts
-@@ -36,6 +36,6 @@ wifi@0,0 {
- 		compatible = "qcom,ath10k";
- 		reg = <0x00000000 0x0 0x00000000 0x0 0x00000000>,
- 		      <0x03000010 0x0 0x00000000 0x0 0x00200000>;
--		qcom,ath10k-calibration-variant = "GO_DUMO";
-+		qcom,calibration-variant = "GO_DUMO";
- 	};
- };
--- 
-2.43.0
 
 
