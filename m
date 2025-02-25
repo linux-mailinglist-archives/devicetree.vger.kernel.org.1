@@ -1,99 +1,146 @@
-Return-Path: <devicetree+bounces-151043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06364A443B9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 15:59:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E0A7A445E1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 17:23:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20D7B162D9D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 14:58:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E52A1885E79
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 16:23:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2DAC2561B7;
-	Tue, 25 Feb 2025 14:58:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9259A18DB14;
+	Tue, 25 Feb 2025 16:22:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IoEg6Dy9"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="t076cPPW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C20721ABB2;
-	Tue, 25 Feb 2025 14:58:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A485C15383D;
+	Tue, 25 Feb 2025 16:22:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740495516; cv=none; b=o3d1TijNwQTQy+I/OWmh1vuLfEbGgnQ8q6E9mlyEg3i4LffNH6Qjxz942FUDYwrgY+6o7c5+4Nv+TA8wyrXwG2m11rvkhQH57VUwZhIi7M0yHFZ75AQl9YSrbkbPqV3n9wZwTfs8PqQ3erjLqyK+8VoxeHG4KNHUMxygZo/zpcA=
+	t=1740500578; cv=none; b=He9hhX5A890/1G4yqCAbi/QyeHgUEQ1wNt8Z1OR4K4yi3B7o0H/Tf0klA1BJph1jcxP2AUkp3sEvdy36ykdmDOKgJlgMyD8YmhI1EPnoPSYtGylT4BwEhTgsv/jprW259g8Igk415UOdGVDG8U3MPN8Ap/+uyuGttDNl8Bb28bA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740495516; c=relaxed/simple;
-	bh=m6/bHr5qMtmuvpNdzrWxI7InaCfmMZcD30o8W4FzGWw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=upc9XPy+YTvENM+Fs6QMvbK9X2M+ZZFSx/RqN40x3xSQxpXInRYK7DaR+JKmgIAD6yLWe892SLr+VXi97iZpPK0vWqpnVghJDpUzuIc0JHoGbfLsYlJ7seqXaRIoZBb+AU/9/YvhR/nH2b5A3P6lsgT2KSElpj1wOYJQAzdHRx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IoEg6Dy9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF7C7C4CEDD;
-	Tue, 25 Feb 2025 14:58:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740495516;
-	bh=m6/bHr5qMtmuvpNdzrWxI7InaCfmMZcD30o8W4FzGWw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IoEg6Dy9AUoWIhTSYy1iSWttqt8ldHXGQX0FBTfEgMQ3//HObKeQ/fFnhsJG9ll7r
-	 7VCTC7sItDIKwFndnc/2W0Ykc8K5wIxepfMQPlDDvG9xcvC2rWOF6DlJGQuDJOEC4A
-	 f6xziyFODt3M6uuFJi24GrJbXXUSwSYyF8OhDZeC6aWcBKnCL7Ys3bUaTSSNkRQ5Qb
-	 krBMf47TiHxWk/5024VmIHmezFrdBuqpGWOxLgJaTFvlant0mHl5CJlYBgJHuU+DVm
-	 BkW8/yv4+w9l0lZSLtxU69f7/wQVto0a7S8BzHR0I9iLx0lnAiptSpLgJF3f+Ir+wA
-	 iLodTmwa9zngQ==
-Date: Tue, 25 Feb 2025 08:58:33 -0600
-From: Rob Herring <robh@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux@ew.tq-group.com,
-	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] arm64: dts: imx93: Add LCDIF & LDB nodes
-Message-ID: <20250225145833.GB2361434-robh@kernel.org>
-References: <20250224142831.485159-1-alexander.stein@ew.tq-group.com>
- <20250224142831.485159-5-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1740500578; c=relaxed/simple;
+	bh=4UZQt6CS0MHkBs/i4rSdDNtr9IYHVh5vB9xkgBgwouI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GtBufvbm0yglYhDRS0QJsF+gyM0tl/3hXUEU3BW0HY4hewtmubPZ8ueV5C/zo+GmBCE/zzBDAgiofYpkd2Q0Nur2kKJtHUNvRUj1/A9R8Wsoj6yql7uVshuYt3zdTBNs3kF9skon0FK1F9nuk7q3MjBN5P8Tp1TJQEHYYWVDsiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=t076cPPW; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51PF4maO002601;
+	Tue, 25 Feb 2025 17:22:30 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	Xhh3gcbiFK/6Ez/lxF9CuTHjea+5VkiT+cvC5t9kB1c=; b=t076cPPWkl37c0C9
+	0Sf4NkVTYac4WOW0OzH5SB/N9VcaPdVH06HEtXlDggksW8DgtAexmUqShnUXuSjH
+	2i0Wt9AcuBY0vU+thJKq5Kpe9laqG2GfAjpKTNoUdXfbmpSfUh2QrcWeAmslaE0Z
+	TfDOXE2vQQzVSAew0yRWO9WZsrKH20AlSyeeGy/jEKixUNn1LtGujjMC3xLUaKPO
+	d8puCY+ckneEhuWWdeovePidHjiMJMEViaM254XZ2mhfQCOjt3BFahXO0EJFDd4r
+	3yU2QvhnR83nRbxGDufnMs6JhcvefOepMo2QpyK7CPAaYz+cSPwdizVcZeACqTMS
+	WVhbuA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4512spmfjf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Feb 2025 17:22:30 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id F2403400A0;
+	Tue, 25 Feb 2025 17:21:09 +0100 (CET)
+Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D10F54DD22B;
+	Tue, 25 Feb 2025 15:57:05 +0100 (CET)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE4.st.com
+ (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 25 Feb
+ 2025 15:57:05 +0100
+Received: from [10.48.86.222] (10.48.86.222) by SAFDAG1NODE1.st.com
+ (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 25 Feb
+ 2025 15:57:04 +0100
+Message-ID: <acabacb8-8ea1-4b16-a562-8ffba64fdd36@foss.st.com>
+Date: Tue, 25 Feb 2025 15:57:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250224142831.485159-5-alexander.stein@ew.tq-group.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/8] dt-bindings: mfd: stm32-lptimer: add support for
+ stm32mp25
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <lee@kernel.org>, <ukleinek@kernel.org>, <alexandre.torgue@foss.st.com>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <wbg@kernel.org>, <jic23@kernel.org>, <daniel.lezcano@linaro.org>,
+        <tglx@linutronix.de>, <catalin.marinas@arm.com>, <will@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <olivier.moysan@foss.st.com>
+References: <20250224180150.3689638-1-fabrice.gasnier@foss.st.com>
+ <20250224180150.3689638-2-fabrice.gasnier@foss.st.com>
+ <20250225-outgoing-scorpion-of-music-be0bea@krzk-bin>
+Content-Language: en-US
+From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+In-Reply-To: <20250225-outgoing-scorpion-of-music-be0bea@krzk-bin>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-25_05,2025-02-25_03,2024-11-22_01
 
-On Mon, Feb 24, 2025 at 03:28:25PM +0100, Alexander Stein wrote:
-> LCDIF port 1 is directly attached to the LVDS Display Bridge (LDB).
-> Both need the same clock source (VIDEO_PLL1).
+On 2/25/25 13:02, Krzysztof Kozlowski wrote:
+> On Mon, Feb 24, 2025 at 07:01:43PM +0100, Fabrice Gasnier wrote:
+>>    pwm:
+>>      type: object
+>>      additionalProperties: false
+>>  
+>>      properties:
+>>        compatible:
+>> -        const: st,stm32-pwm-lp
+>> +        enum:
+>> +          - st,stm32-pwm-lp
+>> +          - st,stm32mp25-pwm-lp
+>>  
+>>        "#pwm-cells":
+>>          const: 3
+>> @@ -69,7 +76,9 @@ properties:
+>>  
+>>      properties:
+>>        compatible:
+>> -        const: st,stm32-lptimer-counter
+>> +        enum:
+>> +          - st,stm32-lptimer-counter
+>> +          - st,stm32mp25-lptimer-counter
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx93.dtsi | 77 ++++++++++++++++++++++++
->  1 file changed, 77 insertions(+)
+> Driver changes suggest many of these are compatible. Why isn't this expressed?
+
+Hi Krzysztof,
+
+The Low Power Timer (LPTIM) hardware isn't fully backward compatible.
+
+At driver level, as indicated in the cover-letter, same feature list as
+on STM32MP1x is supported currently. This is probably what makes it look
+like it's compatible, but it's not fully compatible.
+
+The hardware controller is a bit different. Some registers/bits has been
+revisited among other things. This is the purpose for these new compatibles.
+
+Please find driver-related answers each driver part.
+
+Best regards,
+Fabrice
+
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> index 56766fdb0b1e5..2628e1e628ec2 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> @@ -1273,6 +1273,9 @@ s4muap: mailbox@47520000 {
->  		media_blk_ctrl: system-controller@4ac10000 {
->  			compatible = "fsl,imx93-media-blk-ctrl", "syscon";
->  			reg = <0x4ac10000 0x10000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-
-Like the example, this is wrong.
-
-ranges = <0x0 0x4ac10000 0x10000>;
-
-Rob
+> Best regards,
+> Krzysztof
+> 
 
