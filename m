@@ -1,130 +1,244 @@
-Return-Path: <devicetree+bounces-150879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-150880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6656A43C14
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:44:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2864DA43C1F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 11:46:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E75C519C2B28
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:43:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 578F51889F80
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2025 10:45:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F257E266F0F;
-	Tue, 25 Feb 2025 10:43:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83253266EFA;
+	Tue, 25 Feb 2025 10:45:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WOINB3oy"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="cFuUV6cm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C97F1265637;
-	Tue, 25 Feb 2025 10:42:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE7A19C54F
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 10:44:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740480180; cv=none; b=NUQT5SsdE0XQZ+At7kemCvETb9kZwWXm+qSxDzV3d0c1OResXDp8tW9n6mR+FpCCDV7X2PohdU7u0y8ODV+McvyKtt5RTICa6ySQKAvuec1fvz0D+oxS7n0dWo6ZAgos8u6LBneo+O76nXyaNCVlqi8LLvaYzVkfk9Nh3eZeNvY=
+	t=1740480301; cv=none; b=P2HqEGnXdw+jiW7QeEbzF9EZQL/+rGIetra8M7RjZbQ52QINhkRSsJWMp4fPr/K2HEoE0X13B7YqZQLJek7Jyg3Y/umqGLfKQZUYKPQ7pQ71xBD2uzkQfK/hSgFCN9ElMy9wTRGW1Cn/AZ+7L0xIFuxZ5D4Zbg22r4jZd9YsZ+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740480180; c=relaxed/simple;
-	bh=fEBg/wU5mCbR2itM6RkNe6Unw48Z+L+8Q0sFIEbBF98=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=P+D1D6FQAjTNULSVcud32dp/Ee/F1r9zOc3mrdzF0k3fpFtTRBLj20bzWyKjxWyQzMgI7cX/5yK803ZChF+LbEWMijVP9WC4bIrHJsSv9XL9WMlXyOWVY6mY+HSrjk6o4AyWHCbp00KY1GClJ6QRR2ayJSuMtZmZBMxL+ivQ2zs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WOINB3oy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51P8RAXA012887;
-	Tue, 25 Feb 2025 10:42:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	16XU88wAD+XphURLR0i0WLhnTgmgnb4ci4H9C5ic2GE=; b=WOINB3oynodIxR+1
-	Tiy55TMVPqtf5Eya4G0C9EfOHY8nE/8i5P6VQyUpo+Hi8WAuACFTS6V11ekdyevn
-	Msz/He9edUBaC/wyDfp3ZaTzbaWHCjyjvy3BThDremLlVFOwACqsOWDqzqcbMSLS
-	xoDF0y8trv3rcHRxaOd4JHR1IRHW+RpiPc5qCWqv4ah87ISmOsSgkL3YPjxmrZaN
-	wGrMhpZ2u9/EBd2w3wx7cZVInkb3FOkhyeHpfd469y53cUYMV91dQeUlDoOsIsue
-	zEzNpc/xgp+1emmcCsXEf1V4ES/6EVxDqDQBuKbjBR4TrF3D9rZBOXHn/HsJxKqO
-	wC5T8g==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44y65y0j1t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Feb 2025 10:42:49 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51PAgmpi007418
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Feb 2025 10:42:48 GMT
-Received: from [10.216.5.11] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 25 Feb
- 2025 02:42:44 -0800
-Message-ID: <57cd7335-3f13-46ea-bf93-7b5fb0f10973@quicinc.com>
-Date: Tue, 25 Feb 2025 16:12:39 +0530
+	s=arc-20240116; t=1740480301; c=relaxed/simple;
+	bh=J6ud03xBUei5hve99chh9QBHJ7vCcnVOXXWngWIzsB4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=omlewauTanxzrzV6frmzaSj8pg/zsZNmf07XK5PNFEhGe8WJnIC7pYIvdqNSfBsHy9LRWrx051onVnSvbiWg2K6meY5yOmzPMUoZc8Y9arFbWuH/Mv0JIGaMDzesWOT2PATSA4Ry+CNHbF5eI37rsgZj6rWpLocMjqA+jKhuvws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=cFuUV6cm; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 5C712240103
+	for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 11:44:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1740480296; bh=J6ud03xBUei5hve99chh9QBHJ7vCcnVOXXWngWIzsB4=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=cFuUV6cmgHpdt2ZhN3Hb5NMGw8NXHw0r05Mqz6mdjb09YD7pt1QS4Sw9UJTwQFNyr
+	 9HqBKPyLjkgLY8bJIExqT1/0qPRS8y/vWOFMfsf+dvqb2Ugz9GrrFOc8FZkiefjmpt
+	 ABP/OuWKNcbkKiMzn4WcN16+S/EIxHDgZDg6+DjVn6Pyal56RT9Kula71WDSKCy/4l
+	 k3CS+3w8iKUuChFJN9HwPSbhXMiUw7nU4ua8snIisdO4lvxXPxMNsnSsOQI/BGseOk
+	 d0WVMAjFLxQwDTFt2LiMGw7B6wvJr7RXjVkFo16qSx8ccMzDtadBm10pj62lExIcwo
+	 G9VCXSZoBcj8A==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4Z2Dks6y7zz9rxN;
+	Tue, 25 Feb 2025 11:44:53 +0100 (CET)
+Date: Tue, 25 Feb 2025 10:44:53 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Rob Herring <robh@kernel.org>
+Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: net: Convert fsl,gianfar to YAML
+Message-ID: <Z72fJSqng8od-5Z7@probook>
+References: <20250220-gianfar-yaml-v1-0-0ba97fd1ef92@posteo.net>
+ <20250220-gianfar-yaml-v1-3-0ba97fd1ef92@posteo.net>
+ <20250221233523.GA372501-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 01/13] dt-bindings: net: wireless: describe the ath12k
- AHB module for IPQ5332
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <ath12k@lists.infradead.org>, Johannes Berg <johannes@sipsolutions.net>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
-        <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250225064834.2002499-1-quic_rajkbhag@quicinc.com>
- <20250225064834.2002499-2-quic_rajkbhag@quicinc.com>
- <20250225-abstract-arcane-chimpanzee-ca7e4f@krzk-bin>
- <4c3009e1-6cd8-4477-95f9-b0fb35b7dc4e@kernel.org>
-Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <4c3009e1-6cd8-4477-95f9-b0fb35b7dc4e@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SsZahpdsqZziBCZNNAPfFzIqLtbw8OlC
-X-Proofpoint-ORIG-GUID: SsZahpdsqZziBCZNNAPfFzIqLtbw8OlC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-25_03,2025-02-24_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- bulkscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0 malwarescore=0
- priorityscore=1501 adultscore=0 mlxlogscore=999 impostorscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502250075
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250221233523.GA372501-robh@kernel.org>
 
-On 2/25/2025 4:04 PM, Krzysztof Kozlowski wrote:
-> On 25/02/2025 09:47, Krzysztof Kozlowski wrote:
->> On Tue, Feb 25, 2025 at 12:18:22PM +0530, Raj Kumar Bhagat wrote:
->>> +  memory-region:
->>> +    description:
->>> +      Memory regions used by the ath12k firmware.
->>> +    items:
->>> +      - description: Q6 memory region
->>> +      - description: m3 dump memory region
->>> +      - description: Q6 caldata memory region
->>> +      - description: Multi Link Operation (MLO) Global memory region
->>> +
->>> +  memory-region-names:
->>> +    items:
->>> +      - const: q6-region
->>> +      - const: m3-dump
->>> +      - const: q6-caldb
->>> +      - const: mlo-global-mem
->>> +
->>> +  qcom,ath12k-calibration-variant:
->>
->> qcom,calibration-variant
+On Fri, Feb 21, 2025 at 05:35:23PM -0600, Rob Herring wrote:
+> On Thu, Feb 20, 2025 at 06:29:23PM +0100, J. Neuschäfer wrote:
+> > Add a binding for the "Gianfar" ethernet controller, also known as
+> > TSEC/eTSEC.
+> > 
+> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> > ---
+> >  .../devicetree/bindings/net/fsl,gianfar.yaml       | 242 +++++++++++++++++++++
+> >  .../devicetree/bindings/net/fsl-tsec-phy.txt       |  39 +---
+> >  2 files changed, 243 insertions(+), 38 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/fsl,gianfar.yaml b/Documentation/devicetree/bindings/net/fsl,gianfar.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..dc75ceb5dc6fdee8765bb17273f394d01cce0710
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/fsl,gianfar.yaml
+> > @@ -0,0 +1,242 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/fsl,gianfar.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Freescale Three-Speed Ethernet Controller (TSEC), "Gianfar"
+[...]
+> > +  "#address-cells": true
 > 
-> FYI:
+> enum: [ 1, 2 ]
 > 
-> https://lore.kernel.org/linux-devicetree/20250225-b-wifi-qcom-calibration-variant-v1-0-3b2aa3f89c53@linaro.org/
+> because 3 is not valid here.
 > 
+> > +
+> > +  "#size-cells": true
+> 
+> enum: [ 1, 2 ]
+> 
+> because 0 is not valid here.
 
-Thanks, will update in next version.
+Good point.
+
+> 
+> 
+> > +
+> > +  cell-index:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +
+> > +  interrupts:
+> > +    maxItems: 3
+> 
+> Based on the if/then schema, you need 'minItems' here if the min is not 3.
+> 
+> Really, move the descriptions here and make them work for the combined 
+> interrupt case (just a guess).
+
+The difference here (as previously documented in prose) is by device
+variant:
+
+ for FEC:
+
+   - one combined interrupt
+
+ for TSEC, eTSEC:
+
+   - transmit interrupt
+   - receive interrupt
+   - error interrupt
+
+Combining these cases might look like this, not sure if it's good:
+
+  interrupts:
+    minItems: 1
+    description:
+      items:
+        - Transmit interrupt or combined interrupt
+        - Receive interrupt
+        - Error interrupt
+
+> 
+> > +
+> > +  dma-coherent:
+> > +    type: boolean
+> 
+> dma-coherent: true
+
+Will do.
+
+
+> > +
+> > +  fsl,num_rx_queues:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Number of receive queues
+> 
+> Constraints? I assume there's at least more than 0.
+> 
+> > +
+> > +  fsl,num_tx_queues:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Number of transmit queues
+> 
+> Constraints?
+
+Good point, for both of these the only value I can find in use is 8,
+which corresponds to the number of queues documented in at least one
+hardware manual (MPC8548E).
+
+
+> > +  # eTSEC2 controller nodes have "queue group" subnodes and don't need a "reg"
+> > +  # property.
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: fsl,etsec2
+> > +    then:
+> > +      patternProperties:
+> > +        "^queue-group@[0-9a-f]+$":
+> > +          type: object
+> > +
+> > +          properties:
+> > +            "#address-cells": true
+> > +
+> > +            "#size-cells": true
+> 
+> These have no effect if there are not child nodes or a 'ranges' 
+> property.
+
+Ah, good point, these properties are used in existing DTs, but I see no
+reason to keep them. I'll remove them.
+
+> 
+> > +
+> > +            reg:
+> > +              maxItems: 1
+> > +
+> > +            interrupts:
+> > +              maxItems: 3
+> 
+> Need to define what each one is.
+
+Will do.
+
+
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +
+> > +    soc1 {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <1>;
+> 
+> You don't need the soc1 node.
+
+Ah, true.
+
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    soc2 {
+> 
+> bus {
+
+Will rename.
+
+
+Thanks,
+J. Neuschäfer
 
