@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-151580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE2ABA4641D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 16:08:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 557EFA4643D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 16:13:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50BB83AB635
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:08:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 053FC1886878
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:13:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB9A7222566;
-	Wed, 26 Feb 2025 15:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5041222591;
+	Wed, 26 Feb 2025 15:13:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UdoQywKt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MjDR60tq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FBDE1A01BF;
-	Wed, 26 Feb 2025 15:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95BC0219E86;
+	Wed, 26 Feb 2025 15:13:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740582488; cv=none; b=jhkv0IjZD7c5S5qJokh/UJhaIxz/q8RG6cT58hQySLaMBOQXcw9yVDtE+cLRKXQZGKiP256ktdz8mjarXtZvqK7pScu5RUyl3d6YzGtJUK6PlsOTH15PNbz1lHtbAfrsw2Gs++HjoFwX9SyxMHsV20sBVSillth/x/hYo5nAL6I=
+	t=1740582813; cv=none; b=LQzpi8tahjGIIwt1cGEy4Bh1CwrtHoKXrAdmzFQqSlhctsuJI9DYod+pPrWT/Mwx3WUPXy/Ew06CKH1m0Z/NOQAQYyRGArjNvIMuZ0HQwnhWi1JQH2gOdw27KNFevWJYZpzQJQAwd7ww5I2iLusa408JyhOuxWE68Y9eS1iYCGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740582488; c=relaxed/simple;
-	bh=0rPdT/Eug1q9+BytDIeKO5UaT3azhJ0eQ11NkLFoPDw=;
+	s=arc-20240116; t=1740582813; c=relaxed/simple;
+	bh=1m7fg74yHgTUFeFQ2a0WBgrsssqDzQ5QCWbP+rsGTgM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AcfobQIkk8N3LzwJCaATfVdji0kdEULMFG8lCXAxQLDBU6GX8TiV/BFF6HxmoYuN3qJP+vaUqa+ABL/83cbvSKPjuaEOb8XmKZYihV/4JAQbfc5XJFXpcMW7LWjUe7kFTtSRKEfnBIwrglnXu3tKn0tm7cu7rvM0ZB1taM2ce/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UdoQywKt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B509FC4CEE8;
-	Wed, 26 Feb 2025 15:08:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=N3InJk+s+0s7jnjXsOQwjg6CimTbvuc8rt0kD8AKhCc1LlDv0H+ZUjIzx0GqYZKyb3fhd8Dz/1oQnAlWiGfKeGTeUZ7Er8urzTnEKeAqKVA07gA3dqygvgkpS5wkMFYYUplgkJAxeerbWBMvuP6RZj4beDYjv6RwOTBhLWO0IEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MjDR60tq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35C7FC4CED6;
+	Wed, 26 Feb 2025 15:13:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740582488;
-	bh=0rPdT/Eug1q9+BytDIeKO5UaT3azhJ0eQ11NkLFoPDw=;
+	s=k20201202; t=1740582813;
+	bh=1m7fg74yHgTUFeFQ2a0WBgrsssqDzQ5QCWbP+rsGTgM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UdoQywKtDOHZzWhnKn/7ndX+HgtAWdIRdEWLrZ9yZO11GontNCf8nsUVT5deqYzWs
-	 yFENoLpHCZ164ETg99rfHCCvr28D17/TqX6zia9bacjRSaP1ZN99mOyCDuWexpybom
-	 KTqqIahWCiprwxgl3fhs2I/VqBc3rDEUuHcuIsjReFK4pA+cRfJcxed/hmLGrC8N66
-	 8KvQNgFXiNvmWWuSZgMDWl7Ahx1WdZwaZ0+IV2gqP9BRWMGGpUNXJXoeGhl25ZkTnK
-	 eqGXZme3fU+xqXszyf+YwVpazrhkjc0hzBmeAWAHX/5P7Mbm4m5W/UXYK0vGIlYwbA
-	 v388qiii722vw==
-Message-ID: <55beb3e7-65ac-4145-adae-fb064378c78d@kernel.org>
-Date: Wed, 26 Feb 2025 16:08:02 +0100
+	b=MjDR60tqYReDxVsla2hsE74gvGjzQ7Wz9y4jgIyE4MKcZvDXBsIsWHtCnsvgObhjp
+	 xrZf+wGmqEMaazgPYctZHKNENgj/vJRKeZEr/ZcSD7gfRn/wpGnjMppqvX3bd3usBo
+	 yPqVQrVyyVNy2yAuLpZKe5yhi6F1rvmCUjMiNFfjaJGHkkaFn95yS1RplVB6+f4Udk
+	 pKvEoYa2Do+gO3Ma35DyPBWuPUNaZ0f/t+7syJmYVZGr18CrCkFMsocdbe9CCOrXXw
+	 +qcPoYcYTc7jR1omscpQH7EvD9vK2jXV8NFOvbQb+uOgYZKILUaaykCiuq9ltW4n6I
+	 +TN0irlVAqtew==
+Message-ID: <ac45cb5e-d991-4962-9c0a-02496be1af75@kernel.org>
+Date: Wed, 26 Feb 2025 16:13:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/9] ARM: dts: stm32: add Hardware debug port (HDP) on
- stm32mp25
-To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
- Clement LE GOFFIC <clement.legoffic@foss.st.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250225-hdp-upstream-v1-0-9d049c65330a@foss.st.com>
- <20250225-hdp-upstream-v1-7-9d049c65330a@foss.st.com>
- <418a80a9-8c08-4dd1-bf49-1bd7378321aa@kernel.org>
- <b257aa79-6ca9-4f57-988a-ec00225992ab@foss.st.com>
- <b57e3c9e-244e-435b-8a7b-cf90f3a973b3@kernel.org>
- <988667a4-4bc0-4594-8dfd-a7b652b149b2@foss.st.com>
+Subject: Re: [PATCH v3 12/13] arm64: dts: renesas: Add initial support for
+ renesas RZ/T2H eval board
+To: Paul Barker <paul.barker.ct@bp.renesas.com>,
+ Thierry Bultel <thierry.bultel.yh@bp.renesas.com>, thierry.bultel@linatsea.fr
+Cc: linux-renesas-soc@vger.kernel.org, geert@linux-m68k.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250226130935.3029927-1-thierry.bultel.yh@bp.renesas.com>
+ <20250226130935.3029927-13-thierry.bultel.yh@bp.renesas.com>
+ <9e973021-8f10-4870-8534-29c7669c7c74@kernel.org>
+ <5beab0aa-ef61-4a9e-882a-99b6d9220879@bp.renesas.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,48 +105,44 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <988667a4-4bc0-4594-8dfd-a7b652b149b2@foss.st.com>
+In-Reply-To: <5beab0aa-ef61-4a9e-882a-99b6d9220879@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/02/2025 10:33, Alexandre TORGUE wrote:
->>>>> +		hdp: pinctrl@44090000 {
->>>>> +			compatible = "st,stm32mp-hdp";
->>>>
->>>> So here again - you have stm32mp251 SoC, but use entirely different
->>>> compatible.
+On 26/02/2025 15:46, Paul Barker wrote:
+> On 26/02/2025 14:23, Krzysztof Kozlowski wrote:
+>> On 26/02/2025 14:09, Thierry Bultel wrote:
+>>> Add the initial device tree for the RZ/T2H evaluation board.
 >>>
->>> Ok so I will use "st,stm32mp15-hdp"
+>>> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+>>> Reviewed-by: Paul Barker <paul.barker.ct@bp.renesas.com>
 >>
+>> Where did this happen? I see tags only to few patches, not all of them.
 >>
->> This means this is stm32mp15 SoC. I do not see such SoC on list of your
->> SoCs in bindings. What's more, there are no bindings for other SoC
->> components for stm32mp15!
+>> Same questions for all other places.
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> Yes stm32mp15 is not a "real SoC". I agree that at the beginning of the 
-> STM32 story we didn't have a clear rule/view to correctly naming our 
-> compatible. We tried to improve the situation to avoid compatible like 
-> "st,stm32", "st,stm32mp" or "st,stm32mp1". So we introduced 
-> "st,stm32mp13", "st,stm32mp15" or "st,stm32mp25" for new drivers. So yes 
-> it represents a SoC family and not a real SoC. We haven't had much 
-> negative feedback it.
+> Hi Krzysztof,
 > 
-> But, if it's not clean to do it in this way, lets define SoC compatible 
-> for any new driver.
-
-Compatibles are for hardware.
-
-> For the HDP case it is: "st,stm32mp157" and used for STM32MP13, 
-> STM32MP15 end STM32MP25 SoC families (if driver is the same for all 
-> those SoCs).
-
-No, it's three compatibles, because you have three SoCs. BTW, writing
-bindings (and online resources and previous reviews and my talks) are
-saying that, so we do not ask for anything new here, anything different.
-At least not new when looking at last 5 years, because 10 years ago many
-rules were relaxed...
+> We've recently switched to a patchwork instance and internal mailing
+> list for review within our team before sending things to the mailing
+> list. We did a round of internal review and the Reviewed-by tags from
+> this have accidentally been included here. It can easily be fixed.
+> 
+> Thierry, could you re-send a v4 series keeping my Reviewed-by tag only
+> on patch 7/13, as that was added on the public mailing list.
 
 
+Thanks for clarification. It is unusual to see internal review resulting
+in tags between already publicly discussed versions. Why it cannot be
+done in public where everything is both archived and visible to entire
+community?
+
+BTW, sometimes b4 makes mistakes and we already have at least two cases
+tag from one patch was applied for entire set, so your case is
+indistinguishable from such b4 issue.
 
 Best regards,
 Krzysztof
