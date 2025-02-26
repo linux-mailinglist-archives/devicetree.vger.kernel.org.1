@@ -1,157 +1,120 @@
-Return-Path: <devicetree+bounces-151506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72509A460E5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 14:28:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E706A460ED
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 14:30:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB34B1887090
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 13:28:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4096117331A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 13:30:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B109721D3F1;
-	Wed, 26 Feb 2025 13:28:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C59C721D584;
+	Wed, 26 Feb 2025 13:30:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XwHN9ZBF"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="B24RGItM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47BA721D3EB;
-	Wed, 26 Feb 2025 13:28:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B463E15E5AE;
+	Wed, 26 Feb 2025 13:30:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740576487; cv=none; b=RAllw7c9JBNY+WCOPHCp+pO4gsjScrKY24kam571yarwnEgH5cLEWq+qZK5EHfX4JQdDMb/yohMAU/X3j2mNtOKRNSzDYl/dTtikiMpeWEH1/c8lVczx/OScWRSZJsoGpe5DLiEvdxgjEtd3vJnj7tZrM7V8axrp2SY3HzIdx60=
+	t=1740576613; cv=none; b=a3NtrU2OVVz20hKphXP+DnwdTgE+0NhHbNg9kmDChqqIYnHcXrK0md6gT6umzVzDTvUzIFCHLqGMwGOR/mtJ2FSgGdAgnoUGQF2HHp+RooSy+4s3ZZIFaOG2m0oUFPdR813eS9mXg2FraRJyiiCeax5csvcOG0aNd/Chbb23fyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740576487; c=relaxed/simple;
-	bh=4SMErx1uI0VODG0W9bmD7QqNKwqgawcXT2PQw8koxuw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VAY4HKKxsK9t7krQKSQoQkUagLokmMK9ZRUtfSiGoLtDb+29MOUVCxP951oN+mfm6J9bPvf+ZLRHSXf30huHblORLUv4TUFkrCCnOLbEN5RUc58MXIRcqDu3NTqI5vnKjgKb4veGvw6Hmr9ZflKpqYklapFFKC2sBC3Z9YKPaAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XwHN9ZBF; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-22101839807so38249455ad.3;
-        Wed, 26 Feb 2025 05:28:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740576485; x=1741181285; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cMjnClbcooN3I5ewM0eirgAPMoJHCUEMpPh0j1XhfpA=;
-        b=XwHN9ZBFcOXWBlLMEU0C3rb/b5+97dygGC6HpznaSdFGtePD4oDlnwXjQx7kLT9trT
-         McCQILo3W896dl5nAlD61++GytnipYIX4g7Op7hVoVUnG/qjSR0wvFxmChGrRbMiuczc
-         em5tufIveeZEq1bf+TMvpnmVlndwPhgznKuktkvNp4ldoogT583MzA0WKiuqcdQ2is/Y
-         zHnPdJ9Gys5JKI5xFQIyMK8jpmGLfI5Cn/fsoMe+cpeafb2dMLajs4t5h38zJ+YG2Lv+
-         Jcqy5ErWVO30Ejv+NZkmdPFl/GvFfORE+63EO/sTUNdt9Q9atVs/N2uRTZVGr2KXVQal
-         NlLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740576485; x=1741181285;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cMjnClbcooN3I5ewM0eirgAPMoJHCUEMpPh0j1XhfpA=;
-        b=FKkkSf54L4Cqxjw3hf6xM6V7I/ObWGTn5rNJclzqQBRjocoW1ZtBuMNWXsXCo53VJf
-         EPD4qBGXnJ9pjT5Do3N10kON8jkn4rlIbM48wh/2AFbKjy2yqyLyQTdhWouAHzkOl8Qe
-         EiMss1UL/Rz/TKKd86Z8NHfYlMKD+LDUVMuyZdU4zil0i9Gch3Av276LOSr0Pmu6ekIg
-         WU+IegJffJz/tTU2JZpsz4oaSMHe2KZGZ4oWIGXQqP7CYYVwLqczGW/o33MBU1+7lGJo
-         iTbLrVI+D7TxRr2R1cBX3KahdEijU3OY+WV5IFBw9lN+2XyW38hX49NABGk0SNG0vOMP
-         2xbA==
-X-Forwarded-Encrypted: i=1; AJvYcCXWcda8eiR0DR0gNxUP4bhgtCwsYw1lXuOXEWCPAFXHQQCXoemagbnlzZdFBW0oIHjermdq3PTOLWZ6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzecInGHBCw+395DGdySBUBam35PqJXP8w5J5oiAY7ap0JF5EZ7
-	9Zec7kk1ccAuoE7ixPKS6NRoEBzyGXqFC3Jx/k189TiZRHXKD0aJM1iq6grFjq8=
-X-Gm-Gg: ASbGncs8E30Rw7xJE8SSVVqv2ANfxkvHMoMLMCyySlVz1bM7ZPUzwo6zwvxO/U8ADD2
-	q4rr5iPCYvv06Y3WPViBmta9qaMrK75WxRxgQ8f0O0wFiYGnbethAzaEjlWN2h75V50Gw+BHxXL
-	dZAHRDr3N2TxH8DlFt5uqUfhcqS16Jz98LNR8JDx/+zLh6aXpMR/eREEhQe49HO4VC8ILArtnKK
-	TYp8vvx71N5APVs3mFl5kDEHWelpFmfMHw8oWK7cTv3IA1t4Oe8yfBA3R+PgeFH1br6g/lYJWb7
-	FPNsnihl4a3N2BV7kChJPAYTRC9wK7Kc+xkTyAq9d9iB9LEBtUu3Lhmc00tSP53WolUYTSHL
-X-Google-Smtp-Source: AGHT+IGXCwstq/KHZvkH2IYKiTn+Do+Nf4hSI/Dsu8V1QhkCFotD8b+ZNhay2Dfwe1oDMqpqIpuKlw==
-X-Received: by 2002:a05:6a21:348b:b0:1ee:6d23:20ab with SMTP id adf61e73a8af0-1f10ad33426mr5136409637.10.1740576485322;
-        Wed, 26 Feb 2025 05:28:05 -0800 (PST)
-Received: from ?IPV6:2804:14d:887:95a9:987e:93bb:37f9:580? ([2804:14d:887:95a9:987e:93bb:37f9:580])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7347a7f9b7fsm3464473b3a.100.2025.02.26.05.28.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Feb 2025 05:28:04 -0800 (PST)
-Message-ID: <0138cf8b-7458-466f-8d0c-55c9ccd0a932@gmail.com>
-Date: Wed, 26 Feb 2025 10:28:00 -0300
+	s=arc-20240116; t=1740576613; c=relaxed/simple;
+	bh=sCJ6jojoxc5SezhVGVdeO6sZxq4gq9c05ziXwDfmpkc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NcZQ4oSsGL0wV9ohLSBER+TclzxlNd+r82gyctd/gNg6S6Md8mykJCtM5Tq6g3UdKVGajtyS2Ae6hHouoB/3Q/zIucG6bsu6jLTV1GGX0StKtQo/6rcmHfIqqU54amByBlqu+eAdgSXSx4kU8BdzPmzsZswLtWfBPLJRay5YXzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=B24RGItM; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1740576609;
+	bh=sCJ6jojoxc5SezhVGVdeO6sZxq4gq9c05ziXwDfmpkc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=B24RGItMUUWDCFWd7lymvY6aJ7jX/Le5eCguhwra3Hjc/FnVrPoKrsceMDm0N5tw7
+	 tsvF10smahGg4io7pJeXc6UcfoWhp78IA+OAJbzE0pzHhwG7bMDKWkm1Dm22+szeyi
+	 cnGxha5uPB4hLJSHPJiS4C1tJPx43dkfsP9n0cLCBUhtP71P68LUf88l3998f8TFPe
+	 Lxdgeq/lwoRc4L4q/JtOrnY655lYdR+xIky/IJ5KN10q/QjPjGT7F1NCGL2IacQCce
+	 vUgtIR+LpTT9PjS/SDrAMIxstCaiG1Pah6P2LaD9g/XAIA3MoXHo9gUORhFNw4Hdjf
+	 qO8qW0rZmaBIQ==
+Received: from notapiano (unknown [IPv6:2804:14c:1a9:53ee::1003])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A072317E05C1;
+	Wed, 26 Feb 2025 14:30:05 +0100 (CET)
+Date: Wed, 26 Feb 2025 10:30:03 -0300
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Trevor Wu <trevor.wu@mediatek.com>, kernel@collabora.com,
+	linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 7/8] ASoC: dt-bindings: mediatek,mt8188-mt6359: Add
+ DMIC backend to dai-link
+Message-ID: <9240905b-29af-4ea7-8ff9-a0cb2233da72@notapiano>
+References: <20250225-genio700-dmic-v2-0-3076f5b50ef7@collabora.com>
+ <20250225-genio700-dmic-v2-7-3076f5b50ef7@collabora.com>
+ <20250226-ludicrous-seagull-of-music-a40daf@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Convert
- nxp,lpc3220-mic.txt to yaml format
-To: Krzysztof Kozlowski <krzk@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>,
- tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- skhan@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org
-References: <20250226010956.50566-1-leo.fthirata@gmail.com>
- <29ce9b9b-3993-4b88-a201-5d67050d53ae@mleia.com>
- <7ba7cf93-e40d-433d-bba5-c43ce8510ae9@kernel.org>
-Content-Language: en-US
-From: Leonardo Felipe Takao Hirata <leo.fthirata@gmail.com>
-In-Reply-To: <7ba7cf93-e40d-433d-bba5-c43ce8510ae9@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250226-ludicrous-seagull-of-music-a40daf@krzk-bin>
 
-Hello Krzysztof and Vladimir,
-
-Thanks a lot for your time. I really appreciate your feedbacks.
-
-On 26/02/2025 7:14 AM, Krzysztof Kozlowski wrote:
-> On 26/02/2025 10:41, Vladimir Zapolskiy wrote:
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - nxp,lpc3220-mic
->>> +      - nxp,lpc3220-sic
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupt-controller: true
->>> +
->>> +  '#interrupt-cells':
->>> +    const: 2
->>> +
->>> +  interrupts:
->>> +    items:
->>> +      - description:
->>> +          IRQ number.
->>
->> For sake of better understanding SIC1 and SIC2 interrupt controllers
->> are chained to MIC, that's why there is 'interrupts' property present,
->> and here 0/1 interrupt values are for regular IRQ, 30/31 are for fast IRQ.
->>
->> Also please add here
->>
->>     minItems: 2
->>     maxItems: 2
->>
->> I believe that the 'interrupts' property can be just left without any
->> given description, or just give a simple description like
->>
->>     IRQ and FIQ outputs of sub interrupt controllers to the main interrupt controller
-> If they are obvious, e.g. maxItems: 2 would be enough, but I understand
-> that these are distinctive interrupts from dedicated blocks - 1 and 2 -
-> so they should be listed.
-> - description: IRQ/FIO of SIC1 (or whatever name is here better)
-> - description: IRQ/FIO of SIC2
+On Wed, Feb 26, 2025 at 09:22:29AM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Feb 25, 2025 at 11:33:53AM -0300, Nícolas F. R. A. Prado wrote:
+> > MT8188 platforms also have DMIC DAIs, which were previously undescribed.
+> > Add DMIC_BE as a possible backend for the dai-link property.
+> > 
+> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > ---
+> >  Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
+> > index 362e729b51b43ec16716aee70ad736420def81f3..8c77e7f68ad7b6f5b88b53cedccb291139a2eeea 100644
+> > --- a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
+> > +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
+> > @@ -62,6 +62,7 @@ patternProperties:
+> >              - PCM1_BE
+> >              - DL_SRC_BE
+> >              - UL_SRC_BE
+> > +            - DMIC_BE
 > 
-> Best regards,
-> Krzysztof
+> Any reason why you keep adding to the end of the lists but not
+> alphabetically sorted? It's enum, so it's expected to be sorted which
+> reduces conflicts between edits. Last commit already broke sorting :/
 
-If I understood correctly, the first item of interrupts is dedicated to IRQ type 
-and the second to FIQ type. Then, I was thinking about listing them like:
+Well, I wasn't aware enums were supposed to be sorted. That doesn't seem to be
+documented anywhere. In fact, in example-schema.yaml the enum is not sorted [1].
+So it'd be great to update that example to follow that rule as well as
+explicitly document it. Maybe even a dt-binding check that checks for this?
+That'll make it much easier to learn about and follow this rule :).
 
-  - description: Regular interrupt request
-  - description: Fast interrupt request
+I don't think it'd be worth it to send another patch just to fix sorting in
+this case as it's already been merged, but I'll keep this in mind whenever I
+send future dt-binding patches.
 
-What do you guys think?
+Thanks,
+Nícolas
 
-Best regards,
-Leonardo Hirata
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/example-schema.yaml#n52
 
