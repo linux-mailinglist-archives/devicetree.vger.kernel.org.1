@@ -1,99 +1,121 @@
-Return-Path: <devicetree+bounces-151571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DBC4A463D2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:55:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB735A463E1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:58:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52064179E79
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 14:55:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE609170ECF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 14:58:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A2DC22171E;
-	Wed, 26 Feb 2025 14:55:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF8182222A1;
+	Wed, 26 Feb 2025 14:58:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="j5dP5LnM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EBCD221736;
-	Wed, 26 Feb 2025 14:55:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E76DF221732;
+	Wed, 26 Feb 2025 14:58:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740581743; cv=none; b=uFA0dKg94Wr79ecC6Zr0JEo0ZFuLwfmVvpymObJAaNL7P/iPI1kDEnAPmf+9jlsxt1y8HTa6QGRyfNDysu25D28cSsuYWzQGSj3LNekN8ZajkNK4CDxJSHuul2EZj0rxI00D4urOjbim9RisRvTOuZZhSi5xcenWa7q7gdphK7E=
+	t=1740581924; cv=none; b=djP0Kxxd+Jv1CF7rve/jdYMLGteYZ0QHfZJCMIBIXCFq/wpp0fj7FDOtOOc2WqowQtVWuT/z96/aK3pURkeno5qqjoyFU9xeU3CUSf28FjI+Y7vvBn6zVIMg2G0orXlTMAARt7kydg+uTtdgfEmBSP09W/6gSB6NKxPeIhNhtnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740581743; c=relaxed/simple;
-	bh=kqe+6WP8zwuAM8lStwswFPaBIe7m1+DTxkz3F6unuCo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YVAL1NGPYylcy51VEB0Id9udYiAqgpY79q1XJtsCbpCmMJpx1rkWfxSsIHGeOxp55+vYIJfbAedaWAxeOhCjbW8zMexaR7J9U6MqCDBseSAeNZ408jjewx89dpHqIIPjR3goJqRWulg0EdhctlTWIb8Ip3DKvdGRibhVAYkMmN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2233622fdffso13127965ad.2;
-        Wed, 26 Feb 2025 06:55:41 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740581741; x=1741186541;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Qygdnn8/rGb3p7MtdeT/GcR8Vsv7irPMGDAbFAo9qWg=;
-        b=wVftFEvIU+SPPR6OVdvlIjsuOXVDDNHiB1panqSR5eoC0X7EZoU+xCbVxPIReZSJeX
-         iNq7b1s1HpSYNd+wWli1YwP/Jp+AF3a0gqp+AA9QNHZIfBc6+Db1jKeWnl9Fu8ulTwLd
-         WR/u76D2J4M9MI7NuK1g0ZcB7upRB0EeWSA8bvD/qyKw1qO/hUG8zmI0/vI2rjgvo378
-         1xfaHtLo+cVBJjkJjhITNAPH+YPfScQiRGnuFkSvx2TaoushX+vIdw08oozhmH6CDA84
-         mcwdggTSy4wZUaKoyXWRUbyxsZPzlHg2f723u9mGSjGboxoKd6GimJqnmDLc0JApQru0
-         SHTg==
-X-Forwarded-Encrypted: i=1; AJvYcCUhsQVsfQaoOQ5ZeT2yIYfQebBpSlvHOjbRVizV9SwatrBShSTF97nLO5ngUUm181z/A39raEpTplXJ@vger.kernel.org, AJvYcCWtRCCqNVcWIk4BVRrjOJaKzHG4LIM+x3A61jwRnIPanTdVxs1zc7vEQe8YztBZANCAvOeNcfXUFbBqynz8@vger.kernel.org, AJvYcCX7nSJrNm9watK4L3sW8nx05SY/3VRHretviFD1z6KvbVSo9sn1WUnmfaG1r/ehnv0MNAt+imTqn0Yn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHc8n76jQSr2mDOmUy538+GAVgiU0p9bWR/0ftK2nyXVPpSJ+P
-	t9zG63SHZHIoTD7zdbOJh90PBE+scmrATAIpGPgzqW/ue/yrbFzs
-X-Gm-Gg: ASbGncv+XdAcMVItF7hYESmikrG2SF7EjabTdxtZfeSuHS3jBXg94QALBt0tJKNgIs5
-	+n5DtEmCEisH78XjIeSuob9aUUdSpWLcAvQpaCk/kbrtsP3CJD5XZDucexfq0bk5nnYdsxRimo/
-	C6Yju+WJYxJwgcuRYRnirbHULH/vDRmW0TeOJvewWlHHIST+wCFDCoEbYho8PQ3YaT1HfSNpyYX
-	yCT/GIRIpRJe/XtVNVR3cYMbibEpMjBu19a4p7y1K1aCdUB8WTMukMcGiSIKqXjZyc0l3YapOU4
-	8ReerGQxr69miNRycsgj/IsvfGxDdUFKzxZlH+/veGAFyEjPohgUb1QpbKsD
-X-Google-Smtp-Source: AGHT+IHpReDZSPPm6VjjIZPy7MkI2n87DOyqv+KvtWFP7LuZsR9/Xzl8+SaiWZs9PmK6WFRJ4senxw==
-X-Received: by 2002:a05:6a00:1709:b0:732:2967:400 with SMTP id d2e1a72fcca58-7347910977emr12444159b3a.12.1740581741225;
-        Wed, 26 Feb 2025 06:55:41 -0800 (PST)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-7347a6f761fsm3544593b3a.47.2025.02.26.06.55.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Feb 2025 06:55:40 -0800 (PST)
-Date: Wed, 26 Feb 2025 23:55:39 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.li@nxp.com>,
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux@ew.tq-group.com
-Subject: Re: [PATCH 1/3] dt-bindings: PCI: fsl,imx6q-pcie: Add optional DMA
- interrupt
-Message-ID: <20250226145539.GA3691935@rocinante>
-References: <20250225102726.654070-1-alexander.stein@ew.tq-group.com>
- <20250225102726.654070-2-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1740581924; c=relaxed/simple;
+	bh=OHpRm29ejlVV/G0aHNonMP2Y2YbznVl5ftbP8prKd7c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Vt+PdWt1ggqTSgf0YhN5D6b4xBzlTmFiucjupUThl4ixeqKMLT8ZThQrwPPsIGtqjg8ONb31ili2S5oYkqrFkDfx4szB8aMEYUmetwHD6GAyhyTzjAG1f9HcSWhWa0G3On8K7dEIGrBuRzBeipk+IL6wGTCdrbyvJGP3ThGwJVw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=j5dP5LnM; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51QEwTxr1494032
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 26 Feb 2025 08:58:29 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1740581909;
+	bh=Wl/RXJwnlW0HcAbSZbnsW1EyC94rw8Ynnk5XKByQikc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=j5dP5LnMQM7gc5c8CJtu7tCaBhh1NK0I534IFjJzWTP6NACP1kZWlqJcVMdi6jNOF
+	 7D/cRRUf7FqYAZBFLSSafVJGf8rZWYKi4ZzhMO8MclirPHW8QFErQPS2B+3y3bByUL
+	 FM3nOoMh7ggxuMDzTOvDaJG+r6rE6wtjdHdbzczg=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51QEwSCI100560
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 26 Feb 2025 08:58:29 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
+ Feb 2025 08:58:28 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 26 Feb 2025 08:58:28 -0600
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51QEwSY6121157;
+	Wed, 26 Feb 2025 08:58:28 -0600
+Message-ID: <8cf95899-bebb-46a2-843e-debdfb5079ff@ti.com>
+Date: Wed, 26 Feb 2025 08:58:28 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250225102726.654070-2-alexander.stein@ew.tq-group.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] arm64: dts: ti: k3-am62a/p: Add r5fss nodes
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Tero Kristo <kristo@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>,
+        Hari Nagalla <hnagalla@ti.com>
+References: <20250122-topic-dt-updates-am62-wkup-v6-13-v1-0-f74835b91da9@baylibre.com>
+ <c81ccd05-4fb7-4ec0-8cc0-c59ac4dff91e@ti.com>
+ <qlqxmqluqrw36bkjaa7efcsk6cinyr2rxvznfhz6dopeu67dsf@w4lkuq65uwno>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <qlqxmqluqrw36bkjaa7efcsk6cinyr2rxvznfhz6dopeu67dsf@w4lkuq65uwno>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hello,
+Hi Markus,
 
-> i.MX8QM and i.MX8QXP/DXP have an additional interrupt for DMA.
+On 2/25/25 4:28 AM, Markus Schneider-Pargmann wrote:
+> Hi Judith,
+> 
+> On Mon, Feb 24, 2025 at 09:06:56AM -0600, Judith Mendez wrote:
+>> Hi Markus,
+>>
+>> On 1/22/25 3:54 AM, Markus Schneider-Pargmann wrote:
+>>> Hi,
+>>>
+>>> am62p-wakeup already has the r5fss node defined, but it is currently
+>>> missing from the am62a-wakeup domain in the devicetree. This is added as
+>>> part of the series.
+>>>
+>>> For am62a and am62p starter kit boards the r5fss memory region is added
+>>> and referenced for the r5fss core 0 node.
+>>
+>>
+>> This has already been sent here:
+>> https://lore.kernel.org/linux-devicetree/20250210221530.1234009-1-jm@ti.com/
+> 
+> yes, I saw that recently. Could you please cc me on the next version?
+> 
 
-Applied to dt-bindings, thank you!
+Sure no problem. (:
 
-	Krzysztof
+> Thanks!
+> 
+> Best
+> Markus
+
 
