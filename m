@@ -1,229 +1,204 @@
-Return-Path: <devicetree+bounces-151256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 329A6A45208
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 02:14:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D068A4521D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 02:21:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5084E3B0D7A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 01:14:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C6D9189C340
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 01:22:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34018153BF0;
-	Wed, 26 Feb 2025 01:14:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0FA1862BB;
+	Wed, 26 Feb 2025 01:21:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="GJeLbRxN"
+	dkim=pass (2048-bit key) header.d=cixtech.com header.i=@cixtech.com header.b="HWkeD93j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011051.outbound.protection.outlook.com [40.107.74.51])
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2134.outbound.protection.outlook.com [40.107.117.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F12E18DB00;
-	Wed, 26 Feb 2025 01:14:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D4FEEBB;
+	Wed, 26 Feb 2025 01:21:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.134
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740532464; cv=fail; b=OkLaT1ZvWOK6RncpqTON8QBKUfeeHo62sNAHrmyrCMq8iRa/fc0kJ0LzKyM6C1ZGIOVr33xk6HPRTUJtU0E+EVmh5WuZDgfa1nRBPSXprzIVPaTRKCHKVBrYvRYEhNNkuXJjWMzfVxGlwXSzJNv5z/yKI2koN6KRMp3aNcZg85A=
+	t=1740532905; cv=fail; b=NMXnHWyPh1tU6CP3QGCDabqySBmzKFc6GfI4mmwDCLeIbddlBsocY+4KRcoKPRdCejts0Mb9gjnviB3lThqdpejQRmigXibya4PHd7jthpAV4VBgfP2WKxcATApbsXp+2oY5WKEV14KQXepjJFzKOBiTy20O1NWv79Ci0PdoGsM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740532464; c=relaxed/simple;
-	bh=o00VCQYvXcO2oAYd5m6FXEuodtzzzwYbY4hFSB0cAZQ=;
-	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=BnuwUx4qpt2r52zo4HToZFdLaNmnvhamQP0KUEilc/bslewye2k/jr3R16vOC5k/fqnn3Lp1NOCgcEx34f071vyMcHj0ON4hKwyzcX25iSJ7J9AuoTdYDG/ZOg5UJVBT/bwD+iNHYvFGxYLhmUVzevZnXQ8VMlzVgYBYkk+j5gs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=GJeLbRxN; arc=fail smtp.client-ip=40.107.74.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+	s=arc-20240116; t=1740532905; c=relaxed/simple;
+	bh=qkkqioGKnFRl0/dx96wfLb+UIxYRfXOoNSkBTNitF0A=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=k8ETP/XEhZbxfBwL81QcfadBTFc94EU0JvOSH/BqgyPg0ouVUmKV3oHFunAERP2oAEErCdksgZbn3wD1hO//jAFCyeg3+u0WroGMv3czwfpUiL77Ybkc2mMZn8U/yJvQAkpIdRCObJjt6BygDrddZsaNPrlo0kRZN4TWf/zV+jQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; dkim=pass (2048-bit key) header.d=cixtech.com header.i=@cixtech.com header.b=HWkeD93j; arc=fail smtp.client-ip=40.107.117.134
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=s0Aqof7IU4XDcg+Sg0kUgEbaMcHdkHEIASAR5yDWqLTHSKLorK3Y9/PwcndoysTV3nNa6LeCRnxgRFLD/3kEZNOnDp3pJ/1azM4sTfLzk6N7yT4jpO/B04O/xk+odgm8IJQCSJet4fmDJN3T5zE7mvTJ6ZiOfou2Cd0fng7Du6mGQxrmAM5xvj0DMmffK1W52xcpjoHFOlsvdw1xWORqEOn3S4nIXhi//+T24l/FCpYXJL1HP6QEkWG89R7uuduh/xN8QBi6Cql6dLvrBIe0ftwSPvhsy+JshqmUkr53Et09hbElBt91Qhc0VMxVsniyIe5OGSvL0Yw5yL+iSq4mDQ==
+ b=Pnt883Ian69WqNiYPdzI2FRumfHnqZqBTDlKYm/9Q+yaH33zOQVMxrSRLkODfaXNziMYcySRAGo44LF/Y7uxhmbkI7VBjpVUXSU7jkjvWx7J8dSFZ3HQGQ35j3V/aMrlIjxl+Yri3dCbQbarJCFob+Ig+buGbUd3xSUnWyDVWJ2dZRq+8UKptMrrTA+rKUXnSN4pNGJ/vQm9Wm/QT7SIhV6Dl002fG9ksX1qDosWAsmINSXeacGWgOYdPR4Nl3SArK/QIWrkoYaNlEqHuLvojgymW08QlHqFnE3pBPOVrhmBk/H/R2YU8xxdQ/FFh6aBvG3AOJyhbi9sySijCp1KxA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R7zaSWw6FmY0E0Rujx9PGo2q8mZHstDo8RanybewW3M=;
- b=xcpEPcFcEcLwS94NNS9o7JNXS6vqVarPkbD5IlpzOpnDVNTPR+sYBZLMrP0cpQf1gFVo8ZInERGnl2JQadK/YGVuiO9RWOIhTu+JFNkZ3le7GQhCno+DkoxWU4ECWBvmOhiS+f4dYdVpE1W6PmOHewa9y1PiHNWpM9UWrtXYdbQ9CdNUaLvxFXjmiRhEO6qFe/mD2wGSZFUjBS9BOOlwU3LteVAGe7a/MDRW7sYue+R9hwT2mUCXx8lHQAbqSZCf8FrcwW+rWdhX7jBP21SsYmjR+QI4o62aAA1uK6J9nK21zAA/z1bYBdPBBvhqOWL1QaT2v1jeOmeFSHPLRuo7iA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ bh=nXIAsALo5yidsCybdoy2QGQtOmiPggHsyyymIqPE8JM=;
+ b=pilv/eGEgfVyfhV70q3082jSslJ2x4YCMqNRQDgJqIs9dXQDzKeSCL6loNmiTjCq2hFTGKf3bX8XMf6x2jwTXe5qiaebDlqbO9NMuRavu3d0i59DgTHgKh//Kstx/qzpEfUc6EfRFjcPwHhkgx9RCE0lDIZaUpHpauREhXaqdiIKmyXf7po6W/pSVwTHVFzKeUsSJ2hIaCO6C6tj4hRQflyFL+uYY3RPMSMAJQyEFGTh1JknPK+AhOcnWe/0nAqH9R9aQDDFD95Z32gytmQia9RnQNm1iPBJ31OrrBRex+P1iZpcwhHmB/2Klnh6IUsemVNwOIwn0Mg0x0qZaOX1Rg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cixtech.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=R7zaSWw6FmY0E0Rujx9PGo2q8mZHstDo8RanybewW3M=;
- b=GJeLbRxNedNgfrtn4MHb7cRYoqfebyTerCggGtMy5R2hagnfERgAMMR3bp+TWjwesf/ELbyEArUFuSSYWDx6xVCpoEqbzM7yQ4pZ+a/KBgNa/TYrMps1gUvnFsSspLsyzqxIUIPmXVYovcIWoyKMdndhBfWS8hksQiLSXwoxrvE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by TY3PR01MB11771.jpnprd01.prod.outlook.com
- (2603:1096:400:376::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.21; Wed, 26 Feb
- 2025 01:14:17 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.8489.018; Wed, 26 Feb 2025
- 01:14:17 +0000
-Message-ID: <87h64hh5hz.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
-	Sugar Zhang <sugar.zhang@rock-chips.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Robert Foss <rfoss@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-	Niklas Cassel <cassel@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Linux-Kernel <linux-kernel@vger.kernel.org>,
-	Linux-DT <devicetree@vger.kernel.org>,
-	Linux-ARM <linux-arm-kernel@lists.infradead.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	David Airlie <airlied@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Algea Cao <algea.cao@rock-chips.com>,
-	Alexey Charkov <alchark@gmail.com>,
-	linux-rockchip@lists.infradead.org,
-	kernel@collabora.com,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v7 0/3] Add HDMI audio on the rk3588 SoC
-In-Reply-To: <3337030.aeNJFYEL58@trenzalore>
-References: <20250217215641.372723-1-detlev.casanova@collabora.com>
-	<87frk2sumw.wl-kuninori.morimoto.gx@renesas.com>
-	<8734g2sg4t.wl-kuninori.morimoto.gx@renesas.com>
-	<3337030.aeNJFYEL58@trenzalore>
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Wed, 26 Feb 2025 01:14:16 +0000
-X-ClientProxiedBy: TYCPR01CA0201.jpnprd01.prod.outlook.com
- (2603:1096:405:7a::18) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+ bh=nXIAsALo5yidsCybdoy2QGQtOmiPggHsyyymIqPE8JM=;
+ b=HWkeD93j4TR5d+Z3iukS0ZVaqxAQMvALtQxXvRKidYpw+ykHloys+4Y5Td4BBy227j5D31MZtU2UIiMjxEQKOse8AFdn1XE46sZrG4SiTE9cK8B5Wx48sPhwOODrr11NTUYBDdnVAMBmY3oU5l7HtAbzFEcmBdo5UThkzWy6cpl/r8sEHwZQGvPBDpsFP1CN36snsItyUU89hH0XzzWMJ95I3F6ViaLmS2hr15ya+oTYjb6CAalFtddbsrReut+z7ZQFP1GFhWOwXqOHk9I414tkKiL6Xik4jFrws+Z07NNxkYrCTToC53NGu1MWYsgm5a6WiGkIYWdFIoS/YH+f2A==
+Received: from SI2P153CA0033.APCP153.PROD.OUTLOOK.COM (2603:1096:4:190::21) by
+ TY0PR06MB5634.apcprd06.prod.outlook.com (2603:1096:400:278::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.16; Wed, 26 Feb
+ 2025 01:21:38 +0000
+Received: from SG2PEPF000B66C9.apcprd03.prod.outlook.com
+ (2603:1096:4:190:cafe::bf) by SI2P153CA0033.outlook.office365.com
+ (2603:1096:4:190::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8511.4 via Frontend Transport; Wed,
+ 26 Feb 2025 01:21:37 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66C9.mail.protection.outlook.com (10.167.240.20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8489.16 via Frontend Transport; Wed, 26 Feb 2025 01:21:37 +0000
+Received: from localhost.localdomain (unknown [172.16.64.25])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 6683841604E5;
+	Wed, 26 Feb 2025 09:21:36 +0800 (CST)
+From: Peter Chen <peter.chen@cixtech.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	arnd@arndb.de
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com,
+	marcin@juszkiewicz.com.pl,
+	Peter Chen <peter.chen@cixtech.com>
+Subject: [PATCH v2 0/6] arm64: Introduce CIX P1 (SKY1) SoC
+Date: Wed, 26 Feb 2025 09:21:30 +0800
+Message-Id: <20250226012136.854614-1-peter.chen@cixtech.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TY3PR01MB11771:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2c16b9d5-e7aa-48d3-3a64-08dd5602e3e4
-X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66C9:EE_|TY0PR06MB5634:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: cf7f2b80-eaff-42a2-6ff7-08dd5603ea5d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
- BCL:0;ARA:13230040|376014|7416014|1800799024|52116014|366016|7053199007|38350700014;
+	BCL:0;ARA:13230040|36860700013|1800799024|376014|82310400026;
 X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?ZSb4NMpYNo49TkbgjefhWLPadjvt1IYBNGFKJSQ4m1CR5NoIi8ZtOzQ8qzQT?=
- =?us-ascii?Q?dtptFj7xjsuCu9hmDYpZpv0gAtRgLiciW2l60mBn8A25ESaltc6OV7u3xYlj?=
- =?us-ascii?Q?rFUMcJgpacn7ZiXQJO7ohfa+uICrwP6c/3p0Z3XP37cb4dlgFSPYGIhQt+1C?=
- =?us-ascii?Q?u43Vri46vB1TVc6kHRJyuMuLw0Y8/cEWseNaJ1HaAW1fEcOx2zTuM2a7FsBL?=
- =?us-ascii?Q?NXhZ5hwHxrigYAnbIrTvp/FAHtDT+F7J/r0bkCBqA3JSpJ1u3/RFnCCCxX0n?=
- =?us-ascii?Q?zjFHKDKSO3Jk7SX1op9o6/hu3ul39IFJL34UbBRd09fJjuZT+5XjTc1hkLh3?=
- =?us-ascii?Q?vIpXC3DUUIT9WXCLKhI2Hc5ifb0XnuYv6vB4+fty/lYj/WEGn464YPvN8W/G?=
- =?us-ascii?Q?TNnQLNiliTJx+KDaHUVTQ6DDvCGxtmH+CO6Z2cuXr3MohoNtIu0v/J9soxCJ?=
- =?us-ascii?Q?ircNDUDzLVwMM91H8ACIJG1hTHEBSnL5/wTEkeQCqDR6/dQVpLlm1dMLyrCu?=
- =?us-ascii?Q?tCmje4EhZmsVZ5wxhn4DW7jYmGQZXZffX2IGOt880mRD+nHPiuTQbhYCrTTp?=
- =?us-ascii?Q?74QkTOQPxYbhxyA156QS37ZgheivXvYI/mj3dIIOvYSHlcfaKzAAznKnGp+u?=
- =?us-ascii?Q?f2ondoN8v9b5pGYUpWto0BRjdgPQ/Jp3hAzTwSPJ53ODyfpMEyZ4So3LgJUG?=
- =?us-ascii?Q?8ufrpgwrW0O5Qt2W/CQZ1eV3PKUqOvDU+DISP18PK14Y+gPJjvFJe3WcQ300?=
- =?us-ascii?Q?r0pY5JVFzPMjDK1H3wrUCWOmnrlxK47PYnNENUMZkcyPXELhf4treGz0bkq5?=
- =?us-ascii?Q?t7kS2jfuaqQ8wUn01C01a/LLGohKz1XL7SkAysDmuKWztxiWSQlJMQz3S0pe?=
- =?us-ascii?Q?IxgdsAu1iQ7bkwAEaMdfxaNUO46bHzMB20RW6I5CeLFNXgSBLu7QQpkRM3hA?=
- =?us-ascii?Q?JFof30cf1CKFaM13h98Mq7XNnXq4Yp9yQDWW+mKo2DakSbsyJTbTM9I/gBqz?=
- =?us-ascii?Q?cIe63tSkMlO8RlSM/pyzSmVcZQ1Y4iG7ND6rmG4LllSTHHqQ42jvTLX1x4xx?=
- =?us-ascii?Q?jVWG4wmfxvUo3XRnS8RBowCMoWI0nF2V4Kak5XvZddHVP3rBiiIznw4XSYsw?=
- =?us-ascii?Q?WHbjjjj+SaD7dB14SnMst1/JDhsyVBxoTTQBWXjx126HgU56xDa3/ZVhU65P?=
- =?us-ascii?Q?HcWBFcPFkJ09GB3buuSRaxtESKgnw0yjjNhaSnfcXzYBATfLNnkDte1saRFF?=
- =?us-ascii?Q?F2jnd2A6R530rE+5dszANdsEzbvDSiHMvEaUY2vmRJ90x5ziFL0qp2o7GRZL?=
- =?us-ascii?Q?sVIGECdWcBPEhJiX1eujQhNh/uiumtWmMaExyXke/X1tYnVrqOKXhtmagsab?=
- =?us-ascii?Q?b6M4E7X9VprLaO59Gbs/B8HCd7XqKjC/8KN+BY/nEgZ6rmecuEPPvi1/iMe3?=
- =?us-ascii?Q?n84Pukxq/1Fv/gJJeywYADruer/FhXWv?=
+	=?us-ascii?Q?Djnj0t/qH7RLfisOGhTX0NpRBFTofTAQIxReivnWNJCnHybtMUXjg2qS34Hf?=
+ =?us-ascii?Q?us6IlHS8infWVzEzJKvYThjHat6hHMibPzvZKXLaJZbSjyEYa9YK6SGIsh5M?=
+ =?us-ascii?Q?d8DindyCMDsLsWBF7P2Xe+CXv0EEDxgjYaxqd1F8sfcNiuSDfKleoSAz9fIo?=
+ =?us-ascii?Q?a8RHHp8KqIHwGTGpqqCmn1qYofnCsXIpwSEjM2J2zEcKVx7ZPtFVUyO8HIDc?=
+ =?us-ascii?Q?K0i4eoVLnoxSpULKEpK6KsrmkGpzi90jFDqFPBW8+T8EkjxsPs9jwPEsSYFp?=
+ =?us-ascii?Q?Zf4wQSZU0HDEglhLrBnqzpxSOavZdjCKaAWUu0KR319QpydZMDjh78J4z9O1?=
+ =?us-ascii?Q?owIy6VfiroQCVPlaOqFX6UpANkZgFgjCtDQsXsfZFk3IAUwN5pIfQBGtmD4q?=
+ =?us-ascii?Q?fVZTw6ap9t+C7Ji3JhfTPE1yuHXxWcOZ4JtFta46VUd9kg+582DaE0JdzT6t?=
+ =?us-ascii?Q?Dn6TuM96otRsKq0fKJt0OyeHJIXVfzp4D6V/UkZQhw1AacshROv5BwkFU9D1?=
+ =?us-ascii?Q?dVsbH74FhvNNLofk5qopQqx9m8Y80PHzU/vMWVQSkgbZViCY6TUXiThdAZDd?=
+ =?us-ascii?Q?C6X2HnEYS3AqIPSu9tgcUratlQ0L3xsfRdzPG7pUWj4BTQxRCESFQaL7LFFa?=
+ =?us-ascii?Q?gTnPf4HBmaCvIIFygaCSjZhJjOAZu0RvjN7V+9szJR5SrZlF94Kvn4DVXARx?=
+ =?us-ascii?Q?1vIfcxPRV1ouHQmbLkCPS8K4CQ2KKPVmxjmDgLCAKDHrvuQBBjYbKYPv683Y?=
+ =?us-ascii?Q?3/9807KvIhCvmeXBk1VrCE/N8t380ixjH+u/inYBWeJ29CsLDxwmMdHhy9m1?=
+ =?us-ascii?Q?pWxtfMpIzmLrQFMfY4Zi+nulep0Zj+fST5VumGJgJ50Ql8R1vHKJ3wrrtF81?=
+ =?us-ascii?Q?0hsr/ncOrG2iojBKkqiEJz230Qwx9OvvfdMb9aB0wCw29JrUs4JHG0F3Fpeq?=
+ =?us-ascii?Q?v1y81LfYF/k70oL9mxHa9QfAPfcdHm9OxGOO81O1aTvypA0OQFXSJDcloLFT?=
+ =?us-ascii?Q?TteVZ/7buzXody0OIA/P4y4AO4g5/B6EnVjvBlkDbtCenfcs+yPgwDb5ydbI?=
+ =?us-ascii?Q?pVFjZM1lQHNMX9mj/IA5jsNPHp8J68mzJkI98MRbxAalv4DfI84s0dDJH+m3?=
+ =?us-ascii?Q?2Mitsx0v1PMnxCB9ncmuzgJLNK/KZgIPUxiCKxgTgDYgshuMlC+coLwMYqgM?=
+ =?us-ascii?Q?TosSFNPcyynM6n+NX9hl1Jm9PdZ05PX6YYPFPLS3QSBAo4T1i9AjuM1ROCoC?=
+ =?us-ascii?Q?QpZxJXRzznRswhx5GIg1MnagPKrA+Fzi1Z9YM/NhrxxuE8jTDznEEKnb79UW?=
+ =?us-ascii?Q?jXrHM9XdoPbCS8gExyvF4YlGXU7CEQdOnrv3jnIlPY+j38VATivYstZjC3WJ?=
+ =?us-ascii?Q?qGOUqit2CFqExmUeBDw3UY+EhthDOGWc+0sDU7p7G0PutbhaFWK8/glOvsja?=
+ =?us-ascii?Q?3BLUcRa+JWjxpgbazShHYvSMuRAPf33z?=
 X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(52116014)(366016)(7053199007)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?a5a4x6IUj0J8GmI21pBOIUZ7/Qxilekt+a9wLDjnaDOad6zbXmNCGxzCQi1e?=
- =?us-ascii?Q?Oc/jn4zIL78NoDso6Hm+J9pw+MbLqDKcOc52X0il5y9wSGSB7ZNbtS7kv58l?=
- =?us-ascii?Q?brlWXkwwldQt+gGhQHWK9/seHcUu2dQSTKDBq/i/Bh3uwaCipaX+GA2GsF6K?=
- =?us-ascii?Q?gZvtv/dJyAIeE/FHLRwNtWcepv8YuHuCd6q8592x1KXLUOcL39cQ/Fvkaxvp?=
- =?us-ascii?Q?aaQbGVQmBXAkZ5Uflc3LAg2rTu+dR1wfZ/ZWtMLd+uPZxlXFD3YHXRRT2g9L?=
- =?us-ascii?Q?baAWT89RpMFPUVfNixNDkcl57WztcIyUh51PpnGsFazXpaJgCH+gAaC2L67t?=
- =?us-ascii?Q?bZmyN5zKOJB4gJC3mkd9g4GrSA3PNgKVW1gdAuUkrQke8rRaoMn4jUDPcCCk?=
- =?us-ascii?Q?ETqu8LwBg2uEFZFnzmr09JDLZ0Ai5Sfk6siiD/LmedbWpjdx2/vcTS4yrDqk?=
- =?us-ascii?Q?CmxOBeaAcIPIh8OGSZf7hGolr6LhIHg1Wj6hHsnFOufCtFLyd2ts0O6cR9fX?=
- =?us-ascii?Q?u/9H50hZvD4VHnvc6W5nfX+MS3+SY/47q93HcrlXEKbWxqWlkGrIsOwlvyrM?=
- =?us-ascii?Q?J0jLUVmmgcF6vp7pVXrwyKm16d7d9w4x4LkloDGG49ETGiAN0FTjd9Utnql8?=
- =?us-ascii?Q?242oZDf6S13GzX5XChGns0qGXQYqbBcW2g1nGEtRyVqPSK91uKHjoEMKhSZt?=
- =?us-ascii?Q?2kYGgyx+3eoTuUbJL16gYvA3hqW40RgTz1x4XypKmWK9SOghlcBy8g+JC0Ha?=
- =?us-ascii?Q?7aZJyWO7vUUmkLinR8sZDzZI7zvgazN4Rt3/YJkNotFuRc0chD524STAeTMZ?=
- =?us-ascii?Q?cmddnZGw65dkIYKR5tsJIHSZOWwOKhPzwE/REPtocKCqRIXyG8HARzr3TuCP?=
- =?us-ascii?Q?6UYAbcOZCkLDqB7Gs5TzO4M1ZuJzxam7Sfzud/bmaJZf85FJYfBCR82Ipltd?=
- =?us-ascii?Q?nwbfZkq3B86B4LF4JEgmeMm5yzBwG87jWYFxwNrGpbpS0uCat1/PqCp1juev?=
- =?us-ascii?Q?mFRk3HFzo6CGoPSlNI6AXep/JpFZp6sJRRvekiB+9iJzRWR0Fq/wCVdfUfGi?=
- =?us-ascii?Q?KeLeEuIvSowRdGZ2/18l/2FDcggdRMkNXtjr4KGPw32Tr4szaFUVrrrYZM7k?=
- =?us-ascii?Q?NCZHGZdX/CX5+yuTXXQoEy0HlpL5Q/o+gVXNtPC+e4guddIpUEc2LsdNU6uA?=
- =?us-ascii?Q?zqFGCwVbIMR2Y4VtYxFnm9xlz28wgS3u0sWgwUDsGn0k/OHlNo8kKuH8yQtW?=
- =?us-ascii?Q?dWaxPq/Bcs5WiQRQ2fXULyKbhAriWbi+nzJfgTSCxT9PGTh56IAOsluTAzVk?=
- =?us-ascii?Q?KNkohFliDzkSYnEPZufCgneUGxC3DazBfmEal8pC6XivoXG6uaLCKymovHOq?=
- =?us-ascii?Q?16DrNwX1dFcHdrzWFZwjZyRIXUrE0MAwjDtIFYy4DdqcIfG5GFAjK+33eEF4?=
- =?us-ascii?Q?6HrbEgVfximK4Uyh53oTZLyaIVYNylwYog6XXcirSCW2x4fza9zrEOWiYkrI?=
- =?us-ascii?Q?+WjYVErEEWsULJKnS6sUCgV38Ux+hd5d6iojHTEFijembvWNl9hVyt/DlRVw?=
- =?us-ascii?Q?kaa2SIBLD56srrEPFfrjMGr2RgoCrv0VYqZ/7hde0jy54dnHJMylpCsXCfsQ?=
- =?us-ascii?Q?48K33Fjaf4k5HJakSt6DHTQ=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c16b9d5-e7aa-48d3-3a64-08dd5602e3e4
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2025 01:14:17.1388
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2025 01:21:37.1486
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bT7zs/K7zdnHUQa7CYoqndmUDlTxyWpq4h+VDVawOiC1ac/F4VS87vU145iCsldknQqQJaIA2p9VX0DlW9LMG8HB1td8g85RhhB1+NzMaDhkTi6r4KJ+uskMOyUO3k/9
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3PR01MB11771
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf7f2b80-eaff-42a2-6ff7-08dd5603ea5d
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: SG2PEPF000B66C9.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5634
 
+Cixtech P1 (internal name sky1) is high performance generic Armv9 SoC.
+Orion O6 is the world's first open source Arm V9 Motherboard built by
+Radxa. You could find brief introduction for SoC and related boards at:
+https://radxa.com/products/orion/o6#overview
 
-Hi Detlev
+In this series, we add initial SoC and board support for Kernel building.
+Patch 1-2: Add dt-binding doc for CIX and its sky1 SoC
+Patch 3: add related maintainter entry
+Patch 4-5: add Arm64 build support
+Patch 6: add initial dts support for SoC and Orion O6 board
 
-Thank you for the testing.
+To run upstream kernel at Orion O6 board, you need to use BIOS
+released by Radxa:
+https://docs.radxa.com/en/orion/o6/bios/install-bios
 
-> I got same report from our test team. I'm now tring to solve it.
+Changes for v2:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=vendor-prefixes.yaml
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=arm/cix.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+- Re-order the patch set, and move vendor-perfixes to the 1st patch.
+- Patch 4: Ordered Kconfig config entry by alpha-numerically
+- Patch 5: Corrects the Ack tag's name
+- Patch 6: see below.
+1) Corrects the SoF tag's name
+2) Fix several coding sytle issues
+3) move linux,cma node to dts file
+4) delete memory node, memory size is passed by firmware
+5) delete uart2 node which will be added in future patches
+6) Improve for pmu and cpu node to stands for more specific cpu model
+7) Improve the timer node and add hypervisor virtual timer irq
 
-It seems our test team and your team are encounter same issues by different
-way, and it seems it happen if some kind of deffer issue happen (?).
+Fugang Duan (1):
+  arm64: Kconfig: add ARCH_CIX for cix silicons
 
-> That being said, I'm not sure I completely understand why that extra line fixes 
-> the issue. Is the __free() attribute smart enough to know that the pointer has 
-> been copied and not free it at the end of scope ?
+Peter Chen (5):
+  dt-bindings: vendor-prefixes: Add CIX Technology Group Co., Ltd.
+  dt-bindings: arm: add CIX P1 (SKY1) SoC
+  MAINTAINERS: Add CIX SoC maintainer entry
+  arm64: defconfig: Enable CIX SoC
+  arm64: dts: cix: add initial CIX P1(SKY1) dts support
 
-__free(device_node) attribute will automatically calls of_node_put() when it
-lost the scope. By below patch, graph_util_parse_dai() will use
-__free(device_node) and thus dlc->of_node counter was not increased.
+ .../devicetree/bindings/arm/cix.yaml          |  26 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   8 +
+ arch/arm64/Kconfig.platforms                  |   6 +
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/cix/Makefile              |   2 +
+ arch/arm64/boot/dts/cix/sky1-orion-o6.dts     |  26 +++
+ arch/arm64/boot/dts/cix/sky1.dtsi             | 217 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 9 files changed, 289 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/cix.yaml
+ create mode 100644 arch/arm64/boot/dts/cix/Makefile
+ create mode 100644 arch/arm64/boot/dts/cix/sky1-orion-o6.dts
+ create mode 100644 arch/arm64/boot/dts/cix/sky1.dtsi
 
-	419d1918105e5d9926ab02f1f834bb416dc76f65
-	("ASoC: simple-card-utils: use __free(device_node) for device node")
+-- 
+2.25.1
 
-In such situation, if some kind of deffer issue happened, xxx-card probe()
-will failed and calls simple_util_clean_reference(). It calls of_node_put()
-for each dlc->of_node, but above one was already called of_node_put() via
-__free(device_node). So you encounter the error.
-
-I'm not 100% sure why dabbd325b2 commit removed the issue, but I think
-it is just luck, I think.
-
-Thank you for your test !!
-I will post the patch with below tag if our test team could confirm it.
-
-	Tested-by: Detlev Casanova <detlev.casanova@collabora.com>
-
-Best regards
----
-Kuninori Morimoto
 
