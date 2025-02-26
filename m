@@ -1,221 +1,132 @@
-Return-Path: <devicetree+bounces-151577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082D6A46407
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 16:05:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05463A4640C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 16:06:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1587D3A728E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:05:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F272D172203
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:06:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27866221F3D;
-	Wed, 26 Feb 2025 15:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D69EB222591;
+	Wed, 26 Feb 2025 15:06:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E5lR1/Rz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CDvdxTeC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF237194AF9;
-	Wed, 26 Feb 2025 15:05:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB5DE2222AB
+	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 15:06:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740582336; cv=none; b=EeeMXabd6GZXN1Cog1JOvBWXyho3tLyZ+Fd2aSmIOrKbGWn0+80PAPYT/LUtvyU8Sa29ZvJXBK4zGpCxtC42+cgyyPj1aO4GhrFLE+oxO3TMqDnSSrqeNpt1dZ98DdWoNK+Ch073aHZE5YbB3WHnIsizpeEu1iZDrvrr+BNPDfc=
+	t=1740582366; cv=none; b=JCfcFk9l0TMhpnSo8o3PBv98WvS3EMDEV+84nojpiJvq22LY7yR2wGxwubLUKSHpspAkGW3N4NXf9MaeV0mCXBHOhMu9wNdCm3MXWKTI0otdRRTUFHWJ1UpDl1R2Mj1uylvc+j0CHIJ28rd4xHLE5G9yYP8oYpP3R/tDLvUu3sw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740582336; c=relaxed/simple;
-	bh=aKsWQB1CAlUK5Cm9Str0bXC/fuAE5a6GytVvT9WpSwQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=biUOWo+n2rcrxJ25GP1LT7dk3qEL+wuFRbdCAoAa+tlZQoqK/sDs82oTa2cTYpglqtXkw0tU5pB9ei/97kxVD0RlwpZLi/pW3Lfrb5nn2xuHvMKBn30Cqmze3N6eV9L6RuPWRp0ebxV6JBIHojgKXmAQkjOiCH2pvrdsRSOD2BA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E5lR1/Rz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A61D4C4CED6;
-	Wed, 26 Feb 2025 15:05:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740582335;
-	bh=aKsWQB1CAlUK5Cm9Str0bXC/fuAE5a6GytVvT9WpSwQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=E5lR1/RzHzUkxREwq/zFpM6dNAJg6FBORcTq34Ngz7n5jss+MumqXyhv6zoOh6YPB
-	 BvEvhistIvvVIpX5iXQxhuZ/EBzeQBHyDeYtui2LKJvXSXqHzIN/H7akmlDkuBO2IM
-	 cHMKTudtb8oqdHSWQL6GSxnl1pF7+K5y2omNbl7i5ueNo/Ttn1gaRW1SjSYWKyFz6I
-	 5KIMD8JX89o+0nl42BW7/pdQuHfoyWfAZTtfb61bZJFnD1vXoR+XvJXAWi5Hjqwkhx
-	 p1OiiBUvNrw6Yj0o9QDlPZc68ew74TqKTQCd4zITnWpXC0sYn8xw7JmRo7veXEXyON
-	 n8uTyZl1GJbrg==
-Message-ID: <46fbdccb-610a-4b73-8697-d7bcf4942a41@kernel.org>
-Date: Wed, 26 Feb 2025 16:05:30 +0100
+	s=arc-20240116; t=1740582366; c=relaxed/simple;
+	bh=eI25Tt3mzACaZCYbE2WlMOCEeAOnCyHGufi3Sm+c/D0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=g6TZKeLI2feNMtcSq7cb89o2j9p1Ycpmr+A4XjDuVjIdgGmWUy1w309G5cXmIygQQXh+e7XN24oav/c2ZWcCMJ7QdKx0Xu+KX7PhPAlrPTrKYSGkADh7v0JMJDYaa/aEe4ehZaH1nq/mC5RtY2o6pv+wCXYfvCBMJ05nmEwbg2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CDvdxTeC; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-38f2b7ce2f3so4926213f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 07:06:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740582361; x=1741187161; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=k2inlcyGrp4gsySkMajr9slvItZBIGY35voxeoHKWVw=;
+        b=CDvdxTeCAC6tuYOVvBuxsOIoxwFs5wmcv1YB0Wb6futcKUCJYPVhFbJO4ovZ3dweuy
+         6o/WogH704w/bi1OWxOfphppdKy6ZjaolI7yjS7qU1Bdpf7HvrX6p0I3cjq69COR9h2g
+         ArLwHJdgAsc957c8MuP0xxH/a3IDFFYJxm+Fm7eCM5Ardr4FAe3G7Z+Lrke0Fs3o1M5r
+         DprhHR8vfh9B+bMM11GOaNK/TTgeXNOMgYR4e3gimy9Mj/+O13COSmdN1T4vIU7ZBGM4
+         zMWzsCwMfIeWvVLokObX4ijuvPVBeZMeAspneVbGnAD3R7DlzxYc/1dt8GuyF8NrQae4
+         Qwow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740582361; x=1741187161;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k2inlcyGrp4gsySkMajr9slvItZBIGY35voxeoHKWVw=;
+        b=Xv7deyAdNAT9N6RfBHRbB32eP2pmEELBoM8iaR40/3Cp4Hcjki+w6GK816ki/8zgtq
+         7PxijrGIIzPl0N8HzouboCq2POIm0e0lKFSCbRqLGKSEAJuUp2pCy4MhlIJw+O50AdNG
+         mE+xD+aqdYz0JikHChtdLmOp6kjr0nthhRcTQ7J7DS4EhxUBT2KQ6D8Psgjych/zyGEO
+         oZqqVttUdjK+sSkO/fJSlq4fvP5XE1mvqVilz6AuCj7pcKfOqOGb+IK78+8TogNnDCHZ
+         itPf2sw2K6qoZCCqkVlPKT270yTEzwWBuXiiTRm44k+Zj/OGKqy4ZUaNHCMwYFU1oFfj
+         SfLw==
+X-Forwarded-Encrypted: i=1; AJvYcCU31TLckNVl6+rIJpPl6D+cRdENRQFQ95bn2H0UnO3cswfBYPTU9YznHbT5dU0aXIC8MEZTzbfyTqdQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YysN8uuJPNW1U27ZbBM5oUzMo/T7sAyWGLFukJet6UJVsoWC0Xm
+	aDwlNPxbbDWI/OovH9fM6rme7ECAiI9baQlTuvx6VO/lGGEvFtEntq1GfN0yncQ=
+X-Gm-Gg: ASbGnct4hjT0NLhdwO6FhSeGpHWtWZitERCF6Z6vfRatYxb+K73yG8S+Jw4ovsrNQAa
+	m7IVWl7Cvit0wjYhiRD02LJC8dnXc9WmmZADqg6dC5mthC3fMRTaWSD4WovVIc3F2WbbbuRG0Qk
+	VaCzkTqC2ccWDS6npzseg+61TxwQRy91h49LpNS/7dBHWTLKrg327H521scLoyfxIKJ4UKL3Lgj
+	4UGR2ADu63cyaXMwKF8/pQJQG7B980cQTq0u0ikwCUNgEndSI2muOINM7V0GDFG0ekbszmt1zSb
+	4qogco7vYE9o4kVpyZZyboCU6ltTQeKGnoT5NLTipFJx
+X-Google-Smtp-Source: AGHT+IHrAFGVYII4lZLYB2wkwkybgtbEsUBZpKLBTuPfS8zJ9+MgwZUvmEIcYf0/J2nGs7RrAxHRmg==
+X-Received: by 2002:a5d:47a4:0:b0:38d:e3db:9058 with SMTP id ffacd0b85a97d-38f70799a46mr15169416f8f.12.1740582361041;
+        Wed, 26 Feb 2025 07:06:01 -0800 (PST)
+Received: from loic-ThinkPad-T470p.. ([2a01:e0a:82c:5f0:ad62:b2f0:914c:91ae])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390cd8fbc31sm5768155f8f.85.2025.02.26.07.06.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Feb 2025 07:06:00 -0800 (PST)
+From: Loic Poulain <loic.poulain@linaro.org>
+To: neeraj.sanjaykale@nxp.com,
+	marcel@holtmann.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org
+Cc: amitkumar.karwar@nxp.com,
+	conor+dt@kernel.org,
+	linux-bluetooth@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Loic Poulain <loic.poulain@linaro.org>
+Subject: [PATCH 1/2] Bluetooth: btnxpuart: Add VIN regulator support
+Date: Wed, 26 Feb 2025 16:05:52 +0100
+Message-Id: <20250226150553.1015106-1-loic.poulain@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/9] dt-bindings: pinctrl: stm32: Introduce HDP
-To: Clement LE GOFFIC <clement.legoffic@foss.st.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250225-hdp-upstream-v1-0-9d049c65330a@foss.st.com>
- <20250225-hdp-upstream-v1-2-9d049c65330a@foss.st.com>
- <6fc80544-6fc3-4450-a0cc-bfc740fe97bb@kernel.org>
- <91f19306-4b31-41fe-8ad2-680b1a339204@foss.st.com>
- <00526b1d-b753-4ee5-8f83-67d27d66a43c@kernel.org>
- <264d7fb8-06c2-4ada-82bc-4d3a7cc5e184@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <264d7fb8-06c2-4ada-82bc-4d3a7cc5e184@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 26/02/2025 11:52, Clement LE GOFFIC wrote:
-> On 2/26/25 08:21, Krzysztof Kozlowski wrote:
->> On 25/02/2025 16:51, Clement LE GOFFIC wrote:
->>> On 2/25/25 14:04, Krzysztof Kozlowski wrote:
->>>> On 25/02/2025 09:48, Clément Le Goffic wrote:
->>>>> +
->>>>> +maintainers:
->>>>> +  - Clément LE GOFFIC <clement.legoffic@foss.st.com>
->>>>> +
->>>>> +description: |
->>>>
->>>>
->>>> Do not need '|' unless you need to preserve formatting.
->>>
->>> Ok
->>>
->>>>> +  STMicroelectronics's STM32 MPUs integrate a Hardware Debug Port (HDP).
->>>>> +  It allows to output internal signals on SoC's GPIO.
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: st,stm32mp-hdp
->>>>
->>>> There is a mess in STM SoCs. Sometimes you call SoC stm32, sometimes
->>>> stm32mp and sometimes stm32mpXX.
->>>>
->>>> Define for all your STM contributions what is the actual SoC. This
->>>> feedback was already given to ST.
->>>>
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  clocks:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +patternProperties:
->>>>> +  '-pins$':
->>>>> +    type: object
->>>>> +    $ref: pinmux-node.yaml#
->>>>> +
->>>>> +    properties:
->>>>> +      function:
->>>>> +        enum: [ "0", "1", "2", "3", "4", "5", "6", "7",
->>>>> +                "8", "9", "10", "11", "12", "13", "14",
->>>>> +                "15" ]
->>>>
->>>> Function which has a number is not really useful. What does it even express?
->>>
->>> As said in my previous answer, function names are very different from
->>> one platform to another. Numbers were used as string to be generic.
->>> I'll consider it in a V2.
->>
->> What does it mean "one platform to another"? This is one platform! Is
->> this some sort of continuation of SoC compatible mess?
-> 
-> I may used incorrectly the word platform.
-> This driver is the same for the three SoC families STM32MP13, STM32MP15 
+As bluetooth controller is usually part of a WiFi/BT combo chip,
+it is important that each driver references the common supply.
+This prevents bluetooth to be powered down if WiFi driver is not
+loaded or removed.
 
-That's driver and it is fine, but we talk about hardware here. The
-binding is for given specific hardware.
+Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+---
+ drivers/bluetooth/btnxpuart.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-> and STM32MP25 because the hardware is mostly the same.
-> 
-> Why mostly ?
-> 
-> The peripheral is behaving as a mux, there are 8 HDP ports, for each 
-> port there is up to 16 possible hardware signals. Numbered from 0 to 15.
-> Each of this number represent a signal on the port.
-> 
-> But the hardware signal behind the number is not the same from one SoC 
-> family to another.
-> As example, in STM32MP15 family the HDP is able to output GPU hardware 
-> signals because the family has a GPU but in the STM32MP13 family this 
-> signal is not present.
+diff --git a/drivers/bluetooth/btnxpuart.c b/drivers/bluetooth/btnxpuart.c
+index 4f2f429c9800..fc313559c2aa 100644
+--- a/drivers/bluetooth/btnxpuart.c
++++ b/drivers/bluetooth/btnxpuart.c
+@@ -17,6 +17,7 @@
+ #include <linux/crc32.h>
+ #include <linux/string_helpers.h>
+ #include <linux/gpio/consumer.h>
++#include <linux/regulator/consumer.h>
+ 
+ #include <net/bluetooth/bluetooth.h>
+ #include <net/bluetooth/hci_core.h>
+@@ -1522,6 +1523,11 @@ static int nxp_serdev_probe(struct serdev_device *serdev)
+ {
+ 	struct hci_dev *hdev;
+ 	struct btnxpuart_dev *nxpdev;
++	int ret;
++
++	ret = devm_regulator_get_enable(&serdev->dev, "vin");
++	if (ret)
++		return dev_err_probe(&serdev->dev, ret, "Failed to enable VIN\n");
+ 
+ 	nxpdev = devm_kzalloc(&serdev->dev, sizeof(*nxpdev), GFP_KERNEL);
+ 	if (!nxpdev)
+-- 
+2.34.1
 
-It looks like you have clear mapping between function and port number
-(your header also suggests that), so the function property should follow
-that user-visible function.
-
-Just like we do for many other architectures - it is not that very, very
-different, I think. all of platform hardwares do not operate on strings
-but some bits in registers (so numbers) but all (ideally) bindings
-operate on strings. You created here exception on basis this is somehow
-special, but the point is: it is not special.
-
-> 
-> The purpose of my helpers was to give a readable name to facilitate the 
-> configuration in boards devicetree's. If needed I can get rid of that 
-> and use only the number as string.
-
-If you use "names" you do not need even that helper header.
-
-> 
->> What are the exact functions written in datasheet?
-> 
-> The exact functions name written in the datasheet are the ones of my 
-> helper file without the HDP prefix.
-
-so full strings "pwr_pwrwake_sys" and these should be used.
-
-Best regards,
-Krzysztof
 
