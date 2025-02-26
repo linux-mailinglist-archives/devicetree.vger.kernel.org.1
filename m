@@ -1,120 +1,129 @@
-Return-Path: <devicetree+bounces-151711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9661AA46AE0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 20:22:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18363A46B2C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 20:35:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EB7016E5C7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 19:22:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E78D16E81A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 19:35:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92414234971;
-	Wed, 26 Feb 2025 19:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57CA6242931;
+	Wed, 26 Feb 2025 19:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h/gfgBbM"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="dlWusk4Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66DE022E3F1;
-	Wed, 26 Feb 2025 19:22:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 389FC23A9AF
+	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 19:35:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740597741; cv=none; b=lf/jPoB6MODetwng56J1L+uy/hVNWKTog7HcPPHMNQYIl3/e9C2/FrYsUtOFAa6Q3n3Q22bMdtvsxW9ar60Ic0Rjta502CNWPJwef15IggRLD9yeZsSV8vfA16Zh6Hspf2g/Qa/49EtS+9rFFwnHd0FZ+v2QDJHgNW2SMOL9wow=
+	t=1740598507; cv=none; b=GHNsOFAQffh1FZBHtMCgED+2DtnUVbq7nIsTnZbhhwDEzhO5Sfctd/+nf78SG87wqzo/GRraXIMR+2Vr973D9XWmd3PGQYLsTXjld2f9cZFziCVr8TgsRktaA3OM5Jh1+P0vQGtkteJEtrmrz+mfOY14ZzU/52IpIegR3wvYRuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740597741; c=relaxed/simple;
-	bh=70HPt7cXIlQ+KkPTytAjDaBWtPrvl6+QqP5ouDBmFLo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NJ/FvrV92SXuKRlDBp4JW/KVFWKzeKgBC0hTNdINNMzc+RH5ZqBj1beRZyl+b/FXYThP9ElJYurlwxkA8Tkv8tVDYI+j7229Gcz/2Rv3HvtIbmTSiuicg0P2UvK/2Uq7hzw8n8tZDhiZInvGRxKrYSf8n9Q0qL50TLfZ8lJLyUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h/gfgBbM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEA20C4CEE8;
-	Wed, 26 Feb 2025 19:22:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740597740;
-	bh=70HPt7cXIlQ+KkPTytAjDaBWtPrvl6+QqP5ouDBmFLo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=h/gfgBbMNup3uDIk+icOzLt+LsY+Y44k8czZKXOueFZxvu3VjgCaT0LKGbx0NH4hM
-	 95gfVq8fUKWCl49f+d+VYi0PzzX9vQZjCCygY8pnRa7krLyNP9B07mWtqrMY5benNh
-	 REf55tk6hg8R0iGPKQM8nUAXOnK6AQBQKCpMKk7EO6Y7hP843P0Smpl289HbzUjzUM
-	 E34XPLILwjLYkIbVPPyszQizUdn9qPSqZUcIMp65lrO+o2qomYIhFi8ovxT6fCOH9f
-	 KjsPnoGEVu66EuTgGRpHGn4/DsYYO/NOl0arqfq3Cp/HA1R8liQJ9Qn0BLvuda0/tw
-	 Pw1fkbci+l7ew==
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5e4c0c12bccso121263a12.1;
-        Wed, 26 Feb 2025 11:22:20 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU73DmcGC+2Igambfpkz/QDf6UPCkz6xZGTjicmqH3z8Dkk8pw4bhBaZA5ZLkez04vgJpiQIEkRjYCr@vger.kernel.org, AJvYcCW4m8tYuDWahZcgU5k0S32E80gwYZMrFborUToxOHgHs2zZjwjRAu0ZTV3dviT+ltFHoJ6nuH/x8ZT19OXA4Q==@vger.kernel.org, AJvYcCXMaCN6eBYNJdmJ5uzfpdNyZedf+zi0hymqhgO0Aj6au2vtsd/9AzGCF6a4A2G1is+FlK6uOBzIdBRFlCzE@vger.kernel.org
-X-Gm-Message-State: AOJu0YyW8hLD0LLBvxLtkMD0+Y78wuEfdV+yd1uP7ZTBlu//2kBnYmHX
-	k5SGosM2G7K7P4ixd6v5Z2QRzbOx2znUdbd/aKfWbbfA/+FExay/3SbmfyGWK1Z5CnMkxkl5iUq
-	y/0ZJz1ST19mJWDJyPG5bJa1O2A==
-X-Google-Smtp-Source: AGHT+IE879zpQVonAD3+QX2VFbqk24PyMa64J5Q0ZFCMgA4E7ybBbhC+LwGrmURfNPkEUYddUs8POdQv17d4bNrYwl4=
-X-Received: by 2002:a05:6402:518f:b0:5e0:51c0:701e with SMTP id
- 4fb4d7f45d1cf-5e0b7254f98mr23443051a12.32.1740597739433; Wed, 26 Feb 2025
- 11:22:19 -0800 (PST)
+	s=arc-20240116; t=1740598507; c=relaxed/simple;
+	bh=bvEh2cJJ8fQdCKZqF4/MHgwher79PNLHTe2wORKT3qI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=LTea3UX77Up+N9pIa9RtdqJk8SOAgdEOwWsg8XRJSG3S8V1ZnxZJ9eY7xLGVWujHSW2YUrijq8BYT9DTOh2ZhpVffuqHPT/xTaa6XoLngScAVj2D+mrSiDdczIncsaDZuWC4At1c/vI30AmRbzCQMCC2TWcWbAyCc9XqXm7wJJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=dlWusk4Z; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 359C02C041E;
+	Thu, 27 Feb 2025 08:35:01 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1740598501;
+	bh=bvEh2cJJ8fQdCKZqF4/MHgwher79PNLHTe2wORKT3qI=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=dlWusk4Z8rr/xuuuGKE7FB4vkMzOYJGFxd4ZxxK8/XdTeP4EYsOUU97Zag4JB3t/0
+	 qSOp+848SX3CKtUdHh97rJVgEUJ6s/H2JMhV7gshtC2j0yPGAoSMQedEi981ymutrY
+	 GYTIyEYOMS4Tj6NHJgMjqp78gsiiF3glMNtBwYMlbTwHinSer/s7Ra8xpcO/nSoRP0
+	 AuYAslN5oFhQ89oMcFuQBGt+UhjB93xlND/plC8gKdfWenTu2TGCXvyRdz/4dfQNfr
+	 beHREWjyT0jXfZP8e5GMBWPOHKwzHpU6BFAmnqXNg7J0tesAgNauMUremESfofrxye
+	 Qf/UDvQJb9pGQ==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B67bf6ce50001>; Thu, 27 Feb 2025 08:35:01 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Thu, 27 Feb 2025 08:35:00 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1544.014; Thu, 27 Feb 2025 08:35:00 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"tsbogend@alpha.franken.de" <tsbogend@alpha.franken.de>, "andrew@lunn.ch"
+	<andrew@lunn.ch>, "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+	"linux@armlinux.org.uk" <linux@armlinux.org.uk>, "davem@davemloft.net"
+	<davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
+	"sander@svanheule.net" <sander@svanheule.net>, "markus.stockhausen@gmx.de"
+	<markus.stockhausen@gmx.de>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-mips@vger.kernel.org"
+	<linux-mips@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>
+Subject: Re: [PATCH net-next v7 1/2] net: mdio: Add RTL9300 MDIO driver
+Thread-Topic: [PATCH net-next v7 1/2] net: mdio: Add RTL9300 MDIO driver
+Thread-Index: AQHbh+J8lt76RIU/40yozHOVVg4xD7NYWweAgADGUgA=
+Date: Wed, 26 Feb 2025 19:35:00 +0000
+Message-ID: <121f35fc-f151-4c5e-a644-87485acf2eda@alliedtelesis.co.nz>
+References: <20250226000748.3979148-1-chris.packham@alliedtelesis.co.nz>
+ <20250226000748.3979148-2-chris.packham@alliedtelesis.co.nz>
+ <20250226084511.5f8f4c62@fedora.home>
+In-Reply-To: <20250226084511.5f8f4c62@fedora.home>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <FAA606CD114D8C44959722D921238B9D@alliedtelesis.co.nz>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250226-qcom-nonroot-overlays-v1-0-26c6e7605833@trvn.ru> <20250226-qcom-nonroot-overlays-v1-1-26c6e7605833@trvn.ru>
-In-Reply-To: <20250226-qcom-nonroot-overlays-v1-1-26c6e7605833@trvn.ru>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 26 Feb 2025 13:22:07 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJH5g-A0Td8zYn--FuYFZi=HQ96BeNSMLuxQU6+5X3k-w@mail.gmail.com>
-X-Gm-Features: AQ5f1JqBSWKWscupDtx7XUeNsPytnMVaiTjrHhniqHbmTDtYseDb8YQVhIUWai0
-Message-ID: <CAL_JsqJH5g-A0Td8zYn--FuYFZi=HQ96BeNSMLuxQU6+5X3k-w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: qrb5165-rb5-vision-mezzanine: Fix
- broken overlay root
-To: Nikita Travkin <nikita@trvn.ru>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=ccpxrWDM c=1 sm=1 tr=0 ts=67bf6ce5 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=T2h4t0Lz3GQA:10 a=p39UaIAQFBWNGi97qX4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
 
-On Wed, Feb 26, 2025 at 8:30=E2=80=AFAM Nikita Travkin <nikita@trvn.ru> wro=
-te:
->
-> When converting to the overlay format, it was missed that "/" in the
-> overlay corresponds to the overlay's own root node and not the fragment
-> targeted to update root of the base dts, which should be "&{/}" instead.
-> This results in the cma node never actually being applied by libfdt.
->
-> Fix the overlay to use correct target node.
->
-> Fixes: 231c03c6119d ("arm64: dts: qcom: qrb5165-rb5-vision-mezzanine: Con=
-vert mezzanine riser to dtbo")
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-> ---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso b=
-/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso
-> index ae256c713a36078afdadc67193f381a19ea8e5d3..254df3d518d8cbfb1082511f3=
-8e132435b7fdf59 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso
-> @@ -9,7 +9,7 @@
->  #include <dt-bindings/clock/qcom,camcc-sm8250.h>
->  #include <dt-bindings/gpio/gpio.h>
->
-> -/ {
-> +&{/} {
->         reserved-memory {
-
-IMO, this should be applied to the /reserved-memory node rather than
-the root node. Though I also think using overlays to set CMA size is
-questionable. It's much easier to change the kernel command line than
-apply an overlay.
-
->                 linux,cma {
->                         compatible =3D "shared-dma-pool";
->
-> --
-> 2.48.1
->
+SGkgTWF4aW1lLA0KDQpPbiAyNi8wMi8yMDI1IDIwOjQ1LCBNYXhpbWUgQ2hldmFsbGllciB3cm90
+ZToNCj4gSGkgQ2hyaXMsDQo+DQo+IE9uIFdlZCwgMjYgRmViIDIwMjUgMTM6MDc6NDcgKzEzMDAN
+Cj4gQ2hyaXMgUGFja2hhbSA8Y2hyaXMucGFja2hhbUBhbGxpZWR0ZWxlc2lzLmNvLm56PiB3cm90
+ZToNCj4NCj4+IEFkZCBhIGRyaXZlciBmb3IgdGhlIE1ESU8gY29udHJvbGxlciBvbiB0aGUgUlRM
+OTMwMCBmYW1pbHkgb2YgRXRoZXJuZXQNCj4+IHN3aXRjaGVzIHdpdGggaW50ZWdyYXRlZCBTb0Mu
+IFRoZXJlIGFyZSA0IHBoeXNpY2FsIFNNSSBpbnRlcmZhY2VzIG9uIHRoZQ0KPj4gUlRMOTMwMCBo
+b3dldmVyIGFjY2VzcyBpcyBkb25lIHVzaW5nIHRoZSBzd2l0Y2ggcG9ydHMuIFRoZSBkcml2ZXIg
+dGFrZXMNCj4+IHRoZSBNRElPIGJ1cyBoaWVyYXJjaHkgZnJvbSB0aGUgRFRTIGFuZCB1c2VzIHRo
+aXMgdG8gY29uZmlndXJlIHRoZQ0KPj4gc3dpdGNoIHBvcnRzIHNvIHRoZXkgYXJlIGFzc29jaWF0
+ZWQgd2l0aCB0aGUgY29ycmVjdCBQSFkuIFRoaXMgbWFwcGluZw0KPj4gaXMgYWxzbyB1c2VkIHdo
+ZW4gZGVhbGluZyB3aXRoIHNvZnR3YXJlIHJlcXVlc3RzIGZyb20gcGh5bGliLg0KPj4NCj4+IFNp
+Z25lZC1vZmYtYnk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNpcy5j
+by5uej4NCj4gSXQgYWxsIG1vc3RseSBsb29rcyBnb29kIHRvIG1lLCB0aGVyZSdzIG9uZSB0eXBv
+IHRob3VnaCBhbmQgYXMgaXQgbWF5DQo+IGJlIHVzZXIgdmlzaWJsZSwgSSB0aGluayBpdCdzIHdv
+cnRoIGZpeGluZy4uLg0KPg0KPiBbLi4uXQ0KPg0KPj4gK3N0YXRpYyBpbnQgcnRsOTMwMF9tZGlv
+YnVzX3Byb2JlX29uZShzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBydGw5MzAwX21kaW9fcHJp
+diAqcHJpdiwNCj4+ICsJCQkJICAgICBzdHJ1Y3QgZndub2RlX2hhbmRsZSAqbm9kZSkNCj4+ICt7
+DQo+PiArCXN0cnVjdCBydGw5MzAwX21kaW9fY2hhbiAqY2hhbjsNCj4+ICsJc3RydWN0IGZ3bm9k
+ZV9oYW5kbGUgKmNoaWxkOw0KPj4gKwlzdHJ1Y3QgbWlpX2J1cyAqYnVzOw0KPj4gKwl1MzIgbWRp
+b19idXM7DQo+PiArCWludCBlcnI7DQo+PiArDQo+PiArCWVyciA9IGZ3bm9kZV9wcm9wZXJ0eV9y
+ZWFkX3UzMihub2RlLCAicmVnIiwgJm1kaW9fYnVzKTsNCj4+ICsJaWYgKGVycikNCj4+ICsJCXJl
+dHVybiBlcnI7DQo+PiArDQo+PiArCWZ3bm9kZV9mb3JfZWFjaF9jaGlsZF9ub2RlKG5vZGUsIGNo
+aWxkKQ0KPj4gKwkJaWYgKGZ3bm9kZV9kZXZpY2VfaXNfY29tcGF0aWJsZShjaGlsZCwgImV0aGVy
+bmV0LXBoeS1pZWVlODAyLjMtYzQ1IikpDQo+PiArCQkJcHJpdi0+c21pX2J1c19pc19jNDVbbWRp
+b19idXNdID0gdHJ1ZTsNCj4+ICsNCj4+ICsJYnVzID0gZGV2bV9tZGlvYnVzX2FsbG9jX3NpemUo
+ZGV2LCBzaXplb2YoKmNoYW4pKTsNCj4+ICsJaWYgKCFidXMpDQo+PiArCQlyZXR1cm4gLUVOT01F
+TTsNCj4+ICsNCj4+ICsJYnVzLT5uYW1lID0gIlJlYWt0ZWsgU3dpdGNoIE1ESU8gQnVzIjsNCj4g
+WW91IHByb2JhYmx5IG1lYW4gUmVhbHRlayA/IDopDQoNCkdvb2QgY2F0Y2ggdGhhbmtzLiBJJ3Zl
+IGZpeGVkIHRoZSB0eXBvIGxvY2FsbHkgYW5kIEknbGwgc2VuZCBvdXQgYSB2OCANCnRvbW9ycm93
+IGlmIHRoZXJlIGFyZW4ndCBhbnkgb3RoZXIgY29tbWVudHMuDQo=
 
