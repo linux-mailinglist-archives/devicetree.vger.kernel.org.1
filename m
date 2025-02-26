@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-151736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9B89A46D42
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 22:18:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF076A46D53
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 22:22:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1008B7A553F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 21:17:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 232113AD0DB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 21:22:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66E3515852E;
-	Wed, 26 Feb 2025 21:18:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB78257AD7;
+	Wed, 26 Feb 2025 21:22:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dldymv4X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kov41Vzs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42240275612
-	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 21:18:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA43224249;
+	Wed, 26 Feb 2025 21:22:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740604701; cv=none; b=KR+PaSseV4wtSTbvHmiHffzx/Zpf3o4Zn7Up8qeIMTfITAGGFEWuhxilB9iZHv4oqsklJjcKb6CKAe1rL/JGC9S2M9VojE/Sztb91bFisi71y2jJf1Z0Pdoj7mhF5HANgrgRD6DmhXKFKuSpyN/4nTuCVDizx2QY7WZHxtO1Xko=
+	t=1740604930; cv=none; b=Ea4Nm/DkHfZ4uNgGzizHm+aOZMw2de3DeY3hbhQJF2s14LBHuc1ajxheyiGU1FetJ8MTiETnUWtumM6b3DK0qh/mrV/OUxZE549EKF320cPI4KNHdwtyF2JnZ2Bwsg/k0Rcsthpq5AqxOTf6jLy5KuD8h3WPPB6Pp/YDtR2Vdnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740604701; c=relaxed/simple;
-	bh=Y9afxBl/KbXm/WKtod3zwp3f2rp30K0FQ/s4r6eoOXA=;
+	s=arc-20240116; t=1740604930; c=relaxed/simple;
+	bh=Vu09UrU0Muu5/ttkFdeLyuALho7P3OYY3oKYTW24fKk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ehD4qJTY3QW78EbHpJf8sUsjcutoaiyE7hdkyF7GyBTxQMDi01X09K4jEdmdbheSO32oxucWi16FVR9HjPPXqtc7sbVgkr2vdlagD3VH81Ba05xpBMLB5Uu5Qq3B7PfHR6fZA8ebc7BNAe2y0IzCJP8TyaO2s+D9rhn+dOTTot4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dldymv4X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F956C4CED6;
-	Wed, 26 Feb 2025 21:18:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PXQG/c8b9nl1SzaTvZEyMjaBTAT07FsoTVbzUVep3Vh8e9vLV0XNGmwgduiBWGhuoURFZVrGF2TpdO9Y0+GQ1WE50yMM5/45a5NUfLjKsaMxRLPf1dzwVSGXqTY4cb6Wo94Zp18supb1kapVOcMOtzo8stqBgL0cFirmyBDGRIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kov41Vzs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F834C4CEEA;
+	Wed, 26 Feb 2025 21:22:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740604697;
-	bh=Y9afxBl/KbXm/WKtod3zwp3f2rp30K0FQ/s4r6eoOXA=;
+	s=k20201202; t=1740604930;
+	bh=Vu09UrU0Muu5/ttkFdeLyuALho7P3OYY3oKYTW24fKk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dldymv4XvlYzA8pth1EXhbp+Aj/DBfAGtNqgRISOc1hYvhlNIGzQmhfwKt+x4mVJL
-	 VeG2HUiFVTphmF4AazHOngHRDnUjSHbtRxAt9hhGvQDFxIEUfXQxiLR6RpSPaQOkuW
-	 4b65AlPf/C7Ate5T25LNF0MvJe0BTrM2u2G38kWH6U76CSRpibl6t45Xt920Na7yZD
-	 jasYAKlEwgIPKvNFK/nj8OqX3L2hDmciMjnntjYy6TBPfli3tntIcAvYKivsJUcBmZ
-	 tfjaXaGtXH5BIhECLPZkXwlY/M6lLPNlDRfUTaL3ByGRjkfhxaHJr1sHsCrVvrpNUP
-	 uPlWj974zWg3A==
-Message-ID: <b34625d9-0b3f-47c2-a575-cc5b62ba9611@kernel.org>
-Date: Wed, 26 Feb 2025 22:18:13 +0100
+	b=Kov41VzsIr7/iMwrlnwsiyCjHSHHLexu05kPcJvU5BZKb0Fm9z6FVjfuclGljXLL3
+	 4ZLLUSh7kAJCv0UvvAzHhGfNd7eJnh+teT3tR8bCrQiWv5+TaRmG7zBdmYYlQKXpj6
+	 BoHbC2g6TyRoob4u8jPg/QrdGd+SbS0mgJl0w4mD919lHcTqWVewy9mx6Z364MWWdk
+	 pAK1WkSbew5bsedMwg1ZTJdXE5aLdffrsJ1LexQgezrpI3Az9tvgj8SoUlCbRTgEEX
+	 7AXgaZf2ThS/G6Iz54s8ziwSeB9nK93OpltH9xtfo6l+hi0FcD9BgdFuBva2WOTA7S
+	 C70cjOev7bbGA==
+Message-ID: <05e56d15-059b-425b-9e55-66993d988f8d@kernel.org>
+Date: Wed, 26 Feb 2025 22:22:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-To: Zhang Yi <zhangyi@everest-semi.com>, alsa-devel@alsa-project.org,
- broonie@kernel.org, devicetree@vger.kernel.org
-Cc: tiwai@suse.com, amadeuszx.slawinski@linux.intel.com,
- yangxiaohua@everest-semi.com, zhuning@everest-semi.com
-References: <20250226104949.16303-1-zhangyi@everest-semi.com>
- <20250226104949.16303-3-zhangyi@everest-semi.com>
-Content-Language: en-US
+Subject: Re: [PATCH v4 2/2] dt-bindings: iio: filter: Add lpf/hpf freq margins
+To: Sam Winchenbach <sam.winchenbach@framepointer.org>
+Cc: linux-kernel@vger.kernel.org, lars@metafoo.de,
+ Michael.Hennerich@analog.com, antoniu.miclaus@analog.com, jic23@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250225134612.577022-1-sam.winchenbach@framepointer.org>
+ <20250225134612.577022-2-sam.winchenbach@framepointer.org>
+ <20250226-sparkling-caped-saluki-b1cbad@krzk-bin>
+ <Z79K8Ag4SJYtJTtM@65YTFL3.secure.tethers.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -102,35 +105,65 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250226104949.16303-3-zhangyi@everest-semi.com>
+In-Reply-To: <Z79K8Ag4SJYtJTtM@65YTFL3.secure.tethers.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/02/2025 11:49, Zhang Yi wrote:
-> Add device tree binding documentation for Everest ES8389
+On 26/02/2025 18:10, Sam Winchenbach wrote:
+> On Wed, Feb 26, 2025 at 09:03:13AM +0100, Krzysztof Kozlowski wrote:
+>> On Tue, Feb 25, 2025 at 08:46:12AM -0500, Sam Winchenbach wrote:
+>>> Adds two properties to add a margin when automatically finding the
+>>> corner frequencies.
+>>>
+>>> Signed-off-by: Sam Winchenbach <sam.winchenbach@framepointer.org>
+>>> ---
+>>>  .../bindings/iio/filter/adi,admv8818.yaml          | 14 ++++++++++++++
+>>>  1 file changed, 14 insertions(+)
+>>
+>> Bindings are before users (see DT submitting patches), so this should be
+>> re-ordered.
+>>
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+>>> index b77e855bd594..2acdbd8d84cb 100644
+>>> --- a/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+>>> +++ b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+>>> @@ -44,6 +44,18 @@ properties:
+>>>    '#clock-cells':
+>>>      const: 0
+>>>  
+>>> +  adi,lpf-margin-hz:
+>>> +    description:
+>>> +      Sets minimum low-pass corner frequency to the frequency of rf_in plus
+>>> +      this value when in auto mode.
+>>> +    default: 0
+>>> +
+>>> +  adi,hpf-margin-hz:
+>>> +    description:
+>>> +      Sets maximum high-pass corner frequency to the frequency of rf_in minus
+>>> +      this value when in auto mode.
+>>
+>> IIUC, these are two bounds - lower and upper - in relation to something
+>> else (like rf_in frequency)? If so, make it an array (naming to be
+>> discuss, I assume you know better what's that):
 > 
-> Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
-> ---
->  .../bindings/sound/everest,es8389.txt         | 68 +++++++++++++++++++
+> It is true that these are both related to rf_in but both the low and high pass
+> filters can operate independently. Logically, IMO, it makes more sense to have
 
-New bindings in TXT are not accepted. Please submit these in DT schema
-format - see all new bindings.
 
-<form letter>
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument, so you will
-not CC people just because they made one commit years ago). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
+You mean you can set only low or high pass and keep other as default?
+But what is the default then - something from reset value or "0" means
+disabled?
 
-Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-people, so fix your workflow. Tools might also fail if you work on some
-ancient tree (don't, instead use mainline) or work on fork of kernel
-(don't, instead use mainline). Just use b4 and everything should be
-fine, although remember about `b4 prep --auto-to-cc` if you added new
-patches to the patchset.
-</form letter>
+> them as separate controls but I am happy to put them into an array if that is
+> the idiomatic approach to situations like this. That said, I am having a
+> difficult time getting dt_binding_check to pass when I have an array of uint64.
+> 
+> When listing two items, as in your example below, I get the following:
+> adi,admv8818.example.dtb: admv8818@0: adi,filter-margins-hz: [[0, 30000000], [0, 30000000]] is too long
+
+Tricky to say without seeing your code. Magic crystal ball had
+malfunction today.
 
 Best regards,
 Krzysztof
