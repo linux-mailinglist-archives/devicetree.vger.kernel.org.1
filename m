@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-151737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF076A46D53
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 22:22:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15E78A46D62
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 22:26:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 232113AD0DB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 21:22:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12FA43A2C47
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 21:26:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB78257AD7;
-	Wed, 26 Feb 2025 21:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D8D3224249;
+	Wed, 26 Feb 2025 21:26:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kov41Vzs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NMfD/eQQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA43224249;
-	Wed, 26 Feb 2025 21:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D595321CC54;
+	Wed, 26 Feb 2025 21:26:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740604930; cv=none; b=Ea4Nm/DkHfZ4uNgGzizHm+aOZMw2de3DeY3hbhQJF2s14LBHuc1ajxheyiGU1FetJ8MTiETnUWtumM6b3DK0qh/mrV/OUxZE549EKF320cPI4KNHdwtyF2JnZ2Bwsg/k0Rcsthpq5AqxOTf6jLy5KuD8h3WPPB6Pp/YDtR2Vdnc=
+	t=1740605209; cv=none; b=Wx+h+1fd2P0q5cVTLM6Ja/k5PjuT/a45uuSiJDXDdhMy8+ToKmxxE5PIcgrnvXiuWr3Fq1SxZF9EwioUE3xg0uLexcaQ3+iPpZjy/ES3sNQDcWLv8AlDOSnuRbO2SskvMzFyFsERscQpo+pFEge53qc9AQfMZMMjqCewV1SbU+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740604930; c=relaxed/simple;
-	bh=Vu09UrU0Muu5/ttkFdeLyuALho7P3OYY3oKYTW24fKk=;
+	s=arc-20240116; t=1740605209; c=relaxed/simple;
+	bh=N0p6giHID6vuUMte39YzG4bLLkWWTqAf5RxVREU0uHs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PXQG/c8b9nl1SzaTvZEyMjaBTAT07FsoTVbzUVep3Vh8e9vLV0XNGmwgduiBWGhuoURFZVrGF2TpdO9Y0+GQ1WE50yMM5/45a5NUfLjKsaMxRLPf1dzwVSGXqTY4cb6Wo94Zp18supb1kapVOcMOtzo8stqBgL0cFirmyBDGRIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kov41Vzs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F834C4CEEA;
-	Wed, 26 Feb 2025 21:22:05 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PQdadFttlvYEKcy1wxbqmRlumxlsV2tzsdjOuOQHRudmYJRIiT9a6cIiiSHqy5xrK3jkbf2oCkY0Ht2lGtLcFFWqKUdStQKGSjeS4AEp/YYIS+Zv4WyMnL2YBquwew784mdqjzhiSCujc6B+BBtXWdgE5yPaCZsipIuyrT37HYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NMfD/eQQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08592C4CED6;
+	Wed, 26 Feb 2025 21:26:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740604930;
-	bh=Vu09UrU0Muu5/ttkFdeLyuALho7P3OYY3oKYTW24fKk=;
+	s=k20201202; t=1740605209;
+	bh=N0p6giHID6vuUMte39YzG4bLLkWWTqAf5RxVREU0uHs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Kov41VzsIr7/iMwrlnwsiyCjHSHHLexu05kPcJvU5BZKb0Fm9z6FVjfuclGljXLL3
-	 4ZLLUSh7kAJCv0UvvAzHhGfNd7eJnh+teT3tR8bCrQiWv5+TaRmG7zBdmYYlQKXpj6
-	 BoHbC2g6TyRoob4u8jPg/QrdGd+SbS0mgJl0w4mD919lHcTqWVewy9mx6Z364MWWdk
-	 pAK1WkSbew5bsedMwg1ZTJdXE5aLdffrsJ1LexQgezrpI3Az9tvgj8SoUlCbRTgEEX
-	 7AXgaZf2ThS/G6Iz54s8ziwSeB9nK93OpltH9xtfo6l+hi0FcD9BgdFuBva2WOTA7S
-	 C70cjOev7bbGA==
-Message-ID: <05e56d15-059b-425b-9e55-66993d988f8d@kernel.org>
-Date: Wed, 26 Feb 2025 22:22:03 +0100
+	b=NMfD/eQQrqHV9pTdIckatEZl4BeD6NYAHsAUl5qBh4MVZcdnA3aEIwj40FR8CBStq
+	 4OsXX5vfQHb/YJAcgsShtWEAO7ptB7eQ8p4R6MRaF6ZzD5o2TFtsBYx8YYuRalTGgp
+	 jHxbv0JAcrjYH5E0IjK5+CJSRKCS1y0UyjZFoj+Nc22yyGH9zbFDLSo9ePtEiXE0Ik
+	 GxXuV1Fzm6uIN43JbNgroBjkPuQmRjOy3s9T6DCYgcQ9pNSeu/8pibvKJJfupavdcz
+	 VQrBKZhoOx08Gp6LfKT+zxDWfGLJpc5RzZtLAsYAr0oPrkPrjSk2NdgXLqE1m0UyuO
+	 OmcHsaqWS4dNw==
+Message-ID: <48cc626a-d632-444f-8563-07a9ea0ecc71@kernel.org>
+Date: Wed, 26 Feb 2025 22:26:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] dt-bindings: iio: filter: Add lpf/hpf freq margins
-To: Sam Winchenbach <sam.winchenbach@framepointer.org>
-Cc: linux-kernel@vger.kernel.org, lars@metafoo.de,
- Michael.Hennerich@analog.com, antoniu.miclaus@analog.com, jic23@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250225134612.577022-1-sam.winchenbach@framepointer.org>
- <20250225134612.577022-2-sam.winchenbach@framepointer.org>
- <20250226-sparkling-caped-saluki-b1cbad@krzk-bin>
- <Z79K8Ag4SJYtJTtM@65YTFL3.secure.tethers.com>
+Subject: Re: [PATCH 7/9] ARM: dts: stm32: add Hardware debug port (HDP) on
+ stm32mp25
+To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+ Clement LE GOFFIC <clement.legoffic@foss.st.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20250225-hdp-upstream-v1-0-9d049c65330a@foss.st.com>
+ <20250225-hdp-upstream-v1-7-9d049c65330a@foss.st.com>
+ <418a80a9-8c08-4dd1-bf49-1bd7378321aa@kernel.org>
+ <b257aa79-6ca9-4f57-988a-ec00225992ab@foss.st.com>
+ <b57e3c9e-244e-435b-8a7b-cf90f3a973b3@kernel.org>
+ <988667a4-4bc0-4594-8dfd-a7b652b149b2@foss.st.com>
+ <55beb3e7-65ac-4145-adae-fb064378c78d@kernel.org>
+ <8cdc7e52-f9e2-4fc9-be68-0dd72a25ee1b@foss.st.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,65 +114,72 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Z79K8Ag4SJYtJTtM@65YTFL3.secure.tethers.com>
+In-Reply-To: <8cdc7e52-f9e2-4fc9-be68-0dd72a25ee1b@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/02/2025 18:10, Sam Winchenbach wrote:
-> On Wed, Feb 26, 2025 at 09:03:13AM +0100, Krzysztof Kozlowski wrote:
->> On Tue, Feb 25, 2025 at 08:46:12AM -0500, Sam Winchenbach wrote:
->>> Adds two properties to add a margin when automatically finding the
->>> corner frequencies.
->>>
->>> Signed-off-by: Sam Winchenbach <sam.winchenbach@framepointer.org>
->>> ---
->>>  .../bindings/iio/filter/adi,admv8818.yaml          | 14 ++++++++++++++
->>>  1 file changed, 14 insertions(+)
->>
->> Bindings are before users (see DT submitting patches), so this should be
->> re-ordered.
->>
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
->>> index b77e855bd594..2acdbd8d84cb 100644
->>> --- a/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
->>> +++ b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
->>> @@ -44,6 +44,18 @@ properties:
->>>    '#clock-cells':
->>>      const: 0
->>>  
->>> +  adi,lpf-margin-hz:
->>> +    description:
->>> +      Sets minimum low-pass corner frequency to the frequency of rf_in plus
->>> +      this value when in auto mode.
->>> +    default: 0
->>> +
->>> +  adi,hpf-margin-hz:
->>> +    description:
->>> +      Sets maximum high-pass corner frequency to the frequency of rf_in minus
->>> +      this value when in auto mode.
->>
->> IIUC, these are two bounds - lower and upper - in relation to something
->> else (like rf_in frequency)? If so, make it an array (naming to be
->> discuss, I assume you know better what's that):
+On 26/02/2025 16:30, Alexandre TORGUE wrote:
 > 
-> It is true that these are both related to rf_in but both the low and high pass
-> filters can operate independently. Logically, IMO, it makes more sense to have
-
-
-You mean you can set only low or high pass and keep other as default?
-But what is the default then - something from reset value or "0" means
-disabled?
-
-> them as separate controls but I am happy to put them into an array if that is
-> the idiomatic approach to situations like this. That said, I am having a
-> difficult time getting dt_binding_check to pass when I have an array of uint64.
 > 
-> When listing two items, as in your example below, I get the following:
-> adi,admv8818.example.dtb: admv8818@0: adi,filter-margins-hz: [[0, 30000000], [0, 30000000]] is too long
+> On 2/26/25 16:08, Krzysztof Kozlowski wrote:
+>> On 26/02/2025 10:33, Alexandre TORGUE wrote:
+>>>>>>> +		hdp: pinctrl@44090000 {
+>>>>>>> +			compatible = "st,stm32mp-hdp";
+>>>>>>
+>>>>>> So here again - you have stm32mp251 SoC, but use entirely different
+>>>>>> compatible.
+>>>>>
+>>>>> Ok so I will use "st,stm32mp15-hdp"
+>>>>
+>>>>
+>>>> This means this is stm32mp15 SoC. I do not see such SoC on list of your
+>>>> SoCs in bindings. What's more, there are no bindings for other SoC
+>>>> components for stm32mp15!
+>>>
+>>> Yes stm32mp15 is not a "real SoC". I agree that at the beginning of the
+>>> STM32 story we didn't have a clear rule/view to correctly naming our
+>>> compatible. We tried to improve the situation to avoid compatible like
+>>> "st,stm32", "st,stm32mp" or "st,stm32mp1". So we introduced
+>>> "st,stm32mp13", "st,stm32mp15" or "st,stm32mp25" for new drivers. So yes
+>>> it represents a SoC family and not a real SoC. We haven't had much
+>>> negative feedback it.
+>>>
+>>> But, if it's not clean to do it in this way, lets define SoC compatible
+>>> for any new driver.
+>>
+>> Compatibles are for hardware.
+>>
+>>> For the HDP case it is: "st,stm32mp157" and used for STM32MP13,
+>>> STM32MP15 end STM32MP25 SoC families (if driver is the same for all
+>>> those SoCs).
+>>
+>> No, it's three compatibles, because you have three SoCs. BTW, writing
+>> bindings (and online resources and previous reviews and my talks) are
+>> saying that, so we do not ask for anything new here, anything different.
+>> At least not new when looking at last 5 years, because 10 years ago many
+>> rules were relaxed...
+> 
+> So adding 3 times the same IP in 3 different SoCs implies to have 3 
 
-Tricky to say without seeing your code. Magic crystal ball had
-malfunction today.
+Yes. Always, as requested by writing bindings.
+
+> different compatibles. So each time we use this same IP in a new SoC, we 
+> have to add a new compatible. My (wrong) understanding was: as we have 
+
+Yes, as requested by writing bindings and followed up by all recent
+platforms having decent/active upstream support. See qcom, nxp, renesas
+for example.
+
+> the same IP (same hardware) in each SoC we have the same compatible (and 
+
+You do not have same hardware. You have same IP, or almost same because
+they are almost never same, implemented in different hardware.
+
+> IP integration differences (clocks, interrupts) are handled by DT 
+> properties.
+
+Which binding doc/guide suggested such way? Countless reviews from DT
+maintainers were saying opposite.
 
 Best regards,
 Krzysztof
