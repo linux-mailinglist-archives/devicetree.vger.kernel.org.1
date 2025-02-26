@@ -1,178 +1,224 @@
-Return-Path: <devicetree+bounces-151725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A490DA46C4F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 21:25:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D90FBA46AA8
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 20:10:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3314518855A9
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 20:25:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E08AE3AC7C2
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 19:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D7712185B8;
-	Wed, 26 Feb 2025 20:25:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62EC223958A;
+	Wed, 26 Feb 2025 19:10:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="zK2QGdzD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cyQQPcAd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 968E027560D;
-	Wed, 26 Feb 2025 20:25:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59774237717
+	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 19:10:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740601513; cv=none; b=DwhR1HbJDp09hWf1SjyWIUL1yjAraIby7UUClffGa9LQGgK3BuUWlObomV06/LkAdsvYbKVewRnBR64hWTutrcloFfOeDvWQXRxJ4wQKBAPiELPBVAUptV2Ma16/7WiFCXqgpaQTBzF7pHRwMy4BMgc2lXjGNgyPpyUJWLr0DYM=
+	t=1740597008; cv=none; b=Fg+KaWJaIj9dQ4oORJ7AB4F4SK6VRzOhDgGc0a0S8kr/JXYezYmtLzvUJ729n+x0UxIP5p6Yg2VOPmsK4oW1AU/GzYnAhGhiT4qsgsfW7KpFGS0sSO6LKmHnQCiYNs3qqTiTSJu259zV2oqdaVqvxI0yCroDF8HZYr8S65WmgVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740601513; c=relaxed/simple;
-	bh=rlBByjDAt6sDHgCxX2pYpDbkmv5bfOXWpM+O+cJme3U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bzkozeTryoqPcy9Fv+9OWfLFjo11MXq3kJ9swpGAstodVwgMZBODW0XUwRGl/01py5Fb9N0YsT9gbBh28SNhI9kZQgE8EFCTb4JnFcA4PCoh5kFVRfakO0Zkm2M2lOCtrOpY6yG9NU4F/ASjO9dugJqHXH7tqQRSBrrHvZLMMKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=zK2QGdzD; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51QG3IeZ028965;
-	Wed, 26 Feb 2025 21:23:45 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	40P6YA6Gfjsk6WHscxOoeamuC5y6WvMtWXK5t1BqI08=; b=zK2QGdzDvDEwtaNd
-	jhHpzdye3apCHNzgIoAFSUSptp4j/yLQaM0OmteUdHVLpIkXDoooJnQazJeT1qhT
-	YoSZoPIlUViwT3l+Tzlwir+k9zv9A6nz/rImAL6WVi/mRqka4lbJ6pjtxitMg+b/
-	Cayt3540zUhomSar9Gvctmb03ILdrkBYvuI3C/XkfHb14LcxgVgvFlfBxBVle2mW
-	nbbHqkKcyQ8MZpn4Wy+wF3/e/hccjcfYPAXvw5kicp5UHzkhHlvLcL6Sxdy+TutG
-	oidbpuKMGawsOi32QXmrZafcxpI6kRq9xfq2vVEbC6a3kpWIGZqWcfZGobGp/CW9
-	IDD4rg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 451pt3phb8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Feb 2025 21:23:45 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 06B0C40069;
-	Wed, 26 Feb 2025 21:22:35 +0100 (CET)
-Received: by euls16034.sgp.st.com (STMicroelectronics, from userid 89)
-	id 6DCAC4D33B6; Wed, 26 Feb 2025 19:17:26 +0100 (CET)
-Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3B053443D2B;
-	Wed, 26 Feb 2025 19:17:26 +0100 (CET)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
- (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Feb
- 2025 19:17:26 +0100
-Received: from [10.48.86.222] (10.48.86.222) by SAFDAG1NODE1.st.com
- (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Feb
- 2025 19:17:25 +0100
-Message-ID: <4010c7b7-f285-40e6-a032-055c4252ecb7@foss.st.com>
-Date: Wed, 26 Feb 2025 19:17:24 +0100
+	s=arc-20240116; t=1740597008; c=relaxed/simple;
+	bh=vNIB1Hk+ftHd0PmNoa5/tzFlgptXk+FeOKK8Mczu7A4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=AcyYNm/6wdOBzM2QxbXdfQvdELlnTI+MAaoVGiy96nMiAv/AKxOgwNmxHLg5GERXipfMQ68t3CamA/hRNA3NnDvI/25nMfOWIdfZjFnV0tvagcTtbocXQUnyuXr/fqg1hV4hChhiCdMWFwu729+eg81MMZL6lquQQpKAMj4yvFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cyQQPcAd; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43994ef3872so1153955e9.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 11:10:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740597005; x=1741201805; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=oQXlwKW3fq22hjGTADQg3o4ICJGGdHwqlJHIeiJps70=;
+        b=cyQQPcAdWSnimFMMlrPjHXdP96RJYtyX/8ffMJ5G0FXRk2+BhXZG8U2b699ROW9ljQ
+         9X5YxrdvnakK9HULN3ChKcVPXC6v2ACXJWaHyDCtCC8D3bb5g6OPVUEsNKJyHWejOd0L
+         Zt3CvyCOs7so/qF8SwpturCV0ZP2MLrqQRKw0LI2gZWn6+Rdv66ctFSbNHnqQrs64vFA
+         f9YL5mePq4fNPEx1bayriEmcaC74SazXpKfE/l+XJUTw+Do5GJSsF7ejAKFgZ5mJm6az
+         9M9kbiJekNJ37iug3ez+m7xVfdWsEhaKEo+xGO/KYXkXh/0GxB7yvFC0WkLI5Adqy4lI
+         5Mjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740597005; x=1741201805;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oQXlwKW3fq22hjGTADQg3o4ICJGGdHwqlJHIeiJps70=;
+        b=IGbc0QFzc/2wBEkZaoYjauj8Z3HzW57Dq0+D53aCcajCka0Cp1Za8nlkQpE7B4/Ui1
+         381DtTXVQamDHT4IwsCSN9NhqMZaLnurmEP7z6fEa4mZjzj+YcJCppQhFddmqC/1HWqA
+         QzQTbTwMsA94JNg9mN85ZSbWt3rUazPm9s1heAOtToON9nvWZoHSGOPgXyXNhB9FFq6V
+         F8qb333TWQ6/PQmk0PDlpl/LBSqMy3+9f8z9aRegLbB+eyl+dkLT7+4iCaunXhu+44SV
+         VJ5U5NAPSy1FJygKVwD5bjwtuqRIHdhtGNpPsovl9qnKGv5hjAA/RuMZFfEHvSNU5EAQ
+         4a2g==
+X-Forwarded-Encrypted: i=1; AJvYcCWKkRT8AxM8p/hT13wLflnlNrQ0u695/fBU3t54jRSSpYujBUeXBuQ5ZBLsxDub0MXCRUQ4VmOLV4KV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8mR/S38qkKJZtIm1pnPvAB/yQrQ8f6TIY4Qiv8904QkHCAJeZ
+	c18N3f6RuuVAXqXhO5dfUvTs/PKWP/Q98JJxnPpS0bccA0AaB+h+vC11YpImW+Q=
+X-Gm-Gg: ASbGncuvp0JGHzdtW7LKx0O/+eSONQdogei7VRkI0Nhsr1Mw35cSzt+/blWwBv8R7+2
+	bClXSAXe0kW6icmjNSE8Tw+Tx1AJlDUSp7UE7S6Jzam1UUYIsb3Y25sDOO/zvocCZw2hcjZd+za
+	bw0l9LAEWwsajSfnzksqDczgDiEhY4OzBPwF6JYFwV/nWqxw0OevIgNbhJ+1EsVh6t2Ff8yWACc
+	2W6BYR2N+M3ZXs1UhnJ1j06jLE/RlggjXkihwYINxWIbaoL1L4m75GRl2O5gxliAucP1xjENwcH
+	k5EwUbhvwbjG7Hh3RVcq2nLMacnKSg==
+X-Google-Smtp-Source: AGHT+IGa0oSIpnReOtNhlKYec3e5C0bkQn4YQGivV5J+eMq+hw7AG5nh0vwPYPQ8XEjaZUwX1ZbW4A==
+X-Received: by 2002:a05:600c:4753:b0:439:9a28:9e8d with SMTP id 5b1f17b1804b1-43ab0f313a0mr77194455e9.12.1740597004640;
+        Wed, 26 Feb 2025 11:10:04 -0800 (PST)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43aba549db4sm30545825e9.35.2025.02.26.11.10.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Feb 2025 11:10:04 -0800 (PST)
+Message-ID: <135bdfc38dad8994b94318174a970fd22dc87f45.camel@linaro.org>
+Subject: Re: [PATCH v2 2/2] power: reset: syscon-reboot: support different
+ reset modes
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus	
+ <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
+	kernel-team@android.com, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org
+Date: Wed, 26 Feb 2025 19:10:02 +0000
+In-Reply-To: <20250226-syscon-reboot-reset-mode-v2-2-f80886370bb7@linaro.org>
+References: <20250226-syscon-reboot-reset-mode-v2-0-f80886370bb7@linaro.org>
+	 <20250226-syscon-reboot-reset-mode-v2-2-f80886370bb7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.53.2-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] dt-bindings: mfd: stm32-lptimer: add support for
- stm32mp25
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <lee@kernel.org>, <ukleinek@kernel.org>, <alexandre.torgue@foss.st.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <wbg@kernel.org>, <jic23@kernel.org>, <daniel.lezcano@linaro.org>,
-        <tglx@linutronix.de>, <catalin.marinas@arm.com>, <will@kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <olivier.moysan@foss.st.com>
-References: <20250224180150.3689638-1-fabrice.gasnier@foss.st.com>
- <20250224180150.3689638-2-fabrice.gasnier@foss.st.com>
- <20250225-outgoing-scorpion-of-music-be0bea@krzk-bin>
- <acabacb8-8ea1-4b16-a562-8ffba64fdd36@foss.st.com>
- <8b42f0ad-2993-43b8-9055-6d74dc3bafbe@kernel.org>
-Content-Language: en-US
-From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-In-Reply-To: <8b42f0ad-2993-43b8-9055-6d74dc3bafbe@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-26_06,2025-02-26_01,2024-11-22_01
 
-On 2/26/25 08:51, Krzysztof Kozlowski wrote:
-> On 25/02/2025 15:57, Fabrice Gasnier wrote:
->> On 2/25/25 13:02, Krzysztof Kozlowski wrote:
->>> On Mon, Feb 24, 2025 at 07:01:43PM +0100, Fabrice Gasnier wrote:
->>>>    pwm:
->>>>      type: object
->>>>      additionalProperties: false
->>>>  
->>>>      properties:
->>>>        compatible:
->>>> -        const: st,stm32-pwm-lp
->>>> +        enum:
->>>> +          - st,stm32-pwm-lp
->>>> +          - st,stm32mp25-pwm-lp
->>>>  
->>>>        "#pwm-cells":
->>>>          const: 3
->>>> @@ -69,7 +76,9 @@ properties:
->>>>  
->>>>      properties:
->>>>        compatible:
->>>> -        const: st,stm32-lptimer-counter
->>>> +        enum:
->>>> +          - st,stm32-lptimer-counter
->>>> +          - st,stm32mp25-lptimer-counter
->>>
->>> Driver changes suggest many of these are compatible. Why isn't this expressed?
->>
->> Hi Krzysztof,
->>
->> The Low Power Timer (LPTIM) hardware isn't fully backward compatible.
->>
->> At driver level, as indicated in the cover-letter, same feature list as
->> on STM32MP1x is supported currently. This is probably what makes it look
->> like it's compatible, but it's not fully compatible.
-> 
-> I don't understand. Same feature list is supported means fully
-> compatible, but you say not fully compatible. You are aware that
-> compatible means not the same?
-> 
->>
->> The hardware controller is a bit different. Some registers/bits has been
->> revisited among other things. This is the purpose for these new compatibles.
-> 
-> We do not discuss new compatibles. We discuss lack of compatibility. If
-> registers/bits are changed, how existing driver can work with same ID table?
+On Wed, 2025-02-26 at 16:44 +0000, Andr=C3=A9 Draszik wrote:
+> Linux supports a couple different reset modes, but this driver here
+> doesn't distinguish between them and issues the same syscon register
+> write irrespective of the reset mode requested by the kernel.
+>=20
+> Update this driver to support most of Linux' reset modes: cold, hard,
+> warm, and soft.
+>=20
+> The actions to take for these are taken from DT, and are all new
+> optional properties. The property names match the existing properties
+> supported but should be prefixed with the reset mode.
+>=20
+> This change is meant to be backwards compatible with existing DTs, and
+> if Linux requests a reset mode that this driver doesn't support, or
+> that the DT doesn't specify, the reset is triggered using the fallback
+> / default entry.
+>=20
+> As an example why this is useful, other than properly supporting the
+> Linux reboot=3D kernel command line option or sysfs entry, this change
+> allows platforms to e.g. default to a more secure cold-reset, but
+> also to do a warm-reset in case RAM contents needs to be retained
+> across the reset.
+>=20
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> ---
+> =C2=A0drivers/power/reset/syscon-reboot.c | 88 ++++++++++++++++++++++++++=
+++++++-----
+> =C2=A01 file changed, 77 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/drivers/power/reset/syscon-reboot.c b/drivers/power/reset/sy=
+scon-reboot.c
+> index d623d77e657e4c233d8ae88bb099bee13c48a9ef..1d3d8a3265ae8005c685b42d3=
+e554bd8bb0047ea 100644
+> --- a/drivers/power/reset/syscon-reboot.c
+> +++ b/drivers/power/reset/syscon-reboot.c
+> @@ -14,11 +14,29 @@
+> =C2=A0#include <linux/reboot.h>
+> =C2=A0#include <linux/regmap.h>
+> =C2=A0
+> -struct syscon_reboot_context {
+> -	struct regmap *map;
+> +/* REBOOT_GPIO doesn't make sense for syscon-reboot */
+> +static const struct {
+> +	enum reboot_mode mode;
+> +	const char *prefix;
+> +} prefix_map[] =3D {
+> +	{ .mode =3D REBOOT_COLD, .prefix =3D "cold"=C2=A0 },
+> +	{ .mode =3D REBOOT_WARM, .prefix =3D "warm"=C2=A0 },
+> +	{ .mode =3D REBOOT_HARD, .prefix =3D "hard"=C2=A0 },
+> +	{ .mode =3D REBOOT_SOFT, .prefix =3D "soft"=C2=A0 },
+> +};
+> +
+> +struct reboot_mode_bits {
+> =C2=A0	u32 offset;
+> =C2=A0	u32 value;
+> =C2=A0	u32 mask;
+> +	bool valid;
+> +};
+> +
+> +struct syscon_reboot_context {
+> +	struct regmap *map;
+> +
+> +	struct reboot_mode_bits mode_bits[REBOOT_SOFT + 1];
+> +	struct reboot_mode_bits catchall;
+> =C2=A0	struct notifier_block restart_handler;
+> =C2=A0};
+> =C2=A0
+> @@ -28,9 +46,16 @@ static int syscon_restart_handle(struct notifier_block=
+ *this,
+> =C2=A0	struct syscon_reboot_context *ctx =3D
+> =C2=A0			container_of(this, struct syscon_reboot_context,
+> =C2=A0					restart_handler);
+> +	const struct reboot_mode_bits *mode_bits;
+> +
+> +	if (mode < ARRAY_SIZE(ctx->mode_bits) && ctx->mode_bits[mode].valid)
+> +		mode_bits =3D &ctx->mode_bits[mode];
+> +	else
+> +		mode_bits =3D &ctx->catchall;
+> =C2=A0
+> =C2=A0	/* Issue the reboot */
+> -	regmap_update_bits(ctx->map, ctx->offset, ctx->mask, ctx->value);
+> +	regmap_update_bits(ctx->map, mode_bits->offset, mode_bits->mask,
+> +			=C2=A0=C2=A0 mode_bits->value);
+> =C2=A0
+> =C2=A0	mdelay(1000);
+> =C2=A0
+> @@ -45,6 +70,7 @@ static int syscon_reboot_probe(struct platform_device *=
+pdev)
+> =C2=A0	int mask_err, value_err;
+> =C2=A0	int priority;
+> =C2=A0	int err;
+> +	char prop[32];
+> =C2=A0
+> =C2=A0	ctx =3D devm_kzalloc(&pdev->dev, sizeof(*ctx), GFP_KERNEL);
+> =C2=A0	if (!ctx)
+> @@ -60,12 +86,52 @@ static int syscon_reboot_probe(struct platform_device=
+ *pdev)
+> =C2=A0	if (of_property_read_s32(pdev->dev.of_node, "priority", &priority)=
+)
+> =C2=A0		priority =3D 192;
+> =C2=A0
+> -	if (of_property_read_u32(pdev->dev.of_node, "offset", &ctx->offset))
+> -		if (of_property_read_u32(pdev->dev.of_node, "reg", &ctx->offset))
+> +	BUILD_BUG_ON(ARRAY_SIZE(prefix_map) !=3D ARRAY_SIZE(ctx->mode_bits));
+> +	BUILD_BUG_ON(ARRAY_SIZE(ctx->mode_bits) <=3D REBOOT_COLD);
+> +	BUILD_BUG_ON(ARRAY_SIZE(ctx->mode_bits) <=3D REBOOT_WARM);
+> +	BUILD_BUG_ON(ARRAY_SIZE(ctx->mode_bits) <=3D REBOOT_HARD);
+> +	BUILD_BUG_ON(ARRAY_SIZE(ctx->mode_bits) <=3D REBOOT_SOFT);
+> +
+> +	for (int i =3D 0; i < ARRAY_SIZE(prefix_map); ++i) {
+> +		const char * const prefix =3D prefix_map[i].prefix;
+> +		struct reboot_mode_bits * const mode_bits =3D
+> +			&ctx->mode_bits[prefix_map[i].mode];
+> +
+> +		snprintf(prop, sizeof(prop), "%s-offset", prefix);
+> +		if (of_property_read_u32(pdev->dev.of_node, "offset",
+> +					 &mode_bits->offset))
+> +			continue;
 
-Hi Krzysztof,
+It should also check the %-reg property, and it needs
+to use prop instead of "offset" in of_property_read_u32().
 
-To summarize on dt-bindings side, here is my view, following your
-comments on per driver basis of the compatible usage.
+A.
 
-Let's keep these new compatibles:
-- "st,stm32mp25-lptimer-trigger"
-- "st,stm32mp25-lptimer-counter"
-
-Both reflect not only LPTimer hardware update, but also specific
-interconnect to other hardware blocks throughout all the STM32MP25 SoC.
-
-Other compatible strings may be dropped. Reading the
-revision/identification register of the LPTimer should be enough for
-compatibility in the related drivers.
-
-I'll update this in next revision of the series.
-
-Thanks for reviewing,
-Best Regards,
-Fabrice
-
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
 
