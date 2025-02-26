@@ -1,136 +1,121 @@
-Return-Path: <devicetree+bounces-151450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 834FAA45D0E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 12:29:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 050B1A45D3D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 12:35:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1315B18933B7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:29:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0588517353A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:35:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 840D72153C5;
-	Wed, 26 Feb 2025 11:29:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DABB2135A6;
+	Wed, 26 Feb 2025 11:35:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UWJoRuqt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vDcQvtCa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8F6C215171
-	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 11:29:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8274322A;
+	Wed, 26 Feb 2025 11:35:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740569363; cv=none; b=YJC/DTifkVDvuBGKBPFii1BfHGZaAahb8UNAe1mRm/wQ976Y6VE6a8TUv+/6311NxQJm2zCXzr0jRZ6tE4O2ATxmzSVof5mQ54O4Xy/l2u4tdYfKc32aWV7aNfaHl0xJVhehUXXO4W1KBFrQ7aRE25p8Cfb7ByNXvZ4wGIwswQQ=
+	t=1740569732; cv=none; b=RH8nWKQDbdY4DF03MGlYXO99soNGb5pY3nay/sgouZycg3QjQQH2OT/9mJwME0JSzq2bqphf/BBiA4koZ2HMFVAPJWuwZlgfC1xGV8taY5sD1DXMM/q3JgqgZzA/0oowYDdcY9RMcNBK3vu4yBbriWbuu7qubQLSwibNxeDK9IM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740569363; c=relaxed/simple;
-	bh=aKWtbob+2RSm5JyDWJSTEd1XNxeI/gXvLID19u4dptE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AZJwLU822O8VOAmex1a3/6rciDJ7qPa45XePaiz+Jwqfmc8MjqrUx50WVHbWOGeGGBWf+GxCaB9BgHjRJfg3scRb2Rx/xpQrunt/kclvepM+CBlRv8uBMyWchuCPk1wAkgs9lIelXI4sTvzneXMhLwgdKgj/RHyfvLjyWVtxnsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UWJoRuqt; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5dc191ca8baso1586881a12.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 03:29:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740569360; x=1741174160; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JQWD29wnrAJlObQ2+b6JbHQHIRXSBf6Z16/xLVUUT5k=;
-        b=UWJoRuqtpufSJ1eEwtIyOqn2Ffii8q3WfxUQoiW3l8eK1jfy8sO7ZSqSwzU+mewwwN
-         YNtCuoVEiQVFZLeH/a5zy3/LaQ13c8NVi7/429F7iSlAOXqTy0IPyPnjblh1a4blN8SB
-         b5sWXJgsFucLibb3IDcTiYsMaV0HAHplVBiLsqL2JLzbg35Q/ufYdBldLq0McgO6Za4f
-         7+5rh1Ihoszr4Hg9AMyBbjd/M54uOmWeWRvpPFfQXxMdepwv09zKFB7ldlpZtMKFkwbj
-         tCDmT29rjbw2WyHEBNi+n4xyX/HO33y0k0UVlgj2IHuTL8yl5gyYWloOkznjIxjCDl46
-         GDkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740569360; x=1741174160;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JQWD29wnrAJlObQ2+b6JbHQHIRXSBf6Z16/xLVUUT5k=;
-        b=tKO/2HJJwDLiE2s82ZOrfHNxb3w1nl/uNmu0hpMTuATIFHQJuXi7BJzGF26LTUSvvw
-         SDKPIjNObuAbqlbyI7L8pKQ4GIVjl73zjd2DPL5zD8lVIAUZFcFNc5FqMtQo8cJA3s7S
-         Ef0NFpL07x5voeseJqg3oJMXEhp+lI1pU3FKHXo+tT55Cn1UboJz6xN0oLa8T0HzMAKC
-         NSzlD7IIOxRaMuIKcVxDuvHdHupu+hM9tpf9AD24G/DKphRylaV03yEl+bfLxkN2cCMF
-         nhod3LYkkj6bLkykyUSvoV1iMd9XnAQw6sbZF2Bi7UIKSEqsNcx7JA60BsEfNLJHf9Hr
-         rMaA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3dH4JnnYZKqrOyUM6DGPihOkXejwEWPJsA81cvQbc+Yc7nMCR7p3oBX7zvnS9JNUPGru7yvXnH7Ba@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoW7g+bc2XvJ3DSGuELCqliTWeYvGz8LNLk3fSPfg+NG+/o+hB
-	7eUqNd+cxAYqdYsMaETmzfJGyJvP0NFBiKB3J5u6dnW3j0ZecfHySZgaifFL/jg1h134jth0oWc
-	6zT4=
-X-Gm-Gg: ASbGncvfhMqRp92pNr08ceVpVNfkn0nIv9IlmBqRCbm7TXLRomoY3pbgTmiQP/K8T58
-	cXLIVOjpi0lZGNmzBhFChOK5t/NrvGNo/XZSVOzRP+/0uQXe9AeoMrLnekn32ka8DKeyeYvWkqk
-	05s9bgknxIvT6w7Jut3gG1sx7pB1qHiOkKDYvSZK3v6XjC62gJAdkaAAw+wlsNMm9Ho8Mf5yCW6
-	YhT3JGmIvaPaKuyvqRnGywTtkFkQZMMNFJNv6/pgzAw8X3EUzOlaRa9zO1M/4xUxdtpPsIEKPl0
-	X2lYJikNZ+nEW06Jm0Pds0UrP0DQp0fkyzmp7Dm7M+fu3rKq0NB6JBEYp/Qvhdrxd+SmDsS05DU
-	=
-X-Google-Smtp-Source: AGHT+IGUGEs167MMU50Z/gsJMetu4k7d/Wn5NbBN1LtAChUhdquWuXdeMtmsG/KUgqB4AhKanou3/g==
-X-Received: by 2002:a05:6402:430c:b0:5dc:7ee8:866e with SMTP id 4fb4d7f45d1cf-5e0b70dadffmr7109591a12.3.1740569359899;
-        Wed, 26 Feb 2025 03:29:19 -0800 (PST)
-Received: from krzk-bin.. (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e45b7174cesm2610049a12.34.2025.02.26.03.29.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Feb 2025 03:29:19 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@linaro.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1740569732; c=relaxed/simple;
+	bh=Y18CQNs0L+XFUrMs7xJNhaibdlj4yhyXeV9G5NktoPs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V+En9aXmU8JQWLtGsuFbV4FG/DujIFUHiojoG/bjhvbfHTjj5WBroqzOeJT8Mu18TaIutFrPnMbuTzzkACkQUiHEAgcYk1ktbDay97Gdk2eXldR9ruUEEJgMm+VsToF8tOHsgxn98G2yfLWMpJwwSr8++Zhhlxmi5UwzTT8nas8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vDcQvtCa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAFF2C4CED6;
+	Wed, 26 Feb 2025 11:35:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740569731;
+	bh=Y18CQNs0L+XFUrMs7xJNhaibdlj4yhyXeV9G5NktoPs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vDcQvtCag2xtXASOLbx7dX/58yvrbkfroUGes9kKr3X0TykKR2tU/rnIfR13Y5uWL
+	 OHNwy8n8S/nRf2FzyNYBAIegKqqUjKngWLokARqVN3v6Z0b/IyM+u+tDrRSYJxKunw
+	 Rr3v7ts1t8xOJpaE7n0uClORzCpHbwLB0QObO8lrqGE4f45ryZcsJ9IKUHESYm0Zhh
+	 JEptOD1t/gTYtwHtHyvRPzAVgV1E1kACszJTA38CnEuoeY2XepbzOFKiG4pCQDZ1bm
+	 wbY+ZQI0vNadashXAu+x9sth0PbBL9sDYT1u275J9j0qOD/jfzWfNUfT6RJ987oWSC
+	 kAJ0xD0kfrxRA==
+Date: Wed, 26 Feb 2025 11:35:27 +0000
+From: Mark Brown <broonie@kernel.org>
+To: "Torreno, Alexis Czezar" <AlexisCzezar.Torreno@analog.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Mao Jinlong <quic_jinlmao@quicinc.com>,
-	Tao Zhang <quic_taozha@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	stable@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: coresight: qcom,coresight-tpdm: Fix too many 'reg'
-Date: Wed, 26 Feb 2025 12:29:14 +0100
-Message-ID: <20250226112914.94361-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250226112914.94361-1-krzysztof.kozlowski@linaro.org>
-References: <20250226112914.94361-1-krzysztof.kozlowski@linaro.org>
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 2/2] regulator: adp5055: Add driver for adp5055
+Message-ID: <8afb3d94-336c-4e33-a73b-fc690f287556@sirena.org.uk>
+References: <20250225-upstream-adp5055-v1-0-a5a7f8e46986@analog.com>
+ <20250225-upstream-adp5055-v1-2-a5a7f8e46986@analog.com>
+ <a7f7d4dc-283a-40b9-bb1b-0bc8aceb99c1@sirena.org.uk>
+ <SA1PR03MB634020464A151651A08ECAACF1C22@SA1PR03MB6340.namprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2Je8O42lRvDoqDRl"
+Content-Disposition: inline
+In-Reply-To: <SA1PR03MB634020464A151651A08ECAACF1C22@SA1PR03MB6340.namprd03.prod.outlook.com>
+X-Cookie: I've been there.
 
-Binding listed variable number of IO addresses without defining them,
-however example DTS code, all in-tree DTS and Linux kernel driver
-mention only one address space, so drop the second to make binding
-precise and correctly describe the hardware.
 
-Fixes: 6c781a35133d ("dt-bindings: arm: Add CoreSight TPDM hardware")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+--2Je8O42lRvDoqDRl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-index 52ba5420c497..74eeb2b63ea3 100644
---- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-@@ -41,8 +41,7 @@ properties:
-       - const: arm,primecell
- 
-   reg:
--    minItems: 1
--    maxItems: 2
-+    maxItems: 1
- 
-   qcom,dsb-element-bits:
-     description:
--- 
-2.43.0
+On Wed, Feb 26, 2025 at 02:24:58AM +0000, Torreno, Alexis Czezar wrote:
 
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Regulator driver for Analog Devices ADP5055
+> > > + *
+> > > + * Copyright (C) 2025 Analog Devices, Inc.
+> > > + */
+
+> > Please make the entire comment block a C++ one so things look more
+> > intentional.
+
+> Am not familiar with this, is this where each line use // rather than /**=
+/?
+
+Yes.
+
+> > > +static int adp5055_en_func(struct regulator_dev *dev, int en_val) {
+> > > +	struct adp5055 *adp5055 =3D rdev_get_drvdata(dev);
+
+> > Just use the standard GPIO and regmap helpers for this.
+
+> Confused on this, I thought these were standard 'regmap_update_bits' and=
+=20
+> 'gpiod_set_value_cansleep'
+
+You've open coded the operations instead of using the framework helpers,
+you shouldn't need to anything other than supply data here.
+
+--2Je8O42lRvDoqDRl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAme+/H4ACgkQJNaLcl1U
+h9B+XQf+P/mXfUV7Xo03nASx7ByqkyBy+VqAFOV8jDrwsw6tOmybAhlTpuC2we7w
+fklbKSvRmpMz2uU2lQwQ9q3eywDPEwlG3ezhb4fkujAy2pYxVhoRrmz4QyPpE7aM
+VDGnRcm1V2cRO5L0roR31kGvC7tSoMmNkl+Cb0cfeAuEpF5zdA+0T+OVR8s7/2LR
+uAqMh/pPeDd4ydL9QoIltNqzgDWUMhp/JcLyuaNchs0rEK0LhwAXzJwra2DkmjGs
+gh+wtVKPea5CX+SSq2C7A/4KGiGadrJWqFiZYA1nXsv1N6PlHqrFvXhTLHyNe8p/
+y6Z/kZLYuzRFZOgXTAG+gx879XaW3w==
+=bu8m
+-----END PGP SIGNATURE-----
+
+--2Je8O42lRvDoqDRl--
 
