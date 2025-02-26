@@ -1,161 +1,168 @@
-Return-Path: <devicetree+bounces-151245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A1C2A45167
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 01:26:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7045AA45198
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 01:37:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0600E19C0636
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 00:26:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A89B67A2470
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 00:36:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0610547F4A;
-	Wed, 26 Feb 2025 00:26:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41AAF14F102;
+	Wed, 26 Feb 2025 00:36:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ajQVyawQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gZq/lGHn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F8D3BBF2
-	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 00:26:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D99913BAE4;
+	Wed, 26 Feb 2025 00:36:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740529607; cv=none; b=D2xkmnQGqrj/e6oWN3PNGPapU2YMmRWJIamguEbLGQRbKlDiYhERnxHfu3yPKvG/FwnGNOOi2PVsh7roAOxBg1cM577OHfuc8C5jfZznF12hFUBzXtmsSYpPuSlV4+lhUMr9QVr5ekC/A3WVLCIyYky+W9svxx+1DRnb//vT8B4=
+	t=1740530206; cv=none; b=PFVr90kLLiFcK7F9ZEjSAIDIrtGnWclx+zVpeNEdrYUWw1UCpmZnnlIU7AMD4RBzCgOtUtwCpb6ioDAzN1VvGgQIdYu+XUfwCdosIhwyMPi3yUoQlHQv3aQXjei1lSCYgp83uGDDicLPidUhvG6T3d8aSxZZ7Xyc8UtNWc0YeTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740529607; c=relaxed/simple;
-	bh=U8EoAqRFMwNN0vkZxxuJ747c1TkFoXybVwKQXTpYFNc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U6zoIJro6zhqPONl8azm2ZT2WXqyzKDrKsjX/OY8jJNmgo2TkVfYXzowcC2OERzKPQPT4XYAcqzflBLl5UXIjEsW7L3WZ7Xf7WYTWgYB0Qe5Eir6lg722gxv4ayuZu9J6piOmwSenzCHKxVkZhd4rUhlJW/vHsiKGkAbnYN8kAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ajQVyawQ; arc=none smtp.client-ip=209.85.167.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3f408052bdcso2194440b6e.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2025 16:26:45 -0800 (PST)
+	s=arc-20240116; t=1740530206; c=relaxed/simple;
+	bh=3GTL6/XiXHLBc+pi/NQr736XLvjL/yUNeREEvEKV0j4=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=aKmrK6icuJ6GG8GeNS19Uz6MAughzzxfB5JTzzQiQqukHFVa7/s0Gj9+vgaDRjugbkKD20A6DVXaB2ItHyV5pOoBgcLFDd7ps3+Vm4oOxRaceLodcdCNcBRAe099IqBX6GWKIIBFOg6lY803IeU4ydVmIJdfa0otIzYI3lKCXyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gZq/lGHn; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-38f3486062eso5205135f8f.0;
+        Tue, 25 Feb 2025 16:36:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1740529604; x=1741134404; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TtkdEm0DhE9kMHrzm4v1hwSlsrJYtgXqAtJA7aT6OdM=;
-        b=ajQVyawQVJadBMDPUptySchMkqqVEJx1NM6ucacylDf+Nd6HU7JEw+KpIn8LQoCL1n
-         Q9TC7gKbBXw/M3iiMMvV3g40ZQUkZlOMGgVcZTC/N+WVl/XK+yE1oVZyWVfixvNEUobc
-         6csOi93pB71E1HL3ULzFP8prHxcNAa1BKh2ZBbG466jRvyBvC5i7Fe0LkjefqVFUfSp5
-         d5W5E1u0Z72z1byg9+8GU5ukPeS2Exz2uVc3hu4fz5hMhi8auubwcGBYFnDRQl0Mh4cJ
-         e/mSCeT+PCQjOk2P3vQFF0aw2jptNtKYfdyVVs/xPE5ScKmkiZXQK7qdeafAWiJ1MEOD
-         k/PA==
+        d=gmail.com; s=20230601; t=1740530202; x=1741135002; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JNoENxBoZrBe91voXVn7bHkqi1XSekF1y+baxrAi4K4=;
+        b=gZq/lGHnZqSPAlDcO4rTUFtamJMrgWNRECTj3unI/tS1kGiMm4Wv2enyECJCuRhr6L
+         kpPwQ2QS3WTclPp6LhUwRtY9sp0x0pz/QQZ4RhKmt+gwR6HJkz7rjsgyXotY4KZHJ8pQ
+         uz/hztna6PiIP8Cr2hM2OmmwelZ986Xezn0apoxbC0FcfYPrBcNgeJS7LH1le/ge09Y6
+         bGX/hA2apmB8ZTWckdwWIuEWBlyL0DcINIpuiAtohYZ7Z6MTetmSKZSQuXfP/WCQuKP8
+         MFWa/3L1mEDGxD/p6dLWYg5m1sC6EpL7lZaYrSacnW/CbmkWHsAMXQNps0lPawfgngAg
+         oltQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740529604; x=1741134404;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TtkdEm0DhE9kMHrzm4v1hwSlsrJYtgXqAtJA7aT6OdM=;
-        b=H3Ili/NOVP53sR9azNI0UTgbZxrmX0zryQSBjgJ0uPT2CvXAKWwi6SDIlIPKeI67RW
-         pjpYJKGBlooWkzlo93AFmw7le0gKTBhjCZSIPWu2f4Nb+SGo5KB7JYDLSHPm+2Rw+XWA
-         m7f+CKWO5NxWtxLVsCf+19PDwJxh9JhHw5gmzkpNE1mKiKLljCPJMBYiv8pYTMabGXPN
-         xXapnbOod5SS4z/MS+QrBvN6jJxJyCDTgS0cU+AV8eQik4xijAALqPjDpt+6T9uJdb+0
-         l1theruIkr/34nbjpzjOU/ypm9fUgn5krQLWbITlsNfFrA/3+MPK5gXKprFGZAQpMZkO
-         OQBw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1Jlk3JipusnkJvfOnzII7wg5McZw5qewO23Dvv04ZVlV2OwcU0w6nkcTebVfWFqj8uHg7U5/sNiLY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw383cOYR7eL9IIr+qFHGGvd+OPdpsCjQ7Qr3Rr8hwvLPgvVlR+
-	ndnZuJDB0/Q6U3bmXdN/mME50DK7iumLhwCuGl/IZ/mzkIX+qwyxvMDAkVcKx1w=
-X-Gm-Gg: ASbGncuyu+Hbr+SQGx0cBfQ4W3s1nMU1UDyi+EcaCVZG7u7N/HFcXbRG0bl0F5bzE9t
-	94+ojCnik58MIFBtj/dcW2kscPSA4o3UXH+WkmHAUvVyU4ImRY5LrM1EhD2F0LioXQuOEwh8Tja
-	b6hXe+UZQ3qkwQsEeAYqmvYpsYpYLdBnHhEwH4Mf3K5e8qRrMapjOqCbrKAvMxfoubqcfj5u6dO
-	8pC3QG3iK9+VrlnPVMy8vt8l6/ctTvd4ZA/MvTIyGF7sQkZ6rDwy4NIePu9pNW8dIPt5TBAyMtU
-	Wp06fpSgs7LF2EWzhMZRGq7axPwj4xNQZJNnCEEvG1wh3MWbo4JpWDFSuDOLxO4=
-X-Google-Smtp-Source: AGHT+IHrEzlhOgkq+zDuK43ZJTHn/TAq6eat4Ph04G840iIXAUXagf0yq5sPkcY8nyRgOxiDTjBreA==
-X-Received: by 2002:aca:1a0e:0:b0:3f4:ad6:5190 with SMTP id 5614622812f47-3f547de878fmr763766b6e.2.1740529604637;
-        Tue, 25 Feb 2025 16:26:44 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f541c5bce1sm510105b6e.46.2025.02.25.16.26.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Feb 2025 16:26:43 -0800 (PST)
-Message-ID: <0de7b0ac-eca5-49ba-b1b3-f249655f3646@baylibre.com>
-Date: Tue, 25 Feb 2025 18:26:40 -0600
+        d=1e100.net; s=20230601; t=1740530202; x=1741135002;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JNoENxBoZrBe91voXVn7bHkqi1XSekF1y+baxrAi4K4=;
+        b=pdsn+866sddOsYb/weVPtTlGPSUKnKKQFjDiu8yVEoWss8KtywPx9tFvCRTr0K2smy
+         qWGGL9L6AopFHV9Jh1qGtfkia5o38ctm0ZwI/W8dwa6VLxfFcy1/QaO84hgazWkVQSut
+         L8Fl0a9CaLSv4tyyilxOoV3yAKU9L8K7MmhSHASq17PVHUB2NlcMhnJn4LwSZzX8uAzX
+         USGQ3Xv7SeQBffpuu8qme+w2dJ8LoUP6fc2qAW9J0dI6zGmA9p6I73NGIA1UlHCgu+1w
+         2Vgd40WnNYdch3bMUEoRTM6TuvizzdZ24uzFZfyYQa5p6m4uwQJok+H2YJgG7QD+dZ0/
+         NYWg==
+X-Forwarded-Encrypted: i=1; AJvYcCUhPFqc4XKb5hO4wCYQhF/uUBTb4EMJMMTyISaTyBPP0i8drFI0wsapBcHheXD35YYxeCSMONxt0ZJxTwUY@vger.kernel.org, AJvYcCVddkOGCzxkFJqwVSUyPeoyDe2UVf5Af9/1Efpb94kiyjVQVFoLzs7uBxgDfUYW8kxsoEkHkhOO9iU=@vger.kernel.org, AJvYcCWCV0GxdpDDm4tjJCVq/kuMzvR09+qSrLz/C6feL5hg8dP0kVodu17dic8j2ax+abBs4d52MaP060aU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtdeLw81Ugx4gD5hv/BNTzD+4Z/oki+uo/510ZlHdSuj125e3f
+	Gsr0+8dmu4lrgVHx7F66WIwdBAogROmCAyeXnmgqubqtO7BN/Acb
+X-Gm-Gg: ASbGncvugR7RdQwv+uze9U0Qr9Dirk+Qj/iP/fxR3/NcenP2c0L1HZymwlML6NcQv1d
+	nw8LNWLKeEe3M8Va1AQ3YAAz+tdenGLLfb8bwa87YZ2HAfpqyHsAM3NXnVMh58OvtiEDQwXLBPt
+	KT/QzI4/XrlWfLuI1Euh31JZf2rTS0Qv+E8hNYGkRulyVBXg+i1mzqwwsXZZCnVqYje69hBl5xI
+	LWxI+6G+4rYIzFlGgSCqm5Mc9VIs4ugXEFtWT85nfODRI23SuBAAs3vF0UeHrZ6N8F/VL2a/abK
+	hqo8jcMYI3urM4uJMknObC/PDhwgI7X4JodFnCkizJnQKSg1rlxb+AJMc8Uohc+Ak8Jtoq8=
+X-Google-Smtp-Source: AGHT+IHoUenVQevbu1Hu0plq1UuGDyGoosPSjWjJ67mAix46nfmWkEyXPB8VngMgXYyL+1dZTn/kBw==
+X-Received: by 2002:a5d:5887:0:b0:38f:355b:141e with SMTP id ffacd0b85a97d-390d4f378ebmr963479f8f.3.1740530201503;
+        Tue, 25 Feb 2025 16:36:41 -0800 (PST)
+Received: from localhost.localdomain (93-34-90-129.ip49.fastwebnet.it. [93.34.90.129])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-390cd866ed2sm3877595f8f.16.2025.02.25.16.36.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Feb 2025 16:36:40 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 1/2] dt-bindings: thermal: Add support for Airoha EN7581 thermal sensor
+Date: Wed, 26 Feb 2025 01:35:57 +0100
+Message-ID: <20250226003608.8973-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 03/10] iio: adc: add helpers for parsing ADC nodes
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Daniel Scally <djrscally@gmail.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa <nuno.sa@analog.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Guillaume Stols <gstols@baylibre.com>,
- Olivier Moysan <olivier.moysan@foss.st.com>,
- Dumitru Ceclan <mitrutzceclan@gmail.com>,
- Trevor Gamblin <tgamblin@baylibre.com>,
- Matteo Martelli <matteomartelli3@gmail.com>,
- Alisa-Dariana Roman <alisadariana@gmail.com>,
- Ramona Alexandra Nechita <ramona.nechita@analog.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev
-References: <cover.1740421248.git.mazziesaccount@gmail.com>
- <23f5ee3e3bf7179930d66c720d5c4c33cdbe8366.1740421248.git.mazziesaccount@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <23f5ee3e3bf7179930d66c720d5c4c33cdbe8366.1740421248.git.mazziesaccount@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2/24/25 12:33 PM, Matti Vaittinen wrote:
-> There are ADC ICs which may have some of the AIN pins usable for other
-> functions. These ICs may have some of the AIN pins wired so that they
-> should not be used for ADC.
-> 
-> (Preferred?) way for marking pins which can be used as ADC inputs is to
-> add corresponding channels@N nodes in the device tree as described in
-> the ADC binding yaml.
+Add support for Airoha EN7581 thermal sensor and monitor. This is a
+simple sensor for the CPU or SoC Package that provide thermal sensor and
+trip point for hot low and critical condition to fire interrupt and
+react on the abnormal state.
 
-I think "preferred?" is the key question here. Currently, it is assumed
-that basically all IIO bindings have channels implicitly even if the
-binding doesn't call them out. It just means that there is nothing
-special about the channel that needs to be documented, but the channel
-is still there.
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Changes v2:
+- Add Reviewed-by tag
 
-Similarly, on several drivers we added recently that make use of adc.yaml
-(adi,ad7380, adi,ad4695) we wrote the bindings with the intention that
-if a channel was wired in the default configuration, then you would just
-omit the channel node for that input pin. Therefore, this helper couldn't
-be used by these drivers since we always have a fixed number of channels
-used in the driver regardless of if there are explicit channel nodes in
-the devicetree or not.
+ .../thermal/airoha,en7581-thermal.yaml        | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
 
-In my experience, the only time we don't populate all available channels
-on an ADC, even if not used, is in cases like differential chips where
-any two inputs can be mixed and matched to form a channel. Some of these,
-like adi,ad7173-8 would have 100s or 1000s of channels if we tried to
-include all possible channels. In those cases, we make an exception and
-use a dynamic number of channels based on the devicetree. But for chips
-that have less than 20 total possible channels or so we've always
-provided all possible channels to userspace. It makes writing userspace
-software for a specific chip easier if we can always assume that chip
-has the same number of channels.
+diff --git a/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml b/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+new file mode 100644
+index 000000000000..ca0242ef0378
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/thermal/airoha,en7581-thermal.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Airoha EN7581 Thermal Sensor and Monitor
++
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
++
++properties:
++  compatible:
++    const: airoha,en7581-thermal
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  airoha,chip-scu:
++    description: phandle to the chip SCU syscon
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  '#thermal-sensor-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - airoha,chip-scu
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    thermal-sensor@1efbd800 {
++        compatible = "airoha,en7581-thermal";
++        reg = <0x1efbd000 0xd5c>;
++        interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
++        airoha,chip-scu = <&chip_scu>;
++
++        #thermal-sensor-cells = <0>;
++    };
+-- 
+2.47.1
 
-> 
-> Add couple of helper functions which can be used to retrieve the channel
-> information from the device node.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> 
 
