@@ -1,73 +1,55 @@
-Return-Path: <devicetree+bounces-151715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3053BA46B63
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 20:49:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C0B9A46BD7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 21:05:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2402188A8A5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 19:49:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C72E33B17A6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 20:05:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DEFE256C7C;
-	Wed, 26 Feb 2025 19:49:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B24292571D3;
+	Wed, 26 Feb 2025 19:59:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="HtYbCdnM"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="dYLm0z+k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA672561D6;
-	Wed, 26 Feb 2025 19:49:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FAAB2571A9;
+	Wed, 26 Feb 2025 19:59:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740599377; cv=none; b=Saw0O4JbOEtzgnPVtHCKA1pmgmAal0dM8jqaHGl9tdU1UXiqmso4tagCwqVuJCSReC6OpQGRsuPOXTPjLVYR9iwZFYbBGCmHdCKIBkS15SWjcSRxTnYZgYi5pc1c9VsbG7YHMJMvWjgiPArjlyrE6/JZyy9A6bmOQZ5gM8yvr7E=
+	t=1740599995; cv=none; b=JXcDK/b484PGPROn0/eMYfuwN64Kw+f271Fl+5imsgGjbeAbvO1BtAxfjgGsF6h2+p9LvILhnFMTZqFv8QZ81QbUL/QSCeo/HRxoI+KksLX66pzPiPUthcVG93fAyytLC6R+hEDEmiu6Ckw6GKs6KAE7LgMrJKhxAALLr8j3uQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740599377; c=relaxed/simple;
-	bh=n6yiWQQ6ilUdoTOKFWhYXpr9uk0w0EjIkCbTKC39bZQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dbFxQR5WBVmVFb/TUzZBphtzOddKAhvUOcJ4xy6LKLyHsfEa0xN+YGMH+leik/R3IO++yf4ojJYk68mkzZ1oer4pwqUnOY5Wp2lbxfIGUGEPpQoyz0a41gGhR2zRdpxz1lpBoDHkYuGsNL1jyMOT31WtERwqJoFiM37EhfL+vD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=HtYbCdnM; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ku5yxor34R97PptL/bWBzHcwxaDWA+nD2jWwQfiBU9k=; b=HtYbCdnMWAHo6NFA5XsdBmmcQn
-	Ef+KnVrFRzpAsTGw9UzBFFmaD2Q00/+VRBjXFYuaW+hpLtCd/vBh99Q9N976u37SktbAWc6uwfRS2
-	2v7SQfe3BRISiN/ARIVCmqGsWLpfM5WR49VN5jJQJJdtHZyrlnoafQhotz1eeMA6oT0DQX7DsbFrl
-	0h2BC8REVdZUbikN1il1qv8kITxjOIymx18KTgFCTUql7kjDeTk0T3G2zJH/VdRFKCt6OH7UmfGCy
-	bLg5pk7idc8F5BYsRFLBJWUmysbtopf0Vjk3tM1m8LhA9V0O1lYUZOmNUUVLSQ4Qdqa1hQmawVsK+
-	OMWCylFg==;
-Received: from i53875b47.versanet.de ([83.135.91.71] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tnNPM-0002zz-4B; Wed, 26 Feb 2025 20:49:28 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Yao Zi <ziyao@disroot.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/5] Support clock and reset unit of Rockchip RK3528
-Date: Wed, 26 Feb 2025 20:49:15 +0100
-Message-ID: <174059933845.4008853.13382525452883280453.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250217061142.38480-5-ziyao@disroot.org>
-References: <20250217061142.38480-5-ziyao@disroot.org>
+	s=arc-20240116; t=1740599995; c=relaxed/simple;
+	bh=maTR3ti8tvPnzk7Cgr35MKKCHPcKWcgGdel0PTrdSgU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RJO5Jzrsd5RF8GKXidt8iIY6PZ93YGedj9yYNwwo8lNp//1TgkAtj13CGYSWBAhfK255zVxwbnDE5awVWpG5wMIvUlxVwQZ3GkoT8MCPQMJijeOZNG5jarrtG0CP77VUJyqeabsuU/xcX/cAelkVcy7O9b6x06Glu9EhzGYrbdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=dYLm0z+k; arc=none smtp.client-ip=178.60.130.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=Mpwa6/uBXoaoc6fsdsrIQ+p/83zvCQFS2f88erlQmg4=; b=dYLm0z+k/u+7NgY7O3kmn9/3Us
+	/W1Gzpev5TE2VP8xAi66OVCgdPDwwiQJDskJbt4lqkCh0eTFJInKsNwwbzu/1qohXL5ltPinZlMKj
+	VF/FwAc0fdYYOw6tvKu8eboCKLl1VGihVe+nbbtB54DtwqSX0R6aeLw+X5MA+r35FHq+qTOS+X5sX
+	SRK6M0uoOXBfh7wmFU6EHKQr297znCVWm5diVJlVBcFic7U2US4XCNHzL2m1UAPhIdrHYEsU6tXQF
+	F1+/62M9c1cOQ8e9e3Z9ocLTpGjjq8j/Qq3o5l30oAGP8rFZhQashDP3S6G+0yDjwk4am+BAE3ekW
+	XbeKOHHw==;
+Received: from [187.36.213.55] (helo=1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa)
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+	id 1tnNZ0-0019lA-Jt; Wed, 26 Feb 2025 20:59:32 +0100
+From: =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+Subject: [PATCH 0/6] drm/v3d: Fix GPU reset issues on the Raspberry Pi 5
+Date: Wed, 26 Feb 2025 16:58:58 -0300
+Message-Id: <20250226-v3d-gpu-reset-fixes-v1-0-83a969fdd9c1@igalia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,34 +58,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAINyv2cC/x3LMQqAMAxA0atIZgNtVASvIg7SRs2ipdEilN7d4
+ vj4/AzKUVhhajJETqJynRW2bcAd67kziq8GMjQYoh5T53EPD0ZWvnGTlxXJk93caEZrPdQzRP5
+ DHeellA9ZJWboZQAAAA==
+X-Change-ID: 20250224-v3d-gpu-reset-fixes-2d21fc70711d
+To: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>, 
+ Jose Maria Casanova Crespo <jmcasanova@igalia.com>
+Cc: dri-devel@lists.freedesktop.org, kernel-dev@igalia.com, 
+ stable@vger.kernel.org, =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Nicolas Saenz Julienne <nsaenz@kernel.org>, devicetree@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1775; i=mcanal@igalia.com;
+ h=from:subject:message-id; bh=maTR3ti8tvPnzk7Cgr35MKKCHPcKWcgGdel0PTrdSgU=;
+ b=owEBbQGS/pANAwAIAT/zDop2iPqqAcsmYgBnv3KfjQe2bjSPQxhTZuEzwp81ZDAzKQENWg2nx
+ hKZm+uac9aJATMEAAEIAB0WIQT45F19ARZ3Bymmd9E/8w6Kdoj6qgUCZ79ynwAKCRA/8w6Kdoj6
+ quyUCADWpDpWKUIno8zufuNqCvo4qBqsEN1B1NXlbDLjG2Uto2HMMOp5DgL854AtHG/1QXCQ9cF
+ OjT5VEZzx68M0qyGJr7xBJ819dEfpMSsz2dXMiriiAViQ+xV0XuDk//6hVJgo/DDCa80tE0Q4+j
+ C63GhFjtsUmrnqTf0ROzZsHPDJ7epGMuR+u0RBbSlKa4J5AS81973fa5/9oYVm/yZajnbV1Q/9x
+ KQYYX80OPdWTCYWea2k2OvbnN+/g5z0cN0PKbozag8L2wIdTB+wSKGCptbTzQfMf8u3TVgd0bN9
+ 7P/YdM946JCZiVA1JE+yZ7tXWoLhDrLjm3GVYkt+aeoGZIC5
+X-Developer-Key: i=mcanal@igalia.com; a=openpgp;
+ fpr=F8E45D7D0116770729A677D13FF30E8A7688FAAA
 
+This series addresses GPU reset issues reported in [1], where running a
+long compute job would trigger repeated GPU resets, leading to a UI
+freeze.
 
-On Mon, 17 Feb 2025 06:11:41 +0000, Yao Zi wrote:
-> Similar to previous Rockchip SoCs, reset controller on RK3528 shares
-> MMIO region with clock controller, combined as CRU. They're represented
-> as a single node in dt.
-> 
-> For the reset controller, only bindings are included in this series
-> because it's hard to test the reset controller without support for some
-> peripherals (e.g. pinctrl). I'd like to first make dt and basic
-> peripherals available, then submit the driver.
-> 
-> [...]
+Patches #1 and #2 prevent the same faulty job from being resubmitted in a
+loop, mitigating the first cause of the issue.
 
-Applied, thanks!
+However, the issue isn't entirely solved. Even with only a single GPU
+reset, the UI still freezes on the Raspberry Pi 5, indicating a GPU hang.
+Patches #3 to #5 address this by properly configuring the V3D_SMS
+registers, which are required for power management and resets in V3D 7.1.
 
-[1/5] dt-bindings: clock: Document clock and reset unit of RK3528
-      commit: e0c0a97bc308f71b0934e3637ac545ce65195df0
-[2/5] clk: rockchip: Add PLL flag ROCKCHIP_PLL_FIXED_MODE
-      commit: 651aabc9fb0f354ad2ba5fd06a6011e652447489
-[3/5] clk: rockchip: Add clock controller driver for RK3528 SoC
-      commit: 5d0eb375e6857d270f6376d161ef02a1b7183fa2
-[4/5] arm64: dts: rockchip: Add clock generators for RK3528 SoC
-      commit: 858cdcdd11cf9913756297d3869e4de0f01329ea
-[5/5] arm64: dts: rockchip: Add UART clocks for RK3528 SoC
-      commit: b9454434d0349223418f74fbfa7b902104da9bc5
+Patch #6 updates the DT maintainership, replacing Emma with the current
+v3d driver maintainer.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+[1] https://github.com/raspberrypi/linux/issues/6660
+
+Best Regards,
+- Maíra
+
+---
+Maíra Canal (6):
+      drm/v3d: Don't run jobs that have errors flagged in its fence
+      drm/v3d: Set job pointer to NULL when the job's fence has an error
+      drm/v3d: Associate a V3D tech revision to all supported devices
+      dt-bindings: gpu: v3d: Add SMS to the registers' list
+      drm/v3d: Use V3D_SMS registers for power on/off and reset on V3D 7.x
+      dt-bindings: gpu: Add V3D driver maintainer as DT maintainer
+
+ .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      |  8 +--
+ drivers/gpu/drm/v3d/v3d_drv.c                      | 58 ++++++++++++++++++++--
+ drivers/gpu/drm/v3d/v3d_drv.h                      | 18 +++++++
+ drivers/gpu/drm/v3d/v3d_gem.c                      | 17 +++++++
+ drivers/gpu/drm/v3d/v3d_regs.h                     | 26 ++++++++++
+ drivers/gpu/drm/v3d/v3d_sched.c                    | 23 +++++++--
+ 6 files changed, 140 insertions(+), 10 deletions(-)
+---
+base-commit: 099b79f94366f3110783301e20d8136d762247f8
+change-id: 20250224-v3d-gpu-reset-fixes-2d21fc70711d
+
 
