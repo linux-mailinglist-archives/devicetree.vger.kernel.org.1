@@ -1,109 +1,145 @@
-Return-Path: <devicetree+bounces-151356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69007A45847
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 09:31:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2064DA45857
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 09:32:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8A8C188B96E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:31:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 277B7174F48
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:32:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B9241E1E17;
-	Wed, 26 Feb 2025 08:30:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AgxYcLK+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F6A1A7045;
+	Wed, 26 Feb 2025 08:31:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC0001E1E19;
-	Wed, 26 Feb 2025 08:30:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E853258CD6;
+	Wed, 26 Feb 2025 08:31:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740558634; cv=none; b=Dc06yHHdXgOEVFvy896xfTl0zDu+TlX6L8P3xq/dHUwlzLDH0Fn8v2bqRczIUWUBFAHxQry45yrQyqLWr0aw1FqnMcX4F5roUXcLBRkT8A6JXpTjEInuOc1XWJCXmGmwyBa8iNjfmuT5cwip6jfCl+YWTA4DkgJzQuYNhvAabt4=
+	t=1740558692; cv=none; b=a2mDQBKnGPsDXHisHRpVkDeXF0qBjX8j/Zc0BWsfZxs3/RaxevyzwUbc/ezwBcrKGkFcRz4ZvMVf/VTfkTiqJCJHKUs4hxqCIqrAyeFZRk7mWRx24jSfFbTQltNUiJeEumGBL39Z55OoNHITW1RLJCdbCeSUCFuvipjvL8LvW6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740558634; c=relaxed/simple;
-	bh=q18//s8n8pY2gsTThR86DC4iH15g7zncNdFsfg5rVOY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o/78sB/Yv4ANUudqbRXXLWU2q2WGzyfa+D9OrpdENaVd6xQD/9DlAxdVNNy7gBflyraHglKPAJgJHTw1yP9BoeGjwPFR1r+3GO3eA6DuTrX4bbku8wYtoUINpNoe+4+oivtA+FG7Qi7mIMS4fSC0YaFCpNwbf+Uv3BBhg0hm3nY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AgxYcLK+; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740558633; x=1772094633;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=q18//s8n8pY2gsTThR86DC4iH15g7zncNdFsfg5rVOY=;
-  b=AgxYcLK+0pHsaVATMeM2yIoAEO4tyV8EOuIo41WoYQmfj2EpaKqWwC/D
-   HGAlxj456cW0I59PD4de9w7gpjW5xQpLM+MHN3eNGayThGuBZ4pp6Bwms
-   ASPhxg/HtpoJOMxktxCGXR6BumHrSIfp5icIFGsvqDaRQsXTRtWRypsZ1
-   N1SUwz33VjFKqxL+DcQd/IA5WrfqhHKFA8gt76Kh6pXt6uSPGjqp48NJe
-   s2m3MHZ0vltmmEdHSW5c7zB9PyedRhlX629g3Qw9Vv59WhMLGO3OEwgL3
-   P3mFLOEOkhwkIYVoCckfO0g2Dr5P3AIvAwNlHJlceQKn/TIWgZXXT38GP
-   A==;
-X-CSE-ConnectionGUID: 0dHe5HTBTCOhv7EIhIM3bw==
-X-CSE-MsgGUID: GI6edK7hToaujhlMD7M3Fg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="45176357"
-X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; 
-   d="scan'208";a="45176357"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2025 00:30:32 -0800
-X-CSE-ConnectionGUID: 2TV7sHHxSPShoc3oxu3twg==
-X-CSE-MsgGUID: CnqJZI44QNizqN6m1bzo5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; 
-   d="scan'208";a="117123195"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2025 00:30:28 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 06D0511F944;
-	Wed, 26 Feb 2025 10:30:26 +0200 (EET)
-Date: Wed, 26 Feb 2025 08:30:26 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Zijun Hu <zijun_hu@icloud.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>, linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Zijun Hu <quic_zijuhu@quicinc.com>
-Subject: Re: [PATCH v4 2/2] of: Align macro MAX_PHANDLE_ARGS with
- NR_FWNODE_REFERENCE_ARGS
-Message-ID: <Z77RIg-i-_ZgMgJW@kekkonen.localdomain>
-References: <20250225-fix_arg_count-v4-0-13cdc519eb31@quicinc.com>
- <20250225-fix_arg_count-v4-2-13cdc519eb31@quicinc.com>
+	s=arc-20240116; t=1740558692; c=relaxed/simple;
+	bh=6XNo8P+FKxyALAhfjYA6qOJ2JsHfwQKHf8trMp2xZ7s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iGWaW0WD8mOlFzJtO7+EMGgELkQjk4ln+FMuFfYXX9pl2c0WRVocdlCXyGXAp1YjaIBKksuda8raRGIKUlMxnObXUKqpA8+hFVjsaidkAyID2k+DRFOXxz/xxae9m5qnyxNrStA3UA+3C3M0mVDeKxhBcoXiyDEASBtaAcTOJws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93055C4CED6;
+	Wed, 26 Feb 2025 08:31:26 +0000 (UTC)
+Message-ID: <a8a6c8c8-ee3b-422a-8573-a2cbb61fc3aa@xs4all.nl>
+Date: Wed, 26 Feb 2025 09:31:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250225-fix_arg_count-v4-2-13cdc519eb31@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 6/6] arm64: defconfig: Enable Synopsys HDMI receiver
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Shreeya Patel <shreeya.patel@collabora.com>, Heiko Stuebner
+ <heiko@sntech.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, jose.abreu@synopsys.com,
+ nelson.costa@synopsys.com, shawn.wen@rock-chips.com,
+ nicolas.dufresne@collabora.com,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: kernel@collabora.com, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Tim Surber <me@timsurber.de>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+References: <20250225183058.607047-1-dmitry.osipenko@collabora.com>
+ <20250225183058.607047-7-dmitry.osipenko@collabora.com>
+Content-Language: en-US, nl
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Autocrypt: addr=hverkuil@xs4all.nl; keydata=
+ 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
+In-Reply-To: <20250225183058.607047-7-dmitry.osipenko@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Feb 25, 2025 at 09:58:07PM +0800, Zijun Hu wrote:
-> From: Zijun Hu <quic_zijuhu@quicinc.com>
+On 25/02/2025 19:30, Dmitry Osipenko wrote:
+> From: Sebastian Reichel <sebastian.reichel@collabora.com>
 > 
-> Macro NR_FWNODE_REFERENCE_ARGS defines the maximal argument count
-> for firmware node reference, and MAX_PHANDLE_ARGS defines the maximal
-> argument count for DT node reference, both have the same value now.
+> The Rockchip RK3588 has a built-in HDMI receiver block from
+> Synopsys. Let's enable the driver for it.
 > 
-> To void argument count inconsistency between firmware and DT, simply
-> align both macros by '#define MAX_PHANDLE_ARGS NR_FWNODE_REFERENCE_ARGS'.
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> ---
+>  arch/arm64/configs/defconfig | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index cb7da4415599..3dccc9e1c4aa 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -859,6 +859,8 @@ CONFIG_VIDEO_SAMSUNG_EXYNOS_GSC=m
+>  CONFIG_VIDEO_SAMSUNG_S5P_JPEG=m
+>  CONFIG_VIDEO_SAMSUNG_S5P_MFC=m
+>  CONFIG_VIDEO_SUN6I_CSI=m
+> +CONFIG_VIDEO_SYNOPSYS_HDMIRX=m
+> +CONFIG_VIDEO_SYNOPSYS_HDMIRX_LOAD_DEFAULT_EDID=y
 
-Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+I do not believe it is a good idea to default to y for this option.
 
--- 
-Sakari Ailus
+The EDID depends on the specific device you make, and you should
+think carefully about whether the default EDID fits the needs of the
+device.
+
+So if you want the default EDID, then you should manually select it
+and not have it autoselected.
+
+Regards,
+
+	Hans
+
+>  CONFIG_VIDEO_TI_J721E_CSI2RX=m
+>  CONFIG_VIDEO_HANTRO=m
+>  CONFIG_VIDEO_IMX219=m
+
 
