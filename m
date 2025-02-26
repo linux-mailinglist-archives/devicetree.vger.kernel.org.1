@@ -1,144 +1,121 @@
-Return-Path: <devicetree+bounces-151713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9362CA46B50
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 20:45:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D98A46B68
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 20:50:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FD943A89FB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 19:44:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93BFA7A388A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 19:49:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04291250C04;
-	Wed, 26 Feb 2025 19:45:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4156256C60;
+	Wed, 26 Feb 2025 19:49:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qA2dDNUd"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="A779wLZy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE38A21CC4E;
-	Wed, 26 Feb 2025 19:45:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEEBC2566F1;
+	Wed, 26 Feb 2025 19:49:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740599107; cv=none; b=HTcKE0CNQvThgeViotavG3leBwggWkgJ9U9XgjTDMjN/MMiBKq0h7e8IGp1LnXy4lFajqFTqjvndDowshN0kVOcKwVmZ8sy2L/GDycC1bQl0Ms7F+WfXKuibzqdptngkV0EM8Q/NEj5yyWc8ovUlbmhZwow/aXqYCHmKe0BSMuE=
+	t=1740599395; cv=none; b=Uw4XDWuL5oRjBC1wm8QNHnNB+rcb5OLSnYQk/IdEiu3fnBwtkhNZFfReEcxJIGknXOaHW+bj+8H/z01ou9ZGSO1PSt8ulSxRZibrCrX6SU7drlZjcKu65AQbbssVYpR5p091lTDKx5erbtWflaAkzfFM2QG2t5CQAxXusP5mPm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740599107; c=relaxed/simple;
-	bh=s4HTmS1RTtakgkLAflASCylKWxFWUJx+7Ik4bWDC0Fs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oV8ndDvJsNOnp2fe7aB+N1gxlEMJ2sO6fnj6guzG7MPXkNZ6QgBpuD+odoP7cXk33InRB9LgsW4q63ufwTOh4yxcmn8Kot0ewCCUBRAYELZvszEW6ZHTBdDGqvNPxXxZtrqFO1uujejmEUfnCcC9OvXKw1j5CeNmeDd9evGgy7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qA2dDNUd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 139A5C4CEE8;
-	Wed, 26 Feb 2025 19:45:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740599107;
-	bh=s4HTmS1RTtakgkLAflASCylKWxFWUJx+7Ik4bWDC0Fs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qA2dDNUdFanFEAB3AZe7mBnxiyrrh0JRS2r1PRtfRYeadPWaPkctR6PARH/JjtzRL
-	 errWXmlXMUHycaz7CqyqERZFMihYL3yJRZLDxHedM/tAk0DxsoY04CDAiKcutlgJeZ
-	 21IYNPrTvW96DcOerL962toCHLSHqb7MJexz07aiCjEV/JjTOZpnF6L/8yLHb+Tznb
-	 Vot1du6O56UkhTEe5ihvLg1iQjPdvxKgEfZbLSYDgmwtXtR+ZO3h7SRJDbIQ3dZuVt
-	 gnD8+nJuc32PPq++Dt1qHI97mSIm07bY7ZjQ0Xbxeod/k6a5yVrFalJtXRilNGXu0d
-	 sml/cl0vz9IHw==
-Date: Wed, 26 Feb 2025 13:45:05 -0600
-From: Rob Herring <robh@kernel.org>
-To: William McVicker <willmcvicker@google.com>
-Cc: Zijun Hu <quic_zijuhu@quicinc.com>, Zijun Hu <zijun_hu@icloud.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Grant Likely <grant.likely@secretlab.ca>,
-	Marc Zyngier <maz@kernel.org>,
-	Andreas Herrmann <andreas.herrmann@calxeda.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Mike Rapoport <rppt@kernel.org>,
-	Oreoluwa Babatunde <quic_obabatun@quicinc.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org, kernel-team@android.com
-Subject: Re: [PATCH v4 09/14] of: reserved-memory: Fix using wrong number of
- cells to get property 'alignment'
-Message-ID: <20250226194505.GA3407277-robh@kernel.org>
-References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
- <20250109-of_core_fix-v4-9-db8a72415b8c@quicinc.com>
- <20250113232551.GB1983895-robh@kernel.org>
- <Z70aTw45KMqTUpBm@google.com>
- <97ac58b1-e37c-4106-b32b-74e041d7db44@quicinc.com>
- <Z74CDp6FNm9ih3Nf@google.com>
+	s=arc-20240116; t=1740599395; c=relaxed/simple;
+	bh=cOMlW63+5CnwhxOr0kc+QC1juYLuKHzeXf2Fqlx9y9I=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gNKJCTtvdaS/MHYyAPHoGsjy8FxG25MzRFMMwwMgKIt8W5G2A1mkok30szs/5a4ej+iJYkkUqTAe1z/ME9EjPUey+ptBMkUCe3qqsdGizgUw0GPHo7xDCarPrxmuBGh6+pLXmzV1XbH6bERhACEWNVri1ouYUdHzh/sNNdgxMJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=A779wLZy; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=faGGqfXQbOiJ+9VytmDh1BHEK7Aeu0aHAnqiXKSPnZU=; b=A779wLZyYQY2f+RtjvixBeiva2
+	o46CY6HrYmI66hHc+uKJZYwu/ISBz5MLGEKWgAocrQIAzOckCcGI+XCsinPF78Bm4UCjG59IvmQPa
+	MbYcssrk+GHDBrFXUlyGdSCOwsu/jKhXutCNAzBZIE6wUuOhUSzHcdHfsQ21bQW6+W/WDyPEl/+nf
+	VCwNpuhg6s8riPCnGzdt428Dn6owWifW8vLi5pAG5qXFG4AVJNIJg425ye7Aj2DqlIswMLBHS/NOm
+	3kiQfQ9KbrfnG4CVqnMkrIVqD/6I1xwrYjWr2wNIFXzCiWqBPm2MVIy5n5DjQhPGPRwUld/WkdutA
+	2GqBnwFA==;
+Received: from i53875b47.versanet.de ([83.135.91.71] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tnNPL-0002zz-Im; Wed, 26 Feb 2025 20:49:27 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Peter Geis <pgwipeout@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	zyw@rock-chips.com,
+	kever.yang@rock-chips.com,
+	frank.wang@rock-chips.com,
+	william.wu@rock-chips.com,
+	wulf@rock-chips.com,
+	linux-rockchip@lists.infradead.org,
+	Alex Bee <knaerzche@gmail.com>,
+	Algea Cao <algea.cao@rock-chips.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Johan Jonker <jbx6244@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Trevor Woerner <twoerner@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Zhang Yubing <yubing.zhang@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org
+Subject: Re: (subset) [RFC PATCH v1 0/6] rockchip: add a functional usb3 phy driver for rk3328
+Date: Wed, 26 Feb 2025 20:49:14 +0100
+Message-ID: <174059933844.4008853.12666956119860907768.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250115012628.1035928-1-pgwipeout@gmail.com>
+References: <20250115012628.1035928-1-pgwipeout@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z74CDp6FNm9ih3Nf@google.com>
 
-On Tue, Feb 25, 2025 at 09:46:54AM -0800, William McVicker wrote:
-> On 02/25/2025, Zijun Hu wrote:
-> > On 2/25/2025 9:18 AM, William McVicker wrote:
-> > > Hi Zijun and Rob,
-> > > 
-> > > On 01/13/2025, Rob Herring wrote:
-> > >> On Thu, Jan 09, 2025 at 09:27:00PM +0800, Zijun Hu wrote:
-> > >>> From: Zijun Hu <quic_zijuhu@quicinc.com>
-> > >>>
-> > >>> According to DT spec, size of property 'alignment' is based on parent
-> > >>> node’s #size-cells property.
-> > >>>
-> > >>> But __reserved_mem_alloc_size() wrongly uses @dt_root_addr_cells to get
-> > >>> the property obviously.
-> > >>>
-> > >>> Fix by using @dt_root_size_cells instead of @dt_root_addr_cells.
-> > >>
-> > >> I wonder if changing this might break someone. It's been this way for 
-> > >> a long time. It might be better to change the spec or just read 
-> > >> 'alignment' as whatever size it happens to be (len / 4). It's not really 
-> > >> the kernel's job to validate the DT. We should first have some 
-> > >> validation in place to *know* if there are any current .dts files that 
-> > >> would break. That would probably be easier to implement in dtc than 
-> > >> dtschema. Cases of #address-cells != #size-cells should be pretty rare, 
-> > >> but that was the default for OpenFirmware.
-> > >>
-> > >> As the alignment is the base address alignment, it can be argued that 
-> > >> "#address-cells" makes more sense to use than "#size-cells". So maybe 
-> > >> the spec was a copy-n-paste error.
-> > > 
-> > > Yes, this breaks our Pixel downstream DT :( Also, the upstream Pixel 6 device
-> > > tree has cases where #address-cells != #size-cells.
-> > >
 
-I thought downstream kept kernels and DTs in sync, so the dts could be 
-fixed?
- 
-> > 
-> > it seems upstream upstream Pixel 6 has no property 'alignment'
-> > git grep alignment arch/arm64/boot/dts/exynos/google/
-> > so it should not be broken.
+On Wed, 15 Jan 2025 01:26:21 +0000, Peter Geis wrote:
+> This is my newly reworked phy driver for the rk3328 usb3 phy. It is
+> based loosely on my original version, but as of now almost nothing of
+> the original driver remains. The main fix here is the discovery of
+> BIT(6) in the interrupt enable grf register fixes the usb3 disconnection
+> detection (mostly). On occasion an unpopulated usb3 hub will take
+> several seconds to disconnect. However this means all of the hack around
+> work to reset the usb core manually is no longer required.
 > 
-> That's right. I was responding to Rob's statement about #address-cells !=
-> #size-cells being pretty rare. And wanted to give credance to the idea that
-> this change could possible break someone.
-> 
-> > 
-> > > I would prefer to not have this change, but if that's not possible, could we
-> > > not backport it to all the stable branches? That way we can just force new
-> > > devices to fix this instead of existing devices on older LTS kernels?
-> > > 
-> > 
-> > the fix have stable and fix tags. not sure if we can control its
-> > backporting. the fix has been backported to 6.1/6.6/6.12/6.13 automatically.
-> 
-> Right, I think it's already backported to the LTS kernels, but if it breaks any
-> in-tree users then we'd have to revert it. I just like Rob's idea to instead
-> change the spec for obvious reasons :)
+> [...]
 
-While if it is downstream, it doesn't exist, I'm reverting this for now. 
-We need the tools to check this and look at other projects to see what 
-they expect. Then we can think about changing the spec.
+Applied, thanks!
 
-Rob
+[1/6] clk: rockchip: fix wrong clk_ref_usb3otg parent for rk3328
+      commit: a9e60f1ffe1ca57d6af6a2573e2f950e76efbf5b
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
