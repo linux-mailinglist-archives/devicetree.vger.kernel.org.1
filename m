@@ -1,173 +1,135 @@
-Return-Path: <devicetree+bounces-151664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 904F8A467A0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 18:14:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C2D2A467EC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 18:22:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F9937A977D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 17:13:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E94516B21F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 17:22:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E48C224AFC;
-	Wed, 26 Feb 2025 17:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45095222574;
+	Wed, 26 Feb 2025 17:22:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="sVHZxwoX"
+	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="d4NSzTHy";
+	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="jzU8aYoK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4615622423E
-	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 17:13:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740590038; cv=none; b=lz3J8fsrxs71lKNgodgm9vXN315nMcrsEsk9TuU5sSQLStpZX5GATgi7zVJa7/DK8OgBbXgj344djTq/VPJT01ZWmbhipbjwlYDVf99cjM/9CDIqFJcll2+O5FkfyDdo/fFg+O/bOfC4CzHg8xuFqwHMOueK/U1yhWnwYe6UfPU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740590038; c=relaxed/simple;
-	bh=HQSBEPx0iDJabo5iKQ4x317NeHWlkolsMjJAGghkvk4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V7tjtlPbGsT+bo/lTpbbnIkYTwUdKqW7zNhzHz7+Yno1jpbOlT/oQsx1zTZdiPWcOA/20Ky0/nDV78Vg1p803bsQE8hrpUg+VFzS7TwWkpXOmzKHtRgnbQg/kUmU7KtqxkoZmIaAnINflRTwVO1pSrshmt2Tr0kbrliOFRezbLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=sVHZxwoX; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e53c9035003so5480911276.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 09:13:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1740590034; x=1741194834; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=v16JSKm7NuBmPVU9q5+qcA5vKYKf3DiQ/loXOvg4m4U=;
-        b=sVHZxwoX4Nvp0WVGsBrgVkBu3Rbtybza4o1tyQPrfbon6SxO0nBY23nB+2DI/mbhua
-         QYc/s2Pxbp2q4/eNB4VQPvgy1zdw3IT6bksasc+zAj4ia3W8kTTskYqa+SZvNNduIHd7
-         S79cVYMChCuawj1d8Mzv2RJ7Bkhmfou/8Fz6EXMPzr70UIaue9de4jPbNLoX+oIczVpQ
-         33LAz/xaU4ypk1XXhOoFyr4RwIDcSq0eN3/kYrqu5nGaHKMj4hlpXuDoLpiXDF037Q+J
-         NGXzh7hcO2ostF3aM2jUyc0XYpgqDIwb5MV9G/8rkRa1GeDGe4kExTXgIA5e3QeFE3k1
-         TRLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740590034; x=1741194834;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v16JSKm7NuBmPVU9q5+qcA5vKYKf3DiQ/loXOvg4m4U=;
-        b=u3DGUQXBFxY/j3wbs3PYivhyEBcRrPwoQdUFGf/Fzu9qslyYE1n4ZyKYSAEgb7x7oX
-         LvfOhl2Mwdo6gf2/PCpGR3qGV7v+ykmsIupRHBIytHjYfyyKul3wCsljwXrCgY0zEhco
-         YArorYL9ddKRLjoPsxzLE+b4vIN5XKtG1I/cLCs/EuZR5xJnjDeuaKjfVGZ7Ne52+uV6
-         uGG7JYIaEaa0Ep/cXmnXU7XmKo2J98o2xogMlVQADqhu9msx74a+AUbKA+NSreNQLBSS
-         Q4a4aDEOqcapxIsqjma0n6H0I7PmSMCPbqGW+IRo4QZJBX66MmaLLGFrEvvXM2oZX/yV
-         Ycig==
-X-Forwarded-Encrypted: i=1; AJvYcCVXcskVuVIFMMGtETZtIZP4boAOtw5iYhYTrfsvNbnSv/TRyQDGHT1wjK4suuPwBSvCUjktdQKyGZLJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNTBCozWTmnJBB5FCL2ppcXAZ0ou5lwTUzvX2TAmysUzOD0CIg
-	zTs5lCacgmQjHwm02TtALs/w1Ph3QM2XU3iATp77/dRo1vaZ+b804I7WGUQ+L/shF1AVO48RnIt
-	4E/ztMabw8rL8swTZo4wqwmqGM5Pl6jxA3xyeAA==
-X-Gm-Gg: ASbGncuftNO4/RZIciTlELGI+zexpobThA8k45TQ95yAeaKhPa9nBR8VFKvBtCcIlrW
-	rNJKXI8DpC7nhyNxFI346aZQQ3yzqxE128IifNL+Gy7vBdPVp3ZH7hdy7JF8Fq1WhbokkwJ78vr
-	hOeVF+byuW/HpekfWNRmLS3kbHdzv+14fmsxKCHt0=
-X-Google-Smtp-Source: AGHT+IG7BRekJ/GUeFxp0m+34WDEKrlHgNOI7qMTkO3ePczj09HZOi8iTSNdWu/DGb+qqAztFE0yKyE/JxzmnQCW8Pg=
-X-Received: by 2002:a05:6902:2e0a:b0:e5d:dda6:d1d with SMTP id
- 3f1490d57ef6-e607a565902mr6860903276.42.1740590034172; Wed, 26 Feb 2025
- 09:13:54 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBA31221701;
+	Wed, 26 Feb 2025 17:22:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740590548; cv=pass; b=eeaA7D22NCughijhWR6shBaswpSWedKP0/6Lf0v8GiD64RyI/Xljd2HqTXD1NEht6IpisCq06IlIy0cS29Z7JQH0SeEfSkTUGrvDx6GRnYMASXrmdvbmHHTPQTTe+vIcIranetU9qPmgFGknmgtMzeGxZiN7sl0N9/0wSUSMdBM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740590548; c=relaxed/simple;
+	bh=zaPQGZakIJ5e1FIIOipa9PeTaMKtCnQvOQQNRGVUfcU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gD4p+kIRxQpBzMnhDE3A93UCZsRPmXpgTw7Zy4UwJ2HdEBMHfi2zfCg4NZROdLM6oQOZsLGMHDq+1cqWmYrCp1CBcZsdjaRC6MnXlYLWiQrJs66kP5bvQNLbNeuDXFBFSkE5w8fNikEN9sL9TZUaa1i1QYKqvhgG0hthXiq3zkI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=d4NSzTHy; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=jzU8aYoK; arc=pass smtp.client-ip=85.215.255.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
+ARC-Seal: i=1; a=rsa-sha256; t=1740590183; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=kpdTkzwL2m3RfU15u8+8R8+tE295/4UPz5vcYu2WM4aUrUb/bqSfI1XmDJgB9KLBHV
+    jH2LRtS5HvxsGOnGRQJsassiUM0NgP/kCQZGIPJ9TuzaJDlwTfQtHj15b8v8sI7hMWa6
+    jZzfURC30LMDHu/jKEoFeMmiNYYA2dnjtfd4+yYYH8ohfYSLb6RLOksXkxY3xn2Ipiul
+    HDGi618Q4rB9cJGjK5UrxtWfRlsNGcAa41lTcXsOdNn1dkB19mdnnElaZoir4Gt+4qv1
+    Xz7cAzOqVe4dApVzBYObhAZl9ULwYhsv0mLHb8yOoi1yKMGe5TLnJux3XuO2ifbeLW3J
+    3oOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1740590183;
+    s=strato-dkim-0002; d=strato.com;
+    h=Message-ID:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=4v/XI+GHsK5iNyWyu0JIeFOmhfLFNQbdUVuziJCkONg=;
+    b=JDN74OXl0Bw4P6g1LetHoVIEUjHkh8fKSkRNOq9LUbY8AaQGFM1vUuw7SBffvhwGBO
+    RamJ54dhaUnW3RZaEcZp2PCpuWsjHcmt5a3PucaVfK+nr3W2ao8AYryCjmgNktLm+qDq
+    RuUUGR5xGV7PDAwY0s64Q3Pm6LXsSgLz82lN81kMvqn4PI7t741c8Orei5czef/l9OI1
+    E7yGZaTjCKvJZH6yeBMyohkETwUSwIQtRciyL0euzoj/FV1K2a+2mD+xxwScKoG42nCF
+    2JOoGOXlhf6eDbll/ROFURAwpFWIeEtZBJZTk6HYSb9E0KdrxsSW4jloeX58pSlMuHEj
+    bWuA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1740590183;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=Message-ID:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=4v/XI+GHsK5iNyWyu0JIeFOmhfLFNQbdUVuziJCkONg=;
+    b=d4NSzTHyZLeC3k5Z+DJRjEYCPrbsNpKqVmYAZV2m5K+ouQ2Zupgk8fjhK60ocVXghz
+    Gl4lv6qhO/jVgltqm2OdfX6ijP9L9yFZayTm3ltXQQOEMFxkZCvAIOwF+KEqgJu4GWsG
+    Ev+OPTwgBhyfaGMc60+/e7mL9/pLyTqwbqEoiy6MHVOiXa2g7+jAJGAnsdVw475KAydS
+    XYCTIBejVTjNzFANVa8dCw+idT9gGAySoRqVuJ05PUlOJ8yyqm+dGoy+e6ejoBEZaGdJ
+    RZCrm6Vdq9Ub1CFRevVP441gC3WeHcrUIEOh4QRDp4bWanDlylkJFnJNPrSbfqtq+Q1N
+    g9zQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1740590183;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=Message-ID:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=4v/XI+GHsK5iNyWyu0JIeFOmhfLFNQbdUVuziJCkONg=;
+    b=jzU8aYoKhju2bqGEWFzNlod30Lv069KlILRo10wp5EdWAAp+eli72oNeHSmKfo/DEK
+    VTwb5/ghmRuP5LNIFBAA==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yeD0Z"
+Received: from localhost.localdomain
+    by smtp.strato.de (RZmta 51.2.23 DYNA|AUTH)
+    with ESMTPSA id Qe5b2211QHGNfpw
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Wed, 26 Feb 2025 18:16:23 +0100 (CET)
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Cercueil <paul@crapouillou.net>
+Cc: Andreas Kemnade <andreas@kemnade.info>,
+	Paul Boddie <paul@boddie.org.uk>,
+	Tim Bysun <tim.bysun@ingenic.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	letux-kernel@openphoenux.org,
+	"H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: [PATCH 0/4] pinctrl: ingenic: add support for x1600 SoC and MII and I2S for jz4730
+Date: Wed, 26 Feb 2025 18:16:03 +0100
+Message-ID: <cover.1740590093.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250226153929.274562-1-mathis.foerst@mt.com> <20250226153929.274562-4-mathis.foerst@mt.com>
-In-Reply-To: <20250226153929.274562-4-mathis.foerst@mt.com>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Wed, 26 Feb 2025 17:13:38 +0000
-X-Gm-Features: AQ5f1Jo78Bz7szki1OPhZNCoefOi0V3LvTbHL1brFYJAZbXIFOnLIMAl10k6kG0
-Message-ID: <CAPY8ntA2eedTY-0hY5ThkiKiKYKpSAij+bbeBWvWAgSeMEzvsQ@mail.gmail.com>
-Subject: Re: [PATCH v1 3/8] MT9M114: Add get_mbus_config
-To: Mathis Foerst <mathis.foerst@mt.com>
-Cc: linux-kernel@vger.kernel.org, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, manuel.traut@mt.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Mathis
+PATCH V1 2025-02-26 18:14:53:
+This series expands pinctrl support for some Ingenic/Lumissil SoC.
+For the jz4730 we add MII and I2S pinctrl and general x1600 support.
 
-On Wed, 26 Feb 2025 at 15:45, Mathis Foerst <mathis.foerst@mt.com> wrote:
->
-> The i.MX6 camera frameworks requires get_mbus_config to be implemented.
-> See [0].
->
-> [0] drivers/staging/media/imx/imx-media-csi.c - line 211..216
+The x1600 parts were jointly developed.
 
-The docs for get_mbus_config say
- * @get_mbus_config: get the media bus configuration of a remote sub-device.
- *             The media bus configuration is usually retrieved from the
- *             firmware interface at sub-device probe time, immediately
- *             applied to the hardware and eventually adjusted by the
- *             driver.
-https://github.com/torvalds/linux/blob/master/include/media/v4l2-subdev.h#L814
+Code was tested on LX16 board (x1600) and Alpha400 (jz4730) and
+on CI20 (jz4780).
 
-All other receiver drivers (including imx6-mipi-csi2.c) that call
-get_mbus_config handle it returning -ENOIOCTLCMD by reverting to the
-static configuration or the receiver node from device tree / ACPI.
+Co-authored-by: Andreas Kemnade <andreas@kemnade.info>
+Co-authored-by: H. Nikolaus Schaller <hns@goldelico.com>
 
-I may be missing something, but as imx-media-csi.c appears to be the
-exception, isn't it better to fix that up rather than having to fix up
-all the sensor drivers that ever might get attached to it?
 
-> Signed-off-by: Mathis Foerst <mathis.foerst@mt.com>
-> ---
->  drivers/media/i2c/mt9m114.c | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->
-> diff --git a/drivers/media/i2c/mt9m114.c b/drivers/media/i2c/mt9m114.c
-> index 5f0b0ad8f885..fa64d6d315a1 100644
-> --- a/drivers/media/i2c/mt9m114.c
-> +++ b/drivers/media/i2c/mt9m114.c
-> @@ -1977,6 +1977,24 @@ static int mt9m114_ifp_registered(struct v4l2_subdev *sd)
->                 v4l2_device_unregister_subdev(&sensor->pa.sd);
->                 return ret;
->         }
-> +       return 0;
-> +}
-> +
-> +static int mt9m114_ifp_get_mbus_config(struct v4l2_subdev *sd,
-> +                                  unsigned int pad,
-> +                                  struct v4l2_mbus_config *cfg)
-> +{
-> +       struct mt9m114 *sensor = ifp_to_mt9m114(sd);
-> +
-> +       if (sensor->bus_cfg.bus_type == V4L2_MBUS_CSI2_DPHY) {
-> +               cfg->type = V4L2_MBUS_CSI2_DPHY;
+H. Nikolaus Schaller (3):
+  bindings: ingenic,pinctrl: add x1600
+  pinctrl: ingenic: jz4730: add pinmux for MII
+  pinctrl: ingenic: jz4730: add pinmux for I2S interface
 
-Not setting cfg->bus.mipi_csi2.num_data_lanes is going to cause some
-confusion. What does an assumed 0 data lanes mean?
+Paul Boddie (1):
+  pinctrl: ingenic: add x1600 support
 
-Likewise it would be sensible to set cfg->bus.mipi_csi2.flags so as to
-avoid any ambiguities (did the caller memset all fields before
-calling?)
+ .../bindings/pinctrl/ingenic,pinctrl.yaml     |   2 +
+ drivers/pinctrl/pinctrl-ingenic.c             | 259 +++++++++++++++++-
+ 2 files changed, 259 insertions(+), 2 deletions(-)
 
-  Dave
+-- 
+2.47.0
 
-> +       } else {
-> +               cfg->type = V4L2_MBUS_PARALLEL;
-> +               cfg->bus.parallel.flags = V4L2_MBUS_MASTER |
-> +                                         V4L2_MBUS_PCLK_SAMPLE_RISING |
-> +                                         V4L2_MBUS_DATA_ACTIVE_HIGH;
-> +               cfg->bus.parallel.bus_width = 8;
-> +       }
->
->         return 0;
->  }
-> @@ -1993,6 +2011,7 @@ static const struct v4l2_subdev_pad_ops mt9m114_ifp_pad_ops = {
->         .set_fmt = mt9m114_ifp_set_fmt,
->         .get_selection = mt9m114_ifp_get_selection,
->         .set_selection = mt9m114_ifp_set_selection,
-> +       .get_mbus_config = mt9m114_ifp_get_mbus_config,
->         .get_frame_interval = mt9m114_ifp_get_frame_interval,
->         .set_frame_interval = mt9m114_ifp_set_frame_interval,
->  };
-> --
-> 2.34.1
->
->
 
