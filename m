@@ -1,177 +1,104 @@
-Return-Path: <devicetree+bounces-151555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3602A46300
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:36:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C0E4A4634D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:44:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96D4318984C3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 14:36:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46FE2189966E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 14:44:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C806F221F39;
-	Wed, 26 Feb 2025 14:35:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68026221571;
+	Wed, 26 Feb 2025 14:44:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SvrskYHZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JRz1SuiK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F301B21C9E7;
-	Wed, 26 Feb 2025 14:35:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38ED81624C3;
+	Wed, 26 Feb 2025 14:44:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740580555; cv=none; b=Eyya6EzITsxUG3UdaJbwd8VX+cb4/x1mx2hhKs9AcRTVqTO88lS1//OlW2dl0FR6Z+JzpHMuS78qQXdbtTDV7LMw7+/LPAlKiveEDgIyMwUZpeIfaDy6xKPPIAWOa80bK0zh4mSd6cWbat3afyldXJfQI+2SQXccL4eYnCaLFUM=
+	t=1740581049; cv=none; b=boQctjpJ0/c85paf0ldHGpRawm/K/DQgVybld5OOZ1B41yguhGikkfP8gM3U0aZe3nDF3qeIyXZ0bHHbIBmKNTjneeGD7NbuVo62xS23jODVqRqzAJY9fBHJnWYrsAHJgndLRra7MEOPo+UWpe/Z6gO4mbpYjsb34UlSnKf/iLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740580555; c=relaxed/simple;
-	bh=h68gsh2XEk8LO4IEBYVLcCuerDrPBhtD2D2GRTB8yzM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hAVmYiwo4KO3Drb9sKzTrvjTQwbvJr/tSjpdBs0vyITUw7gxvHex1mO5BqNY1x0+SuNRyCuc0FQ4cIzrOFZN2qTTExbafyGR5zZ0JqUakrdd6MdIrHIuwwcVe7V3m6uHVRK1aHTxNMwJJHBkShLz/O3bBjA1vS0vJpnuq0symq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SvrskYHZ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740580552;
-	bh=h68gsh2XEk8LO4IEBYVLcCuerDrPBhtD2D2GRTB8yzM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=SvrskYHZYjMsocmKfAxUKmqMkvx05rKHkcpXkK4y1Hb0BSIomRFS9wcKjLK/FfDzW
-	 SRJGnKnMNSd3vnCySTQ74kp0ZhLKJQpX/4j8fh5fmEScfcVicULdLqGy1Ri9YtQ34G
-	 3pBEVQmaHakN8XAZ3gq1CFCAuGlnQ/U0ZdRDeeWGdU76wwHaPfnS64S/2EmtaFytAi
-	 kT56/ixj77tgiWqDjG8VQSeoMAkd2BS2PPGRp35qcOiCsBzEJpQcJ1PW0HqJ/KkNNj
-	 65KUxpSWJOePnVIsT+vcJ41/jgMF5V1Sm+mle9V336TAM8r9PEUTXIPzXxz8BtOnXH
-	 98xZh49YNX3qw==
-Received: from apertis-1.home (2a01cb088CcA73006086F5F072c6a07a.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:8cca:7300:6086:f5f0:72c6:a07a])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id BA22017E066F;
-	Wed, 26 Feb 2025 15:35:51 +0100 (CET)
-From: Julien Massot <julien.massot@collabora.com>
-Date: Wed, 26 Feb 2025 15:35:28 +0100
-Subject: [PATCH 2/2] arm64: dts: mediatek: mt8395-radxa-nio-12l: Add Radxa
- 8 HD panel
+	s=arc-20240116; t=1740581049; c=relaxed/simple;
+	bh=yY2+VjGEeTwmZIM7iym40A+OIkx7D2O9SW/yYcv9Av8=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Jz2i5pfKGR30uHBjhUp4S0H0LSnutZuadjIXfQwcAoaegr92Hxcyu7gInALI1SLnbMqveacuiJFklM/nIhpMnl6BV2fXnyJbqdsdaRbKKSnBGA/wlvDmbaeEebhZYvJp/4MT4WsrgjwkbhcHqbLLL8qpoqaO0/kXvnIkDBmbnVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JRz1SuiK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81403C4CED6;
+	Wed, 26 Feb 2025 14:44:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740581048;
+	bh=yY2+VjGEeTwmZIM7iym40A+OIkx7D2O9SW/yYcv9Av8=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=JRz1SuiK990namaZzUA1ZsJSgipZfTqZtZq5ODV20fRSZjfM+dzN6Fz0WnrsHOkOP
+	 QdbOLAQBnnltwI3f6lfCNfcR2dOFIOdE2K18ELK9Z1fSqTYgz/OCHM1O3GP7GR9FZL
+	 zAna3PNQGkziaQjEMnPNA9tIqyJ/UVoj6l7JF+Otpv8Hpugc9jFRlcu1DUb6C1f9n9
+	 /oE/CeZMHuBLwGXnl2neI8jV4CdT7uq0D8/fJMVXDL4qJOzP6gAbaXvwtv4CevRWAu
+	 cEtpWqCMGJNru1rFU1SzFiy0RI+6EA0EbR56qEceRk8bq2GxbLsY53aZN6/Op7Vmxl
+	 ZxB6e+6bYW7qA==
+Date: Wed, 26 Feb 2025 08:44:06 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250226-radxa-panel-overlay-v1-2-9e8938dfbead@collabora.com>
-References: <20250226-radxa-panel-overlay-v1-0-9e8938dfbead@collabora.com>
-In-Reply-To: <20250226-radxa-panel-overlay-v1-0-9e8938dfbead@collabora.com>
-To: kernel@collabora.com, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- kernel@collabora.com, Julien Massot <julien.massot@collabora.com>
-X-Mailer: b4 0.14.2
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: paul.barker.ct@bp.renesas.com, linux-renesas-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, thierry.bultel@linatsea.fr, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, linux-kernel@vger.kernel.org, 
+ geert@linux-m68k.org, linux-clk@vger.kernel.org
+To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+In-Reply-To: <20250226130935.3029927-3-thierry.bultel.yh@bp.renesas.com>
+References: <20250226130935.3029927-1-thierry.bultel.yh@bp.renesas.com>
+ <20250226130935.3029927-3-thierry.bultel.yh@bp.renesas.com>
+Message-Id: <174058104659.2310461.12120269856378084685.robh@kernel.org>
+Subject: Re: [PATCH v3 02/13] dt-bindings: clock: Add cpg for the Renesas
+ RZ/T2H SoC
 
-The Radxa 8 HD touchscreen can be used with various Radxa board
-and is sold appart from the Radxa NIO 12L development kit.
 
-Add a DTS overlay for this panel.
+On Wed, 26 Feb 2025 14:09:21 +0100, Thierry Bultel wrote:
+> Document RZ/T2H (a.k.a r9a09g077) cpg-mssr (Clock Pulse Generator) binding.
+> 
+> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+> Reviewed-by: Paul Barker <paul.barker.ct@bp.renesas.com>
+> ---
+>  .../bindings/clock/renesas,cpg-mssr.yaml      |  4 +-
+>  .../clock/renesas,r9a09g077-cpg-mssr.h        | 49 +++++++++++++++++++
+>  2 files changed, 52 insertions(+), 1 deletion(-)
+>  create mode 100644 include/dt-bindings/clock/renesas,r9a09g077-cpg-mssr.h
+> 
 
-Signed-off-by: Julien Massot <julien.massot@collabora.com>
----
- arch/arm64/boot/dts/mediatek/Makefile              |  2 +
- .../mediatek/mt8395-radxa-nio-12l-8-hd-panel.dtso  | 64 ++++++++++++++++++++++
- 2 files changed, 66 insertions(+)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index ae1147eca9a915f117487101e2ad4acead97adfe..58484e8300632edbdef24bbda33ccf00db9df937 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -100,9 +100,11 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-genio-1200-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8390-genio-700-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-kontron-3-5-sbc-i1200.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-radxa-nio-12l.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-radxa-nio-12l-8-hd-panel.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
- 
- # Device tree overlays support
- DTC_FLAGS_mt7986a-bananapi-bpi-r3 := -@
- DTC_FLAGS_mt7986a-bananapi-bpi-r3-mini := -@
- DTC_FLAGS_mt7988a-bananapi-bpi-r4 := -@
-+DTC_FLAGS_mt8395-radxa-nio-12l := -@
-diff --git a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l-8-hd-panel.dtso b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l-8-hd-panel.dtso
-new file mode 100644
-index 0000000000000000000000000000000000000000..5d633f61a62c3175fbfa133f3ea5b1a6a0b0fec5
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l-8-hd-panel.dtso
-@@ -0,0 +1,64 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Radxa Display 8 HD touchscreen module
-+ * Copyright (C) 2025 Collabora Ltd.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+&dsi0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "radxa,display-8hd-ad002", "jadard,jd9365da-h3";
-+		reg = <0>;
-+		backlight = <&backlight>;
-+		vdd-supply = <&mt6359_vcn33_2_bt_ldo_reg>;
-+		vccio-supply = <&mt6360_ldo2>;
-+		reset-gpios = <&pio 108 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&panel_default_pins>;
-+
-+		port {
-+			dsi_panel_in: endpoint {
-+				remote-endpoint = <&dsi0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&disp_pwm0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm0_default_pins>;
-+	status = "okay";
-+};
-+
-+&dsi0_out {
-+	remote-endpoint = <&dsi_panel_in>;
-+};
-+
-+&mipi_tx0 {
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	touchscreen@14 {
-+		compatible = "goodix,gt911";
-+		reg = <0x14>;
-+		interrupts-extended = <&pio 132 IRQ_TYPE_EDGE_RISING>;
-+		irq-gpios = <&pio 132 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&pio 133 GPIO_ACTIVE_HIGH>;
-+		VDDIO-supply = <&mt6359_vcn33_2_bt_ldo_reg>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&touch_pins>;
-+	};
-+};
+yamllint warnings/errors:
 
--- 
-2.48.1
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/renesas,cpg-mssr.example.dtb: clock-controller@e6150000: reg: [[3860135936, 4096]] is too short
+	from schema $id: http://devicetree.org/schemas/clock/renesas,cpg-mssr.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250226130935.3029927-3-thierry.bultel.yh@bp.renesas.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
