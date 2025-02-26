@@ -1,244 +1,191 @@
-Return-Path: <devicetree+bounces-151267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AB9AA452DA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 03:11:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 985A8A452EF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 03:15:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A539B17161F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 02:09:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 541EC179B2F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 02:14:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09691A315C;
-	Wed, 26 Feb 2025 02:09:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0DBE21766B;
+	Wed, 26 Feb 2025 02:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L3dw8Qjk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c8SBGMKM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1662419F13F;
-	Wed, 26 Feb 2025 02:09:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 115C8217671;
+	Wed, 26 Feb 2025 02:14:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740535760; cv=none; b=ZX4l/+pSY8/aVw1Zn0XZj6CZMMY5ERspTmIya5QnNAV3TTQrtaY8Wte5k9AyULTO2inuN6t5r2iQr7xRDwXaDSkw3hXqEbqRYO7T/wYOXi1Rrt8Kbk1Bx7Z0gGHQKdGPeXUCt54fdxQZzxdkwNMV9CdjZEHZWWAfJAIAwTg1Um8=
+	t=1740536078; cv=none; b=UO+SbFS1yONUNwUe/CkexIE8vxl3Cf384kEvIMg0v2C01o4CNMXKIM5L5x3jVpzDyHEcKATvTlUIT1RcXb3PrfXZDHSdE595agILq8ZeJW97hw7llYgt1xeVlCiBCw4IljZaOcsWOtc2hWEvh80h0BUcADUYEJcDkfEaCCyZMvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740535760; c=relaxed/simple;
-	bh=IEbds4yphJOI94QKHcQ3WECEM4kLPwgihOa8v/Lflno=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W5+HWgNQEtbyy75yZjvx7CBuhf/vSD6ry8UUrc86vgJ9ox00A/uNAs0c4jWJVB6FN3y5tLuNMTr7G7oU02g6DxmS/r4XZsEsjnLX9sSpi+yWV6VKlyMKwQCN+aSsmigyVevxDRmO5Rri1r9bx9BC2MRaOcvD+fU7GLp070Fne10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L3dw8Qjk; arc=none smtp.client-ip=209.85.208.50
+	s=arc-20240116; t=1740536078; c=relaxed/simple;
+	bh=5uqXaEk+IpsKXRqu3IBaXsheADHvz8Ev3MCwYfOyebU=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=U8k8EbyTamBo6AHAYObyH5/uyl1nPvKKEg3NSlAIrfU/ZC4Bv+lQEAssUXx/3KzQ/RA+d3v/ncecb2gOSd6ZulpzWNYuzio8udMJynNMz+xAaZw4EHcCaV8gKnytnIerx6x3IYn5ZC/cHtgFVEy4/TxBNeb9SFF9jMkiuQ8mcbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c8SBGMKM; arc=none smtp.client-ip=209.85.210.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e04f87584dso9519627a12.3;
-        Tue, 25 Feb 2025 18:09:18 -0800 (PST)
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-71fbb0d035dso3736586a34.2;
+        Tue, 25 Feb 2025 18:14:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740535757; x=1741140557; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :reply-to:message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jNDX0bDy82gk9QmnrN58DpzxWTxMxMF4PEgthtYO/y8=;
-        b=L3dw8QjkDEd+mikXhB0AoirPeK6EdAFYgTb3OIJ0Ni+JAkRwQE27xAl+McP/yPQDKg
-         x3Tz3YWoZXW8b8FCBAYyac5eCAXfx4IeKdeXzZLmiwkKf/IBKRc9fboEB/zJtXIeYnwk
-         O7HmnqVLVUlxaTtj//PQvrFodTlQgKydcWI2hNcB4kEnArA3x+TwcQ0P6QmBrERxl8RQ
-         oEVi1jgP55SdvFH8kk0Z+YMpnP7x2P2p3yvcw/s4gJOVo4sJh8GYE+RqJ5vEVH5XmXDo
-         S0TUKsu5AX8lzjb104uVn/lHYZ2DqBQNI72yafS0fGnr/0cFUhYkLhjhNLV1bnjCc4tg
-         x2PA==
+        d=gmail.com; s=20230601; t=1740536076; x=1741140876; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ce/2iYbpTG5UcLrAgQquEoIlxzVy1ifFMugXMkqkJRo=;
+        b=c8SBGMKMWA4o0zmImZYSgEmAGPvfurBuopOahQdtlyKrS6E056Cooioqupiadzg0TA
+         Tu2rWPua0yg65IUTC3ZMOyT7epPwxCx/zeL+do+xBmiNlNCObi4TzWSUL3sxUpyK8Y11
+         9ajq/dtJPUZTS7jiPntNaOEebAwRA4CWrNUhlHfEr6kFb4OdnTcdHQolvjB4R/5yXkYQ
+         agEgWHcTqiBjoqNZVAVjcXjsRJI8E6qThZVAH98LEExgAG6ESXV/MPTGTHKY1MuB2ED5
+         DR2BKNE5e9yG89HZllBqaLTKJ33EzI6Fmpq+Cg2dOFuagkYYquhBfu43sirOtLqIL0Zo
+         IIZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740535757; x=1741140557;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :reply-to:message-id:subject:cc:to:from:date:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=jNDX0bDy82gk9QmnrN58DpzxWTxMxMF4PEgthtYO/y8=;
-        b=FtfPvIa13dVGCioIZ7B2QkqM4HTp0XwhM0114NWkxSHZM4ZYXnjYsCjLwYEfm4xnaR
-         Gl4mR4jySKXZfPU15bvbJHGpSr+ntHL9bCk33gXOjfyYPtNLQi7KmQeBvbAQMT0IVP/0
-         909PVzQd5Zc6GXhRcriJgZ1LP+dHhmQLg/DhVDF2YcXkIr5OC7+Cy2Df+D8blsMtfO+m
-         FxBGX8SGlcVO4LVNrwuU/fQ5WNAcIwYIRDijjRq/7mZ55Ru0Sa7hv9avPwH+Xs0kTvvC
-         yK33DbnfMoLcslugiyz3UoMxWOkHown1Yh3iwrwhdR89QcTAgfyMn1DjEsv4+Xy80XGw
-         JWqw==
-X-Forwarded-Encrypted: i=1; AJvYcCUIEgSQfW9HxW6Sn0D10B2IJbAda7YFs5NQMn2s2MlQQIGxtjWXMLX07iTbMZTGo48IIjtRQjD2FNzb@vger.kernel.org, AJvYcCUoAohxHfwkuRxatq5H5zatDdDea9pvX+9DJlSzN+uDFdS5ig0Bd2gCayZ0BMHe32OdHf/XgK7FWi5+QC0n@vger.kernel.org, AJvYcCW7bW6EUZK7CtA6/gjkO5CoPTgH+ZATbw76hjXSPd7LrH4Klu+5ABWrHqU5Bygvrki/kmr+hmMJ2hOc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJf54fckw4ADKwmeC3SztW1K9w32f/jX6AyFM887Hzm9a2VOY2
-	FgNJ7QVvc6iizJOvGhTfCnjuk38bv6KUAmHQPdu+5SyP++HPhqn1
-X-Gm-Gg: ASbGncuxuVIYpuH1dfTUw/H5X5ooynFZYoHhc+2Jv8banW1O+YvN+xmdTMgP+z4HOFn
-	dUw4q8TkY7qzQmNGmLnDrq10/VJUh2BmZ84q6Sf2HKTcRHEVtAIM/2JTHtxRM0PHMuipzdX4lyr
-	FSeW/G8k3GqbemwsY+wmROEtC9kzcrYvJcpi1nn3Cx+QwOPUxcB05GkR1n9JJZtzfvOS9fHwG5t
-	TVzF0YPicsPqOEAgvAEhXKVOUL8Dd5mxzaQ3PQ5m0JMvShL8xT7Xoavn6Z7xPqnQBkpnpJLQNV8
-	2L8vXfo3xX4EDHhyMgARcnfiXA==
-X-Google-Smtp-Source: AGHT+IGRtYD7rWXN/Sb7N5YCwL4iwg6Gy2cLXak4su8dMR+fikHn63505aewDuiYmopReDoTjLpqLQ==
-X-Received: by 2002:a05:6402:5508:b0:5dc:cc02:5d25 with SMTP id 4fb4d7f45d1cf-5e4a0d71d15mr1703278a12.11.1740535757056;
-        Tue, 25 Feb 2025 18:09:17 -0800 (PST)
-Received: from localhost ([185.92.221.13])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e461f3e675sm1976282a12.72.2025.02.25.18.09.15
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 25 Feb 2025 18:09:16 -0800 (PST)
-Date: Wed, 26 Feb 2025 02:09:15 +0000
-From: Wei Yang <richard.weiyang@gmail.com>
-To: Mike Rapoport <rppt@kernel.org>
-Cc: Wei Yang <richard.weiyang@gmail.com>, linux-kernel@vger.kernel.org,
-	Alexander Graf <graf@amazon.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Andy Lutomirski <luto@kernel.org>,
-	Anthony Yznaga <anthony.yznaga@oracle.com>,
-	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Eric Biederman <ebiederm@xmission.com>,
-	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Paolo Bonzini <pbonzini@redhat.com>,
-	Pasha Tatashin <pasha.tatashin@soleen.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Pratyush Yadav <ptyadav@amazon.de>,
-	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Tom Lendacky <thomas.lendacky@amd.com>,
-	Usama Arif <usama.arif@bytedance.com>,
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v4 02/14] memblock: add MEMBLOCK_RSRV_KERN flag
-Message-ID: <20250226020915.ytxusrrl7rv4g64l@master>
-Reply-To: Wei Yang <richard.weiyang@gmail.com>
-References: <20250206132754.2596694-1-rppt@kernel.org>
- <20250206132754.2596694-3-rppt@kernel.org>
- <20250218155004.n53fcuj2lrl5rxll@master>
- <Z7WHL_Xqgoln9oLg@kernel.org>
- <20250224013131.fzz552bn7fs64umq@master>
- <Z711VP45tjBi0kwx@kernel.org>
+        d=1e100.net; s=20230601; t=1740536076; x=1741140876;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ce/2iYbpTG5UcLrAgQquEoIlxzVy1ifFMugXMkqkJRo=;
+        b=GJnXnfQvrUgHkHhudUEBYKuqZMUMzi+Yvvw+WxPuycVZCdnAAXOovqpm0Gy32kfJw0
+         S0tjpLN+6SLiQDvwK7IMMc6D1Zv8oY7obR7bIXDBWRk2o2dcc6lqEYe4AUz2Aw5FCxWs
+         NeLVed9m19IdRukvg3AV3pGziGpaPzZ9xT57TsumLEcYlI9UWE0jL93qjGsCawCnDYGs
+         pje0f1Wm8Ojgv7piNrLC6jbBu84TQgX8Lf1J58NM+uVMsme0LcjU8jpzeScchxQA/XeW
+         /e3vBS6PGYQsSjpgg9rXa5iFaSQFbIworVfT2JBsongM2EdWtzr87CPDgl6PEXTiUHxC
+         /YOg==
+X-Forwarded-Encrypted: i=1; AJvYcCUbB6aT/VnkvzMwPjeSxPPapZqIC73iw58wbNCB7UJxwNukme0TWWBeCsdzP2C9dZOF9ivsD9g8eAkcbdCf@vger.kernel.org, AJvYcCXBxDanubl+MHcTIqpWAhU1oG04+O63YtDq17/WUNqkYPcPfKD4ut4CJsJrkL4AQQwWI+Q18jdyDLpG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2phWbg+ZAu2u2qgxRj17ZOJdMOdquBRcnbrEAlun5lxPccdow
+	vopHjhZtMDuaTw3W5OFBkxxlSQP1wUxm8DIf0sdqtw55tWXNoGSD
+X-Gm-Gg: ASbGncs6zW3WH6wpg38zdoVVQEfxtCGkH1EBcb1xLnazKLGCxdO/4mQIelQ6FhPKkr1
+	IEHZSaff7IGYOPh57a1e/+LjzFXVKuNdlMvFhlW2S17Fz5QH8PeftCB1w8lRdkvGs+/A8nZa+ly
+	7ydQUpnnM7IkRj0mDCPEvXVbs9vKiacNFyeCH6YaF6oMNJHAL59M5JJkzX64IsQZf++TfPCe4Tf
+	v9BGE76HEEv3Gzh8zfXqPbf2CadKsrXah1JBeaPfkPmMq6kJKL0x4TEQLRdwrJQXuqx53J2nkF4
+	pjd0dx1prvqIkVuRrWTgbdWdAwZVEz5dEjSp
+X-Google-Smtp-Source: AGHT+IFOiWy5c9aRJlo48U+AxlgoisXf/mCQB2vOucCr0Uu56NK3CF2uZpGGkC+NWk7CxG+H2wQ0hw==
+X-Received: by 2002:a05:6830:628a:b0:727:2740:eecf with SMTP id 46e09a7af769-7289d0e367dmr3920392a34.3.1740536075919;
+        Tue, 25 Feb 2025 18:14:35 -0800 (PST)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7289dee9c6fsm539210a34.32.2025.02.25.18.14.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Feb 2025 18:14:35 -0800 (PST)
+From: Chen Wang <unicornxw@gmail.com>
+To: u.kleine-koenig@baylibre.com,
+	aou@eecs.berkeley.edu,
+	arnd@arndb.de,
+	unicorn_wang@outlook.com,
+	conor+dt@kernel.org,
+	guoren@kernel.org,
+	inochiama@outlook.com,
+	krzk+dt@kernel.org,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	robh@kernel.org,
+	tglx@linutronix.de,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	fengchun.li@sophgo.com
+Subject: [PATCH v5 0/3] irqchip: Add Sophgo SG2042 MSI controller
+Date: Wed, 26 Feb 2025 10:14:26 +0800
+Message-Id: <cover.1740535748.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z711VP45tjBi0kwx@kernel.org>
-User-Agent: NeoMutt/20170113 (1.7.2)
+Content-Transfer-Encoding: 8bit
 
-On Tue, Feb 25, 2025 at 09:46:28AM +0200, Mike Rapoport wrote:
->On Mon, Feb 24, 2025 at 01:31:31AM +0000, Wei Yang wrote:
->> On Wed, Feb 19, 2025 at 09:24:31AM +0200, Mike Rapoport wrote:
->> >Hi,
->> >
->> >On Tue, Feb 18, 2025 at 03:50:04PM +0000, Wei Yang wrote:
->> >> On Thu, Feb 06, 2025 at 03:27:42PM +0200, Mike Rapoport wrote:
->> >> >From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
->> >> >
->> >> >to denote areas that were reserved for kernel use either directly with
->> >> >memblock_reserve_kern() or via memblock allocations.
->> >> >
->> >> >Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
->> >> >---
->> >> > include/linux/memblock.h | 16 +++++++++++++++-
->> >> > mm/memblock.c            | 32 ++++++++++++++++++++++++--------
->> >> > 2 files changed, 39 insertions(+), 9 deletions(-)
->> >> >
->> >> >diff --git a/include/linux/memblock.h b/include/linux/memblock.h
->> >> >index e79eb6ac516f..65e274550f5d 100644
->> >> >--- a/include/linux/memblock.h
->> >> >+++ b/include/linux/memblock.h
->> >> >@@ -50,6 +50,7 @@ enum memblock_flags {
->> >> > 	MEMBLOCK_NOMAP		= 0x4,	/* don't add to kernel direct mapping */
->> >> > 	MEMBLOCK_DRIVER_MANAGED = 0x8,	/* always detected via a driver */
->> >> > 	MEMBLOCK_RSRV_NOINIT	= 0x10,	/* don't initialize struct pages */
->> >> >+	MEMBLOCK_RSRV_KERN	= 0x20,	/* memory reserved for kernel use */
->> >> 
->> >> Above memblock_flags, there are comments on explaining those flags.
->> >> 
->> >> Seems we miss it for MEMBLOCK_RSRV_KERN.
->> >
->> >Right, thanks!
->> > 
->> >> > 
->> >> > #ifdef CONFIG_HAVE_MEMBLOCK_PHYS_MAP
->> >> >@@ -1459,14 +1460,14 @@ phys_addr_t __init memblock_alloc_range_nid(phys_addr_t size,
->> >> > again:
->> >> > 	found = memblock_find_in_range_node(size, align, start, end, nid,
->> >> > 					    flags);
->> >> >-	if (found && !memblock_reserve(found, size))
->> >> >+	if (found && !__memblock_reserve(found, size, nid, MEMBLOCK_RSRV_KERN))
->> >> 
->> >> Maybe we could use memblock_reserve_kern() directly. If my understanding is
->> >> correct, the reserved region's nid is not used.
->> >
->> >We use nid of reserved regions in reserve_bootmem_region() (commit
->> >61167ad5fecd ("mm: pass nid to reserve_bootmem_region()")) but KHO needs to
->> >know the distribution of reserved memory among the nodes before
->> >memmap_init_reserved_pages().
->> > 
->> >> BTW, one question here. How we handle concurrent memblock allocation? If two
->> >> threads find the same available range and do the reservation, it seems to be a
->> >> problem to me. Or I missed something?
->> >
->> >memblock allocations end before smp_init(), there is no possible concurrency.
->> > 
->> 
->> Thanks, I still have one question here.
->> 
->> Below is a simplified call flow.
->> 
->>     mm_core_init()
->>         mem_init()
->>             memblock_free_all()
->>                 free_low_memory_core_early()
->>                     memmap_init_reserved_pages()
->>                         memblock_set_node(..., memblock.reserved, )   --- (1)
->>                     __free_memory_core()
->>         kmem_cache_init()
->>             slab_state = UP;                                          --- (2)
->> 
->> And memblock_allloc_range_nid() is not supposed to be called after
->> slab_is_available(). Even someone do dose it, it will get memory from slab
->> instead of reserve region in memblock.
->> 
->> From the above call flow and background, there are three cases when
->> memblock_alloc_range_nid() would be called:
->> 
->>   * If it is called before (1), memblock.reserved's nid would be adjusted correctly.
->>   * If it is called after (2), we don't touch memblock.reserved.
->>   * If it happens between (1) and (2), it looks would break the consistency of
->>     nid information in memblock.reserved. Because when we use
->>     memblock_reserve_kern(), NUMA_NO_NODE would be stored in region.
->> 
->> So my question is if the third case happens, would it introduce a bug? If it
->> won't happen, seems we don't need to specify the nid here?
->
->We don't really care about proper assignment of nodes between (1) and (2)
->from one side and the third case does not happen on the other side. Nothing
->should call membloc_alloc() after memblock_free_all(). 
->
+From: Chen Wang <unicorn_wang@outlook.com>
 
-My point is if no one would call memblock_alloc() after memblock_free_all(),
-which set nid in memblock.reserved properly, it seems not necessary to do
-__memblock_reserve() with exact nid during memblock_alloc()? 
+This controller is on the Sophgo SG2042 SoC to transform interrupts from
+PCIe MSI to PLIC interrupts.
 
-As you did __memblock_reserve(found, size, nid, MEMBLOCK_RSRV_KERN) in this
-patch.
+Thanks,
+Chen
 
->But it's easy to make the window between (1) and (2) disappear by replacing
->checks for slab_is_available() in memblock with a variable local to
->memblock.
-> 
->> -- 
->> Wei Yang
->> Help you, Help me
->
->-- 
->Sincerely yours,
->Mike.
+---
 
+Changes in v5:
+  The patch series is based on v6.14-rc4. 
+
+  Improved driver code to directly get PLIC node from args.fwnode as per
+  comments from Inochi Amaoto, thanks.
+
+Changes in v4:
+  The patch series is based on v6.14-rc1. You can simply review or test the
+  patches at the link [4].
+
+  Fixed following issues as per comments from Inochi Amaoto, Rob Herring, thanks.
+
+  - bindings:
+    - Update sequence of "reg-names".
+    - Remove reference to/schemas/interrupts.yaml
+    - Add "#msi-cells".
+  - Improve driver code:
+    - Use fwnode_* instead of of_*.
+    - Some other coding style improvements.
+
+Changes in v3:
+  The patch series is based on v6.13-rc7. You can simply review or test the
+  patches at the link [3].
+
+  Fixed following issues as per comments from Krzysztof Kozlowski, Samuel Holland,
+  Christophe JAILLET, Inochi Amaoto, thanks.
+
+  - bindings: use reg for doorbell, fixed wrong usage of additionalProperties
+    and misc. 
+  - Improve driver code:
+    - Fixed potentional memory leak issues.
+    - Fixed some build warnings reported by test robot.
+    - Optimize and simplify the code when allocating hwirq.
+    - Use DECLARE_BITMAP instead of kzalloc.
+    - Some other coding style improvements.
+
+Changes in v2:
+  The patch series is based on v6.13-rc2. You can simply review or test the
+  patches at the link [2].
+
+  Fixed following issues as per comments from Rob Herring, Thomas Gleixner, thanks.
+
+  - Improve driver binding description, use msi-ranges instread.
+  - Improve driver code:
+    - Improve coding style.
+    - Fixed bug that possible memory leak of bitmap when sg2042_msi_init_domains returns error.
+    - Use guard(mutex).
+    - Use the MSI parent model.
+
+Changes in v1:
+  The patch series is based on v6.12-rc7. You can simply review or test the
+  patches at the link [1].
+
+Link: https://lore.kernel.org/linux-riscv/cover.1731296803.git.unicorn_wang@outlook.com/ [1]
+Link: https://lore.kernel.org/linux-riscv/cover.1733726057.git.unicorn_wang@outlook.com/ [2]
+Link: https://lore.kernel.org/linux-riscv/cover.1736921549.git.unicorn_wang@outlook.com/ [3]
+Link: https://lore.kernel.org/linux-riscv/cover.1740116190.git.unicorn_wang@outlook.com/ [4]
+---
+
+Chen Wang (3):
+  dt-bindings: interrupt-controller: Add Sophgo SG2042 MSI
+  irqchip: Add the Sophgo SG2042 MSI interrupt controller
+  riscv: sophgo: dts: add msi controller for SG2042
+
+ .../sophgo,sg2042-msi.yaml                    |  61 +++++
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |  10 +
+ drivers/irqchip/Kconfig                       |  12 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-sg2042-msi.c              | 258 ++++++++++++++++++
+ 5 files changed, 342 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/sophgo,sg2042-msi.yaml
+ create mode 100644 drivers/irqchip/irq-sg2042-msi.c
+
+
+base-commit: d082ecbc71e9e0bf49883ee4afd435a77a5101b6
 -- 
-Wei Yang
-Help you, Help me
+2.34.1
+
 
