@@ -1,227 +1,403 @@
-Return-Path: <devicetree+bounces-151631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDEC1A465D8
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 17:00:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49F85A465F1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 17:03:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDBC619C6AE2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:50:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 669AE175AA2
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:51:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E7D21D5A8;
-	Wed, 26 Feb 2025 15:49:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46BC421CC6D;
+	Wed, 26 Feb 2025 15:50:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="Z2nL4ldM"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="q6xDfecG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010042.outbound.protection.outlook.com [52.101.229.42])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E670F21CA09;
-	Wed, 26 Feb 2025 15:49:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740584968; cv=fail; b=cGubhB0t/deEHSLrliuLBVaoAS40Ly+8xJdruDcdtcgHOtvdM7XvjaU6EoM20cKVfZ47ytLRSBQIW2WW79URaJMqu4oGGVfhDN1zHRVDbidqDry+MjtKMQXrw/KBNczwOUoYYZeotmWzz7byFlGvUm3w7KKBgI+ivYaXM9DVAZA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740584968; c=relaxed/simple;
-	bh=Eepiv8ICOw6VCdIQMx5jDY3juWPDW9ehGyXgu/buhXo=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=eElNtd8yEHRBQ/7ig/8y2UlxnuSGzzLtZpUINTq5HBD4rE2d/uE4t3H0n3jpdAy/rsYeP7Lm6zfIE9YRq1ilnLd8x8MqBX53EKkRX7peYvByZnlvXsbjdbqV/STNt+sZmOSUkBh/IIFfd/pyM/ypgRaeELhqSoy/TAuk1LvU1to=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=Z2nL4ldM; arc=fail smtp.client-ip=52.101.229.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RmxyaBLfF+I/WMdDAz+A/QABQGpCENSP6VWEzl+g9LRiMIU96J0xPKEBRh7cJhwyxKYGPlRG+rVUabydkMvynZl2eL3l9IDh13grvlaNOQVACapwNnseHncqcXg4Dner89FsIeGEjqQ95N7JX+m0303ehcUyhjUgw3sJmw8FKle/palWZPEXucOum8mPEv/D9/85B/qy5fNbBU5AHt/I4ybk2GBInVKKxp5uWuSnESF1yMOY4y/AXyMGZwpnjRpH3Xh8Lc9rnwQqC4t9KidnTsDDBOQMZksaNL20KVEp7e3rjH+bKmrJsY2DVCPBgeM4ZQArOHhIVPhMwJoNQHX6Yg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D5P07I7qJFOWeNV3FFRAOpZql673rM8Gs4QSN3kq7FI=;
- b=O/YqXQYpcOUJzP4BNP6ma1IJmnqC76eJwCOBqTEMZnVuW74edWgQCiyWnAebmxkb1tV+zq52BCAy2WXgPJl/T3GeFkRJK/3VOr1/zByQFKoru57QFjBipVjVxGzFIu978n7/haZnOxIrTKbRUdt7oTkHN4kfCqgB8IGtvbtTkuYtnj5naOUz8lrLWPuEvwf39IRxT4djFCIzFiSh1SjB3DmmOafI3qquKH+O6eH3ASBfJcxhn9ByDboUQOy04ZfqQwkDXGZK23t+v46r1Z0Md/qxg3tUbWguMJ2AGc3hGzBymJVFdwLHdSjRz1nI2ZAyNQLJNSy/s8A8u2/frpepGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D5P07I7qJFOWeNV3FFRAOpZql673rM8Gs4QSN3kq7FI=;
- b=Z2nL4ldMMwgZiY49fq2FVyOdrU6l5YTE7lgf9UgGtx7yfnMw+ecf9WH9aaZuq1ApWq3QeGJ5YpqpCRX1L1KApppwXfGpuFMGlrSSgIC0B5E2wka2yiUrsNWT8sjEZFAvFHVlLJ90D6LX2PNaUxqT7aa6U6HNhFev3/J+TAf/3Ds=
-Received: from OSBPR01MB2775.jpnprd01.prod.outlook.com (2603:1096:604:13::17)
- by TYCPR01MB6207.jpnprd01.prod.outlook.com (2603:1096:400:78::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.22; Wed, 26 Feb
- 2025 15:49:23 +0000
-Received: from OSBPR01MB2775.jpnprd01.prod.outlook.com
- ([fe80::54f7:9a51:ae47:185b]) by OSBPR01MB2775.jpnprd01.prod.outlook.com
- ([fe80::54f7:9a51:ae47:185b%4]) with mapi id 15.20.8466.016; Wed, 26 Feb 2025
- 15:49:23 +0000
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-CC: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	"geert+renesas@glider.be" <geert+renesas@glider.be>, "rui.zhang@intel.com"
-	<rui.zhang@intel.com>, "sboyd@kernel.org" <sboyd@kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, Biju
- Das <biju.das.jz@bp.renesas.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "p.zabel@pengutronix.de"
-	<p.zabel@pengutronix.de>, "lukasz.luba@arm.com" <lukasz.luba@arm.com>,
-	"rafael@kernel.org" <rafael@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "mturquette@baylibre.com" <mturquette@baylibre.com>,
-	"john.madieu@gmail.com" <john.madieu@gmail.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "magnus.damm@gmail.com"
-	<magnus.damm@gmail.com>, "linux-clk@vger.kernel.org"
-	<linux-clk@vger.kernel.org>, "daniel.lezcano@linaro.org"
-	<daniel.lezcano@linaro.org>
-Subject: RE: [PATCH 3/7] dt-bindings: thermal: r9a09g047-tsu: Document the TSU
- unit
-Thread-Topic: [PATCH 3/7] dt-bindings: thermal: r9a09g047-tsu: Document the
- TSU unit
-Thread-Index: AQHbg6wEBHvU/a0YLUuj007LSYfAeLNQf50AgAlEdLA=
-Date: Wed, 26 Feb 2025 15:49:23 +0000
-Message-ID:
- <OSBPR01MB2775633E8B74FF2857302D24FFC22@OSBPR01MB2775.jpnprd01.prod.outlook.com>
-References: <20250220152640.49010-1-john.madieu.xa@bp.renesas.com>
- <20250220152640.49010-4-john.madieu.xa@bp.renesas.com>
- <174007535477.3240838.6529561683095110061.robh@kernel.org>
-In-Reply-To: <174007535477.3240838.6529561683095110061.robh@kernel.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OSBPR01MB2775:EE_|TYCPR01MB6207:EE_
-x-ms-office365-filtering-correlation-id: f7c2152b-bdfe-49e2-edd7-08dd567d240b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?TwOBR55CHx6Y5c0TVGjPq80yeBwRd7bRGBW49tMXkwQkirmiaCFUEvayyESL?=
- =?us-ascii?Q?+HwnUdlLyttJys9jx3k5g+DnXmVEHO316tDJSE0NWPVjlsQRkaCoSuQLsZT2?=
- =?us-ascii?Q?hSRA/ZRUrAMXV7C0hZHGhclCsjZGdYfrZjXemcM8IlxT6Oe6kB9ubuYXqxy+?=
- =?us-ascii?Q?et+rmgtNdkcMbDa6+8ep0Kg2mjSjLHQ/NS//IuNJknm58PrQlZxuNSRt7/ko?=
- =?us-ascii?Q?hAVN4BO4MfUWPkIJ/RJXBycBjQYvG2dL4XOE1zkOjDwAQVJ4eRJMDfCD0VsN?=
- =?us-ascii?Q?pjmNtvV6KiEshqi/la7kv2cj0AAj3RFgBOMkYSSOGmiZRnMVmi281ffjtTJL?=
- =?us-ascii?Q?L2Smo1d8wPD5yRNhNxvHi61cF9AVA6IgJhp9giHmkMOj0VpLG7YSbizufHgJ?=
- =?us-ascii?Q?GK39inD6K6VBA9klCGQRdabRY8tSg9Jhv6umQlbIItUDonxkNkNJIpvHEUNf?=
- =?us-ascii?Q?3zO0Ttcf3AMcquljIjTDFfvkqM26uc5LK/n3+c/MJVx6nan8Buh6AnstQso7?=
- =?us-ascii?Q?7zz8flF1o6lEn9f/rx7h+EQv7IRiAX5W+Yy7OqlveZJqeHfA6jFkIL9Qzz6W?=
- =?us-ascii?Q?uLj4xpvZ082rTsozPzWO5ji7O+uixgLiLnl+J4heEof2i+7zfn2Ricv0qC2a?=
- =?us-ascii?Q?npUWAad6NudiZPVISgUmX/ukx8h09J3q3aFPpNcnhIDvsWu5IMy5hrILRdGZ?=
- =?us-ascii?Q?mWMMW4P38ekQWA2mBnMFIoqnty8hMPlABXs8T6VmqJUluvEIC+k2vkBR7hOX?=
- =?us-ascii?Q?vFmHdGY+kRMWpFzFR4sxfuSZhRIVwtDcyMDnRPWe6AKY6U41dYmEbVA1nkbx?=
- =?us-ascii?Q?Kn4jqfWzASNiTA43TOi4UuRUHSm0ZLRbHvCNboNDFZHRfb6pT6ZIhC9dY7Fo?=
- =?us-ascii?Q?qOIxg6UAnOMizWPFPruoR7NzY42oO/GwJE8goJuqyZiPOZbaG2FFALlM1ZWS?=
- =?us-ascii?Q?TlpciXlgeF2N/PezC/b6X7DSH81xdKo3Mz+ZapWOAZY3S5OtZNvDhfhGStG/?=
- =?us-ascii?Q?OclKzff5BP+LY/Ww4Y+PXJOPsM9HrxGT3+G8CiOL7y1oSS47D4g+D9FJIKmQ?=
- =?us-ascii?Q?errSB7De6Zm54C8EPKMAE5IyFhVDXqSBntQ2b5Jx4IReVdE0GXwY1pmJ0wMp?=
- =?us-ascii?Q?L7ZtPmhF/RKRC/xnOqVlB9C2mKMUnNqJmvLxb61gvTs3wi8Nhr6DN7PmhGON?=
- =?us-ascii?Q?Z3lx0JHpSrughSzHJJ1SR8Nz9kghtB+EgAjMUpcs4y1qJ20qVpDg3weGzft2?=
- =?us-ascii?Q?r7dCa5bQ6stpnjRjnwh44wnF9i31iV3NNDFIu6kMYtWcJco93fNovx/x0GnG?=
- =?us-ascii?Q?1aSThPWusE94fpxWYK85kQF3uFyWdpO5vAQQwM6VTPoc0/wsqFuWHagS8eb+?=
- =?us-ascii?Q?f2JpPw581rMRPkA6CYpHRRRG0od/K9ur99kcbbXha0+A2KL5INZWCBH3Y+Pi?=
- =?us-ascii?Q?aOPSBQAZL9zfhs//43HTUQrAo3VHGrHY?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSBPR01MB2775.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?QV/UymXxBWJyk6ozg2rAdozGhX8rYXkq6WI4PC1NUlj/W8MPK9qle7Mt4Q/5?=
- =?us-ascii?Q?xFFQc5t6FlxpNCfaTMMpYqjqHwtAvM2g7EgR8VMJ3GVX66v5eumiIdg+Qxrg?=
- =?us-ascii?Q?13neForyBls7xJnwrxOERyemNY+QS63PkvRZOIrx/abfjAHtiM9ceZjb6E8y?=
- =?us-ascii?Q?Q2NdkSu0WBuYaKNMfTs43oq28PyRALfQyDkEWaZdiYsWib9vecuM9R79W3pu?=
- =?us-ascii?Q?JoorG4Jg6iZGrZhGdfYLrh009JA/NhrV2pxpZ1QS51/6sSpJb1Y1I/9dY2Cf?=
- =?us-ascii?Q?UqPSPcbuXrDL2Aalc/p/TBrVo3mRtPuu2p5dsR5K/1J+e2G9fwQHtM0/B/1M?=
- =?us-ascii?Q?bID6KDbda1I2U75IEPuqViapJ4rUT2HbybnRStwZdIlGoGveSt/hCxCPc/yd?=
- =?us-ascii?Q?mk+cuBedB8/LkuHrAV//YXw9KKb/ntUJM7h2haVJhiAGrb3ie3PmdS+lPQ76?=
- =?us-ascii?Q?g8idYW4n/t9AShSuUw2+ZTpTE0jD0OZBEwuycfNRaLqmnj/OcBEJO3iErsPA?=
- =?us-ascii?Q?m0xeSSHTqDZas20MezjXg+GtD0C+3VYwnRqU4sbli5yaDODPmvkiDUFrCQ6f?=
- =?us-ascii?Q?JvXjeFnE+XZo9tg7xUIVtc4q3+/WHVI7w+aDB39Anss+2oll1Iqsq6f89IUa?=
- =?us-ascii?Q?eJrvCyoGd3Is0VCWVTrIkcW9hZWyD7CgLN5c5++yivlP1C/B06xFVGhGgH/J?=
- =?us-ascii?Q?g8DqRzqTYHEluVqSuO9OUj5XNlTDUek8FBlnp6KxVC9ACltY5Np7NKUlHpT/?=
- =?us-ascii?Q?lj8D3RxvrX5NEajEYRXBDgdjhOk/Mh2dlIuWKIAPONedK9A/m0BOnuMPx892?=
- =?us-ascii?Q?nMyyNfEUh7iwUYJR5zoh/QQCksPkHcPTJGtgGQJqji5Vn1p1t4v/Ut0F4Dh0?=
- =?us-ascii?Q?PCAMws75zP0xee4xJQdau9MZ/eqUSG2WQz0x/wsEysH3Or9m42nMXKidMXDt?=
- =?us-ascii?Q?dAbzjEBBrybXyc8iTPwRp6+k2yjKTkGqTWxD/MD4ovK9FQPWAn4ROFsqA0I0?=
- =?us-ascii?Q?eQ5H5HkP2W2CnfuB2mP488o+DU8xs934oYPaG2mGcu8jTOBmFSG848vg90vc?=
- =?us-ascii?Q?EdmKLTUQjITWtHIsBj87C8wFq9qqesyj68BP+34M4PiH4KemaPsKsWlr6/U9?=
- =?us-ascii?Q?AIkZnS2a4q8b222pL785f9PiEIk7CHNDsm9vJC0ZUwHYrGPPSMBnv2QKyKNs?=
- =?us-ascii?Q?ChW32OIwSEYTXaD/WHpFw7WkCKUczqENH/KIyI+0rm2UXEkYOVT0p0VXSUcs?=
- =?us-ascii?Q?ru03h66vZOXsfCL1w5NoS0N+vug9E28P/hEOK7cy/5PWFK11+MrvwigNZfS+?=
- =?us-ascii?Q?sv3ZmOJVpe4xZ7PsBuiNKyMEOgZ7JyK97PR0YhUEL9hm0sRQgjhr/8Y+krix?=
- =?us-ascii?Q?EKAXngOX/A4gB2OoxZZqNBSKlw+bzUYJpVi3CTgRuc1Jn/nYIMEVkVm+KxgI?=
- =?us-ascii?Q?zOR66v1l3T7rliqnf/lJoTRbGJOtB26Zqe3VDAtEercv0fo5rp7+Zb3nBwPf?=
- =?us-ascii?Q?Fg4YPGMCVpPt5N/1GuDSDgZ1lEK2R4mcPgClFJm8hMtVYDD2vmaKMZK64zA6?=
- =?us-ascii?Q?BGgJ+LuBD6tUXCqdm4UEfhLyDctmD33KGup9f1B54fwGJnrGetDSEk4hzLT7?=
- =?us-ascii?Q?Gw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BABF4218ACA;
+	Wed, 26 Feb 2025 15:50:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740585012; cv=none; b=A8IRPGCZZBcDoj+BvnUFunSIrJRdrMdd1/UNcGzPKyB75TXk3oR2ksVg3QOerRXhpb1LUO+jIcbpYv7gI0+dtWl4YUo+ibfUJnMfzC6u/NTzR8LQH0zF8BzzR+h8YrzXaqFEgqIeZCQebxMYg/v0VETp1SDoOWEl9FqN7QSmo/0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740585012; c=relaxed/simple;
+	bh=jtMVU9DBse/GUZE0tOPY2dHj/3Bxy11Ptn65yODVaYE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=QzqLcdTCP4jtkScBdtOQkKSPU7bM4PDn07wN7QkmzzU4GYgSjwN7Sjdq4oL8C3jcf8kTAN0bdIGomCgqVfKYmlhRsbdH5L5xeBm4uidYf3DChQ01H3g8xgEehD5R0mLVq7pdm6CZsNDHVgewb9vD826p36GVklViqG/RgA43Nkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=q6xDfecG; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51QFnxne2112906
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Wed, 26 Feb 2025 09:49:59 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1740584999;
+	bh=VbW2t9EwpIS5Ha4EesUhK91rBFjcgNiBhbAE8z1q18s=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=q6xDfecG+mHPY30GFFkDvARlLSpp6aqSqsceAuiSoMHVfMkYUg8pKycQqI31gduNB
+	 anlVKTRgzBcKzolvqiitcmk3z1sZ7HB8Znb8IvJ0O4TNiikUhtmF4CjFtPgv1iUbAS
+	 w5HSbAM1OF+Vbzi1r/3nhEJEVwiV1KlDeZBt5Oac=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51QFnxjj035621;
+	Wed, 26 Feb 2025 09:49:59 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
+ Feb 2025 09:49:58 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 26 Feb 2025 09:49:58 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51QFnvkZ052803;
+	Wed, 26 Feb 2025 09:49:57 -0600
+Message-ID: <74b85562-15c2-42fc-8ee0-990f5718dcb0@ti.com>
+Date: Wed, 26 Feb 2025 09:49:57 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OSBPR01MB2775.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f7c2152b-bdfe-49e2-edd7-08dd567d240b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Feb 2025 15:49:23.1636
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vkwPIaI1S4DFFcWMbURApF8a8z79ezkZX8A6ZoZzuBGFwePrGeWVq/DzpF0lTpR0H3y29g7z9UuULDvqRx0kuHoeZsRZr5wLr+nO9MGDcQY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6207
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: ti: Add k3-am62-pocketbeagle2
+To: Dhruva Gole <d-gole@ti.com>, Robert Nelson <robertcnelson@gmail.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Vignesh
+ Raghavendra" <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+        Roger Quadros
+	<rogerq@kernel.org>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>, Judith Mendez
+	<jm@ti.com>,
+        Andrei Aldea <a-aldea@ti.com>,
+        Jason Kridner
+	<jkridner@beagleboard.org>,
+        Deepak Khatri <lorforlinux@beagleboard.org>,
+        Ayush Singh <ayush@beagleboard.org>
+References: <20250211181839.1575497-1-robertcnelson@gmail.com>
+ <20250211181839.1575497-2-robertcnelson@gmail.com>
+ <20250224111318.3wlbhpm7pggsbqdb@lcpd911>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250224111318.3wlbhpm7pggsbqdb@lcpd911>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Rob,
+On 2/24/25 5:13 AM, Dhruva Gole wrote:
+> On Feb 11, 2025 at 12:18:39 -0600, Robert Nelson wrote:
+>> BeagleBoard.org PocketBeagle 2 is an upgraded version of the popular
+>> PocketBeagle.  It is based on Texas Instruments AM6232 SoC. Its dual
+>> A53 cores can provide higher performance than classic PocketBeagle.
+> 
+> You can say that classic PB was based on AM335 just for more context,
+> else it's not clear what the upgrade is w.r.t..
+> 
+>> The new design comes with pre-soldered headers, a 3-pin JST-SH 1.00mm
+>> UART debug port, a USB-C port, Texas Instruments MSPM0L1105 Cortex-M0+
+>> MCU for ADC, 512MB RAM, and a LiPo Battery charger.
+>>
+>> https://www.beagleboard.org/boards/pocketbeagle-2
+>> https://openbeagle.org/pocketbeagle/pocketbeagle-
+>>
+>> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+>> CC: Rob Herring <robh@kernel.org>
+>> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+>> CC: Conor Dooley <conor+dt@kernel.org>
+>> CC: Vignesh Raghavendra <vigneshr@ti.com>
+>> CC: Nishanth Menon <nm@ti.com>
+>> CC: Andrew Davis <afd@ti.com>
+>> CC: Roger Quadros <rogerq@kernel.org>
+>> CC: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> CC: Judith Mendez <jm@ti.com>
+>> CC: Andrei Aldea <a-aldea@ti.com>
+>> CC: Jason Kridner <jkridner@beagleboard.org>
+>> CC: Deepak Khatri <lorforlinux@beagleboard.org>
+>> CC: Ayush Singh <ayush@beagleboard.org>
+>> ---
+>>   arch/arm64/boot/dts/ti/Makefile               |   1 +
+>>   .../boot/dts/ti/k3-am62-pocketbeagle2.dts     | 520 ++++++++++++++++++
+>>   2 files changed, 521 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+>> index 8a4bdf87e2d4..46b9a667bda4 100644
+>> --- a/arch/arm64/boot/dts/ti/Makefile
+>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>> @@ -27,6 +27,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-yavia.dtb
+>>   dtb-$(CONFIG_ARCH_K3) += k3-am62x-phyboard-lyra-gpio-fan.dtbo
+>>   dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
+>>   dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk-nand.dtbo
+>> +dtb-$(CONFIG_ARCH_K3) += k3-am62-pocketbeagle2.dtb
+>>   
+>>   # Boards with AM62Ax SoC
+>>   dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts b/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
+>> new file mode 100644
+>> index 000000000000..ef79bd0bf238
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
+>> @@ -0,0 +1,520 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>> +/*
+>> + * https://www.beagleboard.org/boards/pocketbeagle-2
+>> + *
+>> + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
+>> + * Copyright (C) 2024 Robert Nelson, BeagleBoard.org Foundation
+> 
+> Nit: Please update copyrights.
+> 
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include <dt-bindings/leds/common.h>
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/input/input.h>
+>> +#include "k3-am625.dtsi"
+> 
+> Any particular reason we can't inherit from k3-am62x-sk-common.dtsi like
+> the SK and LP-SK DTS do?
+> 
 
-Thanks for the review.
+Because PocketBeagle 2 is not based on our TI SK boards.. Some
+things are common (PMIC, some carveouts), but not nearly enough
+to make this a good idea.
 
-> -----Original Message-----
-> From: Rob Herring (Arm) <robh@kernel.org>
-> Sent: Thursday, February 20, 2025 7:16 PM
-> Subject: Re: [PATCH 3/7] dt-bindings: thermal: r9a09g047-tsu: Document th=
-e
-> TSU unit
->=20
->=20
-> On Thu, 20 Feb 2025 16:26:08 +0100, John Madieu wrote:
-> > The Renesas RZ/G3E SoC includes a Thermal Sensor Unit (TSU) block
-> > designed to measure the junction temperature. The device provides
-> > real-time temperature measurements for thermal management, utilizing a
-> > single dedicated channel (channel 1) for temperature sensing.
-> >
-> > Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> > ---
-> >  .../thermal/renesas,r9a09g047-tsu.yaml        | 123 ++++++++++++++++++
-> >  1 file changed, 123 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/thermal/renesas,r9a09g047-tsu.yaml
-> >
->=20
-> My bot found errors running 'make dt_binding_check' on your patch:
->=20
-> yamllint warnings/errors:
->=20
->=20
-> doc reference errors (make refcheckdocs):
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->=20
-> pip3 install dtschema --upgrade
+Any changes to the SK board DT would have to be checked against
+this DTB, which will break things at some point as the DT becomes
+more complete.
 
-I'll upgrade my dtschema and double check before pushing in v2.
+Andrew
 
->=20
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your
-> schema.
-
-Cheers,
-John.
-
+> Also, you're calling out in the commit message that this is based on
+> AM6232 - which has only 2 cores right? Do we not want to delete the
+> additional 2 cores from the AM625 DT which has 4 cores?
+> 
+>> +
+>> +/ {
+>> +	compatible = "beagle,am62-pocketbeagle2", "ti,am625";
+>> +	model = "BeagleBoard.org PocketBeagle2";
+>> +
+>> +	aliases {
+>> +		serial0 = &wkup_uart0;
+>> +		serial1 = &main_uart1;
+>> +		serial2 = &main_uart6;
+>> +		serial3 = &main_uart3;
+>> +		serial4 = &main_uart4;
+>> +		serial5 = &main_uart5;
+>> +		serial6 = &main_uart2;
+>> +		serial7 = &main_uart0;
+>> +		mmc0 = &sdhci0;
+>> +		mmc1 = &sdhci1;
+>> +		usb0 = &usb0;
+>> +		usb1 = &usb1;
+>> +		i2c0 = &main_i2c0;
+>> +		i2c1 = &wkup_i2c0;
+>> +		i2c2 = &main_i2c2;
+>> +	};
+>> +
+>> +	chosen {
+>> +		stdout-path = &main_uart6;
+>> +	};
+>> +
+>> +	memory@80000000 {
+>> +		/* 512MB RAM */
+>> +		reg = <0x00000000 0x80000000 0x00000000 0x20000000>;
+>> +		device_type = "memory";
+>> +		bootph-pre-ram;
+>> +	};
+>> +
+>> +	reserved_memory: reserved-memory {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+> 
+> Let's try to follow [1] here and elsewhere
+> [1] https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
+> 
+>> +
+>> +		secure_tfa_ddr: tfa@9e780000 {
+>> +			reg = <0x00 0x9e780000 0x00 0x80000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		secure_ddr: optee@9e800000 {
+>> +			reg = <0x00 0x9e800000 0x00 0x01800000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9db00000 {
+>> +			compatible = "shared-dma-pool";
+>> +			reg = <0x00 0x9db00000 0x00 0xc00000>;
+>> +			no-map;
+>> +		};
+> 
+> Nothing for OPTEE/ M4/ etc...?
+> CMA?
+> Just trying to compare against sk-common... I understand the DDR is
+> smaller but we can't just ignore OPTEE / shared DMA pool right?
+> 
+>> +	};
+>> +
+>> +	vsys_5v0: regulator-1 {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vsys_5v0";
+>> +		regulator-min-microvolt = <5000000>;
+>> +		regulator-max-microvolt = <5000000>;
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +		bootph-all;
+>> +	};
+>> +
+>> +	vdd_3v3: regulator-2 {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vdd_3v3";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		vin-supply = <&vsys_5v0>;
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +		bootph-all;
+>> +	};
+>> +
+>> +	vdd_mmc1: regulator-3 {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vdd_mmc1";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&vdd_3v3_sd_pins_default>;
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		regulator-boot-on;
+>> +		enable-active-high;
+>> +		regulator-always-on;
+>> +		vin-supply = <&vdd_3v3>;
+>> +		gpio = <&main_gpio0 0 GPIO_ACTIVE_HIGH>;
+>> +		bootph-all;
+>> +	};
+>> +
+>> +	vdd_sd_dv: regulator-4 {
+>> +		compatible = "regulator-gpio";
+>> +		regulator-name = "sd_hs200_switch";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&vdd_sd_dv_pins_default>;
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		regulator-boot-on;
+>> +		vin-supply = <&vdd_3v3>;
+>> +		gpios = <&main_gpio1 49 GPIO_ACTIVE_HIGH>;
+>> +		states = <1800000 0x0>,
+>> +			 <3300000 0x1>;
+>> +		bootph-all;
+>> +	};
+>> +
+>> +	adc_vref: regulator-5 {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "default";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		regulator-boot-on;
+>> +	};
+>> +
+>> +	leds {
+>> +		bootph-all;
+> 
+> Is this needed? child nodes seem to have bootph-all already right?
+> 
+>> +		compatible = "gpio-leds";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&led_pins_default>;
+>> +
+>> +		led-1 {
+>> +			bootph-all;
+>> +			gpios = <&main_gpio0 6 GPIO_ACTIVE_HIGH>;
+>> +			color = <LED_COLOR_ID_GREEN>;
+>> +			linux,default-trigger = "heartbeat";
+>> +			function = LED_FUNCTION_HEARTBEAT;
+>> +			default-state = "on";
+>> +		};
+>> +
+>> +		led-2 {
+>> +			bootph-all;
+>> +			gpios = <&main_gpio0 5 GPIO_ACTIVE_HIGH>;
+>> +			color = <LED_COLOR_ID_GREEN>;
+>> +			function = LED_FUNCTION_DISK_ACTIVITY;
+>> +			linux,default-trigger = "mmc1";
+>> +		};
+>> +
+>> +		led-3 {
+>> +			bootph-all;
+>> +			gpios = <&main_gpio0 4 GPIO_ACTIVE_HIGH>;
+>> +			color = <LED_COLOR_ID_GREEN>;
+>> +		};
+>> +
+>> +		led-4 {
+>> +			bootph-all;
+>> +			gpios = <&main_gpio0 3 GPIO_ACTIVE_HIGH>;
+>> +			color = <LED_COLOR_ID_GREEN>;
+>> +			function = LED_FUNCTION_INDICATOR;
+>> +			default-state = "off";
+>> +		};
+>> +	};
+>> +};
+> [....]
+>> +
+>> +&wkup_uart0 {
+>> +	/* WKUP UART0 is used by Device Manager firmware */
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&wkup_uart0_pins_default>;
+>> +	bootph-all;
+>> +	status = "reserved";
+>> +};
+> 
+> See things like these you get for free from k3-am62x-sk-common.dtsi ;)
+> 
+>> +
+>> +&wkup_i2c0 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&wkup_i2c0_pins_default>;
+>> +	clock-frequency = <100000>;
+>> +	bootph-all;
+> 
+> Child nodes have bootph, no need for their parents to repeat it unless
+> you've a good cause.
+> 
+>> +	status = "okay";
+>> +
+>> +	tps65219: pmic@30 {
+>> +		compatible = "ti,tps65219";
+>> +		reg = <0x30>;
+>> +		buck1-supply = <&vsys_5v0>;
+>> +		buck2-supply = <&vsys_5v0>;
+>> +		buck3-supply = <&vsys_5v0>;
+>> +		ldo1-supply = <&vdd_3v3>;
+>> +		ldo2-supply = <&buck2_reg>;
+>> +		ldo3-supply = <&vdd_3v3>;
+>> +		ldo4-supply = <&vdd_3v3>;
+>> +
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pmic_irq_pins_default>;
+>> +		interrupt-parent = <&gic500>;
+>> +		interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
+>> +		interrupt-controller;
+>> +		#interrupt-cells = <1>;
+>> +
+>> +		bootph-all;
+>> +		system-power-controller;
+>> +		ti,power-button;
+> [...]
+> 
+> Overall I think the DT needs a bit of revisiting of which nodes to reuse
+> from common-DT and what all to delete/ trim. Revisit all the bootph
+> properties and remove the redundant one's...
+> 
 
