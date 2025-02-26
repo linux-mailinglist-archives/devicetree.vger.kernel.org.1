@@ -1,121 +1,156 @@
-Return-Path: <devicetree+bounces-151608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67C9DA464FC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 16:35:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1E0BA4672E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 17:58:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B97463B6951
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:32:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9C0A3A6552
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 16:58:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 866D922FF21;
-	Wed, 26 Feb 2025 15:29:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2D1223316;
+	Wed, 26 Feb 2025 16:58:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HilZ7t2w"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="5ieszlWO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 522E622A1C0;
-	Wed, 26 Feb 2025 15:29:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 287D01A01BF;
+	Wed, 26 Feb 2025 16:58:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740583762; cv=none; b=JWPTaTXqlavLwHOVEYbLY7IcLQ7WB25kzGkQM6phmfZaQhqF0pwdjg77natzKY9khpbKzRSfXQ10DSlbsJfmWRL/vnEbAhh9htmcFKS2nnGBFUozV2443M9yNT2ii6A/xT6ZTNwgTpgJNQLLy/ketSGvqG4NI/fbPs9gX3SR0hw=
+	t=1740589115; cv=none; b=PE6FcvC5RL2oORj3WVy8t5HbWXhHm8qK8xLKy5PKgHSYF40BrsLpxOQxsEY+rjxMZwU7buqu4IWyHdSATfDRr/QWqfwWM+ME5e8MT0iQWWnG7XOkQb61B2/m//NAr1tvLH/5EMRRTRrQHVvE3QpHmb6ktaLRIaqVE0453bO7buc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740583762; c=relaxed/simple;
-	bh=Bm71IuLHpYa+LH4zujKKceLccQmp+vSPPfk2dsBqhhg=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=cb0k6aWhgisZWN/NNK28PQXLbjEXzY8cZ4mNcdWpMLhECCLtonM+s8luDPUXgNLV+J3H66MCVBREg0TR2pR5Ohn9H3O3Y2GpQ6CUuBNYhu9LaDPAJ39JDZ1de35uOTcYL0DPzEKFPErGGx0PAQVmPrTJ2crYocgOTTMB5uud3jA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HilZ7t2w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9836BC4CED6;
-	Wed, 26 Feb 2025 15:29:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740583761;
-	bh=Bm71IuLHpYa+LH4zujKKceLccQmp+vSPPfk2dsBqhhg=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=HilZ7t2wWB8b8ymJeBpJHUhU2queDOpDymlV/9zGK4XuC/ksujSel9RpP9CGsHZPI
-	 iPovdXeGZ4dGC+MZOUH7ZVKARszZbEs0f6tcg5rjJyS0TztU7vXcn93If6laQZu/IO
-	 xRoCCx6i1oCckJ4vol8hpBURsACh8NZ43GGK0ktcRAKcTesh2Epf5QjoH0seK2sy3o
-	 ysX7pDYLnVksz4pkIuv8RaWN+6P0AHvKjYcpFIuBPCTrs4773qjsV+wtUB0+f8M0yC
-	 PEU6VjCkFhBTrx+m0JLdBlUamxNgiAaCed8hnYaznkjWNke1IZLNtxQjRNfZBgF+0e
-	 IqjFU+qW4gE8w==
-Date: Wed, 26 Feb 2025 09:29:19 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1740589115; c=relaxed/simple;
+	bh=ua8zdJO/nQe7lxupptSqK1mPFmVWzWD9UITddfiAOto=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=G1HucXihW+DTsnL25nGCgYFe+pMazPPWPCMyNtsAfdSkrc6AOWxcgyjIhFMUEC8hRfgr3IE3Fz0uGJ1FHRhjDi1wydQIXm2bHn2L+zHLLlxfv+qNC7JFiwG4k1qSmzb6++7Rl21jSNeriXfGrpPOL4Mm/OLfoM1QTSMJMJdcKuM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=5ieszlWO; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51QFX00h022198;
+	Wed, 26 Feb 2025 17:58:22 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	IZb1xMqSNQN2PP8hwkcWMj27cX0fMVgLYG7qNf4LP2k=; b=5ieszlWO2WceWL1Z
+	kY3yIkTr3K8hw6CaL11JmkPDIpVrhkPUTKcIPekxJ4OCKEgiYXenDfTxzL1wlkri
+	sCdIxRI7jXt2k9zlqSwUWry3id0Q1Oj08yRg/yMQlATGxsiVs8Jt8I00xjQMuTkJ
+	oN+xyKiaIKf+IkgKNyEPBJkqvRysw9ADuzpeivaRJC40Cy3r7eprTXaUKc7Zw4Dp
+	z1ziDbdYuMW+MnvMQcocohzAQvUJHXP8Cjyt4bsaKWswEhyUC8J6PoybXAPb1CGc
+	e+WuNlw2jEJ/DGH7ceAC8SZSuakxLuvl3dXD5qk7auZDszK+5dr5p/Ck1a9jP94K
+	Eld91g==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 451psrdy1b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Feb 2025 17:58:22 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 87D8540063;
+	Wed, 26 Feb 2025 17:57:12 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 79595484FF1;
+	Wed, 26 Feb 2025 16:30:20 +0100 (CET)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Feb
+ 2025 16:30:19 +0100
+Message-ID: <8cdc7e52-f9e2-4fc9-be68-0dd72a25ee1b@foss.st.com>
+Date: Wed, 26 Feb 2025 16:30:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, devicetree@vger.kernel.org, 
- linux-pm@vger.kernel.org, Peter Griffin <peter.griffin@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Will McVicker <willmcvicker@google.com>, 
- linux-kernel@vger.kernel.org, kernel-team@android.com, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Sebastian Reichel <sre@kernel.org>
-To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-In-Reply-To: <20250226-syscon-reboot-reset-mode-v1-1-91c1b62166ae@linaro.org>
-References: <20250226-syscon-reboot-reset-mode-v1-0-91c1b62166ae@linaro.org>
- <20250226-syscon-reboot-reset-mode-v1-1-91c1b62166ae@linaro.org>
-Message-Id: <174058375994.2463209.9948592153423144239.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: reset: syscon-reboot: support reset
- modes
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/9] ARM: dts: stm32: add Hardware debug port (HDP) on
+ stm32mp25
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Clement LE GOFFIC
+	<clement.legoffic@foss.st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250225-hdp-upstream-v1-0-9d049c65330a@foss.st.com>
+ <20250225-hdp-upstream-v1-7-9d049c65330a@foss.st.com>
+ <418a80a9-8c08-4dd1-bf49-1bd7378321aa@kernel.org>
+ <b257aa79-6ca9-4f57-988a-ec00225992ab@foss.st.com>
+ <b57e3c9e-244e-435b-8a7b-cf90f3a973b3@kernel.org>
+ <988667a4-4bc0-4594-8dfd-a7b652b149b2@foss.st.com>
+ <55beb3e7-65ac-4145-adae-fb064378c78d@kernel.org>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <55beb3e7-65ac-4145-adae-fb064378c78d@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-26_04,2025-02-26_01,2024-11-22_01
 
 
-On Wed, 26 Feb 2025 14:08:20 +0000, André Draszik wrote:
-> Add support for specifying different register/mask/value combinations
-> for different types of reset.
+
+On 2/26/25 16:08, Krzysztof Kozlowski wrote:
+> On 26/02/2025 10:33, Alexandre TORGUE wrote:
+>>>>>> +		hdp: pinctrl@44090000 {
+>>>>>> +			compatible = "st,stm32mp-hdp";
+>>>>>
+>>>>> So here again - you have stm32mp251 SoC, but use entirely different
+>>>>> compatible.
+>>>>
+>>>> Ok so I will use "st,stm32mp15-hdp"
+>>>
+>>>
+>>> This means this is stm32mp15 SoC. I do not see such SoC on list of your
+>>> SoCs in bindings. What's more, there are no bindings for other SoC
+>>> components for stm32mp15!
+>>
+>> Yes stm32mp15 is not a "real SoC". I agree that at the beginning of the
+>> STM32 story we didn't have a clear rule/view to correctly naming our
+>> compatible. We tried to improve the situation to avoid compatible like
+>> "st,stm32", "st,stm32mp" or "st,stm32mp1". So we introduced
+>> "st,stm32mp13", "st,stm32mp15" or "st,stm32mp25" for new drivers. So yes
+>> it represents a SoC family and not a real SoC. We haven't had much
+>> negative feedback it.
+>>
+>> But, if it's not clean to do it in this way, lets define SoC compatible
+>> for any new driver.
 > 
-> In particular, update the binding to allow platforms to specify the
-> following reset modes: soft, warm, cold, hard.
+> Compatibles are for hardware.
 > 
-> Linux can perform different types of reset using its reboot= kernel
-> command line argument, and some platforms also wish to reset
-> differently based on whether or not e.g. contents of RAM should be
-> retained across the reboot.
+>> For the HDP case it is: "st,stm32mp157" and used for STM32MP13,
+>> STM32MP15 end STM32MP25 SoC families (if driver is the same for all
+>> those SoCs).
 > 
-> The new properties match the existing properties, just prefixed with
-> one of the reset modes mentioned above.
+> No, it's three compatibles, because you have three SoCs. BTW, writing
+> bindings (and online resources and previous reviews and my talks) are
+> saying that, so we do not ask for anything new here, anything different.
+> At least not new when looking at last 5 years, because 10 years ago many
+> rules were relaxed...
+
+So adding 3 times the same IP in 3 different SoCs implies to have 3 
+different compatibles. So each time we use this same IP in a new SoC, we 
+have to add a new compatible. My (wrong) understanding was: as we have 
+the same IP (same hardware) in each SoC we have the same compatible (and 
+IP integration differences (clocks, interrupts) are handled by DT 
+properties.
+
 > 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> ---
->  .../bindings/power/reset/syscon-reboot.yaml        | 74 ++++++++++++++++++++++
->  1 file changed, 74 insertions(+)
 > 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml:113:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
-./Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml:115:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
-./Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml:123:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
-./Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml:125:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
-./Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml:133:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
-./Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml:135:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
-./Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml:143:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
-./Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml:145:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
-
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250226-syscon-reboot-reset-mode-v1-1-91c1b62166ae@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> Best regards,
+> Krzysztof
 
