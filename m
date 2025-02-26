@@ -1,109 +1,86 @@
-Return-Path: <devicetree+bounces-151456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8054A45DA1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 12:49:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D41F6A45DCC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 12:53:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 342E53A88CC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:49:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AD381899519
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:52:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2AE721B9CC;
-	Wed, 26 Feb 2025 11:47:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LBvHyzQd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B19021A457;
+	Wed, 26 Feb 2025 11:50:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B93D6217701;
-	Wed, 26 Feb 2025 11:47:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E08B218845;
+	Wed, 26 Feb 2025 11:50:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740570462; cv=none; b=csBDUdiE2bo5FauQmRtAqqsKApUmhy3MOPw+mk8WVpZkqFrG2a/w/1QAeJMSUaVaGkhrBGTq4lBM4NNBMqrAAioo2xUzjDmMLOuVeJBM+huZcdNjczhSSqlv02lkzYHnjATGik/te1j844S3KpL+KcNgLK8PTideRWdV8zscCXs=
+	t=1740570631; cv=none; b=WWKpdUU1SEmpuTjO+zca0ykutpmYgMsNp8JuN2viG8XbFBLaWHS53CG/9GusSftM3kFbbxXzGMxS+mdwFjR3qyklvv/AKkZMqpOywdkChvvyx+OuUYwVMbozPj3mBQDKiAYt1qPakcROMTrGBxGV4eCP4/7qecP2uMjUnj4mGvQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740570462; c=relaxed/simple;
-	bh=JOQo3/AMvkrL1dqwOqth1Sz1S7IiFRAbwLyLHcQKuZg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nwdDL4TXrzTXNwizhB24jd/RgfEZ1Ja6v77GW4ocr6m8Xkh9gZWOHLfFpA4p7J8yiulzCD+oOcjh8AZbI9NQVMOuadh+QEXp5gLePCPoB3JTu3GYzfo02usMCHIy1T8vM2gC8tpptIRF+SL9PmqWKvZJI1b6+ht16ob/vhH2KLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LBvHyzQd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE318C4CED6;
-	Wed, 26 Feb 2025 11:47:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740570461;
-	bh=JOQo3/AMvkrL1dqwOqth1Sz1S7IiFRAbwLyLHcQKuZg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LBvHyzQdQCpEbjbuVZQynljxXW4ZIyfPT+HBhocchWPRqewWdlQgD3A4zsUTR1Ijx
-	 daVc1JVwYN6hev7qQrS2S7ciZGAgjExyXFq7mw7hpyaezkgmih9UlQ5wfkeh4DMSOJ
-	 CV2GtFzC/e1ABejStfX5ejCjYmykN0vxNhLXbw4SF4RUTu8nWU1a3gE/35NtHCG3q7
-	 wH/V3JDjIENUcecZ+0tiu/Vkz2ZrL9vUTdQ96q29/aJHIExaxYTiQnIFNQvvEYTZ9i
-	 q7zqA1wCr+UorcQ7ZpdS2ZKsmElUX/5fD8nFwpCzzMLfZ5Qv+PqSdifWUg/KQv4mTW
-	 t9BZ/LHKbEHrQ==
-Date: Wed, 26 Feb 2025 11:47:36 +0000
-From: Mark Brown <broonie@kernel.org>
-To: "Torreno, Alexis Czezar" <AlexisCzezar.Torreno@analog.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1740570631; c=relaxed/simple;
+	bh=HNfX/NM1l3gCoaD7uUn++PqQND2o3uQwcNFZh2DqyPM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LbLFD31Wfa8VDr91PezLm5J6yJgtkDIu70nuScQFEwxB5wlb2MoQrXMCqESCCUvxjpL94wpCXpnwwKbAHtiQnejr8DscxuG+6q5q+hTCa93QvEIqAQPhV/MDPIwP9C1T9pLwyVSl+2ULlOx/d77XLhL5e4K+wzm50nW0Xdh61m8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DB8D81516;
+	Wed, 26 Feb 2025 03:50:44 -0800 (PST)
+Received: from ewhatever.cambridge.arm.com (ewhatever.cambridge.arm.com [10.1.197.1])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 1B3A43F6A8;
+	Wed, 26 Feb 2025 03:50:27 -0800 (PST)
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+To: Mike Leach <mike.leach@linaro.org>,
+	James Clark <james.clark@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: add adi,adp5055-regulator
-Message-ID: <dd547319-f8c8-4c3a-979d-4610971cdd25@sirena.org.uk>
-References: <20250225-upstream-adp5055-v1-0-a5a7f8e46986@analog.com>
- <20250225-upstream-adp5055-v1-1-a5a7f8e46986@analog.com>
- <cf90cf64-202b-456c-9a9a-ba33d0e68961@sirena.org.uk>
- <SA1PR03MB6340A94474EBFE0F8428A581F1C22@SA1PR03MB6340.namprd03.prod.outlook.com>
+	Mao Jinlong <quic_jinlmao@quicinc.com>,
+	Tao Zhang <quic_taozha@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	coresight@lists.linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: coresight: qcom,coresight-tpda: Fix too many 'reg'
+Date: Wed, 26 Feb 2025 11:50:18 +0000
+Message-ID: <174057060414.1607370.3307069350698832445.b4-ty@arm.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250226112914.94361-1-krzysztof.kozlowski@linaro.org>
+References: <20250226112914.94361-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vyNIygDModyIpM3c"
-Content-Disposition: inline
-In-Reply-To: <SA1PR03MB6340A94474EBFE0F8428A581F1C22@SA1PR03MB6340.namprd03.prod.outlook.com>
-X-Cookie: I've been there.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
 
---vyNIygDModyIpM3c
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, 26 Feb 2025 12:29:13 +0100, Krzysztof Kozlowski wrote:
+> Binding listed variable number of IO addresses without defining them,
+> however example DTS code, all in-tree DTS and Linux kernel driver
+> mention only one address space, so drop the second to make binding
+> precise and correctly describe the hardware.
+> 
+> 
 
-On Wed, Feb 26, 2025 at 02:25:02AM +0000, Torreno, Alexis Czezar wrote:
+Applied, thanks!
 
-> > > +      adi,disable-delay-us:
-> > > +        description:
-> > > +          Configures the disable delay for each channel. Dependent on Tset.
-> > > +        enum: [0, 5200, 10400, 15600, 20800, 26000, 31200, 36400]
-> > > +        default: 0
+[1/2] dt-bindings: coresight: qcom,coresight-tpda: Fix too many 'reg'
+      https://git.kernel.org/coresight/c/d72deaf0
+[2/2] dt-bindings: coresight: qcom,coresight-tpdm: Fix too many 'reg'
+      https://git.kernel.org/coresight/c/1e4e4542
 
-> > This looks a lot like the driver should implemnt the enable_time() and/or
-> > set_ramp_delay() operations and use the constraints to configure this.
-
-> Based on what I understand I agree implementing the enable_time() core
-> function for this. However, shall I keep the code for the disable-delay-us?
-> I don't think I saw a disable_time() equivalent
-
-We don't generally worry about disable times, they're hugely load
-dependent so the numbers tend to involve a lot of wishful thinking.
-
---vyNIygDModyIpM3c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAme+/1gACgkQJNaLcl1U
-h9AJRgf/SbMsNIjw2JAqtkYzbbLh4A52BF7wEa29RpyV6CGwgPnhj84DYF3aRqfM
-04oRlSwVzFRIUSTo2bzc6cf2uT8eUMCEVSpRCyfsPy9pZsy8Bma7d8sRwPyXO/vc
-FUZIj8nNVDiFYLaKCAxOyj8iY4KmpPfoEnmpa8fXpEOH2dnyJoZA0dR3cArL/Cwx
-XYcE5K9KyaK7wRfjWHF9M2g5AYklTespWcisxiAKJLBbUX+oqzuGAWEh0cfJfM4a
-WzErIOflLqFm5npZE3HcI+FsTDi8g9pIsihhk1ppcPiYU4EI9Z2/3REbnHn1gGz7
-y5y3ZM7j0RFp+rZiOJcL8y4dBMpsPw==
-=HtnD
------END PGP SIGNATURE-----
-
---vyNIygDModyIpM3c--
+Best regards,
+-- 
+Suzuki K Poulose <suzuki.poulose@arm.com>
 
