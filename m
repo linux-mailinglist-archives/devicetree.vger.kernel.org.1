@@ -1,118 +1,187 @@
-Return-Path: <devicetree+bounces-151432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC926A45C74
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 12:02:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76162A45F04
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 13:30:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30E1C188A8B0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:02:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9A5D163885
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 12:30:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A588157E99;
-	Wed, 26 Feb 2025 11:02:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6034D21A421;
+	Wed, 26 Feb 2025 12:28:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b="Pqnuy1cd"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="MdEAhItm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 307D342AA5;
-	Wed, 26 Feb 2025 11:02:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740567733; cv=pass; b=JbkWs1FYwOYuQGZQhnHFla7+r08ChMdQp0HsLGlkpZmFOMzjGz1EqSKwtPQm2C4/z/5eSmIrvfZpXlMX5xF+q4Opa5aCamc28IChyh9kmPOobhxHOA6NAqcfrqhuruM0w5cEgFF5t/JiCacmb68YnzA7y3ShZDwvz5672ICNuRY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740567733; c=relaxed/simple;
-	bh=PFQ+EYK/8O8aCGX6DneukYkRMliA11MfeP0OGf/4Nhc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=KuWwB7r6vrxGHf2Au+I8VaNtj9fCNq+JPg4SfEWb3OpsUUZstHzsHQtHX0qfxo3XMUFh7o8JtEh4SqK7qJqpDZgEtt6jC3A+pdUbM+u3swxd0r+0hbbe/mpWOruRvNhwxcFihzNgwgVuf4uMd8ffAFgCJ2649qWo0+U1yiQ3HKg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b=Pqnuy1cd; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1740567688; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=OHsDb7qi1Q6V5cXXa+YwxRDw8cJL6/TX5DzDe+cmvdZmYIUxkaQlNlknKCAZYLlALZqtbBA67LDbcR8LX0SfCCV9GF3bbiDMCfulZHfpK9K+Rg/zb8OIyjTBVaIJ7awcqkjSmrcb4khM3tIKQaAJTeIwtUXLrSG7v9FEaZJncS8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1740567688; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=PFQ+EYK/8O8aCGX6DneukYkRMliA11MfeP0OGf/4Nhc=; 
-	b=EbOZIp7auPL055mgS9OAypJ0Me3pj7acA7q6jcB2A5IadsDoALo/FLmB/w3f9mnXL6ajBSPqevKRNUYf7VoOvenM31LimL8CNpIXtA5aPwm7+K9zQUQcP32dmtGgWqLoogINjpETwjYFp7Ie64tNDij6VOqdPrprlEqSVNkUMCo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=louisalexis.eyraud@collabora.com;
-	dmarc=pass header.from=<louisalexis.eyraud@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740567688;
-	s=zohomail; d=collabora.com; i=louisalexis.eyraud@collabora.com;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=PFQ+EYK/8O8aCGX6DneukYkRMliA11MfeP0OGf/4Nhc=;
-	b=Pqnuy1cdlVxfvgCICDSklrgS9RX7RbAtLq6CNEwg0w7lWu1hVbp11s2h9Gp7+n1u
-	pBDTlMExaN1+A1dUef26MN0FZ6wXWlh4Bd5k1aj+oeZ6GQHX38JUK4k4bImN0dxsWbN
-	99H4QJjcunoe7QNcf/etCvN/Vb5cCx1IbIYmbMUs=
-Received: by mx.zohomail.com with SMTPS id 1740567685853948.6812241070395;
-	Wed, 26 Feb 2025 03:01:25 -0800 (PST)
-Message-ID: <3ec81e9083afae19f672afed3809ad5db20f7d9a.camel@collabora.com>
-Subject: Re: [PATCH v2 0/2] Add driver for Himax HX8279 DriverIC panels
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	neil.armstrong@linaro.org
-Cc: quic_jesszhan@quicinc.com, airlied@gmail.com, simona@ffwll.ch, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- 	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel@collabora.com, pablo.sun@mediatek.com,
- 	christophe.jaillet@wanadoo.fr
-Date: Wed, 26 Feb 2025 12:01:20 +0100
-In-Reply-To: <20250218143952.84261-1-angelogioacchino.delregno@collabora.com>
-References: <20250218143952.84261-1-angelogioacchino.delregno@collabora.com>
-Organization: Collabora Ltd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6180A214803;
+	Wed, 26 Feb 2025 12:27:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740572880; cv=none; b=tsWsO2en/oN5CzQjWe2zdKrRQtQVtd19VTLdrEyCo0ysOQOAqvetljVRKEje3QAT7IuZ1SvKAiui2hCQNF2q+71h4fE38hHvcCjJa6V2rHoNjREiV0YV75hQWcyXH5X6Fz7wQIkCvJ2QIfc3IUvON2YiaVUzNhXK3OjrQPgGEPM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740572880; c=relaxed/simple;
+	bh=K9oUygm4AKDUmgMf4aFOL3Lbp7QFh/wmXeF8uUXzjec=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tM7CtNEWIS2dBlhmxGRzbwHSvZ6ab/QVcDvj5iXrEEa6vZtz5m/iYX0v9x21GiVAs9Tm09GWGz8aKr6reOPI3/b5eUI3ltDc+LrTBfVsd3Vdiw9NT/KUMjBm8ElvkZaUoEwtmnW/1+2Lxds+RjJRHQ2jp+pwkV03mDc1e1znNYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=MdEAhItm; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51Q8wODq012375;
+	Wed, 26 Feb 2025 13:27:42 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	hZZuGvujbz+DHcZWLDWVwgKdZX6e4AC0NKcxZ1Mlhwc=; b=MdEAhItmw3+E1u3C
+	r8HueeBOvKLTCaKleXHh1C8dodj135VyASWo0XfJ2NifRuQ+x5lYfjjzWR3X6tNZ
+	802co02i0Mxx6VYM7W6BoZCSIULZCePY/KRWEATaZLQAxf5AYkJ0yf4vhcgUHl3s
+	OmG3W/wVw4GweHAFey0xk3IMjY1X0qCo7jpD4FsoH7GScd27EdJwj2wfRnV9ZNLn
+	T6F4onw9J6qRweP5pioK2Dxie2OQQG5w26nW5KoQeoJaD7ajkK9qrFwT2+Qe41e7
+	ZZYxL9oEobWQ1SoYMT7XqbOFC2djKKvCQh73Gtl5HSr/Ui749DxYb++YCioXf4fu
+	SJFQ5A==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 451psv4a64-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Feb 2025 13:27:41 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id DA74B40051;
+	Wed, 26 Feb 2025 13:26:31 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CC916495277;
+	Wed, 26 Feb 2025 11:52:59 +0100 (CET)
+Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Feb
+ 2025 11:52:59 +0100
+Message-ID: <264d7fb8-06c2-4ada-82bc-4d3a7cc5e184@foss.st.com>
+Date: Wed, 26 Feb 2025 11:52:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/9] dt-bindings: pinctrl: stm32: Introduce HDP
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250225-hdp-upstream-v1-0-9d049c65330a@foss.st.com>
+ <20250225-hdp-upstream-v1-2-9d049c65330a@foss.st.com>
+ <6fc80544-6fc3-4450-a0cc-bfc740fe97bb@kernel.org>
+ <91f19306-4b31-41fe-8ad2-680b1a339204@foss.st.com>
+ <00526b1d-b753-4ee5-8f83-67d27d66a43c@kernel.org>
+Content-Language: en-US
+From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
+In-Reply-To: <00526b1d-b753-4ee5-8f83-67d27d66a43c@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-26_02,2025-02-26_01,2024-11-22_01
 
-On Tue, 2025-02-18 at 15:39 +0100, AngeloGioacchino Del Regno wrote:
-> Changes in v2:
-> =C2=A0- Removed unneeded mipi_dsi_device_unregister() call for secondary
-> =C2=A0=C2=A0 DSI: as the driver is using devm, that's not necessary (CJ)
-> =C2=A0- Removed superfluous if branch as pointed out by CJ
->=20
-> This series adds a driver for DSI panels using the Himax HX8279 and
-> HX8279-D DriverICs, and introduces one panel using such a
-> configuration,
-> the Startek KX070FHFID078.
->=20
-> This panel is found on the latest hardware revisions of some MediaTek
-> Genio Evaluation Kits, and specifically, at least:
-> =C2=A0- Genio 510 EVK
-> =C2=A0- Genio 700 EVK
-> =C2=A0- Genio 1200 EVK
->=20
-> This driver was tested on all of the aforementioned boards.
->=20
-> AngeloGioacchino Del Regno (2):
-> =C2=A0 dt-bindings: display: panel: Add Himax HX8279/HX8279-D
-> =C2=A0 drm: panel: Add driver for Himax HX8279 and Startek KD070FHFID078
->=20
-> =C2=A0.../bindings/display/panel/himax,hx8279.yaml=C2=A0 |=C2=A0 74 ++
-> =C2=A0drivers/gpu/drm/panel/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 11 +
-> =C2=A0drivers/gpu/drm/panel/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> =C2=A0drivers/gpu/drm/panel/panel-himax-hx8279.c=C2=A0=C2=A0=C2=A0 | 905
-> ++++++++++++++++++
-> =C2=A04 files changed, 991 insertions(+)
-> =C2=A0create mode 100644
-> Documentation/devicetree/bindings/display/panel/himax,hx8279.yaml
-> =C2=A0create mode 100644 drivers/gpu/drm/panel/panel-himax-hx8279.c
->=20
-Tested-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com> # on
-Genio 510 EVK and Genio 1200 EVK
+On 2/26/25 08:21, Krzysztof Kozlowski wrote:
+> On 25/02/2025 16:51, Clement LE GOFFIC wrote:
+>> On 2/25/25 14:04, Krzysztof Kozlowski wrote:
+>>> On 25/02/2025 09:48, Clément Le Goffic wrote:
+>>>> +
+>>>> +maintainers:
+>>>> +  - Clément LE GOFFIC <clement.legoffic@foss.st.com>
+>>>> +
+>>>> +description: |
+>>>
+>>>
+>>> Do not need '|' unless you need to preserve formatting.
+>>
+>> Ok
+>>
+>>>> +  STMicroelectronics's STM32 MPUs integrate a Hardware Debug Port (HDP).
+>>>> +  It allows to output internal signals on SoC's GPIO.
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: st,stm32mp-hdp
+>>>
+>>> There is a mess in STM SoCs. Sometimes you call SoC stm32, sometimes
+>>> stm32mp and sometimes stm32mpXX.
+>>>
+>>> Define for all your STM contributions what is the actual SoC. This
+>>> feedback was already given to ST.
+>>>
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clocks:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +patternProperties:
+>>>> +  '-pins$':
+>>>> +    type: object
+>>>> +    $ref: pinmux-node.yaml#
+>>>> +
+>>>> +    properties:
+>>>> +      function:
+>>>> +        enum: [ "0", "1", "2", "3", "4", "5", "6", "7",
+>>>> +                "8", "9", "10", "11", "12", "13", "14",
+>>>> +                "15" ]
+>>>
+>>> Function which has a number is not really useful. What does it even express?
+>>
+>> As said in my previous answer, function names are very different from
+>> one platform to another. Numbers were used as string to be generic.
+>> I'll consider it in a V2.
+> 
+> What does it mean "one platform to another"? This is one platform! Is
+> this some sort of continuation of SoC compatible mess?
+
+I may used incorrectly the word platform.
+This driver is the same for the three SoC families STM32MP13, STM32MP15 
+and STM32MP25 because the hardware is mostly the same.
+
+Why mostly ?
+
+The peripheral is behaving as a mux, there are 8 HDP ports, for each 
+port there is up to 16 possible hardware signals. Numbered from 0 to 15.
+Each of this number represent a signal on the port.
+
+But the hardware signal behind the number is not the same from one SoC 
+family to another.
+As example, in STM32MP15 family the HDP is able to output GPU hardware 
+signals because the family has a GPU but in the STM32MP13 family this 
+signal is not present.
+
+The purpose of my helpers was to give a readable name to facilitate the 
+configuration in boards devicetree's. If needed I can get rid of that 
+and use only the number as string.
+
+> What are the exact functions written in datasheet?
+
+The exact functions name written in the datasheet are the ones of my 
+helper file without the HDP prefix.
+
+
+> Best regards,
+> Krzysztof
 
 
