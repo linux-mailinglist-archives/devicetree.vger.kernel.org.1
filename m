@@ -1,112 +1,126 @@
-Return-Path: <devicetree+bounces-151766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BDA4A46ECE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 23:55:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35615A46F35
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 00:14:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4425D3ADBEF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 22:55:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80F781887AB0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 23:15:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A01C25E833;
-	Wed, 26 Feb 2025 22:55:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B48A22702A7;
+	Wed, 26 Feb 2025 23:14:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UE4RPiIm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i7ZtnRnE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BFE825E82D;
-	Wed, 26 Feb 2025 22:55:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F952702A1;
+	Wed, 26 Feb 2025 23:14:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740610518; cv=none; b=HoXE9lFT83GW/nf5SySzNqKZqMAgtXfnJRbi9vdOrmlxNmndwV3g2eL3Uu3QVq/O6WNHVU2gO9oOmQ6gWU3LNBuFfdSVICKRXRsDJjJmF+h7e+koUVoprLuj+wezpC177INNOUOHnPutIG/m1VX4lgzAhsTIckVWjAVScmxvaGo=
+	t=1740611694; cv=none; b=shWlPLSo3QFPoocHrYnCIkZYUp+Q6kFlVk7BBxnYGiJbjRw1+uMnvX2NcJMelXlxuHYpaosfPDw8A3+bl2cJ3R6xhtzoGikVNdvySHBUVDEfiC9RUE+QPpw2CE78RmJqnjP+HUPeYVCvbACX6mDefx6KQu7ARL0KebZf4BdwYUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740610518; c=relaxed/simple;
-	bh=3rualdVsZ0rnSLUknJnwEmuB93Nt/mrluRr78WdEdIM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UYpBLJJGHXb1qobUzcTlmwpWucUnzt4MSjdIxUDDv+NDOr38r3Fa/JKaQRE5xgHeQQYfOjKVpxRPsdjUXmyFnwENPjIkA/c8bsveLo9FAvYr2q0t+O2fQBC6J5yiepbp0osAJfEexhIBEFFSaYzvy3LzJqlgu6GbEYRdyrFoxBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UE4RPiIm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CAF4C4CED6;
-	Wed, 26 Feb 2025 22:55:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740610517;
-	bh=3rualdVsZ0rnSLUknJnwEmuB93Nt/mrluRr78WdEdIM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UE4RPiImGNejxCgGvcmt+qoRUzr6PSyoLUkPypdhGaXcKaVH67Z+ogZJ1cvqtZ17H
-	 q4O2UtzyGkJA25bOgFBPVWd9MEuva8LWVqRqiYqMlB9nyXGSvdhypCElfmOqt1FgFS
-	 yZwQD+OFIRr0PdLIL8DrumvaZ5fc2lLIvqufKydh9zHcW2f8QaT1Davb+8b7erL5K+
-	 q14iwyqgXnwdb6Pf8SukIe6AJJ2ISWRUyKFYjbYZvTiPRLeGe+GhQAiOemBEUBr6Xz
-	 XTOeRc8fWokBq1l++rJElbPNZw93bc78zvhxOBuOgAml3aBHxj50A6Fv0Np67VfAJt
-	 GohZrtUQ8jvFQ==
-Date: Wed, 26 Feb 2025 22:55:10 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Fabio Estevam <festevam@denx.de>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Jonathan Corbet <corbet@lwn.net>, Serge Hallyn <serge@hallyn.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Guenter Roeck <groeck@chromium.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1740611694; c=relaxed/simple;
+	bh=IFHAOpu+n//DKOMfiFBYd087s6JUXW9mnAyO3Sp+gT4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pkzrHHYK/dbF4ATbUWSQtNBh3FjwP0foa5kkJ4+UXZX7FLI08gZoEL5LCEzEyc5z/sk8X909f31TFconJtGqEAy4iYAZN5Ea4wKEAMAjCOc42NYIjJqI3xkW6bctQWvmGseqwtlI01SViY1XjG+V0q1ZdeB6Be/0Ql1lyMxk/0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i7ZtnRnE; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-38f2b7ce2f3so222722f8f.0;
+        Wed, 26 Feb 2025 15:14:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740611691; x=1741216491; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=y+FxedeWyw8wFOj4l+6pOUQLg6gn3S2T5avhUj/nDAQ=;
+        b=i7ZtnRnEG28ELv0YU0JZVHK6gNcBpK6Tsk6GZis/dGhg0anU0520DdhYNpXyBPDWFc
+         o98ZF48upDEGdkgqRZiP8+bSFGaPq2jS74gccx0meBAZC7Wql6rh41MJpNBme8q2zMBl
+         GnMvKZyOT++VSk7EjZMTw+E67v9vr+VR4GDXmz8il8HZ/D3ppwUh299uKYD6KHwo5s6t
+         3KkwjkARGyVfjHhZgU3tIiOOAj+GMe/vcn0swlL7ToS81SPXm6C14a8XtWWovKqUjrFe
+         7D891Uiw1apAX7jyO8Po8Rtkn8E7qIeWFUghLel9pu+bq/TjPY7/YaCj0N9YLzto98EV
+         fmig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740611691; x=1741216491;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y+FxedeWyw8wFOj4l+6pOUQLg6gn3S2T5avhUj/nDAQ=;
+        b=MaSG016wXF02tEEzbuHz1i8U+WMQxuJrIq0ckuj5c7rYt4BfxRawQ64qx95/J+/pgl
+         03f3eYioU17SewouRxJXNjvJfPywfhLdlphpHbWiC7fb+RW28X75HfE3Cvk2wtbu+Uy9
+         8Tb5uqyjo0b6jsVe4I2KzAeHqkE4lDamR0Sbjta2b8r6w78EOtuOC0X5QmLUTZl97GdP
+         qRcfi6khZTvh9zj/+muaf6IijCj7duQl78eDShYHGvogQoa5bSsvJnDAEjVMZPUsureI
+         05uXqGp7Q9JMBCZ3UcqFa9sCUY3ukkWkqOkdX+aqAWtTKKEmB1/mPHYzpL9Ls5bqg208
+         A9bQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUIIbynmQlYWxuPuE/d2UT86pHZQWBz3KYhOGNbJPeKhPnQesnrotuHHe7gAvb/vq+QBmlcErp1wA2S@vger.kernel.org, AJvYcCUsu+ai8S6efoZuwcWqIaqri3X8sdiWuh+447w18xKdWKaeIlT9d1grY4GysfhjS9NmEbGtkywftPgJNnIt@vger.kernel.org, AJvYcCX+QH4CIyQ9fSYF10cT5B4n9A08Vkjevd8IC8p2iTiAQUgjEb93UCAzcct186bU/P1pi6ZsJCh114DqdV/XdA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAN44n50CGPMLBNn6X0OP5nFQOGzsu17z077IKoxjJKAs/HV9e
+	nmHAJAaaQIrLsDXreGEQcjG9d+1f+qBeyfmGxgPZTFkKz0y2K8s=
+X-Gm-Gg: ASbGncvNA8uB5oHEDEjtGaHEO0qral115eYY0jUCeRxml7EY6myNruVtQ3kAbOwHGl3
+	zy4oXdJjGTxUP8osa0z2znvnjVf2i8HYwhsY+zgAmZR2bvqS0vLkE5y9u5PLXR9cj0NvXPHsvEp
+	dCFp94DCFVghNId5JWsugJzzf32YUhdWzHfEgpE+nRYBsFO/TnhvTGWu7wOvmUEq9Iv8nN/7fsF
+	GSIl42cHy0cByaH3jJt4Sjn9pa1M5ELGI2Spgx6qOwqxGpxEsZzy8mERWkpGjzSr4SwdHvvvbza
+	5hXktNeFdZHU7WPcEB99PWfBAoCRO0UBeE/8BtEbvAlZqyfw9ziUvFrdfhuS1TLuxy0jSqTeig=
+	=
+X-Google-Smtp-Source: AGHT+IGSvAwYr8mut+L8fdr1Q7PF5uhKL4icm6gChBzwMrc/AtYARcYYHB2A8SZXUt41g0l7ZB2w3A==
+X-Received: by 2002:a5d:452f:0:b0:38d:d274:4533 with SMTP id ffacd0b85a97d-38f7087d88cmr14235893f8f.55.1740611690859;
+        Wed, 26 Feb 2025 15:14:50 -0800 (PST)
+Received: from alex-XPS-13-9345.lan (adsl-178-39-53-103.adslplus.ch. [178.39.53.103])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e4796517sm238134f8f.5.2025.02.26.15.14.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Feb 2025 15:14:50 -0800 (PST)
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-security-module@vger.kernel.org,
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-	kernel@pengutronix.de
-Subject: Re: [PATCH v3 08/12] regulator: allow user configuration of hardware
- protection action
-Message-ID: <f3a1ae24-6ee0-43d7-8648-cf25ac139960@sirena.org.uk>
-References: <20250217-hw_protection-reboot-v3-0-e1c09b090c0c@pengutronix.de>
- <20250217-hw_protection-reboot-v3-8-e1c09b090c0c@pengutronix.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	laurentiu.tudor1@dell.com,
+	abel.vesa@linaro.org,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Subject: [PATCH v1 0/4] X1E Dell XPS 9345 External DisplayPort, HBR3 fixes
+Date: Thu, 27 Feb 2025 00:12:08 +0100
+Message-ID: <20250226231436.16138-1-alex.vinarskis@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="69+QFFE4FM9qynJX"
-Content-Disposition: inline
-In-Reply-To: <20250217-hw_protection-reboot-v3-8-e1c09b090c0c@pengutronix.de>
-X-Cookie: I've been there.
+Content-Transfer-Encoding: 8bit
 
+As initial LTTPR support for msm driver [1] has landed, enable external
+DisplayPort on Dell XPS 9345. It appears that supported frequencies
+need to be listed to allow HBR3 speeds.
 
---69+QFFE4FM9qynJX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+While at it, enable HBR3 speeds on other X1E laptops that have external
+DisplayPort enabled already.
 
-On Mon, Feb 17, 2025 at 09:39:48PM +0100, Ahmad Fatoum wrote:
-> When the core detects permanent regulator hardware failure or imminent
-> power failure of a critical supply, it will call hw_protection_shutdown
-> in an attempt to do a limited orderly shutdown followed by powering off
-> the system.
+These patches were extensively tested over the past few months on
+Ubuntu's X1E concept tree [2].
 
-Not that it matters at this point but
+[1] https://lore.kernel.org/all/20250203-drm-dp-msm-add-lttpr-transparent-mode-set-v5-0-c865d0e56d6e@linaro.org/
+[2] https://git.launchpad.net/~ubuntu-concept/ubuntu/+source/linux/+git/oracular/refs/?h=qcom-x1e
 
-Reviewed-by: Mark Brown <broonie@kernel.org>
+Aleksandrs Vinarskis (4):
+  arm64: dts: qcom: x1e80100-dell-xps13-9345: Enable external DP support
+  arm64: dts: qcom: x1e001de-devkit: Enable HBR3 on external DPs
+  arm64: dts: qcom: x1e80100-hp-x14: Enable HBR3 on external DPs
+  arm64: dts: qcom: x1e80100-qcp: Enable HBR3 on external DPs
 
---69+QFFE4FM9qynJX
-Content-Type: application/pgp-signature; name="signature.asc"
+ arch/arm64/boot/dts/qcom/x1e001de-devkit.dts   |  3 +++
+ .../boot/dts/qcom/x1e80100-dell-xps13-9345.dts | 18 ++++++++++++++++++
+ .../boot/dts/qcom/x1e80100-hp-omnibook-x14.dts |  2 ++
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts      |  3 +++
+ 4 files changed, 26 insertions(+)
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.45.2
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAme/m80ACgkQJNaLcl1U
-h9BMTQf9EPlgFM5IHJeDldbatcC7CEidjNZXpHX8EVgKK1b4TRFL1eAxjG0TbxD2
-uMRhc02ghjwIGueCDC/fq7Ziivq6rpmWNQc3RBZMXP499VIVnBvSEFYCryeohXkj
-kKdWMjGH468A5J4qa6IiCdzpRJB/lyhyiU0Rjup9YKdpC+LFhjvWR7N4oqAUmzss
-k16nd/Nw3lEs23Kd3FoJ+TfQImtUm3QQ2doQyWcFgbpoO2uOI4X40LXVb6RKLq39
-RtuDh+WWEFjQeByjIrHjQ9HHn4aTpYKE4aqVKRGpwHlWr5pQqfIcyg2NDjUfrBGT
-bdyJw53DkC0StS3yRxrJo3Yp5iQqhg==
-=zpJM
------END PGP SIGNATURE-----
-
---69+QFFE4FM9qynJX--
 
