@@ -1,176 +1,134 @@
-Return-Path: <devicetree+bounces-151522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E57CEA461A5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:04:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD45AA461C3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:08:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2B243AC8E0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 14:04:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F31303AC202
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 14:08:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD0821883D;
-	Wed, 26 Feb 2025 14:04:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84B82206B3;
+	Wed, 26 Feb 2025 14:08:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d5LkNFts"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oXkkEJmn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D85C20D51E;
-	Wed, 26 Feb 2025 14:04:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEB0215E5AE
+	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 14:08:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740578650; cv=none; b=NL1mkY80WR8ilPx/RM+EusXsY8web4viZVdE2nfPe86iYj7sFs26jKqSrd1X3Y6aaX0xUbyGKLH/QnK3e6a2mw74EymuPqTXIgcRDSZpk1vsxlPzzys8EGB4+rJygkdALlq3Hh9th7KklE29AfuOE3Z9BrC2PGJnYmNSjil8njM=
+	t=1740578905; cv=none; b=UlY0Tiu1zCpPw/XmefFOeXaAVQtPcr7yL40+XFzoJ3H3VkzacGWRclXOx9rr2/IDdBFI582NKyCu4Zs++ZusKoeBHyCVursVlYwx9rRJzEUOcpOFtxgFeWawr0K54UcTKJkuL8In/m8UQPpfKVC9GswMRVOyemwy9No3qvJef04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740578650; c=relaxed/simple;
-	bh=S2p3Ef/P1krdtUktIdrjzgBiMwDtsBQhT0pWSVjIEF4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oh90EB4if3i3CaAmFZh58h58GP6hVCgY5zC6D3WRqA1hcmebCt6KaHB2Ea1fl0GxkTyVymRjdvHta0+GklZrLUETDhmcnzz2psErGeLSKVyRVQvvQ3Keo/Kryk8qEd1TYEXPzM82qv+la5P5FTY3lFjpgzK0hsH53/nPSeCfPZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d5LkNFts; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5461dab4bfdso8083446e87.3;
-        Wed, 26 Feb 2025 06:04:08 -0800 (PST)
+	s=arc-20240116; t=1740578905; c=relaxed/simple;
+	bh=Z8ID3sNVfwatoCeBh6IOOz1sI/Ryo8GaKrAF0IjVDvU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LD/u4KBnqGOPvM1P9Iw92pSfjTfUCYOJGplzv7D53zFFChpWpEGyd/XFBpGJJRtzgwqMZ4JEe8NXR0q0SRbbalGZx9vUbaM29b+t18BfA7knPhBFmcqZeolLbabnt8r0kv1YxcdZNo72T3p0F8RckiIFcNW1QG62oEsdvNaWXSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oXkkEJmn; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-abee54ae370so241801066b.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 06:08:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740578646; x=1741183446; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iklNm2KayquShiYIwOiveLvoWuecEHw4Y693C3rLQds=;
-        b=d5LkNFts5nJ0uu6/im/wtVezajX8b5Y3lODclV+NF2X/7yIEZhpqTCYAqk8He+1Ci4
-         9JYHuoJnsNdzhKZxaEdbV3OiDaipHtfl+0AwpWXRNeRmdr2zH7nppPb5iy1mvj1d55en
-         vK/tmJjkJ+sIHE9Ev7syLXkfADBTC+zlSiMoPTCCst8pY9kc5KCE80lTLOWcrDkb42sh
-         amTbf0t+3JQwl9IfFNO50eOg6delgBBrwGiVdkd2YLEFN5wmCmtPLOGoALsHO37rmMKd
-         qrJIGtVkddTNV/pkEAfO+jldrXTMld0oGc44ABDhYV164C0IPGC7EXcilWs+8/UWDLAB
-         24FQ==
+        d=linaro.org; s=google; t=1740578902; x=1741183702; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gGkvpqqa0lNt6OkGD+EZHoDXRP4y0p+8QmeJ79Z97r8=;
+        b=oXkkEJmnBGiOJfjc7cQZzQ5LgEfhKMJd3SelLVgJMUVgneoKnNA/87UERr7bkxfJRf
+         40nV7JCUWiQcD3OD80T02PlMo/iT+0pqg5cr/jvyH1B1DNrix7JdGCFfeZDNd1TffT2s
+         p2N8diUxCnH6r/+rYPZTau5sab2mJ2RZq9LfhkufWW+EaZ5u3FxicGjFHuLZC6FBHms2
+         JzDQqYBagRsvXqDLzUW9wbyq9Wvn6wtI15pRbWXmYjSkk4b7jzTtbJ/Mqn61ttx7vy9B
+         4UgzeUyc6VWgR3Bd6lOdFTEx2IKhja0M8LkNmpEkyzhDMlG0um05XJMAvMIu47idkZUj
+         gXiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740578646; x=1741183446;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iklNm2KayquShiYIwOiveLvoWuecEHw4Y693C3rLQds=;
-        b=W+GQ4oRU1fbhf0IzF8fNl2n+PblddKT6S+X/pdftT5wvyZX5JcN27fDW/XH37Uj1h+
-         YHGHvLVE2va4ciGugX4Be/aFwVK9ru+D4KRF4EIyZmwYwHFqnbZEbfEAx7/TkiBUfPZ7
-         myFdsUcNmdJCRfymnzgvQZumHAQw1V8NO7LMt+dfQc1dk0ow4Fb8oGUxbHZ4pHQX4wvh
-         ptzQ2HVSenRUlsC5l9A0ooyx0CxgmkzfWqpTCEOL0cosRr3TJugc/p73nOO6qR21BBMD
-         +pYA0uHYmeyuR5BsN56LGiRfYSF6hUV4vg9njwoXpu+Pa8x1zeiQymWUSZkF58dKbOhR
-         Votg==
-X-Forwarded-Encrypted: i=1; AJvYcCV1r0CveRjGWLAjemB1z0fgD3zc8DHxkNf2Ybtm3M2ygCPM+60F1szcGkJNzqHznZDCt9viRIjyRYAE@vger.kernel.org, AJvYcCWNb3hUd/xpJZ58dXF57fFI/wIWHQMi/uzkPkVNGX6NNfB9/Y+ETX31HLwBUEdBJbI1HfUSPzZuIFummA==@vger.kernel.org, AJvYcCXCWvYLHEQR7kVME4PVmHkzgoWifYaVhhr6JM+i2KDzimE4SWDJCjdm7q6aFRo/PO7q/2+ZHNoAWs/C@vger.kernel.org, AJvYcCXOgZNDFzr12w4fmoJUQlOTrqFwllKAsudI1Xhmee4DKcQ8VRVLUyws5u/K8vzDVEH9tgORG/RHRo3zisj9cgYiRFE=@vger.kernel.org, AJvYcCXmb1HC19JoFpXKZwi2RVZt4qJnF3aaozQuyDzq8Coe1L3CVJ8u8qGD8pFYY5jjF5Nu/8aOTtk0uo6qBuVn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHv5+SIASZ4d93eu5lvuPZoH+rfB5Un7o2j/0BCpZ0UM8+5KxT
-	47amyx7VBEudvV/vzCdnAtH5ifzxZf5kSR+wi9prI1AfbcUFL7u+
-X-Gm-Gg: ASbGncsdkcnwPuRNbfQ7VRItitZ8muJq01QLnsvhBdpC91pd9MWhIAB6dFHrNFNr4mS
-	M/88Rrwerbs4uw/CqNJPUDgluj9LkpHL0s05D3IMsQMPqy4gxc/G2MhlBv6T2AhrWeOJtjwx93o
-	6mEUagzrBjzoFdbLKdUTX23Ji5wvTnsAJo/ZBlA3+mevI9cm9UA1/EjUciWk/42KXfjeVnAVRhf
-	NNWVXuEtRbxewcGT3Hwvb3kMxE63McYPch006UIA9VurQdqtaL39MGh1hWgsejxufjeMIjLFl3j
-	tDpu/3pI2ce3sDSV9VfMljYoKef9NWVwoSD7NvO+ESxKIGiAORSpUF13Li/dnQb6wAAhdHwSzll
-	XzpfS/K4=
-X-Google-Smtp-Source: AGHT+IEpGk7dlruxQZybiX5fxanW29Ro9PxXVGS1JEbV3E8cZgaWlz6jdZJLrmU850dRn2ngJkTU1g==
-X-Received: by 2002:a05:6512:39c7:b0:545:f4b:ed58 with SMTP id 2adb3069b0e04-54838ee8b18mr11567732e87.18.1740578645999;
-        Wed, 26 Feb 2025 06:04:05 -0800 (PST)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-548514b72bbsm462711e87.56.2025.02.26.06.04.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Feb 2025 06:04:04 -0800 (PST)
-Message-ID: <720f9c69-ca1f-45cb-9f6e-c8e4703c9aad@gmail.com>
-Date: Wed, 26 Feb 2025 16:04:02 +0200
+        d=1e100.net; s=20230601; t=1740578902; x=1741183702;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gGkvpqqa0lNt6OkGD+EZHoDXRP4y0p+8QmeJ79Z97r8=;
+        b=E2yZvrYFiY9XdJH5eE7AERzWPjvaqd0IFwkF9PZZZpdyO/aRU2Y9dgKyyLiPBjtqee
+         cT3xuymOQ8LBnkx9UTyGf/0BJFoZGGX7OPDCcrKD8mzoAEx6z5vYfp11QgesmLs8cyLH
+         V15vPh33cnx5MuU8Bv5h9uxzyCm3L0sdkakSPKy/dy/E+GwjVWvAKzUDKfMgIzycJGWr
+         OpYcgOReO1zPlP+auA/3aLOiMP6iqa7n52v4dJlMoulqoKK2o0Hv7ordhexak62sLRqN
+         TNJxMAFzzcsI/+ZKYhDxaPghUDiCt3XgOn5mN30qdO0xEabsFTfo2AEctTuy1KSB2TWi
+         fWIw==
+X-Forwarded-Encrypted: i=1; AJvYcCVuEHqTnFpYf2z9Mghy17so2Rg5FcKqhc7xSGBww+nw/evUha/dx703M32YrNRmJAHeWDB2HqRN63Ar@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIILJg76K5I09yb802BP0NDXyzVg+oUwGjkNIlUT5+bAjufkkD
+	5ncW1KVjJl9oJRwQUti5epQoj2I3eNyPP7i2oJGnnllCpQVhoZbyy4RACxBpqW0=
+X-Gm-Gg: ASbGncv++W6gb/T7/guYb0PicgXsC8aA8bvhfDIN1mUPJCUnYTeIvuGBj19ALVOXkJP
+	9qqTyP7cyRsh216XrmUMsgmcW9/OE4SgU3euwMgXsOv+1BIrIKW25EruRMX09IDt/xXQPxqHjDI
+	SZutM5D4gEL1HBwGfLd3Rvq/s5t/UBZdfRlXt5yo2dJeXStgI/gEwVxt9wqh/gPmGC7t9yA6Nsy
+	vGnPLgxsYSHAXfdI46GPvSSOIrglPLpVRXkriSyP+GxLQ/BHGnLX+ytL6Xw5PWHMexrlsyeaNi1
+	XzGpIalmo/8a+iPpDbhf1GXkcprpk6WMbskIoWlOyWED+lJSkHR5R7Y70DeHm0qZaXVBqjZ2Dde
+	R35fztXSc5g==
+X-Google-Smtp-Source: AGHT+IH4MdS69xY9exYgdEvpIfpgesUDo++yOFDim/PJZbSNDvBtWjUP3kjR6hVeKMzb+SYuk5VjHQ==
+X-Received: by 2002:a17:906:2191:b0:aa6:8cbc:8d15 with SMTP id a640c23a62f3a-abeeedc8786mr268568966b.14.1740578902102;
+        Wed, 26 Feb 2025 06:08:22 -0800 (PST)
+Received: from puffmais.c.googlers.com (30.171.91.34.bc.googleusercontent.com. [34.91.171.30])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abed20b6024sm330157566b.181.2025.02.26.06.08.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Feb 2025 06:08:21 -0800 (PST)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH 0/2] support Linux reboot modes in syscon-reboot
+Date: Wed, 26 Feb 2025 14:08:19 +0000
+Message-Id: <20250226-syscon-reboot-reset-mode-v1-0-91c1b62166ae@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 02/10] property: Add
- device_get_child_node_count_named()
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Daniel Scally <djrscally@gmail.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa <nuno.sa@analog.com>,
- David Lechner <dlechner@baylibre.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Guillaume Stols <gstols@baylibre.com>,
- Olivier Moysan <olivier.moysan@foss.st.com>,
- Dumitru Ceclan <mitrutzceclan@gmail.com>,
- Trevor Gamblin <tgamblin@baylibre.com>,
- Matteo Martelli <matteomartelli3@gmail.com>,
- Alisa-Dariana Roman <alisadariana@gmail.com>,
- Ramona Alexandra Nechita <ramona.nechita@analog.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev
-References: <cover.1740421248.git.mazziesaccount@gmail.com>
- <29ec24f1498392cafbecc0e0c0e23e1ce3289565.1740421248.git.mazziesaccount@gmail.com>
- <Z72QAOA9xXbP16K-@kuha.fi.intel.com> <Z72Zp8tpnvlFGdQ_@smile.fi.intel.com>
- <ad39b453-7e5b-49bd-a4fd-6a4988636130@gmail.com>
- <Z72d7TzZ21WITW3f@smile.fi.intel.com>
- <893a3c45-537e-47ad-afbd-1e5d3b9abe2c@gmail.com>
- <Z73M3Ua6u1FpgBEK@smile.fi.intel.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <Z73M3Ua6u1FpgBEK@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAFQgv2cC/x2MzQqDMBAGX0X23AUNJg19ldKDP592D82WrIgiv
+ rvB0zCHmYMMWWD0qg7KWMVEU5HmUdHw7dIMlrE4udr52rnAttugiTN61aXAsPBPR7APwcfYx/a
+ Jhkr+z5hku9fvz3lelKi9dWoAAAA=
+X-Change-ID: 20250226-syscon-reboot-reset-mode-566588b847e1
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.14.2
 
-On 25/02/2025 15:59, Andy Shevchenko wrote:
-> On Tue, Feb 25, 2025 at 03:29:17PM +0200, Matti Vaittinen wrote:
->> On 25/02/2025 12:39, Andy Shevchenko wrote:
->>> On Tue, Feb 25, 2025 at 12:29:31PM +0200, Matti Vaittinen wrote:
->>>> On 25/02/2025 12:21, Andy Shevchenko wrote:
->>>>> On Tue, Feb 25, 2025 at 11:40:16AM +0200, Heikki Krogerus wrote:
-> 
-> ...
-> 
->>>>>>
->>>>>> I did not check how many users are you proposing for this, but if
->>>>>> there's only one, then IMO this should not be a global function yet.
->>>>>> It just feels to special case to me. But let's see what the others
->>>>>> think.
->>>>>
->>>>> The problem is that if somebody hides it, we might potentially see
->>>>> a duplication in the future. So I _slightly_ prefer to publish and
->>>>> then drop that after a few cycles if no users appear.
->>>>
->>>> After taking a very quick grep I spotted one other existing place where we
->>>> might be able to do direct conversion to use this function.
->>>>
->>>> drivers/net/ethernet/freescale/gianfar.c
->>>>
->>>> That'd be 2 users.
->>>
->>> I haven't checked myself, I believe your judgement,
->>
->> I took a better look and you obviously shouldn't believe :) The gianfar used
->> of_node instead of the fwnode. So, it'd be a single caller at starters.
-> 
-> ...which is the same as dev_of_node(), which means that you can use your
-> function there.
+This series teaches syscon-reboot some of Linux' different reboot
+modes.
 
-I'm unsure what you mean. The proposed function 
-device_get_child_node_count_named() takes device pointer. I don't see 
-how dev_of_node() helps converting node to device?
+Linux supports a couple different reboot modes, but syscon-reboot
+doesn't distinguish between them and issues the same syscon register
+write irrespective of the reboot mode requested by the kernel.
 
-I think I could actually kill the whole gfar_of_group_count() function 
-and replace it with a direct call to the 
-device_get_child_node_count_named() - but I am not at all convinced 
-that'd be worth including the property.h to a file which is currently 
-using only of_* -stuff. Well, I suppose it can be asked from netdev 
-peeps but I am not convinced they see it as a great idea.
+This is a problem when platforms want to do a cold reboot most of the
+time, which could e.g. wipe RAM etc, but also want to support rebooting
+while keeping RAM contents in certain cases.
 
-If I misunderstood your meaning - please elaborate.
+DTs can now specify the existing properties prefixed with one of the
+Linux reboot modes. All the changes to support this are optional and
+opt-in, platforms that don't, or don't specify a register/value/mask
+pair for a specific mode will behave just as before.
 
-Yours,
-	-- Matti
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+---
+André Draszik (2):
+      dt-bindings: reset: syscon-reboot: support reset modes
+      power: reset: syscon-reboot: support different reset modes
+
+ .../bindings/power/reset/syscon-reboot.yaml        | 74 ++++++++++++++++++
+ drivers/power/reset/syscon-reboot.c                | 88 +++++++++++++++++++---
+ 2 files changed, 151 insertions(+), 11 deletions(-)
+---
+base-commit: 0226d0ce98a477937ed295fb7df4cc30b46fc304
+change-id: 20250226-syscon-reboot-reset-mode-566588b847e1
+
+Best regards,
+-- 
+André Draszik <andre.draszik@linaro.org>
+
 
