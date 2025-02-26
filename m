@@ -1,171 +1,94 @@
-Return-Path: <devicetree+bounces-151670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E3C7A467EB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 18:22:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6217A467ED
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 18:22:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA8F47A2A7F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 17:21:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2A471885AA4
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 17:20:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A4A12253A9;
-	Wed, 26 Feb 2025 17:22:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="WNZ1vcFY";
-	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="qvxkKLCD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3C67224B03;
+	Wed, 26 Feb 2025 17:20:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AEF2220680;
-	Wed, 26 Feb 2025 17:22:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.171
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740590549; cv=pass; b=X9O8X2tlBvFneVF4Ie5R6K7UQZPJuPYRp4vllTfGG3MgtGQb7jhcpJ09O7zZiWaUs0AVgYu5lCnT2QfRimGHGA6BjVnwPzmd6y2NShwZ0iJLBwDDNmWc7tNrzJ5ca6Vp6qjF9KNHdqYVY6S1DsaRLpsY56k8gLLj379KOs+si0o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740590549; c=relaxed/simple;
-	bh=S/PiPzCVRmka0OjHHthPnqNxfP8KG+E7z2CDbxI51JM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eaUjM0nFe/nUV/BrdrlTIVNclvoZJT1zc2/oABOuBbcZpIc7fw4pz/DVhf2PQsMD/J61epKYdVHwbl64rbKvhMlWgbjITSAmiwWDKhtwIn0HLvP0LddTuzDDt1j2x0H1aOqPCoE1IDCgFflxylnukeAV4vmxdSs/p+79dH1/V4A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=WNZ1vcFY; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=qvxkKLCD; arc=pass smtp.client-ip=81.169.146.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
-ARC-Seal: i=1; a=rsa-sha256; t=1740590185; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=XzegoGgoNCNxR/DpTLYhpmeVC7GAAlAso1mUkbxW+HtcDmzhz9+/o1bMaxdVfDcaoz
-    NP8vA4dODxV/O1nBZ47ElGyqvqFXNNl4j8mlQ5d0H8m83ZJQJH77tJdztkkB3huWmDlj
-    0hMuUU9RV4I2bgElzzKIFidKrztWl+kb/sMPQP072WwTokt+leKr/p0reXJRLDlWaROQ
-    e0HIt3QJ6So0cN41kmqPUszQWF2V/dy62iSyhASXuRgNsXX4ATdyrlNx/UQRuxOyZWye
-    +AcjfHlSRMu5NQY2hQOZ+bhPwdgrfH//E+uxARtJEHfl7sq0Yk+D8B0mcZ9XFFSE8fvw
-    i3TQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1740590185;
-    s=strato-dkim-0002; d=strato.com;
-    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=GbY1FLE78d7HUAAoF/6GehoDyAWxuk3FuXFDDvxwZJY=;
-    b=XQqPefzFDqQWJwhVAN9ETVgWHLJBGq+GVarRrcpkzHRo/KmzHh5PcWg/UXA2Zh0zLe
-    0JGNsfS/BaMprSe7XVsTYPyThIoHT15UJBr6P3MV4fHlPAgya6mAos/DfkcCH5rR+R4e
-    4jiUAHJZtOPz9IDYQOu7gyUElCiFy7JUanDL5VJIOG1IUFBuGK0kLAOfWzBQ/9OlUpSh
-    zIPg3AIg9kvHrMMSGyARn+fq2aCeHaOVmcsPKrf6PGYZMRSccxo/CGpF8eivRnazlbmQ
-    UUtLXJ7FK+vSuSxkGaEQLlV6c9X2zFJrRt+2viy9fw9miHZCUX4P1JU1FxV7Qd3RawYc
-    Cc8Q==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1740590185;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=GbY1FLE78d7HUAAoF/6GehoDyAWxuk3FuXFDDvxwZJY=;
-    b=WNZ1vcFYyuY9VeOKiO7EFAoEYmnXfiFFixQKAYxAxWEmy61ioYgIfB1hWDbhPdN0ei
-    veVdhhke7fYURoXsEepa+jnfVE/5QP3B5l5gE4zZFf1gywHGBq1hUcZZh+brcAgCwUdy
-    kjSNLla3EOw34Tltdb6UqPxYKgt3ShANj8T4vmhGvkF3dnePPRvwYANhGQNVDW+FKvVt
-    o5QsLz754NHf87GIxGkHnDFk6Gw9nB5hKmP103A/KnndlquRPyaktftmGgrD1zwY8HVM
-    Vdm/TSVdf95qf5ZcYuBCxZkyPIIpz93IWhYpo69+KV24Pt61s/Y3MyIHItcFyIrCgPXX
-    2kUQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1740590185;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=GbY1FLE78d7HUAAoF/6GehoDyAWxuk3FuXFDDvxwZJY=;
-    b=qvxkKLCDRHQgEZ7+dC9e9mg0S6+Qx4kEXvP5tG/Zen8Kzp+9pa2dViqoqsO3Rbn5cL
-    iB6xR6ZdKu7XH7lWl9Dg==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yeD0Z"
-Received: from localhost.localdomain
-    by smtp.strato.de (RZmta 51.2.23 DYNA|AUTH)
-    with ESMTPSA id Qe5b2211QHGPfq1
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Wed, 26 Feb 2025 18:16:25 +0100 (CET)
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Cercueil <paul@crapouillou.net>
-Cc: Andreas Kemnade <andreas@kemnade.info>,
-	Paul Boddie <paul@boddie.org.uk>,
-	Tim Bysun <tim.bysun@ingenic.com>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	letux-kernel@openphoenux.org,
-	"H. Nikolaus Schaller" <hns@goldelico.com>
-Subject: [PATCH 4/4] pinctrl: ingenic: jz4730: add pinmux for I2S interface
-Date: Wed, 26 Feb 2025 18:16:07 +0100
-Message-ID: <7541ff32baf429db4efc1e69b11fe911a75b296d.1740590093.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <cover.1740590093.git.hns@goldelico.com>
-References: <cover.1740590093.git.hns@goldelico.com>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4767D22424B;
+	Wed, 26 Feb 2025 17:19:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740590401; cv=none; b=nzfK2Oadu7Hc5doFIcLzSPF0f+hkt4XbtgkJo3UDGzhZh+g4m181EmaoqnScqtyQRBEEKaaHT4lrk4Hqr0pl0MjvhpKhvEzgXM7HD0UjsOop/8bnBJbT4wCZobIUmvQnyJAzhSCdaa/ZEeZwRVuy3E4605oDZeqcCzkf7jnamFU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740590401; c=relaxed/simple;
+	bh=iGdWGd+u9Zw8XuMYIbWjrQD+w6VWtvu/cVGoEvur0E0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XxYtghZ87AdQHEKVRAuAH3QEU8/rZ94gX27wkdyRs7fPKgI3hJWcOdc0SsSRW2teigLcsw+HAsSVrPdCFJhkYt13/DEMVsCRDZDRVpLR2Y+AW65oAI/6aPySjbPqmHDD7NWkZJKv6t7p2ovHWz+7ncXv4BqHlWjUpei6EqB42vU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 312EA1516;
+	Wed, 26 Feb 2025 09:20:14 -0800 (PST)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4536D3F673;
+	Wed, 26 Feb 2025 09:19:56 -0800 (PST)
+Date: Wed, 26 Feb 2025 17:19:53 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Rob Herring <robh@kernel.org>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, cristian.marussi@arm.com,
+	Sudeep Holla <sudeep.holla@arm.com>, saravanak@google.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, arm-scmi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [RFC] dt-bindings: firmware: scmi: Introduce compatible string
+Message-ID: <Z79NOeyWzfRio8qs@bogus>
+References: <20250226094456.2351571-1-peng.fan@oss.nxp.com>
+ <20250226160945.GA2505223-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250226160945.GA2505223-robh@kernel.org>
 
-I2S is used for the sound codec of the Alpha400.
+On Wed, Feb 26, 2025 at 10:09:45AM -0600, Rob Herring wrote:
+> On Wed, Feb 26, 2025 at 05:44:56PM +0800, Peng Fan (OSS) wrote:
+> > Quote Sudeep's reply"
+> > I am not blocking you. What I mentioned is I don't agree that DT can be used
+> > to resolve this issue, but I don't have time or alternate solution ATM. So
+> > if you propose DT based solution and the maintainers agree for the proposed
+> > bindings I will take a look and help you to make that work. But I will raise
+> > any objections I may have if the proposal has issues mainly around the
+> > compatibility and ease of maintenance.
+> > "
+>
+> This all looks to me like SCMI has failed to provide common interfaces.
+>
 
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
- drivers/pinctrl/pinctrl-ingenic.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+We can look into this if having such common interface can solve this problem.
 
-diff --git a/drivers/pinctrl/pinctrl-ingenic.c b/drivers/pinctrl/pinctrl-ingenic.c
-index 86d285a800c5d..6a16729d0a235 100644
---- a/drivers/pinctrl/pinctrl-ingenic.c
-+++ b/drivers/pinctrl/pinctrl-ingenic.c
-@@ -209,10 +209,14 @@ static int jz4730_nand_cs4_pins[] = { 0x56, };
- static int jz4730_nand_cs5_pins[] = { 0x57, };
- static int jz4730_pwm_pwm0_pins[] = { 0x5e, };
- static int jz4730_pwm_pwm1_pins[] = { 0x5f, };
--
- static int jz4730_mii_pins[] = { 0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76,
- 				 0x77, 0x78, 0x19, 0x7a, 0x1b, 0x7c, };
- 
-+static int jz4730_i2s_mclk_pins[] = { 0x44, };
-+static int jz4730_i2s_acreset_pins[] = { 0x45, };
-+static int jz4730_i2s_data_pins[] = { 0x46, 0x47, };
-+static int jz4730_i2s_clock_pins[] = { 0x4d, 0x4e, };
-+
- static u8 jz4730_lcd_8bit_funcs[] = { 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, };
- 
- static const struct group_desc jz4730_groups[] = {
-@@ -235,6 +239,11 @@ static const struct group_desc jz4730_groups[] = {
- 	INGENIC_PIN_GROUP("pwm0", jz4730_pwm_pwm0, 1),
- 	INGENIC_PIN_GROUP("pwm1", jz4730_pwm_pwm1, 1),
- 	INGENIC_PIN_GROUP("mii", jz4730_mii, 1),
-+	INGENIC_PIN_GROUP("i2s-mclk-out", jz4730_i2s_mclk, 1),
-+	INGENIC_PIN_GROUP("i2s-acreset", jz4730_i2s_acreset, 1),
-+	INGENIC_PIN_GROUP("i2s-data", jz4730_i2s_data, 1),
-+	INGENIC_PIN_GROUP("i2s-master", jz4730_i2s_clock, 1),
-+	INGENIC_PIN_GROUP("i2s-slave", jz4730_i2s_clock, 2),
- };
- 
- static const char *jz4730_mmc_groups[] = { "mmc-1bit", "mmc-4bit", };
-@@ -251,6 +260,7 @@ static const char *jz4730_nand_groups[] = {
- static const char *jz4730_pwm0_groups[] = { "pwm0", };
- static const char *jz4730_pwm1_groups[] = { "pwm1", };
- static const char *jz4730_mii_groups[] = { "mii", };
-+static const char *jz4730_i2s_groups[] = { "i2s-data", "i2s-master", "i2s-slave", };
- 
- static const struct function_desc jz4730_functions[] = {
- 	INGENIC_PIN_FUNCTION("mmc", jz4730_mmc),
-@@ -263,6 +273,7 @@ static const struct function_desc jz4730_functions[] = {
- 	INGENIC_PIN_FUNCTION("pwm0", jz4730_pwm0),
- 	INGENIC_PIN_FUNCTION("pwm1", jz4730_pwm1),
- 	INGENIC_PIN_FUNCTION("mii", jz4730_mii),
-+	INGENIC_PIN_FUNCTION("i2s", jz4730_i2s),
- };
- 
- static const struct ingenic_chip_info jz4730_chip_info = {
--- 
-2.47.0
+> I'm indifferent. If everyone involved thinks adding compatibles will
+> solve whatever the issues are, then it's going to be fine with me
+> (other than the issue above). It doesn't seem like you have that, so I
+> don't know that I'd keep going down this path.
 
+Sorry if I was ambiguous with my stance as quoted above. For me, 2 devices
+pointing to the same node seems implementation issue rather than fixing/
+working around by extending DT bindings like this $subject patch is
+attempting.
+
+If you disagree with that and think 2 devices in the kernel shouldn't
+point to the same device tree node, then yes I see this is right approach
+to take. ATM I don't know which is correct and what are other developer's
+include DT maintainer opinion on this. I just didn't like the way Peng
+was trying to solve it with some block/allow list which wouldn't have
+fixed the issue or just created new ones.
+
+--
+Regards,
+Sudeep
 
