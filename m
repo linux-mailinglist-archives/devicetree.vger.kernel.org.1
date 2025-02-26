@@ -1,132 +1,140 @@
-Return-Path: <devicetree+bounces-151316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B513AA45630
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:02:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83E41A45632
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:02:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32EC63A1BCB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 07:02:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DBB116D300
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 07:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53F4326A1B6;
-	Wed, 26 Feb 2025 07:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA09226A09B;
+	Wed, 26 Feb 2025 07:02:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gWGfhsRk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A454A14A62A
-	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 07:01:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9022F1624F3;
+	Wed, 26 Feb 2025 07:02:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740553320; cv=none; b=VmR+E7lsE7sdsuWARbVJZIzlnbJA8gYzgc8LQsbN7j3Yzq/7zTZ74vX/HHZCewxIrDmPP7yw4GAH36LdiueIJLu6vlwg7OJyyqf4z8mOkQVuUFZilyOQkRBnIhcD2gASCyJ5oOFY1XV78BwTkyxwraH08HgIekC2o7nIvi6FAMI=
+	t=1740553338; cv=none; b=YMRwa9t/NdiVJ5bUeHqYQqb9mrB8sLxwpWQsk7zpuz6vZJcF+kuHCFqaVRjvhgQMDT/zjc9PEnhSGdCmf0ukQvamU9AjI6PpfK5ggtp79yoM47JzuqFacLf/0PftXj4KWFsHQl8Gkw0hwFCp034cTW6RP4lTQAJWtQ6MdBFY3VI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740553320; c=relaxed/simple;
-	bh=2r5kCgFjlcqbLdfKsNvqCFsfvYadyfAOQs/dLrv4vys=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O2PZijiBkoFmYAxysDyQB8mT3BaLkMeNRoskvRyTgsj53xVVCyfbtXq+Bgve9/evfFJxC6lfYlhj1ZO6VOR05oVHattKp4r5ifBkIvzA2VJwU8xuEesx0OJ/V/wb0O3m6vWXKgQ0ZkBeZ/Qhi/uDyTCtCAHUUdPq0U8LODGZoU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tnBQI-0004TO-Bu; Wed, 26 Feb 2025 08:01:38 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tnBQH-002uEE-0Y;
-	Wed, 26 Feb 2025 08:01:37 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tnBQH-001TNf-0A;
-	Wed, 26 Feb 2025 08:01:37 +0100
-Date: Wed, 26 Feb 2025 08:01:37 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>
-Cc: kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v3 0/3] Add support for Plymovent AQM board
-Message-ID: <Z768USN3iYrnz84G@pengutronix.de>
-References: <20250220090155.2937620-1-o.rempel@pengutronix.de>
+	s=arc-20240116; t=1740553338; c=relaxed/simple;
+	bh=LNW2RCAz3S4DPK/VKv4XUbUdFMgW/79zioxJj69XsEs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V9LZzoCKpxyb7qjib+OkA/c0E6egyRU+EcH26SWF1qWKIxE5k6Chn/48HXYYnTBOyAeDr9rM+ZEfFMkOrCnctqcfI0DPTLJ/xPmcsvFx6LPD1rUFbo1zs3ouYKXIm3vqdIewPo3YHpo5xp5J4ajEXte5vOxS5Q+MtnG6kEXpfKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gWGfhsRk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AF39C4CEE2;
+	Wed, 26 Feb 2025 07:02:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740553338;
+	bh=LNW2RCAz3S4DPK/VKv4XUbUdFMgW/79zioxJj69XsEs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gWGfhsRkOdAtLrTKIuG5ReuA2Y9V7HLVEmt6fVZYZGDpAhc/ZLyBbFw2g3/N5WoM7
+	 zChlSdRtojeYdaXOjy2MYk27V6pWYUAQTyxzDj7Fqr+VLzh3cqr48L+XRDKxx7I0UO
+	 wCnfSmohznvbTKBDzVCsgdk92Mm3hx7MFfqYvEOtTw+i6wCmFBYqvwo+afgkkPC8kr
+	 0fc5o6XX0g++VIm456Wz1XGcTxcua8ywGNCa9L92TFvdUi0tgB5WPEXCwobWjjV66b
+	 wNLS7uihw/HEaRmv9imPKU9lpTqtqa0Td5txpuCa7vUYEB+agWQZbN1agBdC/T5ePn
+	 rKIpgaf4MGx5Q==
+Message-ID: <f89817fe-22af-460e-9f5c-a3347eba1892@kernel.org>
+Date: Wed, 26 Feb 2025 08:02:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250220090155.2937620-1-o.rempel@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/6] dt-bindings: arm: add CIX P1 (SKY1) SoC
+To: Peter Chen <peter.chen@cixtech.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+ marcin@juszkiewicz.com.pl, Fugang Duan <fugang.duan@cixtech.com>
+References: <20250226012136.854614-1-peter.chen@cixtech.com>
+ <20250226012136.854614-3-peter.chen@cixtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250226012136.854614-3-peter.chen@cixtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Alexandre,
+On 26/02/2025 02:21, Peter Chen wrote:
+> Add device tree bindings for CIX P1 (Internal name sky1) Arm SoC,
+> it consists several SoC models like CP8180, CD8180, etc.
+> 
+> Acked-by: Fugang Duan <fugang.duan@cixtech.com>
+> Signed-off-by: Peter Chen <peter.chen@cixtech.com>
+> ---
 
-Just wanted to check if there’s anything needed from my side for this
-patch. Let me know if further input is required.
+<form letter>
+This is a friendly reminder during the review process.
 
-Best Regards,
-Oleksij
+It looks like you received a tag and forgot to add it.
 
-On Thu, Feb 20, 2025 at 10:01:52AM +0100, Oleksij Rempel wrote:
-> This patch series adds support for the Plymovent AQM board based on the
-> STM32MP151C SoC. Additionally, the ICS-43432 device tree binding is
-> converted to YAML to address a validation warning.
-> 
-> The ICS-43432 patch resolves one of the devicetree validation warnings.
-> However, the false-positive warning:
-> 
->   "audio-controller@44004000: port:endpoint: Unevaluated properties are
->    not allowed ('format' was unexpected)"
-> 
-> remains unresolved. The "format" property is required for proper
-> functionality of this device.
-> 
-> Best regards,
-> 
-> Oleksij Rempel (3):
->   dt-bindings: sound: convert ICS-43432 binding to YAML
->   dt-bindings: arm: stm32: Add Plymovent AQM board
->   arm: dts: stm32: Add Plymovent AQM devicetree
-> 
->  .../devicetree/bindings/arm/stm32/stm32.yaml  |   1 +
->  .../devicetree/bindings/sound/ics43432.txt    |  19 -
->  .../bindings/sound/invensense,ics43432.yaml   |  51 ++
->  arch/arm/boot/dts/st/Makefile                 |   1 +
->  arch/arm/boot/dts/st/stm32mp151c-plyaqm.dts   | 669 ++++++++++++++++++
->  5 files changed, 722 insertions(+), 19 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/ics43432.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/invensense,ics43432.yaml
->  create mode 100644 arch/arm/boot/dts/st/stm32mp151c-plyaqm.dts
-> 
-> --
-> 2.39.5
-> 
-> 
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
+
+Best regards,
+Krzysztof
 
