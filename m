@@ -1,142 +1,153 @@
-Return-Path: <devicetree+bounces-151776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98926A46F80
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 00:33:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DD80A46F8F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 00:43:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0C063ABA61
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 23:33:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3211F188CFC7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 23:43:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD0C2620CD;
-	Wed, 26 Feb 2025 23:33:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEAD12620DD;
+	Wed, 26 Feb 2025 23:42:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mph1cYH0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bYMfxdHm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E33B62620C8;
-	Wed, 26 Feb 2025 23:33:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 509962620D6;
+	Wed, 26 Feb 2025 23:42:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740612823; cv=none; b=ToNiWlKcWU+ClqUp9ifJZDA5ELImfj4Q0LQO2H06QqR68YEPlWrHDUoLCyaV2UaigmrKegAbvBRsxuFSN9LzFT3lhQzgoR+I07MI8yAj5lB99jAjM9jwvrMIMY064fpYsyocTF/Ke8DQFPhWQZZs5QSTLws6v5h85CrZqlUzP/k=
+	t=1740613379; cv=none; b=V14nPFgpA9dZk5KmJhDmOz6NLo+2jQ5wMirDKjOEmTQanJGZbtMmkaZoUHQFTGE26jDBWyPQPuxkOcKH0E6Z7RoNx/7/OYMGLohzCzj2xriknFy82vOGHSwlvaoX7S/F7AnKq82SQlqkvnpaXqvyvcqb33xeM+WwxZxNPr77gfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740612823; c=relaxed/simple;
-	bh=JU2kjfLvtCKvCAcKZzE2OOPkpTNFwZNgTF7Ciu+cRA4=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=ehWFxzqKcU4ucnBUvvVcycE+IU/o1tBv58OVQ6eHXbXhFliDA3StmAd1ZXkuReM6i4Z4CFAxTOPgr5c+RU4cDdyyOvpfgzasnZfFGxzs9TXqmaic/sCoRf69m5/KT/lyXP9PKe7SoBctAOG18S6ZAqsS/7aZy2SckzARYGCjnUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mph1cYH0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FD53C4CED6;
-	Wed, 26 Feb 2025 23:33:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740612822;
-	bh=JU2kjfLvtCKvCAcKZzE2OOPkpTNFwZNgTF7Ciu+cRA4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=mph1cYH0/GtxEnkYNjCOOhVVx56YpsQjSOk1NStNxEAjASxrD7HdP89Eu4QiFsjQp
-	 FaY8Xks0fxxWsXbG0tGc1hVg1E8MwdMRqFTK8X7jjvATAcXjECwZqgiyPCvT3dHxUt
-	 qW1qWzKdtvNXzRAGOsnQSV66plI7HGitg8nnLwYby1irqcym0luHmdV+wN76k2JwOm
-	 iR34vJbsDmq6bIXion0gGlpstWi49EKe12WKUXlHfzk0KtCantRd19Hb9ATkeh73Qx
-	 sOq2e+gAUnuYFRHoKt4gCCqbzhMUX33KGRP89sfavZuSOlnmEtXD32v2ULnB/BGLti
-	 +yYugUjDQL0qQ==
-Date: Wed, 26 Feb 2025 17:33:39 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v9 4/7] PCI: dwc: Use devicetree 'ranges' property to get
- rid of cpu_addr_fixup() callback
-Message-ID: <20250226233339.GA562682@bhelgaas>
+	s=arc-20240116; t=1740613379; c=relaxed/simple;
+	bh=zKs69zuJTCMuJZx3kqjoXzCIAA1mJhuLMYaLs5UHP2k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=q4Ly+ifgs0EwmrothfWByA5JjxioEd22yMgbQp4rBEyu3PCbJkHpMA5cOrhq/oLFsCFNlci0JLYhqSd8TTPIsofUXzAJZ9ByaNnaFrzNU5OMp6BukofOs2lK9E28IOz3ZaMmQt57bEcPLrIuKTG6jrkDbMwxN8Znq36nFkQsKuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bYMfxdHm; arc=none smtp.client-ip=209.85.222.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-7c0a26b1c67so35913685a.3;
+        Wed, 26 Feb 2025 15:42:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740613377; x=1741218177; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YCkbkcOBVmYiyCJMExAY8OQtnZbeodmQmHyD6JqPePI=;
+        b=bYMfxdHm5qKBtOZ2gHcfkcUJoKrhABz6nEspZZUeMBkEGuPmoeEOCOW9HkMF7XGT45
+         pshKOXvrVKG5lnT4AXA2QrYcejMZqyoxJtkmoAhAq1UD5T+rAnANDHW2IStYDglRZcdW
+         dvbkyJpZKT5/ucle9ogfeUPkTU9v7fAsgi8qB+PWxA19nkIFvehddniu7ydWn2xCZC/H
+         Vcdsg3LMvYsn5zPeJhEBH+SplW2NeUo9u54nhW1zTL+XZj+HqlXK/xLRsCYqbxiutX0x
+         jPUfnw/NkwADsT4f3Mjdm6ceaSYFNlE6Q8wSG8O+NcXuNr3vT6MCdajd3h9xusFS3chT
+         7Vrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740613377; x=1741218177;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YCkbkcOBVmYiyCJMExAY8OQtnZbeodmQmHyD6JqPePI=;
+        b=NT6fD+fRC0beO+VCvWlqgknTkQFOgOS/JBpY7SqfbuF1GI9ldJgUanxomnyRwf1Ysk
+         jJksMw/dvNWPHUerxrnEEQoK9sXdmE9F72Q1+uv3TFXlGFajVJ4RxjHu3ergL4D+NFBH
+         P/jtZ9bVrGNgLNLGBTXqvtt7lnBYSVyULiMYU33ky4pAT/4bHIF+NxJOcnM6RgT0vlyF
+         l2iDy7c3sy6ekF3nfhTqAkN3VUTnxZAmOEl/Z8Rx+WHh4U/P8w5wY7/mLvUV61vnYw7R
+         CC3qEGKW9m4mFDzSzQxU3EB/H8M1I5fxhlVNBn3BpCZ9HnLoWprow7xpJ8euZHuUF6A+
+         mElw==
+X-Forwarded-Encrypted: i=1; AJvYcCVHWT9MwXW83w6hZQissxJ9kuVG9FdZbY38vPYelxzeBhh/JM4o45dbze1Uaxr0QDCH/x/ftipwNRmBIu8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjY9/VpU/XKTftIzUscLszG6ThnYwaAqpq0Ym+hIij/WNmyzVK
+	qvCcVpzmm/vB8oouzF66V+kQ+cWrRazii2skuhGcnjtS3RyDjn/q
+X-Gm-Gg: ASbGncuZgWmjY2DoHkm+3zsIRP8CZ+2DoMDC4WZ3ARM2Nl6w48jl1zl3cuH6Wa4bUMV
+	XQtAwmkivwYKf1R+n2+sPo1ZasU3kFDqh2EezqiHaVgWf90KP+3qPu6MkI/jdBI/Q4MsW0UN8IX
+	fSTWWGLIY1gy29Y9WrQVwOkPv/vyK2CJ4foGV2JRn1BrnwfXIXA09TIA5pF939ihWCbi96ddhd6
+	rNpv7Ypc2gfeQfK/nkdvutolCQsq5I2d0VcW9YhM4xC0a71ZOLkTq3BJ/yWF+Vo9iwtfq1nCEDP
+	OQ==
+X-Google-Smtp-Source: AGHT+IEE0yZnL/j3TfydHcx27TvYZq4HNVlRTjBaZb6s+lcBJ8etFGkpoweqrr6ivN/gIINJcC1idA==
+X-Received: by 2002:a05:620a:2914:b0:7c0:a46d:fa92 with SMTP id af79cd13be357-7c23be11a85mr1282129485a.19.1740613377053;
+        Wed, 26 Feb 2025 15:42:57 -0800 (PST)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c36ff0f1e0sm24115785a.52.2025.02.26.15.42.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Feb 2025 15:42:56 -0800 (PST)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	Guo Ren <guoren@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	sophgo@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH v2 0/5] reset: introduce generic reset-simple controller
+Date: Thu, 27 Feb 2025 07:42:28 +0800
+Message-ID: <20250226234234.125305-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250128-pci_fixup_addr-v9-4-3c4bb506f665@nxp.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jan 28, 2025 at 05:07:37PM -0500, Frank Li wrote:
-> parent_bus_offset in resource_entry can indicate address information just
-> ahead of PCIe controller. Most system's bus fabric use 1:1 map between
-> input and output address. but some hardware like i.MX8QXP doesn't use 1:1
-> map. See below diagram:
-> ...
+Many SoC have a simple reset controller with toggling bit to perform
+assert/deassert. It is annoyed to add device id to the reset-simple
+driver for each device when coming a new SoC.
 
-> @@ -448,6 +451,26 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  	if (IS_ERR(pp->va_cfg0_base))
->  		return PTR_ERR(pp->va_cfg0_base);
->  
-> +	if (pci->use_parent_dt_ranges) {
-> +		if (pci->ops->cpu_addr_fixup) {
-> +			dev_err(dev, "Use parent bus DT ranges, cpu_addr_fixup() must be removed\n");
-> +			return -EINVAL;
-> +		}
-> +
-> +		index = of_property_match_string(np, "reg-names", "config");
-> +		if (index < 0)
-> +			return -EINVAL;
-> +
-> +		 /*
-> +		  * Retrieve the parent bus address of PCI config space.
-> +		  * If the parent bus ranges in the device tree provide
-> +		  * the correct address conversion information, set
-> +		  * 'use_parent_dt_ranges' to true, The
-> +		  * 'cpu_addr_fixup()' can be eliminated.
-> +		  */
-> +		of_property_read_reg(np, index, &pp->cfg0_base, NULL);
-> +	}
+This patch series introduce a generic binding to collect devices
+match the following requirement:
+- There is a single, contiguous range of 32-bit registers.
+- All bits in each register directly control a reset line.
+   - There are no self-deasserting resets.
+   - There are no timing requirements.
+   - The bits are exclusively resets, nothing else.
+- All bits behave the same, so all reset bits are either
+  active-high or all are active-low.
+- The bits can be read back, but the read status may
+  be active-low independently from the writes.
 
-I think all this code dealing with the "config" resource could go in a
-helper function.  It's kind of a lot of clutter in
-dw_pcie_host_init().
+If the device follows the requirement, it can set the compatiable
+and reuse the provided "reset-simple" as base compatiable without
+changing the reset-simple driver with unnecessary new device id.
 
-It would be nice to assign pp->cfg0_base once, not assign res->start
-to it and then possibly overwrite it later.
+Add a generic reset-simple controller, and migrate the Sophgo
+SG2042 reset controller as an example.
 
-> @@ -841,6 +841,15 @@ void dw_pcie_iatu_detect(struct dw_pcie *pci)
->  	pci->region_align = 1 << fls(min);
->  	pci->region_limit = (max << 32) | (SZ_4G - 1);
->  
-> +	if (pci->ops && pci->ops->cpu_addr_fixup) {
-> +		/*
-> +		 * If the parent 'ranges' property in DT correctly describes
-> +		 * the address translation, cpu_addr_fixup() callback is not
-> +		 * needed.
-> +		 */
-> +		dev_warn_once(pci->dev, "cpu_addr_fixup() usage detected. Please fix DT!\n");
-> +	}
+Change from v1:
+- https://lore.kernel.org/all/20250213020900.745551-1-inochiama@gmail.com/
+1. fix title to mark it introduce new generic device for
+   reset-simple driver
+2. add "active-low" property support for the generic reset-simple
+   device.
+3. patch 1: update the binding description to illustrate the
+   suitable scenarios to use this binding.
 
-Can you split the warnings out to a separate patch?  I think we should
-warn once in every initialization path where .cpu_addr_fixup() could
-be used, i.e.,
+Inochi Amaoto (5):
+  dt-bindings: reset: add generic bit reset controller
+  reset: simple: Add active-low property support.
+  reset: simple: add support generic reset-simple device
+  dt-bindings: reset: simple: migrate sophgo sg2042 reset controller
+  riscv: dts: sg2042: Adapt reset generator for new binding
 
-  dw_pcie_host_init()
-  dw_pcie_ep_init()
-  cdns_pcie_host_setup()
-  cdns_pcie_ep_setup()
+ .../bindings/reset/reset-simple.yaml          | 66 +++++++++++++++++++
+ .../bindings/reset/sophgo,sg2042-reset.yaml   | 35 ----------
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |  3 +-
+ drivers/reset/reset-simple.c                  |  7 ++
+ 4 files changed, 75 insertions(+), 36 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/reset/reset-simple.yaml
+ delete mode 100644 Documentation/devicetree/bindings/reset/sophgo,sg2042-reset.yaml
 
-IMO these should warn if .cpu_addr_fixup() is implemented, regardless
-of use_parent_dt_ranges.
+--
+2.48.1
 
-I'm still puzzling over some of the rest of this, so no need to post a
-revised series yet.
-
-Bjorn
 
