@@ -1,68 +1,60 @@
-Return-Path: <devicetree+bounces-151634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1F8A4664E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 17:14:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA375A4664F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 17:15:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BD1319C5512
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:56:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB74219E15EA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B26C21D5B0;
-	Wed, 26 Feb 2025 15:55:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CDA71A238B;
+	Wed, 26 Feb 2025 15:56:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DCvVLYNl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OzaxZ6Yf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AF9D21D5A8;
-	Wed, 26 Feb 2025 15:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC89428F3
+	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 15:56:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740585355; cv=none; b=XHbsU0FDRu0C92bXMkCsnNIeHtWxdSj+ioOSEUck3yEK5mwBcedX/uC6SkvnaCKeQs0WziRVs+YhF8rZaTXwTt0bU1TxoZovQomHxc12ZeIwpmkSq3acgrvlqFPe7zMBR3bsyHLkh8TUCsMkeJJRG9fMNS53wDjBmpUzW+NIgtE=
+	t=1740585414; cv=none; b=QH4CZCIdKe5ViZxvccGcRNCbzIXQa7syL06UAAHIIAwqBuNQBjBfYoXTnc88j4jroGi7i2DX2h9DVDTd1d3Pm1UWT2h/ej5v7I2i6VPM4sY7ssihl6aEB/IhCZnlgkLCeX+onPWgErnXQgYZ9R9QbONUQH+ky7mPhOHj5qTGkU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740585355; c=relaxed/simple;
-	bh=2b/0jmiET26RzTFkTnCeyD691GwyGBvbl6ZzIxxMzBw=;
+	s=arc-20240116; t=1740585414; c=relaxed/simple;
+	bh=stzHx3sKz2tiJVFVznhRiupagfywamOVXVJNu4JJFHc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dpo8r7jBA5RpdIG3kbE5+nbem1tBpQ+NpA5UdUspFVnPIP6+PuniF7nyk8oDy4dbxyaAKGrKhRHFvS3k72DBn0wdPqsUZ6z3ui2xMmQkb6UPfYklFtD/9dchEpoZYEpa35+eJWRJ8WoV7/iWwmMXQB3OLlSmhoZ8Dnd/x4Ve9V4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DCvVLYNl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 880C5C4CEE9;
-	Wed, 26 Feb 2025 15:55:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GUdUXpQmsskBdjLvrlmx1QT51iiPj+X8b4BfzPVZ6qapfpc/paN4ELpFY7xd2aq1Nt8nu0W5qLjYMCxT0dV5HUms1aPKL7oTOTonYoNIilHjtOQhd7GIxzAi2pcwslJsvWRmniV+pGSMV1u9aXxuT+w9y2JoIv/1N0UIitIbvFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OzaxZ6Yf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36F6FC4CED6;
+	Wed, 26 Feb 2025 15:56:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740585354;
-	bh=2b/0jmiET26RzTFkTnCeyD691GwyGBvbl6ZzIxxMzBw=;
+	s=k20201202; t=1740585413;
+	bh=stzHx3sKz2tiJVFVznhRiupagfywamOVXVJNu4JJFHc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DCvVLYNl/BDsnaShGUmbG2XfXhp7YkwSQPo2z31Zh+BrguxCktqVKeTxq/nCVPSV7
-	 yrH8LApkaemi3jyzNA8FJIbyi/WOfZSF5oEYnphgr5mPDmAgzIsR3EX7i31YGK7kG6
-	 sC01lAwwrqlEXvKb3FXFz4lUT7BB6T+dEGU/78Hrv6d6Wv3e5diyU/v8Miwnc9I0Lg
-	 Yj4i2icq3VyziG/Z3uTdQRPAOJuExBbLP3KCHxa62ogm0wc7XR3aPGEVh1OLBKGHqD
-	 qhCvmfTo5PlRk2mhcEmV7QH1AqRGaBRk78vS+mvYTXlB/PHSuwtGZbW7jbeTOD2Ftn
-	 PQCd2eAg4QyVg==
-Date: Wed, 26 Feb 2025 09:55:52 -0600
+	b=OzaxZ6Yf6h5bMF+VeRz8m6lQz6WzyWxLA2XynAUIgJGh/nVD+sOvHrgtB5EvjDDu8
+	 mdwtlxF5LwfLsTsBOAmbdAS1LnrBCfBX1Q5630JqLubrnZAGRTMVDW6PMy5eW95eSQ
+	 j3rLN6gj+JKN+hD+N22Loq+8L+miHE4IqKVKeIu2l6A5anquity9bBS4u/Ky/waDOw
+	 Yf5AyWbG6cZHaYk2s+LsGoHiJZZABq9xNj5v1nDn3+H4eV5Rb+L/CEDJ+5wAXOsP+w
+	 bBTPmNG+LAi0mOA8FYCzihs7jro9bRxqi58EyWzk3iciLiGdnGXWMEqeyyX4pHcOiw
+	 bHWoWBOe6fxHA==
+Date: Wed, 26 Feb 2025 09:56:51 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: linux-riscv@lists.infradead.org, Palmer Dabbelt <palmer@dabbelt.com>,
-	spacemit@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, Alex Elder <elder@riscstar.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Jesse Taube <mr.bossman075@gmail.com>,
-	Yangyu Chen <cyy@cyyself.name>, Conor Dooley <conor@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v7 1/4] dt-bindings: gpio: spacemit: add support for K1
- SoC
-Message-ID: <174058535208.2501613.753521033662405764.robh@kernel.org>
-References: <20250226-03-k1-gpio-v7-0-be489c4a609b@gentoo.org>
- <20250226-03-k1-gpio-v7-1-be489c4a609b@gentoo.org>
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: ARM: at91: make separate entry for
+ Olimex board
+Message-ID: <174058541106.2503140.1386703564408101770.robh@kernel.org>
+References: <20250226084938.3436-6-wsa+renesas@sang-engineering.com>
+ <20250226084938.3436-7-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,22 +63,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250226-03-k1-gpio-v7-1-be489c4a609b@gentoo.org>
+In-Reply-To: <20250226084938.3436-7-wsa+renesas@sang-engineering.com>
 
 
-On Wed, 26 Feb 2025 08:41:17 +0800, Yixun Lan wrote:
-> The GPIO controller of K1 support basic functions as input/output,
-> all pins can be used as interrupt which route to one IRQ line,
-> trigger type can be select between rising edge, falling edge, or both.
-> There are four GPIO banks, each consisting of 32 pins.
+On Wed, 26 Feb 2025 09:49:36 +0100, Wolfram Sang wrote:
+> The Olimex board exists with only one SoC option. Change the bindings to
+> reflect that.
 > 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 > ---
->  .../devicetree/bindings/gpio/spacemit,k1-gpio.yaml | 79 ++++++++++++++++++++++
->  1 file changed, 79 insertions(+)
+>  Documentation/devicetree/bindings/arm/atmel-at91.yaml | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
