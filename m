@@ -1,173 +1,126 @@
-Return-Path: <devicetree+bounces-151332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA55AA456D1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:40:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 848E2A456E4
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:45:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F4653A267E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 07:40:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90C3E3A3E35
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 07:45:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9783326B089;
-	Wed, 26 Feb 2025 07:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB9C18DB09;
+	Wed, 26 Feb 2025 07:45:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YQ20Uxle"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="XqHts+Ih"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D00226A0A6;
-	Wed, 26 Feb 2025 07:40:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B37010F2;
+	Wed, 26 Feb 2025 07:45:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740555646; cv=none; b=TOEGa+r6MGdC30OnAo0wjso9ll4MyCRX+RUYR/2o6eDs1sm92Fx5s1Tj2XX/6Cj7NCatj8WlsQ8gefzggYHU707AcJFkXCYEChoYQIqpdP8nQzczZ5w+/qjxJcH6bMQ3PM1KBd7kW9dEO61ulSGiBzq35WShvgz4Vcb5IYrlWRM=
+	t=1740555920; cv=none; b=pB4zQ/qxQjTXjCajWcY24znewexiqVtAv6x9NWGQDHi1JYieqWCEYcP2BmZAEKfG9dnoovviCD44DNUbujiEC6XyTWq4ulRy2wdMIVfMtwh7CliDTqnIQPwCOOX5ovK2f4Rb6oy0POo5L7lkNr/Y1A9qlqtqZN0i5XHTepHJsic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740555646; c=relaxed/simple;
-	bh=8GQOo0rBG1mgEOsm9mN1R6BOr1JZbArnDprAbSoG9aA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZsFREMLgkABazWtcDTvclTNkvFiSN5WjngCOTBvMcAwoccjs0iZkAz9wOF/iVp33fFY5nHneGu4AyiwItZTGh0rVHKqSuF2KgVRJ18UPgWv/BdlfRoME0gGDUMhi/lgcbkz8YGOhyOFLgkjar2GtVfWAyo6pnwKxbSKJcO0GVhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YQ20Uxle; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35AAEC4CED6;
-	Wed, 26 Feb 2025 07:40:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740555645;
-	bh=8GQOo0rBG1mgEOsm9mN1R6BOr1JZbArnDprAbSoG9aA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YQ20Uxle0m6QokQ87mndqg3GWYPCqmAr2N3Lbxkfabd5oi+Vw+O6pIxci5BeKjple
-	 DKHymOuhrTtODr6T7WslUvU0awMKjdLcFR4tCp9SdXjjgg5lAS37JLIEtPXZDno8zn
-	 HnyySce+2V0VcToArB1v7klZnfK0ElEj9pUCMd9Gi2c9olYdTNKF4tWDgCOwDODsT8
-	 /H2DhyjA9AU7HUX1F29j3Zcvt5gyde71+G0xw0BfxpQkkqsjWTojVxX9aPBzAFAc3O
-	 yi63alginBFUmKUGYBZJMsNFeTAZmZFKsHa7S181lV7hY76i14f2stP+IOjsHgt3IR
-	 z/S/x6/EaSKzQ==
-Date: Wed, 26 Feb 2025 08:40:42 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Nam Tran <trannamatk@gmail.com>
-Cc: pavel@kernel.org, lee@kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] leds: add new LED driver for TI LP5812
-Message-ID: <20250226-lovely-bald-rabbit-08ce5b@krzk-bin>
-References: <20250225170601.21334-1-trannamatk@gmail.com>
- <20250225170601.21334-3-trannamatk@gmail.com>
+	s=arc-20240116; t=1740555920; c=relaxed/simple;
+	bh=qJo8bS6v5njlNYa287rrU5UuOR3DQntakEIPTxQkkZo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HOyqfLM8yB3LjaTIDIhV2AlBYaZdfZYo2bz5jUV8xVokl5NcVMLReVy4ct/i71F71KBq2RoE2EUlB0IHpQDM4Aj/CzpW9oCsJYJSsYXfpr9doCNtXzJy92rHBz/Rlvl5sEkCf4VdrbhOLpx97ETdkMjK1Mn7afXEJnl1m/fd0Ho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=XqHts+Ih; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E98ED44456;
+	Wed, 26 Feb 2025 07:45:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1740555914;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=98ELs4LVDVfL3lojYIF8k1ySA2op88p9fn2jtseES3s=;
+	b=XqHts+IhvFDpKEVckWHhvx+ayph+tjescazLblNnref2wlqU0AnQj/Msoo1Wc4BWxqUFs6
+	6J+WnZjXEzitA+UD5mSRVrk7P9kVnR90Oeg14d53qlV3ig8GdTcCPTySP6lNIdlV3OIBOg
+	fC0Byf2QfF9hm6cfLeGGvNPD6KRhLx+DTE+XGwbpVm0P2v4SfoEuNs9UIoy5LQZQa90rXU
+	15FL4X41Smh0NmCDx+oqu/o/QqRh1e2ftL1+7TDiG1XZwZPgOSb2kCH9OWmx7rvdvTvTmV
+	4kefzW75jChg8iP6pmZxqOx5xyEMR3Eax/SLkBE0CaGIeeRDexPqYd/eQ5mx6g==
+Date: Wed, 26 Feb 2025 08:45:11 +0100
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ tsbogend@alpha.franken.de, andrew@lunn.ch, hkallweit1@gmail.com,
+ linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, sander@svanheule.net,
+ markus.stockhausen@gmx.de, devicetree@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v7 1/2] net: mdio: Add RTL9300 MDIO driver
+Message-ID: <20250226084511.5f8f4c62@fedora.home>
+In-Reply-To: <20250226000748.3979148-2-chris.packham@alliedtelesis.co.nz>
+References: <20250226000748.3979148-1-chris.packham@alliedtelesis.co.nz>
+	<20250226000748.3979148-2-chris.packham@alliedtelesis.co.nz>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250225170601.21334-3-trannamatk@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdekgedtvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthejredtredtvdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegveeltddvveeuhefhvefhlefhkeevfedtgfeiudefffeiledttdfgfeeuhfeukeenucfkphepvdgrtddumegtsgduleemkegugegtmeelfhdttdemsggtvddumeekkeelleemheegtdgtmegvheelvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekugegtgemlehftddtmegstgdvudemkeekleelmeehgedttgemvgehlegvpdhhvghlohepfhgvughorhgrrdhhohhmvgdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedukedprhgtphhtthhopegthhhrihhsrdhprggtkhhhrghmsegrlhhlihgvughtvghlvghsihhsrdgtohdrnhiipdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrn
+ hgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhssghoghgvnhgusegrlhhphhgrrdhfrhgrnhhkvghnrdguvgdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehhkhgrlhhlfigvihhtudesghhmrghilhdrtghomhdprhgtphhtthhopehlihhnuhigsegrrhhmlhhinhhugidrohhrghdruhhk
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
-On Wed, Feb 26, 2025 at 12:06:01AM +0700, Nam Tran wrote:
-> The chip can drive LED matrix 4x3.
-> This driver uses I2C to communicate with the chip.
+Hi Chris,
 
-You decided to ignore my previous question, but it still valid. Respond
-to it.
+On Wed, 26 Feb 2025 13:07:47 +1300
+Chris Packham <chris.packham@alliedtelesis.co.nz> wrote:
 
-Sorry, if you keep ignoring reviewers, you will not get anywhere.
-
+> Add a driver for the MDIO controller on the RTL9300 family of Ethernet
+> switches with integrated SoC. There are 4 physical SMI interfaces on the
+> RTL9300 however access is done using the switch ports. The driver takes
+> the MDIO bus hierarchy from the DTS and uses this to configure the
+> switch ports so they are associated with the correct PHY. This mapping
+> is also used when dealing with software requests from phylib.
 > 
-> Signed-off-by: Nam Tran <trannamatk@gmail.com>
-> ---
->  MAINTAINERS                                   |    6 +
->  .../arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts |    7 +
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 
-No, DTS is not part of LED. You cannot combine it in the same patch.
+It all mostly looks good to me, there's one typo though and as it may
+be user visible, I think it's worth fixing...
 
+[...]
 
->  drivers/leds/Kconfig                          |   13 +
->  drivers/leds/Makefile                         |    2 +
->  drivers/leds/leds-lp5812-common.c             | 1097 ++++++++
->  drivers/leds/leds-lp5812-common.h             |  323 +++
->  drivers/leds/leds-lp5812-regs.h               |   96 +
->  drivers/leds/leds-lp5812.c                    | 2317 +++++++++++++++++
->  8 files changed, 3861 insertions(+)
->  create mode 100644 drivers/leds/leds-lp5812-common.c
->  create mode 100644 drivers/leds/leds-lp5812-common.h
->  create mode 100644 drivers/leds/leds-lp5812-regs.h
->  create mode 100644 drivers/leds/leds-lp5812.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 32312959d595..fabd09eb6c0b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -23499,6 +23499,12 @@ M:	Nam Tran <trannamatk@gmail.com>
->  L:	linux-leds@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/leds/ti,lp5812.yaml
-> +F:	drivers/leds/Kconfig
-> +F:	drivers/leds/Makefile
-> +F:	drivers/leds/leds-lp5812-common.c
-> +F:	drivers/leds/leds-lp5812-common.h
-> +F:	drivers/leds/leds-lp5812-regs.h
-> +F:	drivers/leds/leds-lp5812.c
->  
->  TEXAS INSTRUMENTS' SYSTEM CONTROL INTERFACE (TISCI) PROTOCOL DRIVER
->  M:	Nishanth Menon <nm@ti.com>
-> diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
-> index 353bb50ce542..0d01c6b6a5ba 100644
-> --- a/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
-> +++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
-> @@ -270,3 +270,10 @@ &vec {
->  &wifi_pwrseq {
->  	reset-gpios = <&expgpio 1 GPIO_ACTIVE_LOW>;
->  };
+> +static int rtl9300_mdiobus_probe_one(struct device *dev, struct rtl9300_mdio_priv *priv,
+> +				     struct fwnode_handle *node)
+> +{
+> +	struct rtl9300_mdio_chan *chan;
+> +	struct fwnode_handle *child;
+> +	struct mii_bus *bus;
+> +	u32 mdio_bus;
+> +	int err;
 > +
-> +&i2c1 {
-> +	lp5812@1b {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +		compatible = "ti,lp5812";
-> +		reg = <0x1b>;
-> +	};
-> +};
-> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> index 2b27d043921c..e43dbd5a4d8c 100644
-> --- a/drivers/leds/Kconfig
-> +++ b/drivers/leds/Kconfig
-> @@ -483,6 +483,19 @@ config LEDS_LP5569
->  	  Driver provides direct control via LED class and interface for
->  	  programming the engines.
->  
-
-...
-
-> +	pr_info("[DEBUG]: sysfs_create_group successfully\n");
+> +	err = fwnode_property_read_u32(node, "reg", &mdio_bus);
+> +	if (err)
+> +		return err;
 > +
-> +	ret = lp5812_init_dev_config(chip, "tcmscan:4:0:1:2:3", 0);
-> +	if (ret) {
-> +		pr_info("[DEBUG]: %s: lp5812_init_dev_config failed\n",
-> +			__func__);
-> +		return ret;
-> +	}
-> +	pr_info("[DEBUG]: lp5812_init_dev_config successfully\n");
-> +	/* initialize lp5812 chip */
-> +	ret = lp5812_initialize(chip);
+> +	fwnode_for_each_child_node(node, child)
+> +		if (fwnode_device_is_compatible(child, "ethernet-phy-ieee802.3-c45"))
+> +			priv->smi_bus_is_c45[mdio_bus] = true;
 > +
-> +	/* code to verify i2c read/write ok or not */
-> +	lp5812_read(chip, (u16)DEV_CONFIG2, &val);
-> +	pr_info("[DEBUG]: DEV_CONFIG2 value: 0x%02X\n", val);
+> +	bus = devm_mdiobus_alloc_size(dev, sizeof(*chan));
+> +	if (!bus)
+> +		return -ENOMEM;
 > +
-> +	lp5812_write(chip, (u16)LED_A1_AUTO_BASE_ADRR, 0x14);
-> +	lp5812_read(chip, (u16)LED_A1_AUTO_BASE_ADRR, &val);
-> +	pr_info("[DEBUG]: LED_A1_AUTO_BASE_ADRR value: 0x%02X\n", val);
+> +	bus->name = "Reaktek Switch MDIO Bus";
 
-So entire driver is full of such debug code, looking straight from some
-Android vendor tree.
+You probably mean Realtek ? :)
 
-No, that's not how upstreaming works. You now copy all bad habits, all
-poor code and all the issues we fixed. Start from scratch from latest
-mainline driver and customize it to your needs.
+Thanks,
 
-
-Best regards,
-Krzysztof
-
+Maxime
 
