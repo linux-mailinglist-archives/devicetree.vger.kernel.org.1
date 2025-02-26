@@ -1,99 +1,205 @@
-Return-Path: <devicetree+bounces-151464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA244A45E08
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 12:59:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08A7EA45E0A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 13:00:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC6A31689AC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:59:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F05A0168B88
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 12:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C51121504E;
-	Wed, 26 Feb 2025 11:59:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pM9ENW+c"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954D121858E;
+	Wed, 26 Feb 2025 12:00:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28F1C20FA9B
-	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 11:59:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C084217718;
+	Wed, 26 Feb 2025 12:00:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740571170; cv=none; b=prxGBkUxPLPNUL9G1FlbuCbnF/orBvHHP8eQGY55rgK+S2HTfpjG8zWtBeXf8XTxjpFSGUsYkS81L0jyqkgDReEAIo6BtZzyvmA+acinnnr1TEJNVfB35NM28hFMoGuPrTzuAa6ERG4xQ4qG6cP3mnjyaR1ODkItGEeafLD+FZQ=
+	t=1740571205; cv=none; b=EvHfmikrgSXo5w8kFTNstOIR5XaCa+ngZJu/d5jkvHGOBUIlebKgfkT1Z5q9GIywdgRY9fyNDMsghxqTCDBYZMDHbanpswFgv1smYF/NCAuWYhFJhEyf6vIBKi277UXg5t9FNR2j0HZUCr9uRBmhdsbh9tAmKgQrHgu4frM5ZuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740571170; c=relaxed/simple;
-	bh=6dTjEjzwITJxc+ijuTdiYBOJS1zgFDmOcRqRR+TbFlY=;
+	s=arc-20240116; t=1740571205; c=relaxed/simple;
+	bh=1rPLZ7Ny+tavg+eVzEq79uWoftJ4xcrjRHDV3jxiGGI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uMN6NcN+X1MI+DiZKGD384FoR0K4GSTddGeU9/hXyvuaAOp8SzXV9AnLPmpYlufOM1D1bLBK5lyT8WvTwcEkXgeEtepO+tMJ0LZoO7M8Ldto+9Nz/WUKUyGRP6AYyN1rF29pUoS0vZugjA5F3NNEdZ5zoK3u+EXomC7fBqT0GPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pM9ENW+c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12778C4CED6;
-	Wed, 26 Feb 2025 11:59:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740571169;
-	bh=6dTjEjzwITJxc+ijuTdiYBOJS1zgFDmOcRqRR+TbFlY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pM9ENW+cL91DrXo/Ih3BWT9GJ3gzprZipP8pZHlatkd2D7kjzxdzzsiRokFhRWOJJ
-	 J00EeMUzvYLQC4qAPMBqm8j9W25PLP/1SqsexGT3mEbiaOfwMXAMzIkHTJJm0gvUSq
-	 /uIQmhkK1GVD07qy+QO0L4yCuCnxycbN02kWmygl+iaJLzduk/YTKBeUZntPVxJrCg
-	 ezz1Kzcba48A7pcU6rcCQtLwVJd7wzEDe8U+CfxAUxS0MxbMrcUGxwcvRVB30nBEuq
-	 u5+bfQSYCrQYIw8VvNvhvoFQHpUqBrnmwN7UKutfHR3zzLGMLz8AY+jTgnek3iGKxT
-	 AMnpZw6VQFu8g==
-Date: Wed, 26 Feb 2025 11:59:25 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Zhang Yi <zhangyi@everest-semi.com>
-Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org, tiwai@suse.com,
-	amadeuszx.slawinski@linux.intel.com, yangxiaohua@everest-semi.com,
-	zhuning@everest-semi.com
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-Message-ID: <121dfc8e-56b1-4653-9490-4e70e5bbef6e@sirena.org.uk>
-References: <20250226104949.16303-1-zhangyi@everest-semi.com>
- <20250226104949.16303-3-zhangyi@everest-semi.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jo+x+Bgc50sOmDftw0iUezZlUGt1C2pHJTwsypnm0shftDgrS1Hba1vAN8zwZ6tVRmiM8qpaef1FhUdA1bokzmhk41UhVbmf4DMq4zyOP6ahkDP1Q8Q0c3iU+sUBvPs3Ab0KGKRPZWK/JoVHXdBrkKMPxsN1sMq+wdIIxFGtgKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.55.252])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 7197134133B;
+	Wed, 26 Feb 2025 12:00:01 +0000 (UTC)
+Date: Wed, 26 Feb 2025 11:59:57 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Alex Elder <elder@riscstar.com>, Yangyu Chen <cyy@cyyself.name>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Jesse Taube <mr.bossman075@gmail.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH v7 0/4] riscv: spacemit: add gpio support for K1 SoC
+Message-ID: <20250226115957-GYA45508@gentoo>
+References: <20250226-03-k1-gpio-v7-0-be489c4a609b@gentoo.org>
+ <20250226010108-GYA44567@gentoo>
+ <CACRpkdY7nzzu3-+FwpSYqmX+O559LoXHiqcvP2OxkhX+9f-3wg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7N6MJBqn3QPaTryX"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250226104949.16303-3-zhangyi@everest-semi.com>
-X-Cookie: I've been there.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdY7nzzu3-+FwpSYqmX+O559LoXHiqcvP2OxkhX+9f-3wg@mail.gmail.com>
 
+Hi Linus Walleij:
 
---7N6MJBqn3QPaTryX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 11:24 Wed 26 Feb     , Linus Walleij wrote:
+> On Wed, Feb 26, 2025 at 2:01 AM Yixun Lan <dlan@gentoo.org> wrote:
+> 
+> > Current this v7 version work great with request irq from gpio, like:
+> >         pin = devm_gpiod_get_optional(dev, "myirq", GPIOD_IN);
+> >         irq = gpiod_to_irq(pin);
+> >         devm_request_threaded_irq(dev, irq, ..)
+> >
+> > but have problem if request irq via of_irq_get(), something like this:
+> > DT part
+> >         mytst {
+> >                 ..
+> >                 interrupt-parent = <&gpio>;
+> >                 interrupts = <1 28 IRQ_TYPE_EDGE_RISING>;
+> >                 interrupt-names = "wakeup";
+> >         }
+> >
+> > In source code
+> >         irq = of_irq_get_byname(dev->of_node, "wakeup");
+> >
+> > I've made an attempt to patch gpiolib to support three cells "interrupts"
+> > syntax, but still fail, it always get last gpio irqchip of four, thus using
+> > the wrong pin (e.g: will always get 3 from gpiochips 0, 1, 2, 3)
+> 
+> Right, we need a proper patch to fix this.
+> 
+> Can you paste your patch so I can see if I can spot/fix
+> the problem?
+> 
+> I think the irq cell parser needs to call out to
+> of_node_instance_match() - or similar - as well.
+do you have any suggestion where to implement this similar function?
 
-On Wed, Feb 26, 2025 at 06:49:49PM +0800, Zhang Yi wrote:
+I actually miss this logic, the patch here only support parsing
+interrupts with 3 cells
 
-> +- everest,adc-slot:
-> +- everest,dac-slot:
+diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
+index 679ed764cb14..9aa88c3fa485 100644
+--- a/drivers/gpio/gpiolib.c
++++ b/drivers/gpio/gpiolib.c
+@@ -1454,6 +1454,10 @@ static int gpiochip_hierarchy_irq_domain_translate(struct irq_domain *d,
+ 		return irq_domain_translate_twocell(d, fwspec, hwirq, type);
+ 	}
+ 
++	if (is_of_node(fwspec->fwnode) && fwspec->param_count == 3) {
++		return irq_domain_translate_threecell(d, fwspec, hwirq, type);
++	}
++
+ 	/* This is for board files and others not using DT */
+ 	if (is_fwnode_irqchip(fwspec->fwnode)) {
+ 		int ret;
+@@ -1758,7 +1762,8 @@ static const struct irq_domain_ops gpiochip_domain_ops = {
+ 	.map	= gpiochip_irq_map,
+ 	.unmap	= gpiochip_irq_unmap,
+ 	/* Virtually all GPIO irqchips are twocell:ed */
+-	.xlate	= irq_domain_xlate_twocell,
++	/* FIXME: force switch to three cells */
++	.xlate	= irq_domain_xlate_threecell,
+ };
+ 
+ static struct irq_domain *gpiochip_simple_create_domain(struct gpio_chip *gc)
+diff --git a/include/linux/irqdomain.h b/include/linux/irqdomain.h
+index e432b6a12a32..69a9540ec253 100644
+--- a/include/linux/irqdomain.h
++++ b/include/linux/irqdomain.h
+@@ -568,10 +568,18 @@ int irq_domain_xlate_onecell(struct irq_domain *d, struct device_node *ctrlr,
+ int irq_domain_xlate_twocell(struct irq_domain *d, struct device_node *ctrlr,
+ 			const u32 *intspec, unsigned int intsize,
+ 			irq_hw_number_t *out_hwirq, unsigned int *out_type);
++int irq_domain_xlate_threecell(struct irq_domain *d, struct device_node *ctrlr,
++			const u32 *intspec, unsigned int intsize,
++			irq_hw_number_t *out_hwirq, unsigned int *out_type);
+ int irq_domain_xlate_onetwocell(struct irq_domain *d, struct device_node *ctrlr,
+ 			const u32 *intspec, unsigned int intsize,
+ 			irq_hw_number_t *out_hwirq, unsigned int *out_type);
+ 
++int irq_domain_translate_threecell(struct irq_domain *d,
++				 struct irq_fwspec *fwspec,
++				 unsigned long *out_hwirq,
++				 unsigned int *out_type);
++
+ int irq_domain_translate_twocell(struct irq_domain *d,
+ 				 struct irq_fwspec *fwspec,
+ 				 unsigned long *out_hwirq,
+diff --git a/kernel/irq/irqdomain.c b/kernel/irq/irqdomain.c
+index ec6d8e72d980..995e5e0ec2db 100644
+--- a/kernel/irq/irqdomain.c
++++ b/kernel/irq/irqdomain.c
+@@ -1132,6 +1132,17 @@ int irq_domain_xlate_twocell(struct irq_domain *d, struct device_node *ctrlr,
+ }
+ EXPORT_SYMBOL_GPL(irq_domain_xlate_twocell);
+ 
++int irq_domain_xlate_threecell(struct irq_domain *d, struct device_node *ctrlr,
++			const u32 *intspec, unsigned int intsize,
++			irq_hw_number_t *out_hwirq, unsigned int *out_type)
++{
++	struct irq_fwspec fwspec;
++
++	of_phandle_args_to_fwspec(ctrlr, intspec, intsize, &fwspec);
++	return irq_domain_translate_threecell(d, &fwspec, out_hwirq, out_type);
++}
++EXPORT_SYMBOL_GPL(irq_domain_xlate_threecell);
++
+ /**
+  * irq_domain_xlate_onetwocell() - Generic xlate for one or two cell bindings
+  * @d:		Interrupt domain involved in the translation
+@@ -1216,6 +1227,19 @@ int irq_domain_translate_twocell(struct irq_domain *d,
+ }
+ EXPORT_SYMBOL_GPL(irq_domain_translate_twocell);
+ 
++int irq_domain_translate_threecell(struct irq_domain *d,
++				 struct irq_fwspec *fwspec,
++				 unsigned long *out_hwirq,
++				 unsigned int *out_type)
++{
++	if (WARN_ON(fwspec->param_count < 3))
++		return -EINVAL;
++	*out_hwirq = fwspec->param[1];
++	*out_type = fwspec->param[2] & IRQ_TYPE_SENSE_MASK;
++	return 0;
++}
++EXPORT_SYMBOL_GPL(irq_domain_translate_threecell);
++
+ int irq_domain_alloc_descs(int virq, unsigned int cnt, irq_hw_number_t hwirq,
+ 			   int node, const struct irq_affinity_desc *affinity)
+ {
 
-We have the set_tdm_slot() operation for this.
-
-> +- everest,dmic-enabled
-> + The property selects the PDM interface of ES8389
-
-Is this a choice between PDM and something else?
-
---7N6MJBqn3QPaTryX
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAme/AhwACgkQJNaLcl1U
-h9DdWQf+ItjisOtDd+HmfnnPsYcEKDmvANin0VKHniMHv2dzCsPy6C99UcJO33Id
-HkPGtRvaAs95rY2TxfBH+d9uPoNfd+S5BLCd5qDLtVtTsLQsT7IgmFWJELfAVoZ/
-ezkQO7yOFgtUBhea/h5hB5sFN6T0YWAF0oGiP4YVkaQa93jQc4eosXZYx9M1fYdm
-p5VGL30R0MzZljtYT+CPT5vuin15sLnjwFwuXTGrchVzXPzSJJjsAqpEp+2mXS+i
-ORiHUxSrVGA95mBFvUVsWBf0IR6x0sq2kYTvQQY1MLDoJuF4V8pIYA5n8lGXMNIJ
-55/4pizovQjVPlNfwF4wSXh5053UfA==
-=0jmK
------END PGP SIGNATURE-----
-
---7N6MJBqn3QPaTryX--
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
