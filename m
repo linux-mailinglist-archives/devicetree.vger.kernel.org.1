@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-151717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C0B9A46BD7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 21:05:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1BBA46BD9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 21:05:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C72E33B17A6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 20:05:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21D2D16F29A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 20:05:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B24292571D3;
-	Wed, 26 Feb 2025 19:59:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B217D2627F9;
+	Wed, 26 Feb 2025 19:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="dYLm0z+k"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="hs0ihFLS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FAAB2571A9;
-	Wed, 26 Feb 2025 19:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94000257420
+	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 19:59:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740599995; cv=none; b=JXcDK/b484PGPROn0/eMYfuwN64Kw+f271Fl+5imsgGjbeAbvO1BtAxfjgGsF6h2+p9LvILhnFMTZqFv8QZ81QbUL/QSCeo/HRxoI+KksLX66pzPiPUthcVG93fAyytLC6R+hEDEmiu6Ckw6GKs6KAE7LgMrJKhxAALLr8j3uQk=
+	t=1740599997; cv=none; b=eljokfif5AX5Zc+cnTqPlkJWtVsdpeGBnVx0BrR9m7EbuRPcFLMWW8ZZse1xf9dLlhbrjiFh1U0UXkM7IULrYs8xydrW1dvwaGl6EPmsfUHlA8LzcxY8ga/cw1oK5EYi16vTonEUwfsUCNKk+Vfe1JJE/ZdwWmfZYFIw+ZKT9FY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740599995; c=relaxed/simple;
-	bh=maTR3ti8tvPnzk7Cgr35MKKCHPcKWcgGdel0PTrdSgU=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RJO5Jzrsd5RF8GKXidt8iIY6PZ93YGedj9yYNwwo8lNp//1TgkAtj13CGYSWBAhfK255zVxwbnDE5awVWpG5wMIvUlxVwQZ3GkoT8MCPQMJijeOZNG5jarrtG0CP77VUJyqeabsuU/xcX/cAelkVcy7O9b6x06Glu9EhzGYrbdY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=dYLm0z+k; arc=none smtp.client-ip=178.60.130.6
+	s=arc-20240116; t=1740599997; c=relaxed/simple;
+	bh=UZZEmnmLRiLVAt7CCJZw0AzbMS+4b1g6yiItvZuf0ME=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=m+X/cus6XdnNzDHMtu2G/2Q5jqpArK0oBiXJqAWRf1p8vyAIyMYrWsZ0DJ7WytZ8DWtRDKIOeLrnvVxadSFAlZPhoSbgxVHPoF0RXwkQo+QBvAAwHBVU3bkKmIod4UN5IP7Tv+KVdBi4GzUQQd6vTHIGH3IW//6PtJfQzb1cRTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=hs0ihFLS; arc=none smtp.client-ip=178.60.130.6
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
-	s=20170329; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=Mpwa6/uBXoaoc6fsdsrIQ+p/83zvCQFS2f88erlQmg4=; b=dYLm0z+k/u+7NgY7O3kmn9/3Us
-	/W1Gzpev5TE2VP8xAi66OVCgdPDwwiQJDskJbt4lqkCh0eTFJInKsNwwbzu/1qohXL5ltPinZlMKj
-	VF/FwAc0fdYYOw6tvKu8eboCKLl1VGihVe+nbbtB54DtwqSX0R6aeLw+X5MA+r35FHq+qTOS+X5sX
-	SRK6M0uoOXBfh7wmFU6EHKQr297znCVWm5diVJlVBcFic7U2US4XCNHzL2m1UAPhIdrHYEsU6tXQF
-	F1+/62M9c1cOQ8e9e3Z9ocLTpGjjq8j/Qq3o5l30oAGP8rFZhQashDP3S6G+0yDjwk4am+BAE3ekW
-	XbeKOHHw==;
+	s=20170329; h=Cc:To:In-Reply-To:References:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=0nKWja8y7Glbsl1fYAv1qi5WQuD/NLSr3JYfajiPXt8=; b=hs0ihFLSM5j0sDz95O9m01ijKg
+	s4oeN2j+nPmjaoZTuoUibprGH3gmeUQcQHw/fhhCq1+o9Efs77YfITVHrWZH35G6W1BnMsdgv1Cud
+	4YGOu9/Q9HbiBe/7OqmA1KPu23LF7b12vF9gQFD5ur0Va3rgC3xuFRmHc/oVJj1V4/fJDy+fTGa+3
+	/QCrp6tA21s9dGiq4wrf21XcC4I36oFp68AowW95RKmdc30R3Sce0uctkbK1bx2zZybHbDNVWj0Vw
+	GuvyTNh5XXK/wMfaD4iIpczm+GQconrkARz6IWc7H5KEH0wOAdnTBqggzTNvMP0j0fKANNaLDQTaC
+	Q2VK1A2Q==;
 Received: from [187.36.213.55] (helo=1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa)
 	by fanzine2.igalia.com with esmtpsa 
 	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
-	id 1tnNZ0-0019lA-Jt; Wed, 26 Feb 2025 20:59:32 +0100
+	id 1tnNZC-0019lA-CW; Wed, 26 Feb 2025 20:59:44 +0100
 From: =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-Subject: [PATCH 0/6] drm/v3d: Fix GPU reset issues on the Raspberry Pi 5
-Date: Wed, 26 Feb 2025 16:58:58 -0300
-Message-Id: <20250226-v3d-gpu-reset-fixes-v1-0-83a969fdd9c1@igalia.com>
+Date: Wed, 26 Feb 2025 16:59:02 -0300
+Subject: [PATCH 4/6] dt-bindings: gpu: v3d: Add SMS to the registers' list
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,68 +58,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAINyv2cC/x3LMQqAMAxA0atIZgNtVASvIg7SRs2ipdEilN7d4
- vj4/AzKUVhhajJETqJynRW2bcAd67kziq8GMjQYoh5T53EPD0ZWvnGTlxXJk93caEZrPdQzRP5
- DHeellA9ZJWboZQAAAA==
-X-Change-ID: 20250224-v3d-gpu-reset-fixes-2d21fc70711d
+Message-Id: <20250226-v3d-gpu-reset-fixes-v1-4-83a969fdd9c1@igalia.com>
+References: <20250226-v3d-gpu-reset-fixes-v1-0-83a969fdd9c1@igalia.com>
+In-Reply-To: <20250226-v3d-gpu-reset-fixes-v1-0-83a969fdd9c1@igalia.com>
 To: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>, 
  Jose Maria Casanova Crespo <jmcasanova@igalia.com>
 Cc: dri-devel@lists.freedesktop.org, kernel-dev@igalia.com, 
- stable@vger.kernel.org, =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Nicolas Saenz Julienne <nsaenz@kernel.org>, devicetree@vger.kernel.org
+ Nicolas Saenz Julienne <nsaenz@kernel.org>, devicetree@vger.kernel.org, 
+ =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1775; i=mcanal@igalia.com;
- h=from:subject:message-id; bh=maTR3ti8tvPnzk7Cgr35MKKCHPcKWcgGdel0PTrdSgU=;
- b=owEBbQGS/pANAwAIAT/zDop2iPqqAcsmYgBnv3KfjQe2bjSPQxhTZuEzwp81ZDAzKQENWg2nx
- hKZm+uac9aJATMEAAEIAB0WIQT45F19ARZ3Bymmd9E/8w6Kdoj6qgUCZ79ynwAKCRA/8w6Kdoj6
- quyUCADWpDpWKUIno8zufuNqCvo4qBqsEN1B1NXlbDLjG2Uto2HMMOp5DgL854AtHG/1QXCQ9cF
- OjT5VEZzx68M0qyGJr7xBJ819dEfpMSsz2dXMiriiAViQ+xV0XuDk//6hVJgo/DDCa80tE0Q4+j
- C63GhFjtsUmrnqTf0ROzZsHPDJ7epGMuR+u0RBbSlKa4J5AS81973fa5/9oYVm/yZajnbV1Q/9x
- KQYYX80OPdWTCYWea2k2OvbnN+/g5z0cN0PKbozag8L2wIdTB+wSKGCptbTzQfMf8u3TVgd0bN9
- 7P/YdM946JCZiVA1JE+yZ7tXWoLhDrLjm3GVYkt+aeoGZIC5
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1545; i=mcanal@igalia.com;
+ h=from:subject:message-id; bh=UZZEmnmLRiLVAt7CCJZw0AzbMS+4b1g6yiItvZuf0ME=;
+ b=owGbwMvMwMFo/5mvq6zj1yrG02pJDOn7ixaIl+5qWbrSMem9evP3vNrF/y4LsuyMi2h5OHdj5
+ SHXAvuiTkZjFgZGDgZZMUWWH09iaxnFytk1l5VfhBnEygQyhYGLUwAmIjuTg6HBbP8XzcDtkRdf
+ RK3I17329ddnwZjSc+k+/xX8L3/2tNXpfnn5e5OHrY/lZuNymechgpEWormfKi1ibAWcNl++Gf9
+ 0zY+t11449uoEaH7itspa88hZTHimUZTvqltnmm6uCvKp6W5l3WNV7l8UsVVcRm/Bv7qie43l6W
+ aprgmn9pgxf6zKNkmPzctYxHntstM6zlc9T3ltTF8w3L08ffpdZ421QucLDir9X3Lm5KIzKowzu
+ r+mTFLsVb4Wf+vC1qCUeVtnxMwUW88dXr7QW8m5grdSpEj8X/n8J62uNnKPZpzff+/Bd6kd/lcv
+ vIsPUbtRFeDz4IlhCV9Uk5VbwfSg4mCBskQlS0lG82tTAQ==
 X-Developer-Key: i=mcanal@igalia.com; a=openpgp;
  fpr=F8E45D7D0116770729A677D13FF30E8A7688FAAA
 
-This series addresses GPU reset issues reported in [1], where running a
-long compute job would trigger repeated GPU resets, leading to a UI
-freeze.
+V3D 7.1 exposes a new register block, called V3D_SMS. As BCM2712 has a
+V3D 7.1 core, add a new register item to the list. Similar to the GCA
+and bridge register, SMS is optional and should only be added for V3D
+7.1 variants.
 
-Patches #1 and #2 prevent the same faulty job from being resubmitted in a
-loop, mitigating the first cause of the issue.
-
-However, the issue isn't entirely solved. Even with only a single GPU
-reset, the UI still freezes on the Raspberry Pi 5, indicating a GPU hang.
-Patches #3 to #5 address this by properly configuring the V3D_SMS
-registers, which are required for power management and resets in V3D 7.1.
-
-Patch #6 updates the DT maintainership, replacing Emma with the current
-v3d driver maintainer.
-
-[1] https://github.com/raspberrypi/linux/issues/6660
-
-Best Regards,
-- Maíra
-
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Maíra Canal <mcanal@igalia.com>
 ---
-Maíra Canal (6):
-      drm/v3d: Don't run jobs that have errors flagged in its fence
-      drm/v3d: Set job pointer to NULL when the job's fence has an error
-      drm/v3d: Associate a V3D tech revision to all supported devices
-      dt-bindings: gpu: v3d: Add SMS to the registers' list
-      drm/v3d: Use V3D_SMS registers for power on/off and reset on V3D 7.x
-      dt-bindings: gpu: Add V3D driver maintainer as DT maintainer
+ Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
- .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      |  8 +--
- drivers/gpu/drm/v3d/v3d_drv.c                      | 58 ++++++++++++++++++++--
- drivers/gpu/drm/v3d/v3d_drv.h                      | 18 +++++++
- drivers/gpu/drm/v3d/v3d_gem.c                      | 17 +++++++
- drivers/gpu/drm/v3d/v3d_regs.h                     | 26 ++++++++++
- drivers/gpu/drm/v3d/v3d_sched.c                    | 23 +++++++--
- 6 files changed, 140 insertions(+), 10 deletions(-)
----
-base-commit: 099b79f94366f3110783301e20d8136d762247f8
-change-id: 20250224-v3d-gpu-reset-fixes-2d21fc70711d
+diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+index dc078ceeca9ac3447ba54a7c8830821f0b2a7f9f..8a3d3fc6065d7756da141bda4dc522f63be5e9a1 100644
+--- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
++++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+@@ -27,14 +27,16 @@ properties:
+       - description: core0 register (required)
+       - description: GCA cache controller register (if GCA controller present)
+       - description: bridge register (if no external reset controller)
++      - description: SMS register (if SMS controller present)
+     minItems: 2
+ 
+   reg-names:
+     items:
+       - const: hub
+       - const: core0
+-      - enum: [ bridge, gca ]
+-      - enum: [ bridge, gca ]
++      - enum: [ bridge, gca, sms ]
++      - enum: [ bridge, gca, sms ]
++      - enum: [ bridge, gca, sms ]
+     minItems: 2
+ 
+   interrupts:
+
+-- 
+Git-154)
 
 
