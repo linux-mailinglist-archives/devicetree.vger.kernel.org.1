@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-151360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87901A45893
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 09:40:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7527AA458AA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 09:44:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A4FA16AE22
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:40:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A72F3AA5F4
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:44:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C8E41E1E09;
-	Wed, 26 Feb 2025 08:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E42BC1E1DF3;
+	Wed, 26 Feb 2025 08:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JNZVLf/J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fuqxrLdK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D81841E1DFA;
-	Wed, 26 Feb 2025 08:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3004258CEF;
+	Wed, 26 Feb 2025 08:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740559212; cv=none; b=m0LqdXXvThgBr4/9gQxCEAyQIF6afoXyjUFtDhAuYM/3po07PZL3H/p+IOOVVr7+nJ8FTT/jiZGBd2Umz20f/bt+GxNqHRrX0SYj/AOP4kNQVu8FEq8+0A0VNCqg8Q6tZt9wQEbc90FjrX1muAERfub8f8CWZN0pUp4VYSmmPK0=
+	t=1740559468; cv=none; b=N6zPxA+DC/Q7BB9lVgnDC5c36xQFzynu2bI9jT7iJXLrbxxWyvcR8UvVKUnqzzVCe0abLHjuAZhC+KrnM14s8NcsXgLNDDYJHQwBcGjFC2gIb5V60qCHML+hx0ErmbH6sKp40OYkfa45T7KHKaPdgFKT1GMo98IWcuaAskVSssg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740559212; c=relaxed/simple;
-	bh=S+u82oGXKHKqK6UVbq7Xud0c+o6+TCL3UqFRIOajgSQ=;
+	s=arc-20240116; t=1740559468; c=relaxed/simple;
+	bh=3wP4obdMHbReZAuQG4rE+tt9gOkeYL5JVQxur7iUn6M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NTXu2pcPvyt7DMNHmMMYZJiA95R484y8Nq33DNOIl1AnedxH8hKsNdNE2hw2POOc2+eHrNOkHjPf1fEjTwHp0ZtGNs1+N+KPIK5V9922U8jwHCa8cZYnddkqly9/QkkLxMaPJb4yADiVIV9PmF0Tw1Ywx+gNg8JhLccBlDn1sDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JNZVLf/J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC53BC4CEE2;
-	Wed, 26 Feb 2025 08:40:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Ckk3IE8jm3cjTJl50ipbbfvWKcJLLhHyaVUZv0Xe6wgvCyEXuLNOTrn+uknzoYlldW7p1TI+HcAATOuB5CMdxB6Fv6/H1hQLXpvRkIlLhlAKaYEMAhoR4bYB56b3aZShuipeAdq4KMYk7nlF9SGC6qDz8PqsgchQneYZ4Tr/33E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fuqxrLdK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23902C4CEE2;
+	Wed, 26 Feb 2025 08:44:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740559212;
-	bh=S+u82oGXKHKqK6UVbq7Xud0c+o6+TCL3UqFRIOajgSQ=;
+	s=k20201202; t=1740559468;
+	bh=3wP4obdMHbReZAuQG4rE+tt9gOkeYL5JVQxur7iUn6M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JNZVLf/JuTwbwct/+vjWBhu1FR28Tl441ySbnnr6d31aFnvR1Q8YM2MoWvbnOYGX4
-	 kYkvjkCvcOzyJ/LJoeTUmglttOfczXiVLvb5AJGRiD4fkPzteuKd5mmOVFpLBRgrmy
-	 NUVLxSwp/H0Po7HoOk6mZkdwyisCgoSRunvw92WI5g+8J4ql/5Mo5nGJnAbHBc/Csb
-	 gHI70MY3BeRTaL7lhAJSPaTk7KGACztPoPCLe5+8Y80+3wder3xzTNpNmJk2COzMjg
-	 DnQFo9B8Nmw5WS7snpUFiCv5QQWmXGaC3ejjB9ZtbWQgBchmhmIp6X3JWtWob8fKgl
-	 e3JccHtzajxZQ==
-Message-ID: <d9556611-cfe7-44fa-8965-bc2b0f870845@kernel.org>
-Date: Wed, 26 Feb 2025 09:40:06 +0100
+	b=fuqxrLdK47HR05FUiuK7frydoAz08nia+Yy/fdAZsSrZgNBbW8pgEP23Kx8TIFi84
+	 0kOFJIN1Yi+zExUmdcXKwBDDHO8q87DdzlsH1GtvVE43VAEV1ftGjhDv/HfLIzkkxp
+	 I+yYosMHFOdCw0CjvKI0Gr6o3lOqpgOPwFMBFUIe8+/Ff0H3oPCIgmybDl1qD6bpqV
+	 pwfBVuEQ+RDMOw9NvpdCWxMsW+Cd2j45sk5kPEL7lvx7QKSs+LFjq8S9vvpwybHdC8
+	 OkFNlmuyb/WF/NcMMxn7Ec8v4gOPrmysw6wz/HlnEnkdFUHVLaXacaw1o0SECuxerN
+	 Qfs0qmB4XewIQ==
+Message-ID: <7763884d-d259-4e52-aac8-73bca5b2ed61@kernel.org>
+Date: Wed, 26 Feb 2025 09:44:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/6] dt-bindings: arm: add CIX P1 (SKY1) SoC
-To: Peter Chen <peter.chen@cixtech.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
- marcin@juszkiewicz.com.pl, Fugang Duan <fugang.duan@cixtech.com>
-References: <20250226012136.854614-1-peter.chen@cixtech.com>
- <20250226012136.854614-3-peter.chen@cixtech.com>
- <f89817fe-22af-460e-9f5c-a3347eba1892@kernel.org>
- <Z77MHGhUF6pPwLww@nchen-desktop>
+Subject: Re: [PATCH v10 1/6] MAINTAINERS: Add entry for Synopsys DesignWare
+ HDMI RX Driver
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Shreeya Patel <shreeya.patel@collabora.com>, Heiko Stuebner
+ <heiko@sntech.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Hans Verkuil <hverkuil@xs4all.nl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: kernel@collabora.com, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Tim Surber <me@timsurber.de>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+References: <20250225183058.607047-1-dmitry.osipenko@collabora.com>
+ <20250225183058.607047-2-dmitry.osipenko@collabora.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,59 +111,40 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Z77MHGhUF6pPwLww@nchen-desktop>
+In-Reply-To: <20250225183058.607047-2-dmitry.osipenko@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/02/2025 09:09, Peter Chen wrote:
-> On 25-02-26 08:02:12, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL
->>
->> On 26/02/2025 02:21, Peter Chen wrote:
->>> Add device tree bindings for CIX P1 (Internal name sky1) Arm SoC,
->>> it consists several SoC models like CP8180, CD8180, etc.
->>>
->>> Acked-by: Fugang Duan <fugang.duan@cixtech.com>
->>> Signed-off-by: Peter Chen <peter.chen@cixtech.com>
->>> ---
->>
->> <form letter>
->> This is a friendly reminder during the review process.
->>
->> It looks like you received a tag and forgot to add it.
->>
->> If you do not know the process, here is a short explanation:
->> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
->> of patchset, under or above your Signed-off-by tag, unless patch changed
->> significantly (e.g. new properties added to the DT bindings). Tag is
->> "received", when provided in a message replied to you on the mailing
->> list. Tools like b4 can help here. However, there's no need to repost
->> patches *only* to add the tags. The upstream maintainer will do that for
->> tags received on the version they apply.
->>
->> Please read:
->> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
->>
->> If a tag was not added on purpose, please state why and what changed.
->> </form letter>
->>
+On 25/02/2025 19:30, Dmitry Osipenko wrote:
+> From: Shreeya Patel <shreeya.patel@collabora.com>
 > 
-> I have checked the review-process again at:
-> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=935897
-
-This does not matter - that's not a patchwork anyone uses...
-
-> It seems no one gives any Reviewed-by or Acked-by Tag.
-
-You were directly addressed! So you got email and what did you do with it?
-
-And lists received it:
-https://lore.kernel.org/all/ac6c4a8b-a6bd-44a9-993b-3b743a172dcc@kernel.org/
-
+> Add an entry for Synopsys DesignWare HDMI Receiver Controller
+> Driver.
 > 
-> If I am missing something, please correct me.
+> Reviewed-by: Christopher Obbard <chris.obbard@collabora.com>
+> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> ---
+>  MAINTAINERS | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2286200b355b..1bb6a54e41c6 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22952,6 +22952,14 @@ F:	drivers/net/pcs/pcs-xpcs.c
+>  F:	drivers/net/pcs/pcs-xpcs.h
+>  F:	include/linux/pcs/pcs-xpcs.h
+>  
+> +SYNOPSYS DESIGNWARE HDMI RX CONTROLLER DRIVER
+> +M:	Shreeya Patel <shreeya.patel@collabora.com>
 
+
+You are sending someone else's patches, which sometimes indicate the
+owner moved on. Nothing in cover letter explains that here so we can
+keep guessing. Anyway if that's the case, this does not look up to date
+anymore, so this either needs fixing or clarifications in at least cover
+letter.
 
 Best regards,
 Krzysztof
