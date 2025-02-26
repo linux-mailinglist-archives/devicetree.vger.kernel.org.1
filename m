@@ -1,210 +1,128 @@
-Return-Path: <devicetree+bounces-151350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1A14A457C5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 09:11:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 467B5A457FC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 09:20:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA7387A96D4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:10:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A9743A8F57
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:20:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7102C1E1E17;
-	Wed, 26 Feb 2025 08:11:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6272718DB3B;
+	Wed, 26 Feb 2025 08:20:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a36gQJNW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YiIm1eue"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 633F21D63C6;
-	Wed, 26 Feb 2025 08:11:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F70446426;
+	Wed, 26 Feb 2025 08:20:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740557475; cv=none; b=aceE5HFJNlq0tNF6M7kYau5T2Nmski8ym3pJ8Me723y3ptdOIWv/8BluhJnemJ41jYrcUjThuQp/Y8WN2hUyadcvT4ahX6+jkfmgDZRchoqth257kYwWVNU6ll16W+s6fo01mo6AeaikpevcgRpHGo3+143z2IgcnKTv1inKCLI=
+	t=1740558044; cv=none; b=RI8JthibhhUA+JwPX1swNcXd0a4Rzq2t+p94St7pqS+v3t7u87AvVKztjLKwcVSWBk09AEDd6+slh3x+70uG/SCrX2RnJ2vEh9kdZfvsHwTkVvbnsRSZpg5QdgunD2430Y9Xqtpy5Lv8QwWS2eKLdB5wMcTZ/HAhItLsRUYycN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740557475; c=relaxed/simple;
-	bh=Sz9a6kcpyJGNPsAKUQctkf5iVMAC/ysPUgW1dtPopmA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bJmCWFO+vcToXsUlMO992x55HP8mah8iKLu3oR9/JjcDfkY0BqLiOaFhZKBPFysvaxbDB08S5Um4KfGiRq5UwymD7q5ZM7Y2Ez+RtjQMNCkZvoYp9N44fAR0OMMnzzmT3XgQ4Q3MmHvOC7ecA4Rxnl5gHZ2/LtRmOAYfMihhPSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a36gQJNW; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2211cd4463cso131519035ad.2;
-        Wed, 26 Feb 2025 00:11:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740557472; x=1741162272; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eEPJ+Nmo8Dho5bWqg2k2GuvWVflNwp8MLzmuWoXwOVs=;
-        b=a36gQJNW58i4uwllrfSz7RHF6hM4fGdkuYjc1k9yKnpVtsp6uU5zrtkQbGVELNCx5Y
-         iG7MTXiG8PPpzQMi1OXMTbBjTvXlt7Z/M6Y49QEAVll/+/N8+TyN5ZXilOne66SCoEYg
-         YWNXmRKar6fO+jEQsRE/xHPPI3u/rbZyUrONclPepT5SYYPxxqorSlTrp3ppGWa7CNoF
-         NeGDmqtdUbiiz85dY103XdHAgyR1C1sPFAMq6OGfZUvUDVO/Edntpd1YXRVS4boUgZIn
-         9NFoPrUkwwcpCo3ryeIvt9sQVOSLMBtTPw9sub2hZ7kkZYxp0V290YlJxfx7l/Gd4GuK
-         F1CA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740557472; x=1741162272;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eEPJ+Nmo8Dho5bWqg2k2GuvWVflNwp8MLzmuWoXwOVs=;
-        b=LXEc7PFZfaJutgl55UFeWb/q0Iyt7ZkAGGvAyvvFsjiC6Nf67J5dt9TCbHQ83Ykv+b
-         HeZHKQpGNsIE1sVIMvhp4O4xZe2yLAxojtstB88VlBPWPY1TEYVwbrOREGw+vAbUyWd9
-         a2Zmm/fAV3pLIs7xBj0gM8/NHdJj6PUii4fdEpHe23pp9hnwxDSsA9cJSHBAd0gX3eCO
-         +uD11MTLXL4gQm9+TO5KE8gVsmyLMG3Sl7a1HPZXUDMGxDfK/i7V/7ZT+ZlmEcSU2AGX
-         JdaZUua4+tKM3jgYxg1N35e/sZ+RI5LbGIkmUUZdei8TG1GwT25ZFRNcWEa1xKtGcm9Q
-         RrwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWifczn9waaxGUvQuC6hon4SHP90QUok+GFDNc4DWMbbnMH7LPijt1jc8iEY1EZZEkpP2YTxd3V/6xlQdmG@vger.kernel.org, AJvYcCXYHUf/9tmcwFf0vZVuMQjHSy8S9fqVflvt0YOP9HHMaFRLS+A8iBRF/ZF83Z2XXtIw/zP7jWxfoTY+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTftLAIOn9a4Ll3v6uvporSek5Ij5ZiadkSUq9cGObBKFlyGHL
-	bSFEIS0lWyBprvuRacvqrEo4Pa2HjZ1AvcJZx7UliBc1A3cInkNAcah9pS0Yiqo=
-X-Gm-Gg: ASbGncu3Zp97hBIfjd1drhNuXe7rrVa4LRJL+UUHzmeRAMfWf3qoZQ+c6T1RrOuYGVX
-	Lfpg9slEdEHseAY/TeQCe6eCyGWEWeDI45OwkQvUcaXMH49sb5c5ge2YJLdNkumYpA1cwSoV2wD
-	d72niQwl9pvfK44yPz1EcRkk7jXb14Ug5W6Wd7U0Pw9gWTgGLARreCDT2OtULB0fb75GG8MF6M+
-	tHzoHyhvE+SsIB9W9y2s0Es0D6WrAyJ7nUdMg9eql39ZN/FoL2wzulzNnG2KsHtOoGVVR0fQhGm
-	wMCaiGDB1cYjzVlfSUWRu/CUgjQ=
-X-Google-Smtp-Source: AGHT+IFXmvOR05agO7wnP/tG8AN8+MqoxIr/BEqL0thenXK6y8DKV5KdnXd11IlrWaMH+5iCWZZTOw==
-X-Received: by 2002:a17:902:dad0:b0:220:fe51:1aab with SMTP id d9443c01a7336-22307e675camr111271795ad.38.1740557472565;
-        Wed, 26 Feb 2025 00:11:12 -0800 (PST)
-Received: from [127.0.1.1] ([2601:644:8501:1640:3de5:6339:3d24:b93b])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2231fa8a570sm10641625ad.58.2025.02.26.00.11.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Feb 2025 00:11:12 -0800 (PST)
-From: Rudraksha Gupta <guptarud@gmail.com>
-Date: Wed, 26 Feb 2025 00:11:09 -0800
-Subject: [PATCH v2 2/2] ARM: dts: qcom: msm8960: Add tsens
+	s=arc-20240116; t=1740558044; c=relaxed/simple;
+	bh=4Pe8SdHpMNion2K2A1gVO1ETNWDlPyE6kIyEGg2L6M0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IVRs7/qZXefsjpr2k9YtZyujNmZAguigpQIDTfQ/IzOP690P/V4lsligxIekh/RvHAyTH1CV+h7DttsdvWLPpInDLKe8+085XsZbeYWYI2HwHUMTvvzN+MzQIOY74lVgC0/LQSeX1dKoLSK02KBGMdJPq72mbhELfO5f1VDz6n0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YiIm1eue; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3B91C4CED6;
+	Wed, 26 Feb 2025 08:20:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740558043;
+	bh=4Pe8SdHpMNion2K2A1gVO1ETNWDlPyE6kIyEGg2L6M0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YiIm1eueQybrvNRsuNh8H8qRFgt8iHMrY1eUb0Gn83kdwU35X8kuTonpjSy3fIA93
+	 oVOzTsR5oNN5Kniu/v3KeNVmg1Bh4DJ64S/GhHIViumtsLjV2PIYdDV0yBNAelZkKw
+	 JnJst47qH/M7Sm7+ZtORetxKK+ptFMd1SiPLeZB1tI29tiZvjEtCYKyvVyxJrPvGbS
+	 l5AsyBJ9PLYeqnrBNXZOFc1RWntYlfS2vCFNy6YGex2DNVYBg1ovbmPqINPZ3hLqqI
+	 10RxbDM5YgxNit/zXBSQqJ3ghCbCIh6opv8NXkhfteFs5wDQDLgoymGvuuP98ISZPl
+	 PNA/bEBabI9dw==
+Date: Wed, 26 Feb 2025 09:20:40 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+	Jonathan Corbet <corbet@lwn.net>, Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: pmbus: add lt3074
+Message-ID: <20250226-gentle-spicy-jacamar-2dd36a@krzk-bin>
+References: <20250225-upstream-lt3074-v2-0-18ad10ba542e@analog.com>
+ <20250225-upstream-lt3074-v2-1-18ad10ba542e@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250226-expressatt-tsens-v2-2-7a4ce3a91f27@gmail.com>
-References: <20250226-expressatt-tsens-v2-0-7a4ce3a91f27@gmail.com>
-In-Reply-To: <20250226-expressatt-tsens-v2-0-7a4ce3a91f27@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Rudraksha Gupta <guptarud@gmail.com>, 
- wctrl <wctrl@proton.me>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1740557468; l=2628;
- i=guptarud@gmail.com; s=20250208; h=from:subject:message-id;
- bh=Sz9a6kcpyJGNPsAKUQctkf5iVMAC/ysPUgW1dtPopmA=;
- b=F2o+qlITAXyn11CTd9zgXc+JSgv8SuSE7lmaLTgts9sMC96zLJg1tAlIHkxKM4m0OSIucr1vn
- eB6t4oPlRDjApzH6RJ+/7phUj69m1SgCAMEr9hVxq4Juhuoa48Su6pS
-X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
- pk=5lJNaiR/Bu7edToWFLriO5zXOrVqSQWrBKbAKwuEw04=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250225-upstream-lt3074-v2-1-18ad10ba542e@analog.com>
 
-Copy tsens node from ap8064 and adjust some values
+On Tue, Feb 25, 2025 at 09:01:13PM +0800, Cedric Encarnacion wrote:
+> Add Analog Devices LT3074 Ultralow Noise, High PSRR Dropout Linear
+> Regulator.
+> 
+> Signed-off-by: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+> ---
+>  .../bindings/hwmon/pmbus/adi,lt3074.yaml           | 64 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  7 +++
+>  2 files changed, 71 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/adi,lt3074.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/adi,lt3074.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..714426fd655a8daa96e15e1f789743f36001ac7a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/adi,lt3074.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/pmbus/adi,lt3074.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices LT3074 voltage regulator
+> +
+> +maintainers:
+> +  - Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+> +
+> +description: |
+> +  The LT3074 is a low voltage, ultra-low noise and ultra-fast transient
+> +  response linear regulator. It allows telemetry for input/output voltage,
+> +  output current and temperature through the PMBus serial interface.
+> +
+> +  Datasheet:
+> +    https://www.analog.com/en/products/lt3074.html
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,lt3074
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  regulators:
+> +    type: object
+> +    description: |
+> +      list of regulators provided by this controller.
 
-Co-developed-by: wctrl <wctrl@proton.me>
-Signed-off-by: wctrl <wctrl@proton.me>
-Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
----
- arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 59 +++++++++++++++++++++++++++++++-
- 1 file changed, 58 insertions(+), 1 deletion(-)
+You have only one regulator, so drop the "regulators". vout could be
+here, but since you do not have any other resources, I doubt it stands
+on its own either. This is even visible in your DTS - you named the
+device as regulator, so logically this is the regulator. Regulator does
+not have regulators (otherwise they could also have regulators... so
+triple regulator).
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-index 865fe7cc39511d7cb9ec5c4b12100404f77e2989..155d6aba61e390dabca6b72160543b5aa134b219 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-@@ -52,6 +52,36 @@ memory@80000000 {
- 		reg = <0x80000000 0>;
- 	};
- 
-+	thermal-zones {
-+		cpu0-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&tsens 0>;
-+
-+			trips {
-+				cpu_alert0: trip0 {
-+					temperature = <60000>;
-+					hysteresis = <10000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		cpu1-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&tsens 1>;
-+
-+			trips {
-+				cpu_alert1: trip0 {
-+					temperature = <60000>;
-+					hysteresis = <10000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+	};
-+
- 	cpu-pmu {
- 		compatible = "qcom,krait-pmu";
- 		interrupts = <GIC_PPI 10 0x304>;
-@@ -115,6 +145,21 @@ timer@200a000 {
- 			cpu-offset = <0x80000>;
- 		};
- 
-+		qfprom: efuse@700000 {
-+			compatible = "qcom,msm8960-qfprom", "qcom,qfprom";
-+			reg = <0x00700000 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			tsens_calib: calib@404 {
-+				reg = <0x404 0x10>;
-+			};
-+
-+			tsens_backup: backup-calib@414 {
-+				reg = <0x414 0x10>;
-+			};
-+		};
-+
- 		msmgpio: pinctrl@800000 {
- 			compatible = "qcom,msm8960-pinctrl";
- 			gpio-controller;
-@@ -127,7 +172,7 @@ msmgpio: pinctrl@800000 {
- 		};
- 
- 		gcc: clock-controller@900000 {
--			compatible = "qcom,gcc-msm8960";
-+			compatible = "qcom,gcc-msm8960", "syscon";
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 			reg = <0x900000 0x4000>;
-@@ -135,6 +180,18 @@ gcc: clock-controller@900000 {
- 				 <&pxo_board>,
- 				 <&lcc PLL4>;
- 			clock-names = "cxo", "pxo", "pll4";
-+
-+			tsens: thermal-sensor {
-+				compatible = "qcom,msm8960-tsens";
-+
-+				nvmem-cells = <&tsens_calib>, <&tsens_backup>;
-+				nvmem-cell-names = "calib", "calib_backup";
-+				interrupts = <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-names = "uplow";
-+
-+				#qcom,sensors = <5>;
-+				#thermal-sensor-cells = <1>;
-+			};
- 		};
- 
- 		lcc: clock-controller@28000000 {
+hwmon code might need some changes, but that's not really relevant for
+proper hardware description.
 
--- 
-2.45.2
+Best regards,
+Krzysztof
 
 
