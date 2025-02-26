@@ -1,150 +1,206 @@
-Return-Path: <devicetree+bounces-151562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 244DDA46364
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:46:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E21E0A46366
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:46:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F2AD3B15CD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 14:45:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB2187A766B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 14:45:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061A9222564;
-	Wed, 26 Feb 2025 14:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997E42236ED;
+	Wed, 26 Feb 2025 14:45:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L7TO8yXx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A580C221F39;
-	Wed, 26 Feb 2025 14:45:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690F2223339;
+	Wed, 26 Feb 2025 14:45:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740581149; cv=none; b=b2fX2263noL+fgFforXXfO2N91DluUuH27jEP+k4y/Ets6WR+Sez8Ed4Hh3L3tJCax0FIhnjVrVJJgUwCc++xdXzGC41qpiLAgWZeONmCu5MPN8PvTa2jbTJBmv7qxflwFImWw6ICBwJ9aWN9AjGtnUErSHj1uhOVipwN+78+w8=
+	t=1740581151; cv=none; b=QUeGXHd9COGZ3BnT/SNaB91s9wcDpSnp24zceqedgC1YJElCMy05xNXOid+GS7dRt+Dd6FCbTrdv+51IP8lKKVn1Rm/r74nTKfsSOQdnexOJy8RX7bDA2sablF8XRCqsGVgqYe5jaYWh4vF9758r+fDf/q4vyxIytSxDOfdYl2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740581149; c=relaxed/simple;
-	bh=LxBMdFdrIIQDDKhcw6UNfBuBHs0egtelsJ0bnzd0wiY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rJ1Ay4xJ2e3Odw+Qv6FFtHMIZIBnErWonn5q18eDEdu8R4W+lLeVESeq3bzUCV2ZVSnGMXXcWk3hM/RZcLH0XcP6yHUApSaotGymHDREak4DHObjJgyWC5bQ6tfZxqjtmfk4iWLEZVdsH5JGW//b8QUv6R8LIPAo6uzn4T51AI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: z3U4+FsZRlec3dksTmIIvQ==
-X-CSE-MsgGUID: Lfp83g9jT46zlTMqXdJnxA==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 26 Feb 2025 23:45:47 +0900
-Received: from localhost.localdomain (unknown [10.226.92.96])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id B7C934043714;
-	Wed, 26 Feb 2025 23:45:43 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1740581151; c=relaxed/simple;
+	bh=2e8y34nF3WAvOI36M9xs1+jJDib5lSf6jroS4lJKWRw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c1NkqghlF7m7enkt4XhEhKb+gotDb97TLPVUC9SLnMX7oVBTayxQsZLXb3om4UC67vrV/qHg4x49At/T3BLwKZA4tVv7KHsOyaFntOcgb1SWYj5b2BpHtgIOF36j+zfPcvPcaHFM1GfcgqILXbu+5gTpkp136YDQL5GhiZrWP78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L7TO8yXx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9932AC4AF0B;
+	Wed, 26 Feb 2025 14:45:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740581150;
+	bh=2e8y34nF3WAvOI36M9xs1+jJDib5lSf6jroS4lJKWRw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L7TO8yXxQmiYV0e978xp7cwfIDefmJ7wdXKZEKaEo7couphnmeePegIiWh7rHgAes
+	 yi6PFABiCw0C6OnVizzoqwFj1Y+r4yOaPdqWynd0DSSPzQrZQvRC3yOjjyJuTqLWaS
+	 X4UNy3p+thTfBpcYIf4iwD14hMFT+Ty9KNpydCaHtMpIzgr3TDoE9kUs66v7opDFWg
+	 oplQ8iqVFvQ9CUI6aL7+JfIhPm/vs3pfSN459q0AtlP1xmpXUga85qgQP7CQEBO+2I
+	 7Rr1SDzlaQke0cDyIDA8a4JiXHva92wkVVAL7u9MTHNVoT/utxi17F/MZatXawLLWL
+	 vEAdgOgR53OLw==
+Date: Wed, 26 Feb 2025 08:45:48 -0600
+From: Rob Herring <robh@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v24 2/4] dt-bindings: pwm: rzg2l-gpt: Document renesas,poegs property
-Date: Wed, 26 Feb 2025 14:45:21 +0000
-Message-ID: <20250226144531.176819-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250226144531.176819-1-biju.das.jz@bp.renesas.com>
-References: <20250226144531.176819-1-biju.das.jz@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/6] dt-bindings: thermal: rockchip: document otp
+ thermal trim
+Message-ID: <20250226144548.GA2299551-robh@kernel.org>
+References: <20250225-rk3576-tsadc-upstream-v2-0-6eb7b00de89c@collabora.com>
+ <20250225-rk3576-tsadc-upstream-v2-4-6eb7b00de89c@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250225-rk3576-tsadc-upstream-v2-4-6eb7b00de89c@collabora.com>
 
-RZ/G2L GPT IP supports output pin disable function by dead time
-error and detecting short-circuits between output pins.
+On Tue, Feb 25, 2025 at 01:56:47PM +0100, Nicolas Frattaroli wrote:
+> Several Rockchip SoCs, such as the RK3576, can store calibration trim
+> data for thermal sensors in OTP cells. This capability should be
+> documented.
+> 
+> Such a rockchip thermal sensor may reference cell handles that store
+> both a chip-wide trim for all the sensors, as well as cell handles
+> for each individual sensor channel pointing to that specific sensor's
+> trim value.
+> 
+> Additionally, the thermal sensor may optionally reference cells which
+> store the base in terms of degrees celsius and decicelsius that the trim
+> is relative to.
+> 
+> Each SoC that implements this appears to have a slightly different
+> combination of chip-wide trim, base, base fractional part and
+> per-channel trim, so which ones do which is documented in the bindings.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  .../bindings/thermal/rockchip-thermal.yaml         | 64 ++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> index 49ceed68c92ce5a32ed8d4f39bd88fd052de0e80..eef8d2620b675fe2f871a03aebdaed13278e0884 100644
+> --- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> @@ -11,6 +11,23 @@ maintainers:
+>  
+>  $ref: thermal-sensor.yaml#
+>  
+> +definitions:
 
-Add documentation for the optional property renesas,poegs to
-link a pair of GPT IOs with POEG.
+'$defs' is preferred over 'definitions'. However, I don't think you need 
+either.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v23->v24:
- * No change.
-v22->v23:
- * No change.
-v21->v22:
- * No change.
-v20->v21:
- * No change.
-v19->v20:
- * No change.
-v18->v19:
- * No change.
-v17->v18:
- * No change.
-v16->v17:
- * No change.
-v15->v16:
- * No change.
-v14->v15:
- * No change.
-v3->v14:
- * Add Rb tag from Rob.
- * Moved the patch from series[1] to here.
- [1] https://lore.kernel.org/linux-renesas-soc/20221215205843.4074504-1-biju.das.jz@bp.renesas.com/T/#t
-v2->v3:
- * Moved minItems/MaxItems one level up.
-v1->v2:
- * removed quotes from ref
- * Added maxItems and minItems for renesas,poegs property
- * Added enums for gpt index
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+> +  channel:
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-index 13b807765a30..98bcde755fb9 100644
---- a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -245,6 +245,28 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  renesas,poegs:
-+    minItems: 1
-+    maxItems: 8
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      items:
-+        - description: phandle to POEG instance that serves the output disable
-+        - enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-+          description: |
-+            An index identifying pair of GPT channels.
-+              <0> : GPT channels 0 and 1
-+              <1> : GPT channels 2 and 3
-+              <2> : GPT channels 4 and 5
-+              <3> : GPT channels 6 and 7
-+              <4> : GPT channels 8 and 9
-+              <5> : GPT channels 10 and 11
-+              <6> : GPT channels 12 and 13
-+              <7> : GPT channels 14 and 15
-+    description:
-+      A list of phandle and channel index pair tuples to the POEGs that handle the
-+      output disable for the GPT channels.
-+
- required:
-   - compatible
-   - reg
-@@ -375,4 +397,5 @@ examples:
-         power-domains = <&cpg>;
-         resets = <&cpg R9A07G044_GPT_RST_C>;
-         #pwm-cells = <3>;
-+        renesas,poegs = <&poeggd 4>;
-     };
--- 
-2.43.0
+Just make this a pattern property:
 
+'@[0-5]$'
+
+Really, node names should be generic and the type of thing they are, not 
+what instance they are. So something like 'sensor' for all the child 
+nodes. IOW, node names is not how you should identify what each sensor 
+is associated with.
+
+> +    type: object
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+> +        description: sensor ID, a.k.a. channel number
+> +      nvmem-cells:
+> +        items:
+> +          - description: handle of cell containing the calibration data
+> +      nvmem-cell-names:
+> +        items:
+> +          - const: trim
+> +    required:
+> +      - reg
+> +    unevaluatedProperties: false
+> +
+>  properties:
+>    compatible:
+>      enum:
+> @@ -51,6 +68,12 @@ properties:
+>        - const: tsadc
+>        - const: tsadc-phy
+>  
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+>    "#thermal-sensor-cells":
+>      const: 1
+>  
+> @@ -80,6 +103,47 @@ required:
+>    - clock-names
+>    - resets
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3568-tsadc
+> +    then:
+> +      properties:
+> +        nvmem-cells:
+> +          items:
+> +            - description: cell handle to where the trim's base temperature is stored
+> +            - description:
+> +                cell handle to where the trim's tenths of Celsius base value is stored
+> +        nvmem-cell-names:
+> +          items:
+> +            - const: trim_base
+> +            - const: trim_base_frac
+
+Define all properties at the top-level and then restrict their presence 
+in the if/then schema.
+
+> +        cpu@0:
+> +          $ref: "#/definitions/channel"
+> +        gpu@1:
+> +          $ref: "#/definitions/channel"
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3576-tsadc
+> +    then:
+> +      properties:
+> +        soc@0:
+> +          $ref: "#/definitions/channel"
+> +        bigcores@1:
+> +          $ref: "#/definitions/channel"
+> +        littlecores@2:
+> +          $ref: "#/definitions/channel"
+> +        ddr@3:
+> +          $ref: "#/definitions/channel"
+> +        npu@4:
+> +          $ref: "#/definitions/channel"
+> +        gpu@5:
+> +          $ref: "#/definitions/channel"
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
+> 
+> -- 
+> 2.48.1
+> 
 
