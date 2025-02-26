@@ -1,57 +1,64 @@
-Return-Path: <devicetree+bounces-151358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DE89A4586B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 09:33:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49033A45877
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 09:35:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C866161E75
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:33:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 643A73A375D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:35:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A3E1E1DF1;
-	Wed, 26 Feb 2025 08:32:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 900E21E1DF3;
+	Wed, 26 Feb 2025 08:35:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WkYkbob3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e6D7+/Dx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB511E1DEF;
-	Wed, 26 Feb 2025 08:32:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F36E258CEF;
+	Wed, 26 Feb 2025 08:35:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740558742; cv=none; b=aLMzofvqUYsOrDdd4GAk4k2J5B7fPuEO2rDS39D67e+P71cDz4VazLTMjPRTmDg7gmtPP1cs2nfRm0GfttuEyTtfkFPs2fmgKhiqDvfPUD0M9XYWQi4woi47xOmJpWReMv9AZLOsnfGvdtiWd9ueKV7uUbFHPClQDGfdkOC6jbs=
+	t=1740558950; cv=none; b=Tp5R79lTUc+ztMWeKdNTlqwW2Bxzps9RJb5SAdXI3ja0jFWKeIH5iEKz8lvNVpnWRd+PPHAD6DHSpS1oVH9oajm5oqLJn26e4NAs4y4PpP3BNFxcYTXgxOBNp9kd4nrjTNI8jcpt35pW7cYPP+EE0evwNc+u0+1t8TnNawwngvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740558742; c=relaxed/simple;
-	bh=pCY5MJcHID/t2Pb6RIB298aS9Enq1BhXl+cqd9OOkmI=;
+	s=arc-20240116; t=1740558950; c=relaxed/simple;
+	bh=4MYgiidHr8/ZdNMzTcx3mGJcSD5JeuiEYpQrrTIb/VU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Aop1d9Da433DGAodKNHDupEwU/eyM09BHt2fSFboOEpYvzU1S4h68Nb3tCBtc/9A4m+OBmf0Wo9h15EcYD4we/Ne7kOxfQgv4BPwYbmqjQ8Ny/iVxjN2xtpnxHMU/EwIWgAiUpuzoCKjRij0J0RB7lNMmKoyBLWp1hD1gzAUY30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WkYkbob3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C5E8C4CED6;
-	Wed, 26 Feb 2025 08:32:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YSfoznzJv+8BDMxhWiwVX+isURPPW6XtyyaMhMHzcx1WMW3gZtCiOdUv7YEYUbzVlOiYkHlUPy5RSVBSOxLecL7hRqBaLJsAXvocile/2HaGLe3g6FxkrJcBrUbJLphQqBVmUSBdLOPDbx/8RadLHvnm3VaSqk4lH3jjD/TCJJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e6D7+/Dx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E311DC4CED6;
+	Wed, 26 Feb 2025 08:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740558741;
-	bh=pCY5MJcHID/t2Pb6RIB298aS9Enq1BhXl+cqd9OOkmI=;
+	s=k20201202; t=1740558949;
+	bh=4MYgiidHr8/ZdNMzTcx3mGJcSD5JeuiEYpQrrTIb/VU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WkYkbob3F/FEh42Rx8pbhLsqPxB9WOaFobE/EZjopEvktMV32lK3zQohLNTQSZcTt
-	 0OeayTHGLe4FurZoLIdV4SVa3zXNM8J6OLEvEHp3bbwozERqQUTFCFL7dtqsbI8nMT
-	 713eIKNYQ3nnXqP55Dac+TorJINYr83Z+WEqa4b+l9CHVToDRtNgvXGQtt1w9bg69E
-	 1Ezzu+aC4FSlJThngdeT4GGupXNlOb7grliknak2jIBrSeTjGMR6T76D19k/sYGjm9
-	 /eAmCMtM3WUFuGJfvuXmDpEvLew3EijXa2xCespHGV+XTzX265tK+qJ4SqOFS8mcR8
-	 PcaXURSBZ1www==
-Date: Wed, 26 Feb 2025 09:32:18 +0100
+	b=e6D7+/Dxefnk9azDCjH0/byQKuZKBZHYYtB5BHFqReTtU0kXViV2zcE46dhYhAtDS
+	 4CiFxxI+hJ0Zcf7jyvIFFhbIJ/i8I6zUW/tsu/BxBoBl2k2HqiGnhsDCCyVpi7jDPw
+	 psnAuvj25AnRukudfQRiKjVjIEwUgOyRqg/LbD8nLXefoAhjyTdvG4hjuWLxT8UFTz
+	 kaels7K95zsKmkegdGaLJD7SJYuYMYkoCJXYXUOs9BqO6z1gNAMt6BT7pMKWBPqTNx
+	 WwPUP7UOKwIqyHEZHeP/u8+mNm7Oeq5Hoba/Destcgns8dTA9zKUsIHYayB5cjB0ki
+	 +7d/qGNgO/kxg==
+Date: Wed, 26 Feb 2025 09:35:46 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Leonardo Felipe Takao Hirata <leo.fthirata@gmail.com>
-Cc: tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, vz@mleia.com, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, skhan@linuxfoundation.org, 
-	linux-kernel-mentees@lists.linuxfoundation.org
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Convert
- nxp,lpc3220-mic.txt to yaml format
-Message-ID: <20250226-khaki-wildebeest-of-action-ddec48@krzk-bin>
-References: <20250226010956.50566-1-leo.fthirata@gmail.com>
+To: Ayushi Makhija <quic_amakhija@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: robdclark@gmail.com, dmitry.baryshkov@linaro.org, sean@poorly.run, 
+	marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org, robh+dt@kernel.org, 
+	krzk+dt@kernel.org, konradybcio@kernel.org, conor+dt@kernel.org, 
+	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	quic_abhinavk@quicinc.com, quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com, 
+	quic_jesszhan@quicinc.com
+Subject: Re: [PATCH 07/11] arm64: dts: qcom: sa8775p-ride: add anx7625 DSI to
+ DP bridge nodes
+Message-ID: <20250226-futuristic-messy-rook-e9f85c@krzk-bin>
+References: <20250225121824.3869719-1-quic_amakhija@quicinc.com>
+ <20250225121824.3869719-8-quic_amakhija@quicinc.com>
+ <ecdc2230-1ce1-4d70-a352-180f6cd29e61@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,45 +67,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250226010956.50566-1-leo.fthirata@gmail.com>
+In-Reply-To: <ecdc2230-1ce1-4d70-a352-180f6cd29e61@kernel.org>
 
-On Tue, Feb 25, 2025 at 10:09:40PM -0300, Leonardo Felipe Takao Hirata wrote:
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,lpc3220-mic
-> +      - nxp,lpc3220-sic
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    const: 2
-> +
-> +  interrupts:
-> +    items:
-> +      - description:
-> +          IRQ number.
-> +      - description: |
-> +          IRQ type. Can be one of:
+On Tue, Feb 25, 2025 at 02:31:05PM +0100, Krzysztof Kozlowski wrote:
+> On 25/02/2025 13:18, Ayushi Makhija wrote:
+> > +		pinctrl-0 = <&dsi0_int_pin>,
+> > +				<&dsi0_cbl_det_pin>,
+> > +				<&dsi1_int_pin>,
+> > +				<&dsi1_cbl_det_pin>;
+> > +		pinctrl-names = "default";
+> > +
+> > +		dsi0_int_pin: gpio2_cfg {
+> 
+> 
+> No underscores, see DTS coding style.
 
-That's not correct. Previously you said you have here two interrupts -
-SIC1 and SIC2. Now you say you have one intrerrupt "IRQ Number" and
-second interrupt "IRQ type". This makes little sense - your interrupt is
-not "IRQ type". Unless it is an interrupt signaling that other interrupt
-has type?
+And as Rob's bot pointed out: insufficient testing. :(
 
-Look at other bindings what are the interrupts.
-
-> +
-> +              IRQ_TYPE_EDGE_RISING = Low-to-high edge triggered,
-> +              IRQ_TYPE_EDGE_FALLING = High-to-low edge triggered,
-> +              IRQ_TYPE_LEVEL_HIGH = Active high level-sensitive,
-> +              IRQ_TYPE_LEVEL_LOW = Active low level-sensitive.
-
-None of these are relevant here.
+Please be 100% sure everything is tested before you post new version.
+You shouldn't use reviewers for the job of tools, that's quite waste of
+our time.
 
 Best regards,
 Krzysztof
