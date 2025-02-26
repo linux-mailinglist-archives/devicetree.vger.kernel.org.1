@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-151742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E63AA46D81
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 22:31:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFCD5A46D8A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 22:33:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 238943A8334
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 21:31:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A54F716C56A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 21:33:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABA2125B675;
-	Wed, 26 Feb 2025 21:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07DE238141;
+	Wed, 26 Feb 2025 21:33:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VbT+32uo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fi4azMbB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D49B192D63;
-	Wed, 26 Feb 2025 21:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DA082745E;
+	Wed, 26 Feb 2025 21:33:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740605485; cv=none; b=DZPzF6BD8O2EN/UBgEOMKpgjH44c7Utt5g7VfrgOGc+M3iJtkHsN3YbJd8kGRr+oOhAtVN3NTRqFwMGPZIEQK9UsKYyDlEI8Kh3uTU2/3UlGUCGrrABif47ZlLE50f0ca6RaKjifnkIW/N6akm4Gg8SU4sABGJqoJGJc9cOhygs=
+	t=1740605595; cv=none; b=kfU7x+y5mxaJJyymWtnzF8qxu0NuOILr77IXFTrfIX9XjgtQbxlerTRb6OHbVFTP5H2rH3QBkNDHtTgYDzigBanT9kI46t+UQrOSOQ2I8CGiHsQy5HQadh8vLBvXxevJ8bQL1CM48qjEJ5uRpoAIwlLEvwKogPbzuqXc8GFpmSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740605485; c=relaxed/simple;
-	bh=PRE/A1VqtcxDcp5QHrfXCdxA0NkFgqWuo0KK3OU5E/o=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=esE+Ya5uikLz8jx275t9dHjHJt4NwCqC4ZBfCAw4omWFSiwHB+3DQKALdrSh03rtlzeeIXctu2apfl9JfwvezixcKiwZri8VfFAOKywArOKq8kBo+apmThR1frgBQiH/UN1rr/DunIUL/0UMa5aW/PV8jAG7RaqEPeNLoB+oDf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VbT+32uo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31AF5C4CEE7;
-	Wed, 26 Feb 2025 21:31:19 +0000 (UTC)
+	s=arc-20240116; t=1740605595; c=relaxed/simple;
+	bh=hmiVANPzmi3iIv9P4uf2BqqVTlkPZBfd0Wff+RfByzM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eX5TmkC+ZuR/khhtwc756sGWZquusNpFDW12+JpuzsvG6auPijqIJQ9UIJ06SNNiZN0RqLLDeO6EYk18ADr1OtDpEdiQkz+FXreEw70Psu/BOwqKxOgsxzA/PNr7pJKUCUReR4GzhFR3MluUbKdTvpm7loaUgSWmgJQxxt5VscA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fi4azMbB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FCF8C4CEE7;
+	Wed, 26 Feb 2025 21:33:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740605484;
-	bh=PRE/A1VqtcxDcp5QHrfXCdxA0NkFgqWuo0KK3OU5E/o=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=VbT+32uoi+S966XSIV43IVdHDOCkoR4xt4GkRsdG5Gfx0l/lk1OZaGmab0b9KJBJH
-	 PPnRDqjW1RQZPJl35PtQKX7iCuxXhRoCatilQzGbYf3TRETC4bv+lfwo/fgLQldyhf
-	 dNwjEvsTbU5kS2bPjXX7kHW6Vm4MAbhYCsNw0GgRaHR4sAADfynFS1pdGgH/fTHzNn
-	 MVInle6Att2aa+UNdkDx41uw3/9Fqxslx/pRhfaEUavE57Ai6nypu1uqF/CtDnmzEC
-	 InDnIgYKUi+0s2+ZiBWM0fk7yk5IBnq/IWJvlLg/V3SXnAtftMVIhixKbYmmNwbMJw
-	 FXDXX4fOk9O3g==
-Message-ID: <17450f7d-d398-4a75-8b53-6c9c396661ab@kernel.org>
-Date: Wed, 26 Feb 2025 22:31:17 +0100
+	s=k20201202; t=1740605595;
+	bh=hmiVANPzmi3iIv9P4uf2BqqVTlkPZBfd0Wff+RfByzM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fi4azMbBhV62loo5q0YOIQuUtiSaI4I3XjtjcorlWwEe0vDgDRuaNc/ScESuah8lW
+	 hu9dkolPjYk8Hl5RYQe0C31ArTfRDC9+LyXy5PNAkrw45an37cqDhhwl+1JD8yOr27
+	 V8N9EtEIM80U+RcQo/bvtzyqEIMhb2Zlh5Xm4nswSuuPF48YmI4ICH6axUJ9IOPbOz
+	 kxBcAfqTYn8L57CZjmx+X8kv4eNaKnWp2OFq1GAfYCcVYJuGwJGs5ZZHs2wN7rlwmR
+	 1y/l0WrDpatKpwOmQNcpo2lLrQ83gOurUbx3yQf+XNh5GNpLTxGGtUGI3NAAgv2RoE
+	 Xp+zFpKNJsQMA==
+Message-ID: <e83bc594-5500-4f76-b3d1-96f669515c24@kernel.org>
+Date: Wed, 26 Feb 2025 22:33:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/9] ARM: dts: stm32: add Hardware debug port (HDP) on
- stm32mp25
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
- Clement LE GOFFIC <clement.legoffic@foss.st.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250225-hdp-upstream-v1-0-9d049c65330a@foss.st.com>
- <20250225-hdp-upstream-v1-7-9d049c65330a@foss.st.com>
- <418a80a9-8c08-4dd1-bf49-1bd7378321aa@kernel.org>
- <b257aa79-6ca9-4f57-988a-ec00225992ab@foss.st.com>
- <b57e3c9e-244e-435b-8a7b-cf90f3a973b3@kernel.org>
- <988667a4-4bc0-4594-8dfd-a7b652b149b2@foss.st.com>
- <55beb3e7-65ac-4145-adae-fb064378c78d@kernel.org>
- <8cdc7e52-f9e2-4fc9-be68-0dd72a25ee1b@foss.st.com>
- <48cc626a-d632-444f-8563-07a9ea0ecc71@kernel.org>
+Subject: Re: [PATCH v4 09/10] dt-bindings: PCI: qcom,pcie-sc7280: Add 'global'
+ interrupt
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ chaitanya chundru <quic_krichai@quicinc.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ Jingoo Han <jingoohan1@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ quic_vbadigan@quicnic.com, amitk@kernel.org, dmitry.baryshkov@linaro.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ jorge.ramirez@oss.qualcomm.com
+References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
+ <20250225-qps615_v4_1-v4-9-e08633a7bdf8@oss.qualcomm.com>
+ <20250226-enlightened-chachalaca-of-artistry-2de5ea@krzk-bin>
+ <t34rurxh5cb7hwzvt6ps3fgw4kh4ddwcieukskxxz5mo3pegst@jkapxm6izq7p>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -115,81 +116,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <48cc626a-d632-444f-8563-07a9ea0ecc71@kernel.org>
+In-Reply-To: <t34rurxh5cb7hwzvt6ps3fgw4kh4ddwcieukskxxz5mo3pegst@jkapxm6izq7p>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/02/2025 22:26, Krzysztof Kozlowski wrote:
-> On 26/02/2025 16:30, Alexandre TORGUE wrote:
+On 26/02/2025 17:29, Bjorn Andersson wrote:
+>>> @@ -54,7 +54,7 @@ properties:
+>>>  
+>>>    interrupts:
+>>>      minItems: 8
+>>> -    maxItems: 8
+>>> +    maxItems: 9
+>>>  
+>>>    interrupt-names:
+>>>      items:
+>>> @@ -66,6 +66,7 @@ properties:
+>>>        - const: msi5
+>>>        - const: msi6
+>>>        - const: msi7
+>>> +      - const: global
 >>
+>> Either context is missing or these are not synced with interrupts.
 >>
->> On 2/26/25 16:08, Krzysztof Kozlowski wrote:
->>> On 26/02/2025 10:33, Alexandre TORGUE wrote:
->>>>>>>> +		hdp: pinctrl@44090000 {
->>>>>>>> +			compatible = "st,stm32mp-hdp";
->>>>>>>
->>>>>>> So here again - you have stm32mp251 SoC, but use entirely different
->>>>>>> compatible.
->>>>>>
->>>>>> Ok so I will use "st,stm32mp15-hdp"
->>>>>
->>>>>
->>>>> This means this is stm32mp15 SoC. I do not see such SoC on list of your
->>>>> SoCs in bindings. What's more, there are no bindings for other SoC
->>>>> components for stm32mp15!
->>>>
->>>> Yes stm32mp15 is not a "real SoC". I agree that at the beginning of the
->>>> STM32 story we didn't have a clear rule/view to correctly naming our
->>>> compatible. We tried to improve the situation to avoid compatible like
->>>> "st,stm32", "st,stm32mp" or "st,stm32mp1". So we introduced
->>>> "st,stm32mp13", "st,stm32mp15" or "st,stm32mp25" for new drivers. So yes
->>>> it represents a SoC family and not a real SoC. We haven't had much
->>>> negative feedback it.
->>>>
->>>> But, if it's not clean to do it in this way, lets define SoC compatible
->>>> for any new driver.
->>>
->>> Compatibles are for hardware.
->>>
->>>> For the HDP case it is: "st,stm32mp157" and used for STM32MP13,
->>>> STM32MP15 end STM32MP25 SoC families (if driver is the same for all
->>>> those SoCs).
->>>
->>> No, it's three compatibles, because you have three SoCs. BTW, writing
->>> bindings (and online resources and previous reviews and my talks) are
->>> saying that, so we do not ask for anything new here, anything different.
->>> At least not new when looking at last 5 years, because 10 years ago many
->>> rules were relaxed...
->>
->> So adding 3 times the same IP in 3 different SoCs implies to have 3 
 > 
-> Yes. Always, as requested by writing bindings.
-> 
->> different compatibles. So each time we use this same IP in a new SoC, we 
->> have to add a new compatible. My (wrong) understanding was: as we have 
-> 
-> Yes, as requested by writing bindings and followed up by all recent
-> platforms having decent/active upstream support. See qcom, nxp, renesas
-> for example.
-> 
->> the same IP (same hardware) in each SoC we have the same compatible (and 
-> 
-> You do not have same hardware. You have same IP, or almost same because
-> they are almost never same, implemented in different hardware.
-> 
->> IP integration differences (clocks, interrupts) are handled by DT 
->> properties.
-> 
-> Which binding doc/guide suggested such way? Countless reviews from DT
-> maintainers were saying opposite.
-I was not precise: IP integration differences are of course handles as
-DT properties, but I wanted to say that it does not solve the problem
-that IP integration means you might have differences in this device and
-you should have different quirks.
+> I think the patch context ("properties") is confusing here, but it looks
+> to me that these are in sync: interrupts is defined to have 8 items, and
+> interrupt-names is a list of msi0 through msi7.
 
-And the example in this patchset: entirely different pin functions is a
-proof. This device behaves/operates/integrates differently, thus
-different compatible.
+interrupt-names has minItems 9 in this case, so they are not synced.
+That's my concern
+
 
 Best regards,
 Krzysztof
