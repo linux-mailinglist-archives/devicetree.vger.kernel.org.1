@@ -1,235 +1,211 @@
-Return-Path: <devicetree+bounces-151253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AAE2A451B2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 01:45:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51BA8A451CE
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 02:01:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E714D17B2C7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 00:45:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1809189AE5A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 01:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ADBD2AD32;
-	Wed, 26 Feb 2025 00:45:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NRX07Jc3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0F313A86C;
+	Wed, 26 Feb 2025 01:01:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 879D620328;
-	Wed, 26 Feb 2025 00:45:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=198.175.65.20
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740530722; cv=fail; b=Y9CpPrtb1UYxNeRv2iTJqOAC5ix9IBgDRu/nh0sg24+I/8wP1mKJSq6S+v7aWQI3pApSHnd4jvpa/f/9RVFBIFsaDDoWI1UV7w6RcE8yCwwjrtfXbgzf1Vfbyo8SCmsF5tGA6KyV1R7YoKYxFQh4/zLl3VNZEzd4fbeuE/NYJKk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740530722; c=relaxed/simple;
-	bh=6UBy6piADmDYW/XUVbVFxWq9jm5DnHiL1cg6W+xsnSE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=qwHUMIraIGrfapJR4dbT2sbQ4J9+HSrNvRbFxlsyZ0Pxn09LDb5/QuMKaUclHIJXvKLOFATMAxbtoBaCTKznCTUlZrw4Hc5IrT9NwKLxWxhzHeiEVJJGPC7HfYg3LVJJQppYXUoFKvvIm5dIiX5yiyRRiCjuq2YXTzRWvMLg3mg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NRX07Jc3; arc=fail smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740530720; x=1772066720;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=6UBy6piADmDYW/XUVbVFxWq9jm5DnHiL1cg6W+xsnSE=;
-  b=NRX07Jc3KvmnpeNJEnDVPjvDILx7lyYcSAieM3wRQut6KF4/L5QPVlvC
-   LgL634cos+7IKa+NUV3IP4ms1C3Pjx9t4lNNMhxpjiH8svLY7B3DJRLem
-   jgvIVK3vOrw2bBVw8h0FHq1mnOfBP2C5l8khnCJNMKNofBPyknBKp997j
-   gnFKWOlHokTjAs0Hj7L+GAic2lIQrzid0S9nbSYGS1CdaHEpfv1rFdGWW
-   dxVVyRMvNim19nVObIia/zzpDoNGfCZ9uPuIhJ2vUKmj24gZyFhLpG1Xb
-   8QFu4QeKLRAlxaVHV9qoofhdJq9G4X/pfPrXX89idkseNkhUXAcpmY27u
-   Q==;
-X-CSE-ConnectionGUID: wfQkDx7uRoyw74cNeWpoug==
-X-CSE-MsgGUID: tHiMakw/SNSTJnYOvAi0kA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="41067720"
-X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; 
-   d="scan'208";a="41067720"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2025 16:45:20 -0800
-X-CSE-ConnectionGUID: SsOJqeDhTeGK4dJCvOCDSA==
-X-CSE-MsgGUID: EpMbCfNyQriF2RwGO3nNPA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; 
-   d="scan'208";a="117169523"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
-  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2025 16:45:19 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Tue, 25 Feb 2025 16:45:18 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Tue, 25 Feb 2025 16:45:18 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.43) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 25 Feb 2025 16:45:18 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hcJx2pDlnICAV1Je8NL8n4M+ejsZwkw5FuFxKez6LQSxpJSStaJytEkZSmfm1lnhzHwdZtpRXEuRFmrZn4nYnHB+2D/EeTk21yejLbUQWfEq5z+5MAQPsoJ/Swdl6RQDz5UeXO68wtFSrrQONs/1QsbkWZlJ165sWLiqZTcpZdNdq1hul0L9aLBtwpjawNGzvmEDXaACWTgYL2QJk7JIAGu/Y2vDCTj8Gw76EvaccKJDhC8+co7yTYD2GAwGZAPWmCBnq5lZ1klV0iiud5NgD12Hp8ulib3TX8guqwgHnitGu4iTVYzuuwWd9ieR3Ao+DbdrI61YxACcQUd9Zzal8w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6UBy6piADmDYW/XUVbVFxWq9jm5DnHiL1cg6W+xsnSE=;
- b=Tzayvt+nvfdJi6ADEyi9KxJexRv6Bj2p5HaQ8Xhegprn8xx7goQ0bh52LiOl4p+fPxHrQSF2eNl/lgvRlXVqDof3u+cXZ5qQ3jQA4YrFwXofEtPh6MDwwGPEU9u6e5JLlGSAT9MRXMUbCv0WbNzE4lGXQ1k6lP9PLcxfsW7kLyPehlAzjgyjw6H7fTB8dsMFRjqHwl5cNiLxbwycyMkHdg1HLN1axslksWmEmP64GsSLmdFijwCloW5h6NgZ6Z+vy5rhlnzDzeIorCXjFSsIMTSBT0GQb4Cd14O4Zgcw+DMiF2+7bNxr+CAV1mnTHih83M7TQKBBf8MngR92HsSaAg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BL3PR11MB6532.namprd11.prod.outlook.com (2603:10b6:208:38f::9)
- by IA1PR11MB6267.namprd11.prod.outlook.com (2603:10b6:208:3e5::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.18; Wed, 26 Feb
- 2025 00:45:16 +0000
-Received: from BL3PR11MB6532.namprd11.prod.outlook.com
- ([fe80::2458:53b4:e821:c92f]) by BL3PR11MB6532.namprd11.prod.outlook.com
- ([fe80::2458:53b4:e821:c92f%5]) with mapi id 15.20.8489.018; Wed, 26 Feb 2025
- 00:45:16 +0000
-From: "Rabara, Niravkumar L" <niravkumar.l.rabara@intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, "nirav.rabara@altera.com"
-	<nirav.rabara@altera.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH RESEND v2] arm64: dts: socfpga: agilex: Add dma channel id
- for spi
-Thread-Topic: [PATCH RESEND v2] arm64: dts: socfpga: agilex: Add dma channel
- id for spi
-Thread-Index: AQHbh4s7G0JTuUOdE0K5gOCG5DOuKLNYT8YAgABwEXA=
-Date: Wed, 26 Feb 2025 00:45:16 +0000
-Message-ID: <BL3PR11MB653251B58933CFCE0034E3F7A2C22@BL3PR11MB6532.namprd11.prod.outlook.com>
-References: <20250225133919.4128252-1-niravkumar.l.rabara@intel.com>
- <10bb3b7b-f7fc-459d-b397-1ef7bb31a51e@kernel.org>
-In-Reply-To: <10bb3b7b-f7fc-459d-b397-1ef7bb31a51e@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL3PR11MB6532:EE_|IA1PR11MB6267:EE_
-x-ms-office365-filtering-correlation-id: a4993e70-c6ed-448c-e08d-08dd55fed659
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|10070799003|366016|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?RlNGdlNzcXhzZ0djaHg0TXhFM2Y1L3hPRHlNbFZnUXlob2RBZVdYZmJWdEY3?=
- =?utf-8?B?WGZycWFmZEMvbEVjZGY1VkhFMnZKRFVPSS9LMXdyQ0lvOXRTdWo5OVhlaG9B?=
- =?utf-8?B?NXpZaVdzMVNwWU5kSVFUeVR0cEZXQzJYRi9xb0VmSkVVdkFqQ3JhN2V0NVRj?=
- =?utf-8?B?QWRBSEp3TUk1QmR6OHZxRWg5TVI2UnJIR01lakd3S2lFdDVoYS9HMncyMWMv?=
- =?utf-8?B?azRFenVESlk3ZEpYbHVFT01GWStpWTFBVnI2cDJlYTFlQlljRHBjb3NuMEha?=
- =?utf-8?B?Uklham0wT3VYajdLajMzUHNmMVhXOVZPaUNVOHM2NFdRTld5ejR5OWRaMkNK?=
- =?utf-8?B?eHRLWVMyK1RiTGppV0pveXk1dEZ6MU1LVWMyM1lSZ1JwU2VxaEFEK2FHYnBp?=
- =?utf-8?B?U1hsbzhrZWhuZFhNWDZON1JzZldPQmlLVTRUeTd2V2N2alh3QVFxaHZjN1ZR?=
- =?utf-8?B?SVhLM2tCWnl6d1ZBci9wMStSTVA0TVpPdys3L0cxeUUwWkIvZEtrQlFOVWhL?=
- =?utf-8?B?REdOVHNnb1V4TXpMQTJVZTAydDYxdEVJRW93NlplOGVnZHdwekY2ZG03Vjgv?=
- =?utf-8?B?WjZlZjdzMEh4MnNvaVR0ZDN3cnFidVhqRHhVSnI0YWN6U0JGWXA1ZFI4M1FD?=
- =?utf-8?B?Q3FvMkY3cUlWSi8rL1dlWkx0SXpKYmNUMDR0U3dyRmlxKzVpT1BlZzdLWVVi?=
- =?utf-8?B?ZE9rY2I3UGlhY1pCaGhSSXgxSXdHUG5CeENGRFVyYUROalhlYVFYMEtWQ1d0?=
- =?utf-8?B?c002RkZ4b0hwZXZyYWRBTHVXWTRNbGZmbXZsUEN0VExDTmorSDg2ck4zUVlm?=
- =?utf-8?B?b3VielEvczd5azlkem01OURoOTVtWUpneXpENmlsQnBJOVFNK0RqcWRmMFkw?=
- =?utf-8?B?SDZyRHBuWHlGdTRidVdQREVPQTV3NGhTWFlWZDZJQ0JjZXVkbVQ5bkd2d1M4?=
- =?utf-8?B?MTNIWXE2WVlWd09sclRQVlJuZTYxOUR5WDV3TkJBUjQ4bk56LzVYOWhnWlQz?=
- =?utf-8?B?MjNDWnQ3S1hrQXd0aUs0N2JNTnNjWDBsTTFhTTJ6VlZIdUlENm55OXNZVFpB?=
- =?utf-8?B?SFJHelpQWFAwVVBIeFYrSm5Vc0xyUG0rYUNCY2pSYVQ4WUZqRndmd096Nyt2?=
- =?utf-8?B?M3RabXRnQi81UGRKRFpxLzBnYW4xc3RQRys3S3BTSUZBcTZmT0c3Vm5xdktU?=
- =?utf-8?B?Q3VETEM4QzFXaEVSZzVLNGxZOXFkbEVBOER6VGlZVUR3a0ordlFVUVV4Ymxy?=
- =?utf-8?B?cjRVdkJPMXNGY0hjRTZneEszeWZoN1hBbzlYbkFKbnpzTHpDTVk0OFkrMFVP?=
- =?utf-8?B?YlpNMU5ROFgwU3hTNVQzdmVCRUVtVjRjU3RxRGh0WnV6cXdKeGtHTUZraUtu?=
- =?utf-8?B?a2I0R3RTV1YrRXdTY29MWjhROEpVU3pYbkt0T2E2cXh1T0NHakVKWGphRjlC?=
- =?utf-8?B?RkdNVHdxcythNGI3WHN6aCtWd2E2UmxIeVJGY25xeC9pRmgyVkQ1UW90eXpp?=
- =?utf-8?B?Y1N3ZWFYQUd0MjJTL0RVS2RVbzE2cmJLUEk0cWlSenZld2dTdXZDNTA2cUEx?=
- =?utf-8?B?VkNFcUptS1ZmYnRySythS0I0b2p3czZjQjkwTHNVa1l0SzlyRDczV2VKcENL?=
- =?utf-8?B?UkZUY1h3S0JpRHE4U3gxUFdCVzljZ2s0NlI2d0hHNllFRWxON3F3SmRhR1dY?=
- =?utf-8?B?aHJJNXpjWitUSDA3WWF4TllKeW40ZWs0QWR4S0lOa1FHazkrMktVdTdacnZy?=
- =?utf-8?B?Z21JaExlNkxkc1l6NVRCUWZRN2JYTk5XNS9mcXl0R0FEcUs1VUFZckFub2JG?=
- =?utf-8?B?UDNQaWZvQ2l1cHo4Z2M0Y09UVXBNMnNBRWdqRGhwa2tKRkhZNHJYWjJNVGJr?=
- =?utf-8?B?eXg5emV4UDJ6TkY3M0pYa0RKQTBFUHpmY2tHRmVxWE4rTDdpcVIxUFE4Qno2?=
- =?utf-8?Q?IV25Gd+58FnLuatVrSzAszcZPNEDGIWu?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR11MB6532.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(10070799003)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WUttWUsvUTVBME1IRGY2ZlF3QVBqT20vQ2Jmd1J6MUdKTG41MTlBcHZiMkkw?=
- =?utf-8?B?Qk1USHRLMWFWM0wyRE5LL21qQXRkaFA0WHVpVGVGVEpmcG9BUzlGcUg5K0JQ?=
- =?utf-8?B?MVh0SXBNMTlXd2R3K3NEb3UzRSs3WjZHbERpbHk2U0pJZXRuaGo3TEwzNUFv?=
- =?utf-8?B?QlUwZ2crRFcyU1ZhUUVlcU4wNE1CYWdXZVhQSzd0SkQrMHhCYnVNTXV6S1Jo?=
- =?utf-8?B?QjFQSyt3NXV2aVNYSVZoeUV5MXIzaGNleGdXdHBPblBIQnp4QWcwcWRZQ1Rs?=
- =?utf-8?B?Z3ZrNzhvODFqQk5xVkpXanJsS2p5d3VOUDN5KzgwYTB6NTY4WEM2Z3pDT3Qz?=
- =?utf-8?B?MEZoVjFzbFJLanhHeHRKbno4N3ZONGNOS1NtNXlmalRJZ2lEZzF0VW8yUGph?=
- =?utf-8?B?bDVNRTFhOUNyM01ZTy9HVzVxQlJpVHV4WEV2SDZJNUQ5VEVwTDhHSGlUQjhV?=
- =?utf-8?B?bmkzU2xpV0ZkOVU1QXhITU5ScEFjWUxWa2twMVNGVDFDNEQ4NU55bStCUVJX?=
- =?utf-8?B?RUR0RnZJRk80c2IrSXVkNlpyM2RhNmI0Z1c1ZGl0ZHZuWFNPdzVpNCthbUxU?=
- =?utf-8?B?NndjNGN2aU84a2I3eko1ZmtaMUV2bSt4aDZSeFZJWC8weFJSemdoMGdkK21n?=
- =?utf-8?B?dzRRS29Vd2YwYUtsMDBtMDVxZWVMM25QVnlyUjJkNXdadG81OWwyTm5WY2l0?=
- =?utf-8?B?QW5JM2NoWmFTNkNMZTd1VUF5Y3N3cGJXbGtvSldlVW5ab0FTeENIUjQzaitF?=
- =?utf-8?B?QVV2UHp5WldEaTByQnpjNmMrRlZWUjhwUVZpREhXanRxTGJSZUNUV3RxeGtB?=
- =?utf-8?B?YldIZWZadXFWV0ZFUHVFeDdqQVVFRmpSaFBzODVIQ1p4RFFzVmtERENLenY1?=
- =?utf-8?B?bHVEUHpYeTdEdTBYWEFETERjL1NuN2NuM1h1MFlRRlRMTVlrT0JiSWNXbHNT?=
- =?utf-8?B?ZHJiMk8zby9FVlU3aHNYanFmQlJIV0s2ZjBaL29ncTgvTWZMY1Z0Y3FILzlJ?=
- =?utf-8?B?dW0zMWFURlg2QVZwRDdtZFZNTDNGakJJMUVmUk5iUWZNS0tNd3pGZHdiTU1r?=
- =?utf-8?B?dFhiUEJLQmZ4cFdubDRRVmxCQ2wxSlcwVjZ5ZW4weWNzd1VwUGc1UkdEQ0xP?=
- =?utf-8?B?U3dkNFlRMFMvRlV4SmFaMVZSTmFMSGVBYjdaVHBxajNoMGxtVERvNzY2SVhp?=
- =?utf-8?B?OVhOTDNiTFRQTzJTdDYrQ3VtODZha0ZzeHlYRDZZallmTXlqTWdZUW90TXVi?=
- =?utf-8?B?QXd4MEZtK2luTnJMQVhtY3BUNFUranpwZm9TazZ1ZUowYTk5dC9xSWZTNFRH?=
- =?utf-8?B?T0RFeFkxU0tCaEl2aGl3Zm9zZitLV0VsbzRzRTV0S296enE2RStLd1hUem8w?=
- =?utf-8?B?eUdzeUdHVkVWbXNCUVVnQXM3QWtGSThSejJtdzBVMjlka0hUK00rTTNkRHdv?=
- =?utf-8?B?SkV1TUsrYnN4TVIzM0JYbkpmV2piRzZBa1lpY0lneWhocEwwQnNha1RBQWQ0?=
- =?utf-8?B?U285eWxEMlVzbFJnTjFweGY3bTkveFlkM01aM0NPSjhtaDlvejhMZWVvOUU1?=
- =?utf-8?B?ZXk5cnU1QXRCMUx0blBtMDMyWnFaVDJseW1JS21SbTYrQ2FXZzNqU1R4bHBP?=
- =?utf-8?B?MXdERXNIY0RUaVFhMUJjM1hlejQxdU1iTWx0Z2dvcUMyQlNWbUMrZUJOYVF0?=
- =?utf-8?B?eUJiaXdUU055cng4ZUV3L2NEYTEzMVZvYm9CWGNFcTlMbG5JM3c1bGVJbnNB?=
- =?utf-8?B?L0YzNTk0dEZ6SHpMRnRVTVlTOTFYbG4rUTlRa1JsY0V2UmxWKzdLRkNxOS9l?=
- =?utf-8?B?NmpwQzUwVzV2RW5SRkV0VEpTRndwWWJNdHk1OGxlTmJqeFgrMk5LSGk5K00v?=
- =?utf-8?B?VEVaMFlsWGlEMFhQL2ZPM0dUcGllRGEwZTJXNjk4alZFN2RqTGhhdkUyN09s?=
- =?utf-8?B?MXpIMytDWE5qc01tbjdDRUVESlhBL25UdEhaUjNxYWZPU1RTeEQ1TDVyMld2?=
- =?utf-8?B?TkFLV3p3Z0FpQndTdlFyMWQwWWkxUlhPeC9rUTE2SGxXeXpURitheTlNZEUv?=
- =?utf-8?B?YWljVnNOMkpxaVFLbldlK2RvaUJuYW5HOFdQNFVrWDNxNmpNYndHSm1PTS80?=
- =?utf-8?B?ZkI4aEkreHFGSGo1cnlMcHJGL0xzSE9ZRjlJZy9KTVVXcEdERWwyRWNSWjdj?=
- =?utf-8?B?VFdoTDVCSDhQdHBlR2w5cDE5MGc1VGZ0eHR6djc1UWRjMUgvN3c0Qm9WSHZo?=
- =?utf-8?B?dnByMTkwckFCM3lMSjd2QWE0Q29BPT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5480C63CF;
+	Wed, 26 Feb 2025 01:01:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740531675; cv=none; b=LZRIFcLubh0ycPS34WX9clD5e4aEZcJpcmD9nsBY4DYrt7/Jgk2R8/T3IHEV7m07QbUj9avKS04QfeQ2til+ayuCKcsWd6XftyclqPUsgAdltOC/DOTG4If3g/dM6b+KEht2xVay2lvPemrw3EAiC5bjhsYKCtiXM26TdyTjFBw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740531675; c=relaxed/simple;
+	bh=ndgmvJpYY0f5d8nmPn7hN8YJZl0cgL5q7U04Kq5JPHo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YPPQbi/mRPTI59mlCiusJG5f9M9D716UdsHiKwejQyEVcPizgr1jugJZIUBEP4dFS42CQ/7mX0H9UJgVzc1b/eKVk27c2XZTiZLP7kFxebRTbLWdMEVSYn8tNXf2/DVZWvP3tayzqocyd043WWo53WqbWvbXQuAy+tEFn5n9Ji4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.55.252])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 22AB134300C;
+	Wed, 26 Feb 2025 01:01:12 +0000 (UTC)
+Date: Wed, 26 Feb 2025 01:01:08 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>
+Cc: Alex Elder <elder@riscstar.com>, Yangyu Chen <cyy@cyyself.name>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Jesse Taube <mr.bossman075@gmail.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH v7 0/4] riscv: spacemit: add gpio support for K1 SoC
+Message-ID: <20250226010108-GYA44567@gentoo>
+References: <20250226-03-k1-gpio-v7-0-be489c4a609b@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6532.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4993e70-c6ed-448c-e08d-08dd55fed659
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Feb 2025 00:45:16.2143
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hToe7PduoVTFMXqW+kiL2wdqBvKAUOEI9pAZvWOiseNH4UA7QWKGfXsDrzuutH/9tit13a2wiuy8mUImxCn3xO84T5rAN90BCEtLx8TtkRU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6267
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250226-03-k1-gpio-v7-0-be489c4a609b@gentoo.org>
 
-SGkgS3J5c3p0b2YsDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6
-eXN6dG9mIEtvemxvd3NraSA8a3J6a0BrZXJuZWwub3JnPg0KPiBTZW50OiBXZWRuZXNkYXksIDI2
-IEZlYnJ1YXJ5LCAyMDI1IDI6MDIgQU0NCj4gVG86IFJhYmFyYSwgTmlyYXZrdW1hciBMIDxuaXJh
-dmt1bWFyLmwucmFiYXJhQGludGVsLmNvbT47IERpbmggTmd1eWVuDQo+IDxkaW5ndXllbkBrZXJu
-ZWwub3JnPjsgUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz47IEtyenlzenRvZiBLb3psb3dz
-a2kNCj4gPGtyemsrZHRAa2VybmVsLm9yZz47IENvbm9yIERvb2xleSA8Y29ub3IrZHRAa2VybmVs
-Lm9yZz47DQo+IG5pcmF2LnJhYmFyYUBhbHRlcmEuY29tOyBkZXZpY2V0cmVlQHZnZXIua2VybmVs
-Lm9yZzsgbGludXgtDQo+IGtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcNCj4gQ2M6IHN0YWJsZUB2Z2Vy
-Lmtlcm5lbC5vcmc7IEtyenlzenRvZiBLb3psb3dza2kNCj4gPGtyenlzenRvZi5rb3psb3dza2lA
-bGluYXJvLm9yZz4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCBSRVNFTkQgdjJdIGFybTY0OiBkdHM6
-IHNvY2ZwZ2E6IGFnaWxleDogQWRkIGRtYSBjaGFubmVsDQo+IGlkIGZvciBzcGkNCj4gDQo+IE9u
-IDI1LzAyLzIwMjUgMTQ6MzksIG5pcmF2a3VtYXIubC5yYWJhcmFAaW50ZWwuY29tIHdyb3RlOg0K
-PiA+IEZyb206IE5pcmF2a3VtYXIgTCBSYWJhcmEgPG5pcmF2a3VtYXIubC5yYWJhcmFAaW50ZWwu
-Y29tPg0KPiA+DQo+ID4gQWRkIERNQSBjaGFubmVsIGlkcyBmb3Igc3BpMCBhbmQgc3BpMSBub2Rl
-cyBpbiBkZXZpY2UgdHJlZS4NCj4gPg0KPiA+IFJldmlld2VkLWJ5OiBLcnp5c3p0b2YgS296bG93
-c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+DQo+ID4gU2lnbmVkLW9mZi1ieTog
-TmlyYXZrdW1hciBMIFJhYmFyYSA8bmlyYXZrdW1hci5sLnJhYmFyYUBpbnRlbC5jb20+DQo+IA0K
-PiBUaGF0J3Mgbm90IGEgYnVnZml4Lg0KPiANCj4gV2h5IGRvIHlvdSBDYyBzdGFibGU/DQo+IA0K
-SXQgd2FzIGEgbWlzdGFrZS4gRG8gSSBuZWVkIHRvIHJlc2VuZCB0aGlzIHBhdGNoIHdpdGhvdXQg
-Q2MgU3RhYmxlPyANCg0KVGhhbmtzLA0KTmlyYXYNCg==
+Hi Linus Walleij:
+
+  I'm quite satisfied with this version, but there is still one problem
+of irq parsing that haven't been resolved, although it probably is 
+an independent patch that we can submit it later.
+
+  For this, I'm not sure what's the approach we should proceed,
+1) if we can get current version merged first then solve it later, or 
+2) find a solution now and get it eventually fixed in this cycle
+
+for the detail problem, see comments below
+
+On 08:41 Wed 26 Feb     , Yixun Lan wrote:
+> The gpio controller of K1 support basic GPIO functions,
+> which capable of enabling as input, output. It can also be used
+> as GPIO interrupt which able to detect rising edge, falling edge,
+> or both. There are four GPIO ports, each consisting of 32 pins and
+> has indepedent register sets, while still sharing IRQ line and clocks.
+> 
+> The GPIO controller request the clock source from APBC block,
+> In this series, I haven't added the clock support, but plan
+> to fix it after clock driver is merged.
+> 
+> Due to first three GPIO ports has interleave register settings, some
+> resources (IRQ, clock) are shared by all pins.
+> 
+> The GPIO docs of K1 SoC can be found here, chapter 16.4 GPIO [1]
+> 
+> Note, this patch is rebased to v6.14-rc1.
+> 
+> This patch series has been tested on Bananapi-F3 board,
+> with following GPIO cases passed:
+>  1) gpio input
+>  2) gpio output - set to high, low
+>  3) gpio interrupt - rising trigger, falling trigger, both edge trigger
+> 
+> This version should resolve DT related concern in V4, and register each bank as
+> indepedent gpio chip in driver, no more sub children gpio DT node needed.
+> 
+> One problem is still not resolved, the interrupt cells parsing isn't correct.
+> but it works if request gpio irq via gpiod_get() + gpiod_to_irq()
+> 
+
+Let me iterate a little bit more detail on this..
+
+Current this v7 version work great with request irq from gpio, like:
+	pin = devm_gpiod_get_optional(dev, "myirq", GPIOD_IN);
+	irq = gpiod_to_irq(pin);
+	devm_request_threaded_irq(dev, irq, ..)
+
+but have problem if request irq via of_irq_get(), something like this:
+DT part 
+	mytst {
+		..
+		interrupt-parent = <&gpio>;
+		interrupts = <1 28 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "wakeup";
+	}
+
+In source code
+	irq = of_irq_get_byname(dev->of_node, "wakeup");
+
+I've made an attempt to patch gpiolib to support three cells "interrupts"
+syntax, but still fail, it always get last gpio irqchip of four, thus using
+the wrong pin (e.g: will always get 3 from gpiochips 0, 1, 2, 3)
+
+
+> Link: https://developer.spacemit.com/documentation?token=Rn9Kw3iFHirAMgkIpTAcV2Arnkf [1]
+> Link: https://lore.kernel.org/all/20240730-k1-01-basic-dt-v5-0-98263aae83be@gentoo.org [2]
+> Link: https://lore.kernel.org/all/20241016-02-k1-pinctrl-v5-0-03d395222e4f@gentoo.org/ [3]
+> Link: https://lore.kernel.org/all/20250218-gpio-ranges-fourcell-v1-0-b1f3db6c8036@linaro.org [4]
+> Link: https://lore.kernel.org/all/20250225-gpio-ranges-fourcell-v3-0-860382ba4713@linaro.org [5]
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> ---
+> Changes in v7:
+> - dt-binding: fix 80 column, drop unneeded dependencies
+> - tested with patch v3 of "gpiolib: of: Handle threecell gpios" [5]
+> - collect review tags
+> - Link to v6: https://lore.kernel.org/r/20250223-03-k1-gpio-v6-0-db2e4adeef1c@gentoo.org
+> 
+> Changes in v6:
+> - rebase to threecell gpio patch which proposed by LinusW at [4], 
+>   drop unneeded *xlate(), *add_pin_range() function
+> - add SPACEMIT prefix to macro
+> - adjust register comments
+> - drop 'index' member, instead calculate from offset
+> - add IRQCHIP_SKIP_SET_WAKE as gpio doesn't support irq wake up
+> - drop #ifdef CONFIG_OF_GPIO
+> - move interrupt mask disabling/enabling into irq_*mask()
+> - Link to v5: https://lore.kernel.org/r/20250217-03-k1-gpio-v5-0-2863ec3e7b67@gentoo.org
+> 
+> Changes in v5:
+> - export add_pin_range() from gpio core, support to add custom version
+> - change to 3 gpio cells, model to <bank number>, <bank offset>, <gpio flag>
+> - fold children DT nodes into parent
+> - Link to v4: https://lore.kernel.org/r/20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org
+> 
+> Changes in v4:
+> - gpio: re-construct gpio as four independent ports, also leverage gpio mmio API
+> - gpio interrupt: convert to generic gpio irqchip
+> - Link to v3: https://lore.kernel.org/r/20241225-03-k1-gpio-v3-0-27bb7b441d62@gentoo.org
+> 
+> Changes in v3:
+> - dt: drop ranges, interrupt-names property
+> - Link to v2: https://lore.kernel.org/r/20241219-03-k1-gpio-v2-0-28444fd221cd@gentoo.org
+> 
+> Changes in v2:
+> - address dt-bindings comments, simplify example
+> - rebase to 6.13-rc3 
+> - Link to v1: https://lore.kernel.org/r/20240904-03-k1-gpio-v1-0-6072ebeecae0@gentoo.org
+> 
+> ---
+> Yixun Lan (4):
+>       dt-bindings: gpio: spacemit: add support for K1 SoC
+>       gpio: spacemit: add support for K1 SoC
+>       riscv: dts: spacemit: add gpio support for K1 SoC
+>       riscv: dts: spacemit: add gpio LED for system heartbeat
+> 
+>  .../devicetree/bindings/gpio/spacemit,k1-gpio.yaml |  79 ++++++
+>  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |  11 +
+>  arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi       |   3 +
+>  arch/riscv/boot/dts/spacemit/k1.dtsi               |  15 ++
+>  drivers/gpio/Kconfig                               |   8 +
+>  drivers/gpio/Makefile                              |   1 +
+>  drivers/gpio/gpio-spacemit-k1.c                    | 277 +++++++++++++++++++++
+>  7 files changed, 394 insertions(+)
+> ---
+> base-commit: 3d72d603afa72082501e9076eed61e0531339ef8
+> change-id: 20240828-03-k1-gpio-61bf92f9032c
+> prerequisite-change-id: 20250217-gpio-ranges-fourcell-85888ad219da:v3
+> prerequisite-patch-id: 9d4c8b05cc56d25bfb93f3b06420ba6e93340d31
+> prerequisite-patch-id: 7949035abd05ec02a9426bb17819d9108e66e0d7
+> 
+> Best regards,
+> -- 
+> Yixun Lan
+> 
+
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
