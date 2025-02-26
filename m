@@ -1,148 +1,143 @@
-Return-Path: <devicetree+bounces-151422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98C6AA45C2D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:52:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED178A45C2F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:52:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4571F189105A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 10:52:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF040174DCA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 10:52:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4711B24E00E;
-	Wed, 26 Feb 2025 10:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7703624E00E;
+	Wed, 26 Feb 2025 10:52:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SLdBizUe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp134-86.sina.com.cn (smtp134-86.sina.com.cn [180.149.134.86])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB4A320E70A
-	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 10:52:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D159820E70A;
+	Wed, 26 Feb 2025 10:52:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740567149; cv=none; b=G2VVyydKtJg+8vphYlO3vk6OsHK2u9nT60tSysDm0WYLCS30PptdQkf6nvMLM3KjofvH0RnHD9KoC+OV/UY8m+4no3rBAXZunmOXDT78uYSbDYVFdsCAIyHH9fDjW75SArlwOmgccLY8y35pW1adpccQBWUeU7OOalhyr7eeKAE=
+	t=1740567154; cv=none; b=T8U/p/URHEElOy6DJ7kxqXBa38S0ZzwrKOq2kjg4OuDXV/1X9YEG1IhaR1xUITdQIRWdans7oQcZ4rWhoptomXw1wg/ewdlYg4a4jhwTafXNfZZY51W0JfrDQ04SgzgyHRCWcP/1UT9xxTrhiL2RUfjL3dY/vgdIwDuQRzjGHhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740567149; c=relaxed/simple;
-	bh=+FNZDPJJFiAJ9t2iAERYG9oZjAiS0JZDwNejk2fx/lk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=TpQCM0sYgr5zouUBiYsG0/ptJJxRC9gcBt+Bfsw377uimcU1RtCjhsepLOTM65pdl1inj53nBGyRbvAwl7Xf/7qZditDsjxwZetXVpWLGCXp2uKsoTEgCa8rP80uVlGQtBV1XT/e3XxbKfrTxmYEHt/HHYY1nVCXV/5rYTEjn1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
-Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.137])
-	by sina.net (10.185.250.30) with ESMTP
-	id 67BEF1CF00003A73; Wed, 26 Feb 2025 18:49:55 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-Authentication-Results: sina.net;
-	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
-	 dkim=none header.i=none;
-	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: 8E84643D83234D9A98BABE86AB6658B3
-X-SMAIL-UIID: 8E84643D83234D9A98BABE86AB6658B3-20250226-184955
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: alsa-devel@alsa-project.org,
-	broonie@kernel.org,
-	devicetree@vger.kernel.org
-Cc: tiwai@suse.com,
-	amadeuszx.slawinski@linux.intel.com,
-	yangxiaohua@everest-semi.com,
-	zhuning@everest-semi.com,
-	zhangyi@everest-semi.com
-Subject: [PATCH 2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-Date: Wed, 26 Feb 2025 18:49:49 +0800
-Message-Id: <20250226104949.16303-3-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250226104949.16303-1-zhangyi@everest-semi.com>
-References: <20250226104949.16303-1-zhangyi@everest-semi.com>
+	s=arc-20240116; t=1740567154; c=relaxed/simple;
+	bh=GrJZKd2MQ96n7PgPlTBv/iNTdueTemS4/Ycl8g0CfrI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WZ63WhoxQshYRwuzwMV/aV8iJNvW4JURHwdOLMX4q95WcjPiJtKFbI/rTROaJ1XF/F2DHGHcyBlek9nAaFuKaP7ADEteIR0nXAxLiT1q0qnvM1MATKOhZiSgcNEOlX4rKbmh4UHzTVSSXrfVox6Kp/woy4J8HJMrKnVx2wkNXkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SLdBizUe; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51Q9upG4012966;
+	Wed, 26 Feb 2025 10:52:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	DUztjXD5+5m/s1FCP530wFC3zgs4wmP0Xguy/Fjus5A=; b=SLdBizUeOh2hJlsX
+	4xcu8JMy7R3N22UZFTiJDqpHWQI9NfHGPHY2QFtYYDktpaLpJoF8NINnSFnmq/lk
+	MlDP2CDgHKJnxMp95ExzB5v5M18+o9GXoztucfPhYs4Dk/2XDCW8L8GKTLEyhpkI
+	c//qYwuqfyuOpqdr8l5nQYGf1rrEMeMGjCq7nNJI3ePaMha0RGqSRRN7ti4a/9W5
+	E4bb1B8P1dK1qYE4H9Wk4BX0l+AToupG7OklMwp2h7NVX0JH70W4PDUtzWQTTG1X
+	xTA/XVj42wM+TlxNMJI//NHAEyNoU3pONyjZ34crdHuGVPgx3P4FLGyr7LaDCWje
+	XMmCdg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 451prk1pb6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Feb 2025 10:52:22 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51QAqLJ4022893
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Feb 2025 10:52:21 GMT
+Received: from [10.239.133.114] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 26 Feb
+ 2025 02:52:14 -0800
+Message-ID: <593e1777-a033-4922-93c4-c056e6b9bf4c@quicinc.com>
+Date: Wed, 26 Feb 2025 18:52:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] dt-bindings: arm: Add Coresight device Trace NOC
+ definition
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Suzuki K Poulose
+	<suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark
+	<james.clark@linaro.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <kernel@quicinc.com>, <linux-kernel@vger.kernel.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <kernel@oss.qualcomm.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20250221-trace-noc-driver-v1-0-0a23fc643217@quicinc.com>
+ <20250221-trace-noc-driver-v1-1-0a23fc643217@quicinc.com>
+ <edfd6c6a-65d2-42f1-8225-0808359dd375@kernel.org>
+Content-Language: en-US
+From: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+In-Reply-To: <edfd6c6a-65d2-42f1-8225-0808359dd375@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: hQCCYVakcTyKxFSaQTAjeLYp6z8GsEc8
+X-Proofpoint-ORIG-GUID: hQCCYVakcTyKxFSaQTAjeLYp6z8GsEc8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-26_02,2025-02-26_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ lowpriorityscore=0 priorityscore=1501 suspectscore=0 impostorscore=0
+ phishscore=0 spamscore=0 mlxscore=0 mlxlogscore=973 malwarescore=0
+ adultscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502260086
 
-Add device tree binding documentation for Everest ES8389
 
-Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
----
- .../bindings/sound/everest,es8389.txt         | 68 +++++++++++++++++++
- 1 file changed, 68 insertions(+)
- create mode 100755 Documentation/devicetree/bindings/sound/everest,es8389.txt
 
-diff --git a/Documentation/devicetree/bindings/sound/everest,es8389.txt b/Documentation/devicetree/bindings/sound/everest,es8389.txt
-new file mode 100755
-index 000000000000..a65222f984da
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/everest,es8389.txt
-@@ -0,0 +1,68 @@
-+ES8389 audio CODEC
-+
-+This device supports I2C only.
-+
-+Required properties:
-+
-+- compatible : "everest,es8389"
-+
-+- reg : The I2C address of the device.
-+ It depends on The Voltage level on Chip Address Pin(AD1 = PIN11,AD0 = PIN1)
-+
-+- "#sound-dai-cells"
-+
-+Optional properties:
-+
-+- everest,adc-slot:
-+ This property is used to set the slots of recording data when multiple codecs
-+ are connected in PTDM mode. please do not set this property if you are setting
-+ STDM mode.
-+ minimum: 0x00
-+ maximum: 0x07
-+ default: 0x00
-+
-+- everest,dac-slot:
-+ This property is used to set the slots of playing data when multiple codecs
-+ are connected in TDM mode.
-+ minimum: 0x00
-+ maximum: 0x07
-+ default: 0x00
-+
-+- prefix_name:
-+ To set the prefix_name of kcontorls and dapm.
-+
-+- everest,dmic-enabled
-+ The property selects the PDM interface of ES8389
-+
-+Example for single codec:
-+
-+ es8389: es8389@10 {
-+                compatible = "everest,es8389";
-+                status = "okay";
-+                reg = <0x10>;
-+                everest,adc-slot = [00];
-+                everest,dac-slot = [00];
-+                prefix_name = "es8389_0";
-+                #sound-dai-cells = <0>;
-+        };
-+
-+Example for multiple codecs:
-+ es8389_0: es8389@10 {
-+                compatible = "everest,es8389";
-+                status = "okay";
-+                reg = <0x10>;
-+                everest,adc-slot = [00];
-+                everest,dac-slot = [00];
-+                prefix_name = "es8389_0";
-+                #sound-dai-cells = <0>;
-+        };
-+es8389_1: es8389@11 {
-+                compatible = "everest,es8389";
-+                status = "okay";
-+                reg = <0x11>;
-+                everest,adc-slot = [01];
-+                everest,dac-slot = [01];
-+                prefix_name = "es8389_1";
-+                clock-names = "mclk";
-+                #sound-dai-cells = <0>;
-+        };
--- 
-2.17.1
+On 2/22/2025 6:47 PM, Krzysztof Kozlowski wrote:
+> On 21/02/2025 08:40, Yuanfang Zhang wrote:
+>> Adds new coresight-tnoc.yaml file describing the bindings required
+>> to define Trace NOC in the device trees.
+>>
+>> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+> 
+> 
+> So you just sent the same v1, ignoring previous review. That's not how
+> it works.
+> 
+sorry for this incorrect process. because i just update --to-cc list and no other
+change, i forced the version to V1, hoped it would work like resend,
+but the result was not as expected.
+
+> Provide proper changelog, implement ENTIRE feedback and do no ask
+> maintainers do point the same issues TWICE.
+> 
+> NAK
+> 
+> <form letter>
+> It seems my or other reviewer's previous comments were not fully
+> addressed. Maybe the feedback got lost between the quotes, maybe you
+> just forgot to apply it. Please go back to the previous discussion and
+> either implement all requested changes or keep discussing them.
+> 
+> Thank you.
+> </form letter>
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
