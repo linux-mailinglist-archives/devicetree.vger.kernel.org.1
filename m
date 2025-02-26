@@ -1,211 +1,266 @@
-Return-Path: <devicetree+bounces-151254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51BA8A451CE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 02:01:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD2FDA451FE
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 02:10:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1809189AE5A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 01:01:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2691C1881A26
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 01:10:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0F313A86C;
-	Wed, 26 Feb 2025 01:01:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B611215442A;
+	Wed, 26 Feb 2025 01:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J+Sd9Kfo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5480C63CF;
-	Wed, 26 Feb 2025 01:01:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A87114F9CF;
+	Wed, 26 Feb 2025 01:10:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740531675; cv=none; b=LZRIFcLubh0ycPS34WX9clD5e4aEZcJpcmD9nsBY4DYrt7/Jgk2R8/T3IHEV7m07QbUj9avKS04QfeQ2til+ayuCKcsWd6XftyclqPUsgAdltOC/DOTG4If3g/dM6b+KEht2xVay2lvPemrw3EAiC5bjhsYKCtiXM26TdyTjFBw=
+	t=1740532205; cv=none; b=Rkd6KqjfgRH9S2NzSz92T+T4KXNkb++7vhR6IDE4Tnyi2krp85MMD2UoUd4f4CHL+OVjhv8xdRP6NR2I/j0z/6l8V2nvMacCcF6IlfsU41d9eTgdIsA4RqssyYMDUieBKBOcNZ6WhxjBywWUNG/UJ7wCEerDIEAMyeTARKRR3S4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740531675; c=relaxed/simple;
-	bh=ndgmvJpYY0f5d8nmPn7hN8YJZl0cgL5q7U04Kq5JPHo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YPPQbi/mRPTI59mlCiusJG5f9M9D716UdsHiKwejQyEVcPizgr1jugJZIUBEP4dFS42CQ/7mX0H9UJgVzc1b/eKVk27c2XZTiZLP7kFxebRTbLWdMEVSYn8tNXf2/DVZWvP3tayzqocyd043WWo53WqbWvbXQuAy+tEFn5n9Ji4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.55.252])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 22AB134300C;
-	Wed, 26 Feb 2025 01:01:12 +0000 (UTC)
-Date: Wed, 26 Feb 2025 01:01:08 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>
-Cc: Alex Elder <elder@riscstar.com>, Yangyu Chen <cyy@cyyself.name>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Jesse Taube <mr.bossman075@gmail.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH v7 0/4] riscv: spacemit: add gpio support for K1 SoC
-Message-ID: <20250226010108-GYA44567@gentoo>
-References: <20250226-03-k1-gpio-v7-0-be489c4a609b@gentoo.org>
+	s=arc-20240116; t=1740532205; c=relaxed/simple;
+	bh=J1ZAkl3ozYgniAVeeGm/DR4x+8Ypqttwvfp9sj5URr8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TMJtcbmosYk8aCBzMhF2ABn1jJlXfe5Jsym1jnIz1JRKqF2WhPNrhsRP/GTSZrLNSlLqQYz9q8/jDlTFxf3Qjomk58pMeAjGYx1+4oIbWl5w+uTcDLJv/gUOZDYDk/uoRye2tEkqPye6Ff7Z6QWW2go0t7JnQuk1hrCRzNU3ZJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J+Sd9Kfo; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-22113560c57so41371005ad.2;
+        Tue, 25 Feb 2025 17:10:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740532203; x=1741137003; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WiEgyM16960NSDV6t1+D1FR+8qHkFg4gFUmoJjgyErM=;
+        b=J+Sd9KfoYuXoFlNnGliMghDc+Qf3cDeZI5Pad3ezz0TlHsXRuErKzATp1Cj+YalZ/k
+         enTrc6xh484ZusS5tVm3ytSWdXo1gShFEn6LHdw0kLvwNQOJJPwRzvF/GRSKtvLOUnSj
+         VYLgzhxMjoqoPe65TOvHo2d1N7tj5hIpFeqOhYZHruv9O2HASBNFEQUl/r5HeUcUzR+f
+         ccjouj2uBv+pF9Fs0mXRoD7st5SgFf+8l2khUe8uZTtQ7yElCMEqH4e/+Clm88Tf7r/o
+         PasYSmCl0iDcI9NExa04Bq2TTi8Gdidw0hQ4SazRl/5L4nu3ERIsiaUSlS1qwSzolLXU
+         E1Gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740532203; x=1741137003;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WiEgyM16960NSDV6t1+D1FR+8qHkFg4gFUmoJjgyErM=;
+        b=PI8Tr7e2EYqN1TOiHCWSxepoQgTvvsBvCZdbSkrrBN8xu9OhJ9h+ubVCnn0gObHjAs
+         vSdeyiE8xN4DLJcNw/cT7+/KmE02skH3XP4CWmxEWMfbBJnMaNnpVZZkRtNTVz2mzBco
+         dHvHBHgd+krXL2tYYlzh9dXmIo3bBDR2fU6sv9kbded31TlsLyCXpyrfqhnYK4vVetRb
+         XEEKSoe+0VBrhTgkMmMXqdJu7ZnZhwLP0AQtpha2XN2Xv/RndCrq218+xivwmT58gYH6
+         h1sJixcxu6pE5H9sy1yFMoimlpLAjNIiH3BG4tuTRuGAXHASTKG92hntLFXmyvE4Kk2H
+         2jeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWmEqKCK09+I74yC0uQbtL7MsMSDKGczh9U92QWkpo6ugTXMFvsCh326SxSeaIAM3i/CFUBBEGpHecJ@vger.kernel.org, AJvYcCXvnYsCsSpDqcpkDn5gnWA5yEBc7GGQl2lC9VyQQoifFYA9gvzTOYG80wqFUuaKh7OtagO6AofSqAURqaMd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7eocUYePd2SBIdUit7BCKS2nycYYHHHuc3cK8iUkrfDH08qet
+	E2baDKxNCgxEZVI6FtcTJdsGhqhP85RdkFebn6ONflPmdtR/lpkA
+X-Gm-Gg: ASbGncvF+d1DB05W7HwHjxFM+ufmK6jzrQbZ17y9KfThV8QDqHmEaD4omktxbOEQ1xQ
+	x9ZnClsCZv+lPNivC7mV7VEMphAtrsyfo3amnCZd+sNNBvs1vUoVwFrmiyJOgP+MK7748B9wo4r
+	M/6971+qy5y8Bnc+OezzpB8KzoZ8+djbT80WCBYefvgHJ5h1947AxxNKAqwP13+gF3dynw0A+MB
+	PFMjw0mzRJr4MumfeG63iWlWuy4LtJZMLVQ28OcPCyXGCEto+viL8E0PWcYvVjmhBX6MnyFtMLM
+	8jiX97OtYetzz8UcLXoth9Y=
+X-Google-Smtp-Source: AGHT+IEAIlHRnph+kEm0eZjJMotG6sxrxwDis5EVo+KPSHhWr29FBTWOWu09c8pE742ej1Laf9rDaQ==
+X-Received: by 2002:a05:6a00:4f88:b0:72a:8bb6:2963 with SMTP id d2e1a72fcca58-73426cf11e7mr27498782b3a.13.1740532203140;
+        Tue, 25 Feb 2025 17:10:03 -0800 (PST)
+Received: from dev.. ([2804:14d:887:95a9:e1a5:e9d5:ba9a:df82])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7347a839dffsm2271324b3a.172.2025.02.25.17.09.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Feb 2025 17:10:02 -0800 (PST)
+From: Leonardo Felipe Takao Hirata <leo.fthirata@gmail.com>
+To: tglx@linutronix.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	vz@mleia.com
+Cc: Leonardo Felipe Takao Hirata <leo.fthirata@gmail.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	skhan@linuxfoundation.org,
+	linux-kernel-mentees@lists.linuxfoundation.org
+Subject: [PATCH v2] dt-bindings: interrupt-controller: Convert nxp,lpc3220-mic.txt to yaml format
+Date: Tue, 25 Feb 2025 22:09:40 -0300
+Message-ID: <20250226010956.50566-1-leo.fthirata@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250226-03-k1-gpio-v7-0-be489c4a609b@gentoo.org>
+Content-Transfer-Encoding: 8bit
 
-Hi Linus Walleij:
+Convert NXP LPC3220-MIC to DT schema.
 
-  I'm quite satisfied with this version, but there is still one problem
-of irq parsing that haven't been resolved, although it probably is 
-an independent patch that we can submit it later.
+Signed-off-by: Leonardo Felipe Takao Hirata <leo.fthirata@gmail.com>
+---
+Changes in v2:
+ - Fix SoB
+ - Remove reg description
+ - List #interrupt-cell items
+ - Add interrupt restriction per variant
+ - Remove extra examples
+---
+ .../interrupt-controller/nxp,lpc3220-mic.txt  | 58 --------------
+ .../interrupt-controller/nxp,lpc3220-mic.yaml | 80 +++++++++++++++++++
+ 2 files changed, 80 insertions(+), 58 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.yaml
 
-  For this, I'm not sure what's the approach we should proceed,
-1) if we can get current version merged first then solve it later, or 
-2) find a solution now and get it eventually fixed in this cycle
-
-for the detail problem, see comments below
-
-On 08:41 Wed 26 Feb     , Yixun Lan wrote:
-> The gpio controller of K1 support basic GPIO functions,
-> which capable of enabling as input, output. It can also be used
-> as GPIO interrupt which able to detect rising edge, falling edge,
-> or both. There are four GPIO ports, each consisting of 32 pins and
-> has indepedent register sets, while still sharing IRQ line and clocks.
-> 
-> The GPIO controller request the clock source from APBC block,
-> In this series, I haven't added the clock support, but plan
-> to fix it after clock driver is merged.
-> 
-> Due to first three GPIO ports has interleave register settings, some
-> resources (IRQ, clock) are shared by all pins.
-> 
-> The GPIO docs of K1 SoC can be found here, chapter 16.4 GPIO [1]
-> 
-> Note, this patch is rebased to v6.14-rc1.
-> 
-> This patch series has been tested on Bananapi-F3 board,
-> with following GPIO cases passed:
->  1) gpio input
->  2) gpio output - set to high, low
->  3) gpio interrupt - rising trigger, falling trigger, both edge trigger
-> 
-> This version should resolve DT related concern in V4, and register each bank as
-> indepedent gpio chip in driver, no more sub children gpio DT node needed.
-> 
-> One problem is still not resolved, the interrupt cells parsing isn't correct.
-> but it works if request gpio irq via gpiod_get() + gpiod_to_irq()
-> 
-
-Let me iterate a little bit more detail on this..
-
-Current this v7 version work great with request irq from gpio, like:
-	pin = devm_gpiod_get_optional(dev, "myirq", GPIOD_IN);
-	irq = gpiod_to_irq(pin);
-	devm_request_threaded_irq(dev, irq, ..)
-
-but have problem if request irq via of_irq_get(), something like this:
-DT part 
-	mytst {
-		..
-		interrupt-parent = <&gpio>;
-		interrupts = <1 28 IRQ_TYPE_EDGE_RISING>;
-		interrupt-names = "wakeup";
-	}
-
-In source code
-	irq = of_irq_get_byname(dev->of_node, "wakeup");
-
-I've made an attempt to patch gpiolib to support three cells "interrupts"
-syntax, but still fail, it always get last gpio irqchip of four, thus using
-the wrong pin (e.g: will always get 3 from gpiochips 0, 1, 2, 3)
-
-
-> Link: https://developer.spacemit.com/documentation?token=Rn9Kw3iFHirAMgkIpTAcV2Arnkf [1]
-> Link: https://lore.kernel.org/all/20240730-k1-01-basic-dt-v5-0-98263aae83be@gentoo.org [2]
-> Link: https://lore.kernel.org/all/20241016-02-k1-pinctrl-v5-0-03d395222e4f@gentoo.org/ [3]
-> Link: https://lore.kernel.org/all/20250218-gpio-ranges-fourcell-v1-0-b1f3db6c8036@linaro.org [4]
-> Link: https://lore.kernel.org/all/20250225-gpio-ranges-fourcell-v3-0-860382ba4713@linaro.org [5]
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> ---
-> Changes in v7:
-> - dt-binding: fix 80 column, drop unneeded dependencies
-> - tested with patch v3 of "gpiolib: of: Handle threecell gpios" [5]
-> - collect review tags
-> - Link to v6: https://lore.kernel.org/r/20250223-03-k1-gpio-v6-0-db2e4adeef1c@gentoo.org
-> 
-> Changes in v6:
-> - rebase to threecell gpio patch which proposed by LinusW at [4], 
->   drop unneeded *xlate(), *add_pin_range() function
-> - add SPACEMIT prefix to macro
-> - adjust register comments
-> - drop 'index' member, instead calculate from offset
-> - add IRQCHIP_SKIP_SET_WAKE as gpio doesn't support irq wake up
-> - drop #ifdef CONFIG_OF_GPIO
-> - move interrupt mask disabling/enabling into irq_*mask()
-> - Link to v5: https://lore.kernel.org/r/20250217-03-k1-gpio-v5-0-2863ec3e7b67@gentoo.org
-> 
-> Changes in v5:
-> - export add_pin_range() from gpio core, support to add custom version
-> - change to 3 gpio cells, model to <bank number>, <bank offset>, <gpio flag>
-> - fold children DT nodes into parent
-> - Link to v4: https://lore.kernel.org/r/20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org
-> 
-> Changes in v4:
-> - gpio: re-construct gpio as four independent ports, also leverage gpio mmio API
-> - gpio interrupt: convert to generic gpio irqchip
-> - Link to v3: https://lore.kernel.org/r/20241225-03-k1-gpio-v3-0-27bb7b441d62@gentoo.org
-> 
-> Changes in v3:
-> - dt: drop ranges, interrupt-names property
-> - Link to v2: https://lore.kernel.org/r/20241219-03-k1-gpio-v2-0-28444fd221cd@gentoo.org
-> 
-> Changes in v2:
-> - address dt-bindings comments, simplify example
-> - rebase to 6.13-rc3 
-> - Link to v1: https://lore.kernel.org/r/20240904-03-k1-gpio-v1-0-6072ebeecae0@gentoo.org
-> 
-> ---
-> Yixun Lan (4):
->       dt-bindings: gpio: spacemit: add support for K1 SoC
->       gpio: spacemit: add support for K1 SoC
->       riscv: dts: spacemit: add gpio support for K1 SoC
->       riscv: dts: spacemit: add gpio LED for system heartbeat
-> 
->  .../devicetree/bindings/gpio/spacemit,k1-gpio.yaml |  79 ++++++
->  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |  11 +
->  arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi       |   3 +
->  arch/riscv/boot/dts/spacemit/k1.dtsi               |  15 ++
->  drivers/gpio/Kconfig                               |   8 +
->  drivers/gpio/Makefile                              |   1 +
->  drivers/gpio/gpio-spacemit-k1.c                    | 277 +++++++++++++++++++++
->  7 files changed, 394 insertions(+)
-> ---
-> base-commit: 3d72d603afa72082501e9076eed61e0531339ef8
-> change-id: 20240828-03-k1-gpio-61bf92f9032c
-> prerequisite-change-id: 20250217-gpio-ranges-fourcell-85888ad219da:v3
-> prerequisite-patch-id: 9d4c8b05cc56d25bfb93f3b06420ba6e93340d31
-> prerequisite-patch-id: 7949035abd05ec02a9426bb17819d9108e66e0d7
-> 
-> Best regards,
-> -- 
-> Yixun Lan
-> 
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.txt b/Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.txt
+deleted file mode 100644
+index 0bfb3ba55f4c..000000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.txt
++++ /dev/null
+@@ -1,58 +0,0 @@
+-* NXP LPC32xx MIC, SIC1 and SIC2 Interrupt Controllers
+-
+-Required properties:
+-- compatible: "nxp,lpc3220-mic" or "nxp,lpc3220-sic".
+-- reg: should contain IC registers location and length.
+-- interrupt-controller: identifies the node as an interrupt controller.
+-- #interrupt-cells: the number of cells to define an interrupt, should be 2.
+-  The first cell is the IRQ number, the second cell is used to specify
+-  one of the supported IRQ types:
+-      IRQ_TYPE_EDGE_RISING = low-to-high edge triggered,
+-      IRQ_TYPE_EDGE_FALLING = high-to-low edge triggered,
+-      IRQ_TYPE_LEVEL_HIGH = active high level-sensitive,
+-      IRQ_TYPE_LEVEL_LOW = active low level-sensitive.
+-  Reset value is IRQ_TYPE_LEVEL_LOW.
+-
+-Optional properties:
+-- interrupts: empty for MIC interrupt controller, cascaded MIC
+-  hardware interrupts for SIC1 and SIC2
+-
+-Examples:
+-
+-	/* LPC32xx MIC, SIC1 and SIC2 interrupt controllers */
+-	mic: interrupt-controller@40008000 {
+-		compatible = "nxp,lpc3220-mic";
+-		reg = <0x40008000 0x4000>;
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-	};
+-
+-	sic1: interrupt-controller@4000c000 {
+-		compatible = "nxp,lpc3220-sic";
+-		reg = <0x4000c000 0x4000>;
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-
+-		interrupt-parent = <&mic>;
+-		interrupts = <0 IRQ_TYPE_LEVEL_LOW>,
+-			     <30 IRQ_TYPE_LEVEL_LOW>;
+-	};
+-
+-	sic2: interrupt-controller@40010000 {
+-		compatible = "nxp,lpc3220-sic";
+-		reg = <0x40010000 0x4000>;
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-
+-		interrupt-parent = <&mic>;
+-		interrupts = <1 IRQ_TYPE_LEVEL_LOW>,
+-			     <31 IRQ_TYPE_LEVEL_LOW>;
+-	};
+-
+-	/* ADC */
+-	adc@40048000 {
+-		compatible = "nxp,lpc3220-adc";
+-		reg = <0x40048000 0x1000>;
+-		interrupt-parent = <&sic1>;
+-		interrupts = <7 IRQ_TYPE_LEVEL_HIGH>;
+-	};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.yaml b/Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.yaml
+new file mode 100644
+index 000000000000..489bd329bc4e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.yaml
+@@ -0,0 +1,80 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/nxp,lpc3220-mic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP LPC32xx MIC, SIC1 and SIC2 Interrupt Controllers
++
++maintainers:
++  - Vladimir Zapolskiy <vz@mleia.com>
++
++properties:
++  compatible:
++    enum:
++      - nxp,lpc3220-mic
++      - nxp,lpc3220-sic
++
++  reg:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 2
++
++  interrupts:
++    items:
++      - description:
++          IRQ number.
++      - description: |
++          IRQ type. Can be one of:
++
++              IRQ_TYPE_EDGE_RISING = Low-to-high edge triggered,
++              IRQ_TYPE_EDGE_FALLING = High-to-low edge triggered,
++              IRQ_TYPE_LEVEL_HIGH = Active high level-sensitive,
++              IRQ_TYPE_LEVEL_LOW = Active low level-sensitive.
++
++          Reset value is IRQ_TYPE_LEVEL_LOW.
++
++required:
++  - compatible
++  - reg
++  - interrupt-controller
++  - '#interrupt-cells'
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: nxp,lpc3220-sic
++    then:
++      required:
++        - interrupts
++    else:
++      properties:
++        interrupts: false
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    mic: interrupt-controller@40008000 {
++      compatible = "nxp,lpc3220-mic";
++      reg = <0x40008000 0x4000>;
++      interrupt-controller;
++      #interrupt-cells = <2>;
++    };
++
++    sic1: interrupt-controller@4000c000 {
++      compatible = "nxp,lpc3220-sic";
++      reg = <0x4000c000 0x4000>;
++      interrupt-controller;
++      #interrupt-cells = <2>;
++      interrupt-parent = <&mic>;
++      interrupts = <0 IRQ_TYPE_LEVEL_LOW>,
++                  <30 IRQ_TYPE_LEVEL_LOW>;
++    };
 -- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+2.43.0
+
 
