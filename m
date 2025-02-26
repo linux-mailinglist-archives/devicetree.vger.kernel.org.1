@@ -1,48 +1,65 @@
-Return-Path: <devicetree+bounces-151576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC525A463F1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 16:00:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA8ADA46432
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 16:11:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EE6F188D4B2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:00:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55F0A189FAEE
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D198223313;
-	Wed, 26 Feb 2025 15:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7739822330F;
+	Wed, 26 Feb 2025 15:10:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pVL1Sy0U"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="TO4UsmVX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D7E222590;
-	Wed, 26 Feb 2025 15:00:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93762222582;
+	Wed, 26 Feb 2025 15:10:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740582043; cv=none; b=qcBF9nb0Uj0CrRPU0mZlARdeSJkPJCWiki2vyGAyFF6/f9ShcNVL1sUs1x70dIguZRqsNM8xpsWcnsbGMAiSAT8Lllh7ZRq3B/mVvVXBxl0apdLejpa22I8Dfq/ykCaP1/JN7xyGWMPHumZQW9tTfy9v/ws5UpxwVELs0G5YNus=
+	t=1740582641; cv=none; b=oy7gKnQglOsBf9Ja3hbsJ0wom2LsRuIjEgJ8mbF+Cpsnns5BPzsoeWjBsmnFbe69JGIis6Hcpd9n7PkAaGIMkliVBK9V84FNFk69kqqCzmWxBa0FokuvV+8gX8y1pOP6vj/8pTSNCiFmVZ8mmSZcTp2XzU+UV368rnfg91qJKGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740582043; c=relaxed/simple;
-	bh=SNUssUfj17J4uIaq7GMjKEnFmTIghJOj6hKk940Kd6E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CrOib1E1RF6dvfOnUWSqOQAGd3YOuskSMwkr3Y3cv45HxmZ77948X43H3yayzxNX8hafoO9Kv8G8BZetgIKZmBJI/aQf3E6nF/7J6sZ/L6b0r9a0sZaICt+ju/zn0IjSRHJP2qaNa+A5g4HW8n8Jj/5WWqlMe2TjDOQP15JBBOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pVL1Sy0U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F29CC4CED6;
-	Wed, 26 Feb 2025 15:00:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740582041;
-	bh=SNUssUfj17J4uIaq7GMjKEnFmTIghJOj6hKk940Kd6E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pVL1Sy0Ujj3kI3JO7Yn8jGwom9daT9LLYY6j4fA86+X0nuR17W0j53jAMT7sN2a7M
-	 frH3iTtwuQ7E0CxvryIpQAsU4tDbOwLy6QkFWrtyY1EwV9VD4YEeDWs1cnvP6fSEY2
-	 7aQAy5c4rd3HSqbeAUPHDTLnLSinpAKHkpo69fWGmfDmbTjLSRzrb30sDJigMnIbD3
-	 zCoszkQhQOLO/iyfxbfvvCNbD68ENnoAfDFoXeGPHzan/XpkB5odxm4WZriR14qFo1
-	 UQp6C7eSeQhhgYqdDEAbfNHvdC2gFrYwgOik+/gm1c2HWQbzarLap99gjn3dRskn+c
-	 SwbPCv9nJ98Dw==
-Message-ID: <bed0195c-8691-4269-9d29-7fb820087f03@kernel.org>
-Date: Wed, 26 Feb 2025 16:00:35 +0100
+	s=arc-20240116; t=1740582641; c=relaxed/simple;
+	bh=YolhIxlnD/KFo71BB2N1+kGv0r3k8mAuWJLh1TvzXDY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tr7va8jpyvP2te5gycDorJZFUVqkcsqC2mHiNjdkJ0fvj+Owut1Wzhecdr3M6diZTGTVUkaA0Uwy1pdt+dK14CjE9oEjp0Axi9EeuNOGItXhiJ9Mgx7blpPcio7GUhq5uShT19hQBlPkGP5nO057xbP15CBdZnOMnOC9gVkyq4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=TO4UsmVX; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51QCD3Hx012382;
+	Wed, 26 Feb 2025 16:10:21 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	8ewL/+uVM2seWyrZlyz4H0RFQuaYKzC45+3Da4nH/t0=; b=TO4UsmVXLWNtMv4Z
+	Yh9qIQNeRvGI9qcLvgtzAb3wZNmt6WdJ8e9aatcrI1BVtx7+grrEXzNPhKTnzhVo
+	8UkQFSfHTBz0XIsGcdK1HqRENglIQ6g5M/v9ljtvMgiT2uTLAXvJ59kmodhREVpv
+	qWagnLPoK48zABDtsyT2/f79aAXq570oMn6ibK/hbcXyf69i8/RLhtktR/BQFIFW
+	zjJ/jIm38zrlCZM6gIvydsf1R5DiynJGK/1ER8JsFsQcOMVaoM7bq/a+wsBhKafZ
+	J3N1AyuqpojgVEBX6rLC3tT1Spflz6IgtpyH3T/9zQvIxwVYKSd4iSgSchm4W6Yr
+	OHMImQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 451psv5a9g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Feb 2025 16:10:21 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 4DAF1400BB;
+	Wed, 26 Feb 2025 16:08:55 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C731C5792D9;
+	Wed, 26 Feb 2025 14:24:54 +0100 (CET)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Feb
+ 2025 14:24:54 +0100
+Message-ID: <2c8683f7-2c1c-4e18-9f76-53c528029b40@foss.st.com>
+Date: Wed, 26 Feb 2025 14:24:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,131 +67,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/8] ASoC: dt-bindings: mediatek,mt8188-mt6359: Add
- DMIC backend to dai-link
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Trevor Wu <trevor.wu@mediatek.com>,
- kernel@collabora.com, linux-sound@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-References: <20250225-genio700-dmic-v2-0-3076f5b50ef7@collabora.com>
- <20250225-genio700-dmic-v2-7-3076f5b50ef7@collabora.com>
- <20250226-ludicrous-seagull-of-music-a40daf@krzk-bin>
- <9240905b-29af-4ea7-8ff9-a0cb2233da72@notapiano>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 0/4] Add support for Priva E-Measuringbox board
+To: Oleksij Rempel <o.rempel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Woojung Huh
+	<woojung.huh@microchip.com>,
+        Andrew Lunn <andrew+netdev@lunn.ch>
+CC: <kernel@pengutronix.de>, <linux-kernel@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20250203085820.609176-1-o.rempel@pengutronix.de>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <9240905b-29af-4ea7-8ff9-a0cb2233da72@notapiano>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20250203085820.609176-1-o.rempel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-26_04,2025-02-26_01,2024-11-22_01
 
-On 26/02/2025 14:30, Nícolas F. R. A. Prado wrote:
-> On Wed, Feb 26, 2025 at 09:22:29AM +0100, Krzysztof Kozlowski wrote:
->> On Tue, Feb 25, 2025 at 11:33:53AM -0300, Nícolas F. R. A. Prado wrote:
->>> MT8188 platforms also have DMIC DAIs, which were previously undescribed.
->>> Add DMIC_BE as a possible backend for the dai-link property.
->>>
->>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>> ---
->>>  Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
->>> index 362e729b51b43ec16716aee70ad736420def81f3..8c77e7f68ad7b6f5b88b53cedccb291139a2eeea 100644
->>> --- a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
->>> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
->>> @@ -62,6 +62,7 @@ patternProperties:
->>>              - PCM1_BE
->>>              - DL_SRC_BE
->>>              - UL_SRC_BE
->>> +            - DMIC_BE
->>
->> Any reason why you keep adding to the end of the lists but not
->> alphabetically sorted? It's enum, so it's expected to be sorted which
->> reduces conflicts between edits. Last commit already broke sorting :/
+Hi
+
+On 2/3/25 09:58, Oleksij Rempel wrote:
+> This patch series introduces support for the Priva E-Measuringbox board
+> based on the ST STM32MP133 SoC. The set includes all the necessary
+> changes for device tree bindings, vendor prefixes, thermal support, and
+> board-specific devicetree to pass devicetree validation and checkpatch
+> tests.
 > 
-> Well, I wasn't aware enums were supposed to be sorted. That doesn't seem to be
-
-If the code is sorted, which was the case here, why there has to be an
-explicit rule telling you must sort it? Just keep existing style.
-
-> documented anywhere. In fact, in example-schema.yaml the enum is not sorted [1].
-
-Way of avoiding conflicts in some sort of lists is valid more or less
-everywhere.
-
-> So it'd be great to update that example to follow that rule as well as
-> explicitly document it. Maybe even a dt-binding check that checks for this?
-> That'll make it much easier to learn about and follow this rule :).
-
-That would lead to numerous exceptions, because some places choose to
-sort not alphanumerically and that's fine as well.
-
-If checkpatch was no written in Perl, I would be happy to grow the tool,
-but from all cryptic languages to re-learn again Rust is much higher
-than Perl.
-
+> changes v2:
+> - drop: dt-bindings: net: Add TI DP83TD510 10BaseT1L PHY
 > 
-> I don't think it'd be worth it to send another patch just to fix sorting in
-> this case as it's already been merged, but I'll keep this in mind whenever I
-> send future dt-binding patches.
-
-Indeed, I found only later that Mark applied.
-
+> Oleksij Rempel (2):
+>    dt-bindings: vendor-prefixes: Add prefix for Priva
+>    dt-bindings: arm: stm32: Add Priva E-Measuringbox board
 > 
-> Thanks,
-> Nícolas
+> Roan van Dijk (2):
+>    arm: dts: stm32: Add thermal support for STM32MP131
+>    arm: dts: stm32: Add Priva E-Measuringbox devicetree
 > 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/example-schema.yaml#n52
+>   .../devicetree/bindings/arm/stm32/stm32.yaml  |   6 +
+>   .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>   arch/arm/boot/dts/st/Makefile                 |   1 +
+>   arch/arm/boot/dts/st/stm32mp131.dtsi          |  35 ++
+>   arch/arm/boot/dts/st/stm32mp133c-prihmb.dts   | 496 ++++++++++++++++++
+>   5 files changed, 540 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/st/stm32mp133c-prihmb.dts
+> 
+> --
+> 2.39.5
+> 
 
+Series applied on stm32-next.
 
-Best regards,
-Krzysztof
+Cheers
+Alex
 
