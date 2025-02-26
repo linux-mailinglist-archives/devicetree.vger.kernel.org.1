@@ -1,292 +1,172 @@
-Return-Path: <devicetree+bounces-151458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4ADFA45DBF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 12:52:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B994A45DE7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 12:56:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 995D07A2923
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:51:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF0051642B2
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE24B21A44B;
-	Wed, 26 Feb 2025 11:51:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B318217701;
+	Wed, 26 Feb 2025 11:55:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NkHk6KHt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 474202192E4
-	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 11:51:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D98A2153F5;
+	Wed, 26 Feb 2025 11:55:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740570665; cv=none; b=MUQFaN9FH9dM5ClpxZzwUBFagX6MJ590XRJDJKE2yhv8om82K43RcAyyRdeQl/IrnkInnUsBT56WU+tCRCOrOlOvY2F1FzmRPDWSHu6klsRR4/QxGby7r8d4xtCspWK5e6fULZkJeNgP80jpbwW5FH9asd4X4AdXAmnznzamb/Q=
+	t=1740570919; cv=none; b=IaGc+uwsEyiIAg0yqLUrNOtc3oju1tiZ+qg0WX6bENED63soTJXWlamy5oZDNAWNwspFRwK/NfdG0X3EWDn2d7+fnvph0kQnWF/P+0vkowxxJJB5erlUnKv0RiIxyxZHV9h/LpdQG4esrPNJfqAr7Bxh+e5KTLqYnB1QWLFZIlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740570665; c=relaxed/simple;
-	bh=Egxyts38uhbzI5cTqjv6hFuVzM23SG1kUUM0YXjMQEg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E1PPNlp2/0DWXFbpeGP0e6FwW+ai9UiaRH23lSmc2NoFu2qih0yfeq6MlLJvMKlkIu/b7D4VfjkZ1Ifvt3SKSKLyhKjpvNe+4Aht3VnhsMJ/eHAuovTIwTRUatXqwoWe3QyPuM7rXADkS9KJJ1t9KK0LmAEOWFeJILuJy0AlO+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tnFw7-0001NV-6m; Wed, 26 Feb 2025 12:50:47 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tnFw4-002wSZ-28;
-	Wed, 26 Feb 2025 12:50:44 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tnFw4-001Xwx-1i;
-	Wed, 26 Feb 2025 12:50:44 +0100
-Date: Wed, 26 Feb 2025 12:50:44 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-Cc: robh@kernel.org, aisheng.dong@nxp.com, andy@black.fi.intel.com,
-	catalin.marinas@arm.com, devicetree@vger.kernel.org, hch@lst.de,
-	iommu@lists.linux.dev, kernel@quicinc.com, klarasmodin@gmail.com,
-	linux-kernel@vger.kernel.org, m.szyprowski@samsung.com,
-	quic_ninanaik@quicinc.com, robin.murphy@arm.com,
-	saravanak@google.com, will@kernel.org, stable@vger.kernel.org,
-	kernel@pengutronix.de, sashal@kernel.org
-Subject: Re: [PATCH v10 1/2] of: reserved_mem: Restruture how the reserved
- memory regions are processed
-Message-ID: <20250226115044.zw44p5dxlhy5eoni@pengutronix.de>
-References: <20241008220624.551309-1-quic_obabatun@quicinc.com>
- <20241008220624.551309-2-quic_obabatun@quicinc.com>
+	s=arc-20240116; t=1740570919; c=relaxed/simple;
+	bh=RYUNTFtx5d0vJ8M91zRbSV93JGEEumEcL7oebwAoRSA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EZuAU7lbLGmLa+iRmr3k5YCpgZeb2gCaMpzJQp8WVheRYERo9yDf32k7Y7FweYOZn/I641trPmMx0NlslsGfzUJDPk58PQeARG5nfu6M4Zbf5inpq5dGXc2FLNdbpzsAW1+pcy2atvsUp5xQltXAtQIuGmuEXdYOx7IdmP+oKN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NkHk6KHt; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-abec8c122e4so376771466b.1;
+        Wed, 26 Feb 2025 03:55:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740570915; x=1741175715; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OqjVCAFTYNlvEyZWFVVY2wWa31+InyULkfvt8ZauBJY=;
+        b=NkHk6KHtzC5w81Wb6AKZ90MYGzBt2kfSmgdby3E1n7ZcL/hm7/AnRqztiIu5f9Y1bM
+         1+MVekMPj8ImOGmhjod2Zo0qdywTUn12fOZtirxs6cHBj8s916JHrw2zj/bAJh0fQFS4
+         X6MZJBDEeSuznOW8mmqe9fUdeUBCpYJQXe69wTKI16d67L6yd98w0wpSFp799dzThnMU
+         hjmXncNiFhgip8L+om74yupqFndbP4LzqEmkNqnzWs7aKZSHLRQIof+SO9OZOQjvL2sE
+         n2sin6YaLr/f7Lq36/wAGq90WXeND/lW9K5j7hj/3+FQH5l3/ihpz7hGIis+R/Dmp8Zi
+         epPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740570915; x=1741175715;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OqjVCAFTYNlvEyZWFVVY2wWa31+InyULkfvt8ZauBJY=;
+        b=dC+rdJpuW1kn/l7laNg4Ecg+0pD6WOzX2ZFo4UrpKDt83fEa1uU0Wv61JlmQcDC7dq
+         8CHbhOAFeW/+L6twBkZcwxFddBWwQLT+rx0pgqAZgRolV2aPSeV7zEp4gQlqOKFl/qtv
+         IaeL4dCxdjO74mOVUK+/EcIribDZa6W5Wc6JGJ46hhMNtZ6PZ57tz59+Ji1SbPbzuZHk
+         9v2vZb+m8WSdqdd371hTazrGb8ZMULEey0s7Q8WGOCxdKlfoQop57xsqa1dhD5eb3QAk
+         o5AkR09+ausYnvRTzojOZi9pOJpSXgc94gG235tPBDSbWCuoAJSKHhm29nz1aXSOLGc+
+         I+3A==
+X-Forwarded-Encrypted: i=1; AJvYcCUft0+9sTk9AlnVwSQ8/d++cgHFSOTlhB06seT6+mv/5hCtUmUERPOBCtzh5XUXIGsanysILhdrOxeDxSpb@vger.kernel.org, AJvYcCXim81xN9MsHSbTpXpnMHLqcvB/cBxI/xmxug/mTpnFn+BNeRf8TH2XJrVRi6PbBox6WxI3zHKwoQVy@vger.kernel.org, AJvYcCXnGYCc2GXo1v4CnVgwVG/9fRdN62ngMYeb15V/xqe6JJAJ38jBjw3n7Gcx7YIIVlCKNyEGf7AAI3C6@vger.kernel.org, AJvYcCXzXK44qlIgFiQf1nv7LYVe6lD0okgfrWKPHQJQWt2z1NflNTUp1ya4628taTO7KPbK2k1fDjvGSi6h@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6ktchCNpzxI2Ke54SAIWHBtahYivafibETXY4xp+Gl8eYCi+Z
+	u6WRDWdRMtb/h3hsW9rO97tSXvf17mkAhp/XxtsbBjN+KZgrnkQc
+X-Gm-Gg: ASbGncvTENbqf1u9Lv/kQVntDjR9XfSZfVOwXxPwFM9PSS/X8kSrMfqZMchJG7slFBr
+	hrgmzenkBSgDOcefq7UDf+o+jyIP6P6fy8sF4TIiiO3cHTlRLyEzUptwCsY4OwKfdPN33LjWFsf
+	ZmmBOthDHFr9VNa1SDHOXlp9iRFkShm3C6cNK0GwaHho6Hsrd+i5cuAh9anmXqXx27GyKSzzSWN
+	H7HRlyqFJ0nZYHEaqAnoZzXA4w5gnb/slBf6pvaX2STKd/4W0wR6LzBzxFSghsW+A/18PI2SbMH
+	bN5SFa5fCXGHadtQ9qtEuA==
+X-Google-Smtp-Source: AGHT+IFXRcdFx0WWrJDXV5o3lCu3jZvdZNKcl+ClAB48ZOpSp4/f7xVCRmpg1SB14Ft/Ri4NJSoCuQ==
+X-Received: by 2002:a17:907:c0f:b0:ab7:87ec:79fa with SMTP id a640c23a62f3a-abeeef706c6mr316437566b.51.1740570914334;
+        Wed, 26 Feb 2025 03:55:14 -0800 (PST)
+Received: from spiri.. ([82.77.155.83])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abed205e53fsm307822366b.159.2025.02.26.03.55.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Feb 2025 03:55:13 -0800 (PST)
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+X-Google-Original-From: Alisa-Dariana Roman <alisa.roman@analog.com>
+To: Alisa-Dariana Roman <alisa.roman@analog.com>,
+	"Rob Herring (Arm)" <robh@kernel.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Ramona Gradinariu <ramona.bolboaca13@gmail.com>,
+	David Lechner <dlechner@baylibre.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Subject: [PATCH v5 0/3] Add support for AD7191
+Date: Wed, 26 Feb 2025 13:53:39 +0200
+Message-ID: <20250226115451.249361-1-alisa.roman@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241008220624.551309-2-quic_obabatun@quicinc.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
-Hi,
 
-On 24-10-08, Oreoluwa Babatunde wrote:
-> Reserved memory regions defined in the devicetree can be broken up into
-> two groups:
-> i) Statically-placed reserved memory regions
-> i.e. regions defined with a static start address and size using the
->      "reg" property.
-> ii) Dynamically-placed reserved memory regions.
-> i.e. regions defined by specifying an address range where they can be
->      placed in memory using the "alloc_ranges" and "size" properties.
-> 
-> These regions are processed and set aside at boot time.
-> This is done in two stages as seen below:
-> 
-> Stage 1:
-> At this stage, fdt_scan_reserved_mem() scans through the child nodes of
-> the reserved_memory node using the flattened devicetree and does the
-> following:
-> 
-> 1) If the node represents a statically-placed reserved memory region,
->    i.e. if it is defined using the "reg" property:
->    - Call memblock_reserve() or memblock_mark_nomap() as needed.
->    - Add the information for that region into the reserved_mem array
->      using fdt_reserved_mem_save_node().
->      i.e. fdt_reserved_mem_save_node(node, name, base, size).
-> 
-> 2) If the node represents a dynamically-placed reserved memory region,
->    i.e. if it is defined using "alloc-ranges" and "size" properties:
->    - Add the information for that region to the reserved_mem array with
->      the starting address and size set to 0.
->      i.e. fdt_reserved_mem_save_node(node, name, 0, 0).
->    Note: This region is saved to the array with a starting address of 0
->    because a starting address is not yet allocated for it.
-> 
-> Stage 2:
-> After iterating through all the reserved memory nodes and storing their
-> relevant information in the reserved_mem array,fdt_init_reserved_mem() is
-> called and does the following:
-> 
-> 1) For statically-placed reserved memory regions:
->    - Call the region specific init function using
->      __reserved_mem_init_node().
-> 2) For dynamically-placed reserved memory regions:
->    - Call __reserved_mem_alloc_size() which is used to allocate memory
->      for each of these regions, and mark them as nomap if they have the
->      nomap property specified in the DT.
->    - Call the region specific init function.
-> 
-> The current size of the resvered_mem array is 64 as is defined by
-> MAX_RESERVED_REGIONS. This means that there is a limitation of 64 for
-> how many reserved memory regions can be specified on a system.
-> As systems continue to grow more and more complex, the number of
-> reserved memory regions needed are also growing and are starting to hit
-> this 64 count limit, hence the need to make the reserved_mem array
-> dynamically sized (i.e. dynamically allocating memory for the
-> reserved_mem array using membock_alloc_*).
-> 
-> On architectures such as arm64, memory allocated using memblock is
-> writable only after the page tables have been setup. This means that if
-> the reserved_mem array is going to be dynamically allocated, it needs to
-> happen after the page tables have been setup, not before.
-> 
-> Since the reserved memory regions are currently being processed and
-> added to the array before the page tables are setup, there is a need to
-> change the order in which some of the processing is done to allow for
-> the reserved_mem array to be dynamically sized.
-> 
-> It is possible to process the statically-placed reserved memory regions
-> without needing to store them in the reserved_mem array until after the
-> page tables have been setup because all the information stored in the
-> array is readily available in the devicetree and can be referenced at
-> any time.
-> Dynamically-placed reserved memory regions on the other hand get
-> assigned a start address only at runtime, and hence need a place to be
-> stored once they are allocated since there is no other referrence to the
-> start address for these regions.
-> 
-> Hence this patch changes the processing order of the reserved memory
-> regions in the following ways:
-> 
-> Step 1:
-> fdt_scan_reserved_mem() scans through the child nodes of
-> the reserved_memory node using the flattened devicetree and does the
-> following:
-> 
-> 1) If the node represents a statically-placed reserved memory region,
->    i.e. if it is defined using the "reg" property:
->    - Call memblock_reserve() or memblock_mark_nomap() as needed.
-> 
-> 2) If the node represents a dynamically-placed reserved memory region,
->    i.e. if it is defined using "alloc-ranges" and "size" properties:
->    - Call __reserved_mem_alloc_size() which will:
->      i) Allocate memory for the reserved region and call
->      memblock_mark_nomap() as needed.
->      ii) Call the region specific initialization function using
->      fdt_init_reserved_mem_node().
->      iii) Save the region information in the reserved_mem array using
->      fdt_reserved_mem_save_node().
-> 
-> Step 2:
-> 1) This stage of the reserved memory processing is now only used to add
->    the statically-placed reserved memory regions into the reserved_mem
->    array using fdt_scan_reserved_mem_reg_nodes(), as well as call their
->    region specific initialization functions.
-> 
-> 2) This step has also been moved to be after the page tables are
->    setup. Moving this will allow us to replace the reserved_mem
->    array with a dynamically sized array before storing the rest of
->    these regions.
-> 
-> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-> ---
->  drivers/of/fdt.c             |   5 +-
->  drivers/of/of_private.h      |   3 +-
->  drivers/of/of_reserved_mem.c | 168 ++++++++++++++++++++++++-----------
->  3 files changed, 122 insertions(+), 54 deletions(-)
+Thank you all for your feedback! Here is the updated series of patches!
 
-this patch got into stable kernel 6.12.13++ as part of Stable-dep-of.
-The stable kernel commit is: 9a0fe62f93ede02c27aaca81112af1e59c8c0979.
+Kind regards,
+Alisa-Dariana Roman.
 
-With the patch applied I see that the cma area pool is misplaced which
-cause my 4G device to fail to activate the cma pool. Below are some
-logs:
+---
 
-*** Good case (6.12)
+v4: https://lore.kernel.org/all/20250203133254.313106-1-alisa.roman@analog.com/
 
-root@test:~# dmesg|grep -i cma
-[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
-[    0.000000] OF: reserved mem: 0x0000000044200000..0x00000000541fffff (262144 KiB) map reusable linux,cma
-[    0.056915] Memory: 3695024K/4194304K available (15552K kernel code, 2510K rwdata, 5992K rodata, 6016K init, 489K bss, 231772K reserved, 262144K cma-reserved)
+v4 -> v5:
+	- use static arrays in the ad7191_config_setup function, instead of keeping
+them in the state structure
+	- added error checking for devicetree parsing of pga-value and odr-value
+	- for now, it doesn't return error when the index corresponding to pga-value
+or odr-value doesn't match, since index is initialized to 0, so it will use the
+first value in this case (the bindings constrain the possbile values for these
+2 properties, so I thought it's ok like this)
+	- use gpiod_multi_set_value_cansleep()
+	- move sampling frequency attribute to mask separate (the avail unmodified)
+	- removed unused argument form ad7191_setup()
+	- removed 2 redundant sections from docs, and renamed one to Devicetree
+	- add ad7191.rst to MAINTAINERS
 
-*** Bad (6.12.16)
+v3: https://lore.kernel.org/all/20250129143054.225322-1-alisa.roman@analog.com/
 
-root@test:~# dmesg|grep -i cma
-[    0.000000] Reserved memory: created CMA memory pool at 0x00000000f2000000, size 256 MiB
-[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
-[    0.000000] OF: reserved mem: 0x00000000f2000000..0x0000000101ffffff (262144 KiB) map reusable linux,cma
-[    0.056968] Memory: 3694896K/4194304K available (15616K kernel code, 2512K rwdata, 6012K rodata, 6080K init, 491K bss, 231900K reserved, 262144K cma-reserved)
-[    0.116920] cma: CMA area linux,cma could not be activated
+v3 -> v4:
+	- addressed all replies for v3
+	- refactored the scale and sampling frequencies configurations to use 2
+different arrays for gpio case vs pinstrap case
 
-*** Good (6.12.16, revert 9a0fe62f93ed)
+v2: https://lore.kernel.org/all/20250122132821.126600-1-alisa.roman@analog.com/
 
-root@test:~# dmesg|grep -i cma
-[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
-[    0.000000] OF: reserved mem: 0x0000000044200000..0x00000000541fffff (262144 KiB) map reusable linux,cma
-[    0.060976] Memory: 3694896K/4194304K available (15616K kernel code, 2512K rwdata, 6012K rodata, 6080K init, 491K bss, 231900K reserved, 262144K cma-reserved)
+v2 -> v3:
+	- correct binding title
+	- remove clksel_state and clksel_gpio, assume the clksel pin is always
+pinstrapped
+	- rephrase clocks description accordingly
+	- simplify binding constraints
+	- specify in binding description that PDOWN must be connected to SPI's
+controller's CS
+	- add minItems for gpios in bindings
+	- make scope explicit for mutex guard
+	- remove spi irq check
+	- add id_table to spi_driver struct
+	- changed comments as suggested
+	- use spi_message_init_with_transfers()
+	- default returns an error in ad7191_set_mode()
+	- replace hard-coded 2 with st->pga_gpios->ndescs
+	- use gpiod_set_array_value_cansleep()
+	- change .storagebits to 32
+	- check return value for ad_sd_init()
+	- change to adi,odr-value and adi,pga-value, which now accepts the value as
+suggested
+	- modify variables names and refactor the setup of odr and pga gpios,
+indexes and available arrays into ad7191_config_setup(), since they are all
+related
+	- add ad7191.rst
 
-Below is our reserved-memory dts node:
+v1: https://lore.kernel.org/all/20241221155926.81954-1-alisa.roman@analog.com/
 
-reserved-memory {
-	#address-cells = <2>; 
-	#size-cells = <2>; 
-	ranges;
+v1 -> v2:
+	- removed patch adding function in ad_sigma_delta.h/.c
+	- added a function set_cs() for asserting/deasserting the cs
+	- handle pinstrapping cases
+	- refactored all clock handling
+	- updated bindings: corrected and added new things
+	- -> address of the channels is used in set_channel()
+	- addressed all the other changes
 
-	linux,cma {
-		compatible = "shared-dma-pool";
-		reusable;
-		/*
-		 * The CMA area must be in the lower 32-bit address range.
-		 */
-		alloc-ranges = <0x0 0x42000000 0 0xc0000000>;
-		size = <0x0 0x10000000>;
-		alignment = <0 0x2000>;
-		linux,cma-default;
-	};
-
-	optee-core@40000000 {
-		reg = <0 0x40000000 0 0x1e00000>;
-		no-map;
-	};
-
-	optee-shm@41e00000 {
-		reg = <0 0x41e00000 0 0x200000>;
-		no-map;
-	};
-
-	m7_reserved: m7@80000000 {
-		reg = <0 0x80000000 0 0x1000000>;
-		no-map;
-	};
-
-	vdev0vring0: vdev0vring0@55000000 {
-		reg = <0 0x55000000 0 0x8000>;
-		no-map;
-	};
-
-	vdev0vring1: vdev0vring1@55008000 {
-		reg = <0 0x55008000 0 0x8000>;
-		no-map;
-	};
-
-	rsc_table: rsc-table@550ff000 {
-		reg = <0 0x550ff000 0 0x1000>;
-		no-map;
-	};
-
-	ram_console_buffer: ram-console-buffer@55100000 {
-		reg = <0 0x55100000 0 0x1000>;
-		no-map;
-	};
-
-	vdev0buffer: vdev0buffer@55400000 {
-		compatible = "shared-dma-pool";
-		reg = <0 0x55400000 0 0x100000>;
-		no-map;
-	};
-};
-
-My current workaround is to revert commit 9a0fe62f93ed and the
-dep-chain: 2d1d620ff27b444 8de4e5a92282. But I would like to get a
-proper solution without having revert commits in my downstream
-patchstack.
-
-Regards,
-  Marco
 
