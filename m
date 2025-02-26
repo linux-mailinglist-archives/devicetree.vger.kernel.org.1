@@ -1,187 +1,180 @@
-Return-Path: <devicetree+bounces-151481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76162A45F04
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 13:30:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8F69A45C95
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 12:06:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9A5D163885
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 12:30:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D9713ACDAD
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:06:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6034D21A421;
-	Wed, 26 Feb 2025 12:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E80B1A08A4;
+	Wed, 26 Feb 2025 11:06:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="MdEAhItm"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cuLzNA6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6180A214803;
-	Wed, 26 Feb 2025 12:27:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 850D7748D;
+	Wed, 26 Feb 2025 11:06:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740572880; cv=none; b=tsWsO2en/oN5CzQjWe2zdKrRQtQVtd19VTLdrEyCo0ysOQOAqvetljVRKEje3QAT7IuZ1SvKAiui2hCQNF2q+71h4fE38hHvcCjJa6V2rHoNjREiV0YV75hQWcyXH5X6Fz7wQIkCvJ2QIfc3IUvON2YiaVUzNhXK3OjrQPgGEPM=
+	t=1740567993; cv=none; b=a+Wnw6kF20+/C6SKANmRO4nKMNd6AHJiTc4HqC7//mWJpfmFDfetyCrl5rRPPbfzsaorJchbPB2QqSv2iGzxQnrTn24ibpnIriXRFebomDv7rMcYY8Z7U6BOkS4kTvmZdhxk3HL35hzLU1W55IfGKhZ/d+3iJJJv6LiGZB3gugc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740572880; c=relaxed/simple;
-	bh=K9oUygm4AKDUmgMf4aFOL3Lbp7QFh/wmXeF8uUXzjec=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tM7CtNEWIS2dBlhmxGRzbwHSvZ6ab/QVcDvj5iXrEEa6vZtz5m/iYX0v9x21GiVAs9Tm09GWGz8aKr6reOPI3/b5eUI3ltDc+LrTBfVsd3Vdiw9NT/KUMjBm8ElvkZaUoEwtmnW/1+2Lxds+RjJRHQ2jp+pwkV03mDc1e1znNYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=MdEAhItm; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51Q8wODq012375;
-	Wed, 26 Feb 2025 13:27:42 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	hZZuGvujbz+DHcZWLDWVwgKdZX6e4AC0NKcxZ1Mlhwc=; b=MdEAhItmw3+E1u3C
-	r8HueeBOvKLTCaKleXHh1C8dodj135VyASWo0XfJ2NifRuQ+x5lYfjjzWR3X6tNZ
-	802co02i0Mxx6VYM7W6BoZCSIULZCePY/KRWEATaZLQAxf5AYkJ0yf4vhcgUHl3s
-	OmG3W/wVw4GweHAFey0xk3IMjY1X0qCo7jpD4FsoH7GScd27EdJwj2wfRnV9ZNLn
-	T6F4onw9J6qRweP5pioK2Dxie2OQQG5w26nW5KoQeoJaD7ajkK9qrFwT2+Qe41e7
-	ZZYxL9oEobWQ1SoYMT7XqbOFC2djKKvCQh73Gtl5HSr/Ui749DxYb++YCioXf4fu
-	SJFQ5A==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 451psv4a64-1
+	s=arc-20240116; t=1740567993; c=relaxed/simple;
+	bh=FQYvJmCRCA7xFIZl39uidCW3qpJzmCptnuF6lejLsHU=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=X6VTsrBK/fTVeBDBfkvtM+7Id2e+pYQMpZQuxWaT26P0FQ/GqUEmw6+UEqfr676tGlfz6MZiO/AkPGXmZnsFsiNSVWLriU7BS4LpkKFPb9Xaef2meuDLg3Et03VC2CUoPIrAXAR1AxC/4NR6JQVhwNp8R6kGPXy6ZvQ5eMcwF5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cuLzNA6n; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51Q9fVvq025290;
+	Wed, 26 Feb 2025 11:06:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=UHeFYe470Ck4ihLYqujzsW
+	aQj02e2yaQUWT3JtZwOXw=; b=cuLzNA6n3RTbgd/qOM0ap5Yjsq23wRQEAbVeHP
+	qwjXqzm3cSy5fm6gsuc+63+6T0WvYChSy4EOIRxj6n3n1cvmxsF8oqhfu5Z6Zi1u
+	Fm1dE27jc9E4Ljg+kBezWdTn4AsVNLU+ZT2Rwgd1fvMDQJxhEXZduM0PJ2SeGWPJ
+	1FZRpkfg3u0InI9nBOZco2zwNyQr2XNgidLl9PUSbXIqhpVD9p1AgwaHFqpxOJc3
+	OqlrUW0VTd9Yz3pGfHSAMWCJgugtP97UpGXEbe8mtSKqjWbZTK66C2s+2uDCSrp7
+	jKexOIgs+9jIdozaXZBAbnTFIPyRSGmT2mXrDl7dZH+oCKpg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 451prmhqk8-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Feb 2025 13:27:41 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id DA74B40051;
-	Wed, 26 Feb 2025 13:26:31 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CC916495277;
-	Wed, 26 Feb 2025 11:52:59 +0100 (CET)
-Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Feb
- 2025 11:52:59 +0100
-Message-ID: <264d7fb8-06c2-4ada-82bc-4d3a7cc5e184@foss.st.com>
-Date: Wed, 26 Feb 2025 11:52:58 +0100
+	Wed, 26 Feb 2025 11:06:20 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51QB6JHg021051
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Feb 2025 11:06:19 GMT
+Received: from yuanfang4-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 26 Feb 2025 03:06:12 -0800
+From: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+Subject: [PATCH v2 0/5] coresight: Add Coresight Trace NOC driver
+Date: Wed, 26 Feb 2025 19:05:49 +0800
+Message-ID: <20250226-trace-noc-driver-v2-0-8afc6584afc5@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/9] dt-bindings: pinctrl: stm32: Introduce HDP
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAI71vmcC/3WNQQ6CMBBFr2K6tqYzgKAr72FY1HaQWdhqi42Gc
+ HcLYWOMy/eT9/4oIgWmKI6bUQRKHNm7DLjdCNNrdyXJNrNAhZVCQDkEbUg6b6QNnCjIA9WVrRu
+ AstMia/dAHb+W5LnN3HMcfHgvDwnmdY2h+o0lkErC3LvYsiHA0+PJhp3ZGX+b66sKf1SlsejMv
+ iwQ6i+1nabpA7n4JFntAAAA
+X-Change-ID: 20250212-trace-noc-driver-9e75d78114fa
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>,
+        "Alexander
+ Shishkin" <alexander.shishkin@linux.intel.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <kernel@quicinc.com>, <linux-kernel@vger.kernel.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <kernel@oss.qualcomm.com>, <linux-arm-msm@vger.kernel.org>,
         <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250225-hdp-upstream-v1-0-9d049c65330a@foss.st.com>
- <20250225-hdp-upstream-v1-2-9d049c65330a@foss.st.com>
- <6fc80544-6fc3-4450-a0cc-bfc740fe97bb@kernel.org>
- <91f19306-4b31-41fe-8ad2-680b1a339204@foss.st.com>
- <00526b1d-b753-4ee5-8f83-67d27d66a43c@kernel.org>
-Content-Language: en-US
-From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
-In-Reply-To: <00526b1d-b753-4ee5-8f83-67d27d66a43c@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740567972; l=3637;
+ i=quic_yuanfang@quicinc.com; s=20241209; h=from:subject:message-id;
+ bh=FQYvJmCRCA7xFIZl39uidCW3qpJzmCptnuF6lejLsHU=;
+ b=RjEdyCqHfy3FAb9RMDmesCWWPvgaPfFE2QrgS1cqg823DzuTmjv3FVVp69f1UQpDyBwFAjA8E
+ FwZr2FtAsFqD86LAfo43FILAiNWsvC4ppIZcZ6sg0oV3Vr8OF0FrLTI
+X-Developer-Key: i=quic_yuanfang@quicinc.com; a=ed25519;
+ pk=ZrIjRVq9LN8/zCQGbDEwrZK/sfnVjwQ2elyEZAOaV1Q=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8TWwD2wNAm1Potk5ZnxQsqBVIeWTVbGr
+X-Proofpoint-ORIG-GUID: 8TWwD2wNAm1Potk5ZnxQsqBVIeWTVbGr
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-02-26_02,2025-02-26_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ impostorscore=0 phishscore=0 bulkscore=0 malwarescore=0 mlxscore=0
+ priorityscore=1501 adultscore=0 spamscore=0 mlxlogscore=999
+ lowpriorityscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2502100000 definitions=main-2502260088
 
-On 2/26/25 08:21, Krzysztof Kozlowski wrote:
-> On 25/02/2025 16:51, Clement LE GOFFIC wrote:
->> On 2/25/25 14:04, Krzysztof Kozlowski wrote:
->>> On 25/02/2025 09:48, Clément Le Goffic wrote:
->>>> +
->>>> +maintainers:
->>>> +  - Clément LE GOFFIC <clement.legoffic@foss.st.com>
->>>> +
->>>> +description: |
->>>
->>>
->>> Do not need '|' unless you need to preserve formatting.
->>
->> Ok
->>
->>>> +  STMicroelectronics's STM32 MPUs integrate a Hardware Debug Port (HDP).
->>>> +  It allows to output internal signals on SoC's GPIO.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: st,stm32mp-hdp
->>>
->>> There is a mess in STM SoCs. Sometimes you call SoC stm32, sometimes
->>> stm32mp and sometimes stm32mpXX.
->>>
->>> Define for all your STM contributions what is the actual SoC. This
->>> feedback was already given to ST.
->>>
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  clocks:
->>>> +    maxItems: 1
->>>> +
->>>> +patternProperties:
->>>> +  '-pins$':
->>>> +    type: object
->>>> +    $ref: pinmux-node.yaml#
->>>> +
->>>> +    properties:
->>>> +      function:
->>>> +        enum: [ "0", "1", "2", "3", "4", "5", "6", "7",
->>>> +                "8", "9", "10", "11", "12", "13", "14",
->>>> +                "15" ]
->>>
->>> Function which has a number is not really useful. What does it even express?
->>
->> As said in my previous answer, function names are very different from
->> one platform to another. Numbers were used as string to be generic.
->> I'll consider it in a V2.
-> 
-> What does it mean "one platform to another"? This is one platform! Is
-> this some sort of continuation of SoC compatible mess?
+The Trace NoC is an integration hierarchy which is a replacement of
+Dragonlink configuration. It brings together debug component like TPDA,
+funnel and interconnect Trace Noc which collects trace from subsystems
+and transfers to QDSS sink.
 
-I may used incorrectly the word platform.
-This driver is the same for the three SoC families STM32MP13, STM32MP15 
-and STM32MP25 because the hardware is mostly the same.
+Compared to DL, it has the following advantages:
+1. Reduce wires between subsystems.
+2. Continue cleaning the infrastructure.
+3. Reduce Data overhead by transporting raw data from source to target.
 
-Why mostly ?
+    +--------------+                                         +-------------+     
+    | SDCC5 TPDM   |                                         |  SDCC5 TPDM |     
+    +--------------+                                         +-------------+     
+           |                                                        |            
+           |                                                        |            
++----------|-------------------+                                    |            
+|          v                   |                                    |            
+|  +----v----+     Dragon Link |                                    v            
+|  |DLNT TPDA|     North       |                         +----------------------+
+|  +---------+                 |                         |    TRACE NOC AG      |
+|       |                      |                         |                      |
+|       v-------------+        |                         +----------------------+
+|                     |        |                                   |             
+|              +------v-----+  |                                   |             
+|              | DLNT Funnel|  |                                   |             
+|              +------------+  |                                   |             
+|                   |          |                                   |             
++-------------------|----------+                                   |             
+              <-----+                                              |             
+             |                                                     |             
+             |                                                     |             
+             v                                                     v             
+    +----------------+                                      +---------------+    
+    |     QDSS       |                                      |    QDSS       |    
+    +----------------+                                      +---------------+
+    
 
-The peripheral is behaving as a mux, there are 8 HDP ports, for each 
-port there is up to 16 possible hardware signals. Numbered from 0 to 15.
-Each of this number represent a signal on the port.
+Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+---
+---
+Changes in v2:
+1. Modified the format of DT binging file.
+2. Fix compile warnings.
+- Link to v1: https://lore.kernel.org/r/20250221-trace-noc-driver-v1-0-0a23fc643217@quicinc.com
 
-But the hardware signal behind the number is not the same from one SoC 
-family to another.
-As example, in STM32MP15 family the HDP is able to output GPU hardware 
-signals because the family has a GPU but in the STM32MP13 family this 
-signal is not present.
+---
+Yuanfang Zhang (5):
+      dt-bindings: arm: Add Coresight device Trace NOC definition
+      coresight: add coresight Trace NOC driver
+      coresight-tnoc: add nodes to configure flush
+      coresight-tnoc: add node to configure flag type
+      coresight-tnoc: add nodes to configure freq packet
 
-The purpose of my helpers was to give a readable name to facilitate the 
-configuration in boards devicetree's. If needed I can get rid of that 
-and use only the number as string.
+ .../bindings/arm/qcom,coresight-tnoc.yaml          | 116 ++++++
+ drivers/hwtracing/coresight/Kconfig                |  13 +
+ drivers/hwtracing/coresight/Makefile               |   1 +
+ drivers/hwtracing/coresight/coresight-tnoc.c       | 400 +++++++++++++++++++++
+ drivers/hwtracing/coresight/coresight-tnoc.h       |  57 +++
+ 5 files changed, 587 insertions(+)
+---
+base-commit: 92514ef226f511f2ca1fb1b8752966097518edc0
+change-id: 20250212-trace-noc-driver-9e75d78114fa
 
-> What are the exact functions written in datasheet?
-
-The exact functions name written in the datasheet are the ones of my 
-helper file without the HDP prefix.
-
-
-> Best regards,
-> Krzysztof
+Best regards,
+-- 
+Yuanfang Zhang <quic_yuanfang@quicinc.com>
 
 
