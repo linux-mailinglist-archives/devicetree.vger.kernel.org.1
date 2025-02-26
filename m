@@ -1,126 +1,89 @@
-Return-Path: <devicetree+bounces-151333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 848E2A456E4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:45:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AB5BA456EF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:47:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90C3E3A3E35
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 07:45:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 442147A5C78
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 07:46:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB9C18DB09;
-	Wed, 26 Feb 2025 07:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A397E26BD8C;
+	Wed, 26 Feb 2025 07:46:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="XqHts+Ih"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QgqyvX99"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B37010F2;
-	Wed, 26 Feb 2025 07:45:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7218526B089;
+	Wed, 26 Feb 2025 07:46:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740555920; cv=none; b=pB4zQ/qxQjTXjCajWcY24znewexiqVtAv6x9NWGQDHi1JYieqWCEYcP2BmZAEKfG9dnoovviCD44DNUbujiEC6XyTWq4ulRy2wdMIVfMtwh7CliDTqnIQPwCOOX5ovK2f4Rb6oy0POo5L7lkNr/Y1A9qlqtqZN0i5XHTepHJsic=
+	t=1740556016; cv=none; b=Ztnn5LNRVdXNjW6enplwMCwZm+5RmKZu35Iwd9M151cuJOUrd1EB0jiolf85rWyRTEjbpn0a2zh0Ukl1r5J+bJhrBhpoM825tys+RTJhHqvM0o68UhoNIMyJ2piKauRi31iLX/LFJ3MdPAqTBRoo/ghGNQYBjWY82PdwCbtw8SU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740555920; c=relaxed/simple;
-	bh=qJo8bS6v5njlNYa287rrU5UuOR3DQntakEIPTxQkkZo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HOyqfLM8yB3LjaTIDIhV2AlBYaZdfZYo2bz5jUV8xVokl5NcVMLReVy4ct/i71F71KBq2RoE2EUlB0IHpQDM4Aj/CzpW9oCsJYJSsYXfpr9doCNtXzJy92rHBz/Rlvl5sEkCf4VdrbhOLpx97ETdkMjK1Mn7afXEJnl1m/fd0Ho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=XqHts+Ih; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E98ED44456;
-	Wed, 26 Feb 2025 07:45:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1740555914;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=98ELs4LVDVfL3lojYIF8k1ySA2op88p9fn2jtseES3s=;
-	b=XqHts+IhvFDpKEVckWHhvx+ayph+tjescazLblNnref2wlqU0AnQj/Msoo1Wc4BWxqUFs6
-	6J+WnZjXEzitA+UD5mSRVrk7P9kVnR90Oeg14d53qlV3ig8GdTcCPTySP6lNIdlV3OIBOg
-	fC0Byf2QfF9hm6cfLeGGvNPD6KRhLx+DTE+XGwbpVm0P2v4SfoEuNs9UIoy5LQZQa90rXU
-	15FL4X41Smh0NmCDx+oqu/o/QqRh1e2ftL1+7TDiG1XZwZPgOSb2kCH9OWmx7rvdvTvTmV
-	4kefzW75jChg8iP6pmZxqOx5xyEMR3Eax/SLkBE0CaGIeeRDexPqYd/eQ5mx6g==
-Date: Wed, 26 Feb 2025 08:45:11 +0100
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- tsbogend@alpha.franken.de, andrew@lunn.ch, hkallweit1@gmail.com,
- linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, sander@svanheule.net,
- markus.stockhausen@gmx.de, devicetree@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v7 1/2] net: mdio: Add RTL9300 MDIO driver
-Message-ID: <20250226084511.5f8f4c62@fedora.home>
-In-Reply-To: <20250226000748.3979148-2-chris.packham@alliedtelesis.co.nz>
-References: <20250226000748.3979148-1-chris.packham@alliedtelesis.co.nz>
-	<20250226000748.3979148-2-chris.packham@alliedtelesis.co.nz>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1740556016; c=relaxed/simple;
+	bh=JoAj9xLaECtQl+Lj5BZuQBxUIeb2+n1Z1pxP79r2H3Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eU9lyG/z4UHwTeSKKNts5ArqPqrLQThZNRaMXBXR5d9HzllUCI6FawshxGfYL9EVfBNS4VAU/T+R5nTnRwEsCK61bQU2WfrlbWgqpm8binmKcCC8kJB613GSQKC/zWhA0+eO5lMNoE0MrHBf/hjDGdnXOS7nCLOqCx8LRFoVpoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QgqyvX99; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40DD5C4CED6;
+	Wed, 26 Feb 2025 07:46:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740556013;
+	bh=JoAj9xLaECtQl+Lj5BZuQBxUIeb2+n1Z1pxP79r2H3Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QgqyvX991q884nQHjvQHuZwzm9PwsbnVmBzYqk3CBYUFaJ+IehlBR3Uc/dYSSApK8
+	 Ers6An5ej3cLmBul0T3wXnqmqZVpjcp8B+G1zE6YzWwkEvSMY1oLRUQagoKt14v7SK
+	 qksaH7l01YxnXAm+jKHOuNdqwauJdD8dc6yqrUrnN3NMKL7pCHetBWb1b2hfpgWWJH
+	 Hc01Ac9dcH4cvsYcyoL0GaXqoJZ2s+NEq8nYuzV+M+RGs9iib1uuuMO8suO2kVTOVk
+	 gXK/8oQVI9uLrC+De8O5bk7aP3pEQ1j+7QFaYzsPOc7d6VbrxB//6T6tgwF4IlKn2m
+	 GmBiGYyfnN1lg==
+Date: Wed, 26 Feb 2025 08:46:50 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Luca Weiss <luca@lucaweiss.eu>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: display: panel: Add Himax HX83112B
+Message-ID: <20250226-speedy-dark-mushroom-5d7c4b@krzk-bin>
+References: <20250225-fp3-display-v2-0-0b1f05915fae@lucaweiss.eu>
+ <20250225-fp3-display-v2-2-0b1f05915fae@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdekgedtvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthejredtredtvdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegveeltddvveeuhefhvefhlefhkeevfedtgfeiudefffeiledttdfgfeeuhfeukeenucfkphepvdgrtddumegtsgduleemkegugegtmeelfhdttdemsggtvddumeekkeelleemheegtdgtmegvheelvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekugegtgemlehftddtmegstgdvudemkeekleelmeehgedttgemvgehlegvpdhhvghlohepfhgvughorhgrrdhhohhmvgdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedukedprhgtphhtthhopegthhhrihhsrdhprggtkhhhrghmsegrlhhlihgvughtvghlvghsihhsrdgtohdrnhiipdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrn
- hgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhssghoghgvnhgusegrlhhphhgrrdhfrhgrnhhkvghnrdguvgdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehhkhgrlhhlfigvihhtudesghhmrghilhdrtghomhdprhgtphhtthhopehlihhnuhigsegrrhhmlhhinhhugidrohhrghdruhhk
-X-GND-Sasl: maxime.chevallier@bootlin.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250225-fp3-display-v2-2-0b1f05915fae@lucaweiss.eu>
 
-Hi Chris,
-
-On Wed, 26 Feb 2025 13:07:47 +1300
-Chris Packham <chris.packham@alliedtelesis.co.nz> wrote:
-
-> Add a driver for the MDIO controller on the RTL9300 family of Ethernet
-> switches with integrated SoC. There are 4 physical SMI interfaces on the
-> RTL9300 however access is done using the switch ports. The driver takes
-> the MDIO bus hierarchy from the DTS and uses this to configure the
-> switch ports so they are associated with the correct PHY. This mapping
-> is also used when dealing with software requests from phylib.
+On Tue, Feb 25, 2025 at 10:14:30PM +0100, Luca Weiss wrote:
+> Himax HX83112B is a display driver IC used to drive LCD DSI panels.
+> Describe it and the Fairphone 3 panel (98-03057-6598B-I) from DJN using
+> it.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> ---
+>  .../bindings/display/panel/himax,hx83112b.yaml     | 75 ++++++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+> 
 
-It all mostly looks good to me, there's one typo though and as it may
-be user visible, I think it's worth fixing...
+Discussion is still going. Sending v2 after two days is hiding that
+previous talk, so that makes me sad.
 
-[...]
+I am still at v1 and I am not going to review this one here.
 
-> +static int rtl9300_mdiobus_probe_one(struct device *dev, struct rtl9300_mdio_priv *priv,
-> +				     struct fwnode_handle *node)
-> +{
-> +	struct rtl9300_mdio_chan *chan;
-> +	struct fwnode_handle *child;
-> +	struct mii_bus *bus;
-> +	u32 mdio_bus;
-> +	int err;
-> +
-> +	err = fwnode_property_read_u32(node, "reg", &mdio_bus);
-> +	if (err)
-> +		return err;
-> +
-> +	fwnode_for_each_child_node(node, child)
-> +		if (fwnode_device_is_compatible(child, "ethernet-phy-ieee802.3-c45"))
-> +			priv->smi_bus_is_c45[mdio_bus] = true;
-> +
-> +	bus = devm_mdiobus_alloc_size(dev, sizeof(*chan));
-> +	if (!bus)
-> +		return -ENOMEM;
-> +
-> +	bus->name = "Reaktek Switch MDIO Bus";
+Best regards,
+Krzysztof
 
-You probably mean Realtek ? :)
-
-Thanks,
-
-Maxime
 
