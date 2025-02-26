@@ -1,251 +1,211 @@
-Return-Path: <devicetree+bounces-151705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1F1A46A1A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 19:49:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20F29A46A33
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 19:54:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81ED61884982
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 18:49:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 128B77A52C0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 18:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70D74233140;
-	Wed, 26 Feb 2025 18:49:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AEEE236A88;
+	Wed, 26 Feb 2025 18:53:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DnF3rouf"
+	dkim=pass (1024-bit key) header.d=d3engineering.onmicrosoft.com header.i=@d3engineering.onmicrosoft.com header.b="U+DtMW7G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2098.outbound.protection.outlook.com [40.107.96.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A876422A7F0
-	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 18:49:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740595766; cv=none; b=qpc2Udv+rnTsDi7PbNCOtWGWo1t+nRAhbalsSjJDIVA1uOc4zG0q0b323rqqmg4tg7jxIa1e1WWg5j8dtUpZqaI4yLU4hPPvJMHgpKHB3RG44iqPqqH4RdOj0xf/1Yi/urb9zZezOCKC1+brwFc6ugscvB25r0KjC6lYjwtX8Bs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740595766; c=relaxed/simple;
-	bh=lT/l+oV926s1PxTIvlgci5M/fqjzVL08IOVsaaJydq4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B1iBGPti0nDmPUNkeRDLvLxBeIgDi4s8xask5W+NerVlYOdgdjVmeU8ycQT5ypSMoxMAUgdG6LN191gwIPKwVFRaC5u9vQe80zSmOF4Z+AEWLGcDj6VEpuQV4bwfH3WL0iTg3eEpMi2y5iYhUuxRLPQfmENr8lsAhjl46cKs5j0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DnF3rouf; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51QGHVRA022672
-	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 18:49:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=MITHVxmcAQ6A43ETluCVH8qk
-	tHM9iyaVcLEvG9Imcc0=; b=DnF3rouf+nplhh4zddEr6fKmz9N/DWigWG+ZNOVq
-	v0h2EbK6YIEi9YyRZFRod5ya6bj+mxq1uAQTh2PcYNktHXF/+RtV7pg6+K9j25tL
-	2mIBkb+Ldrkj9/H3+aeUo+/eI2VQ8Di9WpqrVHsWy9onkkTpTazjeDoSC/UQF0ZH
-	NUI/P4HmNZucyUX5ZsMim7VGq36MpjUJyhzUZ12fz7k8IKEavvguRkkMP7ZlwxLo
-	B8KjMH1jp5zZr0i5zINPpuVDTL8zcfstIW3Xm21ribnyM+uvgsSp2C5NWHpb2/k8
-	85YLzIPZGYx24acms0w2dlwEIQMgCeVP5mofjoOk52v0nQ==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4526bj0ddj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 18:49:23 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-220c1f88eb4so796555ad.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 10:49:23 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740595763; x=1741200563;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MITHVxmcAQ6A43ETluCVH8qktHM9iyaVcLEvG9Imcc0=;
-        b=xKt6z6enGH7SQuYK19e1E+vOlHV6DvssUlG1sReIkZObLJA5xvO9JP1nG4lQmxUXzu
-         ZHb7qKd2vHpTUwCwNeBTrbCmT1pswoLjoFCVLzoxUF2Vs+QuSCvkvGGgt3RKJTyim05C
-         yygRSdM4xAy1DxFpnZZZ0gYSWOP8Ay7GJe+42WSFgU4gvx8jVirFESJ/6RygQPWXs1mj
-         /S1h2O5sBXd5TccXecMMDvzJmSttzAs2nPtgF1Vy3vcTv8xlYxpgEmMKy+e2dtiJfscO
-         INSD64dINGbUAQapY07hgbsz0Y+xyR9PKVyrCIno/po4/Q9d7L7t0hEFHaRzH/RcSylh
-         9R+w==
-X-Forwarded-Encrypted: i=1; AJvYcCXNouTwGAtH7wTorl3xCkPWuUxP4CxifwVE1sBhQTVs4wuHu09tU2sR0xYMWaTsmstsWvlP9wMS0rbf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy45WtvvUygUMXu4So5sZUcKkbnM8BfJNlMlGB0V0R/vnQxzAoY
-	YLtaSTGzbG+/W66fCOzM1UCiiAEEDgyKaoYp9KxEsqWrrO3HIiujVKmU6A3z18eEALlD0VqC5kV
-	t25cpenNbSGc6zQ9gvjVpbRsns2Zs/jBrXCOsHXRiyEhTddegDUv54KaFzQJ2
-X-Gm-Gg: ASbGncuWwjfM51Ef2QKSIO78Dhctwv1QaU2gloIyDRBAwQKzkU9SNRx507baNyJOiVX
-	HJqI74p558nZ4ihvOvftNeCzivdkiyBAhKt/NTbLVodW6BW5h6m1F6LDFJUMulLEruzKfo9SHyC
-	xOMfnRn6RDuZ8NjF7tCnhZgOuEW67LO6JyzuSIymIrLV+2gZ10WTCmTnv+MSwIibXzY6F8kqVW+
-	dWZyvg251t69TCuu7JtiuLjJG0/6jR7trwImQu0ILVr3VOeO+uVxcS3gAH11zH5dQFgVYiVP2id
-	s17hpuPstsv//vG79ju6CnUk22b4c4R3QOYH8zfAaMKG+ttw3QBYZYQ6e4rvN5JLIqEvfx4=
-X-Received: by 2002:a17:903:40d1:b0:220:d79f:60f1 with SMTP id d9443c01a7336-2232020856bmr63132865ad.42.1740595762873;
-        Wed, 26 Feb 2025 10:49:22 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHRjzWrcltS/SmKz3Q5inlltvidwmKOdKizJT4TsTs1McdWObFowvI+RYwMenjlWzuLSoAsJA==
-X-Received: by 2002:a17:903:40d1:b0:220:d79f:60f1 with SMTP id d9443c01a7336-2232020856bmr63132325ad.42.1740595762411;
-        Wed, 26 Feb 2025 10:49:22 -0800 (PST)
-Received: from hu-eberman-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2230a0944d4sm36517005ad.140.2025.02.26.10.49.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Feb 2025 10:49:22 -0800 (PST)
-Date: Wed, 26 Feb 2025 10:49:20 -0800
-From: Elliot Berman <elliot.berman@oss.qualcomm.com>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Elliot Berman <quic_eberman@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, cros-qcom-dts-watchers@chromium.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Shivendra Pratap <quic_spratap@quicinc.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Stephen Boyd <swboyd@chromium.org>, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v8 3/6] firmware: psci: Read and use vendor reset types
-Message-ID: <20250226101913390-0800.eberman@hu-eberman-lv.qualcomm.com>
-References: <20241107-arm-psci-system_reset2-vendor-reboots-v8-0-e8715fa65cb5@quicinc.com>
- <20241107-arm-psci-system_reset2-vendor-reboots-v8-3-e8715fa65cb5@quicinc.com>
- <Z78lH/XErc7G8bL9@lpieralisi>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D60EE21D5AE;
+	Wed, 26 Feb 2025 18:53:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.96.98
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740596036; cv=fail; b=t+toQWSb4VitOpsML8sdhrf33S+5U8RTqYhlXOIdbkNSsMaRl/xg8vR7/ndrCuhRKNathhQit7LWSV/oWcYdvp0V+HAeha1HtBUisH/CEbDqxwMtdNEEap+d07mCL10o3Wv0tlXfmlXKUUiaDvcBECVdSrh0d5rJaMUrQjdfLxE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740596036; c=relaxed/simple;
+	bh=7GfL0nvic5094uIJz4iv0vKANr48xLfL1syv6pplnFY=;
+	h=Content-Type:Date:Message-Id:To:Cc:Subject:From:References:
+	 In-Reply-To:MIME-Version; b=g5gPe7SUULYkpQCkVT4KPzx/saux2/Rur3FS8EkMFzOHKzb4TdQz65Ik61cxCkT5XlbTNbT1mCxT/ka0tASqlln7RFg7bjDwaYMOXVuF7roUqgUCd1FjEdmHdSlLA7X9p0PmNvux5kwEiL9OM5Y2wtAMowb0CVR5+77JrlLWCOk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=d3embedded.com; spf=pass smtp.mailfrom=d3embedded.com; dkim=pass (1024-bit key) header.d=d3engineering.onmicrosoft.com header.i=@d3engineering.onmicrosoft.com header.b=U+DtMW7G; arc=fail smtp.client-ip=40.107.96.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=d3embedded.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=d3embedded.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hwgm93inXTFkmJVng+JCLuqrsAERvAmBGIEEnX/+6Wq6w6f2u+vEw1VNZASUUsgm4z6GGByko6MtUEc2CADgINYwOrjBU2Zicgm4E9no3YY9JNtZETwuTSHU5srR9QJ+Ni6IdKg4zjAtTYDYODWtqzBNVq87w3+GNE57uGlKHhSjBvPJ7JdXHR/qY9GHuSnEJjbMQyww+cIi/eU53oxgJBolbMhQpZJeKXnQuvGOloryY0FaD+5PqEv2cnXg7i7Hll4PY+jWV54Ztz9LPLc0UVF2iI5MIdrd8YaukfhopXRQOAJ5K9YdjsiS2opJT9yCGl0H5LG6Nqr1A4p2ZHvDkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7GfL0nvic5094uIJz4iv0vKANr48xLfL1syv6pplnFY=;
+ b=b792n3P/6y7rH9rm8WHiSkJQKDE9qsiZnATjBZE49Hhe2bGAqkcdy6/GYrylp4f1yZ7y/QKCTE2Z0MTP0Exvov1dpjGq5XjdJestKhNlE5GIRujsW6We+cmKDpzrDPgeuBDWKzhQB1fEf3W+3MUwf1/Ud+iVCqM6SYyJhCcHIVct4V4Xnd8ymppW5SId3tuOZwsAeHv4RxSeuB99MeC16Zm7SVhZAOQARigKm9u+8me4rdjaBoQ1BZu0oUFlGi9kq1NQTwI8n0H+wJ8U4dh4gI9U2durS7smS9/IQ9K2ni7ZSfDUDVbfMJL4Lzy2tZ7xNiDOuXCsqjB5gBjFr46bjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=d3embedded.com; dmarc=pass action=none
+ header.from=d3embedded.com; dkim=pass header.d=d3embedded.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=d3engineering.onmicrosoft.com; s=selector2-d3engineering-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7GfL0nvic5094uIJz4iv0vKANr48xLfL1syv6pplnFY=;
+ b=U+DtMW7GjGnMKHrihdZZM08fC4vQf1ZBoSiL7KZaYDRl6Ny9z81dVH6e/mkmVNRrONTQbdzJDwMtvdFX4EPaIDOLcW6YUagwiIihK7wrTnbEorvPKHfTtwwZX8N9bDHw0uqik4TU1S2yB9PcF9oL7NwpC26qUg+c6rOzZdh+ulI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=d3embedded.com;
+Received: from MN2PR14MB4207.namprd14.prod.outlook.com (2603:10b6:208:1d6::13)
+ by CH3PR14MB7164.namprd14.prod.outlook.com (2603:10b6:610:158::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.21; Wed, 26 Feb
+ 2025 18:53:51 +0000
+Received: from MN2PR14MB4207.namprd14.prod.outlook.com
+ ([fe80::1232:fdf5:3cae:d9d7]) by MN2PR14MB4207.namprd14.prod.outlook.com
+ ([fe80::1232:fdf5:3cae:d9d7%3]) with mapi id 15.20.8466.020; Wed, 26 Feb 2025
+ 18:53:51 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 26 Feb 2025 13:53:48 -0500
+Message-Id: <D82LSOSFJ4C3.33BIAA9K4F1YB@d3embedded.com>
+To: "Sebastian LaVine" <slavine@d3embedded.com>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski@linaro.org>
+Cc: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <linux-media@vger.kernel.org>, =?utf-8?b?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?=
+ <nfraprado@collabora.com>, "Abel Vesa" <abel.vesa@linaro.org>, "Achath
+ Vaishnav" <vaishnav.a@ti.com>, "AngeloGioacchino Del Regno"
+ <angelogioacchino.delregno@collabora.com>, "Ard Biesheuvel"
+ <ardb@kernel.org>, "Benjamin Mugnier" <benjamin.mugnier@foss.st.com>, "Biju
+ Das" <biju.das.jz@bp.renesas.com>, "Bjorn Andersson"
+ <quic_bjorande@quicinc.com>, "Catalin Marinas" <catalin.marinas@arm.com>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@linaro.org>, "Elinor Montmasson"
+ <elinor.montmasson@savoirfairelinux.com>, "Fabio Estevam"
+ <festevam@gmail.com>, "Geert Uytterhoeven" <geert+renesas@glider.be>, "Hans
+ Verkuil" <hverkuil@xs4all.nl>, "Javier Carrasco"
+ <javier.carrasco@wolfvision.net>, "Jianzhong Xu" <xuj@ti.com>, "Julien
+ Massot" <julien.massot@collabora.com>, "Kieran Bingham"
+ <kieran.bingham@ideasonboard.com>, "Kory Maincent"
+ <kory.maincent@bootlin.com>, "Laurent Pinchart"
+ <laurent.pinchart@ideasonboard.com>, "Mauro Carvalho Chehab"
+ <mchehab@kernel.org>, "Mikhail Rudenko" <mike.rudenko@gmail.com>, "Nishanth
+ Menon" <nm@ti.com>, "Pengutronix Kernel Team" <kernel@pengutronix.de>, "Rob
+ Herring" <robh@kernel.org>, "Sakari Ailus" <sakari.ailus@linux.intel.com>,
+ "Sascha Hauer" <s.hauer@pengutronix.de>, "Shawn Guo" <shawnguo@kernel.org>,
+ "Stuart Burtner" <sburtner@d3embedded.com>, "Tero Kristo"
+ <kristo@kernel.org>, "Thakkar Devarsh" <devarsht@ti.com>, "Tomi Valkeinen"
+ <tomi.valkeinen@ideasonboard.com>, "Umang Jain"
+ <umang.jain@ideasonboard.com>, "Vignesh Raghavendra" <vigneshr@ti.com>,
+ "Will Deacon" <will@kernel.org>, "Zhi Mao" <zhi.mao@mediatek.com>
+Subject: Re: [PATCH 1/4] media: dt-bindings: Add Sony IMX728
+From: "Sebastian LaVine" <slavine@d3embedded.com>
+X-Mailer: aerc 0.20.1
+References: <20250212195656.69528-1-slavine@d3embedded.com>
+ <20250212195656.69528-2-slavine@d3embedded.com>
+ <20250213-shrewd-tacky-chachalaca-778a50@krzk-bin>
+ <D82KGJEBFQO0.1TX611HMKWB16@d3embedded.com>
+In-Reply-To: <D82KGJEBFQO0.1TX611HMKWB16@d3embedded.com>
+X-ClientProxiedBy: BL1P221CA0023.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:208:2c5::10) To MN2PR14MB4207.namprd14.prod.outlook.com
+ (2603:10b6:208:1d6::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z78lH/XErc7G8bL9@lpieralisi>
-X-Proofpoint-ORIG-GUID: kE3kc8_B1NNaupIuecvIOzc0aHuJ3a-7
-X-Proofpoint-GUID: kE3kc8_B1NNaupIuecvIOzc0aHuJ3a-7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-26_04,2025-02-26_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 mlxscore=0 bulkscore=0 malwarescore=0 priorityscore=1501
- adultscore=0 phishscore=0 mlxlogscore=999 suspectscore=0 impostorscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502260148
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN2PR14MB4207:EE_|CH3PR14MB7164:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2731010d-759a-4699-3b63-08dd5696e8db
+X-LD-Processed: b7153db5-3376-478b-b601-92ce9bc0d3bc,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7416014;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?SHVMRHMvbURKdFVZMEtsSnNadUxtRTdKcXhlTVg5c0JTYm5Ta1JTQWVsWFhp?=
+ =?utf-8?B?Q0RqKzZJdCt0bnBIdVdtUkxhdExveGt4amlzU040SVRPMGhYdkdmQkNxQ3VD?=
+ =?utf-8?B?VVh6cWMzZkNqUU9SZFA0SDB6c25meUwzc2F1QVhUR21jb2s2OS9BNUhNS2Fk?=
+ =?utf-8?B?QmovdVBHUTMyek81dWNnM2Q4WTVadmhCWFV0S3FmdG0vdHd6ZExwU0wxcHR3?=
+ =?utf-8?B?VnYyd1J0MjdpZzVMcDNqZXRmRmhETzBtenc0UGx3MVdaNm1VOElXbUk3cnIv?=
+ =?utf-8?B?dFFRNEtpWUp1V1ZKRDVnUkRVU0VqUjVGRlltYlZDQnp3RUJlOVJEWmVoM2o3?=
+ =?utf-8?B?M1UyRlNZd3lNbzNja1JBUlM5Sk5NNWpGR215UVB6ZkluTit6VkRnd05rTGU0?=
+ =?utf-8?B?Q1NGWnlKZVFETW5MSUhqNWZWNUFGbGN1VmRDRTBHYzI5RkZOTW1VQlN4Y09t?=
+ =?utf-8?B?d1JxdEJUU0IxSFhaM3hCcmNDZm9xSkxBdCtWN2lGU014ZXVreG1tdHp6SkFu?=
+ =?utf-8?B?dE1xNlBFUlBsVnlBTmRSTjVUdy9SdWJSNmRURGw1NUxvSTVGUEVHNXR0RjZR?=
+ =?utf-8?B?TFV6ZXVVaHRWaGtlT0c3N2dIRVJUNC9zdUVPQ25GWWp2SmJ5eTVRTTloVVFB?=
+ =?utf-8?B?SmdpZmQxUERnbTAxTHZqZmpZdVh6NzNsMFFUbzRlM1MwV1R0VDRSRVV1eXFi?=
+ =?utf-8?B?VE9aMGhXY0xzcWwyN0ZVS1ZoaUlxS29pdldIb2Y1NzJYVzNuWDAvSXBsY2pY?=
+ =?utf-8?B?bjBlRHU4TmZRcTdsNnlsTkpPb1ZFd3hRakN1Q2tMYzIwK1RJM3JiYVFYcUVn?=
+ =?utf-8?B?dk93czZOT0VlRHRnZkZvb1JWSmxGbmJsNkxETXZLWjBJWDNTU21xUHltTkt4?=
+ =?utf-8?B?YzlMUU40TEpDajN6dFlOQjhZUjZkWGExZ05LelpTbmppdk5yRGdBenVQd1d6?=
+ =?utf-8?B?MThQRnd4cVM1Zmdlc0tCU3oyY0FTZ3BTTFJhVFQ5bXZYUmJuUEdQKzMvQVpr?=
+ =?utf-8?B?OVQrQ0Q0ZEZocmt3dzlSM3FkUnRBWUdiQytwcDQwNWlRS1BXQ1J0blBLS1V6?=
+ =?utf-8?B?em9EcEc5cDQrMFB1VDBSK3g5TUlmNmFMQjJBM3ZudE9JUkd2azViVWdodkhr?=
+ =?utf-8?B?REhEdlFCQzkrN2VxTmpRQmdiUThMeWNnTzNBVjdETkdjWGVWM1FFbjAvRko4?=
+ =?utf-8?B?TW9nK0g4aFpVaGtVMmdEVXlEZ3F2NnZ2WW5tb2NiYldqQjgrUDFuVU9tNWdM?=
+ =?utf-8?B?K0VDMkpJek9vN0pNeG5aN2dkZTNSMkw0cWVuTWZJYWgvdEdsZVN4OVNocmxH?=
+ =?utf-8?B?eHRaSUp1QnlCQ3Y0SWU1YkFxR1dyREkxVWt1M09xNDg1MjQ3am9xcWtWcFc4?=
+ =?utf-8?B?SDBGcy92a0haK1laeElIUmptNXUyRUMxb1hXQWlqVDE2ejVRWGkrUHgrSDN3?=
+ =?utf-8?B?a1hDQlFJV2tpWUd0MlRoblB1Y2hDSHMwZXNLZk1xaW81Z0t0WkRrWlp2VkxS?=
+ =?utf-8?B?S0d2WG9DcjlZaVdvVzVtOWxsMG5IYWNtNkNMZFBTbmUyeEduY0VaZzZCd0Ix?=
+ =?utf-8?B?SVhBNnVlOUFyOW8wMFhORk9xenhlZklzV2FGQW5ya2l6cnEzL1g4R1hrRXZZ?=
+ =?utf-8?B?YTAyQnRGOE5MTHpvdkZ6L0N5R1UrUzVOUlpxbFJTd3AxMElMNStFSUVLN2Vr?=
+ =?utf-8?B?eCt3T2JPU1Juci9zRlUzcVBQRFNWOXZSNXBkQlhGZElqTFhGU0RMcmdEMm9D?=
+ =?utf-8?B?dlZ4WjQwS1puS2RYdFZGb3NidzVoam1zSk5JZmcrU0dUNVg0eDRpQzFMU3U3?=
+ =?utf-8?B?T0QyMkZMaC95RlZGeGx6MER2T1ZXdHUrKzdjRGJpK2hTQ1BJWTVwbEs2TEJH?=
+ =?utf-8?Q?/IyR1VIF5BiEG?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR14MB4207.namprd14.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(7416014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?TEZpVHZxNHZvOENONFMwWnVMSVlJVEFaU2JoRDMwVDJYbUdSMTJCbTBUcWNr?=
+ =?utf-8?B?NkJWdmYvZHRqK1NMWW9VNnlOVFBrb1JCeG1LZCtEMzRzbFZ2OHRFcjJDaWZB?=
+ =?utf-8?B?SEs0SG1uVGQwL24xNm9vNGJ0TVRscmhLcy9XMXQydFc2d29wRTFhU09aa1hX?=
+ =?utf-8?B?QTJmbmtsS1VEQ3RRMGwrWlVUQSs4TXhVM2pyNnNLZWE3UW8wbzFWZEd6Slll?=
+ =?utf-8?B?V0Z1bDg3Tkhpd3ZGME1VUkk2TnRnMWVsNVgwRzNDVjR4UXNSSVYzdjhqbWFx?=
+ =?utf-8?B?K054OW1wS3hMVThhS0VpTFFScDNacU1YY0w1WXFpL3hybzFsbFpYd3VGOVFR?=
+ =?utf-8?B?ai9la1JwcWZsNXdUdWxOb0tGOGRDOUdVN1FzTE1ldXJ0NTNXK05aMEp0Yytw?=
+ =?utf-8?B?UklvYzJxKzFOQWJDWUdldFlzSmdlWVJkc1hwWWVVbWZEM1dYRy92WXVKcTlx?=
+ =?utf-8?B?c3krSzgxWEErNUlwNHFQWXpXcTBXWnVxaVRWaHNCbVVrazhkUkdHVTBEZXVw?=
+ =?utf-8?B?ZGJZK2ZDbENrUU5tWXFQTGpNZGVoaEQ0U0VHell3dEs4VWxiRkFkcEhsMHlS?=
+ =?utf-8?B?d1ZlR0lBT093TnpJSVhFRnAvTXJIWE4xZGh4OVRZai9VN0g0bUJBdDRIcGFC?=
+ =?utf-8?B?T1VqUlEwR082ajQ1MGNOaW9KM2xxeFNWSlNqdkJuMFd1Z3Z1bEtlZnJ6YjJZ?=
+ =?utf-8?B?Y3JjSU5uQW9IMkhoMTJUSXl1d081MzJBbDYyeHkyb0JLUHVWVFVQNVRZM1Fk?=
+ =?utf-8?B?aVpTZnAzZmxKVnNtY05aU0VlNC9PYThKMjQzMHE2czJJY3h4QUZxdVBkYTM5?=
+ =?utf-8?B?QndObU9CcFZYY0QyYnBIaDUwb3FUMmlLNFFKZGJodzNSaEdCSThkUlpIeks4?=
+ =?utf-8?B?a2NMSC9uZnlpb3EvM1h3bmNYUTR1bXNhQXAzT3M0Wk5LMjlSaTRENVpKdG1W?=
+ =?utf-8?B?NmtQRHc2SFRweWdmbldTYkpqUFF0dFo0TWcvdlRMalVxaVBLcGlwbUkvWlB5?=
+ =?utf-8?B?WEZQdFl1SXFWblVCRnRXNFZDbTVxbnArL1Z0U1hXM1lVcStOWllNcllpUVRP?=
+ =?utf-8?B?WGkvT0E0b2pvTXFvdk1hVlF6L3J6TlRMY2ZYbmNjSzN0dGoxQzQxekRUY0Ri?=
+ =?utf-8?B?b1M3aFE2NzNoa2kwWFd1MWVzMUVUczdiMm10aTYvSUwvcWJ4Z3Q3dGRWQnNw?=
+ =?utf-8?B?TzhBZ0pIcUhSQkNGQkhIUG9ZRElSTWdDU2puYlAzRkpwaWdpUExaSEx0VWF3?=
+ =?utf-8?B?UWZjM1U1MUUweUZwWDVsdDIxYkcwR2l2TmZDdU5EWjR2STI1YW5nb0dpS1Q4?=
+ =?utf-8?B?bHV5cndVTmc3U29sU3gvb3ZuTDRUc2dwdnpJRjVDbFl0ZnVnekx6NnV3Q2lN?=
+ =?utf-8?B?SCtDWGxEVW5NMDhYY1hSbVpDYXVYSmd5V1ZzanBGQi9VdkFKNm5pQnZxSGVx?=
+ =?utf-8?B?dG40T2lBUHE3NlJTaFdkSVQvM2ZrWkp2cncyWnVJcVVaQ0UvL0ZKeEowaE9D?=
+ =?utf-8?B?NkgyalA0OGlHUUl5aExRSU41VUNpQUtLMjRkbU15dnZ1cklnQzRjbVA0eWRt?=
+ =?utf-8?B?NTFKRHh5QzgrMTdPK1JJd1VMQlRNVlExelFBSTZoTHdmQk00SmxvQ2dFQVV0?=
+ =?utf-8?B?SGc5bklJVVBsMlg2Und3TWJuZytiWVVEWFBCMUUvOXNXZGJ3Z29iVXhEM3VW?=
+ =?utf-8?B?VDQ4aWxqUEdWODg1K2l4U2tvZHMvTk9Rdm5nclpUakJuVVlhazdzWVBIaWs5?=
+ =?utf-8?B?eXRPU0dKd3VpQ1pHdzZna3JkL3Rpcm1WdnNCbnVFQXh6N3lNNXZ1NmNWU0VP?=
+ =?utf-8?B?ZWZuQmRrdjVsSFZIMVBsODllbjIxTkRCUStPQ1orRGVhWExpQ2RMSTVYVDlW?=
+ =?utf-8?B?YkVGbjRPdXRKWXlsYzM1MEkvS0xjYWhNVkM4RHhkODdSTlR4TS9pZVFHOEts?=
+ =?utf-8?B?VUJsdlZscndlSHNmM1NzYm5QQkViYklRVUdIVmV5RnRTUCtGb2krRDlEd1NS?=
+ =?utf-8?B?aG1VKzVYdXFaTmZJMU1DTG9ic0NQZEVMUGthdGQ5R014UzBoVVlkSDdIWGVV?=
+ =?utf-8?B?enUycDdVcGJmUCtHWkZFV25JRGJNNm1rd0RmQ0V5dnk1TnNqVUxqVUhMNkxG?=
+ =?utf-8?Q?TEL8z56L6KBhW9cHgONwVLxYb?=
+X-OriginatorOrg: d3embedded.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2731010d-759a-4699-3b63-08dd5696e8db
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR14MB4207.namprd14.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2025 18:53:50.9361
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b7153db5-3376-478b-b601-92ce9bc0d3bc
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +e7uegtW/DLBC+7LPjR5gf/7vd6yl/k+LoMsf8CBzPt6QYokgLtlQjYB4hQt5ac36a7Nv58lWj43YwHrv1wGUg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR14MB7164
 
-On Wed, Feb 26, 2025 at 03:28:47PM +0100, Lorenzo Pieralisi wrote:
-> On Thu, Nov 07, 2024 at 03:38:27PM -0800, Elliot Berman wrote:
-> > SoC vendors have different types of resets and are controlled through
-> > various registers. For instance, Qualcomm chipsets can reboot to a
-> > "download mode" that allows a RAM dump to be collected. Another example
-> > is they also support writing a cookie that can be read by bootloader
-> > during next boot. PSCI offers a mechanism, SYSTEM_RESET2, for these
-> > vendor reset types to be implemented without requiring drivers for every
-> > register/cookie.
-> > 
-> > Add support in PSCI to statically map reboot mode commands from
-> > userspace to a vendor reset and cookie value using the device tree.
-> > 
-> > A separate initcall is needed to parse the devicetree, instead of using
-> > psci_dt_init because mm isn't sufficiently set up to allocate memory.
-> > 
-> > Reboot mode framework is close but doesn't quite fit with the
-> > design and requirements for PSCI SYSTEM_RESET2. Some of these issues can
-> > be solved but doesn't seem reasonable in sum:
-> >  1. reboot mode registers against the reboot_notifier_list, which is too
-> >     early to call SYSTEM_RESET2. PSCI would need to remember the reset
-> >     type from the reboot-mode framework callback and use it
-> >     psci_sys_reset.
-> >  2. reboot mode assumes only one cookie/parameter is described in the
-> >     device tree. SYSTEM_RESET2 uses 2: one for the type and one for
-> >     cookie.
-> >  3. psci cpuidle driver already registers a driver against the
-> >     arm,psci-1.0 compatible. Refactoring would be needed to have both a
-> >     cpuidle and reboot-mode driver.
-> > 
-> > Tested-by: Florian Fainelli <florian.fainelli@broadcom.com>
-> > Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> > ---
-> >  drivers/firmware/psci/psci.c | 104 +++++++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 104 insertions(+)
-> > 
-> > diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
-> > index 2328ca58bba61fdb677ac20a1a7447882cd0cf22..e60e3f8749c5a6732c51d23a2c1f453361132d9a 100644
-> > --- a/drivers/firmware/psci/psci.c
-> > +++ b/drivers/firmware/psci/psci.c
-> > @@ -79,6 +79,14 @@ struct psci_0_1_function_ids get_psci_0_1_function_ids(void)
-> >  static u32 psci_cpu_suspend_feature;
-> >  static bool psci_system_reset2_supported;
-> >  
-> > +struct psci_reset_param {
-> > +	const char *mode;
-> > +	u32 reset_type;
-> > +	u32 cookie;
-> > +};
-> > +static struct psci_reset_param *psci_reset_params __ro_after_init;
-> > +static size_t num_psci_reset_params __ro_after_init;
-> > +
-> >  static inline bool psci_has_ext_power_state(void)
-> >  {
-> >  	return psci_cpu_suspend_feature &
-> > @@ -305,9 +313,38 @@ static int get_set_conduit_method(const struct device_node *np)
-> >  	return 0;
-> >  }
-> >  
-> > +static void psci_vendor_system_reset2(const char *cmd)
-> > +{
-> > +	unsigned long ret;
-> > +	size_t i;
-> > +
-> > +	for (i = 0; i < num_psci_reset_params; i++) {
-> > +		if (!strcmp(psci_reset_params[i].mode, cmd)) {
-> > +			ret = invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2),
-> > +					     psci_reset_params[i].reset_type,
-> > +					     psci_reset_params[i].cookie, 0);
-> > +			/*
-> > +			 * if vendor reset fails, log it and fall back to
-> > +			 * architecture reset types
-> > +			 */
-> > +			pr_err("failed to perform reset \"%s\": %ld\n", cmd,
-> > +			       (long)ret);
-> > +			return;
-> > +		}
-> > +	}
-> > +}
-> > +
-> >  static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
-> >  			  void *data)
-> >  {
-> > +	/*
-> > +	 * try to do the vendor system_reset2
-> > +	 * If the reset fails or there wasn't a match on the command,
-> > +	 * fall back to architectural resets
-> > +	 */
-> > +	if (data && num_psci_reset_params)
-> > +		psci_vendor_system_reset2(data);
-> 
-> Mulling over this. If a command (data) was provided and a PSCI vendor
-> reset parsed at boot, if the vendor reset fails, isn't it correct to
-> just fail reboot instead of falling back to architectural resets ?
-> 
-
-Sure! I can change the behavior here.
-
-> What's missing is defining the "contract" between the
-> LINUX_REBOOT_CMD_RESTART2 arg parameter and the kernel reboot
-> type that is executed.
-> 
-> I do wonder whether this is an opportunity to deprecate reboot_mode
-> altogether on arm64 (I think that the relationship between REBOOT_WARM
-> and REBOOT_SOFT with PSCI arch warm reset is already loose - let alone
-> falling back to cold reset if reboot_mode == REBOOT_GPIO - which does
-> not make any sense at all simply because REBOOT_GPIO is ill-defined to
-> say the least).
-> 
-> Thoughts ?
-> 
-
-I'm not opposed to seeing how we can deprecate the reboot_mode enum for
-arm64, but I think this should be an independent effort from the vendor
-resets. I'm worried this takes us down the "don't let perfect be the
-enemy of good" path to support vendor resets. I haven't seen much
-interest in this issue outside the two of us, and thus changing
-important infrastructure like reboot seems to me to be a long shot.
+I'll put Stuart as Acked-By in future patches.
 
 Thanks,
-Elliot
+
+--
+Sebastian
+Please be aware that this email includes email addresses outside of the org=
+anization.
 
