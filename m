@@ -1,60 +1,81 @@
-Return-Path: <devicetree+bounces-151637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E796A46670
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 17:20:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58D37A4669B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 17:31:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F7684269A7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:58:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01F9016BB3E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 16:08:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A70B21D3D4;
-	Wed, 26 Feb 2025 15:57:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D3C21858D;
+	Wed, 26 Feb 2025 16:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fn1w8luB"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BIy2WahF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14DD62904
-	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 15:57:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 137191DE2A0;
+	Wed, 26 Feb 2025 16:08:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740585448; cv=none; b=qXUM0ojuUEKUnnidqSHeMXq7BlSDa9cshvEh4f7NfVQe9DgiLG5Bq1nYtM8OqVpLz9o43yALj9E2vdohG66Cz5kosnWXt9fI2nE+aefa4LS9pcJxr9Q2C4kHpYEK5IDIfRt+M9oAE6XTbPQqqT5AsQUMBWFLJgQyb52HjsDa2Y8=
+	t=1740586126; cv=none; b=D9XP8PURx8j/MairIBvjViyGI3pXNIaUBA9Oc/sd+ZIbgd0M7vt6+QUwbJa1fmfS6PsOTPQ97NBq3DbGG8gZejb8nvKDBBwawULJzNkFr1x3U/2pslv7Z2lMZG1duf+5VTWywPfX/EmW+dUDvqFSzbbCP10dY4WQlpTeCn3ZuLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740585448; c=relaxed/simple;
-	bh=y8jsCkKdNJVLcptk+VOu8TS+CbG14vqEdbXaDiqHOoI=;
+	s=arc-20240116; t=1740586126; c=relaxed/simple;
+	bh=YIhN7xyFT7K0nQ06jXmx+41n6tZRGej2Wzg4+MGtWTA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V8Ha/qavTv7aqut7B8uWKL0isYys2juhy2PODEjt0vV9ZvTeCD+l/utWZhHLqgWoWdDy8tyi/9TjRyR+QSVfHuAKlvvbiIctY83Pop3NIJpx6cv2aj3a59KoPzkkhJ9nYZY0ApNvl2HWeOryqi+qlQlienjbLPAuzvpzf5LiRzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fn1w8luB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C02C1C4CED6;
-	Wed, 26 Feb 2025 15:57:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740585447;
-	bh=y8jsCkKdNJVLcptk+VOu8TS+CbG14vqEdbXaDiqHOoI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fn1w8luBkQwQT5Gf6PbdYbzEcJY5EWhNV4NzILJGStXAiaxMu/LvEjhpUFYE3I6sa
-	 8p1YI3R5JehQrAq5WSFr0SY5meqRyh0637IbtXcyOwNcLxhTAmMXaBAb1xGE+cueNC
-	 K+MAM+zU1K11J6ejoak9JegH11AZ/kvf+OgQSiQJMohFF1/tJE84weUncIm7M7KxYc
-	 AXLyho3vACvIQ3B+Rpe3rhPI9whdWrtGPX8YksOcGZPC5j2A1eSR/RBvE468JSOVZs
-	 MBpRXm0jdanQvvLK1hEl/oRO4/xTj75MlLQx7elMSkSclWOo4PuJgfAuJZRQlRZyIg
-	 PbFeIDnTOHcGw==
-Date: Wed, 26 Feb 2025 09:57:25 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	devicetree@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=dhP3eaLDYAxKuqGUC+cApb/1cuNuOikptUvIaMs3UnoZvppYNDFvfHtLiilH8eMCwDn03R9zab68mOSZu6SWPSyiJdSg6jeYO216nqjSDBuh2zh/t9JRcI/2I/j73yABMMrJ67q8SizxAr/xu/xNwWXhT1nm7zVoHLq1/Sy3BhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BIy2WahF; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1740586125; x=1772122125;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YIhN7xyFT7K0nQ06jXmx+41n6tZRGej2Wzg4+MGtWTA=;
+  b=BIy2WahFfy8ck95U0QH+K4H7KNoXu/CDfM7GXD3OCNjfxsvTMBXiwPk/
+   Oa5cDEOE1VVII9L76ZqQg8IcKcGGYqfSXpj4RKf0O/7k9UqIltM7zC0bZ
+   me3eeI0n+M3yeHaqyBDfDEHIwBGlA7G9VERaQtCVyRM7XRsv0S2/pE9qp
+   HDlMxQ0jfVN5SS0ZCTpeCsihTraTQvyvW/xEMG+iWkMbOibWJHbEnOOa/
+   LGlcADYdbJ3VLvTUVmWkN/wq/rld7EiiORyQFVg9PMfjuC7e3EDsf2hKc
+   qfDwbGmsOXoWAN2NYNsv1V+LnSJe7dSDbEwuVWXRATHloHWtUTxzwpY65
+   A==;
+X-CSE-ConnectionGUID: cRxxDJXdQf2oSph4myZELA==
+X-CSE-MsgGUID: tpivdYVcSpeN2h713KOCKQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="45221831"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; 
+   d="scan'208";a="45221831"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2025 08:08:44 -0800
+X-CSE-ConnectionGUID: EeN2cePgQJadJV9KcS74OA==
+X-CSE-MsgGUID: FhQCKIXsTVyjFb9MYsveXA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; 
+   d="scan'208";a="121737427"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2025 08:08:41 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 0F04211F944;
+	Wed, 26 Feb 2025 18:08:39 +0200 (EET)
+Date: Wed, 26 Feb 2025 16:08:39 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Mathis Foerst <mathis.foerst@mt.com>
+Cc: linux-kernel@vger.kernel.org,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: ARM: at91: add Calao USB boards
-Message-ID: <174058544546.2504002.1070415645254851999.robh@kernel.org>
-References: <20250226084938.3436-6-wsa+renesas@sang-engineering.com>
- <20250226084938.3436-8-wsa+renesas@sang-engineering.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, manuel.traut@mt.com
+Subject: Re: [PATCH v1 1/8] MT9M114: Add bypass-pll DT-binding
+Message-ID: <Z788hw7pSpwmL2Ze@kekkonen.localdomain>
+References: <20250226153929.274562-1-mathis.foerst@mt.com>
+ <20250226153929.274562-2-mathis.foerst@mt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +84,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250226084938.3436-8-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20250226153929.274562-2-mathis.foerst@mt.com>
 
+Hi Mathis,
 
-On Wed, 26 Feb 2025 09:49:37 +0100, Wolfram Sang wrote:
-> They have not been added so far. dtbs_check complains loudly.
+Please see which subject prefix has been used in the past for these
+bindings.
+
+On Wed, Feb 26, 2025 at 04:39:22PM +0100, Mathis Foerst wrote:
+> The MT9M114 sensor has an internal PLL that generates the required SYSCLK
+> from EXTCLK. It also has the option to bypass the PLL and use EXTCLK
+> directly as SYSCLK.
+> The current driver implementation uses a hardcoded PLL configuration that
+> requires a specific EXTCLK frequency. Depending on the available clocks,
+> it can be desirable to use a different PLL configuration or to bypass it.
 > 
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Add the 'bypass-pll' property to the MT9M114 DT-bindings to allow selecting
+> the PLL bypass mode.
+> 
+> Signed-off-by: Mathis Foerst <mathis.foerst@mt.com>
 > ---
->  .../devicetree/bindings/arm/atmel-at91.yaml   | 25 +++++++++++++++++++
->  1 file changed, 25 insertions(+)
+>  Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> index f6b87892068a..72e258d57186 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> @@ -70,6 +70,10 @@ properties:
+>            - bus-type
+>            - link-frequencies
+>  
+> +  onnn,bypass-pll:
+> +    description: Bypass the internal PLL of the sensor to use EXTCLK directly as SYSCLK.
+> +    type: boolean
+> +
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+But on the content itself: do you need this? Could you instead compare the
+external clock frequency to the link-frequencies property value(s)?
 
+>  required:
+>    - compatible
+>    - reg
+
+-- 
+Regards,
+
+Sakari Ailus
 
