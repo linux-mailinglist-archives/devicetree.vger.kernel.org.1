@@ -1,132 +1,115 @@
-Return-Path: <devicetree+bounces-151343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3C73A45788
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 09:02:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C675A45796
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 09:04:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8642176A28
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:01:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC9033A6B3A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:03:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 415AE27FE6A;
-	Wed, 26 Feb 2025 07:56:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0542A258CE8;
+	Wed, 26 Feb 2025 08:03:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FWhxYNLD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JVbO9hy9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAF052459EF;
-	Wed, 26 Feb 2025 07:56:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD610258CCC;
+	Wed, 26 Feb 2025 08:03:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740556579; cv=none; b=iXVMH/WnrGk8gEYsRWMe/ONSn2ciJDUUGi4iVGxvrpjcCM5mrqqgd9i0GOL+ySmjD23cuGGfBEHwOAxTCZMUyBmIITMKLXnFu2J8vjtbvxLb1AZmAlje+ctNCiZnABhct+unxRLX5utE4rl8hwgHa5vUTMwwFXmTU1yZJ5X7JV8=
+	t=1740556998; cv=none; b=qZuef24nSKjBHnpgTI5+RkYO2IQnge/9BjUiXry6xVY6SZ3T7dgcTSnNVPtKJHwwrVIHp7T2dTJl275p5ihMAjKMiWK8dmlk1S8MEk5X6EeV1HUeneA4U+YTJBohbmBK5BUYnQXBtOuaICFO9WlbaJx5RNIejHDnkRy6kfptZKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740556579; c=relaxed/simple;
-	bh=A9nOsgkrZlws3OAWkcO3SWqIV3wGnsh6MM4uV48Pvvg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TrZRoXv+bUy7px1cBI2d+PmdWrVGnEME/VJV8PmKQazDGxb/NJTVhBQ2ANta8l1Me30rHwvJ4rk3RD8hE2uw76EZAsJXcrNzekxxuZJI5y4pmCdoARgoXVerR+nAHVsO4p5pWgED8+za7IHgTm7P4+MzqIkd6F3TIXpUJyXz1xU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FWhxYNLD; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51PMWmPR021388;
-	Wed, 26 Feb 2025 07:55:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pncPTbc8c8CbMoKCx+IOc9kCeL9cQVJpuyVgp5vSbTE=; b=FWhxYNLD2THapjRL
-	l/fMi+DCxWiP9nnob2jgcb+d2XPqfxajVS7CP8HKHE4dXFN3fek/U9bniTwC+KPI
-	T5Nt0dw8rMrWSSEl8Z+/KrplDBm8g9CeEX6j+tCMW/TzpAG3lQ/ppiT/rNSj0s/3
-	DHIdEfX0HnWnTyDMe5uDNvuLXIf9CmJCnhUjUdF28w+a0M/UbYWA4lbHWeiCThNK
-	RX6KEzw/Ig2vRPy7NVH/p6+yyC3kGtPtrlTRRxLjeky7+ABz+uPrgMyQdZQR3gFY
-	j2rOdRJFB6Ap/wEESkBZgo9dDDYPWcUClyH0CG6KWut2gOFeu+h/91u15XPxNi9T
-	Ikbbqw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 451prkh5ja-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Feb 2025 07:55:57 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51Q7tvO4021295
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Feb 2025 07:55:57 GMT
-Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 25 Feb 2025 23:55:48 -0800
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-To: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <konradybcio@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <richardcochran@gmail.com>,
-        <geert+renesas@glider.be>, <dmitry.baryshkov@linaro.org>,
-        <arnd@arndb.de>, <nfraprado@collabora.com>, <quic_tdas@quicinc.com>,
-        <biju.das.jz@bp.renesas.com>, <ebiggers@google.com>,
-        <ross.burton@arm.com>, <elinor.montmasson@savoirfairelinux.com>,
-        <quic_anusha@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <netdev@vger.kernel.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-Subject: [PATCH v11 6/6] arm64: defconfig: Build NSS Clock Controller driver for IPQ9574
-Date: Wed, 26 Feb 2025 13:24:49 +0530
-Message-ID: <20250226075449.136544-7-quic_mmanikan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250226075449.136544-1-quic_mmanikan@quicinc.com>
-References: <20250226075449.136544-1-quic_mmanikan@quicinc.com>
+	s=arc-20240116; t=1740556998; c=relaxed/simple;
+	bh=WvdsTX+kie7pfosoex48vbu0w68lsCt6RTskLnOQE84=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gao+Vw1Up2Rdqhe2c44MBaJNdgbfsvCflHYpXmiY4CHGpxK5JuY31DSUTYx92oJZMOAqkQAiDm3jIsjFFqepkN2kSOR7dR3sR1eR2tGIOynaqDgzsK2RmlyGhb8OK2D18xrwEAs5J2yZftGV4ctyCvJy+6e/0Lp/kmL2XbpXimE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JVbO9hy9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC1B5C4CED6;
+	Wed, 26 Feb 2025 08:03:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740556996;
+	bh=WvdsTX+kie7pfosoex48vbu0w68lsCt6RTskLnOQE84=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JVbO9hy96wu26vXIswNocbTecJKp5t1Nx6UzOZvd6FeNVGmWieJmGQUa7tVU4ZzuK
+	 kEf6wunOoKDu48Kxdr97OEthdz1vjJAjnf+HBsmHHxxzZXFlmN8aRuSx3bAjpIcUZe
+	 k035zL4/T4o4VJJ+douQVuWdYy8oAtV8sBCHUYcEg4er7YcfSR1udofSdCtNDep89r
+	 wClsbCQfV4XvkPpy6py5DU7CHgE22T+oV60RY7+DUKfpZeDPcaDBHSYGR2T2WfB2V2
+	 XqdNBGawblqLlk+0IaykbzR2wCdDHOwc/VLYnP6VUCyTf6TQbp+tne2+J8vFVV/jK+
+	 bXEiNuJccy8zw==
+Date: Wed, 26 Feb 2025 09:03:13 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sam Winchenbach <sam.winchenbach@framepointer.org>
+Cc: linux-kernel@vger.kernel.org, lars@metafoo.de, 
+	Michael.Hennerich@analog.com, antoniu.miclaus@analog.com, jic23@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: iio: filter: Add lpf/hpf freq margins
+Message-ID: <20250226-sparkling-caped-saluki-b1cbad@krzk-bin>
+References: <20250225134612.577022-1-sam.winchenbach@framepointer.org>
+ <20250225134612.577022-2-sam.winchenbach@framepointer.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: bwohZy3bag4A93LdzYY4Eq45ATcVhUD9
-X-Proofpoint-ORIG-GUID: bwohZy3bag4A93LdzYY4Eq45ATcVhUD9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-26_01,2025-02-26_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- adultscore=0 phishscore=0 mlxlogscore=858 mlxscore=0 suspectscore=0
- clxscore=1015 malwarescore=0 priorityscore=1501 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502260062
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250225134612.577022-2-sam.winchenbach@framepointer.org>
 
-From: Devi Priya <quic_devipriy@quicinc.com>
+On Tue, Feb 25, 2025 at 08:46:12AM -0500, Sam Winchenbach wrote:
+> Adds two properties to add a margin when automatically finding the
+> corner frequencies.
+> 
+> Signed-off-by: Sam Winchenbach <sam.winchenbach@framepointer.org>
+> ---
+>  .../bindings/iio/filter/adi,admv8818.yaml          | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 
-NSSCC driver is needed to enable the ethernet interfaces present
-in RDP433 based on IPQ9574. Since this is not necessary for bootup
-enabling it as a module.
+Bindings are before users (see DT submitting patches), so this should be
+re-ordered.
 
-Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
----
-Changes in V11:
-	- No change.
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+> index b77e855bd594..2acdbd8d84cb 100644
+> --- a/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+> +++ b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+> @@ -44,6 +44,18 @@ properties:
+>    '#clock-cells':
+>      const: 0
+>  
+> +  adi,lpf-margin-hz:
+> +    description:
+> +      Sets minimum low-pass corner frequency to the frequency of rf_in plus
+> +      this value when in auto mode.
+> +    default: 0
+> +
+> +  adi,hpf-margin-hz:
+> +    description:
+> +      Sets maximum high-pass corner frequency to the frequency of rf_in minus
+> +      this value when in auto mode.
 
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+IIUC, these are two bounds - lower and upper - in relation to something
+else (like rf_in frequency)? If so, make it an array (naming to be
+discuss, I assume you know better what's that):
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index a1cc3814b09b..56a1fd81ab6c 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1334,6 +1334,7 @@ CONFIG_IPQ_GCC_5332=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
- CONFIG_IPQ_GCC_9574=y
-+CONFIG_IPQ_NSSCC_9574=m
- CONFIG_MSM_GCC_8916=y
- CONFIG_MSM_MMCC_8994=m
- CONFIG_MSM_GCC_8994=y
--- 
-2.34.1
+adi,filter-margin-hz:
+  items:
+    - description: low-pass corner frequency to the freq.....
+      minimum: xxxx?
+      maximum: xxxx?
+      default: 0
+    - description: high-pass ....
+      minimum: xxxx?
+      maximum: xxxx?
+      default: 0
+
+Best regards,
+Krzysztof
 
 
