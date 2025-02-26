@@ -1,134 +1,115 @@
-Return-Path: <devicetree+bounces-151782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08ABBA46F9D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 00:44:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 642B3A46FB5
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 00:52:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06ED616B888
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 23:44:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D996B188D05C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 23:53:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCB0A27003A;
-	Wed, 26 Feb 2025 23:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F154925D21F;
+	Wed, 26 Feb 2025 23:52:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M1VihLE0"
+	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="KA+cbgny"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pv50p00im-ztdg10012101.me.com (pv50p00im-ztdg10012101.me.com [17.58.6.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A2F627002B;
-	Wed, 26 Feb 2025 23:43:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A795925BABA
+	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 23:52:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740613398; cv=none; b=TtM9ZCIQnNuNA+r9Af3+Jj1K0DQ/fnssKxvoe6T7TwYJsmJyvDywPulBHPxZc6ATZefEcuZZplMljxf6uf7QhHAUazxY3xVTAsrE0IZSIQkl8+H70xDDadLaW5/qukRTfob97VQ1M33Md5+I9HxAyQpAJpjdMzmuko4Rr+SsyBk=
+	t=1740613974; cv=none; b=aIbWm7BB7HNft/kF/Il5WISQtDiHdM9DxOwVBJT8ttv49uhh2Bj9k4V8QcpKTvFyhMwL+vVcIEcDtnzXxV0E8hNRmjYWffOLNS2YbHsbRD505T+n4DPV8mIzsY/N5sWvAliNPwUTgiH+2kwmlwLtjSB+QCZ4s3mjyl1x0ezJ+Eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740613398; c=relaxed/simple;
-	bh=Eh0Eo/Fkv7rimj8T89jrNFf3IIi3ia63rPOLD+dghLg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=C3Mo6Z//qw3GMTbYMzgVAFUNA7+HJmgOVnF7VLDbtKpldg6EwI+3rtUJjpNJD26fPF862go5yj588Q32iCKRGRJeOTtG/2Ri4wq5r9UOGJoYHqVqPBnh7Kq+AemD1t2Fe5SFD6V6vxbY0/st1pc9HfFXiYM/dv39tQ9jztLXxWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M1VihLE0; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7c0a159ded2so33504885a.0;
-        Wed, 26 Feb 2025 15:43:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740613395; x=1741218195; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2BPCE1EwJy/+4tZvxiVTXnB1pR5FYwCTo9rAvyHj8R0=;
-        b=M1VihLE0to+xyPNWI8fNH10ahZ/gKMMyevUwXZbFqgIaz97pX0aTScraaY8NV2HPcW
-         LJIYkz+wHYPrkWdZW0H5p4J29IMHUsWa8vs7qQg8gKR6acdDrrzjKtMwQS4xgBs5OhNf
-         EiRl0RuVxtk7oTfc4Tsf5vO0kMVeDW+5dhIS6kEWkQUnETdSEVllHewW92+INXklEZc6
-         q60Fv8nTD6yYOdbjH7aBpKbTeUz21pxczWGNQsuMJ3qEHkBwv952qEhjqjWCa3y0oMkR
-         dJEmrulssFlu36bFY7Vc/NMovAmkRagUioG2UtSSmsWFews5Qaef0wxMjuGVGYmhBuvF
-         utQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740613395; x=1741218195;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2BPCE1EwJy/+4tZvxiVTXnB1pR5FYwCTo9rAvyHj8R0=;
-        b=O0CYM06iOfIl7odIbA0Tnp/92W/7MGbONjwg+mtTWPs7thJpXJYzWhlpeaQMgD1YH2
-         BrIP798IqPYZ8Zqn/rarF/z0wcKeyWW5P2XvOXYVzbR3ivY1umC0Dto5PJOZOvm6nMz+
-         6zxsb5KdN5qIdFPY+YcP9/4FuBok1PxcVq3c08btxPBT6TBMWO4z08ZiQ7hui4Ai/vxL
-         4BaiDa2AZq74jjdwAyG5S6PrEdW+d7atv25ieRiQDt6pOUap30GG64a8xfuahYH6ZHjn
-         aGbO9Lvz++UYvXZ8KOHhcddtJnR76E5VCwYZuzqvDmVhnpRbhCoSf1y21W9gWvJmcK1n
-         8DMg==
-X-Forwarded-Encrypted: i=1; AJvYcCWsIGYbCxZBvFtvDPAo2pgfo7+5VWCMCt/RHmmETXKeGLWjuVWrjjpiIYT88q32N1l2BIETq/KNH1xktgU=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvDla1i8aOyYW0NQZug5K9roLOLinb1KuiRW8lc5h0ldXZm6yC
-	s60tsJk623WLsZMR/s+VDAE2UU2cpfNOvuuCGS0U2RCj4tp3gP/E+ddv4g==
-X-Gm-Gg: ASbGncunODSnezBRDqguqQhEPY7gH1J8cvg/kiYal34VDEnGEU61rD0iq9M/Vpao2rK
-	LmKjsYU/lnmld1zzg/DeZ80nh0gv0vbiEqGyurh9d9z84KHzSuc47o+NulokIbKKBVi2rXENAXL
-	ADD7UF5N3nxWKlXfzFrcF9DRdt6lIxs8mYW6uJ2076M1Q99Rnq7x/cjreMbGP1PnCFqglkF99qw
-	DanbJnUkr8KZP5mhAiTJJSeN1zqxhBToZ/GGts9RUZiE88oPGiAw/gK/Kh2KQiT4quC6mjMAW6i
-	hQ==
-X-Google-Smtp-Source: AGHT+IExZ166ZnKNMVp2sWPEye4nK9gUSWKtplsD+DW3kIJ2K1CBVm+kQQbvv+biiRYF9M4XnPhnNw==
-X-Received: by 2002:a05:620a:198e:b0:7c0:8978:d1e3 with SMTP id af79cd13be357-7c247fcc139mr765759485a.46.1740613395229;
-        Wed, 26 Feb 2025 15:43:15 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c36fee9b74sm24836785a.9.2025.02.26.15.43.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Feb 2025 15:43:14 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-	Guo Ren <guoren@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH v2 5/5] riscv: dts: sg2042: Adapt reset generator for new binding
-Date: Thu, 27 Feb 2025 07:42:33 +0800
-Message-ID: <20250226234234.125305-6-inochiama@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250226234234.125305-1-inochiama@gmail.com>
-References: <20250226234234.125305-1-inochiama@gmail.com>
+	s=arc-20240116; t=1740613974; c=relaxed/simple;
+	bh=MRaEsWys87Pn4a0qFFl/SQ4wZqGYEGJJfYgg4Zvyktg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lfsVRNZpiEwmGNlUQngFCS2TolLHd4mFcX2m+0HDb31RwuEtpLyNJx6SQzHwHNrAW6a903kzsrt5ljwdcaPvYPpUcGD/QgaeLfazA1+4ZkYAyAwj6Yw66zeUl+taG6ncW7jKfjuScMvBFlLWgxV9doujT/jeT04TluyiXzLEubQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=KA+cbgny; arc=none smtp.client-ip=17.58.6.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
+	s=1a1hai; bh=i7mhFoUi2tw6qZatddnr2O9pvtJog0jFw0rliAU9o6A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:x-icloud-hme;
+	b=KA+cbgnyDoqsho3Q5gI5znPAuKp2oQfrJDAeF5jYGHtDbBWw5F6EaB4nM6J8CECnI
+	 f07mP0H9If/o0dwnt0zNYHSy2L4YM1PqRI+3C3RvNdR1HaGsKIuivxxB9HEK8EVUnE
+	 RQg2fGLLtEsQb0F1EYnOEa93lMZ/+s3+oWCzILuxcvEpOeU0fERWoID4oJi1JBB8AS
+	 k3OQy9WEARP2E86PFlOqxsByo4yvs+b0bLR2yAHvt60/fVXcEunGM0tnuHHJn143zM
+	 J7s+6oz1sCjnJ9F6qNKUfTrDjeb+cfAlz9cnuV64WVCvPyfQLokQQEhErWv+Ixp/7A
+	 gfSBD6DhAQBjw==
+Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
+	by pv50p00im-ztdg10012101.me.com (Postfix) with ESMTPSA id E4903740566;
+	Wed, 26 Feb 2025 23:52:46 +0000 (UTC)
+Message-ID: <67308adf-65bd-489c-80cb-5354ef202b51@icloud.com>
+Date: Thu, 27 Feb 2025 07:52:13 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 09/14] of: reserved-memory: Fix using wrong number of
+ cells to get property 'alignment'
+To: Rob Herring <robh@kernel.org>
+Cc: William McVicker <willmcvicker@google.com>,
+ Zijun Hu <quic_zijuhu@quicinc.com>, Saravana Kannan <saravanak@google.com>,
+ Maxime Ripard <mripard@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Grant Likely <grant.likely@secretlab.ca>, Marc Zyngier <maz@kernel.org>,
+ Andreas Herrmann <andreas.herrmann@calxeda.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Mike Rapoport <rppt@kernel.org>,
+ Oreoluwa Babatunde <quic_obabatun@quicinc.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, kernel-team@android.com
+References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
+ <20250109-of_core_fix-v4-9-db8a72415b8c@quicinc.com>
+ <20250113232551.GB1983895-robh@kernel.org> <Z70aTw45KMqTUpBm@google.com>
+ <97ac58b1-e37c-4106-b32b-74e041d7db44@quicinc.com>
+ <Z74CDp6FNm9ih3Nf@google.com> <20250226194505.GA3407277-robh@kernel.org>
+ <f81e6906-499c-4be3-a922-bcd6378768c4@icloud.com>
+ <CAL_Jsq+P=sZu6Wnqq7uEnGMnAQGNEDf_B+VgO8E8ob4RX8b=QA@mail.gmail.com>
+Content-Language: en-US
+From: Zijun Hu <zijun_hu@icloud.com>
+In-Reply-To: <CAL_Jsq+P=sZu6Wnqq7uEnGMnAQGNEDf_B+VgO8E8ob4RX8b=QA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-As the SG2042 reset controller reuse new binding, change the device
-compatible with new string.
+On 2025/2/27 05:30, Rob Herring wrote:
+>>    this change ?
+> We don't know that unless you tested every dts file. We only know that
+> no one has reported an issue yet.
+> 
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
----
- arch/riscv/boot/dts/sophgo/sg2042.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Sorry, my mistake to post the question here for convenience.
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index e62ac51ac55a..2be10cbba0ce 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -499,9 +499,10 @@ intc: interrupt-controller@7090000000 {
- 		};
- 
- 		rstgen: reset-controller@7030013000 {
--			compatible = "sophgo,sg2042-reset";
-+			compatible = "sophgo,sg2042-reset", "reset-simple";
- 			reg = <0x00000070 0x30013000 0x00000000 0x0000000c>;
- 			#reset-cells = <1>;
-+			active-low;
- 		};
- 
- 		uart0: serial@7040000000 {
--- 
-2.48.1
+actually, i want to ask William this question, and he/she shared applet
+of the downstream code.
+
+> Even if we did test everything, there are DT's that aren't in the
+> kernel tree. It's not like this downstream DT is using some
+> undocumented binding or questionable things. It's a standard binding.
+> 
+
+IMO, that may be a downstream bug since they don't refer to binding spec
+to set property 'alignment'.
+
+> Every time this code is touched, it breaks. This is not even the only
+> breakage right now[1].
+> 
+
+indeed.
+
+>> 2) IMO, the spec may be right.
+>>    The type of size is enough to express any alignment wanted.
+>>    For several kernel allocators. type of 'alignment' should be the type
+>>    of 'size', NOT the type of 'address'
+> As I said previously, it can be argued either way.
+> 
+> Rob
+> 
+> [1] https://lore.kernel.org/all/20250226115044.zw44p5dxlhy5eoni@pengutronix.de/
 
 
