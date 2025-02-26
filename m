@@ -1,95 +1,231 @@
-Return-Path: <devicetree+bounces-151415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60302A45BEF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:36:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56E72A45C14
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:44:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C185A1897732
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 10:36:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6985B3A3487
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 10:44:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DD2926A094;
-	Wed, 26 Feb 2025 10:36:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A48A266EF9;
+	Wed, 26 Feb 2025 10:44:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="OQKc7ps1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bIHTaAVG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4226824E00E;
-	Wed, 26 Feb 2025 10:36:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B47824E01E;
+	Wed, 26 Feb 2025 10:44:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740566183; cv=none; b=oZnxne4Wn00ZhEocIse7PG+yOZ66L1MnZMYLSu8WiFWVO6L2KvfN/e4M3YFqVXLFzQRVCl7C714Zmx0mk1NZ5cZMOEWdCrib5G2+5cN00ZYP0C/4TcBLBG8pFvmVZFfJZ6UIYTg4n1CS4I/YwoLzIrD4rVahtZKV/EL8XIp2xLI=
+	t=1740566674; cv=none; b=goiCuS/CwgYgl5viF3+/ITXkzDQ8lc6ukgWiCWSwEuyd3vhW8wjI1Xn7unCUV3yWkOki3kBv6ifi5FXt179syo6n5PRcvVf0FRukgubk+FhZ7ZO4RnV2iufR7OxB4/7802NHfMuIlFtpMOUzNEl68HQavwWdLQXN+dh4iv9fsU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740566183; c=relaxed/simple;
-	bh=2WMIyTRKYn+RNupW9ej3GdmnDEAf4ZUDmqoMpA0N/rc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=A3vMBQ+LPVe20lMonBQNym0nccts/yEH0It5aP8pZhas/Ka3RPSD4PpfLwCK3VUlUztRoApSpj7L+CWHzMWRJ8OrHIcF4b0JPaUEU4SiUylZMNovCzGKrzmJ/1KnO5yy3pWznG0zqcEHssbCk2Ssi9fQ6AQQ0N1WznbqVJUiblU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=OQKc7ps1; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=5Zbay1ioC0/+bEjvO9SEyQuR/lN3aixi3K7fAqyxee0=; b=OQKc7ps1ZWMV5p+31eWYDGJv8j
-	TW+v2NagR7K0IUOrHV4xQOW1iUTViKiNJWn2LSwOeNFOZmwInBrLQAiEnIz6OWo8M4pDPFctLlqrX
-	MP5Bg1lR7M3D65eegQ3R4tCwUDEbjAcKdew/CuVGrjm6zMLimAxVvY4LBRjHRFZlByqoeebYlJeQR
-	jZo3B67UgreeHoUDXrBUXxzicaUYk0y+4mFyuRKpWs906G1pFKRHTUX+gJcDU8uGq74dV7fB6eBSV
-	HzlE7HHiTctdqFUIeG7dPRGMjXr166GMcDaPgthAH2pGs+wFLrtjCBX3tO9HZ/IzazMOAd9y9aD7H
-	Y2Pm34Bw==;
-Received: from i53875b47.versanet.de ([83.135.91.71] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tnElu-0006Y7-6p; Wed, 26 Feb 2025 11:36:10 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Kever Yang <kever.yang@rock-chips.com>
-Cc: linux-rockchip@lists.infradead.org,
- Kever Yang <kever.yang@rock-chips.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Rob Herring <robh@kernel.org>, Simon Xue <xxm@rock-chips.com>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- linux-pci@vger.kernel.org,
- Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- devicetree@vger.kernel.org, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 1/2] dt-bindings: PCI: dw: rockchip: Add rk3576 support
-Date: Wed, 26 Feb 2025 11:36:09 +0100
-Message-ID: <14510034.lVVuGzaMjS@diego>
-In-Reply-To: <20250226095414.2173410-1-kever.yang@rock-chips.com>
-References: <20250226095414.2173410-1-kever.yang@rock-chips.com>
+	s=arc-20240116; t=1740566674; c=relaxed/simple;
+	bh=a+VLb1uo63X22UpMZnjWuAzAvl+QuCcIaAxbSBtDjDI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GpzXyRmtWEwZUx6BWkAbYL5NzLZwP8fETI0eGn7ql1YQdjohSwGV7BC8flDEoWaVleZMVjYz0XPMJgdif+bE+iB1WbYsCVbaMYMja+Va1GnKAgp9KnOnMLAtkMUxAcVd88qsQge0B3Ps2lE90/CRLiL/c6i60BjC79Xfv8QlFH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bIHTaAVG; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51Q9xGdq023826;
+	Wed, 26 Feb 2025 10:44:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	RI3j6QNwCd3E9WU+AhkXeYiWCb5d3Rx1nK60VGbwaBM=; b=bIHTaAVGTL5S3YAH
+	jlA0utMUcg6yFORPmn1aHaZv1AyuVV8UgMlCRhaFAjeGnY+BTYCN5fdqb8fI7Z/u
+	2uPmO4+8knNVjYqU7PmEk+hlZ4lIQol+35kJYjM4CFzWH4HOMjcjR70tQ48r6X+a
+	1VDTtewbGaCmwrS5ekpb4/V5ZH+E7OsJvs2A/ByAYfwV740I6m09Ha+OGEIapg0Y
+	TSSlfiwJIbe9/ah7F8Rbp6NC3Q2mHjdR37TYUqCwPao2jqOsENehebJAfXBc7LYJ
+	aazGkMywkZJJAZVCuG03Lz8ISnj+QZvzrfBZkz64vyvfnhyYSeJZphwSAgJCnUsz
+	8a5fJg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 451prmhnw1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Feb 2025 10:44:20 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51QAiJxp011305
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Feb 2025 10:44:19 GMT
+Received: from [10.239.133.114] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 26 Feb
+ 2025 02:44:11 -0800
+Message-ID: <13cabef8-8e68-412e-a6eb-42d22604f941@quicinc.com>
+Date: Wed, 26 Feb 2025 18:44:08 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] coresight: add coresight Trace NOC driver
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Suzuki K Poulose
+	<suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark
+	<james.clark@linaro.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <kernel@quicinc.com>, <linux-kernel@vger.kernel.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <kernel@oss.qualcomm.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20250221-trace-noc-driver-v1-0-0a23fc643217@quicinc.com>
+ <20250221-trace-noc-driver-v1-2-0a23fc643217@quicinc.com>
+ <38996ae8-321b-4239-8fe9-b769fdff296c@kernel.org>
+Content-Language: en-US
+From: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+In-Reply-To: <38996ae8-321b-4239-8fe9-b769fdff296c@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ix_23qutW023h22aYfSDWugCTYUvCKNE
+X-Proofpoint-ORIG-GUID: ix_23qutW023h22aYfSDWugCTYUvCKNE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-26_02,2025-02-26_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ impostorscore=0 phishscore=0 bulkscore=0 malwarescore=0 mlxscore=0
+ priorityscore=1501 adultscore=0 spamscore=0 mlxlogscore=999
+ lowpriorityscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2502100000 definitions=main-2502260086
 
-Am Mittwoch, 26. Februar 2025, 10:54:13 MEZ schrieb Kever Yang:
-> rk3576 is using DWC PCIe controller, with msi interrupt directly to GIC
-> instead of using GIC ITS, so
-> - no ITS support is required and the 'msi-map' is not required,
-> - a new 'msi' interrupt is needed.
+
+
+On 2/22/2025 6:54 PM, Krzysztof Kozlowski wrote:
+> On 21/02/2025 08:40, Yuanfang Zhang wrote:
+>> Add driver to support Coresight device Trace NOC(Network On Chip).
+>> Trace NOC is an integration hierarchy which is a replacement of
+>> Dragonlink configuration. It brings together debug components like
+>> TPDA, funnel and interconnect Trace Noc.
+>>
+>> It sits in the different subsystem of SOC and aggregates the trace
+>> and transports to QDSS trace bus.
+>>
+>> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+>> ---
+>>  drivers/hwtracing/coresight/Kconfig          |  10 ++
+>>  drivers/hwtracing/coresight/Makefile         |   1 +
+>>  drivers/hwtracing/coresight/coresight-tnoc.c | 191 +++++++++++++++++++++++++++
+>>  drivers/hwtracing/coresight/coresight-tnoc.h |  53 ++++++++
+>>  4 files changed, 255 insertions(+)
+>>
+>> diff --git a/drivers/hwtracing/coresight/Kconfig b/drivers/hwtracing/coresight/Kconfig
+>> index 06f0a7594169c5f03ca5f893b7debd294587de78..712b2469e37610e6fc5f15cedb2535bf570f99aa 100644
+>> --- a/drivers/hwtracing/coresight/Kconfig
+>> +++ b/drivers/hwtracing/coresight/Kconfig
+>> @@ -247,4 +247,14 @@ config CORESIGHT_DUMMY
+>>  
+>>  	  To compile this driver as a module, choose M here: the module will be
+>>  	  called coresight-dummy.
+>> +
+>> +config CORESIGHT_TNOC
+>> +	tristate "Coresight Trace Noc driver"
+>> +	help
+>> +	  This driver provides support for Trace NoC component.
+>> +	  Trace NoC is a interconnect that is used to collect trace from
+>> +	  various subsystems and transport it QDSS trace sink.It sits in
+>> +	  the different tiles of SOC and aggregates the trace local to the
+>> +	  tile and transports it another tile or to QDSS trace sink eventually.
+>> +
+>>  endif
+>> diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
+>> index 4ba478211b318ea5305f9f98dda40a041759f09f..ab1cff8f027495fabe3872d52f8c0877e39f0ea8 100644
+>> --- a/drivers/hwtracing/coresight/Makefile
+>> +++ b/drivers/hwtracing/coresight/Makefile
+>> @@ -51,3 +51,4 @@ coresight-cti-y := coresight-cti-core.o	coresight-cti-platform.o \
+>>  		   coresight-cti-sysfs.o
+>>  obj-$(CONFIG_ULTRASOC_SMB) += ultrasoc-smb.o
+>>  obj-$(CONFIG_CORESIGHT_DUMMY) += coresight-dummy.o
+>> +obj-$(CONFIG_CORESIGHT_TNOC) += coresight-tnoc.o
 > 
-> Co-developed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Why do you keep adding entries to the end instead to some logically
+> ordered place?
+> 
+> Dummy driver, before tpda (obviously tpda should go after tpdm) and now
+> this... This is just unnecessarily making simultaneous edits difficult.
+> 
+sure, add it after funnel/replicator before etm, since it work as a link.
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-
-
-
+>> diff --git a/drivers/hwtracing/coresight/coresight-tnoc.c b/drivers/hwtracing/coresight/coresight-tnoc.c
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..11b9a7fd1efdc9fff7c1e9666bda14acb41786cb
+>> --- /dev/null
+>> +++ b/drivers/hwtracing/coresight/coresight-tnoc.c
+>> @@ -0,0 +1,191 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +#include <linux/device.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/amba/bus.h>
+>> +#include <linux/io.h>
+>> +#include <linux/coresight.h>
+>> +#include <linux/of.h>
+>> +
+>> +#include "coresight-priv.h"
+>> +#include "coresight-tnoc.h"
+>> +#include "coresight-trace-id.h"
+>> +
+> 
+> 
+>> +
+>> +	drvdata->base = devm_ioremap_resource(dev, &adev->res);
+>> +	if (!drvdata->base)
+>> +		return -ENOMEM;
+>> +
+>> +	spin_lock_init(&drvdata->spinlock);
+>> +
+>> +	ret = trace_noc_init_default_data(drvdata);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	desc.ops = &trace_noc_cs_ops;
+>> +	desc.type = CORESIGHT_DEV_TYPE_LINK;
+>> +	desc.subtype.link_subtype = CORESIGHT_DEV_SUBTYPE_LINK_MERG;
+>> +	desc.pdata = adev->dev.platform_data;
+>> +	desc.dev = &adev->dev;
+>> +	desc.access = CSDEV_ACCESS_IOMEM(drvdata->base);
+>> +	drvdata->csdev = coresight_register(&desc);
+>> +	if (IS_ERR(drvdata->csdev))
+>> +		return PTR_ERR(drvdata->csdev);
+>> +
+>> +	pm_runtime_put(&adev->dev);
+>> +
+>> +	dev_dbg(drvdata->dev, "Trace Noc initialized\n");
+> 
+> 
+> Drop. There is really no need to tell that function finished.
+> 
+> Please run standard kernel tools for static analysis, like coccinelle,
+> smatch and sparse, and fix reported warnings. Also please check for
+> warnings when building with W=1. Most of these commands (checks or W=1
+> build) can build specific targets, like some directory, to narrow the
+> scope to only your code. The code here looks like it needs a fix. Feel
+> free to get in touch if the warning is not clear.
+> 
+Done.
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
