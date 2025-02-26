@@ -1,145 +1,106 @@
-Return-Path: <devicetree+bounces-151357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2064DA45857
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 09:32:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DE89A4586B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 09:33:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 277B7174F48
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:32:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C866161E75
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F6A1A7045;
-	Wed, 26 Feb 2025 08:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A3E1E1DF1;
+	Wed, 26 Feb 2025 08:32:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WkYkbob3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E853258CD6;
-	Wed, 26 Feb 2025 08:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB511E1DEF;
+	Wed, 26 Feb 2025 08:32:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740558692; cv=none; b=a2mDQBKnGPsDXHisHRpVkDeXF0qBjX8j/Zc0BWsfZxs3/RaxevyzwUbc/ezwBcrKGkFcRz4ZvMVf/VTfkTiqJCJHKUs4hxqCIqrAyeFZRk7mWRx24jSfFbTQltNUiJeEumGBL39Z55OoNHITW1RLJCdbCeSUCFuvipjvL8LvW6E=
+	t=1740558742; cv=none; b=aLMzofvqUYsOrDdd4GAk4k2J5B7fPuEO2rDS39D67e+P71cDz4VazLTMjPRTmDg7gmtPP1cs2nfRm0GfttuEyTtfkFPs2fmgKhiqDvfPUD0M9XYWQi4woi47xOmJpWReMv9AZLOsnfGvdtiWd9ueKV7uUbFHPClQDGfdkOC6jbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740558692; c=relaxed/simple;
-	bh=6XNo8P+FKxyALAhfjYA6qOJ2JsHfwQKHf8trMp2xZ7s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iGWaW0WD8mOlFzJtO7+EMGgELkQjk4ln+FMuFfYXX9pl2c0WRVocdlCXyGXAp1YjaIBKksuda8raRGIKUlMxnObXUKqpA8+hFVjsaidkAyID2k+DRFOXxz/xxae9m5qnyxNrStA3UA+3C3M0mVDeKxhBcoXiyDEASBtaAcTOJws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93055C4CED6;
-	Wed, 26 Feb 2025 08:31:26 +0000 (UTC)
-Message-ID: <a8a6c8c8-ee3b-422a-8573-a2cbb61fc3aa@xs4all.nl>
-Date: Wed, 26 Feb 2025 09:31:24 +0100
+	s=arc-20240116; t=1740558742; c=relaxed/simple;
+	bh=pCY5MJcHID/t2Pb6RIB298aS9Enq1BhXl+cqd9OOkmI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Aop1d9Da433DGAodKNHDupEwU/eyM09BHt2fSFboOEpYvzU1S4h68Nb3tCBtc/9A4m+OBmf0Wo9h15EcYD4we/Ne7kOxfQgv4BPwYbmqjQ8Ny/iVxjN2xtpnxHMU/EwIWgAiUpuzoCKjRij0J0RB7lNMmKoyBLWp1hD1gzAUY30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WkYkbob3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C5E8C4CED6;
+	Wed, 26 Feb 2025 08:32:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740558741;
+	bh=pCY5MJcHID/t2Pb6RIB298aS9Enq1BhXl+cqd9OOkmI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WkYkbob3F/FEh42Rx8pbhLsqPxB9WOaFobE/EZjopEvktMV32lK3zQohLNTQSZcTt
+	 0OeayTHGLe4FurZoLIdV4SVa3zXNM8J6OLEvEHp3bbwozERqQUTFCFL7dtqsbI8nMT
+	 713eIKNYQ3nnXqP55Dac+TorJINYr83Z+WEqa4b+l9CHVToDRtNgvXGQtt1w9bg69E
+	 1Ezzu+aC4FSlJThngdeT4GGupXNlOb7grliknak2jIBrSeTjGMR6T76D19k/sYGjm9
+	 /eAmCMtM3WUFuGJfvuXmDpEvLew3EijXa2xCespHGV+XTzX265tK+qJ4SqOFS8mcR8
+	 PcaXURSBZ1www==
+Date: Wed, 26 Feb 2025 09:32:18 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Leonardo Felipe Takao Hirata <leo.fthirata@gmail.com>
+Cc: tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, vz@mleia.com, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, skhan@linuxfoundation.org, 
+	linux-kernel-mentees@lists.linuxfoundation.org
+Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Convert
+ nxp,lpc3220-mic.txt to yaml format
+Message-ID: <20250226-khaki-wildebeest-of-action-ddec48@krzk-bin>
+References: <20250226010956.50566-1-leo.fthirata@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 6/6] arm64: defconfig: Enable Synopsys HDMI receiver
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Shreeya Patel <shreeya.patel@collabora.com>, Heiko Stuebner
- <heiko@sntech.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, jose.abreu@synopsys.com,
- nelson.costa@synopsys.com, shawn.wen@rock-chips.com,
- nicolas.dufresne@collabora.com,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: kernel@collabora.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, Tim Surber <me@timsurber.de>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-References: <20250225183058.607047-1-dmitry.osipenko@collabora.com>
- <20250225183058.607047-7-dmitry.osipenko@collabora.com>
-Content-Language: en-US, nl
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- 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
-In-Reply-To: <20250225183058.607047-7-dmitry.osipenko@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250226010956.50566-1-leo.fthirata@gmail.com>
 
-On 25/02/2025 19:30, Dmitry Osipenko wrote:
-> From: Sebastian Reichel <sebastian.reichel@collabora.com>
-> 
-> The Rockchip RK3588 has a built-in HDMI receiver block from
-> Synopsys. Let's enable the driver for it.
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> ---
->  arch/arm64/configs/defconfig | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index cb7da4415599..3dccc9e1c4aa 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -859,6 +859,8 @@ CONFIG_VIDEO_SAMSUNG_EXYNOS_GSC=m
->  CONFIG_VIDEO_SAMSUNG_S5P_JPEG=m
->  CONFIG_VIDEO_SAMSUNG_S5P_MFC=m
->  CONFIG_VIDEO_SUN6I_CSI=m
-> +CONFIG_VIDEO_SYNOPSYS_HDMIRX=m
-> +CONFIG_VIDEO_SYNOPSYS_HDMIRX_LOAD_DEFAULT_EDID=y
+On Tue, Feb 25, 2025 at 10:09:40PM -0300, Leonardo Felipe Takao Hirata wrote:
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,lpc3220-mic
+> +      - nxp,lpc3220-sic
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +
+> +  interrupts:
+> +    items:
+> +      - description:
+> +          IRQ number.
+> +      - description: |
+> +          IRQ type. Can be one of:
 
-I do not believe it is a good idea to default to y for this option.
+That's not correct. Previously you said you have here two interrupts -
+SIC1 and SIC2. Now you say you have one intrerrupt "IRQ Number" and
+second interrupt "IRQ type". This makes little sense - your interrupt is
+not "IRQ type". Unless it is an interrupt signaling that other interrupt
+has type?
 
-The EDID depends on the specific device you make, and you should
-think carefully about whether the default EDID fits the needs of the
-device.
+Look at other bindings what are the interrupts.
 
-So if you want the default EDID, then you should manually select it
-and not have it autoselected.
+> +
+> +              IRQ_TYPE_EDGE_RISING = Low-to-high edge triggered,
+> +              IRQ_TYPE_EDGE_FALLING = High-to-low edge triggered,
+> +              IRQ_TYPE_LEVEL_HIGH = Active high level-sensitive,
+> +              IRQ_TYPE_LEVEL_LOW = Active low level-sensitive.
 
-Regards,
+None of these are relevant here.
 
-	Hans
-
->  CONFIG_VIDEO_TI_J721E_CSI2RX=m
->  CONFIG_VIDEO_HANTRO=m
->  CONFIG_VIDEO_IMX219=m
+Best regards,
+Krzysztof
 
 
