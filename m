@@ -1,163 +1,207 @@
-Return-Path: <devicetree+bounces-151309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3329BA45540
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 07:07:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21B84A4558B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 07:29:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A34631898554
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 06:07:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C741D18860DF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 06:28:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8332A26773B;
-	Wed, 26 Feb 2025 06:07:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D944267722;
+	Wed, 26 Feb 2025 06:28:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wxf9aflH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDDA525D537
-	for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 06:07:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B5E1925A6;
+	Wed, 26 Feb 2025 06:28:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740550040; cv=none; b=dr4H9vx9KbFwEqRGjg0kEd4RndJeaTsHarfX6Rybm55q1DYKkGnRSN8MXiVZT050S3eixgZJFCbqOF11/XQSbcz/1RkPG/678fNMRCVtaD4D2hReQhX3vtaYEZfH6Y9jdrYE5AdLtDAVmjl716WN9ub++CDLHHmuRnwKDAhdC5U=
+	t=1740551321; cv=none; b=XF3kpmUW8kZcXYI4jX4Sq86AT5HElLaqaGRWQXC8mWVHuS6OBlHQMYb4rWHfqTzYEkDG9qAXpJSnzAttSS53XL/yurtukf33q4rbt8enutNdoye4vzNRpAKSEP+za0/N+8Ip3XQV7hVpYsL15wdE5XSBQrMM3SNKOpS7ryAeR4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740550040; c=relaxed/simple;
-	bh=EZKHHwTlf1DS55qsocYgo1K2E9wdQE7jRKyRGrwH4Xk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rjYTyCmYmmG04QbuPI94BixASGoq6KWJRB2arMRcPWDlVOUblJ96SD4U+NFqDL3pp2cwLrtm1twSYgnJFtCYmq+7b9jT+38eFea5ZMcClNsbuphePs3ud1vWLh5J3EBR1b1BeM5+NIk6W66LDGtpUMEH1gk/mxhHWaNSorQ92lc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tnAZM-0005bU-Bu; Wed, 26 Feb 2025 07:06:56 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tnAZL-002u4X-2J;
-	Wed, 26 Feb 2025 07:06:55 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tnAZL-001Sma-1q;
-	Wed, 26 Feb 2025 07:06:55 +0100
-Date: Wed, 26 Feb 2025 07:06:55 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Kory Maincent <kory.maincent@bootlin.com>, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Donald Hunter <donald.hunter@gmail.com>,
-	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	Simon Horman <horms@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-	Kyle Swenson <kyle.swenson@est.tech>,
-	Dent Project <dentproject@linuxfoundation.org>,
-	kernel@pengutronix.de,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 06/12] net: pse-pd: Add support for budget
- evaluation strategies
-Message-ID: <Z76vfyv5XoMKmyH_@pengutronix.de>
-References: <20250218-feature_poe_port_prio-v5-0-3da486e5fd64@bootlin.com>
- <20250218-feature_poe_port_prio-v5-6-3da486e5fd64@bootlin.com>
- <20250220165129.6f72f51a@kernel.org>
- <20250224141037.1c79122b@kmaincent-XPS-13-7390>
- <20250224134522.1cc36aa3@kernel.org>
- <20250225102558.2cf3d8a5@kmaincent-XPS-13-7390>
- <20250225174752.5dbf65e2@kernel.org>
- <Z76t0VotFL7ji41M@pengutronix.de>
+	s=arc-20240116; t=1740551321; c=relaxed/simple;
+	bh=NE39zml/fo6kkr8UQOJnZ81sJEhYJwEMHR7KD/s6HFk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p6MJUz9CgwhdJxeD8xBj/zboVv+dLfEZrH2mBrd2UXqjWR4rTi/kfJ0Gz9zI1DReHGHNe/P0Yi42XAU+A+0qukZq6TJIjtHaFz72Fe/l+t1EUUmURN5nWO4tcpVHCQv/vKc+EPMRntzQUXdHvrRlkTptOlQyGheag9j4WLRP8nY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wxf9aflH; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-548409cd2a8so4698737e87.3;
+        Tue, 25 Feb 2025 22:28:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740551318; x=1741156118; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YpCHqbGuoQ5BJqZTNRzllttmReMvT/yiMaLd2lRv7bo=;
+        b=Wxf9aflHtkTVNICIOcU7ldUNxSn6S/ZCnr0sGDzBxNIekJzqgvQjga8Gp4V+Np1aK6
+         jly8yLCcBPEyX/pvn+FyJLA32tt2dd4FxJ9MLXX4s+1EuJxF8TAAVzUpDOG3y+UngCl/
+         rLKF73AV2ZVzJrnzZEbdXHJLCvYYw/TfS8FgGVr/eagvZOGyhFaLt0RqQs+B7ZEBCje0
+         jS03yx0arfxAcOcomsdeJnc+GTEKZK1YdM4YP6mOt1xh75VkKtbl4BB9nviveu7FqrXu
+         F2QoIZJCs4diKf1Zqe3lW7A/8G4hfhBQ3+VTMuoW41iaIJCpWHrqbg3xDeFHTtM7fv2a
+         oZeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740551318; x=1741156118;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YpCHqbGuoQ5BJqZTNRzllttmReMvT/yiMaLd2lRv7bo=;
+        b=BHNFfq1DbRgLxQ3QhR86GVrzBwnHENK1U4bXDtbHYhi+nDZzC1A4t0FgwCKXh7kXi8
+         j3DBA+rNm2vFMGLI91425V8BCkwGpAK1P4OZuCNaQd30841kNRLl8IwFOSDho5UzhXNd
+         rfRzF/WRzcpQe50MaxQRHzZoCV66yViyMTPJi2WlKUTrO3KTy3GPh0ABT0eyoja9eSeR
+         EFDNXsZa5ZnS1tN3IoPDSRFXxbYs+IHmYdT/pn1fSryT5IJ+BJ46tE/ww2YP+eER3xn7
+         NQ1DONJwXcoKR2TQ/82Jz+s4rsBFj8ThpNZ6QrMwsJ6xC/S5/y8+43qT51LEQ7Qotm57
+         64PA==
+X-Forwarded-Encrypted: i=1; AJvYcCU5P3in5z2Klhnb46MsPyTEGxNtkN/1mB2vPhjlRZ7VB/TFpDNy5je6OM74TVGFogBEQHKeEEcMHHjE@vger.kernel.org, AJvYcCU8maCCrKnx5vT6dNgh9cdNvrVSZtKAwFaoJrsHXCFWqG6WlK1JAxburJ1m4LH86Ln5gaXhVWaFUDZu/pmnrO9JkAI=@vger.kernel.org, AJvYcCUszvLXHtFSxrisrDit9ZeqCjFrzEtmL4q1E9uWSccz5no4pTZIFuSgCwKZXeAojWrFEvMNK3X2T3Fk@vger.kernel.org, AJvYcCW41mFpDP0niwlx9n/nVGSVFaX9ivDcS6ArszWpzU/fhrnIlJTIM1k+SPGf6w3y+XjTLvYLR4NJNvbb0Q==@vger.kernel.org, AJvYcCXTr+xXik9UidDFVlY/XQW1TMdkM+rO2LnT6+issEfBgrV2Iaz+oJ51w1QMj1pyZtvRdqJRNHGH45X5JJYh@vger.kernel.org
+X-Gm-Message-State: AOJu0YyePHPaxtLCOm2HtzPRfuKEFzAGyOfRmSL0Vlg2vZ9s2yyL/hyB
+	zjDURgShRfgKrLtQ3VCWYpX5xlXCUZayNcXiV9NeJERWhoDtqZlY
+X-Gm-Gg: ASbGnculubf1Rb1K1JQ9uwnTKIGos/QZujMo1NdQbOp11EaTsxft9M+9cmAvPlPYeZW
+	LzyfYwrkxBq2nyBq19mY2yXRq0Xxw0r066lGv3uPo6w+HE7hynTUPphReJjIFohxEER+P4Tj4Jj
+	Rj757c9zyvNYZr8diy7nJyOx/i0yCvqdJC8opxSbqlUVVnPpIkDzScAfOp/4gokQThT+WXhrjzy
+	7GBzkXJdubwWZRzCSNNv/1mKFdGuHDEtAAdPYTVdBffxHD6KNO4kDIdix5XpXRHsNsBBqTE04h9
+	mnHmVfXzsjMnHcZA06t3nt3SG1CdTUBDLQ3WfjT5/CQU1OgSXOXe0dvilHb2MZ5D88oIm0Sw1V8
+	gANpKjtk=
+X-Google-Smtp-Source: AGHT+IFZty/ud0vv7fnUaxvQy7Ed1PaMJjnJwRZzX9uN4JbCQgsINREjjhWVQBBguASQBVPYxKCBhw==
+X-Received: by 2002:a05:6512:104e:b0:545:e2e:8425 with SMTP id 2adb3069b0e04-548510ecfa1mr4349214e87.39.1740551317973;
+        Tue, 25 Feb 2025 22:28:37 -0800 (PST)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-548514efaccsm356242e87.155.2025.02.25.22.28.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Feb 2025 22:28:37 -0800 (PST)
+Message-ID: <1b308a10-9622-47f9-b489-bd969fbdfc34@gmail.com>
+Date: Wed, 26 Feb 2025 08:28:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z76t0VotFL7ji41M@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 03/10] iio: adc: add helpers for parsing ADC nodes
+To: David Lechner <dlechner@baylibre.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Daniel Scally <djrscally@gmail.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa <nuno.sa@analog.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Guillaume Stols <gstols@baylibre.com>,
+ Olivier Moysan <olivier.moysan@foss.st.com>,
+ Dumitru Ceclan <mitrutzceclan@gmail.com>,
+ Trevor Gamblin <tgamblin@baylibre.com>,
+ Matteo Martelli <matteomartelli3@gmail.com>,
+ Alisa-Dariana Roman <alisadariana@gmail.com>,
+ Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+References: <cover.1740421248.git.mazziesaccount@gmail.com>
+ <23f5ee3e3bf7179930d66c720d5c4c33cdbe8366.1740421248.git.mazziesaccount@gmail.com>
+ <0de7b0ac-eca5-49ba-b1b3-f249655f3646@baylibre.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <0de7b0ac-eca5-49ba-b1b3-f249655f3646@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Feb 26, 2025 at 06:59:45AM +0100, Oleksij Rempel wrote:
-> On Tue, Feb 25, 2025 at 05:47:52PM -0800, Jakub Kicinski wrote:
-> > On Tue, 25 Feb 2025 10:25:58 +0100 Kory Maincent wrote:
-> > > On Mon, 24 Feb 2025 13:45:22 -0800
-> > > Jakub Kicinski <kuba@kernel.org> wrote:
-> > > 
-> > > > > No they can't for now. Even different PSE power domains within the same PSE
-> > > > > controller. I will make it explicit.    
-> > > > 
-> > > > Sounds like the property is placed at the wrong level of the hierarchy,
-> > > > then.  
-> > > 
-> > > When a PSE controller appears to be able to support mixed budget strategy and
-> > > could switch between them it will be better to have it set at the PSE power
-> > > domain level. As the budget is per PSE power domain, its strategy should also
-> > > be per PSE power domain.
-> > > For now, it is simply not configurable and can't be mixed. It is hard-coded by
-> > > the PSE driver.
-> > 
-> > Yes, but uAPI is forever. We will have to live with those domain
-> > attributes duplicated on each port. Presumably these port attributes
-> > will never support a SET operation, since the set should be towards 
-> > the domain? The uAPI does not inspire confidence. If we need more
-> > drivers to define a common API maybe a local sysfs API in the driver
-> > will do?
+Hi David,
+
+Thanks for taking a look at this :)
+
+On 26/02/2025 02:26, David Lechner wrote:
+> On 2/24/25 12:33 PM, Matti Vaittinen wrote:
+>> There are ADC ICs which may have some of the AIN pins usable for other
+>> functions. These ICs may have some of the AIN pins wired so that they
+>> should not be used for ADC.
+>>
+>> (Preferred?) way for marking pins which can be used as ADC inputs is to
+>> add corresponding channels@N nodes in the device tree as described in
+>> the ADC binding yaml.
 > 
-> I tend to disagree here. The evaluation/allocation methods should be
-> per port.  
-> 
-> At this step, we support only "hardware"(firmware)-based methods:  
-> 1. Static – Plain hardware classification-based power allocation per
-> port.  
-> 2. Dynamic – Hardware classification with constant measurement for
-> optimization.  
-> 
-> For some devices, the dynamic method may not work reliably enough,
-> so we will need to switch to a fixed allocation method, which is
-> currently not implemented but will be set via user space. This
-> should be configurable per port.  
-> 
-> At some point, we will need to introduce LLDP-based allocation from
-> user space. This will be managed by a daemon.
-> 
-> For testing, here’s an example of how LLDP-based power negotiation can
-> be analyzed:
-> https://telecomtest.com.au/wp-content/uploads/2016/12/PDA-LLDP-Powered-Device-LLDP-Analyzer.pdf
+> I think "preferred?" is the key question here. Currently, it is assumed
+> that basically all IIO bindings have channels implicitly even if the
+> binding doesn't call them out. It just means that there is nothing
+> special about the channel that needs to be documented, but the channel
+> is still there.
 
-Here is one example how it is done by HP switches:
-https://arubanetworking.hpe.com/techdocs/AOS-CX/10.08/HTML/monitoring_6200/Content/Chp_PoE/PoE_cmds/pow-ove-eth-all-by.htm
+I think this works well with the ADCs which have no other purpose for 
+the pins but the ADC. The BD79124 (and some others) do allow muxing the 
+ADC input pins for other purposes. There the DT bindings with nothing 
+but the "reg" are relevant, and channels can't be trusted to just be 
+there without those..
 
-switch(config)# interface 1/1/1    <---- per interface
-switch(config-if)# power-over-ethernet allocate-by usage
-switch(config-if)# power-over-ethernet allocate-by class
+> Similarly, on several drivers we added recently that make use of adc.yaml
+> (adi,ad7380, adi,ad4695) we wrote the bindings with the intention that
+> if a channel was wired in the default configuration, then you would just
+> omit the channel node for that input pin. Therefore, this helper couldn't
+> be used by these drivers since we always have a fixed number of channels
+> used in the driver regardless of if there are explicit channel nodes in
+> the devicetree or not.
 
-Cisco example:
-https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/93x/power-over-ethernet/configuration/configuring-power-over-ethernet/m-configuring-power-over-ethernet.html
+I think this works with the ICs where channels, indeed, always are 
+there. But this is not the case with _all_ ICs. And in order to keep the 
+consistency I'd actually required that if channels are listed in the DT, 
+then _all_ the channels must be listed. Else it becomes less 
+straightforward for people to understand how many channels there are 
+based on the device tree. I believe this was also proposed by Jonathan 
+during the v1 review:
 
-switch(config)# interface ethernet1/1   <---- per interface
-switch(config-if)# power inline auto
+ > > Hmm. That'd mean the ADC channels _must_ be defined in DT in order 
+to be
+ > > usable(?) Well, if this is the usual way, then it should be well known
+ > > by users. Thanks.
+ >
+ > Yes. We basically have two types of binding wrt to channels.
+ > 1) Always there - no explicit binding, but also no way to describe
+ >    anything specific about the channels.
+ > 2) Subnode per channel with stuff from adc.yaml and anything device
+ >    specific.  Only channels that that have a node are enabled.
+ >
+ > There are a few drivers that for historical reasons support both
+ > options with 'no channels' meaning 'all channels'.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+https://lore.kernel.org/all/20250201162631.2eab9a9a@jic23-huawei/
+
+> In my experience, the only time we don't populate all available channels
+> on an ADC, even if not used, is in cases like differential chips where
+> any two inputs can be mixed and matched to form a channel. Some of these,
+> like adi,ad7173-8 would have 100s or 1000s of channels if we tried to
+> include all possible channels. In those cases, we make an exception and
+> use a dynamic number of channels based on the devicetree. But for chips
+> that have less than 20 total possible channels or so we've always
+> provided all possible channels to userspace. It makes writing userspace
+> software for a specific chip easier if we can always assume that chip
+> has the same number of channels.
+
+In any exception to this rule of describing all channels in DT should 
+just avoid using these helpers and do things as they're done now. No one 
+is forced to use them. But I am not really sure why would you not 
+describe all the channels in the device-tree for ICs with less than 20 
+channels? I'd assume that if the channels are unconditionally usable in 
+the hardware, then they should be in DT as well(?)
+
+>> Add couple of helper functions which can be used to retrieve the channel
+>> information from the device node.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>
+
+Yours,
+	-- Matti
 
