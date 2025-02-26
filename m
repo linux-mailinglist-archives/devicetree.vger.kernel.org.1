@@ -1,181 +1,112 @@
-Return-Path: <devicetree+bounces-151765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77DDAA46EB1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 23:41:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BDA4A46ECE
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 23:55:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DC703AE5F7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 22:41:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4425D3ADBEF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 22:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E412925D1ED;
-	Wed, 26 Feb 2025 22:41:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A01C25E833;
+	Wed, 26 Feb 2025 22:55:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HXG3Nxin"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UE4RPiIm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B2A125D1E1;
-	Wed, 26 Feb 2025 22:41:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BFE825E82D;
+	Wed, 26 Feb 2025 22:55:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740609701; cv=none; b=EtFjkTSuZBqQL6Lc03U341uHPvt4DEIKO/zT57ZX6XHmN2/E0kx73JXSnF9D3gq3gTs6hLKtMl93ZKqJYMYnpLcDA30ReOfwI30Bwh4FqHSy3PiQO+9SLM6Imz2l+G8+oUpy5dyQ/oEac925j4yAZQ89H4vuQlEOiuNr1MzKpig=
+	t=1740610518; cv=none; b=HoXE9lFT83GW/nf5SySzNqKZqMAgtXfnJRbi9vdOrmlxNmndwV3g2eL3Uu3QVq/O6WNHVU2gO9oOmQ6gWU3LNBuFfdSVICKRXRsDJjJmF+h7e+koUVoprLuj+wezpC177INNOUOHnPutIG/m1VX4lgzAhsTIckVWjAVScmxvaGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740609701; c=relaxed/simple;
-	bh=Qbf6pdMB9rWRlTmv9kPhr5EySnUr/WkW64EZ9c1V2N0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=h/VyWdYfTtOk+iT3zvovYHSE2zSE+irWlCFG8F6j51W9qkExiznOWZ3Z1JzSYHTfslmQ6h7EMB3OA/535zEItB47iEerqDiDqcX/qICwe89rIr35nTUKdCOql9SgqknumiIBF2hJx245tIYOBkIdaYmTjWpU/0Tzuf1hhc5jo0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HXG3Nxin; arc=none smtp.client-ip=209.85.219.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6e241443e8dso667346d6.0;
-        Wed, 26 Feb 2025 14:41:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740609699; x=1741214499; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Qbf6pdMB9rWRlTmv9kPhr5EySnUr/WkW64EZ9c1V2N0=;
-        b=HXG3NxinLSXM24yZa0pmPpACc7mCmrBkgvrobMxP80p/tIDvtZ8QpbKbTtJK7EcK3N
-         fR9tB0qZUpSFxCx4+if403YuNkz+CWKF8toCwX//pIXLa4fOZMRUiWceCwdGetkbwtzn
-         820fyfcCyB7QuyGBNuLSvmconbixM6bfiGZQStyxsGKMHbPKU9ex/CdCIBaiciZpHp3R
-         WvSfubUnZYbWwf8K4e54w7fRi1YWFPGQIy9sOvTcAMQdznTNiyYsmLHJSuuC6HHZYKgc
-         DlDZx04W1Y6q0mR/9QIa1j5njdAFWqKT2Gfs1ZJrFLTYzjR30N5b9q/TNAOPz3cx5I0z
-         fDdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740609699; x=1741214499;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Qbf6pdMB9rWRlTmv9kPhr5EySnUr/WkW64EZ9c1V2N0=;
-        b=WGQyZyw30X3+auAS53PSB4nZPtbYy+yigngHGLWngnc8kbKWIof1Th5m7ujRRJQ0g1
-         99T75Nw8rNwCdP48Yu2JWGnrxh/fpxIFWCD9jq96154Hnz9hGNk/aA/E6jbqAJiWnznS
-         hwJevqEw1/KoI2eRVnhJTLgGJ/NAvakqGidcOxlwxecG7uC6YsiZspPIfqVOI4fNEFPW
-         XVjqywdgAIrbE8iUzypD7jfqCILdYLQN2rU/OGTuLMBzI9IaJa+DQC+xnk5SjOZA29JX
-         6lEOXTMDJns/k/ryQaBhhRj6TS1AP7el5Irc6UahGvFARfSN0mGhOrJs306qOTWpxp0L
-         SHgg==
-X-Forwarded-Encrypted: i=1; AJvYcCUgm0KH02Dnb2sdxiTi5kZo2gBv3eL79ph/QxT70sPjEJ15wU5Z9PTJShh52+ZUF9CfkSxf2XXKPPjYLYA=@vger.kernel.org, AJvYcCV6Ke53ieK7C8oT0+ie9re2B6KD/HjHSYV824C0tenfLAXMajonOa38xAIplsDc0OYWNelDWpAEXA5c@vger.kernel.org, AJvYcCXC3nvRcbZUEBHLJLV9NzaKrHFD5+6SBaJs05xyZMRiSAaHppVOOOmg+FC/2vdEBxUpg+iA5p9y78pmqhae@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPrBHReH4K2naIZmyacrI2kPAwsXq9pVva1NDG6jESiMZrJ6bX
-	yJlE/8UxIheinvXMnpXCzbrgNK+Fx6j22iF2PneVqJRAo/eXTT6N
-X-Gm-Gg: ASbGncspw/U1baou43f7z4+1WT4CFxXjDqGoME4kqHEby62SEWnWuL2O2CEestSpTB2
-	4ZDSnugLQdyXUigeHpPv6O6cxnOg9SZ3vFikkZCT4JHWEHZKBfWQaaDlaFJ+G4FIS+fiVSXeCuL
-	TFD1Y7bfAr/kVMYvb6mrmLRdc4hqG6unQUqZKVA29Ady+gH3PPh/itYZE9hJb5UYzFMDTvd7Hjl
-	VE7++rOmtu1VtJH7qlMrV/RsqhyyffNA+OxdYEq2t15/4NDluOLbnJmTh1mF4a55dGrTMC36F2x
-	6ETLOwoNpamlVw5gIKhSWxTG0pfHLCIfNRV1mBtMVY0FlaKCtRWKrfvUEIyzo/YkefHzvSo7TkR
-	4vRatlQ==
-X-Google-Smtp-Source: AGHT+IEzn/PG+RBqyb/tDnoYBHFaH7nC7MSNsCeG4Y6DHN/r5jkgDjgEjr6TLU5Kc6SwRg6WlTBCaw==
-X-Received: by 2002:a05:620a:1712:b0:7c0:af16:b4a8 with SMTP id af79cd13be357-7c0ceee5300mr1331316285a.3.1740609698879;
-        Wed, 26 Feb 2025 14:41:38 -0800 (PST)
-Received: from ?IPv6:2600:1002:a012:8f2c:b83e:9ea7:2886:546f? ([2600:1002:a012:8f2c:b83e:9ea7:2886:546f])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c378d9fe6dsm15570485a.77.2025.02.26.14.41.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Feb 2025 14:41:37 -0800 (PST)
-Message-ID: <69cb2e95c291f17cff42b45e7c871f30a85c060d.camel@gmail.com>
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add dt bindings for
- m2m-deinterlace device
-From: Matthew Majewski <mattwmajewski@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Hans Verkuil	 <hverkuil@xs4all.nl>, "Dr. David Alan
- Gilbert" <linux@treblig.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>, Andrzej Pietrasiewicz
- <andrzejtp2010@gmail.com>, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org, 	linux-kernel@vger.kernel.org
-Date: Wed, 26 Feb 2025 17:41:35 -0500
-In-Reply-To: <20250218-eggplant-skylark-of-swiftness-dcf6ba@krzk-bin>
-References: <20250214231759.119481-1-mattwmajewski@gmail.com>
-	 <20250214231759.119481-2-mattwmajewski@gmail.com>
-	 <20250218-eggplant-skylark-of-swiftness-dcf6ba@krzk-bin>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (by Flathub.org) 
+	s=arc-20240116; t=1740610518; c=relaxed/simple;
+	bh=3rualdVsZ0rnSLUknJnwEmuB93Nt/mrluRr78WdEdIM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UYpBLJJGHXb1qobUzcTlmwpWucUnzt4MSjdIxUDDv+NDOr38r3Fa/JKaQRE5xgHeQQYfOjKVpxRPsdjUXmyFnwENPjIkA/c8bsveLo9FAvYr2q0t+O2fQBC6J5yiepbp0osAJfEexhIBEFFSaYzvy3LzJqlgu6GbEYRdyrFoxBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UE4RPiIm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CAF4C4CED6;
+	Wed, 26 Feb 2025 22:55:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740610517;
+	bh=3rualdVsZ0rnSLUknJnwEmuB93Nt/mrluRr78WdEdIM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UE4RPiImGNejxCgGvcmt+qoRUzr6PSyoLUkPypdhGaXcKaVH67Z+ogZJ1cvqtZ17H
+	 q4O2UtzyGkJA25bOgFBPVWd9MEuva8LWVqRqiYqMlB9nyXGSvdhypCElfmOqt1FgFS
+	 yZwQD+OFIRr0PdLIL8DrumvaZ5fc2lLIvqufKydh9zHcW2f8QaT1Davb+8b7erL5K+
+	 q14iwyqgXnwdb6Pf8SukIe6AJJ2ISWRUyKFYjbYZvTiPRLeGe+GhQAiOemBEUBr6Xz
+	 XTOeRc8fWokBq1l++rJElbPNZw93bc78zvhxOBuOgAml3aBHxj50A6Fv0Np67VfAJt
+	 GohZrtUQ8jvFQ==
+Date: Wed, 26 Feb 2025 22:55:10 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Fabio Estevam <festevam@denx.de>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Jonathan Corbet <corbet@lwn.net>, Serge Hallyn <serge@hallyn.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>,
+	Guenter Roeck <groeck@chromium.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-security-module@vger.kernel.org,
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: Re: [PATCH v3 08/12] regulator: allow user configuration of hardware
+ protection action
+Message-ID: <f3a1ae24-6ee0-43d7-8648-cf25ac139960@sirena.org.uk>
+References: <20250217-hw_protection-reboot-v3-0-e1c09b090c0c@pengutronix.de>
+ <20250217-hw_protection-reboot-v3-8-e1c09b090c0c@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-Hi Krzysztof,
-
-On Tue, 2025-02-18 at 09:30 +0100, Krzysztof Kozlowski wrote:
-> On Fri, Feb 14, 2025 at 06:17:58PM -0500, Matthew Majewski wrote:
-> > Create a new yaml schema file to describe the device tree bindings
-> > for
-> > generic m2m-deinterlace device.
-> >=20
-> > This device is supported on any hardware that provides a MEM_TO_MEM
->=20
-> Which device? I don't see here any device name/model.
-
-By "device" I am referring to the m2m-deinterlace device, which I
-explained is a quasi-virtual device. If this is confusing wording I can
-change.=20
-
-> I asked to provide here some examples of devices.
-
-As I wrote, supported devices/hardware is anything that provides a
-MEM_TO_MEM capable dma-controller with interleaved transfer support. I
-did not list specific devices because the bindings are supposed to be
-generic, as they are not describing actual silicon. But if you want me
-to list some devices which provide a compatible dma-controller, here
-are devices I found in the current mainline kernel:
-
-- TI OMAP Soc Family
-- TI Davinci Soc Family
-- TI Keystone Processor Family
-- IMX27 Processor and variants
-- Several Microchip Processors (sama5, sam9x7, sam9x60)
-
-As I mentioned in my original email, I have personally tested on a
-BeagleBone Black with an AM335X OMAP processor. There are likely many
-more devices with compatible dma-controllers that could be supported
-with additional dmaengine driver support.=20
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="69+QFFE4FM9qynJX"
+Content-Disposition: inline
+In-Reply-To: <20250217-hw_protection-reboot-v3-8-e1c09b090c0c@pengutronix.de>
+X-Cookie: I've been there.
 
 
-> > capable dma channel with interleaved trasfer support. Device tree
-> > bindings are for providing appropriate dma channel to device.
->=20
-> Don't describe what DT is, but the hardware.
->=20
+--69+QFFE4FM9qynJX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Ok, will remove reference to DT.
+On Mon, Feb 17, 2025 at 09:39:48PM +0100, Ahmad Fatoum wrote:
+> When the core detects permanent regulator hardware failure or imminent
+> power failure of a critical supply, it will call hw_protection_shutdown
+> in an attempt to do a limited orderly shutdown followed by powering off
+> the system.
 
-> > +description: |-
-> > +=C2=A0 A generic memory2memory device for deinterlacing video using
-> > dmaengine. It can
-> > +=C2=A0 convert between interlaced buffer formats and can convert
-> > interlaced to
-> > +=C2=A0 progressive using a simple line-doubling algorithm. This device
-> > can be used on
-> > +=C2=A0 any hardware that provides a MEM_TO_MEM capable dma controller
-> > that supports
-> > +=C2=A0 interleaved transfers.
->=20
-> And how do you program that device to deinterlace? How do you signal
-> end
-> of frame/data when writing to the memory?
->=20
-> It still looks all this is for driver :/
->=20
+Not that it matters at this point but
 
-All of the deinterlacing is handled by the dma channel. To simplify a
-bit, m2m-deinterlace basically just translates video format information
-into appropriate interleaved dma transfers. Everything else (and
-everything hardware specific) is handled by the dma engine, such as
-initiation and signaling completion of transfers.=20
+Reviewed-by: Mark Brown <broonie@kernel.org>
 
-I think an appropriate analogy for m2m-deinterlace would be spi-gpio.
-Since spi-gpio leverages gpio for bitbanging the spi protocol, the
-bindings do not need to describe any clocks, spi-controller registers,
-etc. All of the hardware specific components are abstracted away by the
-gpio controller. But the spi-gpio bindings still exist to specify which
-gpios are used.
+--69+QFFE4FM9qynJX
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best,
-Matthew
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAme/m80ACgkQJNaLcl1U
+h9BMTQf9EPlgFM5IHJeDldbatcC7CEidjNZXpHX8EVgKK1b4TRFL1eAxjG0TbxD2
+uMRhc02ghjwIGueCDC/fq7Ziivq6rpmWNQc3RBZMXP499VIVnBvSEFYCryeohXkj
+kKdWMjGH468A5J4qa6IiCdzpRJB/lyhyiU0Rjup9YKdpC+LFhjvWR7N4oqAUmzss
+k16nd/Nw3lEs23Kd3FoJ+TfQImtUm3QQ2doQyWcFgbpoO2uOI4X40LXVb6RKLq39
+RtuDh+WWEFjQeByjIrHjQ9HHn4aTpYKE4aqVKRGpwHlWr5pQqfIcyg2NDjUfrBGT
+bdyJw53DkC0StS3yRxrJo3Yp5iQqhg==
+=zpJM
+-----END PGP SIGNATURE-----
+
+--69+QFFE4FM9qynJX--
 
