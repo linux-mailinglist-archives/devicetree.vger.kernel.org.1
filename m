@@ -1,206 +1,197 @@
-Return-Path: <devicetree+bounces-151563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E21E0A46366
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:46:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E184BA46374
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:47:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB2187A766B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 14:45:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AB431791F0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 14:47:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997E42236ED;
-	Wed, 26 Feb 2025 14:45:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L7TO8yXx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 195BB21D3E1;
+	Wed, 26 Feb 2025 14:46:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690F2223339;
-	Wed, 26 Feb 2025 14:45:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2346E3209;
+	Wed, 26 Feb 2025 14:46:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740581151; cv=none; b=QUeGXHd9COGZ3BnT/SNaB91s9wcDpSnp24zceqedgC1YJElCMy05xNXOid+GS7dRt+Dd6FCbTrdv+51IP8lKKVn1Rm/r74nTKfsSOQdnexOJy8RX7bDA2sablF8XRCqsGVgqYe5jaYWh4vF9758r+fDf/q4vyxIytSxDOfdYl2s=
+	t=1740581205; cv=none; b=ZooFMRXOGAvmWB8m/fB1ZGmTEjtZSpWTT2DZ+2MDHNzoFQzsTMrg6MCRemu0K28dNTpOurR0WukKTbsEtK9ktCxOy515XdgOl0/aEXyiEocdPKFC9N1zyEAjOzkeo6tgABUHCSm1rMSmwfCTNcAyqct9MJIs+IHmz3zFWRp4r94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740581151; c=relaxed/simple;
-	bh=2e8y34nF3WAvOI36M9xs1+jJDib5lSf6jroS4lJKWRw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c1NkqghlF7m7enkt4XhEhKb+gotDb97TLPVUC9SLnMX7oVBTayxQsZLXb3om4UC67vrV/qHg4x49At/T3BLwKZA4tVv7KHsOyaFntOcgb1SWYj5b2BpHtgIOF36j+zfPcvPcaHFM1GfcgqILXbu+5gTpkp136YDQL5GhiZrWP78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L7TO8yXx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9932AC4AF0B;
-	Wed, 26 Feb 2025 14:45:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740581150;
-	bh=2e8y34nF3WAvOI36M9xs1+jJDib5lSf6jroS4lJKWRw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L7TO8yXxQmiYV0e978xp7cwfIDefmJ7wdXKZEKaEo7couphnmeePegIiWh7rHgAes
-	 yi6PFABiCw0C6OnVizzoqwFj1Y+r4yOaPdqWynd0DSSPzQrZQvRC3yOjjyJuTqLWaS
-	 X4UNy3p+thTfBpcYIf4iwD14hMFT+Ty9KNpydCaHtMpIzgr3TDoE9kUs66v7opDFWg
-	 oplQ8iqVFvQ9CUI6aL7+JfIhPm/vs3pfSN459q0AtlP1xmpXUga85qgQP7CQEBO+2I
-	 7Rr1SDzlaQke0cDyIDA8a4JiXHva92wkVVAL7u9MTHNVoT/utxi17F/MZatXawLLWL
-	 vEAdgOgR53OLw==
-Date: Wed, 26 Feb 2025 08:45:48 -0600
-From: Rob Herring <robh@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	kernel@collabora.com, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] dt-bindings: thermal: rockchip: document otp
- thermal trim
-Message-ID: <20250226144548.GA2299551-robh@kernel.org>
-References: <20250225-rk3576-tsadc-upstream-v2-0-6eb7b00de89c@collabora.com>
- <20250225-rk3576-tsadc-upstream-v2-4-6eb7b00de89c@collabora.com>
+	s=arc-20240116; t=1740581205; c=relaxed/simple;
+	bh=agp7jtzUO2c9Z8k+/9oj5UauhbN4dN90fCMt+PYatUg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j2/7UOn2JF2RiBqL3cTP1g2UStAsmkx+HkawHJk1zprkrRnyPWAm0UZVkScV9bUd9T13Oe5Md+gYDJnNNu5QKNeuvSAMUUzuivrz1eZhkImYRNUTCw7U1j3E9uGIoW2i6paV8BKicIElILzJPSoD+aNiLdFFIsboAtr0ulUsQTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: aK9IqcVPSCmUF10jJnwz3Q==
+X-CSE-MsgGUID: lels0FDnSl65jyZ8SE+33Q==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 26 Feb 2025 23:46:41 +0900
+Received: from [10.226.93.138] (unknown [10.226.93.138])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 88F5F403BC9A;
+	Wed, 26 Feb 2025 23:46:39 +0900 (JST)
+Message-ID: <5beab0aa-ef61-4a9e-882a-99b6d9220879@bp.renesas.com>
+Date: Wed, 26 Feb 2025 14:46:37 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250225-rk3576-tsadc-upstream-v2-4-6eb7b00de89c@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 12/13] arm64: dts: renesas: Add initial support for
+ renesas RZ/T2H eval board
+Content-Language: en-GB
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Thierry Bultel <thierry.bultel.yh@bp.renesas.com>, thierry.bultel@linatsea.fr
+Cc: linux-renesas-soc@vger.kernel.org, geert@linux-m68k.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250226130935.3029927-1-thierry.bultel.yh@bp.renesas.com>
+ <20250226130935.3029927-13-thierry.bultel.yh@bp.renesas.com>
+ <9e973021-8f10-4870-8534-29c7669c7c74@kernel.org>
+From: Paul Barker <paul.barker.ct@bp.renesas.com>
+In-Reply-To: <9e973021-8f10-4870-8534-29c7669c7c74@kernel.org>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------MtSXPOi1jblFPh60l5klKt0w"
 
-On Tue, Feb 25, 2025 at 01:56:47PM +0100, Nicolas Frattaroli wrote:
-> Several Rockchip SoCs, such as the RK3576, can store calibration trim
-> data for thermal sensors in OTP cells. This capability should be
-> documented.
-> 
-> Such a rockchip thermal sensor may reference cell handles that store
-> both a chip-wide trim for all the sensors, as well as cell handles
-> for each individual sensor channel pointing to that specific sensor's
-> trim value.
-> 
-> Additionally, the thermal sensor may optionally reference cells which
-> store the base in terms of degrees celsius and decicelsius that the trim
-> is relative to.
-> 
-> Each SoC that implements this appears to have a slightly different
-> combination of chip-wide trim, base, base fractional part and
-> per-channel trim, so which ones do which is documented in the bindings.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  .../bindings/thermal/rockchip-thermal.yaml         | 64 ++++++++++++++++++++++
->  1 file changed, 64 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
-> index 49ceed68c92ce5a32ed8d4f39bd88fd052de0e80..eef8d2620b675fe2f871a03aebdaed13278e0884 100644
-> --- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
-> @@ -11,6 +11,23 @@ maintainers:
->  
->  $ref: thermal-sensor.yaml#
->  
-> +definitions:
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------MtSXPOi1jblFPh60l5klKt0w
+Content-Type: multipart/mixed; boundary="------------ELOeBP4c4kHw8aSvpoxlU1j6";
+ protected-headers="v1"
+From: Paul Barker <paul.barker.ct@bp.renesas.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Thierry Bultel <thierry.bultel.yh@bp.renesas.com>, thierry.bultel@linatsea.fr
+Cc: linux-renesas-soc@vger.kernel.org, geert@linux-m68k.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-ID: <5beab0aa-ef61-4a9e-882a-99b6d9220879@bp.renesas.com>
+Subject: Re: [PATCH v3 12/13] arm64: dts: renesas: Add initial support for
+ renesas RZ/T2H eval board
+References: <20250226130935.3029927-1-thierry.bultel.yh@bp.renesas.com>
+ <20250226130935.3029927-13-thierry.bultel.yh@bp.renesas.com>
+ <9e973021-8f10-4870-8534-29c7669c7c74@kernel.org>
+In-Reply-To: <9e973021-8f10-4870-8534-29c7669c7c74@kernel.org>
 
-'$defs' is preferred over 'definitions'. However, I don't think you need 
-either.
+--------------ELOeBP4c4kHw8aSvpoxlU1j6
+Content-Type: multipart/mixed; boundary="------------aNtAtrUNDAIxA7q6AYYG9AG5"
 
-> +  channel:
+--------------aNtAtrUNDAIxA7q6AYYG9AG5
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Just make this a pattern property:
+On 26/02/2025 14:23, Krzysztof Kozlowski wrote:
+> On 26/02/2025 14:09, Thierry Bultel wrote:
+>> Add the initial device tree for the RZ/T2H evaluation board.
+>>
+>> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+>> Reviewed-by: Paul Barker <paul.barker.ct@bp.renesas.com>
+>=20
+> Where did this happen? I see tags only to few patches, not all of them.=
 
-'@[0-5]$'
+>=20
+> Same questions for all other places.
+>=20
+> Best regards,
+> Krzysztof
 
-Really, node names should be generic and the type of thing they are, not 
-what instance they are. So something like 'sensor' for all the child 
-nodes. IOW, node names is not how you should identify what each sensor 
-is associated with.
+Hi Krzysztof,
 
-> +    type: object
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +        description: sensor ID, a.k.a. channel number
-> +      nvmem-cells:
-> +        items:
-> +          - description: handle of cell containing the calibration data
-> +      nvmem-cell-names:
-> +        items:
-> +          - const: trim
-> +    required:
-> +      - reg
-> +    unevaluatedProperties: false
-> +
->  properties:
->    compatible:
->      enum:
-> @@ -51,6 +68,12 @@ properties:
->        - const: tsadc
->        - const: tsadc-phy
->  
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
->    "#thermal-sensor-cells":
->      const: 1
->  
-> @@ -80,6 +103,47 @@ required:
->    - clock-names
->    - resets
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3568-tsadc
-> +    then:
-> +      properties:
-> +        nvmem-cells:
-> +          items:
-> +            - description: cell handle to where the trim's base temperature is stored
-> +            - description:
-> +                cell handle to where the trim's tenths of Celsius base value is stored
-> +        nvmem-cell-names:
-> +          items:
-> +            - const: trim_base
-> +            - const: trim_base_frac
+We've recently switched to a patchwork instance and internal mailing
+list for review within our team before sending things to the mailing
+list. We did a round of internal review and the Reviewed-by tags from
+this have accidentally been included here. It can easily be fixed.
 
-Define all properties at the top-level and then restrict their presence 
-in the if/then schema.
+Thierry, could you re-send a v4 series keeping my Reviewed-by tag only
+on patch 7/13, as that was added on the public mailing list.
 
-> +        cpu@0:
-> +          $ref: "#/definitions/channel"
-> +        gpu@1:
-> +          $ref: "#/definitions/channel"
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3576-tsadc
-> +    then:
-> +      properties:
-> +        soc@0:
-> +          $ref: "#/definitions/channel"
-> +        bigcores@1:
-> +          $ref: "#/definitions/channel"
-> +        littlecores@2:
-> +          $ref: "#/definitions/channel"
-> +        ddr@3:
-> +          $ref: "#/definitions/channel"
-> +        npu@4:
-> +          $ref: "#/definitions/channel"
-> +        gpu@5:
-> +          $ref: "#/definitions/channel"
-> +
->  unevaluatedProperties: false
->  
->  examples:
-> 
-> -- 
-> 2.48.1
-> 
+Thanks,
+
+--=20
+Paul Barker
+--------------aNtAtrUNDAIxA7q6AYYG9AG5
+Content-Type: application/pgp-keys; name="OpenPGP_0x27F4B3459F002257.asc"
+Content-Disposition: attachment; filename="OpenPGP_0x27F4B3459F002257.asc"
+Content-Description: OpenPGP public key
+Content-Transfer-Encoding: quoted-printable
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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3D
+=3DsIIN
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------aNtAtrUNDAIxA7q6AYYG9AG5--
+
+--------------ELOeBP4c4kHw8aSvpoxlU1j6--
+
+--------------MtSXPOi1jblFPh60l5klKt0w
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+wnsEABYIACMWIQSiu8gv1Xr0fIw/aoLbaV4Vf/JGvQUCZ78pTgUDAAAAAAAKCRDbaV4Vf/JGvTwQ
+AP4v5qXZ0PRRjjhxDA7Oqsjm/5v7StEMg0dw5LQclRN8HwEA85g0uBf8eFF5sQ9JNxOILZlDffSz
+PhA8SAfybtlZDQE=
+=Iqtm
+-----END PGP SIGNATURE-----
+
+--------------MtSXPOi1jblFPh60l5klKt0w--
 
