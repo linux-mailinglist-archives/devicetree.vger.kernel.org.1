@@ -1,143 +1,112 @@
-Return-Path: <devicetree+bounces-151423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED178A45C2F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:52:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAE57A45C52
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 11:57:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF040174DCA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 10:52:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF6443ABBB9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 10:56:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7703624E00E;
-	Wed, 26 Feb 2025 10:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 345A7268FE3;
+	Wed, 26 Feb 2025 10:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SLdBizUe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VVxc+rp4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D159820E70A;
-	Wed, 26 Feb 2025 10:52:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF1E24E00E;
+	Wed, 26 Feb 2025 10:56:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740567154; cv=none; b=T8U/p/URHEElOy6DJ7kxqXBa38S0ZzwrKOq2kjg4OuDXV/1X9YEG1IhaR1xUITdQIRWdans7oQcZ4rWhoptomXw1wg/ewdlYg4a4jhwTafXNfZZY51W0JfrDQ04SgzgyHRCWcP/1UT9xxTrhiL2RUfjL3dY/vgdIwDuQRzjGHhY=
+	t=1740567397; cv=none; b=Q/TFJOV//SpoGAywtmUoMaDg/Gvhsst3TVu+9cOpaXxqe3OK9HmVHjYdoWdvM1FLEevY3+xhwFWeN6wZNmQLigDEYY5/wD6DW3dQRdfbVzO9TDHo6ENSHM7wCIqQHSSZMYtf37yPXY3wyHAHvPuyopErO09yK3AGfCxm1KEP2M0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740567154; c=relaxed/simple;
-	bh=GrJZKd2MQ96n7PgPlTBv/iNTdueTemS4/Ycl8g0CfrI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WZ63WhoxQshYRwuzwMV/aV8iJNvW4JURHwdOLMX4q95WcjPiJtKFbI/rTROaJ1XF/F2DHGHcyBlek9nAaFuKaP7ADEteIR0nXAxLiT1q0qnvM1MATKOhZiSgcNEOlX4rKbmh4UHzTVSSXrfVox6Kp/woy4J8HJMrKnVx2wkNXkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SLdBizUe; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51Q9upG4012966;
-	Wed, 26 Feb 2025 10:52:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DUztjXD5+5m/s1FCP530wFC3zgs4wmP0Xguy/Fjus5A=; b=SLdBizUeOh2hJlsX
-	4xcu8JMy7R3N22UZFTiJDqpHWQI9NfHGPHY2QFtYYDktpaLpJoF8NINnSFnmq/lk
-	MlDP2CDgHKJnxMp95ExzB5v5M18+o9GXoztucfPhYs4Dk/2XDCW8L8GKTLEyhpkI
-	c//qYwuqfyuOpqdr8l5nQYGf1rrEMeMGjCq7nNJI3ePaMha0RGqSRRN7ti4a/9W5
-	E4bb1B8P1dK1qYE4H9Wk4BX0l+AToupG7OklMwp2h7NVX0JH70W4PDUtzWQTTG1X
-	xTA/XVj42wM+TlxNMJI//NHAEyNoU3pONyjZ34crdHuGVPgx3P4FLGyr7LaDCWje
-	XMmCdg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 451prk1pb6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Feb 2025 10:52:22 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51QAqLJ4022893
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Feb 2025 10:52:21 GMT
-Received: from [10.239.133.114] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 26 Feb
- 2025 02:52:14 -0800
-Message-ID: <593e1777-a033-4922-93c4-c056e6b9bf4c@quicinc.com>
-Date: Wed, 26 Feb 2025 18:52:11 +0800
+	s=arc-20240116; t=1740567397; c=relaxed/simple;
+	bh=nRes/JIQoSt8qzSsHkQQ44Bc7mQSXTTNQNmjL5Ibs8U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CW+x5F/hxNUwIJeAnkOJLmvopl6trhbzve4CcCXRcu6XKQWoP0GniRNBKRRbJ8Yh9HbR2kW4BrLJVzPg6EWL5p8juFQltbcU3cxmEMHlJBnicktsxjJp9xnpVmNF3ziZFvUR4kTt75lrCwQWrFrZrSivsdXmQeZV4NhqSMFncBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VVxc+rp4; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5dee1626093so1376792a12.1;
+        Wed, 26 Feb 2025 02:56:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740567393; x=1741172193; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TnRt5kVVsi6y30e+L7tjbQGl7m0u+I/PjKREYzjCPTA=;
+        b=VVxc+rp4icHRPESQSDj1UhkM2Xnn/R8QgYdZt+FJhrp2pTEWyZT0KXi5B0lLeSKq2B
+         LN30wKApY9QuMxRwnuKe8rrw8eC/gCQ9P02efjhU8ESLu2MJZuiUPQHAo/Aq4kusvAYR
+         nkE6WO757+nyN3jYqvL9UyPdQHPd+N+RLV7KkUXzbfmToc5aNcL/oHZS6H9+cB12TfWn
+         Jtym/sp4hedBghXSVkNIxfczFHK6geZSuMW5q0rAjFKaoBCL6p7ihEptVySn2SrdqTMi
+         AKwuHbjsVfP7JoALu+lx6QZxaBZv8t8lzdrYv9roNuhyb1m43hhOjdr3pMfUH92KSebY
+         9Xfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740567393; x=1741172193;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TnRt5kVVsi6y30e+L7tjbQGl7m0u+I/PjKREYzjCPTA=;
+        b=UhcA90MKlQxNjSPyr+yjTTEBU9cW0Bv+JvR2hYh05SY7P6+bFHLRL9BgNxT4/P/KB8
+         4ZIA03TYl/JBbwX9k6Env/IIzseVHSPV2TSRj+B1RDt6RbVdJpecMRPDSRLGcEqFLLiW
+         n0DHLMySTbs9MDez7dlsbrvxzXxEcq7izoqclZiKaZ0L+2pjRXn1ymhBJc6I9rAcg5pv
+         OawWUtbr+NUVYpY0ENlquYKhTKv9E/b62ig4P1SbDYHULK7Ua52mXqpllaEwS2hngkCc
+         IDqH5gUFijT7vSKDEaPFSmSQx8/tydOZKv3ums59Db9ieFXEQjnjp35bt4xuUptLITOa
+         OGFg==
+X-Forwarded-Encrypted: i=1; AJvYcCU/7oO4G6HTWbRlRHf6fTwxs3/bKFnFdgu4R5LB/QS66EamujmlCKB8AVIM4/IHGPCtIMy0I/bwj8JBXkE=@vger.kernel.org, AJvYcCWJuFlKEkUJyTZn+/7vNmialrTCI1cKL/tn8c3kZZX6FDsbxVcig8LuNXIy77H1wqWBe+uypyvvbjWWndI=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6TO50rTa+x9lfbkVnzYP6xQCerVs7yKWn8kArHGXL4N++cE5Q
+	1dIWM8uzlfyNOEGcEOZx/sAMJAwDBYY52buupYZYqQh4YH9WjE6x
+X-Gm-Gg: ASbGncuiBgXJJW/7I8CkNYFvrEMksvgUoAIIe01Pts7ipz8o2Lsfv92f620bjvL7S8E
+	P7xEKobZ8rcqvQGOkhThLxSBLCru4b7SWhQ/ugjiTa+mR0AKm027utcUNzcu0aLZuDSPIIOIlrF
+	vWYAycLjOpIuv9kbzLZQrOd5x1CndJRM+aDBAHTHdOtQ4k+wCkAKKbE6IsVkY+CfXq1Qk53xxZS
+	UUUg5FErxGL8Ca+OTTGrkzt18JIaYWsYLNUp5oKcn/+oA7KDWobvFNtjEeWG9BQLPwD4nmsoows
+	e4sPDYR+pnnwWrQqgQ==
+X-Google-Smtp-Source: AGHT+IGmQI8YlYmRSSSs1U9nlakmgv2vFgC7SMwvQJFzv85jTtuYZnRItTetNm56DGjM4pscViq7Rg==
+X-Received: by 2002:a17:907:c80f:b0:abe:cfbf:3da6 with SMTP id a640c23a62f3a-abecfbf4065mr525026866b.19.1740567393327;
+        Wed, 26 Feb 2025 02:56:33 -0800 (PST)
+Received: from xeon.. ([188.163.112.51])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abed205e53fsm299771266b.159.2025.02.26.02.56.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Feb 2025 02:56:32 -0800 (PST)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/6] ARM: tegra: complete Tegra 4 and Tegra K1 device trees
+Date: Wed, 26 Feb 2025 12:56:09 +0200
+Message-ID: <20250226105615.61087-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: arm: Add Coresight device Trace NOC
- definition
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Suzuki K Poulose
-	<suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        James Clark
-	<james.clark@linaro.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <kernel@quicinc.com>, <linux-kernel@vger.kernel.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <kernel@oss.qualcomm.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20250221-trace-noc-driver-v1-0-0a23fc643217@quicinc.com>
- <20250221-trace-noc-driver-v1-1-0a23fc643217@quicinc.com>
- <edfd6c6a-65d2-42f1-8225-0808359dd375@kernel.org>
-Content-Language: en-US
-From: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-In-Reply-To: <edfd6c6a-65d2-42f1-8225-0808359dd375@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: hQCCYVakcTyKxFSaQTAjeLYp6z8GsEc8
-X-Proofpoint-ORIG-GUID: hQCCYVakcTyKxFSaQTAjeLYp6z8GsEc8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-26_02,2025-02-26_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- lowpriorityscore=0 priorityscore=1501 suspectscore=0 impostorscore=0
- phishscore=0 spamscore=0 mlxscore=0 mlxlogscore=973 malwarescore=0
- adultscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502260086
+Content-Transfer-Encoding: 8bit
 
+Complete T114 and T124 device trees.
 
+Svyatoslav Ryhel (6):
+  ARM: tegra114: complete HOST1X devices binding
+  ARM: tegra114: switch DSI-B clock parent to PLLD
+  ARM: tegra114: add ARM PMU node
+  ARM: tegra114: add HDA node
+  ARM: tegra124: Add DSI-A and DSI-B nodes
+  ARM: tegra124: complete HOST1X devices binding
 
-On 2/22/2025 6:47 PM, Krzysztof Kozlowski wrote:
-> On 21/02/2025 08:40, Yuanfang Zhang wrote:
->> Adds new coresight-tnoc.yaml file describing the bindings required
->> to define Trace NOC in the device trees.
->>
->> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-> 
-> 
-> So you just sent the same v1, ignoring previous review. That's not how
-> it works.
-> 
-sorry for this incorrect process. because i just update --to-cc list and no other
-change, i forced the version to V1, hoped it would work like resend,
-but the result was not as expected.
+ arch/arm/boot/dts/nvidia/tegra114.dtsi |  99 +++++++++++++++++++++--
+ arch/arm/boot/dts/nvidia/tegra124.dtsi | 105 +++++++++++++++++++++++++
+ 2 files changed, 199 insertions(+), 5 deletions(-)
 
-> Provide proper changelog, implement ENTIRE feedback and do no ask
-> maintainers do point the same issues TWICE.
-> 
-> NAK
-> 
-> <form letter>
-> It seems my or other reviewer's previous comments were not fully
-> addressed. Maybe the feedback got lost between the quotes, maybe you
-> just forgot to apply it. Please go back to the previous discussion and
-> either implement all requested changes or keep discussing them.
-> 
-> Thank you.
-> </form letter>
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+2.43.0
 
 
