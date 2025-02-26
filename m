@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-151317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83E41A45632
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:02:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79F3AA4563C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 08:03:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DBB116D300
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 07:02:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BF5416F8C1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 07:03:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA09226A09B;
-	Wed, 26 Feb 2025 07:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96DBB26A093;
+	Wed, 26 Feb 2025 07:03:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gWGfhsRk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDJS5isS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9022F1624F3;
-	Wed, 26 Feb 2025 07:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A5BE1624F3;
+	Wed, 26 Feb 2025 07:03:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740553338; cv=none; b=YMRwa9t/NdiVJ5bUeHqYQqb9mrB8sLxwpWQsk7zpuz6vZJcF+kuHCFqaVRjvhgQMDT/zjc9PEnhSGdCmf0ukQvamU9AjI6PpfK5ggtp79yoM47JzuqFacLf/0PftXj4KWFsHQl8Gkw0hwFCp034cTW6RP4lTQAJWtQ6MdBFY3VI=
+	t=1740553382; cv=none; b=I8CxnwD46P+F05fInnWksOSRO/L7+HyTMzrJYEXS/rzyuy8NKblNiRubh6mAVaMWEVWv1MWioyI63al5pYw6JIp4zSP2puVzseiOiWQUrPQfPSCvjD8L9ADS9pFfaSqeS2WoFXKzTNZWPQZe51E6uWARDBqtHOupWrszRd5jECk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740553338; c=relaxed/simple;
-	bh=LNW2RCAz3S4DPK/VKv4XUbUdFMgW/79zioxJj69XsEs=;
+	s=arc-20240116; t=1740553382; c=relaxed/simple;
+	bh=e++Ainaoer1j+Cp97xkJMjdwcPFGYlxiAhuART594Xw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V9LZzoCKpxyb7qjib+OkA/c0E6egyRU+EcH26SWF1qWKIxE5k6Chn/48HXYYnTBOyAeDr9rM+ZEfFMkOrCnctqcfI0DPTLJ/xPmcsvFx6LPD1rUFbo1zs3ouYKXIm3vqdIewPo3YHpo5xp5J4ajEXte5vOxS5Q+MtnG6kEXpfKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gWGfhsRk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AF39C4CEE2;
-	Wed, 26 Feb 2025 07:02:14 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GfqbZzU+g4ZksfB2/yl6ZL3/wOMA4wSgLpex9OBmjgziloBFQwUcP+NkWgeA5JDm+ZPtp6VlzsGTbuj7FW6dFymEL01RfnlPTkMBpeSGvkyK3FjD1sLjPkEc7y8X5VAIevsbeZ2EPTciymhUSUiPPUW7ps/gWaFpj35kuD1cHtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDJS5isS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91719C4CED6;
+	Wed, 26 Feb 2025 07:02:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740553338;
-	bh=LNW2RCAz3S4DPK/VKv4XUbUdFMgW/79zioxJj69XsEs=;
+	s=k20201202; t=1740553381;
+	bh=e++Ainaoer1j+Cp97xkJMjdwcPFGYlxiAhuART594Xw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gWGfhsRkOdAtLrTKIuG5ReuA2Y9V7HLVEmt6fVZYZGDpAhc/ZLyBbFw2g3/N5WoM7
-	 zChlSdRtojeYdaXOjy2MYk27V6pWYUAQTyxzDj7Fqr+VLzh3cqr48L+XRDKxx7I0UO
-	 wCnfSmohznvbTKBDzVCsgdk92Mm3hx7MFfqYvEOtTw+i6wCmFBYqvwo+afgkkPC8kr
-	 0fc5o6XX0g++VIm456Wz1XGcTxcua8ywGNCa9L92TFvdUi0tgB5WPEXCwobWjjV66b
-	 wNLS7uihw/HEaRmv9imPKU9lpTqtqa0Td5txpuCa7vUYEB+agWQZbN1agBdC/T5ePn
-	 rKIpgaf4MGx5Q==
-Message-ID: <f89817fe-22af-460e-9f5c-a3347eba1892@kernel.org>
-Date: Wed, 26 Feb 2025 08:02:12 +0100
+	b=WDJS5isSx4hB20Z1BkmPlFDc4ZHV+tM4Vn26cqdhYPomOa+m9WefE48JzcNOQLBtO
+	 VsAnINWbOqh0vc6/GzGbAIL7WS0YBq2z8AckNJPmZreAM9q9le0BizyA0UBJPOhzsP
+	 DN6N/c8RCpbmzLbT/xRX9n4aA+yruxvAPrWoImVcKGIcLkq8Egw6I3vHxhF2mVMmNX
+	 M4bKLTlhWsdWydmzmhXHTzwaL0XDrDxzywrRFtyY+kAEgaR5cld67akVAW16Z/rUvA
+	 i1yAl0XbucSEfmIb+bgu4FSuNTQDviGt95WvRU9pi5HgBZ765DA7ae0pHWp/CCAKPX
+	 8bC7YI9AGUnYw==
+Message-ID: <330a01b7-7285-47fe-abb1-8d5fa71dd240@kernel.org>
+Date: Wed, 26 Feb 2025 08:02:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/6] dt-bindings: arm: add CIX P1 (SKY1) SoC
+Subject: Re: [PATCH v2 1/6] dt-bindings: vendor-prefixes: Add CIX Technology
+ Group Co., Ltd.
 To: Peter Chen <peter.chen@cixtech.com>, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de
 Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
  marcin@juszkiewicz.com.pl, Fugang Duan <fugang.duan@cixtech.com>
 References: <20250226012136.854614-1-peter.chen@cixtech.com>
- <20250226012136.854614-3-peter.chen@cixtech.com>
+ <20250226012136.854614-2-peter.chen@cixtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,37 +104,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250226012136.854614-3-peter.chen@cixtech.com>
+In-Reply-To: <20250226012136.854614-2-peter.chen@cixtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 26/02/2025 02:21, Peter Chen wrote:
-> Add device tree bindings for CIX P1 (Internal name sky1) Arm SoC,
-> it consists several SoC models like CP8180, CD8180, etc.
+> CIX Technology Group Co., Ltd. is a high performance Arm SoC design
+> company. Link: https://www.cixtech.com/.
 > 
 > Acked-by: Fugang Duan <fugang.duan@cixtech.com>
 > Signed-off-by: Peter Chen <peter.chen@cixtech.com>
-> ---
 
-<form letter>
-This is a friendly reminder during the review process.
-
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
-
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
+I would give an Ack here, but if it is going to be ignored feels like
+not useful. :/
 
 Best regards,
 Krzysztof
