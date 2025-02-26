@@ -1,388 +1,349 @@
-Return-Path: <devicetree+bounces-151281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 334B8A453FA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 04:26:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09A0EA45429
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 04:52:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B22421894E06
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 03:26:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBA5316FB44
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 03:52:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 805F4254863;
-	Wed, 26 Feb 2025 03:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46118266F04;
+	Wed, 26 Feb 2025 03:52:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GoIvorT/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FpNcZV1R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4E9B19DF7D;
-	Wed, 26 Feb 2025 03:26:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15593218821;
+	Wed, 26 Feb 2025 03:52:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740540400; cv=none; b=Ig88FRcn8R9Kxbj/MnESjRfwNmPEIwnN9SGwXsr7Wzrjwllqs/7Fy2VIu3kDx1Bif8SG5dfGaVzZrmEl3oSnq2gWiVY5CGrUnDFZeNqc9dx2yM+GDGgo+N8crCY779QqDWyFEv1z75Uu93CXl8q8hIYQtnYn/9qXqzncRbKJIP0=
+	t=1740541956; cv=none; b=go6eEIwLYgH7HLl8TM8s9BJLHHes3+C5HHCSQJHPqPpiDV5O53ivZNeOQ7drwJrKuExLC+EwWRyBYwrry94cCStc92xHxpNudXvd2ksAuMbt4tc5tXraAw0ELJSLJ4gQVVxNItm8Eulm/Ugw5HmsKunL3YEZoMT174C3Cq+gp0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740540400; c=relaxed/simple;
-	bh=DEEQkt27WS1xLaIXX4SllW+vUEN6DjuqAh6Fg8i8Sp4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HE6QzBaGayHzTs4LM/Cn61j0uhey26RcSVi+s7KeSpmkfWD/z95unPSh34QkUhvYHQXZCfyXuHYPD7nAgSmdtEgnXtIPLC7hQLUQ7hu2kLDFlte3gC4iY8ax2Csppj+MUOY4jKvQogDBp382HNRlfSHepYqN81Y/O8adPJQsNNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GoIvorT/; arc=none smtp.client-ip=209.85.166.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-3cf82bd380bso54621965ab.0;
-        Tue, 25 Feb 2025 19:26:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740540398; x=1741145198; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WjPFcya5e2r+WV7UgeL+WIIYPlcJCo8wOjQTIXu/Hr0=;
-        b=GoIvorT/zWXEf1MIxly4RCsGPdYoIawHWLJ+s3U0N5ZPWclbWo3Qal7wCYk5BKpL1p
-         4xH6gZGdA5DsMTktJGdhUwJdONeVgHcIaMxRKeVhjLEhA2vkDEbx2qSbtz94CvXNvFxs
-         IX9iOeDXBH0E4ZUj6W+ObS5Wa4EvJyoIWouMaTbYsiEyoRhmYCHbXG3Mutdl1ca0POLd
-         Aq2vT6Hz0DJofhiXVe823Rxlzx97G3OwqXi1AKneB91CqBFEe0t04JR7QY26myVOspgL
-         5q9k16OxkhpnRvQWGc+g98dGG85B1d397K/aLWwBkTb+TrtgJCav5b243C1QF/7gqO3X
-         bICA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740540398; x=1741145198;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WjPFcya5e2r+WV7UgeL+WIIYPlcJCo8wOjQTIXu/Hr0=;
-        b=DWY1tC6cp8e7mTs7VWIz0Xg0M25DvhpOr5vImh+lbW3PeGER0jWhXSw20Olzd4I4Wg
-         BZFLbohCZtt/9HMwHkIp2hIVDBmtNU+owK4Ly9lmR1A1s0QekkDIlcOWcI1eP4+sew0y
-         wsF/vAlu8obJ3UnW65WyOxmhGgOIe7mr/E+0KHxN9WGz3lELKkcNnbKyGicBlkl6X8Xc
-         YX4IAwhqjn8r9aj+3DGFEK0vPChkjfUnUVEGxz10DTIALc2qo4mx+XMAD7YX6klyz54x
-         cIRp3835ShUEPg0UYF13iQugRIybX7HGp42uzZ7ZjO0rP1v2whwM11upUdlKlvGB59Zd
-         MS2g==
-X-Forwarded-Encrypted: i=1; AJvYcCVkU2phR6CGpSyxkNhzmIRLaj9rSzEuIHJEJjImRlcNmY33RhRiovD4UuhoDVxfEyivGi7XbTYVz03Mf9yF@vger.kernel.org, AJvYcCWbdcmwSqZIfSIrVlgSV6YAdRUgBF6gwNhDl3fYCcLP2hre4i7f0vVh4imcvii1BvwtDiLWDIpQcMVG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw12GJlspJuj886sAaKS+MCfkZsedYnK1WuDKUaApxxZncQVAIf
-	qtqT5SLi4spF13cky2SNLoiLvD0CMbCOQIJDkyDCh4kisj0Fkd/sxo7mjXd52z5Cs7a969H4g7a
-	CHXJYFioldgmsG5YR4FckKlsHraM=
-X-Gm-Gg: ASbGncsdx14xxO7pdzpOyAfS95oHeQxY46nL2wUSSzZPIfuiVl8N6VVuKySp9vGqLUN
-	ZXwmMQz/IC2rVxiVBCfqONy6Sfy1ETjvEC0k+ctjKC+/RlUvWYpIQSYxceu8MStsxoD47a1by7F
-	6VSwyQlN89Kg==
-X-Google-Smtp-Source: AGHT+IGkIlMulPsC4dRSPOa5KPszEP283dCQUI1IJqGtxhMPLh3ea4rtlULGEOwZit8MCB9CzDPWc43TOivBKx4JShk=
-X-Received: by 2002:a05:6e02:1526:b0:3d0:4a82:3f43 with SMTP id
- e9e14a558f8ab-3d2cb43281cmr187250305ab.5.1740540397675; Tue, 25 Feb 2025
- 19:26:37 -0800 (PST)
+	s=arc-20240116; t=1740541956; c=relaxed/simple;
+	bh=OBm/ktjRULhvR+Dl6u2sMQDmw8mJ6M9OwWXPNkjttKc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ce/IevglD+tAZrHtOf0pMzTUn/qTKbOzrrwD9KJz9FMagEFCd68f0Wh3plQaCpJpKHonmct3y+V9xJDhrXkdyom6kQ4pA4GhJVBAHA1f69guZvPl4CGnAd+lL0sszfAQ7NR1ohE6p8lFSPYPOdp7MGBqUXvgIpoMoA1TPL1ecxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FpNcZV1R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A82F3C4CED6;
+	Wed, 26 Feb 2025 03:52:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740541955;
+	bh=OBm/ktjRULhvR+Dl6u2sMQDmw8mJ6M9OwWXPNkjttKc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FpNcZV1Rx9gCAbniiVBT3niX4lja3lc8UTa7H47JHlJBFiNXUXSHXWlgymTeEuiIn
+	 mq5KH0gkYQS5EhsSAI8WnlOz8OD7lcyGxWyKlI1aWwBQzwoIn0gcg71Au2tWECwoDG
+	 8SS/PmWsOHdqJ3gDEIJICkDfJlQlpu4iJJphJswatwHMHIqwrD1ywVURsYvAaqkDcG
+	 M7cKR3abiwhPZ0fCOYd0Hcpe084ltQnlVRqe54EJHve4r1mr4Y/Kbe33AKTd1fvibb
+	 BPYfzE7NUagOdqcX22BkDWSw7nCw/kbHH3Zb/9TqIyP5T4AYa/P0odlH6KmSZMIeH1
+	 KtGlScGkVX8tw==
+Date: Tue, 25 Feb 2025 21:52:32 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	ath12k@lists.infradead.org, linux-wireless@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: qcom: add wifi node for IPQ5332 based
+ RDP441
+Message-ID: <3iwfhcl5gmpwfiatsawwkm5qns4pmzvhcrroq236y45kklw244@6rngcplttabx>
+References: <20250130045900.1903927-1-quic_rajkbhag@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250224083908.1880383-1-yschu@nuvoton.com> <20250224083908.1880383-4-yschu@nuvoton.com>
- <Z7yfEunAWuR8jchq@lizhi-Precision-Tower-5810> <CAPwEoQNZef_CeeCDNFGG4oJHCiM3MN9-juq+xX3hB5DKp4vorQ@mail.gmail.com>
- <Z73wr/6Or6SWOQD8@lizhi-Precision-Tower-5810>
-In-Reply-To: <Z73wr/6Or6SWOQD8@lizhi-Precision-Tower-5810>
-From: Stanley Chu <stanley.chuys@gmail.com>
-Date: Wed, 26 Feb 2025 11:26:24 +0800
-X-Gm-Features: AQ5f1Jqy-HEV10m9ieeI2ZnTXj2eE0rZkF5vWPHsJXa3Dsmbw9T9_oYdCx5-L2I
-Message-ID: <CAPwEoQPmbn0N5UCJn3c90A6ppNCa9t2MYUBppiosrOFN4JW9xA@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] i3c: master: svc: Fix npcm845 FIFO empty issue
-To: Frank Li <Frank.li@nxp.com>
-Cc: miquel.raynal@bootlin.com, alexandre.belloni@bootlin.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-i3c@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	tomer.maimon@nuvoton.com, kwliu@nuvoton.com, yschu@nuvoton.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250130045900.1903927-1-quic_rajkbhag@quicinc.com>
 
-On Wed, Feb 26, 2025 at 12:32=E2=80=AFAM Frank Li <Frank.li@nxp.com> wrote:
->
-> On Tue, Feb 25, 2025 at 05:28:48PM +0800, Stanley Chu wrote:
-> > On Tue, Feb 25, 2025 at 12:32=E2=80=AFAM Frank Li <Frank.li@nxp.com> wr=
-ote:
-> > >
-> > > On Mon, Feb 24, 2025 at 04:39:06PM +0800, Stanley Chu wrote:
-> > > > From: Stanley Chu <yschu@nuvoton.com>
-> > > >
-> > > > I3C HW stalls the write transfer if the transmit FIFO becomes empty=
-,
-> > > > when new data is written to FIFO, I3C HW resumes the transfer but t=
-he
-> > > > first transmitted data bit may have the wrong value.
-> > > > Fill the FIFO in advance to prevent FIFO from becoming empty.
-> > > >
-> > > > Signed-off-by: Stanley Chu <yschu@nuvoton.com>
-> > > > ---
-> > > >  drivers/i3c/master/svc-i3c-master.c | 44 ++++++++++++++++++++-----=
-----
-> > > >  1 file changed, 31 insertions(+), 13 deletions(-)
-> > > >
-> > > > diff --git a/drivers/i3c/master/svc-i3c-master.c b/drivers/i3c/mast=
-er/svc-i3c-master.c
-> > > > index 8834f87a4767..07506ae0f914 100644
-> > > > --- a/drivers/i3c/master/svc-i3c-master.c
-> > > > +++ b/drivers/i3c/master/svc-i3c-master.c
-> > > > @@ -942,7 +942,7 @@ static int svc_i3c_master_do_daa_locked(struct =
-svc_i3c_master *master,
-> > > >                                       u8 *addrs, unsigned int *coun=
-t)
-> > > >  {
-> > > >       u64 prov_id[SVC_I3C_MAX_DEVS] =3D {}, nacking_prov_id =3D 0;
-> > > > -     unsigned int dev_nb =3D 0, last_addr =3D 0;
-> > > > +     unsigned int dev_nb =3D 0, last_addr =3D 0, dyn_addr;
-> > > >       u32 reg;
-> > > >       int ret, i;
-> > > >
-> > > > @@ -985,6 +985,17 @@ static int svc_i3c_master_do_daa_locked(struct=
- svc_i3c_master *master,
-> > > >               if (SVC_I3C_MSTATUS_RXPEND(reg)) {
-> > > >                       u8 data[6];
-> > > >
-> > > > +                     /*
-> > > > +                      * One slave sends its ID to request for addr=
-ess assignment,
-> > > > +                      * pre-filling the dynamic address can reduce=
- SCL clock stalls
-> > > > +                      * and also fix the SVC_I3C_QUIRK_FIFO_EMPTY =
-quirk.
-> > > > +                      */
-> > > > +                     dyn_addr =3D i3c_master_get_free_addr(&master=
-->base, last_addr + 1);
-> > > > +                     if (dyn_addr < 0)
-> > > > +                             return -ENOSPC;
-> > > > +
-> > > > +                     writel(dyn_addr, master->regs + SVC_I3C_MWDAT=
-AB);
-> > > > +
-> > >
-> > > Although there is 64 clock time after issue do_daa, it is still bette=
-r if
-> > > prefill dyn_addr before sent do daa command?
-> > >
-> > > If add a debug message before i3c_master_get_free_addr(), does it tri=
-gger
-> > > hardware issue?
-> > >
-> > > Frank
-> >
-> > Ideally, prefilling before the processDAA command is better. However,
-> > it requires an additional check to write the dyn_addr at the right time
-> > because the driver needs to write the processDAA command twice for one
-> > assignment
-> >
-> > Prefilling here is safe and efficient because the FIFO starts filling
-> > within a few hundred nanoseconds on the npcm845, which is significantly
-> > faster compared to the 64 SCL clock cycles.
->
-> Okay, please this to comments.
->
-> >
-> >
-> > >
-> > > >                       /*
-> > > >                        * We only care about the 48-bit provisioned =
-ID yet to
-> > > >                        * be sure a device does not nack an address =
-twice.
-> > > > @@ -1063,21 +1074,16 @@ static int svc_i3c_master_do_daa_locked(str=
-uct svc_i3c_master *master,
-> > > >               if (ret)
-> > > >                       break;
-> > > >
-> > > > -             /* Give the slave device a suitable dynamic address *=
-/
-> > > > -             ret =3D i3c_master_get_free_addr(&master->base, last_=
-addr + 1);
-> > > > -             if (ret < 0)
-> > > > -                     break;
-> > > > -
-> > > > -             addrs[dev_nb] =3D ret;
-> > > > +             addrs[dev_nb] =3D dyn_addr;
-> > > >               dev_dbg(master->dev, "DAA: device %d assigned to 0x%0=
-2x\n",
-> > > >                       dev_nb, addrs[dev_nb]);
-> > > > -
-> > > > -             writel(addrs[dev_nb], master->regs + SVC_I3C_MWDATAB)=
-;
-> > > >               last_addr =3D addrs[dev_nb++];
-> > > >       }
-> > > >
-> > > >       /* Need manual issue STOP except for Complete condition */
-> > > >       svc_i3c_master_emit_stop(master);
-> > > > +     svc_i3c_master_flush_fifo(master);
-> > > > +
-> > > >       return ret;
-> > > >  }
-> > > >
-> > > > @@ -1225,8 +1231,8 @@ static int svc_i3c_master_read(struct svc_i3c=
-_master *master,
-> > > >       return offset;
-> > > >  }
-> > > >
-> > > > -static int svc_i3c_master_write(struct svc_i3c_master *master,
-> > > > -                             const u8 *out, unsigned int len)
-> > > > +static int svc_i3c_master_write(struct svc_i3c_master *master, con=
-st u8 *out,
-> > > > +                             unsigned int len, bool last)
-> > > >  {
-> > > >       int offset =3D 0, ret;
-> > > >       u32 mdctrl;
-> > > > @@ -1243,7 +1249,7 @@ static int svc_i3c_master_write(struct svc_i3=
-c_master *master,
-> > > >                * The last byte to be sent over the bus must either =
-have the
-> > > >                * "end" bit set or be written in MWDATABE.
-> > > >                */
-> > > > -             if (likely(offset < (len - 1)))
-> > > > +             if (likely(offset < (len - 1)) || !last)
-> > > >                       writel(out[offset++], master->regs + SVC_I3C_=
-MWDATAB);
-> > > >               else
-> > > >                       writel(out[offset++], master->regs + SVC_I3C_=
-MWDATABE);
-> > > > @@ -1274,6 +1280,17 @@ static int svc_i3c_master_xfer(struct svc_i3=
-c_master *master,
-> > > >                      SVC_I3C_MCTRL_RDTERM(*actual_len),
-> > > >                      master->regs + SVC_I3C_MCTRL);
-> > > >
-> > > > +             if (svc_has_quirk(master, SVC_I3C_QUIRK_FIFO_EMPTY) &=
-& !rnw && xfer_len) {
-> > > > +                     u32 len =3D min_t(u32, xfer_len, SVC_I3C_FIFO=
-_SIZE);
-> > > > +
-> > > > +                     ret =3D svc_i3c_master_write(master, out, len=
-,
-> > > > +                                                xfer_len <=3D SVC_=
-I3C_FIFO_SIZE);
-> > > > +                     if (ret < 0)
-> > > > +                             goto emit_stop;
-> > > > +                     xfer_len -=3D len;
-> > > > +                     out +=3D len;
-> > > > +             }
-> > > > +
-> > >
-> > > The same here, you prefill data after issue sent out address, timing =
-still
-> > > tight, only 9 SCL clock time. should it prefill before issue address?
-> > >
-> > > Frank
-> >
-> > The entire transaction can consist of multiple read and write
-> > transfers. In the case
-> > of S+7E/W+Sr+dyn_addr/W+data+P, If the data is prefilled before Sr, it
-> > will be emitted
->
-> I think S+7E/W should be xfer[0]
->         Sr+dyn_addr/W + data + P should be xfer[1]
->
-> this function only handle one xfer each call. xfer[0]'s size is 0, no
-> pre fill data.
->
-> Only have prefill data at xfer[1].
->
+On Thu, Jan 30, 2025 at 10:29:00AM +0530, Raj Kumar Bhagat wrote:
+> RDP441 is based on IPQ5332. It has inbuilt AHB bus based IPQ5332 WiFi
+> device.
+> 
+> Describe and add WiFi node for RDP441. Also, reserve the memory
+> required by IPQ5332 firmware.
+> 
+> Depends-On: [PATCH V2 0/2] mailbox: tmel-qmp: Introduce QCOM TMEL QMP mailbox driver
+> Depends-On: [PATCH V3 0/8] Add new driver for WCSS secure PIL loading
+> Link: https://lore.kernel.org/lkml/20241231054900.2144961-1-quic_srichara@quicinc.com/
+> Link: https://lore.kernel.org/lkml/20250107101647.2087358-1-quic_gokulsri@quicinc.com/
 
-Hi Frank,
+Please run "git log --grep 'Depends-on'" to see how this tag is expected
+to be used. As you can see, dependencies on other patches in flight does
+not go into the git history, and should as such be mentioned only below
+the --- line below.
 
-Please check the example, a transaction contains 2 transfers.
-xfer[0].addr=3D7E/W, no data
-xfer[1].addr=3Ddyn_addr/W, with data
+Please wait for these dependencies to be accepted before resubmitting
+this Devicetree change.
 
-send xfer[0]:
-1. Emit Start+7E/W
-2. Wait for MCTRLDONE
-send xfer[1]:
-3. Prefill xfer[1].data  // data is emitted immediately
-4. Emit RepeatedStart+dyn_addr/W
-5. Wait for MCTRLDONE
-6. Write remaining data to FIFO if needed
-7. Emit STOP
+> 
+> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+> ---
+> NOTE:
+> The DT binding changes for this patch has been posted along with the
+> driver ath12k AHB series.
+> Link: https://lore.kernel.org/all/20250130043508.1885026-1-quic_rajkbhag@quicinc.com/
+> 
+> v2:
+> - Dropped 'dt-bindings: net: wireless: describe the ath12k AHB module'.
+>   This DT binding is posted along with the ath12k AHB driver changes.
+> - Reserved four memory regions required by IPQ5332 ath12k firmware in DTS.
+>   These memory regions are also referenced in the WiFi node.
+> - Moved 'qcom,smem-states' and 'qcom,smem-states' to the ipq5332.dtsi file.
+> - Used lowercase hex values for the reg property.
+> 
+> v1: https://lore.kernel.org/all/20250128091012.2574478-1-quic_rajkbhag@quicinc.com/
+> ---
+>  arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts |  64 ++++++++++-
+>  arch/arm64/boot/dts/qcom/ipq5332.dtsi       | 113 ++++++++++++++++++++
+>  2 files changed, 176 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
+> index 846413817e9a..4b7a75e450ca 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
+> @@ -2,7 +2,7 @@
+>  /*
+>   * IPQ5332 AP-MI01.2 board device tree source
+>   *
+> - * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + * Copyright (c) 2022-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+>   */
+>  
+>  /dts-v1/;
+> @@ -12,6 +12,61 @@
+>  / {
+>  	model = "Qualcomm Technologies, Inc. IPQ5332 MI01.2";
+>  	compatible = "qcom,ipq5332-ap-mi01.2", "qcom,ipq5332";
+> +
+> +	/*                 Default Profile
 
-Part of xfer[1].data is emitted in xfer[0], which is the problem of prefill
-before EmitStartAddr. This is the reason I moved step 3 after step 4.
+Why is the title "Default Profile", is this expected to be changed by
+someone? At what point?
+
+> +	 * +============+==============+=====================+
+> +	 * |            |              |                     |
+> +	 * | Region     | Start Offset |       Size          |
+
+"Start Offset" relative to address 0 is typically called "base address".
+
+> +	 * |            |              |                     |
+> +	 * +------------+--------------+---------------------+
+> +	 * |            |              |                     |
+> +	 * |            |              |                     |
+> +	 * |            |              |                     |
+> +	 * | WLAN Q6    |  0x4A900000  |       43MB          |
+> +	 * |            |              |                     |
+> +	 * |            |              |                     |
+> +	 * +------------+--------------+---------------------+
+> +	 * | M3 Dump    |  0x4D400000  |       1MB           |
+> +	 * +------------+--------------+---------------------+
+> +	 * | Q6 caldb   |  0x4D500000  |       5MB           |
+> +	 * +------------+--------------+---------------------+
+> +	 * | MLO        |  0x4DB00000  |       18MB          |
+
+18MB is the same size in your graph as the 1MB segment, but somehow the
+43MB segment is 5 times the size of the 18MB segment. So the graph isn't
+to scale...
+
+> +	 * +============+==============+=====================+
+> +	 * |                                                 |
+> +	 * |                                                 |
+> +	 * |                                                 |
+> +	 * |            Rest of memory for Linux             |
+> +	 * |                                                 |
+> +	 * |                                                 |
+> +	 * |                                                 |
+> +	 * +=================================================+
+
+Doesn't DDR start on a more even address, such as 0x40000000? I presume
+the purpose of your picture was to give a good overview of the memory
+layout of this system, but the only thing it added to the table below is
+a curious question about what happened to the first 169MB of DDR.
 
 
-> > immediately and become part of the previous transfer.
-> >
-> > It is not a problem to fill FIFO here, the reason is the same as above.
-> > I will also modify the code as below to make it efficient and keep
-> > svc_i3c_master_write unchanged.
->
-> no issue to modify svc_i3c_master_write(). I consider prefill data before
-> actually.
->
-> This hardware is not prefect.  Although it aleady in spin lock, it may ru=
-n
-> some secuity firmware in secuity domain.  There are 100us timeout. If a
-> hypervisor manage firmware interrupt transfer, one timeout may happen.
->
-> If prefill data before send address,  it was safe at least for lenght les=
-s
-> than FIFO case.
->
-> Frank
->
+Please omit the graph, it doesn't add value beyond what's provided by
+the below text form of the "same" data.
 
-Since prefill before EmitStartAddr has the problem I mentioned above, the F=
-IFO
-should start filling as soon as possible to work around the hardware issue.
-This is why I prefer writing MWDATAB here instead of using svc_i3c_master_w=
-rite,
-as it can save some polling time.
+> +	 */
+> +
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		q6_region: wcss@4a900000 {
+> +			reg = <0x0 0x4a900000 0x0 0x02b00000>;
+> +			no-map;
+> +		};
+> +
+> +		m3_dump: m3-dump@4d400000 {
+> +			reg = <0x0 0x4d400000 0x0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		q6_caldb: q6-caldb@4d500000 {
+> +			reg = <0x0 0x4d500000 0x0 0x500000>;
+> +			no-map;
+> +		};
+> +
+> +		mlo_mem: mlo-global-mem@4db00000 {
+> +			reg = <0x0 0x4db00000 0x0 0x01200000>;
+> +			no-map;
+> +		};
+> +	};
+>  };
+>  
+>  &blsp1_i2c1 {
+> @@ -63,3 +118,10 @@ data-pins {
+>  		};
+>  	};
+>  };
+> +
+> +&wifi0 {
+> +	memory-region = <&q6_region>, <&m3_dump>, <&q6_caldb>, <&mlo_mem>;
+> +	memory-region-names = "q6-region", "m3-dump", "q6-caldb", "mlo-global-mem";
 
-The hardware-specific quirk is added to avoid affecting other platforms tha=
-t
-do not have this issue.
+As you are resubmitting this, it would be nice to have these two
+properties wrapped (one entry per line), to increase readability...
 
-Stanley
+Regards,
+Bjorn
 
-
-> >
-> >                 if (svc_has_quirk(master, SVC_I3C_QUIRK_FIFO_EMPTY) &&
-> > !rnw && xfer_len) {
-> >                         u32 len =3D min_t(u32, xfer_len, SVC_I3C_FIFO_S=
-IZE);
-> >
-> >                         while (len--) {
-> >                                 if (xfer_len =3D=3D 1)
-> >                                         writel(out[0], master->regs +
-> > SVC_I3C_MWDATABE);
-> >                                 else
-> >                                         writel(out[0], master->regs +
-> > SVC_I3C_MWDATAB);
-> >                                 xfer_len--;
-> >                                 out++;
-> >                         }
-> >                 }
-> >
-> >
-> > >
-> > > >               ret =3D readl_poll_timeout(master->regs + SVC_I3C_MST=
-ATUS, reg,
-> > > >                                SVC_I3C_MSTATUS_MCTRLDONE(reg), 0, 1=
-000);
-> > > >               if (ret)
-> > > > @@ -1335,7 +1352,7 @@ static int svc_i3c_master_xfer(struct svc_i3c=
-_master *master,
-> > > >       if (rnw)
-> > > >               ret =3D svc_i3c_master_read(master, in, xfer_len);
-> > > >       else
-> > > > -             ret =3D svc_i3c_master_write(master, out, xfer_len);
-> > > > +             ret =3D svc_i3c_master_write(master, out, xfer_len, t=
-rue);
-> > > >       if (ret < 0)
-> > > >               goto emit_stop;
-> > > >
-> > > > @@ -1362,6 +1379,7 @@ static int svc_i3c_master_xfer(struct svc_i3c=
-_master *master,
-> > > >  emit_stop:
-> > > >       svc_i3c_master_emit_stop(master);
-> > > >       svc_i3c_master_clear_merrwarn(master);
-> > > > +     svc_i3c_master_flush_fifo(master);
-> > > >
-> > > >       return ret;
-> > > >  }
-> > > > --
-> > > > 2.34.1
-> > > >
-> >
-> > --
-> > linux-i3c mailing list
-> > linux-i3c@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-i3c
+> +	qcom,rproc = <&q6v5_wcss>;
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> index 85e10b20342a..1653da89d413 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> @@ -485,6 +485,119 @@ frame@b128000 {
+>  			};
+>  		};
+>  
+> +		wifi0: wifi@c000000 {
+> +			compatible = "qcom,ipq5332-wifi";
+> +			reg = <0x0c000000 0x1000000>;
+> +			clocks = <&gcc GCC_XO_CLK>;
+> +			clock-names = "xo";
+> +			interrupts-extended = <&wcss_smp2p_in 8 IRQ_TYPE_NONE>,
+> +					      <&wcss_smp2p_in 9 IRQ_TYPE_NONE>,
+> +					      <&wcss_smp2p_in 12 IRQ_TYPE_NONE>,
+> +					      <&wcss_smp2p_in 11 IRQ_TYPE_NONE>,
+> +					      <&intc GIC_SPI 559 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 560 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 561 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 422 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 423 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 424 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 425 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 426 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 427 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 428 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 429 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 430 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 431 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 432 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 433 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 491 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 495 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 493 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 544 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 457 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 497 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 454 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 453 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 452 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 451 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 488 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 488 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 484 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 554 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 554 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 549 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 507 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 500 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 499 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 498 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 450 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 449 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 448 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 447 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 543 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 486 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 486 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 482 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc GIC_SPI 419 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "fatal",
+> +					  "ready",
+> +					  "spawn",
+> +					  "stop-ack",
+> +					  "misc-pulse1",
+> +					  "misc-latch",
+> +					  "sw-exception",
+> +					  "ce0",
+> +					  "ce1",
+> +					  "ce2",
+> +					  "ce3",
+> +					  "ce4",
+> +					  "ce5",
+> +					  "ce6",
+> +					  "ce7",
+> +					  "ce8",
+> +					  "ce9",
+> +					  "ce10",
+> +					  "ce11",
+> +					  "host2wbm-desc-feed",
+> +					  "host2reo-re-injection",
+> +					  "host2reo-command",
+> +					  "host2rxdma-monitor-ring1",
+> +					  "reo2ost-exception",
+> +					  "wbm2host-rx-release",
+> +					  "reo2host-status",
+> +					  "reo2host-destination-ring4",
+> +					  "reo2host-destination-ring3",
+> +					  "reo2host-destination-ring2",
+> +					  "reo2host-destination-ring1",
+> +					  "rxdma2host-monitor-destination-mac3",
+> +					  "rxdma2host-monitor-destination-mac2",
+> +					  "rxdma2host-monitor-destination-mac1",
+> +					  "host2rxdma-host-buf-ring-mac3",
+> +					  "host2rxdma-host-buf-ring-mac2",
+> +					  "host2rxdma-host-buf-ring-mac1",
+> +					  "host2tcl-input-ring4",
+> +					  "host2tcl-input-ring3",
+> +					  "host2tcl-input-ring2",
+> +					  "host2tcl-input-ring1",
+> +					  "wbm2host-tx-completions-ring4",
+> +					  "wbm2host-tx-completions-ring3",
+> +					  "wbm2host-tx-completions-ring2",
+> +					  "wbm2host-tx-completions-ring1",
+> +					  "host2tx-monitor-ring1",
+> +					  "txmon2host-monitor-destination-mac3",
+> +					  "txmon2host-monitor-destination-mac2",
+> +					  "txmon2host-monitor-destination-mac1",
+> +					  "umac-reset";
+> +
+> +			qcom,smem-states = <&wcss_smp2p_out 8>,
+> +					   <&wcss_smp2p_out 9>,
+> +					   <&wcss_smp2p_out 10>;
+> +			qcom,smem-state-names = "shutdown",
+> +						"stop",
+> +						"spawn";
+> +			status = "disabled";
+> +		};
+> +
+>  		q6v5_wcss: remoteproc@d100000 {
+>  			compatible = "qcom,ipq5332-wcss-sec-pil";
+>  			reg = <0xd100000 0x4040>;
+> -- 
+> 2.34.1
+> 
 
