@@ -1,211 +1,258 @@
-Return-Path: <devicetree+bounces-151807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B508A471F1
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 03:09:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 579A0A473A7
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 04:37:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EF751880881
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 02:08:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 329ED16BAD8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 03:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E21E984E1C;
-	Thu, 27 Feb 2025 02:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A0AD1E51E4;
+	Thu, 27 Feb 2025 03:37:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="tX4dx2GW"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="oVF89agC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013005.outbound.protection.outlook.com [52.101.67.5])
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9B53839F4;
-	Thu, 27 Feb 2025 02:08:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.5
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740622117; cv=fail; b=C4bnjvDPurPjEjhOgYg1wAweNnrq3gL8BJLOXE6o8buL/E5DI79T2UzCL0Y0UrqFfiT1aj86anGJSjMz9gYuOP8sPo5qZuW2oV1rRZ1WAXYE37R/eOQ64O4SsI4WOlnRqB0nel5GH07oOxrg8hCjcqgN+zTM56IwVGw0T3opQHE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740622117; c=relaxed/simple;
-	bh=fmhHHiSRW+hXzZ9shgZOyboxYoaXharFtd2BchShwyw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=sWMO1qGLvaRWI06d5L/W0Lxm4XKZaXylLLz1iFxQz4IPE+0DT2MhFo9OoWAlN8m9ezPxVdjyXuIrH7ONI3FVcWyHxj+l9zX0z2ZcUOF0DXFUWOd2ncBHRl8FOb0b9B+tbsBjhtABNYPgY88VuXt8T8WG/NGStTE5uSlRO1papUw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=tX4dx2GW; arc=fail smtp.client-ip=52.101.67.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XgIiWTCc7NF7HmiM+jkUgT2XIT6wONVR068mI4c907NuD/yf/iGqmxSZDMJvkPIlR3KKP472wpJSCC2J3kzaMe4+ha7vzG8Lw6ItiLE0aoJq4BUpGL1cY4E8EeSk1JUr0PKdn1ckvWzHgYd91uSKJQSV96Q7BSoHdfFVyz6JPDbyE4xDaG4Xy/oTcxZxe+5pYkNUIKD5UtMeGu9g0VkzFoESu/zjcLZjcvKRd1QBhqinacQpyUqgxao9TLWICfb46ijc/Ox1gvklI9nyN572YPuJZQr0aLyw4jTA0O4rI3PtjpPC7pPWSR4QSNdE/UlDP9d1Dlgef9eStg3hgKj9BQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fmhHHiSRW+hXzZ9shgZOyboxYoaXharFtd2BchShwyw=;
- b=EJYwbbfPSFF8JXyRX9ktDqezm4Bq36yu2MILh1WKH8t4gnUiW3JzVHRyx5a1vBwcWbWqXGJ3IZM/wo25FWBW6y4mVhK/0RlPsSdxScMgMJIHUZ2gnMIlzf11+m+dXR/vQC2aP3NV4QYHUDwPxuugBddlBguGe+m+ui5FmclAKZzh48okAB8kJWNoVqT4JnuRVD/xPWez8FEX2d844MRaV/eocfC43qirH7nGeKcr1l1bd7GzRiSvFaF3StuwH2lciNNyBj88XluDSdq0c0lzmKxcE1q1a3155Rnifmz6TYdqwLEFQwMRLcBmj7Xlvk/O/KzWfUDfiR+2HMTJlg5cTQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fmhHHiSRW+hXzZ9shgZOyboxYoaXharFtd2BchShwyw=;
- b=tX4dx2GWM/EQDKj/gjd9vLP+6VhvKPF6mgR1M06JNgIIsVBPendRVEDlgcA9fak0PMjvL4lyjsd80uOMMzg/p3vEhBn6J4sAyv8U37m8ZMQIj8CDqdD0mB7YzrgmRsI+tNWCMSuShWOc8V3nlJHEpgzGQ/B5x4QmxJC0vnFTPDtqt3CG6bvBB9NciyaaxfQnHPmG+o5OLLr/0GGAPsMQjCGZ/jXmP3sD6regIIqEY2A4rRzj7CyxdPKCJsIigK3uy/l7R+OOYhubfU1NOBEEJyx6Uy6K0J4IWD4TpDRKAFee1VeitzmduxNvczwGHI/sT/bYlRCqt6tGVV/HDTVltQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by AS5PR04MB10058.eurprd04.prod.outlook.com (2603:10a6:20b:683::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.21; Thu, 27 Feb
- 2025 02:08:33 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%4]) with mapi id 15.20.8466.013; Thu, 27 Feb 2025
- 02:08:33 +0000
-Date: Thu, 27 Feb 2025 11:15:51 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Rob Herring <robh@kernel.org>, cristian.marussi@arm.com,
-	saravanak@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [RFC] dt-bindings: firmware: scmi: Introduce compatible string
-Message-ID: <20250227031551.GC11411@nxa18884-linux>
-References: <20250226094456.2351571-1-peng.fan@oss.nxp.com>
- <20250226160945.GA2505223-robh@kernel.org>
- <Z79NOeyWzfRio8qs@bogus>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z79NOeyWzfRio8qs@bogus>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-ClientProxiedBy: SI2PR02CA0047.apcprd02.prod.outlook.com
- (2603:1096:4:196::14) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFDAF1D90AE
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 03:37:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740627441; cv=none; b=aSVjgjTSwbZWowqVqJMcSXNiFkHXTr407Zr6lI8LEb/Dw7qUqyDx0TTmJmdhDqperEONxZGCZjd7xUocCPug2nj5O2l7CkyeS7V+kFsLf+jlJ49Kl47kUyIIa91J9huYRX+kFt8BZN7C94vx8ZWQ/rDF5WGXkotG11lsO5an7Qs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740627441; c=relaxed/simple;
+	bh=lSumbw1PWf7tSByOP5CKs66VRaIHHh6tWApRYCGgNjo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:Content-Type:
+	 References; b=Ew0hZRLO0/jCPvj+9saclb/Hz4HghVevhMtz8R7lbB5eYs73+rDhp2QhLzpggNdDz5Fz4MH2MdJr/vHzix+kU7SRLpPoVuQ0gPC0zS6I+0pe9DtfGZ/9GThiW5rwDjE4xK/JOX0L0B7cj9zUjB5pn7eKPZvLBriMqdvVvbC9U/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=oVF89agC; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250227033716epoutp03c571f3f0b625288dfb97622f11cc0b91~n8254sU8D1710717107epoutp03v
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 03:37:16 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250227033716epoutp03c571f3f0b625288dfb97622f11cc0b91~n8254sU8D1710717107epoutp03v
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1740627436;
+	bh=rJUWO7g9RjJRp9fZlO7QpyX9lTOA51pukK5hQ5BEOsw=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=oVF89agC/G7UYT4ieerLuP7AhDgYHyfLqW+HYmb74iFS65Ea48PIGYB7bw38wnwGZ
+	 zSabbPkFT1xVG61T8ydRUvYOjafCKZ18mBRLZdHbdnOWfP8fLky8EM5W3yVQpjS24t
+	 lccX5qmq75VneHb2ihwKQL55e/7tVfCdORzHGHiw=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+	20250227033716epcas5p3e5c9f9958f59dca7b91d2bf26f839b7d~n825aMZYV1825818258epcas5p3O;
+	Thu, 27 Feb 2025 03:37:16 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.181]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4Z3H8W0Lb3z4x9Py; Thu, 27 Feb
+	2025 03:37:15 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+	epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	59.EB.19933.AEDDFB76; Thu, 27 Feb 2025 12:37:14 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250226103145epcas5p12873b39b9b467f35a38151e1938976d4~nu3gUOMuK3171031710epcas5p19;
+	Wed, 26 Feb 2025 10:31:45 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250226103145epsmtrp16cae50a09d5d8d4e288ba32326fc4ed9~nu3gTSt412262222622epsmtrp1W;
+	Wed, 26 Feb 2025 10:31:45 +0000 (GMT)
+X-AuditID: b6c32a4a-c1fda70000004ddd-e6-67bfddeacc9e
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	65.B5.23488.19DEEB76; Wed, 26 Feb 2025 19:31:45 +0900 (KST)
+Received: from cheetah.samsungds.net (unknown [107.109.115.53]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250226103142epsmtip1527f0d1050a1c8f0fe72e6a3929311c6~nu3d6d-Dt0651706517epsmtip1n;
+	Wed, 26 Feb 2025 10:31:42 +0000 (GMT)
+From: Swathi K S <swathi.ks@samsung.com>
+To: rmk+kernel@armlinux.org.uk
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, krzk+dt@kernel.org, swathi.ks@samsung.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	pankaj.dubey@samsung.com, ravi.patel@samsung.com, gost.dev@samsung.com
+Subject: Re: [PATCH net-next] net: stmmac: dwc-qos: clean up clock
+ initialisation
+Date: Wed, 26 Feb 2025 15:56:34 +0530
+Message-Id: <20250226102634.4584-1-swathi.ks@samsung.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <E1tlRMP-004Vt5-W1@rmk-PC.armlinux.org.uk>
+X-Brightmail-Tracker: H4sIAAAAAAAAA0WTe0xbVRzHd27b2xYoXAvigTggV5fBJqxFHrduDJ3LcuP4A8MkxkS7Sm/a
+	QrntelsURyYCK46ERxNlSpAVtzkGgekdYHlNYAq4ySbg0DroqDwi3dzYKEu6BbCloP99fs/v
+	7/zOOQKOuAONFGhoI2WgFVocDeB2Xo3bGe+a/kElmW2UEZ7FWkBcmLHxiPqbZVzizI83eMT8
+	0F98wt7fhRCLdQ6U+LWzikews5M8YqK7HiUqJud4RMNqK48YsoYTj6/fA8TXHW4+4Vzq5RPj
+	1RaEcH9n578qJicmxzhk+0U7Qs5Xd/DJrrppPmllTSTbfAolL5/7mOyyLSPkgyu3ULKqvRmQ
+	A1ek5DIblRn0Tt4+NaVQUoYYis7RKTW0Kg0/nCV/XZ6cIpHGS2VEKh5DK/KpNPxgRmb8IY3W
+	ezg8pkChNXldmQqGwffs32fQmYxUjFrHGNNwSq/U6pP0CYwinzHRqgSaMr4ilUgSk72JR/PU
+	49bt+k78w8bZBbQY/Pl8BRAKIJYEH7rMSAUIEIixHgAv9Exx/MYjAB2jJTy/8RjAkfIFzlZJ
+	+Xz/ZqAPwBb7INdvuAE0e1iuLwvFYuHvTd/zfRyGRUGzdRr1MQcb4ECHM8HHoVgWvL3yCPiY
+	i+2A8+zABoswGTyz1LapFg1bvu3fYCGWCpdOtaE+MYiNCKC9/A7wJx2Et0uvIn4Oha7hdr6f
+	I+FitXmT5bCl6hbXz2o4/cSC+jkd9v9W7/ULvMPFwUvde/zu7fDza22If+ZgWPl0brO9CNoa
+	tvgFuHp3crNlBOw8/4DvawMxEj49H+rfSQWAJdXjoAZE1f2vYAWgGURQeiZfRTHJ+kSa+uC/
+	S8vR5bNg4/3uesMGnDNLCYMAEYBBAAUcPEwk1PSqxCKlovAjyqCTG0xaihkEyd79WTiRz+bo
+	vB+ANsqlSTJJUkpKSpLs5RQp/pyotKtMJcZUCiOVR1F6yrBVhwiEkcVIGD38E0pI24ruWjVT
+	f3/5UiC7jvyxbbQYp0drPxVT6t3K431flYpQ55Hw6Rr9nfhvmkZ2TFxOJ2tuckTRwZF9cZoJ
+	ffwnvQuthXOBIXvdq2hR4hehFvNbscKOA2M/z0iPhr99uOWa7VjjkdRDGRaFrbZkRZua+0xr
+	Q/abotxa9X42wIGzzjWb/H7Q8Gup1wvGCoveDX7oLPFs2xnIVka4P1uP7Q7JNr24LshwpV88
+	ea/Pc87zfvTZvY6ZS1FDK6O7104UeFwnRCXq5cogebUmfy3xn7PuMOFS2Y2p08dPhxT88sR1
+	v8fByAsOHMNkTezicnZ9Vot5SCk56cJz37Nn4VxGrZDu4hgYxb8yUgurSAQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAAzWRfSyUcQDH/Z53cjyO9PPenmm7riVXVr9aa7aWnmVWaaaUdPE4ymF3XmKr
+	pCSnedlCM3HMpiPi1CHmrYZppciVjMlLZRPKS0nUsP77bN/Pvt8/vgwunsLtmfDIGEEVKY/g
+	KDPC8Jxz3pn9rVnhnp1ihZYmcwEqG6knUUHPLQIVvXhNoomOURoNtDZgaDJ/mEJvDBkk0o8Z
+	SdT3rIBCGuM4iQpXKknUobVFiy+nACp5Ok+jT7NNNOrNzMbQfM0A7Snm+4xvcf6JbgDjJzKf
+	0nxD/hDNa/WxvL48jeJrS6/zDfVzGD/T3E/xGU/KAd/WLOPn9M4nzAPMDoYIEeFxgmrXoQtm
+	Yb1ap2gDd6V47DOVBD46aoApA1kPmDrRSmqAGSNmGwFcyLlNbQR28MfNHHKDraFu9Qu9If0A
+	sPL34LpEsRL4/mEdvcY2rDO8rR2i1iSc7cdhsVaPawDDWLMnYW0yt+YQ7DY4oW8Dayxi98Oi
+	2Sp8Y8AFVlS3rrMpuw/OplWt94vZvTCr8xGWBSy0wKQc2AnRaqVCGSyLlkUK8W5quVIdG6lw
+	C45S6sH6IVJJPZheTN7VDjAGtAPI4JyNyDS8SSEWhcgTEgVVVJAqNkJQtwMHhuC2iHSy0wox
+	q5DHCJcFIVpQ/U8xxtQ+CTO3r98T2r/8/eiBlbK0a6Lp+LwHZ934HYW879Xzq8Nlf3IXMgyf
+	egy6CmXOgprQLWepAyVFfZ3idGmKd2fjfbki8JLE3U/l+2FEMmdudL4xFnJP9jNA07V9+djP
+	O+cs97l2OVYW4c3ShOqEpl8aD3aqRW8SN30w9F3MUveBGWzGATtiEbj57vVZolBREWr08uo3
+	afT1afvL+FugrzWbSkIGXVJXd49xl1stHWzc7BpXXimVxv1+daRrWV5Q92FJ/k1vanzS1aR0
+	tc9l8jERP2pOR9DSU55E1cWcpR586xkfLpRATk7pPsNWQotjokYC8fbftv5vBkXHK69aZXKE
+	Okwuk+IqtfwfUGfyHv8CAAA=
+X-CMS-MailID: 20250226103145epcas5p12873b39b9b467f35a38151e1938976d4
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250226103145epcas5p12873b39b9b467f35a38151e1938976d4
+References: <E1tlRMP-004Vt5-W1@rmk-PC.armlinux.org.uk>
+	<CGME20250226103145epcas5p12873b39b9b467f35a38151e1938976d4@epcas5p1.samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|AS5PR04MB10058:EE_
-X-MS-Office365-Filtering-Correlation-Id: 20de737e-e576-4e30-f9cc-08dd56d3a319
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?23FH24/AncEhTD7Cfa+srAWWMqRV4hsmdGALFu7sifpW7NLzqLUZ8cVNBCpR?=
- =?us-ascii?Q?gRWo28ntdPv3B3O3iSK6ZIFux66kvTGjFpurbbo3kbZHY2MJeGk8CDoN1Qy8?=
- =?us-ascii?Q?ogkTLJYhWoTq+NbrjqNGaNcYSAqo5n4iH1GgvLvLp4jL6KijKplfMWF6T4cX?=
- =?us-ascii?Q?oqaMTHr6Kkg9qTUuSxfJrfCCGrfnFqFWp5WOii42zFtlRDPIHpl0cD/auB1/?=
- =?us-ascii?Q?2BRwGaIFICn8tqybX6Au7LJfu58Jc/tf2ITEXtex+WOf7PIJTlydJVbFcYZ7?=
- =?us-ascii?Q?9mE81CsaLgilSm+5Vb5rh3Imsvr3cMXL+f2OnB7k4JzdSUDgl8EjWJ3L56gf?=
- =?us-ascii?Q?LT9qMTugOxq83j3zeAoteGqdC5gfOnMvATL9tE4PF043T3VVaAWZDQC/pGSA?=
- =?us-ascii?Q?F4DFMga9lubkDGHT3LJ5fx4Ke570wr2NfUWmVFnHW4WlM41Bizv3U+0mRsHo?=
- =?us-ascii?Q?Dteq2cQbE1MYobOr8GYhIkM93YeTCNFwLwk7qZ1TEXFOBAWItU4XoK3cRKMO?=
- =?us-ascii?Q?Fuj/Bo4WdwfM9gVI04mWLTffu+7rwpds8WpTkrBfet+hvHL+CAoVIejH8n0d?=
- =?us-ascii?Q?1FaJzpv3Cqtig8jmzaRyxE5iYONE7+QU6X6I8i1Z1VK3o9dyDaLiElC2Bn54?=
- =?us-ascii?Q?+tSpW1Hh09vX4JZOUrL1j6pRh3zegdWgv2hgVMnUc0/4mEKSWb/1jFiHL/aw?=
- =?us-ascii?Q?gjY43EsEPaRx9un9sn4BKIL+R7B8FuPpyloS9NUftT85cwq8w9jBBGWTCP8d?=
- =?us-ascii?Q?IAEbog5zUhcvvREk8h5rsd5wgxWtsup1OaeJpDKeaYtt4o56sGA8JfJBeztG?=
- =?us-ascii?Q?dwZKfusvCMLZGPylYfgsUSvH25hpmU1wh4pdZnJqvsGC7YxkhG6qQZ1Ja0wF?=
- =?us-ascii?Q?zT3oYaEZUfYsrXhFVPrfX2QqtfaB5VaB+8aAQaZc1UcX+dv+uJv6veT4mEd4?=
- =?us-ascii?Q?4PQ4dA1gVsrDY4NDrT7thzgtZqUPdAGwebpQQfeFu3ciNMKjN9ZIcr1Motp2?=
- =?us-ascii?Q?iKnpphwtNaJkLMGnDI3GxRWpTvijS3hotbbc05hSzePnCJDIS/49RQYSI657?=
- =?us-ascii?Q?CNzz6uWRObeaR7q+WO30JP2biQrgvkEK2F5OTSzIWGZ1leFG+gLqDzkZIjeJ?=
- =?us-ascii?Q?KE7H/HpxLOJv5gfdc/3ClSbW0U94iEzXG8IToJf1PQg75CtYiABHY7sWtV7S?=
- =?us-ascii?Q?3D+fqKo03d15mP2LGdy6GdfgopCIPdz5F2lD+iDvpDmDUkOiPOmpMOaStB0i?=
- =?us-ascii?Q?WPSk6uDaXhrnlB3UC3eFIno91n5J6Nw/FNW9Tjbnk5j1ug9QAmPShjIbmjbK?=
- =?us-ascii?Q?kPHX80+cJWhqe+0U08CEESFQp8SbIg31rjDvHsoAu1H7ZQwEsc1TTv++q7x1?=
- =?us-ascii?Q?e6/j+RU8fL9rYtoZRtfwqztegyv3PKzRpJvieIRvfXpYZI8r58QI+mizEZeY?=
- =?us-ascii?Q?/2Y2hEIvsd15vnX0VbVlwNlPYwIFn/Ob?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?tXG2ZKoq6EIRtyIh62Fg+NxJ4PxuPYcHGSzhDZhRUPT+t+YBqTxZ6/rmdQZN?=
- =?us-ascii?Q?Sy5rFe+4oJVGjn6+f3kRmnxJCU8wbtrtEkIfuFpbwe/zM/CO0PZT9JD2JWQX?=
- =?us-ascii?Q?6sJxa+He/5Zr+puBpmYty15Pmf8MmAQR9s7wUgtGlD6xCVi/Msu04o14eqGc?=
- =?us-ascii?Q?3esAt3EtAloRdeBFc8Bmvflw12odGVvt1IgN4HyV1x8Mmkj6PAj4MrkrVT7j?=
- =?us-ascii?Q?y4dxu5kXtk2RtzxNPV4YqCnKW84wq59gabbSoAne/+sBt+wCur1OlrX9UHj9?=
- =?us-ascii?Q?DL2qlYN+zv6jQ5Ohlt1TassFrXwdPInrLmWnFC1NHDqE1TAAd5PPekLFZd9V?=
- =?us-ascii?Q?bCD1xWLcW20uAXqV8l03z2Lx5koUWGoWeuH2PNo+zOMwnQwgNNEui/hiQcEg?=
- =?us-ascii?Q?GMLuxt6LnVmJXQuJ7UtKLJQ4Kf6csXfxXw7aRGjQMhHBeX7xY3wMF+QUB8av?=
- =?us-ascii?Q?Cvj6FLbYlMlvsvBnWN1YFBK7EK/la3Altr3ffqnhHlqT5HkMFVDyeMw8l3XV?=
- =?us-ascii?Q?z4MXdXDffXPIGqi2dQJBuNPz8edl5pBnN/YcJMbtB/n91tFkynTdJWcLMJbn?=
- =?us-ascii?Q?WCr6Rcqh/3hcezyCWdrycpxD2Kd1tzyJaBtw7PYOFhpOcoWnLp1Exi+37K8p?=
- =?us-ascii?Q?HNpj7LRc/fpJFz+3IcChOphchv4gHX1WrDFvucJoZTkwfdTN4qYzmOhWb0Ee?=
- =?us-ascii?Q?11ve9AmNwzaf8E+vyVzg3nuxdZjCKS58c+PMZOPQXBQ1x9pyYg66CydTiKSo?=
- =?us-ascii?Q?W5F75fs9OXM0oxV7MGGO5OLwOOeN4lu/YbJoCqbGxsalDNjvkr/BQ8bxJOz5?=
- =?us-ascii?Q?FQIw2BAbhdJjvvgQAuGGrn/KNb/sOEEjIWJojHb0LNlr2UE+zQFM+1F+e/PA?=
- =?us-ascii?Q?lN9CHQsTL3hul3zgm/seqDejy3IULPuG+LoiEoS7aJwm99tl8RxKWQYgb9zP?=
- =?us-ascii?Q?+p6/g3ORNen9pgqfgiO/eZEGu6QnfxR9CY0ERBOBnUGpHR5PCyuVIhYATeMY?=
- =?us-ascii?Q?CVF04t1Vxb1+Urz3Lwu6SEGex+0YUneVXnJ4d8PWrsTFLc+2oKQLMDVrtXXy?=
- =?us-ascii?Q?BTYSrtN9B/eUlxyEkRKgdvVBN/K+RzyXEXf44oTgVgcQMW2T1W4DQSLIrEG1?=
- =?us-ascii?Q?3cPFhRd2MmAd2/j9dmWeR4Sd0ItSCTlcIsHCk5YBrl39REWQphLqo8Ys1uqm?=
- =?us-ascii?Q?MykKeyGvZUTh/lnnEH2r3y9sgc3zZBF5XjscOELzz9mrQ3m+koBa70xPBcq9?=
- =?us-ascii?Q?2E9xFjSaJP56P5HfkISQ5gP+Bze/DJB+5BpMeQNjrVO9HzHP+3X/H3aKTaFJ?=
- =?us-ascii?Q?Y3WtIcXTtXW641+fiSHPlOJhiK9Q1TO376pL02YbOqdHlC40BOZQcYU712Da?=
- =?us-ascii?Q?S2xZdZi1DcWp+gV/dli0+bpG0a9UGUlGmZh/EFKJgopdurKEmBQ5YWUmS3MI?=
- =?us-ascii?Q?12yB1KaAsGc6puT34ErqG6WAPYVgXx5yOferrQKzrpkwQrHRj+HdfbY7cqOT?=
- =?us-ascii?Q?ZmABpq04A0nY+lpM+nri0UheEknsh7rAweSBrdJeuRKCu55hY9t/OhOuS4+G?=
- =?us-ascii?Q?YN01abE/a/6moUIyuMdiinzwyL9Nfb5hsdL/0Mid?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20de737e-e576-4e30-f9cc-08dd56d3a319
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2025 02:08:33.2186
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GUoNcmbQsAgSBvOwoePfu/jvIAdz5EV2yIxGTINL1VkzZ5KeiF2D+LIjf//yUTIve4H8xNSa9kI2CnmgVizqIw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB10058
 
-On Wed, Feb 26, 2025 at 05:19:53PM +0000, Sudeep Holla wrote:
->On Wed, Feb 26, 2025 at 10:09:45AM -0600, Rob Herring wrote:
->> On Wed, Feb 26, 2025 at 05:44:56PM +0800, Peng Fan (OSS) wrote:
->> > Quote Sudeep's reply"
->> > I am not blocking you. What I mentioned is I don't agree that DT can be used
->> > to resolve this issue, but I don't have time or alternate solution ATM. So
->> > if you propose DT based solution and the maintainers agree for the proposed
->> > bindings I will take a look and help you to make that work. But I will raise
->> > any objections I may have if the proposal has issues mainly around the
->> > compatibility and ease of maintenance.
->> > "
->>
->> This all looks to me like SCMI has failed to provide common interfaces.
->>
+>Precedence: bulk
+>X-Mailing-List: netdev@vger.kernel.org
+>List-Id: <netdev.vger.kernel.org>
+>List-Subscribe: <mailto:netdev+subscribe@vger.kernel.org>
+>List-Unsubscribe: <mailto:netdev+unsubscribe@vger.kernel.org>
+>MIME-Version: 1.0
+>Content-Disposition: inline
+>Content-Transfer-Encoding: 8bit
+>Content-Type: text/plain; charset="utf-8"
+>Message-Id: <E1tlRMP-004Vt5-W1@rmk-PC.armlinux.org.uk>
+>Sender: Russell King <rmk@armlinux.org.uk>
+>Date: Fri, 21 Feb 2025 11:38:25 +0000
 >
->We can look into this if having such common interface can solve this problem.
+>Clean up the clock initialisation by providing a helper to find a
+>named clock in the bulk clocks, and provide the name of the stmmac
+>clock in match data so we can locate the stmmac clock in generic
+>code.
 >
->> I'm indifferent. If everyone involved thinks adding compatibles will
->> solve whatever the issues are, then it's going to be fine with me
->> (other than the issue above). It doesn't seem like you have that, so I
->> don't know that I'd keep going down this path.
+>Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+>---
+>dwc_eth_find_clk() should probably become a generic helper given that
+>plat_dat->clks is part of the core platform support code, but that
+>can be done later when converting more drivers - which I will get
+>around to once I've got the set_clk_tx_rate() patch series out that
+>someone else needs to make progress.
 >
->Sorry if I was ambiguous with my stance as quoted above. For me, 2 devices
->pointing to the same node seems implementation issue rather than fixing/
->working around by extending DT bindings like this $subject patch is
->attempting.
+> .../stmicro/stmmac/dwmac-dwc-qos-eth.c        | 32 +++++++++++--------
+> 1 file changed, 18 insertions(+), 14 deletions(-)
 >
->If you disagree with that and think 2 devices in the kernel shouldn't
->point to the same device tree node, then yes I see this is right approach
->to take. ATM I don't know which is correct and what are other developer's
->include DT maintainer opinion on this. I just didn't like the way Peng
->was trying to solve it with some block/allow list which wouldn't have
->fixed the issue or just created new ones.
+>diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
+>index 392574bdd4a4..9e2035d1fb86 100644
+>--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
+>+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
+>@@ -35,6 +35,16 @@ struct tegra_eqos {
+> 	struct gpio_desc *reset;
+> };
+> 
+>+static struct clk *dwc_eth_find_clk(struct plat_stmmacenet_data *plat_dat,
+>+				    const char *name)
+>+{
+>+	for (int i = 0; i < plat_dat->num_clks; i++)
+>+		if (strcmp(plat_dat->clks[i].id, name) == 0)
+>+			return plat_dat->clks[i].clk;
+>+
+>+	return 0;
+>+}
+>+
+> static int dwc_eth_dwmac_config_dt(struct platform_device *pdev,
+> 				   struct plat_stmmacenet_data *plat_dat)
+> {
+>@@ -121,12 +131,7 @@ static int dwc_qos_probe(struct platform_device *pdev,
+> 			 struct plat_stmmacenet_data *plat_dat,
+> 			 struct stmmac_resources *stmmac_res)
+> {
+>-	for (int i = 0; i < plat_dat->num_clks; i++) {
+>-		if (strcmp(plat_dat->clks[i].id, "apb_pclk") == 0)
+>-			plat_dat->stmmac_clk = plat_dat->clks[i].clk;
+>-		else if (strcmp(plat_dat->clks[i].id, "phy_ref_clk") == 0)
+>-			plat_dat->pclk = plat_dat->clks[i].clk;
+>-	}
+>+	plat_dat->pclk = dwc_eth_find_clk(plat_dat, "phy_ref_clk");
+> 
+> 	return 0;
+> }
+>@@ -237,18 +242,12 @@ static int tegra_eqos_probe(struct platform_device *pdev,
+> 
+> 	eqos->dev = &pdev->dev;
+> 	eqos->regs = res->addr;
+>+	eqos->clk_slave = data->stmmac_clk;
+> 
+> 	if (!is_of_node(dev->fwnode))
+> 		goto bypass_clk_reset_gpio;
+> 
+>-	for (int i = 0; i < data->num_clks; i++) {
+>-		if (strcmp(data->clks[i].id, "slave_bus") == 0) {
+>-			eqos->clk_slave = data->clks[i].clk;
+>-			data->stmmac_clk = eqos->clk_slave;
+>-		} else if (strcmp(data->clks[i].id, "tx") == 0) {
+>-			eqos->clk_tx = data->clks[i].clk;
+>-		}
+>-	}
+>+	eqos->clk_tx = dwc_eth_find_clk(data, "tx");
+> 
+> 	eqos->reset = devm_gpiod_get(&pdev->dev, "phy-reset", GPIOD_OUT_HIGH);
+> 	if (IS_ERR(eqos->reset)) {
+>@@ -312,15 +311,18 @@ struct dwc_eth_dwmac_data {
+> 		     struct plat_stmmacenet_data *data,
+> 		     struct stmmac_resources *res);
+> 	void (*remove)(struct platform_device *pdev);
+>+	const char *stmmac_clk_name;
+> };
+> 
+> static const struct dwc_eth_dwmac_data dwc_qos_data = {
+> 	.probe = dwc_qos_probe,
+>+	.stmmac_clk_name = "apb_pclk",
+> };
+> 
+> static const struct dwc_eth_dwmac_data tegra_eqos_data = {
+> 	.probe = tegra_eqos_probe,
+> 	.remove = tegra_eqos_remove,
+>+	.stmmac_clk_name = "slave_bus",
+> };
+> 
+> static int dwc_eth_dwmac_probe(struct platform_device *pdev)
+>@@ -360,6 +362,8 @@ static int dwc_eth_dwmac_probe(struct platform_device *pdev)
+> 	if (ret)
+> 		return dev_err_probe(&pdev->dev, ret, "Failed to enable clocks\n");
+> 
+>+	data->stmmac_clk = dwc_eth_find_clk(plat_dat, data->stmmac_clk_name);
+>+
+> 	ret = data->probe(pdev, plat_dat, &stmmac_res);
+> 	if (ret < 0) {
+> 		dev_err_probe(&pdev->dev, ret, "failed to probe subdriver\n");
 
-With compatible string, no need block/allow list anymore I think.
+Hi Russell,
+Tested this patch on FSD platform and it works.
+Please feel free to add Tested-by: Swathi K S <swathi.ks@samsung.com>
 
-But honestly I have not spend efforts on do driver changes to support
-compatible string. If in the end we all agree on the proposal,
-I could start on driver changes.
+-Swathi
 
-Thanks,
-Peng
-
->
->--
->Regards,
->Sudeep
+>-- 
+>2.30.2
 
