@@ -1,156 +1,135 @@
-Return-Path: <devicetree+bounces-151657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1E0BA4672E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 17:58:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED54BA46508
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 16:37:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9C0A3A6552
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 16:58:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B98D3B8144
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2025 15:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2D1223316;
-	Wed, 26 Feb 2025 16:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF6421D583;
+	Wed, 26 Feb 2025 15:30:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="5ieszlWO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ml4pa7kF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 287D01A01BF;
-	Wed, 26 Feb 2025 16:58:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90BE021D00E;
+	Wed, 26 Feb 2025 15:30:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740589115; cv=none; b=PE6FcvC5RL2oORj3WVy8t5HbWXhHm8qK8xLKy5PKgHSYF40BrsLpxOQxsEY+rjxMZwU7buqu4IWyHdSATfDRr/QWqfwWM+ME5e8MT0iQWWnG7XOkQb61B2/m//NAr1tvLH/5EMRRTRrQHVvE3QpHmb6ktaLRIaqVE0453bO7buc=
+	t=1740583834; cv=none; b=GPt+rk4N5BaeB1D1rwVk3nEQzUztMU2Yu4JsAr83TXexyLzVKh1XW3pCWZFrjiSSDpBKFFXWO6MZ0R8aN+MLU5nJx6DiRCM0WKDyaUQbotzwUqTZe3oGOIxAcIGNPiVTmd+xdtb0kWbQJNjDkIZ/GuLRFKhAtzZLtvpSTkIZ6nM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740589115; c=relaxed/simple;
-	bh=ua8zdJO/nQe7lxupptSqK1mPFmVWzWD9UITddfiAOto=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=G1HucXihW+DTsnL25nGCgYFe+pMazPPWPCMyNtsAfdSkrc6AOWxcgyjIhFMUEC8hRfgr3IE3Fz0uGJ1FHRhjDi1wydQIXm2bHn2L+zHLLlxfv+qNC7JFiwG4k1qSmzb6++7Rl21jSNeriXfGrpPOL4Mm/OLfoM1QTSMJMJdcKuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=5ieszlWO; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51QFX00h022198;
-	Wed, 26 Feb 2025 17:58:22 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	IZb1xMqSNQN2PP8hwkcWMj27cX0fMVgLYG7qNf4LP2k=; b=5ieszlWO2WceWL1Z
-	kY3yIkTr3K8hw6CaL11JmkPDIpVrhkPUTKcIPekxJ4OCKEgiYXenDfTxzL1wlkri
-	sCdIxRI7jXt2k9zlqSwUWry3id0Q1Oj08yRg/yMQlATGxsiVs8Jt8I00xjQMuTkJ
-	oN+xyKiaIKf+IkgKNyEPBJkqvRysw9ADuzpeivaRJC40Cy3r7eprTXaUKc7Zw4Dp
-	z1ziDbdYuMW+MnvMQcocohzAQvUJHXP8Cjyt4bsaKWswEhyUC8J6PoybXAPb1CGc
-	e+WuNlw2jEJ/DGH7ceAC8SZSuakxLuvl3dXD5qk7auZDszK+5dr5p/Ck1a9jP94K
-	Eld91g==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 451psrdy1b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Feb 2025 17:58:22 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 87D8540063;
-	Wed, 26 Feb 2025 17:57:12 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 79595484FF1;
-	Wed, 26 Feb 2025 16:30:20 +0100 (CET)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Feb
- 2025 16:30:19 +0100
-Message-ID: <8cdc7e52-f9e2-4fc9-be68-0dd72a25ee1b@foss.st.com>
-Date: Wed, 26 Feb 2025 16:30:19 +0100
+	s=arc-20240116; t=1740583834; c=relaxed/simple;
+	bh=jWzDbbQHO9gEeKekcUVkcixWDMvI3qej9AstFronzn0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MmRubPwOXD8IyCr0nuaYx3xGEhwHbe58dDSxRcBM6aXLvkL0MnBw2pytZKZX7pY/YbRz5b+UtfbrdkG9tQHq8MsLg7KWBGl76aNe4dTuLh33ZsroP3/xH6P7T67RJtnZtt/gz015U6Kz0GjAraj3NK/Tv4yhN1ZAEYb0TT4A14E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ml4pa7kF; arc=none smtp.client-ip=209.85.216.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2f42992f608so10781244a91.0;
+        Wed, 26 Feb 2025 07:30:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740583832; x=1741188632; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TZ/QbTWZNshBxb5hC06ZzjWtL5HiviO0RmZtIpOJ43M=;
+        b=ml4pa7kF+RVJA6p3sjQ4lgR5iyJTXkzanwoXWm3sGgAL8OLzpET1CivN+c6PUrxsww
+         HqxbeTlORiu4n+yXdDZtOLGf5/ia2oMDTrzkHoyO9uqxp54Kx6Um+bORLI5dysbMetT0
+         dWod8W+A6jfHo/5lZP2t7GnKkyNfVmexpjcXQLUhmQ5LOZnybswTBWPSJx0UU+WTWSKC
+         WT4ctSgp6/+Wt4Ft/ZQirhIY/rGW/pOm/GnTPxwEXRAZ3zC26FKdXFRYgEQs+4hX9RXV
+         qPwXlcZ+ZdQbZjneCZyf3xI2A4nt2xQNEql9UgGbFIwHM2qqvc1gERzBALZDyhnJ4jGk
+         EZhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740583832; x=1741188632;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TZ/QbTWZNshBxb5hC06ZzjWtL5HiviO0RmZtIpOJ43M=;
+        b=ZudE8EOPB1fCe7y+Ih4RJ3jlnZFPdH2zOIKZjjEFB+zDCW5TmBd6IznmU4J7O5obdc
+         gChKp2z0OPhhuNxzAv5reLgWr/0ey6kT2FXZAs+kThiOwn4HYyVuqrTna+BvzOrZhSa/
+         AjkOsQGdxBsEBXeYXEfah7peScsqXk6R8RgSpA52ARiMMwHMZv8doIAeBnNU2mT3YOMl
+         MqqupYYYQwzs4Ni4T0hhBsap0I++F5d+ATuAf8vs0ycLLX5CIvy0oCUJ76tidNoWCVgm
+         DNnD7/7J+gIB8mPm76r20m0eHe/OQYsOWNB/UxfZHJrkfaG7kxnnd7jK8oSPVf1uS5S+
+         qW5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV0HSiX9W1pyvP1/wo1z7qMF6yR8yfya3NHkyVU6yddBUjh8GwHu1h9fbga3d36eIdIp1JSNeK700tH0ljA@vger.kernel.org, AJvYcCWnjq9yE201frbsc1GJk2k970YcAyyYkNWeG6NuvbBRHJ2JjT1ZN4q/3rOpDbOyRYQ8nhGy/HMU0XYi@vger.kernel.org, AJvYcCWxPYKiPQtRmAsZ9oIl+F2CvYFw3cQBAR6VfRHCxVGmRhh19dEkDrjyjAv9PjBX87/LREcuKOuxnshR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAH0XmyqLwHpvlSQh2W4zgWzH1m9s+//p0wU7D1qIzGNkx84+/
+	SQHjJOYjKnW1wOgH4d2uSH3LsyUG+7GVNKI5QmcA0E/R8ExiMZs2DSRExHChl4xey3K0Qm/4SH0
+	1sLqkcxAaeI3EaHUB8eBJYbVww4E=
+X-Gm-Gg: ASbGncvszUgIv8IIymE51I/6eRe0kcPNUd0edI+S+2DKyqUlqSxz716gfSFiiintSL8
+	C87RzVEc78Epn7H83rrqWYccZ39EXOUQ7YU/puuMGkE/A7p/7cpD6hvtFqn4VvgVgHf3QfR7hXu
+	F20njv
+X-Google-Smtp-Source: AGHT+IFo6DOoGnTsS38LlUXMIhC0H9EtIGCJVFbM5Bu56nEtT839xcPAHtRDebmakeB9TC+KDHHS0qohqRpYH+q6d2s=
+X-Received: by 2002:a17:90a:c2c7:b0:2ee:e113:815d with SMTP id
+ 98e67ed59e1d1-2fe68ada148mr12284035a91.8.1740583831681; Wed, 26 Feb 2025
+ 07:30:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/9] ARM: dts: stm32: add Hardware debug port (HDP) on
- stm32mp25
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Clement LE GOFFIC
-	<clement.legoffic@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250225-hdp-upstream-v1-0-9d049c65330a@foss.st.com>
- <20250225-hdp-upstream-v1-7-9d049c65330a@foss.st.com>
- <418a80a9-8c08-4dd1-bf49-1bd7378321aa@kernel.org>
- <b257aa79-6ca9-4f57-988a-ec00225992ab@foss.st.com>
- <b57e3c9e-244e-435b-8a7b-cf90f3a973b3@kernel.org>
- <988667a4-4bc0-4594-8dfd-a7b652b149b2@foss.st.com>
- <55beb3e7-65ac-4145-adae-fb064378c78d@kernel.org>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <55beb3e7-65ac-4145-adae-fb064378c78d@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-26_04,2025-02-26_01,2024-11-22_01
+References: <20250226-initial_display-v2-0-23fafa130817@gocontroll.com> <20250226-initial_display-v2-4-23fafa130817@gocontroll.com>
+In-Reply-To: <20250226-initial_display-v2-4-23fafa130817@gocontroll.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Wed, 26 Feb 2025 17:32:08 +0200
+X-Gm-Features: AWEUYZnVDiZ00SedBZ6EyKd9EOM22xcDBV6m1uAzMRnVUY2vdD1K52vvrRAuSvo
+Message-ID: <CAEnQRZDXxuviih+o-iFOtiS6j8=JqnhUOHaZf3RhGL++fg=moA@mail.gmail.com>
+Subject: Re: [PATCH v2 04/12] arm64: dts: imx8mp: Add pinctrl config definitions
+To: maudspierings@gocontroll.com
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	Liu Ying <victor.liu@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Feb 26, 2025 at 4:23=E2=80=AFPM Maud Spierings via B4 Relay
+<devnull+maudspierings.gocontroll.com@kernel.org> wrote:
+>
+> From: Maud Spierings <maudspierings@gocontroll.com>
+>
+> Currently to configure each IOMUXC_SW_PAD_CTL_PAD the raw value of this
+> register is written in the dts, these values are not obvious. Add defines
+> which describe the fields of this register which can be or-ed together to
+> produce readable settings.
+>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+> ---
+> This patch has already been sent in a different group of patches: [1]
+> It was requested there to submit it along with a user, this series also
+> includes some users for it.
+>
+> [1]: https://lore.kernel.org/all/20250218-pinctrl_defines-v2-2-c554cad0e1=
+d2@gocontroll.com/
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h | 27 ++++++++++++++++++++=
+++++++
+>  1 file changed, 27 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h b/arch/arm64/=
+boot/dts/freescale/imx8mp-pinfunc.h
+> index 0fef066471ba607be02d0ab15da5a048a8a213a7..0927ed11ec687d5b273c4a4a6=
+455e8d81468f676 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
+> @@ -6,6 +6,33 @@
+>  #ifndef __DTS_IMX8MP_PINFUNC_H
+>  #define __DTS_IMX8MP_PINFUNC_H
+>
+> +//Drive Strength
 
-
-On 2/26/25 16:08, Krzysztof Kozlowski wrote:
-> On 26/02/2025 10:33, Alexandre TORGUE wrote:
->>>>>> +		hdp: pinctrl@44090000 {
->>>>>> +			compatible = "st,stm32mp-hdp";
->>>>>
->>>>> So here again - you have stm32mp251 SoC, but use entirely different
->>>>> compatible.
->>>>
->>>> Ok so I will use "st,stm32mp15-hdp"
->>>
->>>
->>> This means this is stm32mp15 SoC. I do not see such SoC on list of your
->>> SoCs in bindings. What's more, there are no bindings for other SoC
->>> components for stm32mp15!
->>
->> Yes stm32mp15 is not a "real SoC". I agree that at the beginning of the
->> STM32 story we didn't have a clear rule/view to correctly naming our
->> compatible. We tried to improve the situation to avoid compatible like
->> "st,stm32", "st,stm32mp" or "st,stm32mp1". So we introduced
->> "st,stm32mp13", "st,stm32mp15" or "st,stm32mp25" for new drivers. So yes
->> it represents a SoC family and not a real SoC. We haven't had much
->> negative feedback it.
->>
->> But, if it's not clean to do it in this way, lets define SoC compatible
->> for any new driver.
-> 
-> Compatibles are for hardware.
-> 
->> For the HDP case it is: "st,stm32mp157" and used for STM32MP13,
->> STM32MP15 end STM32MP25 SoC families (if driver is the same for all
->> those SoCs).
-> 
-> No, it's three compatibles, because you have three SoCs. BTW, writing
-> bindings (and online resources and previous reviews and my talks) are
-> saying that, so we do not ask for anything new here, anything different.
-> At least not new when looking at last 5 years, because 10 years ago many
-> rules were relaxed...
-
-So adding 3 times the same IP in 3 different SoCs implies to have 3 
-different compatibles. So each time we use this same IP in a new SoC, we 
-have to add a new compatible. My (wrong) understanding was: as we have 
-the same IP (same hardware) in each SoC we have the same compatible (and 
-IP integration differences (clocks, interrupts) are handled by DT 
-properties.
-
-> 
-> 
-> Best regards,
-> Krzysztof
+Please use C-style comments /* .. */
 
