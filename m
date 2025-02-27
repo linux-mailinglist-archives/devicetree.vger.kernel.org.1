@@ -1,144 +1,138 @@
-Return-Path: <devicetree+bounces-152291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 491FDA488FF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 20:28:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C041DA48922
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 20:40:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5212016BFB1
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 19:28:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CACAD16D5A4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 19:40:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DAB726E957;
-	Thu, 27 Feb 2025 19:28:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36C8D26A1A4;
+	Thu, 27 Feb 2025 19:40:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YoZzQPsL"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="L1YFfwMD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0AE325D911;
-	Thu, 27 Feb 2025 19:28:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4EC270054;
+	Thu, 27 Feb 2025 19:40:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740684500; cv=none; b=kjL+eQ3Mm1VOmvY5N1eBJYzTdITu4yeWB6WgOZjoKB/E5zdz7ifYv21cKYxwTxgBBJwGfYLN67aIHGLi2I6GqWFtwSrZM4EC/kLuqn2+hcphZau6AQmyUOJDhUWZWXjRI2jVMrRUtEbHQgXJrHUFuClMlDpWe7/r+45jYU3JsRk=
+	t=1740685216; cv=none; b=a2bvQgmNamssDxPDc6CM2RgbGYwa4Z+112lbCSNqXZWH3B/PWEQnd4KWR2HDJk/FE5pi1ZaP5BqhsDfLMvrtOMCa03Q81c+882PXyIOL7WWnQnsQKFiYQo4fS1CDnIw7LFDZnUdW2zHL0T//p6HuWvEALN7iudb559Lghw/KNOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740684500; c=relaxed/simple;
-	bh=MkFWz9GAf3oox55gTVAIQaaz6t4udTfaAcoiCLU/aeA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=i/drWJSk6tSWEp33prAu02eoxB+4d7olhLicc+4qx7O0Yw2MbAfu0qd9uSO6HbbIkBryX2LMtcoRILDTbzjMPXERzWsR066EJrgMDy2pESj9G7ZGrAdX8sBZKZ8O3aBbbCFvfePYG44yGYREE+H6Q5pybebrYAXsdq+kPHLChso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YoZzQPsL; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51RJ0vQk012055;
-	Thu, 27 Feb 2025 19:28:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	RdjIqGF+ISOqLN7KsR39TGSa+NABYH6lIW0NjEcfAZM=; b=YoZzQPsL3wSi3TlV
-	qrUtJwdv02vxq692FjQ4amIOteyIhE0na11FI78TnAj0TCn5r/DIiT+g5Jeb+mM7
-	Sqn1a7wd7IsICn0jzOUZk8+dvoIsof6iQLuOQk3xd2iFkxlG1muzkcNVjsdrOKty
-	nko9oSJ610LROyQg46LwsDqPbaveWPF7uqF3HE+TaGDQCSj/TMNpNZtHNFTdBKFM
-	aYGeUeGzvElth+cYEuyPCK0QA+/noYZwQqiN1D7RTFQEuWOkALiHkhYVXaXRnUfn
-	7euaVlD5ue0XMCEBjTRgiULoKqJGvqnCpjEqsgiaxTTcHeyLbeesCLWETsVRp9FH
-	yk4CRw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 451prketqf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Feb 2025 19:28:06 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51RJS5Yk016619
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Feb 2025 19:28:05 GMT
-Received: from [10.71.114.206] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 27 Feb
- 2025 11:28:04 -0800
-Message-ID: <bdf2034d-4c96-4b99-b472-520227ff930d@quicinc.com>
-Date: Thu, 27 Feb 2025 11:28:05 -0800
+	s=arc-20240116; t=1740685216; c=relaxed/simple;
+	bh=NkAwTqksSU4AEzN7KRQ2MeSnIOrOPp2KKDZRrChKYu4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=gSJgHlM/iHsGR2rmvReAj68oYZg+BKWYKYvVIPfXAakaOpGwA3MZoM9Ru/bSi70ReMmTElirfxh+aAEmTmNqr1BUrzf3ifAIqYJwqRQLzB71ewV4t9gzkybWFH1HL+F0Pd3bL7WUHR501xjR3KnEfoTxnwohnDoAMNwUcZWoIiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=L1YFfwMD; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1740685212;
+	bh=NkAwTqksSU4AEzN7KRQ2MeSnIOrOPp2KKDZRrChKYu4=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=L1YFfwMDat/2mPLCqAj3/mY1YakblrZsc/IW/+gaVrJ4FF7e4hybBdd50L4HTgQKI
+	 +wwGqt3OvggdFOFARvtz1oB/tIporOks6DYCLhOZmefbhPfKCcN4TlApRK/UsIkJCC
+	 yBXJ08NyE0Jhe0OkyNzehXOgyfp0fQlxZLNepiQPbzUEmLJIz4XmjIJ8vh7hQwfGQs
+	 uHlmbOl+KtAxrshZYbABjLBZ+Atw6voYxV6dhp6jBhH7gWDwix64tmdRhaL3ZNQw+B
+	 nk+sZd3aBCE0ABPVl1wo5camBn7rWm14xKhsKUShzC32284Oni3GvlNqK2o3Qeqicw
+	 YeY15ZSc0cjBA==
+Received: from [IPv6:2606:6d00:11:e976::5ac] (unknown [IPv6:2606:6d00:11:e976::5ac])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4C54C17E068B;
+	Thu, 27 Feb 2025 20:40:08 +0100 (CET)
+Message-ID: <3872267b32d1386827635f15eda99d2709b44a96.camel@collabora.com>
+Subject: Re: [PATCH v10 3/6] media: platform: synopsys: Add support for HDMI
+ input driver
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>, Diederik de Haas	
+ <didi.debian@cknow.org>, Shreeya Patel <shreeya.patel@collabora.com>, Heiko
+ Stuebner <heiko@sntech.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Hans Verkuil	 <hverkuil@xs4all.nl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, 	jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ shawn.wen@rock-chips.com,  Sebastian Reichel
+ <sebastian.reichel@collabora.com>
+Cc: kernel@collabora.com, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, Tim Surber <me@timsurber.de>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Date: Thu, 27 Feb 2025 14:40:06 -0500
+In-Reply-To: <f0c3a16e-c4a2-4cd9-9afa-a21a975a45c9@collabora.com>
+References: <20250225183058.607047-1-dmitry.osipenko@collabora.com>
+	 <20250225183058.607047-4-dmitry.osipenko@collabora.com>
+	 <D82H4F6J4V4V.2BLHVUVD3BVX9@cknow.org>
+	 <f0c3a16e-c4a2-4cd9-9afa-a21a975a45c9@collabora.com>
+Organization: Collabora Canada
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: sm8750: Add USB support to SM8750
- platforms
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Melody Olvera
-	<quic_molvera@quicinc.com>
-CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Catalin Marinas" <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Satya Durga Srinivasu Prabhala
-	<quic_satyap@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250113-sm8750_usb_master-v1-0-09afe1dc2524@quicinc.com>
- <20250113-sm8750_usb_master-v1-7-09afe1dc2524@quicinc.com>
- <g47ac6bzxqyqbkuqsvuwm5vdc7x5wjfppv6fj4mftwyjlyuz7t@jzmw2kfa2jnp>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <g47ac6bzxqyqbkuqsvuwm5vdc7x5wjfppv6fj4mftwyjlyuz7t@jzmw2kfa2jnp>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6SmfXuZus25YPP3QZn62hCs8W0rJgGSe
-X-Proofpoint-ORIG-GUID: 6SmfXuZus25YPP3QZn62hCs8W0rJgGSe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-27_07,2025-02-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
- bulkscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015 malwarescore=0
- impostorscore=0 adultscore=0 priorityscore=1501 spamscore=0
- mlxlogscore=797 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502270144
+Content-Transfer-Encoding: 8bit
 
-Hi Dmitry,
-
-On 2/27/2025 10:29 AM, Dmitry Baryshkov wrote:
-> On Mon, Jan 13, 2025 at 01:52:13PM -0800, Melody Olvera wrote:
->> From: Wesley Cheng <quic_wcheng@quicinc.com>
->>
->> Enable USB support on SM8750 MTP and QRD variants. SM8750 has a QMP combo
->> PHY for the SSUSB path, and a M31 eUSB2 PHY for the HSUSB path.
->>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/sm8750-mtp.dts |  24 ++++++
->>  arch/arm64/boot/dts/qcom/sm8750-qrd.dts |  24 ++++++
->>  arch/arm64/boot/dts/qcom/sm8750.dtsi    | 134 ++++++++++++++++++++++++++++++++
->>  3 files changed, 182 insertions(+)
->>
+Le jeudi 27 février 2025 à 08:28 +0300, Dmitry Osipenko a écrit :
+> On 2/26/25 18:14, Diederik de Haas wrote:
+> > > +config VIDEO_SYNOPSYS_HDMIRX_LOAD_DEFAULT_EDID
+> > > +	bool "Load default EDID"
+> > > +	depends on VIDEO_SYNOPSYS_HDMIRX
+> > > +	help
+> > > +	  Preload default EDID (Extended Display Identification Data).
+> > I see some value in making explicit what you mean by EDID ...
+> > 
+> > > +	  EDID contains information about the capabilities of the display,
+> > > +	  such as supported resolutions, refresh rates, and audio formats.
+> > ... I do not think a/this Kconfig needs to explain it.
+> > 
+> > > +
+> > > +	  Enabling this option is recommended for a non-production use-cases.
+> > My guess is that it could be useful for development/debugging/CI work
+> > which possibly do not have an actual device (monitor) which provides
+> > actual EDID data? Is CI work the reason why you (initially) enabled it
+> > in the defconfig?
+> > But when you have an actual monitor (=production use-case?), you
+> > (really) do not want it? Would it be harmless if 'still' enabled?
 > 
->> +
->> +		usb_dp_qmpphy: phy@88e8000 {
->> +			compatible = "qcom,sm8750-qmp-usb3-dp-phy";
->> +			reg = <0x0 0x088e8000 0x0 0x3000>;
+> Disabling this option is only relevant if you're making a commercial
+> product using this driver. It's a quite widespread issue that HDMI
+> projectors utilize default EDID that comes from BSP driver they use,
+> while a rebrand EDID should be used. Keeping this option enabled is
+> harmless, but you don't want to do it in a product.
 > 
-> If I understand anything correctly, this should be 0x4000, not 0x3000.
-> You have missed the DP part of it.
+> For all other use-cases you would want to enable this option, otherwise
+> driver won't be usable until you will load EDID from userspace.
+> 
+> Hans has strong opinion RE this option and wants to have it disabled by
+> default.
 
-ACK, will fix that. Thanks.
+Hans, can you detail your reasons ? We personally make default config
+toward generic Linux distributions. If you don't turn this on, the
+driver won't work with any existing userspace (OBS, GStreamer, Web
+browsers, etc). While having it disabled, to avoid not having your
+brand or specific choices on the first go is clearly the "specialized"
+usage and configuration.
 
-Thanks
-Wesley Cheng
+> 
+> > Thus a more extensive description what this Kconfig item does and why
+> > and when I want to enable it or not, seems more useful to me.
+> 
+> Will update and expand the description with more clarification. Thanks
+> for suggestion.
+> 
+
+regards,
+
+-- 
+Nicolas Dufresne
+Principal Engineer at Collabora
 
