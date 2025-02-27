@@ -1,145 +1,150 @@
-Return-Path: <devicetree+bounces-151975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 596E3A47A56
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:33:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15625A47AA8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:46:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAA777A1C73
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 10:32:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA6F07A3C81
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 10:45:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3046822689C;
-	Thu, 27 Feb 2025 10:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B8C226D1B;
+	Thu, 27 Feb 2025 10:45:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ibIJ0tGN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CB7C21D3E7;
-	Thu, 27 Feb 2025 10:33:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E38E1EB5E8;
+	Thu, 27 Feb 2025 10:45:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740652415; cv=none; b=ERXTJ+jqIqj0xyKFZ5/cg4AAmIKRA2HVcvPQdDto7ls5PrTIVVf6x2SErQl5dyQzKuhrFUsu/krw1Tq1HnE/D9SvYwVnA5PqNQ9tKHtIh/KnvcHF/QlVifPFgytrM1gK+NT50ZnV5qySyZ8AIbt+/thbB1GWVPJqOZQZo2k3q+Y=
+	t=1740653153; cv=none; b=tk1J0z/bmvqHCzdXYkNlUHPvhKLDVCArN7UGwiuMD8uC5odeY6nYqScxdhP++MTgrrzV2nlHXAQWSdKUSq8INhOtfTQu012Q4+9cZLpUFvwqtC7MWMn1j1cvQ9+/J5/ff0fAhr1Pq/q2tbEuLIJscCNlikNXBlwJPeNBXW0xyZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740652415; c=relaxed/simple;
-	bh=sdRYJf5KqEhXm7M/os0m46/SzH35rQZIDcFmEL2GFkc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tft7f8a39Lhobh/dnaBwZxjVOvMeFDRlB/w2XMrEjK7lS8YuQyHBtV1LKJh6ti9YmRF/bDQ52EK/cmPtJw5kgxxkVhMShoONRs/6Eu0hMFh7YuOv8Vbpmig96Op8aoBGtDLulhSMyKXLxJmE8CvGD5jd9/61RMcFu+upDf9Fom8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-86b3ed5fde5so395734241.0;
-        Thu, 27 Feb 2025 02:33:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740652411; x=1741257211;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ubSE84NjFTjsY5U2xLJxwBeHimqGUMTmF43TX7I58to=;
-        b=oBBvKr9XVDbFmwKhembhCuagm7yyyDaZXId+H9hUTcc0ek7mObLqOTTQiKR7EJ0yAE
-         /c6cxYKcqxiZP7Kp0mw9NpxjGS3TWIgTKzf9RhSjzqNexm5UF49utu0gt4/HWbnsNZ55
-         51d4AY5nRBe7/ZJjch7LnmAfJhusMtUJM/1zCEfF3EJJlBetVytPX5v/m6ZKQPGhtxCC
-         J8LrWDJ5zImhZ/5vQlRleLUDutmaXj76uEn6QbmL+bU3sVvmg2vYiV3Zhun6YxHnEKqI
-         hJ0Xhif7xDJkELroxVPffwW5Lqgy70A5YVodD3MUpEWoG+EKURquswOGUVmSKiZJTJ/P
-         7aLw==
-X-Forwarded-Encrypted: i=1; AJvYcCUomP/c2MA4IuVz4uJuwQlLsNnwV/4iQh/q6ancGS0kkpn1oDIgKOu4rXv9Cm5aojtJurX5BT5ImToC@vger.kernel.org, AJvYcCVVFf6gLqzZ6rfqNpKBs0Hfq8jaMqshSIaXsAec0tIR8iFAxknBMR/lml904FQ0nhkJumEUHUa2E1LGislH3oyo7UU=@vger.kernel.org, AJvYcCWv1EL2utwHo2YlgV06/I+5+4v3RctOQkj8LYqrcqtTJ6sPilLCtdWQ1TTApEaZHCP2jImE15ehbJPyanM=@vger.kernel.org, AJvYcCX+bG+R3V9yUB1r1vMxLRAI0VDcRrUr0xOw5OejQtVeC1Itt9gWszGPcu6HnK2msiLFXMG/cwPSWzvqcvAb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgXcmp1HywGQr289Pv1mTavtkWj3rgodthv67FELNB17hfMq0Q
-	u8MfmghAm0nHsTvs9OThR06wB9tl2+CBE37WfXAMpswyijlsyiBIj8YKirCi
-X-Gm-Gg: ASbGncvPVqsLJ5xKOFCuhkTFXah47xt/5Gj1FjoI8bMaUXZkXNGqUFhy3NOnEhAd6sA
-	Sv+s7/kIeumblNCRRIdtwwSO7dzdsiTINhc/6i+hN6Pw+zC5ciImMqcoyOnlE5cbdNV8Q6BK+7E
-	Yk4VC9AAntpUnwzRoIyN7+WqKY7qvW+17PJfBbqAWHVttbP/OewvKCI+f7esmlsXdmd9FPEaC7g
-	Yw++89z1H0K19cQEO24sWRki561ShUGEGescUKcOKcIRH2cv6+sLRJTQhDz0U3LFGGi6X1iHr2b
-	uE0AjxMYqQP/+puqe3vIlIjIibC2h7vCl5zUMprsG5eavegBysuKlWKmHoXOv7d6KhQn
-X-Google-Smtp-Source: AGHT+IG8QZ60apdnKBlKPn/BDfdi4vaLf8ZdXAbLymQpP6LqjEnW5zIiyBSSnWGaGcVdIDzEj1v4Kw==
-X-Received: by 2002:a05:6102:26cd:b0:4bb:dd1c:dcff with SMTP id ada2fe7eead31-4c030fd5013mr1118836137.2.1740652410866;
-        Thu, 27 Feb 2025 02:33:30 -0800 (PST)
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c0345fc82fsm199790137.1.2025.02.27.02.33.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Feb 2025 02:33:30 -0800 (PST)
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-52099627b5aso791000e0c.1;
-        Thu, 27 Feb 2025 02:33:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUlmQKq94RL7ibpCyZpDX1dC7g/X4RL/KonRvKEPk9jNGGscoOY/JdknYtP3UyuX9XDuVCVHrIpXqACbEgV@vger.kernel.org, AJvYcCVANtr7PKnLKea5/vusQL7DasrUQAJkSpPxMkAQYLNKMTYmW/ME7/VhhBLVaS9Q1bBCP4K26mWku332ToLXpcozYD8=@vger.kernel.org, AJvYcCVWa8NCXGo8A50Dmi74X3HmQCn4oT9Q23/QHd5Be6gEYWHBvBBdqBcfp37yP/nQ1PsjIxko6cBaIypbfqE=@vger.kernel.org, AJvYcCWiz20+v6jRU1HWRooyPE/xlM/TyFivpTC8tbhlugsiQmKoZn3WJ+tuqqGOJhvIwI3/Vq9Z2zTx89Mt@vger.kernel.org
-X-Received: by 2002:a05:6122:2708:b0:521:bb4e:c68d with SMTP id
- 71dfb90a1353d-523493c558amr1710120e0c.0.1740652409909; Thu, 27 Feb 2025
- 02:33:29 -0800 (PST)
+	s=arc-20240116; t=1740653153; c=relaxed/simple;
+	bh=sRc81rsNx8VOK7VP5opBGjZMA86PBpVNKgJXwBSOo24=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ccpOgeQBnEbhHpk9S0gwVIvcvzuD8z7ww5FQh4htUddgVwaz/3tMZNnlYbnSL5WeumQsa0rgYqMrhS7xqEo5fcmTeEC3VhuujSr2ofQ7pfd9o2PmX/L1uZeqjy9bhH9B2aoylWX0ZkbqbGBRJVO9DIyxfT+F7vfw0vhbxVr8T8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ibIJ0tGN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A0C9C4CEDD;
+	Thu, 27 Feb 2025 10:45:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740653152;
+	bh=sRc81rsNx8VOK7VP5opBGjZMA86PBpVNKgJXwBSOo24=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ibIJ0tGNCMUjgwabSqp3/JUBa/J327EpdZ6FK+/Ygpb9pmOPvmuY8zFSFaU5wcGYT
+	 dFL1Gg4PooAuVEqg2FbyfDLjjIwWY9JCgB9r1AObMhURA8MOuZpz/ET6weJfysnr0F
+	 FqYqCCi1vfdxo6z8B2J+vWx/rDEWrWPv+ei/aN71Aimv5fyugcLnjJH5lLMNuLUqdO
+	 c0YZSdu6nKpmi8j7mC7AoXNTh3iklM0d1eXzSCeXaGEoaalkMVa+AaToAuCVDwaaFG
+	 v/1VmyblALlu87TiPEgGMuRQ97+DSA/OGL9C50Jx+ql0YE/J/hX4QtFVTHZlHc8mA4
+	 mihgwxlWWLr9A==
+Date: Thu, 27 Feb 2025 11:45:49 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: power: supply: Document Maxim
+ MAX8971 charger
+Message-ID: <20250227-cherubic-mantis-from-betelgeuse-86f5ff@krzk-bin>
+References: <20250226093700.44726-1-clamor95@gmail.com>
+ <20250226093700.44726-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250226152418.1132337-1-tommaso.merciai.xr@bp.renesas.com> <20250226152418.1132337-2-tommaso.merciai.xr@bp.renesas.com>
-In-Reply-To: <20250226152418.1132337-2-tommaso.merciai.xr@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 27 Feb 2025 11:33:16 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUfZSP3BDmKYTBDbKFe=KVR6TtscMQZov4+UDoMXgZwGQ@mail.gmail.com>
-X-Gm-Features: AQ5f1JrvdZJIWK8_MeL2zxoRDqPgCpV_45kQFeRZFTYprQXVZ0-CAVTqL8i0vNI
-Message-ID: <CAMuHMdUfZSP3BDmKYTBDbKFe=KVR6TtscMQZov4+UDoMXgZwGQ@mail.gmail.com>
-Subject: Re: [PATCH v3 01/17] media: dt-bindings: renesas,rzg2l-csi2: Document
- Renesas RZ/V2H(P) SoC
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
-	linux-media@vger.kernel.org, biju.das.jz@bp.renesas.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, Rob Herring <robh@kernel.org>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250226093700.44726-2-clamor95@gmail.com>
 
-Hi Tommaso,
+On Wed, Feb 26, 2025 at 11:36:59AM +0200, Svyatoslav Ryhel wrote:
+> +  maxim,fcharge-current-limit-microamp:
+> +    description:
+> +      Fast-Charge current limit
+> +    minimum: 250000
+> +    default: 500000
+> +    maximum: 1550000
+> +
+> +  maxim,fcharge-timer-hours:
+> +    description:
+> +      Fast-Charge timer in hours. Setting this value 3 and lower or 11 and higher
+> +      will disable Fast-Charge timer.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 5
 
-On Wed, 26 Feb 2025 at 16:25, Tommaso Merciai
-<tommaso.merciai.xr@bp.renesas.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> The MIPI CSI-2 block on the Renesas RZ/V2H(P) SoC is similar to the one
-> found on the Renesas RZ/G2L SoC, with the following differences:
-> - A different D-PHY
-> - Additional registers for the MIPI CSI-2 link
-> - Only two clocks
->
-> Add a new compatible string, `renesas,r9a09g057-csi2`, for the RZ/V2H(P)
-> SoC.
->
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+You still did not answer why this is board specific. This was rejected
+in the past because of that reason and nothing here changed. Nothing
+will change without detailed explanation, so use other interfaces if you
+need user-space to configure it (see other drivers, e.g. maxim)
 
-Thanks for your patch!
+> +
+> +  maxim,fcharge-rst-threshold-high:
+> +    description:
+> +      Set Fast-Charge reset threshold to -100 mV
+> +    type: boolean
+> +
+> +  maxim,in-current-limit-microamp:
+> +    description:
+> +      Input current limit
+> +    minimum: 100000
+> +    default: 500000
+> +    maximum: 1500000
+> +
+> +  maxim,topoff-timer-minutes:
+> +    description:
+> +      Top-Off timer minutes
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 10, 20, 30, 40, 50, 60, 70]
+> +    default: 30
 
-> --- a/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
+Same.
 
-> @@ -48,7 +58,8 @@ properties:
->    resets:
->      items:
->        - description: CRU_PRESETN reset terminal
-> -      - description: CRU_CMN_RSTB reset terminal
-> +      - description:
-> +          CRU_CMN_RSTB reset terminal (all but RZ/V2H(P)) or D-PHY reset (RZ/V2H(P))
+> +
+> +  maxim,topoff-current-threshold-microamp:
+> +    description:
+> +      Top-Off current threshold
+> +    enum: [50000, 100000, 150000, 200000]
+> +    default: 50000
+> +
+> +  maxim,fcharge-usb-current-limit-microamp:
+> +    description:
+> +      Fast-Charge USB current limit
+> +    minimum: 100000
+> +    default: 500000
+> +    maximum: 1500000
+> +
+> +  maxim,fcharge-ac-current-limit-microamp:
+> +    description:
+> +      Fast-Charge AC current limit
+> +    minimum: 100000
+> +    default: 500000
+> +    maximum: 1500000
+> +
+> +  maxim,usb-in-current-limit-microamp:
+> +    description:
+> +      USB Input current limit
+> +    minimum: 100000
+> +    default: 500000
+> +    maximum: 1500000
+> +
+> +  maxim,ac-in-current-limit-microamp:
+> +    description:
+> +      AC Input current limit
+> +    minimum: 100000
+> +    default: 500000
+> +    maximum: 1500000
 
-According to the flowcharts[1] in the RZ/G2L, RZ/V2L, and RZ/G2UL
-documentation, CPG_RST_CRU.CRU_CMN_RSTB is the D-PHY reset on all of
-them, so I think you can just write "D-PHY reset".
-Or "D-PHY reset (CRU_CMN_RSTB or CRU_n_S_RESETN)"?
+Half of these properties as well are not suitable and duplicate existing
+sysfs interface.
 
-[1] Section 35. Camera Data Receiving Unit (CRU)
-    35.3.1 Starting Reception for the MIPI CSI-2 Input
-    35.3.2.2Stopping the D-PHY (MIPI CSI-2 Input)
+And for remaining, still no battery.
 
-Gr{oetje,eeting}s,
+Best regards,
+Krzysztof
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
