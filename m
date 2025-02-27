@@ -1,297 +1,433 @@
-Return-Path: <devicetree+bounces-151853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8040A4754F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 06:42:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60C37A47570
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 06:52:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC9767A28F6
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 05:41:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56DC916F49E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 05:52:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C372063C0;
-	Thu, 27 Feb 2025 05:42:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC4E321579C;
+	Thu, 27 Feb 2025 05:52:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ehhK9PzM";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="JVjsb4cV"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="WXUaw+2B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 379951E5210;
-	Thu, 27 Feb 2025 05:42:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD9861E8325;
+	Thu, 27 Feb 2025 05:52:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740634948; cv=fail; b=FaZt7WNQ6K6aO8Xe/vd7jjX/OJC+a76ynDrDHBRvyBorPgw5vCzXwQaGoT5tq7DhOn/RTBMXYDMcSnJK1er4Bk4WvZjqHWT3G36AGbXlrGa1gaDFcFDkji2go90HHkEkcmrOY/uYGrO7/TagqreF2EleGKgvwyZFfjZXbGleYd0=
+	t=1740635535; cv=pass; b=QM8mZBnpgkjhAdX0aqDK0k0OpQv2DUAgcvAccYh6JSrdxSthiTpB1kkLeLkjXUSiiQ4r59OnYcSkG1hlqrpDff66X2OG/+v4Z49RbXuo8oEjhzYwrqtk4HWzHxIAOF6RAI1sLyT7gJTKQqPYrFByTtS9FatnZQeGvfB+zyDQdSM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740634948; c=relaxed/simple;
-	bh=gfSoNOv9v3lLhlg1GUm6CRS75fmR7crwdj9l84rE4ZY=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=P59+/ivf173et2SQbJqHjIuEfK5KTf5W+INfDCb3f8BHWgPxTka1kH/J8JkuTjmHPvaHy1kadSszWe5KIyNpl6QuqE5fbjD9MgTfr7H3EUcYttjpndd0fuX3wX6C1j1MMRh5eOVAvONlch3IgC9gRcKM3LQ1H+YAHAVh7qtIIDM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=ehhK9PzM; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=JVjsb4cV; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 9cda681cf4cd11efaae1fd9735fae912-20250227
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=gfSoNOv9v3lLhlg1GUm6CRS75fmR7crwdj9l84rE4ZY=;
-	b=ehhK9PzMYgF4ci8vm4T6GMB4TX27iKR+s78w9fuF1cUz7oC0R/6uUJTldd1hXoodS/ZTNvwYCm+kaHpHu1tf7iA17OLxPQR4lJ1XZD9fLqAMYZf5YlAlaxc2Pda8ak4DjxOuIUlgCFxKcUzGKlE1ltjBxWQXT3y+oCf6OAjGl/U=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:62c3bbde-27bd-40a8-b32e-f8a25899e5bd,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:7849a3b5-a2a1-4ef3-9ef9-e116773da0a7,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|50,
-	EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
-	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 9cda681cf4cd11efaae1fd9735fae912-20250227
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-	(envelope-from <ck.hu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1788056914; Thu, 27 Feb 2025 13:42:20 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Thu, 27 Feb 2025 13:42:19 +0800
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Thu, 27 Feb 2025 13:42:19 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=p2T4APlkhObPdRl96Uy2tjlhdyvkzJj9eRZQZm5QXwsi9oa1SIts6uJOs7WH5aYQ96zx0/Nb0BstUsuRAsxZd7Vy+U1G808X6Dq//tHf3dT7bDuv0eCQsBrCbTuCpU80bI71BBo62IKzVVLYohCtBLL1J8nZl6NOl9XfYQ+BbiAyoYW8fTBma5HBLN6E7V690rWpLdhmQ0NJe37RO0elv4kefSpBrP7ojcX7899+Zzv3YEHGt3MbIh4OZbF0cT1pfKE6Hf7Tn1yc1vSv1RTMkIL0t7qkb5491c4Wlw1nYNCUWPYG56STZtR81Bzqd+gfYv2VwaT/kc5yliqK1b6Y/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gfSoNOv9v3lLhlg1GUm6CRS75fmR7crwdj9l84rE4ZY=;
- b=XdBLWePWmrzCbhCHnXE1icMLfgEBssqVrb9ORUqIgEXWauNPjcXN3H9cgL58fxU+MtA1r2ReYpGzuTDHtJYNNCuT8SMAHXg8toDZpcxM7+0WCU13nOukb+eZ3GbGNOlycosN3SpBk78MP05CXxBURVmuk/D94ulg+sGKT+4eC5vD9L1zGHtPWn+OSmll7uoHdDkTbgoDsAgXsH7FpjUSt9dDFgnE8ZW6AYgHbUAnsg3AA5l5zQPhCksioleKG5KV9oSKu9JuBxxF/+bNZ9CLAD1VnpZT0TK8MA42ORpXbJRnY+1XEowyPMl5cka1w4GgVYVHUree4fLNPnJzWCpNwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gfSoNOv9v3lLhlg1GUm6CRS75fmR7crwdj9l84rE4ZY=;
- b=JVjsb4cV+eVKdxYY3yFp2TeEyHGmmiTjzJSEwEXOmx1IAq8BhOuPsnRqg7SpWe802jwGZsdGhEW44/u2ETB03FZxbqzUbbjttQjXHuJRnzQ9ECptHCDbRrpGUeWjsr6Uhb/kq0mDGqlmHqpT6CrjPT/e6j4LscyckLv3Vj1A9os=
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
- by KL1PR03MB7310.apcprd03.prod.outlook.com (2603:1096:820:e0::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.22; Thu, 27 Feb
- 2025 05:42:14 +0000
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::9ce6:1e85:c4a7:2a54]) by TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::9ce6:1e85:c4a7:2a54%3]) with mapi id 15.20.8466.016; Thu, 27 Feb 2025
- 05:42:14 +0000
-From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-CC: "robh@kernel.org" <robh@kernel.org>, "jie.qiu@mediatek.com"
-	<jie.qiu@mediatek.com>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
-	"simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
-	<mripard@kernel.org>, =?utf-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
-	<jitao.shi@mediatek.com>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>, "maarten.lankhorst@linux.intel.com"
-	<maarten.lankhorst@linux.intel.com>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "kernel@collabora.com" <kernel@collabora.com>,
-	"dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	=?utf-8?B?TGV3aXMgTGlhbyAo5buW5p+P6YieKQ==?= <Lewis.Liao@mediatek.com>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, =?utf-8?B?VG9tbXlZTCBDaGVuICjpmbPlvaXoia8p?=
-	<TommyYL.Chen@mediatek.com>, =?utf-8?B?SXZlcyBDaGVuamggKOmZs+S/iuW8mCk=?=
-	<Ives.Chenjh@mediatek.com>, "airlied@gmail.com" <airlied@gmail.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, =?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?=
-	<Jason-JH.Lin@mediatek.com>, "junzhi.zhao@mediatek.com"
-	<junzhi.zhao@mediatek.com>
-Subject: Re: [PATCH v7 25/43] drm/mediatek: mtk_hdmi: Use dev_err_probe() in
- mtk_hdmi_dt_parse_pdata()
-Thread-Topic: [PATCH v7 25/43] drm/mediatek: mtk_hdmi: Use dev_err_probe() in
- mtk_hdmi_dt_parse_pdata()
-Thread-Index: AQHbgVPOXiv2svMP/0SgUtscOiygJrNasg0A
-Date: Thu, 27 Feb 2025 05:42:14 +0000
-Message-ID: <e849a7141b051e29389abf6dac5af22b8a0aab4b.camel@mediatek.com>
-References: <20250217154836.108895-1-angelogioacchino.delregno@collabora.com>
-	 <20250217154836.108895-26-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250217154836.108895-26-angelogioacchino.delregno@collabora.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Evolution 3.52.3-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|KL1PR03MB7310:EE_
-x-ms-office365-filtering-correlation-id: a7c0241a-9e61-4fa5-f722-08dd56f17d60
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?UEFRSFdYcGpIK21nc3VjYTJOMXRMR1cveDZWZ3dYaU5nN2FTUi9hUU9MTnRk?=
- =?utf-8?B?aDhaZmRIbjdUbkFFQXJva1NsdENoR2UzK0tUaGovWVplUGppR3RYejJYZFdJ?=
- =?utf-8?B?dG5QTWJ6QkJrZlp1OEtiY2JndVI4WTk5dnF2cU44MkdpbmpNOTVOS0xjS24r?=
- =?utf-8?B?cWdLOGZseWpJZjE5UHY2bmNrTWlJdnNaN29JbDlTaXFUL2ZGeUV5aGxQWVk4?=
- =?utf-8?B?bkdKZjFQZ3NEMXh3V1lDMGYxd2Frb1JHdnhQcHdZZkdqRFdPaGhMeVJlUS9D?=
- =?utf-8?B?dExwZmp2cytRRFQzcEgwMDhqYXZESzNPaDNUYlNnOElBeXpoZHUzcndqV3dX?=
- =?utf-8?B?OXVtaEplZ2pXQTU1eEc0cHVTUlZGNEQ2RzRSVnR6QjVlM0hFdmR6c3BLQkl1?=
- =?utf-8?B?QllPQTdCbzlMSFpJcndVcTZaUWdsaG91YUxsR3lVbUFDU2U5V1FoMmIzMmZk?=
- =?utf-8?B?MXlBYi9seElEdWxHNE9FRUE1L0FycVdqcExNQ3JybHdFOFFQL0ovVHRzNWUx?=
- =?utf-8?B?ZXVVdmt4bWZMV2VhY3JjTGpCNzBXQlQzNWJYYjlodEdsdUVjYUhUdlBFV3FZ?=
- =?utf-8?B?SDZIR3VaNFZyTWpwMkx2Zm9mWVdtNUwzd0VoWWpzMVQ2bkoyOGtwTGtFZFow?=
- =?utf-8?B?N3h4bTJWWFh3OGZoQ0lqUTZJcU56QjFzR1pnb0NrSjV3eWdoTys3R2ptR1pn?=
- =?utf-8?B?MEphWVNmT1pNNEpBUFEvNXpTQjdVWVJ0WHFkdE1TT3Q3cG91d2hwRkszV3cv?=
- =?utf-8?B?Y2R2WkhyUVY4RTlzY0NrejZFYThLQzZlMnpaUi9IUGNYYy9FcmR4QldVYldr?=
- =?utf-8?B?YVJiKzJhUGZGRlJHVFdmdnJsR1daSTBkUmxya0p1TGJjNk9uUFJSWkIzbmty?=
- =?utf-8?B?Nkw3anhleTA3NkZ5cXRQcGNudDlvTDZjaE44azZKSnB2VnhXVTN3T1JzWGlB?=
- =?utf-8?B?NkQ2eFJrdkxrSDEwRGxFL0J4V2hiYkpUdDJvN2EwZTJ5eE9HczFBSWdoUy96?=
- =?utf-8?B?dFIxOUxUT3QvZ01jUnNZK2hZaWc0Nkl1Vmc2QS83Nlo1ZXNCSzB6SFd0Qkow?=
- =?utf-8?B?M3NHOThkaUtndmVpVzdGc3o4Tkx2YTVabG1wOFhYcGxDZTRLUzQyM1Z4TU1B?=
- =?utf-8?B?bk45L01MKzgxRVBVelZNOEQ2TWlrOUMwSE5jYzBnY0tSa3dtQTNlcVlrOTBL?=
- =?utf-8?B?UndnbnBBUkUyamJLNmxFcS9qYlFJSHUvMTZBbWhkc1dXQll6ZFJ6WXA0VFFW?=
- =?utf-8?B?VU9rUEk3SDVxUGhrSVlaY2hGa0t5M21yZTJZVVFsV2drMVdTUklIc0xtRnpD?=
- =?utf-8?B?cG5kSlhBRm5raU5sYjFtd3dMbjJ0OFI2L0lFUThySU81cG9JNzJBbStvSWd3?=
- =?utf-8?B?NStVTmtBSkNlc3dhVzVCeWU1eGo0cUY4cWNxUENJcGh1alp4b3FCZnB0RVVm?=
- =?utf-8?B?RGpKQ2lPRDhncVVmcmE2dk9wa050ZnFkTThxYmtkelV5VmgxanpHdGtUMys3?=
- =?utf-8?B?cUpvc0pWOXZlZFBTR0JNWE5Fdis3bk5id0RTVUNaZmVlejFMME5paC82OUFW?=
- =?utf-8?B?WERxQTE5aXdFWVQyZGVwWEtGdXMwWXpLbDZxNVRJenhUbTJhYkJrSWY2c0lB?=
- =?utf-8?B?UWNuTW5jblB2MDFtRjJJT3RiYlVYTUpLMDhtdmZ1dk8zTHZid3dzajlWelNL?=
- =?utf-8?B?M3c1bTBIZHZuQzJYRmdaZWF3cU10OWxzeGhtUGhuK3MwVlJDVElmU0x5alJK?=
- =?utf-8?B?RUdpTFhsSk5xUlZCQ3E2bGdJbjhMVmg2SGN3Q0tZTWhJZ1NwaExmWkxleDFQ?=
- =?utf-8?B?QWNSVk13ajhZckZjRC9nWHQ3VGpKakNabWZJT3Z1OTh5Q3c2dEkzRko4TjNs?=
- =?utf-8?B?ZWgzOXArVDJNdlMvSFVvOEtsK2gzTzdWVlJqQ0JmWWVaNWFZWmVMYnp3M1JM?=
- =?utf-8?Q?tSIijSUXwlH7pPXqH0vKGK3Mxir+6Vj2?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ejQzOFNBOW5PODJSejU2V003YWwvOVJYS2lGbWRmMGM1YjlRTGpXVFlZclhD?=
- =?utf-8?B?VWg2QWdsbUt5ZkkwT2hjYlpYMVhNKytub1dFWkNpcU5WSTU3aVJGMjFmMEd3?=
- =?utf-8?B?OWljVyszL3JuVHp0L243dHFNNytIK2dvU00wcGVwMzkzcjRJSjlxU0dtcFJG?=
- =?utf-8?B?NWJBditiQkdGU2VkRWNIbStmRGkwN2orUEs2QitJMFJMTHBVR1ZNbnlhTHJN?=
- =?utf-8?B?OGhyRi9vbU1ab0lmUTJ0VCsvbi9NdTM0TllUNThwTlRmekhRMkVUaEZOS1Br?=
- =?utf-8?B?UUxSa2dFR0NyMCtscWZ5K3daYTRaRjAyMnkzRm1kc3JFR2dyUEVNeTIyUytS?=
- =?utf-8?B?L0Fucit6MHNpb2I4bUROK3ZDbWhxeVc4aXVyWFNBSnUreGMyVHMwd0R2TnpN?=
- =?utf-8?B?T1NsWVhtcXFMaTZ1VzQ0NGVoZGl0R0krdUdRQjVCOHN5cHJhZjRtVzlwQzNQ?=
- =?utf-8?B?Tm1UcjNqOTM1ZFVlRlBuWjhVbmVvNGhtMEp0ODZVV0RUdEVYTFpITjUyMVU1?=
- =?utf-8?B?Q0tyRFgwK2N6MDd6TEJSdEhSYWt0Q2g4VVJiZTY5d0tMdVhoOVI3QjRrb0tO?=
- =?utf-8?B?RldwT3Z1WkJ4eUFJWGoxOXRzaWJFUTdVZi9ReS85eVlpZkdLMlBiTGt3Mzdj?=
- =?utf-8?B?RUdmRDBxVkVZTWpsOGliYVMyZ3BZQ282NmYxdWJrUU5jdXUwc3locEkzdGVs?=
- =?utf-8?B?d0Z2WnJ2d21jSXJKWHZqZ2JLUUFkZ3M0Q3JGWEVCVmdpdnVvZXBzYVp2a0t6?=
- =?utf-8?B?L3FPS0RKM0htOWdYc0VTcFFVU1lPT01WYSsvL1IxaDAyMjJNSGVRVko3cEJj?=
- =?utf-8?B?WitxVXowdXNrSTN2SmY2T0NHd29JUjN1WHVyRFA1Vzc2b0RJdkNoejRlV3JV?=
- =?utf-8?B?NHo1Ym54UjNWT0FyRmF6bXRhRm5OZGtpVHh6dzJmWDVsY0kraXBwTW1reG12?=
- =?utf-8?B?ZStFcmpyU1lsN1FtN1oxZHpFbGJnc1pRVWhsNVM1NTQ4YTQ3bVRxOGs1NUtU?=
- =?utf-8?B?NTdFRDBob2R4RmFZa3E1RWdrZHFOTXB3enkwcUJNc1BrZHFNL2x3am5LRml2?=
- =?utf-8?B?am5mczM3UjVuZEhISmRaWEhnMkE4K1ArNXpjbUJuK2I1V3NRa1F6UExhaFVv?=
- =?utf-8?B?THNkRWhUUHJoZDNReExaTlhFbDRyVUpuV3NlY3JkOEVGK3VxSzJUakg5TWVm?=
- =?utf-8?B?aWZDTjFYa3RFeVpZOEJjcldvS29BdnlHMU5YZ0FyRW5KRXFKcDVNODFpUW44?=
- =?utf-8?B?Y2wwVzNSVzFDU0pzZGRYR1REOGV3UGhZVFZBY3dvQk1TSndGQk53bTBZSVVG?=
- =?utf-8?B?TzdoVnNEOFBaQXE2QVZCTWJHai9EQXEzcHlYZzVDZmVZS0JMUmt3M3d5ZE9a?=
- =?utf-8?B?RnBHclFha0MvSkpCUENJejdZcmNUK1pYVmRyOEQ5dVExeTM5TGMyczNGdWNS?=
- =?utf-8?B?NWJ0TTJ6aDBMa1ZYZnVtRk5pUE15bEU5N3hoQ3pxRENCdXdVNXBwSmtZRFB6?=
- =?utf-8?B?b2FmcXRiY3FBRFFVbWUydzVkQ005SStRRE9ISytiNDhYSndETC9KdzVNVjhV?=
- =?utf-8?B?amV4cEl5UkRIbVd2cnYwUEdRNzdESHhjK04rNXFXSGpDTU53WTZZbTJRQ2NU?=
- =?utf-8?B?cjd2TFpTMWZmT1c0OVE5VC9DRjFWNXdHbVN6Q1NVaHdtZHUyQTZqRHFPWnRN?=
- =?utf-8?B?MWZwYUI4R21zNWE0Mkxlc205QTVyNCtycXdUN1ptUGR5emV3TE5wUmc0RC95?=
- =?utf-8?B?YnB2T2RFdGhLcmhUdnR2YTlBQk8vd2srcE5YUCt6RU0reEI1MU53Z0ZtOUtL?=
- =?utf-8?B?YzNUOW1ZVGFNR1dmQm41UFNvbWF4VXdpdFkyQWtJaHpTMGdUODcrUmxlVFBR?=
- =?utf-8?B?NHNvMGVPT20rWlVEVkhkQ2gwWnJ2bHRtL21lN2U5QitSOGVpVmw4WGduVkFC?=
- =?utf-8?B?MlIzZHhoWE45NFYvUUtjUzRTbGJiY01MUThCV2FBUkRnWUdub3dKMmM2UEtK?=
- =?utf-8?B?VklJdE40VStaSzdEWVl3KzRHVGhTRENWSTg3OTFQa2xjbEVERlczNXdMSlRz?=
- =?utf-8?B?bG9TWUhCQXArTEgycUIzaWZOL2xFNy9BWlFQZERxUGpvL2xoUUJrT2l4aXg1?=
- =?utf-8?Q?jrh6hBhCO6glELiWcr8NCGXxb?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B50571179FBC8644BDBA542077078BE9@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1740635535; c=relaxed/simple;
+	bh=ME/NYsSMJo5a5ws+iTC9lshKpHRxhnfHIHvDbs891S0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JM6mNwwzfPEB+1HZs2H9uY5stJGAvsU6fcYYeOut9KPS9Q8RV20kYlieKO4dbkt/TI/NoQcydXR3gSvfWQnNir45MGnQcPR8Eh4WRwECKMGBFFQ2ahPav7yTwvWdGhCn6eBWdTynVVHa9TbF2kSwLYxHma9+W+BzghO0Eus0EQs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=WXUaw+2B; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1740635482; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=JLUR2Fw3NWPYuhOk9tR6ct2QKroj5TJofH4lvbFIWkMht9GW3LQTbQHtBrVcMn9mn/QlDKFPUAo/6QeBHMpNK9GeiQ9fw12L3W60oABTHSCt06eTk9ZGd1J41w1AgVZIG410HMPpDXQfiX6mRZczDaG7y28+eFFbJ7RtYlN1cQQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1740635482; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=APTt3EraxOF9pqvzZFOHbOfyOUNQInvUHC8CPTntKvQ=; 
+	b=JZmx4QfAkxvm1/xR1W9KbtwZadoZp4NZfOmNU56ANHpgfkgFjjI1SwKtCMziAyNrYgLdNBPqO7hNC5ValqFqR7rvH+m/fRnPGCpQRIkJeWU/CG+0N4+dta/D9JQ66vWCT4qvK+XcRJHd3mXwm03c9v6tYm/Jp4bSkmIbWhcVVag=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
+	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740635482;
+	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=APTt3EraxOF9pqvzZFOHbOfyOUNQInvUHC8CPTntKvQ=;
+	b=WXUaw+2BpeJZgKYiRdlTHC49Wj2hYAz3zBXQLbs6NIaEY7B8UWvbrrClR1BaGFOp
+	3D+70XxhDtWTEHi866HkCQPWO0mX5Ez55X/P/lHvXeRdmxVdMhBz3zJdPmgZTyBnnGi
+	F4UbIIEITy9ok9kL2xsIQ4rZUG5r+Gm7GXqGQtRc=
+Received: by mx.zohomail.com with SMTPS id 1740635479590396.70418004596513;
+	Wed, 26 Feb 2025 21:51:19 -0800 (PST)
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+To: Shreeya Patel <shreeya.patel@collabora.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	jose.abreu@synopsys.com,
+	nelson.costa@synopsys.com,
+	shawn.wen@rock-chips.com,
+	nicolas.dufresne@collabora.com,
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: kernel@collabora.com,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Tim Surber <me@timsurber.de>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Diederik de Haas <didi.debian@cknow.org>
+Subject: [PATCH v12 0/6] Add Synopsys DesignWare HDMI RX Controller
+Date: Thu, 27 Feb 2025 08:50:19 +0300
+Message-ID: <20250227055025.766018-1-dmitry.osipenko@collabora.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7c0241a-9e61-4fa5-f722-08dd56f17d60
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Feb 2025 05:42:14.7046
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Gw5YsLWjhQ6p38HgtUkmCqG4w55Iryjt5/xgH8qp3HPyjxiD+ttEYsyxVv0dyoZqxtPzx3Uj4X1+mmAooQHeHQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB7310
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-SGksIEFuZ2VsbzoNCg0KT24gTW9uLCAyMDI1LTAyLTE3IGF0IDE2OjQ4ICswMTAwLCBBbmdlbG9H
-aW9hY2NoaW5vIERlbCBSZWdubyB3cm90ZToNCj4gRXh0ZXJuYWwgZW1haWwgOiBQbGVhc2UgZG8g
-bm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW50aWwgeW91IGhhdmUgdmVyaWZp
-ZWQgdGhlIHNlbmRlciBvciB0aGUgY29udGVudC4NCj4gDQo+IA0KPiBDaGFuZ2UgZXJyb3IgcHJp
-bnRzIHRvIHVzZSBkZXZfZXJyX3Byb2JlKCkgaW5zdGVhZCBvZiBkZXZfZXJyKCkNCj4gd2hlcmUg
-cG9zc2libGUgaW4gZnVuY3Rpb24gbXRrX2hkbWlfZHRfcGFyc2VfcGRhdGEoKSwgdXNlZCBvbmx5
-DQo+IGR1cmluZyBkZXZpY2UgcHJvYmUuDQo+IFdoaWxlIGF0IGl0LCBhbHNvIGJlYXV0aWZ5IHNv
-bWUgcHJpbnRzLg0KDQpJIHdvdWxkIGFwcGx5IGJ1Zy1maXgsIGNsZWFudXAsIGFuZCByZWZpbmVt
-ZW50IHBhdGNoZXMgZmlyc3QgYW5kIHRoZW4gYXBwbHkgdjIgcmVsYXRlZCBwYXRjaGVzLg0KU28g
-YnVnLWZpeCwgY2xlYW51cCwgYW5kIHJlZmluZW1lbnQgcGF0Y2hlcyBjb3VsZCBiZSBiYWNrcG9y
-dGVkIHRvIG9sZCB2ZXJzaW9uIGJyYW5jaCB3aXRob3V0IGFueSB2MiByZWxhdGVkIHBhdGNoZXMu
-DQpXaGVuIEkgYXBwbHkgdGhpcyBwYXRjaCwgY29uZmxpY3RzIGhhcHBlbi4NClBsZWFzZSByZWJh
-c2UgdGhpcyBzZXJpZXMgb250byBtZWRpYXRlay1kcm0tbmV4dCwgYW5kIGFwcGx5IHRoaXMgcGF0
-Y2ggYmVmb3JlIHYyIHJlbGF0ZWQgcGF0Y2hlcy4NCg0KUmVnYXJkcywNCkNLDQoNCj4gDQo+IFJl
-dmlld2VkLWJ5OiBDSyBIdSA8Y2suaHVAbWVkaWF0ZWsuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBB
-bmdlbG9HaW9hY2NoaW5vIERlbCBSZWdubyA8YW5nZWxvZ2lvYWNjaGluby5kZWxyZWdub0Bjb2xs
-YWJvcmEuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfaGRtaS5j
-IHwgMzEgKysrKysrKysrKy0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAx
-MCBpbnNlcnRpb25zKCspLCAyMSBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2hkbWkuYyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRl
-ay9tdGtfaGRtaS5jDQo+IGluZGV4IDRiZjE5NTc0NDYzZC4uNjFlNTIxNDMwYjQ4IDEwMDY0NA0K
-PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2hkbWkuYw0KPiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2hkbWkuYw0KPiBAQCAtMTM3MiwyNSArMTM3MiwxOSBA
-QCBzdGF0aWMgaW50IG10a19oZG1pX2R0X3BhcnNlX3BkYXRhKHN0cnVjdCBtdGtfaGRtaSAqaGRt
-aSwNCj4gIHsNCj4gICAgICAgICBzdHJ1Y3QgZGV2aWNlICpkZXYgPSAmcGRldi0+ZGV2Ow0KPiAg
-ICAgICAgIHN0cnVjdCBkZXZpY2Vfbm9kZSAqbnAgPSBkZXYtPm9mX25vZGU7DQo+IC0gICAgICAg
-c3RydWN0IGRldmljZV9ub2RlICpjZWNfbnAsICpyZW1vdGUsICppMmNfbnA7DQo+ICsgICAgICAg
-c3RydWN0IGRldmljZV9ub2RlICpyZW1vdGUsICppMmNfbnA7DQo+ICAgICAgICAgc3RydWN0IHBs
-YXRmb3JtX2RldmljZSAqY2VjX3BkZXY7DQo+ICAgICAgICAgc3RydWN0IHJlZ21hcCAqcmVnbWFw
-Ow0KPiAgICAgICAgIGludCByZXQ7DQo+IA0KPiAgICAgICAgIHJldCA9IG10a19oZG1pX2dldF9h
-bGxfY2xrKGhkbWksIG5wKTsNCj4gLSAgICAgICBpZiAocmV0KSB7DQo+IC0gICAgICAgICAgICAg
-ICBpZiAocmV0ICE9IC1FUFJPQkVfREVGRVIpDQo+IC0gICAgICAgICAgICAgICAgICAgICAgIGRl
-dl9lcnIoZGV2LCAiRmFpbGVkIHRvIGdldCBjbG9ja3M6ICVkXG4iLCByZXQpOw0KPiAtDQo+IC0g
-ICAgICAgICAgICAgICByZXR1cm4gcmV0Ow0KPiAtICAgICAgIH0NCj4gKyAgICAgICBpZiAocmV0
-KQ0KPiArICAgICAgICAgICAgICAgcmV0dXJuIGRldl9lcnJfcHJvYmUoZGV2LCByZXQsICJGYWls
-ZWQgdG8gZ2V0IGNsb2Nrc1xuIik7DQo+IA0KPiAgICAgICAgIC8qIFRoZSBDRUMgbW9kdWxlIGhh
-bmRsZXMgSERNSSBob3RwbHVnIGRldGVjdGlvbiAqLw0KPiAgICAgICAgIGNlY19ucCA9IG9mX2dl
-dF9jb21wYXRpYmxlX2NoaWxkKG5wLT5wYXJlbnQsICJtZWRpYXRlayxtdDgxNzMtY2VjIik7DQo+
-IC0gICAgICAgaWYgKCFjZWNfbnApIHsNCj4gLSAgICAgICAgICAgICAgIGRldl9lcnIoZGV2LCAi
-RmFpbGVkIHRvIGZpbmQgQ0VDIG5vZGVcbiIpOw0KPiAtICAgICAgICAgICAgICAgcmV0dXJuIC1F
-SU5WQUw7DQo+IC0gICAgICAgfQ0KPiArICAgICAgIGlmICghY2VjX25wKQ0KPiArICAgICAgICAg
-ICAgICAgcmV0dXJuIGRldl9lcnJfcHJvYmUoZGV2LCAtRUlOVkFMLCAiRmFpbGVkIHRvIGZpbmQg
-Q0VDIG5vZGVcbiIpOw0KPiANCj4gICAgICAgICBjZWNfcGRldiA9IG9mX2ZpbmRfZGV2aWNlX2J5
-X25vZGUoY2VjX25wKTsNCj4gICAgICAgICBpZiAoIWNlY19wZGV2KSB7DQo+IEBAIC0xNDEzLDkg
-KzE0MDcsOCBAQCBzdGF0aWMgaW50IG10a19oZG1pX2R0X3BhcnNlX3BkYXRhKHN0cnVjdCBtdGtf
-aGRtaSAqaGRtaSwNCj4gICAgICAgICBpZiAoSVNfRVJSKHJlZ21hcCkpDQo+ICAgICAgICAgICAg
-ICAgICByZXQgPSBQVFJfRVJSKHJlZ21hcCk7DQo+ICAgICAgICAgaWYgKHJldCkgew0KPiAtICAg
-ICAgICAgICAgICAgZGV2X2VycihkZXYsDQo+IC0gICAgICAgICAgICAgICAgICAgICAgICJGYWls
-ZWQgdG8gZ2V0IHN5c3RlbSBjb25maWd1cmF0aW9uIHJlZ2lzdGVyczogJWRcbiIsDQo+IC0gICAg
-ICAgICAgICAgICAgICAgICAgIHJldCk7DQo+ICsgICAgICAgICAgICAgICBkZXZfZXJyX3Byb2Jl
-KGRldiwgcmV0LA0KPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiRmFpbGVkIHRvIGdl
-dCBzeXN0ZW0gY29uZmlndXJhdGlvbiByZWdpc3RlcnNcbiIpOw0KPiAgICAgICAgICAgICAgICAg
-Z290byBwdXRfZGV2aWNlOw0KPiAgICAgICAgIH0NCj4gICAgICAgICBoZG1pLT5zeXNfcmVnbWFw
-ID0gcmVnbWFwOw0KPiBAQCAtMTQ0MywyMCArMTQzNiwxNiBAQCBzdGF0aWMgaW50IG10a19oZG1p
-X2R0X3BhcnNlX3BkYXRhKHN0cnVjdCBtdGtfaGRtaSAqaGRtaSwNCj4gICAgICAgICB9DQo+IA0K
-PiAgICAgICAgIGkyY19ucCA9IG9mX3BhcnNlX3BoYW5kbGUocmVtb3RlLCAiZGRjLWkyYy1idXMi
-LCAwKTsNCj4gKyAgICAgICBvZl9ub2RlX3B1dChyZW1vdGUpOw0KPiAgICAgICAgIGlmICghaTJj
-X25wKSB7DQo+IC0gICAgICAgICAgICAgICBkZXZfZXJyKGRldiwgIkZhaWxlZCB0byBmaW5kIGRk
-Yy1pMmMtYnVzIG5vZGUgaW4gJXBPRlxuIiwNCj4gLSAgICAgICAgICAgICAgICAgICAgICAgcmVt
-b3RlKTsNCj4gLSAgICAgICAgICAgICAgIG9mX25vZGVfcHV0KHJlbW90ZSk7DQo+IC0gICAgICAg
-ICAgICAgICByZXQgPSAtRUlOVkFMOw0KPiArICAgICAgICAgICAgICAgcmV0ID0gZGV2X2Vycl9w
-cm9iZShkZXYsIC1FSU5WQUwsICJObyBkZGMtaTJjLWJ1cyBpbiBjb25uZWN0b3JcbiIpOw0KPiAg
-ICAgICAgICAgICAgICAgZ290byBwdXRfZGV2aWNlOw0KPiAgICAgICAgIH0NCj4gLSAgICAgICBv
-Zl9ub2RlX3B1dChyZW1vdGUpOw0KPiANCj4gICAgICAgICBoZG1pLT5kZGNfYWRwdCA9IG9mX2Zp
-bmRfaTJjX2FkYXB0ZXJfYnlfbm9kZShpMmNfbnApOw0KPiAgICAgICAgIG9mX25vZGVfcHV0KGky
-Y19ucCk7DQo+ICAgICAgICAgaWYgKCFoZG1pLT5kZGNfYWRwdCkgew0KPiAtICAgICAgICAgICAg
-ICAgZGV2X2VycihkZXYsICJGYWlsZWQgdG8gZ2V0IGRkYyBpMmMgYWRhcHRlciBieSBub2RlXG4i
-KTsNCj4gLSAgICAgICAgICAgICAgIHJldCA9IC1FSU5WQUw7DQo+ICsgICAgICAgICAgICAgICBy
-ZXQgPSBkZXZfZXJyX3Byb2JlKGRldiwgLUVJTlZBTCwgIkZhaWxlZCB0byBnZXQgZGRjIGkyYyBh
-ZGFwdGVyIGJ5IG5vZGVcbiIpOw0KPiAgICAgICAgICAgICAgICAgZ290byBwdXRfZGV2aWNlOw0K
-PiAgICAgICAgIH0NCj4gDQo+IC0tDQo+IDIuNDguMQ0KPiANCg0K
+Note RE the MAINTAINERS patch:
+  Shreeya is currently busy and will be maintaining driver later on.
+  I'm helping to upstream the driver meantime.
+
+This series implements support for the Synopsys DesignWare
+HDMI RX Controller, being compliant with standard HDMI 1.4b
+and HDMI 2.0.
+
+Features that are currently supported by the HDMI RX driver
+have been tested on rock5b board using a HDMI to micro-HDMI cable.
+It is recommended to use a good quality cable as there were
+multiple issues seen during testing the driver.
+
+Please note the below information :-
+* HDMIRX driver now only works with the opensource TF-A.
+* We have tested the working of OBS studio with HDMIRX driver and
+there were no issues seen.
+* We tested and verified the support for interlaced video.
+* We tested capturing of YUV formats.
+
+To test the HDMI RX Controller driver, following example commands can be used :-
+
+root@debian-rockchip-rock5b-rk3588:~#  v4l2-ctl --stream-mmap \
+--stream-count=100 --stream-to=/home/hdmiin4k.raw
+
+root@debian-rockchip-rock5b-rk3588:~# ffmpeg -f rawvideo -vcodec rawvideo \
+-s 1920x1080 -r 60 -pix_fmt bgr24 -i /home/hdmiin4k.raw output.mkv
+
+CEC compliance test results :-
+
+* https://gitlab.collabora.com/-/snippets/380
+* https://gitlab.collabora.com/-/snippets/381
+
+Following is the v4l2-compliance test result :-
+
+root@debian-rockchip-rock5b-rk3588:~# v4l2-compliance -d /dev/video1
+v4l2-compliance 1.29.0-5326, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 77f5df419204 2025-02-07 08:59:59
+
+Compliance test for snps_hdmirx device /dev/video1:
+
+Driver Info:
+        Driver name      : snps_hdmirx
+        Card type        : snps_hdmirx
+        Bus info         : platform:fdee0000.hdmi_receiver
+        Driver version   : 6.14.0
+        Capabilities     : 0x84201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+
+Required ioctls:
+        test VIDIOC_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/video1 open: OK
+        test VIDIOC_QUERYCAP: OK
+        test VIDIOC_G/S_PRIORITY: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+        test VIDIOC_LOG_STATUS: OK
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 1 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK
+        test VIDIOC_DV_TIMINGS_CAP: OK
+        test VIDIOC_G/S_EDID: OK
+
+Control ioctls (Input 0):
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 4 Private Controls: 0
+
+Format ioctls (Input 0):
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+        test VIDIOC_G/S_PARM: OK
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK
+        test VIDIOC_TRY_FMT: OK
+        test VIDIOC_S_FMT: OK
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls (Input 0):
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls (Input 0):
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_REMOVE_BUFS: OK
+        test VIDIOC_EXPBUF: OK
+        test Requests: OK (Not Supported)
+        test blocking wait: OK
+
+Test input 0:
+
+Streaming ioctls:
+        test read/write: OK (Not Supported)
+        test MMAP (no poll, REQBUFS): OK                  
+        test MMAP (select, REQBUFS): OK                   
+        test MMAP (epoll, REQBUFS): OK                    
+        test MMAP (no poll, CREATE_BUFS): OK              
+        test MMAP (select, CREATE_BUFS): OK               
+        test MMAP (epoll, CREATE_BUFS): OK                
+        test USERPTR (no poll): OK (Not Supported)
+        test USERPTR (select): OK (Not Supported)
+        test DMABUF: Cannot test, specify --expbuf-device
+
+Total for snps_hdmirx device /dev/video1: 57, Succeeded: 57, Failed: 0, Warnings: 0
+
+---
+
+InfoFrame debugfs example output:-
+
+# edid-decode -c -I /sys/kernel/debug/v4l2/fdee0000.hdmi_receiver/infoframes/avi
+edid-decode InfoFrame (hex):
+
+82 02 0d b1 12 28 84 00 00 00 00 00 00 00 00 00
+00
+
+----------------
+
+HDMI InfoFrame Checksum: 0xb1
+
+AVI InfoFrame
+  Version: 2
+  Length: 13
+  Y: Color Component Sample Format: RGB
+  A: Active Format Information Present: Yes
+  B: Bar Data Present: Bar Data not present
+  S: Scan Information: Composed for an underscanned display
+  C: Colorimetry: No Data
+  M: Picture Aspect Ratio: 16:9
+  R: Active Portion Aspect Ratio: 8
+  ITC: IT Content: IT Content (CN is valid)
+  EC: Extended Colorimetry: xvYCC601
+  Q: RGB Quantization Range: Limited Range
+  SC: Non-Uniform Picture Scaling: No Known non-uniform scaling
+  YQ: YCC Quantization Range: Limited Range
+  CN: IT Content Type: Graphics
+  PR: Pixel Data Repetition Count: 0
+  Line Number of End of Top Bar: 0
+  Line Number of Start of Bottom Bar: 0
+  Pixel Number of End of Left Bar: 0
+  Pixel Number of Start of Right Bar: 0
+
+----------------
+
+edid-decode 1.29.0-5326
+edid-decode SHA: 77f5df419204 2025-02-07 08:59:59
+
+AVI InfoFrame conformity: PASS
+
+---
+
+Changes in v12 :-
+- Removed legacy wait_finish/prepare() callbacks from vb2_ops,
+  tested that driver works without them.
+- Updated and extended driver Kconfig description RE the
+  LOAD_DEFAULT_EDID option.
+- Made minor cosmetical improvements to the code
+
+Changes in v11 :-
+- Reverted back defconfig patch by removing LOAD_DEFAULT_EDID=y option
+- Removed CEC notifier since it's not needed for this driver
+- Replaced video_unregister_device() with vb2_video_unregister_device()
+- Added more clarifying comments to the code and updated the timing
+  sanity-check, borrowing it from a newer downstream driver version.
+
+Changes in v10 :-
+- Replaced cec_unregister_adapter() with cec_notifier_cec_adap_unregister()
+  in the error unwinding code path of the driver probe, tested that it works
+  properly.
+- Changed CEC registration code to propagate original error code to the
+  driver's probe-failure code path on the CEC registration failure.
+- Enabled LOAD_DEFAULT_EDID=y in the defconfig patch
+
+Changes in v9 :-
+- Added devm_add_action_or_reset() to free reserved memory properly
+  on driver probe error
+- Extra minor code cleanups
+
+Changes in v8 :-
+- Changed HPD logic as was requested by Hans Verkuil. HPD handling
+  is now decoupled from HDMI plugin/out events and works independently
+  from 5v status.
+- Bumped number of EDID blocks from 2 to 4 as was requested by
+  Hans Verkuil and verified that reading 3/4 EDID blocks from transmitter
+  works properly.
+- Made few extra minor cleanup/improvements to the driver code
+
+Changes in v7 :-
+- Changed InfoFrame debugfs to return truncated payload data
+- Updated cover-letter example stream capture cmdline with a minimized
+  and cleaned version of the cmdline
+- Added AVI InfoFrame example output to the cover-letter
+
+Changes in v6 :-
+- Driver now keeps HPD low instead of zeroing EDID when EDID-clearing is
+  invoked and when default EDID usage is disabled in the kernel config
+- Added InfoFrame debugfs support
+- Added another code comment clarifying validation of timing values
+- Rebased on top of recent media-next tree
+
+Changes in v5 :-
+- Fix the interrupt IRQ number in the dt-bindings and device tree
+- Add alignment property to ensure hdmi-receiver-cma
+  starts at a 64KB-aligned address
+- Change the MODULE_DESCRIPTION
+- Add VIDEO_SYNOPSYS_HDMIRX as prefix to the default edid config
+- Drop the enabling of default edid in the Kconfig
+- Replace the default EDID with hdmi-4k-300mhz EDID produced
+  by v4l2-ctl tool for better compatibility with various HDMI
+  cables and adapters
+- Rework the write_edid and set_edid functions
+- During format change, retrieve the current pixel format,
+  color depth, and AVI infoframe details instead of only
+  detecting the format
+- Improve the logging mechanism and delays in the
+  hdmirx_wait_signal_lock function
+- Fix the 4K@60 capturing for RGB format
+- Document what hdmirx_check_timing_valid function does
+- Rework the hdmirx_get_detected_timings function
+- Fix the NV16/24 size image value
+- Add the implementation from Benjamin Hoff to expose the
+  ITC type to v4l2
+- Remove all the firmware related code
+
+Changes in v4 :-
+- Remove DTS changes included in the device tree patch
+- Remove the hdmi rx pin info as it's already present
+in the rk3588-base-pinctrl.dtsi
+- Create a separate config option for selecting the EDID
+and enable it by default
+- Improve the comment related to DV timings and move it
+to the side of hdmirx_get_detected_timings
+- Add 100ms delay before pulling the HPD high
+- Do not return the detected timings from VIDIOC_G_DV_TIMINGS
+- Drop the bus info from hdmirx_querycap
+- If *num_planes != 0 then return 0 in hdmirx_queue_setup
+- Set queue->min_queued_buffers to 1
+- Drop q->allow_cache_hints = 0; as it's always 0 by default
+- Add a comment for q->dma_attrs = DMA_ATTR_FORCE_CONTIGUOUS;
+- Drop .read = vb2_fop_read as it's not supported by driver
+- Remove redundant edid_init_data_600M
+- Make HPD low when driver is loaded
+- Add support for reading AVI Infoframe
+- Remove msg_len checks from hdmirx_cec_transmit
+- Add info about the CEC compliance test in the cover letter
+- Add arbitration lost status
+- Validate the physical address inside the EDID
+
+Changes in v3 :-
+- Use v4l2-common helpers in the HDMIRX driver
+- Rename cma node and phandle names
+- Elaborate the comment to explain 160MiB calculation
+- Move &hdmi_receiver_cma to the rock5b dts file
+- Add information about interlaced video testing in the
+cover-letter
+
+Changes in v2 :-
+- Fix checkpatch --strict warnings
+- Move the dt-binding include file changes in a separate patch
+- Add a description for the hardware in the dt-bindings file
+- Rename resets, vo1 grf and HPD properties
+- Add a proper description for grf and vo1-grf phandles in the
+bindings
+- Rename the HDMI RX node name to hdmi-receiver
+- Include gpio header file in binding example to fix the
+dt_binding_check failure
+- Move hdmirx_cma node to the rk3588.dtsi file
+- Add an entry to MAINTAINERS file for the HDMIRX driver
+
+Sebastian Reichel (2):
+  arm64: dts: rockchip: Enable HDMI receiver on rock-5b
+  arm64: defconfig: Enable Synopsys HDMI receiver
+
+Shreeya Patel (4):
+  MAINTAINERS: Add entry for Synopsys DesignWare HDMI RX Driver
+  dt-bindings: media: Document bindings for HDMI RX Controller
+  media: platform: synopsys: Add support for HDMI input driver
+  arm64: dts: rockchip: Add device tree support for HDMI RX Controller
+
+ .../bindings/media/snps,dw-hdmi-rx.yaml       |  132 +
+ MAINTAINERS                                   |    8 +
+ .../dts/rockchip/rk3588-base-pinctrl.dtsi     |   14 +
+ .../arm64/boot/dts/rockchip/rk3588-extra.dtsi |   57 +
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |   18 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/synopsys/Kconfig       |    3 +
+ drivers/media/platform/synopsys/Makefile      |    2 +
+ .../media/platform/synopsys/hdmirx/Kconfig    |   36 +
+ .../media/platform/synopsys/hdmirx/Makefile   |    4 +
+ .../platform/synopsys/hdmirx/snps_hdmirx.c    | 2750 +++++++++++++++++
+ .../platform/synopsys/hdmirx/snps_hdmirx.h    |  394 +++
+ .../synopsys/hdmirx/snps_hdmirx_cec.c         |  284 ++
+ .../synopsys/hdmirx/snps_hdmirx_cec.h         |   44 +
+ 16 files changed, 3749 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+ create mode 100644 drivers/media/platform/synopsys/Kconfig
+ create mode 100644 drivers/media/platform/synopsys/Makefile
+ create mode 100644 drivers/media/platform/synopsys/hdmirx/Kconfig
+ create mode 100644 drivers/media/platform/synopsys/hdmirx/Makefile
+ create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx.c
+ create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx.h
+ create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx_cec.c
+ create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx_cec.h
+
+-- 
+2.48.1
+
 
