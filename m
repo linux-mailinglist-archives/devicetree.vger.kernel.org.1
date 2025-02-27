@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-152093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9CE4A47F7B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:41:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F626A47F76
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:41:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E51816D59E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:38:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED738168FC4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:38:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F2C22FAE2;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A1622DF8E;
 	Thu, 27 Feb 2025 13:38:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="hLOyH1Az"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="pnFGQKk2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D90022206AC;
-	Thu, 27 Feb 2025 13:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D906322D7A4
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 13:38:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740663497; cv=none; b=CgE+PmiqQ1xwaa2bsh4k59nMb34y1dyO6Bb68fTRRv+D6LUPAli44CPvWr9f1/DfXsQisoE9PWEG4NXN+Zarhrg8G0MtYQagbkh9QBV7ZQQbnw2pkWgTF4L33aG8cGrVTqpxEhi1Cz7OZH63L31kfhjDerhyOp24oXZs4P/4zGg=
+	t=1740663497; cv=none; b=Mm6C5fuwrd/hiqIyZQ9ZaZh+tI5xgI39vWyJ8axdX+yOlN+OlBVKYcS1cnt6ddc5B1yTRw5zLxh7GLLSHL+BZLKiMFSDXdiAx7VnHql8RNS/A4yYCxSPAEt5C5TiBnVVCau+xFA3NvB2OSGCvydcpQxxtaA48ftx12AIq3MxxQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1740663497; c=relaxed/simple;
-	bh=GoGIx0y0QIsWlsoPTEiEb5OWZb/coqE1PmOfG35RZOw=;
+	bh=JhoUIJU1X9Sky4PfsB9D/edrBbQ31n2N6XrkQXkZQHE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XAT9GPhO+ennMbiD1YPRehz8Ltb+ZnxUd5g0MHHH1UXWPgfsUDw8BM1MoxrtI/03+m2ADT+I8l4OkNnSkQmG9XHokcnCI0PKEIkPhiPoStuHFDDbULR5Kyp1apv9ZfwwwDO04oVIozMnaYgwqQUfxhWJVFSMCnqEaTdoX4uGIU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=hLOyH1Az; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=shL6dErLx4MaalUQ2730xbR4zhjJzuJCcrid3b7J0ihKy6gcfSWmR4AxVzdVEsSobGFjVenjy5Ax384PXFjZT+xehpL9tkKjtxSG6CQYqcc7TvFlNugorsyETyG247EpX0ofi1nmxX8htt1PIHFtGBm8JnmSZosKySC8+Mt7xHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=pnFGQKk2; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,37 +37,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=sKbx/cqIDw+mrJ09vJ4uQbWUy/6eW7Ss2IOLFOIIZiQ=; b=hLOyH1AzsaVOtJabG8mG67QlJ6
-	7l0t367OmRHtPWZTs0hRlXKULI9VKDLR/i1TDZ55QKzF5o4KlIUQVeZq4HIt9tO28kcapCIoh7ODN
-	QhmNVhr68L9PH34GxdT16pqLriYXJbRUPSXHe2q4nSHn+n3Tm95wCeIYZcdg+yN2Qy8WcDgRPw2Ep
-	uHZp+VrMbJ3eR8Tgh4X8pFunfLNvyffpj8+BrSapZNPU1bsjmi5//Ou/Eu3klI2Afio4V0lMvJvS/
-	FhJ7NyzwF1Q//cvMyXCwtwgujbdEMvEpEs+EjW2t25ssCn8kMb6TEZYqsoEGAEjc4jb6o5FHj2nn9
-	NATY2wRw==;
+	bh=Uk/F1vtykuq4Bl9zw53S75Gjw8bpLOUYGi0g3Od08og=; b=pnFGQKk2+B4Ycke55ARLdZJ2hJ
+	FNyTfoLEjM7uGfkaFUEDnRIS92nNZAd4LI264p2JVnqwvj65QTdgoZcNrACLmunIFnS5qtfNDc+6A
+	5Qyiz5jXgzjO4UbVGkpeA/5esex1eqdaqRVFmrJCKzL+L5vsbhiLKspfV6sso0lUZB9ps8rGy1fyk
+	ljites5nTNfAlOerHhEnvqBGdmxy/S4jYSpEUTklsgsE1F37+I6t/QEvIpgJSyD2Qgiqmf+M3kTdE
+	5KoqiAGLBlrfSC3zkZhHFn+R8dGTN+LPy2gWnqMPEEvu5rilWbMvXqiHAL6IrCMR2oMtOG1ca1JXp
+	JTOQ/lkA==;
 Received: from i53875b47.versanet.de ([83.135.91.71] helo=localhost.localdomain)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tne5Z-00018T-DE; Thu, 27 Feb 2025 14:38:09 +0100
+	id 1tne5Z-00018T-QS; Thu, 27 Feb 2025 14:38:09 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>,
+To: Johannes Erdfelt <johannes@erdfelt.com>,
+	Jimmy Hon <honyuenkwun@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-	Farouk Bouabid <farouk.bouabid@theobroma-systems.com>,
-	Quentin Schulz <foss+kernel@0leil.net>
-Cc: Heiko Stuebner <heiko@sntech.de>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] arm64: dts: rockchip: pinmux fixes for PX30 Ringneck
-Date: Thu, 27 Feb 2025 14:37:53 +0100
-Message-ID: <174066344878.4164500.4996137094609435540.b4-ty@sntech.de>
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v7 0/5] Orange Pi 5 Ultra
+Date: Thu, 27 Feb 2025 14:37:54 +0100
+Message-ID: <174066344878.4164500.125457221365187194.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250225-ringneck-dtbos-v3-0-853a9a6dd597@cherry.de>
-References: <20250225-ringneck-dtbos-v3-0-853a9a6dd597@cherry.de>
+In-Reply-To: <20250222193332.1761-1-honyuenkwun@gmail.com>
+References: <20250222193332.1761-1-honyuenkwun@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,18 +74,31 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 25 Feb 2025 12:53:28 +0100, Quentin Schulz wrote:
-> This fixes incorrect pinmux on UART0 and UART5 for PX30 Ringneck on
-> Haikou.
+On Sat, 22 Feb 2025 13:33:27 -0600, Jimmy Hon wrote:
+> Add device-tree for Orange Pi 5 Ultra
 > 
+> Thanks to Johannes for testing
 > 
+> The schematic has been published for the Orange 5 Ultra. [1]
+> 
+> It's a sibling of the Orange Pi 5 Max [2] with the HDMI0 switched out
+> for the HDMI RX. As a side affect the pin for USB_OTG_PWREN [3][4] has
+> changed.
+> 
+> [...]
 
 Applied, thanks!
 
-[1/2] arm64: dts: rockchip: fix pinmux of UART0 for PX30 Ringneck on Haikou
-      commit: 2db7d29c7b1629ced3cbab3de242511eb3c22066
-[2/2] arm64: dts: rockchip: fix pinmux of UART5 for PX30 Ringneck on Haikou
-      commit: 55de171bba1b8c0e3dd18b800955ac4b46a63d4b
+[1/5] arm64: dts: rockchip: Differences in Orange Pi 5 Max
+      commit: 6864a176140a03cfc108a27b869814140a022053
+[2/5] dt-bindings: arm: rockchip: Add Xunlong Orange Pi 5 Ultra
+      commit: f36f2ae1fede87ca6223b5bda33835bd931324ce
+[3/5] arm64: dts: rockchip: Add Orange Pi 5 Ultra board
+      commit: 3df28b6fda8f245dc725af78780f75d5f1bc079c
+[4/5] arm64: dts: rockchip: Enable HDMI1 on Orange Pi 5 Ultra
+      commit: efdc4018f3c98967e0145f790329a8934f936a7e
+[5/5] arm64: dts: rockchip: Enable HDMI1 audio output for Orange Pi 5 Ultra
+      commit: 254324dbe364fb058279486767fa82cd2456595d
 
 Best regards,
 -- 
