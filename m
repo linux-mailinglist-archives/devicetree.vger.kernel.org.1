@@ -1,134 +1,202 @@
-Return-Path: <devicetree+bounces-152135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7922EA4824F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 16:03:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CAB2A48262
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 16:05:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 703503B326E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 15:03:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78C1B164F71
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:57:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5652E26A0C3;
-	Thu, 27 Feb 2025 15:03:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34D025EFBA;
+	Thu, 27 Feb 2025 14:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aMSXQCEc"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BU7cRs5O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DA4125F796
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 15:03:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C798725E837;
+	Thu, 27 Feb 2025 14:57:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740668598; cv=none; b=XhfPPcdx3/u+lj4gIVfxIgG14r1jjmKvftzVVzdLl3lA+KY0EDikUicCiWbM8YEklvrf5BHvEuNgpo93ijrXQNwPbAljbgFQsqC15acTp0fMTYpfuUEUC1TYSS/bNs20qbHb/qMFoANKuOZJwo7vahqDsqnlYAlW7Lt8zSXB5Wo=
+	t=1740668254; cv=none; b=YNvlKj46bgFZy5MxADQAeFdJtMWChojKFycg9+Td/1xiaw8h9JYmGUzmpZjL+OlqEIFCGnHohm5OT4V8mO5HOaEa4EVSAQzTlMwC6VwyiJaHiTNaquY0m4x8rAV8+afYfAi12nBM1BZ8Yhk5byvMaXkHHr7jLPJR2G6asVzaV20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740668598; c=relaxed/simple;
-	bh=Tl40Fm+loygXp9JTJZ0Z7May9tG5QQ1he6NwlUmTUjM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GbwamZjxrhv4RmvDvnC4BnIku9+LDlTRrYYLrwt/W+XeJGBAyX3i50r/DDCyhwO2sUXpx8AaQgqs6JL+EhbCqeoJgXR4cWbPMS4ypPMOB8/dER1VfNNvMxHUKxsL7TOdubhWMSknDii5llU1fq6CaAzSVwVs9iDjYaOG6LLppv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aMSXQCEc; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-546202d633dso1067512e87.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 07:03:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740668595; x=1741273395; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jct5/sWNcnHp4YAXGTjpriX8VME8tdrztTmpTBFh3WQ=;
-        b=aMSXQCEcg8RqG+qJqVpEHWj9PPcUP9pfHJoA95HV4UjkVPTIxTlO9xGCMCDfaGEDLs
-         xL9NW4Hq/fGFgr4+sBdXSI7G9YcS4jViE6+/ufbI73tEC/jME4UsEzngv8WqVKOKpD73
-         IEKXy2jBQa9JNpoSdEe08jKb2NJyhQy1jjqaEHwS4WjTxDoMh4qP2lPSeAnS5raSjrTc
-         F3eastvt5F5PRTi7rzlBzAYEnb0BQYll7AE8s0eHCgSQOR0hVBWW8yEEBo2LlAM1Qdgn
-         odFjAf1lOCJixT3O40yz+ktjBwyPSs5QMQOCxFPKeacDK17EdFNw9UeQLKdSy/wIlI4T
-         I5nA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740668595; x=1741273395;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jct5/sWNcnHp4YAXGTjpriX8VME8tdrztTmpTBFh3WQ=;
-        b=MBx7+oOqnCpwxf3Vb+UiXR2VZ7VHp+ZiyzzIOR/Ncu4JnDCkjKCwmCtdUPzDP1r1I5
-         rvIERiYuX2gf5CKK+LOc6kYHifTuiH/t6IFHzEQVH8eLx0TmPTcr+6CRKivrPWca7AAF
-         KPePZROajPeSpCDBNBMmcfM7llwJ5LocyKpFM9bfq8gyEeC3zjZlteh312y+KzDwDEE1
-         sF7WM3rek64xST2Izxt8kgu2pBkUTLWhNU3F7bGEdjXZs/J1o1ecIG7iWJWuxuH/3yXW
-         hOUJIMcG6R9VAE3OUvODLxga9LMvpxGMlvO6YvDJrrZqNugYEPVRC20ER4Sj+JMsAVv2
-         8Gcg==
-X-Forwarded-Encrypted: i=1; AJvYcCUEFfHqf2f9UhgkWeB81pkjAGKF2fKfnw/CO35JXijS0sKoVCePXSdyXRRYTvYqlm1l4q1KVGIU4fmo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjTmRXwY0KIZEgvxyonGfWoHfLUfgonswO0qsIxpYqsjLG1we8
-	Z4RUsj682GUA72iCE/auTidCZaap3zgXUH77XNr1jP9ZEl1b4IAXm3I3KVtgcos=
-X-Gm-Gg: ASbGncvXBoHCjwMvRTnOkRXMANZR+NbyVh1ehViZ/bpUuq9xg5WyYqoY4RdiqoeyakF
-	l4aL+sHClOxZMy0jLSQROgtxkgDw6Zw/KA99g1xBTFqHIpQzbI+EnTqqvJEclzUUcL6JYzCWl/Z
-	PBYI46LHXrxPicmRMKeF3FiA0mknm+b4+SRmX7Rq+yBxPgQ/33KMMakjMofOELngNsN/vYgJMp/
-	JeyGrZiDKza+/zD2U3k1sIs6YmWgrJzXN/GRVhpa1q+/fGnOPRL+jI4OQs6XPLxR21TJ1qhT9Jd
-	7p9rlG6me7g1H6uV91HjKMThYwTcmDnVv0vySbdwbKpK/Wk9y8O6i7WqtNRYNJ97rRl5xrxCrAR
-	g/SM+/A==
-X-Google-Smtp-Source: AGHT+IGu6e9SzMnhpr5EnGH9g23xD2bFOtEakcdfl/ZUCRRGs5xA3LtI3CvuzfMuKxAB74Z8ujrfbg==
-X-Received: by 2002:a05:6512:3d16:b0:545:62c:4b29 with SMTP id 2adb3069b0e04-548510d2891mr6258092e87.22.1740668594423;
-        Thu, 27 Feb 2025 07:03:14 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549443b11f0sm180701e87.114.2025.02.27.07.03.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Feb 2025 07:03:13 -0800 (PST)
-Date: Thu, 27 Feb 2025 17:03:10 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] arm64: dts: qcom: ipq5424: Enable MMC
-Message-ID: <ryfawl6uykry5ds5kovujvepkwffdwitbqltx75wnnrqrbl4b2@i2pjwegs3u4n>
-References: <20250227094226.2380930-1-quic_varada@quicinc.com>
+	s=arc-20240116; t=1740668254; c=relaxed/simple;
+	bh=RlenwtE5mxdv5cb/MEos3p+JmVXLB2yGNlafSdQiqDk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cLyWgsw9GpWkWlBV0fP6KEFQ9dKbc4WTPbCG9tziODZ7bSKLwuoH39ZmJ8L5zApPXs21Imhjal+SfThgKmCworNmo6kuiHejXqTxPLFaGfb3pD9b2sggEO49cmL5FFoYh+uIA6x45Yks+nGKzRi1VnT8nJNNbdFrc9sASDFvyXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BU7cRs5O; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 79B34441AB;
+	Thu, 27 Feb 2025 14:57:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1740668250;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vxxXj7qHDUKOxFYzmRI0KA+MFriKrU/fu0NUeDhbg/4=;
+	b=BU7cRs5OtfDkPDMGdgZwKTlTc5pmwx2JLI94bxKT/RK1ESGqwqZbYREl5ZEO0xxobAguDz
+	x7xX8uP5TrtRexTxHHMTjKle1BcWMPnoc2QV4gsf6L1tOTjiBe99bbZmYl2eDU9hG33LmO
+	uZENFBdzrcafa1Ebx9BYhNcXQTREL/ysPxNnvq5ubwzpKms1OxOWUKERpcgoSYZZ7ELn5g
+	IpuVo5M0I6ZKPbwz/EjjfTkxxpim5QMKhaXw/+uEeycd7JNmlSlKcrsa3eutNxMEbZFxPE
+	qb/+97DCYh0XjqGadp/wzZD6ysAsOrz1HLEbNnW7c912m2EAo70YLJQf2qy9pw==
+Date: Thu, 27 Feb 2025 15:57:27 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>, "David
+ S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo
+ Abeni <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Donald Hunter
+ <donald.hunter@gmail.com>, Rob Herring <robh@kernel.org>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
+ Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
+ Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v5 06/12] net: pse-pd: Add support for budget
+ evaluation strategies
+Message-ID: <20250227155727.7bdc069f@kmaincent-XPS-13-7390>
+In-Reply-To: <Z8AW6S2xmzGZ0y9B@pengutronix.de>
+References: <20250218-feature_poe_port_prio-v5-0-3da486e5fd64@bootlin.com>
+	<20250218-feature_poe_port_prio-v5-6-3da486e5fd64@bootlin.com>
+	<20250220165129.6f72f51a@kernel.org>
+	<20250224141037.1c79122b@kmaincent-XPS-13-7390>
+	<20250224134522.1cc36aa3@kernel.org>
+	<20250225102558.2cf3d8a5@kmaincent-XPS-13-7390>
+	<20250225174752.5dbf65e2@kernel.org>
+	<Z76t0VotFL7ji41M@pengutronix.de>
+	<Z76vfyv5XoMKmyH_@pengutronix.de>
+	<20250226184257.7d2187aa@kernel.org>
+	<Z8AW6S2xmzGZ0y9B@pengutronix.de>
+Organization: bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250227094226.2380930-1-quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdekjeejiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedukeejleefheelgeevffdugfeggeduudekgeelgfdviedvkedugefhffekudetvdenucffohhmrghinhephhhpvgdrtghomhdptghishgtohdrtghomhdpsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvgedprhgtphhtthhopehordhrvghmphgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtr
+ dhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheptghorhgsvghtsehlfihnrdhnvghtpdhrtghpthhtohepughonhgrlhgurdhhuhhnthgvrhesghhmrghilhdrtghomh
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Thu, Feb 27, 2025 at 03:12:26PM +0530, Varadarajan Narayanan wrote:
-> Enable MMC and relevant pinctrl entries.
-> 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
-> index b6e4bb3328b3..252687be9dc3 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
-> @@ -69,6 +69,14 @@ &qusb_phy_1 {
->  	status = "okay";
->  };
->  
-> +&sdhc {
-> +	pinctrl-0 = <&sdc_default_state>;
+On Thu, 27 Feb 2025 08:40:25 +0100
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
-Where is it defined?
+> On Wed, Feb 26, 2025 at 06:42:57PM -0800, Jakub Kicinski wrote:
+> > On Wed, 26 Feb 2025 07:06:55 +0100 Oleksij Rempel wrote: =20
+> > > Here is one example how it is done by HP switches:
+> > > https://arubanetworking.hpe.com/techdocs/AOS-CX/10.08/HTML/monitoring=
+_6200/Content/Chp_PoE/PoE_cmds/pow-ove-eth-all-by.htm
+> > >=20
+> > > switch(config)# interface 1/1/1    <---- per interface
+> > > switch(config-if)# power-over-ethernet allocate-by usage
+> > > switch(config-if)# power-over-ethernet allocate-by class
+> > >=20
+> > > Cisco example:
+> > > https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/s=
+w/93x/power-over-ethernet/configuration/configuring-power-over-ethernet/m-c=
+onfiguring-power-over-ethernet.html
+> > >=20
+> > > switch(config)# interface ethernet1/1   <---- per interface
+> > > switch(config-if)# power inline auto =20
+> >=20
+> > I don't see any mention of a domain in these docs.
+> > This patchset is creating a concept of "domain" but does=20
+> > not expose it as an object. =20
+>=20
+> Ok, I see. @K=C3=B6ry, can you please provide regulator_summary with some
+> inlined comments to regulators related to the PSE components and PSE
+> related outputs of ethtool (or what ever tool you are using).
+>=20
+> I wont to use this examples to answer.
 
-> +	pinctrl-names = "default";
-> +	supports-cqe;
+On my side, I am not close to using sysfs. As we do all configurations thro=
+ugh
+ethtool I have assumed we should continue with ethtool.
+I think we should set the port priority through ethtool, but indeed the PSE
+power domain method get and set could be moved to sysfs as it is not someth=
+ing
+relative to the port but to a group of ports. Ethtool should still report t=
+he
+PSE power domain ID of a port to know which domain the port is.
 
-This property should be a part of the SoC dtsi.
+@Oleksij here it is:
 
-> +
-> +	status = "okay";
-> +};
-> +
->  &sleep_clk {
->  	clock-frequency = <32000>;
->  };
-> -- 
-> 2.34.1
-> 
+# cat /sys/kernel/debug/regulator/regulator_summary
+ regulator                      use open bypass  opmode voltage current    =
+ min     max
+---------------------------------------------------------------------------=
+------------
+ regulator-dummy                  5    4      0 unknown     0mV     0mA    =
+ 0mV     0mV=20
+    d00e0000.sata-target          1                                 0mA    =
+ 0mV     0mV
+    d00e0000.sata-phy             1                                 0mA    =
+ 0mV     0mV
+    d00e0000.sata-ahci            1                                 0mA    =
+ 0mV     0mV
+    spi0.0-vcc                    1                                 0mA    =
+ 0mV     0mV
+ pse-reg                          1    4      0 unknown     0mV     0mA    =
+ 0mV     0mV=20
+    pse-0-0020_pi0                0    1      0 unknown 53816mV  2369mA    =
+ 0mV     0mV=20
+       0-0020-pse-0-0020_pi0      0                                 0mA    =
+ 0mV     0mV
+    pse-0-0020_pi2                0    1      0 unknown 53816mV  2369mA    =
+ 0mV     0mV=20
+       0-0020-pse-0-0020_pi2      0                                 0mA    =
+ 0mV     0mV
+    pse-0-0020_pi7                0    1      0 unknown 53816mV  2369mA    =
+ 0mV     0mV=20
+       0-0020-pse-0-0020_pi7      0                                 0mA    =
+ 0mV     0mV
+ pse-reg2                         1    2      0 unknown     0mV     0mA    =
+ 0mV     0mV=20
+    pse-0-0020_pi1                0    0      0 unknown 53816mV  4738mA    =
+ 0mV     0mV=20
+ vcc_sd1                          2    1      0 unknown  1800mV     0mA  18=
+00mV  3300mV=20
+    d00d0000.mmc-vqmmc            1                                 0mA  18=
+00mV  1950mV
 
--- 
-With best wishes
-Dmitry
+# ./ynl/cli.py --spec netlink/specs/ethtool.yaml --no-schema --do pse-get -=
+-json
+ '{"header":{"dev-name":"wan"}}'
+{'c33-pse-admin-state': 2,
+ 'c33-pse-avail-pw-limit': 127500,
+ 'c33-pse-pw-d-status': 2,
+ 'c33-pse-pw-limit-ranges': [{'max': 99900, 'min': 2000}],
+ 'header': {'dev-index': 4, 'dev-name': 'wan'},
+ 'pse-budget-eval-strat': 2,
+ 'pse-prio': 0,
+ 'pse-prio-max': 8,
+ 'pse-pw-d-id': 1}
+
+# ./ynl/cli.py --spec netlink/specs/ethtool.yaml --no-schema --do pse-set -=
+-json
+ '{"header":{"dev-name":"wan"}, "pse-prio":1}'
+None
+# ./ynl/cli.py --spec netlink/specs/ethtool.yaml --no-schema --do pse-set -=
+-json
+'{"header":{"dev-name":"wan"}, "c33-pse-avail-pw-limit":15000}'
+None
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
