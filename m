@@ -1,271 +1,234 @@
-Return-Path: <devicetree+bounces-151887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD336A4767D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 08:27:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D6F0A476B3
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 08:37:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C57F17008B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 07:27:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 162EA16BBB4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 07:37:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF08822538F;
-	Thu, 27 Feb 2025 07:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1ED221CFFB;
+	Thu, 27 Feb 2025 07:37:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ji+Ssq5R"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NGgMx6H0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5BB32236F7;
-	Thu, 27 Feb 2025 07:27:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB7B1EB194;
+	Thu, 27 Feb 2025 07:37:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740641238; cv=none; b=HBPB+MwUivyvgTBzK4KNK2KQxf6ZBAftdN8M5K+5at1AuKfvg2HRK6Diws21dSzrMfbnoNuLeK9WLqQf9NwCZYO/vSZbdjLqWu4FhsgOfvTxS01lF5lzpY88HmXs3DTUG2ehdRdGKPj7heIS6Zbrx7Wi4PKnWVsEAzRLG3icubc=
+	t=1740641846; cv=none; b=q65mdNHTJJidhSqVMM9G+8Yhqnh0sVsFbu0ytmJCIj/qQ3cRjbGOtq5Ndefezt42GCEuMeITrh8s4ilnp7RXvlbGwEwy1tHuJ8UCojzHIZpAnvh0SeamO9IDJQyhL+Iy/1IkhFeP8kMIcPxU7855tZYVZIxeLrUjb9Waar+puAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740641238; c=relaxed/simple;
-	bh=d32okfY48AdP5onR7d4GoJDusegmSjxz19/DzrOVxCw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MvJScmj9iO4boEKQTsK1dkrLIcrLNat+ROhEuI/vw1ETXWf++0y/uyYYpE1jA9i+y6JYm01B2gadeY+Xxsodnwq5KzEzWEBDN80Xsji+6BH+CwHgGHWS9tLiCxL8k/MxDXr0BlQ5BOIF5h3tw8Tl2vsCMFaqjJC+IKqvqQfppHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ji+Ssq5R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 69E31C4CEFD;
-	Thu, 27 Feb 2025 07:27:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740641238;
-	bh=d32okfY48AdP5onR7d4GoJDusegmSjxz19/DzrOVxCw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ji+Ssq5RG1sI+xITly+YirCC/yFW2M/5sHdYbOLJWUVLmk0IUFAuCgctFJAcnUjiV
-	 04EowNoinWTt+r9bzTKW8DZWiV7DajRLTfQiu+nP/1yjrwPpUblGsPCqQ4Z/jEZTJg
-	 09N1vjjDLE/irU+rv/HToYsqDhzjsWNsYGE0q4yVGMStH+f5BBi+KoIF6bV2TodEBW
-	 /ftxUnGfGXtFjB/xTItr996uvagwbtg5+74g8t5fFRSgiOcvlEkPlW8jCpCo0ouPkj
-	 FPwviVeuW7gGvv8ZNtFkPRS3KUx7efAstIKzjkq0AzUWzKimB9T0T8nLZpxrNgKh7o
-	 7GKiVQg+HkrCA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F8BAC1B0FF;
-	Thu, 27 Feb 2025 07:27:18 +0000 (UTC)
-From: Keke Li via B4 Relay <devnull+keke.li.amlogic.com@kernel.org>
-Date: Thu, 27 Feb 2025 15:27:21 +0800
-Subject: [PATCH v6 10/10] Documentation: media: add documentation file
- c3-isp.rst
+	s=arc-20240116; t=1740641846; c=relaxed/simple;
+	bh=d6+xsNMLGylxxEKXWbWqVK7LJVxyIb/Mz0Pc9ABIaXY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s32lJs9VLRiKpKU4sHz0LpfXDlJ0HS0iLErpy5jjaTnvfjgptshkx3mxfoWJkOh4fATit6Zvaz9Shznqa2FsmgkCuAGPyJstbVwIBm0mgKA0jlrz4c4L5jbCK8H4onIn0AaqTHiGJGQFGuyD/s55EvYLh+Q3B19UE7ZxLpM2F1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NGgMx6H0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51QKrh46017852;
+	Thu, 27 Feb 2025 07:37:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=EZhXB7z7YOzRnW+XxlpcUTeG
+	X2DctPRP+TSIzjsr4os=; b=NGgMx6H0DlHKHOQoJfzsGPANqtnF2yrTHN1mFrm7
+	3NcryYbQECZDgp4IXB1FspIVscjG8wgLLs4BTTju0m7UFIp7Y/anG5q9Zhh1AFGS
+	YXRZgVfnKYC5AhRwTvF5ptyHqnrEk7qdJnrBazgZCm0HZOCOp+x2CeTMuQ/KwuzI
+	EZWaw+7FvEP3IzbRdYAlYweatp30vxpVQxGx9akiGNyCTiXfuh/v668uNiu6MUDo
+	6i1yhyDOz9f3zQpPrWzJ2rNc7Cu5B4AnihcE7tvjwhFSOIWleiCiFV+i5H/iioA3
+	MvtvHJchL3khbMnpJxPhzJU67cFUEu7yQ7Kixe87LJVuVA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 451prn4s24-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 27 Feb 2025 07:37:20 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51R7bJ07017861
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 27 Feb 2025 07:37:19 GMT
+Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 26 Feb 2025 23:37:11 -0800
+Date: Thu, 27 Feb 2025 13:07:02 +0530
+From: Wasim Nazir <quic_wasimn@quicinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: Add support for QCS9075 Ride &
+ Ride-r3
+Message-ID: <Z8AWHiVu05s0RJws@hu-wasimn-hyd.qualcomm.com>
+References: <4wmxjxcvt7un7wk5v43q3jpxqjs2jbc626mgah2fxbfuouu4q6@ptzibxe2apmx>
+ <Z3eMxl1Af8TOAQW/@hu-wasimn-hyd.qualcomm.com>
+ <xuy6tp4dmxiqbjitmoi6x5lngplgcczytnowqjvzvq5hh5zwoa@moipssfsgw3w>
+ <Z3gzezBgZhZJkxzV@hu-wasimn-hyd.qualcomm.com>
+ <37isla6xfjeofsmfvb6ertnqe6ufyu3wh3duqsyp765ivdueex@nlzqyqgnocib>
+ <67b888fb-2207-4da5-b52e-ce84a53ae1f9@kernel.org>
+ <Z3/hmncCDG8OzVkc@hu-wasimn-hyd.qualcomm.com>
+ <b0b08c81-0295-4edb-ad97-73715a88bea6@kernel.org>
+ <Z4dMRjK5I8s2lT3k@hu-wasimn-hyd.qualcomm.com>
+ <80e59b3b-2160-4e24-93f2-ab183a7cbc74@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250227-c3isp-v6-10-f72e19084d0d@amlogic.com>
-References: <20250227-c3isp-v6-0-f72e19084d0d@amlogic.com>
-In-Reply-To: <20250227-c3isp-v6-0-f72e19084d0d@amlogic.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, kieran.bingham@ideasonboard.com, 
- laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com, 
- jacopo.mondi@ideasonboard.com, Keke Li <keke.li@amlogic.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1740641235; l=8134;
- i=keke.li@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=TjlqiBcQ0rs6eWQ9C0wNEtdDuotwwwwL0LT9Qczu0Yg=;
- b=hhqnSGAWvWp4O4AiVdKCE7AY5cKTTVs/ZO572LL8JxgI8wNCr4TCZIIKpX+XHau9nEcZFEKqu
- Pxy+RzpIEESA8vU/sKXdy5VftRu20PTjzS6FXlkLFX6S826U6IjApSJ
-X-Developer-Key: i=keke.li@amlogic.com; a=ed25519;
- pk=XxNPTsQ0YqMJLLekV456eoKV5gbSlxnViB1k1DhfRmU=
-X-Endpoint-Received: by B4 Relay for keke.li@amlogic.com/20240902 with
- auth_id=204
-X-Original-From: Keke Li <keke.li@amlogic.com>
-Reply-To: keke.li@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <80e59b3b-2160-4e24-93f2-ab183a7cbc74@kernel.org>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: bVkyS-N2-HDk6rlfPnogYgbU2vuiEstj
+X-Proofpoint-GUID: bVkyS-N2-HDk6rlfPnogYgbU2vuiEstj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-27_03,2025-02-26_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ spamscore=0 clxscore=1015 mlxscore=0 adultscore=0 mlxlogscore=999
+ suspectscore=0 phishscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2502270057
 
-From: Keke Li <keke.li@amlogic.com>
+On Wed, Jan 15, 2025 at 09:35:34AM +0100, Krzysztof Kozlowski wrote:
+> On 15/01/2025 06:48, Wasim Nazir wrote:
+> >> The the SoC, I am asking about the board. Why each of them is for
+> >> example r3?
+> >>
+> >> So this is not sufficient explanation, nothing about the board, and
+> >> again just look Renesas and NXP.
+> >>
+> > 
+> > Hi Krzysztof,
+> > 
+> > sa8775p(AUTO), qcs9100(IOT), qcs9075(IOT) are different SoCs based on
+> > safety capabilities and memory map, serving different purpose.
+> > Ride & Ride-r3 are different boards based on ethernet capabilities and
+> > are compatible with all the SoCs mentioned.
+> 
 
-Add the file 'c3-isp.rst' that documents the c3-isp driver.
+Hi Krzysztof,
 
-Signed-off-by: Keke Li <keke.li@amlogic.com>
----
- Documentation/admin-guide/media/c3-isp.dot      |  26 ++++++
- Documentation/admin-guide/media/c3-isp.rst      | 109 ++++++++++++++++++++++++
- Documentation/admin-guide/media/v4l-drivers.rst |   1 +
- MAINTAINERS                                     |   2 +
- 4 files changed, 138 insertions(+)
+> Compatible? What does it mean for a board?
+> 
 
-diff --git a/Documentation/admin-guide/media/c3-isp.dot b/Documentation/admin-guide/media/c3-isp.dot
-new file mode 100644
-index 000000000000..42dc931ee84a
---- /dev/null
-+++ b/Documentation/admin-guide/media/c3-isp.dot
-@@ -0,0 +1,26 @@
-+digraph board {
-+	rankdir=TB
-+	n00000001 [label="{{<port0> 0 | <port1> 1} | c3-isp-core\n/dev/v4l-subdev0 | {<port2> 2 | <port3> 3 | <port4> 4 | <port5> 5}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000001:port3 -> n00000008:port0
-+	n00000001:port4 -> n0000000b:port0
-+	n00000001:port5 -> n0000000e:port0
-+	n00000001:port2 -> n00000027
-+	n00000008 [label="{{<port0> 0} | c3-isp-resizer0\n/dev/v4l-subdev1 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000008:port1 -> n00000016 [style=bold]
-+	n0000000b [label="{{<port0> 0} | c3-isp-resizer1\n/dev/v4l-subdev2 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000000b:port1 -> n0000001a [style=bold]
-+	n0000000e [label="{{<port0> 0} | c3-isp-resizer2\n/dev/v4l-subdev3 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000000e:port1 -> n00000023 [style=bold]
-+	n00000011 [label="{{<port0> 0} | c3-mipi-adapter\n/dev/v4l-subdev4 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000011:port1 -> n00000001:port0 [style=bold]
-+	n00000016 [label="c3-isp-cap0\n/dev/video0", shape=box, style=filled, fillcolor=yellow]
-+	n0000001a [label="c3-isp-cap1\n/dev/video1", shape=box, style=filled, fillcolor=yellow]
-+	n0000001e [label="{{<port0> 0} | c3-mipi-csi2\n/dev/v4l-subdev5 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000001e:port1 -> n00000011:port0 [style=bold]
-+	n00000023 [label="c3-isp-cap2\n/dev/video2", shape=box, style=filled, fillcolor=yellow]
-+	n00000027 [label="c3-isp-stats\n/dev/video3", shape=box, style=filled, fillcolor=yellow]
-+	n0000002b [label="c3-isp-params\n/dev/video4", shape=box, style=filled, fillcolor=yellow]
-+	n0000002b -> n00000001:port1
-+	n0000003f [label="{{} | imx290 2-001a\n/dev/v4l-subdev6 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000003f:port0 -> n0000001e:port0 [style=bold]
-+}
-diff --git a/Documentation/admin-guide/media/c3-isp.rst b/Documentation/admin-guide/media/c3-isp.rst
-new file mode 100644
-index 000000000000..8adac4605a6a
---- /dev/null
-+++ b/Documentation/admin-guide/media/c3-isp.rst
-@@ -0,0 +1,109 @@
-+.. SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-+
-+.. include:: <isonum.txt>
-+
-+=================================================
-+Amlogic C3 Image Signal Processing (C3ISP) driver
-+=================================================
-+
-+Introduction
-+============
-+
-+This file documents the Amlogic C3ISP driver located under
-+drivers/media/platform/amlogic/c3/isp.
-+
-+The current version of the driver supports the C3ISP found on
-+Amlogic C308L processor.
-+
-+The driver implements V4L2, Media controller and V4L2 subdev interfaces.
-+Camera sensor using V4L2 subdev interface in the kernel is supported.
-+
-+The driver has been tested on AW419-C308L-Socket platform.
-+
-+Anlogic Camera hardware
-+=======================
-+
-+The Camera hardware found on C308L processors and supported by
-+the driver consists of:
-+
-+- 1 MIPI-CSI2 module. It handle the Physical layer of the CSI2 receivers and
-+  receive MIPI data.
-+  A separate camera sensor can be connected to MIPI-CSi2 module.
-+- 1 MIPI-ADAPTER module. Organize MIPI data to meet ISP input requirements and
-+  send MIPI data to ISP
-+- 1 ISP (Image Signal Processing) module. Contain a pipeline of image processing
-+  hardware blocks.
-+  The ISP pipeline contains three scalers at the end.
-+  The ISP also contains the DMA interface which writes the output data to memory.
-+
-+A high level functional view of the C3 ISP is presented below. The ISP
-+takes input from the sensor.::
-+
-+                                                                   +---------+    +-------+
-+                                                                   | Scaler  |--->| WRMIF |
-+  +---------+    +------------+    +--------------+    +-------+   |---------+    +-------+
-+  | Sensor  |--->| MIPI CSI-2 |--->| MIPI ADAPTER |--->|  ISP  |---|---------+    +-------+
-+  +---------+    +------------+    +--------------+    +-------+   | Scaler  |--->| WRMIF |
-+                                                                   +---------+    +-------+
-+                                                                   |---------+    +-------+
-+                                                                   | Scaler  |--->| WRMIF |
-+                                                                   +---------+    +-------+
-+
-+Supported functionality
-+=======================
-+
-+The current version of the driver supports:
-+
-+- Input from camera sensor via MIPI-CSI2;
-+
-+- Pixel output interface of ISP
-+
-+  - Scaling support. Configuration of the scaler module
-+    for downscalling with ratio up to 8x.
-+
-+Driver Architecture and Design
-+==============================
-+
-+The driver implements the V4L2 subdev interface. With the goal to model the
-+hardware links between the modules and to expose a clean, logical and usable
-+interface, the driver is split into V4L2 sub-devices as follows:
-+
-+- 1 c3-mipi-csi2 sub-device - mipi-csi2 is represented by a single sub-device.
-+- 1 c3-mipi-adapter sub-device - mipi-adapter is represented by a single sub-devices.
-+- 1 c3-isp-core sub-device - isp-core is represented by a single sub-devices.
-+- 3 c3-isp-resizer sub-devices - isp-resizer is represented by a number of sub-devices
-+  equal to the number of capture device.
-+
-+c3-isp-core sub-device is linked to 2 separate video device nodes and
-+3 c3-isp-resizer sub-devices nodes.
-+
-+- 1 capture statistics video device node.
-+- 1 output parameters video device node.
-+- 3 c3-isp-resizer sub-device nodes.
-+
-+c3-isp-resizer sub-device is linked to capture video device node.
-+
-+- c3-isp-resizer0 is linked to c3-isp-cap0
-+- c3-isp-resizer1 is linked to c3-isp-cap1
-+- c3-isp-resizer2 is linked to c3-isp-cap2
-+
-+The media controller pipeline graph is as follows (with connected a
-+IMX290 camera sensor):
-+
-+.. _isp_topology_graph:
-+
-+.. kernel-figure:: c3-isp.dot
-+    :alt:   c3-isp.dot
-+    :align: center
-+
-+    Media pipeline topology
-+
-+Implementation
-+==============
-+
-+Runtime configuration of the hardware via 'c3-isp-params' video device node.
-+Acquiring statistics of ISP hardware via 'c3-isp-stats' video device node.
-+Acquiring output image of ISP hardware via 'c3-isp-cap[0, 2]' video device node.
-+
-+The output size of the scaler module in the ISP is configured with
-+the pixel format of 'c3-isp-cap[0, 2]' video device node.
-diff --git a/Documentation/admin-guide/media/v4l-drivers.rst b/Documentation/admin-guide/media/v4l-drivers.rst
-index e8761561b2fe..3bac5165b134 100644
---- a/Documentation/admin-guide/media/v4l-drivers.rst
-+++ b/Documentation/admin-guide/media/v4l-drivers.rst
-@@ -10,6 +10,7 @@ Video4Linux (V4L) driver-specific documentation
- 	:maxdepth: 2
- 
- 	bttv
-+	c3-isp
- 	cafe_ccic
- 	cx88
- 	fimc
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b277304ff3e8..35af62270fcb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1256,6 +1256,8 @@ AMLOGIC ISP DRIVER
- M:	Keke Li <keke.li@amlogic.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
-+F:	Documentation/admin-guide/media/c3-isp.dot
-+F:	Documentation/admin-guide/media/c3-isp.rst
- F:	Documentation/devicetree/bindings/media/amlogic,c3-isp.yaml
- F:	Documentation/userspace-api/media/v4l/metafmt-c3-isp.rst
- F:	drivers/media/platform/amlogic/c3/isp/
+Ride board is based on multiple daughter cards (SOC-card, display,
+camera, ethernet, pcie, sensor, etc.).
 
--- 
-2.48.1
+The SOC is not directly soldered to Ride board, instead SOC is soldered
+on SIP (System in Package) card which can be mounted on SOC-daughter card of
+Ride board.
+	- SoC => SIP-card => SOC-daughter-card (Ride)
 
+Together with SIP cards and other daughter cards we are creating different
+<soc>-Ride Variants with differences in memory map & thermal mitigations.
 
+The SIP card consists of SOC, PMIC & DDR and it is pin compatible to the
+SOC daughter card of <soc>-Ride board. Only SOC is changing accross SIP
+cards, except an additional third party SIL-PMIC for SAIL, which is not
+present in QCS9075 Ride.
+
+Other daughter cards remains same for <soc>-Ride variants, except
+ethernet card which is different for <soc>-Ride rev3 variants.
+
+So the Ride board (combination of daughter cards) is same across the SIP,
+while SOC on SIP card is changing which can be sa8775p, qcs9100 or qcs9075.
+
+> Third time: did you look how other vendors do it?
+> 
+
+Yes, we have reviewed other vendors. However, please feel free to share
+any specific reference you would like us to follow.
+
+Here are few reference files we found from other vendors where similar
+tasks are performed which includes code refactoring and HW modularity:
+ - Freescale: fsl-ls208xa.dtsi, fsl-ls2088a.dtsi, fsl-ls2081a-rdb.dts
+ - Renesas: white-hawk-common.dtsi, r8a779g0-white-hawk.dts
+ - Rockchip: px30-engicam-common.dtsi, px30-engicam-ctouch2.dtsi,
+   px30-engicam-px30-core-ctouch2.dts
+
+In our case along with describing the HW, code refactoring is also done
+which might be causing confusion, but we are ready for any inputs for
+correction.
+
+Putting this pictorial diagram for updated DT structure depicting our HW.
+ - qcs9xxx-module.dtsi specifying QCS9xxx based SIP card/module having
+   SoC, PMICs, Memory-map updates.
+ - qcom-ride-common.dtsi specifying ride daughter boards, here we are
+   doing code refactoring also as this is common for all ride boards.
+ - qcom-ride-ethernet-aqr115c.dtso specifying ethernet overlay board which
+   uses 2.5G phy and can be overlayed to ride boards to get ride-r3.
+   By default ride uses 1G phy.
+ - qcs9075-iq-9075-evk.dts is the new name for RB8 as per new product
+   name. We will be changing this in next patch series.
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                                                                                               |
+|                                                          sa8775p.dtsi                                                                         |
+|                                                              |                                                                                |
+|                                    +-------------------------+-----------------------+                                                        |
+|                                    |                         |                       |                                                        |
+|                                    v                         |                       v                                                        |
+|                             qcs9075-module.dtsi              |                qcs9100-module.dtsi                                             |
+|                                    |                         |                       |                                                        |
+|                                    v                         v                       v                                                        |
+|                                  (IOT)                    (AUTO)                   (IOT)                                                      |
+|                                    |                         |                       |                                                        |
+|             +----------------------+                         |                       |                                                        |
+|             |                      |                         |                       |                                                        |
+|             |                      | +-------------------------+-----------------------+-------------------< qcom-ride-common.dtsi            |
+|             |                      | |                       | |                     | |                                                      |
+|             v                      v v                       v v                     v v                                                      |
+|  qcs9075-iq-9075-evk.dts     qcs9075-ride.dts         sa8775p-ride.dts         qcs9100-ride.dts                                               |
+|                                    |                         |                       |                                                        |
+|                                    | +-------------------------+-----------------------+-------------------< qcom-ride-ethernet-aqr115c.dtso  |
+|                                    | |                       | |                     | |                                                      |
+|                                    v v                       v v                     v v                                                      |
+|                             qcs9075-ride-r3.dts      sa8775p-ride-r3.dts      qcs9100-ride-r3.dts                                             |
+|                                                                                                                                               |
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+
+> > 
+> > With the combination of these 3 SoCs and 2 boards, we have 6 platforms,
+> > all of which we need.
+> > - sa8775p-ride.dts is auto grade Ride platform with safety feature.
+> > - qcs9100-ride.dts is IOT grade Ride platform with safety feature.
+> > - qcs9075-ride.dts is IOT grade Ride platform without safety feature.
+> > 
+> > Since the Ride-r3 boards are essentially Ride boards with Ethernet
+> > modifications, we can convert the Ride-r3 DTS to overlays.
+> How one board can be with multiple SoCs? If it is soldered, it's close
+> to impossible - that's just not the same board. If it is not soldered,
+> why you are not explaining it? What is Ride board? What is there? What
+> can go there? How it can be used in other SoCs? Or for which SoCs? Is
+> there a datasheet available?
+> 
+
+As our SoC is based on SIP card and SIP card is compatible with Ride
+board, we could able to use same Ride board (which is combination of
+multiple daughter cards) with multiple SIP cards.
+These SIP cards can be of sa8775p, qcs9100 or qcs9075 SOC.
+
+> You keep repeating my about SoC and I keep responding the same: don't care.
+> 
+> Best regards,
+> Krzysztof
+
+Thanks & Regards,
+Wasim
 
