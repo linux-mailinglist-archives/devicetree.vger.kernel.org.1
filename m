@@ -1,441 +1,207 @@
-Return-Path: <devicetree+bounces-152040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6789CA47CDC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:07:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2045A47D00
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:10:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39E013B0006
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:06:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82B8D188BEA3
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:10:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7769322D7B1;
-	Thu, 27 Feb 2025 12:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EBD722B581;
+	Thu, 27 Feb 2025 12:08:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bpQRU2F0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2123.outbound.protection.outlook.com [40.107.117.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8760422C331;
-	Thu, 27 Feb 2025 12:06:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.123
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740657989; cv=fail; b=muw2t8DlVbKy7R/GXBxvfm1YAplGf6FP1FRgHC7G+oA79NYqli+Me+9cs7F1KSO6Yh8eaDHuXDvnGl0UOy6xbzuY9YpWAUpv+0K+aqmXlB3wHbzWfnZpuJrIqOVXbPmMqSoxF3Q7XeH0PI8s3aGKuz2g6EY24C2LLcE93tsfUmk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740657989; c=relaxed/simple;
-	bh=yBBPuYBkrBcdxy1ozfEAS32xv7C9K+u46gwvg2XIRGA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IE64eKqV0h/Ki1dzuFIm3Cm2KmNbhxgGPrJ1An4/pHOXo6hGeXo81ErSSByS8YYzJ2/wfJfQCBMwbECxFSsny/v4zorNmTTl00CsJAh+ScXOiosHYlKy4QRgq37gABPrFuiAZUQKl/AHvWM4o7YOeiK1+DTC+KqADLaYTO0YUPo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.117.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tCpZKKsruBw7GiYZE+iFd0FDwXjxPI6YPoew5G1c4ut0yiTR13D3jxU2G2JPDr+i8n/9PPukY0iqnodVtBkuErAoe6hhfukxRIWi7DqsqzoAyNeU4g8iKEJPcdvGGjw9baUQwAzWX7IZJEC5+mu0kg9WJamN0haD08mAvDvnhRcSf2HtzQ+du2ZNgtmaZOd+o+tlWMkAq6d8mQx6VUYudb9WoSyEYSdh4M1boGUjma3PmiW8PaVjptDBqGQdbPksIhE6YyndWCZo3Try56rh0P1LswsIVJ3ED69i3hfWnen0af2GK5bmLNZxB4heHt2oh7VX5UxeoVOcXFGUFVptGg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TfY4emG/vLz3ABsBFlzPY6SGHm98iJQyjDTjfIT3f8g=;
- b=yZOKFW5/YhQFd4jIjS83f9tAJP5+2GdGUYg6XeKnHgCQ7fm66OeWFiQoqPwMDeXcpi5x27kM+7lvtRHZRQasYfLbXelm3fr1D8TKYbtRiutyipqC5gTdfCUSeq3eIoRbH/SOSROEdx7AmXtI2KZr0Zk5/fYfmi3M6jGP17pK2k7YEhV+o9mJu7GqtlG7SfpXJ0/BJ4Acu6D290dglI/HRPNPIZsDg1Aua1ayxFDmsVELJc7KOILpfdkmACTo4xh2Y30mylLlXvJtBlkDQ8Df2yswcU1DzusGwd7j1DD7i+u82dk62GoQEr9B87sZpt4fMmNZgJA7dQpIUz9mbjqhFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from PS2PR01CA0001.apcprd01.prod.exchangelabs.com
- (2603:1096:300:2d::13) by SI2PR06MB5410.apcprd06.prod.outlook.com
- (2603:1096:4:1ed::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.21; Thu, 27 Feb
- 2025 12:06:23 +0000
-Received: from HK3PEPF0000021D.apcprd03.prod.outlook.com
- (2603:1096:300:2d:cafe::1f) by PS2PR01CA0001.outlook.office365.com
- (2603:1096:300:2d::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8489.20 via Frontend Transport; Thu,
- 27 Feb 2025 12:06:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- HK3PEPF0000021D.mail.protection.outlook.com (10.167.8.39) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8489.16 via Frontend Transport; Thu, 27 Feb 2025 12:06:22 +0000
-Received: from localhost.localdomain (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 00B46416050B;
-	Thu, 27 Feb 2025 20:06:20 +0800 (CST)
-From: Peter Chen <peter.chen@cixtech.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	arnd@arndb.de
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com,
-	marcin@juszkiewicz.com.pl,
-	Peter Chen <peter.chen@cixtech.com>,
-	Fugang Duan <fugang.duan@cixtech.com>
-Subject: [PATCH v3 6/6] arm64: dts: cix: add initial CIX P1(SKY1) dts support
-Date: Thu, 27 Feb 2025 20:06:19 +0800
-Message-Id: <20250227120619.1741431-7-peter.chen@cixtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250227120619.1741431-1-peter.chen@cixtech.com>
-References: <20250227120619.1741431-1-peter.chen@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B73A101FF;
+	Thu, 27 Feb 2025 12:08:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740658134; cv=none; b=TeKCiQbWZgacXOiAXVoFxTM10PsK9ByFTyJ4bPAntJ6AhDCOOL919QiuWvwam30Nsz9xTS4h8vUAAuACe5DYEcbSVglAlDOw+7IGJHC6bE+QzCLEOs+0KFQlQ5D530kAIuK2hU9kSIOMTxv1A22mPA7drvx5d3UHuU39fssskLY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740658134; c=relaxed/simple;
+	bh=tql2RO8GL3XbRYzLyF10LrmaUQUmVqAYtQm0jp7XazI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rhKg1jC6v061UMcWYH1X9X6nsT99xPYUOZrTB45OciNypcOj9zciSqcKTUgw5DbFSItArGqSI/39ZTKMQCnx0dpIZaa/T9Jrtp20xLnUm3pSW4yloSaefRfuLuTUBYuuI72j6psizVtUr4t67tGlKSbjSnKXxOObNeL6H9qn2uM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bpQRU2F0; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-22185cddbffso33975675ad.1;
+        Thu, 27 Feb 2025 04:08:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740658132; x=1741262932; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jgXAyWJlzyUT7W8oT86LCqJbT092n3CAES1oCH+us9Q=;
+        b=bpQRU2F02KYDVnGeSXRBP1K9d0T+jI8c2B7ZvDbGsjHfhiTPh254HLopUzbBdQQmtg
+         oOiYpik6txxfpJx+uwC9BqYSH9DWRHq0fIDjWKGFd8TklUbCYiBkuSXi0LbWeN2Ut2Dp
+         NCNYfAX6LuvydRsgOlPh9r/s8Vjukw4BNkev//ivNLZClXNgjHclr3hC5M27PH3xwPJk
+         TOeASV6R5BWZ1JR7QAOFk5Iqsx69zRrUKfA09z64SO6/7g841ituEsmtsuCs5MP0gyJv
+         gnka00WaAgZBozK/UR/XHK+V7Nsq5iD6OudjaL1aOKHgvQT5HA8q6vKo9pM0sVKS1czr
+         ti0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740658132; x=1741262932;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jgXAyWJlzyUT7W8oT86LCqJbT092n3CAES1oCH+us9Q=;
+        b=GUwg1MMWfFtWtQINB3t0j7afqPOyjzY4g065DwImJdwUQXPM2W9x7ffM2DMJupa3lJ
+         nvlhOtzcLCWDIyQoDpLpd872Z90Tztjq1N2HkRjvZqdMsJOHPG5+MXrnm13WPEF/2HB/
+         5W2owHeOzp/T3jmhz4NIzX5tZurHg9fqgZ4Zz+I+7GBqjXBoMml5HJrp7jI/5g4SEzKr
+         aqJNnbERIAfwrMm+zluSe7dv0qcKd9P3yY3HXIa/MnebA2ohXnA0Mksu09UEhIBW0orW
+         Rq+gFfmG0HqzuVv47wJK8vhNXp98LyVnvq2rI4FCrObWNgbBAjZ5haJN4yaLwFWT5yQY
+         A8Hg==
+X-Forwarded-Encrypted: i=1; AJvYcCV5EdCD4WZ2+akNLuP5MD7XcCoz1iq6vyJ2DX2PyrkauCbXGsq6UaZ0RGpaNXPSC9yoG3iem9P9vFUqhn0=@vger.kernel.org, AJvYcCWjxAai77jDy2ukAyV225vsC+9dD33DqjuL92gGJ4te+dmC34Q2/O96GMpx2rLbR9SQxMoKIOJGdjLLDe+Q@vger.kernel.org, AJvYcCXBZuTiutEC3ngL+Y19gi8vW+poWvwukcStge+iWBpwk02eZNAeTj/Efs0YOQRyIdsg3Oqvh3u/8eGY@vger.kernel.org, AJvYcCXUyp3RWDhUwdgP00KXtU4SZB9htcC2d9wwqgU/DxU4VGlbB6T/XZ4Ydm/4k9O2f2VTsOr2dk7XExxzRRU=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhBqknXz1MECn9duYd4KBISr/VnfKerK75puZp/r69nKZvegle
+	A1e03wT1OnHIUCbcQjGkg8IPbGrj12oUIvtQqPQlVj0uLqAcnPIr
+X-Gm-Gg: ASbGncsCDK9KeqOiOHUev1VX7C+mgckzDEFP6NK+aMl1thRfhj/jg+FQEA2vxEpLCd/
+	yz476kxQ/cHAoJ6TT13io2K1L44k7+/+FHWQnBX1PvCWO7L+MfF/AoWkmbA/Y+Jxdvxjca0U3sF
+	3oDsQxvrc10IxrCBUrdsqXLl2t8IM0o0MAjdKCheWjt/+0S11l+tTbP39tyhydB7IqBUDEn5PkI
+	0zEnJf2nz8j90p1V4qqWY88Ae0FL+NZALW/CG+Wkzylla8/dxsPrzRlnYYsu23OgPPtf0DAQ8Jb
+	one/eZBUb2eFPd2mSBjPX7gpLJJw7nchcqpR3BbPToBWz2mb29HtRcrg4oG2KjTj61A7JLKSxzO
+	DkHPsoJDcW/ouGRmNSXBi
+X-Google-Smtp-Source: AGHT+IGpG3aYl9HWsQOldqhSuN29J84k9WJc0IYy7wzLeHC+7iHr1iy3v7s+wPTT3I+3pe465wAJnA==
+X-Received: by 2002:a05:6a21:6f0c:b0:1ee:d19c:45f9 with SMTP id adf61e73a8af0-1f2e39188d3mr5135935637.19.1740658131652;
+        Thu, 27 Feb 2025 04:08:51 -0800 (PST)
+Received: from [192.168.2.3] (2403-580a-80ed-0-4835-5a07-49e7-f115.ip6.aussiebb.net. [2403:580a:80ed:0:4835:5a07:49e7:f115])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-aee7de19cdasm1074217a12.24.2025.02.27.04.08.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Feb 2025 04:08:51 -0800 (PST)
+From: James Calligeros <jcalligeros99@gmail.com>
+Subject: [PATCH v3 00/20] ASoC: tas27{64,70}: improve support for Apple
+ codec variants
+Date: Thu, 27 Feb 2025 22:07:27 +1000
+Message-Id: <20250227-apple-codec-changes-v3-0-cbb130030acf@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HK3PEPF0000021D:EE_|SI2PR06MB5410:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: fd224a5e-4a96-4d0a-8947-08dd5727271f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|1800799024|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?8FHWZ0uOegiILNutsbxU3ikTG+/4OwGmjvPcaJA6ALLpZPgBoYQYm3Iu8KzN?=
- =?us-ascii?Q?qPQMayyPsaY9IunWVbyUBnEnztz71UMPCgXgHAEhnALM13GA7WyobkQA1Wa2?=
- =?us-ascii?Q?SrNxg3nrwhEgxz7pG7cSqIgO0I3Cz+ck1iRyfbOFvJCqTLjMKAgr0Qmsr5yl?=
- =?us-ascii?Q?1kJst/bm1s009fqHJP/36KQCXInUsnOb0+pVSGc8t9Hsdis9f+aDENK2oe7O?=
- =?us-ascii?Q?X7plkNo4TYldEf1WCBPjaq6IYd7I0detxplzhIeD59WQerYg6YXFPBgjruFb?=
- =?us-ascii?Q?GZynvecPe0Y0Jt8xfQD8I7bV928vCzqEiPidjjAMBdhXodex4tR5RAc+qJ0d?=
- =?us-ascii?Q?gncVgWnkBGTGqns1APYmrd3/AyTAygC/aVSCSKnZF10uNT6wIsOskdC4rNfJ?=
- =?us-ascii?Q?RH2fVplloziOND5OvTiKM+XSgkvI94d0Hsy9IOR8JgBoWRox7hgWz8t5OmAz?=
- =?us-ascii?Q?SSZMXo//DrNUD2A5X4QWq2BA7+ukmbFspcyCx2Nrk5lzncTj1uQJP5n39D5T?=
- =?us-ascii?Q?3PNywU1hCH141dXunbyJ2e8QW2FGWuNd/3rbCTyGIs6woR1ryAAl6CoIAaD5?=
- =?us-ascii?Q?eeT2bz/h3g4RDNtiGRj2XwqW77eMMQ1YdAKcW729RR+9OeA01uM4w0HuC5e6?=
- =?us-ascii?Q?bxXfvP+IeGHIjjOeIelpigeFpHqcPqdfAso5G+a7bCv9xivwqDGkGWN1pbhb?=
- =?us-ascii?Q?Eh4gAUZ1OU6dOMdE2ZTlbZNbRWmfLc60kSDoznjq5P9/XZZhwLqWOK58R8Rc?=
- =?us-ascii?Q?KUXTLQF6D+WgaIxqtDwS8Hxdu/eDOdkSIRPHCbLg4O5DSG11IHX/4q2FR9AS?=
- =?us-ascii?Q?VyVFP2kcCex2YxcKooiBomxkg17MyWJeFLYv8mOzzBlVc0QvrxO1ECnGZf6d?=
- =?us-ascii?Q?YEwICV/Q8fd52md07nSIebrRzwY2yK2MdZhEjWOY8OAIw2MQWUfqGOiAGZVD?=
- =?us-ascii?Q?J+s2fI2RjkuLkz5Hw8s7PcYksbkWwItaT5vpFoem7oCtHSQNokvxbvRnFDX6?=
- =?us-ascii?Q?DHk0Bu3i5GDjd9hUTR/6oOP/ErUyIB1GSNDRmJK2HU3kbvGo7sQHfw+jmodL?=
- =?us-ascii?Q?EdWeUD57HUH2HzT+K2Y7hffmNAkqeak71acR9Z5TFFQ/eplVbirUVGVe5TH+?=
- =?us-ascii?Q?1gjLdl465tO5E3f4CIx+K/iVQr19WIz8pZII9zuSlnsDvlBd6ou0lkpYk5eH?=
- =?us-ascii?Q?YdnAws1evwcx0KXSL/P6l+MA0UKDf1u1OCn/KL9VExORt1L5027bpbbfgmPz?=
- =?us-ascii?Q?XVKKv5dsyt6mpQXZKhyVQ2RK/EYHQjI0xjVsDn3xKJuwPryhqawfKES8Wgg3?=
- =?us-ascii?Q?NRqlTula2cTeMukZ7p3e4E5l13TKlXC9ia8CbwZiXGmjHuRJj9G8oVpfuSVH?=
- =?us-ascii?Q?ICmbFQscLFkkbzhbRwVvzNoLbbluwciJA/tVWlph2n3oEE7adTt8WX8wFvZv?=
- =?us-ascii?Q?yrwpt5H4GDE=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2025 12:06:22.6166
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd224a5e-4a96-4d0a-8947-08dd5727271f
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: HK3PEPF0000021D.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR06MB5410
+X-B4-Tracking: v=1; b=H4sIAH9VwGcC/23NwQ6DIAyA4VcxnMcCVWB62nssOyhUJVExsJAtx
+ ncfuizx4PFv2q8LCegtBlJlC/EYbbBuSpFfMqL7euqQWpOaAAPBgBe0nucBqXYGNf1tBCpRCmk
+ 0RygMSZezx9a+d/XxTN3b8HL+sz+JfJv+PXHqRU4ZVZALWTbAG17eu7G2w1W7kWxehKNxOzcgG
+ WUOSrLWKGTqaKzr+gVhtMHr+gAAAA==
+X-Change-ID: 20250214-apple-codec-changes-6e656dc1e24d
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, 
+ Baojun Xu <baojun.xu@ti.com>, Dan Murphy <dmurphy@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shi Fu <shifu0704@thundersoft.com>, 
+ Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>
+Cc: Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+ =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
+ Hector Martin <marcan@marcan.st>, linux-sound@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ asahi@lists.linux.dev, linux-hwmon@vger.kernel.org, 
+ Neal Gompa <neal@gompa.dev>, James Calligeros <jcalligeros99@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3916;
+ i=jcalligeros99@gmail.com; h=from:subject:message-id;
+ bh=tql2RO8GL3XbRYzLyF10LrmaUQUmVqAYtQm0jp7XazI=;
+ b=owGbwMvMwCV2xczoYuD3ygTG02pJDOkHQk84PxRvSj/f26TnMf3zq6hn/pu8Jhf+/um1Z1Pnv
+ JNnmAVmdJSyMIhxMciKKbJsaBLymG3EdrNfpHIvzBxWJpAhDFycAjCRrAxGhs6n81dO2fhCyOrF
+ IYNyV3fWPwpLSmKXdHeuXqIZqX7m0iqGf1o8rpKShxfdM+A5V2x3RICdK+qU5izu3+ymgTl/L2p
+ fYAIA
+X-Developer-Key: i=jcalligeros99@gmail.com; a=openpgp;
+ fpr=B08212489B3206D98F1479BDD43632D151F77960
 
-CIX SKY1 SoC is high performance Armv9 SoC designed by Cixtech,
-and Orion O6 is open source motherboard launched by Radxa.
-See below for detail:
-https://docs.radxa.com/en/orion/o6/getting-started/introduction
+Hi all,
 
-In this commit, it only adds limited components for running initramfs
-at Orion O6.
+This series introduces a number of changes to the drivers for
+the Texas Instruments TAS2764 and TAS2770 amplifiers in order to
+introduce (and improve in the case of TAS2770) support for the
+variants of these amps found in Apple Silicon Macs.
 
-Acked-by: Fugang Duan <fugang.duan@cixtech.com>
-Signed-off-by: Peter Chen <peter.chen@cixtech.com>
+Apple's variant of TAS2764 is known as SN012776, and as always with
+Apple is a subtly incompatible variant with a number of quirks. It
+is not publicly available. The TAS2770 variant is known as TAS5770L,
+and does not require incompatible handling.
+
+Much as with the Cirrus codec patches, I do not
+expect that we will get any official acknowledgement that these parts
+exist from TI, however I would be delighted to be proven wrong.
+
+This series has been living in the downstream Asahi kernel tree[1]
+for over two years, and has been tested by many thousands of users
+by this point[2].
+
+[1] https://github.com/AsahiLinux/linux/tree/asahi-wip
+[2] https://stats.asahilinux.org/
+
 ---
-Changes for v3:
-- Fix two dts coding sytle issues 
+Changes in v3:
+- Add Rob's Acked-by to Devicetree compatible additions
+- Dropped cherry-picked patches
+- Droped abuse of regulator API
+- Droped bespoke sysfs interface
+- Rationalised temperature reading for hwmon interface
+- Set SN012776 device ID with OF match data
+- Changed probe ops reliant on device ID to case/switch statement
+- Added documentation for new Devicetree properties
+- Improved a number of poor quality commit messages
+- Documented behaviour of die temperature ADC
+- Link to v2: https://lore.kernel.org/r/20250218-apple-codec-changes-v2-0-932760fd7e07@gmail.com
 
- arch/arm64/boot/dts/Makefile              |   1 +
- arch/arm64/boot/dts/cix/Makefile          |   2 +
- arch/arm64/boot/dts/cix/sky1-orion-o6.dts |  26 +++
- arch/arm64/boot/dts/cix/sky1.dtsi         | 216 ++++++++++++++++++++++
- 4 files changed, 245 insertions(+)
- create mode 100644 arch/arm64/boot/dts/cix/Makefile
- create mode 100644 arch/arm64/boot/dts/cix/sky1-orion-o6.dts
- create mode 100644 arch/arm64/boot/dts/cix/sky1.dtsi
+Changes in v2:
+- Changed author field of patch to match Martin's Signed-off-by
+- Added Neal's Reviewed-by to reviewed patches
+- Moved fixes to existing code to the top of the series
+- Removed tas2764's explicit dependency on OF
+- Removed complicated single-use tas2764 quirks macro and replaced with
+  if block
+- Added hwmon interface for codec die temp
+- Fixed a malformed commit message
+- Link to v1: https://lore.kernel.org/r/20250215-apple-codec-changes-v1-0-723569b21b19@gmail.com
 
-diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
-index 79b73a21ddc2..8e7ccd0027bd 100644
---- a/arch/arm64/boot/dts/Makefile
-+++ b/arch/arm64/boot/dts/Makefile
-@@ -13,6 +13,7 @@ subdir-y += bitmain
- subdir-y += blaize
- subdir-y += broadcom
- subdir-y += cavium
-+subdir-y += cix
- subdir-y += exynos
- subdir-y += freescale
- subdir-y += hisilicon
-diff --git a/arch/arm64/boot/dts/cix/Makefile b/arch/arm64/boot/dts/cix/Makefile
-new file mode 100644
-index 000000000000..ed3713982012
---- /dev/null
-+++ b/arch/arm64/boot/dts/cix/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0
-+dtb-$(CONFIG_ARCH_CIX) += sky1-orion-o6.dtb
-diff --git a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-new file mode 100644
-index 000000000000..78f4fcd87216
---- /dev/null
-+++ b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright 2025 Cix Technology Group Co., Ltd.
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include "sky1.dtsi"
-+/ {
-+	model = "Radxa Orion O6";
-+	compatible = "radxa,orion-o6", "cix,sky1";
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			size = <0x0 0x28000000>;
-+			linux,cma-default;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-new file mode 100644
-index 000000000000..c6d7a48e9893
---- /dev/null
-+++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-@@ -0,0 +1,216 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright 2025 Cix Technology Group Co., Ltd.
-+ *
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			compatible = "arm,cortex-a520";
-+			enable-method = "psci";
-+			reg = <0x0 0x0>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <403>;
-+		};
-+
-+		cpu1: cpu@100 {
-+			compatible = "arm,cortex-a520";
-+			enable-method = "psci";
-+			reg = <0x0 0x100>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <403>;
-+		};
-+
-+		cpu2: cpu@200 {
-+			compatible = "arm,cortex-a520";
-+			enable-method = "psci";
-+			reg = <0x0 0x200>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <403>;
-+		};
-+
-+		cpu3: cpu@300 {
-+			compatible = "arm,cortex-a520";
-+			enable-method = "psci";
-+			reg = <0x0 0x300>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <403>;
-+		};
-+
-+		cpu4: cpu@400 {
-+			compatible = "arm,cortex-a720";
-+			enable-method = "psci";
-+			reg = <0x0 0x400>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		cpu5: cpu@500 {
-+			compatible = "arm,cortex-a720";
-+			enable-method = "psci";
-+			reg = <0x0 0x500>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		cpu6: cpu@600 {
-+			compatible = "arm,cortex-a720";
-+			enable-method = "psci";
-+			reg = <0x0 0x600>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		cpu7: cpu@700 {
-+			compatible = "arm,cortex-a720";
-+			enable-method = "psci";
-+			reg = <0x0 0x700>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		cpu8: cpu@800 {
-+			compatible = "arm,cortex-a720";
-+			enable-method = "psci";
-+			reg = <0x0 0x800>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		cpu9: cpu@900 {
-+			compatible = "arm,cortex-a720";
-+			enable-method = "psci";
-+			reg = <0x0 0x900>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		cpu10: cpu@a00 {
-+			compatible = "arm,cortex-a720";
-+			enable-method = "psci";
-+			reg = <0x0 0xa00>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		cpu11: cpu@b00 {
-+			compatible = "arm,cortex-a720";
-+			enable-method = "psci";
-+			reg = <0x0 0xb00>;
-+			device_type = "cpu";
-+			capacity-dmips-mhz = <1024>;
-+		};
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu0>;
-+				};
-+				core1 {
-+					cpu = <&cpu1>;
-+				};
-+				core2 {
-+					cpu = <&cpu2>;
-+				};
-+				core3 {
-+					cpu = <&cpu3>;
-+				};
-+				core4 {
-+					cpu = <&cpu4>;
-+				};
-+				core5 {
-+					cpu = <&cpu5>;
-+				};
-+				core6 {
-+					cpu = <&cpu6>;
-+				};
-+				core7 {
-+					cpu = <&cpu7>;
-+				};
-+				core8 {
-+					cpu = <&cpu8>;
-+				};
-+				core9 {
-+					cpu = <&cpu9>;
-+				};
-+				core10 {
-+					cpu = <&cpu10>;
-+				};
-+				core11 {
-+					cpu = <&cpu11>;
-+				};
-+			};
-+		};
-+	};
-+
-+	pmu-a520 {
-+		compatible = "arm,cortex-a520-pmu";
-+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	pmu-a720 {
-+		compatible = "arm,cortex-a720-pmu";
-+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	pmu-spe {
-+		compatible = "arm,statistical-profiling-extension-v1";
-+		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	soc@0 {
-+		compatible = "simple-bus";
-+		ranges = <0 0 0 0 0x20 0>;
-+		dma-ranges;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+
-+		gic: interrupt-controller@e010000 {
-+			compatible = "arm,gic-v3";
-+			reg = <0x0 0x0e010000 0 0x10000>,	/* GICD */
-+			      <0x0 0x0e090000 0 0x300000>;       /* GICR * 12 */
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
-+			#interrupt-cells = <3>;
-+			interrupt-controller;
-+			#redistributor-regions = <1>;
-+			redistributor-stride = <0 0x40000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			gic_its: msi-controller@e050000 {
-+				compatible = "arm,gic-v3-its";
-+				reg = <0x0 0x0e050000 0x0 0x30000>;
-+				msi-controller;
-+				#msi-cells = <1>;
-+			};
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys", "hyp-virt";
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
-+		clock-frequency = <1000000000>;
-+		arm,no-tick-in-suspend;
-+	};
-+};
+---
+Hector Martin (5):
+      ASoC: tas2764: Enable main IRQs
+      ASoC: tas2770: Power cycle amp on ISENSE/VSENSE change
+      ASoC: tas2770: Add zero-fill and pull-down controls
+      ASoC: tas2770: Support setting the PDM TX slot
+      ASoC: tas2770: Set the SDOUT polarity correctly
+
+James Calligeros (6):
+      ASoC: dt-bindings: tas27xx: add compatible for SN012776
+      ASoC: dt-bindings: tas2770: add compatible for TAS5770L
+      ASoC: dt-bindings: tas27xx: document ti,sdout-force-zero-mask property
+      ASoC: tas2770: expose die temp to hwmon
+      ASoC: tas2764: expose die temp to hwmon
+      ASoC: dt-bindings: tas2770: add flags for SDOUT pulldown and zero-fill
+
+Martin Povišer (9):
+      ASoC: tas2764: Extend driver to SN012776
+      ASoC: tas2764: Add control concerning overcurrent events
+      ASoC: tas2770: Factor out set_ivsense_slots
+      ASoC: tas2770: Fix and redo I/V sense TDM slot setting logic
+      ASoC: tas2764: Reinit cache on part reset
+      ASoC: tas2764: Configure zeroing of SDOUT slots
+      ASoC: tas2764: Apply Apple quirks
+      ASoC: tas2764: Raise regmap range maximum
+      ASoC: tas2764: Crop SDOUT zero-out mask based on BCLK ratio
+
+ .../bindings/sound/ti,tas2770.yaml       |  13 ++
+ .../bindings/sound/ti,tas27xx.yaml       |   5 +
+ sound/soc/codecs/tas2764-quirks.h        | 180 +++++++++++++++++
+ sound/soc/codecs/tas2764.c               | 258 ++++++++++++++++++++++++-
+ sound/soc/codecs/tas2764.h               |  21 ++
+ sound/soc/codecs/tas2770.c               | 240 ++++++++++++++++++++---
+ sound/soc/codecs/tas2770.h               |  19 ++
+ 7 files changed, 706 insertions(+), 30 deletions(-)
+---
+base-commit: 32adeb9806ac5bf928514b62e6145bba12dfd71a
+change-id: 20250214-apple-codec-changes-6e656dc1e24d
+
+Best regards,
 -- 
-2.25.1
+James Calligeros <jcalligeros99@gmail.com>
 
 
