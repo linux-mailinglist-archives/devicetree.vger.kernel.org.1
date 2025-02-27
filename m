@@ -1,66 +1,67 @@
-Return-Path: <devicetree+bounces-152090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1583FA47F60
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:40:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42EF3A47F4B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:37:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4706316E978
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:35:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E894918848BB
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:37:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAFCD22D7B3;
-	Thu, 27 Feb 2025 13:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7C622E3FF;
+	Thu, 27 Feb 2025 13:37:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ksKRITal"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Z5AnLMX5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E965224246;
-	Thu, 27 Feb 2025 13:35:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1672206AC;
+	Thu, 27 Feb 2025 13:37:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740663311; cv=none; b=ep0afLqNqSpiKELh3gk7+r2xuXYOj1LwpU3d27oqfgluruNOMIVj07TfnbSAf8Yj+IPEzDQwXUPWY70I/WyUvQmqo7ToSsr8kexi50v+nE60JmV9l/nrrXanIfth//vSg81YMnh/aoIaE40/m3Wjy1MW+xWC0akihropiPQdW2U=
+	t=1740663443; cv=none; b=pSAlMFmfowp7JnZtyBrao5zCKIsgs30871kGJxnxprbV22/CEUkCvycTLrh809/fIvQYF3t/3wjYYvjD5c9ToR8ctX4CXsUr/2Pk5T8X6CjY/tP8TZzbYCCDADykkhkJ082eP8fq2T9CZQ/LY+d36u6E6Ldbnq1EcPOPzJkMm9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740663311; c=relaxed/simple;
-	bh=Rr/ZAs6GmOH5Zx/oWHv7ST2gf2X9v75nhFcxZDN+WmA=;
+	s=arc-20240116; t=1740663443; c=relaxed/simple;
+	bh=fFvxLnSIoH2cP+vL1AfiNmxf3lNhBBcyQcN1t/EZV3M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fQ/mqXUO0wFqz7n9k9VCjwggTSgbelrpj6Cdtj133YeQfywrIyZNwvDAWewUQyPMUxzYtcNj/2Uh8v1NyoTJYI9qamMkUZVmZS0ShlUhQ+o/YiGZ99Zhf98GYLefjZty9APQaaF63NuZBqlOcj85lrTZXUXNgRD5DobAwVkKbiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ksKRITal; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42518C4CEDD;
-	Thu, 27 Feb 2025 13:35:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740663311;
-	bh=Rr/ZAs6GmOH5Zx/oWHv7ST2gf2X9v75nhFcxZDN+WmA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ksKRITalBMRrx8PI2TYjkm6vqOT15c6BEkYcq9R7/5hpch/3Nw6p4/kOieKMPaw4J
-	 7GgLzIYzIMOBgD6A/WdxtiUD0jaj+36l+qoiwF7o9rCr7lxIn3NzgJKZJ9j0D1iHPd
-	 HTuST4IABwd0KVMebmBehOzqITu+4rkxfhtZfXTAMs+hD48dp9n85DgtJgIhJlA921
-	 zM5Ta2d5Rd16mLjG5ab3OBw7XqdyINkexNUjcIGdgxTpU+1iULIfNJeNBneD52cXh2
-	 ZSbo62gxrAsG0IrH64z3y41cNX7KDfO22hj4zMDV0REErtAlWEPDCwRNTIJqyVwW7U
-	 gUmGMdpg4PVLw==
-Date: Thu, 27 Feb 2025 07:35:09 -0600
-From: Rob Herring <robh@kernel.org>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ayc73WTZnatMvVFUj9+JWuCc0PLEucPVtv4rBYxrI5t/xX+gqWw+nrGabnvJk0ilp4+2moWXDfc7KalN1xAUSTPIB8d6s+npgfZdpKojmRDQiDB3iZctRyv8WUDF7RXHgjSsUWIPbI+D0Ck4Cy1wPbe69cGVsJOjmhqy/qj/l0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Z5AnLMX5; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=iQu2082//gPU290pxdRRy926EyxDVgpmL3flACSXtlI=; b=Z5AnLMX512TdofIv8P0FEi7upk
+	WfrSa5FsVMlOGD0enN7fyIZqg2ig1i2IskNE4c1WFVlkLNH65YmauKm9yA2/bw/T4jZT8ra8zog2k
+	JYEGNYg3dbRbHZq7aMbANwkIYlPVdPorm0iS/1+vn8sPNgMJY5FYK3+2Kbt8nSWh8NkE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tne4a-000bSx-NT; Thu, 27 Feb 2025 14:37:08 +0100
+Date: Thu, 27 Feb 2025 14:37:08 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Kever Yang <kever.yang@rock-chips.com>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
+	Jose Abreu <joabreu@synopsys.com>, devicetree@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: reset: add generic bit reset
- controller
-Message-ID: <20250227133509.GA2021892-robh@kernel.org>
-References: <20250226234234.125305-1-inochiama@gmail.com>
- <20250226234234.125305-2-inochiama@gmail.com>
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Rob Herring <robh@kernel.org>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	"David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	David Wu <david.wu@rock-chips.com>, Paolo Abeni <pabeni@redhat.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: net: Add support for rk3562 dwmac
+Message-ID: <5fd4bc39-bf2c-42d5-bbd0-2787b2839833@lunn.ch>
+References: <20250227110652.2342729-1-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,25 +70,14 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250226234234.125305-2-inochiama@gmail.com>
+In-Reply-To: <20250227110652.2342729-1-kever.yang@rock-chips.com>
 
-On Thu, Feb 27, 2025 at 07:42:29AM +0800, Inochi Amaoto wrote:
-> Some SoCs from Aspeed, Allwinner, Sophgo and Synopsys have
-> a simple reset controller by toggling bit. It is a hard time
-> for each device to add its own compatible to the driver.
+On Thu, Feb 27, 2025 at 07:06:50PM +0800, Kever Yang wrote:
+> Add a rockchip,rk3562-gmac compatible for supporting the 2 gmac
+> devices on the rk3562.
+> rk3562 only has 4 clocks availabl for gmac module.
 
-It's a 1 line change. That isn't hard.
+available
 
-> Since these devices share a common design, it is possible to
-> add a common device to reduce these unnecessary change for
-> the driver.
-> 
-> Add common binding for these kind generic reset controller.
-> Check the binding description for its requirement and
-> suitable scenarios.
-
-We generally don't want 1 register per node type bindings. That level of 
-detail in DT has proven impossible to get right.
-
-Rob
+	Andrew
 
