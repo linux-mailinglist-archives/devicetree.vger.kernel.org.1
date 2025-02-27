@@ -1,123 +1,190 @@
-Return-Path: <devicetree+bounces-152086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DECCA47E9F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:11:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B760AA47EA9
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:14:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 869761894B00
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:11:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B14591715EF
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C690A22F38C;
-	Thu, 27 Feb 2025 13:11:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E33E822F178;
+	Thu, 27 Feb 2025 13:13:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lR1W0HlF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w6ULe8Xo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D98D21ABBE;
-	Thu, 27 Feb 2025 13:11:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D353E22F167
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 13:13:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740661876; cv=none; b=F4s9EpXBN4Qh77MZeO4IZVB3GHifElG48c9gNz7rH1CfVP92LyJ0zgHKNmwxn6lYNYCAAiIiMT0r2KVtSzz1LGMc7DVorpXsbtf00AbiNiyHq/CYYYAuhDDNAQCody4NlP4pgV9WQxDbfQhTesPS9KLQe5sd1DEGMexS5VySotQ=
+	t=1740662039; cv=none; b=RrNjzIkHXyjdq3UR5FrtQSfQOgYQ2qpQooYtvyVqTe1SBq1hL87BkUge3v7x71TgJTMEis7R2n8LmWLtTKKDFXGZrrrIwGeNi8+jwPjBccKq3dw08jV7++HnY+JMhXB5lNiMy+J/bCUzW8saySuWZBaxEXNGvFnGaBzVrBG3HZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740661876; c=relaxed/simple;
-	bh=V/pUxgT+Vht4GXGhv/7+4ABfo2gbm6GzpoHQLy2bYws=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T2TIhlUvNa/Qp9G23ce6uayIdaK6hpw9j2RK6ey7Y05JaBMRxKLnxGxZhpH2X03T96y8/VsEiZSZctsH8FfJe4PhhNAvH6/U19/QKYNNOBprAgwhOxfHNZ14oprXO3ixSgsZp8PIm+AQ4WNfs5UFI9cuVJ3n7wyx9sZIBWzWrLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lR1W0HlF; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740661875; x=1772197875;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=V/pUxgT+Vht4GXGhv/7+4ABfo2gbm6GzpoHQLy2bYws=;
-  b=lR1W0HlFJqJSz62mDLAeT31grP/v/2yyqyHuMUu4p+tBh9R1cz+PpG15
-   NsjEL26Cc+JW56a/WQbBqvriGpcpwBVuutHciMDzwwO7y0BAOzUcp+N/a
-   tRnZW627wDiEKUeayVu7+lceakOxO1dhwOygymKbP5jGvo+gBpf0M3A3O
-   OC1f9LGTfP+Ge+mOlHaZQHQEGY0EU8fbjeSK7F9Tv/9lUIedOVQWba5Oy
-   P3TFgjsTRI8mvRydSg1Bv5hpBXHmT/p87v/oUqh3f1jqyRIS9S+J+P5t/
-   6gVuoRj8ROByjxAc17LBadZ2PwtofGpzAoxYgC2nOT8t+vQowE07eIHbb
-   w==;
-X-CSE-ConnectionGUID: jOmQY6PJRm+gM+6Q0OIyuA==
-X-CSE-MsgGUID: 6nqxzcezQ3+m2uggEJB5IQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="41680687"
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; 
-   d="scan'208";a="41680687"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2025 05:11:14 -0800
-X-CSE-ConnectionGUID: 4FlIhckrROSowiQsyIKYWA==
-X-CSE-MsgGUID: ahgclakuSvmWi4Ul3UEvZw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; 
-   d="scan'208";a="117667489"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by fmviesa009.fm.intel.com with ESMTP; 27 Feb 2025 05:11:10 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tndfQ-000DO4-06;
-	Thu, 27 Feb 2025 13:11:08 +0000
-Date: Thu, 27 Feb 2025 21:10:09 +0800
-From: kernel test robot <lkp@intel.com>
-To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= via B4 Relay <devnull+j.ne.posteo.net@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	=?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.ne@posteo.net>
-Subject: Re: [PATCH 3/3] dt-bindings: net: Convert fsl,gianfar to YAML
-Message-ID: <202502272036.FSFdbXEm-lkp@intel.com>
-References: <20250220-gianfar-yaml-v1-3-0ba97fd1ef92@posteo.net>
+	s=arc-20240116; t=1740662039; c=relaxed/simple;
+	bh=RvYJJ5olkrH8g63o2yNdqaycpGOF7BuYhXeUvp7CudE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=r178RHQbvLxR8M13ulhhHgeHR4jN9ak5zKlVFBeNGZC0zogGA396Q4iLPN36PwPgOLbECdqfELWH+LaoRGglV+byur04lvJZMG7I8004Wg9K8BXoTuqZITagDGRkp6/Fa3aFkiCsqQlYSehkNBbKK/p5En3DCVO2dlYsJnOGQz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w6ULe8Xo; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-390dd3654aeso527148f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 05:13:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740662036; x=1741266836; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=RvYJJ5olkrH8g63o2yNdqaycpGOF7BuYhXeUvp7CudE=;
+        b=w6ULe8XoIKz5NaxL+udSppHvVuC25aHUNbRUAONrrDwtNtMdhqhYg00HhkqOFSr6sw
+         l6DIIzGmmRKVzTC+3uZK+x43K80gfPfJBPpJzddK6vJIjt1deSeKiYMoKToFkmb8+Dt7
+         wV6kuIrYvWTKPs3ofiOFWq+KiXn12Go+0BJWtJKZxjvjwKEFWu/RB5HknYEZCdJKIEp5
+         ItkEKYP2fy+ys4nweHLm4J8bg9n205EUY7mEwat69NESmQoXvqUNQhglfIcP88WKygLE
+         DFJQSFFakdYokr9m/XLAvp1D6ip3zKttUdu3D5oOT+Ezha3JFJ8AMlNx5x68vUG/9el+
+         VMOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740662036; x=1741266836;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RvYJJ5olkrH8g63o2yNdqaycpGOF7BuYhXeUvp7CudE=;
+        b=Qt782W7CTaOk5NFJmyRUA+0vwlYl8kIb5zOuohOgQT36a0J4Q1ohVr/ecYPvbE0rpa
+         bVlVDPBrZk6k9YiWvJ0CoR/uRP0hGXVijopMUbqBndcdNbEH7llLcSVHTtkTVmmSyWdT
+         MCMzL7eguFYE2xvZe7FzyYlT9189Xr4lJxOSxuM43OXab6gdw+yw/Lg8POCK+Q8Y6r3M
+         5qOczuY+DDenQypZHt7Wvfa+ULdNkE9VFd0eF1TighVJ9Z1vQ7/RB5mZi1vYiyxYozQe
+         GsNP3jFUIbFCWgsm8PtBqy10mjBxyyxdkOeFz7iOMHluFRay6tD/NbUyKIbGa7O0hmFy
+         lJ0A==
+X-Forwarded-Encrypted: i=1; AJvYcCU51BKo3gLJroLhtZMf2FMQ1/BKz9osfr9MdMQ3owzDVamdmB4erH7BSvY7cl5xOylfmyffnTQqHXHl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUr3naS2wsN0vCdmAHz1/Pcgj5c3K8v3Wi5W+r6MAIgGs02L4g
+	gNZLjMp+aPraw6R2xFriyhb1ZkSeSE9+SfS7jFxs6wOBJuR18cqkUu6MdOFZDwU=
+X-Gm-Gg: ASbGncsjbLtajfGysHpQphmyhW8QjlH4MrE0lYRLj8QFwL3nqcK82m+wwtxeqg9q/Gm
+	VPb1Ku0WzPD7QLMqWqfzXfDmS2kv9c3ZgKv1HAyit2xIdD3ItowDRCvBeNXvEtx6NdLbeq8GuTC
+	KAUZG7yjfApo1mh7e0w+eND/5Gs0sG1SvVG2olQ/2qZO/ULkspZeSq34mEQcs7riwYciA6hX080
+	Y4xVrIaJxurVFuBthqyJjyWzzSF4ydk9C3WcIDXCwv0UaEF7h/t67oaQJIm2iLZ0vYFv56ynbBF
+	MxjXobf0lJkxkbQKAMrQMZeZy6aNPQ==
+X-Google-Smtp-Source: AGHT+IE6n/c7/bx5gCSXDTH8aoqU0z7nzFeeaoRQoyzForW+cjpxgZs3kJk+NvWIxEA4pl6DiSKyiA==
+X-Received: by 2002:a05:6000:1864:b0:390:dbf5:407b with SMTP id ffacd0b85a97d-390dbf541d3mr5027668f8f.28.1740662036128;
+        Thu, 27 Feb 2025 05:13:56 -0800 (PST)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e4847e62sm2021619f8f.67.2025.02.27.05.13.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Feb 2025 05:13:55 -0800 (PST)
+Message-ID: <503e105b71fa4271f40a2d3ca18ba13ed7d45a65.camel@linaro.org>
+Subject: Re: [PATCH v2 3/6] dt-bindings: mfd: add max77759 binding
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski	 <brgl@bgdev.pl>, Srinivas
+ Kandagatla <srinivas.kandagatla@linaro.org>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, Peter Griffin	
+ <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Will
+ McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-kernel@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org, 	linux-hardening@vger.kernel.org
+Date: Thu, 27 Feb 2025 13:13:54 +0000
+In-Reply-To: <20250227130451.GA1783593-robh@kernel.org>
+References: <20250226-max77759-mfd-v2-0-a65ebe2bc0a9@linaro.org>
+	 <20250226-max77759-mfd-v2-3-a65ebe2bc0a9@linaro.org>
+	 <20250227130451.GA1783593-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.53.2-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250220-gianfar-yaml-v1-3-0ba97fd1ef92@posteo.net>
 
-Hi Neuschäfer,
+On Thu, 2025-02-27 at 07:04 -0600, Rob Herring wrote:
+> On Wed, Feb 26, 2025 at 05:51:22PM +0000, Andr=C3=A9 Draszik wrote:
+> > The Maxim MAX77759 is a companion PMIC for USB Type-C applications and
+> > includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
+> > Port Controller (TCPC), NVMEM, and a GPIO expander.
+> >=20
+> > This describes the top-level device.
+> >=20
+> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> >=20
+> > ---
+> > v2:
+> > * rename expected nvmem subdev nodename to 'nvmem-0'
+> > =C2=A0 I'd have preferred just 'nvmem', but that matches nvmem-consumer=
+.yaml
+> > =C2=A0 and fails validation.
+> >=20
+> > Note: MAINTAINERS doesn't need updating, the binding update for the
+> > first leaf device (gpio) adds a wildcard matching all max77759 bindings
+> > ---
+> > =C2=A0.../devicetree/bindings/mfd/maxim,max77759.yaml=C2=A0=C2=A0=C2=A0=
+ | 104 +++++++++++++++++++++
+> > =C2=A01 file changed, 104 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml =
+b/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..87e3737896a289998a18b67=
+932dbccacfb8e3150
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
+> > @@ -0,0 +1,104 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mfd/maxim,max77759.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Maxim Integrated MAX77759 PMIC for USB Type-C applications
+> > +
+> > +maintainers:
+> > +=C2=A0 - Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> > +
+> > +description: |
+> > +=C2=A0 This is a part of device tree bindings for the MAX77759 compani=
+on Power
+> > +=C2=A0 Management IC for USB Type-C applications.
+> > +
+> > +=C2=A0 The MAX77759 includes Battery Charger, Fuel Gauge, temperature =
+sensors, USB
+> > +=C2=A0 Type-C Port Controller (TCPC), NVMEM, and a GPIO expander.
+> > +
+> > +properties:
+> > +=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0 const: maxim,max77759
+> > +
+> > +=C2=A0 interrupts:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 interrupt-controller: true
+> > +
+> > +=C2=A0 "#interrupt-cells":
+> > +=C2=A0=C2=A0=C2=A0 const: 2
+> > +
+> > +=C2=A0 gpio-controller: true
+> > +
+> > +=C2=A0 "#gpio-cells":
+> > +=C2=A0=C2=A0=C2=A0 const: 2
+>=20
+> Why do you have GPIO properties here and in the child node? Either would=
+=20
+> be valid, but both probably not. Putting them here is actually=20
+> preferred.
 
-kernel test robot noticed the following build warnings:
+That's an oversight, I meant to put them into the child only, not here,
+since the child is the one providing the gpio functionality.
 
-[auto build test WARNING on 2014c95afecee3e76ca4a56956a936e23283f05b]
+What's the reason to have it preferred inside this parent node?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/J-Neusch-fer-via-B4-Relay/dt-bindings-net-Convert-fsl-gianfar-mdio-tbi-to-YAML/20250221-013202
-base:   2014c95afecee3e76ca4a56956a936e23283f05b
-patch link:    https://lore.kernel.org/r/20250220-gianfar-yaml-v1-3-0ba97fd1ef92%40posteo.net
-patch subject: [PATCH 3/3] dt-bindings: net: Convert fsl,gianfar to YAML
-config: csky-randconfig-051-20250227 (https://download.01.org/0day-ci/archive/20250227/202502272036.FSFdbXEm-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 14.2.0
-dtschema version: 2025.3.dev3+gabf9328
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250227/202502272036.FSFdbXEm-lkp@intel.com/reproduce)
+At least some bindings do specify it in the child node, e.g.:
+delta,tn48m-gpio.yaml
+kontron,sl28cpld-gpio.yaml
+xylon,logicvc-gpio.yaml
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502272036.FSFdbXEm-lkp@intel.com/
+Cheers,
+Andre'
 
-All warnings (new ones prefixed by >>):
-
-   Documentation/devicetree/bindings/net/snps,dwmac.yaml: mac-mode: missing type definition
->> Warning: Duplicate compatible "gianfar" found in schemas matching "$id":
-   	http://devicetree.org/schemas/net/fsl,gianfar-mdio.yaml#
-   	http://devicetree.org/schemas/net/fsl,gianfar.yaml#
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
