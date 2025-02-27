@@ -1,88 +1,90 @@
-Return-Path: <devicetree+bounces-152268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FEFCA48865
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 19:59:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37F39A4887B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 20:03:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C22516E889
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 18:59:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19ABC18843E5
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 19:02:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 602E826E942;
-	Thu, 27 Feb 2025 18:58:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 649161ACEDB;
+	Thu, 27 Feb 2025 19:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="al+aQmiQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H9qMKKL3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9465425EF9C;
-	Thu, 27 Feb 2025 18:58:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 659F717A313
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 19:02:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740682685; cv=none; b=Q26HuchcXIqrwvWXooH+Lemmjk6Phy5dYaMV5e1C1SBBz7qZ4bYf0VJzemYmZo9GEQTKLp2m0IjKGM+APwC0PEyOqex7ZDZXcS2t56DHcgtjcXvDkfIWWC1jtt44OwZ98hb95PY7ZgkyA1v93vPuc0WT66FC3aJtUMMepOOjmcs=
+	t=1740682965; cv=none; b=Yc2RDjuTXJ0j3CowRP4UUvuotSSrpthE8Ff+SMW6betseAE4gtNlIEUaAoY8UFRuf9OFm2Kl5gQZK/+VPoNd+5v+ja/xinfjOAe3OCgiLmzUPGPgpzu29VP/Rm4HVJzld/QQDFytoj60VYGaK9VBrUnIoOOJc0yXQUILxt4xGlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740682685; c=relaxed/simple;
-	bh=4fD2WY8z3foYtZjpex6DfBxwc3jHGn6rdF8L2GMSLaU=;
+	s=arc-20240116; t=1740682965; c=relaxed/simple;
+	bh=BuRTevzALKItQZ428xQb6alv2AlOwzdRzrIVuA9l5lk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WzRA5BtFUhYTJLDHIaY7oGtfbNR9WwUoLU+zIfktmHIb1urw40OTCo+XjU09+ClKLud9zui4+YBs6fGMpnk8/zVcCoHJre11ILdWidJRLLIj05YyhDAY+QGZe4KO8cGrhAFJsKVJuLk5svysed6RwYLDHAXkuYDc4i9rck7PPeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=al+aQmiQ; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740682684; x=1772218684;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4fD2WY8z3foYtZjpex6DfBxwc3jHGn6rdF8L2GMSLaU=;
-  b=al+aQmiQttBBo4LKg9fLXiPTQ+Exs3X2NulUj2zYXNfbcTcPzwpsyrmu
-   Grc42P2etSVwBPQRV6/QXSmaETVT9JEx4G4snMSrhmqYBeM7QDNAs2kUu
-   kdCkxixpgh9huffY4Tmz6pcp/f9HR6D7pdMt3GfVEPurJR64jbuGgN9Df
-   scsm4rJJ4xCgFklPy97FzoDz02igQ0GBDbup/Nn8WwQ6lcT7qRkDu7YrF
-   PHXQbOu0MWT2Ch0Ah5z9BrQdI1lPjpneincvkNlrAQ/NtThMx99iJYDSf
-   H0dPGyJFSoBeQ8NhvzGb12KXx3r6nikMGBVDTw5F9GVPh/Ho+slBQBnBE
-   w==;
-X-CSE-ConnectionGUID: Gd8/AkFbQI2Te4DeROCxww==
-X-CSE-MsgGUID: RsR4HpFiTR+D/C+HEvCv7A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="53003000"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
-   d="scan'208";a="53003000"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2025 10:58:01 -0800
-X-CSE-ConnectionGUID: jPe4dEs/QnK7MHJuIJrLzQ==
-X-CSE-MsgGUID: NUbAnwywRCuKv8X7iIUxGA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; 
-   d="scan'208";a="122128313"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by orviesa004.jf.intel.com with ESMTP; 27 Feb 2025 10:57:56 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tnj50-000Dty-0k;
-	Thu, 27 Feb 2025 18:57:54 +0000
-Date: Fri, 28 Feb 2025 02:57:19 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	tomm.merciai@gmail.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-renesas-soc@vger.kernel.org, linux-media@vger.kernel.org,
-	biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 17/17] media: rzg2l-cru: Add support for RZ/G3E SoC
-Message-ID: <202502280247.L8g0SOJE-lkp@intel.com>
-References: <20250226152418.1132337-18-tommaso.merciai.xr@bp.renesas.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YMZ1u8QIxH1a+9R3HrcW7WCU2aKWe2kSc93vax23CyhChrFDbfvQH9vnkyDz3Q0pDBhKBjIwm9JsIkG9EgJz7cPLlNKiRrMdu9TsMFWRF0CwSf7Hf6u2IUlhG1YTV4yJTs3dZdpYRb4Vpw1E54H+73QXvLBtu044FrZDNCqAFXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H9qMKKL3; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5462ea9691cso1361828e87.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 11:02:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740682960; x=1741287760; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=YRlHVq/fhYckH/apG8DI4lghb+1AD7fw2kBANnribBo=;
+        b=H9qMKKL35VarGsBGXNCl+/oELISY6bvK2qXa9tTalQhF0Tv2rnz/8s3Tz8iDP8kbO3
+         CZdFryyEadmpeJachd4w17fuZ+o+f0EuQMp/m51AH4H8mHWoTKdFy9FPJL5f1BmOwWiN
+         X/IEAB8WZBmF7F5ks1JmpPZBrNPZfXCGLr2ZD3DepZ8018esrzu5qI48+C2+V6UnfbBJ
+         +r+zcaUGMYodf2Ij+/+36N3YcCoGKf1d+Vov5ChHVdrhrtN5DeH/7PVzLtd2/uX5ktZw
+         IX5/qIl2EwkXPeXCOSht2WGn0cn6d6+/iOn65NPTELMXqM9gdvTtQKU5lK0h1eaOM0bl
+         //Lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740682960; x=1741287760;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YRlHVq/fhYckH/apG8DI4lghb+1AD7fw2kBANnribBo=;
+        b=RuCtJ4SihM9zkV36Rg2anfwrY2AT727wFLrQIqj/W9/+bxSTmpve/bNxnGMpCkeHee
+         LYlEVzkroDSDDbs953fhGbbmPAgHg6sFT40z7INqrrsUmiQpDoZWOV7BsdI4NYbfDKIU
+         8+vw5AVzwiOvTBDYMBVghWmTYBN20yPjs2PV96SXosMZ9Coe/Cl4sdMg4wgK4UoAu+/S
+         D2lvxurvp2fNyrjP9RZJr5Jm4r6f/6XSYiJ44cbHPnHB2U/KQgbSK8txmCToP02IqeBh
+         xkrv4PE5Cuv/xjXhZa4uRkLc0rHMbKa563iAhEwYVNfF9sJSOovsuSykZoDpa4dduGzV
+         DK2g==
+X-Forwarded-Encrypted: i=1; AJvYcCVN6HmITxPuKBocmSPI2VlbUODfMckbDePmZsDzagQyEPSgw3jRYL8orI7uVsrdPvBAO0/UJg0BfIEX@vger.kernel.org
+X-Gm-Message-State: AOJu0YybsJWKohQkyOwZLUV3DSMFlW+VnyujeM/EBqN5boguOtpnKC2n
+	hcgrMPRmrX48Oq2WYtMifRseLW2Smk5czg27WyfMpPYk75c7o4wCKOrpZK8NDNQ=
+X-Gm-Gg: ASbGncu/XkA0MMu0QnIPHRe1yklruoqLFyCirf1XtOqZzKa2DgzLRqvQerqyG3PmkHS
+	hN2DZ8u+4jBRl1wzbiUz6vSpQyStksuGClNa9nCCqtPa0tRoDHFPiAceA4wTr0NEqQsQbsqv1Ry
+	qvZw12unP66ROfY3YnE6FciwfbWECN2u3bAQELX4SbOhDFDNJNjA3wwns7gwuPbZD8vSRk/f8vM
+	gNTkhsygQ8c9iPIvVmqUnK/59A0WwwYpxqfPJf7JL+XIPvqnl8Pa9Eu0u51iwb+AmkbVUZeDBL7
+	UBnTvOJNuPCUexyEsMdSLd0fvwBjIaLID7mG/RtRpEfWxgRWFD3ITv78hL3ri0JzrU648S+WUGr
+	/0BySdw==
+X-Google-Smtp-Source: AGHT+IEp+Zq10szXRG2lH2uoKic4S9ViqPTrcBL1J0yzeLJRfwMYDIrB8jNjP79DfJiBuDuA6G4xvg==
+X-Received: by 2002:a05:6512:128e:b0:545:e2e:843a with SMTP id 2adb3069b0e04-5494c37d9d5mr240100e87.38.1740682960314;
+        Thu, 27 Feb 2025 11:02:40 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5494417446fsm236096e87.31.2025.02.27.11.02.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Feb 2025 11:02:38 -0800 (PST)
+Date: Thu, 27 Feb 2025 21:02:37 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: George Moussalem <george.moussalem@outlook.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, daniel.lezcano@linaro.org, rafael@kernel.org, amitk@kernel.org, 
+	thara.gopinath@gmail.com, robh@kernel.org, krzk+dt@kernel.org, quic_srichara@quicinc.com
+Subject: Re: [PATCH v8 3/5] thermal: qcom: tsens: add support for tsens v1
+ without RPM
+Message-ID: <xv3c2ube7the3gat7ustws4ok6t26c33fyywqi6x3utx52qtzb@owyidrxeprcp>
+References: <20250227110423.8418-1-george.moussalem@outlook.com>
+ <DS7PR19MB888322C58FC555299256E8D99DCD2@DS7PR19MB8883.namprd19.prod.outlook.com>
+ <eafirt5dg4vmafmu2wph47zrrzyqrz65z5ypqrl7fhr77qckfi@dgqwkkhnz4ge>
+ <DS7PR19MB888363A4FF954A6275E81B4B9DCD2@DS7PR19MB8883.namprd19.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,78 +93,118 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250226152418.1132337-18-tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <DS7PR19MB888363A4FF954A6275E81B4B9DCD2@DS7PR19MB8883.namprd19.prod.outlook.com>
 
-Hi Tommaso,
+On Thu, Feb 27, 2025 at 09:25:05PM +0400, George Moussalem wrote:
+> 
+> On 2/27/25 18:59, Dmitry Baryshkov wrote:
+> 
+> > On Thu, Feb 27, 2025 at 02:56:41PM +0400, George Moussalem wrote:
+> >> Adding generic support for SoCs with tsens v1.0 IP with no RPM.
+> >> Due to lack of RPM, tsens has to be reset and enabled in the driver
+> >> init.
+> >>
+> >> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> >> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> >> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+> >> ---
+> >>  drivers/thermal/qcom/tsens-v1.c | 48 +++++++++++++++++++++++++++++++++
+> >>  drivers/thermal/qcom/tsens.c    | 24 ++++++++++-------
+> >>  drivers/thermal/qcom/tsens.h    |  1 +
+> >>  3 files changed, 64 insertions(+), 9 deletions(-)
+> >>
+> >> diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
+> >> index 1a7874676f68..877b27274fd2 100644
+> >> --- a/drivers/thermal/qcom/tsens-v1.c
+> >> +++ b/drivers/thermal/qcom/tsens-v1.c
+> >> @@ -79,6 +79,17 @@ static struct tsens_features tsens_v1_feat = {
+> >>  	.trip_max_temp	= 120000,
+> >>  };
+> >>  
+> >> +static struct tsens_features tsens_v1_no_rpm_feat = {
+> >> +	.ver_major	= VER_1_X_NO_RPM,
+> >> +	.crit_int	= 0,
+> >> +	.combo_int	= 0,
+> >> +	.adc		= 1,
+> >> +	.srot_split	= 1,
+> >> +	.max_sensors	= 11,
+> >> +	.trip_min_temp	= -40000,
+> >> +	.trip_max_temp	= 120000,
+> >> +};
+> >> +
+> >>  static const struct reg_field tsens_v1_regfields[MAX_REGFIELDS] = {
+> >>  	/* ----- SROT ------ */
+> >>  	/* VERSION */
+> >> @@ -150,6 +161,43 @@ static int __init init_8956(struct tsens_priv *priv) {
+> >>  	return init_common(priv);
+> >>  }
+> >>  
+> >> +static int __init init_tsens_v1_no_rpm(struct tsens_priv *priv)
+> >> +{
+> >> +	int i, ret;
+> >> +	u32 mask = 0;
+> >> +
+> >> +	ret = init_common(priv);
+> >> +	if (ret < 0) {
+> >> +		dev_err(priv->dev, "Init common failed %d\n", ret);
+> >> +		return ret;
+> >> +	}
+> >> +
+> >> +	ret = regmap_field_write(priv->rf[TSENS_SW_RST], 1);
+> >> +	if (ret) {
+> >> +		dev_err(priv->dev, "Reset failed\n");
+> >> +		return ret;
+> >> +	}
+> >> +
+> >> +	for (i = 0; i < priv->num_sensors; i++)
+> >> +		mask |= BIT(priv->sensor[i].hw_id);
+> >> +
+> >> +	ret = regmap_field_update_bits(priv->rf[SENSOR_EN], mask, mask);
+> >> +	if (ret) {
+> >> +		dev_err(priv->dev, "Sensor Enable failed\n");
+> >> +		return ret;
+> >> +	}
+> >> +
+> >> +	ret = regmap_field_write(priv->rf[TSENS_EN], 1);
+> >> +	if (ret) {
+> >> +		dev_err(priv->dev, "Enable failed\n");
+> >> +		return ret;
+> >> +	}
+> >> +
+> >> +	ret = regmap_field_write(priv->rf[TSENS_SW_RST], 0);
+> >> +
+> >> +	return ret;
+> >> +}
+> >> +
+> >>  static const struct tsens_ops ops_generic_v1 = {
+> >>  	.init		= init_common,
+> >>  	.calibrate	= calibrate_v1,
+> >> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
+> >> index 1f5d4de017d9..f860ea86d130 100644
+> >> --- a/drivers/thermal/qcom/tsens.c
+> >> +++ b/drivers/thermal/qcom/tsens.c
+> >> @@ -447,7 +447,7 @@ static void tsens_set_interrupt(struct tsens_priv *priv, u32 hw_id,
+> >>  	dev_dbg(priv->dev, "[%u] %s: %s -> %s\n", hw_id, __func__,
+> >>  		irq_type ? ((irq_type == 1) ? "UP" : "CRITICAL") : "LOW",
+> >>  		enable ? "en" : "dis");
+> >> -	if (tsens_version(priv) > VER_1_X)
+> >> +	if (tsens_version(priv) > VER_1_X_NO_RPM)
+> > I'd suggest to replace these checks with >= VER_2_X. This saves us from
+> > all the troubles if there is another 1.x 'modification' later on.
+> 
+> makes sense, will change to >= VER_2_X. Thanks for the feedback.
 
-kernel test robot noticed the following build warnings:
+THanks! It also makes sense to split this into two patches then: one
+which changes the condition all over the place and the other one which
+adds VER_1_X_NO_RPM.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.14-rc4 next-20250227]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Tommaso-Merciai/media-dt-bindings-renesas-rzg2l-csi2-Document-Renesas-RZ-V2H-P-SoC/20250226-233919
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250226152418.1132337-18-tommaso.merciai.xr%40bp.renesas.com
-patch subject: [PATCH v3 17/17] media: rzg2l-cru: Add support for RZ/G3E SoC
-config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20250228/202502280247.L8g0SOJE-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250228/202502280247.L8g0SOJE-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502280247.L8g0SOJE-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c:685:66: warning: format specifies type 'unsigned long long' but the argument has type 'dma_addr_t' (aka 'unsigned int') [-Wformat]
-     685 |         dev_err(cru->dev, "Invalid MB address 0x%llx (out of range)\n", amnmadrs);
-         |                                                 ~~~~                    ^~~~~~~~
-         |                                                 %x
-   include/linux/dev_printk.h:154:65: note: expanded from macro 'dev_err'
-     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                                ~~~     ^~~~~~~~~~~
-   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ~~~    ^~~~~~~~~~~
->> drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c:677:58: warning: shift count >= width of type [-Wshift-count-overflow]
-     677 |         amnmadrs |= ((dma_addr_t)rzg2l_cru_read(cru, AMnMADRSH) << 32);
-         |                                                                 ^  ~~
-   2 warnings generated.
-
-
-vim +685 drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c
-
-   664	
-   665	static int rzg3e_cru_get_current_slot(struct rzg2l_cru_dev *cru)
-   666	{
-   667		dma_addr_t amnmadrs;
-   668		unsigned int slot;
-   669	
-   670		/*
-   671		 * When AMnMADRSL is read, AMnMADRSH of the higher-order
-   672		 * address also latches the address.
-   673		 *
-   674		 * AMnMADRSH must be read after AMnMADRSL has been read.
-   675		 */
-   676		amnmadrs = rzg2l_cru_read(cru, AMnMADRSL);
- > 677		amnmadrs |= ((dma_addr_t)rzg2l_cru_read(cru, AMnMADRSH) << 32);
-   678	
-   679		/* Ensure amnmadrs is within this buffer range */
-   680		for (slot = 0; slot < cru->num_buf; slot++)
-   681			if (amnmadrs >= cru->buf_addr[slot] &&
-   682			    amnmadrs < cru->buf_addr[slot] + cru->format.sizeimage)
-   683				return slot;
-   684	
- > 685		dev_err(cru->dev, "Invalid MB address 0x%llx (out of range)\n", amnmadrs);
-   686		return -EINVAL;
-   687	}
-   688	
+> 
+> >
+> >>  		tsens_set_interrupt_v2(priv, hw_id, irq_type, enable);
+> >>  	else
+> >>  		tsens_set_interrupt_v1(priv, hw_id, irq_type, enable);
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
