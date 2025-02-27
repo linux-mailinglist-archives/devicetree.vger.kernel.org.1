@@ -1,654 +1,155 @@
-Return-Path: <devicetree+bounces-151794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3014A46FFE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 01:13:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE20CA47024
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 01:23:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27BCF16E15A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 00:13:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA725168FA3
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 00:23:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCFED14C5AF;
-	Thu, 27 Feb 2025 00:11:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87182563;
+	Thu, 27 Feb 2025 00:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="j3l93BQs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tL83cyzx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2C2F2F30
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 00:11:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7767BA47;
+	Thu, 27 Feb 2025 00:23:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740615118; cv=none; b=GOi/o10kv5kYMKZ8Nsat+dwR53lnYLFv6m76LWtdsMXpo5yvCMHqvTCkV0wZTZeioIrAngVf6ziJUf/32z/hC2VQ05z0TzERI0ojLGnsuvD1BTLoenjQKknpSkrzkvBYn8FvcsliLIY/lV2rQ6DiTC8F387Ukzr1yHVJbBydOfA=
+	t=1740615809; cv=none; b=mjePfhGod1u+1VwHyoY7EOhoOqilF5BPavn9HTSLmqXj5ciilb2fNug+3sswYrA3YebEEiSMXScZu0mIe23TdYVoliFRPhHI5OEEhdfhg6JQ1ObjqxLuhmp991WER3vsDNRxWIcNAPD00ubt32f8Da2FSpDNw5stmJ1by0cCQ+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740615118; c=relaxed/simple;
-	bh=QZCpZlu53quw6nL6TnKxy5fmS1nRzhqSoUP2GUKX9/c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=P6JU1jcDP81Q9Mx/KANAU3wCQsi15AgeuMZ175EVdIWj5NLH9Ce2IIHos32PDogXtSx7dj6S4iH1PycrKr3gTTUjqst6/OGDnb+7Hza5MUcQhh/02x7BIs7iPmEWE6yh7OqHL4r8wnkg7Jzl9nlIOnXi1HCFasUg28K2pCw7DHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j3l93BQs; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51QL0kfK017857
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 00:11:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7sVaiMs2t/yghLl4ZXum6gfPzebES0AYVlGI7YtV98s=; b=j3l93BQsPmbKgFo8
-	yXqGtSddVGsD3+Stq+UeW0xH4AKzvjwA4bdIfSWE6zbZUL0gwx915eoV2KtYNSuo
-	jXSIl0bkL2+Af50RjhkVJ+DycC/hGN4T7gxs/+FQlnBKeAe4JWVELod8X1+ZtWtI
-	qOZSPYR9aGMIStZh9dIznfdKKcVO0w2CZKKyLdQW8bMRCyj15NBSg32IbzLbE3nR
-	HfHbNtDOcXpQ/2orUSvShYze+OXYE7rdJG9r0Mt93UmJ1jqqAOYEpQO1rw8BRN36
-	JptxV6cGBRO96m/1LucfmdIYqMkaHOG5QXabwHQnxgGNsmyngzN+Pe/03rQfx/pi
-	m/5DIA==
-Received: from mail-oi1-f197.google.com (mail-oi1-f197.google.com [209.85.167.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 451prn3pwt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 00:11:54 +0000 (GMT)
-Received: by mail-oi1-f197.google.com with SMTP id 5614622812f47-3f422209af6so431345b6e.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 16:11:54 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740615113; x=1741219913;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7sVaiMs2t/yghLl4ZXum6gfPzebES0AYVlGI7YtV98s=;
-        b=LKeWmOPoygakvlagvpu/jndq+Wq5N31d9ctJI5S49M+PbRj5dhE5elHFH4V7swRmdd
-         km639r5z6ZXU5oFTS3tH9b9/moIYRNh9LmXUPm0fAiXj8NmuoqlZXwCnjR8TD8taCALp
-         u0UZeda32MvSFlyxWvqT7J6ZXrk8eED57I++1UruEYOHXD1N67PYSagWCAgDql7OcQcO
-         Z+5PeOWQNHULmkEGoZWqnqfA0wpbUbqsu+o0cNu5XieB+X05vICaM4a088x1T2Wy2/de
-         VIxGX+ZRC67X94EPmvda88RVYZ+nmcwJwDEWim+uLnQwSqwzk+VGwaX/QYutcvPnber/
-         afjw==
-X-Forwarded-Encrypted: i=1; AJvYcCVs7ExKce2YmB5HDL5WWnCS3XD68s4ete1i2+j6sKa/MVE/lcj8pLi9FYSSjfWj5D7qwUCoCm6KCcKk@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWBao+qwC52DZOtraQjLR6Q61Mc+ix8MxxD+ur1DzH1jTxkTw9
-	voQ+6IddJy0fQxp8LdNdA1R1IUJvg8wMiT/O5oeJVhB7V1n5H16ToKj/EZIjVBRLzLDgkhVnbng
-	abCF5tnFRxQKHuGlhIhTsEHJRKuGXplkD1cdbILxjp61oZz3MrkNcWAGkvPH0
-X-Gm-Gg: ASbGncu3AVOFfRxxcu6XZ5/xRdnBayLMJz/hTCofRW4KE/G6r3O23nAYMqOtZXRKShT
-	6Lc1CHxxKNie0G+a8B+kXTgETBzOrn48VgpyWsQFLtj/1wP350fPmGFHevMmrsi4wa8Ja0T9MxB
-	w3sw3BX7BQr7oZsKCBk7EuhZglyNECIS+0/DkgzITtVv4LCElN5EtKbGo4oVMDXIg2wi7u2HF4E
-	ZJFEM2lYQEVx3/lW3SJ4dSkkZfoKORu/v17VWbQlTi4s5u0+Dz8xYPzHX6QNpDFDhaPXIPlx+QG
-	H872L/kFGrhamAnx4usPdHnxRacT3/xrvI6z2cZQfaG/MUcKR0E8vj4RfPYWBBrlQraUuH7b/Jn
-	Dm00yRlCZNgGPrPA=
-X-Received: by 2002:a05:6808:2f1b:b0:3f4:1d3:b64e with SMTP id 5614622812f47-3f547e3a51cmr3153552b6e.28.1740615113501;
-        Wed, 26 Feb 2025 16:11:53 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEz12bIBQsr4nK93FSyPKMSCUl2KIJYpv2rvkY4dotioPJA0yGhdMzQznWTdCf6EYAGzyKhQQ==
-X-Received: by 2002:a05:6808:2f1b:b0:3f4:1d3:b64e with SMTP id 5614622812f47-3f547e3a51cmr3153538b6e.28.1740615113147;
-        Wed, 26 Feb 2025 16:11:53 -0800 (PST)
-Received: from [192.168.86.65] (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f5507c40c6sm33988b6e.45.2025.02.26.16.11.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Feb 2025 16:11:52 -0800 (PST)
-From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-Date: Wed, 26 Feb 2025 16:17:54 -0800
-Subject: [PATCH v4 7/7] arm64: dts: qcom: sc8280x: Flatten the USB nodes
+	s=arc-20240116; t=1740615809; c=relaxed/simple;
+	bh=Snbn7RL/BEWOlEKJMOnfQXtsEkFO1ZODqdbhYhfuwis=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=JAn/S7ep1sZrxVCKhwszsFQIt4s7m+j+2FUwojgzGWfvhSO2dPMYRKs01pfk4drWKRRFD29yBbSg7JFlTFeTJw23YZgwe8cWqqPcxRf9IhgsgwWz0pOeBv1T57ewveX8G1t21adl3C/7lsW/XGmHGeHyVKDnO9eKYN6tdHSj100=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tL83cyzx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2E91C4CED6;
+	Thu, 27 Feb 2025 00:23:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740615808;
+	bh=Snbn7RL/BEWOlEKJMOnfQXtsEkFO1ZODqdbhYhfuwis=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=tL83cyzxc1jmWFi+Npy+ataI7BSMe3WmInn/gZ433hDXbfcUXE43I1HFOv1mKSDWe
+	 R/TFB1Y9hNmlzeSjIGXMoN8W7IC6rVYbyd1y7+fccn56zqBsfk2eok2QCDSkA+wKOs
+	 Vgin+CiJAEZyxgCZE4vw4l7TrWuolCUeRW3QXgWQSn++AUAFdEvoL4P9n3swqBWzxs
+	 jWySl0T4WQ9LQIg4poVHPxMxnIi68JL9rxSVx0uRSJOKynxbfviWne7o5czp4jxMQs
+	 vfdNO2dsIFSz4HFDF1jUDeopba30bsGitUiyXKL864E4UsNQ0EDs9pppksASriq5hb
+	 s1VOyJ48mrG8A==
+Date: Wed, 26 Feb 2025 18:23:26 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v9 3/7] PCI: Add parent_bus_offset to resource_entry
+Message-ID: <20250227002326.GA566507@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250226-dwc3-refactor-v4-7-4415e7111e49@oss.qualcomm.com>
-References: <20250226-dwc3-refactor-v4-0-4415e7111e49@oss.qualcomm.com>
-In-Reply-To: <20250226-dwc3-refactor-v4-0-4415e7111e49@oss.qualcomm.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.li@nxp.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=13628;
- i=bjorn.andersson@oss.qualcomm.com; h=from:subject:message-id;
- bh=QZCpZlu53quw6nL6TnKxy5fmS1nRzhqSoUP2GUKX9/c=;
- b=owEBgwJ8/ZANAwAIAQsfOT8Nma3FAcsmYgBnv684HKcj/LU0YRimWXlZfb1oENn1uGyR9QiHP
- XsReIu6WwaJAkkEAAEIADMWIQQF3gPMXzXqTwlm1SULHzk/DZmtxQUCZ7+vOBUcYW5kZXJzc29u
- QGtlcm5lbC5vcmcACgkQCx85Pw2ZrcVggg/9HcXAYm1W+vm4lNilU8Ehnfpa4mENzQW+vaCfJrp
- 3QjWETR5BVYQEDD34Jwi4gn05OeV8r/m4M174d7ZZITe40/q+4LOy3cYOkGWtGimmCJ5R3hiOnf
- caCg1TxsSFiwUbDgJxwFswATsFiRR/D9vOFq2slk6npxEFpBRzQIsyMJAh8YAH8JCpg1KeOFpGt
- dpIkd6guBufBtB5251JjHPBYMOHSILvKFlq5fiBsMSOGCKueC9Rszdll3kEWy6suyDEgEhmzXg0
- n9agYZjKa/qTG/VmfOJZFpBYawTQZZS/5suPBnC5RsEBND9eybeHbSScP8GD7L6PNElNPk5WRbG
- roM/uz9Ua2wiRBSU2liyPiHPLZtDP76nEMOA4lieRJSRk2F1PSdGezK5RHOSRI5fMO4A/xC7AXr
- SZRkQHELwVUQbuSZSRrIQOHvkr3mV79CkSSyyxbfkZ8A3bqQR47d2oyhFOJ16Kf2F5FG8sbkt/1
- oymLVDaejE68XudZqMwv4mUZe40QUls52jcpNbtE3GoHDcPOMIe9wMshFB+cAWPjHljurqIxPI/
- ISy1Tv/wOh/m9kG7/Ar6lDELOeQSNV1fstKbAxMCZXvH1g0ckAQh17KrBtlPLhXrQZKnbCw7dEd
- BX7mTtua7Hs9+m4Pm1ZadQjISFom5xvS+qtQkhTS3fm4=
-X-Developer-Key: i=bjorn.andersson@oss.qualcomm.com; a=openpgp;
- fpr=05DE03CC5F35EA4F0966D5250B1F393F0D99ADC5
-X-Proofpoint-ORIG-GUID: 9HiduXVRLFrOVDDV-mz46Qo0n2ZUKZVe
-X-Proofpoint-GUID: 9HiduXVRLFrOVDDV-mz46Qo0n2ZUKZVe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-26_07,2025-02-26_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 clxscore=1015 mlxscore=0 adultscore=0 mlxlogscore=999
- suspectscore=0 phishscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502260187
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250128-pci_fixup_addr-v9-3-3c4bb506f665@nxp.com>
 
-Transition the three USB controllers found in sc8280xp to the newly
-introduced, flattened representation of the Qualcomm USB block, i.e.
-qcom,snps-dwc3, to show the end result.
+On Tue, Jan 28, 2025 at 05:07:36PM -0500, Frank Li wrote:
+> Introduce `parent_bus_offset` in `resource_entry` and a new API,
+> `pci_add_resource_parent_bus_offset()`, to provide necessary information
+> for PCI controllers with address translation units.
+> 
+> Typical PCI data flow involves:
+>   CPU (CPU address) -> Bus Fabric (Intermediate address) ->
+>   PCI Controller (PCI bus address) -> PCI Bus.
+> 
+> While most bus fabrics preserve address consistency, some modify addresses
+> to intermediate values. The `parent_bus_offset` enables PCI controllers to
+> translate these intermediate addresses correctly to PCI bus addresses.
+> 
+> Pave the road to remove hardcoded cpu_addr_fixup() and similar patterns in
+> PCI controller drivers.
+> ...
 
-The reg and interrupts properties from the usb child node are merged
-with their counterpart in the outer node, remaining properties and child
-nodes are simply moved.
+> +++ b/drivers/pci/of.c
+> @@ -402,7 +402,17 @@ static int devm_of_pci_get_host_bridge_resources(struct device *dev,
+>  			res->flags &= ~IORESOURCE_MEM_64;
+>  		}
+>  
+> -		pci_add_resource_offset(resources, res,	res->start - range.pci_addr);
+> +		/*
+> +		 * IORESOURCE_IO res->start is io space start address.
+> +		 * IORESOURCE_MEM res->start is cpu start address, which is the
+> +		 * same as range.cpu_addr.
+> +		 *
+> +		 * Use (range.cpu_addr - range.parent_bus_addr) to align both
+> +		 * IO and MEM's parent_bus_offset always offset to cpu address.
+> +		 */
+> +
+> +		pci_add_resource_parent_bus_offset(resources, res, res->start - range.pci_addr,
+> +						   range.cpu_addr - range.parent_bus_addr);
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sa8295p-adp.dts           |  12 +-
- arch/arm64/boot/dts/qcom/sa8540p-ride.dts          |   5 +-
- arch/arm64/boot/dts/qcom/sc8280xp-crd.dts          |  12 +-
- .../boot/dts/qcom/sc8280xp-huawei-gaokun3.dts      |  10 +-
- .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |  11 +-
- .../boot/dts/qcom/sc8280xp-microsoft-arcata.dts    |  10 +-
- .../boot/dts/qcom/sc8280xp-microsoft-blackrock.dts |  18 +--
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi             | 157 ++++++++++-----------
- 8 files changed, 95 insertions(+), 140 deletions(-)
+I don't know exactly where it needs to go, but I think we can call
+.cpu_addr_fixup() once at startup on the base of the region.  This
+will tell us the offset that applies to the entire region, i.e.,
+parent_bus_offset.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-index 2fd1dafe63ce..3d84cbf5af31 100644
---- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-@@ -631,12 +631,10 @@ &ufs_card_phy {
- };
- 
- &usb_0 {
--	status = "okay";
--};
--
--&usb_0_dwc3 {
- 	/* TODO: Define USB-C connector properly */
- 	dr_mode = "peripheral";
-+
-+	status = "okay";
- };
- 
- &usb_0_hsphy {
-@@ -655,12 +653,10 @@ &usb_0_qmpphy {
- };
- 
- &usb_1 {
--	status = "okay";
--};
--
--&usb_1_dwc3 {
- 	/* TODO: Define USB-C connector properly */
- 	dr_mode = "host";
-+
-+	status = "okay";
- };
- 
- &usb_1_hsphy {
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-index 177b9dad6ff7..7be803fb7cbe 100644
---- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-@@ -466,11 +466,8 @@ &ufs_mem_phy {
- };
- 
- &usb_0 {
--	status = "okay";
--};
--
--&usb_0_dwc3 {
- 	dr_mode = "peripheral";
-+	status = "okay";
- };
- 
- &usb_0_hsphy {
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-index 75adaa19d1c3..05fe5793f1f1 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-@@ -795,11 +795,9 @@ &ufs_mem_phy {
- };
- 
- &usb_0 {
--	status = "okay";
--};
--
--&usb_0_dwc3 {
- 	dr_mode = "host";
-+
-+	status = "okay";
- };
- 
- &usb_0_dwc3_hs {
-@@ -832,11 +830,9 @@ &usb_0_qmpphy_out {
- };
- 
- &usb_1 {
--	status = "okay";
--};
--
--&usb_1_dwc3 {
- 	dr_mode = "host";
-+
-+	status = "okay";
- };
- 
- &usb_1_dwc3_hs {
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts b/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-index 09b95f89ee58..300c7dc999a4 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-@@ -997,11 +997,8 @@ bluetooth {
- };
- 
- &usb_0 {
--	status = "okay";
--};
--
--&usb_0_dwc3 {
- 	dr_mode = "host";
-+	status = "okay";
- };
- 
- &usb_0_hsphy {
-@@ -1026,11 +1023,8 @@ &usb_0_qmpphy_dp_in {
- };
- 
- &usb_1 {
--	status = "okay";
--};
--
--&usb_1_dwc3 {
- 	dr_mode = "host";
-+	status = "okay";
- };
- 
- &usb_1_hsphy {
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index f3190f408f4b..1b9501cc82f4 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -1343,11 +1343,9 @@ bluetooth {
- };
- 
- &usb_0 {
--	status = "okay";
--};
--
--&usb_0_dwc3 {
- 	dr_mode = "host";
-+
-+	status = "okay";
- };
- 
- &usb_0_dwc3_hs {
-@@ -1380,11 +1378,8 @@ &usb_0_qmpphy_out {
- };
- 
- &usb_1 {
--	status = "okay";
--};
--
--&usb_1_dwc3 {
- 	dr_mode = "host";
-+	status = "okay";
- };
- 
- &usb_1_dwc3_hs {
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-index ae5daeac8fe2..82672f441ea2 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-@@ -749,11 +749,8 @@ embedded-controller {
- };
- 
- &usb_0 {
--	status = "okay";
--};
--
--&usb_0_dwc3 {
- 	dr_mode = "host";
-+	status = "okay";
- };
- 
- &usb_0_dwc3_hs {
-@@ -786,11 +783,8 @@ &usb_0_qmpphy_out {
- };
- 
- &usb_1 {
--	status = "okay";
--};
--
--&usb_1_dwc3 {
- 	dr_mode = "host";
-+	status = "okay";
- };
- 
- &usb_1_dwc3_hs {
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts
-index fa9d94105052..eeb69cfd4422 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts
-@@ -982,11 +982,9 @@ bluetooth {
- };
- 
- &usb_0 {
--	status = "okay";
--};
--
--&usb_0_dwc3 {
- 	dr_mode = "host";
-+
-+	status = "okay";
- };
- 
- &usb_0_dwc3_hs {
-@@ -1019,11 +1017,9 @@ &usb_0_qmpphy_out {
- };
- 
- &usb_1 {
--	status = "okay";
--};
--
--&usb_1_dwc3 {
- 	dr_mode = "host";
-+
-+	status = "okay";
- };
- 
- &usb_1_dwc3_hs {
-@@ -1059,12 +1055,10 @@ &usb_2 {
- 	pinctrl-0 = <&usb2_en_state>;
- 	pinctrl-names = "default";
- 
--	status = "okay";
--};
--
--&usb_2_dwc3 {
- 	phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
- 	phy-names = "usb2-0", "usb3-0";
-+
-+	status = "okay";
- };
- 
- &usb_2_hsphy0 {
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 01501acb1790..3dea86b0e13d 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -3457,12 +3457,9 @@ system-cache-controller@9200000 {
- 			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
--		usb_2: usb@a4f8800 {
--			compatible = "qcom,sc8280xp-dwc3-mp", "qcom,dwc3";
--			reg = <0 0x0a4f8800 0 0x400>;
--			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+		usb_2: usb@a400000 {
-+			compatible = "qcom,sc8280xp-dwc3-mp", "qcom,snps-dwc3";
-+			reg = <0 0x0a400000 0 0x10000>;
- 
- 			clocks = <&gcc GCC_CFG_NOC_USB3_MP_AXI_CLK>,
- 				 <&gcc GCC_USB30_MP_MASTER_CLK>,
-@@ -3480,7 +3477,8 @@ usb_2: usb@a4f8800 {
- 					  <&gcc GCC_USB30_MP_MASTER_CLK>;
- 			assigned-clock-rates = <19200000>, <200000000>;
- 
--			interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
-+			interrupts-extended = <&intc GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&intc GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&intc GIC_SPI 857 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&intc GIC_SPI 856 IRQ_TYPE_LEVEL_HIGH>,
-@@ -3499,7 +3497,8 @@ usb_2: usb@a4f8800 {
- 					      <&pdc 16 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
- 
--			interrupt-names = "pwr_event_1", "pwr_event_2",
-+			interrupt-names = "dwc_usb3",
-+					  "pwr_event_1", "pwr_event_2",
- 					  "pwr_event_3", "pwr_event_4",
- 					  "hs_phy_1",	 "hs_phy_2",
- 					  "hs_phy_3",	 "hs_phy_4",
-@@ -3509,6 +3508,7 @@ usb_2: usb@a4f8800 {
- 					  "dp_hs_phy_4", "dm_hs_phy_4",
- 					  "ss_phy_1",	 "ss_phy_2";
- 
-+			iommus = <&apps_smmu 0x800 0x0>;
- 			power-domains = <&gcc USB30_MP_GDSC>;
- 			required-opps = <&rpmhpd_opp_nom>;
- 
-@@ -3518,35 +3518,28 @@ usb_2: usb@a4f8800 {
- 					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_MP 0>;
- 			interconnect-names = "usb-ddr", "apps-usb";
- 
-+			phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>,
-+			       <&usb_2_hsphy1>, <&usb_2_qmpphy1>,
-+			       <&usb_2_hsphy2>,
-+			       <&usb_2_hsphy3>;
-+			phy-names = "usb2-0", "usb3-0",
-+				    "usb2-1", "usb3-1",
-+				    "usb2-2",
-+				    "usb2-3";
-+
- 			wakeup-source;
- 
-+			dr_mode = "host";
-+
-+			snps,dis-u1-entry-quirk;
-+			snps,dis-u2-entry-quirk;
-+
- 			status = "disabled";
-+		};
- 
--			usb_2_dwc3: usb@a400000 {
--				compatible = "snps,dwc3";
--				reg = <0 0x0a400000 0 0xcd00>;
--				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
--				iommus = <&apps_smmu 0x800 0x0>;
--				phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>,
--				       <&usb_2_hsphy1>, <&usb_2_qmpphy1>,
--				       <&usb_2_hsphy2>,
--				       <&usb_2_hsphy3>;
--				phy-names = "usb2-0", "usb3-0",
--					    "usb2-1", "usb3-1",
--					    "usb2-2",
--					    "usb2-3";
--				dr_mode = "host";
--				snps,dis-u1-entry-quirk;
--				snps,dis-u2-entry-quirk;
--			};
--		};
--
--		usb_0: usb@a6f8800 {
--			compatible = "qcom,sc8280xp-dwc3", "qcom,dwc3";
--			reg = <0 0x0a6f8800 0 0x400>;
--			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+		usb_0: usb@a600000 {
-+			compatible = "qcom,sc8280xp-dwc3", "qcom,snps-dwc3";
-+			reg = <0 0x0a600000 0 0x20000>;
- 
- 			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
- 				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
-@@ -3564,17 +3557,20 @@ usb_0: usb@a6f8800 {
- 					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
- 			assigned-clock-rates = <19200000>, <200000000>;
- 
--			interrupts-extended = <&intc GIC_SPI 804 IRQ_TYPE_LEVEL_HIGH>,
-+			interrupts-extended = <&intc GIC_SPI 803 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&intc GIC_SPI 804 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&intc GIC_SPI 805 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&pdc 14 IRQ_TYPE_EDGE_BOTH>,
- 					      <&pdc 15 IRQ_TYPE_EDGE_BOTH>,
- 					      <&pdc 138 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "pwr_event",
-+			interrupt-names = "dwc_usb3",
-+					  "pwr_event",
- 					  "hs_phy_irq",
- 					  "dp_hs_phy_irq",
- 					  "dm_hs_phy_irq",
- 					  "ss_phy_irq";
- 
-+			iommus = <&apps_smmu 0x820 0x0>;
- 			power-domains = <&gcc USB30_PRIM_GDSC>;
- 			required-opps = <&rpmhpd_opp_nom>;
- 
-@@ -3584,45 +3580,40 @@ usb_0: usb@a6f8800 {
- 					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
- 			interconnect-names = "usb-ddr", "apps-usb";
- 
-+			phys = <&usb_0_hsphy>, <&usb_0_qmpphy QMP_USB43DP_USB3_PHY>;
-+			phy-names = "usb2-phy", "usb3-phy";
-+
- 			wakeup-source;
- 
--			status = "disabled";
-+			snps,dis-u1-entry-quirk;
-+			snps,dis-u2-entry-quirk;
- 
--			usb_0_dwc3: usb@a600000 {
--				compatible = "snps,dwc3";
--				reg = <0 0x0a600000 0 0xcd00>;
--				interrupts = <GIC_SPI 803 IRQ_TYPE_LEVEL_HIGH>;
--				iommus = <&apps_smmu 0x820 0x0>;
--				phys = <&usb_0_hsphy>, <&usb_0_qmpphy QMP_USB43DP_USB3_PHY>;
--				phy-names = "usb2-phy", "usb3-phy";
--				snps,dis-u1-entry-quirk;
--				snps,dis-u2-entry-quirk;
-+			status = "disabled";
- 
--				ports {
--					#address-cells = <1>;
--					#size-cells = <0>;
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
- 
--					port@0 {
--						reg = <0>;
-+				port@0 {
-+					reg = <0>;
- 
--						usb_0_dwc3_hs: endpoint {
--						};
-+					usb_0_dwc3_hs: endpoint {
- 					};
-+				};
- 
--					port@1 {
--						reg = <1>;
-+				port@1 {
-+					reg = <1>;
- 
--						usb_0_dwc3_ss: endpoint {
--							remote-endpoint = <&usb_0_qmpphy_usb_ss_in>;
--						};
-+					usb_0_dwc3_ss: endpoint {
-+						remote-endpoint = <&usb_0_qmpphy_usb_ss_in>;
- 					};
- 				};
- 			};
- 		};
- 
--		usb_1: usb@a8f8800 {
--			compatible = "qcom,sc8280xp-dwc3", "qcom,dwc3";
--			reg = <0 0x0a8f8800 0 0x400>;
-+		usb_1: usb@a800000 {
-+			compatible = "qcom,sc8280xp-dwc3", "qcom,snps-dwc3";
-+			reg = <0 0x0a800000 0 0x10000>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-@@ -3643,17 +3634,20 @@ usb_1: usb@a8f8800 {
- 					  <&gcc GCC_USB30_SEC_MASTER_CLK>;
- 			assigned-clock-rates = <19200000>, <200000000>;
- 
--			interrupts-extended = <&intc GIC_SPI 811 IRQ_TYPE_LEVEL_HIGH>,
-+			interrupts-extended = <&intc GIC_SPI 810 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&intc GIC_SPI 811 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&intc GIC_SPI 790 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&pdc 12 IRQ_TYPE_EDGE_BOTH>,
- 					      <&pdc 13 IRQ_TYPE_EDGE_BOTH>,
- 					      <&pdc 136 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "pwr_event",
-+			interrupt-names = "dwc_usb3",
-+					  "pwr_event",
- 					  "hs_phy_irq",
- 					  "dp_hs_phy_irq",
- 					  "dm_hs_phy_irq",
- 					  "ss_phy_irq";
- 
-+			iommus = <&apps_smmu 0x860 0x0>;
- 			power-domains = <&gcc USB30_SEC_GDSC>;
- 			required-opps = <&rpmhpd_opp_nom>;
- 
-@@ -3663,37 +3657,32 @@ usb_1: usb@a8f8800 {
- 					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_1 0>;
- 			interconnect-names = "usb-ddr", "apps-usb";
- 
-+			phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
-+			phy-names = "usb2-phy", "usb3-phy";
-+
- 			wakeup-source;
- 
--			status = "disabled";
-+			snps,dis-u1-entry-quirk;
-+			snps,dis-u2-entry-quirk;
- 
--			usb_1_dwc3: usb@a800000 {
--				compatible = "snps,dwc3";
--				reg = <0 0x0a800000 0 0xcd00>;
--				interrupts = <GIC_SPI 810 IRQ_TYPE_LEVEL_HIGH>;
--				iommus = <&apps_smmu 0x860 0x0>;
--				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
--				phy-names = "usb2-phy", "usb3-phy";
--				snps,dis-u1-entry-quirk;
--				snps,dis-u2-entry-quirk;
-+			status = "disabled";
- 
--				ports {
--					#address-cells = <1>;
--					#size-cells = <0>;
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
- 
--					port@0 {
--						reg = <0>;
-+				port@0 {
-+					reg = <0>;
- 
--						usb_1_dwc3_hs: endpoint {
--						};
-+					usb_1_dwc3_hs: endpoint {
- 					};
-+				};
- 
--					port@1 {
--						reg = <1>;
-+				port@1 {
-+					reg = <1>;
- 
--						usb_1_dwc3_ss: endpoint {
--							remote-endpoint = <&usb_1_qmpphy_usb_ss_in>;
--						};
-+					usb_1_dwc3_ss: endpoint {
-+						remote-endpoint = <&usb_1_qmpphy_usb_ss_in>;
- 					};
- 				};
- 			};
+Then we can remove all the .cpu_addr_fixup() calls in
+cdns_pcie_host_init_address_translation(),
+cdns_pcie_set_outbound_region(), and dw_pcie_prog_outbound_atu().
 
--- 
-2.45.2
+Until we can get rid of all the .cpu_addr_fixup() implementations,
+We'll still have that single call at startup (I guess once for cadence
+and another for designware), but it should simplify the current
+callers quite a bit.
 
+>  	}
+>  
+>  	/* Check for dma-ranges property */
+> diff --git a/include/linux/pci.h b/include/linux/pci.h
+> index 47b31ad724fa5..0d7e67b47be47 100644
+> --- a/include/linux/pci.h
+> +++ b/include/linux/pci.h
+> @@ -1510,6 +1510,8 @@ static inline void pci_release_config_region(struct pci_dev *pdev,
+>  void pci_add_resource(struct list_head *resources, struct resource *res);
+>  void pci_add_resource_offset(struct list_head *resources, struct resource *res,
+>  			     resource_size_t offset);
+> +void pci_add_resource_parent_bus_offset(struct list_head *resources, struct resource *res,
+> +					resource_size_t offset, resource_size_t parent_bus_offset);
+>  void pci_free_resource_list(struct list_head *resources);
+>  void pci_bus_add_resource(struct pci_bus *bus, struct resource *res);
+>  struct resource *pci_bus_resource_n(const struct pci_bus *bus, int n);
+> diff --git a/include/linux/resource_ext.h b/include/linux/resource_ext.h
+> index ff0339df56afc..b6ec6cc318203 100644
+> --- a/include/linux/resource_ext.h
+> +++ b/include/linux/resource_ext.h
+> @@ -24,6 +24,7 @@ struct resource_entry {
+>  	struct list_head	node;
+>  	struct resource		*res;	/* In master (CPU) address space */
+>  	resource_size_t		offset;	/* Translation offset for bridge */
+> +	resource_size_t		parent_bus_offset; /* Parent bus address offset for bridge */
+>  	struct resource		__res;	/* Default storage for res */
+>  };
+>  
+> 
+> -- 
+> 2.34.1
+> 
 
