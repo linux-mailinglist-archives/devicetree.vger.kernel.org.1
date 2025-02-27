@@ -1,210 +1,226 @@
-Return-Path: <devicetree+bounces-152269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37F39A4887B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 20:03:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76924A4888E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 20:11:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19ABC18843E5
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 19:02:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04FEE188C794
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 19:11:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 649161ACEDB;
-	Thu, 27 Feb 2025 19:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34A0726E647;
+	Thu, 27 Feb 2025 19:11:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H9qMKKL3"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RdBabeHg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 659F717A313
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 19:02:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 619EA26E645;
+	Thu, 27 Feb 2025 19:11:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740682965; cv=none; b=Yc2RDjuTXJ0j3CowRP4UUvuotSSrpthE8Ff+SMW6betseAE4gtNlIEUaAoY8UFRuf9OFm2Kl5gQZK/+VPoNd+5v+ja/xinfjOAe3OCgiLmzUPGPgpzu29VP/Rm4HVJzld/QQDFytoj60VYGaK9VBrUnIoOOJc0yXQUILxt4xGlY=
+	t=1740683474; cv=none; b=hvH0H6/+pjTRyIRQXmBxh6v4xWeUAfnTq/xM0wNdLZImeJWIlZ6Snp2AVFaqdo8vL5yjjvCEG2dIXqPOVHDHcXM5yOrVYIHsSz/ECS619xYZgAimd6wFjg4HOZevjbrBxLq+Qiasx2fbWbiQVnYk3SYMOOUj8NlNFYoOzJcg1NU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740682965; c=relaxed/simple;
-	bh=BuRTevzALKItQZ428xQb6alv2AlOwzdRzrIVuA9l5lk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YMZ1u8QIxH1a+9R3HrcW7WCU2aKWe2kSc93vax23CyhChrFDbfvQH9vnkyDz3Q0pDBhKBjIwm9JsIkG9EgJz7cPLlNKiRrMdu9TsMFWRF0CwSf7Hf6u2IUlhG1YTV4yJTs3dZdpYRb4Vpw1E54H+73QXvLBtu044FrZDNCqAFXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H9qMKKL3; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5462ea9691cso1361828e87.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 11:02:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740682960; x=1741287760; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YRlHVq/fhYckH/apG8DI4lghb+1AD7fw2kBANnribBo=;
-        b=H9qMKKL35VarGsBGXNCl+/oELISY6bvK2qXa9tTalQhF0Tv2rnz/8s3Tz8iDP8kbO3
-         CZdFryyEadmpeJachd4w17fuZ+o+f0EuQMp/m51AH4H8mHWoTKdFy9FPJL5f1BmOwWiN
-         X/IEAB8WZBmF7F5ks1JmpPZBrNPZfXCGLr2ZD3DepZ8018esrzu5qI48+C2+V6UnfbBJ
-         +r+zcaUGMYodf2Ij+/+36N3YcCoGKf1d+Vov5ChHVdrhrtN5DeH/7PVzLtd2/uX5ktZw
-         IX5/qIl2EwkXPeXCOSht2WGn0cn6d6+/iOn65NPTELMXqM9gdvTtQKU5lK0h1eaOM0bl
-         //Lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740682960; x=1741287760;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YRlHVq/fhYckH/apG8DI4lghb+1AD7fw2kBANnribBo=;
-        b=RuCtJ4SihM9zkV36Rg2anfwrY2AT727wFLrQIqj/W9/+bxSTmpve/bNxnGMpCkeHee
-         LYlEVzkroDSDDbs953fhGbbmPAgHg6sFT40z7INqrrsUmiQpDoZWOV7BsdI4NYbfDKIU
-         8+vw5AVzwiOvTBDYMBVghWmTYBN20yPjs2PV96SXosMZ9Coe/Cl4sdMg4wgK4UoAu+/S
-         D2lvxurvp2fNyrjP9RZJr5Jm4r6f/6XSYiJ44cbHPnHB2U/KQgbSK8txmCToP02IqeBh
-         xkrv4PE5Cuv/xjXhZa4uRkLc0rHMbKa563iAhEwYVNfF9sJSOovsuSykZoDpa4dduGzV
-         DK2g==
-X-Forwarded-Encrypted: i=1; AJvYcCVN6HmITxPuKBocmSPI2VlbUODfMckbDePmZsDzagQyEPSgw3jRYL8orI7uVsrdPvBAO0/UJg0BfIEX@vger.kernel.org
-X-Gm-Message-State: AOJu0YybsJWKohQkyOwZLUV3DSMFlW+VnyujeM/EBqN5boguOtpnKC2n
-	hcgrMPRmrX48Oq2WYtMifRseLW2Smk5czg27WyfMpPYk75c7o4wCKOrpZK8NDNQ=
-X-Gm-Gg: ASbGncu/XkA0MMu0QnIPHRe1yklruoqLFyCirf1XtOqZzKa2DgzLRqvQerqyG3PmkHS
-	hN2DZ8u+4jBRl1wzbiUz6vSpQyStksuGClNa9nCCqtPa0tRoDHFPiAceA4wTr0NEqQsQbsqv1Ry
-	qvZw12unP66ROfY3YnE6FciwfbWECN2u3bAQELX4SbOhDFDNJNjA3wwns7gwuPbZD8vSRk/f8vM
-	gNTkhsygQ8c9iPIvVmqUnK/59A0WwwYpxqfPJf7JL+XIPvqnl8Pa9Eu0u51iwb+AmkbVUZeDBL7
-	UBnTvOJNuPCUexyEsMdSLd0fvwBjIaLID7mG/RtRpEfWxgRWFD3ITv78hL3ri0JzrU648S+WUGr
-	/0BySdw==
-X-Google-Smtp-Source: AGHT+IEp+Zq10szXRG2lH2uoKic4S9ViqPTrcBL1J0yzeLJRfwMYDIrB8jNjP79DfJiBuDuA6G4xvg==
-X-Received: by 2002:a05:6512:128e:b0:545:e2e:843a with SMTP id 2adb3069b0e04-5494c37d9d5mr240100e87.38.1740682960314;
-        Thu, 27 Feb 2025 11:02:40 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5494417446fsm236096e87.31.2025.02.27.11.02.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Feb 2025 11:02:38 -0800 (PST)
-Date: Thu, 27 Feb 2025 21:02:37 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: George Moussalem <george.moussalem@outlook.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, daniel.lezcano@linaro.org, rafael@kernel.org, amitk@kernel.org, 
-	thara.gopinath@gmail.com, robh@kernel.org, krzk+dt@kernel.org, quic_srichara@quicinc.com
-Subject: Re: [PATCH v8 3/5] thermal: qcom: tsens: add support for tsens v1
- without RPM
-Message-ID: <xv3c2ube7the3gat7ustws4ok6t26c33fyywqi6x3utx52qtzb@owyidrxeprcp>
-References: <20250227110423.8418-1-george.moussalem@outlook.com>
- <DS7PR19MB888322C58FC555299256E8D99DCD2@DS7PR19MB8883.namprd19.prod.outlook.com>
- <eafirt5dg4vmafmu2wph47zrrzyqrz65z5ypqrl7fhr77qckfi@dgqwkkhnz4ge>
- <DS7PR19MB888363A4FF954A6275E81B4B9DCD2@DS7PR19MB8883.namprd19.prod.outlook.com>
+	s=arc-20240116; t=1740683474; c=relaxed/simple;
+	bh=cdwgBPfY/u215F0/kfGuZBU9MmQRWPhyxL38mQMGEZw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FwHdbjGUeWfr54k6Cs5x3Z/6mH607c3n1X+hKUk+rRMK/iotZxXsYx5sd0Sgo7PQa9cupaghwmr/cl76fXhieVEO2nCdbnBb0xAgNTQaiT8lnsAiS6RBW680V0klO2OzxWX1oWnmoU4dPIhUHH1n5RtPMQg2bCSilrAj9lk7qNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RdBabeHg; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51R9oSY7005917;
+	Thu, 27 Feb 2025 19:10:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=XxhmL6wv4lPYuD/3YUcOI9
+	gFixVtMHZzT+AUq1z8It4=; b=RdBabeHgrIip2ciTxoSm9m8I0Hu9OMIBhTchez
+	AT3Q2ag5swNUuinedvfFArrIayiYQ3HSBYbAljpKlMSL107V9RihWDGlcAPLc8KV
+	C3lp5RCqcGXv+aHCDrHhBGRiEauNLA05yobFQdbyeVjYA81R6gaMKf3TgvgY3kt9
+	zq9vZgHc29YzXDIuKYsDYo+8r/Vo/OIIDCQiBy2Ysknf1JoMaGSPNkB2HdIIFXfI
+	tchmXxwXSHwXTyfZ4OTc9fTIV+CgsHxl1xWvo65P9hRLd8BvVDnXlMPYWigg23Yx
+	RJIVpzcmZ+ATPWin1r//GDsC5c2Eab/tAhXeoi1PW2iMfP1w==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 452be6kcd8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 27 Feb 2025 19:10:59 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51RJAw4v027510
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 27 Feb 2025 19:10:58 GMT
+Received: from hu-rajkbhag-blr.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 27 Feb 2025 11:10:55 -0800
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+To: <ath12k@lists.infradead.org>
+CC: Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+        <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Raj Kumar
+ Bhagat" <quic_rajkbhag@quicinc.com>
+Subject: [PATCH v7 00/13] wifi: ath12k: add Ath12k AHB driver support for IPQ5332
+Date: Fri, 28 Feb 2025 00:40:21 +0530
+Message-ID: <20250227191034.1949954-1-quic_rajkbhag@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DS7PR19MB888363A4FF954A6275E81B4B9DCD2@DS7PR19MB8883.namprd19.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: iV6uXqa-oj_DOsbotniEWrITMzQEI5Fp
+X-Proofpoint-ORIG-GUID: iV6uXqa-oj_DOsbotniEWrITMzQEI5Fp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-27_07,2025-02-27_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ impostorscore=0 mlxlogscore=999 phishscore=0 mlxscore=0 clxscore=1015
+ lowpriorityscore=0 adultscore=0 priorityscore=1501 bulkscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2502270141
 
-On Thu, Feb 27, 2025 at 09:25:05PM +0400, George Moussalem wrote:
-> 
-> On 2/27/25 18:59, Dmitry Baryshkov wrote:
-> 
-> > On Thu, Feb 27, 2025 at 02:56:41PM +0400, George Moussalem wrote:
-> >> Adding generic support for SoCs with tsens v1.0 IP with no RPM.
-> >> Due to lack of RPM, tsens has to be reset and enabled in the driver
-> >> init.
-> >>
-> >> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> >> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> >> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
-> >> ---
-> >>  drivers/thermal/qcom/tsens-v1.c | 48 +++++++++++++++++++++++++++++++++
-> >>  drivers/thermal/qcom/tsens.c    | 24 ++++++++++-------
-> >>  drivers/thermal/qcom/tsens.h    |  1 +
-> >>  3 files changed, 64 insertions(+), 9 deletions(-)
-> >>
-> >> diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
-> >> index 1a7874676f68..877b27274fd2 100644
-> >> --- a/drivers/thermal/qcom/tsens-v1.c
-> >> +++ b/drivers/thermal/qcom/tsens-v1.c
-> >> @@ -79,6 +79,17 @@ static struct tsens_features tsens_v1_feat = {
-> >>  	.trip_max_temp	= 120000,
-> >>  };
-> >>  
-> >> +static struct tsens_features tsens_v1_no_rpm_feat = {
-> >> +	.ver_major	= VER_1_X_NO_RPM,
-> >> +	.crit_int	= 0,
-> >> +	.combo_int	= 0,
-> >> +	.adc		= 1,
-> >> +	.srot_split	= 1,
-> >> +	.max_sensors	= 11,
-> >> +	.trip_min_temp	= -40000,
-> >> +	.trip_max_temp	= 120000,
-> >> +};
-> >> +
-> >>  static const struct reg_field tsens_v1_regfields[MAX_REGFIELDS] = {
-> >>  	/* ----- SROT ------ */
-> >>  	/* VERSION */
-> >> @@ -150,6 +161,43 @@ static int __init init_8956(struct tsens_priv *priv) {
-> >>  	return init_common(priv);
-> >>  }
-> >>  
-> >> +static int __init init_tsens_v1_no_rpm(struct tsens_priv *priv)
-> >> +{
-> >> +	int i, ret;
-> >> +	u32 mask = 0;
-> >> +
-> >> +	ret = init_common(priv);
-> >> +	if (ret < 0) {
-> >> +		dev_err(priv->dev, "Init common failed %d\n", ret);
-> >> +		return ret;
-> >> +	}
-> >> +
-> >> +	ret = regmap_field_write(priv->rf[TSENS_SW_RST], 1);
-> >> +	if (ret) {
-> >> +		dev_err(priv->dev, "Reset failed\n");
-> >> +		return ret;
-> >> +	}
-> >> +
-> >> +	for (i = 0; i < priv->num_sensors; i++)
-> >> +		mask |= BIT(priv->sensor[i].hw_id);
-> >> +
-> >> +	ret = regmap_field_update_bits(priv->rf[SENSOR_EN], mask, mask);
-> >> +	if (ret) {
-> >> +		dev_err(priv->dev, "Sensor Enable failed\n");
-> >> +		return ret;
-> >> +	}
-> >> +
-> >> +	ret = regmap_field_write(priv->rf[TSENS_EN], 1);
-> >> +	if (ret) {
-> >> +		dev_err(priv->dev, "Enable failed\n");
-> >> +		return ret;
-> >> +	}
-> >> +
-> >> +	ret = regmap_field_write(priv->rf[TSENS_SW_RST], 0);
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >>  static const struct tsens_ops ops_generic_v1 = {
-> >>  	.init		= init_common,
-> >>  	.calibrate	= calibrate_v1,
-> >> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
-> >> index 1f5d4de017d9..f860ea86d130 100644
-> >> --- a/drivers/thermal/qcom/tsens.c
-> >> +++ b/drivers/thermal/qcom/tsens.c
-> >> @@ -447,7 +447,7 @@ static void tsens_set_interrupt(struct tsens_priv *priv, u32 hw_id,
-> >>  	dev_dbg(priv->dev, "[%u] %s: %s -> %s\n", hw_id, __func__,
-> >>  		irq_type ? ((irq_type == 1) ? "UP" : "CRITICAL") : "LOW",
-> >>  		enable ? "en" : "dis");
-> >> -	if (tsens_version(priv) > VER_1_X)
-> >> +	if (tsens_version(priv) > VER_1_X_NO_RPM)
-> > I'd suggest to replace these checks with >= VER_2_X. This saves us from
-> > all the troubles if there is another 1.x 'modification' later on.
-> 
-> makes sense, will change to >= VER_2_X. Thanks for the feedback.
+Currently, Ath12k driver only supports WiFi devices that are based on
+PCI bus. New Ath12k device IPQ5332 is based on AHB bus. Hence, add
+Ath12k AHB support for IPQ5332.
 
-THanks! It also makes sense to split this into two patches then: one
-which changes the condition all over the place and the other one which
-adds VER_1_X_NO_RPM.
+IPQ5332 is IEEE802.11be 2 GHz 2x2 Wifi device. To bring-up IPQ5332
+device:
+- Add hardware parameters for IPQ5332.
+- CE register address space in IPQ5332 is separate from WCSS register
+  space. Hence, add logic to remap CE register address.
+- Add support for fixed QMI firmware memory for IPQ5332.
+- Support userPD handling for WCSS secure PIL driver to enable ath12k
+  AHB support.
 
-> 
-> >
-> >>  		tsens_set_interrupt_v2(priv, hw_id, irq_type, enable);
-> >>  	else
-> >>  		tsens_set_interrupt_v1(priv, hw_id, irq_type, enable);
+NOTE:
+The working upstream DTS changes for this series have been posted as a
+separate series.
+[PATCH v2] arm64: dts: qcom: add wifi node for IPQ5332 based RDP441
 
+v7:
+- DT binding: DT property 'qcom,ath12k-calibration-variant' renamed to
+  'qcom,calibration-variant'.
+
+v6: https://lore.kernel.org/all/20250225064834.2002499-1-quic_rajkbhag@quicinc.com/
+- DT binding: binding doc renamed from qcom,ath12k-ahb.yaml to
+  qcom,ipq5332-wifi.yaml.
+- DT binding: rephrased memory-region description.
+- DT binding: dropped description for memory-region-names.
+- DT binding: updated maintainers in binding doc.
+- The API ath12k_core_get_reserved_mem_by_name() has been simplified and
+  renamed to ath12k_core_get_reserved_mem()
+- Removed unnecessary NULL check in devm_clk_get() error handling.
+- Dropped all ath12k_ahb_clock_* wrappers for single clock.
+- Removed shutdown callback for the ath12k AHB driver.
+- Reference count leak handled for rproc and rproc phandle.
+
+v5: https://lore.kernel.org/all/20250130043508.1885026-1-quic_rajkbhag@quicinc.com/
+- DT binding: Added `memory-region-names` property to address undocumented
+  ABIs.
+- DT binding: Added four complete items to `memory-region`, required by
+  ath12k firmware.
+- All calls to `of_find_node_by_name()` are removed. Introduced helper
+  function `ath12k_core_get_reserved_mem_by_name()` to get the reserved
+  memory by name.
+- Removed unused include headers.
+- Removed error prints for impossible scenarios.
+- Used proper phandle API `of_parse_phandle()` to read `qcom,rproc`.
+- Used `dev_err_probe()` API for logging errors wherever applicable.
+- Changed hardware parameter `needs_m3_fw` to `enum ath12k_m3_fw_loaders`.
+- Changed hardware parameter `bdf_addr` to `bdf_addr_offset` to store the
+  offset for BDF memory from the q6-memory as base.
+
+v4: https://lore.kernel.org/all/20241210074159.2637933-1-quic_rajkbhag@quicinc.com/
+- Missed to include some review list in v3. Hence sending v4 with
+  all review list as per - scripts/get_maintainers.pl
+
+v3: https://lore.kernel.org/all/20241209165644.1680167-1-quic_rajkbhag@quicinc.com/
+- DT binding: clock name changed from gcc_xo_clk to xo.
+- DT binding: Upper constraint added for memory-region property.
+- DT binding: The description for "qcom,rproc" phandle updated to represent
+  the hardware aspect.
+- DT binding: Added property qcom,ath12k-calibration-variant.
+- Squashed patch[2/22] to patch[8/22] of v2 into a single patch.
+- Patch reordering is done.
+- The hardware parameter "m3_fw_support" renamed to "needs_m3_fw".
+- CMEM remap and CMEM register handling are dropped. CMEM registers are
+  accessed within WCSS register space (ab->mem).
+- The devm APIs are used for interrupts handling.
+- Logic updated in ath12k_ahb_map_service_to_pipe().
+- Dependency path series from other subsystem are dropped.
+
+v2: https://lore.kernel.org/all/20241015182637.955753-1-quic_rajkbhag@quicinc.com/
+- "qcom,board_id" property is dropped. This is not the direct dependency
+  for Ath12k AHB support, hence it can be taken up separately.
+- "qcom,bdf-addr" property is dropped in device-tree and moved to ath12k
+  driver.
+- Currently we have only one compatible enum (qcom,ipq5332-wifi), hence
+  conditional if() check for defining the binding is removed.
+- "reserved-memory" node is dropped from example DTS.
+- "status" property is dropped in wifi node of example DTS.
+- Integrated the “Support userPD handling for WCSS secure PIL driver”
+  patch series with the Ath12k AHB bring-up patch.
+- Removed the RFC tag as all dependency patch series are now compilable.
+
+v1: https://lore.kernel.org/all/20240814094323.3927603-1-quic_rajkbhag@quicinc.com/
+
+Balamurugan S (6):
+  wifi: ath12k: fix incorrect CE addresses
+  wifi: ath12k: add ath12k_hw_params for IPQ5332
+  wifi: ath12k: avoid m3 firmware download in AHB device IPQ5332
+  wifi: ath12k: Add hw_params to remap CE register space for IPQ5332
+  wifi: ath12k: add AHB driver support for IPQ5332
+  wifi: ath12k: enable ath12k AHB support
+
+P Praneesh (1):
+  wifi: ath12k: refactor ath12k_hw_regs structure
+
+Raj Kumar Bhagat (2):
+  dt-bindings: net: wireless: describe the ath12k AHB module for IPQ5332
+  wifi: ath12k: add support for fixed QMI firmware memory
+
+Sowmiya Sree Elavalagan (4):
+  wifi: ath12k: Power up root PD
+  wifi: ath12k: Register various userPD interrupts and save SMEM entries
+  wifi: ath12k: Power up userPD
+  wifi: ath12k: Power down userPD
+
+ .../net/wireless/qcom,ipq5332-wifi.yaml       |  315 +++++
+ drivers/net/wireless/ath/ath12k/Kconfig       |    6 +
+ drivers/net/wireless/ath/ath12k/Makefile      |    1 +
+ drivers/net/wireless/ath/ath12k/ahb.c         | 1155 +++++++++++++++++
+ drivers/net/wireless/ath/ath12k/ahb.h         |   80 ++
+ drivers/net/wireless/ath/ath12k/ce.c          |   92 +-
+ drivers/net/wireless/ath/ath12k/ce.h          |   18 +-
+ drivers/net/wireless/ath/ath12k/core.c        |   60 +-
+ drivers/net/wireless/ath/ath12k/core.h        |   14 +-
+ drivers/net/wireless/ath/ath12k/hal.c         |   84 +-
+ drivers/net/wireless/ath/ath12k/hal.h         |   68 +-
+ drivers/net/wireless/ath/ath12k/hw.c          |  479 ++++++-
+ drivers/net/wireless/ath/ath12k/hw.h          |   22 +-
+ drivers/net/wireless/ath/ath12k/pci.c         |   10 +-
+ drivers/net/wireless/ath/ath12k/pci.h         |    4 +-
+ drivers/net/wireless/ath/ath12k/qmi.c         |  208 ++-
+ drivers/net/wireless/ath/ath12k/qmi.h         |    3 +-
+ 17 files changed, 2502 insertions(+), 117 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ipq5332-wifi.yaml
+ create mode 100644 drivers/net/wireless/ath/ath12k/ahb.c
+ create mode 100644 drivers/net/wireless/ath/ath12k/ahb.h
+
+
+base-commit: 4d915d21b1229287286f9d400839b65ecaf0e006
 -- 
-With best wishes
-Dmitry
+2.34.1
+
 
