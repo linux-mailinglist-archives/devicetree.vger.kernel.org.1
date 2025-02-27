@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-152228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 416B5A485FA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 18:01:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A11C6A4863C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 18:08:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FBDF3A3290
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 17:00:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35271162297
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 17:00:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E5F11D4335;
-	Thu, 27 Feb 2025 17:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45AFD1DAC88;
+	Thu, 27 Feb 2025 17:00:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ODvEJVWI"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="KQNxjRXp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B07951DDC07
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 17:01:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72DC81C6FEA
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 17:00:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740675662; cv=none; b=By9jgVCO1XVTt1syqLrrrHNwm4+bJa9sInmZarK6TwKMXON5Ca8clhrWeTApKnq4nOEQ/Pc3JUrlJSsO5MM+JjV6AJloD/U4oz2NT2Jq5wsae77imYL3N6ZXpfFPD6zssG4p9xgHnM5lRGBfBpHXW4xxmDLmpUCgu7AdVCY3s2I=
+	t=1740675655; cv=none; b=iWZnGa+wg3h0LP3FAWwzAjsgBqhDaCXAb+K93wwViAHPpLPPSs873fqjpEBWbumElZQ0/OrTZtnJs0tHjxTKjbLJUzArZQ+4skEaqq9AHYgCx5rR30S1+BToIURhJw+Ypz3eCi3M0QvpB0HJbU+Ceb6j+TtAEbKkGHyoL3NB2X8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740675662; c=relaxed/simple;
-	bh=BSgCx7NE6nrinVvv1LAiEbgFR+HeYzjL62HCTacxYjo=;
+	s=arc-20240116; t=1740675655; c=relaxed/simple;
+	bh=aOLdfrJgG4xijrWsw1Q6AbfF+TEncusrKqqhCnXwUoo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WqZfMRYItIT6ZBn/3i6/uH935gQDSnID8A2LX1+VAt3FNJscdHMFe6LbrJen/6R9K1jROlHvLgoRbCo7SPPXqox8KcfkdJbE+LQzWs/BnJvJxzsi1Mh4AOupjCR2G+/gkY0ZGzX09Z1bGZSTRCzw13SMk1Z1Wz9DhWEyvXzFi1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ODvEJVWI; arc=none smtp.client-ip=89.58.32.78
+	 MIME-Version; b=JCqoCbY+4CTjBHSceID+757hd++hh6FjqLvDTCkf3EgacM+IMgOXyqnZDhdIUZ+FdhasgU1rPLPal7xy7icQcleq6Rj+kjHMler47znokH4SEMGh6KrAc3KJkAYy4XnW/n9m3w2KGlMIrnTv65e//NHEhMbHXNW5d5cdFEvDvvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=KQNxjRXp; arc=none smtp.client-ip=89.58.32.78
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 19ACC10375A1E;
-	Thu, 27 Feb 2025 18:00:57 +0100 (CET)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8A02410382F1A;
+	Thu, 27 Feb 2025 18:00:43 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1740675658;
+	t=1740675645;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=dLRiMt6/Dpy2Jty4UVTf/yvA7e/j44jHTgLx5ffQrLk=;
-	b=ODvEJVWIhWmh+IobAVZwz92gr/HgIwjafRAW0V3ehEqsbQUOr8VqAzwPsDu2OOFd38Z/YT
-	/wk0C7uAVnPyhMroKz0MWro3S9ixeeI2xnoEY24vjN5zYyXWxNnOgyIqABdJF2aJzPLsss
-	GG3m1Rd+Zl7k9oUaNlQ3EXbMv0fdx6JaKbDXuC6nXa/Y5IOM2bvBu72UaRv6E/VkLteRIM
-	SK3OCq+ZqoCaZj7dX+2s6osBzXmB8XJaqIu6jY+Haz/muhMDPTFLDvFUreBNOdlhc/Nn2U
-	ICc84CI6rDTYs9nrjDEa6sJfB1LYz527IAMr52Jwa0uLyZjm5lLrG7ZWkbB46Q==
+	bh=q+0tAWt+Qjct3O4SDcG8rZZ2o6M/LcHVGvtP3po6lSY=;
+	b=KQNxjRXpcvJbz9cgkcZQoHo9j6WJlFA4+eHsi+79LIXltTLb8A2GR9urWj7yMW/wa4fC++
+	O7re390e2VOV3buJ5/H6NnTQ2nJ9lhtq8tQ8dJKEU9I6CIgBgfQpklf8Qh1wkKodqvMZgY
+	1kXjSslr0OIIA+HI6ZwkwsQA9/bl3iTU5+jCdZ4O3fei8TLnvxUThvGT7PIe3I+tUxP5WX
+	uCsYX7xWdJ0IziUY+ZGVfNDARw9uFflLV38qjFs/KZGwnouYXYptpWA0Yr68dV5dhbd45a
+	608JCAPJkOQTBgxfxoEMdJe/nPXD4hDYp6Xxg/Og7YOgn2xnNNJQp0hfdSF7Pw==
 From: Marek Vasut <marex@denx.de>
 To: linux-arm-kernel@lists.infradead.org
 Cc: Marek Vasut <marex@denx.de>,
@@ -68,9 +68,9 @@ Cc: Marek Vasut <marex@denx.de>,
 	devicetree@vger.kernel.org,
 	dri-devel@lists.freedesktop.org,
 	imx@lists.linux.dev
-Subject: [PATCH 8/9] drm/panthor: Add i.MX95 support
-Date: Thu, 27 Feb 2025 17:58:08 +0100
-Message-ID: <20250227170012.124768-9-marex@denx.de>
+Subject: [PATCH 1/9] dt-bindings: reset: imx95-gpu-blk-ctrl: Document Freescale i.MX95 GPU reset
+Date: Thu, 27 Feb 2025 17:58:01 +0100
+Message-ID: <20250227170012.124768-2-marex@denx.de>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20250227170012.124768-1-marex@denx.de>
 References: <20250227170012.124768-1-marex@denx.de>
@@ -83,8 +83,9 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-The instance of the GPU populated in Freescale i.MX95 is the
-Mali G310, add support for this variant.
+The instance of the GPU populated in Freescale i.MX95 does require
+release from reset by writing into a single GPUMIX block controller
+GPURESET register bit 0. Document support for this reset register.
 
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
@@ -110,34 +111,65 @@ Cc: dri-devel@lists.freedesktop.org
 Cc: imx@lists.linux.dev
 Cc: linux-arm-kernel@lists.infradead.org
 ---
- drivers/gpu/drm/panthor/panthor_drv.c | 1 +
- drivers/gpu/drm/panthor/panthor_gpu.c | 1 +
- 2 files changed, 2 insertions(+)
+ .../reset/fsl,imx95-gpu-blk-ctrl.yaml         | 49 +++++++++++++++++++
+ 1 file changed, 49 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/fsl,imx95-gpu-blk-ctrl.yaml
 
-diff --git a/drivers/gpu/drm/panthor/panthor_drv.c b/drivers/gpu/drm/panthor/panthor_drv.c
-index 06fe46e320738..2504a456d45c4 100644
---- a/drivers/gpu/drm/panthor/panthor_drv.c
-+++ b/drivers/gpu/drm/panthor/panthor_drv.c
-@@ -1591,6 +1591,7 @@ static struct attribute *panthor_attrs[] = {
- ATTRIBUTE_GROUPS(panthor);
- 
- static const struct of_device_id dt_match[] = {
-+	{ .compatible = "fsl,imx95-mali" },	/* G310 */
- 	{ .compatible = "rockchip,rk3588-mali" },
- 	{ .compatible = "arm,mali-valhall-csf" },
- 	{}
-diff --git a/drivers/gpu/drm/panthor/panthor_gpu.c b/drivers/gpu/drm/panthor/panthor_gpu.c
-index 0f07ef7d9aea7..2371ab8e50627 100644
---- a/drivers/gpu/drm/panthor/panthor_gpu.c
-+++ b/drivers/gpu/drm/panthor/panthor_gpu.c
-@@ -67,6 +67,7 @@ struct panthor_model {
- }
- 
- static const struct panthor_model gpu_models[] = {
-+	GPU_MODEL(g310, 0, 0),	/* NXP i.MX95 */
- 	GPU_MODEL(g610, 10, 7),
- 	{},
- };
+diff --git a/Documentation/devicetree/bindings/reset/fsl,imx95-gpu-blk-ctrl.yaml b/Documentation/devicetree/bindings/reset/fsl,imx95-gpu-blk-ctrl.yaml
+new file mode 100644
+index 0000000000000..dc701bd556c0b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/reset/fsl,imx95-gpu-blk-ctrl.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/reset/fsl,imx95-gpu-blk-ctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale i.MX95 GPU Block Controller
++
++maintainers:
++  - Marek Vasut <marex@denx.de>
++
++description: |
++  This reset controller is a block of ad-hoc debug registers, one of
++  which is a single-bit GPU reset.
++
++properties:
++  compatible:
++    - const: fsl,imx95-gpu-blk-ctrl
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  '#reset-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - power-domains
++  - '#reset-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    reset-controller@4d810000 {
++        compatible = "fsl,imx95-gpu-blk-ctrl";
++        reg = <0x0 0x4d810000 0x0 0xc>;
++        clocks = <&scmi_clk IMX95_CLK_GPUAPB>;
++        power-domains = <&scmi_devpd IMX95_PD_GPU>;
++        #reset-cells = <1>;
++    };
 -- 
 2.47.2
 
