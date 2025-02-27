@@ -1,357 +1,286 @@
-Return-Path: <devicetree+bounces-151803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEAE0A470B3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 02:06:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9A29A471D1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 02:56:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB60416DD91
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 01:06:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A25E3A2A75
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 01:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E017A14A8B;
-	Thu, 27 Feb 2025 01:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AEA7374FF;
+	Thu, 27 Feb 2025 01:55:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QvVvOTDG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xu7j209p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4FA7ECF;
-	Thu, 27 Feb 2025 01:06:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83AF1335C7
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 01:55:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740618365; cv=none; b=XpoQV8sP7WHJK2e1OKbQc+Wgo+sJwcD9SRSQ6C/4DwLJil2SFr13u302/Kw9Idg4SJ+3fYFnZ9deqlR8NDFnPpm1nnooZDdOO5bMLTlt3ZtCwGvSrMg0u2fKPeSt87qf+CT1Gk1RPYgijwXHNlLu3i49SP1eULf04R0ZngD96LQ=
+	t=1740621351; cv=none; b=TvvT0TQjCWuA6eAPv7Uz5SLOBYo3QEk799alh8u3nDrMKU0okIADprOrKFONNE11bQDUVwSszbkAvRflWTo8T/ZyBWpDW+s83bOoNQ26Uga/yuy2wcuyAMsKjVOVxAgw7qG2ce+Vcd1cysSkbkrWOjVt1jlQWvkm4gvzgcG8kZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740618365; c=relaxed/simple;
-	bh=u6djUUCuS1OAInC4IJmiZCv7c7SfprcVAax5FLQ2KPE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Yw5yd+G4ySqrg5gq6EQjK/9cmWaHtsxiZ3ozn4e5Zlnuk4yrL3XUwH6A5fQSfBnP+kuayIlFXgL04vFMeDEZEbCFm85t4tP3OAYb2ja73CfRVG7PmuZ1SwCWaNI7eTwh8XhBN5URrkcDm2HSKqIiMr4Gty9gV0CnyncSrTrtIzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QvVvOTDG; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51QD9A33001059;
-	Thu, 27 Feb 2025 01:05:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Pw/qtYKWcNYdrX3Ze/kwVTdo38LzMv+SwIbu4uPn3MY=; b=QvVvOTDG9l8h7qPB
-	Cs1R0gJpTRIBeF8i7ZESBmZdWyzVRJ/cuDXABYnh6ifYJAf3paNXQy7vE5W5PeW1
-	iGy6/CM8skq9l2RuqelHLNonZiuCTGlimIvdzA7UDDPP4qo9f04ZWxCau1QivHYp
-	QAI0xw4PnbWs11SvLZPeCf8unjgnEdCAxnQ9qUYpra/+1EMt53zz58EAcm71D+FQ
-	apbqh152ozr/LyxJgPVhs7EskY4zdIrR0nDASNQbKYKhnPkS5U+ZT7k+MdKJx92S
-	If/2UIS9HXjyxuQwid5XRs1vbIkh7wgRynDplvl2GWpneEzoy/AC5tD5GHcljkZR
-	beh7dw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4523kc9qyc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Feb 2025 01:05:46 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51R15j3N032305
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Feb 2025 01:05:45 GMT
-Received: from [10.64.68.153] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 26 Feb
- 2025 17:05:40 -0800
-Message-ID: <1ead93cb-863c-471c-8a5a-d8f0bef26f92@quicinc.com>
-Date: Thu, 27 Feb 2025 09:05:37 +0800
+	s=arc-20240116; t=1740621351; c=relaxed/simple;
+	bh=DC0eGp9v8d1QZfBU9fMOar1qrRj1i2mRnNeM6GJiBVo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gbdDQwSpdFsEOHBmvtu3u5ngAEuY6p+VJT0KfhiGRbf2VNqUMoVAHLUEiTxVcsa6pbXC/+utQkTB6Ow5sztp5EkX8DBDw9XMpxWx0vINhQcC7o5b45qe4RcbB+NzbOvJOCGOekkRluiVlAvpm28TtuQPTWarixcT/JRPAbmRJck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Xu7j209p; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6fb7d64908fso4392447b3.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 17:55:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740621347; x=1741226147; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=k7ylmtH1h1K8CyuUFBBRJ+T9/XYWZO25bwG+O3oh1H0=;
+        b=Xu7j209peftU5weHwQO+Mrog9ooBGx8UIogelSH2jhI0RGhBbs3hUOtK+N0EWoklSZ
+         LrjnnO8osBrjd3F6qRP+nfq/FcIiX6dPWLFFcG9F4XT/eMArAmbIKHRkKYqM9ewYvo8l
+         UafmbOzNVXla+MpY8W6kSFFA07JtjPWEO5hbkfz6SYcmKO30L478mecwLLPaBDj4K3A0
+         PekRFJDuh0z+Q6MDvdyB9u79dbxcdBgCtEbUlYXksXu08mV11cpnD9dn4sT+KQpGX8I8
+         YuUvnYN9ogjIzg8ItkIFVUIWk1YJl28MQZouInDDTRNhZNZUen4s3iNP4A1PvvFP6hAr
+         tf/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740621347; x=1741226147;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k7ylmtH1h1K8CyuUFBBRJ+T9/XYWZO25bwG+O3oh1H0=;
+        b=C9ZvSGVcYAEi1Bk7iGFPf057BkQ1qTZeTfdw+TjLfsLNYi9f3WRpj+jFmSXJ+CDIJA
+         rvHpM7hVNHuW9ofI9/M1IjhUqvaUHkOd+nnixO54nLoReickVTG/snYNY4vMDUIFrugA
+         ZGROt9yzRw0aCF7Chyu+F0Uig3JmnmrMNbJ6ZEMQIOTpobpwDClUaOSWo3FkGwDAvbk3
+         WBQK2eRadr+9U2GD7KGw5B6ZSHHqOiLd/WgBnXYtRzkC5TCpqb2mpzuNExrFXoPsieug
+         jN6odFpagw3S1wTMJZBvzF99FyidBKimBKKL0ivfqOT0ZvRGWV0u9UNGmYFHZ3QIkyFB
+         Zg4A==
+X-Forwarded-Encrypted: i=1; AJvYcCVurN1rpAh2udMEyzwYT61VWgABtpKHB5x4UQ+ADSxaF1rpmY4ni8FEz1YR70KdSb9mQUPwLbOFwQpO@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIwhHOauEWS5cSowT0uFCQN3ZShuhquUBZ+icOjVnffePmXu6z
+	SVAL/xCP22cFq2hnzXN4uaa7VF5rkNp6zYdOecQOl+qcknmhyvw5UfBsA4LrIOJzLeZFrK5s13E
+	hk7HcT251tx078lB4MbWEqH8elKy4fB3td+aU38+BwjSpYo14GKBARg==
+X-Gm-Gg: ASbGncuv47+ZfyR0NDQjopQgWhIYD7IcFEmbTRUpnusvPJ4wzl9JpEllmPx2R/5QgCW
+	0dSxaZJ674xMKnciti5LizdAWln+obLPPQPU7oLkx/KSWAzUKJUDO8Xkx0qvZYPAbwRvxzq2h7Z
+	igWfssbes=
+X-Google-Smtp-Source: AGHT+IHzvdnR1jDhSTQ8qilflEhVDXXhrfQPEbKHX390Tv5HVxnb5kCDP/uDUeA+G1lHLQvrrevPA0tkD3CkUNLb6+w=
+X-Received: by 2002:a0d:e543:0:b0:6fd:2587:cb32 with SMTP id
+ 00721157ae682-6fd2587ce9amr37319607b3.31.1740621347348; Wed, 26 Feb 2025
+ 17:55:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 02/10] Coresight: Add trace_id function to retrieving
- the trace ID
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>,
-        "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao
-	<quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20250226041342.53933-1-quic_jiegan@quicinc.com>
- <20250226041342.53933-3-quic_jiegan@quicinc.com>
- <abad8cd1-2436-416b-9db8-3c5e9eb38d73@arm.com>
-Content-Language: en-US
-From: Jie Gan <quic_jiegan@quicinc.com>
-In-Reply-To: <abad8cd1-2436-416b-9db8-3c5e9eb38d73@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6oUJsxGDNHEPIGhObqUQRvRSIA24JaS8
-X-Proofpoint-ORIG-GUID: 6oUJsxGDNHEPIGhObqUQRvRSIA24JaS8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-27_01,2025-02-26_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- bulkscore=0 mlxscore=0 impostorscore=0 spamscore=0 mlxlogscore=999
- clxscore=1015 priorityscore=1501 adultscore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502270007
+References: <20250113-sm8750_usb_master-v1-0-09afe1dc2524@quicinc.com>
+ <20250113-sm8750_usb_master-v1-5-09afe1dc2524@quicinc.com>
+ <rpwm6gimdb4zyvyusovfbfaw4uxrossm6elayebvt2gusb7zwk@67w7672qpcto> <92b42216-c409-4e21-a33e-54c29fa5f8a0@quicinc.com>
+In-Reply-To: <92b42216-c409-4e21-a33e-54c29fa5f8a0@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 27 Feb 2025 03:55:36 +0200
+X-Gm-Features: AQ5f1JoWpbR4msT08jh6oiWBnd9arDDGPKh6dQcrHSO5lw25XXPxGsD4vcj6_h4
+Message-ID: <CAA8EJpobfKD=WjapG7Vx0mMFrGYSbadsrsakWs65Lpt43z7wVg@mail.gmail.com>
+Subject: Re: [PATCH 5/7] phy: qcom: Add M31 based eUSB2 PHY driver
+To: Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: Melody Olvera <quic_molvera@quicinc.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+
+On Wed, 26 Feb 2025 at 22:23, Wesley Cheng <quic_wcheng@quicinc.com> wrote:
+>
+>
+>
+> On 1/14/2025 2:34 AM, Dmitry Baryshkov wrote:
+> > On Mon, Jan 13, 2025 at 01:52:11PM -0800, Melody Olvera wrote:
+> >> From: Wesley Cheng <quic_wcheng@quicinc.com>
+> >>
+> >> On SM8750, the eUSB2 PHY used is M31 based. Add the initialization
+> >> sequences to bring it out of reset, and to initialize the associated eUSB2
+> >> repeater as well.
+> >
+> > What does M31 mean? What is the relationship between the eUSB and USB
+> > M31 PHYs?
+> >
+>
+> M31 is the vendor.  I'll reword this to make it a bit clearer.  There's no
+> relationship between eUSB2 and USB2 PHY drivers, as the eUSB2 based driver
+> would require some additional components such as a USB repeater.
+>
+> >>
+> >> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> >> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> >> ---
+> >>  drivers/phy/qualcomm/Kconfig              |  12 +-
+> >>  drivers/phy/qualcomm/Makefile             |   1 +
+> >>  drivers/phy/qualcomm/phy-qcom-m31-eusb2.c | 269 ++++++++++++++++++++++++++++++
+> >>  3 files changed, 281 insertions(+), 1 deletion(-)
+> >
+> > Please run the patch through checkpatch.pl --strict
+> >
+> >>
+> >> diff --git a/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c b/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c
+> >> new file mode 100644
+> >> index 0000000000000000000000000000000000000000..e15529673e358db914936a60fa605c872cd2511a
+> >> --- /dev/null
+> >> +++ b/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c
+> >> @@ -0,0 +1,269 @@
+> >> +// SPDX-License-Identifier: GPL-2.0+
+> >> +/*
+> >> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+> >> + */
+> >> +
+> >> +#include <linux/clk.h>
+> >> +#include <linux/delay.h>
+> >> +#include <linux/err.h>
+> >> +#include <linux/io.h>
+> >> +#include <linux/kernel.h>
+> >> +#include <linux/module.h>
+> >> +#include <linux/of.h>
+> >> +#include <linux/phy/phy.h>
+> >> +#include <linux/platform_device.h>
+> >> +#include <linux/reset.h>
+> >> +#include <linux/slab.h>
+> >> +
+> >> +#define USB_PHY_UTMI_CTRL0          (0x3c)
+> >> +
+> >> +#define USB_PHY_UTMI_CTRL5          (0x50)
+> >> +
+> >> +#define USB_PHY_HS_PHY_CTRL_COMMON0 (0x54)
+> >> +#define FSEL                                (0x7 << 4)
+> >
+> > GENMASK()
+> >
+> >> +#define FSEL_38_4_MHZ_VAL           (0x6 << 4)
+> >
+> > FIELD_PREP
+> >
+> >> +
+> >> +#define USB_PHY_HS_PHY_CTRL2                (0x64)
+> >> +
+> >> +#define USB_PHY_CFG0                        (0x94)
+> >> +#define USB_PHY_CFG1                        (0x154)
+> >> +
+> >> +#define USB_PHY_FSEL_SEL            (0xb8)
+> >> +
+> >> +#define USB_PHY_XCFGI_39_32         (0x16c)
+> >> +#define USB_PHY_XCFGI_71_64         (0x17c)
+> >> +#define USB_PHY_XCFGI_31_24         (0x168)
+> >> +#define USB_PHY_XCFGI_7_0           (0x15c)
+> >> +
+> >> +#define M31_EUSB_PHY_INIT_CFG(o, b, v)      \
+> >> +{                           \
+> >> +    .off = o,               \
+> >> +    .mask = b,              \
+> >> +    .val = v,               \
+> >> +}
+> >> +
+> >> +struct m31_phy_tbl_entry {
+> >> +    u32 off;
+> >> +    u32 mask;
+> >> +    u32 val;
+> >> +};
+> >> +
+> >> +struct m31_eusb2_priv_data {
+> >> +    const struct m31_phy_tbl_entry  *setup_seq;
+> >> +    unsigned int                    setup_seq_nregs;
+> >> +    const struct m31_phy_tbl_entry  *override_seq;
+> >> +    unsigned int                    override_seq_nregs;
+> >> +    const struct m31_phy_tbl_entry  *reset_seq;
+> >> +    unsigned int                    reset_seq_nregs;
+> >> +    unsigned int                    fsel;
+> >> +};
+> >> +
+> >> +static const struct m31_phy_tbl_entry m31_eusb2_setup_tbl[] = {
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_CFG0, BIT(1), 1),
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_UTMI_CTRL5, BIT(1), 1),
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_CFG1, BIT(0), 1),
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_FSEL_SEL, BIT(0), 1),
+> >> +};
+> >> +
+> >> +static const struct m31_phy_tbl_entry m31_eusb_phy_override_tbl[] = {
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_XCFGI_39_32, GENMASK(3, 2), 0),
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_XCFGI_71_64, GENMASK(3, 0), 7),
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_XCFGI_31_24, GENMASK(2, 0), 0),
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_XCFGI_7_0, GENMASK(1, 0), 0),
+> >> +};
+> >> +
+> >> +static const struct m31_phy_tbl_entry m31_eusb_phy_reset_tbl[] = {
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_HS_PHY_CTRL2, BIT(3), 1),
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_HS_PHY_CTRL2, BIT(2), 1),
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_UTMI_CTRL0, BIT(0), 1),
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_HS_PHY_CTRL_COMMON0, BIT(1), 1),
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_HS_PHY_CTRL_COMMON0, BIT(2), 0),
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_UTMI_CTRL5, BIT(1), 0),
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_HS_PHY_CTRL2, BIT(3), 0),
+> >> +    M31_EUSB_PHY_INIT_CFG(USB_PHY_CFG0, BIT(1), 0),
+> >> +};
+> >> +
+> >> +struct m31eusb2_phy {
+> >> +    struct phy                      *phy;
+> >> +    void __iomem                    *base;
+> >> +    const struct m31_eusb2_priv_data        *data;
+> >> +
+> >> +    struct regulator                *vreg;
+> >> +    struct clk                      *clk;
+> >> +    struct reset_control            *reset;
+> >> +
+> >> +    struct phy *repeater;
+> >> +};
+> >> +
+> >> +static void msm_m31_eusb2_write_readback(void __iomem *base, u32 offset,
+> >> +                                    const u32 mask, u32 val)
+> >> +{
+> >> +    u32 write_val, tmp = readl_relaxed(base + offset);
+> >> +
+> >> +    tmp &= ~mask;
+> >> +    write_val = tmp | val;
+> >> +
+> >> +    writel_relaxed(write_val, base + offset);
+> >> +
+> >> +    tmp = readl_relaxed(base + offset);
+> >> +    tmp &= mask;
+> >> +
+> >> +    if (tmp != val)
+> >> +            pr_err("write: %x to offset: %x FAILED\n", val, offset);
+> >> +}
+> >> +
+> >> +static void m31eusb2_phy_write_sequence(struct m31eusb2_phy *phy,
+> >> +                                    const struct m31_phy_tbl_entry *tbl,
+> >> +                                    int num)
+> >> +{
+> >> +    int i;
+> >> +
+> >> +    for (i = 0 ; i < num; i++, tbl++) {
+> >> +            dev_dbg(&phy->phy->dev, "Offset:%x BitMask:%x Value:%x",
+> >> +                                    tbl->off, tbl->mask, tbl->val);
+> >> +
+> >> +            msm_m31_eusb2_write_readback(phy->base,
+> >> +                                    tbl->off, tbl->mask,
+> >> +                                    tbl->val << __ffs(tbl->mask));
+> >
+> > could you please check, what actually gets written? I suspect there
+> > should be a -1 here.
+> >
+>
+> The __ffs  uses the ctz/ctzl built in, which counts leading zeros, so the
+> -1 should already be accounted for.  FIELD_PREP uses the ffs builtin
+> directly, which would require the -1.  Confirmed that the writes are being
+> done as expected from the programming tables above.
+
+Ack, thanks.
 
 
 
-On 2/26/2025 7:55 PM, Suzuki K Poulose wrote:
-> On 26/02/2025 04:13, Jie Gan wrote:
->> Add 'trace_id' function pointer in coresight_ops. It's responsible for 
->> retrieving
->> the device's trace ID.
->>
->> Co-developed-by: James Clark <james.clark@linaro.org>
->> Signed-off-by: James Clark <james.clark@linaro.org>
->> Reviewed-by: James Clark <james.clark@linaro.org>
->> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
->> ---
->>   drivers/hwtracing/coresight/coresight-core.c  | 27 +++++++++++++++++++
->>   drivers/hwtracing/coresight/coresight-dummy.c | 13 ++++++++-
->>   .../coresight/coresight-etm3x-core.c          |  1 +
->>   .../coresight/coresight-etm4x-core.c          |  1 +
->>   drivers/hwtracing/coresight/coresight-stm.c   | 11 ++++++++
->>   drivers/hwtracing/coresight/coresight-tpda.c  | 11 ++++++++
->>   include/linux/coresight.h                     |  5 ++++
->>   7 files changed, 68 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/ 
->> hwtracing/coresight/coresight-core.c
->> index 0a9380350fb5..6cad777757f3 100644
->> --- a/drivers/hwtracing/coresight/coresight-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-core.c
->> @@ -23,6 +23,7 @@
->>   #include "coresight-etm-perf.h"
->>   #include "coresight-priv.h"
->>   #include "coresight-syscfg.h"
->> +#include "coresight-trace-id.h"
->>   /*
->>    * Mutex used to lock all sysfs enable and disable actions and 
->> loading and
->> @@ -1515,6 +1516,32 @@ void coresight_remove_driver(struct amba_driver 
->> *amba_drv,
->>   }
->>   EXPORT_SYMBOL_GPL(coresight_remove_driver);
->> +int coresight_etm_get_trace_id(struct coresight_device *csdev, enum 
->> cs_mode mode,
->> +                   struct coresight_device *sink)
->> +{
->> +    int trace_id;
->> +    int cpu = source_ops(csdev)->cpu_id(csdev);
->> +
->> +    switch (mode) {
->> +    case CS_MODE_SYSFS:
->> +        trace_id = coresight_trace_id_get_cpu_id(cpu);
->> +        break;
->> +    case CS_MODE_PERF:
-> 
-> Please could we handle a case where "sink" may be passed NULL ?
-> 
->          if (WARN_ON(!sink))
->              return -EINVAL;
-> 
-> Sorry, didn't spot that in the last review.
-
-Hi Suzuki,
-
-Thanks for poniting out.
-
-There are two scenarios for current useage:
-1. From traceid_show() - this is sysfs mode, so we dont need check sink.
-2. From coresight_path_assign_trace_id function, the sink is obtained 
-from coresight_path and the "sink" has been verified before building the 
-coresight_path.
-
-That's why I did not include the verification for sink before using it.
-But I think it's worthwhile to add this code to enhance our code's 
-robustness.
-
-Will fix it in next version.
-
-Thanks,
-Jie
-
-> 
-> Suzuki
-> 
-> 
->> +        trace_id = coresight_trace_id_get_cpu_id_map(cpu, &sink- 
->> >perf_sink_id_map);
-> 
->> +        break;
->> +    default:
->> +        trace_id = -EINVAL;
->> +        break;
->> +    }
->> +
->> +    if (!IS_VALID_CS_TRACE_ID(trace_id))
->> +        dev_err(&csdev->dev,
->> +            "Failed to allocate trace ID on CPU%d\n", cpu);
->> +
->> +    return trace_id;
->> +}
->> +EXPORT_SYMBOL_GPL(coresight_etm_get_trace_id);
->> +
->>   MODULE_LICENSE("GPL v2");
->>   MODULE_AUTHOR("Pratik Patel <pratikp@codeaurora.org>");
->>   MODULE_AUTHOR("Mathieu Poirier <mathieu.poirier@linaro.org>");
->> diff --git a/drivers/hwtracing/coresight/coresight-dummy.c b/drivers/ 
->> hwtracing/coresight/coresight-dummy.c
->> index 9be53be8964b..b5692ba358c1 100644
->> --- a/drivers/hwtracing/coresight/coresight-dummy.c
->> +++ b/drivers/hwtracing/coresight/coresight-dummy.c
->> @@ -41,6 +41,16 @@ static void dummy_source_disable(struct 
->> coresight_device *csdev,
->>       dev_dbg(csdev->dev.parent, "Dummy source disabled\n");
->>   }
->> +static int dummy_source_trace_id(struct coresight_device *csdev, 
->> __maybe_unused enum cs_mode mode,
->> +                 __maybe_unused struct coresight_device *sink)
->> +{
->> +    struct dummy_drvdata *drvdata;
->> +
->> +    drvdata = dev_get_drvdata(csdev->dev.parent);
->> +
->> +    return drvdata->traceid;
->> +}
->> +
->>   static int dummy_sink_enable(struct coresight_device *csdev, enum 
->> cs_mode mode,
->>                   void *data)
->>   {
->> @@ -62,7 +72,8 @@ static const struct coresight_ops_source 
->> dummy_source_ops = {
->>   };
->>   static const struct coresight_ops dummy_source_cs_ops = {
->> -    .source_ops = &dummy_source_ops,
->> +    .trace_id    = dummy_source_trace_id,
->> +    .source_ops    = &dummy_source_ops,
->>   };
->>   static const struct coresight_ops_sink dummy_sink_ops = {
->> diff --git a/drivers/hwtracing/coresight/coresight-etm3x-core.c b/ 
->> drivers/hwtracing/coresight/coresight-etm3x-core.c
->> index c103f4c70f5d..c1dda4bc4a2f 100644
->> --- a/drivers/hwtracing/coresight/coresight-etm3x-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-etm3x-core.c
->> @@ -704,6 +704,7 @@ static const struct coresight_ops_source 
->> etm_source_ops = {
->>   };
->>   static const struct coresight_ops etm_cs_ops = {
->> +    .trace_id    = coresight_etm_get_trace_id,
->>       .source_ops    = &etm_source_ops,
->>   };
->> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/ 
->> drivers/hwtracing/coresight/coresight-etm4x-core.c
->> index 2c1a60577728..cfd116b87460 100644
->> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> @@ -1067,6 +1067,7 @@ static const struct coresight_ops_source 
->> etm4_source_ops = {
->>   };
->>   static const struct coresight_ops etm4_cs_ops = {
->> +    .trace_id    = coresight_etm_get_trace_id,
->>       .source_ops    = &etm4_source_ops,
->>   };
->> diff --git a/drivers/hwtracing/coresight/coresight-stm.c b/drivers/ 
->> hwtracing/coresight/coresight-stm.c
->> index b581a30a1cd9..aca25b5e3be2 100644
->> --- a/drivers/hwtracing/coresight/coresight-stm.c
->> +++ b/drivers/hwtracing/coresight/coresight-stm.c
->> @@ -281,12 +281,23 @@ static void stm_disable(struct coresight_device 
->> *csdev,
->>       }
->>   }
->> +static int stm_trace_id(struct coresight_device *csdev, 
->> __maybe_unused enum cs_mode mode,
->> +            __maybe_unused struct coresight_device *sink)
->> +{
->> +    struct stm_drvdata *drvdata;
->> +
->> +    drvdata = dev_get_drvdata(csdev->dev.parent);
->> +
->> +    return drvdata->traceid;
->> +}
->> +
->>   static const struct coresight_ops_source stm_source_ops = {
->>       .enable        = stm_enable,
->>       .disable    = stm_disable,
->>   };
->>   static const struct coresight_ops stm_cs_ops = {
->> +    .trace_id    = stm_trace_id,
->>       .source_ops    = &stm_source_ops,
->>   };
->> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/ 
->> hwtracing/coresight/coresight-tpda.c
->> index 189a4abc2561..68079169b11b 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpda.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
->> @@ -241,12 +241,23 @@ static void tpda_disable(struct coresight_device 
->> *csdev,
->>       dev_dbg(drvdata->dev, "TPDA inport %d disabled\n", in->dest_port);
->>   }
->> +static int tpda_trace_id(struct coresight_device *csdev, 
->> __maybe_unused enum cs_mode mode,
->> +             __maybe_unused struct coresight_device *sink)
->> +{
->> +    struct tpda_drvdata *drvdata;
->> +
->> +    drvdata = dev_get_drvdata(csdev->dev.parent);
->> +
->> +    return drvdata->atid;
->> +}
->> +
->>   static const struct coresight_ops_link tpda_link_ops = {
->>       .enable        = tpda_enable,
->>       .disable    = tpda_disable,
->>   };
->>   static const struct coresight_ops tpda_cs_ops = {
->> +    .trace_id    = tpda_trace_id,
->>       .link_ops    = &tpda_link_ops,
->>   };
->> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
->> index 157c4bd009a1..ce89ad24c2a2 100644
->> --- a/include/linux/coresight.h
->> +++ b/include/linux/coresight.h
->> @@ -335,6 +335,7 @@ enum cs_mode {
->>       CS_MODE_PERF,
->>   };
->> +#define coresight_ops(csdev)    csdev->ops
->>   #define source_ops(csdev)    csdev->ops->source_ops
->>   #define sink_ops(csdev)        csdev->ops->sink_ops
->>   #define link_ops(csdev)        csdev->ops->link_ops
->> @@ -410,6 +411,8 @@ struct coresight_ops_helper {
->>   };
->>   struct coresight_ops {
->> +    int (*trace_id)(struct coresight_device *csdev, enum cs_mode mode,
->> +            struct coresight_device *sink);
->>       const struct coresight_ops_sink *sink_ops;
->>       const struct coresight_ops_link *link_ops;
->>       const struct coresight_ops_source *source_ops;
->> @@ -697,4 +700,6 @@ int coresight_init_driver(const char *drv, struct 
->> amba_driver *amba_drv,
->>   void coresight_remove_driver(struct amba_driver *amba_drv,
->>                    struct platform_driver *pdev_drv);
->> +int coresight_etm_get_trace_id(struct coresight_device *csdev, enum 
->> cs_mode mode,
->> +                   struct coresight_device *sink);
->>   #endif        /* _LINUX_COREISGHT_H */
-> 
-
+-- 
+With best wishes
+Dmitry
 
