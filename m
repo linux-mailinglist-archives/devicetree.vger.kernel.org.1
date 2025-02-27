@@ -1,171 +1,104 @@
-Return-Path: <devicetree+bounces-151927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0A00A4783E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:51:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A485A4784C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:53:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B2CE171741
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 08:50:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41302188DA73
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 08:53:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF37522686F;
-	Thu, 27 Feb 2025 08:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F955227581;
+	Thu, 27 Feb 2025 08:53:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JfrG/Vr4"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UUxImtq1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C38226551;
-	Thu, 27 Feb 2025 08:50:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C73C622259F;
+	Thu, 27 Feb 2025 08:53:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740646227; cv=none; b=YnO+WglicHoRED3/BOvSOvgWIOIs3qX0dcIaeO0/NVdf83f84SdDT3EF0jig7rx5i8XfolcU7lTxuvcTkCPWmp1veqmM1+m2XI3PA+SToc+8TrW+X7H4Re7zwqZwisHEpgCofLZs3m1dTQINfQShk5telRtC9J1r6/zhXX+vQMk=
+	t=1740646413; cv=none; b=fCqEiM3DN52BZicr82bP7tTqfQhr1y7Q/umExLifj0MXoEXP0PwU0RantCkP2njNXSbRgKU2t3g0ipaTgY2crfXF0NUsgkaYMEhs+zKzgWT+v+Bz8NSdogQ+Xt4/XVCKU4psThS35QXhP9/0jz+Zm8GJbbTu60iXYPyURapDmBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740646227; c=relaxed/simple;
-	bh=EE3knrHH8YT3ZkzHF6A+tlFuX23SQHUMMiwsbGXbq+c=;
+	s=arc-20240116; t=1740646413; c=relaxed/simple;
+	bh=7XhBsvx4K34GlScjfHZ2ZYt51wiZ+QIomrA0dhqnjKE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dv9+1YWlXVFG8vWnaLO4kmUbZ3A91nNRmb2UjUAGrmmR/F8IYw4W6d1l4PpVntq13/vgtYYNvJgQU45kfeSmmpy5a45K+F89adbQGH3RCCIzlXh/UKqp2kQNQxNAmFuMtGxbq7gYYaX2yUTw/BbcFV6ZkUBAfv4TrBOtQ+06sPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JfrG/Vr4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19F10C4CEDD;
-	Thu, 27 Feb 2025 08:50:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740646227;
-	bh=EE3knrHH8YT3ZkzHF6A+tlFuX23SQHUMMiwsbGXbq+c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JfrG/Vr40qTIY21lVpJ4sUtXo/+HrBEhlXEK+jtOK2rQ28R7KRABEh4iej9OIYaEe
-	 Xw3SQegimknFRuuE8ls1DjHg1agt/IytsqPUVQ6SFEiW2RGHCVBy7GP7e3u+j2S00e
-	 evqnHZFaWiEeoFNvtDeB+b6v3EeydfwPQmJkZODct3nB54D+ZIlXrfJ0HGgZS8zx67
-	 Kn1YPsXB/YH9sf3mMEXTvLYy55uM7ZG0YGjOPui0Pxz7uxZGAzS/Jpl60eYg2YlOaU
-	 H4spQcj+fSJ8ewu1cONdhPSBntYrJp3LesznJQ6GmITs7g7oVtG7uUmpucD8Omtezy
-	 VI9qsCnYmJVQw==
-Date: Thu, 27 Feb 2025 09:50:23 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Rob Herring <robh@kernel.org>, 
-	Cedric Encarnacion <cedricjustine.encarnacion@analog.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: pmbus: add lt3074
-Message-ID: <20250227-sceptical-phenomenal-wolverine-56e3cf@krzk-bin>
-References: <20250225-upstream-lt3074-v2-0-18ad10ba542e@analog.com>
- <20250225-upstream-lt3074-v2-1-18ad10ba542e@analog.com>
- <20250226-gentle-spicy-jacamar-2dd36a@krzk-bin>
- <20250226145931.GA2314060-robh@kernel.org>
- <3f7b031d-7b83-4a00-996d-aabb26278b67@roeck-us.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fE2uU71jrU0Nc/F/AXJqgpCADFF8w8hNpHlM+znmiiYHfvMLzmlrX0ALQVWAqH2pGHrTM6ilc+NFs43XY8n7I2fH6/kDqiwXdVdKbu3gEE7Q7+XoqUE69IIFDkHpzi+5wTpmxUAQv8JjeJm+zvh1WrjwLqCKc0N9qoXFLLpZHZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UUxImtq1; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1740646410; x=1772182410;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7XhBsvx4K34GlScjfHZ2ZYt51wiZ+QIomrA0dhqnjKE=;
+  b=UUxImtq1hkXhNCf1Zuxnq7IAhgSD6NIwxNjRytG6Hz6u1QRvJbd0Hj2N
+   qHWimnXdYWojHbSxvwXdCVE77y0Aok0hmc4M6WfMvToYSgKPCIKuvU4ns
+   65Xln8JGcQUgyLHbV92QfeIH2dbbHb1VGdPZgA0PjdDfMjZbNYcCN3Gir
+   N7+tWQl8CbOe4lh4Gy37/Y9joEXQODh8QhRQSkt6k7DbbxHSHfIYFrZtu
+   JLok3DwAAUqIBuLPF6viAKjT6ILswE1lOM27+tbfqoVJudraK+MoL67vQ
+   DsqwOgxN4Z9uMMF5SnRN7dQZv3Yc7Lvbc1mIBzmsBEAn08FKGIz31/r+O
+   Q==;
+X-CSE-ConnectionGUID: Yfw8frP3Q6Gp6GiOXrzIIQ==
+X-CSE-MsgGUID: uVxHxmUfTuK9NE3YjTbb2Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="52163028"
+X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; 
+   d="scan'208";a="52163028"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2025 00:53:29 -0800
+X-CSE-ConnectionGUID: bZFqNbkXQLWuSigpCGLw1Q==
+X-CSE-MsgGUID: gfzvNCgqR223GEMoy2EK0Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; 
+   d="scan'208";a="117138187"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2025 00:53:26 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id A3CF411F944;
+	Thu, 27 Feb 2025 10:53:23 +0200 (EET)
+Date: Thu, 27 Feb 2025 08:53:23 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Mathis Foerst <mathis.foerst@mt.com>
+Cc: linux-kernel@vger.kernel.org,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, manuel.traut@mt.com
+Subject: Re: [PATCH v1 3/8] MT9M114: Add get_mbus_config
+Message-ID: <Z8AoA6WjbXQufqR6@kekkonen.localdomain>
+References: <20250226153929.274562-1-mathis.foerst@mt.com>
+ <20250226153929.274562-4-mathis.foerst@mt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3f7b031d-7b83-4a00-996d-aabb26278b67@roeck-us.net>
+In-Reply-To: <20250226153929.274562-4-mathis.foerst@mt.com>
 
-On Wed, Feb 26, 2025 at 11:17:48AM -0800, Guenter Roeck wrote:
-> On 2/26/25 06:59, Rob Herring wrote:
-> > On Wed, Feb 26, 2025 at 09:20:40AM +0100, Krzysztof Kozlowski wrote:
-> > > On Tue, Feb 25, 2025 at 09:01:13PM +0800, Cedric Encarnacion wrote:
-> > > > Add Analog Devices LT3074 Ultralow Noise, High PSRR Dropout Linear
-> > > > Regulator.
-> > > > 
-> > > > Signed-off-by: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
-> > > > ---
-> > > >   .../bindings/hwmon/pmbus/adi,lt3074.yaml           | 64 ++++++++++++++++++++++
-> > > >   MAINTAINERS                                        |  7 +++
-> > > >   2 files changed, 71 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/adi,lt3074.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/adi,lt3074.yaml
-> > > > new file mode 100644
-> > > > index 0000000000000000000000000000000000000000..714426fd655a8daa96e15e1f789743f36001ac7a
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/adi,lt3074.yaml
-> > > > @@ -0,0 +1,64 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/hwmon/pmbus/adi,lt3074.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Analog Devices LT3074 voltage regulator
-> > > > +
-> > > > +maintainers:
-> > > > +  - Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
-> > > > +
-> > > > +description: |
-> > > > +  The LT3074 is a low voltage, ultra-low noise and ultra-fast transient
-> > > > +  response linear regulator. It allows telemetry for input/output voltage,
-> > > > +  output current and temperature through the PMBus serial interface.
-> > > > +
-> > > > +  Datasheet:
-> > > > +    https://www.analog.com/en/products/lt3074.html
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - adi,lt3074
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  regulators:
-> > > > +    type: object
-> > > > +    description: |
-> > > > +      list of regulators provided by this controller.
-> > > 
-> > > You have only one regulator, so drop the "regulators". vout could be
-> > > here, but since you do not have any other resources, I doubt it stands
-> > > on its own either. This is even visible in your DTS - you named the
-> > > device as regulator, so logically this is the regulator. Regulator does
-> > > not have regulators (otherwise they could also have regulators... so
-> > > triple regulator).
-> > > 
-> > > hwmon code might need some changes, but that's not really relevant for
-> > > proper hardware description.
-> > 
-> > Normally, I would agree, but it seems generic pmbus code expects this
-> > structure. This just came up with changing another binding maintained by
-> > 'Not Me' to follow this structure. We're stuck with the existing way, so
-> > I don't know that it is worth supporting 2 ways forever. OTOH, is it
-> > guaranteed that these devices will only ever be pmbus devices or that
-> > other regulator devices which are not handled as pmbus devices currently
-> > will be in the future. If so, more flexibility in the bindings will be
-> > needed.
-> > 
+Hi Mathis,
+
+On Wed, Feb 26, 2025 at 04:39:24PM +0100, Mathis Foerst wrote:
+> The i.MX6 camera frameworks requires get_mbus_config to be implemented.
+> See [0].
 > 
-> I would appreciate if someone would explain to me what the problems with
-> the current PMBus code actually are. I have seen several comments claiming
+> [0] drivers/staging/media/imx/imx-media-csi.c - line 211..216
 
-Not exactly a problem but missing feature. pmbus code (at least one of
-macros I looked at) expects regulator node and some sort of child of it
-(vout), while such simple devices should be:
+The imx driver should really be fixed instead of working around a staging
+driver issue in sensor drivers.
 
-regulator {
-	compatible = "adi,lt3074";
-	regulator-name = "vout";
-	regulator-min-microvolt = "100000";
-	regulator-max-microvolt = "100000";
-};
+-- 
+Regards,
 
-so without any of regulators and regulators/vout subnodes.
-
-> that the code should be changed, but I have no idea what the expected changes
-> actually are or, in other words, what the PMBus code should be doing
-> differently.
-
-I did not investigate much into pmbus code, but this might be as simple
-as accepting arguments for .of_match and .regulators_node and then
-accepting NULLs as them as well. Or a new macro which assigns NULLs
-there.
-
-Regulator core handles .regulators_node=NULL already.
-
-Best regards,
-Krzysztof
-
+Sakari Ailus
 
