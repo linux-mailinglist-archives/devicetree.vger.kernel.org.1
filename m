@@ -1,327 +1,219 @@
-Return-Path: <devicetree+bounces-152331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66DAFA48B29
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 23:16:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C88E0A48B56
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 23:22:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0545E7A57EB
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 22:15:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AF85188E837
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 22:22:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7398F225A48;
-	Thu, 27 Feb 2025 22:16:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11C9271839;
+	Thu, 27 Feb 2025 22:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b="uzpPr5Zn"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="dJF5RPXq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2055.outbound.protection.outlook.com [40.107.21.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C65053E23;
-	Thu, 27 Feb 2025 22:16:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.156.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F95E27182D
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 22:21:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.55
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740694566; cv=fail; b=gkvGAiRDO/hltnAm/hIp0kDDfcLD4HM/iH9x46cMOA9irxaev5rjh4tyXT8q5xn3/tbWF4TB8p+q5fh3i8S7YAtqhh4UU9t3/Sg3wa5RMXFPgtshqMJQRUPW3hfZn7+nZHo7ClKtkGag93cNX/U0NBRR+vtkKi/vm1+jzUAQcMI=
+	t=1740694899; cv=fail; b=uYSNAb0cXNnaUApwC5pXcT77O4Xdb7vBh4JXR1eIkr8TgbMDOHQZewNEbWQXcFIetYoOq8Tm9O8zzYxGL6HMlaFG9ET55HCMR2Vw9lO8hE62g34/01fAN+eVNRlDSqPiVaiVHcab3WamJUW5NTVcYDdDvNnwXlq1nCm7aB7OSDM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740694566; c=relaxed/simple;
-	bh=GIiLJlnze/gRpgbGH5S0yRWcqjGxONIlwtOlnbpL1aQ=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 MIME-Version:Content-Type; b=iX2tTnYkg2hWKMg0LLrqF96p2p2/TvsdX6s7yjWzgSbLZvm1O++3/YuxFIrsF3g3ySeujKG7XbnwXZfwh0vMIDLBpkpwVUvuPwoBXgvjlZWf4+tUuVO0rwTGtu0MNoPjaox7olHziXX+hVwMsgb5mdABpk6iA8TvRl+6FbH5TsA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=fail (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b=uzpPr5Zn reason="signature verification failed"; arc=fail smtp.client-ip=67.231.156.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51RLUuXY020527;
-	Thu, 27 Feb 2025 13:59:01 -0800
-Received: from nam11-bn8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2171.outbound.protection.outlook.com [104.47.58.171])
-	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 452vpv0g0c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Feb 2025 13:59:01 -0800 (PST)
+	s=arc-20240116; t=1740694899; c=relaxed/simple;
+	bh=EvvohbqdX1KsrKl3DWQQbjKYM8jNNVl5S7NtEK1X8p0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=q/336Y1etz8VK/84sFDFstu+L4L8eQV2njXCNaRjUqsvZbpE/ojbnhGT3k/Oaxz50ObmqrBMPvnhlsFgGytBD/B1CY+kSqVlTIiy/AgD9o4iuVJYXhhIAw2AJNXr5dz9oEKFOQ16bALajDVLgVk0+PuVaeuAZtGkZRi5+9zNy6A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dJF5RPXq; arc=fail smtp.client-ip=40.107.21.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uhZmVB2i6zwuZRjUkei3mYAe4Ne3929i6poBcXyYOoanBv0JNSk6Mxkh+gFGUeUQP26IqYIR/0ST2Y5Cl2lxoXkTSfp44IdS9Ywi+183kFnqxNz4JlysiSjbSOVaLADF+19wpVp3fxmv17Jr4IY2VJJpbE+Wuf4wGNjviAE7yaVVnYfeRzuQX2V8s9NnaXSKXA8kpD1sVsDRYY4/w2npBBRv8E0Q1fQ3Ri6A5SqcBiVdFZ8SdZ5FLD8lxTcW7RciH1Dd2ykTFIOsCTOS2KxbzmiqXeZRjJrmXa3CeN0HczfuyH8V/wsCKoFKThyyW3OeYCHkfuHbfHohmIKgmwcJpQ==
+ b=Fub/fxHHZ68r8eNaaZjgVbOt8SUxk3m2suvnl4KDmLo/1rUL2O7r/X1+Gkt+dNJjqKJjlTxFHNDdkbDj9x6S8AwWas2n6jlXDPzac2pUoD5p4ZoQFRFmkWQ3pojxFcvelsKrAOevHQTpcR+hemk8B2hIIePxEU3TH89EmqhGPx9M62bSBZwatmrhCPpKlUcgYk2Jq4An4tzkx9CgyAh8wrLEiNGH3qiH+jY1aipEQ4EWV7PhOh75VKwcKYL/zFkKnIdv1pAqTTAK6Dp1hfOd61ymTosXf4WJ7hpzh+zcaz/Grmncbg182PSyZQ2EeL2uepdBh8q3vyuJVQ4ThTSQ2w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mUjRZQBpYRMsMHHFyYHh7ziTfdbheMBBmpNt9jz83/A=;
- b=YGXuBpkGKwiYXHbkkbIZV9hjKnh9G0tdNlxSfTrLRgvEozhRZYlsC3VP6rmQFK26PYR5GHRm7XfDdyAKe1QTtuKH8mZFcTqfT4nbCJPwSO9xEf/fIbqFx/PkC5CoAq4nT6grHGFEqfb5zEPgCBXEX+0Tn3tCw5OmZ4vhrmb1Xlptx/3TmH/akAJtYGZFfdFHDHlSTz4/jYeyqDiDZSU2a2Q02+ltCTvViMke+8CXo1EP8yhrmqUwMjZDuhrFVdBKGDF8IxyZPTujqPB5vjfgb3RWdMWpWgt0d1dQbFEivWlOVSkYyyYH7l8AJzqwo8YyFP+2z7dHNc2weAr3lgkaQQ==
+ bh=A9V23MCi3VoRImtfFtEF8dv7PO8uam3FlOpsf3cT9GA=;
+ b=UcuvdtDTQ4XOaM81ELRRuZmMqR6uHkgeoZg3LEZb8zeHeco/L7OSxtvxn+2v0Czeraecc82q0yWAaUhgVKAT38QpSroY15W3frT+wluJVPxlRP8/I2hVCR+P4nrjeJf8aBw2pxm886jkKrmVp30Y6VsoAVpShlNX6n84pHYOHi7pIeTM2enYonkD/0NGZqnPe2IYY1n9qaGi99P2ChH3f0gGCbP/H8zd7ucZuwmfQBbHRxcQhZgIzBEUUmZ2+9p4nM6DMa5sOQ4ZhF4mb49JM4E5knxwhFjRV8/cMH18M9SK2YawZ8s0WY9PZ/h6Q3CdYWwgPlKUQzR3V2s0TFLWTQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
- dkim=pass header.d=marvell.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com;
- s=selector1;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mUjRZQBpYRMsMHHFyYHh7ziTfdbheMBBmpNt9jz83/A=;
- b=uzpPr5ZnCKlL1eDxx6xs6EYXmiIi8m4R4tbA0Ns2HifI9WfKVhgMWI0j2PtZYhBm/GB32v1LAE9ZfleZjxSRPfDJXuvNKG3WeD6xbfvRl1dy0ehWOrR7pE2Mm/qy3ugc1k9/oH1fwZQQb4VOU9hBIeBckp4reUFQnEsaHqE5gzg=
-Received: from BY3PR18MB4673.namprd18.prod.outlook.com (2603:10b6:a03:3c4::20)
- by DM4PR18MB4335.namprd18.prod.outlook.com (2603:10b6:5:39b::18) with
+ bh=A9V23MCi3VoRImtfFtEF8dv7PO8uam3FlOpsf3cT9GA=;
+ b=dJF5RPXqo4o0UZYvPPsaiE/PPJXPQCcVrcyfCYkNwhWkXg+RZrIAvFJsC/Qy2DSuARCKQp4byuOtQvACuWi0T5oAhFQUEEDEdM2KnohAWMO9E18Qp+38mAX0UgDjT606U3MIxY0gR9JR9J2EWVSOQLE3vKhyyi6On09PR9pLDpu5efVwHeVSIHIvHIEvc2GWFtu3h6O85Zi6PJSULrZn9OaRPAMyIKewwvWgY1x4nomvtmlRMWlxBP+tk0NtBx9/kjfIptFcgKrorS1Jy8wBNiDBJOPuqNyGkuIJ2n7qGmF9crBnM9dbj8Cr2Ksgnovjnbyv0huHen3LTKqhvMndGg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU4PR04MB10459.eurprd04.prod.outlook.com (2603:10a6:10:56b::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.18; Thu, 27 Feb
- 2025 21:58:59 +0000
-Received: from BY3PR18MB4673.namprd18.prod.outlook.com
- ([fe80::fbd6:a3a:9635:98b5]) by BY3PR18MB4673.namprd18.prod.outlook.com
- ([fe80::fbd6:a3a:9635:98b5%5]) with mapi id 15.20.8489.021; Thu, 27 Feb 2025
- 21:58:59 +0000
-From: Wilson Ding <dingwei@marvell.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-CC: "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        Sanghoon Lee <salee@marvell.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "gregory.clement@bootlin.com"
-	<gregory.clement@bootlin.com>,
-        "p.zabel@pengutronix.de"
-	<p.zabel@pengutronix.de>,
-        Geethasowjanya Akula <gakula@marvell.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "andrew@lunn.ch"
-	<andrew@lunn.ch>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>
-Subject: RE: [EXTERNAL] Re: [PATCH v3 1/3] dt-bindings: reset: Add Armada8K
- reset controller
-Thread-Topic: [EXTERNAL] Re: [PATCH v3 1/3] dt-bindings: reset: Add Armada8K
- reset controller
-Thread-Index: AQHbiU1k6RN9NOXhEEKkKsof8xm437NbmJSAgAAZ9AA=
-Date: Thu, 27 Feb 2025 21:58:58 +0000
-Message-ID:
- <BY3PR18MB467346EB1FA7CEF0A3300350A7CD2@BY3PR18MB4673.namprd18.prod.outlook.com>
-References: <20250227192536.2426490-1-dingwei@marvell.com>
- <20250227192536.2426490-2-dingwei@marvell.com>
- <174068786548.161165.4348563654300627455.robh@kernel.org>
-In-Reply-To: <174068786548.161165.4348563654300627455.robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BY3PR18MB4673:EE_|DM4PR18MB4335:EE_
-x-ms-office365-filtering-correlation-id: bc0bbafa-8fb2-48fd-7b83-08dd5779f04e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|1800799024|7416014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?QzMyR0RMTnNkWW4wSkRLeVRSaklvSm5vSHNJczgwcGQxUm9kdWtaeEQ0TDJR?=
- =?utf-8?B?ejZBZkliNVlUU3M2SmdqUlJ3OEZSZkhoVkJ4OTBEM1VWY3JmTkN0UHdESlcz?=
- =?utf-8?B?WnZTcjRoOEdISUx5OUdpcGt2Tjd1MGVwZkJHOXZlVkd6MlV3M2pDU2F3Rlh4?=
- =?utf-8?B?dXZDL25Yb01JbEo4UzhzVDltK1hIdUdONURFc0pTRFBCYnNUK2k3cEU3NVp4?=
- =?utf-8?B?aW9xZlZIZ0dKUEJDQVluakVDdHRVOVR0REViZ0VpZWNmR2lMRXp5SDZDd1lu?=
- =?utf-8?B?NStnMktSajZFYWZ4aHQ1Q2Nza0xmNS9xZ0ZsL2JmTmMzTCtpeUNOSVpBTEF4?=
- =?utf-8?B?Z0tBdEFybGlRT1Jac2E0ZTVKTzl5dk5TS3BJSlBoYURSdWVzRmZieWJweWpI?=
- =?utf-8?B?QTlKRk11VTVvMENmSUNCWEZ4UmRubFdTSHpwSkVXN0tiUGQzbTA0Tmo3R1FY?=
- =?utf-8?B?V05pOUNUME9NVHp2WDZxNVNoOGtBRUd0M3ZKZUdjdWxnbFdsN0h0TWxKTzNM?=
- =?utf-8?B?QXNCVjRtY3NiRldUNmgydEFBWmZvT1RFMDVqcXFOYzRJUzVoTHUvYnVkYzZ0?=
- =?utf-8?B?UUVLL2FSNGdpN1l1UTNYMU5nQTdlVzRZbjY0MEtyM2dTZFpxeUpxV3dyS0sv?=
- =?utf-8?B?S29adUJ6U1R4bUllc3ZoTmRuTnpmNUtZRjdDZ3ErbDEzTjBnU3RKWXNXVWVv?=
- =?utf-8?B?NjhCNURYN3pZWW4vT25YZ0dtQlpablNRTkJVdUFxYytGdlZ1NXdpOE14Rnl4?=
- =?utf-8?B?YVpOd054ZVRBeXBYYmhwRnIrVnFaU3htTURRR3pyM2NqNys4YnJIS0xSd29I?=
- =?utf-8?B?Q0RvRjR4RXNyeWZzRWxSV01CKytoeVE5K0RYRDEvQWRuK0oyMzNmdWQyVkZ5?=
- =?utf-8?B?L1ZaWUY3bElNcWRDZ2k0MXpiU1hqUjFiZk1ST3V6RVl3aFVqRkszMlVXYUdX?=
- =?utf-8?B?dGNEWlNhRWVVd0FXNS9HZnByL1VzY1RpRGZWanlXYTlCMXZiWWtNUEhDOXp5?=
- =?utf-8?B?aVE0SWlHdGJtQis0UWsrUEFsMm9XU3NIUXJVSnhoQWlDSUU3R1AzbDdpMmFK?=
- =?utf-8?B?bG51ZHdRNUFJSTN4MjdyVE10WWhJYzNBUVFEZ3c3cEFGOEs3YVJ4WXE4Yy9t?=
- =?utf-8?B?alYyb0NBSTZJSCs0dSsyTE1IZHJkRytURXJXL0tZK2Y3WU5KYzNDSGdpekU0?=
- =?utf-8?B?RitJMUxzWTE5MUQvMlMyTnJ0TFhsdDA1V0YxNTk1RlptdXhPWmRLYWVYbGh4?=
- =?utf-8?B?eVBrRStMU0RqUHJiUlJiVmd4WHcrWnY3NTVuazUzZVcvZW1TYW1XRjJxZEtY?=
- =?utf-8?B?MnkvdnNndU9ITVhCMTQ3cWF6YmRkY1RiY0ExcGh6c3FNZ2h5dVBsWk90ekVL?=
- =?utf-8?B?Q2kvVEVKZHRuVTUrTWpXaUF5MWVzSGMrTkVrR2t5dFMwOG42TDkxbVd4ME1t?=
- =?utf-8?B?d09hNTVLSlpiNjNxVzZ3TlhEVy9jNG11eWR1UkNTd0hoT1duNWFUM1lrV0l0?=
- =?utf-8?B?TVJ2MFF6Y3piRmdERWUzckwwckNSak45T0tKTWYzMkl5bFYxREwyTnNhOW1E?=
- =?utf-8?B?N05VSmVqUVJ0RlRYeDN2Z29xdXVtNjZ1MEo5eGliRWYzMHkyUTkwSFZmZVM3?=
- =?utf-8?B?Y3NEWjRvYjJocHFKTXhTQTd2NDJKUlBlSVl4Q1NGT1djc2d6aTBlVW9QTGJB?=
- =?utf-8?B?N1JwczRtdStHTVBMZm1JNnlPOFBERENqdDVKT09tbmZjcS90bnRYNW5CaU5P?=
- =?utf-8?B?WFFBK0ErTnBSczVnbVJqcTA1cmxmYkhzR2l0Ym03ZVdQcVdaNzhMakd6dE1X?=
- =?utf-8?B?ckxZTVhHTHpwbVBiblJzOHI5OWJQcVZXcHl2TjEvajdRZFRxcHNKaDBudFpD?=
- =?utf-8?B?MmpyVmh1bnVYSzNHY2xlSG9yV2h4OHlScklORnVDS3dsc2c9PQ==?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY3PR18MB4673.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(366016)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?MUpIWHBXakFJQU1YdjdiczR2Nmw3czZGaE9WZjQ3MjRRM3M5MEIxTzhKM0NR?=
- =?utf-8?B?QXk5RWx2NzVjMUhYSHJ0a0RmQytVVXRhc3RuaHpzN0plQjlqR05HdzZMS3l2?=
- =?utf-8?B?R2NsY1dCRlZ0V1RIamExdklPUjV3U1BUZU9RQmliZitRSFpUY01BektMZkJJ?=
- =?utf-8?B?cUxPOWJ2d3dlRGlTZnVQdTR4RW1oQnhhSk5sN0RpTFlicXVkU0lLQldOQkVw?=
- =?utf-8?B?VUFmYmNqdVJERUp2clNWNFkvUnVaREpla3RRZmZvYjRtVnlRT0Z6dzdoY2d0?=
- =?utf-8?B?ZitnZjNPZExpM0IzT1QzdUVFQzg2NzdGWFhRZk8wb256VEV3S05wOXZxdXJw?=
- =?utf-8?B?STN4Uno0eTVzSUt1YzZnV2RDcVRaZUFEekcvMnVXRXE4eWh5WWV5cnE2Sk0w?=
- =?utf-8?B?ODFNaldPcmlyaFhyTGxJZzd0SGMzZHprMjQvNVIrcllJZTlWSk5ZM1JaSEVK?=
- =?utf-8?B?V1M5N1l6U1VQaGl0RVk2UFNpblRveG1vZDNnOUNhb1ZQdEZhU0lubytHeThN?=
- =?utf-8?B?NXpORHo5bzlvZEh5OUlIVU94VkF4dHlGQTc1ZnBLTEFnek13cVBtSmJCMnZk?=
- =?utf-8?B?RStXd0JqaENqdEVud2pCWnRmT0hVMFJSOHJkeTJKVnJiWDdQRllaL1g4MVY1?=
- =?utf-8?B?UmExeGpaOXVzYmVocFJPYjlnMm0zVjFkUlpZMmh0bUpuaVJjWlI5S24rMU9x?=
- =?utf-8?B?WFY0aUk1VndqdldlTWp4bUhkeFRyeG9NY0ZNNTh0ZnNycGU3SmxQdFBkK2pv?=
- =?utf-8?B?ZWN1dXp5RUJVWWJtTXh6N1FBaU1JdlRmMG1HSFFPSWR1bDJqK09QYUNrZFUz?=
- =?utf-8?B?bWxyeUVRQkJSekxZd2QvUk92Q2hlZ2YwMnpLd3NkUlVFaGltbXJva0hUQTFP?=
- =?utf-8?B?ME13dHhNbzBHdlhNSWlsdlFFcjlYazJsVG5EcFovK0pTaWl0SXJKdER3elR1?=
- =?utf-8?B?emVCdkZqMExTdExzMytWZmRHNGt5OU9FVVdZU2hqbVJ0bE5mNTA4RjV3L3NK?=
- =?utf-8?B?aEE5OVVhaVZ2eFFCVnlYRHFDQVRoMjdVTkovNGxrR0N4ZjdlVThBOTdadk03?=
- =?utf-8?B?NkhGQjF2eldKemlOc1NCWmhBbjNrU0ZwK2FERURvRlZGV1ZDS2NwTWpLVUtr?=
- =?utf-8?B?RDlmc3U0OGhpQmlxdTZlQ3pJWC9nbFRMaHVobEtkUVljbWNSM3RFU3FCRjNF?=
- =?utf-8?B?RmVlc2krVEJJZTREeTFKbXc1d0tRR2VBellKbkRHcmZxVE1GZlMrM0Y5THRZ?=
- =?utf-8?B?Q0F4MHdsb2RIMXNwVmE5NVlOMkN5L3B2aUhNNnc0ajQ3Y1ZIaXZ5aC9lWDZY?=
- =?utf-8?B?VnVpd3R3Wlk3Q3JsRXVOTzlJNTJPcTMvS1crMnZVdSt2c045ZUNEQ0VTUEZN?=
- =?utf-8?B?REIreVIvWDNpOE16RDRwaG9YS3JCc3pMemE0L1pKWTkwWGo5bFgxL0txRzQv?=
- =?utf-8?B?K0ltWW5rZGl6YTdQeFFzTW9iU2w1SVRlZWtUSEkxN3EvNXM3WU4zeDU4NkVQ?=
- =?utf-8?B?MFJZMzB2NzRPTnkrV3UzY3VLak1rQVNPT2QrWGpwMkFBamFubzFOVDJ3MCtW?=
- =?utf-8?B?TFFmTUtMaUFickNtQXRXaXh1QUY0a3NZK25hTDdmZFNJN0FwZ0JXVnIvS2Rs?=
- =?utf-8?B?djlwQUppWEZRL2VyN3diQjh0di82cXVndDJweTVnNWxKeVd4V1FBMGxDL09k?=
- =?utf-8?B?c1FwQ1BsczkwdUh0NzJJR3BmaVEyaG9VT0RRSW53bCszUFdHeEgxUy8wbTdv?=
- =?utf-8?B?TTlvV3ZTSnN3QytFeEpPTEkvdzNXd21LNXVLL2JYczBTY3ZieDQ4SUNHeWt4?=
- =?utf-8?B?czByUlRVWkFFV25oOFZuT05qb3pvWUw0RVpXRE1qN2lXSVZMNmRIMDJtZmRh?=
- =?utf-8?B?NnhObXM4Q1ZVa2JoYVVGVHJkNUd4SmtCVlBQSW1YbGVZRmlYdjlDTndIY2c3?=
- =?utf-8?B?N1Z6TlkzeGg0Tm1BODZTT0JBSzBaekFoTkk0aUwyT0dhODJYdEFKWm5UZ2wz?=
- =?utf-8?B?aGQ1M2NSTWpjcjA4ZERDeEZhVkF0eVgzVmtJS0hzQlUrMTZvMkNIeGJycWNT?=
- =?utf-8?B?bTlFd0czSWJod0dqT1VNSWhzeWUzU1V3QU9vUDIzY1ppcG5LbGdQYkMxa3Vv?=
- =?utf-8?Q?vM1V4ZAQ9qBpaqpjcYW9drJXE?=
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.21; Thu, 27 Feb
+ 2025 22:21:34 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8466.016; Thu, 27 Feb 2025
+ 22:21:34 +0000
+Date: Thu, 27 Feb 2025 17:21:22 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Marek Vasut <marex@denx.de>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Sebastian Reichel <sre@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Steven Price <steven.price@arm.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, imx@lists.linux.dev
+Subject: Re: [PATCH 9/9] arm64: dts: imx95: Describe Mali G310 GPU
+Message-ID: <Z8DlYjq+87sjS9cU@lizhi-Precision-Tower-5810>
+References: <20250227170012.124768-1-marex@denx.de>
+ <20250227170012.124768-10-marex@denx.de>
+ <Z8CkSUry5puMu6Mx@lizhi-Precision-Tower-5810>
+ <d41c9cf5-9ec4-4b9a-b281-653873fb8df0@denx.de>
+ <Z8DY14NJYXjwKz7Z@lizhi-Precision-Tower-5810>
+ <db903f36-e897-42ed-be46-f0b035303233@denx.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <db903f36-e897-42ed-be46-f0b035303233@denx.de>
+X-ClientProxiedBy: BYAPR08CA0025.namprd08.prod.outlook.com
+ (2603:10b6:a03:100::38) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: marvell.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU4PR04MB10459:EE_
+X-MS-Office365-Filtering-Correlation-Id: ca9234f7-e753-4005-8ee5-08dd577d1800
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|366016|1800799024|376014|7416014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?rtqT/C5uy1YUdvG3WOQ/0BURej6QRoAnn3Of93FsTKnmTc9OjKQuDVXdAfOk?=
+ =?us-ascii?Q?lkap/l0uO4TPGjaLa3FJbqHXC44IyOBo+RRBDn2p7vq52sSPVitVeHge/HlT?=
+ =?us-ascii?Q?GP0Fe60+N8+4B1d4tUBoEtD7savsTHxoFh7QXyO/sHkTAFjklQbYkTcM0dhE?=
+ =?us-ascii?Q?y9lcsSPqlTIkGUCKpt1P2JPTLq97QAgDIQse7tRtrhUcfLmeXjcLJWPgW8jR?=
+ =?us-ascii?Q?BOMxAv543040RzA7QHdFfEyfIaxFNVQe32xc+BNzkbAjp038aDMbbw/W0fJC?=
+ =?us-ascii?Q?B3jEUihfUzFsYKuLbrduRp9oYaSbMlNOGBi29RLbF06lMpnjq4Pxu3BAStqq?=
+ =?us-ascii?Q?MeJo1cyLOOodINmFd1kuwUHXeYRoNkGtN055m7pXG8c9vJRWWkYU3P5mTGaj?=
+ =?us-ascii?Q?MCSyxB3hWCPwmoqd2FCVNIJcc2Mmm5qytjTzgHooLxGFFQL5kTmOr44BCd9D?=
+ =?us-ascii?Q?jUNpmon9leQVdubNol67bboqHLKWcVPfprrEtlCXINUzkqFgRwYnwifUs06C?=
+ =?us-ascii?Q?pRgfH0AMjqnm/nyczut4R+CvDT/YuWnrQmMfh9lPog0HqoX/NJ8x4x7AYnnw?=
+ =?us-ascii?Q?Xa8nnY5sDqFp9wRu7RcW6UXkspO4AV/0VMWtis6f4jyu4DHhm3BFSDkfd5yq?=
+ =?us-ascii?Q?eSwNEVwzYeNBVlXBWzFydJG3h43b/2DJ1UAS+dyC3YPPVoZF1+TT4gBozgVR?=
+ =?us-ascii?Q?t2T+/1bmNisvIBX7Qc4uEg2mLmNmiT6qm/nOjWvZlA6DuELFwwlwRRDowmwf?=
+ =?us-ascii?Q?s/0NnLHO//xeQvQKC8a78yiFZSyY+uDvgLrwrZwh2bLE4OLhq3Xt5lAF2G5d?=
+ =?us-ascii?Q?CI/SV1D1PeGW9s1vKOdxNZwbOhP+2Xd5fO6An9LenvgRxOf5Z1x4PIomJe9f?=
+ =?us-ascii?Q?P9FNlPOJEhotOJA2OJhYd3nz9LSaYY8+BC3qzcBacnd8sXAWSayFgH5W+aPu?=
+ =?us-ascii?Q?Ibxc//RbTr1ULYw+s7GVaMIvGReZxILO50dCAlJFbuujoO97vb1qZ869CsG3?=
+ =?us-ascii?Q?MXJXsoRWECvZGTWEMSujLGGV8k3Potm8x0HyA8MreBi6LU4821Za4BC1Z1Ow?=
+ =?us-ascii?Q?6GM/f0K62GzXwzW1oHa9JtcOS88QitFhapKRHRERHBUyQ01bzuzv9KTTqa3P?=
+ =?us-ascii?Q?c8PUBOlLbHuvRK9Y2CHaZf5CjalxY8xIKMfXL+au6i75icCbCcMQ8b+9/Bva?=
+ =?us-ascii?Q?NXUd+cZ5veCXg+MgKCDnLx5KhjeWWsv3zI+t/faDS5f22L+xcPYCqiuG8Dyd?=
+ =?us-ascii?Q?geVSVPVrXhjSLfi14AHYEUaIt22fCxNgbWVZq2us+hPU5ane5HGfaTn/8yaB?=
+ =?us-ascii?Q?Y7zvDGN+OUPobXHBxMbZxBRnQNAnuBkeDKdbXg3LlVidNMPSNPevATCcOeZ5?=
+ =?us-ascii?Q?KQyB1xPUk+LAOLJBM9eEqSqKws2+zYZjVney/EECNlNwoDKx4tc+2PuulVRy?=
+ =?us-ascii?Q?/qJUNvWI0WiaHtcv1rtTFBYUZbDI/qjB?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(1800799024)(376014)(7416014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?H5p3OGumsKhe5Tgdn+wxUQx98vJ3SDH/BsyBFEAjOZdoe1xJuWaRBzrxSvUv?=
+ =?us-ascii?Q?FQmxulGw8tJKlf/6Nqz0XBqt9dh1Hh9PduiSP4t0+YHs4eb+e3SlBeGVyUCD?=
+ =?us-ascii?Q?MLYhq5Ojkbal7vmH+NKDtOTYhi0BnKFOcIm4C+Q+96OXNHqyjYayn9CbMraQ?=
+ =?us-ascii?Q?DwlRfN25P5mgUBn25aeVUXVkjJJT++RgU8IrsLqMbz4ML8sPLTevfKJf7bsn?=
+ =?us-ascii?Q?i3FLo6BshBe4/hHPffhC23IFgAknsO10xPPdb51RJ/xamKdNVzx7hVnK7roN?=
+ =?us-ascii?Q?hFDdJpGPp096p54VjnQ8KJtMGCG/mDLocd7iA+8q55KLts2bNiwP6X55Nr+G?=
+ =?us-ascii?Q?+xIURvWnlLMQE8/pq7g8JDWqw/RhpkLzeoCXhbVX6mCskPfjae/2LV8kjmya?=
+ =?us-ascii?Q?6FACjEUtWNuTcnGHuBfZLb5dTeVGscjfx979hU1GagGOHHPNxVyWCVXXO6yi?=
+ =?us-ascii?Q?+htOgO5Plhe2ygNUeGe7A6S3UI0VhnXXtmgW+b94E2B/hRXrZP0gCTMXYd7D?=
+ =?us-ascii?Q?12oY3eeKptXTV/cE7jAgfPe+ggZOZLjqdjgldHFivdvBg9E+HPb5hMx+GkQv?=
+ =?us-ascii?Q?T69kMsw6w37mYd2oGjaUt8+ih77rMZolxqqe4QDtLnCsFuALHtDlA28fyJHF?=
+ =?us-ascii?Q?QtMOAziHbZu1YHwdvOV9M41neF0w6a/XkOt1G1meLLwKzae3R6Ufk6yMJX/r?=
+ =?us-ascii?Q?XB8my3RW8e1DyvIEBATdve56NAG96qu1cpq20KrQV+9ZoCcghznjlZH2uU6C?=
+ =?us-ascii?Q?Te6ZARSVN3Mg20jzWtddYjMLjHRbxCBhffZxT/tv/6Al7MnPRRJCPlvClgnT?=
+ =?us-ascii?Q?tUKM0d2dOe8MpDh3w71uAQWUxHboahhRLpkZn9ocd0bKTRJccTKauDzXHK4U?=
+ =?us-ascii?Q?IBsTe0G6UE1BDxNeAWPjdQ86uOfZ0MDIUXUz8vgkdNVBJABzJUFK5f98cSPT?=
+ =?us-ascii?Q?ZdYR/IowlqF0tX4F6gokdVDhYZn/rzSrkLzfvm48TVZ9Cwjk6jn3VUGONgf0?=
+ =?us-ascii?Q?DttAAhB1LnWZCjZQG6sNtBLwFBNpStYJof656ibmNQMObnyadGJZ/gsW/9Zt?=
+ =?us-ascii?Q?D4EF3sEsjBZF/JAkEO3PykSzoEQwmUSKvUD94ZbHjtm0K8D9clwiUZP+alVo?=
+ =?us-ascii?Q?ii/0z1kuM5iJMLNI7BEgeYZkpwChXXI9hG1/1IFzWL4Hw7wO2m5egXo2G/G2?=
+ =?us-ascii?Q?W3OivZw4vo47BJpMZVbzzcyNllbo+O1OtjmppOdzi0eoE2djQK8snZcc0dhW?=
+ =?us-ascii?Q?ho4QQqq7DXfbPd0eF71sueXbcxgG9Qp+GuIoBDS4Eav0K3IrQiDeuLFSaM26?=
+ =?us-ascii?Q?8ZZCjgidlU1605qNg6LZ9PPm+OL3tlUqpaFqWnEnRpRtFeTJzwmCqu1SDebv?=
+ =?us-ascii?Q?lpzB2dGDTstWgpj6blj257zfIJLjp0EAFtN3aetG6qaDWdmxAi+TO5cPM4ot?=
+ =?us-ascii?Q?5cRRbbPGh1yOjz5VZQbXonq3YWLyIN/xFUMNYy5jwfRJGXk3WFu9iTycW1IO?=
+ =?us-ascii?Q?ImGfnFKfWVIV04UEBhETJQpIPaQzpmHoZuD1pH533f+6l7ddIZf9WUM339KY?=
+ =?us-ascii?Q?nZVRBOvsAEKV5ncGB1T4zLEEsB2W0HGMRHhu/xRK?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca9234f7-e753-4005-8ee5-08dd577d1800
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY3PR18MB4673.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc0bbafa-8fb2-48fd-7b83-08dd5779f04e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Feb 2025 21:58:59.0588
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2025 22:21:34.3566
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: PA5XzQth0qvTowBQ39iPUP2zqeeNRt4Es8rHuLnK7K9v0DjMULn4ZumGIvn35sFtcewgmzPo+80welQ4CgJK6g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR18MB4335
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-GUID: 9wz-CnR8IfI-sINxsAuSf9h5cWFoInyd
-X-Proofpoint-ORIG-GUID: 9wz-CnR8IfI-sINxsAuSf9h5cWFoInyd
-X-Authority-Analysis: v=2.4 cv=JOjBs9Kb c=1 sm=1 tr=0 ts=67c0e025 cx=c_pps a=b6GhQBMDPEYsGtK7UrBDFg==:117 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=T2h4t0Lz3GQA:10 a=-AAbraWEqlQA:10
- a=RpNjiQI2AAAA:8 a=VwQbUJbxAAAA:8 a=M5GUcnROAAAA:8 a=JfrnYn6hAAAA:8 a=P-IC7800AAAA:8 a=pGLkceISAAAA:8 a=elLWZlKbAAAA:8 a=_k_7hSW8PJy6QCgwLjwA:9 a=QEXdDO2ut3YA:10 a=OBjm3rFKGHvpk9ecZwUJ:22 a=1CNFftbPRP8L7MoqJWF3:22 a=d3PnA9EDa4IxuAV0gXij:22
- a=YXs7sxRoaa14xkmg_1jM:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-27_08,2025-02-27_01,2024-11-22_01
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: I43xhDQ1ahcCZkdidbJIC77n795+wE4TLogmforIdFmRhOrWExv8Ud84EXcFpg5+xyigZXfk4mbmBK+3Ft/+Iw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10459
 
-
-
-> -----Original Message-----
-> From: Rob Herring (Arm) <robh@kernel.org>
-> Sent: Thursday, February 27, 2025 12:24 PM
-> To: Wilson Ding <dingwei@marvell.com>
-> Cc: linux-arm-kernel@lists.infradead.org; Sanghoon Lee <salee@marvell.com=
->;
-> conor+dt@kernel.org; linux-kernel@vger.kernel.org;
-> gregory.clement@bootlin.com; p.zabel@pengutronix.de; Geethasowjanya
-> Akula <gakula@marvell.com>; devicetree@vger.kernel.org; andrew@lunn.ch;
-> krzk+dt@kernel.org; sebastian.hesselbarth@gmail.com
-> Subject: [EXTERNAL] Re: [PATCH v3 1/3] dt-bindings: reset: Add Armada8K
-> reset controller
->=20
-> On Thu, 27 Feb 2025 11:=E2=80=8A25:=E2=80=8A34 -0800, Wilson Ding wrote: =
-> Add device-tree
-> binding documentation for the Armada8K reset driver and > create the new
-> head file for the reset line index definitions. > > Signed-off-by: Wilson=
- Ding
-> <dingwei@=E2=80=8Amarvell.=E2=80=8Acom>
->=20
->=20
-> On Thu, 27 Feb 2025 11:25:34 -0800, Wilson Ding wrote:
-> > Add device-tree binding documentation for the Armada8K reset driver and
-> > create the new head file for the reset line index definitions.
+On Thu, Feb 27, 2025 at 10:34:20PM +0100, Marek Vasut wrote:
+> On 2/27/25 10:27 PM, Frank Li wrote:
+>
+> [...]
+>
+> > > > > +		gpu: gpu@4d900000 {
+> > > > > +			compatible = "fsl,imx95-mali", "arm,mali-valhall-csf";
+> > > > > +			reg = <0 0x4d900000 0 0x480000>;
+> > > > > +			clocks = <&scmi_clk IMX95_CLK_GPU>;
+> > > > > +			clock-names = "core";
+> > > > > +			interrupts = <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>,
+> > > > > +				     <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
+> > > > > +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>;
+> > > > > +			interrupt-names = "gpu", "job", "mmu";
+> > > > > +			mali-supply = <&gpu_fixed_reg>;
+> > > > > +			operating-points-v2 = <&gpu_opp_table>;
+> > > > > +			power-domains = <&scmi_devpd IMX95_PD_GPU>, <&scmi_perf IMX95_PERF_GPU>;
+> > > > > +			power-domain-names = "mix", "perf";
+> > > > > +			resets = <&gpu_blk_ctrl 0>;
+> > > > > +			#cooling-cells = <2>;
+> > > > > +			dynamic-power-coefficient = <1013>;
+> > > > > +			status = "disabled";
+> > > >
+> > > > GPU is internal module, which have not much dependence with other module
+> > > > such as pinmux. why not default status is "disabled". Supposed gpu driver
+> > > > will turn off clock and power if not used.
+> > > My thinking was that there are MX95 SoC with GPU fused off, hence it is
+> > > better to keep the GPU disabled in DT by default. But I can also keep it
+> > > enabled and the few boards which do not have MX95 SoC with GPU can
+> > > explicitly disable it in board DT.
+> > >
+> > > What do you think ?
 > >
-> > Signed-off-by: Wilson Ding <dingwei@marvell.com>
-> > ---
-> >  .../reset/marvell,armada8k-reset.yaml         | 48 +++++++++++++++++++
-> >  .../reset/marvell,armada8k-reset.h            | 27 +++++++++++
-> >  2 files changed, 75 insertions(+)
-> >  create mode 100644
-> Documentation/devicetree/bindings/reset/marvell,armada8k-reset.yaml
-> >  create mode 100644 include/dt-bindings/reset/marvell,armada8k-reset.h
-> >
->=20
-> My bot found errors running 'make dt_binding_check' on your patch:
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-
-> ci/linux/Documentation/devicetree/bindings/reset/marvell,armada8k-
-> reset.example.dtb: system-controller@440000: compatible: ['syscon', 'simp=
-le-
-> mfd'] is too short
-> 	from schema $id: https://urldefense.proofpoint.com/v2/url?u=3Dhttp-
-> 3A__devicetree.org_schemas_mfd_syscon-2Dcommon.yaml-
-> 23&d=3DDwIDaQ&c=3DnKjWec2b6R0mOyPaz7xtfQ&r=3DsXDQZu4GyqNVDlFUXakS
-> GJl0Dh81ZIPlU26YS4KHGIA&m=3Dxw0M--
-> 2th9TCt05M0q_c8C0jvg1t4qbuXx9_d3WgCc0HOBpg5_f5E6TjXP_xdcrU&s=3D3
-> Gdm4ABV10PnYEpAvJXrV9x-TsfBAHIp5KCn60ohngM&e=3D
->=20
-> doc reference errors (make refcheckdocs):
->=20
-> See https://urldefense.proofpoint.com/v2/url?u=3Dhttps-
-> 3A__patchwork.ozlabs.org_project_devicetree-
-> 2Dbindings_patch_20250227192536.2426490-2D2-2Ddingwei-
-> 40marvell.com&d=3DDwIDaQ&c=3DnKjWec2b6R0mOyPaz7xtfQ&r=3DsXDQZu4GyqN
-> VDlFUXakSGJl0Dh81ZIPlU26YS4KHGIA&m=3Dxw0M--
-> 2th9TCt05M0q_c8C0jvg1t4qbuXx9_d3WgCc0HOBpg5_f5E6TjXP_xdcrU&s=3D
-> WJznALBWhejS9hq88jCvZqevaNdN_5-meKfowRfl-bA&e=3D
->=20
-> The base for the series is generally the latest rc1. A different dependen=
-cy
-> should be noted in *this* patch.
->=20
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->=20
-> pip3 install dtschema --upgrade
->=20
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your
-> schema.
+> > GPU Fuse off should use access-control, see thread
+> > https://lore.kernel.org/imx/20250207120213.GD14860@localhost.localdomain/
+> Did that thread ever go anywhere ? It seems there is no real conclusion, is
+> there ? +Cc Alex .
 
-I cannot reproduce the above error with the latest 'yamllint' and 'dt-schem=
-a'.
+The direction is use access-control to indicate fuse disable. Only
+implement detail is under discussion.
 
-$ pip3 install dtschema --upgrade
-Requirement already satisfied: dtschema in /home/wilson/workspace/repos/ext=
-ernal/venv/lib/python3.12/site-packages (2025.2)
-Requirement already satisfied: ruamel.yaml>0.15.69 in /home/wilson/workspac=
-e/repos/external/venv/lib/python3.12/site-packages (from dtschema) (0.18.10)
-Requirement already satisfied: jsonschema<4.18,>=3D4.1.2 in /home/wilson/wo=
-rkspace/repos/external/venv/lib/python3.12/site-packages (from dtschema) (4=
-.17.3)
-Requirement already satisfied: rfc3987 in /home/wilson/workspace/repos/exte=
-rnal/venv/lib/python3.12/site-packages (from dtschema) (1.3.8)
-Requirement already satisfied: pylibfdt in /home/wilson/workspace/repos/ext=
-ernal/venv/lib/python3.12/site-packages (from dtschema) (1.7.2)
-Requirement already satisfied: attrs>=3D17.4.0 in /home/wilson/workspace/re=
-pos/external/venv/lib/python3.12/site-packages (from jsonschema<4.18,>=3D4.=
-1.2->dtschema) (25.1.0)
-Requirement already satisfied: pyrsistent!=3D0.17.0,!=3D0.17.1,!=3D0.17.2,>=
-=3D0.14.0 in /home/wilson/workspace/repos/external/venv/lib/python3.12/site=
--packages (from jsonschema<4.18,>=3D4.1.2->dtschema) (0.20.0)
-Requirement already satisfied: ruamel.yaml.clib>=3D0.2.7 in /home/wilson/wo=
-rkspace/repos/external/venv/lib/python3.12/site-packages (from ruamel.yaml>=
-0.15.69->dtschema) (0.2.12)
-$ pip3 install yamllint
-Requirement already satisfied: yamllint in /home/wilson/workspace/repos/ext=
-ernal/venv/lib/python3.12/site-packages (1.35.1)
-Requirement already satisfied: pathspec>=3D0.5.3 in /home/wilson/workspace/=
-repos/external/venv/lib/python3.12/site-packages (from yamllint) (0.12.1)
-Requirement already satisfied: pyyaml in /home/wilson/workspace/repos/exter=
-nal/venv/lib/python3.12/site-packages (from yamllint) (6.0.2)
-$ make dt_binding_check
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  CHKDT   ./Documentation/devicetree/bindings
-  LINT    ./Documentation/devicetree/bindings
-  DTEX    Documentation/devicetree/bindings/reset/marvell,armada8k-reset.ex=
-ample.dts
-  DTC [C] Documentation/devicetree/bindings/reset/marvell,armada8k-reset.ex=
-ample.dtb
-
-- Wilson
+Frank
 
