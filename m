@@ -1,156 +1,221 @@
-Return-Path: <devicetree+bounces-152000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDE59A47B73
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:10:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E13E3A47B72
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:10:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E33B3166EC0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:09:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EAD11892416
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D075422D787;
-	Thu, 27 Feb 2025 11:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B03422E418;
+	Thu, 27 Feb 2025 11:07:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="eh7FZq46"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ozIJ/Y7+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m32123.qiye.163.com (mail-m32123.qiye.163.com [220.197.32.123])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2439422D4D3;
-	Thu, 27 Feb 2025 11:05:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A85322DFA7;
+	Thu, 27 Feb 2025 11:07:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740654344; cv=none; b=AflXc32PvlzNO+P6kVCMLWSORSAYac5Sri9HAlDLqBs7IEKIBznh9m7+11Q2nq8/LWU45D9Cg/3WcMdctMYo35ZczdIY9kQ0vrsaKdZoL4c395tgoBHbR5z4FCqF1efJhqUqmLQV0s5dN/uIl/2E1o/HaSTKkxWgWbT73wdQS88=
+	t=1740654464; cv=none; b=mWzhD0l4qE/kK1Zyb4quFOi9QmUsGAaXGdDsogNl0NCPeMtdT9kQf7qMwLFukFzvV2rjiHnDosDqYc3jcEc8ooC8Cz5+nc03VgUBUUQC4lT2MJN5dPbRavNif5WpnPWgDBZ3AbnfEwxH96p4eN+cZe8NkoSTSXBEaXRzz7pto+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740654344; c=relaxed/simple;
-	bh=BuLMF/+Jcandpr/xf9hkqIm5zz8DcmhFb038I3Uo7So=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Yr/F+cqH8tonvYyQym7DYkeYQtIagsV+0Xx9QPJciSc2V8w83TXdFK1koaKluqzrzVG7Zgd/VbFiE0TGswIxlw5t5efk2N1Auf0Din7tcoBq31k4HsGL1ooarr+pqagVP+5z+lrz8TiuiGthEwQG9v2i+UikWLA5LVZyAGJlE7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=eh7FZq46; arc=none smtp.client-ip=220.197.32.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id c6596abe;
-	Thu, 27 Feb 2025 19:00:24 +0800 (GMT+08:00)
-From: Kever Yang <kever.yang@rock-chips.com>
-To: heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org,
-	Finley Xiao <finley.xiao@rock-chips.com>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Subject: [PATCH v3 1/2] dt-bindings: power: rockchip: Add support for RK3562 SoC
-Date: Thu, 27 Feb 2025 18:59:56 +0800
-Message-Id: <20250227105957.2341107-2-kever.yang@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250227105957.2341107-1-kever.yang@rock-chips.com>
-References: <20250227105957.2341107-1-kever.yang@rock-chips.com>
+	s=arc-20240116; t=1740654464; c=relaxed/simple;
+	bh=zuNxJDcwOt+AZSFS7EuNKwbkIx0p8GUHFRIHGKFQ1Z8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=rDzzbACEOLB60iTbxYjq6uI39NrNIGiRXde+L60CKawBnR0jhO+RYHiG3U5qwPxq54qEZBvbB8WM+L/zPEVc+BqqraGmm7aDBb1xSG+SJ4OYAipaMJWuLsPuB0k+8Wyyrq9JQ2n8liaiQlJbhUMTCaGu0X2vE0WRtm24Rt3ybA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=ozIJ/Y7+; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51R9RQsm007985;
+	Thu, 27 Feb 2025 12:07:26 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	PmYOF4wGhNjibuwqHEkxWyFSrgjUr3eu12e+XRp9DPU=; b=ozIJ/Y7+zHtMTIV7
+	hyQ1rotHYSzK19kFLs2TIDdp+GLHmUVuN0VaMXuLBVqQ23FjYCiMGNIsj+w36lKb
+	0pXpYWvkzhzh8JXR9OpyrJb28J+fxxf/9tILzBvZWoW2hRxEocfm98bAQsHOVcmB
+	VPOmGxWcjf4GF2WZpvKhKesKOO6pDWzxWa9eW7dr3BdKoFGFZzsdb7vfQKXVF98F
+	JriWOVgjuaO7ESanfU9VBE0dRaTzA8AeIqgAWnqClwmtxm49tridhXODbo0SWinA
+	MnpubI7+vcCcxL/gmg5nFp57ewF8IqyQ7keecJHGWEv6+58meEeK2u6ITzz7MJQV
+	7CozKg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 451psrj758-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 27 Feb 2025 12:07:26 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 4815A40047;
+	Thu, 27 Feb 2025 12:06:16 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1CBF13E756B;
+	Thu, 27 Feb 2025 12:05:25 +0100 (CET)
+Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 27 Feb
+ 2025 12:05:24 +0100
+Message-ID: <cf86046b-00e2-41cc-b93c-7ad6cb4d062e@foss.st.com>
+Date: Thu, 27 Feb 2025 12:05:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/9] dt-bindings: pinctrl: stm32: Introduce HDP
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250225-hdp-upstream-v1-0-9d049c65330a@foss.st.com>
+ <20250225-hdp-upstream-v1-2-9d049c65330a@foss.st.com>
+ <6fc80544-6fc3-4450-a0cc-bfc740fe97bb@kernel.org>
+ <91f19306-4b31-41fe-8ad2-680b1a339204@foss.st.com>
+ <00526b1d-b753-4ee5-8f83-67d27d66a43c@kernel.org>
+ <264d7fb8-06c2-4ada-82bc-4d3a7cc5e184@foss.st.com>
+ <46fbdccb-610a-4b73-8697-d7bcf4942a41@kernel.org>
+Content-Language: en-US
+From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
+In-Reply-To: <46fbdccb-610a-4b73-8697-d7bcf4942a41@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkxCTVZOTxoZTU9CHx9DT0lWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a954710995b03afkunmc6596abe
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6KzY6ECo4QzIIDQ0sEhk1OTI0
-	LRUaCzlVSlVKTE9LTU5PS0lNSE9MVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJT09MNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=eh7FZq46Jgp3a7HHUM5GsYUxXIrnqFiadwIPFDRTI0I2Na+jmtSTQAGUqq7a0pAQDwuV52ld7zETileUCJ/O5gPDfah+/oQmtND5ePB2sVZjBia6vuW5yJjk+Vj8Mrmyn8K20HHZmJJmmqglxp5kf0YWAn7u9cEMlbMKBK0b9H0=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=F7HQgVZMPu9CDnT8TQDoSbjTr8/jpTklnmLuWptRTyk=;
-	h=date:mime-version:subject:message-id:from;
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-27_05,2025-02-27_01,2024-11-22_01
 
-From: Finley Xiao <finley.xiao@rock-chips.com>
+On 2/26/25 16:05, Krzysztof Kozlowski wrote:
+> On 26/02/2025 11:52, Clement LE GOFFIC wrote:
+>> On 2/26/25 08:21, Krzysztof Kozlowski wrote:
+>>> On 25/02/2025 16:51, Clement LE GOFFIC wrote:
+>>>> On 2/25/25 14:04, Krzysztof Kozlowski wrote:
+>>>>> On 25/02/2025 09:48, Clément Le Goffic wrote:
+>>>>>> +
+>>>>>> +maintainers:
+>>>>>> +  - Clément LE GOFFIC <clement.legoffic@foss.st.com>
+>>>>>> +
+>>>>>> +description: |
+>>>>>
+>>>>>
+>>>>> Do not need '|' unless you need to preserve formatting.
+>>>>
+>>>> Ok
+>>>>
+>>>>>> +  STMicroelectronics's STM32 MPUs integrate a Hardware Debug Port (HDP).
+>>>>>> +  It allows to output internal signals on SoC's GPIO.
+>>>>>> +
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    const: st,stm32mp-hdp
+>>>>>
+>>>>> There is a mess in STM SoCs. Sometimes you call SoC stm32, sometimes
+>>>>> stm32mp and sometimes stm32mpXX.
+>>>>>
+>>>>> Define for all your STM contributions what is the actual SoC. This
+>>>>> feedback was already given to ST.
+>>>>>
+>>>>>> +
+>>>>>> +  reg:
+>>>>>> +    maxItems: 1
+>>>>>> +
+>>>>>> +  clocks:
+>>>>>> +    maxItems: 1
+>>>>>> +
+>>>>>> +patternProperties:
+>>>>>> +  '-pins$':
+>>>>>> +    type: object
+>>>>>> +    $ref: pinmux-node.yaml#
+>>>>>> +
+>>>>>> +    properties:
+>>>>>> +      function:
+>>>>>> +        enum: [ "0", "1", "2", "3", "4", "5", "6", "7",
+>>>>>> +                "8", "9", "10", "11", "12", "13", "14",
+>>>>>> +                "15" ]
+>>>>>
+>>>>> Function which has a number is not really useful. What does it even express?
+>>>>
+>>>> As said in my previous answer, function names are very different from
+>>>> one platform to another. Numbers were used as string to be generic.
+>>>> I'll consider it in a V2.
+>>>
+>>> What does it mean "one platform to another"? This is one platform! Is
+>>> this some sort of continuation of SoC compatible mess?
+>>
+>> I may used incorrectly the word platform.
+>> This driver is the same for the three SoC families STM32MP13, STM32MP15
+> 
+> That's driver and it is fine, but we talk about hardware here. The
+> binding is for given specific hardware.
+> 
+>> and STM32MP25 because the hardware is mostly the same.
+>>
+>> Why mostly ?
+>>
+>> The peripheral is behaving as a mux, there are 8 HDP ports, for each
+>> port there is up to 16 possible hardware signals. Numbered from 0 to 15.
+>> Each of this number represent a signal on the port.
+>>
+>> But the hardware signal behind the number is not the same from one SoC
+>> family to another.
+>> As example, in STM32MP15 family the HDP is able to output GPU hardware
+>> signals because the family has a GPU but in the STM32MP13 family this
+>> signal is not present.
+> 
+> It looks like you have clear mapping between function and port number
+> (your header also suggests that), so the function property should follow
+> that user-visible function.
+> 
+> Just like we do for many other architectures - it is not that very, very
+> different, I think. all of platform hardwares do not operate on strings
+> but some bits in registers (so numbers) but all (ideally) bindings
+> operate on strings. You created here exception on basis this is somehow
+> special, but the point is: it is not special.
+> 
+>>
+>> The purpose of my helpers was to give a readable name to facilitate the
+>> configuration in boards devicetree's. If needed I can get rid of that
+>> and use only the number as string.
+> 
+> If you use "names" you do not need even that helper header.
+> 
+>>
+>>> What are the exact functions written in datasheet?
+>>
+>> The exact functions name written in the datasheet are the ones of my
+>> helper file without the HDP prefix.
+> 
+> so full strings "pwr_pwrwake_sys" and these should be used.
 
-According to a description from TRM, add all the power domains.
+Ok so in the V2, I'll keep the 'function' property of the pinmux and use 
+signal names such as 'pwr_pwrwake_sys' to select signals in the DT.
+The signal names are different from one SoC to another (stm32mp131, 
+stm32mp151 and stm32mp251) so I'll need compatible data and the 
+compatibles will be:
 
-Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
----
+MP15: compatible = "st,stm32mp151-hdp";
+MP13: compatible = "st,stm32mp131-hdp";
+MP25: compatible = "st,stm32mp251-hdp";
 
-Changes in v3:
-- squash the header file and the binding document
-- Update license
 
-Changes in v2:
-- rename to rockchip,rk3562-power.h
-- update the subject
-- use dual license
-
- .../power/rockchip,power-controller.yaml      |  1 +
- .../dt-bindings/power/rockchip,rk3562-power.h | 35 +++++++++++++++++++
- 2 files changed, 36 insertions(+)
- create mode 100644 include/dt-bindings/power/rockchip,rk3562-power.h
-
-diff --git a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-index 650dc0aae6f5..79b948518f0c 100644
---- a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-+++ b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-@@ -40,6 +40,7 @@ properties:
-       - rockchip,rk3366-power-controller
-       - rockchip,rk3368-power-controller
-       - rockchip,rk3399-power-controller
-+      - rockchip,rk3562-power-controller
-       - rockchip,rk3568-power-controller
-       - rockchip,rk3576-power-controller
-       - rockchip,rk3588-power-controller
-diff --git a/include/dt-bindings/power/rockchip,rk3562-power.h b/include/dt-bindings/power/rockchip,rk3562-power.h
-new file mode 100644
-index 000000000000..5182c2427a55
---- /dev/null
-+++ b/include/dt-bindings/power/rockchip,rk3562-power.h
-@@ -0,0 +1,35 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2022-2024 Rockchip Electronics Co., Ltd.
-+ */
-+#ifndef __DT_BINDINGS_POWER_RK3562_POWER_H__
-+#define __DT_BINDINGS_POWER_RK3562_POWER_H__
-+
-+/* VD_CORE */
-+#define RK3562_PD_CPU_0		0
-+#define RK3562_PD_CPU_1		1
-+#define RK3562_PD_CPU_2		2
-+#define RK3562_PD_CPU_3		3
-+#define RK3562_PD_CORE_ALIVE	4
-+
-+/* VD_PMU */
-+#define RK3562_PD_PMU		5
-+#define RK3562_PD_PMU_ALIVE	6
-+
-+/* VD_NPU */
-+#define RK3562_PD_NPU		7
-+
-+/* VD_GPU */
-+#define RK3562_PD_GPU		8
-+
-+/* VD_LOGIC */
-+#define RK3562_PD_DDR		9
-+#define RK3562_PD_VEPU		10
-+#define RK3562_PD_VDPU		11
-+#define RK3562_PD_VI		12
-+#define RK3562_PD_VO		13
-+#define RK3562_PD_RGA		14
-+#define RK3562_PD_PHP		15
-+#define RK3562_PD_LOGIC_ALIVE	16
-+
-+#endif
--- 
-2.25.1
+> Best regards,
+> Krzysztof
 
 
