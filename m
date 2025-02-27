@@ -1,61 +1,52 @@
-Return-Path: <devicetree+bounces-152017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56F84A47C06
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:24:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A801EA47BB3
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:17:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 469F8166676
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:23:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 418E418934E9
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:16:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD12F22CBEA;
-	Thu, 27 Feb 2025 11:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E2AE22B8D2;
+	Thu, 27 Feb 2025 11:13:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="j9uRAdCL"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="hspV/toZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3289.qiye.163.com (mail-m3289.qiye.163.com [220.197.32.89])
+Received: from mail-m19731105.qiye.163.com (mail-m19731105.qiye.163.com [220.197.31.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D3F8137E;
-	Thu, 27 Feb 2025 11:22:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.89
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27800227EAE;
+	Thu, 27 Feb 2025 11:13:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740655342; cv=none; b=DsM6lSlwV5+/MMDQOVqS5Z0n9OmIxYe4bOhw7wmahh/uwetHFZmNQRRHapUuw/SZLFY/Si7UiEcd73h80mD44wdXi7S8Q4Nrgi/GFSmkWKHC91YgqKCBJ3skhfUBzgzO1wo7xk93MdwbEJNoLGv8SHYlr4iUiCVXqdWvGNcYA+Q=
+	t=1740654799; cv=none; b=uhb/ebIMZDJ8FqAqvoHC3nELJnag4VxP3AnvvezuF+zaKetvXBCVJx+f4XDbEaQdJdnDSHrs3RKRvbN834ZK2oXJyMPkbalLGeXykkajoDBFNgzqQDHd1dkdvhZ/p+UGbvg494c92w5x2PVBwarG1lUvHXXAFG8wXb3cNu24Dlo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740655342; c=relaxed/simple;
-	bh=Iz86wunlX8HUmL1XH3Sb+R8oMx3eu/od7nb4OIXVqX8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=tG+yEgwHUktaHMkJrJPfAU54SiYmxlKdu4Bcm6ZUZBFxWYfISoJwyithNu3ryWPhxXOP+NP7UyyvzIWJrdq1uiF3OHWm2ag+f0H8qGjHImlOnXdqYG8WNHursILSOie5DjrUVITCvcYxfCeRrODoejtSMiNkRJ+nCMzhwUakDqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=j9uRAdCL; arc=none smtp.client-ip=220.197.32.89
+	s=arc-20240116; t=1740654799; c=relaxed/simple;
+	bh=RlONGQxFkfaVCaCHqR5hdAZRP3+jWCLKHge/Fd44p2g=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qyP+gvXzlbXRZAs7a39EAr45Y8IZfWPziZ3EsMNjNhz9aqICb0LfnHQb7m4M5lJ+UGnrtvoTpzAkYE3Lgbn1LDcCx5Hvy11iSkLiG+9y8ET7KLoKgCDIg49orXpiIOsNIuxdYFyW/4mMtWpUgtIgAQcTowk24Jzr0jb1/06OFFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=hspV/toZ; arc=none smtp.client-ip=220.197.31.105
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
 Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id c65b3753;
-	Thu, 27 Feb 2025 19:06:54 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id c65b37d9;
+	Thu, 27 Feb 2025 19:08:05 +0800 (GMT+08:00)
 From: Kever Yang <kever.yang@rock-chips.com>
 To: heiko@sntech.de
 Cc: linux-rockchip@lists.infradead.org,
 	Kever Yang <kever.yang@rock-chips.com>,
-	Jose Abreu <joabreu@synopsys.com>,
 	devicetree@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
 	Rob Herring <robh@kernel.org>,
-	netdev@vger.kernel.org,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
 	linux-kernel@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	David Wu <david.wu@rock-chips.com>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 1/3] dt-bindings: net: Add support for rk3562 dwmac
-Date: Thu, 27 Feb 2025 19:06:50 +0800
-Message-Id: <20250227110652.2342729-1-kever.yang@rock-chips.com>
+Subject: [PATCH v2 1/3] dt-bindings: nvmem: rockchip,otp: Add support for rk3562 and rk3568
+Date: Thu, 27 Feb 2025 19:08:02 +0800
+Message-Id: <20250227110804.2342976-1-kever.yang@rock-chips.com>
 X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,107 +56,130 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUMdTFYaGB0fTkgYQkwYTB5WFRQJFh
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQk0aH1ZOHUwZGkhNGUNOTR9WFRQJFh
 	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
 	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a9547168b4f03afkunmc65b3753
+X-HM-Tid: 0a9547179f2b03afkunmc65b37d9
 X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NBA6CQw6LTINIw0LKBISDCwI
-	GkMwFDNVSlVKTE9LTU5PT0pNSUxMVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJTUpNNwY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PBQ6TAw5MjIWNw1JEhQxLilN
+	CQIaCjFVSlVKTE9LTU5PT0NNSENNVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJTEtPNwY+
 DKIM-Signature:a=rsa-sha256;
-	b=j9uRAdCLAZBHyRBM1IUi9c3b2iIQOdTnuvJYVQRSibTDS2vPxDZgM9Kh5jNR7JJhEOVr6gv0fcG8RyEpo1XI1DybHcqnXSDVGdsAQod763cpywfJrLJvxipXeODZZVgniCX3amL7w9YMfU01llaOFXSsf4SwYRnFxIFkO7z45Ow=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=xV+WNQl8ROCA2e9xUBpBg/FLDkWJ/IRVuqOd98DcSZE=;
+	b=hspV/toZNKfN8Mbx1pRYGbdIchgyFEK23TYRO89SrNo6eUGZZ9ZjFplwfLsJsKzcdU9px4owG7jeGH9ZGJgDarEPrIEjE4BSA0XGr75HULNHQ+jfsjBMF3Pe5bZARBaiENe2VtHIcYtPulKO5eqsgqLZjlLN+PAzDcbKE1xdA2A=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=qPdG0uqXJNCLpi+c8n+pbqoC1a0sWOgDfdz7/HqC6dE=;
 	h=date:mime-version:subject:message-id:from;
 
-Add a rockchip,rk3562-gmac compatible for supporting the 2 gmac
-devices on the rk3562.
-rk3562 only has 4 clocks availabl for gmac module.
+Add compatible entry for the otp controller in rk3562 and rk3568, add schema
+for different clock names for new entry.
 
 Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
 ---
 
 Changes in v2:
-- Fix schema entry and add clocks minItem change
+- Update the commit message and add maxItems in schema.
 
- .../bindings/net/rockchip-dwmac.yaml          | 23 +++++++++++++++----
- .../devicetree/bindings/net/snps,dwmac.yaml   |  1 +
- 2 files changed, 20 insertions(+), 4 deletions(-)
+ .../bindings/nvmem/rockchip,otp.yaml          | 53 ++++++++++++++++---
+ 1 file changed, 46 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-index f8a576611d6c..81ddad924e35 100644
---- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-@@ -24,6 +24,7 @@ select:
-           - rockchip,rk3366-gmac
-           - rockchip,rk3368-gmac
-           - rockchip,rk3399-gmac
-+          - rockchip,rk3562-gmac
-           - rockchip,rk3568-gmac
-           - rockchip,rk3576-gmac
-           - rockchip,rk3588-gmac
-@@ -32,9 +33,6 @@ select:
-   required:
-     - compatible
+diff --git a/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml b/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
+index a44d44b32809..7572f4a1d73b 100644
+--- a/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
++++ b/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
+@@ -14,6 +14,8 @@ properties:
+     enum:
+       - rockchip,px30-otp
+       - rockchip,rk3308-otp
++      - rockchip,rk3562-otp
++      - rockchip,rk3568-otp
+       - rockchip,rk3588-otp
  
--allOf:
--  - $ref: snps,dwmac.yaml#
--
- properties:
-   compatible:
-     oneOf:
-@@ -52,6 +50,7 @@ properties:
-               - rockchip,rv1108-gmac
-       - items:
-           - enum:
-+              - rockchip,rk3562-gmac
-               - rockchip,rk3568-gmac
-               - rockchip,rk3576-gmac
-               - rockchip,rk3588-gmac
-@@ -59,7 +58,7 @@ properties:
-           - const: snps,dwmac-4.20a
- 
-   clocks:
--    minItems: 5
-+    minItems: 4
-     maxItems: 8
+   reg:
+@@ -25,19 +27,15 @@ properties:
  
    clock-names:
-@@ -117,6 +116,22 @@ required:
+     minItems: 3
+-    items:
+-      - const: otp
+-      - const: apb_pclk
+-      - const: phy
+-      - const: arb
++    maxItems: 4
  
- unevaluatedProperties: false
+   resets:
+     minItems: 1
+-    maxItems: 3
++    maxItems: 4
  
-+allOf:
-+  - $ref: snps,dwmac.yaml#
+   reset-names:
+     minItems: 1
+-    maxItems: 3
++    maxItems: 4
+ 
+ required:
+   - compatible
+@@ -62,12 +60,45 @@ allOf:
+       properties:
+         clocks:
+           maxItems: 3
++        clock-names:
++          items:
++            - const: otp
++            - const: apb_pclk
++            - const: phy
+         resets:
+           maxItems: 1
+         reset-names:
+           items:
+             - const: phy
+ 
 +  - if:
 +      properties:
 +        compatible:
 +          contains:
-+            const: rockchip,rk3562-gmac
++            enum:
++              - rockchip,rk3562-otp
++              - rockchip,rk3568-otp
 +    then:
 +      properties:
 +        clocks:
 +          minItems: 4
-+    else:
-+      properties:
-+        clocks:
-+          minItems: 5
++          maxItems: 4
++        clock-names:
++          items:
++            - const: usr
++            - const: sbpi
++            - const: apb_pclk
++            - const: phy
++        resets:
++          minItems: 4
++          maxItems: 4
++        reset-names:
++          items:
++            - const: usr
++            - const: sbpi
++            - const: apb
++            - const: phy
 +
- examples:
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 91e75eb3f329..97d42ab8d374 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -82,6 +82,7 @@ properties:
-         - rockchip,rk3328-gmac
-         - rockchip,rk3366-gmac
-         - rockchip,rk3368-gmac
-+        - rockchip,rk3562-gmac
-         - rockchip,rk3576-gmac
-         - rockchip,rk3588-gmac
-         - rockchip,rk3399-gmac
+   - if:
+       properties:
+         compatible:
+@@ -78,8 +109,16 @@ allOf:
+       properties:
+         clocks:
+           minItems: 4
++          maxItems: 4
++        clock-names:
++          items:
++            - const: otp
++            - const: apb_pclk
++            - const: phy
++            - const: arb
+         resets:
+           minItems: 3
++          maxItems: 3
+         reset-names:
+           items:
+             - const: otp
 -- 
 2.25.1
 
