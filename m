@@ -1,166 +1,122 @@
-Return-Path: <devicetree+bounces-152323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D335A48A98
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 22:34:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7A58A48AA0
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 22:35:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96C8616D343
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 21:33:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08E18168138
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 21:34:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC0C7272903;
-	Thu, 27 Feb 2025 21:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC5B4270ED3;
+	Thu, 27 Feb 2025 21:34:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="rv40QSHI"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="IIX2xnYo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 446F1271284
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 21:33:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B493225A24
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 21:34:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740691984; cv=none; b=mcNNXMp7uYtWxo1bh+6WOUirPnLwCxDF6E2xKmAZkJPqXteZXwifNMx8IypbySNQBN3PPRldrQ0fKxSyJtPEPNXZhQvBEoXAH57ryNpNpSG+T1DBJ8/R8EuFrx7RrV+rS1Wi2ET6+FI3AK+CzJgqFokEgzHigbEYaovXXZbBKGA=
+	t=1740692072; cv=none; b=h/oQruD7l91zUCQ9kzM6PwKkbM1utQjDTM9bcYKI16o1DUUTe62tzcCGLOfww34TLPRkqag3RHKFEu7r+mA41uCB+1AJL+vDEV/+Iw+vSD/aesr3cIoSqIJTeOEv7kU+Hpd6SGO9pWBcv0pLPsaoVv44fIS9eoHeAUP+qb1MXEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740691984; c=relaxed/simple;
-	bh=O78laQRCugQQJVm33qwQw6Vm1O71zPoAwdwqZY3zw2Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ifT32LiUl2IR9HBNv1p5hTcTu1CZ1RAQfcrYvoeuQvxmH/2qTMZu7l4+/Yxae8ztemTYDDMOuDRXdVpc+lofKvq4BwMlA30f8nNhOxBwu1IGw8sR2ZmMKxsQiKq1k0vYuYA5/lCECu43ldlszDdZtglsYawxFxon0Mv6Royr79g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=rv40QSHI; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 17F3D2C066F;
-	Fri, 28 Feb 2025 10:32:55 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1740691975;
-	bh=cU5KnnGteSBBNh2MJua3cK4JTvnCQNhda1NWxrZBi1I=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=rv40QSHIm6CXLc0HWvjwWiGhQKKL4uEGiaH+MSmEsgsLTRCl/Mye1fxfojYebNTXp
-	 PS1if9IU4jH8A1qkgMc1ppDU8Udy/yOsiouWz88r6L4J0y1rqlAG6cp8Zr4sMhvnxV
-	 MkrLe4IPVSKWXWxiX0bsORmEu/H8//u6YCTkcTxFtzmql46DlAO23AALRywYmW1Q9M
-	 Ee8OFPyCi8cykxL8/a565igqqimvrsck/4wlnYtBHIEvCEEXQh1+EQgBbUakSklRS4
-	 l1ZhiguU0EGrrcXLOJfu87QEkx4NqpwWQ0FMDlsDQWtM/KSuYanZ6t9d64waPMg7cn
-	 5/Tg45I3IyGIw==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B67c0da060000>; Fri, 28 Feb 2025 10:32:54 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id DE7B113ED4A;
-	Fri, 28 Feb 2025 10:32:54 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id DC257280AFD; Fri, 28 Feb 2025 10:32:54 +1300 (NZDT)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	tsbogend@alpha.franken.de,
-	andrew@lunn.ch,
-	hkallweit1@gmail.com,
-	linux@armlinux.org.uk,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	sander@svanheule.net,
-	markus.stockhausen@gmx.de
-Cc: devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH net-next v8 2/2] mips: dts: realtek: Add MDIO controller
-Date: Fri, 28 Feb 2025 10:32:48 +1300
-Message-ID: <20250227213248.2010986-3-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250227213248.2010986-1-chris.packham@alliedtelesis.co.nz>
-References: <20250227213248.2010986-1-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1740692072; c=relaxed/simple;
+	bh=P3ACyaQHUzirRNHullK8FdIGPikRRL71HpgOmo4I/oo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oBUXSyI4I+IkPaafU0PlCbWyZegRVAYA19dt7rQ/3jxl9JCJVokVH2ojmI9Cus8azlOSxdo13yG8fulkgrotx8yTAV1hQY+tsMzmQNMVEOlG2rW/g/QpC9XWcZd2OEqxC8NNFoJmjqZf+W5bAFt662evm1YWBfrVSXYy499O8K0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=IIX2xnYo; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1153510382D2E;
+	Thu, 27 Feb 2025 22:34:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1740692067;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4Ei55hHQ021/CG2gC2SB779fvno3iOq9Gp5jc0y30Cw=;
+	b=IIX2xnYocnR0usuE0QUIEzYItei0KwpmpeAEr6qiBKQ3jFlE33i2A4FK+m+JvfMD8Gh2xX
+	7Pp+Udg0DydQYPPkhaKWu2yDeGZU4ccySMLCK+bCNw2YZv+HqCV0kROVqxvst5fzPUCpZ5
+	TQNR4ohdJr9bpK+6FTsxA5HERBDIHeXl92kh8qV3fwHq1C8Z3+E+jleNfm90CeceWxH5+e
+	QbHpz0MDqhsl4Ou2Mixv87hygr/yPYmbxTWZxhVcD/AIZ2HvDuGm/qGxFeXjfhsfxBmfs0
+	PzFDkrfr7faeRuAxs4BVySc/tp9WUUdMuSHOpNtkzpG4Ty5irIXcqBmhQXRy6w==
+Message-ID: <db903f36-e897-42ed-be46-f0b035303233@denx.de>
+Date: Thu, 27 Feb 2025 22:34:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=ccpxrWDM c=1 sm=1 tr=0 ts=67c0da06 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=T2h4t0Lz3GQA:10 a=Vd_wJYyKU8c0xNhbhIwA:9 a=3ZKOabzyN94A:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 9/9] arm64: dts: imx95: Describe Mali G310 GPU
+To: Frank Li <Frank.li@nxp.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev
+References: <20250227170012.124768-1-marex@denx.de>
+ <20250227170012.124768-10-marex@denx.de>
+ <Z8CkSUry5puMu6Mx@lizhi-Precision-Tower-5810>
+ <d41c9cf5-9ec4-4b9a-b281-653873fb8df0@denx.de>
+ <Z8DY14NJYXjwKz7Z@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <Z8DY14NJYXjwKz7Z@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Add a device tree node for the MDIO controller on the RTL9300 chips.
+On 2/27/25 10:27 PM, Frank Li wrote:
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
+[...]
 
-Notes:
-    Changes in v8:
-    - None
-    Changes in v7:
-    - None
-    Changes in v6:
-    - None
-    Changes in v5:
-    - Add reg property to mdio-controller
-    Changes in v4:
-    - Have a single mdio-controller with the individual buses as child
-      nodes
-    Changes in v3:
-    - None
-    Changes in v2:
-    - None
-
- arch/mips/boot/dts/realtek/rtl930x.dtsi | 33 +++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
-
-diff --git a/arch/mips/boot/dts/realtek/rtl930x.dtsi b/arch/mips/boot/dts=
-/realtek/rtl930x.dtsi
-index f2e57ea3a60c..101bab72a95f 100644
---- a/arch/mips/boot/dts/realtek/rtl930x.dtsi
-+++ b/arch/mips/boot/dts/realtek/rtl930x.dtsi
-@@ -69,6 +69,39 @@ i2c1: i2c@388 {
- 			#size-cells =3D <0>;
- 			status =3D "disabled";
- 		};
-+
-+		mdio_controller: mdio-controller@ca00 {
-+			compatible =3D "realtek,rtl9301-mdio";
-+			reg =3D <0xca00 0x200>;
-+			#address-cells =3D <1>;
-+			#size-cells =3D <0>;
-+			status =3D "disabled";
-+
-+			mdio0: mdio-bus@0 {
-+				reg =3D <0>;
-+				#address-cells =3D <1>;
-+				#size-cells =3D <0>;
-+				status =3D "disabled";
-+			};
-+			mdio1: mdio-bus@1 {
-+				reg =3D <1>;
-+				#address-cells =3D <1>;
-+				#size-cells =3D <0>;
-+				status =3D "disabled";
-+			};
-+			mdio2: mdio-bus@2 {
-+				reg =3D <2>;
-+				#address-cells =3D <1>;
-+				#size-cells =3D <0>;
-+				status =3D "disabled";
-+			};
-+			mdio3: mdio-bus@3 {
-+				reg =3D <3>;
-+				#address-cells =3D <1>;
-+				#size-cells =3D <0>;
-+				status =3D "disabled";
-+			};
-+		};
- 	};
-=20
- 	soc: soc@18000000 {
---=20
-2.48.1
-
+>>>> +		gpu: gpu@4d900000 {
+>>>> +			compatible = "fsl,imx95-mali", "arm,mali-valhall-csf";
+>>>> +			reg = <0 0x4d900000 0 0x480000>;
+>>>> +			clocks = <&scmi_clk IMX95_CLK_GPU>;
+>>>> +			clock-names = "core";
+>>>> +			interrupts = <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>,
+>>>> +				     <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
+>>>> +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +			interrupt-names = "gpu", "job", "mmu";
+>>>> +			mali-supply = <&gpu_fixed_reg>;
+>>>> +			operating-points-v2 = <&gpu_opp_table>;
+>>>> +			power-domains = <&scmi_devpd IMX95_PD_GPU>, <&scmi_perf IMX95_PERF_GPU>;
+>>>> +			power-domain-names = "mix", "perf";
+>>>> +			resets = <&gpu_blk_ctrl 0>;
+>>>> +			#cooling-cells = <2>;
+>>>> +			dynamic-power-coefficient = <1013>;
+>>>> +			status = "disabled";
+>>>
+>>> GPU is internal module, which have not much dependence with other module
+>>> such as pinmux. why not default status is "disabled". Supposed gpu driver
+>>> will turn off clock and power if not used.
+>> My thinking was that there are MX95 SoC with GPU fused off, hence it is
+>> better to keep the GPU disabled in DT by default. But I can also keep it
+>> enabled and the few boards which do not have MX95 SoC with GPU can
+>> explicitly disable it in board DT.
+>>
+>> What do you think ?
+> 
+> GPU Fuse off should use access-control, see thread
+> https://lore.kernel.org/imx/20250207120213.GD14860@localhost.localdomain/
+Did that thread ever go anywhere ? It seems there is no real conclusion, 
+is there ? +Cc Alex .
 
