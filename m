@@ -1,141 +1,213 @@
-Return-Path: <devicetree+bounces-151899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC3B2A47726
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:04:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A666BA47743
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:07:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A683D7A5550
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 08:03:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E6831891D6C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 08:04:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25998227586;
-	Thu, 27 Feb 2025 08:00:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DA28225A47;
+	Thu, 27 Feb 2025 08:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lWk2Ui/6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bH0IgmiF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F7C524B28;
-	Thu, 27 Feb 2025 08:00:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565492222B8;
+	Thu, 27 Feb 2025 08:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740643252; cv=none; b=UkYFQqnXmeCJg1zYRTeb8/9rd7Qham8MIBB3iT8rXDI1eeSZa5WFnpZhdf0roz3Po4knVS1ktZpRFHEuDGlbomkkAK9rGfwKz6bmYxfVkycOeLrfdpBegocfNJkexkeMXhEpEAdzHXpZqmvxDE/cKFpX/k4cBRLeS1ipcpvJbdI=
+	t=1740643317; cv=none; b=uhBd/wXhUGMrvPszQgCj4r4zH82JIKhGOCfsrXIRoijuBU67DjP8sN9St8qb3098eA/klCusyktUHr6Rk49HVkZAa8tuvy+kAX4txEJwzHxv9KWnbQPufX7p9eOzbcFst546TaPz5gmJL3nkbrszcFDJS022XaWO84amyszi9go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740643252; c=relaxed/simple;
-	bh=GERZIpGTfivi/XxhhXMCRz1fUPVlachQDluzBuUuNF0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jQ5y6Go8T3xsMOx+PdBj0gCYgYQ27EkGC2Cech+/5D/+2AsLgqCNs9qqOFwJ0yvSjkQTQ2nz6ffCiBkLvvdfK/CZign5se+98on+9jIvb/kArSr6dmTJclKnQ02kTiKVMSMihYi8/Me2/Z8KDs3tqphIWcjTu2/gAllJImMLDPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lWk2Ui/6; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740643251; x=1772179251;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GERZIpGTfivi/XxhhXMCRz1fUPVlachQDluzBuUuNF0=;
-  b=lWk2Ui/6MucM63o7qLj5snNSj0vLXjbtM5sqVQOXPS5m5p+7y5rM3sCg
-   oHUop7Vva2WYu05rdNRJk3CWEmsWu49nOg1Q4lMOqBIghFLepK1wbc6rK
-   LvtA6kRckVSfXmeyAhbVT/wDehFey3W0PdmEUXu1cRpXu9lgBdUK9hHO5
-   7iZZWsKjacp2BU1mSdMKVYyindp1ZohcF2GIzmpq5u8N9EOwhce4fImGq
-   cN/OO6OKZmV6aQHKRoO0VcaThXqr5861Oh1jBvdAcO9gocgUimQRrmRj2
-   LT1H9wo2JOUNBV9qshhUfumcxfULEyj2nUoCBI7xc3X7kAUfsbpwFxJa8
-   g==;
-X-CSE-ConnectionGUID: OpkUqZZnRqyOC6+ijO9NSw==
-X-CSE-MsgGUID: viT880xyQCCOgPA5RI0QTQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="45300314"
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; 
-   d="scan'208";a="45300314"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2025 00:00:50 -0800
-X-CSE-ConnectionGUID: Mi5AFG9QStWCHdsceajeag==
-X-CSE-MsgGUID: 0dQJGJDzR1O3bz8fqtjv/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; 
-   d="scan'208";a="122067414"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by fmviesa004.fm.intel.com with ESMTP; 27 Feb 2025 00:00:46 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tnYoX-000D38-20;
-	Thu, 27 Feb 2025 08:00:34 +0000
-Date: Thu, 27 Feb 2025 15:59:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH v2 2/4] irqchip: Add support for Amlogic A4 and A5 SoCs
-Message-ID: <202502271527.emvNC71m-lkp@intel.com>
-References: <20250226-irqchip-gpio-a4-a5-v2-2-c55b1050cb55@amlogic.com>
+	s=arc-20240116; t=1740643317; c=relaxed/simple;
+	bh=runjjTr95i43OiT1nxM0NLq9jU5kyxMdjAifU3Y72ZE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CYzYpwW4t2rKaXewoZigSxvIvIFAswUHxKf1C4TAIu8rP5Djf5KDdNcv8nuBujDt0u4uPCak4AkMTgbbeKncZ8noo2WDYmDYX22Kb96jyCYKpCqyb0ovSTRgs8TLmO4D30xby7JnA4fHBE7+xOSgolOGj5nTy3OJzovoMmWR+EY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bH0IgmiF; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-54298ec925bso963233e87.3;
+        Thu, 27 Feb 2025 00:01:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740643313; x=1741248113; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nDtuSF+uNvwU/olXT0/1pp58GsxviGqVNXkV33zGjbs=;
+        b=bH0IgmiFcPevoY2hqONYARZZmNLCwMY0AfK9x7thqbgPf4J+Qn4hBAcN4pQrZdPGtn
+         McbOOwHbxpOO+7bjb8sRMU2W2Dg87h62N2jihV+zCmC/9jpDi9VNkXdeQe344sW+hzFI
+         YDzEyoax1yxUuIuAQsOdd9IYFRLSlQmjoFK3OamCegJstxIThmsNoRuwNZzN5frCOzVi
+         Qov1wO1hWKs4A5wQl3KU16hTjNjuCv9nzS1TTbFZz1nJ+om+OjRdQcEz1o+VwqT+3W/i
+         j6eYFHdEk/YpbRhOac6A9J1ZbfjZSY7OVIs/DAaFrjPfKkb2s4McUW5uV3eiBdTw4XIN
+         Hx5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740643313; x=1741248113;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nDtuSF+uNvwU/olXT0/1pp58GsxviGqVNXkV33zGjbs=;
+        b=R2oStxMYjyAK8xz7CelsV2cxglL9rGkJ384Awfzo+8IqjUR12N3Fgq9vLzApenM9zK
+         Ol5lk804Got6QYHLGT1edKka40463xxd4/E0iwPfUkPhFl3H+aPKiEilnxf6Bhb0x1Bx
+         h/3KE3rw5nUh/BZFAs7Z6/z6Ni0nxJ/F0/0Xqo5/1hbUi/MruijkYEg9rIcyLGlPMjDj
+         kXv+y/Nm6YI8TMvoJv4AayZHIVVA+ocM0Vu5i1yBj8eL6QAP5uP9RjfNOPYh4gqyTEtU
+         XS+pc5MMRhbmejwgh9xFRe7HF4OheYoR8RetDTAqHutJ8iOmgcSkA0Yp137PWsNILtms
+         FLvw==
+X-Forwarded-Encrypted: i=1; AJvYcCV9BRPb9UiMYR2nxIxAsiGeLQWlBPCV7B6VF06ZnM/iTjtXtt7S9ZXofMqMUVylaxZ89BvwciE3GvUfm4DD@vger.kernel.org, AJvYcCVv/EIZF+V5AntFDLd6F+ICMZ8qw6wVr4torMdM17P0K33j8UFPNt5yIdBTcD8JsZYHovgyjwCA7oLGrA==@vger.kernel.org, AJvYcCWYgdGo/urCe2P5C8zJ/PK9b2oJMLiLcyeWqoYat6gKQ8fhPwPQVD+LoFdCD4GXjiTquYliHZRdVkrF@vger.kernel.org, AJvYcCWhNLLCjC1tETtdbXjgZe6EhzMqFGOCX8BoXEjJbvMnWBoj3wZbWQ1GRzQtgsgMX6Rskz4crolJLCNUfl5L8FVqURw=@vger.kernel.org, AJvYcCWpyfxJfrazKeaaqoEmseP8EjcCE179XprKS0SXG2wfVeENEz0ueD2GfkVVTIrY3tuCnCP44dX1v1D+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0jwv8oyT5NQzkjDl4y8rJ2IvY9tCV0TdHvOZmzQDwZWSS/O62
+	QVvBkOzsr9VwozZBFTKFnStdhe/YoxnGiROtXI09TKKpx4BzK8kw
+X-Gm-Gg: ASbGncu9+YoOvt8Mw6OMO4OHwlEr9JKZAFwM0C0Q6Kf3STV0dt1o+alh2+iiuYSsDDI
+	YRhGl/PQFBDRuZ35rbHNaL/Xlfm7DLTjavgH7G6QwP96fJaJNVqbALTMkb8Z7HZxOiF3MJvQzqL
+	I0VrbpKVZCf8LrMqcxfH7m2TVAd+lkri9jXbnNYfmDaKNKGUVLRnaReKXioZ5hGJKolo2xbmcQb
+	8TpDKStd6XUUJdAMDQJ6VyycYE/aYkHIsoiCpB0T5hQf8pAZ96SYxTkCx5vBgwWY304afoIhxst
+	8cESDawJOummLbGNu4DsTM0Am3o0N500WWj58D9QINc5L8VquZM8iBl/p9P5TWWHcSIiGEykWCn
+	tYPZjwvU=
+X-Google-Smtp-Source: AGHT+IFjVjmK2qHUacoPpo4OU31ZwGA6d9bKKSSD59w0ISV0sOUUwTnyPiZ3gMGZR/v96mmqDXra0A==
+X-Received: by 2002:a19:8c09:0:b0:549:43f8:824 with SMTP id 2adb3069b0e04-54943f8098dmr558221e87.26.1740643313017;
+        Thu, 27 Feb 2025 00:01:53 -0800 (PST)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549443bebd5sm98564e87.209.2025.02.27.00.01.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Feb 2025 00:01:51 -0800 (PST)
+Message-ID: <d7982b76-3da7-47ff-b2b2-f964610af1f7@gmail.com>
+Date: Thu, 27 Feb 2025 10:01:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250226-irqchip-gpio-a4-a5-v2-2-c55b1050cb55@amlogic.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 02/10] property: Add
+ device_get_child_node_count_named()
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Daniel Scally <djrscally@gmail.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa <nuno.sa@analog.com>,
+ David Lechner <dlechner@baylibre.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Guillaume Stols <gstols@baylibre.com>,
+ Olivier Moysan <olivier.moysan@foss.st.com>,
+ Dumitru Ceclan <mitrutzceclan@gmail.com>,
+ Trevor Gamblin <tgamblin@baylibre.com>,
+ Matteo Martelli <matteomartelli3@gmail.com>,
+ Alisa-Dariana Roman <alisadariana@gmail.com>,
+ Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+References: <cover.1740421248.git.mazziesaccount@gmail.com>
+ <29ec24f1498392cafbecc0e0c0e23e1ce3289565.1740421248.git.mazziesaccount@gmail.com>
+ <Z72QAOA9xXbP16K-@kuha.fi.intel.com> <Z72Zp8tpnvlFGdQ_@smile.fi.intel.com>
+ <ad39b453-7e5b-49bd-a4fd-6a4988636130@gmail.com>
+ <Z72d7TzZ21WITW3f@smile.fi.intel.com>
+ <893a3c45-537e-47ad-afbd-1e5d3b9abe2c@gmail.com>
+ <Z73M3Ua6u1FpgBEK@smile.fi.intel.com>
+ <720f9c69-ca1f-45cb-9f6e-c8e4703c9aad@gmail.com>
+ <Z78g_uiXumn4mvET@smile.fi.intel.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <Z78g_uiXumn4mvET@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Xianwei,
+On 26/02/2025 16:11, Andy Shevchenko wrote:
+> On Wed, Feb 26, 2025 at 04:04:02PM +0200, Matti Vaittinen wrote:
+>> On 25/02/2025 15:59, Andy Shevchenko wrote:
+>>> On Tue, Feb 25, 2025 at 03:29:17PM +0200, Matti Vaittinen wrote:
+>>>> On 25/02/2025 12:39, Andy Shevchenko wrote:
+>>>>> On Tue, Feb 25, 2025 at 12:29:31PM +0200, Matti Vaittinen wrote:
+>>>>>> On 25/02/2025 12:21, Andy Shevchenko wrote:
+>>>>>>> On Tue, Feb 25, 2025 at 11:40:16AM +0200, Heikki Krogerus wrote:
+> 
+> ...
+> 
+>>>>>>>>
+>>>>>>>> I did not check how many users are you proposing for this, but if
+>>>>>>>> there's only one, then IMO this should not be a global function yet.
+>>>>>>>> It just feels to special case to me. But let's see what the others
+>>>>>>>> think.
+>>>>>>>
+>>>>>>> The problem is that if somebody hides it, we might potentially see
+>>>>>>> a duplication in the future. So I _slightly_ prefer to publish and
+>>>>>>> then drop that after a few cycles if no users appear.
+>>>>>>
+>>>>>> After taking a very quick grep I spotted one other existing place where we
+>>>>>> might be able to do direct conversion to use this function.
+>>>>>>
+>>>>>> drivers/net/ethernet/freescale/gianfar.c
+>>>>>>
+>>>>>> That'd be 2 users.
+>>>>>
+>>>>> I haven't checked myself, I believe your judgement,
+>>>>
+>>>> I took a better look and you obviously shouldn't believe :) The gianfar used
+>>>> of_node instead of the fwnode. So, it'd be a single caller at starters.
+>>>
+>>> ...which is the same as dev_of_node(), which means that you can use your
+>>> function there.
+>>
+>> I'm unsure what you mean. The proposed function
+>> device_get_child_node_count_named() takes device pointer. I don't see how
+>> dev_of_node() helps converting node to device?
+> 
+> dev_of_node() takes the device pointer and dev_fwnode() takes that as well,
+> it means that there is no difference which one to use OF-centric or fwnode
 
-kernel test robot noticed the following build warnings:
+The proposed device_get_child_node_count_named() takes a device pointer. 
+I don't see how dev_of_node() helps if there is just of_node and no 
+device pointer available in the calling code. (Well, as I wrote below, I 
+could alter the gianfar code by dropping the gfar_of_group_count(), so 
+that I have the device pointer in caller). Anyways, I don't see how 
+dev_of_node() should help unless you're proposing I add a 
+of_get_child_node_count_named() or somesuch - which I don't think makes 
+sense.
 
-[auto build test WARNING on 953913df9c3ab6f496c6facd5aa7fc9f2f847ac2]
+> API in this particular case. Just make sure that the function (and there
+> is also a second loop AFAICS) takes struct device *dev instead of struct
+> device_node *np as a parameter.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Xianwei-Zhao-via-B4-Relay/dt-bindings-interrupt-controller-Add-support-for-Amlogic-A4-and-A5-SoCs/20250226-135013
-base:   953913df9c3ab6f496c6facd5aa7fc9f2f847ac2
-patch link:    https://lore.kernel.org/r/20250226-irqchip-gpio-a4-a5-v2-2-c55b1050cb55%40amlogic.com
-patch subject: [PATCH v2 2/4] irqchip: Add support for Amlogic A4 and A5 SoCs
-config: arc-randconfig-001-20250227 (https://download.01.org/0day-ci/archive/20250227/202502271527.emvNC71m-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250227/202502271527.emvNC71m-lkp@intel.com/reproduce)
+I think I lost the track here :)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502271527.emvNC71m-lkp@intel.com/
+>> I think I could actually kill the whole gfar_of_group_count() function and
+>> replace it with a direct call to the device_get_child_node_count_named() -
+>> but I am not at all convinced that'd be worth including the property.h to a
+>> file which is currently using only of_* -stuff. Well, I suppose it can be
+>> asked from netdev peeps but I am not convinced they see it as a great idea.
+>>
+>> If I misunderstood your meaning - please elaborate.
+> 
+> The driver is quite old
 
-All warnings (new ones prefixed by >>):
+I remember having to modify this driver somewhere around 2010 or so. :) 
+Time flies.
 
->> drivers/irqchip/irq-meson-gpio.c:58:12: warning: 'meson_ao_gpio_irq_set_type' declared 'static' but never defined [-Wunused-function]
-      58 | static int meson_ao_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
-         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+> and has a lot of room to improve. Briefly looking it
+> may be almost fully converted to fwnode, but it's not your call (only if you
+> wish). Nevertheless, using agnostic APIs if they reduce code base is fine.
+> We have drivers that do OF and fwnode mixed approach (for various reasons,
+> one of which is the new API that is absent in OF realm.
 
+Well, we can propose this to netdev people but I wouldn't be surprized 
+if they requested full of_node => fwnode rewrite instead of removing 
+simple looking loop and bringing mixture of fwnode and of_node in driver.
 
-vim +58 drivers/irqchip/irq-meson-gpio.c
+Yours,
+	-- Matti
 
-    45	
-    46	struct meson_gpio_irq_controller;
-    47	static void meson8_gpio_irq_sel_pin(struct meson_gpio_irq_controller *ctl,
-    48					    unsigned int channel, unsigned long hwirq);
-    49	static void meson_gpio_irq_init_dummy(struct meson_gpio_irq_controller *ctl);
-    50	static void meson_a1_gpio_irq_sel_pin(struct meson_gpio_irq_controller *ctl,
-    51					      unsigned int channel,
-    52					      unsigned long hwirq);
-    53	static void meson_a1_gpio_irq_init(struct meson_gpio_irq_controller *ctl);
-    54	static int meson8_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
-    55					    unsigned int type, u32 *channel_hwirq);
-    56	static int meson_s4_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
-    57					      unsigned int type, u32 *channel_hwirq);
-  > 58	static int meson_ao_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
-    59					      unsigned int type, u32 *channel_hwirq);
-    60	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
