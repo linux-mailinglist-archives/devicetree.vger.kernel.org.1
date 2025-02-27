@@ -1,232 +1,231 @@
-Return-Path: <devicetree+bounces-152319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26BFAA48A76
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 22:28:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8DA5A48A80
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 22:30:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1830D16A538
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 21:28:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 936773B6018
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 21:30:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5048327126F;
-	Thu, 27 Feb 2025 21:28:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ADF8270ECA;
+	Thu, 27 Feb 2025 21:30:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="CMl1l9Xf"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lreVmJ5F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013070.outbound.protection.outlook.com [40.107.162.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA2C270EC8
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 21:28:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.70
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740691689; cv=fail; b=UtioOHZWqy1Qkn1S+u1oQqI0Zxgevz+1UNED2VitDBm4Vwu+BKuzliAAk7GkvvWyXBgliH4aE9hiaJZtja0KdvjVGbz1rk/UxpCizXtKmaifQbPlZ9I8M5OC76tNGET1gN/mU5ZwPzcN1/Nin/caqeRPyl3HUVAiD0av7WE2tmk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740691689; c=relaxed/simple;
-	bh=ZSWtqftb0vqNXHxf/w6EUnyUDXjjbDG11uhhbRNy/AY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Uk/5RAeFWNIguS4K6SARnR3PzuXBQMLb/5/Utmv6UusST07jf7x7Z1L2ULAamEd/qnar2jMrtG0qMBUFAQLY6uVXzzJFHxwVCTPpUdgb+sgrzbMGFrRehyVeti/qN1DsM5NCza/bnJ9gHqP4RZo2GdIndh+hmmClFKM/tAzaEWQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=CMl1l9Xf; arc=fail smtp.client-ip=40.107.162.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dUkFq9GwPNj2atVHCRQFWO59iWeMLT+1Ztuol+cu4C1ueTjPdtrh4xVK+Z10pKzW1/pCpMPWqpULtVlF4OmwWlW6KHGOCSkGAmIWSNR4rgBWXDS9tY2uP7syE41mLajAxXpFnDDWXuIeUJnIJgwhR1o1pbvEp2i8Vqs6jEtAVXozkjfOg4ZQ5SbsHQjmJMUm6VtE/bYTs7vCW4qLUqWLSxZbw5taFisTU8gOYAK0WYRA/LKAf9vVq5JY4OnZmWnm+sZb3qh+tY1xyWL1KtZTPKHMAXpMaV4ZFAp6Atis3Vpz4VBNHP+M9oUBz/W5vtwIPXWMYbhV79OJa/EooKYRrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=damlPDJsZLmQG7t9L3wRPou5FFv/7BUhgBmDt9d9rXQ=;
- b=n5/ralQyVa1l7zZJHogJwjwgitsKzmZuMlpOzpnwQD2DGaiOV3+cCE6eC3MhCASPSoyLJZaYo9r3qtdIG3y+yM3xZWM6d4+S0nSPFNhyQFpz/jqMdbe2kjOS3J7ZV/C5Qai3vDLHmyAJ+YUZP+RLg0fPMomt4fysEl+4HVnt3kWKswq/53uuWQERS0XzXiOl6XxuKzYM1h2E9kXFjQiLwX0Cf7Ed08zg5GJPMIF37onvJztJ7Jjhtm9GDeTduHS9FfjS9TCqdsYjtlksaoaB12pp0Xy8KfrN5xQ/FScHHe5MGVGmUDNdLDTG9YogIEIXAO1ArC5uMZFn8+/zQo7zow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=damlPDJsZLmQG7t9L3wRPou5FFv/7BUhgBmDt9d9rXQ=;
- b=CMl1l9Xf72B9eIaW9WtbVQJEEmpT3mdqvc9DkSFk0EjJyNu53xgj+YXqaWqI+Iz9F+mnfRPF80DR6ByBes49oEQz3+QawB8aJgYTp/If0KRKNAqI7ETqjEWmp+TqvyT3Qc4dLkrl6tjAQDn0nHT5NIzDzR8VCEyvP3Wdr+1AkXOJJ08viYJUEwLrocd1eQvV7k+QsZ9vnab2Ejy8Pcx8jRZorUo+m7gxi98xvWoz+rhlM3DTS+t2N1VOgalmMXhcQe2z5yOQZ72ZMqjAYp0KErQoCWjNP2qUOqzhk8WD+zdXGsxxvVpZ3cZRoBpUw2ki1HDmBKpTFMZArvc+8WXOzQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DB8PR04MB6857.eurprd04.prod.outlook.com (2603:10a6:10:114::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.23; Thu, 27 Feb
- 2025 21:28:02 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8466.016; Thu, 27 Feb 2025
- 21:28:01 +0000
-Date: Thu, 27 Feb 2025 16:27:51 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Boris Brezillon <boris.brezillon@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Sebastian Reichel <sre@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Steven Price <steven.price@arm.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, imx@lists.linux.dev
-Subject: Re: [PATCH 9/9] arm64: dts: imx95: Describe Mali G310 GPU
-Message-ID: <Z8DY14NJYXjwKz7Z@lizhi-Precision-Tower-5810>
-References: <20250227170012.124768-1-marex@denx.de>
- <20250227170012.124768-10-marex@denx.de>
- <Z8CkSUry5puMu6Mx@lizhi-Precision-Tower-5810>
- <d41c9cf5-9ec4-4b9a-b281-653873fb8df0@denx.de>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d41c9cf5-9ec4-4b9a-b281-653873fb8df0@denx.de>
-X-ClientProxiedBy: BYAPR08CA0001.namprd08.prod.outlook.com
- (2603:10b6:a03:100::14) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 738331EFF91;
+	Thu, 27 Feb 2025 21:30:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740691812; cv=none; b=g8qw2i126SmVfOVYsk6vpqMkDJtZLacQ/tAZjxq9bmef6NnQlcPJNXk/RjRK8MFbetqt/uNzJbZCD+GGNPnH88JN82T3jsj7Ex5QwvW2wE7Xvs1w+WBwk/WCoTZ6z1ttoF8b3wXyr+whvOEUMgOe5YOxggGRzC57AOFuoQae/i8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740691812; c=relaxed/simple;
+	bh=aBIsue5zuSFDdPtGkH1BrG+z8sCiyZ4OfesmbqTq3z0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Od3KzC0/7gql0zOqAEJ0PgIoc47YQ4xIEGLSP5poz+jnnGMW8E9vdVebUqnXMC+bojLPihI0JSpfSbPYAYKDlY5yynA0ikAeOy3x0oVxOPnl2aoYWqNXR08PK6kpMGKUoCr15oj8LdoaONVPIM+OgHZ/e7AqrI2V+NNif1lziVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lreVmJ5F; arc=none smtp.client-ip=209.85.222.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7c0e3688f92so28115185a.1;
+        Thu, 27 Feb 2025 13:30:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740691809; x=1741296609; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VlS3JSHpI5pHJwFBGOh2HyZd1Zh+M5HnpWiAkan9ed8=;
+        b=lreVmJ5FfjoGodbAkgQ/InUcUij6bs6p2ytJTuP+jibqdRqVRSosbmX1WhtGkPKcWX
+         6P/1tN8rxZMQ0iqqxHFVQxbumg0bVvdgZYMaXuf7116fZKhlrlkZebo3/vxgaadYzK9G
+         w8t+7A12vuA5VYHWY21Ud9Ao9LBDaWJJuDPrl0yBYFGaQOMpgYuRrGVv1UBM4jq0rWST
+         lV8CAgHdESISVD2GeI5lu/UikSUSvVUD/TmPcW29dIP00IWfrbGCknRBNJRpCPOCDqqk
+         zpxCcP4cC2Ee3qBxB804tLE6HSGnYlRZhi3exPWTsCmPPW21B7+2BaF1EJQ/b98yTKav
+         0+UA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740691809; x=1741296609;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VlS3JSHpI5pHJwFBGOh2HyZd1Zh+M5HnpWiAkan9ed8=;
+        b=bTE+4yyzxFRNAEyvejHLAmFL5mc+R2yz8FttE0syn2+XEE52lqfrkNGp/4hn0UTvec
+         ui4dvWeWKwoxb/YjpuOmCpU3VHzdcoXcMxNwVGOVD/R0fi+LUYRUm3siLX2bDn63IzJp
+         cEyutAhxyTIetHNivcwNAoClm/xBoNVipTbE/te3cMoa49mtB0OWGPc52ZsGhXn7dIU+
+         KgCoqCE1NLgvGD8/0QWbZcXxS524AwO1wP1Gn9NlZQd3CbrJBaB5xbyfvGOrSWZ0c1NG
+         wttXCWVDD2yDWsIqBqCHpi0IRbs1VzxhSt2K9mq61h6Gx/dj8B0PS63CKkMFvqDLe8fz
+         A4Mg==
+X-Forwarded-Encrypted: i=1; AJvYcCUdPC06Ax9eV03s77m0UogBnu8wC3z5EO+kZZprjP5JiRtabHGSsS7/IJTfq2zW0rs1McIPb+eOQpf0RqIj@vger.kernel.org, AJvYcCVemVvQlk0Y3JLvk6BCKWNjZOYE7hVcLlrZj3/V8q/+R2RyUdpdsGuWzZKwFPiWY9C34kMptPS3NcsM@vger.kernel.org, AJvYcCXkxnWO27moPujX2s+SRRD0KoUn+sOFj5FTTjMugBF5KrgX0TyF9RDqFejlGFXLBmW8LLv4zCth2dyb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXCkPJeueXzc7rrqmLdKMAkgkHOASbmJBgud/TIqVSqMroIsfY
+	OWO32l8k5FCzcocWNmSXHjXoNgrfm7/SmwRhCBoI4+1R+mpDWUfj
+X-Gm-Gg: ASbGncvb74DOQuDsS9VpN2O3FB4jyRYjJC1GcqL55dhlmWSA2YfU6yHTbAE8FXmbTGL
+	9dX6mNSz/pr7SfBUxMpRMiBqixTVZa8VF+5rzNpMKQxHqX1Z5PSazN1NcMxF9z7SJG6xYNfwjKM
+	TDVK4YowPoQa4nxrHPqKwu3wv0ElThyICIdkJR5l46L1AWUdhn9Xe5R28vEBJMlPl+CHe79m7S8
+	HDLyqRGkZDGpfOd6TNsu3Mjn7gWiaJrjS3f22x85bEsMZOLokVCwkFq64trs2WE/GggB/fmhBvW
+	QJgVH+OtJ++lPtv8jrjfCqgFM95jF0JjSeetNjxJQ/BPxN0=
+X-Google-Smtp-Source: AGHT+IE2zW29zbUhd4JanqPdsbSePwmtscfZpisxuK2vZRZJO2vqLJws6sLgRJpbvC8HDMqDMtzTSA==
+X-Received: by 2002:a05:620a:4e6:b0:7c3:9ce6:3fa6 with SMTP id af79cd13be357-7c39ce65a8fmr29777885a.10.1740691809108;
+        Thu, 27 Feb 2025 13:30:09 -0800 (PST)
+Received: from JSANTO12-L01.ad.analog.com ([191.255.131.70])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e897634904sm14179316d6.19.2025.02.27.13.30.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Feb 2025 13:30:08 -0800 (PST)
+Date: Thu, 27 Feb 2025 18:30:04 -0300
+From: Jonathan Santos <jonath4nns@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com,
+	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+	dlechner@baylibre.com
+Subject: Re: [PATCH RESEND v3 03/17] dt-bindings: iio: adc: ad7768-1: add
+ trigger-sources property
+Message-ID: <Z8DZXAivPexoPJkN@JSANTO12-L01.ad.analog.com>
+Reply-To: 20250213-sympathy-suspend-2c414b383195@spud.smtp.subspace.kernel.org
+References: <cover.1739368121.git.Jonathan.Santos@analog.com>
+ <4136b5259df75221fc314bcd4a57ecaeeab41a45.1739368121.git.Jonathan.Santos@analog.com>
+ <20250213-sympathy-suspend-2c414b383195@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB8PR04MB6857:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5f8d6cdc-9838-4a6b-24ac-08dd57759d1b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?fh38/w0XcL93TzXpHnfGwKgVHYjoflENYf1/FLgNJu+YaoipGAY1DN8++rlP?=
- =?us-ascii?Q?zj+vf/blwE/U66e3sX4fQ2ncqe0TVr+4jQsuEw2UqA1oGMzmR+VAjBbMNkfm?=
- =?us-ascii?Q?5hNk2gSn8qZedItMkaWMX3zBEY/D3zH1ET5cMbdBKSJHYj2TT89FB8DhyffJ?=
- =?us-ascii?Q?eT6cFrJeJoUhh2qZ92NLXRgiT2t4bKMrB2dSsE4SGIT+KK2O05FZkVvPK3bd?=
- =?us-ascii?Q?ENM/LVgmBuo5zEvM2au3HC3i9lGO4u6LqpWlr/A/Pj8Etzq6CCykL+TrwtpF?=
- =?us-ascii?Q?D/aqYWU0C2nkS7Dcs+w3JERVtxN+akeBBLX0CHlxK8e7VGTx49utPqotOI5M?=
- =?us-ascii?Q?XY6spOCldi2d1wdXELzLqKjAl57D1mSC2ToG+jccqdtZiyCsT94F1rewLQUR?=
- =?us-ascii?Q?PepI9x3s6Ppt4cyWHkIy3cuPuIxIXjRPFwayHpWJwszMqaDfVkSI6/p3GMuN?=
- =?us-ascii?Q?yahZxkI/p8OxGrZ9R07N+ZB21lTLQrCRzt6oNwlGdTQ5/R3VtjkATN2+4ij3?=
- =?us-ascii?Q?2gqFXifQK/AxVkidHzoXDV8joZkq2OOTIaHsJ3nvcfpH920Q18lTeNChaohW?=
- =?us-ascii?Q?RkP99zKvcxeWe2uCFhCA+Y0Z9PFk+frKiJ0CJQSD6iwQcswr8Kr3QS8HcZp9?=
- =?us-ascii?Q?0ZuptydSd7F7Hq/dCEjYVwnnLwCK4VHqup+5+GXmJ1fWfr27NpTz9rvsVg4j?=
- =?us-ascii?Q?6PtEpFZit3FtA6ohac7gcef36nTjn4av1gtYz+B2QFYyJfK47z9hvQNGVTzI?=
- =?us-ascii?Q?1WB4lkpndSzHvCVjHl8wU31q3jF4xnRcHz0zqUyDX8CTQYMPiHvOUdMJsS2l?=
- =?us-ascii?Q?BEKIzo1cK04NS5kwct8ruEeNJdwSLFmnoTRFl+PfqYfUZVPFZKRqBTpMkvvA?=
- =?us-ascii?Q?tjAoIKWWs0bbetETBDlXfVPed8mOf9b44Gnh4fxFY7PZC019Xz2HlfsyZVnQ?=
- =?us-ascii?Q?mGATtTMjoFjCIaagDmFlpKFpEXEg99AYomzb1knGlYexWiSG3bV8C2DvmUyr?=
- =?us-ascii?Q?D0WvaryrwNtgcOaL/ptW+va3MuyFwpcuBy/yjWjwGIz2bwAoSgwoMhLJq9qF?=
- =?us-ascii?Q?K3Z1fVKpQsqDvy/3blw6N3x/x2cB40w72R+RB43+QesLUQzImct0Z96PGZU5?=
- =?us-ascii?Q?iO+m+3dVLLxeU5+FC+qv42IRuURkbm5FvRtcaBg/imRTqBKI6vU62nyK3l/C?=
- =?us-ascii?Q?zP/+JEONWKrJR7MiAF8C/qylzgsk9Mk5LMiPGlchbpBp+hbM3pFjOH9zdK/c?=
- =?us-ascii?Q?8k0H7GhXAnZdzyM7xlzG9oX1VbXXwJv2cd8vD/6k3P7UGQm5zkLfGHGX+xBk?=
- =?us-ascii?Q?1lGVIIay6fvChhFtMiiszmvW0oia4uDDrfosQxFaCoKb2F5j2eXssji9ONiV?=
- =?us-ascii?Q?vr8+6fys9WAshAq9lCNYw1MPg7FNJAn4aWXWnwT35XLQlp8L5fCsnBSHB8r8?=
- =?us-ascii?Q?v/fJoNxq7s6OzJNxqxzZchlLVVkhe1VH?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?ji0B6jcHuhihUFRvPrEvCYAV8f57SBShJxnEjcVuozp2YU8v060b3e9pxgr+?=
- =?us-ascii?Q?DEqB7iCx+PBpYDSO1r0Ek0JH+RrVeK0vC0xTfixhQRPMG/zeeTc9TZrhBOtb?=
- =?us-ascii?Q?TG2PMlmehFO4KUBCOoQbwY9z4JNvww8hFemaPWRs6qWi2WiDH7pvws/eUZM5?=
- =?us-ascii?Q?gs8XEnsnaWPCWbYUpcrPyZ95TohSlGlmFZAE635+N1LBscAxOetjJTGw4fh1?=
- =?us-ascii?Q?Tlo03vzstRG0QRwyKdhwDj0EJ4HbWbHsKJsXVFEA8JTfKPKO0VTCv1T8SJ1H?=
- =?us-ascii?Q?paUs4Y2EnmwrAZ2DABI7v0gjsrsTgfh8PFoTevkluKonBXt2Qy6myzwkAydA?=
- =?us-ascii?Q?JuDHIna8I+YHXs+PlRcPHZRo87qhpL62NSpVB1V3CjpKCGO2X/ibbX0WWJp1?=
- =?us-ascii?Q?AHDAjUWMB7kIOuPkp9FO1G+MxPwBsnbsUrAyNoveCEDljbnOukVkE0X82v0a?=
- =?us-ascii?Q?sfXkkVLutwCWA5arI2ToDkLo4aOVxjC4cHT7LCc2Gq11cenwrZUj9VFTjuw/?=
- =?us-ascii?Q?9Ry1ij2pb/sMYpcZVaS7ImlTrdiC/OZ7zdKJ029kddP2Yaf5/X6AX8OxUg7m?=
- =?us-ascii?Q?3AV2PNOiOpPpPZa6aZFxunG14hfRTeCQm/qorZ0P81tAreOqvXxD4vcG6cCN?=
- =?us-ascii?Q?sknGGJuWoIuKVd6IBPXofQvD/eM8QwCct0TPTJUdSnEpPNY/5u0oflSZpvNF?=
- =?us-ascii?Q?GUuXSDCWWRaPkInFc52j1E4tVDyblRTa1p/CLj41WyaRUDmXMnOilz0PgB2r?=
- =?us-ascii?Q?qN4wq8Gh6/iR6anNCDGg2h7GPNHhYH45zSEsF/48FK+QdBOqhAOR8lPTK+n2?=
- =?us-ascii?Q?b+l26t0PIbdFIT8jnmmkDKaib+TRXePyj/E5AIjaYlDJOLscl9Ps4XCAnvcK?=
- =?us-ascii?Q?Z1JkLmdmX35IvPguFCsNke2WJDVUPw+pvAiMEK3Um2HK5DS5VkEuFGK/WDPH?=
- =?us-ascii?Q?8Ut0oQJfKUTgp9zwSVZhej6faS7N6/ZlMbqNbJTkScB8NMJqdBqu4GqysfS4?=
- =?us-ascii?Q?O//U/Oi4nKUgUZAEYb21o3Q4Ydxu0sCnfshsKdctCtOnaLStOEAkPHp80t72?=
- =?us-ascii?Q?mvtJh+0dGmWOFh9jL3Zpht7o0Bu+8IjcR0KagyTqct24z4l7VKOa7AQ8YFkh?=
- =?us-ascii?Q?kW4yZjo7pyNO/MAbrkN/ZQKfFr/xkBkdVq3rgUyhIT3rHGIlWzQIjUwEpG2R?=
- =?us-ascii?Q?sQJjIvOsCdFUE8aTW00uE6x63E9i4JqK+MgU/WGorhMjUtAsaeuDfF7XKA7l?=
- =?us-ascii?Q?xNsqJ+DXH+HBxrKBfoEtKQtqegis6akqlA4Q8KYBWq1BrdzicEfzkxnUDPtB?=
- =?us-ascii?Q?b7tJCaI3tJf3LgxaULpQuxe8ndf+8aBkCx4gBKITIYJJzykpBeNcaJcEQefg?=
- =?us-ascii?Q?ChEyItd06FwhxhzMnfFXZptBk0CB49FCtX9zI069ZyV2HEl2Wdk1Zh9sxBhC?=
- =?us-ascii?Q?SMokRJJcfcIiYRhobDku2ZGxgj5YRQekXoMAP3Ay0Faiw/KIaF5La1wEI7eG?=
- =?us-ascii?Q?5Pac48JqOmr3QEAWRrXToYgswmHRHHHxxCcHxxJtHmVuRf1fC8Ed4wnh2yNY?=
- =?us-ascii?Q?XvInhMpXTxapXXo/I1o=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5f8d6cdc-9838-4a6b-24ac-08dd57759d1b
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2025 21:28:01.7775
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YaM5stdJ1VlO4valKsSX+tGVJgrZnFlWjZ/iZbNhX0VlrbDz6TKjQIFXCr6VBQ+9HlIzRItMeETqVS8b4K0xTg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6857
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250213-sympathy-suspend-2c414b383195@spud>
 
-On Thu, Feb 27, 2025 at 09:36:55PM +0100, Marek Vasut wrote:
-> On 2/27/25 6:43 PM, Frank Li wrote:
-> [...]
->
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> > > index 3af13173de4bd..36bad211e5558 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> > > @@ -249,6 +249,37 @@ dummy: clock-dummy {
-> > >   		clock-output-names = "dummy";
-> > >   	};
-> > >
-> > > +	gpu_fixed_reg: fixed-gpu-reg {
-> > > +		compatible = "regulator-fixed";
-> > > +		regulator-min-microvolt = <920000>;
-> > > +		regulator-max-microvolt = <920000>;
-> > > +		regulator-name = "vdd_gpu";
-> > > +		regulator-always-on;
-> > > +		regulator-boot-on;
-> >
-> > Does really need regulator-boot-on and regulator-always-on ?
->
-> I don't think so, this is a development remnant, fixed, thanks.
->
-> [...]
->
-> > > +		gpu: gpu@4d900000 {
-> > > +			compatible = "fsl,imx95-mali", "arm,mali-valhall-csf";
-> > > +			reg = <0 0x4d900000 0 0x480000>;
-> > > +			clocks = <&scmi_clk IMX95_CLK_GPU>;
-> > > +			clock-names = "core";
-> > > +			interrupts = <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>,
-> > > +				     <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
-> > > +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			interrupt-names = "gpu", "job", "mmu";
-> > > +			mali-supply = <&gpu_fixed_reg>;
-> > > +			operating-points-v2 = <&gpu_opp_table>;
-> > > +			power-domains = <&scmi_devpd IMX95_PD_GPU>, <&scmi_perf IMX95_PERF_GPU>;
-> > > +			power-domain-names = "mix", "perf";
-> > > +			resets = <&gpu_blk_ctrl 0>;
-> > > +			#cooling-cells = <2>;
-> > > +			dynamic-power-coefficient = <1013>;
-> > > +			status = "disabled";
-> >
-> > GPU is internal module, which have not much dependence with other module
-> > such as pinmux. why not default status is "disabled". Supposed gpu driver
-> > will turn off clock and power if not used.
-> My thinking was that there are MX95 SoC with GPU fused off, hence it is
-> better to keep the GPU disabled in DT by default. But I can also keep it
-> enabled and the few boards which do not have MX95 SoC with GPU can
-> explicitly disable it in board DT.
->
-> What do you think ?
+On 02/13, Conor Dooley wrote:
+> On Wed, Feb 12, 2025 at 03:16:16PM -0300, Jonathan Santos wrote:
+> > In addition to GPIO synchronization, The AD7768-1 also supports
+> > synchronization over SPI, which use is recommended when the GPIO
+> > cannot provide a pulse synchronous with the base MCLK signal. It
+> > consists of looping back the SYNC_OUT to the SYNC_IN pin and send
+> > a command via SPI to trigger the synchronization.
+> > 
+> > Add a new trigger-sources property to enable synchronization over SPI
+> > and future multiple devices support. This property references the
+> > main device (or trigger provider) responsible for generating the
+> > SYNC_OUT pulse to drive the SYNC_IN of device.
+> > 
+> > While at it, add description to the interrupts property.
+> > 
+> > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> > ---
+> > v3 Changes:
+> > * Fixed dt-bindings errors.
+> > * Trigger-source is set as an alternative to sync-in-gpios, so we
+> >   don't break the previous ABI.
+> > * increased maxItems from trigger-sources to 2.
+> > 
+> > v2 Changes:
+> > * Patch added as replacement for adi,sync-in-spi patch.
+> > * addressed the request for a description to interrupts property.
+> > ---
+> >  .../bindings/iio/adc/adi,ad7768-1.yaml        | 28 +++++++++++++++++--
+> >  1 file changed, 25 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> > index 3ce59d4d065f..4bcc9e20fab9 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> > @@ -26,7 +26,19 @@ properties:
+> >    clock-names:
+> >      const: mclk
+> >  
+> > +  trigger-sources:
+> > +    description:
+> > +      Specifies the device responsible for driving the synchronization pin,
+> > +      as an alternative to adi,sync-in-gpios. If the own device node is
+> > +      referenced, The synchronization over SPI is enabled and the SYNC_OUT
+> > +      output will drive the SYNC_IN pin.
+> 
+> Maybe a silly question, but why is self-reference needed here?
+> sync-in-gpios is a required property at present, so why can't you
+> operate under the assumption that neither the trigger-sources when
+> neither are present? Is it because only one of the sources could be
+> external and one internal, or there could be either one or two internal
+> sources? Self-referencing properties always feel like a bit of a
+> mistake.
+> 
+We have one internal synchronization source and two external ones.
+The internal is when /SYNC_OUT drives /SYNC_IN (in this case with self
+referencing). The external sources include using a GPIO to drive the 
+/SYNC_IN (sync-in-gpio case) or using an external /SYNC_OUT, the last one
+is described in the datasheet for multi-devices setup.
 
-GPU Fuse off should use access-control, see thread
-https://lore.kernel.org/imx/20250207120213.GD14860@localhost.localdomain/
+The trigger-sources property is inteded to indicate wheter the /SYNC_OUT
+signal originates from within the device or from another source. currently
+we are only handling the internal case. We are not sure yet how to handle
+the external sources.
 
-Frank
+> > +    maxItems: 2
+> > +
+> >    interrupts:
+> > +    description:
+> > +      Specifies the interrupt line associated with the ADC. This refers
+> > +      to the DRDY (Data Ready) pin, which signals when conversion results are
+> > +      available.
+> >      maxItems: 1
+> >  
+> >    '#address-cells':
+> > @@ -57,6 +69,9 @@ properties:
+> >    "#io-channel-cells":
+> >      const: 1
+> >  
+> > +  "#trigger-source-cells":
+> > +    const: 0
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -65,7 +80,6 @@ required:
+> >    - vref-supply
+> >    - spi-cpol
+> >    - spi-cpha
+> > -  - adi,sync-in-gpios
+> >  
+> >  patternProperties:
+> >    "^channel@([0-9]|1[0-5])$":
+> > @@ -89,6 +103,13 @@ patternProperties:
+> >  allOf:
+> >    - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> >  
+> > +  - oneOf:
+> > +      - required:
+> > +          - trigger-sources
+> > +          - "#trigger-source-cells"
+> > +      - required:
+> > +          - adi,sync-in-gpios
+> > +
+> >  unevaluatedProperties: false
+> >  
+> >  examples:
+> > @@ -99,7 +120,7 @@ examples:
+> >          #address-cells = <1>;
+> >          #size-cells = <0>;
+> >  
+> > -        adc@0 {
+> > +        adc0: adc@0 {
+> >              compatible = "adi,ad7768-1";
+> >              reg = <0>;
+> >              spi-max-frequency = <2000000>;
+> > @@ -108,7 +129,8 @@ examples:
+> >              vref-supply = <&adc_vref>;
+> >              interrupts = <25 IRQ_TYPE_EDGE_RISING>;
+> >              interrupt-parent = <&gpio>;
+> > -            adi,sync-in-gpios = <&gpio 22 GPIO_ACTIVE_LOW>;
+> > +            trigger-sources = <&adc0 0>;
+> > +            #trigger-source-cells = <0>;
+> >              reset-gpios = <&gpio 27 GPIO_ACTIVE_LOW>;
+> >              clocks = <&ad7768_mclk>;
+> >              clock-names = "mclk";
+> > -- 
+> > 2.34.1
+> > 
+
+
 
