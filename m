@@ -1,231 +1,118 @@
-Return-Path: <devicetree+bounces-152320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8DA5A48A80
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 22:30:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9913A48A94
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 22:33:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 936773B6018
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 21:30:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C2A03B6F8A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 21:33:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ADF8270ECA;
-	Thu, 27 Feb 2025 21:30:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2283B271297;
+	Thu, 27 Feb 2025 21:33:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lreVmJ5F"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="xkI1UyGl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 738331EFF91;
-	Thu, 27 Feb 2025 21:30:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 854A126FA5D
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 21:32:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740691812; cv=none; b=g8qw2i126SmVfOVYsk6vpqMkDJtZLacQ/tAZjxq9bmef6NnQlcPJNXk/RjRK8MFbetqt/uNzJbZCD+GGNPnH88JN82T3jsj7Ex5QwvW2wE7Xvs1w+WBwk/WCoTZ6z1ttoF8b3wXyr+whvOEUMgOe5YOxggGRzC57AOFuoQae/i8=
+	t=1740691983; cv=none; b=U8hB2olktaBvJNGi5KHKMgNkFc4/7WfRU8/jyBf8HkPt/U5MUuN1xOrQiTw9P5cEP+Orhg3/ls67REtYgMC3ryyGZzGhXfaA1Nl6rJBv4w0wiLfp5xts5rzOwxuSgWJQecDBwzGk8HEkg4wNBCxbdR9S2JOostlvjJPG4OM3Lk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740691812; c=relaxed/simple;
-	bh=aBIsue5zuSFDdPtGkH1BrG+z8sCiyZ4OfesmbqTq3z0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Od3KzC0/7gql0zOqAEJ0PgIoc47YQ4xIEGLSP5poz+jnnGMW8E9vdVebUqnXMC+bojLPihI0JSpfSbPYAYKDlY5yynA0ikAeOy3x0oVxOPnl2aoYWqNXR08PK6kpMGKUoCr15oj8LdoaONVPIM+OgHZ/e7AqrI2V+NNif1lziVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lreVmJ5F; arc=none smtp.client-ip=209.85.222.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7c0e3688f92so28115185a.1;
-        Thu, 27 Feb 2025 13:30:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740691809; x=1741296609; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VlS3JSHpI5pHJwFBGOh2HyZd1Zh+M5HnpWiAkan9ed8=;
-        b=lreVmJ5FfjoGodbAkgQ/InUcUij6bs6p2ytJTuP+jibqdRqVRSosbmX1WhtGkPKcWX
-         6P/1tN8rxZMQ0iqqxHFVQxbumg0bVvdgZYMaXuf7116fZKhlrlkZebo3/vxgaadYzK9G
-         w8t+7A12vuA5VYHWY21Ud9Ao9LBDaWJJuDPrl0yBYFGaQOMpgYuRrGVv1UBM4jq0rWST
-         lV8CAgHdESISVD2GeI5lu/UikSUSvVUD/TmPcW29dIP00IWfrbGCknRBNJRpCPOCDqqk
-         zpxCcP4cC2Ee3qBxB804tLE6HSGnYlRZhi3exPWTsCmPPW21B7+2BaF1EJQ/b98yTKav
-         0+UA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740691809; x=1741296609;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VlS3JSHpI5pHJwFBGOh2HyZd1Zh+M5HnpWiAkan9ed8=;
-        b=bTE+4yyzxFRNAEyvejHLAmFL5mc+R2yz8FttE0syn2+XEE52lqfrkNGp/4hn0UTvec
-         ui4dvWeWKwoxb/YjpuOmCpU3VHzdcoXcMxNwVGOVD/R0fi+LUYRUm3siLX2bDn63IzJp
-         cEyutAhxyTIetHNivcwNAoClm/xBoNVipTbE/te3cMoa49mtB0OWGPc52ZsGhXn7dIU+
-         KgCoqCE1NLgvGD8/0QWbZcXxS524AwO1wP1Gn9NlZQd3CbrJBaB5xbyfvGOrSWZ0c1NG
-         wttXCWVDD2yDWsIqBqCHpi0IRbs1VzxhSt2K9mq61h6Gx/dj8B0PS63CKkMFvqDLe8fz
-         A4Mg==
-X-Forwarded-Encrypted: i=1; AJvYcCUdPC06Ax9eV03s77m0UogBnu8wC3z5EO+kZZprjP5JiRtabHGSsS7/IJTfq2zW0rs1McIPb+eOQpf0RqIj@vger.kernel.org, AJvYcCVemVvQlk0Y3JLvk6BCKWNjZOYE7hVcLlrZj3/V8q/+R2RyUdpdsGuWzZKwFPiWY9C34kMptPS3NcsM@vger.kernel.org, AJvYcCXkxnWO27moPujX2s+SRRD0KoUn+sOFj5FTTjMugBF5KrgX0TyF9RDqFejlGFXLBmW8LLv4zCth2dyb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXCkPJeueXzc7rrqmLdKMAkgkHOASbmJBgud/TIqVSqMroIsfY
-	OWO32l8k5FCzcocWNmSXHjXoNgrfm7/SmwRhCBoI4+1R+mpDWUfj
-X-Gm-Gg: ASbGncvb74DOQuDsS9VpN2O3FB4jyRYjJC1GcqL55dhlmWSA2YfU6yHTbAE8FXmbTGL
-	9dX6mNSz/pr7SfBUxMpRMiBqixTVZa8VF+5rzNpMKQxHqX1Z5PSazN1NcMxF9z7SJG6xYNfwjKM
-	TDVK4YowPoQa4nxrHPqKwu3wv0ElThyICIdkJR5l46L1AWUdhn9Xe5R28vEBJMlPl+CHe79m7S8
-	HDLyqRGkZDGpfOd6TNsu3Mjn7gWiaJrjS3f22x85bEsMZOLokVCwkFq64trs2WE/GggB/fmhBvW
-	QJgVH+OtJ++lPtv8jrjfCqgFM95jF0JjSeetNjxJQ/BPxN0=
-X-Google-Smtp-Source: AGHT+IE2zW29zbUhd4JanqPdsbSePwmtscfZpisxuK2vZRZJO2vqLJws6sLgRJpbvC8HDMqDMtzTSA==
-X-Received: by 2002:a05:620a:4e6:b0:7c3:9ce6:3fa6 with SMTP id af79cd13be357-7c39ce65a8fmr29777885a.10.1740691809108;
-        Thu, 27 Feb 2025 13:30:09 -0800 (PST)
-Received: from JSANTO12-L01.ad.analog.com ([191.255.131.70])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e897634904sm14179316d6.19.2025.02.27.13.30.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Feb 2025 13:30:08 -0800 (PST)
-Date: Thu, 27 Feb 2025 18:30:04 -0300
-From: Jonathan Santos <jonath4nns@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com,
-	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
-	dlechner@baylibre.com
-Subject: Re: [PATCH RESEND v3 03/17] dt-bindings: iio: adc: ad7768-1: add
- trigger-sources property
-Message-ID: <Z8DZXAivPexoPJkN@JSANTO12-L01.ad.analog.com>
-Reply-To: 20250213-sympathy-suspend-2c414b383195@spud.smtp.subspace.kernel.org
-References: <cover.1739368121.git.Jonathan.Santos@analog.com>
- <4136b5259df75221fc314bcd4a57ecaeeab41a45.1739368121.git.Jonathan.Santos@analog.com>
- <20250213-sympathy-suspend-2c414b383195@spud>
+	s=arc-20240116; t=1740691983; c=relaxed/simple;
+	bh=zDFtsWgi7vJw/z4QjqAL8vfoG+KVI4FTjtLprtAEssU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=F8Dj1k6/KE+ukhKaoFvSoOetWAx+aivWz41EAI3Hh9DYw5y9wLbmANzCcUyVw2KuVQDcRcda7J9Jlftrqve2p5lPWkPl09peRyoWeUQC5cdxmdXYWmtsfMS2YFKgq2hlCyOoO6QHicR1W6d860LSGgBieem1rDqjXEfUjERot8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=xkI1UyGl; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id D6B0A2C04CE;
+	Fri, 28 Feb 2025 10:32:50 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1740691970;
+	bh=+mRI7AEmzMx7gATbp4THP8aY4eXcjoUMqWC7MV2BTdU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=xkI1UyGl2ng6amfCNQ6kuk5uEGQwsskUmHRtqZTLOyf0BOHkyIO6Kd5YCevzUo3ns
+	 B2Iq0/lSwPITNeHj9S5B28tmXulM1HdbJDj2tyRBTaazL6u6gyShEg680kQDY1qqsx
+	 rNLARVWx+crDMUsiZ9Cl2Sd9l+gAHZR9zIWFOTOEvva+W+uAacDQbH2MfAqq5/wkys
+	 7+gKK0zdzxYujva8vDO+PTDgmLfPtPoKIgIopZNC9yeRdBwS47bqc+gnnXhL4blpTn
+	 cYzZvZPrzJc1tLXd/VfVgF3z0qI4RSn7mCeuSOR2H47QwcIG+WdzQVBzvk1jTAiFs2
+	 fs06lYQCOvAxw==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B67c0da020000>; Fri, 28 Feb 2025 10:32:50 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id A93D813ED4A;
+	Fri, 28 Feb 2025 10:32:50 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id A5D58280AFD; Fri, 28 Feb 2025 10:32:50 +1300 (NZDT)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	tsbogend@alpha.franken.de,
+	andrew@lunn.ch,
+	hkallweit1@gmail.com,
+	linux@armlinux.org.uk,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	sander@svanheule.net,
+	markus.stockhausen@gmx.de
+Cc: devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH net-next v8 0/2] RTL9300 MDIO driver
+Date: Fri, 28 Feb 2025 10:32:46 +1300
+Message-ID: <20250227213248.2010986-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250213-sympathy-suspend-2c414b383195@spud>
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=ccpxrWDM c=1 sm=1 tr=0 ts=67c0da02 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=T2h4t0Lz3GQA:10 a=H2aqgZpJBgBZoEMRn60A:9 a=3ZKOabzyN94A:10 a=zZCYzV9kfG8A:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-On 02/13, Conor Dooley wrote:
-> On Wed, Feb 12, 2025 at 03:16:16PM -0300, Jonathan Santos wrote:
-> > In addition to GPIO synchronization, The AD7768-1 also supports
-> > synchronization over SPI, which use is recommended when the GPIO
-> > cannot provide a pulse synchronous with the base MCLK signal. It
-> > consists of looping back the SYNC_OUT to the SYNC_IN pin and send
-> > a command via SPI to trigger the synchronization.
-> > 
-> > Add a new trigger-sources property to enable synchronization over SPI
-> > and future multiple devices support. This property references the
-> > main device (or trigger provider) responsible for generating the
-> > SYNC_OUT pulse to drive the SYNC_IN of device.
-> > 
-> > While at it, add description to the interrupts property.
-> > 
-> > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> > ---
-> > v3 Changes:
-> > * Fixed dt-bindings errors.
-> > * Trigger-source is set as an alternative to sync-in-gpios, so we
-> >   don't break the previous ABI.
-> > * increased maxItems from trigger-sources to 2.
-> > 
-> > v2 Changes:
-> > * Patch added as replacement for adi,sync-in-spi patch.
-> > * addressed the request for a description to interrupts property.
-> > ---
-> >  .../bindings/iio/adc/adi,ad7768-1.yaml        | 28 +++++++++++++++++--
-> >  1 file changed, 25 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> > index 3ce59d4d065f..4bcc9e20fab9 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> > @@ -26,7 +26,19 @@ properties:
-> >    clock-names:
-> >      const: mclk
-> >  
-> > +  trigger-sources:
-> > +    description:
-> > +      Specifies the device responsible for driving the synchronization pin,
-> > +      as an alternative to adi,sync-in-gpios. If the own device node is
-> > +      referenced, The synchronization over SPI is enabled and the SYNC_OUT
-> > +      output will drive the SYNC_IN pin.
-> 
-> Maybe a silly question, but why is self-reference needed here?
-> sync-in-gpios is a required property at present, so why can't you
-> operate under the assumption that neither the trigger-sources when
-> neither are present? Is it because only one of the sources could be
-> external and one internal, or there could be either one or two internal
-> sources? Self-referencing properties always feel like a bit of a
-> mistake.
-> 
-We have one internal synchronization source and two external ones.
-The internal is when /SYNC_OUT drives /SYNC_IN (in this case with self
-referencing). The external sources include using a GPIO to drive the 
-/SYNC_IN (sync-in-gpio case) or using an external /SYNC_OUT, the last one
-is described in the datasheet for multi-devices setup.
+This series adds a driver for the MDIO controller on the RTL9300 family
+of devices. The controller is a little unique in that we can't access the=
+ SMI
+interfaces directly. This means we need to use the hardware description f=
+rom
+the DTS to compute a mapping of switch port to mdio bus/address.
 
-The trigger-sources property is inteded to indicate wheter the /SYNC_OUT
-signal originates from within the device or from another source. currently
-we are only handling the internal case. We are not sure yet how to handle
-the external sources.
+The dt-bindings have been applied to net-next.
 
-> > +    maxItems: 2
-> > +
-> >    interrupts:
-> > +    description:
-> > +      Specifies the interrupt line associated with the ADC. This refers
-> > +      to the DRDY (Data Ready) pin, which signals when conversion results are
-> > +      available.
-> >      maxItems: 1
-> >  
-> >    '#address-cells':
-> > @@ -57,6 +69,9 @@ properties:
-> >    "#io-channel-cells":
-> >      const: 1
-> >  
-> > +  "#trigger-source-cells":
-> > +    const: 0
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -65,7 +80,6 @@ required:
-> >    - vref-supply
-> >    - spi-cpol
-> >    - spi-cpha
-> > -  - adi,sync-in-gpios
-> >  
-> >  patternProperties:
-> >    "^channel@([0-9]|1[0-5])$":
-> > @@ -89,6 +103,13 @@ patternProperties:
-> >  allOf:
-> >    - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> >  
-> > +  - oneOf:
-> > +      - required:
-> > +          - trigger-sources
-> > +          - "#trigger-source-cells"
-> > +      - required:
-> > +          - adi,sync-in-gpios
-> > +
-> >  unevaluatedProperties: false
-> >  
-> >  examples:
-> > @@ -99,7 +120,7 @@ examples:
-> >          #address-cells = <1>;
-> >          #size-cells = <0>;
-> >  
-> > -        adc@0 {
-> > +        adc0: adc@0 {
-> >              compatible = "adi,ad7768-1";
-> >              reg = <0>;
-> >              spi-max-frequency = <2000000>;
-> > @@ -108,7 +129,8 @@ examples:
-> >              vref-supply = <&adc_vref>;
-> >              interrupts = <25 IRQ_TYPE_EDGE_RISING>;
-> >              interrupt-parent = <&gpio>;
-> > -            adi,sync-in-gpios = <&gpio 22 GPIO_ACTIVE_LOW>;
-> > +            trigger-sources = <&adc0 0>;
-> > +            #trigger-source-cells = <0>;
-> >              reset-gpios = <&gpio 27 GPIO_ACTIVE_LOW>;
-> >              clocks = <&ad7768_mclk>;
-> >              clock-names = "mclk";
-> > -- 
-> > 2.34.1
-> > 
+I've dropped a patch that added PHYs to the cameo-rtl9302c board as I kno=
+w that
+will need updating once some of the other in-flight changes make it into
+linux-mips.
 
+Chris Packham (2):
+  net: mdio: Add RTL9300 MDIO driver
+  mips: dts: realtek: Add MDIO controller
+
+ arch/mips/boot/dts/realtek/rtl930x.dtsi |  33 ++
+ drivers/net/mdio/Kconfig                |   7 +
+ drivers/net/mdio/Makefile               |   1 +
+ drivers/net/mdio/mdio-realtek-rtl9300.c | 475 ++++++++++++++++++++++++
+ 4 files changed, 516 insertions(+)
+ create mode 100644 drivers/net/mdio/mdio-realtek-rtl9300.c
+
+--=20
+2.48.1
 
 
