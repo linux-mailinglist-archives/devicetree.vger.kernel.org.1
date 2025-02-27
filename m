@@ -1,107 +1,120 @@
-Return-Path: <devicetree+bounces-151872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9461A475C2
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 07:03:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E03FA475E0
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 07:17:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 206313B1B51
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 06:03:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0367188564E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 06:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B1C206F0A;
-	Thu, 27 Feb 2025 06:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 717A3200120;
+	Thu, 27 Feb 2025 06:16:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ed4dVYb6"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CMO8HFcs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FAAA2E403;
-	Thu, 27 Feb 2025 06:03:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB131EA65;
+	Thu, 27 Feb 2025 06:16:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740636188; cv=none; b=BmdBPALBkb713R2mbH4VsyeE/qlUeRD7PrJ1esneoF4GvelROcjFfAyYckkzUshcmYRLLKQ1JjwvMF+JWVm6A7MLsKq5CgrfP0Ssw+eIPSJSkuk4jeIo+uiFQR2wIlWACLc/XpWAxP0+kgHE61vFIbZPQNjVR8zGV3GKo0pT4Cs=
+	t=1740637018; cv=none; b=BfsAK6yzawK9qs47XRJMvjxGBenUa+zSFZA9zBkgRpi68ZwMX2xNYcBpnhlkuFGcmSrNOenLIhmH/ybTHpU5H6G/2GhlrMW+WhL4DefnR4GM+dLQ0YrDQ9f4MUGX8CWsbr9w6N6D6F11C1dzx9AUXrwTQDKbQsq3YE9cHrPsKGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740636188; c=relaxed/simple;
-	bh=r0vZRXf74pxRftyAasxwH65UacrUG0HQDtK/8tZW/uU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XpVOm7p/7MJAxNUsQ3I1ec3ybiEedWGnjk2I5Da/lTt/7tZvYnnWAAiys9f/BXBi7HSzv0tp5URDClnTcwFx6/wznRVV8q0DWvE7uQMYeAFXnny7clbrGsYgYK0mx9gG9PY/flLiu7mAmXNxvZzKPfHz7iMkW7EWuU58jyMBGTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ed4dVYb6; arc=none smtp.client-ip=209.85.222.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7c09a30e14dso100986085a.0;
-        Wed, 26 Feb 2025 22:03:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740636184; x=1741240984; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=r0vZRXf74pxRftyAasxwH65UacrUG0HQDtK/8tZW/uU=;
-        b=ed4dVYb6OXU1enmnI35zFzTS/dwIVUfBQohGFoxZa2s9qIk4c9Y0ll8HVZkzB5heiU
-         4Yi8aDZAv2nLXaT0FDCdfJ36YxRGP+pl+BPWebCQ2hi2ErUCLroUheEIMcEEYUTmr9Yb
-         JD0eoYXvSVTAfJGLoy4BVo41fM6NvpkbBRg85eAkhQ9szNet1fBAlWCtitJMhQ9bh2bH
-         Tw9AtVCK0bGbOocg0vETC3Hc3phzw9xgEeq22H0EtseMqziZtfrdrQSf/5foGd0sKfTJ
-         xGUD+WynfjgHZzk/irvjCqkIT1raO1GqBPznjO8qqz7/oU3w+nB0Pqx2gt0H4KHXie7h
-         zVOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740636184; x=1741240984;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=r0vZRXf74pxRftyAasxwH65UacrUG0HQDtK/8tZW/uU=;
-        b=hoiYbIVsS01FXnuuBCeciDF4Bb8Q9xpCUzlRUEQCH5mDrkqzSqKDo4yhICvFN6dQv4
-         fYdhLWmupWvM6Hoq6w8WSG/yDM5WwCIroBosyNVle2iU6yIs5fxNVNHJW6cUYwQTmTnV
-         mlV+UQlyOFRw8pzGb3ybXrd5W764fpzKyBG3e5hvJYaEHicILNAspJfbyaj9FIJG3h9I
-         c02FsGD5yFA0neP1N8kBSn2glM4cwAhho3FYNkUVEQsMgxd4ms7VjfkGb411JQC1wC0V
-         ayEgc/6G/2EDUR0s/47A7CnaKhlSz9xGmLj8/EyVasGvjn8yN65fPcLrFFqaGRFXYsIc
-         bF5A==
-X-Forwarded-Encrypted: i=1; AJvYcCUdKNBC5tXE0w0GgwjADgyjZ34A/J1RtgGJyfNhEmAHzp3e10tJHrwISyw4uTBrlnz9YHIyhgsloRmh@vger.kernel.org, AJvYcCUhw9GKIpBZS11yTSJuU/j9w0dqq89b6PpwRJwMB/tVr8mQehlq0Xw6PNsP2a1ZX1S3x6g3pjdlxk3iDJl55A==@vger.kernel.org, AJvYcCVfPkjLSbwgRlaBnojbTrIqVs50TPjdUBh39Lj5BK1/2p9vJsRuVO2FgGu/IZswQkqpNJr0oREsURn9c20m@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcCgL7IHdxp09CA1VMEaPFQGGk6RDHNGMo+lWnTEh95bzD0kHE
-	vInSWaAGgEHiyLhlTRl1voNMWvBb7AmwwMW/LExUCBtLEz24W32vkz9g71HXHAXLZfUfgMNMeAq
-	qswKr8FxWfdUwcFRkWe56Dic8gbS0oCupIic=
-X-Gm-Gg: ASbGncu4LCoVX2OLcLedYpQmf8e2fUh1s6jS+c5APZCTt4ZKwGrKL2WskV0qIGYSRM5
-	Aw15AnjN2paKh2yJQvDBrrv1dg0QzxIR+mQ2P1UdZlv731B4Zrfc8LIcdB+5RhSfGvH0KgdKPVC
-	uNYkDBeq2s/jznlRPC7Lmy/btB95I09VmXKiiaeYdB
-X-Google-Smtp-Source: AGHT+IG8TsJgh1LuuoWgmUmPf+1QE7q2pXs82GLabNXHK14+3oHihBWmdm6+6UHwIiOTggTv4y1kdXbJflqaFg7Ef0s=
-X-Received: by 2002:a05:6214:4102:b0:6df:99f7:a616 with SMTP id
- 6a1803df08f44-6e87ab143bemr146206556d6.2.1740636184327; Wed, 26 Feb 2025
- 22:03:04 -0800 (PST)
+	s=arc-20240116; t=1740637018; c=relaxed/simple;
+	bh=VOygxrRuQi0MuwwrjmEfkbNUSuc27WpWl959Ony6xE8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=H5kUacuRFDeKu/2Ihz8nwKb/VOca0H2F3t8/84+WEbo7Nn3l5pWR+yLRNybYt5m5jlCRZY7nvYRrcyGJHRbPLKUw2CkqYo7+frTnGjhADBuHlPEE2w7IP3mRWrvglsqCqhrTjrVbq8H4ad/r8V8z4iCJiRclIpIsRkIh1dvrj0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CMO8HFcs; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51R6GmwR1771632
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Thu, 27 Feb 2025 00:16:48 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1740637008;
+	bh=AtiE7jmXgdQuBTp//fQBjeoSIa2kWNKuBTEAPBRs2QA=;
+	h=From:To:CC:Subject:Date;
+	b=CMO8HFcszCsgkK2Te9V+JopO5Flgd/AUpem1gtxpsO3vnLYXXDkTFEj9Z1B6AMY5I
+	 upZlFOYFfLs4Gcj/f+XMG531OtEeR0mKDQuGVLexYjuH2zikEz/KwBje7Gp5qJY8PB
+	 8NQNFMI/VkUriQcSGruwnXxlxOV9eEblJP9hMgaA=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51R6Gm67017400;
+	Thu, 27 Feb 2025 00:16:48 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
+ Feb 2025 00:16:48 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 27 Feb 2025 00:16:48 -0600
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.113])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51R6GiYa034038;
+	Thu, 27 Feb 2025 00:16:44 -0600
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <j-choudhary@ti.com>,
+        <rogerq@kernel.org>
+CC: <stable@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j784s4-j742s2-main-common: Fix serdes_ln_ctrl reg-masks
+Date: Thu, 27 Feb 2025 11:46:43 +0530
+Message-ID: <20250227061643.144026-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250226-expressatt-tsens-v3-0-bbf898dbec52@gmail.com>
- <20250226-expressatt-tsens-v3-2-bbf898dbec52@gmail.com> <jt4o4btmvfxorguh24yqr4mxfy64o47h5uql4swtveqxlo4q2e@2ozfhduyvvst>
-In-Reply-To: <jt4o4btmvfxorguh24yqr4mxfy64o47h5uql4swtveqxlo4q2e@2ozfhduyvvst>
-From: Rudraksha Gupta <guptarud@gmail.com>
-Date: Thu, 27 Feb 2025 06:02:27 +0000
-X-Gm-Features: AQ5f1Jq7darmDqy2L1_11Pm2Q3wEtuLsiUyv0SFdgWsiHcMo3DiPCnwJIFMM8BY
-Message-ID: <CABhZbsXZXmVEu1zGyGPwY=v2hdODzRyPPybDhFqqj_2N0MYS2Q@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] ARM: dts: qcom: msm8960: Add tsens
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, wctrl@proton.me
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
->
-> I'd say, this is probably the most unusal commit message message that
-> I've seen.
->
-> Nevertheless,
->
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->
+Commit under Fixes added the 'idle-states' property for SERDES4 lane muxing
+without defining the corresponding register offsets and masks for it in the
+'mux-reg-masks' property within the 'serdes_ln_ctrl' node.
 
-I agree. Please clarify what you mean by "Which values?" in v2. I've
-interpreted that comment as "list out the changes I made when copying
-the relevant nodes from apq8064".
+Fix this.
 
-There will likely be more comments by others, so I'll change the
-commit message to match how you would like me to word it. Thanks for
-your comments thus far.
+Fixes: 7287d423f138 ("arm64: dts: ti: k3-j784s4-main: Add system controller and SERDES lane mux")
+Cc: stable@vger.kernel.org
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+---
+
+Hello,
+
+This patch is based on commit
+dd83757f6e68 Merge tag 'bcachefs-2025-02-26' of git://evilpiepirate.org/bcachefs
+of the master branch of Mainline Linux.
+
+Regards,
+Siddharth.
+
+ arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+index 83bbf94b58d1..a5fefafcba74 100644
+--- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+@@ -84,7 +84,9 @@ serdes_ln_ctrl: mux-controller@4080 {
+ 					<0x10 0x3>, <0x14 0x3>, /* SERDES1 lane0/1 select */
+ 					<0x18 0x3>, <0x1c 0x3>, /* SERDES1 lane2/3 select */
+ 					<0x20 0x3>, <0x24 0x3>, /* SERDES2 lane0/1 select */
+-					<0x28 0x3>, <0x2c 0x3>; /* SERDES2 lane2/3 select */
++					<0x28 0x3>, <0x2c 0x3>, /* SERDES2 lane2/3 select */
++					<0x30 0x3>, <0x34 0x3>, /* SERDES4 lane0/1 select */
++					<0x38 0x3>, <0x3c 0x3>; /* SERDES4 lane2/3 select */
+ 			idle-states = <J784S4_SERDES0_LANE0_PCIE1_LANE0>,
+ 				      <J784S4_SERDES0_LANE1_PCIE1_LANE1>,
+ 				      <J784S4_SERDES0_LANE2_IP3_UNUSED>,
+-- 
+2.34.1
+
 
