@@ -1,112 +1,132 @@
-Return-Path: <devicetree+bounces-151917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCC7FA477EF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:37:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 525D8A47801
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:39:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53640188AB0F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 08:37:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13B241885162
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 08:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDFCD224B05;
-	Thu, 27 Feb 2025 08:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84BF3225408;
+	Thu, 27 Feb 2025 08:39:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mRkxdmgo"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="473uiRl9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D39223715;
-	Thu, 27 Feb 2025 08:37:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 919B613A3F2;
+	Thu, 27 Feb 2025 08:39:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740645425; cv=none; b=OG6QmdFelcE6ZHGXqy/CuRa+VQJLV95rfaPRqZOKL9DDFsz45NtL5L6o7Z7FmjewDXVBxkgiewneHCbmBrUFD6tOQ/VvdqdAyWekxISGn1ujXgsgZn2cZsjHRQ6uGLa+Sd1bOErHeuf/3cA/bMgZEA+x/64ZArEwTWr+9pPi4Ps=
+	t=1740645589; cv=none; b=MU/9IDGT9G22KrRb3qAprJM0Bo9LmCMPbDXJ2N+XVgyIDvSiFGPKkcQH5TafIQ5Uh5oOgs0wGgbZU3KbAyZfdDQTEb7dxOa118iHUDxAucu+62ArtqtbVgMAGkVIxki3Z0jtzOxczGAY+2hPYpwmVXTPYrss7hJCLwfJks3e47U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740645425; c=relaxed/simple;
-	bh=nRbj/Wkfu4NpdGGUja9RSPwp1X8dZdVwrbBMJ/2V0wM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mhqazh9M7j9FRI2rGT+32HN0mRt1XglRK3vCYhBhcA7P2+vnSm2Li0Ftoq9I1wSN80tSi441w7rk/TcfFzh91eaD+cb88/Z7qVk/l0CmX3ASJjNXW7NcwttNFnmP0xEy/h3VamLfYUf2JerbkSwfTN4U1hcUltxI263dA7yIEpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mRkxdmgo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA9A9C4CEDD;
-	Thu, 27 Feb 2025 08:37:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740645425;
-	bh=nRbj/Wkfu4NpdGGUja9RSPwp1X8dZdVwrbBMJ/2V0wM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mRkxdmgokJlBe27n3RIU7ojbt+6jpjnxlL94eKr6TcvXAyZXXYLS+rBDbVJVjv5BR
-	 MZB6qyjZyrvjqgzO1hlFGzXr/ZK6e8Zj7Kx/AmDypMr3NuJOiPYeFSCJDJBtL1rAKi
-	 hU6iqYEbfpEh/YnEyctlqDgGjTODN3TYzh/YFVfimCs1ECvUBd6RA2+QbPpAuPtaOV
-	 LcwHnGjmBAtamEYnvRcabR4R+9O/oZM1rUOm4EFoU99TPGg9E03ouiJfb0FYqe580S
-	 2BQWn7cwGorXReTMdyhVlMgOiAVab+nE6XCa2lpFYoYQeRhl0oYSsURKDKlg2PBnTE
-	 mYXL0AK8kNe1Q==
-Date: Thu, 27 Feb 2025 09:37:02 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Felix Fietkau <nbd@nbd.name>, Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Chester A. Unal" <chester.a.unal@arinc9.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	upstream@airoha.com, Sayantan Nandy <sayantan.nandy@airoha.com>
-Subject: Re: [PATCH net-next v7 13/15] net: airoha: Introduce flowtable
- offload support
-Message-ID: <Z8AkLpF1svgNfXNu@lore-desk>
-References: <20250224-airoha-en7581-flowtable-offload-v7-0-b4a22ad8364e@kernel.org>
- <20250224-airoha-en7581-flowtable-offload-v7-13-b4a22ad8364e@kernel.org>
- <20250226194310.03398da0@kernel.org>
+	s=arc-20240116; t=1740645589; c=relaxed/simple;
+	bh=EP8zBcr2BvDOfGdaOTg2Ci1XdII8Fy1NWPqurrLMNQ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=f66yqA3/+IwQBOhueNOq2Mbna4U3ajiWUqUtzpXigeogj71GKu8M3adAKR0KRuDap7e64zyoUawzOt/O/Yy3RBPKQxBxqsegMQuu14bmG+wVB/Taa7FEeBMoHcQ8gIeC3dkuWPdCVtQrU8kWLOBpr9bnSWjM1E0e1g1ALcLQr9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=473uiRl9; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51R3i9mS022215;
+	Thu, 27 Feb 2025 09:39:34 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	jOxsqz5lmxXPH64l2epflbTQhqz10HA2W4ktSeXgbXE=; b=473uiRl9Y1yCMnX3
+	DofNQhz/bYfvPlQ3IhdHea3NbcOFdIxBmZPRVlvDKdxrqUBU6FKRhvKVKDW0OIJA
+	4YAzwEHYTfZ2KXhUK1FtpKyIdXqhIlnCA2lz5seH+5Kk6e7bsZ2NV+ncYeIjph8F
+	5bIytUs1ivYqZwML4rOIFTVJ+JFNoLjE09uPLTpDzUK2Y8RQPZVuTFFoNMFHVbq/
+	MbX+CaODUh15mZdxLZ8cvtK5ObMiNZXmVNHfqW/8ZFw9Fm1heGoCI2dKpvjkUS12
+	ddnuOTYcj69xOhOUMW2eh5gNtHeOFWlYM20e4Nb8QFOMaT9JE46TMw9tfnKlIVqs
+	6aei3g==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 451psrhd2k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 27 Feb 2025 09:39:34 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 66C5840063;
+	Thu, 27 Feb 2025 09:38:30 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7426D37F76F;
+	Thu, 27 Feb 2025 09:37:53 +0100 (CET)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 27 Feb
+ 2025 09:37:52 +0100
+Message-ID: <59e547fd-8301-4757-9343-8919f5625d0e@foss.st.com>
+Date: Thu, 27 Feb 2025 09:37:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3EJw5ixjEJCaV9I4"
-Content-Disposition: inline
-In-Reply-To: <20250226194310.03398da0@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] ARM: dts: stm32: add push button to stm32f746
+ Discovery board
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        <linux-kernel@vger.kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob
+ Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20250217114332.1098482-1-dario.binacchi@amarulasolutions.com>
+ <20250217114332.1098482-2-dario.binacchi@amarulasolutions.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20250217114332.1098482-2-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-27_04,2025-02-26_01,2024-11-22_01
 
 
---3EJw5ixjEJCaV9I4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-> On Mon, 24 Feb 2025 12:25:33 +0100 Lorenzo Bianconi wrote:
-> > +	foe_size =3D PPE_NUM_ENTRIES * sizeof(struct airoha_foe_entry);
-> > +	ppe->foe =3D dmam_alloc_coherent(eth->dev, foe_size, &ppe->foe_dma,
-> > +				       GFP_KERNEL | __GFP_ZERO);
->=20
-> dmam_alloc_coherent() always zeros the memory, the GFP_ZERO is not necess=
-ary
+On 2/17/25 12:43, Dario Binacchi wrote:
+> Add node for user push button.
+> 
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> ---
+> 
+>   arch/arm/boot/dts/st/stm32f746-disco.dts | 10 ++++++++++
+>   1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/st/stm32f746-disco.dts b/arch/arm/boot/dts/st/stm32f746-disco.dts
+> index 8bdd10644bf1..b57dbdce2f40 100644
+> --- a/arch/arm/boot/dts/st/stm32f746-disco.dts
+> +++ b/arch/arm/boot/dts/st/stm32f746-disco.dts
+> @@ -86,6 +86,16 @@ led-usr {
+>   		};
+>   	};
+>   
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		autorepeat;
+> +		button-0 {
+> +			label = "User";
+> +			linux,code = <KEY_HOME>;
+> +			gpios = <&gpioi 11 GPIO_ACTIVE_HIGH>;
+> +		};
+> +	};
+> +
+>   	usbotg_hs_phy: usb-phy {
+>   		#phy-cells = <0>;
+>   		compatible = "usb-nop-xceiv";
 
-ack, I will fix it.
+Series applied on stm32-next.
 
-Regards,
-Lorenzo
-
---3EJw5ixjEJCaV9I4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ8AkLgAKCRA6cBh0uS2t
-rHkvAQDr0fPTwe5MsGWTZebtC+cvgeqIcwk+UMbKIk75G9QRHQEAyMgTUip42VH/
-4sD9pimv2XO4Yc7c3UHDupHqbjzpkQw=
-=h8X6
------END PGP SIGNATURE-----
-
---3EJw5ixjEJCaV9I4--
+thanks
+Alex
 
