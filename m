@@ -1,48 +1,57 @@
-Return-Path: <devicetree+bounces-151962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6055A479C2
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:05:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C2FA479B6
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:03:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 877C216C6A6
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 10:05:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D47A188FB4C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 10:04:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A27322A4D5;
-	Thu, 27 Feb 2025 10:04:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D292225793;
+	Thu, 27 Feb 2025 10:03:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CCF821B9EE;
-	Thu, 27 Feb 2025 10:04:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6264A1E833A;
+	Thu, 27 Feb 2025 10:03:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740650684; cv=none; b=nSFQK9QTggNbrmjcoCs9HGpzvmVbYuvY/1VneZmUPOQN4ZTq4GKGQK1lUsRDrSQjkgXVDEorrqnFRv5fDANrSjdEwkRwJV01gXj0+CFZoxB2LzK9UFq2hGds4qGzmQpxn8a0mZC8knJPGstMFKJT3pHZU1nACNzQ/YzIM7/PQw0=
+	t=1740650633; cv=none; b=ikmWABPmDLBAw7f9BXUd/nXGKj9ymixjY1Yhs7KpbVC3LzNFEMpobTbXlekFwfy5Ld9BRT+S5Jig9Vcesftub3+tRNlD4CTr0mcE+2dpGZEi+PWtb8mY/i0Qj91wIuQ+MI4z1rpONTjy+tRry5xLQq0h6S//rx0PQRHgAcHVwJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740650684; c=relaxed/simple;
-	bh=cuAnZJrmKQ+otBs+gYixXb6DpO7Z6ef3tS3CsIpqqQo=;
+	s=arc-20240116; t=1740650633; c=relaxed/simple;
+	bh=ADEThMSry5ykbyZHq7Sgt5uZWEbC/3nt8AD4Dy+XktM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n5Uwu8VW1L1mKrbQ3d2sxR7iFuYCuMeMi2crDYHVfPeGw7ds9zHhNQKLlDeNmNJnpeKEw75T0IrlPUeWSYwrv3igMOiKe3ewLxVZJzFezwbn63l0GjXuBXcnLR3BiKxtUMpfXbUY9Ah/4meiA/cCaOV5GUXcaCHj/7OL3W+ABes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
-Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
-	id 1tnakv-0007xg-00; Thu, 27 Feb 2025 11:04:37 +0100
-Received: by alpha.franken.de (Postfix, from userid 1000)
-	id C0CCCC043C; Thu, 27 Feb 2025 11:03:32 +0100 (CET)
-Date: Thu, 27 Feb 2025 11:03:32 +0100
-From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc: linux-mips@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, harveyhuntnexus@gmail.com,
-	devicetree@vger.kernel.org, yangshiji66@outlook.com,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] mips: dts: ralink: mt7628a: update system controller
- node and its consumers
-Message-ID: <Z8A4dGWgGn39S0Ek@alpha.franken.de>
-References: <20250224053411.924015-1-sergio.paracuellos@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VBh2TBB1kkEMNBKZD1dsVCUZKK53Q2AA4wViMtotOA2Y8qyk/8tRzX+hH882vrzN8zB4pX8tWa7juGLBBVI22ELzDRmUgRVJt1a1k/i+YJTxp+Gld8Bms7SVwqv5DUE0DOC0W4dONbO2kBAShJ20yr0UG5dJp45rNRNjo2R0TyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4C4512BCC;
+	Thu, 27 Feb 2025 02:04:07 -0800 (PST)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5927E3F673;
+	Thu, 27 Feb 2025 02:03:49 -0800 (PST)
+Date: Thu, 27 Feb 2025 10:03:46 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Vincenzo Frascino <vincenzo.frascino@arm.com>
+Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jessica Clarke <jrtc27@jrtc27.com>
+Subject: Re: [PATCH v6 06/10] perf: arm_pmuv3: Add support for ARM Rainier PMU
+Message-ID: <Z8A4gu-TV-XqbdOY@bogus>
+References: <20250220180427.3382482-1-vincenzo.frascino@arm.com>
+ <20250220180427.3382482-7-vincenzo.frascino@arm.com>
+ <Z77tD1VuD_W0CK5B@bogus>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,41 +60,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250224053411.924015-1-sergio.paracuellos@gmail.com>
+In-Reply-To: <Z77tD1VuD_W0CK5B@bogus>
 
-On Mon, Feb 24, 2025 at 06:34:11AM +0100, Sergio Paracuellos wrote:
-> Current MT7628A device tree file system controller node is wrong since it is
-> not matching bindings. Hence, update it to match current bindings updating
-> it also to use new introduced clock constants.
-> 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> ---
-> Hi Thomas,
-> 
-> This is the missing patch to be applied in the series [0] because of some
-> build errors.
-> 
-> Changes in v4:
-> - update syntax in mail file from /include/ to #include.
-> - Fix build errors in 'usb-phy' node.
-> 
-> Thanks a lot.
-> 
-> Best regards,
->     Sergio Paracuellos
-> 
-> [0]: https://lore.kernel.org/linux-mips/CAMhs-H-8N766PMZMwmV8B3e=65pPZHA4ntnRWDMoqR-U_xULfA@mail.gmail.com/T/#mab23157e03609456bb59d3b5dfc71fe16359a419
-> 
->  .../ralink/gardena_smart_gateway_mt7688.dts   |  2 +-
->  arch/mips/boot/dts/ralink/mt7628a.dtsi        | 40 ++++++++++++-------
->  arch/mips/boot/dts/ralink/omega2p.dts         |  2 +-
->  3 files changed, 27 insertions(+), 17 deletions(-)
+On Wed, Feb 26, 2025 at 10:29:35AM +0000, Sudeep Holla wrote:
+> On Thu, Feb 20, 2025 at 06:04:24PM +0000, Vincenzo Frascino wrote:
+> > Add support for the ARM Rainier CPU core PMU.
+> >
+>
+> I can't take this through Arm SoC unless there is a strong dependency
+> and/or urgency. I can take 05/10. The other option is you can take
+> 05 and 06/10 via Will's perf changes as usual as I they seem quite
+> independent to me.
+>
+> I can take the rest of the patches through Arm SoC tree for next merge
+> window.
+>
 
-applied to mips-next.
+Sorry, even I manage to reply on v6 instead of v7. Please ignore the
+previous email. I will reply on v7 with updated information.
 
-Thomas.
-
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+--
+Regards,
+Sudeep
 
