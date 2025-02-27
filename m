@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-151811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 659B8A47322
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 03:40:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D457A472ED
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 03:34:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CEDE7AD95D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 02:33:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CF8E3A5EFC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 02:34:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBC221BE23F;
-	Thu, 27 Feb 2025 02:25:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BD981C6FE6;
+	Thu, 27 Feb 2025 02:25:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZqFNocb2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W9wANFDo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BBBC1B6D1E
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 02:25:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CCC31BEF9B
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 02:25:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740623122; cv=none; b=SZz1VFQn+HtQDri7sbFUf2th+sxcQgVc/sYDELoVbOrncbqUyYmcnMl9su9VqewYjMoYFFelmZtLEdvIdEcGqtY225lXHGHMxPnNVENYe6higGZ+OnfuozUJ0SVzOthHhBb109LawUqJWqa0SO3RFGEdT9dImyMrK3x2KcM76q8=
+	t=1740623125; cv=none; b=JnCIYZa3Y0ROPyQbioKPYG+KUeIfw3aPLun1UvSTsF2EW9chsygyYNskUlrTNWVgriWjePRR65BY3yXqrfS2P8Eqstv2gDA2raaiVoUPQ44lYRSB6GKFcqAPoyEf5Mmy6uQtok4S3ndKfvoUzkDcUJfppqZjokqOD/ckN4TqPZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740623122; c=relaxed/simple;
-	bh=ydZYZoA0TUi+Gh3S8eUOrsgEJcPFXVh59QDIeik/wpQ=;
+	s=arc-20240116; t=1740623125; c=relaxed/simple;
+	bh=27+bBwIzCM8lHu2v6Fir13MzMlLQU6chggcqKIoU0MI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qd4ryYIA8IHbD6vTUsfpAEcB3R4G7wOcDgadGFfkTfi1rNTmu7WGKIo/Gq1GbXznEAgf+ETaby9g6pTx99WlSFP7kB8YIq23RFxy7wavT6o0wKawUe3FfDVVS92B55ew70tHtYWU+I6l/I/ZFRKP9a9dYl6M+uct4f9UPOUkE1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZqFNocb2; arc=none smtp.client-ip=209.85.167.51
+	 In-Reply-To:To:Cc; b=oq1ZFqX9GjKmVcYqY+5WGDr9WFcIuPKshzmvW1MDXur/m5Yu5alKMcKDTOd2O4dKNQxd+9leQw306V3OYt4ApVLOhBl6IhTDATpSx1U9RfFuJLDD4ZkIH1cJwylhdNZKJAaKRZ/h9AVmm6BAGpaYud22aK3jL0KlZczjlG6joGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W9wANFDo; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-547bcef2f96so444265e87.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 18:25:20 -0800 (PST)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-54527a7270eso392503e87.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 18:25:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740623119; x=1741227919; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1740623121; x=1741227921; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=nwMJpPPmQJzExGwtrw5qRSd6mRYkoPvcGAO5V9qYYKM=;
-        b=ZqFNocb2k5qAzVZmByJuPIFHSjw2eZIPbxvu1rNlAPYMP8hXE4keqpJJ6FuYIFqA1n
-         /nGRl1Kru8avYqAD1/6Nk8WEV97HATzBpzhTJ6Nx5OxxZzDL3EKjLJdXDvXL+hRFgkOP
-         Uxs7YQfM4T+/z6LiCdSom+NPhNts3EXINDA5ke8+cgu6UAUBT6bzoD7xsNvGVrVlbDvM
-         gKGxn0QerWfl+lmR3uuvrOXWzXaKouLGzZL9flQdE1xh32bXpZo/SRJQ9IancZUJx3r8
-         47vx21wDdO+d9zz2VdR0bebTIjTs1YSBUXq4H/PibrJNwEN0ZImn5UYjY8mIviLk8SrM
-         qYhw==
+        bh=xjMPSn3p+kKVaFgGwZAw2jpHs3L/eAAFrrWZof4s+cw=;
+        b=W9wANFDoaAwcnML1oAliVynhMeEWmCo41zXTMNTecu9P2e9v31tLc7AfAiHB8tHBUP
+         MWPmzmjYCsRDeYVodgTIQPBIPE8kruKC14Mi1rLRYMNP7/qr4Tnr3D0KTD1OamTS4koT
+         p10y3jwxzIXuP1wIFijRxg22qPnEmdeZMMkg8NvsSkzB0BYC1Hvbq5VSdsh/EP1JInpN
+         WtjUID2/WohR+S9Bve70nslxRI/LGYufvLWdZq/HS+UAY/mMSSBEkI1W/tjW/zBReJ3N
+         1oeYHETKZDINwXpKpZ3at8tCoeArHHR3fNi4lm6YQEn3ZyrBy7LBtB39y8jAnjCHXjSU
+         1fgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740623119; x=1741227919;
+        d=1e100.net; s=20230601; t=1740623121; x=1741227921;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nwMJpPPmQJzExGwtrw5qRSd6mRYkoPvcGAO5V9qYYKM=;
-        b=L1/CYcQK+0Sg3HTJAI4GNK4jwrSPALtzm6Ho3/B8GL0T0/vOK9pBMs+PmZo2eYE4uQ
-         RfA7ekGbv5FSzbuD7wdCUsAY8pzPFUDHqPxJEgk1VVT3Ou1HOvjugYyMq9qBQTqgNrIN
-         H6SXZnLUN+MK0tBRH4KXju6n6I6ohCmuAAmGDrrFrWaahO5Qp//xN0BS/bLT6w+2RlIo
-         lUJ8VEHx5j1tBUswW/tr9A3HOmrjfaChQJcvIl+0kypz2Z1B2AsuEmCiWBO/hraTj1P1
-         gO1BVjOt0PA7PGXdth0LOvp/yiXIlUoLLaUZkqRCrGYn7QPbXdiHcMoYrKVyxJES1+z1
-         Juuw==
-X-Forwarded-Encrypted: i=1; AJvYcCW/5C9FOpeANgIXwkxGbu1FjkN9rbgnJkGtyrKvMu6Gmwi9wsKgqDyKGGlx0Dyls0e0yFbcCRQVrIRL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1EOoEY9cV0i0YeTJUBniPIEsYowKA5F/FWP8Zon2NsXvCylXQ
-	KXddqgVcz5fwmTg/synzuexDJjKJf0hTQIja63KKpKyuD4hmr73GS1S3b3J3nkM=
-X-Gm-Gg: ASbGncui2x26yxpeRoqOKQswv8VBOx4eQLP6JOF5SLQB0rsw4Z+teg1kyq9X8po1Xzw
-	jlosypNJX86qWLs0EUjsbXRxpVfIac6FcMjFBSZj2tNf6nwY96I1uWzORE1JMWUkUT4QKEyl+70
-	Fdnejjlw7OjEUzfxa0laLdzrxdH/8AtEpYzcCic8BKnwIgTCj23Biw0MKnklX9Xx0zQK30lCKnH
-	81ZM/5tjjLHXDBpmDFOS4TxbkSbGjhlfnrtmQzobtONaLx56T4tdvZ2QACIDMUzrB05mFLYlJAS
-	Qg/P6VwxvVvS22IMb5HETTlbeSqAhNxhTg==
-X-Google-Smtp-Source: AGHT+IFMFzSt2wsG3oOm+5w5wwMdb2DuK5Yp/Au+CFco5T/pzSUdUvjy0J4YD00jtRalqEX70RhAkA==
-X-Received: by 2002:a05:6512:200e:b0:548:794f:f9dd with SMTP id 2adb3069b0e04-548794ffb8cmr4463137e87.10.1740623119107;
-        Wed, 26 Feb 2025 18:25:19 -0800 (PST)
+        bh=xjMPSn3p+kKVaFgGwZAw2jpHs3L/eAAFrrWZof4s+cw=;
+        b=vIOTIyAwII4POd3jHuaalWfUxJNgH5pft5Zu5ZCfXzaUVbKh6SQxMxGzrwMbMElGso
+         F6ykzBBR+lfOvkO6zP79X7M/js8tZ5EoZdOCwBzs9Jo6mrE7uqwAtlneSQQxzbJSPLaY
+         qCXY6qOqyoCA8pda3Uq7PJju6lZezCSCXv033o0jzgza9NVPZsNsVR7ZkZgg3lCuSxGO
+         3HeulfCYJX1wDEJxy3cTHQKZPelwqs+6VGDkxkwVRCTIvBZNPUU7UquTj6YZaIFmvnNm
+         KE9oF3hgDiDbwROhvhYCLhJlKTFB13Mrjar55Mzd4tfUyBXx6LIsXeAQfjBz24OczUGl
+         yr2w==
+X-Forwarded-Encrypted: i=1; AJvYcCUBueG/SDLGyCjRnjVybvMSo2FP7H7vFVbm4UGKWD6l3fBYvRhKtr8w3EMk7RcvoUpKgNLxdi1oLAHj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsdV151w5nJFJUf8K7Lb27BzpHim3eq14OUlj3qTcqdbWwYgGE
+	ZDHjzEWK8CoPR/POIvrYnROBaeRaXo5IKXjwAEQmdxYYvu9LZ0o961/dJzw9tj0=
+X-Gm-Gg: ASbGnctuiF9QdB+xR1WjEcLP/MGPN/K60hLxtr6gr5CVMrs9XYwE2AQXOVk4TRFQ1Lm
+	7GwrT/1fliJgSWEWaFFe5SpdAztCTtQjL2Hrxrzkwbim14QlBLPnfE3Nim9ZmaCqck3bp06Pnow
+	BKwVdgR7VFejjPBt4yFbsdVCAi2rnnE5upXDixB6om0r8L4SmlBS4AzuHhvzmennwpb8q1Tfxi+
+	Rm0DdB2GlUH0rw7qrpA9x/1uMgIb+/go/fw+peVfGXpJGzhWAF8xpIuaIlrQIbYtXoMgdEXz8jI
+	0UxjAi7SCOaxSgm8UuswqoDh7EkwfkrLxA==
+X-Google-Smtp-Source: AGHT+IH77YDGb3SZATx2bSqI54qqDb0dQOMQtl3AYNP1lYyp8xUbecwSvBjawn7myFKJmWOKcAzSAA==
+X-Received: by 2002:a05:6512:3c9c:b0:545:c23:9a9f with SMTP id 2adb3069b0e04-5483926338bmr11394006e87.44.1740623121569;
+        Wed, 26 Feb 2025 18:25:21 -0800 (PST)
 Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549441742a0sm48067e87.5.2025.02.26.18.25.16
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549441742a0sm48067e87.5.2025.02.26.18.25.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Feb 2025 18:25:17 -0800 (PST)
+        Wed, 26 Feb 2025 18:25:20 -0800 (PST)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 27 Feb 2025 04:25:10 +0200
-Subject: [PATCH v3 2/7] drm/msm/mdp4: drop mpd4_lvds_pll_init stub
+Date: Thu, 27 Feb 2025 04:25:11 +0200
+Subject: [PATCH v3 3/7] drm/msm/mdp4: register the LVDS PLL as a clock
+ provider
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250227-fd-mdp4-lvds-v3-2-c983788987ae@linaro.org>
+Message-Id: <20250227-fd-mdp4-lvds-v3-3-c983788987ae@linaro.org>
 References: <20250227-fd-mdp4-lvds-v3-0-c983788987ae@linaro.org>
 In-Reply-To: <20250227-fd-mdp4-lvds-v3-0-c983788987ae@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, 
@@ -100,46 +101,104 @@ Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, 
  Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=983;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3368;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=ydZYZoA0TUi+Gh3S8eUOrsgEJcPFXVh59QDIeik/wpQ=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnv80GyadA2VzNwTHLQ/rRvBiE8jpMBgAfbiyde
- YCGRYQ0O/2JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ7/NBgAKCRCLPIo+Aiko
- 1ZDVB/90aFrmR5KOT95tmB3pWLZEsq87+yhuvUptiF1UJSOURslGc6sVg9ydUx9NCix6I56zEbW
- 3GyGXkGhjaQdfQhmFp7u32GGTj7dl9MzYhy+0vcprVXVPn3wkOfwYoL+ZP8j7EKEO0azkfZxNBo
- APuBMtzFjaX8PRcgo7MeQMyxLv5di8a/xaX5TF/0FE9FPAE3vnL4erAXNQvSqw1i/dUOr6BMqOs
- ysFDUPsAzvwcqlgqBgJav4+a2KJLzJrt2BDDeH+wsQ+b0SJ/koY1jFvs9pQR/VQ73GVc9rsWqjo
- G5DuZIKjsVNaD71Is+vFt/CQYparpNF4JOOIxVg1hnWhc2bD
+ bh=27+bBwIzCM8lHu2v6Fir13MzMlLQU6chggcqKIoU0MI=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnv80Gt/5nSvJtT/vlFx8Una3vhVbTV9fge9Jhj
+ jIZmIOXNPCJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ7/NBgAKCRCLPIo+Aiko
+ 1Zw0B/0X9T9NpQIFhPxEgci4pkI3GQTWUb6qpGsk+NLJ+A1v4NgpUypKdVr6srLGtwcdZp9i23h
+ SfSAwiTWE/idrluzIasJ4sQsQ9f47F5gCpWRexmttiwyxpVcqLDGLcRYAsf3cQ/EgRAX0zV5cvO
+ Kgy5Vk21qsHpeb8IAuDgsMg4Zb+DZUhYt1Eo+Pl2rOGmXdG28FirbFGS30IwPlvlRiCHaMjZwpu
+ 4VBIGuT0UUjf+YG2UL7uIKH56gpgkMQC07+VlNui77Q07EOWZ+bQOX1o5TMu0qctVaLs6M5DcpS
+ zWMcqMFEDrW91UvPDrvkDkmXXnsV/QgCWDnIsVV/BSEJP6Gy
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Drop the !COMMON_CLK stub for mpd4_lvds_pll_init(), the DRM_MSM driver
-depends on COMMON_CLK.
+The LVDS/LCDC controller uses pixel clock coming from the multimedia
+controller (mmcc) rather than using the PLL directly. Stop using LVDS
+PLL directly and register it as a clock provider. Use lcdc_clk as a
+pixel clock for the LCDC.
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h | 7 -------
- 1 file changed, 7 deletions(-)
+ drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h          |  2 +-
+ drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c |  8 +++++++-
+ drivers/gpu/drm/msm/disp/mdp4/mdp4_lvds_pll.c     | 22 +++++++---------------
+ 3 files changed, 15 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-index 94b1ba92785fe55f8ead3bb8a7f998dc24a76f6a..142ccb68b435263f91ba1ab27676e426d43e5d84 100644
+index 142ccb68b435263f91ba1ab27676e426d43e5d84..b8bdc3712c73b14f3547dce3439a895e3d10f193 100644
 --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
 +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-@@ -207,13 +207,6 @@ static inline struct drm_encoder *mdp4_dsi_encoder_init(struct drm_device *dev)
+@@ -207,6 +207,6 @@ static inline struct drm_encoder *mdp4_dsi_encoder_init(struct drm_device *dev)
  }
  #endif
  
--#ifdef CONFIG_COMMON_CLK
- struct clk *mpd4_lvds_pll_init(struct drm_device *dev);
--#else
--static inline struct clk *mpd4_lvds_pll_init(struct drm_device *dev)
--{
--	return ERR_PTR(-ENODEV);
--}
--#endif
+-struct clk *mpd4_lvds_pll_init(struct drm_device *dev);
++int mpd4_lvds_pll_init(struct drm_device *dev);
  
  #endif /* __MDP4_KMS_H__ */
+diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c b/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
+index 8bbc7fb881d599e7d309cc61bda83697fecd253a..db93795916cdaa87ac8e61d3b44c2dadac10fd9e 100644
+--- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
++++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
+@@ -381,7 +381,13 @@ struct drm_encoder *mdp4_lcdc_encoder_init(struct drm_device *dev,
+ 	drm_encoder_helper_add(encoder, &mdp4_lcdc_encoder_helper_funcs);
+ 
+ 	/* TODO: do we need different pll in other cases? */
+-	mdp4_lcdc_encoder->lcdc_clk = mpd4_lvds_pll_init(dev);
++	ret = mpd4_lvds_pll_init(dev);
++	if (ret) {
++		DRM_DEV_ERROR(dev->dev, "failed to register LVDS PLL\n");
++		return ERR_PTR(ret);
++	}
++
++	mdp4_lcdc_encoder->lcdc_clk = devm_clk_get(dev->dev, "lcdc_clk");
+ 	if (IS_ERR(mdp4_lcdc_encoder->lcdc_clk)) {
+ 		DRM_DEV_ERROR(dev->dev, "failed to get lvds_clk\n");
+ 		return ERR_CAST(mdp4_lcdc_encoder->lcdc_clk);
+diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lvds_pll.c b/drivers/gpu/drm/msm/disp/mdp4/mdp4_lvds_pll.c
+index ab8c0c187fb2cd05e26f5019244af15f1b2470c8..cbd154c72e44c848fa65fe01d848879b9f6735fb 100644
+--- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lvds_pll.c
++++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_lvds_pll.c
+@@ -133,29 +133,21 @@ static struct clk_init_data pll_init = {
+ 	.num_parents = ARRAY_SIZE(mpd4_lvds_pll_parents),
+ };
+ 
+-struct clk *mpd4_lvds_pll_init(struct drm_device *dev)
++int mpd4_lvds_pll_init(struct drm_device *dev)
+ {
+ 	struct mdp4_lvds_pll *lvds_pll;
+-	struct clk *clk;
+ 	int ret;
+ 
+ 	lvds_pll = devm_kzalloc(dev->dev, sizeof(*lvds_pll), GFP_KERNEL);
+-	if (!lvds_pll) {
+-		ret = -ENOMEM;
+-		goto fail;
+-	}
++	if (!lvds_pll)
++		return -ENOMEM;
+ 
+ 	lvds_pll->dev = dev;
+ 
+ 	lvds_pll->pll_hw.init = &pll_init;
+-	clk = devm_clk_register(dev->dev, &lvds_pll->pll_hw);
+-	if (IS_ERR(clk)) {
+-		ret = PTR_ERR(clk);
+-		goto fail;
+-	}
++	ret = devm_clk_hw_register(dev->dev, &lvds_pll->pll_hw);
++	if (ret)
++		return ret;
+ 
+-	return clk;
+-
+-fail:
+-	return ERR_PTR(ret);
++	return devm_of_clk_add_hw_provider(dev->dev, of_clk_hw_simple_get, &lvds_pll->pll_hw);
+ }
 
 -- 
 2.39.5
