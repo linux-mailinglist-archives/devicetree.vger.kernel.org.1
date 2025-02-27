@@ -1,258 +1,266 @@
-Return-Path: <devicetree+bounces-151820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 579A0A473A7
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 04:37:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 905A5A4737E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 04:17:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 329ED16BAD8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 03:37:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A33D17555D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 03:16:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A0AD1E51E4;
-	Thu, 27 Feb 2025 03:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A788318CC15;
+	Thu, 27 Feb 2025 03:15:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="oVF89agC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pg0lylCl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFDAF1D90AE
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 03:37:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 761C6156230;
+	Thu, 27 Feb 2025 03:15:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740627441; cv=none; b=aSVjgjTSwbZWowqVqJMcSXNiFkHXTr407Zr6lI8LEb/Dw7qUqyDx0TTmJmdhDqperEONxZGCZjd7xUocCPug2nj5O2l7CkyeS7V+kFsLf+jlJ49Kl47kUyIIa91J9huYRX+kFt8BZN7C94vx8ZWQ/rDF5WGXkotG11lsO5an7Qs=
+	t=1740626150; cv=none; b=AlkEYCap1OKMEkU6093Q1zeOH2XwV16fR12rLsuYxTYOeXf0NfPGmMcrfb7tbWx5uV1ip7YsW3Uk0QWXbfTOduikUzfXF+o9kk9roKboslITdeRVo8DKUf7XA1BNGT6gIbSq4sT3zE9s5MlB7nYUv0cj8czOWv9jDcBOleVMwzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740627441; c=relaxed/simple;
-	bh=lSumbw1PWf7tSByOP5CKs66VRaIHHh6tWApRYCGgNjo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:Content-Type:
-	 References; b=Ew0hZRLO0/jCPvj+9saclb/Hz4HghVevhMtz8R7lbB5eYs73+rDhp2QhLzpggNdDz5Fz4MH2MdJr/vHzix+kU7SRLpPoVuQ0gPC0zS6I+0pe9DtfGZ/9GThiW5rwDjE4xK/JOX0L0B7cj9zUjB5pn7eKPZvLBriMqdvVvbC9U/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=oVF89agC; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250227033716epoutp03c571f3f0b625288dfb97622f11cc0b91~n8254sU8D1710717107epoutp03v
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 03:37:16 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250227033716epoutp03c571f3f0b625288dfb97622f11cc0b91~n8254sU8D1710717107epoutp03v
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1740627436;
-	bh=rJUWO7g9RjJRp9fZlO7QpyX9lTOA51pukK5hQ5BEOsw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=oVF89agC/G7UYT4ieerLuP7AhDgYHyfLqW+HYmb74iFS65Ea48PIGYB7bw38wnwGZ
-	 zSabbPkFT1xVG61T8ydRUvYOjafCKZ18mBRLZdHbdnOWfP8fLky8EM5W3yVQpjS24t
-	 lccX5qmq75VneHb2ihwKQL55e/7tVfCdORzHGHiw=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTP id
-	20250227033716epcas5p3e5c9f9958f59dca7b91d2bf26f839b7d~n825aMZYV1825818258epcas5p3O;
-	Thu, 27 Feb 2025 03:37:16 +0000 (GMT)
-Received: from epsmges5p2new.samsung.com (unknown [182.195.38.181]) by
-	epsnrtp2.localdomain (Postfix) with ESMTP id 4Z3H8W0Lb3z4x9Py; Thu, 27 Feb
-	2025 03:37:15 +0000 (GMT)
-Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
-	epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	59.EB.19933.AEDDFB76; Thu, 27 Feb 2025 12:37:14 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250226103145epcas5p12873b39b9b467f35a38151e1938976d4~nu3gUOMuK3171031710epcas5p19;
-	Wed, 26 Feb 2025 10:31:45 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250226103145epsmtrp16cae50a09d5d8d4e288ba32326fc4ed9~nu3gTSt412262222622epsmtrp1W;
-	Wed, 26 Feb 2025 10:31:45 +0000 (GMT)
-X-AuditID: b6c32a4a-c1fda70000004ddd-e6-67bfddeacc9e
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	65.B5.23488.19DEEB76; Wed, 26 Feb 2025 19:31:45 +0900 (KST)
-Received: from cheetah.samsungds.net (unknown [107.109.115.53]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250226103142epsmtip1527f0d1050a1c8f0fe72e6a3929311c6~nu3d6d-Dt0651706517epsmtip1n;
-	Wed, 26 Feb 2025 10:31:42 +0000 (GMT)
-From: Swathi K S <swathi.ks@samsung.com>
-To: rmk+kernel@armlinux.org.uk
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, krzk+dt@kernel.org, swathi.ks@samsung.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	pankaj.dubey@samsung.com, ravi.patel@samsung.com, gost.dev@samsung.com
-Subject: Re: [PATCH net-next] net: stmmac: dwc-qos: clean up clock
- initialisation
-Date: Wed, 26 Feb 2025 15:56:34 +0530
-Message-Id: <20250226102634.4584-1-swathi.ks@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <E1tlRMP-004Vt5-W1@rmk-PC.armlinux.org.uk>
-X-Brightmail-Tracker: H4sIAAAAAAAAA0WTe0xbVRzHd27b2xYoXAvigTggV5fBJqxFHrduDJ3LcuP4A8MkxkS7Sm/a
-	QrntelsURyYCK46ERxNlSpAVtzkGgekdYHlNYAq4ySbg0DroqDwi3dzYKEu6BbCloP99fs/v
-	7/zOOQKOuAONFGhoI2WgFVocDeB2Xo3bGe+a/kElmW2UEZ7FWkBcmLHxiPqbZVzizI83eMT8
-	0F98wt7fhRCLdQ6U+LWzikews5M8YqK7HiUqJud4RMNqK48YsoYTj6/fA8TXHW4+4Vzq5RPj
-	1RaEcH9n578qJicmxzhk+0U7Qs5Xd/DJrrppPmllTSTbfAolL5/7mOyyLSPkgyu3ULKqvRmQ
-	A1ek5DIblRn0Tt4+NaVQUoYYis7RKTW0Kg0/nCV/XZ6cIpHGS2VEKh5DK/KpNPxgRmb8IY3W
-	ezg8pkChNXldmQqGwffs32fQmYxUjFrHGNNwSq/U6pP0CYwinzHRqgSaMr4ilUgSk72JR/PU
-	49bt+k78w8bZBbQY/Pl8BRAKIJYEH7rMSAUIEIixHgAv9Exx/MYjAB2jJTy/8RjAkfIFzlZJ
-	+Xz/ZqAPwBb7INdvuAE0e1iuLwvFYuHvTd/zfRyGRUGzdRr1MQcb4ECHM8HHoVgWvL3yCPiY
-	i+2A8+zABoswGTyz1LapFg1bvu3fYCGWCpdOtaE+MYiNCKC9/A7wJx2Et0uvIn4Oha7hdr6f
-	I+FitXmT5bCl6hbXz2o4/cSC+jkd9v9W7/ULvMPFwUvde/zu7fDza22If+ZgWPl0brO9CNoa
-	tvgFuHp3crNlBOw8/4DvawMxEj49H+rfSQWAJdXjoAZE1f2vYAWgGURQeiZfRTHJ+kSa+uC/
-	S8vR5bNg4/3uesMGnDNLCYMAEYBBAAUcPEwk1PSqxCKlovAjyqCTG0xaihkEyd79WTiRz+bo
-	vB+ANsqlSTJJUkpKSpLs5RQp/pyotKtMJcZUCiOVR1F6yrBVhwiEkcVIGD38E0pI24ruWjVT
-	f3/5UiC7jvyxbbQYp0drPxVT6t3K431flYpQ55Hw6Rr9nfhvmkZ2TFxOJ2tuckTRwZF9cZoJ
-	ffwnvQuthXOBIXvdq2hR4hehFvNbscKOA2M/z0iPhr99uOWa7VjjkdRDGRaFrbZkRZua+0xr
-	Q/abotxa9X42wIGzzjWb/H7Q8Gup1wvGCoveDX7oLPFs2xnIVka4P1uP7Q7JNr24LshwpV88
-	ea/Pc87zfvTZvY6ZS1FDK6O7104UeFwnRCXq5cogebUmfy3xn7PuMOFS2Y2p08dPhxT88sR1
-	v8fByAsOHMNkTezicnZ9Vot5SCk56cJz37Nn4VxGrZDu4hgYxb8yUgurSAQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAAzWRfSyUcQDH/Z53cjyO9PPenmm7riVXVr9aa7aWnmVWaaaUdPE4ymF3XmKr
-	pCSnedlCM3HMpiPi1CHmrYZppciVjMlLZRPKS0nUsP77bN/Pvt8/vgwunsLtmfDIGEEVKY/g
-	KDPC8Jxz3pn9rVnhnp1ihZYmcwEqG6knUUHPLQIVvXhNoomOURoNtDZgaDJ/mEJvDBkk0o8Z
-	SdT3rIBCGuM4iQpXKknUobVFiy+nACp5Ok+jT7NNNOrNzMbQfM0A7Snm+4xvcf6JbgDjJzKf
-	0nxD/hDNa/WxvL48jeJrS6/zDfVzGD/T3E/xGU/KAd/WLOPn9M4nzAPMDoYIEeFxgmrXoQtm
-	Yb1ap2gDd6V47DOVBD46aoApA1kPmDrRSmqAGSNmGwFcyLlNbQR28MfNHHKDraFu9Qu9If0A
-	sPL34LpEsRL4/mEdvcY2rDO8rR2i1iSc7cdhsVaPawDDWLMnYW0yt+YQ7DY4oW8Dayxi98Oi
-	2Sp8Y8AFVlS3rrMpuw/OplWt94vZvTCr8xGWBSy0wKQc2AnRaqVCGSyLlkUK8W5quVIdG6lw
-	C45S6sH6IVJJPZheTN7VDjAGtAPI4JyNyDS8SSEWhcgTEgVVVJAqNkJQtwMHhuC2iHSy0wox
-	q5DHCJcFIVpQ/U8xxtQ+CTO3r98T2r/8/eiBlbK0a6Lp+LwHZ934HYW879Xzq8Nlf3IXMgyf
-	egy6CmXOgprQLWepAyVFfZ3idGmKd2fjfbki8JLE3U/l+2FEMmdudL4xFnJP9jNA07V9+djP
-	O+cs97l2OVYW4c3ShOqEpl8aD3aqRW8SN30w9F3MUveBGWzGATtiEbj57vVZolBREWr08uo3
-	afT1afvL+FugrzWbSkIGXVJXd49xl1stHWzc7BpXXimVxv1+daRrWV5Q92FJ/k1vanzS1aR0
-	tc9l8jERP2pOR9DSU55E1cWcpR586xkfLpRATk7pPsNWQotjokYC8fbftv5vBkXHK69aZXKE
-	Okwuk+IqtfwfUGfyHv8CAAA=
-X-CMS-MailID: 20250226103145epcas5p12873b39b9b467f35a38151e1938976d4
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250226103145epcas5p12873b39b9b467f35a38151e1938976d4
-References: <E1tlRMP-004Vt5-W1@rmk-PC.armlinux.org.uk>
-	<CGME20250226103145epcas5p12873b39b9b467f35a38151e1938976d4@epcas5p1.samsung.com>
+	s=arc-20240116; t=1740626150; c=relaxed/simple;
+	bh=VwhZW4t3p32C8Wicn9OWtSuDcinzzKKoyi9jS28rMt4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XSfdZmh4A5viLv9qsVJl7WF7w4nT7rXO5bonmi8YplDA79uR9DoybCNzVJ5MuJpvpSHuuMQE/nUaKG48iHKuKcRlGeTf3G46m/58uzFeBLY2SMZMenkv9fjTQ8WVKAaRJvbL1r6nIID45/uK86Vy343suV1H5Man3y3yh9BbPcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pg0lylCl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7546EC4CEEB;
+	Thu, 27 Feb 2025 03:15:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740626149;
+	bh=VwhZW4t3p32C8Wicn9OWtSuDcinzzKKoyi9jS28rMt4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Pg0lylClrBIpgIOSTlqvcuRyEuBM7JOJNUKgV7F7DtLZuxeMcNzhEvsD+CrtLjwot
+	 mYccG1nVWuCedToT3/GFdrzoobNck9/bGV6ZwW3EdQnIcGk1d+6KQwnawrnGCHzzQS
+	 bTneFrTyOwcInVglcUpnpyIhybTmrkTLgoRrmMxTWOQuSoCzDEb09eu3fbwY/eNWma
+	 VTtfXxwO1c/ctpnTl+JCfqD87PGQCOyDYs9dIx6jMHhouMc90xnxbX3HS2m3DJhIUF
+	 wDuPqtIz6vV1WZ783Y8r+QiPjO5G55suEC6hOQez/Nld5OzXSonsQlVqhfVUIgYopX
+	 K9EX68Cs98XUA==
+Date: Thu, 27 Feb 2025 11:15:40 +0800
+From: Peter Chen <peter.chen@kernel.org>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, jun.li@nxp.com
+Subject: Re: [PATCH v2 3/6] usb: chipidea: imx: add HSIO Block Control wakeup
+ setting
+Message-ID: <Z7_Y3KIsyKBOqx3K@nchen-desktop>
+References: <20250225053955.3781831-1-xu.yang_2@nxp.com>
+ <20250225053955.3781831-4-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250225053955.3781831-4-xu.yang_2@nxp.com>
 
->Precedence: bulk
->X-Mailing-List: netdev@vger.kernel.org
->List-Id: <netdev.vger.kernel.org>
->List-Subscribe: <mailto:netdev+subscribe@vger.kernel.org>
->List-Unsubscribe: <mailto:netdev+unsubscribe@vger.kernel.org>
->MIME-Version: 1.0
->Content-Disposition: inline
->Content-Transfer-Encoding: 8bit
->Content-Type: text/plain; charset="utf-8"
->Message-Id: <E1tlRMP-004Vt5-W1@rmk-PC.armlinux.org.uk>
->Sender: Russell King <rmk@armlinux.org.uk>
->Date: Fri, 21 Feb 2025 11:38:25 +0000
->
->Clean up the clock initialisation by providing a helper to find a
->named clock in the bulk clocks, and provide the name of the stmmac
->clock in match data so we can locate the stmmac clock in generic
->code.
->
->Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
->---
->dwc_eth_find_clk() should probably become a generic helper given that
->plat_dat->clks is part of the core platform support code, but that
->can be done later when converting more drivers - which I will get
->around to once I've got the set_clk_tx_rate() patch series out that
->someone else needs to make progress.
->
-> .../stmicro/stmmac/dwmac-dwc-qos-eth.c        | 32 +++++++++++--------
-> 1 file changed, 18 insertions(+), 14 deletions(-)
->
->diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
->index 392574bdd4a4..9e2035d1fb86 100644
->--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
->+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
->@@ -35,6 +35,16 @@ struct tegra_eqos {
-> 	struct gpio_desc *reset;
-> };
+On 25-02-25 13:39:52, Xu Yang wrote:
+> On i.MX95 platform, USB wakeup setting is controlled by HSIO Block
+> Control:
 > 
->+static struct clk *dwc_eth_find_clk(struct plat_stmmacenet_data *plat_dat,
->+				    const char *name)
->+{
->+	for (int i = 0; i < plat_dat->num_clks; i++)
->+		if (strcmp(plat_dat->clks[i].id, name) == 0)
->+			return plat_dat->clks[i].clk;
->+
->+	return 0;
->+}
->+
-> static int dwc_eth_dwmac_config_dt(struct platform_device *pdev,
-> 				   struct plat_stmmacenet_data *plat_dat)
-> {
->@@ -121,12 +131,7 @@ static int dwc_qos_probe(struct platform_device *pdev,
-> 			 struct plat_stmmacenet_data *plat_dat,
-> 			 struct stmmac_resources *stmmac_res)
-> {
->-	for (int i = 0; i < plat_dat->num_clks; i++) {
->-		if (strcmp(plat_dat->clks[i].id, "apb_pclk") == 0)
->-			plat_dat->stmmac_clk = plat_dat->clks[i].clk;
->-		else if (strcmp(plat_dat->clks[i].id, "phy_ref_clk") == 0)
->-			plat_dat->pclk = plat_dat->clks[i].clk;
->-	}
->+	plat_dat->pclk = dwc_eth_find_clk(plat_dat, "phy_ref_clk");
+> HSIO Block Control Overview:
+> - The HSIO block control include configuration and status registers that
+>   provide miscellaneous top-level controls for clocking, beat limiter
+>   enables, wakeup signal enables and interrupt status for the PCIe and USB
+>   interfaces.
 > 
-> 	return 0;
-> }
->@@ -237,18 +242,12 @@ static int tegra_eqos_probe(struct platform_device *pdev,
+> The wakeup function of HSIO blkctl is basically same as non-core, except
+> improvements about power lost cases. This will add the wakeup setting for
+> HSIO blkctl on i.MX95. It will firstly ioremap hsio blkctl memory, then do
+> wakeup setting as needs.
 > 
-> 	eqos->dev = &pdev->dev;
-> 	eqos->regs = res->addr;
->+	eqos->clk_slave = data->stmmac_clk;
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Reviewed-by: Jun Li <jun.li@nxp.com>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > 
-> 	if (!is_of_node(dev->fwnode))
-> 		goto bypass_clk_reset_gpio;
+> ---
+> Changes in v2:
+>  - add Rb tag
+> ---
+>  drivers/usb/chipidea/usbmisc_imx.c | 107 +++++++++++++++++++++++++++++
+>  1 file changed, 107 insertions(+)
 > 
->-	for (int i = 0; i < data->num_clks; i++) {
->-		if (strcmp(data->clks[i].id, "slave_bus") == 0) {
->-			eqos->clk_slave = data->clks[i].clk;
->-			data->stmmac_clk = eqos->clk_slave;
->-		} else if (strcmp(data->clks[i].id, "tx") == 0) {
->-			eqos->clk_tx = data->clks[i].clk;
->-		}
->-	}
->+	eqos->clk_tx = dwc_eth_find_clk(data, "tx");
-> 
-> 	eqos->reset = devm_gpiod_get(&pdev->dev, "phy-reset", GPIOD_OUT_HIGH);
-> 	if (IS_ERR(eqos->reset)) {
->@@ -312,15 +311,18 @@ struct dwc_eth_dwmac_data {
-> 		     struct plat_stmmacenet_data *data,
-> 		     struct stmmac_resources *res);
-> 	void (*remove)(struct platform_device *pdev);
->+	const char *stmmac_clk_name;
-> };
-> 
-> static const struct dwc_eth_dwmac_data dwc_qos_data = {
-> 	.probe = dwc_qos_probe,
->+	.stmmac_clk_name = "apb_pclk",
-> };
-> 
-> static const struct dwc_eth_dwmac_data tegra_eqos_data = {
-> 	.probe = tegra_eqos_probe,
-> 	.remove = tegra_eqos_remove,
->+	.stmmac_clk_name = "slave_bus",
-> };
-> 
-> static int dwc_eth_dwmac_probe(struct platform_device *pdev)
->@@ -360,6 +362,8 @@ static int dwc_eth_dwmac_probe(struct platform_device *pdev)
-> 	if (ret)
-> 		return dev_err_probe(&pdev->dev, ret, "Failed to enable clocks\n");
-> 
->+	data->stmmac_clk = dwc_eth_find_clk(plat_dat, data->stmmac_clk_name);
->+
-> 	ret = data->probe(pdev, plat_dat, &stmmac_res);
-> 	if (ret < 0) {
-> 		dev_err_probe(&pdev->dev, ret, "failed to probe subdriver\n");
+> diff --git a/drivers/usb/chipidea/usbmisc_imx.c b/drivers/usb/chipidea/usbmisc_imx.c
+> index 1394881fde5f..f933fc70be66 100644
+> --- a/drivers/usb/chipidea/usbmisc_imx.c
+> +++ b/drivers/usb/chipidea/usbmisc_imx.c
+> @@ -139,6 +139,22 @@
+>  #define MX6_USB_OTG_WAKEUP_BITS (MX6_BM_WAKEUP_ENABLE | MX6_BM_VBUS_WAKEUP | \
+>  				 MX6_BM_ID_WAKEUP | MX6SX_BM_DPDM_WAKEUP_EN)
+>  
+> +/*
+> + * HSIO Block Control Register
+> + */
+> +
+> +#define BLKCTL_USB_WAKEUP_CTRL		0x0
+> +#define BLKCTL_OTG_WAKE_ENABLE		BIT(31)
+> +#define BLKCTL_OTG_VBUS_SESSVALID	BIT(4)
+> +#define BLKCTL_OTG_ID_WAKEUP_EN		BIT(2)
+> +#define BLKCTL_OTG_VBUS_WAKEUP_EN	BIT(1)
+> +#define BLKCTL_OTG_DPDM_WAKEUP_EN	BIT(0)
+> +
+> +#define BLKCTL_WAKEUP_SOURCE		(BLKCTL_OTG_WAKE_ENABLE	   | \
+> +					 BLKCTL_OTG_ID_WAKEUP_EN   | \
+> +					 BLKCTL_OTG_VBUS_WAKEUP_EN | \
+> +					 BLKCTL_OTG_DPDM_WAKEUP_EN)
+> +
+>  struct usbmisc_ops {
+>  	/* It's called once when probe a usb device */
+>  	int (*init)(struct imx_usbmisc_data *data);
+> @@ -159,6 +175,7 @@ struct usbmisc_ops {
+>  
+>  struct imx_usbmisc {
+>  	void __iomem *base;
+> +	void __iomem *blkctl;
+>  	spinlock_t lock;
+>  	const struct usbmisc_ops *ops;
+>  };
+> @@ -1016,6 +1033,76 @@ static int usbmisc_imx6sx_power_lost_check(struct imx_usbmisc_data *data)
+>  		return 0;
+>  }
+>  
+> +static u32 usbmisc_blkctl_wakeup_setting(struct imx_usbmisc_data *data)
+> +{
+> +	u32 wakeup_setting = BLKCTL_WAKEUP_SOURCE;
+> +
+> +	if (data->ext_id || data->available_role != USB_DR_MODE_OTG)
+> +		wakeup_setting &= ~BLKCTL_OTG_ID_WAKEUP_EN;
+> +
+> +	if (data->ext_vbus || data->available_role == USB_DR_MODE_HOST)
+> +		wakeup_setting &= ~BLKCTL_OTG_VBUS_WAKEUP_EN;
+> +
+> +	/* Select session valid as VBUS wakeup source */
+> +	wakeup_setting |= BLKCTL_OTG_VBUS_SESSVALID;
+> +
+> +	return wakeup_setting;
+> +}
+> +
+> +static int usbmisc_imx95_set_wakeup(struct imx_usbmisc_data *data, bool enabled)
+> +{
+> +	struct imx_usbmisc *usbmisc = dev_get_drvdata(data->dev);
+> +	unsigned long flags;
+> +	u32 val;
+> +
+> +	spin_lock_irqsave(&usbmisc->lock, flags);
+> +	val = readl(usbmisc->blkctl + BLKCTL_USB_WAKEUP_CTRL);
+> +	val &= ~BLKCTL_WAKEUP_SOURCE;
+> +
+> +	if (enabled)
+> +		val |= usbmisc_blkctl_wakeup_setting(data);
+> +
+> +	writel(val, usbmisc->blkctl + BLKCTL_USB_WAKEUP_CTRL);
+> +	spin_unlock_irqrestore(&usbmisc->lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static int usbmisc_imx95_init(struct imx_usbmisc_data *data)
+> +{
+> +	struct imx_usbmisc *usbmisc = dev_get_drvdata(data->dev);
+> +	unsigned long flags;
+> +	u32 reg;
+> +
+> +	if (data->index >= 1)
+> +		return -EINVAL;
+> +
+> +	spin_lock_irqsave(&usbmisc->lock, flags);
+> +	reg = readl(usbmisc->base);
+> +
+> +	if (data->disable_oc) {
+> +		reg |= MX6_BM_OVER_CUR_DIS;
+> +	} else {
+> +		reg &= ~MX6_BM_OVER_CUR_DIS;
+> +
+> +		if (data->oc_pol_configured && data->oc_pol_active_low)
+> +			reg |= MX6_BM_OVER_CUR_POLARITY;
+> +		else if (data->oc_pol_configured)
+> +			reg &= ~MX6_BM_OVER_CUR_POLARITY;
+> +	}
+> +
+> +	if (data->pwr_pol == 1)
+> +		reg |= MX6_BM_PWR_POLARITY;
+> +
+> +	writel(reg, usbmisc->base);
+> +	spin_unlock_irqrestore(&usbmisc->lock, flags);
+> +
+> +	/* use HSIO blkctl wakeup as source, disable usbmisc setting*/
+> +	usbmisc_imx7d_set_wakeup(data, false);
+> +
+> +	return 0;
+> +}
 
-Hi Russell,
-Tested this patch on FSD platform and it works.
-Please feel free to add Tested-by: Swathi K S <swathi.ks@samsung.com>
+Above code has duplicated with some imx7d and imx7ulp init code,
+Is it possible abstract some common code for all these three platforms?
 
--Swathi
+Peter
+> +
+>  static const struct usbmisc_ops imx25_usbmisc_ops = {
+>  	.init = usbmisc_imx25_init,
+>  	.post = usbmisc_imx25_post,
+> @@ -1068,6 +1155,14 @@ static const struct usbmisc_ops imx7ulp_usbmisc_ops = {
+>  	.power_lost_check = usbmisc_imx7d_power_lost_check,
+>  };
+>  
+> +static const struct usbmisc_ops imx95_usbmisc_ops = {
+> +	.init = usbmisc_imx95_init,
+> +	.set_wakeup = usbmisc_imx95_set_wakeup,
+> +	.charger_detection = imx7d_charger_detection,
+> +	.power_lost_check = usbmisc_imx7d_power_lost_check,
+> +	.vbus_comparator_on = usbmisc_imx7d_vbus_comparator_on,
+> +};
+> +
+>  static inline bool is_imx53_usbmisc(struct imx_usbmisc_data *data)
+>  {
+>  	struct imx_usbmisc *usbmisc = dev_get_drvdata(data->dev);
+> @@ -1289,6 +1384,10 @@ static const struct of_device_id usbmisc_imx_dt_ids[] = {
+>  		.compatible = "fsl,imx8ulp-usbmisc",
+>  		.data = &imx7ulp_usbmisc_ops,
+>  	},
+> +	{
+> +		.compatible = "fsl,imx95-usbmisc",
+> +		.data = &imx95_usbmisc_ops,
+> +	},
+>  	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, usbmisc_imx_dt_ids);
+> @@ -1296,6 +1395,7 @@ MODULE_DEVICE_TABLE(of, usbmisc_imx_dt_ids);
+>  static int usbmisc_imx_probe(struct platform_device *pdev)
+>  {
+>  	struct imx_usbmisc *data;
+> +	struct resource *res;
+>  
+>  	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+>  	if (!data)
+> @@ -1307,6 +1407,13 @@ static int usbmisc_imx_probe(struct platform_device *pdev)
+>  	if (IS_ERR(data->base))
+>  		return PTR_ERR(data->base);
+>  
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> +	if (res) {
+> +		data->blkctl = devm_ioremap_resource(&pdev->dev, res);
+> +		if (IS_ERR(data->blkctl))
+> +			return PTR_ERR(data->blkctl);
+> +	}
+> +
+>  	data->ops = of_device_get_match_data(&pdev->dev);
+>  	platform_set_drvdata(pdev, data);
+>  
+> -- 
+> 2.34.1
+> 
 
->-- 
->2.30.2
+-- 
+
+Best regards,
+Peter
 
