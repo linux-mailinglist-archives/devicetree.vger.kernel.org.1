@@ -1,142 +1,278 @@
-Return-Path: <devicetree+bounces-152137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A197A48290
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 16:11:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1699A4829C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 16:13:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2ECE43AC238
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 15:11:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 291013ABF95
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 15:13:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E405826A0E0;
-	Thu, 27 Feb 2025 15:11:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62F9F26A0D0;
+	Thu, 27 Feb 2025 15:13:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HUFP87Dt"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="QI/N+cXC";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="XCT95LYj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC412309A1
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 15:11:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB0A226A0D1;
+	Thu, 27 Feb 2025 15:13:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740669100; cv=none; b=chq7gzjQyMcAz8w+1dn5GUqStDrVDBe+7HskPjEpjKBGMdNusLSh3pYG73iUo64Oi1/WKMEw7FcP64wfdSofaEc+qfo7f7rLRSD7N7oYLX/gpvLQ/phsAlVn3RDzyTEo6UmpKMQWtOgRNhaZe3BiDHrPYH98waqizZ9zMnAyaK8=
+	t=1740669192; cv=none; b=lfsfdruH/64K3uTZjyWWVSk7rvmIu6saH3s3GDIfKerHYYuFi5FwoTkqZL8Kn68MLs09yQPACqKc8sN3fFyUNqB2aI9HvKr0rg56hOn0tMwoWUKNrqJc/UsAtdR5aTvKbQwuHCJDpupP7OEAUsYmdP0XL9U3oymue6PuDBqGv7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740669100; c=relaxed/simple;
-	bh=44BNYiLW2yCxONzcBxyBR7IADrkxuDTkruh9GOEQ0ks=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QTgTvGX+v7tut3eWuLMLkvZEHBHmfXdVe82rYJNcV1GxjXpr6MMcBur8znxeN6+f8EYunoWVYjqdwO0NZD1qrhy//Fsz5EuXxrpJHqRgIIf1NKk/r5rz92bUwD6qddNig6p4T5/ruKNsX0hjvK0znlQuB6XVng0xHBCuJdJ1Bz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HUFP87Dt; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5461cb12e39so972114e87.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 07:11:37 -0800 (PST)
+	s=arc-20240116; t=1740669192; c=relaxed/simple;
+	bh=Ebo1D+qhHUtxEcyGrH6l87OSOYXmFcOkbBlyWyxUH48=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=OJBI94d/d8rXXhFFcHnWUGLGTceMBjY4fG3QI7dGJX71BHBK9ga+0KVMgKtAXTnNxL9fRhUQbzagrRJW4s4+efX3M8RA3Z7EjyRQqN3lvaZJoprD/HBMKiM46Hu2Q2ZcJcGEh05lWyjRXz5Wf62tELn8Xkb7h5skQxYIRLRxUxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=QI/N+cXC; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=XCT95LYj reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740669096; x=1741273896; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+t6Tt0jg0KxPZB1LakHJIKAhXRLp/GXu0dW03Mj8Cwo=;
-        b=HUFP87DtG5S7EZtQzX8Cjegv3hPOwOBNRbcQQTozETOtBvwfTBbp1o5uOjlJhrxoip
-         +jY9VjlDCXKeEGWRl71rQW8OsmpyEpQ/hBA7JefYCsXQiGXyb9RvfOBcEBTxWj6AExKD
-         MOCl17/0YxbPFVxlfPWIDHL+DReP0U3wYrGspRDzel5DBLuKowBxx7xwE1gQEUVXrtyl
-         /7ikhJC4gOpvE6Ieg12l+nd6f8xHHyRyVoWoJK9u2iCAT0+L8vNL6OeSiDzFkj2ngkEI
-         8HZuFxwWx9P/ewIdlGhABDABc9RXnVcemAtNep2aNuX+5YO+HgzS5cUI18iKMWW3lZWn
-         CzUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740669096; x=1741273896;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+t6Tt0jg0KxPZB1LakHJIKAhXRLp/GXu0dW03Mj8Cwo=;
-        b=rwTUcnUmp+RHHbz7k3nBdYzOAl/XTTfw/8AWwx0VSd9UOSycreFR6l5pBRSzrr+2wf
-         yD7cyScpeWoL1y6G9mUInNH3f+6vWExnyr0pucknsuJZ+XidCTbKSzYuV7/oEwHqUBUs
-         rZc1wdGw/ozOMRUkkY6TGIY8jPBacoLLpusaH0VpojKvIpO0d1IDyIu2WB1pIi1YQS9D
-         pb3Y1yXgEQe5Q8Eq0ET13oY94UEmIvOk5SVYjicxeVCAu1aNsHrQCw05U69WMBGl/lzu
-         1Jcb2Jbydg9/7qDyuX1QX+O+j18vEOGsCUu8W3FjKjkiSJ+pXNadVk7vxiGjBRHYjdYX
-         cPBg==
-X-Forwarded-Encrypted: i=1; AJvYcCVUu1xyBqh5DIxe7dzOHZ6YDGQWJ2BVyyCosK56l5q5K2XrmkdnK1AcUJMaqOP61zH9Ge3dmDpTIiE7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxe3WdGoyu96ymPk/4/FSMX2EETd1tDzzi/mw0UNPfV0FqvBcYC
-	NZTU9B1/Qqjb/zdJ5ebbKeNhUHWiqtTJx+3aOqaIbCVcGOIr0w0+QQdPEiMtNw4=
-X-Gm-Gg: ASbGncsU4XtIw+VRG77OVKHBokvhssGJHeGf+3KmCfcRj5X6XRSLOZNFAuPBbAmjDyI
-	iGYRcy2/bq7ECK9g2zipdfG6BWnmZ7ezVSauK7uHVwU619w8wFo/GiACBNhINsVeHcnlwlxbxZb
-	s2Esfep4wTisIWKLOm7QT5lPLyRFq9l8eCRGA0BlSWVVC3RhPsk72os/sNmlr9gpTewtWZjuJFr
-	gJ6KCXfYt6uB6YoX3JFwboBg1rmxYJWL0d0avrOi/TapB7reU6nLmkQFTdl8a783HmExOId8w7B
-	uPC/aOMKH2MWyqdMr+upz9zEAlpSWD0ilOtDnsfRQMq00XXPoS5W+0jpAulO3oVNzgo11XmiG01
-	r/jcVJw==
-X-Google-Smtp-Source: AGHT+IGgnwEjREgD/grYv1CY7G2mqND2p+JVQ6PM1HUjMevqU6xFcdofK3dLNsfRSqBL6gSR90jkvw==
-X-Received: by 2002:a05:6512:6ce:b0:545:441:52d2 with SMTP id 2adb3069b0e04-54838ef4c73mr13673229e87.23.1740669096378;
-        Thu, 27 Feb 2025 07:11:36 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5494417a491sm182907e87.78.2025.02.27.07.11.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Feb 2025 07:11:35 -0800 (PST)
-Date: Thu, 27 Feb 2025 17:11:32 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sm8650: switch to
- interrupt-cells 4 to add PPI partitions
-Message-ID: <fdlsw6mctzfutashmlve7eubgbx6nfzwsft2mnslmgsdrrwuve@pudlwja2y6g5>
-References: <20250227-topic-sm8650-pmu-ppi-partition-v2-0-b93006a65037@linaro.org>
- <20250227-topic-sm8650-pmu-ppi-partition-v2-1-b93006a65037@linaro.org>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1740669189; x=1772205189;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=EGpRzef4zc2oMS+ASfAqf5PDwYtAhxLCbzjZY2eYK6U=;
+  b=QI/N+cXCIyYMSDgzkQvAV3Ewq5CYwh4xcdiDIPdZCRFmO7q3CFHs+Ns3
+   up6wDugfSDA40zH8YOBUIQAXJ8LP2TSqovAGLfZW6t8JeOKf+nBay89sp
+   m40xSuHYljGTIgYuYyUEnkRjg4jc2NxM6hsp8Gm2N3lBoTAh4XpptWcC3
+   +C/2bKTY6Gz8vDqqTTeFVXaFQ9Rcpf+uSl3AqgaegDdIu/TDv5GBIu21Z
+   XkAeiDyz5+R3TTd5/tRamR75NkQTFH8mG3y4egVJqZ9Zp59xy3ziBnjNE
+   zP3dIOzAw5pLd2QzN/sqKSRRHfoB81gzlzxH57+iHLofhxBmWWPjlaWV3
+   g==;
+X-CSE-ConnectionGUID: /aNcGYtsSHyNX+s4U6/78Q==
+X-CSE-MsgGUID: B+TdOs+lQHKPKObxoPT0eg==
+X-IronPort-AV: E=Sophos;i="6.13,320,1732575600"; 
+   d="scan'208";a="42152492"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 27 Feb 2025 16:13:00 +0100
+X-CheckPoint: {67C080FC-3-F75C4246-F0BD6D90}
+X-MAIL-CPID: 754BCE0AD125F3AA8351D0BDD97B028B_3
+X-Control-Analysis: str=0001.0A002118.67C080FD.001C,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9B5AC1671BA;
+	Thu, 27 Feb 2025 16:12:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1740669175;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=EGpRzef4zc2oMS+ASfAqf5PDwYtAhxLCbzjZY2eYK6U=;
+	b=XCT95LYjbowhMn9NFW+iSN+umpRZVA+D3nxDiWbZKtdz1aUleW4VIoBRj2eraQKpz3Izdg
+	9RR5qASGUx4AWtyXCoByGC1cQ867Kq0s5CZq/HAxeG4P+ogLoTCqmUu1NIpfoKBmcZ6KU/
+	aA/hm7tpDqC+/jmHAKEVrTyzffeZGaruibEfqFVhgPEwz/Z5HGk0Br9q9VAenJPth+XSQ0
+	e6C621D1kQd07mHdgQnrSZNlBqtDKd/hmp73UKS8VoK/BBcZhAbxlOsWOnqAXLVeatRGFI
+	6fvERCg84sIGGS3QB14FOSI5ZZJBA7H7M13s5OD7zdzGcGwT+P4DlEhmOTg1PA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, peter.chen@kernel.org,
+ Xu Yang <xu.yang_2@nxp.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, jun.li@nxp.com
+Subject:
+ Re: [PATCH v3 4/6] usb: chipidea: imx: add HSIO Block Control wakeup setting
+Date: Thu, 27 Feb 2025 16:12:54 +0100
+Message-ID: <3535014.QJadu78ljV@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250227095348.837223-5-xu.yang_2@nxp.com>
+References:
+ <20250227095348.837223-1-xu.yang_2@nxp.com>
+ <20250227095348.837223-5-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250227-topic-sm8650-pmu-ppi-partition-v2-1-b93006a65037@linaro.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Thu, Feb 27, 2025 at 10:04:39AM +0100, Neil Armstrong wrote:
-> The ARM PMUs shares the same per-cpu (PPI) interrupt, so we need to switch
-> to interrupt-cells = <4> in the GIC node to allow adding an interrupt
-> partition map phandle as the 4th cell value for GIC_PPI interrupts.
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Hi,
+
+Am Donnerstag, 27. Februar 2025, 10:53:46 CET schrieb Xu Yang:
+> On i.MX95 platform, USB wakeup setting is controlled by HSIO Block
+> Control:
+>=20
+> HSIO Block Control Overview:
+> - The HSIO block control include configuration and status registers that
+>   provide miscellaneous top-level controls for clocking, beat limiter
+>   enables, wakeup signal enables and interrupt status for the PCIe and USB
+>   interfaces.
+>=20
+> The wakeup function of HSIO blkctl is basically same as non-core, except
+> improvements about power lost cases. This will add the wakeup setting for
+> HSIO blkctl on i.MX95. It will firstly ioremap hsio blkctl memory, then do
+> wakeup setting as needs.
+>=20
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Reviewed-by: Jun Li <jun.li@nxp.com>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+>=20
 > ---
->  arch/arm64/boot/dts/qcom/sm8650.dtsi | 542 +++++++++++++++++------------------
->  1 file changed, 271 insertions(+), 271 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index de960bcaf3ccf6e2be47bf63a02effbfb75241bf..273170a2e9499b900b3348307f13c9bc1a9a7345 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -1417,17 +1417,17 @@ opp-3302400000 {
->  
->  	pmu-a520 {
->  		compatible = "arm,cortex-a520-pmu";
-> -		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH 0>;
+> Changes in v3:
+>  - remove usbmisc_imx95_init(), use usbmisc_imx7d_init()
+> Changes in v2:
+>  - add Rb tag
+> ---
+>  drivers/usb/chipidea/usbmisc_imx.c | 72 ++++++++++++++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>=20
+> diff --git a/drivers/usb/chipidea/usbmisc_imx.c b/drivers/usb/chipidea/us=
+bmisc_imx.c
+> index 1394881fde5f..8c30908c11ed 100644
+> --- a/drivers/usb/chipidea/usbmisc_imx.c
+> +++ b/drivers/usb/chipidea/usbmisc_imx.c
+> @@ -139,6 +139,22 @@
+>  #define MX6_USB_OTG_WAKEUP_BITS (MX6_BM_WAKEUP_ENABLE | MX6_BM_VBUS_WAKE=
+UP | \
+>  				 MX6_BM_ID_WAKEUP | MX6SX_BM_DPDM_WAKEUP_EN)
+> =20
+> +/*
+> + * HSIO Block Control Register
+> + */
+> +
+> +#define BLKCTL_USB_WAKEUP_CTRL		0x0
+> +#define BLKCTL_OTG_WAKE_ENABLE		BIT(31)
+> +#define BLKCTL_OTG_VBUS_SESSVALID	BIT(4)
+> +#define BLKCTL_OTG_ID_WAKEUP_EN		BIT(2)
+> +#define BLKCTL_OTG_VBUS_WAKEUP_EN	BIT(1)
+> +#define BLKCTL_OTG_DPDM_WAKEUP_EN	BIT(0)
+> +
+> +#define BLKCTL_WAKEUP_SOURCE		(BLKCTL_OTG_WAKE_ENABLE	   | \
+> +					 BLKCTL_OTG_ID_WAKEUP_EN   | \
+> +					 BLKCTL_OTG_VBUS_WAKEUP_EN | \
+> +					 BLKCTL_OTG_DPDM_WAKEUP_EN)
+> +
+>  struct usbmisc_ops {
+>  	/* It's called once when probe a usb device */
+>  	int (*init)(struct imx_usbmisc_data *data);
+> @@ -159,6 +175,7 @@ struct usbmisc_ops {
+> =20
+>  struct imx_usbmisc {
+>  	void __iomem *base;
+> +	void __iomem *blkctl;
+>  	spinlock_t lock;
+>  	const struct usbmisc_ops *ops;
+>  };
+> @@ -1016,6 +1033,41 @@ static int usbmisc_imx6sx_power_lost_check(struct =
+imx_usbmisc_data *data)
+>  		return 0;
+>  }
+> =20
+> +static u32 usbmisc_blkctl_wakeup_setting(struct imx_usbmisc_data *data)
+> +{
+> +	u32 wakeup_setting =3D BLKCTL_WAKEUP_SOURCE;
+> +
+> +	if (data->ext_id || data->available_role !=3D USB_DR_MODE_OTG)
+> +		wakeup_setting &=3D ~BLKCTL_OTG_ID_WAKEUP_EN;
+> +
+> +	if (data->ext_vbus || data->available_role =3D=3D USB_DR_MODE_HOST)
+> +		wakeup_setting &=3D ~BLKCTL_OTG_VBUS_WAKEUP_EN;
+> +
+> +	/* Select session valid as VBUS wakeup source */
+> +	wakeup_setting |=3D BLKCTL_OTG_VBUS_SESSVALID;
+> +
+> +	return wakeup_setting;
+> +}
+> +
+> +static int usbmisc_imx95_set_wakeup(struct imx_usbmisc_data *data, bool =
+enabled)
+> +{
+> +	struct imx_usbmisc *usbmisc =3D dev_get_drvdata(data->dev);
+> +	unsigned long flags;
+> +	u32 val;
+> +
+> +	spin_lock_irqsave(&usbmisc->lock, flags);
+> +	val =3D readl(usbmisc->blkctl + BLKCTL_USB_WAKEUP_CTRL);
+> +	val &=3D ~BLKCTL_WAKEUP_SOURCE;
+> +
+> +	if (enabled)
+> +		val |=3D usbmisc_blkctl_wakeup_setting(data);
+> +
+> +	writel(val, usbmisc->blkctl + BLKCTL_USB_WAKEUP_CTRL);
+> +	spin_unlock_irqrestore(&usbmisc->lock, flags);
 
-Why are you changing the interrupt type? Should that be coming as a part
-of the next patch?
+usbmisc->blkctl is NULL if DT does not provide a 2nd IORESOURCE_MEM.
 
->  	};
->  
->  	pmu-a720 {
->  		compatible = "arm,cortex-a720-pmu";
-> -		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH 0>;
->  	};
->  
->  	pmu-x4 {
->  		compatible = "arm,cortex-x4-pmu";
-> -		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH 0>;
->  	};
->  
->  	psci {
+> +
+> +	return 0;
+> +}
+> +
+>  static const struct usbmisc_ops imx25_usbmisc_ops =3D {
+>  	.init =3D usbmisc_imx25_init,
+>  	.post =3D usbmisc_imx25_post,
+> @@ -1068,6 +1120,14 @@ static const struct usbmisc_ops imx7ulp_usbmisc_op=
+s =3D {
+>  	.power_lost_check =3D usbmisc_imx7d_power_lost_check,
+>  };
+> =20
+> +static const struct usbmisc_ops imx95_usbmisc_ops =3D {
+> +	.init =3D usbmisc_imx7d_init,
+> +	.set_wakeup =3D usbmisc_imx95_set_wakeup,
+> +	.charger_detection =3D imx7d_charger_detection,
+> +	.power_lost_check =3D usbmisc_imx7d_power_lost_check,
+> +	.vbus_comparator_on =3D usbmisc_imx7d_vbus_comparator_on,
+> +};
+> +
+>  static inline bool is_imx53_usbmisc(struct imx_usbmisc_data *data)
+>  {
+>  	struct imx_usbmisc *usbmisc =3D dev_get_drvdata(data->dev);
+> @@ -1289,6 +1349,10 @@ static const struct of_device_id usbmisc_imx_dt_id=
+s[] =3D {
+>  		.compatible =3D "fsl,imx8ulp-usbmisc",
+>  		.data =3D &imx7ulp_usbmisc_ops,
+>  	},
+> +	{
+> +		.compatible =3D "fsl,imx95-usbmisc",
+> +		.data =3D &imx95_usbmisc_ops,
+> +	},
+>  	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, usbmisc_imx_dt_ids);
+> @@ -1296,6 +1360,7 @@ MODULE_DEVICE_TABLE(of, usbmisc_imx_dt_ids);
+>  static int usbmisc_imx_probe(struct platform_device *pdev)
+>  {
+>  	struct imx_usbmisc *data;
+> +	struct resource *res;
+> =20
+>  	data =3D devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+>  	if (!data)
+> @@ -1307,6 +1372,13 @@ static int usbmisc_imx_probe(struct platform_devic=
+e *pdev)
+>  	if (IS_ERR(data->base))
+>  		return PTR_ERR(data->base);
+> =20
+> +	res =3D platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> +	if (res) {
+> +		data->blkctl =3D devm_ioremap_resource(&pdev->dev, res);
+> +		if (IS_ERR(data->blkctl))
+> +			return PTR_ERR(data->blkctl);
+> +	}
+> +
 
--- 
-With best wishes
-Dmitry
+Any chance to ensure imx95 has actually data->blkctl?
+
+Best regards
+Alexander
+
+>  	data->ops =3D of_device_get_match_data(&pdev->dev);
+>  	platform_set_drvdata(pdev, data);
+> =20
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
