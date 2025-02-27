@@ -1,161 +1,149 @@
-Return-Path: <devicetree+bounces-152264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 502B6A48801
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 19:41:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B168A48820
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 19:48:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A092168116
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 18:41:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41AD216A28A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 18:48:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B6825F975;
-	Thu, 27 Feb 2025 18:41:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 053461F5844;
+	Thu, 27 Feb 2025 18:48:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="NBqM4qid"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tWqiHQel"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.59])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C2D2212FB4
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 18:41:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.59
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D47DF1DE3A4
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 18:48:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740681695; cv=none; b=mgdlBEtFdgrZlVUmjRHU/WQlH75iMHxzyXp8cmh9ZiZtpTvPCrRvtPTEfgumMVF0Yiba9gJLQw9BUiaaPmfo3aLC2dNvU6LBVl+VaxB/Vw70iVQbLBtyjSM7RbAdCl88RhiwEgD6j/09eNG3zJ077w7h3b+fQ8yaf1w+LiayMBg=
+	t=1740682099; cv=none; b=GM1TA4pc1BmEm30Co2w827Y9woC5G/sNoRbBuXIG1Z1AUvo5xmAh7KPHUErQlRS/VjkambNVELb1vyyn8L8nQc0d9Mrcbo5JLHEvcghRR90Osh9AYNNDGnvyPgL9QPT2kVVzX9c3YjigPhFzXbq9jd1SVhCujtCf7tHHnM6cC+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740681695; c=relaxed/simple;
-	bh=tapKa4ENwa3OBlIjhb4jmk2jsNXPicM6WS6wpGM88bI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Kc6Gq1BEMt9Cbf7MsgPi8gSRojGUZLCIibMfP2zUpHAYd1vEQlshPX2FEvUj4M9YwL+LsWHP3B4Lwuy+gAO/Dz8QNnBdtZQ7qgW+00ojWvUn4i+UvRbxadHF0OLjtOUNPXUp9OY4X2/O9JgEaec7sInSLDN2xIVuZZwGR4it0f8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=NBqM4qid; arc=none smtp.client-ip=121.127.44.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
- Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1740681693; bh=bnDwHn3VE/1QDoX5PmDpHlQdrc4Kek1m+Wmq70y11Yg=;
- b=NBqM4qidq/tKl1rLyHAw6yL8e40xXGp8JWxgtAaFpf3gbe9rTrCYfBVhcJa0+tf3u6evneI0j
- 13OrUozS/vBmwjEJnUUiZOmdXUOOhAVMAX3UOzFTuARsyNkRz3cKTMOlwE0wm3Pe90eblUvf3Xu
- jA3tpNPUcNOjvBHSFCUUVLUROp3LHszgUa+6UEBQs8wE6LhGO+bHAVnTp79xnvgoY9+fTkZeEHV
- /HJDs8Q+ZEhrisx4h7nZrE0Eigfe7QZ1Opkzto8b5zXGkBlJatgaK2VKVx595BHTO8Uheuk7jpm
- 63ju8ROa7hRGbJOInrWx9I5sMLNIxdpc6g4ecd6Jh4xA==
-X-Forward-Email-ID: 67c0b1dabf572996e86214e5
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.59
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Heiko Stuebner <heiko@sntech.de>,
+	s=arc-20240116; t=1740682099; c=relaxed/simple;
+	bh=Htmc6kuxWi2eizHOPH/z948eIEA0rcPXX8El+BENUM8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gNqNbHYTkjkJLmakZBMJV9uXpKRh7KGnP1ubxI/jgjvK5qWixB48sffm7loprgxOiKH9nrYJ4VbAXLbO7BL6qApQUydf3NfOc0c2SCxPLy7BUbJTZB0f+B0VZDwfkQl013bm3T2S0VW0Q2m57Tt8Zs8z+kNY4fzetgxCg4w8ido=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tWqiHQel; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4394036c0efso8883315e9.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 10:48:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740682096; x=1741286896; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Bb8KXZX3ANfGIeTHJHU3o05Jpgv+u6AQgRQwt9Zi9Z4=;
+        b=tWqiHQelNy4cfMxGOJ+rkm1AOU5UpKjCz9ajupBYL5cDcdxdlz+DKLuYYEYg8KFcNW
+         wGNqAp37N28v5jWiHRpjLYVgpCQZs34CMKmAmFSdr9PRN7rBA/Kv5bCYMzFEWvhMLgNP
+         HzttUEgzA5qm3iZcavj4lyFlwuqIOtu4zb/Cptq32L14tQCNJQFtES+0ljhySiwqmrOq
+         PjcaPkVk4KLsmsptFCsbdO+Bmo6XfecvAeOvI2wKZnt4qcVUCbwK/7FQv61mMCZhtEUK
+         dOc1e8Fg0LJrETdnAeTi1Zpx4Kotk4lDG41woT3dlpcEs+4kVrnovFcX/o9k9HO6LHj0
+         d6DA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740682096; x=1741286896;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Bb8KXZX3ANfGIeTHJHU3o05Jpgv+u6AQgRQwt9Zi9Z4=;
+        b=Pq+o5wx+YzF5zCW11ugo12j8HjDrLSLE4uCnLbLbNJ85/N/aUMcn31foQXJShlBJKR
+         Ds0pr8EQHhfJeQF681NroVTB83mdP6HIwBw7AtT4sqO0dmEQBSZ5C2dhacDGWbZ/cDlg
+         zfFQaxloPTaZexJetgg2py6o6p4ZxmRBd9m3xyqGqOzVUixtJKES26IugesLMo00uZvE
+         9h1ZYk8dPM0V4agT1TPTkwOscF8BFCwKlwLt0AmSxsmCFCSfAKSt8pBFtIBvJvRR2Gz3
+         ibEF+tVUZf21ukb1UOfXg99e1BK/ifl44khVc437gzjyZy1TB4BA709wj87IRsrMko2S
+         Zgfg==
+X-Forwarded-Encrypted: i=1; AJvYcCVznzAlQ7eVcxKXxJf5kVQym1P9zUWWcx4wPVGc+zgnDVmOUITSp3wp77ui8Y7G5yHpzWMjfT3SiVpg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxc4VH68wAoJ9LUtPK7P/NSrXe0h4xYEAvOQKz+DuEQ5wm2mr+X
+	0Ihb9NrmuDMjkR671B+VvSsiAVfH0u2J7Np7JZHETF1C+npFgrgcOjpc3ZXgIRc=
+X-Gm-Gg: ASbGnctjjSE6fX5MKMswtjQoOkUlur98NS/CLSxus293wZJU01t5RG3dYzzaKD9g2pz
+	YJcHhnNYUalabGRhqHxHhieCqYMpaU04que4/gpyQ6PK6vTqkCF+xgbHAt0EB0meJguVnGtybk4
+	mmqLtIqvWfPsOIXnQFR+xxadEqpaBram5OEm3Iej+uV9JG1nswyRHQ6lLpz1P8nqMyJRU9eK0tW
+	WAVZEAbIRUm5biSP7iK9nc99o7u2LuDHqw+CzvyjWq5xJQDhlFr78MMpIqgH8d/XO2hziu8MXST
+	ZdDnnLLUE++2bZL1qQURUz6GVDInzs+KfCyVaA==
+X-Google-Smtp-Source: AGHT+IH7I6OW3lREJS4GrA2RHi98FtxVjQEk2Xg/DMwogBGx+loLDRbFTnwNdW1JjJJdWpL7kZTwIA==
+X-Received: by 2002:a05:6000:184c:b0:390:e50a:af81 with SMTP id ffacd0b85a97d-390eca64d7bmr259381f8f.53.1740682096027;
+        Thu, 27 Feb 2025 10:48:16 -0800 (PST)
+Received: from linaro.org ([2a02:2454:ff21:ef30:1269:a239:cdb3:1db7])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e4844c0dsm2758577f8f.80.2025.02.27.10.48.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Feb 2025 10:48:15 -0800 (PST)
+Date: Thu, 27 Feb 2025 19:48:11 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Yao Zi <ziyao@disroot.org>,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH 4/4] arm64: dts: rockchip: Add adc-keys node to Radxa E20C
-Date: Thu, 27 Feb 2025 18:40:53 +0000
-Message-ID: <20250227184058.2964204-5-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250227184058.2964204-1-jonas@kwiboo.se>
-References: <20250227184058.2964204-1-jonas@kwiboo.se>
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] arm64: dts: qcom: sm8650: fix PMU interrupt flag
+Message-ID: <Z8Cza7ZZxy3fbBC9@linaro.org>
+References: <20250227-topic-sm8650-pmu-ppi-partition-v3-0-0f6feeefe50f@linaro.org>
+ <20250227-topic-sm8650-pmu-ppi-partition-v3-1-0f6feeefe50f@linaro.org>
+ <7535057b-b6fc-4831-ac5b-b68903083747@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <7535057b-b6fc-4831-ac5b-b68903083747@oss.qualcomm.com>
 
-Radxa E20C has two buttons, one SARADC maskrom button and one GPIO user
-button.
+On Thu, Feb 27, 2025 at 06:50:31PM +0100, Konrad Dybcio wrote:
+> On 27.02.2025 5:04 PM, Neil Armstrong wrote:
+> > The ARM PMU interrupt is sometimes defined as IRQ_TYPE_LEVEL_LOW,
+> > or IRQ_TYPE_LEVEL_HIGH, but downstream and recent platforms used the
+> > IRQ_TYPE_LEVEL_HIGH flag so align the SM8650 definition to have a
+> > functional PMU working.
+> > 
+> > Fixes: c8a346e408cb ("arm64: dts: qcom: Split PMU nodes for heterogeneous CPUs")
+> > Fixes: d2350377997f ("arm64: dts: qcom: add initial SM8650 dtsi")
+> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > ---
+> 
+> I couldn't find anything to back this up, not inside, not on Arm's
+> website, but downstream agrees, so..
+> 
 
-Add support for the maskrom button using a adc-keys node, also add the
-regulators used by SARADC controller.
+The GIC doesn't really have a notion of LOW vs HIGH in the programmable
+registers. This is generally a design time parameter, e.g. for GIC-600:
 
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
- .../boot/dts/rockchip/rk3528-radxa-e20c.dts   | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
+  Level-sensitive PPI signals are active-LOW by default, as with
+  previous Arm GIC implementations. However, individual PPI signals can
+  be inverted and synchronized using parameters
+  gic600_<config_name>_PPI<ppi_id>_<cpu_number>_<ppi_number>_<INV/SYNC>.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-index d2cdb63d4a9d..dcc0b2584bbc 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-@@ -6,6 +6,8 @@
-  */
- 
- /dts-v1/;
-+
-+#include <dt-bindings/input/input.h>
- #include "rk3528.dtsi"
- 
- / {
-@@ -15,6 +17,54 @@ / {
- 	chosen {
- 		stdout-path = "serial0:1500000n8";
- 	};
-+
-+	adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 0>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1800000>;
-+		poll-interval = <100>;
-+
-+		button-maskrom {
-+			label = "MASKROM";
-+			linux,code = <KEY_SETUP>;
-+			press-threshold-microvolt = <0>;
-+		};
-+	};
-+
-+	vcc_1v8: regulator-1v8-vcc {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+	};
-+
-+	vcc_3v3: regulator-3v3-vcc {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc5v0_sys: regulator-5v0-vcc-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+};
-+
-+&saradc {
-+	vref-supply = <&vcc_1v8>;
-+	status = "okay";
- };
- 
- &uart0 {
--- 
-2.48.1
+  https://developer.arm.com/documentation/100336/0106/components-and-configuration/redistributor/redistributor-ppi-signals
 
+For Linux it shouldn't really matter, because gic_configure_irq()
+ignores the polarity and looks only at IRQ_TYPE_LEVEL_MASK.
+
+If you still want this to represent the actual truth, then all hints
+I can find only back this down (not up) I'm afraid:
+
+Arm® Cortex®‑A520 Core Technical Reference Manual
+Arm® Cortex®-A720 Core Technical Reference Manual
+Arm® Cortex®-X4 Core Technical Reference Manual
+
+  17.2 Performance monitors interrupts
+  When the PMU generates an interrupt, the nPMUIRQ[n] output is driven LOW.
+
+  https://developer.arm.com/documentation/102517/0004/Performance-Monitors-Extension-support-/Performance-monitors-interrupts
+  https://developer.arm.com/documentation/102530/0002/Performance-Monitors-Extension-support-/Performance-monitors-interrupts
+  https://developer.arm.com/documentation/102484/0003/Performance-Monitors-Extension-support-/Performance-monitors-interrupts
+
+So please check if this patch is really needed, otherwise I'd suggest
+dropping it.
+
+Thanks,
+Stephan
 
