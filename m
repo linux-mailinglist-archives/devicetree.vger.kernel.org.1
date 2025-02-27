@@ -1,130 +1,106 @@
-Return-Path: <devicetree+bounces-152078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A28FDA47E55
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:56:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A29D1A47E5C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:58:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6747D1892783
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:57:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CE703AEF3A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B4A22DF99;
-	Thu, 27 Feb 2025 12:56:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA6A22DFFC;
+	Thu, 27 Feb 2025 12:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yWz7TU2l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gnIpJX0d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A93422D7B2
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 12:56:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 919B822D4F9;
+	Thu, 27 Feb 2025 12:57:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740661008; cv=none; b=vAo1u9eGi+1MRj1s3Z9twFg1UWfuq+gkWyU7M4dx13TBIQNxOblTARlc5djCRhQ4W6MpDJXwNeahDHl/2UKYafIlL4wOS4+tw7CaoADOr+BPIFKg4kfp37HRCdIgYYmOsbjutIwYF1ZgCNG0zvqfhdj500hDp1Bh69boOzaTzJo=
+	t=1740661075; cv=none; b=X31nP+GYVdJrPhatNUb0XDEEhFydxGGbMRASsse72SUKDQIrhKprGO2ulpijgDOA9GJH5DhCuLBxaz64wEZiTTOpX8phTfLeDhpIGwEQSYoquwV1SJqVrkhASBU6mpnNZlvcYF/2gp36hLNmCizg/Bbmp0TVJpYixtxwab49yZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740661008; c=relaxed/simple;
-	bh=fGUVzR1B88At1tVx8Gm7GT+20MR8uqyEANIRvn83vWQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=TCcHok1Ks473sc/3cBhnSKb281u5jPuVwXFpKD0RuyiugSSzicgS+V/tNKvEqMWOZClU9S7cx3xe/falORt/d8xvjXDwmY9nVQ92v6yIuGD+6HYsWskzBeIjH+ZLhYbaj+a5fPpJ4sfvpBY9l+InCLZZOloMRs+62LYADfIk6Aw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yWz7TU2l; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4399deda4bfso6173035e9.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 04:56:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740661004; x=1741265804; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=fGUVzR1B88At1tVx8Gm7GT+20MR8uqyEANIRvn83vWQ=;
-        b=yWz7TU2lhoTGdvjPsFwGS6Qfi1BGhWmryyNLLx5BiSCm9mi4fRDLrWKFa5DxhOLvaI
-         b174a5YxWFZE9SLbAVBJpgDO/tKkokRc6ApHcHSN16uJNI/5QfRSzQwNX7y00vAjfqjk
-         SwEpLX9sEAjw7PkdK83UDZSQfYFwCyRPOLc/3drquVeWlxW7mko2r8WSSXBQHE323rbJ
-         FwXcc+z4/pdAdx/eS1HSjE0of2B4hVeYHiHp6gFeGzHBNyxUISe368D/mOlhEDZ3Xtun
-         tBKkmtH8VAm7UKJ9Vt6D48CFxdQ6rBwdoWnV7d4z7MwpIZukQeuuyWguWyr4A3PL6e2T
-         yuTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740661004; x=1741265804;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fGUVzR1B88At1tVx8Gm7GT+20MR8uqyEANIRvn83vWQ=;
-        b=mSMRi106BurY6qa3RMnumv/783dlG+hbFkf8pAwCahTpuOlqeyVExOKQF1yjzWVHWH
-         JIxBTkoUzhYf+0rO4bJbRUbMqrUy+6TbcWA/WLarKe/9mudN9Ihk+eplOxRlRwwYsD3s
-         REhIId0SeO8l1KOYekgKnZuudWPDD2dMk7Y+lB2Qw1kol1hxFIdLaxLN+HXX5A7Df9+t
-         dI0uIDNBcaqXrIKC+D6JcsE0nLmxYkSQmCy3FVgcBcwkLvzE4ARuaWkFoPOCrG4moiVr
-         KDol4xARzdLaq1lebh2pAYXEVeKpa4wVdfaEXcW7FIoe4tkd6AuFP9TAuqeTOm68Gi4V
-         zbiA==
-X-Forwarded-Encrypted: i=1; AJvYcCVM6cBH591BIASNc6ioziiUUrA3Qv3jUk8SoIBFwMRw0/c4a+rABdktrmLCl9b/ik242ZORsyAQypo+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMMn1nqR7FBvNoqqUfFhG4c2b8l17c6tEkGEH4C8u2IX1gvqSb
-	eJ3J1dOEd+h1cwnhwlYLBntw+8rx1cfSLpNUxSxA/uacIyjZrRbqdyn/tUV50LM=
-X-Gm-Gg: ASbGnctx5cU0NyrOwhxbXr1ncdNQpD/h4hXqJksgO+2WoLA5XaEDrfCp/eOpaowJ/7K
-	b2D4JPs6eut3sVmQEpbkxbwgj4hD06XxTzA654eIyh1DyF08fJRcE0c3mAADQ/j0EwN5VDWFw6I
-	9Gl8oECHLDufwrQEw1G0LK6Vzdr3b4Hj7CiIPI5ff3hCY4mGWqAWlcGX1C7i1JDtfeL9BqgC16m
-	RZZ/BAUZNezfMQnYvJ0oc2/Poc3WBw7wJSEoYySS5jthGjBZnltwOv3VlHQOGGBWefI4GrgMd1v
-	QRd4xXrodyzUlZovaJoXUF43jDczSg==
-X-Google-Smtp-Source: AGHT+IGgA8QlJ26ze07J+YhYIMSkHS/YQRwZ6iJpXVMPjcqdJ2RpD+8zTEtTBFTsbNdl8L7SmDd0HA==
-X-Received: by 2002:a5d:6d82:0:b0:38f:2b49:7bfe with SMTP id ffacd0b85a97d-38f6f0ae7eamr23284725f8f.47.1740661004532;
-        Thu, 27 Feb 2025 04:56:44 -0800 (PST)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e47a6739sm1953462f8f.22.2025.02.27.04.56.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Feb 2025 04:56:44 -0800 (PST)
-Message-ID: <77a8982401fdd8e986255a70e22f4fef290669cc.camel@linaro.org>
-Subject: Re: [PATCH v2 1/6] dt-bindings: gpio: add max77759 binding
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Rob Herring <robh@kernel.org>
-Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- devicetree@vger.kernel.org,  Kees Cook <kees@kernel.org>,
- linux-gpio@vger.kernel.org, Srinivas Kandagatla	
- <srinivas.kandagatla@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>,
-  Will McVicker <willmcvicker@google.com>, Conor Dooley
- <conor+dt@kernel.org>, kernel-team@android.com,  Bartosz Golaszewski	
- <brgl@bgdev.pl>, linux-hardening@vger.kernel.org,
- linux-kernel@vger.kernel.org,  Lee Jones <lee@kernel.org>, Peter Griffin
- <peter.griffin@linaro.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 27 Feb 2025 12:56:42 +0000
-In-Reply-To: <20250227125143.GA1672649-robh@kernel.org>
-References: <20250226-max77759-mfd-v2-0-a65ebe2bc0a9@linaro.org>
-	 <20250226-max77759-mfd-v2-1-a65ebe2bc0a9@linaro.org>
-	 <174060184807.3654907.17826939583833772128.robh@kernel.org>
-	 <f3db83179b405ca056fd55abdd6c38adaedbaea0.camel@linaro.org>
-	 <20250227125143.GA1672649-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.53.2-1 
+	s=arc-20240116; t=1740661075; c=relaxed/simple;
+	bh=fH4N0wG87WQDa0bhN9DzZrrecvbqHxRrAhkjPukdbA4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=eguiWNA4wV60LfITsKThBgRKHHKrhgs4kIOLItXx7oRVIy8q0cc7yt8iaaFyKn/bUEvTRZb74v9xYm9JmQRktCoarY7SS/s1To7LepJ6kk82fzB6IvficvOfrp7RzMHQxCIuWKDuj0gYRoCSxKmMv+SpsTAZ9J5nRpXrwdmqdxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gnIpJX0d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id F2C6CC4CEDD;
+	Thu, 27 Feb 2025 12:57:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740661075;
+	bh=fH4N0wG87WQDa0bhN9DzZrrecvbqHxRrAhkjPukdbA4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=gnIpJX0dh3WDZc/Rd5FHTYfXO9vldvvhXopix02G1cZjNqVib4JIhNJosr2gUpKnd
+	 aOw7z1ghTewQyMGZoHtoZiHwMlgK86j7ywQsuc32TStlM1XEyaj3nTSt3Sw2tc/3kt
+	 TZ5afx5lHsaI0XEd3NbLVmdf+mM4Egb+j+tS59nLDViOCC3H1HqPwoGGfuvhjYOqCc
+	 ToGNt1jnFpzKwetHjuEiQQDDyFhLevfcswACXct69C5vpZ6RGDk8GM0/ipn5bzFk6m
+	 mTZ0wOsnHdXGU8qa6eNvkEQFR9VKuVmBm0BIu7HJLZVk6aaLOILkeg+5ESSfqjVJrz
+	 x4MxteRB3tAlA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DCE1CC021BE;
+	Thu, 27 Feb 2025 12:57:54 +0000 (UTC)
+From: Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
+Subject: [PATCH 0/3] hwmon: (ntc_thermistor) typo fixes and incorrect table
+ fix
+Date: Thu, 27 Feb 2025 13:57:50 +0100
+Message-Id: <20250227-ntc_thermistor_fixes-v1-0-70fa73200b52@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAE5hwGcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDIyNz3byS5PiSjNSi3Mzikvyi+LTMitRiXTMDE+NkCzMjS1OzRCWg1oK
+ iVLAEUGd0bG0tAMKLl+lmAAAA
+X-Change-ID: 20250227-ntc_thermistor_fixes-6043c862956a
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Joseph McNally <jmcna06@gmail.com>
+Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Maud Spierings <maudspierings@gocontroll.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740661074; l=882;
+ i=maudspierings@gocontroll.com; s=20250214; h=from:subject:message-id;
+ bh=fH4N0wG87WQDa0bhN9DzZrrecvbqHxRrAhkjPukdbA4=;
+ b=dnRWEeSNNKaARGa6YQjxb6PbhJnpRMPY/d/CWj381ztZJmhOuOQ72cO44MAUmkPwFfptCwFCT
+ dfiy+20BnjhDSy/LSMcwd4K8eb8dfkio4ndyeIVJdU4Epj1ODdMCRNx
+X-Developer-Key: i=maudspierings@gocontroll.com; a=ed25519;
+ pk=7chUb8XpaTQDvWhzTdHC0YPMkTDloELEC7q94tOUyPg=
+X-Endpoint-Received: by B4 Relay for maudspierings@gocontroll.com/20250214
+ with auth_id=341
+X-Original-From: Maud Spierings <maudspierings@gocontroll.com>
+Reply-To: maudspierings@gocontroll.com
 
-On Thu, 2025-02-27 at 06:51 -0600, Rob Herring wrote:
-> On Thu, Feb 27, 2025 at 11:19:55AM +0000, Andr=C3=A9 Draszik wrote:
->=20
-> > The error is because the binding's 'description:' references the
-> > mfd binding using the complete path and the mfd binding is added
-> > in a later patch only in this version of the series:
-> >=20
-> > =C2=A0 >=C2=A0... For additional information, see
-> > =C2=A0 > Documentation/devicetree/bindings/mfd/maxim,max77759.yaml.
-> >=20
-> > the error goes away if a relative path is used instead:
-> >=20
-> > =C2=A0 > ... For additional information, see
-> > =C2=A0 > ../mfd/maxim,max77759.yaml.
->=20
-> No, just ignore the error. I believe it gets fixed with the mfd binding=
-=20
-> applied. I'm not too concerned if refcheckdocs is bisectable.
+Fix some small mistakes in the Kconfig and bindings yaml, also fix the
+incorrect sensor table for the ncpXXxh103 sensor.
 
-Thanks Rob, and yes, it does go away then.
+Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+---
+Maud Spierings (3):
+      hwmon: (ntc_thermistor) Fix module name in the Kconfig
+      dt-bindings: hwmon: ntc-thermistor: fix typo regarding the deprecation of the ntc, compatibles
+      hwmon: (ntc_thermistor) Fix the ncpXXxh103 sensor table
 
-Cheers,
-Andre'
+ .../devicetree/bindings/hwmon/ntc-thermistor.yaml  |  2 +-
+ drivers/hwmon/Kconfig                              |  2 +-
+ drivers/hwmon/ntc_thermistor.c                     | 66 +++++++++++-----------
+ 3 files changed, 35 insertions(+), 35 deletions(-)
+---
+base-commit: be5c7bbb3a64baf884481a1ba0c2f8fb2f93f7c3
+change-id: 20250227-ntc_thermistor_fixes-6043c862956a
+
+Best regards,
+-- 
+Maud Spierings <maudspierings@gocontroll.com>
+
 
 
