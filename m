@@ -1,152 +1,193 @@
-Return-Path: <devicetree+bounces-152328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 801C9A48AD5
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 22:54:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CAD0A48AF9
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 23:00:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6702B3B6E2B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 21:54:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6ECC21637F4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 22:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9038B271295;
-	Thu, 27 Feb 2025 21:54:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="NchOCmf6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37481271280;
+	Thu, 27 Feb 2025 22:00:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 276C51EB5C0
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 21:54:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E94D32702D7;
+	Thu, 27 Feb 2025 21:59:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740693261; cv=none; b=sccP6SOh4u0bB/BNyCGJedJK90fl9SeJ52IKH6zzfGOwnRo159zdZ8PSDP/ETOojCpWuvX46T26SXP2l2hlvnpNaty9jiVDHNiL3a7W4BNcMusF4Y2n+uDFwvKYk3BfXz/Qfubck1b0BKurbjwQp1+mBavuocRGFHDO3vYI7tVg=
+	t=1740693606; cv=none; b=A/uoztrbNP0bUdvTnTq85bE3TNKcFuVkYIriHyKWbGXWrad9fJKHQQrSSfBjl4buhZJrgrR33bJoJscLH5fDL//JOuX0zSeqEmqBHACNMBL4rnkHoxGPIvbfcrRJ0F2y4VCwMCLPtevZqGm/EeveRULP3IWIpBYTKiBiZrz8i6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740693261; c=relaxed/simple;
-	bh=vQHbDRJK2BUW3sVk844uq3TqW7P1kixXvD0chqN70M0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EecN5xyOAt/nbPLP1EzexG8gIQ5RBXMkwOe0XEzItmV/QiwuVQjoZc8viNSRC2cHnA7+YpIS5w3DUXMHKsoEje0yCcfgzo9Pn20m2lrbVp5Neag8KVA6sVzC8SHRu81fqChFrt7KUL1sjQcFUIyuNwb7gZT9ZNxAtZmOibiU1Lk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=NchOCmf6; arc=none smtp.client-ip=209.85.210.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-72720daed05so769014a34.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 13:54:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1740693257; x=1741298057; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=v/hXAHCtNLeAWG63+hcCl8SC7KoqJ0y7pVArSY1JtLE=;
-        b=NchOCmf6bMHnnHxl040Lq65ldRvmeF/mYcjC5nT+hsvtK6qv42bYpS99G0bAjOJTap
-         w8w94ygtA3AC/r34AY8yKXmM7BFHDRKAEe0B8oklM3AYnzu8RaPVtJye1MH2hdq4PSBI
-         DyNWr2e+BMyWKCqzAYiFvkt26qAzVlfpOKZ1bls/sZS/nSdOrqx/uiK4+mkVvHE9HN2b
-         swBdS4tM8H43/opyqAp7naksuCu6SbLoDl80Y/iL/yy8H/vCaJ1hn7BO1IZx4otdUmJl
-         kNWqicHO9OlFW+YNOItI8kF8Ovi0BVYkSFbs6EuQZbzPSOhZQQ6H0bl4EVrP34c9sps3
-         9HHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740693257; x=1741298057;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v/hXAHCtNLeAWG63+hcCl8SC7KoqJ0y7pVArSY1JtLE=;
-        b=rNNrIJVDU58eakuAEW8QtTYnfxlZXbpxGSZeAM3R94S+3Z+wOui7WEmQjjt0HWuo9u
-         qKB+pkkqHiNVEIpzSMjigFkRC6/Wj+nqwq+oUIHJk/nBdnxxIGIloemJ5Z8NFnn8Nn91
-         YJeAhJB665ZHsQUQC68D6Hc+ogP+y/8ejq3dOOJMtj/mMoNNGW4+nKjJLsEbeKgAJXMx
-         41DOVXuKWrSENsNQgbl+IIKghRMDG8k/d6dnnx87YLgIDUzjyqfL3NMcKAw9ZDK7ynd0
-         ypfvJLyiV7ZyxT13wkyIRsjGgyQTxWUMnA0/zEJnWm0czFPv5qwOgKqXYtjk//k1ifDR
-         JPVg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOYzw764Y8SixDYUQ72fo2+Nk/wI+bJ0m2FwkJ29g0Yl7pbC6Co/vX91llSKz6Ne++ACxgYGJ0Wgyb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxq5vFZXJJ1dgk5WFKDivl4avcsRQH7V79OpC1zr4KY2gwmHmp8
-	+XRcRjNWfgi9P/gaWGPZf2HA8uOzkAUurrbevl773xsSPQcQqUBtNt/VjQUj4Xk=
-X-Gm-Gg: ASbGncs5qyniJggrfMInRkPjI6VQbia9OQN4OxC1KCtbcNV2beFBajEVA/9gRvmq+35
-	Bq10O9xioRQEOIGuXdKX407n+oS+rX2GoA91vkLP21EZpg4+HyiHoE70vVfWH5c9jxTz7Rn+YjZ
-	EhtXIL6vQgYxLNZN2RB71THs5bsMa/d3buYUxrl8tmGa1g6lMGu156b5cyFNTKaF22iy8XZ1r0r
-	YujN5nMgv4geMblUIO/22mVE6gTNAZzdPS1YQJXN+dNy1AIIwweuDaaxRkbIUgn61S7Lxsh0uaC
-	IdMsQOi/oVA97vz63hJucdbnXUVEQsNoTECgovXKvHGM/+mWiqp0l3gBDb7VO/4=
-X-Google-Smtp-Source: AGHT+IGX6e+UTV3fnyRf7e6ZqTStb+426CrDeWO0t2ai6r0zce8y0wyvZGrnkjPKj62Xq0Vh0eHNCQ==
-X-Received: by 2002:a05:6830:6505:b0:726:ee0c:57e7 with SMTP id 46e09a7af769-728b8306535mr539540a34.24.1740693257155;
-        Thu, 27 Feb 2025 13:54:17 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-728afd76cc4sm404845a34.42.2025.02.27.13.54.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Feb 2025 13:54:15 -0800 (PST)
-Message-ID: <47ae0fa6-8005-4c8c-9409-3189ba6f42af@baylibre.com>
-Date: Thu, 27 Feb 2025 15:54:13 -0600
+	s=arc-20240116; t=1740693606; c=relaxed/simple;
+	bh=CgxQyljhqVTXpgSL0JHUD5jTBBLWxifnrh+FlSuppPo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pfZ8eSp7Vt9YW6zy80ieyYiVhWN6lWQX7dhWbMRCev48h+mKZjt9WyAP/ytGF/hOfLFsdpayhDII7ZWhm3GDov/m+qW2h29dMyPR6EjirKsEi3okuCYVU+eSE5/qBO39XFhTATpojR5KMdRedAidnI4jeRAkq26cFv7uo7lh0Es=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7BD021516;
+	Thu, 27 Feb 2025 14:00:14 -0800 (PST)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9A6013F5A1;
+	Thu, 27 Feb 2025 13:59:55 -0800 (PST)
+Date: Thu, 27 Feb 2025 21:57:32 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Andras Szemzo <szemzo.andras@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai
+ <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
+ <samuel@sholland.org>, Linus Walleij <linus.walleij@linaro.org>, Philipp
+ Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, Vinod
+ Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Ulf
+ Hansson <ulf.hansson@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>, Florian
+ Fainelli <florian.fainelli@broadcom.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 02/10] pinctrl: sunxi: add driver for Allwinner V853
+Message-ID: <20250227215732.5f5753d9@minigeek.lan>
+In-Reply-To: <20250205125225.1152849-3-szemzo.andras@gmail.com>
+References: <20250205125225.1152849-1-szemzo.andras@gmail.com>
+	<20250205125225.1152849-3-szemzo.andras@gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v3 12/17] iio: adc: ad7768-1: Add GPIO controller
- support
-To: 7c5e2364-038b-48a8-ad67-3cf0f2fd2be3@baylibre.com
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Sergiu Cuciurean <sergiu.cuciurean@analog.com>, lars@metafoo.de,
- Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, jic23@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- marcelo.schmitt1@gmail.com
-References: <cover.1739368121.git.Jonathan.Santos@analog.com>
- <62cb9786b02adde118db9349617cb796585ceb02.1739368121.git.Jonathan.Santos@analog.com>
- <CACRpkdaSY7WH191makzPcZqLd-vBsC_f6yagWzBa65MrC+pjKA@mail.gmail.com>
- <7c5e2364-038b-48a8-ad67-3cf0f2fd2be3@baylibre.com>
- <Z8DazwTguF/gfKW1@JSANTO12-L01.ad.analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <Z8DazwTguF/gfKW1@JSANTO12-L01.ad.analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 2/27/25 3:36 PM, Jonathan Santos wrote:
-> On 02/20, David Lechner wrote:
->> On 2/19/25 2:34 PM, Linus Walleij wrote:
->>> Hi Jonathan/Sergiu,
->>>
->>> thanks for your patch!
->>>
->>> On Wed, Feb 12, 2025 at 7:20 PM Jonathan Santos
->>> <Jonathan.Santos@analog.com> wrote:
->>>
->>>> From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
->>>>
->>>> The AD7768-1 has the ability to control other local hardware (such as gain
->>>> stages),to power down other blocks in the signal chain, or read local
->>>> status signals over the SPI interface.
->>>>
->>>> This change exports the AD7768-1's four gpios and makes them accessible
->>>> at an upper layer.
->>>>
->>>> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
->>>> Co-developed-by: Jonathan Santos <Jonathan.Santos@analog.com>
->>>> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
->>>
->>> Is it not possible to use the gpio regmap library in this driver
->>> like we do in drivers/iio/addac/stx104.c?
->>>
->>> It cuts down the code size of simple GPIO chips on random
->>> chips quite a lot.
->>>
->>> Yours,
->>> Linus Walleij
->>
->> I think the answer is "no" since we need to hold a conditional lock
->> while accessing registers. Namely: iio_device_claim_direct_mode()/
->> iio_device_release_direct_mode().
->>
->> Unless we add some extra stuff to the gpio regmap implementation to
->> add optional callbacks to call these. Which could be worth it given
->> that quite a few ADCs provide GPIOs like this.
-> 
-> Since this patch set is quite large already, is it worth to do this
-> here? if you say it is necessary, i can try this.
-> 
->>
+On Wed,  5 Feb 2025 13:52:17 +0100
+Andras Szemzo <szemzo.andras@gmail.com> wrote:
 
-I'm a big fan of not trying to implement every single possible
-feature in one big patch series, but rather splitting it up.
+Hi,
+
+> The V853 family has multiple package variants, from BGA to QFN88.
+> The latter has co-packaged DRAM and fewer pins, and less features (pin muxes).
+> All family members can be supported by a single driver, as the available pins
+> with allowed muxes is the same across the devices.
+> 
+> This new pinctrl driver depends on the new sunxi device-tree based mux support
+> patch series [1].
+> 
+> [1]: https://lore.kernel.org/linux-sunxi/20241111005750.13071-1-andre.przywara@arm.com/T/
+> 
+> Signed-off-by: Andras Szemzo <szemzo.andras@gmail.com>
+> ---
+>  drivers/pinctrl/sunxi/Kconfig              |  5 ++
+>  drivers/pinctrl/sunxi/Makefile             |  1 +
+>  drivers/pinctrl/sunxi/pinctrl-sun8i-v853.c | 53 ++++++++++++++++++++++
+>  3 files changed, 59 insertions(+)
+>  create mode 100644 drivers/pinctrl/sunxi/pinctrl-sun8i-v853.c
+> 
+> diff --git a/drivers/pinctrl/sunxi/Kconfig b/drivers/pinctrl/sunxi/Kconfig
+> index a78fdbbdfc0c..fac9c61039e2 100644
+> --- a/drivers/pinctrl/sunxi/Kconfig
+> +++ b/drivers/pinctrl/sunxi/Kconfig
+> @@ -81,6 +81,11 @@ config PINCTRL_SUN9I_A80_R
+>  	default MACH_SUN9I
+>  	select PINCTRL_SUNXI
+>  
+> +config PINCTRL_SUN8I_V853
+> +	bool "Support for the Allwinner V853/V851S/V851SE PIO"
+> +	default MACH_SUN8I
+> +	select PINCTRL_SUNXI
+> +
+>  config PINCTRL_SUN20I_D1
+>  	bool "Support for the Allwinner D1 PIO"
+>  	default MACH_SUN8I || (RISCV && ARCH_SUNXI)
+> diff --git a/drivers/pinctrl/sunxi/Makefile b/drivers/pinctrl/sunxi/Makefile
+> index 2ff5a55927ad..8937b56b2ef4 100644
+> --- a/drivers/pinctrl/sunxi/Makefile
+> +++ b/drivers/pinctrl/sunxi/Makefile
+> @@ -20,6 +20,7 @@ obj-$(CONFIG_PINCTRL_SUN8I_A83T_R)	+= pinctrl-sun8i-a83t-r.o
+>  obj-$(CONFIG_PINCTRL_SUN8I_H3)		+= pinctrl-sun8i-h3.o
+>  obj-$(CONFIG_PINCTRL_SUN8I_H3_R)	+= pinctrl-sun8i-h3-r.o
+>  obj-$(CONFIG_PINCTRL_SUN8I_V3S)		+= pinctrl-sun8i-v3s.o
+> +obj-$(CONFIG_PINCTRL_SUN8I_V853)	+= pinctrl-sun8i-v853.o
+>  obj-$(CONFIG_PINCTRL_SUN20I_D1)		+= pinctrl-sun20i-d1.o
+>  obj-$(CONFIG_PINCTRL_SUN50I_H5)		+= pinctrl-sun50i-h5.o
+>  obj-$(CONFIG_PINCTRL_SUN50I_H6)		+= pinctrl-sun50i-h6.o
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun8i-v853.c b/drivers/pinctrl/sunxi/pinctrl-sun8i-v853.c
+> new file mode 100644
+> index 000000000000..fb2112ee12d0
+> --- /dev/null
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sun8i-v853.c
+> @@ -0,0 +1,53 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Allwinner V853 SoC pinctrl driver.
+> + *
+> + * Copyright (c) 2025 Andras Szemzo <szemzo.andras@gmail.com>
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pinctrl/pinctrl.h>
+> +
+> +#include "pinctrl-sunxi.h"
+> +
+> +static const u8 v853_nr_bank_pins[SUNXI_PINCTRL_MAX_BANKS] =
+> +/*	  PA  PB  PC  PD  PE  PF  PG  PH  PI  */
+> +	{ 22,  0, 12, 23, 18,  7,  8, 16,  5 };
+> +
+> +static const unsigned int v853_irq_bank_map[] = { 0, 2, 3, 4, 5, 6, 7, 8 };
+> +
+> +static const u8 v853_irq_bank_muxes[SUNXI_PINCTRL_MAX_BANKS] =
+> +/*	  PA  PB  PC  PD  PE  PF  PG  PH  PI */
+> +	{ 14,  0, 14, 14, 14, 14, 14, 14, 14 };
+> +
+> +static struct sunxi_pinctrl_desc v853_pinctrl_data = {
+> +	.irq_banks = ARRAY_SIZE(v853_irq_bank_map),
+> +	.irq_bank_map = v853_irq_bank_map,
+> +	.io_bias_cfg_variant = BIAS_VOLTAGE_PIO_POW_MODE_SEL,
+> +};
+> +
+> +static int v853_pinctrl_probe(struct platform_device *pdev)
+> +{
+> +	return sunxi_pinctrl_dt_table_init(pdev, v853_nr_bank_pins,
+> +					   v853_irq_bank_muxes,
+> +					   &v853_pinctrl_data,
+> +					   SUNXI_PINCTRL_NEW_REG_LAYOUT |
+> +					   SUNXI_PINCTRL_ELEVEN_BANKS);
+
+This last flag doesn't apply: it would put the offset for the
+POW_MOD_SEL registers at 0x380, but the manual says it's 0x340, as with
+the previous SoCs.
+I compared the rest against the A523 driver, and the V853 specific bits
+against the manual: they match, so with that line removed:
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
+> +}
+> +
+> +static const struct of_device_id v853_pinctrl_match[] = {
+> +	{ .compatible = "allwinner,sun8i-v853-pinctrl", },
+> +	{}
+> +};
+> +
+> +static struct platform_driver v853_pinctrl_driver = {
+> +	.probe	= v853_pinctrl_probe,
+> +	.driver	= {
+> +		.name		= "sun8i-v853-pinctrl",
+> +		.of_match_table	= v853_pinctrl_match,
+> +	},
+> +};
+> +builtin_platform_driver(v853_pinctrl_driver);
+
 
