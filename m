@@ -1,134 +1,180 @@
-Return-Path: <devicetree+bounces-152125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81BFBA48139
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 15:29:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C900CA48143
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 15:31:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49E7017E986
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:20:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52E5D3A12C5
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:27:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62322230D35;
-	Thu, 27 Feb 2025 14:19:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC1662309A3;
+	Thu, 27 Feb 2025 14:27:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="n5rDSo8n"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="EfjiAiV/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from box.trvn.ru (box.trvn.ru [45.141.101.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B3EB2309AA;
-	Thu, 27 Feb 2025 14:19:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D75522C35C;
+	Thu, 27 Feb 2025 14:27:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.141.101.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740665946; cv=none; b=XPs2f+mvlRCh8nSO5cj6FX////1Pl+YBZ6bGj9mZmsw4vTeXPZXv6VfVoQ3+X5H+jt1V8UT9tszh37Rz5woiuak06CdVXwLOpKeZVJNk+q4j5iYEPbHaetKWIdEJ5V/L6a2O/hMtv/qFFazsyNRCi4T18+eOZ91WSbFCWSFWx4A=
+	t=1740666429; cv=none; b=iwpOIoFdokLUqPDvfiYvSHNS2i8FZkM+zlpSTr/Rh/nOLUfxOVC+VbZ6FzsIQMn3TPSs7RqtNxpjsSI8fj5g2cQbelHBC6Y8MqnWzO56txW4WWLfXdVHtfZOTA0nA3XPdd+ydlSIG98+V1Ii5l8NKzD8GdiBwS/2ebVIQZy/QCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740665946; c=relaxed/simple;
-	bh=bfYW3LHwMOMgvcuWqLOaQFxhtTvpWF53uj1Tq7lCn7A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hx1LflWF0XwCQSsx6RVmX1Uybk037F5X9+/HAx2bd+GsYqMcOVHfxG5q3F/1AxSmfWQRgTszxi3LGju8gu0jwUu/3E7e0jhIvuY8mGU2UZo/OA0nl03KL1ssjOq7UompG0nS7W79mXZNG987oibMruiy/ZK0Vhm8+xkqeg0vQuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=n5rDSo8n; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740665945; x=1772201945;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bfYW3LHwMOMgvcuWqLOaQFxhtTvpWF53uj1Tq7lCn7A=;
-  b=n5rDSo8nkCc2a8OBfZ6vxiQjljZihXqyGtl7Smwq+V7QCYfWvzzXKo8G
-   9VPG3KA8pRXdYBGXcXVfTd8ESz9kroki9Ml82v4zIrcS4Iw/hHKH0DgpI
-   xYIPF8ABGMVDcT5NcG/f3+X85cfWDzIgok55OULFRizOrLPzv44TNF1YJ
-   qWnMoL7HraV58TnxNhNxC0Z+7N31wNDU21ZL6GkzZsCYmFJq00HvhRuHc
-   wENO0dQcGF1pS+WQEPS5S1mq6YN2/8gVgIn+6g8a3rwVdhqcH6xSksS9H
-   G8JLwCDOA5Jsjnvz1s38JBMCz2jHL0BRNPiAYWiOaZJD5TJiblmUlER6A
-   g==;
-X-CSE-ConnectionGUID: 2yEDdmRuS2m+EqKjEFaJzw==
-X-CSE-MsgGUID: YLCVXucqQAyGdYA29GLN4A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="52543185"
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; 
-   d="scan'208";a="52543185"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2025 06:19:03 -0800
-X-CSE-ConnectionGUID: 1x2Rj4zmTJuMrUEbdFhdRg==
-X-CSE-MsgGUID: 3bHSuuctQEKD3UopNX7e+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; 
-   d="scan'208";a="140269609"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by fmviesa002.fm.intel.com with ESMTP; 27 Feb 2025 06:19:01 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tnein-000DTW-0L;
-	Thu, 27 Feb 2025 14:18:53 +0000
-Date: Thu, 27 Feb 2025 22:18:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>,
-	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] power: supply: Add support for Maxim MAX8971
- charger
-Message-ID: <202502272232.bykWJmpq-lkp@intel.com>
-References: <20250226093700.44726-3-clamor95@gmail.com>
+	s=arc-20240116; t=1740666429; c=relaxed/simple;
+	bh=opU+u0pR30TlhE0rUPVWl+UjMJILCqoaWKI63CQIgW8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ezUGzoLxoof4WD6XcH9td+uEpdohSg6y8h7vQuFzDeuf2g38XTOZrxVYiwGqL//M1zv6O+3XjQig4BBKhjPQsSgfEjOzprbxv0WCi8hf8pMpazxt6X33Q4snnBc3YWCxU29QQjafLo+Zt6wRpQyFSgzYzNMO81ek1T7UkSO4Od0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=EfjiAiV/; arc=none smtp.client-ip=45.141.101.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1740666424; bh=opU+u0pR30TlhE0rUPVWl+UjMJILCqoaWKI63CQIgW8=;
+	h=From:Subject:Date:To:Cc:From;
+	b=EfjiAiV/joOtveePGxbi/pITX9OS3nucam/wMz5JNWVhPq2D2mWMR/8xotzeYRHJE
+	 gqwjdfJGWDom7vK+7BRGXktjAQMg/+XWaHm5JCfkA1poqT7pRTwT8kCJdpnk4V2Apv
+	 9wuiKClx4rE71CQDv6cah0iGOnf6TnptoTE6msf9PGzoeceg2Uz2eLlzyMTAJLcQUe
+	 lHgMalM7x+962/bdpGIwkORv62CJ38i6KUHszXXWpZGhnxXf1AZ5opPDDMRvJhq4Hd
+	 UkG2Sjp91FvvX91BXiYVt1dU9amqYrMSL1bNSXgyGMfrgYR35lh2bsu2L/dpduBG3+
+	 ODiWTDPfRQczg==
+Received: from authenticated-user (box.trvn.ru [45.141.101.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 7CFC61CA2;
+	Thu, 27 Feb 2025 19:27:03 +0500 (+05)
+From: Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH v2 0/2] {vision/navigation}-mezzanine: Fix overlay root
+ node
+Date: Thu, 27 Feb 2025 19:26:47 +0500
+Message-Id: <20250227-qcom-nonroot-overlays-v2-0-bde44f708cbe@trvn.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250226093700.44726-3-clamor95@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACd2wGcC/4WNQQ6CMBBFr0K6dkyZhkpceQ/DAsogTbSj09pIC
+ He3cgGX7yX//VVFEk9RnatVCWUfPYcCeKiUm/twI/BjYYUaG41o4eX4AYGDMCfgTHLvlwjDRFi
+ PxgzUOlW2T6HJf/butSs8+5hYlv0m1z/7r5hr0IDWWTpZ3bTGXJLkcJS36rZt+wLloeoyuAAAA
+ A==
+X-Change-ID: 20250226-qcom-nonroot-overlays-bfe21d33be8c
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1993; i=nikita@trvn.ru;
+ h=from:subject:message-id; bh=opU+u0pR30TlhE0rUPVWl+UjMJILCqoaWKI63CQIgW8=;
+ b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBnwHY0EAtJMoKl/y/ihk2Z+Yl8rmecAual2KZh2
+ tRJIhuynViJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZ8B2NAAKCRBDHOzuKBm/
+ dTHOD/4tJBIOouXws5AAp9yhrRd0kUM4v/Snldt+8Ol7vOGt1BlRUh2uIrl0YCUSUecrf+PKXTO
+ McmnxvZS4ekrAjXo8VrHZLHn0VnHpNZVn3GTl+FNMgLeYuuvWDRs/MhEHwTyykOwkC4rkNURwTn
+ hAvcl5UVvzcKUJABb12190KUfqR6KX/rPkNneZ5vv/23sgj2OmXuoYYTg2N5AWAmpOMNei8ojyt
+ Ali0MuRD3AhBcgrn80IFTLHZ80/KzOQoqYqTuOxAr48Kc9CyihnGHWtpJ+QTPhOvOz1YfAZ0fx/
+ 7R/0v8Qw78EmLvHeyg4noGwbyywrxTtxO628HF6Rz6j2olZbEpfax3W2dLQPRkKxKj5a0LJYR/o
+ j4V4j/B4VpavyZ8C2jpkL1TvZVb3Xixo9CgCIq5HFisLaYZCDxJ7C4FhfUSm8WofH+/sDkRgX+s
+ EIWHo1vRJGJWURsF49qJEYSj3pZhcgAB/Xa8YHLyJteFNh3XFhy8rB9AsVu9ByvVx4MzJeE/3Vz
+ +NhxboRpEHE8ngRv4YPa8vUXylPWiWjfr8mI+DvkQOMPQYytrQR/Vna1qdp4uwp5Tf9Av3QQlSC
+ ntIjbTd0huvjCAo1r4raqc1QiD8AgtZ0kzxNeHXlKNgjNBbycfwDGB8R9pYBx8E5N1HB95GxIcg
+ HuEiYl3SzF1M0RA==
+X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
+ fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
 
-Hi Svyatoslav,
+While considering to propose WoA EL2 dt overlays upstream I was looking
+at existing overlays and noticed that some of them are broken: they put
+seemingly meaningful fixups into the overlay's "/" node, which places
+them into the overlay "metadata" itself, not into a fixup fragment to be
+applied to the actual dtb. This series fixes those two by changing to
+full path "&{/}" which should work as it was initially intended.
 
-kernel test robot noticed the following build warnings:
+See demonstration of the problem below:
 
-[auto build test WARNING on sre-power-supply/for-next]
-[also build test WARNING on robh/for-next krzk-dt/for-next linus/master v6.14-rc4 next-20250227]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+$ cat base.dts
+/dts-v1/;
+/ {
+	compatible = "fake,board";
+	fake,value = <42>;
+};
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Svyatoslav-Ryhel/dt-bindings-power-supply-Document-Maxim-MAX8971-charger/20250226-174046
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.git for-next
-patch link:    https://lore.kernel.org/r/20250226093700.44726-3-clamor95%40gmail.com
-patch subject: [PATCH v2 2/2] power: supply: Add support for Maxim MAX8971 charger
-config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20250227/202502272232.bykWJmpq-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250227/202502272232.bykWJmpq-lkp@intel.com/reproduce)
+$ cat extra.dtso
+/dts-v1/;
+/plugin/;
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502272232.bykWJmpq-lkp@intel.com/
+/ {
+	foo;
+	bar { baz; };
+};
+&{/} { whatever-comes-next-after-baz; };
 
-All warnings (new ones prefixed by >>):
+$ dtc base.dts -o base.dtb
+$ dtc extra.dtso -o extra.dtbo
+$ fdtoverlay -i base.dtb -o combine.dtb extra.dtbo
+$ dtc base.dtb
+/dts-v1/;
 
->> drivers/power/supply/max8971_charger.c:653:12: warning: 'max8971_resume' defined but not used [-Wunused-function]
-     653 | static int max8971_resume(struct device *dev)
-         |            ^~~~~~~~~~~~~~
+/ {
+	compatible = "fake,board";
+	fake,value = <0x2a>;
+};
 
+$ dtc extra.dtbo
+/dts-v1/;
 
-vim +/max8971_resume +653 drivers/power/supply/max8971_charger.c
+/ {
+	foo;
 
-   652	
- > 653	static int max8971_resume(struct device *dev)
-   654	{
-   655		struct i2c_client *client = to_i2c_client(dev);
-   656		struct max8971_data *priv = i2c_get_clientdata(client);
-   657	
-   658		irq_wake_thread(client->irq, priv);
-   659	
-   660		return 0;
-   661	}
-   662	
+	bar {
+		baz;
+	};
 
+	fragment@0 {
+		target-path = "/";
+
+		__overlay__ {
+			whatever-comes-next-after-baz;
+		};
+	};
+};
+
+$ dtc combine.dtb
+/dts-v1/;
+
+/ {
+	whatever-comes-next-after-baz;
+	compatible = "fake,board";
+	fake,value = <0x2a>;
+};
+
+In the resulting dtb foo bar and baz are missing.
+
+Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+---
+Changes in v2:
+- Just revert the original commits (Bryan)
+- Link to v1: https://lore.kernel.org/r/20250226-qcom-nonroot-overlays-v1-0-26c6e7605833@trvn.ru
+
+---
+Nikita Travkin (2):
+      arm64: dts: qcom: qrb5165-rb5-vision-mezzanine: Drop CMA heap
+      arm64: dts: qcom: sdm845-db845c-navigation-mezzanine: Drop CMA heap
+
+ arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso    | 11 -----------
+ .../boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso     | 11 -----------
+ 2 files changed, 22 deletions(-)
+---
+base-commit: be5c7bbb3a64baf884481a1ba0c2f8fb2f93f7c3
+change-id: 20250226-qcom-nonroot-overlays-bfe21d33be8c
+
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Nikita Travkin <nikita@trvn.ru>
+
 
