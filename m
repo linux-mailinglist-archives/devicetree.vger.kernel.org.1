@@ -1,174 +1,189 @@
-Return-Path: <devicetree+bounces-151833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 168DDA4743A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 05:17:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8721A4743D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 05:18:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67AFD3B17FD
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 04:16:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 762373A1A9C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 04:17:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C4A81E833D;
-	Thu, 27 Feb 2025 04:12:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0C801E5217;
+	Thu, 27 Feb 2025 04:17:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NlPO6rBT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q5gXPcHC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 802041E5207;
-	Thu, 27 Feb 2025 04:12:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7133D1A38E3
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 04:17:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740629579; cv=none; b=ezPN6aytkKAD9HNizceUqYK5b2N1ztBc+kLxqZWYDiNcUIjt059NMdrOZLsKqEZC5eVI8L3dqY02GGiGa3Z0P+BmTaBFJWyuL7YfumjqY2sf70sx8qf4Qb08yqHsga58fxIWzzaAr7Cg7nPqw4nQplLCbg6a+wlzdf+wj53xenw=
+	t=1740629825; cv=none; b=Ym9wQ9tof52m43k9kVs5dXV4/JhTf5+qUjvQRqfogULnarYkIrMqQaOQODJvQrK0TTC6v0WqccI4IkmoUl/RsPMsZvwhc2Yd5fg+o9lnRb2/HF7LRffTDCn4LZFN3WnmLhEHIjdBzOFxNdTwYYoE7/4jBTyxv3XPI1fmraCWe2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740629579; c=relaxed/simple;
-	bh=7hNfSdaBpAjAXL4fbQbkNnXkPgT70sZdShzH/VMIpGA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Eo6BLaT7IJHMtIPeuiuD+vyWWF6m3VSt1wdULsa4Y2rsxvgNuk+8/p65KARHBlLb+45aNSyEonuk587RjCOlUj2vyzmGvrGaPKq0KMM+CoOt2dzeaSRN+W6//Xhbu7+MRRvv1CHY/6B/TIC1NaRa4zQPbXHQ0Sr6uetb4y3rXFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NlPO6rBT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51QKA2VA015807;
-	Thu, 27 Feb 2025 04:12:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	CgoBpOnoOrfm1X3xouyNtXTVotFFxXtRzJZgZUINa78=; b=NlPO6rBTcG7IAcEX
-	7dtDvvAmI9C/82B3NXFZ0zq+40hnSKBGFyGXunJhNvjaNiMtyWpCIn7ThULJ7lRV
-	pj0Py/rIzHH6NRjWXUWgsSykL3sVjsaHMZypMCsjpWt6ykBImaUk9hrbUPLtf+Vz
-	CxoykuRoMJ6eyhEZHp8vLpBXsNauceqJlT1/wKV8pVy8KZiYGV95geCiAFNhUFIl
-	Xg+tIStdB01sv2ohoa/CWhlhSvGzrGhKNUiojL3HxV2AD6kn3UFTZ8YHS/mHgoJf
-	BWnpZxR9KiWc2/tvMWQRVfAf0ZtQPRd2zrRXVsEJxoKVsVB7hy5BpYPFl1ka7kmZ
-	ndgsEg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 451prnm7u0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Feb 2025 04:12:47 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51R4Cjcm016903
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Feb 2025 04:12:45 GMT
-Received: from [10.217.216.53] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 26 Feb
- 2025 20:12:42 -0800
-Message-ID: <72cc2c52-1d0d-4a60-93da-14acd5947f1f@quicinc.com>
-Date: Thu, 27 Feb 2025 09:42:39 +0530
+	s=arc-20240116; t=1740629825; c=relaxed/simple;
+	bh=cdH66nBgTf0Lwg3K/8eyHtCyVQMYcf9IUF1L6JQC4tk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d0yhNeGpqndkdtuhGL5LGDseu+yysOBsM4g/33k7yZfFyS2q7zITiVSGjmuZL1pCnfXOHyGh5noE9CUjKWSn7d78XvbIYfHDaM7O0xhXiQIkiuMmKbZXPXZuHEtdsiniYUacFQUIYA8NMBPOjqj4XV2bjEHynk9uxTfvMZ7m8lk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q5gXPcHC; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-546267ed92fso466524e87.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2025 20:17:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740629820; x=1741234620; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=sbpE7A80HY+/Mdda5+FpAzRig9IYFvS6m/EoQDwpXAQ=;
+        b=Q5gXPcHC5lN5JVX2lf0aUyQc63bMtc0iG5JHy2/dODruChVNW2VZxhugXxooa3WQx1
+         OANOD/ClCw/F679fgDtLCFQQwk05hqG7NJWqIO1t44nZwU/aMMhb4fAgkhksL42G70c7
+         oydZhdGEKwC6yT3dNFwBRhHEyaOBDj2UU1KqoklO6D3q54Bf4j+tjqAHUufKVRl7Lhrw
+         mD3BlgOq9BjY9auio47tCYFtTalb1n6XvfzHLgxaEAfcK6L2nx4Tnc4MtKCYGibBdnRT
+         PZsSAB5RkuSshr+5X8fMcbTDraISIEp5EEvNdXLj8aR9L4e0Gnw/Jfluxihi4/Wk4nQo
+         wxZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740629820; x=1741234620;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sbpE7A80HY+/Mdda5+FpAzRig9IYFvS6m/EoQDwpXAQ=;
+        b=c34VFPLFXoRaWmkerGd8xVvW6wRrKgwPFHHrhJIwwxKA4EcCkbD4+C24Uaw5mRX/uM
+         T47uY6QhSgPgaBMwAmjlHB0UFCGJmSlXULw0F04ZesdgDSRvcXn/M6iAOt/Ra2FbjHAk
+         c8a4JHRujDlLocjZXF2QuFc2iZLRgF6yaBCKSQ97mYAzTSjA7dooYZbgYKJxmEWgoDtp
+         sugNjF/OSzQrNCBs6iHYsYsa8hg0wDw1+1fuS1PA6or7LrF+DTv7sOOU8xzte/yAhSU6
+         Gw3tqaFzXYT/F22w9E4MrARg4SBAIeSKb5IYpO4KmangOnDL4Gvfr09Y2/mob5mK5c2z
+         Ky9g==
+X-Forwarded-Encrypted: i=1; AJvYcCVt+yM28X0u43bDVHesJoIcfZb9J10miQiQ1qpvW5m3fVlI48w/5j1k1vqFnOszbVOtwjReL7g8Z5Yp@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywx9a31h8iHq9JfwsNUlf3zVyvDQLDqlRYNMT6yTB1nL+hzIOo3
+	055vNzzT4GnxMO+iPjovu6mQcjUT62OpVhCiTVojg0UQaYo1M2h7UJH3TX8FqrQ=
+X-Gm-Gg: ASbGncu7E0aguEzdoxrkZxRBiwolGEJ26QIGoAW88ttWu/v81w8Jsyd96+7jiUnqRcH
+	TiiuQS5t+ropJmZMHgyyFd8/jAbWuo38/TCkAiB3XySMorum1D+zE8qCvkyvhTABaYCOpgvNso8
+	776IgODf4hN7JmYF+0BQxiuh1kEr6N4yqqKSP3lwpvRHnkWcLo8++nwq/FDGGXEhQsSJQPaCzgP
+	DrINCoYx/inOMRFa/k16VctwRYgWejBd7E/iN1SRGnb6TDYomff490+Hxv13z/kMvCo22o3YmgR
+	jBjLi1Hp+GjXiB39gfYciucCK5hBDSoB0fSViyHV6jvAJ8nBftmwMKv0lrc+yezG6n5dnZWbIo1
+	xi4AlAg==
+X-Google-Smtp-Source: AGHT+IE5VURtJx3akR0wW8QuRF4r2+WixtLJlHwmRqGjmXOtaF1CwM79EnenRC2OLvGzgMnEngZwiw==
+X-Received: by 2002:ac2:4e15:0:b0:545:c7d:1791 with SMTP id 2adb3069b0e04-548510ed5d4mr6767391e87.43.1740629820504;
+        Wed, 26 Feb 2025 20:17:00 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549441743c4sm61550e87.49.2025.02.26.20.16.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Feb 2025 20:16:59 -0800 (PST)
+Date: Thu, 27 Feb 2025 06:16:56 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Nikita Travkin <nikita@trvn.ru>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] {vision/navigation}-mezzanine: Fix overlay root node
+Message-ID: <vq5dcsi55aqn56h6ihysqk4lainhmjbyvot3jiqkxm3i7igsak@da5u6ro7rkvg>
+References: <20250226-qcom-nonroot-overlays-v1-0-26c6e7605833@trvn.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: qcm6490-idp: Update protected clocks
- list
-To: Bjorn Andersson <andersson@kernel.org>
-CC: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250206-protected_clock_qcm6490-v1-1-5923e8c47ab5@quicinc.com>
- <j43f4wu6wgoho2tl4crckemnngyvek5mma6ghkdyqcivk65dcf@gfsimovfuqy5>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <j43f4wu6wgoho2tl4crckemnngyvek5mma6ghkdyqcivk65dcf@gfsimovfuqy5>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mxXmZeDxVKZnQT026c7BtIvJr_SkthBU
-X-Proofpoint-ORIG-GUID: mxXmZeDxVKZnQT026c7BtIvJr_SkthBU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-27_02,2025-02-26_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- mlxscore=0 mlxlogscore=999 bulkscore=0 adultscore=0 phishscore=0
- priorityscore=1501 lowpriorityscore=0 malwarescore=0 clxscore=1015
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502270030
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250226-qcom-nonroot-overlays-v1-0-26c6e7605833@trvn.ru>
 
-
-
-On 2/26/2025 10:12 AM, Bjorn Andersson wrote:
-> On Thu, Feb 06, 2025 at 03:43:21PM +0530, Taniya Das wrote:
->> Certain clocks are not accessible on QCM6490-IDP board,
->> thus mark them as protected.
->>
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->> ---
->> Mark few clocks as protected on IDP of QCM6490.
->>
->> This patchset is separated out from the series[1] to remove dependency from
->> the LPASS reset.
->> [1]: https://lore.kernel.org/all/20240816-qcm6490-lpass-reset-v1-0-a11f33cad3c5@quicinc.com/
->> ---
->>  arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 21 +++++++++++++++++++++
+On Wed, Feb 26, 2025 at 07:29:54PM +0500, Nikita Travkin wrote:
+> While considering to propose WoA EL2 dt overlays upstream I was looking
+> at existing overlays and noticed that some of them are broken: they put
+> seemingly meaningful fixups into the overlay's "/" node, which places
+> them into the overlay "metadata" itself, not into a fixup fragment to be
+> applied to the actual dtb. This series fixes those two by changing to
+> full path "&{/}" which should work as it was initially intended.
 > 
-> I merged the patch adding this board in November 2023, are you saying
-> that for the last 15 months no one has actually booted it!?
+> See demonstration of the problem below:
+> 
+> $ cat base.dts
+> /dts-v1/;
+> / {
+> 	compatible = "fake,board";
+> 	fake,value = <42>;
+> };
+> 
+> $ cat extra.dtso
+> /dts-v1/;
+> /plugin/;
+> 
+> / {
+> 	foo;
+> 	bar { baz; };
+> };
+> &{/} { whatever-comes-next-after-baz; };
+> 
+> $ dtc base.dts -o base.dtb
+> $ dtc extra.dtso -o extra.dtbo
+> $ fdtoverlay -i base.dtb -o combine.dtb extra.dtbo
+> $ dtc base.dtb
+> /dts-v1/;
+> 
+> / {
+> 	compatible = "fake,board";
+> 	fake,value = <0x2a>;
+> };
+> 
+> $ dtc extra.dtbo
+> /dts-v1/;
+> 
+> / {
+> 	foo;
+> 
+> 	bar {
+> 		baz;
+> 	};
+
+Is this behaviour documented somewhere? I'd say, it would be a surprise
+to me.
+
+> 
+> 	fragment@0 {
+> 		target-path = "/";
+> 
+> 		__overlay__ {
+> 			whatever-comes-next-after-baz;
+> 		};
+> 	};
+> };
+> 
+> $ dtc combine.dtb
+> /dts-v1/;
+> 
+> / {
+> 	whatever-comes-next-after-baz;
+> 	compatible = "fake,board";
+> 	fake,value = <0x2a>;
+> };
+> 
+> In the resulting dtb foo bar and baz are missing.
+> 
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> ---
+> Nikita Travkin (2):
+>       arm64: dts: qcom: qrb5165-rb5-vision-mezzanine: Fix broken overlay root
+>       arm64: dts: qcom: sdm845-db845c-navigation-mezzanine: Fix the overlay root
+> 
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso       | 2 +-
+>  arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> ---
+> base-commit: 8433c776e1eb1371f5cd40b5fd3a61f9c7b7f3ad
+> change-id: 20250226-qcom-nonroot-overlays-bfe21d33be8c
+> 
+> Best regards,
+> -- 
+> Nikita Travkin <nikita@trvn.ru>
 > 
 
-I am not sure, I had got request to help boot the board which was not
-due to these clocks.
-
->>  1 file changed, 21 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->> index 9209efcc49b57a853c4dd55ac52cd4dc98d7fe86..346b9a377e611cd3e32cf00d44e87b363bada07a 100644
->> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->> @@ -759,3 +759,24 @@ &wifi {
->>  
->>  	status = "okay";
->>  };
->> +
->> +&gcc {
-> 
-> As you know, we sort nodes by address (if they have one), then
-> alphabetically. So this does not belong here.
-> 
-> Regards,
-> Bjorn
-> 
->> +	protected-clocks = <GCC_AGGRE_NOC_PCIE_1_AXI_CLK> ,<GCC_PCIE_1_AUX_CLK>,
->> +			   <GCC_PCIE_1_AUX_CLK_SRC>, <GCC_PCIE_1_CFG_AHB_CLK>,
->> +			   <GCC_PCIE_1_MSTR_AXI_CLK>, <GCC_PCIE_1_PHY_RCHNG_CLK_SRC>,
->> +			   <GCC_PCIE_1_PIPE_CLK>, <GCC_PCIE_1_PIPE_CLK_SRC>,
->> +			   <GCC_PCIE_1_SLV_AXI_CLK>, <GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
->> +			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
->> +			   <GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
->> +			   <GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
->> +			   <GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
->> +			   <GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_CLK>,
->> +			   <GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
->> +			   <GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
->> +			   <GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
->> +			   <GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
->> +			   <GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
->> +			   <GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
->> +			   <GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
->> +			   <GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
->> +};
->>
->> ---
->> base-commit: 808eb958781e4ebb6e9c0962af2e856767e20f45
->> change-id: 20250206-protected_clock_qcm6490-4019e6a61d0b
->>
->> Best regards,
->> -- 
->> Taniya Das <quic_tdas@quicinc.com>
->>
-
+-- 
+With best wishes
+Dmitry
 
