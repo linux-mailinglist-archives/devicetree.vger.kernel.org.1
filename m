@@ -1,132 +1,156 @@
-Return-Path: <devicetree+bounces-152302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F015FA489A2
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 21:17:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78FDDA489AA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 21:17:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E75FE16E0BA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 20:17:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA50016E214
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 20:17:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF7A270EC6;
-	Thu, 27 Feb 2025 20:16:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L2/pP3CU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD7126F46C;
+	Thu, 27 Feb 2025 20:17:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C163270EBF;
-	Thu, 27 Feb 2025 20:16:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D4C22222B7
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 20:17:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740687412; cv=none; b=k+OR5TqHl+Q6reaEuQf/qcoe3fNXBF7CVHlplkEdPtTcrzrPnJ9BozEkFvbOJwPYIocQbunMeMAycjjbGP3OF+QjVA/1iLqjB3bYNnfvQQx+oB1LswgyRmwNHsPC5p/04C4z38K/LdYNx2iMacpuJJZ6G45FRjlTrOvwQ0X+aok=
+	t=1740687441; cv=none; b=OFYTVJ0yW2yuyMHbUTQxKQmfdp/smfz8mv4EnUS4l1+48S4TQEBogmpH3ZYMVpyt/YmgfCPrptnvAYJxm9HnQFGELw4smQFi+olYO/HPtaaH46WTxT1vPNFPgHh1XXh+8BT/cnQm5uwbm/w/NmlgaAXgfIYbIkTTiYuwIKDbw4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740687412; c=relaxed/simple;
-	bh=TgUgSCfEjp/Ol+C+9VklJ/oJBe5DmYOGniiUhH7U5v8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=sXji8AHe7avHZ2i11C0XDJCoPBvnSimKE2jScEBfWmIhab326DTvsgOCRpqf/dHaCJDuR9gucwLiYZIQ8x1T8SZt5BOhVJeESRhvvYvfBUgDexxK/1cVTnEvaQzoV8jxwa4OdJeVAl5BWrLgCU2Yj3gvNnsoQslc1LU4ZEZk9v0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L2/pP3CU; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51RGspj1021539;
-	Thu, 27 Feb 2025 20:16:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lw84Gh7TvOeiskkHs/TyNfsZ1Q9WTbX4FLowNZ3+r4E=; b=L2/pP3CUfaSTP10r
-	6UZUudNWejBOeX4OC1jqVdS1/Daq7jci7opb0plVpPdXUkWnfFU8LMnJRsCVNzPu
-	EbWsR4QIu2Zzkbw7yVK3v2d5m7P0hbsZoG4aWf+AFvSAjJffa7AVnkJI1VX+0c59
-	Cjo+ah1fQV/HWbFcxjWb4HGFv2u2TJuP0nRaoTUdhFtNmZ6ULq4hIuoZbPWuzm+9
-	mdMf5i5PES2f9E0JpkXpcXO2D1GOBwsWLq6FsIx5W7HBKmvv8VymswKBSIHtpNk2
-	hB9uwoGMMBfc7tn0tvK9M7bkQ7DGMv6qhMEqOso4jdOLenLNNMLgCe5kFw9+duk8
-	GVF+mw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 451prkq1k6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Feb 2025 20:16:47 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51RKGk3g021565
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Feb 2025 20:16:46 GMT
-Received: from hu-arakshit-hyd.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 27 Feb 2025 12:16:42 -0800
-From: Abhinaba Rakshit <quic_arakshit@quicinc.com>
-Date: Fri, 28 Feb 2025 01:45:55 +0530
-Subject: [PATCH v2 2/2] arm64: dts: qcom: qcs615: add TRNG node
+	s=arc-20240116; t=1740687441; c=relaxed/simple;
+	bh=r+wfz5/EBVvMWJa1eYT4r6ZhHTFZ4plfU3tWfAnNoFo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PV7r0pfgEd3g1ph/zVHrpsHkBVP+MGKBV1Y32atlanR3xf8RbPZtU+9WyYjXPN9u2ws6E/j1jyz6zeKJqsoskMl7GaO0GNRcXiVJd+SRprlX5CUpRiaEcj1ZTx94tr/kWdES6Ank+C6Pm7LIwN8sy91+5CKCR/i+9XIAbgdvbDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tnkJi-0004yh-Ub; Thu, 27 Feb 2025 21:17:10 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tnkJh-003BEq-1W;
+	Thu, 27 Feb 2025 21:17:09 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tnkJh-003Wgm-15;
+	Thu, 27 Feb 2025 21:17:09 +0100
+Date: Thu, 27 Feb 2025 21:17:09 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	David Airlie <airlied@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Simona Vetter <simona@ffwll.ch>, Liviu Dudau <liviu.dudau@arm.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Steven Price <steven.price@arm.com>, imx@lists.linux.dev,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	dri-devel@lists.freedesktop.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH 8/9] drm/panthor: Add i.MX95 support
+Message-ID: <20250227201709.2diz57xv2tntw36q@pengutronix.de>
+References: <20250227170012.124768-1-marex@denx.de>
+ <20250227170012.124768-9-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250228-enable-trng-for-qcs615-v2-2-017aa858576e@quicinc.com>
-References: <20250228-enable-trng-for-qcs615-v2-0-017aa858576e@quicinc.com>
-In-Reply-To: <20250228-enable-trng-for-qcs615-v2-0-017aa858576e@quicinc.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul
-	<vkoul@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Abhinaba
- Rakshit" <quic_arakshit@quicinc.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: qn-wKMcWjadJLoYJ6LbOnQ87aCEJ6DdH
-X-Proofpoint-ORIG-GUID: qn-wKMcWjadJLoYJ6LbOnQ87aCEJ6DdH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-27_07,2025-02-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- adultscore=0 phishscore=0 mlxlogscore=614 mlxscore=0 suspectscore=0
- clxscore=1015 malwarescore=0 priorityscore=1501 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502270150
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250227170012.124768-9-marex@denx.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The qcs615 SoC has a True Random Number Generator, add the node
-with the correct compatible set.
+Hi Marek,
 
-Signed-off-by: Abhinaba Rakshit <quic_arakshit@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs615.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+On 25-02-27, Marek Vasut wrote:
+> The instance of the GPU populated in Freescale i.MX95 is the
+> Mali G310, add support for this variant.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Boris Brezillon <boris.brezillon@collabora.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Steven Price <steven.price@arm.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: imx@lists.linux.dev
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+>  drivers/gpu/drm/panthor/panthor_drv.c | 1 +
+>  drivers/gpu/drm/panthor/panthor_gpu.c | 1 +
+>  2 files changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panthor/panthor_drv.c b/drivers/gpu/drm/panthor/panthor_drv.c
+> index 06fe46e320738..2504a456d45c4 100644
+> --- a/drivers/gpu/drm/panthor/panthor_drv.c
+> +++ b/drivers/gpu/drm/panthor/panthor_drv.c
+> @@ -1591,6 +1591,7 @@ static struct attribute *panthor_attrs[] = {
+>  ATTRIBUTE_GROUPS(panthor);
+>  
+>  static const struct of_device_id dt_match[] = {
+> +	{ .compatible = "fsl,imx95-mali" },	/* G310 */
+			  ^
+			 nxp?
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-index f4abfad474ea62dea13d05eb874530947e1e8d3e..9048514e8ae9046df5cad4b8129311563af68f68 100644
---- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-@@ -453,6 +453,11 @@ qusb2_hstx_trim: hstx-trim@1f8 {
- 			};
- 		};
- 
-+		rng@793000 {
-+			compatible = "qcom,qcs615-trng", "qcom,trng";
-+			reg = <0x0 0x00793000 0x0 0x1000>;
-+		};
-+
- 		sdhc_1: mmc@7c4000 {
- 			compatible = "qcom,qcs615-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0x0 0x007c4000 0x0 0x1000>,
+Can we switch to nxp instead?
 
--- 
-2.34.1
+Regards,
+  Marco
 
+>  	{ .compatible = "rockchip,rk3588-mali" },
+>  	{ .compatible = "arm,mali-valhall-csf" },
+>  	{}
+> diff --git a/drivers/gpu/drm/panthor/panthor_gpu.c b/drivers/gpu/drm/panthor/panthor_gpu.c
+> index 0f07ef7d9aea7..2371ab8e50627 100644
+> --- a/drivers/gpu/drm/panthor/panthor_gpu.c
+> +++ b/drivers/gpu/drm/panthor/panthor_gpu.c
+> @@ -67,6 +67,7 @@ struct panthor_model {
+>  }
+>  
+>  static const struct panthor_model gpu_models[] = {
+> +	GPU_MODEL(g310, 0, 0),	/* NXP i.MX95 */
+>  	GPU_MODEL(g610, 10, 7),
+>  	{},
+>  };
+> -- 
+> 2.47.2
+> 
+> 
+> 
 
