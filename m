@@ -1,104 +1,127 @@
-Return-Path: <devicetree+bounces-151940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995D0A478C5
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 10:12:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FD90A478ED
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 10:18:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B3283B3BF7
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:12:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9CBA7A4ECD
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD0FE227BB6;
-	Thu, 27 Feb 2025 09:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEB70227B83;
+	Thu, 27 Feb 2025 09:18:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="gUG+3QeP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62306227599;
-	Thu, 27 Feb 2025 09:12:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from box.trvn.ru (box.trvn.ru [45.141.101.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3A312248B4;
+	Thu, 27 Feb 2025 09:18:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.141.101.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740647545; cv=none; b=Ff4ZjdYwh6HzSUN9gkdcaW3ntb4navV8XM+K46Kd6bow5Q0vh8wzocuE74ttSpBQeJklWQ5cHEAOPOPXZe0ecvO5/jlelHO5G0hg13I5CViSnuaTvgEs6t/yWv7+int4qVLj+DOb/KlfQPETMkA6+C6GshJenEfH7u2TiKS/PW8=
+	t=1740647893; cv=none; b=pdqoHwnFxItJv/l7ZJ7vtes8W9FPsHf1bkx0cTN0VnGIQPbHPWy2VdHM9HgIaGkaIgdxYUqpU79kGcv+JE0fPEaiGFGcbt2PKjBd4GABPb+hDCVtkaGTbTkNouKxG4tQPrtAGQw1WzePV5skJRfblkgNJ4nM1IsrEEdy9iHg7KY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740647545; c=relaxed/simple;
-	bh=l/ugFLJaIKamHn5kr0KvgF8RGwpPoaLUQqqZx88pHY4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ePNvnAg49+CvK2ghBgYd5dxdpUuRL/vufix7mOjO1lxESZ1CT9AKALN91RlPVmkWeBlFMkDOfqYMhpd8VzhiIg4FpCeVp+UzZb/tv4F4Dr8ndqYHW5rgfDqFGQsAEQfSfB8QOSCfD7l3J432qZjb855OvanLymW/CecDf3BxulE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 145782BCA;
-	Thu, 27 Feb 2025 01:12:39 -0800 (PST)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 88B543F6A8;
-	Thu, 27 Feb 2025 01:12:21 -0800 (PST)
-Date: Thu, 27 Feb 2025 09:12:18 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, <cristian.marussi@arm.com>,
-	<saravanak@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<arm-scmi@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [RFC] dt-bindings: firmware: scmi: Introduce compatible string
-Message-ID: <Z8AscmP2O_HjEnsL@bogus>
-References: <20250226094456.2351571-1-peng.fan@oss.nxp.com>
- <20250226160945.GA2505223-robh@kernel.org>
- <Z79NOeyWzfRio8qs@bogus>
- <20250227031551.GC11411@nxa18884-linux>
+	s=arc-20240116; t=1740647893; c=relaxed/simple;
+	bh=gBwAtZeTy/Zlgo32PTFVZI7+JHiyhf4hYfS3Uvau58Q=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=iC071x6SQShLvypIt2KmAZe48WDsOtAn7165PBEFpo0F0/0eVZRPWRWwRmY4D3GtHRdroZBH1qoflhXlQ9MORg5oa/FoEpLyoyOAEvcP377RR8anktyh/9/nHj24QNLbJWScQwE1p087rADo9G1A2Y4ZoU+meZLVDlVeoZiTcwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=gUG+3QeP; arc=none smtp.client-ip=45.141.101.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1740647889; bh=gBwAtZeTy/Zlgo32PTFVZI7+JHiyhf4hYfS3Uvau58Q=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=gUG+3QePYqpnyNpH+kbOYxT1W7yFfQRbMTtH1ufV/NuqEH1dEf6uh1LWtKcqMV7PX
+	 azBou4jrGvOUgFI6E2jyCSKAxSh/gxzr4rSLKsfSRBJllkLa0axzX13jWG6TsRK9na
+	 XON3hCOPZiB3WsmRECmE0lXjrF/40YFDAFuUlt5QAvzOgIIDurEcTNgqMNSu2Fsb/p
+	 rJkq9cLUL6oGQg25N3OmzvABqsginf6yya9AUlZFpUtXmbLFE+xZWngOXjFFsNBBlZ
+	 67qozODwdgTL1KjOFPaqDPWyGV26JAYpmQmGMAReC9S/0C/a6LKj+DK4LlVrPLPaix
+	 IRRV6DLf2I7dw==
+Received: from authenticated-user (box.trvn.ru [45.141.101.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 85E6F88B8;
+	Thu, 27 Feb 2025 14:18:09 +0500 (+05)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250227031551.GC11411@nxa18884-linux>
+Date: Thu, 27 Feb 2025 14:18:09 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Rob Herring <robh@kernel.org>, Bryan O'Donoghue
+ <bryan.odonoghue@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konradybcio@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Konrad Dybcio
+ <konrad.dybcio@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: qrb5165-rb5-vision-mezzanine: Fix
+ broken overlay root
+In-Reply-To: <CAL_JsqJH5g-A0Td8zYn--FuYFZi=HQ96BeNSMLuxQU6+5X3k-w@mail.gmail.com>
+References: <20250226-qcom-nonroot-overlays-v1-0-26c6e7605833@trvn.ru>
+ <20250226-qcom-nonroot-overlays-v1-1-26c6e7605833@trvn.ru>
+ <CAL_JsqJH5g-A0Td8zYn--FuYFZi=HQ96BeNSMLuxQU6+5X3k-w@mail.gmail.com>
+Message-ID: <a72d3264eaa352652a4ebaf4b1baa664@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Feb 27, 2025 at 11:15:51AM +0800, Peng Fan wrote:
-> On Wed, Feb 26, 2025 at 05:19:53PM +0000, Sudeep Holla wrote:
-> >On Wed, Feb 26, 2025 at 10:09:45AM -0600, Rob Herring wrote:
-> >> On Wed, Feb 26, 2025 at 05:44:56PM +0800, Peng Fan (OSS) wrote:
-> >> > Quote Sudeep's reply"
-> >> > I am not blocking you. What I mentioned is I don't agree that DT can be used
-> >> > to resolve this issue, but I don't have time or alternate solution ATM. So
-> >> > if you propose DT based solution and the maintainers agree for the proposed
-> >> > bindings I will take a look and help you to make that work. But I will raise
-> >> > any objections I may have if the proposal has issues mainly around the
-> >> > compatibility and ease of maintenance.
-> >> > "
-> >>
-> >> This all looks to me like SCMI has failed to provide common interfaces.
-> >>
-> >
-> >We can look into this if having such common interface can solve this problem.
-> >
-> >> I'm indifferent. If everyone involved thinks adding compatibles will
-> >> solve whatever the issues are, then it's going to be fine with me
-> >> (other than the issue above). It doesn't seem like you have that, so I
-> >> don't know that I'd keep going down this path.
-> >
-> >Sorry if I was ambiguous with my stance as quoted above. For me, 2 devices
-> >pointing to the same node seems implementation issue rather than fixing/
-> >working around by extending DT bindings like this $subject patch is
-> >attempting.
-> >
-> >If you disagree with that and think 2 devices in the kernel shouldn't
-> >point to the same device tree node, then yes I see this is right approach
-> >to take. ATM I don't know which is correct and what are other developer's
-> >include DT maintainer opinion on this. I just didn't like the way Peng
-> >was trying to solve it with some block/allow list which wouldn't have
-> >fixed the issue or just created new ones.
+Rob Herring писал(а) 27.02.2025 00:22:
+> On Wed, Feb 26, 2025 at 8:30 AM Nikita Travkin <nikita@trvn.ru> wrote:
+>>
+>> When converting to the overlay format, it was missed that "/" in the
+>> overlay corresponds to the overlay's own root node and not the fragment
+>> targeted to update root of the base dts, which should be "&{/}" instead.
+>> This results in the cma node never actually being applied by libfdt.
+>>
+>> Fix the overlay to use correct target node.
+>>
+>> Fixes: 231c03c6119d ("arm64: dts: qcom: qrb5165-rb5-vision-mezzanine: Convert mezzanine riser to dtbo")
+>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+>> ---
+>>  arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso
+>> index ae256c713a36078afdadc67193f381a19ea8e5d3..254df3d518d8cbfb1082511f38e132435b7fdf59 100644
+>> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso
+>> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso
+>> @@ -9,7 +9,7 @@
+>>  #include <dt-bindings/clock/qcom,camcc-sm8250.h>
+>>  #include <dt-bindings/gpio/gpio.h>
+>>
+>> -/ {
+>> +&{/} {
+>>         reserved-memory {
 > 
-> With compatible string, no need block/allow list anymore I think.
+> IMO, this should be applied to the /reserved-memory node rather than
+
+Hm, considering pretty much no qcom dtb will be without reserved-memory,
+you're right...
+
+> the root node. Though I also think using overlays to set CMA size is
+> questionable. It's much easier to change the kernel command line than
+> apply an overlay.
+
+...and deleting the node altogether would be effectively keeping the
+existing behavior, which, I just now realized, was introduced in an
+extra commit after the conversion (which I assumed was the cause of
+the mistake) so my Fixes: for both commits are wrong.
+
+I think I will leave it to Bryan to decide whether this should be
+fixed or original commit to be reverted.
+
 > 
-
-I completely understand that, I was referring to your earlier alternative
-solution to this $subject approach. Sorry if that was evidently clear.
-
--- 
-Regards,
-Sudeep
+>>                 linux,cma {
+>>                         compatible = "shared-dma-pool";
+>>
+>> --
+>> 2.48.1
+>>
 
