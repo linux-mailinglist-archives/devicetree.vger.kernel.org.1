@@ -1,185 +1,126 @@
-Return-Path: <devicetree+bounces-152065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CA50A47D89
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:23:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95FB6A47D95
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:25:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16FAC1667FA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:20:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 802D23A2DEC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AE8722B5B1;
-	Thu, 27 Feb 2025 12:18:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CCC222B8AC;
+	Thu, 27 Feb 2025 12:25:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9141270048;
-	Thu, 27 Feb 2025 12:18:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3B7225417;
+	Thu, 27 Feb 2025 12:25:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740658699; cv=none; b=cf+mwlCWn/vR9mToGqeVzIXrw61uiSCXDOd4Z6GZac8rmnis8el7hd5P7SiIMGtaQ8MPYQMpzB2W7tZUEQpUljx1lwM2jr6/EcTQCxZXftW8OWSoBwkI9gr0KnOuzB7EaNmTPngfowjj24mOPHkLwGPrqc6DPmmfI0xiorcYkH4=
+	t=1740659114; cv=none; b=jQVU1aA4rMtCF6KoFWRvm+WlMtOai3o8a+fOLa5iLfMk+XCIaZwm6X2IAn+sbZ58TH75KklUVZcqrg1jzZcVkKbWncfHlbPdTQ/1dEOuAvNEvv9PYspU99cB0kG+mCyxlVxAmeUGyANYDUzHM5ANJ2af6vITaQttbYfMsoNYtdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740658699; c=relaxed/simple;
-	bh=HSa4X05wJ6LbkPCWaSBF4nZC+iFFswKuy147sU4Tx1U=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Rms3KrA4l0vM26dhJkg/KIEgjj6XqfJJOu11v5q56jxtwn1h1znhPo/Of6gcfsPhE8IIr9vpHwNIDVEBgTknJlVOqm+rYnc4q9BJoHBYq9c2RLgMGjyoW60MxaulXx2AufO5v6q1KQc7E+sewEgDIjLJLC5vCE8otwILQitDWRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 971B62BCA;
-	Thu, 27 Feb 2025 04:18:31 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6FF5E3F673;
-	Thu, 27 Feb 2025 04:18:14 -0800 (PST)
-Date: Thu, 27 Feb 2025 12:18:11 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
- Holland <samuel@sholland.org>, <linux-gpio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 4/8] pinctrl: sunxi: support moved power
- configuration registers
-Message-ID: <20250227121811.23460bf0@donnerap.manchester.arm.com>
-In-Reply-To: <CAGb2v67V7PAOC8MLVzE5SwwvpogN_WLNhQnRVD2pikGVDHtJjA@mail.gmail.com>
-References: <20250214003734.14944-1-andre.przywara@arm.com>
-	<20250214003734.14944-5-andre.przywara@arm.com>
-	<CAGb2v67V7PAOC8MLVzE5SwwvpogN_WLNhQnRVD2pikGVDHtJjA@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1740659114; c=relaxed/simple;
+	bh=b3Eu3PVFgwBHfl2UMMUVPYQlp/YZioJOW4+lpM9Dmxw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Voy+E8boGP1ekQha/2irPmxEs++5beNnXWi1WPEioUnKGVQY6zxxQIKQM12kVHAbGxyv7G8Fv5lphq5Uy6Xs9rkvp+8lyMUTQefLJFaVLeiHh2iYvZfqLiSHY3VRLLswgVloD5IEQYinDYZYYcMb8JiaLN4c1J/ny/3YdPn81Cs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: znxM1xLTR3mpvimHHn6aDw==
+X-CSE-MsgGUID: ml/HIhIST4aCimY9fdisBQ==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 27 Feb 2025 21:25:03 +0900
+Received: from ubuntu.adwin.renesas.com (unknown [10.226.92.68])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id C581840029C3;
+	Thu, 27 Feb 2025 21:24:56 +0900 (JST)
+From: John Madieu <john.madieu.xa@bp.renesas.com>
+To: john.madieu.xa@bp.renesas.com,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	rafael@kernel.org,
+	daniel.lezcano@linaro.org,
+	rui.zhang@intel.com,
+	lukasz.luba@arm.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	catalin.marinas@arm.com,
+	will@kernel.org
+Cc: john.madieu@gmail.com,
+	linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	biju.das.jz@bp.renesas.com
+Subject: [PATCH v2 0/7] thermal: renesas: Add support fot RZ/G3E
+Date: Thu, 27 Feb 2025 13:24:36 +0100
+Message-ID: <20250227122453.30480-1-john.madieu.xa@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, 17 Feb 2025 23:48:13 +0800
-Chen-Yu Tsai <wens@csie.org> wrote:
+Hello,
 
-Hi,
+This series adds support for the temperature sensor unit (TSU) found on the
+Renesas RZ/G3E SoC.
 
-> * # Be careful, this email looks suspicious; * Out of Character: The send=
-er is exhibiting a significant deviation from their usual behavior, this ma=
-y indicate that their account has been compromised. Be extra cautious befor=
-e opening links or attachments. *
-> On Fri, Feb 14, 2025 at 8:40=E2=80=AFAM Andre Przywara <andre.przywara@ar=
-m.com> wrote:
-> >
-> > The Allwinner pincontroller IP features some registers to control the
-> > withstand voltage of each pin group. So far those registers were always
-> > located at the same offset, but the A523 SoC has moved them (probably to
-> > accommodate all eleven pin banks).
-> >
-> > Add a flag to note this feature, and use that to program the registers
-> > either at offset 0x340 or 0x380. So far no pincontroller driver uses
-> > this flag, but we need it for the upcoming A523 support.
-> >
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  drivers/pinctrl/sunxi/pinctrl-sunxi.c | 15 +++++++++++----
-> >  drivers/pinctrl/sunxi/pinctrl-sunxi.h |  7 +++++--
-> >  2 files changed, 16 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/su=
-nxi/pinctrl-sunxi.c
-> > index 83a031ceb29f2..a1057122272bd 100644
-> > --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-> > +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-> > @@ -736,9 +736,9 @@ static int sunxi_pinctrl_set_io_bias_cfg(struct sun=
-xi_pinctrl *pctl,
-> >                 val =3D uV > 1800000 && uV <=3D 2500000 ? BIT(bank) : 0;
-> >
-> >                 raw_spin_lock_irqsave(&pctl->lock, flags);
-> > -               reg =3D readl(pctl->membase + PIO_POW_MOD_CTL_REG);
-> > +               reg =3D readl(pctl->membase + pctl->pow_mod_sel_offset);
-> >                 reg &=3D ~BIT(bank);
-> > -               writel(reg | val, pctl->membase + PIO_POW_MOD_CTL_REG);
-> > +               writel(reg | val, pctl->membase + pctl->pow_mod_sel_off=
-set);
-> >                 raw_spin_unlock_irqrestore(&pctl->lock, flags);
-> >
-> >                 fallthrough;
-> > @@ -746,9 +746,12 @@ static int sunxi_pinctrl_set_io_bias_cfg(struct su=
-nxi_pinctrl *pctl,
-> >                 val =3D uV <=3D 1800000 ? 1 : 0;
-> >
-> >                 raw_spin_lock_irqsave(&pctl->lock, flags);
-> > -               reg =3D readl(pctl->membase + PIO_POW_MOD_SEL_REG);
-> > +               reg =3D readl(pctl->membase + pctl->pow_mod_sel_offset +
-> > +                           PIO_POW_MOD_SEL_OFS);
-> >                 reg &=3D ~(1 << bank);
-> > -               writel(reg | val << bank, pctl->membase + PIO_POW_MOD_S=
-EL_REG);
-> > +               writel(reg | val << bank,
-> > +                      pctl->membase + pctl->pow_mod_sel_offset +
-> > +                      PIO_POW_MOD_SEL_OFS);
-> >                 raw_spin_unlock_irqrestore(&pctl->lock, flags);
-> >                 return 0;
-> >         default:
-> > @@ -1520,6 +1523,10 @@ int sunxi_pinctrl_init_with_flags(struct platfor=
-m_device *pdev,
-> >                 pctl->pull_regs_offset =3D PULL_REGS_OFFSET;
-> >                 pctl->dlevel_field_width =3D DLEVEL_FIELD_WIDTH;
-> >         }
-> > +       if (flags & SUNXI_PINCTRL_ELEVEN_BANKS)
-> > +               pctl->pow_mod_sel_offset =3D PIO_11B_POW_MOD_SEL_REG;
-> > +       else
-> > +               pctl->pow_mod_sel_offset =3D PIO_POW_MOD_SEL_REG;
-> >
-> >         pctl->irq_array =3D devm_kcalloc(&pdev->dev,
-> >                                        IRQ_PER_BANK * pctl->desc->irq_b=
-anks,
-> > diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.h b/drivers/pinctrl/su=
-nxi/pinctrl-sunxi.h
-> > index 6cf721876d89d..a93385e456a57 100644
-> > --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-> > +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-> > @@ -87,9 +87,11 @@
-> >  #define SUNXI_PINCTRL_VARIANT_MASK     GENMASK(7, 0)
-> >  #define SUNXI_PINCTRL_NEW_REG_LAYOUT   BIT(8)
-> >  #define SUNXI_PINCTRL_PORTF_SWITCH     BIT(9)
-> > +#define SUNXI_PINCTRL_ELEVEN_BANKS     BIT(10)
-> >
-> > -#define PIO_POW_MOD_SEL_REG    0x340
-> > -#define PIO_POW_MOD_CTL_REG    0x344
-> > +#define PIO_POW_MOD_SEL_REG            0x340
-> > +#define PIO_11B_POW_MOD_SEL_REG                0x380
-> > +#define PIO_POW_MOD_SEL_OFS            0x004 =20
->=20
-> Shouldn't this be PIO_POW_MOD_CTL_OFS instead?
+The series consists of 7 patches (some of which are not related to the thermal
+framework) that progressively add TSU support as follows:
+- patch 1/7:    adds syscon/regmap support for accessing system controller
+                registers, enabling access to TSU calibration values
+- patch 2/7:    adds clock and reset signals to the CPG driver
 
-Ah, I already got lost myself in those three-letter stubs, but you are
-right: it's the offset of the control register within the POW_MOD(?)
-register block.
-So nice catch, will fix it.
+- patch 3/7:    adds dt-bindings
+- patch 4/7:    adds the actual TSU driver for the RZ/G3E
+- patch 5/6:    adds safety mechanism to make sure we we protect the chip in
+                case of consecutive read failures
+- patch 6-7/7:  add DT node and defconfig enablement
 
-Thanks,
-Andre
 
-> ChenYu
->=20
-> >
-> >  #define PIO_BANK_K_OFFSET              0x500
-> >
-> > @@ -173,6 +175,7 @@ struct sunxi_pinctrl {
-> >         u32                             bank_mem_size;
-> >         u32                             pull_regs_offset;
-> >         u32                             dlevel_field_width;
-> > +       u32                             pow_mod_sel_offset;
-> >  };
-> >
-> >  #define SUNXI_PIN(_pin, ...)                                   \
-> > --
-> > 2.46.3
-> > =20
->=20
->=20
+Changes:
+
+v1 -> v2
+ * Fix yaml warnings from dt-binding
+ * Update IRQ names to reflect TSU expectations
+
+Regards,
+
+John Madieu (7):
+  soc: renesas: rz-sysc: add syscon/regmap support
+  clk: renesas: r9a09g047: Add clock and reset signals for the TSU IP
+  dt-bindings: thermal: r9a09g047-tsu: Document the TSU unit
+  thermal: renesas: rzg3e: Add thermal driver for the Renesas RZ/G3E SoC
+  thermal: renesas: rzg3e: Add safety check when reading temperature
+  arm64: dts: renesas: r9a09g047: Add TSU node
+  arm64: defconfig: Enable RZ/G3E thermal
+
+ .../thermal/renesas,r9a09g047-tsu.yaml        | 123 +++++
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |  49 ++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/clk/renesas/r9a09g047-cpg.c           |   3 +
+ drivers/soc/renesas/Kconfig                   |   1 +
+ drivers/soc/renesas/r9a09g047-sys.c           |   1 +
+ drivers/soc/renesas/rz-sysc.c                 |  30 +-
+ drivers/soc/renesas/rz-sysc.h                 |   2 +
+ drivers/thermal/renesas/Kconfig               |   7 +
+ drivers/thermal/renesas/Makefile              |   1 +
+ drivers/thermal/renesas/rzg3e_thermal.c       | 479 ++++++++++++++++++
+ 12 files changed, 703 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/thermal/renesas,r9a09g047-tsu.yaml
+ create mode 100644 drivers/thermal/renesas/rzg3e_thermal.c
+
+-- 
+2.25.1
 
 
