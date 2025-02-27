@@ -1,202 +1,269 @@
-Return-Path: <devicetree+bounces-152131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CAB2A48262
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 16:05:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1366AA48270
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 16:07:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78C1B164F71
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:57:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAB5A188509F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 15:00:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34D025EFBA;
-	Thu, 27 Feb 2025 14:57:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 575D325F7A2;
+	Thu, 27 Feb 2025 14:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BU7cRs5O"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AfldS48T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C798725E837;
-	Thu, 27 Feb 2025 14:57:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEEB923CEE8
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 14:59:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740668254; cv=none; b=YNvlKj46bgFZy5MxADQAeFdJtMWChojKFycg9+Td/1xiaw8h9JYmGUzmpZjL+OlqEIFCGnHohm5OT4V8mO5HOaEa4EVSAQzTlMwC6VwyiJaHiTNaquY0m4x8rAV8+afYfAi12nBM1BZ8Yhk5byvMaXkHHr7jLPJR2G6asVzaV20=
+	t=1740668388; cv=none; b=euBZwrr6S3oVa580AKHkcpgfHcRTYocTWbr5gjW2xruof0/a7gNMeB7/cGckFgY3Z8tPNi7gchLfsNMj0eVA1kylU6y4CjfbYpDGgz5YtOZmUcM2ME1fOTxqRXkIkoFwgvdlw/znmu65qHLONDmwpolHb+lEsialOEVqP8/auYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740668254; c=relaxed/simple;
-	bh=RlenwtE5mxdv5cb/MEos3p+JmVXLB2yGNlafSdQiqDk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cLyWgsw9GpWkWlBV0fP6KEFQ9dKbc4WTPbCG9tziODZ7bSKLwuoH39ZmJ8L5zApPXs21Imhjal+SfThgKmCworNmo6kuiHejXqTxPLFaGfb3pD9b2sggEO49cmL5FFoYh+uIA6x45Yks+nGKzRi1VnT8nJNNbdFrc9sASDFvyXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BU7cRs5O; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 79B34441AB;
-	Thu, 27 Feb 2025 14:57:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1740668250;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vxxXj7qHDUKOxFYzmRI0KA+MFriKrU/fu0NUeDhbg/4=;
-	b=BU7cRs5OtfDkPDMGdgZwKTlTc5pmwx2JLI94bxKT/RK1ESGqwqZbYREl5ZEO0xxobAguDz
-	x7xX8uP5TrtRexTxHHMTjKle1BcWMPnoc2QV4gsf6L1tOTjiBe99bbZmYl2eDU9hG33LmO
-	uZENFBdzrcafa1Ebx9BYhNcXQTREL/ysPxNnvq5ubwzpKms1OxOWUKERpcgoSYZZ7ELn5g
-	IpuVo5M0I6ZKPbwz/EjjfTkxxpim5QMKhaXw/+uEeycd7JNmlSlKcrsa3eutNxMEbZFxPE
-	qb/+97DCYh0XjqGadp/wzZD6ysAsOrz1HLEbNnW7c912m2EAo70YLJQf2qy9pw==
-Date: Thu, 27 Feb 2025 15:57:27 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>, "David
- S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo
- Abeni <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Donald Hunter
- <donald.hunter@gmail.com>, Rob Herring <robh@kernel.org>, Andrew Lunn
- <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
- Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
- Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 06/12] net: pse-pd: Add support for budget
- evaluation strategies
-Message-ID: <20250227155727.7bdc069f@kmaincent-XPS-13-7390>
-In-Reply-To: <Z8AW6S2xmzGZ0y9B@pengutronix.de>
-References: <20250218-feature_poe_port_prio-v5-0-3da486e5fd64@bootlin.com>
-	<20250218-feature_poe_port_prio-v5-6-3da486e5fd64@bootlin.com>
-	<20250220165129.6f72f51a@kernel.org>
-	<20250224141037.1c79122b@kmaincent-XPS-13-7390>
-	<20250224134522.1cc36aa3@kernel.org>
-	<20250225102558.2cf3d8a5@kmaincent-XPS-13-7390>
-	<20250225174752.5dbf65e2@kernel.org>
-	<Z76t0VotFL7ji41M@pengutronix.de>
-	<Z76vfyv5XoMKmyH_@pengutronix.de>
-	<20250226184257.7d2187aa@kernel.org>
-	<Z8AW6S2xmzGZ0y9B@pengutronix.de>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1740668388; c=relaxed/simple;
+	bh=hu6PCPNxWYe6TO8BfZheoDp55jzoBSnRVokC6usg7ws=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FjPXYmTG8BORslzANBnq16Mhk7Q0LaMG1F6DLe/jNBoBsTSE9ukq/moaNrsHdDribGOw6NyfWJHnDN776+yR0HpezT/xXqreCGRulzXo1oJicDBUfpVqoIStjfMnmNL/TTOyd1wE6R5ers4u54Tzp0cz34NYiD1qGSeOsOveSFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AfldS48T; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-547bcef2f96so1069592e87.1
+        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 06:59:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740668383; x=1741273183; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=HxB5rk2wDXT4mhpMg1e6s6YmU8Yw2zzZEzuHwWlfNNo=;
+        b=AfldS48T1/rwytxb9wmamNPxAPPI2BcaAiaKOinOE1bO3lUq2v5j+3sovxDhPiAcNe
+         4KUWviLJGomylajmkA3PhacnarzVlCxpWn2vLSGWwwm5jTJxTMe7Q2QvP9hm2KdhNgzj
+         xIr8nX1XXoivZExFiS+AqhQOz4BieN23jfs3QQ3Zu2KgI//5ZURdUiuMMfAUl8hW0N06
+         owjPCXKOSVWbu1Ur7J6c1l0e9rnJ+AU5MO667nmd7d2bHyOaLeg10D110f26ZkzMMRG/
+         Od8j3USNqBJT/SFfZW+cH3FKlIXNPA+B4h60c+6p5LfarweH6gzBh75988a8IrPGPskT
+         +nmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740668383; x=1741273183;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HxB5rk2wDXT4mhpMg1e6s6YmU8Yw2zzZEzuHwWlfNNo=;
+        b=U26++snydgZa9K+4Tx1eAel0VRZfg65206N+Kwzd6OeC3KQqGr6013RHBwlEoTKPTF
+         4+GLTCGZjYtLtXBRcsXmFd1QPYO6WSq1hLhM++aL+0jRT41SW+9mGcQrV/XflLyTZqt9
+         rtDk0/9WTuBgauXgUAertCRM/HJT0bkaZ1GikDQDAIa6NMyvrVkJjT76R6LAQfYN7Lfa
+         +ipCeOgu7r1t/1tIpD/c3nJIiePDrfRuHhYJPOsrydpvZ8R8Q0jOqhGV0/yBaOWb6plf
+         4YtGNByE68ZFZQPLdbdo31bycyfy4rXDUonqZ2/sX37j9WS/M0rZlD0S+NSGdyLqGsB4
+         nABg==
+X-Forwarded-Encrypted: i=1; AJvYcCXZEhPK9SnkemhsFat2CWskDhgtOLbBFp/AKC7OT1CDPVVbrCA3b6hiFbXOQ+u7yt3FVcP2adSTZ6hL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrmXrgY8xpiIwwO6w/TqeA/h6IhQ7f7KTD3bxmMa0aN4JbxJsj
+	YGnyZ2GK4ch3nRAeg2CC3cupeJgDjcsk/tlBz8MDHBatohjaXlB/BFn4oFYlpzI=
+X-Gm-Gg: ASbGnctSBzfAhBz9yPc6X+uiCNxpVoO6WBb/Bdh0KJ0W7vJcAuYDMbe5Imr4rZmSJgi
+	lOHUaQ377DdYZLPjEzwwagbjthsYLLyW2JHI7WCIcCN+NSxMrFiXWbodtBnVH69p8FRhsEuI74w
+	HwIGTQB2vKSGUGXELWMOrxzn/w8UMu2KtpdZ3h3pi5XtKae7K8kLiqvuaR5hkwv/b1ognzj4uQd
+	djc6GnARWDjLQg1mtT/ds1Y22zY3SbEBWIV0L0X5odX7OMJN91neGn1FW8FpJLoe3iVMG4wlWYT
+	bkahK2hcxMav5y7/GTBuXttk+BN28sDHGAtG71XV+kASyYwI5eD5+qMrFt4iDDDxThcc+LeIWWI
+	1RpSZ+Q==
+X-Google-Smtp-Source: AGHT+IGKmniXL4M4wb/RJwLSpFqcjFFTAbzhghjbQyHbEKnMjC2+uC8jzBm13hyn17/VFvjsBLyeGA==
+X-Received: by 2002:a05:6512:110d:b0:545:62c:4b13 with SMTP id 2adb3069b0e04-54838f4c9efmr11981358e87.40.1740668381655;
+        Thu, 27 Feb 2025 06:59:41 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549443be6a0sm187706e87.193.2025.02.27.06.59.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Feb 2025 06:59:41 -0800 (PST)
+Date: Thu, 27 Feb 2025 16:59:39 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: George Moussalem <george.moussalem@outlook.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, daniel.lezcano@linaro.org, rafael@kernel.org, amitk@kernel.org, 
+	thara.gopinath@gmail.com, robh@kernel.org, krzk+dt@kernel.org, quic_srichara@quicinc.com
+Subject: Re: [PATCH v8 3/5] thermal: qcom: tsens: add support for tsens v1
+ without RPM
+Message-ID: <eafirt5dg4vmafmu2wph47zrrzyqrz65z5ypqrl7fhr77qckfi@dgqwkkhnz4ge>
+References: <20250227110423.8418-1-george.moussalem@outlook.com>
+ <DS7PR19MB888322C58FC555299256E8D99DCD2@DS7PR19MB8883.namprd19.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdekjeejiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedukeejleefheelgeevffdugfeggeduudekgeelgfdviedvkedugefhffekudetvdenucffohhmrghinhephhhpvgdrtghomhdptghishgtohdrtghomhdpsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvgedprhgtphhtthhopehordhrvghmphgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtr
- dhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheptghorhgsvghtsehlfihnrdhnvghtpdhrtghpthhtohepughonhgrlhgurdhhuhhnthgvrhesghhmrghilhdrtghomh
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DS7PR19MB888322C58FC555299256E8D99DCD2@DS7PR19MB8883.namprd19.prod.outlook.com>
 
-On Thu, 27 Feb 2025 08:40:25 +0100
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+On Thu, Feb 27, 2025 at 02:56:41PM +0400, George Moussalem wrote:
+> Adding generic support for SoCs with tsens v1.0 IP with no RPM.
+> Due to lack of RPM, tsens has to be reset and enabled in the driver
+> init.
+> 
+> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+> ---
+>  drivers/thermal/qcom/tsens-v1.c | 48 +++++++++++++++++++++++++++++++++
+>  drivers/thermal/qcom/tsens.c    | 24 ++++++++++-------
+>  drivers/thermal/qcom/tsens.h    |  1 +
+>  3 files changed, 64 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
+> index 1a7874676f68..877b27274fd2 100644
+> --- a/drivers/thermal/qcom/tsens-v1.c
+> +++ b/drivers/thermal/qcom/tsens-v1.c
+> @@ -79,6 +79,17 @@ static struct tsens_features tsens_v1_feat = {
+>  	.trip_max_temp	= 120000,
+>  };
+>  
+> +static struct tsens_features tsens_v1_no_rpm_feat = {
+> +	.ver_major	= VER_1_X_NO_RPM,
+> +	.crit_int	= 0,
+> +	.combo_int	= 0,
+> +	.adc		= 1,
+> +	.srot_split	= 1,
+> +	.max_sensors	= 11,
+> +	.trip_min_temp	= -40000,
+> +	.trip_max_temp	= 120000,
+> +};
+> +
+>  static const struct reg_field tsens_v1_regfields[MAX_REGFIELDS] = {
+>  	/* ----- SROT ------ */
+>  	/* VERSION */
+> @@ -150,6 +161,43 @@ static int __init init_8956(struct tsens_priv *priv) {
+>  	return init_common(priv);
+>  }
+>  
+> +static int __init init_tsens_v1_no_rpm(struct tsens_priv *priv)
+> +{
+> +	int i, ret;
+> +	u32 mask = 0;
+> +
+> +	ret = init_common(priv);
+> +	if (ret < 0) {
+> +		dev_err(priv->dev, "Init common failed %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = regmap_field_write(priv->rf[TSENS_SW_RST], 1);
+> +	if (ret) {
+> +		dev_err(priv->dev, "Reset failed\n");
+> +		return ret;
+> +	}
+> +
+> +	for (i = 0; i < priv->num_sensors; i++)
+> +		mask |= BIT(priv->sensor[i].hw_id);
+> +
+> +	ret = regmap_field_update_bits(priv->rf[SENSOR_EN], mask, mask);
+> +	if (ret) {
+> +		dev_err(priv->dev, "Sensor Enable failed\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = regmap_field_write(priv->rf[TSENS_EN], 1);
+> +	if (ret) {
+> +		dev_err(priv->dev, "Enable failed\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = regmap_field_write(priv->rf[TSENS_SW_RST], 0);
+> +
+> +	return ret;
+> +}
+> +
+>  static const struct tsens_ops ops_generic_v1 = {
+>  	.init		= init_common,
+>  	.calibrate	= calibrate_v1,
+> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
+> index 1f5d4de017d9..f860ea86d130 100644
+> --- a/drivers/thermal/qcom/tsens.c
+> +++ b/drivers/thermal/qcom/tsens.c
+> @@ -447,7 +447,7 @@ static void tsens_set_interrupt(struct tsens_priv *priv, u32 hw_id,
+>  	dev_dbg(priv->dev, "[%u] %s: %s -> %s\n", hw_id, __func__,
+>  		irq_type ? ((irq_type == 1) ? "UP" : "CRITICAL") : "LOW",
+>  		enable ? "en" : "dis");
+> -	if (tsens_version(priv) > VER_1_X)
+> +	if (tsens_version(priv) > VER_1_X_NO_RPM)
 
-> On Wed, Feb 26, 2025 at 06:42:57PM -0800, Jakub Kicinski wrote:
-> > On Wed, 26 Feb 2025 07:06:55 +0100 Oleksij Rempel wrote: =20
-> > > Here is one example how it is done by HP switches:
-> > > https://arubanetworking.hpe.com/techdocs/AOS-CX/10.08/HTML/monitoring=
-_6200/Content/Chp_PoE/PoE_cmds/pow-ove-eth-all-by.htm
-> > >=20
-> > > switch(config)# interface 1/1/1    <---- per interface
-> > > switch(config-if)# power-over-ethernet allocate-by usage
-> > > switch(config-if)# power-over-ethernet allocate-by class
-> > >=20
-> > > Cisco example:
-> > > https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/s=
-w/93x/power-over-ethernet/configuration/configuring-power-over-ethernet/m-c=
-onfiguring-power-over-ethernet.html
-> > >=20
-> > > switch(config)# interface ethernet1/1   <---- per interface
-> > > switch(config-if)# power inline auto =20
-> >=20
-> > I don't see any mention of a domain in these docs.
-> > This patchset is creating a concept of "domain" but does=20
-> > not expose it as an object. =20
->=20
-> Ok, I see. @K=C3=B6ry, can you please provide regulator_summary with some
-> inlined comments to regulators related to the PSE components and PSE
-> related outputs of ethtool (or what ever tool you are using).
->=20
-> I wont to use this examples to answer.
+I'd suggest to replace these checks with >= VER_2_X. This saves us from
+all the troubles if there is another 1.x 'modification' later on.
 
-On my side, I am not close to using sysfs. As we do all configurations thro=
-ugh
-ethtool I have assumed we should continue with ethtool.
-I think we should set the port priority through ethtool, but indeed the PSE
-power domain method get and set could be moved to sysfs as it is not someth=
-ing
-relative to the port but to a group of ports. Ethtool should still report t=
-he
-PSE power domain ID of a port to know which domain the port is.
+>  		tsens_set_interrupt_v2(priv, hw_id, irq_type, enable);
+>  	else
+>  		tsens_set_interrupt_v1(priv, hw_id, irq_type, enable);
+> @@ -499,7 +499,7 @@ static int tsens_read_irq_state(struct tsens_priv *priv, u32 hw_id,
+>  	ret = regmap_field_read(priv->rf[LOW_INT_CLEAR_0 + hw_id], &d->low_irq_clear);
+>  	if (ret)
+>  		return ret;
+> -	if (tsens_version(priv) > VER_1_X) {
+> +	if (tsens_version(priv) > VER_1_X_NO_RPM) {
+>  		ret = regmap_field_read(priv->rf[UP_INT_MASK_0 + hw_id], &d->up_irq_mask);
+>  		if (ret)
+>  			return ret;
+> @@ -543,7 +543,7 @@ static int tsens_read_irq_state(struct tsens_priv *priv, u32 hw_id,
+>  
+>  static inline u32 masked_irq(u32 hw_id, u32 mask, enum tsens_ver ver)
+>  {
+> -	if (ver > VER_1_X)
+> +	if (ver > VER_1_X_NO_RPM)
+>  		return mask & (1 << hw_id);
+>  
+>  	/* v1, v0.1 don't have a irq mask register */
+> @@ -733,7 +733,7 @@ static int tsens_set_trips(struct thermal_zone_device *tz, int low, int high)
+>  static int tsens_enable_irq(struct tsens_priv *priv)
+>  {
+>  	int ret;
+> -	int val = tsens_version(priv) > VER_1_X ? 7 : 1;
+> +	int val = tsens_version(priv) > VER_1_X_NO_RPM ? 7 : 1;
+>  
+>  	ret = regmap_field_write(priv->rf[INT_EN], val);
+>  	if (ret < 0)
+> @@ -975,10 +975,16 @@ int __init init_common(struct tsens_priv *priv)
+>  	ret = regmap_field_read(priv->rf[TSENS_EN], &enabled);
+>  	if (ret)
+>  		goto err_put_device;
+> -	if (!enabled && (tsens_version(priv) != VER_2_X_NO_RPM)) {
+> -		dev_err(dev, "%s: device not enabled\n", __func__);
+> -		ret = -ENODEV;
+> -		goto err_put_device;
+> +	if (!enabled) {
+> +		switch (tsens_version(priv)) {
+> +		case VER_1_X_NO_RPM:
+> +		case VER_2_X_NO_RPM:
+> +			break;
+> +		default:
+> +			dev_err(dev, "%s: device not enabled\n", __func__);
+> +			ret = -ENODEV;
+> +			goto err_put_device;
+> +		}
+>  	}
+>  
+>  	priv->rf[SENSOR_EN] = devm_regmap_field_alloc(dev, priv->srot_map,
+> @@ -1040,7 +1046,7 @@ int __init init_common(struct tsens_priv *priv)
+>  		}
+>  	}
+>  
+> -	if (tsens_version(priv) > VER_1_X &&  ver_minor > 2) {
+> +	if (tsens_version(priv) > VER_1_X_NO_RPM &&  ver_minor > 2) {
+>  		/* Watchdog is present only on v2.3+ */
+>  		priv->feat->has_watchdog = 1;
+>  		for (i = WDOG_BARK_STATUS; i <= CC_MON_MASK; i++) {
+> diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
+> index 336bc868fd7c..e3cb611426c4 100644
+> --- a/drivers/thermal/qcom/tsens.h
+> +++ b/drivers/thermal/qcom/tsens.h
+> @@ -34,6 +34,7 @@ enum tsens_ver {
+>  	VER_0 = 0,
+>  	VER_0_1,
+>  	VER_1_X,
+> +	VER_1_X_NO_RPM,
+>  	VER_2_X,
+>  	VER_2_X_NO_RPM,
+>  };
+> -- 
+> 2.48.1
+> 
 
-@Oleksij here it is:
-
-# cat /sys/kernel/debug/regulator/regulator_summary
- regulator                      use open bypass  opmode voltage current    =
- min     max
----------------------------------------------------------------------------=
-------------
- regulator-dummy                  5    4      0 unknown     0mV     0mA    =
- 0mV     0mV=20
-    d00e0000.sata-target          1                                 0mA    =
- 0mV     0mV
-    d00e0000.sata-phy             1                                 0mA    =
- 0mV     0mV
-    d00e0000.sata-ahci            1                                 0mA    =
- 0mV     0mV
-    spi0.0-vcc                    1                                 0mA    =
- 0mV     0mV
- pse-reg                          1    4      0 unknown     0mV     0mA    =
- 0mV     0mV=20
-    pse-0-0020_pi0                0    1      0 unknown 53816mV  2369mA    =
- 0mV     0mV=20
-       0-0020-pse-0-0020_pi0      0                                 0mA    =
- 0mV     0mV
-    pse-0-0020_pi2                0    1      0 unknown 53816mV  2369mA    =
- 0mV     0mV=20
-       0-0020-pse-0-0020_pi2      0                                 0mA    =
- 0mV     0mV
-    pse-0-0020_pi7                0    1      0 unknown 53816mV  2369mA    =
- 0mV     0mV=20
-       0-0020-pse-0-0020_pi7      0                                 0mA    =
- 0mV     0mV
- pse-reg2                         1    2      0 unknown     0mV     0mA    =
- 0mV     0mV=20
-    pse-0-0020_pi1                0    0      0 unknown 53816mV  4738mA    =
- 0mV     0mV=20
- vcc_sd1                          2    1      0 unknown  1800mV     0mA  18=
-00mV  3300mV=20
-    d00d0000.mmc-vqmmc            1                                 0mA  18=
-00mV  1950mV
-
-# ./ynl/cli.py --spec netlink/specs/ethtool.yaml --no-schema --do pse-get -=
--json
- '{"header":{"dev-name":"wan"}}'
-{'c33-pse-admin-state': 2,
- 'c33-pse-avail-pw-limit': 127500,
- 'c33-pse-pw-d-status': 2,
- 'c33-pse-pw-limit-ranges': [{'max': 99900, 'min': 2000}],
- 'header': {'dev-index': 4, 'dev-name': 'wan'},
- 'pse-budget-eval-strat': 2,
- 'pse-prio': 0,
- 'pse-prio-max': 8,
- 'pse-pw-d-id': 1}
-
-# ./ynl/cli.py --spec netlink/specs/ethtool.yaml --no-schema --do pse-set -=
--json
- '{"header":{"dev-name":"wan"}, "pse-prio":1}'
-None
-# ./ynl/cli.py --spec netlink/specs/ethtool.yaml --no-schema --do pse-set -=
--json
-'{"header":{"dev-name":"wan"}, "c33-pse-avail-pw-limit":15000}'
-None
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+-- 
+With best wishes
+Dmitry
 
