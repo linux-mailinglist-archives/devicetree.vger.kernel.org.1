@@ -1,218 +1,194 @@
-Return-Path: <devicetree+bounces-151959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59BF9A4799A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 10:53:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A52C7A479B4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:02:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F31241891C8D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:53:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C1053B31A4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 10:01:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45B38229B02;
-	Thu, 27 Feb 2025 09:53:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A09020DD7A;
+	Thu, 27 Feb 2025 10:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="A74W934k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OfrPz2JJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2050.outbound.protection.outlook.com [40.107.241.50])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7655B2288CC;
-	Thu, 27 Feb 2025 09:53:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740649990; cv=fail; b=UMJmCESIEW0Y1L6WxeUgmWXGBDonpKv5PNa+fAkmLBBs4322Bk9YbPe9UVbh0i3K+TGpk0io/dv7Mni2u11x/REiUthm/lfzSAwtIFPvDAnDM5uRATefndfH2pK5ORGAFovxq90xudXSL+l4LRFgSbWgdllWsLxCPT1icDI4iwU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740649990; c=relaxed/simple;
-	bh=9pGH/AZ/bZR5mvcRKrVJ2h8X0EGoMDPCaoAB3WX2hHo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=DR/X8f7tcLdmwx8lNxqINo/Yyqwna9h97VnijijXEJpVTTkCMT7xa3ktBvORTb1Gq/9skMwLjoorhRiSvRmICzuX4PtRtTFiVStus3QW1sP/SBKtwolqulWOtoJgLRG7ZLAlH0TJrKRPe0kKjBZzCtTeIM52hga9/s9Rxfghz0g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=A74W934k; arc=fail smtp.client-ip=40.107.241.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dJ54/9NpKRKtjcW9DT2IhANd1UOtC/dGCc/9OljewNnU/wCyTFJrxTap/+nYYKQ5GLOHkjPAocfJZKKo2gLSnwvGOLH1B4MvqbUG7MU0A7IdjBFU5zlnbxEzC19yCgQO4lXvrkTdfvqAqb4zoPzh3OJGYCFUwyKesqASQ9jaM5uf452/nNIFS+HFXzZn/wMHKthbRFtJzgNxEWIT92etPO/arSimFcz+pYkGE/b8o2A17kavJhTO2gwRvVsVIQhLF25euo4RPuWSdpmNyTAZYU7wc5FzHzeMyvB/JcOd5dQ3KjwPjyjlyXtVuwfRiaKv9XJcGbeHc8tHaqQFLQOAZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QLN2x+af5KNMFjh9BvKgTeaqSG1cT4E7311bdmZayB8=;
- b=B1ZWKeFhOvtGSEgo3qKC0kRH+KAexiCao/fBBprQjOasVf5vDqhY1fYIUDoWljFCKj5Ymc94Fb34gs5Uzx93Wuph+U+SK0W/oxRS6YGBhK7S/m4DoLZoXFQPRDUm9RLpIQNUMxxDWsT7ihcxI5mnuHFdxXs7ZcekFdJ4FP7XBBeQZCU4UooBbIsnfzpakW3+XKklvBXWNryoiNnmr1plLP4rm7s8i1UjL1mNgm7+uvr5XvJKwft8NGUZh3JYe36yToS1jHIXuf2UjAAxmbqtaMTVxN60ydo9Uo9BTWZoynrf0rJV/ZykpiruXw67bvpfRY5Ou4xN9XNWCX7cAPdJRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QLN2x+af5KNMFjh9BvKgTeaqSG1cT4E7311bdmZayB8=;
- b=A74W934kRFHyp+ptPS4vtj3BHjN0EgGDq+OYsKmBhX45sLUgvRnOnSN9AZvSzs/xWApe3CW3cM5To/CaK/f66OtP4+V9AEO53nN4TUik7IDjeGH8d9TxiI1klJJmTdn9a++joN+HmOW+VpLm2u0CTYeN9PSA+MsJeY2pQnKXF5pGboKJFmqS4/JmeVCkIWc/UCV25HV2SrgIkJakAZ8dhRhbj1rWa3SEvbrpxIl23wZ/bhkymxuPXEREB73oF5USbzurzI49VlWaAVMX8RRatbitfXhQrJwLlfkrGkyV/aMmf4UjV6FgulkvmRXbwrK4t//L+ZXhKsHYoTz0qMmTeQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by VI1PR04MB6848.eurprd04.prod.outlook.com (2603:10a6:803:13c::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.19; Thu, 27 Feb
- 2025 09:53:05 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7%6]) with mapi id 15.20.8489.021; Thu, 27 Feb 2025
- 09:53:05 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: gregkh@linuxfoundation.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	peter.chen@kernel.org
-Cc: linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	jun.li@nxp.com
-Subject: [PATCH v3 6/6] arm64: dts: imx95-19x19-evk: enable USB2.0 node
-Date: Thu, 27 Feb 2025 17:53:48 +0800
-Message-Id: <20250227095348.837223-7-xu.yang_2@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250227095348.837223-1-xu.yang_2@nxp.com>
-References: <20250227095348.837223-1-xu.yang_2@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR06CA0205.apcprd06.prod.outlook.com
- (2603:1096:4:68::13) To DU2PR04MB8822.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C672C6A3;
+	Thu, 27 Feb 2025 10:02:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740650525; cv=none; b=lx+WnJQZKHmnRFpiXhttsotgfL+mRaX7NVrx/9fbnAHGAFTSjGiD+0IAlRjiw1WmWlzdqUdagFMl2sOgXKcKQfas9H/tHhtSjhLTi9+vMnHrdB2UWqP5Qe+COj4CmnltFGC3EsHFaQzFNxDXnt4k8mb2OFaypiyGL5Syhc6k0ow=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740650525; c=relaxed/simple;
+	bh=WFRK26x5tVbWE7gyjrMMLUCQC1MZqXSZkDzOkUqv5oY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ckhIYCYYL1fpEwgQLYr88DbVy/bOXMcfBlwbTPK3Z01jlF7vmwCbiAclJMPb18UBgO+ZLcrBLTLOhIas4ztaCJwATuDEN//29yUKvcYWnzapSh4EI8g57mujPHJbRljbyeSKw1xRiNXLpfk5mfSMrH6F4Ni4R0altwGv320WHTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OfrPz2JJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AD98C4CEDD;
+	Thu, 27 Feb 2025 10:01:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740650524;
+	bh=WFRK26x5tVbWE7gyjrMMLUCQC1MZqXSZkDzOkUqv5oY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OfrPz2JJYBEDgWaFe3BuGfbg3eo3kF2eDRLJsTPndeTB4aLJd5thUDGFyC9NWCkYH
+	 2N2bCKSPMaqvYVDFRLyiEXe+NVt4ISgScLzFIH34TkEYDWhp4DfubKBQLfDMUwj7gV
+	 FFIJZTOexQVX8Wq6e541mI+MummpB92u4DMWRPaTvhfHrxCvKYruxrxcExyBvjFcAN
+	 tI/QsEnO5rLleFbRdBWeBkDMEaFVH38F3cW1c23YTRDGdnORsx2fMOrDRdLw5Twuvk
+	 2TemwYoi63k+IPrJtu6WZmYX1wL0nXwBS2MPy8SRocu3iWb/qrQVpeoG336elucQsN
+	 nj+/MEBqIGoGg==
+Date: Thu, 27 Feb 2025 11:01:55 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Alistair Popple <apopple@nvidia.com>
+Cc: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
+	gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	robh@kernel.org, daniel.almeida@collabora.com, saravanak@google.com,
+	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com, paulmck@kernel.org,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	rcu@vger.kernel.org
+Subject: Re: [PATCH v7 07/16] rust: add `io::{Io, IoRaw}` base types
+Message-ID: <Z8A4E_AyDlSUT5Bq@pollux>
+References: <20241219170425.12036-1-dakr@kernel.org>
+ <20241219170425.12036-8-dakr@kernel.org>
+ <g63h5f3zowy375yutftautqhurflahq3o5nmujbr274c5d7u7u@j5cbqi5aba6k>
+ <CANiq72=gZhG8MOCqPi8F0yp3WR1oW77V+MXdLP=RK_R2Jzg-cw@mail.gmail.com>
+ <wnzq3vlgawjdchjck7nzwlzmm5qbmactwlhtj44ak7s7kefphd@m7emgjnmnkjn>
+ <Z72jw3TYJHm7N242@pollux>
+ <nlngenb6udempavyevw62qvdzuo7jr4m5mt4fwvznza347vicl@ynn4c5lojoub>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|VI1PR04MB6848:EE_
-X-MS-Office365-Filtering-Correlation-Id: 60d201ba-d7a2-4640-31dd-08dd57148847
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|376014|7416014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?EqAfeAPjoQgN0QpY87QcS6J5+ok2xS1IZ7ac3HXUkyojMCxEPqlsLjc6rIQ5?=
- =?us-ascii?Q?kS+oxZeAnoj6UNo5dy30SYP8glCHPbjFqZTh2HUduLZyRQ/k4f0icvND2Mq0?=
- =?us-ascii?Q?YCNENeX3Eigri6f41sbkJOtRIpISD/O6KuZDNu02F2zj+0bMeisx6knztH/R?=
- =?us-ascii?Q?aW9UYyLqnV07Qil7Q5nSkKvXLw4LDI8S9TvzuHXK9KSPSg8KAIM3QQvNgOu2?=
- =?us-ascii?Q?RnYAEK2lUuTLt30EGReOadXZYv/tH5vk6Uk02qLZOAlWeXyTj70/Z5Pt9EXF?=
- =?us-ascii?Q?nk11sInZ4LkreGCn81Pi/xifQjiLaVVUnuN0/LshdIo0ltNtSeZZ5UeQ3G2s?=
- =?us-ascii?Q?GaJFKo6nBAG9Xgr3HweVyE6DjtsXVn9U1PH/nuC8d/Ooyjo3/a7OlgX+g6DL?=
- =?us-ascii?Q?SznZKNXrCTuIGk2Dhf1HVM6QGMLJiCDeI5l1ig2NesU7n0sPqBT9GiyksEkh?=
- =?us-ascii?Q?uDpMKqy/VkZMlzWVjoAV5CYLFHJsyWxCvXUQ1cgyJTbujydWiBffJ17+RH8Z?=
- =?us-ascii?Q?UV3FrIp/89OvUIag86J2RLJyxhYQT9sNG+Gx7+TbEi7JAp3pG2ntWNbBql7i?=
- =?us-ascii?Q?z7xTnGJz00P70Xjh6yqBzweP9FznOxoOqMlqBFdVa/MsAWX2YiWVoOM7rbPy?=
- =?us-ascii?Q?eFAMnIBa8QqeahVco+zYiR0h+MP5mPoMceCTUiZNMzFUaWX2rCfuNiEcL5z6?=
- =?us-ascii?Q?FY0EqwQdDUBmHIUWXeGFye2uRorwy8y7l+tPvSaaLr7G+49N6utBFmsN9z+b?=
- =?us-ascii?Q?tzQo5qsDFFlBINsgX1kEMddmlZpPvJwXbefS3sCXwlfzZrE++fJt/U3oj0Rk?=
- =?us-ascii?Q?hKPD4T3H+OK16DBzEw64CoTSR0Bq1GpMAW1XbvvDzbavUmYvxVxHvU55GjJW?=
- =?us-ascii?Q?aI0GzbYUI5crYMFZwVA8nuCJovbAnGvIheyZxN1JCDipXSvWABGde73cKq4L?=
- =?us-ascii?Q?Oj6Eh2g8I9hvhX4uG973U5tWwIyngRfkMiUpWIza/0Sox2/MR+DSwgJRMlFe?=
- =?us-ascii?Q?+Qdhm+chMQtNbIR/1stuGfttueEUR/AVYqW1OpSOh9TNfRppZhHYGmd/7ZnI?=
- =?us-ascii?Q?FxjIR0O3aEIbFUb+/PUsee8Uj+QHj7CaltOgOTcHjFMgcNQZe8myDCTlMJui?=
- =?us-ascii?Q?/s/SOeDpDN92rO11n48y2cqsTXZZcSlMhIIJxPrbWAge3293gbeKafrCmh3P?=
- =?us-ascii?Q?c+KdjVluyP9IxZeIMbcHbc9WqCWwEyr8u2Dh4ywPM4Td0FhFFXHDIstpsgn7?=
- =?us-ascii?Q?EkZaa0g3s1xgWFKb1IwkTVkbqk3ppNbDPYlVE6tm/SCkziesMPJnoXSE7nR6?=
- =?us-ascii?Q?SdXhPnNxzTEJ/ipvYC16v1StEKe/Yr6vlbAvntdtar4p4Jsn7GAbkmOl0veC?=
- =?us-ascii?Q?mZ0qzLSPvptkvYHH7kWPMmLS8JfGCytS83CfGVcNwxkz1Ty747t+27AXW2QG?=
- =?us-ascii?Q?tpETpkx9jXO2wykQASMA5yNivGTMbbsW?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(376014)(7416014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?sQww/rlv0LPTJpHvQTR0m/iuAUeK6n/rDf+F7SNILWbC9MKVxiB2OPz1Cmmi?=
- =?us-ascii?Q?CRyKPkIEkKOh7GsCS+/XgCz+fSwAOjhxfqecrLOrSX6CKU1yYsXehx/Otm7e?=
- =?us-ascii?Q?a9w3f31B+4ZpwyG9g/oKgXmEbyhpHqW5ZmmRteb0ZDJk4dMJSSNI/RifuFIX?=
- =?us-ascii?Q?WvNL7Qt1ZNTfDq0W8BxElbd2waJDe6cs8Bh4hOQmP4FnrH1EnmMVzBSGhRvs?=
- =?us-ascii?Q?JYxGpKXzEHaBXFvuRamWfvkwz5gSVk1jMiecywCGrNj9pUtV8fitV0uj/gxt?=
- =?us-ascii?Q?Xg4TOG+jukwzXn83P30ek/86Bl0IIAZ7w+NoeQLHFsnx0fbxlC/eCrPLvSPU?=
- =?us-ascii?Q?58kYxWfK7jZI19ueDt/PZXOjvw67E+p1mSbcvuFCmIBXRkZc9PhBQ/hXgnC1?=
- =?us-ascii?Q?D8Rws8r5eowUdN+JrHmmSuoKvF13g9d3XN2qI3rbHxHifm4lqS2rnA9GTZ8d?=
- =?us-ascii?Q?fD8UeOE1VSmFoGNobb5QdQriIH0VZRLeA0EujXKvmBVKbXhzd7+szVF+VOSS?=
- =?us-ascii?Q?0mEETlPTiMJn0Q8SzRaV8U0PBfDG2SjI72ps67iuwLMMV8Qh0MQSZeoWrzg3?=
- =?us-ascii?Q?PEW7fDXEPpnQlRYU5I/A9mP7EQMmeE8LrBSfRtak2GWZfCW+KGzQFDRMBpLC?=
- =?us-ascii?Q?LY0PwtGuaO9+571+5FKUHSHuqdC6BA+njSV28m4ebSph6XjUvumU//XorpIv?=
- =?us-ascii?Q?pwn+9pOmHWp/6eyKRpnUCnEmjsrhtBa7WKKqw3ySbbeSSg3v72948ZjfIxgn?=
- =?us-ascii?Q?izmVD/Zin8ixvScdbPYUkdllCQVKv83JqJNjH/bhMXBYT0cBwsYblm17VlrP?=
- =?us-ascii?Q?0xcdrTEwNFyoJwzppncLpd9og/flmqPov+s7MMIj4n0ndyY9Ykf5yWeIG/ul?=
- =?us-ascii?Q?kYaoz4mXyxXlGEeYeZxUSq3xQYVtVhyJKD2Ybe9Ul3UACJk5zVnxqaubo6hj?=
- =?us-ascii?Q?P46F99Xzj5aZSeZXWH8t9fGnmBVAamE4hAU47s+GvYok7D6GECccuTSW7E87?=
- =?us-ascii?Q?jNYMksoWJUJ5UTGQ0T6zBqFIUDw/Bjo84pMAoWITkt6MxFvIYumvJI54KVly?=
- =?us-ascii?Q?KRWT1mXOpG6XAMsoOipf5Sfm/Fget6OPxxMoJUWPk1BprWOa+whix1esCZat?=
- =?us-ascii?Q?mWYK2VB3l56kJAPXKO80fCETkoMgYoJzPygY8jnqdSlcYnbjA8xVVC2YLmyR?=
- =?us-ascii?Q?7PyhVHdqVM1UgS7noBdV5tsR8alEJV0dOQfWb0DJ51LL7uAvt5Bclq9drT1B?=
- =?us-ascii?Q?M59BlyQkYsB+rtYNIE58fl7pRPb+bhPO974XIoRV9sQYFHgR1WNaIfTN3Lls?=
- =?us-ascii?Q?MPEHTjaHsG1BmKeBjX1hPOkV3L/FoWabYSC3V0bZrS2ZEG2AMeRV8q5vnJoK?=
- =?us-ascii?Q?8Y/84dYmjmDOaUUEdLTVtUTdGvZcI7/0XHJuPXF1ufd1C6FYHiOrxJMPm2yA?=
- =?us-ascii?Q?M3loK6y83088YGYTPbzno6WaCvR4LuBQPWklqE/GxR2Axplag9/mLuR9qcRe?=
- =?us-ascii?Q?6TGVHDFWEqw3zZz8fdajN3wpQPf4K6XXMBnrspGBh/r+/JqZLSH2Jqxcgngt?=
- =?us-ascii?Q?CCYVA36SJCtqGZIhZoPZHxkOk4OhvBBemJukyK/Z?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 60d201ba-d7a2-4640-31dd-08dd57148847
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2025 09:53:05.7158
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ls0RXIrkqEqnHJn6akElrGedTrg71IFeYxL2Bl7sudpUYS8iX2oDYzj1GZKPKz8EkDlIdg6ZOR4kd0qxCX1lpA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6848
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <nlngenb6udempavyevw62qvdzuo7jr4m5mt4fwvznza347vicl@ynn4c5lojoub>
 
-On this board, USB2.0 is a host-only port, add vbus regulator node
-and enable USB2.0 node.
+On Thu, Feb 27, 2025 at 11:25:55AM +1100, Alistair Popple wrote:
+> On Tue, Feb 25, 2025 at 12:04:35PM +0100, Danilo Krummrich wrote:
+> > On Tue, Feb 25, 2025 at 04:50:05PM +1100, Alistair Popple wrote:
+> 
+> > I think build_assert() is not widely used yet and, until the situation improves,
+> > we could also keep a list of common pitfalls if that helps?
+> 
+> I've asked a few times, but are there any plans/ideas on how to improve the
+> situation?
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+I just proposed a few ones. If the limitation can be resolved I don't know.
 
----
-Changes in v3:
- - no changes
-Changes in v2:
- - reorder regulator node
----
- .../arm64/boot/dts/freescale/imx95-19x19-evk.dts | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+There are two different cases.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-index 25ac331f0318..a41d542488ed 100644
---- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-@@ -145,6 +145,15 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
- 		off-on-delay-us = <12000>;
- 	};
- 
-+	reg_usb_vbus: regulator-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_VBUS";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&i2c7_pcal6524 3 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	sound-bt-sco {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,name = "bt-sco-audio";
-@@ -461,6 +470,13 @@ &sai3 {
- 	status = "okay";
- };
- 
-+&usb2 {
-+	dr_mode = "host";
-+	disable-over-current;
-+	vbus-supply = <&reg_usb_vbus>;
-+	status = "okay";
-+};
-+
- &usb3 {
- 	status = "okay";
- };
--- 
-2.34.1
+	(1) build_assert() is evaluated in const context to false
+	(2) the compiler can't guarantee that build_assert() is evaluated to
+	    true at compile time
 
+For (1) you get a proper backtrace by the compiler. For (2) there's currently
+only the option to make the linker fail, which doesn't produce the most useful
+output.
+
+If we wouldn't do (2) we'd cause a kernel panic on runtime, which can be
+enforced with CONFIG_RUST_BUILD_ASSERT_ALLOW=y.
+
+> I'm kind of suprised we're building things on top of a fairly broken
+> feature without an idea of how we might make that feature work. I'd love to
+> help, but being new to R4L no immediately useful ideas come to mind.
+
+The feature is not broken at all, it works perfectly fine. It's just that for
+(2) it has an ergonomic limitation.
+
+> > > Unless the code absolutely cannot compile without them I think it would be
+> > > better to turn them into runtime errors that can at least hint at what might
+> > > have gone wrong. For example I think a run-time check would have been much more
+> > > appropriate and easy to debug here, rather than having to bisect my changes.
+> > 
+> > No, especially for I/O the whole purpose of the non-try APIs is to ensure that
+> > boundary checks happen at compile time.
+> 
+> To be honest I don't really understand the utility here because the compile-time
+> check can't be a definitive check. You're always going to have to fallback to
+> a run-time check because at least for PCI (and likely others) you can't know
+> for at compile time if the IO region is big enough or matches the compile-time
+> constraint.
+
+That's not true, let me explain.
+
+When you write a driver, you absolutely have to know the register layout. This
+means that you also know what the minimum PCI bar size has to be for your driver
+to work. If it would be smaller than what your driver expects, it can't function
+anyways. In Rust we make use of this fact.
+
+When you map  a PCI bar through `pdev.iomap_region_sized` you pass in a const
+generic (`SIZE`) representing the *expected* PCI bar size. This can indeed fail
+on run-time, but that's fine, as mentioned, if the bar is smaller than what your
+driver expect, it's useless anyways.
+
+If the call succeeds, it means that the actual PCI bar size is greater or equal
+to `SIZE`. Since `SIZE` is known at compile time all subsequent I/O operations
+can be boundary checked against `SIZE` at compile time, which additionally makes
+the call infallible. This works for most I/O operations drivers do.
+
+However, sometimes we need to do I/O ops at a PCI bar offset that is only known
+at run-time. In this case you can use the `try_*` variants, such as
+`try_read32()`. Those do boundary checks against the actual size of the PCI bar,
+which is only known at run-time and hence they're fallible.
+
+> 
+> So this seems more like a quiz for developers to check if they really do want
+> to access the given offset. It's not really doing any useful compile-time bounds
+> check that is preventing something bad from happening, becasue that has to
+> happen at run-time. Especially as the whole BAR is mapped anyway.
+
+See the explanation above.
+
+> 
+> Hence why I think an obvious run-time error instead of an obtuse and difficult
+> to figure out build error would be better. But maybe I'm missing some usecase
+> here that makes this more useful.
+
+No, failing the boundary check at compile time (if possible) is always better
+than failing it at run-time for obvious reasons.
+
+> 
+> > > I was hoping I could suggest CONFIG_RUST_BUILD_ASSERT_ALLOW be made default yes,
+> > > but testing with that also didn't yeild great results - it creates a backtrace
+> > > but that doesn't seem to point anywhere terribly close to where the bad access
+> > > was, I'm guessing maybe due to inlining and other optimisations - or is
+> > > decode_stacktrace.sh not the right tool for this job?
+> > 
+> > I was about to suggest CONFIG_RUST_BUILD_ASSERT_ALLOW=y to you, since this will
+> > make the kernel panic when hitting a build_assert().
+> > 
+> > I gave this a quick try with [1] in qemu and it lead to the following hint,
+> > right before the oops:
+> > 
+> > [    0.957932] rust_kernel: panicked at /home/danilo/projects/linux/nova/nova-next/rust/kernel/io.rs:216:9:
+> > 
+> > Seeing this immediately tells me that I'm trying to do out of bound I/O accesses
+> > in my driver, which indeed doesn't tell me the exact line (in case things are
+> > inlined too much to gather it from the backtrace of the oops), but it should be
+> > good enough, no?
+> 
+> *smacks forehead*
+> 
+> Yes. So to answer this question:
+> 
+> > or is decode_stacktrace.sh not the right tool for this job?
+> 
+> No, it isn't. Just reading the kernel logs properly would have been a better
+> option! I guess coming from C I'm just too used to jumping straight to the stack
+> trace in the case of BUG_ON(), etc. Thanks for point that out.
+
+Happy I could help.
 
