@@ -1,97 +1,93 @@
-Return-Path: <devicetree+bounces-152089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A46A47F33
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:32:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1583FA47F60
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:40:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 442D1188EDCF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:28:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4706316E978
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 13:35:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4AFE2343C6;
-	Thu, 27 Feb 2025 13:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAFCD22D7B3;
+	Thu, 27 Feb 2025 13:35:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ApZouFlz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ksKRITal"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B937022FF44;
-	Thu, 27 Feb 2025 13:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E965224246;
+	Thu, 27 Feb 2025 13:35:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740662806; cv=none; b=JC08JfIdoXV5bbA59dfa8NMlntrGlJp/5AUBoFiEb7i9xYenMkRT5LHVzKkQTBbGQeU5ChTqFPawOi/iySk8hb6nwKjKPuynZo/95mZwXx0mdnzSqLcxUv3k+Fnz5xmUVlbqXq8Sks6T2VUBelu5TZCyzZOvX7pDbU6I/75xuHo=
+	t=1740663311; cv=none; b=ep0afLqNqSpiKELh3gk7+r2xuXYOj1LwpU3d27oqfgluruNOMIVj07TfnbSAf8Yj+IPEzDQwXUPWY70I/WyUvQmqo7ToSsr8kexi50v+nE60JmV9l/nrrXanIfth//vSg81YMnh/aoIaE40/m3Wjy1MW+xWC0akihropiPQdW2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740662806; c=relaxed/simple;
-	bh=RC9g2s3NtsKBwCNvPMR9F7//Ad1mLMvFg97XbB1Mns4=;
+	s=arc-20240116; t=1740663311; c=relaxed/simple;
+	bh=Rr/ZAs6GmOH5Zx/oWHv7ST2gf2X9v75nhFcxZDN+WmA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G4qhldAVMEOrWMMsp6fwRfwpMigfLZt77+QtLKxhyDRbuwib63582ADrNtu+ouRwme2y4LDiX2O9Da/9ekgqAyJODwN0+xcJFnLBUCOQCRlc1/1ICtM56v0fJqgHThOCV2CT8nuDgzMgNQYE97ClcMbUfmCgDrwD5ZVhAOcir6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ApZouFlz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1311FC4CEDD;
-	Thu, 27 Feb 2025 13:26:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fQ/mqXUO0wFqz7n9k9VCjwggTSgbelrpj6Cdtj133YeQfywrIyZNwvDAWewUQyPMUxzYtcNj/2Uh8v1NyoTJYI9qamMkUZVmZS0ShlUhQ+o/YiGZ99Zhf98GYLefjZty9APQaaF63NuZBqlOcj85lrTZXUXNgRD5DobAwVkKbiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ksKRITal; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42518C4CEDD;
+	Thu, 27 Feb 2025 13:35:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740662806;
-	bh=RC9g2s3NtsKBwCNvPMR9F7//Ad1mLMvFg97XbB1Mns4=;
+	s=k20201202; t=1740663311;
+	bh=Rr/ZAs6GmOH5Zx/oWHv7ST2gf2X9v75nhFcxZDN+WmA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ApZouFlzCoMM3a08NtHo/cO8aR2RuP+Zuvy+v9gYdAE7AXWp3nxAzdasiRGhxZE08
-	 Y+On2ijNI+JpMyNukXjvRIsVlofWqXUaz2FtPonBRCRjbrKbTSfmpfjhyR4MLFCDF1
-	 kNEH06vftgX3E3dwTHY9Vh1sLX2vEhGJ3eXEQ1HWq0iVTnIRcLejwQ9ZXNI6R+d1ch
-	 CfeLpuRyb16wJ8P2oHfPQ+gTLnXyz1ImGGoxseHCPT6/m0m2Km70l+tQkfzkInylXG
-	 fsNPrJ06Ol08vhU9iKDkWPKOY9wj/9H6eFOSG5VQkCHkQ0qdYHFT5C4Sk/8rEC6mv/
-	 BV54XChRrgOqw==
-Date: Thu, 27 Feb 2025 07:26:44 -0600
+	b=ksKRITalBMRrx8PI2TYjkm6vqOT15c6BEkYcq9R7/5hpch/3Nw6p4/kOieKMPaw4J
+	 7GgLzIYzIMOBgD6A/WdxtiUD0jaj+36l+qoiwF7o9rCr7lxIn3NzgJKZJ9j0D1iHPd
+	 HTuST4IABwd0KVMebmBehOzqITu+4rkxfhtZfXTAMs+hD48dp9n85DgtJgIhJlA921
+	 zM5Ta2d5Rd16mLjG5ab3OBw7XqdyINkexNUjcIGdgxTpU+1iULIfNJeNBneD52cXh2
+	 ZSbo62gxrAsG0IrH64z3y41cNX7KDfO22hj4zMDV0REErtAlWEPDCwRNTIJqyVwW7U
+	 gUmGMdpg4PVLw==
+Date: Thu, 27 Feb 2025 07:35:09 -0600
 From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Sebastian Reichel <sre@kernel.org>,
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: reset: syscon-reboot: support reset
- modes
-Message-ID: <20250227132644.GA1924628-robh@kernel.org>
-References: <20250227-syscon-reboot-reset-mode-v3-0-959ac53c338a@linaro.org>
- <20250227-syscon-reboot-reset-mode-v3-1-959ac53c338a@linaro.org>
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, sophgo@lists.linux.dev,
+	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: reset: add generic bit reset
+ controller
+Message-ID: <20250227133509.GA2021892-robh@kernel.org>
+References: <20250226234234.125305-1-inochiama@gmail.com>
+ <20250226234234.125305-2-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250227-syscon-reboot-reset-mode-v3-1-959ac53c338a@linaro.org>
+In-Reply-To: <20250226234234.125305-2-inochiama@gmail.com>
 
-On Thu, Feb 27, 2025 at 10:46:13AM +0000, André Draszik wrote:
-> Add support for specifying different register/mask/value combinations
-> for different types of reset.
-> 
-> In particular, update the binding to allow platforms to specify the
-> following reset modes: soft, warm, cold, hard.
-> 
-> Linux can perform different types of reset using its reboot= kernel
-> command line argument, and some platforms also wish to reset
-> differently based on whether or not e.g. contents of RAM should be
-> retained across the reboot.
-> 
-> The new properties match the existing properties, just prefixed with
-> one of the reset modes mentioned above.
+On Thu, Feb 27, 2025 at 07:42:29AM +0800, Inochi Amaoto wrote:
+> Some SoCs from Aspeed, Allwinner, Sophgo and Synopsys have
+> a simple reset controller by toggling bit. It is a hard time
+> for each device to add its own compatible to the driver.
 
-This would be why we don't do "simple" or "generic" bindings. There's 
-always one more variation needing yet more properties to handle it. We 
-also draw the line at encoding register accesses into DT. If we wanted 
-that, we would have created a language for doing that (or started using 
-Forth in FDT).
+It's a 1 line change. That isn't hard.
 
-You need a specific binding for your h/w. If you can make it work with a 
-"generic" driver, then that's great, but that's an OS decision which can 
-change if needed. The binding can't change.
+> Since these devices share a common design, it is possible to
+> add a common device to reduce these unnecessary change for
+> the driver.
+> 
+> Add common binding for these kind generic reset controller.
+> Check the binding description for its requirement and
+> suitable scenarios.
+
+We generally don't want 1 register per node type bindings. That level of 
+detail in DT has proven impossible to get right.
 
 Rob
 
