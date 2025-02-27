@@ -1,148 +1,79 @@
-Return-Path: <devicetree+bounces-151897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A1B0A476EE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 08:56:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1F3CA47712
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:01:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8892A7A4A35
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 07:54:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68A6C17017D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 08:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBAEF21D584;
-	Thu, 27 Feb 2025 07:55:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75CB0224895;
+	Thu, 27 Feb 2025 07:59:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="n5wJoWo7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CW/o5pab"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C432253BB;
-	Thu, 27 Feb 2025 07:55:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37446229B00;
+	Thu, 27 Feb 2025 07:59:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740642941; cv=none; b=YYqx0ysrVrP2GMmkdJTl4JRuj9hvXmO6aTQ2K7Ln3ytXHKET3SFIjkau3bdM6jlu2Mv9qZtkGYgtzDesBZBULJTVohZCYkIl6TESSolPYQYqXgEMH3MLzBsUciLKBnQrOSpmnuts4SoyayTt/7JMxe7SNdLakq1/uLSELKB0G+Q=
+	t=1740643165; cv=none; b=SVC6Fyj6KfrVhVJBZlqACHbXKXSkCo5th2dcVN+Z1ap2hW3Uzy1XJdhEX0EO+ZKdFiuilX4ezX6X3TpvV94TRSwq37pUC4A1NwsTh+mbW77h1aP4Ibaq0rIZl+LayfpCrHpMACKfVZawsgd4Mfq26Ez9OMyRCiskA4yM5T5Cff8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740642941; c=relaxed/simple;
-	bh=G9CqUFNdUNUfzrYHmH4LKSH1/0fyY3uGBpsl530tWRY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=eEJgdYa56yCI5gD9AJbNJOcnQvrEhRkRoq9RE1HUMHheVpnHP/tpkX0xUuif9IUREK30xjr1CvN0M3tkrLRPbWuEnlVMD3d8JGAP9yD3uqiUEjK9R9lFRaK9nmEr1OkugTLuEXw9JgHwNq4U5pe4XkyByyqGOLLZAorBtmD/PBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=n5wJoWo7; arc=none smtp.client-ip=178.60.130.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
-	s=20170329; h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
-	In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=G9CqUFNdUNUfzrYHmH4LKSH1/0fyY3uGBpsl530tWRY=; b=n5wJoWo76NUAcVvkT+YSgZ3Tp5
-	7aj7m+zy5wUhO58FEqKsamkS1uiFe3SSRV9843uGt4OjDLnJ7OkTQZ6xBSFJ17BLwVAZXA0mezzsF
-	K1DrlIIuIuyz53/LUVWIigDcTwvj+zFJsh2co/vlordfjoOW/EWN+3YR9TMD2yXUsjUOFGob6Bz1e
-	4f0UGXi2eJh+W2p1TDg0Rl62gSlmApPRjLx/Rj8ge7J2Zw40pbbX01yGJbuZWjo3KTfq0+QZy84EP
-	UrgNKmeEa9B7R0iAUW/UCUTmpj1rN+uj9/j7ofX82qLo3ZlEXPwFxWCWIRgpeJsKNvm95nbthq53D
-	pUCO0Dmw==;
-Received: from [192.168.12.229]
-	by fanzine2.igalia.com with esmtpsa 
-	(Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
-	id 1tnYjw-001UK9-CM; Thu, 27 Feb 2025 08:55:34 +0100
-Message-ID: <75c3d6bc5e020868faf0fd91525cd75b497ac8dc.camel@igalia.com>
-Subject: Re: [PATCH 0/6] drm/v3d: Fix GPU reset issues on the Raspberry Pi 5
-From: Iago Toral <itoral@igalia.com>
-To: =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Melissa Wen
-	 <mwen@igalia.com>, Jose Maria Casanova Crespo <jmcasanova@igalia.com>
-Cc: dri-devel@lists.freedesktop.org, kernel-dev@igalia.com, 
- stable@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
- devicetree@vger.kernel.org
-Date: Thu, 27 Feb 2025 08:55:34 +0100
-In-Reply-To: <20250226-v3d-gpu-reset-fixes-v1-0-83a969fdd9c1@igalia.com>
-References: <20250226-v3d-gpu-reset-fixes-v1-0-83a969fdd9c1@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.3-0ubuntu1 
+	s=arc-20240116; t=1740643165; c=relaxed/simple;
+	bh=ua7JLATqNQHKU1/RkPTa0NEpNyB79kXYZEIWW0ChIhg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U8TkHUHOl49Rns0bnu/b/KgsGg9hDwyO32+EMHEz8WzPW7KA+kwUrJXzAX2YuPkzPK+eY1kDUPSL+Ti9sLdpTeUT9eYLassiPjXkJE0blRV1/XKCvuMz1aeO5Asgy7CIRkli6ZVzZYq/v5icFhXPTcq/Yry2o1xkblWbh8QTikw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CW/o5pab; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF110C4CEDD;
+	Thu, 27 Feb 2025 07:59:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740643164;
+	bh=ua7JLATqNQHKU1/RkPTa0NEpNyB79kXYZEIWW0ChIhg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CW/o5pab5Co3B60sYb72R1/4ESR3CfYf72+RhC5rnKqh+JcUz6eJxGv0QiYbOaRAt
+	 UMSn0D4rjBadK5e0vplu/iSCHxtXcGqJe2utNtxn2hpid2dusgtFo+QMU7e3urdLE+
+	 9qbeWOK2F51rabxzlnY+xcb24mnOMvNLlIFg6/j3LFIzOabbILWqnnnbNX2r8Ugwnj
+	 AvgBZf7cg8fbSrp29MOw79FXOPyaW8LONDsEXmualNRhQONLwSN+3ccez70kXYDVJ6
+	 c63dOjWRecjsSQbTvjPrt7JDkfuf+3mGuqUjo8z+UYuV6UbWXk/SYjczyXxU45px5T
+	 Gr1I9zWYc2UoQ==
+Date: Thu, 27 Feb 2025 08:59:21 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Rudraksha Gupta <guptarud@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, wctrl@proton.me
+Subject: Re: [PATCH v3 1/2] dt-bindings: nvmem: Add compatible for MSM8960
+Message-ID: <20250227-dazzling-mule-of-domination-0b8fdd@krzk-bin>
+References: <20250226-expressatt-tsens-v3-0-bbf898dbec52@gmail.com>
+ <20250226-expressatt-tsens-v3-1-bbf898dbec52@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250226-expressatt-tsens-v3-1-bbf898dbec52@gmail.com>
 
-Thanks Ma=C3=ADra, all patches but 4 are:
-
-Reviewed-by: Iago Toral Quiroga <itoral@igalia.com>
-
-I hope someone else can can look at the remaining DT patch.
-
-Iago
-
-El mi=C3=A9, 26-02-2025 a las 16:58 -0300, Ma=C3=ADra Canal escribi=C3=B3:
-> This series addresses GPU reset issues reported in [1], where running
-> a
-> long compute job would trigger repeated GPU resets, leading to a UI
-> freeze.
->=20
-> Patches #1 and #2 prevent the same faulty job from being resubmitted
-> in a
-> loop, mitigating the first cause of the issue.
->=20
-> However, the issue isn't entirely solved. Even with only a single GPU
-> reset, the UI still freezes on the Raspberry Pi 5, indicating a GPU
-> hang.
-> Patches #3 to #5 address this by properly configuring the V3D_SMS
-> registers, which are required for power management and resets in V3D
-> 7.1.
->=20
-> Patch #6 updates the DT maintainership, replacing Emma with the
-> current
-> v3d driver maintainer.
->=20
-> [1] https://github.com/raspberrypi/linux/issues/6660
->=20
-> Best Regards,
-> - Ma=C3=ADra
->=20
+On Wed, Feb 26, 2025 at 07:50:41PM -0800, Rudraksha Gupta wrote:
+> Document the QFPROM on MSM8960.
+> 
+> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
 > ---
-> Ma=C3=ADra Canal (6):
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/v3d: Don't run jobs that have errors f=
-lagged in its fence
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/v3d: Set job pointer to NULL when the =
-job's fence has an
-> error
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/v3d: Associate a V3D tech revision to =
-all supported devices
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: gpu: v3d: Add SMS to the regi=
-sters' list
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/v3d: Use V3D_SMS registers for power o=
-n/off and reset on
-> V3D 7.x
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: gpu: Add V3D driver maintaine=
-r as DT maintainer
->=20
-> =C2=A0.../devicetree/bindings/gpu/brcm,bcm-v3d.yaml=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 8 +--
-> =C2=A0drivers/gpu/drm/v3d/v3d_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 58
-> ++++++++++++++++++++--
-> =C2=A0drivers/gpu/drm/v3d/v3d_drv.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 18 +++++++
-> =C2=A0drivers/gpu/drm/v3d/v3d_gem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 17 +++++++
-> =C2=A0drivers/gpu/drm/v3d/v3d_regs.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 26 ++++++++++
-> =C2=A0drivers/gpu/drm/v3d/v3d_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 | 23 +++++++--
-> =C2=A06 files changed, 140 insertions(+), 10 deletions(-)
-> ---
-> base-commit: 099b79f94366f3110783301e20d8136d762247f8
-> change-id: 20250224-v3d-gpu-reset-fixes-2d21fc70711d
->=20
->=20
+>  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
 
