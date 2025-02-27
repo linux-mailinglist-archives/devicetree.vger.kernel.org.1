@@ -1,234 +1,241 @@
-Return-Path: <devicetree+bounces-152247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA9EFA486BF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 18:35:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 562D5A486C4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 18:36:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 587167A2B94
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 17:34:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 633051888CAF
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 17:36:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32D501DE3B3;
-	Thu, 27 Feb 2025 17:35:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6FC71DE3B7;
+	Thu, 27 Feb 2025 17:36:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="iJXyc5U9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o8Q3ZWrx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2062.outbound.protection.outlook.com [40.107.20.62])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C2591DDC29
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 17:35:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.62
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740677737; cv=fail; b=hVY+h/pi3jc6WEEyJGqhfo0DueGf6WnlT8avWX2dgRKGMKtfzP0UpCnbgcJKbI/tsTT8moPG1MvVFzgUR8Wm0OAfJD/wDw6Jm+H3bnbKPVvL6nUgCiyZYX+RVCnifVqn7kqr6MugctLY8j1U4hxS9KHm0xoxNvyVNTSuqyqwadM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740677737; c=relaxed/simple;
-	bh=pfWQSXtDFNjJp6+7bgsM3W1pv99G0AREKH+Xe2wfhjo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=rlG26SQjpyQk35UOJKN988W21+Q1tRe1dKukc+vlbRQIftEyO9UV4cChQ/9+Zj9+9CezxyCkzdtOls+g5FCHVUtIYkSpppRsnnePV09dAwB81oRD9Y7SUou5ObWxPFsYJN65hiX5mmcguZBD0GYKvojEwmUzRL2WyfoCXXVwD+0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=iJXyc5U9; arc=fail smtp.client-ip=40.107.20.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gp79x14/JubDA6ZwpwXXqoNPwzFts+aVtFP8Rh5C+BRLRU22qILatNFUQf2wQS8MSwxujPb6WmCnBo0CNViPnOOJPo8h1hPFz7SCz8T7LR/v5Hys5acUJl5WMFbvljAJpFqcjIjGvchL9tElt+1KwRy4dXmTbWiXdgerV/Xzec7ivXyVmSSrHJF/NEqE10JNRWltFFoGfiHVgk14CCF+a3MQl2nhJ3ZTUt+Rm9eWs+qLtVzfCIvaMoyMD/D/ILNv6vzhWFdWAE4sA0CuQKliViLl6hS5ad0D2LnouNjvn2RQc4fnCW/OP47xd6y/DayhmLUxA49y5bBPbj7byVd5mQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4PW9NvEw2PKcbHrbdBBBAMJ7f3NuJiNQ2LUGcbatiwA=;
- b=sqz2mVdZkhTteSb/apGibZoOsZCMO5/qajRre0wo3WmF/Mvr2E5O+Z1SOSFjlsdh8l8XWUXYjEt2Z1rPVXb2EwL+MMo7CsGojjvdnW9sIxNDnv1SEljT+7cAltMxwovOk2bJBPrxDTl0igu+3HGw+PGLZ/jdyCD8SZDGCkOO743A9dS3AptyuTHO7uPvs1+ZqsX5ltAuZcC0gMdC9Oo7KXyWxaVxVaemTqQLst2M4UTPAJy4cc0+tUAGgzLKonNVhcHCDMGNT0ybrLS9J5e6Pasx2UlhisYDJ6vzLHMGD6pC4wUIoUWcNVor9Ba9EPN5Yqu8xAWQDTcb9My3lhr1Ng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4PW9NvEw2PKcbHrbdBBBAMJ7f3NuJiNQ2LUGcbatiwA=;
- b=iJXyc5U9QLOJjlX+KIVHyhdHC5QtTOEMTtJLMVobVufTnmAiuTiaPB1K6lUIcncgOFY10/S/t2vbKxDdz9SctK/J81D+q8BqoKRjx4J2VCs4gHFHlxYr/I6Rw/FbbNL7sghKXZSa11k05ZtIrWuKQeVzFZUI9qEI06Qspf+2YG3LuQUWTqM7bQkMcULs3v2nM0Y9fhpkFZuxQNqvSo8d//+2oJC906HZEXcS5leBgXoCLM4JXw2YfViaNjuXQUZFxuf/ilG9S0VACtBTYbooNTa/QVOZ7OH5IqgdFLaiEpFMqLettGKD25kqjvJhzt1srqZHn8Ng9QIq1xSRTtNFBw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DB9PR04MB9791.eurprd04.prod.outlook.com (2603:10a6:10:4ce::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.18; Thu, 27 Feb
- 2025 17:35:31 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8466.016; Thu, 27 Feb 2025
- 17:35:31 +0000
-Date: Thu, 27 Feb 2025 12:35:21 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Boris Brezillon <boris.brezillon@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Sebastian Reichel <sre@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Steven Price <steven.price@arm.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, imx@lists.linux.dev
-Subject: Re: [PATCH 8/9] drm/panthor: Add i.MX95 support
-Message-ID: <Z8CiWcz86aEE1IH6@lizhi-Precision-Tower-5810>
-References: <20250227170012.124768-1-marex@denx.de>
- <20250227170012.124768-9-marex@denx.de>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250227170012.124768-9-marex@denx.de>
-X-ClientProxiedBy: SJ0PR03CA0291.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::26) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87BCF1DE2B9;
+	Thu, 27 Feb 2025 17:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740677774; cv=none; b=FY+3f9DIxCcnBHEqZf1oZU0+YRb/GBYv1IhV2DVujVbIdZeGk9Pe2BwUsJJZJvy02hqXfBxBzHvNbWokGc6wk0y7+iRzLar+KP6rkGpxX6WCu75Q/I1cS3g5bXSUDxXkIOdEm0dV212hcdTl8c08nhIICL48BbhhdvzBVa/uiDc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740677774; c=relaxed/simple;
+	bh=Z0sfGr3HdnbzHvGkVfOwOcuQNt8HuNW7o8cV/1jRzxY=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=ODa4tmskSMYpM51PZlo3O5EEHNDBE34kQ3Ekav9D5DrVCwKodSbgh6o8b6rCf4ko/FifwnYYeJaw87afG3yVmlrBTeEtKm0PKPIQQ7tWjSKqSVEwYdL7h1xiMV8cHx7ePhqOI1amd9rpYHNSroOA9HtV2MQfzXEIGNpzl7HQ3NU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o8Q3ZWrx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7F61C4CEDD;
+	Thu, 27 Feb 2025 17:36:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740677774;
+	bh=Z0sfGr3HdnbzHvGkVfOwOcuQNt8HuNW7o8cV/1jRzxY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=o8Q3ZWrx/8rEqCsDPoKylQmzyIaDvw29jbXi9gZA/BIWCoAkWaii/HoGER+rgWS2y
+	 uUP8rKn8wgAxfWYw/k7syZkejPO1UepMZpIMaD5fWoOduZzyQVOk5IlxHTadMx9DkE
+	 5ifD6XzKk81KEhQiKejribyArVlx2TSya5gcdrPcrWSCPxxh22aVRNj+SY77PWAeqI
+	 MJmG//OfgdUYKrTZQWamiTwew52N26mos4JIgYLtFJeYUc6eduMaIriI7jA4S5J0D7
+	 u65nkcbAmZggrQpI6YeHYNqVckzsqjPwZ7F2F+SVygUSZdMkxFDqmKB0vc7vJSyfe6
+	 +rwaN7hbivPBA==
+Date: Thu, 27 Feb 2025 11:36:12 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v8 0/5] Add support for the PCI host bridge device-tree
+ node creation.
+Message-ID: <20250227173612.GA606350@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB9PR04MB9791:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5518a419-ec45-4d31-0f7a-08dd575521f5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|7416014|52116014|376014|7053199007|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ngleWrRbPhMYheC600krYes0ec9Cu5Dcz7MjAnFGNU/SktBwjc6v6KDObmnA?=
- =?us-ascii?Q?4zyQNS89qKaYiQerp8N1Yy4nxZiRo9++BDtAR/KZWr8rQQ3+m3NaIBS9JC4Q?=
- =?us-ascii?Q?4OW7kDWVuPmIsi0zlzzRHzh2c/MK69F9jeOSr7rSJ+I7IkNfJefvNrNNhcp8?=
- =?us-ascii?Q?bduEgtxOPt91BLbYfNWxZJPsdY1e/MR53b5DphBOHPaPlKglCg571TDv98lf?=
- =?us-ascii?Q?1GTFTvqUvOqd8PHiJSglnxCh4b6GFnUG+s3zLw0dkyjZohmi8iLh9TQEiJds?=
- =?us-ascii?Q?cxA8LpB9hMl8g+tv8i2Lzv/h6UYTQes6CS2yqyR/Z0MHUS+CK4VxlAGbS8uG?=
- =?us-ascii?Q?5JxslEV4ly+ewegmJR9fTjE8EiAnEDKaAscP/edbcnqi9BhjwEhGXks+XfKc?=
- =?us-ascii?Q?VYlSqR2t+nstPmiPMPY/3u1sxZhXGLnaaCvAwH+KGqX3oSQn5HunHsLI8Bd8?=
- =?us-ascii?Q?91YB8XOFIEZaWpuaVhILkbeO2FCcPhvwVJOxubY2+jn+LGho7VUIrBzEmnfd?=
- =?us-ascii?Q?0mLMI01Plse1QaeB5V89LlwL18U1lgTPTBL4TfLt4vUA9COAznW1NNYnF8n1?=
- =?us-ascii?Q?DGL8UuM9Iq/ueeQqKERc/kOerpkWmMj8X4XN150LfHt8HEUZxoH/wpwBYFvZ?=
- =?us-ascii?Q?p306KeXuP+r6c+vJDxmVLA+X3dCoKTyIglWfb4RaWPb2TYa49EWWAH8AnowF?=
- =?us-ascii?Q?bHPhfFZTwHMFXVyjqMV2GDw87YhyYb6K+jhP9q4R8G338Cp05g1rH07ipnlp?=
- =?us-ascii?Q?SUjhdHsAmYpHD3w5F3QJvxJMy3YBDwyM7EZ7lf+RhelUg+Kj28fTEhxo9OZ2?=
- =?us-ascii?Q?MV0k0zFLIQ9wPrD4absPcqSpt5Mrn/gRGCo1VUmlAo85EfNkhs7MqqgbxdWm?=
- =?us-ascii?Q?jQaV8NliUdmmkeA6oYtksHfrPxN7JC34jX3j+NDsbdigRd9fLOYmLRk35PSL?=
- =?us-ascii?Q?7oF3MlWyi9ag8bFAYZ665GRVmRqoqZMKd7rfn4Wb4omM9r9ugqPw5nS2YH3L?=
- =?us-ascii?Q?bVBZZpcov/Wq8bQtw7u0OzMLRO0kFcB6sxL4PHJkAOPn/lrCGW31juN6toF5?=
- =?us-ascii?Q?q15r3dtX/HTcamYEI6x+jluSeH79iVNFV8jrQwOVMfx8qTRWBjHIDzM/Jdaa?=
- =?us-ascii?Q?cxH4yk0dFEcVRC146ImJJmKlGlS4JRtq0aMnrHu1VpMmXbEN/s8/x6g/BNmO?=
- =?us-ascii?Q?lLHXvy+THeB5ZGCXqJkI3EVNY1Wud0QN+7woadMTury2RyxYEk09NUfee/kY?=
- =?us-ascii?Q?fbWeK9p/jo76ShPoUj/ZiFdD9ndJtZVKkn9n7Pes5uad+B6wU5WsK0pwCtx+?=
- =?us-ascii?Q?BTAqkSvzZ9eLk1D92dO+nOQ6mPqeXoX/x2ipBXTrsqztFerp3Dqawykeqqlz?=
- =?us-ascii?Q?sWMrRVY8OeEh9J0frbEBOsygMxgu/cC3AVyf7r2Y8ZidNpqNK5ZCMSkAadr7?=
- =?us-ascii?Q?FUr/518CdzQtflr4PW47ApuvcexAOSJN?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(52116014)(376014)(7053199007)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?2ouCRS7bw9ts8KSChrg7CPpqjG55dQNUPSfXovbuXa2fdVBdWHAZ833gHL/U?=
- =?us-ascii?Q?50MY7pYeL8Ebm/sptBnSOYqRV3e7sWlc7+9VcTK6Q/ON7m2wY6K3X1UUNU3n?=
- =?us-ascii?Q?ZSZxGhNtZdTcXSlSkYsvaf8CH2deqny5pH/BwvnwOn73bPv4S5cjd/WGlRA9?=
- =?us-ascii?Q?tgOu/LcmsuBoDtVO7gdecmnWqlmpQoir7p5y+TfBesGy3bttIGgvkkdysvTO?=
- =?us-ascii?Q?2MijNUTaEwBvJ7+1xX0cCWLfeysc5wiADxe04jcz9tbmqrRU+VtnVwUy0Od/?=
- =?us-ascii?Q?EMFtWxxzaX7W97oxbaJrrrOv6MeZTEw/EP1V1HcXcCwLAmKR6mf6ngXSjbwe?=
- =?us-ascii?Q?fXb/Tlccq1rGkra24U8/E4EJiwClOHa2g2AJ1BIagzzdmPF0In5kC20Oltto?=
- =?us-ascii?Q?Y5KwzYqUzYAENpHKz/dan8wIdc1H1pJUXm6brIzcj1jqsZ1FMa78VBy+M6nt?=
- =?us-ascii?Q?Ma7KdYk6/vjaq8ilj5tF6YeXnTsjgpLuvyOKTQmex8noDmREYA6fQdoilCW7?=
- =?us-ascii?Q?h179EvoTqPDpBRz3ZH0iRT5hYRWMtgQNg69IwreSAVVGC1ZbTkWUnZYNw7HG?=
- =?us-ascii?Q?oefSV0r0SnHDvApqC94ypZpoDVHNbWpTi0l0griwhWhsWifvhbQe7m0+OsYO?=
- =?us-ascii?Q?r7VXTac5nm1YqOxjT//fQ5QBxSBDvwtpx4OWpdwBN1sjzXxUho01NuMeuWpi?=
- =?us-ascii?Q?G8NkPZJWMvNoqcfZa3fF4r15S2CNafqgGUj9Dh5P6keivWNi2FcqWF1DtQl8?=
- =?us-ascii?Q?CJc+oHv4xccGvL1zqQH4VQdyRGTDK/F7UtqRKHteDcJFOLr07HXTaT8z2kxx?=
- =?us-ascii?Q?hxTZ5uYZSen7/18JZPxvRotNoXEVEuzk5EBqn6xc5nkj2ORGN4SwOayxbavs?=
- =?us-ascii?Q?P+lnuvqSrzboN5/K0dEYnUIwn+07PgYoVmU6umz9c5gDcxV171SOAKx1kq0P?=
- =?us-ascii?Q?7Hr1q53vWSfUKaH0dmj9YXUTTDEGk1Buz9NuCbAKoCNAPgdDd6l1s2k66O5H?=
- =?us-ascii?Q?b6oMXUnQivza6fWzpBPj/v611sc8i29QC3rboTL7TCg9CoB/6Sr/2xSKcAxN?=
- =?us-ascii?Q?v2J7xXHY4BYV3bqj8aXQDsxjG3nakfY97cRiS/c6oC905mWyG4NkLWyUwhv1?=
- =?us-ascii?Q?yoWnoNaIWT6tl4hqIJkI2ppjX7xRWfHM6tX8WdmBRg/dVZbiFYg0Lm/B4SNg?=
- =?us-ascii?Q?51sggnwAbam5gwJzCislEd6dPc7DmKCL2POswYAaEcCj7n4/nrUH61f5Rn/5?=
- =?us-ascii?Q?UcJqNpXG90Av/uEIZOUJiDa7RPDGy6/vZGQtLG4PLBLVK3NRPJnbphKDCxvW?=
- =?us-ascii?Q?lx0fSrpY6huTvWrz42EVe+wNg7+m7XQSckh2Xvg+dPzc7sbGu4FwALByEso3?=
- =?us-ascii?Q?iMptKSdHy3GxyitDmIDEP4d8N1Gz5drUZkqautm2bOKHfGnapr8JsRPrDd13?=
- =?us-ascii?Q?ryKp1srInmalHFJBL8lG8eqg5NO+FKNIYEhTLlUQEe5ltCqcHHzj5+OOGhjq?=
- =?us-ascii?Q?tcFzJzqTGMadlsaBgj9RegGHM3ItWSGKq0X1yf44EbCLRp9BqrnXbqMQsBjE?=
- =?us-ascii?Q?0nmc9/s4Ir9zTX2R+nIficHNLe85H3TiCi7aMwGd?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5518a419-ec45-4d31-0f7a-08dd575521f5
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2025 17:35:31.0981
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KzdNnAIz9qqXECLCTS/oxkRlkYSDXT8x7EZrc/W4sJo+znrBnkHHMKK8KnYZMRjwxZGj6C3KIHT4bwXuRUYWAQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9791
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250224141356.36325-1-herve.codina@bootlin.com>
 
-On Thu, Feb 27, 2025 at 05:58:08PM +0100, Marek Vasut wrote:
-> The instance of the GPU populated in Freescale i.MX95 is the
-> Mali G310, add support for this variant.
->
-> Signed-off-by: Marek Vasut <marex@denx.de>
+On Mon, Feb 24, 2025 at 03:13:50PM +0100, Herve Codina wrote:
+> Hi,
+> 
+> This series adds support for creating a device-tree node for the PCI
+> host bridge on non device-tree based system.
+> 
+> Creating device-tree nodes for PCI devices and PCI-PCI bridges already
+> exists upstream. It was added in commit 407d1a51921e ("PCI: Create
+> device tree node for bridge"). Created device-tree nodes need a parent
+> node to be attached to. For the first level devices, on device-tree
+> based system, this parent node (i.e. the PCI host bridge) is described
+> in the base device-tree. The PCI bus related to this bridge (PCI root
+> bus) inherit of the PCI host bridge device-tree node.
+> 
+> The LAN966x PCI device driver, available since commit 185686beb464
+> ("misc: Add support for LAN966x PCI device"), relies on this feature.
+> 
+> On system where the base hardware is not described by a device-tree, the
+> PCI host bridge to which first level created PCI devices need to be
+> attach to does not exist. This is the case for instance on ACPI
+> described systems such as x86.
+> 
+> This series goal is to handle this case.
+> 
+> In order to have the PCI host bridge device-tree node available even
+> on x86, this top level node is created (if not already present) based on
+> information computed by the PCI core. It follows the same mechanism as
+> the one used for PCI devices device-tree node creation.
+> 
+> As for device-tree based system, the PCI root bus handled by the PCI
+> host bridge inherit of this created node.
+> 
+> In order to have this feature available, a number of changes are needed:
+>   - Patch 1 and 2: Introduce and use device_{add,remove}_of_node().
+>     This function will also be used in the root PCI bus node creation.
+> 
+>   - Patch 3 and 4: Improve existing functions to reuse them in the root
+>     PCI bus node creation.
+> 
+>   - Patch 5: The PCI host bridge device-tree node creation itself.
+> 
+> With those modifications, the LAN966x PCI device is working on x86 systems
+> and all device-tree kunit tests (including the of_unittest_pci_node test)
+> pass successfully with the following command:
+>   qemu-system-x86_64 -machine q35 -nographic \
+>     -kernel arch/x86_64/boot/bzImage --append console=ttyS0 \
+>     -device pcie-root-port,port=0x10,chassis=9,id=pci.9,bus=pcie.0,multifunction=on,addr=0x3 \
+>     -device pcie-root-port,port=0x11,chassis=10,id=pci.10,bus=pcie.0,addr=0x3.0x1 \
+>     -device x3130-upstream,id=pci.11,bus=pci.9,addr=0x0 \
+>     -device xio3130-downstream,port=0x0,chassis=11,id=pci.12,bus=pci.11,multifunction=on,addr=0x0 \
+>     -device i82801b11-bridge,id=pci.13,bus=pcie.0,addr=0x4 \
+>     -device pci-bridge,chassis_nr=14,id=pci.14,bus=pci.13,addr=0x0 \
+>     -device pci-testdev,bus=pci.12,addr=0x0
+> 
+> Compare to previous iteration, this v8 series mainly improves a commit
+> log.
+> 
+> Best regards,
+> Hervé Codina
+> 
+> Changes v7 -> v8
+>   v7: https://lore.kernel.org/lkml/20250204073501.278248-1-herve.codina@bootlin.com/
+> 
+>   - Patch 1
+>     Add 'Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>'
+>     Add 'Reviewed-by: Rob Herring (Arm) <robh@kernel.org>'
+> 
+>   - Patch 2, 3, 4
+>     Add 'Reviewed-by: Rob Herring (Arm) <robh@kernel.org>'
+> 
+>   - Patch 5
+>     Improve commit log adding a high level part outlining the benefit of
+>     changes.
+>     Add 'Reviewed-by: Rob Herring (Arm) <robh@kernel.org>'
+> 
+> Changes v6 -> v7
+>   v6: https://lore.kernel.org/lkml/20250110082143.917590-1-herve.codina@bootlin.com/
+> 
+>   Rebase on top of v6.14-rc1
+> 
+> Changes v5 -> v6
+>   v5: https://lore.kernel.org/lkml/20241209130339.81354-1-herve.codina@bootlin.com/
+> 
+>   - Patch 1
+>     Add a return error code in device_add_of_node()
+> 
+>   - Patches 2 and 5
+>     Handle the device_add_of_node() error code
+> 
+>   - Patches 3 and 4
+>     No changes
+> 
+> Changes v4 -> v5
+>   v4: https://lore.kernel.org/lkml/20241202131522.142268-1-herve.codina@bootlin.com/
+> 
+>   - Patch 1
+>     Use dev_warn() instead of WARN()
+> 
+>   - Patches 2 to 4
+>     No changes
+> 
+>   - Patch 5 (v4 patch 6)
+>     Use dev_err()
+>     Fix a typo in commit log
+> 
+>   Patch removed in v5
+>     - Patch 5 in v4
+>       Already applied
+> 
+> Changes v3 -> v4
+>   v3: https://lore.kernel.org/lkml/20241114165446.611458-1-herve.codina@bootlin.com/
+> 
+>   Rebase on top of v6.13-rc1
+> 
+>   - Patches 1 to 6
+>     No changes
+> 
+> Changes v2 -> v3
+>   v2: https://lore.kernel.org/lkml/20241108143600.756224-1-herve.codina@bootlin.com/
+> 
+>   - Patch 5
+>     Fix commit log.
+>     Use 2 for #size-cells.
+> 
+>   - Patches 1 to 4 and 6
+>     No changes
+> 
+> Changes v1 -> v2
+>   v1: https://lore.kernel.org/lkml/20241104172001.165640-1-herve.codina@bootlin.com/
+> 
+>   - Patch 1
+>     Remove Cc: stable
+> 
+>   - Patch 2
+>     Remove Fixup tag and Cc: stable
+> 
+>   - Patches 3 and 4
+>     No changes
+> 
+>   - Patch 5
+>     Add #address-cells/#size-cells in the empty root DT node instead of
+>     updating default values for x86.
+>     Update commit log and commit title.
+> 
+>   - Patch 6
+>     Create device-tree node for the PCI host bridge and reuse it for
+>     the PCI root bus. Rename functions accordingly.
+>     Use "pci" instead of "pci-root" for the PCI host bridge node name.
+>     Use "res->start - windows->offset" for the PCI bus addresses.
+>     Update commit log and commit title.
+> 
+> Herve Codina (5):
+>   driver core: Introduce device_{add,remove}_of_node()
+>   PCI: of: Use device_{add,remove}_of_node() to attach of_node to
+>     existing device
+>   PCI: of_property: Add support for NULL pdev in of_pci_set_address()
+>   PCI: of_property: Constify parameter in of_pci_get_addr_flags()
+>   PCI: of: Create device-tree PCI host bridge node
+> 
+>  drivers/base/core.c       |  61 ++++++++++++++++++++
+>  drivers/pci/of.c          | 115 +++++++++++++++++++++++++++++++++++++-
+>  drivers/pci/of_property.c | 114 +++++++++++++++++++++++++++++++++++--
+>  drivers/pci/pci.h         |   6 ++
+>  drivers/pci/probe.c       |   2 +
+>  drivers/pci/remove.c      |   2 +
+>  include/linux/device.h    |   2 +
+>  7 files changed, 295 insertions(+), 7 deletions(-)
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-
-> ---
-> Cc: Boris Brezillon <boris.brezillon@collabora.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Sebastian Reichel <sre@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Steven Price <steven.price@arm.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
->  drivers/gpu/drm/panthor/panthor_drv.c | 1 +
->  drivers/gpu/drm/panthor/panthor_gpu.c | 1 +
->  2 files changed, 2 insertions(+)
->
-> diff --git a/drivers/gpu/drm/panthor/panthor_drv.c b/drivers/gpu/drm/panthor/panthor_drv.c
-> index 06fe46e320738..2504a456d45c4 100644
-> --- a/drivers/gpu/drm/panthor/panthor_drv.c
-> +++ b/drivers/gpu/drm/panthor/panthor_drv.c
-> @@ -1591,6 +1591,7 @@ static struct attribute *panthor_attrs[] = {
->  ATTRIBUTE_GROUPS(panthor);
->
->  static const struct of_device_id dt_match[] = {
-> +	{ .compatible = "fsl,imx95-mali" },	/* G310 */
->  	{ .compatible = "rockchip,rk3588-mali" },
->  	{ .compatible = "arm,mali-valhall-csf" },
->  	{}
-> diff --git a/drivers/gpu/drm/panthor/panthor_gpu.c b/drivers/gpu/drm/panthor/panthor_gpu.c
-> index 0f07ef7d9aea7..2371ab8e50627 100644
-> --- a/drivers/gpu/drm/panthor/panthor_gpu.c
-> +++ b/drivers/gpu/drm/panthor/panthor_gpu.c
-> @@ -67,6 +67,7 @@ struct panthor_model {
->  }
->
->  static const struct panthor_model gpu_models[] = {
-> +	GPU_MODEL(g310, 0, 0),	/* NXP i.MX95 */
->  	GPU_MODEL(g610, 10, 7),
->  	{},
->  };
-> --
-> 2.47.2
->
+Applied to pci/devtree-create, planning for v6.15, thanks!
 
