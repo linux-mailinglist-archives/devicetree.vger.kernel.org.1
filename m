@@ -1,152 +1,131 @@
-Return-Path: <devicetree+bounces-152024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 269D0A47C67
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:40:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32DECA47C73
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:46:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 219CC3A8769
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:40:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 283C93A30E4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:46:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E46922AE6D;
-	Thu, 27 Feb 2025 11:40:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rNG9Z3A8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01E0F189912;
+	Thu, 27 Feb 2025 11:46:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDBBD227BB6;
-	Thu, 27 Feb 2025 11:40:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62816374F1;
+	Thu, 27 Feb 2025 11:46:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740656431; cv=none; b=su1XHelx363zXcE9k+J3e9Q3GzUjb4on/B40tfVEteDwMGDls+3uwEeQDNMku3hwhEhyNwCYutkLYfFPGxvx9O2kQNKH3UYZqYSQzLJroHBd+CIB5zs3oeoT/i3/fIZZ8LLgAcM/bU7BlazbQfENtA+d7AS93zj8sUitWdfvtUA=
+	t=1740656777; cv=none; b=qoRMVlKwe9sdKSJM/ug1Rz9RDraBO4NOubDs+hpLx9kAa4u9ydLLDd7YCnLfqz//UHPkzKe+EGYupor2EwKGHggTwJI9ObIYloThuBcc1kzaeBReTAOCAkzKn4bpI7oaqVspl8uXF6qPloPwD5m4eAidf52KyGXmC1i41JrWBcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740656431; c=relaxed/simple;
-	bh=hEB2hqFHBOBdOtzwkpUfYvrQrvSm1kIZ0LvI/t/8bSw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ruyURjvMSOGm1kTI9iEjgQbW1DoKokngNmq1kAjToXgwiA7sSK6ZNaxJo5PmDQKqhNjpKyWe3EMnkLjtpQUuttK3N3mHowLQHLZLOtdNtVQc1YCErAwOD38CtHTnQuOOkRr28JdbPnxox1qsJ4aySfqein3jKBtcdWJH0riQctU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rNG9Z3A8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76A22C4CEDD;
-	Thu, 27 Feb 2025 11:40:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740656430;
-	bh=hEB2hqFHBOBdOtzwkpUfYvrQrvSm1kIZ0LvI/t/8bSw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rNG9Z3A8Wx7q3/D69m+/QDlU5Yox/B0WqhiXXdlGfhxW3IOWAv9nsFNKHfucJoGtk
-	 +DvmGuy6V484T6Vv3fBIn+mMbCj18kBE4nxf9PseqjK5rOQbXXCvKlv0cfw28qoAFc
-	 NEa4e2XlqivEwwKcndSxAYWOpN7CqZXqYk16x6fdrGlfXTt6e+3f9cOt+FFKrvXnQ5
-	 ZBOb7D6qN9Int2tv4pV0Bzg6WdA6OrCt70GB617+rnIDYcn863fUQZqKk5MsUdtlIL
-	 2uUNJZir7AJEK9IRFXw1ZZ4UyXvd0d0bqcQIbe4D7aoTXQ68LIpAVZy4neQk2SMbEH
-	 MMaeV0nF5vh8A==
-Message-ID: <5c8642e3-d821-4d71-9808-99fde3db92e8@kernel.org>
-Date: Thu, 27 Feb 2025 12:40:21 +0100
+	s=arc-20240116; t=1740656777; c=relaxed/simple;
+	bh=aByXJS8GUsb9ZsYE5JKgEsiOVfFiyObN7vaAoQDQ9W0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=koki+Az5j/JG+Gl6XqCUU8meUSyekn4IRSqXuflhvTKNXxxv6WHUoe92X59thejcret+jrJMM4dV9nwqpeGlUTKfztkTZWKjtkJrenmJYzn3IkF4jkbqPboa6W1BFhwuCnm/6pzCfunHcP86pQEHdrcn16PhRfH00IE4Y5nwRMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5461F15A1;
+	Thu, 27 Feb 2025 03:46:31 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DADDB3F6A8;
+	Thu, 27 Feb 2025 03:46:13 -0800 (PST)
+Date: Thu, 27 Feb 2025 11:46:11 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, Chen-Yu
+ Tsai <wens@csie.org>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v2 6/8] dt-bindings: pinctrl: add compatible for
+ Allwinner A523/T527
+Message-ID: <20250227114611.67a1ba00@donnerap.manchester.arm.com>
+In-Reply-To: <173949598874.895319.6861900349653451498.robh@kernel.org>
+References: <20250214003734.14944-1-andre.przywara@arm.com>
+	<20250214003734.14944-7-andre.przywara@arm.com>
+	<173949598874.895319.6861900349653451498.robh@kernel.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 01/10] dt-bindings: PCI: Add binding for Toshiba TC956x
- PCIe switch
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- chaitanya chundru <quic_krichai@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Jingoo Han <jingoohan1@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
- quic_vbadigan@quicnic.com, amitk@kernel.org, dmitry.baryshkov@linaro.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- jorge.ramirez@oss.qualcomm.com
-References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
- <20250225-qps615_v4_1-v4-1-e08633a7bdf8@oss.qualcomm.com>
- <20250226-eager-urchin-of-performance-b71ae4@krzk-bin>
- <304a92ea-1a73-1400-a020-dd2e0f14bfd0@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <304a92ea-1a73-1400-a020-dd2e0f14bfd0@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 27/02/2025 04:53, Krishna Chaitanya Chundru wrote:
->>> +
->>> +patternProperties:
->>> +  "^pcie@[1-3],0$":
->>> +    description:
->>> +      child nodes describing the internal downstream ports
->>> +      the tc956x switch.
->>> +    type: object
->>> +    $ref: "#/$defs/tc956x-node"
->>> +    unevaluatedProperties: false
->>> +
->>> +$defs:
->>> +  tc956x-node:
->>> +    type: object
->>> +
->>> +    properties:
->>> +      tc956x,tx-amplitude-microvolt:
->>
->> You already got comments on this.
->>
-> In V3 I got a comment saying "-microvolt does not work for you?"
-> so based on this we changed to microvolt.
+On Thu, 13 Feb 2025 19:19:48 -0600
+"Rob Herring (Arm)" <robh@kernel.org> wrote:
 
+Hi Rob,
 
-And then what pops up when you test? Drop ref which is pointed out by
-testing, example-schema and all other bindings.
+> On Fri, 14 Feb 2025 00:37:32 +0000, Andre Przywara wrote:
+> > The A523 contains a pin controller similar to previous SoCs, although
+> > using 10 GPIO banks (PortB-PortK), all of them being IRQ capable.
+> > With this SoC we introduce a new style of binding, where the pinmux values
+> > for each pin group are stored in the new "allwinner,pinmux" property in
+> > the DT node, instead of requiring every driver to store a mapping between
+> > the function names and the required pinmux.
+> > 
+> > Add a new binding file, since all the different variants of the old
+> > binding are making the file a bit unwieldy to handle already, and the new
+> > property would make the situation worse.
+> > 
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  .../allwinner,sun55i-a523-pinctrl.yaml        | 177 ++++++++++++++++++
+> >  1 file changed, 177 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.yaml
+> >   
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.example.dts:24:18: fatal error: dt-bindings/clock/sun55i-a523-r-ccu.h: No such file or directory
+>    24 |         #include <dt-bindings/clock/sun55i-a523-r-ccu.h>
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Best regards,
-Krzysztof
+Ah yeah, of course, that's in another series. What's the best approach
+here? I could cheekily import an existing header file, the symbol names in
+there are often the same (ccu-sun20i-d1-r.h defines the same symbol, even
+with the same number).
+Or I just replace it below with the number "1"?
+Or let git format-patch append the patch-id of the clock binding header
+patch?
+
+Cheers,
+Andre
+
+> compilation terminated.
+> make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.example.dtb] Error 1
+> make[2]: *** Waiting for unfinished jobs....
+> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1511: dt_binding_check] Error 2
+> make: *** [Makefile:251: __sub-make] Error 2
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250214003734.14944-7-andre.przywara@arm.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
+
 
