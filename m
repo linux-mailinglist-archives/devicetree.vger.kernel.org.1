@@ -1,150 +1,165 @@
-Return-Path: <devicetree+bounces-151933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A4B4A4787F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 10:01:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD67CA47884
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 10:01:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4E493B355A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:00:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D236188B27F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:02:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1238B227E9F;
-	Thu, 27 Feb 2025 09:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09C7E227E80;
+	Thu, 27 Feb 2025 09:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="axOqtAox"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="CfEArneS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from box.trvn.ru (box.trvn.ru [45.141.101.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70B6A226520
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 09:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 533D4227BA5;
+	Thu, 27 Feb 2025 09:01:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.141.101.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740646842; cv=none; b=iwInNu9L3AZezNik/7mR/uhFLjOhEjq2NxLwGnsdp7tVJC2CarImp66V/prUEyfSpC63qdug7zK14TcqLW9Hz07ApW5kiy20lLXINgtupZdrgXkRCErf6+EAWRQidL6xAvmZ8pFyIM5USRJ9zOFrHFkVinlXL29p8wALC+kdBYM=
+	t=1740646906; cv=none; b=YErW16ssbByrdRFr/q/zVM1sSNMoNRLyRKNcDlMZQ711Ia4XCsR4ymb2lE/v2CcGlu+aJJEg/Ly6KsaRT2581geqQ4+FY2fgQUkjzK+tHVUyNOsKOzZ8GtJyNHVuo+grfFHp9k0t1LqEFhSvJRDr8aook8FPyOX7dX0tSTuPbq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740646842; c=relaxed/simple;
-	bh=zf0BdcrWUQTsblD3UNg7CMK8tsQqiShZ5OFDx/EYh4A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=muWsJdZ/UJwIxLyXpubbVgSsKA7J5LkbAbU0M8c3mqWbCCio52JW4qbrm44rPQTcKed9zmC/ylMcONDowDCjXlEToyJdfZ8/POMwFXLJAYCNne1Rbyt0KdZ3Xu0eED7P3VJWSpiPAp8EE9T94qNBnx6jCeDe8VSZdfdwNdsv6bI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=axOqtAox; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-390dd3654aeso352906f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 01:00:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740646839; x=1741251639; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iTcrxZnZfY0JtC/+wEyCPrdpn4JNY9r8KO29AbqP3yA=;
-        b=axOqtAoxlO0uY82AZe5J/nMKYmCGMr5CSMOVF5Pamv8XlsPAZpBDZ9WGAdfBim507X
-         +W87N3BjY6OKjvMTTatt2wH62zDaYdHY536U0VvD5GAUOlUCmA7ay7vFdmLoagZtddoV
-         eR/jhxo3+alPkiADEHSwBfpT5aBygK03BhlFJANY1YRKmzez+7pGLDjgkcN+rTtkKPdc
-         cn3xI1++rGDgbxkUv16SQHnMdc91wdbFR9PnLjVbTPbL0XxZH4a8n6imN9IWXeVa9VQf
-         M5/GuZciqTEmi28Q5JLIWJcdpQ2lW6a6s3/dR5YymmaexEjl7AcZTRHJbSnFv89EIJnr
-         e16Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740646839; x=1741251639;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iTcrxZnZfY0JtC/+wEyCPrdpn4JNY9r8KO29AbqP3yA=;
-        b=TJqG/8lcYEO/36zF++2GZQzGzB6U0IlaHyf1bP4eVZ2zPfgKjLrRLBjpzoGpPPOTOW
-         Oe5eN5tcRPDoEZ7L1UyO0vgJRueUc5PHbAOBktIYAq2QY6DXCEAzH5ggc83fnoAtkPhK
-         vxBgZXp8Z+7e5ghcE+ArKcqjDC5G0CqntAa+dioV6SPpW5+m5cPhIpLeX3zeMy8wwv2K
-         XKGS1IrMe11cGSi4jDVZTc+H/g5l/cg/WyUZVUxwyHk8llqm+y1/0RRtWvpQ+F9kypCl
-         0ytNyjcmr9OGkJ5wQrSQQhQHOQrYFRHA090VqqQwgJXbxJILPKJF/ByUH7s6DBLj4KKi
-         LsBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUq+BU+NARzKl9WuX4qkQ1u6l4qoUHlR7irB2TeGeYfT3nWHaCEBoO863xOWFRi2f0CHnRNwdb5d2ST@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEwm7cCMnlidHxJDOwbRYnFbd8OIf5SZ2NZLEdz5dJ3unHInE2
-	5ucq9cWuGnm4L5N0GsQFr9TAOvLvsx5Uj/4s2Itg2AXs6mbcIlds8jdY5qgBOT8=
-X-Gm-Gg: ASbGncsFhtf678ffeRODex6UOuAUmszXCsBDQFT+s+003hlNyfgSJq3PUKTyVHBqHk8
-	08z4OR3oRjAOvBYtplkqldRRpM2lTAnS15sq0o7kgmz0mJZxUqdAnHFw8ALs71TsioM1FM/zN6o
-	UzQ3dwE/Uqq1nQxOGold8IQro05R6L9iTy0ASXURb8cZiMbJZv1ywlid6D+qw4FqtxAVDL0awPh
-	QluJs673i12WQqboaDuLka08jZQ3YIKv7qR1Jlh7oITozr9mIAs+RgLp5RzbZIe9lxvBMLKuGSE
-	FEb7hRefGKnfV8vJCAtF4nSx3pMct2ARGhyFhWwHKNMGp3w=
-X-Google-Smtp-Source: AGHT+IEgXVye/9iAKrvLmx6IwZS0jmCsA4XQJH7j0LDSs5jOyJSk4ONyKoDhOudeR9kueTuEG8W7+A==
-X-Received: by 2002:a5d:6d87:0:b0:38d:d8c0:1f8c with SMTP id ffacd0b85a97d-390cc632334mr11137093f8f.38.1740646838623;
-        Thu, 27 Feb 2025 01:00:38 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43aba57145esm47170715e9.30.2025.02.27.01.00.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Feb 2025 01:00:38 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 27 Feb 2025 10:00:33 +0100
-Subject: [PATCH v5 2/2] arm64: dts: qcom: sm8650: add missing cpu-cfg
- interconnect path in the mdss node
+	s=arc-20240116; t=1740646906; c=relaxed/simple;
+	bh=b6xawKG+7vT6ikY3PpBIE1Xreg7uT09HW0pKvc4K62M=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=FNsSU9WwsB2mzZMQ9ukK9xENVup8u1QXbyNUVrvQHUO/DH6XFxPhzmLLRVnMiXECXKnyUPdzyMOPhiYZMRnXy31y/Gl/NmA5S/GEDpUYtnaAMRvrzkevv18M4Zt+xuM60jqz3niC00fhkVXZfairRXdGhbYO8F466w8H0pVMmsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=CfEArneS; arc=none smtp.client-ip=45.141.101.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1740646901; bh=b6xawKG+7vT6ikY3PpBIE1Xreg7uT09HW0pKvc4K62M=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=CfEArneSe8WJxtyotOJ2xbN95m/f4sfT/IXfNy77f08LhPgnt1bk4Z3/p83gy37xj
+	 uWx9mufRu90sjk+lDGsbMyZNE2ePyw6Od+Ioeh4LYElFTEEDFQ6D/khEvrYpgtY9oq
+	 BMVblAHQqDEMbQRX0vQIlfC06ATfDDtjXQXvCEsXDmrQlEbtno/YipywtnGm139aAb
+	 P7Z/4NovCsddchw8QIoGwYvJ5SOqD6jgRaPX0EcywhoV5l5bYXMEBCGndIwsscHD1M
+	 m11KFN1Tv44Otrb//s7F/czqDVdwn2+vKdri1SpFBHBFWh7xFNWrNhMVvyRpWbl0Ti
+	 1FgZiqYkCuBBA==
+Received: from authenticated-user (box.trvn.ru [45.141.101.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 70E3B90B1;
+	Thu, 27 Feb 2025 14:01:41 +0500 (+05)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250227-topic-sm8x50-mdss-interconnect-bindings-fix-v5-2-bf6233c6ebe5@linaro.org>
-References: <20250227-topic-sm8x50-mdss-interconnect-bindings-fix-v5-0-bf6233c6ebe5@linaro.org>
-In-Reply-To: <20250227-topic-sm8x50-mdss-interconnect-bindings-fix-v5-0-bf6233c6ebe5@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1418;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=zf0BdcrWUQTsblD3UNg7CMK8tsQqiShZ5OFDx/EYh4A=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnwCm0TvwGSigrzsV8qHo3pN8sPrgp2GIZEUlPoGRS
- P54XtISJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ8AptAAKCRB33NvayMhJ0bdFEA
- Cu7iigdJILPvzwcZc07qNcWEjJceXH4E33+sjEGS6qUf6nss6avkNC6S5PrReEn5C9w1XXFO9FHPgV
- NNXXptTEJIL29efC3g279B91vIcUb/YruhQyjWx94F8I+aMyOknrpilLt8GKYxBGrMm2TsesVH9nDX
- ikBT2OpIJVDHVGiVtytz+mmtqXQxvPSO7kXvXh7RIrAieej1aqAbNZ230BJ4LqFS0wjwelCQOp6CmX
- MBOcoZn300n33OfObYCWHPY1eTmExdmSww9a3tBhdgIKtzqWCBWkWMOCbpBtf9LXIK0FYY/QHMrq9X
- oEMJcZLlox9FdWWKIxsqLTGtCisyjepjDrd3PiYkxCJtsGWQPkGMgBYB8omOTVQiNtnLW/s2wzvq1g
- jXdER/IeYGa8Ix2Vo+66gxZp3mj25TzHNrX86CSYTyB0sUuXBHPFkF8S13M38/GhsfSK9tacYoxB7S
- J3Yc9+dKf0shnT1bRyNTHhSZoi3+9frCequ3Z9DLL1DuKVqPhQ73yfuKuYg8xqODnhuC0cwVAw2YLi
- s9SryddTd0VtqpyeV9+Q5zYTIirp3xNLFCpfjLY0awF+GkaxAIc8N/XJnYGLYgM7/o7yyMmxsQ+0SW
- 3koYEUcaj9rRxioAZjQ5Y0Rle2IBKlENOjMpSSSdBTyioDIrZPyi43Cw3l9g==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Date: Thu, 27 Feb 2025 14:01:41 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bryan O'Donoghue
+ <bryan.odonoghue@linaro.org>, Konrad Dybcio
+ <konrad.dybcio@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] {vision/navigation}-mezzanine: Fix overlay root node
+In-Reply-To: <vq5dcsi55aqn56h6ihysqk4lainhmjbyvot3jiqkxm3i7igsak@da5u6ro7rkvg>
+References: <20250226-qcom-nonroot-overlays-v1-0-26c6e7605833@trvn.ru>
+ <vq5dcsi55aqn56h6ihysqk4lainhmjbyvot3jiqkxm3i7igsak@da5u6ro7rkvg>
+Message-ID: <62a53d3222dfc516accd8dcd5e1adca0@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-The bindings requires the mdp0-mem and the cpu-cfg interconnect path,
-add the missing cpu-cfg path to fix the dtbs check error and also to ensure
-that MDSS has enough bandwidth to let HLOS write config registers.
+Dmitry Baryshkov писал(а) 27.02.2025 09:16:
+> On Wed, Feb 26, 2025 at 07:29:54PM +0500, Nikita Travkin wrote:
+>> While considering to propose WoA EL2 dt overlays upstream I was looking
+>> at existing overlays and noticed that some of them are broken: they put
+>> seemingly meaningful fixups into the overlay's "/" node, which places
+>> them into the overlay "metadata" itself, not into a fixup fragment to be
+>> applied to the actual dtb. This series fixes those two by changing to
+>> full path "&{/}" which should work as it was initially intended.
+>> 
+>> See demonstration of the problem below:
+>> 
+[...]
+>> $ dtc extra.dtbo
+>> /dts-v1/;
+>> 
+>> / {
+>> 	foo;
+>> 
+>> 	bar {
+>> 		baz;
+>> 	};
+> 
+> Is this behaviour documented somewhere? I'd say, it would be a surprise
+> to me.
+> 
 
-Fixes: 9fa33cbca3d2 ("arm64: dts: qcom: sm8650: correct MDSS interconnects")
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+According to dtc docs [1],
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index de960bcaf3ccf6e2be47bf63a02effbfb75241bf..719ad437756a499cee4170abccc83f2047f0f747 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -4930,8 +4930,11 @@ mdss: display-subsystem@ae00000 {
- 			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
- 
- 			interconnects = <&mmss_noc MASTER_MDP QCOM_ICC_TAG_ALWAYS
--					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
--			interconnect-names = "mdp0-mem";
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+			interconnect-names = "mdp0-mem",
-+					     "cpu-cfg";
- 
- 			power-domains = <&dispcc MDSS_GDSC>;
- 
+   3.b) The Device Tree fragments must be compiled with the same option but they
+   must also have a tag (/plugin/) that allows undefined references to nodes
+   that are not present at compilation time to be recorded so that the runtime
+   loader can fix them.
 
--- 
-2.34.1
+so per my understanding "plugin" directive only changes the meaning of
+references (i.e. stuff with "&"), to generate fragments/fixups, which
+are the only way libfdt combines overlays into the base dtb.
 
+I suppose the old way of "manually" writing fragments (and thus writing
+to / as raw nodes) was kept because phandle/path based updates were
+added later to dtc and many overlays were still defining raw fragments...
+
+"/" also allows one to write "raw" nodes into the overlay, which is
+sometimes used by downstreams. (i.e. they put custom extensions to the
+overlay format [2] or add metadata into / of the dtbo like "compatible"
+values to reject incompatible overlays from applying. [3]) This is
+actually why I started looking here in the first place as for woa el2
+overlays I was asked to add compatible metadata as, apparently, NixOS
+tooling requires it to validate the overlays [4].
+
+[1] https://web.git.kernel.org/pub/scm/utils/dtc/dtc.git/tree/Documentation/dt-object-internal.txt#n120
+[2] https://github.com/raspberrypi/linux/blob/rpi-6.6.y/arch/arm/boot/dts/overlays/adafruit-st7735r-overlay.dts#L73
+[3] https://github.com/radxa-pkg/radxa-overlays/blob/main/arch/arm64/boot/dts/rockchip/overlays/rk3588-i2c0-m1.dts#L5
+[4] https://github.com/TravMurav/slbounce/blob/main/dtbo/x1e-el2.dtso#L12
+
+>> 
+>> 	fragment@0 {
+>> 		target-path = "/";
+>> 
+>> 		__overlay__ {
+>> 			whatever-comes-next-after-baz;
+>> 		};
+>> 	};
+>> };
+>> 
+>> $ dtc combine.dtb
+>> /dts-v1/;
+>> 
+>> / {
+>> 	whatever-comes-next-after-baz;
+>> 	compatible = "fake,board";
+>> 	fake,value = <0x2a>;
+>> };
+>> 
+>> In the resulting dtb foo bar and baz are missing.
+>> 
+>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+>> ---
+>> Nikita Travkin (2):
+>>       arm64: dts: qcom: qrb5165-rb5-vision-mezzanine: Fix broken overlay root
+>>       arm64: dts: qcom: sdm845-db845c-navigation-mezzanine: Fix the overlay root
+>> 
+>>  arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso       | 2 +-
+>>  arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso | 2 +-
+>>  2 files changed, 2 insertions(+), 2 deletions(-)
+>> ---
+>> base-commit: 8433c776e1eb1371f5cd40b5fd3a61f9c7b7f3ad
+>> change-id: 20250226-qcom-nonroot-overlays-bfe21d33be8c
+>> 
+>> Best regards,
+>> -- 
+>> Nikita Travkin <nikita@trvn.ru>
+>>
 
