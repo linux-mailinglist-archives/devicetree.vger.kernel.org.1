@@ -1,128 +1,110 @@
-Return-Path: <devicetree+bounces-152027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FA3EA47C8A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:49:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11A9AA47CAE
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:56:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89DFB3A477A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:48:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2460316F2DB
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:56:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 569F322759D;
-	Thu, 27 Feb 2025 11:49:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1721922CBF8;
+	Thu, 27 Feb 2025 11:55:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="Kk9xEzm4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 973146FB0;
-	Thu, 27 Feb 2025 11:49:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from pv50p00im-tydg10021701.me.com (pv50p00im-tydg10021701.me.com [17.58.6.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9866022CBEA
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 11:55:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740656945; cv=none; b=LaPOkO8bE3JpGSjJWk2VH+Rgk1dlQSVE2NNMTfWzJHAKwGu2+fHWY0KJJ+syCGDwQlehwtn/pW4SzIf9dqIFN0THq54huOvaAySWy7yw9NdV0+FOKhoTVRNc39vvDEV7pnJEx1gm3CnTf5ngejYLKBSh5cAMlw2G2Z+X1V+IPbE=
+	t=1740657325; cv=none; b=kwVmVDA9yRe1PbWJNB+ekRM54a/YgxlNX76U6mSD0/6ChgANypG6LnUpKLk3sCI1KyVkw34fZFvHg6aRJwURqJmIEQWfaxkpKUd4fv2eo+skGIGYgUc0ydL+1t6+Iz4BXUDhbe22MVkEZZMm3Mqi877os+kxf0OCicF07yJiuJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740656945; c=relaxed/simple;
-	bh=4JDTmRQCr6VhgsN3fSabBjy3RyKaEaYTDKQFgq/ii64=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IJ4wgZcG/uj+dbB7LrRjfFLHoMREvS7q1jCPUtedwZ2AXaKPXpCTdtDjKwT8RJvYDHkozqKaxEmxnGCZJF7YKc02p2mwnIfVPUskCp3tmIllDWsecKCEciaf2F1q1v5Pk2/QSvz2zjVDF2h2T7zdo46XKRbf8hLZKodjKDuVobY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 82B831688;
-	Thu, 27 Feb 2025 03:49:18 -0800 (PST)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 015903F6A8;
-	Thu, 27 Feb 2025 03:49:00 -0800 (PST)
-Date: Thu, 27 Feb 2025 11:48:51 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, saravanak@google.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [RFC] dt-bindings: firmware: scmi: Introduce compatible string
-Message-ID: <Z8BRFezgiWDtmdd4@pluto>
-References: <20250226094456.2351571-1-peng.fan@oss.nxp.com>
+	s=arc-20240116; t=1740657325; c=relaxed/simple;
+	bh=mX8bCrezi2SBEq307h0BDDNS0Y6aMAiuI3q63/7p04M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sBEkP5bRXuCUA/MrY/OWUmf2KdSuRtWiDvmAJ4cGhd0Tcoex2S64NHqLE9X3rYEjDviF2FU4PKkunt8mdq6x4noFNcWIQO8eaFBgdSM+8A28w+4FW+Q5rqnEOGUv6ET+VXfzACqYLPn78uAunT8MnWW+G3xvW6ciqxB/P/FP51w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=Kk9xEzm4; arc=none smtp.client-ip=17.58.6.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
+	s=1a1hai; bh=+dzuzJ1KREXh+9vUQU7cOm+oGt4rcpULKbxL92N/Xig=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:x-icloud-hme;
+	b=Kk9xEzm4C81PzXUuK2YXesJwRPNfQblUxs6NZFKWqOKPxMzD0+361uC8eJR+KQkKQ
+	 6rsXMWuo1eQ3N30o1CvaUtY8ILrD9aSSw2gplUVEjhBzlLKoU0Ki9qJPiYOU7SYyhN
+	 53uEow7ywL+QMh1FpcAAJxiNdxTHnsk6WGxFutITA+wU2t1cW3zPqoUY6JjvzgEcNF
+	 dCBepQAPuFSQmzMkBAMx0azaPWP9z0rzGDVkdX+9yBoEnXXJiLRmu0qIOtuVqI1dDC
+	 g4b4FNY73uk+O4Y/xttmvItjO3D+/ZUPr7TRSLBLDqZeA1rYb/ysFwK3d3GJKKi0ST
+	 oXY0MTjTcnk2g==
+Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
+	by pv50p00im-tydg10021701.me.com (Postfix) with ESMTPSA id 9FE0ECC6B92;
+	Thu, 27 Feb 2025 11:55:13 +0000 (UTC)
+Message-ID: <5793c7cd-8223-48e2-9c91-f92be09d3dab@icloud.com>
+Date: Thu, 27 Feb 2025 19:55:09 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250226094456.2351571-1-peng.fan@oss.nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 09/14] of: reserved-memory: Fix using wrong number of
+ cells to get property 'alignment'
+To: Rob Herring <robh@kernel.org>
+Cc: William McVicker <willmcvicker@google.com>,
+ Zijun Hu <quic_zijuhu@quicinc.com>, Saravana Kannan <saravanak@google.com>,
+ Maxime Ripard <mripard@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Grant Likely <grant.likely@secretlab.ca>, Marc Zyngier <maz@kernel.org>,
+ Andreas Herrmann <andreas.herrmann@calxeda.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Mike Rapoport <rppt@kernel.org>,
+ Oreoluwa Babatunde <quic_obabatun@quicinc.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, kernel-team@android.com
+References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
+ <20250109-of_core_fix-v4-9-db8a72415b8c@quicinc.com>
+ <20250113232551.GB1983895-robh@kernel.org> <Z70aTw45KMqTUpBm@google.com>
+ <97ac58b1-e37c-4106-b32b-74e041d7db44@quicinc.com>
+ <Z74CDp6FNm9ih3Nf@google.com> <20250226194505.GA3407277-robh@kernel.org>
+ <f81e6906-499c-4be3-a922-bcd6378768c4@icloud.com>
+ <CAL_Jsq+P=sZu6Wnqq7uEnGMnAQGNEDf_B+VgO8E8ob4RX8b=QA@mail.gmail.com>
+Content-Language: en-US
+From: Zijun Hu <zijun_hu@icloud.com>
+In-Reply-To: <CAL_Jsq+P=sZu6Wnqq7uEnGMnAQGNEDf_B+VgO8E8ob4RX8b=QA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: Cx7SZ0iQSm1NDQb_GaTdhq14QIDycMOf
+X-Proofpoint-ORIG-GUID: Cx7SZ0iQSm1NDQb_GaTdhq14QIDycMOf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-27_05,2025-02-27_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 adultscore=0
+ clxscore=1015 malwarescore=0 spamscore=0 mlxscore=0 mlxlogscore=896
+ phishscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2502270090
 
-On Wed, Feb 26, 2025 at 05:44:56PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 2025/2/27 05:30, Rob Herring wrote:
+> Every time this code is touched, it breaks. This is not even the only
+> breakage right now[1].
 > 
-> Add compatible string for the protocols by adding new nodes
-> The current nodename pattern is "protocol@[0-9a-f]+$", the new node
-
-Hi Peng,
-
-> name will be "scmi-[a-z\-]+$".
-> With compatible string and new nodename, cpufreq and devfreq could be
-> separated into two nodes. And fwdevlink could correctly link suppliers
-> and consumers.
-
-beside the backward compatibility issues that Rob mentioned, the thing
-that worries me most is that, while the current bindings describe the
-SCMI protocols because the protocols are WHAT the platform FW exposes
-(and that is all that is needed by drivers to refer to a protocol and
-its resources)...here you are getting rid of all of this, and moving to
-describe basically the various devices that will use a protocol,
-potentially the same protocol, just to have a distinct fw_node ...
-(...I mean my understanding is that there wont be any protocol nodes
-left when the scmi- variant are present and, once, somehow, we will
-have transitioned into this...right ?)
-
-I haven't really had the time to go through properly your proposed
-solution to understand fully all its possible side-effects and how
-many SCMI features could be destroyed by removing protocol nodes
-descriptor as a whole...but...off the top of my head, as a quick
-example, how you will define a per-protocol dedicated transport
-channel in this new scenario ?
-...because You wont have anymore a protocol descriptor where to fit
-this AND you could have multiple DT nodes describing drivers that use
-that SAME protocol, so using this new nodes to fit the same
-transport-chan descriptors wont be possible either....
-
-IOW, sincerely, I understand you want to resolve the problem with
-fw_devlink (me too), but nuking down everything, while loosing, possibly,
-a number of the existing functionalities of the SCMI stack just to make
-it work with fw_devlink at all cost it does not seem to me an acceptable
-trade-off...
-
-...killing the whole existing protocols descriptors structure seems to
-me a recipe for disaster, also because, it just goes against the very
-essence of the objects that the FW exposes and the bindings can describe:
-as an example, the SCMI platform server manage and exposes PERF_PROTOCOL
-and its related DOMAINS (all fully discoverable without any bindings),
-so, THAT is what is described in the bindings and referred by SCMI driver
-users: SCMI FW does NOT handle/expose TWO distinct perf devices, like the
-cpufreq/devfreq-device that you are trying to describe...
-
-As Sudeep mentioned, IMHO this seems mostly an *unsolved* implementation
-problem more than an actual issue with the bindings and how we describe
-SCMI resources that we need to refer to..
-
-> With compatible string, and driver updated.
-> - Differnet vendor drivers with same SCMI protocol ID could be built in
->   without concerning vendor A's driver got probed when using vendor B's
->   SoC
-
-as said, this is a corner case that is easily solvable with the current
-layout (and I will post a patch soon-ish to addess this...)
-
-> - NXP scmi pinctrl and ARM scmi pinctrl could be both built in, without
->   concerning arm scmi platform takes nxp scmi pinctrl node as supplier.
+>> 2) IMO, the spec may be right.
+>>    The type of size is enough to express any alignment wanted.
+>>    For several kernel allocators. type of 'alignment' should be the type
+>>    of 'size', NOT the type of 'address'
+> As I said previously, it can be argued either way.
 > 
+> Rob
+> 
+> [1] https://lore.kernel.org/all/20250226115044.zw44p5dxlhy5eoni@pengutronix.de/
 
-..the only real issue is the general fw_devlink issue as in cpufreq vs
-devfreq...
+this issue may be a downstream issue as well.
 
-Thanks,
-Cristian
+based on comments. they expects the CMA area is within 4G range.
+
+but the wrong alloc-ranges config make the range (0x42000000 +
+0xc0000000) > 4G across 4G boundary.
+
 
