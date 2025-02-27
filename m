@@ -1,193 +1,194 @@
-Return-Path: <devicetree+bounces-151980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA98BA47AD8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:55:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 679B5A47AF3
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:57:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEA717A4BE0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 10:54:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6050716D264
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 10:57:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C65922A4CC;
-	Thu, 27 Feb 2025 10:55:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE6F822A1EC;
+	Thu, 27 Feb 2025 10:57:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OikCg0M0"
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="uaO2Rfx+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2084.outbound.protection.outlook.com [40.107.22.84])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7DA522839A;
-	Thu, 27 Feb 2025 10:55:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740653749; cv=none; b=nxafIUsd80v5B856Q9WMMHQHvPslf5hBQH2XUjZ8/JNVfen5WFr8AZ+rIisIc8AcCod9NMxlaC8gY2Sltw/OSaxHmKpg8Ucl1VDmpy1xMp5q5AKbUYVxEYLI8zNOjUFTHXdMRU1IH0zEsIMxQnJdtJ6LuTlUX+7V4YBVPR/Uw0w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740653749; c=relaxed/simple;
-	bh=bujcDTjDuNoNm0eQaVr1K6IxX1QIkdithn2Pa9n1gzE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FR3tgl02gZEeb/monF2vs/Wg2OuxcfnOqkK7yNN0hEjn/WhziRxIGc2HXHNOIInaEg/bI8bI/QkXYK7+I9QrKFIbBp3aw+A1a9HrGN80nMz27TUNYxd4zrSp7l2QsKMbG22MgVA3PZcSmXjbT9x3lDJ5ezNr2ER08oDEI/pOZgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OikCg0M0; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43aac0390e8so5086785e9.2;
-        Thu, 27 Feb 2025 02:55:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740653744; x=1741258544; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AKHlnE2Y0JEmifPa1wLht7Bfh/WgS8pXlFyMCfBvkuI=;
-        b=OikCg0M0mYOxL7rkRgVCX+ye0qGYZdYO9GacuZop/EgYmYdCW4NOgnaQ717SAsNSCa
-         RHID9vIC927rIM8ArAKhtw67O4ZefX5bXD4iUYRmlofkf2sGh7eWmo14hals1/qAWJ5r
-         fu/Vr8BrsO1UsYQPYSkd2UhTg9pa1vDZMvyzzC8PgRjBm68DN5xsAdoSJJA/j9pgL6J8
-         PMdpd+bJPNsblTgysELGaFTZyWi3Tvrq7Egq093XBrloLuPqjB+FYFom5EGw/kjqxSZk
-         X13UFcWHZaOb+qy0AOOG/C0TKhhGrZP4GaU0+HVAfmfdRaF7iS0DXdFKtyUnfAqQQXjd
-         1WMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740653744; x=1741258544;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AKHlnE2Y0JEmifPa1wLht7Bfh/WgS8pXlFyMCfBvkuI=;
-        b=QFpBZsTidq4RkoPlzhI6V5FSYL/ewtFqLzNsb1iL21Tv0CBFGXERLal6hifHHvePle
-         a23yUuZ83OE6HYmkByZMgSfnuHQ/qFQJ7UI243c5EgqZXG1btkDrZPCFnYgE6DUTLOhm
-         nTpei3I44+I/VjzUmIgZ2d+45PoFqUh+zE2pCz7QsXRaRlS6dD2PSUzVgk6/vECgk7DN
-         5V/Bg0HfGcRSHTwSCje8/Jli2Afj9CbTiNQXrcAMamoWWxN2kkanyrg/tBT9aLG6lJjY
-         MpCKw4ZR1pULxtfknL8mq5DfyhL8y3MfGiCTLMmQOuAq0S9NYkaHI/IHiP9bF8BxOGHy
-         JbBw==
-X-Forwarded-Encrypted: i=1; AJvYcCV/5C/RGQSXppJOV9RhKa9eu718wcd5zG3x2uKs/0udmq7uaLmoJBt5OeUE0YRSl4usHWEi4Qi4hMk=@vger.kernel.org, AJvYcCVnyV3sIPT1fMEQRbv0TdFkfJUu4DaXWonVngh/CFbyjeFOtmSNCltgrZgm/Yrn4Xa7C7dVPnPwg5P1OzQh@vger.kernel.org, AJvYcCWyVoWG66qEPKsW2TFRV+A8SbfbLJnssaoy+i9zE88dg0mcLvfbn47x1M66D2AjFpUz1sE4/aJpRWNn@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMOPCDLfNwr6VSbgRhOQR8eW1HxdftPedJ4AZbGKxvOWKLgG+q
-	QopC/h02klSo4aH7Kr/YyKgNf9tMDvbkNrPlQCwW+cM4KlZ2ilEECBAconUeS9hhz4MlaZvCIe5
-	TNGhw3Yel2ENYqvKfb93iVGvwJvIfP7m4
-X-Gm-Gg: ASbGnctdzQEy+/YfJ/sfWoPk1PRQobdymfF8cZwrkNkcnMyu5RVQRkrM1FUZ1k16AH4
-	JKY2Yk/ckxmI7QnnK8OcpOMpcjdSiAvaPFSL37s/NPUeh6SQ+7VBSVP9yWQt4NPfswSW4m1HeE4
-	uWktt1w3pq
-X-Google-Smtp-Source: AGHT+IHncl9PPc5r6yl0Lv/rKdriH90hESG8/kfSD1bpGd1N2IZOKBThPFywTVAV/1AmDlyV3Kd8xNhZaexKbVPqAbg=
-X-Received: by 2002:a05:600c:3150:b0:439:955d:7adb with SMTP id
- 5b1f17b1804b1-439ae222a7amr256138625e9.30.1740653743598; Thu, 27 Feb 2025
- 02:55:43 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE9AD22839A;
+	Thu, 27 Feb 2025 10:57:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.84
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740653846; cv=fail; b=Sm3zIEfvL8BPWGhRaHhRH1WZibzHe/aLIyYj6FcTiITe75+TdsUdok/6yhDU/Q65uVTjSNjNn+VOiTJNQ1IzUcBHQgqlqP0hPnxwN1cygx4eDuIsLCoqjlBa/7KS82hnJXLhd+wrPjT2PP54gZOcf/s43Ru6bsniF6Gv4LEWGME=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740653846; c=relaxed/simple;
+	bh=dSYawFJ6OOIBKBeeqMnnNkO3KAhyjUUiXYXhI792wMM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=MLAfIV/RjSkkBRgTpssY7GlaSIpAkCHD8vDMzEwMP8BUGXUKx2ZWvco2AN+mSd16djBANmE486Q5YiW02vm2kOsR27a4NOLvIjn9J2fMtgsW3090+sQ9yglHJbyFDjchY4+l7ZzgjLnU7eEvLLC8sscywDR3OoNSm3y3cd1ZDys=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com; spf=fail smtp.mailfrom=leica-geosystems.com; dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b=uaO2Rfx+; arc=fail smtp.client-ip=40.107.22.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aTDQz4XZmOb23+J+ksMk3+0MEJ3R0z3vr2lLDb8UK9vOB9+N9xfM9/IEENEiapXDPgKRFo2bLWkhURQHKVFx14ly6DT7rHjtfsJ2IGNQW2EbPgt61mysJFZ5DFfeB8JlLVb2le10dzmJdjVo28UkPcIiBRCtAhZq9UEjADvRVE+QDUBP9AU2T7m1rSez+FUSXZYRbXPwyn2JeQtOVPHcS8URcDXS6rT36E8WjaMyYsYf81dbDPgAeIWmZrxUXDHg5n+1zSGYlnaGnpvP+mt88d/wt5f/vKG9pyKuKQH78xAmF1TdTilfb/TgsdoF/3Dk8ibSl/jLGJr/UwBGWIrQSQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eF/Idrt3fzNPfFvTktwLzZoXQX6gPIzB1yUInQQhkRA=;
+ b=pVikqAB6VhKXiZ3FUfZkgYkzNfV+YqX9tAii28CuKUygKqh3wTRn+Q5gUnVBS8bOSYXoM3odGrlhGNap5lQn8riDRj0Yn5DFsP3vGwH+q3pdrZ/lRA4fikI3hjvwWaQQJ6Nc1aJc9JatONIvD5StiIIwYG+6eWgZo6XBEdQ3VU3v/hE0MulusFcuPvxJxFhkLwdu/MosRRzXoTTO1d6pR8ZKFDdGVVdRggEU0JO/K28JWF3C3lHacxZyUv+iqJ7lPIDiF0X17Hfjq1aEaOePKXH56omelqzT6vWLl/zcZ+pt+e1ZDXsp/ZJfpQYeaSR8G4ziyahJBh2w21bABXRBAQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 193.8.40.94) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=leica-geosystems.com; dmarc=pass (p=reject sp=reject pct=100)
+ action=none header.from=leica-geosystems.com; dkim=none (message not signed);
+ arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eF/Idrt3fzNPfFvTktwLzZoXQX6gPIzB1yUInQQhkRA=;
+ b=uaO2Rfx+ibJo3UprnULeIZaud+RAx+1wYnS9nEbkMs9RDjVKR26kRJAiwz/xZw4Sau0TXERVxtnurp9U5IaCO824/ekrr27xfGSm8jJN1JEPdZpZH9zHasRQVOuYFRo+JEJKkOmGyUDDuYrJCG9itcgqzoWeBNYpKz4zjac2ZrU=
+Received: from DU6P191CA0072.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:53e::25)
+ by PA1PR06MB9700.eurprd06.prod.outlook.com (2603:10a6:102:44a::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.19; Thu, 27 Feb
+ 2025 10:57:20 +0000
+Received: from DB1PEPF000509ED.eurprd03.prod.outlook.com
+ (2603:10a6:10:53e:cafe::29) by DU6P191CA0072.outlook.office365.com
+ (2603:10a6:10:53e::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8489.23 via Frontend Transport; Thu,
+ 27 Feb 2025 10:57:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
+ smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=leica-geosystems.com;
+Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com
+ designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
+ client-ip=193.8.40.94; helo=hexagon.com; pr=C
+Received: from hexagon.com (193.8.40.94) by
+ DB1PEPF000509ED.mail.protection.outlook.com (10.167.242.71) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8489.16 via Frontend Transport; Thu, 27 Feb 2025 10:57:20 +0000
+Received: from aherlnxbspsrv01.lgs-net.com ([10.60.34.116]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
+	 Thu, 27 Feb 2025 11:57:19 +0100
+From: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+To: neeraj.sanjaykale@nxp.com,
+	marcel@holtmann.org,
+	luiz.dentz@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	loic.poulain@linaro.org
+Cc: linux-bluetooth@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	m.felsch@pengutronix.de,
+	amitkumar.karwar@nxp.com,
+	conor+dt@kernel.org,
+	Catalin Popescu <catalin.popescu@leica-geosystems.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH next v2 1/2] dt-bindings: net: bluetooth: nxp: add support for supply and reset
+Date: Thu, 27 Feb 2025 11:57:17 +0100
+Message-Id: <20250227105718.1692639-1-catalin.popescu@leica-geosystems.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250226093700.44726-1-clamor95@gmail.com> <20250226093700.44726-2-clamor95@gmail.com>
- <20250227-cherubic-mantis-from-betelgeuse-86f5ff@krzk-bin>
-In-Reply-To: <20250227-cherubic-mantis-from-betelgeuse-86f5ff@krzk-bin>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 27 Feb 2025 12:55:32 +0200
-X-Gm-Features: AQ5f1JpNBw7exSIzTK2Fu0RwPSOnttGQs3PoxMmfrYBIGnMEtbjoE5q05f9ovHc
-Message-ID: <CAPVz0n0ygR=ygsvG2+z-zST7kmJ_P3nxf29tqdgHpRs_Nw6D5Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: power: supply: Document Maxim MAX8971 charger
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 27 Feb 2025 10:57:19.0812 (UTC) FILETIME=[5F3BB840:01DB8906]
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB1PEPF000509ED:EE_|PA1PR06MB9700:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: c3513016-95cf-42c7-2b53-08dd571d821e
+X-SET-LOWER-SCL-SCANNER: YES
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?0o4Pdk9meQFGilOHevj+JCbZaWlaYhsbRN3UrNvNS8eEXNWKl8v2P9gB5tIL?=
+ =?us-ascii?Q?69h/7HJ8kqobKzpvhufkpSXNyralcB85ZQMhXzHXfLnZZT+RPvzOnAVMiqd8?=
+ =?us-ascii?Q?qcz9C161sjgsvppv+smI58j/CYe7+nAOL3/bCRRRKIP6FW0vFd3xe8F5MTl/?=
+ =?us-ascii?Q?zrw+BzuP0xV+WUwgLuvZDqTk/V2NFM6gI7BU5gDLUDY3xtb9d5cEvUa5ktBC?=
+ =?us-ascii?Q?VboFEppcgGIGOHbOLlrIBhxtEzMTuiGIps7QVs8B2JWjOEJxNgmhhjEoRF03?=
+ =?us-ascii?Q?kJae9G0fMSbxri4ZzNti3ywuLEug/xlXRvCDMRoXt64GPkV27GkTftqBOAxH?=
+ =?us-ascii?Q?7rcl2bKl1PPS8vg3KcpoGPBhNl8YdnyfHgzz9smtUTsj3q2TL/Vp9MzsXkZ7?=
+ =?us-ascii?Q?PZlA3cOl/Asd+mfdHpIBlvHqkXXx3CmB0sPYnzNW0twop5s7qL1+MYkDQjD/?=
+ =?us-ascii?Q?DtqMgIoqHYH8XLEuricWD5VfJVBB4+RLQxHVGSolmwXgq9CYPsC4sYDzUjAD?=
+ =?us-ascii?Q?zW4d2N0dhzphb+dOO9A8b7fLCyOHT6tZphxCDtIIlCds67P9qXH5nL9MZwVU?=
+ =?us-ascii?Q?ijYKK9TXup6W1+UHjyVdxGrfIindmCRgppb/j3k1j/8Q+cTEmyI82eCCvv4/?=
+ =?us-ascii?Q?B3W1kuN1xof1Da8m7CTo9MRTgQjtRrFPFYS5GKnjeXZZkY525rY4hpop+4zW?=
+ =?us-ascii?Q?3h1OX8DVrkloK+mrwMqRySP8P2nj0loP++m9k7pz0fthrlt7hG9QXnhrLB4R?=
+ =?us-ascii?Q?Ux5OwPIXByTVvoObLS9bDZSPgn+Ah+CeSO54Z0L9xpDMOFGtWNKB9PEJzDn6?=
+ =?us-ascii?Q?8Q9m8Ar7nbgRB06mX7rWJow00kvSJJRTktruorm3zvSKuEh8HjauTSzFYIzD?=
+ =?us-ascii?Q?hc9Y3v0TturixedY8ZC134fmcaL7XVlxvDvh/5s2KcpwUm75X9EmLJHw2dY7?=
+ =?us-ascii?Q?n5Mg31TOaHw4g4SdXMAiNgp123UtfyKvMpS/pH3eizRqAiLcAuw5qXc2sjMo?=
+ =?us-ascii?Q?L5bGFkI5rP5IjH19fxQntnKOqRLdZug3dH51l7kyRf84HORIG47ouQEEaFG1?=
+ =?us-ascii?Q?1xLpWu2zHDpCXaGj+INUZlbDpyRIvP4AVaOVcfhlBlExpPloErZ8tdU8vbh+?=
+ =?us-ascii?Q?MF1MVQ8I+RCLKhJdo0u5eud+3PAEe3uY+MeCnysEDD6CBihZ5y9WgERRXw49?=
+ =?us-ascii?Q?MBAPSPNofGXrr/IG7YVVkdGdNO7lV2Rv+mSmqAGqu0BaxkfiqBUw9iTttWMg?=
+ =?us-ascii?Q?f2TidJkUqYhLzW9epkbhIpJ65HQpv+G2VIlLx5xBSNGKSWWMU5QpbG4N1bI0?=
+ =?us-ascii?Q?DQOwuPuQDq5ZYqL1G5RD6MHzO6ZAkBM1iSY2HV0yUKRnLup6WeRFowx/8kan?=
+ =?us-ascii?Q?W3tZWNSNKPsmKl33+7is3p1h2CBeAJXXxfHFf2arEbberRSlVqPcJse2MmAX?=
+ =?us-ascii?Q?vDvS1lE5uShzcAaDnIzxa2Qou83n+YP8zZ6XCOw2Vm68/Cgkwr+xptKoIEav?=
+ =?us-ascii?Q?dJkbVP9DS4L3Ykk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: leica-geosystems.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2025 10:57:20.3755
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3513016-95cf-42c7-2b53-08dd571d821e
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[hexagon.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB1PEPF000509ED.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR06MB9700
 
-=D1=87=D1=82, 27 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 12:45 Krzy=
-sztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Wed, Feb 26, 2025 at 11:36:59AM +0200, Svyatoslav Ryhel wrote:
-> > +  maxim,fcharge-current-limit-microamp:
-> > +    description:
-> > +      Fast-Charge current limit
-> > +    minimum: 250000
-> > +    default: 500000
-> > +    maximum: 1550000
-> > +
-> > +  maxim,fcharge-timer-hours:
-> > +    description:
-> > +      Fast-Charge timer in hours. Setting this value 3 and lower or 11=
- and higher
-> > +      will disable Fast-Charge timer.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 5
->
-> You still did not answer why this is board specific. This was rejected
-> in the past because of that reason and nothing here changed. Nothing
-> will change without detailed explanation, so use other interfaces if you
-> need user-space to configure it (see other drivers, e.g. maxim)
->
-> > +
-> > +  maxim,fcharge-rst-threshold-high:
-> > +    description:
-> > +      Set Fast-Charge reset threshold to -100 mV
-> > +    type: boolean
-> > +
-> > +  maxim,in-current-limit-microamp:
-> > +    description:
-> > +      Input current limit
-> > +    minimum: 100000
-> > +    default: 500000
-> > +    maximum: 1500000
-> > +
-> > +  maxim,topoff-timer-minutes:
-> > +    description:
-> > +      Top-Off timer minutes
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [0, 10, 20, 30, 40, 50, 60, 70]
-> > +    default: 30
->
-> Same.
->
-> > +
-> > +  maxim,topoff-current-threshold-microamp:
-> > +    description:
-> > +      Top-Off current threshold
-> > +    enum: [50000, 100000, 150000, 200000]
-> > +    default: 50000
-> > +
-> > +  maxim,fcharge-usb-current-limit-microamp:
-> > +    description:
-> > +      Fast-Charge USB current limit
-> > +    minimum: 100000
-> > +    default: 500000
-> > +    maximum: 1500000
-> > +
-> > +  maxim,fcharge-ac-current-limit-microamp:
-> > +    description:
-> > +      Fast-Charge AC current limit
-> > +    minimum: 100000
-> > +    default: 500000
-> > +    maximum: 1500000
-> > +
-> > +  maxim,usb-in-current-limit-microamp:
-> > +    description:
-> > +      USB Input current limit
-> > +    minimum: 100000
-> > +    default: 500000
-> > +    maximum: 1500000
-> > +
-> > +  maxim,ac-in-current-limit-microamp:
-> > +    description:
-> > +      AC Input current limit
-> > +    minimum: 100000
-> > +    default: 500000
-> > +    maximum: 1500000
->
-> Half of these properties as well are not suitable and duplicate existing
-> sysfs interface.
->
+Add support for chip power supply and chip reset/powerdown.
 
-All these properties allow configure the charger to suit the device on
-which it is used. None of them are required but are a nice addition.
-Why you are denying me an ability to fully utilize hardware I have and
-tune it to the device? All those values represent hardware registers
-which can be customized for the device, not for the end user to mess
-with.
+Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+v2:
+- rebase on linux-next tag next-20250227
+- add acked-by
+---
+ .../bindings/net/bluetooth/nxp,88w8987-bt.yaml         | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-> And for remaining, still no battery.
->
+diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+index 04f55fac42ce..97c694f2d70a 100644
+--- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
++++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+@@ -50,6 +50,14 @@ properties:
+     description:
+       The GPIO number of the NXP chipset used for BT_WAKE_OUT.
+ 
++  vcc-supply:
++    description:
++      phandle of the regulator that provides the supply voltage.
++
++  reset-gpios:
++    description:
++      Chip powerdown/reset signal (PDn).
++
+ required:
+   - compatible
+ 
+@@ -66,5 +74,7 @@ examples:
+             device-wakeup-gpios = <&gpio 11 GPIO_ACTIVE_HIGH>;
+             nxp,wakein-pin = /bits/ 8 <18>;
+             nxp,wakeout-pin = /bits/ 8 <19>;
++            vcc-supply = <&nxp_iw612_supply>;
++            reset-gpios = <&gpioctrl 2 GPIO_ACTIVE_LOW>;
+         };
+     };
 
-reference to power-supply IS included, hence the battery option is
-there as well.
+base-commit: be5c7bbb3a64baf884481a1ba0c2f8fb2f93f7c3
+-- 
+2.43.0
 
-> Best regards,
-> Krzysztof
->
 
