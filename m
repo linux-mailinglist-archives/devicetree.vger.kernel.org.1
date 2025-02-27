@@ -1,241 +1,117 @@
-Return-Path: <devicetree+bounces-152248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 562D5A486C4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 18:36:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFBE1A486D3
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 18:38:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 633051888CAF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 17:36:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8AAC87A2C94
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 17:37:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6FC71DE3B7;
-	Thu, 27 Feb 2025 17:36:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11F101DE3C1;
+	Thu, 27 Feb 2025 17:38:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o8Q3ZWrx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LejJ4EyE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87BCF1DE2B9;
-	Thu, 27 Feb 2025 17:36:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D53841D63CF;
+	Thu, 27 Feb 2025 17:38:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740677774; cv=none; b=FY+3f9DIxCcnBHEqZf1oZU0+YRb/GBYv1IhV2DVujVbIdZeGk9Pe2BwUsJJZJvy02hqXfBxBzHvNbWokGc6wk0y7+iRzLar+KP6rkGpxX6WCu75Q/I1cS3g5bXSUDxXkIOdEm0dV212hcdTl8c08nhIICL48BbhhdvzBVa/uiDc=
+	t=1740677898; cv=none; b=SDMwQOkizJNp16+UBlh3vo/Sb94Yy4JLeX9o3ozaIcqN6XQyGGr3Op8qUcOs2FUQJbaR5BolphBAAuyCyxcc68h8684fCQYOak5pHmtWBLEFZXWd768gI6ZxU81yNm5pM3lINVepxBNNksWBjiWX72OFkT5pWlnqOQcf72rZIPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740677774; c=relaxed/simple;
-	bh=Z0sfGr3HdnbzHvGkVfOwOcuQNt8HuNW7o8cV/1jRzxY=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=ODa4tmskSMYpM51PZlo3O5EEHNDBE34kQ3Ekav9D5DrVCwKodSbgh6o8b6rCf4ko/FifwnYYeJaw87afG3yVmlrBTeEtKm0PKPIQQ7tWjSKqSVEwYdL7h1xiMV8cHx7ePhqOI1amd9rpYHNSroOA9HtV2MQfzXEIGNpzl7HQ3NU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o8Q3ZWrx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7F61C4CEDD;
-	Thu, 27 Feb 2025 17:36:13 +0000 (UTC)
+	s=arc-20240116; t=1740677898; c=relaxed/simple;
+	bh=RA1QCuzgKgwXPghID0OGHA2+esZ2iW7fQoMQ1vyhONM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=i5pP7rubYn2yO0w6x2GbURiJcRRi+YRRctcUYapycMZgb+5R06DxGE4IcWSThoSK9IdJubTsXN/UIm++RtH3U8rBHYRRz1KhAkuUP5j/RmHUJj+aH7jSzN5h+RcHQEoeaNn0YvlGBMaXJOP8YhmAXRLAsI5jkldABhKBqG9L1Tw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LejJ4EyE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A6E6C4CEDD;
+	Thu, 27 Feb 2025 17:38:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740677774;
-	bh=Z0sfGr3HdnbzHvGkVfOwOcuQNt8HuNW7o8cV/1jRzxY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=o8Q3ZWrx/8rEqCsDPoKylQmzyIaDvw29jbXi9gZA/BIWCoAkWaii/HoGER+rgWS2y
-	 uUP8rKn8wgAxfWYw/k7syZkejPO1UepMZpIMaD5fWoOduZzyQVOk5IlxHTadMx9DkE
-	 5ifD6XzKk81KEhQiKejribyArVlx2TSya5gcdrPcrWSCPxxh22aVRNj+SY77PWAeqI
-	 MJmG//OfgdUYKrTZQWamiTwew52N26mos4JIgYLtFJeYUc6eduMaIriI7jA4S5J0D7
-	 u65nkcbAmZggrQpI6YeHYNqVckzsqjPwZ7F2F+SVygUSZdMkxFDqmKB0vc7vJSyfe6
-	 +rwaN7hbivPBA==
-Date: Thu, 27 Feb 2025 11:36:12 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v8 0/5] Add support for the PCI host bridge device-tree
- node creation.
-Message-ID: <20250227173612.GA606350@bhelgaas>
+	s=k20201202; t=1740677897;
+	bh=RA1QCuzgKgwXPghID0OGHA2+esZ2iW7fQoMQ1vyhONM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=LejJ4EyEdNEqWG4d1ddZ6tQvkUyXGBUVMW+qynxk4Vvf9hNOJlo+mj4oicPptljBV
+	 QMAJ+29KuZtCMdML9MwwYOOm1vQf+GXP+KvNN7ZcEe1tqhg7/SafILvs2M+EFX5xNu
+	 KVQ1Cc01ymatqaKVaZRYK807ezwGq6MsbKMZ9HadNFZ+93eicwQLZLmAaCCndch0Co
+	 3PkIOXzpiAYq+Jtz1cXjaplZC9PVZlWZPHgy3TIFlFVygAT19oeamW+N0HTctpIzQc
+	 XKdXwbAWnwh9FDU5cz5IYxt5ucM0FCHIpJBlU9mRuJC+KLxFweN2BPycbH/jS2jXpX
+	 2XIMQuuvhrx7w==
+Date: Thu, 27 Feb 2025 11:38:15 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250224141356.36325-1-herve.codina@bootlin.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Jonathan Corbet <corbet@lwn.net>, Nuno Sa <nuno.sa@analog.com>, 
+ linux-iio@vger.kernel.org, linux-doc@vger.kernel.org, 
+ Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ linux-kernel@vger.kernel.org, Oleksij Rempel <o.rempel@pengutronix.de>
+To: David Jander <david@protonic.nl>
+In-Reply-To: <20250227162823.3585810-8-david@protonic.nl>
+References: <20250227162823.3585810-1-david@protonic.nl>
+ <20250227162823.3585810-8-david@protonic.nl>
+Message-Id: <174067789501.3590925.9341174952615049139.robh@kernel.org>
+Subject: Re: [RFC PATCH 7/7] dt-bindings: motion: Add motion-simple-pwm
+ bindings
 
-On Mon, Feb 24, 2025 at 03:13:50PM +0100, Herve Codina wrote:
-> Hi,
-> 
-> This series adds support for creating a device-tree node for the PCI
-> host bridge on non device-tree based system.
-> 
-> Creating device-tree nodes for PCI devices and PCI-PCI bridges already
-> exists upstream. It was added in commit 407d1a51921e ("PCI: Create
-> device tree node for bridge"). Created device-tree nodes need a parent
-> node to be attached to. For the first level devices, on device-tree
-> based system, this parent node (i.e. the PCI host bridge) is described
-> in the base device-tree. The PCI bus related to this bridge (PCI root
-> bus) inherit of the PCI host bridge device-tree node.
-> 
-> The LAN966x PCI device driver, available since commit 185686beb464
-> ("misc: Add support for LAN966x PCI device"), relies on this feature.
-> 
-> On system where the base hardware is not described by a device-tree, the
-> PCI host bridge to which first level created PCI devices need to be
-> attach to does not exist. This is the case for instance on ACPI
-> described systems such as x86.
-> 
-> This series goal is to handle this case.
-> 
-> In order to have the PCI host bridge device-tree node available even
-> on x86, this top level node is created (if not already present) based on
-> information computed by the PCI core. It follows the same mechanism as
-> the one used for PCI devices device-tree node creation.
-> 
-> As for device-tree based system, the PCI root bus handled by the PCI
-> host bridge inherit of this created node.
-> 
-> In order to have this feature available, a number of changes are needed:
->   - Patch 1 and 2: Introduce and use device_{add,remove}_of_node().
->     This function will also be used in the root PCI bus node creation.
-> 
->   - Patch 3 and 4: Improve existing functions to reuse them in the root
->     PCI bus node creation.
-> 
->   - Patch 5: The PCI host bridge device-tree node creation itself.
-> 
-> With those modifications, the LAN966x PCI device is working on x86 systems
-> and all device-tree kunit tests (including the of_unittest_pci_node test)
-> pass successfully with the following command:
->   qemu-system-x86_64 -machine q35 -nographic \
->     -kernel arch/x86_64/boot/bzImage --append console=ttyS0 \
->     -device pcie-root-port,port=0x10,chassis=9,id=pci.9,bus=pcie.0,multifunction=on,addr=0x3 \
->     -device pcie-root-port,port=0x11,chassis=10,id=pci.10,bus=pcie.0,addr=0x3.0x1 \
->     -device x3130-upstream,id=pci.11,bus=pci.9,addr=0x0 \
->     -device xio3130-downstream,port=0x0,chassis=11,id=pci.12,bus=pci.11,multifunction=on,addr=0x0 \
->     -device i82801b11-bridge,id=pci.13,bus=pcie.0,addr=0x4 \
->     -device pci-bridge,chassis_nr=14,id=pci.14,bus=pci.13,addr=0x0 \
->     -device pci-testdev,bus=pci.12,addr=0x0
-> 
-> Compare to previous iteration, this v8 series mainly improves a commit
-> log.
-> 
-> Best regards,
-> Hervé Codina
-> 
-> Changes v7 -> v8
->   v7: https://lore.kernel.org/lkml/20250204073501.278248-1-herve.codina@bootlin.com/
-> 
->   - Patch 1
->     Add 'Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>'
->     Add 'Reviewed-by: Rob Herring (Arm) <robh@kernel.org>'
-> 
->   - Patch 2, 3, 4
->     Add 'Reviewed-by: Rob Herring (Arm) <robh@kernel.org>'
-> 
->   - Patch 5
->     Improve commit log adding a high level part outlining the benefit of
->     changes.
->     Add 'Reviewed-by: Rob Herring (Arm) <robh@kernel.org>'
-> 
-> Changes v6 -> v7
->   v6: https://lore.kernel.org/lkml/20250110082143.917590-1-herve.codina@bootlin.com/
-> 
->   Rebase on top of v6.14-rc1
-> 
-> Changes v5 -> v6
->   v5: https://lore.kernel.org/lkml/20241209130339.81354-1-herve.codina@bootlin.com/
-> 
->   - Patch 1
->     Add a return error code in device_add_of_node()
-> 
->   - Patches 2 and 5
->     Handle the device_add_of_node() error code
-> 
->   - Patches 3 and 4
->     No changes
-> 
-> Changes v4 -> v5
->   v4: https://lore.kernel.org/lkml/20241202131522.142268-1-herve.codina@bootlin.com/
-> 
->   - Patch 1
->     Use dev_warn() instead of WARN()
-> 
->   - Patches 2 to 4
->     No changes
-> 
->   - Patch 5 (v4 patch 6)
->     Use dev_err()
->     Fix a typo in commit log
-> 
->   Patch removed in v5
->     - Patch 5 in v4
->       Already applied
-> 
-> Changes v3 -> v4
->   v3: https://lore.kernel.org/lkml/20241114165446.611458-1-herve.codina@bootlin.com/
-> 
->   Rebase on top of v6.13-rc1
-> 
->   - Patches 1 to 6
->     No changes
-> 
-> Changes v2 -> v3
->   v2: https://lore.kernel.org/lkml/20241108143600.756224-1-herve.codina@bootlin.com/
-> 
->   - Patch 5
->     Fix commit log.
->     Use 2 for #size-cells.
-> 
->   - Patches 1 to 4 and 6
->     No changes
-> 
-> Changes v1 -> v2
->   v1: https://lore.kernel.org/lkml/20241104172001.165640-1-herve.codina@bootlin.com/
-> 
->   - Patch 1
->     Remove Cc: stable
-> 
->   - Patch 2
->     Remove Fixup tag and Cc: stable
-> 
->   - Patches 3 and 4
->     No changes
-> 
->   - Patch 5
->     Add #address-cells/#size-cells in the empty root DT node instead of
->     updating default values for x86.
->     Update commit log and commit title.
-> 
->   - Patch 6
->     Create device-tree node for the PCI host bridge and reuse it for
->     the PCI root bus. Rename functions accordingly.
->     Use "pci" instead of "pci-root" for the PCI host bridge node name.
->     Use "res->start - windows->offset" for the PCI bus addresses.
->     Update commit log and commit title.
-> 
-> Herve Codina (5):
->   driver core: Introduce device_{add,remove}_of_node()
->   PCI: of: Use device_{add,remove}_of_node() to attach of_node to
->     existing device
->   PCI: of_property: Add support for NULL pdev in of_pci_set_address()
->   PCI: of_property: Constify parameter in of_pci_get_addr_flags()
->   PCI: of: Create device-tree PCI host bridge node
-> 
->  drivers/base/core.c       |  61 ++++++++++++++++++++
->  drivers/pci/of.c          | 115 +++++++++++++++++++++++++++++++++++++-
->  drivers/pci/of_property.c | 114 +++++++++++++++++++++++++++++++++++--
->  drivers/pci/pci.h         |   6 ++
->  drivers/pci/probe.c       |   2 +
->  drivers/pci/remove.c      |   2 +
->  include/linux/device.h    |   2 +
->  7 files changed, 295 insertions(+), 7 deletions(-)
 
-Applied to pci/devtree-create, planning for v6.15, thanks!
+On Thu, 27 Feb 2025 17:28:23 +0100, David Jander wrote:
+> Add device-tree bindings for simple Linux Motion Control devices that
+> are based on 1 or 2 PWM outputs.
+> 
+> Signed-off-by: David Jander <david@protonic.nl>
+> ---
+>  .../bindings/motion/motion-simple-pwm.yaml    | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/motion/motion-simple-pwm.yaml
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/motion/motion-simple-pwm.example.dtb: motion-simple-pwm0: 'motion,acceleration-conv-div', 'motion,acceleration-conv-mul', 'motion,pwm-inverted', 'motion,speed-conv-div', 'motion,speed-conv-mul' do not match any of the regexes: '^#.*', '^(at25|bm|devbus|dmacap|dsa|exynos|fsi[ab]|gpio-fan|gpio-key|gpio|gpmc|hdmi|i2c-gpio),.*', '^(keypad|m25p|max8952|max8997|max8998|mpmc),.*', '^(pinctrl-single|#pinctrl-single|PowerPC),.*', '^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*', '^(simple-audio-card|st-plgpio|st-spics|ts),.*', '^100ask,.*', '^70mai,.*', '^8dev,.*', '^GEFanuc,.*', '^IBM,.*', '^ORCL,.*', '^SUNW,.*', '^[a-zA-Z0-9#_][a-zA-Z0-9+\\-._@]{0,63}$', '^[a-zA-Z0-9+\\-._]*@[0-9a-zA-Z,]*$', '^abb,.*', '^abilis,.*', '^abracon,.*', '^abt,.*', '^acbel,.*', '^acelink,.*', '^acer,.*', '^acme,.*', '^actions,.*', '^active-semi,.*', '^ad,.*', '^adafruit,.*', '^adapteva,.*', '^adaptrum,.*', '^adh,.*', '^adi,.*', '^
+ adieng,.*', '^admatec,.*', '^advantech,.*', '^aeroflexgaisler,.*', '^aesop,.*', '^airoha,.*', '^al,.*', '^alcatel,.*', '^aldec,.*', '^alfa-network,.*', '^allegro,.*', '^allegromicro,.*', '^alliedvision,.*', '^allo,.*', '^allwinner,.*', '^alphascale,.*', '^alps,.*', '^alt,.*', '^altr,.*', '^amarula,.*', '^amazon,.*', '^amcc,.*', '^amd,.*', '^amediatech,.*', '^amlogic,.*', '^ampere,.*', '^amphenol,.*', '^ampire,.*', '^ams,.*', '^amstaos,.*', '^analogix,.*', '^anbernic,.*', '^andestech,.*', '^anvo,.*', '^aosong,.*', '^apm,.*', '^apple,.*', '^aptina,.*', '^arasan,.*', '^archermind,.*', '^arcom,.*', '^arctic,.*', '^arcx,.*', '^aries,.*', '^arm,.*', '^armadeus,.*', '^armsom,.*', '^arrow,.*', '^artesyn,.*', '^asahi-kasei,.*', '^asc,.*', '^asix,.*', '^aspeed,.*', '^asrock,.*', '^asteralabs,.*', '^asus,.*', '^atheros,.*', '^atlas,.*', '^atmel,.*', '^auo,.*', '^auvidea,.*', '^avago,.*', '^avia,.*', '^avic,.*', '^avnet,.*', '^awinic,.*', '^axentia,.*', '^axis,.*', '^azoteq,.*', '^azw,.*', '^ba
+ ikal,.*', '^bananapi,.*', '^beacon,.*', '^beagle,.*', '^belling,.*', '^bhf,.*', '^bigtreetech,.*', '^bitmain,.*', '^blaize,.*', '^blutek,.*', '^boe,.*', '^bosch,.*', '^boundary,.*', '^brcm,.*', '^broadmobi,.*', '^bsh,.*', '^bticino,.*', '^buffalo,.*', '^bur,.*', '^bytedance,.*', '^calamp,.*', '^calao,.*', '^calaosystems,.*', '^calxeda,.*', '^cameo,.*', '^canaan,.*', '^caninos,.*', '^capella,.*', '^cascoda,.*', '^catalyst,.*', '^cavium,.*', '^cct,.*', '^cdns,.*', '^cdtech,.*', '^cellwise,.*', '^ceva,.*', '^chargebyte,.*', '^checkpoint,.*', '^chefree,.*', '^chipidea,.*', '^chipone,.*', '^chipspark,.*', '^chongzhou,.*', '^chrontel,.*', '^chrp,.*', '^chunghwa,.*', '^chuwi,.*', '^ciaa,.*', '^cirrus,.*', '^cisco,.*', '^clockwork,.*', '^cloos,.*', '^cloudengines,.*', '^cnm,.*', '^cnxt,.*', '^colorfly,.*', '^compulab,.*', '^comvetia,.*', '^congatec,.*', '^coolpi,.*', '^coreriver,.*', '^corpro,.*', '^cortina,.*', '^cosmic,.*', '^crane,.*', '^creative,.*', '^crystalfontz,.*', '^csky,.*', '^cs
+ q,.*', '^ctera,.*', '^ctu,.*', '^cubietech,.*', '^cudy,.*', '^cui,.*', '^cypress,.*', '^cyx,.*', '^cznic,.*', '^dallas,.*', '^dataimage,.*', '^davicom,.*', '^deepcomputing,.*', '^dell,.*', '^delta,.*', '^densitron,.*', '^denx,.*', '^devantech,.*', '^dfi,.*', '^dfrobot,.*', '^dh,.*', '^difrnce,.*', '^digi,.*', '^digilent,.*', '^dimonoff,.*', '^diodes,.*', '^dioo,.*', '^dlc,.*', '^dlg,.*', '^dlink,.*', '^dmo,.*', '^domintech,.*', '^dongwoon,.*', '^dptechnics,.*', '^dragino,.*', '^dream,.*', '^ds,.*', '^dserve,.*', '^dynaimage,.*', '^ea,.*', '^ebang,.*', '^ebbg,.*', '^ebs-systart,.*', '^ebv,.*', '^eckelmann,.*', '^edgeble,.*', '^edimax,.*', '^edt,.*', '^ees,.*', '^eeti,.*', '^einfochips,.*', '^eink,.*', '^elan,.*', '^element14,.*', '^elgin,.*', '^elida,.*', '^elimo,.*', '^elpida,.*', '^embedfire,.*', '^embest,.*', '^emcraft,.*', '^emlid,.*', '^emmicro,.*', '^empire-electronix,.*', '^emtrion,.*', '^enclustra,.*', '^endless,.*', '^ene,.*', '^energymicro,.*', '^engicam,.*', '^engleder,.*'
+ , '^epcos,.*', '^epfl,.*', '^epson,.*', '^esp,.*', '^est,.*', '^ettus,.*', '^eukrea,.*', '^everest,.*', '^everspin,.*', '^evervision,.*', '^exar,.*', '^excito,.*', '^exegin,.*', '^ezchip,.*', '^facebook,.*', '^fairchild,.*', '^fairphone,.*', '^faraday,.*', '^fascontek,.*', '^fastrax,.*', '^fcs,.*', '^feixin,.*', '^feiyang,.*', '^fii,.*', '^firefly,.*', '^focaltech,.*', '^forlinx,.*', '^freebox,.*', '^freecom,.*', '^frida,.*', '^friendlyarm,.*', '^fsl,.*', '^fujitsu,.*', '^fxtec,.*', '^galaxycore,.*', '^gameforce,.*', '^gardena,.*', '^gateway,.*', '^gateworks,.*', '^gcw,.*', '^ge,.*', '^geekbuying,.*', '^gef,.*', '^gehc,.*', '^gemei,.*', '^gemtek,.*', '^genesys,.*', '^genexis,.*', '^geniatech,.*', '^giantec,.*', '^giantplus,.*', '^glinet,.*', '^globalscale,.*', '^globaltop,.*', '^gmt,.*', '^goldelico,.*', '^goodix,.*', '^google,.*', '^goramo,.*', '^gplus,.*', '^grinn,.*', '^grmn,.*', '^gumstix,.*', '^gw,.*', '^hannstar,.*', '^haochuangyi,.*', '^haoyu,.*', '^hardkernel,.*', '^hechuang
+ ,.*', '^hideep,.*', '^himax,.*', '^hirschmann,.*', '^hisi,.*', '^hisilicon,.*', '^hit,.*', '^hitex,.*', '^holt,.*', '^holtek,.*', '^honestar,.*', '^honeywell,.*', '^hoperf,.*', '^hoperun,.*', '^hp,.*', '^hpe,.*', '^hsg,.*', '^htc,.*', '^huawei,.*', '^hugsun,.*', '^hwacom,.*', '^hxt,.*', '^hycon,.*', '^hydis,.*', '^hynitron,.*', '^hynix,.*', '^hyundai,.*', '^i2se,.*', '^ibm,.*', '^icplus,.*', '^idt,.*', '^iei,.*', '^ifi,.*', '^ilitek,.*', '^imagis,.*', '^img,.*', '^imi,.*', '^inanbo,.*', '^incircuit,.*', '^indiedroid,.*', '^inet-tek,.*', '^infineon,.*', '^inforce,.*', '^ingenic,.*', '^ingrasys,.*', '^injoinic,.*', '^innocomm,.*', '^innolux,.*', '^inside-secure,.*', '^insignal,.*', '^inspur,.*', '^intel,.*', '^intercontrol,.*', '^invensense,.*', '^inventec,.*', '^inversepath,.*', '^iom,.*', '^irondevice,.*', '^isee,.*', '^isil,.*', '^issi,.*', '^ite,.*', '^itead,.*', '^itian,.*', '^ivo,.*', '^iwave,.*', '^jadard,.*', '^jasonic,.*', '^jdi,.*', '^jedec,.*', '^jenson,.*', '^jesurun,.*', 
+ '^jethome,.*', '^jianda,.*', '^jide,.*', '^joz,.*', '^kam,.*', '^karo,.*', '^keithkoep,.*', '^keymile,.*', '^khadas,.*', '^kiebackpeter,.*', '^kinetic,.*', '^kingdisplay,.*', '^kingnovel,.*', '^kionix,.*', '^kobo,.*', '^kobol,.*', '^koe,.*', '^kontron,.*', '^kosagi,.*', '^kvg,.*', '^kyo,.*', '^lacie,.*', '^laird,.*', '^lamobo,.*', '^lantiq,.*', '^lattice,.*', '^lckfb,.*', '^lctech,.*', '^leadtek,.*', '^leez,.*', '^lego,.*', '^lemaker,.*', '^lenovo,.*', '^lg,.*', '^lgphilips,.*', '^libretech,.*', '^licheepi,.*', '^linaro,.*', '^lincolntech,.*', '^lineartechnology,.*', '^linksprite,.*', '^linksys,.*', '^linutronix,.*', '^linux,.*', '^linx,.*', '^liteon,.*', '^litex,.*', '^lltc,.*', '^logicpd,.*', '^logictechno,.*', '^longcheer,.*', '^lontium,.*', '^loongmasses,.*', '^loongson,.*', '^lsi,.*', '^lunzn,.*', '^luxul,.*', '^lwn,.*', '^lxa,.*', '^m5stack,.*', '^macnica,.*', '^mantix,.*', '^mapleboard,.*', '^marantec,.*', '^marvell,.*', '^maxbotix,.*', '^maxim,.*', '^maxlinear,.*', '^mbvl,.*
+ ', '^mcube,.*', '^meas,.*', '^mecer,.*', '^mediatek,.*', '^megachips,.*', '^mele,.*', '^melexis,.*', '^melfas,.*', '^mellanox,.*', '^memsensing,.*', '^memsic,.*', '^menlo,.*', '^mentor,.*', '^meraki,.*', '^merrii,.*', '^methode,.*', '^micrel,.*', '^microchip,.*', '^microcrystal,.*', '^micron,.*', '^microsoft,.*', '^microsys,.*', '^microtips,.*', '^mikroe,.*', '^mikrotik,.*', '^milkv,.*', '^miniand,.*', '^minix,.*', '^mips,.*', '^miramems,.*', '^mitsubishi,.*', '^mitsumi,.*', '^mixel,.*', '^miyoo,.*', '^mntre,.*', '^mobileye,.*', '^modtronix,.*', '^moortec,.*', '^mosaixtech,.*', '^motorcomm,.*', '^motorola,.*', '^moxa,.*', '^mpl,.*', '^mps,.*', '^mqmaker,.*', '^mrvl,.*', '^mscc,.*', '^msi,.*', '^mstar,.*', '^mti,.*', '^multi-inno,.*', '^mundoreader,.*', '^murata,.*', '^mxic,.*', '^mxicy,.*', '^myir,.*', '^national,.*', '^neardi,.*', '^nec,.*', '^neofidelity,.*', '^neonode,.*', '^netgear,.*', '^netlogic,.*', '^netron-dy,.*', '^netronix,.*', '^netxeon,.*', '^neweast,.*', '^newhaven,.*'
+ , '^newvision,.*', '^nexbox,.*', '^nextthing,.*', '^ni,.*', '^nintendo,.*', '^nlt,.*', '^nokia,.*', '^nordic,.*', '^nothing,.*', '^novatek,.*', '^novtech,.*', '^numonyx,.*', '^nutsboard,.*', '^nuvoton,.*', '^nvd,.*', '^nvidia,.*', '^nxp,.*', '^oceanic,.*', '^ocs,.*', '^oct,.*', '^okaya,.*', '^oki,.*', '^olimex,.*', '^olpc,.*', '^oneplus,.*', '^onie,.*', '^onion,.*', '^onnn,.*', '^ontat,.*', '^opalkelly,.*', '^openailab,.*', '^opencores,.*', '^openembed,.*', '^openpandora,.*', '^openrisc,.*', '^openwrt,.*', '^option,.*', '^oranth,.*', '^orisetech,.*', '^ortustech,.*', '^osddisplays,.*', '^osmc,.*', '^ouya,.*', '^overkiz,.*', '^ovti,.*', '^oxsemi,.*', '^ozzmaker,.*', '^panasonic,.*', '^parade,.*', '^parallax,.*', '^pda,.*', '^pericom,.*', '^pervasive,.*', '^phicomm,.*', '^phytec,.*', '^picochip,.*', '^pine64,.*', '^pineriver,.*', '^pixcir,.*', '^plantower,.*', '^plathome,.*', '^plda,.*', '^plx,.*', '^ply,.*', '^pni,.*', '^pocketbook,.*', '^polaroid,.*', '^polyhex,.*', '^portwell,.*', 
+ '^poslab,.*', '^pov,.*', '^powertip,.*', '^powervr,.*', '^powkiddy,.*', '^primeview,.*', '^primux,.*', '^probox2,.*', '^prt,.*', '^pulsedlight,.*', '^purism,.*', '^puya,.*', '^qca,.*', '^qcom,.*', '^qemu,.*', '^qi,.*', '^qiaodian,.*', '^qihua,.*', '^qishenglong,.*', '^qnap,.*', '^quanta,.*', '^radxa,.*', '^raidsonic,.*', '^ralink,.*', '^ramtron,.*', '^raspberrypi,.*', '^raydium,.*', '^rda,.*', '^realtek,.*', '^relfor,.*', '^remarkable,.*', '^renesas,.*', '^rervision,.*', '^revotics,.*', '^rex,.*', '^richtek,.*', '^ricoh,.*', '^rikomagic,.*', '^riot,.*', '^riscv,.*', '^rockchip,.*', '^rocktech,.*', '^rohm,.*', '^ronbo,.*', '^roofull,.*', '^roseapplepi,.*', '^rve,.*', '^saef,.*', '^samsung,.*', '^samtec,.*', '^sancloud,.*', '^sandisk,.*', '^satoz,.*', '^sbs,.*', '^schindler,.*', '^schneider,.*', '^sciosense,.*', '^seagate,.*', '^seeed,.*', '^seirobotics,.*', '^semtech,.*', '^senseair,.*', '^sensirion,.*', '^sensortek,.*', '^sercomm,.*', '^sff,.*', '^sgd,.*', '^sgmicro,.*', '^sgx,.*', 
+ '^sharp,.*', '^shift,.*', '^shimafuji,.*', '^shineworld,.*', '^shiratech,.*', '^si-en,.*', '^si-linux,.*', '^siemens,.*', '^sifive,.*', '^siflower,.*', '^sigma,.*', '^sii,.*', '^sil,.*', '^silabs,.*', '^silan,.*', '^silead,.*', '^silergy,.*', '^silex-insight,.*', '^siliconfile,.*', '^siliconmitus,.*', '^silvaco,.*', '^simtek,.*', '^sinlinx,.*', '^sinovoip,.*', '^sinowealth,.*', '^sipeed,.*', '^sirf,.*', '^sis,.*', '^sitronix,.*', '^skov,.*', '^skyworks,.*', '^smartlabs,.*', '^smartrg,.*', '^smi,.*', '^smsc,.*', '^snps,.*', '^sochip,.*', '^socionext,.*', '^solidrun,.*', '^solomon,.*', '^sony,.*', '^sophgo,.*', '^sourceparts,.*', '^spacemit,.*', '^spansion,.*', '^sparkfun,.*', '^spinalhdl,.*', '^sprd,.*', '^square,.*', '^ssi,.*', '^sst,.*', '^sstar,.*', '^st,.*', '^st-ericsson,.*', '^starfive,.*', '^starry,.*', '^startek,.*', '^starterkit,.*', '^ste,.*', '^stericsson,.*', '^storlink,.*', '^storm,.*', '^storopack,.*', '^summit,.*', '^sunchip,.*', '^sundance,.*', '^sunplus,.*', '^superm
+ icro,.*', '^swir,.*', '^syna,.*', '^synology,.*', '^synopsys,.*', '^tbs,.*', '^tbs-biometrics,.*', '^tcg,.*', '^tcl,.*', '^tcs,.*', '^tdo,.*', '^team-source-display,.*', '^technexion,.*', '^technologic,.*', '^techstar,.*', '^techwell,.*', '^teejet,.*', '^teltonika,.*', '^tempo,.*', '^terasic,.*', '^tesla,.*', '^test,.*', '^tfc,.*', '^thead,.*', '^thine,.*', '^thingyjp,.*', '^thundercomm,.*', '^thwc,.*', '^ti,.*', '^tianma,.*', '^tlm,.*', '^tmt,.*', '^topeet,.*', '^topic,.*', '^topland,.*', '^toppoly,.*', '^topwise,.*', '^toradex,.*', '^toshiba,.*', '^toumaz,.*', '^tpk,.*', '^tplink,.*', '^tpo,.*', '^tq,.*', '^transpeed,.*', '^traverse,.*', '^tronfy,.*', '^tronsmart,.*', '^truly,.*', '^tsd,.*', '^turing,.*', '^tyan,.*', '^tyhx,.*', '^u-blox,.*', '^u-boot,.*', '^ubnt,.*', '^ucrobotics,.*', '^udoo,.*', '^ufispace,.*', '^ugoos,.*', '^uni-t,.*', '^uniwest,.*', '^upisemi,.*', '^urt,.*', '^usi,.*', '^usr,.*', '^utoo,.*', '^v3,.*', '^vaisala,.*', '^vamrs,.*', '^variscite,.*', '^vdl,.*', '^v
+ ertexcom,.*', '^via,.*', '^vialab,.*', '^vicor,.*', '^videostrong,.*', '^virtio,.*', '^virtual,.*', '^vishay,.*', '^visionox,.*', '^vitesse,.*', '^vivante,.*', '^vivax,.*', '^vocore,.*', '^voipac,.*', '^voltafield,.*', '^vot,.*', '^vscom,.*', '^vxt,.*', '^wacom,.*', '^wanchanglong,.*', '^wand,.*', '^waveshare,.*', '^wd,.*', '^we,.*', '^welltech,.*', '^wetek,.*', '^wexler,.*', '^whwave,.*', '^wi2wi,.*', '^widora,.*', '^wiligear,.*', '^willsemi,.*', '^winbond,.*', '^wingtech,.*', '^winlink,.*', '^winstar,.*', '^wirelesstag,.*', '^wits,.*', '^wlf,.*', '^wm,.*', '^wobo,.*', '^wolfvision,.*', '^x-powers,.*', '^xen,.*', '^xes,.*', '^xiaomi,.*', '^xillybus,.*', '^xingbangda,.*', '^xinpeng,.*', '^xiphera,.*', '^xlnx,.*', '^xnano,.*', '^xunlong,.*', '^xylon,.*', '^yadro,.*', '^yamaha,.*', '^yes-optoelectronics,.*', '^yic,.*', '^yiming,.*', '^ylm,.*', '^yna,.*', '^yones-toptech,.*', '^ys,.*', '^ysoft,.*', '^zarlink,.*', '^zealz,.*', '^zeitec,.*', '^zidoo,.*', '^zii,.*', '^zinitix,.*', '^zkmag
+ ic,.*', '^zte,.*', '^zyxel,.*', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/vendor-prefixes.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250227162823.3585810-8-david@protonic.nl
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
