@@ -1,125 +1,129 @@
-Return-Path: <devicetree+bounces-151850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F346A47513
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 06:13:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03491A47535
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 06:29:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E4273AAE35
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 05:13:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFA87188BDC5
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 05:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F29FB1E8344;
-	Thu, 27 Feb 2025 05:13:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59B6F1FE45D;
+	Thu, 27 Feb 2025 05:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="rnXDS1IT"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="OoBSQrhW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 105011E833A;
-	Thu, 27 Feb 2025 05:13:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740633228; cv=none; b=JxlbTsacJxE2eVydeA02+8MbN8j892mdtbHO2J5Q1yNgLLv59I9jV3g1aMb9hDYbsQi0zk9Bp3k2mMjz4Ppwz2Z+dBTU+DF/LXGK09jzzQMDTXDE4HSO4rlexEntkGhaUxNwc5cDSCk2ZDb2MUknDcIf47gQ5JkYKCgRUtghppg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740633228; c=relaxed/simple;
-	bh=6mPELG30QvwhvudxXkhUdp/eArCX2wGHM95Gv1mHh8A=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=R+0ci8aOKfbt9xnPmMtQkDGWrGvjE4FaGnlc3isFxj197XXUlFEfD6p6HTsWxkCmV5uPOFkS6GVw3eHnEccH+lkzm8hE/lX1Xw+SzsbwNMgdPiDRjb172HlpYsMcJjlECiUyzegw1uUc9oHAMHnSRa/cqO/qztVrQmivchceOEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=rnXDS1IT; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FE131F5857;
+	Thu, 27 Feb 2025 05:29:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740634162; cv=pass; b=UPNOyuAEYMv0Kp6q0VRVmJX55rMfhHBSj2RIQvMnoV2iY2Ys09j/ng0NqIR8VGK1C7hIX5qSbNFHmqPWsudLKJe1A5D31Nq5/WLBzqLqABB0o7qUlu9wUfTWMG/KgHu/nfTkjQuuR+VsidlEWbHi6RoSKwdAwmQv6Uxty7pHgr8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740634162; c=relaxed/simple;
+	bh=u6WUzNVe+oGI9QR6zph5HdrXz/+gNvJJi3KrmDx0j4c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SMaSHd1Qxva6Usk6XFp2ziIyK8YJ/mIWuIIHhiTVKuf21iHtEXqTgMcff8exT5EGkY9icpAhGXTuux2NvLJLzP+26tgyrnYAeNiGm8EeesRtqEAjosHxym6SOKqBTK6gKFZcA4kkahZUMnrWXLhapg+XUED+4lOv1QUEHlb4Sgs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=OoBSQrhW; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1740634121; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=kGB5TYdGQHvNLua0/kmWtDME+WQqoe1SIhhD1BLc+g7QJGnfq6oxCqXKbzkZSB9u7unEbKEBp5TjEwQdwuvufo2F6vlyZ+2NNgvd37+L/V539zVaD8qwDC8VX8iqx/HYOfB8YiYLOOFb7p7WqjL2U3XENktPH+9l//vEtYnqCOQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1740634121; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Sv5NOsfY30eBqvAAr70WQss2GxI0o1NVlCRr5lXEPb0=; 
+	b=aA+xuVGDj1Pc5f4LEyN7NXsxtU4iPurKYzK79L0uKcXYaBXETcmfg43UDqzAIuATAXQyZifmjl+Ebh/lCzgne7PDUoydsD6vKjEE6B2yFekL5mcPklKow3zk8pJuQYVSxvNDszIYXZj593P7iikr0ho80OEjJ/0CHoUUEOohQ28=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
+	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740634121;
+	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=Sv5NOsfY30eBqvAAr70WQss2GxI0o1NVlCRr5lXEPb0=;
+	b=OoBSQrhWdMjD4flBgsQDpGxHoyTxzyO1EP1O06t6ewmNWyNnYI9aJw0/6oS8ufb3
+	0jOjy93lOfHvPeSUdL7+VPbRd/I1ET8TGmAim19BKDomEOfoR2eeqwEdjiR4ikkY9oY
+	4T137HZffA7B6YgGMFhkMkXwNMThHX/p4FgG/KAY=
+Received: by mx.zohomail.com with SMTPS id 1740634119692458.0582223925678;
+	Wed, 26 Feb 2025 21:28:39 -0800 (PST)
+Message-ID: <f0c3a16e-c4a2-4cd9-9afa-a21a975a45c9@collabora.com>
+Date: Thu, 27 Feb 2025 08:28:31 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1740633224;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jKlLjUCYt/7C/aUqa8V29qM6zcYxyzNvO3oU1xinEp8=;
-	b=rnXDS1ITz7j5pdL6P+8n7fNPA479Gk8yJfvWPtE2+/sE/I/iwGI2FIj0MSQFyctqGhw+xg
-	y/T92ZXJYsG9mjVaM9rAiZcANtjdpMkb55uSkqiIUWhh/WBUKyJ3wcK3ywnLWuzAfkkBsj
-	Tg5vHQfSKvJ+RsfnpNnVkAKv6srOknOdZg5lHdVk4SyyQEPketV3SZyjMBNhGZSnLGgTpA
-	V7+6iO8krA2trQOxU2frbjjxPzIMrjonr+T2a87mKMXzVWyttGhnltPsHpEPbnr6GWTog7
-	OGJD0CQO8MefGCjC2Ff1T5IX61kTxJUSaDPY7ijjXEdF2v2bF2aEQNbtvw7jJQ==
-Date: Thu, 27 Feb 2025 06:13:44 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: quentin.schulz@cherry.de, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, dse@thaumatec.com, Heiko Stuebner
- <heiko.stuebner@cherry.de>
-Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: add overlay for tiger-haikou
- video-demo adapter
-In-Reply-To: <20250226140942.3825223-4-heiko@sntech.de>
-References: <20250226140942.3825223-1-heiko@sntech.de>
- <20250226140942.3825223-4-heiko@sntech.de>
-Message-ID: <9cfe09a2dc108ddac16368687d43e88d@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 3/6] media: platform: synopsys: Add support for HDMI
+ input driver
+To: Diederik de Haas <didi.debian@cknow.org>,
+ Shreeya Patel <shreeya.patel@collabora.com>, Heiko Stuebner
+ <heiko@sntech.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Hans Verkuil <hverkuil@xs4all.nl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: kernel@collabora.com, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Tim Surber <me@timsurber.de>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+References: <20250225183058.607047-1-dmitry.osipenko@collabora.com>
+ <20250225183058.607047-4-dmitry.osipenko@collabora.com>
+ <D82H4F6J4V4V.2BLHVUVD3BVX9@cknow.org>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Content-Language: en-US
+In-Reply-To: <D82H4F6J4V4V.2BLHVUVD3BVX9@cknow.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-ZohoMailClient: External
 
-Hello Heiko,
+On 2/26/25 18:14, Diederik de Haas wrote:
+>> +config VIDEO_SYNOPSYS_HDMIRX_LOAD_DEFAULT_EDID
+>> +	bool "Load default EDID"
+>> +	depends on VIDEO_SYNOPSYS_HDMIRX
+>> +	help
+>> +	  Preload default EDID (Extended Display Identification Data).
+> I see some value in making explicit what you mean by EDID ...
+> 
+>> +	  EDID contains information about the capabilities of the display,
+>> +	  such as supported resolutions, refresh rates, and audio formats.
+> ... I do not think a/this Kconfig needs to explain it.
+> 
+>> +
+>> +	  Enabling this option is recommended for a non-production use-cases.
+> My guess is that it could be useful for development/debugging/CI work
+> which possibly do not have an actual device (monitor) which provides
+> actual EDID data? Is CI work the reason why you (initially) enabled it
+> in the defconfig?
+> But when you have an actual monitor (=production use-case?), you
+> (really) do not want it? Would it be harmless if 'still' enabled?
 
-On 2025-02-26 15:09, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@cherry.de>
-> 
-> This adds support for the video-demo-adapter DEVKIT ADDON CAM-TS-A01
-> (https://embedded.cherry.de/product/development-kit/) for the Haikou
-> devkit with Tiger RK3588 SoM.
-> 
-> The Video Demo adapter is an adapter connected to the fake PCIe slot
-> labeled "Video Connector" on the Haikou devkit.
-> 
-> It's main feature is a Leadtek DSI-display with touchscreen and a 
-> camera
-> (that is not supported yet). To drive these components a number of
-> additional regulators are grouped on the adapter as well as a PCA9670
-> gpio-expander to provide the needed additional gpio-lines.
-> 
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
+Disabling this option is only relevant if you're making a commercial
+product using this driver. It's a quite widespread issue that HDMI
+projectors utilize default EDID that comes from BSP driver they use,
+while a rebrand EDID should be used. Keeping this option enabled is
+harmless, but you don't want to do it in a product.
 
-The additions to the Makefile introduced in this patch are looking
-good to me, so please feel free to include
+For all other use-cases you would want to enable this option, otherwise
+driver won't be usable until you will load EDID from userspace.
 
-Reviewed-by: Dragan Simic <dsimic@manjaro.org> # Makefile
+Hans has strong opinion RE this option and wants to have it disabled by
+default.
 
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   5 +
->  .../rk3588-tiger-haikou-video-demo.dtso       | 153 ++++++++++++++++++
->  2 files changed, 158 insertions(+)
->  create mode 100644
-> arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou-video-demo.dtso
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile
-> b/arch/arm64/boot/dts/rockchip/Makefile
-> index db6017272ff1..4cddb5d2807d 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -158,6 +158,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtbo
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtbo
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou-video-demo.dtbo
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-toybrick-x0.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-turing-rk1.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-coolpi-4b.dtb
-> @@ -214,3 +215,7 @@ rk3588-rock-5b-pcie-ep-dtbs := rk3588-rock-5b.dtb \
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtb
->  rk3588-rock-5b-pcie-srns-dtbs := rk3588-rock-5b.dtb \
->  	rk3588-rock-5b-pcie-srns.dtbo
-> +
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou-video-demo.dtb
-> +rk3588-tiger-haikou-video-demo-dtbs := rk3588-tiger-haikou.dtb \
-> +	rk3588-tiger-haikou-video-demo.dtbo
+> Thus a more extensive description what this Kconfig item does and why
+> and when I want to enable it or not, seems more useful to me.
+
+Will update and expand the description with more clarification. Thanks
+for suggestion.
+
+-- 
+Best regards,
+Dmitry
 
