@@ -1,122 +1,148 @@
-Return-Path: <devicetree+bounces-152324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7A58A48AA0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 22:35:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6795A48AA4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 22:36:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08E18168138
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 21:34:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 544BD188D30C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 21:36:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC5B4270ED3;
-	Thu, 27 Feb 2025 21:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43E3E270EDE;
+	Thu, 27 Feb 2025 21:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="IIX2xnYo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gUOO1z1E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B493225A24
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 21:34:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4EC31A9B2A;
+	Thu, 27 Feb 2025 21:36:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740692072; cv=none; b=h/oQruD7l91zUCQ9kzM6PwKkbM1utQjDTM9bcYKI16o1DUUTe62tzcCGLOfww34TLPRkqag3RHKFEu7r+mA41uCB+1AJL+vDEV/+Iw+vSD/aesr3cIoSqIJTeOEv7kU+Hpd6SGO9pWBcv0pLPsaoVv44fIS9eoHeAUP+qb1MXEo=
+	t=1740692183; cv=none; b=Z7RW3pS+Lgl6CvyOaYeNIAqWrhC7oXv1eHR38eso6HEzbAjycLC9fXwE1u7oyH3oOLfakFC/TYJGYBxQVXhd3b4I2Zm9owB4CWy/r84DFCA1ch5Ovf2aQLHhJFEA5KwpKFr9b6rH1f7ffZbW+45ho4KNnmsrRaubJg/qGPiqiys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740692072; c=relaxed/simple;
-	bh=P3ACyaQHUzirRNHullK8FdIGPikRRL71HpgOmo4I/oo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oBUXSyI4I+IkPaafU0PlCbWyZegRVAYA19dt7rQ/3jxl9JCJVokVH2ojmI9Cus8azlOSxdo13yG8fulkgrotx8yTAV1hQY+tsMzmQNMVEOlG2rW/g/QpC9XWcZd2OEqxC8NNFoJmjqZf+W5bAFt662evm1YWBfrVSXYy499O8K0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=IIX2xnYo; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1153510382D2E;
-	Thu, 27 Feb 2025 22:34:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1740692067;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4Ei55hHQ021/CG2gC2SB779fvno3iOq9Gp5jc0y30Cw=;
-	b=IIX2xnYocnR0usuE0QUIEzYItei0KwpmpeAEr6qiBKQ3jFlE33i2A4FK+m+JvfMD8Gh2xX
-	7Pp+Udg0DydQYPPkhaKWu2yDeGZU4ccySMLCK+bCNw2YZv+HqCV0kROVqxvst5fzPUCpZ5
-	TQNR4ohdJr9bpK+6FTsxA5HERBDIHeXl92kh8qV3fwHq1C8Z3+E+jleNfm90CeceWxH5+e
-	QbHpz0MDqhsl4Ou2Mixv87hygr/yPYmbxTWZxhVcD/AIZ2HvDuGm/qGxFeXjfhsfxBmfs0
-	PzFDkrfr7faeRuAxs4BVySc/tp9WUUdMuSHOpNtkzpG4Ty5irIXcqBmhQXRy6w==
-Message-ID: <db903f36-e897-42ed-be46-f0b035303233@denx.de>
-Date: Thu, 27 Feb 2025 22:34:20 +0100
+	s=arc-20240116; t=1740692183; c=relaxed/simple;
+	bh=aT6LCpQh/DUk/4C5yjN5YoQwJQsJ0wDh8MPAiZ/0uSs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sUV8Xmk0ZI8FPbf7zb1O/sNScipQF5NZpTlPV5RD28UIyYJpzhqxGMqHoM7SyYxRsRCYneY8p/7fsfInMOWYahEAygsoBK0csIoE6IAaIFbp93xoWVjXypCP8vYVFVijor1MsXrk1nIQ4hVNnx+3R35LWt0CKS65GeREwcELEvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gUOO1z1E; arc=none smtp.client-ip=209.85.219.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6e8a2fd46ddso11196d6.1;
+        Thu, 27 Feb 2025 13:36:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740692180; x=1741296980; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:reply-to:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hHhkYScYoArvR/F5m50Hw9t1PzuS3cNkRvx1BFjMwv8=;
+        b=gUOO1z1E/WmMZ6Sv0rKm4tPGXcFaWEHTA+6q8Sx47AI5JdUfU3/55zPM8mSq70l2P8
+         BuO7nf76QbTwodNfV4TOxKLQqi49RpEChpX8Xiwy+40C1AIjco/UwYrxR04lAN+ruMlS
+         uWHqkf3vNpaXaeIApagiAUynRRJpiyhMw/E1212pCT5Drd51nRUh9F7TfeX8CyHUO8Z7
+         4n2IND2wXG6Api3Q228BL6nL+j9bZOo2pPut3oYfBO/LMbBV/Ezf7hJDm/oiD4gG92+W
+         NH0hqu30soGnLtuCYn4XcEjOUfrH68J1DmcxA5V47TtGaPQBy6/Y0IQ8bNR3N0NgfVs9
+         hsLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740692180; x=1741296980;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:reply-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hHhkYScYoArvR/F5m50Hw9t1PzuS3cNkRvx1BFjMwv8=;
+        b=GTPVOAQR2pEo9K6UUhEL1oOfpX4TEuD2Iey5zKo0sRJZ8buQJHpsytNv8CHa13BTEJ
+         bJP+N4ZWP/3iOq//si2ZjwNP1zYTdPDnvs3jesZipBHOck4NXTGOjZGmDFSUYNu4VtLe
+         Ld26zFI7baHhUy41CYthfXqAxH98a9p3nSG/Imzu3Eii+/izB8OC6pblzKOs20g9Gym9
+         2qT+e3iGDgYCNxhwpkfbWTNKFIGmDAzkFTjL/I2zrGaQrYOXntamGTb0m0m4HW3UwtW+
+         V9F4Vn2WKer8x5zv0e+/eT1DZCrN9pGlhJp6k+lFjAToCJwMVBj0r7aHj9weKTBdlfSs
+         waNg==
+X-Forwarded-Encrypted: i=1; AJvYcCVkUSrUCgVrTdjkd43B2rUOBMjaH+pl8JI3JrvCis0O36JOgLa7U7TmQrFpvsJxQzqACcRY3DtJZPtk@vger.kernel.org, AJvYcCXTfCLj8/JQBhP4pEtnwpDdLuzlsS+hnYb2mDf05qsZT7K1HQybVts4uYuhr+xoLOLJ6F1qEi37jGLk@vger.kernel.org, AJvYcCXkbrz3miSpjbqLNsQDutQa3s6EbyLwRdxz3LRDCLXjE9sx+q+eQh+6UVfZVpWserC0W5Ey9qmiQGl4O978@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqUn0QwBzi+34uhsL1gEu0e81mTYq18W1MpLvQvrUOKmlGbSZP
+	DJTG0lsnzZY8JPAwac+O0HMKl2EUfTiFe0IPD5JxLtt0Sruu9Mxa
+X-Gm-Gg: ASbGncsBGx9F9YKMm6GtXFKM3/oYvCuB4lanSK4SqiCZOJojGtWnwvlskKMtWW43XtC
+	qQG8sxL7lNrQK8+6+Wum8cCBVXy38+amqzBIZ4Lp3v9ttDe/B1q++xra/r0/f/XQwOXoNB9cz21
+	lkQHw1FpTzMCMjdF+EzLqg0ScxCgDTyL80F7tegdSxWTmGm+1+o+zhSfKOonMxym64dXhFO1+vh
+	XLvMeBnWlkL22EyjQguVah1Aeh/R1kNq+/lDapDbcn94OB6pFSYm5X80HHg4Kenk/ob8pKk+5kL
+	Kor2lsTXHx4u09o2ayv5PY95AF1h2+yDbLo6LQaroZhqEVE=
+X-Google-Smtp-Source: AGHT+IHR/OUOc/tEgpDCPTt9nKJHRGg4bGS409xWq/BFnfnsG9F5vT8dzLfgr1Z6oagPe3mr7gB/Zg==
+X-Received: by 2002:ad4:596c:0:b0:6e6:5bd5:f3b5 with SMTP id 6a1803df08f44-6e8a0da79bcmr5186576d6.8.1740692180311;
+        Thu, 27 Feb 2025 13:36:20 -0800 (PST)
+Received: from JSANTO12-L01.ad.analog.com ([191.255.131.70])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e897653799sm14308416d6.33.2025.02.27.13.36.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Feb 2025 13:36:19 -0800 (PST)
+Date: Thu, 27 Feb 2025 18:36:15 -0300
+From: Jonathan Santos <jonath4nns@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Jonathan Santos <Jonathan.Santos@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>, lars@metafoo.de,
+	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com,
+	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH RESEND v3 12/17] iio: adc: ad7768-1: Add GPIO controller
+ support
+Message-ID: <Z8DazwTguF/gfKW1@JSANTO12-L01.ad.analog.com>
+Reply-To: 7c5e2364-038b-48a8-ad67-3cf0f2fd2be3@baylibre.com
+References: <cover.1739368121.git.Jonathan.Santos@analog.com>
+ <62cb9786b02adde118db9349617cb796585ceb02.1739368121.git.Jonathan.Santos@analog.com>
+ <CACRpkdaSY7WH191makzPcZqLd-vBsC_f6yagWzBa65MrC+pjKA@mail.gmail.com>
+ <7c5e2364-038b-48a8-ad67-3cf0f2fd2be3@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 9/9] arm64: dts: imx95: Describe Mali G310 GPU
-To: Frank Li <Frank.li@nxp.com>,
- Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: linux-arm-kernel@lists.infradead.org,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev
-References: <20250227170012.124768-1-marex@denx.de>
- <20250227170012.124768-10-marex@denx.de>
- <Z8CkSUry5puMu6Mx@lizhi-Precision-Tower-5810>
- <d41c9cf5-9ec4-4b9a-b281-653873fb8df0@denx.de>
- <Z8DY14NJYXjwKz7Z@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <Z8DY14NJYXjwKz7Z@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7c5e2364-038b-48a8-ad67-3cf0f2fd2be3@baylibre.com>
 
-On 2/27/25 10:27 PM, Frank Li wrote:
-
-[...]
-
->>>> +		gpu: gpu@4d900000 {
->>>> +			compatible = "fsl,imx95-mali", "arm,mali-valhall-csf";
->>>> +			reg = <0 0x4d900000 0 0x480000>;
->>>> +			clocks = <&scmi_clk IMX95_CLK_GPU>;
->>>> +			clock-names = "core";
->>>> +			interrupts = <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>,
->>>> +				     <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
->>>> +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>;
->>>> +			interrupt-names = "gpu", "job", "mmu";
->>>> +			mali-supply = <&gpu_fixed_reg>;
->>>> +			operating-points-v2 = <&gpu_opp_table>;
->>>> +			power-domains = <&scmi_devpd IMX95_PD_GPU>, <&scmi_perf IMX95_PERF_GPU>;
->>>> +			power-domain-names = "mix", "perf";
->>>> +			resets = <&gpu_blk_ctrl 0>;
->>>> +			#cooling-cells = <2>;
->>>> +			dynamic-power-coefficient = <1013>;
->>>> +			status = "disabled";
->>>
->>> GPU is internal module, which have not much dependence with other module
->>> such as pinmux. why not default status is "disabled". Supposed gpu driver
->>> will turn off clock and power if not used.
->> My thinking was that there are MX95 SoC with GPU fused off, hence it is
->> better to keep the GPU disabled in DT by default. But I can also keep it
->> enabled and the few boards which do not have MX95 SoC with GPU can
->> explicitly disable it in board DT.
->>
->> What do you think ?
+On 02/20, David Lechner wrote:
+> On 2/19/25 2:34 PM, Linus Walleij wrote:
+> > Hi Jonathan/Sergiu,
+> > 
+> > thanks for your patch!
+> > 
+> > On Wed, Feb 12, 2025 at 7:20 PM Jonathan Santos
+> > <Jonathan.Santos@analog.com> wrote:
+> > 
+> >> From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> >>
+> >> The AD7768-1 has the ability to control other local hardware (such as gain
+> >> stages),to power down other blocks in the signal chain, or read local
+> >> status signals over the SPI interface.
+> >>
+> >> This change exports the AD7768-1's four gpios and makes them accessible
+> >> at an upper layer.
+> >>
+> >> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> >> Co-developed-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> >> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> > 
+> > Is it not possible to use the gpio regmap library in this driver
+> > like we do in drivers/iio/addac/stx104.c?
+> > 
+> > It cuts down the code size of simple GPIO chips on random
+> > chips quite a lot.
+> > 
+> > Yours,
+> > Linus Walleij
 > 
-> GPU Fuse off should use access-control, see thread
-> https://lore.kernel.org/imx/20250207120213.GD14860@localhost.localdomain/
-Did that thread ever go anywhere ? It seems there is no real conclusion, 
-is there ? +Cc Alex .
+> I think the answer is "no" since we need to hold a conditional lock
+> while accessing registers. Namely: iio_device_claim_direct_mode()/
+> iio_device_release_direct_mode().
+> 
+> Unless we add some extra stuff to the gpio regmap implementation to
+> add optional callbacks to call these. Which could be worth it given
+> that quite a few ADCs provide GPIOs like this.
+
+Since this patch set is quite large already, is it worth to do this
+here? if you say it is necessary, i can try this.
+
+> 
 
