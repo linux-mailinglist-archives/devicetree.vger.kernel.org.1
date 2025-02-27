@@ -1,124 +1,171 @@
-Return-Path: <devicetree+bounces-151926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8A8A4783D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:50:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0A00A4783E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 09:51:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A3E216E79D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 08:50:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B2CE171741
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 08:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E7E227E80;
-	Thu, 27 Feb 2025 08:50:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF37522686F;
+	Thu, 27 Feb 2025 08:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tsrDmHOq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JfrG/Vr4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 456A2225403
-	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 08:50:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C38226551;
+	Thu, 27 Feb 2025 08:50:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740646219; cv=none; b=ndhPcQLHaOdiepQ3AXWMgE+c5JhsOcLY1pke1aMsj0HU+o/6Q1yR+StyXDMVa31LK8Sj/z5i7l2QYmNo90E31Kv8S/CZh6GYIqANCVuz1psY7/JRzD00ssL90ko4S8vG7MHsFiV0SrAXJXG5gHs4OqkeGaovTP7r7XZy7uO0Gus=
+	t=1740646227; cv=none; b=YnO+WglicHoRED3/BOvSOvgWIOIs3qX0dcIaeO0/NVdf83f84SdDT3EF0jig7rx5i8XfolcU7lTxuvcTkCPWmp1veqmM1+m2XI3PA+SToc+8TrW+X7H4Re7zwqZwisHEpgCofLZs3m1dTQINfQShk5telRtC9J1r6/zhXX+vQMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740646219; c=relaxed/simple;
-	bh=uynasPwDdscPLERoEl2jRP9OFCsreNV2gINdXwEpEFk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=WAv/mr5kfX2J3xKUs38xOjgZUhF1PKODy3vRn+1QWPmW1d0ZvLjeyUwgojvsWNIKCMS+9xzeMw19TrKuXMbzZX0ckOpAplMr36fVcl439VGK4B9o+MOKzhbiT3QaiO74N8k61uXfoY2HQys5dAsczD7fWySQHb0CNCVEThLXNBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tsrDmHOq; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-38f5fc33602so454828f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 00:50:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740646216; x=1741251016; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ks/IBwEcAklNTaxJVZ+LwL3mjgTmoZqvlq/i0v1O5/Q=;
-        b=tsrDmHOqesXrqelYX9H5/bSxH05AIppaFPG0KGQJ1kiUCYdoEuPs0zyhcvQNHeN0yT
-         AYnMEkSnxC9KdodRXRFaTWQyY56DVCH8fw7tq8qH0uCVWFqYJe20Iw/h0jAlnWek2p0j
-         VYkDAsBtMHqCQmSbWDQxTBm59Q8KOdsxfEZsP8wSKwIlz0Q4gbrbWjGeAGIAPm4wYjqw
-         3ooDnwS/HQ/agq332TySbCiFSzvLUmNHzj9jrT3T6sF7V3bMUB+UXftP57QtzuqAutI7
-         Bncx0kumLx4VB7CcXPogBmMyxAwMplB6AHeiTcKJoiHp247ZWMH0cLYVKaSpsC+/nX2D
-         gWoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740646216; x=1741251016;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ks/IBwEcAklNTaxJVZ+LwL3mjgTmoZqvlq/i0v1O5/Q=;
-        b=M18r2Uv6rRvN60P8akOOkHodR5BSj7Or4Qa84dpu2TwkPMXX0EgmNSI8h/mQ6EGt96
-         tHMiptdyuMkkGffbHh3aoVyif56YsV47AABJR9+CJkfIYhsOf+daRvKj0zAOB6m0FIHL
-         wMPEQiiwkM7Y08I72ur2flc5BDAVyX7cdvmyccCc4pBBGntbdJl4BCIWJTLr/f+yA0dM
-         aGvvErS+fU+Q9ZTkbCU6Pe1Ci6N0hjMamOTvy57FYMPtbVZU2rehHpMxt7v3drNwJC1U
-         GRDEa+JAjk4Ix2HudwXZpKzrfX04UiZz8DOJi3apzgsA1GGyJzgnN9nmNv12DU7IAxUW
-         rfMA==
-X-Forwarded-Encrypted: i=1; AJvYcCU+Lap03wEzZRDUDu7dnuL5WFl5PgErpLR+HhOiOLDFlmI/EpNW/ct/a7TWrBHO7y5bRh8r4AQC+Oxu@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywj4Ea6Wv0gpLJCKJj+bZpbAPPyzyelEvfu0MLPU+vuFM7y+sfs
-	YA7Toi0ilN+uM9UNrsnaeaES59Qrt0ZFIYlVc4/CLy3XB8UxjS6n57vjC/hhdx8=
-X-Gm-Gg: ASbGncvsoAAMVGDPCXorq4/8OlQLf7am/OhlqAteGTCChnzRQS3r9icbb7o6sKh+afd
-	sYzdH6/RUxHiC0CtJ/Q92EU2BE1Xt99UfuKCrnhHnPElJcyeRi2/8qRdOgQUnYM1/NtbC8OVOVy
-	iCEdyjwYLASysuZXjU8siZiGkPP5w9RfcSqsuTqxg4YSm92A/W9AGZWagOXAs1LbtjSClpDOJkT
-	T4VVMu4BwJrpPG2nss3bwXtWF4OKYowso7JNESFQf2kDta6E5cJ3SKaJmdzZ/pHVslN7EZFbmP0
-	lhiMyaZWFjGXSbN8oPTOPyPTgYskqPNpkPr8M9fXixQfZXE=
-X-Google-Smtp-Source: AGHT+IFoYeXJ4I6jLF2jC03Em3Oo6roBaewn/6DI8FuDdaLJ1uKLliib4X2jgX4JOOl4swbvnoBEew==
-X-Received: by 2002:a05:6000:1a86:b0:390:dfe9:1881 with SMTP id ffacd0b85a97d-390e18d23bcmr1917682f8f.27.1740646216574;
-        Thu, 27 Feb 2025 00:50:16 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43aba57145esm46894535e9.30.2025.02.27.00.50.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Feb 2025 00:50:16 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: quic_jesszhan@quicinc.com, maarten.lankhorst@linux.intel.com, 
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- andersson@kernel.org, konradybcio@kernel.org, robdclark@gmail.com, 
- quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org, sean@poorly.run, 
- marijn.suijten@somainline.org, jonathan@marek.ca, fekz115@gmail.com, 
- Danila Tikhonov <danila@jiaxyga.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- freedreno@lists.freedesktop.org, linux@mainlining.org, 
- ~postmarketos/upstreaming@lists.sr.ht
-In-Reply-To: <20250217222431.82522-1-danila@jiaxyga.com>
-References: <20250217222431.82522-1-danila@jiaxyga.com>
-Subject: Re: (subset) [PATCH v2 0/4] Add and enable the panel
-Message-Id: <174064621558.3904283.15224037666170321960.b4-ty@linaro.org>
-Date: Thu, 27 Feb 2025 09:50:15 +0100
+	s=arc-20240116; t=1740646227; c=relaxed/simple;
+	bh=EE3knrHH8YT3ZkzHF6A+tlFuX23SQHUMMiwsbGXbq+c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dv9+1YWlXVFG8vWnaLO4kmUbZ3A91nNRmb2UjUAGrmmR/F8IYw4W6d1l4PpVntq13/vgtYYNvJgQU45kfeSmmpy5a45K+F89adbQGH3RCCIzlXh/UKqp2kQNQxNAmFuMtGxbq7gYYaX2yUTw/BbcFV6ZkUBAfv4TrBOtQ+06sPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JfrG/Vr4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19F10C4CEDD;
+	Thu, 27 Feb 2025 08:50:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740646227;
+	bh=EE3knrHH8YT3ZkzHF6A+tlFuX23SQHUMMiwsbGXbq+c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JfrG/Vr40qTIY21lVpJ4sUtXo/+HrBEhlXEK+jtOK2rQ28R7KRABEh4iej9OIYaEe
+	 Xw3SQegimknFRuuE8ls1DjHg1agt/IytsqPUVQ6SFEiW2RGHCVBy7GP7e3u+j2S00e
+	 evqnHZFaWiEeoFNvtDeB+b6v3EeydfwPQmJkZODct3nB54D+ZIlXrfJ0HGgZS8zx67
+	 Kn1YPsXB/YH9sf3mMEXTvLYy55uM7ZG0YGjOPui0Pxz7uxZGAzS/Jpl60eYg2YlOaU
+	 H4spQcj+fSJ8ewu1cONdhPSBntYrJp3LesznJQ6GmITs7g7oVtG7uUmpucD8Omtezy
+	 VI9qsCnYmJVQw==
+Date: Thu, 27 Feb 2025 09:50:23 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Rob Herring <robh@kernel.org>, 
+	Cedric Encarnacion <cedricjustine.encarnacion@analog.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: pmbus: add lt3074
+Message-ID: <20250227-sceptical-phenomenal-wolverine-56e3cf@krzk-bin>
+References: <20250225-upstream-lt3074-v2-0-18ad10ba542e@analog.com>
+ <20250225-upstream-lt3074-v2-1-18ad10ba542e@analog.com>
+ <20250226-gentle-spicy-jacamar-2dd36a@krzk-bin>
+ <20250226145931.GA2314060-robh@kernel.org>
+ <3f7b031d-7b83-4a00-996d-aabb26278b67@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <3f7b031d-7b83-4a00-996d-aabb26278b67@roeck-us.net>
 
-Hi,
-
-On Tue, 18 Feb 2025 01:24:27 +0300, Danila Tikhonov wrote:
-> This patch series adds support for the Visionox RM692E5 panel, which is
-> used on the Nothing Phone (1) and then adds it to the DTS.
+On Wed, Feb 26, 2025 at 11:17:48AM -0800, Guenter Roeck wrote:
+> On 2/26/25 06:59, Rob Herring wrote:
+> > On Wed, Feb 26, 2025 at 09:20:40AM +0100, Krzysztof Kozlowski wrote:
+> > > On Tue, Feb 25, 2025 at 09:01:13PM +0800, Cedric Encarnacion wrote:
+> > > > Add Analog Devices LT3074 Ultralow Noise, High PSRR Dropout Linear
+> > > > Regulator.
+> > > > 
+> > > > Signed-off-by: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+> > > > ---
+> > > >   .../bindings/hwmon/pmbus/adi,lt3074.yaml           | 64 ++++++++++++++++++++++
+> > > >   MAINTAINERS                                        |  7 +++
+> > > >   2 files changed, 71 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/adi,lt3074.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/adi,lt3074.yaml
+> > > > new file mode 100644
+> > > > index 0000000000000000000000000000000000000000..714426fd655a8daa96e15e1f789743f36001ac7a
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/adi,lt3074.yaml
+> > > > @@ -0,0 +1,64 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/hwmon/pmbus/adi,lt3074.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Analog Devices LT3074 voltage regulator
+> > > > +
+> > > > +maintainers:
+> > > > +  - Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+> > > > +
+> > > > +description: |
+> > > > +  The LT3074 is a low voltage, ultra-low noise and ultra-fast transient
+> > > > +  response linear regulator. It allows telemetry for input/output voltage,
+> > > > +  output current and temperature through the PMBus serial interface.
+> > > > +
+> > > > +  Datasheet:
+> > > > +    https://www.analog.com/en/products/lt3074.html
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      - adi,lt3074
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  regulators:
+> > > > +    type: object
+> > > > +    description: |
+> > > > +      list of regulators provided by this controller.
+> > > 
+> > > You have only one regulator, so drop the "regulators". vout could be
+> > > here, but since you do not have any other resources, I doubt it stands
+> > > on its own either. This is even visible in your DTS - you named the
+> > > device as regulator, so logically this is the regulator. Regulator does
+> > > not have regulators (otherwise they could also have regulators... so
+> > > triple regulator).
+> > > 
+> > > hwmon code might need some changes, but that's not really relevant for
+> > > proper hardware description.
+> > 
+> > Normally, I would agree, but it seems generic pmbus code expects this
+> > structure. This just came up with changing another binding maintained by
+> > 'Not Me' to follow this structure. We're stuck with the existing way, so
+> > I don't know that it is worth supporting 2 ways forever. OTOH, is it
+> > guaranteed that these devices will only ever be pmbus devices or that
+> > other regulator devices which are not handled as pmbus devices currently
+> > will be in the future. If so, more flexibility in the bindings will be
+> > needed.
+> > 
 > 
-> Before integrating the panel into the DTS, we update the DSI code to
-> allow bits-per-component (bpc) values of 10 and 12, since the Visionox
-> RM692E5 panel operates at 10 bpc.
-> 
-> [...]
+> I would appreciate if someone would explain to me what the problems with
+> the current PMBus code actually are. I have seen several comments claiming
 
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
+Not exactly a problem but missing feature. pmbus code (at least one of
+macros I looked at) expects regulator node and some sort of child of it
+(vout), while such simple devices should be:
 
-[1/4] dt-bindings: display: panel: Add Visionox RM692E5
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/383c772f23869df7a31dea333ec92c9e442431d8
-[2/4] drm/panel: Add Visionox RM692E5 panel driver
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/7cb3274341bfa5977f3c90503b632986a82705fa
+regulator {
+	compatible = "adi,lt3074";
+	regulator-name = "vout";
+	regulator-min-microvolt = "100000";
+	regulator-max-microvolt = "100000";
+};
 
--- 
-Neil
+so without any of regulators and regulators/vout subnodes.
+
+> that the code should be changed, but I have no idea what the expected changes
+> actually are or, in other words, what the PMBus code should be doing
+> differently.
+
+I did not investigate much into pmbus code, but this might be as simple
+as accepting arguments for .of_match and .regulators_node and then
+accepting NULLs as them as well. Or a new macro which assigns NULLs
+there.
+
+Regulator core handles .regulators_node=NULL already.
+
+Best regards,
+Krzysztof
 
 
