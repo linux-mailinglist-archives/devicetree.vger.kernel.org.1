@@ -1,202 +1,200 @@
-Return-Path: <devicetree+bounces-152143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2687AA4830F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 16:34:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E56EA48343
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 16:40:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C83B7A7185
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 15:33:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5CBA188F141
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 15:40:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E670F25F7BB;
-	Thu, 27 Feb 2025 15:34:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B96626D5BD;
+	Thu, 27 Feb 2025 15:40:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XmUnHW2M"
+	dkim=pass (1024-bit key) header.d=phytecmesstechnikgmbh.onmicrosoft.com header.i=@phytecmesstechnikgmbh.onmicrosoft.com header.b="f2Qi5sYu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2106.outbound.protection.outlook.com [40.107.249.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02EA625F790;
-	Thu, 27 Feb 2025 15:34:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740670479; cv=none; b=GBkRG5tcftJLjOIVx1qURLlSAL9Vn3fDPPAOVMmJzVqbGSsAPY+jwlfiXnGXMeaX4q89uWKljy4/vZVGYmgR0Yj3uu9CigTt5YCFi09iPgeA4a+J7+dEHPFC/E4u4m52iymSDCEKv7xYqdpoDSWhwTlCIdYjdccafKGyAngkUTQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740670479; c=relaxed/simple;
-	bh=DQnmkPIeP+h+BKqiIj4ecZCJn0/Q8dv3DMXJ+8RRyTo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gGkZYiDYEw6XZzJUjO1WSEghh+SxNR32b1oS49YLjAJH/NAPVYg2N09zO0IDXKI6FfeCy0kbWboYU7nUGbn1jimVOBrlI2AksO6kC8XyLciXSm24gCqBzO5V+/KBtzDuINMoDZNyvIm70LB1k72/WzZQjXWczKTZON7pbBIb214=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XmUnHW2M; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e05717755bso1493462a12.0;
-        Thu, 27 Feb 2025 07:34:37 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1653926B2D5;
+	Thu, 27 Feb 2025 15:40:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.106
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740670823; cv=fail; b=KXYsb8uV0ha/WEEIg9DL36H99WZxrPXLSnGwAfcPOoU4KVH5znWIAlEvZgoKfmHLpKc+/mmTT/TZsfuH5j2YzJXgDEOO5r2B+3bVnqgycBsJSMt8BVD3O+TWlC5q0Glb0K3m+PXOXf5Aw9t/f3Wxrxq8AK9OhS9zc16P2xl4KfU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740670823; c=relaxed/simple;
+	bh=opRf9PrYdEmYG5FgxmfevjKxowZ5JmUOGBm/DjZVrbA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=um07ssU0wYZDhlTkbfv89OCjzgz7QM5BPDVHdlWMLkoAdMpXCVAuRsXGN9a5SksUb7Ma3n0ENHUkmq/nd8Lv1132YRpeOa51ZYk60MfG2Rs6a8kCFDxv1Ooi6XxX5nSpFvJjlHKcz4oykfxm3vTXt4UdHxSFhs8z8/pT+49oMd8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.fr; spf=pass smtp.mailfrom=phytec.fr; dkim=pass (1024-bit key) header.d=phytecmesstechnikgmbh.onmicrosoft.com header.i=@phytecmesstechnikgmbh.onmicrosoft.com header.b=f2Qi5sYu; arc=fail smtp.client-ip=40.107.249.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.fr
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YdyiZ3NUjMOKvOGQvFTY7TJNnO4vF/xQ2kS2ZrkLhxMgcJj+ewoFOuYGPNutie9Z5TH538ABo5EO28gLyu575OFGsCNCsNhblUOHCjmBUVAkC4hTIFP/Pe7ImcPkgIvkmYHzijcji6u9xPgZW+pVnnWvRx3aIB9vAyrTDCT5vjExnxjHwRUJ2lZgHTv9Nb76ldFJ105j3+brTq+ceA+JEfxwJI7ZL2zBkJ38YD7Usr20uwOeGcWQW5Uyd2vb0T2OsIOiWmBgGAcdnTgXmaTMHCbhRI4G8TMcrBsctTrygLn7zwsMXcfpzRfd50mTyMd8rZeo9fjM4NQgPybKmWkrgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5PyA+aHoTSAY9fZ+lXdh3rZpa35IYxkJ0GJ/vezDlDA=;
+ b=u8HU/EKLdq9U175kdUFiaIWb4wcaLalWz9pG/ACe7xJbpp82O2Tq+dcH2AXbYixu7kKW8Jjd1kq+zxEJwznw7epZmyqToJ5OzQkCxDkBVpnGfITTNlG5syNNcebSDsfMjZROuuK47diHjGfvdwLLVhMO4yY/b3g62vn+pb2OLCx3DvI+7cW72+38rfVMM4R7AQEwC7qEG3YZP2CIYGQpZ49eKnYNctBZJ8kG16Iwa3Tqple8fyK7Acos0870/SbIvNRjkygxU6VbaYtFoOYGSVlNgDBHON8i0Sw6sGdStXG58/mUJ5WcdkSCThjD1xWgJoNKNlC4+x9QaRO38E5fkw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 91.26.50.189) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=phytec.fr;
+ dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=phytec.fr; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740670476; x=1741275276; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ewW7lGzv9EKdBq0S1qPivXW2ykucSSmJzJOK5QaGs54=;
-        b=XmUnHW2M0SVadVvfdCgsiXCOSkhlGm76BJ/VO8nbZVlGv1u0zrg+gUCKdXhdlOtth0
-         iWs4ynGV8vu7u1ugB6nL+YQOBJxUv/UPBGk8XGgH5DaN/yLTrAcaYTpXdqhFA0kdIqsG
-         2Nd1l8+7Oou19iYZsxzJS0xaZSAXtt1UaFZmbWGlTQJRc5HApr29ldi9FGotoWiMgtMA
-         miLwEQLSvbokZpskr/e1ACbeBwn69UoxaXFV2t5RFzHI08je9JNF7mm4TZVdzgT9lPqP
-         iRapOx8cTDCuI8XS+TMEfdpMvxsAji27cbHeZltq/1Y2YB7K6CjeR8NDtMlINbKXfOsO
-         itaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740670476; x=1741275276;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ewW7lGzv9EKdBq0S1qPivXW2ykucSSmJzJOK5QaGs54=;
-        b=JGRCDP/mKSYlNrXwyyGbSa/IqbAHDwxmI+bkc5PyJyP5hf7Moz2ffSpCF1x1CVZ6va
-         zmYaKBiPKLsKTQjYopyYJGJaqTZrJ9OKbGTerm4KWhv7m7Xs/vokjNLyrWrgldALTr4U
-         mBwC+SS5HSQU9cuCTIQGYfB0Re/quhcXd8KrAfxYP9YxmhV0iVCHDszcoLaa4Al/zA4h
-         CE+FOF5lHeeN4Xqm/KJ1isS/xIIGL7BoN3OE1guIaGBoZUT6RrZ55q5DyiFyutiTWTiz
-         8yvwY1J6XMaFp9oQBAWOPFHqogZiyw4UONPP590pHjkEO+so3p/puwzVPKHmkSJ40sD5
-         5anw==
-X-Forwarded-Encrypted: i=1; AJvYcCVnBsE9/1eMmQePu+3MXf+Fluuxh67t1VSvFl8kQJTAS/sWm7Tpq0wQ9qpXcQ00czFZDkDZ4rNBksQD@vger.kernel.org, AJvYcCXPaIarWsPTjsbd4TULP9/eie2lclRi/X5KA6AR4jpSFyRKo70Ju7Po045RySHOD7HfC060z75y/H0bV3Q=@vger.kernel.org, AJvYcCXydoK30g7JzDbIfgvoyA7Iwc7cQfmQ61ZxucA07n/4+v6Te7Rk5/8s19Xbenlcftye5TTNp6xAZHGz32gb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1W7kYPtjvI9R3h0YUmGq5JYAS0XQwWh0LXCKOuknJWct7W4jf
-	K9+7MlnMPMHUtJBHySunc+8HR0QFWn31h9+qJ58T760te0EYi8kI
-X-Gm-Gg: ASbGncu5iKhrsyhq8ORi7uTN7zjl105gFxcK0lZXNDBSA180jcKkzUOaW8LqxPh2zT9
-	/ZfzUmQq/M0uOLtR6mDM3e2WbkCUvmCnjFYJ3UwoDdriu7HRl0vX1VvW8wQrN++quef5ywTfMek
-	roMy3vJwYyMssW1SBUR62Edc0qFPxQCWuAuj7vFwQYVbWlCQcQbihtdyt9HrF3aNMvHb+oyRX1b
-	yKltGxvbU89gJxMbiFB/Ed+jQm03hpOZpsE9v3az23QrOf9XnKrFreEUYnQhZnon+2qwBhbbb+2
-	LU9mZsx+6JDjz/BDLywC2vMfr/sKztSEXCnBPk3z2+Ue1byvymHYZ1mabFGEaYhBnTQ=
-X-Google-Smtp-Source: AGHT+IGmrWhI9xTnk7myNMS3P04pOgJ/Z6LmnusFuC663a0RitJlSrAiSvhowBBSOpwB/vXXwAkdtA==
-X-Received: by 2002:a17:907:3d8f:b0:abb:db78:a24e with SMTP id a640c23a62f3a-abed0d3b4camr1447316766b.23.1740670476128;
-        Thu, 27 Feb 2025 07:34:36 -0800 (PST)
-Received: from ernest.hoecke-nb (31-10-206-125.static.upc.ch. [31.10.206.125])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abf0c75ff0asm138782866b.159.2025.02.27.07.34.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Feb 2025 07:34:35 -0800 (PST)
-Date: Thu, 27 Feb 2025 16:34:34 +0100
-From: Ernest Van Hoecke <ernestvanhoecke@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Francesco Dolcini <francesco@dolcini.it>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	patches@opensource.cirrus.com, Ernest Van Hoecke <ernest.vanhoecke@toradex.com>, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Francesco Dolcini <francesco.dolcini@toradex.com>, Charles Keepax <ckeepax@opensource.cirrus.com>
-Subject: Re: [PATCH v2 3/5] ASoC: dt-bindings: wm8904: Add DMIC, GPIO, MIC
- and EQ support
-Message-ID: <er4bcixggriqp6idl6xmr7bjetf5kkhadyeplkbyxvrffuiknc@ews752x4ugh7>
-References: <20250224155500.52462-1-francesco@dolcini.it>
- <20250224155500.52462-4-francesco@dolcini.it>
- <20250225-delicate-tortoise-of-management-e43fa2@krzk-bin>
+ d=phytecmesstechnikgmbh.onmicrosoft.com;
+ s=selector1-phytecmesstechnikgmbh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5PyA+aHoTSAY9fZ+lXdh3rZpa35IYxkJ0GJ/vezDlDA=;
+ b=f2Qi5sYuikCWmlbIhUXUWhAjaNImJprbNuPNia3IFv36BT3+erQMciFKfDKMIlVrgUXoVp9LpNvkM/BYk5yCFBYICi4nVeGc7iVEXkcsJp5/1iq6ijwxxfjubfNx9AdMLxQj7eyl411M9AVEJwP+vsyE6qpHujWddlbEUHBNeYM=
+Received: from AS4PR10CA0016.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5d8::8)
+ by DB9P195MB2104.EURP195.PROD.OUTLOOK.COM (2603:10a6:10:3db::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.18; Thu, 27 Feb
+ 2025 15:40:13 +0000
+Received: from AM2PEPF0001C708.eurprd05.prod.outlook.com
+ (2603:10a6:20b:5d8:cafe::f7) by AS4PR10CA0016.outlook.office365.com
+ (2603:10a6:20b:5d8::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8489.21 via Frontend Transport; Thu,
+ 27 Feb 2025 15:40:13 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 91.26.50.189)
+ smtp.mailfrom=phytec.fr; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=phytec.fr;
+Received-SPF: Fail (protection.outlook.com: domain of phytec.fr does not
+ designate 91.26.50.189 as permitted sender) receiver=protection.outlook.com;
+ client-ip=91.26.50.189; helo=Diagnostix.phytec.de;
+Received: from Diagnostix.phytec.de (91.26.50.189) by
+ AM2PEPF0001C708.mail.protection.outlook.com (10.167.16.196) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8489.16 via Frontend Transport; Thu, 27 Feb 2025 15:40:13 +0000
+Received: from Florix.phytec.de (172.25.0.13) by Diagnostix.phytec.de
+ (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Thu, 27 Feb
+ 2025 16:40:13 +0100
+Received: from Florix.phytec.de (172.25.0.13) by Florix.phytec.de
+ (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Thu, 27 Feb
+ 2025 16:40:13 +0100
+Received: from idefix.phytec.de (172.25.0.20) by mailrelayint.phytec.de
+ (172.25.0.13) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Thu, 27 Feb 2025 16:40:13 +0100
+Received: from localhost.localdomain ([172.25.39.2])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2025022716401291-83 ;
+          Thu, 27 Feb 2025 16:40:12 +0100 
+From: Christophe Parant <c.parant@phytec.fr>
+To: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	<upstream@lists.phytec.de>
+Subject: [PATCH 00/11] Rework and fix STM32MP15x PHYTEC dts
+Date: Thu, 27 Feb 2025 16:40:01 +0100
+Message-ID: <20250227154012.259566-1-c.parant@phytec.fr>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250225-delicate-tortoise-of-management-e43fa2@krzk-bin>
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 27.02.2025 16:40:12,
+	Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 27.02.2025 16:40:13
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM2PEPF0001C708:EE_|DB9P195MB2104:EE_
+X-MS-Office365-Filtering-Correlation-Id: dada8172-1bdc-44b5-1757-08dd574506eb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|82310400026|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Uy5z777fiZhMr6a/9F6pBcUI8CRz0wwghmWluIn2VCKghlDZoj/pTUeNt6JW?=
+ =?us-ascii?Q?VL+WAVuSU+4SERXtS5P3Kz+c7/h1lvnFbxSoqjdAO5l3sypTE/cSB75lNfp9?=
+ =?us-ascii?Q?WWgpBa9OxTuDXWp2Yealn7jQUtnrqwYrw3g2p8s1Y8kOE6NLjyegnfB6Fqp6?=
+ =?us-ascii?Q?IGYoZ27cTF2gpCeboKIyx2DK7V8MHXuXWMMzKuzwFllUjRNSSzomShK5nwsq?=
+ =?us-ascii?Q?LPX5q48JQlwMdjYPD7QjmDJ6hwJ8cABkki/GAnkliv1g6o0LsCNDhiUwY+pF?=
+ =?us-ascii?Q?ch8WTqJnT700EpNn8AZmBh1PEZYZF+mSBp+6rTuJxR7NTaTfhyTe9Umq/nFM?=
+ =?us-ascii?Q?QinvttklEBn+ViypW/wGsCC6WWHZRzDMoQMMMZ8LUaWSso1g8WtQS9Qr+Wwm?=
+ =?us-ascii?Q?h/w0Wnnql2nNOXbDlNXGJAHmR4JQR/tWjMJ1Z5+Z1oA3OTtnsOgb4be3IcJ/?=
+ =?us-ascii?Q?61jXSh9PBHRP86RuxrenTJi12muEKhUl9y7nDZlaM278J8u+RI3TGrQN60xA?=
+ =?us-ascii?Q?vKl7dCCT8gg46LSzUjRKx9q+qhV119RBO5LUGcoPhChTgsmVy9rI4Lt7XW42?=
+ =?us-ascii?Q?ATJWWQaz3HM7A4rOfYWxrc32ofj5aT5QdHFc+6SJZIZUE2pkuaS/eZl1U8Zl?=
+ =?us-ascii?Q?+e0yVuY1yrZM+PY/ut5huGEvWTWPdFBB53y1qPVHXuS6Fzefrno9IWXWJivy?=
+ =?us-ascii?Q?Mcy4ZW1d49UsrciLalNOsnFVPmva/9JiJb3x71L64nvg7VoRSWDOOwYRZRB+?=
+ =?us-ascii?Q?aA6rjlMPdgbk6GpXBwah1jAE71xkQbPQErBfB/yUQ0QAtecbi49I1vSfS7es?=
+ =?us-ascii?Q?X0gBZqtXj32xABbUoDgDKbyetGtfQaSthd0pEf3NeLl3p2g2vEze1rQ6qwaP?=
+ =?us-ascii?Q?JzA04HHfePwbkGyG5VsGq93xk9GWmLGa1frfvYhT+HDKDG6MCgCRTkgBIbUr?=
+ =?us-ascii?Q?uEVrF7yh65f4U2SwrVITXBfIiTJ+iyGZYFXPlX6M+WucVTIIPSCmR4GT5cr7?=
+ =?us-ascii?Q?z6KprXDUkujXdgM4jv/NcZ6jeZHX0/qINGX6DdxNTqBSFWbF54IlfvHxBjCp?=
+ =?us-ascii?Q?DiZ4iRUQ96ugjVpZ9cRXDfhpY6R3iLwAnoILIodxdR7cJzS6hDIRPROC0hgx?=
+ =?us-ascii?Q?AMbzpOjJ0elIs5IRYDvjvCA7Amf2GCQ1uOkNYyM/q6bI1mXFoxChoAL4RdVu?=
+ =?us-ascii?Q?eBbVLyi9nfOuAwnNz/TH91XMiVUAMilTeBS5ZjJQfVAfIqCutHuqi2wVn3Hn?=
+ =?us-ascii?Q?6bzj+zkG+Xdx9mwqa5KOp9rLmOfeH4YQOCL7A10lQYAubP4R+TU3HcYA64BB?=
+ =?us-ascii?Q?ZI+Cxy6assIor3nYw8c+5ltUwS5kghARtQeRDQ5TfPAsO5lAoN2o3Vor6EN4?=
+ =?us-ascii?Q?qNw2KAmotUxtrHySby+VRD7BNAzU5mBjPPBaSNSwshhYBlkwpMrqKb1ob5Mc?=
+ =?us-ascii?Q?aBNir6euDrl07Zs7xpo2vfmSXJo3AbUgGgkfa+vA7rvbd3iOi/0qwqs0Vm0Y?=
+ =?us-ascii?Q?qVdKY+3534NcST8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:Diagnostix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013);DIR:OUT;SFP:1102;
+X-OriginatorOrg: phytec.fr
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2025 15:40:13.6596
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dada8172-1bdc-44b5-1757-08dd574506eb
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Diagnostix.phytec.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM2PEPF0001C708.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9P195MB2104
 
-On Tue, Feb 25, 2025 at 09:41:17AM +0100, Krzysztof Kozlowski wrote:
-> On Mon, Feb 24, 2025 at 04:54:58PM +0100, Francesco Dolcini wrote:
-> > +  wlf,drc-cfg-regs:
-> > +    $ref: /schemas/types.yaml#/definitions/uint16-array
-> > +    description:
-> > +      Default register values for R40/41/42/43 (DRC).
-> > +      The list must be 4 times the length of wlf,drc-cfg-names.
-> > +      If absent, DRC is disabled.
-> > +
-> > +  wlf,retune-mobile-cfg-names:
-> > +    $ref: /schemas/types.yaml#/definitions/string-array
-> > +    description:
-> > +      List of strings for the available retune modes.
-> > +      If absent, retune is disabled.
-> 
-> How is this retune supposed to be used? If by user-space I can easily
-> imagine that static DTS configuration won't be enough, because you need
-> to factor for example temperature or some other minor differences
-> between same boards.
+This patch series rename and reorganize the STM32MP15x PHYTEC
+baseboard (phyBOARD-Sargas) and SoM (phyCORE-STM32MP15x) device tree
+files.
+Indeed, the current device tree naming and organization is not really
+consistent as it does not align with others STM32MP boards (use common
+dtsi file as much as possible, use one dtsi for SoM and one dtsi for
+baseboard).
 
-This is intended for integrators to be able to specify some EQ options,
-mirroring the previous behaviour that was possible via platform data.
+The series also fixes some important pinctrl issues and minor one (coding
+style). Additional pinctrl is also added for the optionnal interfaces
+that are not enabled by default (FMC, LTDC, DCMI, PWM).
 
-I expect most users to use the first five Retune Mobile registers and
-not care about the rest, which require a proprietary tool and are not
-well documented. The example in the binding shows how some simple
-static EQ can be configured. Anyone interested in the extended config
-can also use it (statically).
+Christophe Parant (11):
+  ARM: dts: stm32: phycore-stm32mp15: Rename device tree files
+  ARM: dts: stm32: phyboard-sargas: Introduce SoM device tree
+  dt-bindings: arm: stm32: Rename STM32MP15x Phytec board and SoM
+  ARM: dts: stm32: Add new pinmux groups for phyboard-sargas and phycore
+  ARM: dts: stm32: phyboard-sargas: Fix uart4 and sai2 pinctrl
+  ARM: dts: stm32: phycore-stm32mp15: qspi: Fix memory map and pinctrl
+  ARM: dts: stm32: phycore-stm32mp15: Add dummy memory-node
+  ARM: dts: stm32: phyboard-sargas: Move aliases from dts to dtsi
+  ARM: dts: stm32: phycore-stm32mp15: Disable optional SoM peripherals
+  ARM: dts: stm32: phyboard-sargas and phycore: Fix coding style issues
+  ARM: dts: stm32: phyboard-sargas and phycore: Add optional interfaces
 
-If someone requires dynamic behaviour at runtime that could be a
-separate patch that should not be hindered by this static config.
+ .../devicetree/bindings/arm/stm32/stm32.yaml  |   7 +-
+ arch/arm/boot/dts/st/Makefile                 |   2 +-
+ arch/arm/boot/dts/st/stm32mp15-pinctrl.dtsi   | 164 +++++++++
+ .../st/stm32mp157c-phyboard-sargas-rdk.dts    |  42 +++
+ .../dts/st/stm32mp157c-phycore-stm32mp1-3.dts |  60 ---
+ .../dts/st/stm32mp15xx-phyboard-sargas.dtsi   | 285 +++++++++++++++
+ ...-som.dtsi =3D> stm32mp15xx-phycore-som.dtsi} | 344 ++++--------------
+ 7 files changed, 563 insertions(+), 341 deletions(-)
+ create mode 100644 arch/arm/boot/dts/st/stm32mp157c-phyboard-sargas-rdk.dts
+ delete mode 100644 arch/arm/boot/dts/st/stm32mp157c-phycore-stm32mp1-3.dts
+ create mode 100644 arch/arm/boot/dts/st/stm32mp15xx-phyboard-sargas.dtsi
+ rename arch/arm/boot/dts/st/{stm32mp157c-phycore-stm32mp15-som.dtsi =3D> s=
+tm32mp15xx-phycore-som.dtsi} (53%)
 
-> > +
-> > +  wlf,retune-mobile-cfg-rates:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> 
-> Drop
-> 
-> > +    description:
-> > +      List of rates for the available retune modes.
-> 
-> Use standard property suffixes - hz or whatever is matching here.
+--=20
+2.34.1
 
-I will send a v3 later integrating your feedback, I have renamed this
-property to wlf,retune-mobile-cfg-hz there, and dropped the "ref".
-
-> > +
-> > +            wlf,retune-mobile-cfg-names = "bassboost", "bassboost", "treble";
-> > +            wlf,retune-mobile-cfg-rates = <48000 44100 48000>;
-> > +            wlf,retune-mobile-cfg-regs =
-> > +                /* bassboost: EQ_ENA = 1, +6 dB @ 100 Hz, +3 dB @ 300 Hz, 0 dB @ 875, 2400, 6900 Hz */
-> > +                /bits/ 16 <0x1 0x12 0xf 0xc 0xc 0xc>,
-> > +                /* default values for ReTune Mobile registers 140-157 */
-> > +                /bits/ 16 <0x0fca 0x0400 0x00d8 0x1eb5 0xf145 0x0bd5 0x0075 0x1c58 0xf3d3 0x0a54 0x0568 0x168e 0xf829 0x07ad 0x1103 0x0564 0x0559 0x4000>,
-> 
-> See DTS coding style.
-> 
-> Best regards,
-> Krzysztof
-> 
-
-Would the following snippet be a good way to handle wrapping this?
-To me the first six registers form an "item" since they are the most
-important, followed by the next 18 which belong together, but I was
-not sure about the common convention to handle wrapping such a long
-item.
-
-/*
- * Config registers per name, respectively:
- * EQ_ENA,  100 Hz,  300 Hz,  875 Hz, 2400 Hz, 6900 Hz
- *      1,   +6 dB,   +3 dB,    0 dB,    0 dB,    0 dB
- *      1,   +6 dB,   +3 dB,    0 dB,    0 dB,    0 dB
- *      1,   -2 dB,   -2 dB,    0 dB,    0 dB,   +3 dB
- * Each one uses the defaults for ReTune Mobile registers 140-157
- */
-wlf,retune-mobile-cfg-regs = /bits/ 16 <0x1 0x12 0xf 0xc 0xc 0xc>,
-                             /bits/ 16 <0x0fca 0x0400 0x00d8 0x1eb5
-                                        0xf145 0x0bd5 0x0075 0x1c58
-                                        0xf3d3 0x0a54 0x0568 0x168e
-                                        0xf829 0x07ad 0x1103 0x0564
-                                        0x0559 0x4000>,
-
-                             /bits/ 16 <0x1 0x12 0xf 0xc 0xc 0xc>,
-                             /bits/ 16 <0x0fca 0x0400 0x00d8 0x1eb5
-                                        0xf145 0x0bd5 0x0075 0x1c58
-                                        0xf3d3 0x0a54 0x0568 0x168e
-                                        0xf829 0x07ad 0x1103 0x0564
-                                        0x0559 0x4000>,
-
-                             /bits/ 16 <0x1 0xa 0xa 0xc 0xc 0xf>,
-                             /bits/ 16 <0x0fca 0x0400 0x00d8 0x1eb5
-                                        0xf145 0x0bd5 0x0075 0x1c58
-                                        0xf3d3 0x0a54 0x0568 0x168e
-                                        0xf829 0x07ad 0x1103 0x0564
-                                        0x0559 0x4000>;
-
-Apologies for sending the broken binding. I have integrated the rest of
-your feedback into v3 which will be sent later. Thanks for taking the
-time to review.
-
-Kind regards,
-Ernest
 
