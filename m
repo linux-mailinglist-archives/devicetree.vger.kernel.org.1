@@ -1,186 +1,142 @@
-Return-Path: <devicetree+bounces-152006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A801EA47BB3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:17:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71FCAA47B7D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 12:11:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 418E418934E9
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:16:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C32C189041F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 11:11:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E2AE22B8D2;
-	Thu, 27 Feb 2025 11:13:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="hspV/toZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D835215F45;
+	Thu, 27 Feb 2025 11:08:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731105.qiye.163.com (mail-m19731105.qiye.163.com [220.197.31.105])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27800227EAE;
-	Thu, 27 Feb 2025 11:13:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.105
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6DAB224226;
+	Thu, 27 Feb 2025 11:08:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740654799; cv=none; b=uhb/ebIMZDJ8FqAqvoHC3nELJnag4VxP3AnvvezuF+zaKetvXBCVJx+f4XDbEaQdJdnDSHrs3RKRvbN834ZK2oXJyMPkbalLGeXykkajoDBFNgzqQDHd1dkdvhZ/p+UGbvg494c92w5x2PVBwarG1lUvHXXAFG8wXb3cNu24Dlo=
+	t=1740654519; cv=none; b=FLscyB33n+Cd0LU0iGXazPvtNOQ3zY49Urc0XOXljg2ldgicOA/IAE9BTiddFisuL1B2N2hnRs4KvPF1VwF0LKUQAL5TR5qzEDNKHSzR3xKSGL8+24CEIZvzdN81Kkf2Y9XYV4Ix0fdKtAXL/cKbc5InITo7c/hxRXvaM9bqAZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740654799; c=relaxed/simple;
-	bh=RlONGQxFkfaVCaCHqR5hdAZRP3+jWCLKHge/Fd44p2g=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qyP+gvXzlbXRZAs7a39EAr45Y8IZfWPziZ3EsMNjNhz9aqICb0LfnHQb7m4M5lJ+UGnrtvoTpzAkYE3Lgbn1LDcCx5Hvy11iSkLiG+9y8ET7KLoKgCDIg49orXpiIOsNIuxdYFyW/4mMtWpUgtIgAQcTowk24Jzr0jb1/06OFFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=hspV/toZ; arc=none smtp.client-ip=220.197.31.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id c65b37d9;
-	Thu, 27 Feb 2025 19:08:05 +0800 (GMT+08:00)
-From: Kever Yang <kever.yang@rock-chips.com>
-To: heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org,
-	Kever Yang <kever.yang@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1740654519; c=relaxed/simple;
+	bh=XO2jfTI107R+rb5azefOUZU+vtLmfEnZbkQ+3/fyhEU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bz+/Vf5j79P0zltP8b0YAujVRO2s1BlAEkSSlLHabnBDyWW5xC1/0EiVmqInkvisAOAUtP8pRoLbbwj2GcYi4A8sxG7n4EA8hSyjtLqGI50bHlJyL15jaWNR6UCVGz4POQjEY5b4HlzGGigWJgXXXF2tZqj+W6TFxkc8rP0qCMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5D84A2BCC;
+	Thu, 27 Feb 2025 03:08:51 -0800 (PST)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4C90A3F6A8;
+	Thu, 27 Feb 2025 03:08:33 -0800 (PST)
+Date: Thu, 27 Feb 2025 11:08:30 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Vincenzo Frascino <vincenzo.frascino@arm.com>
+Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 1/3] dt-bindings: nvmem: rockchip,otp: Add support for rk3562 and rk3568
-Date: Thu, 27 Feb 2025 19:08:02 +0800
-Message-Id: <20250227110804.2342976-1-kever.yang@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
+	Conor Dooley <conor+dt@kernel.org>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jessica Clarke <jrtc27@jrtc27.com>
+Subject: Re: [PATCH v7 07/10] arm64: dts: morello: Add support for common
+ functionalities
+Message-ID: <Z8BHrrL0kXeBmRpx@bogus>
+References: <20250221180349.1413089-1-vincenzo.frascino@arm.com>
+ <20250221180349.1413089-8-vincenzo.frascino@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQk0aH1ZOHUwZGkhNGUNOTR9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a9547179f2b03afkunmc65b37d9
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PBQ6TAw5MjIWNw1JEhQxLilN
-	CQIaCjFVSlVKTE9LTU5PT0NNSENNVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJTEtPNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=hspV/toZNKfN8Mbx1pRYGbdIchgyFEK23TYRO89SrNo6eUGZZ9ZjFplwfLsJsKzcdU9px4owG7jeGH9ZGJgDarEPrIEjE4BSA0XGr75HULNHQ+jfsjBMF3Pe5bZARBaiENe2VtHIcYtPulKO5eqsgqLZjlLN+PAzDcbKE1xdA2A=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=qPdG0uqXJNCLpi+c8n+pbqoC1a0sWOgDfdz7/HqC6dE=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250221180349.1413089-8-vincenzo.frascino@arm.com>
 
-Add compatible entry for the otp controller in rk3562 and rk3568, add schema
-for different clock names for new entry.
+On Fri, Feb 21, 2025 at 06:03:46PM +0000, Vincenzo Frascino wrote:
+> The Morello architecture is an experimental extension to Armv8.2-A,
+> which extends the AArch64 state with the principles proposed in
+> version 7 of the Capability Hardware Enhanced RISC Instructions
+> (CHERI) ISA.
+> 
+> The Morello Platform (soc) and the Fixed Virtual Platfom (fvp) share
+> some functionalities that have conveniently been included in
+> morello.dtsi to avoid duplication.
+> 
+> Introduce morello.dtsi.
+> 
+> Note: Morello fvp will be introduced with a future patch series.
+> 
+> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
+> ---
+>  arch/arm64/boot/dts/arm/morello.dtsi | 323 +++++++++++++++++++++++++++
+>  1 file changed, 323 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/arm/morello.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/arm/morello.dtsi b/arch/arm64/boot/dts/arm/morello.dtsi
+> new file mode 100644
+> +
+> +		gic: interrupt-controller@2c010000 {
+> +			compatible = "arm,gic-v3";
+> +			reg = <0x0 0x30000000 0x0 0x10000>,	/* GICD */
+> +			      <0x0 0x300c0000 0x0 0x80000>;	/* GICR */
 
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
----
+[...]
 
-Changes in v2:
-- Update the commit message and add maxItems in schema.
+> +
+> +
+> +		sram: sram@45200000 {
+> +			compatible = "mmio-sram";
+> +			reg = <0x0 0x06000000 0x0 0x8000>;
+> +			ranges = <0 0x0 0x06000000 0x8000>;
+> +
 
- .../bindings/nvmem/rockchip,otp.yaml          | 53 ++++++++++++++++---
- 1 file changed, 46 insertions(+), 7 deletions(-)
+[...]
 
-diff --git a/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml b/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
-index a44d44b32809..7572f4a1d73b 100644
---- a/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
-@@ -14,6 +14,8 @@ properties:
-     enum:
-       - rockchip,px30-otp
-       - rockchip,rk3308-otp
-+      - rockchip,rk3562-otp
-+      - rockchip,rk3568-otp
-       - rockchip,rk3588-otp
- 
-   reg:
-@@ -25,19 +27,15 @@ properties:
- 
-   clock-names:
-     minItems: 3
--    items:
--      - const: otp
--      - const: apb_pclk
--      - const: phy
--      - const: arb
-+    maxItems: 4
- 
-   resets:
-     minItems: 1
--    maxItems: 3
-+    maxItems: 4
- 
-   reset-names:
-     minItems: 1
--    maxItems: 3
-+    maxItems: 4
- 
- required:
-   - compatible
-@@ -62,12 +60,45 @@ allOf:
-       properties:
-         clocks:
-           maxItems: 3
-+        clock-names:
-+          items:
-+            - const: otp
-+            - const: apb_pclk
-+            - const: phy
-         resets:
-           maxItems: 1
-         reset-names:
-           items:
-             - const: phy
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - rockchip,rk3562-otp
-+              - rockchip,rk3568-otp
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 4
-+          maxItems: 4
-+        clock-names:
-+          items:
-+            - const: usr
-+            - const: sbpi
-+            - const: apb_pclk
-+            - const: phy
-+        resets:
-+          minItems: 4
-+          maxItems: 4
-+        reset-names:
-+          items:
-+            - const: usr
-+            - const: sbpi
-+            - const: apb
-+            - const: phy
-+
-   - if:
-       properties:
-         compatible:
-@@ -78,8 +109,16 @@ allOf:
-       properties:
-         clocks:
-           minItems: 4
-+          maxItems: 4
-+        clock-names:
-+          items:
-+            - const: otp
-+            - const: apb_pclk
-+            - const: phy
-+            - const: arb
-         resets:
-           minItems: 3
-+          maxItems: 3
-         reset-names:
-           items:
-             - const: otp
--- 
-2.25.1
+Not sure if you are not seeing these warnings from DTC. Looks pretty clear
+to me. May be you missed or using some old DTC. I don't know why though.
+If you agree, I can patch it up with below patch and no need to repost:
+
+morello.dtsi:227.38-272.5: Warning (simple_bus_reg): /soc/interrupt-controller@2c010000: simple-bus unit address format error, expected "30000000"
+morello.dtsi:296.23-313.5: Warning (simple_bus_reg): /soc/sram@45200000: simple-bus unit address format error, expected "6000000"
+morello.dtsi:227.38-272.5: Warning (simple_bus_reg): /soc/interrupt-controller@2c010000: simple-bus unit address format error, expected "30000000"
+morello.dtsi:296.23-313.5: Warning (simple_bus_reg): /soc/sram@45200000: simple-bus unit address format error, expected "6000000"
+
+Regards,
+Sudeep
+
+-->8
+
+diff --git i/arch/arm64/boot/dts/arm/morello.dtsi w/arch/arm64/boot/dts/arm/morello.dtsi
+index e35e5e482720..0bab0b3ea969 100644
+--- i/arch/arm64/boot/dts/arm/morello.dtsi
++++ w/arch/arm64/boot/dts/arm/morello.dtsi
+@@ -224,7 +224,7 @@ uart0: serial@2a400000 {
+                        status = "disabled";
+                };
+
+-               gic: interrupt-controller@2c010000 {
++               gic: interrupt-controller@30000000 {
+                        compatible = "arm,gic-v3";
+                        reg = <0x0 0x30000000 0x0 0x10000>,     /* GICD */
+                              <0x0 0x300c0000 0x0 0x80000>;     /* GICR */
+@@ -293,7 +293,7 @@ mailbox: mhu@45000000 {
+                        clock-names = "apb_pclk";
+                };
+
+-               sram: sram@45200000 {
++               sram: sram@6000000 {
+                        compatible = "mmio-sram";
+                        reg = <0x0 0x06000000 0x0 0x8000>;
+                        ranges = <0 0x0 0x06000000 0x8000>;
 
 
