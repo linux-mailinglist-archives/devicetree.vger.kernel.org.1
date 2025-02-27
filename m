@@ -1,113 +1,91 @@
-Return-Path: <devicetree+bounces-152129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0031A48244
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 16:01:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32C2BA4824E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 16:03:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CF54170DA6
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:50:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 285F0189919B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2025 14:55:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FA6125C6E7;
-	Thu, 27 Feb 2025 14:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4918325E806;
+	Thu, 27 Feb 2025 14:54:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lTZ6W9Ky"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rJKktULN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C617B25C6E2;
-	Thu, 27 Feb 2025 14:49:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C05025DD14
+	for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 14:54:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740667798; cv=none; b=SmX+s5p7U5nB7hoI2A2VGUr4OHAiHRugUroInpUnyLl944Oibgh+DnVgp6LcdQIo1LF1XHQPaZoNwopoWKOzvDtsk0aSSF2NQ8expuqQ8flpA0/c592Gso2A7aX1X+mawLcVdlwTZu4RxA0MzHXKayJNwnMBTVBioU6oknlDOao=
+	t=1740668093; cv=none; b=aX3gv0i7/6VmuBSulA2Q98FNnKIcRUFq3DC/yhwWYoch2iHn1WysU4+Ht4IrSYaXTzNtB21g94nGkN5n/yAeNauIrQL5OrlHrcSSL3xvFSYOtcGKcteA5g+ZtCXs7pjBNhrWdqlKO1pVHC+O9C1cK6MB2UQaKz4XIgmaUHjrPek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740667798; c=relaxed/simple;
-	bh=/+J4TVv0pmFUhasUbdo9cIKQLHkTdGgPrNJ8G6n+C/8=;
+	s=arc-20240116; t=1740668093; c=relaxed/simple;
+	bh=KboGCxx7OgmWNnz4unI5atpIG8j1s+NhJgz2Wlu5UaY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c0ZBRo7jjCuBP2rL4tPD6C/0ALl0F16SwiCT6gyzn2W/TO/lJxG6IgS50IhvyP6DYZGabkj7QuF+SuBfiKrNp6vcIOHWM8i182+p/QuUm8AmXBUH40X1pXcSB7jDTXC2feajW2pp6eAn0oxHltwd4bhH5GnUuT/G+sBRUlCkWWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lTZ6W9Ky; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740667797; x=1772203797;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/+J4TVv0pmFUhasUbdo9cIKQLHkTdGgPrNJ8G6n+C/8=;
-  b=lTZ6W9KywG0wSXdYZhOi/jxRFvoFdM4ARzxioaKlfdFhoR35Vi++DeUs
-   xG5wtxALBfkJ9AjoXVijH0itE02xcwCLeq5dw1rbhvWdN70R4IpweUREZ
-   pbaWt+0l0vSYMjWaRpFMX9fMcuzvbNQeZ/Y+g5ZwXUKEx5U/xgVWBNMQq
-   xR9CJH6/kwZOGVtgd5r3WbszOOWS4ysfLT8NDcDT0okyNyQkEU6wNCvG3
-   elxamHR9gB139wpYmfo1cHlkwNvWrotMPbAFqjbc/gCCWK+O+Aba428GS
-   MZy8Wv4zksorXu9rZoDgdyvqJAGRcibcgi7U3pUCnPA6NW+vJjLhCv8mp
-   A==;
-X-CSE-ConnectionGUID: gw6J9OrAThCIqhqi9P6piw==
-X-CSE-MsgGUID: bQP4Vv1EQQ6BBHharh//IA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="40735926"
-X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; 
-   d="scan'208";a="40735926"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2025 06:49:55 -0800
-X-CSE-ConnectionGUID: QY9xDufQQdmIzsMP9JwSew==
-X-CSE-MsgGUID: mjWrqQyOSxGjmaB+28Ev5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; 
-   d="scan'208";a="117070355"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2025 06:49:47 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tnfCp-0000000Fcnn-1wW6;
-	Thu, 27 Feb 2025 16:49:43 +0200
-Date: Thu, 27 Feb 2025 16:49:43 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Guillaume Stols <gstols@baylibre.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Matteo Martelli <matteomartelli3@gmail.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v4 02/10] property: Add
- device_get_child_node_count_named()
-Message-ID: <Z8B7h4_IWz43gFhO@smile.fi.intel.com>
-References: <29ec24f1498392cafbecc0e0c0e23e1ce3289565.1740421248.git.mazziesaccount@gmail.com>
- <Z72QAOA9xXbP16K-@kuha.fi.intel.com>
- <Z72Zp8tpnvlFGdQ_@smile.fi.intel.com>
- <ad39b453-7e5b-49bd-a4fd-6a4988636130@gmail.com>
- <Z72d7TzZ21WITW3f@smile.fi.intel.com>
- <893a3c45-537e-47ad-afbd-1e5d3b9abe2c@gmail.com>
- <Z73M3Ua6u1FpgBEK@smile.fi.intel.com>
- <720f9c69-ca1f-45cb-9f6e-c8e4703c9aad@gmail.com>
- <Z78g_uiXumn4mvET@smile.fi.intel.com>
- <d7982b76-3da7-47ff-b2b2-f964610af1f7@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=MuMIvKGk/PUTzzoslecRKb/0PD64DzJyJNXolnMVg1K7hvv5fF+PU7Ix1QygENMSClYNFGmQ2Z3E2xWyq+dMTJLCr5fRitVQL9ER7Bto2D5vxgNUF3qhmU5H4wJ8bMXM1BhRpPqe+8YocxZx4fXraKivBL/suSTgzM2NXShDF7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rJKktULN; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5439a6179a7so1226109e87.1
+        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 06:54:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740668088; x=1741272888; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=sCMeltnZVSG7sz0LhzAVQweBa8yRnjaqRK41n2Tk0AM=;
+        b=rJKktULNRwmz5XhYh7Ao7P2IEkXIaqACQ8BjfV+6U2+0ipde90bPpyfp2DHYol3aEw
+         W/TcIzf9uZm4a9eW2uNIjX5BkP6/jvWigBzk/UIbEp5VKhoPH6tvgTdR7qXtPoDwbmaJ
+         L86Uml4QaHSqiT7mAp5nXR2PkzLt1lvEOseWmTQ0UyfATE3LZPgGmTZPLq8c84JesUZL
+         geqA4k3TdvE7EL7w2hZD78722+idldzwyqQRlPF9RsccMc+oFFFTFkE74S0MMHJ0HR0U
+         N4dcM1I1aPha080jaZAOsZtziHr7uGY4sDk521TnuVR01IkKTl27dxbrg217v9+XEt5T
+         SDRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740668088; x=1741272888;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sCMeltnZVSG7sz0LhzAVQweBa8yRnjaqRK41n2Tk0AM=;
+        b=nxYVqryH/c2BZRCo0C+OXUDQoyAXCvaBxu0ZFiRz4IOebYK0nTBHhnKM+gTJGOJb20
+         BqkYr8S3knf3Z+vFojFIuxkoO6hSM3OcMccwBzwB6mHuJhbGYwu11PqtPjtOgGQ+86QY
+         zaBDdG8D1pTcRj0VCLoUrdEvnZKk8ZKBuq99IpuZwxOUMoFbL0gx4sBZA6a54+KBtHaS
+         0PbXsrD63sQkIJuhWYdeaiE2kSd9lXH6GB1mX7yxCF2v5Act1Adkr6xMLemfegjBE16E
+         pR7qZVM8ZlldC9W6K9QR1KyR4AvAnhZCSpeDnGeZpnOt9zvC3wDdVFRITn3gakRAch2x
+         +mbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVQrUQvDJ1RW5mx3hSUHsjwRrFUNbyWdh5cDdiBYL7MQo82GNLnSsVRg23oZe1wp6p3ljIT1q5Ak3it@vger.kernel.org
+X-Gm-Message-State: AOJu0YyowMvn+nD6aicpMEdsX0MOj38ImLJxm3GW1RNbLnMY+TsR50gL
+	5yD00WyuJ2NKjW9ato/hi6EclgODe/m3ZQJVuISNny/ilaf1GPOOT3j8J33CiH0=
+X-Gm-Gg: ASbGncut2q6eIowqFRlqUDwo/81u9DkvRs4fa4A9Fn+zgrTgbhPJordxevQwtXDTp/R
+	dKwa5Hpqojj+W6xRfoaPmCAATv7VuynRHgE7K/H4JQgb346S92mNvvI04Wi+tWf4pia1M74mqji
+	NWawUzFZ1DuGWNZqcIN7nICX9XMcOyjWMU2oEADHKtmf0RgOVj4OJ3BCrwU/cP3MhXj1D9jbT95
+	h4kqzkMkR3vOUnOx0TOr3Ie2nu906apc55GpCjg5moSSHEil5dUehCIH7EcAHOFvqOYrwQGorVM
+	58XAy35ODBPMPpxCt3m/oiwY1q4MigeqwPNwev03d+FSJUQWYOzCXCiPIrb0cU1lARKpqZ6jaAP
+	ZkxrvHg==
+X-Google-Smtp-Source: AGHT+IF94UxahrgvKnqbDIyQP2SoOHuqTWRLMtDqEw4LEuHBKdFhk7jgfYz2acmAzH6fUFJ672CotA==
+X-Received: by 2002:a05:6512:308c:b0:545:4f00:f92a with SMTP id 2adb3069b0e04-5494332104amr1421507e87.20.1740668088335;
+        Thu, 27 Feb 2025 06:54:48 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549441741d4sm184217e87.33.2025.02.27.06.54.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Feb 2025 06:54:47 -0800 (PST)
+Date: Thu, 27 Feb 2025 16:54:45 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: manivannan.sadhasivam@linaro.org
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/23] arm64: dts: qcom: Add 'global' IRQ to supported
+ SoCs
+Message-ID: <26ohpisuitzaghsxbbyjgb2rbhrubu4ipt7zopyuakxbgyqi7i@xa3tjwlwwjoq>
+References: <20250227-pcie-global-irq-v1-0-2b70a7819d1e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -116,115 +94,98 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d7982b76-3da7-47ff-b2b2-f964610af1f7@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20250227-pcie-global-irq-v1-0-2b70a7819d1e@linaro.org>
 
-On Thu, Feb 27, 2025 at 10:01:49AM +0200, Matti Vaittinen wrote:
-> On 26/02/2025 16:11, Andy Shevchenko wrote:
-> > On Wed, Feb 26, 2025 at 04:04:02PM +0200, Matti Vaittinen wrote:
-> > > On 25/02/2025 15:59, Andy Shevchenko wrote:
-> > > > On Tue, Feb 25, 2025 at 03:29:17PM +0200, Matti Vaittinen wrote:
-> > > > > On 25/02/2025 12:39, Andy Shevchenko wrote:
-> > > > > > On Tue, Feb 25, 2025 at 12:29:31PM +0200, Matti Vaittinen wrote:
-> > > > > > > On 25/02/2025 12:21, Andy Shevchenko wrote:
-> > > > > > > > On Tue, Feb 25, 2025 at 11:40:16AM +0200, Heikki Krogerus wrote:
-
-...
-
-> > > > > > > > > 
-> > > > > > > > > I did not check how many users are you proposing for this, but if
-> > > > > > > > > there's only one, then IMO this should not be a global function yet.
-> > > > > > > > > It just feels to special case to me. But let's see what the others
-> > > > > > > > > think.
-> > > > > > > > 
-> > > > > > > > The problem is that if somebody hides it, we might potentially see
-> > > > > > > > a duplication in the future. So I _slightly_ prefer to publish and
-> > > > > > > > then drop that after a few cycles if no users appear.
-> > > > > > > 
-> > > > > > > After taking a very quick grep I spotted one other existing place where we
-> > > > > > > might be able to do direct conversion to use this function.
-> > > > > > > 
-> > > > > > > drivers/net/ethernet/freescale/gianfar.c
-> > > > > > > 
-> > > > > > > That'd be 2 users.
-> > > > > > 
-> > > > > > I haven't checked myself, I believe your judgement,
-> > > > > 
-> > > > > I took a better look and you obviously shouldn't believe :) The gianfar used
-> > > > > of_node instead of the fwnode. So, it'd be a single caller at starters.
-> > > > 
-> > > > ...which is the same as dev_of_node(), which means that you can use your
-> > > > function there.
-> > > 
-> > > I'm unsure what you mean. The proposed function
-> > > device_get_child_node_count_named() takes device pointer. I don't see how
-> > > dev_of_node() helps converting node to device?
-> > 
-> > dev_of_node() takes the device pointer and dev_fwnode() takes that as well,
-> > it means that there is no difference which one to use OF-centric or fwnode
+On Thu, Feb 27, 2025 at 07:10:42PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> Hi,
 > 
-> The proposed device_get_child_node_count_named() takes a device pointer. I
-> don't see how dev_of_node() helps if there is just of_node and no device
-> pointer available in the calling code.
-
-???
-
-The loops are working on
-
-	struct device_node *np = pdev->dev.np;
-
-which is the equivalent to
-
-	struct device_node *np = dev_of_node(&pdev->dev);
-
-which takes device pointer.
-
-> (Well, as I wrote below, I could
-> alter the gianfar code by dropping the gfar_of_group_count(), so that I have
-> the device pointer in caller). Anyways, I don't see how dev_of_node() should
-> help unless you're proposing I add a of_get_child_node_count_named() or
-> somesuch - which I don't think makes sense.
-
-Are you forbidding yourself to change the function prototype to take a device
-pointer instead of device_node one? :-)
-
-> > API in this particular case. Just make sure that the function (and there
-> > is also a second loop AFAICS) takes struct device *dev instead of struct
-> > device_node *np as a parameter.
+> This series adds the Qualcomm specific 'global' IRQ to the supported SoCs.
+> This IRQ is used to receive the PCIe controller and link specific events
+> such as Link Up/Down, MSI, PTM etc... in the driver. Support for this IRQ
+> was already added to the pcie-qcom driver. So enabling this IRQ would allow
+> the driver to enumerate the endpoint device and also retrain the link when
+> the device is removed [1] without user intervention.
 > 
-> I think I lost the track here :)
-
-Make gfar_of_group_count() to take device pointer. As simple as that.
-
-> > > I think I could actually kill the whole gfar_of_group_count() function and
-> > > replace it with a direct call to the device_get_child_node_count_named() -
-> > > but I am not at all convinced that'd be worth including the property.h to a
-> > > file which is currently using only of_* -stuff. Well, I suppose it can be
-> > > asked from netdev peeps but I am not convinced they see it as a great idea.
-> > > 
-> > > If I misunderstood your meaning - please elaborate.
-> > 
-> > The driver is quite old
+> This series also adds missing MSI SPI IRQ to some of the SoCs.
 > 
-> I remember having to modify this driver somewhere around 2010 or so. :) Time
-> flies.
+> Testing
+> =======
 > 
-> > and has a lot of room to improve. Briefly looking it
-> > may be almost fully converted to fwnode, but it's not your call (only if you
-> > wish). Nevertheless, using agnostic APIs if they reduce code base is fine.
-> > We have drivers that do OF and fwnode mixed approach (for various reasons,
-> > one of which is the new API that is absent in OF realm.
+> This series was tested on Qualcomm RB5 board based on SM8250 SoC and
+> Qualcomm Ride MX board based on SA8775p SoC.
 > 
-> Well, we can propose this to netdev people but I wouldn't be surprized if
-> they requested full of_node => fwnode rewrite instead of removing simple
-> looking loop and bringing mixture of fwnode and of_node in driver.
+> NOTE
+> ====
+> 
+> I've left a few SoCs in the tree like QCS404, SC8280XP due to lack of
+> documentation. Those will be added later.
 
-Without doing the proposal we will never know what they will think of all
-this...
+Also IPQ9574. For the series:
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+> 
+> [1] https://lore.kernel.org/linux-pci/20250221172309.120009-1-manivannan.sadhasivam@linaro.org/
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+> Manivannan Sadhasivam (23):
+>       dt-bindings: PCI: qcom,pcie-sm8150: Add 'global' interrupt
+>       arm64: dts: qcom: sm8150: Add 'global' PCIe interrupt
+>       dt-bindings: PCI: qcom,pcie-sm8250: Add 'global' interrupt
+>       arm64: dts: qcom: sm8250: Add 'global' PCIe interrupt
+>       dt-bindings: PCI: qcom,pcie-sm8350: Add 'global' interrupt
+>       arm64: dts: qcom: sm8350: Add 'global' PCIe interrupt
+>       dt-bindings: PCI: qcom,pcie-sa8775p: Add 'global' interrupt
+>       arm64: dts: qcom: sa8775p: Add 'global' PCIe interrupt
+>       dt-bindings: PCI: qcom,pcie-sc7280: Add 'global' interrupt
+>       arm64: dts: qcom: sc7280: Add 'global' PCIe interrupt
+>       dt-bindings: PCI: qcom: Add 'global' interrupt for SDM845 SoC
+>       arm64: dts: qcom: sdm845: Add missing MSI and 'global' IRQs
+>       arm64: dts: qcom: msm8996: Add missing MSI SPI interrupts
+>       dt-bindings: PCI: qcom: Allow MSM8998 to use 8 MSI and one 'global' interrupt
+>       arm64: dts: qcom: msm8998: Add missing MSI and 'global' IRQs
+>       dt-bindings: PCI: qcom: Allow IPQ8074 to use 8 MSI and one 'global' interrupt
+>       arm64: dts: qcom: ipq8074: Add missing MSI and 'global' IRQs
+>       dt-bindings: PCI: qcom: Allow IPQ6018 to use 8 MSI and one 'global' interrupt
+>       arm64: dts: qcom: ipq6018: Add missing MSI and 'global' IRQs
+>       dt-bindings: PCI: qcom,pcie-sc8180x: Add 'global' interrupt
+>       arm64: dts: qcom: sc8180x: Add 'global' PCIe interrupt
+>       arm64: dts: qcom: sar2130p: Add 'global' PCIe interrupt
+>       arm64: dts: qcom: x1e80100: Add missing 'global' PCIe interrupt
+> 
+>  .../devicetree/bindings/pci/qcom,pcie-sa8775p.yaml | 10 ++--
+>  .../devicetree/bindings/pci/qcom,pcie-sc7280.yaml  |  9 ++--
+>  .../devicetree/bindings/pci/qcom,pcie-sc8180x.yaml | 10 ++--
+>  .../devicetree/bindings/pci/qcom,pcie-sm8150.yaml  |  9 ++--
+>  .../devicetree/bindings/pci/qcom,pcie-sm8250.yaml  |  9 ++--
+>  .../devicetree/bindings/pci/qcom,pcie-sm8350.yaml  |  9 ++--
+>  .../devicetree/bindings/pci/qcom,pcie.yaml         | 14 ++++--
+>  arch/arm64/boot/dts/qcom/ipq6018.dtsi              | 20 +++++++-
+>  arch/arm64/boot/dts/qcom/ipq8074.dtsi              | 40 ++++++++++++++--
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi              | 54 +++++++++++++++++++---
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi              | 20 +++++++-
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi              | 28 ++++++++---
+>  arch/arm64/boot/dts/qcom/sar2130p.dtsi             | 12 +++--
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 14 ++++--
+>  arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 24 ++++++----
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi               | 40 ++++++++++++++--
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi               | 12 +++--
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi               | 18 +++++---
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi               | 12 +++--
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 18 +++++---
+>  20 files changed, 300 insertions(+), 82 deletions(-)
+> ---
+> base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+> change-id: 20250227-pcie-global-irq-dd1cd5688d71
+> 
+> Best regards,
+> -- 
+> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> 
+> 
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+With best wishes
+Dmitry
 
