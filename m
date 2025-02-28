@@ -1,133 +1,138 @@
-Return-Path: <devicetree+bounces-152522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 135A4A49580
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:41:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3651A495B4
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:47:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EF133B4C23
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:37:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0358163757
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:47:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 983BC2580E1;
-	Fri, 28 Feb 2025 09:37:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA2A2566C4;
+	Fri, 28 Feb 2025 09:47:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZI0sv0pX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jf/zCI9U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 644C3257435;
-	Fri, 28 Feb 2025 09:37:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2511DE4FA;
+	Fri, 28 Feb 2025 09:47:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740735473; cv=none; b=kBOFgKiYMX8vsI5sktZ/9PLhoHeOq3xHPnahX7MP8CuGToltroHu9D3DGcC5VizVXQ5N2b7qR/HPxu7TLTKpF/Wcljcif60zX6BATjIgqHbAhpxsZsL87xJdN0iOPIekzNxYHa+9hIB4/ZHQUU+wuvKV23GyfjoTS0d73E5kFDs=
+	t=1740736061; cv=none; b=e2Z0e4BhBEtix7qPnxlNPjEDcp8IhQOIz4QCsgT0SoR9WbYw6b4A+kG9e7Y9YP+WbLxc5iESRxwtdo9Who8vC7jDgEwXbtOG9N3OVdQQpLZzQAW+18/glHah3mE0mTDd1HJS8FoMakRYFIPmVHMTjnrSCpSqFO4MHbu+iZfAqHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740735473; c=relaxed/simple;
-	bh=MesbCbhKEj9BqEr6KvxmuGCoLPsEFMe1GTNccjHPAOo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WRH0p8/Ai0YB91zcL1Ynn26M8MUdLaGbo6OfOl8eFUN+rp9eYO1EnqkolArRHk6chEIpRL/2vGHKfrLdZOcmmc8ZJu1cYmWJCaO9SMVEAtqsD6uR3p/StXatGbKBu6mhFs95AlFkabzZdJ+hNXARCVtcq3nMDDO8vzEh3dOsouk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZI0sv0pX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BE9FC4CED6;
-	Fri, 28 Feb 2025 09:37:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740735473;
-	bh=MesbCbhKEj9BqEr6KvxmuGCoLPsEFMe1GTNccjHPAOo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZI0sv0pXCAcIbcSCyzdvICk+0GsANMCV/gWIXq3dyw5TX5Uh1c7E7SV9NqCxGU1W+
-	 YExHLRX5tamw43b2v1j09eqYxZtti6thE27XP/ugqmNTpf9eB+5prx+F+S6i9kPJ4A
-	 aV3D2+WxgKiZQsAL8y/0zW5RpoFqmtCR1Y4u0YCv7RJMGCnJDZoyXB9k7GwchdEsDX
-	 daYHts+dCkEW2xWcEmX40Dr4hYwZz0UMpCXvcAmKhnnbFm14pJ39RRZnEv//kQLYjX
-	 3ZUz1auUl6OGekoMmz7PcrtSoCC74PC3Zg4zIeghApRiikkRgSF+eC5BuxQAXfIirC
-	 RlqlrkcEIfaoQ==
-Message-ID: <9a1d75a2-66c0-46b6-91a1-4922b892dfb1@kernel.org>
-Date: Fri, 28 Feb 2025 10:37:48 +0100
+	s=arc-20240116; t=1740736061; c=relaxed/simple;
+	bh=QYakFBEzWGJOW8oj2Cse/b47o6dWaHYM79yZLFoU59U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=tkz+A8L0NYanZlUlTJu3FV8+j1l4SYHiRiBruiWXFziOrT9VWs3Xu0AEfPS+8kYZ/HtzMpCrDmmWg/6YH4gaXUJ1JuWpH4EdUQcFmKWE8npfNi11bbnCpyI7mz5ph1nTgApHTeEKYPu1xJNVwU9Kvg4QMlJo7iIvNGXr3BHtbRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jf/zCI9U; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5e04861e7a6so3080033a12.1;
+        Fri, 28 Feb 2025 01:47:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740736057; x=1741340857; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vDGMfbuMuR3kBQiI4rogi0ibRohl5mipY0hH/p5U0xU=;
+        b=Jf/zCI9U26wkIdganPzairN3ySIE5k3Zg5Hvh1ymTYtCe1ghCHrFd4KS0eIgZE+cLL
+         xADTZMlfQUTyInarCy9HOY/e6xuokJpgnmFQNPvC2BmpG8AauqeEbA/jNIb3Tq7LsUr3
+         CsvOIZKxMr/y/88StC0QftN+xr35RyxDuuyhOLD7nuoSy5r7JNiU2lFsnYun3uEEn6Ib
+         EqEVobl2nVDtZgbU9ioh/D8QiicG2dH4UMQia7cDsfa4tqecd3uWV4PsTFmtnWRZiDQZ
+         kDLwy35VPA/xxt3HeJVNEh26rS/w0V/7zaYvKk7HG5ZHbOaOCQZJkjoA8ZqycbSMCU5t
+         kIfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740736057; x=1741340857;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vDGMfbuMuR3kBQiI4rogi0ibRohl5mipY0hH/p5U0xU=;
+        b=jtglKm/LI7MH7LZMW5e42CWEX0VUPh3Mi3I43aZcf8mNc/3GdlaIBvZbNaJ2vBfukf
+         7OeGALTpx0FFlBTBWeFWAoXkmSVkkAndicrEeVCYzS7qMGeg3d4zNQsnh/XYAxXZluFg
+         ap5+/ofq3DyTbTQGD8d8FU4q65uKrulNyun7Zz1UNgKewJZ5h2GnNy2HXaIh9J8iBRQt
+         oai4pOK4n/1TPMOesx05tqhQQBvo4KLHQlkk8Fc7iDIq9jClvDZKF4z+uPA2JFHqFjcE
+         z48Jqdzix+4hIBK91Q5zq2nppfiIN2GbZSjCP19FfNdMxYm16+AzMM8szkq5YL3QulFL
+         Bp6w==
+X-Forwarded-Encrypted: i=1; AJvYcCW0woCPYYDfT2vB69W9/CsJ5oQuAwhhM8YPAfI5n5guqAlbazHAVW0wY/sxF3mcQkGEoUviZNInbw+vRgTE@vger.kernel.org, AJvYcCWSYY0gptNxlTtoyqR7Tzr6wu9FqbHNtBODoq59DqSAe7VUtcrcCPJs4DWh1q49QwoL9jD3VIYYrM1R@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxxq1VHk2wux2u6MhTGVJ7qFm0Ij2IqRz2pkdcKJEn/BR7xVuOM
+	3PYzF0XNo85dBLWwy9FWSuLom6oUBURYn9c2xtd9paMPstSok34WBQn27oBC
+X-Gm-Gg: ASbGncu4kPiEagXtWSIsRXa6oJmud34hf0plLz7qAezf/XVoFejl8jbLYbCrv+9S/2v
+	2kXK7VTfcqpLelR+IBjwdOHNtsmoYJ9wbYHnt8hwD5WL3KYfypJxx6etgRr3lF661yvfPlZMrJo
+	c8F1rxed4ZkENuTcMP77iNeXnOGiMavddaY2HTihci1yPezfdOjclu+Cz8ZkPKSaA49NLQ//Zaz
+	8v81lZPQrzwpiqjOjnP/bcKaF0LJPY0OIXApJmVr99eHVLK4OXLh3Trxy2yd+YbTAWc5VBi8JFG
+	yemGBpAIHSeIQHfwIkqMfUV2OzP0y4BQhNlLKKJd1JZKbX2ObFbe2vgFxG1n7/uxGP1N8i8eJnn
+	NCAOPG0o/U93MfsrQR4xfPA==
+X-Google-Smtp-Source: AGHT+IEMlhGXm6Y/JnTOzt9A8nMyh8wvCRZshv6TEnEsqVpAdgmtrARjWrSl+UYBxnKInte+nizI7g==
+X-Received: by 2002:a17:907:7f91:b0:ab7:c358:2fec with SMTP id a640c23a62f3a-abf25da05d8mr307714266b.5.1740736056852;
+        Fri, 28 Feb 2025 01:47:36 -0800 (PST)
+Received: from iris-Ian.fritz.box (p200300eb5f0300004dcedf2362c26f55.dip0.t-ipconnect.de. [2003:eb:5f03:0:4dce:df23:62c2:6f55])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abf1a60de5esm209289566b.100.2025.02.28.01.47.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Feb 2025 01:47:36 -0800 (PST)
+From: iansdannapel@gmail.com
+To: linux-fpga@vger.kernel.org
+Cc: Moritz Fischer <mdf@kernel.org>,
+	Wu Hao <hao.wu@intel.com>,
+	Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Aradhya Bhatia <a-bhatia1@ti.com>,
+	Ian Dannapel <iansdannapel@gmail.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [v4 0/3] Add Efinix FPGA SPI programming support
+Date: Fri, 28 Feb 2025 10:47:29 +0100
+Message-ID: <20250228094732.54642-1-iansdannapel@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 7/7] dt-bindings: motion: Add motion-simple-pwm
- bindings
-To: David Jander <david@protonic.nl>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>
-References: <20250227162823.3585810-1-david@protonic.nl>
- <20250227162823.3585810-8-david@protonic.nl>
- <20250228-wonderful-python-of-resistance-d5b662@krzk-bin>
- <20250228102201.590b4be6@erd003.prtnl>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250228102201.590b4be6@erd003.prtnl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 28/02/2025 10:22, David Jander wrote:
-> 
->>> +
->>> +  motion,pwm-inverted:
->>> +    $ref: /schemas/types.yaml#/definitions/flag  
->>
->> And PWM flag does not work?
-> 
-> I have seen PWM controllers that don't seem to support the
-> PWM_POLARITY_INVERTED flag and those where it just doesn't work. Should all
+From: Ian Dannapel <iansdannapel@gmail.com>
+
+This patch series introduces support for Efinix FPGA devices
+through SPI-based programming.
+
+Currently, only Trion devices are tested. Topaz and Titanium series are 
+theoretically supported because of the similarity with Trion, but the
+driver is only documentation based.
+
+Changes since v3:
+- major rework on the driver spi write approach
+    - indirect CS assert using spi_transfer instead of duplicating the
+  SPI controller property
+  - locked SPI bus transfer to avoid possible conflicts with other
+  devices on the bus
+- file name and compatible strings renamed to better match device
+- minor improvements/fixes
 
 
-Shouldn't the controllers be fixed? Or let's rephrase the question: why
-only this PWM consumer needs this property and none of others need it?
+Ian Dannapel (3):
+  dt-bindings: vendor-prefix: Add prefix for Efinix, Inc.
+  dt-bindings: fpga: Add Efinix SPI programming bindings
+  fpga-mgr: Add Efinix SPI programming driver
 
+ .../devicetree/bindings/fpga/efinix,spi.yaml  |  81 +++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/fpga/Kconfig                          |   7 +
+ drivers/fpga/Makefile                         |   1 +
+ drivers/fpga/efinix-spi.c                     | 212 ++++++++++++++++++
+ 5 files changed, 303 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/fpga/efinix,spi.yaml
+ create mode 100644 drivers/fpga/efinix-spi.c
 
-Best regards,
-Krzysztof
+-- 
+2.43.0
+
 
