@@ -1,139 +1,102 @@
-Return-Path: <devicetree+bounces-152646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30463A49BA0
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 15:15:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0E50A49BB5
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 15:17:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82162175460
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:14:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6EEF188408E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:17:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22D4D26E17C;
-	Fri, 28 Feb 2025 14:14:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B0BA26FA5E;
+	Fri, 28 Feb 2025 14:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YT9MBL2M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UW2yj7OL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA5F1224CC;
-	Fri, 28 Feb 2025 14:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F98E26F479;
+	Fri, 28 Feb 2025 14:17:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740752076; cv=none; b=giktfRMwp60+hRn58/+gzpeCis85wujWqhbAa9Z5w12pQOJm/bM46mWoFQqUFki80pa9do3/pPqXIPOxUZKT82HKMkVrEctQNElgUZGmCG9GCOC5IMTTcxQZrhIoLWq+Giy8ORKYLIkEBpVH8fou5FSFK3w3y0PaEVH79pHCAD4=
+	t=1740752239; cv=none; b=ZLTA8njryTWH42w4KL5mCfSo0FiolNDzDx6DpTC4DMYdE4OuDMiqMV/Ysv35Qqbpws/FsW69LgqbMdsEtep6VyL+HT8i9WZtvkRLE2NwVFAbwUQYoIILdDWxteAxY39/YubnXCYAxVVifBVj1hXW7neJZOS9wBaH8vCED+0Y0HE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740752076; c=relaxed/simple;
-	bh=7xqVB20YEN9HAmI4aiGua+lmnwEgNMq4jxWz8FsO0cA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tYjS892Ne4x3WPch4sZq4v4CDcuJgqwWcj1CpI3hyhhOaRq47NGl2mXjm1lLjv2q1FcmUsJaJvkGdu00VgCPp6b7cSV6gAtFDO7oO6eK96Wy75GGHa9iaubXNdzkgGM4O/3PgDKwbRbdZPI5miJiiCUtrTKDIq5XG0SvW7v2T2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YT9MBL2M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1790C4CED6;
-	Fri, 28 Feb 2025 14:14:34 +0000 (UTC)
+	s=arc-20240116; t=1740752239; c=relaxed/simple;
+	bh=+mews4wqirLVd+SJ74CQGKx7psfw9QW6POpNvpoLYPU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CGckX+885oPUy1E9Zk6XWyvQj0oMb8TbZ25ggI50mYP7EOPIrQIeqASoflD+eKVVU7/mvZNZObl/LR98mvbPXXblNSl77aIs2luqmvLE5VictKqRbL58skLAww3oOOzzFU59T70LL8bi2Up1n8/NGvMSuPPTfJrthXLLV95yHBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UW2yj7OL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BDA7C4CEEB;
+	Fri, 28 Feb 2025 14:17:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740752075;
-	bh=7xqVB20YEN9HAmI4aiGua+lmnwEgNMq4jxWz8FsO0cA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YT9MBL2MQs8HjnJ3HPaCFDHRopXy+1a3sHVKWJeRk1C6GsGRDc96+aB79+B/wZ5Lz
-	 ZR/mc0B9keq8R2t55DkrmhuX1lavLQkeWLYVPkhd44D4KSEyDfBuHJPlb7XvLHXq0P
-	 sCfF2vMyEXHK4FZPdUeRMOzb9R0WEDb4VufuaZ1Pp0DqLjX1mB50aFhgcdZV9KEd4J
-	 1ezOTsprzdF7MVfVFGCZdrkZY0oT8ZP4ChhZYDRzdTM8I/H5uwqHnh9HtLu41gTGAK
-	 nbdgWNpQwFstmCk2a5pvBHqxZEbJ+JbNcqxob3Mw5Fzj0mOtPnzisLpStqgb7W5B2g
-	 DxT4wE0RZrtrg==
-Date: Fri, 28 Feb 2025 08:14:32 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sa8775p: add QCrypto node
-Message-ID: <uohwigzosxv2onh7dtgvhqdkdu2jufiukp6ztxrvfbjoihrypx@cq3apkdx2rhw>
-References: <20250227180817.3386795-1-quic_yrangana@quicinc.com>
- <2mlmhzllhb5fhcbwtupy2nk74my5hruliayyr3kayrjvmtou25@em5encygrn2i>
- <7b219289-4f3d-4428-a0af-42491acb1cbb@quicinc.com>
+	s=k20201202; t=1740752237;
+	bh=+mews4wqirLVd+SJ74CQGKx7psfw9QW6POpNvpoLYPU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=UW2yj7OLDI5zuEJjYp9kTPkjpNgQ5I+5MZ0ngBbIdzWUT7pqtBF/VMUzWoOBRRxEV
+	 l+ZuND44lv/fYfOZSZRdQWPfWdCcatWzjFS1YP17PrO3em6I3ASyQw0V7noEb/HxlW
+	 InWuj0scBFOSBOpfIDLEEGEaAYDpBNiUEKjBtcVAplnG1SBZPFrsu3ogya5jJXEYBq
+	 Tdhe757RdCnSrQBEfNFSymmt722b0CN0nyXuHQqFJfu+4pLQUHnwZTrJhWpw7+7WV4
+	 k45eB0y985+vt5zBOzh1TwBi4Bj7PXS488BKzyxpZzQoJW1exvzdiJmyvqnda4R1rl
+	 hw9hLPGt6KJTQ==
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5e4dc3d22b8so1553482a12.0;
+        Fri, 28 Feb 2025 06:17:17 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVDsf7qboDPEGN4rmx0wWZXcK/y9yf71lLaYh4Tsfyn0v2QN2KAiI6YX1zx/wMY61RuDXE5+REGhQchVaBT@vger.kernel.org, AJvYcCVjyx4e9GtG2qwEMOAzsV5RUWHNx2SQexX7FPILqivdPnUAX6xwJx/iJcGDSnxPE9QE28rM+K3WrQ==@vger.kernel.org, AJvYcCXosqAZWbhUyHKL4dWn5tOw7Xk21FhsvJA1gHmz9eQNlI0xhzdJhDONHL/wEF3rZK3Pv2JpMzOoDO5ntw==@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIv48UhpqGmL/u6OOeuj6nEHQWQPcT30s66sxo5/tjPou8dEs+
+	jNrh3ub/GdITyA5PwPaV8G7ShaAKq+nuMbGUSstdekN8ioNatU9ViBkEHASl/h2xFW9zKDbx+1Y
+	e/lMp350Clrhr/QI2xvqx+XmUug==
+X-Google-Smtp-Source: AGHT+IHjthQkObX46y0x27qvzkeyln9C3sLlHRHU7eP7TpYLalIfwcDLQqE0mQgUy4ECwFqBSo9/JmpROBFMKVh/A3s=
+X-Received: by 2002:a17:907:6e92:b0:ab7:b7b5:2a0c with SMTP id
+ a640c23a62f3a-abf2620774dmr419749466b.6.1740752236146; Fri, 28 Feb 2025
+ 06:17:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7b219289-4f3d-4428-a0af-42491acb1cbb@quicinc.com>
+References: <20250226094456.2351571-1-peng.fan@oss.nxp.com>
+ <20250226160945.GA2505223-robh@kernel.org> <20250227030924.GB11411@nxa18884-linux>
+ <CAL_JsqJOqKeDRuASWxCT=EA5LJbONpCX=Re8=XxKUbPToWy2Dg@mail.gmail.com> <Z8HCZQQLofaiGtpG@bogus>
+In-Reply-To: <Z8HCZQQLofaiGtpG@bogus>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 28 Feb 2025 08:17:03 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLePri5m_dE989poUV4auasAxFvgAiYuXVuZHqLcOBGMg@mail.gmail.com>
+X-Gm-Features: AQ5f1JqWAly9mibB4Wnu0iSmsxkTmC_yUXZnPBFIrDHBvIgsef3vgrKT7bmbhac
+Message-ID: <CAL_JsqLePri5m_dE989poUV4auasAxFvgAiYuXVuZHqLcOBGMg@mail.gmail.com>
+Subject: Re: [RFC] dt-bindings: firmware: scmi: Introduce compatible string
+To: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Peng Fan <peng.fan@oss.nxp.com>, saravanak@google.com, cristian.marussi@arm.com, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, arm-scmi@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 28, 2025 at 11:01:16AM +0530, Yuvaraj Ranganathan wrote:
-> On 2/28/2025 5:56 AM, Bjorn Andersson wrote:
-> > On Thu, Feb 27, 2025 at 11:38:16PM +0530, Yuvaraj Ranganathan wrote:
-> >> The initial QCE node change is reverted by the following patch 
-> > 
-> > s/is/was/
-> > 
-> >> https://lore.kernel.org/all/20250128115333.95021-1-krzysztof.kozlowski@linaro.org/
-> >> because of the build warning,
-> >>
-> >>   sa8775p-ride.dtb: crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
-> >>     ...
-> >>     'qcom,sa8775p-qce' is not one of ['qcom,ipq4019-qce', 'qcom,sm8150-qce']
-> >>
-> >> Add the QCE node back that fix the warnings.
-> >>
-> > 
-> > Are you saying that adding this node back will fix the warning?
-> > 
-> > I'd expect that you would say something like "The changes to the
-> > Devicetree binding has accepted, so add the node back".
-> > 
-> > Regards,
-> > Bjorn
-> > 
-> >> Signed-off-by: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-> >> ---
-> >>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 12 ++++++++++++
-> >>  1 file changed, 12 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> >> index 23049cc58896..b0d77b109305 100644
-> >> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> >> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> >> @@ -2418,6 +2418,18 @@ cryptobam: dma-controller@1dc4000 {
-> >>  				 <&apps_smmu 0x481 0x00>;
-> >>  		};
-> >>  
-> >> +		crypto: crypto@1dfa000 {
-> >> +			compatible = "qcom,sa8775p-qce", "qcom,sm8150-qce", "qcom,qce";
-> >> +			reg = <0x0 0x01dfa000 0x0 0x6000>;
-> >> +			dmas = <&cryptobam 4>, <&cryptobam 5>;
-> >> +			dma-names = "rx", "tx";
-> >> +			iommus = <&apps_smmu 0x480 0x00>,
-> >> +				 <&apps_smmu 0x481 0x00>;
-> >> +			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE0 0
-> >> +					 &mc_virt SLAVE_EBI1 0>;
-> >> +			interconnect-names = "memory";
-> >> +		};
-> >> +
-> >>  		stm: stm@4002000 {
-> >>  			compatible = "arm,coresight-stm", "arm,primecell";
-> >>  			reg = <0x0 0x4002000 0x0 0x1000>,
-> >> -- 
-> >> 2.34.1
-> >>
-> 
-> DeviceTree bindings were accepted but the comptabile string does not
-> properly bind to it. Hence, adding the correct binding string in the
-> compatible has resolved the issue.
-> 
+On Fri, Feb 28, 2025 at 8:04=E2=80=AFAM Sudeep Holla <sudeep.holla@arm.com>=
+ wrote:
+>
+> On Fri, Feb 28, 2025 at 07:34:09AM -0600, Rob Herring wrote:
+> >
+> > - The parent driver creates child devices. The child devices can
+> > either reuse the parent DT node (i.e. set dev.of_node) or just get it
+> > from the parent device if needed.
+> >
+>
+> This is exactly what I was thinking to deal with the issue since this
+> discussion started. I will give this a go. I believe this must solve
+> the issue, but I didn't want to spit it out loud until I tried to hack
+> and check.
 
-Please then write that in the commit message.
+The issue with fw_devlink is that it only checks the dependency of the
+parent which won't be enough. When the parent's probe creates the
+child device, that doesn't mean the child has probed. The child driver
+might not be loaded and/or probe is async. I don't think there's
+anyway for the parent probe to wait for child drivers to be probed and
+ready. I think there's similar issues with the DWC3 wrapper and core
+driver split.
 
-
-That said, what did you base this patch on? While I have picked
-Krzysztof's two reverts in my local tree, I have not yet published them.
-So your patch is not even based on v6.14-rc1, which now is 4 weeks old.
-
-Patches sent upstream should be built and tested on a suitable upstream
-branch!
-
-Regards,
-Bjorn
+Rob
 
