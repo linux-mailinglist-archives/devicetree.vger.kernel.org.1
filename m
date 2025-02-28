@@ -1,98 +1,96 @@
-Return-Path: <devicetree+bounces-152666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB86DA49C4B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 15:42:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47D27A49C6F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 15:53:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61F7C7A32A7
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:41:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEA2A3B7DD9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:53:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D432F26FDBE;
-	Fri, 28 Feb 2025 14:42:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A822626FDBE;
+	Fri, 28 Feb 2025 14:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lwn.net header.i=@lwn.net header.b="Yya9l4ou"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gc0Zx0+K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ms.lwn.net (ms.lwn.net [45.79.88.28])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D2AA26B970;
-	Fri, 28 Feb 2025 14:42:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.79.88.28
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F1392686A0;
+	Fri, 28 Feb 2025 14:53:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740753762; cv=none; b=FwmyqiUUDT8ySCQTN1eIx/OAEeRZ079gTc76CS5jeCUTDiaeCWaV5s/0QXjXF+H2o04FVSNJJ3t5TGYyVQQsvcjHFWz53DTuDltkI7yD/17sZxQsoXca6uzyyMnHUp217blIDRPaT7+yw3zyuO1+VApnsSoOo6KzKlw6Zx2qs44=
+	t=1740754400; cv=none; b=SUoGPaO+g3rnGrib0FMixgiGJvaT3SEzBLFvEktSOqfEgZN818BVkYPxBN2XCu39+E+fO/ZWlOS+AtURUymZUaEzgTFbxn86BbWzoexK+xl2QlKqt/T/i0LUWHADXKDM0hw2RNHr4hoVWaaV3mX0TFm9MXD5vj5tq8eBkayCdns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740753762; c=relaxed/simple;
-	bh=3fsvnjXaM/CzbH4hRdFI5Frl6zZPizu0LaHFPeLi1PQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=WDlnixffmmsaIMkGopX13FtV7Vry31wwVsVNyMsBIoG6ifWH3W7183TXotp5trWH328fFZPnFbhPS9G7S0G42Ws+SFjrBnnUw29UBvom6YxEtUFVQ1V8l4CZM3VaNkx9FI5TdDtnhbFr6KeOoFcg/1GNIhXFnzPhbb8B8+wgj6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lwn.net; spf=pass smtp.mailfrom=lwn.net; dkim=pass (2048-bit key) header.d=lwn.net header.i=@lwn.net header.b=Yya9l4ou; arc=none smtp.client-ip=45.79.88.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lwn.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lwn.net
-DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 08422404E4
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
-	t=1740753760; bh=VuBD/Hdy0DzyuJe4EYfZHrvz2Ap2tI9MnSTHTevxMIo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=Yya9l4ouvsltCpyExs0Vm+yj8+3lAtgjiC/564uxQOraDn3vFydGnLtkUnrEnqEPM
-	 f8kEGY278WBShvSNd+6ZUn1i3o3oS5mMxdgNBgW5p3kXuPU0yrbCSb+VnysUfiyYaL
-	 V44maLEfOvHp/I5wKjfhrPVS+gYxTHJnFUdTeTWKxQIsnTovmoS33dvVLpSmG71HTL
-	 dAJ1c97l2goGAeebgrMuyBytXp4UfzK7YYTQMGZ0ZhGfALHNK4qlN/yOxKchr5wY3b
-	 THMPmmiH4NDnxgNjzeEbd6RMqzXhstLx26VodXjpbeF71dL24RFukiXdGPO6EW1fgj
-	 0Ofu6pdz88o/w==
-Received: from localhost (unknown [IPv6:2601:280:4600:2d7f::1fe])
+	s=arc-20240116; t=1740754400; c=relaxed/simple;
+	bh=wdIQ7vUQ7x92S2Va/xZB5CNU6OC3vUqW5+VjhTMkLJo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OdJ5ltbhinRxGGvcTmlyGrtkbXhO5Fe6A2tDIgY5BKzFMHPAZPtN89Ujb/wSb+h3aGek91qcn2lfvLUI4QaIMmSBPzRusWZ1XULXOK16k+QQBb2byA5VvVW0ibYiZDvmlTYh0RsOiUBQxs6ueCzbnVZ6luiNyXZs3naXIHOfsLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gc0Zx0+K; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1740754395;
+	bh=wdIQ7vUQ7x92S2Va/xZB5CNU6OC3vUqW5+VjhTMkLJo=;
+	h=From:To:Cc:Subject:Date:From;
+	b=gc0Zx0+K0yAfUIVS1KGT1nscNtSaU2c0+JgPWBomF97LobjS18ILBHWe60X0Uh8uN
+	 V2SJ73ZbvNibCJIgQzskhV6MWkhk9h26hs6IA1QRP8JTTUxrh9ZQBJzzLz1d0vOJOy
+	 XTkqgXAGV4QyVvdkWuzBMcOuC4YXR/SyKi3Ae4lhXgxoRtma0MSE5HIkYU1prp2dL9
+	 Ij2W39nTBMLAjecKpCUTyhGcaqyTo6M5EALLeBUC7NgBOYey9pIHp+naurRdBYiNi9
+	 OrsDINbS/Fdyfe7sm8pHXEIYNzjuR20H/WBesWS/eJwuZm0lPLwBTZn6U5PrJ1Y9VV
+	 uqSoVWPofNmJA==
+Received: from trenzalore.hitronhub.home (unknown [23.233.251.139])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by ms.lwn.net (Postfix) with ESMTPSA id 08422404E4;
-	Fri, 28 Feb 2025 14:42:39 +0000 (UTC)
-From: Jonathan Corbet <corbet@lwn.net>
-To: David Jander <david@protonic.nl>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>, Jonathan Cameron
- <jic23@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>
-Subject: Re: [RFC PATCH 4/7] Documentation: Add Linux Motion Control
- documentation
-In-Reply-To: <20250228140212.346c4ef5@erd003.prtnl>
-References: <20250227162823.3585810-1-david@protonic.nl>
- <20250227162823.3585810-5-david@protonic.nl>
- <87y0xrpcnn.fsf@trenco.lwn.net> <20250228140212.346c4ef5@erd003.prtnl>
-Date: Fri, 28 Feb 2025 07:42:39 -0700
-Message-ID: <87o6ymnna8.fsf@trenco.lwn.net>
+	(Authenticated sender: detlev)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4388117E0AFB;
+	Fri, 28 Feb 2025 15:53:13 +0100 (CET)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Alexey Charkov <alchark@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Stephen Chen <stephen@radxa.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Liang Chen <cl@rock-chips.com>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	kernel@collabora.com
+Subject: [PATCH 0/2] Add SPI support for Radxa ROCK 4D
+Date: Fri, 28 Feb 2025 09:50:46 -0500
+Message-ID: <20250228145304.581349-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 
-David Jander <david@protonic.nl> writes:
+The board comes with a SPI NOR chip connected on the FSPI0 interface.
 
-> What I am unsure of is the rest of the documentation (which arguably still
-> needs to be written). I initially selected this place because of
-> Documentation/subsystem-apis.rst. LMC being a new "subsystem", made me think it
-> was the right thing to follow the structure of the contents there.
-> What I mean to put there is documentation of the driver API for motion
-> control drivers. I understand that while it doesn't really exist yet, I should
-> leave it out of this patch set, but when I am going to write it, should it
-> still go there, or is there now a better place?
+Add the SFC nodes for the rk3576 SoC and enable sfc0 for the Radxa ROCK
+4D.
 
-I've really been pushing to organize our documentation by the audience
-it is addressing, rather than by the developers who write it.  So
-driver-api documentation is best put into ... the driver-api book,
-Documentation/driver-api.
+Detlev Casanova (2):
+  arm64: dts: rockchip: Add SFC nodes for rk3576
+  arm64: dts: rockchip: Add SPI NOR device on the ROCK 4D
 
-My plan, that I haven't yet acted on, is to create Documentation/devices
-for device-specific docs that don't go anywhere else, then move a lot of
-stuff into it.  Much like what was done with Documentation/arch.  But
-anything that can go into the existing audience-focused manuals should
-go there.
+ .../boot/dts/rockchip/rk3576-rock-4d.dts      | 16 ++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 22 +++++++++++++++++++
+ 2 files changed, 38 insertions(+)
 
-Thanks,
+-- 
+2.48.1
 
-jon
 
