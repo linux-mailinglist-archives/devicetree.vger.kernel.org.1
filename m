@@ -1,142 +1,87 @@
-Return-Path: <devicetree+bounces-152877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C29BA4A5B1
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 23:12:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3380A4A5C6
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 23:19:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7624C16D6C9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:12:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6A79175D5E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:19:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF91E1DE2CB;
-	Fri, 28 Feb 2025 22:12:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B9091DE3A5;
+	Fri, 28 Feb 2025 22:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="TyCXX+0Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B8y2kzuV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB9071A254C;
-	Fri, 28 Feb 2025 22:11:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BAEE1C54AF;
+	Fri, 28 Feb 2025 22:19:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740780721; cv=none; b=mzUFPcgwg3oOj2hhlnXDkBzUsAtv96ouWqZuH7FGYjAztNQ2ww6r55MzUGgtBp8LVNA4mckGL1/rvqSiCJFvy/AFMM6l8Icq0y5uxao98Msix5DDHRzUJfY053PVFnDAbQwRJU7i0at0NAnGvc0ANYRYX+sj4npEgK0XcNLMseQ=
+	t=1740781195; cv=none; b=XuwxWTfZV/CpoZPdhbaOIlFvGAhnVoBaStnm8YJp9THGf6lnLlLH8qg7qJWS9mWVHts02IbdZaj7NcjaWrgdEVBNGrCKRVmzkUgTWp32VQVjztsol2uhXr+wDH2NBBq2NW24RoqQ+HTLHuPDSuE3M163DTAf2TdpmksjkbHX9WY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740780721; c=relaxed/simple;
-	bh=n0RDSDT7lrDfgY2gY0Jx1+2UsomVL7pe4VNMSvttegY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pCygiEf+cF+0lcBYaLrpC0A3kl3XHISBARAaqepMmzSBbxFHd0xhMF8oIJldMFt/zBo6uPw46cXHjSe7ubo9bj/uka+KaOJcXQVlEqAodLaHxFZK3k/mHWsH+5Rf5CQprgZkIkQXjn4LWd7GHd4zPdPSlY9IbtayRheicCtxbbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=TyCXX+0Y; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=VZfcm07W8RwEaBy9lSmqnHo6WL11ba796zrsT4TrXJI=; b=TyCXX+0Y4INx6O+beYAL/qfnpw
-	xrOw0ZkMweR/I6PkMC5d1ncuABaxrCMZo/JxoY7hyf68suXi20D9bp/o5Jog748TyIWhA5xTtfdhJ
-	N/9WXodyRsorIeLIQ9+zLGNTYFHVsdtiPcbsloZD0vCvQINbv/s67+lmDR7NQnuJUO/+ETU16Om6R
-	1HlG2XdFsLUUWvKRrskWKV9dYBOCOtVuiwOaOjEGed51G+ukhAj1rBpT5OxC8+BgQa35paN0TGDQr
-	4hOOmhezcDXfbRRCWzsWXdkF0cebcaY93q/VeB5g6WxSIRp5W7DnHlnEvuEUKFlAL6zEGHxplPFXS
-	kAZzc4mQ==;
-Received: from i53875b47.versanet.de ([83.135.91.71] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1to8Zk-00040X-Sb; Fri, 28 Feb 2025 23:11:20 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Kever Yang <kever.yang@rock-chips.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org,
-	Simon Xue <xxm@rock-chips.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	linux-usb@vger.kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Jamie Iles <jamie@jamieiles.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	linux-pci@vger.kernel.org,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Johan Jonker <jbx6244@gmail.com>,
-	David Airlie <airlied@gmail.com>,
-	dri-devel@lists.freedesktop.org,
-	linux-i2c@vger.kernel.org,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Finley Xiao <finley.xiao@rock-chips.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	linux-pwm@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-serial@vger.kernel.org,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	ulf.hansson@linaro.org,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	devicetree@vger.kernel.org,
-	Diederik de Haas <didi.debian@cknow.org>,
-	linux-watchdog@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Shresth Prasad <shresthprasad7@gmail.com>,
-	Tim Lunn <tim@feathertop.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	s=arc-20240116; t=1740781195; c=relaxed/simple;
+	bh=Is6EeypzsIr/GF6ox/TafGl7L+nMb7erAmt/bL5FM1w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n42+xrUIAWmArdxRDRwfBRE8Hp6d//PSZSPAoFiSyWpwPRqbHUYE+81knM7hBeyKkaFWGjbW4tJzn1fVYcG13UEFJ8GowfR4wJpDuUWknb5yGx/oxBHXr/hu3U25N6HcXSuhHLcovfGfDY/ftDT2hWlcNBpkmgpYBE76h6698Yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B8y2kzuV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A2E6C4CED6;
+	Fri, 28 Feb 2025 22:19:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740781194;
+	bh=Is6EeypzsIr/GF6ox/TafGl7L+nMb7erAmt/bL5FM1w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=B8y2kzuV8D87XwUZ2YJvDIXbHwWYckrI5sK8ggl9au6Qxm2XDhTSaG9J8IkqkcEnI
+	 h1UycieE7vZL+YLs3Fz2sejd5HMdPjZfAojQ/NyCHI4Muow8bB6wM9kTWGZNfTReMO
+	 Ts8T66ca5cNjzs4dnZ8snorkdwPytsSSEj/7klyt9X9bO+Kd7JxSGfwPxDPzU+yHvV
+	 1qeJB178Xxub7nCmXQvz5FG/ETLZMhemUl/WI9NJwUcVRk54vTnnNuPCS5LwNY5Y5T
+	 BoKd3E/l7MgcQl7nQFiehQBHSoIhtX/W+LDcTHadE1d8TIBtM7WRbDP8D9S6basBXq
+	 JDXP8EA59ocQg==
+Date: Fri, 28 Feb 2025 16:19:51 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Mark Brown <broonie@kernel.org>,
-	linux-mmc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Subject: Re: (subset) [PATCH v3 00/15] rockchip: Add rk3562 SoC and evb support
-Date: Fri, 28 Feb 2025 23:10:48 +0100
-Message-ID: <174078063579.504376.4763347846550378295.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250227111913.2344207-1-kever.yang@rock-chips.com>
-References: <20250227111913.2344207-1-kever.yang@rock-chips.com>
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Joy Zou <joy.zou@nxp.com>,
+	imx@lists.linux.dev, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 1/3] dt-bindings: dma: fsl-edma: increase maxItems of
+ interrupts and interrupt-names
+Message-ID: <174078119105.3778835.11301085997308334922.robh@kernel.org>
+References: <20250228-edma_err-v1-0-d1869fe4163e@nxp.com>
+ <20250228-edma_err-v1-1-d1869fe4163e@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250228-edma_err-v1-1-d1869fe4163e@nxp.com>
 
 
-On Thu, 27 Feb 2025 19:18:58 +0800, Kever Yang wrote:
-> This patch set adds rk3562 SoC and its evb support.
+On Fri, 28 Feb 2025 12:42:03 -0500, Frank Li wrote:
+> From: Joy Zou <joy.zou@nxp.com>
 > 
-> I have split out patches need driver change for different subsystem.
-> And all the modules with dt-binding document update in this patch set
-> do not need any driver change. I put them together to make it clear we
-> have a new SoC and board to use the new compatible. Please pick up the
-> patch for your subsystem, or please let me know if the patch has to
-> send separate.
+> The edma controller support optional error interrupt, so update interrupts
+> and interrupt-names's maxItems.
 > 
-> [...]
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/dma/fsl,edma.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-Applied, thanks!
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-[05/15] dt-bindings: gpu: Add rockchip,rk3562-mali compatible
-        commit: 049e7ac203d51fdc3a739f5f28906788e8eeea03
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
 
