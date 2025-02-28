@@ -1,141 +1,202 @@
-Return-Path: <devicetree+bounces-152616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9647A49A56
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:15:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E17A2A49A6A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:22:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A35C51892A7D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:16:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7DC13A87BA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:22:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C9126D5A4;
-	Fri, 28 Feb 2025 13:15:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C153426D5BE;
+	Fri, 28 Feb 2025 13:22:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="kCaYDqlg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dJGgvPX1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AF841D555;
-	Fri, 28 Feb 2025 13:15:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D981126BDA3;
+	Fri, 28 Feb 2025 13:22:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740748549; cv=none; b=j+nW/WScTWEU95gr898mXeul/PbpuWKgdSzZcya45tmXBq1EfUo5PbDSIgnpTYmcTl6bkQT95zqbj6mbCy5NqtdELL4ZgaZwdoDhIts6OVeRmjFXZKARaL9FG8WMWu0pMA1Kf3F6OjbkvZISOC9KS92d4tITRXOp8EXrE0wNDrk=
+	t=1740748935; cv=none; b=FpB5DfDARfkG8svp+ESyGzeQkrUgbyLWxM4sx99uZwaSZ/+B0n9tDoyXcRFTByJ/YIoE/SGGu7Thcshfm0aAPwMUjAOkvgYfEpJ6hcfwwJDkbxE/+4rZn1uFOIq8hmUeHW0w2cAHB4Bo2MNoGpOpr/KbnLo1seC8RSbuOKC28RU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740748549; c=relaxed/simple;
-	bh=SckwLTl7ZUjoZlVrJjk6dYXBPSpAwAFA5k7zKQwoW2M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qC6Eb8Mb7y88d/dHhBCzGJPjteHbRbkkl1b/PcGrMC5xq53LueQrHn6Gob+MpdhvODxH88Xc58XdN4UrLufI3OpfPjbCbtbusUDprNGijjpGOg2DGB9W6mydmsUIk7lQF6/Yyn71uOX7VVYs1bwtbN+8Zm5ntP9JdEXDYSyy5AY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=kCaYDqlg; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1740748540;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=olCRpjYr4qsqRXFdIM/b3JCKLN2vd78BQaVxj7nrTLE=;
-	b=kCaYDqlg6pG/DvdWMsiG0vQHMiW09HzgzCV6Qz5Z4bMbRSx/crMZzxA1K+YvfdN+aXZcE0
-	babArb1z2kp1on3hQ2n5AZyQKSybp4UPmzrT6U/8w54oL+mA0wW9RFF0cvfEehePrRaauz
-	B+M+C6IFFZmG3cD9kedNv3lW+kmAVvYm06MSyIow3SZ6WR680DTcAPSQLhYe+ZQBv7Lnph
-	ma9UcCyjt1VhWNRwNSGqdpW4e5ta3pKofGpvaQ7d02IyufA5B9mlXzfw8CT7jY/G5mHcB7
-	6BvUtrCSWcEOZt6h1hmtV9nNR8p2aD1TTZkl9zzyOPL0ZNK/Q/tCwPmPBWHFeg==
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Diederik de Haas <didi.debian@cknow.org>
-Subject: [PATCH 2/2] arm64: dts: rockchip: Add missing PCIe supplies to RockPro64 board dtsi
-Date: Fri, 28 Feb 2025 14:15:29 +0100
-Message-Id: <83f2938bdd4ba49c1e840537d6ede0f8219b7b90.1740748439.git.dsimic@manjaro.org>
-In-Reply-To: <cover.1740748439.git.dsimic@manjaro.org>
-References: <cover.1740748439.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1740748935; c=relaxed/simple;
+	bh=Kz7tQ7V+0+WAQoonVHNEEJH3MiDZITaZpOzO7CDVJMY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VKj1gkpAUSUb0H+o1Or+dXGALR71oB6OUTSsDAtkpxtGUElQNfbZW9vX1nJv2C2qiYUo8kAwP3w388EUTkwimZ2b070WOSTcA8SishzD0dHy9AekZUrAE2YYzwmmPpOfvQ125tufJwiI/ZeK02UWey4OxjI4sYU5YuvsE03/2vA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dJGgvPX1; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-390ec7c2d40so743795f8f.1;
+        Fri, 28 Feb 2025 05:22:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740748932; x=1741353732; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aLCskdkyDjKVzUbxWO5nRc2aTnNTpaWoydhtK7t4lAA=;
+        b=dJGgvPX1hkaccIYPc/qRD6g2Rdg8d/IUhokspQrQKp6ZRzs6wEd8fTk+GEgz14zWu1
+         Mt4YXejbw4rETgkKuj7c32F3+wlAwW+emaKo7po9Zydo7WJGI97hwEUEC3SAKgJ1vE2f
+         HmsuCTUQa/twYZw/Dzj0D9FJkHBCUAEcGeHwhDLcZDaLMJ/XkotIcww8AQ2u+USiaCE/
+         DR0bAjE9b0acRAofFAsdKJwAdjQMKwVoyXkAX9iyywAWcGFEq4fHwWqG2KZ/yO8cAzjO
+         t0CqIygYQ5/x/q9GPkd3BwrDahgewJJ+2VTFO1Xb6x/g02fONbiqcAXC0wtwuZAx7WDb
+         ijug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740748932; x=1741353732;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aLCskdkyDjKVzUbxWO5nRc2aTnNTpaWoydhtK7t4lAA=;
+        b=FXufwooiPBwNjQWBwrW9SQQl5Ham/gRiMDxB6TwXVUQ6ZA5yO21mksVNUz4MGY24b6
+         oHwpJa02EfJQB2RBembQE0BtYceobm2aNaF7a7oF6CC4Li2vfPMfmb27jZi61DsEgGuh
+         QBBCudJ2piUl4GYm6st/tvx3uSYx0RNM6o5JGwrI2zAiHGbnvVoLHacLDKFse4WP+mFp
+         bEloUmM/PPun1cihz4Vt5lXK2w7iNQkOh9MtIrZfaorZgNYK6kTxJMAFOy/3WgRSqVqZ
+         9StzhajFKR2yrpK4szsE++uGpnkAEdFYVqtERIAZCj43zuhcj1Th9nUy46Kp4g0QAgLB
+         u5/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW39YshyP/9q0ijekT5BcMS0UZWWiONEG2x3FfNMKdAYIRoMp9Ezqehvlj+/r+Ao/YJXUakP6fK6Mxx@vger.kernel.org, AJvYcCXQgwSOLvsEa0lsJjQjKSwCvBkHz8pZpjl9z2aJ0/c597I1eE5nVRTOlsS1zKcCS7ZPK3QuGnc886a96dKy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4y1jSdGjM8CfdCnnQvoBMRrByT4O1gwrJEn4VHm1iES+zxG4C
+	ljCHrkzAWXgI3V6cHbBAHz+24rOklxa860HmMQmMnYQO2uumEj3yNJJFKIGKUPxNsm9G323hTri
+	Akwmte5XMpXjaQbNF3ry2yLAZ9Tw=
+X-Gm-Gg: ASbGncusqYr8nIKVfgbp3eqncq5R94oQawdi2Os7OpMZwJFuMvhVz8dSFM4pDICm9XD
+	tbLc/QHB0AD9BG4mUGRxYaMva7P7pYbzqLf+pJqqXKC3+LQd9Ju+YWw3ohain0u7uOEeGPRxsLH
+	lzPGVLXDRA
+X-Google-Smtp-Source: AGHT+IEWGseohuDp7KhNAY0LdcYgEQH/Rbd9LdHbvgH4CFd0eo6h8IeKxvf7p55tqbikbGe86i4k9z8m3nzpWQsmL8w=
+X-Received: by 2002:a05:6000:401f:b0:38d:d664:67d8 with SMTP id
+ ffacd0b85a97d-390ec7c6738mr3084072f8f.11.1740748931828; Fri, 28 Feb 2025
+ 05:22:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+References: <20250219082817.56339-1-clamor95@gmail.com> <20250219082817.56339-3-clamor95@gmail.com>
+ <99ee61dc-abd5-45d9-8d26-a8f0ae94c8eb@arm.com>
+In-Reply-To: <99ee61dc-abd5-45d9-8d26-a8f0ae94c8eb@arm.com>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Fri, 28 Feb 2025 15:22:00 +0200
+X-Gm-Features: AQ5f1JqiEG1tJRPj2HmNZIqvEspltfMFIDE6rFA4YikSqMAQilmFeeVoGxd-Kho
+Message-ID: <CAPVz0n0uWEY+-evrfpci9-1c3icGyHfTHMbXi=P9Sv=Uh3AUaA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] thermal: thermal-generic-adc: add temperature
+ sensor channel
+To: Lukasz Luba <lukasz.luba@arm.com>
+Cc: linux-pm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	Zhang Rui <rui.zhang@intel.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Laxman Dewangan <ldewangan@nvidia.com>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add missing "vpcie0v9-supply" and "vpcie1v8-supply" properties to the "pcie0"
-node in the Pine64 RockPro64 board dtsi file.  This eliminates the following
-warnings from the kernel log:
+=D0=BF=D1=82, 28 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 15:11 Luka=
+sz Luba <lukasz.luba@arm.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> Hi Svyatoslav,
+>
+> On 2/19/25 08:28, Svyatoslav Ryhel wrote:
+> > Add IIO sensor channel along with existing thermal sensor cell. This
+> > would benefit devices that use adc sensors to detect temperature and
+> > need a custom conversion table.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >   drivers/thermal/thermal-generic-adc.c | 54 ++++++++++++++++++++++++++=
+-
+> >   1 file changed, 53 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/thermal/thermal-generic-adc.c b/drivers/thermal/th=
+ermal-generic-adc.c
+> > index ee3d0aa31406..a8f3b965b39b 100644
+> > --- a/drivers/thermal/thermal-generic-adc.c
+> > +++ b/drivers/thermal/thermal-generic-adc.c
+> > @@ -7,6 +7,7 @@
+> >    * Author: Laxman Dewangan <ldewangan@nvidia.com>
+> >    */
+> >   #include <linux/iio/consumer.h>
+> > +#include <linux/iio/iio.h>
+> >   #include <linux/kernel.h>
+> >   #include <linux/module.h>
+> >   #include <linux/platform_device.h>
+> > @@ -73,6 +74,57 @@ static const struct thermal_zone_device_ops gadc_the=
+rmal_ops =3D {
+> >       .get_temp =3D gadc_thermal_get_temp,
+> >   };
+> >
+> > +static const struct iio_chan_spec gadc_thermal_iio_channel[] =3D {
+> > +     {
+> > +             .type =3D IIO_TEMP,
+> > +             .info_mask_separate =3D BIT(IIO_CHAN_INFO_PROCESSED),
+> > +     }
+> > +};
+> > +
+> > +static int gadc_thermal_read_raw(struct iio_dev *indio_dev,
+> > +                              struct iio_chan_spec const *chan,
+> > +                              int *temp, int *val2, long mask)
+> > +{
+> > +     struct gadc_thermal_info *gtinfo =3D iio_priv(indio_dev);
+> > +     int ret;
+> > +
+> > +     if (mask !=3D IIO_CHAN_INFO_PROCESSED)
+> > +             return -EINVAL;
+> > +
+> > +     ret =3D gadc_thermal_get_temp(gtinfo->tz_dev, temp);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     *temp /=3D 1000;
+> > +
+> > +     return IIO_VAL_INT;
+> > +}
+> > +
+> > +static const struct iio_info gadc_thermal_iio_info =3D {
+> > +     .read_raw =3D gadc_thermal_read_raw,
+> > +};
+> > +
+> > +static int gadc_iio_register(struct device *dev, struct gadc_thermal_i=
+nfo *gti)
+> > +{
+> > +     struct gadc_thermal_info *gtinfo;
+> > +     struct iio_dev *indio_dev;
+> > +
+> > +     indio_dev =3D devm_iio_device_alloc(dev, sizeof(struct gadc_therm=
+al_info));
+> > +     if (!indio_dev)
+> > +             return -ENOMEM;
+> > +
+> > +     gtinfo =3D iio_priv(indio_dev);
+> > +     memcpy(gtinfo, gti, sizeof(struct gadc_thermal_info));
+> > +
+> > +     indio_dev->name =3D dev_name(dev);
+> > +     indio_dev->info =3D &gadc_thermal_iio_info;
+> > +     indio_dev->modes =3D INDIO_DIRECT_MODE;
+> > +     indio_dev->channels =3D gadc_thermal_iio_channel;
+> > +     indio_dev->num_channels =3D ARRAY_SIZE(gadc_thermal_iio_channel);
+> > +
+> > +     return devm_iio_device_register(dev, indio_dev);
+>
+> I don't get the idea why we need iio device, while we already have the
+> hwmon.
+>
 
-  rockchip-pcie f8000000.pcie: supply vpcie1v8 not found, using dummy regulator
-  rockchip-pcie f8000000.pcie: supply vpcie0v9 not found, using dummy regulator
+Idea behind this is to be able to convert adc iio channel into temp
+iio channel without introducing a new sensor which will duplicate
+behavior of existing one (by this I mean conversion table use). Not
+all devices can or have to use hwmon and some may require iio channel
+hooked up.
 
-There are no functional changes to the way board works after these changes,
-because the "vcca_0v9" and "vcca_1v8" regulators are always enabled, [1][2]
-but these additions improve the accuracy of hardware description.
+Real life example. I own a device (LG P985) which has a fuel gauge
+that does not support battery thermal readings. Vendor provided a
+dedicated adc sensor and one of its channels is used as thermal sensor
+with device specific conversion table. Fuel gauge on the other hand
+supports linking in a dedicated temp iio channel to get thermal
+readings.
 
-Shuffle and reorder the "vpcie*-supply" properties a bit, so they're sorted
-alphanumerically, which is a bit more logical and more useful than having
-these properties listed in their strict alphabetical order.
-
-These changes apply to the both supported hardware revisions of the Pine64
-RockPro64, i.e. to the production-run revisions 2.0 and 2.1. [1][2]
-
-[1] https://files.pine64.org/doc/rockpro64/rockpro64_v21-SCH.pdf
-[2] https://files.pine64.org/doc/rockpro64/rockpro64_v20-SCH.pdf
-
-Reported-by: Diederik de Haas <didi.debian@cknow.org>
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
----
-
-Notes:
-    Actually, these additions to the DT _might_ improve the way RockPro64
-    works a bit, by _possibly_ resolving the longstanding issues with PCI
-    Express enumeration, which have been observed with certain PCI Express
-    cards only.  This was mentioned in the commit 43853e843aa6 (arm64: dts:
-    rockchip: Remove unsupported node from the Pinebook Pro dts, 2024-04-01),
-    together with a brief description of the out-of-tree enumeration delay
-    that reportedly resolves those issues.
-    
-    Symptomatically enough, AFAIK only the RockPro64 has been reported to
-    suffer from the PCI Express issues, and it's only the RockPro64 that has
-    the missing supplies in its DT, so maybe there's something that causes
-    issues when the PCI Express is probed before the RK808 PMIC, which the
-    "vcca_1v8" regulator comes from.  The above-mentioned enumeration delay
-    might actually be just a workaround for those underlying issues.
-    
-    Admittedly, the RockPro64 is a bit specific board by having a standard
-    PCI Express slot, allowing use of various standard cards, but pretty much
-    standard PCI Express cards have been attached to other RK3399 boards as
-    well, and I can't recall similar issues being reported for them.
-    
-    The required reliability testing will be performed as the time permits,
-    so we'll hopefully see are these assumptions valid.  In the meantime,
-    this patch remains perfectly safe, from the standpoint of being unable
-    to do any harm or cause some unforeseen regressions.
-
- arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-index 47dc198706c8..41ee381ff81f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-@@ -673,8 +673,10 @@ &pcie0 {
- 	num-lanes = <4>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie_perst>;
--	vpcie12v-supply = <&vcc12v_dcin>;
-+	vpcie0v9-supply = <&vcca_0v9>;
-+	vpcie1v8-supply = <&vcca_1v8>;
- 	vpcie3v3-supply = <&vcc3v3_pcie>;
-+	vpcie12v-supply = <&vcc12v_dcin>;
- 	status = "okay";
- };
- 
+> Could you explain this a bit more, the cover letter also misses
+> such justification and details.
+>
+> Regards,
+> Lukasz
 
