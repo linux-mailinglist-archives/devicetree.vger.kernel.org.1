@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-152750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 298CAA4A16E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:27:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C26A4A16C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:27:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22AAF189B24D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:27:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D923D189B21D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:27:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 311E3272904;
-	Fri, 28 Feb 2025 18:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2AD926B971;
+	Fri, 28 Feb 2025 18:27:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="SMx0uDl2"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="eyjUPMFJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5125A27127A
-	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 18:27:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E86971A2554
+	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 18:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740767236; cv=none; b=qfkIkrTNJP/aCgY6IuqN8gNxmyrjFUcKPvjuOlxsqTqKG/3ouuf31cwHZd0+u2hY7/bnulFciPDJuMZ/fXQd/68oGLXlEleYtNUZo5Rh/6VeNYt5BfmcUjnjGUgpQ1R63BPHdDcy/WO6yoPHGjk+N0/zbz7209Fj+BoqyUZ5bZ0=
+	t=1740767233; cv=none; b=HDLNDIlBtUAapGtc2e02Z5vUpQ9qi2vVHXkB42/sBpHyXOF0J2tmjZGNrbWrsc0SKdSV69Tk8qIvju1YvgpWbUWO9UgtkIpsa793vvPtba3RTezOwlXtyItsZkQ5HnHmXCPW+3la8J+ijPYFcr+z05P/RnONMvtmTSWJKZVb+ys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740767236; c=relaxed/simple;
-	bh=XYXW1hqahyHMUMbdtCfSTrUwB7QRlNoF9BqkS0BM08I=;
+	s=arc-20240116; t=1740767233; c=relaxed/simple;
+	bh=mGU1vbpxxb5kcxznq+oaJCINMrDt8quxMBP9ql5bcYg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ooP6xcZhaErVgzqkyyoCEWJMZjUWksRXaiXYm99Q5wbjB6bf1nOCjvhshetG3zzzustD/0stPb2z7ENETb4LoKMHvTz1kui00CGmLQUyz5SHLplVRWwpBvv7fP2X4R/Gw1yoo1jmhlZzSCzlhoj2rtztBlMaDyhd05e3QdKAT/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=SMx0uDl2; arc=none smtp.client-ip=89.58.32.78
+	 In-Reply-To:Content-Type; b=apFTfxXRJ+wjlBwtrQzCe2wSlgnuAm5bsyYPNBRB8SS4hokIvubqJ7MhOtL9bMr/QsD9TRMWzzngHwIFZxZK+/1lUPZ8w59CFmvZhqfNnhekSL7aH3+3RV9cTgrdQXZBzsM7S1sQubZ9Dj7+4M8c64oARjp1xlvoihNXol3Y2Sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=eyjUPMFJ; arc=none smtp.client-ip=89.58.32.78
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B356E102901CB;
-	Fri, 28 Feb 2025 19:27:03 +0100 (CET)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A7701102901CC;
+	Fri, 28 Feb 2025 19:27:06 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1740767226;
+	t=1740767229;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ebfjXjv+bqlFowxWgcxVBRPIFf+y2ZFstbhRFYQ+B3o=;
-	b=SMx0uDl2Mwn6/zecOEx6MQdyi0SH0kKNxIGNAfTZlFCp+iLnWFeP8mL1NQbqE9vBcwy/EA
-	c59tK9X19cLR6C01stMKronJmlaTYccJe2s7OGzf3Bhfav4cncfDu2e9Sw65+JFdilJ11n
-	j6HQT+DQYgi6QAFzpneNjPd1sFp/T9opiQZVYH4nXnvAMrcoUhzazc8HDqxYfJJry0Ujxw
-	W4yHOYyE7zde/azlb7UohiwEy7thG/Ofuf+xYNWbzUDCgdyTZTvEVT9sm4WwJDYhoaCcbE
-	GlgEtgDW2NFaNm97s7/KNeyle8S7FGEZxa/sJbSoBYve3u9mbM5AeK2jh4h/Uw==
-Message-ID: <b0bfbb84-a3a8-403a-ad5a-95ebcd1eb00f@denx.de>
-Date: Fri, 28 Feb 2025 17:48:29 +0100
+	bh=9CdXt1sb9hF/qYyFIBouuUvILgc0/orYH3chQLK7vwg=;
+	b=eyjUPMFJu4kjE7nYaUGe20Yi4pGLvofEGSGrl2a4zZ+qOpdwtlKK7OYWtHit0AQxK/HRqW
+	ozBA5MxABrvrPpKBXm+/w+s0q/UK8o04Dw/AobKVUe02mD+QsLplvF1ZCLHpXNyaUaquyL
+	SYIKM06o/qT+Y7e7dTZJjFYQjAmHKQA8ZisFc/LIlxKQrPqkZgMK+KAk6dFghkNmVTWZEa
+	gwxChUGoL5Muj2rnO0cPohjYWeEc4l+vy6MwqnnRJb87FOTb+naAW52MZYqjv5ea99IkMG
+	ir3tVFvuzA0EDKKuK/zM0G0Vjayrocw/hNCOGyGKJOSMm26UTbeZCCVQNuLLqw==
+Message-ID: <39351f48-04be-4659-8b3b-9a4ef6030efd@denx.de>
+Date: Fri, 28 Feb 2025 18:00:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,7 +54,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/9] drm/panthor: Implement optional reset
+Subject: Re: [PATCH 5/9] drm/panthor: Implement support for multiple power
+ domains
 To: Alexander Stein <alexander.stein@ew.tq-group.com>,
  linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org
 Cc: Boris Brezillon <boris.brezillon@collabora.com>,
@@ -70,71 +71,71 @@ Cc: Boris Brezillon <boris.brezillon@collabora.com>,
  Steven Price <steven.price@arm.com>, Thomas Zimmermann
  <tzimmermann@suse.de>, devicetree@vger.kernel.org, imx@lists.linux.dev
 References: <20250227170012.124768-1-marex@denx.de>
- <20250227170012.124768-5-marex@denx.de> <2180166.OBFZWjSADL@steina-w>
+ <20250227170012.124768-6-marex@denx.de> <2848587.BEx9A2HvPv@steina-w>
 Content-Language: en-US
 From: Marek Vasut <marex@denx.de>
-In-Reply-To: <2180166.OBFZWjSADL@steina-w>
+In-Reply-To: <2848587.BEx9A2HvPv@steina-w>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-On 2/28/25 11:06 AM, Alexander Stein wrote:
+On 2/28/25 11:10 AM, Alexander Stein wrote:
 
 Hi,
 
 >> diff --git a/drivers/gpu/drm/panthor/panthor_device.c b/drivers/gpu/drm/panthor/panthor_device.c
->> index a9da1d1eeb707..51ee9cae94504 100644
+>> index 51ee9cae94504..4348b7e917b64 100644
 >> --- a/drivers/gpu/drm/panthor/panthor_device.c
 >> +++ b/drivers/gpu/drm/panthor/panthor_device.c
->> @@ -64,6 +64,17 @@ static int panthor_clk_init(struct panthor_device *ptdev)
+>> @@ -75,6 +75,58 @@ static int panthor_reset_init(struct panthor_device *ptdev)
 >>   	return 0;
 >>   }
 >>   
->> +static int panthor_reset_init(struct panthor_device *ptdev)
+>> +/* Generic power domain handling code, see drivers/gpu/drm/tiny/simpledrm.c */
+>> +static void panthor_detach_genpd(void *res)
 >> +{
->> +	ptdev->resets = devm_reset_control_get_optional_exclusive_deasserted(ptdev->base.dev, NULL);
-> 
-> If the description as a write-once register is true, wouldn't this
-> already write to it?
-
-It would. I believe the reset handling in the GPU driver should be 
-generic. The reset has to be deasserted here to access the GPU registers.
-
-The question is, whether the GPUMIX GPURESET bit should be modeled as 
-simple reset, even if it really behaves as a 
-set-and-never-can-be-cleared latched bit.
-
->> +	if (IS_ERR(ptdev->resets))
->> +		return dev_err_probe(ptdev->base.dev,
->> +				     PTR_ERR(ptdev->resets),
->> +				     "get reset failed");
+>> +	struct panthor_device *ptdev = res;
+>> +	int i;
 >> +
->> +	return 0;
+>> +	if (ptdev->pwr_dom_count <= 1)
+>> +		return;
+>> +
+>> +	for (i = ptdev->pwr_dom_count - 1; i >= 0; i--)
+>> +		dev_pm_domain_detach(ptdev->pwr_dom_devs[i], true);
 >> +}
 >> +
->>   void panthor_device_unplug(struct panthor_device *ptdev)
->>   {
->>   	/* This function can be called from two different path: the reset work
->> @@ -217,6 +228,10 @@ int panthor_device_init(struct panthor_device *ptdev)
->>   	if (ret)
->>   		return ret;
->>   
->> +	ret = panthor_reset_init(ptdev);
->> +	if (ret)
->> +		return ret;
+>> +static int panthor_genpd_init(struct panthor_device *ptdev)
+>> +{
+>> +	struct device *dev = ptdev->base.dev;
+>> +	int i, ret;
 >> +
->>   	ret = panthor_devfreq_init(ptdev);
->>   	if (ret)
->>   		return ret;
->> @@ -470,6 +485,10 @@ int panthor_device_resume(struct device *dev)
->>   	if (ret)
->>   		goto err_disable_stacks_clk;
->>   
->> +	ret = reset_control_deassert(ptdev->resets);
->> +	if (ret)
->> +		goto err_disable_coregroup_clk;
+>> +	ptdev->pwr_dom_count = of_count_phandle_with_args(dev->of_node, "power-domains",
+>> +							  "#power-domain-cells");
+>> +	/*
+>> +	 * Single power-domain devices are handled by driver core nothing to do
+>> +	 * here. The same for device nodes without "power-domains" property.
+>> +	 */
+>> +	if (ptdev->pwr_dom_count <= 1)
+>> +		return 0;
 >> +
+>> +	if (ptdev->pwr_dom_count > ARRAY_SIZE(ptdev->pwr_dom_devs)) {
+>> +		drm_warn(&ptdev->base, "Too many power domains (%d) for this device\n",
+>> +			 ptdev->pwr_dom_count);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	for (i = 0; i < ptdev->pwr_dom_count; i++) {
+>> +		ptdev->pwr_dom_devs[i] = dev_pm_domain_attach_by_id(dev, i);
+>> +		if (!IS_ERR(ptdev->pwr_dom_devs[i]))
+>> +			continue;
+>> +
+>> +		ret = PTR_ERR(ptdev->pwr_dom_devs[i]);
+>> +		if (ret != -EPROBE_DEFER) {
+>> +			drm_warn(&ptdev->base, "pm_domain_attach_by_id(%u) failed: %d\n", i, ret);
+>> +			continue;
 > 
-> This wouldn't work at all on a write-once register, no? Same for resume.
-See above and also my reply to 2/9 .
+> Is it a good idea to continue if a power-domain is missing? Any access might
+> stuck completely. IMHO returning an error is more sensible.
+> Also some dev_err_probe() should be added here.
+Fixed both, thanks .
 
