@@ -1,188 +1,135 @@
-Return-Path: <devicetree+bounces-152550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 621B2A49714
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 11:22:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D66CFA4971C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 11:23:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EFF41883D85
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:22:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA23E18989C2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDF7825D8EA;
-	Fri, 28 Feb 2025 10:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B18E825BAC0;
+	Fri, 28 Feb 2025 10:22:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="ZupeaTG4";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="euyd0mwT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ywooo/Qw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B50F325CC96
-	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 10:21:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37492157A55;
+	Fri, 28 Feb 2025 10:22:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740738094; cv=none; b=FidgBJaTcXlQJNCKo2W1AtWCfzAtgmpVEmY88+VNIM4xpxTRXz8cS5qvuIqHaD/Bus8zjFgJeq1SUjPUtAZK2T9irrG2m9EX97w9yVtNfsK8UJTd1tTIVFIFxArDlTNab03YbNhfYRnTJgTkQofPjRxSEKiHkflXSQSbvhpwYSA=
+	t=1740738167; cv=none; b=nj2NjRajig+LWIRJBDiiTXxUurDi16H8d9tUc3btSspnC7mn90orfNvTwSsVxojct+Nb9Dbcw1d1vzAeV0V6QVfvcRjFv/SC59s2+Xh8oyyJhryQwcCWSLbXfSFmddhxA1n8jptagTbTUh/oWX5MYLuNXhU4+PN8JD89L/zbS64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740738094; c=relaxed/simple;
-	bh=YmZwe21JQSoM02pQA3VHIdehiaTkyyio0c9TQ49QU6c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hgNpz3YZrRgfs7Xi4CE3bIgAww5GNowkEp4Z6yI/2URgoLrN0I38FGa+sD6GUcLoFIASyhu0umjNTEKFAcsKZ0lYvmKJm+AVdwW9GDv3iQhRsPkQvm/2QByx6iemgOsMRRQ/X0LbxG5wqZ8XXdevhcahAyxY/gGfzlRPsgxMJqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=ZupeaTG4; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=euyd0mwT reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1740738167; c=relaxed/simple;
+	bh=zQMkQAtj6vzSQBpImtNQZFAAzOJ67Rs10PHBe6Pdo/Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aOkC60npJ5IfJlSZEHokHYP1EJpm9RJY4UOK7P+xZLE0HASWvOGvUibYd+ZhI7thT+Ul4N6RXOIdOTbjuGLa3fWRpppXc6NrphmHKPjxOWxdMy+aCW2LMGl0MPAmu1O9iN3AgqWYnSVDP93FH7uoPYFW2YDcUGTPGP4PTushF98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ywooo/Qw; arc=none smtp.client-ip=209.85.216.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2fe9596a582so475770a91.3;
+        Fri, 28 Feb 2025 02:22:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1740738090; x=1772274090;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=/QhhlC9uU19V9J88cHdgykY4awBetTHBnxL1KmQ0R5Y=;
-  b=ZupeaTG4OeHu8EVbdmbDNaHBOIH7Hce+14R68dj00LJeSrjbif6gxNEL
-   tXmuROx00Mrjr0MdIi/z8P5od3Xclan1IE3n0CkZP9zryyIU773Ce+mKB
-   eGIftYxkqzMe/Bw/Y67/vj71uASY34qd3sXDKVRBIvQg+asTrVswon9Oi
-   1MlKk14oZSY9NcTXlFlUkBmbIu4ljLG0quRe1sQ1ZZKqw/pTPUmBe8qIr
-   S5bwCCtUvZKwZfsRKTfjxBSf6KobtXZJoXcw4DhfYZMq9Uq7ghNL5rPfT
-   olsSJW5p8qhrJLo8fkxBGwA8RarH1I5PjPulfc5Cq3nn9PpcJ78fmYzcC
-   A==;
-X-CSE-ConnectionGUID: iRr4JPuoTGmOPgXGpB/sWw==
-X-CSE-MsgGUID: /XNPAa7+SRufdkOdkliC7A==
-X-IronPort-AV: E=Sophos;i="6.13,322,1732575600"; 
-   d="scan'208";a="42171468"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 28 Feb 2025 11:21:28 +0100
-X-CheckPoint: {67C18E28-2-2895743E-CD1E7AB7}
-X-MAIL-CPID: EA36C0BEDADF546230EE4332BB39D6D7_4
-X-Control-Analysis: str=0001.0A002112.67C18E28.0040,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9B9E8168CC3;
-	Fri, 28 Feb 2025 11:21:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1740738083;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/QhhlC9uU19V9J88cHdgykY4awBetTHBnxL1KmQ0R5Y=;
-	b=euyd0mwTUQC8rghcISeYrvLp+e7Pnfs8TQ7r5JTkCNqvnyw0ANilA7BZoghCHFXpeopLTR
-	momj1MWbV7jthBuGgRyi9sHlWesBOHTym4XU7zGDW8AhMsqmiwVkixCQr77vwqBYddE9Zh
-	pKpz0kQ7taADcCxGzvDNuHJg3jMaX4QSuomEjGTA14ylL1UpUXTM1GvdR4iAflpUoIKM7v
-	3Ig4gUAI+gPhdMKPmSfmBLhZ7AHPIDRaGEnNt55UEgLkNkEXvz1efsvQke52dxzSNKE4Rd
-	k/61BxrVWSQCvVWsonKTLQtICKW/M3d2h3+ilzVX/Sa1yXYY7ecJX5rG/jeXLQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org
-Cc: Marek Vasut <marex@denx.de>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- imx@lists.linux.dev, Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH 8/9] drm/panthor: Add i.MX95 support
-Date: Fri, 28 Feb 2025 11:21:21 +0100
-Message-ID: <4658624.cEBGB3zze1@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250227170012.124768-9-marex@denx.de>
-References:
- <20250227170012.124768-1-marex@denx.de>
- <20250227170012.124768-9-marex@denx.de>
+        d=gmail.com; s=20230601; t=1740738165; x=1741342965; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zQMkQAtj6vzSQBpImtNQZFAAzOJ67Rs10PHBe6Pdo/Y=;
+        b=Ywooo/QwziEi+rLbWHW9j2XP2SValmUxDlR7gsMikRgjHSH9StwxTZiTmiJjlfK+gm
+         lkLeS2RUVA61KPIacQHjx90ozvovkmc0XaPwejjYAum8RKvDQhIS881gpE/gojJWUHcc
+         EJeQYhITGlcB0o/Zh45jBuNVHd3JMR54TzmxkC9t6dzOL+0Xx2mU/fyFa+qU4+8stK9a
+         KwiKqJzQGoP2leFGamqDMChXojWMCF1QdghuHo8BXauxi2IHhcJ53heLwL3CCJ1ooQSs
+         xe+CKy4GkcyUrXPIatgY+tgh3xxVZlL3vVKjTpb9yZpdxfrnAop4AftuYs+mVYWz+h/5
+         v4cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740738165; x=1741342965;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zQMkQAtj6vzSQBpImtNQZFAAzOJ67Rs10PHBe6Pdo/Y=;
+        b=MgyZJEnjyMUws1Vnb9jBHuQ7D9GNCNRoREBGRcosIPoTZjF+cHvaG+eM5yF2zSCUTe
+         Qket5+ZSr/hLCd6xcJm03U0Bqb0No36T7BjugosuRQSNRwv5Dn+3DV5SmASbj67NVzp2
+         UBQOoMEVL0YiiM1l4sOgSnAa1Y8AtOQaJw7w7f4vPsKMBiUEgRZwLGUjtgffruVThIPM
+         YbFg67yE3/lbvtnRvvKEnQQMa1La0ICMDUSv+NL6ZLbSh1uiN//EZWYjkIW9hvrvLKAx
+         V/geGtMqeVN1X4QvrbB4nZRLEFXnyPKwJxxTtLHteSbNEfhWRpAVkTEehxClVyu4Ms9Q
+         PGzg==
+X-Forwarded-Encrypted: i=1; AJvYcCVBprYe94Q92qwjGOlHjqeqrZ0IQSVDrhBsis7UjW/peDyMv/bBpTJx+jW130xxZfKYh/92@vger.kernel.org, AJvYcCVknXTQo1o0ApWkS9DZxLAGjtnoP2uiBxNgn7aOcRHc+78g+69CDlxQu+0FLJ1Czm2hOdMLIZS8Kkn6@vger.kernel.org, AJvYcCVqXCiTn/k0u0WIU7+d1FCGFW8ZKDLeRmF78poN4Harj+D4elI0POChb9OQvHip28UawabMCC64y+EY@vger.kernel.org, AJvYcCXGDYvro+L6qve4bFWLo/c1AxPTpvg/s4EtwU0qiECHISDN/LXEWaHpmL5pD6o4uA+RU4ifcXiShVXXu+Yswjw=@vger.kernel.org, AJvYcCXwLdAVn9et3qhMT7lFzIE0G0fECMQoszgkNaTi7bgAFVe7t/VKsKazKuU3so7+88MJp7Os3K8B43N/RYfh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyxn71jxs6OzWagodT/liUt0NKeXPyeLxvjcqUukOAiWWlI8NhJ
+	PhpfnqBa5NjaiWA4jiYJt4G7omtcqN4O4xzCgpECUqCJBicst95KANQuABjxgu1IDnO51UDhqWO
+	YQ262G3afKeSo+0WD5pGuYjwv3U8=
+X-Gm-Gg: ASbGncspADguRiiL2x091JegG+aIzErRLi+HnJXbTS9PpS6R5rRf2s8datufvISkr+s
+	+OM+TX1jQkKde/HLM3QcDZNMMfO4SFE8dGZKAvBOgWod5M2Dv832mqZ0c9axKTe77vi3b1U0lRj
+	P9mYVg9bc=
+X-Google-Smtp-Source: AGHT+IHIittGCPQby1z/CAAucXt5JFtqaN9s/CywTLEe2k/+dixEbEMthbGRpWklymixZ1tzV0vdjHdcEd+cYidEN04=
+X-Received: by 2002:a17:90b:1a91:b0:2fe:a747:935a with SMTP id
+ 98e67ed59e1d1-2febabc3f2amr1758599a91.4.1740738165504; Fri, 28 Feb 2025
+ 02:22:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20241219170425.12036-1-dakr@kernel.org> <20241219170425.12036-8-dakr@kernel.org>
+ <g63h5f3zowy375yutftautqhurflahq3o5nmujbr274c5d7u7u@j5cbqi5aba6k>
+ <CANiq72=gZhG8MOCqPi8F0yp3WR1oW77V+MXdLP=RK_R2Jzg-cw@mail.gmail.com>
+ <wnzq3vlgawjdchjck7nzwlzmm5qbmactwlhtj44ak7s7kefphd@m7emgjnmnkjn>
+ <Z72jw3TYJHm7N242@pollux> <nlngenb6udempavyevw62qvdzuo7jr4m5mt4fwvznza347vicl@ynn4c5lojoub>
+ <Z8A4E_AyDlSUT5Bq@pollux> <w2udn7qfzcvncghilcwaz4qc6rv2si3dqpjcs2wrbvits3b44k@parw3mnusbuf>
+In-Reply-To: <w2udn7qfzcvncghilcwaz4qc6rv2si3dqpjcs2wrbvits3b44k@parw3mnusbuf>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Fri, 28 Feb 2025 11:22:33 +0100
+X-Gm-Features: AQ5f1JoBAMoLfZEmHB4LoCW7CaOXRtnCBfVtt6Z6is_lk4ig8YbV9oYSmUL7ugI
+Message-ID: <CANiq72myNPVD=1jHzFxryvnBuwqdw7-PDbPsQ+FdpCjeYtVzig@mail.gmail.com>
+Subject: Re: [PATCH v7 07/16] rust: add `io::{Io, IoRaw}` base types
+To: Alistair Popple <apopple@nvidia.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, gregkh@linuxfoundation.org, rafael@kernel.org, 
+	bhelgaas@google.com, ojeda@kernel.org, alex.gaynor@gmail.com, 
+	boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com, 
+	benno.lossin@proton.me, tmgross@umich.edu, a.hindborg@samsung.com, 
+	aliceryhl@google.com, airlied@gmail.com, fujita.tomonori@gmail.com, 
+	lina@asahilina.net, pstanner@redhat.com, ajanulgu@redhat.com, 
+	lyude@redhat.com, robh@kernel.org, daniel.almeida@collabora.com, 
+	saravanak@google.com, dirk.behme@de.bosch.com, j@jannau.net, 
+	fabien.parent@linaro.org, chrisi.schrefl@gmail.com, paulmck@kernel.org, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, rcu@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Marek,
+On Fri, Feb 28, 2025 at 6:29=E2=80=AFAM Alistair Popple <apopple@nvidia.com=
+> wrote:
+>
+> I'm not sure I agree it works perfectly fine. Developer ergonomics are
+> an important aspect of any build environment, and I'd argue the ergonomic
+> limitation for (2) means it is at least somewhat broken and needs fixing.
+>
+> Anyway thanks for your time and detailed explainations, I really just sta=
+rted
+> this thread as I think reducing friction for existing kernel developers t=
+o start
+> looking at Rust in the kernel is important.
 
-Am Donnerstag, 27. Februar 2025, 17:58:08 CET schrieb Marek Vasut:
-> The instance of the GPU populated in Freescale i.MX95 is the
-> Mali G310, add support for this variant.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Boris Brezillon <boris.brezillon@collabora.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Sebastian Reichel <sre@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Steven Price <steven.price@arm.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
->  drivers/gpu/drm/panthor/panthor_drv.c | 1 +
->  drivers/gpu/drm/panthor/panthor_gpu.c | 1 +
->  2 files changed, 2 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/panthor/panthor_drv.c b/drivers/gpu/drm/pant=
-hor/panthor_drv.c
-> index 06fe46e320738..2504a456d45c4 100644
-> --- a/drivers/gpu/drm/panthor/panthor_drv.c
-> +++ b/drivers/gpu/drm/panthor/panthor_drv.c
-> @@ -1591,6 +1591,7 @@ static struct attribute *panthor_attrs[] =3D {
->  ATTRIBUTE_GROUPS(panthor);
-> =20
->  static const struct of_device_id dt_match[] =3D {
-> +	{ .compatible =3D "fsl,imx95-mali" },	/* G310 */
->  	{ .compatible =3D "rockchip,rk3588-mali" },
->  	{ .compatible =3D "arm,mali-valhall-csf" },
->  	{}
-> diff --git a/drivers/gpu/drm/panthor/panthor_gpu.c b/drivers/gpu/drm/pant=
-hor/panthor_gpu.c
-> index 0f07ef7d9aea7..2371ab8e50627 100644
-> --- a/drivers/gpu/drm/panthor/panthor_gpu.c
-> +++ b/drivers/gpu/drm/panthor/panthor_gpu.c
-> @@ -67,6 +67,7 @@ struct panthor_model {
->  }
-> =20
->  static const struct panthor_model gpu_models[] =3D {
-> +	GPU_MODEL(g310, 0, 0),	/* NXP i.MX95 */
++1, it is indeed very, very important.
 
-Are you sure about 0, 0? With this I get
-> [drm] mali-unknown id 0xac74 major 0x0 minor 0x0 status 0x1
+But, just to clarify, we have been caring about ergonomics and
+reducing friction for kernel developers since the very beginning,
+including asking upstream Rust for features and so on when applicable.
 
-Using GPU_MODEL(g310, 10, 4) I get:
-> [drm] mali-g310 id 0xac74 major 0x0 minor 0x0 status 0x1
+In general, it has been a factor in most topics we have discussed in
+the team since 2020, not just for source code or debugging features,
+but also docs, KUnit, and so on.
 
-Note the output is GPU_VER_MAJOR() but this table is for GPU_ARCH_MAJOR()
-(and the corresponding minor).
+That is why we would like to improve it and why we have it in our
+upstream Rust wishlist and so on. In other words, it is not that we do
+not see the issue!
 
-Best regards,
-Alexander
+I hope that clarifies.
 
->  	GPU_MODEL(g610, 10, 7),
->  	{},
->  };
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+Cheers,
+Miguel
 
