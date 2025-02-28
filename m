@@ -1,123 +1,141 @@
-Return-Path: <devicetree+bounces-152637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52E71A49B03
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:54:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A07DEA49B23
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:59:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 436BE173A56
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:54:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BFDF3B30C1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:59:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9F426D5D0;
-	Fri, 28 Feb 2025 13:54:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F0D26E152;
+	Fri, 28 Feb 2025 13:59:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="shIDGphM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="grI+STAK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE1D26D5A4;
-	Fri, 28 Feb 2025 13:54:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342301B960
+	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 13:59:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740750845; cv=none; b=RM1KzRKvtH7MWhUk7ULOpM38xxnSRceByNwuEHyCviLeuzhm6MneuLPGQBFcaNeOpA7VjWuo4ozqT3bDByZ1rlYWhFgkQCcAwBiB36w1MymOC4WE30PbdF6aClHZYQP5wZuRxlXwtl7QisuZ6wNDXA7piVelIoZWeMsIEzgbjHE=
+	t=1740751171; cv=none; b=op4eHV9Dy3t2ptdbH1KUaH3P/w0pAE+JIgR2TRxIdGyRInqSChz7NF4A1MUag0KOXcn3/ujkUkShQhAKu2VnXYCXZdLwihJ9Wj/2xjqqFKVWjRrKfLsjEXE74OuOEpPCC+Z7N0lJ6OAfEljwtTeRQEUVav1z0yMMU/YsYxFakI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740750845; c=relaxed/simple;
-	bh=PJN2LJY1zOX4ftevEUh2wxj5EtexemsOWVyrqD0LUbk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oXuTGrTGVLq9EdpPsyYm7402HUKnRQx27Ny6NR6QqcYcl2sXPnfq0/jW6+qiYJUrJvEXNp3p5IBB0jgwOKdNmMRFQ+1g58YM3YJ4jHeInOiUq6hIfwu0mFnJ5o4NAMmzumGczfSHxr+NSIxiIODMgVngcjOAM4SY9sDfl7ktcpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=shIDGphM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EEB4C4CED6;
-	Fri, 28 Feb 2025 13:53:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740750844;
-	bh=PJN2LJY1zOX4ftevEUh2wxj5EtexemsOWVyrqD0LUbk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=shIDGphM7vaQLJjGY/X+Rjd1UxdtYZIba70NWQYhJqxq4Q86mmQVOUfyj62fr49Fz
-	 8DVr7L0ygLbvElSK9WkCjpu9HVBcCK5+22/GTC5TMkuqNcEobyqkGoW+Dx0+aH2aiC
-	 3g2tRmJdWli2Ebknj5FMhCb4fLZneK1Wrx1D3IapW6R/QGrXD772kBvcreXr1YSKF+
-	 CRaJojXLJnYkGuH/E69dPJxNH8VpBSUWvMOiasc1avt7t5tMYQ48AkCLtq6FWP/ie+
-	 KDZ28MnDAhMvpDkI5kNQetuDcbP3N0gGubPYDe2G8JDIyaXa8Z1nsaWtUi2UsAXU+P
-	 MAA0znUrFB5BA==
-Date: Fri, 28 Feb 2025 13:53:56 +0000
-From: Mark Brown <broonie@kernel.org>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Shenghao Ding <shenghao-ding@ti.com>,
-	Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>,
-	Dan Murphy <dmurphy@ti.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shi Fu <shifu0704@thundersoft.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-	Hector Martin <marcan@marcan.st>, linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	asahi@lists.linux.dev, linux-hwmon@vger.kernel.org,
-	Neal Gompa <neal@gompa.dev>
-Subject: Re: [PATCH v3 15/20] ASoC: tas2764: Enable main IRQs
-Message-ID: <ba20e709-517b-441a-8f89-37518d0a1d4f@sirena.org.uk>
-References: <20250227-apple-codec-changes-v3-0-cbb130030acf@gmail.com>
- <20250227-apple-codec-changes-v3-15-cbb130030acf@gmail.com>
- <f3eecce4-51d1-4414-af85-680d51e588fa@sirena.org.uk>
- <CAHgNfTx_kMj=rsd4nUCiX_PvgC4GX3DsPDwXHdEyEeLMbDFccw@mail.gmail.com>
+	s=arc-20240116; t=1740751171; c=relaxed/simple;
+	bh=px+x86aKSLPgbV52+S2WFBDfxcJqop/aXnFFgDBY9tU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=kcWXqQ/A8m3Ux3W2H+Q9u3uFksl55k2HcJ/67tZYrcvgd9Cym09H+QF4I5UzS5yqJZkMYuUI+KSSMmJehTBRbVAb1NwaOubKQCTY2C64bWU0VKG5TlUMGIsQuDY4noNLDvusmtgSgHEzUmHM+wbdaTpMQK7Ae6HIoaPsmT5/CuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=grI+STAK; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-38a25d4b9d4so1323484f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 05:59:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740751168; x=1741355968; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=px+x86aKSLPgbV52+S2WFBDfxcJqop/aXnFFgDBY9tU=;
+        b=grI+STAKOAnH08bihdrVdSxnngP7J2jW3cKPR/2Y5MaVL0evvPR0W3GzgzXLLYwR02
+         u5AvChKCZpyDKfHvyh6wqJNJ3iR3PeAdDruTVVJLAsMt3fk8zc8rQQ183v+hwwhk7HLz
+         /Pmr+qtoqG8NlpXVL9dbiPdgqVu2iVcmT39SkEJd8TraGr5jgVoj0+3fXwT/jXVnCU+3
+         ly9xKRuwG397WPW8o5uX63mYDvTpS/1gVgWd7Km2ciUy2hZi8pvmTKOlz11IHDhehorp
+         gdfLMBHpQw1JttRu1/RG0yCHKsf52m5VoUPXXWa+OtM1GgDDu/ArHT2ioYrFvwyK/QJl
+         iWJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740751168; x=1741355968;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=px+x86aKSLPgbV52+S2WFBDfxcJqop/aXnFFgDBY9tU=;
+        b=G5N6DVyKkjxFjvVk8PJBXyt2PhPOalsaT4inT5H0aO4BalF9x0PYz46sJzp1hPVq0c
+         o1/ftuLmOFsi+0TTCh+Sy5qgo7xDRGUQyIX8aaRqaHG1HR8TjAqgHkZlcnnKqQjQgetE
+         8B1xWsPT6flYwlqu4Z2pu4lUanEh8wbVl3Gq2o384i1GVdTTvChrVkuTAw2vHfKeQTsC
+         hK+MDEI7E6C8wL8ETDXqZqbBDXY5UZ3xt+pqnddWvfSdy7oAUop/s4291ai8sAg4fHxY
+         6wlYvwX206FAwU13I3WW9DFDhvR80qy+EZ69GpfJp8OXZM06FdYQGwqhZGP7z40h7jE9
+         b/1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVol9Y4nP5MVs08JcqV37BxjgWbyVmk+k+qM9aLoxLA7ub9BH1/LLj7BJolkt7obLOfuwzQE/CopTMy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7u8goq4Xr+MrIH5o4vkgXC2xBjLTpcFeoowXZLIaewQdc38y1
+	hi+OegoGQUs4cPXcxLm+hAMw2RxejeXek21ROX+tp8CNQOEr/VuTWeKavoOudyc=
+X-Gm-Gg: ASbGncv0EPBeuhMHmxYtsR6hODwPTO0GSFLe6stO4+pwVoOnA7uOn+zIw6ObuakwC8S
+	kuoeNU8DVa5PggpahyijGue1I07PWdtZaz03DKIMaMXi8fIOvlj8/lYRchh9mbxtaW1OJy73BUg
+	IJFvE2ii7BwA+gUJAY81Sa8PKUZJ5BZt/BQY3fgv/3BEAjQnjYe8LgiTCvc+VGDfl7XI4pm4bU6
+	GppW8DTKG9FlL32H9Q22R7Dwf5xsPHzuij6lqa6n5WWJ9PT4ayGfsJEAObNuejzAbhm4bOcliSr
+	27rLbWNdCpVv7jbenhyUFvzmD2ye/g==
+X-Google-Smtp-Source: AGHT+IECpo32ALWrFa1cNaiDX3uH6CqXkFCNWGuhJmwvZ0p1RSpM7dQPjKfV2CnvU0hTwmPQDg65lg==
+X-Received: by 2002:a05:6000:2a4:b0:38f:2990:c074 with SMTP id ffacd0b85a97d-390ec7cfe62mr4082089f8f.16.1740751168393;
+        Fri, 28 Feb 2025 05:59:28 -0800 (PST)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e485df22sm5389786f8f.97.2025.02.28.05.59.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Feb 2025 05:59:28 -0800 (PST)
+Message-ID: <e355ce38815760e69f40ec6d9d27fb6cab8f9894.camel@linaro.org>
+Subject: Re: [PATCH v2 3/6] dt-bindings: mfd: add max77759 binding
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski	 <brgl@bgdev.pl>, Srinivas
+ Kandagatla <srinivas.kandagatla@linaro.org>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, Peter Griffin	
+ <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Will
+ McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-kernel@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org, 	linux-hardening@vger.kernel.org
+Date: Fri, 28 Feb 2025 13:59:26 +0000
+In-Reply-To: <CAL_JsqK-_rPZqt_vRv75dSWDLUAyZ-LB=qz5J=Kse=7bO4q8sA@mail.gmail.com>
+References: <20250226-max77759-mfd-v2-0-a65ebe2bc0a9@linaro.org>
+	 <20250226-max77759-mfd-v2-3-a65ebe2bc0a9@linaro.org>
+	 <20250227130451.GA1783593-robh@kernel.org>
+	 <503e105b71fa4271f40a2d3ca18ba13ed7d45a65.camel@linaro.org>
+	 <CAL_JsqK-_rPZqt_vRv75dSWDLUAyZ-LB=qz5J=Kse=7bO4q8sA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.53.2-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="YYYkVjdyM/0A8vBd"
-Content-Disposition: inline
-In-Reply-To: <CAHgNfTx_kMj=rsd4nUCiX_PvgC4GX3DsPDwXHdEyEeLMbDFccw@mail.gmail.com>
-X-Cookie: Avoid gunfire in the bathroom tonight.
+
+On Fri, 2025-02-28 at 07:01 -0600, Rob Herring wrote:
+> On Thu, Feb 27, 2025 at 7:14=E2=80=AFAM Andr=C3=A9 Draszik <andre.draszik=
+@linaro.org> wrote:
+> >=20
+> > On Thu, 2025-02-27 at 07:04 -0600, Rob Herring wrote:
+> > >
+> > >=20
+> > > Why do you have GPIO properties here and in the child node? Either wo=
+uld
+> > > be valid, but both probably not. Putting them here is actually
+> > > preferred.
+> >=20
+> > That's an oversight, I meant to put them into the child only, not here,
+> > since the child is the one providing the gpio functionality.
+> >=20
+> > What's the reason to have it preferred inside this parent node?
+>=20
+> It really depends whether the GPIO block is a separate sub-block which
+> is going to get reused or has its own resources or not. It's the same
+> thing in system controllers which are often just a collection of
+> leftover control bits.
+>=20
+> We just don't want child nodes created just for the ease of
+> instantiating drivers in Linux. While it's nice if drivers and nodes
+> are 1 to 1, but that's specific to an OS.
+>=20
+> You already need other child nodes here, so I don't care too much in this=
+ case.
+
+Thanks Rob for taking the time and for the explanation! I'll keep
+that in mind for the future.
+
+Cheers,
+Andre'
 
 
---YYYkVjdyM/0A8vBd
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Feb 28, 2025 at 07:58:33AM +1000, James Calligeros wrote:
-> On Fri, Feb 28, 2025 at 2:23=E2=80=AFAM Mark Brown <broonie@kernel.org> w=
-rote:
-> > On Thu, Feb 27, 2025 at 10:07:42PM +1000, James Calligeros wrote:
-
-> > > IRQ handling was added in commit dae191fb957f ("ASoC: tas2764: Add IRQ
-> > > handling") however that same commit masks all interrupts coming from
-> > > the chip. Unmask the "main" interrupts so that we can see and
-> > > deal with a number of errors including clock, voltage, and current.
-
-> > Shouldn't this also be a fix?
-
-> I don't think so. The referenced commit only says that it adds an IRQ han=
-dler.
-> I don't think this commit is actually "fixing" anything - it's just
-> enabling previously
-> masked interrupts.
-
-I think the expectation would be that when the interrupt handler was
-added it would've been possible for it to fire.
-
---YYYkVjdyM/0A8vBd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfBv/MACgkQJNaLcl1U
-h9DAZAf/ZrFnKZ/FuBMjARilKSLNHLOP7jWlIxEpAeaOpAnoNzqydRcLKZFmfObm
-X3k/p5RujSvvZykZfpl21qgxEJeeN3q9mCoWd5QebZTJa4GljGyM2gMDGwQE+wcx
-dKGCDAZwyiwwKSd1UML9U+Gjqb5WcouYMXC+nJM3xoauhz615Kz8JsIsOo9nZ2Jp
-KrQQ83tZD59O81MOL3glAMJ9wDIj7kpQRHMJkXfQYYN1794HK0h6hfgdni1n3ij9
-Bi2+Vzxw+f+wVRZVNFydQPOBeDca1aihac4QngDHbcRCP+ngYkJ7mvV+vFWhleJg
-5VOFhK/5/NxifNyAKRWkUWX9BP2Xrg==
-=9AfO
------END PGP SIGNATURE-----
-
---YYYkVjdyM/0A8vBd--
 
