@@ -1,216 +1,267 @@
-Return-Path: <devicetree+bounces-152707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FD2DA49E21
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 16:57:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8437FA49E34
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 17:01:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4545916CAC3
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 15:57:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4555B170997
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 16:01:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFB0527127A;
-	Fri, 28 Feb 2025 15:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229DC186294;
+	Fri, 28 Feb 2025 16:01:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Pcn4ev8w";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Yzq42jmF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B130C2702B1;
-	Fri, 28 Feb 2025 15:57:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBC8F1EF37E;
+	Fri, 28 Feb 2025 16:01:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740758228; cv=none; b=Nn8qhZX5aVH2YovsiVZqaNhbO2uuVHm1LuL9JbCun/NNvwFtMYr+7wSfSsLQDCu98U+j+AWV/zRQCoP8/ypwWi8Sl5RmE3IXe57ag54ztNNimyhuoLkBnqnVosxsVNV6yVTAijCGKGndIxsZWKzK53ayNIGHktZ7tULFd9/R060=
+	t=1740758493; cv=none; b=Yegbsk2GFjZTgWszCaBu5uKChePnLWoxl7E9+YvuOlt/MZ28/X+xxDpWHCBxJdvmaDs58mceuB/vB0SFd6+0oz+DywjlCbjTK9JBovXbS7WjpN817HEBAtaeXMYVZlXdgqyjXzUsauaS3PEzlhO1KV5iFZZMVlaTIfpzoH76Ya8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740758228; c=relaxed/simple;
-	bh=cwQm+Cj57JzUKKfj1O10gB0/JWUcjyW0UfIvHpZAH3k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XbMrCDwy+ziI9MnlEInj0FFwe3+A1ykp9MJ3eIRatLiEztyc0E6CkS2FnfiGH0w3/d8NPrjY+UXSdRFZoVdqqVEggoiHU9D3bjXCHaTz7iw5gg6Aucy5l+9u9+MPOh2bPTekB3WZJxardvOl/+RPZZpASFbGVyHX2eCl2BHwbAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-51eb1a6ca1bso886759e0c.1;
-        Fri, 28 Feb 2025 07:57:05 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740758223; x=1741363023;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2G0vU8Rq6c84B/9Y29hmpks/69aHQnjdEb/z06wUAUY=;
-        b=cpOSZRZfvWKC4iCI+h2pLRohQDseGOvzoUna+qt/Ny+Elv4eO+VMyFrTPQivCon5q6
-         xN0u1LK9lOgH2GrzruDVxouQ12Awt+kLx7mMoFpc8Z7vDAbvTaomuPmyFJKxOGkLaCtk
-         YJK88YnawzcEeFb4zuogo0QYX89ziAaWnIJx4F6JMKAGB5dqyzInC7yDPyw9MhJMcaUi
-         mTUoYrRecYEinwGxEp8Fj6VVetfEUlI8cr86iBP9S9/n9Ii0PIWHK8ptHIj/ucjP6QC6
-         A0iQsUEkZuOyTYcBcsEZQh+XI/tyD9NxfEYsg/CkJI44Y2/F6XOnUIN3vcpGQ7PiDwaC
-         QlcA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBZtlcSQ9O9fkvJMjTXtsWIDSm4e/ttLAIHGeUTgE28vCdzBB4zyIB8ixWZH83nFQMtdnwoIuK7CAR5Ot75KjwGho=@vger.kernel.org, AJvYcCVSEMFlVTHkGRLcCTBaPe6mhccSLT7z1vr51xKvRLU/MeU+HuV1cYQ08a6oP1uB7jq1EBGXyPWbTL/K@vger.kernel.org, AJvYcCVg6Y3PvSECDPTd8ZaRc8miQ2xrxULoZ+eDJTgDYH6D1vP+c/wAQ8MnFI34T2AZOrr2rfGbgBQCyHPuKKvk@vger.kernel.org, AJvYcCXzpJApeVAP+dnbI/OHEUd/THtmgeRUG/ge1zEr5f42XcF7Zr/0J+aZTqCUJoYC9hRoKn2KkjxfhlZf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yys4Q55WfgNJjZhtogHO2SXAegXJJVQH3fMDHZfbOPu0sq4YwdU
-	WWW0jtG2iGuNGx07ShqZkSfA/Vd1pJV0ozRwCfZBxI52tm8+09QuDz53XS9c
-X-Gm-Gg: ASbGncs5MGgqMI1pTmnqVPff372KNolf/TsCZ2AU1oAiwVDmG+R5NhogUUFfBftyXCF
-	OHR5TtOMc+xfZqPZfC1s+XkkJFj8BhxEvONGyoGCrLtr7DjNXq838CqZgkTsRAUlAYEbjpAnt7D
-	h0F0TdBJepZS8m0kJkGCdF9MmLCjTAvkT369Cu03lgM6NdS1YVQ8nN7Pl9rXDf0cphXOCMXJEQi
-	0LEBK3xa0/lgzFFd0hsQyUDPl5/+QaZtytQcGXoyQvrT6WQcE2kkhsqY9xsiHuZGpn71+M7OeBu
-	k27y7jA968lsqvCrjPVUiPdCreM04je8CB+SH6f8ccQcKiXIr68p1TkAbFg91xI+
-X-Google-Smtp-Source: AGHT+IGyjOu06I0NN9WsKcfVjrA790CQIRxjiKjRg8eB0f79nAy2nLAMdRnfbegysKoNvub2Uy7YiA==
-X-Received: by 2002:a05:6122:3a11:b0:516:230b:eec with SMTP id 71dfb90a1353d-5235b76fb2dmr2696702e0c.5.1740758223505;
-        Fri, 28 Feb 2025 07:57:03 -0800 (PST)
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com. [209.85.222.52])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5234bf39480sm622589e0c.21.2025.02.28.07.57.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Feb 2025 07:57:02 -0800 (PST)
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-86714f41f5bso981164241.3;
-        Fri, 28 Feb 2025 07:57:02 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU71S5j1K4fpcRybSSrdaHwk0MpdRo340ciloyH3yfqHRdi2sx2cE9mMP3xrii3Re47DbL9yNs9VfW4dAjZ@vger.kernel.org, AJvYcCVjxRYqQOccwXuIhe35pbo/rVVI4PqJA4WeBNEyAO2u5udyDi+Ad5NEiufL16z8VnzKAZ5r1rjofqX6@vger.kernel.org, AJvYcCWcP/De/x1rrUaPMveffXEyxheCM6kBlzc0joZHBAwJgTl8oF/pJRD1JBHXLUW6Gr+sgtfkRqkiPM4yiQP9MIKXN+A=@vger.kernel.org, AJvYcCXhpd0ssIXGqbYTV8O1W4Cq9HCapMvUulnDf4AcxkCRHm1G2KB9OQH1dRHjshbIhTRXPKP4fwezu3RX@vger.kernel.org
-X-Received: by 2002:a05:6102:1626:b0:4bb:d7f0:6e7d with SMTP id
- ada2fe7eead31-4c044fbc94dmr2848825137.25.1740758222518; Fri, 28 Feb 2025
- 07:57:02 -0800 (PST)
+	s=arc-20240116; t=1740758493; c=relaxed/simple;
+	bh=QemeSi9mTrqmmZbQ6ksZ9XBzqSmq2ooYNed+gSYg5R4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CJnezFRONtG/UGhmR4TduLoyvh5p7xISFCXf8sb4i6xT4psA1KONXIJGulpdXDinMQFagoH7hWdMOzDwZRGesdDAnSueacddP0gAEoqSZ/g94FTxP+mUgX82BF1vlGXUeIHXQGqi3MZM80WVjM61C9OCN75/Oh1b5PJXVEdsQ4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Pcn4ev8w; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Yzq42jmF reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1740758490; x=1772294490;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=CEN9N+xKBX/C8w3WcwlKzPTpb6+Twn8dMh4CDAQ6Eww=;
+  b=Pcn4ev8wU/vURGyB1/DchiAwn9FM92JhAkM5SQRkcuYT2MylSF4jPStB
+   OZDwzRV5PFQS13QqEL/srtJSluEcXGeq3bwmdj2Bu1p3G07JDsRQ9Zims
+   G95zI4k0Xzl+PKZgU8PHGaEBQW3thqaxP0J4Yry5R0OKUkgyMg43ivfUR
+   B0wbpgxXFSE/6TOxuddn3P3j96jTeWvz7rcLEyxU7NG2LTpPzXgYYAbkZ
+   zShcvciKh9BsSUAEiop0mE2arCl1qMUqXXsNUyRsee5I7PFNT8rXDooeC
+   +C3HL230t3vt6GSSFXpEa4ACRmmGikNvKfQC72Fb9j7vS5pdX2DOeJFmE
+   A==;
+X-CSE-ConnectionGUID: z38Nd0JmQu6yzbirgsyl4A==
+X-CSE-MsgGUID: 73rRz4x+Tby7mTs21ChdyA==
+X-IronPort-AV: E=Sophos;i="6.13,322,1732575600"; 
+   d="scan'208";a="42178670"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 28 Feb 2025 17:01:21 +0100
+X-CheckPoint: {67C1DDD0-F-97089932-E672704E}
+X-MAIL-CPID: A9348A422528F1A28B432AB2F20B25A5_3
+X-Control-Analysis: str=0001.0A002114.67C1DDD1.007D,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A2591164A39;
+	Fri, 28 Feb 2025 17:01:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1740758476;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CEN9N+xKBX/C8w3WcwlKzPTpb6+Twn8dMh4CDAQ6Eww=;
+	b=Yzq42jmFwYn+/mjhFdW6WIRQLKyNOwl1iw9LtryqJ5yRA0P3LrbCIPou71/BNBpC2/Belf
+	PJe0QXNY8o7xSA96MWCcA7Sgn1jBDKAEYfF6hZeF9u/hMEG3FIhzarLGqiWy/wQSH48DQj
+	f4K8VuDJhQwFjARhwvdRhiagCSnpZcj5exUn/zpROugrlLyQdsG+py2A/wafGy0zkvrqm1
+	l/iCLOixXz1CowajQMYmEjoXjtOujyWIrDMo5obfm2GZCh/k/+PDnMBtTR9etIYbzXl3eK
+	nhBhWgD+P6P1ORZSrurkWE3nznHeo3hqQtCvvJv3/2GGoc/GAp+eHJBE1jRwhQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>, hongxing.zhu@nxp.com
+Subject:
+ Re: [PATCH 4/5] arm64: dts: imx95: add PCIe's msi-map and iommu-map property
+Date: Fri, 28 Feb 2025 17:01:15 +0100
+Message-ID: <3661300.LM0AJKV5NW@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <Z8HXIvAZcvNY72Jx@lizhi-Precision-Tower-5810>
+References:
+ <20250128211559.1582598-1-Frank.Li@nxp.com> <47051102.fMDQidcC6G@steina-w>
+ <Z8HXIvAZcvNY72Jx@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250220150110.738619-1-fabrizio.castro.jz@renesas.com>
- <20250220150110.738619-4-fabrizio.castro.jz@renesas.com> <CAMuHMdUjDw923oStxqY+1myEePH9ApHnyd7sH=_4SSCnGMr=sw@mail.gmail.com>
- <TYCPR01MB12093A1002C4F7D7B989D10C4C2CD2@TYCPR01MB12093.jpnprd01.prod.outlook.com>
- <CAMuHMdWzuNz_4LFtNtoiowq31b=wbA_9Qahj1f0EP-9Wq8X4Uw@mail.gmail.com>
- <TYCPR01MB12093D1484AD0E755B76FAE35C2CC2@TYCPR01MB12093.jpnprd01.prod.outlook.com>
- <CAMuHMdWUdOEjECPAJwKf7UwVs4OsUAEJ49xK+Xdn_bKXhRrt2Q@mail.gmail.com> <TYCPR01MB12093BE16360C82F9CB853AF4C2CC2@TYCPR01MB12093.jpnprd01.prod.outlook.com>
-In-Reply-To: <TYCPR01MB12093BE16360C82F9CB853AF4C2CC2@TYCPR01MB12093.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 28 Feb 2025 16:56:50 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXkgK-EdGhyrE6PRzskRXkJ8u+xQ=c5x1-=couedtcmqw@mail.gmail.com>
-X-Gm-Features: AQ5f1Jqh5PiS9QO2zKO20WUKxRlP2hyuDNVJ1z4RYhHQm3YEMTC5gqqz5dI3neA
-Message-ID: <CAMuHMdXkgK-EdGhyrE6PRzskRXkJ8u+xQ=c5x1-=couedtcmqw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/7] dt-bindings: dma: rz-dmac: Document RZ/V2H(P)
- family of SoCs
-To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	"dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Fabrizio,
+Hi Frank,
 
-On Fri, 28 Feb 2025 at 16:38, Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > On Fri, 28 Feb 2025 at 15:55, Fabrizio Castro
-> > <fabrizio.castro.jz@renesas.com> wrote:
-> > > > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > > > On Thu, 27 Feb 2025 at 19:16, Fabrizio Castro
-> > > > <fabrizio.castro.jz@renesas.com> wrote:
-> > > > > > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > > > > > Sent: 24 February 2025 12:44
-> > > > > > Subject: Re: [PATCH v4 3/7] dt-bindings: dma: rz-dmac: Document RZ/V2H(P) family of SoCs
+Am Freitag, 28. Februar 2025, 16:32:50 CET schrieb Frank Li:
+> On Fri, Feb 28, 2025 at 10:08:58AM +0100, Alexander Stein wrote:
+> > Hi Frank,
+> >
+> > Am Donnerstag, 27. Februar 2025, 17:39:47 CET schrieb Frank Li:
+> > > On Thu, Feb 27, 2025 at 08:54:13AM +0100, Alexander Stein wrote:
+> > > > Hi Frank,
+> > > >
+> > > > Am Mittwoch, 26. Februar 2025, 17:31:26 CET schrieb Frank Li:
+> > > > > On Wed, Feb 26, 2025 at 01:11:37PM +0100, Alexander Stein wrote:
+> > > > > > Hi Frank,
 > > > > > >
-> > > > > > On Thu, 20 Feb 2025 at 16:01, Fabrizio Castro
-> > > > > > <fabrizio.castro.jz@renesas.com> wrote:
-> > > > > > > Document the Renesas RZ/V2H(P) family of SoCs DMAC block.
-> > > > > > > The Renesas RZ/V2H(P) DMAC is very similar to the one found on the
-> > > > > > > Renesas RZ/G2L family of SoCs, but there are some differences:
-> > > > > > > * It only uses one register area
-> > > > > > > * It only uses one clock
-> > > > > > > * It only uses one reset
-> > > > > > > * Instead of using MID/IRD it uses REQ NO/ACK NO
-> > > > > > > * It is connected to the Interrupt Control Unit (ICU)
+> > > > > > Am Dienstag, 28. Januar 2025, 22:15:58 CET schrieb Frank Li:
+> > > > > > > Add PCIe's msi-map and iommu-map property because i.MX95 supp=
+ort smmu and
+> > > > > > > its.
 > > > > > > >
-> > > > > > > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > > > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > > > > ---
+> > > > > > >  arch/arm64/boot/dts/freescale/imx95.dtsi | 14 ++++++++++++++
+> > > > > > >  1 file changed, 14 insertions(+)
+> > > > > > >
+> > > > > > > diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/=
+arm64/boot/dts/freescale/imx95.dtsi
+> > > > > > > index 6b8470cb3461a..2cebeda43a52d 100644
+> > > > > > > --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > > > > > > +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > > > > > > @@ -1573,6 +1573,12 @@ pcie0: pcie@4c300000 {
+> > > > > > >  			assigned-clock-parents =3D <0>, <0>,
+> > > > > > >  						 <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
+> > > > > > >  			power-domains =3D <&scmi_devpd IMX95_PD_HSIO_TOP>;
+> > > > > > > +			/* pcie0's Devid(BIT[7:6]) is 0x00, stream id(BIT[5:0]) i=
+s 0x10~0x17 */
+> > > > > > > +			msi-map =3D <0x0 &its 0x10 0x1>,
+> > > > > > > +				  <0x100 &its 0x11 0x7>;
 > > > > > >
-> > > > > > > v1->v2:
-> > > > > > > * Removed RZ/V2H DMAC example.
-> > > > > > > * Improved the readability of the `if` statement.
-> > > > > >
-> > > > > > Thanks for the update!
-> > > > > >
-> > > > > > > --- a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> > > > > > > +++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> > > > > > > @@ -61,14 +66,22 @@ properties:
-> > > > > > >    '#dma-cells':
-> > > > > > >      const: 1
-> > > > > > >      description:
-> > > > > > > -      The cell specifies the encoded MID/RID values of the DMAC port
-> > > > > > > -      connected to the DMA client and the slave channel configuration
-> > > > > > > -      parameters.
-> > > > > > > +      For the RZ/A1H, RZ/Five, RZ/G2{L,LC,UL}, RZ/V2L, and RZ/G3S SoCs, the cell
-> > > > > > > +      specifies the encoded MID/RID values of the DMAC port connected to the
-> > > > > > > +      DMA client and the slave channel configuration parameters.
-> > > > > > >        bits[0:9] - Specifies MID/RID value
-> > > > > > >        bit[10] - Specifies DMA request high enable (HIEN)
-> > > > > > >        bit[11] - Specifies DMA request detection type (LVL)
-> > > > > > >        bits[12:14] - Specifies DMAACK output mode (AM)
-> > > > > > >        bit[15] - Specifies Transfer Mode (TM)
-> > > > > > > +      For the RZ/V2H(P) SoC the cell specifies the REQ NO, the ACK NO, and the
-> > > > > > > +      slave channel configuration parameters.
-> > > > > > > +      bits[0:9] - Specifies the REQ NO
-> > > > > >
-> > > > > > So REQ_NO is the new name for MID/RID.
-> > > >
-> > > > These are documented in Table 4.7-22 ("DMA Transfer Request Detection
-> > > > Operation Setting Table").
-> > >
-> > > REQ_NO is documented in both Table 4.7-22 and in Table 4.6-23 (column `DMAC No.`).
-> >
-> > Indeed. But not for all of them. E.g. RSPI is missing, IIC is present.
->
-> I can see the RSPI related `REQ No.` in the version of the manual I am using,
-> although one must be very careful to look at the right entry in the table,
-> as the table is quite big, and the entries are ordered by `SPI No.`.
->
-> For some devices, the SPI numbers are not contiguous therefore the device specific
-> bits may end up scattered.
-> For example, for `Name` `RSPI_CH0_sp_rxintpls_n` (mind that the `pls_n` substring
-> is on a new line in the table) you can see from Table 4.6-23 that
-> its `DMAC No.` is 140 (as you said, in decimal...).
-
-Thanks, I had missed it because the RSPI interrupts are spread across
-two places...
-
-> > And the numbers are shown in decimal instead of in hex ;-)
-> >
-> > > > > It's certainly similar. I would say that REQ_NO + ACK_NO is the new MID_RID.
+> > > > > > Aren't you missing msi-map-mask =3D <0x1ff>; here? Similar to p=
+cie1.
+> > > > > > Either way, with this change PCIe on pcie0 is not working anymo=
+re,
+> > > > > > regardless of msi-map-mask.
 > > > > >
-> > > > > > > +      bits[10:16] - Specifies the ACK NO
-> > > > > >
-> > > > > > This is a new field.
-> > > > > > However, it is not clear to me which value to specify here, and if this
-> > > > > > is a hardware property at all, and thus needs to be specified in DT?
-> > > > >
-> > > > > It is a HW property. The value to set can be found in Table 4.6-27 from
-> > > > > the HW User Manual, column "Ack No".
+> > > > > Yes, it should have msi-map-mask. During my test, I have not enab=
+le enetc
+> > > > > so I have not found this problem.
 > > > >
-> > > > Thanks, but that table only shows values for SPDIF, SCU, SSIU and PFC
-> > > > (for external DMA requests).  The most familiar DMA clients listed
-> > > > in Table 4.7-22 are missing.  E.g. RSPI0 uses REQ_NO 0x8C/0x8D, but
-> > > > which values does it need for ACK_NO?
+> > > > Just to be clear: This is not about enetc. This works fine here.
+> > > >
+> > > > > > Without msi-map-mask:
+> > > > > > > OF: /soc/pcie@4c300000: iommu-map, using mask 000001ff, id-ba=
+se: 00000100, out-base: 00000011, length: 00000007, id: 00000300 -> 00000011
+> > > > > > > OF: /soc/pcie@4c300000: no msi-map translation for id 0x300 o=
+n (null)
+> > > > > > > r8169 0000:03:00.0: error -EINVAL: enable failure
+> > > > > > > r8169 0000:03:00.0: probe with driver r8169 failed with error=
+ -22
+> > > > > >
+> > > > > > With msi-map-mask:
+> > > > > > > OF: /soc/pcie@4c300000: iommu-map, using mask 000001ff, id-ba=
+se: 00000100, out-base: 00000011, length: 00000007, id: 00000300 -> 00000011
+> > > > > > > OF: /soc/pcie@4c300000: msi-map, using mask 000001ff, id-base=
+: 00000100, out-base: 00000011, length: 00000007, id: 00000300 -> 00000011
+> > > > > > > r8169 0000:03:00.0: enabling device (0000 -> 0003)
+> > > > > > > r8169 0000:03:00.0: enabling Mem-Wr-Inval
+> > > > > > > r8169 0000:03:00.0: error -EIO: PCI read failed
+> > > > > > > r8169 0000:03:00.0: probe with driver r8169 failed with error=
+ -5
+> > > > >
+> > > > > Can you try remove iommu-map and keep msi-map? then remove msi-ma=
+p and
+> > > > > keep iommu-map to check which one cause this problem.
+> > > >
+> > > > With only msi-map removed, but smmu enabled:
+> > > > > arm-smmu-v3 490d0000.iommu: event 0x10 received:
+> > > > > arm-smmu-v3 490d0000.iommu:      0x0000001100000010
+> > > > > arm-smmu-v3 490d0000.iommu:      0x0000020a00000000
+> > > > > arm-smmu-v3 490d0000.iommu:      0x000000009b0cc000
+> > > > > arm-smmu-v3 490d0000.iommu:      0x0000000000000000
+> > > > > arm-smmu-v3 490d0000.iommu: event: F_TRANSLATION client: 0000:01:=
+00.0 sid: 0x11 ssid: 0x0 iova: 0x9b0cc000 ipa: 0x0
+> > > > > arm-smmu-v3 490d0000.iommu: priv data read s1 "Input address caus=
+ed fault" stag: 0x0 r8169 0000:03:00.0
+> > > > > enp3s0: Link is Down
+> > > >
+> > > > With only iommu-map removed, both smmu enabled or disabled:
+> > > > > OF: /soc/pcie@4c300000: msi-map, using mask 000001ff, id-base: 00=
+000100, out-base: 00000011, length: 00000007, id: 00000300 -> 00000011
+> > > > > r8169 0000:03:00.0: enabling device (0000 -> 0003)
+> > > > > r8169 0000:03:00.0: enabling Mem-Wr-Inval
+> > > > > r8169 0000:03:00.0: error -EIO: PCI read failed
+> > > > > r8169 0000:03:00.0: probe with driver r8169 failed with error -5
+> > > >
+> > > > Only if smmu is disabled and msi-map is removed the driver probes
+> > > > successfully:
+> > > > > r8169 0000:03:00.0: enabling device (0000 -> 0003)
+> > > > > r8169 0000:03:00.0: enabling Mem-Wr-Inval
+> > > > > r8169 0000:03:00.0 eth0: RTL8168g/8111g, d8:9d:b9:00:16:10, XID 4=
+c0, IRQ 160
+> > > > > r8169 0000:03:00.0 eth0: jumbo features [frames: 9194 bytes, tx c=
+hecksumming: ko]
+> > > > > r8169 0000:03:00.0 enp3s0: renamed from eth0
+> > > > > r8169 0000:03:00.0: enabling bus mastering
+> > > > > r8169 0000:03:00.0 enp3s0: Link is Down
+> > > >
+> > > > > >
+> > > > > > Without msi-map/iommu-map:
+> > > > > > > r8169 0000:03:00.0: enabling device (0000 -> 0003)
+> > > > > > > r8169 0000:03:00.0: enabling Mem-Wr-Inval
+> > > > > > > r8169 0000:03:00.0 eth0: RTL8168g/8111g, d8:9d:b9:00:16:10, X=
+ID 4c0, IRQ 166
+> > > > > > > r8169 0000:03:00.0 eth0: jumbo features [frames: 9194 bytes, =
+tx checksumming: ko]
+> > > > > > > r8169 0000:03:00.0 enp3s0: renamed from eth0
+> > > > > > > r8169 0000:03:00.0: enabling bus mastering
+> > > > > > > r8169 0000:03:00.0 enp3s0: Link is Down
+> > > > > >
+> > > > > > pcie1 works as expected. But this is only a single PCIe device,=
+ rather than
+> > > > > > having a PCIe bridge.
+> > > > > > Any idea what's wrong here?
+> > > > >
+> > > > > Can you help dump more information at for PCIe bridge case:
+> > > > >
+> > > > > imx_pcie_add_lut(), need rid and sid information.
+> > > > > drivers/pci/controller/dwc/pci-imx6.c
+> > > >
+> > > > Just to be clear, without msi-map and iommu-map I get:
+> > > > > imx6q-pcie 4c380000.pcie: rid: 0x0, sid: 0x18
+> > > > > imx6q-pcie 4c380000.pcie: rid: 0x100, sid: 0x19
 > > >
-> > > Only a handful of devices need it. For every other device (and use case) only the
-> > > default value is needed.
+> > > Can you help dump register value PE0_LUT_CREQID offset 0x101 for your
+> > > smmu-map or msi-map enable case
 > >
-> > The default value is RZV2H_ICU_DMAC_ACK_NO_DEFAULT = 0x7f?
+> > I am assuming you meant offset 0x101c, as stated in the RM.
+> > I added a dump directly before printing "PCI read failed" in r8169_main=
+=2Ec.
+>=20
+> Can you point me the code about where "error -EIO: PCI read failed"?
 
-If you take this out, how to distinguish between ACK_NO = 0 and
-the default?
+The error messages comes from [1]. As far as I can tell, this is the first
+read after pcim_iomap_table().
 
-> > Which I believe already causes you to run into the out-of-range DMACKSELk
-> > register offset in rzv2h_icu_register_dma_req_ack()?
-> >
-> > > But I'll take this out for now, until we get to support a device that actually
-> > > needs ACK NO.
+> I tested nvme devices worked at both PCIE0 and PCIE1.
+>=20
+> Which PCI switch do you use?
 
-Gr{oetje,eeting}s,
+This is a COTS MiniPCIe ethernet card [2]. If I'm reading correctly
+the bridge seems to be a P17C9X20
 
-                        Geert
+Thanks and best regards
+Alexander
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+[1] https://web.git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git=
+/tree/drivers/net/ethernet/realtek/r8169_main.c?h=3Dnext-20250228#n5454
+[2] https://www.delock.com/produkt/95237/merkmale.html?f=3Ds
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
