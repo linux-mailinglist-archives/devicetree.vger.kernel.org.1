@@ -1,187 +1,78 @@
-Return-Path: <devicetree+bounces-152533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0429AA49622
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:58:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C06E7A49686
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 11:10:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 622217A7882
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:57:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5567416723A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:10:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7293325A2DE;
-	Fri, 28 Feb 2025 09:58:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="oCz2/SIY";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="L5ZuJXus"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2553E25DAE9;
+	Fri, 28 Feb 2025 10:03:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp134-86.sina.com.cn (smtp134-86.sina.com.cn [180.149.134.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE2711C549E
-	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 09:58:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB6A25DAE3
+	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 10:02:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740736727; cv=none; b=pHc+1P7QNiInplN6IUUizeMzZa9iut/RWgJ/DvlwXwHBvn0AhyxIxF4Fm0rbyxFWYx8xCoPQ/GFqjCzzqf5FLkmihZ0hSFKJdBKkIaejRmAsyjDjYuYe8LrCsTtPvK/S/BgmttS2oGaJVMD1y745ZcyV5rNAFgK8Xjncwx2tGfA=
+	t=1740736985; cv=none; b=QwdUL7eN8/BqTQIDI1eZs5E2xYWOgbRP2oDv1TPjDKVOACpyE2EiSOkPS5VFqElbqCWkzKlt1JnpIKd4qoeJa5FD/GXFLCLiA8wJo3VBDvIhP8cOwKZ4+tY8q8SNpXbONc+fqxmR2KTEPLF0w4knti5X/tXxt1+o3E8nYXasjPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740736727; c=relaxed/simple;
-	bh=+jxUbzZoR6vAP1oK+T880gbl0YheCVLNlrtzvpu1mMI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=myZnLDKX6InBQx0K6t3iJ7MCKRttZmNej7R1Irot2HLUTaV6DJXskB9yNopGqSxjSgWs08PIvlcgbZA8oiueJNLuu2jG9iDAy1KTtyVn0+AHSaT7mDqHxoJ+Uq/faxvWCneLg2eW9v68/Gx0ErxN2nvY0lzPHDVRqdiwdniQJKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=oCz2/SIY; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=L5ZuJXus reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1740736724; x=1772272724;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=R6z8SNGAWbPtFx1cjvVtRebtMxEHnuUbliJJnBLpEBQ=;
-  b=oCz2/SIYR0y3vuzjv6wwXb2w3D12SY78iJrchDnJTq9KT3PtSMyWSIVd
-   LIKC8cVLIb46iyrQVMY/BjXB0Z0adhxruLkmKI27tmUU+GaXEOGBB1u0v
-   7KN5RpYdASBzARNqWg6k4WWdibS7O7eh16OmllXbKcZ7+VrrJRxkLQBv1
-   esEKOaB8Vd1lb0aWppX4AKzzlxmdhrGO2zK7QC8btjLg5Ny0f36KZw2yb
-   bSzkRwnlVk6O4V3UPBYJ0bmmt7UHznIuOPSgTkzV2r4AEIcXXVg4NSTHg
-   i2n22wYtYqxr/eBoNilTOlhwwGccaayKAgplFA4ILVT3dBylMvRR3MGMp
-   A==;
-X-CSE-ConnectionGUID: xE6yXvstTFm0gqqdqTCQMg==
-X-CSE-MsgGUID: gUwUTOczSCiyYZXoY2pg6Q==
-X-IronPort-AV: E=Sophos;i="6.13,322,1732575600"; 
-   d="scan'208";a="42170542"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 28 Feb 2025 10:58:41 +0100
-X-CheckPoint: {67C188D0-2D-2895743E-CD1E7AB7}
-X-MAIL-CPID: C994950F3C3B4C450EBA4E647F15245F_4
-X-Control-Analysis: str=0001.0A00211B.67C188D2.0005,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AACD01688B1;
-	Fri, 28 Feb 2025 10:58:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1740736716;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=R6z8SNGAWbPtFx1cjvVtRebtMxEHnuUbliJJnBLpEBQ=;
-	b=L5ZuJXustp8emNgt0u+lkzIHHqx8ZnNQLz4D3Z97r5lDnHurm3e0ouRN9W4Trljbi8/4jb
-	rwyVFcqkZSzS5BmvDvsc/5LvOdJKVyFIdVBzUWZkc4Z3rm8cDPydzbKf/o5AIER4SqTIso
-	8c+bYF7qDKfvcHHqWtOP/DiA/5sbPQnknCJ57xzfqewwBe3KXhY84iAzfptY/JcNeIl6zA
-	VHX+eH6j0v016n51NCkEK3Lw8G+JkvTTGGCYWZNWNaNI+ylX2KYwXzyyQrXNqRZsBKgVSF
-	uljFLINGhoUbFi9bEBVFHqVzgOHRUFe8FTLOOeHZcU5mpEzFLAc49cq8WXQ0SA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org
-Cc: Marek Vasut <marex@denx.de>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- imx@lists.linux.dev, Marek Vasut <marex@denx.de>
-Subject:
- Re: [PATCH 2/9] reset: simple: Add support for Freescale i.MX95 GPU reset
-Date: Fri, 28 Feb 2025 10:58:33 +0100
-Message-ID: <2425297.NG923GbCHz@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250227170012.124768-3-marex@denx.de>
-References:
- <20250227170012.124768-1-marex@denx.de>
- <20250227170012.124768-3-marex@denx.de>
+	s=arc-20240116; t=1740736985; c=relaxed/simple;
+	bh=WJ600dmDvIC+s3oNklTRVhHscrZshNPaIv5KB+dawIo=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=FNab5x6MyEqN9fOKGypFIo9jOtBADgdSnQtQ0H+fS5U4uAMKOoNDdoMgldQc4J51LdLQTzh+6R0BVDYBLqxFUIAY4GTvxA90rvq2kX0lgv1THBqkpXDn0iKoJv/lI78t1Bje3erEbH+jDO5SgVkn/fwODrL07e7Jfcn1xjhwT+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
+Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.137])
+	by sina.net (10.185.250.30) with ESMTP
+	id 67C189C6000068CE; Fri, 28 Feb 2025 18:02:48 +0800 (CST)
+X-Sender: zhangyi@everest-semi.com
+X-Auth-ID: zhangyi@everest-semi.com
+Authentication-Results: sina.net;
+	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
+	 dkim=none header.i=none;
+	 dmarc=none action=none header.from=zhangyi@everest-semi.com
+X-SMAIL-MID: 7DF15ACF67644A689D332B8FC5E5015C
+X-SMAIL-UIID: 7DF15ACF67644A689D332B8FC5E5015C-20250228-180248
+From: Zhang Yi <zhangyi@everest-semi.com>
+To: alsa-devel@alsa-project.org,
+	broonie@kernel.org,
+	devicetree@vger.kernel.org
+Cc: tiwai@suse.com,
+	amadeuszx.slawinski@linux.intel.com,
+	Zhang Yi <zhangyi@everest-semi.com>
+Subject: [PATCH v1 0/2] ASoC: codecs: add ES8389 codec driver
+Date: Fri, 28 Feb 2025 18:02:43 +0800
+Message-Id: <20250228100245.127413-1-zhangyi@everest-semi.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Marek,
+The driver is for codec ES8389 of everest-semi.
 
-Am Donnerstag, 27. Februar 2025, 17:58:02 CET schrieb Marek Vasut:
-> The instance of the GPU populated in Freescale i.MX95 does require
-> release from reset by writing into a single GPUMIX block controller
-> GPURESET register bit 0. Implement support for this reset register.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Boris Brezillon <boris.brezillon@collabora.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Sebastian Reichel <sre@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Steven Price <steven.price@arm.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
->  drivers/reset/reset-simple.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/drivers/reset/reset-simple.c b/drivers/reset/reset-simple.c
-> index 2760678398308..1415a941fd6eb 100644
-> --- a/drivers/reset/reset-simple.c
-> +++ b/drivers/reset/reset-simple.c
-> @@ -133,9 +133,17 @@ static const struct reset_simple_devdata reset_simpl=
-e_active_low =3D {
->  	.status_active_low =3D true,
->  };
-> =20
-> +static const struct reset_simple_devdata reset_simple_fsl_imx95_gpu_blk_=
-ctrl =3D {
-> +	.reg_offset =3D 0x8,
+Zhang Yi (2):
+  ASoC: codecs: add support for ES8389
+  ASoC: dt-bindings: Add Everest ES8389 audio CODEC
 
-Shouldn't you add ".nr_resets =3D 1"? Otherwise this will have 8 resets
-(resource_size(res) * BITS_PER_BYTE).
+ .../bindings/sound/everest,es8389.yaml        |  98 ++
+ sound/soc/codecs/Kconfig                      |   6 +-
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/es8389.c                     | 985 ++++++++++++++++++
+ sound/soc/codecs/es8389.h                     | 139 +++
+ 5 files changed, 1229 insertions(+), 1 deletion(-)
+ create mode 100755 Documentation/devicetree/bindings/sound/everest,es8389.yaml
+ create mode 100644 sound/soc/codecs/es8389.c
+ create mode 100644 sound/soc/codecs/es8389.h
 
-On a side note: RM says this is a write-once register. Do we consider writi=
-ng
-this register again?
-BTW: Would it be possible to disable it completely (until reset) by writing=
- 1?
-
-Best regards
-Alexander
-
-> +	.active_low =3D true,
-> +	.status_active_low =3D true,
-> +};
-> +
->  static const struct of_device_id reset_simple_dt_ids[] =3D {
->  	{ .compatible =3D "altr,stratix10-rst-mgr",
->  		.data =3D &reset_simple_socfpga },
-> +	{ .compatible =3D "fsl,imx95-gpu-blk-ctrl",
-> +		.data =3D &reset_simple_fsl_imx95_gpu_blk_ctrl },
->  	{ .compatible =3D "st,stm32-rcc", },
->  	{ .compatible =3D "allwinner,sun6i-a31-clock-reset",
->  		.data =3D &reset_simple_active_low },
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+-- 
+2.17.1
 
 
