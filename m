@@ -1,112 +1,119 @@
-Return-Path: <devicetree+bounces-152368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F19F9A48DA5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 02:07:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08340A48DC8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 02:19:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E46D03B4781
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 01:07:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D75C91890F86
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 01:19:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 154FD17741;
-	Fri, 28 Feb 2025 01:07:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BF6225D7;
+	Fri, 28 Feb 2025 01:19:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GAOuNqDm"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="JHtjn/D8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A6241DFE1;
-	Fri, 28 Feb 2025 01:07:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDAE85A4D5;
+	Fri, 28 Feb 2025 01:19:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740704865; cv=none; b=RC5qmUj0BHKBjgR2Qu/qkMGbRm6R/CnB+S+1RPEqeA17esbmpKJiscOpb2CUvP/i49pAlO1CHsX2zGVq4oh/FDlBEsmkfcnl+IzDPVwBgduqUeBvVaot31E7V319B/C51LZqXsnk+dtV+yEUvP4yJ8wcAhjj/TufgHsAydsWT9Y=
+	t=1740705564; cv=none; b=NHYDCpjkQIttSARLI5P4WMUxbkTiK6syvbCMFjhYyDcns4T1jLT4kOwK4Xiq1n6dSSME9XKfZrBP7mwfsae1D5CuTQyZQ0al6yAH2duYqRHMZv3DCiifaMPg+YOc+NCcibCA3ObcFKcBKirDab2gwpQrjw+WKIHK0sRo8vZnzHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740704865; c=relaxed/simple;
-	bh=7F+485a2GYMpEoCglv0JpYsO64gxsh7+k5AuHXZ43jE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CZFFdkkz4a0RLuZ39dVNpOIwHOS+Tbm9UU7PJHCyFjqkin92J3L335wjzWT+AuDf2HS+tA3/ri5HT6EWOmKLbleDIp89q2fOmCGTN0pzf4fxgw1j/31xv2vh2zODIVOP4kpoBOV8ekksokEIGAfuZ6xUkQ/okUGEjiw7Y9uucU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GAOuNqDm; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-22185cddbffso47601575ad.1;
-        Thu, 27 Feb 2025 17:07:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740704863; x=1741309663; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1laYBHFjrGeFBi7DbEcxWjegyvsUli4cG4YPheS1ZSE=;
-        b=GAOuNqDmbNXLwgqehyAO5tev7ko8IpaANECV6Oxv2mw80kv65ju/LpHYbc/0YXuY2m
-         32X9HzHK8XnaNxsL5aMTj44ZlZBu5s1Ne02mXUc2BUHVA68NPwc2eMK8tzHHscXkECm3
-         iqjxvEWFw/cVpIDoJTsLGmlr0PEciM9ExC4DqCTum2DewFu/xUTnGDSz423hh2TQi/pD
-         aOrR+YIaGp779Jg15NvvXhVHIKbwchRSArv4dKN3CLSDe1bALEN+E4Epq1qEGmGTwpaM
-         djNym791Pul358ahvLYUk0tyKE4e4SwH1GB2VfVrSnEm9i8m+7AJ+aEoqp90ahzuq+fN
-         0a/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740704863; x=1741309663;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1laYBHFjrGeFBi7DbEcxWjegyvsUli4cG4YPheS1ZSE=;
-        b=qmbUR6RitdprpbBDbeWsgKNUL4BA+6odaHvgycMU/530lAGVm9ro8xJHpZimgFSF9C
-         exc0EZNljLgOP9g5xbObh7ab4wVIm1vJWbEH382AFlPqJfwNfvJ1Vz7+ij6c+3fJ6pEc
-         3l5NrLUwmwiVru3/EvzYi7Xh7Qd6Ee0+kG+YqsYEX/v+QoUQ2MytgSgFkcDOhbRlOJFH
-         +MrpKBkhfqwIByfHMK6bwwgpqpawhPUoexH0FzEI9ICVB43YCJoNk7M9I08lCcKt84+L
-         lz4uGMUG7DVPgJDq6WOWBMo9B/4A92CLWnfxoAd5mswhmmJIwvyrEHEQ8zCZT5BKiHD8
-         PM+w==
-X-Forwarded-Encrypted: i=1; AJvYcCWdcF7lJk3HfasFzcF7FCw1GyxP5l18kIbPuezxG98CDy0HhLV+SM9cOCtx2+jmNVWheWV2oawAouMvbnw=@vger.kernel.org, AJvYcCXMWcu63E8qnWlhLm760Zduw9BNT2l2s4xK4BNkzdrqsa1mrcllsueSApt4BGrD2dLZ0HvfQOPann7s@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzvtfkj49J7KGXDOahjbngHCUW16O/xSWRquHJ9qMzTiA61sfX8
-	dQGNolmiQQnM82CGHK8FZzDfsj6GH24CEe+39ePh6MY4x7b+DDXlcAORSw==
-X-Gm-Gg: ASbGncuCspojmtLoIK17o8nXoB3N3nsqbfeIjJNCBRkh7QpWr7LMzhb+D2bGOEb3jV2
-	iGPwOv0B2ehW7pwIPX/T5n2mIUOBGXcghZeY98FspY0cLU7X7qTK9LKt6FkM5GudbWcvEJs+8U8
-	6YnoGkNStvem/wpkaTApgN6QRKUGiYwEVKG96MwVE9ipT/xb8etY1VYIuMMw1GbzGBduGk4Cpz2
-	vgcR3CBdi54N64IRu2cmzoYjHihpcuC5ohY4rRRcqPj9SMGvyiECGogNBH7HMOsrzd0YU2zosUi
-	C1G8yWNzgiuKaWHMnZ2hpYbyq+o=
-X-Google-Smtp-Source: AGHT+IEpGrcNoN5NEVxEEM1ywW1LEQdRBk6lpjhv0z2LW/RIfXXQXJPUjLCHRU3Ba0uCJH+CiwmDig==
-X-Received: by 2002:a05:6a21:6014:b0:1ee:a410:4aa5 with SMTP id adf61e73a8af0-1f2f3e11c7fmr2583907637.17.1740704862744;
-        Thu, 27 Feb 2025 17:07:42 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:c0e7:f2be:7020:c4a6])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-aee7dec4142sm2193005a12.56.2025.02.27.17.07.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Feb 2025 17:07:42 -0800 (PST)
-Date: Thu, 27 Feb 2025 17:07:39 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Markus Burri <markus.burri@mt.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marek.vasut@gmail.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, Markus Burri <markus.burri@bbv.ch>,
-	Manuel Traut <manuel.traut@mt.com>
-Subject: Re: [PATCH v6 2/3] dt-bindings: input: matrix_keypad - add missing
- property
-Message-ID: <Z8EMW2MmIrhUIpAS@google.com>
-References: <20250226152843.43932-1-markus.burri@mt.com>
- <20250226152843.43932-3-markus.burri@mt.com>
+	s=arc-20240116; t=1740705564; c=relaxed/simple;
+	bh=nxAZo/OMAzvInHQzAVxo8oOko4quys441uMwzu7wIT8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QsMD9sXpV2KKImuL0DPvI3hXr6XDCb4mViqVYySLpqhd2J6OEgyYN6A0cQg01f50J0FuuLL4+gO8er2Xw1FzNGtpN0kYGRiW1mDp3vdIZFP+1e/DYS8VC9I0dKA/HRupFyViEpVtwdkBRrFnH/mlwtabMuheo65S7pBEXC/gy2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=JHtjn/D8; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: fed651a8f57111efaae1fd9735fae912-20250228
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=oegyJYedlbzffGL4cDafdK/VAO0ZgOIByVceTitr8z4=;
+	b=JHtjn/D8nhQKsfceIgXXm0AgqcBNdqh7tcnOuQbLVgd91lbPEE9XQ/JJ1EKxqxWJDRKAvdpF3tr337cI1N/EQXzGOHRrBFBGfC35wzuG0eE8RFiFJBf7ef55hYuFldb6nKLE3XCIplP7HrJJsC0QQRz4WavW6KjgpNUSuh+w1Zk=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.46,REQID:ad350bee-1628-4955-94d1-55f7c7f5e8f8,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:60aa074,CLOUDID:9e8f5929-e0f8-414e-b8c3-b75c08217be8,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: fed651a8f57111efaae1fd9735fae912-20250228
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+	(envelope-from <ot_cathy.xu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 2085863763; Fri, 28 Feb 2025 09:19:02 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Fri, 28 Feb 2025 09:19:01 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.28 via Frontend Transport; Fri, 28 Feb 2025 09:19:00 +0800
+From: Cathy Xu <ot_cathy.xu@mediatek.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@kernel.org>
+CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, Yong Mao <yong.mao@mediatek.com>, "Axe
+ Yang" <axe.yang@mediatek.com>, Wenbin Mei <wenbin.mei@mediatek.com>, Lei Xue
+	<lei.xue@mediatek.com>, Cathy Xu <ot_cathy.xu@mediatek.com>
+Subject: [PATCH v4 0/3] pinctrl: mediatek: Add pinctrl driver on mt8196
+Date: Fri, 28 Feb 2025 09:16:24 +0800
+Message-ID: <20250228011702.16493-1-ot_cathy.xu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250226152843.43932-3-markus.burri@mt.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Wed, Feb 26, 2025 at 04:28:42PM +0100, Markus Burri wrote:
-> The property is implemented in the driver but not described in dt-bindings.
-> Add missing property 'gpio-activelow' to DT schema.
-> 
-> Signed-off-by: Markus Burri <markus.burri@mt.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Changes in v4:
+- Add rsel-resistence-in-si-unit and remove RSEL macro magic
+  number in mediatek,mt8196-pinctrl.yaml.
+- Add values in SI units option to |struct mtk_pin_soc| in
+  pinctrl-mt8196.c.
+- Move pinmux macro header file to arch/arm64/boot/dts/mediatek.
 
-Applied but dropped Rob's reviewed-by because the patch is different
-from what he has reviewed.
+Changes in v3:
+- Remove drive-strength-microamp & rsel-resistence-in-si-unit
+  related description in mediatek,mt8196-pinctrl.yaml.
+- Use pm_sleep_ptr() in pinctrl-mt8196.c to fix build error.
 
-Thanks.
+Changes in v2:
+- Fix driver file's coding style.
+- Add pinctrl binding document.
+
+Cathy Xu (3):
+  dt-bindings: pinctrl: mediatek: Add support for mt8196
+  arm64: dts: mediatek: mt8196: Add pinmux macro header file
+  pinctrl: mediatek: Add pinctrl driver on mt8196
+
+ .../pinctrl/mediatek,mt8196-pinctrl.yaml      |  241 ++
+ arch/arm64/boot/dts/mediatek/mt8196-pinfunc.h | 1572 ++++++++++
+ drivers/pinctrl/mediatek/Kconfig              |   12 +
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt8196.c     | 1857 +++++++++++
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt8196.h | 2789 +++++++++++++++++
+ 6 files changed, 6472 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8196-pinctrl.yaml
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8196-pinfunc.h
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt8196.c
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt8196.h
 
 -- 
-Dmitry
+2.45.2
+
 
