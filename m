@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-152788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C09A7A4A26C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 20:07:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0395CA4A276
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 20:09:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96A513AFB4B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:07:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6312188F184
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:09:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72D0F1F8724;
-	Fri, 28 Feb 2025 19:07:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C03E51F8724;
+	Fri, 28 Feb 2025 19:09:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o92qY2rT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GP6pfxBZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40DED1F4CA9
-	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 19:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9096D27700D;
+	Fri, 28 Feb 2025 19:09:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740769663; cv=none; b=miaHYYKAxtJjk6WZQenx4wRscPPO8wbtbH9XDE7NzDEBKTx8jR+3Up048s2emFvAAMGH+dibqqzWQ/VaUMmU6xF2kvHFPQDM6a5KBsYIE5EEgOsz9EMSL15/QrZuNOExNjGDVa4+ze58Zr1n96gzNXqr9z+40SbGCUtdtgn4z0Q=
+	t=1740769772; cv=none; b=JXGTB39ZKq1wPJJmr9UDl2YoN5gAdFZ4s/ksz6eeeJUMFR9YRgcVjOOWu4+FZTwffSyub2XRTTVEsSj/VW+m3LljuF9jrd7hYFvPUmUHpURocXO0Ke5Q0yTTPW5vIs+b4apFb3KTGwjEF9tywzLA+1hfHz85kr2NGgRQefOgCk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740769663; c=relaxed/simple;
-	bh=F42vuMZF0te3sC+FWTrmRgS93g6PkTya0sIJ9ITrL98=;
+	s=arc-20240116; t=1740769772; c=relaxed/simple;
+	bh=zhJ3QBOrHMKMn080recEziExaq+khBOdjjOCVr5uLWA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r//NkqUjtAjeBqt8GFbmRzUR91bnau1aUpGCZU3RzxC+cSzOaAH+ysyPw/3X/f6S/k19yAVXzj9Qc51AXJCDVGfYx7GJuSS/QjObtMjOA89f1dpXtmFkgLL6eGIcIBmxthTcllP1pMt236zoyVDKLkqpR/cDHilFs1gxpMEKnoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o92qY2rT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C26D9C4CED6;
-	Fri, 28 Feb 2025 19:07:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=KjtMwkr0eItBaZhQFZf0CD2PVB2pscgHwsK/vGhT17QeOs4O85HMAR987OZWHPsDGWvjAHl/i/Aajzz6rSZQb7mSe5P+OwbVQLuHZThNtN3Q8GHma4y5qnOo+VnJ4uollF5bAhiVTtGO7i6Jc/GyxibRikKZ2OOSMbKlUeKM4IA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GP6pfxBZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF270C4CED6;
+	Fri, 28 Feb 2025 19:09:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740769662;
-	bh=F42vuMZF0te3sC+FWTrmRgS93g6PkTya0sIJ9ITrL98=;
+	s=k20201202; t=1740769772;
+	bh=zhJ3QBOrHMKMn080recEziExaq+khBOdjjOCVr5uLWA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o92qY2rTY0BjlooX0qfoATkWz+K359ID7Mju2Ifa9XZgHWgYkSz1eVgbb00O4p2EH
-	 Xw3cawWaoD09ZcFZ8iF50TbUxM81hb9NOCmHIwMR2vmGZluIBJGJm4CT6Z7EmWgWqK
-	 NPP4dHBRG6so9ZMs3zh5jwHBLZVeIaANl9+eFyBPTtpr8ihqv3VTUw4NB9aqnSTGzg
-	 +z+f56C/CurfaKxVTXFOGfX6mj8tVDnY4vRlzBpR/GPzlIgn+Iu8T2VnUXMH1X/6sp
-	 c0T0Q5+pddy9Ulx2760+LzHf6WvGHyUHcMiZjp+qSeNfeDom1OBQ4Fp98p/LC0Iln5
-	 5HC0W2TinPfQw==
-Date: Fri, 28 Feb 2025 19:07:38 +0000
+	b=GP6pfxBZQPS0HuAfJ0JdudFGxBbXika0HLAvLl3//9haacIvzPgrabNyuVP1tmdFi
+	 Qv2vqVIaKe4kTBGYsuVh3YGDQL5Nb4mQ2+pwkUXJrCOopBENltAXK9kh7sQeCrFKLl
+	 EvMkoaAbBDZ77Kjen4V4/lCNojgUEU7JZD4olLwU3Me0ekiBH7NKJNc7JQCIOVMUMC
+	 0wGmu7q71ViXrCnI9QsTxzSQbWuZc9wkU3568kBTLNcgUgNF2k9wTp3hP/FGvYaDs2
+	 GbIu2XuNSvCd9QtsWh/zsanc9U3CX/Ogm4Tuy860eLr88dMVPo4JQWcjuUOQAqs2SB
+	 prQb45lQwPMzQ==
+Date: Fri, 28 Feb 2025 19:09:27 +0000
 From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>
-Cc: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
-	Jose Maria Casanova Crespo <jmcasanova@igalia.com>,
-	dri-devel@lists.freedesktop.org, kernel-dev@igalia.com,
+To: Mathis Foerst <mathis.foerst@mt.com>
+Cc: linux-kernel@vger.kernel.org,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/6] dt-bindings: gpu: v3d: Add SMS to the registers' list
-Message-ID: <20250228-living-viewer-b1fc55214b7b@spud>
-References: <20250226-v3d-gpu-reset-fixes-v1-0-83a969fdd9c1@igalia.com>
- <20250226-v3d-gpu-reset-fixes-v1-4-83a969fdd9c1@igalia.com>
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	manuel.traut@mt.com
+Subject: Re: [PATCH v1 0/8] MT9M114 driver bugfix and improvements
+Message-ID: <20250228-valid-chastise-db8819061ec5@spud>
+References: <20250226153929.274562-1-mathis.foerst@mt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,69 +63,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5/v2yBxQRDxn4l+Q"
+	protocol="application/pgp-signature"; boundary="wjlbXatp+vm/Zg2k"
 Content-Disposition: inline
-In-Reply-To: <20250226-v3d-gpu-reset-fixes-v1-4-83a969fdd9c1@igalia.com>
+In-Reply-To: <20250226153929.274562-1-mathis.foerst@mt.com>
 
 
---5/v2yBxQRDxn4l+Q
-Content-Type: text/plain; charset=iso-8859-1
+--wjlbXatp+vm/Zg2k
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 26, 2025 at 04:59:02PM -0300, Ma=EDra Canal wrote:
-> V3D 7.1 exposes a new register block, called V3D_SMS. As BCM2712 has a
-> V3D 7.1 core, add a new register item to the list. Similar to the GCA
-> and bridge register, SMS is optional and should only be added for V3D
-> 7.1 variants.
+On Wed, Feb 26, 2025 at 04:39:21PM +0100, Mathis Foerst wrote:
+> Hi,
 >=20
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Nicolas Saenz Julienne <nsaenz@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Ma=EDra Canal <mcanal@igalia.com>
-> ---
->  Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+> this patch series contains the following bugfix and improvements
+> for the MT9M114 camera driver:
 >=20
-> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Do=
-cumentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> index dc078ceeca9ac3447ba54a7c8830821f0b2a7f9f..8a3d3fc6065d7756da141bda4=
-dc522f63be5e9a1 100644
-> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> @@ -27,14 +27,16 @@ properties:
->        - description: core0 register (required)
->        - description: GCA cache controller register (if GCA controller pr=
-esent)
->        - description: bridge register (if no external reset controller)
-> +      - description: SMS register (if SMS controller present)
->      minItems: 2
-> =20
->    reg-names:
->      items:
->        - const: hub
->        - const: core0
-> -      - enum: [ bridge, gca ]
-> -      - enum: [ bridge, gca ]
-> +      - enum: [ bridge, gca, sms ]
-> +      - enum: [ bridge, gca, sms ]
-> +      - enum: [ bridge, gca, sms ]
->      minItems: 2
+> Bugfixes:
+> - Fix a deadlock when using the V4L2 pad-ops get/set_frame_interval
+>=20
+> Compatibility:
+> - Implement the missing get_mbus_config() function to be compatible
+>   with the i.MX6 camera framework
+>=20
+> New Features:
+> - Allow to bypass the internal PLL (configurable via DT)
+> - Make the slew-rate of the output pads configurable via DT
+> - Allow to change the cropping configuration and the horizontal/vertical
+>   flipping while the sensor is in streaming state
+>=20
+> Thanks,
+> Mathis
+>=20
+>=20
+> Mathis Foerst (8):
+>   MT9M114: Add bypass-pll DT-binding
+>   MT9M114: Add pad-slew-rate DT-binding
+>   MT9M114: Add get_mbus_config
+>   MT9M114: Add option to bypass PLL
+>   MT9M114: Factor out mt9m114_configure_pa
+>   MT9M114: Allow set_selection while streaming
+>   MT9M114: Fix deadlock in get_frame_interval/set_frame_interval
+>   MT9M114: Set pad-slew-rate
 
-Can you add a per-compatible restriction, to only allow maxItems: 2
-when the compatible is not mcb2712 please?
+Please take a look (via git log) what normal patch subjects look like.
 
---5/v2yBxQRDxn4l+Q
+Thanks,
+Conor.
+
+>=20
+>  .../bindings/media/i2c/onnn,mt9m114.yaml      |  10 ++
+>  drivers/media/i2c/mt9m114.c                   | 161 +++++++++++++-----
+>  2 files changed, 129 insertions(+), 42 deletions(-)
+>=20
+>=20
+> base-commit: ac9c34d1e45a4c25174ced4fc0cfc33ff3ed08c7
+> --=20
+> 2.34.1
+>=20
+
+--wjlbXatp+vm/Zg2k
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8IJegAKCRB4tDGHoIJi
-0rD/AQDpFB6kgEhVXBwM9SSaXMh6IwtYiE76vY7y2Xo7nMjMtgD+LyBHPyk4Edl3
-fscwWQ0NW9LOHeRDPbwqTOh9YDv1ggQ=
-=CPgn
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8IJ5wAKCRB4tDGHoIJi
+0pAJAQCDOLZhBDvRloyCfH0G/Qs7d6KZ8DEhurRP5lf0T04+lAEA4PFC3e5Fxp7C
+09GHPWpq/LQRGA0K42u0rvsJ6aoylQo=
+=nwS+
 -----END PGP SIGNATURE-----
 
---5/v2yBxQRDxn4l+Q--
+--wjlbXatp+vm/Zg2k--
 
