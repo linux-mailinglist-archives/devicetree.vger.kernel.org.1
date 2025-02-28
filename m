@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-152486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B513FA49313
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:13:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C692FA4932B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:18:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E7383B557B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:13:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD04C3B4D2A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:17:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3B331FDA85;
-	Fri, 28 Feb 2025 08:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D65B2242900;
+	Fri, 28 Feb 2025 08:18:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Idzy7Jv7"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JcYTfhE6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B201FCFF1;
-	Fri, 28 Feb 2025 08:13:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89168241C8C;
+	Fri, 28 Feb 2025 08:17:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740730424; cv=none; b=lN7z8bSnvpv/co+6EC9pAOnF9GY6MiBjC6UhqINraf7JeESz+LD2zDOI1JXSPjuHDQ/lXHbMv9kDwWcx+scKyv4+E4MM6iJRtQ4aSiQBoV3nKDnPTbGaLuP4KROu2gjRmKxBJESj0+i/cjTjqKY2ltVckC0ZCnC4PSSSL5ZQJjk=
+	t=1740730680; cv=none; b=MCM8YH9gEdC97LPBBrkYQRW5oUkrJbpnQPlwhIPsY72Pc5JiOXbNwbdCx7qy9HWsB4/gjnI254Hz/T6jHRo0CDo5efRT3QeTzvsOgmm3mGeubb1J9sRykA1jdKWEMRKgpAYCh0BRybiRRtwalxmdysjIr7YYSze/h3hpBtUFU6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740730424; c=relaxed/simple;
-	bh=+xI0/YrWmnIyk7d2VJFE2dYzFFjAGnryzVHEBcN1FsA=;
+	s=arc-20240116; t=1740730680; c=relaxed/simple;
+	bh=d1+/Gr624dcwgvhxrb15dfxs168a9hSODpY6CPieY3k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=siZpv7/L6pqz2JnbYGGLg/13beT3ss321YFVgPzOD7X6K6yAY1r9HCK8Y3AGLJYiBn6FGRJhRzlEAD4plLWUYWUEzcIvcZhqjQF0BGd0kzjFFI6kkVOr1gyNUPN5k5PyqUFdgt1X4jOVc1qXBoWnLXCht+Nq89oe11ZaQd0dpu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Idzy7Jv7; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51RK4skq017228;
-	Fri, 28 Feb 2025 08:13:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vk6FL4pS6q3UJRg3aCm+rZsEKLKYZ2ugK1Iil/+G0MA=; b=Idzy7Jv7kbLg0Irc
-	3jduhvEquRpgk/YWXsRoyXtbp4IH/wxvvYmGR8orMpOFbT2ScVhguMALktYCprFo
-	RsWfvqnz31S3mfL1VBpJ9RrVFoR0aVZZ7LoKTG8vW8tv9jvTRSowDPArdFp6jgwd
-	0Z5og+zf8llFLRZLES9xZ6BISSX85+XCjiqYNmqOPhNi/4WfsMjm5AQWBQRrkKUK
-	SSRUoMDYtnjuZbalIdzZXLtlYD2uklqsIfkwnIXaHk02S9DLqEXfFIjCt28XX9Uj
-	BDE4sDcAsrzbny1AYaNguEI6QIo7vjUAMgDmqI5+mekGe4/LlkaD9NAX/+HRts9M
-	iBInbQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 452nqkkem1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Feb 2025 08:13:22 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51S8DLpA027314
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Feb 2025 08:13:21 GMT
-Received: from [10.216.6.99] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 28 Feb
- 2025 00:13:14 -0800
-Message-ID: <4c81f193-a1d0-4abc-8be5-07c862de8937@quicinc.com>
-Date: Fri, 28 Feb 2025 13:43:12 +0530
+	 In-Reply-To:Content-Type; b=aDSVHCqTr/584mOP7aopTEu95JpCwQaq76zYUhEmb8z5IHoILnypccvfLUa8t3wl7bH8XT/0GEDJ8nfqYOgGWEsGBQHuYHHdasZ8DRBU1zUmX8Phm2gC+NJ0BAmwyMW6Fqt93Ec5h7KG9adoPEjnMAlpKOPqSF0BlWSl+qXRN1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JcYTfhE6; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51S8HdtC2600433
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 28 Feb 2025 02:17:39 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1740730659;
+	bh=WdZHP572Rh9pNFP6JZgEg9+TLw9B8b1SKcBPxjkgHgE=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=JcYTfhE6kMM887ZQWGlfXBrFTnLkcSNoDcH6XoxJuS00kQFnuQqEj03QamM8cnYNy
+	 PzFHtQAsxw75tap8t8GwRpHK+lkHwTVftAo2BgO2iS/Rcnlc5LIHZJ89nMHWHxbC8r
+	 8Ett4PUhJTjrT/f23ji5/cVQT7wy9drONJV8LZ+E=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51S8HdNc002235
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 28 Feb 2025 02:17:39 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 28
+ Feb 2025 02:17:38 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 28 Feb 2025 02:17:38 -0600
+Received: from [172.24.227.115] (abhilash-hp.dhcp.ti.com [172.24.227.115])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51S8HYV9126373;
+	Fri, 28 Feb 2025 02:17:34 -0600
+Message-ID: <a79884b1-660a-4e17-9a10-f22652e4683b@ti.com>
+Date: Fri, 28 Feb 2025 13:47:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,93 +66,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] drm/msm/a6xx: Add support for Adreno 623
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Jie Zhang
-	<quic_jiezh@quicinc.com>
-References: <20250228-a623-gpu-support-v2-0-aea654ecc1d3@quicinc.com>
- <20250228-a623-gpu-support-v2-3-aea654ecc1d3@quicinc.com>
- <67jiudy4bopd3mzoylj47stuxwc5jdt63akxwn5qqo4dov47za@xcece4v2k3m5>
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIIHY0IDEvMl0gZHQtYmluZGluZ3M6IG1l?=
+ =?UTF-8?Q?dia=3A_cdns=2Ccsi2rx=2Eyaml=3A_Add_optional_interrupts_for_cdns-c?=
+ =?UTF-8?Q?si2rx?=
+To: Changhuang Liang <changhuang.liang@starfivetech.com>,
+        Jai Luthra
+	<jai.luthra@linux.dev>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+CC: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "mchehab@kernel.org"
+	<mchehab@kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "conor+dt@kernel.org"
+	<conor+dt@kernel.org>,
+        "devarsht@ti.com" <devarsht@ti.com>,
+        "vaishnav.a@ti.com" <vaishnav.a@ti.com>,
+        "r-donadkar@ti.com"
+	<r-donadkar@ti.com>,
+        "u-kumar1@ti.com" <u-kumar1@ti.com>
+References: <20250227082920.744908-1-y-abhilashchandra@ti.com>
+ <20250227082920.744908-2-y-abhilashchandra@ti.com>
+ <20250228-sandy-nightingale-of-improvement-6eef5a@krzk-bin>
+ <24y6ggufmhmjkfxymhhxslthpbrsthfp67hkvq36dmnewpnv5c@dbs3hhhpme4w>
+ <ZQ0PR01MB1302A225A08A120789EC318DF2CCA@ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn>
 Content-Language: en-US
-In-Reply-To: <67jiudy4bopd3mzoylj47stuxwc5jdt63akxwn5qqo4dov47za@xcece4v2k3m5>
-Content-Type: text/plain; charset="UTF-8"
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+In-Reply-To: <ZQ0PR01MB1302A225A08A120789EC318DF2CCA@ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 76zNlMOeirPR6Igo6MqysBl44PxpTEW2
-X-Proofpoint-GUID: 76zNlMOeirPR6Igo6MqysBl44PxpTEW2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-28_02,2025-02-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- lowpriorityscore=0 adultscore=0 phishscore=0 bulkscore=0 clxscore=1015
- mlxlogscore=999 suspectscore=0 spamscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502280058
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 2/28/2025 4:56 AM, Dmitry Baryshkov wrote:
-> On Fri, Feb 28, 2025 at 01:37:51AM +0530, Akhil P Oommen wrote:
->> From: Jie Zhang <quic_jiezh@quicinc.com>
->>
->> Add support for Adreno 623 GPU found in QCS8300 chipsets.
->>
->> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
->> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->> ---
->>  drivers/gpu/drm/msm/adreno/a6xx_catalog.c   | 29 +++++++++++++++++++++++++++++
->>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c       |  8 ++++++++
->>  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c |  2 +-
->>  drivers/gpu/drm/msm/adreno/adreno_gpu.h     |  5 +++++
->>  4 files changed, 43 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->> index 0ae29a7c8a4d3f74236a35cc919f69d5c0a384a0..1820c167fcee609deee3d49e7b5dd3736da23d99 100644
->> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->> @@ -616,6 +616,14 @@ static void a6xx_calc_ubwc_config(struct adreno_gpu *gpu)
->>  		gpu->ubwc_config.uavflagprd_inv = 2;
->>  	}
->>  
->> +	if (adreno_is_a623(gpu)) {
->> +		gpu->ubwc_config.highest_bank_bit = 16;
+Hello Krzysztof, Jai and Changhuang
+
+Thank you for the quick confirmation.
+
+On 28/02/25 13:43, Changhuang Liang wrote:
+> Hi, Jai
 > 
-> Just to doublecheck, the MDSS patch for QCS8300 used HBB=2, which
-> means 15. Is 16 correct here? Or might the be a mistake in the MDSS
-> patch?
+>> Hi Krzysztof,
+>>
+>> On Fri, Feb 28, 2025 at 08:34:22AM +0100, Krzysztof Kozlowski wrote:
+>>> On Thu, Feb 27, 2025 at 01:59:19PM +0530, Yemike Abhilash Chandra
+>> wrote:
+>>>> diff --git
+>>>> a/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>>>> b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>>>> index 2008a47c0580..054ed4b94312 100644
+>>>> --- a/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>>>> +++ b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>>>> @@ -24,6 +24,16 @@ properties:
+>>>>     reg:
+>>>>       maxItems: 1
+>>>>
+>>>> +  interrupts:
+>>>> +    minItems: 1
+>>>> +    maxItems: 2
+>>>> +
+>>>> +  interrupt-names:
+>>>> +    minItems: 1
+>>>> +    items:
+>>>> +      - const: error_irq
+>>>> +      - const: irq
+>>>
+>>> And how is this second interrupt in existing integrations?
+>>>
+>>
+>> TI SoCs integrate both of these if I understood the TRM correctly.
+> 
+> StarFive JH7110 SoC also integrates both of these too.
 
-https://patchwork.freedesktop.org/patch/632957/
-I see HBB=3 here.
+If that is the case, I will send the next version with both the
+interrupts set as non-optional.
 
--Akhil
+Thanks and Regards
+Yemike Abhilash Chandra
 
 > 
->> +		gpu->ubwc_config.amsbc = 1;
->> +		gpu->ubwc_config.rgb565_predicator = 1;
->> +		gpu->ubwc_config.uavflagprd_inv = 2;
->> +		gpu->ubwc_config.macrotile_mode = 1;
->> +	}
->> +
->>  	if (adreno_is_a640_family(gpu))
->>  		gpu->ubwc_config.amsbc = 1;
->>  
-
+> Best Regards,
+> Changhuang
 
