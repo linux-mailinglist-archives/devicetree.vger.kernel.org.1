@@ -1,64 +1,60 @@
-Return-Path: <devicetree+bounces-152759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DE1DA4A189
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:29:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 797ECA4A1C8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:39:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 622183A7B42
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:29:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB7EF1891706
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:39:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9D2627426D;
-	Fri, 28 Feb 2025 18:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B0D627CCD3;
+	Fri, 28 Feb 2025 18:39:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jr2pyMZM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f1gKP1tG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD9C1F4C85;
-	Fri, 28 Feb 2025 18:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B26A27CCC3;
+	Fri, 28 Feb 2025 18:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740767347; cv=none; b=A11VWzslD8kccaDcaU/CVTzH6RNP7usW+snKbwi2lw/QaiRsyt4fCAunM5G+2nt0xa4O1xSV8Z8sbwbkEP9eBtMy5UF1UJZx43EJUW7ES3KKlg9UxR/SILNtUHn7dqJ3wM6LJEl8lLqEG8Rf2Phg4VEKzTQiDgVBKJ1tPUxid6w=
+	t=1740767960; cv=none; b=SVlehilOMzkQsBYfSaqYlZc+nd0JX2S83PiU5hQKvw79clUu764Dvb6BOpHGiBfQj5c8or5+HgyOJ1UPhkGW2lPV0sLTxi3uyFGIF/m4ENdU/6ky9FhyQjybWwJqNitxrVFBNVe3tq2x+/Oj8GMSfgCBka0INsxuMwc5eppljq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740767347; c=relaxed/simple;
-	bh=8rfbN9lNNqu4CaYs/gqLKzPE1yRFHM9492rIIuIEsIw=;
+	s=arc-20240116; t=1740767960; c=relaxed/simple;
+	bh=AuBv0dI0/7mGcCyImiY+YF7W4pXWyjFanOGgVtp4H/U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H0LYZSGsXpQCjdopqhH7Xi4QU2lxtRTVQffp01itR0uuhDIzeIYbS5vh7s3l2nkbhtXX6nooluVvdNNJNn34+xxgopZ9bewGIn28jx9l9ee1S/1xiIfb+YbegXx3g4DtL8vlA7Qm7v34pOqBsewZuuUVcfqi4D8kQW8zjNGk8m0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jr2pyMZM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BD1EC4CED6;
-	Fri, 28 Feb 2025 18:29:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kmAVJcrHWo8KI1eAesoG9rDl/OP/84/9q0U5q82Gc+mdFnhZdYYknzm3mrt68xJtb8rohkPyp32HCKZjS8YzqL2y8wTiMxjQlL0eiUyFwsC7thUluEkPYxCPe7rakwwUR+0DjsxWExsdjbuKOx+Itm51x0vOfpDpQx69uv9Qey8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f1gKP1tG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50378C4CED6;
+	Fri, 28 Feb 2025 18:39:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740767347;
-	bh=8rfbN9lNNqu4CaYs/gqLKzPE1yRFHM9492rIIuIEsIw=;
+	s=k20201202; t=1740767959;
+	bh=AuBv0dI0/7mGcCyImiY+YF7W4pXWyjFanOGgVtp4H/U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jr2pyMZMej0fJcEh0WdcAr/PIZPUjpQ0aSo+bAyWzOqjk9XxBbMxj9pljkpNXYMMT
-	 8YgR6YTrfD4bmYsiv86ifj2Qm9Sa1fCYsvu1Tmfw5cl9mH1dXoAv0BcN9mx+PO3PMJ
-	 3jMRAAMruHjRTSP6B5XGMRaYT5x6aeK1uoIwX7BHIiNsSvsycsxKsqmJwmPwFEKD5Q
-	 DRdeChV/3+ih8gslITlN8QvQnbw749jcwT0rCqwS+UgYjNL16LGPRZ9rftIVbsCGkn
-	 OO9kzQ5IwgJJr0hRzfxNgAiAnJH145uc+DtEi0Y49LoS7uj/F++tIxz3wmwKOsSVw7
-	 IMfIy92h1oDZQ==
-Date: Fri, 28 Feb 2025 18:29:02 +0000
+	b=f1gKP1tGmO9TCsk0ojlDHgr7t6xSqubmNlFaFN0Zcjf1EuVDzyjAk3oTvXU6e9Jw1
+	 W7jVhZXcLOmbIq5P50+yAmazxWvz/R7piauRNjADNHxPKVmhbVTs8TgtE+LzJdYFYe
+	 xxK0pPSnpmJSrMNTZ1x21jqdLlZTCAVcil98FmAb+HeMPSwDXxePWr1HBx6F3mqP+j
+	 VEqaObXKSs7/Tkly1YB5VUejsSHz22GCU0PNONVdY7T6EKqgfVRFAv5aijBPSuNb6Y
+	 6o2mT5pe0I7Se913Szspc84oA3zbmsMwfqkPdGrlMWHrpcePLCVsVXYEH4BFe2PilP
+	 z/MKA2lEywZwg==
+Date: Fri, 28 Feb 2025 18:39:15 +0000
 From: Conor Dooley <conor@kernel.org>
-To: iansdannapel@gmail.com
-Cc: linux-fpga@vger.kernel.org, Moritz Fischer <mdf@kernel.org>,
-	Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
-	Tom Rix <trix@redhat.com>, Rob Herring <robh@kernel.org>,
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Aradhya Bhatia <a-bhatia1@ti.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [v4 1/3] dt-bindings: vendor-prefix: Add prefix for Efinix, Inc.
-Message-ID: <20250228-bonsai-aqua-7909be8ac466@spud>
-References: <20250228094732.54642-1-iansdannapel@gmail.com>
- <20250228094732.54642-2-iansdannapel@gmail.com>
+	Linus Walleij <linus.walleij@linaro.org>,
+	Yao Zi <ziyao@disroot.org>, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/7] dt-bindings: soc: rockchip: Add RK3528 ioc grf syscon
+Message-ID: <20250228-gloomy-revolving-f56eea5ab8ca@spud>
+References: <20250228064024.3200000-1-jonas@kwiboo.se>
+ <20250228064024.3200000-2-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,57 +62,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZKOxp+ln9WYwtaD8"
+	protocol="application/pgp-signature"; boundary="/leG0Q2y3eS4Gkis"
 Content-Disposition: inline
-In-Reply-To: <20250228094732.54642-2-iansdannapel@gmail.com>
+In-Reply-To: <20250228064024.3200000-2-jonas@kwiboo.se>
 
 
---ZKOxp+ln9WYwtaD8
+--/leG0Q2y3eS4Gkis
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 28, 2025 at 10:47:30AM +0100, iansdannapel@gmail.com wrote:
-> From: Ian Dannapel <iansdannapel@gmail.com>
+On Fri, Feb 28, 2025 at 06:40:07AM +0000, Jonas Karlman wrote:
+> The GPIO is accessible via ioc grf syscon registers on RK3528.
 >=20
-> Add entry for Efinix, Inc. (https://www.efinixinc.com/)
+> Add compatible string for RK3528 ioc grf syscon.
 >=20
-> Signed-off-by: Ian Dannapel <iansdannapel@gmail.com>
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
-umentation/devicetree/bindings/vendor-prefixes.yaml
-> index 5079ca6ce1d1..f0e0da4e1ec0 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -438,6 +438,8 @@ patternProperties:
->      description: Emtop Embedded Solutions
->    "^eeti,.*":
->      description: eGalax_eMPIA Technology Inc
-> +  "^efinix,.*":
-> +    description: Efinix, Inc.
->    "^einfochips,.*":
->      description: Einfochips
->    "^eink,.*":
-> --=20
-> 2.43.0
->=20
-
---ZKOxp+ln9WYwtaD8
+--/leG0Q2y3eS4Gkis
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8IAbgAKCRB4tDGHoIJi
-0q22AQDQQnsMIZlCBZfy7MVBiqeuhbsI+GO/vHLDxSxgOxfNzQD+NKXmeouPoOZ4
-+ESaZGkHcc8eBN/d7Etb5TOyOLzfCQs=
-=atR4
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8IC0wAKCRB4tDGHoIJi
+0jdtAQDGvTMV164jPUzRBKHwNEW+vXfylxVnqteojSFn8YFqRgEA92nhRCxirp16
+sRP2GIrG/z+LYbF1tzPyGfKyIy4hpAM=
+=njOY
 -----END PGP SIGNATURE-----
 
---ZKOxp+ln9WYwtaD8--
+--/leG0Q2y3eS4Gkis--
 
