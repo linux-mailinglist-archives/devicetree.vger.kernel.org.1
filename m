@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-152783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C61EA4A24B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:59:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6751AA4A255
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 20:01:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 589001890552
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:00:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4842D18920F5
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7FC277033;
-	Fri, 28 Feb 2025 18:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 934A11C1F00;
+	Fri, 28 Feb 2025 19:01:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AzRFEN4q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XYqhmuph"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C9F5277001;
-	Fri, 28 Feb 2025 18:59:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60DB0277036;
+	Fri, 28 Feb 2025 19:01:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740769191; cv=none; b=FUywNRPGm6yuu0zZaIm9d1Zsjm/gJlqbDHbrBVOskKcr/bfc4Mc11Fx8FY/kcow5brKG5QVeTSr9WwgE/nN3RLURzzZvDd5ARvvy2FSpwEo9CMDJQA5zFb2fOyh9c+M9qcWDGFkUQxYpqxoY1NGXAPNNjKatq7IZFJOOoqx3ZRk=
+	t=1740769276; cv=none; b=WCZnSo+75LM52lLBzBPrzkBnSn1W0rdqKFQfboCGsqXx0flUlzk1di79OBNU0MBvnqMljwsNaM2X0DcOiVCmFiwSW3IvjyaxAAx1QjrX4Q2PKVC2Un65jj3oOFDti/LIqJJ1zSnOo+sAvo7JuNvSvZhdcrDZzBAUGifxAWZW6Lw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740769191; c=relaxed/simple;
-	bh=V8TO8kJvdzGkByRvxotHz25r5Pr/JTfV5defoqrC03M=;
+	s=arc-20240116; t=1740769276; c=relaxed/simple;
+	bh=ISfPq92VrM3gNmlTXvnKVvMxuI91GRlP3vCPw7ImB4c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JIABIv7YHEY6ZAcCPO0fMDEFKHv6Uu9eTObPmRJPhqGJIktyn+tYOgfqmob65Cy4d6enGbbAvBhRiS+WJZEQZJsHP3TmGzuqo0I4i6CCmooQ0wJFidu3E7fObBSl0F2bskWLeek7XslqWS98IL2HxLr8P3ZthQ1AWNkLfy5Yicw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AzRFEN4q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2974DC4CED6;
-	Fri, 28 Feb 2025 18:59:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hXD4bcZQDOHsev9VfgmFzmCUvQuMG03KcywYk2Ze/XAd1Oi6/wBalEYsqqDVbuHCuDm6qpMUcm2Xli5MEw8ncAl4cEV8uXtDKETIhhh5O5leOjtQ2bUET/+g5b5M9D1WcbD11YaBrcfI64unyzwqb6d3smd8Z2YcKZo5L6aByks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XYqhmuph; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DE1CC4CED6;
+	Fri, 28 Feb 2025 19:01:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740769190;
-	bh=V8TO8kJvdzGkByRvxotHz25r5Pr/JTfV5defoqrC03M=;
+	s=k20201202; t=1740769276;
+	bh=ISfPq92VrM3gNmlTXvnKVvMxuI91GRlP3vCPw7ImB4c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AzRFEN4qoxk+OLKPqEaSZXjz+7JVBrDji4+ZrJPCMWsW8323Hn4LbuD2m+yEuR7+4
-	 maZFJwcxu7jV+6oej+cMIitQ680qOQwSHT4rrwgkqomV6MCqmAZm/iFatUI3w6kde4
-	 J7wGZDfymze/KiIfd7WC4CVZkTyFfkvYTFBqdhzVgFrw+4kJS/Kxv6nmLcygwu9oCX
-	 U4Nog4yAXjNwtnEyfyTXJyzgsxSM856n6/BK48Cs3Oq5k+fQ6ODD3IMw1pS1SBdgJa
-	 kddQ8nV9wQML3po67NFktAuRVEUShPZN5fCnUKS/tF2IaTv9L2fvbR876luHf+wj2P
-	 PPdoKbjA3owIg==
-Date: Fri, 28 Feb 2025 18:59:46 +0000
+	b=XYqhmuphTC3HUxzr+PHYU81j4aUxUy2wfC9arM3Nr3JS3o/zNtrWUOZEtBnbt3RH6
+	 eVwFbQZm3EIhv3m2ASL19Exq07V0kathh4HK4RJ5NywgUjtdhyKNEvYSnt7f47b+mb
+	 HTeX38o2+IkII2dtWzhAWhck7x73piqe+LET390kXwENuptadZmNWDJ1FV1hBsOoPo
+	 +IG7t8F7Eubu5vqx1cVRVD8DfPcl+1REMI2EY8u9L5yNcg4R9ahP1PG71WiRDFNGzV
+	 GBxlGmHU4jxU/cMpzCde6qsA31GbSC0A7ZGQHcnjJqCh8Sl+EBCQ9QfhmFwbuBqNMc
+	 gMFqpPTBHn/tQ==
+Date: Fri, 28 Feb 2025 19:01:12 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+To: maudspierings@gocontroll.com
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>,
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: Add rockchip,rk3528-saradc
- variant
-Message-ID: <20250228-aging-catty-3e09df499f0b@spud>
-References: <20250227184058.2964204-1-jonas@kwiboo.se>
- <20250227184058.2964204-2-jonas@kwiboo.se>
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Joseph McNally <jmcna06@gmail.com>, linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: hwmon: ntc-thermistor: fix typo
+ regarding the deprecation of the ntc, compatibles
+Message-ID: <20250228-raven-ducky-573a2cfe32be@spud>
+References: <20250227-ntc_thermistor_fixes-v1-0-70fa73200b52@gocontroll.com>
+ <20250227-ntc_thermistor_fixes-v1-2-70fa73200b52@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,27 +63,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kcYt+SH3XA+Svxpf"
+	protocol="application/pgp-signature"; boundary="EktWXv1jdKayR6d7"
 Content-Disposition: inline
-In-Reply-To: <20250227184058.2964204-2-jonas@kwiboo.se>
+In-Reply-To: <20250227-ntc_thermistor_fixes-v1-2-70fa73200b52@gocontroll.com>
 
 
---kcYt+SH3XA+Svxpf
+--EktWXv1jdKayR6d7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Feb 27, 2025 at 01:57:52PM +0100, Maud Spierings via B4 Relay wrote:
+> From: Maud Spierings <maudspierings@gocontroll.com>
+>=20
+> Fix the comment stating that the "ntp," compatible strings are deprecated
+> which should be "ntc,"
+>=20
+> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+> ---
+>  Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml =
+b/Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
+> index 3d0146e20d3e10747c3049911b9419e9ccdab83d..b8e500e6cd9f861fbbabd79a1=
+4d882341dbb387c 100644
+> --- a/Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
+> @@ -76,7 +76,7 @@ properties:
+>        - const: murata,ncp03wf104
+>        - const: murata,ncp15xh103
+>        - const: samsung,1404-001221
+> -      # Deprecated "ntp," compatible strings
+> +      # Deprecated "ntc," compatible strings
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---kcYt+SH3XA+Svxpf
+>        - const: ntc,ncp15wb473
+>          deprecated: true
+>        - const: ntc,ncp18wb473
+>=20
+> --=20
+> 2.48.1
+>=20
+>=20
+
+--EktWXv1jdKayR6d7
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8IHoQAKCRB4tDGHoIJi
-0v55AP4uv6g/zpHbFmNUhaEZ83d6AZyP0AVS/FuShq/Vo/xOagD+JRT1vizD6zSK
-x680FeC4UCRNAlWGNnW/x+bSs2jqCgs=
-=5SMi
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8IH9wAKCRB4tDGHoIJi
+0oGFAP0SHjgvd+N4PzcVnufVGuOwJgViFUvorat+QeNIGy9z2QEAychk+YRHK7jQ
+0G7cXtU7CF3BxJBba4qgF5087V7KdQ4=
+=IckS
 -----END PGP SIGNATURE-----
 
---kcYt+SH3XA+Svxpf--
+--EktWXv1jdKayR6d7--
 
