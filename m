@@ -1,228 +1,134 @@
-Return-Path: <devicetree+bounces-152885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 741E6A4A617
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 23:41:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0C4BA4A63B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 23:54:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41DAD3B103E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:41:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2BAF189BB89
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:55:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1DE1DED57;
-	Fri, 28 Feb 2025 22:41:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F481DF258;
+	Fri, 28 Feb 2025 22:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="kL77e3Mw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nX/j+gbK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F5323F39A
-	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 22:41:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D2111C5F36;
+	Fri, 28 Feb 2025 22:54:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740782496; cv=none; b=nh07KYHS3BDqbd8yaUo9MQW2du21YxRLKRdHC487iEn0bR0vkRc1c0hY/vzJqX+QyZEEreE1j9cLqk17vJrqOXXWMYSRkMaCzEKQLIFawd6CXTQuZnkcIV1FoJSoTyBfunMvgdQ7l8KVKFxMPYxcTjPt8VXvVh+jZxf4Wnv5ZFo=
+	t=1740783281; cv=none; b=hE73OSqkNDdHaKBTcYTy3lyDFdf8A36r85sPDevH3v/XzUCbOHoIOnZ2jJcAQIAImLeDgAjaA0LdBSsdQQw3gaqu+eNhINJ9v8pknbloLbFJhEjnPGa4yxJDTZE3o2EYcYGmUTq/JPVCDeKESVF05SQPhF8h7aoveil7+cxbg5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740782496; c=relaxed/simple;
-	bh=FLBHwO+nFllKVwfKJACF4L2HeRUbXtlCor+SO7tOf+w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pXt+pye0R68De+Qy16QiLN9bedE925W2BXa+uRaXeLf6fj6aE/G7epyiDy28x9TCkEGS595DAGth/7oTRX2/DecP87dBm7+N3+LzM1FNeqPBMf+IHcbTZepxQBpZWwnwA58MvdCeNL703Al0xdfhVxKJoHnxrpe8XR9aIVjtr/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=kL77e3Mw; arc=none smtp.client-ip=209.85.161.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-5fcd509468eso1172478eaf.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 14:41:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1740782492; x=1741387292; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y9VA0oblCg0Xc+d3Sx56RfFjCCmOWiRbgOPbTv313JQ=;
-        b=kL77e3MwsaRLeH+6oezvDPr6jgHY9ZebP82Heqs0OFRIMLkftOrqlbaSAPnA3sxwQd
-         6+ic/j2xMkY3a4uVmOViPSAzAtXXZdYFuY9FzwBge3/3OqM67PMAhUTaJvpW25DVwAiS
-         PMj/PNA8pRhxQdjd6N4UgJYQ+FOR7JZ2Bg6fZDXpAh640wxXx59lWq7qQ9U6N2b3SoSL
-         cdyzvTAfjWh+/OzmCcyhhJ2PvJbU6xtL49/niJYuCRd7/RQNEi0jnU9lGghh9ohwG7gx
-         6S7WC7x0uFc/JF23M+tf9r7aO7i9NR85zZWcUfiMRNYSqTn4qkedhEv/GElu5pKGoQun
-         slDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740782492; x=1741387292;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y9VA0oblCg0Xc+d3Sx56RfFjCCmOWiRbgOPbTv313JQ=;
-        b=UCQpfVLXLh4EowUizUbgI0Jb2uuln9HYErKw5c7qZ6JwOBvSAxVqQePQnV0HcrJxQB
-         /JiSM3YAD1DPEPjOSQKsWwZQP8DMvqDw8pEZmxUCynsPY9F89q+1D89AoRyeKOIvUGH9
-         WnK6heLoexU17OIcxnW3hOlp6cRmAUmLqgYdjyuyqF00REQUr3RpC8aCcgvtMr9TxI+v
-         nLV+bZuaTmXf5RiwezbEP4+qKqhrXM/4RE5ohJKXQk9TS/XM3xe9/nkhgMbO18l8p37k
-         wf4JuHO9Yoh5RkdFHkXnZE8YUczXE4iGP1pcsq5OpExRKzbqMwM+f8FVY3DB+5kK9OiE
-         LAFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUOx4RZm3E3A/l4d+RlOpVYQB9awKY+ScigM2qfq+c0onez8gORjb41FSoFejnxwNrcGaG1b8voyTcS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxrqfs0d9BHcXmjbU6rTRvO3+ngQQs42I8PGcN8NKBf7vVFzJGJ
-	ALGq8Y3wn49q9tsU1Yp8KoxEzFBTM3oB+mWUbMnOqgfAs09EVOhQa4VKnK6YxPI=
-X-Gm-Gg: ASbGncvUsRTJEjKY/CMCbkUJJCdv2CwXL32nJ1QRAmPowluASdZg0FcFATA1U9lvjVb
-	uQtUewSyURls2bfkeZYL5ck5uA7H/WnUBCq4Gw6oFbKG5D1NYMR4Ox6yUHuEgW6zbpWyC60Pl/5
-	32nNo3RCO3VwV7sET45xubbtCb+MFIzLH2AEwJYg+LxU+Cl3Cqo3NLDctF9SIkjtQwu8UhtpKvT
-	iO2pqlXr8JdoN5HZRPmV9qtGdxM9cPbDU+gDd+gFqSAgnM0uBO+Evgajf7Kgt3YSkp2KaOw8Y7K
-	/6evwqvyRmhiBqMKMeoD2EG9Frp11AzsJulKDptD4N+J/dQtX84ZhmU9xBS+epjAO8mVQmUdumX
-	w/d6h0Q==
-X-Google-Smtp-Source: AGHT+IEceEwYejaDDNX0Vuw40LNIKav7t/w6trGAq65H0rdXXXH9+Wnxu7YXOtX/U2cJOjXP8F/3TQ==
-X-Received: by 2002:a05:6820:151a:b0:5fd:a01:4834 with SMTP id 006d021491bc7-5feb3668d88mr3486224eaf.7.1740782491972;
-        Fri, 28 Feb 2025 14:41:31 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5feaad43e80sm788380eaf.35.2025.02.28.14.41.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Feb 2025 14:41:30 -0800 (PST)
-Message-ID: <8db96db5-c258-4c42-a70a-56fdf24ecdc6@baylibre.com>
-Date: Fri, 28 Feb 2025 16:41:29 -0600
+	s=arc-20240116; t=1740783281; c=relaxed/simple;
+	bh=9/BEXh6bZ8n930l+zITwwGD3TVUqcE/AjCK/PLv0gB0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X9u/2Wqi5zdWwWVh4y+pblw4K0dZs6Z+qqOp/DXdLlKfRsYPfX2h8Q+pltLdhUcO/28Ga4Lx9iN5KuoHqmVCOlJlURy4SlBTbLxkq+L07blx3ZSyLwyjdydvI1799ILDrat5mvtz7wBHH6K2A86t/8SaSqWbksDAHQQq1pOoMgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nX/j+gbK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 365D4C4CEE5;
+	Fri, 28 Feb 2025 22:54:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740783280;
+	bh=9/BEXh6bZ8n930l+zITwwGD3TVUqcE/AjCK/PLv0gB0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nX/j+gbKMT3qpqycuWs1FLkNZM513VJA/ubbB3ELLAIas2x/UEUSHjmElCnSZJM+3
+	 /foNfRWpibRmmI3jmjSJc/yiXsDYGs9ECi4XlrIOly7Pbrfoahe/tpjpPy6tJafgbB
+	 CtwoIvOOl4cpjJrRGp/q/nmvxdj85NIeDRMwGEZvU64I3sgYW7+O4tihMU4aVJ5Y3O
+	 UU0VxqFdtTGot5sUZKk0BX/4EQx59SwSTYP3i74aIEHCT6RSeoa6kxI2leO3AGhSKY
+	 74+5nSVfV6Rh7RsE+AI5kEI1cFEQ2gOGKz6Ors36uE92f9osGZlLU/utjaXgBx5/Bw
+	 tGDKtrPA5UAxg==
+Date: Fri, 28 Feb 2025 23:54:37 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Kever Yang <kever.yang@rock-chips.com>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org, 
+	linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 10/15] dt-bindings: pwm: rockchip: Add
+ rockchip,rk3562-pwm
+Message-ID: <hmqehlztyrudpdkc46afqvgwg2jpanaprru25qxacnmna7tkha@ifz73s2oiqiq>
+References: <20250227111913.2344207-1-kever.yang@rock-chips.com>
+ <20250227111913.2344207-11-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 7/7] dt-bindings: motion: Add motion-simple-pwm
- bindings
-To: David Jander <david@protonic.nl>, linux-kernel@vger.kernel.org
-Cc: linux-iio@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>
-References: <20250227162823.3585810-1-david@protonic.nl>
- <20250227162823.3585810-8-david@protonic.nl>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <20250227162823.3585810-8-david@protonic.nl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7eve6skvx3pjfnjm"
+Content-Disposition: inline
+In-Reply-To: <20250227111913.2344207-11-kever.yang@rock-chips.com>
 
-On 2/27/25 10:28 AM, David Jander wrote:
-> Add device-tree bindings for simple Linux Motion Control devices that
-> are based on 1 or 2 PWM outputs.
-> 
-> Signed-off-by: David Jander <david@protonic.nl>
+
+--7eve6skvx3pjfnjm
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 10/15] dt-bindings: pwm: rockchip: Add
+ rockchip,rk3562-pwm
+MIME-Version: 1.0
+
+Hello,
+
+On Thu, Feb 27, 2025 at 07:19:08PM +0800, Kever Yang wrote:
+> The PWM core on Rockchip's RK3562 is the same as the one already
+> included in RK3328. Extend the binding accordingly to allow
+>=20
+> 	compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+>=20
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> Acked-by: Uwe Kleine-K=F6nig <ukleinek@kernel.org>
 > ---
->  .../bindings/motion/motion-simple-pwm.yaml    | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/motion/motion-simple-pwm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/motion/motion-simple-pwm.yaml b/Documentation/devicetree/bindings/motion/motion-simple-pwm.yaml
-> new file mode 100644
-> index 000000000000..409e3aef6f3f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/motion/motion-simple-pwm.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/motion/motion-simple-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Simple PWM based motor controller
+>=20
+> Changes in v3:
+> - Update the commit message and collect the Acked-by tag.
+>=20
+> Changes in v2: None
+>=20
+>  Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml b/Do=
+cumentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+> index 65bfb492b3a4..e4e1976c542d 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+> @@ -30,6 +30,7 @@ properties:
+>            - enum:
+>                - rockchip,px30-pwm
+>                - rockchip,rk3308-pwm
+> +              - rockchip,rk3562-pwm
+>                - rockchip,rk3568-pwm
+>                - rockchip,rk3588-pwm
+>                - rockchip,rv1126-pwm
 
-I think it has been said many times before, in DT, there is no such thing as
-a simple device! It will be much more future-proof if we write bindings for
-actual individual motor controller chips than try to generalize all in a single
-binding. The chip you gave as an example is far from the simplest H-bridge I
-have seen!
+Applied with Rob's Ack to
+https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
+next
+=2E
 
-> +
-> +maintainers:
-> +  - David Jander <david@protonic>
-> +
-> +description: |
-> +   Simple motor control device based on 1 or 2 PWM outputs
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - motion-simple-pwm
+Best regards
+Uwe
 
-This should be e.g. ti,drv8873-q1. This device has much more pins that is given
-in these bindings.
+--7eve6skvx3pjfnjm
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If we find more devices that have similar functionality/pinout we can add them
-to the same bindings, but we will likely find that trying to cram all H-bridges
-into a single binding is too much.
+-----BEGIN PGP SIGNATURE-----
 
-For starters, every H-bridge chip is going to have one or more power supplies.
-ti,drv8873-q1 would need dvdd-supply and vm-supply properties for the DVDD and
-VM pins.
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmfCPqsACgkQj4D7WH0S
+/k5fwQf/bAS8biZKL+kTke5xko1/gSdfFCKIQh8hFMMkR1nephPx57Secam01izM
+4hWWBXkLtnA/4WZXDXftApK2+vParfljyN43aL1aX7ZVEYJAofAHo/VgnA5B36dR
+SJgT3Pj4I10+iF3mtX0miBBxT6GpSY+wbYnscXeU/V1iAt9SuF21MsSXBHYaKd12
+RS1XdmCD9FskxIx67EqE4Uee7nlRAxlmYHRLrLc0RTHABK/hWPJstx3yPDqh57TS
+xFMXo643/mz0yJzWSmEJ6wGtDv6YkK59WUbzZSUBXfODP6qMJmYu0MzOodI02qsQ
+WnrZme04x/XgtigQkvtigVEy8JNqyw==
+=8SAG
+-----END PGP SIGNATURE-----
 
-Many have inputs for disabling the chip, e.g. for power management. And some
-have outputs to indicate faults.
-
-The TI DRV8873 in particular has an nSLEEP, DISABLE, nOL, SR, MODE and nITRIP
-inputs in addition to the IN1 and IN2 that would be connected to the PWMs.
-So we would have properties for all of these to either say how the pin is
-hardwired or a *-gpios property if it needs to be controlled by the driver.
-
-The fault output would generally be an interrupts property.
-
-The IPROPI1 and IPROPI2 output pins look like they would be connected to an
-ADC, so it would make sense to have an io-channels property show that
-connection.
-
-This chip also has a SPI interface. So it needs to have the possibility of
-being a SPI peripheral node.
-
-And even if the Linux driver doesn't implement all of these features, we still
-want the DT bindings to be as complete as possible, so we shouldn't be leaving
-these out, at least for the trivial ones where there is an obvious correct
-binding (which I think is the case for most of what I suggested).
-
-> +
-> +  pwms:
-> +    maxItems: 2
-> +
-> +  pwm-names:
-> +    maxItems: 2
-
-Specifying what is wired up to the IN pins can be tricky. Using two PWMs is
-the most sensible. But I've also seen devices where there was a single PWM
-gated by two gpios. And for very basic H-bridges, there might not even be a
-PWM. Just gpios to turn it on or off.
-
-> +
-> +  motion,pwm-inverted:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      If present, this flag indicates that the PWM signal should be inverted.
-> +      The duty-cycle will be scaled from 100% down to 0% instead 0% to 100%.
-> +
-> +required:
-> +  - compatible
-> +  - pwms
-> +
-> +allOf:
-> +  - $ref: /schemas/motion/common.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    // This example shows how to use the TI DRV8873 or similar motor controllers
-> +    // with this driver
-> +    motion-simple-pwm0 {
-> +      compatible = "motion-simple-pwm";
-> +      pwms = <&hpdcm0_pwm 0 50000 0>,
-> +             <&hpdcm0_pwm 1 50000 0>;
-> +      pwm-names = "left", "right";
-> +      motion,pwm-inverted;
-
-
-> +      motion,speed-conv-mul = <3600>;
-> +      motion,speed-conv-div = <100000>;
-> +      motion,acceleration-conv-mul = <3600>;
-> +      motion,acceleration-conv-div = <100000>;
-
-This H-bridge controller doesn't have any kind of speed sensors that I can see
-so these properties don't make sense to me. The H-bridge can control the voltage
-sent to the motor, but there are more variables involved to convert voltage to
-speed. It isn't a constant.
-
-> +    };
-
+--7eve6skvx3pjfnjm--
 
