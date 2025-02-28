@@ -1,202 +1,124 @@
-Return-Path: <devicetree+bounces-152607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CEEEA499BD
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:47:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCC7FA499C1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:47:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CE34188DDA5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 12:47:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D60D53B3431
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 12:47:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98EC726A1AB;
-	Fri, 28 Feb 2025 12:46:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cHjwrmC1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3812526AA9A;
+	Fri, 28 Feb 2025 12:47:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 733F18468
-	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 12:46:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30DD84C79;
+	Fri, 28 Feb 2025 12:47:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740746817; cv=none; b=MkaIU1URH7+1XyBNrhUfaXf9ioM6/EZe3A3H53Hi3vvGv8DOPVEmEwCjG6I9dvNm9xFDsCKX7wDj81ZX3ckf0rhxk6ggrTlmXfd8Hii/n2TGBWQXNIce9/9vLQ50Q1f36K7QECtdUJMZqXCnPDug3ZqC7DLsRIO89GU0c0snFlI=
+	t=1740746849; cv=none; b=TAHGhMzn18eZVw/2Xq9JIff84eggefCLXrwtHFnoCX9VrgHIonpnqcyG0JmQr8fcDLruI5z43aN+gYkd8ba/Cb5FsqJidEppekPLFSZUNwbM2PpjdE9JdadHqZpxanqjCPczpQxjxMAyWRO2j7wj/7s4pygJO0Yu5Oc+ASVfajQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740746817; c=relaxed/simple;
-	bh=Zs7UKJ5mO2LrCqW+3vzB8Fs0DOadd02IqoHcc0BVo84=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dNuavb0We49cggyVQylt2+cNLsQ57tfLlYDq30a/c1l6hT1f0Kktl1xb8HYSDxO7/ERyCBwBwEtSbOpumeSFzPW+ppoRdaLvBwdaZDsQKhKW//mT/BdOe1Mbt8BDnMM6l08Mp6oDo3jqDdDzVvkQzZVtgTbMkaHoF8fY7WthmVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cHjwrmC1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29148C4CED6;
-	Fri, 28 Feb 2025 12:46:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740746817;
-	bh=Zs7UKJ5mO2LrCqW+3vzB8Fs0DOadd02IqoHcc0BVo84=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cHjwrmC1aznSD9ZOprotrrfA+uJsaQrEofHsiejpszbuG+BDO4pc7GNm68cdZPM7t
-	 cRrtEAdddtY2bze9ZPPKkrMN0Ka+iatWR5eVRhDu3uAR52jScczduyzkB5QWPrKbqI
-	 6Ttn6zpkUD2qOzJ2LpZiUo35kDYnagaV5UMeUF2AfmHqvWAozlGmjnA6cjOs5EjQOd
-	 gsghmnLQbM4kiFLyZMadsj7LeCZip49+Xm6/V4fZU+iZ49bzfiuSztifWPd0kcJcfn
-	 5ATTpVSyUY4ZpwBQXOM55Ys0PzrEqFawsxtggtk2cpN7P+HblRGYNEn3ApOoaoPAZi
-	 oeOQ4EV8qqO0w==
-Date: Fri, 28 Feb 2025 06:46:55 -0600
-From: Rob Herring <robh@kernel.org>
-To: Zhang Yi <zhangyi@everest-semi.com>
-Cc: alsa-devel@alsa-project.org, broonie@kernel.org,
-	devicetree@vger.kernel.org, tiwai@suse.com,
-	amadeuszx.slawinski@linux.intel.com
-Subject: Re: [PATCH v1 2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-Message-ID: <20250228124655.GA2368607-robh@kernel.org>
-References: <20250228100245.127413-1-zhangyi@everest-semi.com>
- <20250228100245.127413-3-zhangyi@everest-semi.com>
+	s=arc-20240116; t=1740746849; c=relaxed/simple;
+	bh=9bP1U2B6Sfe/EacdLRYYsYCGLi/q2q/FftuH/jcOW9g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=q9/rUwFe7PHEqi5vM3U2i7bcc34GhrY/LDv/ThLPwuU+78eSL4wZGz6m4oEpu1O54E1/7GJ1t0/6Jf18lNgsZUbjX1hubtJLPJ6lZsIsgGuh0WY/cldzSq0hWrTK3cTWBT8tpJOw3ezlwDc9n+yA1TiqaRZTvWf0cXYVq7fUxlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: 29ZszD1GT7G+954reVShNg==
+X-CSE-MsgGUID: X9G6k+gDQ1qLB9tAC6lkgw==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 28 Feb 2025 21:47:19 +0900
+Received: from localhost.localdomain (unknown [10.226.92.94])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id A3282402A420;
+	Fri, 28 Feb 2025 21:47:15 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v4 0/2] Add RZ/G3E SDHI support
+Date: Fri, 28 Feb 2025 12:47:07 +0000
+Message-ID: <20250228124713.153979-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250228100245.127413-3-zhangyi@everest-semi.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Feb 28, 2025 at 06:02:45PM +0800, Zhang Yi wrote:
-> Add device tree binding documentation for Everest ES8389
-> 
-> Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
-> ---
->  .../bindings/sound/everest,es8389.yaml        | 98 +++++++++++++++++++
->  1 file changed, 98 insertions(+)
->  create mode 100755 Documentation/devicetree/bindings/sound/everest,es8389.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/everest,es8389.yaml b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-> new file mode 100755
-> index 000000000000..4629a89b915e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/everest,es8389.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Everest ES8389 audio CODEC
-> +
-> +maintainers:
-> +  - Michael Zhang <zhangyi@everest-semi.com>
-> +
+The SD/MMC block on the RZ/G3E ("R9A09G047") SoC is similar to that
+of the RZ/V2H, but the SD0 channel has only dedicated pins, so we must
+use SD_STATUS register to control voltage and power enable (internal
+regulator).
 
-Add a $ref to dai-common.yaml.
+For SD1 and SD2 channel we can either use gpio regulator or internal
+regulator (using SD_STATUS register) for voltage switching.
 
-> +properties:
-> +  compatible:
-> +    const: everest,es8389
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: clock for master clock (MCLK)
-> +
-> +  clock-names:
-> +    items:
-> +      - const: mclk
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +  everest,adc-slot:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    description: |
-> +      This property is used to set the slots of recording data when multiple
-> +      codecs are connected in PTDM mode.
-> +      please set this property to default if you are setting STDM mode.
-> +    minimum: 0x00
-> +    maximum: 0x07
-> +    default: 0x00
-> +
-> +  everest,dac-slot:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    description: |
-> +      This property is used to set the slots of playing data when multiple
-> +      codecs are connected in TDM mode.
-> +      please do not set this property if you use single codec.
-> +    minimum: 0x00
-> +    maximum: 0x07
-> +    default: 0x00
+For SD0, fixed voltage(eMMC) uses fixed regulator and non-fixed voltage
+(SD) uses internal regulator.
 
-Can't the dai-tdm-* properties work for you?
+v3->v4:
+ * Dropped dts patches as it is deferred for queuing.
+ * Arranged variables of same types close to each other in probe() and
+   dropped patch#2.
+ * Added sd_ctrl_read32().
+ * Replaced sd_ctrl_read32_rep()->sd_ctrl_read32().
+v2->v3:
+ * Collected tags
+ * Renamed internal regulator labels vqmmc_sdhi{0..2}->sdhi{0..2}_vqmmc.
+ * Updated regulator phandles on SoM/Board dts.
+ * Dropped renaming the gpio regulator label vqmmc_sdhi1->vqmmc_sdhi1_gpio.
+ * Renamed node sd0emmc->sd0-emmc
+ * Renamed sd0-emmc-{ctrl,data,rst}->sd0-{ctrl,data,rst}
+ * Moved header file gpio.h from patch#6 to patch#8.
+ * Dropped overriding internal regulator name.
+ * Dropped #if guard in pinctrl node for SDHI0
+ * Renamed the label/node sdhi0_pins: sd0->sdhi0_usd_pins: sd0-usd.
+v1->v2:
+ * Collected tags.
+ * Documented internal regulator as optional property for both RZ/G3E and
+   RZ/V2H SoCs.
+ * Updated commit description for regulator used in SD0 fixed and
+   non-fixed voltage case in patch#3.
+ * As the node enabling of internal regulator is controlled through status,
+   added a check for device availability.
+ * Status of internal regulator is disabled in the SoC .dtsi. Override
+   the status in the board DTS when needed.
+ * Added support for enabling SDHI internal regulator in RZ/V2H
+ * Added missing header file gpio.h
+ * Used fixed regulator for eMMC on SD0 and dropped sd0-iovs pins for
+   eMMC.
+ * Sorted pinctrl nodes for sd2
+ * Enabled internal regulator for SD2.
+ * Added support for enabling SD on SDHI0
+ * Replaced the regulator usd_vdd_3p3v->reg_3p3v.
+ * Renamed the gpio-hog node sd1-pwr-en->sd1-pwr-en-hog.
+ * Sorted sd1 pin ctrl nodes.
 
-> +
-> +  prefix_name:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: device name prefix
+Biju Das (2):
+  dt-bindings: mmc: renesas,sdhi: Document RZ/G3E support
+  mmc: renesas_sdhi: Add support for RZ/G3E SoC
 
-Why do you need this?
+ .../devicetree/bindings/mmc/renesas,sdhi.yaml |  16 +++
+ drivers/mmc/host/renesas_sdhi.h               |   1 +
+ drivers/mmc/host/renesas_sdhi_core.c          | 134 ++++++++++++++++++
+ drivers/mmc/host/tmio_mmc.h                   |  10 ++
+ 4 files changed, 161 insertions(+)
 
-> +
-> +  everest,dmic-enabled:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
+-- 
+2.43.0
 
-Don't need '|' if no formatting.
-
-> +      The property is a choice between PDM and AMIC
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#sound-dai-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples for single codec:
-> +  - |
-> +    es8389: es8389@10 {
-
-audio-codec@10 {
-
-> +      compatible = "everest,es8389";
-> +      status = "okay";
-
-Don't need status.
-
-> +      reg = <0x10>;
-> +      everest,adc-slot = [00];
-> +      everest,dac-slot = [00];
-> +      prefix_name = "es8389_0";
-> +      #sound-dai-cells = <0>;
-> +    };
-> +
-> +examples for multi codecs:
-> +  - |
-> +    es8389: es8389@10 {
-> +      compatible = "everest,es8389";
-> +      status = "okay";
-> +      reg = <0x10>;
-> +      everest,adc-slot = [00];
-> +      everest,dac-slot = [00];
-> +      prefix_name = "es8389_0";
-> +      #sound-dai-cells = <0>;
-> +    };
-> +    es8389_1: es8389@11 {
-> +      compatible = "everest,es8389";
-> +      status = "okay";
-> +      reg = <0x11>;
-> +      everest,adc-slot = [01];
-> +      everest,dac-slot = [01];
-> +      prefix_name = "es8389_1";
-> +      clock-names = "mclk";
-> +      #sound-dai-cells = <0>;
-> +    };
-> \ No newline at end of file
-
-Fix this.
-
-> -- 
-> 2.17.1
-> 
 
