@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-152875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A82EA4A58F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 23:03:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37CDDA4A5A7
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 23:08:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C93CF3A7164
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:02:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E502169746
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:08:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A89B1DE2C0;
-	Fri, 28 Feb 2025 22:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 759E41DE2C0;
+	Fri, 28 Feb 2025 22:08:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LPZ7Yg+w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O8r9Chhc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3BC81C700A;
-	Fri, 28 Feb 2025 22:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472491A254C;
+	Fri, 28 Feb 2025 22:08:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740780181; cv=none; b=jVdYxt8BZUj7kjNrVXwn+QBh1RS8huI7biGbsMh4WFkORiX4mrW/YI38Zqz/rxgvMls4gBI7Nx40HTHeHZwdi0Mf3l/bBFuzlRUkSKFc6GSobOmZObKiqxonDMWlX7OTUE/H4LKtReU0kOJtxgBVGdVSEQtM/7igox3vbQkdiyo=
+	t=1740780487; cv=none; b=J+ZMb0wV9au1rPEUABCdxmEJnSQXXcHq20T3S+fwOmmnjSfFguEqfyXJJigKPUSun8AjnA5FATuaVuDA1PFyom40QSgQqUc7Z7V1kplzlEzPxS1/0TrFIXeR7xbTUw0VjHyzA6yS5UmdBIVrfPiQFd11KzdaQE7lN9xkLZmgBOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740780181; c=relaxed/simple;
-	bh=AeQ9O6FSeUJE9ZlcsbT7G7CmyhH4Bd6I7HLsZ+f5Bic=;
+	s=arc-20240116; t=1740780487; c=relaxed/simple;
+	bh=z8vdHh5U09vn686dTTiaeqn6j89eZ0MVs/V87u6spGQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cuku9BM59D1cK/tH46VPAFOAt4WdR8aZQhdz0inaLxC02lYUSz0usrgOowFR8c1qzR5P/5VlkmQCuYu3nPWXweqQHcF09IHS9EQzaDZPfmP5kQGB20G5Fox6hkOyzZ6SbfApdrhvU0haJS/eJXfkERiJgeMIKwmLsHfNztpiDlM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LPZ7Yg+w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 881EAC4CED6;
-	Fri, 28 Feb 2025 22:03:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nLCKl+cvjjq9RbShz9pfOXVYVjhSHBmiA989kf2wdjUEeS8N4+99kxGN5/yRruG1M6ZQoFbaPtFO1kfWtYyU5ai+y238Cfli/lzj4gQ0Rq0qcpV6LDj2vrD441jb9V0ST5PTXiC8X5J3laQrfySlSgb56Ix7dF5165JR5k3AQPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O8r9Chhc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F73AC4CED6;
+	Fri, 28 Feb 2025 22:08:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740780180;
-	bh=AeQ9O6FSeUJE9ZlcsbT7G7CmyhH4Bd6I7HLsZ+f5Bic=;
+	s=k20201202; t=1740780486;
+	bh=z8vdHh5U09vn686dTTiaeqn6j89eZ0MVs/V87u6spGQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LPZ7Yg+wnWw15XwdEmlqwsWeh961RJBNFovyyhw0OeBkZjsi3tN2I/qeAyNYvrXSZ
-	 QhaLm98ULQ5CMLsw5yZHuxc2ahLjQVMZ4LC569S4AmSoCb+oPbhugvsLymBCo7M/Qi
-	 wjDGrsTFhCBFIdrMH3fO5wFxeQMaOFqQKAswqMzZZQU33rXblq/1RfXvXlEFt2jXAz
-	 nGdOxLPusgSMQ6JbKFiRc3Nk/dWZSe0+hhYrWtjzyFSJp5kKO4A4LpdwO9bh1PdK6q
-	 KR1IXzMeFuK4KU3IsLld2OJtSJJmMOLLuQnvL7Tq0ySezOgYseXE1lcbZ8xQSxopFb
-	 gkOqYXmARpkNA==
-Date: Fri, 28 Feb 2025 16:02:58 -0600
+	b=O8r9Chhc2XYy+O/Zfty0uSGUWvEuLZUQsKbhn+iEJexYxeEgqzsQu1HqNV0V7/qi2
+	 k+sp+pcEaIy/dMGb/Og+WZxoeL4cIQQPIDdcXqpgbtDFXtYUPzVJ3Ucq1yL6vcUTu8
+	 iMSxlAM3vwZChl1+9bAfTii5ajhVKRhJc2ELqv3CcKw2mjSe4Ko4vZZFiGf/XTnhYW
+	 jlCTntMv96rI19KnXmxj29GQCgmIe6YNEJLXRwQc+l4batcktetLeh33tQmrktG6Ah
+	 cNq2ZNq8TgK0uNiUXsW3HMY7cxUOAQBgjkTORs/g2PEhQfOfGJTOseCkFERsGlbVew
+	 umlNbdVQCzL9w==
+Date: Fri, 28 Feb 2025 16:08:04 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.ne@posteo.net>
 Cc: "David S. Miller" <davem@davemloft.net>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
+	Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
 	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: net: Convert fsl,gianfar-{mdio,tbi}
- to YAML
-Message-ID: <174078017764.3770987.9221130026754237775.robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Eric Dumazet <edumazet@google.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: net: Convert fsl,gianfar to YAML
+Message-ID: <174078048176.3776808.10087708366850919575.robh@kernel.org>
 References: <20250228-gianfar-yaml-v2-0-6beeefbd4818@posteo.net>
- <20250228-gianfar-yaml-v2-1-6beeefbd4818@posteo.net>
+ <20250228-gianfar-yaml-v2-3-6beeefbd4818@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,24 +66,35 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250228-gianfar-yaml-v2-1-6beeefbd4818@posteo.net>
+In-Reply-To: <20250228-gianfar-yaml-v2-3-6beeefbd4818@posteo.net>
 
 
-On Fri, 28 Feb 2025 18:32:50 +0100, J. Neuschäfer wrote:
-> Move the information related to the Freescale Gianfar (TSEC) MDIO bus
-> and the Ten-Bit Interface (TBI) from fsl-tsec-phy.txt to a new binding
-> file in YAML format, fsl,gianfar-mdio.yaml.
+On Fri, 28 Feb 2025 18:32:52 +0100, J. Neuschäfer wrote:
+> Add a binding for the "Gianfar" ethernet controller, also known as
+> TSEC/eTSEC.
 > 
 > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
 > ---
 > 
 > V2:
-> - remove definitions of #address/size-cells (already in mdio.yaml)
+> - change MAC address in example to 00:00:00:00:00:00 instead of a real
+>   Motorola MAC address (suggested by Andrew Lunn)
+> - add constraints to #address/size-cells, fsl,num_tr/rx_queues
+> - remove unnecessary type from dma-coherent
+> - add minItems to interrupts
+> - remove unnecessary #address/size-cells from queue-group@.*
+> - describe interrupts of queue-group@.*
+> - remove unnecessary bus in example
+> - consistently use "type: boolean" for fsl,magic-packet,
+>   instead of "$ref: /schemas/types.yaml#/definitions/flag"
+> - fix name of rx-stash-idx property
+> - fix type of rx-stash-len/idx properties
+> - actually reference fsl,gianfar-mdio schema for mdio@.* subnodes
 > - disambiguate compatible = "gianfar" schemas by using a "select:" schema
 > ---
->  .../devicetree/bindings/net/fsl,gianfar-mdio.yaml  | 113 +++++++++++++++++++++
->  .../devicetree/bindings/net/fsl-tsec-phy.txt       |  41 +-------
->  2 files changed, 115 insertions(+), 39 deletions(-)
+>  .../devicetree/bindings/net/fsl,gianfar.yaml       | 248 +++++++++++++++++++++
+>  .../devicetree/bindings/net/fsl-tsec-phy.txt       |  39 +---
+>  2 files changed, 249 insertions(+), 38 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
