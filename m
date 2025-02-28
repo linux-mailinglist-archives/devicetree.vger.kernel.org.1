@@ -1,278 +1,156 @@
-Return-Path: <devicetree+bounces-152401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825B0A4903A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 05:18:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5F17A49046
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 05:26:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FA853A31DE
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 04:17:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 439F13B074D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 04:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C82DF1A8413;
-	Fri, 28 Feb 2025 04:17:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76CCB19DF60;
+	Fri, 28 Feb 2025 04:25:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ZgECTZpG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="loEYDBo/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12olkn2043.outbound.protection.outlook.com [40.92.23.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C32E21A4F0A;
-	Fri, 28 Feb 2025 04:17:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.23.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740716222; cv=fail; b=KZCDQt9EuPZztbSK5i+h0LGdcvrhmzUMmt9/BiGxBj7iey7YWeRrnmNywad2iP9O2l7hZqPUv719McKkCbtcxS7Kyju26ErMZ3mpAVJtQWPzOWoHYTpwXzHoolVHEoNqCYVV/qwaSI373wVGZhMRwFln1v0SW+vjBzw6bqAw2ZE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740716222; c=relaxed/simple;
-	bh=ezvY9/6b44+/jx0wNIz1MzCsNmMfuzceoGEOyqpX1ZY=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=ifrLC4Q4ZAYlqiZCQo2bOZunZj5f91QphUPPCCCH1WofJxswTvCBppkW3ZQPisq0n6UVHF2/AYKNMSFofdcm28FwTuvnR3o7guE8pTxDzWR47VJLtkgcFm12BMP7IHEtptffi7pZ4DNLuCAmhGBwzH9/w0ktjiD6g9tuhPiU8vE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=ZgECTZpG; arc=fail smtp.client-ip=40.92.23.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jZGFEkwCmamyPf8vrqwA4SHY7nY0RZz17oRZXtnedeaOCi2l/JdM93R1yUSDPmB0mltYsCD930nJ4e4i4jM6zOd9P6kuswl/ILd8sku+mkAO3PanZMN5SxrnU459BZRVjUiQAYjav0baeql3l7FjzLb63h3Zl5BtX5JV3SDLiBmgd6K8/cGLpooMXYfsqJqoxmvxMwr/KLc3M7a2PJ4Ud76tfs8EoaKwQ1u1+nCePaa5CA+2+UXzH00iV+BWBmRtkSsbCQdevcXqDZneIoaWq7XHBR7tW7J1wri80RV53NXXfIS0V1nUk//qHyNBuJTAzRUn2qats8r36yt7lIQfXQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hnSuhQceKRMFe/jOY9lYFf3xMBTt7R45wikzYsrpJ3c=;
- b=aiwGKlZf491+1s3eVFmtwAqRGArpmCRgZ3gGm37qkqsnwH85mSsxUR79cGtWv4hIrxKSxT2ono8UZtCfgEpJMYKzIsZ02QD96kX/u+8qL/+iuDJYof7oyLZcG/rGgFKhkI2efsCqeHnnLIV/d8Sq2rG2FDK1h/X8kfnKlNDhGX/7OfdPbdlVmEQD5bQDD7TBjVbdebv6y1udv0Tpz5iZbyp3GRICk8fJ7JT7fYjbODJnkPX3/iY5B5tKKP6u0mvWeGscgG1unzNqAi55V/6Ip4B87IyClci8H46p9EIJrzOgMYiiFIRpxARPPn7MtVlY1BGBphBNgjgak1Ve5QwKxQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hnSuhQceKRMFe/jOY9lYFf3xMBTt7R45wikzYsrpJ3c=;
- b=ZgECTZpG3FwUBUpTcE9KikoEC8NmAcTrrRzLailCll6Wzq3Ve9/oPnAsPGSm2B5idXH+XjK06bWUMvcHjWuFKWWlC1wxDUt3jqALp5Md3gxEsea5RBnTuzilYn2D2SF4LKwxhbxlwe8Bhdo/BJQAmATWd7NaOeSXv2DFzbw4ssXH6goG1XQ4F/U+X888U/Y2x/HFQtmHck62lu1b0Dv8NZjDzjKG3BgLwOglTwuwWtOqrFf1hM3aL/q7r+5ZXL5dT8+s4TbZrZi9pohYaFQ3WGA0m9Wft6ZXG5ybf5RJNtFC8GDDGjZnVayOjHgpNkrjti0ORQV8iYeYDAWeBTMQcw==
-Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
- by IA1PR19MB6204.namprd19.prod.outlook.com (2603:10b6:208:3ec::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.18; Fri, 28 Feb
- 2025 04:16:58 +0000
-Received: from DS7PR19MB8883.namprd19.prod.outlook.com
- ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
- ([fe80::e0c2:5b31:534:4305%6]) with mapi id 15.20.8466.020; Fri, 28 Feb 2025
- 04:16:58 +0000
-Message-ID:
- <DS7PR19MB88835E5F6B906B0E9136CCF59DCC2@DS7PR19MB8883.namprd19.prod.outlook.com>
-Date: Fri, 28 Feb 2025 08:16:42 +0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/5] thermal: qcom: tsens: add support for tsens v1
- without RPM
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, daniel.lezcano@linaro.org, rafael@kernel.org,
- amitk@kernel.org, thara.gopinath@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, quic_srichara@quicinc.com
-References: <20250227110423.8418-1-george.moussalem@outlook.com>
- <DS7PR19MB888322C58FC555299256E8D99DCD2@DS7PR19MB8883.namprd19.prod.outlook.com>
- <eafirt5dg4vmafmu2wph47zrrzyqrz65z5ypqrl7fhr77qckfi@dgqwkkhnz4ge>
- <DS7PR19MB888363A4FF954A6275E81B4B9DCD2@DS7PR19MB8883.namprd19.prod.outlook.com>
- <xv3c2ube7the3gat7ustws4ok6t26c33fyywqi6x3utx52qtzb@owyidrxeprcp>
-Content-Language: en-US
-From: George Moussalem <george.moussalem@outlook.com>
-In-Reply-To: <xv3c2ube7the3gat7ustws4ok6t26c33fyywqi6x3utx52qtzb@owyidrxeprcp>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DX0P273CA0087.AREP273.PROD.OUTLOOK.COM
- (2603:1086:300:5d::9) To DS7PR19MB8883.namprd19.prod.outlook.com
- (2603:10b6:8:253::16)
-X-Microsoft-Original-Message-ID:
- <638fcb3a-a23e-4bf1-82af-d967a9185158@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00412198E9B;
+	Fri, 28 Feb 2025 04:25:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740716759; cv=none; b=iMX13BNSsbTurAzmBL4Q1RfdMtZCdmaXRSxnhU/AiviOmqdsSW/HC9zlrHQvMD+DsrJFRzLPUGk8Gf2oIa/F22GIsNJnDfUCMbNkA9Ags8rizdMh2gvVDNyucotbFCGkk56LV4ZXMHMSQ7IoVuiVIbE5uGHLUG8cP6uO7aYsw5s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740716759; c=relaxed/simple;
+	bh=y4hL3tHb9GYf3Yp22BN/113NdRgsnisPVDma5CwN8IE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=AUKUA2YZVggFEMKnICnGxGxFMd/8uQnaUh+eGBJGr8Urz8LR/TR7ErTCqfW63OadtFGWDwVvE01idLpc5ZuRkGzvqRdRkvCpok6wc/34oJc0aAj2KmuFcr2iGM3Sg6ekwFl5uq2ELm3fRcULV+ndVDcO/xC16POO2hr4jeLXABY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=loEYDBo/; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-22104c4de96so28749675ad.3;
+        Thu, 27 Feb 2025 20:25:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740716757; x=1741321557; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5Xiilq0Dm75J5th/0Y2NylH8fDWgiIOPTC9MrBsESQw=;
+        b=loEYDBo/4Nicn5kPP3K0bBQwKWMBGAEUeroPDmw8f8rQs8CIQQ+XjP1Wy61YG5Nhox
+         NyAlQFd15YLYhShFQF3DgGLrj8mPSvW98b3cfdhdOKsWvUnwbP3kWE6tMbUBxbBBW9C9
+         50Ep4L1Jeg6iy1p7u0x7riklbT55l56R60nNGA3rF7Yx7ab2/b7CNb8vH3y9/yEbLNKa
+         SMJpFlE7mysRZf6AC3N51v9qjuzeeyceX2ZVFyEfEuUY/P+NuVy+zA6B8lhlqhHBJUJA
+         hjpCI7Sy/cnsi0VwWWedsKsODEgYwOcCWbh1XVYS9vDm0NPPVkGpuPA57qzKdmMzXJQd
+         Ziig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740716757; x=1741321557;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5Xiilq0Dm75J5th/0Y2NylH8fDWgiIOPTC9MrBsESQw=;
+        b=I60OKEetdAB44cUwGRtc8HylxYRbjnOOZAyRE2zl+BbCmx3GWSiKckz0eBH9WQAn3c
+         8fjZdiALTe0devY4Aa9pbR/P23IRRHGLjUnzNjKF87qX+o7GLP6q9EXlaqtsrp81OIii
+         N2px/3d2BR72+3eGYlaCETqCWcya5Fk3jOTV9ZZH/ij/KOpWaCHJYyI2X466a5QJQzsb
+         AUcuTIqjqGV7lWu+9qVw47qNRhcgGtCeIBTzGjijXG+/MzKrO3okGRZc4Wuw+sCA/RU8
+         aIx7SSWihaY/eVgujCkP+MABWyQBHtGxGjJdkQ8P+bmIgGPPrnrJCc6D5sjk7JlGDlr8
+         0mhg==
+X-Forwarded-Encrypted: i=1; AJvYcCVrpUhMkRhkYVehNjhGnH+Y0eu7G9g7zzKF4v4s4noffIo7/bwT3H40Uc168pkcUtM4xuTYoDPXV6xkgGHd@vger.kernel.org, AJvYcCWO8faIsIRiJ7rRnSBlcFc9thROblDEFf9Lhh0kElGmPV/wkslLBCvsCmdWxuj+vzUrazn4J/1W4R4f@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDjB1m/SKvEuCS5p0HwMysEqNI/UAyb9OSFk5qW7AktSapggL8
+	5It+nzAFB7BcV7INgKGGptDl1T5FosPqrIlAjBI0501GlZlKGTNO1yfmyw==
+X-Gm-Gg: ASbGncsiyjRkcCuwpCnH4UhhWfhcHZiWeXYbFpms7k0blQl39zO7r84GTuFiCbBv9q+
+	bUrNgVNXqIKAMhs/RELe1heLBQtKnPcW+3c5Htr2n6wSePQZpSyIxAJXu/83FEkZeBzuDMYu78r
+	YA/4TVWTS+9tsXcE0XCXEmi5HmJVGd00+NR815nL+BjZfAgdcxUKO/LJRuNK0w15C2vZldaMK6f
+	JKqVHGJOAiA3dZmI/EvKNmbOXQx1E1Dlvpm/640aIVb4QAxFTM/iNYTCDn2ds1kZ0C47TnjMlx1
+	Hs0HCz8ijWoEzE8q+wDvYNficQ==
+X-Google-Smtp-Source: AGHT+IFeBzAR6xWeQmNAfZ+GJrvxdPreu7+uqpO6Gb7T3/zhsd0gvDE6M0lVFrM8Kvt+pvkyEuFlhQ==
+X-Received: by 2002:a05:6a00:4a85:b0:734:ec1d:2cc4 with SMTP id d2e1a72fcca58-734ec1d2f41mr1165970b3a.24.1740716757263;
+        Thu, 27 Feb 2025 20:25:57 -0800 (PST)
+Received: from [127.0.1.1] ([49.130.82.63])
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-734a003dd19sm2738318b3a.131.2025.02.27.20.25.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Feb 2025 20:25:56 -0800 (PST)
+From: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH v2 0/5] arm64: dts: apple: Add DWI backlight dt nodes
+Date: Fri, 28 Feb 2025 12:25:31 +0800
+Message-Id: <20250228-dwi-dt-v2-0-4243fe8647a4@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|IA1PR19MB6204:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8af8c7bf-a5d6-4ff7-428d-08dd57aebdcb
-X-MS-Exchange-SLBlob-MailProps:
-	WaIXnCbdHrPgu9FUvYZ88hunKvKD6srS0NlyBrObPrUIkROkmIViZF+jvwGElyQC/eCD2RPQ7NBok/MdS5+3hcGYEXViFLzxILfUbunt6IxoESQ02OaUGFp1BijAC7pSQsNAYPFh4OBsvRKGoykugI7BdayviXdM1Ssyfw/UiARGH04r63Z5feYWS7LWreTlMZaPv214bUY2UoMBCDLRHo00LZCl9tnl6Yj1BtgAtjI2EWIt/Nw80jhG4Lq2AOfjxSb0+53Olih2kqLDem50egxI18Gwn0T+7LLlNzZYolux5HPIpvmIWJMNAeJgPX4qe2/iXxvpC4GHptzCn243ZgiXagOvQs9SWyWeIW/AhkKN3Khfgu3G078FkGIqzeGVtESIsinhUUSYO/yA3Uv563ei8KN2XAcIczSWxnTcL6RlDgatQdhWjfkKsKLqeSM2s9npy6zdB6Lnh/kJuBrlFL1zhKqagrldGXcYo6oA3d3AViioN+iJoaSZsFPYmyVqVxAvYb7hWRvykabLcST6oW0dIF5/XD/S28g65f8MlDX/PbHyyyFpTGB3FctQD/qwN9RB0hz/k1mWLDRRcC6f24lArB+yhbfYJiX7kiJNpfyVYCHYhSYz0pPmENew+XGk9XgD7rmiGhqcTc283dbH296+GU9Swi/4sw2ZXY8pmeMihK23joTMcgwa2hwO5c4aDXL/6w188MTj1jZVaaHFPi/lyTW+jaLGJipAPVGCsd/NhlNjbttykfkhuOeE8mteYQNmxn4uaYw=
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|8060799006|19110799003|6090799003|7092599003|5072599009|461199028|15080799006|3412199025|440099028|41001999003;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cFo2YU5BcnlJM2l6b1NWS1J2M0d4SFVDbXYzUy91cDJ2cXhaSVBmaVlwSVJo?=
- =?utf-8?B?QXlwbjZmRWxnK2hrL2wrL0g2RzdVUExDTlJWY09IWG1vRXk2eXRjSkY0Szha?=
- =?utf-8?B?SXhIMVdzUGhVb1Y3NUkwMWNRRlRXclFBclQyU2FQNVF0bGczQzhMcG1NZVpq?=
- =?utf-8?B?Yi91eGxwRmVYb1ZxVnpYanFXQjBhUmJQYW0vL1ZVWUh0WlB6bndvakFLZW4y?=
- =?utf-8?B?enBLQVNGR1J2Y1l5d3NTRis5eStvM3QwV25LV0EvSHFES29vKzdLUEF5SjN2?=
- =?utf-8?B?T0U0bDQ5eU53ZVM5b3R4a1VGV01CM2pWa3dWbTY0V2xBUXhoVm5iWE1uTER3?=
- =?utf-8?B?SmRUcmFNZitqS3kyN002TkRIYTluUTh0d2VGNGxqdTdXT3FWZlk4OUw0RFlJ?=
- =?utf-8?B?V0FsYm4yd0J3Y2IrNkFrZlA0NTRYeThlc2hSVU9RWnViYlAySnZQMExOK1lP?=
- =?utf-8?B?OGVnYjdKdHpta1BheVFYR1R1MG96YmVRUGpndUdsdWx1VXdidjBvSndvcVpr?=
- =?utf-8?B?bHNwYnVLa0RaUTdyUVpiV09HMFFvYnBCR3BLR0JqdzlYYjNoWks3b3I2akhK?=
- =?utf-8?B?cDhhc2JRUTNoTmdCWWo0NVRiNGVMNG9CU2FoMlR4YUszYUN3REM3UEl0TTFJ?=
- =?utf-8?B?RWxoT1JwRWJybkJjWU9rL0Q2dnFNcVd0cGhZcFdOelh1WHNrWWVmUk9YYjlN?=
- =?utf-8?B?VXhCWHpIcDduL0JNdG95YTEvRWdUNjE1cjQxNlhLWmIvTEhMbGd4cEZmT0RI?=
- =?utf-8?B?K0RaR2VDeUo5UnBIN0t3UC9JUEwxcU1NSlBHUFMwbmI5Yjc5TjRPcXBFMW9n?=
- =?utf-8?B?Z3MxOXh1THlrRGk4NVE3b3N0bXZ5a0oxZ0pLOGlKM2RSQjZkTUFSOFFjWHFp?=
- =?utf-8?B?d0g0ayt3YjBuWFdHcUtRSkFpczdUODNLU3RIN29BTTZEQ0xISTkzdnFOeWly?=
- =?utf-8?B?aXJFL3RRMVViSlJlbWw5RjVhZWg1U3hiN0dMUlZWdjNyZmNEaXY1VzIxOWlp?=
- =?utf-8?B?bGQ2d0xBemVQSjE1aStzQ3RiNXNGb1N2T0FwWkFhS0NhbnlEVEtqeEJSaWtQ?=
- =?utf-8?B?MWgvN3JmVitGc3czWFNLemF1Q1hXL3VQcUR2YlFKajVyRTVWeXRRblNDdzFR?=
- =?utf-8?B?L09oSWY5b0lxMFFNY1pHeWtxcUtTbEhaMjc3SGNOblAxcVR0am1JZ1ZhQjlh?=
- =?utf-8?B?cjBqSm1tYzJ0a0FhNHVQOWpmdUFRd3A4VGtTeXJBNWRadUsvRHV1azI4WnpI?=
- =?utf-8?B?NExLeENVQUc4Uml1ZTNYSEdEZklyTXZaeEErSll1UGFMdkhuSHg0OWQ4QUtK?=
- =?utf-8?B?SzJyV2pBdkpKdmkxZWsvRWRSNjJYQko4TEZrUTRpdU5XV2N0RWVxN29paVhh?=
- =?utf-8?B?VmltWGJjTkJ3NURTd3NPUXdKbVBobURvV1J6VGpNS1hBaXRYUkl3MjdIRFk1?=
- =?utf-8?B?cXFTTjZRNHByT0lPbWRZUXhRMU9sc1JMVU1sUWFXMkpPTXEwQmE0TEVVMFpk?=
- =?utf-8?B?Snc0K0ZPOG1nL0lSTm45YmJKcnhoOENhYTFBKzgyZ1VNMnNLUGQxUVhhc1BB?=
- =?utf-8?B?YVU5QT09?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?MDVralNRMzNyT3JidHBWU3RBVjM2SmNiNzVSSkp6U2dibGREOGtwZ3B5amRM?=
- =?utf-8?B?cDVuVWx3QjVxclU2OTVoVEFNdFVMaG1zdWFIWkdzZmtIQkpiUm9rbkN4TFAx?=
- =?utf-8?B?MEZwNWdGd2sybEwvdWRCUmNSajAxSFhRN2w0d243Mk9IcDZ4ZXY0UExQNjNB?=
- =?utf-8?B?eVF2ekdkQjR6UCt5V3Q2amZHekpCcnJPVE5xM0Fic1VzTk94dXVvSlhTdVhU?=
- =?utf-8?B?ZTF4VVFHRU5GUHpIR2k2d3B3RStQc1J0ck9VcnFoTDcyRklzZ2xONHFRaUVL?=
- =?utf-8?B?dlZjWFRWVGcyeTdNdnRZTU14MkhJeHVhUkxEcXM2dmFlN2QvUUVaSmlCQ1pZ?=
- =?utf-8?B?U0VyUi9DYkhyQWRIdVA4S1YxajNuenZKYlBsOWFCbnJlWFBBOUhna0ZLS3RI?=
- =?utf-8?B?T3FpR28rd1dkSFRpYkNtaSswRmwyNENpSEJCeWpYTVZWMmZXUStvSnFtWkgy?=
- =?utf-8?B?YlVtMGdFTExvSDMySSs5Z0NYWHhuVEFZZ0p3Skp2UHcvazdDS2RwNmRDc3Fx?=
- =?utf-8?B?YktKTjljWUMxd1M3Q25ROFRlQXd3UTJ6U0JKNmhSSWQ2cXJkSWJyRGhscmZp?=
- =?utf-8?B?NlhYVHByMG9JOFdJTU5wZHFWaUFZdys2TXZ2N0tMN2FUV3k5TDVGdU9PK3Nn?=
- =?utf-8?B?VjQ0c1NmdWovbjNYUzBYeXg4WGNTc0YvZWlhUUxTWDMxNS9KQkUzMUFmWnFU?=
- =?utf-8?B?d3dtNkRKS3IwdWpLRXpuNm5PR3hnT3I3dHduWW1CS0RBYjYrMzNEWkUzOWRY?=
- =?utf-8?B?VXFmTWgrV0xRRnp6dUVsbm52NlVjODVJRUhjL0ZETlhSQ04xaFVqc0dIYmRj?=
- =?utf-8?B?K2VxekFmWHppTjJuVGdBTlJ5K3NzSFJwS3pzMWtnN2FYNTQyUmYvZ2duQkJS?=
- =?utf-8?B?c2QzQmlJdVlXK292YUZreU5KbEN1VnQyNlZHdFl3ZzFEanRjTU1XSWxCUUJs?=
- =?utf-8?B?aHk2MFFWbC8wdXFnZFNrOVdCYmhNVGd3RmZpWXRsS2EyYStJNDZUazEzMVFr?=
- =?utf-8?B?Z3VMOEhBNWN3aTlmeDlTc0FLLyszNEI1Z0FNdVdlbFNraHJmcjlLTVV5emRV?=
- =?utf-8?B?VDVPVzJIZGdNSHZIcUc2VnZiUVR1cjZPZXdUN0pYbkVZNjBlUGNoTHdxNE10?=
- =?utf-8?B?dkpiK1pSZkxHY2JYT0xJNmpjV3ZIcWhPOGtCQXJpazgrMVNIUVNjM1ZWNDBC?=
- =?utf-8?B?bmExdzNsZ2Y0YVZ4WkZENXpIc3ZYY290V0N3VG85ZjllTmJsZGRrS01MV3BL?=
- =?utf-8?B?dVV4QXhVRjZ4UnE0bXp1bXNmR2JLUnB6WXhRMDBNcXUzcEtQTk1raXNZakRr?=
- =?utf-8?B?eFhtRG1SRUtrWStQYTFoSlZXM2plQStaZGx2YjJ5ZGc2djFLb05Ya2tRWjdO?=
- =?utf-8?B?SDVrQ2dicTYyN2QzL3ZkZ3pxdlRLeU53eFE3MzE2ZHdVd3NaZWxJR0dxVC9F?=
- =?utf-8?B?cGNEK0hzb2xxdWpBQmxKWkcweW1UN0RhbVduQTBKcGl4aTVzWDc4TVkveVVh?=
- =?utf-8?B?RkMrUnRlZWdVSlcwTUt1N0RiMVkxZHhmdGhyemhSbFVRTTJ5WUo4RkRscTdq?=
- =?utf-8?B?a3N1eXdYdkFNSzhtdmxGSkdlOXpNVFZzOEhsWTVZQXEyY1VHaEZmMWhhUGdO?=
- =?utf-8?B?L2tmNmlURmpzQUE0WGw2Vlp0T28yQ3pLRVJEajVSNzRVc1h6cjBMSCtRSzUz?=
- =?utf-8?Q?oJIEsgS8tlaIM3D24haZ?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8af8c7bf-a5d6-4ff7-428d-08dd57aebdcb
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2025 04:16:58.5205
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR19MB6204
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALs6wWcC/2WMQQ7CIBBFr9LMWgwMVaIr72G6QKDtJLY00KCm4
+ e6O3br77+flbZBDopDh2myQQqFMcWbAQwNutPMQBHlmQIkniSiFf5Hwq3AXZ2yv9cOrM7C8pND
+ Tew/dO+aR8hrTZ+8W9Xv/EkUJ3qbFVitntNG3YbL0PLo4QVdr/QKRXZv9nAAAAA==
+X-Change-ID: 20250220-dwi-dt-c9c7af33bd16
+To: Janne Grunau <j@jannau.net>, Sven Peter <sven@svenpeter.dev>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Nick Chan <towinchenmi@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1755; i=towinchenmi@gmail.com;
+ h=from:subject:message-id; bh=y4hL3tHb9GYf3Yp22BN/113NdRgsnisPVDma5CwN8IE=;
+ b=owEBbQKS/ZANAwAIAQHKCLemxQgkAcsmYgBnwTrIRj7n0/WhF18mWg+qdjxQA8gvt1Qz4ziZV
+ R2BWfarCmyJAjMEAAEIAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCZ8E6yAAKCRABygi3psUI
+ JDBRD/9W8gSW6lX+79iHJI9owGHugB7NeWiPlNECqkp2HsHLiPjNkw2o7shGpHmz0+onoB0uN7R
+ KFUAK3oAX868+MYYmwiRSTRm5uYnGJS3RbF7rOXoz3bGV54zYAwQp6XfnAHe4qCBL3pnCswbrP+
+ z5Pb+weU7zYj9rGamTdkWn8ckEL7KCFtYzldflzL/mr3bddR8G5PVNlo5k4rtYVMeFmsoGpvrwM
+ jswZNkLsTxRw63AKOK74X1c1rrXV8g9RGu+RaL8n62o9SZhEXxHUe8R4wJbseJxcWNTENJYfIXu
+ gKA9A3y6XG8CF2oBNnp3AbOTfJ0eZHVs0NHWR7eeDGejuLtkcu8LR89pMNCNB5mUos4/OVUvDqc
+ mv0PkWpNrNEkE8E9sdtp2eFmZGzoBwTo85+FtX5cYT1f09yiyXFlsd3Y91jNnzSRXoa/Jzc7j9T
+ QwUqoiBNYLzN2PUIqOMblN+ps5/tV/V0lN0+LtTg/wG2gGzlF7uiqVFQosYMlrsmBwQQ8ljxncz
+ 1Qt0VwOzB8FOBVOy8bbMHbx1uTCM4EuLCSJ5fV4fQ9ZmvKeFwgH4wrPiEtgrmdZ5td0j/4vdR6w
+ 8JQ7NYUCGiux+CjE5ZQkhUhfk6sap88C84mF1jHcr5kPyy0J9EkPndiE/B/kIYxiPQ1rHc7dGue
+ hCb8fHZDK5fbboQ==
+X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
+ fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
 
+Add device tree nodes for DWI backlight found on some Apple iPhones, iPads
+and iPod touches. Not all devices have this feature, as some devices
+instead have their backlights directly connected to the WLED output of a
+PMU or use self-emissive panels.
 
+Devicetree bindings are in the driver series. Last version at:
+https://lore.kernel.org/asahi/20250214040306.16312-1-towinchenmi@gmail.com/
 
-On 2/27/25 23:02, Dmitry Baryshkov wrote:
-> On Thu, Feb 27, 2025 at 09:25:05PM +0400, George Moussalem wrote:
->> On 2/27/25 18:59, Dmitry Baryshkov wrote:
->>
->>> On Thu, Feb 27, 2025 at 02:56:41PM +0400, George Moussalem wrote:
->>>> Adding generic support for SoCs with tsens v1.0 IP with no RPM.
->>>> Due to lack of RPM, tsens has to be reset and enabled in the driver
->>>> init.
->>>>
->>>> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
->>>> ---
->>>>  drivers/thermal/qcom/tsens-v1.c | 48 +++++++++++++++++++++++++++++++++
->>>>  drivers/thermal/qcom/tsens.c    | 24 ++++++++++-------
->>>>  drivers/thermal/qcom/tsens.h    |  1 +
->>>>  3 files changed, 64 insertions(+), 9 deletions(-)
->>>>
->>>> diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
->>>> index 1a7874676f68..877b27274fd2 100644
->>>> --- a/drivers/thermal/qcom/tsens-v1.c
->>>> +++ b/drivers/thermal/qcom/tsens-v1.c
->>>> @@ -79,6 +79,17 @@ static struct tsens_features tsens_v1_feat = {
->>>>  	.trip_max_temp	= 120000,
->>>>  };
->>>>  
->>>> +static struct tsens_features tsens_v1_no_rpm_feat = {
->>>> +	.ver_major	= VER_1_X_NO_RPM,
->>>> +	.crit_int	= 0,
->>>> +	.combo_int	= 0,
->>>> +	.adc		= 1,
->>>> +	.srot_split	= 1,
->>>> +	.max_sensors	= 11,
->>>> +	.trip_min_temp	= -40000,
->>>> +	.trip_max_temp	= 120000,
->>>> +};
->>>> +
->>>>  static const struct reg_field tsens_v1_regfields[MAX_REGFIELDS] = {
->>>>  	/* ----- SROT ------ */
->>>>  	/* VERSION */
->>>> @@ -150,6 +161,43 @@ static int __init init_8956(struct tsens_priv *priv) {
->>>>  	return init_common(priv);
->>>>  }
->>>>  
->>>> +static int __init init_tsens_v1_no_rpm(struct tsens_priv *priv)
->>>> +{
->>>> +	int i, ret;
->>>> +	u32 mask = 0;
->>>> +
->>>> +	ret = init_common(priv);
->>>> +	if (ret < 0) {
->>>> +		dev_err(priv->dev, "Init common failed %d\n", ret);
->>>> +		return ret;
->>>> +	}
->>>> +
->>>> +	ret = regmap_field_write(priv->rf[TSENS_SW_RST], 1);
->>>> +	if (ret) {
->>>> +		dev_err(priv->dev, "Reset failed\n");
->>>> +		return ret;
->>>> +	}
->>>> +
->>>> +	for (i = 0; i < priv->num_sensors; i++)
->>>> +		mask |= BIT(priv->sensor[i].hw_id);
->>>> +
->>>> +	ret = regmap_field_update_bits(priv->rf[SENSOR_EN], mask, mask);
->>>> +	if (ret) {
->>>> +		dev_err(priv->dev, "Sensor Enable failed\n");
->>>> +		return ret;
->>>> +	}
->>>> +
->>>> +	ret = regmap_field_write(priv->rf[TSENS_EN], 1);
->>>> +	if (ret) {
->>>> +		dev_err(priv->dev, "Enable failed\n");
->>>> +		return ret;
->>>> +	}
->>>> +
->>>> +	ret = regmap_field_write(priv->rf[TSENS_SW_RST], 0);
->>>> +
->>>> +	return ret;
->>>> +}
->>>> +
->>>>  static const struct tsens_ops ops_generic_v1 = {
->>>>  	.init		= init_common,
->>>>  	.calibrate	= calibrate_v1,
->>>> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
->>>> index 1f5d4de017d9..f860ea86d130 100644
->>>> --- a/drivers/thermal/qcom/tsens.c
->>>> +++ b/drivers/thermal/qcom/tsens.c
->>>> @@ -447,7 +447,7 @@ static void tsens_set_interrupt(struct tsens_priv *priv, u32 hw_id,
->>>>  	dev_dbg(priv->dev, "[%u] %s: %s -> %s\n", hw_id, __func__,
->>>>  		irq_type ? ((irq_type == 1) ? "UP" : "CRITICAL") : "LOW",
->>>>  		enable ? "en" : "dis");
->>>> -	if (tsens_version(priv) > VER_1_X)
->>>> +	if (tsens_version(priv) > VER_1_X_NO_RPM)
->>> I'd suggest to replace these checks with >= VER_2_X. This saves us from
->>> all the troubles if there is another 1.x 'modification' later on.
->> makes sense, will change to >= VER_2_X. Thanks for the feedback.
-> THanks! It also makes sense to split this into two patches then: one
-> which changes the condition all over the place and the other one which
-> adds VER_1_X_NO_RPM.
-Sounds good, will split into two. Will send v9 shortly..
+Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+---
+Changes in v2:
+- Fix typo s/iPad touch 7/iPod touch 7/ in commit message.
+- Pad "reg" property with a leading zero when needed
+- Link to v1: https://lore.kernel.org/r/20250220-dwi-dt-v1-0-d742431c7373@gmail.com
 
-Kind regards,
-George
->>>>  		tsens_set_interrupt_v2(priv, hw_id, irq_type, enable);
->>>>  	else
->>>>  		tsens_set_interrupt_v1(priv, hw_id, irq_type, enable);
+---
+Nick Chan (5):
+      arm64: dts: apple: s5l8960x: Add backlight nodes
+      arm64: dts: apple: t7000: Add backlight nodes
+      arm64: dts: apple: s800-0-3: Add backlight nodes
+      arm64: dts: apple: t8010: Add backlight nodes
+      arm64: dts: apple: t8015: Add backlight nodes
+
+ arch/arm64/boot/dts/apple/s5l8960x-5s.dtsi     | 4 ++++
+ arch/arm64/boot/dts/apple/s5l8960x.dtsi        | 7 +++++++
+ arch/arm64/boot/dts/apple/s800-0-3-common.dtsi | 4 ++++
+ arch/arm64/boot/dts/apple/s800-0-3.dtsi        | 7 +++++++
+ arch/arm64/boot/dts/apple/t7000-handheld.dtsi  | 4 ++++
+ arch/arm64/boot/dts/apple/t7000.dtsi           | 7 +++++++
+ arch/arm64/boot/dts/apple/t8010-common.dtsi    | 4 ++++
+ arch/arm64/boot/dts/apple/t8010.dtsi           | 7 +++++++
+ arch/arm64/boot/dts/apple/t8015-8.dtsi         | 4 ++++
+ arch/arm64/boot/dts/apple/t8015.dtsi           | 7 +++++++
+ 10 files changed, 55 insertions(+)
+---
+base-commit: 5744902a35798e516def50348356f867a6c1f1c7
+change-id: 20250220-dwi-dt-c9c7af33bd16
+
+Best regards,
+-- 
+Nick Chan <towinchenmi@gmail.com>
 
 
