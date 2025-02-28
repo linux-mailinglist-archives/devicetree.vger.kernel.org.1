@@ -1,148 +1,86 @@
-Return-Path: <devicetree+bounces-152613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AB51A49A46
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:12:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03495A49A53
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:15:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D619189152E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:12:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D54393A94CC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0662026D5A7;
-	Fri, 28 Feb 2025 13:12:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 302C42580D7;
+	Fri, 28 Feb 2025 13:15:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="iPwmjfn+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FD9E26BDBB;
-	Fri, 28 Feb 2025 13:11:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D30F1D554;
+	Fri, 28 Feb 2025 13:15:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740748319; cv=none; b=AuSJ1NY6WmyZgrhsEkyuLhigR+WJ7UHyg4o3tk3yiGVDkvGvKJGXYQi20xhB7zS5OylqD7A/fZzgpsA9NlTQEOGLWgvrFoDCOaPtAmF2O63dloaA4filCOZH5CuBX+p9r1atItPGsGDFZ5HVlhiazmCH80JBhUqls/rlA2qps9M=
+	t=1740748548; cv=none; b=m/zP0+AYlhyEKEsFwFsepeGWqcCIWYRYcEcZ+kW1N9YW6OCXobBCbt04MZWPPAa/ogZFlY0OaUJ00Viy3w9mRSBum62iiSolZ6IjwVsvWP4FdCy1xfaz/sVG3RhRs960hU86xtbXXtrfDG6L2QVmLqx+pwAhKFBoYI05TrdtN3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740748319; c=relaxed/simple;
-	bh=5NIEALQQnGOdsbsJJspo0aA9XnKgPp6WO3Iul21ZOj0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VmnNqTbbCS+trLEAxGFG/YuTTcVibrmUaLyWEruUvCUuc99HiMGZ+ntZk9GRL0ohF3AKeY5NWzFwV0ndlI15Zn86d/FL2I3o1x/i5Ov8KvPulM4loGhMUW8rYpTlq3/CrfC6z6BbkhxK+9yIFwOqCQz+La/mlbOT2pX6mYWEFrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8A4B81688;
-	Fri, 28 Feb 2025 05:12:12 -0800 (PST)
-Received: from [10.57.79.187] (unknown [10.57.79.187])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4470B3F673;
-	Fri, 28 Feb 2025 05:11:55 -0800 (PST)
-Message-ID: <99ee61dc-abd5-45d9-8d26-a8f0ae94c8eb@arm.com>
-Date: Fri, 28 Feb 2025 13:11:52 +0000
+	s=arc-20240116; t=1740748548; c=relaxed/simple;
+	bh=FZN2QnXXa9VEwTkiXucDqEPu4C7r4g1UsmVY6fw/PJM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=tLvi/AsotlVJqqLb7zBR5JbrLHE9xefXTyuO+5RQfax39EeRDEfcuGKGybggc0vFJP5EDPMFAa4vnciqT+SX0ZNI9kETcVy/JMXR/BS1HUSBOt3WL5f3QIN9Gjd/sozwechUII88MMieli0ht+Z29sRTEyCio6oPRiyI9wWX71U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=iPwmjfn+; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1740748538;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=7n26wdVU8SQRbAvpWaWjoeRo0iE4FcXJm+y2KLzS584=;
+	b=iPwmjfn+AoIhFiehSak7UatH7pEhF6iMh9rHX3pGtsEzmY8aLCnaoX8+5lTYtfqTWk5XpS
+	B67LQgX4EyBGv9f5AhyXr4ZgWd1bMpgchsopcmhqpYbTQxAJgq2aDTYxwrNW0Wsy3v4y7T
+	eiFPrke0MReCjoVI0fho2vJfj0gXAx1H1PpPDS6ZEyiamx7KVF0trP3TolHGXe82Fe4uRj
+	/r8OxfXk9uUfurrcSCXagZE1ncA/X6iApONGpB5A5QyAwnGTSpYGGvqMvs2VXjyedijnAl
+	fIfvdrU1jBTdX36F3u/GCJmV79P0It0aO2YD+TlrBcSRd3DyqCb0O8q+YzuYEg==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Subject: [PATCH 0/2] Slightly improve hardware description of Pine64 RockPro64
+Date: Fri, 28 Feb 2025 14:15:27 +0100
+Message-Id: <cover.1740748439.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] thermal: thermal-generic-adc: add temperature
- sensor channel
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: linux-pm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, Zhang Rui <rui.zhang@intel.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Laxman Dewangan <ldewangan@nvidia.com>, linux-kernel@vger.kernel.org
-References: <20250219082817.56339-1-clamor95@gmail.com>
- <20250219082817.56339-3-clamor95@gmail.com>
-Content-Language: en-US
-From: Lukasz Luba <lukasz.luba@arm.com>
-In-Reply-To: <20250219082817.56339-3-clamor95@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Svyatoslav,
+This is a small series that introduces small improvements to the way
+Pine64 RockPro64 [1] single-board-computer is described in the DT files.
+This applies to both production-run revisions of the RockPro64.
 
-On 2/19/25 08:28, Svyatoslav Ryhel wrote:
-> Add IIO sensor channel along with existing thermal sensor cell. This
-> would benefit devices that use adc sensors to detect temperature and
-> need a custom conversion table.
-> 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->   drivers/thermal/thermal-generic-adc.c | 54 ++++++++++++++++++++++++++-
->   1 file changed, 53 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/thermal/thermal-generic-adc.c b/drivers/thermal/thermal-generic-adc.c
-> index ee3d0aa31406..a8f3b965b39b 100644
-> --- a/drivers/thermal/thermal-generic-adc.c
-> +++ b/drivers/thermal/thermal-generic-adc.c
-> @@ -7,6 +7,7 @@
->    * Author: Laxman Dewangan <ldewangan@nvidia.com>
->    */
->   #include <linux/iio/consumer.h>
-> +#include <linux/iio/iio.h>
->   #include <linux/kernel.h>
->   #include <linux/module.h>
->   #include <linux/platform_device.h>
-> @@ -73,6 +74,57 @@ static const struct thermal_zone_device_ops gadc_thermal_ops = {
->   	.get_temp = gadc_thermal_get_temp,
->   };
->   
-> +static const struct iio_chan_spec gadc_thermal_iio_channel[] = {
-> +	{
-> +		.type = IIO_TEMP,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
-> +	}
-> +};
-> +
-> +static int gadc_thermal_read_raw(struct iio_dev *indio_dev,
-> +				 struct iio_chan_spec const *chan,
-> +				 int *temp, int *val2, long mask)
-> +{
-> +	struct gadc_thermal_info *gtinfo = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	if (mask != IIO_CHAN_INFO_PROCESSED)
-> +		return -EINVAL;
-> +
-> +	ret = gadc_thermal_get_temp(gtinfo->tz_dev, temp);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	*temp /= 1000;
-> +
-> +	return IIO_VAL_INT;
-> +}
-> +
-> +static const struct iio_info gadc_thermal_iio_info = {
-> +	.read_raw = gadc_thermal_read_raw,
-> +};
-> +
-> +static int gadc_iio_register(struct device *dev, struct gadc_thermal_info *gti)
-> +{
-> +	struct gadc_thermal_info *gtinfo;
-> +	struct iio_dev *indio_dev;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(struct gadc_thermal_info));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	gtinfo = iio_priv(indio_dev);
-> +	memcpy(gtinfo, gti, sizeof(struct gadc_thermal_info));
-> +
-> +	indio_dev->name = dev_name(dev);
-> +	indio_dev->info = &gadc_thermal_iio_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = gadc_thermal_iio_channel;
-> +	indio_dev->num_channels = ARRAY_SIZE(gadc_thermal_iio_channel);
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
+The introduced improvements boil down to eliminating some warnings from
+the kernel log, by adding a previously undefined regulator and by adding
+some missing references to the regulators.  The PCI Express patch from
+this series may actually result in some improvements, but the jury is
+still out;  the patch itself is perfectly safe in the meantime.
 
-I don't get the idea why we need iio device, while we already have the
-hwmon.
+[1] https://wiki.pine64.org/wiki/ROCKPro64
 
-Could you explain this a bit more, the cover letter also misses
-such justification and details.
+Dragan Simic (2):
+  arm64: dts: rockchip: Add avdd HDMI supplies to RockPro64 board dtsi
+  arm64: dts: rockchip: Add missing PCIe supplies to RockPro64 board
+    dtsi
 
-Regards,
-Lukasz
+ .../boot/dts/rockchip/rk3399-rockpro64.dtsi      | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
 
