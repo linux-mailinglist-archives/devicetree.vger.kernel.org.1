@@ -1,131 +1,179 @@
-Return-Path: <devicetree+bounces-152609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74D97A499C6
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:47:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A446AA49A1C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:01:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 356597A3251
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 12:46:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2B6F1735CA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:01:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E7E25E471;
-	Fri, 28 Feb 2025 12:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF8EB26738F;
+	Fri, 28 Feb 2025 13:01:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gs/8PV+g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39FCC26A1CB;
-	Fri, 28 Feb 2025 12:47:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B3E82F41;
+	Fri, 28 Feb 2025 13:01:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740746853; cv=none; b=uJCUPi7oZjkeCS90WVSaBx/ZeGV+rZt+z1ZsZI/5kwqDzJm8/lADcXU3/HfW6AbDknclN2x1HFp4/kajmgKcs5AMRLjUX18GOfp+s9h1832k6ZyL+bsEsiUybJXbp1m5Gejucq+IOLHEWjusiPwDmxaZYGKJOzGXR8SL4FmaUUw=
+	t=1740747709; cv=none; b=XD2mzqn9+xke9ouYB8VPuYX0Tq4Mlq6Ng9Yx1aC+y6ZsuTQl/0nsjgGedP271zkPgNb+FT5sLY3oBNHLRAUEdbykWi3lwCeHk1BNaIhyz8LP8tzpTsHA1Gzyi0DvuOmc2jmGJrIBsrlKYnelpUCZ45ubMNNfcyj/lkL97KlQ4D0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740746853; c=relaxed/simple;
-	bh=Vw4Ryn3NUtaNCwc4zw+L8qvGyjPKLKtqJMTz8JwVZMs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KPey2MqEcC1J8ef15wN4IF7Fl4zzMBf9GvARPo3Eg7u7IVOnopZaZbUTtUO1AAyV/AA5CPnUTrN9Xd0RDWnIuDNAJEQ6+ZWrKg4Th+Ru4Vme1GSml6tfSgX5Er6ngww2gP9Fif3Ax/EV9EV1bA7iEvtDdAq++OYJ5+/gpBjM3hY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: jJxE9fSVSImFZ40xCa2N7Q==
-X-CSE-MsgGUID: j6J5B/wjSdunMkZdMChjsQ==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 28 Feb 2025 21:47:23 +0900
-Received: from localhost.localdomain (unknown [10.226.92.94])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id D57C5402A422;
-	Fri, 28 Feb 2025 21:47:19 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v4 1/2] dt-bindings: mmc: renesas,sdhi: Document RZ/G3E support
-Date: Fri, 28 Feb 2025 12:47:08 +0000
-Message-ID: <20250228124713.153979-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250228124713.153979-1-biju.das.jz@bp.renesas.com>
-References: <20250228124713.153979-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1740747709; c=relaxed/simple;
+	bh=lqnR+JheswhvgrFJM6KyRTYNfvwJMuW0EW4T0IeIFF0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sxsy+C+GBWfdL/jF99bzeWyUNScl6pWgkfXIzN/Zn7qMgxRQ1ALGTug0IJzCoxKhqryV77bguICCkEJgX8bIBRUUfCC3BkJXQonYPZgUOH3opCKLRVai6HmNDwhl44/BVALeDi7kjNKZfLeE6Kmxe+WwpQomNMLrvu0dyxp/95M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gs/8PV+g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B3EFC4CEE9;
+	Fri, 28 Feb 2025 13:01:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740747709;
+	bh=lqnR+JheswhvgrFJM6KyRTYNfvwJMuW0EW4T0IeIFF0=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Gs/8PV+gdhuqgRbRq3PWjR3X7flzk5Sve8/pUNLfAw1jQyg46GaipmTQE1u7rL9KI
+	 cC8DRRVmSMQ/maxG43w/CCFfvrgMfBO286h9OoQMJCu029WsOjx7jXnOtit9wUTJ2m
+	 LL0LhSAx8yHebaGiZAusP9sUL9bjehVR4Qmz3PP8ZswaIDDwESVk2yBWOkdfFgTvqa
+	 Jt2pVvAVS95SHofj/HczhBM9c3gAcDW1mTu/BRhbUgAEW9tQ0y8hEdMREN7Dq0ywAd
+	 xXmzv+kqWC2B3uL7MB20vnyrHyrh/i9M+R3Y00WgK0HqlmMUnQScr2qKg0coCu66aH
+	 J84bAXsnYzvSw==
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5e0373c7f55so3089500a12.0;
+        Fri, 28 Feb 2025 05:01:49 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVKt4VjA6jSdf8HixjSv8FZ2Jok8LIJLcD5QMkoe5IL9QGLsj5n8y5VQbI1SVC5vkFT2XuV/2Cpw98Gapvh@vger.kernel.org, AJvYcCWOFFE7n6eR+6Dr+f8vMgFq3c+12QRdP/hdVWbhilNv/BDpyN4Ssu7aSS8qxaUr8OM7rCQ3kbKcHZAsBg==@vger.kernel.org, AJvYcCX7qIV4O9qUBpMXDctToiTaLSlxQimwmd1h8x4s/hmjPclwK2eP0a+nsE6m+SGhr6zwM4EB8PC1mzL6/zKXAK8d@vger.kernel.org, AJvYcCXeCrl/b5jec72yhIYBLeR8yaR5Fn8EdeRPECv0UeRqDayYanX+s5XPMnLBv/DHUCZx7GH4OVik5fZm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyxy9j3iz84o6m1ADyTRWTNojSQWMxwqRYA0eX0G2vsKR/l1sGl
+	eolASQHN7jg7NAUalcr4lWqjrqR0yTfmLIyI3o9X80Tu28UDMYWwfBxiHGvO6yerNNKV1NOQXBD
+	oU6AUsWcnUIedTwKGOFheVcm+2Q==
+X-Google-Smtp-Source: AGHT+IE3NVig6fcg7AWmf0LSZkEe9NZzSMZOtu4y73Ybn5vbLk/MQ08kJCOadYw8rDMrC7ULMWJhx6pGL/o+kHXgo3E=
+X-Received: by 2002:a17:907:6e87:b0:ab7:d537:91cb with SMTP id
+ a640c23a62f3a-abf261f98e3mr316126266b.7.1740747707559; Fri, 28 Feb 2025
+ 05:01:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250226-max77759-mfd-v2-0-a65ebe2bc0a9@linaro.org>
+ <20250226-max77759-mfd-v2-3-a65ebe2bc0a9@linaro.org> <20250227130451.GA1783593-robh@kernel.org>
+ <503e105b71fa4271f40a2d3ca18ba13ed7d45a65.camel@linaro.org>
+In-Reply-To: <503e105b71fa4271f40a2d3ca18ba13ed7d45a65.camel@linaro.org>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 28 Feb 2025 07:01:35 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK-_rPZqt_vRv75dSWDLUAyZ-LB=qz5J=Kse=7bO4q8sA@mail.gmail.com>
+X-Gm-Features: AQ5f1Jo7EndHwP8BRLSbmoeH26pdkVjNoOZvQIz2llEEQ2ewDNuDr81I38wLGHg
+Message-ID: <CAL_JsqK-_rPZqt_vRv75dSWDLUAyZ-LB=qz5J=Kse=7bO4q8sA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/6] dt-bindings: mfd: add max77759 binding
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The SD/MMC block on the RZ/G3E ("R9A09G047") SoC is similar to that
-of the RZ/V2H, but the SD0 channel has only dedicated pins, so we must
-use SD_STATUS register to control voltage and power enable (internal
-regulator), for non-fixed voltage (SD) MMC interface. However, it is
-optional for fixed voltage MMC interface (eMMC).
+On Thu, Feb 27, 2025 at 7:14=E2=80=AFAM Andr=C3=A9 Draszik <andre.draszik@l=
+inaro.org> wrote:
+>
+> On Thu, 2025-02-27 at 07:04 -0600, Rob Herring wrote:
+> > On Wed, Feb 26, 2025 at 05:51:22PM +0000, Andr=C3=A9 Draszik wrote:
+> > > The Maxim MAX77759 is a companion PMIC for USB Type-C applications an=
+d
+> > > includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
+> > > Port Controller (TCPC), NVMEM, and a GPIO expander.
+> > >
+> > > This describes the top-level device.
+> > >
+> > > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> > >
+> > > ---
+> > > v2:
+> > > * rename expected nvmem subdev nodename to 'nvmem-0'
+> > >   I'd have preferred just 'nvmem', but that matches nvmem-consumer.ya=
+ml
+> > >   and fails validation.
+> > >
+> > > Note: MAINTAINERS doesn't need updating, the binding update for the
+> > > first leaf device (gpio) adds a wildcard matching all max77759 bindin=
+gs
+> > > ---
+> > >  .../devicetree/bindings/mfd/maxim,max77759.yaml    | 104 +++++++++++=
+++++++++++
+> > >  1 file changed, 104 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77759.yam=
+l b/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
+> > > new file mode 100644
+> > > index 0000000000000000000000000000000000000000..87e3737896a289998a18b=
+67932dbccacfb8e3150
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
+> > > @@ -0,0 +1,104 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/mfd/maxim,max77759.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Maxim Integrated MAX77759 PMIC for USB Type-C applications
+> > > +
+> > > +maintainers:
+> > > +  - Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> > > +
+> > > +description: |
+> > > +  This is a part of device tree bindings for the MAX77759 companion =
+Power
+> > > +  Management IC for USB Type-C applications.
+> > > +
+> > > +  The MAX77759 includes Battery Charger, Fuel Gauge, temperature sen=
+sors, USB
+> > > +  Type-C Port Controller (TCPC), NVMEM, and a GPIO expander.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: maxim,max77759
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupt-controller: true
+> > > +
+> > > +  "#interrupt-cells":
+> > > +    const: 2
+> > > +
+> > > +  gpio-controller: true
+> > > +
+> > > +  "#gpio-cells":
+> > > +    const: 2
+> >
+> > Why do you have GPIO properties here and in the child node? Either woul=
+d
+> > be valid, but both probably not. Putting them here is actually
+> > preferred.
+>
+> That's an oversight, I meant to put them into the child only, not here,
+> since the child is the one providing the gpio functionality.
+>
+> What's the reason to have it preferred inside this parent node?
 
-For SD1 and SD2 channels, we can either use gpio regulator or internal
-regulator (using SD_STATUS register) for voltage switching.
+It really depends whether the GPIO block is a separate sub-block which
+is going to get reused or has its own resources or not. It's the same
+thing in system controllers which are often just a collection of
+leftover control bits.
 
-Document RZ/G3E SDHI IP support with optional internal regulator for
-both RZ/G3E and RZ/V2H SoC.
+We just don't want child nodes created just for the ease of
+instantiating drivers in Linux. While it's nice if drivers and nodes
+are 1 to 1, but that's specific to an OS.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v3->v4:
- * No change.
-v2->v3:
- * Collected tags.
-v1->v2:
- * Dropped tags.
- * Documented internal regulator as optional property for both RZ/G3E and
-   RZ/V2H SoCs.
----
- .../devicetree/bindings/mmc/renesas,sdhi.yaml    | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+You already need other child nodes here, so I don't care too much in this c=
+ase.
 
-diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-index af378b9ff3f4..773baa6c2656 100644
---- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-+++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-@@ -68,6 +68,9 @@ properties:
-               - renesas,sdhi-r9a08g045 # RZ/G3S
-               - renesas,sdhi-r9a09g011 # RZ/V2M
-           - const: renesas,rzg2l-sdhi
-+      - items:
-+          - const: renesas,sdhi-r9a09g047 # RZ/G3E
-+          - const: renesas,sdhi-r9a09g057 # RZ/V2H(P)
- 
-   reg:
-     maxItems: 1
-@@ -211,6 +214,19 @@ allOf:
-         sectioned off to be run by a separate second clock source to allow
-         the main core clock to be turned off to save power.
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,sdhi-r9a09g057
-+    then:
-+      properties:
-+        vqmmc-regulator:
-+          type: object
-+          description: VQMMC SD regulator
-+          $ref: /schemas/regulator/regulator.yaml#
-+          unevaluatedProperties: false
-+
- required:
-   - compatible
-   - reg
--- 
-2.43.0
-
+Rob
 
