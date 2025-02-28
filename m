@@ -1,60 +1,62 @@
-Return-Path: <devicetree+bounces-152743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A3D4A4A141
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:17:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85E3FA4A14B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:19:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 443D21899C65
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:17:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3EEBF7AA6A7
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:18:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B560219DF98;
-	Fri, 28 Feb 2025 18:17:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923261C1F20;
+	Fri, 28 Feb 2025 18:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h4WzT/G2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a6QGvTjJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 816F51F4C97;
-	Fri, 28 Feb 2025 18:17:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ECEB1F4CBF;
+	Fri, 28 Feb 2025 18:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740766660; cv=none; b=Lc9ba+4J0uuwMfgfrA/sB9sPUK2HpEfDMpYvN1kjCDUfraXvcZkQqsH9LWNSzHaAfNE+MQr82t5uLDqkn+B5fdpA5Mtfz9V56FWhJEE7cz/F+DSFj0/NdnCSUATy49QAwfgEQJ76oPwRNH8ohXECsJs4jrz/pMazgAp2co7kvK0=
+	t=1740766756; cv=none; b=tqnLba5hr+8UC9n/RnSPxO6q8AuKtmqlCXZK9Oq8o181Y2scivXZIonnhaOIJq7gZygH9glNdYMP5t8vPWvr65tp0ZhFIWwrJm4oFUwY4Z1x+CbE9r0gEep70R16KlOLaAPmmS/W15NvhPih5BFHlLzcmwo2X9Ea6ChVRJN06NQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740766660; c=relaxed/simple;
-	bh=a/UMFY3PmG/1uLNOqdYStwAd4uZGvoG8DB49sRcvT7U=;
+	s=arc-20240116; t=1740766756; c=relaxed/simple;
+	bh=JApBZwRIXITeT7RDTkJfHrhIsGCMN9PP8KGP890U2lw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cbCviRo5ANKGBA7P863P08Jpbf88m/UreoCbhWWHArGSyguKaxI3FH8+nj5u1NcLmMvrs2IZIdmq+ahfod6dmO5Gz0j+i7OIvewetONdTY7QOjXfGcae+zkXo926stoo1qv1IVu/iBiaig5+UjKaG9SD+1PMEm8mhvrmG0hb63Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h4WzT/G2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2017CC4CED6;
-	Fri, 28 Feb 2025 18:17:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WDTv3xmITU2l7hE8Gq6Sp7Cbp2Embl8Wla5tKWwBfkKc6tkwa2r/kwofLAVLqnkMNK1oi16EjF0WvbZ57f5Jek2IN33oG4637VY2II90/rmpEXoltgaRskEcI2fo9kg5iDLpZD/qezOGeJF8f6No9ZrDon/LjiwcENn13qikqdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a6QGvTjJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66EA7C4CED6;
+	Fri, 28 Feb 2025 18:19:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740766659;
-	bh=a/UMFY3PmG/1uLNOqdYStwAd4uZGvoG8DB49sRcvT7U=;
+	s=k20201202; t=1740766756;
+	bh=JApBZwRIXITeT7RDTkJfHrhIsGCMN9PP8KGP890U2lw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h4WzT/G2oAFp+dNhWfYKlm79abS+NcpyQZ6eqyRwjYZ4EPAb0WBkJoTAYhTfQXByR
-	 y6rm7XHSuoIOh9RpAt4GyGZQ7SxOXAko6BPndWwD4CieeqLaSwomU4O9NsoQl8360l
-	 0mdhllvDDzddzU881slMEqFz7HdCuxBV9y+NyuoSkW6fGKQeZd9sEK4zvtbRwTsW/t
-	 d/wJK//J+vfSHdknARu+bnfB9jrrTh/0ZJejmCmWWXixeXO1pizGB+VDSEnnfz7I5x
-	 6HCMJuBpkd6gnm4BrtWF1NilRbb3MuEHHPkBya05AV0BdMIdrmUHtWD+eS1eha53t2
-	 1qtZwd/tajQUw==
-Date: Fri, 28 Feb 2025 18:17:34 +0000
+	b=a6QGvTjJahh91nAuR/99i5L/1kCj7MOzD6zkCIhfy7K7uOmcS/rfadj3gScoyeT0c
+	 ChUf78FlPofFEIA8TgWTMFLI0kYXY+ySe3PLKR+poPlf7K+84HwFiCl+JpkvrdBqZX
+	 q65oj/+INMpV90pkDdMhYwICaUeG2ltjJBVSVjihNBmDs3KLd21h+h+R9CsRZsAC3c
+	 J403hWMgigWT2JJ35p0Y9ANI8aRtRVvgo8OGX0Y1zOO+0cNPyYQdydc1PGNb8sYdYT
+	 HZrFHHIjWLgbRkA34tbQ1HVVHDc6Xn88HTM6nBAr0b7XLwz+IMCRulfYIPPJ/oHr3V
+	 +nwlnolI1G+eQ==
+Date: Fri, 28 Feb 2025 18:19:11 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Ryan.Wanner@microchip.com
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, wim@linux-watchdog.org,
-	linux@roeck-us.net, vkoul@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: sama5d4-wdt: Add
- sama7d65-wdt
-Message-ID: <20250228-quaking-yoga-3ca96e2bd3c6@spud>
-References: <cover.1740675317.git.Ryan.Wanner@microchip.com>
- <15d6f901e64dd36d25a62e27601252c59708275a.1740675317.git.Ryan.Wanner@microchip.com>
+To: "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Cercueil <paul@crapouillou.net>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Paul Boddie <paul@boddie.org.uk>, Tim Bysun <tim.bysun@ingenic.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+	letux-kernel@openphoenux.org, kernel@pyra-handheld.com
+Subject: Re: [PATCH v2 1/4] bindings: ingenic,pinctrl: add x1600
+Message-ID: <20250228-stimuli-dingy-32502e56f821@spud>
+References: <cover.1740749637.git.hns@goldelico.com>
+ <c42f0ad1aeedbfc90b9a5f10a36b2f5f2da528e2.1740749637.git.hns@goldelico.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,36 +64,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="OwNJr0RVbE/sS7Fv"
+	protocol="application/pgp-signature"; boundary="WVS54cCjn+9yKs+B"
 Content-Disposition: inline
-In-Reply-To: <15d6f901e64dd36d25a62e27601252c59708275a.1740675317.git.Ryan.Wanner@microchip.com>
+In-Reply-To: <c42f0ad1aeedbfc90b9a5f10a36b2f5f2da528e2.1740749637.git.hns@goldelico.com>
 
 
---OwNJr0RVbE/sS7Fv
+--WVS54cCjn+9yKs+B
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 28, 2025 at 08:24:10AM -0700, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
->=20
-> Add microchip,sama7d65-wdt compatible string to the dt-binding documentat=
-ion.
->=20
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+On Fri, Feb 28, 2025 at 02:33:55PM +0100, H. Nikolaus Schaller wrote:
+> Add bindings for the Lumissil/Ingenic X1600 SoC.
+
+FWIW, normal subject ordering here would be more like
+"dt-bindings: pinctrl: ingenic: add x1600"
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> ---
+>  Documentation/devicetree/bindings/pinctrl/ingenic,pinctrl.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pinctrl/ingenic,pinctrl.ya=
+ml b/Documentation/devicetree/bindings/pinctrl/ingenic,pinctrl.yaml
+> index 890961826c6f0..84e960255a36d 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/ingenic,pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/ingenic,pinctrl.yaml
+> @@ -42,6 +42,7 @@ properties:
+>            - ingenic,jz4780-pinctrl
+>            - ingenic,x1000-pinctrl
+>            - ingenic,x1500-pinctrl
+> +          - ingenic,x1600-pinctrl
+>            - ingenic,x1830-pinctrl
+>            - ingenic,x2000-pinctrl
+>            - ingenic,x2100-pinctrl
+> @@ -81,6 +82,7 @@ patternProperties:
+>            - ingenic,jz4780-gpio
+>            - ingenic,x1000-gpio
+>            - ingenic,x1500-gpio
+> +          - ingenic,x1600-gpio
+>            - ingenic,x1830-gpio
+>            - ingenic,x2000-gpio
+>            - ingenic,x2100-gpio
+> --=20
+> 2.47.0
+>=20
+>=20
 
---OwNJr0RVbE/sS7Fv
+--WVS54cCjn+9yKs+B
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8H9vgAKCRB4tDGHoIJi
-0lJcAP9u9Uvx/4C75KIMdUEVO/h+wPDo8Rq2c+a08bA/fz8CEAEAl7uhrUKbEPRt
-rrGARi737735dX3i+yX85Af/e9nLrQI=
-=P3hd
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8H+HgAKCRB4tDGHoIJi
+0rkYAP45VMggPtX0S8CdNjy5aSFDJjgOdnkhVcG304/MGv6Q5QEA4VPOSA000d7w
+rCAKKORtGr+c5d3aotkEkn37btdjTwQ=
+=hmOv
 -----END PGP SIGNATURE-----
 
---OwNJr0RVbE/sS7Fv--
+--WVS54cCjn+9yKs+B--
 
