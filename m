@@ -1,128 +1,217 @@
-Return-Path: <devicetree+bounces-152779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 930FBA4A217
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:49:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94802A4A230
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:52:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F9831886EE3
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:49:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E72C16F6F6
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BB9727700B;
-	Fri, 28 Feb 2025 18:49:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBEA2277011;
+	Fri, 28 Feb 2025 18:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hiOlHKeh"
+	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="gRJVfSVA";
+	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="bIst71UO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 001D2277002;
-	Fri, 28 Feb 2025 18:49:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740768574; cv=none; b=qxddl+szCpXsGr2J5iiaHrQ+nyhEhDvNx3iunuLWmU737RIrp7LZM7dNtKCyeH+bAMRiNSfgXal2+QlKK23ySs3UVi9EU0RzitpWCXWdcInGz12D/KzSyUbptCE3/JImrDoOkjq/Q2UqS5nhplaV0loEAlBy64sde3mMOLSM9aI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740768574; c=relaxed/simple;
-	bh=slRqAGP1stq5cwMr2TYEn2bRgdXt+WbSoArhBnp+B58=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G42A+iOwhVc/f4BIlSg/xim9c11640lmVVeuJv+cl+ZvUAkTpmMllBFsBHijKgeaemr7SkyPM//fdtPi3cb/7e54cEeoo1SBW7WH7725zMIOQA0DnOk0oXRgZWtf28r/pP6cZRVQc3hkMvGBpKLYXD3WOedWmG/Rnra/0KP3sUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hiOlHKeh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2933C4CED6;
-	Fri, 28 Feb 2025 18:49:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740768573;
-	bh=slRqAGP1stq5cwMr2TYEn2bRgdXt+WbSoArhBnp+B58=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hiOlHKehccho/nhioyMk9PqEexMGOUf9yKGC67lnOpA6c7EhFROoAM0EGuK7BMBMC
-	 q8zYr7Phoxn9Tu/ACZIueJT8jkVvia136RA2FfbwVGQYfPCUr38UsyZ1gfE32zY1gc
-	 4ebdJbvKDoL2TN2g7qG0vl3nP6ZSRe7orcL49jSEd68dW+aJpYeQq/dbI+kWBiwv9u
-	 lKrLr13DuIDJwm/TP2KoO5iiWbFD/sVXXmhI14uPun1hG6HfvmKjbofaUB6TmY0ay3
-	 cDXxLNBMUL2oMWlshns1CD84Gk6zTbVhJ07N/ji+H7Gz0eHc9kZImv1sJCSArNJ8/p
-	 uwBY1Dz+HupBg==
-Date: Fri, 28 Feb 2025 18:49:29 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-input@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Markus Burri <markus.burri@mt.com>,
-	Manuel Traut <manuel.traut@mt.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: input: matrix_keypad - add wakeup-source
- property
-Message-ID: <20250228-lard-immodest-85ef8e18b52b@spud>
-References: <Z8EMI9ALqYY72VBV@google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF277277005;
+	Fri, 28 Feb 2025 18:51:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.165
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740768692; cv=pass; b=W4EkuPnOD1TMEqQmU62PRFHTAkfzStkj0ovEpllRG1X6jNxg/AtI0M4rrFBMbRsyIGAtV5VUmH+TkuUfjw5YjOUmQiymQ5ybca4np34Kdx6gdIxG2bTQYKVf4QojRH7Xp1onj5VB6i4242zF5GIe5R8UFWgdNS3qJKJwbU5i4/o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740768692; c=relaxed/simple;
+	bh=CWSgS9XJdwR2l2RX3Aso1qZio2y1aTXn9vpmWAWnbIs=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=dWjjmfuiEcF64aXW2BxISuWhbSgJJRp9bgKK9P1tmqwFgckEjxq55RRSSn5pB0X+NJJ7NnLU2OoBFNs3HgIkHGhltq92Mincqc/IPruUs2UTal8HmPsXp3Y7f0iPkCA3oIZgJibR3DQsx72zp9M60j4MsWyiH+pLR+ZBBHTlNTE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=gRJVfSVA; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=bIst71UO; arc=pass smtp.client-ip=81.169.146.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
+ARC-Seal: i=1; a=rsa-sha256; t=1740768674; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=OAZ3ooUSoj9IZWelTJj3DkzO9MOXH6IMK5hoGOlACtnXZgQDIH9fN2ioHUS0f/0cTe
+    Sg3p0bDODhsDlCQaGgFl2TqYCntE7uj5V8TTPkvAuQIir/odCtJBbJSQyD+Ct34WWgdl
+    f3gOxOAE/g8UHn3t64NwfOE8Et5Fxl8s53YSBDZojJMEzglMxq8GtQ8Ui/5Qni/iwxuD
+    Dj3NYiSahxQYSE72hIWQaFpheePsMCl1sRbKIMTEWBV9pItIgM8p3m1T+wq5jlgDAhF4
+    mB6tyUPPeXUFXpqi6W4xiGt5Md1ggULAg7NLoWOm8vObNL+KoQLDWh5Ost6MQj6J+ybd
+    LtaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1740768674;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=hu5mqh9J42pIB/dnWsD6fShYZzFBfeLF8CLj4v05IZg=;
+    b=XiaZU9x/MmZfucBCKgLzcnqPsgt6XjW7uMTOuQ/jaXin9kn8ZMmtOCf2rTgAuaf3OV
+    Si5RqdcFoxnyGxl03ZVVIIepzVueWdHPAeCnf1kvW1zEJUV4NGVAKsX+r4uq6ZlSu3SL
+    PL+TdxMxO1DnmNKZ5zwXb6XLt5JRf4EQf+Z1BH+/Wb9Un/y5WH9Ei0V6xYHT7jFOpNrt
+    jPIKLxCGW5tggr4y7CpBGEdbHQMafpJkIvOj8MzvR7x3tgy3YADDVr4ot5K3H+FNPxGF
+    gLgilumst5xdQniZY3DpA7iEHcg2XGK9viL4nv3UN9POVRoi1jWvo78DdX2pE3Bp7ZEf
+    8R2g==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1740768674;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=hu5mqh9J42pIB/dnWsD6fShYZzFBfeLF8CLj4v05IZg=;
+    b=gRJVfSVA2vTYaRHtuc9Xh1ITLkJQ+EuxqJm1kSuJOr9QpyPgFyf6kx+FM14y4HCDbU
+    fxzjfxbON0Eg/4uQIDxNy7rZ3oi7vqXG9g4XzSXA4WjBwYjOx1LOY2fUMH51kuvH4d1H
+    jg5tDZWIY3ro2scQsXCJgnK/vBM8rQmOhxEKrQRFtCHRPGEXnjonUt1gd4t4k+81C+EU
+    jiEr6w/OSYRk8cWnr78UwehrnKxwO5yEdQdYoZOBdLoplEAKxyvdrDNru2m+nsXVDGth
+    JCcUvCVM+ayoWkmXmQgWQuKma2V6L6RB1HEgmjD1TMU8zE8aXphPnA8VHmsrxSnQ6Ayy
+    nz0g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1740768674;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=hu5mqh9J42pIB/dnWsD6fShYZzFBfeLF8CLj4v05IZg=;
+    b=bIst71UOqIgJWUhvJ8sjydSymX01PzXlU6IUXzTbk2mtO2q31JFyo723U5emcKAU37
+    0VAaK+t9J0D5vEZLT9Dg==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yeTkZ"
+Received: from smtpclient.apple
+    by smtp.strato.de (RZmta 51.3.0 DYNA|AUTH)
+    with ESMTPSA id Q56adc11SIpDPpY
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+	(Client did not present a certificate);
+    Fri, 28 Feb 2025 19:51:13 +0100 (CET)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="CG18mM55ivi0d+O1"
-Content-Disposition: inline
-In-Reply-To: <Z8EMI9ALqYY72VBV@google.com>
-
-
---CG18mM55ivi0d+O1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3776.700.51.11.1\))
+Subject: Re: [PATCH v2 4/4] pinctrl: ingenic: jz4730: add pinmux for I2S
+ interface
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <f1ffee11ef563d8c7486503eef3d21b8b7e2ccd9.camel@crapouillou.net>
+Date: Fri, 28 Feb 2025 19:51:03 +0100
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Andreas Kemnade <andreas@kemnade.info>,
+ Paul Boddie <paul@boddie.org.uk>,
+ Tim Bysun <tim.bysun@ingenic.com>,
+ linux-gpio@vger.kernel.org,
+ devicetree <devicetree@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ linux-mips@vger.kernel.org,
+ Discussions about the Letux Kernel <letux-kernel@openphoenux.org>,
+ kernel@pyra-handheld.com
 Content-Transfer-Encoding: quoted-printable
+Message-Id: <230B1328-40F2-49F4-BA4E-7BFC3456383F@goldelico.com>
+References: <cover.1740749637.git.hns@goldelico.com>
+ <1d50f0c980155dd22ccd164a6d281e3ac68e7446.1740749637.git.hns@goldelico.com>
+ <f1ffee11ef563d8c7486503eef3d21b8b7e2ccd9.camel@crapouillou.net>
+To: Paul Cercueil <paul@crapouillou.net>,
+ Conor Dooley <conor+dt@kernel.org>
+X-Mailer: Apple Mail (2.3776.700.51.11.1)
 
-On Thu, Feb 27, 2025 at 05:06:43PM -0800, Dmitry Torokhov wrote:
-> The driver recognizes standard "wakeup-source" property and there are
-> DTS files using it. Add the property to the binding.
+Hi Paul and Conor,
+
+> Am 28.02.2025 um 19:26 schrieb Paul Cercueil <paul@crapouillou.net>:
 >=20
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202502280105.REZ29MVg-lkp@i=
-ntel.com/
-> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-> ---
->  .../devicetree/bindings/input/gpio-matrix-keypad.yaml         | 4 ++++
->  1 file changed, 4 insertions(+)
+> Hi Nikolaus,
 >=20
-> diff --git a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.y=
-aml b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
-> index 73bb153ed241..ebfff9e42a36 100644
-> --- a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
-> +++ b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
-> @@ -68,6 +68,8 @@ properties:
->        Drive inactive columns during scan,
->        default is to turn inactive columns into inputs.
-> =20
-> +  wakeup-source: true
-> +
->  required:
->    - compatible
->    - row-gpios
-> @@ -96,4 +98,6 @@ examples:
->                          0x0001006A
->                          0x0101001C
->                          0x0201006C>;
-> +
-> +        wakeup-source;
->      };
-> --=20
-> 2.48.1.711.g2feabab25a-goog
+> Le vendredi 28 f=C3=A9vrier 2025 =C3=A0 14:33 +0100, H. Nikolaus =
+Schaller a
+> =C3=A9crit :
+>> I2S is used for the sound codec of the Alpha400.
+>>=20
+>> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+>> ---
+>>  drivers/pinctrl/pinctrl-ingenic.c | 13 ++++++++++++-
+>>  1 file changed, 12 insertions(+), 1 deletion(-)
+>>=20
+>> diff --git a/drivers/pinctrl/pinctrl-ingenic.c
+>> b/drivers/pinctrl/pinctrl-ingenic.c
+>> index 08e082e84f5c6..6d7dc077c373e 100644
+>> --- a/drivers/pinctrl/pinctrl-ingenic.c
+>> +++ b/drivers/pinctrl/pinctrl-ingenic.c
+>> @@ -209,10 +209,14 @@ static int jz4730_nand_cs4_pins[] =3D { 0x56, =
+};
+>>  static int jz4730_nand_cs5_pins[] =3D { 0x57, };
+>>  static int jz4730_pwm_pwm0_pins[] =3D { 0x5e, };
+>>  static int jz4730_pwm_pwm1_pins[] =3D { 0x5f, };
+>> -
 >=20
+> Just a nit - but you remove a blank line in patch 4/4 that was added =
+in
+> 3/4, better not add it in the first place :)
+
+Ah, sometimes this gets missed.
+
 >=20
-> --=20
-> Dmitry
+> That's the only comment I have on the whole patchset, so either fix it
+> in a v3 while adding my review tag, or maybe Linus can do it when
+> applying the patchset.
 
---CG18mM55ivi0d+O1
-Content-Type: application/pgp-signature; name="signature.asc"
+I'll send a V3 tomorrow together with Conor's comment/fix for 1/4.
 
------BEGIN PGP SIGNATURE-----
+BR and thanks,
+Nikolaus
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8IFOQAKCRB4tDGHoIJi
-0uW6AP4sjiFIDI7Ec7ygR4PeEI5UGvqe+UwfRUGw4dMKHK94zgEAhfhxvyE2d4Xy
-+1qRfqkmZUl/UA8O3Izbj/BT0zb2iQ0=
-=/7xV
------END PGP SIGNATURE-----
+>=20
+> Cheers,
+> -Paul
+>=20
+>>  static int jz4730_mii_pins[] =3D { 0x70, 0x71, 0x72, 0x73, 0x74, =
+0x75,
+>> 0x76,
+>>   0x77, 0x78, 0x19, 0x7a, 0x1b, 0x7c,
+>> };
+>> =20
+>> +static int jz4730_i2s_mclk_pins[] =3D { 0x44, };
+>> +static int jz4730_i2s_acreset_pins[] =3D { 0x45, };
+>> +static int jz4730_i2s_data_pins[] =3D { 0x46, 0x47, };
+>> +static int jz4730_i2s_clock_pins[] =3D { 0x4d, 0x4e, };
+>> +
+>>  static u8 jz4730_lcd_8bit_funcs[] =3D { 1, 1, 1, 1, 1, 1, 1, 1, 2, =
+2,
+>> 2, };
+>> =20
+>>  static const struct group_desc jz4730_groups[] =3D {
+>> @@ -235,6 +239,11 @@ static const struct group_desc jz4730_groups[] =3D=
 
---CG18mM55ivi0d+O1--
+>> {
+>>   INGENIC_PIN_GROUP("pwm0", jz4730_pwm_pwm0, 1),
+>>   INGENIC_PIN_GROUP("pwm1", jz4730_pwm_pwm1, 1),
+>>   INGENIC_PIN_GROUP("mii", jz4730_mii, 1),
+>> + INGENIC_PIN_GROUP("i2s-mclk-out", jz4730_i2s_mclk, 1),
+>> + INGENIC_PIN_GROUP("i2s-acreset", jz4730_i2s_acreset, 1),
+>> + INGENIC_PIN_GROUP("i2s-data", jz4730_i2s_data, 1),
+>> + INGENIC_PIN_GROUP("i2s-master", jz4730_i2s_clock, 1),
+>> + INGENIC_PIN_GROUP("i2s-slave", jz4730_i2s_clock, 2),
+>>  };
+>> =20
+>>  static const char *jz4730_mmc_groups[] =3D { "mmc-1bit", "mmc-4bit",
+>> };
+>> @@ -251,6 +260,7 @@ static const char *jz4730_nand_groups[] =3D {
+>>  static const char *jz4730_pwm0_groups[] =3D { "pwm0", };
+>>  static const char *jz4730_pwm1_groups[] =3D { "pwm1", };
+>>  static const char *jz4730_mii_groups[] =3D { "mii", };
+>> +static const char *jz4730_i2s_groups[] =3D { "i2s-data", =
+"i2s-master",
+>> "i2s-slave", };
+>> =20
+>>  static const struct function_desc jz4730_functions[] =3D {
+>>   INGENIC_PIN_FUNCTION("mmc", jz4730_mmc),
+>> @@ -263,6 +273,7 @@ static const struct function_desc
+>> jz4730_functions[] =3D {
+>>   INGENIC_PIN_FUNCTION("pwm0", jz4730_pwm0),
+>>   INGENIC_PIN_FUNCTION("pwm1", jz4730_pwm1),
+>>   INGENIC_PIN_FUNCTION("mii", jz4730_mii),
+>> + INGENIC_PIN_FUNCTION("i2s", jz4730_i2s),
+>>  };
+>> =20
+>>  static const struct ingenic_chip_info jz4730_chip_info =3D {
+>=20
+
 
