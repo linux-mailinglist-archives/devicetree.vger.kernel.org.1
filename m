@@ -1,221 +1,298 @@
-Return-Path: <devicetree+bounces-152648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50C0DA49BC4
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 15:21:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC50FA49BCC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 15:22:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 218AE3A5EA2
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:21:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4802116A04F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:22:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE53526D5AD;
-	Fri, 28 Feb 2025 14:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C617E25DD1E;
+	Fri, 28 Feb 2025 14:22:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="c9nJMMt4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1863653363;
-	Fri, 28 Feb 2025 14:21:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11BFD1AA1FA;
+	Fri, 28 Feb 2025 14:22:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740752472; cv=none; b=avAZPUK3VYwtHUpwPPluHeH3BSi/RdyJU2NV490KOqlBO3MQWE5XGeAxzh1BQaH4M4ZdZ/AJKOD4irgksVhZ8orowUNsw1CCdsfU1XfyjUEzhOqxTJY9hJROfLxWxjSqZpN6nZ+E90MMWiGseDuYyqG3V4xzGtR2E9ow0cjDILc=
+	t=1740752565; cv=none; b=pj6ipJudrXZJ97zc08g6vU+A2fTYpswnZWlAC0VfaRjKoQvHqrNiwmIx2S1v4DgtIwXQ/azi4s0XDUy2glMxanRwDOE48lvuai/+SWOE58vOEs3KRD77gDMHXQMj67Q6wHyvR3Wt1Ul4OHXsCQsyj/hHzQ3XwATu6/1hhsJK3eE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740752472; c=relaxed/simple;
-	bh=9NBaILxd7R0N3z3x0yu/mSNRfbQS63Inmtd4qw4bXkc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Q2QRBa47MHGEEqXlVRS+7PRSeb5KcH7yeZZz/vz7ryBSQ5P8qEJYpEe3LVgTkDgZBXSwLIEmKoRfJqc+Xm4+aWCQRuJ2LQlGz/c9RJMBi0jOQLLMucMB86/n98FdL9TpQDWcHn/G0sNmBUCjEgLNckZfqiTt20juIv2jbeeBEBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AA84C1515;
-	Fri, 28 Feb 2025 06:21:25 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5DF833F6A8;
-	Fri, 28 Feb 2025 06:21:08 -0800 (PST)
-Date: Fri, 28 Feb 2025 14:21:05 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai
- <wens@csie.org>, Samuel Holland <samuel@sholland.org>, Philipp Zabel
- <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 13/15] clk: sunxi-ng: a523: add reset lines
-Message-ID: <20250228142105.3ce2f2df@donnerap.manchester.arm.com>
-In-Reply-To: <15399016.tv2OnDr8pf@jernej-laptop>
-References: <20250214125359.5204-1-andre.przywara@arm.com>
-	<20250214125359.5204-14-andre.przywara@arm.com>
-	<15399016.tv2OnDr8pf@jernej-laptop>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1740752565; c=relaxed/simple;
+	bh=6UXEncONaPYz2j1TSNLuTfEKvtKMh5PTmmSy/EJTvtQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uTPyQbScT3JFDMq/06Vy3B2ixKMMXaG4dCHfo3LRchIkAIMZ01PEkNJwf/XXMNvS0CkfAgrt+w9LYR93KF13ALYPwhpcpT93zM/PTN2CMSl3IDmBSQxcPLNy4cNx/nsTYxTytRv+jxNijMwMFtDOouqieNYdxBhuN0rKHeXBCu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=c9nJMMt4; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Z/PkK21dX5bu6dg00h631OfOQu8sWV88qftNm6kJCdU=; b=c9nJMMt4G24TfQe5jMCZ4HldH+
+	cLQEXKYwwawK1xwt+CqoEXIH0CrV0i7Ur//g6P/nPDgjdeTaIyxyAWh+OPntPSvtYYPKJzSgGklA/
+	BghsEOMs3BOSzyuNrblnZq9HL0dkLeEtUlHe/QgzAQDG0nUd/9FcBC99L3r3zeS6TnePd+z4Me5od
+	gdgUcMrcIxNZ7m/+O+hNVU29AbBycEjFVEuuGM3GETLG9SanJKpqfazlRFd+hc1DKrmvJIMRl/PCN
+	dBuQBws5BM8eKurVQ3+Lvp7u1J0Nhn+Qrx7qsK9Wf9sIx0dYtIAG6tQc1jobdz5qtYII8qguCvMpW
+	rkiud2yg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:38986)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1to1Fz-00025B-27;
+	Fri, 28 Feb 2025 14:22:27 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1to1Fv-0000o8-03;
+	Fri, 28 Feb 2025 14:22:23 +0000
+Date: Fri, 28 Feb 2025 14:22:22 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Lei Wei <quic_leiwei@quicinc.com>
+Cc: Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, quic_kkumarcs@quicinc.com,
+	quic_suruchia@quicinc.com, quic_pavir@quicinc.com,
+	quic_linchen@quicinc.com, quic_luoj@quicinc.com,
+	srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
+	vsmuthu@qti.qualcomm.com, john@phrozen.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH net-next v5 0/5] Add PCS support for Qualcomm IPQ9574 SoC
+Message-ID: <Z8HGnop3ONe5mDGk@shell.armlinux.org.uk>
+References: <20250207-ipq_pcs_6-14_rc1-v5-0-be2ebec32921@quicinc.com>
+ <20250211195934.47943371@kernel.org>
+ <Z6x1xD0krK0_eycB@shell.armlinux.org.uk>
+ <71a69eb6-9e24-48ab-8301-93ec3ff43cc7@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <71a69eb6-9e24-48ab-8301-93ec3ff43cc7@quicinc.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Tue, 18 Feb 2025 21:29:37 +0100
-Jernej =C5=A0krabec <jernej.skrabec@gmail.com> wrote:
+On Wed, Feb 19, 2025 at 06:46:57PM +0800, Lei Wei wrote:
+> > 2) there's yet another open coded "_get" function for getting the
+> > PCS given a DT node which is different from every other "_get"
+> > function - this one checks the parent DT node has an appropriate
+> > compatible whereas others don't. The whole poliferation of "_get"
+> > methods that are specific to each PCS still needs solving, and I
+> > still have the big question around what happens when the PCS driver
+> > gets unbound - and whether that causes the kernel to oops. I'm also
+> > not a fan of "look up the struct device and then get its driver data".
+> > There is *no* locking over accessing the driver data.
+> 
+> The PCS device in IPQ9574 chipset is built into the SoC chip and is not
+> pluggable. Also, the PCS driver module is not unloadable until the MAC
+> driver that depends on it is unloaded. Therefore, marking the driver
+> '.suppress_bind_attrs = true' to disable user unbind action may be good
+> enough to cover all possible scenarios of device going away for IPQ9574 PCS
+> driver.
 
-Hi,
+What I am concerned about is the proliferation of these various PCS
+specific "_get" methods. Where the PCS is looked up by firmware
+reference, we should have a common way to do that, rather than all
+these PCS specific ways.
 
-> Dne petek, 14. februar 2025 ob 13:53:57 Srednjeevropski standardni =C4=8D=
-as je Andre Przywara napisal(a):
-> > Allwinner SoCs do not contain a separate reset controller, instead the
-> > reset lines for the various devices are integrated into the "BGR" (Bus
-> > Gate / Reset) registers, for each device group: one for all UARTs, one
-> > for all SPI interfaces, and so on.
-> > The Allwinner CCU driver also doubles as a reset provider, and since the
-> > reset lines are indeed just single bits in those BGR register, we can
-> > represent them easily in an array of structs, just containing the
-> > register offset and the bit number.
-> >=20
-> > Add the location of the reset bits for all devices in the A523/T527
-> > SoCs, using the existing sunxi CCU infrastructure.
-> >=20
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  drivers/clk/sunxi-ng/ccu-sun55i-a523.c | 83 ++++++++++++++++++++++++++
-> >  1 file changed, 83 insertions(+)
-> >=20
-> > diff --git a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c b/drivers/clk/sunxi=
--ng/ccu-sun55i-a523.c
-> > index fbed9b2b3b2f9..d57565f07a112 100644
-> > --- a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
-> > +++ b/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
-> > @@ -1475,11 +1475,94 @@ static struct clk_hw_onecell_data sun55i_a523_h=
-w_clks =3D {
-> >  	},
-> >  };
-> > =20
-> > +static struct ccu_reset_map sun55i_a523_ccu_resets[] =3D {
-> > +	[RST_MBUS]		=3D { 0x540, BIT(30) },
-> > +	[RST_BUS_NSI]		=3D { 0x54c, BIT(16) },
-> > +	[RST_BUS_DE]		=3D { 0x60c, BIT(16) },
-> > +	[RST_BUS_DI]		=3D { 0x62c, BIT(16) },
-> > +	[RST_BUS_G2D]		=3D { 0x63c, BIT(16) },
-> > +	[RST_BUS_SYS]		=3D { 0x64c, BIT(16) },
-> > +	[RST_BUS_GPU]		=3D { 0x67c, BIT(16) },
-> > +	[RST_BUS_CE]		=3D { 0x68c, BIT(16) },
-> > +	[RST_BUS_SYS_CE]	=3D { 0x68c, BIT(17) },
-> > +	[RST_BUS_VE]		=3D { 0x69c, BIT(16) },
-> > +	[RST_BUS_DMA]		=3D { 0x70c, BIT(16) },
-> > +	[RST_BUS_MSGBOX]	=3D { 0x71c, BIT(16) },
-> > +	[RST_BUS_SPINLOCK]	=3D { 0x72c, BIT(16) },
-> > +	[RST_BUS_CPUXTIMER]	=3D { 0x74c, BIT(16) },
-> > +	[RST_BUS_DBG]		=3D { 0x78c, BIT(16) },
-> > +	[RST_BUS_PWM0]		=3D { 0x7ac, BIT(16) },
-> > +	[RST_BUS_PWM1]		=3D { 0x7ac, BIT(17) },
-> > +	[RST_BUS_DRAM]		=3D { 0x80c, BIT(16) },
-> > +	[RST_BUS_NAND]		=3D { 0x82c, BIT(16) },
-> > +	[RST_BUS_MMC0]		=3D { 0x84c, BIT(16) },
-> > +	[RST_BUS_MMC1]		=3D { 0x84c, BIT(17) },
-> > +	[RST_BUS_MMC2]		=3D { 0x84c, BIT(18) },
-> > +	[RST_BUS_SYSDAP]	=3D { 0x88c, BIT(16) },
-> > +	[RST_BUS_UART0]		=3D { 0x90c, BIT(16) },
-> > +	[RST_BUS_UART1]		=3D { 0x90c, BIT(17) },
-> > +	[RST_BUS_UART2]		=3D { 0x90c, BIT(18) },
-> > +	[RST_BUS_UART3]		=3D { 0x90c, BIT(19) },
-> > +	[RST_BUS_UART4]		=3D { 0x90c, BIT(20) },
-> > +	[RST_BUS_UART5]		=3D { 0x90c, BIT(21) },
-> > +	[RST_BUS_UART6]		=3D { 0x90c, BIT(22) },
-> > +	[RST_BUS_UART7]		=3D { 0x90c, BIT(23) },
-> > +	[RST_BUS_I2C0]		=3D { 0x91c, BIT(16) },
-> > +	[RST_BUS_I2C1]		=3D { 0x91c, BIT(17) },
-> > +	[RST_BUS_I2C2]		=3D { 0x91c, BIT(18) },
-> > +	[RST_BUS_I2C3]		=3D { 0x91c, BIT(19) },
-> > +	[RST_BUS_I2C4]		=3D { 0x91c, BIT(20) },
-> > +	[RST_BUS_I2C5]		=3D { 0x91c, BIT(21) },
-> > +	[RST_BUS_CAN]		=3D { 0x92c, BIT(16) },
-> > +	[RST_BUS_SPI0]		=3D { 0x96c, BIT(16) },
-> > +	[RST_BUS_SPI1]		=3D { 0x96c, BIT(17) },
-> > +	[RST_BUS_SPI2]		=3D { 0x96c, BIT(18) },
-> > +	[RST_BUS_SPIFC]		=3D { 0x96c, BIT(19) },
-> > +	[RST_BUS_EMAC0]		=3D { 0x97c, BIT(16) },
-> > +	[RST_BUS_EMAC1]		=3D { 0x98c, BIT(16) | BIT(17) },	/* GMAC1-AXI */ =20
->=20
-> GMAC AXI reset should be separate.
+I did start work on that, but I just haven't had the time to take it
+forward. This is about as far as I'd got:
 
-I see where you are coming from, but what would be the advantage,
-really? At the moment the generic STMMAC code and binding only knows
-about one reset line, so we would need to add support for a second line
-first, potentially even in generic code, but without any real win, I think.
+diff --git a/drivers/net/pcs/Makefile b/drivers/net/pcs/Makefile
+index 4f7920618b90..0b670fee0757 100644
+--- a/drivers/net/pcs/Makefile
++++ b/drivers/net/pcs/Makefile
+@@ -1,6 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ # Makefile for Linux PCS drivers
+ 
++obj-$(CONFIG_PHYLINK)		+= pcs-core.o
++
+ pcs_xpcs-$(CONFIG_PCS_XPCS)	:= pcs-xpcs.o pcs-xpcs-plat.o \
+ 				   pcs-xpcs-nxp.o pcs-xpcs-wx.o
+ 
+diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
+index 976e569feb70..1c5492dab00e 100644
+--- a/drivers/net/phy/phylink.c
++++ b/drivers/net/phy/phylink.c
+@@ -2483,6 +2483,15 @@ void phylink_pcs_change(struct phylink_pcs *pcs, bool up)
+ }
+ EXPORT_SYMBOL_GPL(phylink_pcs_change);
+ 
++/**
++ * phylink_pcs_remove() - notify phylink that a PCS is going away
++ * @pcs: PCS that is going away
++ */
++void phylink_pcs_remove(struct phylink_pcs *pcs)
++{
++	
++}
++
+ static irqreturn_t phylink_link_handler(int irq, void *data)
+ {
+ 	struct phylink *pl = data;
+diff --git a/include/linux/phylink.h b/include/linux/phylink.h
+index 071ed4683c8c..1e6b7ce0fa7a 100644
+--- a/include/linux/phylink.h
++++ b/include/linux/phylink.h
+@@ -1,6 +1,7 @@
+ #ifndef NETDEV_PCS_H
+ #define NETDEV_PCS_H
+ 
++#include <linux/list.h>
+ #include <linux/phy.h>
+ #include <linux/spinlock.h>
+ #include <linux/workqueue.h>
+@@ -435,9 +436,11 @@ int mac_enable_tx_lpi(struct phylink_config *config, u32 timer,
+ #endif
+ 
+ struct phylink_pcs_ops;
++struct pcs_lookup;
+ 
+ /**
+  * struct phylink_pcs - PHYLINK PCS instance
++ * @lookup: private member for PCS core management
+  * @supported_interfaces: describing which PHY_INTERFACE_MODE_xxx
+  *                        are supported by this PCS.
+  * @ops: a pointer to the &struct phylink_pcs_ops structure
+@@ -455,6 +458,7 @@ struct phylink_pcs_ops;
+  * the PCS driver.
+  */
+ struct phylink_pcs {
++	struct pcs_lookup *lookup;
+ 	DECLARE_PHY_INTERFACE_MASK(supported_interfaces);
+ 	const struct phylink_pcs_ops *ops;
+ 	struct phylink *phylink;
+@@ -692,6 +696,7 @@ int phylink_set_fixed_link(struct phylink *,
+ 
+ void phylink_mac_change(struct phylink *, bool up);
+ void phylink_pcs_change(struct phylink_pcs *, bool up);
++void phylink_pcs_remove(struct phylink_pcs *);
+ 
+ int phylink_pcs_pre_init(struct phylink *pl, struct phylink_pcs *pcs);
+ 
+@@ -790,4 +795,11 @@ void phylink_mii_c45_pcs_get_state(struct mdio_device *pcs,
+ 
+ void phylink_decode_usxgmii_word(struct phylink_link_state *state,
+ 				 uint16_t lpa);
++
++/* PCS lookup */
++struct phylink_pcs *pcs_find(void *id);
++void pcs_remove(struct phylink_pcs *pcs);
++int pcs_add(struct phylink_pcs *pcs, void *id);
++int devm_pcs_add(struct device *dev, struct phylink_pcs *pcs, void *id);
++
+ #endif
 
-On the other hand the reset struct supports a bit mask already, so
-toggling both bits at the same time seems perfectly fine.
-So to make things easier, I thought we should take advantage of that,
-and having one line covering both bits. There is only one clock gate
-bit for GMAC1 as well.
+The idea is that you add the device using whatever identifier you decide
+(the pointer value is what's matched). For example, a fwnode. You can
+then find it using pcs_find().
 
-And I know this isn't a good argument, but the BSP does it like this as wel=
-l ;-)
+If it returns NULL, then it's not (yet) registered - if you know that it
+should exist (e.g. because the fwnode is marked as available) then you
+can return -EPROBE_DEFER or fail.
 
->=20
-> > +	[RST_BUS_IR_RX]		=3D { 0x99c, BIT(16) },
-> > +	[RST_BUS_IR_TX]		=3D { 0x9cc, BIT(16) },
-> > +	[RST_BUS_GPADC0]	=3D { 0x9ec, BIT(16) },
-> > +	[RST_BUS_GPADC1]	=3D { 0x9ec, BIT(17) },
-> > +	[RST_BUS_THS]		=3D { 0x9fc, BIT(16) },
-> > +	[RST_USB_PHY0]		=3D { 0xa70, BIT(30) },
-> > +	[RST_USB_PHY1]		=3D { 0xa74, BIT(30) },
-> > +	[RST_BUS_OHCI0]		=3D { 0xa8c, BIT(16) },
-> > +	[RST_BUS_OHCI1]		=3D { 0xa8c, BIT(17) },
-> > +	[RST_BUS_EHCI0]		=3D { 0xa8c, BIT(20) },
-> > +	[RST_BUS_EHCI1]		=3D { 0xa8c, BIT(21) },
-> > +	[RST_BUS_OTG]		=3D { 0xa8c, BIT(24) },
-> > +	[RST_BUS_3]		=3D { 0xa8c, BIT(25) },	/* BSP + register */
-> > +	[RST_BUS_LRADC]		=3D { 0xa9c, BIT(16) },
-> > +	[RST_BUS_PCIE_USB3]	=3D { 0xaac, BIT(16) },
-> > +	[RST_BUS_DPSS_TOP]	=3D { 0xabc, BIT(16) }, =20
->=20
-> Docs say that there is extra display top reset at 0xacc.
+There is a hook present so phylink can do something on PCS removal -
+that's still to be implemented with this. I envision keeping a list
+of phylink instances, and walking that list to discover if any phylink
+instances are currently using the PCS. If they are, then we can take
+the link down.
 
-Right, also the name is better there: RST_BUS_DISPLAY[01]. Fixed that.
+> I would like to clarify on the hardware supported configurations for the
+> UNIPHY PCS hardware instances. [Note: There are three instances of 'UNIPHY
+> PCS' in IPQ9574. However we take the example here for PCS0]
+> 
+> UNIPHY PCS0 --> pcs0_mii0..pcs0_mii4 (5 PCS MII channels maximum).
+> Possible combinations: QSGMII (4x 1 SGMII)
+> 			PSGMII (5 x 1 SGMII),
+> 			SGMII (1 x 1 SGMII)
+> 			USXGMII (1 x 1 USXGMII)
+> 	
+> As we can see above, different PCS channels in a 'UNIPHY' PCS block working
+> in different PHY interface modes is not supported by the hardware. So, it
+> might not be necessary to detect that conflict. If the interface mode
+> changes from one to another, the same interface mode is applicable to all
+> the PCS channels that are associated with the UNIPHY PCS block.
+> 
+> Below is an example of a DTS configuration which depicts one board
+> configuration where one 'UNIPHY' (PCS0) is connected with a QCA8075 Quad
+> PHY, it has 4 MII channels enabled and connected with 4 PPE MAC ports, and
+> all the PCS MII channels are in QSGMII mode. For the 'UNIPHY' connected with
+> single SGMII or USXGMII PHY (PCS1), only one MII channel is enabled and
+> connected with one PPE MAC port.
+> 
+> PHY:
+> &mdio {
+> 	ethernet-phy-package@0 {
+>                 compatible = "qcom,qca8075-package";
+>                 #address-cells = <1>;
+>                 #size-cells = <0>;
+>                 reg = <0x10>;
+>                 qcom,package-mode = "qsgmii";
+> 
+>                 phy0: ethernet-phy@10 {
+>                         reg = <0x10>;
+>                 };
+> 
+>                 phy1: ethernet-phy@11 {
+>                         reg = <0x11>;
+>                 };
+> 
+>                 phy2: ethernet-phy@12 {
+>                         reg = <0x12>;
+>                 };
+> 
+>                 phy3: ethernet-phy@13 {
+>                         reg = <0x13>;
+>                 };
+> 	};
+> 	phy4: ethernet-phy@8 {
+>                 compatible ="ethernet-phy-ieee802.3-c45";
+>                 reg = <8>;
+>         };
+> }
+> 
+> PCS:
+> pcs0: ethernet-pcs@7a00000 {
+> 	......
+> 	pcs0_mii0: pcs-mii@0 {
+> 		reg = <0>;
+> 		status = "enabled";
+> 	};
+> 
+> 	......
+> 
+> 	pcs0_mii3: pcs-mii@3 {
+> 		reg = <3>;
+> 		status = "enabled";
+> 	};
+> };
 
-Cheers,
-Andre
+Given that this is a package of several PCS which have a global mode, I
+think it would be a good idea to have a property like
+"qcom,package-mode" which defines which of the four modes should be used
+for all PCS.
 
->=20
-> > +	[RST_BUS_HDMI_MAIN]	=3D { 0xb1c, BIT(16) },
-> > +	[RST_BUS_HDMI_SUB]	=3D { 0xb1c, BIT(17) },
-> > +	[RST_BUS_MIPI_DSI0]	=3D { 0xb4c, BIT(16) },
-> > +	[RST_BUS_MIPI_DSI1]	=3D { 0xb4c, BIT(17) },
-> > +	[RST_BUS_TCON_LCD0]	=3D { 0xb7c, BIT(16) },
-> > +	[RST_BUS_TCON_LCD1]	=3D { 0xb7c, BIT(17) },
-> > +	[RST_BUS_TCON_LCD2]	=3D { 0xb7c, BIT(18) },
-> > +	[RST_BUS_TCON_TV0]	=3D { 0xb9c, BIT(16) },
-> > +	[RST_BUS_TCON_TV1]	=3D { 0xb9c, BIT(17) },
-> > +	[RST_BUS_LVDS0]		=3D { 0xbac, BIT(16) },
-> > +	[RST_BUS_LVDS1]		=3D { 0xbac, BIT(17) },
-> > +	[RST_BUS_EDP]		=3D { 0xbbc, BIT(16) },
-> > +	[RST_BUS_VIDEO_OUT0]	=3D { 0xbcc, BIT(16) },
-> > +	[RST_BUS_VIDEO_OUT1]	=3D { 0xbcc, BIT(17) },
-> > +	[RST_BUS_LEDC]		=3D { 0xbfc, BIT(16) },
-> > +	[RST_BUS_CSI]		=3D { 0xc1c, BIT(16) },
-> > +	[RST_BUS_ISP]		=3D { 0xc2c, BIT(16) },	/* BSP + register */
-> > +};
-> > +
-> >  static const struct sunxi_ccu_desc sun55i_a523_ccu_desc =3D {
-> >  	.ccu_clks	=3D sun55i_a523_ccu_clks,
-> >  	.num_ccu_clks	=3D ARRAY_SIZE(sun55i_a523_ccu_clks),
-> > =20
-> >  	.hw_clks	=3D &sun55i_a523_hw_clks,
-> > +
-> > +	.resets		=3D sun55i_a523_ccu_resets,
-> > +	.num_resets	=3D ARRAY_SIZE(sun55i_a523_ccu_resets),
-> >  };
-> > =20
-> >  static const u32 pll_regs[] =3D {
-> >  =20
->=20
->=20
->=20
->=20
+Then the PCS driver initialises supported_interfaces for each of these
+PCS to only contain that mode, thereby ensuring that unsupported
+dissimilar modes can't be selected or the mode unexpectedly changed.
 
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
