@@ -1,105 +1,110 @@
-Return-Path: <devicetree+bounces-152700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DA31A49DE6
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 16:47:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0071AA49DE1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 16:46:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 765DA17796E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 15:46:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D177418849BF
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 15:46:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05AD3270EC9;
-	Fri, 28 Feb 2025 15:46:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="Jvz7yJ45"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4522C271269;
+	Fri, 28 Feb 2025 15:46:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A119186E20;
-	Fri, 28 Feb 2025 15:46:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 818DB270EA9;
+	Fri, 28 Feb 2025 15:46:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740757579; cv=none; b=ZA22c+WTl/p+Mrb8Nwg4B/I3N8aQlfJcEKtYPeGjpdLf6F8usAZMNeU8NBml9bNE45eVKmQyRczf/oSsw8R7JwlOsfLs+dzctRnMp+6KsTqLkEa02Fj5dy6pwqRU4pK42ipgnerdlz3AVRKCTNcYsTMbCdovLlmGPhQoIk2YhLY=
+	t=1740757608; cv=none; b=cc2wkubdfUiE3BX0N7iaCSMdnWeUgpUh94yDIv2z8igKDJewsawuwkDHH9VEzxy9BeuGNJRuwCqM/4So+nXFiZq5WZuYY6e/JBpkFIkAA6z7RJrJuX8ifGSxxnjAB4AmHtNde1c1tN3Teo9PMqgQN2H0tMSKTpoOc7+KLhcKSKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740757579; c=relaxed/simple;
-	bh=ZXBR5LYnXOurTmSvf/2h8CiBxpUcI0g6wzC2BoBWZNc=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=KpCkhsbAqzC9nEBlmKUb2kVDxkCnKith1v+sp7dYXzIJTWZ7essWyRfz0DFcl4AYW4de17XVBj2T9VBnbEWfdxYYAymgFXYix2gWSe6Cm3cWimnLV0wKzhvADCj6t2085DEuUxWi++lRYckz3WR4FTNpYEMiJCPEWmoq9sdBMR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=Jvz7yJ45; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1740757608; c=relaxed/simple;
+	bh=Co92DQrOkxarOUPPnw+47Twq9u95xJbT1q0NnKciIpI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kiDscLZqspgA0aPVSxIXVrdyJ3FL+s3E5WINoskNRx9DQCHBVRwtykixJekmH7YRtLNNoS/SDr53fUOdFrU8R5KIZllZHbIJDa1Ztn3zVEA2FikjgG298mIbCaIT70W40MjW5ZfajArX0i1DInoTmj5lW8sDGxykesuDBGjN0VE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CF239150C;
+	Fri, 28 Feb 2025 07:46:59 -0800 (PST)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 64CB43F5A1;
+	Fri, 28 Feb 2025 07:46:41 -0800 (PST)
+From: Robin Murphy <robin.murphy@arm.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Stuart Yoder <stuyoder@gmail.com>,
+	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+	Nipun Gupta <nipun.gupta@amd.com>,
+	Nikhil Agarwal <nikhil.agarwal@amd.com>,
+	Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>
+Cc: linux-acpi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Charan Teja Kalla <quic_charante@quicinc.com>
+Subject: [PATCH v2 0/4] iommu: Fix the longstanding probe issues
+Date: Fri, 28 Feb 2025 15:46:29 +0000
+Message-Id: <cover.1740753261.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1740757575;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=luIE0Lf4JAHBS8LhKxuyQef8bCGyud3N4ZNDHk+iEL8=;
-	b=Jvz7yJ452lR8t9YC1wIIxBp7ro7I7QTTxUlXDF7Oox+l6ZnknysKkZpnv7UnuJeiGoDQz8
-	gkH3gqeNzEBGoIa78J7NYQi5Y3bW+sYOl+EUvtzo+BsbBQ50iuINXLKEeztXQRPDCDOf0w
-	9WL/Mi7yluhc1X5awOdpq2CsCQqI+yEI5ykdtyzUie01AY7O62Grd2XFGSKPrdu4HO/Eo/
-	N8SMvn73edg3RWBySKjupI+YBBcGkmS0WiODzMiYvunvy7WO+lLBWC0iS1uDbvYjHjSBAC
-	J38ps6i8mBWDAVMuLu0b7WQoQ6QIaaiNseLdw721m133y0tqGLRzl8/av8TeVA==
-Date: Fri, 28 Feb 2025 16:46:15 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Olivier Benjamin <olivier.benjamin@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, oren@taumoda.com, Ondrej Jirman <megi@xff.cz>
-Subject: Re: [PATCH 0/2] Describe the cameras in the PinePhone Pro dts
-In-Reply-To: <20250228-camera-v1-0-c51869f94e97@bootlin.com>
-References: <20250228-camera-v1-0-c51869f94e97@bootlin.com>
-Message-ID: <0338826971bfdd5b771bc1c6ada795eb@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Transfer-Encoding: 8bit
 
-Hello Olivier,
+v1: https://lore.kernel.org/linux-iommu/cover.1739486121.git.robin.murphy@arm.com/
 
-On 2025-02-28 16:19, Olivier Benjamin wrote:
-> This series adds support for the Pine64 PinePhone Pro's rear and front
-> cameras in Device Tree.
-> This is based on some of Ondrej Jirman's patches hosted in his tree at
-> https://codeberg.org/megi/linux, but I have also fully reviewed and
-> re-written the code from the RK3399 datasheet, the PinePhone Pro
-> schematic, and the IMX258-0AQH5 software reference manual.
-> 
-> I have tested these changes on my PinePhone Pro and am able to take
-> photos from both cameras using libcamera's cam.
-> 
-> Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
+Hi all,
 
-I'm afraid that you haven't addressed the notes from the feedback
-you received earlier? [*]  Also, this should be the v2 of the series,
-which should contain "PATCH v2" in the patch subjects, and provide
-a summary of changes in the cover letter.
+This spin irons out a couple of issues which v1 had. Firstly there
+should now be no change in behaviour for the weird of_dma_configure()
+calls, other than possibly getting the warning if they deserve it.
+Secondly I think there was still a possibility for probe to run via
+the replay path while its "real" probe was waiting to reacquire the
+lock; this is now solved by making dev->iommu a reliable indicator of
+the probe lifecycle, with a couple more prep patches.
 
-Or, did you just resend the v1 by mistake?
+Thanks,
+Robin.
 
-[*] https://lore.kernel.org/linux-rockchip/5127541.31r3eYUQgx@phil/
 
-> ---
-> Olivier Benjamin (2):
->       arm64: dts: PinePhone Pro: describe I2c Bus 1 and IMX258 world 
-> camera
->       arm64: dts: PinePhone Pro: describe the OV8858 user camera
-> 
->  .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 138 
-> +++++++++++++++++++++
->  1 file changed, 138 insertions(+)
-> ---
+Robin Murphy (4):
+  iommu: Handle race with default domain setup
+  iommu: Resolve ops in iommu_init_device()
+  iommu: Keep dev->iommu state consistent
+  iommu: Get DT/ACPI parsing into the proper probe path
+
+ drivers/acpi/arm64/dma.c        |  5 +++
+ drivers/acpi/scan.c             |  7 -----
+ drivers/amba/bus.c              |  3 +-
+ drivers/base/platform.c         |  3 +-
+ drivers/bus/fsl-mc/fsl-mc-bus.c |  3 +-
+ drivers/cdx/cdx.c               |  3 +-
+ drivers/iommu/iommu-priv.h      |  2 ++
+ drivers/iommu/iommu.c           | 55 ++++++++++++++++++++++++---------
+ drivers/iommu/of_iommu.c        | 13 ++++++--
+ drivers/of/device.c             |  7 ++++-
+ drivers/pci/pci-driver.c        |  3 +-
+ 11 files changed, 74 insertions(+), 30 deletions(-)
+
+-- 
+2.39.2.101.g768bb238c484.dirty
+
 
